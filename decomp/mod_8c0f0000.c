@@ -4344,8 +4344,8 @@ int FUN_8c0f816c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * speech_stop  0x8c0f8214
  * stops the current speech and clears its active flag (+0x89134)
- * called by: Class_12a078_m2_05eee0, Class_12a078_m5_0671f4, Class_12c3c4_m2_104264, Class_12c3c4_m5_10a0dc,
- * FUN_8c05d860, FUN_8c0bad68, FUN_8c0bf22c, FUN_8c0c09d0 (+4 more)
+ * called by: CSeamanDomain_Init, Class_12a078_m2_05eee0, Class_12a078_m5_0671f4, Class_12c3c4_m2_104264,
+ * Class_12c3c4_m5_10a0dc, FUN_8c05d860, FUN_8c0bad68, FUN_8c0bf22c (+4 more)
  */
 int speech_stop(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -4400,8 +4400,8 @@ u32 speech_restart(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * speech_request  0x8c0f8320
  * speech_start when the player is idle (+0x1014 == 0); 0 otherwise
- * called by: FUN_8c05d860, FUN_8c05f4a0, FUN_8c0611cc, FUN_8c062b0c, FUN_8c063838, FUN_8c064bb4, FUN_8c0652f4,
- * FUN_8c0bad68 (+6 more)
+ * called by: CSeamanDomain_Init, FUN_8c05d860, FUN_8c05f4a0, FUN_8c0611cc, FUN_8c062b0c, FUN_8c063838, FUN_8c064bb4,
+ * FUN_8c0652f4 (+6 more)
  */
 u32 speech_request(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -4941,7 +4941,7 @@ u32 FUN_8c0f9774(int a0, u32 unused_a1, code *a2, u32 a3) {
             pcVar3 = "GREETING";
             iVar1 = strcmp(ar4_00, "GREETING");
             if (iVar1 == 0) {
-                FUN_8c1f8176(auStack_28, pcVar3, a2, a3);
+                rtc_get_date(auStack_28, pcVar3, a2, a3);
                 if ((auStack_28[0] < 0x7d5) && (0x7ce < auStack_28[0])) {
                     switch (auStack_28[0]) {
                     case 1999:
@@ -5074,7 +5074,7 @@ u32 FUN_8c0f9774(int a0, u32 unused_a1, code *a2, u32 a3) {
                         ar5_00 = pcVar2;
                     }
                 } else {
-                    FUN_8c1f8176(auStack_28, auStack_28, a2, a3);
+                    rtc_get_date(auStack_28, auStack_28, a2, a3);
                     date_to_rtc_seconds(auStack_28, &uStack_2c, a2);
                     ar5_00 = (code *)get_field_c8_0fc440(a0 + 0x1054, a0 + 0x1054, a2, a3);
                     uStack_2c = uStack_2c - (int)ar5_00;
@@ -5123,8 +5123,8 @@ u32 FUN_8c0fa204(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c0fa2b8  0x8c0fa2b8
- * called by: Class_12a078_m2_05eee0, Class_12c3c4_m2_104264, FUN_8c05f4a0, FUN_8c0656d4, FUN_8c0bad68, FUN_8c0bcedc,
- * FUN_8c0bf22c, FUN_8c0c09d0 (+3 more)
+ * called by: CSeamanDomain_Init, Class_12a078_m2_05eee0, Class_12c3c4_m2_104264, FUN_8c05f4a0, FUN_8c0656d4,
+ * FUN_8c0bad68, FUN_8c0bcedc, FUN_8c0bf22c (+3 more)
  */
 u32 FUN_8c0fa2b8(int a0, u32 a1) {
     if (*(int *)(0x1014 + a0) == 0) {
@@ -5158,7 +5158,7 @@ u32 FUN_8c0fa2f0(u32 a0, u32 a1) {
 /*
  * memmove_wrap_0fa310  0x8c0fa310
  * only calls memmove
- * called by: FUN_8c0c5de8, FUN_8c0fa2f0
+ * called by: CGame_GetUserGameInfo, FUN_8c0fa2f0
  */
 u32 memmove_wrap_0fa310(u32 a0, u32 a1) {
     u32 uVar1;
@@ -5487,7 +5487,7 @@ u32 FUN_8c0fa83c(u32 *a0, u32 a1, u32 a2, u32 a3) {
     *(u8 *)(0x90 + (int)a0) = 0;
     *(u32 *)(0xb4 + (int)a0) = 0;
     *(u32 *)(0xb0 + (int)a0) = 0;
-    FUN_8c1f8176(auStack_14, a1, a2, a3);
+    rtc_get_date(auStack_14, a1, a2, a3);
     ar5_00 = (int)a0 + 0xc8;
     date_to_rtc_seconds(auStack_14, ar5_00, a2);
     uVar1 = field_ptr_384c(0x8c3dd7dc);
@@ -6552,7 +6552,7 @@ u32 FUN_8c0fc40c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 auStack_10[16];
 
-    FUN_8c1f8176(auStack_10, a1, a2, a3);
+    rtc_get_date(auStack_10, a1, a2, a3);
     uVar1 = date_to_rtc_seconds(auStack_10, a0 + 0xc8, a2);
     return uVar1;
 }
@@ -6884,11 +6884,11 @@ u32 FUN_8c0fc94c(int a0, char *a1, char *a2, u32 a3) {
             }
         }
     } else if (iVar4 == 100) {
-        FUN_8c1f8176(auStack_2a, a1, a2, a3);
+        rtc_get_date(auStack_2a, a1, a2, a3);
         uStack_26 = 0;
         uStack_25 = 0;
         uStack_24 = 0;
-        FUN_8c1f8176(auStack_34, a1, a2, a3);
+        rtc_get_date(auStack_34, a1, a2, a3);
         uVar3 = atoi(*(int *)(*(int *)(a0 + 0x10) + 0x3c) + 0xc0);
         uStack_32 = (u8)uVar3;
         uVar3 = atoi(*(int *)(*(int *)(a0 + 0x10) + 0x3c) + 0xc4);
@@ -6982,7 +6982,7 @@ u32 FUN_8c0fcd2c(int a0, char *a1, u32 a2, u32 a3) {
             }
             break;
         case 0x44:
-            FUN_8c1f8176(&uStack_22, a1, a2, a3);
+            rtc_get_date(&uStack_22, a1, a2, a3);
             uVar7 = (u32)bStack_1f;
             break;
         case 0x45:
@@ -6992,11 +6992,11 @@ u32 FUN_8c0fcd2c(int a0, char *a1, u32 a2, u32 a3) {
             uVar7 = *(u32 *)(*(int *)(a0 + 0x10) + 0x1c);
             break;
         case 0x47:
-            FUN_8c1f8176(&uStack_22, a1, a2, a3);
+            rtc_get_date(&uStack_22, a1, a2, a3);
             uVar7 = (u32)bStack_1a;
             break;
         case 0x48:
-            FUN_8c1f8176(&uStack_22, a1, a2, a3);
+            rtc_get_date(&uStack_22, a1, a2, a3);
             uVar7 = (u32)bStack_1e;
             break;
         default:
@@ -7008,15 +7008,15 @@ u32 FUN_8c0fcd2c(int a0, char *a1, u32 a2, u32 a3) {
             uVar7 = *(u32 *)(*(int *)(*(int *)(a0 + 0x10) + 0x40) + 0x60);
             break;
         case 0x4d:
-            FUN_8c1f8176(&uStack_22, a1, a2, a3);
+            rtc_get_date(&uStack_22, a1, a2, a3);
             uVar7 = (u32)bStack_20;
             break;
         case 0x4e:
-            FUN_8c1f8176(&uStack_22, a1, a2, a3);
+            rtc_get_date(&uStack_22, a1, a2, a3);
             uVar7 = (u32)bStack_1d;
             break;
         case 0x51:
-            FUN_8c1f8176(&uStack_22, a1, a2, a3);
+            rtc_get_date(&uStack_22, a1, a2, a3);
             iVar6 = libgcc_divide_helper_01031c(uStack_22 - 0x7a8, 0xc, a2);
             if ((iVar6 < 0xc) && (-1 < iVar6)) {
                 switch (iVar6) {
@@ -7071,7 +7071,7 @@ u32 FUN_8c0fcd2c(int a0, char *a1, u32 a2, u32 a3) {
             }
             break;
         case 0x53:
-            FUN_8c1f8176(&uStack_22, FUN_8c1f8176, a2, a3);
+            rtc_get_date(&uStack_22, rtc_get_date, a2, a3);
             uVar3 = (u32)uStack_22;
             iVar6 = libgcc_divide_helper_01031c(uVar3, 4, a2);
             if (iVar6 == 0) {
@@ -7102,11 +7102,11 @@ u32 FUN_8c0fcd2c(int a0, char *a1, u32 a2, u32 a3) {
             uVar7 = *(u32 *)(a0 + 0xc0);
             break;
         case 0x57:
-            FUN_8c1f8176(&uStack_22, a1, a2, a3);
+            rtc_get_date(&uStack_22, a1, a2, a3);
             uVar7 = (u32)bStack_1b;
             break;
         case 0x58:
-            FUN_8c1f8176(&uStack_22, a1, a2, a3);
+            rtc_get_date(&uStack_22, a1, a2, a3);
             if (*(char *)(*(int *)(*(int *)(a0 + 0x10) + 0x3c) + 0xac) != '\0') {
                 uVar3 = atoi(*(int *)(*(int *)(a0 + 0x10) + 0x3c) + 0xac);
                 if (uVar3 == bStack_1b) {
@@ -7135,7 +7135,7 @@ u32 FUN_8c0fcd2c(int a0, char *a1, u32 a2, u32 a3) {
             }
             break;
         case 0x59:
-            FUN_8c1f8176(&uStack_22, a1, a2, a3);
+            rtc_get_date(&uStack_22, a1, a2, a3);
             uVar7 = uStack_22 - 0x7ce;
             if ((int)uVar7 < 0) {
                 uVar7 = 0;
@@ -7154,11 +7154,11 @@ u32 FUN_8c0fcd2c(int a0, char *a1, u32 a2, u32 a3) {
             uVar7 = *(u32 *)(*(int *)(a0 + 0x10) + 0x24);
             break;
         case 100:
-            FUN_8c1f8176(&uStack_22, a1, a2, a3);
+            rtc_get_date(&uStack_22, a1, a2, a3);
             bStack_1e = 0;
             bStack_1d = 0;
             uStack_1c = 0;
-            FUN_8c1f8176(auStack_2c, a1, a2, a3);
+            rtc_get_date(auStack_2c, a1, a2, a3);
             uVar5 = atoi(*(int *)(*(int *)(a0 + 0x10) + 0x3c) + 0xc0);
             bStack_2a = (u8)uVar5;
             uVar5 = atoi(*(int *)(*(int *)(a0 + 0x10) + 0x3c) + 0xc4);
@@ -7173,11 +7173,11 @@ u32 FUN_8c0fcd2c(int a0, char *a1, u32 a2, u32 a3) {
                 ar5_00 = *(u8 **)(*(int *)(a0 + 0x10) + 0x3c);
                 sprintf(ar5_00 + 0xbc, ar5_00, a2, a3, &g_8c141e10);
             }
-            FUN_8c1f8176(&uStack_22, ar5_00, a2, a3);
+            rtc_get_date(&uStack_22, ar5_00, a2, a3);
             bStack_1e = 0xc;
             bStack_1d = 0;
             uStack_1c = 0;
-            FUN_8c1f8176(auStack_2c, ar5_00, a2, a3);
+            rtc_get_date(auStack_2c, ar5_00, a2, a3);
             uVar5 = atoi(*(int *)(*(int *)(a0 + 0x10) + 0x3c) + 0x10);
             bStack_2a = (u8)uVar5;
             uVar5 = atoi(*(int *)(*(int *)(a0 + 0x10) + 0x3c) + 0x14);
@@ -9150,7 +9150,7 @@ u32 set_field_24_0fffec(int a0, u32 a1) {
 
 /*
  * FUN_8c0ffff4  0x8c0ffff4
- * called by: Class_12b388_m1_0c5c08, FUN_8c0bad68, FUN_8c0c09d0
+ * called by: CSeamanDomain_Init, Class_12b388_m1_0c5c08, FUN_8c0bad68
  */
 u32 FUN_8c0ffff4(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;

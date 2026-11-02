@@ -4469,7 +4469,7 @@ u32 FUN_8c0b6c3c(u32 a0, u8 *a1, u8 *a2, u8 *a3) {
 
 /*
  * strcmp_0b6e04  0x8c0b6e04
- * called by: FUN_8c0b6c3c, FUN_8c0b6e6c, FUN_8c0b7454, FUN_8c0bad68, FUN_8c0c09d0
+ * called by: CSeamanDomain_Init, FUN_8c0b6c3c, FUN_8c0b6e6c, FUN_8c0bad68, save_files_check
  */
 u32 strcmp_0b6e04(u8 *a0, u8 *a1) {
     u8 bVar1;
@@ -4686,11 +4686,12 @@ u32 FUN_8c0b726c(u32 a0, u32 a1, u8 *a2, u32 a3, u32 s0, int s4) {
 }
 
 /*
- * FUN_8c0b7454  0x8c0b7454
- * called by: CGame_Initial, FUN_8c0baab8, FUN_8c0c09d0
+ * save_files_check  0x8c0b7454
+ * checks the memory-card files SM2000US.USR / SM2000US._VM / SM2000US.INC
+ * called by: CGame_Initial, CProlog_Ready, CSeamanDomain_Init
  * strings: "SM2000US.USR"; "SM2000US._VM"; "SM2000US.INC"; "SM2000US._VM"
  */
-u32 FUN_8c0b7454(u32 a0, u32 a1, u32 a2) {
+u32 save_files_check(u32 a0, u32 a1, u32 a2) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -4779,7 +4780,7 @@ u32 FUN_8c0b7628(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * FUN_8c0b76d8  0x8c0b76d8
  * name hint from a string it uses: SEAMANDC USR
- * called by: CGame_Initial, FUN_8c0bad68, FUN_8c0c09d0, FUN_8c0c6d70, FUN_8c0c6e74
+ * called by: CGame_Initial, CSeamanDomain_Init, FUN_8c0bad68, FUN_8c0c6d70, FUN_8c0c6e74
  * strings: "SM2000US._VM"; "SEAMANDC.USR"; "SEAMANDC._VM"; "SM2000US.USR" ...
  */
 u32 FUN_8c0b76d8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
@@ -4829,7 +4830,7 @@ u32 FUN_8c0b77a0(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     aiStack_8[0] = 0;
     iStack_c = 0;
     ar6_00 = 0x4208;
-    (*(code *)(&FUN_8c0b7454))("SM2000US.USR", 0x8c431a68, 0x4208, a3);
+    (*(code *)(&save_files_check))("SM2000US.USR", 0x8c431a68, 0x4208, a3);
     date_to_rtc_seconds(a0, aiStack_8, ar6_00);
     date_to_rtc_seconds(0x8c431a68 + 0x1e, &iStack_c, ar6_00);
     return (u32)(aiStack_8[0] == iStack_c);
@@ -5212,7 +5213,7 @@ int FUN_8c0b936c(u32 *a0) {
 
 /*
  * FUN_8c0b93c0  0x8c0b93c0
- * called by: FUN_8c0baab8, FUN_8c0f803c
+ * called by: CProlog_Ready, FUN_8c0f803c
  */
 int FUN_8c0b93c0(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -5361,7 +5362,7 @@ u32 FUN_8c0b95a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c0b96e4  0x8c0b96e4
- * called by: FUN_8c0baab8
+ * called by: CProlog_Ready
  * strings: "T39401M   "; "T39401M   "; "T30003M   "; "T30003M   " ...
  */
 int FUN_8c0b96e4(int a0, u32 a1, u32 a2, u32 a3) {
@@ -5385,7 +5386,7 @@ int FUN_8c0b96e4(int a0, u32 a1, u32 a2, u32 a3) {
     u16 uStack_a4;
     char acStack_30[24];
 
-    FUN_8c1f8176(acStack_30 + 10, a1, a2, a3);
+    rtc_get_date(acStack_30 + 10, a1, a2, a3);
     date_to_rtc_seconds(acStack_30 + 10, &uStack_124, a2);
     ar5_00 = &uStack_128;
     date_to_rtc_seconds(a1, ar5_00, a2);
@@ -5566,7 +5567,7 @@ u32 FUN_8c0b9afc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32
 
 /*
  * FUN_8c0b9bb0  0x8c0b9bb0
- * called by: FUN_8c0baab8
+ * called by: CProlog_Ready
  */
 u32 FUN_8c0b9bb0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5575,7 +5576,7 @@ u32 FUN_8c0b9bb0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar4;
     u8 auStack_1c[16];
 
-    FUN_8c0b9d14(a0, auStack_1c, a2, a3);
+    rtc_get_date_wrap(a0, auStack_1c, a2, a3);
     *(u16 *)(a0 + 0x20) = *(u16 *)(a0 + 0x16);
     *(u16 *)(a0 + 0x22) = *(u16 *)(a0 + 0x18);
     *(u16 *)(a0 + 0x24) = *(u16 *)(a0 + 0x1a);
@@ -5587,7 +5588,7 @@ u32 FUN_8c0b9bb0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     *(u16 *)(a0 + 0x1c) = *(u16 *)(a0 + 0x12);
     *(u16 *)(a0 + 0x1e) = *(u16 *)(a0 + 0x14);
     iVar3 = a0 + 0xc;
-    FUN_8c0b9d14(a0, iVar3, a2, a3);
+    rtc_get_date_wrap(a0, iVar3, a2, a3);
     uVar1 = (*(code *)(&FUN_8c0b9afc))(a0, iVar3, a2, a3, *(u32 *)(a0 + 0xc), *(u32 *)(a0 + 0x10));
     *(u32 *)(0xbc + a0) = uVar1;
     iVar3 = a0 + *(int *)(0xbc + a0);
@@ -5613,14 +5614,15 @@ u32 FUN_8c0b9bb0(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c0b9d14  0x8c0b9d14
- * called by: FUN_8c0b9bb0, FUN_8c0bb1e4, FUN_8c0bcedc, FUN_8c0c09d0, FUN_8c0c5de8, FUN_8c0c67f4, FUN_8c0cc784,
- * FUN_8c0cd3c8 (+1 more)
+ * rtc_get_date_wrap  0x8c0b9d14
+ * only calls rtc_get_date
+ * called by: CGame_GetUserGameInfo, CSeamanDomain_Init, FUN_8c0b9bb0, FUN_8c0bb1e4, FUN_8c0bcedc, FUN_8c0c67f4,
+ * FUN_8c0cc784, FUN_8c0cd3c8 (+1 more)
  */
-u32 FUN_8c0b9d14(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 rtc_get_date_wrap(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = FUN_8c1f8176(a1, a1, unused_a2, a3);
+    uVar1 = rtc_get_date(a1, a1, unused_a2, a3);
     return uVar1;
 }
 
@@ -5762,7 +5764,7 @@ u32 recent5_push_unique(int a0, int a1, u32 a2) {
 
 /*
  * FUN_8c0b9f5c  0x8c0b9f5c
- * called by: FUN_8c0baab8, FUN_8c0c5de8
+ * called by: CGame_GetUserGameInfo, CProlog_Ready
  */
 u8 *FUN_8c0b9f5c(u8 *a0, u8 *a1) {
     int iVar1;
@@ -5945,7 +5947,7 @@ u32 set_2_words_wrap(u32 a0, u32 a1, u32 a2) {
 /*
  * set_2_words  0x8c0ba34c
  * a0[0] = a1, a0[1] = a2
- * called by: FUN_8c0c09d0, set_2_words_wrap
+ * called by: CSeamanDomain_Init, set_2_words_wrap
  */
 u32 set_2_words(u32 *a0, u32 a1, u32 a2) {
     u32 in_r0;
@@ -5967,7 +5969,7 @@ u32 FUN_8c0ba354(u32 a0, u32 a1, u32 a2) {
 
 /*
  * FUN_8c0ba37c  0x8c0ba37c
- * called by: FUN_8c0baab8
+ * called by: CProlog_Ready
  */
 u32 FUN_8c0ba37c(u32 a0) {
     u32 uVar1;
@@ -6123,7 +6125,7 @@ u32 FUN_8c0ba6bc(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
         g_8c436608 = (u8 **)0x3f866666;
         g_8c43660c = CONCAT31(g_8c43660d, 1);
     }
-    FUN_8c1f8176(auStack_10, a1, unused_a2, a3);
+    rtc_get_date(auStack_10, a1, unused_a2, a3);
     if (cVar2 != '\0') {
         g_8c436608 = &PTR_DAT_8c13bd4c;
     }
@@ -6298,11 +6300,10 @@ u32 Class_12b350_m1_0baa84(void) {
 }
 
 /*
- * FUN_8c0baab8  0x8c0baab8
- * name hint from a string it uses: GRAPHICS
+ * CProlog_Ready  0x8c0baab8
  * strings: "TITLE.pvm"; "GRAPHICS"; "Failed to load Title pvm.."; "CProlog::Ready" ...
  */
-u32 FUN_8c0baab8(int a0, u32 *a1) {
+u32 CProlog_Ready(int a0, u32 *a1) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -6340,7 +6341,7 @@ u32 FUN_8c0baab8(int a0, u32 *a1) {
     *(u32 *)(a0 + 0x3c) = 1;
     *(u32 *)(a0 + 0x40) = 0;
     uVar4 = 0x4208;
-    FUN_8c0b7454("SM2000US.USR", 0x8c431a68, 0x4208);
+    save_files_check("SM2000US.USR", 0x8c431a68, 0x4208);
     *(u16 *)((int)a1 + 0x96) = g_8c431a86;
     *(u16 *)(a1 + 0x26) = g_8c431a88;
     *(u16 *)((int)a1 + 0x9a) = g_8c431a8a;
@@ -6366,7 +6367,7 @@ u32 FUN_8c0baab8(int a0, u32 *a1) {
     a1[0x31] = uVar4;
     *(int *)(a0 + 0x150) = *(int *)(a0 + 0x150) + 1;
     uVar4 = 0x4208;
-    iVar5 = FUN_8c0b7454("SM2000US.USR", 0x8c431a68, 0x4208);
+    iVar5 = save_files_check("SM2000US.USR", 0x8c431a68, 0x4208);
     if (iVar5 == 0) {
         uVar4 = 0x8c431a68;
         FUN_8c0cd3c8(a1[0x1f6], a1, 0x8c431a68, uVar2);
@@ -6665,7 +6666,7 @@ u32 FUN_8c0bb1e4(int a0, int a1, u8 *a2, u8 *a3) {
         uVar8 = 0x150;
         g_8c4366d4 = *(int *)(a0 + 0x150);
     }
-    FUN_8c0b9d14(a1, auStack_84, uVar8, puVar10);
+    rtc_get_date_wrap(a1, auStack_84, uVar8, puVar10);
     pcVar9 = (code *)&g_8c43660f;
     if (g_8c43660f == '\0') {
         for (iVar2 = 0; iVar2 < 4; iVar2 = iVar2 + 1) {
@@ -6693,7 +6694,7 @@ u32 FUN_8c0bb1e4(int a0, int a1, u8 *a2, u8 *a3) {
             iVar2 = (u32)(u8)puVar10[4] + iVar2;
         }
         puVar3 = auStack_84;
-        FUN_8c0b9d14(a1, puVar3, pcVar9, puVar10);
+        rtc_get_date_wrap(a1, puVar3, pcVar9, puVar10);
         g_8c4366ac = get_field_c8_0bced0(a1);
         ar4_00 = &g_8c4366ac;
         for (puVar12 = NULL; (int)puVar12 < 0x14; puVar12 = puVar12 + 1) {
@@ -8213,7 +8214,7 @@ u32 FUN_8c0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
         }
         g_8c436710 = (u32) * (u8 *)(a1 + 0x2c);
         puVar3 = &g_8c436714;
-        FUN_8c0b9d14(a1, &g_8c436714, puVar4, a3);
+        rtc_get_date_wrap(a1, &g_8c436714, puVar4, a3);
         uVar1 = get_field_c8_0bced0(a1);
         *(u32 *)(puVar7 + -0x30) = uVar1;
         g_8c436720 = *(u32 *)(puVar7 + -0x30);
@@ -9267,7 +9268,7 @@ int FUN_8c0bf478(int a0) {
 
 /*
  * FUN_8c0bf4a4  0x8c0bf4a4
- * called by: FUN_8c0c09d0
+ * called by: CSeamanDomain_Init
  */
 u8 *FUN_8c0bf4a4(int a0) {
     u8 *puVar1;
@@ -9307,7 +9308,7 @@ u32 clear_field_0_0bf548(u32 *a0) {
 
 /*
  * FUN_8c0bf550  0x8c0bf550
- * called by: FUN_8c0c09d0
+ * called by: CSeamanDomain_Init
  */
 u32 FUN_8c0bf550(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -9322,7 +9323,7 @@ u32 FUN_8c0bf550(int *a0, u32 a1, u32 unused_a2, u32 a3) {
 
 /*
  * FUN_8c0bf588  0x8c0bf588
- * called by: FUN_8c0c09d0
+ * called by: CSeamanDomain_Init
  */
 u32 FUN_8c0bf588(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -9411,7 +9412,7 @@ u32 FUN_8c0bf708(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c0bf780  0x8c0bf780
- * called by: FUN_8c0c09d0, FUN_8c0c1d98, FUN_8c0c23fc
+ * called by: CSeamanDomain_Init, FUN_8c0c1d98, FUN_8c0c23fc
  */
 u32 FUN_8c0bf780(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -9436,7 +9437,7 @@ u32 FUN_8c0bf7a8(u32 *a0) {
 
 /*
  * set_field_0_to_1  0x8c0bf7c8
- * called by: FUN_8c0c09d0, FUN_8c0c23fc
+ * called by: CSeamanDomain_Init, FUN_8c0c23fc
  */
 u32 set_field_0_to_1(u32 *a0) {
     *a0 = 1;
@@ -9445,7 +9446,7 @@ u32 set_field_0_to_1(u32 *a0) {
 
 /*
  * FUN_8c0bf7d0  0x8c0bf7d0
- * called by: FUN_8c0c09d0
+ * called by: CSeamanDomain_Init
  */
 u32 FUN_8c0bf7d0(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9513,7 +9514,7 @@ u32 FUN_8c0bf804(int a0, u32 a1, u32 unused_a2, u32 a3) {
         }
         FUN_8c0c3b74(&g_8c2b5628, uVar2, uVar3);
     } else if (iVar1 == 5) {
-        FUN_8c1f8176(&stack0xffffff94, uVar2, uVar3, uVar4);
+        rtc_get_date(&stack0xffffff94, uVar2, uVar3, uVar4);
         if (cVar7 == '\0') {
             dVar5 = (double)CONCAT44(0x42c60000, *(u32 *)(a0 + 0x2c));
         } else {

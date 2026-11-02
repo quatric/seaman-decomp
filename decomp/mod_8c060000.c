@@ -2302,7 +2302,7 @@ u32 FUN_8c0656d4(int a0, int *a1, u32 *a2, u32 a3) {
         ar5_00 = (code *)0x1;
         FUN_8c02af68(*a2, 1);
     }
-    FUN_8c030304(a0 + 0x9c, ar5_00, ar6_00, a3);
+    talk_set_status_format(a0 + 0x9c, ar5_00, ar6_00, a3);
     *(u8 *)(a0 + 0x80) = 1;
     *(u32 *)(a0 + 900) = 0xffffffff;
     *(u32 *)(a0 + 0xfc) = 0;
@@ -3146,7 +3146,7 @@ int Class_12a078_m5_0671f4(int a0, u32 a1, u32 a2, u32 a3) {
         *(u8 *)(0x80 + a0) = 1;
         *(u32 *)(0x384 + a0) = 0xffffffff;
         *(u32 *)(0xfc + a0) = 0;
-        FUN_8c030304(a0 + 0x9c, ar5_00, a2, a3);
+        talk_set_status_format(a0 + 0x9c, ar5_00, a2, a3);
         if ((*(int *)(a0 + 0x40) == 0xb) || (iVar1 = *(int *)(a0 + 0x40), iVar1 == 0xc)) {
             *(u32 *)(a0 + 4) = 0;
             *(u32 *)(a0 + 8) = 0x14;
@@ -7945,7 +7945,7 @@ u32 FUN_8c06ce04(int a0, u32 a1) {
                 (**(code **)(*(int *)(a0 + 0x208) + 8))((int *)(a0 + 0x208), uStack_2c, iVar4, puVar7);
             } else {
                 uVar1 = *(u32 *)(iVar4 + 0xc);
-                FUN_8c06d618(a0, iVar4 + 0x20, uVar1, ar7_00);
+                CHerb_SetPVMTexture(a0, iVar4 + 0x20, uVar1, ar7_00);
                 iVar2 = iVar4 + 0x28;
                 (**(code **)(*(int *)(iVar4 + 0x78) + 8))((int *)(iVar4 + 0x78), iVar2, uVar1, ar7_00);
                 uVar1 = get_field_4_0253e4(iVar4 + 0x78, iVar2, uVar1, ar7_00);
@@ -7973,7 +7973,7 @@ u32 FUN_8c06ce04(int a0, u32 a1) {
             (**(code **)(*(int *)(a0 + 0x208) + 8))((int *)(a0 + 0x208), uStack_2c, iVar4, a4);
         } else {
             uVar1 = *(u32 *)(iVar4 + 0xc);
-            FUN_8c06d618(a0, iVar4 + 0x34, uVar1, ar7_00);
+            CHerb_SetPVMTexture(a0, iVar4 + 0x34, uVar1, ar7_00);
             iVar2 = iVar4 + 0x3c;
             (**(code **)(*(int *)(iVar4 + 0x80) + 8))((int *)(iVar4 + 0x80), iVar2, uVar1, ar7_00);
             uVar1 = get_field_4_0253e4(iVar4 + 0x80, iVar2, uVar1, ar7_00);
@@ -8067,13 +8067,12 @@ u32 FUN_8c06d5e4(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c06d618  0x8c06d618
- * name hint from a string it uses: CHerb SetPVMTexture s
+ * CHerb_SetPVMTexture  0x8c06d618
  * called by: FUN_8c06ce04
  * strings: "CHerb::SetPVMTexture():%s"; "PVM TexName Area is null.."; "CHerb::SetPVMTexture():%s"; "PVM Texcount is
  * 0.."
  */
-u8 *FUN_8c06d618(u32 unused_a0, u8 *a1, u32 a2, u32 a3) {
+u8 *CHerb_SetPVMTexture(u32 unused_a0, u8 *a1, u32 a2, u32 a3) {
     u8 *ar5_00;
     u8 auStack_10c[260];
 

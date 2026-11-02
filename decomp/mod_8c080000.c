@@ -6822,7 +6822,7 @@ u32 FUN_8c08c9dc(int a0, u32 a1, int a2) {
                 }
             } else {
                 uVar3 = *(u32 *)(iVar1 + 0xc);
-                FUN_8c029400(a0, iVar1 + 0x20, uVar3, 2);
+                CAnimal_SetPVMTexture(a0, iVar1 + 0x20, uVar3, 2);
                 (**(code **)(*(int *)(iVar1 + 0x78) + 8))((int *)(iVar1 + 0x78), iVar1 + 0x28, uVar3, a7);
                 *(u32 *)(a0 + 0x418) = 7;
             }
@@ -6864,7 +6864,7 @@ u32 FUN_8c08c9dc(int a0, u32 a1, int a2) {
                 } else {
                     ar6_00 = *(u32 *)(iVar1 + 0xc);
                     uVar3 = ar6_00;
-                    FUN_8c029400(a0, iVar1 + 0x48, ar6_00, ar6_00);
+                    CAnimal_SetPVMTexture(a0, iVar1 + 0x48, ar6_00, ar6_00);
                     iVar2 = iVar1 + 0x50;
                     (**(code **)(*(int *)(iVar1 + 0x88) + 8))((int *)(iVar1 + 0x88), iVar2, ar6_00, uVar3);
                     uVar3 = get_field_4_0253e4(iVar1 + 0x88, iVar2, ar6_00, uVar3);
@@ -6884,7 +6884,7 @@ u32 FUN_8c08c9dc(int a0, u32 a1, int a2) {
             }
             break;
         case 9:
-            FUN_8c029400(a0, iVar1 + 0x34, *(u32 *)(iVar1 + 0xc), 2);
+            CAnimal_SetPVMTexture(a0, iVar1 + 0x34, *(u32 *)(iVar1 + 0xc), 2);
             a7 = (int *)(iVar1 + 0x80);
             a6 = *(code **)(*a7 + 8);
             (*a6)(a7, iVar1 + 0x3c, a6, a7);
@@ -6902,7 +6902,7 @@ u32 FUN_8c08c9dc(int a0, u32 a1, int a2) {
             break;
         case 0xb:
             uVar3 = *(u32 *)(iVar1 + 0xc);
-            FUN_8c029400(a0, iVar1 + 0x5c, uVar3, 2);
+            CAnimal_SetPVMTexture(a0, iVar1 + 0x5c, uVar3, 2);
             iVar2 = iVar1 + 100;
             (**(code **)(*(int *)(iVar1 + 0x90) + 8))((int *)(iVar1 + 0x90), iVar2, uVar3, a7);
             uVar3 = get_field_4_0253e4(iVar1 + 0x90, iVar2, uVar3, a7);

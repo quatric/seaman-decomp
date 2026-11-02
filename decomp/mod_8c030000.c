@@ -78,12 +78,12 @@ int FUN_8c0301f8(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c030304  0x8c030304
- * name hint from a string it uses: STATUS FORMAT
+ * talk_set_status_format  0x8c030304
+ * sets the talker's line to STATUS_FORMAT
  * called by: Class_12a078_m2_05eee0, Class_12a078_m5_0671f4, Class_12c3c4_m5_10a0dc, FUN_8c05d860, FUN_8c0656d4,
  * FUN_8c1089e4 strings: "STATUS_FORMAT"
  */
-u32 FUN_8c030304(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 talk_set_status_format(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     u8 *puVar3;
@@ -150,7 +150,7 @@ u32 talk_queue_mode1(int a0, u32 a1, int a2, u32 a3, u32 s0) {
     }
     if ((((*(int *)(a0 + 0x2e8) == -1) && (iVar1 = FUN_8c030538(a0, a1), iVar1 == 0)) && (*(int *)(a0 + 0x770) == 0)) &&
         ((*(int *)(a0 + 0x778) == 0 && (*(int *)(a0 + 0x60) <= a2)))) {
-        uVar2 = FUN_8c030ac4(a0, a3, iVar4, uVar3);
+        uVar2 = talk_event_priority(a0, a3, iVar4, uVar3);
         *(u32 *)(a0 + 0x2ec) = uVar2;
         *(u32 *)(a0 + 0x72c) = a1;
         *(u32 *)(a0 + 0x770) = 1;
@@ -161,7 +161,7 @@ u32 talk_queue_mode1(int a0, u32 a1, int a2, u32 a3, u32 s0) {
         strcpy(a0, auStack_34);
         strcpy(a0 + 0x20, a3);
         strcpy(a0 + 0x40, s0);
-        uVar3 = FUN_8c030ac4(a0, a3, iVar4, uVar3);
+        uVar3 = talk_event_priority(a0, a3, iVar4, uVar3);
         *(u32 *)(a0 + 0x2ec) = uVar3;
         *(u32 *)(*(int *)(a0 + 0x72c) * 0x14 + a0 + *(int *)(a0 + 0x60) * 4 + 0x2f0) = 1;
         return 1;
@@ -220,7 +220,7 @@ u32 talk_queue_mode2(int a0, u32 a1, int a2, u32 a3, u32 s0) {
     if ((((*(int *)(a0 + 0x2e8) == -1) && (iVar4 = a2, ar7_00 = a3, iVar1 = FUN_8c030538(a0, a1), iVar1 == 0)) &&
          (*(int *)(a0 + 0x770) == 0)) &&
         ((*(int *)(a0 + 0x778) == 0 && (*(int *)(a0 + 0x60) <= a2)))) {
-        uVar2 = FUN_8c030ac4(a0, a3, iVar4, ar7_00);
+        uVar2 = talk_event_priority(a0, a3, iVar4, ar7_00);
         *(u32 *)(a0 + 0x2ec) = uVar2;
         *(u32 *)(a0 + 0x72c) = a1;
         *(u32 *)(a0 + 0x770) = 2;
@@ -231,7 +231,7 @@ u32 talk_queue_mode2(int a0, u32 a1, int a2, u32 a3, u32 s0) {
         strcpy(a0, auStack_34);
         strcpy(a0 + 0x20, a3);
         strcpy(a0 + 0x40, s0);
-        uVar3 = FUN_8c030ac4(a0, a3, iVar4, ar7_00);
+        uVar3 = talk_event_priority(a0, a3, iVar4, ar7_00);
         *(u32 *)(a0 + 0x2ec) = uVar3;
         *(u32 *)(*(int *)(a0 + 0x72c) * 0x14 + a0 + *(int *)(a0 + 0x60) * 4 + 0x2f0) = 1;
         return 1;
@@ -272,7 +272,7 @@ u32 talk_start_line(int a0, u32 a1, u32 a2, u32 a3) {
     if ((*(char *)(0x774 + a0) == '\0') && (*(int *)(0x778 + a0) == 0)) {
         uVar2 = a2;
         ar7_00 = a3;
-        uVar1 = FUN_8c030ac4(a0, a3, a2, a3);
+        uVar1 = talk_event_priority(a0, a3, a2, a3);
         *(u32 *)(0x2ec + a0) = uVar1;
         if (*(int *)(0x2e8 + a0) == -1) {
             if (*(int *)(0x2e8 + a0) == -1) {
@@ -354,7 +354,7 @@ u32 FUN_8c03087c(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     if (((*(int *)(a0 + 0x2e8) == -1) && (*(int *)(a0 + 0x770) == 0)) && (*(int *)(a0 + 0x778) == 0)) {
         uVar1 = a2;
         ar7_00 = a3;
-        uStack_30 = FUN_8c030ac4(a0, a3, a2, a3);
+        uStack_30 = talk_event_priority(a0, a3, a2, a3);
         *(u32 *)(a0 + 0x2ec) = uStack_30;
         *(u32 *)(a0 + 0x72c) = a1;
         *(u32 *)(a0 + 0x770) = 2;
@@ -368,7 +368,7 @@ u32 FUN_8c03087c(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
         iStack_38 = *(int *)(a0 + 0x72c);
         iStack_3c = *(int *)(a0 + 0x60);
         *(u32 *)(iStack_38 * 0x14 + a0 + iStack_3c * 4 + 0x2f0) = 1;
-        uVar1 = FUN_8c030ac4(a0, a3, uVar1, ar7_00);
+        uVar1 = talk_event_priority(a0, a3, uVar1, ar7_00);
         *(u32 *)(a0 + 0x2ec) = uVar1;
         uVar1 = 1;
     } else {
@@ -424,12 +424,12 @@ u32 FUN_8c0309c8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c030ac4  0x8c030ac4
- * name hint from a string it uses: EVENT ROCK PUSH
+ * talk_event_priority  0x8c030ac4
+ * 5 for the scripted events (EVENT_ROCK_PUSH, EVENT_QUIZ, EVENT_ENDING, ...), 4 for anything else
  * called by: FUN_8c03087c, talk_queue_mode1, talk_queue_mode2, talk_start_line
  * strings: "EVENT_ROCK_PUSH"; "EVENT_GET_WORMBOX"; "EVENT_GET_SPRINKLER"; "EVENT_JUNGLE_JUMP" ...
  */
-u32 FUN_8c030ac4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 talk_event_priority(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
 
@@ -461,7 +461,7 @@ u32 FUN_8c030ac4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c030c9c  0x8c030c9c
- * called by: FUN_8c030ac4
+ * called by: talk_event_priority
  */
 u32 FUN_8c030c9c(u8 *a0, u8 *a1) {
     u8 bVar1;

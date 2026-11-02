@@ -1978,7 +1978,7 @@ u32 FUN_8c10289c(int *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c1028c0  0x8c1028c0
- * called by: FUN_8c0c09d0
+ * called by: CSeamanDomain_Init
  */
 u32 FUN_8c1028c0(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -4593,7 +4593,7 @@ u32 FUN_8c1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
                 *(u32 *)(a0 + 0x10c) = 0;
                 FUN_8c0fa6c8(0x8c35468c, a1, ar6_00, a3);
             }
-            FUN_8c030304(a0 + 0x9c, a1, ar6_00, a3);
+            talk_set_status_format(a0 + 0x9c, a1, ar6_00, a3);
             *(u8 *)(a0 + 0x80) = 1;
             *(u32 *)(a0 + 900) = 0xffffffff;
             *(u32 *)(a0 + 0xfc) = 0;
@@ -5298,7 +5298,7 @@ int Class_12c3c4_m5_10a0dc(int a0, u32 a1, u32 a2, u32 a3) {
         *(u8 *)(0x80 + a0) = 1;
         *(u32 *)(0x384 + a0) = 0xffffffff;
         *(u32 *)(0xfc + a0) = 0;
-        FUN_8c030304(a0 + 0x9c, ar5_00, a2, a3);
+        talk_set_status_format(a0 + 0x9c, ar5_00, a2, a3);
         if ((*(int *)(a0 + 0x40) == 0xb) || (iVar1 = *(int *)(a0 + 0x40), iVar1 == 10)) {
             *(u32 *)(a0 + 4) = 0;
             *(u32 *)(a0 + 8) = 0x14;

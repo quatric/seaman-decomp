@@ -761,7 +761,7 @@ u32 FUN_8c1f097e(u8 *a0, u8 *a1, int a2) {
 
 /*
  * FUN_8c1f0988  0x8c1f0988
- * called by: FUN_8c1f0d94, FUN_8c1f0e98, FUN_8c1f0e9c
+ * called by: FUN_8c1f0e98, FUN_8c1f0e9c, flashrom_open_partition
  */
 u32 FUN_8c1f0988(u8 *a0, int a1) {
     u32 in_r0;
@@ -911,7 +911,7 @@ u32 FUN_8c1f0a2a(int a0, int a1) {
 
 /*
  * FUN_8c1f0a72  0x8c1f0a72
- * called by: FUN_8c1f0d94, FUN_8c1f0e98, FUN_8c1f0e9c
+ * called by: FUN_8c1f0e98, FUN_8c1f0e9c, flashrom_open_partition
  */
 u32 FUN_8c1f0a72(int a0) {
     int iVar1;
@@ -925,12 +925,12 @@ u32 FUN_8c1f0a72(int a0) {
 
     ar5_00 = *(int *)(a0 + 0xc);
     ar4_00 = *(int *)(a0 + 4);
-    iVar1 = syscall_1f98c4(ar4_00, ar5_00, 0x40);
+    iVar1 = bios_flashrom_read(ar4_00, ar5_00, 0x40);
     if (iVar1 != -1) {
         iVar4 = (*(int *)(a0 + 0x14) + 1) * 0x40;
         iVar1 = iVar4 + ar5_00;
         iVar3 = *(int *)(a0 + 0x18) << 6;
-        iVar4 = syscall_1f98c4(ar4_00 + iVar4, iVar1, iVar3);
+        iVar4 = bios_flashrom_read(ar4_00 + iVar4, iVar1, iVar3);
         if (iVar4 != -1) {
             iVar4 = FUN_8c1f099c(iVar1, *(u32 *)(a0 + 0x18));
             *(int *)(a0 + 0x10) = iVar4;
@@ -944,7 +944,7 @@ u32 FUN_8c1f0a72(int a0) {
                 }
                 ar4_00 = ar4_00 + 0x40;
                 ar6_00 = 0x40;
-                iVar3 = syscall_1f98c4(ar4_00, a5, 0x40);
+                iVar3 = bios_flashrom_read(ar4_00, a5, 0x40);
                 if (iVar3 == -1)
                     break;
                 if (*a5 == 0xffff) {
@@ -976,12 +976,12 @@ u32 FUN_8c1f0b58(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int a4_00;
     u16 *ar5_00;
 
-    puVar1 = (&syscall_1f98d8);
+    puVar1 = (&bios_flashrom_write);
     iVar5 = *(int *)(a0 + 4);
     if (*(short *)(a0 + 2) == 0) {
         ar5_00 = *(u16 **)(a0 + 0xc);
         uVar4 = 0x40;
-        iVar2 = syscall_1f98d8(iVar5, ar5_00, 0x40);
+        iVar2 = bios_flashrom_write(iVar5, ar5_00, 0x40);
         if (iVar2 == 0x40) {
             a4_00 = iVar5 + 0x40;
             a4 = 0;
@@ -1032,11 +1032,11 @@ u32 FUN_8c1f0c14(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         if (*(int *)(a0 + 0x10) < *(int *)(a0 + 0x14)) {
             iVar1 = (*(int *)(a0 + 0x14) + 1) * 0x40;
             FUN_8c1f09d4(*(int *)(a0 + 0x10) + 1, *(int *)(a0 + 0xc) + iVar1, *(u32 *)(a0 + 0x18));
-            iVar1 = syscall_1f98d8(*(int *)(a0 + 4) + iVar1, *(int *)(a0 + 0xc) + iVar1, *(int *)(a0 + 0x18) << 6);
+            iVar1 = bios_flashrom_write(*(int *)(a0 + 4) + iVar1, *(int *)(a0 + 0xc) + iVar1, *(int *)(a0 + 0x18) << 6);
             if (iVar1 == *(int *)(a0 + 0x18) << 6) {
                 iVar1 = *(int *)(a0 + 0x10);
                 *(int *)(a0 + 0x10) = *(int *)(a0 + 0x10) + 1;
-                iVar1 = syscall_1f98d8(*(int *)(a0 + 4) + (iVar1 + 1) * 0x40, ar5_00, 0x40);
+                iVar1 = bios_flashrom_write(*(int *)(a0 + 4) + (iVar1 + 1) * 0x40, ar5_00, 0x40);
                 if (iVar1 == 0x40) {
                     return 0;
                 }
@@ -1121,7 +1121,7 @@ u32 FUN_8c1f0d34(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
             uVar2 = FUN_8c1f0b58(a0, unused_a1, unused_a2, a3);
             return uVar2;
         }
-        iVar1 = syscall_1f98ec(*(u32 *)(a0 + 4));
+        iVar1 = bios_flashrom_delete(*(u32 *)(a0 + 4));
         if (iVar1 == -1) {
             return 0xfffffffd;
         }
@@ -1154,7 +1154,7 @@ u32 FUN_8c1f0d38(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
             uVar2 = FUN_8c1f0b58(unaff_r14, unused_a1, unused_a2, a3);
             return uVar2;
         }
-        iVar1 = syscall_1f98ec(*(u32 *)(unaff_r14 + 4), unused_a1, unused_a2, a3);
+        iVar1 = bios_flashrom_delete(*(u32 *)(unaff_r14 + 4), unused_a1, unused_a2, a3);
         if (iVar1 == -1) {
             return 0xfffffffd;
         }
@@ -1165,12 +1165,12 @@ u32 FUN_8c1f0d38(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * FUN_8c1f0d94  0x8c1f0d94
- * name hint from a string it uses: KATANA FLASH
+ * flashrom_open_partition  0x8c1f0d94
+ * looks up flash partition a0 (1..4) and reads its "KATANA_FLASH____" header
  * called by: FUN_8c1f6b14, FUN_8c1f97b4
  * strings: "KATANA_FLASH____"
  */
-u32 FUN_8c1f0d94(int a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 flashrom_open_partition(int a0, u32 a1, u32 unused_a2, u32 a3) {
     short *psVar1;
     u32 uVar2;
     int iVar3;
@@ -1182,7 +1182,7 @@ u32 FUN_8c1f0d94(int a0, u32 a1, u32 unused_a2, u32 a3) {
         uVar2 = 0xfffffff9;
     } else {
         g_8c2739d8 = (short *)&g_8c470ee0;
-        syscall_1f98b0(a0, &uStack_14);
+        bios_flashrom_info(a0, &uStack_14);
         *g_8c2739d8 = (short)a0;
         *(u32 *)(g_8c2739d8 + 2) = uStack_14;
         *(u32 *)(g_8c2739d8 + 4) = uStack_10;
@@ -1198,7 +1198,7 @@ u32 FUN_8c1f0d94(int a0, u32 a1, u32 unused_a2, u32 a3) {
         psVar1 = g_8c2739d8;
         psVar1[0x16] = 0;
         psVar1[0x17] = 0;
-        iVar3 = syscall_1f98c4(*(u32 *)(g_8c2739d8 + 2), g_8c2739d8 + 0x1a, 0x40);
+        iVar3 = bios_flashrom_read(*(u32 *)(g_8c2739d8 + 2), g_8c2739d8 + 0x1a, 0x40);
         psVar1 = g_8c2739d8;
         if (iVar3 == -1) {
             uVar2 = 0xffffffff;
@@ -1242,7 +1242,7 @@ int FUN_8c1f0e98(int a0) {
     if (g_8c2739d8 == NULL) {
         iVar2 = -0xb;
     } else if ((a0 == 0) || (a0 == 1)) {
-        iVar2 = syscall_1f98ec(*(u32 *)(g_8c2739d8 + 4), r5, r6, r7);
+        iVar2 = bios_flashrom_delete(*(u32 *)(g_8c2739d8 + 4), r5, r6, r7);
         puVar1 = g_8c2739d8;
         if (iVar2 == 0) {
             ar5_01 = g_8c2739d8 + 0x34;
@@ -1251,7 +1251,7 @@ int FUN_8c1f0e98(int a0) {
             *(short *)(g_8c2739d8 + 2) = (short)a0;
             puVar1[0x45] = (char)a0;
             puVar1[0x44] = *g_8c2739d8;
-            iVar2 = syscall_1f98d8(*(u32 *)(g_8c2739d8 + 4), ar5_01, 0x12);
+            iVar2 = bios_flashrom_write(*(u32 *)(g_8c2739d8 + 4), ar5_01, 0x12);
             if (iVar2 == 0x12) {
                 ar5_00 = *(u32 *)(g_8c2739d8 + 8);
                 FUN_8c1f0988(*(u32 *)(g_8c2739d8 + 0xc), ar5_00);
@@ -1285,7 +1285,7 @@ int FUN_8c1f0e9c(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     if (*unaff_r14 == 0) {
         iVar1 = -0xb;
     } else if ((a0 == 0) || (a0 == 1)) {
-        iVar1 = syscall_1f98ec(*(u32 *)(*unaff_r14 + 4), unused_a1, unused_a2, a3);
+        iVar1 = bios_flashrom_delete(*(u32 *)(*unaff_r14 + 4), unused_a1, unused_a2, a3);
         if (iVar1 == 0) {
             iVar1 = *unaff_r14;
             func_0x8c1f0974("KATANA_FLASH____", iVar1 + 0x34, 0x10, a3);
@@ -1293,7 +1293,7 @@ int FUN_8c1f0e9c(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
             *(short *)(*unaff_r14 + 2) = (short)a0;
             *(char *)(iVar1 + 0x45) = (char)a0;
             *(u8 *)(iVar1 + 0x44) = *(u8 *)*unaff_r14;
-            iVar1 = syscall_1f98d8(*(u32 *)(*unaff_r14 + 4), iVar1 + 0x34, 0x12);
+            iVar1 = bios_flashrom_write(*(u32 *)(*unaff_r14 + 4), iVar1 + 0x34, 0x12);
             if (iVar1 == 0x12) {
                 ar5_00 = *(u32 *)(*unaff_r14 + 8);
                 FUN_8c1f0988(*(u32 *)(*unaff_r14 + 0xc), ar5_00);
@@ -1451,7 +1451,7 @@ u32 FUN_8c1f103e(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, int *ain1)
     if (*ain1 == 0) {
         return 0xfffffff5;
     }
-    iVar1 = syscall_1f98ec(*(u32 *)(*ain1 + 4), unused_a1, unused_a2, a3);
+    iVar1 = bios_flashrom_delete(*(u32 *)(*ain1 + 4), unused_a1, unused_a2, a3);
     if (iVar1 == -1) {
         uVar2 = 0xfffffffd;
     } else {
@@ -1491,11 +1491,12 @@ u32 crc16_ccitt(int a0, u8 *a1) {
 }
 
 /*
- * syscall_1f10d8  0x8c1f10d8
+ * bios_gdrom_send_cmd  0x8c1f10d8
+ * BIOS GD-ROM call 0 (vector 0x8c0000bc): queues a drive command
  * called by: FUN_8c1f11ea, FUN_8c1f126a, FUN_8c1f139e, FUN_8c1f141a, FUN_8c1f143c, FUN_8c1f146e, FUN_8c1f148c,
  * FUN_8c1f14a8 (+4 more)
  */
-u32 syscall_1f10d8(u32 a0, u32 a1) {
+u32 bios_gdrom_send_cmd(u32 a0, u32 a1) {
     u32 uVar1;
 
     /* WARNING: Could not recover jumptable at 0x8c1f10e0. Too many branches */
@@ -1505,10 +1506,11 @@ u32 syscall_1f10d8(u32 a0, u32 a1) {
 }
 
 /*
- * syscall_1f10ec  0x8c1f10ec
+ * bios_gdrom_check_cmd  0x8c1f10ec
+ * BIOS GD-ROM call 1: status of a queued command
  * called by: FUN_8c1f12de
  */
-u32 syscall_1f10ec(u32 unused_a0, u32 a1) {
+u32 bios_gdrom_check_cmd(u32 unused_a0, u32 a1) {
     u32 uVar1;
 
     /* WARNING: Could not recover jumptable at 0x8c1f10f4. Too many branches */
@@ -1518,10 +1520,11 @@ u32 syscall_1f10ec(u32 unused_a0, u32 a1) {
 }
 
 /*
- * syscall_1f1100  0x8c1f1100
- * called by: syscall_wrap_1f14ca
+ * bios_gdrom_mainloop  0x8c1f1100
+ * BIOS GD-ROM call 2: runs the drive command server
+ * called by: bios_gdrom_mainloop_wrap
  */
-u32 syscall_1f1100(void) {
+u32 bios_gdrom_mainloop(void) {
     u32 uVar1;
 
     /* WARNING: Could not recover jumptable at 0x8c1f1108. Too many branches */
@@ -1531,10 +1534,11 @@ u32 syscall_1f1100(void) {
 }
 
 /*
- * syscall_1f1114  0x8c1f1114
- * called by: syscall_wrap
+ * bios_gdrom_init  0x8c1f1114
+ * BIOS GD-ROM call 3: initialises the drive system
+ * called by: bios_gdrom_init_wrap
  */
-u32 syscall_1f1114(void) {
+u32 bios_gdrom_init(void) {
     u32 uVar1;
 
     /* WARNING: Could not recover jumptable at 0x8c1f111c. Too many branches */
@@ -1544,10 +1548,11 @@ u32 syscall_1f1114(void) {
 }
 
 /*
- * syscall_1f1128  0x8c1f1128
+ * bios_gdrom_check_drive  0x8c1f1128
+ * BIOS GD-ROM call 4: drive status and disc type
  * called by: FUN_8c1f13f0
  */
-u32 syscall_1f1128(void) {
+u32 bios_gdrom_check_drive(void) {
     u32 uVar1;
 
     /* WARNING: Could not recover jumptable at 0x8c1f1130. Too many branches */
@@ -1557,10 +1562,11 @@ u32 syscall_1f1128(void) {
 }
 
 /*
- * syscall_1f1150  0x8c1f1150
+ * bios_gdrom_call6_like  0x8c1f1150
+ * BIOS GD-ROM call 6 (DMA transfer request in later documentation)
  * called by: FUN_8c1f1286
  */
-u32 syscall_1f1150(u32 unused_a0, u32 a1) {
+u32 bios_gdrom_call6_like(u32 unused_a0, u32 a1) {
     u32 uVar1;
 
     /* WARNING: Could not recover jumptable at 0x8c1f1158. Too many branches */
@@ -1570,10 +1576,11 @@ u32 syscall_1f1150(u32 unused_a0, u32 a1) {
 }
 
 /*
- * syscall_1f1164  0x8c1f1164
- * called by: syscall_wrap_1f140c
+ * bios_gdrom_call7_like  0x8c1f1164
+ * BIOS GD-ROM call 7 (DMA transfer check in later documentation)
+ * called by: bios_gdrom_call7_like_wrap
  */
-u32 syscall_1f1164(void) {
+u32 bios_gdrom_call7_like(void) {
     u32 uVar1;
 
     /* WARNING: Could not recover jumptable at 0x8c1f116c. Too many branches */
@@ -1583,11 +1590,11 @@ u32 syscall_1f1164(void) {
 }
 
 /*
- * syscall_wrap  0x8c1f11dc
- * only calls syscall_1f1114
+ * bios_gdrom_init_wrap  0x8c1f11dc
+ * only calls bios_gdrom_init
  */
-u32 syscall_wrap(void) {
-    syscall_1f1114();
+u32 bios_gdrom_init_wrap(void) {
+    bios_gdrom_init();
     return 1;
 }
 
@@ -1613,7 +1620,7 @@ int FUN_8c1f11ea(u32 a0, int a1, u32 a2, int a3) {
         ar6_00 = ar6_00 | 0xa0000000;
     }
     uStack_1c = a0;
-    iVar1 = syscall_1f10d8(ar4_00, &uStack_1c);
+    iVar1 = bios_gdrom_send_cmd(ar4_00, &uStack_1c);
     if ((iVar1 != 0) && (((int)a2 >> 0x1c & 0xeU) != 10)) {
         if ((a2 & 0x1f) == 0) {
             FUN_8c1f9980(a2, a1 << 0xb);
@@ -1632,7 +1639,7 @@ u32 FUN_8c1f126a(u32 a0, u32 a1) {
     u32 uStack_10;
 
     uStack_10 = a0;
-    uVar1 = syscall_1f10d8(0x1c, &uStack_10);
+    uVar1 = bios_gdrom_send_cmd(0x1c, &uStack_10);
     return uVar1;
 }
 
@@ -1641,7 +1648,7 @@ u32 FUN_8c1f126a(u32 a0, u32 a1) {
  */
 int FUN_8c1f1286(u32 unused_a0, u32 a1, int a2) {
     int iVar1;
-    iVar1 = syscall_1f1150(unused_a0, &stack0xffffffe8);
+    iVar1 = bios_gdrom_call6_like(unused_a0, &stack0xffffffe8);
     if (((iVar1 == 0) && (a2 != 0)) && (((int)a1 >> 0x1c & 0xfU) != 10)) {
         if ((a1 & 0x1f) == 0) {
             FUN_8c1f9980(a1, a2);
@@ -1663,7 +1670,7 @@ u32 FUN_8c1f12de(u32 unused_a0, u32 *a1) {
     u32 uStack_10;
     u32 uStack_c;
 
-    iVar1 = syscall_1f10ec(unused_a0, &iStack_18);
+    iVar1 = bios_gdrom_check_cmd(unused_a0, &iStack_18);
     if (iVar1 == 0) {
         return 0;
     }
@@ -1743,18 +1750,18 @@ u32 FUN_8c1f139e(u32 a0) {
 
     uStack_c = 0;
     uStack_10 = a0;
-    uVar1 = syscall_1f10d8(0x1b, &uStack_10);
+    uVar1 = bios_gdrom_send_cmd(0x1b, &uStack_10);
     return uVar1;
 }
 
 /*
- * syscall_wrap_1f13bc  0x8c1f13bc
- * only calls syscall_1f10d8
+ * bios_gdrom_send_cmd_wrap  0x8c1f13bc
+ * only calls bios_gdrom_send_cmd
  */
-u32 syscall_wrap_1f13bc(void) {
+u32 bios_gdrom_send_cmd_wrap(void) {
     u32 uVar1;
 
-    uVar1 = syscall_1f10d8(0x18, 0);
+    uVar1 = bios_gdrom_send_cmd(0x18, 0);
     return uVar1;
 }
 
@@ -1764,7 +1771,7 @@ u32 syscall_wrap_1f13bc(void) {
 u32 FUN_8c1f13f0(void) {
     int iVar1;
 
-    iVar1 = syscall_1f1128();
+    iVar1 = bios_gdrom_check_drive();
     if (iVar1 == 1) {
         return 0;
     }
@@ -1772,13 +1779,13 @@ u32 FUN_8c1f13f0(void) {
 }
 
 /*
- * syscall_wrap_1f140c  0x8c1f140c
- * only calls syscall_1f1164
+ * bios_gdrom_call7_like_wrap  0x8c1f140c
+ * only calls bios_gdrom_call7_like
  */
-u32 syscall_wrap_1f140c(void) {
+u32 bios_gdrom_call7_like_wrap(void) {
     u32 uVar1;
 
-    uVar1 = syscall_1f1164();
+    uVar1 = bios_gdrom_call7_like();
     return uVar1;
 }
 
@@ -1792,7 +1799,7 @@ u32 FUN_8c1f141a(u32 a0, u32 a1, u32 a2) {
 
     uStack_c = 0;
     uStack_18 = a0;
-    uVar1 = syscall_1f10d8(0x14, &uStack_18);
+    uVar1 = bios_gdrom_send_cmd(0x14, &uStack_18);
     return uVar1;
 }
 
@@ -1806,18 +1813,18 @@ u32 FUN_8c1f143c(u32 a0, u32 a1, u32 a2) {
 
     uStack_c = 0;
     uStack_18 = a0;
-    uVar1 = syscall_1f10d8(0x15, &uStack_18);
+    uVar1 = bios_gdrom_send_cmd(0x15, &uStack_18);
     return uVar1;
 }
 
 /*
- * syscall_wrap_1f145e  0x8c1f145e
- * only calls syscall_1f10d8
+ * bios_gdrom_send_cmd_wrap_1f145e  0x8c1f145e
+ * only calls bios_gdrom_send_cmd
  */
-u32 syscall_wrap_1f145e(void) {
+u32 bios_gdrom_send_cmd_wrap_1f145e(void) {
     u32 uVar1;
 
-    uVar1 = syscall_1f10d8(0x16, 0);
+    uVar1 = bios_gdrom_send_cmd(0x16, 0);
     return uVar1;
 }
 
@@ -1831,7 +1838,7 @@ u32 FUN_8c1f146e(u32 a0) {
 
     uStack_c = 0;
     uStack_10 = a0;
-    uVar1 = syscall_1f10d8(0x17, &uStack_10);
+    uVar1 = bios_gdrom_send_cmd(0x17, &uStack_10);
     return uVar1;
 }
 
@@ -1843,7 +1850,7 @@ u32 FUN_8c1f148c(u32 a0, u32 a1) {
     u32 uStack_10;
 
     uStack_10 = a0;
-    uVar1 = syscall_1f10d8(0x13, &uStack_10);
+    uVar1 = bios_gdrom_send_cmd(0x13, &uStack_10);
     return uVar1;
 }
 
@@ -1857,16 +1864,16 @@ u32 FUN_8c1f14a8(u32 a0, u32 a1, u32 a2) {
 
     uStack_c = 0;
     uStack_18 = a0;
-    uVar1 = syscall_1f10d8(0x22, &uStack_18);
+    uVar1 = bios_gdrom_send_cmd(0x22, &uStack_18);
     return uVar1;
 }
 
 /*
- * syscall_wrap_1f14ca  0x8c1f14ca
- * only calls syscall_1f1100
+ * bios_gdrom_mainloop_wrap  0x8c1f14ca
+ * only calls bios_gdrom_mainloop
  */
-u32 syscall_wrap_1f14ca(void) {
-    syscall_1f1100();
+u32 bios_gdrom_mainloop_wrap(void) {
+    bios_gdrom_mainloop();
     return 1;
 }
 
@@ -1878,7 +1885,7 @@ u32 FUN_8c1f14de(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uStack_18;
 
     uStack_18 = a0;
-    uVar1 = syscall_1f10d8(0x24, &uStack_18);
+    uVar1 = bios_gdrom_send_cmd(0x24, &uStack_18);
     return uVar1;
 }
 
@@ -1892,7 +1899,7 @@ u32 FUN_8c1f14fe(u32 a0) {
 
     uStack_c = 0;
     uStack_10 = a0;
-    uVar1 = syscall_1f10d8(0x28, &uStack_10);
+    uVar1 = bios_gdrom_send_cmd(0x28, &uStack_10);
     return uVar1;
 }
 
@@ -5017,10 +5024,11 @@ u32 FUN_8c1f3a4c(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * syscall_1f3b1c  0x8c1f3b1c
+ * bios_sysinfo_init  0x8c1f3b1c
+ * BIOS system-info call 0 (vector 0x8c0000b0)
  * called by: FUN_8c1f804e, FUN_8c1f8094
  */
-u32 syscall_1f3b1c(u32 a0) {
+u32 bios_sysinfo_init(u32 a0) {
     u32 uVar1;
 
     /* WARNING: Could not recover jumptable at 0x8c1f3b22. Too many branches */
@@ -5030,10 +5038,11 @@ u32 syscall_1f3b1c(u32 a0) {
 }
 
 /*
- * syscall_1f3b44  0x8c1f3b44
+ * bios_sysinfo_id  0x8c1f3b44
+ * BIOS system-info call 3: pointer to the console's unique ID
  * called by: FUN_8c1f804e, FUN_8c1f8094, FUN_8c1f97b4
  */
-u32 syscall_1f3b44(u32 a0) {
+u32 bios_sysinfo_id(u32 a0) {
     u32 uVar1;
 
     /* WARNING: Could not recover jumptable at 0x8c1f3b4a. Too many branches */
@@ -8237,7 +8246,7 @@ u8 *FUN_8c1f5dd0(u32 a0, int a1, int a2, u32 a3) {
         a4 = ar4_01 * 0x34 + ar4_00;
         uVar7 = FUN_8c1efd26(ar4_01);
         *(u32 *)(a4 + 0x30) = uVar7;
-        FUN_8c1f5f4e(a4);
+        device_info_clear(a4);
         *(u32 *)(ar4_01 * 4 + iVar6) = 0;
         *(u8 *)(0x8c472d0a + ar4_01) = 0;
         *(u8 *)(0x8c472d22 + ar4_01) = 0;
@@ -8291,7 +8300,7 @@ u8 *FUN_8c1f5ea8(u32 a0, u32 a1, int a2, int a3, int s0) {
         a4 = ar4_01 * 0x34 + ar4_00;
         uVar6 = FUN_8c1efd26(ar4_01);
         *(u32 *)(a4 + 0x30) = uVar6;
-        FUN_8c1f5f4e(a4);
+        device_info_clear(a4);
         *(u32 *)(0x8c472ca4 + ar4_01 * 4) = 0;
         *(u8 *)(ar4_01 + iVar5) = 0;
         *(u8 *)(0x8c472d22 + ar4_01) = 0;
@@ -8305,12 +8314,12 @@ u8 *FUN_8c1f5ea8(u32 a0, u32 a1, int a2, int a3, int s0) {
 }
 
 /*
- * FUN_8c1f5f4e  0x8c1f5f4e
- * name hint from a string it uses: no device
+ * device_info_clear  0x8c1f5f4e
+ * resets a device-info record ("(no device)")
  * called by: FUN_8c1f5dd0, FUN_8c1f5ea8, FUN_8c1f61c6, FUN_8c1f620e, FUN_8c1f62f0, FUN_8c1f62f6
  * strings: "(no device)"
  */
-u32 FUN_8c1f5f4e(u32 *a0) {
+u32 device_info_clear(u32 *a0) {
     *a0 = 0;
     a0[1] = 0;
     if (g_8c472d04 == 0) {
@@ -8519,7 +8528,7 @@ u32 FUN_8c1f61c6(u32 unused_a0, u32 *a1, int unused_a2, u32 unused_a3, u32 ain0)
         iVar2 = libgcc_divide_helper_010614(ar4_00, 6);
         if (iVar2 == 0) {
             if ((((*ar5_00 & 0x21) == 0) || (*(char *)(ar6_00 + 2) != '\0')) || (*(char *)(ar6_00 + 4) != '\b')) {
-                iVar2 = FUN_8c1f5f4e(ar4_01);
+                iVar2 = device_info_clear(ar4_01);
             } else {
                 FUN_8c1f6142(ar4_01, ar5_00);
                 unused_a2 = ar4_00;
@@ -8575,7 +8584,7 @@ int FUN_8c1f620e(u32 unused_a0, u32 *a1) {
         iVar2 = libgcc_divide_helper_010614(unaff_r13, unaff_r9);
         if (iVar2 == 0) {
             if ((((*a5 & 0x21) == 0) || (*(char *)(a6 + 2) != '\0')) || (*(char *)(a6 + 4) != '\b')) {
-                iVar2 = FUN_8c1f5f4e(a4);
+                iVar2 = device_info_clear(a4);
             } else {
                 FUN_8c1f6142(a4, a5);
                 iVar2 = FUN_8c1f5f8c(a4, a6, unaff_r13);
@@ -8631,7 +8640,7 @@ u32 FUN_8c1f62f0(void) {
     puVar3 = 0x8c472ca4;
     ar4_00 = 0x8c4727c4;
     do {
-        uVar1 = FUN_8c1f5f4e(ar4_00);
+        uVar1 = device_info_clear(ar4_00);
         ar4_00 = ar4_00 + 0x34;
         *puVar3 = 0;
         puVar3 = puVar3 + 1;
@@ -8661,7 +8670,7 @@ u32 FUN_8c1f62f6(u32 a0, u32 a1, u32 a2, u32 a3) {
     puVar3 = 0x8c472ca4;
     a4 = 0x8c4727c4;
     do {
-        uVar1 = FUN_8c1f5f4e(a4);
+        uVar1 = device_info_clear(a4);
         a4 = a4 + 0x34;
         *puVar3 = 0;
         puVar3 = puVar3 + 1;
@@ -9318,7 +9327,7 @@ u32 FUN_8c1f6b14(u32 a0, u32 a1, int a2, u32 a3) {
 
     iVar4 = a2;
     uVar7 = a3;
-    iVar3 = FUN_8c1f0d94(4, a0, a2, a3);
+    iVar3 = flashrom_open_partition(4, a0, a2, a3);
     puVar2 = (&FUN_8c1f881c);
     puVar1 = (&memmove);
     if (iVar3 == 0) {
@@ -9332,7 +9341,7 @@ u32 FUN_8c1f6b14(u32 a0, u32 a1, int a2, u32 a3) {
             (*(code *)puVar1)(iVar9 * 0x3c + a2, a1, 0x3c, uVar7);
             iVar9 = iVar9 + 1;
         } while (iVar9 < iVar3);
-        iVar9 = FUN_8c1f0d94(3, a0, iVar4, uVar7);
+        iVar9 = flashrom_open_partition(3, a0, iVar4, uVar7);
         if (iVar9 == 0) {
             iVar9 = (int)0x1a8;
             iVar10 = 0;
@@ -9347,7 +9356,7 @@ u32 FUN_8c1f6b14(u32 a0, u32 a1, int a2, u32 a3) {
                 (*(code *)puVar1)(iVar10 * 0x3c + a3, a1, 0x3c, uVar7);
                 iVar10 = iVar10 + 1;
             } while (iVar10 < iVar9);
-            iVar4 = FUN_8c1f0d94(4, a0, iVar4, uVar7);
+            iVar4 = flashrom_open_partition(4, a0, iVar4, uVar7);
             if (iVar4 == 0) {
                 iVar5 = (int)0x254;
                 iVar4 = iVar9;
@@ -9368,7 +9377,7 @@ u32 FUN_8c1f6b14(u32 a0, u32 a1, int a2, u32 a3) {
                     }
                     FUN_8c1f6ce2(1, a1, uVar7, uVar8);
                     uVar6 = a0;
-                    iVar4 = FUN_8c1f0d94(3, a0, uVar7, uVar8);
+                    iVar4 = flashrom_open_partition(3, a0, uVar7, uVar8);
                     if ((iVar4 == 0) && (iVar4 = FUN_8c1f0e98(0), iVar4 == 0)) {
                         iVar4 = 0;
                         do {
@@ -9377,7 +9386,7 @@ u32 FUN_8c1f6b14(u32 a0, u32 a1, int a2, u32 a3) {
                                 goto LAB_8c1f6cc2;
                             iVar4 = iVar4 + 1;
                         } while (iVar4 < iVar9);
-                        iVar4 = FUN_8c1f0d94(4, a0, uVar7, uVar8);
+                        iVar4 = flashrom_open_partition(4, a0, uVar7, uVar8);
                         if (iVar4 == 0) {
                             FUN_8c1f6ce2(3, a1, uVar7, uVar8);
                             uVar6 = 0;
@@ -9400,7 +9409,7 @@ u32 FUN_8c1f6b14(u32 a0, u32 a1, int a2, u32 a3) {
                                 iVar4 = iVar4 + 1;
                             } while (iVar4 < iVar3);
                             FUN_8c1f6ce2(0, a1, iVar9, uVar8);
-                            iVar4 = FUN_8c1f0d94(3, a0, iVar9, uVar8);
+                            iVar4 = flashrom_open_partition(3, a0, iVar9, uVar8);
                             if (iVar4 == 0) {
                                 return 0;
                             }
@@ -9525,7 +9534,7 @@ u32 FUN_8c1f6dcc(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar2;
     int iVar3;
 
-    puVar2 = (&FUN_8c1f0d94);
+    puVar2 = (&flashrom_open_partition);
     puVar1 = 0x8c4748ac;
     if (4 < a0) {
         g_8c4748a8 = 2;
@@ -9858,7 +9867,7 @@ u32 FUN_8c1f71b6(int a0, u32 a1, u32 a2, u32 a3) {
     int in_stack_ffffffe8;
 
     uVar1 = 1;
-    FUN_8c1f8176(0x8c4749f2, a1, a2, a3);
+    rtc_get_date(0x8c4749f2, a1, a2, a3);
     date_to_rtc_seconds(0x8c4749f2, &stack0xffffffe8, a2);
     if (g_8c474986 == -1) {
         g_8c474986 = (short)in_stack_ffffffe8 - (short)g_8c474a00;
@@ -9883,7 +9892,7 @@ u32 FUN_8c1f7264(int a0, u32 a1, u32 a2, u32 a3) {
         g_8c47497c = g_8c4749fc;
     }
     g_8c474980 = g_8c4749fc;
-    FUN_8c1f8176(0x8c4749f2, a1, a2, a3);
+    rtc_get_date(0x8c4749f2, a1, a2, a3);
     ar5_00 = &g_8c474a00;
     date_to_rtc_seconds(0x8c4749f2, &g_8c474a00, a2);
     if (g_8c474984 == -1) {
@@ -9943,7 +9952,7 @@ u32 FUN_8c1f736c(int a0, u32 a1, u32 a2, u32 a3) {
     iVar1 = g_8c4749d8;
     g_8c4749dc = g_8c4749e0;
     g_8c474a04 = g_8c474a04 + 1;
-    FUN_8c1f8176(0x8c4749f2, a1, a2, a3);
+    rtc_get_date(0x8c4749f2, a1, a2, a3);
     date_to_rtc_seconds(0x8c4749f2, &g_8c4749d8, a2);
     ar5_00 = libgcc_divide_helper_01051c(g_8c4749d8 - iVar1, 0x3c);
     uVar2 = (u32)g_8c4749ec;
@@ -10084,7 +10093,7 @@ u32 FUN_8c1f7558(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int aiStack_98[24];
     int aiStack_38[7];
 
-    FUN_8c1f8176(0x8c4749e8, a1, a2, a3);
+    rtc_get_date(0x8c4749e8, a1, a2, a3);
     date_to_rtc_seconds(0x8c4749e8, &g_8c4749d8, a2);
     uVar11 = 0x8c4748c4;
     g_8c474a06 = 0;
@@ -10259,7 +10268,7 @@ int FUN_8c1f7902(u32 a0, u32 a1, u32 a2, int a3) {
         iVar2 = 0xae;
     }
     *(short *)(iVar2 + 0x8c4748c4) = *(short *)(iVar2 + 0x8c4748c4) + 1;
-    FUN_8c1f8176(0x8c4749f2, 0, a2, a3);
+    rtc_get_date(0x8c4749f2, 0, a2, a3);
     date_to_rtc_seconds(0x8c4749f2, 0x8c474a08, a2);
 LAB_8c1f7970:
     if ((char)a0 != '\x01') {
@@ -10876,8 +10885,8 @@ u32 FUN_8c1f804e(int a0) {
         return 0;
     }
     uVar2 = 0;
-    syscall_1f3b1c(0);
-    iVar1 = syscall_1f3b44(uVar2);
+    bios_sysinfo_init(0);
+    iVar1 = bios_sysinfo_id(uVar2);
     uVar2 = 6;
     ar5_00 = iVar1 + 2;
     memmove(a0, ar5_00, 6);
@@ -10898,11 +10907,11 @@ u32 FUN_8c1f8094(void) {
     int iVar1;
     u32 uVar2;
 
-    iVar1 = syscall_1f3b1c(0);
+    iVar1 = bios_sysinfo_init(0);
     if (iVar1 != 0) {
         return 0;
     }
-    uVar2 = syscall_1f3b44();
+    uVar2 = bios_sysinfo_id();
     return uVar2;
 }
 
@@ -10977,11 +10986,12 @@ u32 FUN_8c1f814c(u32 a0) {
 }
 
 /*
- * FUN_8c1f8176  0x8c1f8176
- * called by: FUN_8c01acd0, FUN_8c01bebc, FUN_8c01bfd0, FUN_8c0b96e4, FUN_8c0b9d14, FUN_8c0ba6bc, FUN_8c0bf804,
- * FUN_8c0f9774 (+9 more)
+ * rtc_get_date  0x8c1f8176
+ * fills a {year, month, day, hour, minute, second, weekday} struct from the real-time clock
+ * called by: FUN_8c01bebc, FUN_8c01bfd0, FUN_8c0b96e4, FUN_8c0ba6bc, FUN_8c0bf804, FUN_8c0f9774, FUN_8c0fa83c,
+ * FUN_8c0fc40c (+9 more)
  */
-u32 FUN_8c1f8176(short *a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 rtc_get_date(short *a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 *puVar1;
     u32 uVar2;
     int a6;
@@ -11052,8 +11062,8 @@ u32 FUN_8c1f823a(u32 a0, u32 a1, u32 a2) {
 /*
  * date_to_rtc_seconds  0x8c1f826c
  * seconds since 1950-01-01 (the Dreamcast RTC epoch) for a {year, month, day, hour, minute, second} struct
- * called by: FUN_8c01acd0, FUN_8c0b77a0, FUN_8c0b7804, FUN_8c0b96e4, FUN_8c0bcedc, FUN_8c0cc784, FUN_8c0cd3c8,
- * FUN_8c0f9774 (+12 more)
+ * called by: FUN_8c0b77a0, FUN_8c0b7804, FUN_8c0b96e4, FUN_8c0bcedc, FUN_8c0cc784, FUN_8c0cd3c8, FUN_8c0f9774,
+ * FUN_8c0fa83c (+12 more)
  */
 u32 date_to_rtc_seconds(u16 *a0, int *a1, u32 a2) {
     u16 uVar1;
@@ -11077,7 +11087,7 @@ u32 date_to_rtc_seconds(u16 *a0, int *a1, u32 a2) {
 
 /*
  * FUN_8c1f8300  0x8c1f8300
- * called by: FUN_8c0b95a0, FUN_8c0fcd2c, FUN_8c1f8176
+ * called by: FUN_8c0b95a0, FUN_8c0fcd2c, rtc_get_date
  */
 u32 FUN_8c1f8300(u32 a0, u16 *a1) {
     u32 uVar1;
@@ -11193,7 +11203,7 @@ int FUN_8c1f8462(int a0) {
 
 /*
  * FUN_8c1f84d8  0x8c1f84d8
- * called by: FUN_8c1f8114, FUN_8c1f814c, FUN_8c1f8176, FUN_8c1f81dc
+ * called by: FUN_8c1f8114, FUN_8c1f814c, FUN_8c1f81dc, rtc_get_date
  */
 int FUN_8c1f84d8(u32 a0) {
     bool bVar1;
@@ -11293,7 +11303,7 @@ u32 aica_reg_1f85ee(u32 a0) {
 
 /*
  * FUN_8c1f8614  0x8c1f8614
- * called by: FUN_8c1f8176, FUN_8c1f8300
+ * called by: FUN_8c1f8300, rtc_get_date
  */
 u32 FUN_8c1f8614(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -11310,7 +11320,7 @@ u32 FUN_8c1f8614(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c1f8650  0x8c1f8650
- * called by: FUN_8c1f8176, FUN_8c1f8300
+ * called by: FUN_8c1f8300, rtc_get_date
  */
 u32 FUN_8c1f8650(u32 a0, u32 unused_a1, u32 a2) {
     int iVar1;
@@ -12222,7 +12232,7 @@ u32 FUN_8c1f97b4(u32 a0, u32 a1, u32 a2, u32 a3) {
     puVar5 = auStack_50;
     puVar7 = auStack_50;
     a5 = auStack_50;
-    iVar3 = FUN_8c1f0d94(2, a1, a2, a3);
+    iVar3 = flashrom_open_partition(2, a1, a2, a3);
     if (iVar3 == -8) {
         iVar3 = FUN_8c1f0e98(0);
     }
@@ -12232,7 +12242,7 @@ u32 FUN_8c1f97b4(u32 a0, u32 a1, u32 a2, u32 a3) {
             iVar3 = (*(code *)puVar2)(iVar3, puVar5, a2, a3);
         } while (iVar3 == 2);
         if (iVar3 == 1) {
-            iVar3 = syscall_1f3b44(1);
+            iVar3 = bios_sysinfo_id(1);
             puVar5 = (u8 *)(iVar3 + 0x10);
             if (a0 == 0) {
                 for (iVar3 = 8; iVar3 != 0; iVar3 = iVar3 + -1) {
@@ -12275,10 +12285,11 @@ u32 FUN_8c1f97b4(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * syscall_1f98b0  0x8c1f98b0
- * called by: FUN_8c1f0d94
+ * bios_flashrom_info  0x8c1f98b0
+ * BIOS flash-ROM call 0 (vector 0x8c0000b8): offset and size of a partition
+ * called by: flashrom_open_partition
  */
-u32 syscall_1f98b0(u32 unused_a0, u32 a1) {
+u32 bios_flashrom_info(u32 unused_a0, u32 a1) {
     u32 uVar1;
 
     /* WARNING: Could not recover jumptable at 0x8c1f98b6. Too many branches */
@@ -12288,10 +12299,11 @@ u32 syscall_1f98b0(u32 unused_a0, u32 a1) {
 }
 
 /*
- * syscall_1f98c4  0x8c1f98c4
- * called by: FUN_8c1f0a72, FUN_8c1f0d94
+ * bios_flashrom_read  0x8c1f98c4
+ * BIOS flash-ROM call 1: reads from the flash ROM
+ * called by: FUN_8c1f0a72, flashrom_open_partition
  */
-u32 syscall_1f98c4(u32 unused_a0, u32 unused_a1, u32 a2) {
+u32 bios_flashrom_read(u32 unused_a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
 
     /* WARNING: Could not recover jumptable at 0x8c1f98ca. Too many branches */
@@ -12301,10 +12313,11 @@ u32 syscall_1f98c4(u32 unused_a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * syscall_1f98d8  0x8c1f98d8
+ * bios_flashrom_write  0x8c1f98d8
+ * BIOS flash-ROM call 2: writes to the flash ROM
  * called by: FUN_8c1f0b58, FUN_8c1f0c14, FUN_8c1f0e98, FUN_8c1f0e9c
  */
-u32 syscall_1f98d8(u32 unused_a0, u32 unused_a1, u32 a2) {
+u32 bios_flashrom_write(u32 unused_a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
 
     /* WARNING: Could not recover jumptable at 0x8c1f98de. Too many branches */
@@ -12314,10 +12327,11 @@ u32 syscall_1f98d8(u32 unused_a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * syscall_1f98ec  0x8c1f98ec
+ * bios_flashrom_delete  0x8c1f98ec
+ * BIOS flash-ROM call 3: erases a flash-ROM partition
  * called by: FUN_8c1f0d34, FUN_8c1f0d38, FUN_8c1f0e98, FUN_8c1f0e9c, FUN_8c1f103e
  */
-u32 syscall_1f98ec(void) {
+u32 bios_flashrom_delete(void) {
     u32 uVar1;
 
     /* WARNING: Could not recover jumptable at 0x8c1f98f2. Too many branches */
@@ -13121,24 +13135,24 @@ u32 FUN_8c1fa7d0(u32 a0, u32 *a1) {
     g_8c475ec8 = a1;
     iVar2 = FUN_8c1fab8c();
     scif_puts(s_____ADDRESS_CHECKER_TRAP_____8c26cf24);
-    FUN_8c1faa08("FR0-7:    ", 10, 8);
-    FUN_8c1faa08("FR8-15:   ", 0x12, 8);
-    FUN_8c1faa08("FR0-7(B): ", 0x1a, 8);
+    debug_dump_words("FR0-7:    ", 10, 8);
+    debug_dump_words("FR8-15:   ", 0x12, 8);
+    debug_dump_words("FR0-7(B): ", 0x1a, 8);
     uVar6 = 8;
     uVar5 = 0x22;
-    FUN_8c1faa08("FR8-15(B):", 0x22, 8);
+    debug_dump_words("FR8-15(B):", 0x22, 8);
     scif_puts("FPUL: ");
     scif_put_hex32(g_8c475ec8[0x2a]);
     scif_puts(" FPSCR: ");
     scif_put_hex32(g_8c475ec8[0x2b]);
-    FUN_8c1faa08(s_R0_7__8c26cf8c, 0x2d, 8);
+    debug_dump_words(s_R0_7__8c26cf8c, 0x2d, 8);
     uVar5 = g_8c475ec8[0x3c];
     g_8c475ec8[0x3c] = g_8c475ec8[1];
-    FUN_8c1faa08("R8-15:    ", 0x35, 8);
+    debug_dump_words("R8-15:    ", 0x35, 8);
     uVar6 = 8;
     g_8c475ec8[0x3c] = uVar5;
     uVar5 = 2;
-    FUN_8c1faa08(s_R0_7_B___8c26cfa8, 2, 8);
+    debug_dump_words(s_R0_7_B___8c26cfa8, 2, 8);
     scif_puts("MACL: ");
     scif_put_hex32(g_8c475ec8[0x3c]);
     scif_puts(" MACH: ");
@@ -13187,10 +13201,11 @@ u32 FUN_8c1fa7d0(u32 a0, u32 *a1) {
 }
 
 /*
- * FUN_8c1faa08  0x8c1faa08
+ * debug_dump_words  0x8c1faa08
+ * prints a label and a2 words from the table at 0x8c475ec8 on the serial port
  * called by: FUN_8c1fa7d0
  */
-u32 FUN_8c1faa08(u32 a0, int a1, int a2) {
+u32 debug_dump_words(u32 a0, int a1, int a2) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -13340,7 +13355,7 @@ u32 FUN_8c1fad44(void) {
 /*
  * scif_puts  0x8c1fad9a
  * scif_putc for each byte of a string
- * called by: FUN_8c1fa7d0, FUN_8c1faa08
+ * called by: FUN_8c1fa7d0, debug_dump_words
  */
 u32 scif_puts(char *a0) {
     u32 in_r0;
@@ -13354,7 +13369,7 @@ u32 scif_puts(char *a0) {
 /*
  * scif_put_hex32  0x8c1fadd0
  * prints a0 as eight hex digits on the serial port
- * called by: FUN_8c1fa7d0, FUN_8c1faa08
+ * called by: FUN_8c1fa7d0, debug_dump_words
  */
 u32 scif_put_hex32(u32 a0) {
     u32 uVar1;

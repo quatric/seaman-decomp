@@ -10553,7 +10553,7 @@ u32 FUN_8c235e84(void) {
 
 /*
  * FUN_8c235eb4  0x8c235eb4
- * called by: FUN_8c0baab8
+ * called by: CProlog_Ready
  */
 u32 FUN_8c235eb4(void) {
     int *piVar1;
@@ -13908,8 +13908,8 @@ int FUN_8c239150(int *a0, u32 a1) {
 
 /*
  * FUN_8c239170  0x8c239170
- * called by: CGame_Init, CIncubater_Create, CSoilTank_Create, CSquid_Init, CSysMessage_LoadMessage,
- * CWaterTank_CreateStage, FUN_8c0baab8, FUN_8c0c0444 (+6 more)
+ * called by: CGame_Init, CIncubater_Create, CProlog_Ready, CSoilTank_Create, CSquid_Init, CSysMessage_LoadMessage,
+ * CWaterTank_CreateStage, FUN_8c0c0444 (+6 more)
  */
 int *FUN_8c239170(int *a0, int *a1, int a2, int a3) {
     int *piVar1;

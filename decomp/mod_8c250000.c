@@ -12428,7 +12428,7 @@ u32 FUN_8c2570ec(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32
 
 /*
  * FUN_8c257104  0x8c257104
- * called by: FUN_8c0baab8
+ * called by: CProlog_Ready
  */
 u32 FUN_8c257104(u32 a0) {
     u32 r5;

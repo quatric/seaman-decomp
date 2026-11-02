@@ -6794,7 +6794,7 @@ u32 set_field_39_u8(int a0, u32 a1) {
 
 /*
  * FUN_8c0e9898  0x8c0e9898
- * called by: FUN_8c0c5de8
+ * called by: CGame_GetUserGameInfo
  */
 int FUN_8c0e9898(u8 *a0, u8 *a1) {
     char cVar1;

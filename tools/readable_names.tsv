@@ -204,3 +204,25 @@
 8c2140c6	flags_4c0db0_set	sets or clears (a1) flag a0 of the bit set at 0x8c4c0db0
 8c1f03a6	set_handler_slot32	stores a1 in slot a0 (< 32) of the table at 0x8c470920
 8c2072b2	callback_table_call	calls entry a0 of the callback table at 0x8c4a9ddc with its stored argument
+8c1f98b0	bios_flashrom_info	BIOS flash-ROM call 0 (vector 0x8c0000b8): offset and size of a partition
+8c1f98c4	bios_flashrom_read	BIOS flash-ROM call 1: reads from the flash ROM
+8c1f98d8	bios_flashrom_write	BIOS flash-ROM call 2: writes to the flash ROM
+8c1f98ec	bios_flashrom_delete	BIOS flash-ROM call 3: erases a flash-ROM partition
+8c1f10d8	bios_gdrom_send_cmd	BIOS GD-ROM call 0 (vector 0x8c0000bc): queues a drive command
+8c1f10ec	bios_gdrom_check_cmd	BIOS GD-ROM call 1: status of a queued command
+8c1f1100	bios_gdrom_mainloop	BIOS GD-ROM call 2: runs the drive command server
+8c1f1114	bios_gdrom_init	BIOS GD-ROM call 3: initialises the drive system
+8c1f1128	bios_gdrom_check_drive	BIOS GD-ROM call 4: drive status and disc type
+8c1f1150	bios_gdrom_call6_like	BIOS GD-ROM call 6 (DMA transfer request in later documentation)
+8c1f1164	bios_gdrom_call7_like	BIOS GD-ROM call 7 (DMA transfer check in later documentation)
+8c1f3b1c	bios_sysinfo_init	BIOS system-info call 0 (vector 0x8c0000b0)
+8c1f3b44	bios_sysinfo_id	BIOS system-info call 3: pointer to the console's unique ID
+8c1f0d94	flashrom_open_partition	looks up flash partition a0 (1..4) and reads its "KATANA_FLASH____" header
+8c1f8176	rtc_get_date	fills a {year, month, day, hour, minute, second, weekday} struct from the real-time clock
+8c01acd0	wait_state_rtc_10s	runs the sound server while slot a1's state (+0x2450) is 2 or 3, for at most 10 RTC seconds
+8c030ac4	talk_event_priority	5 for the scripted events (EVENT_ROCK_PUSH, EVENT_QUIZ, EVENT_ENDING, ...), 4 for anything else
+8c030304	talk_set_status_format	sets the talker's line to STATUS_FORMAT
+8c0b7454	save_files_check	checks the memory-card files SM2000US.USR / SM2000US._VM / SM2000US.INC
+8c1faa08	debug_dump_words	prints a label and a2 words from the table at 0x8c475ec8 on the serial port
+8c1f5f4e	device_info_clear	resets a device-info record ("(no device)")
+8c262168	ADXF_Close_like	stops an ADXF handle that is reading and clears it (0x30 bytes)

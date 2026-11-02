@@ -452,7 +452,7 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
 - Hand names in `tools/readable_names.tsv` for the most-called helpers: libc (strcmp, memcmp, strcat, sprintf, the printf
   core), Vec3 math, the matrix stack, and the Ninja texture calls (njSetTexture 8c25b3ec selects the list at 0x8c277b04,
   njSetTextureNum 8c25b434 loads one texture's TA parameters through 8c20fe00).
-- `decomp/`: 1,759 of 6,347 functions named (was 1,026), every name unique. About 700 of those are shape names. Also named: strtol/atoi, spline and lerp math, interrupt nesting (8c260ca0/8c260cc8), the RTC date conversion (8c1f826c, epoch 1950).
+- `decomp/`: 1,774 of 6,347 functions named (was 1,026), every name unique. About 700 of those are shape names. Also named: strtol/atoi, spline and lerp math, interrupt nesting (8c260ca0/8c260cc8), the RTC date conversion (8c1f826c, epoch 1950).
 - Also named: the speech player at 0x8c35468c (speech_start 8c0f8368 plays a named line such as "HIGYOLINE0"; speech_request,
   speech_restart, speech_stop), the serial debug output (scif_putc 8c1fac58, used by the crash dump), Ninja's outer product,
   sin/cos and polygon-state copies.
@@ -470,3 +470,8 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
   `v = call; return v;`. Hand names in the Shinobi range: crc16_ccitt (8c1f109c, checks the 64-byte system flash-ROM blocks),
   vram64_to_vram32, int_to_bcd, bcopy, the polygon-parameter push helpers, and three file-handle functions that look like
   gdFsClose/gdFsGetStat (named `*_like` until confirmed).
+- BIOS calls named from their vectors: 0x8c0000b0 system info (bios_sysinfo_*), 0x8c0000b8 flash ROM (bios_flashrom_info/
+  read/write/delete), 0x8c0000bc GD-ROM (bios_gdrom_send_cmd/check_cmd/mainloop/init/check_drive; calls 6 and 7 `_like`).
+- The Class::Method rule also takes messages that end in the method name ("Lack of memory..:CItemList::AddItem") and
+  treats a cut-off name ("TakeOutIte") as the full one; adds CProlog_Ready, CSeamanDomain_Init, CGame_GetUserGameInfo and
+  the two SetPVMTexture methods.

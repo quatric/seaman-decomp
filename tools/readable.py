@@ -645,7 +645,12 @@ def main():
     taken = collections.Counter(names.values())
     for f in allf:
         if f.body is None or not names[f.addr].startswith('FUN_') or f.addr in curated: continue
-        sigs = set(re.findall(r'"([A-Z]\w*)::(~?\w+)\([^"]*\)"', strings_and_addresses(f.body)))
+        lits = strings_and_addresses(f.body)
+        sigs = set(re.findall(r'"([A-Z]\w*)::(~?\w+)\([^"]*\)[^"]*"', lits))
+        # messages that end in the method name without parentheses ("Lack of memory..:CItemList::AddItem")
+        sigs |= set(re.findall(r'"[^"]*?\b(C[A-Z][A-Za-z0-9]*)::(~?[A-Za-z][A-Za-z0-9]*)[^"(]*"', lits))
+        # the messages are cut to a fixed length, so "TakeOutIte" is TakeOutItem
+        sigs = {(c, m) for c, m in sigs if not any(c2 == c and m2 != m and m2.startswith(m) for c2, m2 in sigs)}
         if len(sigs) == 1:
             c, m = sigs.pop(); new = '%s_%s' % (c, m.replace('~', 'dtor_'))
             if taken[new]: new = '%s_%06x' % (new, f.addr & 0xffffff)

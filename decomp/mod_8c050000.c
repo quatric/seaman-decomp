@@ -7289,8 +7289,8 @@ u32 ret_const_3f800000_05c27c(void) {
 
 /*
  * get_field_24_05c284  0x8c05c284
- * called by: CEnv_AddItem, FUN_8c05af78, FUN_8c077a38, FUN_8c07b2d4, FUN_8c0a3f4c, FUN_8c0c4c84, FUN_8c0c4e58,
- * FUN_8c0c5de8 (+19 more)
+ * called by: CEnv_AddItem, CGame_GetUserGameInfo, FUN_8c05af78, FUN_8c077a38, FUN_8c07b2d4, FUN_8c0a3f4c, FUN_8c0c4c84,
+ * FUN_8c0c4e58 (+19 more)
  */
 u32 get_field_24_05c284(int a0, u32 a1) {
     return *(u32 *)(a0 + 0x24);
@@ -8721,7 +8721,7 @@ u32 FUN_8c05d860(int *a0, code *a1, code *a2) {
             } else {
                 *(u8 *)(a0 + 0x26) = 9;
                 if (*(char *)((int)a0 + 0x879) != '\x02') {
-                    FUN_8c030304(a0 + 0x27, pcVar4, pcVar11, pcVar14);
+                    talk_set_status_format(a0 + 0x27, pcVar4, pcVar11, pcVar14);
                 }
                 counter_set_clamped(*(int *)(a2 + 4) + 0x90, 1, pcVar11);
                 FUN_8c02cbbc(*(int *)(a2 + 4) + 0x90, 1);
@@ -9125,7 +9125,7 @@ u32 Class_12a078_m2_05eee0(int *a0, u32 a1, int *a2, u32 a3) {
                 *(u8 *)(a0 + 0x26) = 9;
             }
             if (a0[0x10] != 0x2c) {
-                FUN_8c030304(a0 + 0x27, a1, piVar3, uVar2);
+                talk_set_status_format(a0 + 0x27, a1, piVar3, uVar2);
                 counter_set_clamped(a2[1] + 0x90, 1, piVar3);
                 FUN_8c02cbbc(a2[1] + 0x90, 1);
                 a1 = 0;

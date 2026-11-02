@@ -150,8 +150,8 @@ u32 FUN_8c01012c(int a0, code *a1, code *a2, u32 a3, u32 s0, u32 s4, u32 s8, u32
 
 /*
  * global_list_push  0x8c0101a0
- * called by: FUN_8c0150e0, FUN_8c016978, FUN_8c018fb0, FUN_8c01a260, FUN_8c024240, FUN_8c02b778, FUN_8c02d5e8,
- * FUN_8c02d720 (+55 more)
+ * called by: CSeamanDomain_Init, FUN_8c0150e0, FUN_8c016978, FUN_8c018fb0, FUN_8c01a260, FUN_8c024240, FUN_8c02b778,
+ * FUN_8c02d5e8 (+55 more)
  */
 u32 global_list_push(u32 a0, u32 a1, u32 *a2, u32 a3) {
     u32 *puVar1;
@@ -177,8 +177,8 @@ u32 pure_virtual_stub(void) {
 
 /*
  * strcpy  0x8c0101d4
- * called by: Class_12a078_ctor, Class_12c3c4_ctor, FUN_8c01ab78, FUN_8c01af14, FUN_8c01b2a4, FUN_8c01bc2c,
- * FUN_8c01c560, FUN_8c01d4c4 (+41 more)
+ * called by: CSeamanDomain_Init, Class_12a078_ctor, Class_12c3c4_ctor, FUN_8c01ab78, FUN_8c01af14, FUN_8c01b2a4,
+ * FUN_8c01bc2c, FUN_8c01c560 (+41 more)
  */
 u32 strcpy(char *a0, char *a1) {
     char cVar1;
@@ -11440,8 +11440,8 @@ u8 *memmove_bytes(u8 *a0, u8 *a1, u32 a2) {
 
 /*
  * memset  0x8c013ff8
- * called by: ADXF_LoadPartition, FUN_8c010c60, FUN_8c0128e8, FUN_8c012a60, FUN_8c012b1c, FUN_8c01af14, FUN_8c01b2a4,
- * FUN_8c0b95a0 (+95 more)
+ * called by: ADXF_Close_like, ADXF_LoadPartition, FUN_8c010c60, FUN_8c0128e8, FUN_8c012a60, FUN_8c012b1c, FUN_8c01af14,
+ * FUN_8c01b2a4 (+95 more)
  */
 u8 *memset(u8 *a0, u32 a1, u32 a2) {
     u8 *puVar1;
@@ -11786,8 +11786,8 @@ u32 FUN_8c014370(u32 a0) {
 
 /*
  * strcat  0x8c01437c
- * called by: FUN_8c01da90, FUN_8c01dea4, FUN_8c01e1e8, FUN_8c030304, FUN_8c03087c, FUN_8c0309c8, FUN_8c0fa204,
- * FUN_8c0fae24 (+6 more)
+ * called by: FUN_8c01da90, FUN_8c01dea4, FUN_8c01e1e8, FUN_8c03087c, FUN_8c0309c8, FUN_8c0fa204, FUN_8c0fae24,
+ * FUN_8c0fbf28 (+6 more)
  */
 char *strcat(char *a0, char *a1) {
     char cVar1;
@@ -12440,8 +12440,8 @@ u32 FUN_8c014a64(int a0) {
 /*
  * obj_set_texture_num  0x8c014a94
  * njSetTextureNum(a1)
- * called by: FUN_8c01688c, FUN_8c0ad354, FUN_8c0ad7ec, FUN_8c0ba5e0, FUN_8c0bb1e4, FUN_8c0bf804, FUN_8c0bfa78,
- * FUN_8c0c09d0 (+23 more)
+ * called by: CSeamanDomain_Init, FUN_8c01688c, FUN_8c0ad354, FUN_8c0ad7ec, FUN_8c0ba5e0, FUN_8c0bb1e4, FUN_8c0bf804,
+ * FUN_8c0bfa78 (+23 more)
  */
 u32 obj_set_texture_num(u32 a0, u32 a1) {
     u32 uVar1;
@@ -12924,8 +12924,8 @@ u32 FUN_8c0150e0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * set_field_10  0x8c015198
- * called by: CGame_Init, Class_129808_m6_0166b4, Class_12bb08_ctor, FUN_8c0b6e6c, FUN_8c0b79f0, FUN_8c0ba5e0,
- * FUN_8c0bb1e4, FUN_8c0bf804 (+11 more)
+ * called by: CGame_Init, CSeamanDomain_Init, Class_129808_m6_0166b4, Class_12bb08_ctor, FUN_8c0b6e6c, FUN_8c0b79f0,
+ * FUN_8c0ba5e0, FUN_8c0bb1e4 (+11 more)
  */
 u32 set_field_10(int a0, u32 a1) {
     u32 in_r0;
@@ -13044,10 +13044,10 @@ u32 CTexture_LoadFromCache(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * CTexture_ReleaseFromVRAM  0x8c015310
- * called by: CTexture_ReleaseFromVRAM_on_field_20, CTexture_ReleaseFromVRAM_on_field_28,
+ * called by: CSeamanDomain_Init, CTexture_ReleaseFromVRAM_on_field_20, CTexture_ReleaseFromVRAM_on_field_28,
  * CTexture_ReleaseFromVRAM_on_field_488, CTexture_ReleaseFromVRAM_wrap, CTexture_ReleaseFromVRAM_wrap_0d0a18,
- * CTexture_ReleaseFromVRAM_wrap_0d14cc, CTexture_ReleaseFromVRAM_wrap_0d6074, FUN_8c028c18 (+12 more) strings:
- * "Failed..:%s"; "CTexture::ReleaseFromVRAM()"
+ * CTexture_ReleaseFromVRAM_wrap_0d14cc, CTexture_ReleaseFromVRAM_wrap_0d6074 (+12 more) strings: "Failed..:%s";
+ * "CTexture::ReleaseFromVRAM()"
  */
 u32 CTexture_ReleaseFromVRAM(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -13064,8 +13064,8 @@ u32 CTexture_ReleaseFromVRAM(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * obj_set_texlist  0x8c01538c
  * njSetTexture on the texture list the object keeps at +4
- * called by: FUN_8c01688c, FUN_8c026968, FUN_8c026de0, FUN_8c029510, FUN_8c0297b8, FUN_8c029dec, FUN_8c038b04,
- * FUN_8c06b460 (+75 more)
+ * called by: CSeamanDomain_Init, FUN_8c01688c, FUN_8c026968, FUN_8c026de0, FUN_8c029510, FUN_8c0297b8, FUN_8c029dec,
+ * FUN_8c038b04 (+75 more)
  */
 u32 obj_set_texlist(int a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -14254,8 +14254,8 @@ u32 Class_129808_m10_0162bc(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * clear_5_words  0x8c0162f8
  * a0[0..4] = 0
- * called by: Class_129808_m6_0166b4, Class_12b350_ctor, Class_12bb08_ctor, FUN_8c0b6c3c, FUN_8c0b6e6c, FUN_8c0b79f0,
- * FUN_8c0ba5e0, FUN_8c0bad68 (+13 more)
+ * called by: CSeamanDomain_Init, Class_129808_m6_0166b4, Class_12b350_ctor, Class_12bb08_ctor, FUN_8c0b6c3c,
+ * FUN_8c0b6e6c, FUN_8c0b79f0, FUN_8c0ba5e0 (+13 more)
  */
 u32 *clear_5_words(u32 *a0, u32 a1, u32 unused_a2, u32 a3) {
     a0[4] = 0;
@@ -14270,8 +14270,8 @@ u32 *clear_5_words(u32 *a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * set_fields_0_4_c  0x8c016318
  * stores +0x0, +0x4, +0xc
- * called by: CGame_Init, Class_129808_m6_0166b4, Class_12bb08_ctor, FUN_8c0b6e6c, FUN_8c0b79f0, FUN_8c0ba5e0,
- * FUN_8c0bb1e4, FUN_8c0bf804 (+20 more)
+ * called by: CGame_Init, CSeamanDomain_Init, Class_129808_m6_0166b4, Class_12bb08_ctor, FUN_8c0b6e6c, FUN_8c0b79f0,
+ * FUN_8c0ba5e0, FUN_8c0bb1e4 (+20 more)
  */
 u32 set_fields_0_4_c(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_r0;
@@ -14284,8 +14284,8 @@ u32 set_fields_0_4_c(u32 *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c016324  0x8c016324
- * called by: Class_129808_m6_0166b4, Class_12bb08_ctor, FUN_8c0ba5e0, FUN_8c0bb1e4, FUN_8c0bf804, FUN_8c0bfa78,
- * FUN_8c0c09d0, FUN_8c0c2068 (+12 more)
+ * called by: CSeamanDomain_Init, Class_129808_m6_0166b4, Class_12bb08_ctor, FUN_8c0ba5e0, FUN_8c0bb1e4, FUN_8c0bf804,
+ * FUN_8c0bfa78, FUN_8c0c2068 (+12 more)
  */
 u32 FUN_8c016324(int a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -14298,7 +14298,7 @@ u32 FUN_8c016324(int a0, u32 a1, u32 a2) {
 
 /*
  * FUN_8c016340  0x8c016340
- * called by: Class_129808_m6_0166b4, FUN_8c0b6e6c, FUN_8c0b79f0, FUN_8c0bb1e4, FUN_8c0c09d0, FUN_8c0c1d98,
+ * called by: CSeamanDomain_Init, Class_129808_m6_0166b4, FUN_8c0b6e6c, FUN_8c0b79f0, FUN_8c0bb1e4, FUN_8c0c1d98,
  * FUN_8c0c2068, FUN_8c0c2efc (+17 more)
  */
 u32 FUN_8c016340(int a0, u32 a1, u32 unused_a2, u32 a3) {
@@ -18865,7 +18865,7 @@ u32 FUN_8c01a5cc(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
 /*
  * FUN_8c01a630  0x8c01a630
- * called by: FUN_8c01a5cc, FUN_8c01acd0
+ * called by: FUN_8c01a5cc, wait_state_rtc_10s
  */
 u32 FUN_8c01a630(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -19119,11 +19119,12 @@ u32 FUN_8c01ab78(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c01acd0  0x8c01acd0
+ * wait_state_rtc_10s  0x8c01acd0
+ * runs the sound server while slot a1's state (+0x2450) is 2 or 3, for at most 10 RTC seconds
  * called by: FUN_8c01ae98, FUN_8c01b144, FUN_8c01b47c, FUN_8c01b5f8, FUN_8c01b7b0, FUN_8c01b920, FUN_8c01b9e4,
  * FUN_8c01bb00 (+2 more)
  */
-u32 FUN_8c01acd0(int a0, int a1, u32 a2, u32 a3) {
+u32 wait_state_rtc_10s(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     u32 *ar5_00;
     u32 uStack_28;
@@ -19131,13 +19132,13 @@ u32 FUN_8c01acd0(int a0, int a1, u32 a2, u32 a3) {
     u8 auStack_20[10];
     u8 auStack_16[14];
 
-    FUN_8c1f8176(auStack_16, a1, a2, a3);
+    rtc_get_date(auStack_16, a1, a2, a3);
     ar5_00 = &uStack_24;
     date_to_rtc_seconds(auStack_16, ar5_00, a2);
     uStack_24 = uStack_24 + 10;
     while (true) {
         sound_server_2(a0, ar5_00, a2, a3);
-        FUN_8c1f8176(auStack_20, ar5_00, a2, a3);
+        rtc_get_date(auStack_20, ar5_00, a2, a3);
         ar5_00 = &uStack_28;
         date_to_rtc_seconds(auStack_20, ar5_00, a2);
         if (uStack_24 < uStack_28) {
@@ -19233,7 +19234,7 @@ u32 FUN_8c01ae98(u32 a0, u32 a1, u32 a2, u32 a3) {
             uVar1 = 0;
         } else {
             uVar1 = FUN_8c01ade8(a0, ar5_00);
-            uVar1 = FUN_8c01acd0(a0, uVar1, a2, a3);
+            uVar1 = wait_state_rtc_10s(a0, uVar1, a2, a3);
         }
     } else {
         uVar1 = 0;
@@ -19392,7 +19393,7 @@ u32 FUN_8c01b144(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12
     if (*(int *)((int)&stack0xfffffff4 + iVar1) < 0) {
         uVar2 = 0;
     } else {
-        uVar2 = FUN_8c01acd0(a0, *(int *)((int)&stack0xfffffff4 + iVar1), uVar3, a3);
+        uVar2 = wait_state_rtc_10s(a0, *(int *)((int)&stack0xfffffff4 + iVar1), uVar3, a3);
         *(u32 *)(&stack0xfffffff0 + iVar1) = uVar2;
         uVar2 = *(u32 *)(&stack0xfffffff0 + iVar1);
     }
@@ -19481,7 +19482,7 @@ u32 FUN_8c01b47c(u32 a0, u32 a1, u32 a2, u32 a3) {
             uVar1 = 0;
         } else {
             uVar1 = FUN_8c01ade8(a0, ar5_00);
-            uVar1 = FUN_8c01acd0(a0, uVar1, a2, a3);
+            uVar1 = wait_state_rtc_10s(a0, uVar1, a2, a3);
         }
     } else {
         uVar1 = 0;
@@ -19546,7 +19547,7 @@ u32 FUN_8c01b5dc(u32 unused_a0, u32 a1) {
 
 /*
  * FUN_8c01b5f8  0x8c01b5f8
- * called by: FUN_8c0b7454, FUN_8c0b7628
+ * called by: FUN_8c0b7628, save_files_check
  */
 u32 FUN_8c01b5f8(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -19568,7 +19569,7 @@ u32 FUN_8c01b5f8(int a0, u32 a1, u32 a2, u32 a3) {
             uVar1 = 0;
         } else {
             iVar3 = ar5_00;
-            iVar2 = FUN_8c01acd0(a0, ar5_00, ar6_00, ar7_00);
+            iVar2 = wait_state_rtc_10s(a0, ar5_00, ar6_00, ar7_00);
             if (iVar2 == 0) {
                 (*(code *)(&FUN_8c1fb57c))(*(u32 *)(0x2470 + ar5_00 * 0x28 + a0), iVar3, ar6_00, ar7_00);
                 uVar1 = 0;
@@ -19619,7 +19620,7 @@ int FUN_8c01b70c(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c01b7b0  0x8c01b7b0
- * called by: FUN_8c0b7454
+ * called by: save_files_check
  */
 u32 FUN_8c01b7b0(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -19636,7 +19637,7 @@ u32 FUN_8c01b7b0(int a0, u32 a1, u32 a2, u32 a3) {
             uVar1 = 0;
         } else {
             ar5_01 = ar5_00;
-            iVar2 = FUN_8c01acd0(a0, ar5_00, uVar1, ar7_00);
+            iVar2 = wait_state_rtc_10s(a0, ar5_00, uVar1, ar7_00);
             if (iVar2 == 0) {
                 (*(code *)(&FUN_8c1fb57c))(*(u32 *)(0x2470 + ar5_00 * 0x28 + a0), ar5_01, uVar1, ar7_00);
                 uVar1 = 0;
@@ -19680,7 +19681,7 @@ int FUN_8c01b87c(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c01b920  0x8c01b920
- * called by: FUN_8c0c09d0
+ * called by: CSeamanDomain_Init
  */
 int FUN_8c01b920(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -19691,7 +19692,7 @@ int FUN_8c01b920(int a0, u32 a1, u32 a2, u32 a3) {
         if (iVar1 < 0) {
             iVar1 = -1;
         } else {
-            iVar2 = FUN_8c01acd0(a0, iVar1, a2, a3);
+            iVar2 = wait_state_rtc_10s(a0, iVar1, a2, a3);
             if (iVar2 == 0) {
                 iVar1 = -1;
             } else {
@@ -19720,7 +19721,7 @@ int FUN_8c01b9b0(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 
 /*
  * FUN_8c01b9e4  0x8c01b9e4
- * called by: FUN_8c01b144, FUN_8c0c09d0
+ * called by: CSeamanDomain_Init, FUN_8c01b144
  */
 int FUN_8c01b9e4(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -19731,7 +19732,7 @@ int FUN_8c01b9e4(int a0, u32 a1, u32 a2, u32 a3) {
         if (iVar1 < 0) {
             iVar1 = -1;
         } else {
-            iVar2 = FUN_8c01acd0(a0, iVar1, a2, a3);
+            iVar2 = wait_state_rtc_10s(a0, iVar1, a2, a3);
             if (iVar2 == 0) {
                 iVar1 = -1;
             } else {
@@ -19793,7 +19794,7 @@ u32 FUN_8c01bb00(u32 a0, u32 a1, u32 a2, u32 a3) {
             uVar1 = 0;
         } else {
             uVar1 = FUN_8c01ade8(a0, ar5_00);
-            uVar1 = FUN_8c01acd0(a0, uVar1, a2, a3);
+            uVar1 = wait_state_rtc_10s(a0, uVar1, a2, a3);
         }
     } else {
         uVar1 = 0;
@@ -19817,7 +19818,7 @@ int FUN_8c01bb6c(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 
 /*
  * FUN_8c01bba0  0x8c01bba0
- * called by: FUN_8c0b6e6c, FUN_8c0b7454, FUN_8c0c7438
+ * called by: FUN_8c0b6e6c, FUN_8c0c7438, save_files_check
  */
 u32 FUN_8c01bba0(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -19828,7 +19829,7 @@ u32 FUN_8c01bba0(u32 a0, u32 a1, u32 a2, u32 a3) {
         if (ar5_00 < 0) {
             uVar1 = 0;
         } else {
-            uVar1 = FUN_8c01acd0(a0, ar5_00, a2, a3);
+            uVar1 = wait_state_rtc_10s(a0, ar5_00, a2, a3);
         }
     } else {
         uVar1 = 0;
@@ -19852,7 +19853,7 @@ int FUN_8c01bbf8(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 
 /*
  * FUN_8c01bc2c  0x8c01bc2c
- * called by: FUN_8c0b6e6c, FUN_8c0b7454, FUN_8c0c09d0, FUN_8c0c7438
+ * called by: CSeamanDomain_Init, FUN_8c0b6e6c, FUN_8c0c7438, save_files_check
  */
 int FUN_8c01bc2c(int a0, u32 a1, u8 *a2, u32 a3) {
     int iVar1;
@@ -19865,7 +19866,7 @@ int FUN_8c01bc2c(int a0, u32 a1, u8 *a2, u32 a3) {
         if (ar5_00 < 0) {
             iVar1 = 0;
         } else {
-            iVar1 = FUN_8c01acd0(a0, ar5_00, ar6_00, a3);
+            iVar1 = wait_state_rtc_10s(a0, ar5_00, ar6_00, a3);
             *a2 = 0;
             if (iVar1 == 5) {
                 strcpy(a2, ar5_00 * 0x28 + a0 + 0x245c);
@@ -20013,7 +20014,7 @@ int FUN_8c01bebc(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     int iStack_20;
     u16 uStack_18;
 
-    FUN_8c1f8176(&uStack_18, a1, unused_a2, a3);
+    rtc_get_date(&uStack_18, a1, unused_a2, a3);
     uStack_38 = uStack_18;
     iStack_20 = *a0;
     iStack_24 = *a0;
@@ -20047,7 +20048,7 @@ int FUN_8c01bfd0(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     int iStack_20;
     u16 uStack_18;
 
-    FUN_8c1f8176(&uStack_18, a1, unused_a2, a3);
+    rtc_get_date(&uStack_18, a1, unused_a2, a3);
     uStack_38 = uStack_18;
     iStack_20 = *a0;
     iStack_24 = *a0;
@@ -20482,7 +20483,7 @@ u32 set_fields_28_1c(int a0, u32 a1) {
 /*
  * sound_server_2  0x8c01c984
  * calls sdSysServer
- * called by: FUN_8c01acd0
+ * called by: wait_state_rtc_10s
  */
 u32 sound_server_2(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -21485,7 +21486,7 @@ int FUN_8c01e028(u32 unused_a0, u32 *a1) {
 
 /*
  * FUN_8c01e04c  0x8c01e04c
- * called by: FUN_8c0c5de8
+ * called by: CGame_GetUserGameInfo
  */
 u32 FUN_8c01e04c(u32 unused_a0, int *a1) {
     u32 uVar1;
@@ -22633,7 +22634,7 @@ LAB_8c01f4ea:
 
 /*
  * get_field_a524_01f514  0x8c01f514
- * called by: FUN_8c0b6c3c, FUN_8c0b6e6c, FUN_8c0b7454, FUN_8c0b7920, FUN_8c0c09d0, FUN_8c0c3e78
+ * called by: CSeamanDomain_Init, FUN_8c0b6c3c, FUN_8c0b6e6c, FUN_8c0b7920, FUN_8c0c3e78, save_files_check
  */
 u32 get_field_a524_01f514(int a0, u32 unused_a1, u32 a2) {
     return *(u32 *)(0xa524 + a0);
@@ -22642,7 +22643,7 @@ u32 get_field_a524_01f514(int a0, u32 unused_a1, u32 a2) {
 /*
  * identity  0x8c01f520
  * returns its first argument
- * called by: Class_12b388_m1_0c5c08, FUN_8c0b6c3c, FUN_8c0b6e6c, FUN_8c0b726c, FUN_8c0b7454, FUN_8c0b7628,
+ * called by: CSeamanDomain_Init, Class_12b388_m1_0c5c08, FUN_8c0b6c3c, FUN_8c0b6e6c, FUN_8c0b726c, FUN_8c0b7628,
  * FUN_8c0b76d8, FUN_8c0c09a4 (+10 more)
  */
 u32 identity(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
@@ -22652,7 +22653,7 @@ u32 identity(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * field_ptr_384c  0x8c01f528
  * returns the address of the member at +0x384c
- * called by: FUN_8c0c5de8, FUN_8c0c67f4, FUN_8c0cc784, FUN_8c0cd3c8, FUN_8c0dfe2c, FUN_8c0e1f90, FUN_8c0e25c0,
+ * called by: CGame_GetUserGameInfo, FUN_8c0c67f4, FUN_8c0cc784, FUN_8c0cd3c8, FUN_8c0dfe2c, FUN_8c0e1f90, FUN_8c0e25c0,
  * FUN_8c0e6804 (+1 more)
  */
 int field_ptr_384c(int a0) {
@@ -22661,7 +22662,7 @@ int field_ptr_384c(int a0) {
 
 /*
  * get_field_a510_01f538  0x8c01f538
- * called by: CGame_Initial, FUN_8c0b6c3c, FUN_8c0b6e6c, FUN_8c0b7454, FUN_8c0bad68, FUN_8c0bb1e4, FUN_8c0fc4c4
+ * called by: CGame_Initial, FUN_8c0b6c3c, FUN_8c0b6e6c, FUN_8c0bad68, FUN_8c0bb1e4, FUN_8c0fc4c4, save_files_check
  */
 u32 get_field_a510_01f538(int a0) {
     return *(u32 *)(0xa510 + a0);
@@ -22873,7 +22874,7 @@ int FUN_8c01f8a4(int *a0, u32 unused_a1, int *a2, int a3) {
     iVar1 = ADXF_GetStat(*a0, unused_a1, a2);
     if ((iVar1 == 3) || (iVar1 == 4)) {
         if (*a0 != 0) {
-            FUN_8c262168(*a0);
+            ADXF_Close_like(*a0);
         }
         *a0 = 0;
         if (iVar1 == 3) {
@@ -23029,7 +23030,7 @@ int FUN_8c01fab4(int *a0, int *a1, int a2, int a3) {
             a1 = a0 + 10;
             list_push_front(a0, a1, a2);
             if (*a0 != 0) {
-                FUN_8c262168(*a0);
+                ADXF_Close_like(*a0);
             }
             *a0 = 0;
         }

@@ -388,11 +388,10 @@ u32 FUN_8c0c09a4(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * FUN_8c0c09d0  0x8c0c09d0
- * name hint from a string it uses: WARNING
+ * CSeamanDomain_Init  0x8c0c09d0
  * strings: "BeforeStartMessage.pvm"; "GRAPHICS\\MESSAGE"; "Failed to load sys message pvm.."; "CSeamanDomain::Init" ...
  */
-u32 FUN_8c0c09d0(int a0, int *a1, u32 unused_a2, code *a3) {
+u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -490,7 +489,7 @@ u32 FUN_8c0c09d0(int a0, int *a1, u32 unused_a2, code *a3) {
                 g_8c4367bc = 0x1a;
             } else {
                 if (uVar4 == 0) {
-                    iVar6 = FUN_8c0b7454("SM2000US.USR", 0x8c431a68, 0x4208);
+                    iVar6 = save_files_check("SM2000US.USR", 0x8c431a68, 0x4208);
                     if (iVar6 != 0) {
                         g_8c4367bc = 0xd;
                         break;
@@ -607,8 +606,8 @@ u32 FUN_8c0c09d0(int a0, int *a1, u32 unused_a2, code *a3) {
             }
             break;
         case 0xd:
-            iVar6 = FUN_8c0b7454("SM2000US.USR", 0x8c431a68, 0x4208);
-            if ((iVar6 == 0) && (iVar6 = FUN_8c0b7454("SM2000US.INC", 0x8c435c7c, 0x600), iVar6 == 0)) {
+            iVar6 = save_files_check("SM2000US.USR", 0x8c431a68, 0x4208);
+            if ((iVar6 == 0) && (iVar6 = save_files_check("SM2000US.INC", 0x8c435c7c, 0x600), iVar6 == 0)) {
                 g_8c4367bc = 0xf;
             } else {
                 g_8c4367bc = 0xe;
@@ -630,7 +629,7 @@ u32 FUN_8c0c09d0(int a0, int *a1, u32 unused_a2, code *a3) {
             }
             break;
         case 0xf:
-            FUN_8c0b9d14(a1, auStack_28, puVar8, a3);
+            rtc_get_date_wrap(a1, auStack_28, puVar8, a3);
             iVar6 = FUN_8c1028c0(auStack_28, &g_8c431a7c, puVar8);
             if (iVar6 == 2) {
                 g_8c4367bc = 0x1c;
@@ -820,7 +819,7 @@ u32 FUN_8c0c09d0(int a0, int *a1, u32 unused_a2, code *a3) {
 
 /*
  * get_field_0_0c1cac  0x8c0c1cac
- * called by: FUN_8c0c09d0
+ * called by: CSeamanDomain_Init
  */
 u32 get_field_0_0c1cac(u32 *a0) {
     return *a0;
@@ -828,7 +827,7 @@ u32 get_field_0_0c1cac(u32 *a0) {
 
 /*
  * FUN_8c0c1cb4  0x8c0c1cb4
- * called by: FUN_8c0c09d0
+ * called by: CSeamanDomain_Init
  */
 u32 FUN_8c0c1cb4(int a0) {
     u32 uVar1;
@@ -839,7 +838,7 @@ u32 FUN_8c0c1cb4(int a0) {
 
 /*
  * set_field_c_0c1cdc  0x8c0c1cdc
- * called by: FUN_8c0c09d0, FUN_8c0c23fc
+ * called by: CSeamanDomain_Init, FUN_8c0c23fc
  */
 u32 set_field_c_0c1cdc(int a0, u32 a1) {
     u32 in_r0;
@@ -850,7 +849,7 @@ u32 set_field_c_0c1cdc(int a0, u32 a1) {
 
 /*
  * set_field_8_0c1ce4  0x8c0c1ce4
- * called by: FUN_8c0c09d0, FUN_8c0c23fc
+ * called by: CSeamanDomain_Init, FUN_8c0c23fc
  */
 u32 set_field_8_0c1ce4(int a0, u32 a1, u32 a2) {
     u32 in_r0;
@@ -873,7 +872,7 @@ int free_if_nonnull_wrap_0c1cec(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c0c1d1c  0x8c0c1d1c
- * called by: FUN_8c0c09d0
+ * called by: CSeamanDomain_Init
  */
 u32 FUN_8c0c1d1c(u32 a0) {
     u32 uVar1;
@@ -894,7 +893,7 @@ u32 FUN_8c0c1d40(u32 unused_a0, int a1) {
 /*
  * FUN_8c0c1d98  0x8c0c1d98
  * name hint from a string it uses: SEAMAN
- * called by: FUN_8c0c09d0
+ * called by: CSeamanDomain_Init
  * strings: "SM2000US.USR"; "SM2000US.USR"; "Seaman User Data"; "SEAMAN" ...
  */
 u32 FUN_8c0c1d98(int a0, int a1, u32 a2, int a3, u32 s0) {
@@ -1000,7 +999,7 @@ u32 FUN_8c0c2044(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c0c2068  0x8c0c2068
- * called by: FUN_8c0c09d0
+ * called by: CSeamanDomain_Init
  */
 u32 FUN_8c0c2068(int a0, int a1, int *a2, u32 a3) {
     int ar5_00;
@@ -1100,7 +1099,7 @@ u32 FUN_8c0c2068(int a0, int a1, int *a2, u32 a3) {
 /*
  * FUN_8c0c2324  0x8c0c2324
  * name hint from a string it uses: SEAMANDC USR
- * called by: FUN_8c0c09d0
+ * called by: CSeamanDomain_Init
  * strings: "SEAMANDC.USR"; "SEAMANDC._VM"
  */
 u32 FUN_8c0c2324(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -1114,7 +1113,7 @@ u32 FUN_8c0c2324(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c0c236c  0x8c0c236c
- * called by: FUN_8c0c09d0
+ * called by: CSeamanDomain_Init
  */
 u32 FUN_8c0c236c(u32 unused_a0, int a1) {
     if (a1 < 0x19) {
@@ -1151,7 +1150,7 @@ switchD_8c0c2396_caseD_3:
 
 /*
  * FUN_8c0c23fc  0x8c0c23fc
- * called by: FUN_8c0c09d0
+ * called by: CSeamanDomain_Init
  */
 u32 FUN_8c0c23fc(int a0, int a1, u32 a2, u32 a3, u32 s0, u32 s4) {
     int iVar1;
@@ -1615,8 +1614,8 @@ u32 CSysMessage_LoadMessage(int a0, u32 a1) {
 /*
  * FUN_8c0c2efc  0x8c0c2efc
  * name hint from a string it uses: WARNING NOPAD
- * called by: FUN_8c0b6c3c, FUN_8c0b6e6c, FUN_8c0b7454, FUN_8c0b787c, FUN_8c0b7920, FUN_8c0bad68, FUN_8c0c6e74,
- * FUN_8c0c7438 strings: "WARNING_NOPAD"; "WARNING_NOPAD"; "WARNING_NOVMS"; "WARNING_NOVMS" ...
+ * called by: FUN_8c0b6c3c, FUN_8c0b6e6c, FUN_8c0b787c, FUN_8c0b7920, FUN_8c0bad68, FUN_8c0c6e74, FUN_8c0c7438,
+ * save_files_check strings: "WARNING_NOPAD"; "WARNING_NOPAD"; "WARNING_NOVMS"; "WARNING_NOVMS" ...
  */
 u32 FUN_8c0c2efc(int a0, char *a1, u32 a2, u32 a3) {
     short sVar1;
@@ -1845,7 +1844,7 @@ u32 FUN_8c0c2efc(int a0, char *a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c0c3530  0x8c0c3530
- * called by: FUN_8c0c09d0
+ * called by: CSeamanDomain_Init
  */
 u32 FUN_8c0c3530(int a0, int a1, u32 a2, u32 a3) {
     short sVar1;
@@ -2010,7 +2009,7 @@ u32 FUN_8c0c3530(int a0, int a1, u32 a2, u32 a3) {
 /*
  * FUN_8c0c38d4  0x8c0c38d4
  * name hint from a string it uses: WARNING NOPAD
- * called by: FUN_8c0c09d0
+ * called by: CSeamanDomain_Init
  * strings: "WARNING_NOPAD"; "WARNING_NOPAD"; "WARNING_NOVMS"; "WARNING_NOVMS" ...
  */
 int FUN_8c0c38d4(int a0, char *a1, u32 a2, u32 a3) {
@@ -2882,7 +2881,7 @@ u32 destroy_array_8c286e5c(void) {
 
 /*
  * FUN_8c0c4c84  0x8c0c4c84
- * called by: FUN_8c0c5de8
+ * called by: CGame_GetUserGameInfo
  */
 u32 FUN_8c0c4c84(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -3179,7 +3178,7 @@ u32 ret_const_0_0c51f4(void) {
 
 /*
  * get_field_d0_0c51fc  0x8c0c51fc
- * called by: FUN_8c0c4e58, FUN_8c0c5de8, FUN_8c0c6e74, FUN_8c0c8134, FUN_8c0c8c28, FUN_8c0c91f4, FUN_8c0ca4e8,
+ * called by: CGame_GetUserGameInfo, FUN_8c0c4e58, FUN_8c0c6e74, FUN_8c0c8134, FUN_8c0c8c28, FUN_8c0c91f4, FUN_8c0ca4e8,
  * FUN_8c0cb668 (+6 more)
  */
 u32 get_field_d0_0c51fc(int a0, u32 unused_a1, u32 a2) {
@@ -3778,12 +3777,11 @@ u32 FUN_8c0c5dd8(int a0) {
 }
 
 /*
- * FUN_8c0c5de8  0x8c0c5de8
- * name hint from a string it uses: wtNumberOfItems is over CGam
+ * CGame_GetUserGameInfo  0x8c0c5de8
  * called by: FUN_8c0c6e74, FUN_8c0c76d0
  * strings: "wtNumberOfItems is over..CGame::GetUserGameInfo"; "stNumberOfItems is over..CGame::GetUserGameInfo"
  */
-u32 FUN_8c0c5de8(int a0, int a1, int a2, u8 *a3) {
+u32 CGame_GetUserGameInfo(int a0, int a1, int a2, u8 *a3) {
     u8 bVar1;
     u32 uVar2;
     int iVar3;
@@ -3806,7 +3804,7 @@ u32 FUN_8c0c5de8(int a0, int a1, int a2, u8 *a3) {
     puVar6 = a3 + 0x14;
     iVar9 = a2;
     puVar7 = a3;
-    FUN_8c0b9d14(a1, puVar6, a2, a3);
+    rtc_get_date_wrap(a1, puVar6, a2, a3);
     *(u16 *)(a3 + 0x1e) = *(u16 *)(a1 + 0x96);
     *(u16 *)(a3 + 0x20) = *(u16 *)(a1 + 0x98);
     *(u16 *)(a3 + 0x22) = *(u16 *)(a1 + 0x9a);
@@ -4063,9 +4061,9 @@ u32 FUN_8c0c67f4(u32 unused_a0, u32 unused_a1, int a2, u32 a3) {
     int iVar3;
 
     ar6_00 = a2;
-    FUN_8c0b9d14(unused_a1, a2 + 0x14, a2, a3);
+    rtc_get_date_wrap(unused_a1, a2 + 0x14, a2, a3);
     iVar2 = a2 + 0x1e;
-    FUN_8c0b9d14(unused_a1, iVar2, ar6_00, a3);
+    rtc_get_date_wrap(unused_a1, iVar2, ar6_00, a3);
     *(u16 *)(a2 + 0x28) = 0;
     for (iVar3 = 0; iVar3 < 8; iVar3 = iVar3 + 1) {
         *(u8 *)(a2 + iVar3 + 0x2a) = 0;
@@ -4227,8 +4225,8 @@ u32 CGame_Initial(int a0, int *a1, u32 unused_a2, u32 a3) {
             }
             break;
         case 3:
-            iVar3 = FUN_8c0b7454("SM2000US.USR", 0x8c431a68, 0x4208);
-            iVar2 = FUN_8c0b7454("SM2000US.INC", 0x8c435c7c, 0x600);
+            iVar3 = save_files_check("SM2000US.USR", 0x8c431a68, 0x4208);
+            iVar2 = save_files_check("SM2000US.INC", 0x8c435c7c, 0x600);
             if ((iVar3 == 0) && (iVar2 == 0)) {
                 uVar4 = 0x8c431a68;
                 FUN_8c0cc784(a0, a1, 0x8c431a68, a3);
@@ -4385,7 +4383,7 @@ u32 FUN_8c0c6e74(int a0, int a1, u32 a2, char *a3) {
                 if (iVar1 == 0) {
                     iVar1 = get_field_d4_0c7424(*(u32 *)(a1 + 0x7cc), iVar2);
                 }
-                FUN_8c0c5de8(a0, a1, iVar1, 0x8c431a68);
+                CGame_GetUserGameInfo(a0, a1, iVar1, 0x8c431a68);
                 a3 = "Seaman User Data";
                 a2 = 0x4208;
                 iVar2 = FUN_8c0b6c3c("SM2000US.USR", 0x8c431a68, 0x4208, "Seaman User Data");
@@ -4768,7 +4766,7 @@ u32 FUN_8c0c76d0(int a0, int a1) {
         if (iVar2 == 0) {
             iVar2 = get_field_d4_0c7424(*(u32 *)(a1 + 0x7cc), 0x7cc);
         }
-        FUN_8c0c5de8(a0, a1, iVar2, 0x8c431a68);
+        CGame_GetUserGameInfo(a0, a1, iVar2, 0x8c431a68);
         (**(code **)(**(int **)(a0 + 0x14) + 0xf8))(0x8c435c7c);
         ar7_00 = "Seaman User Data";
         puVar4 = (u8 *)0x4208;
@@ -7946,7 +7944,7 @@ u32 FUN_8c0cc784(int a0, int a1, u32 a2, u32 a3) {
     uVar10 = 0;
     ar6_00 = a2;
     Vec3_ctor_zero(auStack_44, a1, a2);
-    FUN_8c0b9d14(a1, &uStack_34, ar6_00, a3);
+    rtc_get_date_wrap(a1, &uStack_34, ar6_00, a3);
     *(u16 *)(a1 + 0x8c) = *(u16 *)(a2 + 0x14);
     *(u16 *)(a1 + 0x8e) = *(u16 *)(a2 + 0x16);
     *(u16 *)(a1 + 0x90) = *(u16 *)(a2 + 0x18);
@@ -8244,7 +8242,7 @@ u32 noop_0cd3c4(void) {
 
 /*
  * FUN_8c0cd3c8  0x8c0cd3c8
- * called by: FUN_8c0baab8
+ * called by: CProlog_Ready
  */
 u32 FUN_8c0cd3c8(int a0, int a1, double *a2, u32 a3) {
     int a6;
@@ -8279,7 +8277,7 @@ u32 FUN_8c0cd3c8(int a0, int a1, double *a2, u32 a3) {
     uVar8 = 0;
     ar6_00 = a2;
     Vec3_ctor_zero(auStack_44, a1, a2);
-    FUN_8c0b9d14(a1, &uStack_34, ar6_00, a3);
+    rtc_get_date_wrap(a1, &uStack_34, ar6_00, a3);
     *(u16 *)(a1 + 0x8c) = *(u16 *)((int)a2 + 0x14);
     *(u16 *)(a1 + 0x8e) = *(u16 *)((int)a2 + 0x16);
     *(u16 *)(a1 + 0x90) = *(u16 *)(a2 + 3);

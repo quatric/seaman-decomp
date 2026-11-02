@@ -218,7 +218,7 @@ u32 FUN_8c02049c(int *a0, int *a1, u32 a2, u32 a3) {
     if (((iVar1 != 0xc) && (iVar1 != 0xd)) && (iVar1 != 0xe)) {
         piVar3 = a1;
         if (*a0 != 0) {
-            FUN_8c262168(*a0);
+            ADXF_Close_like(*a0);
         }
         if (a1[2] != 0) {
             FUN_8c1fb57c(a1[2], piVar3, a2, a3);
@@ -800,8 +800,8 @@ int FUN_8c020f90(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c02100c  0x8c02100c
- * called by: CAnimal_LoadGResourceWait, CGame_Init, CIncubater_Create, CSoilTank_Create, CSysMessage_LoadMessage,
- * CWaterTank_CreateStage, FUN_8c06ce04, FUN_8c0baab8 (+6 more)
+ * called by: CAnimal_LoadGResourceWait, CGame_Init, CIncubater_Create, CProlog_Ready, CSeamanDomain_Init,
+ * CSoilTank_Create, CSysMessage_LoadMessage, CWaterTank_CreateStage (+6 more)
  */
 u32 FUN_8c02100c(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -1435,7 +1435,7 @@ u32 FUN_8c021ad4(int *a0, u32 a1) {
 
 /*
  * pack_acquire_entry_handle  0x8c021b10
- * called by: FUN_8c0baab8, FUN_8c0bb1e4, FUN_8c0c2efc, FUN_8c0c38d4, FUN_8c0c76d0, FUN_8c0c8758, FUN_8c0c8c28,
+ * called by: CProlog_Ready, FUN_8c0bb1e4, FUN_8c0c2efc, FUN_8c0c38d4, FUN_8c0c76d0, FUN_8c0c8758, FUN_8c0c8c28,
  * FUN_8c0c991c (+3 more)
  */
 int pack_acquire_entry_handle(int *a0, u32 a1, u32 a2, u32 a3) {
@@ -4976,7 +4976,7 @@ int FUN_8c024968(u32 a0) {
 /*
  * get_field_4_0253e4  0x8c0253e4
  * called by: CAnimal_ChangeBodyTexture, CAnimal_LoadGResourceWait, CEnv_LoadDevicePanelTexture, CGame_Init,
- * CGame_Initial, CIncubater_Create, CSoilTank_Create, CSquid_Init (+36 more)
+ * CGame_Initial, CIncubater_Create, CProlog_Ready, CSeamanDomain_Init (+36 more)
  */
 u32 get_field_4_0253e4(int a0, u32 a1, u32 a2, u32 a3) {
     return *(u32 *)(a0 + 4);
@@ -7080,7 +7080,7 @@ u32 FUN_8c027a78(int a0, int a1, int a2) {
                 }
             } else {
                 uVar3 = *(u32 *)(iVar1 + 0xc);
-                FUN_8c029400(a0, iVar1 + 0x20, uVar3, ar7_00);
+                CAnimal_SetPVMTexture(a0, iVar1 + 0x20, uVar3, ar7_00);
                 (**(code **)(*(int *)(iVar1 + 0x78) + 8))((int *)(iVar1 + 0x78), iVar1 + 0x28, uVar3, ar7_00);
                 *(u32 *)(a0 + 0x418) = 7;
             }
@@ -7120,7 +7120,7 @@ u32 FUN_8c027a78(int a0, int a1, int a2) {
                         report_error_message(*(u32 *)(iVar1 + 0x10), "Failed to load tex:CAnimal::LoadTRReq()", 0, 2);
                     }
                 } else {
-                    FUN_8c029400(a0, iVar1 + 0x48, *(u32 *)(iVar1 + 0xc), ar7_00);
+                    CAnimal_SetPVMTexture(a0, iVar1 + 0x48, *(u32 *)(iVar1 + 0xc), ar7_00);
                     iVar6 = iVar1 + 0x50;
                     uVar3 = 0x88;
                     iVar2 = iVar6;
@@ -7143,7 +7143,7 @@ u32 FUN_8c027a78(int a0, int a1, int a2) {
             break;
         case 9:
             iVar6 = *(int *)(iVar1 + 0xc);
-            FUN_8c029400(a0, iVar1 + 0x34, iVar6, ar7_00);
+            CAnimal_SetPVMTexture(a0, iVar1 + 0x34, iVar6, ar7_00);
             a5 = iVar1 + 0x3c;
             (**(code **)(*(int *)(iVar1 + 0x80) + 8))((int *)(iVar1 + 0x80), a5, iVar6, ar7_00);
             *(u32 *)(a0 + 0x418) = 10;
@@ -7160,7 +7160,7 @@ u32 FUN_8c027a78(int a0, int a1, int a2) {
         case 0xb:
             uVar3 = *(u32 *)(iVar1 + 0xc);
             iVar6 = iVar1 + 0x5c;
-            FUN_8c029400(a0, iVar6, uVar3, iVar6);
+            CAnimal_SetPVMTexture(a0, iVar6, uVar3, iVar6);
             iVar2 = iVar1 + 100;
             (**(code **)(*(int *)(iVar1 + 0x90) + 8))((int *)(iVar1 + 0x90), iVar2, uVar3, iVar6);
             uVar3 = get_field_4_0253e4(iVar1 + 0x90, iVar2, uVar3, iVar6);
@@ -7360,7 +7360,7 @@ int CAnimal_LoadGResourceWait(int a0, u32 a1, int a2, u32 a3) {
         }
     } else {
         uVar4 = *(u32 *)(iVar1 + 0xc);
-        (*(code *)(&FUN_8c029400))(a0, a2 * 0x14 + iVar1 + 0x20, uVar4, a3);
+        (*(code *)(&CAnimal_SetPVMTexture))(a0, a2 * 0x14 + iVar1 + 0x20, uVar4, a3);
         iVar3 = a2 * 0x14 + iVar1 + 0x28;
         piVar2 = (int *)(iVar1 + a2 * 8 + 0x78);
         (**(code **)(*piVar2 + 8))(piVar2, iVar3, uVar4, a3);
@@ -7386,7 +7386,7 @@ int CAnimal_LoadGResourceWait(int a0, u32 a1, int a2, u32 a3) {
         }
     } else {
         uVar5 = *(u32 *)(iVar1 + 0xc);
-        (*(code *)(&FUN_8c029400))(a0, a2 * 0x14 + iVar1 + 0x48, uVar5, uVar4);
+        (*(code *)(&CAnimal_SetPVMTexture))(a0, a2 * 0x14 + iVar1 + 0x48, uVar5, uVar4);
         iVar3 = a2 * 0x14 + iVar1 + 0x50;
         piVar2 = (int *)(iVar1 + a2 * 8 + 0x88);
         (**(code **)(*piVar2 + 8))(piVar2, iVar3, uVar5, uVar4);
@@ -7604,8 +7604,8 @@ u32 set_field_8(int a0, u32 a1) {
 
 /*
  * get_field_a2_s16  0x8c028ee4
- * called by: CAnimal_m2_0386d0, Class_12a7f4_m2_09a060, Class_12a7f4_m3_09a558, Class_12a990_m2_09bc2c,
- * Class_12ad50_m2_0a4fdc, FUN_8c028e20, FUN_8c06af5c, FUN_8c06afb0 (+2 more)
+ * called by: CAnimal_m2_0386d0, CGame_GetUserGameInfo, Class_12a7f4_m2_09a060, Class_12a7f4_m3_09a558,
+ * Class_12a990_m2_09bc2c, Class_12ad50_m2_0a4fdc, FUN_8c028e20, FUN_8c06af5c (+2 more)
  */
 int get_field_a2_s16(int a0, u32 a1) {
     return (int)*(short *)(0xa2 + a0);
@@ -7817,13 +7817,12 @@ u32 set_field_4(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c029400  0x8c029400
- * name hint from a string it uses: CAnimal SetPVMTexture s
+ * CAnimal_SetPVMTexture  0x8c029400
  * called by: FUN_8c027a78, FUN_8c08c9dc
  * strings: "CAnimal::SetPVMTexture():%s"; "PVM TexName Area is null.."; "CAnimal::SetPVMTexture():%s"; "PVM Texcount is
  * 0.."
  */
-u8 *FUN_8c029400(u32 unused_a0, u8 *a1, u32 a2, u32 a3) {
+u8 *CAnimal_SetPVMTexture(u32 unused_a0, u8 *a1, u32 a2, u32 a3) {
     u8 *ar5_00;
     u8 auStack_10c[260];
 

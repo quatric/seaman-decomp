@@ -8263,7 +8263,7 @@ u32 FUN_8c0d8890(int a0, u32 a1, u32 a2, u32 a3) {
     cVar7 = '\0';
     fVar5 = 0.2;
     ar5_00 = auStack_18;
-    FUN_8c0b9d14(a1, ar5_00, a2, a3);
+    rtc_get_date_wrap(a1, ar5_00, a2, a3);
     switch (uStack_16) {
     case 1:
     case 2:

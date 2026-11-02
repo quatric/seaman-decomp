@@ -1149,8 +1149,8 @@ u32 FUN_8c260c98(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32
 /*
  * irq_disable_nested  0x8c260ca0
  * raises SR.IMASK to 15 on the first call and counts the nesting (pairs with irq_restore_nested)
- * called by: ADXF_Stop, ADXT_StartAfs, ADXT_StartFname, ADXT_StartMem, ADXT_StartMemIdx, FUN_8c2613aa, FUN_8c26145e,
- * FUN_8c26201c (+17 more)
+ * called by: ADXF_Close_like, ADXF_Stop, ADXT_StartAfs, ADXT_StartFname, ADXT_StartMem, ADXT_StartMemIdx, FUN_8c2613aa,
+ * FUN_8c26145e (+17 more)
  */
 u32 irq_disable_nested(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u8 in_MD;
@@ -1174,8 +1174,8 @@ u32 irq_disable_nested(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 
 /*
  * irq_restore_nested  0x8c260cc8
  * drops the interrupt-disable nesting count and restores SR.IMASK when it reaches 0
- * called by: ADXF_Stop, ADXT_StartAfs, ADXT_StartFname, ADXT_StartMem, ADXT_StartMemIdx, FUN_8c2613aa, FUN_8c26145e,
- * FUN_8c26201c (+17 more)
+ * called by: ADXF_Close_like, ADXF_Stop, ADXT_StartAfs, ADXT_StartFname, ADXT_StartMem, ADXT_StartMemIdx, FUN_8c2613aa,
+ * FUN_8c26145e (+17 more)
  */
 u32 irq_restore_nested(u32 unused_a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u8 in_MD;
@@ -1874,7 +1874,7 @@ u32 ta_fifo_2619f8(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 
 /*
  * FUN_8c261a4c  0x8c261a4c
- * called by: ADXF_Seek, ADXF_Seek_262560, ADXF_Stop, FUN_8c26201c, FUN_8c2620c8, FUN_8c262168, FUN_8c26216c,
+ * called by: ADXF_Close_like, ADXF_Seek, ADXF_Seek_262560, ADXF_Stop, FUN_8c26201c, FUN_8c2620c8, FUN_8c26216c,
  * FUN_8c262312
  */
 int FUN_8c261a4c(int a0, int a1, u32 a2, u32 a3, u32 s0) {
@@ -2063,7 +2063,7 @@ int ADXF_LoadPartition(int a0, u32 a1, u32 *a2, int a3) {
                             lib_error_printf(puVar6, ar5_00, uVar7, a3,
                                              "E9040806:'%s' is broken.(ADXF_LoadPartition)\n", a1);
                         }
-                        FUN_8c262168(puStack_34);
+                        ADXF_Close_like(puStack_34);
                         return iVar8;
                     }
                     ar5_00 = (int *)0x1;
@@ -2187,7 +2187,7 @@ int FUN_8c261d46(int a0, u32 a1, int *a2, int a3) {
                         }
                         *(u16 *)(a2 + 4) = (u16)iStack_2c;
                         a2[1] = (u32) * (u16 *)(a2 + 4) * 8 + *(int *)(*a2 + 4) + 0x14;
-                        FUN_8c262168(iStack_34);
+                        ADXF_Close_like(iStack_34);
                         return iVar6;
                     }
                     ar5_00 = (int *)0x1;
@@ -2350,7 +2350,7 @@ int FUN_8c26201c(u32 a0, u32 a1) {
     a4 = FUN_8c261f48();
     iVar1 = a4;
     if ((a4 != 0) && (ar5_00 = a0, ar4_00 = FUN_8c261f7a(a4, a0, ar6_00, a1), ar4_00 < 0)) {
-        FUN_8c262168(a4);
+        ADXF_Close_like(a4);
         iVar1 = 0;
         ar4_00 = a4;
     }
@@ -2401,7 +2401,7 @@ int FUN_8c2620c8(void) {
     iVar1 = a4;
     if ((a4 != 0) &&
         (ar5_00 = unaff_r12, ar6_00 = unaff_r13, ar4_00 = FUN_8c262078(a4, unaff_r12, unaff_r13), ar4_00 < 0)) {
-        FUN_8c262168(a4);
+        ADXF_Close_like(a4);
         iVar1 = 0;
         ar4_00 = a4;
     }
@@ -2432,11 +2432,12 @@ int FUN_8c26211c(int a0, u32 a1, u32 a2, u32 a3, int ain0) {
 }
 
 /*
- * FUN_8c262168  0x8c262168
+ * ADXF_Close_like  0x8c262168
+ * stops an ADXF handle that is reading and clears it (0x30 bytes)
  * called by: ADXF_LoadPartition, FUN_8c01f8a4, FUN_8c01fab4, FUN_8c02049c, FUN_8c261d46, FUN_8c26201c, FUN_8c2620c8,
  * FUN_8c2621e2
  */
-u32 FUN_8c262168(int a0) {
+u32 ADXF_Close_like(int a0) {
     u32 uVar1;
     u32 ar5_00;
     u32 ar7_00;
@@ -2502,7 +2503,7 @@ int FUN_8c2621e2(u32 unused_a0, char *a1) {
     do {
         iVar1 = (int)*pcVar3;
         if (iVar1 == 1) {
-            iVar1 = FUN_8c262168(a4);
+            iVar1 = ADXF_Close_like(a4);
         }
         pcVar3 = pcVar3 + 0x30;
         a4 = a4 + 0x30;
@@ -2650,7 +2651,7 @@ u32 FUN_8c262312(int *a0, int a1, u32 a2) {
 /*
  * ADXF_Stop  0x8c262406
  * named from the library error message it prints (ADXF_Stop)
- * called by: ADXF_Seek, ADXF_Seek_262560, FUN_8c262168, FUN_8c26216c
+ * called by: ADXF_Close_like, ADXF_Seek, ADXF_Seek_262560, FUN_8c26216c
  * strings: "E9040822:\'adxf\' is NULL.(ADXF_Stop)\n"; "E9040823:\'adxf->stm\' is NULL.(ADXF_Stop)\n"
  */
 u32 ADXF_Stop(int a0) {
