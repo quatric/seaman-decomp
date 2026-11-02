@@ -7585,7 +7585,7 @@ u32 *game_copy_0fdc20(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * game_fill_loop_0fdc98  0x8c0fdc98
  * area name: game code; nothing names its area yet; behaviour name: a loop that writes memory
- * called by: Class_129c24_calls_fill_loop_0300a4, static_init_vec3s_286e20
+ * called by: static_init_vec3s_286e20, talk_history_reset
  */
 u8 *game_fill_loop_0fdc98(u8 *a0) {
     int iVar1;

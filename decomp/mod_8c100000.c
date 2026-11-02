@@ -2364,7 +2364,7 @@ u32 *Class_12c3c4_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 
     Class_129c70_ctor(a0, a1, a2);
     *a0 = &g_8c12c3c4;
-    Class_129c24_calls_fill_loop_0300a4(a0 + 0x27);
+    talk_history_reset(a0 + 0x27);
     clear_fields_0_to_20(a0 + 0x207, a1);
     *(u8 *)(a0 + 0x20) = 0;
     a0[0xe1] = 0xffffffff;
@@ -2783,7 +2783,7 @@ u32 Higyo_update_sleep_light(int *a0, code *a1, code *a2, u32 a3) {
             }
         }
     }
-    game_fill_loop_0301f8(a0 + 0x27, pcVar2, pcVar10, pcVar4);
+    talk_history_tick(a0 + 0x27, pcVar2, pcVar10, pcVar4);
     game_uses_Vec3_dtor_1089e4(a0, a1, a2, pcVar4);
     pcVar2 = a2;
     game_talk_108f3c(a0, a1, a2);

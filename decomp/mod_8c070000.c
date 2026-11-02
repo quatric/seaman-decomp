@@ -6017,7 +6017,7 @@ u32 game_vec_07c318(int a0, u32 a1, u32 a2, u32 a3) {
         iVar3 = *(int *)(a0 + 0x40);
         if ((iVar3 == 1) || (iVar3 == 3)) {
             if (*(int *)(a0 + 0x44) == 1) {
-                game_float_calc_031fc4(a0);
+                float_approach_target(a0);
             }
             pdVar4 = (double *)(a0 + 0x2c);
             if (cVar10 != '\0') {

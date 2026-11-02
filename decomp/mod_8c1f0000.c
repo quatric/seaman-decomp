@@ -8973,7 +8973,7 @@ u32 shinobi_calc_1f6338(int a0) {
 /*
  * maple_port_status_wrap  0x8c1f6342
  * only calls maple_port_status
- * called by: game_input_01cbc8, shinobi_uses_flashrom_write_block_retry_1f7558
+ * called by: mic_set_mode_check_connected, shinobi_uses_flashrom_write_block_retry_1f7558
  */
 u32 maple_port_status_wrap(void) {
     u32 uVar1;

@@ -9178,7 +9178,7 @@ u32 gfxlib_draw_234b10(u32 *a0, int a1, int a2, u32 a3) {
 /*
  * gfxlib_draw_234bc0  0x8c234bc0
  * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: game_draw_015e40
+ * called by: draw_debug_quad
  */
 u32 gfxlib_draw_234bc0(u32 *a0, int a1, u32 a2, int a3) {
     int iVar1;

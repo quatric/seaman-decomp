@@ -4476,7 +4476,7 @@ u32 game_vec_097ba4(int a0, u32 a1, u32 a2, u32 a3) {
     } else {
         if ((*(int *)(a0 + 0x40) == 1) || (*(int *)(a0 + 0x40) == 3)) {
             if (*(int *)(a0 + 0x44) == 1) {
-                game_float_calc_031fc4(a0);
+                float_approach_target(a0);
             }
             pdVar1 = (double *)(a0 + 0x2c);
             if (cVar9 != '\0') {
@@ -6514,7 +6514,7 @@ u32 load_state_record_09ad34(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_load(a0, a1, a2, a3);
-    CAnimal_uses_set_field_8_s8_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
+    talk_state_load_fields(a0 + 0x174, a1 + 0x4c, a2, a3);
     uVar1 = copy15_in_normalize(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
 }
@@ -6605,13 +6605,13 @@ u32 egg_load_gr_wait_09af68(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CMothEgg_calls_scan_loop_09afb8  0x8c09afb8
- * area name: sits between CMothEgg functions (same compilation unit); behaviour name: its callees mostly do: scan_loop
+ * CMothEgg_release_09afb8  0x8c09afb8
+ * area name: sits between CMothEgg functions (same compilation unit); behaviour name: mostly calls release functions
  */
-u32 CMothEgg_calls_scan_loop_09afb8(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CMothEgg_release_09afb8(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    CMothLine_scan_loop_028afc(a0, a1, a2);
+    CAnimal_release_part_requests(a0, a1, a2);
     uVar1 = 0;
     if (*(int *)(0x330 + a0) != 0) {
         uVar1 = (**(code **)(0xec + *(int *)(*(int *)(0x330 + a0) + 8)))(*(int *)(0x330 + a0), a1, 0, a3);
@@ -7969,7 +7969,7 @@ u32 load_state_record_09c7c0(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_load(a0, a1, a2, a3);
-    CAnimal_uses_set_field_8_s8_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
+    talk_state_load_fields(a0 + 0x174, a1 + 0x4c, a2, a3);
     uVar1 = copy15_in_normalize(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
 }
@@ -8506,14 +8506,14 @@ u32 load_gr_wait_with_items(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_calls_scan_loop_09d384  0x8c09d384
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: scan_loop
+ * game_release_09d384  0x8c09d384
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls release functions
  */
-u32 game_calls_scan_loop_09d384(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_release_09d384(int a0, u32 a1, u32 a2, u32 a3) {
     int a4;
     int iVar1;
 
-    CMothLine_scan_loop_028afc(a0, a1, a2);
+    CAnimal_release_part_requests(a0, a1, a2);
     for (iVar1 = 0; iVar1 < 8; iVar1 = iVar1 + 1) {
         if (*(int *)(0x524 + a0 + iVar1 * 4) != 0) {
             a4 = *(int *)(0x524 + a0 + iVar1 * 4);
@@ -9797,7 +9797,7 @@ u32 destroy_array_8c284f30(void) {
 u32 *Class_12acc8_ctor(u32 *a0, u32 a1, u32 a2) {
     Class_129c70_ctor(a0, a1, a2);
     *a0 = (&DATA_8c12acc8);
-    Class_129c24_calls_fill_loop_0300a4((int)a0 + 0xa8);
+    talk_history_reset((int)a0 + 0xa8);
     *(u32 *)(0x9c + (int)a0) = 0;
     *(u32 *)(0x828 + (int)a0) = 0xf;
     *(u32 *)(0x82c + (int)a0) = 0xf;

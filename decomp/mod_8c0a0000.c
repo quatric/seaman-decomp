@@ -4349,7 +4349,7 @@ u32 load_state_record_0a5614(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_load(a0, a1, a2, a3);
-    CAnimal_uses_set_field_8_s8_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
+    talk_state_load_fields(a0 + 0x174, a1 + 0x4c, a2, a3);
     uVar1 = copy15_in_normalize(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
 }
@@ -4440,14 +4440,13 @@ u32 egg_load_gr_wait_0a5854(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CSpiderEgg_calls_scan_loop_0a58a4  0x8c0a58a4
- * area name: sits between CSpiderEgg functions (same compilation unit); behaviour name: its callees mostly do:
- * scan_loop
+ * CSpiderEgg_release_0a58a4  0x8c0a58a4
+ * area name: sits between CSpiderEgg functions (same compilation unit); behaviour name: mostly calls release functions
  */
-u32 CSpiderEgg_calls_scan_loop_0a58a4(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CSpiderEgg_release_0a58a4(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    CMothLine_scan_loop_028afc(a0, a1, a2);
+    CAnimal_release_part_requests(a0, a1, a2);
     uVar1 = 0;
     if (*(int *)(0x330 + a0) != 0) {
         uVar1 = (**(code **)(0xec + *(int *)(*(int *)(0x330 + a0) + 8)))(*(int *)(0x330 + a0), a1, 0, a3);
@@ -11679,7 +11678,7 @@ u32 Squid_FreeGraphicResource(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar2;
 
     uVar2 = a1;
-    CMothLine_scan_loop_028afc(a0, a1, a2);
+    CAnimal_release_part_requests(a0, a1, a2);
     if ((*(int *)(0x88c + a0) != 0) && (*(int *)(0x890 + a0) != 0)) {
         a2 = *(u32 *)(0x890 + a0);
         uVar2 = 0x2ee0;

@@ -8081,11 +8081,10 @@ int CHerb_LoadTRWait(int a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * CHerb_release_06d474  0x8c06d474
- * name hint from a string it uses: GRAPHICS HERBLINE; area name: sits between CHerb functions (same compilation unit);
- * behaviour name: mostly calls release functions
+ * CHerb_release_requests  0x8c06d474
+ * releases the CD load requests of both model parts and the herb's texture files, then calls method 0xf0
  */
-u32 CHerb_release_06d474(int a0, u32 a1, u32 a2, int a3) {
+u32 CHerb_release_requests(int a0, u32 a1, u32 a2, int a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;

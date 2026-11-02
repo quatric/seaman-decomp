@@ -4508,7 +4508,7 @@ u32 egg_load_record_b(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_load(a0, a1, a2, a3);
-    CAnimal_uses_set_field_8_s8_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
+    talk_state_load_fields(a0 + 0x174, a1 + 0x4c, a2, a3);
     uVar1 = copy15_in_normalize(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
 }
@@ -4615,13 +4615,13 @@ u32 egg_load_gr_wait_0885fc(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CHigyoEgg_calls_scan_loop_08864c  0x8c08864c
- * area name: sits between CHigyoEgg functions (same compilation unit); behaviour name: its callees mostly do: scan_loop
+ * CHigyoEgg_release_08864c  0x8c08864c
+ * area name: sits between CHigyoEgg functions (same compilation unit); behaviour name: mostly calls release functions
  */
-u32 CHigyoEgg_calls_scan_loop_08864c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CHigyoEgg_release_08864c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    CMothLine_scan_loop_028afc(a0, a1, a2);
+    CAnimal_release_part_requests(a0, a1, a2);
     uVar1 = 0;
     if (*(int *)(0x330 + a0) != 0) {
         uVar1 = (**(code **)(0xec + *(int *)(*(int *)(0x330 + a0) + 8)))(*(int *)(0x330 + a0), a1, 0, a3);
@@ -6061,7 +6061,7 @@ int load_state_record_08b694(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
 
     obj_state_load(a0, a1, a2, a3);
-    CAnimal_uses_set_field_8_s8_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
+    talk_state_load_fields(a0 + 0x174, a1 + 0x4c, a2, a3);
     copy15_in_normalize(a0 + 0x2dc, a1 + 0xd8);
     (**(code **)(**(int **)(0x308 + a0) + 0x24))(*(int **)(0x308 + a0), a1 + 0xc8, a2, a3);
     iVar1 = 0x460;
@@ -6137,7 +6137,7 @@ int CMothLine_FreeGraphicResource(int a0, u32 a1, int a2) {
     int aiStack_18[2];
 
     iVar1 = -0x208;
-    CMothLine_scan_loop_028afc(a0, a1, a2);
+    CAnimal_release_part_requests(a0, a1, a2);
     ar7_00 = a0 + a2;
     (*(code *)(&CDCGD_release_type0))(a1, *(u32 *)(&DATA_8c139e9c), *(u32 *)(0x410 + a0), ar7_00);
     if (a2 == 2) {

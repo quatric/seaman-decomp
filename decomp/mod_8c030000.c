@@ -4,11 +4,11 @@
 #include "globals.h"
 
 /*
- * Class_129c24_calls_fill_loop_0300a4  0x8c0300a4
- * area name: sits between Class_129c24 functions (same compilation unit); behaviour name: its callees mostly do:
- * fill_loop called by: Class_12a078_ctor, Class_12acc8_ctor, Class_12c3c4_ctor
+ * talk_history_reset  0x8c0300a4
+ * clears the 45 keyword timestamps and their per-slot flags, the three 32-byte name buffers and the talk state
+ * called by: Class_12a078_ctor, Class_12acc8_ctor, Class_12c3c4_ctor
  */
-int Class_129c24_calls_fill_loop_0300a4(int a0) {
+int talk_history_reset(int a0) {
     int iVar1;
     int iVar2;
 
@@ -43,11 +43,11 @@ int Class_129c24_calls_fill_loop_0300a4(int a0) {
 }
 
 /*
- * game_fill_loop_0301f8  0x8c0301f8
- * area name: game code; nothing names its area yet; behaviour name: a loop that writes memory
- * called by: FrogMan_update_sleep_light, Higyo_update_sleep_light
+ * talk_history_tick  0x8c0301f8
+ * forgets keywords heard longer ago than 1000 / (level + 1) frames, finishes a completed talk event and advances the
+ * frame counter called by: FrogMan_update_sleep_light, Higyo_update_sleep_light
  */
-int game_fill_loop_0301f8(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int talk_history_tick(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
 
@@ -1115,7 +1115,7 @@ u32 CMushroomerBody_vec_031764(int a0, u32 a1, u32 a2, u32 a3) {
         iVar3 = *(int *)(a0 + 0x40);
         if ((iVar3 == 1) || (iVar3 == 3)) {
             if (*(int *)(a0 + 0x44) == 1) {
-                game_float_calc_031fc4(a0);
+                float_approach_target(a0);
             }
             if (cVar10 == '\0') {
                 in_fr1 = *(float *)(a0 + 0x30);
@@ -1748,11 +1748,11 @@ u32 game_vec_031eb0(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
 }
 
 /*
- * game_float_calc_031fc4  0x8c031fc4
- * area name: game code; nothing names its area yet; behaviour name: floating-point arithmetic
- * called by: CMushroomerBody_vec_031764, game_vec_07c318, game_vec_097ba4
+ * float_approach_target  0x8c031fc4
+ * moves the value at +0x28 toward the target at +0x24 (rising by target / +0x34, falling by target / +0x38) and clears
+ * the busy flag on arrival called by: CMushroomerBody_vec_031764, game_vec_07c318, game_vec_097ba4
  */
-float *game_float_calc_031fc4(int a0) {
+float *float_approach_target(int a0) {
     float *pfVar1;
 
     if (*(float *)(a0 + 0x24) <= *(float *)(a0 + 0x28)) {
@@ -8987,7 +8987,7 @@ u32 egg_load_record(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_load(a0, a1, a2, a3);
-    CAnimal_uses_set_field_8_s8_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
+    talk_state_load_fields(a0 + 0x174, a1 + 0x4c, a2, a3);
     uVar1 = copy15_in_normalize(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
 }
@@ -9232,14 +9232,13 @@ u32 noop_038e74(void) {
 }
 
 /*
- * CFrogManEgg_calls_scan_loop_038e78  0x8c038e78
- * area name: sits between CFrogManEgg functions (same compilation unit); behaviour name: its callees mostly do:
- * scan_loop
+ * CFrogManEgg_release_038e78  0x8c038e78
+ * area name: sits between CFrogManEgg functions (same compilation unit); behaviour name: mostly calls release functions
  */
-u32 CFrogManEgg_calls_scan_loop_038e78(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CFrogManEgg_release_038e78(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    CMothLine_scan_loop_028afc(a0, a1, a2);
+    CAnimal_release_part_requests(a0, a1, a2);
     uVar1 = 0;
     if (*(int *)(0x330 + a0) != 0) {
         uVar1 = (**(code **)(0xec + *(int *)(*(int *)(0x330 + a0) + 8)))(*(int *)(0x330 + a0), a1, 0, a3);

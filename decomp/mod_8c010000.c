@@ -14156,10 +14156,10 @@ u32 C2DSprite_Load(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12988c_draw_015d74  0x8c015d74
- * area name: sits between Class_12988c functions (same compilation unit); behaviour name: mostly calls draw functions
+ * game_draw_015d74  0x8c015d74
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
  */
-u32 Class_12988c_draw_015d74(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 game_draw_015d74(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     u64 in_dr4;
 
@@ -14216,10 +14216,10 @@ u32 game_draw_015e18(int a0) {
 }
 
 /*
- * game_draw_015e40  0x8c015e40
- * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
+ * draw_debug_quad  0x8c015e40
+ * draws a white quad with corners (100, 100) and (300, 300) at depth 0.5
  */
-u32 game_draw_015e40(void) {
+u32 draw_debug_quad(void) {
     u32 uVar1;
     u32 uStack_64;
     u32 uStack_60;
@@ -20849,7 +20849,7 @@ u32 game_talk_01cb54(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
 
-    iVar1 = game_input_01cbc8(a0, a1, a2, a3);
+    iVar1 = mic_set_mode_check_connected(a0, a1, a2, a3);
     if (iVar1 == 0) {
         uVar2 = 0;
     } else {
@@ -20870,11 +20870,11 @@ u32 game_talk_01cb54(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_input_01cbc8  0x8c01cbc8
- * area name: game code; nothing names its area yet; behaviour name: mostly calls input functions
- * called by: asr_calls_update_fields_01d0cc, game_talk_01cb54
+ * mic_set_mode_check_connected  0x8c01cbc8
+ * switches the recogniser mode for a1 (6, 0xc, 0x12 or other) and ends the session when the microphone is no longer
+ * connected called by: asr_uses_mic_set_mode_check_connected_01d0cc, game_talk_01cb54
  */
-u32 game_input_01cbc8(u32 *a0, int a1, u32 a2, u32 a3) {
+u32 mic_set_mode_check_connected(u32 *a0, int a1, u32 a2, u32 a3) {
     u32 *puVar1;
     bool bVar2;
 
@@ -21116,11 +21116,11 @@ u32 asr_talk_01d008(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_calls_update_fields_01d0cc  0x8c01d0cc
- * area name: sits between asr functions (same compilation unit); behaviour name: its callees mostly do: update_fields
- * called by: input_peripheral_state_machine
+ * asr_uses_mic_set_mode_check_connected_01d0cc  0x8c01d0cc
+ * area name: sits between asr functions (same compilation unit); behaviour name: its main named callee is
+ * mic_set_mode_check_connected called by: input_peripheral_state_machine
  */
-u32 asr_calls_update_fields_01d0cc(int a0, u32 a1, u32 a2, u32 a3) {
+u32 asr_uses_mic_set_mode_check_connected_01d0cc(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
 
@@ -21133,7 +21133,7 @@ u32 asr_calls_update_fields_01d0cc(int a0, u32 a1, u32 a2, u32 a3) {
         }
     }
     ar5_00 = *(u32 *)(a0 + 4);
-    iVar1 = game_input_01cbc8(a0, ar5_00, a2, a3);
+    iVar1 = mic_set_mode_check_connected(a0, ar5_00, a2, a3);
     if (iVar1 != 0) {
         asr_state_switch_01d15c(a0);
     }
@@ -21143,7 +21143,7 @@ u32 asr_calls_update_fields_01d0cc(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * asr_state_switch_01d15c  0x8c01d15c
  * area name: sits between asr functions (same compilation unit); behaviour name: dispatches on a state or mode value
- * (switch) called by: asr_calls_update_fields_01d0cc
+ * (switch) called by: asr_uses_mic_set_mode_check_connected_01d0cc
  */
 u8 *asr_state_switch_01d15c(int a0) {
     u8 *puVar1;
@@ -21216,7 +21216,7 @@ u8 *asr_state_switch_01d15c(int a0) {
 /*
  * asr_uses_speech_register_idle_ctx_01d338  0x8c01d338
  * area name: sits between asr functions (same compilation unit); behaviour name: its main named callee is
- * speech_register_idle_ctx called by: asr_calls_update_fields_01d0cc
+ * speech_register_idle_ctx called by: asr_uses_mic_set_mode_check_connected_01d0cc
  */
 u32 asr_uses_speech_register_idle_ctx_01d338(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -21251,7 +21251,7 @@ u32 asr_uses_speech_register_idle_ctx_01d338(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * asr_update_fields_01d3f4  0x8c01d3f4
  * area name: sits between asr functions (same compilation unit); behaviour name: conditionally writes members
- * called by: asr_calls_update_fields_01d0cc
+ * called by: asr_uses_mic_set_mode_check_connected_01d0cc
  */
 int asr_update_fields_01d3f4(int a0) {
     int iVar1;
@@ -21267,7 +21267,7 @@ int asr_update_fields_01d3f4(int a0) {
 /*
  * asr_session_end  0x8c01d440
  * tears down the speech-recognition session for its current state (2, 3 or 4) and sets the state to 0
- * called by: game_input_01cbc8
+ * called by: mic_set_mode_check_connected
  */
 u32 asr_session_end(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -22145,7 +22145,7 @@ u8 *input_peripheral_state_machine(int a0, u32 a1, u32 a2, u32 a3) {
             }
             break;
         case 3:
-            iVar2 = asr_calls_update_fields_01d0cc(a0 + 0x384c, a1, a2, a3);
+            iVar2 = asr_uses_mic_set_mode_check_connected_01d0cc(a0 + 0x384c, a1, a2, a3);
             if (iVar2 == 0) {
                 *(u32 *)(a0 + 0xa510) = 5;
             }
@@ -22171,7 +22171,7 @@ u8 *input_peripheral_state_machine(int a0, u32 a1, u32 a2, u32 a3) {
         if (iVar2 == 0) {
             *(u32 *)(a0 + 0xa510) = 3;
         }
-        puVar1 = (u8 *)asr_calls_update_fields_01d0cc(a0 + 0x384c, a1, a2, a3);
+        puVar1 = (u8 *)asr_uses_mic_set_mode_check_connected_01d0cc(a0 + 0x384c, a1, a2, a3);
         if (puVar1 == NULL) {
             puVar1 = (u8 *)0xa510;
             *(u32 *)(a0 + 0xa510) = 4;

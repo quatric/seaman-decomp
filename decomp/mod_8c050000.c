@@ -8310,7 +8310,7 @@ u32 *Class_12a078_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 
     Class_129c70_ctor(a0, a1, a2);
     *a0 = &g_8c12a078;
-    Class_129c24_calls_fill_loop_0300a4(a0 + 0x27);
+    talk_history_reset(a0 + 0x27);
     clear_fields_0_to_20(a0 + 0x207, a1);
     *(u8 *)(a0 + 0x20) = 0;
     a0[0xe1] = 0xffffffff;
@@ -8805,7 +8805,7 @@ u32 FrogMan_update_sleep_light(int *a0, code *a1, code *a2) {
             }
         }
     }
-    game_fill_loop_0301f8(a0 + 0x27, pcVar4, pcVar11, game_fill_loop_0301f8);
+    talk_history_tick(a0 + 0x27, pcVar4, pcVar11, talk_history_tick);
     ar7_00 = 0x91;
     iVar12 = (int)*(char *)((int)a0 + 0x91);
     iVar9 = (int)*(char *)((int)a0 + 0x91);

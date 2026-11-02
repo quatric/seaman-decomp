@@ -645,7 +645,7 @@ u32 retry_until_done_020ba0(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CDCGD_release_request_wrap  0x8c020c60
  * only calls CDCGD_release_request
- * called by: CHerb_release_06d474
+ * called by: CHerb_release_requests
  */
 u32 CDCGD_release_request_wrap(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -699,7 +699,7 @@ u32 retry_until_done_020c98(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CDCGD_release_request_wrap_020d58  0x8c020d58
  * only calls CDCGD_release_request
- * called by: CHerb_release_06d474, CMothLine_FreeGraphicResource
+ * called by: CHerb_release_requests, CMothLine_FreeGraphicResource
  */
 u32 CDCGD_release_request_wrap_020d58(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -752,7 +752,7 @@ u32 retry_until_done_020d90(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CDCGD_release_request_wrap_020e48  0x8c020e48
  * only calls CDCGD_release_request
- * called by: CHerb_release_06d474, CMothLine_FreeGraphicResource
+ * called by: CHerb_release_requests, CMothLine_FreeGraphicResource
  */
 u32 CDCGD_release_request_wrap_020e48(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -5638,7 +5638,7 @@ u32 noop_025fb8(void) {
 
 /*
  * set_field_16_s16  0x8c025fbc
- * called by: CAnimal_m2_02573c, CAnimal_uses_set_field_8_s8_02cbe4, game_uses_set_field_b_s8_02c758, status_load_record
+ * called by: CAnimal_m2_02573c, status_load_record, talk_state_load_fields, talk_uses_set_field_b_s8_02c758
  */
 u32 set_field_16_s16(int a0, u32 a1) {
     *(short *)(a0 + 0x16) = (short)a1;
@@ -7607,13 +7607,12 @@ int CAnimal_uses_table13019c_find_row_028ab8(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * CMothLine_scan_loop_028afc  0x8c028afc
- * area name: only called from CMothLine methods; behaviour name: a loop that only reads
- * called by: CFrogManEgg_calls_scan_loop_038e78, CHigyoEgg_calls_scan_loop_08864c, CMothEgg_calls_scan_loop_09afb8,
- * CMothLine_FreeGraphicResource, CSpiderEgg_calls_scan_loop_0a58a4, Squid_FreeGraphicResource,
- * game_calls_scan_loop_09d384
+ * CAnimal_release_part_requests  0x8c028afc
+ * releases the CD load requests of model part a2 (its texture and motion files) and then calls method 0xf0
+ * called by: CFrogManEgg_release_038e78, CHigyoEgg_release_08864c, CMothEgg_release_09afb8,
+ * CMothLine_FreeGraphicResource, CSpiderEgg_release_0a58a4, Squid_FreeGraphicResource, game_release_09d384
  */
-u32 CMothLine_scan_loop_028afc(int a0, u32 a1, int a2) {
+u32 CAnimal_release_part_requests(int a0, u32 a1, int a2) {
     u32 uVar1;
     int ar7_00;
     int iVar2;
@@ -7701,7 +7700,7 @@ u32 CAnimal_state_load(int a0, int a1, u32 a2, u32 a3) {
 
     cVar2 = '\0';
     obj_state_load(a0, a1, a2, a3);
-    CAnimal_uses_set_field_8_s8_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
+    talk_state_load_fields(a0 + 0x174, a1 + 0x4c, a2, a3);
     iVar1 = a1 + 0xd8;
     copy15_in_normalize(a0 + 0x2dc, iVar1);
     iVar1 = get_field_13c_028d9c(a0 + 0x174, iVar1, a2);
@@ -7788,8 +7787,8 @@ int set_field_98_u8(int a0, u32 a1) {
 
 /*
  * set_field_c  0x8c028ed4
- * called by: CAnimal_m2_0386d0, CAnimal_uses_get_field_a2_s16_028e20, CAnimal_uses_set_field_8_s8_02cbe4,
- * Class_12a7f4_m2_09a060, Class_12a7f4_m3_09a558, Class_12a990_m2_09bc2c, Class_12ad50_m2_0a4fdc, status_load_record
+ * called by: CAnimal_m2_0386d0, CAnimal_uses_get_field_a2_s16_028e20, Class_12a7f4_m2_09a060, Class_12a7f4_m3_09a558,
+ * Class_12a990_m2_09bc2c, Class_12ad50_m2_0a4fdc, status_load_record, talk_state_load_fields
  */
 u32 set_field_c(int a0, u32 a1) {
     u32 in_r0;
@@ -7800,8 +7799,8 @@ u32 set_field_c(int a0, u32 a1) {
 
 /*
  * set_field_8  0x8c028edc
- * called by: CAnimal_m2_0386d0, CAnimal_uses_get_field_a2_s16_028e20, CAnimal_uses_set_field_8_s8_02cbe4,
- * Class_12a7f4_m2_09a060, Class_12a7f4_m3_09a558, Class_12a990_m2_09bc2c, Class_12ad50_m2_0a4fdc, status_load_record
+ * called by: CAnimal_m2_0386d0, CAnimal_uses_get_field_a2_s16_028e20, Class_12a7f4_m2_09a060, Class_12a7f4_m3_09a558,
+ * Class_12a990_m2_09bc2c, Class_12ad50_m2_0a4fdc, status_load_record, talk_state_load_fields
  */
 u32 set_field_8(int a0, u32 a1) {
     u32 in_r0;
@@ -9202,7 +9201,7 @@ u32 CAnimal_uses_get_field_30_on_field_a8_02a6f8(int a0, u32 unused_a1, u32 a2, 
 
     get_field_30_on_field_a8(a0 + 0x174);
     ar5_00 = get_field_30_on_field_a8(a0 + 0x174);
-    game_uses_set_field_b_s8_02c758(a0 + 0x174, ar5_00, a2, a3);
+    talk_uses_set_field_b_s8_02c758(a0 + 0x174, ar5_00, a2, a3);
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) & 0xfffffff7;
     return 0x74;
 }
@@ -10359,8 +10358,8 @@ int CAnimal_uses_set_field_b_s8_02b9a8(int a0, u32 a1, int a2) {
 
 /*
  * set_field_14_s16  0x8c02bd68
- * called by: CAnimal_uses_set_field_8_s8_02cbe4, CAnimal_uses_set_field_b_s8_02b9a8, game_uses_set_field_b_s8_02c758,
- * status_load_record
+ * called by: CAnimal_uses_set_field_b_s8_02b9a8, status_load_record, talk_state_load_fields,
+ * talk_uses_set_field_b_s8_02c758
  */
 u32 set_field_14_s16(int a0, u32 a1) {
     *(short *)(a0 + 0x14) = (short)a1;
@@ -10370,7 +10369,7 @@ u32 set_field_14_s16(int a0, u32 a1) {
 /*
  * set_u16_array_22  0x8c02bd70
  * +0x22[a1] = a2 (16-bit)
- * called by: CAnimal_uses_set_field_b_s8_02b9a8, game_uses_set_field_b_s8_02c758
+ * called by: CAnimal_uses_set_field_b_s8_02b9a8, talk_uses_set_field_b_s8_02c758
  */
 u32 set_u16_array_22(int a0, int a1, u32 a2) {
     *(u16 *)(a0 + a1 * 2 + 0x22) = (u16)a2;
@@ -10379,7 +10378,7 @@ u32 set_u16_array_22(int a0, int a1, u32 a2) {
 
 /*
  * set_field_10_02bd84  0x8c02bd84
- * called by: CAnimal_uses_set_field_b_s8_02b9a8, game_uses_set_field_b_s8_02c758
+ * called by: CAnimal_uses_set_field_b_s8_02b9a8, talk_uses_set_field_b_s8_02c758
  */
 u32 set_field_10_02bd84(int a0, u32 a1) {
     u32 in_r0;
@@ -10390,7 +10389,7 @@ u32 set_field_10_02bd84(int a0, u32 a1) {
 
 /*
  * set_field_c_02bd8c  0x8c02bd8c
- * called by: CAnimal_uses_set_field_b_s8_02b9a8, game_uses_set_field_b_s8_02c758
+ * called by: CAnimal_uses_set_field_b_s8_02b9a8, talk_uses_set_field_b_s8_02c758
  */
 u32 set_field_c_02bd8c(int a0, u32 a1) {
     u32 in_r0;
@@ -10401,7 +10400,7 @@ u32 set_field_c_02bd8c(int a0, u32 a1) {
 
 /*
  * set_field_b_s8  0x8c02bd94
- * called by: CAnimal_uses_set_field_8_s8_02cbe4, CAnimal_uses_set_field_b_s8_02b9a8, game_uses_set_field_b_s8_02c758
+ * called by: CAnimal_uses_set_field_b_s8_02b9a8, talk_state_load_fields, talk_uses_set_field_b_s8_02c758
  */
 u32 set_field_b_s8(int a0, u32 a1) {
     *(char *)(a0 + 0xb) = (char)a1;
@@ -10531,8 +10530,8 @@ int talk_calc_02bfbc(int a0) {
  * table13019c_find_row  0x8c02bfd8
  * row (0..17) of the 4-column table at 0x8c13019c that holds the value at +0x13c; -1 if none
  * called by: CAnimal_ctor, CAnimal_uses_set_field_b_s8_02b9a8, CAnimal_uses_table13019c_find_row_034d48,
- * FrogMan_gratification_events, Higyo_gratification_events, game_uses_set_field_b_s8_02c758,
- * talk_uses_set_field_a_s8_02c030, talk_uses_table13019c_find_row_02bef8
+ * FrogMan_gratification_events, Higyo_gratification_events, talk_uses_set_field_a_s8_02c030,
+ * talk_uses_set_field_b_s8_02c758, talk_uses_table13019c_find_row_02bef8
  */
 u32 table13019c_find_row(int a0) {
     int iVar1;
@@ -10673,8 +10672,8 @@ u32 set_field_48(int a0, u32 a1) {
 
 /*
  * set_field_0_u8  0x8c02c330
- * called by: CAnimal_uses_set_field_8_s8_02cbe4, Class_12a078_m2_05eee0, FrogMan_gratification_events,
- * FrogMan_update_sleep_light, Higyo_gratification_events, talk_uses_set_field_4_02d2e0, talk_uses_set_field_a_s8_02c030
+ * called by: Class_12a078_m2_05eee0, FrogMan_gratification_events, FrogMan_update_sleep_light,
+ * Higyo_gratification_events, talk_state_load_fields, talk_uses_set_field_4_02d2e0, talk_uses_set_field_a_s8_02c030
  */
 u32 set_field_0_u8(u8 *a0, u32 a1) {
     u32 in_r0;
@@ -10685,7 +10684,7 @@ u32 set_field_0_u8(u8 *a0, u32 a1) {
 
 /*
  * set_field_8_s8  0x8c02c338
- * called by: CAnimal_uses_set_field_8_s8_02cbe4, talk_uses_set_field_a_s8_02c030
+ * called by: talk_state_load_fields, talk_uses_set_field_a_s8_02c030
  */
 u32 set_field_8_s8(int a0, u32 a1) {
     *(char *)(a0 + 8) = (char)a1;
@@ -10902,11 +10901,11 @@ int talk_talk_helper_02c668(int a0, int a1, u32 a2) {
 }
 
 /*
- * game_uses_set_field_b_s8_02c758  0x8c02c758
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_field_b_s8
- * called by: CAnimal_uses_get_field_30_on_field_a8_02a6f8
+ * talk_uses_set_field_b_s8_02c758  0x8c02c758
+ * area name: sits between talk functions (same compilation unit); behaviour name: its main named callee is
+ * set_field_b_s8 called by: CAnimal_uses_get_field_30_on_field_a8_02a6f8
  */
-u32 game_uses_set_field_b_s8_02c758(int a0, int a1, u32 a2, u32 a3) {
+u32 talk_uses_set_field_b_s8_02c758(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -10976,7 +10975,7 @@ u32 game_uses_set_field_b_s8_02c758(int a0, int a1, u32 a2, u32 a3) {
 /*
  * talk_update_fields_02cadc  0x8c02cadc
  * area name: sits between talk functions (same compilation unit); behaviour name: conditionally writes members
- * called by: game_calls_update_fields_02e460, game_uses_set_field_b_s8_02c758
+ * called by: game_calls_update_fields_02e460, talk_uses_set_field_b_s8_02c758
  */
 u32 talk_update_fields_02cadc(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -10989,7 +10988,7 @@ u32 talk_update_fields_02cadc(int a0, int a1, u32 a2, u32 a3) {
 /*
  * talk_update_fields_02cb24  0x8c02cb24
  * area name: sits between talk functions (same compilation unit); behaviour name: conditionally writes members
- * called by: game_calls_update_fields_02e460, game_uses_set_field_b_s8_02c758
+ * called by: game_calls_update_fields_02e460, talk_uses_set_field_b_s8_02c758
  */
 u32 talk_update_fields_02cb24(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -11002,7 +11001,7 @@ u32 talk_update_fields_02cb24(int a0, int a1, u32 a2, u32 a3) {
 /*
  * set_field_3c  0x8c02cb6c
  * called by: game_uses_set_field_98_u8_035f58, game_uses_set_field_98_u8_035fa0, game_uses_set_field_98_u8_035fe8,
- * game_uses_set_field_b_s8_02c758
+ * talk_uses_set_field_b_s8_02c758
  */
 u32 set_field_3c(int a0, u32 a1) {
     u32 in_r0;
@@ -11013,8 +11012,8 @@ u32 set_field_3c(int a0, u32 a1) {
 
 /*
  * set_field_1_s8  0x8c02cb74
- * called by: CAnimal_uses_set_field_8_s8_02cbe4, Class_12c3c4_uses_set_field_0_u8_109e40, FrogMan_gratification_events,
- * Higyo_gratification_events, Higyo_update_sleep_light, game_uses_set_field_b_s8_02c758
+ * called by: Class_12c3c4_uses_set_field_0_u8_109e40, FrogMan_gratification_events, Higyo_gratification_events,
+ * Higyo_update_sleep_light, talk_state_load_fields, talk_uses_set_field_b_s8_02c758
  */
 u32 set_field_1_s8(int a0, u32 a1) {
     *(char *)(a0 + 1) = (char)a1;
@@ -11023,8 +11022,8 @@ u32 set_field_1_s8(int a0, u32 a1) {
 
 /*
  * set_field_0_u8_02cb7c  0x8c02cb7c
- * called by: CAnimal_uses_set_field_8_s8_02cbe4, Class_12a078_m2_05eee0, Class_12c3c4_uses_set_field_0_u8_109e40,
- * FrogMan_update_sleep_light, Higyo_update_sleep_light, game_uses_set_field_b_s8_02c758, set_field_0_u8_wrap
+ * called by: Class_12a078_m2_05eee0, Class_12c3c4_uses_set_field_0_u8_109e40, FrogMan_update_sleep_light,
+ * Higyo_update_sleep_light, set_field_0_u8_wrap, talk_state_load_fields, talk_uses_set_field_b_s8_02c758
  */
 u32 set_field_0_u8_02cb7c(u8 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_r0;
@@ -11035,8 +11034,8 @@ u32 set_field_0_u8_02cb7c(u8 *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * set_field_18  0x8c02cb84
- * called by: CAnimal_uses_set_field_8_s8_02cbe4, Class_12b2e8_m1_0b5ad0, Class_12b2e8_state_switch_0b6440,
- * Higyo_choose_status_event, Higyo_gratification_events, game_uses_set_field_b_s8_02c758, status_load_record
+ * called by: Class_12b2e8_m1_0b5ad0, Class_12b2e8_state_switch_0b6440, Higyo_choose_status_event,
+ * Higyo_gratification_events, status_load_record, talk_state_load_fields, talk_uses_set_field_b_s8_02c758
  */
 u32 set_field_18(int a0, u32 a1) {
     u32 in_r0;
@@ -11048,7 +11047,7 @@ u32 set_field_18(int a0, u32 a1) {
 /*
  * set_field_30  0x8c02cb8c
  * called by: game_uses_set_field_98_u8_035f58, game_uses_set_field_98_u8_035fa0, game_uses_set_field_98_u8_035fe8,
- * game_uses_set_field_b_s8_02c758
+ * talk_uses_set_field_b_s8_02c758
  */
 u32 set_field_30(int a0, u32 a1) {
     u32 in_r0;
@@ -11059,7 +11058,7 @@ u32 set_field_30(int a0, u32 a1) {
 
 /*
  * set_field_34  0x8c02cb94
- * called by: game_uses_set_field_b_s8_02c758
+ * called by: talk_uses_set_field_b_s8_02c758
  */
 u32 set_field_34(int a0, u32 a1) {
     u32 in_r0;
@@ -11070,7 +11069,7 @@ u32 set_field_34(int a0, u32 a1) {
 
 /*
  * set_field_20_u16  0x8c02cb9c
- * called by: game_uses_set_field_b_s8_02c758
+ * called by: talk_uses_set_field_b_s8_02c758
  */
 u32 set_field_20_u16(int a0, u32 a1) {
     *(u16 *)(a0 + 0x20) = (u16)a1;
@@ -11079,7 +11078,7 @@ u32 set_field_20_u16(int a0, u32 a1) {
 
 /*
  * set_field_38  0x8c02cba4
- * called by: game_uses_set_field_b_s8_02c758
+ * called by: talk_uses_set_field_b_s8_02c758
  */
 u32 set_field_38(int a0, u32 a1) {
     u32 in_r0;
@@ -11090,7 +11089,7 @@ u32 set_field_38(int a0, u32 a1) {
 
 /*
  * set_field_10_02cbac  0x8c02cbac
- * called by: game_uses_set_field_b_s8_02c758
+ * called by: talk_uses_set_field_b_s8_02c758
  */
 u32 set_field_10_02cbac(int a0, u32 a1) {
     u32 in_r0;
@@ -11101,7 +11100,7 @@ u32 set_field_10_02cbac(int a0, u32 a1) {
 
 /*
  * set_field_c_02cbb4  0x8c02cbb4
- * called by: game_uses_set_field_b_s8_02c758
+ * called by: talk_uses_set_field_b_s8_02c758
  */
 u32 set_field_c_02cbb4(int a0, u32 a1) {
     u32 in_r0;
@@ -11113,9 +11112,9 @@ u32 set_field_c_02cbb4(int a0, u32 a1) {
 /*
  * counter_set_clamped_4  0x8c02cbbc
  * +4 = min(a1, +0xc); returns how far a1 was below the limit
- * called by: CAnimal_uses_set_field_8_s8_02cbe4, Class_12a078_m2_05eee0, Class_12c3c4_uses_set_field_0_u8_109e40,
- * FrogMan_gratification_events, FrogMan_update_sleep_light, Higyo_gratification_events, Higyo_update_sleep_light,
- * game_uses_set_field_b_s8_02c758
+ * called by: Class_12a078_m2_05eee0, Class_12c3c4_uses_set_field_0_u8_109e40, FrogMan_gratification_events,
+ * FrogMan_update_sleep_light, Higyo_gratification_events, Higyo_update_sleep_light, talk_state_load_fields,
+ * talk_uses_set_field_b_s8_02c758
  */
 u32 counter_set_clamped_4(int a0, int a1) {
     int iVar1;
@@ -11131,8 +11130,7 @@ u32 counter_set_clamped_4(int a0, int a1) {
 
 /*
  * set_field_10_02cbd4  0x8c02cbd4
- * called by: CAnimal_uses_set_field_8_s8_02cbe4, Class_12acc8_m1_09f470, game_uses_set_field_b_s8_02c758,
- * status_load_record
+ * called by: Class_12acc8_m1_09f470, status_load_record, talk_state_load_fields, talk_uses_set_field_b_s8_02c758
  */
 u32 set_field_10_02cbd4(int a0, u32 a1) {
     u32 in_r0;
@@ -11143,19 +11141,19 @@ u32 set_field_10_02cbd4(int a0, u32 a1) {
 
 /*
  * get_field_34_02cbdc  0x8c02cbdc
- * called by: game_uses_set_field_b_s8_02c758
+ * called by: talk_uses_set_field_b_s8_02c758
  */
 u32 get_field_34_02cbdc(int a0) {
     return *(u32 *)(a0 + 0x34);
 }
 
 /*
- * CAnimal_uses_set_field_8_s8_02cbe4  0x8c02cbe4
- * area name: only called from CAnimal methods; behaviour name: its main named callee is set_field_8_s8
+ * talk_state_load_fields  0x8c02cbe4
+ * loads the creature's talk/growth values from the a1 record (the counterpart of talk_state_save_fields)
  * called by: CAnimal_state_load, egg_load_record, egg_load_record_b, load_state_record_08b694,
  * load_state_record_09ad34, load_state_record_09c7c0, load_state_record_0a5614
  */
-u32 CAnimal_uses_set_field_8_s8_02cbe4(int a0, u32 *a1, u32 a2, u32 a3) {
+u32 talk_state_load_fields(int a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
     int ain0;
 
@@ -11187,7 +11185,7 @@ u32 CAnimal_uses_set_field_8_s8_02cbe4(int a0, u32 *a1, u32 a2, u32 a3) {
 
 /*
  * set_field_9_s8  0x8c02cdf8
- * called by: CAnimal_uses_set_field_8_s8_02cbe4
+ * called by: talk_state_load_fields
  */
 u32 set_field_9_s8(int a0, u32 a1) {
     *(char *)(a0 + 9) = (char)a1;
@@ -11196,7 +11194,7 @@ u32 set_field_9_s8(int a0, u32 a1) {
 
 /*
  * set_field_4_02ce00  0x8c02ce00
- * called by: CAnimal_uses_set_field_8_s8_02cbe4, FrogMan_update_sleep_light, talk_uses_set_field_4_02d2e0
+ * called by: FrogMan_update_sleep_light, talk_state_load_fields, talk_uses_set_field_4_02d2e0
  */
 u32 set_field_4_02ce00(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 in_r0;
@@ -11207,7 +11205,7 @@ u32 set_field_4_02ce00(int a0, u32 a1, u32 unused_a2, u32 a3) {
 
 /*
  * set_field_10_02ce08  0x8c02ce08
- * called by: CAnimal_uses_set_field_8_s8_02cbe4
+ * called by: talk_state_load_fields
  */
 u32 set_field_10_02ce08(int a0, u32 a1) {
     u32 in_r0;
@@ -11219,9 +11217,8 @@ u32 set_field_10_02ce08(int a0, u32 a1) {
 /*
  * counter_set_clamped  0x8c02ce10
  * +8 = min(a1, +0x10); returns how far a1 was below the limit
- * called by: CAnimal_uses_set_field_8_s8_02cbe4, Class_12a078_m2_05eee0, FrogMan_gratification_events,
- * FrogMan_jump_events, FrogMan_react_tap, FrogMan_update_sleep_light, Higyo_attention_events,
- * Higyo_gratification_events (+5 more)
+ * called by: Class_12a078_m2_05eee0, FrogMan_gratification_events, FrogMan_jump_events, FrogMan_react_tap,
+ * FrogMan_update_sleep_light, Higyo_attention_events, Higyo_gratification_events, Higyo_update_sleep_light (+5 more)
  */
 u32 counter_set_clamped(int a0, int a1, u32 a2) {
     int iVar1;
@@ -11237,7 +11234,7 @@ u32 counter_set_clamped(int a0, int a1, u32 a2) {
 
 /*
  * set_field_140  0x8c02ce28
- * called by: CAnimal_uses_set_field_8_s8_02cbe4, status_load_record
+ * called by: status_load_record, talk_state_load_fields
  */
 int set_field_140(int a0, u32 a1) {
     int iVar1;
@@ -11249,7 +11246,7 @@ int set_field_140(int a0, u32 a1) {
 
 /*
  * set_field_13c  0x8c02ce34
- * called by: CAnimal_uses_set_field_8_s8_02cbe4, status_load_record
+ * called by: status_load_record, talk_state_load_fields
  */
 int set_field_13c(int a0, u32 a1) {
     int iVar1;
@@ -11261,7 +11258,7 @@ int set_field_13c(int a0, u32 a1) {
 
 /*
  * set_field_138  0x8c02ce40
- * called by: CAnimal_uses_set_field_8_s8_02cbe4, status_load_record
+ * called by: status_load_record, talk_state_load_fields
  */
 int set_field_138(int a0, u32 a1) {
     int iVar1;
@@ -11273,7 +11270,7 @@ int set_field_138(int a0, u32 a1) {
 
 /*
  * set_field_134  0x8c02ce4c
- * called by: CAnimal_uses_set_field_8_s8_02cbe4, status_load_record
+ * called by: status_load_record, talk_state_load_fields
  */
 int set_field_134(int a0, u32 a1) {
     int iVar1;
@@ -11741,7 +11738,7 @@ u8 *game_uses_libgcc_divide_helper_02d7c8(u8 *a0, u32 a1, u32 a2, int a3) {
 /*
  * game_update_fields_02d81c  0x8c02d81c
  * area name: game code; nothing names its area yet; behaviour name: conditionally writes members
- * called by: game_uses_set_field_b_s8_02c758
+ * called by: talk_uses_set_field_b_s8_02c758
  */
 u32 game_update_fields_02d81c(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;

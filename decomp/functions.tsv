@@ -205,11 +205,11 @@ address	name	file	params
 8c015ccc	set_field_1c	mod_8c010000.c	2
 8c015cd4	set_field_20	mod_8c010000.c	2
 8c015cdc	C2DSprite_Load	mod_8c010000.c	4
-8c015d74	Class_12988c_draw_015d74	mod_8c010000.c	4
+8c015d74	game_draw_015d74	mod_8c010000.c	4
 8c015dc0	Class_12988c_float_calc_015dc0	mod_8c010000.c	2
 8c015dfc	game_uses_malloc_thunk_015dfc	mod_8c010000.c	4
 8c015e18	game_draw_015e18	mod_8c010000.c	1
-8c015e40	game_draw_015e40	mod_8c010000.c	0
+8c015e40	draw_debug_quad	mod_8c010000.c	0
 8c015f18	game_uses_malloc_thunk_015f18	mod_8c010000.c	4
 8c015ff0	Class_12984c_ctor	mod_8c010000.c	1
 8c016014	Class_12984c_draw_016014	mod_8c010000.c	4
@@ -407,14 +407,14 @@ address	name	file	params
 8c01ca24	sound_fill_loop_01ca24	mod_8c010000.c	1
 8c01cb24	free_if_nonnull_wrap_01cb24	mod_8c010000.c	4
 8c01cb54	game_talk_01cb54	mod_8c010000.c	4
-8c01cbc8	game_input_01cbc8	mod_8c010000.c	4
+8c01cbc8	mic_set_mode_check_connected	mod_8c010000.c	4
 8c01cc74	asr_session_open_like	mod_8c010000.c	1
 8c01cd30	asr_load_language_model	mod_8c010000.c	1
 8c01ce00	asr_init_from_model	mod_8c010000.c	4
 8c01cee0	asr_talk_01cee0	mod_8c010000.c	0
 8c01cfc8	asr_copy_01cfc8	mod_8c010000.c	0
 8c01d008	asr_talk_01d008	mod_8c010000.c	4
-8c01d0cc	asr_calls_update_fields_01d0cc	mod_8c010000.c	4
+8c01d0cc	asr_uses_mic_set_mode_check_connected_01d0cc	mod_8c010000.c	4
 8c01d15c	asr_state_switch_01d15c	mod_8c010000.c	1
 8c01d338	asr_uses_speech_register_idle_ctx_01d338	mod_8c010000.c	4
 8c01d3f4	asr_update_fields_01d3f4	mod_8c010000.c	1
@@ -792,7 +792,7 @@ address	name	file	params
 8c0284ac	CAnimal_LoadGRWait	mod_8c020000.c	4
 8c0287a4	CAnimal_LoadGResourceWait	mod_8c020000.c	4
 8c028ab8	CAnimal_uses_table13019c_find_row_028ab8	mod_8c020000.c	3
-8c028afc	CMothLine_scan_loop_028afc	mod_8c020000.c	3
+8c028afc	CAnimal_release_part_requests	mod_8c020000.c	3
 8c028c18	CAnimal_release_part_textures	mod_8c020000.c	4
 8c028c9c	CAnimal_calc_028c9c	mod_8c020000.c	4
 8c028cc4	get_field_6c_028cc4	mod_8c020000.c	2
@@ -931,7 +931,7 @@ address	name	file	params
 8c02c5ac	get_field_8_s8	mod_8c020000.c	2
 8c02c5b4	talk_uses_get_field_0_s8_02c5b4	mod_8c020000.c	1
 8c02c668	talk_talk_helper_02c668	mod_8c020000.c	3
-8c02c758	game_uses_set_field_b_s8_02c758	mod_8c020000.c	4
+8c02c758	talk_uses_set_field_b_s8_02c758	mod_8c020000.c	4
 8c02cadc	talk_update_fields_02cadc	mod_8c020000.c	4
 8c02cb24	talk_update_fields_02cb24	mod_8c020000.c	4
 8c02cb6c	set_field_3c	mod_8c020000.c	2
@@ -947,7 +947,7 @@ address	name	file	params
 8c02cbbc	counter_set_clamped_4	mod_8c020000.c	2
 8c02cbd4	set_field_10_02cbd4	mod_8c020000.c	2
 8c02cbdc	get_field_34_02cbdc	mod_8c020000.c	1
-8c02cbe4	CAnimal_uses_set_field_8_s8_02cbe4	mod_8c020000.c	4
+8c02cbe4	talk_state_load_fields	mod_8c020000.c	4
 8c02cdf8	set_field_9_s8	mod_8c020000.c	2
 8c02ce00	set_field_4_02ce00	mod_8c020000.c	4
 8c02ce08	set_field_10_02ce08	mod_8c020000.c	2
@@ -1058,8 +1058,8 @@ address	name	file	params
 8c02ffdc	ret_const_0_02ffdc	mod_8c020000.c	0
 8c02ffe4	ret_const_0_02ffe4	mod_8c020000.c	0
 8c02ffec	static_init_vec3s_27d4d0	mod_8c020000.c	4
-8c0300a4	Class_129c24_calls_fill_loop_0300a4	mod_8c030000.c	1
-8c0301f8	game_fill_loop_0301f8	mod_8c030000.c	4
+8c0300a4	talk_history_reset	mod_8c030000.c	1
+8c0301f8	talk_history_tick	mod_8c030000.c	4
 8c030304	talk_set_status_format	mod_8c030000.c	4
 8c0303b8	talk_queue_mode1	mod_8c030000.c	5
 8c030538	talk_get_word_674	mod_8c030000.c	2
@@ -1108,7 +1108,7 @@ address	name	file	params
 8c031de8	timer_uses_CAnimBody_PlayToEnd_031de8	mod_8c030000.c	4
 8c031e84	game_float_calc_031e84	mod_8c030000.c	2
 8c031eb0	game_vec_031eb0	mod_8c030000.c	5
-8c031fc4	game_float_calc_031fc4	mod_8c030000.c	1
+8c031fc4	float_approach_target	mod_8c030000.c	1
 8c03207c	game_vec_03207c	mod_8c030000.c	2
 8c032150	noop_032150	mod_8c030000.c	0
 8c032154	get_field_a4_032154	mod_8c030000.c	1
@@ -1271,7 +1271,7 @@ address	name	file	params
 8c038e1c	ret_const_1_038e1c	mod_8c030000.c	0
 8c038e24	egg_load_gr_wait_038e24	mod_8c030000.c	4
 8c038e74	noop_038e74	mod_8c030000.c	0
-8c038e78	CFrogManEgg_calls_scan_loop_038e78	mod_8c030000.c	4
+8c038e78	CFrogManEgg_release_038e78	mod_8c030000.c	4
 8c038ec8	noop_038ec8	mod_8c030000.c	0
 8c038ecc	FrogManEgg_asset_table_init	mod_8c030000.c	0
 8c0390f4	CAnimal_m3_0390f4	mod_8c030000.c	4
@@ -1518,7 +1518,7 @@ address	name	file	params
 8c06cb08	Herb_asset_table_init	mod_8c060000.c	0
 8c06ce04	CHerb_LoadGRWait	mod_8c060000.c	2
 8c06d3ec	CHerb_LoadTRWait	mod_8c060000.c	4
-8c06d474	CHerb_release_06d474	mod_8c060000.c	4
+8c06d474	CHerb_release_requests	mod_8c060000.c	4
 8c06d5e4	CHerb_release_06d5e4	mod_8c060000.c	4
 8c06d618	CHerb_SetPVMTexture	mod_8c060000.c	4
 8c06d6d8	noop_06d6d8	mod_8c060000.c	0
@@ -1658,7 +1658,7 @@ address	name	file	params
 8c0884f8	child_330_release_0884f8	mod_8c080000.c	4
 8c08852c	CHigyoEgg_LoadGRReq	mod_8c080000.c	4
 8c0885fc	egg_load_gr_wait_0885fc	mod_8c080000.c	4
-8c08864c	CHigyoEgg_calls_scan_loop_08864c	mod_8c080000.c	4
+8c08864c	CHigyoEgg_release_08864c	mod_8c080000.c	4
 8c08869c	HigyoEgg_asset_table_init	mod_8c080000.c	0
 8c08891c	CAnimal_m3_08891c	mod_8c080000.c	4
 8c088944	ret_const_1_088944	mod_8c080000.c	0
@@ -1797,7 +1797,7 @@ address	name	file	params
 8c09ae4c	save_pose_record_09ae4c	mod_8c090000.c	4
 8c09aea4	CMothEgg_LoadGRReq	mod_8c090000.c	4
 8c09af68	egg_load_gr_wait_09af68	mod_8c090000.c	4
-8c09afb8	CMothEgg_calls_scan_loop_09afb8	mod_8c090000.c	4
+8c09afb8	CMothEgg_release_09afb8	mod_8c090000.c	4
 8c09b008	MothEgg_asset_table_init	mod_8c090000.c	0
 8c09b208	ret_const_1_09b208	mod_8c090000.c	0
 8c09b210	static_init_vec3s_284730	mod_8c090000.c	4
@@ -1830,7 +1830,7 @@ address	name	file	params
 8c09cdf4	Class_12a990_float_calc_09cdf4	mod_8c090000.c	2
 8c09d2b4	game_update_fields_09d2b4	mod_8c090000.c	1
 8c09d310	load_gr_wait_with_items	mod_8c090000.c	4
-8c09d384	game_calls_scan_loop_09d384	mod_8c090000.c	4
+8c09d384	game_release_09d384	mod_8c090000.c	4
 8c09d3f8	Class_12a990_m8_09d3f8	mod_8c090000.c	4
 8c09d46c	set_field_74	mod_8c090000.c	2
 8c09d474	get_field_74_09d474	mod_8c090000.c	1
@@ -1930,7 +1930,7 @@ address	name	file	params
 8c0a572c	save_pose_record_0a572c	mod_8c0a0000.c	4
 8c0a5784	CSpiderEgg_LoadGRReq	mod_8c0a0000.c	4
 8c0a5854	egg_load_gr_wait_0a5854	mod_8c0a0000.c	4
-8c0a58a4	CSpiderEgg_calls_scan_loop_0a58a4	mod_8c0a0000.c	4
+8c0a58a4	CSpiderEgg_release_0a58a4	mod_8c0a0000.c	4
 8c0a58f4	SpiderEgg_asset_table_init	mod_8c0a0000.c	0
 8c0a5af4	Class_12aeec_m7_0a5af4	mod_8c0a0000.c	4
 8c0a5c2c	game_uses_release_child_6c_0a5c2c	mod_8c0a0000.c	4

@@ -12817,7 +12817,7 @@ u32 noop_257488(void) {
 /*
  * ninja_draw_25748c  0x8c25748c
  * area name: sits between ninja functions (same compilation unit); behaviour name: mostly calls draw functions
- * called by: Class_12988c_draw_015d74
+ * called by: game_draw_015d74
  */
 u32 ninja_draw_25748c(int a0, int a1, u32 a2, u32 a3) {
     u32 ar4_00;

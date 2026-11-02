@@ -1898,3 +1898,11 @@
 8c030538	talk_get_word_674	returns word a1 of the table at +0x674
 8c02c518	talk_pick_highest_active	index of the active entry (of six 0x18-byte records, excluding the last) with the highest priority byte (+8); -1 if none
 8c01fec4	CDCGD_queue_unique_request	queues a new request for a3 (copying a1's names and 32 callbacks, buffer a2) unless one already exists, in which case a2 is freed
+8c015e40	draw_debug_quad	draws a white quad with corners (100, 100) and (300, 300) at depth 0.5
+8c01cbc8	mic_set_mode_check_connected	switches the recogniser mode for a1 (6, 0xc, 0x12 or other) and ends the session when the microphone is no longer connected
+8c02cbe4	talk_state_load_fields	loads the creature's talk/growth values from the a1 record (the counterpart of talk_state_save_fields)
+8c028afc	CAnimal_release_part_requests	releases the CD load requests of model part a2 (its texture and motion files) and then calls method 0xf0
+8c0300a4	talk_history_reset	clears the 45 keyword timestamps and their per-slot flags, the three 32-byte name buffers and the talk state
+8c0301f8	talk_history_tick	forgets keywords heard longer ago than 1000 / (level + 1) frames, finishes a completed talk event and advances the frame counter
+8c031fc4	float_approach_target	moves the value at +0x28 toward the target at +0x24 (rising by target / +0x34, falling by target / +0x38) and clears the busy flag on arrival
+8c06d474	CHerb_release_requests	releases the CD load requests of both model parts and the herb's texture files, then calls method 0xf0
