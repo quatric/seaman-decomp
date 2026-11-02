@@ -894,7 +894,7 @@ u32 Class_12b930_sub_0d0d1c(int a0, code *a1, u32 a2, u32 a3) {
                 uStack_38 = uVar1;
                 a1 = (code *)&uStack_38;
                 Vec3_scale_assign(auStack_20, a1);
-                Vec3_sub_014e38(a0 + iVar7 * 0xac + 0xc);
+                Vec3_add_fr_54_dirty(a0 + iVar7 * 0xac + 0xc);
                 iVar5 = iVar3 + 1;
                 if (7 < iVar3 + 1)
                     break;
@@ -2176,7 +2176,7 @@ int game_sub_0d25b4(int a0, u32 a1, u32 a2, u32 a3) {
     Class_12984c_ctor(a0 + 0x48);
     game_sub_0d2f14(a0, a1, a2, a3);
     set_flag_28_20(a0 + 0x48);
-    game_sub_014a20(a0 + 0x48);
+    set_flag_10_28(a0 + 0x48);
     return a0;
 }
 
@@ -10953,7 +10953,7 @@ u32 noop_0db184(void) {
 u32 game_sub_0db188(int a0, u32 a1, u32 a2, u32 a3) {
     game_sub_0d66d8(a0 + 0xa68, a1, a2, a3);
     set_vec3_field_44(a0 + 0x9e8);
-    game_sub_019574(a0 + 0x9e8);
+    set_vec_50_fr4_6(a0 + 0x9e8);
     (**(code **)(*(int *)(a0 + 0x9e8) + 0xc))((int *)(a0 + 0x9e8), a1, a2, a3);
     return 1;
 }

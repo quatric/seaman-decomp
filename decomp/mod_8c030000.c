@@ -7167,7 +7167,7 @@ u32 set_field_4_s16(int a0, u32 a1) {
 /*
  * clear_15_bytes  0x8c036058
  * zeroes the 15 bytes at a0
- * called by: game_sub_0243b0, game_sub_0ba284
+ * called by: Class_1299f8_sub_0243b0, game_sub_0ba284
  */
 int clear_15_bytes(int a0) {
     int iVar1;

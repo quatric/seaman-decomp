@@ -795,3 +795,32 @@
 8c238ede	copy_2_bytes	a0[0..1] = a1[0..1]
 8c25a566	array44_index_of	index of entry a2 in the array a0 of a1 0x44-byte entries, else -1
 8c2079a0	pvr_write_saved_regs	writes the saved PVR register values back to their registers
+8c26b526	init_once_clear_4bf4b8	clears the 0xc00-byte table at 8c4bf4b8 on the first call; counts calls
+8c26b212	init_once_clear_4bf038	clears the 0x480-byte table at 8c4bf038 on the first call; counts calls
+8c264b7a	ADXT_stop_when_drained	stops the mwRna output and sets state 5 once its read position reaches 0
+8c266690	sd_check_handle	0 for an open handle, else sets sd error 0x7000103 (null) or 0x7000102 (not open)
+8c26a6d8	mwSnd_flush_host_cmd	sdSysFlushHostCmd, printing E1241 on an unexpected error
+8c010080	run_atexit_list	pops and calls every handler on the exit list at 8c2787a0
+8c010a90	busy_wait_5	spins 5 times
+8c014e38	Vec3_add_fr_54_dirty	adds (fr4, fr5, fr6) to the vector at +0x54 and sets the changed flag +0x64
+8c014a20	set_flag_10_28	ORs 0x10 into the flags at +0x28
+8c0190f0	matrix_rotate_deg	rotates the current matrix by fr4 degrees (Ninja angle units via ninja_sub_256a78)
+8c019574	set_vec_50_fr4_6	stores (fr4, fr5, fr6) at +0x50
+8c016a20	avoid_zero_float_4	replaces a zero float at +4 with 1e-4
+8c0168b4	strip_cell_quad	*a2 = the four corners of cell a1 in a strip of (+0xc x +0x10) cells at (fr4, fr5), scaled by fr6
+8c01688c	set_texlist_and_num	sets texture list a1 and texture +8 on the object at +4
+8c0198dc	Class_1299f8_dtor	destroys the two vectors and frees the object when a1 > 0
+8c019928	Class_1299f8_dtor	destroys the two vectors and frees the object when a1 > 0
+8c0241e8	Class_1299f8_ctor_a	two zero vectors, then 8c02421c
+8c024088	Class_1299f8_ctor_b	two zero vectors, then matrix_sub_0241c4
+8c26b992	init_once_clear_4c00b8	clears the 0xc00-byte table at 8c4c00b8 on the first call; counts calls
+8c019b48	set_float_84_neg	stores -fr5 at +0x84
+8c235f44	move_pos_along_dir	moves position +0x40 of a0 (the object at 8c4c0cc0 when 0) by fr4 along its direction +0x4c
+8c01c68c	strcmp		2
+8c01d6ec	asr_take_flag_279278	returns and clears the flag at 8c279278
+8c01d704	asr_take_flag_27927c	returns and clears the flag at 8c27927c
+8c01f544	input_asr_take_flag_a	asr_take_flag_279278 for the input object
+8c01f56c	input_asr_take_flag_b	asr_take_flag_27927c for the input object
+8c01e028	buf256_clear	zeroes the length word and the 256 bytes after it at a1
+8c01e4dc	buf256_clear_b	zeroes the length word and the 256 bytes after it at a0
+8c01e04c	buf256_copy_from_global	copies the global buffer (8c279288, length 8c27928c) into a1

@@ -10628,9 +10628,9 @@ int ninja_sub_255bf6(int a0, int a1, u32 a2, int *a3) {
 /*
  * ninja_sub_255d6c  0x8c255d6c
  * area name: in the ninja library code range
- * called by: CAnimal_sub_026968, Class_1299f8_m4_019588, Class_129a24_m1_019b68, game_sub_02430c, gfxlib_sub_2163d4,
- * gfxlib_sub_2166e8, gfxlib_sub_22b7a8, gfxlib_sub_22bb70 (+8 more) decompiler: Heritage AFTER dead removal. Example
- * location: s0xffffffe0 : 0x8c255f08
+ * called by: CAnimal_sub_026968, Class_1299f8_m4_019588, Class_1299f8_sub_02430c, Class_129a24_m1_019b68,
+ * gfxlib_sub_2163d4, gfxlib_sub_2166e8, gfxlib_sub_22b7a8, gfxlib_sub_22bb70 (+8 more) decompiler: Heritage AFTER dead
+ * removal. Example location: s0xffffffe0 : 0x8c255f08
  */
 u32 ninja_sub_255d6c(u32 *a0, int a1, u32 a2, u32 a3, u32 ain0) {
     u32 uVar1;
@@ -11929,7 +11929,7 @@ u32 ninja_sub_2569e0(u32 *a0, int a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
  * ninja_sub_256a78  0x8c256a78
  * area name: in the ninja library code range
  * called by: CSquidLine_sub_0ad354, Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12aeec_sub_0a481c,
- * Class_12bec0_sub_0f5e0c, Vec3_sub_02374c, game_sub_0190f0, ninja_sub_023ebc
+ * Class_12bec0_sub_0f5e0c, Vec3_sub_02374c, matrix_rotate_deg, ninja_sub_023ebc
  */
 u32 ninja_sub_256a78(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;

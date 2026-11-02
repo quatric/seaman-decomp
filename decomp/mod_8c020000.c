@@ -4287,14 +4287,14 @@ void calc_vector_copy(u32 param_1, u64 *param_2, u64 *param_3) {
 }
 
 /*
- * Class_1299f8_sub_024088  0x8c024088
- * area name: only called from Class_1299f8 methods
+ * Class_1299f8_ctor_b  0x8c024088
+ * two zero vectors, then matrix_sub_0241c4
  * called by: Class_1299f8_m4_019588
  */
-int Class_1299f8_sub_024088(int a0, u32 a1, u32 a2, u32 a3) {
+int Class_1299f8_ctor_b(int a0, u32 a1, u32 a2, u32 a3) {
     Vec3_ctor_zero(a0, a1, a2);
     Vec3_ctor_zero(a0 + 0x10, a1, a2);
-    matrix_sub_0241c4(a0, a1, a2, a3);
+    Class_1299f8_sub_0241c4(a0, a1, a2, a3);
     return a0;
 }
 
@@ -4481,11 +4481,11 @@ u32 Class_1299f8_sub_0240bc(double *a0, double *a1, float *a2, u32 a3) {
 }
 
 /*
- * matrix_sub_0241c4  0x8c0241c4
- * area name: sits between matrix functions (same compilation unit)
- * called by: Class_1299f8_sub_024088
+ * Class_1299f8_sub_0241c4  0x8c0241c4
+ * area name: only called from Class_1299f8 methods
+ * called by: Class_1299f8_ctor_b
  */
-u32 matrix_sub_0241c4(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_1299f8_sub_0241c4(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     vec3_clear(a0, a1, a2, a3);
@@ -4494,23 +4494,23 @@ u32 matrix_sub_0241c4(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_1299f8_sub_0241e8  0x8c0241e8
- * area name: only called from Class_1299f8 methods
+ * Class_1299f8_ctor_a  0x8c0241e8
+ * two zero vectors, then 8c02421c
  * called by: Class_1299f8_m4_019588
  */
-int Class_1299f8_sub_0241e8(int a0, u32 a1, u32 a2, u32 a3) {
+int Class_1299f8_ctor_a(int a0, u32 a1, u32 a2, u32 a3) {
     Vec3_ctor_zero(a0, a1, a2);
     Vec3_ctor_zero(a0 + 0x10, a1, a2);
-    game_sub_02421c(a0, a1, a2, a3);
+    Class_1299f8_sub_02421c(a0, a1, a2, a3);
     return a0;
 }
 
 /*
- * game_sub_02421c  0x8c02421c
- * area name: game code; nothing names its area yet
- * called by: Class_1299f8_sub_0241e8
+ * Class_1299f8_sub_02421c  0x8c02421c
+ * area name: only called from Class_1299f8 methods
+ * called by: Class_1299f8_ctor_a
  */
-u32 game_sub_02421c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_1299f8_sub_02421c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     vec3_clear(a0, a1, a2, a3);
@@ -4519,10 +4519,10 @@ u32 game_sub_02421c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_024240  0x8c024240
- * area name: game code; nothing names its area yet
+ * Class_1299f8_sub_024240  0x8c024240
+ * area name: sits between Class_1299f8 functions (same compilation unit)
  */
-u32 game_sub_024240(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_1299f8_sub_024240(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -4561,11 +4561,11 @@ u32 CGame_sub_0242e8(void) {
 }
 
 /*
- * game_sub_02430c  0x8c02430c
- * area name: game code; nothing names its area yet
+ * Class_1299f8_sub_02430c  0x8c02430c
+ * area name: sits between Class_1299f8 functions (same compilation unit)
  * called by: game_sub_029af0
  */
-u32 game_sub_02430c(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 Class_1299f8_sub_02430c(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = ninja_sub_255d6c(g_8c27d1ec * 0x40 + 0x8c27c1ec, a0, a2, a3, a0);
@@ -4597,11 +4597,11 @@ u32 memmove_bytes_wrap_024378(u32 a0) {
 }
 
 /*
- * game_sub_0243b0  0x8c0243b0
- * area name: game code; nothing names its area yet
+ * Class_1299f8_sub_0243b0  0x8c0243b0
+ * area name: sits between Class_1299f8 functions (same compilation unit)
  * called by: SaveData_ctor, game_sub_0e8f54
  */
-int game_sub_0243b0(int a0, u32 a1, u32 a2) {
+int Class_1299f8_sub_0243b0(int a0, u32 a1, u32 a2) {
     u32 extraout_fr1;
     char cVar1;
 
@@ -8342,16 +8342,16 @@ u32 game_sub_029af0(int a0, int a1, int a2) {
     *(int *)(a0 + 0x434) = *(int *)(a0 + 0x434) + 0x18;
     njGetMatrix(auStack_74, uVar1, uVar3, uVar4, a0);
     touch_fields_30_3c(auStack_74, uVar1, uVar3, uVar4, a0);
-    game_sub_02430c(auStack_74, uVar1, uVar3, uVar4);
+    Class_1299f8_sub_02430c(auStack_74, uVar1, uVar3, uVar4);
     njGetMatrix(auStack_74, uVar1, uVar3, uVar4, a0);
     uVar1 = uStack_34;
     uVar3 = uStack_30;
     uVar4 = uStack_2c;
     ninja_sub_256e18(auStack_74, uStack_34, uStack_30, uStack_2c, a0);
-    game_sub_02430c(auStack_74, uVar1, uVar3, uVar4);
+    Class_1299f8_sub_02430c(auStack_74, uVar1, uVar3, uVar4);
     njGetMatrix(auStack_74, uVar1, uVar3, uVar4, a0);
     matrix_scale(auStack_74, uVar1, uVar3, uVar4, a0);
-    uVar1 = game_sub_02430c(auStack_74, uVar1, uVar3, uVar4);
+    uVar1 = Class_1299f8_sub_02430c(auStack_74, uVar1, uVar3, uVar4);
     return uVar1;
 }
 
@@ -11548,7 +11548,7 @@ int game_sub_02d4c4(int a0) {
 /*
  * game_sub_02d50c  0x8c02d50c
  * area name: game code; nothing names its area yet
- * called by: game_sub_0243b0
+ * called by: Class_1299f8_sub_0243b0
  */
 u32 *game_sub_02d50c(u32 *a0) {
     int iVar1;
@@ -13879,7 +13879,7 @@ int game_sub_02ff24(int a0, u8 *a1) {
 /*
  * game_sub_02ff40  0x8c02ff40
  * area name: game code; nothing names its area yet
- * called by: game_sub_0243b0, game_sub_0ba284
+ * called by: Class_1299f8_sub_0243b0, game_sub_0ba284
  */
 u8 *game_sub_02ff40(u8 *a0) {
     set_fields_0_1_4(a0 + 8);

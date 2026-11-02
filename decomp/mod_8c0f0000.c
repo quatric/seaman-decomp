@@ -20,7 +20,7 @@ u32 *copy_5_words(u32 *a0, u32 *a1, u32 a2) {
 /*
  * game_sub_0f3e30  0x8c0f3e30
  * area name: game code; nothing names its area yet
- * called by: game_sub_0243b0
+ * called by: Class_1299f8_sub_0243b0
  */
 u8 *game_sub_0f3e30(u8 *a0, u32 a1, u32 a2) {
     Vec3_ctor_zero(a0 + 0x1c, a1, a2);

@@ -10704,11 +10704,11 @@ u32 gfxlib_sub_235f1a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_sub_235f44  0x8c235f44
- * area name: in the gfxlib library code range
+ * move_pos_along_dir  0x8c235f44
+ * moves position +0x40 of a0 (the object at 8c4c0cc0 when 0) by fr4 along its direction +0x4c
  * called by: Class_129a24_m1_019b68
  */
-u32 gfxlib_sub_235f44(int a0) {
+u32 move_pos_along_dir(int a0) {
     float in_fr4;
 
     if (a0 == 0) {

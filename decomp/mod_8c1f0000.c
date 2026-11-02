@@ -11847,8 +11847,8 @@ u32 sh4_tmu_1f88c0(void) {
 
 /*
  * sh4_tmu_1f88e6  0x8c1f88e6
- * called by: ADXSTM_stop_read, adx_server, cri_sub_264c92, cri_sub_264e84, cri_sub_264e88, game_frame, game_sub_1017f4,
- * game_sub_1019f8 (+10 more)
+ * called by: ADXSTM_stop_read, ADXT_sub_264c92, adx_server, cri_sub_264e84, cri_sub_264e88, game_frame,
+ * game_sub_1017f4, game_sub_1019f8 (+10 more)
  */
 int sh4_tmu_1f88e6(u32 a0) {
     return -1 - *0xffd8000c;
@@ -11857,8 +11857,8 @@ int sh4_tmu_1f88e6(u32 a0) {
 /*
  * int_diff  0x8c1f88f0
  * returns a1 - a0
- * called by: ADXSTM_stop_read, adx_server, cri_sub_264c92, cri_sub_264e84, cri_sub_264e88, game_frame, game_sub_101de0,
- * ninja_sub_258e70
+ * called by: ADXSTM_stop_read, ADXT_sub_264c92, adx_server, cri_sub_264e84, cri_sub_264e88, game_frame,
+ * game_sub_101de0, ninja_sub_258e70
  */
 int int_diff(int a0, int a1) {
     return a1 - a0;
@@ -11867,7 +11867,7 @@ int int_diff(int a0, int a1) {
 /*
  * sh4_sub_1f88f6  0x8c1f88f6
  * area name: sits between sh4 functions (same compilation unit)
- * called by: cri_sub_264c92, cri_sub_264e84, cri_sub_264e88, game_sub_101de0
+ * called by: ADXT_sub_264c92, cri_sub_264e84, cri_sub_264e88, game_sub_101de0
  */
 int sh4_sub_1f88f6(u32 a0) {
     int iVar1;

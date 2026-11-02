@@ -765,7 +765,7 @@ u32 game_sub_100c34(int a0) {
 u32 game_sub_100c80(int a0) {
     int iVar1;
 
-    iVar1 = input_sub_01f56c(*(u32 *)(0xcc + a0));
+    iVar1 = input_asr_take_flag_b(*(u32 *)(0xcc + a0));
     return (u32)(iVar1 == 1);
 }
 
@@ -777,7 +777,7 @@ u32 game_sub_100c80(int a0) {
 u32 game_sub_100cb4(int a0) {
     int iVar1;
 
-    iVar1 = input_sub_01f544(*(u32 *)(0xcc + a0));
+    iVar1 = input_asr_take_flag_a(*(u32 *)(0xcc + a0));
     return (u32)(iVar1 == 1);
 }
 
@@ -2277,7 +2277,7 @@ u32 system_init_libs(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 in_PR;
 
-    libc_sub_010080(a0, a1, a2, a3);
+    run_atexit_list(a0, a1, a2, a3);
     gdfs_sub_1f38f2(a0, a1, a2, a3, in_PR);
     shinobi_sub_1f813e();
     shinobi_sub_1f62f0();

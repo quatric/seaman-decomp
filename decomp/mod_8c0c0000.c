@@ -4082,7 +4082,7 @@ u32 CGame_GetUserGameInfo(int a0, int a1, int a2, u8 *a3) {
     puVar7 = a3 + 0x30f4;
     memmove_wrap_0fa310(0x8c35468c, puVar7);
     uVar2 = field_ptr_384c(0x8c3dd7dc);
-    uVar2 = CGame_sub_01e04c(uVar2, a3 + 0x4104);
+    uVar2 = buf256_copy_from_global(uVar2, a3 + 0x4104);
     return uVar2;
 }
 
@@ -4161,7 +4161,7 @@ u32 game_sub_0c67f4(u32 unused_a0, u32 unused_a1, int a2, u32 a3) {
     iVar2 = a2 + 0x30f4;
     speech_sub_0fa2f0(0x8c35468c, iVar2);
     uVar1 = field_ptr_384c(0x8c3dd7dc);
-    uVar1 = game_sub_01e028(uVar1, a2 + 0x4104);
+    uVar1 = buf256_clear(uVar1, a2 + 0x4104);
     return uVar1;
 }
 
@@ -6843,7 +6843,7 @@ u32 game_sub_0cac08(int a0, u32 a1, u32 unused_a2, float *a3) {
                 if (iVar1 == 0) {
                     set_field_84(0x8c436f4c);
                 } else {
-                    Class_129a24_sub_019b48(0x8c436f4c);
+                    set_float_84_neg(0x8c436f4c);
                 }
             }
             iVar1 = (**(code **)(**(int **)(a0 + 8) + 0xf0))(*(int **)(a0 + 8), puVar2, puVar3, a3);
