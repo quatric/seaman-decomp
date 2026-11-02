@@ -3159,11 +3159,9 @@ u32 thunk_FUN_8c268a24(void) {
 }
 
 /*
- * FUN_8c268b70  0x8c2629ac
- * name hint from a string it uses: E1201 mwRnaCreate Illigal pa
- * called by: FUN_8c263840, FUN_8c268b70
+ * FUN_8c2629ac  0x8c2629ac
  */
-u32 FUN_8c268b70(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 FUN_8c2629ac(void) {
     u32 uVar1;
 
     uVar1 = FUN_8c268b70();
@@ -3183,12 +3181,9 @@ u32 FUN_8c2629b2(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c2690d8  0x8c2629d0
- * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c263c64, FUN_8c2647f4, FUN_8c264b14, FUN_8c264ba0, FUN_8c268cee, FUN_8c268d64, FUN_8c2690d8,
- * FUN_8c2694a4
+ * FUN_8c2629d0  0x8c2629d0
  */
-u32 FUN_8c2690d8(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 FUN_8c2629d0(void) {
     u32 uVar1;
 
     uVar1 = FUN_8c2690d8();
@@ -3196,12 +3191,9 @@ u32 FUN_8c2690d8(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c2691b8  0x8c2629d6
- * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c263c64, FUN_8c264a42, FUN_8c264b7a, FUN_8c264ba0, FUN_8c268d64, FUN_8c2691b8, FUN_8c2694a4,
- * FUN_8c26962c (+1 more)
+ * FUN_8c2629d6  0x8c2629d6
  */
-u32 FUN_8c2691b8(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 FUN_8c2629d6(void) {
     u32 uVar1;
 
     uVar1 = FUN_8c2691b8();
@@ -3209,11 +3201,9 @@ u32 FUN_8c2691b8(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c2699d0  0x8c2629dc
- * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c263cd8, FUN_8c263ce4, FUN_8c2699d0
+ * FUN_8c2629dc  0x8c2629dc
  */
-u32 FUN_8c2699d0(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 FUN_8c2629dc(void) {
     u32 uVar1;
 
     uVar1 = FUN_8c2699d0();
@@ -3221,11 +3211,9 @@ u32 FUN_8c2699d0(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c269aa8  0x8c2629e2
- * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c264a42, FUN_8c264b7a, FUN_8c269aa8
+ * FUN_8c2629e2  0x8c2629e2
  */
-u32 FUN_8c269aa8(u32 a0) {
+u32 FUN_8c2629e2(void) {
     u32 uVar1;
 
     uVar1 = FUN_8c269aa8();
@@ -3252,11 +3240,10 @@ u32 thunk_FUN_8c2695e4(void) {
 }
 
 /*
- * mwRnaSetNumChan  0x8c262a00
+ * mwRnaSetNumChan_wrap  0x8c262a00
  * only calls mwRnaSetNumChan
- * called by: FUN_8c2647f4, FUN_8c268b70, mwRnaSetNumChan
  */
-u32 mwRnaSetNumChan(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 mwRnaSetNumChan_wrap(void) {
     u32 uVar1;
 
     uVar1 = mwRnaSetNumChan();
@@ -3264,11 +3251,9 @@ u32 mwRnaSetNumChan(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c269c04  0x8c262a06
- * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c2647f4, FUN_8c268b70, FUN_8c269c04, FUN_8c269fc8
+ * FUN_8c262a06  0x8c262a06
  */
-u32 FUN_8c269c04(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 FUN_8c262a06(void) {
     u32 uVar1;
 
     uVar1 = FUN_8c269c04();
@@ -3276,11 +3261,9 @@ u32 FUN_8c269c04(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c269c3e  0x8c262a0c
- * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c263e8e, FUN_8c2647f4, FUN_8c269c3e
+ * FUN_8c262a0c  0x8c262a0c
  */
-u32 FUN_8c269c3e(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 FUN_8c262a0c(void) {
     u32 uVar1;
 
     uVar1 = FUN_8c269c3e();
@@ -3288,11 +3271,9 @@ u32 FUN_8c269c3e(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c269b8e  0x8c262a18
- * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c2647f4, FUN_8c268b70, FUN_8c269b8e, FUN_8c269fc8
+ * FUN_8c262a18  0x8c262a18
  */
-u32 FUN_8c269b8e(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 FUN_8c262a18(void) {
     u32 uVar1;
 
     uVar1 = FUN_8c269b8e();
@@ -3300,11 +3281,10 @@ u32 FUN_8c269b8e(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * mwRnaDiscardData  0x8c262a36
+ * mwRnaDiscardData_wrap  0x8c262a36
  * only calls mwRnaDiscardData
- * called by: FUN_8c2641ee, mwRnaDiscardData
  */
-u32 mwRnaDiscardData(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 mwRnaDiscardData_wrap(void) {
     u32 uVar1;
 
     uVar1 = mwRnaDiscardData();
@@ -11088,7 +11068,7 @@ char *FUN_8c268b48(void) {
 /*
  * FUN_8c268b70  0x8c268b70
  * name hint from a string it uses: E1201 mwRnaCreate Illigal pa
- * called by: FUN_8c263840, FUN_8c268b70
+ * called by: FUN_8c2629ac, FUN_8c263840
  */
 u32 FUN_8c268b70(int *a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -11471,7 +11451,7 @@ int mwRnaPause(u32 a0, u32 unused_a1, u32 a2, u32 a3, int ain0) {
 /*
  * FUN_8c2690d8  0x8c2690d8
  * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c263c64, FUN_8c2647f4, FUN_8c264b14, FUN_8c264ba0, FUN_8c268cee, FUN_8c268d64, FUN_8c2690d8,
+ * called by: FUN_8c2629d0, FUN_8c263c64, FUN_8c2647f4, FUN_8c264b14, FUN_8c264ba0, FUN_8c268cee, FUN_8c268d64,
  * FUN_8c2694a4 strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 FUN_8c2690d8(int a0, int a1, u32 a2, u32 a3) {
@@ -11527,7 +11507,7 @@ u32 FUN_8c2690d8(int a0, int a1, u32 a2, u32 a3) {
 /*
  * FUN_8c2691b8  0x8c2691b8
  * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c263c64, FUN_8c264a42, FUN_8c264b7a, FUN_8c264ba0, FUN_8c268d64, FUN_8c2691b8, FUN_8c2694a4,
+ * called by: FUN_8c2629d6, FUN_8c263c64, FUN_8c264a42, FUN_8c264b7a, FUN_8c264ba0, FUN_8c268d64, FUN_8c2694a4,
  * FUN_8c26962c (+1 more) strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 FUN_8c2691b8(int a0, int a1, u32 a2, u32 a3) {
@@ -11917,7 +11897,7 @@ u32 FUN_8c269738(int a0, int a1, u8 *a2, u32 a3) {
 /*
  * mwRnaDiscardData  0x8c269808
  * named from the library error message it prints (mwRnaDiscardData)
- * called by: FUN_8c2641ee, mwRnaDiscardData
+ * called by: FUN_8c2641ee, mwRnaDiscardData_wrap
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"; "E1210:mwRnaDiscardData Play Switch is ON"
  */
 u32 mwRnaDiscardData(int a0, int a1, u8 *a2, u8 *a3) {
@@ -12017,7 +11997,7 @@ u32 mwRnaDiscardData(int a0, int a1, u8 *a2, u8 *a3) {
 /*
  * FUN_8c2699d0  0x8c2699d0
  * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c263cd8, FUN_8c263ce4, FUN_8c2699d0
+ * called by: FUN_8c2629dc, FUN_8c263cd8, FUN_8c263ce4
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 FUN_8c2699d0(int a0, int *a1, u32 *a2, u32 a3) {
@@ -12113,7 +12093,7 @@ u32 FUN_8c269a7e(int a0) {
 /*
  * FUN_8c269aa8  0x8c269aa8
  * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c264a42, FUN_8c264b7a, FUN_8c269aa8
+ * called by: FUN_8c2629e2, FUN_8c264a42, FUN_8c264b7a
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 FUN_8c269aa8(int a0) {
@@ -12150,7 +12130,7 @@ u32 FUN_8c269ac6(int a0) {
 /*
  * mwRnaSetNumChan  0x8c269ae8
  * named from the library error message it prints (mwRnaSetNumChan)
- * called by: FUN_8c2647f4, FUN_8c268b70, mwRnaSetNumChan
+ * called by: FUN_8c2647f4, FUN_8c268b70, mwRnaSetNumChan_wrap
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"; "E1211:mwRnaSetNumChan Illigal parameter(NCH>MAXNCH)"
  */
 u32 mwRnaSetNumChan(int a0, int a1, u32 a2, u32 a3) {
@@ -12203,7 +12183,7 @@ u32 FUN_8c269b6e(int a0, u32 a1) {
 /*
  * FUN_8c269b8e  0x8c269b8e
  * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c2647f4, FUN_8c268b70, FUN_8c269b8e, FUN_8c269fc8
+ * called by: FUN_8c262a18, FUN_8c2647f4, FUN_8c268b70, FUN_8c269fc8
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 FUN_8c269b8e(int a0, u32 a1, u32 a2, u32 a3) {
@@ -12229,7 +12209,7 @@ u32 FUN_8c269b8e(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * FUN_8c269c04  0x8c269c04
  * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c2647f4, FUN_8c268b70, FUN_8c269c04, FUN_8c269fc8
+ * called by: FUN_8c262a06, FUN_8c2647f4, FUN_8c268b70, FUN_8c269fc8
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 FUN_8c269c04(int a0, u32 a1, u32 a2, u32 a3) {
@@ -12247,7 +12227,7 @@ u32 FUN_8c269c04(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * FUN_8c269c3e  0x8c269c3e
  * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c263e8e, FUN_8c2647f4, FUN_8c269c3e
+ * called by: FUN_8c262a0c, FUN_8c263e8e, FUN_8c2647f4
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 FUN_8c269c3e(int a0, int a1, u32 a2, u32 a3) {

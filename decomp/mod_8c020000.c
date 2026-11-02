@@ -4009,11 +4009,12 @@ u32 *FUN_8c023df4(u32 *a0) {
 }
 
 /*
- * FUN_8c023e04  0x8c023e04
- * called by: Class_129938_m2_0171f4, Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704, FUN_8c016f84, FUN_8c04f034,
- * FUN_8c06c9c8, FUN_8c06ca34, FUN_8c077a38 (+8 more)
+ * Vec3_assign_copy  0x8c023e04
+ * a0 = a1
+ * called by: Class_129938_m2_0171f4, Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704, FUN_8c04f034, FUN_8c06c9c8,
+ * FUN_8c06ca34, FUN_8c077a38, FUN_8c09e204 (+8 more)
  */
-u32 *FUN_8c023e04(u32 *a0, u32 *a1) {
+u32 *Vec3_assign_copy(u32 *a0, u32 *a1) {
     *a0 = *a1;
     a0[1] = a1[1];
     a0[2] = a1[2];
@@ -10855,7 +10856,7 @@ u32 FUN_8c02cbe4(int a0, u32 *a1, u32 a2, u32 a3) {
     FUN_8c02ce34(a0, a1[2]);
     FUN_8c02ce28(a0, a1[3]);
     FUN_8c02cbbc(a0 + 0x90, a1[4]);
-    FUN_8c02ce10(a0 + 0x90, a1[5], a2);
+    counter_set_clamped(a0 + 0x90, a1[5], a2);
     set_field_0_u8_02cb7c(a0 + 0xa8, (int)*(char *)(a1 + 6), a2, a3);
     set_field_1_s8(a0 + 0xa8, (int)*(char *)((int)a1 + 0x19));
     set_field_8(a0 + 0xa8, a1[7]);
@@ -10908,11 +10909,12 @@ u32 set_field_10_02ce08(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c02ce10  0x8c02ce10
+ * counter_set_clamped  0x8c02ce10
+ * +8 = min(a1, +0x10); returns how far a1 was below the limit
  * called by: Class_12a078_m2_05eee0, FUN_8c02cbe4, FUN_8c035740, FUN_8c035858, FUN_8c05d860, FUN_8c0611cc,
  * FUN_8c0620d4, FUN_8c062b0c (+5 more)
  */
-u32 FUN_8c02ce10(int a0, int a1, u32 a2) {
+u32 counter_set_clamped(int a0, int a1, u32 a2) {
     int iVar1;
 
     iVar1 = *(int *)(a0 + 0x10) - a1;

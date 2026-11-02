@@ -279,7 +279,7 @@ u32 FUN_8c0306d4(int a0, u32 a1, u32 a2, u32 a3) {
                 *(u32 *)(0xb0 + a0) = 0;
                 *(u32 *)(a0 + 0x60) = a2;
                 iVar6 = a0;
-                uVar2 = (*(code *)(&FUN_8c0f82a4))(0x8c35468c, *(u32 *)(0x2ec + a0), a0, a3);
+                uVar2 = (*(code *)(&speech_restart))(0x8c35468c, *(u32 *)(0x2ec + a0), a0, a3);
                 *(u32 *)(0x2e8 + a0) = uVar2;
                 FUN_8c030870(a0, 2, iVar6, a3);
                 if (*(int *)(0x2e8 + a0) != -1) {
@@ -296,7 +296,7 @@ u32 FUN_8c0306d4(int a0, u32 a1, u32 a2, u32 a3) {
             *(u32 *)(0xb0 + a0) = 0;
             *(u32 *)(a0 + 0x60) = a2;
             FUN_8c030870(a0, 2, uVar2, a3);
-            uVar2 = FUN_8c0f82a4(0x8c35468c, *(u32 *)(0x2ec + a0), a0, a3);
+            uVar2 = speech_restart(0x8c35468c, *(u32 *)(0x2ec + a0), a0, a3);
             *(u32 *)(0x2e8 + a0) = uVar2;
             if (*(int *)(0x2e8 + a0) != -1) {
                 *(u8 *)(0x774 + a0) = 1;
@@ -574,10 +574,11 @@ int FUN_8c030e10(int a0) {
 }
 
 /*
- * FUN_8c030e34  0x8c030e34
+ * set_6_floats  0x8c030e34
+ * a0[0..5] = fr4..fr9
  * called by: FUN_8c05d2bc, FUN_8c084bcc, FUN_8c098b6c, FUN_8c0a4448, FUN_8c0ab5c0, FUN_8c0b590c
  */
-u32 *FUN_8c030e34(u32 *a0) {
+u32 *set_6_floats(u32 *a0) {
     u32 in_fr5;
     u32 in_fr4;
     u32 in_fr7;
@@ -1761,7 +1762,7 @@ u32 FUN_8c03207c(int a0, u32 a1) {
     *(float *)(a0 + 0xa8) = fVar1;
     fVar2 = (fVar1 * 65536.0) / 6.283184;
     fVar4 = 6.283184;
-    FUN_8c25747c((int)fVar2, a1, r6, r7, in_fr4);
+    njSinCos((int)fVar2, a1, r6, r7, in_fr4);
     uStack_c = fVar4;
     fVar1 = in_fr4;
     if (cVar6 != '\0') {
@@ -1819,7 +1820,7 @@ u32 FUN_8c03207c(int a0, u32 a1) {
         dVar3 = dVar3 / dVar3;
         ar4_00 = (int)dVar3;
     }
-    FUN_8c25747c(ar4_00, a1, r6, r7, in_fr4);
+    njSinCos(ar4_00, a1, r6, r7, in_fr4);
     fVar1 = (float)((u64)dVar3 >> 0x20);
     if (cVar6 == '\0') {
         dVar3 = (double)(u64)in_fr6;
@@ -6535,7 +6536,7 @@ u32 FUN_8c035740(u32 *a0, u32 unused_a1, int a2, u32 a3) {
     if ((((1 < iVar3) && (iVar3 = get_field_178_035734(a0[3], uVar2, a2), iVar3 == 0)) &&
          (iVar3 = FUN_8c02c340(a0[2] + 0x90, uVar2, a2, a3), iVar3 < 0x31)) &&
         (uVar2 = get_field_be_s8(a0[5]), (char)uVar2 == '\x02')) {
-        FUN_8c02ce10(a0[2] + 0x90, 0, a2);
+        counter_set_clamped(a0[2] + 0x90, 0, a2);
         return 1;
     }
     return 0;
@@ -6585,7 +6586,7 @@ u32 FUN_8c035858(u32 *a0, u32 unused_a1, int a2, u32 a3) {
          (iVar4 = FUN_8c02c340(a0[2] + 0x90, uVar3, a2, a3), iVar4 < 0x31)) &&
         (((uVar2 = get_field_be_s8(a0[5]), (char)uVar2 == '\x02' && (iVar4 = get_field_c0_034f3c(a0[5]), iVar4 == 0)) &&
           (iVar4 = get_field_40_03598c(a0[5], uVar3), iVar4 == 0)))) {
-        FUN_8c02ce10(a0[2] + 0x90, 0, a2);
+        counter_set_clamped(a0[2] + 0x90, 0, a2);
         return 1;
     }
     return 0;

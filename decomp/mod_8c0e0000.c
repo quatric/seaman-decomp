@@ -4796,7 +4796,7 @@ u32 FUN_8c0e705c(int a0, int a1, u32 a2) {
     dVar5 = (double)CONCAT44((int)((u64)in_dr14 >> 0x20), fVar4);
     ar4_00 = (int)fVar4;
     iVar6 = a1;
-    FUN_8c25747c(ar4_00, a1, a2, r7, a1);
+    njSinCos(ar4_00, a1, a2, r7, a1);
     float_check_errno(ar4_00, a1, a2, r7, iVar6);
     if (cVar8 == '\0') {
         dVar5 = (double)CONCAT44((int)((u64)dVar5 >> 0x20), uVar1);

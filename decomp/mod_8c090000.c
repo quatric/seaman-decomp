@@ -5273,10 +5273,10 @@ u32 FUN_8c098b6c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
         /* WARNING: Read-only address (ram,0x8c126034) is written */
         g_8c126030 = 0xffffffff00800000;
     }
-    uVar1 = FUN_8c030e34(auStack_1c);
-    FUN_8c05d608(0x8c2846d0, uVar1);
-    uVar1 = FUN_8c030e34(auStack_34);
-    uVar1 = FUN_8c05d608(0x8c2846e8, uVar1);
+    uVar1 = set_6_floats(auStack_1c);
+    copy_6_words(0x8c2846d0, uVar1);
+    uVar1 = set_6_floats(auStack_34);
+    uVar1 = copy_6_words(0x8c2846e8, uVar1);
     return uVar1;
 }
 
@@ -6250,7 +6250,7 @@ u32 Class_12a7f4_m5_09aa48(u32 a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
     *(u32 *)((int)&uStack_4 + iVar1) = a0;
     FUN_8c0b7a54((int)&s0 + iVar1);
     FUN_8c0294c0(*(u32 *)((int)&uStack_4 + iVar1), (int)&s0 + iVar1, a2, a3);
-    uVar2 = FUN_8c068818((int)&s0 + iVar1, 0xffffffff, a2, a3);
+    uVar2 = dtor_delete_with_ac((int)&s0 + iVar1, 0xffffffff, a2, a3);
     return uVar2;
 }
 
@@ -7445,7 +7445,7 @@ u32 Class_12a990_m2_09bc2c(int a0, float *a1, code *a2, code *a3) {
                         dVar13 = dVar13 / dVar13;
                         iVar6 = (int)dVar13;
                     }
-                    FUN_8c25747c(iVar6, iVar10, a2, pcVar9, uVar2);
+                    njSinCos(iVar6, iVar10, a2, pcVar9, uVar2);
                     if (cVar18 == '\0') {
                         dVar13 = (double)CONCAT44((int)((u64)dVar13 >> 0x20), *(u32 *)(a0 + 0x6d8));
                     } else {
@@ -7518,7 +7518,7 @@ u32 Class_12a990_m2_09bc2c(int a0, float *a1, code *a2, code *a3) {
                         dVar13 = dVar13 / dVar13;
                         iVar10 = (int)dVar13;
                     }
-                    FUN_8c25747c(iVar10, 0x6c8, a2, pcVar9, uVar2);
+                    njSinCos(iVar10, 0x6c8, a2, pcVar9, uVar2);
                     if (cVar18 == '\0') {
                         dVar13 = (double)CONCAT44((int)((u64)dVar13 >> 0x20), *(u32 *)(a0 + 0x6cc));
                     } else {
@@ -7738,7 +7738,7 @@ u32 Class_12a990_m2_09bc2c(int a0, float *a1, code *a2, code *a3) {
             dVar13 = dVar13 / dVar13;
             iVar5 = (int)dVar13;
         }
-        FUN_8c25747c(iVar5, pfVar7, a2, pcVar9, uVar2);
+        njSinCos(iVar5, pfVar7, a2, pcVar9, uVar2);
         if (cVar18 == '\0') {
             dVar13 = (double)CONCAT44((int)((u64)dVar13 >> 0x20), *(u32 *)(a0 + 0x6cc));
         } else {
@@ -7862,7 +7862,7 @@ u32 Class_12a990_m5_09c738(u32 a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
     FUN_8c0b7a54((int)&s0 + iVar1);
     (**(code **)(*(int *)(*(int *)((int)&iStack_4 + iVar1) + 8) + 0x20))(*(int *)((int)&iStack_4 + iVar1),
                                                                          (int)&s0 + iVar1, a2, a3);
-    uVar2 = FUN_8c068818((int)&s0 + iVar1, 0xffffffff, a2, a3);
+    uVar2 = dtor_delete_with_ac((int)&s0 + iVar1, 0xffffffff, a2, a3);
     return uVar2;
 }
 
@@ -9062,7 +9062,7 @@ u32 FUN_8c09e204(int a0) {
     matrix_scale(0, ar5_00, ar6_00, iVar2, in_stack_ffffffec);
     (**(code **)(*(int *)(a0 + 8) + 0x3c))(a0, ar5_00, ar6_00, iVar2);
     matrix_pop_n(1);
-    FUN_8c023e04(a0 + 0x5c, &stack0xffffffec);
+    Vec3_assign_copy(a0 + 0x5c, &stack0xffffffec);
     uVar1 = free_if_nonnull_wrap_016ac4(&stack0xffffffec, 0xffffffff, ar6_00, iVar2);
     return uVar1;
 }

@@ -125,3 +125,30 @@
 8c11cd02	lib11c_set_error	records error a1 if none is set, under the handle's lock callbacks
 8c11cd44	lib11c_take_error	returns and clears the handle's pending error
 8c11ca24	lib11c_check_handle	checks the handle magic 0x218df4f5 and its state; 0 when valid
+8c1fac58	scif_putc	writes one byte to the SH-4 serial port (SCIF, or SCI when 0x8c475ed8 is 1), waiting for room
+8c1fad9a	scif_puts	scif_putc for each byte of a string
+8c0f8368	speech_start	starts speech mode a1 on the speech player (0x8c35468c); for mode 1, a2 names the line ("HIGYOLINE0", "FROGMANLINE0", ...)
+8c0f8320	speech_request	speech_start when the player is idle (+0x1014 == 0); 0 otherwise
+8c0f82a4	speech_restart	stops the current speech if one is running, then speech_start
+8c0f8214	speech_stop	stops the current speech and clears its active flag (+0x89134)
+8c0bf170	speech_request_pair	copies two names to 0x8c4362a0/0x8c4362c0 and requests speech mode 6 with them
+8c205e00	kamui_cfg_texture16mb	reads the "HARDWARE" / "EnableTexture16MB" configuration option
+8c023e04	Vec3_assign_copy	a0 = a1
+8c05d608	copy_6_words	a0[0..5] = a1[0..5]
+8c030e34	set_6_floats	a0[0..5] = fr4..fr9
+8c0c51a0	set_timeout_120	+0x188 = a1 and a 120-frame countdown at +0x18c
+8c02ce10	counter_set_clamped	+8 = min(a1, +0x10); returns how far a1 was below the limit
+8c1fce88	slot80_get_active	+4 of entry a0 in the 0x80-byte table at 0x8c475fc0
+8c1fce98	slot80_set_8	+8 of entry a0 in the 0x80-byte table at 0x8c475fc0 = a1
+8c1fcea8	slot80_set_params	stores six parameters in entry a0 of the table at 0x8c475fc0 and marks it active
+8c111dfe	mring_write_advance	advances the write position of a multi-reader ring buffer by one element and counts it for each idle reader
+8c111fbe	mring_read_advance	advances reader a1 of a multi-reader ring buffer by one element
+8c068818	dtor_delete_with_ac	destroys the member at +0xac and frees the object when the delete flag is set
+8c255f40	njOuterProduct	a2 = a0 x a1
+8c2551aa	Vec3_lerp_nj	a2 = lerp(a0, a1, fr4) (the Ninja library's copy)
+8c256254	matrix_pop1	pops one 4x4 matrix off the matrix stack if more than one is on it
+8c25747c	njSinCos	sine and cosine of a Ninja angle (0..65535 = one turn)
+8c258d4c	draw_state_select	makes polygon-state block a0 (0xc0 bytes each at 0x8c4aa73c) current and loads it
+8c259968	draw_state_copy_out	copies the current 0xc0-byte polygon state and texture selection into a0
+8c259988	draw_state_copy_in	loads a polygon state saved by draw_state_copy_out
+8c258ac0	screen_reset_view	centres the view on the screen size and sets the clip rectangle to the full screen

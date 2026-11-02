@@ -10723,7 +10723,7 @@ u8 *FUN_8c235f84(double *a0) {
     } else {
         uVar5 = 0x8010;
     }
-    pvr_20a844_wrap_20a238(uVar5);
+    pvr_wrap_20a238(uVar5);
     fVar14 = SUB84(dVar15, 0);
     if (cVar20 == '\0') {
         in_xd14 = (double)CONCAT44(fVar14, 0x43800000);

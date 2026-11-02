@@ -4146,7 +4146,7 @@ u32 FUN_8c077a38(int a0, float *a1, float *a2, code *a3) {
                 pcVar10 = deref_u32;
                 piVar4 = (int *)deref_u32(uVar5);
                 FUN_8c0348ac(a0 + 0xb0, *(u32 *)(*piVar4 + 8), piVar4, pcVar10);
-                FUN_8c023e04(auStack_50, auStack_f4);
+                Vec3_assign_copy(auStack_50, auStack_f4);
                 free_if_nonnull_wrap_016ac4(auStack_f4, 0xffffffff, piVar4, pcVar10);
                 vec3_copy_8c02b5fc(auStack_100, in_stack_00000000, piVar4);
                 FUN_8c023484(auStack_38, auStack_100, piVar4, pcVar10, auStack_110);
@@ -4182,7 +4182,7 @@ u32 FUN_8c077a38(int a0, float *a1, float *a2, code *a3) {
                 pcVar6 = (code *)deref_u32(uVar5);
                 a3 = (code *)auStack_158;
                 FUN_8c0348ac(a0 + 0xb0, *(u32 *)(*(int *)pcVar6 + 8), pcVar6, a3);
-                FUN_8c023e04(auStack_50, auStack_158);
+                Vec3_assign_copy(auStack_50, auStack_158);
                 free_if_nonnull_wrap_016ac4(auStack_158, 0xffffffff, pcVar6, a3);
                 vec3_copy_8c02b5fc(auStack_164, in_stack_00000000, pcVar6);
                 FUN_8c023484(auStack_38, auStack_164, pcVar6, a3, auStack_174);

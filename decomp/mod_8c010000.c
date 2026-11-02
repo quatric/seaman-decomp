@@ -11803,7 +11803,7 @@ char *strcat(char *a0, char *a1) {
 
 /*
  * FUN_8c01439c  0x8c01439c
- * called by: FUN_8c205e00
+ * called by: kamui_cfg_texture16mb
  */
 u32 FUN_8c01439c(u32 a0, u32 a1) {
     u32 uVar1;
@@ -15058,18 +15058,19 @@ u32 FUN_8c016f50(int a0, int *a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     (**(code **)(*a1 + 0x34))(a1, a0 + 0x30, a2, a3);
-    uVar1 = FUN_8c016f84(a1, a0 + 0x20);
+    uVar1 = Vec3_assign_copy_wrap(a1, a0 + 0x20);
     return uVar1;
 }
 
 /*
- * FUN_8c016f84  0x8c016f84
+ * Vec3_assign_copy_wrap  0x8c016f84
+ * only calls Vec3_assign_copy
  * called by: Class_129938_m7_0177d0, FUN_8c016f50
  */
-u32 FUN_8c016f84(int a0, u32 a1) {
+u32 Vec3_assign_copy_wrap(int a0, u32 a1) {
     u32 uVar1;
 
-    uVar1 = FUN_8c023e04(a1, a0 + 0x20);
+    uVar1 = Vec3_assign_copy(a1, a0 + 0x20);
     return uVar1;
 }
 
@@ -15250,7 +15251,7 @@ u32 Class_129938_m2_0171f4(int a0, u32 a1, u32 a2, u32 a3) {
     (**(code **)(*in_stack_00000000 + 0x38))(in_stack_00000000, auStack_6c, a2, a3);
     Vec3_assign(a0 + 4, a1, ar6_00, ar7_00);
     vec3_copy_8c023d8c(a0 + 0x14, a2, ar6_00, ar7_00);
-    FUN_8c023e04(a0 + 0x20, a3);
+    Vec3_assign_copy(a0 + 0x20, a3);
     njGetMatrix(auStack_ac, a3, ar6_00, ar7_00, a1);
     FUN_8c25b5d0(auStack_ac, a3, ar6_00, ar7_00, a1);
     if (cVar5 == '\0') {
@@ -15541,7 +15542,7 @@ u32 Class_129938_m7_0177d0(int a0, int *a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     (**(code **)(*a1 + 0x38))(a1, a0 + 0x30, a2, a3);
-    uVar1 = FUN_8c016f84(a1, a0 + 0x20);
+    uVar1 = Vec3_assign_copy_wrap(a1, a0 + 0x20);
     return uVar1;
 }
 
@@ -18250,7 +18251,7 @@ u32 Class_129a24_m1_019b68(int a0, u32 unused_a1, u32 a2, u32 a3) {
     }
     puVar3 = &uStack_b8;
     puVar2 = &uStack_c4;
-    FUN_8c255f40(&uStack_ac, puVar2, puVar3);
+    njOuterProduct(&uStack_ac, puVar2, puVar3);
     if (cVar8 == '\0') {
         dVar5 = (double)CONCAT44(uStack_b8, *(u32 *)(a0 + 0x84));
     } else {

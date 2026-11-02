@@ -2606,22 +2606,22 @@ u32 FUN_8c084bcc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     global_list_push(uStack_160, (&Vec3_dtor), 0x8c280ea8, a3);
     uVar3 = 0xffffffff;
     Vec3_dtor((int)&uStack_180 + 0x11c, 0xffffffff, uVar1, a3);
-    uVar3 = FUN_8c030e34((int)&uStack_180 + 0x104);
-    FUN_8c05d608(0x8c280eb4, uVar3);
-    uVar3 = FUN_8c030e34((int)&uStack_180 + 0xec);
-    FUN_8c05d608(0x8c280eb4 + 0x18, uVar3);
-    uVar3 = FUN_8c030e34((int)&uStack_180 + 0xd4);
-    FUN_8c05d608(0x8c280eb4 + 0x30, uVar3);
-    uVar3 = FUN_8c030e34((int)&uStack_180 + 0xbc);
-    FUN_8c05d608(0x8c280eb4 + 0x48, uVar3);
-    uVar3 = FUN_8c030e34((int)&uStack_180 + 0xa4);
-    FUN_8c05d608(0x8c280eb4 + 0x60, uVar3);
-    uVar3 = FUN_8c030e34((int)&uStack_180 + 0x8c);
-    FUN_8c05d608(0x8c280eb4 + 0x78, uVar3);
-    uVar3 = FUN_8c030e34(auStack_10c);
-    FUN_8c05d608(0x8c280eb4 + 0x90, uVar3);
-    uStack_180 = FUN_8c030e34(auStack_124);
-    uVar1 = FUN_8c05d608(0x8c280eb4 + 0xa8, uStack_180);
+    uVar3 = set_6_floats((int)&uStack_180 + 0x104);
+    copy_6_words(0x8c280eb4, uVar3);
+    uVar3 = set_6_floats((int)&uStack_180 + 0xec);
+    copy_6_words(0x8c280eb4 + 0x18, uVar3);
+    uVar3 = set_6_floats((int)&uStack_180 + 0xd4);
+    copy_6_words(0x8c280eb4 + 0x30, uVar3);
+    uVar3 = set_6_floats((int)&uStack_180 + 0xbc);
+    copy_6_words(0x8c280eb4 + 0x48, uVar3);
+    uVar3 = set_6_floats((int)&uStack_180 + 0xa4);
+    copy_6_words(0x8c280eb4 + 0x60, uVar3);
+    uVar3 = set_6_floats((int)&uStack_180 + 0x8c);
+    copy_6_words(0x8c280eb4 + 0x78, uVar3);
+    uVar3 = set_6_floats(auStack_10c);
+    copy_6_words(0x8c280eb4 + 0x90, uVar3);
+    uStack_180 = set_6_floats(auStack_124);
+    uVar1 = copy_6_words(0x8c280eb4 + 0xa8, uStack_180);
     return uVar1;
 }
 
@@ -5337,7 +5337,7 @@ u32 Class_12a5d0_m2_08a49c(int a0, u32 a1, u32 a2, u32 a3) {
         if ((iVar2 == 9) && ((short)uVar1 == 3)) {
             Vec3_assign(a0 + 0x900, a0 + 0x30, a2, ar7_00);
             vec3_copy_8c023d8c(a0 + 0x910, a0 + 0x50, a2, ar7_00);
-            FUN_8c023e04(a0 + 0x91c, a0 + 0x5c);
+            Vec3_assign_copy(a0 + 0x91c, a0 + 0x5c);
             *(u32 *)(a0 + 0x8fc) = 0x1e;
         } else {
             iVar2 = *(int *)(a0 + 0x8fc) + -1;
@@ -5449,7 +5449,7 @@ u32 Class_12a5d0_m3_08a704(int a0, u32 a1, u32 a2, u32 a3) {
         if ((iVar2 == 9) && ((short)uVar1 == 3)) {
             Vec3_assign(a0 + 0x900, a0 + 0x30, a2, ar7_00);
             vec3_copy_8c023d8c(a0 + 0x910, a0 + 0x50, a2, ar7_00);
-            FUN_8c023e04(a0 + 0x91c, a0 + 0x5c);
+            Vec3_assign_copy(a0 + 0x91c, a0 + 0x5c);
             *(u32 *)(a0 + 0x8fc) = 0x1e;
         } else {
             iVar2 = *(int *)(a0 + 0x8fc) + -1;

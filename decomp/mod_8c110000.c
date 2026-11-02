@@ -206,13 +206,13 @@ u32 FUN_8c110680(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     cVar6 = '\0';
     if ((*(char *)(**(int **)(a0 + 0x10) + 0x30) != '\x01') || (*(u32 *)(a0 + 0x48) < *(u32 *)(a0 + 0x2c))) {
         uVar4 = (*(u32 **)(a0 + 0xc))[1];
-        pfVar1 = (float *)FUN_8c111fbe(**(u32 **)(a0 + 0xc), uVar4, unused_a2, a3);
+        pfVar1 = (float *)mring_read_advance(**(u32 **)(a0 + 0xc), uVar4, unused_a2, a3);
         if (pfVar1 == NULL) {
             if (*(char *)(a0 + 0x28) != '\0') {
                 iVar3 = *(int *)(a0 + 0x48);
                 while (iVar3 != 0) {
                     cVar6 = '\0';
-                    iVar3 = FUN_8c111dfe(**(u32 **)(a0 + 0x10));
+                    iVar3 = mring_write_advance(**(u32 **)(a0 + 0x10));
                     if (iVar3 == 0)
                         break;
                     if (cVar6 == '\0') {
@@ -245,7 +245,7 @@ u32 FUN_8c110680(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
             }
             if (*(int *)(a0 + 0x48) == *(int *)(a0 + 0x2c)) {
                 cVar6 = '\0';
-                uVar4 = FUN_8c111dfe(**(u32 **)(a0 + 0x10));
+                uVar4 = mring_write_advance(**(u32 **)(a0 + 0x10));
                 if (cVar6 == '\0') {
                     uVar5 = CONCAT44(*(u32 *)(a0 + 0x44), *(u32 *)(a0 + 0x34));
                 } else {
@@ -377,7 +377,7 @@ u32 FUN_8c110908(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, int ain1) 
                 uVar2 = uVar2 + 1;
             } while (uVar2 < *(u8 *)(unaff_r14 + 8));
         }
-        pfVar3 = (float *)FUN_8c111dfe(**(u32 **)(unaff_r14 + 0x10));
+        pfVar3 = (float *)mring_write_advance(**(u32 **)(unaff_r14 + 0x10));
         *pfVar3 = (float)uVar9 / (float)((u64)uVar9 >> 0x20);
     }
     piVar5 = *(int **)(unaff_r14 + 0xc);
@@ -475,9 +475,9 @@ u32 FUN_8c110aea(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
     if (*(char *)(**(int **)(a0 + 0x10) + 0x30) != '\x01') {
         uVar2 = (*(u32 **)(a0 + 0xc))[1];
-        iVar1 = FUN_8c111fbe(**(u32 **)(a0 + 0xc), uVar2, unused_a2, a3);
+        iVar1 = mring_read_advance(**(u32 **)(a0 + 0xc), uVar2, unused_a2, a3);
         if (iVar1 != 0) {
-            uVar2 = FUN_8c111dfe(**(u32 **)(a0 + 0x10));
+            uVar2 = mring_write_advance(**(u32 **)(a0 + 0x10));
             FUN_8c110a90(a0, iVar1, uVar2);
         }
     }
@@ -775,8 +775,8 @@ u32 FUN_8c1111a0(u32 a0, u32 a1) {
 
 /*
  * FUN_8c111208  0x8c111208
- * called by: FUN_8c1112e2, FUN_8c1112ee, FUN_8c111e72, FUN_8c111fbe, FUN_8c111fc6, FUN_8c112074, FUN_8c112170,
- * FUN_8c11217e
+ * called by: FUN_8c1112e2, FUN_8c1112ee, FUN_8c111e72, FUN_8c111fc6, FUN_8c112074, FUN_8c112170, FUN_8c11217e,
+ * mring_read_advance
  */
 int FUN_8c111208(int *a0, int a1, int a2) {
     int iVar1;
@@ -1501,11 +1501,12 @@ u32 FUN_8c111cec(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * FUN_8c111dfe  0x8c111dfe
+ * mring_write_advance  0x8c111dfe
+ * advances the write position of a multi-reader ring buffer by one element and counts it for each idle reader
  * called by: FUN_8c10a564, FUN_8c10c530, FUN_8c10cb90, FUN_8c10d0da, FUN_8c10e818, FUN_8c10f22a, FUN_8c10fe04,
  * FUN_8c10fe0a (+11 more)
  */
-u32 FUN_8c111dfe(int a0) {
+u32 mring_write_advance(int a0) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -1594,11 +1595,12 @@ u32 FUN_8c111e72(int a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * FUN_8c111fbe  0x8c111fbe
+ * mring_read_advance  0x8c111fbe
+ * advances reader a1 of a multi-reader ring buffer by one element
  * called by: FUN_8c10c530, FUN_8c10cb90, FUN_8c10e818, FUN_8c10f22a, FUN_8c10fc96, FUN_8c110680, FUN_8c110aea,
  * FUN_8c112074 (+8 more)
  */
-int FUN_8c111fbe(int a0, int a1, u32 unused_a2, int a3) {
+int mring_read_advance(int a0, int a1, u32 unused_a2, int a3) {
     int iVar1;
     int *piVar2;
     u32 uVar3;
@@ -1717,7 +1719,7 @@ u32 FUN_8c112074(int *a0, int a1, u32 *a2, u32 a3) {
     if (a6 == piVar4) {
         if (bVar5 == false) {
             for (; a0 < piVar4; a0 = a0 + 2) {
-                uVar3 = FUN_8c111fbe(*a0, a0[1], a6, a3);
+                uVar3 = mring_read_advance(*a0, a0[1], a6, a3);
                 *a2 = uVar3;
                 a2 = a2 + 1;
             }
@@ -9518,8 +9520,8 @@ u32 FUN_8c11af3a(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
     int iVar2;
 
-    puVar1 = (&FUN_8c111fbe);
-    iVar2 = (*(code *)(&FUN_8c111fbe))(**(u32 **)(a0 + 0xc), (*(u32 **)(a0 + 0xc))[1], a2, a3);
+    puVar1 = (&mring_read_advance);
+    iVar2 = (*(code *)(&mring_read_advance))(**(u32 **)(a0 + 0xc), (*(u32 **)(a0 + 0xc))[1], a2, a3);
     while (iVar2 != 0) {
         iVar2 = (*(code *)puVar1)(**(u32 **)(a0 + 0xc), (*(u32 **)(a0 + 0xc))[1], a2, a3);
     }
@@ -9535,7 +9537,7 @@ u32 FUN_8c11af7e(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar3;
     int iVar4;
 
-    iVar1 = (*(code *)(&FUN_8c111fbe))(**(u32 **)(a0 + 0xc), (*(u32 **)(a0 + 0xc))[1], a2, a3);
+    iVar1 = (*(code *)(&mring_read_advance))(**(u32 **)(a0 + 0xc), (*(u32 **)(a0 + 0xc))[1], a2, a3);
     if (iVar1 != 0) {
         if (*(u8 **)(a0 + 0x18) == (&FUN_8c11af3a)) {
             return 0;
@@ -9566,7 +9568,7 @@ u32 FUN_8c11af7e(int a0, u32 unused_a1, u32 a2, u32 a3) {
             *(int *)((*(int *)(0x12c + a0) + 1) * 4 + iVar4) =
                 (int)*(short *)(iVar1 + (u32) * (u16 *)(0xe0 + a0) * 2) + *(int *)(*(int *)(0x12c + a0) * 4 + iVar4);
         }
-        iVar1 = FUN_8c111dfe(*(u32 *)(a0 + 0x2c));
+        iVar1 = mring_write_advance(*(u32 *)(a0 + 0x2c));
         iVar4 = iVar1 + (u32) * (u16 *)(*(int *)(a0 + 0x28) + 0xc);
         uVar3 = (**(code **)(0x1a8 + a0))(a0, iVar1, iVar4, a3);
         if ((uVar3 & 0xffff) == 0) {
@@ -9615,8 +9617,8 @@ u32 FUN_8c11b13e(int *a0, u32 a1, u32 *a2, int *a3) {
                 return 0;
             }
             uVar8 = 0;
-            FUN_8c111fbe(a0[0xb], 0, a2, a3);
-            iVar2 = FUN_8c111dfe(a0[0xb]);
+            mring_read_advance(a0[0xb], 0, a2, a3);
+            iVar2 = mring_write_advance(a0[0xb]);
             iVar12 = (u32) * (u16 *)(a0[10] + 0xc) + iVar2;
             (*(code *)puVar1)(iVar12, 0, (u32)(*(u16 *)(a0[10] + 0xc) >> 1), a3);
             (*(code *)puVar1)(iVar12, 1, (u32) * (u16 *)((int)0xe4 + (int)a0), a3);
@@ -9734,7 +9736,7 @@ u32 FUN_8c11b13e(int *a0, u32 a1, u32 *a2, int *a3) {
                     }
                     if (uVar11 != 0x19) {
                         if (uVar11 == 0x1e) {
-                            FUN_8c111fbe(*(u32 *)a0[4], 0, a2, a3);
+                            mring_read_advance(*(u32 *)a0[4], 0, a2, a3);
                             *(u8 **)((int)0x1a4 + (int)a0) = (&FUN_8c11919e);
                             return 1;
                         }
@@ -10640,12 +10642,12 @@ u32 FUN_8c11c0e4(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
     if ((*(char *)(**(int **)(a0 + 0x10) + 0x30) != '\x01') &&
         (uVar2 = FUN_8c112170(*(u32 *)(a0 + 0xc), 2), (uVar2 & 0xff) != 0)) {
-        pcVar3 = (char *)(*(code *)(&FUN_8c111fbe))(*(u32 *)(*(int *)(a0 + 0xc) + 8),
-                                                    *(u32 *)(*(int *)(a0 + 0xc) + 0xc), a2, a3);
+        pcVar3 = (char *)(*(code *)(&mring_read_advance))(*(u32 *)(*(int *)(a0 + 0xc) + 8),
+                                                          *(u32 *)(*(int *)(a0 + 0xc) + 0xc), a2, a3);
         uVar6 = (*(u32 **)(a0 + 0xc))[1];
-        uVar4 = FUN_8c111fbe(**(u32 **)(a0 + 0xc), uVar6, a2, a3);
-        puVar1 = (&FUN_8c111dfe);
-        FUN_8c111dfe(**(u32 **)(a0 + 0x10));
+        uVar4 = mring_read_advance(**(u32 **)(a0 + 0xc), uVar6, a2, a3);
+        puVar1 = (&mring_write_advance);
+        mring_write_advance(**(u32 **)(a0 + 0x10));
         a7 = (*(code *)puVar1)(*(u32 *)(*(int *)(a0 + 0x10) + 4), uVar6, a2, a3);
         uVar6 = (*(code *)puVar1)(*(u32 *)(*(int *)(a0 + 0x10) + 8), uVar6, a2, a3);
         FUN_8c11bd6c(a0, (int)*pcVar3, uVar4, a7);
@@ -11966,7 +11968,7 @@ u32 FUN_8c11d488(int a0, int a1, u32 a2, u32 a3) {
     iVar5 = (int)0x7d0;
     iVar4 = *(int *)(0xfc + a0);
     do {
-        ar5_00 = FUN_8c111fbe(ar4_01, *(u32 *)(a0 + 0x74), a2, a3);
+        ar5_00 = mring_read_advance(ar4_01, *(u32 *)(a0 + 0x74), a2, a3);
         if (ar5_00 == 0) {
             return 0;
         }
@@ -13542,7 +13544,7 @@ u32 FUN_8c11f258(int a0, u32 a1, u8 *a2, int a3) {
                         }
                         a2 = a2 + uVar13;
                     } else {
-                        iVar5 = FUN_8c111dfe(*(u32 *)(a0 + 0x60));
+                        iVar5 = mring_write_advance(*(u32 *)(a0 + 0x60));
                         (*(code *)(&memmove))(iVar5, 0x150 + a0, (u32) * (u16 *)(0x22a + a0), iVar9);
                         puVar10 = (u8 *)(uVar13 - *(u16 *)(0x22a + a0));
                         (*(code *)(&memmove))(iVar5 + (u32) * (u16 *)(0x22a + a0), a2, puVar10, iVar9);
@@ -13865,7 +13867,7 @@ u32 FUN_8c11f8de(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
             return 0;
         }
         cVar6 = '\0';
-        pfVar2 = (float *)FUN_8c111fbe(**(u32 **)(a0 + 0xc), (*(u32 **)(a0 + 0xc))[1], unused_a2, a3);
+        pfVar2 = (float *)mring_read_advance(**(u32 **)(a0 + 0xc), (*(u32 **)(a0 + 0xc))[1], unused_a2, a3);
         if (cVar6 == '\0') {
             fStack_c = *pfVar2;
             uStack_8 = in_PR;
@@ -13876,7 +13878,7 @@ u32 FUN_8c11f8de(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         }
         ar5_00 = *(u32 *)(*(int *)(a0 + 0xc) + 0xc);
         cVar6 = '\0';
-        pfVar2 = (float *)FUN_8c111fbe(*(u32 *)(*(int *)(a0 + 0xc) + 8), ar5_00, unused_a2, a3);
+        pfVar2 = (float *)mring_read_advance(*(u32 *)(*(int *)(a0 + 0xc) + 8), ar5_00, unused_a2, a3);
         if (cVar6 == '\0') {
             fStack_10 = *pfVar2;
             in_fr3 = fStack_10;
@@ -13885,7 +13887,7 @@ u32 FUN_8c11f8de(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
             fStack_c = (float)((u64) * (u64 *)pfVar2 >> 0x20);
         }
         cVar6 = '\0';
-        pfVar2 = (float *)FUN_8c111dfe(**(u32 **)(a0 + 0x10));
+        pfVar2 = (float *)mring_write_advance(**(u32 **)(a0 + 0x10));
         pfVar3 = *(float **)(a0 + 0x34);
         *(float **)(a0 + 0x34) = pfVar3 + 1;
         if (cVar6 == '\0') {

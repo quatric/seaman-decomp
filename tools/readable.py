@@ -574,6 +574,13 @@ def main():
     parsed = [('mod_%08x.c' % r, 'Seaman (USA) region 0x%08x-0x%08x (Ghidra decompiler, cleaned up by tools/readable.py)' % (r, r + 0x10000), regions[r]) for r in sorted(regions)]
     mods = [m for m, _, _ in parsed]
     allf = [f for _, _, fs in parsed for f in fs]
+    # Ghidra gave a few one-call stubs the name of the function they jump to; the function whose address is in the name (else
+    # the longest body) keeps it, the stubs go back to FUN_<addr> so the wrapper rule below names them after their target
+    same = collections.defaultdict(list)
+    for f in allf: same[f.name].append(f)
+    for n, fs in same.items():
+        keep = sorted(fs, key=lambda f: ('%06x' % (f.addr & 0xffffff) not in n, -len(f.body or '')))
+        for f in keep[1:]: f.name = 'FUN_%08x' % f.addr
     names, hints, curated = load_names(allf)
     # library error messages name functions: CRI "...(ADXF_Seek)" and mwRna "E1201:mwRnaCreate ..." name the function that
     # prints them; mwSnd "sdPstmPlay return error in mwSndPlay" names that function and the callee whose result it checked
@@ -642,6 +649,13 @@ def main():
         c = curated.get(f.addr)
         if c and c[2] is not None and f.name in live:
             live[f.name] = [i < c[2] for i in range(len(live[f.name]))]; arity[f.name] = c[2]
+    # names must be unique: the notes tables and the rounds above can hand one name to two functions; a curated one keeps it,
+    # otherwise the lowest address does, and the rest get their address appended
+    seen = set()
+    for f in sorted(allf, key=lambda f: (f.addr not in curated, f.addr)):
+        n = names[f.addr]
+        if n in seen: names[f.addr] = n = '%s_%06x' % (n, f.addr & 0xffffff)
+        seen.add(n)
     rename = {f.name: names[f.addr] for f in allf}
     # callers (direct calls, by new name)
     callers = collections.defaultdict(list)

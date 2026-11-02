@@ -3480,10 +3480,10 @@ u32 FUN_8c0b590c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     puVar3 = (&Vec3_dtor);
     uVar2 = 0x8c286dac;
     global_list_push(uVar1, (&Vec3_dtor), 0x8c286dac, a3);
-    uVar1 = FUN_8c030e34(auStack_1c);
-    FUN_8c05d608(0x8c286dbc, uVar1);
-    uVar1 = FUN_8c030e34(auStack_34);
-    uVar2 = FUN_8c05d608(0x8c286dbc + 0x18, uVar1);
+    uVar1 = set_6_floats(auStack_1c);
+    copy_6_words(0x8c286dbc, uVar1);
+    uVar1 = set_6_floats(auStack_34);
+    uVar2 = copy_6_words(0x8c286dbc + 0x18, uVar1);
     return uVar2;
 }
 
@@ -6456,7 +6456,7 @@ u32 FUN_8c0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
             iVar1 = FUN_8c0fa2b8(0x8c35468c, ar5_00);
             if (iVar1 == 1) {
                 ar4_02 = 0x8c35468c;
-                FUN_8c0f8214(0x8c35468c, ar5_00, a2, a3);
+                speech_stop(0x8c35468c, ar5_00, a2, a3);
             }
             *(u32 *)(a1 + 0x7dc) = 4;
         }
@@ -6488,7 +6488,7 @@ u32 FUN_8c0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
                         *(u32 *)(a0 + 0x30) = 1;
                         iVar2 = FUN_8c0fa2b8(0x8c35468c, ar5_00);
                         if (iVar2 == 1) {
-                            FUN_8c0f8214(0x8c35468c, ar5_00, a2, a3);
+                            speech_stop(0x8c35468c, ar5_00, a2, a3);
                             strcpy(auStack_2c, &g_8c13c8e2);
                             strcpy(0x8c4362a0, auStack_2c);
                             ar5_00 = a1;
@@ -6518,7 +6518,7 @@ u32 FUN_8c0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
             ((iVar3 = FUN_8c0b6e04(&g_8c13c8e2, 0x8c4362a0, a2), iVar3 == 0 && (*(int *)(a0 + 0x14c) != 4)))) {
             strcpy(0x8c4362c0, &g_8c13c025);
             a2 = 0x8c436280;
-            g_8c43627c = FUN_8c0f8320(0x8c35468c, 6, 0x8c436280, a3);
+            g_8c43627c = speech_request(0x8c35468c, 6, 0x8c436280, a3);
         }
         if (0xfeffffff < *(u32 *)(a0 + 0x154)) {
             *(u32 *)(a0 + 8) = 2;
@@ -8231,7 +8231,7 @@ u32 FUN_8c0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
     case 1:
         if (*(char *)(g_8c4366f4 + 0x25) < '\x01') {
             if (g_8c43670c == 1) {
-                FUN_8c0bf170(a0, "INTRO_FIRST", &g_8c13c025, a3);
+                speech_request_pair(a0, "INTRO_FIRST", &g_8c13c025, a3);
                 *(u32 *)(a0 + 0x44) = 0x13;
                 *(u32 *)(a0 + 0x14c) = 0;
             } else {
@@ -8591,21 +8591,21 @@ u32 FUN_8c0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
             override_jmp_8c0bcf7a_case_3:
                 if ((((*g_8c4366f0 == 5) || (*g_8c4366f0 == 6)) || (*g_8c4366f0 == 7)) &&
                     ((g_8c43676c < '\x04' && (g_8c436738 == 0)))) {
-                    FUN_8c0bf170(a0, &g_8c13c902, &g_8c13c907, a3);
+                    speech_request_pair(a0, &g_8c13c902, &g_8c13c907, a3);
                     *(int *)(puVar7 + -0xd8) = g_8c4366f4;
                     *(char *)(*(int *)(puVar7 + -0xd8) + 0x25) = *(char *)(*(int *)(puVar7 + -0xd8) + 0x25) + '\x01';
                     *(u32 *)(a0 + 0x44) = 0x13;
                 } else if (((*g_8c4366f0 == 0x25) || ((g_8c4366f0[1] == 0x25 || (g_8c4366f0[2] == 0x25)))) &&
                            (*(char *)(g_8c4366f4 + 0x25) == '\0')) {
-                    FUN_8c0bf170(a0, "ENDING", &g_8c13c025, a3);
+                    speech_request_pair(a0, "ENDING", &g_8c13c025, a3);
                     *(int *)(puVar7 + -0xdc) = g_8c4366f4;
                     *(char *)(*(int *)(puVar7 + -0xdc) + 0x25) = *(char *)(*(int *)(puVar7 + -0xdc) + 0x25) + '\x01';
                     *(u32 *)(a0 + 0x44) = 0x13;
                 } else if ((*g_8c4366f0 < 4) && (g_8c43670c == 2)) {
-                    FUN_8c0bf170(a0, "NOACTION", &g_8c13c025, a3);
+                    speech_request_pair(a0, "NOACTION", &g_8c13c025, a3);
                     *(u32 *)(a0 + 0x44) = 0x10;
                 } else if (g_8c436760 == 0) {
-                    FUN_8c0bf170(a0, &g_8c13c902, &g_8c13c91c, a3);
+                    speech_request_pair(a0, &g_8c13c902, &g_8c13c91c, a3);
                     *(int *)(puVar7 + -0xe0) = g_8c4366f4;
                     *(char *)(*(int *)(puVar7 + -0xe0) + 0x25) = *(char *)(*(int *)(puVar7 + -0xe0) + 0x25) + '\x01';
                     *(u32 *)(a0 + 0x44) = 0x13;
@@ -8616,7 +8616,7 @@ u32 FUN_8c0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
                     format_int_at_10(0x8c35468c, g_8c436720, puVar4, a3);
                     FUN_8c0fa5f0(0x8c35468c, g_8c436710, puVar4, a3);
                     FUN_8c0fa624(0x8c35468c, g_8c43672c, 0x8c35468c, a3);
-                    FUN_8c0bf170(a0, "INTRO_NORMAL", &g_8c13c025, a3);
+                    speech_request_pair(a0, "INTRO_NORMAL", &g_8c13c025, a3);
                     *(u32 *)(a0 + 0x44) = 5;
                 }
             }
@@ -8642,7 +8642,7 @@ u32 FUN_8c0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
                 if (g_8c4366f0[*(int *)(puVar7 + -0xe8)] < 0x30) {
                     *(int *)(puVar7 + -0xec) = iVar2;
                     format_int_at_10(0x8c35468c, g_8c4366f0[*(int *)(puVar7 + -0xec)], *(int *)(puVar7 + -0xe8), a3);
-                    FUN_8c0bf170(a0, "REVIEW", &g_8c13c902, a3);
+                    speech_request_pair(a0, "REVIEW", &g_8c13c902, a3);
                     for (iVar2 = 0; iVar2 < 5; iVar2 = iVar2 + 1) {
                         *(int *)(puVar7 + -0xf0) = iVar2;
                         if ((g_8c4366f0[*(int *)(puVar7 + -0xf0)] < 0x2a) ||
@@ -8780,9 +8780,9 @@ u32 FUN_8c0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
                                                 }
                                             }
                                             if (g_8c436768 == 0) {
-                                                FUN_8c0bf170(a0, "REVIEW", "GREET", FUN_8c0bf170);
+                                                speech_request_pair(a0, "REVIEW", "GREET", speech_request_pair);
                                             } else {
-                                                FUN_8c0bf170(a0, "REVIEW", "EVENT", a3);
+                                                speech_request_pair(a0, "REVIEW", "EVENT", a3);
                                             }
                                             *(int *)(puVar7 + -0x1c4) = iVar2;
                                             *(int *)(puVar7 + -0x1c0) =
@@ -8815,7 +8815,7 @@ u32 FUN_8c0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
                 g_8c436748 = g_8c43674c;
                 g_8c43674c = 0;
             }
-            FUN_8c0bf170(a0, "STATE_INTRO", &g_8c13c025, a3);
+            speech_request_pair(a0, "STATE_INTRO", &g_8c13c025, a3);
             *(u32 *)(a0 + 0x44) = 8;
         }
         break;
@@ -8823,7 +8823,7 @@ u32 FUN_8c0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
         if (0 < g_8c436738) {
             format_int_at_10(0x8c35468c, 0, 0x14, a3);
             FUN_8c0fa5f0(0x8c35468c, g_8c436738, FUN_8c0fa5f0, a3);
-            FUN_8c0bf170(a0, "STATE_CHARA", &g_8c13c025, a3);
+            speech_request_pair(a0, "STATE_CHARA", &g_8c13c025, a3);
         }
         *(u32 *)(a0 + 0x44) = 9;
         break;
@@ -8831,7 +8831,7 @@ u32 FUN_8c0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
         if (0 < g_8c436740 + g_8c43673c) {
             format_int_at_10(0x8c35468c, 1, 0x14, a3);
             FUN_8c0fa5f0(0x8c35468c, g_8c436740 + g_8c43673c, puVar4, a3);
-            FUN_8c0bf170(a0, "STATE_CHARA", &g_8c13c025, a3);
+            speech_request_pair(a0, "STATE_CHARA", &g_8c13c025, a3);
         }
         *(u32 *)(a0 + 0x44) = 10;
         break;
@@ -8840,7 +8840,7 @@ u32 FUN_8c0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
             pcVar6 = format_int_at_10;
             format_int_at_10(0x8c35468c, 2, format_int_at_10, a3);
             FUN_8c0fa5f0(0x8c35468c, g_8c436744, pcVar6, a3);
-            FUN_8c0bf170(a0, "STATE_CHARA", &g_8c13c025, a3);
+            speech_request_pair(a0, "STATE_CHARA", &g_8c13c025, a3);
         }
         *(u32 *)(a0 + 0x44) = 0xb;
         break;
@@ -8850,7 +8850,7 @@ u32 FUN_8c0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
             if (*(char *)(g_8c4366f4 + 0x1e) == '\0') {
                 format_int_at_10(0x8c35468c, 3, &g_8c4366f4, a3);
                 FUN_8c0fa5f0(0x8c35468c, g_8c436748, puVar4, a3);
-                FUN_8c0bf170(a0, "STATE_CHARA", &g_8c13c025, a3);
+                speech_request_pair(a0, "STATE_CHARA", &g_8c13c025, a3);
             } else {
                 g_8c43674c = g_8c436748;
                 g_8c436748 = 0;
@@ -8862,13 +8862,13 @@ u32 FUN_8c0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
         if (0 < g_8c43674c) {
             format_int_at_10(0x8c35468c, 4, 0x14, a3);
             FUN_8c0fa5f0(0x8c35468c, g_8c43674c, puVar4, a3);
-            FUN_8c0bf170(a0, "STATE_CHARA", &g_8c13c025, a3);
+            speech_request_pair(a0, "STATE_CHARA", &g_8c13c025, a3);
         }
         *(u32 *)(a0 + 0x44) = 0xd;
         break;
     case 0xd:
         if (0 < g_8c436754) {
-            FUN_8c0bf170(a0, "STATE_ALL", &g_8c13c025, a3);
+            speech_request_pair(a0, "STATE_ALL", &g_8c13c025, a3);
         }
         *(u32 *)(a0 + 0x44) = 0xe;
         break;
@@ -8897,11 +8897,11 @@ u32 FUN_8c0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
             } else {
                 format_int_at_10(0x8c35468c, 1, puVar4, a3);
             }
-            FUN_8c0bf170(a0, "STATE_GOOD", &g_8c13c025, a3);
+            speech_request_pair(a0, "STATE_GOOD", &g_8c13c025, a3);
         } else {
             format_int_at_10(0x8c35468c, g_8c436730, 0x14, a3);
             FUN_8c0fa5f0(0x8c35468c, g_8c436734, puVar4, a3);
-            FUN_8c0bf170(a0, "STATE_DAMAGE", &g_8c13c025, a3);
+            speech_request_pair(a0, "STATE_DAMAGE", &g_8c13c025, a3);
         }
         *(u32 *)(a0 + 0x44) = 0xf;
         break;
@@ -8980,10 +8980,10 @@ u32 FUN_8c0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
                 return 1;
             }
         }
-        FUN_8c0bf170(a0, "HIGHLIGHT", &g_8c13c025, a3);
+        speech_request_pair(a0, "HIGHLIGHT", &g_8c13c025, a3);
         break;
     case 0x10:
-        FUN_8c0bf170(a0, "FINISH", &g_8c13c025, a3);
+        speech_request_pair(a0, "FINISH", &g_8c13c025, a3);
         *(u32 *)(a0 + 0x44) = 0x13;
         *(u32 *)(a0 + 0x14c) = 2;
         break;
@@ -8991,7 +8991,7 @@ u32 FUN_8c0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
         if ((*(int *)(a0 + 0x14c) == 0) && (g_8c4362f0 != 0xe)) {
             *(u32 *)(a0 + 0x44) = 1;
         } else {
-            FUN_8c0bf170(a0, &g_8c13c98b, &g_8c13c025, a3);
+            speech_request_pair(a0, &g_8c13c98b, &g_8c13c025, a3);
             *(u32 *)(a0 + 0x44) = 0x14;
             *(u32 *)(a0 + 0x14c) = 2;
         }
@@ -9112,15 +9112,16 @@ u32 FUN_8c0bf160(int a0, int a1) {
 }
 
 /*
- * FUN_8c0bf170  0x8c0bf170
+ * speech_request_pair  0x8c0bf170
+ * copies two names to 0x8c4362a0/0x8c4362c0 and requests speech mode 6 with them
  * called by: FUN_8c0bcedc
  */
-u32 FUN_8c0bf170(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 speech_request_pair(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
     g_8c4362f0 = 0;
     strcpy(0x8c4362a0, a1);
     strcpy(0x8c4362c0, a2);
-    g_8c43627c = FUN_8c0f8320(0x8c35468c, 6, 0x8c436280, a3);
+    g_8c43627c = speech_request(0x8c35468c, 6, 0x8c436280, a3);
     return g_8c43627c;
 }
 
@@ -9164,7 +9165,7 @@ u32 FUN_8c0bf22c(int a0, int a1, u32 a2, u32 a3) {
     pack_release_entry_handle(0x8c2b59d0, uVar1, a2, a3);
     iVar2 = FUN_8c0fa2b8(0x8c35468c, uVar1);
     if (iVar2 == 1) {
-        FUN_8c0f8214(0x8c35468c, uVar1, a2, a3);
+        speech_stop(0x8c35468c, uVar1, a2, a3);
     }
     *(u32 *)(0x154 + a0) = 0xffffff;
     ar6_00 = 0;

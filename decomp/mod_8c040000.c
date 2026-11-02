@@ -5469,7 +5469,7 @@ LAB_8c04f31c:
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5e, pcVar9, pcVar5);
                 piVar4 = (int *)deref_u32(uVar7);
                 FUN_8c0348ac(a0 + 0xb0, *(u32 *)(*piVar4 + 8), pcVar9, pcVar5);
-                FUN_8c023e04(auStack_84, auStack_c0);
+                Vec3_assign_copy(auStack_84, auStack_c0);
                 free_if_nonnull_wrap_016ac4(auStack_c0, 0xffffffff, pcVar9, pcVar5);
             } else if (iVar1 == 4) {
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5f, pcVar9, pcVar5);
@@ -5480,7 +5480,7 @@ LAB_8c04f31c:
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5f, pcVar9, pcVar5);
                 piVar4 = (int *)deref_u32(uVar7);
                 FUN_8c0348ac(a0 + 0xb0, *(u32 *)(*piVar4 + 8), pcVar9, pcVar5);
-                FUN_8c023e04(auStack_84, auStack_dc);
+                Vec3_assign_copy(auStack_84, auStack_dc);
                 free_if_nonnull_wrap_016ac4(auStack_dc, 0xffffffff, pcVar9, pcVar5);
             } else if (iVar1 == 5) {
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5e, pcVar9, pcVar5);
@@ -5492,8 +5492,8 @@ LAB_8c04f31c:
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5e, 0xb0, pcVar5);
                 piVar4 = (int *)deref_u32(uVar7);
                 FUN_8c0348ac(a0 + 0xb0, *(u32 *)(*piVar4 + 8), uVar8, pcVar5);
-                pcVar5 = FUN_8c023e04;
-                FUN_8c023e04(auStack_84, auStack_f8);
+                pcVar5 = Vec3_assign_copy;
+                Vec3_assign_copy(auStack_84, auStack_f8);
                 pcVar9 = (code *)0xffffffff;
                 free_if_nonnull_wrap_016ac4(auStack_f8, 0xffffffff, 0xffffffff, pcVar5);
             } else if (iVar1 == 6) {
@@ -5508,7 +5508,7 @@ LAB_8c04f31c:
                 puVar3 = (u32 *)deref_u32(uVar7);
                 pcVar9 = (code *)*puVar3;
                 FUN_8c0348ac(a0 + 0xb0, *(u32 *)(pcVar9 + 8), pcVar9, pcVar5);
-                FUN_8c023e04(auStack_84, auStack_114);
+                Vec3_assign_copy(auStack_84, auStack_114);
                 free_if_nonnull_wrap_016ac4(auStack_114, 0xffffffff, pcVar9, pcVar5);
             }
             vec3_copy_8c02b5fc(auStack_120, in_stack_00000000, pcVar9);

@@ -3651,7 +3651,7 @@ u32 FUN_8c0d3d6c(u64 *a0, u32 a1, u32 a2, u32 a3) {
             dVar6 = dVar6 / dVar6;
             ar4_01 = (int)dVar6;
         }
-        FUN_8c25747c(ar4_01, a1, a2, a3, uVar3);
+        njSinCos(ar4_01, a1, a2, a3, uVar3);
         if (cVar12 == '\0') {
             dVar7 = (double)CONCAT44(0x3f000000, (int)((u64)dVar6 >> 0x20));
             dVar6 = in_xd0;
@@ -3719,7 +3719,7 @@ u32 FUN_8c0d3d6c(u64 *a0, u32 a1, u32 a2, u32 a3) {
             pcVar10 = (code *)0x43b40000;
         } else {
             fVar5 = 360.0;
-            pcVar10 = FUN_8c25747c;
+            pcVar10 = njSinCos;
             g_8c437c68 = in_xd0;
         }
         dVar6 = g_8c437c68;
@@ -3978,7 +3978,7 @@ u32 *FUN_8c0d4124(int a0, int a1, u32 a2, u32 a3) {
     } else {
         ar4_00 = (int)(dVar7 / dVar7);
     }
-    FUN_8c25747c(ar4_00, ar5_00, a2, a3, iVar5);
+    njSinCos(ar4_00, ar5_00, a2, a3, iVar5);
     float_check_errno(ar4_00, ar5_00, a2, a3, iVar5);
     if (cVar11 == '\0') {
         dVar7 = (double)CONCAT44(0x41200000, (int)g_8c437c6c);
@@ -3996,7 +3996,7 @@ u32 *FUN_8c0d4124(int a0, int a1, u32 a2, u32 a3) {
         pcVar9 = (code *)0x43b40000;
     } else {
         fVar6 = 360.0;
-        pcVar9 = FUN_8c25747c;
+        pcVar9 = njSinCos;
         g_8c437c6c = in_xd0;
     }
     uVar1 = g_8c437c6c;
@@ -4157,7 +4157,7 @@ u32 *FUN_8c0d4428(int a0, int a1, u32 a2, u32 a3) {
     } else {
         ar4_00 = (int)(dVar7 / dVar7);
     }
-    FUN_8c25747c(ar4_00, ar5_00, a2, a3, iVar5);
+    njSinCos(ar4_00, ar5_00, a2, a3, iVar5);
     float_check_errno(ar4_00, ar5_00, a2, a3, iVar5);
     if (cVar11 == '\0') {
         dVar7 = (double)CONCAT44(0x41200000, (int)g_8c437c70);
@@ -4175,7 +4175,7 @@ u32 *FUN_8c0d4428(int a0, int a1, u32 a2, u32 a3) {
         pcVar9 = (code *)0x43b40000;
     } else {
         fVar6 = 360.0;
-        pcVar9 = FUN_8c25747c;
+        pcVar9 = njSinCos;
         g_8c437c70 = in_xd0;
     }
     uVar1 = g_8c437c70;
@@ -11414,7 +11414,7 @@ u32 FUN_8c0dbf90(int *a0, int *a1, u32 a2, u32 a3) {
     iVar1 = FUN_8c100a58(a1);
     if (iVar1 == 1) {
         piVar2 = NULL;
-        FUN_8c0c51a0(a1, 0);
+        set_timeout_120(a1, 0);
         ret_const_140();
         if (cVar9 == '\0') {
             dVar6 = (double)CONCAT44(a0[0x29c], in_fr3);
@@ -11442,7 +11442,7 @@ u32 FUN_8c0dbf90(int *a0, int *a1, u32 a2, u32 a3) {
         iVar1 = FUN_8c100abc(a1);
         if (iVar1 == 1) {
             piVar2 = NULL;
-            FUN_8c0c51a0(a1, 0);
+            set_timeout_120(a1, 0);
             ret_const_140();
             if (cVar9 == '\0') {
                 dVar6 = (double)CONCAT44(a0[0x29c], in_fr3);

@@ -9742,10 +9742,11 @@ u32 *FUN_8c25513c(float *a0, float *a1, float *a2) {
 }
 
 /*
- * FUN_8c2551aa  0x8c2551aa
+ * Vec3_lerp_nj  0x8c2551aa
+ * a2 = lerp(a0, a1, fr4) (the Ninja library's copy)
  * called by: FUN_8c2556c8
  */
-u32 FUN_8c2551aa(float *a0, float *a1, float *a2) {
+u32 Vec3_lerp_nj(float *a0, float *a1, float *a2) {
     float fVar1;
     u64 in_dr4;
     float fVar2;
@@ -10221,7 +10222,7 @@ u32 FUN_8c2556c8(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0)
             do {
                 a5 = (int *)(iStack_30 + iVar11);
                 a6 = (int *)(iVar11 + iVar5);
-                FUN_8c2551aa(iVar11 + iStack_34, a5, a6);
+                Vec3_lerp_nj(iVar11 + iStack_34, a5, a6);
                 iVar9 = iVar9 + 1;
                 iVar11 = iVar11 + 0xc;
             } while (iVar9 < iVar12);
@@ -10248,7 +10249,7 @@ u32 FUN_8c2556c8(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0)
             iVar13 = 0;
             if (0 < iVar12) {
                 do {
-                    FUN_8c2551aa(iStack_34 + iVar13, iStack_30 + iVar13, iVar13 + iVar5);
+                    Vec3_lerp_nj(iStack_34 + iVar13, iStack_30 + iVar13, iVar13 + iVar5);
                     a5 = (int *)(iStack_38 + iVar13);
                     a6 = (int *)(iVar13 + iVar11);
                     FUN_8c25513c(iStack_3c + iVar13, a5, a6);
@@ -10636,10 +10637,11 @@ u32 FUN_8c255d6c(u32 *a0, int a1, u32 a2, u32 a3, u32 ain0) {
 }
 
 /*
- * FUN_8c255f40  0x8c255f40
+ * njOuterProduct  0x8c255f40
+ * a2 = a0 x a1
  * called by: Class_129a24_m1_019b68
  */
-u32 FUN_8c255f40(float *a0, float *a1, float *a2) {
+u32 njOuterProduct(float *a0, float *a1, float *a2) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -10832,11 +10834,12 @@ u32 matrix_pop_n(int a0) {
 }
 
 /*
- * FUN_8c256254  0x8c256254
+ * matrix_pop1  0x8c256254
+ * pops one 4x4 matrix off the matrix stack if more than one is on it
  * called by: FUN_8c218e8a, FUN_8c218ea0, FUN_8c2199aa, FUN_8c2199c0, FUN_8c21a702, FUN_8c21a718, FUN_8c21a8b0,
  * FUN_8c21a8be (+8 more)
  */
-u32 FUN_8c256254(void) {
+u32 matrix_pop1(void) {
     if (0 < g_8c4aa5a0 + -1) {
         g_8c4aa5a0 = g_8c4aa5a0 + -1;
         g_8c4aa4bc = g_8c4aa4bc + -0x40;
@@ -12427,7 +12430,7 @@ u32 FUN_8c257104(u32 a0) {
     u32 r7;
     u32 uVar1;
 
-    uVar1 = pvr_20a844_wrap_20a16e(a0, r5, r6, r7, a0);
+    uVar1 = pvr_wrap_20a16e(a0, r5, r6, r7, a0);
     return uVar1;
 }
 
@@ -12441,7 +12444,7 @@ u32 FUN_8c257120(u32 a0) {
     u32 r7;
     u32 uVar1;
 
-    uVar1 = pvr_20a844_wrap_20a16e(a0, r5, r6, r7, a0);
+    uVar1 = pvr_wrap_20a16e(a0, r5, r6, r7, a0);
     return uVar1;
 }
 
@@ -12689,10 +12692,11 @@ u32 FUN_8c2572ec(float *a0) {
 }
 
 /*
- * FUN_8c25747c  0x8c25747c
+ * njSinCos  0x8c25747c
+ * sine and cosine of a Ninja angle (0..65535 = one turn)
  * called by: Class_12a990_m2_09bc2c, FUN_8c03207c, FUN_8c0d3d6c, FUN_8c0d4124, FUN_8c0d4428, FUN_8c0e705c
  */
-u32 FUN_8c25747c(u32 a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 njSinCos(u32 a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
 
     fVar1 = ((float)(u16)a0 * 6.2831855) / 65536.0;
@@ -14898,7 +14902,7 @@ LAB_8c258846:
     FUN_8c20786a((&FUN_8c2580b8), 0);
     a4 = (&set_g_8c4aa558);
     FUN_8c2078be((&set_g_8c4aa558));
-    FUN_8c258ac0();
+    screen_reset_view();
     uVar8 = FUN_8c20aed8(0);
     return uVar8;
 }
@@ -14970,9 +14974,9 @@ u32 FUN_8c2588f8(void) {
     puVar8 = &g_8c4aabfc;
     FUN_8c20a366(&g_8c4aabfc);
     noop_257488();
-    pvr_20a844_wrap();
+    pvr_wrap();
     uVar1 = 0;
-    FUN_8c258d4c(0);
+    draw_state_select(0);
     FUN_8c010838(uVar1, ar5_00, &stack0xffffff14, a7);
     uVar3 = 0;
     do {
@@ -15014,10 +15018,11 @@ u32 FUN_8c2588f8(void) {
 }
 
 /*
- * FUN_8c258ac0  0x8c258ac0
+ * screen_reset_view  0x8c258ac0
+ * centres the view on the screen size and sets the clip rectangle to the full screen
  * called by: FUN_8c258604
  */
-u32 FUN_8c258ac0(void) {
+u32 screen_reset_view(void) {
     g_8c4aa518 = 0;
     g_8c4aa51c = 0;
     g_8c4aa520 = 0;
@@ -15251,10 +15256,11 @@ LAB_8c258cae:
 }
 
 /*
- * FUN_8c258d4c  0x8c258d4c
+ * draw_state_select  0x8c258d4c
+ * makes polygon-state block a0 (0xc0 bytes each at 0x8c4aa73c) current and loads it
  * called by: FUN_8c2588f8
  */
-u32 FUN_8c258d4c(int a0) {
+u32 draw_state_select(int a0) {
     u32 uVar1;
     int ar4_00;
 
@@ -16433,9 +16439,10 @@ LAB_8c25962e:
 }
 
 /*
- * FUN_8c259968  0x8c259968
+ * draw_state_copy_out  0x8c259968
+ * copies the current 0xc0-byte polygon state and texture selection into a0
  */
-u32 FUN_8c259968(u32 a0) {
+u32 draw_state_copy_out(u32 a0) {
     memcpy_bytes(a0, g_8c4aabbc, 0xc0);
     g_8c4ab140 = g_8c277b10;
     g_8c4ab144 = g_8c277b14;
@@ -16443,9 +16450,10 @@ u32 FUN_8c259968(u32 a0) {
 }
 
 /*
- * FUN_8c259988  0x8c259988
+ * draw_state_copy_in  0x8c259988
+ * loads a polygon state saved by draw_state_copy_out
  */
-u32 *FUN_8c259988(u32 a0) {
+u32 *draw_state_copy_in(u32 a0) {
     u32 ar6_00;
 
     ar6_00 = 0xc0;
@@ -16512,7 +16520,7 @@ u32 FUN_8c259a1c(u32 a0) {
     u32 r7;
     u32 uVar1;
 
-    uVar1 = pvr_20a844_wrap_20a356(a0, r5, r6, r7, a0);
+    uVar1 = pvr_wrap_20a356(a0, r5, r6, r7, a0);
     return uVar1;
 }
 
@@ -23296,9 +23304,9 @@ u32 FUN_8c25cebc(int a0, int a1, int a2, u32 a3) {
     u32 a6;
     int iVar4;
 
-    puVar1 = (&pvr_20a844_20a844);
+    puVar1 = (&pvr_20a844);
     iVar4 = a2 * 0x20;
-    (*(code *)(&pvr_20a844_20a844))((int)0x124, *(u32 *)(0x8c4aa024 + iVar4), a2, a3);
+    (*(code *)(&pvr_20a844))((int)0x124, *(u32 *)(0x8c4aa024 + iVar4), a2, a3);
     (*(code *)puVar1)((int)0x12c, *(u32 *)(0x8c4aa028 + iVar4), a2, a3);
     (*(code *)puVar1)((int)0x128, *(u32 *)(0x8c4aa030 + iVar4), a2, a3);
     (*(code *)puVar1)((int)0x130, *(u32 *)(0x8c4aa034 + iVar4), a2, a3);
@@ -23577,10 +23585,10 @@ u32 *FUN_8c25d780(void) {
     u32 ar4_00;
     u32 ar5_00;
 
-    pvr_20a844_20a844(8, 1);
+    pvr_20a844(8, 1);
     ar5_00 = 0;
     ar4_00 = 8;
-    pvr_20a844_20a844(8, 0);
+    pvr_20a844(8, 0);
     sh4_dmac_202e20();
     puVar1 = 0x8c4a9ff4;
     g_8c4a9ff4 = 0x800000;
@@ -23677,8 +23685,8 @@ u32 FUN_8c25d7c6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32
 u32 FUN_8c25da4c(void) {
     u32 uVar1;
 
-    pvr_20a844_20a844(8, 1);
-    uVar1 = pvr_20a844_20a844(8, 0);
+    pvr_20a844(8, 1);
+    uVar1 = pvr_20a844(8, 0);
     return uVar1;
 }
 
@@ -24095,8 +24103,8 @@ u32 FUN_8c25e260(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
             uVar4 = (*(code *)puVar2)(iVar3, uVar5, uVar6, a3);
         } while ((uVar4 & uVar7) != 0);
     }
-    puVar2 = (&pvr_20a844_20a844);
-    pvr_20a844_20a844((int)0xe8, g_8c4a9eb0 | 8);
+    puVar2 = (&pvr_20a844);
+    pvr_20a844((int)0xe8, g_8c4a9eb0 | 8);
     a5 = 0x800000;
     if ((g_8c4a9bc8 & 1) == 0) {
         a5 = 0;

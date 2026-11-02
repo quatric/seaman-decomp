@@ -984,7 +984,7 @@ u32 FUN_8c0f4b98(int a0, u32 unused_a1, u32 a2, u32 a3) {
     FUN_8c023e24(auStack_14, ar5_00);
     FUN_8c08a9b8(a0 + 0x5c);
     (**(code **)(*(int *)(a0 + 8) + 0x34))(a0, ar5_00, a2, a3);
-    FUN_8c023e04(a0 + 0x5c, auStack_14);
+    Vec3_assign_copy(a0 + 0x5c, auStack_14);
     uVar1 = free_if_nonnull_wrap_016ac4(auStack_14, 0xffffffff, a2, a3);
     return uVar1;
 }
@@ -1199,7 +1199,7 @@ u32 FUN_8c0f4e34(int a0, int a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 0x24) = *(u32 *)(a1 + 0x18);
     Vec3_assign(a0 + 0x30, a1 + 0x1c, a2, a3);
     vec3_copy_8c023d8c(a0 + 0x50, a1 + 0x2c, a2, a3);
-    FUN_8c023e04(a0 + 0x5c, a1 + 0x38);
+    Vec3_assign_copy(a0 + 0x5c, a1 + 0x38);
     *(u32 *)(a0 + 0x6c) = *(u32 *)(a1 + 0x44);
     *(u32 *)(a0 + 0x74) = *(u32 *)(a1 + 0x48);
     return 0x74;
@@ -1212,7 +1212,7 @@ u32 FUN_8c0f4e34(int a0, int a1, u32 a2, u32 a3) {
 u32 FUN_8c0f4ebc(int a0, u32 *a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 0x24) = *a1;
     vec3_copy_8c023d8c(a0 + 0x50, a1 + 1, a2, a3);
-    FUN_8c023e04(a0 + 0x5c, a1 + 4);
+    Vec3_assign_copy(a0 + 0x5c, a1 + 4);
     *(u32 *)(a0 + 0x6c) = a1[7];
     *(u32 *)(a0 + 0x74) = a1[8];
     return 0x74;
@@ -1228,7 +1228,7 @@ u32 FUN_8c0f4f0c(int a0, int a1, u32 a2, u32 a3) {
     *(u32 *)(a1 + 0x18) = *(u32 *)(a0 + 0x24);
     Vec3_assign(a1 + 0x1c, a0 + 0x30, a2, a3);
     vec3_copy_8c023d8c(a1 + 0x2c, a0 + 0x50, a2, a3);
-    FUN_8c023e04(a1 + 0x38, a0 + 0x5c);
+    Vec3_assign_copy(a1 + 0x38, a0 + 0x5c);
     *(u32 *)(a1 + 0x44) = *(u32 *)(a0 + 0x6c);
     *(u32 *)(a1 + 0x48) = *(u32 *)(a0 + 0x74) & 0xfffffffd;
     return 0x48;
@@ -1243,7 +1243,7 @@ u32 FUN_8c0f4fa4(int a0, u32 *a1, u32 a2, u32 a3) {
 
     *a1 = *(u32 *)(a0 + 0x24);
     vec3_copy_8c023d8c(a1 + 1, a0 + 0x50, a2, a3);
-    FUN_8c023e04(a1 + 4, a0 + 0x5c);
+    Vec3_assign_copy(a1 + 4, a0 + 0x5c);
     a1[7] = *(u32 *)(a0 + 0x6c);
     uVar1 = *(u32 *)(a0 + 0x74) & 0xfffffffd;
     a1[8] = uVar1;
@@ -4332,11 +4332,12 @@ int FUN_8c0f816c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c0f8214  0x8c0f8214
+ * speech_stop  0x8c0f8214
+ * stops the current speech and clears its active flag (+0x89134)
  * called by: Class_12a078_m2_05eee0, Class_12a078_m5_0671f4, Class_12c3c4_m2_104264, Class_12c3c4_m5_10a0dc,
  * FUN_8c05d860, FUN_8c0bad68, FUN_8c0bf22c, FUN_8c0c09d0 (+4 more)
  */
-int FUN_8c0f8214(int a0, u32 a1, u32 a2, u32 a3) {
+int speech_stop(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
     FUN_8c0fa9fc(a0 + 0x1054, a1, a2, a3);
@@ -4348,7 +4349,7 @@ int FUN_8c0f8214(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c0f824c  0x8c0f824c
- * called by: FUN_8c0f8368, FUN_8c0f9774
+ * called by: FUN_8c0f9774, speech_start
  */
 u32 FUN_8c0f824c(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -4362,10 +4363,11 @@ u32 FUN_8c0f824c(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * FUN_8c0f82a4  0x8c0f82a4
+ * speech_restart  0x8c0f82a4
+ * stops the current speech if one is running, then speech_start
  * called by: FUN_8c0306d4
  */
-u32 FUN_8c0f82a4(int a0, u32 a1, u32 a2, u32 a3) {
+u32 speech_restart(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 ar6_00;
 
@@ -4375,27 +4377,28 @@ u32 FUN_8c0f82a4(int a0, u32 a1, u32 a2, u32 a3) {
         }
         uVar1 = a1;
         ar6_00 = a2;
-        FUN_8c0f8214(a0, a1, a2, a3);
+        speech_stop(a0, a1, a2, a3);
         if (*(int *)(0x8913c + a0) == 1) {
             FUN_8c0fa6c8(a0, uVar1, ar6_00, a3);
         }
     }
     *(u32 *)(0x89138 + a0) = 2;
-    uVar1 = FUN_8c0f8368(a0, a1, a2, a3);
+    uVar1 = speech_start(a0, a1, a2, a3);
     return uVar1;
 }
 
 /*
- * FUN_8c0f8320  0x8c0f8320
+ * speech_request  0x8c0f8320
+ * speech_start when the player is idle (+0x1014 == 0); 0 otherwise
  * called by: FUN_8c05d860, FUN_8c05f4a0, FUN_8c0611cc, FUN_8c062b0c, FUN_8c063838, FUN_8c064bb4, FUN_8c0652f4,
  * FUN_8c0bad68 (+6 more)
  */
-u32 FUN_8c0f8320(int a0, u32 a1, u32 a2, u32 a3) {
+u32 speech_request(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     if (*(int *)(0x1014 + a0) == 0) {
         *(u32 *)(0x89138 + a0) = 1;
-        uVar1 = FUN_8c0f8368(a0, a1, a2, a3);
+        uVar1 = speech_start(a0, a1, a2, a3);
     } else {
         uVar1 = 0;
     }
@@ -4403,12 +4406,11 @@ u32 FUN_8c0f8320(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c0f8368  0x8c0f8368
- * name hint from a string it uses: HIGYOLINE0
- * called by: FUN_8c0f82a4, FUN_8c0f8320
- * strings: "HIGYOLINE0"; "HIGYOLINE1"; "HIGYOLINE2"; "HIGYOLINE3" ...
+ * speech_start  0x8c0f8368
+ * starts speech mode a1 on the speech player (0x8c35468c); for mode 1, a2 names the line ("HIGYOLINE0", "FROGMANLINE0",
+ * ...) called by: speech_request, speech_restart strings: "HIGYOLINE0"; "HIGYOLINE1"; "HIGYOLINE2"; "HIGYOLINE3" ...
  */
-u32 FUN_8c0f8368(int a0, int a1, int a2, u32 a3) {
+u32 speech_start(int a0, int a1, int a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     char *pcVar3;
@@ -4742,7 +4744,7 @@ u32 FUN_8c0f8368(int a0, int a1, int a2, u32 a3) {
 
 /*
  * strcmp  0x8c0f970c
- * called by: FUN_8c0f8368, FUN_8c0f9774
+ * called by: FUN_8c0f9774, speech_start
  */
 u32 strcmp(u8 *a0, u8 *a1) {
     u8 bVar1;
@@ -5337,7 +5339,7 @@ u32 FUN_8c0fa624(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c0fa658  0x8c0fa658
- * called by: FUN_8c0f8368, FUN_8c0f9774, FUN_8c0fa334, FUN_8c0fa388
+ * called by: FUN_8c0f9774, FUN_8c0fa334, FUN_8c0fa388, speech_start
  */
 int FUN_8c0fa658(int a0, u32 a1) {
     int iVar1;
@@ -5363,7 +5365,7 @@ int FUN_8c0fa688(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c0fa6c8  0x8c0fa6c8
- * called by: FUN_8c063838, FUN_8c0f82a4, FUN_8c103100, FUN_8c1089e4
+ * called by: FUN_8c063838, FUN_8c103100, FUN_8c1089e4, speech_restart
  */
 int FUN_8c0fa6c8(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 ar4_00;
@@ -5378,7 +5380,7 @@ int FUN_8c0fa6c8(int a0, u32 a1, u32 unused_a2, u32 a3) {
 
 /*
  * FUN_8c0fa70c  0x8c0fa70c
- * called by: FUN_8c0f8214, FUN_8c0f9774
+ * called by: FUN_8c0f9774, speech_stop
  */
 int FUN_8c0fa70c(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -5535,7 +5537,7 @@ u32 FUN_8c0fa944(int *a0, int a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c0fa9fc  0x8c0fa9fc
- * called by: FUN_8c0f8214, FUN_8c0fa910
+ * called by: FUN_8c0fa910, speech_stop
  */
 u32 FUN_8c0fa9fc(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -7390,7 +7392,7 @@ u32 FUN_8c0fda5c(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * memset_on_field_d0  0x8c0fda80
  * calls memset on the member at +0xd0
- * called by: FUN_8c0f8368, FUN_8c0fa83c
+ * called by: FUN_8c0fa83c, speech_start
  */
 u32 memset_on_field_d0(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
