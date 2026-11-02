@@ -1,0 +1,143 @@
+{
+"8c014cf0": [
+"(((((*(int *)(unsigned)((ar4 + 0x68)) << 1) + *(int *)(unsigned)((ar4 + 0x68))) << 2) + ar4) + 0x7c)"
+],
+"8c014d54": [
+"(((((*(int *)(unsigned)((ar4 + 0x68)) << 1) + *(int *)(unsigned)((ar4 + 0x68))) << 2) + ar4) + 0x94)"
+],
+"8c03c43c": [
+"(ar4 + 0x22c)"
+],
+"8c03c94c": [
+"(ar4 + 0x238)",
+"(ar4 + 0x238)"
+],
+"8c046684": [
+"(ar4 + 0x238)"
+],
+"8c048868": [
+"(ar4 + 0x238)"
+],
+"8c04e7e0": [
+"(ar4 + 0x238)"
+],
+"8c050300": [
+null
+],
+"8c054d6c": [
+"(ar4 + 0x238)"
+],
+"8c054f7c": [
+"(ar4 + 0x238)"
+],
+"8c055490": [
+"(ar4 + 0x238)"
+],
+"8c05c9fc": [
+"(ar4 + 0x238)"
+],
+"8c06f530": [
+"(ar4 + 0x2dc)"
+],
+"8c06f93c": [
+"(ar4 + 0x2e8)",
+"(ar4 + 0x2e8)"
+],
+"8c070d7c": [
+null
+],
+"8c071a38": [
+"(ar4 + 0x2e8)"
+],
+"8c077a38": [
+"(ar4 + 0x2e8)"
+],
+"8c078fd0": [
+"(ar4 + 0x2e8)"
+],
+"8c07baa0": [
+"(ar4 + 0x2e8)",
+"(ar4 + 0x2e8)"
+],
+"8c07c0b8": [
+"(ar4 + 0x2e8)",
+"(ar4 + 0x2e8)",
+"(ar4 + 0x2e8)"
+],
+"8c07d048": [
+"(ar4 + 0x2e8)"
+],
+"8c07edac": [
+"(ar4 + 0x2e8)"
+],
+"8c07f56c": [
+"(ar4 + 0x2e8)",
+"(ar4 + 0x2e8)"
+],
+"8c07ff08": [
+"(ar4 + 0x2e8)"
+],
+"8c080890": [
+"(ar4 + 0x2e8)",
+"(ar4 + 0x2e8)",
+"(ar4 + 0x2e8)"
+],
+"8c080e80": [
+"(ar4 + 0x2e8)",
+"(ar4 + 0x2e8)"
+],
+"8c08248c": [
+"(ar4 + 0x2e8)"
+],
+"8c0839c0": [
+"(ar4 + 0x2e8)"
+],
+"8c0baa84": [
+"(((((*(int *)(unsigned)((ar4 + 0x8)) << 1) + *(int *)(unsigned)((ar4 + 0x8))) << 2) + ar4) + 0xc)"
+],
+"8c0bf3d4": [
+"(((((*(int *)(unsigned)((ar4 + 0x8)) << 1) + *(int *)(unsigned)((ar4 + 0x8))) << 2) + ar4) + 0xc)"
+],
+"8c0c08ac": [
+"(((((*(int *)(unsigned)((0x2dd84 + ar4)) << 1) + *(int *)(unsigned)((0x2dd84 + ar4))) << 2) + ar4) + 0x2dd88)"
+],
+"8c0c1d40": [
+"(((((*(int *)(unsigned)((0x2dd78 + ar4)) << 1) + *(int *)(unsigned)((0x2dd78 + ar4))) << 2) + ar4) + 0x2dda0)"
+],
+"8c0c5c08": [
+"(((((*(int *)(unsigned)((0x2d15c + ar4)) << 1) + *(int *)(unsigned)((0x2d15c + ar4))) << 2) + ar4) + 0x2d170)"
+],
+"8c0c6d70": [
+"(((((((*(int *)(unsigned)((0x2d160 + ar4)) << 1) + *(int *)(unsigned)((0x2d160 + ar4))) << 2) << 2) + ar4) + (((((*(signed char *)(unsigned)((0xa0 + ar5)) & 0xff) & 0xff) << 1) + ((*(signed char *)(unsigned)((0xa0 + ar5)) & 0xff) & 0xff)) << 2)) + 0x2d1bc)",
+"(((((((*(int *)(unsigned)((0x2d160 + ar4)) << 1) + *(int *)(unsigned)((0x2d160 + ar4))) << 2) << 2) + ar4) + (((((*(signed char *)(unsigned)((0xa0 + ar5)) & 0xff) & 0xff) << 1) + ((*(signed char *)(unsigned)((0xa0 + ar5)) & 0xff) & 0xff)) << 2)) + 0x2d21c)"
+],
+"8c0c6e74": [
+"(((((((*(int *)(unsigned)((0x2d160 + ar4)) << 1) + *(int *)(unsigned)((0x2d160 + ar4))) << 2) << 2) + ar4) + (((((*(signed char *)(unsigned)((0xa0 + ar5)) & 0xff) & 0xff) << 1) + ((*(signed char *)(unsigned)((0xa0 + ar5)) & 0xff) & 0xff)) << 2)) + 0x2d21c)",
+"(((((((*(int *)(unsigned)((0x2d160 + ar4)) << 1) + *(int *)(unsigned)((0x2d160 + ar4))) << 2) << 2) + ar4) + (((((*(signed char *)(unsigned)((0xa0 + ar5)) & 0xff) & 0xff) << 1) + ((*(signed char *)(unsigned)((0xa0 + ar5)) & 0xff) & 0xff)) << 2)) + 0x2d21c)",
+"(((((((*(int *)(unsigned)((0x2d160 + ar4)) << 1) + *(int *)(unsigned)((0x2d160 + ar4))) << 2) << 2) + ar4) + (((((*(signed char *)(unsigned)((0xa0 + ar5)) & 0xff) & 0xff) << 1) + ((*(signed char *)(unsigned)((0xa0 + ar5)) & 0xff) & 0xff)) << 2)) + 0x2d27c)"
+],
+"8c0c7438": [
+"(((((((*(int *)(unsigned)((0x2d160 + ar4)) << 1) + *(int *)(unsigned)((0x2d160 + ar4))) << 2) << 2) + ar4) + (((((*(signed char *)(unsigned)((0xa0 + ar5)) & 0xff) & 0xff) << 1) + ((*(signed char *)(unsigned)((0xa0 + ar5)) & 0xff) & 0xff)) << 2)) + 0x2d27c)",
+"(((((((*(int *)(unsigned)((0x2d160 + ar4)) << 1) + *(int *)(unsigned)((0x2d160 + ar4))) << 2) << 2) + ar4) + (((((*(signed char *)(unsigned)((0xa0 + ar5)) & 0xff) & 0xff) << 1) + ((*(signed char *)(unsigned)((0xa0 + ar5)) & 0xff) & 0xff)) << 2)) + 0x2d27c)",
+"(((((((*(int *)(unsigned)((0x2d160 + ar4)) << 1) + *(int *)(unsigned)((0x2d160 + ar4))) << 2) << 2) + ar4) + (((((*(signed char *)(unsigned)((0xa0 + ar5)) & 0xff) & 0xff) << 1) + ((*(signed char *)(unsigned)((0xa0 + ar5)) & 0xff) & 0xff)) << 2)) + 0x2d2dc)"
+],
+"8c0c75f4": [
+"(((((((*(int *)(unsigned)((0x2d160 + ar4)) << 1) + *(int *)(unsigned)((0x2d160 + ar4))) << 2) << 2) + ar4) + (((((*(signed char *)(unsigned)((0xa0 + ar5)) & 0xff) & 0xff) << 1) + ((*(signed char *)(unsigned)((0xa0 + ar5)) & 0xff) & 0xff)) << 2)) + 0x2d33c)"
+],
+"8c0daf3c": [
+"(((((*(int *)(unsigned)((0xacc + ar4)) << 1) + *(int *)(unsigned)((0xacc + ar4))) << 2) + ar4) + 0xbb8)"
+],
+"8c0de1dc": [
+"((((((((int)(vsp = (unsigned long)(fr0_ - 4096), get_field_a0_035724(ar5,0,0,0)) & 0xff) & 0xff) << 1) + (((int)(vsp = (unsigned long)(fr0_ - 4096), get_field_a0_035724(ar5,0,0,0)) & 0xff) & 0xff)) << 2) + ar4) + 0x23204)"
+],
+"8c0de3d4": [
+"((((((((int)(vsp = (unsigned long)(fr0_ - 4096), get_field_a0_035724(ar5,0,0,0)) & 0xff) & 0xff) << 1) + (((int)(vsp = (unsigned long)(fr0_ - 4096), get_field_a0_035724(ar5,0,0,0)) & 0xff) & 0xff)) << 2) + ar4) + 0x23228)"
+],
+"8c0dfe2c": [
+"(((((*(int *)(unsigned)((0xacc + ar4)) << 1) + *(int *)(unsigned)((0xacc + ar4))) << 2) + ar4) + 0x2318c)",
+"((((((ar6 & 0xff) << 1) + (ar6 & 0xff)) << 2) + ar4) + 0x231e0)"
+],
+"8c0e6804": [
+"(((((*(int *)(unsigned)((0xacc + ar4)) << 1) + *(int *)(unsigned)((0xacc + ar4))) << 2) + ar4) + 0x106c)"
+]
+}

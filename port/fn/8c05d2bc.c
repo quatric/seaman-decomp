@@ -1,0 +1,93 @@
+#include "../decls.h"
+undefined4 FUN_8c05d2bc_def(undefined4 ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
+
+{
+  undefined4 uVar1;
+  undefined4 uVar2;
+  undefined *puVar3;
+  undefined4 uStack_c0;
+  undefined4 uStack_bc;
+  undefined4 uStack_b8;
+  undefined4 uStack_b4;
+  undefined4 uStack_b0;
+  undefined4 uStack_ac;
+  undefined4 uStack_a8;
+  undefined4 uStack_a4;
+  undefined4 uStack_a0;
+  undefined4 uStack_9c;
+  undefined4 uStack_98;
+  undefined4 uStack_94;
+  undefined4 uStack_90;
+  undefined4 uStack_8c;
+  undefined4 uStack_88;
+  undefined4 uStack_84;
+  undefined4 uStack_80;
+  undefined1 auStack_7c [24];
+  undefined1 auStack_64 [24];
+  undefined1 auStack_4c [76];
+  
+  uStack_80 = Vec3_ctor_xyz((&DATA_8c125d28),ar5,ar6,ar7);
+  puVar3 = (&Vec3_dtor);
+  uVar2 = 0x8c280330;
+  global_list_push(uStack_80,(&Vec3_dtor),0x8c280330,ar7);
+  uStack_84 = Vec3_ctor_xyz((&DATA_8c125d38),puVar3,uVar2,ar7);
+  puVar3 = (&Vec3_dtor);
+  uVar2 = 0x8c28033c;
+  global_list_push(uStack_84,(&Vec3_dtor),0x8c28033c,ar7);
+  uStack_88 = Vec3_ctor_xyz((&DATA_8c125d48),puVar3,uVar2,ar7);
+  puVar3 = (&Vec3_dtor);
+  uVar2 = 0x8c280348;
+  global_list_push(uStack_88,(&Vec3_dtor),0x8c280348,ar7);
+  uStack_8c = Vec3_ctor_xyz((&DATA_8c125d58),puVar3,uVar2,ar7);
+  puVar3 = (&Vec3_dtor);
+  uVar2 = 0x8c280354;
+  global_list_push(uStack_8c,(&Vec3_dtor),0x8c280354,ar7);
+  uStack_90 = Vec3_ctor_xyz((&DATA_8c125d68),puVar3,uVar2,ar7);
+  puVar3 = (&Vec3_dtor);
+  uVar2 = 0x8c280360;
+  global_list_push(uStack_90,(&Vec3_dtor),0x8c280360,ar7);
+  uStack_94 = Vec3_ctor_xyz((&DATA_8c125d78),puVar3,uVar2,ar7);
+  puVar3 = (&Vec3_dtor);
+  uVar2 = 0x8c28036c;
+  global_list_push(uStack_94,(&Vec3_dtor),0x8c28036c,ar7);
+  uStack_98 = Vec3_ctor_xyz((&DATA_8c125d88),puVar3,uVar2,ar7);
+  puVar3 = (&Vec3_dtor);
+  uVar2 = 0x8c280378;
+  global_list_push(uStack_98,(&Vec3_dtor),0x8c280378,ar7);
+  uStack_9c = Vec3_ctor_xyz((&DATA_8c125d98),puVar3,uVar2,ar7);
+  puVar3 = (&Vec3_dtor);
+  uVar2 = 0x8c280384;
+  global_list_push(uStack_9c,(&Vec3_dtor),0x8c280384,ar7);
+  uStack_a0 = Vec3_ctor_xyz((&DATA_8c125da8),puVar3,uVar2,ar7);
+  puVar3 = (&Vec3_dtor);
+  uVar2 = 0x8c280390;
+  global_list_push(uStack_a0,(&Vec3_dtor),0x8c280390,ar7);
+  uStack_a4 = Vec3_ctor_xyz(0x8c2803a8,puVar3,uVar2,ar7);
+  uVar2 = 0x8c28039c;
+  global_list_push(uStack_a4,(&Vec3_dtor),0x8c28039c,ar7);
+  uStack_a8 = Vec3_ctor_copy(0x8c2803d4,(&DATA_8c125d78),uVar2,ar7);
+  uVar2 = 0x8c2803bc;
+  global_list_push(uStack_a8,(&Vec3_dtor),0x8c2803bc,ar7);
+  uStack_ac = Vec3_ctor_copy(0x8c2803d4 + 0x10,(&DATA_8c125d68),uVar2,ar7)
+  ;
+  puVar3 = (&Vec3_dtor);
+  uVar2 = 0x8c2803c8;
+  global_list_push(uStack_ac,(&Vec3_dtor),0x8c2803c8,ar7);
+  uVar1 = FUN_8c030e34((int)&uStack_c0 + 0xa4,puVar3,uVar2,ar7);
+  uStack_b0 = uVar1;
+  FUN_8c05d608(0x8c2803f4,uVar1,uVar2,ar7);
+  uVar1 = FUN_8c030e34((int)&uStack_c0 + 0x8c,uVar1,uVar2,ar7);
+  uStack_b4 = uVar1;
+  FUN_8c05d608(0x8c2803f4 + 0x18,uVar1,uVar2,ar7);
+  uVar1 = FUN_8c030e34(auStack_4c,uVar1,uVar2,ar7);
+  uStack_b8 = uVar1;
+  FUN_8c05d608(0x8c2803f4 + 0x30,uVar1,uVar2,ar7);
+  uVar1 = FUN_8c030e34(auStack_64,uVar1,uVar2,ar7);
+  uStack_bc = uVar1;
+  FUN_8c05d608(0x8c2803f4 + 0x48,uVar1,uVar2,ar7);
+  uStack_c0 = FUN_8c030e34(auStack_7c,uVar1,uVar2,ar7);
+  uVar2 = FUN_8c05d608(0x8c2803f4 + 0x60,uStack_c0,uVar2,ar7);
+  return uVar2;
+}
+
+__asm__(".globl _FUN_8c05d2bc\n.set _FUN_8c05d2bc, _FUN_8c05d2bc_def\n");

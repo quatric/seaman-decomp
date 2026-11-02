@@ -1,0 +1,7 @@
+8c0101d4	strcpy
+8c0101bc	pure_virtual_stub
+8c014e20	vec3_clear
+8c023d8c	vec3_copy_8c023d8c
+8c02b5fc	vec3_copy_8c02b5fc
+8c022e78	Vec3_length_sq
+8c022ec0	Vec3_normalize

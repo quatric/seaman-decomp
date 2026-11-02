@@ -1,0 +1,6 @@
+8c0d3f48	list_node_next
+8c015b4c	deref_u32
+8c032a64	rand_range
+8c022f54	Vec3_length
+8c26a14e	debug_printf
+8c0146d0	vsprintf_like

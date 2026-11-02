@@ -1,0 +1,72 @@
+#include "../decls.h"
+extern "C" {
+#include "../trace.h"
+#ifndef INFINITY
+#define INFINITY __builtin_inff()
+#endif
+#ifndef NAN
+#define NAN __builtin_nanf("")
+#endif
+typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
+unsigned long xlat(unsigned long);
+extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
+undefined4 FUN_8c02cf20_def(int ar4,le<undefined4>* ar5,undefined4 ar6,undefined4 ar7)
+
+{
+  TRACE_ENTER("FUN_8c02cf20");
+  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
+
+  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
+  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
+  undefined4 uVar1;
+  le<undefined4>* ar5_00;
+  int iVar2;
+  
+  ar5_00 = ar5;
+  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), get_field_134_02d1e8(ar4,ar5,ar6,ar7));
+  *ar5 = uVar1;
+  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), get_field_138_02737c(ar4,ar5_00,ar6,ar7));
+  ar5[1] = uVar1;
+  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), get_field_13c_028d9c(ar4,ar5_00,ar6,ar7));
+  ar5[2] = uVar1;
+  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), get_field_140_025f70(ar4,ar5_00,ar6,ar7));
+  ar5[3] = uVar1;
+  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), get_field_4_02d1e0(ar4 + 0x90,ar5_00,ar6,ar7));
+  ar5[4] = uVar1;
+  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), get_field_8_02d1d8(ar4 + 0x90,ar5_00,ar6,ar7));
+  ar5[5] = uVar1;
+  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c02d1d0(ar4 + 0xa8,ar5_00,ar6,ar7));
+  *(char *)(unsigned)(ar5 + 6) = (char)uVar1;
+  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c02d1c8(ar4 + 0xa8,ar5_00,ar6,ar7));
+  *(char *)(unsigned)((int)ar5 + 0x19) = (char)uVar1;
+  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), get_field_8_02d1c0(ar4 + 0xa8,ar5_00,ar6,ar7));
+  ar5[7] = uVar1;
+  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), get_field_c_02d1b8(ar4 + 0xa8,ar5_00,ar6,ar7));
+  ar5[8] = uVar1;
+  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), get_field_10_02d1b0(ar4 + 0xa8,ar5_00,ar6,ar7));
+  ar5[9] = uVar1;
+  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c02d1a8(ar4 + 0xa8,ar5_00,ar6,ar7));
+  *(le<short>* )(unsigned)(ar5 + 10) = (short)uVar1;
+  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c02bfb4(ar4 + 0xa8,ar5_00,ar6,ar7));
+  *(le<short>* )(unsigned)((int)ar5 + 0x2a) = (short)uVar1;
+  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), get_field_18_02d1a0(ar4 + 0xa8,ar5_00,ar6,ar7));
+  ar5[0xb] = uVar1;
+  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), get_field_10_02d198(ar4 + 0xf8,ar5_00,ar6,ar7));
+  ar5[0xc] = uVar1;
+  for (iVar2 = 0; iVar2 < 6; iVar2 = iVar2 + 1) {
+    *(char *)(unsigned)(ar5 + iVar2 * 3 + 0xd) = (char)iVar2;
+    uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c025f68(iVar2 * 0x18 + ar4,ar5_00,ar6,ar7));
+    *(char *)(unsigned)((int)ar5 + iVar2 * 0xc + 0x35) = (char)uVar1;
+    uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), get_field_4_02be9c(iVar2 * 0x18 + ar4,ar5_00,ar6,ar7));
+    ar5[iVar2 * 3 + 0xe] = uVar1;
+    uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c02c5ac(iVar2 * 0x18 + ar4,ar5_00,ar6,ar7));
+    *(char *)(unsigned)(ar5 + iVar2 * 3 + 0xf) = (char)uVar1;
+  }
+  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c02d190(ar4 + 0x78,ar5_00,ar6,ar7));
+  *(char *)(unsigned)(ar5 + 0x1e) = (char)uVar1;
+  return 0x78;
+}
+
+__asm__(".globl FUN_8c02cf20\n.set FUN_8c02cf20, FUN_8c02cf20_def\n");
+
+}

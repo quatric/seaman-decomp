@@ -1,0 +1,57 @@
+#include "../decls.h"
+extern "C" {
+#include "../trace.h"
+#ifndef INFINITY
+#define INFINITY __builtin_inff()
+#endif
+#ifndef NAN
+#define NAN __builtin_nanf("")
+#endif
+typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
+unsigned long xlat(unsigned long);
+extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
+int FUN_8c203820_def(uint ar4,le<int>* ar5,le<undefined4>* ar6,undefined4 ar7)
+
+{
+  TRACE_ENTER("FUN_8c203820");
+  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
+
+  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
+  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
+  undefined *puVar1;
+  uint uVar2;
+  int iVar3;
+  int iVar4;
+  undefined4 uVar5;
+  int ar5_00;
+  le<int>* ar6_00;
+  int ar7_00;
+  int ar4_00;
+  
+  if ((int)ar4 < 0) {
+    uVar2 = ~(~ar4 + 1 & 0x1f) + 1;
+  }
+  else {
+    uVar2 = ar4 & 0x1f;
+  }
+  if (uVar2 != 0) {
+    ar4 = ar4 + (0x20 - uVar2);
+  }
+  ar7_00 = (int)0x2000;
+  ar5_00 = ar4 << 1;
+  ar6_00 = ar5;
+  iVar3 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c2046d2(0,ar5_00,ar5,ar7_00));
+  if (iVar3 == 0) {
+    ar4_00 = *ar5;
+    iVar4 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c2059be(ar4_00,ar5_00,ar6_00,ar7_00));
+    puVar1 = ((void *)(unsigned)0x8c2059be);
+    *ar5 = iVar4;
+    uVar5 = (vsp = ((unsigned long)(fr0_ - 0)), (*(code *)xlat((unsigned long)(puVar1)))(ar4_00 + 4,ar5_00,ar6_00,ar7_00));
+    *ar6 = uVar5;
+  }
+  return iVar3;
+}
+
+__asm__(".globl FUN_8c203820\n.set FUN_8c203820, FUN_8c203820_def\n");
+
+}

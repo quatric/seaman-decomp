@@ -1,0 +1,121 @@
+#include "../decls.h"
+undefined4 g2dma_205a62_def(undefined4 ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
+
+{
+  short sVar1;
+  undefined *puVar2;
+  uint uVar3;
+  int iVar4;
+  int iVar5;
+  undefined4 uVar6;
+  int iVar7;
+  undefined4 uStack_1c;
+  int iStack_18;
+  
+  uVar6 = 0xdd18957;
+  *(undefined4 *)0x8c4a9ec0 = 0;
+  iStack_18 = pvr_20a876(0,ar5,ar6,ar7);
+  uVar3 = pvr_20a876(4,ar5,ar6,ar7);
+  *(undefined4 *)0x8c4a9bac = 5;
+  if (iStack_18 == 0x17fd11db) {
+    if (uVar3 == 1) {
+      *(undefined4 *)0x8c4a9bac = 5;
+    }
+    else if (0x10 < uVar3) {
+      *(undefined4 *)0x8c4a9bac = 6;
+      *(undefined4 *)0x8c4a9ec0 = 0x800408;
+      uVar6 = 0x15d1c951;
+    }
+  }
+  else {
+    *(undefined4 *)0x8c4a9bac = 5;
+  }
+  iVar4 = (int)0x101;
+  iVar5 = *(undefined4 *)0xa05f689c;
+  if (iVar5 == 0) {
+    *(undefined4 *)0x8c4a9bb0 = 0;
+  }
+  else {
+    if (iVar5 != 1) {
+      if (iVar5 == 2) {
+        *(undefined4 *)0x8c4a9bb0 = 3;
+      }
+      else if (((iVar5 == 4) || (iVar5 == 5)) || (iVar5 == 6)) {
+        *(undefined4 *)0x8c4a9bb0 = 0x7f;
+        iVar4 = 0x10101;
+      }
+      else if (iVar5 == 8) {
+        *(undefined4 *)0x8c4a9bb0 = 0x1f;
+      }
+      else if (iVar5 == 9) {
+        *(undefined4 *)0x8c4a9bb0 = 0xf;
+      }
+      else {
+        *(undefined4 *)0x8c4a9bb0 = (int)0x8f;
+      }
+      goto LAB_8c205bc8;
+    }
+    *(undefined4 *)0x8c4a9bb0 = 1;
+  }
+  iVar4 = 0;
+LAB_8c205bc8:
+  puVar2 = (&pvr_20a844);
+  pvr_20a844((int)0xa8,uVar6,ar6,ar7);
+  (*(code *)puVar2)((int)0xa0,0x20,ar6,ar7);
+  (*(code *)puVar2)(8,0,ar6,ar7);
+  (*(code *)puVar2)((int)0xe4,3,ar6,ar7);
+  (*(code *)puVar2)(0x48,9,ar6,ar7);
+  if ((*(undefined4 *)0x8c4a9bc8 & 1) == 0) {
+    pvr_20a844(0x44,0,ar6,ar7);
+  }
+  else {
+    pvr_20a844(0x44,0x800000,ar6,ar7);
+  }
+  (*(code *)puVar2)(0x5c,0,ar6,ar7);
+  (*(code *)puVar2)(0x68,0x2800000,ar6,ar7);
+  (*(code *)puVar2)(0x6c,0x1e00000,ar6,ar7);
+  uVar6 = 0x92039;
+  sVar1 = 0x110;
+  if (*(undefined4 *)0x8c4a9bac == 6) {
+    (*(code *)puVar2)((int)0x110,0x93f39,ar6,ar7);
+    uVar6 = *(undefined4 *)0x8c4a9ec0;
+    sVar1 = 0x98;
+  }
+  (*(code *)puVar2)((int)sVar1,uVar6,ar6,ar7);
+  (*(code *)puVar2)(0x4c,(int)0xa0,ar6,ar7);
+  (*(code *)puVar2)(0x74,0,ar6,ar7);
+  (*(code *)puVar2)(0x78,0x3f800000,ar6,ar7);
+  (*(code *)puVar2)((int)0x84,0,ar6,ar7);
+  (*(code *)puVar2)(0x30,iVar4,ar6,ar7);
+  (*(code *)puVar2)((int)0xb0,0x7f7f7f,ar6,ar7);
+  (*(code *)puVar2)((int)0xb4,0x7f7f7f,ar6,ar7);
+  (*(code *)puVar2)((int)0xc0,0,ar6,ar7);
+  (*(code *)puVar2)((int)0xbc,0xffffffff,ar6,ar7);
+  (*(code *)puVar2)(0x80,7,ar6,ar7);
+  (*(code *)puVar2)((int)0x88,0x3727c5a0,ar6,ar7);
+  (*(code *)puVar2)((int)0x8c,0x1203000,ar6,ar7);
+  (*(code *)puVar2)(0x74,1,ar6,ar7);
+  if (*(undefined4 *)0x8c4a9bac == 6) {
+    uVar6 = 0x7df77;
+    if (*(undefined4 *)0x8c4a9bac == 6) {
+      uVar6 = 0x27df77;
+    }
+    (*(code *)puVar2)(0x7c,uVar6,ar6,ar7);
+    iVar4 = 0x200000;
+    puVar2 = (&FUN_8c20731e);
+    iVar7 = 0;
+    uStack_1c = 0;
+    iVar5 = 0xa5000000;
+    do {
+      (*(code *)puVar2)(iVar5,&uStack_1c,4,ar7);
+      iVar7 = iVar7 + 1;
+      iVar5 = iVar5 + 4;
+    } while (iVar7 < iVar4);
+    return 1;
+  }
+  do {
+                    
+  } while( true );
+}
+
+__asm__(".globl _g2dma_205a62\n.set _g2dma_205a62, _g2dma_205a62_def\n");

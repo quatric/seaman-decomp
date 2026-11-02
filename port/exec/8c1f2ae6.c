@@ -1,0 +1,43 @@
+#include "../decls.h"
+#ifndef INFINITY
+#define INFINITY __builtin_inff()
+#endif
+#ifndef NAN
+#define NAN __builtin_nanf("")
+#endif
+typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
+unsigned long xlat(unsigned long);
+extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
+undefined4 FUN_8c1f2ae6_def(undefined4 ar4,char *ar5,undefined4 ar6,undefined4 ar7)
+
+{
+  ring[rp++ & 255] = "FUN_8c1f2ae6";
+  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
+
+  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
+  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
+  char cVar1;
+  undefined4 uVar2;
+  undefined4 uVar3;
+  char *pcVar4;
+  char *unaff_r14 = 0;
+  
+  pcVar4 = ar5;
+  do {
+    if (*unaff_r14 == '\0') {
+      if (*pcVar4 != '\0') {
+        return 0;
+      }
+      return 1;
+    }
+    cVar1 = *unaff_r14;
+    unaff_r14 = unaff_r14 + 1;
+    uVar2 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c1f2a48((int)cVar1,ar5,ar6,ar7));
+    cVar1 = *pcVar4;
+    pcVar4 = pcVar4 + 1;
+    uVar3 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c1f2a48((int)cVar1,ar5,ar6,ar7));
+  } while ((char)uVar2 == (char)uVar3);
+  return 0;
+}
+
+__asm__(".globl _FUN_8c1f2ae6\n.set _FUN_8c1f2ae6, _FUN_8c1f2ae6_def\n");

@@ -1,0 +1,50 @@
+#include "../decls.h"
+extern "C" {
+#include "../trace.h"
+#ifndef INFINITY
+#define INFINITY __builtin_inff()
+#endif
+#ifndef NAN
+#define NAN __builtin_nanf("")
+#endif
+typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
+unsigned long xlat(unsigned long);
+extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
+int FUN_8c0abfb0_def(int ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
+
+{
+  TRACE_ENTER("FUN_8c0abfb0");
+  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
+
+  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
+  { unsigned char *z_ = fr0_ - 28; for (int i_ = 0; i_ < 28; i_++) z_[i_] = 0; }
+  int iVar1;
+  undefined4 ar6_00;
+  
+  if (*(le<int>* )(unsigned)(ar4 + 0x3c) == 0) {
+    ar6_00 = ar6;
+    (vsp = ((unsigned long)(fr0_ - 28)), FUN_8c0ac124(ar4,ar5,ar6,ar7));
+    *(le<int>* )(unsigned)(ar4 + 0xc) = *(le<int>* )(unsigned)(ar4 + 0xc) + 1;
+    (*(le<int>* )(fr0_ - 0x1c)) = *(le<int>* )(unsigned)(ar4 + 0xc);
+    *(le<undefined4>* )(unsigned)(ar4 + 0x40) =
+         *(le<undefined4>* )(unsigned)(((undefined1 *)(unsigned)0x8c13b2ec) + (*(le<int>* )(fr0_ - 0x1c)) * 4 + *(le<int>* )(unsigned)(ar4 + 4) * 0xc);
+    if ((*(le<int>* )(unsigned)(ar4 + 0x40) == 6) || (*(le<int>* )(unsigned)(ar4 + 0xc) == 3)) {
+      *(le<undefined4>* )(unsigned)(ar4 + 0xc) = 0;
+      ({ unsigned long ri0_ = (unsigned long)((*(le<int>* )(fr0_ - 0x1c))); vin0 = (unsigned)ri0_; vsp = ((unsigned long)(fr0_ - 28)); FUN_8c02f404(ar4,0,ar6_00,ar7); });
+      ar6 = ar6_00;
+    }
+    else {
+      ({ unsigned long ri0_ = (unsigned long)((*(le<int>* )(fr0_ - 0x1c))); vin0 = (unsigned)ri0_; vsp = ((unsigned long)(fr0_ - 28)); FUN_8c02f404(ar4,3,ar6_00,ar7); });
+      (vsp = ((unsigned long)(fr0_ - 28)), FUN_8c0ac068(ar4,ar5,ar6,ar7));
+    }
+  }
+  iVar1 = *(le<int>* )(unsigned)(ar4 + 0x3c);
+  if (iVar1 == 2) {
+    iVar1 = ({ unsigned long ri0_ = (unsigned long)((*(le<int>* )(fr0_ - 0x1c))); vin0 = (unsigned)ri0_; vsp = ((unsigned long)(fr0_ - 28)); FUN_8c02f404(ar4,2,ar6,ar7); });
+  }
+  return iVar1;
+}
+
+__asm__(".globl FUN_8c0abfb0\n.set FUN_8c0abfb0, FUN_8c0abfb0_def\n");
+
+}

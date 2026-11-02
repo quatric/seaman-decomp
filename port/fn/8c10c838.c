@@ -1,0 +1,41 @@
+#include "../decls.h"
+undefined4 FUN_8c10c838_def(int *ar4,uint ar5,int ar6,int *ar7)
+
+{
+  undefined *puVar1;
+  uint uVar2;
+  int iVar3;
+  
+  puVar1 = (&memset);
+  uVar2 = ar5 & 0xff;
+  if (uVar2 == 1) {
+    ar4[10] = 0;
+    (*(code *)puVar1)(ar4[0x15],0,(uint)*(ushort *)(ar4 + 0xc) << 5,ar7);
+  }
+  else if (uVar2 == 2) {
+    if ((ar4[10] != 0) || (ar6 != 0)) {
+      *(undefined1 *)(ar4 + 0x16) = 1;
+      if ((uint)ar4[10] < 3) {
+        iVar3 = ar4[10] + 4;
+      }
+      else {
+        iVar3 = 7;
+      }
+      ar4[10] = iVar3;
+    }
+  }
+  else if (uVar2 == (int)0xf8) {
+    *ar7 = ar4[10] + -4;
+  }
+  else {
+    if (uVar2 != (int)0xff) {
+      return 0;
+    }
+    iVar3 = ar4[0x15];
+    (**(code **)(*ar4 + 0x18))(*ar4,iVar3,ar6,ar7);
+    FUN_8c120668(ar4,iVar3,ar6,ar7);
+  }
+  return 1;
+}
+
+__asm__(".globl _FUN_8c10c838\n.set _FUN_8c10c838, _FUN_8c10c838_def\n");

@@ -1,0 +1,31 @@
+#include "../decls.h"
+extern "C" {
+#include "../trace.h"
+#ifndef INFINITY
+#define INFINITY __builtin_inff()
+#endif
+#ifndef NAN
+#define NAN __builtin_nanf("")
+#endif
+typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
+unsigned long xlat(unsigned long);
+extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
+undefined4 FUN_8c0f4ebc_def(int ar4,le<undefined4>* ar5,undefined4 ar6,undefined4 ar7)
+
+{
+  TRACE_ENTER("FUN_8c0f4ebc");
+  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
+
+  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
+  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
+  *(le<undefined4>* )(unsigned)(ar4 + 0x24) = *ar5;
+  (vsp = ((unsigned long)(fr0_ - 0)), vec3_copy_8c023d8c(ar4 + 0x50,ar5 + 1,ar6,ar7));
+  (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c023e04(ar4 + 0x5c,ar5 + 4,ar6,ar7));
+  *(le<undefined4>* )(unsigned)(ar4 + 0x6c) = ar5[7];
+  *(le<undefined4>* )(unsigned)(ar4 + 0x74) = ar5[8];
+  return 0x74;
+}
+
+__asm__(".globl FUN_8c0f4ebc\n.set FUN_8c0f4ebc, FUN_8c0f4ebc_def\n");
+
+}

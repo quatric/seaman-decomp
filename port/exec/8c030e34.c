@@ -1,0 +1,35 @@
+#include "../decls.h"
+#ifndef INFINITY
+#define INFINITY __builtin_inff()
+#endif
+#ifndef NAN
+#define NAN __builtin_nanf("")
+#endif
+typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
+unsigned long xlat(unsigned long);
+extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
+undefined4 * FUN_8c030e34_def(undefined4 *ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
+
+{
+  ring[rp++ & 255] = "FUN_8c030e34";
+  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
+
+  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
+  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
+  undefined4 in_fr5 = 0;
+  undefined4 in_fr4 = 0;
+  undefined4 in_fr7 = 0;
+  undefined4 in_fr6 = 0;
+  undefined4 in_fr9 = 0;
+  undefined4 in_fr8 = 0;
+  
+  *ar4 = in_fr4;
+  ar4[1] = in_fr5;
+  ar4[2] = in_fr6;
+  ar4[3] = in_fr7;
+  ar4[4] = in_fr8;
+  ar4[5] = in_fr9;
+  return ar4;
+}
+
+__asm__(".globl _FUN_8c030e34\n.set _FUN_8c030e34, _FUN_8c030e34_def\n");

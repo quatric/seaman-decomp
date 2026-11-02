@@ -1,0 +1,8 @@
+#include "../decls.h"
+int FUN_8c02602c_def(int ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
+
+{
+  return (int)*(short *)(0xa4 + ar4);
+}
+
+__asm__(".globl _FUN_8c02602c\n.set _FUN_8c02602c, _FUN_8c02602c_def\n");

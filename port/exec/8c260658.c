@@ -1,0 +1,106 @@
+#include "../decls.h"
+#ifndef INFINITY
+#define INFINITY __builtin_inff()
+#endif
+#ifndef NAN
+#define NAN __builtin_nanf("")
+#endif
+typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
+unsigned long xlat(unsigned long);
+extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
+undefined4
+FUN_8c260658_def(int ar4,uint ar5,short *ar6,undefined1 *ar7)
+
+{
+  ring[rp++ & 255] = "FUN_8c260658";
+  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
+  char * s0 = (char *)(unsigned long)*(unsigned *)(vsp + 0);
+  char * s4 = (char *)(unsigned long)*(unsigned *)(vsp + 4);
+  char * s8 = (char *)(unsigned long)*(unsigned *)(vsp + 8);
+  uint * s12 = (uint *)(unsigned long)*(unsigned *)(vsp + 12);
+  undefined4 s16 = *(undefined4 *)(vsp + 16);
+  undefined4 * s20 = (undefined4 *)(unsigned long)*(unsigned *)(vsp + 20);
+  undefined2 * s24 = (undefined2 *)(unsigned long)*(unsigned *)(vsp + 24);
+
+  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
+  { unsigned char *z_ = fr0_ - 4; for (int i_ = 0; i_ < 4; i_++) z_[i_] = 0; }
+  byte bVar1;
+  byte bVar2;
+  byte bVar3;
+  byte bVar4;
+  int iVar5;
+  uint uVar6;
+  undefined4 uVar7;
+  undefined4 *extraout_r2 = 0;
+  undefined4 *extraout_r3 = 0;
+  byte *pbVar8;
+  undefined1 *a7;
+  ushort *puVar9;
+  uint uVar10;
+  
+  uVar10 = 0;
+  a7 = ar7;
+  if (0 < (int)ar5) {
+    do {
+      iVar5 = (vsp = ((unsigned long)(fr0_ - 4)), FUN_8c013ec0(uVar10 + ar4,(*(undefined4 *)(unsigned)(unsigned)0x8c277fa0),4,a7));
+      if (iVar5 == 0) break;
+      uVar10 = uVar10 + 1;
+    } while ((int)uVar10 < (int)ar5);
+  }
+  if (uVar10 != ar5) {
+    if ((int)uVar10 < 0) {
+      uVar6 = ~(~uVar10 + 1 & 3) + 1;
+    }
+    else {
+      uVar6 = uVar10 & 3;
+    }
+    if ((uVar6 == 0) && (puVar9 = (ushort *)(unsigned)(uVar10 + 8 + ar4), *puVar9 < 2)) {
+      uVar10 = 0;
+      if (0 < (int)ar5) {
+        do {
+          iVar5 = (vsp = ((unsigned long)(fr0_ - 4)), FUN_8c013ec0(uVar10 + ar4,(*(undefined4 *)(unsigned)(unsigned)0x8c277fa8),4,a7));
+          if (iVar5 == 0) break;
+          uVar10 = uVar10 + 1;
+        } while ((int)uVar10 < (int)ar5);
+      }
+      if (uVar10 != ar5) {
+        pbVar8 = (byte *)(unsigned)(uVar10 + 4 + ar4);
+        bVar2 = pbVar8[1];
+        bVar1 = *pbVar8;
+        bVar3 = pbVar8[2];
+        bVar4 = pbVar8[3];
+        *ar6 = (short)uVar10 + 8;
+        uVar10 = (uint)bVar2 << 8 | (uint)bVar3 << 0x10 | (uint)bVar4 << 0x18 | (uint)bVar1;
+        *ar7 = 0xff;
+        *s12 = (uint)*(byte *)(unsigned)((int)puVar9 + 5) << 8 | (uint)(byte)puVar9[3] << 0x10 |
+               (uint)*(byte *)(unsigned)((int)puVar9 + 7) << 0x18 | (uint)(byte)puVar9[2];
+        *s8 = (char)puVar9[1];
+        *s0 = (char)puVar9[7];
+        *s4 = (char)puVar9[6];
+        uVar7 = (vsp = ((unsigned long)(fr0_ - 4)), libgcc_divide_helper_010468(uVar10,(int)*s4,vr6,vr7));
+        *extraout_r3 = uVar7;
+        *s20 = 1;
+        if (*s0 == '\x10') {
+          *s24 = 0;
+        }
+        else if (*s0 == '\b') {
+          *s24 = 1;
+        }
+        else if (*s0 == '\x04') {
+          *s4 = *s8 << 1;
+          *s20 = 4;
+          uVar7 = (vsp = ((unsigned long)(fr0_ - 4)), libgcc_divide_helper_01051c(uVar10 >> 1,(int)*s8,vr6,vr7));
+          *extraout_r2 = uVar7;
+          *s0 = '\x10';
+          *s24 = 2;
+        }
+        if ((((*s0 != '\0') && (*s4 != '\0')) && ('\0' < *s8)) && ((*s8 < '\x03' && (*s12 != 0)))) {
+          return 0;
+        }
+      }
+    }
+  }
+  return 0xffffffff;
+}
+
+__asm__(".globl _FUN_8c260658\n.set _FUN_8c260658, _FUN_8c260658_def\n");

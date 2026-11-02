@@ -1,0 +1,9 @@
+8c013ef4	memmove
+8c013ff8	memset
+8c0100dc	vec_delete_array
+8c023a34	Vec3_add
+8c023ae0	Vec3_sub
+8c023b8c	Vec3_scale
+8c023d34	Vec3_set_zero
+8c023d68	Vec3_set_xyz
+8c026da8	CAnimBody_GetCurFrame

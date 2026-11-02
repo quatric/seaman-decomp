@@ -1,0 +1,60 @@
+8c1297f4	refs=2	slots=1	Class_1297f4	FUN_8c014cf0
+8c129808	refs=2	slots=11	Class_129808	FUN_8c0147a4 FUN_8c014894 FUN_8c0148d8 FUN_8c014978 FUN_8c0166b4
+8c12984c	refs=2	slots=1	Class_12984c	s_Can_t_Find_File_s_015ce0
+8c12988c	refs=3	slots=1	Class_12988c	s_Can_t_Find_File_s_015ce0
+8c1298ac	refs=1	slots=1	Class_1298ac	free_if_nonnull_wrap_015bf4
+8c1298b8	refs=2	slots=12	Class_1298b8	free_if_nonnull_wrap_015544 FUN_8c01557c FUN_8c015588 FUN_8c0155e8 FUN_8c0156a0
+8c129920	refs=2	slots=1	Class_129920	FUN_8c015248
+8c129938	refs=3	slots=8	Class_129938	FUN_8c017084 FUN_8c0170e0 FUN_8c0171f4 FUN_8c017408 FUN_8c017428
+8c129974	refs=2	slots=1	Class_129974	FUN_8c016c2c
+8c1299b0	refs=2	slots=1	Class_1299b0	FUN_8c016af4
+8c1299ec	refs=2	slots=1	Class_1299ec	FUN_8c01a0f8
+8c1299f8	refs=1	slots=5	Class_1299f8	FUN_8c019eb8 FUN_8c01a148 FUN_8c01a164 FUN_8c019f00 FUN_8c019588
+8c129a24	refs=2	slots=5	Class_129a24	FUN_8c019aa0 FUN_8c019b68 FUN_8c01a1d8 FUN_8c01a230 FUN_8c019e40
+8c129a50	refs=3	slots=5	Class_129a50	free_if_nonnull_wrap_019270 FUN_8c01a148 FUN_8c01a164 FUN_8c01a230 FUN_8c019588
+8c129a7c	refs=4	slots=1	Class_129a7c	Vec3_dtor
+8c129a88	refs=2	slots=9	CAnimal	FUN_8c025688 FUN_8c0f41c8 FUN_8c02573c FUN_8c026078 FUN_8c0266dc
+8c129c24	refs=2	slots=1	Class_129c24	FUN_8c02ff90
+8c129c70	refs=2	slots=1	Class_129c70	FUN_8c02f1b8
+8c129cbc	refs=2	slots=6	Class_129cbc	FUN_8c0312f4 FUN_8c031598 CAnimBody_AdvanceFrame_wrapper_wrap_03376c CAnimBody_AdvanceFrame_wrapper_wrap_026834 CAnimBody_AdvanceFrame_wrapper_wrap_033790
+8c129cf8	refs=2	slots=1	Class_129cf8	free_if_nonnull_wrap_033978
+8c129d04	refs=2	slots=9	CAnimal	FUN_8c038648 FUN_8c0f41c8 FUN_8c0386d0 FUN_8c0390f4 FUN_8c0266dc
+8c129ea0	refs=2	slots=9	CAnimal	FUN_8c0361d8 FUN_8c0f41c8 FUN_8c03640c FUN_8c036568 FUN_8c0266dc
+8c12a03c	refs=2	slots=8	Class_12a03c	FUN_8c03c32c FUN_8c03c43c CAnimBody_AdvanceFrame_wrapper_wrap_03376c CAnimBody_AdvanceFrame_wrapper_wrap_026834 CAnimBody_AdvanceFrame_wrapper_wrap_033790
+8c12a078	refs=2	slots=9	Class_12a078	FUN_8c05d804 s_STATUS_SICK_05d86e FUN_8c05eee0 s_REACTION_CATCH_05f4a2 FUN_8c067284
+8c12a0c4	refs=2	slots=4	Class_12a0c4	FUN_8c0674c8 FUN_8c0f41c8 FUN_8c0677dc FUN_8c067934
+8c12a25c	refs=2	slots=8	Class_12a25c	FUN_8c06f3c4 FUN_8c06f530 CAnimBody_AdvanceFrame_wrapper_wrap_03376c CAnimBody_AdvanceFrame_wrapper_wrap_026834 CAnimBody_AdvanceFrame_wrapper_wrap_033790
+8c12a298	refs=2	slots=9	CAnimal	FUN_8c08800c FUN_8c0f41c8 FUN_8c088094 FUN_8c08891c FUN_8c0266dc
+8c12a434	refs=2	slots=9	CAnimal	FUN_8c08516c FUN_8c0f41c8 FUN_8c085390 FUN_8c085550 FUN_8c0266dc
+8c12a5d0	refs=2	slots=9	Class_12a5d0	FUN_8c08a3a4 FUN_8c0f41c8 FUN_8c08a49c FUN_8c08a704 FUN_8c08a9ec
+8c12a76c	refs=2	slots=1	Class_12a76c	FUN_8c08dca8
+8c12a7a8	refs=2	slots=3	Class_12a7a8	FUN_8c098ccc FUN_8c098d14 FUN_8c0996f4
+8c12a7f4	refs=2	slots=9	Class_12a7f4	FUN_8c099fd8 FUN_8c0f41c8 FUN_8c09a060 FUN_8c09a558 FUN_8c09aa8c
+8c12a990	refs=2	slots=9	Class_12a990	FUN_8c09bb44 FUN_8c0f41c8 FUN_8c09bc2c FUN_8c09d6e8 FUN_8c09c77c
+8c12ab2c	refs=2	slots=9	Class_12ab2c	FUN_8c09dab8 FUN_8c0f41c8 FUN_8c09db4c FUN_8c09f038 FUN_8c09dc8c
+8c12acc8	refs=2	slots=2	Class_12acc8	FUN_8c09f428 FUN_8c09f470
+8c12ad14	refs=2	slots=6	Class_12ad14	FUN_8c0a0950 FUN_8c0a09e8 CAnimBody_AdvanceFrame_wrapper_wrap_03376c FUN_8c0a427c FUN_8c0a43d4
+8c12ad50	refs=2	slots=9	Class_12ad50	FUN_8c0a4f54 FUN_8c0f41c8 FUN_8c0a4fdc FUN_8c0a5c60 FUN_8c0a536c
+8c12aeec	refs=2	slots=9	Class_12aeec	FUN_8c0a4694 FUN_8c0f41c8 FUN_8c0a471c FUN_8c0a4744 FUN_8c0a476c
+8c12b088	refs=2	slots=6	Class_12b088	FUN_8c0a62cc FUN_8c0a6468 CAnimBody_AdvanceFrame_wrapper_wrap_03376c CAnimBody_AdvanceFrame_wrapper_wrap_026834 CAnimBody_AdvanceFrame_wrapper_wrap_033790
+8c12b0c4	refs=2	slots=3	Class_12b0c4	FUN_8c0ab7ac FUN_8c0ab7f4 FUN_8c0abc38
+8c12b110	refs=2	slots=9	CAnimal	FUN_8c0aca4c FUN_8c0f41c8 FUN_8c0acaec FUN_8c0acd74 FUN_8c0acfe4
+8c12b2ac	refs=2	slots=8	Class_12b2ac	FUN_8c0afbcc FUN_8c0aff3c CAnimBody_AdvanceFrame_wrapper_wrap_03376c CAnimBody_AdvanceFrame_wrapper_wrap_026834 CAnimBody_AdvanceFrame_wrapper_wrap_033790
+8c12b2e8	refs=2	slots=3	Class_12b2e8	FUN_8c0b5a88 FUN_8c0b5ad0 FUN_8c0b6028
+8c12b334	refs=2	slots=2	Class_12b334	FUN_8c0bf38c FUN_8c0bf3d4
+8c12b350	refs=2	slots=2	Class_12b350	FUN_8c0baa08 FUN_8c0baa84
+8c12b36c	refs=2	slots=1	Class_12b36c	free_if_nonnull_wrap_0ba8ac
+8c12b388	refs=2	slots=2	Class_12b388	FUN_8c0c5928 FUN_8c0c5c08
+8c12b3b8	refs=2	slots=2	Class_12b3b8	FUN_8c0e77ec FUN_8c0e79d4
+8c12b580	refs=2	slots=3	Class_12b580	FUN_8c0e61f4 FUN_8c0e634c FUN_8c0e6548
+8c12b758	refs=2	slots=3	Class_12b758	FUN_8c0e46cc FUN_8c0e4b5c FUN_8c0e4ce4
+8c12b930	refs=2	slots=4	Class_12b930	FUN_8c0dde84 FUN_8c0de1dc FUN_8c0de3d4 FUN_8c0de4b0
+8c12bb08	refs=2	slots=3	Class_12bb08	FUN_8c0da208 FUN_8c0da338 FUN_8c0da5a8
+8c12bce0	refs=2	slots=1	Class_12bce0	FUN_8c0d9a98
+8c12bea8	refs=2	slots=4	Class_12bea8	FUN_8c0147a4 FUN_8c0d7860 FUN_8c0148d8 FUN_8c0d7ac0
+8c12bec0	refs=2	slots=4	Class_12bec0	FUN_8c0f5a48 FUN_8c0f41c8 FUN_8c0f5ca8 FUN_8c0f5d1c
+8c12c058	refs=2	slots=2	Class_12c058	FUN_8c0f55d8 FUN_8c0f5660
+8c12c1f0	refs=3	slots=2	Class_12c1f0	FUN_8c0f4108 FUN_8c0f41c8
+8c12c394	refs=2	slots=2	Class_12c394	FUN_8c102b04 FUN_8c102b58
+8c12c3a4	refs=2	slots=1	Class_12c3a4	FUN_8c1029d0
+8c12c3c4	refs=2	slots=11	Class_12c3c4	FUN_8c1030a4 s_REQUEST_SLEEP_10310a FUN_8c104264 s_REACTION_CATCH_1046a0 FUN_8c10a16c
