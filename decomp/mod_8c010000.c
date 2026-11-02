@@ -11530,8 +11530,8 @@ u8 *memmove_bytes(u8 *a0, u8 *a1, u32 a2) {
 /*
  * memset  0x8c013ff8
  * called by: ADXF_Close_like, ADXF_LoadPartition, ADXSTM_uses_ADXT_Stop_like_2639fa,
- * ADXSTM_uses_SJRBF_Create_like_263840, ADXT_uses_libgcc_divide_helper_264308, alt_entry_123eae, alt_entry_1f68f6,
- * alt_entry_1f7c50 (+95 more)
+ * ADXSTM_uses_SJRBF_Create_like_263840, ADXT_uses_libgcc_divide_helper_264308, aiff_handle_parse_header,
+ * alt_entry_123eae, alt_entry_1f68f6 (+95 more)
  */
 u8 *memset(u8 *a0, u32 a1, u32 a2) {
     u8 *puVar1;
@@ -17576,7 +17576,7 @@ u32 matrix_rotate_deg(void) {
     u32 uVar1;
     float in_fr4;
 
-    uVar1 = ninja_float_calc_256a78(0, (int)((in_fr4 * 65536.0) / 360.0), r6, r7, in_fr4);
+    uVar1 = njRotateX_like(0, (int)((in_fr4 * 65536.0) / 360.0), r6, r7, in_fr4);
     return uVar1;
 }
 
@@ -18050,7 +18050,7 @@ u32 Class_1299f8_m4_019588(int a0, u32 a1, u32 a2, u32 a3) {
         dVar4 = dVar4 / dVar7;
         iVar11 = (int)dVar4;
     }
-    ninja_float_calc_256a78(auStack_138, iVar11, a2, a3, fVar2);
+    njRotateX_like(auStack_138, iVar11, a2, a3, fVar2);
     ninja_update_fields_255d6c(auStack_f8, auStack_138, a2, a3, fVar2);
     ar6_00 = auStack_150;
     puVar1 = &uStack_144;
@@ -18431,7 +18431,7 @@ u32 Class_129a24_m1_019b68(int a0, u32 unused_a1, u32 a2, u32 a3) {
     } else {
         iVar6 = (int)(dVar5 / dVar5);
     }
-    ninja_float_calc_256a78(auStack_88, iVar6, puVar3, a3, in_stack_ffffff28);
+    njRotateX_like(auStack_88, iVar6, puVar3, a3, in_stack_ffffff28);
     puVar2 = auStack_88;
     ninja_update_fields_255d6c(auStack_48, puVar2, puVar3, a3, in_stack_ffffff28);
     njGetMatrix(auStack_88, puVar2, puVar3, a3, in_stack_ffffff28);
@@ -18554,7 +18554,7 @@ u32 Class_129a24_m1_019b68(int a0, u32 unused_a1, u32 a2, u32 a3) {
         *(u64 *)(a0 + 0x4c) = in_xd0;
     }
     vec3_clear(a0 + 0x80, puVar2, puVar3, a3);
-    uVar1 = ninja_vec_2572ec(a0 + 4);
+    uVar1 = nj_camera_view_matrix(a0 + 4);
     return uVar1;
 }
 
@@ -18798,7 +18798,7 @@ u32 *Class_1299ec_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 u32 Class_1299f8_m1_01a148(int a0) {
     u32 uVar1;
 
-    uVar1 = ninja_vec_2572ec(a0 + 4);
+    uVar1 = nj_camera_view_matrix(a0 + 4);
     return uVar1;
 }
 

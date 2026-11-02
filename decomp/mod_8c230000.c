@@ -8155,7 +8155,7 @@ u32 gfx_set_color4_4aa52c(u32 *a0) {
 /*
  * gfxlib_uses_ta_fifo_233e10  0x8c233e10
  * area name: in the gfxlib library code range; behaviour name: its main named callee is ta_fifo_2137c0
- * called by: ninja_uses_nj_seek_25af3c
+ * called by: pvr_draw_25af3c
  */
 int gfxlib_uses_ta_fifo_233e10(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     int iVar1;
@@ -11064,7 +11064,7 @@ u32 gfx_heap_init(u16 *a0, u32 a1) {
 /*
  * gfx_heap_alloc  0x8c236278
  * first-fit allocation of a0 bytes (32-byte aligned, plus a header) from the gfx_heap_init heap, splitting the free
- * block; 0 when none fits called by: tex_copy_to_alloc, tex_uses_gfx_heap_alloc_25a838
+ * block; 0 when none fits called by: pvr_file_read_to_heap, tex_copy_to_alloc
  */
 u32 gfx_heap_alloc(int a0) {
     u16 uVar1;
@@ -12228,7 +12228,7 @@ u32 gfxlib_uses_tex_entry_alloc_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     *(u16 *)(*piVar7 + 0x40) = 0;
                     return 0xffffffff;
                 }
-                iStack_12c = tex_uses_nj_seek_25a216(&piStack_130, iVar1, ar6_01, a3);
+                iStack_12c = pvr_file_read_header(&piStack_130, iVar1, ar6_01, a3);
                 if (iStack_12c < 0) {
                     memcpy_bytes(auStack_168, &g_8c4ab10c, 0x28);
                     uVar8 = 0;
@@ -12359,7 +12359,7 @@ u32 gfxlib_uses_tex_entry_alloc_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     tex_entry_addref(piStack_130, piVar6, ar6_00, a3, 0x40);
                 } else if (uVar9 == 0x80000000) {
                     if ((*(u32 *)(iVar1 + 0x10) & 1) == 0) {
-                        iStack_20 = tex_uses_gfx_heap_alloc_25a838(piVar3, iVar1 + 0x14, ar6_00, a3);
+                        iStack_20 = pvr_file_read_to_heap(piVar3, iVar1 + 0x14, ar6_00, a3);
                         if (iStack_20 < 0) {
                             uVar8 = 2;
                             iVar4 = iVar1 + 0x14;
@@ -12392,7 +12392,7 @@ u32 gfxlib_uses_tex_entry_alloc_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     }
                 } else if (uVar9 == 0x20000000) {
                     if ((*(u32 *)(iVar1 + 0x10) & 1) == 0) {
-                        iStack_20 = tex_uses_gfx_heap_alloc_25a838(piVar3, iVar1 + 0x14, ar6_00, a3);
+                        iStack_20 = pvr_file_read_to_heap(piVar3, iVar1 + 0x14, ar6_00, a3);
                         if (iStack_20 < 0) {
                             uVar8 = 2;
                             iVar4 = iVar1 + 0x14;
@@ -12437,7 +12437,7 @@ u32 gfxlib_uses_tex_entry_alloc_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
             ar5_00 = (int *)tex_entry_next_free();
             uVar9 = piVar3[1] & 0xa0000000;
             if (uVar9 == 0) {
-                iStack_20 = tex_uses_dcache_writeback_range_25a770(piVar3, ar5_00, ar6_00, a3);
+                iStack_20 = pvr_file_stream_to_vram(piVar3, ar5_00, ar6_00, a3);
                 if (iStack_20 < 0) {
                     uVar8 = 0;
                     piVar3 = piVar7;
@@ -12460,7 +12460,7 @@ u32 gfxlib_uses_tex_entry_alloc_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     *(u32 *)(*piVar7 + 0x10) = *(u32 *)(*piVar7 + 0x10) | 8;
                 }
             } else if (uVar9 == 0x80000000) {
-                iStack_20 = tex_uses_gfx_heap_alloc_25a838(piVar3, ar5_00, ar6_00, a3);
+                iStack_20 = pvr_file_read_to_heap(piVar3, ar5_00, ar6_00, a3);
                 if (iStack_20 < 0) {
                     uVar8 = 0;
                     piVar3 = piVar7;
@@ -12479,7 +12479,7 @@ u32 gfxlib_uses_tex_entry_alloc_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                 *(u16 *)(*piVar7 + 0x42) = 0;
                 piVar6 = ar5_00;
             } else if (uVar9 == 0x20000000) {
-                iStack_20 = tex_uses_gfx_heap_alloc_25a838(piVar3, ar5_00, ar6_00, a3);
+                iStack_20 = pvr_file_read_to_heap(piVar3, ar5_00, ar6_00, a3);
                 if (iStack_20 < 0) {
                     uVar8 = 0;
                     puVar5 = auStack_16c;
@@ -12558,7 +12558,7 @@ u32 gfxlib_uses_tex_entry_alloc_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                 if ((piVar7[4] & 1U) != 0)
                     goto LAB_8c23878e;
                 piVar6 = piVar7 + 5;
-                iStack_20 = tex_uses_gfx_heap_alloc_25a838(piVar3, piVar6, ar6_00, a3);
+                iStack_20 = pvr_file_read_to_heap(piVar3, piVar6, ar6_00, a3);
                 if (iStack_20 < 0) {
                     *(short *)((int)piVar7 + 0x42) = -(short)iStack_20;
                     g_8c4aa6b0 = piStack_130;
@@ -12610,7 +12610,7 @@ u32 gfxlib_uses_tex_entry_alloc_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     goto LAB_8c238436;
                 }
                 piVar6 = piVar7 + 5;
-                iStack_20 = tex_uses_gfx_heap_alloc_25a838(piVar3, piVar6, ar6_00, a3);
+                iStack_20 = pvr_file_read_to_heap(piVar3, piVar6, ar6_00, a3);
                 if (iStack_20 < 0) {
                     *(short *)((int)piVar7 + 0x42) = -(short)iStack_20;
                     g_8c4aa6b0 = piStack_130;
@@ -13021,7 +13021,7 @@ u32 gfxlib_uses_tex_entry_alloc_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                 *(u16 *)(*piStack_10 + 0x40) = 0;
                 return 0xffffffff;
             }
-            iStack_12c = tex_uses_nj_seek_25a216(&piStack_130, iVar4, ar6_00, a3);
+            iStack_12c = pvr_file_read_header(&piStack_130, iVar4, ar6_00, a3);
             if (iStack_12c < 0) {
                 memcpy_bytes(auStack_168, &g_8c4ab10c, 0x28);
                 uVar7 = 0;
@@ -13153,7 +13153,7 @@ u32 gfxlib_uses_tex_entry_alloc_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                 tex_entry_addref(piStack_130, piVar6, piVar2, a3, in_stack_fffffe90);
             } else if (uVar1 == 0x80000000) {
                 if ((piStack_14[4] & 1U) == 0) {
-                    iStack_20 = tex_uses_gfx_heap_alloc_25a838(piStack_18, piStack_14 + 5, piVar2, a3);
+                    iStack_20 = pvr_file_read_to_heap(piStack_18, piStack_14 + 5, piVar2, a3);
                     if (iStack_20 < 0) {
                         uVar7 = 2;
                         piVar3 = piStack_14 + 5;
@@ -13186,7 +13186,7 @@ u32 gfxlib_uses_tex_entry_alloc_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                 }
             } else if (uVar1 == 0x20000000) {
                 if ((piStack_14[4] & 1U) == 0) {
-                    iStack_20 = tex_uses_gfx_heap_alloc_25a838(piStack_18, piStack_14 + 5, piVar2, a3);
+                    iStack_20 = pvr_file_read_to_heap(piStack_18, piStack_14 + 5, piVar2, a3);
                     if (iStack_20 < 0) {
                         uVar7 = 2;
                         piVar3 = piStack_14 + 5;
@@ -13232,7 +13232,7 @@ u32 gfxlib_uses_tex_entry_alloc_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
         uVar1 = piStack_18[1] & 0xa0000000;
         if (uVar1 == 0) {
             piVar6 = ar5_00;
-            iStack_20 = tex_uses_dcache_writeback_range_25a770(piStack_18, ar5_00, piVar2, a3);
+            iStack_20 = pvr_file_stream_to_vram(piStack_18, ar5_00, piVar2, a3);
             if (iStack_20 < 0) {
                 uVar7 = 0;
                 piVar2 = piStack_10;
@@ -13255,7 +13255,7 @@ u32 gfxlib_uses_tex_entry_alloc_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
             }
         } else if (uVar1 == 0x80000000) {
             piVar6 = ar5_00;
-            iStack_20 = tex_uses_gfx_heap_alloc_25a838(piStack_18, ar5_00, piVar2, a3);
+            iStack_20 = pvr_file_read_to_heap(piStack_18, ar5_00, piVar2, a3);
             if (iStack_20 < 0) {
                 uVar7 = 0;
                 piVar2 = piStack_10;
@@ -13273,7 +13273,7 @@ u32 gfxlib_uses_tex_entry_alloc_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
             tex_entry_alloc(piStack_10, piVar6, piStack_130, 1, uStack_134);
             *(u16 *)(*piStack_10 + 0x42) = 0;
         } else if (uVar1 == 0x20000000) {
-            iStack_20 = tex_uses_gfx_heap_alloc_25a838(piStack_18, ar5_00, piVar2, a3);
+            iStack_20 = pvr_file_read_to_heap(piStack_18, ar5_00, piVar2, a3);
             if (iStack_20 < 0) {
                 uVar7 = 0;
                 puVar5 = auStack_16c;
@@ -13354,7 +13354,7 @@ u32 gfxlib_uses_tex_entry_alloc_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                 goto LAB_8c23878e;
             piVar6 = piStack_14 + 5;
             piVar3 = piStack_18;
-            iStack_20 = tex_uses_gfx_heap_alloc_25a838(piStack_18, piVar6, piVar2, a3);
+            iStack_20 = pvr_file_read_to_heap(piStack_18, piVar6, piVar2, a3);
             if (iStack_20 < 0) {
                 *(short *)((int)piStack_14 + 0x42) = -(short)iStack_20;
                 g_8c4aa6ac = iStack_c;
@@ -13407,7 +13407,7 @@ u32 gfxlib_uses_tex_entry_alloc_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
             }
             piVar6 = piStack_14 + 5;
             piVar3 = piStack_18;
-            iStack_20 = tex_uses_gfx_heap_alloc_25a838(piStack_18, piVar6, piVar2, a3);
+            iStack_20 = pvr_file_read_to_heap(piStack_18, piVar6, piVar2, a3);
             if (iStack_20 < 0) {
                 *(short *)((int)piStack_14 + 0x42) = -(short)iStack_20;
                 g_8c4aa6ac = iStack_c;
@@ -14276,8 +14276,7 @@ u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) 
                                     tex_entry_addref(piStack_138, piVar7, piVar3, a3, in_stack_fffffe78);
                                 } else if (uVar2 == 0x80000000) {
                                     if ((piStack_124[4] & 1U) == 0) {
-                                        iStack_13c =
-                                            tex_uses_gfx_heap_alloc_25a838(piStack_128, piStack_124 + 5, piVar3, a3);
+                                        iStack_13c = pvr_file_read_to_heap(piStack_128, piStack_124 + 5, piVar3, a3);
                                         if (iStack_13c < 0) {
                                             uVar6 = 2;
                                             piVar3 = piStack_124 + 5;
@@ -14310,8 +14309,7 @@ u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) 
                                     }
                                 } else if (uVar2 == 0x20000000) {
                                     if ((piStack_124[4] & 1U) == 0) {
-                                        iStack_13c =
-                                            tex_uses_gfx_heap_alloc_25a838(piStack_128, piStack_124 + 5, piVar3, a3);
+                                        iStack_13c = pvr_file_read_to_heap(piStack_128, piStack_124 + 5, piVar3, a3);
                                         if (iStack_13c < 0) {
                                             uVar6 = 2;
                                             piVar3 = piStack_124 + 5;
@@ -14396,7 +14394,7 @@ u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) 
                                 if ((piStack_124[4] & 1U) == 0) {
                                     piVar7 = piStack_124 + 5;
                                     piVar4 = piStack_128;
-                                    iStack_13c = tex_uses_gfx_heap_alloc_25a838(piStack_128, piVar7, piVar3, a3);
+                                    iStack_13c = pvr_file_read_to_heap(piStack_128, piVar7, piVar3, a3);
                                     if (iStack_13c < 0) {
                                         *(short *)((int)piStack_124 + 0x42) = -(short)iStack_13c;
                                         g_8c4aa6ac = iStack_144;
@@ -14467,7 +14465,7 @@ u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) 
                                 } else if ((piStack_124[4] & 1U) == 0) {
                                     piVar7 = piStack_124 + 5;
                                     piVar4 = piStack_128;
-                                    iStack_13c = tex_uses_gfx_heap_alloc_25a838(piStack_128, piVar7, piVar3, a3);
+                                    iStack_13c = pvr_file_read_to_heap(piStack_128, piVar7, piVar3, a3);
                                     if (iStack_13c < 0) {
                                         *(short *)((int)piStack_124 + 0x42) = -(short)iStack_13c;
                                         g_8c4aa6ac = iStack_144;
@@ -14512,8 +14510,7 @@ u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) 
                             uVar2 = piStack_128[1] & 0xa0000000;
                             if (uVar2 == 0) {
                                 piVar7 = in_stack_fffffe78;
-                                iStack_13c =
-                                    tex_uses_dcache_writeback_range_25a770(piStack_128, in_stack_fffffe78, piVar3, a3);
+                                iStack_13c = pvr_file_stream_to_vram(piStack_128, in_stack_fffffe78, piVar3, a3);
                                 if (iStack_13c < 0) {
                                     uVar6 = 0;
                                     piVar4 = piStack_120;
@@ -14536,7 +14533,7 @@ u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) 
                                 }
                             } else if (uVar2 == 0x80000000) {
                                 piVar7 = in_stack_fffffe78;
-                                iStack_13c = tex_uses_gfx_heap_alloc_25a838(piStack_128, in_stack_fffffe78, piVar3, a3);
+                                iStack_13c = pvr_file_read_to_heap(piStack_128, in_stack_fffffe78, piVar3, a3);
                                 if (iStack_13c < 0) {
                                     uVar6 = 0;
                                     piVar4 = piStack_120;
@@ -14555,7 +14552,7 @@ u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) 
                                 tex_entry_alloc(piStack_120, piVar7, piStack_138, 1, uStack_150);
                                 *(u16 *)(*piStack_120 + 0x42) = 0;
                             } else if (uVar2 == 0x20000000) {
-                                iStack_13c = tex_uses_gfx_heap_alloc_25a838(piStack_128, in_stack_fffffe78, piVar3, a3);
+                                iStack_13c = pvr_file_read_to_heap(piStack_128, in_stack_fffffe78, piVar3, a3);
                                 if (iStack_13c < 0) {
                                     uVar6 = 0;
                                     piVar4 = piStack_120;

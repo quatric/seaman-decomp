@@ -2247,3 +2247,18 @@
 8c254780	motion_lookup_scale_key	binary-searches the current node's scale keys for the current frame and calls interpolator a1 into a0
 8c256164	nj_palette_file_load	opens file a0, checks the "PVPL" magic and reads the palette entries and header fields into a1
 8c256294	matrix_apply_point_w1	transforms point a1 (w = 1) by matrix a0 (the current matrix when 0) into a2
+8c2566c8	tex_list_release_loaded	releases every texture entry flagged as loaded, freeing palettised textures' sharing entries and entries left with no flags
+8c256a78	njRotateX_like	rotates matrix a0 about the X axis by Ninja angle a1 (0x10000 = 360 degrees), updating its second and third rows
+8c2572ec	nj_camera_view_matrix	builds camera a0's view matrix from its direction (+0x4c), roll angle (+0x58) and position (+0x40), makes it current and loads it
+8c258d82	ta_poly_context_default	fills polygon context a0 with the default list, culling, blending and colour values and builds its header words
+8c25a216	pvr_file_read_header	scans the open texture file for its GBIX and PVRT chunks, picks the global index (or a free one) into *a0 and returns 1 for palettised formats
+8c25a770	pvr_file_stream_to_vram	streams texture a1's data from the open file into VRAM in buffer-sized chunks, skipping any trailing bytes
+8c25a838	pvr_file_read_to_heap	reads texture a1's data from the open file into a newly allocated graphics heap block stored in *a1 (-7 when out of memory)
+8c25a9cc	tex_write_span_split	writes a3 bytes from a1 at offset a2 of texture a0's data, splitting them between the first area and the area at +0x800 by the table sizes
+8c25ae38	pvr_file_read_dims	skips chunks up to the PVRT chunk and reads the texture's width, height (powers of two 8..1024), format and size; error 4 when invalid
+8c25b4ea	tex_list_build_control_words	rebuilds the control words of every loaded texture in list a0 (a1 entries), sharing the address word between entries with the same id
+8c25e260	pvr_set_video_timing	packs the stacked timing values into the sync, border, VO and display-window registers, waits for a frame edge and writes them
+8c25f0ea	aiff_handle_parse_header	reads the AIFF header (channels, bits, rate, sample count) of a1 into decoder handle a0 with no loop info
+8c25f1e8	aiff_decode_pcm16	when data is ready, byte-swaps the big-endian 16-bit samples into the output channel buffers and hands them to the output callback
+8c25f306	aiff_decode_pcm8	when data is ready, widens the 8-bit samples to 16 bits into the output channel buffers and hands them to the output callback
+8c25f428	au_parse_header_fields	checks the ".snd" magic and reads the AU header's data offset, size, encoding, rate and channels

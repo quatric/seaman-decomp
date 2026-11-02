@@ -2140,7 +2140,7 @@ u32 Class_12bec0_draw_0f5e0c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     } else {
         iVar4 = (int)(dVar3 - dVar3);
     }
-    ninja_float_calc_256a78(0, iVar4, a2, a3, (u32)uStack_4c);
+    njRotateX_like(0, iVar4, a2, a3, (u32)uStack_4c);
     matrix_scale(0, iVar4, a2, a3, (u32)uStack_4c);
     obj_set_texlist(a0 + 0x1b4, iVar4, a2);
     uVar1 = 0;
@@ -4214,7 +4214,7 @@ u32 game_shutdown_a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
     ar4_00 = 0x8c286ebc;
     memcard_flush_and_close_8c3dd7dc(0x8c286ebc, a1, a2, a3);
-    ninja_uses_tex_entry_free_25b37c(ar4_00, a1, a2);
+    ninja_load_25b37c(ar4_00, a1, a2);
     gfxlib_calc_23403e();
     if (g_8c43b570 != 0) {
         ar4_00 = g_8c43b570;
@@ -4241,14 +4241,14 @@ u32 game_shutdown_a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_draw_0f7ea0  0x8c0f7ea0
- * area name: sits between game functions (same compilation unit); behaviour name: mostly calls draw functions
+ * tex_list_build_control_words_wrap  0x8c0f7ea0
+ * only calls tex_list_build_control_words
  * called by: Class_12b388_uses_Class_129808_draw_0c5cb4, game_draw_0d1c84
  */
-u32 game_draw_0f7ea0(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 tex_list_build_control_words_wrap(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = ninja_draw_25b4ea(0x8c43b584, 0x15e, a2, a3);
+    uVar1 = tex_list_build_control_words(0x8c43b584, 0x15e, a2, a3);
     return uVar1;
 }
 
@@ -4287,21 +4287,21 @@ u32 static_init_vec3s_43b540(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_copy_0f7f78  0x8c0f7f78
- * area name: sits between game functions (same compilation unit); behaviour name: mostly calls copy functions
+ * tex_copy_0f7f78  0x8c0f7f78
+ * area name: sits between tex functions (same compilation unit); behaviour name: mostly calls copy functions
  * called by: static_init_vec3s_286e20
  */
-int game_copy_0f7f78(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int tex_copy_0f7f78(int a0, u32 unused_a1, u32 a2, u32 a3) {
     game_copy_0fdc20(a0, unused_a1, a2, a3);
     identity_0fa804(a0 + 0x1054);
     return a0;
 }
 
 /*
- * game_release_0f7fa8  0x8c0f7fa8
- * area name: sits between game functions (same compilation unit); behaviour name: mostly calls release functions
+ * tex_release_0f7fa8  0x8c0f7fa8
+ * area name: sits between tex functions (same compilation unit); behaviour name: mostly calls release functions
  */
-int game_release_0f7fa8(int a0, u32 a1, u32 a2, u32 a3) {
+int tex_release_0f7fa8(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
     u32 in_stack_fffffff4;
     u32 ain0;
@@ -4318,11 +4318,11 @@ int game_release_0f7fa8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_rtc_get_date_0f7ff0  0x8c0f7ff0
- * area name: sits between game functions (same compilation unit); behaviour name: its callees mostly do:
+ * tex_uses_rtc_get_date_0f7ff0  0x8c0f7ff0
+ * area name: sits between tex functions (same compilation unit); behaviour name: its callees mostly do:
  * uses_rtc_get_date called by: game_init_sound_and_messages
  */
-u32 game_uses_rtc_get_date_0f7ff0(int a0, u32 a1, u32 a2, u32 a3) {
+u32 tex_uses_rtc_get_date_0f7ff0(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     *(u32 *)(0x89134 + a0) = 0;
@@ -5547,7 +5547,7 @@ u32 static_init_vec3s_441280(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * identity_0fa804  0x8c0fa804
  * returns a0
- * called by: game_copy_0f7f78
+ * called by: tex_copy_0f7f78
  */
 u32 identity_0fa804(u32 a0) {
     return a0;
@@ -5555,7 +5555,7 @@ u32 identity_0fa804(u32 a0) {
 
 /*
  * free_if_nonnull_wrap_0fa80c  0x8c0fa80c
- * called by: game_release_0f7fa8
+ * called by: tex_release_0f7fa8
  */
 int free_if_nonnull_wrap_0fa80c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -5569,7 +5569,7 @@ int free_if_nonnull_wrap_0fa80c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * speech_uses_rtc_get_date_0fa83c  0x8c0fa83c
  * area name: sits between speech functions (same compilation unit); behaviour name: its main named callee is
- * rtc_get_date called by: game_uses_rtc_get_date_0f7ff0
+ * rtc_get_date called by: tex_uses_rtc_get_date_0f7ff0
  */
 u32 speech_uses_rtc_get_date_0fa83c(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -7564,7 +7564,7 @@ u32 save_slot_store_if_changed(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_copy_0fdc20  0x8c0fdc20
  * area name: game code; nothing names its area yet; behaviour name: mostly calls copy functions
- * called by: SaveData_ctor, game_copy_0f7f78
+ * called by: SaveData_ctor, tex_copy_0f7f78
  */
 u32 *game_copy_0fdc20(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -9043,7 +9043,7 @@ u32 game_uses_touch_fields_30_3c_0ff928(int a0, u64 *a1, u64 *a2, u32 a3) {
     ta_fifo_2595aa(2, a3, a6, uVar3);
     ninja_uses_ninja_angle_sincos_257148(0x2e38);
     ar4_00 = auStack_90;
-    ninja_vec_2572ec(ar4_00);
+    nj_camera_view_matrix(ar4_00);
     gfxlib_float_calc_219038();
     gfxlib_calc_219070();
     set_vec3_g_278744();

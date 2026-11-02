@@ -11517,7 +11517,7 @@ u32 matrix_uses_switch_jump_2563f8(double *a0) {
 /*
  * ninja_uses_tex_entry_free_2565c4  0x8c2565c4
  * area name: in the ninja library code range; behaviour name: its main named callee is tex_entry_free
- * called by: Class_12b388_uses_Class_129808_draw_0c5cb4, ninja_uses_tex_entry_free_25b37c
+ * called by: Class_12b388_uses_Class_129808_draw_0c5cb4, ninja_load_25b37c
  */
 u32 ninja_uses_tex_entry_free_2565c4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int ain0_00;
@@ -11603,7 +11603,7 @@ u32 ninja_scan_loop_256670(int *a0) {
     u32 uVar4;
     u32 uVar5;
 
-    puVar2 = (&ninja_uses_tex_entry_free_2567f8);
+    puVar2 = (&tex_uses_tex_entry_free_2567f8);
     puVar1 = 0x8c4aa6ac;
     uVar4 = 1;
     for (uVar5 = 0; uVar5 < (u32)a0[1]; uVar5 = uVar5 + 1) {
@@ -11629,7 +11629,7 @@ u32 alt_entry_25667e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int *unaff_r13;
     u32 uVar4;
 
-    puVar2 = (&ninja_uses_tex_entry_free_2567f8);
+    puVar2 = (&tex_uses_tex_entry_free_2567f8);
     puVar1 = 0x8c4aa6ac;
     for (uVar4 = 0; uVar4 < (u32)unaff_r13[1]; uVar4 = uVar4 + 1) {
         iVar3 = (*(code *)puVar2)(*(u32 *)(uVar4 * 0xc + *unaff_r13 + 8), a1, a2, a3);
@@ -11642,11 +11642,11 @@ u32 alt_entry_25667e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_uses_tex_entry_free_2566c8  0x8c2566c8
- * area name: in the ninja library code range; behaviour name: its main named callee is tex_entry_free
- * called by: ninja_uses_tex_entry_free_25b37c
+ * tex_list_release_loaded  0x8c2566c8
+ * releases every texture entry flagged as loaded, freeing palettised textures' sharing entries and entries left with no
+ * flags called by: ninja_load_25b37c
  */
-u32 ninja_uses_tex_entry_free_2566c8(u32 unused_a0, int a1, u32 a2, u32 unused_a3, u32 ain0) {
+u32 tex_list_release_loaded(u32 unused_a0, int a1, u32 a2, u32 unused_a3, u32 ain0) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -11708,11 +11708,11 @@ u32 ninja_uses_tex_entry_free_2566c8(u32 unused_a0, int a1, u32 a2, u32 unused_a
 }
 
 /*
- * ninja_uses_tex_entry_free_2567f8  0x8c2567f8
- * area name: in the ninja library code range; behaviour name: its main named callee is tex_entry_free
- * called by: ninja_uses_tex_entry_free_256944
+ * tex_uses_tex_entry_free_2567f8  0x8c2567f8
+ * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is
+ * tex_entry_free called by: ninja_uses_tex_entry_free_256944
  */
-u32 ninja_uses_tex_entry_free_2567f8(int *a0) {
+u32 tex_uses_tex_entry_free_2567f8(int *a0) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -11874,7 +11874,7 @@ u32 alt_entry_2567fe(void) {
 int ninja_uses_tex_entry_free_256944(int a0) {
     int iVar1;
 
-    iVar1 = ninja_uses_tex_entry_free_2567f8(*(u32 *)(*g_8c277b04 + a0 * 0xc + 8));
+    iVar1 = tex_uses_tex_entry_free_2567f8(*(u32 *)(*g_8c277b04 + a0 * 0xc + 8));
     if (iVar1 < 0) {
         g_8c4aa6ac = a0;
     }
@@ -11936,13 +11936,13 @@ u32 ninja_scan_loop_2569e0(u32 *a0, int a1, u32 unused_a2, u32 unused_a3, u32 ai
 }
 
 /*
- * ninja_float_calc_256a78  0x8c256a78
- * area name: in the ninja library code range; behaviour name: floating-point arithmetic
+ * njRotateX_like  0x8c256a78
+ * rotates matrix a0 about the X axis by Ninja angle a1 (0x10000 = 360 degrees), updating its second and third rows
  * called by: CSquidLine_uses_matrix_push_0ad354, Class_1299f8_m4_019588, Class_129a24_m1_019b68,
  * Class_12aeec_uses_gfx_set_color4_0a481c, Class_12bec0_draw_0f5e0c, Vec3_vec_02374c, matrix_rotate_deg,
  * matrix_rotate_deg_m
  */
-u32 ninja_float_calc_256a78(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 njRotateX_like(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -12665,7 +12665,7 @@ int tex_size_to_index(int a0) {
  * builds texture a0's size word (+8) and texture control word (+0xc) from its sizes, flags, pixel format and palette
  * bank called by: alt_entry_237830, alt_entry_25a394, gfxlib_uses_ninja_close_file_239212,
  * gfxlib_uses_tex_entry_alloc_23793c, gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0,
- * ninja_draw_25b4ea, pvr_uses_tex_entry_alloc_23a29c (+2 more)
+ * pvr_uses_tex_entry_alloc_23a29c, tex_entry_alloc (+2 more)
  */
 u32 tex_build_control_words(int a0) {
     int iVar1;
@@ -12739,12 +12739,12 @@ LAB_8c2572b6:
 }
 
 /*
- * ninja_vec_2572ec  0x8c2572ec
- * area name: in the ninja library code range; behaviour name: mostly calls vec functions
- * called by: Class_1299f8_m1_01a148, Class_129a24_m1_019b68, game_uses_matrix_push_0cc524,
+ * nj_camera_view_matrix  0x8c2572ec
+ * builds camera a0's view matrix from its direction (+0x4c), roll angle (+0x58) and position (+0x40), makes it current
+ * and loads it called by: Class_1299f8_m1_01a148, Class_129a24_m1_019b68, game_uses_matrix_push_0cc524,
  * game_uses_touch_fields_30_3c_0ff928
  */
-u32 ninja_vec_2572ec(float *a0) {
+u32 nj_camera_view_matrix(float *a0) {
     u32 uVar1;
     float *ar6_00;
     float *ar7_00;
@@ -15084,12 +15084,12 @@ u32 ninja_draw_2588f8(void) {
     puVar8 = (u8 *)0x8c4aa73c;
     puVar7 = (u32 *)&g_8c4aabc0;
     do {
-        ninja_draw_258d82(puVar8);
+        ta_poly_context_default(puVar8);
         puVar8 = puVar8 + 0xc0;
         *puVar7 = 0x80012;
         puVar7 = puVar7 + 1;
     } while (puVar8 < &g_8c4aabbc);
-    ninja_draw_258d82(&g_8c4aabfc);
+    ta_poly_context_default(&g_8c4aabfc);
     g_8c4aabfc = 0xc0;
     g_8c4aac28 = 10;
     g_8c4aac2c = 0xb;
@@ -15396,11 +15396,11 @@ u32 draw_state_select(int a0) {
 }
 
 /*
- * ninja_draw_258d82  0x8c258d82
- * area name: in the ninja library code range; behaviour name: mostly calls draw functions
+ * ta_poly_context_default  0x8c258d82
+ * fills polygon context a0 with the default list, culling, blending and colour values and builds its header words
  * called by: ninja_draw_2588f8
  */
-u32 ninja_draw_258d82(u32 *a0) {
+u32 ta_poly_context_default(u32 *a0) {
     u32 uVar1;
 
     *a0 = 0x3f3ffff;
@@ -16876,8 +16876,8 @@ u32 ninja_close_file(void) {
  * ninja_uses_memcpy_bytes_259c48  0x8c259c48
  * area name: in the ninja library code range; behaviour name: its main named callee is memcpy_bytes
  * called by: gfx_texlist_entries_from_mem, gfxlib_uses_ninja_close_file_239212, nj_palette_file_load,
- * pvrt_stream_is_palettized, ta_fifo_239012, tex_uses_dcache_writeback_range_25a770, tex_uses_gfx_heap_alloc_25a838,
- * tex_uses_nj_seek_25a216 (+1 more)
+ * pvr_file_read_dims, pvr_file_read_header, pvr_file_read_to_heap, pvr_file_stream_to_vram, pvrt_stream_is_palettized
+ * (+1 more)
  */
 u32 ninja_uses_memcpy_bytes_259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -17083,8 +17083,8 @@ u32 ninja_uses_gdfs_read_blocking_259e80(int a0, u32 a1, u32 unused_a2, u32 a3) 
 /*
  * nj_seek  0x8c25a122
  * moves the position at 0x8c277ca0: a1 = 0 sets it, 1 adds a0, 2 sets it to size - a0
- * called by: gfxlib_uses_ninja_close_file_239212, pvrt_stream_is_palettized, tex_uses_dcache_writeback_range_25a770,
- * tex_uses_gfx_heap_alloc_25a838, tex_uses_nj_seek_25a216, vram_uses_nj_seek_25ae38
+ * called by: gfxlib_uses_ninja_close_file_239212, pvr_file_read_dims, pvr_file_read_header, pvr_file_read_to_heap,
+ * pvr_file_stream_to_vram, pvrt_stream_is_palettized
  */
 int nj_seek(int a0, int a1) {
     int iVar1;
@@ -17142,8 +17142,8 @@ u32 filename_add_ext_if_missing(u32 a0, u32 a1, u32 a2, u32 a3) {
  * tex_is_palettized  0x8c25a1ee
  * 1 for the palettised texture formats 0x500..0x800 (4- and 8-bit, with and without mipmaps)
  * called by: alt_entry_237830, alt_entry_2565d8, alt_entry_2567fe, gfxlib_uses_tex_entry_alloc_23793c,
- * gfxlib_uses_tex_entry_alloc_2387a0, ninja_uses_tex_entry_free_2565c4, ninja_uses_tex_entry_free_2566c8,
- * ninja_uses_tex_entry_free_2567f8
+ * gfxlib_uses_tex_entry_alloc_2387a0, ninja_uses_tex_entry_free_2565c4, tex_list_release_loaded,
+ * tex_uses_tex_entry_free_2567f8
  */
 u32 tex_is_palettized(int a0) {
     if ((((a0 != 0x500) && (a0 != 0x600)) && (a0 != 0x700)) && (a0 != 0x800)) {
@@ -17153,11 +17153,11 @@ u32 tex_is_palettized(int a0) {
 }
 
 /*
- * tex_uses_nj_seek_25a216  0x8c25a216
- * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is nj_seek
- * called by: gfxlib_uses_tex_entry_alloc_23793c, gfxlib_uses_tex_entry_alloc_237964
+ * pvr_file_read_header  0x8c25a216
+ * scans the open texture file for its GBIX and PVRT chunks, picks the global index (or a free one) into *a0 and returns
+ * 1 for palettised formats called by: gfxlib_uses_tex_entry_alloc_23793c, gfxlib_uses_tex_entry_alloc_237964
  */
-u32 tex_uses_nj_seek_25a216(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 pvr_file_read_header(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int iStack_34;
@@ -17339,8 +17339,8 @@ u32 alt_entry_25a394(int *a0, u32 *a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u
 /*
  * tex_entry_free  0x8c25a49e
  * clears texture entry a0, trims the in-use count past trailing free entries and records the first free entry
- * called by: alt_entry_2565d8, alt_entry_2567fe, ninja_uses_tex_entry_free_2565c4, ninja_uses_tex_entry_free_2566c8,
- * ninja_uses_tex_entry_free_2567f8, tex_entry_clear_flags_by_id
+ * called by: alt_entry_2565d8, alt_entry_2567fe, ninja_uses_tex_entry_free_2565c4, tex_entry_clear_flags_by_id,
+ * tex_list_release_loaded, tex_uses_tex_entry_free_2567f8
  */
 int tex_entry_free(u32 *a0) {
     int iVar1;
@@ -17418,7 +17418,7 @@ int alt_entry_25a4a6(u32 *a0, u32 a1, u32 a2, int *a3, int ain0) {
  * index of the texture-table entry (0x44 bytes each, a1 of them at a0) whose id is a2; -1 if none
  * called by: alt_entry_23729c, gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
  * gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0, ninja_draw_into_texture_entry,
- * pvr_uses_tex_entry_alloc_23a29c, ta_select_texture_cached (+2 more)
+ * pvr_file_read_header, pvr_uses_tex_entry_alloc_23a29c (+2 more)
  */
 u32 tex_entry_find(int a0, u32 a1, int a2) {
     u32 uVar1;
@@ -17579,12 +17579,12 @@ int tex_entry_next_free(void) {
 }
 
 /*
- * tex_uses_dcache_writeback_range_25a770  0x8c25a770
- * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is
- * dcache_writeback_range called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
+ * pvr_file_stream_to_vram  0x8c25a770
+ * streams texture a1's data from the open file into VRAM in buffer-sized chunks, skipping any trailing bytes
+ * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
  * gfxlib_uses_tex_entry_alloc_237964
  */
-int tex_uses_dcache_writeback_range_25a770(int a0, int a1, u32 unused_a2, u32 a3) {
+int pvr_file_stream_to_vram(int a0, int a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int iVar2;
     u32 uVar3;
@@ -17595,7 +17595,7 @@ int tex_uses_dcache_writeback_range_25a770(int a0, int a1, u32 unused_a2, u32 a3
     int in_stack_ffffffc8;
 
     ar6_00 = &stack0xffffffc8;
-    iVar1 = ninja_uses_nj_seek_25af3c(a1, *(u32 *)(a0 + 4), &stack0xffffffc8);
+    iVar1 = pvr_draw_25af3c(a1, *(u32 *)(a0 + 4), &stack0xffffffc8);
     if (-1 < iVar1) {
         uVar5 = *(u32 *)(a1 + 0x18);
         uVar3 = in_stack_ffffffc8 - 8;
@@ -17621,7 +17621,7 @@ int tex_uses_dcache_writeback_range_25a770(int a0, int a1, u32 unused_a2, u32 a3
                 dcache_writeback_range(g_8c4aa6cc, uVar5);
                 ar6_00 = (u8 *)ar6_01;
                 a3 = uVar5;
-                ninja_uses_vram64_25ab02(a1 + 4, g_8c4aa6cc, ar6_01, uVar5);
+                ninja_uses_tex_write_span_split_25ab02(a1 + 4, g_8c4aa6cc, ar6_01, uVar5);
                 ar6_01 = ar6_01 + uVar5;
                 uVar4 = uVar3 - ar6_01;
                 if (uVar4 < g_8c4aa6d0) {
@@ -17641,12 +17641,12 @@ int tex_uses_dcache_writeback_range_25a770(int a0, int a1, u32 unused_a2, u32 a3
 }
 
 /*
- * tex_uses_gfx_heap_alloc_25a838  0x8c25a838
- * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is
- * gfx_heap_alloc called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
+ * pvr_file_read_to_heap  0x8c25a838
+ * reads texture a1's data from the open file into a newly allocated graphics heap block stored in *a1 (-7 when out of
+ * memory) called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
  * gfxlib_uses_tex_entry_alloc_237964
  */
-int tex_uses_gfx_heap_alloc_25a838(int a0, int *a1, u32 unused_a2, u32 a3) {
+int pvr_file_read_to_heap(int a0, int *a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int ar4_00;
     int ain0;
@@ -17656,7 +17656,7 @@ int tex_uses_gfx_heap_alloc_25a838(int a0, int *a1, u32 unused_a2, u32 a3) {
 
     ar6_00 = &stack0xffffffd8;
     ar5_00 = *(u32 *)(a0 + 4);
-    iVar1 = ninja_draw_25afc0(a1, ar5_00, &stack0xffffffd8);
+    iVar1 = pvr_draw_25afc0(a1, ar5_00, &stack0xffffffd8);
     if (-1 < iVar1) {
         iVar1 = a1[6];
         in_stack_ffffffd8 = in_stack_ffffffd8 + -8;
@@ -17805,11 +17805,11 @@ u32 alt_entry_25a966(int a0) {
 }
 
 /*
- * tex_uses_vram64_25a9cc  0x8c25a9cc
- * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is vram64_20a8e0
- * called by: ninja_uses_vram64_25ab02
+ * tex_write_span_split  0x8c25a9cc
+ * writes a3 bytes from a1 at offset a2 of texture a0's data, splitting them between the first area and the area at
+ * +0x800 by the table sizes called by: ninja_uses_tex_write_span_split_25ab02
  */
-u32 tex_uses_vram64_25a9cc(int a0, int a1, u32 a2, u32 a3) {
+u32 tex_write_span_split(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -17881,11 +17881,11 @@ u32 ninja_uses_vram64_25aa80(int a0, int a1) {
 }
 
 /*
- * ninja_uses_vram64_25ab02  0x8c25ab02
- * area name: in the ninja library code range; behaviour name: its main named callee is vram64_20a8e0
- * called by: ninja_uses_vram64_25ac94, tex_uses_dcache_writeback_range_25a770
+ * ninja_uses_tex_write_span_split_25ab02  0x8c25ab02
+ * area name: in the ninja library code range; behaviour name: its main named callee is tex_write_span_split
+ * called by: ninja_uses_tex_write_span_split_25ac94, pvr_file_stream_to_vram
  */
-u32 ninja_uses_vram64_25ab02(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_uses_tex_write_span_split_25ab02(u32 *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar6_00;
     u32 uVar2;
@@ -17894,7 +17894,7 @@ u32 ninja_uses_vram64_25ab02(u32 *a0, u32 a1, u32 a2, u32 a3) {
     uVar2 = a3 & 0xfffffffc;
     if (uVar2 != 0) {
         if ((*a0 & 0xffff) == 3) {
-            tex_uses_vram64_25a9cc(a0, a1, a2, a3);
+            tex_write_span_split(a0, a1, a2, a3);
         } else {
             if ((*a0 >> 0x10 & 0xff00) == (int)0x200) {
                 iVar1 = 4;
@@ -17989,13 +17989,13 @@ u32 ninja_test_25ac56(int a0, u32 *a1) {
 }
 
 /*
- * ninja_uses_vram64_25ac94  0x8c25ac94
- * area name: in the ninja library code range; behaviour name: its callees mostly do: uses_vram64
+ * ninja_uses_tex_write_span_split_25ac94  0x8c25ac94
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: uses_tex_write_span_split
  */
-u32 ninja_uses_vram64_25ac94(int a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_uses_tex_write_span_split_25ac94(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
-    iVar1 = ninja_uses_vram64_25ab02(a0 + 0x18, a1, a2, a3);
+    iVar1 = ninja_uses_tex_write_span_split_25ab02(a0 + 0x18, a1, a2, a3);
     if (iVar1 != 0) {
         g_8c4aa6b4 = 8;
         return 0xffffffff;
@@ -18032,16 +18032,15 @@ u32 vram64_25ad0a(int a0, u32 a1, int a2, u32 a3) {
     if (a0 == 0) {
         return 0xffffffff;
     }
-    vram_fill_loop_25ad98(a1, (*(u32 *)(a0 + 0x34) | 0xa4000000) + a2, a3);
+    ninja_fill_loop_25ad98(a1, (*(u32 *)(a0 + 0x34) | 0xa4000000) + a2, a3);
     return 1;
 }
 
 /*
- * vram_calls_scan_loop_25ad42  0x8c25ad42
- * area name: sits between vram functions (same compilation unit); behaviour name: its callees mostly do:
- * calls_scan_loop
+ * ninja_calls_scan_loop_25ad42  0x8c25ad42
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: calls_scan_loop
  */
-u32 vram_calls_scan_loop_25ad42(void) {
+u32 ninja_calls_scan_loop_25ad42(void) {
     int iVar1;
 
     iVar1 = pvr_calls_scan_loop_20a7e0();
@@ -18052,11 +18051,11 @@ u32 vram_calls_scan_loop_25ad42(void) {
 }
 
 /*
- * vram_fill_loop_25ad98  0x8c25ad98
- * area name: sits between vram functions (same compilation unit); behaviour name: a loop that writes memory
+ * ninja_fill_loop_25ad98  0x8c25ad98
+ * area name: in the ninja library code range; behaviour name: a loop that writes memory
  * called by: vram64_25ad0a
  */
-u32 vram_fill_loop_25ad98(u32 *a0, u32 *a1, u32 a2) {
+u32 ninja_fill_loop_25ad98(u32 *a0, u32 *a1, u32 a2) {
     u32 uVar1;
     u32 *puVar2;
     u32 uVar3;
@@ -18141,11 +18140,11 @@ u32 vram_fill_loop_25ad98(u32 *a0, u32 *a1, u32 a2) {
 }
 
 /*
- * vram_uses_nj_seek_25ae38  0x8c25ae38
- * area name: sits between vram functions (same compilation unit); behaviour name: its main named callee is nj_seek
- * called by: ninja_draw_25afc0, ninja_uses_nj_seek_25af3c
+ * pvr_file_read_dims  0x8c25ae38
+ * skips chunks up to the PVRT chunk and reads the texture's width, height (powers of two 8..1024), format and size;
+ * error 4 when invalid called by: pvr_draw_25af3c, pvr_draw_25afc0
  */
-u32 vram_uses_nj_seek_25ae38(u32 *a0, u32 *a1, u32 *a2, u32 *a3) {
+u32 pvr_file_read_dims(u32 *a0, u32 *a1, u32 *a2, u32 *a3) {
     u8 *puVar1;
     int iVar2;
     u32 uVar3;
@@ -18204,11 +18203,11 @@ u32 vram_uses_nj_seek_25ae38(u32 *a0, u32 *a1, u32 *a2, u32 *a3) {
 }
 
 /*
- * ninja_uses_nj_seek_25af3c  0x8c25af3c
- * area name: in the ninja library code range; behaviour name: its callees mostly do: uses_nj_seek
- * called by: tex_uses_dcache_writeback_range_25a770
+ * pvr_draw_25af3c  0x8c25af3c
+ * area name: sits between pvr functions (same compilation unit); behaviour name: mostly calls draw functions
+ * called by: pvr_file_stream_to_vram
  */
-int ninja_uses_nj_seek_25af3c(int a0, u32 a1, u32 a2) {
+int pvr_draw_25af3c(int a0, u32 a1, u32 a2) {
     int iVar1;
     u32 uStack_1c;
     u32 uStack_18;
@@ -18216,7 +18215,7 @@ int ninja_uses_nj_seek_25af3c(int a0, u32 a1, u32 a2) {
     u32 uStack_10;
 
     uStack_10 = a1;
-    iVar1 = vram_uses_nj_seek_25ae38(&uStack_18, &uStack_14, &uStack_1c, a2);
+    iVar1 = pvr_file_read_dims(&uStack_18, &uStack_14, &uStack_1c, a2);
     if (iVar1 < 0) {
         return iVar1;
     }
@@ -18233,11 +18232,11 @@ int ninja_uses_nj_seek_25af3c(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * ninja_draw_25afc0  0x8c25afc0
- * area name: in the ninja library code range; behaviour name: mostly calls draw functions
- * called by: tex_uses_gfx_heap_alloc_25a838
+ * pvr_draw_25afc0  0x8c25afc0
+ * area name: sits between pvr functions (same compilation unit); behaviour name: mostly calls draw functions
+ * called by: pvr_file_read_to_heap
  */
-int ninja_draw_25afc0(int a0, u32 a1, u32 a2) {
+int pvr_draw_25afc0(int a0, u32 a1, u32 a2) {
     int iVar1;
     u32 uStack_1c;
     u32 uStack_18;
@@ -18247,7 +18246,7 @@ int ninja_draw_25afc0(int a0, u32 a1, u32 a2) {
 
     iStack_10 = a0;
     uStack_c = a1;
-    iVar1 = vram_uses_nj_seek_25ae38(&uStack_18, &uStack_14, &uStack_1c, a2);
+    iVar1 = pvr_file_read_dims(&uStack_18, &uStack_14, &uStack_1c, a2);
     if (iVar1 < 0) {
         return iVar1;
     }
@@ -18507,16 +18506,16 @@ u32 *ninja_uses_tex_table_init_25b34a(u32 a0, u32 a1) {
 }
 
 /*
- * ninja_uses_tex_entry_free_25b37c  0x8c25b37c
- * area name: in the ninja library code range; behaviour name: its callees mostly do: uses_tex_entry_free
+ * ninja_load_25b37c  0x8c25b37c
+ * area name: in the ninja library code range; behaviour name: mostly calls load functions
  * called by: game_shutdown_a
  */
-u32 ninja_uses_tex_entry_free_25b37c(u32 unused_a0, u32 a1, u32 a2) {
+u32 ninja_load_25b37c(u32 unused_a0, u32 a1, u32 a2) {
     u32 r7;
     u32 uVar1;
     u32 in_PR;
 
-    ninja_uses_tex_entry_free_2566c8(unused_a0, a1, a2, r7, in_PR);
+    tex_list_release_loaded(unused_a0, a1, a2, r7, in_PR);
     uVar1 = ninja_uses_tex_entry_free_2565c4(unused_a0, a1, a2, r7, in_PR);
     g_8c4ab10c = 0;
     g_8c4ab110 = 0;
@@ -18645,11 +18644,11 @@ u32 strcpy_like_wrap(void) {
 }
 
 /*
- * ninja_draw_25b4ea  0x8c25b4ea
- * area name: in the ninja library code range; behaviour name: mostly calls draw functions
- * called by: game_draw_0f7ea0
+ * tex_list_build_control_words  0x8c25b4ea
+ * rebuilds the control words of every loaded texture in list a0 (a1 entries), sharing the address word between entries
+ * with the same id called by: tex_list_build_control_words_wrap
  */
-u32 ninja_draw_25b4ea(u32 *a0, u32 *a1, u32 *a2, u32 a3) {
+u32 tex_list_build_control_words(u32 *a0, u32 *a1, u32 *a2, u32 a3) {
     u32 uVar1;
     u32 ar7_00;
     u32 *puVar2;
@@ -24285,11 +24284,11 @@ LAB_8c25dde8:
 }
 
 /*
- * ninja_draw_25e260  0x8c25e260
- * area name: in the ninja library code range; behaviour name: mostly calls draw functions
- * called by: ninja_draw_25e540, ninja_draw_25e884, ninja_draw_25eb60
+ * pvr_set_video_timing  0x8c25e260
+ * packs the stacked timing values into the sync, border, VO and display-window registers, waits for a frame edge and
+ * writes them called by: ninja_draw_25e540, ninja_draw_25e884, ninja_draw_25eb60
  */
-u32 ninja_draw_25e260(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 pvr_set_video_timing(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int *piVar1;
     u8 *puVar2;
     int iVar3;
@@ -24536,7 +24535,7 @@ u32 ninja_draw_25e540(u32 a0, u32 a1) {
     g_8c4a9ec4 = (aiStack_118[8] >> 1) + g_8c4a9ecc;
     g_8c4a9ec8 = aiStack_118[8];
     libgcc_movstr_i4(1, ar5_00, ar6_00, 0x42);
-    uVar1 = ninja_draw_25e260(uVar1, ar5_00, ar6_00, a7);
+    uVar1 = pvr_set_video_timing(uVar1, ar5_00, ar6_00, a7);
     return uVar1;
 }
 
@@ -24565,7 +24564,7 @@ u32 ninja_draw_25e884(u32 a0, u32 a1) {
     g_8c4a9ec4 = (iStack_f8 >> 1) + 0xf0;
     g_8c4a9ec8 = iStack_f8;
     libgcc_movstr_i4(1, 0, 0x12, 0x1f);
-    uVar1 = ninja_draw_25e260(uVar1, a5, a6, a7);
+    uVar1 = pvr_set_video_timing(uVar1, a5, a6, a7);
     return uVar1;
 }
 
@@ -24586,7 +24585,7 @@ u32 ninja_draw_25eb60(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     g_8c4a9ec4 = 0x208;
     g_8c4a9ec8 = 0x28;
     libgcc_movstr_i4(0x1e0, 0x28, 0x23, a3);
-    uVar1 = ninja_draw_25e260(uVar1, a5, a6, a3);
+    uVar1 = pvr_set_video_timing(uVar1, a5, a6, a3);
     return uVar1;
 }
 
@@ -24791,7 +24790,7 @@ u32 is_aiff_header(int a0) {
 /*
  * cri_calls_calc_25f052  0x8c25f052
  * area name: in the cri library code range; behaviour name: its callees mostly do: calc
- * called by: cri_copy_25f0ea
+ * called by: aiff_handle_parse_header
  */
 u32 cri_calls_calc_25f052(u32 a0, int a1, short *a2, u8 *a3, char *s0, u8 *s4, char *s8, u32 *s12, u32 *s16, u32 *s20) {
     int iVar1;
@@ -24830,11 +24829,11 @@ u32 cri_calls_calc_25f052(u32 a0, int a1, short *a2, u8 *a3, char *s0, u8 *s4, c
 }
 
 /*
- * cri_copy_25f0ea  0x8c25f0ea
- * area name: in the cri library code range; behaviour name: mostly calls copy functions
+ * aiff_handle_parse_header  0x8c25f0ea
+ * reads the AIFF header (channels, bits, rate, sample count) of a1 into decoder handle a0 with no loop info
  * called by: alt_entry_25fdbe, audio_parse_header_any
  */
-u32 cri_copy_25f0ea(int a0, u32 a1, u32 a2) {
+u32 aiff_handle_parse_header(int a0, u32 a1, u32 a2) {
     int iVar1;
     int a7;
     short asStack_14[2];
@@ -24877,11 +24876,11 @@ u32 cri_copy_25f0ea(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * cri_uses_get_field_c_25f1e8  0x8c25f1e8
- * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
- * called by: cri_uses_get_field_c_25f40e
+ * aiff_decode_pcm16  0x8c25f1e8
+ * when data is ready, byte-swaps the big-endian 16-bit samples into the output channel buffers and hands them to the
+ * output callback called by: cri_uses_aiff_decode_pcm8_25f40e
  */
-int cri_uses_get_field_c_25f1e8(int a0) {
+int aiff_decode_pcm16(int a0) {
     u16 uVar1;
     int iVar2;
     int iVar3;
@@ -25022,11 +25021,11 @@ int alt_entry_25f1f4(u32 unused_a0, u32 a1, u32 unused_a2, int *a3) {
 }
 
 /*
- * cri_uses_get_field_c_25f306  0x8c25f306
- * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
- * called by: cri_uses_get_field_c_25f40e
+ * aiff_decode_pcm8  0x8c25f306
+ * when data is ready, widens the 8-bit samples to 16 bits into the output channel buffers and hands them to the output
+ * callback called by: cri_uses_aiff_decode_pcm8_25f40e
  */
-int cri_uses_get_field_c_25f306(int a0) {
+int aiff_decode_pcm8(int a0) {
     u8 bVar1;
     int iVar2;
     int iVar3;
@@ -25166,27 +25165,27 @@ int alt_entry_25f312(u32 unused_a0, u32 a1, u32 unused_a2, int a3) {
 }
 
 /*
- * cri_uses_get_field_c_25f40e  0x8c25f40e
- * area name: in the cri library code range; behaviour name: its callees mostly do: uses_get_field_c
+ * cri_uses_aiff_decode_pcm8_25f40e  0x8c25f40e
+ * area name: in the cri library code range; behaviour name: its main named callee is aiff_decode_pcm8
  * called by: cri_uses_get_field_c_2602f4
  */
-u32 cri_uses_get_field_c_25f40e(int a0) {
+u32 cri_uses_aiff_decode_pcm8_25f40e(int a0) {
     u32 uVar1;
 
     if (*(short *)(0xaa + a0) == 1) {
-        uVar1 = cri_uses_get_field_c_25f306(a0);
+        uVar1 = aiff_decode_pcm8(a0);
         return uVar1;
     }
-    uVar1 = cri_uses_get_field_c_25f1e8(a0);
+    uVar1 = aiff_decode_pcm16(a0);
     return uVar1;
 }
 
 /*
- * cri_uses_libgcc_divide_helper_25f428  0x8c25f428
- * area name: in the cri library code range; behaviour name: its main named callee is libgcc_divide_helper_01051c
- * called by: cri_uses_libgcc_divide_helper_25f67e
+ * au_parse_header_fields  0x8c25f428
+ * checks the ".snd" magic and reads the AU header's data offset, size, encoding, rate and channels
+ * called by: cri_uses_au_parse_header_fields_25f67e
  */
-u32 cri_uses_libgcc_divide_helper_25f428(u8 *a0, int a1, u32 *a2, u32 *a3, u32 *s0, u32 *s4, int *s8) {
+u32 au_parse_header_fields(u8 *a0, int a1, u32 *a2, u32 *a3, u32 *s0, u32 *s4, int *s8) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -25315,12 +25314,12 @@ u32 is_au_header(u32 a0) {
 }
 
 /*
- * cri_uses_libgcc_divide_helper_25f67e  0x8c25f67e
- * area name: in the cri library code range; behaviour name: its callees mostly do: uses_libgcc_divide_helper
+ * cri_uses_au_parse_header_fields_25f67e  0x8c25f67e
+ * area name: in the cri library code range; behaviour name: its main named callee is au_parse_header_fields
  * called by: cri_copy_25f742
  */
-u32 cri_uses_libgcc_divide_helper_25f67e(u32 a0, int a1, short *a2, u8 *a3, char *s0, u8 *s4, char *s8, u32 *s12,
-                                         u32 *s16, u32 *s20) {
+u32 cri_uses_au_parse_header_fields_25f67e(u32 a0, int a1, short *a2, u8 *a3, char *s0, u8 *s4, char *s8, u32 *s12,
+                                           u32 *s16, u32 *s20) {
     int iVar1;
     short sVar2;
     u32 uStack_20;
@@ -25337,7 +25336,7 @@ u32 cri_uses_libgcc_divide_helper_25f67e(u32 a0, int a1, short *a2, u8 *a3, char
         psStack_10 = a2;
         uStack_c = a0;
         puStack_8 = a3;
-        iVar1 = cri_uses_libgcc_divide_helper_25f428(a0, a1, &uStack_20, acStack_1c);
+        iVar1 = au_parse_header_fields(a0, a1, &uStack_20, acStack_1c);
         if ((iVar1 != 0) && (sVar2 = (short)iVar1 - (short)uStack_c, *psStack_10 = sVar2, 0 < sVar2)) {
             *s12 = uStack_20;
             *s8 = acStack_1c[0];
@@ -25369,7 +25368,7 @@ int cri_copy_25f742(int a0, u32 a1, u32 a2) {
 
     a7 = a0 + 0xc;
     *(u16 *)(a0 + 2) = 1;
-    iVar1 = cri_uses_libgcc_divide_helper_25f67e(a1, a2, asStack_1c, a7);
+    iVar1 = cri_uses_au_parse_header_fields_25f67e(a1, a2, asStack_1c, a7);
     if (iVar1 < 0) {
         iVar1 = 0;
     } else {
@@ -26042,7 +26041,7 @@ u32 audio_parse_header_any(u32 a0, u16 *a1, u32 a2) {
         uVar1 = cri_copy_25f742(a0, a1, a2);
         return uVar1;
     }
-    uVar1 = cri_copy_25f0ea(a0, a1, a2);
+    uVar1 = aiff_handle_parse_header(a0, a1, a2);
     return uVar1;
 }
 
@@ -26082,7 +26081,7 @@ u32 alt_entry_25fdbe(u32 unused_a0, u32 a1, u32 a2) {
     }
     iVar2 = is_aiff_header(unaff_r14);
     if (iVar2 != 0) {
-        uVar1 = cri_copy_25f0ea(a2);
+        uVar1 = aiff_handle_parse_header(a2);
         return uVar1;
     }
     iVar2 = is_au_header(unaff_r14);

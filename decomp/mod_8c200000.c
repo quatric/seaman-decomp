@@ -11384,7 +11384,7 @@ u32 pvr_draw_20a790(u32 *a0, u32 *a1) {
 /*
  * pvr_calls_scan_loop_20a7e0  0x8c20a7e0
  * area name: sits between pvr functions (same compilation unit); behaviour name: its callees mostly do: scan_loop
- * called by: tex_uses_dcache_writeback_range_25a770, vram_calls_scan_loop_25ad42
+ * called by: ninja_calls_scan_loop_25ad42, pvr_file_stream_to_vram
  */
 u32 pvr_calls_scan_loop_20a7e0(void) {
     int iVar1;
@@ -11481,7 +11481,7 @@ u32 vram_20a892(u32 a0, int a1, u32 a2) {
 
 /*
  * vram64_20a8e0  0x8c20a8e0
- * called by: ninja_uses_tex_size_log2_index_25ab74, ninja_uses_vram64_25aa80, ninja_uses_vram64_25ab02,
+ * called by: ninja_uses_tex_size_log2_index_25ab74, ninja_uses_tex_write_span_split_25ab02, ninja_uses_vram64_25aa80,
  * tex_uses_CacheBlockWriteBack_wrap_20d82e, tex_uses_tex_dim_to_index_20cefe, tex_uses_tex_dim_to_index_20d6c0,
  * tex_uses_vram64_20cb5a, tex_uses_vram64_20cb5e (+9 more)
  */
@@ -13089,8 +13089,8 @@ u32 tex_uses_tex_dim_to_index_20cefe(u32 *a0, u32 a1) {
 /*
  * kamui_release_20cf88  0x8c20cf88
  * area name: in the kamui library code range; behaviour name: mostly calls release functions
- * called by: alt_entry_2567fe, alt_entry_25a918, ninja_uses_tex_entry_free_2566c8, ninja_uses_tex_entry_free_2567f8,
- * tex_calls_test_25a914, tex_uses_dcache_writeback_range_25a770
+ * called by: alt_entry_2567fe, alt_entry_25a918, pvr_file_stream_to_vram, tex_calls_test_25a914,
+ * tex_list_release_loaded, tex_uses_tex_entry_free_2567f8
  */
 u32 kamui_release_20cf88(u32 *a0) {
     u32 uVar1;
@@ -13219,7 +13219,7 @@ u32 alt_entry_20d086(u32 a0) {
 /*
  * kamui_draw_20d114  0x8c20d114
  * area name: in the kamui library code range; behaviour name: mostly calls draw functions
- * called by: ninja_draw_25b4ea
+ * called by: tex_list_build_control_words
  */
 u32 kamui_draw_20d114(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;

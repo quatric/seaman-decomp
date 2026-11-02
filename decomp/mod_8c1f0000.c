@@ -12945,9 +12945,10 @@ u32 cache_purge_range(u32 a0, u32 a1) {
 /*
  * dcache_writeback_range  0x8c1f9e32
  * writes back the operand-cache lines covering a1 bytes at a0 (whole cache for 64 KB or more)
- * called by: g2dma_start_like, tex_copy_to_alloc, tex_uses_dcache_writeback_range_25a770,
- * tex_uses_gfx_heap_alloc_25a838 decompiler: Switch with 1 destination removed at 0x8c1f9e44 decompiler: Switch with 1
- * destination removed at 0x8c1f9e54 decompiler: Switch with 1 destination removed at 0x8c1f9e8a
+ * called by: g2dma_start_like, pvr_file_read_to_heap, pvr_file_stream_to_vram, tex_copy_to_alloc
+ * decompiler: Switch with 1 destination removed at 0x8c1f9e44
+ * decompiler: Switch with 1 destination removed at 0x8c1f9e54
+ * decompiler: Switch with 1 destination removed at 0x8c1f9e8a
  */
 u32 dcache_writeback_range(u32 a0, u32 a1) {
     u32 in_r0;

@@ -4610,7 +4610,7 @@ u32 kamui_uses_noop_fr4_test_2136b0(int a0, int a1) {
 
 /*
  * ta_fifo_2137c0  0x8c2137c0
- * called by: gfxlib_uses_ta_fifo_233e10, ninja_draw_25afc0
+ * called by: gfxlib_uses_ta_fifo_233e10, pvr_draw_25afc0
  */
 u32 ta_fifo_2137c0(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5009,7 +5009,7 @@ int alt_entry_213de8(void) {
 /*
  * ta_vec_213e2c  0x8c213e2c
  * area name: sits between ta functions (same compilation unit); behaviour name: mostly calls vec functions
- * called by: ninja_vec_2572ec
+ * called by: nj_camera_view_matrix
  */
 u32 ta_vec_213e2c(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;

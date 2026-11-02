@@ -1807,7 +1807,7 @@ int game_draw_0d1c84(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
             a5 = (u32) * 0x8c437864;
             a4 = (int *)*0x8c43785c;
             (**(code **)(0x9c + *a4))(a4, a5, a2, a3);
-            game_draw_0f7ea0(a4, a5, a2, a3);
+            tex_list_build_control_words_wrap(a4, a5, a2, a3);
             (**(code **)(0x98 + *(int *)*0x8c437860))((int *)*0x8c437860, (u32) * 0x8c437864, a2, a3);
             g_8c43785c = 0;
             g_8c437860 = 0;

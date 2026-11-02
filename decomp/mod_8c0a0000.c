@@ -3767,7 +3767,7 @@ u32 Class_12aeec_uses_gfx_set_color4_0a481c(int a0) {
     } else {
         iVar6 = (int)(dVar4 / dVar4);
     }
-    ninja_float_calc_256a78(0, iVar6, ar6_00, ar7_00, in_stack_ffffffcc);
+    njRotateX_like(0, iVar6, ar6_00, ar7_00, in_stack_ffffffcc);
     if (cVar8 == '\0') {
         dVar4 = (double)CONCAT44(0x47800000, uStack_c);
     } else {
@@ -10809,7 +10809,7 @@ int CSquidLine_uses_matrix_push_0ad354(int a0) {
                 } else {
                     iVar10 = (int)(dVar7 - dVar7);
                 }
-                ninja_float_calc_256a78(0, iVar10, ar6_00, ar7_00, in_stack_ffffff48);
+                njRotateX_like(0, iVar10, ar6_00, ar7_00, in_stack_ffffff48);
                 matrix_scale(0, iVar10, ar6_00, ar7_00, in_stack_ffffff48);
                 obj_set_texlist(a0 + 0x9bc, iVar10, ar6_00);
                 uVar2 = *(u32 *)(iVar5 * 0x4c + 0x8c2859bc);

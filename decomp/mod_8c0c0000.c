@@ -225,7 +225,7 @@ u32 game_init_sound_and_messages(int a0, u32 a1, u32 a2, u32 a3) {
     ar6_00 = "adxpack.afs";
     ar5_00 = "SeamanSound.mlt";
     pack_open(0x8c2b59d0, "SeamanSound.mlt", "adxpack.afs", "Tmcpack.dat", "Tmcpack.idx");
-    game_uses_rtc_get_date_0f7ff0(0x8c35468c, ar5_00, ar6_00, ar7_00);
+    tex_uses_rtc_get_date_0f7ff0(0x8c35468c, ar5_00, ar6_00, ar7_00);
     game_input_01e5b4(0x8c3dd7dc, 0, ar6_00, ar7_00);
     CSysMessage_LoadMessage(&g_8c2b5628, 0x8c3eb334);
     game_uses_fullscreen_quad_init_0ffd7c(*(u32 *)(a0 + 0x2dd68), 0x8c3dd7dc);
@@ -2688,10 +2688,10 @@ u32 static_init_vec3s_286e20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     uVar3 = 0x8c2b59c4;
     pcVar2 = pack_release_0214e0;
     global_list_push(uVar1, pack_release_0214e0, 0x8c2b59c4, ar7_00);
-    uVar1 = game_copy_0f7f78(0x8c35468c, pcVar2, uVar3, ar7_00);
+    uVar1 = tex_copy_0f7f78(0x8c35468c, pcVar2, uVar3, ar7_00);
     uVar3 = 0x8c354680;
-    pcVar2 = game_release_0f7fa8;
-    global_list_push(uVar1, game_release_0f7fa8, 0x8c354680, ar7_00);
+    pcVar2 = tex_release_0f7fa8;
+    global_list_push(uVar1, tex_release_0f7fa8, 0x8c354680, ar7_00);
     uVar1 = game_save_01e504(0x8c3dd7dc);
     uVar3 = 0x8c3dd7d0;
     pcVar2 = game_release_01e560;
@@ -3809,7 +3809,7 @@ u32 Class_12b388_uses_Class_129808_draw_0c5cb4(u32 a0, int a1, u32 a2, u32 a3) {
     uVar1 = a0;
     ar5_01 = a1;
     game_uses_pure_virtual_stub_0c75f4(a0, a1, a2, a3);
-    game_draw_0f7ea0(uVar1, ar5_01, a2, a3);
+    tex_list_build_control_words_wrap(uVar1, ar5_01, a2, a3);
     Class_12b388_uses_set_fields_0_4_8_0ce920(a0);
     *(int *)(a1 + 0x7e0) = *(int *)(a1 + 0x7e0) + 1;
     *(u32 *)(a1 + 0x7dc) = 0;
@@ -7955,7 +7955,7 @@ u32 game_uses_matrix_push_0cc524(int a0, int a1, u32 a2, u32 a3) {
         uVar4 = uStack_40;
     }
     uStack_40 = uVar4;
-    ninja_vec_2572ec(auStack_88);
+    nj_camera_view_matrix(auStack_88);
     ar6_00 = auStack_a0;
     ar5_00 = &uStack_94;
     uVar2 = 0;

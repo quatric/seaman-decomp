@@ -3472,7 +3472,7 @@ u32 Vec3_vec_02374c(u32 a0, u32 a1, u32 a2, u32 a3) {
         iVar9 = (int)dVar6;
     }
     uVar4 = SUB84(dVar6, 0);
-    ninja_float_calc_256a78(auStack_50, iVar9, a2, a3, in_fr4);
+    njRotateX_like(auStack_50, iVar9, a2, a3, in_fr4);
     puVar2 = &uStack_68;
     puVar1 = &uStack_5c;
     njCalcVector_like(auStack_50, puVar1, puVar2, a3, in_fr4);
@@ -4215,7 +4215,7 @@ u32 matrix_rotate_deg_m(u32 a0) {
     u32 uVar1;
     float in_fr4;
 
-    uVar1 = ninja_float_calc_256a78(a0, (int)((in_fr4 * 65536.0) / 360.0), r6, r7, a0);
+    uVar1 = njRotateX_like(a0, (int)((in_fr4 * 65536.0) / 360.0), r6, r7, a0);
     return uVar1;
 }
 

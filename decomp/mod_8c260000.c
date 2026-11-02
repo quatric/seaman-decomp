@@ -280,7 +280,7 @@ u32 cri_uses_get_field_c_2602f4(int a0) {
         return uVar2;
     }
     if (*(short *)(0xa8 + a0) == 3) {
-        uVar2 = cri_uses_get_field_c_25f40e();
+        uVar2 = cri_uses_aiff_decode_pcm8_25f40e();
         return uVar2;
     }
     if (*(short *)(0xa8 + a0) == 4) {
@@ -6519,8 +6519,8 @@ u32 vram_calc_264f6a(u32 *a0) {
 
 /*
  * get_field_c_264f82  0x8c264f82
- * called by: alt_entry_25f1f4, alt_entry_25f312, alt_entry_25f83c, alt_entry_25f95c, alt_entry_25fa64,
- * alt_entry_26054c, alt_entry_260904, alt_entry_2609fc (+12 more)
+ * called by: aiff_decode_pcm16, aiff_decode_pcm8, alt_entry_25f1f4, alt_entry_25f312, alt_entry_25f83c,
+ * alt_entry_25f95c, alt_entry_25fa64, alt_entry_26054c (+12 more)
  */
 u32 get_field_c_264f82(int a0, u32 a1) {
     return *(u32 *)(a0 + 0xc);
