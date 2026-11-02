@@ -92,11 +92,11 @@ u32 asr_table_lookup(u16 *a0, u32 a1) {
 }
 
 /*
- * asr_sub_12011a  0x8c12011a
- * area name: sits between asr functions (same compilation unit)
+ * asr_table_lookup_b  0x8c12011a
+ * entry (a1 - first) of the table at a0+8 (count, first, entries), else 0
  * called by: asr_sub_120148
  */
-u32 asr_sub_12011a(int a0, u32 a1) {
+u32 asr_table_lookup_b(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = (a1 & 0xff) - (u32) * (u16 *)(a0 + 10);
@@ -118,7 +118,7 @@ u32 asr_sub_120148(u32 a0, char *a1, u32 a2, u32 a3) {
     uVar2 = 0;
     iVar1 = asr_table_lookup(a0, (int)*a1);
     if (iVar1 == 0) {
-        iVar1 = asr_sub_12011a(a0, (int)*a1);
+        iVar1 = asr_table_lookup_b(a0, (int)*a1);
         if (iVar1 != 0) {
             uVar2 = asr_sub_1113d0(iVar1, (int)a1[1], a2, a3);
         }
@@ -1331,11 +1331,11 @@ u32 asr_sub_12112c(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_1211ac  0x8c1211ac
- * area name: sits between asr functions (same compilation unit)
+ * asr_sum_table_strided  0x8c1211ac
+ * sum of 8c1293e4[byte] over a1 bytes at a0, stride a2
  * called by: asr_sub_1213d0
  */
-int asr_sub_1211ac(u8 *a0, u32 a1, int a2) {
+int asr_sum_table_strided(u8 *a0, u32 a1, int a2) {
     u32 uVar1;
     int iVar2;
 
@@ -1567,7 +1567,7 @@ u32 asr_sub_1213d0(int a0, int a1, u32 a2, u32 a3) {
                     uVar9 = (**(code **)(a4 + 0x60))(uVar9, uVar15, puVar13, ar7_00);
                     if (iVar4 == 0) {
                         iVar7 = (u32) * (u16 *)(iVar2 + (iVar10 + uVar14) * 2) + iVar7;
-                        iVar8 = asr_sub_1211ac(iVar7, uVar9, a6);
+                        iVar8 = asr_sum_table_strided(iVar7, uVar9, a6);
                         ar7_00 = (u32 *)*puStack_5c;
                         asr_sub_1211f0(ar4_00, iVar7, a6, ar7_00, ain0, uVar9);
                     } else {

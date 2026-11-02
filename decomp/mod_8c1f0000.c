@@ -4996,11 +4996,11 @@ u32 gdfs_sub_1f38ca(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gdfs_sub_1f38f2  0x8c1f38f2
- * area name: sits between gdfs functions (same compilation unit)
+ * gdfs_drv_close  0x8c1f38f2
+ * calls the GD driver's close slot (+0x14) and clears the driver pointer 8c2739f0
  * called by: system_init_libs
  */
-u32 gdfs_sub_1f38f2(u32 a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
+u32 gdfs_drv_close(u32 a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     if (g_8c2739f0 != 0) {
         ain0 = (**(code **)(g_8c2739f0 + 0x14))();
         g_8c2739f0 = 0;
@@ -11277,11 +11277,11 @@ u32 shinobi_sub_1f80d0(u8 *a0) {
 }
 
 /*
- * shinobi_sub_1f8114  0x8c1f8114
- * area name: in the shinobi library code range
+ * shinobi_install_event900  0x8c1f8114
+ * initialises 8c474a10 and installs 8c1f814c as the interrupt event 0x900 handler
  * called by: Class_12c394_sub_102bd0
  */
-u32 shinobi_sub_1f8114(u32 a0) {
+u32 shinobi_install_event900(u32 a0) {
     u32 uVar1;
 
     uVar1 = shinobi_sub_1f84d8(a0);
@@ -11294,11 +11294,11 @@ u32 shinobi_sub_1f8114(u32 a0) {
 }
 
 /*
- * shinobi_sub_1f813e  0x8c1f813e
- * area name: in the shinobi library code range
+ * shinobi_remove_event900  0x8c1f813e
+ * clears 8c474a10 and removes the event 0x900 handler
  * called by: system_init_libs
  */
-u32 shinobi_sub_1f813e(void) {
+u32 shinobi_remove_event900(void) {
     u32 uVar1;
 
     g_8c474a10 = 0;
@@ -11309,7 +11309,7 @@ u32 shinobi_sub_1f813e(void) {
 /*
  * shinobi_sub_1f814c  0x8c1f814c
  * area name: in the shinobi library code range
- * called by: shinobi_sub_1f8114
+ * called by: shinobi_install_event900
  */
 u32 shinobi_sub_1f814c(u32 a0) {
     u32 uVar1;
@@ -11550,7 +11550,7 @@ int shinobi_sub_1f8462(int a0) {
 /*
  * shinobi_sub_1f84d8  0x8c1f84d8
  * area name: in the shinobi library code range
- * called by: rtc_get_date, rtc_sub_1f81dc, shinobi_sub_1f8114, shinobi_sub_1f814c
+ * called by: rtc_get_date, rtc_sub_1f81dc, shinobi_install_event900, shinobi_sub_1f814c
  */
 int shinobi_sub_1f84d8(u32 a0) {
     bool bVar1;
@@ -13043,7 +13043,7 @@ u32 ta_fifo_1fa1f4(void) {
  * ta_sub_1fa244  0x8c1fa244
  * area name: sits between ta functions (same compilation unit)
  * called by: cri_sub_262810, cri_sub_262814, gdfs_sub_1f1a7c, gdfs_sub_1f1d8c, gdfs_sub_1f1eaa,
- * ninja_set_event900_callback, shinobi_sub_1f8114, shinobi_sub_1f9408 (+1 more)
+ * ninja_set_event900_callback, shinobi_install_event900, shinobi_sub_1f9408 (+1 more)
  */
 u32 ta_sub_1fa244(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -13263,7 +13263,7 @@ u32 *shinobi_sub_1fa496(void) {
  * shinobi_sub_1fa54c  0x8c1fa54c
  * area name: in the shinobi library code range
  * called by: cri_sub_2628fa, gdfs_sub_1f1f98, gdfs_sub_1f1fa0, ninja_set_event900_callback, ninja_sub_2580c6,
- * pvr_sub_1efcae, shinobi_sub_1f813e, ta_sub_2019e0
+ * pvr_sub_1efcae, shinobi_remove_event900, ta_sub_2019e0
  */
 u32 shinobi_sub_1fa54c(int a0) {
     u32 *puVar1;

@@ -1973,11 +1973,11 @@ u32 asr_sub_112380(u32 unused_a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_1123b0  0x8c1123b0
- * area name: sits between asr functions (same compilation unit)
+ * asr_alloc_18  0x8c1123b0
+ * allocates 0x18 bytes through allocator a0; 0 on failure
  * called by: asr_sub_11b6b8
  */
-u32 asr_sub_1123b0(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 asr_alloc_18(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
 
     iVar1 = (**(code **)(a0 + 0x14))(a0, 1, 0x18, a3);
@@ -10056,7 +10056,7 @@ u32 asr_sub_11b6b8(int a0, int a1, u32 *a2, u32 a3) {
                             iVar4 = a0;
                             iVar3 = asr_sub_112410(piVar1[5], ar5_00, 1, a0);
                             if (iVar3 != 0) {
-                                iVar2 = asr_sub_1123b0(a0, iVar2, uVar5, iVar4);
+                                iVar2 = asr_alloc_18(a0, iVar2, uVar5, iVar4);
                                 piVar1[6] = iVar2;
                                 if (iVar2 != 0) {
                                     uVar5 = 1;
@@ -10084,7 +10084,7 @@ u32 asr_sub_11b6b8(int a0, int a1, u32 *a2, u32 a3) {
 /*
  * asr_free_model_parts  0x8c11b884
  * frees the seven parts of a0 and a0 itself through allocator a1
- * called by: asr_sub_10abf4, asr_sub_10abfa
+ * called by: asr_free_model, asr_sub_10abfa
  */
 u32 asr_free_model_parts(u32 *a0, int a1) {
     u8 *puVar1;
@@ -13231,11 +13231,11 @@ u32 asr_sub_11e82c(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_11e896  0x8c11e896
- * area name: in the asr library code range
+ * asr_dup_block  0x8c11e896
+ * copies the block a1 (length at +4) into memory from allocator a0
  * called by: asr_sub_11e8d6
  */
-int asr_sub_11e896(int a0, int a1, u32 a2, u32 a3) {
+int asr_dup_block(int a0, int a1, u32 a2, u32 a3) {
     int ar4_00;
 
     ar4_00 = (**(code **)(a0 + 0x14))(*(u32 *)(a1 + 4), a0 + 8, a2, a3);
@@ -13247,7 +13247,7 @@ int asr_sub_11e896(int a0, int a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_11e8d6  0x8c11e8d6
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_11e8d6(int a0, int *a1, int a2, u32 a3) {
     int iVar1;
@@ -13262,7 +13262,7 @@ u32 asr_sub_11e8d6(int a0, int *a1, int a2, u32 a3) {
         if (a1 == NULL) {
             lib11c_set_error(a0, 0x13, a6, a3);
         } else if (*a1 == 2) {
-            if ((a2 != 0) || (a1 = (int *)asr_sub_11e896(a0, a1, a6, a3), a1 != NULL)) {
+            if ((a2 != 0) || (a1 = (int *)asr_dup_block(a0, a1, a6, a3), a1 != NULL)) {
                 iVar1 = a0 + 8;
                 puVar2 = (u32 *)(**(code **)(a0 + 0x14))(0x1c, iVar1, a6, a3);
                 if (puVar2 != NULL) {
@@ -13289,7 +13289,7 @@ u32 asr_sub_11e8d6(int a0, int *a1, int a2, u32 a3) {
 
 /*
  * asr_sub_11e9b4  0x8c11e9b4
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_10ba7c
  */
 u32 asr_sub_11e9b4(u32 *a0, u32 a1, u32 a2, u32 a3) {
@@ -13317,7 +13317,7 @@ u32 asr_sub_11e9b4(u32 *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_11ea3c  0x8c11ea3c
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_10b6cc, asr_sub_11e534, asr_sub_11f66a
  */
 u32 asr_sub_11ea3c(int a0, int *a1, int a2, u32 a3) {

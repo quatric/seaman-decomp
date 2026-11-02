@@ -946,3 +946,16 @@
 8c0df998	env_add_item_if_room	CEnv_AddItem unless the list at +0xa4 already holds 25 items
 8c0d8460	pack_release_entries_6e24	releases the pack entry handles at +0x6e24 and +0x6e3c when set
 8c0f4d34	flag_74_bit31	1 when bit 31 of the flags at +0x74 is set
+8c100930	input_right_or_stick_right	1 when the stick X (+0x13c) is above 0.3 or Right is held
+8c10097c	input_left_or_stick_left	1 when the stick X (+0x13c) is below -0.3 or Left is held
+8c0e8d80	set_float_eb40_nonneg	stores fr4 (negative values as 0) at +0xeb40
+8c0fa804	identity	returns a0
+8c1f38f2	gdfs_drv_close	calls the GD driver's close slot (+0x14) and clears the driver pointer 8c2739f0
+8c1f8114	shinobi_install_event900	initialises 8c474a10 and installs 8c1f814c as the interrupt event 0x900 handler
+8c1f813e	shinobi_remove_event900	clears 8c474a10 and removes the event 0x900 handler
+8c109e34	get_byte_c_s8	signed byte a0[0xc + a1]
+8c1123b0	asr_alloc_18	allocates 0x18 bytes through allocator a0; 0 on failure
+8c11e896	asr_dup_block	copies the block a1 (length at +4) into memory from allocator a0
+8c12011a	asr_table_lookup_b	entry (a1 - first) of the table at a0+8 (count, first, entries), else 0
+8c1211ac	asr_sum_table_strided	sum of 8c1293e4[byte] over a1 bytes at a0, stride a2
+8c10abf4	asr_free_model	frees the buffers at +0x28 and +0x58 and the model parts at +0xb0

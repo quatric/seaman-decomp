@@ -5606,11 +5606,11 @@ u32 game_sub_0e8280(int a0, u32 a1, u32 a2, u32 a3) {
         if (iStack_3c == 1) {
             input_sub_10052c(a1);
         }
-        iStack_40 = input_sub_100930(a1);
+        iStack_40 = input_right_or_stick_right(a1);
         if (iStack_40 == 1) {
             input_sub_1005a4(a1);
         }
-        iStack_44 = input_sub_10097c(a1);
+        iStack_44 = input_left_or_stick_left(a1);
         if (iStack_44 == 1) {
             input_sub_10061c(a1);
         }
@@ -6400,22 +6400,22 @@ u32 set_field_c_nonneg_on_field_13b70(int a0) {
 }
 
 /*
- * game_sub_0e8d54  0x8c0e8d54
- * area name: game code; nothing names its area yet
+ * set_float_eb40_nonneg_on_field_13b8c  0x8c0e8d54
+ * calls set_float_eb40_nonneg on the member at +0x13b8c
  */
-u32 game_sub_0e8d54(int a0) {
+u32 set_float_eb40_nonneg_on_field_13b8c(int a0) {
     u32 uVar1;
 
-    uVar1 = game_sub_0e8d80(a0 + 0x13b8c);
+    uVar1 = set_float_eb40_nonneg(a0 + 0x13b8c);
     return uVar1;
 }
 
 /*
- * game_sub_0e8d80  0x8c0e8d80
- * area name: game code; nothing names its area yet
- * called by: game_sub_0e8d54
+ * set_float_eb40_nonneg  0x8c0e8d80
+ * stores fr4 (negative values as 0) at +0xeb40
+ * called by: set_float_eb40_nonneg_on_field_13b8c
  */
-u32 game_sub_0e8d80(int a0) {
+u32 set_float_eb40_nonneg(int a0) {
     float in_fr4;
 
     if (in_fr4 < 0.0) {

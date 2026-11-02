@@ -4283,7 +4283,7 @@ u32 game_sub_0f7ec0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
  */
 int game_sub_0f7f78(int a0, u32 unused_a1, u32 a2, u32 a3) {
     game_sub_0fdc20(a0, unused_a1, a2, a3);
-    speech_sub_0fa804(a0 + 0x1054);
+    identity_0fa804(a0 + 0x1054);
     return a0;
 }
 
@@ -5531,11 +5531,11 @@ u32 speech_sub_0fa74c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * speech_sub_0fa804  0x8c0fa804
- * area name: sits between speech functions (same compilation unit)
+ * identity_0fa804  0x8c0fa804
+ * returns a0
  * called by: game_sub_0f7f78
  */
-u32 speech_sub_0fa804(u32 a0) {
+u32 identity_0fa804(u32 a0) {
     return a0;
 }
 

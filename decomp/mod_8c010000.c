@@ -11394,8 +11394,8 @@ u32 memcmp(char *a0, char *a1, u32 a2) {
 
 /*
  * memmove  0x8c013ef4
- * called by: CProlog_sub_0b96e4, asr_sub_10a308, asr_sub_10a410, asr_sub_10a4bc, asr_sub_10a564, asr_sub_10a80c,
- * asr_sub_10c3de, asr_sub_10fc96 (+63 more)
+ * called by: CProlog_sub_0b96e4, asr_dup_block, asr_sub_10a308, asr_sub_10a410, asr_sub_10a4bc, asr_sub_10a564,
+ * asr_sub_10a80c, asr_sub_10c3de (+63 more)
  */
 u32 *memmove(u32 *a0, u32 *a1, u32 a2) {
     u8 uVar1;
@@ -22623,7 +22623,7 @@ u32 input_y_pressed(int a0) {
 /*
  * input_right_held  0x8c01f088
  * Right button (0x80) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
- * called by: input_sub_100930
+ * called by: input_right_or_stick_right
  */
 u32 input_right_held(int a0) {
     u32 uVar1;
@@ -22689,7 +22689,7 @@ u32 input_right_pressed(int a0) {
 /*
  * input_left_held  0x8c01f160
  * Left button (0x40) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
- * called by: input_sub_10097c
+ * called by: input_left_or_stick_left
  */
 u32 input_left_held(int a0) {
     u32 uVar1;

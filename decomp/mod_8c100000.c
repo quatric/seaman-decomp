@@ -570,11 +570,11 @@ u32 input_down_or_stick_down(int a0) {
 }
 
 /*
- * input_sub_100930  0x8c100930
- * area name: sits between input functions (same compilation unit)
+ * input_right_or_stick_right  0x8c100930
+ * 1 when the stick X (+0x13c) is above 0.3 or Right is held
  * called by: game_sub_0e8280
  */
-u32 input_sub_100930(int a0) {
+u32 input_right_or_stick_right(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -587,11 +587,11 @@ u32 input_sub_100930(int a0) {
 }
 
 /*
- * input_sub_10097c  0x8c10097c
- * area name: sits between input functions (same compilation unit)
+ * input_left_or_stick_left  0x8c10097c
+ * 1 when the stick X (+0x13c) is below -0.3 or Left is held
  * called by: game_sub_0e8280
  */
-u32 input_sub_10097c(int a0) {
+u32 input_left_or_stick_left(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -2236,7 +2236,7 @@ u32 Class_12c394_sub_102bd0(u32 a0, u32 a1, u32 a2, u32 a3) {
     uVar3 = 0x8c441478;
     uVar2 = 0;
     shinobi_sub_1f5dd0(0, 0x8c441478, 0x8c44d498, a3);
-    shinobi_sub_1f8114(uVar2);
+    shinobi_install_event900(uVar2);
     uVar2 = 0;
     imask_to_sr_bits(0);
     for (iVar5 = 8; 0 < iVar5; iVar5 = iVar5 + -1) {
@@ -2278,8 +2278,8 @@ u32 system_init_libs(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 in_PR;
 
     run_atexit_list(a0, a1, a2, a3);
-    gdfs_sub_1f38f2(a0, a1, a2, a3, in_PR);
-    shinobi_sub_1f813e();
+    gdfs_drv_close(a0, a1, a2, a3, in_PR);
+    shinobi_remove_event900();
     shinobi_sub_1f62f0();
     ninja_sub_2590bc(a0, a1, a2, a3);
     noop_1fb43a();
@@ -5232,7 +5232,7 @@ u32 Class_12c3c4_sub_109dc4(int a0, int a1) {
 
     if (*(char *)(0x98 + a0) == '\x03') {
         ar5_00 = 1;
-        uVar1 = Class_12c3c4_sub_109e34(*(u32 *)(a1 + 0x10), 1);
+        uVar1 = get_byte_c_s8(*(u32 *)(a1 + 0x10), 1);
         if ((((char)uVar1 == '\x05') && (*(int *)(0x874 + a0) == 0)) &&
             (uVar1 = get_field_0_s8_02d1d0(*(int *)(a1 + 4) + 0xa8), (char)uVar1 == '\x01')) {
             return 1;
@@ -5242,11 +5242,11 @@ u32 Class_12c3c4_sub_109dc4(int a0, int a1) {
 }
 
 /*
- * Class_12c3c4_sub_109e34  0x8c109e34
- * area name: sits between Class_12c3c4 functions (same compilation unit)
+ * get_byte_c_s8  0x8c109e34
+ * signed byte a0[0xc + a1]
  * called by: Class_12c3c4_sub_109dc4
  */
-int Class_12c3c4_sub_109e34(int a0, u32 a1) {
+int get_byte_c_s8(int a0, u32 a1) {
     return (int)*(char *)(a0 + (char)a1 + 0xc);
 }
 
@@ -6083,11 +6083,11 @@ u32 asr_sub_10a80c(int a0, u32 a1, u32 unused_a2, float *a3) {
 }
 
 /*
- * asr_sub_10abf4  0x8c10abf4
- * area name: in the asr library code range
+ * asr_free_model  0x8c10abf4
+ * frees the buffers at +0x28 and +0x58 and the model parts at +0xb0
  * called by: asr_sub_10ac3c
  */
-u32 asr_sub_10abf4(int *a0) {
+u32 asr_free_model(int *a0) {
     u32 uVar1;
     int ar5_00;
 
@@ -6100,7 +6100,7 @@ u32 asr_sub_10abf4(int *a0) {
 
 /*
  * asr_sub_10abfa  0x8c10abfa
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_10abfa(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6116,7 +6116,7 @@ u32 asr_sub_10abfa(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_10ac3c  0x8c10ac3c
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_10ac3c(u32 unused_a0, u32 unused_a1, int a2, int *a3) {
     int in_r0;
@@ -6141,7 +6141,7 @@ u32 asr_sub_10ac3c(u32 unused_a0, u32 unused_a1, int a2, int *a3) {
                 return 1;
             }
             if (in_r0 == 0xff) {
-                asr_sub_10abf4(unaff_r14);
+                asr_free_model(unaff_r14);
                 asr_sub_120668(unaff_r14, unused_a1, a2, a3);
                 return 1;
             }
@@ -6163,7 +6163,7 @@ u32 asr_sub_10ac3c(u32 unused_a0, u32 unused_a1, int a2, int *a3) {
 
 /*
  * asr_sub_10ad00  0x8c10ad00
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_10ad00(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     char cVar1;
@@ -6463,7 +6463,7 @@ u32 asr_sub_10b02a(u32 a0, int *a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_10b060  0x8c10b060
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_10b060(u32 a0, u32 a1, int *a2, u32 a3) {
     u32 uVar1;
@@ -6481,7 +6481,7 @@ u32 asr_sub_10b060(u32 a0, u32 a1, int *a2, u32 a3) {
 
 /*
  * asr_sub_10b096  0x8c10b096
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_10b096(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6499,7 +6499,7 @@ u32 asr_sub_10b096(int *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_10b0d8  0x8c10b0d8
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_10b0d8(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6517,7 +6517,7 @@ u32 asr_sub_10b0d8(int *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_10b10e  0x8c10b10e
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_10b10e(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6535,7 +6535,7 @@ u32 asr_sub_10b10e(int *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_10b144  0x8c10b144
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_10b144(u32 a0, int *a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6553,7 +6553,7 @@ u32 asr_sub_10b144(u32 a0, int *a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_10b17a  0x8c10b17a
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_10b17a(u32 a0, int *a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6571,7 +6571,7 @@ u32 asr_sub_10b17a(u32 a0, int *a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_10b1b0  0x8c10b1b0
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_10b1b0(u32 a0, int *a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6589,7 +6589,7 @@ u32 asr_sub_10b1b0(u32 a0, int *a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_10b1ec  0x8c10b1ec
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_10b1ec(int *a0, int *a1, u32 *a2, int *a3) {
     u16 uVar1;

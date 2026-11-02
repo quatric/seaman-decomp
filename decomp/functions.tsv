@@ -2973,8 +2973,8 @@ address	name	file	params
 8c0e8cec	ret_const_2324c	mod_8c0e0000.c	0
 8c0e8cfc	set_float_c_nonneg_on_field_13b24	mod_8c0e0000.c	1
 8c0e8d28	set_field_c_nonneg_on_field_13b70	mod_8c0e0000.c	1
-8c0e8d54	game_sub_0e8d54	mod_8c0e0000.c	1
-8c0e8d80	game_sub_0e8d80	mod_8c0e0000.c	1
+8c0e8d54	set_float_eb40_nonneg_on_field_13b8c	mod_8c0e0000.c	1
+8c0e8d80	set_float_eb40_nonneg	mod_8c0e0000.c	1
 8c0e8d98	set_field_226f4	mod_8c0e0000.c	2
 8c0e8da4	get_ptr_8c0e8dac	mod_8c0e0000.c	0
 8c0e8db0	ret_const_10ac	mod_8c0e0000.c	0
@@ -3157,7 +3157,7 @@ address	name	file	params
 8c0fa70c	speech_sub_0fa70c	mod_8c0f0000.c	4
 8c0fa740	get_field_89130_0fa740	mod_8c0f0000.c	1
 8c0fa74c	speech_sub_0fa74c	mod_8c0f0000.c	4
-8c0fa804	speech_sub_0fa804	mod_8c0f0000.c	1
+8c0fa804	identity_0fa804	mod_8c0f0000.c	1
 8c0fa80c	free_if_nonnull_wrap_0fa80c	mod_8c0f0000.c	4
 8c0fa83c	speech_sub_0fa83c	mod_8c0f0000.c	4
 8c0fa910	game_sub_0fa910	mod_8c0f0000.c	4
@@ -3298,8 +3298,8 @@ address	name	file	params
 8c100874	stick_x_left_half	mod_8c100000.c	1
 8c100898	input_up_or_stick_up	mod_8c100000.c	1
 8c1008e4	input_down_or_stick_down	mod_8c100000.c	1
-8c100930	input_sub_100930	mod_8c100000.c	1
-8c10097c	input_sub_10097c	mod_8c100000.c	1
+8c100930	input_right_or_stick_right	mod_8c100000.c	1
+8c10097c	input_left_or_stick_left	mod_8c100000.c	1
 8c1009c8	field_150_below_neg03	mod_8c100000.c	1
 8c1009ec	field_150_above_03	mod_8c100000.c	1
 8c100a10	field_14c_above_03	mod_8c100000.c	1
@@ -3405,7 +3405,7 @@ address	name	file	params
 8c109b98	game_sub_109b98	mod_8c100000.c	3
 8c109d98	Class_12c3c4_m6_109d98	mod_8c100000.c	0
 8c109dc4	Class_12c3c4_sub_109dc4	mod_8c100000.c	2
-8c109e34	Class_12c3c4_sub_109e34	mod_8c100000.c	2
+8c109e34	get_byte_c_s8	mod_8c100000.c	2
 8c109e40	Class_12c3c4_sub_109e40	mod_8c100000.c	4
 8c109f08	Class_12c3c4_sub_109f08	mod_8c100000.c	4
 8c109f58	get_field_150_109f58	mod_8c100000.c	1
@@ -3426,7 +3426,7 @@ address	name	file	params
 8c10a4bc	asr_sub_10a4bc	mod_8c100000.c	2
 8c10a564	asr_sub_10a564	mod_8c100000.c	2
 8c10a80c	asr_sub_10a80c	mod_8c100000.c	4
-8c10abf4	asr_sub_10abf4	mod_8c100000.c	1
+8c10abf4	asr_free_model	mod_8c100000.c	1
 8c10abfa	asr_sub_10abfa	mod_8c100000.c	4
 8c10ac3c	asr_sub_10ac3c	mod_8c100000.c	4
 8c10ad00	asr_sub_10ad00	mod_8c100000.c	4
@@ -3594,7 +3594,7 @@ address	name	file	params
 8c112350	asr_sub_112350	mod_8c110000.c	4
 8c11237a	asr_free_obj	mod_8c110000.c	2
 8c112380	asr_sub_112380	mod_8c110000.c	4
-8c1123b0	asr_sub_1123b0	mod_8c110000.c	4
+8c1123b0	asr_alloc_18	mod_8c110000.c	4
 8c1123da	asr_free_obj_b	mod_8c110000.c	2
 8c1123e0	asr_sub_1123e0	mod_8c110000.c	4
 8c112410	asr_sub_112410	mod_8c110000.c	4
@@ -3766,7 +3766,7 @@ address	name	file	params
 8c11e48a	asr_sub_11e48a	mod_8c110000.c	4
 8c11e534	asr_sub_11e534	mod_8c110000.c	4
 8c11e82c	asr_sub_11e82c	mod_8c110000.c	4
-8c11e896	asr_sub_11e896	mod_8c110000.c	4
+8c11e896	asr_dup_block	mod_8c110000.c	4
 8c11e8d6	asr_sub_11e8d6	mod_8c110000.c	4
 8c11e9b4	asr_sub_11e9b4	mod_8c110000.c	4
 8c11ea3c	asr_sub_11ea3c	mod_8c110000.c	4
@@ -3801,7 +3801,7 @@ address	name	file	params
 8c120078	asr_sub_120078	mod_8c120000.c	1
 8c12007c	asr_sub_12007c	mod_8c120000.c	4
 8c1200f4	asr_table_lookup	mod_8c120000.c	2
-8c12011a	asr_sub_12011a	mod_8c120000.c	2
+8c12011a	asr_table_lookup_b	mod_8c120000.c	2
 8c120148	asr_sub_120148	mod_8c120000.c	4
 8c1201e6	asr_sub_1201e6	mod_8c120000.c	10
 8c1201ea	asr_sub_1201ea	mod_8c120000.c	11
@@ -3834,7 +3834,7 @@ address	name	file	params
 8c120f04	asr_sub_120f04	mod_8c120000.c	4
 8c121124	asr_free_node_list	mod_8c120000.c	1
 8c12112c	asr_sub_12112c	mod_8c120000.c	4
-8c1211ac	asr_sub_1211ac	mod_8c120000.c	3
+8c1211ac	asr_sum_table_strided	mod_8c120000.c	3
 8c1211f0	asr_sub_1211f0	mod_8c120000.c	6
 8c121260	asr_sub_121260	mod_8c120000.c	4
 8c1212d4	asr_sub_1212d4	mod_8c120000.c	7
@@ -4154,7 +4154,7 @@ address	name	file	params
 8c1f37a8	gdfs_get_err_like	mod_8c1f0000.c	1
 8c1f38c0	gdfs_sub_1f38c0	mod_8c1f0000.c	0
 8c1f38ca	gdfs_sub_1f38ca	mod_8c1f0000.c	4
-8c1f38f2	gdfs_sub_1f38f2	mod_8c1f0000.c	5
+8c1f38f2	gdfs_drv_close	mod_8c1f0000.c	5
 8c1f38f4	gdfs_sub_1f38f4	mod_8c1f0000.c	5
 8c1f3926	gdfs_sub_1f3926	mod_8c1f0000.c	4
 8c1f3952	gdfs_sub_1f3952	mod_8c1f0000.c	4
@@ -4385,8 +4385,8 @@ address	name	file	params
 8c1f804e	shinobi_sub_1f804e	mod_8c1f0000.c	1
 8c1f8094	sysinfo_get_id	mod_8c1f0000.c	0
 8c1f80d0	shinobi_sub_1f80d0	mod_8c1f0000.c	1
-8c1f8114	shinobi_sub_1f8114	mod_8c1f0000.c	1
-8c1f813e	shinobi_sub_1f813e	mod_8c1f0000.c	0
+8c1f8114	shinobi_install_event900	mod_8c1f0000.c	1
+8c1f813e	shinobi_remove_event900	mod_8c1f0000.c	0
 8c1f814c	shinobi_sub_1f814c	mod_8c1f0000.c	1
 8c1f8176	rtc_get_date	mod_8c1f0000.c	4
 8c1f81dc	rtc_sub_1f81dc	mod_8c1f0000.c	3
