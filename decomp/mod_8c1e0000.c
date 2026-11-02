@@ -645,7 +645,7 @@ u32 shinobi_calls_calc_1efd34(u32 a0) {
 
 /*
  * thunk_FUN_8c1f461c  0x8c1efd42
- * called by: pvr_1efaf4, shinobi_calls_one_201f8a, shinobi_input_1fd008, shinobi_input_1fd1e2, shinobi_input_1fd312
+ * called by: pvr_1efaf4, shinobi_calls_one_201f8a, shinobi_input_1fd008, shinobi_input_1fd1e2, vmu_block_write_phases
  */
 u32 thunk_FUN_8c1f461c(void) {
     u32 uVar1;
@@ -759,7 +759,7 @@ u32 maple_block_read_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * maple_block_write_hooked  0x8c1efeac
  * maple_block_write_locked, then the PVR hook when +0x10e8 is set
- * called by: bios_input_1f3c78, bios_input_1f3cde, shinobi_input_1fd312
+ * called by: bios_input_1f3c78, bios_input_1f3cde, vmu_block_write_phases
  */
 u32 maple_block_write_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -774,7 +774,7 @@ u32 maple_block_write_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * maple_block_complete_hooked  0x8c1efee0
  * maple_block_complete_locked, then the PVR hook when +0x10e8 is set
- * called by: shinobi_input_1fd312
+ * called by: vmu_block_write_phases
  */
 u32 maple_block_complete_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -861,7 +861,7 @@ u32 shinobi_draw_1effc2(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * thunk_FUN_8c1f4636  0x8c1effee
- * called by: maple_device_ready_idle, shinobi_input_1fd008, shinobi_input_1fd1e2, shinobi_input_1fd312
+ * called by: maple_device_ready_idle, shinobi_input_1fd008, shinobi_input_1fd1e2, vmu_block_write_phases
  */
 u32 thunk_FUN_8c1f4636(void) {
     u32 uVar1;

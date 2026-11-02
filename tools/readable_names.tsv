@@ -2022,3 +2022,20 @@
 8c1fa0f0	oc_invalidate_all	clears every entry of the operand cache address array (only the cache half when the OC RAM mode is on)
 8c1fab8c	serial_port_init	resets the serial port, picks SCIF or SCI from the stored flags and programs its mode and baud rate with settling delays
 8c1fb4c2	heap_alloc_first_fit	takes a1 rounded to 32-byte units (plus a header) from the first free block large enough, splitting it from the end; returns the data or 0
+8c1fb77a	calloc_sys	allocates a0 * a1 bytes with malloc_sys and zeroes them
+8c1fd312	vmu_block_write_phases	writes block a1 of the VMU on port a0 in the device's write phases, waiting for each reply (0xffffff30 on timeout)
+8c1fbc44	vmu_block_write_retry	retries vmu_block_write_phases up to the global retry count, counting the retries and reporting them through the slot callback
+8c1fcef8	slot80_set_strings	copies up to 12 characters of a1 and a2 into the 0x80 slot record of a0 (+0x2c and +0x3c)
+8c1fe534	vmu_file_open	checks the FAT chain of file a1 on port a0, allocates a file handle and fills it from the directory entry; stores the handle in *a2
+8c1fe9ae	vmu_file_close	writes the handle's directory entry back (type 0xcc game or 0x33 data, start block, size, header offset, name and date) and frees the handle
+8c1febd6	vmu_file_write_next_block	allocates a free FAT block, writes a1 to it (moving on to another free block on failure) and links it to the end of the file's chain
+8c1fee6c	vmu_file_read_next_block	reads the file's next block into a1 and follows its FAT link; returns the number of blocks left
+8c1feb16	vmu_file_write_blocks	writes a2 blocks of 0x200 bytes from a1 through the handle (mode 1 or 2 picks the block writer)
+8c1fedfa	vmu_file_read_blocks	reads a2 blocks of 0x200 bytes into a1 through the handle
+8c200e8a	vmu_file_load	opens file a1 on port a0, reads a3 blocks (or the whole file when a3 is 0) into a2 and closes it
+8c1ffd6c	vmu_copy_info_block	when the VMU on port a0 is ready, copies 0x20 bytes from its info buffer (+0x10) into a1
+8c2001b8	vmu_read_block_chain	reads the block chain that starts at the root-block field +0x14, up to the count at +0x18, stopping at the 0xfffa end marker
+8c2004ea	vmu_dir_entry_unpack	unpacks the directory entry a0 into a1: type, copy flag, name, date, start block, size and header offset
+8c20075a	vmu_fat_find_free_run	searches backwards for a run of free (0xfffc) FAT blocks as long as the root block's count and returns its first block
+8c200b10	vmu_file_check_chain	checks that file a1's FAT chain on port a0 has the right length, ends with 0xfffa and has no free or out-of-range links
+8c204006	mem_pools_largest_free	stores the largest block size of each of the two pool lists in *a0 and *a1
