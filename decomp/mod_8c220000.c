@@ -4,10 +4,11 @@
 #include "globals.h"
 
 /*
- * FUN_8c2205d8  0x8c2205d8
- * called by: FUN_8c220658, FUN_8c220c88
+ * gfxlib_sub_2205d8  0x8c2205d8
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_220658, gfxlib_sub_220c88
  */
-u32 FUN_8c2205d8(int a0) {
+u32 gfxlib_sub_2205d8(int a0) {
     u32 *puVar1;
     u32 *puVar2;
     u32 *puVar3;
@@ -61,9 +62,10 @@ u32 FUN_8c2205d8(int a0) {
 }
 
 /*
- * FUN_8c220658  0x8c220658
+ * gfxlib_sub_220658  0x8c220658
+ * area name: in the gfxlib library code range
  */
-u32 FUN_8c220658(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
+u32 gfxlib_sub_220658(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
     u32 uVar1;
     int iVar2;
     u32 uVar3;
@@ -111,7 +113,7 @@ u32 FUN_8c220658(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
             *(u32 *)(*(int *)((int)puVar7 + -0x30) + 4) = uVar3;
             uVar3 = uVar3 >> 0x10;
             if (g_8c2759d8 == 0) {
-                FUN_8c2205d8(**(u32 **)((int)puVar7 + -0x30) & 0xffff);
+                gfxlib_sub_2205d8(**(u32 **)((int)puVar7 + -0x30) & 0xffff);
                 g_8c2759d8 = 1;
             }
             *(u32 *)((int)puVar7 + -0x3c) = 0;
@@ -164,7 +166,7 @@ u32 FUN_8c220658(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
                         }
                     }
                     a3 = (u8 *)((int)puVar7 + -0x14);
-                    FUN_8c22123c(iVar4, a1, a2, a3);
+                    gfxlib_sub_22123c(iVar4, a1, a2, a3);
                     in_fr5 = SUB84(dVar10, 0);
 
                     dVar11 = (double)CONCAT44((int)((u64)dVar11 >> 0x20), extraout_fr0);
@@ -212,7 +214,7 @@ u32 FUN_8c220658(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
                         }
                     }
                     a3 = (u8 *)((int)puVar7 + -0x24);
-                    FUN_8c221300(iVar4, a1, a2, a3);
+                    gfxlib_sub_221300(iVar4, a1, a2, a3);
                     *(u32 *)((int)puVar7 + -0x4c) = *(u32 *)((int)puVar7 + -0x24);
                     *(u32 *)((int)puVar7 + -0x44) = *(u32 *)((int)puVar7 + -0x20);
                     *(int *)((int)puVar7 + -0x3c) = *(int *)((int)puVar7 + -0x3c) + 2;
@@ -458,9 +460,10 @@ LAB_8c220c4e:
 }
 
 /*
- * FUN_8c220c88  0x8c220c88
+ * gfxlib_sub_220c88  0x8c220c88
+ * area name: in the gfxlib library code range
  */
-u32 FUN_8c220c88(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
+u32 gfxlib_sub_220c88(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
     u32 *puVar1;
     double dVar2;
     u32 uVar3;
@@ -518,7 +521,7 @@ u32 FUN_8c220c88(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
         puVar1[1] = uVar6;
         uVar6 = uVar6 >> 0x10;
         if (g_8c2759d8 == 0) {
-            FUN_8c2205d8(*puVar1 & 0xffff);
+            gfxlib_sub_2205d8(*puVar1 & 0xffff);
             g_8c2759d8 = 1;
         }
         iStack_50 = 0;
@@ -590,7 +593,7 @@ u32 FUN_8c220c88(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
                     }
                 }
                 a3 = &iStack_30;
-                FUN_8c221300(iVar7, a1, a2, a3);
+                gfxlib_sub_221300(iVar7, a1, a2, a3);
                 in_fr5 = SUB84(dVar13, 0);
                 if (cVar18 == '\0') {
                     dVar14 = (double)CONCAT44((int)((u64)dVar14 >> 0x20), extraout_fr0);
@@ -650,7 +653,7 @@ u32 FUN_8c220c88(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
                     }
                 }
                 a3 = &iStack_38;
-                FUN_8c221300(iVar7, a1, a2, a3);
+                gfxlib_sub_221300(iVar7, a1, a2, a3);
                 iStack_60 = iStack_38;
                 iStack_54 = iStack_34;
                 iStack_50 = iStack_50 + 2;
@@ -870,10 +873,11 @@ LAB_8c221200:
 }
 
 /*
- * FUN_8c22123c  0x8c22123c
- * called by: FUN_8c21daf2, FUN_8c21f2ae, FUN_8c220658
+ * gfxlib_sub_22123c  0x8c22123c
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_21daf2, gfxlib_sub_21f2ae, gfxlib_sub_220658
  */
-int FUN_8c22123c(int a0, int a1, int a2, u32 *a3) {
+int gfxlib_sub_22123c(int a0, int a1, int a2, u32 *a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -899,10 +903,12 @@ int FUN_8c22123c(int a0, int a1, int a2, u32 *a3) {
 }
 
 /*
- * FUN_8c221300  0x8c221300
- * called by: FUN_8c21daf2, FUN_8c21e4f8, FUN_8c21ee94, FUN_8c21f2ae, FUN_8c21fca8, FUN_8c220658, FUN_8c220c88
+ * gfxlib_sub_221300  0x8c221300
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_21daf2, gfxlib_sub_21e4f8, gfxlib_sub_21ee94, gfxlib_sub_21f2ae, gfxlib_sub_21fca8,
+ * gfxlib_sub_220658, gfxlib_sub_220c88
  */
-int FUN_8c221300(int a0, int a1, u32 a2, int *a3) {
+int gfxlib_sub_221300(int a0, int a1, u32 a2, int *a3) {
     int iVar1;
     int *piVar2;
     int iVar3;
@@ -921,10 +927,11 @@ int FUN_8c221300(int a0, int a1, u32 a2, int *a3) {
 }
 
 /*
- * FUN_8c22138a  0x8c22138a
- * called by: FUN_8c21daf2, FUN_8c21e4f8, FUN_8c21f2ae, FUN_8c21fca8
+ * gfxlib_sub_22138a  0x8c22138a
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_21daf2, gfxlib_sub_21e4f8, gfxlib_sub_21f2ae, gfxlib_sub_21fca8
  */
-int FUN_8c22138a(int a0, int a1, u32 a2, int *a3) {
+int gfxlib_sub_22138a(int a0, int a1, u32 a2, int *a3) {
     int iVar1;
     int *piVar2;
     int iVar3;
@@ -945,7 +952,7 @@ int FUN_8c22138a(int a0, int a1, u32 a2, int *a3) {
 /*
  * argb_lerp  0x8c221414
  * blends two packed ARGB colours by fr4
- * called by: FUN_8c21daf2, FUN_8c21e4f8, FUN_8c21f2ae, FUN_8c21fca8
+ * called by: gfxlib_sub_21daf2, gfxlib_sub_21e4f8, gfxlib_sub_21f2ae, gfxlib_sub_21fca8
  */
 u64 *argb_lerp(u32 *a0, u32 *a1, u32 *a2) {
     u64 *puVar1;
@@ -990,7 +997,7 @@ u64 *argb_lerp(u32 *a0, u32 *a1, u32 *a2) {
 /*
  * Vec3_lerp  0x8c22158a
  * a2 = lerp(a0, a1, fr4)
- * called by: FUN_8c21e4f8, FUN_8c21ee94, FUN_8c21fca8, FUN_8c220c88
+ * called by: gfxlib_sub_21e4f8, gfxlib_sub_21ee94, gfxlib_sub_21fca8, gfxlib_sub_220c88
  */
 u32 Vec3_lerp(float *a0, float *a1, float *a2) {
     float fVar1;
@@ -1008,7 +1015,8 @@ u32 Vec3_lerp(float *a0, float *a1, float *a2) {
 /*
  * Vec3_lerp_normalize  0x8c2215b4
  * a2 = normalize(lerp(a0, a1, fr4)); (0, 0, 1) when degenerate
- * called by: FUN_8c21daf2, FUN_8c21e4f8, FUN_8c21ee94, FUN_8c21f2ae, FUN_8c21fca8, FUN_8c220658, FUN_8c220c88
+ * called by: gfxlib_sub_21daf2, gfxlib_sub_21e4f8, gfxlib_sub_21ee94, gfxlib_sub_21f2ae, gfxlib_sub_21fca8,
+ * gfxlib_sub_220658, gfxlib_sub_220c88
  */
 u32 *Vec3_lerp_normalize(float *a0, float *a1, float *a2) {
     float *pfVar1;
@@ -1042,7 +1050,7 @@ u32 *Vec3_lerp_normalize(float *a0, float *a1, float *a2) {
 /*
  * Vec3_catmull_rom  0x8c221622
  * s0 = Catmull-Rom spline through a0..a3 at t = fr4
- * called by: FUN_8c21daf2, FUN_8c21f2ae, FUN_8c220658
+ * called by: gfxlib_sub_21daf2, gfxlib_sub_21f2ae, gfxlib_sub_220658
  */
 u32 Vec3_catmull_rom(float *a0, float *a1, float *a2, float *a3, float *s0) {
     float fVar1;
@@ -1066,9 +1074,10 @@ u32 Vec3_catmull_rom(float *a0, float *a1, float *a2, float *a3, float *s0) {
 }
 
 /*
- * FUN_8c2216e0  0x8c2216e0
+ * gfxlib_sub_2216e0  0x8c2216e0
+ * area name: in the gfxlib library code range
  */
-u32 FUN_8c2216e0(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 gfxlib_sub_2216e0(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 *in_r1;
     int in_r3;
@@ -1085,9 +1094,10 @@ u32 FUN_8c2216e0(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c22170a  0x8c22170a
+ * gfxlib_sub_22170a  0x8c22170a
+ * area name: in the gfxlib library code range
  */
-u32 FUN_8c22170a(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 gfxlib_sub_22170a(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 *in_r1;
     int in_r3;
@@ -1104,9 +1114,10 @@ u32 FUN_8c22170a(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c221734  0x8c221734
+ * gfxlib_sub_221734  0x8c221734
+ * area name: in the gfxlib library code range
  */
-u32 FUN_8c221734(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 gfxlib_sub_221734(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 *in_r1;
     int in_r3;
@@ -1124,7 +1135,7 @@ u32 FUN_8c221734(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * ta_fifo_221778  0x8c221778
- * called by: FUN_8c22b7a8, FUN_8c22bb70
+ * called by: gfxlib_sub_22b7a8, gfxlib_sub_22bb70
  */
 u32 ta_fifo_221778(float *a0) {
     u32 uVar1;
@@ -1174,10 +1185,11 @@ u32 ta_fifo_221778(float *a0) {
 }
 
 /*
- * FUN_8c2218f4  0x8c2218f4
- * called by: FUN_8c0c0444
+ * ta_sub_2218f4  0x8c2218f4
+ * area name: sits between ta functions (same compilation unit)
+ * called by: game_sub_0c0444
  */
-int FUN_8c2218f4(int a0) {
+int ta_sub_2218f4(int a0) {
     u8 *puVar1;
     u8 auStack_20[32];
 
@@ -1188,10 +1200,12 @@ int FUN_8c2218f4(int a0) {
 }
 
 /*
- * FUN_8c221916  0x8c221916
- * called by: FUN_8c09dde4, FUN_8c09de7c, FUN_8c09ea78, FUN_8c09edf0, FUN_8c09efb4, FUN_8c0c0444
+ * ta_sub_221916  0x8c221916
+ * area name: sits between ta functions (same compilation unit)
+ * called by: Class_12ab2c_sub_09dde4, Class_12ab2c_sub_09de7c, Class_12ab2c_sub_09ea78, Class_12ab2c_sub_09edf0,
+ * Class_12ab2c_sub_09efb4, game_sub_0c0444
  */
-u32 FUN_8c221916(int a0, int a1) {
+u32 ta_sub_221916(int a0, int a1) {
     u32 auStack_20[8];
 
     switch_jump_r0(0x1c, auStack_20, &g_8c26d804);
@@ -1204,10 +1218,11 @@ u32 FUN_8c221916(int a0, int a1) {
 }
 
 /*
- * FUN_8c22194e  0x8c22194e
- * called by: FUN_8c0e3f24
+ * ta_sub_22194e  0x8c22194e
+ * area name: sits between ta functions (same compilation unit)
+ * called by: Vec3_sub_0e3f24
  */
-u32 FUN_8c22194e(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ta_sub_22194e(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 in_fr5;
     u32 in_fr4;
     u32 in_fr6;
@@ -1219,10 +1234,11 @@ u32 FUN_8c22194e(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32
 }
 
 /*
- * FUN_8c22195c  0x8c22195c
- * called by: FUN_8c09ea78, FUN_8c09edf0, FUN_8c0da88c, FUN_8c0df8d0, FUN_8c0e3f24
+ * ta_sub_22195c  0x8c22195c
+ * area name: sits between ta functions (same compilation unit)
+ * called by: Class_12ab2c_sub_09ea78, Class_12ab2c_sub_09edf0, Vec3_sub_0e3f24, game_sub_0da88c, game_sub_0df8d0
  */
-u32 FUN_8c22195c(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ta_sub_22195c(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int iVar1;
     u32 in_fr5;
     u32 in_fr4;
@@ -1236,10 +1252,11 @@ u32 FUN_8c22195c(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) 
 }
 
 /*
- * FUN_8c2219a8  0x8c2219a8
- * called by: FUN_8c0e3f24
+ * gfxlib_sub_2219a8  0x8c2219a8
+ * area name: in the gfxlib library code range
+ * called by: Vec3_sub_0e3f24
  */
-u32 FUN_8c2219a8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 gfxlib_sub_2219a8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 in_fr5;
     u32 in_fr4;
     u32 in_fr6;
@@ -1252,10 +1269,11 @@ u32 FUN_8c2219a8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32
 }
 
 /*
- * FUN_8c2219ac  0x8c2219ac
- * called by: FUN_8c09ea78, FUN_8c09edf0
+ * gfxlib_sub_2219ac  0x8c2219ac
+ * area name: in the gfxlib library code range
+ * called by: Class_12ab2c_sub_09ea78, Class_12ab2c_sub_09edf0
  */
-u32 FUN_8c2219ac(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 gfxlib_sub_2219ac(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int iVar1;
     u32 uVar2;
     u32 in_fr5;
@@ -1277,10 +1295,11 @@ u32 FUN_8c2219ac(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) 
 }
 
 /*
- * FUN_8c2219de  0x8c2219de
- * called by: FUN_8c09dde4
+ * gfxlib_sub_2219de  0x8c2219de
+ * area name: in the gfxlib library code range
+ * called by: Class_12ab2c_sub_09dde4
  */
-u32 FUN_8c2219de(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 gfxlib_sub_2219de(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int iVar1;
     u64 in_dr4;
     float fVar2;
@@ -1293,10 +1312,11 @@ u32 FUN_8c2219de(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) 
 }
 
 /*
- * FUN_8c2219f6  0x8c2219f6
- * called by: FUN_8c0e3f24
+ * gfxlib_sub_2219f6  0x8c2219f6
+ * area name: in the gfxlib library code range
+ * called by: Vec3_sub_0e3f24
  */
-u32 FUN_8c2219f6(void) {
+u32 gfxlib_sub_2219f6(void) {
     u8 *puVar1;
     u8 *puVar2;
     u32 in_r0;
@@ -1304,8 +1324,8 @@ u32 FUN_8c2219f6(void) {
     int iVar4;
     u32 uVar5;
 
-    puVar2 = (&FUN_8c21279c);
-    puVar1 = (&FUN_8c212740);
+    puVar2 = (&kamui_sub_21279c);
+    puVar1 = (&kamui_sub_212740);
     uVar5 = *(u32 *)(0x8c4c0e80 + 0x50);
     iVar3 = 0x8c4c0ee0;
     iVar4 = 0x8c4c0e80;
@@ -1327,9 +1347,10 @@ u32 FUN_8c2219f6(void) {
 }
 
 /*
- * FUN_8c221a0a  0x8c221a0a
+ * gfxlib_sub_221a0a  0x8c221a0a
+ * area name: in the gfxlib library code range
  */
-u32 FUN_8c221a0a(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 gfxlib_sub_221a0a(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u8 *puVar1;
     u8 *puVar2;
     u32 in_r0;
@@ -1338,8 +1359,8 @@ u32 FUN_8c221a0a(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 *unaff_r14;
     u32 uVar3;
 
-    puVar2 = (&FUN_8c21279c);
-    puVar1 = (&FUN_8c212740);
+    puVar2 = (&kamui_sub_21279c);
+    puVar1 = (&kamui_sub_212740);
     uVar3 = *unaff_r14;
     a6 = 0x8c4c0ee0;
     while (true) {
@@ -1360,10 +1381,11 @@ u32 FUN_8c221a0a(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * FUN_8c221a8c  0x8c221a8c
- * called by: FUN_8c219ad0
+ * gfxlib_sub_221a8c  0x8c221a8c
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_219ad0
  */
-int FUN_8c221a8c(short *a0, int a1, u32 a2, int a3) {
+int gfxlib_sub_221a8c(short *a0, int a1, u32 a2, int a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -1475,10 +1497,11 @@ int FUN_8c221a8c(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * FUN_8c221c68  0x8c221c68
- * called by: FUN_8c219ad0
+ * gfxlib_sub_221c68  0x8c221c68
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_219ad0
  */
-double *FUN_8c221c68(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_sub_221c68(short *a0, int a1, u32 a2, double *a3) {
     bool bVar1;
     short *psVar2;
     double *pdVar3;
@@ -2096,7 +2119,7 @@ double *FUN_8c221c68(short *a0, int a1, u32 a2, double *a3) {
                         dVar20 = (double)CONCAT44(fVar18, uVar21);
                         in_dr10 = dVar29;
                     }
-                    a3 = (double *)FUN_8c2230f0(pdVar5, a5, a6, a3);
+                    a3 = (double *)gfxlib_sub_2230f0(pdVar5, a5, a6, a3);
                 }
             }
         LAB_8c221efe:
@@ -2198,10 +2221,11 @@ double *FUN_8c221c68(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * FUN_8c221fbc  0x8c221fbc
- * called by: FUN_8c219ad0
+ * gfxlib_sub_221fbc  0x8c221fbc
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_219ad0
  */
-u32 *FUN_8c221fbc(short *a0, int a1, u32 a2, u32 *a3) {
+u32 *gfxlib_sub_221fbc(short *a0, int a1, u32 a2, u32 *a3) {
     int iVar1;
     short *psVar2;
     short *psVar3;
@@ -2396,7 +2420,7 @@ u32 *FUN_8c221fbc(short *a0, int a1, u32 a2, u32 *a3) {
 
 /*
  * vram64_22233c  0x8c22233c
- * called by: FUN_8c219ad0
+ * called by: gfxlib_sub_219ad0
  */
 double *vram64_22233c(short *a0, int a1, u32 a2, double *a3) {
     bool bVar1;
@@ -3159,7 +3183,7 @@ double *vram64_22233c(short *a0, int a1, u32 a2, double *a3) {
                         in_xd4 = (double)CONCAT44(fVar27, fVar17);
                         dVar19 = (double)CONCAT44(fVar17, uVar20);
                     }
-                    a3 = (double *)FUN_8c224b00(pdVar3, pdVar4, a6, a3);
+                    a3 = (double *)gfxlib_sub_224b00(pdVar3, pdVar4, a6, a3);
                 }
             }
         LAB_8c22269a:
@@ -3319,10 +3343,11 @@ double *vram64_22233c(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * FUN_8c22278c  0x8c22278c
- * called by: FUN_8c219ad0
+ * vram_sub_22278c  0x8c22278c
+ * area name: sits between vram functions (same compilation unit)
+ * called by: gfxlib_sub_219ad0
  */
-u32 *FUN_8c22278c(short *a0, int a1, u32 a2, u32 *a3) {
+u32 *vram_sub_22278c(short *a0, int a1, u32 a2, u32 *a3) {
     int iVar1;
     u32 uVar2;
     short *psVar3;
@@ -3620,9 +3645,10 @@ u32 *FUN_8c22278c(short *a0, int a1, u32 a2, u32 *a3) {
 }
 
 /*
- * FUN_8c222ab4  0x8c222ab4
+ * vram_sub_222ab4  0x8c222ab4
+ * area name: sits between vram functions (same compilation unit)
  */
-int FUN_8c222ab4(short *a0, int a1, u32 a2, int a3) {
+int vram_sub_222ab4(short *a0, int a1, u32 a2, int a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -3756,7 +3782,7 @@ int FUN_8c222ab4(short *a0, int a1, u32 a2, int a3) {
 
 /*
  * vram64_222cec  0x8c222cec
- * called by: FUN_8c219ad0
+ * called by: gfxlib_sub_219ad0
  */
 double *vram64_222cec(short *a0, int a1, u32 a2, double *a3) {
     bool bVar1;
@@ -4643,10 +4669,11 @@ double *vram64_222cec(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * FUN_8c2230f0  0x8c2230f0
- * called by: FUN_8c221c68
+ * gfxlib_sub_2230f0  0x8c2230f0
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_221c68
  */
-u64 *FUN_8c2230f0(u32 a0, u32 a1, u32 a2, u64 *a3) {
+u64 *gfxlib_sub_2230f0(u32 a0, u32 a1, u32 a2, u64 *a3) {
     int iVar1;
     double *pdVar2;
     u64 *puVar3;
@@ -5147,10 +5174,11 @@ u64 *FUN_8c2230f0(u32 a0, u32 a1, u32 a2, u64 *a3) {
 }
 
 /*
- * FUN_8c2234a4  0x8c2234a4
- * called by: FUN_8c219ad0
+ * gfxlib_sub_2234a4  0x8c2234a4
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_219ad0
  */
-int FUN_8c2234a4(short *a0, int a1, u32 a2, int a3) {
+int gfxlib_sub_2234a4(short *a0, int a1, u32 a2, int a3) {
     short sVar1;
     u32 uVar2;
     u32 uVar3;
@@ -5291,10 +5319,11 @@ int FUN_8c2234a4(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * FUN_8c223708  0x8c223708
- * called by: FUN_8c219ad0
+ * gfxlib_sub_223708  0x8c223708
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_219ad0
  */
-double *FUN_8c223708(u32 a0, u32 a1, u32 a2, double *a3) {
+double *gfxlib_sub_223708(u32 a0, u32 a1, u32 a2, double *a3) {
     short sVar1;
     short sVar2;
     bool bVar3;
@@ -6094,7 +6123,7 @@ double *FUN_8c223708(u32 a0, u32 a1, u32 a2, double *a3) {
                         in_dr6 = dVar20;
                         in_xd6 = in_dr12;
                     }
-                    a3 = (double *)FUN_8c226474(pdVar5, a5, pdVar13, a3);
+                    a3 = (double *)gfxlib_sub_226474(pdVar5, a5, pdVar13, a3);
                     pdVar14 = (double *)((int)pdVar6 + 8);
                 }
             }
@@ -6252,10 +6281,11 @@ double *FUN_8c223708(u32 a0, u32 a1, u32 a2, double *a3) {
 }
 
 /*
- * FUN_8c223b34  0x8c223b34
- * called by: FUN_8c219ad0
+ * gfxlib_sub_223b34  0x8c223b34
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_219ad0
  */
-u32 *FUN_8c223b34(short *a0, int a1, u32 a2, u32 *a3) {
+u32 *gfxlib_sub_223b34(short *a0, int a1, u32 a2, u32 *a3) {
     short sVar1;
     short sVar2;
     int iVar3;
@@ -6452,10 +6482,11 @@ u32 *FUN_8c223b34(short *a0, int a1, u32 a2, u32 *a3) {
 }
 
 /*
- * FUN_8c223eb8  0x8c223eb8
- * called by: FUN_8c219ad0
+ * gfxlib_sub_223eb8  0x8c223eb8
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_219ad0
  */
-double *FUN_8c223eb8(u32 a0, u32 a1, u32 a2, double *a3) {
+double *gfxlib_sub_223eb8(u32 a0, u32 a1, u32 a2, double *a3) {
     short sVar1;
     short sVar2;
     bool bVar3;
@@ -7290,7 +7321,7 @@ double *FUN_8c223eb8(u32 a0, u32 a1, u32 a2, double *a3) {
                         in_dr6 = dVar22;
                         in_xd6 = in_dr12;
                     }
-                    a3 = (double *)FUN_8c225098(pdVar5, a5, pdVar14, a3);
+                    a3 = (double *)gfxlib_sub_225098(pdVar5, a5, pdVar14, a3);
                     piVar16 = (int *)((int)puVar15 + 0x14);
                 }
             }
@@ -7458,10 +7489,11 @@ double *FUN_8c223eb8(u32 a0, u32 a1, u32 a2, double *a3) {
 }
 
 /*
- * FUN_8c224330  0x8c224330
- * called by: FUN_8c219ad0
+ * gfxlib_sub_224330  0x8c224330
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_219ad0
  */
-u32 *FUN_8c224330(short *a0, int a1, u32 a2, u32 *a3) {
+u32 *gfxlib_sub_224330(short *a0, int a1, u32 a2, u32 *a3) {
     int iVar1;
     short *psVar2;
     short *psVar3;
@@ -7657,7 +7689,7 @@ u32 *FUN_8c224330(short *a0, int a1, u32 a2, u32 *a3) {
 
 /*
  * vram64_2246a0  0x8c2246a0
- * called by: FUN_8c219ad0
+ * called by: gfxlib_sub_219ad0
  */
 double *vram64_2246a0(short *a0, int a1, u32 a2, double *a3) {
     bool bVar1;
@@ -8419,7 +8451,7 @@ double *vram64_2246a0(short *a0, int a1, u32 a2, double *a3) {
                         in_xd4 = (double)CONCAT44(fVar27, fVar18);
                         dVar19 = (double)CONCAT44(fVar18, uVar20);
                     }
-                    a3 = (double *)FUN_8c224b00(pdVar3, pdVar4, a6, a3);
+                    a3 = (double *)gfxlib_sub_224b00(pdVar3, pdVar4, a6, a3);
                 }
             }
         LAB_8c224a0e:
@@ -8579,10 +8611,11 @@ double *vram64_2246a0(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * FUN_8c224b00  0x8c224b00
+ * gfxlib_sub_224b00  0x8c224b00
+ * area name: in the gfxlib library code range
  * called by: vram64_22233c, vram64_2246a0
  */
-u64 *FUN_8c224b00(u32 a0, u32 a1, u32 a2, u64 *a3) {
+u64 *gfxlib_sub_224b00(u32 a0, u32 a1, u32 a2, u64 *a3) {
     u32 *puVar1;
     int iVar2;
     int iVar3;
@@ -9287,10 +9320,11 @@ u64 *FUN_8c224b00(u32 a0, u32 a1, u32 a2, u64 *a3) {
 }
 
 /*
- * FUN_8c225098  0x8c225098
- * called by: FUN_8c223eb8
+ * gfxlib_sub_225098  0x8c225098
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_223eb8
  */
-u64 *FUN_8c225098(u32 a0, u32 a1, u32 a2, u64 *a3) {
+u64 *gfxlib_sub_225098(u32 a0, u32 a1, u32 a2, u64 *a3) {
     u32 *puVar1;
     int iVar2;
     int iVar3;
@@ -9920,10 +9954,11 @@ u64 *FUN_8c225098(u32 a0, u32 a1, u32 a2, u64 *a3) {
 }
 
 /*
- * FUN_8c2255e8  0x8c2255e8
- * called by: FUN_8c219ad0
+ * gfxlib_sub_2255e8  0x8c2255e8
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_219ad0
  */
-u32 *FUN_8c2255e8(short *a0, int a1, u32 a2, u32 *a3) {
+u32 *gfxlib_sub_2255e8(short *a0, int a1, u32 a2, u32 *a3) {
     int iVar1;
     u32 uVar2;
     short *psVar3;
@@ -10221,9 +10256,10 @@ u32 *FUN_8c2255e8(short *a0, int a1, u32 a2, u32 *a3) {
 }
 
 /*
- * FUN_8c225918  0x8c225918
+ * gfxlib_sub_225918  0x8c225918
+ * area name: in the gfxlib library code range
  */
-int FUN_8c225918(short *a0, int a1, u32 a2, int a3) {
+int gfxlib_sub_225918(short *a0, int a1, u32 a2, int a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -10357,7 +10393,7 @@ int FUN_8c225918(short *a0, int a1, u32 a2, int a3) {
 
 /*
  * vram64_225b54  0x8c225b54
- * called by: FUN_8c219ad0
+ * called by: gfxlib_sub_219ad0
  */
 double *vram64_225b54(short *a0, int a1, u32 a2, double *a3) {
     bool bVar1;
@@ -11849,10 +11885,11 @@ u64 *vram64_225f68(u32 a0, u32 a1, u32 a2, u64 *a3) {
 }
 
 /*
- * FUN_8c226474  0x8c226474
- * called by: FUN_8c223708
+ * gfxlib_sub_226474  0x8c226474
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_223708
  */
-u64 *FUN_8c226474(u32 a0, u32 a1, u32 a2, u64 *a3) {
+u64 *gfxlib_sub_226474(u32 a0, u32 a1, u32 a2, u64 *a3) {
     u32 *puVar1;
     int iVar2;
     int iVar3;
@@ -12438,10 +12475,11 @@ u64 *FUN_8c226474(u32 a0, u32 a1, u32 a2, u64 *a3) {
 }
 
 /*
- * FUN_8c226980  0x8c226980
- * called by: FUN_8c21a4f6
+ * gfxlib_sub_226980  0x8c226980
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_21a4f6
  */
-int FUN_8c226980(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int gfxlib_sub_226980(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -12596,10 +12634,11 @@ int FUN_8c226980(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * FUN_8c226ac0  0x8c226ac0
- * called by: FUN_8c21a4f6
+ * gfxlib_sub_226ac0  0x8c226ac0
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_21a4f6
  */
-int FUN_8c226ac0(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int gfxlib_sub_226ac0(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -12762,10 +12801,11 @@ int FUN_8c226ac0(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * FUN_8c226c44  0x8c226c44
- * called by: FUN_8c21a4f6
+ * gfxlib_sub_226c44  0x8c226c44
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_21a4f6
  */
-int FUN_8c226c44(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int gfxlib_sub_226c44(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     double *pdVar1;
     u32 uVar2;
     u32 uVar3;
@@ -13186,10 +13226,11 @@ int FUN_8c226c44(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * FUN_8c226dfc  0x8c226dfc
- * called by: FUN_8c21a4f6
+ * gfxlib_sub_226dfc  0x8c226dfc
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_21a4f6
  */
-int FUN_8c226dfc(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int gfxlib_sub_226dfc(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     double *pdVar1;
     u32 uVar2;
     u32 uVar3;
@@ -13565,10 +13606,11 @@ int FUN_8c226dfc(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * FUN_8c226f70  0x8c226f70
- * called by: FUN_8c21a4f6
+ * gfxlib_sub_226f70  0x8c226f70
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_21a4f6
  */
-int FUN_8c226f70(int *a0, u32 a1, u32 unused_a2, u32 a3) {
+int gfxlib_sub_226f70(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     float *pfVar1;
     float *pfVar2;
     float *pfVar3;
@@ -13752,10 +13794,11 @@ int FUN_8c226f70(int *a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * FUN_8c227144  0x8c227144
- * called by: FUN_8c21a4f6
+ * gfxlib_sub_227144  0x8c227144
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_21a4f6
  */
-int FUN_8c227144(int *a0, u32 a1, u32 unused_a2, u32 a3) {
+int gfxlib_sub_227144(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     double *pdVar1;
     u32 uVar2;
     int iVar3;
@@ -14246,9 +14289,10 @@ int FUN_8c227144(int *a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * FUN_8c227348  0x8c227348
+ * gfxlib_sub_227348  0x8c227348
+ * area name: in the gfxlib library code range
  */
-int FUN_8c227348(short *a0, int a1, u32 a2, int a3) {
+int gfxlib_sub_227348(short *a0, int a1, u32 a2, int a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -14371,9 +14415,10 @@ int FUN_8c227348(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * FUN_8c2274f8  0x8c2274f8
+ * gfxlib_sub_2274f8  0x8c2274f8
+ * area name: in the gfxlib library code range
  */
-double *FUN_8c2274f8(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_sub_2274f8(short *a0, int a1, u32 a2, double *a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -14748,7 +14793,7 @@ double *FUN_8c2274f8(short *a0, int a1, u32 a2, double *a3) {
                     puVar14 = (u64 *)((int)puVar13 + -0x28);
                     *(u64 *)((int)puVar13 + -0x28) = in_xd4;
                 }
-                a3 = (double *)FUN_8c22b26c(ar4_00, pdVar7, pdVar9, a3);
+                a3 = (double *)gfxlib_sub_22b26c(ar4_00, pdVar7, pdVar9, a3);
                 if (cVar27 == '\0') {
                     piVar15 = (int *)(puVar14 + 1);
                     pdVar8 = (double *)puVar14;
@@ -14834,9 +14879,10 @@ double *FUN_8c2274f8(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * FUN_8c22770c  0x8c22770c
+ * gfxlib_sub_22770c  0x8c22770c
+ * area name: in the gfxlib library code range
  */
-u32 *FUN_8c22770c(short *a0, int a1, u32 a2, u32 *a3) {
+u32 *gfxlib_sub_22770c(short *a0, int a1, u32 a2, u32 *a3) {
     int iVar1;
     short *psVar2;
     short *psVar3;
@@ -14944,9 +14990,10 @@ u32 *FUN_8c22770c(short *a0, int a1, u32 a2, u32 *a3) {
 }
 
 /*
- * FUN_8c22789c  0x8c22789c
+ * gfxlib_sub_22789c  0x8c22789c
+ * area name: in the gfxlib library code range
  */
-u32 *FUN_8c22789c(short *a0, int a1, u32 a2, u32 *a3) {
+u32 *gfxlib_sub_22789c(short *a0, int a1, u32 a2, u32 *a3) {
     bool bVar1;
     u64 uVar2;
     short *psVar3;
@@ -15242,7 +15289,7 @@ u32 *FUN_8c22789c(short *a0, int a1, u32 a2, u32 *a3) {
                     dVar21 = (double)CONCAT44(SUB84(dVar20, 0), SUB84(in_dr4, 0));
                 }
                 in_dr4 = dVar21;
-                a3 = (u32 *)FUN_8c228a5c(ar4_00, ar5_00, ar6_00, a3);
+                a3 = (u32 *)gfxlib_sub_228a5c(ar4_00, ar5_00, ar6_00, a3);
             }
         LAB_8c227a3a:
             psStack_3c = psStack_3c + (a2 >> 0xe & 3) + 1;
@@ -15288,9 +15335,10 @@ u32 *FUN_8c22789c(short *a0, int a1, u32 a2, u32 *a3) {
 }
 
 /*
- * FUN_8c227bc4  0x8c227bc4
+ * gfxlib_sub_227bc4  0x8c227bc4
+ * area name: in the gfxlib library code range
  */
-float *FUN_8c227bc4(short *a0, int a1, u32 a2, float *a3) {
+float *gfxlib_sub_227bc4(short *a0, int a1, u32 a2, float *a3) {
     bool bVar1;
     short *psVar2;
     float *pfVar3;
@@ -15481,7 +15529,7 @@ float *FUN_8c227bc4(short *a0, int a1, u32 a2, float *a3) {
                             goto LAB_8c227d10;
                     }
                 }
-                a3 = (float *)FUN_8c227d94(pfVar3, ar5_00, ar6_00, a3);
+                a3 = (float *)gfxlib_sub_227d94(pfVar3, ar5_00, ar6_00, a3);
                 in_fr3 = extraout_fr3;
                 in_fr2 = extraout_fr2;
             }
@@ -15525,10 +15573,11 @@ float *FUN_8c227bc4(short *a0, int a1, u32 a2, float *a3) {
 }
 
 /*
- * FUN_8c227d94  0x8c227d94
- * called by: FUN_8c227bc4
+ * gfxlib_sub_227d94  0x8c227d94
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_227bc4
  */
-u32 *FUN_8c227d94(double *a0, double *a1, double *a2, u32 *a3) {
+u32 *gfxlib_sub_227d94(double *a0, double *a1, double *a2, u32 *a3) {
     int iVar1;
     u64 *puVar2;
     double *pdVar3;
@@ -16465,9 +16514,10 @@ int vram64_2283cc(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * FUN_8c2287f8  0x8c2287f8
+ * gfxlib_sub_2287f8  0x8c2287f8
+ * area name: in the gfxlib library code range
  */
-int FUN_8c2287f8(short *a0, int a1, u32 a2, int a3) {
+int gfxlib_sub_2287f8(short *a0, int a1, u32 a2, int a3) {
     bool bVar1;
     float fVar2;
     u32 uVar3;
@@ -16843,10 +16893,11 @@ int FUN_8c2287f8(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * FUN_8c228a5c  0x8c228a5c
- * called by: FUN_8c22789c
+ * gfxlib_sub_228a5c  0x8c228a5c
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_22789c
  */
-u32 *FUN_8c228a5c(double *a0, double *a1, double *a2, u32 *a3) {
+u32 *gfxlib_sub_228a5c(double *a0, double *a1, double *a2, u32 *a3) {
     int iVar1;
     u64 *puVar2;
     double *pdVar3;
@@ -17396,9 +17447,10 @@ u32 *FUN_8c228a5c(double *a0, double *a1, double *a2, u32 *a3) {
 }
 
 /*
- * FUN_8c228ec4  0x8c228ec4
+ * gfxlib_sub_228ec4  0x8c228ec4
+ * area name: in the gfxlib library code range
  */
-float *FUN_8c228ec4(short *a0, int a1, u32 a2, float *a3) {
+float *gfxlib_sub_228ec4(short *a0, int a1, u32 a2, float *a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -17576,9 +17628,10 @@ float *FUN_8c228ec4(short *a0, int a1, u32 a2, float *a3) {
 }
 
 /*
- * FUN_8c229150  0x8c229150
+ * gfxlib_sub_229150  0x8c229150
+ * area name: in the gfxlib library code range
  */
-double *FUN_8c229150(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_sub_229150(short *a0, int a1, u32 a2, double *a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -17888,7 +17941,7 @@ double *FUN_8c229150(short *a0, int a1, u32 a2, double *a3) {
                     *(u64 *)((int)puVar16 + -0x28) = in_xd8;
                 }
                 uVar23 = SUB84(in_dr4, 0);
-                a3 = (double *)FUN_8c2294a4(ar4_00, pdVar7, pdVar9, a3);
+                a3 = (double *)gfxlib_sub_2294a4(ar4_00, pdVar7, pdVar9, a3);
                 if (cVar29 == '\0') {
                     dVar20 = (double)(u64)*puVar14;
                     in_dr4 = (double)CONCAT44(puVar14[1], uVar23);
@@ -18362,10 +18415,11 @@ double *FUN_8c229150(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * FUN_8c2294a4  0x8c2294a4
- * called by: FUN_8c229150
+ * gfxlib_sub_2294a4  0x8c2294a4
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_229150
  */
-u32 *FUN_8c2294a4(double *a0, double *a1, double *a2, u32 *a3) {
+u32 *gfxlib_sub_2294a4(double *a0, double *a1, double *a2, u32 *a3) {
     int iVar1;
     u64 *puVar2;
     int iVar3;
@@ -18782,9 +18836,10 @@ u32 *FUN_8c2294a4(double *a0, double *a1, double *a2, u32 *a3) {
 }
 
 /*
- * FUN_8c229a7c  0x8c229a7c
+ * gfxlib_sub_229a7c  0x8c229a7c
+ * area name: in the gfxlib library code range
  */
-int FUN_8c229a7c(short *a0, int a1, u32 a2, int a3) {
+int gfxlib_sub_229a7c(short *a0, int a1, u32 a2, int a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -18918,9 +18973,10 @@ int FUN_8c229a7c(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * FUN_8c229c68  0x8c229c68
+ * gfxlib_sub_229c68  0x8c229c68
+ * area name: in the gfxlib library code range
  */
-double *FUN_8c229c68(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_sub_229c68(short *a0, int a1, u32 a2, double *a3) {
     u32 uVar1;
     short *psVar2;
     double *pdVar3;
@@ -19986,9 +20042,10 @@ double *FUN_8c229c68(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * FUN_8c229f74  0x8c229f74
+ * gfxlib_sub_229f74  0x8c229f74
+ * area name: in the gfxlib library code range
  */
-double *FUN_8c229f74(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_sub_229f74(short *a0, int a1, u32 a2, double *a3) {
     bool bVar1;
     u32 uVar2;
     int iVar3;
@@ -20556,9 +20613,10 @@ double *FUN_8c229f74(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * FUN_8c22a564  0x8c22a564
+ * gfxlib_sub_22a564  0x8c22a564
+ * area name: in the gfxlib library code range
  */
-float *FUN_8c22a564(short *a0, int a1, u32 a2, float *a3) {
+float *gfxlib_sub_22a564(short *a0, int a1, u32 a2, float *a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -20760,9 +20818,10 @@ float *FUN_8c22a564(short *a0, int a1, u32 a2, float *a3) {
 }
 
 /*
- * FUN_8c22a828  0x8c22a828
+ * gfxlib_sub_22a828  0x8c22a828
+ * area name: in the gfxlib library code range
  */
-double *FUN_8c22a828(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_sub_22a828(short *a0, int a1, u32 a2, double *a3) {
     u32 uVar1;
     double *pdVar2;
     short *psVar3;
@@ -22541,9 +22600,10 @@ double *FUN_8c22a828(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * FUN_8c22aec8  0x8c22aec8
+ * gfxlib_sub_22aec8  0x8c22aec8
+ * area name: in the gfxlib library code range
  */
-double *FUN_8c22aec8(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_sub_22aec8(short *a0, int a1, u32 a2, double *a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -23490,10 +23550,11 @@ double *FUN_8c22aec8(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * FUN_8c22b26c  0x8c22b26c
- * called by: FUN_8c2274f8
+ * gfxlib_sub_22b26c  0x8c22b26c
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_2274f8
  */
-u32 *FUN_8c22b26c(double *a0, double *a1, double *a2, u32 *a3) {
+u32 *gfxlib_sub_22b26c(double *a0, double *a1, double *a2, u32 *a3) {
     int iVar1;
     double *pdVar2;
     int iVar3;
@@ -23913,9 +23974,10 @@ u32 *FUN_8c22b26c(double *a0, double *a1, double *a2, u32 *a3) {
 }
 
 /*
- * FUN_8c22b5b0  0x8c22b5b0
+ * gfxlib_sub_22b5b0  0x8c22b5b0
+ * area name: in the gfxlib library code range
  */
-int FUN_8c22b5b0(short *a0, int a1, u32 a2, int a3) {
+int gfxlib_sub_22b5b0(short *a0, int a1, u32 a2, int a3) {
     short sVar1;
     u32 uVar2;
     u32 uVar3;
@@ -24053,10 +24115,11 @@ int FUN_8c22b5b0(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * FUN_8c22b7a8  0x8c22b7a8
- * called by: FUN_8c21908e
+ * gfxlib_sub_22b7a8  0x8c22b7a8
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_21908e
  */
-double *FUN_8c22b7a8(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_sub_22b7a8(short *a0, int a1, u32 a2, double *a3) {
     double *pdVar1;
     double *pdVar2;
     u32 uVar3;
@@ -24266,7 +24329,7 @@ double *FUN_8c22b7a8(short *a0, int a1, u32 a2, double *a3) {
     *(u32 *)(puVar15 + -0x24) = 0;
     *(u32 *)(puVar15 + -0x20) = 0x3f800000;
 
-    FUN_8c255d6c(puVar15 + -0x5c, ar5_00, &g_8c4ab204, &g_8c4ab208, *(u32 *)(puVar15 + -0xc0));
+    ninja_sub_255d6c(puVar15 + -0x5c, ar5_00, &g_8c4ab204, &g_8c4ab208, *(u32 *)(puVar15 + -0xc0));
 
     dVar27 = (double)CONCAT44(g_8c4ab19c, uVar3);
     dVar22 = (double)CONCAT44((int)((u64)dVar22 >> 0x20), *(u32 *)*(double **)(puVar15 + -0xc0));
@@ -24546,10 +24609,11 @@ double *FUN_8c22b7a8(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * FUN_8c22bb70  0x8c22bb70
- * called by: FUN_8c21908e
+ * gfxlib_sub_22bb70  0x8c22bb70
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_21908e
  */
-double *FUN_8c22bb70(u32 a0, u32 a1, u32 a2, double *a3) {
+double *gfxlib_sub_22bb70(u32 a0, u32 a1, u32 a2, double *a3) {
     short sVar1;
     short sVar2;
     bool bVar3;
@@ -24756,7 +24820,7 @@ double *FUN_8c22bb70(u32 a0, u32 a1, u32 a2, double *a3) {
     *(u32 *)((int)pdVar15 + -0x24) = 0;
     *(u32 *)((int)pdVar15 + -0x20) = 0x3f800000;
 
-    FUN_8c255d6c((u8 *)((int)pdVar15 + -0x5c), ar5_00, &g_8c4ab208, &g_8c4ab204, *(u32 *)((int)pdVar15 + -0xdc));
+    ninja_sub_255d6c((u8 *)((int)pdVar15 + -0x5c), ar5_00, &g_8c4ab208, &g_8c4ab204, *(u32 *)((int)pdVar15 + -0xdc));
 
     dVar24 = (double)CONCAT44(g_8c4ab19c, uVar19);
     dVar18 = (double)CONCAT44((int)((u64)dVar18 >> 0x20), *(u32 *)*(double **)((int)pdVar15 + -0xbc));
@@ -25069,7 +25133,7 @@ double *FUN_8c22bb70(u32 a0, u32 a1, u32 a2, double *a3) {
                 in_dr8 = (double)((u64)in_dr12 >> 0x20);
                 in_dr6 = (double)CONCAT44(uVar19, uVar21);
 
-                a3 = (double *)FUN_8c22c058(pdVar5, pdVar11, pdVar14, a3);
+                a3 = (double *)gfxlib_sub_22c058(pdVar5, pdVar11, pdVar14, a3);
             }
         LAB_8c22bfa8:
             *(int *)((int)pdVar15 + -0xdc) = *(int *)((int)pdVar15 + -0xdc) + *(int *)((int)pdVar15 + -0xcc);
@@ -25127,10 +25191,11 @@ double *FUN_8c22bb70(u32 a0, u32 a1, u32 a2, double *a3) {
 }
 
 /*
- * FUN_8c22c058  0x8c22c058
- * called by: FUN_8c22bb70
+ * gfxlib_sub_22c058  0x8c22c058
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_22bb70
  */
-u64 *FUN_8c22c058(double *a0, double *a1, double *a2, u64 *a3) {
+u64 *gfxlib_sub_22c058(double *a0, double *a1, double *a2, u64 *a3) {
     u32 *puVar1;
     u32 *puVar2;
     int iVar3;
@@ -25530,9 +25595,10 @@ u64 *FUN_8c22c058(double *a0, double *a1, double *a2, u64 *a3) {
 }
 
 /*
- * FUN_8c22c3f4  0x8c22c3f4
+ * gfxlib_sub_22c3f4  0x8c22c3f4
+ * area name: in the gfxlib library code range
  */
-double *FUN_8c22c3f4(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_sub_22c3f4(short *a0, int a1, u32 a2, double *a3) {
     bool bVar1;
     u32 uVar2;
     int iVar3;
@@ -26003,7 +26069,7 @@ double *FUN_8c22c3f4(short *a0, int a1, u32 a2, double *a3) {
                 in_dr6 = dVar28;
                 in_dr0 = in_dr4;
             }
-            a3 = (double *)FUN_8c23231c(ar4_00, pdVar9, pdVar11, a3);
+            a3 = (double *)gfxlib_sub_23231c(ar4_00, pdVar9, pdVar11, a3);
             if (cVar34 == '\0') {
                 dVar20 = (double)(u64)*puVar16;
                 dVar23 = (double)(u64)puVar16[2];
@@ -26108,9 +26174,10 @@ double *FUN_8c22c3f4(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * FUN_8c22c678  0x8c22c678
+ * gfxlib_sub_22c678  0x8c22c678
+ * area name: in the gfxlib library code range
  */
-int FUN_8c22c678(short *a0, int a1, u32 a2, int a3) {
+int gfxlib_sub_22c678(short *a0, int a1, u32 a2, int a3) {
     short sVar1;
     u32 uVar2;
     u32 uVar3;
@@ -26228,9 +26295,10 @@ int FUN_8c22c678(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * FUN_8c22c838  0x8c22c838
+ * gfxlib_sub_22c838  0x8c22c838
+ * area name: in the gfxlib library code range
  */
-double *FUN_8c22c838(short *a0, float a1, u32 a2, double *a3) {
+double *gfxlib_sub_22c838(short *a0, float a1, u32 a2, double *a3) {
     bool bVar1;
     short *psVar2;
     double *pdVar3;
@@ -26619,7 +26687,7 @@ double *FUN_8c22c838(short *a0, float a1, u32 a2, double *a3) {
                     in_dr6 = in_dr14;
                     in_xd6 = dVar13;
                 }
-                a3 = (double *)FUN_8c22ed60(pdVar3, ar5_00, ar6_00, a3);
+                a3 = (double *)gfxlib_sub_22ed60(pdVar3, ar5_00, ar6_00, a3);
             }
         LAB_8c22ca7a:
             psStack_4c = psStack_4c + (a2 >> 0xe & 3) + 3;
@@ -26696,9 +26764,10 @@ double *FUN_8c22c838(short *a0, float a1, u32 a2, double *a3) {
 }
 
 /*
- * FUN_8c22cc6c  0x8c22cc6c
+ * gfxlib_sub_22cc6c  0x8c22cc6c
+ * area name: in the gfxlib library code range
  */
-double *FUN_8c22cc6c(short *a0, float a1, u32 a2, double *a3) {
+double *gfxlib_sub_22cc6c(short *a0, float a1, u32 a2, double *a3) {
     bool bVar1;
     short *psVar2;
     double *pdVar3;
@@ -26981,7 +27050,7 @@ double *FUN_8c22cc6c(short *a0, float a1, u32 a2, double *a3) {
                 if (cVar22 == '\0') {
                     in_dr6 = (double)(u64)(u32)fVar10;
                 }
-                a3 = (double *)FUN_8c22cef0(pdVar3, ar5_00, ar6_00, a3);
+                a3 = (double *)gfxlib_sub_22cef0(pdVar3, ar5_00, ar6_00, a3);
             }
         LAB_8c22ce56:
             psStack_44 = psStack_44 + (a2 >> 0xe & 3) + 3;
@@ -27051,10 +27120,11 @@ double *FUN_8c22cc6c(short *a0, float a1, u32 a2, double *a3) {
 }
 
 /*
- * FUN_8c22cef0  0x8c22cef0
- * called by: FUN_8c22cc6c
+ * gfxlib_sub_22cef0  0x8c22cef0
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_22cc6c
  */
-u64 *FUN_8c22cef0(double *a0, double *a1, double *a2, u64 *a3) {
+u64 *gfxlib_sub_22cef0(double *a0, double *a1, double *a2, u64 *a3) {
     int iVar1;
     u64 *puVar2;
     double *pdVar3;
@@ -27805,9 +27875,10 @@ u64 *FUN_8c22cef0(double *a0, double *a1, double *a2, u64 *a3) {
 }
 
 /*
- * FUN_8c22d770  0x8c22d770
+ * gfxlib_sub_22d770  0x8c22d770
+ * area name: in the gfxlib library code range
  */
-int FUN_8c22d770(short *a0, int a1, u32 a2, int a3) {
+int gfxlib_sub_22d770(short *a0, int a1, u32 a2, int a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -28362,9 +28433,10 @@ int vram64_22d944(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * FUN_8c22dd84  0x8c22dd84
+ * vram_sub_22dd84  0x8c22dd84
+ * area name: sits between vram functions (same compilation unit)
  */
-int FUN_8c22dd84(short *a0, int a1, u32 a2, int a3) {
+int vram_sub_22dd84(short *a0, int a1, u32 a2, int a3) {
     bool bVar1;
     float fVar2;
     u32 uVar3;
@@ -28741,7 +28813,7 @@ int FUN_8c22dd84(short *a0, int a1, u32 a2, int a3) {
 
 /*
  * vram64_22dff8  0x8c22dff8
- * called by: FUN_8c2287f8, FUN_8c22dd84
+ * called by: gfxlib_sub_2287f8, vram_sub_22dd84
  */
 u64 *vram64_22dff8(double *a0, double *a1, double *a2, u64 *a3) {
     u32 uVar1;
@@ -30458,10 +30530,11 @@ u64 *vram64_22e684(double *a0, double *a1, double *a2, u64 *a3) {
 }
 
 /*
- * FUN_8c22ed60  0x8c22ed60
- * called by: FUN_8c22c838
+ * gfxlib_sub_22ed60  0x8c22ed60
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_22c838
  */
-u64 *FUN_8c22ed60(double *a0, double *a1, double *a2, u64 *a3) {
+u64 *gfxlib_sub_22ed60(double *a0, double *a1, double *a2, u64 *a3) {
     int iVar1;
     u64 *puVar2;
     double *pdVar3;
@@ -31313,9 +31386,10 @@ u64 *FUN_8c22ed60(double *a0, double *a1, double *a2, u64 *a3) {
 }
 
 /*
- * FUN_8c22f3f0  0x8c22f3f0
+ * gfxlib_sub_22f3f0  0x8c22f3f0
+ * area name: in the gfxlib library code range
  */
-float *FUN_8c22f3f0(short *a0, int a1, u32 a2, float *a3) {
+float *gfxlib_sub_22f3f0(short *a0, int a1, u32 a2, float *a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -31521,9 +31595,10 @@ float *FUN_8c22f3f0(short *a0, int a1, u32 a2, float *a3) {
 }
 
 /*
- * FUN_8c22f6c0  0x8c22f6c0
+ * gfxlib_sub_22f6c0  0x8c22f6c0
+ * area name: in the gfxlib library code range
  */
-double *FUN_8c22f6c0(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_sub_22f6c0(short *a0, int a1, u32 a2, double *a3) {
     double *a4;
     u32 uVar1;
     int iVar2;
@@ -31921,7 +31996,7 @@ double *FUN_8c22f6c0(short *a0, int a1, u32 a2, double *a3) {
                     in_dr6 = dVar25;
                     in_dr0 = in_dr4;
                 }
-                a3 = (double *)FUN_8c22fa7c(a4, pdVar8, pdVar10, a3);
+                a3 = (double *)gfxlib_sub_22fa7c(a4, pdVar8, pdVar10, a3);
                 if (cVar37 == '\0') {
                     dVar31 = (double)(u64)*puVar15;
                     pdVar17 = (double *)(puVar15 + 3);
@@ -32481,10 +32556,11 @@ double *FUN_8c22f6c0(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * FUN_8c22fa7c  0x8c22fa7c
- * called by: FUN_8c22f6c0
+ * gfxlib_sub_22fa7c  0x8c22fa7c
+ * area name: in the gfxlib library code range
+ * called by: gfxlib_sub_22f6c0
  */
-u64 *FUN_8c22fa7c(double *a0, double *a1, double *a2, u64 *a3) {
+u64 *gfxlib_sub_22fa7c(double *a0, double *a1, double *a2, u64 *a3) {
     int iVar1;
     int iVar2;
     u64 *puVar3;

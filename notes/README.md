@@ -452,7 +452,7 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
 - Hand names in `tools/readable_names.tsv` for the most-called helpers: libc (strcmp, memcmp, strcat, sprintf, the printf
   core), Vec3 math, the matrix stack, and the Ninja texture calls (njSetTexture 8c25b3ec selects the list at 0x8c277b04,
   njSetTextureNum 8c25b434 loads one texture's TA parameters through 8c20fe00).
-- `decomp/`: 1,774 of 6,347 functions named (was 1,026), every name unique. About 700 of those are shape names. Also named: strtol/atoi, spline and lerp math, interrupt nesting (8c260ca0/8c260cc8), the RTC date conversion (8c1f826c, epoch 1950).
+- `decomp/`: every function named: 1,774 precise names (was 1,026) and 4,573 area names, all unique. About 700 of those are shape names. Also named: strtol/atoi, spline and lerp math, interrupt nesting (8c260ca0/8c260cc8), the RTC date conversion (8c1f826c, epoch 1950).
 - Also named: the speech player at 0x8c35468c (speech_start 8c0f8368 plays a named line such as "HIGYOLINE0"; speech_request,
   speech_restart, speech_stop), the serial debug output (scif_putc 8c1fac58, used by the crash dump), Ninja's outer product,
   sin/cos and polygon-state copies.
@@ -475,3 +475,10 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
 - The Class::Method rule also takes messages that end in the method name ("Lack of memory..:CItemList::AddItem") and
   treats a cut-off name ("TakeOutIte") as the full one; adds CProlog_Ready, CSeamanDomain_Init, CGame_GetUserGameInfo and
   the two SetPVMTexture methods.
+- Area names (`<area>_sub_<addr>`, readable.py `area_names`) for every function without a precise name. Library code ranges,
+  from the data each block references (each library's data sits in link order next to its version string) and the call
+  graph: libc 8c010000-8c0144ff, asr (voice recogniser, entered only from 8c01ce00..8c01dc80) 8c10a000-8c125fff, shinobi
+  8c1ef400-8c20afff, kamui 8c20b000-8c214fff, gfxlib 8c215000-8c252fff (references KAMUI's data section; Kamui or the
+  lower half of Ninja), ninja 8c253000-8c25ec9f, cri (ADX/ADXF/ADXT/SJ/mwRna) 8c25eca0-8c264fff, sd 8c265000-8c26afff.
+  Game code: a class's methods are the only callers -> that class; else the named neighbours on both sides agree -> their
+  area; else most named callers -> their area; else `game` (1,474 functions).

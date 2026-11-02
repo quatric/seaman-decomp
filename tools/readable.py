@@ -14,7 +14,7 @@ call passes four arguments, float code is split on the FPU mode at entry, and gl
     the result with clang-format
 The output is a reading aid: the Wii port builds from its own pipeline (tools/wii_xform.py), not from decomp/.
 usage: readable.py <project root>"""
-import os, re, sys, subprocess, collections
+import os, re, sys, subprocess, collections, bisect
 from concurrent.futures import ThreadPoolExecutor
 
 ROOT = sys.argv[1]
@@ -593,6 +593,73 @@ def vtable_names(f, vt):
     return ('%s_dtor' % cls if dtor else '%s_ctor' % cls), 'stores the vtable 0x%s' % (stores[0] if dtor else stores[-1])
 
 
+# code ranges of the SDK libraries, from the data each block references (the libraries' data sits in link order next to their
+# version strings: Shinobi 0x8c26c619, KAMUI 0x8c26d379, Ninja 0x8c271f80, ADXF 0x8c2726b9) and from the call graph (the voice
+# recogniser is only entered from 0x8c01ce00..0x8c01dc80)
+LIB_RANGES = [(0x8c010000, 0x8c014500, 'libc'), (0x8c10a000, 0x8c126000, 'asr'), (0x8c1ef400, 0x8c20b000, 'shinobi'),
+              (0x8c20b000, 0x8c215000, 'kamui'), (0x8c215000, 0x8c253000, 'gfxlib'), (0x8c253000, 0x8c25eca0, 'ninja'),
+              (0x8c25eca0, 0x8c265000, 'cri'), (0x8c265000, 0x8c26b000, 'sd')]
+AREA_WORDS = {'Vec3': 'Vec3', 'vec3': 'Vec3', 'input': 'input', 'se': 'se', 'speech': 'speech', 'talk': 'talk', 'pack': 'pack',
+              'matrix': 'matrix', 'draw': 'draw', 'tex': 'tex', 'gdfs': 'gdfs', 'bios': 'bios', 'flashrom': 'flashrom',
+              'rtc': 'rtc', 'scif': 'scif', 'sound': 'sound', 'asr': 'asr', 'lib11c': 'asr', 'mring': 'asr', 'ta': 'ta',
+              'pvr': 'pvr', 'vram': 'vram', 'vram64': 'vram', 'aica': 'aica', 'g2dma': 'g2dma', 'sh4': 'sh4', 'irq': 'irq',
+              'adx': 'ADX', 'ADX': 'ADX', 'ADXF': 'ADXF', 'ADXT': 'ADXT', 'ADXSTM': 'ADXSTM', 'SJ': 'SJ', 'kamui': 'kamui',
+              'game': 'game', 'malloc': 'malloc', 'timer': 'timer', 'screen': 'draw'}
+LIB_TOPICS = {'ADX', 'ADXF', 'ADXT', 'ADXSTM', 'SJ', 'sd', 'mwSnd', 'mwRna', 'ninja', 'asr', 'gdfs', 'bios', 'flashrom', 'rtc',
+              'scif', 'g2dma', 'aica', 'ta', 'pvr', 'vram', 'draw', 'matrix', 'tex', 'sh4', 'irq', 'malloc', 'kamui'}
+
+
+def topic(n):
+    """the area a precise name puts a function in (its class, library or subsystem); None for FUN_ and shape names"""
+    if n.startswith('FUN_') or '_sub_' in n: return None
+    m = re.match(r'(Class_[0-9a-f]{6}|C[A-Z][A-Za-z0-9]*)_', n)
+    if m: return m.group(1)
+    m = re.match(r'(nj|sy|sd|mwSnd|mwRna)[A-Z]', n)
+    if m: return {'nj': 'ninja', 'sy': 'shinobi'}.get(m.group(1), m.group(1))
+    return AREA_WORDS.get(re.match(r'[A-Za-z0-9]*', n).group(0))
+
+
+def area_names(allf, names):
+    """`<area>_sub_<addr>` for every function still called FUN_: the area is the class all its named callers belong to, else
+    the area its nearest named neighbours (same compilation unit) share, else the library range, else the area most of its
+    named callers are in, else game. Returns {addr: (name, reason)}."""
+    fs = sorted((f for f in allf if f.body is not None), key=lambda f: f.addr)
+    tp = {f.addr: topic(names[f.addr]) for f in fs}
+    by_old = {f.name: f.addr for f in fs}
+    callees = {f.addr: {by_old[c] for c in re.findall(r'\b(\w+)\(', f.body) if c in by_old and by_old[c] != f.addr} for f in fs}
+    callers = collections.defaultdict(set)
+    for a, cs in callees.items():
+        for c in cs: callers[c].add(a)
+    named = [f.addr for f in fs if tp[f.addr]]
+    out = {}
+    for f in fs:
+        a = f.addr
+        if not names[a].startswith('FUN_'): continue
+        lib = next((l for lo, hi, l in LIB_RANGES if lo <= a < hi), None)
+        ct = {tp[c] for c in callers[a] if tp[c]}
+        i = bisect.bisect_left(named, a)
+        before = named[i - 1] if i > 0 else None
+        after = named[i] if i < len(named) else None
+        nb = None
+        if before and after and a - before < 0x800 and after - a < 0x800 and tp[before] == tp[after]: nb = tp[before]
+        elif before and a - before < 0x200 and not (after and after - a < 0x200): nb = tp[before]
+        # a function belongs with whoever calls it: calling a class's methods or Vec3 helpers does not make it one of them
+        votes = collections.Counter(tp[c] for c in callers[a] if tp[c])
+        top, n = votes.most_common(1)[0] if votes else (None, 0)
+        if len(ct) == 1 and re.match(r'Class_|C[A-Z]', next(iter(ct))) and not lib:
+            t, why = next(iter(ct)), 'only called from %s methods' % next(iter(ct))
+        elif nb and (not lib or nb in LIB_TOPICS):
+            t, why = nb, 'sits between %s functions (same compilation unit)' % nb
+        elif lib:
+            t, why = lib, 'in the %s library code range' % lib
+        elif top and n >= 2 and n * 3 >= 2 * sum(votes.values()):
+            t, why = top, 'most of its named callers are %s' % top
+        else:
+            t, why = 'game', 'game code; nothing names its area yet'
+        out[a] = ('%s_sub_%06x' % (t, a & 0xffffff), 'area name: ' + why)
+    return out
+
+
 def main():
     mods = sorted(x for x in os.listdir(SRC) if x.startswith('mod_') and x.endswith('.c'))
     raw = [(m,) + parse_module(os.path.join(SRC, m)) for m in mods]
@@ -687,6 +754,10 @@ def main():
         c = curated.get(f.addr)
         if c and c[2] is not None and f.name in live:
             live[f.name] = [i < c[2] for i in range(len(live[f.name]))]; arity[f.name] = c[2]
+    # everything still FUN_ gets an area name; the count of precise names is reported separately
+    precise = sum(1 for f in allf if f.body is not None and not names[f.addr].startswith('FUN_'))
+    for a, (new, why) in area_names(allf, names).items():
+        names[a] = new; hints[a] = why if a not in hints else hints[a] + '; ' + why
     # names must be unique: the notes tables and the rounds above can hand one name to two functions; a curated one keeps it,
     # otherwise the lowest address does, and the rest get their address appended
     seen = set()
@@ -738,7 +809,10 @@ def main():
     def fmt(m): subprocess.run(['clang-format', '-i', '--style=' + style, os.path.join(OUT, m)], check=False)
     with ThreadPoolExecutor(8) as ex: list(ex.map(fmt, mods))
     trimmed = sum(1 for f in allf if f.body is not None and arity.get(f.name, 4) < len(f.params))
-    print('%d functions, %d with trimmed parameters, %d named, %d globals' % (len(index), trimmed, sum(1 for _, n, _, _ in index if not n.startswith('FUN_')), len(globals_used)))
+    area = sum(1 for _, n, _, _ in index if re.search(r'_sub_[0-9a-f]{6}$', n))
+    unnamed = sum(1 for _, n, _, _ in index if n.startswith('FUN_'))
+    print('%d functions, %d with trimmed parameters, %d with precise names, %d with area names, %d unnamed, %d globals'
+          % (len(index), trimmed, len(index) - area - unnamed, area, unnamed, len(globals_used)))
 
 
 main()

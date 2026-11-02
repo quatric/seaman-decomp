@@ -18,10 +18,11 @@ u32 ret_const_0_04667c(void) {
 }
 
 /*
- * FUN_8c046684  0x8c046684
- * called by: FUN_8c03f4a4
+ * game_sub_046684  0x8c046684
+ * area name: game code; nothing names its area yet
+ * called by: Vec3_sub_03f4a4
  */
-u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
+u32 game_sub_046684(int a0, u8 **a1, u32 a2, code *a3) {
     u32 uVar1;
     code *pcVar2;
     int iVar3;
@@ -104,7 +105,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
                     pcVar7 = (code *)0x128;
                     if ((*(int *)(a0 + 0x128) < 3) || (*(int *)((int)puVar14 + 0x38) != 1)) {
                         if (a3 == (code *)0x1) {
-                            uVar1 = FUN_8c057164(a0, a1, 0x128, pcVar2);
+                            uVar1 = game_sub_057164(a0, a1, 0x128, pcVar2);
                             *(u32 *)((int)puVar14 + -0x11c) = uVar1;
                             *(u32 *)((int)puVar14 + -0x290) = *(u32 *)((int)puVar14 + -0x11c);
                             if (*(int *)((int)puVar14 + -0x290) == 0) {
@@ -114,7 +115,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
                                 *(int *)(*(int *)((int)puVar14 + -0x298) + 0x134) = *(int *)(pcVar2 + 0x134) + 1;
                             }
                         } else {
-                            uVar1 = FUN_8c05c28c(a0, iVar4, 0x128, pcVar2);
+                            uVar1 = Vec3_sub_05c28c(a0, iVar4, 0x128, pcVar2);
                             *(u32 *)((int)puVar14 + -0x118) = uVar1;
                             pcVar2 = *(code **)((int)puVar14 + -0x118);
                             if (pcVar2 == NULL) {
@@ -411,7 +412,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
                         *(u8 **)((int)puVar14 + -0x29c) = (u8 *)((int)puVar14 + -0x84);
                         Vec3_scale((u8 *)((int)puVar14 + -0x74), &g_8c136584, puVar9, pcVar12,
                                    *(u32 *)((int)puVar14 + -0x29c));
-                        FUN_8c031c74(a0, (u8 *)((int)puVar14 + -0x84), a1, pcVar12);
+                        timer_sub_031c74(a0, (u8 *)((int)puVar14 + -0x84), a1, pcVar12);
                         pcVar2 = (code *)0xffffffff;
                         pcVar7 = (code *)((int)puVar14 + -0x84);
                         Vec3_dtor(pcVar7, 0xffffffff, pcVar7, 0xffffffff);
@@ -426,7 +427,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
 
                         *(float *)(*(int *)((int)puVar14 + -0x24c) + 0x28) = fVar15;
 
-                        FUN_8c05ae54(a0, iVar4, pcVar7, pcVar2);
+                        game_sub_05ae54(a0, iVar4, pcVar7, pcVar2);
                     }
                     if (*(int *)(a0 + 0x128) == 4) {
                         if (*(int *)(a0 + 0x280) < 1) {
@@ -673,10 +674,10 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
                     *(u32 **)((int)puVar14 + -0x29c) = &g_8c125be0;
                     *(u8 **)((int)puVar14 + -0x2a0) = (u8 *)((int)puVar14 + -0x94);
                     puVar10 = &g_8c125bf0;
-                    FUN_8c032518(a0, a1, &g_8c125bf0, pcVar12);
+                    CMushroomerBody_sub_032518(a0, a1, &g_8c125bf0, pcVar12);
                     Vec3_assign(a0 + 0x54, (u8 *)((int)puVar14 + -0x94), puVar10, pcVar12);
                     Vec3_dtor((u8 *)((int)puVar14 + -0x94), 0xffffffff, puVar10, pcVar12);
-                    FUN_8c031bb4(a0, a1, a0 + 0x54, pcVar12);
+                    CMushroomerBody_sub_031bb4(a0, a1, a0 + 0x54, pcVar12);
                     *(int *)((int)puVar14 + -0x274) = a0;
                     *(int *)(*(int *)((int)puVar14 + -0x274) + 0x134) =
                         *(int *)(*(int *)((int)puVar14 + -0x274) + 0x134) + 1;
@@ -702,7 +703,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
                         *(u8 **)((int)puVar14 + -0x29c) = (u8 *)((int)puVar14 + -0xa4);
                         *(u8 **)((int)puVar14 + -0x2a0) = (u8 *)((int)puVar14 + -0xb4);
                         puVar9 = (u8 *)((int)puVar14 + -0x2c);
-                        FUN_8c032518(a0, a1, puVar9, pcVar12);
+                        CMushroomerBody_sub_032518(a0, a1, puVar9, pcVar12);
                         *(int *)((int)puVar14 + -0x290) = a0;
                         *(int *)((int)puVar14 + -0x290) = *(int *)((int)puVar14 + -0x290) + 0x54;
                         *(code **)((int)puVar14 + -0x298) = Vec3_assign;
@@ -721,7 +722,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
                         Vec3_ctor_xyz((u8 *)((int)puVar14 + -0xc4), uVar1, Vec3_ctor_xyz, uVar6);
                         *(u8 **)((int)puVar14 + -0x29c) = (u8 *)((int)puVar14 + -0xc4);
                         *(u8 **)((int)puVar14 + -0x2a0) = (u8 *)((int)puVar14 + -0xd4);
-                        FUN_8c032518(a0, a1, (u8 *)((int)puVar14 + -0x44), pcVar12);
+                        CMushroomerBody_sub_032518(a0, a1, (u8 *)((int)puVar14 + -0x44), pcVar12);
                         pcVar2 = Vec3_assign;
                         Vec3_assign(a0 + 0x54, (u8 *)((int)puVar14 + -0xd4), Vec3_assign, pcVar12);
                         Vec3_dtor((u8 *)((int)puVar14 + -0xd4), 0xffffffff, pcVar2, pcVar12);
@@ -730,7 +731,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
 
                     *(u32 *)(a0 + 0x58) = 0x43340000;
 
-                    FUN_8c031bb4(a0, a1, a0 + 0x54, pcVar12);
+                    CMushroomerBody_sub_031bb4(a0, a1, a0 + 0x54, pcVar12);
                     *(int *)((int)puVar14 + -0x278) = a0;
                     *(int *)(*(int *)((int)puVar14 + -0x278) + 0x134) =
                         *(int *)(*(int *)((int)puVar14 + -0x278) + 0x134) + 1;
@@ -743,7 +744,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
                 case 8:
                     pcVar2 = (code *)(a0 + 0x48);
                     pcVar7 = (code *)(a0 + 0x54);
-                    uVar1 = FUN_8c04c314(a0, a1, pcVar7);
+                    uVar1 = game_sub_04c314(a0, a1, pcVar7);
                     *(u32 *)((int)puVar14 + -0x1f0) = uVar1;
                     *(u32 *)((int)puVar14 + -0xf0) = *(u32 *)((int)puVar14 + -0x1f0);
                     if ((*(int *)(a0 + 0x2b8) == 7) && (*(int *)(a0 + 0x318) != 0)) {
@@ -759,7 +760,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
                 case 10:
                     *(u32 *)(a0 + 700) = 1;
                     pcVar7 = (code *)(a0 + 0x34c);
-                    uVar1 = FUN_8c0564c4(a0, a1, pcVar7, a3);
+                    uVar1 = game_sub_0564c4(a0, a1, pcVar7, a3);
                     *(u32 *)((int)puVar14 + -500) = uVar1;
                     pcVar2 = a3;
                     if (*(int *)((int)puVar14 + -500) == 0) {
@@ -772,7 +773,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
                     goto override_jmp_8c046852_case_6;
                 case 0xb:
                     pcVar7 = (code *)(a0 + 0x34c);
-                    uVar1 = FUN_8c055c38(a0, a1, pcVar7, a3);
+                    uVar1 = game_sub_055c38(a0, a1, pcVar7, a3);
                     *(u32 *)((int)puVar14 + -0x1f8) = uVar1;
                     pcVar2 = a3;
                     if (*(int *)((int)puVar14 + -0x1f8) == 0) {
@@ -787,7 +788,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
                     Vec3_copy_assign((u8 *)((int)puVar14 + -0xe0), ar5_00, (u8 *)((int)puVar14 + -0xe0), pcVar2);
                     *(u32 *)((int)puVar14 + -0x29c) = 0xffffffff;
                     pcVar2 = (code *)((int)puVar14 + -0xe0);
-                    uVar1 = FUN_8c059fc4(a0, a1, *(u32 *)((int)puVar14 + -0x28c), pcVar2);
+                    uVar1 = game_sub_059fc4(a0, a1, *(u32 *)((int)puVar14 + -0x28c), pcVar2);
                     *(u32 *)((int)puVar14 + -0x1fc) = uVar1;
                     *(u32 *)((int)puVar14 + -0x110) = (u32)(*(int *)((int)puVar14 + -0x1fc) == 0);
                     pcVar7 = (code *)0xffffffff;
@@ -801,7 +802,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
                     Vec3_copy_assign((u8 *)((int)puVar14 + -0xec), ar5_00);
                     *(u32 *)((int)puVar14 + -0x29c) = 0xffffffff;
                     pcVar7 = *(code **)((int)puVar14 + -0x28c);
-                    pcVar2 = (code *)FUN_8c059fc4(a0, a1, pcVar7, (u8 *)((int)puVar14 + -0xec));
+                    pcVar2 = (code *)game_sub_059fc4(a0, a1, pcVar7, (u8 *)((int)puVar14 + -0xec));
                     *(code **)((int)puVar14 + -0x200) = pcVar2;
                     *(u32 *)((int)puVar14 + -0x114) = (u32)(*(int *)((int)puVar14 + -0x200) == 0);
                     free_if_nonnull_wrap_102790((u8 *)((int)puVar14 + -0xec), 0xffffffff, pcVar7, pcVar2);
@@ -854,7 +855,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
                 case 0x14:
                     *(u32 *)(a0 + 700) = 1;
                     pcVar7 = (code *)(a0 + 0x54);
-                    uVar1 = FUN_8c04c314(a0, a1, pcVar7);
+                    uVar1 = game_sub_04c314(a0, a1, pcVar7);
                     *(u32 *)((int)puVar14 + -0x210) = uVar1;
                     if (*(int *)((int)puVar14 + -0x210) == 0) {
                         *(u32 *)(a0 + 0x40) = 5;
@@ -881,7 +882,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
                 case 0x15:
                     *(u32 *)(a0 + 700) = 1;
                     pcVar7 = (code *)(a0 + 0x54);
-                    uVar1 = FUN_8c04c314(a0, a1, pcVar7);
+                    uVar1 = game_sub_04c314(a0, a1, pcVar7);
                     *(u32 *)((int)puVar14 + -0x218) = uVar1;
                     if (*(int *)((int)puVar14 + -0x218) == 0) {
                         *(u32 *)(a0 + 0x40) = 5;
@@ -902,7 +903,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
                     *(u32 *)(a0 + 700) = 1;
                     *(u32 *)(a0 + 800) = 1;
                     pcVar7 = (code *)(a0 + 0x54);
-                    uVar1 = FUN_8c04c314(a0, a1, pcVar7);
+                    uVar1 = game_sub_04c314(a0, a1, pcVar7);
                     *(u32 *)((int)puVar14 + -0x220) = uVar1;
                     if (*(int *)((int)puVar14 + -0x220) == 0) {
                         *(u32 *)(a0 + 0x40) = 5;
@@ -915,7 +916,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
                     }
                     goto override_jmp_8c046852_case_6;
                 case 0x17:
-                    pcVar2 = (code *)FUN_8c05c640(a0, a1, a3, pcVar12);
+                    pcVar2 = (code *)game_sub_05c640(a0, a1, a3, pcVar12);
                     *(code **)((int)puVar14 + -0x228) = pcVar2;
                     pcVar7 = *(code **)((int)puVar14 + -0x228);
                     if ((u8 **)pcVar7 == NULL) {
@@ -990,7 +991,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
 
                         if (!bVar18) {
                             pcVar2 = (code *)(a0 + 0x14);
-                            uVar1 = FUN_8c023334(pcVar2, &g_8c125d48, FUN_8c023334, pcVar2);
+                            uVar1 = Vec3_sub_023334(pcVar2, &g_8c125d48, Vec3_sub_023334, pcVar2);
                             *(u32 *)((int)puVar14 + -0x13c) = uVar1;
                             if (*(int *)((int)puVar14 + -0x13c) == 3) {
                                 pcVar2 = NULL;
@@ -1008,7 +1009,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
                             if (*(int *)(a0 + 0x128) == 3) {
                                 *(u32 *)(a0 + 0x280) = 0;
                             }
-                            FUN_8c032be0(a0, 0x50, uVar6);
+                            game_sub_032be0(a0, 0x50, uVar6);
 
                             *(int *)((int)puVar14 + -0x144) = (int)((u64)dVar16 >> 0x20);
                             uVar17 = CONCAT44(*(u32 *)((int)puVar14 + -0x144), SUB84(dVar16, 0));
@@ -1062,10 +1063,11 @@ LAB_8c046e6c:
 }
 
 /*
- * FUN_8c048868  0x8c048868
- * called by: FUN_8c03c94c
+ * game_sub_048868  0x8c048868
+ * area name: game code; nothing names its area yet
+ * called by: game_sub_03c94c
  */
-u32 FUN_8c048868(int a0, int a1, int a2, u32 a3) {
+u32 game_sub_048868(int a0, int a1, int a2, u32 a3) {
     int iVar1;
     int iVar2;
     u32 uVar3;
@@ -1096,7 +1098,7 @@ LAB_8c0488bc:
     if ((iVar1 < 7) && (-1 < iVar1)) {
         switch (iVar1) {
         case 0:
-            iVar2 = FUN_8c05c28c(a0, iVar2, a2, a3);
+            iVar2 = Vec3_sub_05c28c(a0, iVar2, a2, a3);
             if (iVar2 == 0) {
                 *(int *)(a0 + 0x134) = *(int *)(a0 + 0x134) + 1;
             }
@@ -1162,7 +1164,7 @@ LAB_8c0488bc:
             Vec3_make(a0 + 0x14, iVar2, a2, a3, auStack_3c);
             Vec3_normalize(auStack_3c, iVar2, a2, a3);
             Vec3_scale(auStack_4c, &g_8c136588, a2, a3, auStack_5c);
-            FUN_8c031c74(a0, auStack_5c, a1, a3);
+            timer_sub_031c74(a0, auStack_5c, a1, a3);
             Vec3_dtor(auStack_5c, 0xffffffff, a1, a3);
             Vec3_dtor(auStack_4c, 0xffffffff, a1, a3);
             uVar3 = 0xffffffff;
@@ -1174,7 +1176,7 @@ LAB_8c0488bc:
 
             *(float *)(a0 + 0x28) = fVar6;
 
-            FUN_8c05ae54(a0, uVar3, a1, a3);
+            game_sub_05ae54(a0, uVar3, a1, a3);
             if (*(int *)(a0 + 0x280) < 1) {
                 iVar2 = CAnimBody_AdvanceFrame_033b98(a0 + 0xb0, uVar3, a1, a3);
                 a2 = a1;
@@ -1205,16 +1207,16 @@ LAB_8c0488bc:
         case 4:
             if (*(int *)(a0 + 0x128) == 0) {
                 puVar4 = &g_8c125bf0;
-                FUN_8c032518(a0, a1, &g_8c125bf0, in_stack_00000004);
+                CMushroomerBody_sub_032518(a0, a1, &g_8c125bf0, in_stack_00000004);
                 Vec3_assign(a0 + 0x54, auStack_6c, puVar4, in_stack_00000004);
                 Vec3_dtor(auStack_6c, 0xffffffff, puVar4, in_stack_00000004);
             } else {
                 puVar4 = &g_8c125bf0;
-                FUN_8c032518(a0, a1, &g_8c125bf0, in_stack_00000004);
+                CMushroomerBody_sub_032518(a0, a1, &g_8c125bf0, in_stack_00000004);
                 Vec3_assign(a0 + 0x54, auStack_7c, puVar4, in_stack_00000004);
                 Vec3_dtor(auStack_7c, 0xffffffff, puVar4, in_stack_00000004);
             }
-            FUN_8c031bb4(a0, a1, a0 + 0x54, in_stack_00000004);
+            CMushroomerBody_sub_031bb4(a0, a1, a0 + 0x54, in_stack_00000004);
             *(int *)(a0 + 0x134) = *(int *)(a0 + 0x134) + 1;
             *(u32 *)(a0 + 0x40) = 0;
             a3 = in_stack_00000004;
@@ -1229,7 +1231,7 @@ LAB_8c0488bc:
             break;
         case 6:
             a2 = in_stack_0000000c[1];
-            iVar2 = FUN_8c05c9fc(a0, *in_stack_0000000c, a2, a3);
+            iVar2 = game_sub_05c9fc(a0, *in_stack_0000000c, a2, a3);
             if (iVar2 == 0) {
                 *(u32 *)(a0 + 0x178) = 0;
                 *(u32 *)(a0 + 0x40) = 5;
@@ -1259,9 +1261,10 @@ LAB_8c04899c:
 }
 
 /*
- * FUN_8c048f8c  0x8c048f8c
+ * game_sub_048f8c  0x8c048f8c
+ * area name: game code; nothing names its area yet
  */
-u32 FUN_8c048f8c(u64 *a0, u32 a1, int a2, u64 *a3) {
+u32 game_sub_048f8c(u64 *a0, u32 a1, int a2, u64 *a3) {
     int iVar1;
     int iVar2;
     u64 *puVar3;
@@ -1357,7 +1360,7 @@ u32 FUN_8c048f8c(u64 *a0, u32 a1, int a2, u64 *a3) {
     if ((iVar1 < 6) && (-1 < iVar1)) {
         switch (iVar1) {
         case 0:
-            iVar1 = FUN_8c05c28c(a0, ar5_00, iVar2, a3);
+            iVar1 = Vec3_sub_05c28c(a0, ar5_00, iVar2, a3);
             if (iVar1 != 0) {
                 Vec3_dtor(auStack_44, 0xffffffff, iVar2, a3);
                 Vec3_dtor(auStack_34, 0xffffffff, iVar2, a3);
@@ -1371,10 +1374,10 @@ u32 FUN_8c048f8c(u64 *a0, u32 a1, int a2, u64 *a3) {
                 a0[0x44] = 0x8c031bb4455ac000;
             }
             iVar1 = a2;
-            FUN_8c031bb4(a0, a1, a2, a3);
+            CMushroomerBody_sub_031bb4(a0, a1, a2, a3);
             uVar4 = 0x8c2803f4;
             iVar2 = (int)a0[0x25] * 0x18 + 0x8c2803f4;
-            FUN_8c031b68(a0, iVar2, iVar1, 0x8c2803f4);
+            timer_sub_031b68(a0, iVar2, iVar1, 0x8c2803f4);
             timer_start_94(a0, iVar2, iVar1);
             if (cVar14 == '\0') {
                 fVar7 = *(float *)((int)a0 + 0x24);
@@ -1548,7 +1551,7 @@ u32 FUN_8c048f8c(u64 *a0, u32 a1, int a2, u64 *a3) {
                 if (*(int *)((int)a0 + 0x124) == 0x11) {
                     Vec3_set_xyz(auStack_b0, ar5_00, iVar2, a3);
                     a3 = (u64 *)((int)a0 + 0x14);
-                    FUN_8c031eb0(a0, a1, a2, a3, auStack_c0);
+                    game_sub_031eb0(a0, a1, a2, a3, auStack_c0);
                     Vec3_assign((u32 *)((int)a0 + 0x14), auStack_c0, iVar1, a3);
                     Vec3_dtor(auStack_c0, 0xffffffff, iVar1, a3);
                     uVar4 = 0xffffffff;
@@ -1556,7 +1559,7 @@ u32 FUN_8c048f8c(u64 *a0, u32 a1, int a2, u64 *a3) {
                 } else {
                     Vec3_set_xyz(auStack_cc, ar5_00, iVar2, a3);
                     a3 = (u64 *)((int)a0 + 0x14);
-                    FUN_8c031eb0(a0, a1, a2, a3, afStack_dc);
+                    game_sub_031eb0(a0, a1, a2, a3, afStack_dc);
                     Vec3_assign((u32 *)((int)a0 + 0x14), afStack_dc, iVar1, a3);
                     Vec3_dtor(afStack_dc, 0xffffffff, iVar1, a3);
                     uVar4 = 0xffffffff;
@@ -1892,16 +1895,17 @@ u32 FUN_8c048f8c(u64 *a0, u32 a1, int a2, u64 *a3) {
             }
         }
     }
-    FUN_8c051a68(a0, a2, a1, a3);
+    game_sub_051a68(a0, a2, a1, a3);
     Vec3_dtor(auStack_44, 0xffffffff, a1, a3);
     Vec3_dtor(auStack_34, 0xffffffff, a1, a3);
     return uVar6;
 }
 
 /*
- * FUN_8c049b68  0x8c049b68
+ * game_sub_049b68  0x8c049b68
+ * area name: game code; nothing names its area yet
  */
-u32 FUN_8c049b68(int a0, u64 *a1, code *a2, code *a3) {
+u32 game_sub_049b68(int a0, u64 *a1, code *a2, code *a3) {
     u32 uVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -2046,11 +2050,11 @@ u32 FUN_8c049b68(int a0, u64 *a1, code *a2, code *a3) {
     switch (iVar4) {
     case 0:
         if (*(int *)(a0 + 0x124) == 0x11) {
-            uVar2 = FUN_8c05c28c(a0, pcVar5, pcVar9, a3);
+            uVar2 = Vec3_sub_05c28c(a0, pcVar5, pcVar9, a3);
             *(u32 *)((int)pdVar11 + -0x164) = uVar2;
             iVar4 = *(int *)((int)pdVar11 + -0x164);
         } else {
-            uVar2 = FUN_8c05c28c(a0, pcVar5, pcVar9, a3);
+            uVar2 = Vec3_sub_05c28c(a0, pcVar5, pcVar9, a3);
             *(u32 *)((int)pdVar11 + -0x168) = uVar2;
             iVar4 = *(int *)((int)pdVar11 + -0x168);
         }
@@ -2076,20 +2080,20 @@ u32 FUN_8c049b68(int a0, u64 *a1, code *a2, code *a3) {
         uVar12 = SUB84(dVar14, 0);
         *(u32 *)((int)pdVar11 + -0x220) = *(u32 *)(a0 + 0x128);
         iVar4 = (*(int *)((int)pdVar11 + -0x220) * 2 + *(int *)((int)pdVar11 + -0x220)) * 8 + 0x8c2803f4;
-        FUN_8c031b68(a0, iVar4, pcVar9, a3);
+        timer_sub_031b68(a0, iVar4, pcVar9, a3);
         timer_start_94(a0, iVar4, pcVar9);
         puVar8 = (u8 *)((int)pdVar11 + -0x40);
         puVar6 = a1;
-        FUN_8c031bb4(a0, a1, puVar8, a3);
+        CMushroomerBody_sub_031bb4(a0, a1, puVar8, a3);
         uVar16 = (u64)uVar12;
 
         *(u32 *)(a0 + 0x2c) = 0;
 
-        FUN_8c0231c8((u8 *)((int)pdVar11 + -0x50), puVar6, puVar8, a3);
+        Vec3_sub_0231c8((u8 *)((int)pdVar11 + -0x50), puVar6, puVar8, a3);
 
         *(int *)((int)pdVar11 + -0x16c) = (int)(uVar16 >> 0x20);
 
-        FUN_8c0231c8(a0 + 0x14, puVar6, puVar8, a3);
+        Vec3_sub_0231c8(a0 + 0x14, puVar6, puVar8, a3);
 
         *(int *)((int)pdVar11 + -0x170) = (int)(uVar16 >> 0x20);
         uVar17 = CONCAT44(*(u32 *)((int)pdVar11 + -0x170), (int)uVar16);
@@ -2136,7 +2140,7 @@ u32 FUN_8c049b68(int a0, u64 *a1, code *a2, code *a3) {
         uVar17 = CONCAT44(0x42340000, *(u32 *)(a0 + 0x224));
 
         if ((float)((u64)uVar17 >> 0x20) < (float)uVar17) {
-            uVar2 = FUN_8c023334(a0 + 0x14, (u8 *)((int)pdVar11 + -0x50), uVar1, a3);
+            uVar2 = Vec3_sub_023334(a0 + 0x14, (u8 *)((int)pdVar11 + -0x50), uVar1, a3);
             *(u32 *)((int)pdVar11 + -0x184) = uVar2;
             *(u32 *)(a0 + 0x27c) = *(u32 *)((int)pdVar11 + -0x184);
             if (*(int *)(a0 + 0x27c) == 3) {
@@ -2299,7 +2303,7 @@ u32 FUN_8c049b68(int a0, u64 *a1, code *a2, code *a3) {
                         *(u8 **)((int)pdVar11 + -0x270) = (u8 *)((int)pdVar11 + -0x120);
                         a3 = (code *)(a0 + 0x14);
                         pcVar9 = (code *)((int)pdVar11 + -0x40);
-                        FUN_8c031eb0(a0, a1, pcVar9, a3, *(u32 *)((int)pdVar11 + -0x270));
+                        game_sub_031eb0(a0, a1, pcVar9, a3, *(u32 *)((int)pdVar11 + -0x270));
                         Vec3_assign(a0 + 0x14, (u8 *)((int)pdVar11 + -0x120), pcVar9, a3);
                         Vec3_dtor((u8 *)((int)pdVar11 + -0x120), 0xffffffff, pcVar9, a3);
                         object_dtor_delete((u8 *)((int)pdVar11 + -0x110), 0xffffffff, pcVar9, a3);
@@ -2375,7 +2379,7 @@ u32 FUN_8c049b68(int a0, u64 *a1, code *a2, code *a3) {
                         *(u8 **)((int)pdVar11 + -0x270) = (u8 *)((int)pdVar11 + -0x13c);
                         a3 = (code *)(a0 + 0x14);
                         pcVar9 = (code *)((int)pdVar11 + -0x40);
-                        FUN_8c031eb0(a0, a1, pcVar9, a3, *(u32 *)((int)pdVar11 + -0x270));
+                        game_sub_031eb0(a0, a1, pcVar9, a3, *(u32 *)((int)pdVar11 + -0x270));
                         Vec3_assign(a0 + 0x14, (u8 *)((int)pdVar11 + -0x13c), pcVar9, a3);
                         Vec3_dtor((u8 *)((int)pdVar11 + -0x13c), 0xffffffff, pcVar9, a3);
                         object_dtor_delete((u8 *)((int)pdVar11 + -300), 0xffffffff, pcVar9, a3);
@@ -2449,7 +2453,7 @@ u32 FUN_8c049b68(int a0, u64 *a1, code *a2, code *a3) {
                 *(int *)((int)pdVar11 + -0x1c0) = (int)((u64)dVar14 >> 0x20);
 
                 *(u8 **)((int)pdVar11 + -0x26c) = (u8 *)((int)pdVar11 + -0xac);
-                FUN_8c034650(a0 + 0xb0, *(u32 *)(*(int *)(a0 + 0xb4) + 4), pcVar9, a3);
+                game_sub_034650(a0 + 0xb0, *(u32 *)(*(int *)(a0 + 0xb4) + 4), pcVar9, a3);
                 vec3_copy_8c023d8c((u8 *)((int)pdVar11 + -0x24), (u8 *)((int)pdVar11 + -0xac), pcVar9, a3);
                 uVar2 = 0xffffffff;
                 object_dtor_delete((u8 *)((int)pdVar11 + -0xac), 0xffffffff, pcVar9, a3);
@@ -2529,7 +2533,7 @@ u32 FUN_8c049b68(int a0, u64 *a1, code *a2, code *a3) {
                 vec3_copy_8c023d8c(a0 + 0x2c8, (u8 *)((int)pdVar11 + -0x24), ar6_00, a3);
                 vec3_copy_8c02b5fc((u8 *)((int)pdVar11 + -0xb8), (u8 *)((int)pdVar11 + -0x30), ar6_00);
                 *(u8 **)((int)pdVar11 + -0x26c) = (u8 *)((int)pdVar11 + -200);
-                FUN_8c023484(a0 + 0x14, (u8 *)((int)pdVar11 + -0xb8), ar6_00, a3, *(u32 *)((int)pdVar11 + -0x26c));
+                Vec3_sub_023484(a0 + 0x14, (u8 *)((int)pdVar11 + -0xb8), ar6_00, a3, *(u32 *)((int)pdVar11 + -0x26c));
                 Vec3_assign(a0 + 0x14, (u8 *)((int)pdVar11 + -200), ar6_00, a3);
                 Vec3_dtor((u8 *)((int)pdVar11 + -200), 0xffffffff, ar6_00, a3);
                 uVar2 = 0xffffffff;
@@ -2539,7 +2543,7 @@ u32 FUN_8c049b68(int a0, u64 *a1, code *a2, code *a3) {
                 *(u8 **)((int)pdVar11 + -0x270) = (u8 *)((int)pdVar11 + -0xe4);
                 iVar4 = a0 + 0x14;
                 puVar8 = (u8 *)((int)pdVar11 + -0x40);
-                FUN_8c031eb0(a0, a1, puVar8, iVar4, *(u32 *)((int)pdVar11 + -0x270));
+                game_sub_031eb0(a0, a1, puVar8, iVar4, *(u32 *)((int)pdVar11 + -0x270));
                 Vec3_assign(a0 + 0x14, (u8 *)((int)pdVar11 + -0xe4), puVar8, iVar4);
                 puVar8 = (u8 *)((int)pdVar11 + -0xe4);
                 Vec3_dtor(puVar8, 0xffffffff, puVar8, iVar4);
@@ -2551,12 +2555,12 @@ u32 FUN_8c049b68(int a0, u64 *a1, code *a2, code *a3) {
                 uVar2 = CAnimBody_AdvanceFrame_033b98(a0 + 0xb0, uVar1, pcVar9, a3);
                 *(u32 *)((int)pdVar11 + -0x1d0) = uVar2;
                 if (*(int *)((int)pdVar11 + -0x1d0) == 1) {
-                    FUN_8c0231c8((u8 *)((int)pdVar11 + -0x50), uVar1, pcVar9, a3);
+                    Vec3_sub_0231c8((u8 *)((int)pdVar11 + -0x50), uVar1, pcVar9, a3);
 
                     *(int *)((int)pdVar11 + -0x1d4) = (int)((u64)dVar14 >> 0x20);
 
                     iVar4 = a0 + 0x14;
-                    FUN_8c0231c8(iVar4, uVar1, pcVar9, a3);
+                    Vec3_sub_0231c8(iVar4, uVar1, pcVar9, a3);
 
                     *(int *)((int)pdVar11 + -0x1d8) = (int)((u64)dVar14 >> 0x20);
                     uVar17 = CONCAT44(*(u32 *)((int)pdVar11 + -0x1d8), SUB84(dVar14, 0));
@@ -2758,7 +2762,7 @@ u32 FUN_8c049b68(int a0, u64 *a1, code *a2, code *a3) {
     }
 override_jmp_8c049e5a_case_2:
     Vec3_assign(a0 + 0x80, a0 + 0x14, a0 + 0x14, a3);
-    FUN_8c051a68(a0, (u8 *)((int)pdVar11 + -0x40), a1, a3);
+    game_sub_051a68(a0, (u8 *)((int)pdVar11 + -0x40), a1, a3);
     *(u32 *)((int)pdVar11 + -0x154) = uVar10;
     Vec3_dtor((u8 *)((int)pdVar11 + -0x60), 0xffffffff, a1, a3);
     Vec3_dtor((u8 *)((int)pdVar11 + -0x50), 0xffffffff, a1, a3);
@@ -2769,10 +2773,11 @@ override_jmp_8c049e5a_case_2:
 }
 
 /*
- * FUN_8c04b168  0x8c04b168
- * called by: FUN_8c03f4a4, FUN_8c04e2d0
+ * game_sub_04b168  0x8c04b168
+ * area name: game code; nothing names its area yet
+ * called by: Vec3_sub_03f4a4, game_sub_04e2d0
  */
-u32 FUN_8c04b168(int a0, u64 *a1, code *a2, code *a3) {
+u32 game_sub_04b168(int a0, u64 *a1, code *a2, code *a3) {
     int iVar1;
     u32 *puVar2;
     u8 *ar4_00;
@@ -2879,7 +2884,7 @@ u32 FUN_8c04b168(int a0, u64 *a1, code *a2, code *a3) {
         goto switchD_8c04b39c_caseD_2;
     switch (iVar1) {
     case 0:
-        uVar5 = FUN_8c05c28c(a0, iVar1 * 4, pcVar7, a3);
+        uVar5 = Vec3_sub_05c28c(a0, iVar1 * 4, pcVar7, a3);
         *(u32 *)((int)pdVar10 + -0x164) = uVar5;
         if (*(int *)((int)pdVar10 + -0x164) != 0) {
             *(u32 *)((int)pdVar10 + -0x158) = 1;
@@ -2908,22 +2913,22 @@ u32 FUN_8c04b168(int a0, u64 *a1, code *a2, code *a3) {
         *(u32 *)(a0 + 0xa0) = 0;
 
         *(u32 *)((int)pdVar10 + -0x1fc) = *(u32 *)(a0 + 0x128);
-        FUN_8c031b68(a0, (*(int *)((int)pdVar10 + -0x1fc) * 2 + *(int *)((int)pdVar10 + -0x1fc)) * 8 + 0x8c2803f4,
-                     pcVar7, a3);
+        timer_sub_031b68(a0, (*(int *)((int)pdVar10 + -0x1fc) * 2 + *(int *)((int)pdVar10 + -0x1fc)) * 8 + 0x8c2803f4,
+                         pcVar7, a3);
         uVar11 = (u32)uVar14;
         puVar6 = (u8 *)((int)pdVar10 + -0x38);
         puVar3 = a1;
-        FUN_8c031bb4(a0, a1, puVar6, a3);
+        CMushroomerBody_sub_031bb4(a0, a1, puVar6, a3);
         uVar14 = (u64)uVar11;
 
         *(u32 *)(a0 + 0x2c) = 0;
 
-        FUN_8c0231c8((u8 *)((int)pdVar10 + -0x48), puVar3, puVar6, a3);
+        Vec3_sub_0231c8((u8 *)((int)pdVar10 + -0x48), puVar3, puVar6, a3);
 
         *(int *)((int)pdVar10 + -0x168) = (int)(uVar14 >> 0x20);
 
         iVar1 = a0 + 0x14;
-        FUN_8c0231c8(iVar1, puVar3, puVar6, a3);
+        Vec3_sub_0231c8(iVar1, puVar3, puVar6, a3);
 
         *(int *)((int)pdVar10 + -0x16c) = (int)(uVar14 >> 0x20);
         uVar15 = CONCAT44(*(u32 *)((int)pdVar10 + -0x16c), (int)uVar14);
@@ -2986,7 +2991,7 @@ u32 FUN_8c04b168(int a0, u64 *a1, code *a2, code *a3) {
 
             *(float *)(a0 + 0x3c) = fVar12;
 
-            uVar5 = FUN_8c023334(a0 + 0x14, (u8 *)((int)pdVar10 + -0x48), pcVar7, a3);
+            uVar5 = Vec3_sub_023334(a0 + 0x14, (u8 *)((int)pdVar10 + -0x48), pcVar7, a3);
             *(u32 *)((int)pdVar10 + -0x17c) = uVar5;
             *(u32 *)(a0 + 0x27c) = *(u32 *)((int)pdVar10 + -0x17c);
             if (*(int *)(a0 + 0x27c) == 3) {
@@ -3095,7 +3100,7 @@ u32 FUN_8c04b168(int a0, u64 *a1, code *a2, code *a3) {
             *(u8 **)((int)pdVar10 + -0x230) = (u8 *)((int)pdVar10 + -0x114);
             iVar1 = a0 + 0x14;
             puVar6 = (u8 *)((int)pdVar10 + -0x38);
-            FUN_8c031eb0(a0, a1, puVar6, iVar1, *(u32 *)((int)pdVar10 + -0x230));
+            game_sub_031eb0(a0, a1, puVar6, iVar1, *(u32 *)((int)pdVar10 + -0x230));
             Vec3_assign(a0 + 0x14, (u8 *)((int)pdVar10 + -0x114), puVar6, iVar1);
             Vec3_dtor((u8 *)((int)pdVar10 + -0x114), 0xffffffff, puVar6, iVar1);
             pcVar7 = object_dtor_delete;
@@ -3182,7 +3187,7 @@ u32 FUN_8c04b168(int a0, u64 *a1, code *a2, code *a3) {
             *(u8 **)((int)pdVar10 + -0x230) = (u8 *)((int)pdVar10 + -0x130);
             iVar1 = a0 + 0x14;
             puVar6 = (u8 *)((int)pdVar10 + -0x38);
-            FUN_8c031eb0(a0, a1, puVar6, iVar1, *(u32 *)((int)pdVar10 + -0x230));
+            game_sub_031eb0(a0, a1, puVar6, iVar1, *(u32 *)((int)pdVar10 + -0x230));
             Vec3_assign(a0 + 0x14, (u8 *)((int)pdVar10 + -0x130), puVar6, iVar1);
             Vec3_dtor((u8 *)((int)pdVar10 + -0x130), 0xffffffff, puVar6, iVar1);
             uVar5 = 0xffffffff;
@@ -3261,7 +3266,7 @@ u32 FUN_8c04b168(int a0, u64 *a1, code *a2, code *a3) {
             *(int *)((int)pdVar10 + -0x1a8) = (int)((u64)dVar13 >> 0x20);
 
             *(u8 **)((int)pdVar10 + -0x22c) = (u8 *)((int)pdVar10 + -0xbc);
-            FUN_8c034650(a0 + 0xb0, *(u32 *)(*(int *)(a0 + 0xb4) + 4), pcVar7, a3);
+            game_sub_034650(a0 + 0xb0, *(u32 *)(*(int *)(a0 + 0xb4) + 4), pcVar7, a3);
             vec3_copy_8c023d8c((u8 *)((int)pdVar10 + -100), (u8 *)((int)pdVar10 + -0xbc), pcVar7, a3);
             object_dtor_delete((u8 *)((int)pdVar10 + -0xbc), 0xffffffff, pcVar7, a3);
 
@@ -3285,7 +3290,7 @@ u32 FUN_8c04b168(int a0, u64 *a1, code *a2, code *a3) {
             vec3_copy_8c023d8c(a0 + 0x2c8, (u8 *)((int)pdVar10 + -100), pcVar7, a3);
             vec3_copy_8c02b5fc((u8 *)((int)pdVar10 + -200), (u8 *)((int)pdVar10 + -0x70), pcVar7);
             *(u8 **)((int)pdVar10 + -0x22c) = (u8 *)((int)pdVar10 + -0xd8);
-            FUN_8c023484(a0 + 0x14, (u8 *)((int)pdVar10 + -200), pcVar7, a3, *(u32 *)((int)pdVar10 + -0x22c));
+            Vec3_sub_023484(a0 + 0x14, (u8 *)((int)pdVar10 + -200), pcVar7, a3, *(u32 *)((int)pdVar10 + -0x22c));
             Vec3_assign(a0 + 0x14, (u8 *)((int)pdVar10 + -0xd8), pcVar7, a3);
             Vec3_dtor((u8 *)((int)pdVar10 + -0xd8), 0xffffffff, pcVar7, a3);
             uVar5 = 0xffffffff;
@@ -3295,12 +3300,12 @@ u32 FUN_8c04b168(int a0, u64 *a1, code *a2, code *a3) {
             uVar5 = CAnimBody_AdvanceFrame_033b98(a0 + 0xb0, 0x278, pcVar7, a3);
             *(u32 *)((int)pdVar10 + -0x1ac) = uVar5;
             if (*(int *)((int)pdVar10 + -0x1ac) == 1) {
-                FUN_8c0231c8((u8 *)((int)pdVar10 + -0x48), uVar4, pcVar7, a3);
+                Vec3_sub_0231c8((u8 *)((int)pdVar10 + -0x48), uVar4, pcVar7, a3);
 
                 *(int *)((int)pdVar10 + -0x1b0) = (int)((u64)dVar13 >> 0x20);
 
                 iVar1 = a0 + 0x14;
-                FUN_8c0231c8(iVar1, uVar4, pcVar7, a3);
+                Vec3_sub_0231c8(iVar1, uVar4, pcVar7, a3);
 
                 *(int *)((int)pdVar10 + -0x1b4) = (int)((u64)dVar13 >> 0x20);
                 uVar15 = CONCAT44(*(u32 *)((int)pdVar10 + -0x1b4), SUB84(dVar13, 0));
@@ -3464,7 +3469,7 @@ u32 FUN_8c04b168(int a0, u64 *a1, code *a2, code *a3) {
     }
 switchD_8c04b39c_caseD_2:
     Vec3_assign(a0 + 0x80, a0 + 0x14, pcVar7, a3);
-    FUN_8c051a68(a0, (u8 *)((int)pdVar10 + -0x38), a1, a3);
+    game_sub_051a68(a0, (u8 *)((int)pdVar10 + -0x38), a1, a3);
     *(u32 *)((int)pdVar10 + -0x15c) = uVar9;
     object_dtor_delete((u8 *)((int)pdVar10 + -0x70), 0xffffffff, a1, a3);
     object_dtor_delete((u8 *)((int)pdVar10 + -100), 0xffffffff, a1, a3);
@@ -3476,11 +3481,12 @@ switchD_8c04b39c_caseD_2:
 }
 
 /*
- * FUN_8c04c314  0x8c04c314
- * called by: FUN_8c03f4a4, FUN_8c046684, FUN_8c04e0e0, FUN_8c04f034, FUN_8c054b74, FUN_8c055750, FUN_8c057164,
- * FUN_8c05c640
+ * game_sub_04c314  0x8c04c314
+ * area name: game code; nothing names its area yet
+ * called by: Vec3_sub_03f4a4, Vec3_sub_04e0e0, game_sub_046684, game_sub_04f034, game_sub_054b74, game_sub_055750,
+ * game_sub_057164, game_sub_05c640
  */
-u32 FUN_8c04c314(int a0, code *a1, code *a2) {
+u32 game_sub_04c314(int a0, code *a1, code *a2) {
     double dVar1;
     u32 uVar2;
     int iVar3;
@@ -3566,7 +3572,7 @@ u32 FUN_8c04c314(int a0, code *a1, code *a2) {
     Vec3_dtor(auStack_90, 0xffffffff, ar6_00, pcVar9);
     uStack_1b4 = 0xffffffff;
     puVar8 = auStack_58;
-    uVar2 = FUN_8c023334(a0 + 0x14, puVar8, ar6_00, pcVar9);
+    uVar2 = Vec3_sub_023334(a0 + 0x14, puVar8, ar6_00, pcVar9);
     *(u32 *)(a0 + 0x27c) = uVar2;
     pcVar10 = Vec3_set_zero;
     Vec3_set_zero(auStack_64);
@@ -3740,7 +3746,7 @@ LAB_8c04c728:
                 }
                 if (bVar19) {
                     ar6_00 = (code *)auStack_80;
-                    FUN_8c057b6c(a0, a1, ar6_00, pcVar10);
+                    game_sub_057b6c(a0, a1, ar6_00, pcVar10);
                 } else if (*(int *)(a0 + 700) == -1) {
                 LAB_8c04ca6c:
                     uVar2 = SUB84(dVar15, 0);
@@ -3933,7 +3939,7 @@ LAB_8c04c728:
             }
             goto switchD_8c04c74a_caseD_1;
         case 6:
-            iVar6 = FUN_8c057e58(a0, pcVar9, ar6_00, pcVar10);
+            iVar6 = game_sub_057e58(a0, pcVar9, ar6_00, pcVar10);
             if (iVar6 == 0) {
                 *(u32 *)(a0 + 0x330) = 0;
                 *(u32 *)(a0 + 0x2b8) = 0;
@@ -3946,7 +3952,7 @@ LAB_8c04c728:
 switchD_8c04c74a_caseD_1:
     *(u32 *)(a0 + 0x330) = 1;
     CAnimBody_GetCurFrame(a0 + 0xb0, pcVar9, ar6_00, pcVar10);
-    FUN_8c034384(a0 + 0xb0, **(u32 **)(a0 + 0xb4), ar6_00, pcVar10);
+    game_sub_034384(a0 + 0xb0, **(u32 **)(a0 + 0xb4), ar6_00, pcVar10);
     Vec3_assign(auStack_38, auStack_100, ar6_00, pcVar10);
     Vec3_dtor(auStack_100, 0xffffffff, ar6_00, pcVar10);
     dVar1 = dStack_30;
@@ -3981,15 +3987,15 @@ switchD_8c04c74a_caseD_1:
     uVar2 = 0xffffffff;
     Vec3_dtor(auStack_120, 0xffffffff, ar6_00, pcVar10);
     Vec3_ctor_xyz(auStack_140, uVar2, ar6_00, pcVar10);
-    pcVar9 = (code *)FUN_8c023334(a0 + 0x14, auStack_140, ar6_00, pcVar10);
+    pcVar9 = (code *)Vec3_sub_023334(a0 + 0x14, auStack_140, ar6_00, pcVar10);
     uVar2 = 0xffffffff;
     ar6_00 = pcVar9;
     Vec3_dtor(auStack_140, 0xffffffff, pcVar9, pcVar10);
     if (pcVar9 == (code *)0x3) {
         Vec3_set_xyz(auStack_14c, uVar2, Vec3_set_xyz, pcVar10);
         pcVar10 = (code *)(a0 + 0x2a8);
-        ar6_00 = FUN_8c023484;
-        FUN_8c023484(pcVar10, auStack_14c, FUN_8c023484, pcVar10, auStack_15c);
+        ar6_00 = Vec3_sub_023484;
+        Vec3_sub_023484(pcVar10, auStack_14c, Vec3_sub_023484, pcVar10, auStack_15c);
         Vec3_assign(a0 + 0x2a8, auStack_15c, ar6_00, pcVar10);
         Vec3_dtor(auStack_15c, 0xffffffff, ar6_00, pcVar10);
         object_dtor_delete(auStack_14c, 0xffffffff, ar6_00, pcVar10);
@@ -3997,7 +4003,7 @@ switchD_8c04c74a_caseD_1:
         pcVar10 = (code *)&dStack_168;
         ar6_00 = Vec3_set_xyz;
         Vec3_set_xyz(pcVar10, uVar2, Vec3_set_xyz, pcVar10);
-        FUN_8c023484(a0 + 0x2a8, &dStack_168, ar6_00, pcVar10, auStack_178);
+        Vec3_sub_023484(a0 + 0x2a8, &dStack_168, ar6_00, pcVar10, auStack_178);
         Vec3_assign(a0 + 0x2a8, auStack_178, ar6_00, pcVar10);
         Vec3_dtor(auStack_178, 0xffffffff, ar6_00, pcVar10);
         object_dtor_delete(&dStack_168, 0xffffffff, ar6_00, pcVar10);
@@ -4034,7 +4040,7 @@ switchD_8c04c74a_caseD_1:
             if (*(int *)(a0 + 0x290) != 1) {
                 Vec3_set_xyz(auStack_184, puVar8, ar6_00, pcVar10);
                 pcVar10 = (code *)(a0 + 0x14);
-                FUN_8c031eb0(a0, a1, auStack_80, pcVar10, auStack_194);
+                game_sub_031eb0(a0, a1, auStack_80, pcVar10, auStack_194);
                 ar6_00 = (code *)auStack_194;
                 Vec3_assign(a0 + 0x14, ar6_00, ar6_00, pcVar10);
                 Vec3_dtor(auStack_194, 0xffffffff, ar6_00, pcVar10);
@@ -4090,7 +4096,7 @@ switchD_8c04c74a_caseD_1:
         Vec3_set_xyz(auStack_1a0, pcVar9, ar6_00, pcVar10);
         pcVar10 = (code *)(a0 + 0x14);
         ar6_00 = (code *)auStack_80;
-        FUN_8c031eb0(a0, a1, ar6_00, pcVar10, auStack_1b0);
+        game_sub_031eb0(a0, a1, ar6_00, pcVar10, auStack_1b0);
         Vec3_assign(a0 + 0x14, auStack_1b0, ar6_00, pcVar10);
         Vec3_dtor(auStack_1b0, 0xffffffff, ar6_00, pcVar10);
         object_dtor_delete(auStack_1a0, 0xffffffff, ar6_00, pcVar10);
@@ -4147,10 +4153,11 @@ switchD_8c04c5a8_caseD_2:
 }
 
 /*
- * FUN_8c04d62c  0x8c04d62c
- * called by: FUN_8c03c94c, FUN_8c03f4a4
+ * game_sub_04d62c  0x8c04d62c
+ * area name: game code; nothing names its area yet
+ * called by: Vec3_sub_03f4a4, game_sub_03c94c
  */
-u32 FUN_8c04d62c(int a0, int a1, int *a2, u32 a3) {
+u32 game_sub_04d62c(int a0, int a1, int *a2, u32 a3) {
     int iVar1;
     int ar5_00;
     u32 uVar2;
@@ -4270,7 +4277,7 @@ u32 FUN_8c04d62c(int a0, int a1, int *a2, u32 a3) {
             if (cVar13 != '\0') {
                 in_fr5 = 0x42c80000;
             }
-            FUN_8c05ae54(a0, ar5_00, ar6_00, a3);
+            game_sub_05ae54(a0, ar5_00, ar6_00, a3);
             if (cVar13 != '\0') {
                 in_fr5 = (u32) * (u64 *)(a0 + 0x278);
             }
@@ -4365,7 +4372,7 @@ u32 FUN_8c04d62c(int a0, int a1, int *a2, u32 a3) {
                     *(u64 *)(a0 + 0xa0) = uVar9;
                 }
                 *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
-                FUN_8c031700(a0, a1, a2, a3);
+                Class_12b2ac_sub_031700(a0, a1, a2, a3);
                 *(u32 *)(a0 + 0x280) = 0;
             }
             break;
@@ -4410,7 +4417,7 @@ u32 FUN_8c04d62c(int a0, int a1, int *a2, u32 a3) {
                 }
                 timer_stop_94(a0, iVar1, a2, a3);
                 uVar5 = (u32)uVar9;
-                FUN_8c031b68(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c2803f4, a2, a3);
+                timer_sub_031b68(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c2803f4, a2, a3);
                 *(u32 *)(a0 + 0x280) = 0;
                 if (cVar13 == '\0') {
                     *(u32 *)(a0 + 0xa0) = 0;
@@ -4430,10 +4437,11 @@ u32 FUN_8c04d62c(int a0, int a1, int *a2, u32 a3) {
 }
 
 /*
- * FUN_8c04db38  0x8c04db38
- * called by: FUN_8c03f4a4
+ * game_sub_04db38  0x8c04db38
+ * area name: game code; nothing names its area yet
+ * called by: Vec3_sub_03f4a4
  */
-u32 FUN_8c04db38(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_sub_04db38(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     u32 in_fr1;
@@ -4454,7 +4462,7 @@ u32 FUN_8c04db38(int a0, u32 a1, u32 a2, u32 a3) {
         }
         if (*(int *)(a0 + 0x128) == 4) {
             Vec3_set_xyz(auStack_18, a1, a2, a3);
-            FUN_8c023484(a0 + 0x14, auStack_18, a2, a3, auStack_28);
+            Vec3_sub_023484(a0 + 0x14, auStack_18, a2, a3, auStack_28);
             Vec3_assign(a0 + 0x14, auStack_28, a2, a3);
             Vec3_dtor(auStack_28, 0xffffffff, a2, a3);
             a1 = 0xffffffff;
@@ -4491,10 +4499,11 @@ u32 FUN_8c04db38(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c04dd34  0x8c04dd34
- * called by: FUN_8c0507c0
+ * game_sub_04dd34  0x8c04dd34
+ * area name: game code; nothing names its area yet
+ * called by: game_sub_0507c0
  */
-u32 FUN_8c04dd34(int a0, u64 *a1, u32 a2, u32 a3) {
+u32 game_sub_04dd34(int a0, u64 *a1, u32 a2, u32 a3) {
     u32 uVar1;
     float fVar2;
     u64 in_dr0;
@@ -4544,7 +4553,7 @@ u32 FUN_8c04dd34(int a0, u64 *a1, u32 a2, u32 a3) {
     } else {
         *a1 = in_xd14;
     }
-    FUN_8c02327c(a0 + 0x80, uVar1, a2, a3);
+    Vec3_sub_02327c(a0 + 0x80, uVar1, a2, a3);
     uVar1 = (u32)((u64)dVar3 >> 0x20);
     uStack_28 = uVar1;
     if (cVar5 != '\0') {
@@ -4560,10 +4569,11 @@ u32 FUN_8c04dd34(int a0, u64 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c04ddd4  0x8c04ddd4
- * called by: FUN_8c03c94c
+ * game_sub_04ddd4  0x8c04ddd4
+ * area name: game code; nothing names its area yet
+ * called by: game_sub_03c94c
  */
-u32 FUN_8c04ddd4(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_sub_04ddd4(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -4643,7 +4653,7 @@ u32 FUN_8c04ddd4(int a0, u32 a1, u32 a2, u32 a3) {
         }
     }
     timer_stop_94(a0, uVar2, a2, uVar3);
-    FUN_8c031700(a0, uVar2, a2, uVar3);
+    Class_12b2ac_sub_031700(a0, uVar2, a2, uVar3);
     uVar2 = Vec3_length(auStack_2c, uVar2, a2, uVar3);
     Vec3_assign(a0 + 0x14, uVar2, a2, uVar3);
     (**(code **)(*(int *)(iVar1 + 8) + 0x140))(iVar1, uVar2, a2, uVar3);
@@ -4712,10 +4722,11 @@ u32 Vec3_ctor_xyz_wrap_04e0bc(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
 }
 
 /*
- * FUN_8c04e0e0  0x8c04e0e0
- * called by: FUN_8c03f4a4, FUN_8c04f034, FUN_8c0564c4, FUN_8c058d60, FUN_8c059fc4
+ * Vec3_sub_04e0e0  0x8c04e0e0
+ * area name: sits between Vec3 functions (same compilation unit)
+ * called by: Vec3_sub_03f4a4, game_sub_04f034, game_sub_0564c4, game_sub_058d60, game_sub_059fc4
  */
-u32 FUN_8c04e0e0(int a0, u32 a1, u8 *a2, int a3) {
+u32 Vec3_sub_04e0e0(int a0, u32 a1, u8 *a2, int a3) {
     int iVar1;
     u32 uVar2;
     u8 *ar6_00;
@@ -4747,7 +4758,7 @@ u32 FUN_8c04e0e0(int a0, u32 a1, u8 *a2, int a3) {
         *(u32 *)(a0 + 0x40) = 5;
         *(int *)(a0 + 0x298) = *(int *)(a0 + 0x298) + 1;
     } else if (iVar1 == 1) {
-        iVar1 = FUN_8c04c314(a0, a1, a2);
+        iVar1 = game_sub_04c314(a0, a1, a2);
         ar6_00 = a2;
         if (iVar1 == 0) {
             *(u32 *)(a0 + 0x40) = 5;
@@ -4784,7 +4795,7 @@ u32 FUN_8c04e0e0(int a0, u32 a1, u8 *a2, int a3) {
             Vec3_scale(a3, &g_8c13658c, ar6_00, ar7_00, auStack_58);
             Vec3_add(a1, auStack_58, ar6_00, ar7_00, auStack_68);
             ar6_00 = auStack_68;
-            FUN_8c057b6c(a0, a1, ar6_00, ar7_00);
+            game_sub_057b6c(a0, a1, ar6_00, ar7_00);
             Vec3_dtor(auStack_68, 0xffffffff, ar6_00, ar7_00);
             Vec3_dtor(auStack_58, 0xffffffff, ar6_00, ar7_00);
             *(int *)(a0 + 0x298) = *(int *)(a0 + 0x298) + 1;
@@ -4792,7 +4803,7 @@ u32 FUN_8c04e0e0(int a0, u32 a1, u8 *a2, int a3) {
             uVar3 = 0;
             *(u32 *)(a0 + 0x298) = 0;
         }
-    } else if ((iVar1 == 3) && (iVar1 = FUN_8c057e58(a0, uVar2, ar6_00, ar7_00), iVar1 == 0)) {
+    } else if ((iVar1 == 3) && (iVar1 = game_sub_057e58(a0, uVar2, ar6_00, ar7_00), iVar1 == 0)) {
         *(u32 *)(a0 + 0x298) = 2;
     }
     Vec3_dtor(auStack_28, 0xffffffff, ar6_00, ar7_00);
@@ -4800,10 +4811,11 @@ u32 FUN_8c04e0e0(int a0, u32 a1, u8 *a2, int a3) {
 }
 
 /*
- * FUN_8c04e2d0  0x8c04e2d0
- * called by: FUN_8c053730, FUN_8c055c38
+ * game_sub_04e2d0  0x8c04e2d0
+ * area name: game code; nothing names its area yet
+ * called by: game_sub_053730, game_sub_055c38
  */
-u32 FUN_8c04e2d0(int a0, u32 a1, u8 *a2, int a3) {
+u32 game_sub_04e2d0(int a0, u32 a1, u8 *a2, int a3) {
     int iVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -4838,7 +4850,7 @@ u32 FUN_8c04e2d0(int a0, u32 a1, u8 *a2, int a3) {
     if (iVar1 == 0) {
         uVar2 = a1;
         ar6_00 = a2;
-        iVar1 = FUN_8c04b168(a0, a1, a2, ar7_00);
+        iVar1 = game_sub_04b168(a0, a1, a2, ar7_00);
         if (iVar1 == 0) {
             *(int *)(a0 + 0x298) = *(int *)(a0 + 0x298) + 1;
             *(u32 *)(a0 + 0x40) = 5;
@@ -4846,7 +4858,7 @@ u32 FUN_8c04e2d0(int a0, u32 a1, u8 *a2, int a3) {
         }
     } else if (iVar1 == 1) {
         iVar1 = a3;
-        uVar2 = FUN_8c023334(a0 + 0x14, a3, ar6_00, ar7_00);
+        uVar2 = Vec3_sub_023334(a0 + 0x14, a3, ar6_00, ar7_00);
         *(u32 *)(a0 + 0x27c) = uVar2;
         Vec3_make(a0 + 0x14, iVar1, ar6_00, ar7_00, auStack_38);
         Vec3_make(a3, iVar1, ar6_00, ar7_00, auStack_48);
@@ -4859,9 +4871,9 @@ u32 FUN_8c04e2d0(int a0, u32 a1, u8 *a2, int a3) {
         Vec3_dtor(auStack_48, 0xffffffff, ar6_00, ar7_00);
         uVar2 = 0xffffffff;
         Vec3_dtor(auStack_38, 0xffffffff, ar6_00, ar7_00);
-        FUN_8c0231c8(a3, uVar2, ar6_00, ar7_00);
+        Vec3_sub_0231c8(a3, uVar2, ar6_00, ar7_00);
         iVar1 = a0 + 0x14;
-        FUN_8c0231c8(iVar1, uVar2, ar6_00, ar7_00);
+        Vec3_sub_0231c8(iVar1, uVar2, ar6_00, ar7_00);
         float_check_errno(iVar1, uVar2, ar6_00, ar7_00, in_stack_ffffff00);
         fVar5 = (float)in_dr0;
         if (cVar9 == '\0') {
@@ -4874,7 +4886,7 @@ u32 FUN_8c04e2d0(int a0, u32 a1, u8 *a2, int a3) {
             fVar5 = *(float *)(a0 + 0x224);
         }
         if (cVar8 == '\0' && 1.0 < fVar5) {
-            uVar2 = FUN_8c023334(a0 + 0x14, a3, ar6_00, ar7_00);
+            uVar2 = Vec3_sub_023334(a0 + 0x14, a3, ar6_00, ar7_00);
             *(u32 *)(a0 + 0x27c) = uVar2;
             if (*(int *)(a0 + 0x27c) == 3) {
                 ar7_00 = 0;
@@ -4956,7 +4968,7 @@ u32 FUN_8c04e2d0(int a0, u32 a1, u8 *a2, int a3) {
         Vec3_set_xyz(auStack_94, uVar2, ar6_00, ar7_00);
         ar7_00 = a0 + 0x14;
         ar6_00 = auStack_88;
-        FUN_8c031eb0(a0, a1, ar6_00, ar7_00, auStack_a4);
+        game_sub_031eb0(a0, a1, ar6_00, ar7_00, auStack_a4);
         Vec3_assign(a0 + 0x14, auStack_a4, ar6_00, ar7_00);
         Vec3_dtor(auStack_a4, 0xffffffff, ar6_00, ar7_00);
         object_dtor_delete(auStack_94, 0xffffffff, ar6_00, ar7_00);
@@ -4974,10 +4986,11 @@ u32 FUN_8c04e2d0(int a0, u32 a1, u8 *a2, int a3) {
 }
 
 /*
- * FUN_8c04e7e0  0x8c04e7e0
- * called by: FUN_8c03c94c, FUN_8c03f4a4
+ * game_sub_04e7e0  0x8c04e7e0
+ * area name: game code; nothing names its area yet
+ * called by: Vec3_sub_03f4a4, game_sub_03c94c
  */
-u32 FUN_8c04e7e0(int a0, int a1, int a2, u32 a3) {
+u32 game_sub_04e7e0(int a0, int a1, int a2, u32 a3) {
     int iVar1;
     int iVar2;
     u32 uVar3;
@@ -5042,12 +5055,12 @@ u32 FUN_8c04e7e0(int a0, int a1, int a2, u32 a3) {
             Vec3_make(a0 + 0x14, iVar1, a2, a3, auStack_34);
             Vec3_normalize(auStack_34, iVar1, a2, a3);
             Vec3_scale(auStack_44, &g_8c136594, a2, a3, auStack_54);
-            FUN_8c031c74(a0, auStack_54, a1, a3);
+            timer_sub_031c74(a0, auStack_54, a1, a3);
             Vec3_dtor(auStack_54, 0xffffffff, a1, a3);
             Vec3_dtor(auStack_44, 0xffffffff, a1, a3);
             uVar3 = 0xffffffff;
             Vec3_dtor(auStack_34, 0xffffffff, a1, a3);
-            FUN_8c05ae54(a0, uVar3, a1, a3);
+            game_sub_05ae54(a0, uVar3, a1, a3);
             iVar1 = CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, uVar3, a1, a3);
             a2 = a1;
             if (iVar1 == 1) {
@@ -5106,7 +5119,7 @@ u32 FUN_8c04e7e0(int a0, int a1, int a2, u32 a3) {
             Vec3_dtor(auStack_24, 0xffffffff, a2, a3);
             return uVar4;
         case 0xc:
-            FUN_8c05ae54(a0, iVar1, a2, a3);
+            game_sub_05ae54(a0, iVar1, a2, a3);
             iVar1 = CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, iVar1, a2, a3);
             if (iVar1 == 1) {
                 uVar4 = 0;
@@ -5118,10 +5131,11 @@ u32 FUN_8c04e7e0(int a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * FUN_8c04eb14  0x8c04eb14
- * called by: FUN_8c03f4a4
+ * game_sub_04eb14  0x8c04eb14
+ * area name: game code; nothing names its area yet
+ * called by: Vec3_sub_03f4a4
  */
-u32 FUN_8c04eb14(int a0, u32 a1, u32 a2, u8 *a3) {
+u32 game_sub_04eb14(int a0, u32 a1, u32 a2, u8 *a3) {
     int iVar1;
     u32 uVar2;
     u32 ar6_00;
@@ -5151,7 +5165,7 @@ u32 FUN_8c04eb14(int a0, u32 a1, u32 a2, u8 *a3) {
             goto switchD_8c04eb5c_caseD_4;
         switch (iVar1) {
         case 0:
-            iVar1 = FUN_8c057164(a0, a1, a2, ar7_01);
+            iVar1 = game_sub_057164(a0, a1, a2, ar7_01);
             if (iVar1 == 0) {
                 *(int *)(a0 + 0x134) = *(int *)(a0 + 0x134) + 1;
             }
@@ -5259,7 +5273,7 @@ u32 FUN_8c04eb14(int a0, u32 a1, u32 a2, u8 *a3) {
         case 0xc:
             Vec3_copy_assign(auStack_2c, a3);
             ar7_01 = auStack_2c;
-            iVar1 = FUN_8c059fc4(a0, a1, a1, ar7_01);
+            iVar1 = game_sub_059fc4(a0, a1, a1, ar7_01);
             free_if_nonnull_wrap_102790(auStack_2c, 0xffffffff, a1, ar7_01);
             a2 = a1;
             if (iVar1 == 0) {
@@ -5280,7 +5294,7 @@ u32 FUN_8c04eb14(int a0, u32 a1, u32 a2, u8 *a3) {
         case 0xe:
             ar7_01 = (u8 *)0x1c;
             a2 = a1;
-            iVar1 = FUN_8c058024(a0, a1, a1, 0x1c);
+            iVar1 = game_sub_058024(a0, a1, a1, 0x1c);
             if (iVar1 == 0) {
                 *(u32 *)(a0 + 300) = 0;
                 vec3_clear(a0 + 0x2d4, a1, a2, ar7_01);
@@ -5298,10 +5312,11 @@ u32 FUN_8c04eb14(int a0, u32 a1, u32 a2, u8 *a3) {
 }
 
 /*
- * FUN_8c04f034  0x8c04f034
- * called by: FUN_8c03f4a4
+ * game_sub_04f034  0x8c04f034
+ * area name: game code; nothing names its area yet
+ * called by: Vec3_sub_03f4a4
  */
-u32 FUN_8c04f034(code *a0, u32 a1, code *a2, u32 a3) {
+u32 game_sub_04f034(code *a0, u32 a1, code *a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -5436,7 +5451,7 @@ LAB_8c04f31c:
         case 0:
             *(u32 *)(a0 + 0x178) = 1;
             pcVar9 = a0 + 0x34c;
-            iVar1 = FUN_8c055c38(a0, a2, pcVar9, in_stack_00000004);
+            iVar1 = game_sub_055c38(a0, a2, pcVar9, in_stack_00000004);
             pcVar5 = in_stack_00000004;
             if (iVar1 == 0) {
                 vec3_clear(a0 + 0x2a8, a2, pcVar9, in_stack_00000004);
@@ -5462,36 +5477,36 @@ LAB_8c04f31c:
                 uVar8 = 0x5e;
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5e, pcVar9, pcVar5);
                 puVar3 = (u32 *)deref_u32(uVar7);
-                FUN_8c034384(a0 + 0xb0, *(u32 *)*puVar3, pcVar9, pcVar5);
+                game_sub_034384(a0 + 0xb0, *(u32 *)*puVar3, pcVar9, pcVar5);
                 Vec3_assign(auStack_3c, auStack_b4, pcVar9, pcVar5);
                 Vec3_dtor(auStack_b4, 0xffffffff, pcVar9, pcVar5);
                 uVar8 = 0x5e;
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5e, pcVar9, pcVar5);
                 piVar4 = (int *)deref_u32(uVar7);
-                FUN_8c0348ac(a0 + 0xb0, *(u32 *)(*piVar4 + 8), pcVar9, pcVar5);
+                game_sub_0348ac(a0 + 0xb0, *(u32 *)(*piVar4 + 8), pcVar9, pcVar5);
                 Vec3_assign_copy(auStack_84, auStack_c0);
                 free_if_nonnull_wrap_016ac4(auStack_c0, 0xffffffff, pcVar9, pcVar5);
             } else if (iVar1 == 4) {
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5f, pcVar9, pcVar5);
                 puVar3 = (u32 *)deref_u32(uVar7);
-                FUN_8c034384(a0 + 0xb0, *(u32 *)*puVar3, pcVar9, pcVar5);
+                game_sub_034384(a0 + 0xb0, *(u32 *)*puVar3, pcVar9, pcVar5);
                 Vec3_assign(auStack_3c, auStack_d0, pcVar9, pcVar5);
                 Vec3_dtor(auStack_d0, 0xffffffff, pcVar9, pcVar5);
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5f, pcVar9, pcVar5);
                 piVar4 = (int *)deref_u32(uVar7);
-                FUN_8c0348ac(a0 + 0xb0, *(u32 *)(*piVar4 + 8), pcVar9, pcVar5);
+                game_sub_0348ac(a0 + 0xb0, *(u32 *)(*piVar4 + 8), pcVar9, pcVar5);
                 Vec3_assign_copy(auStack_84, auStack_dc);
                 free_if_nonnull_wrap_016ac4(auStack_dc, 0xffffffff, pcVar9, pcVar5);
             } else if (iVar1 == 5) {
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5e, pcVar9, pcVar5);
                 puVar3 = (u32 *)deref_u32(uVar7);
-                FUN_8c034384(a0 + 0xb0, *(u32 *)*puVar3, pcVar9, pcVar5);
+                game_sub_034384(a0 + 0xb0, *(u32 *)*puVar3, pcVar9, pcVar5);
                 Vec3_assign(auStack_3c, auStack_ec, pcVar9, pcVar5);
                 Vec3_dtor(auStack_ec, 0xffffffff, pcVar9, pcVar5);
                 uVar8 = 0xb0;
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5e, 0xb0, pcVar5);
                 piVar4 = (int *)deref_u32(uVar7);
-                FUN_8c0348ac(a0 + 0xb0, *(u32 *)(*piVar4 + 8), uVar8, pcVar5);
+                game_sub_0348ac(a0 + 0xb0, *(u32 *)(*piVar4 + 8), uVar8, pcVar5);
                 pcVar5 = Vec3_assign_copy;
                 Vec3_assign_copy(auStack_84, auStack_f8);
                 pcVar9 = (code *)0xffffffff;
@@ -5500,21 +5515,21 @@ LAB_8c04f31c:
                 uVar8 = 0x5f;
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5f, pcVar9, pcVar5);
                 puVar3 = (u32 *)deref_u32(uVar7);
-                FUN_8c034384(a0 + 0xb0, *(u32 *)*puVar3, pcVar9, pcVar5);
+                game_sub_034384(a0 + 0xb0, *(u32 *)*puVar3, pcVar9, pcVar5);
                 Vec3_assign(auStack_3c, auStack_108, pcVar9, pcVar5);
                 Vec3_dtor(auStack_108, 0xffffffff, pcVar9, pcVar5);
                 uVar8 = 0x5f;
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5f, pcVar9, pcVar5);
                 puVar3 = (u32 *)deref_u32(uVar7);
                 pcVar9 = (code *)*puVar3;
-                FUN_8c0348ac(a0 + 0xb0, *(u32 *)(pcVar9 + 8), pcVar9, pcVar5);
+                game_sub_0348ac(a0 + 0xb0, *(u32 *)(pcVar9 + 8), pcVar9, pcVar5);
                 Vec3_assign_copy(auStack_84, auStack_114);
                 free_if_nonnull_wrap_016ac4(auStack_114, 0xffffffff, pcVar9, pcVar5);
             }
             vec3_copy_8c02b5fc(auStack_120, in_stack_00000000, pcVar9);
             ar4_00 = auStack_3c;
-            pcVar9 = FUN_8c023484;
-            FUN_8c023484(ar4_00, auStack_120, FUN_8c023484, ar4_00, auStack_130);
+            pcVar9 = Vec3_sub_023484;
+            Vec3_sub_023484(ar4_00, auStack_120, Vec3_sub_023484, ar4_00, auStack_130);
             Vec3_assign(auStack_3c, auStack_130, pcVar9, ar4_00);
             Vec3_dtor(auStack_130, 0xffffffff, pcVar9, ar4_00);
             pcVar5 = object_dtor_delete;
@@ -5601,7 +5616,7 @@ LAB_8c04f31c:
             fVar11 = SUB84(in_dr0, 0);
             pcVar9 = a0 + 0x248;
             pcVar6 = a2;
-            iVar1 = FUN_8c04c314(a0, a2, pcVar9);
+            iVar1 = game_sub_04c314(a0, a2, pcVar9);
             if (iVar1 == 0) {
                 iVar1 = get_field_6c_028cc4(a1, pcVar6);
                 iVar1 = (**(code **)(*(int *)(iVar1 + 8) + 0x114))(iVar1, *(int *)(iVar1 + 8), pcVar9, pcVar5);
@@ -5683,7 +5698,7 @@ LAB_8c04f31c:
             Vec3_ctor_copy(auStack_190, a0 + 0x54, pcVar9, pcVar5);
             pcVar5 = (code *)auStack_190;
             pcVar9 = a0 + 0x248;
-            iVar1 = FUN_8c04e0e0(a0, a2, pcVar9, pcVar5);
+            iVar1 = Vec3_sub_04e0e0(a0, a2, pcVar9, pcVar5);
             uVar7 = 0xffffffff;
             Vec3_dtor(auStack_190, 0xffffffff, pcVar9, pcVar5);
             if (iVar1 == 0) {
@@ -5743,8 +5758,8 @@ LAB_8c04f31c:
             goto switchD_8c04f3ac_default;
         }
         pcVar9 = (code *)auStack_78;
-        pcVar6 = FUN_8c023df4;
-        FUN_8c023df4(pcVar9);
+        pcVar6 = Vec3_sub_023df4;
+        Vec3_sub_023df4(pcVar9);
         iVar1 = get_field_6c_028cc4(a1, pcVar6);
         iVar1 = (**(code **)(*(int *)(iVar1 + 8) + 0x114))(iVar1, pcVar6, pcVar9, pcVar5);
         uVar7 = (u32)in_dr14;
