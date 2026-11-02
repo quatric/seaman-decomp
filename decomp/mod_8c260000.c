@@ -6705,7 +6705,7 @@ u32 sd_sound_2650ec(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     sd_uses_memset_268920(0x8c4bb804, ar5_00, a2, a3);
     sd_fill_loop_2667cc();
     *(u32 *)((int)0x1a8 + *(int *)puVar1) = 0;
-    shinobi_update_fields_1f8d98(*(int *)puVar1 + (int)0x1ac, 0);
+    g2dma_channel_open_like(*(int *)puVar1 + (int)0x1ac, 0);
     g_8c4ba648 = *(u32 *)((int)0x1ac + *(int *)puVar1);
     return 0;
 }
@@ -7218,7 +7218,7 @@ int aica_ram_2657ec(int a0, int a1, u32 a2, u32 a3) {
             a3 = *(u32 *)(a0 + 0xc);
             a2 = *(u32 *)(a0 + 8);
             uVar1 = *(u32 *)(g_8c2784c0 + 0x1ac);
-            g_8c4bd404 = shinobi_update_fields_1f900c(uVar1, iVar2, a2, a3, 0, 1, 1, sd_dma_end, a0);
+            g_8c4bd404 = g2dma_request_init(uVar1, iVar2, a2, a3, 0, 1, 1, sd_dma_end, a0);
             if (g_8c4bd404 != 0) {
                 sd_update_fields_2658e2();
             }
@@ -7228,7 +7228,7 @@ int aica_ram_2657ec(int a0, int a1, u32 a2, u32 a3) {
                 *(int *)(g_8c2784c0 + 400) = a0;
                 *(int *)(g_8c2784c0 + 0x188) = *(int *)(g_8c2784c0 + 0x188) + 1;
                 uVar1 = *(u32 *)(g_8c2784c0 + 0x1ac);
-                g_8c4bd404 = shinobi_uses_syG2DmaGetStatus_1f9194(uVar1, 0);
+                g_8c4bd404 = g2dma_start_like(uVar1, 0);
                 if (g_8c4bd404 != 0) {
                     sd_update_fields_2658e2();
                 }

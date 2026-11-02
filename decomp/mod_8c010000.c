@@ -7698,7 +7698,7 @@ u32 noop(void) {
  * libgcc_movstr_i4  0x8c010838
  * compiler block-copy helper: copies r0 bytes from r2 to r1 in 32-bit words
  * called by: gfxlib_uses_libgcc_movstr_i4_23340c, gfxlib_uses_noop_fr4_test_2336e8, ninja_draw_2588f8,
- * ninja_draw_25e540, ninja_draw_25e884, ninja_draw_25eb60, ninja_uses_libgcc_divide_helper_25dc60,
+ * ninja_draw_25e540, ninja_draw_25e884, ninja_draw_25eb60, pvr_uses_libgcc_divide_helper_25dc60,
  * ta_uses_libgcc_movstr_i4_20df7a decompiler: Exceeded maximum restarts with more pending
  */
 u32 libgcc_movstr_i4(u32 a0, u32 a1, u32 a2, u32 a3) {
@@ -7900,7 +7900,7 @@ int libc_fill_loop_010960(u32 unused_a0, u32 a1) {
 /*
  * libc_calls_fill_loop_010998  0x8c010998
  * area name: in the libc library code range; behaviour name: its callees mostly do: fill_loop
- * called by: flash_header_signature, ninja_calls_fill_loop_25b4da, ninja_uses_strcat_25a174
+ * called by: filename_add_ext_if_missing, flash_header_signature, ninja_calls_fill_loop_25b4da
  */
 char *libc_calls_fill_loop_010998(void) {
     char cVar1;
@@ -7944,7 +7944,7 @@ char *libc_calls_fill_loop_010998(void) {
 /*
  * strcmp_word  0x8c0109e8
  * strcmp that compares a word at a time when both strings are aligned
- * called by: asr_uses_strcmp_word_10ca58, ninja_uses_strcat_25a174, strcmp_01439c
+ * called by: asr_uses_strcmp_word_10ca58, filename_add_ext_if_missing, strcmp_01439c
  */
 int strcmp_word(u32 *a0, u32 *a1) {
     int iVar1;
@@ -11886,8 +11886,8 @@ u32 libc_update_fields_014370(u32 a0) {
 
 /*
  * strcat  0x8c01437c
- * called by: asr_uses_strcpy_0fbf28, game_copy_0fae24, game_uses_strcmp_01dea4, msg_substitute_name,
- * ninja_uses_strcat_25a174, pack_find_entry_by_name, speech_start, speech_start_chapter (+6 more)
+ * called by: asr_uses_strcpy_0fbf28, filename_add_ext_if_missing, game_copy_0fae24, game_uses_strcmp_01dea4,
+ * msg_substitute_name, pack_find_entry_by_name, speech_start, speech_start_chapter (+6 more)
  */
 char *strcat(char *a0, char *a1) {
     char cVar1;
@@ -11918,8 +11918,9 @@ u32 strcmp_01439c(u32 a0, u32 a1) {
 
 /*
  * log_message  0x8c0143b0
- * called by: format_output, gfxlib_copy_238f2a, gfxlib_copy_239f84, gfxlib_uses_log_message_2341d6,
- * gfxlib_uses_sprintf_234834, libc_uses_log_message_013374, msg_substitute_name, named_list_ctor_0c (+7 more)
+ * called by: filename_add_ext_if_missing, format_output, gfxlib_copy_238f2a, gfxlib_copy_239f84,
+ * gfxlib_uses_log_message_2341d6, gfxlib_uses_sprintf_234834, libc_uses_log_message_013374, msg_substitute_name (+7
+ * more)
  */
 int log_message(char *a0, u32 a1, u32 a2) {
     char cVar1;

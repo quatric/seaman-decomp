@@ -17,17 +17,17 @@ u32 pvr_set_shadow_scale(u32 a0) {
 }
 
 /*
- * pvr_calls_scan_loop_2103c4  0x8c2103c4
- * area name: sits between pvr functions (same compilation unit); behaviour name: its callees mostly do: scan_loop
+ * pvr_uses_sq_copy_words_2103c4  0x8c2103c4
+ * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is sq_copy_words
  */
-int pvr_calls_scan_loop_2103c4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, int *ain0) {
+int pvr_uses_sq_copy_words_2103c4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, int *ain0) {
     int *in_r2;
     u32 *puVar1;
     int *unaff_r14;
 
     puVar1 = (u32 *)(*in_r2 * 4 + *ain0);
     *unaff_r14 = (int)puVar1;
-    pvr_scan_loop_207300(*puVar1, &g_8c2757a8, g_8c2757a4 << 2, a3);
+    sq_copy_words(*puVar1, &g_8c2757a8, g_8c2757a4 << 2, a3);
     *(int *)*unaff_r14 = *(int *)*unaff_r14 + g_8c2757a4 * 4;
     return *unaff_r14;
 }
@@ -372,7 +372,7 @@ u32 kamui_fill_loop_211040(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * kamui_calc_2110b2  0x8c2110b2
  * area name: in the kamui library code range; behaviour name: integer arithmetic on its arguments
- * called by: kamui_calls_scan_loop_2122ea
+ * called by: kamui_uses_sq_copy_words_2122ea
  */
 int kamui_calc_2110b2(int a0) {
     int iVar1;
@@ -394,7 +394,7 @@ u32 kamui_update_fields_2110e8(int a0, u32 a1, int a2, u32 a3) {
     u32 *puVar3;
     u32 auStack_c[2];
 
-    puVar2 = (&pvr_scan_loop_207300);
+    puVar2 = (&sq_copy_words);
     piVar1 = 0x8c4aa220;
     puVar3 = (u32 *)(a0 * 4 + g_8c4aa21c);
     g_8c4aa220 = (int)puVar3;
@@ -1236,10 +1236,11 @@ u32 *alt_entry_212152(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * kamui_calls_scan_loop_212220  0x8c212220
- * area name: sits between kamui functions (same compilation unit); behaviour name: its callees mostly do: scan_loop
+ * kamui_uses_sq_copy_words_212220  0x8c212220
+ * area name: sits between kamui functions (same compilation unit); behaviour name: its main named callee is
+ * sq_copy_words
  */
-u32 kamui_calls_scan_loop_212220(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 kamui_uses_sq_copy_words_212220(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int ar5_00;
@@ -1253,16 +1254,17 @@ u32 kamui_calls_scan_loop_212220(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) 
     uVar3 = uVar2 >> 0x18;
     *0xff000038 = uVar3;
     *0xff00003c = uVar3;
-    pvr_scan_loop_207300(0x3ffffff & uVar2 | 0xe0000000, ar5_00, ar6_00, a3);
+    sq_copy_words(0x3ffffff & uVar2 | 0xe0000000, ar5_00, ar6_00, a3);
     *(u32 *)(*a0 + iVar1) = *(int *)(*a0 + iVar1) + (ar6_00 & 0xfffffffc);
     return 0;
 }
 
 /*
- * kamui_calls_scan_loop_212284  0x8c212284
- * area name: sits between kamui functions (same compilation unit); behaviour name: its callees mostly do: scan_loop
+ * kamui_uses_sq_copy_words_212284  0x8c212284
+ * area name: sits between kamui functions (same compilation unit); behaviour name: its main named callee is
+ * sq_copy_words
  */
-u32 kamui_calls_scan_loop_212284(int *a0, u32 a1, u32 a2, int a3) {
+u32 kamui_uses_sq_copy_words_212284(int *a0, u32 a1, u32 a2, int a3) {
     u32 *puVar1;
     int iVar2;
     u32 uVar3;
@@ -1275,17 +1277,17 @@ u32 kamui_calls_scan_loop_212284(int *a0, u32 a1, u32 a2, int a3) {
     uVar4 = uVar3 >> 0x18;
     *puVar1 = uVar4;
     *0xff00003c = uVar4;
-    pvr_scan_loop_207300(0x3ffffff & uVar3 | 0xe0000000, a1, a3, a3);
+    sq_copy_words(0x3ffffff & uVar3 | 0xe0000000, a1, a3, a3);
     *(int *)(*a0 + iVar2) = *(int *)(*a0 + iVar2) + (a3 >> 2) * 4;
     return 0;
 }
 
 /*
- * kamui_calls_scan_loop_2122ea  0x8c2122ea
- * area name: in the kamui library code range; behaviour name: its callees mostly do: scan_loop
+ * kamui_uses_sq_copy_words_2122ea  0x8c2122ea
+ * area name: in the kamui library code range; behaviour name: its main named callee is sq_copy_words
  * called by: ta_fifo_2595aa
  */
-u32 kamui_calls_scan_loop_2122ea(int *a0, u32 a1, u32 a2, u32 *a3) {
+u32 kamui_uses_sq_copy_words_2122ea(int *a0, u32 a1, u32 a2, u32 *a3) {
     int iVar1;
     u32 uVar2;
     u32 *ar7_00;
@@ -1306,19 +1308,19 @@ u32 kamui_calls_scan_loop_2122ea(int *a0, u32 a1, u32 a2, u32 *a3) {
         g_8c2758f0 = *(u32 *)a0[1] & 0x830000 | uVar2;
         _DAT_ff000038 = *(u32 *)(*a0 + iVar3) >> 0x18;
         _DAT_ff00003c = _DAT_ff000038;
-        pvr_scan_loop_207300(*(u32 *)(*a0 + iVar3) & 0x3ffffff | 0xe0000000, &g_8c2758f0, 0x20, &g_8c2758f0);
+        sq_copy_words(*(u32 *)(*a0 + iVar3) & 0x3ffffff | 0xe0000000, &g_8c2758f0, 0x20, &g_8c2758f0);
         *(int *)(*a0 + iVar3) = *(int *)(*a0 + iVar3) + 0x20;
         for (iStack_4c = 2; iStack_4c != 0; iStack_4c = iStack_4c + -1) {
             _DAT_ff000038 = *(u32 *)(*a0 + iVar3) >> 0x18;
             _DAT_ff00003c = _DAT_ff000038;
-            pvr_scan_loop_207300(*(u32 *)(*a0 + iVar3) & 0x3ffffff | 0xe0000000, &g_8c275910, 0x40, ar7_00);
+            sq_copy_words(*(u32 *)(*a0 + iVar3) & 0x3ffffff | 0xe0000000, &g_8c275910, 0x40, ar7_00);
             *(int *)(*a0 + iVar3) = *(int *)(*a0 + iVar3) + 0x40;
         }
     }
     auStack_40[0] = 0x20000000;
     _DAT_ff000038 = *(u32 *)(*a0 + iVar3) >> 0x18;
     _DAT_ff00003c = _DAT_ff000038;
-    pvr_scan_loop_207300(*(u32 *)(*a0 + iVar3) & 0x3ffffff | 0xe0000000, auStack_40, 0x20, ar7_00);
+    sq_copy_words(*(u32 *)(*a0 + iVar3) & 0x3ffffff | 0xe0000000, auStack_40, 0x20, ar7_00);
     *(int *)(*a0 + iVar3) = *(int *)(*a0 + iVar3) + 0x20;
     return 0;
 }

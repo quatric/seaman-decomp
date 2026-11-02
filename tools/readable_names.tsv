@@ -1874,3 +1874,19 @@
 8c113b54	asr_model_state_save	copies the model's fifteen working values into its save area (+0xfc)
 8c113bcc	asr_model_state_restore	reloads the fifteen working values from the save area (+0xfc) and recomputes the derived pointer
 8c11c7b8	asr_free_tree	frees every leaf array of each branch of the tree a1, then the branches and the tree, through the allocator
+8c207300	sq_copy_words	copies a2 bytes of words from a1 to a0 for a store-queue/TA transfer (unaligned: word by word; aligned: one word per 8-byte step)
+8c1f2cce	gdfs_dir_find_entry	1-based index of the directory record (44 bytes each) whose name hash and name (case-insensitive, or with the alternative compare when a2 is 1) match a0; 0 if none
+8c1fbb6c	vmu_block_read_retry	reads block a1 of drive a0 into a2, retrying as configured; 0 on success, 0xffffff01 when absent, 0xffff0000 on error
+8c1ff478	vmu_file_delete	finds file a1 on drive a0, frees its block chain in the FAT, clears its directory entry and writes the FAT back; 0xffffff05 if not found
+8c200cf4	vmu_root_block_validate	checks the drive's root block fields for consistency and sets the size class (0..3 for 256..2048 blocks); -1 when invalid
+8c25a174	filename_add_ext_if_missing	appends name a1 to a0 and then extension a2 unless the name already ends with it (case-insensitive)
+8c1f09d4	bitmap_init_free_after_n	fills a2 * 64 bytes at a1 so the first a0 bits (MSB first) are clear and the rest set
+8c1f2a74	strnicmp_equal	1 when the first a2 characters of a0 and a1 are equal ignoring case (or both end earlier together)
+8c236278	gfx_heap_alloc	first-fit allocation of a0 bytes (32-byte aligned, plus a header) from the gfx_heap_init heap, splitting the free block; 0 when none fits
+8c1f0a22	flashrom_block_check_blank	1 (and fills the 64-byte block with 0xff) when its 60 data bytes are all 0xff and its CRC-16 matches; else 0
+8c1f8d98	g2dma_channel_open_like	sets up G2 DMA channel record a1 and returns it in *a0; 0x90101 when it is already open
+8c1f900c	g2dma_request_init	fills a G2 DMA request: 32-byte-aligned source and destination, length (with the start bit), direction and trigger flags, callback and argument
+8c1f9194	g2dma_start_like	when the channel is idle writes back the source cache lines and loads the request into the channel's registers; 0x90180 when busy
+8c20135c	vmu_file_skip_blocks	advances the open file's block cursor a1 blocks along its FAT chain; 0xffff0000 on a broken chain
+8c237770	gfx_light_globals_reset	resets the global light colours and parameters and clears the 32-entry light index list
+8c25dac0	pvr_pack_display_regs	packs the display mode parameters from the stack into the shadow values of the PVR display registers

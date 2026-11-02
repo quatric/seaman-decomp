@@ -15075,7 +15075,7 @@ u32 ninja_draw_2588f8(void) {
     g_8c4aa4c8 = 0;
     uVar9 = CONCAT44(g_8c4aa4d0, g_8c4aa4cc);
     fStack_24 = g_8c4aa4cc;
-    gfxlib_scan_loop_237770(&g_8c4aa4cc, ar5_00, ar6_00, &g_8c4aa4c4);
+    gfx_light_globals_reset(&g_8c4aa4cc, ar5_00, ar6_00, &g_8c4aa4c4);
     puVar8 = (u8 *)0x8c4aa73c;
     puVar7 = (u32 *)&g_8c4aabc0;
     do {
@@ -16269,7 +16269,7 @@ LAB_8c25962e:
             a2 = (int)in_dr2;
         }
         puVar2 = NULL;
-        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 0, a2, a3);
+        kamui_uses_sq_copy_words_2122ea(&g_8c4aabdc, 0, a2, a3);
     }
     if (g_8c277ad4 != 0) {
         if (cVar12 == '\0') {
@@ -16293,7 +16293,7 @@ LAB_8c25962e:
             a2 = (int)in_dr2;
         }
         puVar2 = (u64 *)0x1;
-        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 1, a2, a3);
+        kamui_uses_sq_copy_words_2122ea(&g_8c4aabdc, 1, a2, a3);
     }
     if (g_8c277ad8 != 0) {
         if (cVar12 == '\0') {
@@ -16317,7 +16317,7 @@ LAB_8c25962e:
             a2 = (int)in_dr2;
         }
         puVar2 = (u64 *)0x2;
-        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 2, a2, a3);
+        kamui_uses_sq_copy_words_2122ea(&g_8c4aabdc, 2, a2, a3);
     }
     if (g_8c277adc != 0) {
         if (cVar12 == '\0') {
@@ -16341,7 +16341,7 @@ LAB_8c25962e:
             a2 = (int)in_dr2;
         }
         puVar2 = (u64 *)0x3;
-        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 3, a2, a3);
+        kamui_uses_sq_copy_words_2122ea(&g_8c4aabdc, 3, a2, a3);
     }
     if (g_8c277ae0 != 0) {
         if (cVar12 == '\0') {
@@ -16365,7 +16365,7 @@ LAB_8c25962e:
             a2 = (int)in_dr2;
         }
         puVar2 = (u64 *)0x4;
-        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 4, a2, a3);
+        kamui_uses_sq_copy_words_2122ea(&g_8c4aabdc, 4, a2, a3);
     }
     *g_8c4aabbc = 0x10000000;
     g_8c4aabbc[0x2f] = a0;
@@ -16393,7 +16393,7 @@ LAB_8c25962e:
         } else {
             iVar10 = (int)in_dr2;
         }
-        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 0, iVar10, iVar9);
+        kamui_uses_sq_copy_words_2122ea(&g_8c4aabdc, 0, iVar10, iVar9);
     }
     if (g_8c277ad4 != 0) {
         if (cVar12 == '\0') {
@@ -16416,7 +16416,7 @@ LAB_8c25962e:
         } else {
             iVar10 = (int)in_dr2;
         }
-        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 1, iVar10, iVar9);
+        kamui_uses_sq_copy_words_2122ea(&g_8c4aabdc, 1, iVar10, iVar9);
     }
     if (g_8c277ad8 != 0) {
         if (cVar12 == '\0') {
@@ -16439,7 +16439,7 @@ LAB_8c25962e:
         } else {
             iVar10 = (int)in_dr2;
         }
-        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 2, iVar10, iVar9);
+        kamui_uses_sq_copy_words_2122ea(&g_8c4aabdc, 2, iVar10, iVar9);
     }
     if (g_8c277adc != 0) {
         if (cVar12 == '\0') {
@@ -16462,7 +16462,7 @@ LAB_8c25962e:
         } else {
             iVar10 = (int)in_dr2;
         }
-        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 3, iVar10, iVar9);
+        kamui_uses_sq_copy_words_2122ea(&g_8c4aabdc, 3, iVar10, iVar9);
     }
     if (g_8c277ae0 != 0) {
         if (cVar12 == '\0') {
@@ -16485,7 +16485,7 @@ LAB_8c25962e:
         } else {
             iVar10 = (int)in_dr2;
         }
-        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 4, iVar10, iVar9);
+        kamui_uses_sq_copy_words_2122ea(&g_8c4aabdc, 4, iVar10, iVar9);
     }
     switch_jump(8, &g_8c277c78, a1);
     switch_jump(8, &g_8c277c80, src);
@@ -16872,8 +16872,8 @@ u32 ninja_close_file(void) {
  * ninja_uses_memcpy_bytes_259c48  0x8c259c48
  * area name: in the ninja library code range; behaviour name: its main named callee is memcpy_bytes
  * called by: gfxlib_copy_238f2a, gfxlib_uses_ninja_close_file_239212, ninja_uses_ninja_close_file_256164,
- * pvrt_stream_is_palettized, ta_fifo_239012, tex_uses_dcache_writeback_range_25a770,
- * tex_uses_dcache_writeback_range_25a838, tex_uses_nj_seek_25a216 (+1 more)
+ * pvrt_stream_is_palettized, ta_fifo_239012, tex_uses_dcache_writeback_range_25a770, tex_uses_gfx_heap_alloc_25a838,
+ * tex_uses_nj_seek_25a216 (+1 more)
  */
 u32 ninja_uses_memcpy_bytes_259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -17080,7 +17080,7 @@ u32 ninja_uses_memcpy_bytes_259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
  * nj_seek  0x8c25a122
  * moves the position at 0x8c277ca0: a1 = 0 sets it, 1 adds a0, 2 sets it to size - a0
  * called by: gfxlib_uses_ninja_close_file_239212, pvrt_stream_is_palettized, tex_uses_dcache_writeback_range_25a770,
- * tex_uses_dcache_writeback_range_25a838, tex_uses_nj_seek_25a216, vram_uses_nj_seek_25ae38
+ * tex_uses_gfx_heap_alloc_25a838, tex_uses_nj_seek_25a216, vram_uses_nj_seek_25ae38
  */
 int nj_seek(int a0, int a1) {
     int iVar1;
@@ -17098,12 +17098,12 @@ int nj_seek(int a0, int a1) {
 }
 
 /*
- * ninja_uses_strcat_25a174  0x8c25a174
- * area name: in the ninja library code range; behaviour name: its main named callee is strcat
+ * filename_add_ext_if_missing  0x8c25a174
+ * appends name a1 to a0 and then extension a2 unless the name already ends with it (case-insensitive)
  * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
  * gfxlib_uses_tex_entry_alloc_237964
  */
-u32 ninja_uses_strcat_25a174(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 filename_add_ext_if_missing(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     u8 *ar4_00;
@@ -17637,12 +17637,12 @@ int tex_uses_dcache_writeback_range_25a770(int a0, int a1, u32 unused_a2, u32 a3
 }
 
 /*
- * tex_uses_dcache_writeback_range_25a838  0x8c25a838
+ * tex_uses_gfx_heap_alloc_25a838  0x8c25a838
  * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is
- * dcache_writeback_range called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
+ * gfx_heap_alloc called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
  * gfxlib_uses_tex_entry_alloc_237964
  */
-int tex_uses_dcache_writeback_range_25a838(int a0, int *a1, u32 unused_a2, u32 a3) {
+int tex_uses_gfx_heap_alloc_25a838(int a0, int *a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int ar4_00;
     int ain0;
@@ -17662,7 +17662,7 @@ int tex_uses_dcache_writeback_range_25a838(int a0, int *a1, u32 unused_a2, u32 a
         } else {
             ain0 = 0;
         }
-        ar4_00 = gfxlib_fill_loop_236278(in_stack_ffffffd8);
+        ar4_00 = gfx_heap_alloc(in_stack_ffffffd8);
         if (ar4_00 == 0) {
             g_8c4aa6b4 = 7;
             iVar1 = -7;
@@ -17694,7 +17694,7 @@ int tex_copy_to_alloc(u32 unused_a0, int *a1) {
     iVar1 = tex_test_25a962(a1);
     if (-1 < iVar1) {
         iVar1 = a1[6];
-        ar4_00 = gfxlib_fill_loop_236278(iVar1);
+        ar4_00 = gfx_heap_alloc(iVar1);
         if (ar4_00 == 0) {
             g_8c4aa6b4 = 7;
             iVar1 = -7;
@@ -18231,7 +18231,7 @@ int ninja_uses_nj_seek_25af3c(int a0, u32 a1, u32 a2) {
 /*
  * ninja_draw_25afc0  0x8c25afc0
  * area name: in the ninja library code range; behaviour name: mostly calls draw functions
- * called by: tex_uses_dcache_writeback_range_25a838
+ * called by: tex_uses_gfx_heap_alloc_25a838
  */
 int ninja_draw_25afc0(int a0, u32 a1, u32 a2) {
     int iVar1;
@@ -23943,11 +23943,11 @@ u32 pvr_soft_reset(void) {
 }
 
 /*
- * pvr_update_fields_25dac0  0x8c25dac0
- * area name: sits between pvr functions (same compilation unit); behaviour name: conditionally writes members
- * called by: ninja_uses_libgcc_divide_helper_25dc60
+ * pvr_pack_display_regs  0x8c25dac0
+ * packs the display mode parameters from the stack into the shadow values of the PVR display registers
+ * called by: pvr_uses_libgcc_divide_helper_25dc60
  */
-u32 pvr_update_fields_25dac0(void) {
+u32 pvr_pack_display_regs(void) {
     u32 *puVar1;
     u32 uVar2;
     u32 uVar3;
@@ -24006,11 +24006,11 @@ u32 pvr_update_fields_25dac0(void) {
 }
 
 /*
- * ninja_uses_libgcc_divide_helper_25dc60  0x8c25dc60
- * area name: in the ninja library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
- * called by: kamui_set_display_mode_cfg, shinobi_draw_207da0
+ * pvr_uses_libgcc_divide_helper_25dc60  0x8c25dc60
+ * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is
+ * libgcc_divide_helper_010468 called by: kamui_set_display_mode_cfg, shinobi_draw_207da0
  */
-u32 ninja_uses_libgcc_divide_helper_25dc60(int a0, u32 a1, int a2, int a3) {
+u32 pvr_uses_libgcc_divide_helper_25dc60(int a0, u32 a1, int a2, int a3) {
     int iVar1;
     int iVar2;
     u32 uVar3;
@@ -24274,7 +24274,7 @@ LAB_8c25dde8:
         uStack_38 = uVar4 - 1;
     }
     libgcc_movstr_i4(iVar6, a1, 0xf, ar7_00);
-    pvr_update_fields_25dac0();
+    pvr_pack_display_regs();
     g_8c4a9be8 = 0;
     g_8c4a9be4 = 0;
     return 0;

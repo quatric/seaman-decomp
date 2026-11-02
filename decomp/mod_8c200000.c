@@ -50,7 +50,7 @@ int shinobi_save_200038(int a0, u32 a1, u32 unused_a2, u32 a3) {
                                 uVar3 = shinobi_save_2007f0(a0, iVar4, uVar3);
                                 return uVar3;
                             }
-                            iVar1 = shinobi_input_1fbb6c(a0, puVar2, a1);
+                            iVar1 = vmu_block_read_retry(a0, puVar2, a1);
                             if (iVar1 < 0) {
                                 return iVar1;
                             }
@@ -82,11 +82,11 @@ int shinobi_save_200038(int a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * shinobi_input_2001b8  0x8c2001b8
- * area name: in the shinobi library code range; behaviour name: mostly calls input functions
- * called by: shinobi_input_200a00
+ * shinobi_save_2001b8  0x8c2001b8
+ * area name: in the shinobi library code range; behaviour name: mostly calls save functions
+ * called by: shinobi_save_200a00
  */
-u32 shinobi_input_2001b8(int a0) {
+u32 shinobi_save_2001b8(int a0) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -109,7 +109,7 @@ u32 shinobi_input_2001b8(int a0) {
     if (0 < iVar6) {
         do {
             iVar4 = iVar3;
-            iVar2 = shinobi_input_1fbb6c(a0, uVar8 & 0xffff, uVar9);
+            iVar2 = vmu_block_read_retry(a0, uVar8 & 0xffff, uVar9);
             if (iVar2 < 0) {
                 return iVar2;
             }
@@ -147,7 +147,7 @@ u32 alt_entry_2001d0(int a0) {
     iVar3 = *(int *)(a0 + in_r3 + 0x28);
     if (0 < iVar5) {
         do {
-            iVar2 = shinobi_input_1fbb6c(unaff_r12, uVar6 & 0xffff, iVar3);
+            iVar2 = vmu_block_read_retry(unaff_r12, uVar6 & 0xffff, iVar3);
             if (iVar2 < 0) {
                 return iVar2;
             }
@@ -448,7 +448,7 @@ u32 alt_entry_2004f6(u32 unused_a0, int a1, u32 a2, u32 a3) {
  * vmu_dir_find_file  0x8c200566
  * finds the data (0x33) or game (0xcc) directory entry named a1 on drive a0 and copies it to a2
  * called by: bu_get_file_size_now, bu_is_exist_file_now, shinobi_input_1fdd44, shinobi_save_1fe534,
- * shinobi_save_1fe646, shinobi_save_1fe7aa, shinobi_save_1ff478, shinobi_save_1ff72e (+5 more)
+ * shinobi_save_1fe646, shinobi_save_1fe7aa, shinobi_save_1ff72e, shinobi_save_1ff844 (+5 more)
  */
 u32 vmu_dir_find_file(int a0, u32 a1, u32 a2) {
     int iVar1;
@@ -553,14 +553,14 @@ u32 vmu_dir_find_empty_entry(int a0) {
 /*
  * shinobi_calc_200642  0x8c200642
  * area name: in the shinobi library code range; behaviour name: integer arithmetic on its arguments
- * called by: shinobi_input_200a00
+ * called by: shinobi_save_200a00
  */
 u32 shinobi_calc_200642(int a0) {
     u32 uVar1;
     int iVar2;
 
     iVar2 = a0 * 0x148 + 0x8c4783e0;
-    uVar1 = (*(code *)(&shinobi_input_1fbb6c))(*(u32 *)(*(int *)(iVar2 + 0x1c) + 8), *(u32 *)(iVar2 + 0x20));
+    uVar1 = (*(code *)(&vmu_block_read_retry))(*(u32 *)(*(int *)(iVar2 + 0x1c) + 8), *(u32 *)(iVar2 + 0x20));
     return uVar1;
 }
 
@@ -582,7 +582,7 @@ u32 shinobi_calc_20065a(int a0) {
 /*
  * vmu_load_fat_like  0x8c200672
  * reads the drive's FAT blocks into its buffer, stopping at the first error
- * called by: shinobi_input_200a00
+ * called by: shinobi_save_200a00
  */
 u32 vmu_load_fat_like(int a0) {
     u8 *puVar1;
@@ -592,7 +592,7 @@ u32 vmu_load_fat_like(int a0) {
     int iVar5;
     u32 uVar6;
 
-    puVar1 = (&shinobi_input_1fbb6c);
+    puVar1 = (&vmu_block_read_retry);
     uVar6 = 1;
     iVar4 = a0 * 0x148 + 0x8c4783e0;
     iVar3 = *(int *)(*(int *)(iVar4 + 0x1c) + 0x10);
@@ -624,7 +624,7 @@ u32 alt_entry_200682(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar5;
     int in_MACL;
 
-    puVar1 = (&shinobi_input_1fbb6c);
+    puVar1 = (&vmu_block_read_retry);
     iVar4 = in_MACL + in_r3;
     iVar3 = *(int *)(*(int *)(iVar4 + 0x1c) + 0x10);
     iVar5 = 0;
@@ -1013,7 +1013,7 @@ u32 alt_entry_20094e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
  * vmu_drive_write_like  0x8c20099e
  * calls the drive's operation +0x10 for block a1 when it is within the card (probably a block write)
  * called by: alt_entry_1febe6, alt_entry_2006fa, alt_entry_20080e, alt_entry_200900, shinobi_save_1febd6,
- * shinobi_save_1fecf2, shinobi_save_1ff478, shinobi_save_200038 (+6 more)
+ * shinobi_save_1fecf2, shinobi_save_200038, shinobi_save_200226 (+6 more)
  */
 int vmu_drive_write_like(int a0, int a1, u32 a2) {
     u32 uVar1;
@@ -1033,7 +1033,7 @@ int vmu_drive_write_like(int a0, int a1, u32 a2) {
  * vmu_drive_read_like  0x8c2009d0
  * calls the drive's operation +0xc for block a1 (probably a block read)
  * called by: alt_entry_1fffd8, alt_entry_2001d0, alt_entry_200772, alt_entry_20136c, bu_get_free_blocks_now,
- * shinobi_input_1fe466, shinobi_input_1fee6c, shinobi_input_2001b8 (+11 more)
+ * shinobi_input_1fe466, shinobi_save_1fe646, shinobi_save_1fecf2 (+11 more)
  */
 u32 vmu_drive_read_like(int a0, int a1) {
     u32 uVar1;
@@ -1045,11 +1045,11 @@ u32 vmu_drive_read_like(int a0, int a1) {
 }
 
 /*
- * shinobi_input_200a00  0x8c200a00
- * area name: in the shinobi library code range; behaviour name: mostly calls input functions
- * called by: shinobi_input_1fdab0, shinobi_input_1fdc80, shinobi_uses_memset_1fde30
+ * shinobi_save_200a00  0x8c200a00
+ * area name: in the shinobi library code range; behaviour name: mostly calls save functions
+ * called by: shinobi_save_1fdab0, shinobi_save_1fdc80, shinobi_uses_memset_1fde30
  */
-int shinobi_input_200a00(int a0, u32 a1) {
+int shinobi_save_200a00(int a0, u32 a1) {
     int iVar1;
     int iVar2;
 
@@ -1059,7 +1059,7 @@ int shinobi_input_200a00(int a0, u32 a1) {
         iVar1 = shinobi_input_1ffcc2(a0, a1);
         if (-1 < iVar1) {
             if (((*(char *)(iVar2 + 0xb) == '\0') && (iVar1 = vmu_load_fat_like(a0), iVar1 < 0)) ||
-                ((*(char *)(iVar2 + 0xc) == '\0' && (iVar1 = shinobi_input_2001b8(a0), iVar1 < 0)))) {
+                ((*(char *)(iVar2 + 0xc) == '\0' && (iVar1 = shinobi_save_2001b8(a0), iVar1 < 0)))) {
                 if (iVar1 != 0xffff0000) {
                     return iVar1;
                 }
@@ -1079,7 +1079,7 @@ int shinobi_input_200a00(int a0, u32 a1) {
  * vmu_dir_entry  0x8c200a84
  * address of 32-byte directory entry a1 of memory-card drive a0 (drives are 0x148 bytes at 0x8c4783e0)
  * called by: alt_entry_20094e, shinobi_input_1ff110, shinobi_input_1ff336, shinobi_save_1fe646, shinobi_save_1fe7aa,
- * shinobi_save_1fe9ae, shinobi_save_1ff478, shinobi_save_1ff72e (+6 more)
+ * shinobi_save_1fe9ae, shinobi_save_1ff72e, shinobi_save_1ff844 (+6 more)
  */
 int vmu_dir_entry(int a0, int a1) {
     return a1 * 0x20 + *(int *)(a0 * 0x148 + 0x8c4783e0 + 0x28);
@@ -1088,7 +1088,7 @@ int vmu_dir_entry(int a0, int a1) {
 /*
  * vmu_fat_mark  0x8c200a9c
  * marks block a1 in drive a0's map at +0x48
- * called by: shinobi_save_1fe9ae, shinobi_save_1ff478, shinobi_save_1ff72e, shinobi_save_1ff844, shinobi_save_1ffa54
+ * called by: shinobi_save_1fe9ae, shinobi_save_1ff72e, shinobi_save_1ff844, shinobi_save_1ffa54, vmu_file_delete
  */
 int vmu_fat_mark(int a0, int a1) {
     int iVar1;
@@ -1148,7 +1148,7 @@ u32 ret_const_0_200aec(void) {
 /*
  * shinobi_save_200b10  0x8c200b10
  * area name: in the shinobi library code range; behaviour name: mostly calls save functions
- * called by: shinobi_input_2014e6, shinobi_save_1fe534, shinobi_save_1ff478, vmu_file_get_block_list
+ * called by: shinobi_input_2014e6, shinobi_save_1fe534, vmu_file_delete, vmu_file_get_block_list
  */
 int shinobi_save_200b10(int a0, u32 a1) {
     int iVar1;
@@ -1329,11 +1329,11 @@ int alt_entry_200c8a(void) {
 }
 
 /*
- * shinobi_update_fields_200cf4  0x8c200cf4
- * area name: in the shinobi library code range; behaviour name: conditionally writes members
- * called by: shinobi_input_1fdab0, shinobi_input_1fdbaa, shinobi_uses_memset_1fde30
+ * vmu_root_block_validate  0x8c200cf4
+ * checks the drive's root block fields for consistency and sets the size class (0..3 for 256..2048 blocks); -1 when
+ * invalid called by: shinobi_input_1fdbaa, shinobi_save_1fdab0, shinobi_uses_memset_1fde30
  */
-u32 shinobi_update_fields_200cf4(int a0) {
+u32 vmu_root_block_validate(int a0) {
     int iVar1;
     int *piVar2;
 
@@ -1379,7 +1379,7 @@ u32 vmu_read_blocks_to(int a0, int a1) {
         if (**(int **)(&g_8c4783fc + iVar2) + 1 <= ar5_00) {
             return 0;
         }
-        iVar1 = shinobi_input_1fbb6c(a0, ar5_00, a1);
+        iVar1 = vmu_block_read_retry(a0, ar5_00, a1);
         if (iVar1 < 0)
             break;
         ar5_00 = ar5_00 + 1;
@@ -1405,7 +1405,7 @@ u32 alt_entry_200db0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar4;
     int a5;
 
-    puVar1 = (&shinobi_input_1fbb6c);
+    puVar1 = (&vmu_block_read_retry);
     iVar4 = unaff_r13 + in_r3;
     iVar3 = (int)0x200;
     *(u32 *)(iVar4 + 0x30) = in_r2;
@@ -1515,7 +1515,7 @@ u32 shinobi_save_200e8a(int a0, u32 a1, int a2, u32 a3) {
             iVar3 = (int)0x200;
             iVar2 = iStack_1c;
             do {
-                uVar1 = shinobi_input_1fee6c(uStack_24, iVar2);
+                uVar1 = shinobi_save_1fee6c(uStack_24, iVar2);
                 if ((int)uVar1 < 0)
                     goto LAB_8c200f12;
                 uVar4 = uVar4 + 1;
@@ -1626,7 +1626,7 @@ int shinobi_save_20103c(int a0, u32 a1, int a2, u32 a3, u8 *s0, u32 s4) {
             iVar3 = iStack_24;
             if (a3 != 0) {
                 do {
-                    iVar1 = shinobi_input_1fee6c(iStack_2c, ar5_00);
+                    iVar1 = shinobi_save_1fee6c(iStack_2c, ar5_00);
                     s0 = (u8 *)ar6_00;
                     if (iVar1 < 0)
                         goto LAB_8c20110e;
@@ -1743,7 +1743,7 @@ int shinobi_save_201240(int a0, u32 a1, int a2, u32 a3, u8 *s0, u32 s4) {
             iVar3 = iStack_24;
             if (a3 != 0) {
                 do {
-                    iVar1 = shinobi_input_1fee6c(iStack_2c, ar5_00);
+                    iVar1 = shinobi_save_1fee6c(iStack_2c, ar5_00);
                     s0 = (u8 *)ar6_00;
                     if (iVar1 < 0)
                         goto LAB_8c201312;
@@ -1767,11 +1767,11 @@ int shinobi_save_201240(int a0, u32 a1, int a2, u32 a3, u8 *s0, u32 s4) {
 }
 
 /*
- * shinobi_save_20135c  0x8c20135c
- * area name: in the shinobi library code range; behaviour name: mostly calls save functions
+ * vmu_file_skip_blocks  0x8c20135c
+ * advances the open file's block cursor a1 blocks along its FAT chain; 0xffff0000 on a broken chain
  * called by: shinobi_save_2013c2
  */
-u32 shinobi_save_20135c(int a0, u32 a1, u32 a2) {
+u32 vmu_file_skip_blocks(int a0, u32 a1, u32 a2) {
     u32 uVar1;
     u32 ar4_00;
     u32 uVar2;
@@ -1865,12 +1865,12 @@ int shinobi_save_2013c2(int a0, u32 a1, int a2, int a3, u32 s0) {
         iVar2 = a0 * 0x148 + 0x8c4783e0;
         *(u32 *)(iVar2 + 0x30) = 1;
         *(u32 *)(iVar2 + 0x34) = s0;
-        shinobi_save_20135c(uStack_28, iStack_24, 0);
+        vmu_file_skip_blocks(uStack_28, iStack_24, 0);
         uVar4 = 0;
         if (s0 != 0) {
             iVar3 = (int)0x200;
             do {
-                iVar2 = shinobi_input_1fee6c(uStack_28, iVar1);
+                iVar2 = shinobi_save_1fee6c(uStack_28, iVar1);
                 if (iVar2 < 0)
                     goto LAB_8c201442;
                 uVar4 = uVar4 + 1;
@@ -4610,7 +4610,7 @@ u32 shinobi_calls_scan_loop_203320(u32 a0, u32 a1) {
 /*
  * strupr  0x8c2033c0
  * converts string a0 to upper case in place
- * called by: ninja_uses_strcat_25a174
+ * called by: filename_add_ext_if_missing
  */
 u32 strupr(char *a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -8419,12 +8419,12 @@ u32 callback_table_call(int a0) {
 }
 
 /*
- * pvr_scan_loop_207300  0x8c207300
- * area name: sits between pvr functions (same compilation unit); behaviour name: a loop that only reads
- * called by: alt_entry_20af22, kamui_calls_scan_loop_212220, kamui_calls_scan_loop_212284,
- * kamui_calls_scan_loop_2122ea, pvr_calls_scan_loop_2103c4, shinobi_calls_scan_loop_20af20
+ * sq_copy_words  0x8c207300
+ * copies a2 bytes of words from a1 to a0 for a store-queue/TA transfer (unaligned: word by word; aligned: one word per
+ * 8-byte step) called by: alt_entry_20af22, kamui_uses_sq_copy_words_212220, kamui_uses_sq_copy_words_212284,
+ * kamui_uses_sq_copy_words_2122ea, pvr_uses_sq_copy_words_2103c4, shinobi_uses_sq_copy_words_20af20
  */
-u32 pvr_scan_loop_207300(u32 *a0, u32 *a1, u32 a2, u32 a3) {
+u32 sq_copy_words(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -9062,7 +9062,7 @@ int kamui_set_display_mode_cfg(u32 a0, int a1, u32 a2, u32 a3) {
         } else {
             iVar5 = 1;
         }
-        ninja_uses_libgcc_divide_helper_25dc60(uStack_2c, iVar2, a1, uStack_30);
+        pvr_uses_libgcc_divide_helper_25dc60(uStack_2c, iVar2, a1, uStack_30);
         pvr_write_saved_regs(uStack_2c, iVar2, a1, uStack_30);
     }
     return iVar5;
@@ -9128,7 +9128,7 @@ u32 shinobi_draw_207da0(int a0, int a1) {
     do {
     } while (g_8c4a9f1c == g_8c4a9f1c);
     ar6_00 = g_8c4a9bd0;
-    ninja_uses_libgcc_divide_helper_25dc60(ar4_01, ar5_00, ar6_00, ar7_00);
+    pvr_uses_libgcc_divide_helper_25dc60(ar4_01, ar5_00, ar6_00, ar7_00);
     pvr_write_saved_regs(ar4_01, ar5_00, ar6_00, ar7_00);
     puVar1 = (&pvr_20a844);
     pvr_20a844(0x44, g_8c4a9e74 & 0xfffffffe);
@@ -11721,11 +11721,11 @@ u32 pvr_test_20aed8(u32 a0) {
 }
 
 /*
- * shinobi_calls_scan_loop_20af20  0x8c20af20
- * area name: in the shinobi library code range; behaviour name: its callees mostly do: scan_loop
+ * shinobi_uses_sq_copy_words_20af20  0x8c20af20
+ * area name: in the shinobi library code range; behaviour name: its main named callee is sq_copy_words
  * called by: ta_copy_20b7a0
  */
-u32 shinobi_calls_scan_loop_20af20(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 shinobi_uses_sq_copy_words_20af20(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u8 *ar5_00;
@@ -11736,7 +11736,7 @@ u32 shinobi_calls_scan_loop_20af20(u32 unused_a0, u32 unused_a1, u32 unused_a2, 
     uVar2 = *g_8c4aa21c & 0x3ffffff | 0xe0000000;
     _DAT_ff00003c = _DAT_ff000038;
     do {
-        pvr_scan_loop_207300(uVar2, ar5_00, 0x20, a3);
+        sq_copy_words(uVar2, ar5_00, 0x20, a3);
         iVar1 = iVar1 + -1;
         uVar2 = uVar2 + 0x20;
         ar5_00 = ar5_00 + 0x20;
@@ -11762,7 +11762,7 @@ int alt_entry_20af22(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     ar4_00 = *(u32 *)*in_r3 & 0x3ffffff | 0xe0000000;
     _DAT_ff00003c = _DAT_ff000038;
     do {
-        pvr_scan_loop_207300(ar4_00, ar5_00, 0x20, a3);
+        sq_copy_words(ar4_00, ar5_00, 0x20, a3);
         iVar1 = iVar1 + -1;
         ar4_00 = ar4_00 + 0x20;
         ar5_00 = ar5_00 + 0x20;
@@ -12098,7 +12098,7 @@ u32 ta_copy_20b7a0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
     puStack_68 = g_8c26d400;
     if (((((g_8c4a9bb0 & 0x40) != 0) && (g_8c4aa05c != 0)) && (g_8c4aa064 != 0)) && (g_8c4a9d70 != 0)) {
-        shinobi_calls_scan_loop_20af20(unused_a0, unused_a1, unused_a2, a3);
+        shinobi_uses_sq_copy_words_20af20(unused_a0, unused_a1, unused_a2, a3);
     }
     iVar5 = g_8c4a9f08 * 4;
     apuStack_34[0] = (u32 *)(iVar5 + 0x8c4a9f2c);
