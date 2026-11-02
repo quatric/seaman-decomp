@@ -3691,9 +3691,9 @@ u32 libgcc_divide_helper_0103d0(u32 a0, int a1) {
 
 /*
  * libgcc_divide_helper_010468  0x8c010468
- * called by: ADXF_AddPartition, ADXF_LoadPartition, ADXT_GetTime_like, ADXT_uses_ADXT_Stop_like_264c92,
- * ADXT_uses_libgcc_divide_helper_264308, ADXT_uses_libgcc_divide_helper_2647f4, alt_entry_010b08, alt_entry_10fabc (+58
- * more)
+ * called by: ADXF_AddPartition, ADXF_LoadPartition, ADXT_GetTime_like, ADXT_buffered_samples_like,
+ * ADXT_uses_ADXT_Stop_like_264c92, ADXT_uses_libgcc_divide_helper_264308, ADXT_uses_libgcc_divide_helper_2647f4,
+ * adx_parse_header (+58 more)
  */
 int libgcc_divide_helper_010468(u32 a0, u32 a1) {
     u32 uVar1;
@@ -23505,7 +23505,7 @@ int game_uses_CDCGD_queue_unique_request_01fd08(u32 a0, int *a1, u32 unused_a2, 
     while (true) {
         ar6_00 = aiStack_44;
         ar5_00 = aiStack_44 + 1;
-        iVar1 = kamui_uses_bswap32_2124d0(a1[2], ar5_00, ar6_00, a3);
+        iVar1 = gdfs_uses_bswap32_2124d0(a1[2], ar5_00, ar6_00, a3);
         if (iVar1 == 0)
             break;
         if (aiStack_44[2] == aiStack_44[0]) {

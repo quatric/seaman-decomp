@@ -11142,7 +11142,7 @@ u32 pvr_wrap_20a238(u32 a0) {
 /*
  * shinobi_draw_20a280  0x8c20a280
  * area name: in the shinobi library code range; behaviour name: mostly calls draw functions
- * called by: ninja_draw_25603a
+ * called by: ninja_set_palette_format
  */
 u32 shinobi_draw_20a280(u32 a0) {
     if ((a0 & 0xfffffffc) == 0) {
@@ -11258,7 +11258,7 @@ u32 pvr_calc_20a420(u32 a0, int a1, u32 a2, u32 a3) {
 /*
  * pvr_set_clip_rect  0x8c20a482
  * sets the tile clip rectangle (a0, a1)-(a2, a3), at most 2047, even in mode 4; 0xdddd if empty
- * called by: alt_entry_25b052, kamui_draw_20bdc0, kamui_draw_20c416, ninja_draw_25b044, ninja_draw_25b08a
+ * called by: alt_entry_25b052, kamui_draw_20bdc0, kamui_draw_20c416, ninja_draw_25b044, ninja_draw_into_texture_entry
  */
 u32 pvr_set_clip_rect(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -12329,7 +12329,7 @@ LAB_8c20bd36:
 /*
  * kamui_draw_20bdc0  0x8c20bdc0
  * area name: in the kamui library code range; behaviour name: mostly calls draw functions
- * called by: alt_entry_25b052, ninja_draw_25b044, ninja_draw_25b08a
+ * called by: alt_entry_25b052, ninja_draw_25b044, ninja_draw_into_texture_entry
  */
 u32 kamui_draw_20bdc0(int a0, u32 *a1, u32 a2, u32 a3) {
     bool bVar1;

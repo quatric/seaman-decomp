@@ -1261,8 +1261,7 @@ u32 kamui_uses_sq_copy_words_212220(int *a0, u32 unused_a1, u32 unused_a2, u32 a
 
 /*
  * kamui_uses_sq_copy_words_212284  0x8c212284
- * area name: sits between kamui functions (same compilation unit); behaviour name: its main named callee is
- * sq_copy_words
+ * area name: in the kamui library code range; behaviour name: its main named callee is sq_copy_words
  */
 u32 kamui_uses_sq_copy_words_212284(int *a0, u32 a1, u32 a2, int a3) {
     u32 *puVar1;
@@ -1326,10 +1325,10 @@ u32 kamui_uses_sq_copy_words_2122ea(int *a0, u32 a1, u32 a2, u32 *a3) {
 }
 
 /*
- * kamui_uses_gdfs_close_like_212440  0x8c212440
- * area name: in the kamui library code range; behaviour name: its main named callee is gdfs_close_like
+ * gdfs_load_file_alloc  0x8c212440
+ * opens file a0, allocates its size in 0x800-byte sectors plus 8 and reads it whole; returns the buffer or 0
  */
-u32 kamui_uses_gdfs_close_like_212440(u32 a0, u32 unused_a1, int a2, u32 a3) {
+u32 gdfs_load_file_alloc(u32 a0, u32 unused_a1, int a2, u32 a3) {
     int ar4_00;
     int iVar1;
     int iVar2;
@@ -1361,18 +1360,18 @@ u32 kamui_uses_gdfs_close_like_212440(u32 a0, u32 unused_a1, int a2, u32 a3) {
 /*
  * bswap32  0x8c2124aa
  * byte-swaps a 32-bit word
- * called by: kamui_uses_bswap32_2124d0
+ * called by: gdfs_uses_bswap32_2124d0
  */
 u32 bswap32(u32 a0) {
     return a0 << 0x18 | (0xff00 & a0) << 8 | (0xff0000 & a0) >> 8 | (0xff000000 & a0) >> 0x18;
 }
 
 /*
- * kamui_uses_bswap32_2124d0  0x8c2124d0
- * area name: in the kamui library code range; behaviour name: its main named callee is bswap32
+ * gdfs_uses_bswap32_2124d0  0x8c2124d0
+ * area name: sits between gdfs functions (same compilation unit); behaviour name: its main named callee is bswap32
  * called by: game_uses_CDCGD_queue_unique_request_01fd08
  */
-u32 kamui_uses_bswap32_2124d0(int a0, int *a1, int *a2, u32 a3) {
+u32 gdfs_uses_bswap32_2124d0(int a0, int *a1, int *a2, u32 a3) {
     u8 *puVar1;
     u32 uVar2;
     int *piVar3;
@@ -15258,7 +15257,7 @@ u8 *gfxlib_draw_217f12(u16 *a0, int a1, int a2, u32 *a3, u8 *ain0) {
                                             uVar6 = 0x80020;
                                         }
                                         ta_fifo_237124(uVar6, &g_8c277acc, a6, 0x20);
-                                        pcVar7 = ta_init_fields_236940;
+                                        pcVar7 = ta_sq_write_vertex_slot4;
                                     } else {
                                         if ((a6 & 0x20) == 0) {
                                             uVar6 = 0x2100022;
@@ -15266,7 +15265,7 @@ u8 *gfxlib_draw_217f12(u16 *a0, int a1, int a2, u32 *a3, u8 *ain0) {
                                             uVar6 = 0x2100020;
                                         }
                                         ta_fifo_237124(uVar6, &g_8c277acc, a6, 0x20);
-                                        pcVar7 = ta_init_fields_236a2a;
+                                        pcVar7 = ta_sq_write_vertex_slot5;
                                     }
                                     a7 = (u32 *)(*pcVar7)(auStack_30, a5, a6, a7);
                                 }
@@ -16615,9 +16614,9 @@ u8 *gfxlib_draw_21908e(u16 *a0, int a1, u32 a2) {
                         uVar10 = a6;
                         ta_fifo_237124(*(u32 *)(&g_8c275a88 + iVar4), 0x40, a6, &g_8c4aa4f0);
                         if ((a6 & 8) == 0) {
-                            pcVar12 = ta_init_fields_236940;
+                            pcVar12 = ta_sq_write_vertex_slot4;
                         } else {
-                            pcVar12 = ta_init_fields_236a2a;
+                            pcVar12 = ta_sq_write_vertex_slot5;
                         }
                         ar7_00 = (u8 *)(*pcVar12)(auStack_34, uVar8, uVar10, ar7_00);
                         if (a1 == 0)

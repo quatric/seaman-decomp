@@ -10769,10 +10769,11 @@ u32 tex_uses_tex_entry_find_255ff8(u32 a0, u32 a1) {
 }
 
 /*
- * ninja_draw_25603a  0x8c25603a
- * area name: in the ninja library code range; behaviour name: mostly calls draw functions
+ * ninja_set_palette_format  0x8c25603a
+ * sets the PVR palette format from a0 (0-2 are 16-bit formats, 6 is the 32-bit one) and records the entry width (0x10
+ * or 0x20)
  */
-u32 ninja_draw_25603a(int a0) {
+u32 ninja_set_palette_format(int a0) {
     u32 *puVar1;
     u32 uVar2;
 
@@ -10799,10 +10800,11 @@ LAB_8c256072:
 }
 
 /*
- * ninja_copy_2560b4  0x8c2560b4
- * area name: in the ninja library code range; behaviour name: mostly calls copy functions
+ * ninja_palette_load  0x8c2560b4
+ * writes a1 palette entries from a2 into palette RAM (0x5f9000) starting at entry a0, as halfwords or whole words by
+ * the current format
  */
-u32 ninja_copy_2560b4(int a0, int a1, u16 *a2) {
+u32 ninja_palette_load(int a0, int a1, u16 *a2) {
     u16 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -17412,7 +17414,7 @@ int alt_entry_25a4a6(u32 *a0, u32 a1, u32 a2, int *a3, int ain0) {
  * tex_entry_find  0x8c25a536
  * index of the texture-table entry (0x44 bytes each, a1 of them at a0) whose id is a2; -1 if none
  * called by: alt_entry_23729c, gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
- * gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0, ninja_draw_25b08a,
+ * gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0, ninja_draw_into_texture_entry,
  * pvr_uses_tex_entry_alloc_23a29c, ta_select_texture_cached (+2 more)
  */
 u32 tex_entry_find(int a0, u32 a1, int a2) {
@@ -18301,10 +18303,10 @@ u32 alt_entry_25b052(int a0) {
 }
 
 /*
- * ninja_draw_25b08a  0x8c25b08a
- * area name: in the ninja library code range; behaviour name: mostly calls draw functions
+ * ninja_draw_into_texture_entry  0x8c25b08a
+ * finds texture entry a0, clips to its size, draws into its surface and restores the screen clip rectangle
  */
-u32 ninja_draw_25b08a(u32 a0) {
+u32 ninja_draw_into_texture_entry(u32 a0) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -25977,8 +25979,8 @@ int cri_sound_25fca4(int a0, u32 a1, u32 a2) {
     puStack_c = &g_8c4b9828;
     *(u16 *)(a0 + 2) = 1;
     ar7_00 = a0 + 0xc;
-    iVar2 = (*(code *)(&cri_uses_libgcc_divide_helper_260d7c))(a1, a2, asStack_14, ar7_00, a0 + 0xd, a0 + 0xf, a0 + 0xe,
-                                                               a0 + 0x14, a0 + 0x18);
+    iVar2 =
+        (*(code *)(&adx_parse_header))(a1, a2, asStack_14, ar7_00, a0 + 0xd, a0 + 0xf, a0 + 0xe, a0 + 0x14, a0 + 0x18);
     if ((iVar2 < 0) || (iVar2 = adx_get_highpass_freq(a1, a2, a0 + 0x1c), iVar2 < 0)) {
         iVar2 = 0;
     } else {

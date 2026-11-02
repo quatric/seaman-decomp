@@ -4443,8 +4443,8 @@ u32 *set_fields_0_4_8_1f3078(u32 *a0, u32 a1) {
 /*
  * gdfs_close_like  0x8c1f309c
  * closes a file handle: aborts a transfer in progress (status 2..4) and clears +0x4c (probably gdFsClose)
- * called by: ADXSTM_Destroy_like, ADXSTM_OpenFname, alt_entry_26344a, gdfs_shutdown, gdfs_shutdown_alt,
- * gdfs_uses_read_u32_le_1f1eaa, kamui_uses_gdfs_close_like_212440
+ * called by: ADXSTM_Destroy_like, ADXSTM_OpenFname, alt_entry_26344a, gdfs_load_file_alloc, gdfs_shutdown,
+ * gdfs_shutdown_alt, gdfs_uses_read_u32_le_1f1eaa
  */
 u32 gdfs_close_like(int a0, u32 a1, u32 a2, u32 a3) {
     short sVar1;
@@ -4497,7 +4497,7 @@ u32 gdfs_get_size_like(int a0, u32 *a1) {
 /*
  * gdfs_test_1f30ee  0x8c1f30ee
  * area name: sits between gdfs functions (same compilation unit); behaviour name: returns the result of a comparison
- * called by: kamui_uses_gdfs_close_like_212440
+ * called by: gdfs_load_file_alloc
  */
 u32 gdfs_test_1f30ee(int a0, u32 *a1) {
     if ((a0 != 0) && (*(short *)(a0 + 0x4c) != 0)) {
@@ -4548,7 +4548,7 @@ u32 gdfs_test_1f316e(int a0) {
 /*
  * gdfs_calls_update_fields_1f31c6  0x8c1f31c6
  * area name: sits between gdfs functions (same compilation unit); behaviour name: its callees mostly do: update_fields
- * called by: gdfs_read_sectors_like, kamui_uses_gdfs_close_like_212440, ninja_uses_memcpy_bytes_259c48,
+ * called by: gdfs_load_file_alloc, gdfs_read_sectors_like, ninja_uses_memcpy_bytes_259c48,
  * ninja_uses_memcpy_bytes_259e80
  */
 int gdfs_calls_update_fields_1f31c6(int a0, int a1, u32 a2, u32 a3) {
@@ -5104,7 +5104,7 @@ u32 gdfs_test_1f3968(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gdfs_open_like  0x8c1f397e
  * opens a file on the disc (probably gdFsOpen)
- * called by: ADXSTM_OpenFname, ADXSTM_OpenFnameRange, kamui_uses_gdfs_close_like_212440, nj_file_open
+ * called by: ADXSTM_OpenFname, ADXSTM_OpenFnameRange, gdfs_load_file_alloc, nj_file_open
  */
 u32 gdfs_open_like(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -14163,7 +14163,7 @@ u32 noop_1fb43a(void) {
 /*
  * malloc_thunk  0x8c1fb4ae
  * called by: CDCGD_new_request_c, CDCGD_uses_strcpy_0202c0, CProlog_uses_free_sys_0b96e4, draw_uses_free_sys_258b26,
- * game_init, game_uses_free_sys_01e0a4, game_uses_malloc_thunk_015f18, input_uses_file_slot_open_01f608 (+11 more)
+ * game_init, game_uses_free_sys_01e0a4, game_uses_malloc_thunk_015f18, gdfs_load_file_alloc (+11 more)
  */
 u32 malloc_thunk(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;

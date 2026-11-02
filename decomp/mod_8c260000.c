@@ -1340,11 +1340,11 @@ u32 *cri_uses_libm_errno_wrap_260cf8(int a0, int a1, u16 *a2, u16 *a3) {
 }
 
 /*
- * cri_uses_libgcc_divide_helper_260d7c  0x8c260d7c
- * area name: in the cri library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
+ * adx_parse_header  0x8c260d7c
+ * checks the 0x8000 ADX signature and returns the big-endian header fields (offset, type, block size, bits, channels,
+ * rate, samples)
  */
-u32 cri_uses_libgcc_divide_helper_260d7c(u16 *a0, int a1, short *a2, u8 *a3, u8 *s0, u8 *s4, u8 *s8, u32 *s12,
-                                         u32 *s16) {
+u32 adx_parse_header(u16 *a0, int a1, short *a2, u8 *a3, u8 *s0, u8 *s4, u8 *s8, u32 *s12, u32 *s16) {
     u32 uVar1;
     u32 *extraout_r3;
     u32 uVar2;
@@ -3558,7 +3558,7 @@ int get_field_1_s8_262c38(int a0, u32 a1) {
 
 /*
  * set_field_8_262c3c  0x8c262c3c
- * called by: cri_uses_ADXT_Stop_like_263bfe, cri_uses_set_field_8_263b34
+ * called by: ADXT_stop_and_reset_like, cri_uses_set_field_8_263b34
  */
 u32 set_field_8_262c3c(int a0, u32 a1) {
     u32 in_r0;
@@ -3581,7 +3581,7 @@ u32 set_field_38_262c4c(int a0, u32 a1) {
 /*
  * ta_calls_init_fields_262c50  0x8c262c50
  * area name: sits between ta functions (same compilation unit); behaviour name: its callees mostly do: init_fields
- * called by: cri_uses_ADXT_Stop_like_263bfe, cri_uses_set_field_8_263b34
+ * called by: ADXT_stop_and_reset_like, cri_uses_set_field_8_263b34
  */
 u32 ta_calls_init_fields_262c50(int a0) {
     cri_init_fields_262ae2(a0);
@@ -5030,10 +5030,10 @@ u32 alt_entry_263bc8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, int ai
 }
 
 /*
- * cri_uses_ADXT_Stop_like_263bfe  0x8c263bfe
- * area name: in the cri library code range; behaviour name: its main named callee is ADXT_Stop_like
+ * ADXT_stop_and_reset_like  0x8c263bfe
+ * stops the ADX player, resets each channel's stream with interrupts off and returns it to state 1/3
  */
-u32 cri_uses_ADXT_Stop_like_263bfe(int a0, u32 a1, u32 a2, u32 a3) {
+u32 ADXT_stop_and_reset_like(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     int *a4;
@@ -5063,7 +5063,8 @@ u32 cri_uses_ADXT_Stop_like_263bfe(int a0, u32 a1, u32 a2, u32 a3) {
  * ADXT_Stop_like  0x8c263c64
  * with interrupts masked stops playback, stops and destroys the stream, releases its stream joint and marks the player
  * stopped called by: ADXSTM_uses_ADXT_Stop_like_2639fa, ADXT_StartAfs, ADXT_StartFname, ADXT_StartMem,
- * ADXT_StartMemIdx, ADXT_uses_ADXT_Stop_like_264c92, ADXT_uses_libgcc_divide_helper_2647f4, alt_entry_264e88 (+3 more)
+ * ADXT_StartMemIdx, ADXT_stop_and_reset_like, ADXT_uses_ADXT_Stop_like_264c92, ADXT_uses_libgcc_divide_helper_2647f4
+ * (+3 more)
  */
 u32 ADXT_Stop_like(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int *ar4_00;
@@ -5095,7 +5096,7 @@ u32 ADXT_Stop_like(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * get_field_1_s8_263cd4  0x8c263cd4
- * called by: ADXT_set_pause_like, adx_stall_watchdog, cri_uses_get_field_1_s8_263f54
+ * called by: ADXT_buffered_samples_like, ADXT_set_pause_like, adx_stall_watchdog
  */
 int get_field_1_s8_263cd4(int a0) {
     return (int)*(char *)(a0 + 1);
@@ -5194,7 +5195,7 @@ int ADXT_get_progress_percent(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * ADXT_uses_get_field_14_of_field_4_263dd8  0x8c263dd8
  * area name: sits between ADXT functions (same compilation unit); behaviour name: its main named callee is
- * get_field_14_of_field_4 called by: cri_uses_get_field_1_s8_263f54
+ * get_field_14_of_field_4 called by: ADXT_buffered_samples_like
  */
 u32 ADXT_uses_get_field_14_of_field_4_263dd8(int a0) {
     u32 uVar1;
@@ -5209,7 +5210,7 @@ u32 ADXT_uses_get_field_14_of_field_4_263dd8(int a0) {
 /*
  * ADXT_uses_get_field_e_s8_wrap_263df6  0x8c263df6
  * area name: sits between ADXT functions (same compilation unit); behaviour name: its main named callee is
- * get_field_e_s8_wrap called by: ADXT_uses_get_field_1_s8_264a42, cri_uses_get_field_1_s8_263f54
+ * get_field_e_s8_wrap called by: ADXT_buffered_samples_like, ADXT_uses_get_field_1_s8_264a42
  */
 u32 ADXT_uses_get_field_e_s8_wrap_263df6(int a0) {
     u32 uVar1;
@@ -5277,10 +5278,10 @@ u32 ADXT_SetOutVol_like(int a0, u32 a1) {
 }
 
 /*
- * cri_test_263f1a  0x8c263f1a
- * area name: in the cri library code range; behaviour name: returns the result of a comparison
+ * ADXT_test_263f1a  0x8c263f1a
+ * area name: sits between ADXT functions (same compilation unit); behaviour name: returns the result of a comparison
  */
-int cri_test_263f1a(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int ADXT_test_263f1a(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
 
     if (*(int *)(a0 + 0x14) == 0) {
@@ -5294,10 +5295,11 @@ int cri_test_263f1a(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * cri_uses_get_field_1_s8_263f54  0x8c263f54
- * area name: in the cri library code range; behaviour name: its main named callee is get_field_1_s8_263cd4
+ * ADXT_buffered_samples_like  0x8c263f54
+ * returns the number of decoded samples the input buffer holds (bytes / (channels * 18) * 32) once the player is
+ * running
  */
-int cri_uses_get_field_1_s8_263f54(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int ADXT_buffered_samples_like(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int *a4;
@@ -5467,8 +5469,8 @@ u32 ADXT_test_264222(u16 *a0, int a1, int *a2) {
 
     if (((1 < a1) && (((int)(u32)*a0 >> 8 | (u32)*a0 << 8 & 0xff00 & 0xffff) == 0x8000)) &&
         (piStack_8 = a2,
-         iVar1 = (*(code *)(&cri_uses_libgcc_divide_helper_260d7c))(a0, a1, asStack_28, auStack_24, auStack_20,
-                                                                    auStack_1c, auStack_18, auStack_14, auStack_10),
+         iVar1 = (*(code *)(&adx_parse_header))(a0, a1, asStack_28, auStack_24, auStack_20, auStack_1c, auStack_18,
+                                                auStack_14, auStack_10),
          -1 < iVar1)) {
         *piStack_8 = (int)asStack_28[0];
         return 1;
@@ -8200,7 +8202,7 @@ int sd_slot_get_field_01(int a0, u8 *a1, u32 a2) {
 /*
  * sd_check_handle  0x8c266690
  * 0 for an open handle, else sets sd error 0x7000103 (null) or 0x7000102 (not open)
- * called by: sd_sound_2666cc, sd_sound_266892
+ * called by: sd_set_byte2_checked, sd_sound_2666cc
  */
 int sd_check_handle(int a0) {
     int iVar1;
@@ -8472,10 +8474,10 @@ int sd_check_index_0_32_alt(int a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * sd_sound_266892  0x8c266892
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_set_byte2_checked  0x8c266892
+ * sets byte +2 of sound handle a0 to a1 (0-16), recording error 0x3000001 when out of range
  */
-int sd_sound_266892(int a0, u32 a1, u32 a2) {
+int sd_set_byte2_checked(int a0, u32 a1, u32 a2) {
     char cVar1;
     int iVar2;
 
@@ -8491,7 +8493,7 @@ int sd_sound_266892(int a0, u32 a1, u32 a2) {
         *(char *)(a0 + 2) = cVar1;
     }
     if (iVar2 != 0) {
-        sd_set_last_error(sd_sound_266892, iVar2, a2);
+        sd_set_last_error(sd_set_byte2_checked, iVar2, a2);
     }
     return iVar2;
 }
@@ -11166,7 +11168,7 @@ u32 alt_entry_26892c(u32 a0, u32 unused_a1, u8 *a2, u32 a3) {
 
 /*
  * noop_2689c4  0x8c2689c4
- * called by: sd_copy_2689c8
+ * called by: sd_clear_state
  */
 u32 noop_2689c4(void) {
     u32 in_r0;
@@ -11175,10 +11177,10 @@ u32 noop_2689c4(void) {
 }
 
 /*
- * sd_copy_2689c8  0x8c2689c8
- * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls copy functions
+ * sd_clear_state  0x8c2689c8
+ * clears the sound driver tables, fills the 0x200-word buffer with 0x80808080 and calls the driver interface reset
  */
-u32 sd_copy_2689c8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 sd_clear_state(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int ar4_00;
     u32 ar4_01;
     u32 uVar1;
@@ -12910,7 +12912,7 @@ u32 mwRna_sound_269fc8(int a0, u32 a1, int *a2) {
 
 /*
  * noop_26a0f8  0x8c26a0f8
- * called by: sd_copy_2689c8
+ * called by: sd_clear_state
  */
 u32 noop_26a0f8(void) {
     u32 in_r0;
@@ -12969,7 +12971,7 @@ u32 sd_irq_restore(u32 *a0) {
 /*
  * sd_copy_26a130  0x8c26a130
  * area name: in the sd library code range; behaviour name: mostly calls copy functions
- * called by: sd_copy_2689c8
+ * called by: sd_clear_state
  */
 u32 sd_copy_26a130(int a0, u32 a1) {
     u8 *puVar1;
@@ -14208,7 +14210,7 @@ int game_sound_26b132(int a0, u32 a1, u32 unused_a2, u32 a3) {
 
 /*
  * ret_const_8c2785e8_26b1ca  0x8c26b1ca
- * called by: sd_copy_2689c8
+ * called by: sd_clear_state
  */
 u32 ret_const_8c2785e8_26b1ca(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
     return 0x8c2785e8;

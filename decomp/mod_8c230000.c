@@ -11443,10 +11443,10 @@ u32 *ta_sq_write_header5(void) {
 }
 
 /*
- * ta_init_fields_236940  0x8c236940
- * area name: sits between ta functions (same compilation unit); behaviour name: writes 6 members
+ * ta_sq_write_vertex_slot4  0x8c236940
+ * writes one 32-byte TA block through the store queue (setting QACR0/1) from header slot 4 and the four words at a0
  */
-u32 *ta_init_fields_236940(u32 *a0) {
+u32 *ta_sq_write_vertex_slot4(u32 *a0) {
     u32 *puVar1;
     u32 *puVar2;
     u32 uVar3;
@@ -11476,10 +11476,10 @@ u32 *ta_init_fields_236940(u32 *a0) {
 }
 
 /*
- * ta_init_fields_236a2a  0x8c236a2a
- * area name: sits between ta functions (same compilation unit); behaviour name: writes 6 members
+ * ta_sq_write_vertex_slot5  0x8c236a2a
+ * writes one 32-byte TA block through the store queue (setting QACR0/1) from header slot 5 and the four words at a0
  */
-u32 *ta_init_fields_236a2a(u32 *a0) {
+u32 *ta_sq_write_vertex_slot5(u32 *a0) {
     u32 *puVar1;
     u32 *puVar2;
     u32 uVar3;
@@ -13992,10 +13992,10 @@ u32 ta_fifo_239012(u32 unused_a0, u32 unused_a1, int a2, u32 a3, u32 s0) {
                 -8;
             *(int *)((int)auStack_14 + iVar3) = iVar6;
             (*(code *)puVar1)(iVar6, 1, a2, a3);
-            (*(code *)(&ninja_draw_25603a))((u32) * (u16 *)((int)auStack_14 + 0x1018 + iVar3), uVar7, a2, a3);
-            (*(code *)(&ninja_copy_2560b4))((int)*(short *)((int)auStack_14 + 0x101c + iVar3) +
-                                                *(short *)((int)auStack_14 + 0x101a + iVar3) * 0x10,
-                                            (int)*(short *)((int)auStack_14 + 0x101e + iVar3), iVar4, a3);
+            (*(code *)(&ninja_set_palette_format))((u32) * (u16 *)((int)auStack_14 + 0x1018 + iVar3), uVar7, a2, a3);
+            (*(code *)(&ninja_palette_load))((int)*(short *)((int)auStack_14 + 0x101c + iVar3) +
+                                                 *(short *)((int)auStack_14 + 0x101a + iVar3) * 0x10,
+                                             (int)*(short *)((int)auStack_14 + 0x101e + iVar3), iVar4, a3);
         }
         a2 = iVar4;
         if (*(int *)(&stack0xfffffff0 + iVar3) == 0x54525650) {
@@ -14698,10 +14698,10 @@ u32 ta_fifo_23a078(u32 unused_a0, u32 unused_a1, u8 *a2, u32 a3) {
                 (*(int *)((int)auStack_c + 0x1008 + iVar1) - *(short *)((int)auStack_c + 0x1012 + iVar1) * iVar2) + -8;
             *(int *)((int)auStack_c + iVar1) = iVar2;
             gfx_stream_seek(iVar2, 1);
-            (*(code *)(&ninja_draw_25603a))((u32) * (u16 *)((int)auStack_c + 0x100c + iVar1), uVar3, a2, a3);
-            uVar3 = (*(code *)(&ninja_copy_2560b4))((int)*(short *)((int)auStack_c + 0x1010 + iVar1) +
-                                                        *(short *)((int)auStack_c + 0x100e + iVar1) * 0x10,
-                                                    (int)*(short *)((int)auStack_c + 0x1012 + iVar1), ar4_00, a3);
+            (*(code *)(&ninja_set_palette_format))((u32) * (u16 *)((int)auStack_c + 0x100c + iVar1), uVar3, a2, a3);
+            uVar3 = (*(code *)(&ninja_palette_load))((int)*(short *)((int)auStack_c + 0x1010 + iVar1) +
+                                                         *(short *)((int)auStack_c + 0x100e + iVar1) * 0x10,
+                                                     (int)*(short *)((int)auStack_c + 0x1012 + iVar1), ar4_00, a3);
         } else {
             if (iVar2 != 0x54525650) {
                 gfx_stream_read((int)auStack_c + iVar1, 4);
@@ -18583,7 +18583,7 @@ u32 gfxlib_calls_fill_loop_23c70c(void) {
 /*
  * memcpy_words_n  0x8c23c7f4
  * copies a2 32-bit words from a1 to a0
- * called by: alt_entry_2376d8, flashrom_write_block_retry, gfxlib_uses_memcpy_words_n_2376c4, ninja_copy_2560b4
+ * called by: alt_entry_2376d8, flashrom_write_block_retry, gfxlib_uses_memcpy_words_n_2376c4, ninja_palette_load
  */
 u32 memcpy_words_n(u32 *a0, u32 *a1, int a2) {
     u32 uVar1;
@@ -18601,8 +18601,8 @@ u32 memcpy_words_n(u32 *a0, u32 *a1, int a2) {
 /*
  * memcpy_bytes  0x8c23c814
  * copies a2 bytes (a2 > 0)
- * called by: common_load_eye_scsi, draw_copy_259a70, draw_state_copy_in, draw_state_copy_out, gfx_stream_read,
- * gfxlib_copy_238f2a, gfxlib_copy_239f84, gfxlib_uses_tex_entry_alloc_23793c (+8 more)
+ * called by: common_load_eye_scsi, draw_copy_259a70, draw_state_copy_in, draw_state_copy_out, gdfs_uses_bswap32_2124d0,
+ * gfx_stream_read, gfxlib_copy_238f2a, gfxlib_copy_239f84 (+8 more)
  */
 int memcpy_bytes(char *a0, char *a1, int a2) {
     char cVar1;

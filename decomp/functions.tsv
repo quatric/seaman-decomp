@@ -5025,9 +5025,9 @@ address	name	file	params
 8c212220	kamui_uses_sq_copy_words_212220	mod_8c210000.c	4
 8c212284	kamui_uses_sq_copy_words_212284	mod_8c210000.c	4
 8c2122ea	kamui_uses_sq_copy_words_2122ea	mod_8c210000.c	4
-8c212440	kamui_uses_gdfs_close_like_212440	mod_8c210000.c	4
+8c212440	gdfs_load_file_alloc	mod_8c210000.c	4
 8c2124aa	bswap32	mod_8c210000.c	1
-8c2124d0	kamui_uses_bswap32_2124d0	mod_8c210000.c	4
+8c2124d0	gdfs_uses_bswap32_2124d0	mod_8c210000.c	4
 8c212740	point_transform_or_copy	mod_8c210000.c	5
 8c21279c	njCalcVector_like	mod_8c210000.c	5
 8c212808	ninja_float_calc_212808	mod_8c210000.c	4
@@ -5354,8 +5354,8 @@ address	name	file	params
 8c2365e2	ta_sq_write_header5_short	mod_8c230000.c	0
 8c23666c	ta_sq_write_header4	mod_8c230000.c	0
 8c236718	ta_sq_write_header5	mod_8c230000.c	0
-8c236940	ta_init_fields_236940	mod_8c230000.c	1
-8c236a2a	ta_init_fields_236a2a	mod_8c230000.c	1
+8c236940	ta_sq_write_vertex_slot4	mod_8c230000.c	1
+8c236a2a	ta_sq_write_vertex_slot5	mod_8c230000.c	1
 8c236b3c	ta_init_fields_236b3c	mod_8c230000.c	1
 8c236c38	ta_init_fields_236c38	mod_8c230000.c	1
 8c236d20	ta_init_fields_236d20	mod_8c230000.c	2
@@ -5570,8 +5570,8 @@ address	name	file	params
 8c255f88	ninja_draw_255f88	mod_8c250000.c	1
 8c255f96	tex_set_palette_bank	mod_8c250000.c	2
 8c255ff8	tex_uses_tex_entry_find_255ff8	mod_8c250000.c	2
-8c25603a	ninja_draw_25603a	mod_8c250000.c	1
-8c2560b4	ninja_copy_2560b4	mod_8c250000.c	3
+8c25603a	ninja_set_palette_format	mod_8c250000.c	1
+8c2560b4	ninja_palette_load	mod_8c250000.c	3
 8c256164	ninja_uses_ninja_close_file_256164	mod_8c250000.c	4
 8c256210	matrix_pop_n	mod_8c250000.c	1
 8c256254	matrix_pop1	mod_8c250000.c	0
@@ -5718,7 +5718,7 @@ address	name	file	params
 8c25afc0	ninja_draw_25afc0	mod_8c250000.c	3
 8c25b044	ninja_draw_25b044	mod_8c250000.c	1
 8c25b052	alt_entry_25b052	mod_8c250000.c	1
-8c25b08a	ninja_draw_25b08a	mod_8c250000.c	1
+8c25b08a	ninja_draw_into_texture_entry	mod_8c250000.c	1
 8c25b100	ninja_calc_25b100	mod_8c250000.c	0
 8c25b10c	write_u32_le	mod_8c250000.c	2
 8c25b124	put_u16_le	mod_8c250000.c	2
@@ -5846,7 +5846,7 @@ address	name	file	params
 8c260ca0	irq_disable_nested	mod_8c260000.c	5
 8c260cc8	irq_restore_nested	mod_8c260000.c	5
 8c260cf8	cri_uses_libm_errno_wrap_260cf8	mod_8c260000.c	4
-8c260d7c	cri_uses_libgcc_divide_helper_260d7c	mod_8c260000.c	9
+8c260d7c	adx_parse_header	mod_8c260000.c	9
 8c260e9c	adx_get_highpass_freq	mod_8c260000.c	3
 8c260f02	ADX_test_260f02	mod_8c260000.c	9
 8c261058	ADX_fill_loop_261058	mod_8c260000.c	6
@@ -5990,7 +5990,7 @@ address	name	file	params
 8c263b34	cri_uses_set_field_8_263b34	mod_8c260000.c	4
 8c263bc0	cri_sound_263bc0	mod_8c260000.c	4
 8c263bc8	alt_entry_263bc8	mod_8c260000.c	5
-8c263bfe	cri_uses_ADXT_Stop_like_263bfe	mod_8c260000.c	4
+8c263bfe	ADXT_stop_and_reset_like	mod_8c260000.c	4
 8c263c64	ADXT_Stop_like	mod_8c260000.c	4
 8c263cd4	get_field_1_s8_263cd4	mod_8c260000.c	1
 8c263cd8	ADXT_GetTime_like	mod_8c260000.c	4
@@ -6001,8 +6001,8 @@ address	name	file	params
 8c263e50	ADXT_SetOutPan	mod_8c260000.c	3
 8c263e5c	ADXT_SetOutPan_263e5c	mod_8c260000.c	3
 8c263e8e	ADXT_SetOutVol_like	mod_8c260000.c	2
-8c263f1a	cri_test_263f1a	mod_8c260000.c	4
-8c263f54	cri_uses_get_field_1_s8_263f54	mod_8c260000.c	4
+8c263f1a	ADXT_test_263f1a	mod_8c260000.c	4
+8c263f54	ADXT_buffered_samples_like	mod_8c260000.c	4
 8c263fba	cri_test_263fba	mod_8c260000.c	4
 8c263ffa	set_field_6d_u8	mod_8c260000.c	2
 8c264010	adx_server	mod_8c260000.c	4
@@ -6103,7 +6103,7 @@ address	name	file	params
 8c2667cc	sd_fill_loop_2667cc	mod_8c260000.c	0
 8c26686a	sd_check_index_0_32	mod_8c260000.c	3
 8c26686e	sd_check_index_0_32_alt	mod_8c260000.c	3
-8c266892	sd_sound_266892	mod_8c260000.c	3
+8c266892	sd_set_byte2_checked	mod_8c260000.c	3
 8c2668fc	aica_ram_2668fc	mod_8c260000.c	4
 8c266970	sd_g2_transfer	mod_8c260000.c	5
 8c2669f4	aica_sound_2669f4	mod_8c260000.c	4
@@ -6197,7 +6197,7 @@ address	name	file	params
 8c268920	sd_uses_memset_268920	mod_8c260000.c	4
 8c26892c	alt_entry_26892c	mod_8c260000.c	4
 8c2689c4	noop_2689c4	mod_8c260000.c	0
-8c2689c8	sd_copy_2689c8	mod_8c260000.c	4
+8c2689c8	sd_clear_state	mod_8c260000.c	4
 8c268a24	sd_sound_268a24	mod_8c260000.c	4
 8c268a36	alt_entry_268a36	mod_8c260000.c	4
 8c268afc	sd_init_fields_268afc	mod_8c260000.c	1
