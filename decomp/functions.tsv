@@ -712,7 +712,7 @@ address	name	file	params
 8c025f44	Vec3_ctor_copy_wrap	mod_8c020000.c	5
 8c025f68	get_field_0_s8	mod_8c020000.c	1
 8c025f70	get_field_140_025f70	mod_8c020000.c	2
-8c025f7c	FUN_8c025f7c	mod_8c020000.c	4
+8c025f7c	get_vec3_field_ba8	mod_8c020000.c	4
 8c025fa8	field_ptr_f4c	mod_8c020000.c	1
 8c025fb8	noop_025fb8	mod_8c020000.c	0
 8c025fbc	set_field_16_s16	mod_8c020000.c	2
@@ -805,7 +805,7 @@ address	name	file	params
 8c028edc	set_field_8	mod_8c020000.c	2
 8c028ee4	get_field_a2_s16	mod_8c020000.c	2
 8c028ef0	FUN_8c028ef0	mod_8c020000.c	4
-8c028f34	FUN_8c028f34	mod_8c020000.c	4
+8c028f34	get_vec3_field_3c8	mod_8c020000.c	4
 8c028f60	FUN_8c028f60	mod_8c020000.c	4
 8c02903c	FUN_8c02903c	mod_8c020000.c	4
 8c0290b8	FUN_8c0290b8	mod_8c020000.c	3
@@ -1304,7 +1304,7 @@ address	name	file	params
 8c03f39c	set_field_8c_to_1	mod_8c030000.c	4
 8c03f3ac	CAnimBody_AdvanceFrame_wrap	mod_8c030000.c	4
 8c03f3e8	set_field_88_to_1	mod_8c030000.c	3
-8c03f3f8	FUN_8c03f3f8	mod_8c030000.c	4
+8c03f3f8	get_vec3_field_5c	mod_8c030000.c	4
 8c03f414	get_vec3_field_50	mod_8c030000.c	4
 8c03f430	FUN_8c03f430	mod_8c030000.c	3
 8c03f460	Vec3_copy_assign	mod_8c030000.c	2
@@ -1474,7 +1474,7 @@ address	name	file	params
 8c067594	FUN_8c067594	mod_8c060000.c	4
 8c0677dc	Class_12a0c4_m2_0677dc	mod_8c060000.c	4
 8c067934	Class_12a0c4_m3_067934	mod_8c060000.c	4
-8c067964	FUN_8c067964	mod_8c060000.c	4
+8c067964	vcall_field_8_slot7	mod_8c060000.c	4
 8c06797c	FUN_8c06797c	mod_8c060000.c	1
 8c0679cc	FUN_8c0679cc	mod_8c060000.c	4
 8c068818	dtor_delete_with_ac	mod_8c060000.c	4
@@ -1486,7 +1486,7 @@ address	name	file	params
 8c069c24	FUN_8c069c24	mod_8c060000.c	4
 8c06a524	FUN_8c06a524	mod_8c060000.c	0
 8c06a5f0	FUN_8c06a5f0	mod_8c060000.c	4
-8c06a9e8	FUN_8c06a9e8	mod_8c060000.c	4
+8c06a9e8	get_vec3_field_30_06a9e8	mod_8c060000.c	4
 8c06aa04	FUN_8c06aa04	mod_8c060000.c	4
 8c06abb8	FUN_8c06abb8	mod_8c060000.c	4
 8c06add8	FUN_8c06add8	mod_8c060000.c	4
@@ -1786,7 +1786,7 @@ address	name	file	params
 8c09aacc	noop_09aacc	mod_8c090000.c	0
 8c09aad0	FUN_8c09aad0	mod_8c090000.c	3
 8c09abfc	FUN_8c09abfc	mod_8c090000.c	4
-8c09ac58	FUN_8c09ac58	mod_8c090000.c	4
+8c09ac58	vcall_field_8_slot15	mod_8c090000.c	4
 8c09ac70	FUN_8c09ac70	mod_8c090000.c	4
 8c09aca8	FUN_8c09aca8	mod_8c090000.c	4
 8c09acf4	FUN_8c09acf4	mod_8c090000.c	3
@@ -1821,7 +1821,7 @@ address	name	file	params
 8c09c8d8	FUN_8c09c8d8	mod_8c090000.c	4
 8c09c930	FUN_8c09c930	mod_8c090000.c	3
 8c09ca80	FUN_8c09ca80	mod_8c090000.c	4
-8c09cb40	FUN_8c09cb40	mod_8c090000.c	4
+8c09cb40	vcall_field_8_slot15_09cb40	mod_8c090000.c	4
 8c09cb58	FUN_8c09cb58	mod_8c090000.c	4
 8c09cbb8	FUN_8c09cbb8	mod_8c090000.c	4
 8c09cc34	FUN_8c09cc34	mod_8c090000.c	3
@@ -1919,7 +1919,7 @@ address	name	file	params
 8c0a53ac	noop_0a53ac	mod_8c0a0000.c	0
 8c0a53b0	FUN_8c0a53b0	mod_8c0a0000.c	3
 8c0a54dc	FUN_8c0a54dc	mod_8c0a0000.c	4
-8c0a5538	FUN_8c0a5538	mod_8c0a0000.c	4
+8c0a5538	vcall_field_8_slot15_0a5538	mod_8c0a0000.c	4
 8c0a5550	FUN_8c0a5550	mod_8c0a0000.c	4
 8c0a5588	FUN_8c0a5588	mod_8c0a0000.c	4
 8c0a55d4	FUN_8c0a55d4	mod_8c0a0000.c	3
@@ -2168,7 +2168,7 @@ address	name	file	params
 8c0c1d1c	FUN_8c0c1d1c	mod_8c0c0000.c	1
 8c0c1d40	FUN_8c0c1d40	mod_8c0c0000.c	2
 8c0c1d98	FUN_8c0c1d98	mod_8c0c0000.c	5
-8c0c2000	FUN_8c0c2000	mod_8c0c0000.c	4
+8c0c2000	vcall_field_c_slot3	mod_8c0c0000.c	4
 8c0c2020	FUN_8c0c2020	mod_8c0c0000.c	4
 8c0c2044	FUN_8c0c2044	mod_8c0c0000.c	4
 8c0c2068	FUN_8c0c2068	mod_8c0c0000.c	4
@@ -2314,7 +2314,7 @@ address	name	file	params
 8c0cac04	noop_0cac04	mod_8c0c0000.c	0
 8c0cac08	FUN_8c0cac08	mod_8c0c0000.c	4
 8c0cb1dc	noop_0cb1dc	mod_8c0c0000.c	0
-8c0cb1e0	FUN_8c0cb1e0	mod_8c0c0000.c	4
+8c0cb1e0	get_vec3_field_44	mod_8c0c0000.c	4
 8c0cb1fc	noop_0cb1fc	mod_8c0c0000.c	0
 8c0cb200	noop_0cb200	mod_8c0c0000.c	0
 8c0cb204	noop_0cb204	mod_8c0c0000.c	0
@@ -2687,14 +2687,14 @@ address	name	file	params
 8c0db3bc	FUN_8c0db3bc	mod_8c0d0000.c	4
 8c0db580	list_node_next_wrap_0db580	mod_8c0d0000.c	1
 8c0db5a0	get_field_38_0db5a0	mod_8c0d0000.c	1
-8c0db5a8	FUN_8c0db5a8	mod_8c0d0000.c	4
+8c0db5a8	get_vec3_field_50_0db5a8	mod_8c0d0000.c	4
 8c0db5c4	FUN_8c0db5c4	mod_8c0d0000.c	4
 8c0db764	FUN_8c0db764	mod_8c0d0000.c	4
 8c0db790	FUN_8c0db790	mod_8c0d0000.c	4
 8c0db7d4	get_field_38_wrap	mod_8c0d0000.c	2
 8c0db810	FUN_8c0db810	mod_8c0d0000.c	2
 8c0db864	FUN_8c0db864	mod_8c0d0000.c	2
-8c0db8a8	FUN_8c0db8a8	mod_8c0d0000.c	4
+8c0db8a8	get_vec3_field_a68	mod_8c0d0000.c	4
 8c0db8d4	FUN_8c0db8d4	mod_8c0d0000.c	4
 8c0dba50	FUN_8c0dba50	mod_8c0d0000.c	4
 8c0dbb14	FUN_8c0dbb14	mod_8c0d0000.c	4
@@ -2730,7 +2730,7 @@ address	name	file	params
 8c0ddd74	FUN_8c0ddd74	mod_8c0d0000.c	4
 8c0dde84	Class_12b930_dtor	mod_8c0d0000.c	2
 8c0de07c	FUN_8c0de07c	mod_8c0d0000.c	4
-8c0de170	FUN_8c0de170	mod_8c0d0000.c	4
+8c0de170	vcall_slot7	mod_8c0d0000.c	4
 8c0de18c	FUN_8c0de18c	mod_8c0d0000.c	4
 8c0de1dc	Class_12b930_m1_0de1dc	mod_8c0d0000.c	4
 8c0de3d4	Class_12b930_m2_0de3d4	mod_8c0d0000.c	4
@@ -3028,7 +3028,7 @@ address	name	file	params
 8c0f4b94	noop_0f4b94	mod_8c0f0000.c	0
 8c0f4b98	FUN_8c0f4b98	mod_8c0f0000.c	4
 8c0f4bf0	noop_0f4bf0	mod_8c0f0000.c	0
-8c0f4bf4	FUN_8c0f4bf4	mod_8c0f0000.c	4
+8c0f4bf4	vcall_field_8_slot13	mod_8c0f0000.c	4
 8c0f4c0c	FUN_8c0f4c0c	mod_8c0f0000.c	1
 8c0f4c5c	FUN_8c0f4c5c	mod_8c0f0000.c	1
 8c0f4c78	CItem_BeNotReference	mod_8c0f0000.c	1
@@ -3060,12 +3060,12 @@ address	name	file	params
 8c0f5368	FUN_8c0f5368	mod_8c0f0000.c	1
 8c0f5398	FUN_8c0f5398	mod_8c0f0000.c	3
 8c0f54b8	FUN_8c0f54b8	mod_8c0f0000.c	4
-8c0f54d0	FUN_8c0f54d0	mod_8c0f0000.c	4
+8c0f54d0	get_vec3_field_30_0f54d0	mod_8c0f0000.c	4
 8c0f54ec	FUN_8c0f54ec	mod_8c0f0000.c	6
 8c0f55d8	Class_12c058_m0_0f55d8	mod_8c0f0000.c	4
 8c0f5660	Class_12c058_m1_0f5660	mod_8c0f0000.c	4
 8c0f56e8	FUN_8c0f56e8	mod_8c0f0000.c	1
-8c0f5730	FUN_8c0f5730	mod_8c0f0000.c	4
+8c0f5730	vcall_field_170_slot2	mod_8c0f0000.c	4
 8c0f5754	set_field_0_on_field_178	mod_8c0f0000.c	3
 8c0f577c	FUN_8c0f577c	mod_8c0f0000.c	4
 8c0f57f0	FUN_8c0f57f0	mod_8c0f0000.c	4
@@ -3080,13 +3080,13 @@ address	name	file	params
 8c0f5c88	FUN_8c0f5c88	mod_8c0f0000.c	2
 8c0f5ca8	Class_12bec0_m2_0f5ca8	mod_8c0f0000.c	4
 8c0f5d1c	Class_12bec0_m3_0f5d1c	mod_8c0f0000.c	4
-8c0f5d80	FUN_8c0f5d80	mod_8c0f0000.c	4
+8c0f5d80	vcall_field_8_slot7_0f5d80	mod_8c0f0000.c	4
 8c0f5d98	FUN_8c0f5d98	mod_8c0f0000.c	1
 8c0f5de8	FUN_8c0f5de8	mod_8c0f0000.c	1
 8c0f5e0c	FUN_8c0f5e0c	mod_8c0f0000.c	4
 8c0f5f08	FUN_8c0f5f08	mod_8c0f0000.c	4
-8c0f5f50	FUN_8c0f5f50	mod_8c0f0000.c	4
-8c0f5f6c	FUN_8c0f5f6c	mod_8c0f0000.c	4
+8c0f5f50	vcall_field_8_slot16	mod_8c0f0000.c	4
+8c0f5f6c	vcall_field_8_slot16_0f5f6c	mod_8c0f0000.c	4
 8c0f5f88	get_ptr_8c0f5f90	mod_8c0f0000.c	0
 8c0f5f94	get_ptr_8c0f5f9c	mod_8c0f0000.c	0
 8c0f5fa0	get_ptr_8c0f5fa8	mod_8c0f0000.c	0
@@ -3708,7 +3708,7 @@ address	name	file	params
 8c11bccc	FUN_8c11bccc	mod_8c110000.c	4
 8c11bd6c	FUN_8c11bd6c	mod_8c110000.c	4
 8c11c0e4	FUN_8c11c0e4	mod_8c110000.c	4
-8c11c1d8	FUN_8c11c1d8	mod_8c110000.c	1
+8c11c1d8	vcall_slot6	mod_8c110000.c	1
 8c11c210	FUN_8c11c210	mod_8c110000.c	4
 8c11c2b8	FUN_8c11c2b8	mod_8c110000.c	4
 8c11c412	FUN_8c11c412	mod_8c110000.c	2
@@ -4009,7 +4009,7 @@ address	name	file	params
 8c1f0312	FUN_8c1f0312	mod_8c1f0000.c	1
 8c1f0392	FUN_8c1f0392	mod_8c1f0000.c	0
 8c1f0398	FUN_8c1f0398	mod_8c1f0000.c	1
-8c1f03a6	FUN_8c1f03a6	mod_8c1f0000.c	2
+8c1f03a6	set_handler_slot32	mod_8c1f0000.c	2
 8c1f0420	FUN_8c1f0420	mod_8c1f0000.c	3
 8c1f0444	FUN_8c1f0444	mod_8c1f0000.c	4
 8c1f04a0	FUN_8c1f04a0	mod_8c1f0000.c	4
@@ -4047,7 +4047,7 @@ address	name	file	params
 8c1f0fa4	FUN_8c1f0fa4	mod_8c1f0000.c	4
 8c1f103e	FUN_8c1f103e	mod_8c1f0000.c	5
 8c1f1080	FUN_8c1f1080	mod_8c1f0000.c	0
-8c1f109c	FUN_8c1f109c	mod_8c1f0000.c	2
+8c1f109c	crc16_ccitt	mod_8c1f0000.c	2
 8c1f10d8	syscall_1f10d8	mod_8c1f0000.c	2
 8c1f10ec	syscall_1f10ec	mod_8c1f0000.c	2
 8c1f1100	syscall_1f1100	mod_8c1f0000.c	0
@@ -4117,7 +4117,7 @@ address	name	file	params
 8c1f2972	FUN_8c1f2972	mod_8c1f0000.c	1
 8c1f2a0a	FUN_8c1f2a0a	mod_8c1f0000.c	4
 8c1f2a48	toupper	mod_8c1f0000.c	1
-8c1f2a5c	FUN_8c1f2a5c	mod_8c1f0000.c	3
+8c1f2a5c	bcopy	mod_8c1f0000.c	3
 8c1f2a74	FUN_8c1f2a74	mod_8c1f0000.c	3
 8c1f2a80	FUN_8c1f2a80	mod_8c1f0000.c	2
 8c1f2acc	FUN_8c1f2acc	mod_8c1f0000.c	2
@@ -4135,7 +4135,7 @@ address	name	file	params
 8c1f2f9c	FUN_8c1f2f9c	mod_8c1f0000.c	4
 8c1f302a	FUN_8c1f302a	mod_8c1f0000.c	4
 8c1f3078	set_fields_0_4_8_1f3078	mod_8c1f0000.c	2
-8c1f309c	FUN_8c1f309c	mod_8c1f0000.c	4
+8c1f309c	gdfs_close_like	mod_8c1f0000.c	4
 8c1f30a0	FUN_8c1f30a0	mod_8c1f0000.c	4
 8c1f30d4	FUN_8c1f30d4	mod_8c1f0000.c	2
 8c1f30ee	FUN_8c1f30ee	mod_8c1f0000.c	2
@@ -4148,10 +4148,10 @@ address	name	file	params
 8c1f3416	FUN_8c1f3416	mod_8c1f0000.c	4
 8c1f34f4	FUN_8c1f34f4	mod_8c1f0000.c	4
 8c1f35ba	FUN_8c1f35ba	mod_8c1f0000.c	4
-8c1f364c	FUN_8c1f364c	mod_8c1f0000.c	1
+8c1f364c	gdfs_get_stat_like	mod_8c1f0000.c	1
 8c1f367a	FUN_8c1f367a	mod_8c1f0000.c	4
 8c1f3682	FUN_8c1f3682	mod_8c1f0000.c	4
-8c1f37a8	FUN_8c1f37a8	mod_8c1f0000.c	1
+8c1f37a8	gdfs_get_err_like	mod_8c1f0000.c	1
 8c1f38c0	FUN_8c1f38c0	mod_8c1f0000.c	0
 8c1f38ca	FUN_8c1f38ca	mod_8c1f0000.c	4
 8c1f38f2	FUN_8c1f38f2	mod_8c1f0000.c	5
@@ -4668,7 +4668,7 @@ address	name	file	params
 8c200ae4	FUN_8c200ae4	mod_8c200000.c	0
 8c200aec	ret_const_0_200aec	mod_8c200000.c	0
 8c200b10	FUN_8c200b10	mod_8c200000.c	2
-8c200ba0	FUN_8c200ba0	mod_8c200000.c	1
+8c200ba0	int_to_bcd	mod_8c200000.c	1
 8c200bc4	bcd_to_int	mod_8c200000.c	1
 8c200bfc	FUN_8c200bfc	mod_8c200000.c	3
 8c200c08	FUN_8c200c08	mod_8c200000.c	0
@@ -4813,7 +4813,7 @@ address	name	file	params
 8c2057f8	FUN_8c2057f8	mod_8c200000.c	2
 8c205860	FUN_8c205860	mod_8c200000.c	3
 8c205948	FUN_8c205948	mod_8c200000.c	5
-8c2059be	FUN_8c2059be	mod_8c200000.c	1
+8c2059be	vram64_to_vram32	mod_8c200000.c	1
 8c2059e0	FUN_8c2059e0	mod_8c200000.c	1
 8c205a40	FUN_8c205a40	mod_8c200000.c	0
 8c205a44	FUN_8c205a44	mod_8c200000.c	4
@@ -4837,7 +4837,7 @@ address	name	file	params
 8c206faa	FUN_8c206faa	mod_8c200000.c	4
 8c206fd2	FUN_8c206fd2	mod_8c200000.c	0
 8c206ff0	pvr_206ff0	mod_8c200000.c	4
-8c2072b2	FUN_8c2072b2	mod_8c200000.c	1
+8c2072b2	callback_table_call	mod_8c200000.c	1
 8c207300	FUN_8c207300	mod_8c200000.c	4
 8c20731e	memcpy_words	mod_8c200000.c	3
 8c20732e	CacheBlockWriteBack_wrap	mod_8c200000.c	1
@@ -4869,9 +4869,9 @@ address	name	file	params
 8c207fe4	FUN_8c207fe4	mod_8c200000.c	4
 8c2081e0	ta_fifo_2081e0	mod_8c200000.c	3
 8c20820a	FUN_8c20820a	mod_8c200000.c	3
-8c208228	FUN_8c208228	mod_8c200000.c	3
+8c208228	ta_param_push1_if	mod_8c200000.c	3
 8c20823c	FUN_8c20823c	mod_8c200000.c	3
-8c208270	FUN_8c208270	mod_8c200000.c	4
+8c208270	ta_param_push2_if	mod_8c200000.c	4
 8c20828c	FUN_8c20828c	mod_8c200000.c	1
 8c208380	FUN_8c208380	mod_8c200000.c	1
 8c208484	FUN_8c208484	mod_8c200000.c	1
@@ -5052,7 +5052,7 @@ address	name	file	params
 8c213ee4	FUN_8c213ee4	mod_8c210000.c	0
 8c213f28	ta_fifo_213f28	mod_8c210000.c	1
 8c2140a4	FUN_8c2140a4	mod_8c210000.c	1
-8c2140c6	FUN_8c2140c6	mod_8c210000.c	2
+8c2140c6	flags_4c0db0_set	mod_8c210000.c	2
 8c2140fe	FUN_8c2140fe	mod_8c210000.c	5
 8c21410c	FUN_8c21410c	mod_8c210000.c	5
 8c214158	FUN_8c214158	mod_8c210000.c	5

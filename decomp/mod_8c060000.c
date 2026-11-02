@@ -3542,9 +3542,10 @@ u32 Class_12a0c4_m3_067934(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c067964  0x8c067964
+ * vcall_field_8_slot7  0x8c067964
+ * calls virtual slot 7 of the object at +0x8
  */
-u32 FUN_8c067964(int a0, u32 a1, u32 a2, u32 a3) {
+u32 vcall_field_8_slot7(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (**(code **)(*(int *)(a0 + 8) + 0x1c))(a0, a1, a2, a3);
@@ -5723,9 +5724,10 @@ u64 *FUN_8c06a5f0(int a0, u64 *a1, int a2, u32 a3) {
 }
 
 /*
- * FUN_8c06a9e8  0x8c06a9e8
+ * get_vec3_field_30_06a9e8  0x8c06a9e8
+ * copies the three words at +0x30 to the pointers in a1..a3
  */
-u32 *FUN_8c06a9e8(int a0, u32 *a1, u32 *a2, u32 *a3) {
+u32 *get_vec3_field_30_06a9e8(int a0, u32 *a1, u32 *a2, u32 *a3) {
     *a1 = *(u32 *)(a0 + 0x30);
     *a2 = *(u32 *)(a0 + 0x34);
     *a3 = *(u32 *)(a0 + 0x38);
@@ -9566,7 +9568,7 @@ code *FUN_8c06f93c(int a0, u32 *a1, u32 unused_a2, code *a3) {
         ar7_01 = &uStack_158;
         ar6_00 = &uStack_158;
         ar5_00 = &uStack_158;
-        FUN_8c03f3f8(iVar2, ar5_00, ar6_00, ar7_01);
+        get_vec3_field_5c(iVar2, ar5_00, ar6_00, ar7_01);
         if (*(int *)(a0 + 0x128) == 1) {
             Vec3_ctor_xyz(auStack_ac, Vec3_ctor_xyz, ar6_00, ar7_01);
             puVar5 = auStack_b8;

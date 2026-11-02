@@ -6900,7 +6900,7 @@ int libgcc_divide_helper_010614(u32 unused_a0, u32 a1) {
 /*
  * libgcc_divide_helper_0106dc  0x8c0106dc
  * called by: FUN_8c0115c4, FUN_8c10e818, FUN_8c1f8300, FUN_8c1f8650, FUN_8c1f88f6, FUN_8c1f8b92, FUN_8c1f8be8,
- * FUN_8c200ba0 (+22 more)
+ * FUN_8c202924 (+22 more)
  */
 u32 libgcc_divide_helper_0106dc(u32 a0, u32 a1) {
     u32 uVar1;
@@ -7655,8 +7655,8 @@ u32 switch_jump(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * switch_jump_r0  0x8c0107a0
  * compiler switch helper: jumps through the table at 0x8c0107f4 indexed by r0
- * called by: FUN_8c2140a4, FUN_8c2140c6, FUN_8c2218f4, FUN_8c221916, FUN_8c2336e8, FUN_8c267fe8, FUN_8c268920,
- * FUN_8c26892c
+ * called by: FUN_8c2140a4, FUN_8c2218f4, FUN_8c221916, FUN_8c2336e8, FUN_8c267fe8, FUN_8c268920, FUN_8c26892c,
+ * flags_4c0db0_set
  */
 u32 switch_jump_r0(u32 a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;

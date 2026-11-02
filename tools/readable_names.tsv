@@ -192,3 +192,15 @@
 8c031b58	reset_fields_2c_6c	sets +0x2c and +0x6c to -1
 8c0107a0	switch_jump_r0	compiler switch helper: jumps through the table at 0x8c0107f4 indexed by r0
 8c031588	get_field_4_of_field_0	(*a0)->+4
+8c1f109c	crc16_ccitt	CRC-16/CCITT of a0 bytes at a1 (init 0xffff, table 0x8c26c050, result inverted); checks the 64-byte system flash-ROM blocks (CRC of bytes 0..0x3d stored at +0x3e)
+8c200ba0	int_to_bcd	two decimal digits to packed BCD
+8c1f2a5c	bcopy	copies a2 bytes from a0 to a1	3
+8c2059be	vram64_to_vram32	converts a 64-bit-bus VRAM offset to the 32-bit (interleaved bank) view
+8c208228	ta_param_push1_if	appends a2 to the polygon parameter buffer (0x8c4a9c50) when a0 has bit 24; returns the new count
+8c208270	ta_param_push2_if	appends a2, a3 to the polygon parameter buffer when a0 has bit 25; returns the new count
+8c1f309c	gdfs_close_like	closes a file handle: aborts a transfer in progress (status 2..4) and clears +0x4c (probably gdFsClose)
+8c1f364c	gdfs_get_stat_like	status (+0x50) of an open file handle, -10 when it is not open (probably gdFsGetStat)
+8c1f37a8	gdfs_get_err_like	+0x52 of an open file handle, 0 when it is not open
+8c2140c6	flags_4c0db0_set	sets or clears (a1) flag a0 of the bit set at 0x8c4c0db0
+8c1f03a6	set_handler_slot32	stores a1 in slot a0 (< 32) of the table at 0x8c470920
+8c2072b2	callback_table_call	calls entry a0 of the callback table at 0x8c4a9ddc with its stored argument

@@ -4242,9 +4242,10 @@ u32 FUN_8c0a54dc(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c0a5538  0x8c0a5538
+ * vcall_field_8_slot15_0a5538  0x8c0a5538
+ * calls virtual slot 15 of the object at +0x8
  */
-u32 FUN_8c0a5538(int a0, u32 a1, u32 a2, u32 a3) {
+u32 vcall_field_8_slot15_0a5538(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (**(code **)(*(int *)(a0 + 8) + 0x3c))(a0, a1, a2, a3);

@@ -8150,7 +8150,7 @@ int FUN_8c233e10(u32 *a0, u32 *a1, u32 a2, u32 a3) {
             a1 = a0;
         }
         if (iVar1 == 3) {
-            FUN_8c2072b2(3);
+            callback_table_call(3);
         }
     }
     return iVar1;

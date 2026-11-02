@@ -329,10 +329,10 @@ u32 FUN_8c0c0444(int a0, u32 a1, u32 a2, u32 a3) {
     uVar1 = 0;
     FUN_8c221916(4, 0);
     FUN_8c2140a4(4);
-    FUN_8c2140c6(1, 1);
-    FUN_8c2140c6(2, 0);
-    FUN_8c2140c6(3, 0);
-    FUN_8c2140c6(4, 0);
+    flags_4c0db0_set(1, 1);
+    flags_4c0db0_set(2, 0);
+    flags_4c0db0_set(3, 0);
+    flags_4c0db0_set(4, 0);
     strcpy(0x8c436280, "NARRATION");
     g_8c4362e0 = 0;
     g_8c4362e8 = 1;
@@ -968,9 +968,10 @@ u32 FUN_8c0c1d98(int a0, int a1, u32 a2, int a3, u32 s0) {
 }
 
 /*
- * FUN_8c0c2000  0x8c0c2000
+ * vcall_field_c_slot3  0x8c0c2000
+ * calls virtual slot 3 of the object at +0xc
  */
-u32 FUN_8c0c2000(int a0, u32 a1, u32 a2, u32 a3) {
+u32 vcall_field_c_slot3(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (**(code **)(*(int *)(a0 + 0xc) + 0xc))((int *)(a0 + 0xc), a1, a2, a3);
@@ -6764,7 +6765,7 @@ u32 FUN_8c0cac08(int a0, u32 a1, u32 unused_a2, float *a3) {
             iVar1 = (**(code **)(**(int **)(a0 + 8) + 0xf0))(*(int **)(a0 + 8), puVar2, puVar3, a3);
             if (iVar1 == 1) {
                 g_8c4372c8 = 0;
-                FUN_8c0cb1e0(0x8c436f4c, auStack_1c, auStack_18, afStack_14);
+                get_vec3_field_44(0x8c436f4c, auStack_1c, auStack_18, afStack_14);
                 (**(code **)(*(int *)(g_8c4372d4 + 8) + 0x134))(g_8c4372d4, auStack_3c, auStack_38, auStack_34);
                 a3 = afStack_24;
                 puVar3 = auStack_28;
@@ -6793,7 +6794,7 @@ u32 FUN_8c0cac08(int a0, u32 a1, u32 unused_a2, float *a3) {
             a3 = afStack_14;
             puVar3 = auStack_18;
             puVar2 = auStack_1c;
-            FUN_8c0cb1e0(0x8c436f4c, puVar2, puVar3, a3);
+            get_vec3_field_44(0x8c436f4c, puVar2, puVar3, a3);
             if (cVar8 == '\0') {
                 pcVar6 = (code *)0x426b3340;
             } else {
@@ -6843,10 +6844,11 @@ u32 noop_0cb1dc(void) {
 }
 
 /*
- * FUN_8c0cb1e0  0x8c0cb1e0
+ * get_vec3_field_44  0x8c0cb1e0
+ * copies the three words at +0x44 to the pointers in a1..a3
  * called by: FUN_8c0cac08, FUN_8c0cb29c
  */
-u32 *FUN_8c0cb1e0(int a0, u32 *a1, u32 *a2, u32 *a3) {
+u32 *get_vec3_field_44(int a0, u32 *a1, u32 *a2, u32 *a3) {
     *a1 = *(u32 *)(a0 + 0x44);
     *a2 = *(u32 *)(a0 + 0x48);
     *a3 = *(u32 *)(a0 + 0x4c);
@@ -6979,7 +6981,7 @@ u32 FUN_8c0cb29c(int a0, int a1, int a2, u32 a3) {
     ar7_00 = auStack_20;
     ar6_01 = auStack_24;
     puVar2 = auStack_28;
-    FUN_8c0cb1e0(0x8c436f4c, puVar2, ar6_01, ar7_00);
+    get_vec3_field_44(0x8c436f4c, puVar2, ar6_01, ar7_00);
     FUN_8c019560(0x8c436f4c);
     Class_129a24_m1_019b68(0x8c436f4c, puVar2, ar6_01, ar7_00);
     (**(code **)(**(int **)(a0 + 0x10) + 0x28))(*(int **)(a0 + 0x10), puVar2, ar6_01, ar7_00);

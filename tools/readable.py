@@ -499,7 +499,19 @@ def shape_name(f, cur):
     body = st[:-1] if ret else st
     # a 'return' of a scratch register or of a temporary set to a constant is housekeeping
     if body and re.fullmatch(r'(\w+) = %s;' % NUM, body[0]) and rv == body[0].split()[0]: body, rv = body[1:], 'in_r0'
+    # `v = <virtual call>; return v;` is the same as returning the call
+    if len(body) == 1 and re.fullmatch(r'\w+', rv) and body[0].startswith(rv + ' = (**(code **)'):
+        body, rv = [], body[0][len(rv) + 3:].rstrip(';')
     junk = rv in ('', 'in_r0') or re.fullmatch(r'\(?\w*\)?' + NUM, rv) or rv in ('ar4', 'ar5')
+    # x, y, z of a member copied out through three pointers
+    if len(body) == 3:
+        offs = []
+        for k, s in enumerate(body):
+            m = re.fullmatch(r'\*ar%d = (?:\(\w+\))?(.+);' % (5 + k), s)
+            fl = field(m.group(1), f) if m else None
+            if fl: offs.append(int(fl[0], 16))
+        if len(offs) == 3 and offs[1] == offs[0] + 4 and offs[2] == offs[0] + 8:
+            return 'get_vec3_field_%x' % offs[0], 'copies the three words at +0x%x to the pointers in a1..a3' % offs[0]
     if not body:
         if rv in ('', 'in_r0'): return 'noop', 'does nothing'
         if re.fullmatch(r'(?:\(\w+\))?' + NUM, rv): return 'ret_const_%s' % hexoff(re.sub(r'^\(\w+\)', '', rv)), None

@@ -4150,7 +4150,7 @@ u32 ADXSTM_OpenFname(u32 a0, u32 a1, u32 a2, u32 a3) {
             return iVar1;
         }
         lib_error_printf(ar4_01, ar5_01, a2, a3, "E8101211: can\'t GetFileSize (ADXSTM_OpenFname)", in_stack_ffffffec);
-        FUN_8c1f309c(iVar1, ar5_01, a2, a3);
+        gdfs_close_like(iVar1, ar5_01, a2, a3);
     }
     return 0;
 }
@@ -4220,7 +4220,7 @@ u32 FUN_8c263446(int a0, u32 a1, u32 a2, u32 a3) {
     if (a0 != 0) {
         FUN_8c263498(a0, a1, a2, a3);
         if (*(int *)(a0 + 8) != 0) {
-            FUN_8c1f309c(*(u32 *)(a0 + 8));
+            gdfs_close_like(*(u32 *)(a0 + 8));
         }
         uVar1 = memset_wrap_2632e2();
         return uVar1;
@@ -4238,7 +4238,7 @@ u32 FUN_8c26344a(u32 a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     if (unaff_r14 != 0) {
         FUN_8c263498(a0, a1, a2, a3);
         if (*(int *)(unaff_r14 + 8) != 0) {
-            FUN_8c1f309c(*(u32 *)(unaff_r14 + 8), a1, a2, a3);
+            gdfs_close_like(*(u32 *)(unaff_r14 + 8), a1, a2, a3);
         }
         uVar1 = memset_wrap_2632e2();
         return uVar1;
@@ -4426,7 +4426,7 @@ int FUN_8c2635a4(int a0, int a1, u8 *a2, u8 *a3) {
     a4 = *(int **)(a0 + 4);
     iVar1 = a0;
     if (*(char *)(a0 + 2) == '\x01') {
-        iVar1 = FUN_8c1f364c(*(u32 *)(a0 + 8));
+        iVar1 = gdfs_get_stat_like(*(u32 *)(a0 + 8));
         if (iVar1 == 1) {
             iVar6 = *(int *)(a0 + 0x20) * 0x800;
             a3 = auStack_20;
@@ -4593,7 +4593,7 @@ u32 set_fields_1c_18(int a0, u32 a1, u32 a2) {
 u32 FUN_8c2637ae(int a0, u32 *a1) {
     u32 uVar1;
 
-    uVar1 = FUN_8c1f364c(*(u32 *)(a0 + 8));
+    uVar1 = gdfs_get_stat_like(*(u32 *)(a0 + 8));
     *a1 = uVar1;
     return uVar1;
 }

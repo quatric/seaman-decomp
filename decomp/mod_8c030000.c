@@ -11416,7 +11416,7 @@ code *FUN_8c03c94c(code *a0, u32 *a1, u32 unused_a2, u32 a3) {
             ar7_00 = auStack_358;
             puVar11 = auStack_358;
             puVar4 = auStack_358;
-            FUN_8c03f3f8(iVar2, puVar4, puVar11, ar7_00);
+            get_vec3_field_5c(iVar2, puVar4, puVar11, ar7_00);
             iVar2 = *(int *)(a0 + 0x128);
             if (iVar2 == 0) {
                 Vec3_ctor_xyz(auStack_d0, puVar4, puVar11, ar7_00);
@@ -12177,10 +12177,11 @@ int set_field_88_to_1(int a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * FUN_8c03f3f8  0x8c03f3f8
+ * get_vec3_field_5c  0x8c03f3f8
+ * copies the three words at +0x5c to the pointers in a1..a3
  * called by: FUN_8c03c94c, FUN_8c06f93c, FUN_8c077a38
  */
-u32 *FUN_8c03f3f8(int a0, u32 *a1, u32 *a2, u32 *a3) {
+u32 *get_vec3_field_5c(int a0, u32 *a1, u32 *a2, u32 *a3) {
     *a1 = *(u32 *)(a0 + 0x5c);
     *a2 = *(u32 *)(a0 + 0x60);
     *a3 = *(u32 *)(a0 + 100);

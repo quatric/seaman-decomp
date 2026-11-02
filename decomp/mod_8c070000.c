@@ -4121,7 +4121,7 @@ u32 FUN_8c077a38(int a0, float *a1, float *a2, code *a3) {
     get_vec3_field_30(iVar1, auStack_38, &fStack_34, auStack_30);
     a3 = (code *)auStack_48;
     pcVar6 = (code *)auStack_4c;
-    FUN_8c03f3f8(iVar1, auStack_50, pcVar6, a3);
+    get_vec3_field_5c(iVar1, auStack_50, pcVar6, a3);
     if (*(int *)(a0 + 0x2d0) == 1) {
     LAB_8c078026:
         iVar2 = *(int *)(a0 + 0x128);

@@ -6401,9 +6401,10 @@ u32 FUN_8c09abfc(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c09ac58  0x8c09ac58
+ * vcall_field_8_slot15  0x8c09ac58
+ * calls virtual slot 15 of the object at +0x8
  */
-u32 FUN_8c09ac58(int a0, u32 a1, u32 a2, u32 a3) {
+u32 vcall_field_8_slot15(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (**(code **)(*(int *)(a0 + 8) + 0x3c))(a0, a1, a2, a3);
@@ -8075,9 +8076,10 @@ u32 FUN_8c09ca80(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c09cb40  0x8c09cb40
+ * vcall_field_8_slot15_09cb40  0x8c09cb40
+ * calls virtual slot 15 of the object at +0x8
  */
-u32 FUN_8c09cb40(int a0, u32 a1, u32 a2, u32 a3) {
+u32 vcall_field_8_slot15_09cb40(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (**(code **)(*(int *)(a0 + 8) + 0x3c))(a0, a1, a2, a3);
@@ -8824,9 +8826,9 @@ u32 FUN_8c09de7c(void) {
     FUN_8c221916(2, 0);
     FUN_8c221916(3, 0);
     FUN_8c221916(4, 0);
-    FUN_8c2140c6(2, 0);
-    FUN_8c2140c6(3, 0);
-    uVar1 = FUN_8c2140c6(4, 0);
+    flags_4c0db0_set(2, 0);
+    flags_4c0db0_set(3, 0);
+    uVar1 = flags_4c0db0_set(4, 0);
     return uVar1;
 }
 
@@ -9483,7 +9485,7 @@ u32 FUN_8c09ea78(int a0, u32 a1, u32 a2, u32 a3) {
                     FUN_8c21410c(*(int *)(a0 + 0xfd0) + 1, ar5_01, a2, a3, in_stack_ffffff88);
                     g_8c284d80 = g_8c284d80 + -1;
                     FUN_8c221916(*(int *)(a0 + 0xfd0) + 1, 0);
-                    FUN_8c2140c6(*(int *)(a0 + 0xfd0) + 1, 0);
+                    flags_4c0db0_set(*(int *)(a0 + 0xfd0) + 1, 0);
                     *(u32 *)(a0 + 0xfd0) = 0;
                 } else {
                     *(u32 *)(&g_8c13aaf0 + (*(int *)(a0 + 0xfd0) + -1) * 4) = 1;
@@ -9550,7 +9552,7 @@ u32 *FUN_8c09edf0(int a0) {
         FUN_8c22195c(*(int *)(a0 + 0xfd0) + 1, r5, r6, r7, in_stack_ffffffcc);
         FUN_8c21410c(*(int *)(a0 + 0xfd0) + 1, r5, r6, r7, in_stack_ffffffcc);
         FUN_8c221916(*(int *)(a0 + 0xfd0) + 1, 0);
-        FUN_8c2140c6(*(int *)(a0 + 0xfd0) + 1, 0);
+        flags_4c0db0_set(*(int *)(a0 + 0xfd0) + 1, 0);
         g_8c284d80 = g_8c284d80 + -1;
         *(u32 *)(&g_8c13aaf0 + (*(int *)(a0 + 0xfd0) + -1) * 4) = 0;
         if (cVar7 == '\0') {
@@ -9577,7 +9579,7 @@ u32 FUN_8c09efb4(int a0) {
         *(u32 *)(&g_8c13aae4 + (*(int *)(a0 + 0xfd0) + -1) * 4) = 0;
         *(u32 *)(&g_8c13aaf0 + (*(int *)(a0 + 0xfd0) + -1) * 4) = 0;
         FUN_8c221916(*(int *)(a0 + 0xfd0) + 1, 1);
-        FUN_8c2140c6(*(int *)(a0 + 0xfd0) + 1, 1);
+        flags_4c0db0_set(*(int *)(a0 + 0xfd0) + 1, 1);
         uVar1 = 0xfd0;
         *(u32 *)(a0 + 0xfd0) = 0;
     }

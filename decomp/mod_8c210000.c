@@ -1318,13 +1318,13 @@ u32 FUN_8c212440(u32 a0, u32 unused_a1, int a2, u32 a3) {
             a2 = iVar1;
             iVar2 = FUN_8c1f31c6(ar4_00, in_stack_fffffff0, iVar1, a3);
             if (iVar2 == 0) {
-                FUN_8c1f309c(ar4_00, in_stack_fffffff0, a2, a3);
+                gdfs_close_like(ar4_00, in_stack_fffffff0, a2, a3);
                 return iVar1;
             }
             FUN_8c1fb57c(iVar1, in_stack_fffffff0, a2, a3);
             ar5_00 = in_stack_fffffff0;
         }
-        FUN_8c1f309c(ar4_00, ar5_00, a2, a3);
+        gdfs_close_like(ar4_00, ar5_00, a2, a3);
     }
     return 0;
 }
@@ -5155,10 +5155,11 @@ int FUN_8c2140a4(int a0) {
 }
 
 /*
- * FUN_8c2140c6  0x8c2140c6
+ * flags_4c0db0_set  0x8c2140c6
+ * sets or clears (a1) flag a0 of the bit set at 0x8c4c0db0
  * called by: FUN_8c09de7c, FUN_8c09ea78, FUN_8c09edf0, FUN_8c09efb4, FUN_8c0c0444
  */
-u32 FUN_8c2140c6(int a0, int a1) {
+u32 flags_4c0db0_set(int a0, int a1) {
     u32 auStack_20[8];
 
     switch_jump_r0(0x1c, auStack_20, &g_8c26d764);

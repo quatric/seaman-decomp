@@ -10884,7 +10884,7 @@ int FUN_8c0db3bc(int a0, u32 a1, u32 a2, u32 a3) {
         ar7_00 = auStack_40;
         ar6_00 = auStack_44;
         iVar1 = (int)&uStack_4c + 4;
-        FUN_8c0db5a8(a0 + 0x9e8, iVar1, ar6_00, ar7_00);
+        get_vec3_field_50_0db5a8(a0 + 0x9e8, iVar1, ar6_00, ar7_00);
         for (iVar4 = 3; iVar4 < 8; iVar4 = iVar4 + 1) {
             iVar2 = get_field_38_0db5a0(iVar4 * 0x3c + a0 + 0x3a8);
             if (iVar2 != 0) {
@@ -10939,10 +10939,11 @@ u32 get_field_38_0db5a0(int a0) {
 }
 
 /*
- * FUN_8c0db5a8  0x8c0db5a8
+ * get_vec3_field_50_0db5a8  0x8c0db5a8
+ * copies the three words at +0x50 to the pointers in a1..a3
  * called by: Class_12b930_m1_0de1dc, FUN_8c0db3bc, FUN_8c0db5c4
  */
-u32 *FUN_8c0db5a8(int a0, u32 *a1, u32 *a2, u32 *a3) {
+u32 *get_vec3_field_50_0db5a8(int a0, u32 *a1, u32 *a2, u32 *a3) {
     *a1 = *(u32 *)(a0 + 0x50);
     *a2 = *(u32 *)(a0 + 0x54);
     *a3 = *(u32 *)(a0 + 0x58);
@@ -11002,7 +11003,7 @@ u32 FUN_8c0db5c4(int a0, double *a1, u32 a2, u32 a3) {
         ar7_00 = auStack_3c;
         ar6_00 = auStack_40;
         puVar2 = auStack_44;
-        FUN_8c0db5a8(a0 + 0x9e8, puVar2, ar6_00, ar7_00);
+        get_vec3_field_50_0db5a8(a0 + 0x9e8, puVar2, ar6_00, ar7_00);
         ar4_00 = list_node_next_wrap_0da588(a0 + 0xa4);
         for (iVar4 = 0; iVar4 < iVar1; iVar4 = iVar4 + 1) {
             ar7_00 = auStack_2c;
@@ -11126,9 +11127,10 @@ int FUN_8c0db864(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c0db8a8  0x8c0db8a8
+ * get_vec3_field_a68  0x8c0db8a8
+ * copies the three words at +0xa68 to the pointers in a1..a3
  */
-u32 FUN_8c0db8a8(int a0, u32 *a1, u32 *a2, u32 *a3) {
+u32 get_vec3_field_a68(int a0, u32 *a1, u32 *a2, u32 *a3) {
     *a1 = *(u32 *)(a0 + 0xa68);
     *a2 = *(u32 *)(a0 + 0xa6c);
     *a3 = *(u32 *)(a0 + 0xa70);
@@ -12925,9 +12927,10 @@ u32 FUN_8c0de07c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c0de170  0x8c0de170
+ * vcall_slot7  0x8c0de170
+ * calls virtual slot 7 of the object passed in
  */
-u32 FUN_8c0de170(int *a0, u32 a1, u32 a2, u32 a3) {
+u32 vcall_slot7(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (**(code **)(*a0 + 0x1c))(a0, a1, a2, a3);
@@ -12974,7 +12977,7 @@ u32 Class_12b930_m1_0de1dc(int a0, int a1, u8 *a2, u8 *a3) {
     if (*(int *)(a0 + 0xacc) == 2) {
         a3 = auStack_18;
         ar6_00 = auStack_1c;
-        FUN_8c0db5a8(a0 + 0x9e8, auStack_20, ar6_00, a3);
+        get_vec3_field_50_0db5a8(a0 + 0x9e8, auStack_20, ar6_00, a3);
         iVar2 = a0 + 0xa98;
         Vec3_assign(auStack_30, iVar2, ar6_00, a3);
         (**(code **)(*(int *)(*(int *)(a0 + 0xac8) + 8) + 0x130))(*(int *)(a0 + 0xac8), iVar2, ar6_00, a3);

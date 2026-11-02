@@ -10667,10 +10667,11 @@ u32 FUN_8c11c0e4(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c11c1d8  0x8c11c1d8
+ * vcall_slot6  0x8c11c1d8
+ * calls virtual slot 6 of the object passed in
  * called by: FUN_8c11c210
  */
-u32 FUN_8c11c1d8(int *a0) {
+u32 vcall_slot6(int *a0) {
     u32 uVar1;
 
     /* WARNING: Could not recover jumptable at 0x8c11c1ea. Too many branches */
@@ -10703,7 +10704,7 @@ u32 FUN_8c11c210(u32 unused_a0, u32 unused_a1, int a2, int *a3) {
         if (in_r0 != 0xff) {
             return 0;
         }
-        FUN_8c11c1d8(unaff_r14);
+        vcall_slot6(unaff_r14);
         FUN_8c120668(unaff_r14, unused_a1, a2, a3);
     }
     return 1;

@@ -1000,9 +1000,10 @@ u32 noop_0f4bf0(void) {
 }
 
 /*
- * FUN_8c0f4bf4  0x8c0f4bf4
+ * vcall_field_8_slot13  0x8c0f4bf4
+ * calls virtual slot 13 of the object at +0x8
  */
-u32 FUN_8c0f4bf4(int a0, u32 a1, u32 a2, u32 a3) {
+u32 vcall_field_8_slot13(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (**(code **)(*(int *)(a0 + 8) + 0x34))(a0, a1, a2, a3);
@@ -1614,9 +1615,10 @@ u32 *FUN_8c0f54b8(u32 unused_a0, u32 *a1, u32 *a2, u32 *a3) {
 }
 
 /*
- * FUN_8c0f54d0  0x8c0f54d0
+ * get_vec3_field_30_0f54d0  0x8c0f54d0
+ * copies the three words at +0x30 to the pointers in a1..a3
  */
-u32 *FUN_8c0f54d0(int a0, u32 *a1, u32 *a2, u32 *a3) {
+u32 *get_vec3_field_30_0f54d0(int a0, u32 *a1, u32 *a2, u32 *a3) {
     *a1 = *(u32 *)(a0 + 0x30);
     *a2 = *(u32 *)(a0 + 0x34);
     *a3 = *(u32 *)(a0 + 0x38);
@@ -1707,9 +1709,10 @@ u32 FUN_8c0f56e8(int a0) {
 }
 
 /*
- * FUN_8c0f5730  0x8c0f5730
+ * vcall_field_170_slot2  0x8c0f5730
+ * calls virtual slot 2 of the object at +0x170
  */
-u32 FUN_8c0f5730(int a0, u32 a1, u32 a2, u32 a3) {
+u32 vcall_field_170_slot2(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (**(code **)(*(int *)(a0 + 0x170) + 8))((int *)(a0 + 0x170), a1, a2, a3);
@@ -2004,9 +2007,10 @@ u32 Class_12bec0_m3_0f5d1c(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c0f5d80  0x8c0f5d80
+ * vcall_field_8_slot7_0f5d80  0x8c0f5d80
+ * calls virtual slot 7 of the object at +0x8
  */
-u32 FUN_8c0f5d80(int a0, u32 a1, u32 a2, u32 a3) {
+u32 vcall_field_8_slot7_0f5d80(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (**(code **)(*(int *)(a0 + 8) + 0x1c))(a0, a1, a2, a3);
@@ -2114,9 +2118,10 @@ u32 FUN_8c0f5f08(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c0f5f50  0x8c0f5f50
+ * vcall_field_8_slot16  0x8c0f5f50
+ * calls virtual slot 16 of the object at +0x8
  */
-u32 FUN_8c0f5f50(int a0, u32 a1, u32 a2, u32 a3) {
+u32 vcall_field_8_slot16(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (**(code **)(*(int *)(a0 + 8) + 0x40))(a0, a1, a2, a3);
@@ -2124,9 +2129,10 @@ u32 FUN_8c0f5f50(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c0f5f6c  0x8c0f5f6c
+ * vcall_field_8_slot16_0f5f6c  0x8c0f5f6c
+ * calls virtual slot 16 of the object at +0x8
  */
-u32 FUN_8c0f5f6c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 vcall_field_8_slot16_0f5f6c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (**(code **)(*(int *)(a0 + 8) + 0x40))(a0, a1, a2, a3);

@@ -5456,9 +5456,10 @@ u32 get_field_140_025f70(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c025f7c  0x8c025f7c
+ * get_vec3_field_ba8  0x8c025f7c
+ * copies the three words at +0xba8 to the pointers in a1..a3
  */
-u32 FUN_8c025f7c(int a0, u32 *a1, u32 *a2, u32 *a3) {
+u32 get_vec3_field_ba8(int a0, u32 *a1, u32 *a2, u32 *a3) {
     *a1 = *(u32 *)(a0 + 0xba8);
     *a2 = *(u32 *)(a0 + 0xbac);
     *a3 = *(u32 *)(a0 + 0xbb0);
@@ -7621,9 +7622,10 @@ u32 FUN_8c028ef0(int a0, float *a1, float *a2, float *a3) {
 }
 
 /*
- * FUN_8c028f34  0x8c028f34
+ * get_vec3_field_3c8  0x8c028f34
+ * copies the three words at +0x3c8 to the pointers in a1..a3
  */
-u32 FUN_8c028f34(int a0, u32 *a1, u32 *a2, u32 *a3) {
+u32 get_vec3_field_3c8(int a0, u32 *a1, u32 *a2, u32 *a3) {
     *a1 = *(u32 *)(a0 + 0x3c8);
     *a2 = *(u32 *)(a0 + 0x3cc);
     *a3 = *(u32 *)(a0 + 0x3d0);
