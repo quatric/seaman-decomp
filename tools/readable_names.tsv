@@ -2097,7 +2097,7 @@
 8c01243c	double_to_digits	writes a2 decimal digits of the 8-byte mantissa a0 into a1 by repeated subtraction of powers of ten from a table
 8c0125b6	libm_frexp	frexp-style: returns the mantissa of the double in fr4 and stores its binary exponent in *a0 (normalising denormals, setting errno for inf/nan)
 8c012b1c	softfloat_scale_pow10	multiplies the mantissa by 10^a0 using the power-of-ten tables (negative exponents through the reciprocal table)
-8c016cec	Class_129974_set_point_dir	calls method 0x34, stores the point a1 (at +4 and +0x30) and the direction a3 (+0x20) and caches the direction's squared z at +0x3c
+8c016cec	Class_129974_set_point_dir	calls method 0x34, stores the point a1 (at +4 and +0x30) and the direction a3 (+0x20) and stores a product of the direction's last component at +0x3c
 8c017490	Class_129938_set_corners	stores the eight corner points a1, a2, a3, s0..s16 and the squared distances from a1 to s0, s4 and a2
 8c017630	Class_129938_set_corners_strided	stores eight corner points read from a1 at a 0x10-byte stride and the squared distances of three edges
 8c01a630	memcard_tick	refreshes the 0x600-byte working buffer (and the 0x210-byte icon data on a timer), redraws when it changed and runs the current memory card request

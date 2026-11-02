@@ -15101,8 +15101,8 @@ u32 Class_129974_init_fields_016c84(int a0, u32 *a1) {
 
 /*
  * Class_129974_set_point_dir  0x8c016cec
- * calls method 0x34, stores the point a1 (at +4 and +0x30) and the direction a3 (+0x20) and caches the direction's
- * squared z at +0x3c
+ * calls method 0x34, stores the point a1 (at +4 and +0x30) and the direction a3 (+0x20) and stores a product of the
+ * direction's last component at +0x3c
  */
 float *Class_129974_set_point_dir(int a0, u64 *a1, u32 a2, u64 *a3, int *s0) {
     float *pfVar1;
