@@ -268,7 +268,7 @@ u32 game_sub_0e057c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = 0x1b;
-    a4 = CFrogManEgg_sub_0fef94(0x8c3eb324, 0x10, 0x1b, a3);
+    a4 = CItemGLoader_sub_0fef94(0x8c3eb324, 0x10, 0x1b, a3);
     (**(code **)(*(int *)(a4 + 8) + 0x30))(a4, a1, uVar1, a3);
     (**(code **)(*(int *)(a4 + 8) + 0x2c))(a4, a2, uVar1, a3);
     set_vec3_field_30(a4, a2, uVar1);
@@ -2995,7 +2995,7 @@ u32 Vec3_sub_0e3f24(int a0) {
     kamui_sub_2141a6();
     ar5_00 = &uStack_1c;
     uVar2 = 0;
-    kamui_sub_21279c(0, ar5_00, &stack0xffffffd8, r7, in_stack_ffffffd8);
+    njCalcVector_like(0, ar5_00, &stack0xffffffd8, r7, in_stack_ffffffd8);
     gfxlib_sub_219038();
     set_vec3_g_278744();
     gfxlib_sub_219070();
@@ -3591,7 +3591,7 @@ u32 Class_12b758_sub_0e4dd0(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     ar6_00 = auStack_24;
     ar5_00 = &uStack_18;
     uVar1 = 0;
-    kamui_sub_21279c(0, ar5_00, ar6_00, a3, in_stack_ffffffbc);
+    njCalcVector_like(0, ar5_00, ar6_00, a3, in_stack_ffffffbc);
     gfxlib_sub_217ebc();
     gfxlib_sub_219038();
     gfxlib_sub_217ef4();
@@ -5614,7 +5614,7 @@ u32 game_sub_0e8280(int a0, u32 a1, u32 a2, u32 a3) {
         if (iStack_44 == 1) {
             game_sub_10061c(a1);
         }
-        game_sub_1002a8(a1);
+        input_sub_1002a8(a1);
         ar6_00 = auStack_1c;
         Class_12acc8_sub_101210(a1, auStack_20, ar6_00);
         game_sub_0e89c4(a0, auStack_20, ar6_00, a3, &uStack_5c);
@@ -5738,7 +5738,7 @@ u32 game_sub_0e8598(int a0, int a1, u32 unused_a2, u32 a3) {
         for (iVar7 = 0; iVar7 < 4; iVar7 = iVar7 + 1) {
             if (*(int *)(iVar5 * 0x80 + a1) != -1) {
                 ar6_00 = *(u32 *)(a1 + iVar5 * 0x80 + 0x2c);
-                uVar1 = (*(code *)(&CFrogManEgg_sub_0fef94))(0x8c3eb324, *(u32 *)(iVar5 * 0x80 + a1), ar6_00, a3);
+                uVar1 = (*(code *)(&CItemGLoader_sub_0fef94))(0x8c3eb324, *(u32 *)(iVar5 * 0x80 + a1), ar6_00, a3);
                 *(u32 *)(0xa4 + a0 + iVar6 * 0x80 + iVar7 * 0x20) = uVar1;
                 if (*(int *)(iVar5 * 0x80 + a1) == 0xf) {
                     iVar3 = a1 + iVar5 * 0x80;
@@ -6807,11 +6807,11 @@ int Class_12bb08_sub_0e9220(int a0, u32 a1, int a2, int *a3) {
 }
 
 /*
- * game_sub_0e9668  0x8c0e9668
- * area name: game code; nothing names its area yet
+ * inc_counter_be_max2  0x8c0e9668
+ * increments the byte at +0xbe up to 2
  * called by: Class_12a078_sub_05d860, Class_12c3c4_sub_103100
  */
-int game_sub_0e9668(int a0) {
+int inc_counter_be_max2(int a0) {
     int iVar1;
     int iVar2;
 
@@ -6825,11 +6825,11 @@ int game_sub_0e9668(int a0) {
 }
 
 /*
- * game_sub_0e9690  0x8c0e9690
- * area name: game code; nothing names its area yet
+ * dec_counter_be  0x8c0e9690
+ * decrements the byte at +0xbe down to 0
  * called by: Class_12a078_sub_05d860, Class_12c3c4_sub_103100
  */
-int game_sub_0e9690(int a0) {
+int dec_counter_be(int a0) {
     int iVar1;
     int iVar2;
 
@@ -6928,11 +6928,11 @@ u32 set_field_39_u8(int a0, u32 a1) {
 }
 
 /*
- * CGame_sub_0e9898  0x8c0e9898
- * area name: only called from CGame methods
+ * CGame_get_5_fields  0x8c0e9898
+ * copies fields +0x39, +0x3c, +0x3d, +0 and +0x3b of a0 into five bytes at a1
  * called by: CGame_GetUserGameInfo
  */
-int CGame_sub_0e9898(u8 *a0, u8 *a1) {
+int CGame_get_5_fields(u8 *a0, u8 *a1) {
     char cVar1;
     u32 uVar2;
     uVar2 = get_field_39_s8(a0);
@@ -6948,7 +6948,7 @@ int CGame_sub_0e9898(u8 *a0, u8 *a1) {
 
 /*
  * get_field_3c_s8  0x8c0e98e8
- * called by: CGame_sub_0e9898
+ * called by: CGame_get_5_fields
  */
 int get_field_3c_s8(int a0) {
     return (int)*(char *)(a0 + 0x3c);
@@ -6956,18 +6956,18 @@ int get_field_3c_s8(int a0) {
 
 /*
  * get_field_39_s8  0x8c0e98f0
- * called by: CGame_sub_0e9898, Class_12c3c4_sub_104854, game_sub_1063a8, game_sub_107590
+ * called by: CGame_get_5_fields, Class_12c3c4_sub_104854, game_sub_1063a8, game_sub_107590
  */
 int get_field_39_s8(int a0) {
     return (int)*(char *)(a0 + 0x39);
 }
 
 /*
- * game_sub_0e98f8  0x8c0e98f8
- * area name: game code; nothing names its area yet
+ * clear_5_bytes_b  0x8c0e98f8
+ * zeroes the 5 bytes at a0; returns 0
  * called by: game_sub_0c67f4
  */
-u32 game_sub_0e98f8(u8 *a0) {
+u32 clear_5_bytes_b(u8 *a0) {
     *a0 = 0;
     a0[1] = 0;
     a0[2] = 0;
@@ -6977,11 +6977,11 @@ u32 game_sub_0e98f8(u8 *a0) {
 }
 
 /*
- * game_sub_0e9910  0x8c0e9910
- * area name: game code; nothing names its area yet
+ * clear_5_bytes  0x8c0e9910
+ * zeroes the 5 bytes at a0
  * called by: SaveData_ctor
  */
-u8 *game_sub_0e9910(u8 *a0) {
+u8 *clear_5_bytes(u8 *a0) {
     *a0 = 0;
     a0[1] = 0;
     a0[2] = 0;
@@ -6991,10 +6991,10 @@ u8 *game_sub_0e9910(u8 *a0) {
 }
 
 /*
- * game_sub_0e992c  0x8c0e992c
- * area name: game code; nothing names its area yet
+ * CGame_sub_0e992c  0x8c0e992c
+ * area name: sits between CGame functions (same compilation unit)
  */
-u32 game_sub_0e992c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 CGame_sub_0e992c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -7025,10 +7025,10 @@ u32 game_sub_0e992c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0e99e4  0x8c0e99e4
- * area name: game code; nothing names its area yet
+ * CGame_sub_0e99e4  0x8c0e99e4
+ * area name: sits between CGame functions (same compilation unit)
  */
-u32 game_sub_0e99e4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 CGame_sub_0e99e4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;

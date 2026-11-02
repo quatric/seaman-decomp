@@ -5436,7 +5436,7 @@ int Class_12a7a8_m1_098d14(int a0, int *a1, int *a2, u32 a3) {
     uVar2 = get_field_4_05eed8(a0);
     piVar5 = a2;
     Class_12a7a8_sub_099714(a0, a1, a2, uVar2);
-    uVar3 = game_sub_02bef8(a2[1], a1, piVar5);
+    uVar3 = talk_sub_02bef8(a2[1], a1, piVar5);
     if ((((short)uVar3 == 1) && (uVar3 = get_field_4f_s8(a2[3]), (char)uVar3 == '\0')) &&
         (iVar1 = get_field_13c_028d9c(a2[1], a1, piVar5), iVar1 == 0x11)) {
         *(u8 *)(a0 + 0x98) = 3;
@@ -5842,7 +5842,7 @@ u32 game_sub_099dbc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CMothEgg_ctor  0x8c099e74
  * "MothEgg": CAnimal_ctor(kind 11), vtable 0x8c12a7f4
- * called by: CFrogManEgg_sub_0fef94
+ * called by: CItemGLoader_sub_0fef94
  * strings: "MothEgg"
  */
 int CMothEgg_ctor(int a0, u32 a1) {
@@ -6472,7 +6472,7 @@ u32 game_sub_09aca8(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int a6;
     u32 uVar1;
 
-    a6 = CFrogManEgg_sub_0fef94(a1, 10, 0x11, a3);
+    a6 = CItemGLoader_sub_0fef94(a1, 10, 0x11, a3);
     uVar1 = 0;
     if (a6 != 0) {
         uVar1 = (**(code **)(0x100 + *(int *)(a0 + 8)))(a0, 0, a6, a3);
@@ -7270,7 +7270,7 @@ int Class_12a990_sub_09b88c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_09b8e4  0x8c09b8e4
  * name hint from a string it uses: GRAPHICS MUSHROOMERLINE; area name: game code; nothing names its area yet
- * called by: CFrogManEgg_sub_0fef94
+ * called by: CItemGLoader_sub_0fef94
  * strings: "MushroomerEgg"
  */
 int game_sub_09b8e4(int a0, u32 a1) {
@@ -7458,7 +7458,7 @@ u32 Class_12a990_m2_09bc2c(int a0, float *a1, code *a2, code *a3) {
                 iVar10 = 0;
                 if (iVar6 != 0) {
                     iVar10 = iVar5;
-                    CAnimal_sub_02c030(a0 + 0x174, iVar5, a3, pcVar9);
+                    talk_sub_02c030(a0 + 0x174, iVar5, a3, pcVar9);
                     a2 = a3;
                 }
                 if (*(char *)(a0 + 0x9a0) == '\x01') {
@@ -7680,7 +7680,7 @@ u32 Class_12a990_m2_09bc2c(int a0, float *a1, code *a2, code *a3) {
     a2 = pcVar8;
     if (iVar5 != 0) {
         a2 = a3;
-        CAnimal_sub_02c030(a0 + 0x174, pfVar3, a3, pcVar9);
+        talk_sub_02c030(a0 + 0x174, pfVar3, a3, pcVar9);
         pfVar7 = pfVar3;
     }
     iVar5 = Class_12a990_sub_027988(a0);
@@ -8174,7 +8174,7 @@ u32 game_sub_09cbb8(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int a5;
 
     for (a5 = 0; a5 < 8; a5 = a5 + 1) {
-        a6 = CFrogManEgg_sub_0fef94(a1, 1, 1, a3);
+        a6 = CItemGLoader_sub_0fef94(a1, 1, 1, a3);
         if (a6 != 0) {
             (**(code **)(0x100 + *(int *)(a0 + 8)))(a0, a5, a6, a3);
             Class_12a990_sub_09cca8(a0, a5, a6);
@@ -8722,7 +8722,7 @@ u32 Class_12a990_sub_09d718(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CMushroomerLine_ctor  0x8c09d9c0
  * "MushroomerLine": CAnimal_ctor(kind 1), vtable 0x8c12ab2c
- * called by: CFrogManEgg_sub_0fef94
+ * called by: CItemGLoader_sub_0fef94
  * strings: "MushroomerLine"
  */
 int CMushroomerLine_ctor(int a0, u32 a1) {
@@ -9501,7 +9501,7 @@ u32 Class_12ab2c_sub_09ea78(int a0, u32 a1, u32 a2, u32 a3) {
         light_set_vec_4c0dd4(*(int *)(a0 + 0xfd0) + 1, a1, a2, a3, in_stack_ffffff88);
         light_set_vector(*(int *)(a0 + 0xfd0) + 1, a1, a2, a3, in_stack_ffffff88);
         iVar3 = *(int *)(a0 + 0xfd0) + 1;
-        kamui_sub_21415c(iVar3, a1, a2, a3, in_stack_ffffff88);
+        light_set_vector_b(iVar3, a1, a2, a3, in_stack_ffffff88);
         if (*(int *)(&g_8c13aaf0 + (*(int *)(a0 + 0xfd0) + -1) * 4) == 1) {
             pfVar4 = (float *)(&g_8c13aae4 + (*(int *)(a0 + 0xfd0) + -1) * 4);
             if (cVar9 == '\0') {
@@ -9600,7 +9600,7 @@ u32 *Class_12ab2c_sub_09edf0(int a0) {
     cVar6 = '\0';
     light_set_vector(*(int *)(a0 + 0xfd0) + 1, r5, r6, r7, in_stack_ffffffcc);
     light_set_vec_4c0ef4(*(int *)(a0 + 0xfd0) + 1, r5, r6, r7, in_stack_ffffffcc);
-    kamui_sub_21415c(*(int *)(a0 + 0xfd0) + 1, r5, r6, r7, in_stack_ffffffcc);
+    light_set_vector_b(*(int *)(a0 + 0xfd0) + 1, r5, r6, r7, in_stack_ffffffcc);
     light_set_vec_4c0dd4(*(int *)(a0 + 0xfd0) + 1, r5, r6, r7, in_stack_ffffffcc);
     pfVar2 = (float *)(&g_8c13aae4 + (*(int *)(a0 + 0xfd0) + -1) * 4);
     if (cVar7 == '\0') {

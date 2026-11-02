@@ -1324,7 +1324,7 @@ u32 gfxlib_sub_2219f6(void) {
     int iVar4;
     u32 uVar5;
 
-    puVar2 = (&kamui_sub_21279c);
+    puVar2 = (&njCalcVector_like);
     puVar1 = (&point_transform_or_copy);
     uVar5 = *(u32 *)(0x8c4c0e80 + 0x50);
     iVar3 = 0x8c4c0ee0;
@@ -1359,7 +1359,7 @@ u32 gfxlib_sub_221a0a(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 *unaff_r14;
     u32 uVar3;
 
-    puVar2 = (&kamui_sub_21279c);
+    puVar2 = (&njCalcVector_like);
     puVar1 = (&point_transform_or_copy);
     uVar3 = *unaff_r14;
     a6 = 0x8c4c0ee0;

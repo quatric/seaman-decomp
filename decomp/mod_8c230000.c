@@ -6535,7 +6535,7 @@ u32 gfxlib_sub_23340c(int a0, int a1) {
     ar6_00 = auStack_44;
     ar5_00 = auStack_38;
     ar7_00 = auStack_50;
-    iVar1 = kamui_sub_212808(auStack_2c, ar5_00, ar6_00, ar7_00);
+    iVar1 = ninja_sub_212808(auStack_2c, ar5_00, ar6_00, ar7_00);
     if (iVar1 != 0) {
         ar4_00 = aiStack_b0;
         libgcc_movstr_i4(ar4_00, ar5_00, ar6_00, ar7_00);
@@ -6739,7 +6739,7 @@ u32 gfxlib_sub_2336e8(double *a0, double *a1) {
     ar5_00 = auStack_48;
     pdVar9 = &dStack_60;
     ar4_00 = auStack_3c;
-    iVar2 = kamui_sub_212808(ar4_00, ar5_00, pdVar4, pdVar9);
+    iVar2 = ninja_sub_212808(ar4_00, ar5_00, pdVar4, pdVar9);
     if (iVar2 != 0) {
         libgcc_movstr_i4(ar4_00, ar5_00, pdVar4, pdVar9);
         libgcc_movstr_i4(ar4_00, ar5_00, pdVar4, pdVar9);
@@ -8140,8 +8140,8 @@ u32 gfxlib_sub_233da2(u32 a0, u32 a1) {
 /*
  * gfx_set_color4_4aa52c  0x8c233dac
  * copies four words (a colour) to 0x8c4aa52c
- * called by: CAnimal_sub_026968, Class_12ab2c_sub_09dec8, Class_12aeec_sub_0a481c, Vec3_sub_0d5d28, game_init,
- * game_sub_029dec, game_sub_06b460, game_sub_08b020 (+6 more)
+ * called by: CAnimal_sub_026968, CSquidLine_sub_0ad354, Class_12ab2c_sub_09dec8, Class_12aeec_sub_0a481c,
+ * Vec3_sub_0d5d28, game_init, game_sub_029dec, game_sub_06b460 (+6 more)
  */
 u32 gfx_set_color4_4aa52c(u32 *a0) {
     g_8c4aa52c = *a0;
@@ -11917,7 +11917,7 @@ int gfxlib_sub_2376c4(void) {
             memcpy_words_n(uVar3, uVar1, 0x10);
             ninja_sub_255d6c(uVar3, iVar4);
             point_transform_or_copy(uVar3, iVar4 + 0x40, 0x90 + iVar4);
-            iVar4 = kamui_sub_21279c(uVar3, iVar4 + 0x4c, 0x9c + iVar4);
+            iVar4 = njCalcVector_like(uVar3, iVar4 + 0x4c, 0x9c + iVar4);
             iVar5 = iVar5 + -1;
         } while (iVar5 != 0);
     }
@@ -11946,7 +11946,7 @@ u32 gfxlib_sub_2376d8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 a
             memcpy_words_n(0x8c4c13a0, 0x8c4c0ce0, 0x10);
             ninja_sub_255d6c(0x8c4c13a0, ar5_00, ar6_00, a3, in_PR);
             point_transform_or_copy(0x8c4c13a0, ar5_00 + 0x40, ar5_00 + 0x90, a3, in_PR);
-            ain0 = kamui_sub_21279c(0x8c4c13a0, ar5_00 + 0x4c, ar5_00 + 0x9c, a3, in_PR);
+            ain0 = njCalcVector_like(0x8c4c13a0, ar5_00 + 0x4c, ar5_00 + 0x9c, a3, in_PR);
             unaff_r13 = unaff_r13 + -1;
         } while (unaff_r13 != 0);
     }

@@ -648,3 +648,47 @@
 8c01ab2c	memcard_flush_and_close	runs the memory-card queue until it is empty, then shuts the card layer down (state 0)
 8c01ad9c	memcard_request_status	status of request a1 (4 when there is no such request)
 8c01b47c	memcard_save_vm_wait	memcard_save_vm_start, then waits up to 10 s for it
+8c01dfc0	strcmp		2
+8c020c98	CDCGD_request_type8	disc request type 8 (handle at +0x28, result at +8)
+8c020ce4	retry_until_done_020c98	CDCGD_request_type8, retried through 8c01f810 until done; 1 done, 0 failed
+8c263cd8	ADXT_GetTime_like	playing time of an ADXT handle: samples and rate from mwRnaGetTime while playing, else from the stream
+8c21279c	njCalcVector_like	*a2 = vector a1 rotated by matrix a0 (the current matrix when 0), normalised when 8c4ab148 is set
+8c024010	calc_vector_copy	copies the vector a2 and stores njCalcVector_like(a0) of it in a1
+8c263e8e	ADXT_SetOutVol_like	stores output volume a1 at +0x40 and passes it to the handle's mwRna output
+8c022c20	sound_set_out_vol	sets the output volume of an ADX sound (type 2 at *a1) to a2
+8c023c98	Vec3_div_scalar	a0 /= *a1, component-wise
+8c036058	clear_15_bytes	zeroes the 15 bytes at a0
+8c02bebc	talk_find_slot_state2	index of the first of six slots at +0x14c whose state is 2, else -1
+8c02e400	count_list_until_end	entries in the five-entry list at *(a0+0xc) before the first -1
+8c035718	set_flag_byte	sets byte a0[0xc + a1] to 1
+8c035bc8	dec_counter_4e	decrements the byte counter at +0x4e
+8c03f430	Vec4_copy_assign	a0 = a1, four floats
+8c02b340	CAnimBody_random_flags_delay	sets bits 0 and 1 of +0x14 from one random bit; returns a random delay of 30..179
+8c0dba50	start_free_entry_0c0c	starts the first free of eight 0x68-byte entries at +0xc0c from points a1 and a2; 0 when all are busy
+8c02c310	get_byte_51_2col	signed byte at a0[0x51 + a1*2 + a2]
+8c025fc4	get_field_a8_1e_s16	get_field_1e_s16 of the sub-object at +0xa8
+8c02c4e8	get_field_a8_1c_s8	get_field_1c_s8 of the sub-object at +0xa8
+8c02eac0	clear_fields_0_to_20	zeroes the word at +0 and the fields +4..+0x20
+8c05edfc	strcmp		2
+8c0e9668	inc_counter_be_max2	increments the byte at +0xbe up to 2
+8c0e9690	dec_counter_be	decrements the byte at +0xbe down to 0
+8c0620a4	get_byte_75_2col	signed byte at a0[0x75 + a1*2 + a2]
+8c06206c	get_word_9c	word a1 of the array at +0x9c
+8c06b25c	set_flags_214	ORs a1 into the flag word at +0x214
+8c085b14	CSquidLine_release_current_10a8	places the current squid line (slot from +0xd20) at a2, hands it to a1 and clears the slot; error when empty
+8c0ad240	CSquidLine_release_current_928	places the current squid line (slot from +0x53c) at a2, hands it to a1, clears the slot and sets +0x170c
+8c0ad050	CSquidLine_load_8	creates eight squid lines at +0x928 and queues them in the item loader (ids at +0x948)
+8c21415c	light_set_vector_b	stores fr4..fr6 as the vector of light a0 (1-based) at 0x8c4c0d60 and marks it set in 8c4c0db0
+8c0abc1c	set_g_8c438470	stores byte a1 in 8c438470
+8c0d1c14	set_g_8c437864	stores byte a0 in 8c437864
+8c0c09a4	memcard_flush_and_close_8c3dd7dc	memcard_flush_and_close on the global card queue
+8c0b9f5c	copy_record_56	copies a 0x56-byte record: one byte, five words, 0x3e bytes
+8c0e9910	clear_5_bytes	zeroes the 5 bytes at a0
+8c0e98f8	clear_5_bytes_b	zeroes the 5 bytes at a0; returns 0
+8c0bf160	get_word_8	word a1 of the array at +8
+8c0bf618	input_a_or_start_pressed	1 when A or Start was just pressed on the pad at +0xcc and the pad is connected
+8c1000c8	input_start_only_pressed	1 when Start was just pressed on the pad at +0xcc with A, B, X and Y all up
+8c0c3a14	pack_release_entry_384	releases the pack entry handle at +0x384 and sets it to -1
+8c0c3aac	set_texlist_19c_draw	sets texture list a1 (texture 0) on the object at +0x19c and draws the object at +0x1ac
+8c0c3b10	set_texlist_1a4_draw	sets texture list a1 (texture 0) on the object at +0x1a4 and draws the object at +0x1ac
+8c0e9898	CGame_get_5_fields	copies fields +0x39, +0x3c, +0x3d, +0 and +0x3b of a0 into five bytes at a1

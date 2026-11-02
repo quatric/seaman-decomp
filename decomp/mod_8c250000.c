@@ -10877,8 +10877,8 @@ u32 ninja_sub_256164(u32 a0, int *a1, u32 a2, u32 a3) {
 /*
  * matrix_pop_n  0x8c256210
  * pops a0 matrices off the matrix stack
- * called by: CAnimal_sub_026968, CAnimal_sub_029510, CAnimal_sub_088288, Class_1298b8_m11_0159ec,
- * Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0, Class_1298b8_m5_015720 (+50 more)
+ * called by: CAnimal_sub_026968, CAnimal_sub_029510, CAnimal_sub_088288, CSquidLine_sub_0ad354,
+ * Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0 (+50 more)
  */
 u32 matrix_pop_n(int a0) {
     if (g_8c4aa5a0 - a0 != 0) {
@@ -10907,8 +10907,8 @@ u32 matrix_pop1(void) {
 /*
  * matrix_sub_256294  0x8c256294
  * area name: sits between matrix functions (same compilation unit)
- * called by: CAnimal_sub_036adc, Class_12acc8_m1_09f470, game_sub_019508, game_sub_02fcc4, game_sub_03525c,
- * game_sub_085c3c, game_sub_0d1754, game_sub_0d43cc (+2 more)
+ * called by: CAnimal_sub_036adc, CSquidLine_sub_085c3c, Class_12acc8_m1_09f470, game_sub_019508, game_sub_02fcc4,
+ * game_sub_03525c, game_sub_0d1754, game_sub_0d43cc (+2 more)
  */
 u32 matrix_sub_256294(int a0, double *a1, double *a2) {
     double in_dr0;
@@ -11028,8 +11028,8 @@ u32 matrix_sub_256294(int a0, double *a1, double *a2) {
 /*
  * matrix_push  0x8c256328
  * pushes the current 4x4 matrix onto the matrix stack
- * called by: CAnimal_sub_026968, CAnimal_sub_029510, CAnimal_sub_088288, Class_1298b8_m11_0159ec,
- * Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0, Class_1298b8_m5_015720 (+50 more)
+ * called by: CAnimal_sub_026968, CAnimal_sub_029510, CAnimal_sub_088288, CSquidLine_sub_0ad354,
+ * Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0 (+50 more)
  */
 u32 matrix_push(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 *puVar1;
@@ -11928,8 +11928,8 @@ u32 ninja_sub_2569e0(u32 *a0, int a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 /*
  * ninja_sub_256a78  0x8c256a78
  * area name: in the ninja library code range
- * called by: Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12aeec_sub_0a481c, Class_12bec0_sub_0f5e0c,
- * Vec3_sub_02374c, game_sub_0190f0, game_sub_0ad354, ninja_sub_023ebc
+ * called by: CSquidLine_sub_0ad354, Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12aeec_sub_0a481c,
+ * Class_12bec0_sub_0f5e0c, Vec3_sub_02374c, game_sub_0190f0, ninja_sub_023ebc
  */
 u32 ninja_sub_256a78(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -11996,9 +11996,9 @@ u32 ninja_sub_256a78(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 /*
  * njRotateXYZ  0x8c256b0c
  * rotates matrix a0 (NULL: current) by Ninja angles a1, a2, a3
- * called by: CAnimal_sub_023f70, CAnimal_sub_026968, CAnimal_sub_088288, Class_1298b8_m11_0159ec,
- * Class_1298b8_m3_0155e8, Class_1298b8_m5_015720, Class_1298b8_m6_0157f8, Class_1298b8_m7_015890 (+28 more) decompiler:
- * Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256c66
+ * called by: CAnimal_sub_023f70, CAnimal_sub_026968, CAnimal_sub_088288, CSquidLine_sub_0ad354,
+ * Class_1298b8_m11_0159ec, Class_1298b8_m3_0155e8, Class_1298b8_m5_015720, Class_1298b8_m6_0157f8 (+28 more)
+ * decompiler: Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256c66
  */
 u32 njRotateXYZ(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     float fVar1;
@@ -12435,8 +12435,8 @@ u32 ninja_sub_256e18(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 /*
  * matrix_scale  0x8c256fec
  * scales the matrix rows by fr4, fr5, fr6
- * called by: CAnimal_sub_026968, CAnimal_sub_0369c4, CAnimal_sub_088288, Class_1298b8_m11_0159ec,
- * Class_1298b8_m4_0156a0, Class_1298b8_m5_015720, Class_1298b8_m7_015890, Class_1298b8_m8_015948 (+26 more)
+ * called by: CAnimal_sub_026968, CAnimal_sub_0369c4, CAnimal_sub_088288, CSquidLine_sub_0ad354,
+ * Class_1298b8_m11_0159ec, Class_1298b8_m4_0156a0, Class_1298b8_m5_015720, Class_1298b8_m7_015890 (+26 more)
  */
 u32 matrix_scale(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float in_fr5;
@@ -14354,7 +14354,7 @@ u32 ninja_sub_257e10(float *a0, int a1, u32 a2) {
  * noop_fr4_test  0x8c258030
  * tests fr4 against 0 and returns the same value either way
  * called by: Vec3_length_sq, gfxlib_sub_2336e8, gfxlib_sub_233d14, gfxlib_sub_233d20, gfxlib_sub_23c2a0,
- * gfxlib_sub_23c2a6, kamui_sub_212898, kamui_sub_212a30
+ * gfxlib_sub_23c2a6, kamui_sub_212a30, ninja_sub_212898
  */
 u32 noop_fr4_test(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float in_fr4;
@@ -18524,8 +18524,8 @@ u32 njLoadTexture(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * njSetTexture  0x8c25b3ec
  * makes a0 the current texture list (0x8c277b04); -1 for NULL
- * called by: CTexture_LoadFromCache, Class_129808_m10_0162bc, Class_129808_sub_016544, Class_1298b8_m2_015588,
- * Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0, Class_1298b8_m5_015720, Class_1298b8_m6_0157f8 (+13 more)
+ * called by: CSquidLine_sub_0ad354, CTexture_LoadFromCache, Class_129808_m10_0162bc, Class_129808_sub_016544,
+ * Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0, Class_1298b8_m5_015720 (+13 more)
  */
 u32 njSetTexture(int a0) {
     if (a0 == 0) {
@@ -18677,8 +18677,8 @@ u32 tex_error_reset(void) {
 /*
  * touch_fields_30_3c  0x8c25b5d0
  * rewrites the four words at +0x30..+0x3c with themselves (no effect)
- * called by: CAnimal_sub_026968, CAnimal_sub_088288, Class_1298b8_m11_0159ec, Class_1298b8_m2_015588,
- * Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0, Class_1298b8_m5_015720, Class_129938_m1_0170e0 (+23 more)
+ * called by: CAnimal_sub_026968, CAnimal_sub_088288, CSquidLine_sub_0ad354, Class_1298b8_m11_0159ec,
+ * Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0, Class_1298b8_m5_015720 (+23 more)
  */
 u32 touch_fields_30_3c(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     if (a0 != 0) {

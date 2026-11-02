@@ -1364,7 +1364,7 @@ u32 CTexture_sub_0d167c(u32 a0, u32 a1, u32 a2, u32 a3) {
     njGetMatrix_wrap(auStack_88);
     njRotateZ_wrap(auStack_88);
     ninja_sub_023e98(auStack_48, auStack_88, a2, a3);
-    CAnimal_sub_024010(auStack_48, a1, a0);
+    calc_vector_copy(auStack_48, a1, a0);
     free_if_nonnull_wrap_023e4c(auStack_88, 0xffffffff, a0, a3);
     uVar1 = free_if_nonnull_wrap_023e4c(auStack_48, 0xffffffff, a0, a3);
     return uVar1;
@@ -1664,7 +1664,7 @@ int game_sub_0d19dc(int a0, int a1, u32 unused_a2, u32 a3) {
 
     a5 = a0;
     a6 = a1;
-    a4 = CFrogManEgg_sub_0fef94(0x8c3eb324, a0, a1, a3);
+    a4 = CItemGLoader_sub_0fef94(0x8c3eb324, a0, a1, a3);
     if (a4 != 0) {
         if ((a0 < 0x10) && (-1 < a0)) {
             switch (a0) {
@@ -1736,11 +1736,11 @@ u32 game_sub_0d1b90(int *a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * game_sub_0d1c14  0x8c0d1c14
- * area name: game code; nothing names its area yet
+ * set_g_8c437864  0x8c0d1c14
+ * stores byte a0 in 8c437864
  * called by: game_sub_0c6d70, game_sub_0c6e74
  */
-u8 *game_sub_0d1c14(u32 a0, u32 a1) {
+u8 *set_g_8c437864(u32 a0, u32 a1) {
     u8 *puVar1;
 
     puVar1 = 0x8c437864;
@@ -3580,7 +3580,7 @@ u32 WE_CreateStageC(int a0, u32 a1, u32 a2) {
     u32 uStack_1c;
 
     uStack_1c = g_8c13f4e8;
-    kamui_sub_21279c(0, &uStack_1c, a0 + 0x5d8, r7, a2);
+    njCalcVector_like(0, &uStack_1c, a0 + 0x5d8, r7, a2);
     for (iVar3 = 0; iVar3 < 0x19; iVar3 = iVar3 + 1) {
         *(u32 *)(iVar3 * 0xc + 0x8c4376b0) = *(u32 *)(iVar3 * 0xc + 0x8c4376b0) | 0x80000000;
     }
@@ -4513,7 +4513,7 @@ u32 game_sub_0d4bdc(float *a0, int a1) {
     ar6_00 = auStack_20;
     ar5_00 = &uStack_14;
     uVar1 = 0;
-    kamui_sub_21279c(0, ar5_00, ar6_00, r7, a0);
+    njCalcVector_like(0, ar5_00, ar6_00, r7, a0);
     gfxlib_sub_219038();
     uVar1 = gfxlib_sub_219070();
     return uVar1;
@@ -7176,7 +7176,7 @@ u32 *game_sub_0d761c(u32 *a0) {
 /*
  * set_5_floats  0x8c0d7668
  * stores fr4..fr8 into five consecutive floats
- * called by: game_sub_0e99e4
+ * called by: CGame_sub_0e99e4
  */
 u32 *set_5_floats(u32 *a0) {
     u32 in_fr5;
@@ -7209,7 +7209,7 @@ u32 *game_sub_0d7688(u32 *a0) {
 
 /*
  * free_if_nonnull_wrap_0d76b8  0x8c0d76b8
- * called by: Class_12bea8_sub_0d8128, game_sub_0e99e4
+ * called by: CGame_sub_0e99e4, Class_12bea8_sub_0d8128
  */
 int free_if_nonnull_wrap_0d76b8(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -8388,7 +8388,7 @@ u32 game_sub_0d8808(int a0) {
     uStack_c = *(u32 *)(a0 + 0x20);
     ar5_00 = &uStack_14;
     uVar1 = 0;
-    kamui_sub_21279c(0, ar5_00, &stack0xffffffe0, r7, in_stack_ffffffe0);
+    njCalcVector_like(0, ar5_00, &stack0xffffffe0, r7, in_stack_ffffffe0);
     gfxlib_sub_219038();
     set_vec3_g_278744();
     uVar1 = gfxlib_sub_219070();
@@ -8763,7 +8763,7 @@ int game_sub_0d8aa0(int a0, int a1) {
     }
     uVar7 = SUB84(dVar3, 0);
     njRotateXYZ(auStack_58, ar5_00, ar6_00, ar7_00, iVar1);
-    kamui_sub_21279c(auStack_58, &uStack_64, &uStack_70, ar7_00, iVar1);
+    njCalcVector_like(auStack_58, &uStack_64, &uStack_70, ar7_00, iVar1);
     if (cVar10 == '\0') {
         *(u32 *)(a0 + 0x18) = uStack_70;
         *(u32 *)(a0 + 0x1c) = uStack_6c;
@@ -11378,11 +11378,11 @@ u32 game_sub_0db8d4(int a0, u32 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0dba50  0x8c0dba50
- * area name: game code; nothing names its area yet
+ * start_free_entry_0c0c  0x8c0dba50
+ * starts the first free of eight 0x68-byte entries at +0xc0c from points a1 and a2; 0 when all are busy
  * called by: game_sub_03c94c, game_sub_082c50
  */
-u32 game_sub_0dba50(int a0, u32 a1, u32 a2, u32 a3) {
+u32 start_free_entry_0c0c(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar6_00;
     u8 *ar6_01;
@@ -11834,7 +11834,7 @@ u32 game_sub_0dbf90(int *a0, int *a1, u32 a2, u32 a3) {
         piVar2 = a0 + 0x29a;
         (**(code **)(*a0 + 0x68))(a0, piVar2, a2, a3);
     }
-    game_sub_1002a8(a1);
+    input_sub_1002a8(a1);
     return 1;
 }
 
@@ -11983,7 +11983,7 @@ u32 input_sub_0dc28c(int *a0, int *a1, u32 a2, u32 a3) {
                 piVar3 = a0 + 0x29a;
                 (**(code **)(*a0 + 0x68))(a0, piVar3, a2, a3);
             }
-            game_sub_1002a8(a1);
+            input_sub_1002a8(a1);
         }
     }
     return 1;

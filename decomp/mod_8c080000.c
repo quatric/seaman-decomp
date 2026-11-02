@@ -1487,7 +1487,7 @@ u32 game_sub_082c50(int a0, int a1, u32 unused_a2, u32 a3) {
             object_dtor_delete(auStack_9c, 0xffffffff, uVar3, a3);
             Vec3_dtor(auStack_90, 0xffffffff, uVar3, a3);
             ar6_00 = auStack_20;
-            game_sub_0dba50(*(u32 *)(a1 + 0x18), auStack_30, ar6_00, a3);
+            start_free_entry_0c0c(*(u32 *)(a1 + 0x18), auStack_30, ar6_00, a3);
             Vec3_dtor(auStack_30, 0xffffffff, ar6_00, a3);
             Vec3_dtor(auStack_20, 0xffffffff, ar6_00, a3);
         }
@@ -2663,7 +2663,7 @@ int CAnimal_m0_08516c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CHigyoLine_ctor  0x8c0851f4
  * "HigyoLine": CAnimal_ctor(kind 3), vtable 0x8c12a434
- * called by: CFrogManEgg_sub_0fef94
+ * called by: CItemGLoader_sub_0fef94
  * strings: "HigyoLine"
  */
 int CHigyoLine_ctor(int a0, u32 a1, u32 a2) {
@@ -2733,7 +2733,7 @@ u32 CAnimal_m2_085390(int a0, u32 a1, u32 a2, u32 a3) {
                 *(u8 *)(0x10d8 + a0) = 1;
                 *(u32 *)(&DATA_8c13bcc4) = 0;
             }
-            CAnimal_sub_085b14(a0, a3, a1, ar7_00);
+            CSquidLine_release_current_10a8(a0, a3, a1, ar7_00);
             ar5_00 = a3;
             a2 = a1;
         }
@@ -2751,7 +2751,7 @@ u32 CAnimal_m2_085390(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * get_field_290_085544  0x8c085544
- * called by: CAnimal_m2_085390, CAnimal_m3_085550, CAnimal_sub_085b14
+ * called by: CAnimal_m2_085390, CAnimal_m3_085550, CSquidLine_release_current_10a8
  */
 u32 get_field_290_085544(int a0) {
     return *(u32 *)(0x290 + a0);
@@ -2793,7 +2793,7 @@ u32 CAnimal_m3_085550(int a0, u32 a1, u32 a2, u32 a3) {
                 *(u8 *)(0x10d8 + a0) = 1;
                 *(u32 *)(&DATA_8c13bcc4) = 0;
             }
-            CAnimal_sub_085b14(a0, a3, a1, ar7_00);
+            CSquidLine_release_current_10a8(a0, a3, a1, ar7_00);
             ar5_00 = a3;
             a2 = a1;
         }
@@ -2824,7 +2824,7 @@ int CAnimal_sub_085704(int a0, u32 a1, u32 a2, u32 a3) {
 
     cVar6 = '\0';
     game_sub_02702c(a0, a1, a2);
-    uVar1 = game_sub_02bef8(a0 + 0x174, a1, a2);
+    uVar1 = talk_sub_02bef8(a0 + 0x174, a1, a2);
     piVar4 = (int *)(*(int *)(a0 + 0x328) + (short)uVar1 * 0x124);
     iVar2 = get_field_0_015bb8(piVar4 + 0x1c);
     *(u32 *)(a0 + 0x344) = *(u32 *)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x2c) + 0x2c) + 0x2c);
@@ -2866,7 +2866,7 @@ int CAnimal_sub_085704(int a0, u32 a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 0x354) = 0;
     *(u32 *)(a0 + 0x360) = 0;
     *(u32 *)(a0 + 0x35c) = 0;
-    uVar1 = game_sub_02bef8(a0 + 0x174, a1, a2);
+    uVar1 = talk_sub_02bef8(a0 + 0x174, a1, a2);
     iVar3 = (int)(short)uVar1;
     if (iVar3 == 6) {
         *(u32 *)(a0 + 0x358) =
@@ -2917,11 +2917,11 @@ u32 CAnimal_sub_0858e4(int a0, int a1, u32 unused_a2, u32 a3) {
         uVar1 = get_field_a0_035724(a1, iVar2);
         if ((char)uVar1 == '\x02') {
             a6 = 5;
-            uVar1 = CFrogManEgg_sub_0fef94(0x8c3eb324, 6, 5, a3);
+            uVar1 = CItemGLoader_sub_0fef94(0x8c3eb324, 6, 5, a3);
             *(u32 *)(0x10a8 + a0 + iVar3 * 4) = uVar1;
         } else {
             a6 = 0x15;
-            uVar1 = CFrogManEgg_sub_0fef94(0x8c3eb324, 4, 0x15, a3);
+            uVar1 = CItemGLoader_sub_0fef94(0x8c3eb324, 4, 0x15, a3);
             *(u32 *)(0x10a8 + a0 + iVar3 * 4) = uVar1;
         }
         iVar2 = *(int *)(0x10a8 + a0 + iVar3 * 4);
@@ -2981,12 +2981,12 @@ int CAnimal_sub_0859c8(int a0, int a1) {
 }
 
 /*
- * CAnimal_sub_085b14  0x8c085b14
- * name hint from a string it uses: CSquidLine; area name: only called from CAnimal methods
+ * CSquidLine_release_current_10a8  0x8c085b14
+ * places the current squid line (slot from +0xd20) at a2, hands it to a1 and clears the slot; error when empty
  * called by: CAnimal_m2_085390, CAnimal_m3_085550
  * strings: "CSquidLine"; "Ryu-Zan"
  */
-int CAnimal_sub_085b14(int a0, int *a1, u32 a2, u32 a3) {
+int CSquidLine_release_current_10a8(int a0, int *a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     u32 a6;
@@ -3009,10 +3009,10 @@ int CAnimal_sub_085b14(int a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_085c1c  0x8c085c1c
- * area name: game code; nothing names its area yet
+ * CSquidLine_sub_085c1c  0x8c085c1c
+ * area name: sits between CSquidLine functions (same compilation unit)
  */
-u32 game_sub_085c1c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CSquidLine_sub_085c1c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (**(code **)(*(int *)(a0 + 0x490) + 0x1c))((int *)(a0 + 0x490), a1, a2, a3);
@@ -3020,10 +3020,10 @@ u32 game_sub_085c1c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_085c3c  0x8c085c3c
- * area name: game code; nothing names its area yet
+ * CSquidLine_sub_085c3c  0x8c085c3c
+ * area name: sits between CSquidLine functions (same compilation unit)
  */
-int game_sub_085c3c(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int CSquidLine_sub_085c3c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     u8 *puVar2;
@@ -3156,7 +3156,7 @@ int game_sub_085c3c(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * get_field_2a4_085e80  0x8c085e80
- * called by: game_sub_085c3c
+ * called by: CSquidLine_sub_085c3c
  */
 u32 get_field_2a4_085e80(int a0) {
     return *(u32 *)(0x2a4 + a0);
@@ -3164,7 +3164,7 @@ u32 get_field_2a4_085e80(int a0) {
 
 /*
  * set_field_2a8_to_1  0x8c085e8c
- * called by: game_sub_085c3c
+ * called by: CSquidLine_sub_085c3c
  */
 int set_field_2a8_to_1(int a0) {
     int iVar1;
@@ -4195,7 +4195,7 @@ u32 game_sub_085f4c(void) {
 /*
  * CHigyoEgg_ctor  0x8c087ed0
  * "HigyoEgg": CAnimal_ctor(kind 4), vtable 0x8c12a298
- * called by: CFrogManEgg_sub_0fef94
+ * called by: CItemGLoader_sub_0fef94
  * strings: "HigyoEgg"
  */
 int CHigyoEgg_ctor(int a0, u32 a1) {
@@ -4529,7 +4529,7 @@ u32 game_sub_0884a0(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int a6;
     u32 uVar1;
 
-    a6 = CFrogManEgg_sub_0fef94(a1, 3, 2, a3);
+    a6 = CItemGLoader_sub_0fef94(a1, 3, 2, a3);
     uVar1 = 0;
     if (a6 != 0) {
         uVar1 = (**(code **)(0x100 + *(int *)(a0 + 8)))(a0, 0, a6, a3);
@@ -5210,7 +5210,7 @@ u32 destroy_array_8c280fb4(void) {
 /*
  * CMothLine_ctor  0x8c08a17c
  * "MothLine": CAnimal_ctor(kind 10), vtable 0x8c12a5d0
- * called by: CFrogManEgg_sub_0fef94
+ * called by: CItemGLoader_sub_0fef94
  * strings: "MothLine"
  */
 int CMothLine_ctor(int a0, u32 a1, u32 a2) {
@@ -5328,7 +5328,7 @@ u32 Class_12a5d0_m2_08a49c(int a0, u32 a1, u32 a2, u32 a3) {
         set_field_90_u8(a0 + 0x490, 0);
     }
     iVar2 = get_field_124_027930(a0 + 0x538, ar5_00, a2, ar7_00);
-    uVar1 = game_sub_02bef8(a0 + 0x174, ar5_00, a2);
+    uVar1 = talk_sub_02bef8(a0 + 0x174, ar5_00, a2);
     if ((iVar2 == 3) && ((short)uVar1 == 2)) {
         ret_const_2fc(a0 + 0x538, ar5_00, a2, ar7_00);
         if (cVar6 == '\0') {
@@ -5440,7 +5440,7 @@ u32 Class_12a5d0_m3_08a704(int a0, u32 a1, u32 a2, u32 a3) {
         set_field_90_u8(a0 + 0x490, 0);
     }
     iVar2 = get_field_124_027930(a0 + 0x538, ar5_00, a2, ar7_00);
-    uVar1 = game_sub_02bef8(a0 + 0x174, ar5_00, a2);
+    uVar1 = talk_sub_02bef8(a0 + 0x174, ar5_00, a2);
     if ((iVar2 == 3) && ((short)uVar1 == 2)) {
         ret_const_2fc(a0 + 0x538, ar5_00, a2, ar7_00);
         if (cVar6 == '\0') {
@@ -5604,11 +5604,11 @@ u32 Class_12a5d0_sub_08ab58(int a0, u32 unused_a1, int a2, u32 a3) {
         if (g_8c431a54 == 0) {
             g_8c431a54 = 1;
             a6 = 0x19;
-            uVar1 = CFrogManEgg_sub_0fef94(0x8c3eb324, 0xc, 0x19, a3);
+            uVar1 = CItemGLoader_sub_0fef94(0x8c3eb324, 0xc, 0x19, a3);
             *(u32 *)(0x8ec + a0 + iVar2 * 4) = uVar1;
         } else {
             a6 = 0x17;
-            uVar1 = CFrogManEgg_sub_0fef94(0x8c3eb324, 0xb, 0x17, a3);
+            uVar1 = CItemGLoader_sub_0fef94(0x8c3eb324, 0xb, 0x17, a3);
             *(u32 *)(0x8ec + a0 + iVar2 * 4) = uVar1;
         }
         a4 = *(int *)(0x8ec + a0 + iVar2 * 4);
@@ -5756,7 +5756,7 @@ u32 game_sub_08b020(int a0, u32 a1, u32 a2, u32 a3) {
     cVar12 = '\0';
     cVar11 = '\0';
     iVar2 = get_field_124_027930(a0 + 0x538, a1, a2, a3);
-    uVar3 = game_sub_02bef8(a0 + 0x174, a1, a2);
+    uVar3 = talk_sub_02bef8(a0 + 0x174, a1, a2);
     sVar1 = (short)uVar3;
     uVar3 = CONCAT22(uVar13, sVar1);
     iVar7 = *(int *)(a0 + 0x328) + sVar1 * 0x124;
@@ -6030,7 +6030,7 @@ u32 game_sub_08b5a8(int a0, u32 a1, u32 a2, u32 a3) {
 
     uVar6 = (u16)((u32)in_stack_ffffffcc >> 0x10);
     cVar5 = '\0';
-    uVar1 = game_sub_02bef8(a0 + 0x174, a1, a2);
+    uVar1 = talk_sub_02bef8(a0 + 0x174, a1, a2);
     ain0 = CONCAT22(uVar6, (short)uVar1);
     iVar4 = *(int *)(a0 + 0x328) + (short)uVar1 * 0x124;
     obj_set_texlist(*(u32 *)(a0 + 0x42c), a1, a2);
@@ -6091,14 +6091,14 @@ u64 *game_sub_08b798(int a0, u32 a1, u32 a2) {
     char cVar3;
 
     cVar3 = '\0';
-    uVar1 = game_sub_02bef8(a0 + 0x174, a1, a2);
+    uVar1 = talk_sub_02bef8(a0 + 0x174, a1, a2);
     if ((short)uVar1 == 2) {
         *(u32 *)(a0 + 0x478) = 0;
     } else if (*(int *)(a0 + 0x460) == 2) {
         *(u32 *)(a0 + 0x478) = 1;
     }
     game_sub_02702c(a0, a1, a2);
-    uVar1 = game_sub_02bef8(a0 + 0x174, a1, a2);
+    uVar1 = talk_sub_02bef8(a0 + 0x174, a1, a2);
     if ((short)uVar1 < 2) {
         puVar2 = &g_8c08b828;
         if (cVar3 == '\0') {

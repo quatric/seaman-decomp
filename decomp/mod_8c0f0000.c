@@ -6,7 +6,7 @@
 /*
  * copy_5_words  0x8c0f3df8
  * copies five 32-bit words
- * called by: game_sub_0e99e4
+ * called by: CGame_sub_0e99e4
  */
 u32 *copy_5_words(u32 *a0, u32 *a1, u32 a2) {
     *a0 = *a1;
@@ -1658,7 +1658,7 @@ u32 *get_vec3_field_30_0f54d0(int a0, u32 *a1, u32 *a2, u32 *a3) {
 /*
  * game_sub_0f54ec  0x8c0f54ec
  * area name: game code; nothing names its area yet
- * called by: CFrogManEgg_sub_0fef94
+ * called by: CItemGLoader_sub_0fef94
  */
 int game_sub_0f54ec(int a0, u32 a1, int a2, u32 unused_a3, u32 s0, u32 s4) {
     int ar5_00;
@@ -1833,7 +1833,7 @@ u32 noop_0f58a0(void) {
 /*
  * game_sub_0f58a4  0x8c0f58a4
  * area name: game code; nothing names its area yet
- * called by: CFrogManEgg_sub_0fef94
+ * called by: CItemGLoader_sub_0fef94
  */
 int game_sub_0f58a4(int a0, u32 a1, u32 a2) {
     u32 ar5_00;
@@ -2396,7 +2396,7 @@ u32 Class_12bec0_sub_0f5fdc(int a0, float *a1, u32 a2, u32 a3) {
             Vec3_assign_f(a0 + 0x1bc, uVar4, a6, a3);
             puVar7 = &g_8c1401d8;
             iVar1 = a0 + 0x1bc;
-            Vec3_sub_023c98(iVar1, &g_8c1401d8);
+            Vec3_div_scalar(iVar1, &g_8c1401d8);
             uVar4 = rand();
             uVar2 = 2;
             iVar1 = libgcc_divide_helper_01031c(uVar4, 2, a6);
@@ -2487,7 +2487,7 @@ u32 Class_12bec0_sub_0f5fdc(int a0, float *a1, u32 a2, u32 a3) {
             Vec3_assign_f(a0 + 0x1bc, uVar4, a6, a3);
             puVar7 = &g_8c1401dc;
             iVar1 = a0 + 0x1bc;
-            Vec3_sub_023c98(iVar1, &g_8c1401dc);
+            Vec3_div_scalar(iVar1, &g_8c1401dc);
             uVar4 = rand();
             uVar2 = 2;
             iVar1 = libgcc_divide_helper_01031c(uVar4, 2, a6);
@@ -2963,7 +2963,7 @@ u32 game_sub_0f692c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_0f69ec  0x8c0f69ec
  * area name: game code; nothing names its area yet
- * called by: game_sub_0dba50
+ * called by: start_free_entry_0c0c
  */
 int game_sub_0f69ec(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -3024,7 +3024,7 @@ int game_sub_0f69ec(int a0, u32 a1, u32 a2, u32 a3) {
  * has_field_2c  0x8c0f6ab0
  * 1 when +0x2c is non-zero
  * called by: Class_12b580_m1_0e634c, Class_12b580_m2_0e6548, Class_12b580_sub_0e660c, Class_12bb08_m1_0da338,
- * Class_12bb08_m2_0da5a8, game_sub_0dba50, game_sub_0de6d0, game_sub_0deb60 (+4 more)
+ * Class_12bb08_m2_0da5a8, game_sub_0de6d0, game_sub_0deb60, game_sub_0def78 (+4 more)
  */
 u32 has_field_2c(int a0) {
     if (*(int *)(a0 + 0x2c) != 0) {
@@ -4203,7 +4203,7 @@ u32 game_shutdown_a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int ar4_00;
 
     ar4_00 = 0x8c286ebc;
-    game_sub_0c09a4(0x8c286ebc, a1, a2, a3);
+    memcard_flush_and_close_8c3dd7dc(0x8c286ebc, a1, a2, a3);
     ninja_sub_25b37c(ar4_00, a1, a2);
     gfxlib_sub_23403e();
     if (g_8c43b570 != 0) {
@@ -8491,13 +8491,13 @@ u32 CItemGLoader_sub_0fef8c(u32 a0) {
 }
 
 /*
- * CFrogManEgg_sub_0fef94  0x8c0fef94
- * name hint from a string it uses: Shell; area name: only called from CFrogManEgg methods
- * called by: CAnimal_sub_0366f0, CAnimal_sub_0858e4, CAnimal_sub_0ad050, CFrogManEgg_NewChild, CGame_sub_0cc784,
- * CProlog_sub_0cd3c8, Class_12a5d0_sub_08ab58, game_sub_0884a0 (+8 more) strings: "Shell"; "Shell"; "Invalid item no";
+ * CItemGLoader_sub_0fef94  0x8c0fef94
+ * name hint from a string it uses: Shell; area name: sits between CItemGLoader functions (same compilation unit)
+ * called by: CAnimal_sub_0366f0, CAnimal_sub_0858e4, CFrogManEgg_NewChild, CGame_sub_0cc784, CProlog_sub_0cd3c8,
+ * CSquidLine_load_8, Class_12a5d0_sub_08ab58, game_sub_0884a0 (+8 more) strings: "Shell"; "Shell"; "Invalid item no";
  * "CHeapForItem::NewMemory()" ...
  */
-int CFrogManEgg_sub_0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
+int CItemGLoader_sub_0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
     char *a5;
     int a4;
     u64 *puVar1;

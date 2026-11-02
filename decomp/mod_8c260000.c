@@ -3974,7 +3974,7 @@ u32 get_field_a8_s16_wrap(int a0) {
 /*
  * get_field_14_of_field_4  0x8c26314a
  * returns +0x14 of the object at +0x4
- * called by: cri_sub_263cd8, cri_sub_263ce4, cri_sub_263dd8, cri_sub_2647f4
+ * called by: ADXT_GetTime_like, ADXT_sub_263ce4, ADXT_sub_263dd8, cri_sub_2647f4
  * decompiler: Switch with 1 destination removed at 0x8c263152
  */
 u32 get_field_14_of_field_4(int a0) {
@@ -3984,7 +3984,7 @@ u32 get_field_14_of_field_4(int a0) {
 /*
  * get_field_e_s8_wrap  0x8c263156
  * only calls get_field_e_s8
- * called by: cri_sub_263df6, cri_sub_264784, cri_sub_264788, cri_sub_2647f4, cri_sub_264b14, cri_sub_264b1a
+ * called by: ADXT_sub_263df6, cri_sub_264784, cri_sub_264788, cri_sub_2647f4, cri_sub_264b14, cri_sub_264b1a
  */
 u32 get_field_e_s8_wrap(int a0) {
     u32 uVar1;
@@ -3996,7 +3996,7 @@ u32 get_field_e_s8_wrap(int a0) {
 /*
  * cri_sub_263162  0x8c263162
  * area name: in the cri library code range
- * called by: cri_sub_263cd8, cri_sub_263ce4, cri_sub_2647f4
+ * called by: ADXT_GetTime_like, ADXT_sub_263ce4, cri_sub_2647f4
  */
 u32 cri_sub_263162(int a0) {
     u32 uVar1;
@@ -4018,7 +4018,7 @@ u32 get_field_10_of_field_4(int a0) {
 /*
  * get_field_18_wrap  0x8c263186
  * only calls get_field_18_25ff16
- * called by: cri_sub_262e10, cri_sub_263cd8, cri_sub_263ce4, cri_sub_2647f4
+ * called by: ADXT_GetTime_like, ADXT_sub_263ce4, cri_sub_262e10, cri_sub_2647f4
  */
 u32 get_field_18_wrap(int a0) {
     u32 uVar1;
@@ -5095,11 +5095,11 @@ int get_field_1_s8_263cd4(int a0) {
 }
 
 /*
- * cri_sub_263cd8  0x8c263cd8
- * area name: in the cri library code range
- * called by: adx_stall_watchdog, cri_sub_263d90
+ * ADXT_GetTime_like  0x8c263cd8
+ * playing time of an ADXT handle: samples and rate from mwRnaGetTime while playing, else from the stream
+ * called by: ADXT_sub_263d90, adx_stall_watchdog
  */
-u32 cri_sub_263cd8(int a0, int *a1, u32 *a2, u32 a3) {
+u32 ADXT_GetTime_like(int a0, int *a1, u32 *a2, u32 a3) {
     int iVar1;
     u32 uVar2;
 
@@ -5122,10 +5122,10 @@ u32 cri_sub_263cd8(int a0, int *a1, u32 *a2, u32 a3) {
 }
 
 /*
- * cri_sub_263ce4  0x8c263ce4
- * area name: in the cri library code range
+ * ADXT_sub_263ce4  0x8c263ce4
+ * area name: sits between ADXT functions (same compilation unit)
  */
-u32 cri_sub_263ce4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 ADXT_sub_263ce4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 *unaff_r12;
@@ -5151,10 +5151,10 @@ u32 cri_sub_263ce4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * cri_sub_263d90  0x8c263d90
- * area name: in the cri library code range
+ * ADXT_sub_263d90  0x8c263d90
+ * area name: sits between ADXT functions (same compilation unit)
  */
-int cri_sub_263d90(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int ADXT_sub_263d90(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     float fVar1;
     double dVar2;
     int iVar3;
@@ -5165,7 +5165,7 @@ int cri_sub_263d90(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
     cVar5 = '\0';
     cVar4 = '\0';
-    cri_sub_263cd8(a0, &iStack_c, aiStack_8, a3);
+    ADXT_GetTime_like(a0, &iStack_c, aiStack_8, a3);
     if (cVar4 == '\0') {
         fVar1 = (float)iStack_c / (float)aiStack_8[0];
     } else {
@@ -5185,11 +5185,11 @@ int cri_sub_263d90(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * cri_sub_263dd8  0x8c263dd8
- * area name: in the cri library code range
+ * ADXT_sub_263dd8  0x8c263dd8
+ * area name: sits between ADXT functions (same compilation unit)
  * called by: cri_sub_263f54
  */
-u32 cri_sub_263dd8(int a0) {
+u32 ADXT_sub_263dd8(int a0) {
     u32 uVar1;
 
     if ('\x01' < *(char *)(a0 + 1)) {
@@ -5200,11 +5200,11 @@ u32 cri_sub_263dd8(int a0) {
 }
 
 /*
- * cri_sub_263df6  0x8c263df6
- * area name: in the cri library code range
+ * ADXT_sub_263df6  0x8c263df6
+ * area name: sits between ADXT functions (same compilation unit)
  * called by: cri_sub_263f54, cri_sub_264a42
  */
-u32 cri_sub_263df6(int a0) {
+u32 ADXT_sub_263df6(int a0) {
     u32 uVar1;
 
     if ('\x01' < *(char *)(a0 + 1)) {
@@ -5257,11 +5257,11 @@ u32 ADXT_SetOutPan_263e5c(u32 a0, int a1, u32 a2) {
 }
 
 /*
- * cri_sub_263e8e  0x8c263e8e
- * area name: in the cri library code range
- * called by: game_sub_022c20
+ * ADXT_SetOutVol_like  0x8c263e8e
+ * stores output volume a1 at +0x40 and passes it to the handle's mwRna output
+ * called by: sound_set_out_vol
  */
-u32 cri_sub_263e8e(int a0, u32 a1) {
+u32 ADXT_SetOutVol_like(int a0, u32 a1) {
     u32 uVar1;
 
     *(u16 *)(a0 + 0x40) = (u16)a1;
@@ -5310,9 +5310,9 @@ int cri_sub_263f54(int a0, u32 unused_a1, u32 a2, u32 a3) {
         *(int **)(puVar3 + -0xc) = a4;
         uVar2 = (**(code **)(*a4 + 0x24))(a4, 1, a2, a3);
         *(u32 *)(puVar3 + -0xc) = uVar2;
-        uVar2 = cri_sub_263df6(a0);
+        uVar2 = ADXT_sub_263df6(a0);
         *(u32 *)(puVar3 + -8) = uVar2;
-        cri_sub_263dd8(a0);
+        ADXT_sub_263dd8(a0);
         iVar1 = libgcc_divide_helper_010468(*(u32 *)(puVar3 + -0xc), *(int *)(puVar3 + -8) * 0x12);
         iVar1 = iVar1 << 5;
     }
@@ -5936,7 +5936,7 @@ int cri_sub_264a42(int a0, u32 a1, u32 a2, u32 a3) {
     }
     iVar2 = get_field_1_s8_262c38(*(u32 *)(a0 + 4), a1);
     if (iVar2 == 3) {
-        iVar3 = cri_sub_263df6(a0);
+        iVar3 = ADXT_sub_263df6(a0);
         puVar1 = (&memset);
         iVar2 = 0x48;
         iVar4 = *(int *)(a0 + 0x48);
@@ -12291,7 +12291,7 @@ u32 mwRnaDiscardData(int a0, int a1, u8 *a2, u8 *a3) {
 /*
  * mwRnaGetTime  0x8c2699d0
  * *a1 = samples played (+0x4c - +0x34), *a2 = sampling rate (+0xc); matches the CRI mwRna API shape
- * called by: cri_sub_263cd8, cri_sub_263ce4, mwRnaGetTime_wrap
+ * called by: ADXT_GetTime_like, ADXT_sub_263ce4, mwRnaGetTime_wrap
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRnaGetTime(int a0, int *a1, u32 *a2, u32 a3) {
@@ -12521,7 +12521,7 @@ u32 mwRnaSetSfreq(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * mwRnaSetOutVol  0x8c269c3e
  * output volume clamped to -999..0 (+0x60); output vtable slot 0x34
- * called by: cri_sub_263e8e, cri_sub_2647f4, mwRnaSetOutVol_wrap
+ * called by: ADXT_SetOutVol_like, cri_sub_2647f4, mwRnaSetOutVol_wrap
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRnaSetOutVol(int a0, int a1, u32 a2, u32 a3) {

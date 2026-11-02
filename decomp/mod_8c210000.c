@@ -1535,12 +1535,12 @@ u32 point_transform_or_copy(int a0, float *a1, float *a2, u32 unused_a3, u32 ain
 }
 
 /*
- * kamui_sub_21279c  0x8c21279c
- * area name: in the kamui library code range
- * called by: CAnimal_sub_024010, Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12b758_sub_0e4dd0,
- * Vec3_sub_023484, Vec3_sub_023570, Vec3_sub_023668, Vec3_sub_02374c (+9 more)
+ * njCalcVector_like  0x8c21279c
+ * *a2 = vector a1 rotated by matrix a0 (the current matrix when 0), normalised when 8c4ab148 is set
+ * called by: Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12b758_sub_0e4dd0, Vec3_sub_023484, Vec3_sub_023570,
+ * Vec3_sub_023668, Vec3_sub_02374c, Vec3_sub_0238b4 (+9 more)
  */
-u32 kamui_sub_21279c(int a0, float *a1, float *a2, u32 unused_a3, u32 ain0) {
+u32 njCalcVector_like(int a0, float *a1, float *a2, u32 unused_a3, u32 ain0) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -1597,11 +1597,11 @@ u32 kamui_sub_21279c(int a0, float *a1, float *a2, u32 unused_a3, u32 ain0) {
 }
 
 /*
- * kamui_sub_212808  0x8c212808
- * area name: in the kamui library code range
+ * ninja_sub_212808  0x8c212808
+ * area name: sits between ninja functions (same compilation unit)
  * called by: gfxlib_sub_23340c, gfxlib_sub_2336e8
  */
-u32 kamui_sub_212808(float *a0, float *a1, float *a2, float *a3) {
+u32 ninja_sub_212808(float *a0, float *a1, float *a2, float *a3) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -1663,11 +1663,11 @@ u32 kamui_sub_212808(float *a0, float *a1, float *a2, float *a3) {
 }
 
 /*
- * kamui_sub_212898  0x8c212898
- * area name: in the kamui library code range
- * called by: kamui_sub_212946
+ * ninja_sub_212898  0x8c212898
+ * area name: sits between ninja functions (same compilation unit)
+ * called by: ninja_sub_212946
  */
-u32 *kamui_sub_212898(u32 a0, u32 unused_a1, u32 a2) {
+u32 *ninja_sub_212898(u32 a0, u32 unused_a1, u32 a2) {
     u32 r7;
     u32 ain0;
 
@@ -1678,11 +1678,11 @@ u32 *kamui_sub_212898(u32 a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * kamui_sub_212946  0x8c212946
- * area name: in the kamui library code range
+ * ninja_sub_212946  0x8c212946
+ * area name: sits between ninja functions (same compilation unit)
  * called by: kamui_sub_212a30, kamui_sub_2136b0
  */
-u32 kamui_sub_212946(u32 a0, u32 a1) {
+u32 ninja_sub_212946(u32 a0, u32 a1) {
     u32 uVar1;
     u32 a4;
     u32 a5;
@@ -1722,13 +1722,13 @@ u32 kamui_sub_212946(u32 a0, u32 a1) {
 
     cVar11 = '\0';
     cVar10 = '\0';
-    kamui_sub_212898(a0, a0 + 8, a0 + 0x10);
+    ninja_sub_212898(a0, a0 + 8, a0 + 0x10);
     uVar5 = extraout_fr1;
     if (cVar11 == '\0') {
         uVar5 = in_fr13;
     }
     dVar7 = (double)CONCAT44(extraout_fr0, uVar5);
-    kamui_sub_212898(a0, a0 + 0x10, a0 + 0x18);
+    ninja_sub_212898(a0, a0 + 0x10, a0 + 0x18);
     if (cVar10 == '\0') {
         dVar7 = (double)CONCAT44((float)((u64)dVar7 >> 0x20) + extraout_fr0_00, SUB84(dVar7, 0));
     } else {
@@ -1739,13 +1739,13 @@ u32 kamui_sub_212946(u32 a0, u32 a1) {
         in_dr14 = (double)CONCAT44((int)((u64)in_dr14 >> 0x20), (int)((u64)dVar7 >> 0x20));
         dVar8 = in_xd14;
     }
-    kamui_sub_212898(a1, a1 + 8, a1 + 0x10);
+    ninja_sub_212898(a1, a1 + 8, a1 + 0x10);
     uVar5 = extraout_fr1_01;
     if (cVar11 == '\0') {
         uVar5 = SUB84(dVar7, 0);
     }
     dVar7 = (double)CONCAT44(extraout_fr0_01, uVar5);
-    kamui_sub_212898(a1, a1 + 0x10, a1 + 0x18);
+    ninja_sub_212898(a1, a1 + 0x10, a1 + 0x18);
     if (cVar10 == '\0') {
         dVar7 = (double)CONCAT44((float)((u64)dVar7 >> 0x20) + extraout_fr0_02, SUB84(dVar7, 0));
     } else {
@@ -1793,25 +1793,25 @@ u32 kamui_sub_212946(u32 a0, u32 a1) {
         }
         uVar3 = SUB84(dVar4, 0);
         uVar6 = SUB84(dVar7, 0);
-        kamui_sub_212898(a4, a5, a5 + 8);
+        ninja_sub_212898(a4, a5, a5 + 8);
         uVar5 = extraout_fr1_03;
         if (cVar11 == '\0') {
             uVar5 = uVar6;
         }
         dVar7 = (double)CONCAT44(extraout_fr0_03, uVar5);
-        kamui_sub_212898(a4, a5 + 8, a5 + 0x10);
+        ninja_sub_212898(a4, a5 + 8, a5 + 0x10);
         if (cVar10 == '\0') {
             dVar7 = (double)CONCAT44((float)((u64)dVar7 >> 0x20) + extraout_fr0_04, SUB84(dVar7, 0));
         } else {
             dVar7 = dVar7 + (double)CONCAT44(extraout_fr0_04, extraout_fr1_04);
         }
-        kamui_sub_212898(a4, a5 + 0x10, a5 + 0x18);
+        ninja_sub_212898(a4, a5 + 0x10, a5 + 0x18);
         if (cVar10 == '\0') {
             dVar7 = (double)CONCAT44((float)((u64)dVar7 >> 0x20) + extraout_fr0_05, SUB84(dVar7, 0));
         } else {
             dVar7 = dVar7 + (double)CONCAT44(extraout_fr0_05, extraout_fr1_05);
         }
-        kamui_sub_212898(a4, a5 + 0x18, a5);
+        ninja_sub_212898(a4, a5 + 0x18, a5);
         if (cVar10 == '\0') {
             dVar7 = (double)CONCAT44((float)((u64)dVar7 >> 0x20) + extraout_fr0_06, SUB84(dVar7, 0));
         } else {
@@ -4358,7 +4358,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
             *(double *)((int)a0 + 4) = in_xd2;
         }
     }
-    iVar3 = kamui_sub_212946(ppdVar15 + 0x58, ppdVar15 + 0x50);
+    iVar3 = ninja_sub_212946(ppdVar15 + 0x58, ppdVar15 + 0x50);
     ppdVar15[3] = (double *)iVar3;
     uVar2 = 0;
     iVar3 = 0;
@@ -4407,7 +4407,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
             *(double *)((int)a0 + 4) = in_xd2;
         }
     }
-    iVar5 = kamui_sub_212946(ppdVar15 + 0x58, ppdVar15 + 0x50);
+    iVar5 = ninja_sub_212946(ppdVar15 + 0x58, ppdVar15 + 0x50);
     iVar3 = 0;
     ppdVar15[2] = (double *)iVar5;
     for (uVar2 = 0; uVar2 < 0x20; uVar2 = uVar2 + 8) {
@@ -4451,7 +4451,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
         }
         iVar3 = iVar3 + 0xc;
     }
-    iVar3 = kamui_sub_212946(ppdVar15 + 0x58, ppdVar15 + 0x50);
+    iVar3 = ninja_sub_212946(ppdVar15 + 0x58, ppdVar15 + 0x50);
     if ((((ppdVar15[0x1f] == NULL) && (ppdVar15[3] == NULL)) || ((ppdVar15[0x1d] == NULL && (ppdVar15[2] == NULL)))) ||
         ((ppdVar15[0x1e] == NULL && (iVar3 == 0)))) {
         uVar1 = 0;
@@ -4496,7 +4496,7 @@ u32 kamui_sub_2136b0(int a0, int a1) {
         iVar1 = iVar1 + 0xc;
         uVar4 = uVar3;
     } while (uVar3 < 0x20);
-    iVar1 = kamui_sub_212946(auStack_40, auStack_60);
+    iVar1 = ninja_sub_212946(auStack_40, auStack_60);
     iVar2 = 0;
     if (iVar1 != 0) {
         uVar6 = 4;
@@ -4547,7 +4547,7 @@ u32 kamui_sub_2136b0(int a0, int a1) {
         iVar2 = iVar2 + 0xc;
         uVar4 = uVar3;
     } while (uVar3 < 0x20);
-    iVar1 = kamui_sub_212946(auStack_40, auStack_60);
+    iVar1 = ninja_sub_212946(auStack_40, auStack_60);
     iVar2 = 0;
     if (iVar1 != 0) {
         uVar6 = uVar6 | 2;
@@ -4598,7 +4598,7 @@ u32 kamui_sub_2136b0(int a0, int a1) {
         iVar2 = iVar2 + 0xc;
         uVar4 = uVar3;
     } while (uVar3 < 0x20);
-    iVar1 = kamui_sub_212946(auStack_40, auStack_60);
+    iVar1 = ninja_sub_212946(auStack_40, auStack_60);
     if (iVar1 != 0) {
         uVar6 = uVar6 | 1;
     }
@@ -5272,11 +5272,11 @@ u32 kamui_sub_214158(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 }
 
 /*
- * kamui_sub_21415c  0x8c21415c
- * area name: in the kamui library code range
+ * light_set_vector_b  0x8c21415c
+ * stores fr4..fr6 as the vector of light a0 (1-based) at 0x8c4c0d60 and marks it set in 8c4c0db0
  * called by: Class_12ab2c_sub_09ea78, Class_12ab2c_sub_09edf0
  */
-u32 kamui_sub_21415c(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 light_set_vector_b(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int iVar1;
     u32 uVar2;
     u32 in_fr5;
@@ -5327,7 +5327,7 @@ u32 kamui_sub_2141a6(void) {
     int iVar4;
     u32 uVar5;
 
-    puVar2 = (&kamui_sub_21279c);
+    puVar2 = (&njCalcVector_like);
     puVar1 = (&point_transform_or_copy);
     uVar5 = *(u32 *)(0x8c4c0d60 + 0x50);
     iVar3 = 0x8c4c0dc0;
@@ -5362,7 +5362,7 @@ u32 kamui_sub_2141ba(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 *unaff_r14;
     u32 uVar3;
 
-    puVar2 = (&kamui_sub_21279c);
+    puVar2 = (&njCalcVector_like);
     puVar1 = (&point_transform_or_copy);
     uVar3 = *unaff_r14;
     a6 = 0x8c4c0dc0;
@@ -17531,7 +17531,7 @@ u32 gfxlib_sub_21a7ce(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gfxlib_sub_21a80e  0x8c21a80e
  * area name: in the gfxlib library code range
- * called by: Class_12a990_sub_09c930, game_sub_015b14, game_sub_0ad354
+ * called by: CSquidLine_sub_0ad354, Class_12a990_sub_09c930, game_sub_015b14
  */
 u32 gfxlib_sub_21a80e(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -18954,8 +18954,8 @@ u32 gfxlib_sub_21ba6a(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 
 /*
  * gfxlib_sub_21bbb0  0x8c21bbb0
  * area name: in the gfxlib library code range
- * called by: Class_12a7f4_sub_09aad0, Class_12ab2c_sub_09dec8, Class_12ad50_sub_0a53b0, game_sub_06b460,
- * game_sub_08b020, game_sub_08b5a8, game_sub_09e2e8, game_sub_09e4fc (+4 more)
+ * called by: CSquidLine_sub_0ad354, Class_12a7f4_sub_09aad0, Class_12ab2c_sub_09dec8, Class_12ad50_sub_0a53b0,
+ * game_sub_06b460, game_sub_08b020, game_sub_08b5a8, game_sub_09e2e8 (+4 more)
  */
 u32 gfxlib_sub_21bbb0(u32 *a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
