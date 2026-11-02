@@ -525,3 +525,7 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
   REACTION_*, GRATIFIC_*, IDLEACTION_*). Each creature has an `*_asset_table_init` that fills its model/motion/texture
   name table (0x124-byte entries). 8c205e00 is a configuration lookup stub (`kamui_cfg_get`), not a texture-memory
   reader; kamui_cfg_texture_memory is the function that uses its answer.
+- Pattern names (suffix `_<addr>` where several copies exist): per-creature save/load records (`load_state_record_*`,
+  `save_pose_record_*`), child-object helpers at +0x330, Maple `*_hooked` commands (the `_locked` command, then the PVR
+  hook when +0x10e8 is set), ASR module definitions registered through 8c120580 (`asr_module_def_*`, with their input,
+  output and state sizes) and ASR wrappers (`asr_call_<callee>_err`, `asr_vcall_<slot>_*`).
