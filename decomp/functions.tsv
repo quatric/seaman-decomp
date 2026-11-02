@@ -4491,7 +4491,7 @@ address	name	file	params
 8c1fb664	malloc_sub_1fb664	mod_8c1f0000.c	4
 8c1fb77a	shinobi_sub_1fb77a	mod_8c1f0000.c	4
 8c1fb81c	shinobi_sub_1fb81c	mod_8c1f0000.c	3
-8c1fb8ae	shinobi_sub_1fb8ae	mod_8c1f0000.c	1
+8c1fb8ae	utlb_invalidate_entry	mod_8c1f0000.c	1
 8c1fb924	shinobi_sub_1fb924	mod_8c1f0000.c	4
 8c1fb9d2	shinobi_sub_1fb9d2	mod_8c1f0000.c	4
 8c1fba90	shinobi_sub_1fba90	mod_8c1f0000.c	1
@@ -4509,7 +4509,7 @@ address	name	file	params
 8c1fbfcc	thunk_FUN_8c1fda7e	mod_8c1f0000.c	0
 8c1fbfd2	shinobi_sub_1fbfd2	mod_8c1f0000.c	1
 8c1fc00e	shinobi_sub_1fc00e	mod_8c1f0000.c	1
-8c1fc04e	shinobi_sub_1fc04e	mod_8c1f0000.c	1
+8c1fc04e	bu_reset_drive_like	mod_8c1f0000.c	1
 8c1fc076	thunk_FUN_8c1ffcc2	mod_8c1f0000.c	0
 8c1fc07c	shinobi_sub_1fc07c	mod_8c1f0000.c	4
 8c1fc13c	shinobi_sub_1fc13c	mod_8c1f0000.c	2
@@ -4577,12 +4577,12 @@ address	name	file	params
 8c1fd626	shinobi_sub_1fd626	mod_8c1f0000.c	4
 8c1fd720	shinobi_sub_1fd720	mod_8c1f0000.c	3
 8c1fd75c	shinobi_sub_1fd75c	mod_8c1f0000.c	3
-8c1fd8b2	shinobi_sub_1fd8b2	mod_8c1f0000.c	4
+8c1fd8b2	vmu_drive_init	mod_8c1f0000.c	4
 8c1fd8fc	shinobi_sub_1fd8fc	mod_8c1f0000.c	3
 8c1fda04	vmu_drives_clear	mod_8c1f0000.c	4
 8c1fda44	shinobi_sub_1fda44	mod_8c1f0000.c	0
 8c1fda58	alt_entry_1fda58	mod_8c1f0000.c	4
-8c1fda7e	shinobi_sub_1fda7e	mod_8c1f0000.c	2
+8c1fda7e	vmu_drive_ready	mod_8c1f0000.c	2
 8c1fdab0	shinobi_sub_1fdab0	mod_8c1f0000.c	1
 8c1fdbaa	shinobi_sub_1fdbaa	mod_8c1f0000.c	1
 8c1fdc80	shinobi_sub_1fdc80	mod_8c1f0000.c	1
@@ -4822,7 +4822,7 @@ address	name	file	params
 8c205dd4	noop_205dd4	mod_8c200000.c	0
 8c205e00	kamui_cfg_get	mod_8c200000.c	3
 8c205e64	kamui_init_defaults	mod_8c200000.c	4
-8c206146	shinobi_sub_206146	mod_8c200000.c	5
+8c206146	kamui_release_state	mod_8c200000.c	5
 8c206162	shinobi_sub_206162	mod_8c200000.c	4
 8c2061cc	shinobi_sub_2061cc	mod_8c200000.c	0
 8c2062c8	shinobi_sub_2062c8	mod_8c200000.c	4

@@ -1500,3 +1500,8 @@
 8c26b52a	alt_entry_26b52a	probably an entry 4 bytes into 8c26b526: it reads registers that code sets before it
 8c26b5ca	alt_entry_26b5ca	probably an entry 4 bytes into 8c26b5c6: it reads registers that code sets before it
 8c26b996	alt_entry_26b996	probably an entry 4 bytes into 8c26b992: it reads registers that code sets before it
+8c1fb8ae	utlb_invalidate_entry	clears UTLB entry a0 (0..63): the valid bit in the address array (0xf6000000) and the data array word (0xf7000000)
+8c1fc04e	bu_reset_drive_like	vmu_drive_reset(a0) unless the drive is busy (-1)
+8c1fd8b2	vmu_drive_init	zeroes drive a0's 0x148-byte record at 8c4783e0 and points it at its 0x4c-byte work area at 8c47ce40
+8c1fda7e	vmu_drive_ready	1 when drive a0's device is ready and idle and its record says it is mounted (+8)
+8c206146	kamui_release_state	releases the Kamui state block pointer 8c2756b0

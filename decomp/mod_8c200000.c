@@ -7514,7 +7514,7 @@ u32 shinobi_sub_205d80(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * noop_205dd4  0x8c205dd4
- * called by: shinobi_sub_206146
+ * called by: kamui_release_state
  */
 u32 noop_205dd4(void) {
     u32 in_r0;
@@ -7639,10 +7639,10 @@ u32 kamui_init_defaults(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_206146  0x8c206146
- * area name: in the shinobi library code range
+ * kamui_release_state  0x8c206146
+ * releases the Kamui state block pointer 8c2756b0
  */
-u32 shinobi_sub_206146(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 kamui_release_state(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 
     if (g_8c2756b0 != 0) {
         ain0 = noop_205dd4();

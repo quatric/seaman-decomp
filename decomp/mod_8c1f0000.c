@@ -14413,10 +14413,10 @@ u32 shinobi_sub_1fb81c(u32 a0, u32 a1, u32 a2) {
 }
 
 /*
- * shinobi_sub_1fb8ae  0x8c1fb8ae
- * area name: in the shinobi library code range
+ * utlb_invalidate_entry  0x8c1fb8ae
+ * clears UTLB entry a0 (0..63): the valid bit in the address array (0xf6000000) and the data array word (0xf7000000)
  */
-u32 shinobi_sub_1fb8ae(u32 a0) {
+u32 utlb_invalidate_entry(u32 a0) {
     u32 in_r0;
     int iVar1;
     u32 *puVar2;
@@ -14492,7 +14492,7 @@ u32 shinobi_sub_1fb9d2(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar3;
     u32 *puVar4;
 
-    puVar1 = (&shinobi_sub_1fb8ae);
+    puVar1 = (&utlb_invalidate_entry);
     puVar3 = 0x8c475f18 + 0x10;
     for (puVar4 = 0x8c475f18; puVar4 < puVar3; puVar4 = puVar4 + 1) {
         (*(code *)puVar1)(*puVar4, a1, a2, a3);
@@ -14925,10 +14925,10 @@ u32 shinobi_sub_1fc00e(u32 a0) {
 }
 
 /*
- * shinobi_sub_1fc04e  0x8c1fc04e
- * area name: in the shinobi library code range
+ * bu_reset_drive_like  0x8c1fc04e
+ * vmu_drive_reset(a0) unless the drive is busy (-1)
  */
-u32 shinobi_sub_1fc04e(u32 a0) {
+u32 bu_reset_drive_like(u32 a0) {
     int iVar1;
     u32 uVar2;
 
@@ -16374,7 +16374,7 @@ u32 maple_device_ready(int a0, u32 a1) {
  * maple_device_ready_idle  0x8c1fd550
  * maple_device_ready and the bus is not busy
  * called by: alt_entry_1febe6, bu_get_file_size_now, bu_get_free_blocks_now, bu_get_game_file_name_now,
- * bu_is_exist_file_now, shinobi_sub_1fd1e2, shinobi_sub_1fd312, shinobi_sub_1fda7e (+26 more)
+ * bu_is_exist_file_now, shinobi_sub_1fd1e2, shinobi_sub_1fd312, shinobi_sub_1fdd44 (+26 more)
  */
 u32 maple_device_ready_idle(int a0, u32 a1) {
     char *pcVar1;
@@ -16592,10 +16592,10 @@ LAB_8c1fd7e8:
 }
 
 /*
- * shinobi_sub_1fd8b2  0x8c1fd8b2
- * area name: in the shinobi library code range
+ * vmu_drive_init  0x8c1fd8b2
+ * zeroes drive a0's 0x148-byte record at 8c4783e0 and points it at its 0x4c-byte work area at 8c47ce40
  */
-u32 shinobi_sub_1fd8b2(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 vmu_drive_init(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int ar4_00;
 
     ar4_00 = a0 * 0x148 + 0x8c4783e0;
@@ -16723,10 +16723,10 @@ u32 alt_entry_1fda58(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1fda7e  0x8c1fda7e
- * area name: in the shinobi library code range
+ * vmu_drive_ready  0x8c1fda7e
+ * 1 when drive a0's device is ready and idle and its record says it is mounted (+8)
  */
-u32 shinobi_sub_1fda7e(int a0, u32 a1) {
+u32 vmu_drive_ready(int a0, u32 a1) {
     int iVar1;
     int iVar2;
 
@@ -16869,7 +16869,7 @@ u32 shinobi_sub_1fdc80(int a0) {
  * vmu_drive_reset  0x8c1fdd1a
  * clears a mounted drive's state; -255 when the drive is not mounted
  * called by: alt_entry_1febe6, bu_get_file_size_now, bu_get_free_blocks_now, bu_get_game_file_name_now,
- * bu_is_exist_file_now, shinobi_sub_1fc04e, shinobi_sub_1fdd44, shinobi_sub_1fe236 (+23 more)
+ * bu_is_exist_file_now, bu_reset_drive_like, shinobi_sub_1fdd44, shinobi_sub_1fe236 (+23 more)
  */
 int vmu_drive_reset(int a0) {
     int iVar1;
