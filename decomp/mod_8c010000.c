@@ -7672,7 +7672,7 @@ u32 switch_jump(u32 a0, u32 a1, u32 a2, u32 a3) {
  * switch_jump_r0  0x8c0107a0
  * compiler switch helper: jumps through the table at 0x8c0107f4 indexed by r0
  * called by: alt_entry_26892c, flags_4c0db0_set, flags_4c0ed0_set, gfxlib_uses_noop_fr4_test_2336e8,
- * kamui_uses_switch_jump_r0_2140a4, sd_sound_267fe8, sd_uses_memset_268920, ta_uses_switch_jump_r0_2218f4
+ * kamui_uses_switch_jump_r0_2140a4, sd_cmd_ring_push, sd_set_cmd_queue_buffer, ta_uses_switch_jump_r0_2218f4
  */
 u32 switch_jump_r0(u32 a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;

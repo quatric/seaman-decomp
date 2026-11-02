@@ -6705,7 +6705,7 @@ u32 sd_sound_2650ec(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     sd_sound_265ba8(0x8c4bb3e4, 0x40);
     sd_sound_266bd4(ar4_00);
     uVar2 = 0x8c4bb804;
-    sd_uses_memset_268920(0x8c4bb804, ar5_00, a2, a3);
+    sd_set_cmd_queue_buffer(0x8c4bb804, ar5_00, a2, a3);
     sd_fill_loop_2667cc();
     *(u32 *)((int)0x1a8 + *(int *)puVar1) = 0;
     g2dma_channel_open_like(*(int *)puVar1 + (int)0x1ac, 0);
@@ -7606,10 +7606,10 @@ int sd_sound_265ba8(u32 a0, int a1) {
 }
 
 /*
- * sd_sound_265bae  0x8c265bae
- * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls sound functions
+ * sd_set_table_194  0x8c265bae
+ * sets the sound driver's second table (+0x194) to a0 with a1 entries and fills each 8-byte entry from the template
  */
-int sd_sound_265bae(u32 a0, int a1, int *a2, int a3) {
+int sd_set_table_194(u32 a0, int a1, int *a2, int a3) {
     int iVar1;
     int iVar3;
     if (*a2 == 0) {
@@ -7892,7 +7892,7 @@ int sd_dma_start(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * sd_slot_get_field_18  0x8c266134
  * reads the 32-bit word at +0x18 of this slot's 32-byte AICA record
- * called by: alt_entry_2664d4, sd_sound_2664c4
+ * called by: alt_entry_2664d4, sd_slot_get_info
  */
 int sd_slot_get_field_18(int a0, u32 *a1, u32 a2) {
     int ar5_00;
@@ -7916,7 +7916,7 @@ int sd_slot_get_field_18(int a0, u32 *a1, u32 a2) {
 /*
  * sd_slot_get_field_11  0x8c2661a4
  * reads byte +0x11 of this slot's AICA record
- * called by: alt_entry_2664d4, sd_sound_2664c4
+ * called by: alt_entry_2664d4, sd_slot_get_info
  */
 int sd_slot_get_field_11(int a0, u8 *a1, u32 a2) {
     int ar5_00;
@@ -7940,7 +7940,7 @@ int sd_slot_get_field_11(int a0, u8 *a1, u32 a2) {
 /*
  * sd_slot_get_field_1c  0x8c266214
  * reads the 16-bit value at +0x1c of this slot's AICA record
- * called by: alt_entry_2664d4, sd_sound_2664c4
+ * called by: alt_entry_2664d4, sd_slot_get_info
  */
 int sd_slot_get_field_1c(int a0, u32 *a1, u32 a2) {
     int ar5_00;
@@ -7964,7 +7964,7 @@ int sd_slot_get_field_1c(int a0, u32 *a1, u32 a2) {
 /*
  * sd_slot_get_field_00  0x8c266288
  * reads byte 0 of this slot's AICA record
- * called by: alt_entry_2664d4, sd_sound_2664c4
+ * called by: alt_entry_2664d4, sd_slot_get_info
  */
 int sd_slot_get_field_00(int a0, u32 *a1, u32 a2) {
     int ar5_00;
@@ -7988,7 +7988,7 @@ int sd_slot_get_field_00(int a0, u32 *a1, u32 a2) {
 /*
  * sd_slot_get_field_10  0x8c2662f8
  * reads byte +0x10 of this slot's AICA record
- * called by: alt_entry_2664d4, sd_sound_2664c4
+ * called by: alt_entry_2664d4, sd_slot_get_info
  */
 int sd_slot_get_field_10(int a0, u8 *a1, u32 a2) {
     int ar5_00;
@@ -8012,7 +8012,7 @@ int sd_slot_get_field_10(int a0, u8 *a1, u32 a2) {
 /*
  * sd_slot_get_field_02  0x8c266368
  * reads byte 2 of this slot's AICA record
- * called by: alt_entry_2664d4, sd_sound_2664c4
+ * called by: alt_entry_2664d4, sd_slot_get_info
  */
 int sd_slot_get_field_02(int a0, u8 *a1, u32 a2) {
     int ar5_00;
@@ -8036,7 +8036,7 @@ int sd_slot_get_field_02(int a0, u8 *a1, u32 a2) {
 /*
  * sd_slot_get_field_08  0x8c2663d8
  * reads the 16-bit value at +8 of this slot's AICA record
- * called by: alt_entry_2664d4, sd_sound_2664c4
+ * called by: alt_entry_2664d4, sd_slot_get_info
  */
 u32 sd_slot_get_field_08(int a0, u16 *a1, u32 a2) {
     int ar5_00;
@@ -8060,7 +8060,7 @@ u32 sd_slot_get_field_08(int a0, u16 *a1, u32 a2) {
 /*
  * sd_slot_get_field_04  0x8c266448
  * reads the word at +4 of this slot's AICA record, divided by 4
- * called by: alt_entry_2664d4, sd_sound_2664c4
+ * called by: alt_entry_2664d4, sd_slot_get_info
  */
 int sd_slot_get_field_04(int a0, u16 *a1, u32 a2) {
     int iVar1;
@@ -8087,10 +8087,10 @@ int sd_slot_get_field_04(int a0, u16 *a1, u32 a2) {
 }
 
 /*
- * sd_sound_2664c4  0x8c2664c4
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_slot_get_info  0x8c2664c4
+ * gathers sound slot a0's fields into the info record a1
  */
-int sd_sound_2664c4(int a0, u8 *a1, u32 a2) {
+int sd_slot_get_info(int a0, u8 *a1, u32 a2) {
     u32 in_r0;
     int ar5_00;
 
@@ -8114,7 +8114,7 @@ int sd_sound_2664c4(int a0, u8 *a1, u32 a2) {
         in_r0 = sd_slot_get_field_14(a0, a1 + 0xc, a2);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sound_2664c4, ar5_00, a2);
+        sd_set_last_error(sd_slot_get_info, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -8156,7 +8156,7 @@ int alt_entry_2664d4(u32 unused_a0, u32 unused_a1, u32 a2) {
 /*
  * sd_slot_get_field_14  0x8c2665b0
  * reads the word at +0x14 of this slot's AICA record
- * called by: alt_entry_2664d4, sd_sound_2664c4
+ * called by: alt_entry_2664d4, sd_slot_get_info
  */
 int sd_slot_get_field_14(int a0, u32 *a1, u32 a2) {
     int ar5_00;
@@ -8180,7 +8180,7 @@ int sd_slot_get_field_14(int a0, u32 *a1, u32 a2) {
 /*
  * sd_slot_get_field_01  0x8c266620
  * reads byte 1 of this slot's AICA record
- * called by: alt_entry_2664d4, sd_sound_2664c4
+ * called by: alt_entry_2664d4, sd_slot_get_info
  */
 int sd_slot_get_field_01(int a0, u8 *a1, u32 a2) {
     int ar5_00;
@@ -8881,11 +8881,11 @@ u32 thunk_FUN_8c266ccc(void) {
 }
 
 /*
- * sd_sound_266d28  0x8c266d28
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
- * called by: alt_entry_267264, sd_sound_267250, thunk_FUN_8c266d28
+ * sd_slot_ch_get_rate_like  0x8c266d28
+ * reads channel a1 of slot a0's pitch register from AICA RAM, converts it and doubles or halves it by the slot mode
+ * into *a2 called by: alt_entry_267264, sd_slot_ch_get_info, thunk_FUN_8c266d28
  */
-int sd_sound_266d28(int a0, u32 a1, int *a2, u8 *a3) {
+int sd_slot_ch_get_rate_like(int a0, u32 a1, int *a2, u8 *a3) {
     int iVar1;
     int *piVar2;
     int *piVar3;
@@ -8918,7 +8918,7 @@ int sd_sound_266d28(int a0, u32 a1, int *a2, u8 *a3) {
         *a2 = in_stack_ffffffd8;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sound_266d28, ar5_00, piVar2);
+        sd_set_last_error(sd_slot_ch_get_rate_like, ar5_00, piVar2);
     }
     return ar5_00;
 }
@@ -8930,14 +8930,14 @@ int sd_sound_266d28(int a0, u32 a1, int *a2, u8 *a3) {
 u32 thunk_FUN_8c266d28(void) {
     u32 uVar1;
 
-    uVar1 = sd_sound_266d28();
+    uVar1 = sd_slot_ch_get_rate_like();
     return uVar1;
 }
 
 /*
  * sd_slot_ch_get_field_11  0x8c266e2c
  * reads byte +0x11 of channel a1's 32-byte record in this slot's AICA block
- * called by: alt_entry_267264, sd_sound_267250
+ * called by: alt_entry_267264, sd_slot_ch_get_info
  */
 u32 sd_slot_ch_get_field_11(int a0, u32 a1, u8 *a2, u32 a3) {
     int ar6_00;
@@ -8961,7 +8961,7 @@ u32 sd_slot_ch_get_field_11(int a0, u32 a1, u8 *a2, u32 a3) {
 /*
  * sd_slot_ch_get_field_1c  0x8c266ea8
  * reads the word at +0x1c of channel a1's record in this slot's AICA block
- * called by: alt_entry_267264, sd_sound_267250
+ * called by: alt_entry_267264, sd_slot_ch_get_info
  */
 int sd_slot_ch_get_field_1c(int a0, u32 a1, u32 *a2) {
     int iVar1;
@@ -8990,7 +8990,7 @@ int sd_slot_ch_get_field_1c(int a0, u32 a1, u32 *a2) {
 /*
  * sd_slot_ch_get_field_00  0x8c266f38
  * reads byte 0 of channel a1's record in this slot's AICA block
- * called by: alt_entry_267264, mwSndGetPlayPos, sd_sound_267250
+ * called by: alt_entry_267264, mwSndGetPlayPos, sd_slot_ch_get_info
  */
 int sd_slot_ch_get_field_00(int a0, u32 a1, u32 *a2) {
     int iVar1;
@@ -9019,7 +9019,7 @@ int sd_slot_ch_get_field_00(int a0, u32 a1, u32 *a2) {
 /*
  * sd_slot_ch_get_field_10  0x8c266fc8
  * reads byte +0x10 of channel a1's record in this slot's AICA block
- * called by: alt_entry_267264, sd_sound_267250
+ * called by: alt_entry_267264, sd_slot_ch_get_info
  */
 int sd_slot_ch_get_field_10(int a0, u32 a1, u8 *a2) {
     int iVar1;
@@ -9048,7 +9048,7 @@ int sd_slot_ch_get_field_10(int a0, u32 a1, u8 *a2) {
 /*
  * sd_sound_267058  0x8c267058
  * area name: in the sd library code range; behaviour name: mostly calls sound functions
- * called by: alt_entry_267264, sd_sound_267250
+ * called by: alt_entry_267264, sd_slot_ch_get_info
  */
 int sd_sound_267058(int a0, u32 a1, char *a2) {
     char cVar1;
@@ -9094,7 +9094,7 @@ int sd_sound_267058(int a0, u32 a1, char *a2) {
 /*
  * sd_slot_ch_get_field_08  0x8c267130
  * reads the 16-bit value at +8 of channel a1's record in this slot's AICA block
- * called by: alt_entry_267264, sd_sound_267250
+ * called by: alt_entry_267264, sd_slot_ch_get_info
  */
 int sd_slot_ch_get_field_08(int a0, u32 a1, u16 *a2) {
     int iVar1;
@@ -9123,7 +9123,7 @@ int sd_slot_ch_get_field_08(int a0, u32 a1, u16 *a2) {
 /*
  * sd_slot_ch_get_field_04  0x8c2671c0
  * reads the 16-bit value at +4 of channel a1's record in this slot's AICA block
- * called by: alt_entry_267264, sd_sound_267250
+ * called by: alt_entry_267264, sd_slot_ch_get_info
  */
 int sd_slot_ch_get_field_04(int a0, u32 a1, u16 *a2) {
     int iVar1;
@@ -9150,11 +9150,11 @@ int sd_slot_ch_get_field_04(int a0, u32 a1, u16 *a2) {
 }
 
 /*
- * sd_sound_267250  0x8c267250
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_slot_ch_get_info  0x8c267250
+ * gathers channel a1 of sound slot a0's fields into the info record a2
  * called by: thunk_FUN_8c267250
  */
-int sd_sound_267250(int a0, u32 a1, u8 *a2) {
+int sd_slot_ch_get_info(int a0, u32 a1, u8 *a2) {
     u8 *puVar1;
     int iVar2;
 
@@ -9171,12 +9171,12 @@ int sd_sound_267250(int a0, u32 a1, u8 *a2) {
         sd_slot_ch_get_field_04(a0, a1, a2 + 8);
         sd_slot_ch_get_field_10(a0, a1, a2 + 4);
         sd_slot_ch_get_field_11(a0, a1, a2 + 5);
-        sd_sound_266d28(a0, a1, a2 + 0x10);
+        sd_slot_ch_get_rate_like(a0, a1, a2 + 0x10);
         sd_slot_ch_get_field_14(a0, a1, a2 + 0xc);
         iVar2 = 0;
     }
     if (iVar2 != 0) {
-        sd_set_last_error((&sd_sound_2664c4), iVar2);
+        sd_set_last_error((&sd_slot_get_info), iVar2);
     }
     return iVar2;
 }
@@ -9207,7 +9207,7 @@ int alt_entry_267264(u32 unused_a0, u32 unused_a1, u8 *a2, u32 a3) {
         sd_slot_ch_get_field_04(unaff_r13, unaff_r12, unaff_r14 + 8);
         sd_slot_ch_get_field_10(unaff_r13, unaff_r12, unaff_r14 + 4);
         sd_slot_ch_get_field_11(unaff_r13, unaff_r12, unaff_r14 + 5, a3);
-        sd_sound_266d28(unaff_r13, unaff_r12, unaff_r14 + 0x10, a3);
+        sd_slot_ch_get_rate_like(unaff_r13, unaff_r12, unaff_r14 + 0x10, a3);
         a2 = unaff_r14 + 0xc;
         sd_slot_ch_get_field_14(unaff_r13, unaff_r12, a2);
     }
@@ -9224,14 +9224,14 @@ int alt_entry_267264(u32 unused_a0, u32 unused_a1, u8 *a2, u32 a3) {
 u32 thunk_FUN_8c267250(u32 unused_a0, u32 a1) {
     u32 uVar1;
 
-    uVar1 = sd_sound_267250();
+    uVar1 = sd_slot_ch_get_info();
     return uVar1;
 }
 
 /*
  * sd_slot_ch_get_field_14  0x8c267360
  * reads the word at +0x14 of channel a1's record in this slot's AICA block
- * called by: alt_entry_267264, sd_sound_267250
+ * called by: alt_entry_267264, sd_slot_ch_get_info
  */
 int sd_slot_ch_get_field_14(int a0, u32 a1, u32 *a2) {
     int iVar1;
@@ -9478,7 +9478,7 @@ int sd_sound_267740(int a0, int a1, u32 a2, u32 a3) {
             pbVar9 = pbVar9 + 1;
             0x8c4bd42c [iVar7] = bVar1;
         }
-        iVar7 = sd_sound_267fe8(0x8c4bd428, sd_sound_267740);
+        iVar7 = sd_cmd_ring_push(0x8c4bd428, sd_sound_267740);
     }
 LAB_8c267802:
     if (iVar7 != 0) {
@@ -9544,7 +9544,7 @@ int alt_entry_267744(int a0, int a1, u8 *a2, u32 a3) {
             a2 = a2 + 1;
             (&g_8c4bd42c)[iVar6] = uVar1;
         }
-        iVar6 = sd_sound_267fe8(&g_8c4bd428, 7, a2, a3);
+        iVar6 = sd_cmd_ring_push(&g_8c4bd428, 7, a2, a3);
     } else {
     LAB_8c2677e6:
         iVar6 = 0x3000001;
@@ -9600,7 +9600,7 @@ int sd_sound_2678a4(int a0, u32 a1, u32 a2, u32 a3) {
     } else {
         g_8c4bd440 = 0x2e;
         g_8c4bd444 = *(u8 *)(a0 + 1);
-        in_r0 = sd_sound_267fe8(&g_8c4bd440, a1, a2, a3);
+        in_r0 = sd_cmd_ring_push(&g_8c4bd440, a1, a2, a3);
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
@@ -9624,7 +9624,7 @@ int alt_entry_2678a6(int a0, u32 a1, u32 a2, u32 a3) {
     } else {
         g_8c4bd440 = 0x2e;
         g_8c4bd444 = *(u8 *)(a0 + 1);
-        ar5_00 = sd_sound_267fe8(&g_8c4bd440, a1, a2, a3);
+        ar5_00 = sd_cmd_ring_push(&g_8c4bd440, a1, a2, a3);
     }
     if (ar5_00 != 0) {
         sd_set_last_error(sd_sound_2678a4, ar5_00, a2);
@@ -9741,7 +9741,7 @@ int sd_slot_send_cmd_2b(int a0, u32 a1, u32 a2, u32 a3) {
         g_8c4bd458 = 0x2b;
         g_8c4bd45c = *(u8 *)(a0 + 1);
         g_8c4bd45d = (u8)((char)a1 + 0x80);
-        in_r0 = sd_sound_267fe8(&g_8c4bd458, (char)a1 + 0x80, a2, a3);
+        in_r0 = sd_cmd_ring_push(&g_8c4bd458, (char)a1 + 0x80, a2, a3);
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
@@ -9766,7 +9766,7 @@ int alt_entry_2679a2(int a0, u32 a1, u32 a2, u32 a3) {
         g_8c4bd458 = 0x2b;
         g_8c4bd45c = *(u8 *)(a0 + 1);
         g_8c4bd45d = (u8)((char)a1 + 0x80);
-        ar5_00 = sd_sound_267fe8(&g_8c4bd458, (char)a1 + 0x80, a2, a3);
+        ar5_00 = sd_cmd_ring_push(&g_8c4bd458, (char)a1 + 0x80, a2, a3);
     }
     if (ar5_00 != 0) {
         sd_set_last_error(sd_slot_send_cmd_2b, ar5_00, a2);
@@ -9804,7 +9804,7 @@ int sd_slot_send_cmd_29(int a0, u32 a1, int a2, u32 a3) {
         g_8c4bd474 = *(u8 *)(a0 + 1);
         g_8c4bd475 = (u8)a1;
         g_8c4bd476 = (u8)a2;
-        in_r0 = sd_sound_267fe8(&g_8c4bd470, a1, a2, a3);
+        in_r0 = sd_cmd_ring_push(&g_8c4bd470, a1, a2, a3);
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
@@ -9831,7 +9831,7 @@ int alt_entry_267a22(int a0, u32 a1, int a2, u32 a3) {
         g_8c4bd474 = *(u8 *)(a0 + 1);
         g_8c4bd475 = (u8)a1;
         g_8c4bd476 = (u8)a2;
-        ar5_00 = sd_sound_267fe8(&g_8c4bd470, a1, a2, a3);
+        ar5_00 = sd_cmd_ring_push(&g_8c4bd470, a1, a2, a3);
     }
     if (ar5_00 != 0) {
         sd_set_last_error(sd_slot_send_cmd_29, ar5_00, a2);
@@ -9867,7 +9867,7 @@ int sd_slot_send_cmd_2a(int a0, u32 a1, u32 a2, u32 a3) {
         g_8c4bd488 = 0x2a;
         g_8c4bd48c = *(u8 *)(a0 + 1);
         g_8c4bd48d = (u8)((char)a1 + 0x80);
-        in_r0 = sd_sound_267fe8(&g_8c4bd488, (char)a1 + 0x80, a2, a3);
+        in_r0 = sd_cmd_ring_push(&g_8c4bd488, (char)a1 + 0x80, a2, a3);
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
@@ -9892,7 +9892,7 @@ int alt_entry_267ab2(int a0, u32 a1, u32 a2, u32 a3) {
         g_8c4bd488 = 0x2a;
         g_8c4bd48c = *(u8 *)(a0 + 1);
         g_8c4bd48d = (u8)((char)a1 + 0x80);
-        ar5_00 = sd_sound_267fe8(&g_8c4bd488, (char)a1 + 0x80, a2, a3);
+        ar5_00 = sd_cmd_ring_push(&g_8c4bd488, (char)a1 + 0x80, a2, a3);
     }
     if (ar5_00 != 0) {
         sd_set_last_error(sd_slot_send_cmd_2a, ar5_00, a2);
@@ -9973,7 +9973,7 @@ int sd_sound_267b30(int a0, u32 a1, u32 a2, u32 a3) {
             g_8c4bd4aa = (char)a3;
             g_8c4bd4ab = uVar4;
         }
-        iVar5 = sd_sound_267fe8(&g_8c4bd4a0, &g_8c4bd4a5, 0, a3);
+        iVar5 = sd_cmd_ring_push(&g_8c4bd4a0, &g_8c4bd4a5, 0, a3);
     }
     if (iVar5 != 0) {
         sd_set_last_error(sd_sound_267b30, iVar5, a2);
@@ -9993,11 +9993,11 @@ u32 thunk_FUN_8c267b30(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * sd_sound_267ccc  0x8c267ccc
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
- * called by: sd_sound_267d74
+ * sd_slot_cmd_pitch  0x8c267ccc
+ * queues command 0x28 for slot a0 with pitch a1 (within +-0x18ff) and time a2
+ * called by: sd_slot_cmd_pitch_wrap
  */
-int sd_sound_267ccc(int a0, u32 a1, int a2, u32 a3) {
+int sd_slot_cmd_pitch(int a0, u32 a1, int a2, u32 a3) {
     int in_r0;
     int iVar1;
     int iVar2;
@@ -10020,12 +10020,12 @@ int sd_sound_267ccc(int a0, u32 a1, int a2, u32 a3) {
             g_8c4bd4c0 = (u8)a2;
             iVar1 = a2 >> 8;
             g_8c4bd4c1 = (u8)((u32)a2 >> 8);
-            in_r0 = sd_sound_267fe8(&g_8c4bd4b8, iVar2 >> 8, iVar1, a3);
+            in_r0 = sd_cmd_ring_push(&g_8c4bd4b8, iVar2 >> 8, iVar1, a3);
             iVar2 = in_r0;
         }
     }
     if (iVar2 != 0) {
-        sd_set_last_error(sd_sound_267ccc, iVar2, iVar1);
+        sd_set_last_error(sd_slot_cmd_pitch, iVar2, iVar1);
     }
     return iVar2;
 }
@@ -10057,24 +10057,24 @@ int alt_entry_267cce(int a0, u32 a1, int a2, u32 a3) {
             g_8c4bd4c0 = (u8)a2;
             iVar1 = a2 >> 8;
             g_8c4bd4c1 = (u8)((u32)a2 >> 8);
-            iVar2 = sd_sound_267fe8(&g_8c4bd4b8, iVar2 >> 8, iVar1, a3);
+            iVar2 = sd_cmd_ring_push(&g_8c4bd4b8, iVar2 >> 8, iVar1, a3);
         }
     }
     if (iVar2 != 0) {
-        sd_set_last_error(sd_sound_267ccc, iVar2, iVar1);
+        sd_set_last_error(sd_slot_cmd_pitch, iVar2, iVar1);
     }
     return iVar2;
 }
 
 /*
- * sd_sound_267d74  0x8c267d74
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_slot_cmd_pitch_wrap  0x8c267d74
+ * only calls sd_slot_cmd_pitch
  * called by: alt_entry_26aa5c
  */
-u32 sd_sound_267d74(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 sd_slot_cmd_pitch_wrap(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = sd_sound_267ccc((int)(short)a2, a3);
+    uVar1 = sd_slot_cmd_pitch((int)(short)a2, a3);
     return uVar1;
 }
 
@@ -10169,11 +10169,11 @@ u32 thunk_FUN_8c267d88(void) {
 }
 
 /*
- * sd_sound_267e54  0x8c267e54
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_slot_cmd_25_channels  0x8c267e54
+ * queues command 0x25 for slot a0 with the values a2/a3 for channel 0, 1 or both (-1)
  * called by: thunk_FUN_8c267e54
  */
-int sd_sound_267e54(int a0, u32 a1, int a2, u32 a3) {
+int sd_slot_cmd_25_channels(int a0, u32 a1, int a2, u32 a3) {
     int in_r0;
     u8 uVar1;
     u32 uVar2;
@@ -10199,11 +10199,11 @@ int sd_sound_267e54(int a0, u32 a1, int a2, u32 a3) {
             g_8c4bd4da = (char)a3;
             g_8c4bd4db = uVar1;
         }
-        in_r0 = sd_sound_267fe8(&g_8c4bd4d0, a3, a2, a3);
+        in_r0 = sd_cmd_ring_push(&g_8c4bd4d0, a3, a2, a3);
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sound_267e54, ar5_00, a2);
+        sd_set_last_error(sd_slot_cmd_25_channels, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10238,10 +10238,10 @@ int alt_entry_267e56(int a0, u32 a1, int a2, u32 a3) {
             g_8c4bd4da = (char)a3;
             g_8c4bd4db = uVar1;
         }
-        ar5_00 = sd_sound_267fe8(&g_8c4bd4d0, a3, a2, a3);
+        ar5_00 = sd_cmd_ring_push(&g_8c4bd4d0, a3, a2, a3);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sound_267e54, ar5_00, a2);
+        sd_set_last_error(sd_slot_cmd_25_channels, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10253,16 +10253,16 @@ int alt_entry_267e56(int a0, u32 a1, int a2, u32 a3) {
 u32 thunk_FUN_8c267e54(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = sd_sound_267e54();
+    uVar1 = sd_slot_cmd_25_channels();
     return uVar1;
 }
 
 /*
- * sd_sound_267f2c  0x8c267f2c
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_slot_cmd_22_reset_channels  0x8c267f2c
+ * resets the state of each of slot a0's channels and queues command 0x22
  * called by: thunk_FUN_8c267f2c
  */
-int sd_sound_267f2c(int a0, u32 unused_a1, int a2, int a3) {
+int sd_slot_cmd_22_reset_channels(int a0, u32 unused_a1, int a2, int a3) {
     char cVar1;
     int iVar2;
     u32 in_stack_fffffff0;
@@ -10288,10 +10288,10 @@ int sd_sound_267f2c(int a0, u32 unused_a1, int a2, int a3) {
             } while (a3 < cVar1);
         }
         g_8c4bd4e8 = 0x22;
-        iVar2 = sd_sound_267fe8(&g_8c4bd4e8, 0, a2, a3);
+        iVar2 = sd_cmd_ring_push(&g_8c4bd4e8, 0, a2, a3);
     }
     if (iVar2 != 0) {
-        sd_set_last_error(sd_sound_267f2c, iVar2, a2);
+        sd_set_last_error(sd_slot_cmd_22_reset_channels, iVar2, a2);
     }
     return iVar2;
 }
@@ -10303,17 +10303,17 @@ int sd_sound_267f2c(int a0, u32 unused_a1, int a2, int a3) {
 u32 thunk_FUN_8c267f2c(void) {
     u32 uVar1;
 
-    uVar1 = sd_sound_267f2c();
+    uVar1 = sd_slot_cmd_22_reset_channels();
     return uVar1;
 }
 
 /*
- * sd_sound_267fe8  0x8c267fe8
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_cmd_ring_push  0x8c267fe8
+ * copies the 0x14-byte command a0 into the next entry of the driver's command ring (error when 0x100 are pending)
  * called by: alt_entry_267744, alt_entry_2678a6, alt_entry_2679a2, alt_entry_267a22, alt_entry_267ab2,
  * alt_entry_267cce, alt_entry_267e56, alt_entry_26813e (+17 more)
  */
-int sd_sound_267fe8(u32 a0, u32 a1, int a2, int a3) {
+int sd_cmd_ring_push(u32 a0, u32 a1, int a2, int a3) {
     int iVar1;
     u32 ain0;
     int iVar2;
@@ -10347,7 +10347,7 @@ int sd_sound_267fe8(u32 a0, u32 a1, int a2, int a3) {
         }
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sound_267fe8, ar5_00, a2);
+        sd_set_last_error(sd_cmd_ring_push, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10441,11 +10441,11 @@ int alt_entry_2680ee(int a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * sd_sound_26813c  0x8c26813c
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_slot_cmd_11  0x8c26813c
+ * queues command 0x11 for slot a0 with the bytes a1, a2 and a3 (0..0x1f, times 8)
  * called by: game_sound_02257c
  */
-int sd_sound_26813c(int a0, u32 a1, u32 a2, u32 a3) {
+int sd_slot_cmd_11(int a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
     int iVar1;
 
@@ -10463,12 +10463,12 @@ int sd_sound_26813c(int a0, u32 a1, u32 a2, u32 a3) {
             g_8c4bd505 = (u8)a1;
             g_8c4bd506 = (u8)a2;
             g_8c4bd507 = (u8)(iVar1 << 3);
-            in_r0 = sd_sound_267fe8(&g_8c4bd500, a1, a2, a3);
+            in_r0 = sd_cmd_ring_push(&g_8c4bd500, a1, a2, a3);
             iVar1 = in_r0;
         }
     }
     if (iVar1 != 0) {
-        sd_set_last_error(sd_sound_26813c, iVar1, a2);
+        sd_set_last_error(sd_slot_cmd_11, iVar1, a2);
     }
     return iVar1;
 }
@@ -10495,11 +10495,11 @@ int alt_entry_26813e(int a0, u32 a1, u32 a2, u32 a3) {
             g_8c4bd505 = (u8)a1;
             g_8c4bd506 = (u8)a2;
             g_8c4bd507 = (u8)(iVar1 << 3);
-            iVar1 = sd_sound_267fe8(&g_8c4bd500, a1, a2, a3);
+            iVar1 = sd_cmd_ring_push(&g_8c4bd500, a1, a2, a3);
         }
     }
     if (iVar1 != 0) {
-        sd_set_last_error(sd_sound_26813c, iVar1, a2);
+        sd_set_last_error(sd_slot_cmd_11, iVar1, a2);
     }
     return iVar1;
 }
@@ -10526,7 +10526,7 @@ int sd_sound_2681d0(int a0, u32 a1, int a2, u32 a3) {
         g_8c4bd51e = (u8)a2;
         iVar1 = a2 >> 8;
         g_8c4bd51f = (u8)((u32)a2 >> 8);
-        in_r0 = sd_sound_267fe8(&g_8c4bd518, (char)a1 + 0x80, iVar1, a3);
+        in_r0 = sd_cmd_ring_push(&g_8c4bd518, (char)a1 + 0x80, iVar1, a3);
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
@@ -10556,7 +10556,7 @@ int alt_entry_2681d2(int a0, u32 a1, int a2, u32 a3) {
         g_8c4bd51e = (u8)a2;
         iVar1 = a2 >> 8;
         g_8c4bd51f = (u8)((u32)a2 >> 8);
-        ar5_00 = sd_sound_267fe8(&g_8c4bd518, (char)a1 + 0x80, iVar1, a3);
+        ar5_00 = sd_cmd_ring_push(&g_8c4bd518, (char)a1 + 0x80, iVar1, a3);
     }
     if (ar5_00 != 0) {
         sd_set_last_error(sd_sound_2681d0, ar5_00, iVar1);
@@ -10588,7 +10588,7 @@ int sd_sound_268250(int a0, u32 a1, u32 a2) {
         *puVar4 = *(u8 *)(a0 + 1);
         puVar4[1] = (char)a1 + cVar1;
         *puVar5 = (char)a2;
-        puVar6 = (&sd_sound_267fe8);
+        puVar6 = (&sd_cmd_ring_push);
         puVar3 = 0x8c4bd530;
         *(char *)((int)puVar2 + 7) = (char)((u32)a2 >> 8);
         iVar7 = (*(code *)puVar6)(puVar3);
@@ -10615,7 +10615,7 @@ int sd_sound_268254(int a0, u32 a1, int a2, u32 a3) {
         g_8c4bd536 = (u8)a2;
         ar6_00 = a2 >> 8;
         g_8c4bd537 = (u8)((u32)a2 >> 8);
-        ar5_00 = sd_sound_267fe8(&g_8c4bd530, (char)a1 + 0x80, ar6_00, a3);
+        ar5_00 = sd_cmd_ring_push(&g_8c4bd530, (char)a1 + 0x80, ar6_00, a3);
     } else {
         ar5_00 = 0x7000103;
         ar6_00 = a2;
@@ -10642,7 +10642,7 @@ int sd_slot_send_cmd_12(int a0, u32 a1, u32 a2, u32 a3) {
     } else {
         g_8c4bd548 = 0x12;
         g_8c4bd54c = *(u8 *)(a0 + 1);
-        in_r0 = sd_sound_267fe8(&g_8c4bd548, a1, a2, a3);
+        in_r0 = sd_cmd_ring_push(&g_8c4bd548, a1, a2, a3);
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
@@ -10666,7 +10666,7 @@ int alt_entry_2682be(int a0, u32 a1, u32 a2, u32 a3) {
     } else {
         g_8c4bd548 = 0x12;
         g_8c4bd54c = *(u8 *)(a0 + 1);
-        ar5_00 = sd_sound_267fe8(&g_8c4bd548, a1, a2, a3);
+        ar5_00 = sd_cmd_ring_push(&g_8c4bd548, a1, a2, a3);
     }
     if (ar5_00 != 0) {
         sd_set_last_error(sd_slot_send_cmd_12, ar5_00, a2);
@@ -10770,7 +10770,7 @@ u32 aica_ram_2684b8(void) {
 /*
  * aica_calc_2684f0  0x8c2684f0
  * area name: sits between aica functions (same compilation unit); behaviour name: integer arithmetic on its arguments
- * called by: aica_sound_265374, sd_sound_266d28
+ * called by: aica_sound_265374, sd_slot_ch_get_rate_like
  */
 u32 aica_calc_2684f0(int a0, u32 a1, u32 *a2, u32 *a3) {
     int iVar1;
@@ -10857,7 +10857,7 @@ LAB_8c2685de:
 /*
  * aica_ram_268618  0x8c268618
  * called by: aica_sound_2653e0, alt_entry_2653e8, sd_slot_ch_get_field_04, sd_slot_ch_get_field_08,
- * sd_slot_get_field_04, sd_slot_get_field_08, sd_slot_get_field_18, sd_sound_266d28
+ * sd_slot_ch_get_rate_like, sd_slot_get_field_04, sd_slot_get_field_08, sd_slot_get_field_18
  */
 u32 aica_ram_268618(int a0, u32 a1) {
     if (a0 < 0x200000) {
@@ -10969,11 +10969,11 @@ u32 aica_write_u8(u32 a0, u32 a1) {
 }
 
 /*
- * sd_sound_268818  0x8c268818
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_set_mono_stereo  0x8c268818
+ * queues command 0x8a selecting mono ("MONO") or stereo ("STRO") output
  * called by: game_sound_0221c8
  */
-int sd_sound_268818(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int sd_set_mono_stereo(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int in_r0;
     int ar5_00;
 
@@ -10991,12 +10991,12 @@ int sd_sound_268818(int a0, u32 unused_a1, u32 a2, u32 a3) {
             }
             g_8c4bd564 = 0;
         }
-        a0 = sd_sound_267fe8(&g_8c4bd560, &g_8c4bd564, a2, a3);
+        a0 = sd_cmd_ring_push(&g_8c4bd560, &g_8c4bd564, a2, a3);
         ar5_00 = a0;
     }
 LAB_8c268860:
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sound_268818, ar5_00, a2);
+        sd_set_last_error(sd_set_mono_stereo, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -11022,11 +11022,11 @@ int alt_entry_26881a(int a0, u32 unused_a1, u32 a2, u32 a3) {
             }
             g_8c4bd564 = 0;
         }
-        ar5_00 = sd_sound_267fe8(&g_8c4bd560, &g_8c4bd564, a2, a3);
+        ar5_00 = sd_cmd_ring_push(&g_8c4bd560, &g_8c4bd564, a2, a3);
     }
 LAB_8c268860:
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sound_268818, ar5_00, a2);
+        sd_set_last_error(sd_set_mono_stereo, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -11094,11 +11094,11 @@ u32 alt_entry_2688e2(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * sd_uses_memset_268920  0x8c268920
- * area name: sits between sd functions (same compilation unit); behaviour name: its main named callee is memset
+ * sd_set_cmd_queue_buffer  0x8c268920
+ * sets the driver's command ring to a0 with a1 entries of 0x1c bytes and fills them from the template
  * called by: sd_sound_2650ec
  */
-int sd_uses_memset_268920(u32 a0, u32 a1, u8 *a2, u32 a3) {
+int sd_set_cmd_queue_buffer(u32 a0, u32 a1, u8 *a2, u32 a3) {
     u32 in_r0;
     int iVar1;
     u32 uVar2;
@@ -11126,7 +11126,7 @@ int sd_uses_memset_268920(u32 a0, u32 a1, u8 *a2, u32 a3) {
         }
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_uses_memset_268920, ar5_00, a2);
+        sd_set_last_error(sd_set_cmd_queue_buffer, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -11163,7 +11163,7 @@ u32 alt_entry_26892c(u32 a0, u32 unused_a1, u8 *a2, u32 a3) {
         }
     }
     if (unaff_r13 != 0) {
-        sd_set_last_error(sd_uses_memset_268920, unaff_r13, a2);
+        sd_set_last_error(sd_set_cmd_queue_buffer, unaff_r13, a2);
     }
     return unaff_r13;
 }
@@ -11317,11 +11317,11 @@ u32 alt_entry_268a36(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * sd_init_fields_268afc  0x8c268afc
- * area name: in the sd library code range; behaviour name: writes 20 members
+ * rna_handle_reset  0x8c268afc
+ * clears the RNA (raw PCM) playback handle a0's state fields
  * called by: sd_sound_268b70
  */
-int sd_init_fields_268afc(int a0) {
+int rna_handle_reset(int a0) {
     int iVar1;
 
     iVar1 = (int)0x2000;
@@ -11422,7 +11422,7 @@ u32 sd_sound_268b70(int *a0, u32 a1, u32 a2, u32 a3) {
                     (*(code *)puVar1)(a1, ar5_00, a2, a3);
                     a4 = NULL;
                 } else {
-                    sd_init_fields_268afc(a4);
+                    rna_handle_reset(a4);
                     mwRnaSetBitPerSmpl(a4, 0x10, a2, a3);
                     mwRnaSetSfreq(a4, 0xac44, a2, a3);
                     ar5_00 = (u32)(u8)a4[3];
@@ -11608,11 +11608,11 @@ int mwRna_all_channels_ready(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * mwRna_sound_268ea8  0x8c268ea8
- * area name: sits between mwRna functions (same compilation unit); behaviour name: mostly calls sound functions
- * called by: mwRnaGetTime, mwRna_sound_2694a4, mwRna_suspend
+ * mwRna_update_play_position  0x8c268ea8
+ * reads the stream's play position, advances the played and buffered byte counts and clears the underrun flag once
+ * playing again called by: mwRnaGetTime, mwRna_sound_2694a4, mwRna_suspend
  */
-u32 mwRna_sound_268ea8(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 mwRna_update_play_position(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -12011,7 +12011,7 @@ u32 mwRna_sound_2694a4(int a0, u32 unused_a1, u32 a2, u32 a3) {
     }
     iVar2 = mwRna_is_output_on(a0);
     if (iVar2 == 1) {
-        mwRna_sound_268ea8(a0, unused_a1, a2, a3);
+        mwRna_update_play_position(a0, unused_a1, a2, a3);
     }
     iVar2 = mwRna_is_playing(a0);
     if (iVar2 == 1) {
@@ -12098,7 +12098,7 @@ u32 mwRna_suspend(int a0, u32 a1, u32 a2, u32 a3) {
             iVar2 = mwRna_is_output_on(a0);
             uVar3 = mwRna_is_playing(a0);
             *(u32 *)(a0 + 0x88) = iVar2 << 1 | uVar3;
-            mwRna_sound_268ea8(a0, a1, a2, a3);
+            mwRna_update_play_position(a0, a1, a2, a3);
             a1 = 0;
             mwRna_set_play_sw(a0, 0, a2, a3);
             *(u8 *)(a0 + 7) = 1;
@@ -12322,7 +12322,7 @@ u32 mwRnaGetTime(int a0, int *a1, u32 *a2, u32 a3) {
         uVar1 = debug_printf(0, a1, a2, a3, "E1205:Illigal parameter (MWRNA=NULL)", a2);
     } else {
         puVar2 = a2;
-        mwRna_sound_268ea8(a0, a1, a2, a3);
+        mwRna_update_play_position(a0, a1, a2, a3);
         *a1 = *(int *)(a0 + 0x4c) - *(int *)(a0 + 0x34);
         uVar1 = mwRnaGetSfreq(a0);
         *puVar2 = uVar1;
@@ -12351,7 +12351,7 @@ u32 mwRna_get_status(int a0) {
 /*
  * mwRna_is_playing  0x8c269a30
  * bit 0 of +1 of an mwRna handle; -1 for NULL
- * called by: mwRnaDiscardData, mwRna_sound_268ea8, mwRna_sound_2690d8, mwRna_sound_2694a4, mwRna_suspend,
+ * called by: mwRnaDiscardData, mwRna_sound_2690d8, mwRna_sound_2694a4, mwRna_suspend, mwRna_update_play_position,
  * mwRna_uses_debug_printf_269738 strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRna_is_playing(int a0) {
@@ -12926,7 +12926,7 @@ u32 noop_26a0f8(void) {
  * sd_irq_disable  0x8c26a100
  * saves SR.IMASK in *a0 and returns SR with IMASK 15
  * called by: mwRnaDestroy, mwRnaDiscardData, mwRnaStart_like, mwRnaStop, mwRna_resume, mwRna_server_all,
- * mwRna_set_play_sw, mwRna_sound_268ea8 (+5 more)
+ * mwRna_set_play_sw, mwRna_sound_2690d8 (+5 more)
  */
 u32 sd_irq_disable(u32 *a0) {
     u32 uVar1;
@@ -12952,7 +12952,7 @@ u32 sd_irq_disable(u32 *a0) {
  * sd_irq_restore  0x8c26a118
  * SR with IMASK from *a0
  * called by: mwRnaDestroy, mwRnaDiscardData, mwRnaStart_like, mwRnaStop, mwRna_resume, mwRna_server_all,
- * mwRna_set_play_sw, mwRna_sound_268ea8 (+5 more)
+ * mwRna_set_play_sw, mwRna_sound_2690d8 (+5 more)
  */
 u32 sd_irq_restore(u32 *a0) {
     u8 in_MD;
@@ -13777,7 +13777,7 @@ int alt_entry_26aa5c(int a0, int a1, int a2) {
         a7 = 0;
         a5 = a5_00;
         a6 = iVar2;
-        a4 = sd_sound_267d74(*(u32 *)(unaff_r14 + 0x30), a5_00, iVar2, 0);
+        a4 = sd_slot_cmd_pitch_wrap(*(u32 *)(unaff_r14 + 0x30), a5_00, iVar2, 0);
         iVar1 = 0;
         if (a4 != 0) {
             iVar1 = debug_printf(a4, a5, a6, a7);

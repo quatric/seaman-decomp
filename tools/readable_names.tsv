@@ -2077,3 +2077,16 @@
 8c264784	adxt_apply_pan	sets the stream's pan from +0x42 (and +0x44 for the right channel of stereo), using centre or hard left/right for the -0x80 default
 8c2654f4	aica_load_sound_driver	checks the "SDRV" driver image a0 (version 1), DMAs it into AICA RAM, starts the ARM and fires the callback; returns an error code
 8c265ac8	sd_set_slot_buffer	sets the sound slot table to a0 with a1 entries and fills each 0x20-byte entry from the template
+8c265bae	sd_set_table_194	sets the sound driver's second table (+0x194) to a0 with a1 entries and fills each 8-byte entry from the template
+8c2664c4	sd_slot_get_info	gathers sound slot a0's fields into the info record a1
+8c266d28	sd_slot_ch_get_rate_like	reads channel a1 of slot a0's pitch register from AICA RAM, converts it and doubles or halves it by the slot mode into *a2
+8c267250	sd_slot_ch_get_info	gathers channel a1 of sound slot a0's fields into the info record a2
+8c267ccc	sd_slot_cmd_pitch	queues command 0x28 for slot a0 with pitch a1 (within +-0x18ff) and time a2
+8c267e54	sd_slot_cmd_25_channels	queues command 0x25 for slot a0 with the values a2/a3 for channel 0, 1 or both (-1)
+8c267f2c	sd_slot_cmd_22_reset_channels	resets the state of each of slot a0's channels and queues command 0x22
+8c267fe8	sd_cmd_ring_push	copies the 0x14-byte command a0 into the next entry of the driver's command ring (error when 0x100 are pending)
+8c26813c	sd_slot_cmd_11	queues command 0x11 for slot a0 with the bytes a1, a2 and a3 (0..0x1f, times 8)
+8c268818	sd_set_mono_stereo	queues command 0x8a selecting mono ("MONO") or stereo ("STRO") output
+8c268920	sd_set_cmd_queue_buffer	sets the driver's command ring to a0 with a1 entries of 0x1c bytes and fills them from the template
+8c268afc	rna_handle_reset	clears the RNA (raw PCM) playback handle a0's state fields
+8c268ea8	mwRna_update_play_position	reads the stream's play position, advances the played and buffered byte counts and clears the underrun flag once playing again

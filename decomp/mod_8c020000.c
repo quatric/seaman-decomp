@@ -1901,9 +1901,9 @@ u32 game_sound_0221c8(int a0, u32 a1, u32 a2) {
         } else {
             shinobi_uses_flashrom_open_partition_1f7f1e(aiStack_10, a1, ar6_00, uVar1);
             if (aiStack_10[0] == 0) {
-                sd_sound_268818(0x4f525453, a1, ar6_00, uVar1);
+                sd_set_mono_stereo(0x4f525453, a1, ar6_00, uVar1);
             } else {
-                sd_sound_268818(0x4f4e4f4d, a1, ar6_00, uVar1);
+                sd_set_mono_stereo(0x4f4e4f4d, a1, ar6_00, uVar1);
             }
             sd_wait_idle_set_1a8(1, a1, ar6_00, uVar1);
             uVar3 = 0x2d0c4;
@@ -2054,7 +2054,7 @@ int game_sound_02257c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
         sd_sound_2681d0(auStack_8[0], 0, 0, a3);
         sd_sound_268250(auStack_8[0], 0x7f, 0);
         ar7_00 = 0;
-        iVar1 = sd_sound_26813c(auStack_8[0], a1, a2, 0);
+        iVar1 = sd_slot_cmd_11(auStack_8[0], a1, a2, 0);
         if (iVar1 == 0) {
             iVar1 = sd_sound_26809c(auStack_8[0], a1, a2);
         } else {
@@ -2131,7 +2131,7 @@ u32 se_slot_play(int a0, int a1, u32 a2) {
     int iVar2;
 
     if (*(int *)(a1 * 0x10 + a0) == 1) {
-        iVar2 = (*(code *)(&sd_sound_26813c))(*(u32 *)(a0 + a1 * 0x10 + 0xc), *(u32 *)(a0 + a1 * 0x10 + 4), a2, 1);
+        iVar2 = (*(code *)(&sd_slot_cmd_11))(*(u32 *)(a0 + a1 * 0x10 + 0xc), *(u32 *)(a0 + a1 * 0x10 + 4), a2, 1);
         if (iVar2 == 0) {
             uVar1 = 1;
         } else {
