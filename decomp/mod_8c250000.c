@@ -174,7 +174,7 @@ u32 FUN_8c250144(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                 pdVar17 = pdVar10 + 2;
                 puVar11 = auStack_3c;
                 pdVar14 = pdVar16 + 2;
-                FUN_8c2361a8(pdVar15 + 2, pdVar17, pdVar14, puVar11);
+                triangle_normal(pdVar15 + 2, pdVar17, pdVar14, puVar11);
                 uVar28 = SUB84(in_dr0, 0);
                 njUnitVector(auStack_3c, pdVar17, pdVar14, puVar11, ain0);
                 if (cVar37 == '\0') {
@@ -538,7 +538,7 @@ u32 FUN_8c250144(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                 pdVar14 = pdVar16 + 2;
                 puVar11 = auStack_3c;
                 ar6_00 = pdVar17 + 2;
-                FUN_8c2361a8(pdVar15 + 2, pdVar14, ar6_00, puVar11);
+                triangle_normal(pdVar15 + 2, pdVar14, ar6_00, puVar11);
                 uVar28 = SUB84(in_dr0, 0);
                 njUnitVector(auStack_3c, pdVar14, ar6_00, puVar11, pdVar10);
                 if (cVar37 == '\0') {
@@ -924,7 +924,7 @@ u32 FUN_8c250144(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                 g_8c4aa520 = g_8c4aa520 + uVar2;
                 iVar6 = iVar6 + 0x10;
                 iVar5 = iVar5 + 0x10;
-                FUN_8c2361a8(iVar8 + 0x10, iVar5, iVar6, puVar12);
+                triangle_normal(iVar8 + 0x10, iVar5, iVar6, puVar12);
                 uVar28 = SUB84(in_dr0, 0);
                 njUnitVector(auStack_3c, iVar5, iVar6, puVar12, puVar11);
                 iVar5 = (u32)puVar20[((int)uVar2 >> 1) + -1] * 0x40 + g_8c4aa510;
@@ -1495,7 +1495,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     pdVar22 = pdVar20 + 2;
                     puVar10 = auStack_40;
                     pdVar14 = pdVar21 + 2;
-                    FUN_8c2361a8(pdVar7 + 2, pdVar22, pdVar14, puVar10);
+                    triangle_normal(pdVar7 + 2, pdVar22, pdVar14, puVar10);
                     uVar35 = SUB84(in_dr0, 0);
                     njUnitVector(auStack_40, pdVar22, pdVar14, puVar10, puVar11);
                     if (cVar43 == '\0') {
@@ -1890,7 +1890,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     pdVar22 = pdVar20 + 2;
                     puVar10 = auStack_40;
                     pdVar14 = pdVar21 + 2;
-                    FUN_8c2361a8(pdVar7 + 2, pdVar22, pdVar14, puVar10);
+                    triangle_normal(pdVar7 + 2, pdVar22, pdVar14, puVar10);
                     njUnitVector(auStack_40, pdVar22, pdVar14, puVar10, puVar11);
                     if (cVar43 == '\0') {
                         dVar32 = (double)CONCAT44(*(u32 *)(pdVar7 + 2), *(u32 *)(pdVar20 + 2));
@@ -2090,7 +2090,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     pdVar14 = pdVar21 + 2;
                     puVar11 = auStack_40;
                     pdVar17 = pdVar22 + 2;
-                    FUN_8c2361a8(pdVar20 + 2, pdVar14, pdVar17, puVar11);
+                    triangle_normal(pdVar20 + 2, pdVar14, pdVar17, puVar11);
                     uVar35 = SUB84(in_dr0, 0);
                     njUnitVector(auStack_40, pdVar14, pdVar17, puVar11, pdVar7);
                     if (cVar43 == '\0') {
@@ -2521,7 +2521,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     pdVar14 = pdVar21 + 2;
                     puVar11 = auStack_40;
                     pdVar17 = pdVar22 + 2;
-                    FUN_8c2361a8(pdVar20 + 2, pdVar14, pdVar17, puVar11);
+                    triangle_normal(pdVar20 + 2, pdVar14, pdVar17, puVar11);
                     njUnitVector(auStack_40, pdVar14, pdVar17, puVar11, pdVar7);
                     if (cVar43 == '\0') {
                         dVar32 = (double)CONCAT44(*(u32 *)(pdVar21 + 2), *(u32 *)(pdVar22 + 2));
@@ -2715,7 +2715,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     g_8c4aa520 = g_8c4aa520 + uVar23;
                     iVar6 = iVar6 + 0x10;
                     iVar9 = iVar9 + 0x10;
-                    FUN_8c2361a8(iVar4 + 0x10, iVar9, iVar6, puVar11);
+                    triangle_normal(iVar4 + 0x10, iVar9, iVar6, puVar11);
                     uVar35 = SUB84(in_dr0, 0);
                     njUnitVector(auStack_40, iVar9, iVar6, puVar11, puVar13);
                     iVar4 = (u32)puVar25[iVar18 + -1] * 0x40 + g_8c4aa510;
@@ -3236,7 +3236,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     puVar11 = auStack_40;
                     iVar6 = iVar6 + 0x10;
                     iVar9 = iVar9 + 0x10;
-                    FUN_8c2361a8(iVar4 + 0x10, iVar9, iVar6, puVar11);
+                    triangle_normal(iVar4 + 0x10, iVar9, iVar6, puVar11);
                     njUnitVector(auStack_40, iVar9, iVar6, puVar11, puVar13);
                     iVar4 = (u32)puVar25[iVar18 + -1] * 0x40 + g_8c4aa510;
                     if (cVar43 == '\0') {
@@ -12562,7 +12562,7 @@ int FUN_8c2571a8(int a0) {
 /*
  * FUN_8c2571fe  0x8c2571fe
  * called by: FUN_8c237830, FUN_8c23793c, FUN_8c237964, FUN_8c2387a0, FUN_8c239212, FUN_8c23a29c, FUN_8c25a394,
- * FUN_8c25a608 (+2 more)
+ * FUN_8c25b4ea (+2 more)
  */
 u32 FUN_8c2571fe(int a0) {
     int iVar1;
@@ -16436,7 +16436,7 @@ LAB_8c25962e:
  * FUN_8c259968  0x8c259968
  */
 u32 FUN_8c259968(u32 a0) {
-    FUN_8c23c814(a0, g_8c4aabbc, 0xc0);
+    memcpy_bytes(a0, g_8c4aabbc, 0xc0);
     g_8c4ab140 = g_8c277b10;
     g_8c4ab144 = g_8c277b14;
     return g_8c277b14;
@@ -16449,7 +16449,7 @@ u32 *FUN_8c259988(u32 a0) {
     u32 ar6_00;
 
     ar6_00 = 0xc0;
-    FUN_8c23c814(g_8c4aabbc, a0, 0xc0);
+    memcpy_bytes(g_8c4aabbc, a0, 0xc0);
     ta_load_texture_params(g_8c4aabbc);
     g_8c277b10 = g_8c4ab140;
     g_8c277b14 = g_8c4ab144;
@@ -16554,8 +16554,8 @@ int FUN_8c259a70(u32 *a0) {
     if ((u32)a0[2] < uStack_bc) {
         a0[2] = uStack_bc;
     }
-    FUN_8c23c814(a0 + 3, auStack_50, 0x14);
-    FUN_8c23c814(a0 + 8, auStack_3c, 0x14);
+    memcpy_bytes(a0 + 3, auStack_50, 0x14);
+    memcpy_bytes(a0 + 8, auStack_3c, 0x14);
     if (cVar11 == '\0') {
         dVar7 = (double)CONCAT44(0x4f000000, in_fr7);
         in_fr5 = 0x3fa3d70a;
@@ -16739,7 +16739,7 @@ u32 FUN_8c259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
                 iVar1 = g_8c277c90;
                 ar4_00 = g_8c4b3338;
                 if (g_8c277ca8 != 0) {
-                    FUN_8c23c814(a0, g_8c277c88 + g_8c277ca4, g_8c277ca8);
+                    memcpy_bytes(a0, g_8c277c88 + g_8c277ca4, g_8c277ca8);
                     g_8c277ca0 = g_8c277ca0 + g_8c277ca8;
                     uVar6 = g_8c277ca8;
                     iVar4 = g_8c277c88;
@@ -16772,7 +16772,7 @@ u32 FUN_8c259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
                             g_8c4aa6b4 = 5;
                             return 0xffffffff;
                         }
-                        FUN_8c23c814(a0 + uVar6, g_8c277c88, ar6_00);
+                        memcpy_bytes(a0 + uVar6, g_8c277c88, ar6_00);
                         g_8c277ca0 = g_8c277ca0 + ar6_00;
                         g_8c277c94 = g_8c277c94 + g_8c277c90;
                         g_8c277ca8 = g_8c277c8c - ar6_00;
@@ -16783,7 +16783,7 @@ u32 FUN_8c259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
                     ar4_00 = g_8c4b3338;
                 }
             } else {
-                FUN_8c23c814(a0, g_8c277c88 + g_8c277ca4, a1);
+                memcpy_bytes(a0, g_8c277c88 + g_8c277ca4, a1);
                 g_8c277ca4 = g_8c277ca4 + a1;
                 g_8c277ca0 = g_8c277ca0 + a1;
                 g_8c277ca8 = g_8c277c8c - g_8c277ca4;
@@ -16835,7 +16835,7 @@ u32 FUN_8c259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
             if (g_8c277ca8 < a1) {
                 uVar6 = 0;
                 if (g_8c277ca8 != 0) {
-                    FUN_8c23c814(a0, g_8c277c88 + g_8c277ca4, g_8c277ca8);
+                    memcpy_bytes(a0, g_8c277c88 + g_8c277ca4, g_8c277ca8);
                     g_8c277ca0 = g_8c277ca0 + g_8c277ca8;
                     uVar6 = g_8c277ca8;
                 }
@@ -16869,7 +16869,7 @@ u32 FUN_8c259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
                                 g_8c4aa6b4 = 5;
                                 return 0xffffffff;
                             }
-                            FUN_8c23c814(a0 + uVar6, g_8c277c88, uVar7);
+                            memcpy_bytes(a0 + uVar6, g_8c277c88, uVar7);
                             g_8c277ca0 = g_8c277ca0 + uVar7;
                             g_8c277c94 = g_8c277c94 + g_8c277c90;
                             g_8c277ca8 = g_8c277c8c - uVar7;
@@ -16887,7 +16887,7 @@ u32 FUN_8c259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
                     g_8c277ca4 = 0;
                 }
             } else {
-                FUN_8c23c814(a0, g_8c277c88 + g_8c277ca4, a1);
+                memcpy_bytes(a0, g_8c277c88 + g_8c277ca4, a1);
                 g_8c277ca4 = g_8c277ca4 + a1;
                 g_8c277ca0 = g_8c277ca0 + a1;
                 g_8c277ca8 = g_8c277c8c - g_8c277ca4;
@@ -17288,10 +17288,11 @@ u32 FUN_8c25a5c0(int a0, u32 a1, int a2, int a3) {
 }
 
 /*
- * FUN_8c25a608  0x8c25a608
+ * tex_entry_set_flags  0x8c25a608
+ * ORs a1 into the flags of every texture-table entry whose id is a0
  * called by: FUN_8c23782c, FUN_8c237830, FUN_8c23793c, FUN_8c237964, FUN_8c2387a0, FUN_8c239212, FUN_8c23a29c
  */
-u32 FUN_8c25a608(int a0, u32 a1, int a2, u32 unused_a3, u32 ain0) {
+u32 tex_entry_set_flags(int a0, u32 a1, int a2, u32 unused_a3, u32 ain0) {
     int *a4;
     u32 uVar1;
     int iVar2;
@@ -17501,7 +17502,7 @@ int FUN_8c25a8c0(u32 unused_a0, int *a1) {
             g_8c4aa6b4 = 7;
             iVar1 = -7;
         } else {
-            FUN_8c23c814(ar4_00, *a1, iVar1);
+            memcpy_bytes(ar4_00, *a1, iVar1);
             FUN_8c1f9e32(ar4_00, iVar1);
             iVar1 = 1;
             *a1 = ar4_00;
@@ -17739,7 +17740,7 @@ int *FUN_8c25abf0(u32 a0, int *a1, int *a2, u32 a3) {
     int iVar4;
 
     iVar2 = 0x54525650;
-    puVar1 = (&FUN_8c23c814);
+    puVar1 = (&memcpy_bytes);
     *a1 = -1;
     do {
         iVar4 = *a2;

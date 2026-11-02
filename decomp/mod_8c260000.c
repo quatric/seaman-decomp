@@ -1146,11 +1146,12 @@ u32 FUN_8c260c98(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32
 }
 
 /*
- * FUN_8c260ca0  0x8c260ca0
+ * irq_disable_nested  0x8c260ca0
+ * raises SR.IMASK to 15 on the first call and counts the nesting (pairs with irq_restore_nested)
  * called by: ADXF_Stop, ADXT_StartAfs, ADXT_StartFname, ADXT_StartMem, ADXT_StartMemIdx, FUN_8c2613aa, FUN_8c26145e,
  * FUN_8c26201c (+17 more)
  */
-u32 FUN_8c260ca0(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 irq_disable_nested(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u8 in_MD;
     u8 in_RB;
     u8 in_BL;
@@ -1559,7 +1560,7 @@ u8 *FUN_8c2613aa(int a0, int a1, int a2) {
         puVar1 = NULL;
     } else {
         ar6_00 = a2;
-        FUN_8c260ca0(8, a1, a2, r7, a1);
+        irq_disable_nested(8, a1, a2, r7, a1);
         iVar2 = iVar2 * 0x30;
         ar5_00 = 0;
         puVar1 = (u8 *)(iVar2 + 0x8c4b39a0);
@@ -1601,7 +1602,7 @@ u32 FUN_8c26145e(int a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
     u32 ar6_00;
 
     if (a0 != 0) {
-        FUN_8c260ca0(a0, unused_a1, unused_a2, a3, a0);
+        irq_disable_nested(a0, unused_a1, unused_a2, a3, a0);
         ar5_00 = 0;
         ar6_00 = 0x30;
         uVar1 = memset(a0, 0, 0x30);
@@ -2343,7 +2344,7 @@ int FUN_8c26201c(u32 a0, u32 a1) {
     ar6_00 = a0;
     ain0 = a1;
     FUN_8c261a4c(1, 0, a0, a1);
-    FUN_8c260ca0(ar4_00, ar5_00, ar6_00, a1, ain0);
+    irq_disable_nested(ar4_00, ar5_00, ar6_00, a1, ain0);
     a4 = FUN_8c261f48();
     iVar1 = a4;
     if ((a4 != 0) && (ar5_00 = a0, ar4_00 = FUN_8c261f7a(a4, a0, ar6_00, a1), ar4_00 < 0)) {
@@ -2393,7 +2394,7 @@ int FUN_8c2620c8(void) {
     ar6_00 = unaff_r12;
     ar7_00 = unaff_r13;
     FUN_8c261a4c(2, 0, unaff_r12, unaff_r13);
-    FUN_8c260ca0(ar4_00, ar5_00, ar6_00, ar7_00, in_PR);
+    irq_disable_nested(ar4_00, ar5_00, ar6_00, ar7_00, in_PR);
     a4 = FUN_8c261f48();
     iVar1 = a4;
     if ((a4 != 0) &&
@@ -2442,7 +2443,7 @@ u32 FUN_8c262168(int a0) {
     ar7_00 = 0xffffffff;
     uVar1 = FUN_8c261a4c(3, 0, a0, 0xffffffff, 0xffffffff);
     if (a0 != 0) {
-        FUN_8c260ca0();
+        irq_disable_nested();
         if (*(char *)(a0 + 1) == '\x02') {
             ADXF_Stop(a0);
         }
@@ -2469,7 +2470,7 @@ u32 FUN_8c26216c(int a0) {
     iVar3 = a0;
     uVar1 = FUN_8c261a4c(3, 0, a0, in_r3);
     if (a0 != 0) {
-        FUN_8c260ca0(uVar2, ar5_00, iVar3, in_r3, in_PR);
+        irq_disable_nested(uVar2, ar5_00, iVar3, in_r3, in_PR);
         if (*(char *)(a0 + 1) == '\x02') {
             ADXF_Stop(a0);
         }
@@ -2530,7 +2531,7 @@ u32 FUN_8c262208(int a0, int a1, int a2, u32 a3) {
                 lib_error_printf(a0, a1, a2, a3);
                 return 0xffffffff;
             }
-            FUN_8c260ca0(a0, a1, a2, a3, a2);
+            irq_disable_nested(a0, a1, a2, a3, a2);
             *(int *)(a0 + 0x1c) = *(int *)(a0 + 0xc) + *(int *)(a0 + 0x18);
             iVar2 = *(int *)(a0 + 0x10) - *(int *)(a0 + 0x18);
             if (a1 < iVar2) {
@@ -2566,7 +2567,7 @@ u32 FUN_8c2622e4(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ain0;
     int ar4_00;
 
-    FUN_8c260ca0(a0, a1, a2, a3, a2);
+    irq_disable_nested(a0, a1, a2, a3, a2);
     ar4_00 = a0;
     ain0 = FUN_8c262208(a0, a1, a2, a3);
     *(u8 *)(a0 + 2) = 1;
@@ -2623,7 +2624,7 @@ u32 FUN_8c262312(int *a0, int a1, u32 a2) {
                 ar4_00 = a0[10];
                 FUN_8c261786(ar4_00, iVar3);
             }
-            FUN_8c260ca0(ar4_00, iVar3, uVar2, ar7_00, iVar4);
+            irq_disable_nested(ar4_00, iVar3, uVar2, ar7_00, iVar4);
             ar4_01 = a0;
             iVar4 = a1;
             a6 = piVar1;
@@ -2678,7 +2679,7 @@ u32 ADXF_Stop(int a0) {
                                  in_stack_fffffff4);
                 return 0xffffffff;
             }
-            FUN_8c260ca0(ar4_00, ar5_00, ar6_00, ar7_00, in_stack_fffffff4);
+            irq_disable_nested(ar4_00, ar5_00, ar6_00, ar7_00, in_stack_fffffff4);
             FUN_8c263498(*(u32 *)(a0 + 4), ar5_00, ar6_00, ar7_00);
             FUN_8c263768(*(u32 *)(a0 + 4), &stack0xfffffff4);
             *(u32 *)(a0 + 0x24) = in_stack_fffffff4;
@@ -2729,7 +2730,7 @@ u32 FUN_8c262524(u32 a0, u32 a1, u32 a2, u32 a3) {
     char *a4;
     u32 in_PR;
 
-    FUN_8c260ca0(a0, a1, a2, a3, in_PR);
+    irq_disable_nested(a0, a1, a2, a3, in_PR);
     a4 = &g_8c4b3b20;
     do {
         ain0 = (int)*a4;
@@ -3035,7 +3036,7 @@ u32 FUN_8c262810(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
 
     if (g_8c278478 == 0) {
         uVar1 = FUN_8c260c98(a0, unused_a1, unused_a2, a3, ain0);
-        uVar1 = FUN_8c260ca0(a0, unused_a1, unused_a2, a3, uVar1);
+        uVar1 = irq_disable_nested(a0, unused_a1, unused_a2, a3, uVar1);
         uVar1 = FUN_8c26b992();
         uVar1 = FUN_8c26b526();
         FUN_8c26b212();
@@ -3076,7 +3077,7 @@ u32 FUN_8c262814(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
 
     if (*unaff_r14 == 0) {
         FUN_8c260c98(a0, unused_a1, unused_a2, a3, in_PR);
-        FUN_8c260ca0(a0, unused_a1, unused_a2, a3, in_PR);
+        irq_disable_nested(a0, unused_a1, unused_a2, a3, in_PR);
         FUN_8c26b992();
         FUN_8c26b526();
         FUN_8c26b212();
@@ -3114,7 +3115,7 @@ u32 FUN_8c2628fa(int *a0, u32 a1, u32 unused_a2, u32 a3, u32 ain0) {
     iVar2 = *a0;
     *a0 = iVar2 + -1;
     if (iVar2 + -1 == 0) {
-        FUN_8c260ca0(a0, a1, unused_a2, a3, in_PR);
+        irq_disable_nested(a0, a1, unused_a2, a3, in_PR);
         iVar2 = g_8c278470;
         if (g_8c278470 != 0) {
             FUN_8c1fa54c(g_8c278470);
@@ -3122,7 +3123,7 @@ u32 FUN_8c2628fa(int *a0, u32 a1, u32 unused_a2, u32 a3, u32 ain0) {
         }
         irq_restore_nested(iVar2, a1, unused_a2, a3, in_PR);
         thunk_FUN_8c268a24();
-        FUN_8c260ca0(iVar2, a1, unused_a2, a3, in_PR);
+        irq_disable_nested(iVar2, a1, unused_a2, a3, in_PR);
         ta_fifo_2619ee();
         memset_wrap_262ad8();
         noop_26325a();
@@ -3450,7 +3451,7 @@ u32 ta_fifo_262c04(int a0) {
         if (*(int *)(a0 + 4) != 0) {
             FUN_8c25fc5c(*(u32 *)(a0 + 4));
         }
-        FUN_8c260ca0();
+        irq_disable_nested();
         memset(a0, 0, (int)0x9c);
         uVar1 = irq_restore_nested();
         return uVar1;
@@ -3473,7 +3474,7 @@ u32 ta_fifo_262c08(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
             a0 = *(u32 *)(unaff_r14 + 4);
             FUN_8c25fc5c(a0);
         }
-        FUN_8c260ca0(a0, unused_a1, unused_a2, a3, in_PR);
+        irq_disable_nested(a0, unused_a1, unused_a2, a3, in_PR);
         ar5_00 = 0;
         ar6_00 = 0x9c;
         uVar1 = memset(unaff_r14, 0, 0x9c);
@@ -4512,7 +4513,7 @@ u32 FUN_8c263702(int a0, u32 a1, u32 a2, u32 a3) {
     int a4;
 
     a4 = a0;
-    FUN_8c260ca0(a0, a1, a2, a3, a0);
+    irq_disable_nested(a0, a1, a2, a3, a0);
     ain0 = (int)*(char *)(a4 + 1);
     if (ain0 == 2) {
         ain0 = FUN_8c2635a4(a4, a1, a2, a3);
@@ -4798,7 +4799,7 @@ u32 FUN_8c2639fa(u8 *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
             puVar2 = *(u8 **)(a0 + 8);
             FUN_8c263446(puVar2, a1, a2, a3);
         }
-        FUN_8c260ca0(puVar2, a1, a2, a3, in_stack_ffffffe8);
+        irq_disable_nested(puVar2, a1, a2, a3, in_stack_ffffffe8);
         if (*(int *)(a0 + 0x10) != 0) {
             in_stack_ffffffe8 = *(int **)(a0 + 0x10);
             (**(code **)(*in_stack_ffffffe8 + 0xc))(in_stack_ffffffe8, a1, a2, a3);
@@ -4925,7 +4926,7 @@ u32 FUN_8c263bfe(int a0, u32 a1, u32 a2, u32 a3) {
     iVar3 = a0;
     uVar1 = a1;
     FUN_8c263c64(a0, a1, a2, a3);
-    FUN_8c260ca0(iVar3, a1, a2, a3, uVar1);
+    irq_disable_nested(iVar3, a1, a2, a3, uVar1);
     for (iVar3 = 0; iVar3 < *(char *)(a0 + 3); iVar3 = iVar3 + 1) {
         a4 = *(int **)(iVar3 * 4 + a0 + 0x18);
         (**(code **)(*a4 + 0x14))(a4, a1, a2, a3);
@@ -4952,7 +4953,7 @@ u32 FUN_8c263c64(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 in_stack_fffffff0;
 
-    FUN_8c260ca0(a0, unused_a1, a2, a3, in_stack_fffffff0);
+    irq_disable_nested(a0, unused_a1, a2, a3, in_stack_fffffff0);
     FUN_8c2690d8(*(u32 *)(a0 + 0xc), 0, a2, a3);
     uVar1 = 0;
     FUN_8c2691b8(*(u32 *)(a0 + 0xc), 0, a2, a3);
@@ -5408,7 +5409,7 @@ u32 ADXT_StartAfs(int a0, u32 a1, u32 a2, u32 a3) {
     uStack_10 = a1;
     uStack_c = a2;
     FUN_8c263c64(a0, a1, a2, a3);
-    FUN_8c260ca0(iVar1, a1, a2, a3);
+    irq_disable_nested(iVar1, a1, a2, a3);
     ar7_00 = &uStack_14;
     FUN_8c26270c(uStack_10, uStack_c, &iStack_18, ar7_00);
     uVar2 = *(u32 *)(a0 + 0x10);
@@ -5441,7 +5442,7 @@ u32 ADXT_StartFname(int a0, int a1, u32 a2, u32 a3) {
     iVar2 = a0;
     ain0_00 = a1;
     FUN_8c263c64(a0, a1, a2, a3);
-    FUN_8c260ca0(iVar2, a1, a2, a3, ain0_00);
+    irq_disable_nested(iVar2, a1, a2, a3, ain0_00);
     uVar3 = *(u32 *)(a0 + 0x10);
     iVar2 = ain0_00;
     iVar1 = ADXSTM_OpenFname(ain0_00, uVar3, a2, a3);
@@ -5473,7 +5474,7 @@ u32 ADXT_StartMem(int a0, int a1, u32 a2, u32 a3) {
     uVar1 = a2;
     ain0_00 = a1;
     FUN_8c263c64(a0, a1, a2, a3);
-    FUN_8c260ca0(iVar2, a1, uVar1, a3, ain0_00);
+    irq_disable_nested(iVar2, a1, uVar1, a3, ain0_00);
     iVar2 = ain0_00;
     ar5_00 = FUN_8c26b250(ain0_00, a2);
     if (ar5_00 == 0) {
@@ -5508,7 +5509,7 @@ u32 ADXT_StartMemIdx(int a0, int a1, int a2, u32 a3) {
     FUN_8c263c64(a0, a1, a2, a3);
     uVar2 = *(u32 *)(a1 + 4);
     if ((a2 < (int)(uVar2 >> 0x18 | (int)uVar2 >> 8 & 0xff00U | (uVar2 & 0xff00) << 8 | uVar2 << 0x18)) && (-1 < a2)) {
-        FUN_8c260ca0(uVar2, iVar3, ar6_00, a3, ain0);
+        irq_disable_nested(uVar2, iVar3, ar6_00, a3, ain0);
         uVar2 = *(u32 *)((a2 + 1) * 8 + a1);
         iVar3 = (uVar2 >> 0x18 | (int)uVar2 >> 8 & 0xff00U | (uVar2 & 0xff00) << 8 | uVar2 << 0x18) + ain0;
         ar5_00 = FUN_8c26b250(iVar3, 0x40000000);
@@ -5948,7 +5949,7 @@ u32 FUN_8c264ba0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar2;
     u32 in_stack_ffffffec;
 
-    FUN_8c260ca0(a0, unused_a1, a2, a3, in_stack_ffffffec);
+    irq_disable_nested(a0, unused_a1, a2, a3, in_stack_ffffffec);
     FUN_8c2690d8(*(u32 *)(a0 + 0xc), 0, a2, a3);
     uVar1 = 0;
     FUN_8c2691b8(*(u32 *)(a0 + 0xc), 0, a2, a3);

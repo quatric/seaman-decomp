@@ -2548,7 +2548,7 @@ int FUN_8c0660d4(int a0, int *a1, int *a2, char *a3) {
             *(u32 *)(a0 + 4) = 6;
             *(u32 *)(a0 + 0xc) = 0;
             a5 = (int *)0x2bb;
-            FUN_8c02f298(a0, 699);
+            list5_push(a0, 699);
         }
     }
     iVar2 = (**(code **)(*(int *)(*a2 + 8) + 0xb8))(*a2, a5, a6, a3);
@@ -2565,7 +2565,7 @@ int FUN_8c0660d4(int a0, int *a1, int *a2, char *a3) {
             *(u32 *)(a0 + 0xc) = 0;
             *(u32 *)(a0 + 8) = 99;
             a5 = (int *)0xc7;
-            FUN_8c02f298(a0, 199);
+            list5_push(a0, 199);
         } else {
         LAB_8c0661e8:
             if (*(int *)(a0 + 4) != 0xb) {
@@ -2574,7 +2574,7 @@ int FUN_8c0660d4(int a0, int *a1, int *a2, char *a3) {
                 *(u32 *)(a0 + 8) = 99;
                 *(u32 *)(a0 + 0x40) = 0xe;
                 a5 = (int *)0x4af;
-                FUN_8c02f298(a0, 0x4af);
+                list5_push(a0, 0x4af);
                 iVar2 = get_field_c8_061174(a2[3]);
                 if ((iVar2 == 0) || (*(int *)(a0 + 900) != -1)) {
                     a3 = "STATUS_SUCKED";
@@ -2602,7 +2602,7 @@ int FUN_8c0660d4(int a0, int *a1, int *a2, char *a3) {
     iVar2 = get_field_c_06645c(a2[3]);
     if (((iVar2 == 1) && (*(char *)(a0 + 0x878) != '\x01')) && (*(int *)(a0 + 4) != 0xd)) {
         *(u8 *)(a0 + 0x878) = 1;
-        FUN_8c02f298(a0, 0x2b9);
+        list5_push(a0, 0x2b9);
         a5 = NULL;
         set_field_c_066454(a2[3], 0);
         *(u32 *)(a0 + 8) = 0x5f;
@@ -2618,7 +2618,7 @@ LAB_8c0662e6:
             iVar2 = (**(code **)(*a1 + 0x11c))(a1, 0xf, a6, a3);
             if ((0 < iVar2) && ((*(int *)(a0 + 4) != 0xd && (*(int *)(a0 + 4) != 6)))) {
                 a5 = (int *)0x2b9;
-                FUN_8c02f298(a0, 0x2b9);
+                list5_push(a0, 0x2b9);
                 *(u32 *)(a0 + 8) = 0x5f;
                 *(u32 *)(a0 + 0xc) = 0;
                 *(u32 *)(a0 + 4) = 6;
@@ -3259,9 +3259,9 @@ int FUN_8c06740c(int a0, u32 a1) {
     ar5_00 = 0xe;
     FUN_8c0f4040(a0, 0xe, 0, 0, a1);
     *(u8 **)(a0 + 8) = (&DATA_8c12a0c4);
-    FUN_8c016fcc(a0 + 0x170, ar5_00, ar6_00);
+    Class_129938_ctor(a0 + 0x170, ar5_00, ar6_00);
     clear_field_0_wrap_015ab8(a0 + 0x204);
-    FUN_8c015224(a0 + 0x208, ar5_00);
+    Class_129920_ctor(a0 + 0x208, ar5_00);
     Vec3_ctor_zero(a0 + 0x268, ar5_00, ar6_00);
     Vec3_set_zero(a0 + 0x278);
     Vec3_set_one(a0 + 0x284);
@@ -8644,8 +8644,8 @@ u32 FUN_8c06d8e4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     uVar1 = Vec3_ctor_xyz(0x8c280d4c, Vec3_ctor_xyz, uVar3, puVar5);
     global_list_push(uVar1, Vec3_dtor, 0x8c280d40, puVar5);
     uVar3 = 0x8c280cc0;
-    uVar1 = FUN_8c017010(0x8c280d68, 0x8c280c88, 0x8c280ca4, 0x8c280cc0, 0x8c280cdc, 0x8c280cf8, 0x8c280d14, 0x8c280d30,
-                         0x8c280d4c);
+    uVar1 = Class_129938_ctor_init(0x8c280d68, 0x8c280c88, 0x8c280ca4, 0x8c280cc0, 0x8c280cdc, 0x8c280cf8, 0x8c280d14,
+                                   0x8c280d30, 0x8c280d4c);
     uVar1 = global_list_push(uVar1, Class_129938_dtor, 0x8c280d5c, uVar3);
     return uVar1;
 }
@@ -9435,7 +9435,7 @@ code *FUN_8c06f93c(int a0, u32 *a1, u32 unused_a2, code *a3) {
     case 0:
     case 0xe:
     case 0xf:
-        FUN_8c030eb8(a0 + 0x1fc, 0x1fc, puVar5);
+        flags6_set_all(a0 + 0x1fc, 0x1fc, puVar5);
         a3 = (code *)a1[3];
         pcVar7 = (code *)FUN_8c078fd0(a0, *(u32 *)a1[1], *(u32 *)(a1[1] + 4), a3);
         break;

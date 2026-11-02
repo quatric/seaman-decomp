@@ -24668,7 +24668,7 @@ u32 FUN_8c24bdc8(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                 pdVar13 = pdVar5 + 2;
                 puVar8 = auStack_38;
                 pdVar10 = pdVar12 + 2;
-                FUN_8c2361a8(pdVar7 + 2, pdVar13, pdVar10, puVar8);
+                triangle_normal(pdVar7 + 2, pdVar13, pdVar10, puVar8);
                 uVar23 = SUB84(in_dr0, 0);
                 njUnitVector(auStack_38, pdVar13, pdVar10, puVar8, pdVar5);
                 if (cVar29 == '\0') {
@@ -24977,7 +24977,7 @@ u32 FUN_8c24bdc8(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                 pdVar10 = pdVar12 + 2;
                 puVar8 = auStack_38;
                 ar6_00 = pdVar13 + 2;
-                FUN_8c2361a8(pdVar7 + 2, pdVar10, ar6_00, puVar8);
+                triangle_normal(pdVar7 + 2, pdVar10, ar6_00, puVar8);
                 uVar23 = SUB84(in_dr0, 0);
                 njUnitVector(auStack_38, pdVar10, ar6_00, puVar8, pdVar7);
                 if (cVar29 == '\0') {
@@ -25309,7 +25309,7 @@ u32 FUN_8c24bdc8(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                 g_8c4aa520 = g_8c4aa520 + uVar2;
                 iVar4 = iVar4 + 0x10;
                 iVar3 = iVar3 + 0x10;
-                FUN_8c2361a8(ain0 + 0x10, iVar3, iVar4, puVar8);
+                triangle_normal(ain0 + 0x10, iVar3, iVar4, puVar8);
                 uVar23 = SUB84(in_dr0, 0);
                 njUnitVector(auStack_38, iVar3, iVar4, puVar8, ain0);
                 iVar3 = (u32)puVar15[((int)uVar2 >> 1) + -1] * 0x40 + g_8c4aa510;
@@ -25857,7 +25857,7 @@ u32 FUN_8c24c6f0(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     pdVar18 = pdVar16 + 2;
                     puVar8 = auStack_40;
                     pdVar11 = pdVar20 + 2;
-                    FUN_8c2361a8(pdVar6 + 2, pdVar18, pdVar11, puVar8);
+                    triangle_normal(pdVar6 + 2, pdVar18, pdVar11, puVar8);
                     uVar30 = SUB84(in_dr0, 0);
                     njUnitVector(auStack_40, pdVar18, pdVar11, puVar8, pdVar41);
                     if (cVar40 == '\0') {
@@ -26219,7 +26219,7 @@ u32 FUN_8c24c6f0(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     pdVar18 = pdVar16 + 2;
                     puVar8 = auStack_40;
                     pdVar11 = pdVar20 + 2;
-                    FUN_8c2361a8(pdVar6 + 2, pdVar18, pdVar11, puVar8);
+                    triangle_normal(pdVar6 + 2, pdVar18, pdVar11, puVar8);
                     njUnitVector(auStack_40, pdVar18, pdVar11, puVar8, pdVar41);
                     if (cVar40 == '\0') {
                         dVar32 = (double)CONCAT44(*(u32 *)(pdVar6 + 2), *(u32 *)(pdVar16 + 2));
@@ -26450,7 +26450,7 @@ u32 FUN_8c24c6f0(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     pdVar11 = pdVar20 + 2;
                     puVar8 = auStack_40;
                     pdVar13 = pdVar18 + 2;
-                    FUN_8c2361a8(pdVar16 + 2, pdVar11, pdVar13, puVar8);
+                    triangle_normal(pdVar16 + 2, pdVar11, pdVar13, puVar8);
                     uVar30 = SUB84(in_dr0, 0);
                     njUnitVector(auStack_40, pdVar11, pdVar13, puVar8, pdVar41);
                     if (cVar40 == '\0') {
@@ -26831,7 +26831,7 @@ u32 FUN_8c24c6f0(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     pdVar11 = pdVar20 + 2;
                     puVar8 = auStack_40;
                     pdVar13 = pdVar18 + 2;
-                    FUN_8c2361a8(pdVar16 + 2, pdVar11, pdVar13, puVar8);
+                    triangle_normal(pdVar16 + 2, pdVar11, pdVar13, puVar8);
                     njUnitVector(auStack_40, pdVar11, pdVar13, puVar8, pdVar41);
                     if (cVar40 == '\0') {
                         dVar32 = (double)CONCAT44(*(u32 *)(pdVar20 + 2), *(u32 *)(pdVar18 + 2));
@@ -27060,7 +27060,7 @@ u32 FUN_8c24c6f0(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     g_8c4aa520 = g_8c4aa520 + uVar19;
                     iVar5 = iVar5 + 0x10;
                     iVar7 = iVar7 + 0x10;
-                    FUN_8c2361a8(iVar3 + 0x10, iVar7, iVar5, puVar8);
+                    triangle_normal(iVar3 + 0x10, iVar7, iVar5, puVar8);
                     uVar30 = SUB84(in_dr0, 0);
                     njUnitVector(auStack_40, iVar7, iVar5, puVar8, iVar3);
                     iVar3 = (u32)puVar22[iVar14 + -1] * 0x40 + g_8c4aa510;
@@ -27541,7 +27541,7 @@ u32 FUN_8c24c6f0(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     puVar8 = auStack_40;
                     iVar5 = iVar5 + 0x10;
                     iVar7 = iVar7 + 0x10;
-                    FUN_8c2361a8(iVar3 + 0x10, iVar7, iVar5, puVar8);
+                    triangle_normal(iVar3 + 0x10, iVar7, iVar5, puVar8);
                     njUnitVector(auStack_40, iVar7, iVar5, puVar8, iVar3);
                     iVar3 = (u32)puVar22[iVar14 + -1] * 0x40 + g_8c4aa510;
                     if (cVar40 == '\0') {
@@ -27909,7 +27909,7 @@ u32 vram_24d5a8(u16 *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
                 pdVar16 = pdVar7 + 2;
                 puVar12 = auStack_3c;
                 pdVar15 = pdVar10 + 2;
-                FUN_8c2361a8(pdVar8 + 2, pdVar16, pdVar15, puVar12);
+                triangle_normal(pdVar8 + 2, pdVar16, pdVar15, puVar12);
                 uVar24 = SUB84(in_dr0, 0);
                 njUnitVector(auStack_3c, pdVar16, pdVar15, puVar12, pdVar8);
                 if (cVar34 == '\0') {
@@ -28247,7 +28247,7 @@ u32 vram_24d5a8(u16 *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
                 pdVar15 = pdVar8 + 2;
                 puVar12 = auStack_3c;
                 ar6_00 = pdVar16 + 2;
-                FUN_8c2361a8(pdVar10 + 2, pdVar15, ar6_00, puVar12);
+                triangle_normal(pdVar10 + 2, pdVar15, ar6_00, puVar12);
                 uVar24 = SUB84(in_dr0, 0);
                 njUnitVector(auStack_3c, pdVar15, ar6_00, puVar12, pdVar8);
                 if (cVar34 == '\0') {
@@ -28603,7 +28603,7 @@ u32 vram_24d5a8(u16 *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
                 g_8c4aa520 = g_8c4aa520 + uVar2;
                 iVar6 = iVar6 + 0x10;
                 iVar5 = iVar5 + 0x10;
-                FUN_8c2361a8(iVar11 + 0x10, iVar5, iVar6, puVar13);
+                triangle_normal(iVar11 + 0x10, iVar5, iVar6, puVar13);
                 uVar24 = SUB84(in_dr0, 0);
                 njUnitVector(auStack_3c, iVar5, iVar6, puVar13, puVar12);
                 iVar5 = (u32)puVar18[((int)uVar2 >> 1) + -1] * 0x40 + g_8c4aa510;
@@ -29156,7 +29156,7 @@ u32 FUN_8c24df18(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     pdVar21 = pdVar7 + 2;
                     puVar10 = auStack_44;
                     pdVar14 = pdVar20 + 2;
-                    FUN_8c2361a8(pdVar4 + 2, pdVar21, pdVar14, puVar10);
+                    triangle_normal(pdVar4 + 2, pdVar21, pdVar14, puVar10);
                     uVar37 = SUB84(in_dr0, 0);
                     njUnitVector(auStack_44, pdVar21, pdVar14, puVar10, pdVar4);
                     if (cVar45 == '\0') {
@@ -29532,7 +29532,7 @@ u32 FUN_8c24df18(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     pdVar21 = pdVar7 + 2;
                     puVar10 = auStack_44;
                     pdVar14 = pdVar20 + 2;
-                    FUN_8c2361a8(pdVar4 + 2, pdVar21, pdVar14, puVar10);
+                    triangle_normal(pdVar4 + 2, pdVar21, pdVar14, puVar10);
                     njUnitVector(auStack_44, pdVar21, pdVar14, puVar10, pdVar4);
                     if (cVar45 == '\0') {
                         dVar42 = (double)CONCAT44(*(u32 *)(pdVar4 + 2), *(u32 *)(pdVar7 + 2));
@@ -29801,7 +29801,7 @@ u32 FUN_8c24df18(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     pdVar14 = pdVar20 + 2;
                     puVar10 = auStack_44;
                     pdVar16 = pdVar21 + 2;
-                    FUN_8c2361a8(pdVar7 + 2, pdVar14, pdVar16, puVar10);
+                    triangle_normal(pdVar7 + 2, pdVar14, pdVar16, puVar10);
                     uVar37 = SUB84(in_dr0, 0);
                     njUnitVector(auStack_44, pdVar14, pdVar16, puVar10, pdVar7);
                     if (cVar45 == '\0') {
@@ -30193,7 +30193,7 @@ u32 FUN_8c24df18(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     pdVar14 = pdVar20 + 2;
                     puVar10 = auStack_44;
                     pdVar16 = pdVar21 + 2;
-                    FUN_8c2361a8(pdVar7 + 2, pdVar14, pdVar16, puVar10);
+                    triangle_normal(pdVar7 + 2, pdVar14, pdVar16, puVar10);
                     njUnitVector(auStack_44, pdVar14, pdVar16, puVar10, pdVar7);
                     if (cVar45 == '\0') {
                         dVar42 = (double)CONCAT44(*(u32 *)(pdVar20 + 2), *(u32 *)(pdVar21 + 2));
@@ -30473,7 +30473,7 @@ u32 FUN_8c24df18(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     g_8c4aa520 = g_8c4aa520 + uVar22;
                     iVar5 = iVar5 + 0x10;
                     iVar9 = iVar9 + 0x10;
-                    FUN_8c2361a8(iVar3 + 0x10, iVar9, iVar5, puVar12);
+                    triangle_normal(iVar3 + 0x10, iVar9, iVar5, puVar12);
                     uVar37 = SUB84(in_dr0, 0);
                     njUnitVector(auStack_44, iVar9, iVar5, puVar12, puVar10);
                     iVar3 = (u32)puVar24[iVar15 + -1] * 0x40 + g_8c4aa510;
@@ -30962,7 +30962,7 @@ u32 FUN_8c24df18(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     puVar12 = auStack_44;
                     iVar3 = iVar3 + 0x10;
                     iVar5 = iVar5 + 0x10;
-                    FUN_8c2361a8(iVar9 + 0x10, iVar5, iVar3, puVar12);
+                    triangle_normal(iVar9 + 0x10, iVar5, iVar3, puVar12);
                     njUnitVector(auStack_44, iVar5, iVar3, puVar12, puVar10);
                     iVar3 = (u32)puVar24[iVar15 + -1] * 0x40 + g_8c4aa510;
                     if (cVar45 == '\0') {

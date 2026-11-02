@@ -2571,7 +2571,7 @@ u32 FUN_8c1225fc(u32 *a0, u32 a1) {
     uVar2 = 0;
     iVar1 = FUN_8c11f5d2(*a0);
     if (iVar1 != 0) {
-        uVar2 = FUN_8c11cd44(*(u32 *)a0[1], *a0);
+        uVar2 = lib11c_take_error(*(u32 *)a0[1], *a0);
     }
     return uVar2;
 }
@@ -2586,7 +2586,7 @@ u32 FUN_8c122604(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
     iVar1 = FUN_8c11f5d2(*unaff_r13, a1, a2, a3);
     if (iVar1 != 0) {
-        unaff_r14 = FUN_8c11cd44(*(u32 *)unaff_r13[1], *unaff_r13, a2, a3);
+        unaff_r14 = lib11c_take_error(*(u32 *)unaff_r13[1], *unaff_r13, a2, a3);
     }
     return unaff_r14;
 }
@@ -2602,7 +2602,7 @@ u32 FUN_8c122630(u32 *a0, u32 a1, u32 a2) {
     uVar2 = 0;
     iVar1 = FUN_8c11f66a(*a0);
     if (iVar1 != 0) {
-        uVar2 = FUN_8c11cd44(*(u32 *)a0[1], *a0);
+        uVar2 = lib11c_take_error(*(u32 *)a0[1], *a0);
     }
     return uVar2;
 }
@@ -2617,7 +2617,7 @@ u32 FUN_8c122638(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
     iVar1 = FUN_8c11f66a(*unaff_r14, a1, a2, a3);
     if (iVar1 != 0) {
-        unaff_r13 = FUN_8c11cd44(*(u32 *)unaff_r14[1], *unaff_r14, a2, a3);
+        unaff_r13 = lib11c_take_error(*(u32 *)unaff_r14[1], *unaff_r14, a2, a3);
     }
     return unaff_r13;
 }

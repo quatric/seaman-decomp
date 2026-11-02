@@ -232,8 +232,8 @@ u32 FUN_8c220658(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
                                 a1 = *(int *)((int)puVar7 + -0x40) + iVar13;
                                 a3 = (u8 *)(*(int *)((int)puVar7 + -0x50) + iVar13);
                                 a2 = (u64 *)(*(int *)((int)puVar7 + -0x58) + iVar13);
-                                FUN_8c221622(*(int *)((int)puVar7 + -0x48) + iVar13, a1, a2, a3,
-                                             *(u32 *)((int)puVar7 + -0x60));
+                                Vec3_catmull_rom(*(int *)((int)puVar7 + -0x48) + iVar13, a1, a2, a3,
+                                                 *(u32 *)((int)puVar7 + -0x60));
                                 iVar2 = iVar2 + 1;
                                 unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                                 iVar4 = iVar4 + 3;
@@ -250,8 +250,8 @@ u32 FUN_8c220658(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
                                 a1 = *(int *)((int)puVar7 + -0x40) + iVar13;
                                 a3 = (u8 *)(*(int *)((int)puVar7 + -0x50) + iVar13);
                                 a2 = (u64 *)(*(int *)((int)puVar7 + -0x58) + iVar13);
-                                FUN_8c221622(*(int *)((int)puVar7 + -0x48) + iVar13, a1, a2, a3,
-                                             *(u32 *)((int)puVar7 + -0x60));
+                                Vec3_catmull_rom(*(int *)((int)puVar7 + -0x48) + iVar13, a1, a2, a3,
+                                                 *(u32 *)((int)puVar7 + -0x60));
                                 unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
 
                                 *(u32 *)unaff_r11 = *(u32 *)(g_8c4aa37c * 4 + iVar2);
@@ -282,8 +282,8 @@ u32 FUN_8c220658(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
                             a1 = *(int *)((int)puVar7 + -0x40) + iVar13;
                             a3 = (u8 *)(*(int *)((int)puVar7 + -0x50) + iVar13);
                             a2 = (u64 *)(*(int *)((int)puVar7 + -0x58) + iVar13);
-                            FUN_8c221622(*(int *)((int)puVar7 + -0x48) + iVar13, a1, a2, a3,
-                                         *(u32 *)((int)puVar7 + -0x60));
+                            Vec3_catmull_rom(*(int *)((int)puVar7 + -0x48) + iVar13, a1, a2, a3,
+                                             *(u32 *)((int)puVar7 + -0x60));
                             iVar2 = iVar2 + 1;
                             unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                             **(u32 **)((int)puVar7 + -0x54) = *(u32 *)(*(int *)((int)puVar7 + -0x5c) + g_8c4aa380 * 4);
@@ -303,8 +303,8 @@ u32 FUN_8c220658(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
                             a1 = *(int *)((int)puVar7 + -0x40) + iVar13;
                             a3 = (u8 *)(*(int *)((int)puVar7 + -0x50) + iVar13);
                             a2 = (u64 *)(*(int *)((int)puVar7 + -0x58) + iVar13);
-                            FUN_8c221622(*(int *)((int)puVar7 + -0x48) + iVar13, a1, a2, a3,
-                                         *(u32 *)((int)puVar7 + -0x60));
+                            Vec3_catmull_rom(*(int *)((int)puVar7 + -0x48) + iVar13, a1, a2, a3,
+                                             *(u32 *)((int)puVar7 + -0x60));
                             unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
 
                             *(u32 *)unaff_r11 = *(u32 *)(g_8c4aa37c * 4 + iVar2);
@@ -405,8 +405,9 @@ u32 FUN_8c220658(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
                             *(u64 **)((int)puVar7 + -0x60) = unaff_r13;
                             iVar13 = *(int *)((int)puVar7 + -0x5c) * 4;
                             a3 = (u8 *)(*(int *)((int)puVar7 + -0x50) + iVar13);
-                            FUN_8c221622(*(int *)((int)puVar7 + -0x48) + iVar13, *(int *)((int)puVar7 + -0x40) + iVar13,
-                                         *(int *)((int)puVar7 + -0x58) + iVar13, a3, *(u32 *)((int)puVar7 + -0x60));
+                            Vec3_catmull_rom(*(int *)((int)puVar7 + -0x48) + iVar13,
+                                             *(int *)((int)puVar7 + -0x40) + iVar13,
+                                             *(int *)((int)puVar7 + -0x58) + iVar13, a3, *(u32 *)((int)puVar7 + -0x60));
                             *(int *)((int)puVar7 + -0x5c) = iVar4;
                             unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                             a1 = *(int *)((int)puVar7 + -0x44) + iVar4 * 4;
@@ -426,8 +427,9 @@ u32 FUN_8c220658(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
                             *(u64 **)((int)puVar7 + -0x60) = unaff_r13;
                             iVar13 = *(int *)((int)puVar7 + -0x3c) * 4;
                             a3 = (u8 *)(*(int *)((int)puVar7 + -0x50) + iVar13);
-                            FUN_8c221622(*(int *)((int)puVar7 + -0x48) + iVar13, *(int *)((int)puVar7 + -0x40) + iVar13,
-                                         *(int *)((int)puVar7 + -0x58) + iVar13, a3, *(u32 *)((int)puVar7 + -0x60));
+                            Vec3_catmull_rom(*(int *)((int)puVar7 + -0x48) + iVar13,
+                                             *(int *)((int)puVar7 + -0x40) + iVar13,
+                                             *(int *)((int)puVar7 + -0x58) + iVar13, a3, *(u32 *)((int)puVar7 + -0x60));
                             *(int *)((int)puVar7 + -0x3c) = iVar4 * 4;
                             unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                             a1 = iVar4 * 4 + *(int *)((int)puVar7 + -0x44);
@@ -664,7 +666,7 @@ u32 FUN_8c220c88(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
                         do {
                             a1 = (double *)(iStack_58 + iVar10 * 4);
                             a2 = unaff_r13;
-                            FUN_8c22158a((int)pdStack_64 + iVar10 * 4, a1, unaff_r13);
+                            Vec3_lerp((int)pdStack_64 + iVar10 * 4, a1, unaff_r13);
                             iVar7 = iVar7 + 1;
                             unaff_r13 = (double *)((int)unaff_r13 + g_8c4aa374 * 4);
                             iVar10 = iVar10 + 3;
@@ -678,7 +680,7 @@ u32 FUN_8c220c88(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
                         do {
                             a1 = (double *)(iVar7 * 4 + iStack_58);
                             a2 = unaff_r13;
-                            FUN_8c22158a(iVar7 * 4 + (int)pdStack_64, a1, unaff_r13);
+                            Vec3_lerp(iVar7 * 4 + (int)pdStack_64, a1, unaff_r13);
                             if (cVar18 == '\0') {
                                 in_dr2 = (double)(u64)puVar9[(int)g_8c4aa37c];
                             } else {
@@ -714,7 +716,7 @@ u32 FUN_8c220c88(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
                     do {
                         a1 = (double *)(iStack_58 + iVar10 * 4);
                         a2 = unaff_r13;
-                        FUN_8c22158a((int)pdStack_64 + iVar10 * 4, a1, unaff_r13);
+                        Vec3_lerp((int)pdStack_64 + iVar10 * 4, a1, unaff_r13);
                         iVar7 = iVar7 + 1;
                         unaff_r13 = (double *)((int)unaff_r13 + g_8c4aa374 * 4);
                         *puStack_5c = puStack_68[(int)g_8c4aa380];
@@ -731,7 +733,7 @@ u32 FUN_8c220c88(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
                     do {
                         a1 = (double *)(iVar7 * 4 + iStack_58);
                         a2 = unaff_r13;
-                        FUN_8c22158a(iVar7 * 4 + (int)pdStack_64, a1, unaff_r13);
+                        Vec3_lerp(iVar7 * 4 + (int)pdStack_64, a1, unaff_r13);
                         if (cVar18 == '\0') {
                             in_dr2 = (double)(u64)puVar9[(int)g_8c4aa37c];
                         } else {
@@ -826,7 +828,7 @@ u32 FUN_8c220c88(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
                 iVar10 = 0;
                 if (uVar6 != 0) {
                     do {
-                        FUN_8c22158a(iVar10 * 4 + (int)pdStack_64, iVar10 * 4 + iStack_58, unaff_r13);
+                        Vec3_lerp(iVar10 * 4 + (int)pdStack_64, iVar10 * 4 + iStack_58, unaff_r13);
                         unaff_r13 = (double *)((int)unaff_r13 + g_8c4aa374 * 4);
                         a1 = (double *)(iVar10 * 4 + iStack_54);
                         a2 = unaff_r11;
@@ -841,7 +843,7 @@ u32 FUN_8c220c88(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
                 iVar10 = 0;
                 if (uVar6 != 0) {
                     do {
-                        FUN_8c22158a(iVar10 * 4 + (int)pdStack_64, iVar10 * 4 + iStack_58, unaff_r13);
+                        Vec3_lerp(iVar10 * 4 + (int)pdStack_64, iVar10 * 4 + iStack_58, unaff_r13);
                         unaff_r13 = (double *)((int)unaff_r13 + g_8c4aa374 * 4);
                         a1 = (double *)(iVar10 * 4 + iStack_54);
                         a2 = unaff_r11;
@@ -939,10 +941,11 @@ int FUN_8c22138a(int a0, int a1, u32 a2, int *a3) {
 }
 
 /*
- * FUN_8c221414  0x8c221414
+ * argb_lerp  0x8c221414
+ * blends two packed ARGB colours by fr4
  * called by: FUN_8c21daf2, FUN_8c21e4f8, FUN_8c21f2ae, FUN_8c21fca8
  */
-u64 *FUN_8c221414(u32 *a0, u32 *a1, u32 *a2) {
+u64 *argb_lerp(u32 *a0, u32 *a1, u32 *a2) {
     u64 *puVar1;
     u32 uVar2;
     u32 uVar3;
@@ -983,10 +986,11 @@ u64 *FUN_8c221414(u32 *a0, u32 *a1, u32 *a2) {
 }
 
 /*
- * FUN_8c22158a  0x8c22158a
+ * Vec3_lerp  0x8c22158a
+ * a2 = lerp(a0, a1, fr4)
  * called by: FUN_8c21e4f8, FUN_8c21ee94, FUN_8c21fca8, FUN_8c220c88
  */
-u32 FUN_8c22158a(float *a0, float *a1, float *a2) {
+u32 Vec3_lerp(float *a0, float *a1, float *a2) {
     float fVar1;
     u64 in_dr4;
     float fVar2;
@@ -1034,10 +1038,11 @@ u32 *Vec3_lerp_normalize(float *a0, float *a1, float *a2) {
 }
 
 /*
- * FUN_8c221622  0x8c221622
+ * Vec3_catmull_rom  0x8c221622
+ * s0 = Catmull-Rom spline through a0..a3 at t = fr4
  * called by: FUN_8c21daf2, FUN_8c21f2ae, FUN_8c220658
  */
-u32 FUN_8c221622(float *a0, float *a1, float *a2, float *a3, float *s0) {
+u32 Vec3_catmull_rom(float *a0, float *a1, float *a2, float *a3, float *s0) {
     float fVar1;
     u64 in_dr4;
     float fVar2;

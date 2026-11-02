@@ -9846,7 +9846,7 @@ u32 FUN_8c1f71b6(int a0, u32 a1, u32 a2, u32 a3) {
 
     uVar1 = 1;
     FUN_8c1f8176(0x8c4749f2, a1, a2, a3);
-    FUN_8c1f826c(0x8c4749f2, &stack0xffffffe8, a2);
+    date_to_rtc_seconds(0x8c4749f2, &stack0xffffffe8, a2);
     if (g_8c474986 == -1) {
         g_8c474986 = (short)in_stack_ffffffe8 - (short)g_8c474a00;
     } else {
@@ -9872,7 +9872,7 @@ u32 FUN_8c1f7264(int a0, u32 a1, u32 a2, u32 a3) {
     g_8c474980 = g_8c4749fc;
     FUN_8c1f8176(0x8c4749f2, a1, a2, a3);
     ar5_00 = &g_8c474a00;
-    FUN_8c1f826c(0x8c4749f2, &g_8c474a00, a2);
+    date_to_rtc_seconds(0x8c4749f2, &g_8c474a00, a2);
     if (g_8c474984 == -1) {
         g_8c474984 = 1;
     } else {
@@ -9931,7 +9931,7 @@ u32 FUN_8c1f736c(int a0, u32 a1, u32 a2, u32 a3) {
     g_8c4749dc = g_8c4749e0;
     g_8c474a04 = g_8c474a04 + 1;
     FUN_8c1f8176(0x8c4749f2, a1, a2, a3);
-    FUN_8c1f826c(0x8c4749f2, &g_8c4749d8, a2);
+    date_to_rtc_seconds(0x8c4749f2, &g_8c4749d8, a2);
     ar5_00 = libgcc_divide_helper_01051c(g_8c4749d8 - iVar1, 0x3c);
     uVar2 = (u32)g_8c4749ec;
     ar5_02 = 0x3c - g_8c4749ed;
@@ -10072,7 +10072,7 @@ u32 FUN_8c1f7558(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int aiStack_38[7];
 
     FUN_8c1f8176(0x8c4749e8, a1, a2, a3);
-    FUN_8c1f826c(0x8c4749e8, &g_8c4749d8, a2);
+    date_to_rtc_seconds(0x8c4749e8, &g_8c4749d8, a2);
     uVar11 = 0x8c4748c4;
     g_8c474a06 = 0;
     iVar4 = FUN_8c1f7b64(g_8c4748bc, 0x8c4748c4, a2, a3);
@@ -10247,7 +10247,7 @@ int FUN_8c1f7902(u32 a0, u32 a1, u32 a2, int a3) {
     }
     *(short *)(iVar2 + 0x8c4748c4) = *(short *)(iVar2 + 0x8c4748c4) + 1;
     FUN_8c1f8176(0x8c4749f2, 0, a2, a3);
-    FUN_8c1f826c(0x8c4749f2, 0x8c474a08, a2);
+    date_to_rtc_seconds(0x8c4749f2, 0x8c474a08, a2);
 LAB_8c1f7970:
     if ((char)a0 != '\x01') {
         g_8c47497a = (u8)a1;
@@ -10463,7 +10463,7 @@ u32 FUN_8c1f7c40(int a0, u32 unused_a1, u32 a2, u32 a3) {
             do {
                 FUN_8c1f6e0c(iVar3, 0, uVar1, a3);
                 uVar1 = 10;
-                FUN_8c23c814(a0, g_8c4748b0 + 2, 10);
+                memcpy_bytes(a0, g_8c4748b0 + 2, 10);
                 iVar3 = iVar3 + 4;
                 *(u8 *)(a0 + 10) = 0;
                 a0 = a0 + 0xb;
@@ -10500,7 +10500,7 @@ u32 FUN_8c1f7c50(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
         memset(unaff_r13, (int)0xff, iVar5);
         puVar3 = (&FUN_8c1f6e0c);
         piVar2 = 0x8c4748b0;
-        puVar1 = (&FUN_8c23c814);
+        puVar1 = (&memcpy_bytes);
         if (g_8c474a2b == '\0') {
             iVar5 = 100;
             puVar4 = (u8 *)(unaff_r13 + 10);
@@ -10998,7 +10998,7 @@ int FUN_8c1f81dc(u32 a0, u32 unused_a1, u32 a2) {
     int iVar1;
     u32 uVar2;
     u32 auStack_8[2];
-    FUN_8c1f826c(a0, auStack_8, a2);
+    date_to_rtc_seconds(a0, auStack_8, a2);
     iVar1 = aica_reg_1f85a0();
     if (((iVar1 == 0) && (iVar1 = aica_reg_1f85c8(auStack_8[0] & 0xffff), iVar1 == 0)) &&
         (iVar1 = aica_reg_1f85ee(auStack_8[0] >> 0x10), iVar1 == 0)) {
@@ -11024,8 +11024,8 @@ u32 FUN_8c1f823a(u32 a0, u32 a1, u32 a2) {
     u32 uStack_8;
 
     uStack_8 = a1;
-    FUN_8c1f826c(a0, &uStack_c, a2);
-    FUN_8c1f826c(uStack_8, &uStack_10, a2);
+    date_to_rtc_seconds(a0, &uStack_c, a2);
+    date_to_rtc_seconds(uStack_8, &uStack_10, a2);
     if (uStack_c == uStack_10) {
         uVar1 = 0;
     } else if (uStack_10 < uStack_c) {
@@ -11037,11 +11037,12 @@ u32 FUN_8c1f823a(u32 a0, u32 a1, u32 a2) {
 }
 
 /*
- * FUN_8c1f826c  0x8c1f826c
+ * date_to_rtc_seconds  0x8c1f826c
+ * seconds since 1950-01-01 (the Dreamcast RTC epoch) for a {year, month, day, hour, minute, second} struct
  * called by: FUN_8c01acd0, FUN_8c0b77a0, FUN_8c0b7804, FUN_8c0b96e4, FUN_8c0bcedc, FUN_8c0cc784, FUN_8c0cd3c8,
  * FUN_8c0f9774 (+12 more)
  */
-u32 FUN_8c1f826c(u16 *a0, int *a1, u32 a2) {
+u32 date_to_rtc_seconds(u16 *a0, int *a1, u32 a2) {
     u16 uVar1;
     int iVar2;
     u32 uVar3;
@@ -11304,7 +11305,7 @@ u32 FUN_8c1f8650(u32 a0, u32 unused_a1, u32 a2) {
     int iVar3;
     u32 auStack_8[2];
 
-    FUN_8c1f826c(a0, auStack_8, a2);
+    date_to_rtc_seconds(a0, auStack_8, a2);
     iVar3 = 0x26ee7f;
     if (auStack_8[0] < 0x5cb417d1) {
         iVar1 = libgcc_divide_helper_0106dc(0x5cb417d1 - auStack_8[0], 0x26ee7f);

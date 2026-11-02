@@ -784,7 +784,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
                     }
                     goto override_jmp_8c046852_case_6;
                 case 0xc:
-                    FUN_8c03f460((u8 *)((int)puVar14 + -0xe0), ar5_00, (u8 *)((int)puVar14 + -0xe0), pcVar2);
+                    Vec3_copy_assign((u8 *)((int)puVar14 + -0xe0), ar5_00, (u8 *)((int)puVar14 + -0xe0), pcVar2);
                     *(u32 *)((int)puVar14 + -0x29c) = 0xffffffff;
                     pcVar2 = (code *)((int)puVar14 + -0xe0);
                     uVar1 = FUN_8c059fc4(a0, a1, *(u32 *)((int)puVar14 + -0x28c), pcVar2);
@@ -798,7 +798,7 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
                     }
                     goto override_jmp_8c046852_case_6;
                 case 0xd:
-                    FUN_8c03f460((u8 *)((int)puVar14 + -0xec), ar5_00);
+                    Vec3_copy_assign((u8 *)((int)puVar14 + -0xec), ar5_00);
                     *(u32 *)((int)puVar14 + -0x29c) = 0xffffffff;
                     pcVar7 = *(code **)((int)puVar14 + -0x28c);
                     pcVar2 = (code *)FUN_8c059fc4(a0, a1, pcVar7, (u8 *)((int)puVar14 + -0xec));
@@ -2240,7 +2240,7 @@ u32 FUN_8c049b68(int a0, u64 *a1, code *a2, code *a3) {
         uVar2 = libgcc_divide_helper_01031c(*(u32 *)((int)pdVar11 + -0x1b4), 3, uVar1);
         *(u32 *)((int)pdVar11 + -0x228) = uVar2;
         *(int *)(a0 + 0x280) = *(int *)((int)pdVar11 + -0x228) + 1;
-        FUN_8c02a1fc(a0 + 0x2c8, uVar7, uVar1, a3);
+        clear_3_words(a0 + 0x2c8, uVar7, uVar1, a3);
         break;
     case 1:
         *(u32 *)(a0 + 0x40) = 3;
@@ -2748,7 +2748,7 @@ u32 FUN_8c049b68(int a0, u64 *a1, code *a2, code *a3) {
         uVar2 = CAnimBody_AdvanceFrame_033b98(a0 + 0xb0, pcVar5, a0 + 0xb0, 0xb0);
         *(u32 *)((int)pdVar11 + -0x21c) = uVar2;
         if (*(int *)((int)pdVar11 + -0x21c) == 1) {
-            FUN_8c02a1fc(a0 + 0x2c8, uVar2, FUN_8c02a1fc, a3);
+            clear_3_words(a0 + 0x2c8, uVar2, clear_3_words, a3);
             uVar10 = 0;
             *(u32 *)(a0 + 0x2b8) = 2;
             a3 = (code *)(a0 + 0x2c);
@@ -3062,7 +3062,7 @@ u32 FUN_8c04b168(int a0, u64 *a1, code *a2, code *a3) {
         uVar5 = libgcc_divide_helper_01031c(*(u32 *)((int)pdVar10 + -0x1a0), 3, pcVar7);
         *(u32 *)((int)pdVar10 + -0x200) = uVar5;
         *(int *)(a0 + 0x280) = *(int *)((int)pdVar10 + -0x200) + 1;
-        FUN_8c02a1fc(a0 + 0x2c8, uVar4, pcVar7, a3);
+        clear_3_words(a0 + 0x2c8, uVar4, pcVar7, a3);
         break;
     case 1:
         *(u32 *)(a0 + 0x40) = 3;
@@ -3664,7 +3664,7 @@ LAB_8c04c588:
                     *(double *)(a0 + 0x278) = dVar13;
                 }
                 *(u32 *)(a0 + 0x40) = 1;
-                FUN_8c02a1fc(a0 + 0x2c8, 0x278, ar6_00, pcVar10);
+                clear_3_words(a0 + 0x2c8, 0x278, ar6_00, pcVar10);
                 CAnimBody_SetFrame(a0 + 0xb0, uVar7, ar6_00, pcVar10);
                 *(u32 *)(a0 + 0x290) = 0;
                 goto switchD_8c04c5a8_caseD_1;
@@ -3890,7 +3890,7 @@ LAB_8c04c728:
             }
             *(u32 *)(a0 + 0x2b8) = 3;
             pcVar10 = (code *)0x2c8;
-            FUN_8c02a1fc(a0 + 0x2c8, pcVar9, ar6_00, 0x2c8);
+            clear_3_words(a0 + 0x2c8, pcVar9, ar6_00, 0x2c8);
             break;
         case 3:
             iVar6 = CAnimBody_AdvanceFrame_033b98(a0 + 0xb0, pcVar9, ar6_00, pcVar10);
@@ -4664,7 +4664,7 @@ u32 FUN_8c04ddd4(int a0, u32 a1, u32 a2, u32 a3) {
         if ((iVar1 == 2) && (iVar1 = CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, uVar2, a2, uVar3), iVar1 == 1)) {
             *(u32 *)(a0 + 0x2b8) = 2;
             *(u32 *)(a0 + 300) = 0;
-            FUN_8c030eb8(a0 + 0x1fc, uVar2, a2);
+            flags6_set_all(a0 + 0x1fc, uVar2, a2);
             uVar4 = 0;
             iVar1 = a0 + 0x80;
             Vec3_assign(a0 + 0x14, iVar1, a2, uVar3);
@@ -5257,7 +5257,7 @@ u32 FUN_8c04eb14(int a0, u32 a1, u32 a2, u8 *a3) {
             }
             goto switchD_8c04eb5c_caseD_4;
         case 0xc:
-            FUN_8c03f460(auStack_2c, a3);
+            Vec3_copy_assign(auStack_2c, a3);
             ar7_01 = auStack_2c;
             iVar1 = FUN_8c059fc4(a0, a1, a1, ar7_01);
             free_if_nonnull_wrap_102790(auStack_2c, 0xffffffff, a1, ar7_01);
@@ -5529,7 +5529,7 @@ LAB_8c04f31c:
             iVar1 = CAnimBody_AdvanceFrame_033b98(a0 + 0xb0, 0xb0, pcVar9, pcVar5);
             if (iVar1 == 1) {
                 FUN_8c03f3e8(a1, uVar7, pcVar9);
-                FUN_8c030eb8(a0 + 0x1fc, 0x1fc, pcVar9);
+                flags6_set_all(a0 + 0x1fc, 0x1fc, pcVar9);
                 *(u32 *)(a0 + 0x2b8) = 2;
                 uVar10 = 0;
                 *(u32 *)(a0 + 300) = 0;
@@ -5697,7 +5697,7 @@ LAB_8c04f31c:
                     CAnimBody_SetFrame(a0 + 0xb0, uVar7, pcVar9, pcVar5);
                     *(u32 *)(a0 + 0x2b8) = 3;
                     *(u32 *)(a0 + 700) = 0;
-                    FUN_8c030f2c(a0 + 0x1fc, 0, pcVar9, pcVar5);
+                    flags6_clear_all(a0 + 0x1fc, 0, pcVar9, pcVar5);
                     *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
                 } else {
                     pcVar5 = NULL;
@@ -5708,12 +5708,12 @@ LAB_8c04f31c:
                     *(u32 *)(a0 + 0x2b8) = 3;
                     *(u32 *)(a0 + 700) = 0;
                     pcVar9 = (code *)0x1fc;
-                    FUN_8c030f2c(a0 + 0x1fc, a0 + 0x1fc, 0x1fc, pcVar5);
+                    flags6_clear_all(a0 + 0x1fc, a0 + 0x1fc, 0x1fc, pcVar5);
                     *(u32 *)(a0 + 300) = 4;
                 }
             }
             if (*(int *)(a0 + 0x298) == 1) {
-                FUN_8c030f2c(a0 + 0x1fc, 0x298, pcVar9, pcVar5);
+                flags6_clear_all(a0 + 0x1fc, 0x298, pcVar9, pcVar5);
             }
             goto switchD_8c04f3ac_default;
         case 9:
@@ -5737,7 +5737,7 @@ LAB_8c04f31c:
                 *(u32 *)(a0 + 0x2b8) = 3;
                 pcVar9 = (code *)0x2bc;
                 *(u32 *)(a0 + 700) = 0;
-                FUN_8c030f2c(a0 + 0x1fc, uVar7, 700, 3);
+                flags6_clear_all(a0 + 0x1fc, uVar7, 700, 3);
                 *(u32 *)(a0 + 300) = 4;
             }
             goto switchD_8c04f3ac_default;
@@ -5754,7 +5754,7 @@ LAB_8c04f31c:
             CAnimBody_SetAnimation(a0 + 0xb0, 0x17, 0xffffffff, 0);
             *(u32 *)(a0 + 0x2b8) = 3;
             CAnimBody_SetFrame(a0 + 0xb0, 3, uVar2, ar7_00);
-            FUN_8c030f2c(a0 + 0x1fc, FUN_8c030f2c, uVar2, ar7_00);
+            flags6_clear_all(a0 + 0x1fc, flags6_clear_all, uVar2, ar7_00);
             *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
             pcVar6 = a0;
         switchD_8c04f3ac_caseD_4:

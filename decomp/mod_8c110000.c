@@ -11089,8 +11089,8 @@ u32 FUN_8c11c9a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c11c9d2  0x8c11c9d2
- * called by: FUN_8c11ca24, FUN_8c11ca28, FUN_8c11cd44, FUN_8c11cd4e, FUN_8c11ce44, FUN_8c11ce8e, FUN_8c11e2de,
- * FUN_8c11e8d6
+ * called by: FUN_8c11ca28, FUN_8c11cd4e, FUN_8c11ce44, FUN_8c11ce8e, FUN_8c11e2de, FUN_8c11e8d6, lib11c_check_handle,
+ * lib11c_take_error
  */
 u32 FUN_8c11c9d2(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -11104,7 +11104,7 @@ u32 FUN_8c11c9d2(int a0, u32 unused_a1, u32 a2, u32 a3) {
     }
     iVar1 = (**(code **)(a0 + 0x1c))(a0 + 8);
     if (*(int *)(a0 + 4) != iVar1) {
-        uVar2 = FUN_8c11cd02(a0, 2, a2, a3);
+        uVar2 = lib11c_set_error(a0, 2, a2, a3);
         return uVar2;
     }
     return 0;
@@ -11126,18 +11126,19 @@ u32 FUN_8c11c9d6(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     }
     iVar1 = (**(code **)(unaff_r14 + 0x1c))(unaff_r14 + 8, a1, a2, a3);
     if (*(int *)(unaff_r14 + 4) != iVar1) {
-        uVar2 = FUN_8c11cd02(unaff_r14, 2, a2, a3);
+        uVar2 = lib11c_set_error(unaff_r14, 2, a2, a3);
         return uVar2;
     }
     return 0;
 }
 
 /*
- * FUN_8c11ca24  0x8c11ca24
- * called by: FUN_8c11cd44, FUN_8c11cd4e, FUN_8c11d200, FUN_8c11d20e, FUN_8c11d370, FUN_8c11d374, FUN_8c11d5d4,
- * FUN_8c11d6f0 (+16 more)
+ * lib11c_check_handle  0x8c11ca24
+ * checks the handle magic 0x218df4f5 and its state; 0 when valid
+ * called by: FUN_8c11cd4e, FUN_8c11d200, FUN_8c11d20e, FUN_8c11d370, FUN_8c11d374, FUN_8c11d5d4, FUN_8c11d6f0,
+ * FUN_8c11d7b8 (+16 more)
  */
-u32 FUN_8c11ca24(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 lib11c_check_handle(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 ar5_00;
@@ -11161,7 +11162,7 @@ u32 FUN_8c11ca24(int a0, u32 unused_a1, u32 a2, u32 a3) {
         ar5_00 = 0xb;
         uVar2 = *(u32 *)(0xfc + a0);
     }
-    uVar2 = FUN_8c11cd02(uVar2, ar5_00, a2, a3);
+    uVar2 = lib11c_set_error(uVar2, ar5_00, a2, a3);
     return uVar2;
 }
 
@@ -11194,7 +11195,7 @@ u32 FUN_8c11ca28(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = 0xb;
         uVar2 = *(u32 *)(0xfc + unaff_r14);
     }
-    uVar2 = FUN_8c11cd02(uVar2, ar5_00, a2, a3);
+    uVar2 = lib11c_set_error(uVar2, ar5_00, a2, a3);
     return uVar2;
 }
 
@@ -11214,7 +11215,7 @@ u32 FUN_8c11cad4(int a0, u32 unused_a1, u32 a2, u32 a3) {
         iVar2 = (**(code **)(ar4_00 + 0x1c))(ar4_00 + 8);
         if ((*(int *)(a0 + 0xc) != iVar2) ||
             (iVar2 = (**(code **)(ar4_00 + 0x20))(ar4_00 + 8), *(int *)(a0 + 0x10) != iVar2)) {
-            uVar1 = FUN_8c11cd02(ar4_00, 0xf, a2, a3);
+            uVar1 = lib11c_set_error(ar4_00, 0xf, a2, a3);
             return uVar1;
         }
         uVar1 = 0;
@@ -11240,7 +11241,7 @@ u32 FUN_8c11cada(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
         iVar2 = (**(code **)(ar4_00 + 0x1c))(ar4_00 + 8, a1, a2, a3);
         if ((*(int *)(unaff_r13 + 0xc) != iVar2) ||
             (iVar2 = (**(code **)(ar4_00 + 0x20))(ar4_00 + 8, a1, a2, a3), *(int *)(unaff_r13 + 0x10) != iVar2)) {
-            uVar1 = FUN_8c11cd02(ar4_00, 0xf, a2, a3);
+            uVar1 = lib11c_set_error(ar4_00, 0xf, a2, a3);
             return uVar1;
         }
         uVar1 = 0;
@@ -11266,7 +11267,7 @@ u32 FUN_8c11cb54(int a0, u32 unused_a1, u32 a2, u32 a3) {
         iVar2 = (**(code **)(ar4_00 + 0x1c))(ar4_00 + 8);
         if ((*(int *)(a0 + 0xc) != iVar2) ||
             (iVar2 = (**(code **)(ar4_00 + 0x20))(ar4_00 + 8), *(int *)(a0 + 0x10) != iVar2)) {
-            uVar1 = FUN_8c11cd02(ar4_00, 0x11, a2, a3);
+            uVar1 = lib11c_set_error(ar4_00, 0x11, a2, a3);
             return uVar1;
         }
         uVar1 = 0;
@@ -11292,7 +11293,7 @@ u32 FUN_8c11cb5a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
         iVar2 = (**(code **)(ar4_00 + 0x1c))(ar4_00 + 8, a1, a2, a3);
         if ((*(int *)(unaff_r13 + 0xc) != iVar2) ||
             (iVar2 = (**(code **)(ar4_00 + 0x20))(ar4_00 + 8, a1, a2, a3), *(int *)(unaff_r13 + 0x10) != iVar2)) {
-            uVar1 = FUN_8c11cd02(ar4_00, 0x11, a2, a3);
+            uVar1 = lib11c_set_error(ar4_00, 0x11, a2, a3);
             return uVar1;
         }
         uVar1 = 0;
@@ -11368,11 +11369,12 @@ u32 FUN_8c11cc2c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c11cd02  0x8c11cd02
- * called by: FUN_8c11c9d2, FUN_8c11c9d6, FUN_8c11ca24, FUN_8c11ca28, FUN_8c11cad4, FUN_8c11cada, FUN_8c11cb54,
- * FUN_8c11cb5a (+14 more)
+ * lib11c_set_error  0x8c11cd02
+ * records error a1 if none is set, under the handle's lock callbacks
+ * called by: FUN_8c11c9d2, FUN_8c11c9d6, FUN_8c11ca28, FUN_8c11cad4, FUN_8c11cada, FUN_8c11cb54, FUN_8c11cb5a,
+ * FUN_8c11ce8e (+14 more)
  */
-u32 FUN_8c11cd02(int *a0, int a1, u32 a2, u32 a3) {
+u32 lib11c_set_error(int *a0, int a1, u32 a2, u32 a3) {
     (*(code *)a0[0xb])(a0[4], a0 + 2, a2, a3);
     if (*a0 == 0) {
         *a0 = a1;
@@ -11382,18 +11384,19 @@ u32 FUN_8c11cd02(int *a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c11cd44  0x8c11cd44
+ * lib11c_take_error  0x8c11cd44
+ * returns and clears the handle's pending error
  * called by: FUN_8c10b698, FUN_8c10b6a0, FUN_8c10b6cc, FUN_8c10b852, FUN_8c10b8c6, FUN_8c10ba20, FUN_8c10ba7c,
  * FUN_8c10bad4 (+28 more)
  */
-u32 FUN_8c11cd44(u32 *a0, int a1, u32 a2, u32 a3) {
+u32 lib11c_take_error(u32 *a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     u32 uVar3;
 
     uVar3 = 0x80000000;
     iVar2 = a1;
-    if ((a1 == 0) || (iVar1 = FUN_8c11ca24(a1, a1, a2, a3), iVar1 != 0)) {
+    if ((a1 == 0) || (iVar1 = lib11c_check_handle(a1, a1, a2, a3), iVar1 != 0)) {
         iVar2 = FUN_8c11c9d2(a0, iVar2, a2, a3);
         if (iVar2 == 0) {
             uVar3 = 0x12;
@@ -11419,7 +11422,7 @@ u32 FUN_8c11cd4e(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar2;
     int unaff_r13;
 
-    if ((unaff_r12 == 0) || (iVar1 = FUN_8c11ca24(unaff_r12, unused_a1, a2, a3), iVar1 != 0)) {
+    if ((unaff_r12 == 0) || (iVar1 = lib11c_check_handle(unaff_r12, unused_a1, a2, a3), iVar1 != 0)) {
         iVar1 = FUN_8c11c9d2(a0, unused_a1, a2, a3);
         if (iVar1 == 0) {
             uVar2 = 0x12;
@@ -11552,7 +11555,7 @@ u32 FUN_8c11ce8e(int a0, u32 *a1, u32 a2, u32 a3) {
     iVar2 = FUN_8c11c9d2(a0, a1, a2, a3);
     if (iVar2 == 0) {
         if (a1 == NULL) {
-            FUN_8c11cd02(a0, 0x13, uVar4, a3);
+            lib11c_set_error(a0, 0x13, uVar4, a3);
         } else {
             iVar7 = (int)0x2b4;
             iVar8 = a0 + 8;
@@ -11563,7 +11566,7 @@ u32 FUN_8c11ce8e(int a0, u32 *a1, u32 a2, u32 a3) {
                           0x14);
             iVar2 = FUN_8c11c914(a0, 1, iVar7, iVar8);
             if (iVar2 == 0) {
-                FUN_8c11cd02(a0, 2, iVar7, iVar8);
+                lib11c_set_error(a0, 2, iVar7, iVar8);
             } else {
                 iVar7 = (int)0xc4;
                 *(int *)(iVar2 + 0x48) = iVar2;
@@ -11625,7 +11628,7 @@ u32 FUN_8c11ce8e(int a0, u32 *a1, u32 a2, u32 a3) {
                     uVar4 = (**(code **)(a0 + 0x14))(0x28, a0 + 8, ar6_00, a7);
                     *(u32 *)(0x2b0 + iVar2) = uVar4;
                     if (*(int *)(0x2b0 + iVar2) == 0) {
-                        FUN_8c11cd02(a0, 2, ar6_00, a7);
+                        lib11c_set_error(a0, 2, ar6_00, a7);
                     } else {
                         iVar7 = (int)0x22c;
                         **(u32 **)(0x2b0 + iVar2) = 0;
@@ -11668,7 +11671,7 @@ u32 FUN_8c11ce8e(int a0, u32 *a1, u32 a2, u32 a3) {
                         }
                     }
                 } else {
-                    FUN_8c11cd02(*(u32 *)(0xfc + iVar2), *(u32 *)(iVar2 + 0x40), ar6_00, a7);
+                    lib11c_set_error(*(u32 *)(0xfc + iVar2), *(u32 *)(iVar2 + 0x40), ar6_00, a7);
                 }
                 (**(code **)(a0 + 0x18))(iVar2, a0 + 8, ar6_00, a7);
             }
@@ -11731,7 +11734,7 @@ u32 FUN_8c11d200(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar7;
     int *piVar8;
 
-    iVar3 = FUN_8c11ca24(a0, unused_a1, a2, a3);
+    iVar3 = lib11c_check_handle(a0, unused_a1, a2, a3);
     if (iVar3 == 0) {
         iVar3 = *(int *)(0xfc + a0);
         sVar1 = *(short *)(a0 + 0x3e);
@@ -11791,7 +11794,7 @@ u32 FUN_8c11d20e(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int unaff_r9;
     int *piVar7;
 
-    iVar2 = FUN_8c11ca24(a0, unused_a1, a2, a3);
+    iVar2 = lib11c_check_handle(a0, unused_a1, a2, a3);
     if (iVar2 == 0) {
         iVar2 = *(int *)(0xfc + a0);
         sVar1 = *(short *)(unaff_r9 + 0x3e);
@@ -11849,7 +11852,7 @@ u32 FUN_8c11d370(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar3;
     u32 uVar4;
 
-    iVar3 = FUN_8c11ca24(a0, unused_a1, a2, a3);
+    iVar3 = lib11c_check_handle(a0, unused_a1, a2, a3);
     if (iVar3 == 0) {
         if (*(short *)(a0 + 0x3e) == 2) {
             iVar3 = (int)0x118;
@@ -11887,7 +11890,7 @@ u32 FUN_8c11d374(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar3;
     int unaff_r14;
 
-    iVar2 = FUN_8c11ca24(a0, unused_a1, a2, a3);
+    iVar2 = lib11c_check_handle(a0, unused_a1, a2, a3);
     if (iVar2 == 0) {
         if (*(short *)(a0 + 0x3e) == 2) {
             iVar2 = (int)0x118;
@@ -12010,7 +12013,7 @@ u32 FUN_8c11d5d4(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 ar7_00;
 
     sVar1 = *(short *)(a0 + 0x3e);
-    iVar2 = FUN_8c11ca24(a0, unused_a1, a2, a3);
+    iVar2 = lib11c_check_handle(a0, unused_a1, a2, a3);
     if (iVar2 == 0) {
         *(u32 *)(a0 + 0x40) = 0;
         if (((sVar1 != 3) && (sVar1 != 4)) && (sVar1 != 7)) {
@@ -12063,7 +12066,7 @@ u32 FUN_8c11d6f0(int a0, u32 *a1, u32 a2, u32 a3) {
 
     puVar5 = a1;
     uVar3 = a2;
-    iVar2 = FUN_8c11ca24(a0, a1, a2, a3);
+    iVar2 = lib11c_check_handle(a0, a1, a2, a3);
     puVar1 = (&FUN_8c1204c4);
     if (iVar2 == 0) {
         if ((a1 == NULL) && (a2 != 0)) {
@@ -12123,7 +12126,7 @@ u32 FUN_8c11d7b8(int a0, int *a1, int *a2, u32 a3) {
     iVar8 = 0;
     piStack_24 = a1;
     piStack_20 = a2;
-    iVar3 = FUN_8c11ca24(a0, a1, a2, a3);
+    iVar3 = lib11c_check_handle(a0, a1, a2, a3);
     puVar2 = (&FUN_8c120348);
     if (iVar3 == 0) {
         if ((piStack_24 == NULL) || (piStack_20 == NULL)) {
@@ -12239,7 +12242,7 @@ u32 FUN_8c11d996(int a0, int *a1, u32 *a2, u32 a3) {
     u32 *ar6_00;
 
     ar6_00 = a2;
-    iVar1 = FUN_8c11ca24(a0, a1, a2, a3);
+    iVar1 = lib11c_check_handle(a0, a1, a2, a3);
     if (iVar1 == 0) {
         if ((a1 == NULL) || (a2 == NULL)) {
             uVar2 = FUN_8c1204c4(a0 + 0x48, 0x13, ar6_00, a3);
@@ -12249,7 +12252,7 @@ u32 FUN_8c11d996(int a0, int *a1, u32 *a2, u32 a3) {
             if (puVar3 == NULL) {
                 *a1 = 0;
                 *a2 = 0;
-                uVar4 = FUN_8c11cd02(*(u32 *)(a0 + 0xfc), 2, ar6_00, a3);
+                uVar4 = lib11c_set_error(*(u32 *)(a0 + 0xfc), 2, ar6_00, a3);
                 return uVar4;
             }
             *a2 = 0x38;
@@ -12288,7 +12291,7 @@ u32 FUN_8c11d9a0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int *unaff_r12;
     u32 *unaff_r13;
 
-    iVar1 = FUN_8c11ca24(a0, unused_a1, a2, a3);
+    iVar1 = lib11c_check_handle(a0, unused_a1, a2, a3);
     if (iVar1 == 0) {
         if ((unaff_r12 == NULL) || (unaff_r13 == NULL)) {
             uVar2 = FUN_8c1204c4(a0 + 0x48, 0x13, a2, a3);
@@ -12298,7 +12301,7 @@ u32 FUN_8c11d9a0(int a0, u32 unused_a1, u32 a2, u32 a3) {
             if (puVar3 == NULL) {
                 *unaff_r12 = 0;
                 *unaff_r13 = 0;
-                uVar4 = FUN_8c11cd02(*(u32 *)(a0 + 0xfc), 2, a2, a3);
+                uVar4 = lib11c_set_error(*(u32 *)(a0 + 0xfc), 2, a2, a3);
                 return uVar4;
             }
             *unaff_r13 = 0x38;
@@ -12339,7 +12342,7 @@ u32 FUN_8c11daa4(int a0, u32 *a1, int a2, u32 a3) {
     int a6;
 
     a6 = a2;
-    iVar2 = FUN_8c11ca24(a0, a1, a2, a3);
+    iVar2 = lib11c_check_handle(a0, a1, a2, a3);
     if (iVar2 != 0) {
         return 1;
     }
@@ -12412,7 +12415,7 @@ u32 FUN_8c11dc7e(int a0, u32 a1, int *a2, u32 a3) {
     int *ar6_00;
 
     ar6_00 = a2;
-    iVar1 = FUN_8c11ca24(a0, a1, a2, a3);
+    iVar1 = lib11c_check_handle(a0, a1, a2, a3);
     if (iVar1 != 0) {
         return 1;
     }
@@ -12492,7 +12495,7 @@ u32 FUN_8c11dda2(int a0, u32 a1, int a2, u32 a3) {
     int ar6_00;
 
     ar6_00 = a2;
-    iVar1 = FUN_8c11ca24(a0, a1, a2, a3);
+    iVar1 = lib11c_check_handle(a0, a1, a2, a3);
     if (iVar1 != 0) {
         return 1;
     }
@@ -12591,7 +12594,7 @@ u32 FUN_8c11dda2(int a0, u32 a1, int a2, u32 a3) {
 u32 FUN_8c11e146(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
-    iVar1 = FUN_8c11ca24(a0, a1, a2, a3);
+    iVar1 = lib11c_check_handle(a0, a1, a2, a3);
     if (iVar1 != 0) {
         return 1;
     }
@@ -12612,7 +12615,7 @@ u32 FUN_8c11e190(int a0, u32 *a1) {
         return 6;
     }
     if (*(int *)(0xf0 + a0) != 0x218df4f5) {
-        uVar1 = FUN_8c11cd02(*(u32 *)(0xfc + a0), 0xb);
+        uVar1 = lib11c_set_error(*(u32 *)(0xfc + a0), 0xb);
         return uVar1;
     }
     if (a1 == NULL) {
@@ -12635,7 +12638,7 @@ u32 FUN_8c11e194(u32 unused_a0, u32 *a1, u32 a2, u32 a3) {
         return 6;
     }
     if (*(int *)(0xf0 + unaff_r14) != 0x218df4f5) {
-        uVar1 = FUN_8c11cd02(*(u32 *)(0xfc + unaff_r14), 0xb);
+        uVar1 = lib11c_set_error(*(u32 *)(0xfc + unaff_r14), 0xb);
         return uVar1;
     }
     if (a1 == NULL) {
@@ -12658,7 +12661,7 @@ u32 FUN_8c11e214(int a0, u16 *a1) {
         return 6;
     }
     if (*(int *)(0xf0 + a0) != 0x218df4f5) {
-        uVar1 = FUN_8c11cd02(*(u32 *)(0xfc + a0), 0xb);
+        uVar1 = lib11c_set_error(*(u32 *)(0xfc + a0), 0xb);
         return uVar1;
     }
     if (a1 == NULL) {
@@ -12681,7 +12684,7 @@ u32 FUN_8c11e218(u32 unused_a0, u16 *a1, u32 a2, u32 a3) {
         return 6;
     }
     if (*(int *)(0xf0 + unaff_r14) != 0x218df4f5) {
-        uVar1 = FUN_8c11cd02(*(u32 *)(0xfc + unaff_r14), 0xb);
+        uVar1 = lib11c_set_error(*(u32 *)(0xfc + unaff_r14), 0xb);
         return uVar1;
     }
     if (a1 == NULL) {
@@ -12700,7 +12703,7 @@ u32 FUN_8c11e274(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
 
-    iVar1 = FUN_8c11ca24(a0, a1, a2, a3);
+    iVar1 = lib11c_check_handle(a0, a1, a2, a3);
     if (iVar1 != 0) {
         return 1;
     }
@@ -12727,13 +12730,13 @@ u32 FUN_8c11e2de(int a0, int a1, int a2, u32 a3) {
     iVar1 = FUN_8c11c9d2(a0, a1, a2, a3);
     if (iVar1 == 0) {
         if (a1 == 0) {
-            FUN_8c11cd02(a0, 0x13, iVar5, a3);
+            lib11c_set_error(a0, 0x13, iVar5, a3);
         } else {
             iVar1 = a1;
             if (a2 == 0) {
                 iVar1 = (**(code **)(a0 + 0x14))(*(u32 *)(a1 + 4), a0 + 8, iVar5, a3);
                 if (iVar1 == 0) {
-                    FUN_8c11cd02(a0, 0x71, iVar5, a3);
+                    lib11c_set_error(a0, 0x71, iVar5, a3);
                     return 0;
                 }
                 iVar5 = *(int *)(a1 + 4);
@@ -12754,7 +12757,7 @@ u32 FUN_8c11e2de(int a0, int a1, int a2, u32 a3) {
                 piVar2[5] = a0;
                 return piVar2;
             }
-            FUN_8c11cd02(a0, 0x71, iVar5, a3);
+            lib11c_set_error(a0, 0x71, iVar5, a3);
         }
     }
     return 0;
@@ -12774,7 +12777,7 @@ u32 FUN_8c11e3ea(int a0, int a1, u32 *a2, u32 *a3) {
 
     a6 = a2;
     ar7_00 = a3;
-    iVar2 = FUN_8c11ca24(a0, a1, a2, a3);
+    iVar2 = lib11c_check_handle(a0, a1, a2, a3);
     puVar1 = (&FUN_8c1204c4);
     if (iVar2 == 0) {
         if ((a2 == NULL) || (a3 == NULL)) {
@@ -12815,7 +12818,7 @@ u32 FUN_8c11e48a(int a0, u32 *a1, u32 *a2, u32 a3) {
     u32 *a6;
 
     a6 = a2;
-    iVar1 = FUN_8c11ca24(a0, a1, a2, a3);
+    iVar1 = lib11c_check_handle(a0, a1, a2, a3);
     if (iVar1 == 0) {
         if ((a1 == NULL) || (a2 == NULL)) {
             uVar2 = FUN_8c1204c4(a0 + 0x48, 0x13, a6, a3);
@@ -12864,7 +12867,7 @@ u32 FUN_8c11e534(int *a0, int *a1, int a2, u8 *a3) {
     uStack_2c = 0;
     ar5_00 = a1;
     piStack_28 = a0;
-    iVar3 = FUN_8c11ca24(a0, a1, a2, a3);
+    iVar3 = lib11c_check_handle(a0, a1, a2, a3);
     puVar2 = (&FUN_8c1204c4);
     if (iVar3 != 0) {
         return 1;
@@ -12913,7 +12916,7 @@ u32 FUN_8c11e534(int *a0, int *a1, int a2, u8 *a3) {
                     goto LAB_8c11e7c4;
                 }
             }
-            uVar5 = FUN_8c11cd02(*(u32 *)((int)0xfc + (int)a0), 0xc, a2, a3);
+            uVar5 = lib11c_set_error(*(u32 *)((int)0xfc + (int)a0), 0xc, a2, a3);
             return uVar5;
         }
         if (*(int *)*a1 != 10) {
@@ -12986,7 +12989,7 @@ u32 FUN_8c11e82c(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     if (iVar1 == 0) {
         iVar1 = a0[5];
         if (a0[1] != 0) {
-            uVar2 = FUN_8c11cd02(iVar1, 9);
+            uVar2 = lib11c_set_error(iVar1, 9);
             return uVar2;
         }
         a0[6] = 0;
@@ -13029,7 +13032,7 @@ u32 FUN_8c11e8d6(int a0, int *a1, int a2, u32 a3) {
     iVar1 = FUN_8c11c9d2(a0, a1, a2, a3);
     if (iVar1 == 0) {
         if (a1 == NULL) {
-            FUN_8c11cd02(a0, 0x13, a6, a3);
+            lib11c_set_error(a0, 0x13, a6, a3);
         } else if (*a1 == 2) {
             if ((a2 != 0) || (a1 = (int *)FUN_8c11e896(a0, a1, a6, a3), a1 != NULL)) {
                 iVar1 = a0 + 8;
@@ -13047,10 +13050,10 @@ u32 FUN_8c11e8d6(int a0, int *a1, int a2, u32 a3) {
                     puVar2[5] = a0;
                     return puVar2;
                 }
-                FUN_8c11cd02(a0, 0x71, a6, a3);
+                lib11c_set_error(a0, 0x71, a6, a3);
             }
         } else {
-            FUN_8c11cd02(a0, 0xd, a6, a3);
+            lib11c_set_error(a0, 0xd, a6, a3);
         }
     }
     return 0;
@@ -13068,7 +13071,7 @@ u32 FUN_8c11e9b4(u32 *a0, u32 a1, u32 a2, u32 a3) {
     if (iVar1 == 0) {
         iVar1 = a0[5];
         if (a0[1] != 0) {
-            uVar2 = FUN_8c11cd02(iVar1, 5);
+            uVar2 = lib11c_set_error(iVar1, 5);
             return uVar2;
         }
         a0[6] = 0;
@@ -13099,13 +13102,13 @@ u32 FUN_8c11ea3c(int a0, int *a1, int a2, u32 a3) {
 
     uStack_c = 0;
     ar5_01 = a1;
-    iVar2 = FUN_8c11ca24(a0, a1, a2, a3);
+    iVar2 = lib11c_check_handle(a0, a1, a2, a3);
     if (iVar2 == 0) {
         if ((*(short *)(a0 + 0x3e) != 2) && (*(short *)(a0 + 0x3e) != 1)) {
             ar5_00 = 7;
             uVar4 = *(u32 *)(0xfc + a0);
         LAB_8c11eaae:
-            uVar4 = FUN_8c11cd02(uVar4, ar5_00, a2, a3);
+            uVar4 = lib11c_set_error(uVar4, ar5_00, a2, a3);
             return uVar4;
         }
         *(u32 *)(a0 + 0x40) = 0;
@@ -13152,7 +13155,7 @@ u32 FUN_8c11ea3c(int a0, int *a1, int a2, u32 a3) {
 u32 FUN_8c11eb6c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
 
-    iVar1 = FUN_8c11ca24(a0, unused_a1, a2, a3);
+    iVar1 = lib11c_check_handle(a0, unused_a1, a2, a3);
     if (iVar1 != 0) {
         return 0;
     }
@@ -13250,7 +13253,7 @@ u32 FUN_8c11ec7c(int a0, u32 unused_a1, u32 a2, u32 a3) {
         a4 = (**(code **)(iVar10 + 0x14))(0x78, a0 + 0xf4, a2, a3);
         fVar14 = (float)in_dr14;
         if (a4 == 0) {
-            uVar5 = FUN_8c11cd02(iVar10, 1, a2, a3);
+            uVar5 = lib11c_set_error(iVar10, 1, a2, a3);
             return uVar5;
         }
         iVar8 = *(int *)(a0 + 0x14c);
@@ -13504,7 +13507,7 @@ u32 FUN_8c11f258(int a0, u32 a1, u8 *a2, int a3) {
 
     puVar10 = a2;
     iVar9 = a3;
-    iVar5 = FUN_8c11ca24(a0, a1, a2, a3);
+    iVar5 = lib11c_check_handle(a0, a1, a2, a3);
     if (iVar5 == 0) {
         if (a2 == NULL) {
             uVar11 = 0x13;
@@ -13642,7 +13645,7 @@ u32 FUN_8c11f5d2(int a0, u32 a1, u32 a2, u32 a3) {
     u32 a4;
     int iVar4;
 
-    iVar2 = FUN_8c11ca24(a0, a1, a2, a3);
+    iVar2 = lib11c_check_handle(a0, a1, a2, a3);
     if (iVar2 != 0) {
         return 1;
     }
@@ -13677,7 +13680,7 @@ u32 FUN_8c11f66a(int a0, int a1, int a2, u32 a3) {
     u32 a5;
 
     iVar5 = a2;
-    iVar3 = FUN_8c11ca24(a0, a1, a2, a3);
+    iVar3 = lib11c_check_handle(a0, a1, a2, a3);
     puVar2 = (&FUN_8c1204c4);
     if (iVar3 != 0) {
         return 1;

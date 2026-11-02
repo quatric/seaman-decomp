@@ -1257,7 +1257,7 @@ u32 FUN_8c051c14(int a0, u32 a1, u8 *a2, code *a3) {
     if (iVar1 == 0) {
         iVar1 = CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, puVar3, ar6_00, a3);
         if (iVar1 == 1) {
-            FUN_8c02a1fc(a0 + 0x2c8, puVar3, ar6_00, a3);
+            clear_3_words(a0 + 0x2c8, puVar3, ar6_00, a3);
             *(int *)(a0 + 0x28c) = *(int *)(a0 + 0x28c) + 1;
         }
     } else {
@@ -2202,7 +2202,7 @@ u32 FUN_8c0530e0(int a0, int *a1, u8 *a2, u32 a3) {
                 Vec3_length(a0 + 0x54, uVar2, ar6_00, a3);
                 if (*(int *)(a0 + 0x27c) == 0) {
                     *(u32 *)(a0 + 0x28c) = 1;
-                    FUN_8c02a1fc(a0 + 0x2c8, uVar2, ar6_00, a3);
+                    clear_3_words(a0 + 0x2c8, uVar2, ar6_00, a3);
                 }
                 *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
             } else if (*(int *)(a0 + 300) != 1)
@@ -2845,7 +2845,7 @@ u32 FUN_8c054a14(int a0, u32 a1, u32 a2, u32 a3) {
     }
     iVar1 = CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, uVar2, a2, a3);
     if (iVar1 == 1) {
-        FUN_8c030eb8(a0 + 0x1fc, uVar2, a2);
+        flags6_set_all(a0 + 0x1fc, uVar2, a2);
         uVar3 = 0;
         *(u32 *)(a0 + 300) = 0;
     } else {
@@ -3501,7 +3501,7 @@ u32 FUN_8c055b50(int a0, u32 a1, u32 a2, u32 a3) {
     } else {
         *(u64 *)(a0 + 0x2c) = (u64)extraout_fr1;
     }
-    FUN_8c030eb8(a0 + 0x1fc, a1, a2);
+    flags6_set_all(a0 + 0x1fc, a1, a2);
     if (*(int *)(a0 + 0x324) == 1) {
         *(u32 *)(a0 + 0x214) = 0;
         *(u32 *)(a0 + 0x2e8) = 1;
@@ -3829,7 +3829,7 @@ u32 FUN_8c055c38(int a0, int a1, float *a2, u8 *a3) {
                 FUN_8c031700(a0, uVar6, uVar4, uVar2);
                 *(u32 *)(a0 + 0x40) = 5;
                 *(u32 *)(a0 + 0x2e8) = 2;
-                FUN_8c030eb8(a0 + 0x1fc, uVar6, uVar4);
+                flags6_set_all(a0 + 0x1fc, uVar6, uVar4);
                 *(u32 *)(a0 + 0x334) = 0;
                 *(u32 *)(a0 + 0x214) = 1;
                 ar7_00 = NULL;
@@ -3857,7 +3857,7 @@ u32 FUN_8c055c38(int a0, int a1, float *a2, u8 *a3) {
         *(u32 *)(a0 + 0x2e8) = 1;
     }
     if (*(int *)(a0 + 0x298) == 1) {
-        FUN_8c030f2c(a0 + 0x1fc, uVar4, a2, ar7_00);
+        flags6_clear_all(a0 + 0x1fc, uVar4, a2, ar7_00);
     }
 LAB_8c0563fa:
     Vec3_dtor(&fStack_4c, 0xffffffff, a2, ar7_00);
@@ -4017,7 +4017,7 @@ u32 FUN_8c0564c4(int a0, u32 a1, int a2, u8 *a3) {
                     Vec3_assign_f(a0 + 0x2a8, Vec3_assign_f, a2, a3);
                     *(u32 *)(a0 + 0x2b8) = 3;
                     *(u32 *)(a0 + 0x2e8) = 1;
-                    FUN_8c030f2c(a0 + 0x1fc, ar5_01, a2, a3);
+                    flags6_clear_all(a0 + 0x1fc, ar5_01, a2, a3);
                     uVar3 = get_field_1c_on_field_b0(a0, ar5_01, a2);
                     *(u32 *)((int)puVar8 + -0x1d4) = uVar3;
                     uVar4 = *(u32 *)((int)puVar8 + -0x1d4);
@@ -4193,7 +4193,7 @@ u32 FUN_8c0564c4(int a0, u32 a1, int a2, u8 *a3) {
                     *(int *)((int)puVar8 + -0x1f8) = (int)((u64)dVar13 >> 0x20);
                     *(u32 *)(a0 + 0x28) = *(u32 *)((int)puVar8 + -0x1f8);
 
-                    FUN_8c030eb8(a0 + 0x1fc, uVar3, a2);
+                    flags6_set_all(a0 + 0x1fc, uVar3, a2);
                     *(u32 *)(a0 + 0x334) = 1;
                     *(u32 *)(a0 + 0x214) = 0;
                     *(u32 *)(a0 + 0x178) = 1;
@@ -4370,7 +4370,7 @@ u32 FUN_8c057280(u8 **a0, u8 **a1, u8 **a2, code *a3) {
             vec3_clear(a0 + 0xaa, vec3_clear, &switchD_8c0572ba::switchdataD_8c0572c4, a3);
             pcVar6 = vec3_clear;
             vec3_clear(a0 + 0xb5, vec3_clear, ppuVar4, a3);
-            FUN_8c02a1fc(a0 + 0xb2, pcVar6, ppuVar4, a3);
+            clear_3_words(a0 + 0xb2, pcVar6, ppuVar4, a3);
             if (cVar8 == '\0') {
                 a0[10] = NULL;
             } else {
@@ -4600,7 +4600,7 @@ u32 FUN_8c057b6c(int a0, u32 a1, u32 a2, u32 a3) {
     uVar6 = (u32)in_dr0;
     uVar3 = 0xffffffff;
     Vec3_dtor(auStack_54, 0xffffffff, a2, a3);
-    FUN_8c02a1fc(a0 + 0x2c8, uVar3, a2, a3);
+    clear_3_words(a0 + 0x2c8, uVar3, a2, a3);
     uVar7 = (u64)uVar6;
     if (cVar13 == '\0') {
         *(u32 *)(a0 + 0x28) = 0;
@@ -5472,7 +5472,7 @@ u32 FUN_8c058d60(int a0, u32 a1, u8 *a2, u8 *a3) {
             Vec3_dtor(auStack_e0, 0xffffffff, ar6_00, ar7_00);
             if (iVar1 == 0) {
                 *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
-                FUN_8c030f2c(a0 + 0x1fc, uVar3, ar6_00, ar7_00);
+                flags6_clear_all(a0 + 0x1fc, uVar3, ar6_00, ar7_00);
                 *(u32 *)(a0 + 0x2e8) = 1;
             }
             break;
@@ -5596,7 +5596,7 @@ u32 FUN_8c0593cc(int a0, int *a1, u32 a2, u32 a3) {
     if ((iVar1 < 7) && (-1 < iVar1)) {
         switch (iVar1) {
         case 0:
-            FUN_8c030f2c(a0 + 0x1fc, in_stack_00000000, 1, ar7_00);
+            flags6_clear_all(a0 + 0x1fc, in_stack_00000000, 1, ar7_00);
             Vec3_ctor_xyz(auStack_40, in_stack_00000000, uVar5, ar7_00);
             Vec3_add(a3, auStack_40, uVar5, ar7_00, auStack_50);
             puVar7 = auStack_50;
@@ -5747,7 +5747,7 @@ u32 FUN_8c0593cc(int a0, int *a1, u32 a2, u32 a3) {
                     Vec3_dtor(auStack_b0, 0xffffffff, puVar7, uVar6);
                     uVar5 = 0xffffffff;
                     Vec3_dtor(auStack_a0, 0xffffffff, puVar7, uVar6);
-                    FUN_8c030eb8(a0 + 0x1fc, uVar5, puVar7);
+                    flags6_set_all(a0 + 0x1fc, uVar5, puVar7);
                 }
             } else if (in_stack_00000004 == 0x31) {
                 uVar5 = 0x1c;
@@ -5782,7 +5782,7 @@ u32 FUN_8c0593cc(int a0, int *a1, u32 a2, u32 a3) {
             *(u32 *)(a0 + 0x2e8) = 2;
             break;
         case 4:
-            FUN_8c030eb8(a0 + 0x1fc, in_stack_00000000, 1);
+            flags6_set_all(a0 + 0x1fc, in_stack_00000000, 1);
             uVar5 = 0x1c;
             iVar1 = FUN_8c058024(a0, a3, auStack_30, 0x1c);
             if (iVar1 == 0) {
@@ -6133,7 +6133,7 @@ u32 FUN_8c059fc4(int a0, u32 *a1, int a2, u8 *a3) {
                     *(u32 *)(a0 + 0x28c) = 0;
                     *(u32 *)(a0 + 0x68) = 0;
                     timer_start_94(a0, a1, a2);
-                    FUN_8c030eb8(a0 + 0x1fc, a1, a2);
+                    flags6_set_all(a0 + 0x1fc, a1, a2);
                     *(u32 *)(a0 + 0x2e8) = 2;
                 }
             }
@@ -6149,7 +6149,7 @@ u32 FUN_8c059fc4(int a0, u32 *a1, int a2, u8 *a3) {
             *(u32 *)(a0 + 0x218) = 9;
             *(int *)(a0 + 0x28c) = *(int *)(a0 + 0x28c) + 1;
             *(u32 *)(a0 + 800) = 0;
-            FUN_8c030f2c(a0 + 0x1fc, uVar3, a2, ar7_00);
+            flags6_clear_all(a0 + 0x1fc, uVar3, a2, ar7_00);
         }
     }
 LAB_8c05a4c4:
@@ -7920,7 +7920,7 @@ u32 FUN_8c05c9fc(int a0, u8 *a1, u8 *a2, code *a3) {
     Vec3_ctor_zero(auStack_34, ar5_00, a2);
     Vec3_ctor_zero((int)&uStack_48 + 4, ar5_00, a2);
     puVar4 = &g_8c125bf0;
-    FUN_8c03f460(auStack_50, &g_8c125bf0);
+    Vec3_copy_assign(auStack_50, &g_8c125bf0);
     if (cVar15 == '\0') {
         dVar10 = 2.597301565578305e+22;
     } else {
@@ -8409,7 +8409,7 @@ u32 FUN_8c05d860(int *a0, code *a1, code *a2) {
         iVar9 = libgcc_divide_helper_01031c(uVar2 & 0xffff, 0x43, pcVar4);
         if ((iVar9 == 0x16) && (a0[1] == 0)) {
             uVar3 = get_field_8_s8(*(int *)(a2 + 4) + 0x78, uVar3);
-            FUN_8c0fa5bc(0x8c35468c, (int)(char)uVar3, pcVar4, pcVar14);
+            format_int_at_10(0x8c35468c, (int)(char)uVar3, pcVar4, pcVar14);
             pcVar14 = "STATUS_SICK";
             FUN_8c0303b8(a0 + 0x27, 0x12, 0, "STATUS_SICK", &g_8c1369bf);
         }
@@ -9055,14 +9055,14 @@ u32 Class_12a078_m2_05eee0(int *a0, u32 a1, int *a2, u32 a3) {
             a0[1] = 1;
             a0[3] = 0;
             a0[2] = 99;
-            FUN_8c02f298(a0, 199);
+            list5_push(a0, 199);
         } else {
             a0[0xe] = 2;
             a0[1] = 0xb;
             a0[2] = 99;
             a0[0x10] = 0xe;
             uVar2 = 0x577;
-            FUN_8c02f298(a0, 0x577);
+            list5_push(a0, 0x577);
             if (a0[0x1b] != 0) {
                 (**(code **)(*(int *)(a0[0x1b] + 8) + 0x78))(a0[0x1b], uVar2, piVar3, a3);
                 a0[0x1b] = 0;
@@ -9368,7 +9368,7 @@ u32 FUN_8c05f660(int a0, u32 a1, int *a2, int a3) {
                 iVar4 = libgcc_divide_helper_01031c(uVar1 & 0xffff, 10, piVar3);
                 if (((iVar4 == 5) && (*(char *)(a0 + 0x870) == '\0')) &&
                     (iVar4 = get_field_140_025f70(a2[1], uVar2), iVar4 == 0)) {
-                    FUN_8c0fa5bc(0x8c35468c, (int)*(char *)(a0 + 0x870), piVar3, a3);
+                    format_int_at_10(0x8c35468c, (int)*(char *)(a0 + 0x870), piVar3, a3);
                     iVar4 = FUN_8c02fcc4(a0, a2, piVar3, a3);
                     if (iVar4 == 0) {
                         FUN_8c0306d4(a0 + 0x9c, 10, 0, "STATUS_UNCONSIDERED");

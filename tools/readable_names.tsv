@@ -101,3 +101,27 @@
 8c03c314	timer_start_94	+0x94 = fr4, +0xa4 = 1
 8c031748	timer_stop_94	clears +0x94 and +0xa4
 8c034a70	record18_take	returns record a3 of the 0x18-byte table *a1 in a2 and clears it
+8c0143f0	strtol		3
+8c013bdc	atoi	strtol(a0, NULL, 10)	1
+8c260ca0	irq_disable_nested	raises SR.IMASK to 15 on the first call and counts the nesting (pairs with irq_restore_nested)
+8c2361a8	triangle_normal	a3 = (a1 - a0) x (a2 - a0), not normalised
+8c22158a	Vec3_lerp	a2 = lerp(a0, a1, fr4)
+8c221622	Vec3_catmull_rom	s0 = Catmull-Rom spline through a0..a3 at t = fr4
+8c221414	argb_lerp	blends two packed ARGB colours by fr4
+8c20731e	memcpy_words	copies a2 bytes as 32-bit words
+8c23c814	memcpy_bytes	copies a2 bytes (a2 > 0)
+8c03f460	Vec3_copy_assign	a0 = a1
+8c02a1fc	clear_3_words	a0[0..2] = 0
+8c0162f8	clear_5_words	a0[0..4] = 0
+8c030eb8	flags6_set_all	sets bits 0..5 of *a0
+8c030f2c	flags6_clear_all	clears bits 0..5 of *a0
+8c1f826c	date_to_rtc_seconds	seconds since 1950-01-01 (the Dreamcast RTC epoch) for a {year, month, day, hour, minute, second} struct
+8c0fa5bc	format_int_at_10	sprintf(a0 + 0x10, "%d", a1)
+8c25a608	tex_entry_set_flags	ORs a1 into the flags of every texture-table entry whose id is a0
+8c02f298	list5_push	appends a1 to the five-entry list at +0x14 (count at +0x10)
+8c015224	Class_129920_ctor
+8c016fcc	Class_129938_ctor
+8c017010	Class_129938_ctor_init	constructs, then calls the init method (slot 0x2c)
+8c11cd02	lib11c_set_error	records error a1 if none is set, under the handle's lock callbacks
+8c11cd44	lib11c_take_error	returns and clears the handle's pending error
+8c11ca24	lib11c_check_handle	checks the handle magic 0x218df4f5 and its state; 0 when valid

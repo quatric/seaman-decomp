@@ -3105,7 +3105,7 @@ u32 *Class_12b758_ctor(u32 *a0) {
     pcVar2 = FUN_8c0e468c;
     pcVar1 = FUN_8c0d611c;
     vec_new_array(a0 + 0x41c, FUN_8c0d611c, FUN_8c0e468c, 0x24, 3);
-    FUN_8c015224(a0 + 0x437, pcVar1);
+    Class_129920_ctor(a0 + 0x437, pcVar1);
     clear_field_0_wrap_015ab8(a0 + 0x439);
     Vec3_ctor_zero(a0 + 0x43b, pcVar1, pcVar2);
     Vec3_ctor_zero(a0 + 0x43f, pcVar1, pcVar2);
@@ -4143,7 +4143,7 @@ u32 *Class_12b580_ctor(u32 *a0) {
     ar5_00 = "Outside";
     Class_12bb08_ctor(a0, "Outside", 2, 0);
     *a0 = &g_8c12b580;
-    FUN_8c015224(a0 + 0x430, ar5_00);
+    Class_129920_ctor(a0 + 0x430, ar5_00);
     clear_field_0_wrap_015ab8(a0 + 0x432);
     Vec3_ctor_zero(a0 + 0x433, ar5_00, uVar1);
     FUN_8c0d7f18(a0 + 0x437, ar5_00, uVar1);
@@ -5241,7 +5241,7 @@ u32 FUN_8c0e7a78(int a0, u32 a1, u32 a2, u32 a3) {
 
     Vec3_set_zero(auStack_30);
     uStack_50 = g_8c13f764;
-    FUN_8c0162f8(auStack_74, a1, a2, a3);
+    clear_5_words(auStack_74, a1, a2, a3);
     iVar1 = a0 + 0x228;
     FUN_8c0194c0(iVar1);
     FUN_8c219038();
@@ -6490,7 +6490,7 @@ u32 FUN_8c0e8f54(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     } else {
         g_8c1264b8 = 0xffffffff00800000;
     }
-    uVar1 = FUN_8c015224(0x8c4377f4, pcVar2);
+    uVar1 = Class_129920_ctor(0x8c4377f4, pcVar2);
     uVar3 = 0x8c4377e8;
     pcVar2 = Class_129920_dtor;
     global_list_push(uVar1, Class_129920_dtor, 0x8c4377e8, a3);

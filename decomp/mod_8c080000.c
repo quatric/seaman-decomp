@@ -777,7 +777,7 @@ u32 FUN_8c0811b4(int a0, u32 a1, int a2) {
                 }
             }
             uVar12 = SUB84(dVar14, 0);
-            FUN_8c02a1fc(a0 + 0x254, 0x254, pcVar8, pcVar5);
+            clear_3_words(a0 + 0x254, 0x254, pcVar8, pcVar5);
             if (cVar19 == '\0') {
                 *(u32 *)(a0 + 0x2c) = 0;
             } else {
@@ -2667,7 +2667,7 @@ int FUN_8c0851f4(int a0, u32 a1, u32 a2) {
     *(u8 **)(a0 + 8) = (&DATA_8c12a434);
     Class_12c3c4_ctor(a0 + 0x490, uVar1, ar6_00, ar7_00);
     FUN_8c06e4ec(a0 + 0xd20, uVar1, ar6_00, ar7_00);
-    FUN_8c016fcc(a0 + 0x1014, uVar1, ar6_00);
+    Class_129938_ctor(a0 + 0x1014, uVar1, ar6_00);
     (*(code *)(&sprintf))(a0 + 0xc, uVar1, ar6_00, ar7_00, "HigyoLine");
     *(int *)(0x308 + a0) = a0 + 0x490;
     uVar1 = FUN_8c034d38(a0 + 0x2dc, a2);
@@ -4190,7 +4190,7 @@ int FUN_8c087ed0(int a0, u32 a1) {
     uVar1 = 4;
     FUN_8c0254d0(a0, 4, 1, 0x15, 0, a1, 0x8c283804, 0x8c283934, PTR_s_GRAPHICS_HIGYOLINE_8c138578);
     *(u8 **)(a0 + 8) = &g_8c12a298;
-    FUN_8c016fcc(a0 + 0x490, uVar1, ar6_00);
+    Class_129938_ctor(a0 + 0x490, uVar1, ar6_00);
     FUN_8c02ff6c(a0 + 0x528, uVar1, ar6_00);
     FUN_8c030fa0(a0 + 0x5c4, uVar1, ar6_00, ar7_00);
     sprintf(a0 + 0xc, uVar1, ar6_00, ar7_00, "HigyoEgg");
@@ -4910,25 +4910,25 @@ u32 FUN_8c08894c(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     uVar1 = Vec3_ctor_xyz(0x8c283428, Vec3_ctor_xyz, 0x8c283428, uVar1);
     global_list_push(uVar1, Vec3_dtor, 0x8c28341c, uVar1);
     uVar3 = 0x8c282f3c;
-    uVar1 = FUN_8c017010(0x8c283444, 0x8c282f04, 0x8c282f20, 0x8c282f3c, 0x8c282f58, 0x8c282f74, 0x8c282f90, 0x8c282fac,
-                         0x8c282fc8);
+    uVar1 = Class_129938_ctor_init(0x8c283444, 0x8c282f04, 0x8c282f20, 0x8c282f3c, 0x8c282f58, 0x8c282f74, 0x8c282f90,
+                                   0x8c282fac, 0x8c282fc8);
     global_list_push(uVar1, Class_129938_dtor, 0x8c283438, uVar3);
-    uVar1 = FUN_8c017010(0x8c2834e4, 0x8c282fe4, 0x8c283000, 0x8c28301c, 0x8c283038, 0x8c283054, 0x8c283070, 0x8c28308c,
-                         0x8c2830a8);
+    uVar1 = Class_129938_ctor_init(0x8c2834e4, 0x8c282fe4, 0x8c283000, 0x8c28301c, 0x8c283038, 0x8c283054, 0x8c283070,
+                                   0x8c28308c, 0x8c2830a8);
     global_list_push(uVar1, Class_129938_dtor, 0x8c2834d8, uVar1);
     uVar3 = 0x8c2830fc;
-    uVar1 = FUN_8c017010(0x8c283584, 0x8c2830c4, 0x8c2830e0, 0x8c2830fc, 0x8c283118, 0x8c283134, 0x8c283150, 0x8c28316c,
-                         0x8c283188);
+    uVar1 = Class_129938_ctor_init(0x8c283584, 0x8c2830c4, 0x8c2830e0, 0x8c2830fc, 0x8c283118, 0x8c283134, 0x8c283150,
+                                   0x8c28316c, 0x8c283188);
     global_list_push(uVar1, Class_129938_dtor, 0x8c283578, uVar3);
-    uVar1 = FUN_8c017010(0x8c283624, 0x8c2831a4, 0x8c2831c0, 0x8c2831dc, 0x8c2831f8, 0x8c283214, 0x8c283230, 0x8c28324c,
-                         0x8c283268);
+    uVar1 = Class_129938_ctor_init(0x8c283624, 0x8c2831a4, 0x8c2831c0, 0x8c2831dc, 0x8c2831f8, 0x8c283214, 0x8c283230,
+                                   0x8c28324c, 0x8c283268);
     global_list_push(uVar1, Class_129938_dtor, 0x8c283618, uVar1);
     uVar3 = 0x8c2832bc;
-    uVar1 = FUN_8c017010(0x8c2836c4, 0x8c283284, 0x8c2832a0, 0x8c2832bc, 0x8c2832d8, 0x8c2832f4, 0x8c283310, 0x8c28332c,
-                         0x8c283348);
+    uVar1 = Class_129938_ctor_init(0x8c2836c4, 0x8c283284, 0x8c2832a0, 0x8c2832bc, 0x8c2832d8, 0x8c2832f4, 0x8c283310,
+                                   0x8c28332c, 0x8c283348);
     global_list_push(uVar1, Class_129938_dtor, 0x8c2836b8, uVar3);
-    uVar1 = FUN_8c017010(0x8c283764, 0x8c283364, 0x8c283380, 0x8c28339c, 0x8c2833b8, 0x8c2833d4, 0x8c2833f0, 0x8c28340c,
-                         0x8c283428);
+    uVar1 = Class_129938_ctor_init(0x8c283764, 0x8c283364, 0x8c283380, 0x8c28339c, 0x8c2833b8, 0x8c2833d4, 0x8c2833f0,
+                                   0x8c28340c, 0x8c283428);
     uVar3 = 0x8c283758;
     global_list_push(uVar1, Class_129938_dtor, 0x8c283758, uVar1);
     uVar3 = FUN_8c02452c(0x8c283804, 0x8c283804);
@@ -4974,8 +4974,8 @@ u32 FUN_8c08894c(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     uVar1 = Vec3_ctor_xyz(0x8c283a34, pcVar2, Vec3_ctor_xyz, pcVar5);
     global_list_push(uVar1, Vec3_dtor, 0x8c283a28, pcVar5);
     uVar3 = 0x8c2839a8;
-    uVar1 = FUN_8c017010(0x8c283a50, 0x8c283970, 0x8c28398c, 0x8c2839a8, 0x8c2839c4, 0x8c2839e0, 0x8c2839fc, 0x8c283a18,
-                         0x8c283a34);
+    uVar1 = Class_129938_ctor_init(0x8c283a50, 0x8c283970, 0x8c28398c, 0x8c2839a8, 0x8c2839c4, 0x8c2839e0, 0x8c2839fc,
+                                   0x8c283a18, 0x8c283a34);
     uVar1 = global_list_push(uVar1, Class_129938_dtor, 0x8c283a44, uVar3);
     return uVar1;
 }
@@ -5199,7 +5199,7 @@ int FUN_8c08a17c(int a0, u32 a1, u32 a2) {
     FUN_8c08dad4(a0 + 0x538, uVar1, ar6_00, ar7_00);
     clear_field_0_wrap_015b94(a0 + 0x850, uVar1);
     clear_field_0_wrap_015bc8(a0 + 0x854);
-    FUN_8c016fcc(a0 + 0x858, uVar1, ar6_00);
+    Class_129938_ctor(a0 + 0x858, uVar1, ar6_00);
     Vec3_ctor_zero(a0 + 0x900, uVar1, ar6_00);
     Vec3_set_zero(a0 + 0x910);
     Vec3_set_one(a0 + 0x91c);
@@ -7010,8 +7010,8 @@ u32 FUN_8c08d380(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     uVar1 = Vec3_ctor_xyz(0x8c28446c, pcVar2, uVar3, uVar4);
     global_list_push(uVar1, Vec3_dtor, 0x8c284460, uVar4);
     uVar4 = 0x8c2843e0;
-    uVar1 = FUN_8c017010(0x8c284488, 0x8c2843a8, 0x8c2843c4, 0x8c2843e0, 0x8c2843fc, 0x8c284418, 0x8c284434, 0x8c284450,
-                         0x8c28446c);
+    uVar1 = Class_129938_ctor_init(0x8c284488, 0x8c2843a8, 0x8c2843c4, 0x8c2843e0, 0x8c2843fc, 0x8c284418, 0x8c284434,
+                                   0x8c284450, 0x8c28446c);
     uVar3 = 0x8c28447c;
     pcVar2 = Class_129938_dtor;
     global_list_push(uVar1, Class_129938_dtor, 0x8c28447c, uVar4);
@@ -7046,8 +7046,8 @@ u32 FUN_8c08d380(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     uVar1 = Vec3_ctor_xyz(0x8c2845ec, pcVar2, uVar3, uVar4);
     global_list_push(uVar1, Vec3_dtor, 0x8c2845e0, uVar4);
     uVar3 = 0x8c284560;
-    uVar1 = FUN_8c017010(0x8c284608, 0x8c284528, 0x8c284544, 0x8c284560, 0x8c28457c, 0x8c284598, 0x8c2845b4, 0x8c2845d0,
-                         0x8c2845ec);
+    uVar1 = Class_129938_ctor_init(0x8c284608, 0x8c284528, 0x8c284544, 0x8c284560, 0x8c28457c, 0x8c284598, 0x8c2845b4,
+                                   0x8c2845d0, 0x8c2845ec);
     uVar1 = global_list_push(uVar1, Class_129938_dtor, 0x8c2845fc, uVar3);
     return uVar1;
 }
@@ -7267,7 +7267,7 @@ u64 *FUN_8c08dd98(int a0, u32 a1, u32 a2, u32 a3) {
         }
     } else {
         *(u32 *)(a0 + 0x214) = 1;
-        FUN_8c030eb8(a0 + 0x1fc, a1, a2);
+        flags6_set_all(a0 + 0x1fc, a1, a2);
         *(u32 *)(a0 + 0x240) = 0;
         puVar1 = *(u64 **)(a0 + 0x2f4);
         if ((-1 < (int)puVar1) && (puVar1 = *(u64 **)(a0 + 0x2f8), -1 < (int)puVar1)) {

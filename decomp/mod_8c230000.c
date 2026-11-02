@@ -10940,10 +10940,11 @@ u32 FUN_8c23617c(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0)
 }
 
 /*
- * FUN_8c2361a8  0x8c2361a8
+ * triangle_normal  0x8c2361a8
+ * a3 = (a1 - a0) x (a2 - a0), not normalised
  * called by: FUN_8c24bdc8, FUN_8c24c6f0, FUN_8c24df18, FUN_8c250144, vram_24d5a8, vram_250a54
  */
-u32 FUN_8c2361a8(float *a0, float *a1, float *a2, float *a3) {
+u32 triangle_normal(float *a0, float *a1, float *a2, float *a3) {
     *a3 = (a1[1] - a0[1]) * (a2[2] - a0[2]) - (a1[2] - a0[2]) * (a2[1] - a0[1]);
     a3[1] = (a1[2] - a0[2]) * (*a2 - *a0) - (*a1 - *a0) * (a2[2] - a0[2]);
     a3[2] = (*a1 - *a0) * (a2[1] - a0[1]) - (a1[1] - a0[1]) * (*a2 - *a0);
@@ -11947,7 +11948,7 @@ u32 FUN_8c23782c(u32 *a0) {
             a0[4] = a0[4] | 2;
             (*(code *)puVar1)(a0);
         } else {
-            FUN_8c25a608(*a0, 2, a0[5]);
+            tex_entry_set_flags(*a0, 2, a0[5]);
             a0[4] = a0[4] | 8;
         }
     } else {
@@ -11979,7 +11980,7 @@ u32 FUN_8c237830(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
             unaff_r14[4] = unaff_r14[4] | 2;
             FUN_8c2571fe(unaff_r14);
         } else {
-            FUN_8c25a608(*unaff_r14, 2, unaff_r14[5], a3, in_PR);
+            tex_entry_set_flags(*unaff_r14, 2, unaff_r14[5], a3, in_PR);
             unaff_r14[4] = unaff_r14[4] | 8;
         }
     } else {
@@ -12115,7 +12116,7 @@ u32 FUN_8c23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
             if ((*(u32 *)(a1 * 0xc + *a0 + 4) & 0x1000000) == 0) {
                 iStack_20 = FUN_8c259be8(aiStack_120, iVar1, ar6_01, a3);
                 if (iStack_20 < 0) {
-                    FUN_8c23c814(auStack_168, &g_8c4ab10c, 0x28);
+                    memcpy_bytes(auStack_168, &g_8c4ab10c, 0x28);
                     tex_entry_alloc(piVar7, auStack_16c, piStack_130, 0, 0xffffffff);
                     *(short *)(*piVar7 + 0x42) = -(short)iStack_20;
                     *(u16 *)(*piVar7 + 0x40) = 0;
@@ -12123,7 +12124,7 @@ u32 FUN_8c23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                 }
                 iStack_12c = FUN_8c25a216(&piStack_130, iVar1, ar6_01, a3);
                 if (iStack_12c < 0) {
-                    FUN_8c23c814(auStack_168, &g_8c4ab10c, 0x28);
+                    memcpy_bytes(auStack_168, &g_8c4ab10c, 0x28);
                     uVar8 = 0;
                     puVar5 = auStack_16c;
                     tex_entry_alloc(piVar7, puVar5, piStack_130, 0, 0xffffffff);
@@ -12179,7 +12180,7 @@ u32 FUN_8c23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                 ar4_00 = aiStack_120;
                 iStack_20 = FUN_8c259be8(ar4_00, piVar6, ar6_00, a3);
                 if (iStack_20 < 0) {
-                    FUN_8c23c814(auStack_168, &g_8c4ab10c, 0x28);
+                    memcpy_bytes(auStack_168, &g_8c4ab10c, 0x28);
                     tex_entry_alloc(piVar7, auStack_16c, piStack_130, 0, uStack_134);
                     *(short *)(*piVar7 + 0x42) = -(short)iStack_20;
                     *(u16 *)(*piVar7 + 0x40) = 0;
@@ -12198,7 +12199,7 @@ u32 FUN_8c23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
             ar4_00 = aiStack_120;
             iStack_20 = FUN_8c259be8(ar4_00, piVar6, ar6_00, a3);
             if (iStack_20 < 0) {
-                FUN_8c23c814(auStack_168, &g_8c4ab10c, 0x28);
+                memcpy_bytes(auStack_168, &g_8c4ab10c, 0x28);
                 tex_entry_alloc(piVar7, auStack_16c, piStack_130, 0, 0xffffffff);
                 *(short *)(*piVar7 + 0x42) = -(short)iStack_20;
                 *(u16 *)(*piVar7 + 0x40) = 0;
@@ -12229,7 +12230,7 @@ u32 FUN_8c23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     *(u16 *)(*piVar7 + 0x42) = 0;
                     ar6_00 = *(int **)(*piVar7 + 0x14);
                     ar4_00 = piStack_130;
-                    FUN_8c25a608(piStack_130, 2, ar6_00, a3, 0x40);
+                    tex_entry_set_flags(piStack_130, 2, ar6_00, a3, 0x40);
                     *(u32 *)(iVar1 + 0x10) = *(u32 *)(iVar1 + 0x10) | 8;
                 } else if (uVar9 == 0x80000000) {
                     a3 = 1;
@@ -12273,7 +12274,7 @@ u32 FUN_8c23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                         *(u16 *)(*piVar7 + 0x42) = 0;
                         ar6_00 = *(int **)(*piVar7 + 0x14);
                         ar4_00 = piStack_130;
-                        FUN_8c25a608(piStack_130, 1, ar6_00, a3, 0x40);
+                        tex_entry_set_flags(piStack_130, 1, ar6_00, a3, 0x40);
                     } else {
                         a3 = 3;
                         piVar6 = (int *)(iVar1 + 0x14);
@@ -12306,7 +12307,7 @@ u32 FUN_8c23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                         *(u16 *)(*piVar7 + 0x42) = 0;
                         ar6_00 = *(int **)(*piVar7 + 0x14);
                         ar4_00 = piStack_130;
-                        FUN_8c25a608(piStack_130, 3, ar6_00, a3, 0x40);
+                        tex_entry_set_flags(piStack_130, 3, ar6_00, a3, 0x40);
                     } else {
                         a3 = 3;
                         piVar6 = (int *)(iVar1 + 0x14);
@@ -12434,7 +12435,7 @@ u32 FUN_8c23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     piVar6 = (int *)0x2;
                     ar6_00 = (int *)piVar7[5];
                     ar4_00 = piStack_130;
-                    FUN_8c25a608(piStack_130, 2, ar6_00, a3, 0x40);
+                    tex_entry_set_flags(piStack_130, 2, ar6_00, a3, 0x40);
                     piVar7[4] = piVar7[4] | 8;
                 }
                 goto LAB_8c23878e;
@@ -12490,7 +12491,7 @@ u32 FUN_8c23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                         piVar6 = (int *)0x2;
                         ar6_00 = (int *)piVar7[5];
                         ar4_00 = piStack_130;
-                        FUN_8c25a608(piStack_130, 2, ar6_00, a3, 0x40);
+                        tex_entry_set_flags(piStack_130, 2, ar6_00, a3, 0x40);
                         piVar7[4] = piVar7[4] | 8;
                     }
                     goto LAB_8c23878e;
@@ -12522,7 +12523,7 @@ u32 FUN_8c23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                 ar6_00 = (int *)piVar7[5];
             }
             ar4_00 = piStack_130;
-            FUN_8c25a608(piStack_130, piVar6, ar6_00, a3, 0x40);
+            tex_entry_set_flags(piStack_130, piVar6, ar6_00, a3, 0x40);
         }
     LAB_8c23878e:
         FUN_8c259c40();
@@ -12732,7 +12733,7 @@ u32 FUN_8c23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     ar6_03 = *(u32 *)(ar5_02 + 0x14);
                     uVar8 = 3;
                 LAB_8c238cd8:
-                    FUN_8c25a608(piStack_3c, uVar8, ar6_03, a3, 0x42);
+                    tex_entry_set_flags(piStack_3c, uVar8, ar6_03, a3, 0x42);
                 }
             }
         } else if (iVar1 == 1) {
@@ -12748,7 +12749,7 @@ u32 FUN_8c23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     *(u16 *)(ar5_02 + 0x42) = 0;
                     if (iVar4 != 0) {
                     LAB_8c238d18:
-                        FUN_8c25a608(piStack_3c, 2, *(u32 *)(ar5_02 + 0x14), a3, 0x42);
+                        tex_entry_set_flags(piStack_3c, 2, *(u32 *)(ar5_02 + 0x14), a3, 0x42);
                         *(u32 *)(ar5_02 + 0x10) = *(u32 *)(ar5_02 + 0x10) | 8;
                         goto LAB_8c238e44;
                     }
@@ -12803,7 +12804,7 @@ u32 FUN_8c23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
         } else if (iVar1 == 2) {
             iStack_38 = FUN_8c25a710();
             uVar8 = 0x2c;
-            FUN_8c23c814(iStack_38, ar5_04, 0x2c);
+            memcpy_bytes(iStack_38, ar5_04, 0x2c);
             uVar2 = ar4_01[1] & 0xa0000000;
             if (uVar2 == 0) {
                 iStack_2c = FUN_8c25a914(ar4_01, iStack_38, uVar8, a3);
@@ -12907,7 +12908,7 @@ u32 FUN_8c237964(int *a0, int a1, u32 unused_a2, u32 a3) {
         if ((*(u32 *)(iStack_c * 0xc + *piStack_8 + 4) & 0x1000000) == 0) {
             iStack_20 = FUN_8c259be8(aiStack_120, iVar4, ar6_00, a3);
             if (iStack_20 < 0) {
-                FUN_8c23c814(auStack_168, &g_8c4ab10c, 0x28);
+                memcpy_bytes(auStack_168, &g_8c4ab10c, 0x28);
                 tex_entry_alloc(piStack_10, auStack_16c, piStack_130, 0, 0xffffffff);
                 *(short *)(*piStack_10 + 0x42) = -(short)iStack_20;
                 *(u16 *)(*piStack_10 + 0x40) = 0;
@@ -12915,7 +12916,7 @@ u32 FUN_8c237964(int *a0, int a1, u32 unused_a2, u32 a3) {
             }
             iStack_12c = FUN_8c25a216(&piStack_130, iVar4, ar6_00, a3);
             if (iStack_12c < 0) {
-                FUN_8c23c814(auStack_168, &g_8c4ab10c, 0x28);
+                memcpy_bytes(auStack_168, &g_8c4ab10c, 0x28);
                 uVar7 = 0;
                 puVar5 = auStack_16c;
                 piVar6 = piStack_10;
@@ -12972,7 +12973,7 @@ u32 FUN_8c237964(int *a0, int a1, u32 unused_a2, u32 a3) {
             piVar3 = aiStack_120;
             iStack_20 = FUN_8c259be8(piVar3, piVar6, piVar2, a3);
             if (iStack_20 < 0) {
-                FUN_8c23c814(auStack_168, &g_8c4ab10c, 0x28);
+                memcpy_bytes(auStack_168, &g_8c4ab10c, 0x28);
                 tex_entry_alloc(piStack_10, auStack_16c, piStack_130, 0, uStack_134);
                 *(short *)(*piStack_10 + 0x42) = -(short)iStack_20;
                 *(u16 *)(*piStack_10 + 0x40) = 0;
@@ -12991,7 +12992,7 @@ u32 FUN_8c237964(int *a0, int a1, u32 unused_a2, u32 a3) {
         piVar3 = aiStack_120;
         iStack_20 = FUN_8c259be8(piVar3, piVar6, piVar2, a3);
         if (iStack_20 < 0) {
-            FUN_8c23c814(auStack_168, &g_8c4ab10c, 0x28);
+            memcpy_bytes(auStack_168, &g_8c4ab10c, 0x28);
             tex_entry_alloc(piStack_10, auStack_16c, piStack_130, 0, 0xffffffff);
             *(short *)(*piStack_10 + 0x42) = -(short)iStack_20;
             *(u16 *)(*piStack_10 + 0x40) = 0;
@@ -13022,7 +13023,7 @@ u32 FUN_8c237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                 *(u16 *)(*piStack_10 + 0x42) = 0;
                 piVar2 = *(int **)(*piStack_10 + 0x14);
                 piVar3 = piStack_130;
-                FUN_8c25a608(piStack_130, 2, piVar2, a3, in_stack_fffffe90);
+                tex_entry_set_flags(piStack_130, 2, piVar2, a3, in_stack_fffffe90);
                 piStack_14[4] = piStack_14[4] | 8;
             } else if (uVar1 == 0x80000000) {
                 a3 = 1;
@@ -13066,7 +13067,7 @@ u32 FUN_8c237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                     *(u16 *)(*piStack_10 + 0x42) = 0;
                     piVar2 = *(int **)(*piStack_10 + 0x14);
                     piVar3 = piStack_130;
-                    FUN_8c25a608(piStack_130, 1, piVar2, a3, in_stack_fffffe90);
+                    tex_entry_set_flags(piStack_130, 1, piVar2, a3, in_stack_fffffe90);
                 } else {
                     a3 = 3;
                     piVar6 = piStack_14 + 5;
@@ -13099,7 +13100,7 @@ u32 FUN_8c237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                     *(u16 *)(*piStack_10 + 0x42) = 0;
                     piVar2 = *(int **)(*piStack_10 + 0x14);
                     piVar3 = piStack_130;
-                    FUN_8c25a608(piStack_130, 3, piVar2, a3, in_stack_fffffe90);
+                    tex_entry_set_flags(piStack_130, 3, piVar2, a3, in_stack_fffffe90);
                 } else {
                     a3 = 3;
                     piVar6 = piStack_14 + 5;
@@ -13228,7 +13229,7 @@ u32 FUN_8c237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                 piVar6 = (int *)0x2;
                 piVar2 = (int *)piStack_14[5];
                 piVar3 = piStack_130;
-                FUN_8c25a608(piStack_130, 2, piVar2, a3, in_stack_fffffe90);
+                tex_entry_set_flags(piStack_130, 2, piVar2, a3, in_stack_fffffe90);
                 piStack_14[4] = piStack_14[4] | 8;
             }
             goto LAB_8c23878e;
@@ -13285,7 +13286,7 @@ u32 FUN_8c237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                     piVar6 = (int *)0x2;
                     piVar2 = (int *)piStack_14[5];
                     piVar3 = piStack_130;
-                    FUN_8c25a608(piStack_130, 2, piVar2, a3, in_stack_fffffe90);
+                    tex_entry_set_flags(piStack_130, 2, piVar2, a3, in_stack_fffffe90);
                     piStack_14[4] = piStack_14[4] | 8;
                 }
                 goto LAB_8c23878e;
@@ -13317,7 +13318,7 @@ u32 FUN_8c237964(int *a0, int a1, u32 unused_a2, u32 a3) {
             piVar2 = (int *)piStack_14[5];
         }
         piVar3 = piStack_130;
-        FUN_8c25a608(piStack_130, piVar6, piVar2, a3, in_stack_fffffe90);
+        tex_entry_set_flags(piStack_130, piVar6, piVar2, a3, in_stack_fffffe90);
     }
 LAB_8c23878e:
     FUN_8c259c40();
@@ -13551,7 +13552,7 @@ u32 FUN_8c2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
                     uVar6 = *(u32 *)(ar5_01 + 0x14);
                     uVar7 = 3;
                 }
-                FUN_8c25a608(uVar3, uVar7, uVar6, a3, uVar3);
+                tex_entry_set_flags(uVar3, uVar7, uVar6, a3, uVar3);
             }
         } else if (iVar1 == 1) {
             ar4_00[2] = ar5_01;
@@ -13565,7 +13566,7 @@ u32 FUN_8c2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
                     *(u16 *)(ar5_01 + 0x42) = 0;
                     if (iVar5 != 0) {
                     LAB_8c238d18:
-                        FUN_8c25a608(uVar3, 2, *(u32 *)(ar5_01 + 0x14), a3, uVar3);
+                        tex_entry_set_flags(uVar3, 2, *(u32 *)(ar5_01 + 0x14), a3, uVar3);
                         *(u32 *)(ar5_01 + 0x10) = *(u32 *)(ar5_01 + 0x10) | 8;
                         goto LAB_8c238e44;
                     }
@@ -13621,7 +13622,7 @@ u32 FUN_8c2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
         } else if (iVar1 == 2) {
             uVar7 = FUN_8c25a710();
             uVar6 = 0x2c;
-            FUN_8c23c814(uVar7, a5, 0x2c);
+            memcpy_bytes(uVar7, a5, 0x2c);
             uVar2 = ar4_00[1] & 0xa0000000;
             if (uVar2 == 0) {
                 iStack_2c = FUN_8c25a914(ar4_00, uVar7, uVar6, a3);
@@ -13689,7 +13690,7 @@ u32 FUN_8c238e98(u32 a0, int a1) {
     u32 uVar2;
 
     piVar1 = 0x8c4ab274;
-    uVar2 = FUN_8c23c814(a0, g_8c4ab274, a1);
+    uVar2 = memcpy_bytes(a0, g_8c4ab274, a1);
     *piVar1 = *piVar1 + a1;
     return uVar2;
 }
@@ -13786,7 +13787,7 @@ u32 FUN_8c238f2a(u32 *a0, u32 a1, int a2, u32 a3) {
             iVar3 = 2;
             if ((uVar1 & 1) != 0) {
                 a2 = log_message(auStack_48 + 2, puVar4, a2);
-                FUN_8c23c814(*puVar6, auStack_48 + 2, a2);
+                memcpy_bytes(*puVar6, auStack_48 + 2, a2);
                 iVar3 = 0x1e;
             }
             if ((uVar1 & 2) != 0) {
@@ -14131,7 +14132,7 @@ u32 FUN_8c239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                     *(u16 *)(*piStack_120 + 0x42) = 0;
                                     piVar3 = (int *)piStack_124[5];
                                     piVar4 = piStack_138;
-                                    FUN_8c25a608(piStack_138, 2, piVar3, a3, in_stack_fffffe78);
+                                    tex_entry_set_flags(piStack_138, 2, piVar3, a3, in_stack_fffffe78);
                                     piStack_124[4] = piStack_124[4] | 8;
                                 } else if (uVar2 == 0x80000000) {
                                     a3 = 1;
@@ -14176,7 +14177,7 @@ u32 FUN_8c239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                         *(u16 *)(*piStack_120 + 0x42) = 0;
                                         piVar3 = *(int **)(*piStack_120 + 0x14);
                                         piVar4 = piStack_138;
-                                        FUN_8c25a608(piStack_138, 1, piVar3, a3, in_stack_fffffe78);
+                                        tex_entry_set_flags(piStack_138, 1, piVar3, a3, in_stack_fffffe78);
                                     } else {
                                         a3 = 3;
                                         piVar7 = piStack_124 + 5;
@@ -14209,7 +14210,7 @@ u32 FUN_8c239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                         *(u16 *)(*piStack_120 + 0x42) = 0;
                                         piVar3 = (int *)piStack_124[5];
                                         piVar4 = piStack_138;
-                                        FUN_8c25a608(piStack_138, 3, piVar3, a3, in_stack_fffffe78);
+                                        tex_entry_set_flags(piStack_138, 3, piVar3, a3, in_stack_fffffe78);
                                     } else {
                                         a3 = 3;
                                         piVar7 = piStack_124 + 5;
@@ -14261,7 +14262,7 @@ u32 FUN_8c239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                         piVar7 = (int *)0x2;
                                         piVar3 = (int *)piStack_124[5];
                                         piVar4 = piStack_138;
-                                        FUN_8c25a608(piStack_138, 2, piVar3, a3, in_stack_fffffe78);
+                                        tex_entry_set_flags(piStack_138, 2, piVar3, a3, in_stack_fffffe78);
                                         piStack_124[4] = piStack_124[4] | 8;
                                     }
                                 } else {
@@ -14288,7 +14289,7 @@ u32 FUN_8c239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                         piVar7 = (int *)0x1;
                                         piVar3 = (int *)piStack_124[5];
                                         piVar4 = piStack_138;
-                                        FUN_8c25a608(piStack_138, 1, piVar3, a3, in_stack_fffffe78);
+                                        tex_entry_set_flags(piStack_138, 1, piVar3, a3, in_stack_fffffe78);
                                     }
                                 } else {
                                     FUN_8c25a122(4, 1);
@@ -14338,7 +14339,7 @@ u32 FUN_8c239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                         piVar7 = (int *)0x2;
                                         piVar3 = (int *)piStack_124[5];
                                         piVar4 = piStack_138;
-                                        FUN_8c25a608(piStack_138, 2, piVar3, a3, in_stack_fffffe78);
+                                        tex_entry_set_flags(piStack_138, 2, piVar3, a3, in_stack_fffffe78);
                                         piStack_124[4] = piStack_124[4] | 8;
                                     }
                                 } else if ((piStack_124[4] & 1U) == 0) {
@@ -14360,7 +14361,7 @@ u32 FUN_8c239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                         piVar7 = (int *)0x3;
                                         piVar3 = (int *)piStack_124[5];
                                         piVar4 = piStack_138;
-                                        FUN_8c25a608(piStack_138, 3, piVar3, a3, in_stack_fffffe78);
+                                        tex_entry_set_flags(piStack_138, 3, piVar3, a3, in_stack_fffffe78);
                                     }
                                 } else {
                                     if (iStack_154 == 0) {
@@ -14510,7 +14511,7 @@ u32 FUN_8c239f84(u32 *a0, u32 a1, int a2) {
             iVar3 = 2;
             if ((uVar1 & 1) != 0) {
                 a2 = log_message(auStack_48 + 2, puVar4, a2);
-                uVar2 = FUN_8c23c814(*puVar6, auStack_48 + 2, a2);
+                uVar2 = memcpy_bytes(*puVar6, auStack_48 + 2, a2);
                 iVar3 = 0x1e;
             }
             if ((uVar1 & 2) != 0) {
@@ -14834,7 +14835,7 @@ u32 FUN_8c23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                             piVar6 = *(int **)(iVar2 + 0x14);
                             uVar5 = 3;
                         }
-                        FUN_8c25a608(ar6_00, uVar5, piVar6, a3, ain0);
+                        tex_entry_set_flags(ar6_00, uVar5, piVar6, a3, ain0);
                     }
                 } else if (iVar2 == 1) {
                     FUN_8c23a1b0(auStack_54, iVar4, piVar6, a3);
@@ -14851,7 +14852,7 @@ u32 FUN_8c23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                             if (ain0 != 0) {
                             LAB_8c23a6f0:
                                 piVar6 = *(int **)(iVar2 + 0x14);
-                                FUN_8c25a608(ar6_00, 2, piVar6, a3, ain0);
+                                tex_entry_set_flags(ar6_00, 2, piVar6, a3, ain0);
                                 *(u32 *)(iVar2 + 0x10) = *(u32 *)(iVar2 + 0x10) | 8;
                                 goto LAB_8c23a852;
                             }
@@ -14907,7 +14908,7 @@ u32 FUN_8c23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                     FUN_8c23a1b0(auStack_54, iVar4, piVar6, a3);
                     uVar5 = FUN_8c25a710();
                     piVar6 = (int *)0x2c;
-                    FUN_8c23c814(uVar5, auStack_54, 0x2c);
+                    memcpy_bytes(uVar5, auStack_54, 0x2c);
                     uVar3 = *(u32 *)(ar4_00 + 4) & 0xa0000000;
                     if (uVar3 == 0) {
                         iStack_68 = FUN_8c25a914(ar4_00, uVar5, piVar6, a3);
@@ -18422,11 +18423,12 @@ u32 FUN_8c23c7f4(u32 *a0, u32 *a1, int a2) {
 }
 
 /*
- * FUN_8c23c814  0x8c23c814
+ * memcpy_bytes  0x8c23c814
+ * copies a2 bytes (a2 > 0)
  * called by: FUN_8c024968, FUN_8c1f7c40, FUN_8c2124d0, FUN_8c23793c, FUN_8c237964, FUN_8c2387a0, FUN_8c238e98,
  * FUN_8c238f2a (+8 more)
  */
-int FUN_8c23c814(char *a0, char *a1, int a2) {
+int memcpy_bytes(char *a0, char *a1, int a2) {
     char cVar1;
 
     do {

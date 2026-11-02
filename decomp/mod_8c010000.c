@@ -4662,8 +4662,8 @@ int libgcc_divide_helper_010468(u32 a0, u32 a1) {
 
 /*
  * libgcc_divide_helper_01051c  0x8c01051c
- * called by: FUN_8c0115c4, FUN_8c0143f0, FUN_8c1117e4, FUN_8c112d82, FUN_8c112f40, FUN_8c112f48, FUN_8c112fd8,
- * FUN_8c11318e (+29 more)
+ * called by: FUN_8c0115c4, FUN_8c1117e4, FUN_8c112d82, FUN_8c112f40, FUN_8c112f48, FUN_8c112fd8, FUN_8c11318e,
+ * FUN_8c11319e (+29 more)
  */
 u32 libgcc_divide_helper_01051c(u32 a0, u32 a1) {
     u32 uVar1;
@@ -7639,8 +7639,8 @@ u32 libgcc_divide_helper_0106dc(u32 a0, u32 a1) {
 /*
  * switch_jump  0x8c010794
  * compiler switch helper: jumps through the table at 0x8c0107f4
- * called by: FUN_8c1f826c, FUN_8c1f8300, FUN_8c1fb664, FUN_8c201bae, FUN_8c201c92, FUN_8c201cf6, FUN_8c201d84,
- * FUN_8c201da0 (+44 more)
+ * called by: FUN_8c1f8300, FUN_8c1fb664, FUN_8c201bae, FUN_8c201c92, FUN_8c201cf6, FUN_8c201d84, FUN_8c201da0,
+ * FUN_8c201e14 (+44 more)
  */
 u32 switch_jump(u32 a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
@@ -10224,7 +10224,7 @@ u32 FUN_8c012e04(int a0, int a1, u32 a2) {
 
 /*
  * FUN_8c012e84  0x8c012e84
- * called by: FUN_8c0143f0
+ * called by: strtol
  */
 u32 FUN_8c012e84(char *a0, int a1) {
     if ((*a0 != '\0') && ((int)0x200 <= (int)a0 - a1)) {
@@ -11051,13 +11051,14 @@ u32 FUN_8c013b8c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c013bdc  0x8c013bdc
+ * atoi  0x8c013bdc
+ * strtol(a0, NULL, 10)
  * called by: FUN_8c0fa538, FUN_8c0fa658, FUN_8c0fc69c, FUN_8c0fc7c4, FUN_8c0fc94c, FUN_8c0fcd2c, FUN_8c0fd764
  */
-u32 FUN_8c013bdc(u32 a0) {
+u32 atoi(u32 a0) {
     u32 uVar1;
 
-    uVar1 = FUN_8c0143f0(0, 10);
+    uVar1 = strtol(0, 10);
     return uVar1;
 }
 
@@ -11859,10 +11860,10 @@ char *FUN_8c0143c0(char *a0, char *a1, u32 a2) {
 }
 
 /*
- * FUN_8c0143f0  0x8c0143f0
- * called by: FUN_8c013bdc
+ * strtol  0x8c0143f0
+ * called by: atoi
  */
-u32 FUN_8c0143f0(u8 *a0, u32 *a1, int a2) {
+u32 strtol(u8 *a0, u32 *a1, int a2) {
     u8 bVar1;
     bool bVar2;
     char cVar3;
@@ -12987,11 +12988,11 @@ u32 FUN_8c0151fc(u32 a0) {
 }
 
 /*
- * FUN_8c015224  0x8c015224
+ * Class_129920_ctor  0x8c015224
  * called by: CSquid_Init, Class_12b350_ctor, Class_12b580_ctor, Class_12b758_ctor, Class_12b930_ctor, FUN_8c0153b8,
  * FUN_8c02452c, FUN_8c02b920 (+17 more)
  */
-u32 *FUN_8c015224(u32 *a0, u32 a1) {
+u32 *Class_129920_ctor(u32 *a0, u32 a1) {
     *a0 = (&DATA_8c129920);
     clear_field_4(a0);
     return a0;
@@ -13072,7 +13073,7 @@ u32 obj_set_texlist(int a0, u32 a1, u32 a2) {
 
 /*
  * clear_field_4  0x8c0153b0
- * called by: FUN_8c015224
+ * called by: Class_129920_ctor
  */
 u32 clear_field_4(int a0) {
     *(u32 *)(a0 + 4) = 0;
@@ -13084,7 +13085,7 @@ u32 clear_field_4(int a0) {
  * called by: Class_12b3b8_ctor, FUN_8c0d2fd8, FUN_8c0d7f18
  */
 u32 *FUN_8c0153b8(u32 *a0, u32 a1) {
-    FUN_8c015224(a0, a1);
+    Class_129920_ctor(a0, a1);
     *a0 = (&DATA_8c129908);
     a0[1] = a0 + 2;
     return a0;
@@ -13742,8 +13743,8 @@ u32 Class_1298b8_m11_0159ec(int a0, u32 unused_a1, u32 *a2) {
 /*
  * clear_field_0_wrap_015ab8  0x8c015ab8
  * only calls clear_field_0_015b8c
- * called by: Class_129974_ctor, Class_12b580_ctor, Class_12b758_ctor, Class_12b930_ctor, FUN_8c016fcc, FUN_8c017010,
- * FUN_8c02452c, FUN_8c02b920 (+13 more)
+ * called by: Class_129938_ctor, Class_129938_ctor_init, Class_129974_ctor, Class_12b580_ctor, Class_12b758_ctor,
+ * Class_12b930_ctor, FUN_8c02452c, FUN_8c02b920 (+13 more)
  */
 u32 clear_field_0_wrap_015ab8(u32 a0) {
     clear_field_0_015b8c(a0);
@@ -14247,11 +14248,12 @@ u32 Class_129808_m10_0162bc(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * FUN_8c0162f8  0x8c0162f8
+ * clear_5_words  0x8c0162f8
+ * a0[0..4] = 0
  * called by: Class_129808_m6_0166b4, Class_12b350_ctor, Class_12bb08_ctor, FUN_8c0b6c3c, FUN_8c0b6e6c, FUN_8c0b79f0,
  * FUN_8c0ba5e0, FUN_8c0bad68 (+13 more)
  */
-u32 *FUN_8c0162f8(u32 *a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 *clear_5_words(u32 *a0, u32 a1, u32 unused_a2, u32 a3) {
     a0[4] = 0;
     *a0 = 0;
     a0[1] = 0;
@@ -14538,7 +14540,7 @@ u32 Class_129808_m6_0166b4(int a0, int a1, int a2, u32 a3) {
 
     iVar2 = a1;
     ar5_01 = a2;
-    FUN_8c0162f8(auStack_64, a1, a2, a3);
+    clear_5_words(auStack_64, a1, a2, a3);
     FUN_8c01688c(a0, iVar2, a2);
     set_field_10(auStack_64, ar5_01);
     for (iVar2 = 0; *(char *)(iVar2 + a1) != '\0'; iVar2 = iVar2 + 1) {
@@ -14746,7 +14748,7 @@ int FUN_8c016a20(int a0) {
 
 /*
  * FUN_8c016a7c  0x8c016a7c
- * called by: Class_129974_ctor, FUN_8c016fcc, FUN_8c017010
+ * called by: Class_129938_ctor, Class_129938_ctor_init, Class_129974_ctor
  */
 u32 *FUN_8c016a7c(u32 *a0, u32 a1, u32 a2) {
     *a0 = (&DATA_8c1299b0);
@@ -15083,11 +15085,11 @@ u32 FUN_8c016fa4(int a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * FUN_8c016fcc  0x8c016fcc
+ * Class_129938_ctor  0x8c016fcc
  * called by: CSquid_Init, FUN_8c036260, FUN_8c0384f8, FUN_8c06740c, FUN_8c0851f4, FUN_8c087ed0, FUN_8c08a17c,
  * FUN_8c099e74 (+7 more)
  */
-u32 *FUN_8c016fcc(u32 *a0, u32 a1, u32 a2) {
+u32 *Class_129938_ctor(u32 *a0, u32 a1, u32 a2) {
     FUN_8c016a7c(a0, a1, a2);
     *a0 = (&DATA_8c129938);
     clear_field_0_wrap_015ab8((int)a0 + 0x90);
@@ -15096,11 +15098,12 @@ u32 *FUN_8c016fcc(u32 *a0, u32 a1, u32 a2) {
 }
 
 /*
- * FUN_8c017010  0x8c017010
+ * Class_129938_ctor_init  0x8c017010
+ * constructs, then calls the init method (slot 0x2c)
  * called by: FUN_8c039124, FUN_8c06d8e4, FUN_8c08894c, FUN_8c08d380, FUN_8c09b210, FUN_8c09d718, FUN_8c09f060,
  * FUN_8c0a5c90 (+1 more)
  */
-int *FUN_8c017010(int *a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16) {
+int *Class_129938_ctor_init(int *a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16) {
     FUN_8c016a7c(a0, a1, a2);
     *a0 = (int)(&DATA_8c129938);
     clear_field_0_wrap_015ab8((int)a0 + 0x90);
@@ -15544,7 +15547,7 @@ u32 Class_129938_m7_0177d0(int a0, int *a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c017804  0x8c017804
- * called by: FUN_8c016fcc, FUN_8c017010
+ * called by: Class_129938_ctor, Class_129938_ctor_init
  */
 u32 FUN_8c017804(int a0, u32 unused_a1, u32 a2) {
 
@@ -19123,13 +19126,13 @@ u32 FUN_8c01acd0(int a0, int a1, u32 a2, u32 a3) {
 
     FUN_8c1f8176(auStack_16, a1, a2, a3);
     ar5_00 = &uStack_24;
-    FUN_8c1f826c(auStack_16, ar5_00, a2);
+    date_to_rtc_seconds(auStack_16, ar5_00, a2);
     uStack_24 = uStack_24 + 10;
     while (true) {
         sound_server_2(a0, ar5_00, a2, a3);
         FUN_8c1f8176(auStack_20, ar5_00, a2, a3);
         ar5_00 = &uStack_28;
-        FUN_8c1f826c(auStack_20, ar5_00, a2);
+        date_to_rtc_seconds(auStack_20, ar5_00, a2);
         if (uStack_24 < uStack_28) {
             return 0;
         }

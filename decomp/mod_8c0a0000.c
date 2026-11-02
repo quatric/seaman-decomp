@@ -605,7 +605,7 @@ u32 Class_12ad14_m1_0a09e8(int a0, u32 *a1, u32 a2, u8 *a3) {
     uVar3 = 1;
     *(u32 *)(a0 + 0x128) = 1;
     if ((*(int *)(a0 + 0x124) == 0xb) || (*(int *)(a0 + 0x124) == 0xc)) {
-        FUN_8c03f460(auStack_1c, a1[3]);
+        Vec3_copy_assign(auStack_1c, a1[3]);
         a3 = auStack_1c;
         a2 = a1[6];
         uVar3 = FUN_8c0a0c88(a0, *a1, a2, a3);
@@ -613,7 +613,7 @@ u32 Class_12ad14_m1_0a09e8(int a0, u32 *a1, u32 a2, u8 *a3) {
     } else {
         iVar2 = FUN_8c0a37c8(a0, a1, a2, a3);
         if (iVar2 != 3) {
-            FUN_8c03f460(auStack_28, a1[3]);
+            Vec3_copy_assign(auStack_28, a1[3]);
             a3 = auStack_28;
             a2 = a1[6];
             uVar3 = FUN_8c0a0c88(a0, *a1, a2, a3);
@@ -749,7 +749,7 @@ int FUN_8c0a0c88(int a0, u32 a1, u8 *a2, u8 *a3) {
     if ((iVar1 < 0xf) && (1 < iVar1)) {
         switch (iVar1) {
         case 2:
-            FUN_8c03f460(auStack_5c, a3);
+            Vec3_copy_assign(auStack_5c, a3);
             puVar2 = auStack_5c;
             puVar3 = a2;
             iVar4 = FUN_8c0a14d8(a0, in_stack_00000000, puVar2, a2);
@@ -764,7 +764,7 @@ int FUN_8c0a0c88(int a0, u32 a1, u8 *a2, u8 *a3) {
                 puVar3 = a2;
                 FUN_8c032788(a0, auStack_24, a3, a2);
             }
-            FUN_8c03f460(auStack_50, a3);
+            Vec3_copy_assign(auStack_50, a3);
             puVar3 = auStack_50;
             puVar2 = auStack_24;
             iVar4 = FUN_8c0a1828(a0, in_stack_00000000, puVar2, puVar3);
@@ -893,7 +893,7 @@ LAB_8c0a165a:
         }
         Vec3_dtor(auStack_28, 0xffffffff, uVar4, uVar5);
     }
-    FUN_8c03f460(auStack_74, a2);
+    Vec3_copy_assign(auStack_74, a2);
     ar7_00 = auStack_74;
     ar6_01 = a0 + 0x54;
     iVar1 = FUN_8c0a1828(a0, a1, ar6_01, ar7_00);
@@ -2853,7 +2853,7 @@ u32 FUN_8c0a37c8(int a0, int a1, u32 a2, u32 a3) {
             if (iVar1 != 3) {
                 return iVar3;
             }
-            FUN_8c03f460(auStack_3c, *(u32 *)(a1 + 0xc));
+            Vec3_copy_assign(auStack_3c, *(u32 *)(a1 + 0xc));
             iVar3 = a0 + 0x54;
             uVar2 = 1;
             iVar1 = CMushroomerBody_AwayFrom(a0, **(u32 **)(a1 + 4), 1, iVar3);
@@ -3065,7 +3065,7 @@ u32 FUN_8c0a3d08(int a0, u32 a1, u32 a2, u32 a3) {
     ar7_00 = a3;
     iVar1 = FUN_8c023cd4(a0 + 0x250, a2);
     if (iVar1 == 0) {
-        FUN_8c03f460(auStack_1c, a3);
+        Vec3_copy_assign(auStack_1c, a3);
         ar7_01 = auStack_1c;
         uVar3 = a2;
         iVar1 = FUN_8c0a1828(a0, a1, a2, ar7_01);
@@ -3520,7 +3520,7 @@ int FUN_8c0a4590(int a0, u32 a1) {
     *(u8 **)(a0 + 8) = (&DATA_8c12aeec);
     FUN_8c0ab760(a0 + 0x490, ar5_00, ar6_00);
     FUN_8c0a6164(a0 + 0x53c, ar5_00, ar6_00, ar7_00);
-    FUN_8c016fcc(a0 + 0x26fc, ar5_00, ar6_00);
+    Class_129938_ctor(a0 + 0x26fc, ar5_00, ar6_00);
     (*(code *)(&sprintf))(a0 + 0xc, ar5_00, ar6_00, ar7_00, "SpiderLine");
     *(int *)(0x308 + a0) = a0 + 0x490;
     *(int *)(0x30c + a0) = a0 + 0x53c;
@@ -3884,7 +3884,7 @@ int FUN_8c0a4de8(int a0, u32 a1) {
     uVar1 = 0xc;
     FUN_8c0254d0(a0, 0xc, 1, 0x19, 1, a1, 0x8c28563c, 0x8c28576c, PTR_s_GRAPHICS_MOTHLINE_8c13b0ec);
     *(u8 **)(a0 + 8) = &g_8c12ad50;
-    FUN_8c016fcc(a0 + 0x490, uVar1, ar6_00);
+    Class_129938_ctor(a0 + 0x490, uVar1, ar6_00);
     FUN_8c02ff6c(a0 + 0x530, uVar1, ar6_00);
     FUN_8c030fa0(a0 + 0x5cc, uVar1, ar6_00, ar7_00);
     sprintf(a0 + 0xc, uVar1, ar6_00, ar7_00, "SpiderEgg");
@@ -4756,8 +4756,8 @@ u32 FUN_8c0a5c90(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     uVar1 = Vec3_ctor_xyz(0x8c285580, pcVar2, uVar3, uVar4);
     global_list_push(uVar1, Vec3_dtor, 0x8c285574, uVar4);
     uVar4 = 0x8c2854f4;
-    uVar1 = FUN_8c017010(0x8c28559c, 0x8c2854bc, 0x8c2854d8, 0x8c2854f4, 0x8c285510, 0x8c28552c, 0x8c285548, 0x8c285564,
-                         0x8c285580);
+    uVar1 = Class_129938_ctor_init(0x8c28559c, 0x8c2854bc, 0x8c2854d8, 0x8c2854f4, 0x8c285510, 0x8c28552c, 0x8c285548,
+                                   0x8c285564, 0x8c285580);
     uVar3 = 0x8c285590;
     pcVar2 = Class_129938_dtor;
     global_list_push(uVar1, Class_129938_dtor, 0x8c285590, uVar4);
@@ -4776,8 +4776,8 @@ u32 FUN_8c0a5c90(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     uVar1 = clear_field_0_wrap_015bc8(0x8c285798);
     global_list_push(uVar1, free_if_nonnull_wrap_03a3dc, 0x8c28578c, uVar4);
     uVar3 = 0x8c2854f4;
-    uVar1 = FUN_8c017010(0x8c2857a8, 0x8c2854bc, 0x8c2854d8, 0x8c2854f4, 0x8c285510, 0x8c28552c, 0x8c285548, 0x8c285564,
-                         0x8c285580);
+    uVar1 = Class_129938_ctor_init(0x8c2857a8, 0x8c2854bc, 0x8c2854d8, 0x8c2854f4, 0x8c285510, 0x8c28552c, 0x8c285548,
+                                   0x8c285564, 0x8c285580);
     uVar1 = global_list_push(uVar1, Class_129938_dtor, 0x8c28579c, uVar3);
     return uVar1;
 }
@@ -5074,7 +5074,7 @@ int FUN_8c0a6628(int a0, int *a1, u8 *a2, u32 a3) {
             Vec3_assign(a0 + 0x80, a0 + 0x14, a2, a3);
             break;
         case 1:
-            FUN_8c03f460(auStack_3c, a1[3]);
+            Vec3_copy_assign(auStack_3c, a1[3]);
             a3 = *(u32 *)(a1[1] + 4);
             a2 = auStack_3c;
             iVar2 = FUN_8c0a6974(a0, *(u32 *)a1[1], a2, a3);
@@ -5433,7 +5433,7 @@ int FUN_8c0a6974(int a0, u64 *a1, u64 *a2, u64 *a3) {
                     *(u64 *)(a0 + 0x58) = *(u64 *)((int)a2 + 4);
                 }
             }
-            FUN_8c03f460(auStack_84, a2);
+            Vec3_copy_assign(auStack_84, a2);
             iVar5 = FUN_8c0a8f94(a0, a1, a0 + 0x54, auStack_84);
             free_if_nonnull_wrap_102790(auStack_84, 0xffffffff, auStack_84, 0xffffffff);
         }
@@ -5441,14 +5441,14 @@ int FUN_8c0a6974(int a0, u64 *a1, u64 *a2, u64 *a3) {
     case 6:
         *(u32 *)(a0 + 0x134) = 4;
     switchD_8c0a69b0_caseD_4:
-        FUN_8c03f460(auStack_90, a2);
+        Vec3_copy_assign(auStack_90, a2);
         iVar5 = FUN_8c0a861c(a0, a1, auStack_90, ar7_01);
         free_if_nonnull_wrap_102790(auStack_90, 0xffffffff, 0xffffffff, ar7_01);
         goto switchD_8c0a69b0_default;
     case 7:
         *(u32 *)(a0 + 0x134) = 5;
     switchD_8c0a69b0_caseD_5:
-        FUN_8c03f460(auStack_9c, a2);
+        Vec3_copy_assign(auStack_9c, a2);
         puVar4 = auStack_9c;
         iVar5 = FUN_8c0a8c0c(a0, a1, puVar4, a3);
         free_if_nonnull_wrap_102790(auStack_9c, 0xffffffff, puVar4, a3);
@@ -5457,7 +5457,7 @@ int FUN_8c0a6974(int a0, u64 *a1, u64 *a2, u64 *a3) {
         *(u32 *)(a0 + 0x134) = 6;
     switchD_8c0a69b0_caseD_6:
         if (*(int *)(a0 + 0x2198) == 6) {
-            FUN_8c03f460(auStack_a8, a2);
+            Vec3_copy_assign(auStack_a8, a2);
             puVar4 = auStack_a8;
             iVar5 = FUN_8c0a8464(a0, a1, puVar4, ar7_01);
             free_if_nonnull_wrap_102790(auStack_a8, 0xffffffff, puVar4, ar7_01);
@@ -5469,7 +5469,7 @@ int FUN_8c0a6974(int a0, u64 *a1, u64 *a2, u64 *a3) {
     case 9:
         *(u32 *)(a0 + 0x134) = 7;
     switchD_8c0a69b0_caseD_7:
-        FUN_8c03f460(auStack_b4, a2);
+        Vec3_copy_assign(auStack_b4, a2);
         puVar4 = auStack_b4;
         iVar5 = FUN_8c0a9578(a0, a1, puVar4, a3);
         free_if_nonnull_wrap_102790(auStack_b4, 0xffffffff, puVar4, a3);
@@ -7145,7 +7145,7 @@ u32 FUN_8c0a8c0c(int a0, u32 a1, u64 *a2, float *a3) {
             }
             *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
         case 1:
-            FUN_8c03f460(auStack_24, a2);
+            Vec3_copy_assign(auStack_24, a2);
             ar7_00 = auStack_24;
             ar6_00 = a0 + 0x54;
             iVar2 = FUN_8c0a8f94(a0, a1, ar6_00, ar7_00);
@@ -8359,7 +8359,7 @@ u32 FUN_8c0aa11c(int a0, u32 a1, u32 a2) {
             case 0:
                 *(u32 *)(a0 + 0x21bc) = 0;
                 *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
-                FUN_8c030f2c(a0 + 0x1fc, ar5_00, ar6_00, ar7_00);
+                flags6_clear_all(a0 + 0x1fc, ar5_00, ar6_00, ar7_00);
             case 1:
                 ar6_00 = auStack_2c;
                 iVar2 = FUN_8c0ab0d8(a0, a1, ar6_00, ar7_00);
@@ -8579,7 +8579,7 @@ u32 FUN_8c0aa11c(int a0, u32 a1, u32 a2) {
             case 5:
                 iVar2 = CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, ar5_00, ar6_00, ar7_00);
                 if (iVar2 == 1) {
-                    FUN_8c030eb8(a0 + 0x1fc, ar5_00, ar6_00);
+                    flags6_set_all(a0 + 0x1fc, ar5_00, ar6_00);
                     *(u32 *)(a0 + 300) = 0;
                     uVar5 = 0;
                 }
@@ -8665,14 +8665,14 @@ u32 FUN_8c0aa70c(int a0, u32 a1, int *a2, u64 *a3) {
     iVar1 = *(int *)(a0 + 0x21b4);
     if (iVar1 == 0) {
         if (*(int *)(a0 + 0x2198) == 0) {
-            FUN_8c03f460(afStack_50, &uStack_24);
+            Vec3_copy_assign(afStack_50, &uStack_24);
             a6 = afStack_50;
             FUN_8c0a861c(a0, a1, a6, puVar4);
             free_if_nonnull_wrap_102790(afStack_50, 0xffffffff, a6, puVar4);
             goto LAB_8c0aacb4;
         }
         if (*(int *)(a0 + 0x2198) != 5) {
-            FUN_8c03f460(afStack_5c, &uStack_24);
+            Vec3_copy_assign(afStack_5c, &uStack_24);
             a6 = afStack_5c;
             iVar2 = FUN_8c0a8c0c(a0, a1, a6, a3);
             uVar3 = 0xffffffff;
@@ -8787,7 +8787,7 @@ u32 FUN_8c0aa70c(int a0, u32 a1, int *a2, u64 *a3) {
         }
         goto LAB_8c0aacb4;
     }
-    FUN_8c03f460(&uStack_68, &uStack_24);
+    Vec3_copy_assign(&uStack_68, &uStack_24);
     puVar4 = &uStack_68;
     a6 = afStack_44;
     iVar2 = FUN_8c0a8f94(a0, a1, a6, puVar4);
@@ -9466,7 +9466,7 @@ u32 Class_12b0c4_m1_0ab7f4(int a0, int *a1, int *a2, u32 a3) {
                     *(u32 *)(a0 + 8) = 0x55;
                     *(u32 *)(a0 + 0xc) = 0;
                     uVar1 = 699;
-                    FUN_8c02f298(a0, 699);
+                    list5_push(a0, 699);
                     (**(code **)(*(int *)(*(int *)(a0 + 0x6c) + 8) + 0x74))(*(int *)(a0 + 0x6c), uVar1, ar6_00, a3);
                     piVar7 = NULL;
                     set_field_48_0996e4(a2[3], 0);
@@ -9491,7 +9491,7 @@ u32 Class_12b0c4_m1_0ab7f4(int a0, int *a1, int *a2, u32 a3) {
                 *(u32 *)(a0 + 0x38) = 2;
                 FUN_8c0ac1f0(a0, a1, ar6_00, a3);
                 piVar7 = (int *)0x4a6;
-                FUN_8c02f298(a0, 0x4a6);
+                list5_push(a0, 0x4a6);
             }
         }
     }
@@ -10132,8 +10132,8 @@ int CSquid_Init(int a0, u32 a1) {
     *(u8 **)(a0 + 8) = (&DATA_8c12b110);
     FUN_8c0b5a30(a0 + 0x490, uVar1, uVar2);
     FUN_8c0afa50(a0 + 0x53c, uVar1, uVar2, ar7_00);
-    FUN_8c016fcc(a0 + 0x894, uVar1, uVar2);
-    FUN_8c015224(a0 + 0x9bc, uVar1);
+    Class_129938_ctor(a0 + 0x894, uVar1, uVar2);
+    Class_129920_ctor(a0 + 0x9bc, uVar1);
     vec_new_array(a0 + 0x9c4, (&FUN_8c016410), 0, 0x44, 10);
     uVar2 = 0x44;
     uVar1 = 0;
@@ -11782,7 +11782,7 @@ u32 FUN_8c0ae6a0(int a0, u32 unused_a1, u32 a2, u32 a3) {
         *(u64 *)(a0 + 0x20) = 0x4404800043480000;
         *(u64 *)(a0 + 0x24) = 0x8c02a1fc44048000;
     }
-    FUN_8c02a1fc(a0 + 0x2c, ar5_00, a2, a3);
+    clear_3_words(a0 + 0x2c, ar5_00, a2, a3);
     if (cVar2 == '\0') {
         *(u32 *)(a0 + 0x2c) = 0xc1f00000;
         *(u32 *)(a0 + 0x30) = 0xc2b40000;
@@ -12340,8 +12340,8 @@ u32 FUN_8c0af3c4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     uVar1 = Vec3_ctor_xyz(0x8c286cd8, pcVar2, uVar3, uVar4);
     global_list_push(uVar1, Vec3_dtor, 0x8c286ccc, uVar4);
     uVar3 = 0x8c286b6c;
-    uVar1 = FUN_8c017010(0x8c286cf4, 0x8c286b34, 0x8c286b50, 0x8c286b6c, 0x8c286b88, 0x8c286ba4, 0x8c286bc0, 0x8c286bdc,
-                         0x8c286bf8);
+    uVar1 = Class_129938_ctor_init(0x8c286cf4, 0x8c286b34, 0x8c286b50, 0x8c286b6c, 0x8c286b88, 0x8c286ba4, 0x8c286bc0,
+                                   0x8c286bdc, 0x8c286bf8);
     uVar1 = global_list_push(uVar1, Class_129938_dtor, 0x8c286ce8, uVar3);
     return uVar1;
 }
@@ -12669,8 +12669,8 @@ u32 Class_12b2ac_m1_0aff3c(int a0, u32 *a1, u32 a2, u32 a3) {
             Vec3_assign(a0 + 0x80, auStack_68, a2, a3);
             Vec3_dtor(auStack_68, 0xffffffff, a2, a3);
             object_dtor_delete(auStack_58, 0xffffffff, a2, a3);
-            ar5_00 = FUN_8c02a1fc;
-            FUN_8c02a1fc(a0 + 0x14c, FUN_8c02a1fc, a2, a3);
+            ar5_00 = clear_3_words;
+            clear_3_words(a0 + 0x14c, clear_3_words, a2, a3);
         }
         vec3_clear(a0 + 0x13c, ar5_00, a2, a3);
         FUN_8c031700(a0, ar5_00, a2, a3);

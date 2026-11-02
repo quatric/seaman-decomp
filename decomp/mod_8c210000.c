@@ -866,7 +866,7 @@ u8 *FUN_8c211a20(u32 a0) {
         uStack_44 = 0;
         if (a0 != 0) {
             do {
-                FUN_8c20731e(*puVar1, &uStack_40, 0x20);
+                memcpy_words(*puVar1, &uStack_40, 0x20);
                 uStack_44 = uStack_44 + 1;
                 puVar1 = puVar1 + 5;
             } while (uStack_44 < a0);
@@ -878,7 +878,7 @@ u8 *FUN_8c211a20(u32 a0) {
         uStack_44 = 0;
         if (a0 != 0) {
             do {
-                FUN_8c20731e(*(u32 *)(puVar2 + 4), &uStack_40, 0x20);
+                memcpy_words(*(u32 *)(puVar2 + 4), &uStack_40, 0x20);
                 uStack_44 = uStack_44 + 1;
                 puVar2 = puVar2 + 0x14;
             } while (uStack_44 < a0);
@@ -890,7 +890,7 @@ u8 *FUN_8c211a20(u32 a0) {
         uStack_44 = 0;
         if (a0 != 0) {
             do {
-                FUN_8c20731e(*(u32 *)(puVar2 + 8), &uStack_40, 0x20);
+                memcpy_words(*(u32 *)(puVar2 + 8), &uStack_40, 0x20);
                 uStack_44 = uStack_44 + 1;
                 puVar2 = puVar2 + 0x14;
             } while (uStack_44 < a0);
@@ -902,7 +902,7 @@ u8 *FUN_8c211a20(u32 a0) {
         uStack_44 = 0;
         if (a0 != 0) {
             do {
-                FUN_8c20731e(*(u32 *)(puVar2 + 0xc), &uStack_40, 0x20);
+                memcpy_words(*(u32 *)(puVar2 + 0xc), &uStack_40, 0x20);
                 uStack_44 = uStack_44 + 1;
                 puVar2 = puVar2 + 0x14;
             } while (uStack_44 < a0);
@@ -918,7 +918,7 @@ u8 *FUN_8c211a20(u32 a0) {
             uStack_44 = 0;
             if (a0 != 0) {
                 do {
-                    puVar2 = (u8 *)FUN_8c20731e(*(u32 *)(puVar3 + 0x10), &uStack_40, 0x20);
+                    puVar2 = (u8 *)memcpy_words(*(u32 *)(puVar3 + 0x10), &uStack_40, 0x20);
                     uStack_44 = uStack_44 + 1;
                     puVar3 = puVar3 + 0x14;
                 } while (uStack_44 < a0);
@@ -1356,10 +1356,10 @@ u32 FUN_8c2124d0(int a0, int *a1, int *a2, u32 a3) {
     u8 abStack_24[4];
     u8 abStack_20[8];
 
-    puVar1 = (&FUN_8c23c814);
+    puVar1 = (&memcpy_bytes);
     iVar6 = *a1 + a0;
     iVar5 = 0;
-    FUN_8c23c814(&iStack_30, iVar6, 4);
+    memcpy_bytes(&iStack_30, iVar6, 4);
     iVar7 = iVar6 + 4;
     uVar4 = 4;
     (*(code *)puVar1)(&iStack_34, iVar7, 4, a3);
@@ -24316,7 +24316,7 @@ u32 FUN_8c21daf2(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
                                 a1 = *(int *)(puVar8 + -0x4c) + iVar6;
                                 a3 = (u8 *)(*(int *)(puVar8 + -0x5c) + iVar6);
                                 a2 = (u64 *)(*(int *)(puVar8 + -0x54) + iVar6);
-                                FUN_8c221622(*(int *)(puVar8 + -100) + iVar6, a1, a2, a3, *(u32 *)(puVar8 + -0x68));
+                                Vec3_catmull_rom(*(int *)(puVar8 + -100) + iVar6, a1, a2, a3, *(u32 *)(puVar8 + -0x68));
                                 iVar2 = iVar2 + 1;
                                 unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                                 iVar5 = iVar5 + 3;
@@ -24333,7 +24333,7 @@ u32 FUN_8c21daf2(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
                                 a1 = *(int *)(puVar8 + -0x4c) + iVar6;
                                 a3 = (u8 *)(*(int *)(puVar8 + -0x5c) + iVar6);
                                 a2 = (u64 *)(*(int *)(puVar8 + -0x54) + iVar6);
-                                FUN_8c221622(*(int *)(puVar8 + -100) + iVar6, a1, a2, a3, *(u32 *)(puVar8 + -0x68));
+                                Vec3_catmull_rom(*(int *)(puVar8 + -100) + iVar6, a1, a2, a3, *(u32 *)(puVar8 + -0x68));
                                 unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
 
                                 *(u32 *)unaff_r11 = *(u32 *)(g_8c4aa37c * 4 + iVar2);
@@ -24365,7 +24365,7 @@ u32 FUN_8c21daf2(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
                             a1 = *(int *)(puVar8 + -0x4c) + iVar6;
                             a3 = (u8 *)(*(int *)(puVar8 + -0x5c) + iVar6);
                             a2 = (u64 *)(*(int *)(puVar8 + -0x54) + iVar6);
-                            FUN_8c221622(*(int *)(puVar8 + -100) + iVar6, a1, a2, a3, *(u32 *)(puVar8 + -0x68));
+                            Vec3_catmull_rom(*(int *)(puVar8 + -100) + iVar6, a1, a2, a3, *(u32 *)(puVar8 + -0x68));
                             iVar2 = iVar2 + 1;
                             unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                             *(u32 *)unaff_r8 = *(u32 *)(*(int *)(puVar8 + -0x60) + g_8c4aa380 * 4);
@@ -24385,8 +24385,8 @@ u32 FUN_8c21daf2(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
                             a3 = (u8 *)(*(int *)(puVar8 + -0x50) * 4 + *(int *)(puVar8 + -0x5c));
                             a2 = (u64 *)(*(int *)(puVar8 + -0x58) + *(int *)(puVar8 + -0x54));
                             a1 = *(int *)(puVar8 + -0x58) + *(int *)(puVar8 + -0x4c);
-                            FUN_8c221622(*(int *)(puVar8 + -0x58) + *(int *)(puVar8 + -100), a1, a2, a3,
-                                         *(u32 *)(puVar8 + -0x68));
+                            Vec3_catmull_rom(*(int *)(puVar8 + -0x58) + *(int *)(puVar8 + -100), a1, a2, a3,
+                                             *(u32 *)(puVar8 + -0x68));
                             unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
 
                             *(u32 *)unaff_r11 = *(u32 *)(g_8c4aa37c * 4 + iVar2);
@@ -24486,8 +24486,8 @@ u32 FUN_8c21daf2(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
                             *(u64 **)(puVar8 + -0x68) = unaff_r13;
                             iVar6 = *(int *)(puVar8 + -0x60) * 4;
                             a3 = (u8 *)(*(int *)(puVar8 + -0x5c) + iVar6);
-                            FUN_8c221622(*(int *)(puVar8 + -100) + iVar6, *(int *)(puVar8 + -0x4c) + iVar6,
-                                         *(int *)(puVar8 + -0x54) + iVar6, a3, *(u32 *)(puVar8 + -0x68));
+                            Vec3_catmull_rom(*(int *)(puVar8 + -100) + iVar6, *(int *)(puVar8 + -0x4c) + iVar6,
+                                             *(int *)(puVar8 + -0x54) + iVar6, a3, *(u32 *)(puVar8 + -0x68));
                             *(int *)(puVar8 + -0x60) = iVar5 * 4;
                             unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                             a1 = iVar5 * 4 + *(int *)(puVar8 + -0x48);
@@ -24507,8 +24507,8 @@ u32 FUN_8c21daf2(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
                             *(u64 **)(puVar8 + -0x68) = unaff_r13;
                             iVar5 = *(int *)(puVar8 + -0x44) * 4;
                             a3 = (u8 *)(*(int *)(puVar8 + -0x5c) + iVar5);
-                            FUN_8c221622(*(int *)(puVar8 + -100) + iVar5, *(int *)(puVar8 + -0x4c) + iVar5,
-                                         *(int *)(puVar8 + -0x54) + iVar5, a3, *(u32 *)(puVar8 + -0x68));
+                            Vec3_catmull_rom(*(int *)(puVar8 + -100) + iVar5, *(int *)(puVar8 + -0x4c) + iVar5,
+                                             *(int *)(puVar8 + -0x54) + iVar5, a3, *(u32 *)(puVar8 + -0x68));
                             *(int *)(puVar8 + -0x44) = iVar2;
                             unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                             a1 = *(int *)(puVar8 + -0x48) + iVar2 * 4;
@@ -24544,7 +24544,7 @@ u32 FUN_8c21daf2(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
                             unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                             a1 = *(int *)(puVar8 + -0x44) + iVar5;
                             a2 = unaff_r8;
-                            FUN_8c221414(*(int *)(puVar8 + -0x50) + iVar5, a1, unaff_r8);
+                            argb_lerp(*(int *)(puVar8 + -0x50) + iVar5, a1, unaff_r8);
                             iVar6 = *(int *)(puVar8 + -100);
                             *(int *)(puVar8 + -100) = iVar6 + 1;
                             unaff_r8 = (u64 *)((int)unaff_r8 + g_8c4aa374 * 4);
@@ -24583,7 +24583,7 @@ u32 FUN_8c21daf2(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
                             unaff_r11 = (u64 *)((int)unaff_r11 + g_8c4aa374 * 4);
                             a1 = *(int *)(puVar8 + -100) + *(int *)(puVar8 + -0x44);
                             a2 = unaff_r8;
-                            FUN_8c221414(*(int *)(puVar8 + -100) + *(int *)(puVar8 + -0x50), a1, unaff_r8);
+                            argb_lerp(*(int *)(puVar8 + -100) + *(int *)(puVar8 + -0x50), a1, unaff_r8);
                             iVar5 = *(int *)(puVar8 + -0x5c);
                             iVar2 = iVar2 + g_8c4aa374 * 4;
                             *(int *)(puVar8 + -0x5c) = iVar5 + 1;
@@ -24603,12 +24603,12 @@ u32 FUN_8c21daf2(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
                             *(u64 **)(puVar8 + -0x68) = unaff_r13;
                             iVar6 = *(int *)(puVar8 + -0x58) * 4;
                             a3 = (u8 *)(*(int *)(puVar8 + -0x5c) + iVar6);
-                            FUN_8c221622(*(int *)(puVar8 + -100) + iVar6, *(int *)(puVar8 + -0x4c) + iVar6,
-                                         *(int *)(puVar8 + -0x54) + iVar6, a3, *(u32 *)(puVar8 + -0x68));
+                            Vec3_catmull_rom(*(int *)(puVar8 + -100) + iVar6, *(int *)(puVar8 + -0x4c) + iVar6,
+                                             *(int *)(puVar8 + -0x54) + iVar6, a3, *(u32 *)(puVar8 + -0x68));
                             a1 = *(int *)(puVar8 + -0x44) + iVar5;
                             unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                             a2 = unaff_r8;
-                            FUN_8c221414(*(int *)(puVar8 + -0x50) + iVar5, a1, unaff_r8);
+                            argb_lerp(*(int *)(puVar8 + -0x50) + iVar5, a1, unaff_r8);
                             iVar6 = *(int *)(puVar8 + -0x60);
                             iVar5 = iVar5 + 4;
                             unaff_r8 = (u64 *)((int)unaff_r8 + g_8c4aa374 * 4);
@@ -24626,10 +24626,10 @@ u32 FUN_8c21daf2(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
                             *(u64 **)(puVar8 + -0x68) = unaff_r13;
                             *(int *)(puVar8 + -0x60) = *(int *)(puVar8 + -0x40) * 4;
                             a3 = (u8 *)(*(int *)(puVar8 + -0x40) * 4 + *(int *)(puVar8 + -0x5c));
-                            FUN_8c221622(*(int *)(puVar8 + -0x60) + *(int *)(puVar8 + -100),
-                                         *(int *)(puVar8 + -0x60) + *(int *)(puVar8 + -0x4c),
-                                         *(int *)(puVar8 + -0x60) + *(int *)(puVar8 + -0x54), a3,
-                                         *(u32 *)(puVar8 + -0x68));
+                            Vec3_catmull_rom(*(int *)(puVar8 + -0x60) + *(int *)(puVar8 + -100),
+                                             *(int *)(puVar8 + -0x60) + *(int *)(puVar8 + -0x4c),
+                                             *(int *)(puVar8 + -0x60) + *(int *)(puVar8 + -0x54), a3,
+                                             *(u32 *)(puVar8 + -0x68));
                             unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
 
                             *(u32 *)unaff_r11 = *(u32 *)(g_8c4aa37c * 4 + iVar2);
@@ -24645,7 +24645,7 @@ u32 FUN_8c21daf2(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
                             unaff_r11 = (u64 *)((int)unaff_r11 + g_8c4aa374 * 4);
                             a1 = *(int *)(puVar8 + -0x44) + iVar5;
                             a2 = unaff_r8;
-                            FUN_8c221414(*(int *)(puVar8 + -0x50) + iVar5, a1, unaff_r8);
+                            argb_lerp(*(int *)(puVar8 + -0x50) + iVar5, a1, unaff_r8);
                             iVar6 = *(int *)(puVar8 + -0x48);
                             iVar5 = iVar5 + 4;
                             iVar2 = iVar2 + g_8c4aa374 * 4;
@@ -24681,7 +24681,7 @@ u32 FUN_8c21daf2(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
                         unaff_r11 = (u64 *)((int)unaff_r11 + g_8c4aa374 * 4);
                         a1 = *(int *)(puVar8 + -100) + *(int *)(puVar8 + -0x44);
                         a2 = unaff_r8;
-                        FUN_8c221414(*(int *)(puVar8 + -100) + *(int *)(puVar8 + -0x50), a1, unaff_r8);
+                        argb_lerp(*(int *)(puVar8 + -100) + *(int *)(puVar8 + -0x50), a1, unaff_r8);
                         *(int *)(puVar8 + -0x54) = *(int *)(puVar8 + -0x54) + 1;
                         unaff_r8 = (u64 *)((int)unaff_r8 + g_8c4aa374 * 4);
                         *(int *)(puVar8 + -100) = *(int *)(puVar8 + -100) + 4;
@@ -24701,9 +24701,10 @@ u32 FUN_8c21daf2(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
                         *(u64 **)(puVar8 + -0x68) = unaff_r13;
                         *(int *)(puVar8 + -0x60) = *(int *)(puVar8 + -0x30) * 4;
                         a3 = (u8 *)(*(int *)(puVar8 + -0x30) * 4 + *(int *)(puVar8 + -0x5c));
-                        FUN_8c221622(*(int *)(puVar8 + -0x60) + *(int *)(puVar8 + -100),
-                                     *(int *)(puVar8 + -0x60) + *(int *)(puVar8 + -0x4c),
-                                     *(int *)(puVar8 + -0x60) + *(int *)(puVar8 + -0x54), a3, *(u32 *)(puVar8 + -0x68));
+                        Vec3_catmull_rom(*(int *)(puVar8 + -0x60) + *(int *)(puVar8 + -100),
+                                         *(int *)(puVar8 + -0x60) + *(int *)(puVar8 + -0x4c),
+                                         *(int *)(puVar8 + -0x60) + *(int *)(puVar8 + -0x54), a3,
+                                         *(u32 *)(puVar8 + -0x68));
                         *(int *)(puVar8 + -0x60) = iVar5;
                         *(int *)(puVar8 + -0x30) = iVar5 * 4;
                         unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
@@ -24712,7 +24713,7 @@ u32 FUN_8c21daf2(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
                         a1 = *(int *)(puVar8 + -0x44) + iVar2;
                         unaff_r11 = (u64 *)((int)unaff_r11 + g_8c4aa374 * 4);
                         a2 = unaff_r8;
-                        FUN_8c221414(*(int *)(puVar8 + -0x50) + iVar2, a1, unaff_r8);
+                        argb_lerp(*(int *)(puVar8 + -0x50) + iVar2, a1, unaff_r8);
                         iVar6 = *(int *)(puVar8 + -0x40);
                         iVar2 = iVar2 + 4;
                         unaff_r8 = (u64 *)((int)unaff_r8 + g_8c4aa374 * 4);
@@ -24981,7 +24982,7 @@ u32 FUN_8c21e4f8(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
                         do {
                             a1 = (int)puStack_74 + iVar8 * 4;
                             a2 = unaff_r13;
-                            FUN_8c22158a(iStack_6c + iVar8 * 4, a1, unaff_r13);
+                            Vec3_lerp(iStack_6c + iVar8 * 4, a1, unaff_r13);
                             iVar5 = iVar5 + 1;
                             unaff_r13 = unaff_r13 + g_8c4aa374;
                             iVar8 = iVar8 + 3;
@@ -24995,7 +24996,7 @@ u32 FUN_8c21e4f8(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
                         do {
                             a1 = iVar8 * 4 + (int)puStack_74;
                             a2 = unaff_r13;
-                            FUN_8c22158a(iVar8 * 4 + iStack_6c, a1, unaff_r13);
+                            Vec3_lerp(iVar8 * 4 + iStack_6c, a1, unaff_r13);
                             iVar5 = iVar5 + 1;
                             unaff_r13 = unaff_r13 + g_8c4aa374;
                             if (cVar16 == '\0') {
@@ -25020,7 +25021,7 @@ u32 FUN_8c21e4f8(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
                     do {
                         a1 = (int)puStack_74 + iVar8 * 4;
                         a2 = unaff_r13;
-                        FUN_8c22158a(iStack_6c + iVar8 * 4, a1, unaff_r13);
+                        Vec3_lerp(iStack_6c + iVar8 * 4, a1, unaff_r13);
                         iVar5 = iVar5 + 1;
                         unaff_r13 = unaff_r13 + g_8c4aa374;
                         *unaff_r8 = puStack_70[g_8c4aa380];
@@ -25037,7 +25038,7 @@ u32 FUN_8c21e4f8(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
                     do {
                         a1 = iVar5 * 4 + (int)puStack_74;
                         a2 = unaff_r13;
-                        FUN_8c22158a(iVar5 * 4 + iStack_6c, a1, unaff_r13);
+                        Vec3_lerp(iVar5 * 4 + iStack_6c, a1, unaff_r13);
                         unaff_r13 = unaff_r13 + g_8c4aa374;
                         if (cVar16 == '\0') {
                             *unaff_r11 = puVar6[g_8c4aa37c];
@@ -25119,7 +25120,7 @@ u32 FUN_8c21e4f8(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
                 iVar8 = 0;
                 if (uVar4 != 0) {
                     do {
-                        FUN_8c22158a(iStack_6c + iVar8 * 4, (int)puStack_74 + iVar8 * 4, unaff_r13);
+                        Vec3_lerp(iStack_6c + iVar8 * 4, (int)puStack_74 + iVar8 * 4, unaff_r13);
                         unaff_r13 = unaff_r13 + g_8c4aa374;
                         a1 = iVar8 * 4 + (int)puStack_68;
                         a2 = unaff_r11;
@@ -25134,7 +25135,7 @@ u32 FUN_8c21e4f8(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
                 iVar8 = 0;
                 if (uVar4 != 0) {
                     do {
-                        FUN_8c22158a(iVar8 * 4 + iStack_6c, iVar8 * 4 + (int)puStack_74, unaff_r13);
+                        Vec3_lerp(iVar8 * 4 + iStack_6c, iVar8 * 4 + (int)puStack_74, unaff_r13);
                         unaff_r13 = unaff_r13 + g_8c4aa374;
                         a1 = iVar8 * 4 + (int)puStack_68;
                         a2 = unaff_r11;
@@ -25166,7 +25167,7 @@ u32 FUN_8c21e4f8(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
                         unaff_r13 = unaff_r13 + g_8c4aa374;
                         a1 = iStack_60 + iVar5;
                         a2 = unaff_r8;
-                        FUN_8c221414((int)puStack_64 + iVar5, a1, unaff_r8);
+                        argb_lerp((int)puStack_64 + iVar5, a1, unaff_r8);
                         puStack_74 = (u32 *)((int)puStack_74 + 1);
                         unaff_r8 = unaff_r8 + g_8c4aa374;
                         iVar5 = iVar5 + 4;
@@ -25200,7 +25201,7 @@ u32 FUN_8c21e4f8(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
                         unaff_r11 = unaff_r11 + g_8c4aa374;
                         a1 = (int)puStack_74 + iStack_60;
                         a2 = unaff_r8;
-                        FUN_8c221414((int)puStack_74 + (int)puStack_64, a1, unaff_r8);
+                        argb_lerp((int)puStack_74 + (int)puStack_64, a1, unaff_r8);
                         iStack_6c = iStack_6c + 1;
                         puVar6 = puVar6 + g_8c4aa374;
                         unaff_r8 = unaff_r8 + g_8c4aa374;
@@ -25215,11 +25216,11 @@ u32 FUN_8c21e4f8(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
                 iVar8 = 0;
                 if (uVar4 != 0) {
                     do {
-                        FUN_8c22158a(iVar8 * 4 + iStack_6c, iVar8 * 4 + (int)puStack_74, unaff_r13);
+                        Vec3_lerp(iVar8 * 4 + iStack_6c, iVar8 * 4 + (int)puStack_74, unaff_r13);
                         a1 = iStack_60 + iVar9;
                         unaff_r13 = unaff_r13 + g_8c4aa374;
                         a2 = unaff_r8;
-                        FUN_8c221414((int)puStack_64 + iVar9, a1, unaff_r8);
+                        argb_lerp((int)puStack_64 + iVar9, a1, unaff_r8);
                         iVar5 = iVar5 + 1;
                         iVar9 = iVar9 + 4;
                         unaff_r8 = unaff_r8 + g_8c4aa374;
@@ -25233,7 +25234,7 @@ u32 FUN_8c21e4f8(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
                 puVar6 = puVar3;
                 if (uVar4 != 0) {
                     do {
-                        FUN_8c22158a((int)puStack_70 * 4 + iStack_6c, (int)puStack_70 * 4 + (int)puStack_74, unaff_r13);
+                        Vec3_lerp((int)puStack_70 * 4 + iStack_6c, (int)puStack_70 * 4 + (int)puStack_74, unaff_r13);
                         unaff_r13 = unaff_r13 + g_8c4aa374;
                         if (cVar16 == '\0') {
                             *unaff_r11 = puVar6[g_8c4aa37c];
@@ -25247,7 +25248,7 @@ u32 FUN_8c21e4f8(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
                         unaff_r11 = unaff_r11 + g_8c4aa374;
                         a1 = iStack_60 + iVar5;
                         a2 = unaff_r8;
-                        FUN_8c221414((int)puStack_64 + iVar5, a1, unaff_r8);
+                        argb_lerp((int)puStack_64 + iVar5, a1, unaff_r8);
                         iVar5 = iVar5 + 4;
                         puStack_68 = (u32 *)((int)puStack_68 + 1);
                         puVar6 = puVar6 + g_8c4aa374;
@@ -25277,7 +25278,7 @@ u32 FUN_8c21e4f8(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
                     unaff_r11 = unaff_r11 + g_8c4aa374;
                     a1 = (int)puStack_74 + iStack_60;
                     a2 = unaff_r8;
-                    FUN_8c221414((int)puStack_74 + (int)puStack_64, a1, unaff_r8);
+                    argb_lerp((int)puStack_74 + (int)puStack_64, a1, unaff_r8);
                     puStack_70 = (u32 *)((int)puStack_70 + 1);
                     unaff_r8 = unaff_r8 + g_8c4aa374;
                     puStack_74 = (u32 *)((int)puStack_74 + 4);
@@ -25293,13 +25294,13 @@ u32 FUN_8c21e4f8(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
             iVar5 = 0;
             if (uVar4 != 0) {
                 do {
-                    FUN_8c22158a(iVar8 * 4 + iStack_6c, iVar8 * 4 + (int)puStack_74, unaff_r13);
+                    Vec3_lerp(iVar8 * 4 + iStack_6c, iVar8 * 4 + (int)puStack_74, unaff_r13);
                     unaff_r13 = unaff_r13 + g_8c4aa374;
                     Vec3_lerp_normalize(iVar8 * 4 + iStack_5c, iVar8 * 4 + (int)puStack_68, unaff_r11);
                     a1 = iStack_60 + iVar5;
                     unaff_r11 = unaff_r11 + g_8c4aa374;
                     a2 = unaff_r8;
-                    FUN_8c221414((int)puStack_64 + iVar5, a1, unaff_r8);
+                    argb_lerp((int)puStack_64 + iVar5, a1, unaff_r8);
                     iVar5 = iVar5 + 4;
                     puStack_70 = (u32 *)((int)puStack_70 + 1);
                     unaff_r8 = unaff_r8 + g_8c4aa374;
@@ -25538,7 +25539,7 @@ u32 FUN_8c21ee94(u32 *a0, u32 *a1, u32 *a2, u32 **a3, u32 ain0) {
                 do {
                     a1 = (u32 *)((int)puStack_5c * 4 + iStack_4c);
                     a2 = unaff_r12;
-                    FUN_8c22158a(puStack_54 + (int)puStack_5c, a1, unaff_r12);
+                    Vec3_lerp(puStack_54 + (int)puStack_5c, a1, unaff_r12);
                     unaff_r12 = unaff_r12 + g_8c4aa374;
                     if (cVar15 == '\0') {
                         *unaff_r11 = puVar6[(int)g_8c4aa37c];
@@ -25587,7 +25588,7 @@ u32 FUN_8c21ee94(u32 *a0, u32 *a1, u32 *a2, u32 **a3, u32 ain0) {
             iVar7 = 0;
             if (uVar4 != 0) {
                 do {
-                    FUN_8c22158a(puStack_54 + iVar7, iVar7 * 4 + iStack_4c, unaff_r12);
+                    Vec3_lerp(puStack_54 + iVar7, iVar7 * 4 + iStack_4c, unaff_r12);
                     unaff_r12 = unaff_r12 + g_8c4aa374;
                     a1 = (u32 *)(iVar7 * 4 + iStack_50);
                     a2 = unaff_r11;
@@ -25885,8 +25886,8 @@ u32 *FUN_8c21f2ae(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                     if (uVar3 != 0) {
                         do {
                             iVar10 = iVar9 * 4;
-                            ain0 = (u32 *)FUN_8c221622(iStack_74 + iVar10, iStack_6c + iVar10, iStack_7c + iVar10,
-                                                       uStack_84 + iVar10, unaff_r13);
+                            ain0 = (u32 *)Vec3_catmull_rom(iStack_74 + iVar10, iStack_6c + iVar10, iStack_7c + iVar10,
+                                                           uStack_84 + iVar10, unaff_r13);
                             iVar5 = iVar5 + 1;
                             unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                             iVar9 = iVar9 + 3;
@@ -25899,8 +25900,8 @@ u32 *FUN_8c21f2ae(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                     if (uVar3 != 0) {
                         do {
                             iVar9 = iVar5 * 4;
-                            FUN_8c221622(iStack_74 + iVar9, iStack_6c + iVar9, iStack_7c + iVar9, uStack_84 + iVar9,
-                                         unaff_r13);
+                            Vec3_catmull_rom(iStack_74 + iVar9, iStack_6c + iVar9, iStack_7c + iVar9, uStack_84 + iVar9,
+                                             unaff_r13);
                             unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                             if (cVar19 == '\0') {
                                 *(u32 *)unaff_r11 = puVar4[(int)g_8c4aa37c];
@@ -25929,8 +25930,8 @@ u32 *FUN_8c21f2ae(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                 if (uVar3 != 0) {
                     do {
                         iVar10 = iVar9 * 4;
-                        FUN_8c221622(iStack_74 + iVar10, iStack_6c + iVar10, iStack_7c + iVar10, uStack_84 + iVar10,
-                                     unaff_r13);
+                        Vec3_catmull_rom(iStack_74 + iVar10, iStack_6c + iVar10, iStack_7c + iVar10, uStack_84 + iVar10,
+                                         unaff_r13);
                         iVar5 = iVar5 + 1;
                         unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                         *unaff_r8 = puStack_80[(int)g_8c4aa380];
@@ -25947,8 +25948,8 @@ u32 *FUN_8c21f2ae(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                 if (uVar3 != 0) {
                     do {
                         iVar9 = iVar5 * 4;
-                        FUN_8c221622(iVar9 + iStack_74, iVar9 + iStack_6c, iVar9 + iStack_7c, iVar9 + uStack_84,
-                                     unaff_r13);
+                        Vec3_catmull_rom(iVar9 + iStack_74, iVar9 + iStack_6c, iVar9 + iStack_7c, iVar9 + uStack_84,
+                                         unaff_r13);
                         unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                         if (cVar19 == '\0') {
                             *(u32 *)unaff_r11 = puVar4[(int)g_8c4aa37c];
@@ -26031,7 +26032,7 @@ u32 *FUN_8c21f2ae(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                     do {
                         iVar11 = iVar9 * 4;
                         iVar10 = uStack_84 + iVar11;
-                        FUN_8c221622(iStack_74 + iVar11, iStack_6c + iVar11, iStack_7c + iVar11, iVar10, unaff_r13);
+                        Vec3_catmull_rom(iStack_74 + iVar11, iStack_6c + iVar11, iStack_7c + iVar11, iVar10, unaff_r13);
                         unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                         ain0 = (u32 *)Vec3_lerp_normalize(uStack_78 + iVar9 * 4, iStack_68 + iVar9 * 4, unaff_r11);
                         iVar5 = iVar5 + 1;
@@ -26047,7 +26048,7 @@ u32 *FUN_8c21f2ae(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                     do {
                         iVar10 = iVar5 * 4;
                         iVar9 = uStack_84 + iVar10;
-                        FUN_8c221622(iStack_74 + iVar10, iStack_6c + iVar10, iStack_7c + iVar10, iVar9, unaff_r13);
+                        Vec3_catmull_rom(iStack_74 + iVar10, iStack_6c + iVar10, iStack_7c + iVar10, iVar9, unaff_r13);
                         unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                         Vec3_lerp_normalize(uStack_78 + iVar5 * 4, iStack_68 + iVar5 * 4, unaff_r11);
                         unaff_r11 = (u64 *)((int)unaff_r11 + g_8c4aa374 * 4);
@@ -26077,7 +26078,7 @@ u32 *FUN_8c21f2ae(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                             unaff_r13[1] = *(u64 *)(puVar4 + g_8c4aa378 + 2);
                         }
                         unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
-                        ain0 = (u32 *)FUN_8c221414(iStack_70 + iVar5, iStack_64 + iVar5, unaff_r8);
+                        ain0 = (u32 *)argb_lerp(iStack_70 + iVar5, iStack_64 + iVar5, unaff_r8);
                         uStack_84 = uStack_84 + 1;
                         unaff_r8 = unaff_r8 + g_8c4aa374;
                         puVar4 = puVar4 + g_8c4aa374;
@@ -26110,7 +26111,7 @@ u32 *FUN_8c21f2ae(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                             unaff_r11[1] = *(u64 *)(puVar4 + (int)g_8c4aa37c + 2);
                         }
                         unaff_r11 = (u64 *)((int)unaff_r11 + g_8c4aa374 * 4);
-                        ain0 = (u32 *)FUN_8c221414(uStack_84 + iStack_70, uStack_84 + iStack_64, unaff_r8);
+                        ain0 = (u32 *)argb_lerp(uStack_84 + iStack_70, uStack_84 + iStack_64, unaff_r8);
                         iStack_7c = iStack_7c + 1;
                         puVar4 = puVar4 + g_8c4aa374;
                         unaff_r8 = unaff_r8 + g_8c4aa374;
@@ -26128,9 +26129,9 @@ u32 *FUN_8c21f2ae(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                     do {
                         iVar11 = iVar5 * 4;
                         iVar10 = uStack_84 + iVar11;
-                        FUN_8c221622(iStack_74 + iVar11, iStack_6c + iVar11, iStack_7c + iVar11, iVar10, unaff_r13);
+                        Vec3_catmull_rom(iStack_74 + iVar11, iStack_6c + iVar11, iStack_7c + iVar11, iVar10, unaff_r13);
                         unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
-                        ain0 = (u32 *)FUN_8c221414(iStack_70 + iVar9, iStack_64 + iVar9, unaff_r8);
+                        ain0 = (u32 *)argb_lerp(iStack_70 + iVar9, iStack_64 + iVar9, unaff_r8);
                         iVar9 = iVar9 + 4;
                         puStack_80 = (u32 *)((int)puStack_80 + 1);
                         unaff_r8 = unaff_r8 + g_8c4aa374;
@@ -26146,7 +26147,7 @@ u32 *FUN_8c21f2ae(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                     do {
                         iVar9 = uStack_78 * 4;
                         iVar10 = iVar9 + uStack_84;
-                        FUN_8c221622(iVar9 + iStack_74, iVar9 + iStack_6c, iVar9 + iStack_7c, iVar10, unaff_r13);
+                        Vec3_catmull_rom(iVar9 + iStack_74, iVar9 + iStack_6c, iVar9 + iStack_7c, iVar10, unaff_r13);
                         unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                         if (cVar19 == '\0') {
                             *(u32 *)unaff_r11 = puVar4[(int)g_8c4aa37c];
@@ -26158,7 +26159,7 @@ u32 *FUN_8c21f2ae(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                             unaff_r11[1] = *(u64 *)(puVar4 + (int)g_8c4aa37c + 2);
                         }
                         unaff_r11 = (u64 *)((int)unaff_r11 + g_8c4aa374 * 4);
-                        ain0 = (u32 *)FUN_8c221414(iStack_70 + iVar5, iStack_64 + iVar5, unaff_r8);
+                        ain0 = (u32 *)argb_lerp(iStack_70 + iVar5, iStack_64 + iVar5, unaff_r8);
                         iVar5 = iVar5 + 4;
                         iStack_68 = iStack_68 + 1;
                         puVar4 = puVar4 + g_8c4aa374;
@@ -26185,7 +26186,7 @@ u32 *FUN_8c21f2ae(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                     unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                     Vec3_lerp_normalize(iStack_7c * 4 + uStack_78, iStack_7c * 4 + iStack_68, unaff_r11);
                     unaff_r11 = (u64 *)((int)unaff_r11 + g_8c4aa374 * 4);
-                    ain0 = (u32 *)FUN_8c221414(uStack_84 + iStack_70, uStack_84 + iStack_64, unaff_r8);
+                    ain0 = (u32 *)argb_lerp(uStack_84 + iStack_70, uStack_84 + iStack_64, unaff_r8);
                     iStack_74 = iStack_74 + 1;
                     unaff_r8 = unaff_r8 + g_8c4aa374;
                     uStack_84 = uStack_84 + 4;
@@ -26205,11 +26206,11 @@ u32 *FUN_8c21f2ae(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                 do {
                     iVar10 = iVar5 * 4;
                     iVar11 = iVar10 + uStack_84;
-                    FUN_8c221622(iVar10 + iStack_74, iVar10 + iStack_6c, iVar10 + iStack_7c, iVar11, unaff_r13);
+                    Vec3_catmull_rom(iVar10 + iStack_74, iVar10 + iStack_6c, iVar10 + iStack_7c, iVar11, unaff_r13);
                     unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                     Vec3_lerp_normalize(iVar5 * 4 + uStack_78, iVar5 * 4 + iStack_68, unaff_r11);
                     unaff_r11 = (u64 *)((int)unaff_r11 + g_8c4aa374 * 4);
-                    ain0 = (u32 *)FUN_8c221414(iStack_70 + iVar9, iStack_64 + iVar9, unaff_r8);
+                    ain0 = (u32 *)argb_lerp(iStack_70 + iVar9, iStack_64 + iVar9, unaff_r8);
                     iVar9 = iVar9 + 4;
                     puStack_60 = (u32 *)((int)puStack_60 + 1);
                     unaff_r8 = unaff_r8 + g_8c4aa374;
@@ -26434,7 +26435,7 @@ u32 *FUN_8c21fca8(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                     puStack_50 = g_8c4aa37c;
                     if (uVar3 != 0) {
                         do {
-                            puStack_50 = (u32 *)FUN_8c22158a(uStack_6c + iVar9 * 4, iStack_64 + iVar9 * 4, unaff_r13);
+                            puStack_50 = (u32 *)Vec3_lerp(uStack_6c + iVar9 * 4, iStack_64 + iVar9 * 4, unaff_r13);
                             iVar5 = iVar5 + 1;
                             unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                             iVar9 = iVar9 + 3;
@@ -26446,7 +26447,7 @@ u32 *FUN_8c21fca8(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                     puStack_50 = g_8c4aa37c;
                     if (uVar3 != 0) {
                         do {
-                            FUN_8c22158a(iVar9 * 4 + uStack_6c, iVar9 * 4 + iStack_64, unaff_r13);
+                            Vec3_lerp(iVar9 * 4 + uStack_6c, iVar9 * 4 + iStack_64, unaff_r13);
                             iVar5 = iVar5 + 1;
                             unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                             if (cVar18 == '\0') {
@@ -26474,7 +26475,7 @@ u32 *FUN_8c21fca8(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                 puStack_50 = g_8c4aa37c;
                 if (uVar3 != 0) {
                     do {
-                        FUN_8c22158a(uStack_6c + iVar9 * 4, iStack_64 + iVar9 * 4, unaff_r13);
+                        Vec3_lerp(uStack_6c + iVar9 * 4, iStack_64 + iVar9 * 4, unaff_r13);
                         iVar5 = iVar5 + 1;
                         unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                         *unaff_r8 = puStack_68[(int)g_8c4aa380];
@@ -26490,7 +26491,7 @@ u32 *FUN_8c21fca8(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                 puStack_50 = g_8c4aa37c;
                 if (uVar3 != 0) {
                     do {
-                        FUN_8c22158a(iVar5 * 4 + uStack_6c, iVar5 * 4 + iStack_64, unaff_r13);
+                        Vec3_lerp(iVar5 * 4 + uStack_6c, iVar5 * 4 + iStack_64, unaff_r13);
                         unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                         if (cVar18 == '\0') {
                             *(u32 *)unaff_r11 = puVar4[(int)g_8c4aa37c];
@@ -26572,7 +26573,7 @@ u32 *FUN_8c21fca8(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                 puStack_50 = g_8c4aa380;
                 if (uVar3 != 0) {
                     do {
-                        FUN_8c22158a(iVar9 * 4 + uStack_6c, iVar9 * 4 + iStack_64, unaff_r13);
+                        Vec3_lerp(iVar9 * 4 + uStack_6c, iVar9 * 4 + iStack_64, unaff_r13);
                         unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                         puStack_50 =
                             (u32 *)Vec3_lerp_normalize(iVar9 * 4 + uStack_60, iVar9 * 4 + iStack_54, unaff_r11);
@@ -26587,7 +26588,7 @@ u32 *FUN_8c21fca8(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                 puStack_50 = g_8c4aa380;
                 if (uVar3 != 0) {
                     do {
-                        FUN_8c22158a(iVar9 * 4 + uStack_6c, iVar9 * 4 + iStack_64, unaff_r13);
+                        Vec3_lerp(iVar9 * 4 + uStack_6c, iVar9 * 4 + iStack_64, unaff_r13);
                         unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                         Vec3_lerp_normalize(iVar9 * 4 + uStack_60, iVar9 * 4 + iStack_54, unaff_r11);
                         iVar5 = iVar5 + 1;
@@ -26617,7 +26618,7 @@ u32 *FUN_8c21fca8(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                             unaff_r13[1] = *(u64 *)(puVar4 + g_8c4aa378 + 2);
                         }
                         unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
-                        puStack_50 = (u32 *)FUN_8c221414(iStack_5c + iVar5, iStack_58 + iVar5, unaff_r8);
+                        puStack_50 = (u32 *)argb_lerp(iStack_5c + iVar5, iStack_58 + iVar5, unaff_r8);
                         uStack_6c = uStack_6c + 1;
                         unaff_r8 = unaff_r8 + g_8c4aa374;
                         iVar5 = iVar5 + 4;
@@ -26649,7 +26650,7 @@ u32 *FUN_8c21fca8(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                             unaff_r11[1] = *(u64 *)(puVar4 + (int)g_8c4aa37c + 2);
                         }
                         unaff_r11 = (u64 *)((int)unaff_r11 + g_8c4aa374 * 4);
-                        puStack_50 = (u32 *)FUN_8c221414(uStack_6c + iStack_5c, uStack_6c + iStack_58, unaff_r8);
+                        puStack_50 = (u32 *)argb_lerp(uStack_6c + iStack_5c, uStack_6c + iStack_58, unaff_r8);
                         iStack_64 = iStack_64 + 1;
                         puVar4 = puVar4 + g_8c4aa374;
                         unaff_r8 = unaff_r8 + g_8c4aa374;
@@ -26665,9 +26666,9 @@ u32 *FUN_8c21fca8(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                 puStack_50 = g_8c4aa37c;
                 if (uVar3 != 0) {
                     do {
-                        FUN_8c22158a(iVar9 * 4 + uStack_6c, iVar9 * 4 + iStack_64, unaff_r13);
+                        Vec3_lerp(iVar9 * 4 + uStack_6c, iVar9 * 4 + iStack_64, unaff_r13);
                         unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
-                        puStack_50 = (u32 *)FUN_8c221414(iStack_5c + iVar10, iStack_58 + iVar10, unaff_r8);
+                        puStack_50 = (u32 *)argb_lerp(iStack_5c + iVar10, iStack_58 + iVar10, unaff_r8);
                         iVar5 = iVar5 + 1;
                         iVar10 = iVar10 + 4;
                         unaff_r8 = unaff_r8 + g_8c4aa374;
@@ -26681,7 +26682,7 @@ u32 *FUN_8c21fca8(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                 puStack_68 = NULL;
                 if (uVar3 != 0) {
                     do {
-                        FUN_8c22158a((int)puStack_68 * 4 + uStack_6c, (int)puStack_68 * 4 + iStack_64, unaff_r13);
+                        Vec3_lerp((int)puStack_68 * 4 + uStack_6c, (int)puStack_68 * 4 + iStack_64, unaff_r13);
                         unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                         if (cVar18 == '\0') {
                             *(u32 *)unaff_r11 = puVar4[(int)g_8c4aa37c];
@@ -26693,7 +26694,7 @@ u32 *FUN_8c21fca8(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                             unaff_r11[1] = *(u64 *)(puVar4 + (int)g_8c4aa37c + 2);
                         }
                         unaff_r11 = (u64 *)((int)unaff_r11 + g_8c4aa374 * 4);
-                        puStack_50 = (u32 *)FUN_8c221414(iStack_5c + iVar5, iStack_58 + iVar5, unaff_r8);
+                        puStack_50 = (u32 *)argb_lerp(iStack_5c + iVar5, iStack_58 + iVar5, unaff_r8);
                         iVar5 = iVar5 + 4;
                         uStack_60 = uStack_60 + 1;
                         puVar4 = puVar4 + g_8c4aa374;
@@ -26720,7 +26721,7 @@ u32 *FUN_8c21fca8(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
                     unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                     Vec3_lerp_normalize(iStack_64 * 4 + uStack_60, iStack_64 * 4 + iStack_54, unaff_r11);
                     unaff_r11 = (u64 *)((int)unaff_r11 + g_8c4aa374 * 4);
-                    puStack_50 = (u32 *)FUN_8c221414(uStack_6c + iStack_5c, uStack_6c + iStack_58, unaff_r8);
+                    puStack_50 = (u32 *)argb_lerp(uStack_6c + iStack_5c, uStack_6c + iStack_58, unaff_r8);
                     puStack_68 = (u32 *)((int)puStack_68 + 1);
                     unaff_r8 = unaff_r8 + g_8c4aa374;
                     uStack_6c = uStack_6c + 4;
@@ -26738,11 +26739,11 @@ u32 *FUN_8c21fca8(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
             iVar9 = 0;
             if (uVar3 != 0) {
                 do {
-                    FUN_8c22158a(iVar5 * 4 + uStack_6c, iVar5 * 4 + iStack_64, unaff_r13);
+                    Vec3_lerp(iVar5 * 4 + uStack_6c, iVar5 * 4 + iStack_64, unaff_r13);
                     unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                     Vec3_lerp_normalize(iVar5 * 4 + uStack_60, iVar5 * 4 + iStack_54, unaff_r11);
                     unaff_r11 = (u64 *)((int)unaff_r11 + g_8c4aa374 * 4);
-                    puStack_50 = (u32 *)FUN_8c221414(iStack_5c + iVar9, iStack_58 + iVar9, unaff_r8);
+                    puStack_50 = (u32 *)argb_lerp(iStack_5c + iVar9, iStack_58 + iVar9, unaff_r8);
                     iVar9 = iVar9 + 4;
                     puStack_68 = (u32 *)((int)puStack_68 + 1);
                     unaff_r8 = unaff_r8 + g_8c4aa374;

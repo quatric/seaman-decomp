@@ -7291,7 +7291,7 @@ LAB_8c205bc8:
         }
         (*(code *)puVar2)(0x7c, uVar6, a2, a3);
         iVar4 = 0x200000;
-        puVar2 = (&FUN_8c20731e);
+        puVar2 = (&memcpy_words);
         iVar7 = 0;
         uStack_1c = 0;
         iVar5 = 0xa5000000;
@@ -8255,11 +8255,12 @@ u32 FUN_8c207300(u32 *a0, u32 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c20731e  0x8c20731e
+ * memcpy_words  0x8c20731e
+ * copies a2 bytes as 32-bit words
  * called by: FUN_8c20b260, FUN_8c20b7a0, FUN_8c20bdc0, FUN_8c211a20, vram64_20a8e0, vram64_20a9c2, vram_20a87c,
  * vram_20a892
  */
-u32 FUN_8c20731e(u32 *a0, u32 *a1, u32 a2) {
+u32 memcpy_words(u32 *a0, u32 *a1, u32 a2) {
     u32 uVar1;
     u32 uVar2;
 
@@ -11196,7 +11197,7 @@ u32 pvr_20a876(int a0) {
  * called by: FUN_8c202a80, ta_fifo_25d028, ta_fifo_25d0a0
  */
 u32 vram_20a87c(int a0, u32 a1, u32 a2) {
-    FUN_8c20731e(a0 + 0xa5000000, a1, a2);
+    memcpy_words(a0 + 0xa5000000, a1, a2);
     return 1;
 }
 
@@ -11205,7 +11206,7 @@ u32 vram_20a87c(int a0, u32 a1, u32 a2) {
  * called by: FUN_8c20d082, FUN_8c20d086
  */
 u32 vram_20a892(u32 a0, int a1, u32 a2) {
-    FUN_8c20731e(a0, a1 + 0xa5000000, a2);
+    memcpy_words(a0, a1 + 0xa5000000, a2);
     return 1;
 }
 
@@ -11242,13 +11243,13 @@ u32 vram64_20a8e0(u32 a0, u32 a1, u32 a2) {
         ar6_00 = a2 & 0x1f;
         if (ar6_00 != 0) {
             ar5_00 = a1 + ar6_01;
-            FUN_8c20731e(a0 + ar6_01 + -0x5c000000, ar5_00, ar6_00);
+            memcpy_words(a0 + ar6_01 + -0x5c000000, ar5_00, ar6_00);
         }
         if (g_8c4a9fdc == 1) {
             FUN_8c203320(g_8c4a9fd8, ar5_00);
         }
     } else {
-        FUN_8c20731e(a0 + 0xa4000000, a1, a2);
+        memcpy_words(a0 + 0xa4000000, a1, a2);
     }
     return 1;
 }
@@ -11259,7 +11260,7 @@ u32 vram64_20a8e0(u32 a0, u32 a1, u32 a2) {
  * FUN_8c20daa0 (+1 more)
  */
 u32 vram64_20a9c2(u32 a0, int a1, u32 a2) {
-    FUN_8c20731e(a0, a1 + -0x5c000000, a2);
+    memcpy_words(a0, a1 + -0x5c000000, a2);
     FUN_8c20a84e(a0, a2);
     return 1;
 }
@@ -11664,7 +11665,7 @@ u32 FUN_8c20b260(u32 a0, u8 *a1, int a2, u32 a3) {
                 _DAT_ff00003c = 0x10;
                 a1 = &g_8c26d3f8;
                 a2 = 4;
-                FUN_8c20731e(0xe0000000, &g_8c26d3f8, 4);
+                memcpy_words(0xe0000000, &g_8c26d3f8, 4);
                 ta_fifo_20b160(g_8c4a9fd0);
             }
         }
@@ -11862,7 +11863,7 @@ u32 FUN_8c20b7a0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
                 ar5_00 = (u32 **)&g_8c26d3f8;
                 *(int *)aiStack_48[uStack_74] = (iVar1 >> 2) << 2;
                 ar6_00 = (u32 **)0x4;
-                FUN_8c20731e(*(u32 *)(iVar5 + g_8c4aa21c), &g_8c26d3f8, 4);
+                memcpy_words(*(u32 *)(iVar5 + g_8c4aa21c), &g_8c26d3f8, 4);
                 *(int *)(iVar5 + g_8c4aa21c) = *(int *)(iVar5 + g_8c4aa21c) + 0x20;
             }
             uStack_74 = uStack_74 + 1;
@@ -11903,10 +11904,10 @@ u32 FUN_8c20b7a0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
             }
             if ((uVar4 & g_8c4aa014) != 0) {
                 puStack_68 = (u32 *)((u32)puStack_68 & 0xf0ffffff | uVar2 << 0x18);
-                FUN_8c20731e(*apuStack_34[uVar2], &puStack_68, 0x20);
+                memcpy_words(*apuStack_34[uVar2], &puStack_68, 0x20);
                 ar6_00 = (u32 **)0x4;
                 ar5_00 = (u32 **)&g_8c26d3f8;
-                FUN_8c20731e(*apuStack_34[uVar2] + 0x20, &g_8c26d3f8, 4);
+                memcpy_words(*apuStack_34[uVar2] + 0x20, &g_8c26d3f8, 4);
                 *(u32 *)aiStack_48[uVar2] = 0x20;
             }
             uVar2 = uVar2 + 1;
@@ -11925,7 +11926,7 @@ u32 FUN_8c20b7a0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
             ar5_00 = (u32 **)&g_8c26d3f8;
             *(int *)aiStack_48[uStack_78] = (iVar1 >> 2) << 2;
             ar6_00 = (u32 **)0x4;
-            FUN_8c20731e(*(u32 *)(iVar5 + g_8c4aa21c), &g_8c26d3f8, 4);
+            memcpy_words(*(u32 *)(iVar5 + g_8c4aa21c), &g_8c26d3f8, 4);
             *(int *)(iVar5 + g_8c4aa21c) = *(int *)(iVar5 + g_8c4aa21c) + 0x20;
             if ((int)uStack_78 < 0) {
                 uVar2 = 1 >> (~uStack_78 & 0x1f) + 1;
@@ -11957,10 +11958,10 @@ u32 FUN_8c20b7a0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
                             *(u32 *)aiStack_48[uVar2] = 0;
                         } else {
                             puStack_68 = (u32 *)((u32)puStack_68 & 0xf0ffffff | uVar2 << 0x18);
-                            FUN_8c20731e(*apuStack_34[uVar2], &puStack_68, 0x20);
+                            memcpy_words(*apuStack_34[uVar2], &puStack_68, 0x20);
                             ar6_00 = (u32 **)0x4;
                             ar5_00 = (u32 **)&g_8c26d3f8;
-                            FUN_8c20731e(*apuStack_34[uVar2] + 0x20, &g_8c26d3f8, 4);
+                            memcpy_words(*apuStack_34[uVar2] + 0x20, &g_8c26d3f8, 4);
                             *(u32 *)aiStack_48[uVar2] = 0x20;
                         }
                         uVar2 = uVar2 + 1;
@@ -11994,7 +11995,7 @@ u32 FUN_8c20b7a0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
                 ar5_00 = (u32 **)&g_8c26d3f8;
                 *(int *)*piVar3 = (iVar1 >> 2) << 2;
                 ar6_00 = (u32 **)0x4;
-                FUN_8c20731e(*(u32 *)(iVar5 + g_8c4aa21c), &g_8c26d3f8, 4);
+                memcpy_words(*(u32 *)(iVar5 + g_8c4aa21c), &g_8c26d3f8, 4);
                 *(int *)(iVar5 + g_8c4aa21c) = *(int *)(iVar5 + g_8c4aa21c) + 0x20;
                 if (*(u32 *)(iVar5 + 0x8c4aa0e0) < *(u32 *)*piVar3) {
                     *(u32 *)(uStack_78 * 4 + 0x8c4aa0e0) = *(u32 *)aiStack_48[uStack_78];
@@ -12027,10 +12028,10 @@ LAB_8c20bae4:
             if ((uVar4 & g_8c4aa014) == 0)
                 goto LAB_8c20bb3e;
             puStack_68 = (u32 *)((u32)puStack_68 & 0xf0ffffff | uVar2 << 0x18);
-            FUN_8c20731e(*apuStack_34[uVar2], &puStack_68, 0x20);
+            memcpy_words(*apuStack_34[uVar2], &puStack_68, 0x20);
             ar6_00 = (u32 **)0x4;
             ar5_00 = (u32 **)&g_8c26d3f8;
-            FUN_8c20731e(*apuStack_34[uVar2] + 0x20, &g_8c26d3f8, 4);
+            memcpy_words(*apuStack_34[uVar2] + 0x20, &g_8c26d3f8, 4);
             *(u32 *)aiStack_48[uVar2] = 0x20;
         }
         uVar2 = uVar2 + 1;
@@ -12043,7 +12044,7 @@ LAB_8c20bb6c:
         puStack_68 = (u32 *)((u32)puStack_68 & 0xf0ffffff | (g_8c4a9fd0 & 7) << 0x18);
         ar5_00 = &puStack_68;
         ar6_00 = (u32 **)0x20;
-        FUN_8c20731e(*(u32 *)(g_8c4aa21c + g_8c4a9fd0 * 4) & 0x3ffffff | 0xe0000000, ar5_00, 0x20);
+        memcpy_words(*(u32 *)(g_8c4aa21c + g_8c4a9fd0 * 4) & 0x3ffffff | 0xe0000000, ar5_00, 0x20);
     }
 LAB_8c20bd36:
     g_8c275710 = 0;
@@ -12080,7 +12081,7 @@ u32 FUN_8c20bdc0(int a0, u32 *a1, u32 a2, u32 a3) {
         _DAT_ff00003c = 0x10;
         uStack_60 = g_8c26d424 & 0xf0ffffff | (g_8c4a9fd0 & 7) << 0x18;
         a2 = 0x20;
-        FUN_8c20731e(*(u32 *)(g_8c4aa21c + g_8c4a9fd0 * 4) & 0x3ffffff | 0xe0000000, puVar7, 0x20);
+        memcpy_words(*(u32 *)(g_8c4aa21c + g_8c4a9fd0 * 4) & 0x3ffffff | 0xe0000000, puVar7, 0x20);
         a1 = puVar7;
     }
     iVar4 = ta_fifo_20b708(a0);
@@ -12137,7 +12138,7 @@ u32 FUN_8c20bdc0(int a0, u32 *a1, u32 a2, u32 a3) {
             if ((uVar6 & g_8c4aa014) != 0) {
                 a2 = 4;
                 puVar7 = (u32 *)&g_8c26d420;
-                FUN_8c20731e(*(u32 *)(iVar4 + g_8c4aa21c), &g_8c26d420, 4);
+                memcpy_words(*(u32 *)(iVar4 + g_8c4aa21c), &g_8c26d420, 4);
                 *(int *)(iVar4 + g_8c4aa21c) = *(int *)(iVar4 + g_8c4aa21c) + 0x20;
                 if (*(u32 *)(&g_8c4aa070 + iVar4) < *puStack_70) {
                     FUN_8c2062c8(2, puVar7, a2, a3);
@@ -12199,7 +12200,7 @@ LAB_8c20c050:
             _DAT_ff00003c = 0x10;
             a2 = 4;
             a1 = (u32 *)&g_8c26d420;
-            FUN_8c20731e(*(u32 *)(g_8c4aa21c + g_8c4a9fd0 * 4) & 0x3ffffff | 0xe0000000, &g_8c26d420, 4);
+            memcpy_words(*(u32 *)(g_8c4aa21c + g_8c4a9fd0 * 4) & 0x3ffffff | 0xe0000000, &g_8c26d420, 4);
             uVar5 = g_8c4a9fd0;
         }
         ta_fifo_20b160(uVar5);
