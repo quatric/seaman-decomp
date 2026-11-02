@@ -2277,3 +2277,23 @@
 8c260afc	wav_decode_pcm16_unaligned	when data is ready, assembles the 16-bit little-endian samples byte by byte into the output channel buffers and hands them on
 8c261058	adx_decode_mono_blocks	decodes a1 ADX blocks from a0 (scale word plus 32 4-bit samples) into a2 with the prediction coefficients s0/s4 and history a3; stops at the end marker
 8c261170	adx_decode_stereo_blocks	decodes a1 interleaved stereo ADX blocks from a0 into a2 (left) and s0 (right) with histories a3 and s4; stops at the end marker
+8c2613aa	sound_out_handle_alloc	takes a free sound output handle of the eight and sets its a0 channels (buffers a1/a2), 44100 Hz rate and 0.1 levels; 0 when none is free
+8c261ae2	adxf_read_sync	starts reading a1 sectors of ADXF handle a0 into a2 and pumps the file servers until the read ends; returns the sectors read
+8c262208	adxf_read_range_start	opens an ADXSTM range for the next a1 sectors of handle a0 into stream a2 and rewinds it (-1 when busy)
+8c262312	ADXF_ReadNw_like	creates a ring buffer on the 32-byte aligned buffer a2 and starts a non-waiting read of a1 sectors of handle a0
+8c26270c	adxf_partition_file_info	finds file a1 of partition a0 and stores its start sector in *a2 and its size in *a3 (-1 both when not found)
+8c262810	adx_lib_init	on the first call clears the ADX library's tables, initialises its servers and installs adx_server on interrupt 0x900; counts the calls
+8c262b04	adx_player_create	takes a free player of the eight, creates its decoder over input stream a0 and a1 output streams a2, and resets its counters
+8c262c80	adx_player_parse_header	peeks up to 0x1000 bytes of the input stream, parses the audio header, notes loop/SPSD data and consumes the header bytes
+8c262f02	adx_player_transfer_decoded	moves the decoded bytes out of the input stream and each channel's samples into its output stream, firing the end callback at the stop point
+8c26325e	stream_handle_alloc	takes a free stream handle of the 0x20 and sets it up for stream a3 with file a0, range a1/a2 and its sector count
+8c2639fa	ADXT_Destroy_like	stops ADXT handle a0, destroys its RNA output, player, stream and ring buffers, and clears the handle
+8c264a42	adxt_check_play_end	marks the stream ended (and stops output unless looping) when the play position or input runs out, padding the outputs with silence when the decoder is done
+8c26501c	adx_decoder_exec_step	runs one ADX decode step: decodes the queued blocks as mono or stereo and marks the step done
+8c2653e0	aica_read_driver_info	reads the sound driver's version and status words from AICA RAM into the driver state
+8c265704	sd_handle_alloc	takes a free handle of the 0x40, fills it from the template and stores it in *a0 (error when none is free)
+8c265ba8	sd_set_table_194_reset	sets the sound driver's second table (+0x194) to a0 with a1 entries, clears its counters and fills each 8-byte entry from the template
+8c266708	sd_slot_alloc	takes a free sound slot of type a1 (eight of types 1 and 2, four of type 3) into *a0
+8c2667cc	sd_slots_init	clears the sound slot table and numbers the type-1, type-2 and type-3 slots
+8c2669f4	sd_load_smlt	loads the "SMLT" multi-unit sound file of handle a0: sets up each unit and DMAs its data into AICA RAM
+8c267058	sd_slot_ch_get_field_02	reads byte +2 of channel a1 of slot a0 from AICA RAM into *a2, adjusted for the slot's stereo mode

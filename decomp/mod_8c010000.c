@@ -7653,9 +7653,9 @@ u32 libgcc_divide_helper_0106dc(u32 a0, u32 a1) {
 /*
  * switch_jump  0x8c010794
  * compiler switch helper: jumps through the table at 0x8c0107f4
- * called by: aica_sound_265704, alt_entry_2359ae, alt_entry_26570c, date_to_rtc_seconds,
- * game_uses_sr_get_imask_c_26bbe2, game_uses_sr_get_imask_c_26bcaa, game_uses_switch_jump_26bb16,
- * game_uses_switch_jump_26bd86 (+44 more)
+ * called by: alt_entry_2359ae, alt_entry_26570c, date_to_rtc_seconds, game_uses_sr_get_imask_c_26bbe2,
+ * game_uses_sr_get_imask_c_26bcaa, game_uses_switch_jump_26bb16, game_uses_switch_jump_26bd86, gfx_2d_polyline (+44
+ * more)
  */
 u32 switch_jump(u32 a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
@@ -11407,8 +11407,8 @@ u32 memcmp(char *a0, char *a1, u32 a2) {
 
 /*
  * memmove  0x8c013ef4
- * called by: CProlog_uses_free_sys_0b96e4, alt_entry_0117da, alt_entry_111cec, alt_entry_11319e, alt_entry_266c54,
- * asr_copy_10a308, asr_copy_10a410, asr_copy_10a4bc (+63 more)
+ * called by: CProlog_uses_free_sys_0b96e4, adx_player_parse_header, alt_entry_0117da, alt_entry_111cec,
+ * alt_entry_11319e, alt_entry_266c54, asr_copy_10a308, asr_copy_10a410 (+63 more)
  */
 u32 *memmove(u32 *a0, u32 *a1, u32 a2) {
     u8 uVar1;
@@ -11529,9 +11529,8 @@ u8 *memmove_bytes(u8 *a0, u8 *a1, u32 a2) {
 
 /*
  * memset  0x8c013ff8
- * called by: ADXF_Close_like, ADXF_LoadPartition, ADXSTM_uses_ADXT_Stop_like_2639fa,
- * ADXSTM_uses_SJRBF_Create_like_263840, ADXT_uses_libgcc_divide_helper_264308, aiff_handle_parse_header,
- * alt_entry_123eae, alt_entry_1f68f6 (+95 more)
+ * called by: ADXF_Close_like, ADXF_LoadPartition, ADXT_Destroy_like, ADXT_uses_libgcc_divide_helper_264308,
+ * adx_lib_init, aiff_handle_parse_header, alt_entry_123eae, alt_entry_1f68f6 (+95 more)
  */
 u8 *memset(u8 *a0, u32 a1, u32 a2) {
     u8 *puVar1;
@@ -23153,7 +23152,7 @@ u32 input_uses_file_slot_open_01f608(u32 *a0, u32 a1, u32 a2, u32 a3) {
     ar4_00 = a0;
     uVar1 = ar6_00;
     file_slot_open(a0, "GRAPHICS", 2, a3);
-    cri_uses_irq_disable_nested_262810(ar4_00, ar5_00, ar6_00, a3, uVar1);
+    adx_lib_init(ar4_00, ar5_00, ar6_00, a3, uVar1);
     *(u8 *)(a0 + 7) = 0;
     return 1;
 }
@@ -23367,7 +23366,7 @@ int CDCGD_uses_ADXF_GetStat_01fab4(int *a0, int *a1, int a2, int a3) {
         a0[5] = 2;
         a0[6] = a0[6] - 0x800;
         iVar2 = a0[4];
-        iVar1 = ADXF_uses_lib_error_printf_262312(*a0, 1, iVar2);
+        iVar1 = ADXF_ReadNw_like(*a0, 1, iVar2);
         if (iVar1 < 0) {
             CDCGD_uses_ADXF_Close_like_02049c(a0, a0[1], iVar2, a3);
             iVar1 = 5;
@@ -23387,7 +23386,7 @@ int CDCGD_uses_ADXF_GetStat_01fab4(int *a0, int *a1, int a2, int a3) {
                     a0[5] = 5;
                 }
                 iVar2 = a0[4] + 0x800;
-                iVar1 = (*(code *)(&ADXF_uses_lib_error_printf_262312))(*a0, uVar3 >> 0xb, iVar2, a3);
+                iVar1 = (*(code *)(&ADXF_ReadNw_like))(*a0, uVar3 >> 0xb, iVar2, a3);
                 if (iVar1 < 0) {
                     CDCGD_uses_ADXF_Close_like_02049c(a0, a0[1], iVar2, a3);
                     iVar1 = 5;

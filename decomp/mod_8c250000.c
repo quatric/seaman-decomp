@@ -24608,7 +24608,7 @@ u32 ret_const_1_25eca4(void) {
 /*
  * cri_clear_table_4b3340  0x8c25eca8
  * clears the 0x100-byte table at 8c4b3340 and its two counters
- * called by: alt_entry_262814, cri_uses_irq_disable_nested_262810
+ * called by: adx_lib_init, alt_entry_262814
  */
 u32 cri_clear_table_4b3340(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -25891,7 +25891,7 @@ u32 cri_update_fields_25fbbe(int a0, u32 unused_a1, int a2) {
 /*
  * audio_decoder_alloc  0x8c25fbd0
  * takes a free decoder handle of the eight, creates its input buffer and stores the callbacks a0..a3; returns 0 when
- * none is free called by: cri_uses_get_field_1c_262b04
+ * none is free called by: adx_player_create
  */
 u32 audio_decoder_alloc(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -26012,7 +26012,7 @@ int adx_handle_parse_header(int a0, u32 a1, u32 a2) {
 /*
  * audio_parse_header_any  0x8c25fdb2
  * parses the header a1 into a0 with the matching reader: ADX (0x8000), SPSD, WAV, AIFF or AU; returns 0 for an unknown
- * format called by: ta_uses_audio_parse_header_any_262c80
+ * format called by: adx_player_parse_header
  */
 u32 audio_parse_header_any(u32 a0, u16 *a1, u32 a2) {
     u32 uVar1;
@@ -26108,7 +26108,7 @@ int cri_update_fields_25fea8(int a0, u32 a1, u32 a2) {
 
 /*
  * get_field_a8_s16  0x8c25fec0
- * called by: cri_uses_get_field_a8_s16_262e10, get_field_a8_s16_wrap, ta_uses_audio_parse_header_any_262c80
+ * called by: ADX_uses_get_field_a8_s16_262e10, adx_player_parse_header, get_field_a8_s16_wrap
  */
 int get_field_a8_s16(int a0) {
     return (int)*(short *)(0xa8 + a0);
@@ -26116,7 +26116,7 @@ int get_field_a8_s16(int a0) {
 
 /*
  * get_field_e_s8  0x8c25feca
- * called by: cri_uses_get_field_18_262f02, get_field_e_s8_wrap
+ * called by: adx_player_transfer_decoded, get_field_e_s8_wrap
  */
 int get_field_e_s8(int a0) {
     return (int)*(char *)(a0 + 0xe);
@@ -26145,7 +26145,7 @@ u32 cri_calc_25fed2(int a0) {
 
 /*
  * get_field_18_25ff16  0x8c25ff16
- * called by: cri_uses_get_field_18_262f02, get_field_18_wrap
+ * called by: adx_player_transfer_decoded, get_field_18_wrap
  */
 u32 get_field_18_25ff16(int a0) {
     return *(u32 *)(a0 + 0x18);
@@ -26161,7 +26161,7 @@ int get_field_24_s16(int a0) {
 
 /*
  * get_field_4_25ff38  0x8c25ff38
- * called by: cri_uses_get_field_4_26304a, cri_uses_get_field_4_26307e
+ * called by: ADX_uses_get_field_4_26304a, ADX_uses_get_field_4_26307e
  */
 u32 get_field_4_25ff38(int a0) {
     return *(u32 *)(a0 + 4);
@@ -26170,7 +26170,7 @@ u32 get_field_4_25ff38(int a0) {
 /*
  * cri_uses_libgcc_divide_helper_25ff3c  0x8c25ff3c
  * area name: in the cri library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
- * called by: cri_uses_get_field_a8_s16_262e10
+ * called by: ADX_uses_get_field_a8_s16_262e10
  */
 u32 cri_uses_libgcc_divide_helper_25ff3c(int a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -26223,7 +26223,7 @@ u32 cri_uses_libgcc_divide_helper_25ff3e(int a0, u32 a1, u32 a2, u32 unused_a3, 
 /*
  * cri_update_fields_25ff8e  0x8c25ff8e
  * area name: in the cri library code range; behaviour name: conditionally writes members
- * called by: cri_uses_get_field_a8_s16_262e10
+ * called by: ADX_uses_get_field_a8_s16_262e10
  */
 u32 cri_update_fields_25ff8e(int a0) {
     u32 in_r0;
@@ -26237,12 +26237,12 @@ u32 cri_update_fields_25ff8e(int a0) {
 /*
  * cri_copy_25ff9c  0x8c25ff9c
  * area name: in the cri library code range; behaviour name: mostly calls copy functions
- * called by: ta_copy_262c66
+ * called by: cri_copy_262c66
  */
 u32 cri_copy_25ff9c(int a0) {
     u32 uVar1;
 
-    uVar1 = vram_copy_264fd4(*(u32 *)(a0 + 8));
+    uVar1 = cri_copy_264fd4(*(u32 *)(a0 + 8));
     *(u32 *)(a0 + 4) = 0;
     return uVar1;
 }
@@ -26250,14 +26250,14 @@ u32 cri_copy_25ff9c(int a0) {
 /*
  * cri_calls_update_fields_25ffb6  0x8c25ffb6
  * area name: in the cri library code range; behaviour name: its callees mostly do: update_fields
- * called by: cri_uses_get_field_18_262f02
+ * called by: adx_player_transfer_decoded
  */
 int cri_calls_update_fields_25ffb6(int a0) {
     int iVar1;
 
     iVar1 = *(int *)(a0 + 4);
     if (iVar1 == 3) {
-        vram_update_fields_264fea(*(u32 *)(a0 + 8));
+        cri_update_fields_264fea(*(u32 *)(a0 + 8));
         iVar1 = (int)0x9c;
         *(u32 *)(iVar1 + a0) = 0;
         *(u32 *)(a0 + 4) = 0;
@@ -26275,7 +26275,7 @@ int alt_entry_25ffba(void) {
 
     iVar1 = *(int *)(unaff_r14 + 4);
     if (iVar1 == 3) {
-        vram_update_fields_264fea(*(u32 *)(unaff_r14 + 8));
+        cri_update_fields_264fea(*(u32 *)(unaff_r14 + 8));
         iVar1 = (int)0x9c;
         *(u32 *)(iVar1 + unaff_r14) = 0;
         *(u32 *)(unaff_r14 + 4) = 0;
@@ -26285,7 +26285,7 @@ int alt_entry_25ffba(void) {
 
 /*
  * get_field_a000a4_25fff0  0x8c25fff0
- * called by: cri_uses_get_field_18_262f02
+ * called by: adx_player_transfer_decoded
  */
 u32 get_field_a000a4_25fff0(int a0) {
     return *(u32 *)(0xa4 + a0);
@@ -26293,7 +26293,7 @@ u32 get_field_a000a4_25fff0(int a0) {
 
 /*
  * get_field_a0_25fff6  0x8c25fff6
- * called by: cri_uses_get_field_18_262f02
+ * called by: adx_player_transfer_decoded
  */
 u32 get_field_a0_25fff6(int a0) {
     return *(u32 *)(0xa0 + a0);

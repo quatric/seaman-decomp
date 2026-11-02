@@ -5137,7 +5137,7 @@ u32 shinobi_test_1f39ac(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * shinobi_calc_1f39f0  0x8c1f39f0
  * area name: in the shinobi library code range; behaviour name: integer arithmetic on its arguments
- * called by: cri_sound_261ae2
+ * called by: adxf_read_sync
  */
 u32 shinobi_calc_1f39f0(u32 a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     u32 uVar1;
@@ -13097,9 +13097,9 @@ u32 ta_fifo_1fa1f4(void) {
 /*
  * irq_add_handler  0x8c1fa244
  * adds callback a1 (with a3, priority a2) to interrupt a0's sorted handler list, installing the vector and enabling the
- * Holly mask bit for the first one called by: alt_entry_262814, cri_uses_irq_disable_nested_262810,
- * gdfs_uses_read_u32_le_1f1a7c, gdfs_uses_read_u32_le_1f1d8c, gdfs_uses_read_u32_le_1f1eaa,
- * ninja_set_event900_callback, shinobi_install_event900, syG2_init (+1 more)
+ * Holly mask bit for the first one called by: adx_lib_init, alt_entry_262814, gdfs_uses_read_u32_le_1f1a7c,
+ * gdfs_uses_read_u32_le_1f1d8c, gdfs_uses_read_u32_le_1f1eaa, ninja_set_event900_callback, shinobi_install_event900,
+ * syG2_init (+1 more)
  */
 u32 irq_add_handler(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;

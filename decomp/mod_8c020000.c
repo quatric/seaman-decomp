@@ -169,7 +169,7 @@ u32 cd_load_open_read(int *a0, int *a1, u32 a2, u32 a3) {
             }
         }
         iVar3 = a1[2];
-        iVar1 = ADXF_uses_lib_error_printf_262312(*a0, iVar1, iVar3);
+        iVar1 = ADXF_ReadNw_like(*a0, iVar1, iVar3);
         if (iVar1 < 0) {
             CDCGD_uses_ADXF_Close_like_02049c(a0, a1, iVar3, a3);
             uVar2 = 0;
@@ -1906,13 +1906,12 @@ u32 game_sound_init(int a0, u32 a1, u32 a2) {
             }
             sd_wait_idle_set_1a8(1, a1, ar6_00, uVar1);
             uVar3 = 0x2d0c4;
-            uVar2 = ADXSTM_uses_SJRBF_Create_like_263840(2, a0 + 0x8c, 0x2d0c4, uVar1);
+            uVar2 = cri_sound_263840(2, a0 + 0x8c, 0x2d0c4, uVar1);
             *(u32 *)(a0 + 0x74) = uVar2;
             set_field_6d_u8(*(u32 *)(a0 + 0x74), 2);
             for (iVar4 = 0; iVar4 < 3; iVar4 = iVar4 + 1) {
                 uVar3 = 0x208c4;
-                uVar2 = (*(code *)(&ADXSTM_uses_SJRBF_Create_like_263840))(2, a0 + iVar4 * 0x208e0 + 0x2d16c, 0x208c4,
-                                                                           uVar1);
+                uVar2 = (*(code *)(&cri_sound_263840))(2, a0 + iVar4 * 0x208e0 + 0x2d16c, 0x208c4, uVar1);
                 *(u32 *)(0x2d154 + a0 + iVar4 * 0x208e0) = uVar2;
                 (*(code *)(&set_field_6d_u8))(*(u32 *)(0x2d154 + a0 + iVar4 * 0x208e0), 1, uVar3, uVar1);
             }
@@ -1974,7 +1973,7 @@ int aica_driver_upload(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
     ar5_00 = 0;
     iVar1 = aica_sound_2655f4(0, 0, 0, a3);
     if (iVar1 == 0) {
-        iVar1 = aica_sound_265704(aiStack_10);
+        iVar1 = sd_handle_alloc(aiStack_10);
         if (iVar1 == 0) {
             a3 = 0xffffffff;
             ar6_00 = 0;
@@ -2023,13 +2022,13 @@ int game_sound_022504(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int aiStack_10[2];
 
     aiStack_10[0] = 0;
-    iVar1 = aica_sound_265704(aiStack_10);
+    iVar1 = sd_handle_alloc(aiStack_10);
     if (iVar1 == 0) {
         a3 = 0xffffffff;
         a2 = 0;
         iVar1 = sd_dma_setup(aiStack_10[0], a1, 0, 0xffffffff, 0);
         if (iVar1 == 0) {
-            iVar1 = aica_sound_2669f4(aiStack_10[0], a1, a2, a3);
+            iVar1 = sd_load_smlt(aiStack_10[0], a1, a2, a3);
         }
     }
     if (aiStack_10[0] != 0) {
