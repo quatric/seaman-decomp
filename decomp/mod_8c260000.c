@@ -3643,7 +3643,7 @@ u32 FUN_8c262e10(int a0, u32 unused_a1, u32 a2, u32 a3) {
         (iVar1 = get_field_18_wrap(a0), iVar1 <= *(int *)(a0 + 0x34))) {
         *(u8 *)(a0 + 1) = 3;
     } else {
-        iVar1 = FUN_8c26316e(a0);
+        iVar1 = get_field_10_of_field_4(a0);
         uVar2 = (**(code **)(**(int **)(a0 + 0xc) + 0x24))(*(int **)(a0 + 0xc), 0, ar6_00, a7);
         if (iVar1 <= (int)(uVar2 >> 1)) {
             FUN_8c25ff3c(uVar3, *(u32 *)(a0 + 0x14), *(u32 *)(a0 + 0x18));
@@ -3833,10 +3833,11 @@ u32 set_field_34_263102(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c263114  0x8c263114
+ * set_fields_48_4c  0x8c263114
+ * stores +0x48, +0x4c
  * called by: FUN_8c2647f4
  */
-u32 FUN_8c263114(int a0, u32 a1, u32 a2) {
+u32 set_fields_48_4c(int a0, u32 a1, u32 a2) {
     *(u32 *)(a0 + 0x48) = a1;
     *(u32 *)(a0 + 0x4c) = a2;
     return 0x4c;
@@ -3884,11 +3885,12 @@ u32 get_field_a8_s16_wrap(int a0) {
 }
 
 /*
- * FUN_8c26314a  0x8c26314a
+ * get_field_14_of_field_4  0x8c26314a
+ * returns +0x14 of the object at +0x4
  * called by: FUN_8c263cd8, FUN_8c263ce4, FUN_8c263dd8, FUN_8c2647f4
  * decompiler: Switch with 1 destination removed at 0x8c263152
  */
-u32 FUN_8c26314a(int a0) {
+u32 get_field_14_of_field_4(int a0) {
     return *(u32 *)(*(int *)(a0 + 4) + 0x14);
 }
 
@@ -3916,11 +3918,12 @@ u32 FUN_8c263162(int a0) {
 }
 
 /*
- * FUN_8c26316e  0x8c26316e
+ * get_field_10_of_field_4  0x8c26316e
+ * returns +0x10 of the object at +0x4
  * called by: FUN_8c262e10, FUN_8c2647f4, FUN_8c264a42
  * decompiler: Switch with 1 destination removed at 0x8c263176
  */
-u32 FUN_8c26316e(int a0) {
+u32 get_field_10_of_field_4(int a0) {
     return *(u32 *)(*(int *)(a0 + 4) + 0x10);
 }
 
@@ -3949,38 +3952,42 @@ u32 get_field_24_s16_wrap(int a0) {
 }
 
 /*
- * FUN_8c2631b6  0x8c2631b6
+ * get_field_28_of_field_4  0x8c2631b6
+ * returns +0x28 of the object at +0x4
  * called by: FUN_8c264614
  * decompiler: Switch with 1 destination removed at 0x8c2631be
  */
-u32 FUN_8c2631b6(int a0) {
+u32 get_field_28_of_field_4(int a0) {
     return *(u32 *)(*(int *)(a0 + 4) + 0x28);
 }
 
 /*
- * FUN_8c2631c2  0x8c2631c2
+ * get_field_2c_of_field_4  0x8c2631c2
+ * returns +0x2c of the object at +0x4
  * called by: FUN_8c264614, FUN_8c2646fe
  * decompiler: Switch with 1 destination removed at 0x8c2631ca
  */
-u32 FUN_8c2631c2(int a0) {
+u32 get_field_2c_of_field_4(int a0) {
     return *(u32 *)(*(int *)(a0 + 4) + 0x2c);
 }
 
 /*
- * FUN_8c2631ce  0x8c2631ce
+ * get_field_30_of_field_4  0x8c2631ce
+ * returns +0x30 of the object at +0x4
  * called by: FUN_8c264614, FUN_8c2647f4
  * decompiler: Switch with 1 destination removed at 0x8c2631d6
  */
-u32 FUN_8c2631ce(int a0) {
+u32 get_field_30_of_field_4(int a0) {
     return *(u32 *)(*(int *)(a0 + 4) + 0x30);
 }
 
 /*
- * FUN_8c2631da  0x8c2631da
+ * get_field_34_of_field_4  0x8c2631da
+ * returns +0x34 of the object at +0x4
  * called by: FUN_8c264614, FUN_8c2647f4
  * decompiler: Switch with 1 destination removed at 0x8c2631e2
  */
-u32 FUN_8c2631da(int a0) {
+u32 get_field_34_of_field_4(int a0) {
     return *(u32 *)(*(int *)(a0 + 4) + 0x34);
 }
 
@@ -4352,10 +4359,11 @@ u32 FUN_8c263534(int a0, int a1) {
 }
 
 /*
- * FUN_8c263574  0x8c263574
+ * set_fields_38_3c  0x8c263574
+ * stores +0x38, +0x3c
  * called by: FUN_8c2647f4
  */
-u32 FUN_8c263574(int a0, u32 a1, u32 a2) {
+u32 set_fields_38_3c(int a0, u32 a1, u32 a2) {
     u32 in_r0;
 
     *(u32 *)(a0 + 0x38) = a1;
@@ -4569,10 +4577,11 @@ u32 FUN_8c263768(int a0, int *a1) {
 }
 
 /*
- * FUN_8c263798  0x8c263798
+ * set_fields_1c_18  0x8c263798
+ * stores +0x1c, +0x18
  * called by: FUN_8c263bc0
  */
-u32 FUN_8c263798(int a0, u32 a1, u32 a2) {
+u32 set_fields_1c_18(int a0, u32 a1, u32 a2) {
     *(u32 *)(a0 + 0x1c) = a1;
     *(u32 *)(a0 + 0x18) = a2;
     return 1;
@@ -4872,7 +4881,7 @@ u32 FUN_8c263bc0(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int ar6_00;
 
     ar6_00 = (int)*(short *)(a0 + 0x3c) << 0xb;
-    ain0 = FUN_8c263798(*(u32 *)(a0 + 8), (int)*(short *)(a0 + 0x3e) << 0xb, ar6_00);
+    ain0 = set_fields_1c_18(*(u32 *)(a0 + 8), (int)*(short *)(a0 + 0x3e) << 0xb, ar6_00);
     ar5_00 = 0x19;
     FUN_8c26357a(*(u32 *)(a0 + 8), 0x19);
     FUN_8c26346e(*(u32 *)(a0 + 8));
@@ -4983,7 +4992,7 @@ u32 FUN_8c263cd8(int a0, int *a1, u32 *a2, u32 a3) {
     } else if (*(char *)(a0 + 1) == '\x05') {
         iVar1 = get_field_18_wrap(*(u32 *)(a0 + 4));
         *a1 = iVar1;
-        uVar2 = FUN_8c26314a(*(u32 *)(a0 + 4));
+        uVar2 = get_field_14_of_field_4(*(u32 *)(a0 + 4));
         *a2 = uVar2;
         uVar2 = FUN_8c263162(*(u32 *)(a0 + 4));
         iVar1 = libgcc_divide_helper_010468(0x10, uVar2);
@@ -5011,7 +5020,7 @@ u32 FUN_8c263ce4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     } else if (*(char *)(unaff_r14 + 1) == '\x05') {
         iVar1 = get_field_18_wrap(*(u32 *)(unaff_r14 + 4));
         *unaff_r13 = iVar1;
-        uVar2 = FUN_8c26314a(*(u32 *)(unaff_r14 + 4));
+        uVar2 = get_field_14_of_field_4(*(u32 *)(unaff_r14 + 4));
         *unaff_r12 = uVar2;
         uVar2 = FUN_8c263162(*(u32 *)(unaff_r14 + 4));
         iVar1 = libgcc_divide_helper_010468(0x10, uVar2);
@@ -5065,7 +5074,7 @@ u32 FUN_8c263dd8(int a0) {
     u32 uVar1;
 
     if ('\x01' < *(char *)(a0 + 1)) {
-        uVar1 = FUN_8c26314a(*(u32 *)(a0 + 4));
+        uVar1 = get_field_14_of_field_4(*(u32 *)(a0 + 4));
         return uVar1;
     }
     return 0;
@@ -5535,10 +5544,10 @@ u32 FUN_8c264614(int a0) {
 
     a4 = *(int **)(a0 + 0x14);
     ar4_01 = *(u32 *)(a0 + 4);
-    ar5_00 = FUN_8c2631b6(ar4_01);
-    uVar1 = FUN_8c2631c2(ar4_01);
-    s4 = FUN_8c2631ce(ar4_01);
-    FUN_8c2631da(ar4_01);
+    ar5_00 = get_field_28_of_field_4(ar4_01);
+    uVar1 = get_field_2c_of_field_4(ar4_01);
+    s4 = get_field_30_of_field_4(ar4_01);
+    get_field_34_of_field_4(ar4_01);
     if ((*(int *)(a0 + 8) == 0) && (*(char *)(a0 + 0x6c) == '\0')) {
         uVar1 = set_field_3c_26311e(*(u32 *)(a0 + 4), 0xffffffff);
     } else {
@@ -5577,7 +5586,7 @@ u32 FUN_8c2646fe(int a0) {
     u32 uVar1;
 
     uVar1 = *(u32 *)(a0 + 8);
-    ain0 = FUN_8c2631c2(*(u32 *)(a0 + 4));
+    ain0 = get_field_2c_of_field_4(*(u32 *)(a0 + 4));
     if (*(char *)(a0 + 0x6c) != '\0') {
         if (ain0 < 0) {
             ain0 = ain0 + 0x7ff;
@@ -5687,7 +5696,7 @@ int FUN_8c2647f4(int a0, u32 a1, int a2, u32 a3) {
             uVar5 = FUN_8c263c64(a0, a1, a2, a3);
             return uVar5;
         }
-        uVar2 = FUN_8c26314a(uVar5);
+        uVar2 = get_field_14_of_field_4(uVar5);
         iVar1 = get_field_24_s16_wrap(uVar5);
         if (iVar1 < 1) {
             iVar3 = libgcc_divide_helper_010468(uVar2, *(u32 *)(a0 + 0x38));
@@ -5697,7 +5706,7 @@ int FUN_8c2647f4(int a0, u32 a1, int a2, u32 a3) {
             iVar3 = iVar3 * 3;
         }
         *(int *)(a0 + 0x48) = iVar3;
-        iVar3 = FUN_8c26316e(uVar5);
+        iVar3 = get_field_10_of_field_4(uVar5);
         iVar3 = iVar3 * 2;
         iVar4 = libgcc_divide_helper_010468(*(int *)(a0 + 0x48) + iVar3, iVar3);
         *(int *)(a0 + 0x48) = iVar4 * iVar3;
@@ -5712,7 +5721,7 @@ int FUN_8c2647f4(int a0, u32 a1, int a2, u32 a3) {
             if (*(char *)(a0 + 2) == '\x02') {
                 *(u32 *)(a0 + 0x50) = 0;
             } else {
-                iVar1 = FUN_8c2631da(uVar5);
+                iVar1 = get_field_34_of_field_4(uVar5);
                 iVar3 = libgcc_divide_helper_010614(iVar1, 0x800);
                 *(int *)(a0 + 0x50) = 0x800 - iVar3;
                 uVar2 = libgcc_divide_helper_010614(*(u32 *)(a0 + 0x50), 0x800);
@@ -5722,18 +5731,18 @@ int FUN_8c2647f4(int a0, u32 a1, int a2, u32 a3) {
                 FUN_8c26357a(*(u32 *)(a0 + 8), uVar2);
                 ar5_02 = FUN_8c2646fe;
                 a2 = a0;
-                FUN_8c263574(*(u32 *)(a0 + 8), FUN_8c2646fe, a0);
+                set_fields_38_3c(*(u32 *)(a0 + 8), FUN_8c2646fe, a0);
             }
-            uVar2 = FUN_8c2631ce(uVar5);
+            uVar2 = get_field_30_of_field_4(uVar5);
             *(u32 *)(a0 + 0x90) = uVar2;
             set_field_3c_26311e(uVar5, uVar2);
             set_field_44_263132(uVar5, 0);
             set_field_40_263126(uVar5, 0);
             ar5_02 = FUN_8c264614;
             a2 = a0;
-            FUN_8c263114(uVar5, FUN_8c264614, a0);
+            set_fields_48_4c(uVar5, FUN_8c264614, a0);
         }
-        iVar3 = FUN_8c26314a(uVar5);
+        iVar3 = get_field_14_of_field_4(uVar5);
         uVar2 = get_field_e_s8_wrap(uVar5);
         ar5_00 = get_field_18_wrap(uVar5);
         ar5_01 = FUN_8c263162(uVar5);
@@ -5782,7 +5791,7 @@ int FUN_8c264a42(int a0, u32 a1, u32 a2, u32 a3) {
     ar4_01 = *(u32 *)(a0 + 0xc);
     iVar2 = FUN_8c269aa8(ar4_01);
     iVar3 = ret_const_7fffffff_2629e8();
-    if (((*(int *)(a0 + 0x48) <= iVar2) || (iVar2 = FUN_8c26316e(ar4_00), iVar3 <= iVar2)) ||
+    if (((*(int *)(a0 + 0x48) <= iVar2) || (iVar2 = get_field_10_of_field_4(ar4_00), iVar3 <= iVar2)) ||
         (iVar2 = get_field_1_s8_262c38(*(u32 *)(a0 + 4), a1), iVar2 == 3)) {
         if (*(char *)(a0 + 0x70) == '\0') {
             if (*(char *)(a0 + 0x72) == '\0') {
@@ -10075,7 +10084,7 @@ int FUN_8c267fe8(u32 a0, u32 a1, int a2, int a3) {
                 *(u32 *)(iVar1 + 0x170) = 0;
             }
             *(u32 *)(a2 + 0x14) = 1;
-            FUN_8c0107a0(0x14, a2, a0);
+            switch_jump_r0(0x14, a2, a0);
             *(int *)(iVar2 + 0x14) = *(int *)(iVar2 + 0x14) + 1;
         }
     }
@@ -10829,7 +10838,7 @@ int FUN_8c268920(u32 a0, u32 a1, u8 *a2, u32 a3) {
         iVar1 = 0;
         if (a1 != 0) {
             do {
-                in_r0 = FUN_8c0107a0(0x1c, *(int *)(g_8c2784c0 + 0x164) + iVar1, a2);
+                in_r0 = switch_jump_r0(0x1c, *(int *)(g_8c2784c0 + 0x164) + iVar1, a2);
                 uVar2 = uVar2 + 1;
                 iVar1 = iVar1 + 0x1c;
             } while (uVar2 < a1);
@@ -10865,7 +10874,7 @@ u32 FUN_8c26892c(u32 a0, u32 unused_a1, u8 *a2, u32 a3) {
         uVar2 = unaff_r13;
         if (unaff_r12 != 0) {
             do {
-                FUN_8c0107a0(0x1c, *(int *)(*unaff_r14 + 0x164) + uVar1, a2);
+                switch_jump_r0(0x1c, *(int *)(*unaff_r14 + 0x164) + uVar1, a2);
                 uVar2 = uVar2 + 1;
                 uVar1 = uVar1 + 0x1c;
             } while (uVar2 < unaff_r12);

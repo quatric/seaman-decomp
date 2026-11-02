@@ -362,7 +362,7 @@ u8 **FUN_8c0611cc(u8 **a0, int *a1, code *a2, char *a3) {
             uVar8 = 0;
             FUN_8c062084(uVar3, 0, 0);
             uVar3 = (**(code **)(*a1 + 0x148))(a1, uVar8, uVar9, a3);
-            ppuVar4 = (u8 **)FUN_8c062054(uVar3, 0, 0);
+            ppuVar4 = (u8 **)set_word_array_a4(uVar3, 0, 0);
             break;
         case (u8 **)0x22:
         case (u8 **)0x26:
@@ -373,7 +373,7 @@ u8 **FUN_8c0611cc(u8 **a0, int *a1, code *a2, char *a3) {
             FUN_8c062084(uVar3, 1, 0);
             uVar8 = (**(code **)(*a1 + 0x148))(a1, uVar8, uVar9, uVar3);
             uVar9 = 0;
-            FUN_8c062054(uVar8, 1, 0);
+            set_word_array_a4(uVar8, 1, 0);
             ppuVar4 = (u8 **)set_field_ac(*(int *)(a2 + 0xc), 4);
             break;
         case (u8 **)0x23:
@@ -397,7 +397,7 @@ u8 **FUN_8c0611cc(u8 **a0, int *a1, code *a2, char *a3) {
                     pcVar11 = FUN_8c062084;
                     FUN_8c062084(uVar3, 0, 0);
                     uVar3 = (**(code **)(*a1 + 0x148))(a1, uVar8, *(code **)(*a1 + 0x148), pcVar11);
-                    FUN_8c062054(uVar3, 0, 0);
+                    set_word_array_a4(uVar3, 0, 0);
                     a0[0x10] = NULL;
                     a0[1] = NULL;
                     a0[2] = (u8 *)0x5;
@@ -427,7 +427,7 @@ u8 **FUN_8c0611cc(u8 **a0, int *a1, code *a2, char *a3) {
                     uVar8 = 1;
                     FUN_8c062084(uVar3, 1, 0);
                     uVar3 = (**(code **)(*a1 + 0x148))(a1, uVar8, uVar9, a3);
-                    FUN_8c062054(uVar3, 1, 0);
+                    set_word_array_a4(uVar3, 1, 0);
                     a0[0x10] = NULL;
                     a0[1] = NULL;
                     a0[2] = (u8 *)0x5;
@@ -465,10 +465,11 @@ int set_field_ac(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c062054  0x8c062054
+ * set_word_array_a4  0x8c062054
+ * +0xa4[a1] = a2
  * called by: FUN_8c0611cc, FUN_8c0620d4
  */
-int FUN_8c062054(int a0, int a1, u32 a2) {
+int set_word_array_a4(int a0, int a1, u32 a2) {
     int iVar1;
 
     iVar1 = 0xa4;
@@ -628,9 +629,9 @@ int FUN_8c0620d4(int a0, int *a1, int a2, u32 a3) {
                         iVar7 = libgcc_divide_helper_01031c(uVar2, 0x1e, ar6_00);
                         if ((iVar7 == 1) && (iVar7 = get_field_4_062878(*(u32 *)(a2 + 0xc)), iVar7 == 1)) {
                             *(u32 *)(a0 + 0x38) = 1;
-                            FUN_8c062054(*(u32 *)(a2 + 0xc), 0, 1);
+                            set_word_array_a4(*(u32 *)(a2 + 0xc), 0, 1);
                             ar6_00 = 0;
-                            FUN_8c062054(*(u32 *)(a2 + 0xc), 1, 0);
+                            set_word_array_a4(*(u32 *)(a2 + 0xc), 1, 0);
                             *(u32 *)(a0 + 4) = 0xd;
                             *(u32 *)(a0 + 8) = 0x5f;
                             *(u32 *)(a0 + 0xc) = 0;
@@ -679,7 +680,7 @@ int FUN_8c0620d4(int a0, int *a1, int a2, u32 a3) {
                 *(u32 *)(a0 + 0x38) = 1;
                 uVar5 = 1;
                 uVar2 = 1;
-                FUN_8c062054(*(u32 *)(a2 + 0xc), 1, 1);
+                set_word_array_a4(*(u32 *)(a2 + 0xc), 1, 1);
                 *(u32 *)(a0 + 4) = 0xd;
                 *(u32 *)(a0 + 8) = 0x5f;
                 *(u32 *)(a0 + 0xc) = 0;
@@ -2918,7 +2919,7 @@ u32 FUN_8c066834(int a0, int *a1, u32 *a2, u32 a3) {
         ar7_00 = auStack_184;
         ar6_01 = auStack_180;
         puVar5 = auStack_17c;
-        FUN_8c03f414(*a2, puVar5, ar6_01, ar7_00);
+        get_vec3_field_50(*a2, puVar5, ar6_01, ar7_00);
         Vec3_set_xyz(auStack_88, puVar5, ar6_01, ar7_00);
         iVar1 = FUN_8c02c518(a2[1], puVar5, ar6_01);
         if (iVar1 == 4) {
@@ -3226,9 +3227,10 @@ u32 FUN_8c067314(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c0673cc  0x8c0673cc
+ * set_fields_0_4_0673cc  0x8c0673cc
+ * stores +0x0, +0x4
  */
-u32 *FUN_8c0673cc(u32 *a0) {
+u32 *set_fields_0_4_0673cc(u32 *a0) {
     *a0 = 0;
     a0[1] = 0;
     return a0;
@@ -5468,7 +5470,7 @@ u32 FUN_8c069c24(int *a0, int a1, int a2, u32 a3) {
         a0[3] = iVar8;
         ar7_00 = a0 + 0xe;
         ar6_00 = a0 + 0xd;
-        FUN_8c03f414(unaff_r8, a0 + 0xc, ar6_00, ar7_00);
+        get_vec3_field_50(unaff_r8, a0 + 0xc, ar6_00, ar7_00);
         if ((iVar8 < 9) && (-1 < iVar8)) {
             uVar2 = (*(code *)(&(&DATA_8c06a404))[iVar8])();
             return uVar2;
@@ -8496,13 +8498,13 @@ u32 FUN_8c06d8e4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     vec_new_array(0x8c280964, clear_field_0_wrap_015bc8, free_if_nonnull_wrap_03a3dc, 4, 0xd);
     global_list_push(0, destroy_array_8c280964, 0x8c280958, uVar1);
     uVar1 = 8;
-    vec_new_array(0x8c2809b8, FUN_8c0673cc, free_if_nonnull_wrap_0673dc, 8, 7);
+    vec_new_array(0x8c2809b8, set_fields_0_4_0673cc, free_if_nonnull_wrap_0673dc, 8, 7);
     global_list_push(0, destroy_array_8c2809b8, 0x8c2809ac, uVar1);
     uVar1 = 8;
-    vec_new_array(0x8c2809fc, FUN_8c0673cc, free_if_nonnull_wrap_0673dc, 8, 6);
+    vec_new_array(0x8c2809fc, set_fields_0_4_0673cc, free_if_nonnull_wrap_0673dc, 8, 6);
     global_list_push(0, destroy_array_8c2809fc, 0x8c2809f0, uVar1);
     uVar4 = 8;
-    vec_new_array(0x8c280a38, FUN_8c0673cc, free_if_nonnull_wrap_0673dc, 8, 6);
+    vec_new_array(0x8c280a38, set_fields_0_4_0673cc, free_if_nonnull_wrap_0673dc, 8, 6);
     uVar1 = 0x8c280a2c;
     global_list_push(0, destroy_array_8c280a38, 0x8c280a2c, uVar4);
     Vec3_ctor_xyz(auStack_14, Vec3_ctor_xyz, uVar1, uVar4);
@@ -9461,7 +9463,7 @@ code *FUN_8c06f93c(int a0, u32 *a1, u32 unused_a2, code *a3) {
         pcVar7 = (code *)FUN_8c07edac(a0, *(u32 *)a1[1], a1[6], a3);
         break;
     case 7:
-        FUN_8c031b58(a0 + 0xb0, 0xb0, puVar5);
+        reset_fields_2c_6c(a0 + 0xb0, 0xb0, puVar5);
         uVar1 = 0xb0;
         a3 = CAnimBody_AdvanceFrame_wrapper;
         iVar2 = CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, 0xb0, puVar5, CAnimBody_AdvanceFrame_wrapper);
@@ -9560,7 +9562,7 @@ code *FUN_8c06f93c(int a0, u32 *a1, u32 unused_a2, code *a3) {
             return (code *)2;
         }
         get_vec3_field_30(iVar2, auStack_30, &fStack_2c, &fStack_28);
-        FUN_8c03f414(iVar2, auStack_3c, auStack_38, auStack_34);
+        get_vec3_field_50(iVar2, auStack_3c, auStack_38, auStack_34);
         ar7_01 = &uStack_158;
         ar6_00 = &uStack_158;
         ar5_00 = &uStack_158;

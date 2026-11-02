@@ -1182,7 +1182,7 @@ int FUN_8c2218f4(int a0) {
     u8 auStack_20[32];
 
     puVar1 = auStack_20;
-    FUN_8c0107a0(0x1c, auStack_20, &g_8c26d7e8);
+    switch_jump_r0(0x1c, auStack_20, &g_8c26d7e8);
     g_8c4c0ed0 = *(u32 *)(puVar1 + a0 * 4);
     return a0 * 4;
 }
@@ -1194,7 +1194,7 @@ int FUN_8c2218f4(int a0) {
 u32 FUN_8c221916(int a0, int a1) {
     u32 auStack_20[8];
 
-    FUN_8c0107a0(0x1c, auStack_20, &g_8c26d804);
+    switch_jump_r0(0x1c, auStack_20, &g_8c26d804);
     if (a1 == 0) {
         g_8c4c0ed0 = g_8c4c0ed0 & ~auStack_20[a0];
     } else {

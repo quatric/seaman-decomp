@@ -5524,7 +5524,7 @@ LAB_8c04f31c:
             uVar7 = get_field_6c_028cc4(a1, a2);
             set_vec3_field_30(uVar7, a2, pcVar9);
             uVar7 = get_field_6c_028cc4(a1, a2);
-            FUN_8c038a10(uVar7);
+            set_fields_5c_60_64(uVar7);
             uVar7 = 0xb0;
             iVar1 = CAnimBody_AdvanceFrame_033b98(a0 + 0xb0, 0xb0, pcVar9, pcVar5);
             if (iVar1 == 1) {

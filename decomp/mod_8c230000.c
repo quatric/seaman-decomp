@@ -7266,7 +7266,7 @@ u32 FUN_8c2336e8(double *a0, double *a1) {
                 }
                 if (&iStack_184 <= pdStack_1d4)
                     break;
-                FUN_8c0107a0(0x14, aiStack_194, &g_8c26d940);
+                switch_jump_r0(0x14, aiStack_194, &g_8c26d940);
                 iVar3 = *(int *)pdStack_1d4;
                 pdVar10 = (double *)((int)adStack_c0 + iVar3 * 4 + iVar2 + 0xc0);
                 piVar6 = (int *)((int)adStack_c0 + *(int *)((int)pdStack_1d4 + 4) * 4 + iVar2 + 0xc0);
@@ -11937,7 +11937,7 @@ u32 FUN_8c23782c(u32 *a0) {
 
     if ((a0[4] & 2) == 0) {
         iVar2 = FUN_8c25a914(0, a0 + 5);
-        puVar1 = (&FUN_8c25a1ee);
+        puVar1 = (&tex_is_palettized);
         if (iVar2 < 0) {
             *(short *)((int)a0 + 0x42) = -(short)iVar2;
             return 0xffffffff;
@@ -11976,7 +11976,7 @@ u32 FUN_8c237830(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
             return 0xffffffff;
         }
         *(u16 *)((int)unaff_r14 + 0x42) = 0;
-        iVar1 = FUN_8c25a1ee((u32)unaff_r14[6] >> 0x10 & 0xff00);
+        iVar1 = tex_is_palettized((u32)unaff_r14[6] >> 0x10 & 0xff00);
         if (iVar1 == 0) {
             *(short *)(unaff_r14 + 0x10) = *(short *)(unaff_r14 + 0x10) + 1;
             unaff_r14[4] = unaff_r14[4] | 2;
@@ -12595,7 +12595,7 @@ u32 FUN_8c23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                 g_8c277b18 = g_8c277b18 - 1;
             }
             piStack_3c = (int *)g_8c277b18;
-            iVar4 = FUN_8c25a1ee(uStack_28 & 0xff00);
+            iVar4 = tex_is_palettized(uStack_28 & 0xff00);
             if (iVar4 == 1) {
                 uVar9 = (u32)ar4_01[2] >> 0x1a;
             }
@@ -12603,7 +12603,7 @@ u32 FUN_8c23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
             iVar1 = 2;
             goto LAB_8c238a34;
         }
-        iVar4 = FUN_8c25a1ee(uStack_28 & 0xff00);
+        iVar4 = tex_is_palettized(uStack_28 & 0xff00);
         piVar7 = piStack_3c;
         iStack_38 = FUN_8c25a536(g_8c277b08, g_8c277b0c, piStack_3c);
         if (iVar4 == 1) {
@@ -13415,13 +13415,13 @@ u32 FUN_8c2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
                 g_8c277b18 = g_8c277b18 - 1;
             }
             uVar3 = g_8c277b18;
-            iVar5 = FUN_8c25a1ee(uStack_28 & 0xff00);
+            iVar5 = tex_is_palettized(uStack_28 & 0xff00);
             iStack_38 = -1;
         LAB_8c238a2e:
             iVar1 = 2;
             goto LAB_8c238a34;
         }
-        iVar5 = FUN_8c25a1ee(uStack_28 & 0xff00);
+        iVar5 = tex_is_palettized(uStack_28 & 0xff00);
         uVar2 = in_stack_ffffffc4;
         iStack_38 = FUN_8c25a536(g_8c277b08, g_8c277b0c, in_stack_ffffffc4);
         uVar3 = uVar2;

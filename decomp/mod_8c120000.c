@@ -3665,7 +3665,7 @@ int FUN_8c12381c(int a0) {
     if ((*(short *)(a0 + 0x4b8) != 0) && (iVar1 = *(int *)(a0 + 0x4cc), iVar1 == 1)) {
         *(u32 *)(a0 + 0x4cc) = 0;
         if (*(short *)(a0 + 0x4c0) == 0) {
-            iVar1 = FUN_8c013adc((u32) * (u16 *)(a0 + 0x4b8) - (u32) * (u16 *)(a0 + 0x4ba));
+            iVar1 = abs((u32) * (u16 *)(a0 + 0x4b8) - (u32) * (u16 *)(a0 + 0x4ba));
             if ((int)((int)((float)*(u16 *)(a0 + 0x4ba) * 0.01) & 0xffffU) < iVar1) {
                 *(u16 *)(a0 + 0x4b4) = 0;
             }
@@ -3700,8 +3700,8 @@ int FUN_8c123822(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
         iVar1 = (int)0x4cc;
         *(u32 *)(iVar1 + unaff_r14) = 0;
         if (*(short *)(iVar1 + -0xc + unaff_r14) == 0) {
-            iVar1 = (*(code *)(&FUN_8c013adc))(
-                (u32) * (u16 *)(0x4b8 + unaff_r14) - (u32) * (u16 *)(0x4b8 + 2 + unaff_r14), a1, a2, a3);
+            iVar1 = (*(code *)(&abs))((u32) * (u16 *)(0x4b8 + unaff_r14) - (u32) * (u16 *)(0x4b8 + 2 + unaff_r14), a1,
+                                      a2, a3);
             dVar2 = (double)CONCAT44(0x3c23d70a, (float)*(u16 *)(0x4ba + unaff_r14));
             if ((char)((((u32)in_FPSCR_CAUSE << 0xc | (u32)in_FPSCR_DN << 0x12 | (u32)in_FPSCR_PR << 0x13) &
                         0xffe7ffff & 0x80000) >>

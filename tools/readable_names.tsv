@@ -173,3 +173,22 @@
 8c0507a4	get_vec3_field_30	copies x, y, z at +0x30 to three out pointers
 8c031c64	timer_start_24	+0x24 = fr4, +0x44 = 1
 8c0ba34c	set_2_words	a0[0] = a1, a0[1] = a2
+8c01f520	identity	returns its first argument
+8c1f1714	read_u32_le	little-endian 32-bit value at a0 (any alignment)
+8c25b10c	write_u32_le	stores a0 little-endian at a1 (any alignment)
+8c200bc4	bcd_to_int	two packed BCD digits to an integer
+8c1f15a4	bcd_to_int_s8	two packed BCD digits (signed char) to an integer
+8c013adc	abs		1
+8c1f2a48	toupper		1
+8c08a9b8	Vec3_set_one	sets x, y, z to 1.0
+8c1026ec	clear_2_words	a0[0..1] = 0
+8c0fa5f0	format_int_at_14	sprintf(a0 + 0x14, "%d", a1)
+8c03f414	get_vec3_field_50	copies x, y, z at +0x50 to three out pointers
+8c03539c	copy15_out	copies the 15 bytes at +0xc to a1
+8c035338	copy15_in_normalize	copies 15 bytes from a1 to +0xc, turning values 2, 3, 4 and 6 into 1
+8c25a1ee	tex_is_palettized	1 for the palettised texture formats 0x500..0x800 (4- and 8-bit, with and without mipmaps)
+8c062054	set_word_array_a4	+0xa4[a1] = a2
+8c02bd70	set_u16_array_22	+0x22[a1] = a2 (16-bit)
+8c031b58	reset_fields_2c_6c	sets +0x2c and +0x6c to -1
+8c0107a0	switch_jump_r0	compiler switch helper: jumps through the table at 0x8c0107f4 indexed by r0
+8c031588	get_field_4_of_field_0	(*a0)->+4

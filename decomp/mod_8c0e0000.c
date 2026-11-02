@@ -259,7 +259,7 @@ u32 FUN_8c0e057c(u32 a0, u32 a1, u32 a2, u32 a3) {
     (**(code **)(*(int *)(a4 + 8) + 0x30))(a4, a1, uVar1, a3);
     (**(code **)(*(int *)(a4 + 8) + 0x2c))(a4, a2, uVar1, a3);
     set_vec3_field_30(a4, a2, uVar1);
-    FUN_8c078fb8(a4);
+    set_fields_50_54_58(a4);
     uVar1 = FUN_8c0df998(a0, a4, uVar1, a3);
     return uVar1;
 }
@@ -719,7 +719,7 @@ u32 FUN_8c0e0f48(int *a0, u32 a1, float *a2, float *a3) {
     ar5_00 = a0 + 0x8bad;
     iVar1 = FUN_8c0d3d6c(a0 + 0x42b, ar5_00, a2, a3);
     if (iVar1 == 0) {
-        FUN_8c0e1320(a0 + 0x4edc);
+        set_fields_14_18(a0 + 0x4edc);
     } else {
         set_field_18_to_1(a0 + 0x4edc);
         FUN_8c0d568c(a0 + 0x42b);
@@ -989,10 +989,11 @@ u32 get_field_14_0e1318(int a0) {
 }
 
 /*
- * FUN_8c0e1320  0x8c0e1320
+ * set_fields_14_18  0x8c0e1320
+ * stores +0x14, +0x18
  * called by: FUN_8c0e0f48
  */
-u32 FUN_8c0e1320(int a0) {
+u32 set_fields_14_18(int a0) {
     *(u32 *)(a0 + 0x14) = 0;
     *(u32 *)(a0 + 0x18) = 0;
     return 0;
@@ -1464,7 +1465,7 @@ u32 FUN_8c0e1f90(int a0, u32 *a1, u8 *a2, u32 a3) {
         a2 = auStack_30;
         puVar6 = &uStack_18;
         FUN_8c256294(0, puVar6, a2);
-        FUN_8c0c90d0(a1);
+        set_fields_12c_130(a1);
     }
     FUN_8c0d723c(a0 + 0x22d48);
     if ((*(int *)(a0 + 0x9d8) == 0) || (*(int *)(a0 + 0x9d8) == a0 + 0x22d48)) {
@@ -3111,8 +3112,8 @@ u32 *Class_12b758_ctor(u32 *a0) {
     Vec3_ctor_zero(a0 + 0x43f, pcVar1, pcVar2);
     uVar3 = 0xc;
     pcVar2 = free_if_nonnull_wrap_0d6ef8;
-    pcVar1 = FUN_8c0d6ee0;
-    vec_new_array(a0 + 0x443, FUN_8c0d6ee0, free_if_nonnull_wrap_0d6ef8, 0xc, 100);
+    pcVar1 = set_fields_0_4_8_0d6ee0;
+    vec_new_array(a0 + 0x443, set_fields_0_4_8_0d6ee0, free_if_nonnull_wrap_0d6ef8, 0xc, 100);
     FUN_8c0d5e9c(a0 + 0x56f, pcVar1, pcVar2);
     uVar3 = 0x18;
     pcVar2 = free_if_nonnull_wrap_0cffc8;
@@ -3685,7 +3686,7 @@ u32 FUN_8c0e5238(int *a0, u32 *a1, u32 a2, u32 a3) {
     cVar12 = '\0';
     uVar7 = 0;
     uVar6 = 0x80;
-    uVar1 = FUN_8c01f520(0x8c3dd7dc, a1, a2, a3);
+    uVar1 = identity(0x8c3dd7dc, a1, a2, a3);
     ar6_00 = a2 & 0xff;
     pure_virtual_stub_wrap_0daf3c();
     ar5_00 = g_8c431a58;
@@ -3705,7 +3706,7 @@ u32 FUN_8c0e5238(int *a0, u32 *a1, u32 a2, u32 a3) {
                     iVar2 = (**(code **)(*(int *)(a0[0x275] + 8) + 200))(a0[0x275], ar5_00, ar6_00, a3);
                     if (iVar2 == 1) {
                         uVar1 = (**(code **)(*a0 + 0x58))(a0, ar5_00, ar6_00, a3);
-                        FUN_8c0e59c0(a1, uVar1);
+                        set_fields_4_0_on_field_d8(a1, uVar1);
                         ar5_00 = (u32 *)0x1;
                         set_field_128_0e4330(a1, 1);
                     } else {
@@ -3727,7 +3728,7 @@ u32 FUN_8c0e5238(int *a0, u32 *a1, u32 a2, u32 a3) {
                 iVar2 = (**(code **)(*(int *)(a0[0x2b2] + 8) + 200))(a0[0x2b2], ar5_00, ar6_00, a3);
                 if ((iVar2 == 1) && (a0[0x275] == a0[0x2b2])) {
                     (**(code **)(*a0 + 0x58))(a0, ar5_00, ar6_00, a3);
-                    FUN_8c0e59c0(a1, a0[0x2b2]);
+                    set_fields_4_0_on_field_d8(a1, a0[0x2b2]);
                     set_field_128_0e4330(a1, 1);
                     ar5_00 = a1;
                     FUN_8c0dca2c(a0, a1, ar6_00, a3);
@@ -3892,11 +3893,12 @@ u32 FUN_8c0e5998(int a0) {
 }
 
 /*
- * FUN_8c0e59c0  0x8c0e59c0
+ * set_fields_4_0_on_field_d8  0x8c0e59c0
+ * calls set_fields_4_0_0ffb84 on the member at +0xd8
  * called by: FUN_8c0e5238, FUN_8c0e8280
  */
-u32 FUN_8c0e59c0(int a0, u32 a1) {
-    FUN_8c0ffb84(a0 + 0xd8, a1);
+u32 set_fields_4_0_on_field_d8(int a0, u32 a1) {
+    set_fields_4_0_0ffb84(a0 + 0xd8, a1);
     return 1;
 }
 
@@ -4147,7 +4149,7 @@ u32 *Class_12b580_ctor(u32 *a0) {
     clear_field_0_wrap_015ab8(a0 + 0x432);
     Vec3_ctor_zero(a0 + 0x433, ar5_00, uVar1);
     FUN_8c0d7f18(a0 + 0x437, ar5_00, uVar1);
-    vec_new_array(a0 + 0x1fd2, FUN_8c0d6ee0, free_if_nonnull_wrap_0d6ef8, 0xc, 100);
+    vec_new_array(a0 + 0x1fd2, set_fields_0_4_8_0d6ee0, free_if_nonnull_wrap_0d6ef8, 0xc, 100);
     uVar1 = 0x18;
     ar6_00 = free_if_nonnull_wrap_0cffc8;
     ar5_01 = FUN_8c02145c;
@@ -4984,7 +4986,7 @@ u32 *Class_12b3b8_ctor(u32 *a0) {
     uVar2 = 0x20;
     ar6_00 = FUN_8c0d6f68;
     vec_new_array(a0 + 0x29, FUN_8c0d6f28, FUN_8c0d6f68, 0x20, 0xc);
-    FUN_8c016690(a0 + 0x89);
+    set_fields_0_2_wrap(a0 + 0x89);
     FUN_8c0191e4(a0 + 0x8a);
     FUN_8c01a0cc(a0 + 0xaa);
     uVar1 = 0;
@@ -5261,7 +5263,7 @@ u32 FUN_8c0e7a78(int a0, u32 a1, u32 a2, u32 a3) {
             if (*piVar4 != 0) {
                 a3 = 4;
                 a2 = 0x8c437c48;
-                FUN_8c016318(auStack_74, &uStack_50, 0x8c437c48, 4);
+                set_fields_0_4_c(auStack_74, &uStack_50, 0x8c437c48, 4);
                 FUN_8c016324(auStack_74, &uStack_60, a2);
                 uVar2 = 0x80000060;
                 set_field_10(auStack_74, 0x80000060);
@@ -5485,7 +5487,7 @@ u32 FUN_8c0e8280(int a0, u32 a1, u32 a2, u32 a3) {
     uStack_24 = 0;
     uVar2 = a1;
     Vec3_ctor_zero(auStack_20, a1, a2);
-    ar4_00 = FUN_8c01f520(0x8c3dd7dc, uVar2, a2, a3);
+    ar4_00 = identity(0x8c3dd7dc, uVar2, a2, a3);
     iStack_34 = get_field_4_on_field_d8(a1, uVar2, a2);
     if (iStack_34 == 0) {
         iStack_38 = FUN_8c100898(a1);
@@ -5523,11 +5525,11 @@ u32 FUN_8c0e8280(int a0, u32 a1, u32 a2, u32 a3) {
                     FUN_8c0c51c4(a1);
                     FUN_8c0e84c8(auStack_60, a0 + 0x224);
                     uStack_50 = FUN_8c0e81f0(a0, auStack_60);
-                    FUN_8c0e59c0(a1, uStack_50);
+                    set_fields_4_0_on_field_d8(a1, uStack_50);
                     free_if_nonnull_wrap_016660(auStack_60, 0xffffffff, ar6_00, a3);
                     uVar2 = 3;
                     set_field_128_0e4330(a1, 3);
-                    FUN_8c0c90d0(a1);
+                    set_fields_12c_130(a1);
                 }
             }
         }
@@ -5740,7 +5742,7 @@ u32 FUN_8c0e89c4(u32 unused_a0, double *a1, u32 unused_a2, u32 a3, u32 s0) {
     cVar7 = '\0';
     cVar6 = '\0';
     ar6_00 = 0xffffffff;
-    FUN_8c10273c(&uStack_10, 0xffffffff, 0xffffffff);
+    set_fields_0_2(&uStack_10, 0xffffffff, 0xffffffff);
     fVar2 = g_8c1264b8;
     fVar4 = _UNK_8c1264bc;
     if (cVar7 == '\0') {
@@ -5905,7 +5907,7 @@ u32 FUN_8c0e8ae0(int a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 s0) {
     u16 uStack_1a;
 
     ar6_00 = 0xffffffff;
-    FUN_8c10273c(&uStack_1c, 0xffffffff, 0xffffffff);
+    set_fields_0_2(&uStack_1c, 0xffffffff, 0xffffffff);
     iVar1 = 0;
     do {
         if (2 < iVar1) {
@@ -6206,12 +6208,13 @@ u32 *get_ptr_8c0e8ca0(void) {
 }
 
 /*
- * FUN_8c0e8ca4  0x8c0e8ca4
+ * set_fields_10_14_on_field_22704  0x8c0e8ca4
+ * calls set_fields_10_14_0d98d4 on the member at +0x22704
  */
-u32 FUN_8c0e8ca4(int a0) {
+u32 set_fields_10_14_on_field_22704(int a0) {
     u32 uVar1;
 
-    uVar1 = FUN_8c0d98d4(a0 + 0x22704);
+    uVar1 = set_fields_10_14_0d98d4(a0 + 0x22704);
     return uVar1;
 }
 

@@ -517,6 +517,11 @@ def shape_name(f, cur):
             k = int(m.group(2), 0) // 4
             return ('vcall_field_%s_slot%d' % (hexoff(m.group(1)), k) if m.group(1) else 'vcall_slot%d' % k), \
                 'calls virtual slot %d of the object %s' % (k, 'at +0x%s' % hexoff(m.group(1)) if m.group(1) else 'passed in')
+        m = re.fullmatch(r'(?:\(\w+\))?\*\(\w[\w ]*? \*\)\((?:\*\(\w+ \*\)\((?:ar4 \+ (%s)|(%s) \+ ar4)\) \+ (%s)|(%s) \+ \*\(\w+ \*\)\((?:ar4 \+ (%s)|(%s) \+ ar4)\))\)'
+                         % ((NUM,) * 6), rv)
+        if m:
+            g = m.groups(); outer = g[0] or g[1] or g[4] or g[5]; inner = g[2] or g[3]
+            return 'get_field_%s_of_field_%s' % (hexoff(inner), hexoff(outer)), 'returns +0x%s of the object at +0x%s' % (hexoff(inner), hexoff(outer))
     if len(body) == 1 and junk:
         s = body[0]
         m = re.fullmatch(r'(.+?) = (?:\(\w+\))?(ar5|%s|in_fr4);' % NUM, s)
@@ -532,6 +537,17 @@ def shape_name(f, cur):
             return ('%s_field_%s%s' % (op, o, t) if op in ('inc', 'dec') else '%s_%s%s_%s' % (op, o, t, m.group(4).replace('0x', ''))), None
         m = re.fullmatch(r'_?DAT_(8c[0-9a-f]{6}) = (?:\(\w+\))?ar4;', s)
         if m: return 'set_g_%s' % m.group(1), 'stores its argument in the global at 0x%s' % m.group(1)
+    # two or three member stores from arguments or constants
+    if 2 <= len(body) <= 3 and junk:
+        offs = []
+        for s in body:
+            m = re.fullmatch(r'(.+?) = (?:\(\w+\))?(ar[5-7]|in_fr\d+|%s);' % NUM, s)
+            fl = field(m.group(1), f) if m else None
+            if not fl: break
+            offs.append(fl[0])
+        else:
+            if len(set(offs)) == len(offs):
+                return 'set_fields_' + '_'.join(offs), 'stores %s' % ', '.join('+0x' + o for o in offs)
     # forwarders: the whole body is one call to a named function
     call = None
     if not body and rv: call, res = rv, None

@@ -515,10 +515,11 @@ u32 FUN_8c030d2c(int a0, u8 *a1) {
 }
 
 /*
- * FUN_8c030d44  0x8c030d44
+ * set_fields_0_1_4  0x8c030d44
+ * stores +0x0, +0x1, +0x4
  * called by: FUN_8c02ff40
  */
-u8 *FUN_8c030d44(u8 *a0) {
+u8 *set_fields_0_1_4(u8 *a0) {
     *a0 = 0;
     a0[1] = 0;
     *(u32 *)(a0 + 4) = 0;
@@ -894,7 +895,7 @@ u32 get_motion_data(int a0, int a1, u32 a2, u32 a3) {
         (*(code *)(&sprintf))(auStack_24, "%d", a1);
         (*(code *)(&report_error_message))("Check This Motion Data ->", auStack_24, 1, 2, 5);
     }
-    uVar1 = FUN_8c031588(*(int *)(a0 + 0x14) + a1 * 4);
+    uVar1 = get_field_4_of_field_0(*(int *)(a0 + 0x14) + a1 * 4);
     return uVar1;
 }
 
@@ -921,16 +922,17 @@ u32 CAnimBody_CheckThisMotionData(int a0, u8 *a1, u32 a2, u32 a3) {
         ar5_00 = auStack_1c;
         (*(code *)(&report_error_message))("Check This Motion Data ->", ar5_00, 1, 2);
     }
-    uVar1 = FUN_8c031588(*(int *)(a0 + 0x14) + (int)a1 * 4);
+    uVar1 = get_field_4_of_field_0(*(int *)(a0 + 0x14) + (int)a1 * 4);
     return uVar1;
 }
 
 /*
- * FUN_8c031588  0x8c031588
+ * get_field_4_of_field_0  0x8c031588
+ * (*a0)->+4
  * called by: CAnimBody_CheckThisMotionData, Class_12a7f4_m2_09a060, Class_12a7f4_m3_09a558, Class_12ad50_m2_0a4fdc,
  * FUN_8c0cbd74, FUN_8c0d9600, get_motion_data
  */
-u32 FUN_8c031588(int *a0) {
+u32 get_field_4_of_field_0(int *a0) {
     return *(u32 *)(*a0 + 4);
 }
 
@@ -1411,7 +1413,7 @@ int FUN_8c031b08(int *a0, u32 a1, int a2, u32 a3) {
         if (a2 == 1) {
             ar5_00 = a1;
             (**(code **)(*a0 + 0x2c))(a0, a1, 1, a3);
-            FUN_8c031b58((int)a0 + 0xb0, ar5_00, a2);
+            reset_fields_2c_6c((int)a0 + 0xb0, ar5_00, a2);
         }
         iVar1 = 0x124;
         *(u32 *)(0x124 + (int)a0) = a1;
@@ -1420,10 +1422,11 @@ int FUN_8c031b08(int *a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * FUN_8c031b58  0x8c031b58
+ * reset_fields_2c_6c  0x8c031b58
+ * sets +0x2c and +0x6c to -1
  * called by: CAnimBody_SetAnimation, FUN_8c031b08, FUN_8c032160, FUN_8c06f93c, FUN_8c070d7c, FUN_8c071a38, FUN_8c097ef0
  */
-u32 FUN_8c031b58(int a0, u32 a1, u32 a2) {
+u32 reset_fields_2c_6c(int a0, u32 a1, u32 a2) {
     *(u32 *)(a0 + 0x2c) = 0xffffffff;
     *(u32 *)(a0 + 0x6c) = 0xffffffff;
     return 0x6c;
@@ -1880,7 +1883,7 @@ u32 FUN_8c032160(int a0, u32 a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 300) = 0;
     *(u32 *)(a0 + 0x40) = 5;
     *(u32 *)(a0 + 0x134) = 0;
-    FUN_8c031b58(a0 + 0xb0, a1, a2);
+    reset_fields_2c_6c(a0 + 0xb0, a1, a2);
     set_field_68(a0 + 0xb0, a1, a2, a3, in_PR);
     ar5_00 = 1;
     set_field_24(a0 + 0xb0, 1);
@@ -3684,7 +3687,7 @@ u32 CAnimBody_SetAnimation(int a0, int a1, int a2, u32 a3) {
     } else if (a2 == -1) {
         *(int *)(a0 + 0x1c) = a1;
         *(u32 *)(a0 + 0x28) = a3;
-        FUN_8c031b58(a0, a1, 0xffffffff);
+        reset_fields_2c_6c(a0, a1, 0xffffffff);
         *(u8 *)(a0 + 0x54) = 0;
         *(u32 *)(a0 + 0x70) = 0;
         uVar1 = 0;
@@ -3709,7 +3712,7 @@ u32 CAnimBody_SetAnimation(int a0, int a1, int a2, u32 a3) {
             ar5_00 = a1;
             CAnimBody_SetInterpolate(a0, a1, 1, a3);
             *(int *)(a0 + 0x1c) = a1;
-            FUN_8c031b58(a0, ar5_00, a2);
+            reset_fields_2c_6c(a0, ar5_00, a2);
             uVar1 = 2;
         } else {
             uVar1 = 0xffffffff;
@@ -5637,7 +5640,7 @@ u32 FUN_8c0348ac(u32 unused_a0, int *a1, u32 a2, u32 a3) {
     cVar13 = '\0';
     dVar9 = (double)CONCAT44((int)((u64)in_dr14 >> 0x20), in_fr4);
     uStack_14 = in_PR;
-    FUN_8c023de0(&fStack_20, a1);
+    set_fields_0_4_8(&fStack_20, a1);
     if (a1 == NULL) {
         FUN_8c023e24(in_stack_00000000, &fStack_20);
         free_if_nonnull_wrap_016ac4(&fStack_20, 0xffffffff, a2, a3);
@@ -6328,11 +6331,12 @@ u32 FUN_8c03525c(u32 unused_a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c035338  0x8c035338
+ * copy15_in_normalize  0x8c035338
+ * copies 15 bytes from a1 to +0xc, turning values 2, 3, 4 and 6 into 1
  * called by: FUN_8c028ccc, FUN_8c028da8, FUN_8c038a44, FUN_8c0883e0, FUN_8c08b694, FUN_8c08b720, FUN_8c09ad34,
  * FUN_8c09ad94 (+4 more)
  */
-u32 FUN_8c035338(int a0, int a1) {
+u32 copy15_in_normalize(int a0, int a1) {
     int iVar1;
 
     for (iVar1 = 0; iVar1 < 0xf; iVar1 = iVar1 + 1) {
@@ -6349,11 +6353,12 @@ u32 FUN_8c035338(int a0, int a1) {
 }
 
 /*
- * FUN_8c03539c  0x8c03539c
+ * copy15_out  0x8c03539c
+ * copies the 15 bytes at +0xc to a1
  * called by: FUN_8c028f60, FUN_8c02903c, FUN_8c038aa4, FUN_8c088440, FUN_8c09adec, FUN_8c09ae4c, FUN_8c09c878,
  * FUN_8c09c8d8 (+2 more)
  */
-u32 FUN_8c03539c(int a0, int a1) {
+u32 copy15_out(int a0, int a1) {
     int iVar1;
 
     for (iVar1 = 0; iVar1 < 0xf; iVar1 = iVar1 + 1) {
@@ -8710,7 +8715,7 @@ u32 CAnimal_m2_0386d0(int a0, u32 a1, int *a2, int *a3) {
             (**(code **)(*(int *)(*(int *)(a0 + 0x330) + 8) + 0x10))(*(int *)(a0 + 0x330), a1, a2, a3);
             set_vec3_field_30(*(u32 *)(a0 + 0x330), uVar5, a2);
             (**(code **)(*(int *)(*(int *)(a0 + 0x330) + 8) + 0x144))(*(int *)(a0 + 0x330), uVar5, a2, a3);
-            FUN_8c038a10(*(u32 *)(a0 + 0x330));
+            set_fields_5c_60_64(*(u32 *)(a0 + 0x330));
             piVar6 = a2;
             piVar7 = a3;
         }
@@ -8738,7 +8743,7 @@ u32 CAnimal_m2_0386d0(int a0, u32 a1, int *a2, int *a3) {
             (**(code **)(*(int *)(*(int *)(a0 + 0x330) + 8) + 0x10))(*(int *)(a0 + 0x330), a1, a2, a3);
             set_vec3_field_30(*(u32 *)(a0 + 0x330), uVar5, a2);
             (**(code **)(*(int *)(*(int *)(a0 + 0x330) + 8) + 0x144))(*(int *)(a0 + 0x330), uVar5, a2, piVar7);
-            FUN_8c038a10(*(u32 *)(a0 + 0x330));
+            set_fields_5c_60_64(*(u32 *)(a0 + 0x330));
             piVar6 = a2;
         }
         iVar4 = (**(code **)(*(int *)(a0 + 8) + 0xb4))(a0, uVar5, piVar6, piVar7);
@@ -8786,11 +8791,12 @@ u32 CAnimal_m2_0386d0(int a0, u32 a1, int *a2, int *a3) {
 }
 
 /*
- * FUN_8c038a10  0x8c038a10
+ * set_fields_5c_60_64  0x8c038a10
+ * stores +0x5c, +0x60, +0x64
  * called by: CAnimal_m2_0386d0, Class_12a7f4_m2_09a060, Class_12a7f4_m3_09a558, Class_12ad50_m2_0a4fdc, FUN_8c04f034,
  * FUN_8c077a38
  */
-u32 FUN_8c038a10(int a0) {
+u32 set_fields_5c_60_64(int a0) {
     u32 in_fr5;
     u32 in_fr4;
     u32 in_fr6;
@@ -8850,7 +8856,7 @@ u32 FUN_8c038a44(int a0, int a1, u32 a2, u32 a3) {
 
     FUN_8c0f4e34(a0, a1, a2, a3);
     FUN_8c02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
-    uVar1 = FUN_8c035338(a0 + 0x2dc, a1 + 0xd8);
+    uVar1 = copy15_in_normalize(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
 }
 
@@ -8862,7 +8868,7 @@ u32 FUN_8c038aa4(int a0, int a1, u32 a2, u32 a3) {
 
     FUN_8c0f4f0c(a0, a1, a2, a3);
     FUN_8c02cf20(a0 + 0x174, a1 + 0x4c, a2);
-    uVar1 = FUN_8c03539c(a0 + 0x2dc, a1 + 0xd8);
+    uVar1 = copy15_out(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
 }
 
@@ -11406,7 +11412,7 @@ code *FUN_8c03c94c(code *a0, u32 *a1, u32 unused_a2, u32 a3) {
                 Vec3_dtor(&uStack_2c, 0xffffffff, uVar3, puVar11);
                 return (code *)uStack_360;
             }
-            FUN_8c03f414(iVar2, auStack_60, auStack_5c, auStack_58);
+            get_vec3_field_50(iVar2, auStack_60, auStack_5c, auStack_58);
             ar7_00 = auStack_358;
             puVar11 = auStack_358;
             puVar4 = auStack_358;
@@ -12182,11 +12188,12 @@ u32 *FUN_8c03f3f8(int a0, u32 *a1, u32 *a2, u32 *a3) {
 }
 
 /*
- * FUN_8c03f414  0x8c03f414
+ * get_vec3_field_50  0x8c03f414
+ * copies x, y, z at +0x50 to three out pointers
  * called by: FUN_8c03c94c, FUN_8c066834, FUN_8c069c24, FUN_8c06f93c, FUN_8c099b0c, FUN_8c0a0278, FUN_8c0ac1f0,
  * FUN_8c0b67cc
  */
-u32 *FUN_8c03f414(int a0, u32 *a1, u32 *a2, u32 *a3) {
+u32 *get_vec3_field_50(int a0, u32 *a1, u32 *a2, u32 *a3) {
     *a1 = *(u32 *)(a0 + 0x50);
     *a2 = *(u32 *)(a0 + 0x54);
     *a3 = *(u32 *)(a0 + 0x58);

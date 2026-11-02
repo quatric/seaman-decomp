@@ -4483,7 +4483,7 @@ u32 FUN_8c0883e0(int a0, int a1, u32 a2, u32 a3) {
 
     FUN_8c0f4e34(a0, a1, a2, a3);
     FUN_8c02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
-    uVar1 = FUN_8c035338(a0 + 0x2dc, a1 + 0xd8);
+    uVar1 = copy15_in_normalize(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
 }
 
@@ -4495,7 +4495,7 @@ u32 FUN_8c088440(int a0, int a1, u32 a2, u32 a3) {
 
     FUN_8c0f4f0c(a0, a1, a2, a3);
     FUN_8c02cf20(a0 + 0x174, a1 + 0x4c, a2);
-    uVar1 = FUN_8c03539c(a0 + 0x2dc, a1 + 0xd8);
+    uVar1 = copy15_out(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
 }
 
@@ -5481,7 +5481,7 @@ u32 FUN_8c08a948(int a0, float *a1, int a2, u32 a3) {
     FUN_8c0f5398(a0, a1, a2);
     Vec3_ctor_copy(auStack_20, a1, ar6_00, a3);
     if (a2 == 0) {
-        FUN_8c08a9b8(a0 + 0x5c);
+        Vec3_set_one_08a9b8(a0 + 0x5c);
         if (cVar5 == '\0') {
             fVar2 = *a1;
             pcVar3 = (code *)0x447a0000;
@@ -5503,11 +5503,12 @@ u32 FUN_8c08a948(int a0, float *a1, int a2, u32 a3) {
 }
 
 /*
- * FUN_8c08a9b8  0x8c08a9b8
+ * Vec3_set_one_08a9b8  0x8c08a9b8
+ * sets x, y, z to 1.0
  * called by: FUN_8c08a948, FUN_8c09b844, FUN_8c09d644, FUN_8c09e204, FUN_8c0ae6a0, FUN_8c0d20bc, FUN_8c0f4b98,
  * FUN_8c0f692c
  */
-u32 FUN_8c08a9b8(u32 *a0) {
+u32 Vec3_set_one_08a9b8(u32 *a0) {
     a0[2] = 0x3f800000;
     a0[1] = 0x3f800000;
     *a0 = 0x3f800000;
@@ -6022,7 +6023,7 @@ int FUN_8c08b694(int a0, int a1, u32 a2, u32 a3) {
 
     FUN_8c0f4e34(a0, a1, a2, a3);
     FUN_8c02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
-    FUN_8c035338(a0 + 0x2dc, a1 + 0xd8);
+    copy15_in_normalize(a0 + 0x2dc, a1 + 0xd8);
     (**(code **)(**(int **)(0x308 + a0) + 0x24))(*(int **)(0x308 + a0), a1 + 0xc8, a2, a3);
     iVar1 = 0x460;
     *(u32 *)(0x460 + a0) = *(u32 *)(0xe8 + a1);
@@ -6037,7 +6038,7 @@ int FUN_8c08b720(int a0, int a1, u32 a2, u32 a3) {
 
     FUN_8c0f4ebc(a0, a1, a2, a3);
     FUN_8c02ce58(a0 + 0x174, a1 + 0x24);
-    FUN_8c035338(a0 + 0x2dc, a1 + 0x58);
+    copy15_in_normalize(a0 + 0x2dc, a1 + 0x58);
     (**(code **)(**(int **)(0x308 + a0) + 0x24))(*(int **)(0x308 + a0), a1 + 0x48, a2, a3);
     iVar1 = 0x460;
     *(u32 *)(0x460 + a0) = *(u32 *)(a1 + 0x68);

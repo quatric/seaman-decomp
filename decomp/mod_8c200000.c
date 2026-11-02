@@ -1161,10 +1161,11 @@ int FUN_8c200ba0(u32 a0) {
 }
 
 /*
- * FUN_8c200bc4  0x8c200bc4
+ * bcd_to_int  0x8c200bc4
+ * two packed BCD digits to an integer
  * called by: FUN_8c200c82, FUN_8c200c8a
  */
-int FUN_8c200bc4(u32 a0) {
+int bcd_to_int(u32 a0) {
     return (a0 >> 4) * 10 + (a0 & 0xf);
 }
 
@@ -1235,18 +1236,18 @@ int FUN_8c200c82(short *a0, u8 *a1) {
     char cVar1;
     u32 uVar2;
     u32 uVar3;
-    uVar2 = FUN_8c200bc4((u32)*a1);
-    uVar3 = FUN_8c200bc4((u32)a1[1]);
+    uVar2 = bcd_to_int((u32)*a1);
+    uVar3 = bcd_to_int((u32)a1[1]);
     *a0 = (short)uVar2 * 100 + (short)uVar3;
-    uVar2 = FUN_8c200bc4((u32)a1[2]);
+    uVar2 = bcd_to_int((u32)a1[2]);
     *(char *)(a0 + 1) = (char)uVar2;
-    uVar2 = FUN_8c200bc4((u32)a1[3]);
+    uVar2 = bcd_to_int((u32)a1[3]);
     *(char *)((int)a0 + 3) = (char)uVar2;
-    uVar2 = FUN_8c200bc4((u32)a1[4]);
+    uVar2 = bcd_to_int((u32)a1[4]);
     *(char *)(a0 + 2) = (char)uVar2;
-    uVar2 = FUN_8c200bc4((u32)a1[5]);
+    uVar2 = bcd_to_int((u32)a1[5]);
     *(char *)((int)a0 + 5) = (char)uVar2;
-    uVar2 = FUN_8c200bc4((u32)a1[6]);
+    uVar2 = bcd_to_int((u32)a1[6]);
     *(char *)(a0 + 3) = (char)uVar2;
     cVar1 = (&g_8c26d218)[a1[7] & 7];
     *(char *)((int)a0 + 7) = cVar1;
@@ -1263,18 +1264,18 @@ int FUN_8c200c8a(void) {
     short *unaff_r13;
     u8 *unaff_r14;
 
-    uVar2 = FUN_8c200bc4((u32)*unaff_r14);
-    uVar3 = FUN_8c200bc4((u32)unaff_r14[1]);
+    uVar2 = bcd_to_int((u32)*unaff_r14);
+    uVar3 = bcd_to_int((u32)unaff_r14[1]);
     *unaff_r13 = (short)uVar2 * 100 + (short)uVar3;
-    uVar2 = FUN_8c200bc4((u32)unaff_r14[2]);
+    uVar2 = bcd_to_int((u32)unaff_r14[2]);
     *(char *)(unaff_r13 + 1) = (char)uVar2;
-    uVar2 = FUN_8c200bc4((u32)unaff_r14[3]);
+    uVar2 = bcd_to_int((u32)unaff_r14[3]);
     *(char *)((int)unaff_r13 + 3) = (char)uVar2;
-    uVar2 = FUN_8c200bc4((u32)unaff_r14[4]);
+    uVar2 = bcd_to_int((u32)unaff_r14[4]);
     *(char *)(unaff_r13 + 2) = (char)uVar2;
-    uVar2 = FUN_8c200bc4((u32)unaff_r14[5]);
+    uVar2 = bcd_to_int((u32)unaff_r14[5]);
     *(char *)((int)unaff_r13 + 5) = (char)uVar2;
-    uVar2 = FUN_8c200bc4((u32)unaff_r14[6]);
+    uVar2 = bcd_to_int((u32)unaff_r14[6]);
     *(char *)(unaff_r13 + 3) = (char)uVar2;
     cVar1 = (&g_8c26d218)[unaff_r14[7] & 7];
     *(char *)((int)unaff_r13 + 7) = cVar1;

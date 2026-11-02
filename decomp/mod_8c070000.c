@@ -110,7 +110,7 @@ int FUN_8c070d7c(code *a0, u32 *a1, u32 unused_a2, code *a3) {
         iVar6 = FUN_8c07edac(a0, *(u32 *)a1[1], pcVar4, a3);
         break;
     case 7:
-        FUN_8c031b58(a0 + 0xb0, ar5_00, pcVar4);
+        reset_fields_2c_6c(a0 + 0xb0, ar5_00, pcVar4);
         iVar2 = CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, ar5_00, pcVar4, a3);
         if (iVar2 == 1) {
             timer_start_94(a0, ar5_00, pcVar4);
@@ -595,7 +595,7 @@ LAB_8c071c68:
             ar7_01 = *(code **)((int)pdVar11 + -0x2a4);
             break;
         case 7:
-            FUN_8c031b58(a0 + 0xb0, ar5_00, 0x21);
+            reset_fields_2c_6c(a0 + 0xb0, ar5_00, 0x21);
             pcVar10 = (code *)0xb0;
             pcVar7 = (code *)(a0 + 0xb0);
             uVar1 = CAnimBody_AdvanceFrame_wrapper(pcVar7, ar5_00, pcVar7, 0xb0);
@@ -4160,7 +4160,7 @@ u32 FUN_8c077a38(int a0, float *a1, float *a2, code *a3) {
                 Vec3_dtor(auStack_110, 0xffffffff, pcVar6, a3);
                 ar5_00 = (code *)0xffffffff;
                 object_dtor_delete(auStack_100, 0xffffffff, pcVar6, a3);
-                FUN_8c078fb8(iVar1);
+                set_fields_50_54_58(iVar1);
                 break;
             case 3:
                 uVar9 = 0x1a;
@@ -4194,7 +4194,7 @@ u32 FUN_8c077a38(int a0, float *a1, float *a2, code *a3) {
                 Vec3_dtor(auStack_174, 0xffffffff, pcVar6, a3);
                 ar5_00 = (code *)0xffffffff;
                 object_dtor_delete(auStack_164, 0xffffffff, pcVar6, a3);
-                FUN_8c078fb8(iVar1);
+                set_fields_50_54_58(iVar1);
             }
         } else {
             ar7_00 = auStack_30;
@@ -4246,11 +4246,11 @@ u32 FUN_8c077a38(int a0, float *a1, float *a2, code *a3) {
             goto LAB_8c078026;
     }
     if ((1 < *(int *)(a0 + 0x128)) && (iVar2 = get_field_24_05c284(iVar1, ar5_00), iVar2 == 0xf)) {
-        ar5_00 = FUN_8c078f84;
-        FUN_8c078f84(auStack_50);
+        ar5_00 = set_fields_8_4_0;
+        set_fields_8_4_0(auStack_50);
     }
     set_vec3_field_30(iVar1, ar5_00, pcVar6);
-    FUN_8c038a10(iVar1);
+    set_fields_5c_60_64(iVar1);
     FUN_8c031c74(a0, a2, a1, a3);
     if ((*(int *)(a0 + 0x128) < 2) || (5 < *(int *)(a0 + 0x128))) {
         iVar1 = CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, 2, a1, a3);
@@ -4310,10 +4310,11 @@ LAB_8c078ef6:
 }
 
 /*
- * FUN_8c078f84  0x8c078f84
+ * set_fields_8_4_0  0x8c078f84
+ * stores +0x8, +0x4, +0x0
  * called by: FUN_8c077a38, FUN_8c09b844
  */
-u32 FUN_8c078f84(u32 *a0) {
+u32 set_fields_8_4_0(u32 *a0) {
     a0[2] = 0;
     a0[1] = 0;
     *a0 = 0;
@@ -4321,10 +4322,11 @@ u32 FUN_8c078f84(u32 *a0) {
 }
 
 /*
- * FUN_8c078fb8  0x8c078fb8
+ * set_fields_50_54_58  0x8c078fb8
+ * stores +0x50, +0x54, +0x58
  * called by: FUN_8c077a38, FUN_8c0cbd74, FUN_8c0cc524, FUN_8c0e057c, FUN_8c0ff7d4
  */
-u32 FUN_8c078fb8(int a0) {
+u32 set_fields_50_54_58(int a0) {
     u32 in_fr5;
     u32 in_fr4;
     u32 in_fr6;

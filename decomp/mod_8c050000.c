@@ -5653,7 +5653,7 @@ u32 FUN_8c0593cc(int a0, int *a1, u32 a2, u32 a3) {
                 vec3_clear(a0 + 0x2d4, vec3_clear, uVar5, ar7_00);
                 if (in_stack_00000004 == 0x1d) {
                     uVar2 = (**(code **)(*a1 + 0x10c))(a1, pcVar4, uVar5, ar7_00);
-                    FUN_8c0d98d4(uVar2);
+                    set_fields_10_14_0d98d4(uVar2);
                 }
                 break;
             }
@@ -5681,7 +5681,7 @@ u32 FUN_8c0593cc(int a0, int *a1, u32 a2, u32 a3) {
                     vec3_clear(a0 + 0x2d4, uVar5, iVar1, ar7_00);
                     if (in_stack_00000004 == 0x1d) {
                         uVar2 = (**(code **)(*a1 + 0x10c))(a1, uVar5, iVar1, ar7_00);
-                        FUN_8c0d98d4(uVar2);
+                        set_fields_10_14_0d98d4(uVar2);
                     }
                 } else {
                     *(int *)(a0 + 300) = *(int *)(a0 + 300) + -1;

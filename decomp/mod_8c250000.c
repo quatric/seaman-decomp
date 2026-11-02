@@ -11464,7 +11464,7 @@ u32 FUN_8c2565c4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32
     for (uVar2 = 0; uVar2 < g_8c277b0c; uVar2 = uVar2 + 1) {
         ar4_00 = (u32 *)(g_8c277b08 + iVar3);
         if ((ar4_00[4] & 1) != 0) {
-            ain0_00 = FUN_8c25a1ee(ar4_00[6] >> 0x10 & 0xff00);
+            ain0_00 = tex_is_palettized(ar4_00[6] >> 0x10 & 0xff00);
             FUN_8c2362de(ar4_00[5]);
             if (ain0_00 == 1) {
                 unused_a2 = 0;
@@ -11501,7 +11501,7 @@ u32 FUN_8c2565d8(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) 
     for (; unaff_r11 < g_8c277b0c; unaff_r11 = unaff_r11 + 1) {
         a4 = (u32 *)(g_8c277b08 + a0);
         if ((a4[4] & unaff_r8) != 0) {
-            iVar1 = FUN_8c25a1ee(a4[6] >> 0x10 & 0xff00);
+            iVar1 = tex_is_palettized(a4[6] >> 0x10 & 0xff00);
             FUN_8c2362de(a4[5]);
             if (iVar1 == 1) {
                 unused_a2 = 0;
@@ -11589,7 +11589,7 @@ u32 FUN_8c2566c8(u32 unused_a0, int a1, u32 a2, u32 unused_a3, u32 ain0) {
     for (uStack_28 = 0; uStack_28 < g_8c277b0c; uStack_28 = uStack_28 + 1) {
         a4 = (u32 *)(iStack_24 + g_8c277b08);
         if ((a4[4] & 2) != 0) {
-            iVar1 = FUN_8c25a1ee(a4[6] >> 0x10 & 0xff00);
+            iVar1 = tex_is_palettized(a4[6] >> 0x10 & 0xff00);
             FUN_8c20cf88(a4 + 6);
             if (iVar1 == 1) {
                 uVar2 = *a4;
@@ -11653,7 +11653,7 @@ u32 FUN_8c2567f8(int *a0) {
             return 0xffffffff;
         }
     } else {
-        iVar1 = FUN_8c25a1ee((u32)a0[6] >> 0x10 & 0xff00);
+        iVar1 = tex_is_palettized((u32)a0[6] >> 0x10 & 0xff00);
         if (iVar1 == 1) {
             iVar1 = *a0;
             if (1 < *(u16 *)(a0 + 0x10)) {
@@ -11732,7 +11732,7 @@ u32 FUN_8c2567fe(void) {
             return 0xffffffff;
         }
     } else {
-        iVar1 = FUN_8c25a1ee((u32)unaff_r13[6] >> 0x10 & 0xff00);
+        iVar1 = tex_is_palettized((u32)unaff_r13[6] >> 0x10 & 0xff00);
         if (iVar1 == 1) {
             iVar1 = *unaff_r13;
             if (1 < *(u16 *)(unaff_r13 + 0x10)) {
@@ -12531,10 +12531,11 @@ u32 FUN_8c257188(u32 *a0, u32 a1, int a2, u32 a3, u32 s0) {
 }
 
 /*
- * FUN_8c257196  0x8c257196
+ * set_fields_0_4_8_257196  0x8c257196
+ * stores +0x0, +0x4, +0x8
  * called by: C3DRenderPly_SetMem, FUN_8c015470, FUN_8c015f18, FUN_8c0c2490
  */
-u32 FUN_8c257196(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 set_fields_0_4_8_257196(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_r0;
 
     *a0 = a1;
@@ -16981,11 +16982,12 @@ u32 FUN_8c25a174(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c25a1ee  0x8c25a1ee
+ * tex_is_palettized  0x8c25a1ee
+ * 1 for the palettised texture formats 0x500..0x800 (4- and 8-bit, with and without mipmaps)
  * called by: FUN_8c237830, FUN_8c23793c, FUN_8c2387a0, FUN_8c2565c4, FUN_8c2565d8, FUN_8c2566c8, FUN_8c2567f8,
  * FUN_8c2567fe
  */
-u32 FUN_8c25a1ee(int a0) {
+u32 tex_is_palettized(int a0) {
     if ((((a0 != 0x500) && (a0 != 0x600)) && (a0 != 0x700)) && (a0 != 0x800)) {
         return 0;
     }
@@ -18132,10 +18134,11 @@ u32 FUN_8c25b100(void) {
 }
 
 /*
- * FUN_8c25b10c  0x8c25b10c
+ * write_u32_le  0x8c25b10c
+ * stores a0 little-endian at a1 (any alignment)
  * called by: FUN_8c25b12e
  */
-u32 FUN_8c25b10c(u32 a0, u8 *a1) {
+u32 write_u32_le(u32 a0, u8 *a1) {
     *a1 = (char)a0;
     a1[1] = (char)(a0 >> 8);
     a1[2] = (char)(a0 >> 0x10);
@@ -18182,20 +18185,20 @@ u32 FUN_8c25b12e(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s4, u
     uVar2 = FUN_8c20d082(ar4_00, iVar3);
     if (a0 != 0) {
         FUN_8c25b124((int)0x4d42, a0);
-        FUN_8c25b10c(*(u32 *)((int)aiStack_24 + 0xd0 + iVar1 + 4), a0 + 2);
-        FUN_8c25b10c(0, a0 + 6);
-        FUN_8c25b10c(0x36, a0 + 10);
-        FUN_8c25b10c(0x28, a0 + 0xe);
-        FUN_8c25b10c(a4_00, a0 + 0x12);
-        FUN_8c25b10c(a4, a0 + 0x16);
+        write_u32_le(*(u32 *)((int)aiStack_24 + 0xd0 + iVar1 + 4), a0 + 2);
+        write_u32_le(0, a0 + 6);
+        write_u32_le(0x36, a0 + 10);
+        write_u32_le(0x28, a0 + 0xe);
+        write_u32_le(a4_00, a0 + 0x12);
+        write_u32_le(a4, a0 + 0x16);
         FUN_8c25b124(1, a0 + 0x1a);
         FUN_8c25b124(0x18, a0 + 0x1c);
-        FUN_8c25b10c(0, a0 + 0x1e);
-        FUN_8c25b10c(0, a0 + 0x22);
-        FUN_8c25b10c(0, a0 + 0x26);
-        FUN_8c25b10c(0, a0 + 0x2a);
-        FUN_8c25b10c(0, a0 + 0x2e);
-        FUN_8c25b10c(0, a0 + 0x32);
+        write_u32_le(0, a0 + 0x1e);
+        write_u32_le(0, a0 + 0x22);
+        write_u32_le(0, a0 + 0x26);
+        write_u32_le(0, a0 + 0x2a);
+        write_u32_le(0, a0 + 0x2e);
+        write_u32_le(0, a0 + 0x32);
         iVar3 = g_8c4aa4e8;
         iVar4 = a4 + -1;
         if (iVar3 == 0) {

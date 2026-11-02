@@ -1820,10 +1820,11 @@ u32 FUN_8c102634(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c1026ec  0x8c1026ec
+ * clear_2_words  0x8c1026ec
+ * a0[0..1] = 0
  * called by: FUN_8c0bf478, FUN_8c0c84f4, FUN_8c0c9588, FUN_8c0c9ee0, FUN_8c0ca88c, FUN_8c0cb9c8, FUN_8c0d99e8
  */
-u32 *FUN_8c1026ec(u32 *a0) {
+u32 *clear_2_words(u32 *a0) {
     a0[1] = 0;
     *a0 = 0;
     return a0;
@@ -1843,10 +1844,11 @@ int free_if_nonnull_wrap_10270c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c10273c  0x8c10273c
- * called by: FUN_8c016690, FUN_8c0e89c4, FUN_8c0e8ae0
+ * set_fields_0_2  0x8c10273c
+ * stores +0x0, +0x2
+ * called by: FUN_8c0e89c4, FUN_8c0e8ae0, set_fields_0_2_wrap
  */
-u16 *FUN_8c10273c(u16 *a0, u32 a1, u32 a2) {
+u16 *set_fields_0_2(u16 *a0, u32 a1, u32 a2) {
     *a0 = (u16)a1;
     a0[1] = (u16)a2;
     return a0;
@@ -2108,9 +2110,10 @@ int Class_12c394_m1_102b58(int a0) {
 }
 
 /*
- * FUN_8c102ba4  0x8c102ba4
+ * set_fields_4_c  0x8c102ba4
+ * stores +0x4, +0xc
  */
-u32 FUN_8c102ba4(int a0) {
+u32 set_fields_4_c(int a0) {
     *(u32 *)(a0 + 4) = 0;
     *(u32 *)(a0 + 0xc) = 0;
     return 1;
@@ -3563,9 +3566,9 @@ u8 *FUN_8c1063a8(int a0, int *a1, int *a2, char *a3) {
                 uVar3 = get_field_39_s8(iVar1);
                 format_int_at_10(0x8c35468c, (int)(char)uVar3, iVar1, ar7_01);
                 if (*(char *)(a0 + 0x87c) < '\x03') {
-                    FUN_8c0fa5f0(0x8c35468c, 0, iVar1, ar7_01);
+                    format_int_at_14(0x8c35468c, 0, iVar1, ar7_01);
                 } else {
-                    FUN_8c0fa5f0(0x8c35468c, 1, iVar1, ar7_01);
+                    format_int_at_14(0x8c35468c, 1, iVar1, ar7_01);
                 }
                 puVar2 = (u8 *)talk_start_line(a0 + 0x9c, 0x1e, 0, "EVENT_AFTER_ROCK_PUSH");
             }
