@@ -609,8 +609,8 @@ u32 pvr_sub_1efcae(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * maple_port_info  0x8c1efd14
  * the 0x18-byte device record of port a0 (0x8c4709a0)
- * called by: maple_device_ready, maple_device_ready_idle, pvr_1efaf4, pvr_sub_1efa2a, shinobi_sub_1f61c6,
- * shinobi_sub_1f620e, shinobi_sub_1fd008, shinobi_sub_1fd1e2 (+9 more)
+ * called by: alt_entry_2020ba, alt_entry_202280, alt_entry_202550, maple_device_ready, maple_device_ready_idle,
+ * pvr_1efaf4, pvr_sub_1efa2a, shinobi_sub_1f61c6 (+9 more)
  */
 int maple_port_info(int a0, u32 a1) {
     return a0 * 0x18 + 0x8c4709a0;
@@ -655,7 +655,7 @@ u32 thunk_FUN_8c1f461c(void) {
 /*
  * maple_device_request_hooked  0x8c1efd7c
  * maple_device_request_locked, then the PVR hook when +0x10e8 is set
- * called by: shinobi_sub_202424, shinobi_sub_202782, shinobi_sub_202786
+ * called by: alt_entry_202786, shinobi_sub_202424, shinobi_sub_202782
  */
 u32 maple_device_request_hooked(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -684,7 +684,7 @@ u32 maple_all_status_request_hooked(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * maple_device_reset_hooked  0x8c1efdc8
  * maple_device_reset_locked, then the PVR hook when +0x10e8 is set
- * called by: shinobi_sub_202424, shinobi_sub_202782, shinobi_sub_202786
+ * called by: alt_entry_202786, shinobi_sub_202424, shinobi_sub_202782
  */
 u32 maple_device_reset_hooked(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -801,7 +801,7 @@ u32 maple_cmd16_func20_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * maple_cmd15_func10_hooked  0x8c1eff32
  * maple_cmd15_func10_locked, then the PVR hook when +0x10e8 is set
- * called by: shinobi_sub_202342, shinobi_sub_202782, shinobi_sub_202786
+ * called by: alt_entry_202786, shinobi_sub_202342, shinobi_sub_202782
  */
 u32 maple_cmd15_func10_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;

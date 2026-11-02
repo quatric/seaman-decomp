@@ -1474,7 +1474,7 @@ u32 *copy6_to_fields(int a0, u32 *a1, u32 a2, u32 a3) {
 /*
  * CMushroomerBody_sub_031bb4  0x8c031bb4
  * area name: only called from CMushroomerBody methods
- * called by: CMushroomerBody_AwayFrom, game_sub_032d48, game_sub_046684, game_sub_048868, game_sub_048f8c,
+ * called by: CMushroomerBody_AwayFrom, alt_entry_046684, game_sub_032d48, game_sub_048868, game_sub_048f8c,
  * game_sub_049b68, game_sub_04b168, game_sub_055490 (+12 more)
  */
 u32 CMushroomerBody_sub_031bb4(int a0, u32 a1, u32 a2, u32 a3) {
@@ -1563,7 +1563,7 @@ u32 timer_start_24(int a0) {
 /*
  * timer_sub_031c74  0x8c031c74
  * area name: sits between timer functions (same compilation unit)
- * called by: Class_12a25c_sub_06f93c, Class_12b2ac_sub_0b0784, Vec3_sub_03f4a4, game_sub_03c94c, game_sub_046684,
+ * called by: Class_12a25c_sub_06f93c, Class_12b2ac_sub_0b0784, Vec3_sub_03f4a4, alt_entry_046684, game_sub_03c94c,
  * game_sub_048868, game_sub_04e7e0, game_sub_0526a0 (+19 more)
  */
 u32 timer_sub_031c74(int a0, u32 a1, u32 a2, u32 a3) {
@@ -2098,7 +2098,7 @@ float *game_sub_0324ac(int a0) {
 /*
  * CMushroomerBody_sub_032518  0x8c032518
  * area name: only called from CMushroomerBody methods
- * called by: CMushroomerBody_AwayFrom, game_sub_03c94c, game_sub_046684, game_sub_048868, game_sub_0507c0,
+ * called by: CMushroomerBody_AwayFrom, alt_entry_046684, game_sub_03c94c, game_sub_048868, game_sub_0507c0,
  * game_sub_055490, game_sub_05c9fc, game_sub_07a3cc (+10 more)
  */
 u32 CMushroomerBody_sub_032518(int a0, u32 a1, u32 a2, u32 a3) {
@@ -2570,7 +2570,7 @@ u32 game_sub_0329ac(u32 unused_a0, float *a1, float *a2, int *a3) {
 /*
  * rand_range  0x8c032a64
  * called by: CMushroomerBody_AwayFrom, Class_12a03c_sub_03c100, Class_12ad14_m3_0a427c, Class_12b2ac_m5_0afddc,
- * Class_12b2ac_sub_0b0784, Vec3_sub_03f4a4, game_sub_032af8, game_sub_03c94c (+48 more)
+ * Class_12b2ac_sub_0b0784, Vec3_sub_03f4a4, alt_entry_046684, game_sub_032af8 (+48 more)
  */
 int rand_range(u32 a0, int a1, int a2) {
     int iVar1;
@@ -2605,7 +2605,7 @@ int rand_range(u32 a0, int a1, int a2) {
  * rand_float  0x8c032ab0
  * rand() scaled to a float (result in fr0)
  * called by: CMushroomerBody_AwayFrom, CMushroomerBody_sub_031bb4, Class_12a25c_sub_06f93c, Class_12ad14_sub_0a37c8,
- * Class_12b2ac_m5_0afddc, Class_12b2ac_sub_0b5344, Vec3_sub_03f4a4, game_sub_03263c (+37 more)
+ * Class_12b2ac_m5_0afddc, Class_12b2ac_sub_0b5344, Vec3_sub_03f4a4, alt_entry_046684 (+37 more)
  */
 u32 *rand_float(u32 a0, u32 a1, u32 a2) {
     rand();
@@ -2696,7 +2696,7 @@ int game_sub_032af8(u32 a0, int a1, int a2, int a3) {
 /*
  * game_sub_032be0  0x8c032be0
  * area name: game code; nothing names its area yet
- * called by: game_sub_046684
+ * called by: alt_entry_046684
  */
 u32 *game_sub_032be0(u32 a0, int a1, u32 a2) {
     u32 *puVar1;
@@ -3360,7 +3360,7 @@ u32 game_sub_0332b4(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0, float *s4) {
 /*
  * se_play_at_object  0x8c033474
  * plays a 3D sound effect at an object's position
- * called by: CMushroomerBody_AwayFrom, Class_12a25c_sub_06f93c, Vec3_sub_03f4a4, game_sub_046684, game_sub_04c314,
+ * called by: CMushroomerBody_AwayFrom, Class_12a25c_sub_06f93c, Vec3_sub_03f4a4, alt_entry_046684, game_sub_04c314,
  * game_sub_04ddd4, game_sub_04f034, game_sub_054a14 (+18 more)
  */
 u32 se_play_at_object(int a0, u32 a1, u32 a2, int *a3) {
@@ -3778,7 +3778,7 @@ u32 CAnimBody_SetAnimation(int a0, int a1, int a2, u32 a3) {
 /*
  * CAnimBody_AdvanceFrame_033b98  0x8c033b98
  * called by: CAnimBody_AdvanceFrame_wrapper, CAnimBody_PlayToEnd, Class_12a25c_sub_06f93c, Class_12b2ac_m5_0afddc,
- * Vec3_sub_03f4a4, game_sub_03c94c, game_sub_046684, game_sub_048868 (+44 more) strings: "Motion is NO SET!";
+ * Vec3_sub_03f4a4, alt_entry_046684, game_sub_03c94c, game_sub_048868 (+44 more) strings: "Motion is NO SET!";
  * "CAnimBody::AdvanceFrame()"
  */
 u32 CAnimBody_AdvanceFrame_033b98(int a0, u32 a1, u32 a2, u32 a3) {
@@ -4025,7 +4025,7 @@ int CAnimBody_sub_033d34(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * CAnimBody_AdvanceFrame_033d88  0x8c033d88
  * called by: CAnimBody_AdvanceFrame_wrap, CMushroomerBody_AwayFrom, Class_12b2ac_m5_0afddc, Vec3_sub_03f4a4,
- * game_sub_046684, game_sub_048868, game_sub_048f8c, game_sub_049b68 (+15 more) strings: "CAnimBody::AdvanceFrame()";
+ * alt_entry_046684, game_sub_048868, game_sub_048f8c, game_sub_049b68 (+15 more) strings: "CAnimBody::AdvanceFrame()";
  * "Motion is NO SET!"; "CAnimBody::AdvanceFrame()"
  */
 u32 CAnimBody_AdvanceFrame_033d88(int a0, char *a1, u32 a2, u32 a3) {
@@ -12342,7 +12342,7 @@ int Vec4_copy_assign(int a0, int a1, u32 a2) {
  * Vec3_copy_assign  0x8c03f460
  * a0 = a1
  * called by: Class_12ad14_m1_0a09e8, Class_12ad14_sub_0a0c88, Class_12ad14_sub_0a37c8, Class_12b088_sub_0a6628,
- * Class_12b088_sub_0aa70c, Vec3_sub_03f4a4, Vec4_copy_assign, game_sub_046684 (+6 more)
+ * Class_12b088_sub_0aa70c, Vec3_sub_03f4a4, Vec4_copy_assign, alt_entry_046684 (+6 more)
  */
 u32 *Vec3_copy_assign(u32 *a0, u32 *a1) {
     *a0 = *a1;
@@ -12575,7 +12575,7 @@ u32 Vec3_sub_03f4a4(int a0, int *a1, u32 a2, u32 a3) {
             *(int *)((int)puVar17 + -0xa74) = iVar16;
             *(int *)((int)puVar17 + -0xaa4) = a1[6];
             *(u8 **)((int)puVar17 + -0xaa8) = (u8 *)((int)puVar17 + -0x108);
-            pcVar10 = (code *)game_sub_046684(a0, *(u32 *)a1[1], (u8 *)((int)puVar17 + -0x30), pcVar14);
+            pcVar10 = (code *)alt_entry_046684(a0, *(u32 *)a1[1], (u8 *)((int)puVar17 + -0x30), pcVar14);
             *(code **)((int)puVar17 + -0x698) = pcVar10;
             iVar16 = *(int *)((int)puVar17 + -0x698);
             CAnimal_sub_026038((u8 *)((int)puVar17 + -0x108), 0xffffffff, 0xffffffff, pcVar10);

@@ -6,7 +6,7 @@
 /*
  * asr_sub_120078  0x8c120078
  * area name: sits between asr functions (same compilation unit)
- * called by: asr_sub_1201e6, asr_sub_1201ea
+ * called by: alt_entry_1201ea, asr_sub_1201e6
  */
 u32 asr_sub_120078(u16 *a0) {
     u8 *puVar1;
@@ -41,10 +41,10 @@ u32 asr_sub_120078(u16 *a0) {
 }
 
 /*
- * asr_sub_12007c  0x8c12007c
- * area name: sits between asr functions (same compilation unit)
+ * alt_entry_12007c  0x8c12007c
+ * probably an entry 4 bytes into 8c120078: it reads registers that code sets before it
  */
-u32 asr_sub_12007c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_12007c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
     u32 uVar2;
     int iVar3;
@@ -160,11 +160,11 @@ u32 asr_sub_1201e6(int a0, u32 *a1, u32 *a2, u32 a3, u32 s0, u32 s4, u32 s8, u32
 }
 
 /*
- * asr_sub_1201ea  0x8c1201ea
- * area name: sits between asr functions (same compilation unit)
+ * alt_entry_1201ea  0x8c1201ea
+ * probably an entry 4 bytes into 8c1201e6: it reads registers that code sets before it
  */
-u32 asr_sub_1201ea(u32 unused_a0, u32 *a1, u32 *a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16, u32 s20,
-                   u32 s24) {
+u32 alt_entry_1201ea(u32 unused_a0, u32 *a1, u32 *a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16, u32 s20,
+                     u32 s24) {
     u32 uVar1;
     int unaff_r14;
 
@@ -268,8 +268,8 @@ u32 asr_sub_120284(u16 *a0, u8 *a1, u32 a2, u32 a3) {
 /*
  * asr_sub_120348  0x8c120348
  * area name: sits between asr functions (same compilation unit)
- * called by: asr_sub_11919e, asr_sub_119218, asr_sub_119706, asr_sub_11abc6, asr_sub_11ac4c, asr_sub_11ad68,
- * asr_sub_11af7e, asr_sub_11cbbc (+27 more)
+ * called by: alt_entry_11d374, alt_entry_121736, alt_entry_12359a, asr_sub_11919e, asr_sub_119218, asr_sub_119706,
+ * asr_sub_11abc6, asr_sub_11ac4c (+27 more)
  */
 u32 asr_sub_120348(int *a0, u32 a1, u32 a2, u32 a3) {
     char cVar1;
@@ -339,8 +339,8 @@ u32 asr_sub_120348(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * asr_fsm_set_result  0x8c1204c4
  * records the first result code (+0x40) and passes it to the result callback (+0x2c)
- * called by: asr_sub_10d016, asr_sub_10f736, asr_sub_10f742, asr_sub_110c80, asr_sub_11194c, asr_sub_111adc,
- * asr_sub_1122ac, asr_sub_112b6e (+37 more)
+ * called by: alt_entry_10f742, alt_entry_11319e, alt_entry_115980, alt_entry_11d374, alt_entry_11d9a0,
+ * alt_entry_11e194, alt_entry_11e218, alt_entry_124bd8 (+37 more)
  */
 int asr_fsm_set_result(int *a0, u32 a1, u32 a2, u32 a3) {
     int a4;
@@ -375,8 +375,8 @@ int asr_sub_12050a(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * asr_state_has_event  0x8c120550
  * 4 when the current state's event table (+0x34) holds code a1
- * called by: asr_sub_10ad00, asr_sub_10c48c, asr_sub_10cccc, asr_sub_10df48, asr_sub_10f41e, asr_sub_10fece,
- * asr_sub_110818, asr_sub_110c80 (+16 more)
+ * called by: alt_entry_112a28, alt_entry_123e54, asr_sub_10ad00, asr_sub_10c48c, asr_sub_10cccc, asr_sub_10df48,
+ * asr_sub_10f41e, asr_sub_10fece (+16 more)
  */
 int asr_state_has_event(int *a0, u32 a1, u32 a2) {
     int iVar1;
@@ -463,7 +463,7 @@ u32 asr_sub_120668(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * asr_sub_1206ba  0x8c1206ba
  * area name: sits between asr functions (same compilation unit)
- * called by: asr_sub_120798, asr_sub_1207e8, asr_sub_1207f0
+ * called by: alt_entry_1207f0, asr_sub_120798, asr_sub_1207e8
  */
 u32 asr_sub_1206ba(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -487,10 +487,10 @@ u32 asr_sub_1206ba(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_1206cc  0x8c1206cc
- * area name: sits between asr functions (same compilation unit)
+ * alt_entry_1206cc  0x8c1206cc
+ * probably an entry 18 bytes into 8c1206ba: it reads registers that code sets before it
  */
-u32 asr_sub_1206cc(u32 a0) {
+u32 alt_entry_1206cc(u32 a0) {
     u8 *puVar1;
     u32 uVar2;
     u32 in_r3;
@@ -513,7 +513,7 @@ u32 asr_sub_1206cc(u32 a0) {
 /*
  * asr_sub_12071a  0x8c12071a
  * area name: sits between asr functions (same compilation unit)
- * called by: asr_sub_1207c6, asr_sub_1207e8, asr_sub_1207f0
+ * called by: alt_entry_1207f0, asr_sub_1207c6, asr_sub_1207e8
  */
 u32 asr_sub_12071a(int a0, int a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -543,10 +543,10 @@ u32 asr_sub_12071a(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_12072a  0x8c12072a
- * area name: sits between asr functions (same compilation unit)
+ * alt_entry_12072a  0x8c12072a
+ * probably an entry 16 bytes into 8c12071a: it reads registers that code sets before it
  */
-u32 asr_sub_12072a(int a0) {
+u32 alt_entry_12072a(int a0) {
     u8 *puVar1;
     u32 uVar2;
     u32 a5;
@@ -578,7 +578,7 @@ u32 asr_sub_12072a(int a0) {
 /*
  * asr_sub_120798  0x8c120798
  * area name: in the asr library code range
- * called by: asr_sub_1207e8, asr_sub_1207f0, asr_sub_121896, asr_sub_1219f4
+ * called by: alt_entry_1207f0, asr_sub_1207e8, asr_sub_121896, asr_sub_1219f4
  */
 u32 asr_sub_120798(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -599,7 +599,7 @@ u32 asr_sub_120798(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * asr_sub_1207c6  0x8c1207c6
  * area name: in the asr library code range
- * called by: asr_sub_1207e8, asr_sub_1207f0, asr_sub_1219f4
+ * called by: alt_entry_1207f0, asr_sub_1207e8, asr_sub_1219f4
  */
 u32 asr_sub_1207c6(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -658,10 +658,10 @@ u32 asr_sub_1207e8(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * asr_sub_1207f0  0x8c1207f0
- * area name: in the asr library code range
+ * alt_entry_1207f0  0x8c1207f0
+ * probably an entry 8 bytes into 8c1207e8: it reads registers that code sets before it
  */
-u32 asr_sub_1207f0(int a0) {
+u32 alt_entry_1207f0(int a0) {
     u32 r5;
     int in_r0;
     int in_r1;
@@ -784,10 +784,10 @@ u32 asr_sub_120948(int *a0, int a1) {
 }
 
 /*
- * asr_sub_12095c  0x8c12095c
- * area name: sits between asr functions (same compilation unit)
+ * alt_entry_12095c  0x8c12095c
+ * probably an entry 20 bytes into 8c120948: it reads registers that code sets before it
  */
-u32 asr_sub_12095c(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_12095c(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
     u32 uVar2;
     int unaff_r10;
@@ -913,7 +913,7 @@ u32 asr_sub_120b1a(u32 a0, u32 a1, u32 a2) {
 /*
  * asr_sub_120b48  0x8c120b48
  * area name: sits between asr functions (same compilation unit)
- * called by: asr_sub_121690, asr_sub_12169e
+ * called by: alt_entry_12169e, asr_sub_121690
  */
 u32 asr_sub_120b48(int a0) {
     u32 uVar1;
@@ -1025,7 +1025,7 @@ u32 asr_sub_120b48(int a0) {
 /*
  * asr_sub_120c7c  0x8c120c7c
  * area name: sits between asr functions (same compilation unit)
- * called by: asr_sub_121690, asr_sub_12169e
+ * called by: alt_entry_12169e, asr_sub_121690
  */
 u32 *asr_sub_120c7c(int a0) {
     u16 uVar1;
@@ -1106,7 +1106,7 @@ u32 *asr_sub_120c7c(int a0) {
 /*
  * asr_sub_120e12  0x8c120e12
  * area name: in the asr library code range
- * called by: asr_sub_121690, asr_sub_12169e
+ * called by: alt_entry_12169e, asr_sub_121690
  */
 int asr_sub_120e12(int a0, int a1, int a2, u32 a3) {
     u32 uVar1;
@@ -1278,7 +1278,7 @@ u32 asr_sub_120f04(int a0, u32 a1, u32 a2, int a3) {
 /*
  * asr_free_node_list  0x8c121124
  * frees every node of the list at +0x284 and the buffers at +0x2a8 and +0x29c
- * called by: asr_sub_121690, asr_sub_12169e
+ * called by: alt_entry_12169e, asr_sub_121690
  */
 u32 asr_free_node_list(int a0) {
     u32 *puVar1;
@@ -1303,10 +1303,10 @@ u32 asr_free_node_list(int a0) {
 }
 
 /*
- * asr_sub_12112c  0x8c12112c
- * area name: sits between asr functions (same compilation unit)
+ * alt_entry_12112c  0x8c12112c
+ * probably an entry 8 bytes into 8c121124: it reads registers that code sets before it
  */
-u32 asr_sub_12112c(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_12112c(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 *a4;
     int in_r0;
     u32 uVar1;
@@ -1505,7 +1505,7 @@ int asr_sub_1212d4(int *a0, u8 *a1, int a2, int a3, u16 *s0, u32 s4, u32 s8) {
 /*
  * asr_sub_1213d0  0x8c1213d0
  * area name: in the asr library code range
- * called by: asr_sub_121690, asr_sub_12169e
+ * called by: alt_entry_12169e, asr_sub_121690
  */
 u32 asr_sub_1213d0(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1639,10 +1639,10 @@ u32 asr_sub_121690(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_12169e  0x8c12169e
- * area name: sits between asr functions (same compilation unit)
+ * alt_entry_12169e  0x8c12169e
+ * probably an entry 14 bytes into 8c121690: it reads registers that code sets before it
  */
-u32 asr_sub_12169e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_12169e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
     u32 uVar1;
     u32 in_r2;
@@ -1744,10 +1744,10 @@ u32 asr_sub_12172e(int a0) {
 }
 
 /*
- * asr_sub_121736  0x8c121736
- * area name: sits between asr functions (same compilation unit)
+ * alt_entry_121736  0x8c121736
+ * probably an entry 8 bytes into 8c12172e: it reads registers that code sets before it
  */
-u32 asr_sub_121736(void) {
+u32 alt_entry_121736(void) {
     char cVar1;
     int in_r0;
     u32 uVar3;
@@ -2137,10 +2137,10 @@ u32 asr_sub_121d36(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_121d3c  0x8c121d3c
- * area name: sits between asr functions (same compilation unit)
+ * alt_entry_121d3c  0x8c121d3c
+ * probably an entry 6 bytes into 8c121d36: it reads registers that code sets before it
  */
-u32 asr_sub_121d3c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_121d3c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
     u32 uVar1;
     int unaff_r14;
@@ -2275,7 +2275,7 @@ u32 asr_sub_121f38(u32 a0, u32 unused_a1, u32 a2, u32 a3, int s0) {
 /*
  * asr_sub_121f72  0x8c121f72
  * area name: sits between asr functions (same compilation unit)
- * called by: asr_sub_121d36, asr_sub_121d3c
+ * called by: alt_entry_121d3c, asr_sub_121d36
  */
 u32 asr_sub_121f72(int a0) {
     u32 uVar1;
@@ -2361,10 +2361,10 @@ u32 asr_sub_122060(int a0) {
 }
 
 /*
- * asr_sub_122070  0x8c122070
- * area name: sits between asr functions (same compilation unit)
+ * alt_entry_122070  0x8c122070
+ * probably an entry 16 bytes into 8c122060: it reads registers that code sets before it
  */
-u32 asr_sub_122070(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_122070(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
     int in_r0;
     u32 in_r2;
@@ -3305,7 +3305,7 @@ int asr_sub_122e7c(u32 *a0, int *a1, u32 a2, u32 a3, int s0) {
 /*
  * asr_sub_12356c  0x8c12356c
  * area name: in the asr library code range
- * called by: asr_sub_12394c, asr_sub_123954, asr_sub_123e4c, asr_sub_123e54, asr_sub_12462c
+ * called by: alt_entry_123954, alt_entry_123e54, asr_sub_12394c, asr_sub_123e4c, asr_sub_12462c
  */
 int asr_sub_12356c(int a0, u32 unused_a1, u32 a2) {
     int iVar1;
@@ -3320,7 +3320,7 @@ int asr_sub_12356c(int a0, u32 unused_a1, u32 a2) {
 /*
  * asr_sub_12357c  0x8c12357c
  * area name: in the asr library code range
- * called by: asr_sub_1235fc, asr_sub_123602, asr_sub_1239f0
+ * called by: alt_entry_123602, asr_sub_1235fc, asr_sub_1239f0
  */
 u32 asr_sub_12357c(int a0, u32 a1) {
     u32 uVar1;
@@ -3332,7 +3332,7 @@ u32 asr_sub_12357c(int a0, u32 a1) {
 /*
  * asr_sub_123594  0x8c123594
  * area name: in the asr library code range
- * called by: asr_sub_1235fc, asr_sub_123602, asr_sub_1239f0
+ * called by: alt_entry_123602, asr_sub_1235fc, asr_sub_1239f0
  */
 u32 asr_sub_123594(int a0, u32 a1) {
     int iVar1;
@@ -3351,10 +3351,10 @@ u32 asr_sub_123594(int a0, u32 a1) {
 }
 
 /*
- * asr_sub_12359a  0x8c12359a
- * area name: in the asr library code range
+ * alt_entry_12359a  0x8c12359a
+ * probably an entry 6 bytes into 8c123594: it reads registers that code sets before it
  */
-u32 asr_sub_12359a(u32 unused_a0, u32 a1) {
+u32 alt_entry_12359a(u32 unused_a0, u32 a1) {
     int in_r0;
     int iVar1;
     int unaff_r14;
@@ -3375,7 +3375,7 @@ u32 asr_sub_12359a(u32 unused_a0, u32 a1) {
 /*
  * asr_sub_1235fc  0x8c1235fc
  * area name: in the asr library code range
- * called by: asr_sub_1238a6, asr_sub_1238ac
+ * called by: alt_entry_1238ac, asr_sub_1238a6
  */
 u32 asr_sub_1235fc(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -3445,10 +3445,10 @@ u32 asr_sub_1235fc(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_123602  0x8c123602
- * area name: in the asr library code range
+ * alt_entry_123602  0x8c123602
+ * probably an entry 6 bytes into 8c1235fc: it reads registers that code sets before it
  */
-u32 asr_sub_123602(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_123602(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     char cVar1;
     int in_r0;
     u32 uVar2;
@@ -3738,7 +3738,7 @@ LAB_8c1237c2:
 /*
  * asr_sub_12381c  0x8c12381c
  * area name: in the asr library code range
- * called by: asr_sub_1238a6, asr_sub_1238ac
+ * called by: alt_entry_1238ac, asr_sub_1238a6
  */
 int asr_sub_12381c(int a0) {
     int iVar1;
@@ -3766,10 +3766,10 @@ int asr_sub_12381c(int a0) {
 }
 
 /*
- * asr_sub_123822  0x8c123822
- * area name: in the asr library code range
+ * alt_entry_123822  0x8c123822
+ * probably an entry 6 bytes into 8c12381c: it reads registers that code sets before it
  */
-int asr_sub_123822(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+int alt_entry_123822(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
     int iVar1;
     int unaff_r14;
@@ -3850,10 +3850,10 @@ u32 asr_sub_1238a6(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_1238ac  0x8c1238ac
- * area name: in the asr library code range
+ * alt_entry_1238ac  0x8c1238ac
+ * probably an entry 6 bytes into 8c1238a6: it reads registers that code sets before it
  */
-u32 asr_sub_1238ac(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_1238ac(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int in_r0;
     int iVar1;
     short sVar2;
@@ -3931,10 +3931,10 @@ u32 asr_sub_12394c(int a0, u32 a1) {
 }
 
 /*
- * asr_sub_123954  0x8c123954
- * area name: in the asr library code range
+ * alt_entry_123954  0x8c123954
+ * probably an entry 8 bytes into 8c12394c: it reads registers that code sets before it
  */
-u32 asr_sub_123954(u32 unused_a0, u32 a1) {
+u32 alt_entry_123954(u32 unused_a0, u32 a1) {
     char cVar1;
     u8 *puVar2;
     int in_r0;
@@ -4268,10 +4268,10 @@ u32 asr_sub_123e4c(int a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * asr_sub_123e54  0x8c123e54
- * area name: in the asr library code range
+ * alt_entry_123e54  0x8c123e54
+ * probably an entry 8 bytes into 8c123e4c: it reads registers that code sets before it
  */
-u32 asr_sub_123e54(u32 unused_a0, u32 unused_a1, u32 a2) {
+u32 alt_entry_123e54(u32 unused_a0, u32 unused_a1, u32 a2) {
     char cVar1;
     int in_r0;
     u32 uVar2;
@@ -4551,10 +4551,10 @@ u32 asr_sub_123ea6(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * asr_sub_123eae  0x8c123eae
- * area name: in the asr library code range
+ * alt_entry_123eae  0x8c123eae
+ * probably an entry 8 bytes into 8c123ea6: it reads registers that code sets before it
  */
-u32 asr_sub_123eae(int a0, u32 unused_a1, int a2, u32 a3) {
+u32 alt_entry_123eae(int a0, u32 unused_a1, int a2, u32 a3) {
     char cVar1;
     char cVar2;
     u32 uVar3;
@@ -5999,10 +5999,10 @@ u32 asr_sub_124bd0(int *a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_124bd8  0x8c124bd8
- * area name: in the asr library code range
+ * alt_entry_124bd8  0x8c124bd8
+ * probably an entry 8 bytes into 8c124bd0: it reads registers that code sets before it
  */
-u32 asr_sub_124bd8(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_124bd8(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -6189,7 +6189,7 @@ u32 asr_sub_124edc(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * asr_sub_124f2a  0x8c124f2a
  * area name: in the asr library code range
- * called by: asr_sub_124bd0, asr_sub_124bd8, asr_sub_124f54, asr_sub_124f5a
+ * called by: alt_entry_124bd8, alt_entry_124f5a, asr_sub_124bd0, asr_sub_124f54
  */
 u32 asr_sub_124f2a(int a0, int a1, u32 a2, u32 a3) {
     if (*(short *)(a1 + 0x34) != 0) {
@@ -6220,10 +6220,10 @@ u32 asr_sub_124f54(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_124f5a  0x8c124f5a
- * area name: in the asr library code range
+ * alt_entry_124f5a  0x8c124f5a
+ * probably an entry 6 bytes into 8c124f54: it reads registers that code sets before it
  */
-u32 asr_sub_124f5a(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_124f5a(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     int *unaff_r13;
     int a4;

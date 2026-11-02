@@ -125,10 +125,10 @@ u32 shinobi_sub_2001b8(int a0) {
 }
 
 /*
- * shinobi_sub_2001d0  0x8c2001d0
- * area name: in the shinobi library code range
+ * alt_entry_2001d0  0x8c2001d0
+ * probably an entry 24 bytes into 8c2001b8: it reads registers that code sets before it
  */
-u32 shinobi_sub_2001d0(int a0) {
+u32 alt_entry_2001d0(int a0) {
     u32 uVar1;
     int iVar2;
     int in_r3;
@@ -358,7 +358,7 @@ u32 shinobi_sub_2004a0(char *a0, char *a1) {
 /*
  * shinobi_sub_2004ea  0x8c2004ea
  * area name: in the shinobi library code range
- * called by: shinobi_sub_2005d6, shinobi_sub_2005dc, vmu_dir_find_file
+ * called by: alt_entry_2005dc, shinobi_sub_2005d6, vmu_dir_find_file
  */
 u32 shinobi_sub_2004ea(u8 *a0, int a1) {
     u8 bVar1;
@@ -398,10 +398,10 @@ u32 shinobi_sub_2004ea(u8 *a0, int a1) {
 }
 
 /*
- * shinobi_sub_2004f6  0x8c2004f6
- * area name: in the shinobi library code range
+ * alt_entry_2004f6  0x8c2004f6
+ * probably an entry 12 bytes into 8c2004ea: it reads registers that code sets before it
  */
-u32 shinobi_sub_2004f6(u32 unused_a0, int a1, u32 a2, u32 a3) {
+u32 alt_entry_2004f6(u32 unused_a0, int a1, u32 a2, u32 a3) {
     u8 uVar1;
     u8 bVar2;
     int *piVar3;
@@ -498,10 +498,10 @@ u32 shinobi_sub_2005d6(int a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_2005dc  0x8c2005dc
- * area name: in the shinobi library code range
+ * alt_entry_2005dc  0x8c2005dc
+ * probably an entry 6 bytes into 8c2005d6: it reads registers that code sets before it
  */
-u32 shinobi_sub_2005dc(u32 unused_a0, u32 a1) {
+u32 alt_entry_2005dc(u32 unused_a0, u32 a1) {
     int in_r3;
     int a6;
     u8 *a4;
@@ -566,8 +566,8 @@ u32 shinobi_sub_200642(int a0) {
 /*
  * shinobi_sub_20065a  0x8c20065a
  * area name: in the shinobi library code range
- * called by: shinobi_sub_1fde30, shinobi_sub_1ffdfa, shinobi_sub_200226, shinobi_sub_200346, shinobi_sub_2007f0,
- * shinobi_sub_20080e
+ * called by: alt_entry_20080e, shinobi_sub_1fde30, shinobi_sub_1ffdfa, shinobi_sub_200226, shinobi_sub_200346,
+ * shinobi_sub_2007f0
  */
 u32 shinobi_sub_20065a(int a0) {
     u32 uVar1;
@@ -610,10 +610,10 @@ u32 shinobi_sub_200672(int a0) {
 }
 
 /*
- * shinobi_sub_200682  0x8c200682
- * area name: in the shinobi library code range
+ * alt_entry_200682  0x8c200682
+ * probably an entry 16 bytes into 8c200672: it reads registers that code sets before it
  */
-u32 shinobi_sub_200682(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 alt_entry_200682(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u8 *puVar1;
     int iVar2;
     int in_r3;
@@ -643,7 +643,7 @@ u32 shinobi_sub_200682(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * shinobi_sub_2006dc  0x8c2006dc
  * area name: in the shinobi library code range
- * called by: shinobi_sub_2007f0, shinobi_sub_20080e
+ * called by: alt_entry_20080e, shinobi_sub_2007f0
  */
 u32 shinobi_sub_2006dc(int a0) {
     int ar6_00;
@@ -674,10 +674,10 @@ u32 shinobi_sub_2006dc(int a0) {
 }
 
 /*
- * shinobi_sub_2006fa  0x8c2006fa
- * area name: in the shinobi library code range
+ * alt_entry_2006fa  0x8c2006fa
+ * probably an entry 30 bytes into 8c2006dc: it reads registers that code sets before it
  */
-u32 shinobi_sub_2006fa(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 alt_entry_2006fa(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int unaff_r8;
     int iVar2;
@@ -704,7 +704,7 @@ u32 shinobi_sub_2006fa(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * shinobi_sub_20075a  0x8c20075a
  * area name: in the shinobi library code range
- * called by: shinobi_sub_2007f0, shinobi_sub_20080e
+ * called by: alt_entry_20080e, shinobi_sub_2007f0
  */
 int shinobi_sub_20075a(int a0) {
     u32 uVar1;
@@ -743,10 +743,10 @@ int shinobi_sub_20075a(int a0) {
 }
 
 /*
- * shinobi_sub_200772  0x8c200772
- * area name: in the shinobi library code range
+ * alt_entry_200772  0x8c200772
+ * probably an entry 24 bytes into 8c20075a: it reads registers that code sets before it
  */
-int shinobi_sub_200772(u32 unused_a0, int a1) {
+int alt_entry_200772(u32 unused_a0, int a1) {
     u32 ar5_00;
     int iVar1;
     u32 uVar2;
@@ -830,10 +830,10 @@ int shinobi_sub_2007f0(int a0, int a1, int a2) {
 }
 
 /*
- * shinobi_sub_20080e  0x8c20080e
- * area name: in the shinobi library code range
+ * alt_entry_20080e  0x8c20080e
+ * probably an entry 30 bytes into 8c2007f0: it reads registers that code sets before it
  */
-int shinobi_sub_20080e(u32 unused_a0, int a1, int a2, u32 a3) {
+int alt_entry_20080e(u32 unused_a0, int a1, int a2, u32 a3) {
     int *piVar1;
     int a6;
     int iVar2;
@@ -878,7 +878,7 @@ int shinobi_sub_20080e(u32 unused_a0, int a1, int a2, u32 a3) {
 /*
  * vmu_fat_find  0x8c200890
  * last block of drive a0 whose map entry (drive operation +0xc) is a1; -1 if none
- * called by: shinobi_sub_1febd6, shinobi_sub_1febe6, shinobi_sub_200038, shinobi_sub_2008f4, shinobi_sub_200900
+ * called by: alt_entry_1febe6, alt_entry_200900, shinobi_sub_1febd6, shinobi_sub_200038, shinobi_sub_2008f4
  */
 int vmu_fat_find(int a0, u32 a1, u32 a2, u32 a3) {
     int *piVar1;
@@ -902,7 +902,7 @@ int vmu_fat_find(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * shinobi_sub_2008f4  0x8c2008f4
  * area name: in the shinobi library code range
- * called by: shinobi_sub_1febd6, shinobi_sub_1febe6
+ * called by: alt_entry_1febe6, shinobi_sub_1febd6
  */
 u32 shinobi_sub_2008f4(u32 a0, u32 unused_a1, int a2, u32 a3) {
     int ar5_00;
@@ -927,10 +927,10 @@ u32 shinobi_sub_2008f4(u32 a0, u32 unused_a1, int a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_200900  0x8c200900
- * area name: in the shinobi library code range
+ * alt_entry_200900  0x8c200900
+ * probably an entry 12 bytes into 8c2008f4: it reads registers that code sets before it
  */
-u32 shinobi_sub_200900(u32 unused_a0, u32 unused_a1, int a2, u32 a3) {
+u32 alt_entry_200900(u32 unused_a0, u32 unused_a1, int a2, u32 a3) {
     int a5;
     int iVar1;
     int unaff_r11;
@@ -953,7 +953,7 @@ u32 shinobi_sub_200900(u32 unused_a0, u32 unused_a1, int a2, u32 a3) {
 /*
  * shinobi_sub_20093a  0x8c20093a
  * area name: in the shinobi library code range
- * called by: bu_get_free_blocks_now, shinobi_sub_2008f4, shinobi_sub_200900
+ * called by: alt_entry_200900, bu_get_free_blocks_now, shinobi_sub_2008f4
  */
 u32 shinobi_sub_20093a(int a0, u32 a1) {
     int *piVar1;
@@ -981,10 +981,10 @@ u32 shinobi_sub_20093a(int a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_20094e  0x8c20094e
- * area name: in the shinobi library code range
+ * alt_entry_20094e  0x8c20094e
+ * probably an entry 20 bytes into 8c20093a: it reads registers that code sets before it
  */
-u32 shinobi_sub_20094e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_20094e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int *piVar1;
     u8 *a4;
     u32 uVar2;
@@ -1010,8 +1010,8 @@ u32 shinobi_sub_20094e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * vmu_drive_write_like  0x8c20099e
  * calls the drive's operation +0x10 for block a1 when it is within the card (probably a block write)
- * called by: shinobi_sub_1fde30, shinobi_sub_1febd6, shinobi_sub_1febe6, shinobi_sub_1fecf2, shinobi_sub_1ff478,
- * shinobi_sub_200038, shinobi_sub_200226, shinobi_sub_200346 (+6 more)
+ * called by: alt_entry_1febe6, alt_entry_2006fa, alt_entry_20080e, alt_entry_200900, shinobi_sub_1fde30,
+ * shinobi_sub_1febd6, shinobi_sub_1fecf2, shinobi_sub_1ff478 (+6 more)
  */
 int vmu_drive_write_like(int a0, int a1, u32 a2) {
     u32 uVar1;
@@ -1030,8 +1030,8 @@ int vmu_drive_write_like(int a0, int a1, u32 a2) {
 /*
  * vmu_drive_read_like  0x8c2009d0
  * calls the drive's operation +0xc for block a1 (probably a block read)
- * called by: bu_get_free_blocks_now, shinobi_sub_1fe466, shinobi_sub_1fe646, shinobi_sub_1fecf2, shinobi_sub_1fee6c,
- * shinobi_sub_1ff478, shinobi_sub_1fffca, shinobi_sub_1fffd8 (+11 more)
+ * called by: alt_entry_1fffd8, alt_entry_2001d0, alt_entry_200772, alt_entry_20136c, bu_get_free_blocks_now,
+ * shinobi_sub_1fe466, shinobi_sub_1fe646, shinobi_sub_1fecf2 (+11 more)
  */
 u32 vmu_drive_read_like(int a0, int a1) {
     u32 uVar1;
@@ -1076,8 +1076,8 @@ int shinobi_sub_200a00(int a0, u32 a1) {
 /*
  * vmu_dir_entry  0x8c200a84
  * address of 32-byte directory entry a1 of memory-card drive a0 (drives are 0x148 bytes at 0x8c4783e0)
- * called by: shinobi_sub_1fe646, shinobi_sub_1fe7aa, shinobi_sub_1fe9ae, shinobi_sub_1ff110, shinobi_sub_1ff336,
- * shinobi_sub_1ff478, shinobi_sub_1ff72e, shinobi_sub_1ff844 (+6 more)
+ * called by: alt_entry_20094e, shinobi_sub_1fe646, shinobi_sub_1fe7aa, shinobi_sub_1fe9ae, shinobi_sub_1ff110,
+ * shinobi_sub_1ff336, shinobi_sub_1ff478, shinobi_sub_1ff72e (+6 more)
  */
 int vmu_dir_entry(int a0, int a1) {
     return a1 * 0x20 + *(int *)(a0 * 0x148 + 0x8c4783e0 + 0x28);
@@ -1187,7 +1187,7 @@ int shinobi_sub_200b10(int a0, u32 a1) {
 /*
  * int_to_bcd  0x8c200ba0
  * two decimal digits to packed BCD
- * called by: shinobi_sub_200bfc, shinobi_sub_200c08
+ * called by: alt_entry_200c08, shinobi_sub_200bfc
  */
 int int_to_bcd(u32 a0) {
     int iVar1;
@@ -1203,7 +1203,7 @@ int int_to_bcd(u32 a0) {
 /*
  * bcd_to_int  0x8c200bc4
  * two packed BCD digits to an integer
- * called by: shinobi_sub_200c82, shinobi_sub_200c8a
+ * called by: alt_entry_200c8a, shinobi_sub_200c82
  */
 int bcd_to_int(u32 a0) {
     return (a0 >> 4) * 10 + (a0 & 0xf);
@@ -1239,10 +1239,10 @@ u32 shinobi_sub_200bfc(u8 *a0, int a1, u32 a2) {
 }
 
 /*
- * shinobi_sub_200c08  0x8c200c08
- * area name: in the shinobi library code range
+ * alt_entry_200c08  0x8c200c08
+ * probably an entry 12 bytes into 8c200bfc: it reads registers that code sets before it
  */
-u32 shinobi_sub_200c08(void) {
+u32 alt_entry_200c08(void) {
     u32 uVar1;
     u32 uVar2;
     u8 *unaff_r8;
@@ -1298,10 +1298,10 @@ int shinobi_sub_200c82(short *a0, u8 *a1) {
 }
 
 /*
- * shinobi_sub_200c8a  0x8c200c8a
- * area name: in the shinobi library code range
+ * alt_entry_200c8a  0x8c200c8a
+ * probably an entry 8 bytes into 8c200c82: it reads registers that code sets before it
  */
-int shinobi_sub_200c8a(void) {
+int alt_entry_200c8a(void) {
     char cVar1;
     u32 uVar2;
     u32 uVar3;
@@ -1387,10 +1387,10 @@ u32 shinobi_sub_200d94(int a0, int a1) {
 }
 
 /*
- * shinobi_sub_200db0  0x8c200db0
- * area name: in the shinobi library code range
+ * alt_entry_200db0  0x8c200db0
+ * probably an entry 28 bytes into 8c200d94: it reads registers that code sets before it
  */
-u32 shinobi_sub_200db0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 alt_entry_200db0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u8 *puVar1;
     int in_r0;
     int iVar2;
@@ -1449,10 +1449,10 @@ u32 shinobi_sub_200e1e(int a0, int a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_200e3a  0x8c200e3a
- * area name: in the shinobi library code range
+ * alt_entry_200e3a  0x8c200e3a
+ * probably an entry 28 bytes into 8c200e1e: it reads registers that code sets before it
  */
-u32 shinobi_sub_200e3a(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 alt_entry_200e3a(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u8 *puVar1;
     int in_r0;
     int iVar2;
@@ -1798,10 +1798,10 @@ u32 shinobi_sub_20135c(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * shinobi_sub_20136c  0x8c20136c
- * area name: in the shinobi library code range
+ * alt_entry_20136c  0x8c20136c
+ * probably an entry 16 bytes into 8c20135c: it reads registers that code sets before it
  */
-u32 shinobi_sub_20136c(void) {
+u32 alt_entry_20136c(void) {
     int in_r0;
     u32 uVar1;
     u32 a4;
@@ -2907,7 +2907,7 @@ u32 shinobi_sub_201fb8(int a0, u32 a1) {
 /*
  * shinobi_sub_20200c  0x8c20200c
  * area name: in the shinobi library code range
- * called by: shinobi_sub_20254c, shinobi_sub_202550
+ * called by: alt_entry_202550, shinobi_sub_20254c
  */
 u32 shinobi_sub_20200c(int a0, int a1) {
     u32 uVar1;
@@ -2978,10 +2978,10 @@ u32 shinobi_sub_2020b6(int a0) {
 }
 
 /*
- * shinobi_sub_2020ba  0x8c2020ba
- * area name: in the shinobi library code range
+ * alt_entry_2020ba  0x8c2020ba
+ * probably an entry 4 bytes into 8c2020b6: it reads registers that code sets before it
  */
-u32 shinobi_sub_2020ba(u32 unused_a0, u32 a1) {
+u32 alt_entry_2020ba(u32 unused_a0, u32 a1) {
     int iVar1;
     u32 uVar2;
     int unaff_r14;
@@ -3054,7 +3054,7 @@ int field_ptr_f(int a0) {
 /*
  * shinobi_sub_20213e  0x8c20213e
  * area name: in the shinobi library code range
- * called by: shinobi_sub_20227c, shinobi_sub_202280
+ * called by: alt_entry_202280, shinobi_sub_20227c
  */
 u32 shinobi_sub_20213e(int a0, int a1) {
     u32 r6;
@@ -3136,10 +3136,10 @@ u32 shinobi_sub_20227c(char *a0) {
 }
 
 /*
- * shinobi_sub_202280  0x8c202280
- * area name: in the shinobi library code range
+ * alt_entry_202280  0x8c202280
+ * probably an entry 4 bytes into 8c20227c: it reads registers that code sets before it
  */
-u32 shinobi_sub_202280(u32 unused_a0, u32 a1) {
+u32 alt_entry_202280(u32 unused_a0, u32 a1) {
     int a4;
     char *unaff_r14;
 
@@ -3153,7 +3153,7 @@ u32 shinobi_sub_202280(u32 unused_a0, u32 a1) {
 /*
  * shinobi_sub_2022ac  0x8c2022ac
  * area name: in the shinobi library code range
- * called by: shinobi_sub_202342, shinobi_sub_202782, shinobi_sub_202786
+ * called by: alt_entry_202786, shinobi_sub_202342, shinobi_sub_202782
  */
 u32 shinobi_sub_2022ac(int a0, u8 *a1) {
     int iVar1;
@@ -3186,10 +3186,10 @@ u32 shinobi_sub_2022ac(int a0, u8 *a1) {
 }
 
 /*
- * shinobi_sub_2022b8  0x8c2022b8
- * area name: in the shinobi library code range
+ * alt_entry_2022b8  0x8c2022b8
+ * probably an entry 12 bytes into 8c2022ac: it reads registers that code sets before it
  */
-u32 shinobi_sub_2022b8(int a0) {
+u32 alt_entry_2022b8(int a0) {
     u8 uVar1;
     int iVar2;
     u32 uVar3;
@@ -3227,7 +3227,7 @@ u32 shinobi_sub_2022b8(int a0) {
 /*
  * shinobi_sub_202302  0x8c202302
  * area name: in the shinobi library code range
- * called by: shinobi_sub_2022ac, shinobi_sub_2022b8
+ * called by: alt_entry_2022b8, shinobi_sub_2022ac
  */
 u32 shinobi_sub_202302(int a0) {
     u32 uVar1;
@@ -3248,7 +3248,7 @@ u32 shinobi_sub_202302(int a0) {
 /*
  * field_ptr_f_wrap  0x8c202330
  * only calls field_ptr_f
- * called by: shinobi_sub_2022ac, shinobi_sub_2022b8
+ * called by: alt_entry_2022b8, shinobi_sub_2022ac
  */
 u32 field_ptr_f_wrap(int a0) {
     u32 uVar1;
@@ -3549,10 +3549,10 @@ LAB_8c202642:
 }
 
 /*
- * shinobi_sub_202550  0x8c202550
- * area name: in the shinobi library code range
+ * alt_entry_202550  0x8c202550
+ * probably an entry 4 bytes into 8c20254c: it reads registers that code sets before it
  */
-u32 shinobi_sub_202550(u32 unused_a0, u32 a1) {
+u32 alt_entry_202550(u32 unused_a0, u32 a1) {
     u32 uVar1;
     int iVar2;
     u32 a5;
@@ -3844,10 +3844,10 @@ LAB_8c2023fe:
 }
 
 /*
- * shinobi_sub_202786  0x8c202786
- * area name: in the shinobi library code range
+ * alt_entry_202786  0x8c202786
+ * probably an entry 4 bytes into 8c202782: it reads registers that code sets before it
  */
-int shinobi_sub_202786(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+int alt_entry_202786(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     char cVar1;
     bool bVar2;
     int iVar3;
@@ -4155,10 +4155,10 @@ int shinobi_sub_2029fc(void) {
 }
 
 /*
- * shinobi_sub_202a04  0x8c202a04
- * area name: in the shinobi library code range
+ * alt_entry_202a04  0x8c202a04
+ * probably an entry 8 bytes into 8c2029fc: it reads registers that code sets before it
  */
-int shinobi_sub_202a04(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+int alt_entry_202a04(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u8 *puVar2;
     u8 *pbVar3;
@@ -4679,10 +4679,10 @@ u32 shinobi_sub_203400(void) {
 }
 
 /*
- * shinobi_sub_203406  0x8c203406
- * area name: in the shinobi library code range
+ * alt_entry_203406  0x8c203406
+ * probably an entry 6 bytes into 8c203400: it reads registers that code sets before it
  */
-u32 shinobi_sub_203406(void) {
+u32 alt_entry_203406(void) {
     int iVar1;
     u16 *puVar2;
     u8 *ar5_00;
@@ -4986,10 +4986,10 @@ int kamui_sub_2036a0(u32 a0, int a1) {
 }
 
 /*
- * kamui_sub_2036ac  0x8c2036ac
- * area name: sits between kamui functions (same compilation unit)
+ * alt_entry_2036ac  0x8c2036ac
+ * probably an entry 12 bytes into 8c2036a0: it reads registers that code sets before it
  */
-int kamui_sub_2036ac(u32 unused_a0, int a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+int alt_entry_2036ac(u32 unused_a0, int a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     int iVar2;
     u32 uVar3;
@@ -5293,7 +5293,7 @@ u32 shinobi_sub_203a92(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * shinobi_sub_203bda  0x8c203bda
  * area name: in the shinobi library code range
- * called by: kamui_sub_20c980, kamui_sub_20ca32, kamui_sub_20cf88, kamui_sub_20cf8c, shinobi_sub_203914,
+ * called by: alt_entry_20cf8c, kamui_sub_20c980, kamui_sub_20ca32, kamui_sub_20cf88, shinobi_sub_203914,
  * shinobi_sub_203ca0, shinobi_sub_203cd0
  */
 u32 shinobi_sub_203bda(int a0, u32 a1, u32 a2, u32 a3) {
@@ -5353,7 +5353,7 @@ u32 shinobi_sub_203ca0(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * shinobi_sub_203cd0  0x8c203cd0
  * area name: in the shinobi library code range
- * called by: kamui_sub_20c980, kamui_sub_20cf88, kamui_sub_20cf8c
+ * called by: alt_entry_20cf8c, kamui_sub_20c980, kamui_sub_20cf88
  */
 u32 shinobi_sub_203cd0(int a0) {
     bool bVar1;
@@ -5594,10 +5594,10 @@ u32 shinobi_sub_20408e(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_204092  0x8c204092
- * area name: in the shinobi library code range
+ * alt_entry_204092  0x8c204092
+ * probably an entry 4 bytes into 8c20408e: it reads registers that code sets before it
  */
-u32 shinobi_sub_204092(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 alt_entry_204092(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int unaff_r14;
     u32 in_PR;
 
@@ -5624,10 +5624,10 @@ int shinobi_sub_2040ce(void) {
 }
 
 /*
- * shinobi_sub_2040d2  0x8c2040d2
- * area name: in the shinobi library code range
+ * alt_entry_2040d2  0x8c2040d2
+ * probably an entry 4 bytes into 8c2040ce: it reads registers that code sets before it
  */
-int shinobi_sub_2040d2(void) {
+int alt_entry_2040d2(void) {
     int iVar1;
     int unaff_r14;
 
@@ -5920,7 +5920,7 @@ u32 shinobi_sub_2043d4(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
 /*
  * shinobi_sub_2046d2  0x8c2046d2
  * area name: in the shinobi library code range
- * called by: kamui_sub_2036a0, kamui_sub_2036ac, shinobi_sub_20374e, shinobi_sub_203820
+ * called by: alt_entry_2036ac, kamui_sub_2036a0, shinobi_sub_20374e, shinobi_sub_203820
  */
 u32 shinobi_sub_2046d2(u32 a0, u32 a1, u32 *a2, u32 a3) {
     u16 *puVar1;
@@ -6358,7 +6358,7 @@ u16 *pool47eba8_alloc(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * pool47eba8_free  0x8c204e6c
  * frees entry a0 of the pool at 0x8c47eba8 (pairs with pool47eba8_alloc)
- * called by: shinobi_sub_203400, shinobi_sub_203406, shinobi_sub_2043d4, shinobi_sub_204cfc, ta_fifo_2050cc,
+ * called by: alt_entry_203406, shinobi_sub_203400, shinobi_sub_2043d4, shinobi_sub_204cfc, ta_fifo_2050cc,
  * ta_fifo_2050de, ta_fifo_2052f2
  */
 u32 pool47eba8_free(u16 *a0) {
@@ -6505,7 +6505,7 @@ u32 shinobi_sub_204f2a(int a0, int a1, u32 a2, u32 a3) {
 /*
  * shinobi_sub_205020  0x8c205020
  * area name: in the shinobi library code range
- * called by: shinobi_sub_20408e, shinobi_sub_204092
+ * called by: alt_entry_204092, shinobi_sub_20408e
  */
 u32 shinobi_sub_205020(int *a0, int *a1, u32 unused_a2, u32 a3, u32 ain0) {
     int iVar1;
@@ -6564,7 +6564,7 @@ u32 shinobi_sub_205020(int *a0, int *a1, u32 unused_a2, u32 a3, u32 ain0) {
 
 /*
  * ta_fifo_2050cc  0x8c2050cc
- * called by: shinobi_sub_2040ce, shinobi_sub_2040d2
+ * called by: alt_entry_2040d2, shinobi_sub_2040ce
  */
 u32 ta_fifo_2050cc(int *a0, int a1, u32 *a2, int a3) {
     u16 uVar1;
@@ -7050,10 +7050,10 @@ LAB_8c205756:
 }
 
 /*
- * shinobi_sub_205644  0x8c205644
- * area name: in the shinobi library code range
+ * alt_entry_205644  0x8c205644
+ * probably an entry 4 bytes into 8c205640: it reads registers that code sets before it
  */
-u32 shinobi_sub_205644(u32 *a0, int a1) {
+u32 alt_entry_205644(u32 *a0, int a1) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -7150,7 +7150,7 @@ u16 *shinobi_sub_205768(u32 a0) {
 /*
  * pool496ba8_free  0x8c2057c0
  * frees entry a0 of the 0x4c-byte pool at 0x8c496ba8
- * called by: shinobi_sub_203400, shinobi_sub_203406, shinobi_sub_203a92, shinobi_sub_203cd0
+ * called by: alt_entry_203406, shinobi_sub_203400, shinobi_sub_203a92, shinobi_sub_203cd0
  */
 u32 pool496ba8_free(u16 *a0) {
     u32 uVar1;
@@ -7300,7 +7300,7 @@ u32 shinobi_sub_205948(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 
 /*
  * vram64_to_vram32  0x8c2059be
  * converts a 64-bit-bus VRAM offset to the 32-bit (interleaved bank) view
- * called by: kamui_sub_2036a0, kamui_sub_2036ac, shinobi_sub_20374e, shinobi_sub_203820
+ * called by: alt_entry_2036ac, kamui_sub_2036a0, shinobi_sub_20374e, shinobi_sub_203820
  */
 int vram64_to_vram32(u32 a0) {
     int iVar1;
@@ -7343,7 +7343,7 @@ int shinobi_sub_2059e0(u32 a0) {
 /*
  * shinobi_sub_205a40  0x8c205a40
  * area name: in the shinobi library code range
- * called by: pvr_sub_20a6f2, shinobi_sub_207da0, shinobi_sub_207f80, shinobi_sub_207f84
+ * called by: alt_entry_207f84, pvr_sub_20a6f2, shinobi_sub_207da0, shinobi_sub_207f80
  */
 u32 shinobi_sub_205a40(void) {
     u8 *puVar1;
@@ -8411,7 +8411,7 @@ u32 callback_table_call(int a0) {
 /*
  * pvr_sub_207300  0x8c207300
  * area name: sits between pvr functions (same compilation unit)
- * called by: kamui_sub_2103c4, kamui_sub_212220, kamui_sub_212284, kamui_sub_2122ea, ta_sub_20af20, ta_sub_20af22
+ * called by: alt_entry_20af22, kamui_sub_2103c4, kamui_sub_212220, kamui_sub_212284, kamui_sub_2122ea, ta_sub_20af20
  */
 u32 pvr_sub_207300(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9153,10 +9153,10 @@ u32 shinobi_sub_207f80(void) {
 }
 
 /*
- * shinobi_sub_207f84  0x8c207f84
- * area name: in the shinobi library code range
+ * alt_entry_207f84  0x8c207f84
+ * probably an entry 4 bytes into 8c207f80: it reads registers that code sets before it
  */
-u32 shinobi_sub_207f84(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_207f84(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
     u32 ar5_00;
     u32 in_r3;
@@ -11065,10 +11065,10 @@ u32 pvr_sub_20a1d0(int a0, u32 a1) {
 }
 
 /*
- * pvr_sub_20a1e4  0x8c20a1e4
- * area name: sits between pvr functions (same compilation unit)
+ * alt_entry_20a1e4  0x8c20a1e4
+ * probably an entry 20 bytes into 8c20a1d0: it reads registers that code sets before it
  */
-u32 pvr_sub_20a1e4(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_20a1e4(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
     float *in_r0;
     int unaff_r10;
@@ -11140,10 +11140,10 @@ u32 shinobi_sub_20a280(u32 a0) {
 }
 
 /*
- * shinobi_sub_20a284  0x8c20a284
- * area name: in the shinobi library code range
+ * alt_entry_20a284  0x8c20a284
+ * probably an entry 4 bytes into 8c20a280: it reads registers that code sets before it
  */
-u32 shinobi_sub_20a284(u32 a0) {
+u32 alt_entry_20a284(u32 a0) {
     u32 in_r3;
 
     if ((in_r3 & a0) == 0) {
@@ -11245,7 +11245,7 @@ u32 pvr_sub_20a420(u32 a0, int a1, u32 a2, u32 a3) {
 /*
  * pvr_set_clip_rect  0x8c20a482
  * sets the tile clip rectangle (a0, a1)-(a2, a3), at most 2047, even in mode 4; 0xdddd if empty
- * called by: kamui_sub_20bdc0, kamui_sub_20c416, ninja_sub_25b044, ninja_sub_25b052, ninja_sub_25b08a
+ * called by: alt_entry_25b052, kamui_sub_20bdc0, kamui_sub_20c416, ninja_sub_25b044, ninja_sub_25b08a
  */
 u32 pvr_set_clip_rect(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -11386,8 +11386,8 @@ u32 noop_20a840(void) {
 
 /*
  * pvr_20a844  0x8c20a844
- * called by: g2dma_205a62, kamui_cfg_texture_memory, kamui_cfg_texture_memory_b, kamui_sub_20bdc0, kamui_sub_20c416,
- * kamui_sub_20c7e0, kamui_sub_21035c, kamui_sub_211f40 (+28 more)
+ * called by: alt_entry_207f84, alt_entry_20a284, g2dma_205a62, kamui_cfg_texture_memory, kamui_cfg_texture_memory_b,
+ * kamui_sub_20bdc0, kamui_sub_20c416, kamui_sub_20c7e0 (+28 more)
  */
 u32 pvr_20a844(int a0, u32 a1) {
     *(u32 *)(a0 + 0xa05f8000) = a1;
@@ -11415,10 +11415,10 @@ u32 cache_writeback_range(u32 a0, int a1) {
 }
 
 /*
- * pvr_sub_20a85a  0x8c20a85a
- * area name: sits between pvr functions (same compilation unit)
+ * alt_entry_20a85a  0x8c20a85a
+ * probably an entry 12 bytes into 8c20a84e: it reads registers that code sets before it
  */
-u32 pvr_sub_20a85a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_20a85a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
     u32 in_r0;
     u32 unaff_r13;
@@ -11451,7 +11451,7 @@ u32 vram_20a87c(int a0, u32 a1, u32 a2) {
 
 /*
  * vram_20a892  0x8c20a892
- * called by: kamui_sub_20d082, kamui_sub_20d086
+ * called by: alt_entry_20d086, kamui_sub_20d082
  */
 u32 vram_20a892(u32 a0, int a1, u32 a2) {
     memcpy_words(a0, a1 + 0xa5000000, a2);
@@ -11504,7 +11504,7 @@ u32 vram64_20a8e0(u32 a0, u32 a1, u32 a2) {
 
 /*
  * vram64_20a9c2  0x8c20a9c2
- * called by: kamui_sub_20d082, kamui_sub_20d086, kamui_sub_20d9ce, kamui_sub_20daa0, kamui_sub_20db80,
+ * called by: alt_entry_20d086, kamui_sub_20d082, kamui_sub_20d9ce, kamui_sub_20daa0, kamui_sub_20db80,
  * shinobi_sub_204f2a, ta_sub_20d6ea, ta_sub_20d7a0 (+1 more)
  */
 u32 vram64_20a9c2(u32 a0, int a1, u32 a2) {
@@ -11732,10 +11732,10 @@ u32 ta_sub_20af20(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * ta_sub_20af22  0x8c20af22
- * area name: sits between ta functions (same compilation unit)
+ * alt_entry_20af22  0x8c20af22
+ * probably an entry 2 bytes into 8c20af20: it reads registers that code sets before it
  */
-int ta_sub_20af22(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int alt_entry_20af22(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 *in_r3;
     int iVar1;
     u32 ar4_00;
@@ -11879,7 +11879,7 @@ int ta_fifo_20b160(u32 a0) {
 /*
  * ta_sub_20b260  0x8c20b260
  * area name: sits between ta functions (same compilation unit)
- * called by: game_frame, ninja_sub_258e70
+ * called by: alt_entry_258e70, game_frame
  */
 u32 ta_sub_20b260(u32 a0, u8 *a1, int a2, u32 a3) {
     bool bVar1;
@@ -12064,7 +12064,7 @@ u32 noop_20b77a(void) {
 /*
  * ta_sub_20b7a0  0x8c20b7a0
  * area name: sits between ta functions (same compilation unit)
- * called by: game_frame, ninja_sub_258e70
+ * called by: alt_entry_258e70, game_frame
  */
 u32 ta_sub_20b7a0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -12314,7 +12314,7 @@ LAB_8c20bd36:
 /*
  * kamui_sub_20bdc0  0x8c20bdc0
  * area name: in the kamui library code range
- * called by: ninja_sub_25b044, ninja_sub_25b052, ninja_sub_25b08a
+ * called by: alt_entry_25b052, ninja_sub_25b044, ninja_sub_25b08a
  */
 u32 kamui_sub_20bdc0(int a0, u32 *a1, u32 a2, u32 a3) {
     bool bVar1;
@@ -13063,7 +13063,7 @@ u32 kamui_sub_20cefe(u32 *a0, u32 a1) {
 /*
  * kamui_sub_20cf88  0x8c20cf88
  * area name: in the kamui library code range
- * called by: ninja_sub_2566c8, ninja_sub_2567f8, ninja_sub_2567fe, tex_sub_25a770, tex_sub_25a914, tex_sub_25a918
+ * called by: alt_entry_2567fe, alt_entry_25a918, ninja_sub_2566c8, ninja_sub_2567f8, tex_sub_25a770, tex_sub_25a914
  */
 u32 kamui_sub_20cf88(u32 *a0) {
     u32 uVar1;
@@ -13077,10 +13077,10 @@ u32 kamui_sub_20cf88(u32 *a0) {
 }
 
 /*
- * kamui_sub_20cf8c  0x8c20cf8c
- * area name: in the kamui library code range
+ * alt_entry_20cf8c  0x8c20cf8c
+ * probably an entry 4 bytes into 8c20cf88: it reads registers that code sets before it
  */
-u32 kamui_sub_20cf8c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_20cf8c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 *unaff_r14;
 
@@ -13167,10 +13167,10 @@ u32 kamui_sub_20d082(u32 a0, u32 *a1) {
 }
 
 /*
- * kamui_sub_20d086  0x8c20d086
- * area name: in the kamui library code range
+ * alt_entry_20d086  0x8c20d086
+ * probably an entry 4 bytes into 8c20d082: it reads registers that code sets before it
  */
-u32 kamui_sub_20d086(u32 a0) {
+u32 alt_entry_20d086(u32 a0) {
     u32 uVar1;
     u32 *unaff_r14;
 
@@ -13369,10 +13369,10 @@ u32 kamui_sub_20d4a6(u32 *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * kamui_sub_20d4aa  0x8c20d4aa
- * area name: in the kamui library code range
+ * alt_entry_20d4aa  0x8c20d4aa
+ * probably an entry 4 bytes into 8c20d4a6: it reads registers that code sets before it
  */
-u32 kamui_sub_20d4aa(void) {
+u32 alt_entry_20d4aa(void) {
     u32 uVar1;
     u32 *unaff_r14;
 
@@ -13394,7 +13394,7 @@ u32 kamui_sub_20d4aa(void) {
 /*
  * kamui_sub_20d500  0x8c20d500
  * area name: in the kamui library code range
- * called by: kamui_sub_20d4a6, kamui_sub_20d4aa
+ * called by: alt_entry_20d4aa, kamui_sub_20d4a6
  */
 int kamui_sub_20d500(int a0) {
     u32 uVar1;
@@ -13434,7 +13434,7 @@ int kamui_sub_20d500(int a0) {
 /*
  * kamui_sub_20d554  0x8c20d554
  * area name: in the kamui library code range
- * called by: kamui_sub_20d4a6, kamui_sub_20d4aa
+ * called by: alt_entry_20d4aa, kamui_sub_20d4a6
  */
 int kamui_sub_20d554(int a0) {
     u32 uVar1;
@@ -13474,7 +13474,7 @@ int kamui_sub_20d554(int a0) {
 /*
  * ta_sub_20d5b2  0x8c20d5b2
  * area name: sits between ta functions (same compilation unit)
- * called by: kamui_sub_20d4a6, kamui_sub_20d4aa
+ * called by: alt_entry_20d4aa, kamui_sub_20d4a6
  */
 u32 ta_sub_20d5b2(int a0) {
     u32 uVar1;
@@ -13521,7 +13521,7 @@ u32 ta_sub_20d5b2(int a0) {
 /*
  * ta_sub_20d63c  0x8c20d63c
  * area name: sits between ta functions (same compilation unit)
- * called by: kamui_sub_20d4a6, kamui_sub_20d4aa
+ * called by: alt_entry_20d4aa, kamui_sub_20d4a6
  */
 int ta_sub_20d63c(int a0) {
     u32 uVar1;
@@ -13577,7 +13577,7 @@ u32 ta_sub_20d6c0(int a0, u32 a1, u32 a2) {
 /*
  * ta_sub_20d6ea  0x8c20d6ea
  * area name: sits between ta functions (same compilation unit)
- * called by: kamui_sub_20d082, kamui_sub_20d086
+ * called by: alt_entry_20d086, kamui_sub_20d082
  */
 u32 ta_sub_20d6ea(u32 a0, int a1, u32 a2) {
     int iVar1;
@@ -13614,7 +13614,7 @@ u32 ta_sub_20d740(int a0, int a1, u32 a2, u32 a3) {
 /*
  * ta_sub_20d7a0  0x8c20d7a0
  * area name: sits between ta functions (same compilation unit)
- * called by: kamui_sub_20d082, kamui_sub_20d086
+ * called by: alt_entry_20d086, kamui_sub_20d082
  */
 u32 ta_sub_20d7a0(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -14473,7 +14473,7 @@ int kamui_sub_20e78e(int *a0) {
 /*
  * kamui_sub_20e838  0x8c20e838
  * area name: in the kamui library code range
- * called by: kamui_sub_20e8c6, kamui_sub_20e8dc
+ * called by: alt_entry_20e8dc, kamui_sub_20e8c6
  */
 u32 kamui_sub_20e838(int a0, int a1) {
     if (a1 <= a0) {
@@ -14553,10 +14553,10 @@ u32 kamui_sub_20e8c6(int a0, u32 a1, int a2, int a3, u32 s0) {
 }
 
 /*
- * kamui_sub_20e8dc  0x8c20e8dc
- * area name: in the kamui library code range
+ * alt_entry_20e8dc  0x8c20e8dc
+ * probably an entry 22 bytes into 8c20e8c6: it reads registers that code sets before it
  */
-u32 kamui_sub_20e8dc(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16, u32 s20,
+u32 alt_entry_20e8dc(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16, u32 s20,
                      u32 s24) {
     int iVar1;
     u32 uVar2;
@@ -14586,7 +14586,7 @@ u32 kamui_sub_20e8dc(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3, u32 s0, u32 s
 
 /*
  * ta_fifo_20e9ae  0x8c20e9ae
- * called by: kamui_sub_20e8c6, kamui_sub_20e8dc, ta_fifo_20dd80
+ * called by: alt_entry_20e8dc, kamui_sub_20e8c6, ta_fifo_20dd80
  */
 u32 ta_fifo_20e9ae(u8 *a0, int a1, u32 a2, int a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16, u32 s20, u32 s24,
                    u32 s28) {
@@ -14731,7 +14731,7 @@ u32 ta_fifo_20e9ae(u8 *a0, int a1, u32 a2, int a3, u32 s0, u32 s4, u32 s8, u32 s
 /*
  * ta_sub_20ed60  0x8c20ed60
  * name hint from a string it uses: UUUU t; area name: sits between ta functions (same compilation unit)
- * called by: kamui_sub_20e8c6, kamui_sub_20e8dc, ta_fifo_20dd80
+ * called by: alt_entry_20e8dc, kamui_sub_20e8c6, ta_fifo_20dd80
  * strings: "UUUU\t"; "UUUU\t"; "UUUU\t"; "UUUU\t" ...
  */
 int ta_sub_20ed60(int a0, u8 *a1, int a2, int a3) {
@@ -14881,7 +14881,7 @@ int ta_sub_20eec0(u8 *a0, u8 *a1, u8 *a2, u8 *a3, u8 *s0, int s4) {
 
 /*
  * ta_fifo_20f25a  0x8c20f25a
- * called by: kamui_sub_20e8c6, kamui_sub_20e8dc
+ * called by: alt_entry_20e8dc, kamui_sub_20e8c6
  */
 u32 ta_fifo_20f25a(u8 *a0, int a1, int a2) {
     u8 *puVar1;
@@ -14960,8 +14960,8 @@ int ta_sub_20f340(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * ta_fifo_20f640  0x8c20f640
- * called by: draw_sub_2599ca, gfxlib_sub_233f98, ninja_sub_2588f8, ninja_sub_258d82, ninja_sub_2591f8,
- * ninja_sub_25922e, pvr_sub_235eb4, pvr_sub_235eba (+19 more)
+ * called by: alt_entry_235eba, alt_entry_235eea, alt_entry_235f1a, alt_entry_25927e, alt_entry_259362,
+ * alt_entry_2593b4, alt_entry_259560, alt_entry_2599ca (+19 more)
  */
 u32 ta_fifo_20f640(u32 *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -15253,8 +15253,8 @@ LAB_8c20f8ea:
 /*
  * ta_load_texture_params  0x8c20fe00
  * copies a texture/material block (+0x70..+0xa0) into the TA polygon globals
- * called by: draw_state_copy_in, draw_state_select, draw_sub_2599ca, ninja_sub_255f88, ninja_sub_259138,
- * ninja_sub_2591f8, ninja_sub_25922e, ninja_sub_25b440 (+22 more)
+ * called by: alt_entry_235eba, alt_entry_235eea, alt_entry_235f1a, alt_entry_25927e, alt_entry_259362,
+ * alt_entry_2593b4, alt_entry_259560, alt_entry_2599ca (+22 more)
  */
 u32 ta_load_texture_params(int a0) {
     u32 *puVar1;

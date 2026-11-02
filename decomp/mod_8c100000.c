@@ -1922,7 +1922,7 @@ u16 *set_fields_0_2(u16 *a0, u32 a1, u32 a2) {
 /*
  * clear_3_words_102748  0x8c102748
  * a0[0..2] = 0
- * called by: CAnimal_sub_030e10, Class_12b088_sub_0aa70c, Vec3_sub_0c84f4, game_sub_03c94c, game_sub_046684,
+ * called by: CAnimal_sub_030e10, Class_12b088_sub_0aa70c, Vec3_sub_0c84f4, alt_entry_046684, game_sub_03c94c,
  * game_sub_054f7c, game_sub_078fd0, game_sub_08fd38 (+7 more)
  */
 u32 *clear_3_words_102748(u32 *a0) {
@@ -1935,8 +1935,8 @@ u32 *clear_3_words_102748(u32 *a0) {
 /*
  * Vec3_assign_f_10277c  0x8c10277c
  * stores fr4..fr6 as x, y, z
- * called by: CAnimal_m2_02573c, CAnimal_m3_026078, Class_12bb08_ctor, Vec3_sub_03f4a4, game_sub_0337d0,
- * game_sub_03c94c, game_sub_046684, game_sub_048868 (+4 more)
+ * called by: CAnimal_m2_02573c, CAnimal_m3_026078, Class_12bb08_ctor, Vec3_sub_03f4a4, alt_entry_046684,
+ * game_sub_0337d0, game_sub_03c94c, game_sub_048868 (+4 more)
  */
 u32 *Vec3_assign_f_10277c(u32 *a0) {
     u32 in_fr5;
@@ -5542,10 +5542,10 @@ u32 asr_sub_10a308(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10a312  0x8c10a312
- * area name: in the asr library code range
+ * alt_entry_10a312  0x8c10a312
+ * probably an entry 10 bytes into 8c10a308: it reads registers that code sets before it
  */
-u32 asr_sub_10a312(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 alt_entry_10a312(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int in_r0;
     u32 uVar1;
     int ar6_00;
@@ -6099,10 +6099,10 @@ u32 asr_free_model(int *a0) {
 }
 
 /*
- * asr_sub_10abfa  0x8c10abfa
- * area name: sits between asr functions (same compilation unit)
+ * alt_entry_10abfa  0x8c10abfa
+ * probably an entry 6 bytes into 8c10abf4: it reads registers that code sets before it
  */
-u32 asr_sub_10abfa(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_10abfa(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     int *unaff_r13;
     int a4;
@@ -7023,10 +7023,10 @@ int asr_lib_bind_recognizer_model(u32 *a0, u32 *a1) {
 }
 
 /*
- * asr_sub_10b852  0x8c10b852
- * area name: sits between asr functions (same compilation unit)
+ * alt_entry_10b852  0x8c10b852
+ * probably an entry 18 bytes into 8c10b840: it reads registers that code sets before it
  */
-int asr_sub_10b852(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
+int alt_entry_10b852(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     int unaff_r11;
@@ -8211,7 +8211,7 @@ int asr_sub_10c986(int *a0) {
 /*
  * asr_sub_10c99c  0x8c10c99c
  * area name: sits between asr functions (same compilation unit)
- * called by: asr_sub_10c9c8, asr_sub_10c9cc
+ * called by: alt_entry_10c9cc, asr_sub_10c9c8
  */
 int asr_sub_10c99c(int *a0) {
     int iVar1;
@@ -8237,10 +8237,10 @@ int asr_sub_10c9c8(int *a0) {
 }
 
 /*
- * asr_sub_10c9cc  0x8c10c9cc
- * area name: sits between asr functions (same compilation unit)
+ * alt_entry_10c9cc  0x8c10c9cc
+ * probably an entry 4 bytes into 8c10c9c8: it reads registers that code sets before it
  */
-int asr_sub_10c9cc(int *a0) {
+int alt_entry_10c9cc(int *a0) {
     int in_r0;
     int iVar1;
     u32 in_r3;
@@ -8617,7 +8617,7 @@ u32 asr_module_def_10cefa(u32 a0, u32 a1) {
 /*
  * asr_sub_10cf6c  0x8c10cf6c
  * area name: sits between asr functions (same compilation unit)
- * called by: asr_sub_10d458, asr_sub_10ddaa, asr_sub_10ddb6
+ * called by: alt_entry_10ddb6, asr_sub_10d458, asr_sub_10ddaa
  */
 u32 asr_sub_10cf6c(int *a0, u32 *a1, u16 *a2, u32 a3) {
     int iVar1;
@@ -8654,10 +8654,10 @@ u32 asr_sub_10cf6c(int *a0, u32 *a1, u16 *a2, u32 a3) {
 }
 
 /*
- * asr_sub_10cf82  0x8c10cf82
- * area name: sits between asr functions (same compilation unit)
+ * alt_entry_10cf82  0x8c10cf82
+ * probably an entry 22 bytes into 8c10cf6c: it reads registers that code sets before it
  */
-u32 asr_sub_10cf82(int *a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_10cf82(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     u16 unaff_r8;
     int iVar2;
@@ -9405,10 +9405,10 @@ u32 asr_sub_10ddaa(int *a0) {
 }
 
 /*
- * asr_sub_10ddb6  0x8c10ddb6
- * area name: in the asr library code range
+ * alt_entry_10ddb6  0x8c10ddb6
+ * probably an entry 12 bytes into 8c10ddaa: it reads registers that code sets before it
  */
-u32 asr_sub_10ddb6(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_10ddb6(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int in_r0;
     int *piVar1;
     int a6;
@@ -9835,10 +9835,10 @@ u32 asr_sub_10e6c0(int a0, int a1, int a2) {
 }
 
 /*
- * asr_sub_10e6d0  0x8c10e6d0
- * area name: in the asr library code range
+ * alt_entry_10e6d0  0x8c10e6d0
+ * probably an entry 16 bytes into 8c10e6c0: it reads registers that code sets before it
  */
-u32 asr_sub_10e6d0(void) {
+u32 alt_entry_10e6d0(void) {
     char cVar1;
     char cVar2;
     u8 *puVar3;
@@ -10264,7 +10264,7 @@ int asr_sub_10ec78(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * asr_sub_10ecd8  0x8c10ecd8
  * area name: in the asr library code range
- * called by: asr_sub_10f108, asr_sub_10f110
+ * called by: alt_entry_10f110, asr_sub_10f108
  */
 u32 *asr_sub_10ecd8(float *a0, u32 a1) {
     u32 *puVar1;
@@ -10528,10 +10528,10 @@ u64 *asr_sub_10f108(u32 a0, int a1) {
 }
 
 /*
- * asr_sub_10f110  0x8c10f110
- * area name: in the asr library code range
+ * alt_entry_10f110  0x8c10f110
+ * probably an entry 8 bytes into 8c10f108: it reads registers that code sets before it
  */
-u64 *asr_sub_10f110(u32 a0, u32 a1) {
+u64 *alt_entry_10f110(u32 a0, u32 a1) {
     u32 uVar1;
     u32 uVar2;
     double *pdVar3;
@@ -10983,10 +10983,10 @@ u32 asr_sub_10f736(int a0, int a1) {
 }
 
 /*
- * asr_sub_10f742  0x8c10f742
- * area name: sits between asr functions (same compilation unit)
+ * alt_entry_10f742  0x8c10f742
+ * probably an entry 12 bytes into 8c10f736: it reads registers that code sets before it
  */
-u32 asr_sub_10f742(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_10f742(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
     u32 uVar1;
     u32 uVar2;
@@ -11333,10 +11333,10 @@ u32 asr_sub_10fab2(int a0, int a1) {
 }
 
 /*
- * asr_sub_10fabc  0x8c10fabc
- * area name: sits between asr functions (same compilation unit)
+ * alt_entry_10fabc  0x8c10fabc
+ * probably an entry 10 bytes into 8c10fab2: it reads registers that code sets before it
  */
-u32 asr_sub_10fabc(u32 unused_a0, double *a1, u32 unused_a2, u32 unused_a3, int ain0) {
+u32 alt_entry_10fabc(u32 unused_a0, double *a1, u32 unused_a2, u32 unused_a3, int ain0) {
     char cVar1;
     int iVar2;
     double *ar4_00;
@@ -11586,7 +11586,7 @@ u32 asr_sub_10fc96(int a0, u32 unused_a1, int a2, u32 a3) {
 /*
  * asr_sub_10fd82  0x8c10fd82
  * area name: sits between asr functions (same compilation unit)
- * called by: asr_sub_10fe04, asr_sub_10fe0a
+ * called by: alt_entry_10fe0a, asr_sub_10fe04
  */
 int asr_sub_10fd82(int a0) {
     u32 uVar1;
@@ -11640,10 +11640,10 @@ u32 asr_sub_10fe04(int a0) {
 }
 
 /*
- * asr_sub_10fe0a  0x8c10fe0a
- * area name: sits between asr functions (same compilation unit)
+ * alt_entry_10fe0a  0x8c10fe0a
+ * probably an entry 6 bytes into 8c10fe04: it reads registers that code sets before it
  */
-u32 asr_sub_10fe0a(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 alt_entry_10fe0a(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int in_r0;
     int iVar1;
     u32 uVar2;

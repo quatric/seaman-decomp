@@ -1154,8 +1154,8 @@ u32 get_g_8c2758e8(void) {
 /*
  * kamui_sub_21214e  0x8c21214e
  * area name: sits between kamui functions (same compilation unit)
- * called by: kamui_set_display_mode_cfg, kamui_sub_211120, pvr_sub_20a6f2, shinobi_sub_207da0, shinobi_sub_207f80,
- * shinobi_sub_207f84
+ * called by: alt_entry_207f84, kamui_set_display_mode_cfg, kamui_sub_211120, pvr_sub_20a6f2, shinobi_sub_207da0,
+ * shinobi_sub_207f80
  */
 int *kamui_sub_21214e(void) {
     u32 *puVar1;
@@ -1194,10 +1194,10 @@ int *kamui_sub_21214e(void) {
 }
 
 /*
- * kamui_sub_212152  0x8c212152
- * area name: sits between kamui functions (same compilation unit)
+ * alt_entry_212152  0x8c212152
+ * probably an entry 4 bytes into 8c21214e: it reads registers that code sets before it
  */
-u32 *kamui_sub_212152(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 *alt_entry_212152(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar1;
     u32 *puVar2;
     u32 *puVar3;
@@ -1498,8 +1498,8 @@ LAB_8c212588:
 /*
  * point_transform_or_copy  0x8c212740
  * a2 = the current matrix times a1, or the position at +0x30 of object a0 when it is set
- * called by: Class_129938_m1_0170e0, Class_129938_m2_0171f4, Vec3_sub_02a568, Vec3_sub_02a5d4, gfxlib_sub_218e00,
- * gfxlib_sub_21a678, gfxlib_sub_2376c4, gfxlib_sub_2376d8
+ * called by: Class_129938_m1_0170e0, Class_129938_m2_0171f4, Vec3_sub_02a568, Vec3_sub_02a5d4, alt_entry_2376d8,
+ * gfxlib_sub_218e00, gfxlib_sub_21a678, gfxlib_sub_2376c4
  */
 u32 point_transform_or_copy(int a0, float *a1, float *a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -4704,8 +4704,8 @@ LAB_8c213882:
 /*
  * ta_sub_213a04  0x8c213a04
  * area name: sits between ta functions (same compilation unit)
- * called by: ninja_sub_25aa80, ninja_sub_25ab74, ta_fifo_213bf4, ta_sub_213ab6, ta_sub_213d0e, ta_sub_213d12,
- * ta_sub_213d3e, ta_sub_213d8a (+4 more)
+ * called by: alt_entry_213d12, alt_entry_213d8e, alt_entry_213de8, ninja_sub_25aa80, ninja_sub_25ab74, ta_fifo_213bf4,
+ * ta_sub_213ab6, ta_sub_213d0e (+4 more)
  */
 u32 ta_sub_213a04(u32 a0, u32 a1) {
     if (a1 <= a0) {
@@ -4876,10 +4876,10 @@ int ta_sub_213d0e(int a0) {
 }
 
 /*
- * ta_sub_213d12  0x8c213d12
- * area name: sits between ta functions (same compilation unit)
+ * alt_entry_213d12  0x8c213d12
+ * probably an entry 4 bytes into 8c213d0e: it reads registers that code sets before it
  */
-int ta_sub_213d12(void) {
+int alt_entry_213d12(void) {
     int iVar1;
     int unaff_r14;
 
@@ -4940,10 +4940,10 @@ u32 ta_sub_213d8a(int a0) {
 }
 
 /*
- * ta_sub_213d8e  0x8c213d8e
- * area name: sits between ta functions (same compilation unit)
+ * alt_entry_213d8e  0x8c213d8e
+ * probably an entry 4 bytes into 8c213d8a: it reads registers that code sets before it
  */
-u32 ta_sub_213d8e(void) {
+u32 alt_entry_213d8e(void) {
     int iVar1;
     u32 uVar2;
     int unaff_r14;
@@ -4984,10 +4984,10 @@ int ta_sub_213de4(int a0) {
 }
 
 /*
- * ta_sub_213de8  0x8c213de8
- * area name: sits between ta functions (same compilation unit)
+ * alt_entry_213de8  0x8c213de8
+ * probably an entry 4 bytes into 8c213de4: it reads registers that code sets before it
  */
-int ta_sub_213de8(void) {
+int alt_entry_213de8(void) {
     int iVar1;
     int unaff_r14;
 
@@ -5350,10 +5350,10 @@ u32 kamui_sub_2141a6(void) {
 }
 
 /*
- * kamui_sub_2141ba  0x8c2141ba
- * area name: in the kamui library code range
+ * alt_entry_2141ba  0x8c2141ba
+ * probably an entry 20 bytes into 8c2141a6: it reads registers that code sets before it
  */
-u32 kamui_sub_2141ba(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 alt_entry_2141ba(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u8 *puVar1;
     u8 *puVar2;
     u32 in_r0;
@@ -10075,10 +10075,10 @@ double *gfxlib_sub_215c48(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_sub_215c4a  0x8c215c4a
- * area name: in the gfxlib library code range
+ * alt_entry_215c4a  0x8c215c4a
+ * probably an entry 2 bytes into 8c215c48: it reads registers that code sets before it
  */
-double *gfxlib_sub_215c4a(short *a0, int a1, u32 a2, double *a3) {
+double *alt_entry_215c4a(short *a0, int a1, u32 a2, double *a3) {
     int *piVar1;
     u32 *puVar2;
     u32 in_r1;
@@ -10371,7 +10371,7 @@ double *gfxlib_sub_215c4a(short *a0, int a1, u32 a2, double *a3) {
 /*
  * gfxlib_sub_215e10  0x8c215e10
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_215c48, gfxlib_sub_215c4a
+ * called by: alt_entry_215c4a, gfxlib_sub_215c48
  */
 u32 *gfxlib_sub_215e10(double *a0, double *a1, double *a2, u32 *a3) {
     u64 *puVar1;
@@ -12759,10 +12759,10 @@ int gfxlib_sub_216ed0(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * gfxlib_sub_216ed2  0x8c216ed2
- * area name: in the gfxlib library code range
+ * alt_entry_216ed2  0x8c216ed2
+ * probably an entry 2 bytes into 8c216ed0: it reads registers that code sets before it
  */
-int gfxlib_sub_216ed2(short *a0, int a1, u32 a2, int a3) {
+int alt_entry_216ed2(short *a0, int a1, u32 a2, int a3) {
     u32 uVar1;
     u32 uVar2;
     int *piVar3;
@@ -13112,7 +13112,7 @@ int gfxlib_sub_216ed2(short *a0, int a1, u32 a2, int a3) {
 /*
  * gfxlib_sub_2170f4  0x8c2170f4
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_216ed0, gfxlib_sub_216ed2
+ * called by: alt_entry_216ed2, gfxlib_sub_216ed0
  */
 u64 *gfxlib_sub_2170f4(double *a0, double *a1, double *a2, u64 *a3) {
     u64 *puVar1;
@@ -14679,7 +14679,7 @@ int gfxlib_sub_217d1c(int a0) {
 /*
  * gfxlib_sub_217e18  0x8c217e18
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_218e00, gfxlib_sub_219954, gfxlib_sub_219962, gfxlib_sub_21a678, vram64_21869c, vram64_2186a0
+ * called by: alt_entry_219962, gfxlib_sub_218e00, gfxlib_sub_219954, gfxlib_sub_21a678, vram64_21869c, vram64_2186a0
  */
 u32 gfxlib_sub_217e18(int a0) {
     double *pdVar1;
@@ -15872,7 +15872,7 @@ u32 gfxlib_sub_218c82(short *a0, int a1) {
 /*
  * gfxlib_sub_218e00  0x8c218e00
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_218e8a, gfxlib_sub_218ea0, gfxlib_sub_218f56
+ * called by: alt_entry_218ea0, gfxlib_sub_218e8a, gfxlib_sub_218f56
  */
 u32 gfxlib_sub_218e00(int *a0, u32 a1) {
     u32 r7;
@@ -15924,7 +15924,7 @@ u32 gfxlib_sub_218e00(int *a0, u32 a1) {
 /*
  * gfxlib_sub_218e8a  0x8c218e8a
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_218e8a, gfxlib_sub_218ea0, gfxlib_sub_218f96
+ * called by: alt_entry_218ea0, gfxlib_sub_218e8a, gfxlib_sub_218f96
  */
 u32 gfxlib_sub_218e8a(u32 *a0, u32 a1) {
     u32 r6;
@@ -15979,10 +15979,10 @@ u32 gfxlib_sub_218e8a(u32 *a0, u32 a1) {
 }
 
 /*
- * gfxlib_sub_218ea0  0x8c218ea0
- * area name: in the gfxlib library code range
+ * alt_entry_218ea0  0x8c218ea0
+ * probably an entry 22 bytes into 8c218e8a: it reads registers that code sets before it
  */
-u32 gfxlib_sub_218ea0(u32 *a0, u32 a1) {
+u32 alt_entry_218ea0(u32 *a0, u32 a1) {
     u32 r6;
     u32 r7;
     u32 uVar1;
@@ -16239,7 +16239,7 @@ u32 set_vec3_g_278744(void) {
 /*
  * gfxlib_sub_21908e  0x8c21908e
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_21908e, gfxlib_sub_219954, gfxlib_sub_219962
+ * called by: alt_entry_219962, gfxlib_sub_21908e, gfxlib_sub_219954
  */
 u8 *gfxlib_sub_21908e(u16 *a0, int a1, u32 a2) {
     u16 uVar1;
@@ -16695,7 +16695,7 @@ u8 *gfxlib_sub_21908e(u16 *a0, int a1, u32 a2) {
 /*
  * gfxlib_sub_21982e  0x8c21982e
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_219954, gfxlib_sub_219962
+ * called by: alt_entry_219962, gfxlib_sub_219954
  */
 u8 *gfxlib_sub_21982e(short *a0, u32 a1, u32 a2, u32 a3, u8 *ain0) {
     u16 uVar1;
@@ -16749,8 +16749,8 @@ u8 *gfxlib_sub_21982e(short *a0, u32 a1, u32 a2, u32 a3, u8 *ain0) {
 /*
  * gfxlib_sub_219954  0x8c219954
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_2199aa, gfxlib_sub_2199c0, gfxlib_sub_219a86, gfxlib_sub_21b908, gfxlib_sub_21b916,
- * gfxlib_sub_21b998, gfxlib_sub_21b9a8
+ * called by: alt_entry_2199c0, alt_entry_21b916, alt_entry_21b9a8, gfxlib_sub_2199aa, gfxlib_sub_219a86,
+ * gfxlib_sub_21b908, gfxlib_sub_21b998
  */
 u32 gfxlib_sub_219954(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *ain0;
@@ -16777,10 +16777,10 @@ u32 gfxlib_sub_219954(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_sub_219962  0x8c219962
- * area name: in the gfxlib library code range
+ * alt_entry_219962  0x8c219962
+ * probably an entry 14 bytes into 8c219954: it reads registers that code sets before it
  */
-u32 gfxlib_sub_219962(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3, u32 *ain0) {
+u32 alt_entry_219962(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3, u32 *ain0) {
     int iVar1;
     u32 in_r2;
     u32 *in_r3;
@@ -16812,7 +16812,7 @@ u32 gfxlib_sub_219962(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3, u32 *ain0) {
 /*
  * gfxlib_sub_2199aa  0x8c2199aa
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_2199aa, gfxlib_sub_2199c0, gfxlib_sub_219a9a
+ * called by: alt_entry_2199c0, gfxlib_sub_2199aa, gfxlib_sub_219a9a
  */
 u32 gfxlib_sub_2199aa(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -16858,10 +16858,10 @@ u32 gfxlib_sub_2199aa(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_sub_2199c0  0x8c2199c0
- * area name: in the gfxlib library code range
+ * alt_entry_2199c0  0x8c2199c0
+ * probably an entry 22 bytes into 8c2199aa: it reads registers that code sets before it
  */
-u32 gfxlib_sub_2199c0(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_2199c0(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 unaff_r8;
     u32 unaff_r10;
@@ -17313,7 +17313,7 @@ u32 gfxlib_sub_21a4f6(short *a0, int a1) {
 /*
  * gfxlib_sub_21a678  0x8c21a678
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_21a702, gfxlib_sub_21a718, gfxlib_sub_21a7ce
+ * called by: alt_entry_21a718, gfxlib_sub_21a702, gfxlib_sub_21a7ce
  */
 u32 gfxlib_sub_21a678(int *a0, u32 a1) {
     u32 r7;
@@ -17365,7 +17365,7 @@ u32 gfxlib_sub_21a678(int *a0, u32 a1) {
 /*
  * gfxlib_sub_21a702  0x8c21a702
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_21a702, gfxlib_sub_21a718, gfxlib_sub_21a80e
+ * called by: alt_entry_21a718, gfxlib_sub_21a702, gfxlib_sub_21a80e
  */
 u32 gfxlib_sub_21a702(u32 *a0, u32 a1) {
     u32 r6;
@@ -17420,10 +17420,10 @@ u32 gfxlib_sub_21a702(u32 *a0, u32 a1) {
 }
 
 /*
- * gfxlib_sub_21a718  0x8c21a718
- * area name: in the gfxlib library code range
+ * alt_entry_21a718  0x8c21a718
+ * probably an entry 22 bytes into 8c21a702: it reads registers that code sets before it
  */
-u32 gfxlib_sub_21a718(u32 *a0, u32 a1) {
+u32 alt_entry_21a718(u32 *a0, u32 a1) {
     u32 r6;
     u32 r7;
     u32 uVar1;
@@ -17615,7 +17615,7 @@ u32 gfxlib_sub_21a854(void) {
 /*
  * gfxlib_sub_21a8b0  0x8c21a8b0
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_21a8b0, gfxlib_sub_21a8be, gfxlib_sub_21aa1e, gfxlib_sub_21adb4, gfxlib_sub_21b170,
+ * called by: alt_entry_21a8be, gfxlib_sub_21a8b0, gfxlib_sub_21aa1e, gfxlib_sub_21adb4, gfxlib_sub_21b170,
  * gfxlib_sub_21b52c
  */
 u32 gfxlib_sub_21a8b0(u32 *a0) {
@@ -17656,10 +17656,10 @@ u32 gfxlib_sub_21a8b0(u32 *a0) {
 }
 
 /*
- * gfxlib_sub_21a8be  0x8c21a8be
- * area name: in the gfxlib library code range
+ * alt_entry_21a8be  0x8c21a8be
+ * probably an entry 14 bytes into 8c21a8b0: it reads registers that code sets before it
  */
-u32 gfxlib_sub_21a8be(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_21a8be(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 unaff_r11;
     u32 unaff_r12;
@@ -17699,7 +17699,7 @@ u32 gfxlib_sub_21a8be(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gfxlib_sub_21a942  0x8c21a942
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_21a942, gfxlib_sub_21a952, gfxlib_sub_21ab7a, gfxlib_sub_21af26, gfxlib_sub_21af36,
+ * called by: alt_entry_21a952, alt_entry_21af36, gfxlib_sub_21a942, gfxlib_sub_21ab7a, gfxlib_sub_21af26,
  * gfxlib_sub_21b2f2, gfxlib_sub_21b6ae
  */
 u32 gfxlib_sub_21a942(u32 *a0) {
@@ -17742,10 +17742,10 @@ u32 gfxlib_sub_21a942(u32 *a0) {
 }
 
 /*
- * gfxlib_sub_21a952  0x8c21a952
- * area name: in the gfxlib library code range
+ * alt_entry_21a952  0x8c21a952
+ * probably an entry 16 bytes into 8c21a942: it reads registers that code sets before it
  */
-u32 gfxlib_sub_21a952(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_21a952(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 unaff_r10;
     u32 unaff_r11;
@@ -18144,10 +18144,10 @@ u32 gfxlib_sub_21af26(u32 *a0, u32 *a1, u32 *a2) {
 }
 
 /*
- * gfxlib_sub_21af36  0x8c21af36
- * area name: in the gfxlib library code range
+ * alt_entry_21af36  0x8c21af36
+ * probably an entry 16 bytes into 8c21af26: it reads registers that code sets before it
  */
-u32 gfxlib_sub_21af36(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0, u32 ain1) {
+u32 alt_entry_21af36(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0, u32 ain1) {
     u32 *in_r2;
     u8 *a4;
     u32 ar5_00;
@@ -18628,7 +18628,7 @@ u32 gfxlib_sub_21b6ae(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0,
 /*
  * gfxlib_sub_21b908  0x8c21b908
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_21b908, gfxlib_sub_21b916, gfxlib_sub_21ba62, gfxlib_sub_21ba6a, gfxlib_sub_21bdd6
+ * called by: alt_entry_21b916, alt_entry_21ba6a, gfxlib_sub_21b908, gfxlib_sub_21ba62, gfxlib_sub_21bdd6
  */
 u32 gfxlib_sub_21b908(u32 *a0) {
     u32 r5;
@@ -18668,10 +18668,10 @@ u32 gfxlib_sub_21b908(u32 *a0) {
 }
 
 /*
- * gfxlib_sub_21b916  0x8c21b916
- * area name: in the gfxlib library code range
+ * alt_entry_21b916  0x8c21b916
+ * probably an entry 14 bytes into 8c21b908: it reads registers that code sets before it
  */
-u32 gfxlib_sub_21b916(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_21b916(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 unaff_r11;
     u32 unaff_r12;
@@ -18711,7 +18711,7 @@ u32 gfxlib_sub_21b916(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gfxlib_sub_21b998  0x8c21b998
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_21b998, gfxlib_sub_21b9a8, gfxlib_sub_21bbb0, gfxlib_sub_21bbba, gfxlib_sub_21bf44
+ * called by: alt_entry_21b9a8, alt_entry_21bbba, gfxlib_sub_21b998, gfxlib_sub_21bbb0, gfxlib_sub_21bf44
  */
 u32 gfxlib_sub_21b998(u32 *a0) {
     u32 r5;
@@ -18753,10 +18753,10 @@ u32 gfxlib_sub_21b998(u32 *a0) {
 }
 
 /*
- * gfxlib_sub_21b9a8  0x8c21b9a8
- * area name: in the gfxlib library code range
+ * alt_entry_21b9a8  0x8c21b9a8
+ * probably an entry 16 bytes into 8c21b998: it reads registers that code sets before it
  */
-u32 gfxlib_sub_21b9a8(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_21b9a8(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 unaff_r10;
     u32 unaff_r11;
@@ -18869,10 +18869,10 @@ u32 gfxlib_sub_21ba62(u32 *a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 ain0) 
 }
 
 /*
- * gfxlib_sub_21ba6a  0x8c21ba6a
- * area name: in the gfxlib library code range
+ * alt_entry_21ba6a  0x8c21ba6a
+ * probably an entry 8 bytes into 8c21ba62: it reads registers that code sets before it
  */
-u32 gfxlib_sub_21ba6a(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 alt_entry_21ba6a(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     u8 *a5;
     u32 ar6_00;
@@ -19053,10 +19053,10 @@ u32 gfxlib_sub_21bbb0(u32 *a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0) {
 }
 
 /*
- * gfxlib_sub_21bbba  0x8c21bbba
- * area name: in the gfxlib library code range
+ * alt_entry_21bbba  0x8c21bbba
+ * probably an entry 10 bytes into 8c21bbb0: it reads registers that code sets before it
  */
-u32 gfxlib_sub_21bbba(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0) {
+u32 alt_entry_21bbba(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     u32 ar5_00;
     u32 uVar2;
@@ -22757,10 +22757,10 @@ u32 noop_21d13c(int a0) {
 }
 
 /*
- * gfxlib_sub_21d148  0x8c21d148
- * area name: in the gfxlib library code range
+ * alt_entry_21d148  0x8c21d148
+ * probably an entry 12 bytes into 8c21d13c: it reads registers that code sets before it
  */
-u32 gfxlib_sub_21d148(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_21d148(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 *in_r2;
 

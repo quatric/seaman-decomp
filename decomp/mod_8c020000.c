@@ -2536,7 +2536,7 @@ u32 Vec3_ctor_xyz_wrap(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0) {
  * Vec3_cos_angle  0x8c022dac
  * dot(a0, a1) / (|a0| |a1|)
  * called by: Class_12b088_sub_0aa70c, Class_12b930_sub_0e3994, Vec3_sub_0231c8, Vec3_sub_02327c, Vec3_sub_023334,
- * Vec3_sub_03f4a4, Vec3_sub_04e0e0, game_sub_0332b4 (+54 more)
+ * Vec3_sub_03f4a4, Vec3_sub_04e0e0, alt_entry_046684 (+54 more)
  */
 u32 Vec3_cos_angle(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -2624,7 +2624,7 @@ u32 Vec3_length_sq(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_normalize  0x8c022ec0
  * called by: CMothLine_place_current, Class_12ad14_sub_0a37c8, Vec3_normalize_on_field_4, Vec3_sub_03f4a4,
- * game_sub_046684, game_sub_048868, game_sub_048f8c, game_sub_049b68 (+39 more)
+ * alt_entry_046684, game_sub_048868, game_sub_048f8c, game_sub_049b68 (+39 more)
  */
 u32 Vec3_normalize(double *a0, u32 a1, u32 a2, u32 a3) {
     u64 in_dr0;
@@ -2983,7 +2983,7 @@ u32 Vec3_sub_0232e8(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_sub_023334  0x8c023334
  * area name: sits between Vec3 functions (same compilation unit)
- * called by: Class_12a25c_sub_06f93c, Vec3_sub_03f4a4, game_sub_0332b4, game_sub_03c94c, game_sub_046684,
+ * called by: Class_12a25c_sub_06f93c, Vec3_sub_03f4a4, alt_entry_046684, game_sub_0332b4, game_sub_03c94c,
  * game_sub_049b68, game_sub_04b168, game_sub_04c314 (+23 more)
  */
 u32 Vec3_sub_023334(u32 a0, u32 a1, u32 a2, u32 a3) {
@@ -6322,8 +6322,8 @@ u32 get_field_1c_on_field_b0(int a0, u32 a1, u32 a2) {
 
 /*
  * get_field_1c_026dd8  0x8c026dd8
- * called by: Class_129cbc_m5_031440, Class_12ad14_m3_0a427c, Vec3_sub_03f4a4, Vec3_sub_05c28c, game_sub_03c94c,
- * game_sub_046684, game_sub_048868, game_sub_048f8c (+31 more)
+ * called by: Class_129cbc_m5_031440, Class_12ad14_m3_0a427c, Vec3_sub_03f4a4, Vec3_sub_05c28c, alt_entry_046684,
+ * game_sub_03c94c, game_sub_048868, game_sub_048f8c (+31 more)
  */
 u32 get_field_1c_026dd8(int a0, u32 a1, u32 a2) {
     return *(u32 *)(a0 + 0x1c);
@@ -9257,7 +9257,7 @@ u32 CAnimal_sub_02a788(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * get_field_94_02aaa4  0x8c02aaa4
- * called by: CAnimal_sub_02a788, game_sub_046684, game_sub_048868, game_sub_053f24, game_sub_0831c8
+ * called by: CAnimal_sub_02a788, alt_entry_046684, game_sub_048868, game_sub_053f24, game_sub_0831c8
  */
 u32 get_field_94_02aaa4(int a0) {
     return *(u32 *)(0x94 + a0);

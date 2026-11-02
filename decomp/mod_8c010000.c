@@ -128,10 +128,10 @@ u32 vec_new_array(int a0, code *a1, code *a2, int a3, u32 s0) {
 }
 
 /*
- * libc_sub_01012c  0x8c01012c
- * area name: in the libc library code range
+ * alt_entry_01012c  0x8c01012c
+ * probably an entry 12 bytes into 8c010120: it reads registers that code sets before it
  */
-u32 libc_sub_01012c(int a0, code *a1, code *a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16, u32 s20) {
+u32 alt_entry_01012c(int a0, code *a1, code *a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16, u32 s20) {
     code *a6;
     int unaff_r11;
     int iVar1;
@@ -3686,8 +3686,8 @@ u32 libgcc_divide_helper_0103d0(u32 a0, int a1) {
 
 /*
  * libgcc_divide_helper_010468  0x8c010468
- * called by: ADXF_AddPartition, ADXF_LoadPartition, ADXT_GetTime_like, ADXT_sub_263ce4, ADXT_sub_2647f4,
- * ADXT_sub_264c92, asr_sub_10fab2, asr_sub_10fabc (+58 more)
+ * called by: ADXF_AddPartition, ADXF_LoadPartition, ADXT_GetTime_like, ADXT_sub_2647f4, ADXT_sub_264c92,
+ * alt_entry_010b08, alt_entry_10fabc, alt_entry_1f420e (+58 more)
  */
 int libgcc_divide_helper_010468(u32 a0, u32 a1) {
     u32 uVar1;
@@ -4667,8 +4667,8 @@ int libgcc_divide_helper_010468(u32 a0, u32 a1) {
 
 /*
  * libgcc_divide_helper_01051c  0x8c01051c
- * called by: array44_index_of, asr_sub_1117e4, asr_sub_112d82, asr_sub_112f40, asr_sub_112f48, asr_sub_112fd8,
- * asr_sub_11318e, asr_sub_11319e (+29 more)
+ * called by: alt_entry_11319e, alt_entry_11d9a0, alt_entry_205644, alt_entry_25f42c, array44_index_of, asr_sub_1117e4,
+ * asr_sub_112d82, asr_sub_112f40 (+29 more)
  */
 u32 libgcc_divide_helper_01051c(u32 a0, u32 a1) {
     u32 uVar1;
@@ -5950,8 +5950,8 @@ int libc_sub_0105c4(void) {
 
 /*
  * libgcc_divide_helper_010614  0x8c010614
- * called by: ADXT_sub_2647f4, cri_sub_260062, cri_sub_260198, day_of_week, game_sub_26b092, game_sub_26b132,
- * game_sub_26b64e, game_sub_26b7f4 (+14 more)
+ * called by: ADXT_sub_2647f4, alt_entry_200c08, cri_sub_260062, cri_sub_260198, day_of_week, game_sub_26b092,
+ * game_sub_26b132, game_sub_26b64e (+14 more)
  */
 int libgcc_divide_helper_010614(u32 unused_a0, u32 a1) {
     u32 uVar1;
@@ -7645,8 +7645,8 @@ u32 libgcc_divide_helper_0106dc(u32 a0, u32 a1) {
 /*
  * switch_jump  0x8c010794
  * compiler switch helper: jumps through the table at 0x8c0107f4
- * called by: aica_sub_265704, aica_sub_26570c, date_to_rtc_seconds, game_sub_26bb16, game_sub_26bbe2, game_sub_26bcaa,
- * game_sub_26bd86, gfxlib_sub_21c1b0 (+44 more)
+ * called by: aica_sub_265704, alt_entry_2359ae, alt_entry_26570c, date_to_rtc_seconds, game_sub_26bb16,
+ * game_sub_26bbe2, game_sub_26bcaa, game_sub_26bd86 (+44 more)
  */
 u32 switch_jump(u32 a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
@@ -7661,7 +7661,7 @@ u32 switch_jump(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * switch_jump_r0  0x8c0107a0
  * compiler switch helper: jumps through the table at 0x8c0107f4 indexed by r0
- * called by: flags_4c0db0_set, flags_4c0ed0_set, gfxlib_sub_2336e8, sd_sub_267fe8, sd_sub_268920, sd_sub_26892c,
+ * called by: alt_entry_26892c, flags_4c0db0_set, flags_4c0ed0_set, gfxlib_sub_2336e8, sd_sub_267fe8, sd_sub_268920,
  * ta_sub_2140a4, ta_sub_2218f4
  */
 u32 switch_jump_r0(u32 a0, u32 a1, u32 a2, u32 a3) {
@@ -8098,10 +8098,10 @@ int bytes_add_be(char *a0, int a1, int a2, u32 unused_a3, int ain0) {
 }
 
 /*
- * libc_sub_010b08  0x8c010b08
- * area name: in the libc library code range
+ * alt_entry_010b08  0x8c010b08
+ * probably an entry 16 bytes into 8c010af8: it reads registers that code sets before it
  */
-int libc_sub_010b08(char *a0, int a1, char *a2, u32 unused_a3, int ain0) {
+int alt_entry_010b08(char *a0, int a1, char *a2, u32 unused_a3, int ain0) {
     u8 *pbVar1;
     u32 unaff_r13;
     int iVar2;
@@ -8899,10 +8899,10 @@ int libc_sub_0117ce(char *a0, int a1, int *a2) {
 }
 
 /*
- * libc_sub_0117da  0x8c0117da
- * area name: in the libc library code range
+ * alt_entry_0117da  0x8c0117da
+ * probably an entry 12 bytes into 8c0117ce: it reads registers that code sets before it
  */
-int libc_sub_0117da(u32 unused_a0, int a1, u32 a2, u32 a3) {
+int alt_entry_0117da(u32 unused_a0, int a1, u32 a2, u32 a3) {
     char cVar1;
     int iVar2;
     char *unaff_r11;
@@ -11311,7 +11311,7 @@ u32 libc_sub_013d78(int *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ai
 /*
  * labs  0x8c013dec
  * |a0|
- * called by: asr_sub_1235fc, asr_sub_123602
+ * called by: alt_entry_123602, asr_sub_1235fc
  */
 int labs(int a0) {
     if (0 < a0) {
@@ -11351,7 +11351,7 @@ u32 libc_sub_013dfc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * srand  0x8c013e4c
  * sets the rand() seed (0x8c2787b0)
- * called by: shinobi_sub_1f69f2, shinobi_sub_1f69fa, shinobi_sub_1f6a30, shinobi_sub_1f6a34
+ * called by: alt_entry_1f69fa, shinobi_sub_1f69f2, shinobi_sub_1f6a30, shinobi_sub_1f6a34
  */
 int srand(u32 unused_a0, int a1) {
     int iVar1;
@@ -11366,8 +11366,8 @@ int srand(u32 unused_a0, int a1) {
 
 /*
  * memcmp  0x8c013ec0
- * called by: CProlog_sub_0b96e4, asr_sub_11e534, asr_sub_11ea3c, cri_sub_260658, flashrom_sub_1f6fc8,
- * flashrom_write_if_changed, game_sub_0b95a0, is_aiff_header (+10 more)
+ * called by: CProlog_sub_0b96e4, alt_entry_1f5cac, alt_entry_1f5d04, alt_entry_1f6d56, asr_sub_11e534, asr_sub_11ea3c,
+ * cri_sub_260658, flashrom_sub_1f6fc8 (+10 more)
  */
 u32 memcmp(char *a0, char *a1, u32 a2) {
     char cVar1;
@@ -11394,8 +11394,8 @@ u32 memcmp(char *a0, char *a1, u32 a2) {
 
 /*
  * memmove  0x8c013ef4
- * called by: CProlog_sub_0b96e4, asr_dup_block, asr_sub_10a308, asr_sub_10a410, asr_sub_10a4bc, asr_sub_10a564,
- * asr_sub_10a80c, asr_sub_10c3de (+63 more)
+ * called by: CProlog_sub_0b96e4, alt_entry_0117da, alt_entry_111cec, alt_entry_11319e, alt_entry_266c54, asr_dup_block,
+ * asr_sub_10a308, asr_sub_10a410 (+63 more)
  */
 u32 *memmove(u32 *a0, u32 *a1, u32 a2) {
     u8 uVar1;
@@ -11516,8 +11516,8 @@ u8 *memmove_bytes(u8 *a0, u8 *a1, u32 a2) {
 
 /*
  * memset  0x8c013ff8
- * called by: ADXF_Close_like, ADXF_LoadPartition, ADXF_sub_26216c, ADXSTM_sub_263840, ADXSTM_sub_2639fa, asr_calloc,
- * asr_sub_10a308, asr_sub_10f22a (+95 more)
+ * called by: ADXF_Close_like, ADXF_LoadPartition, ADXSTM_sub_263840, ADXSTM_sub_2639fa, alt_entry_123eae,
+ * alt_entry_1f68f6, alt_entry_1f7c50, alt_entry_1fc9c0 (+95 more)
  */
 u8 *memset(u8 *a0, u32 a1, u32 a2) {
     u8 *puVar1;
@@ -11705,7 +11705,7 @@ u32 rand(void) {
 /*
  * libc_sub_01422c  0x8c01422c
  * area name: in the libc library code range
- * called by: shinobi_sub_1f672c, shinobi_sub_1f67c2, shinobi_sub_1f69fa, shinobi_sub_1f6a34
+ * called by: alt_entry_1f69fa, shinobi_sub_1f672c, shinobi_sub_1f67c2, shinobi_sub_1f6a34
  */
 u32 libc_sub_01422c(int a0, u32 a1, u32 a2, u32 a3, u32 ain0, u32 ain1) {
     u32 in_r2;
@@ -12143,7 +12143,7 @@ int toupper_0146b4(u32 a0) {
 
 /*
  * vsprintf_like  0x8c0146d0
- * called by: cri_sub_25ecea, debug_log_printf, debug_printf, lib_error_printf, sd_sub_26a152, shinobi_sub_1f4574,
+ * called by: alt_entry_1f4574, cri_sub_25ecea, debug_log_printf, debug_printf, lib_error_printf, sd_sub_26a152,
  * shinobi_sub_1fd5c0
  */
 u32 vsprintf_like(u32 a0, u32 a1, u32 a2) {

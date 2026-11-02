@@ -361,7 +361,7 @@ u32 cri_sub_260390(int a0, u32 unused_a1, short *a2, u8 *a3, u8 *s0, char *s4, c
 /*
  * cri_sub_26045c  0x8c26045c
  * area name: in the cri library code range
- * called by: cri_sub_25fdb2, cri_sub_25fdbe
+ * called by: alt_entry_25fdbe, cri_sub_25fdb2
  */
 int cri_sub_26045c(int a0, u32 a1, u32 a2) {
     int iVar1;
@@ -473,10 +473,10 @@ int cri_sub_260540(int a0) {
 }
 
 /*
- * cri_sub_26054c  0x8c26054c
- * area name: in the cri library code range
+ * alt_entry_26054c  0x8c26054c
+ * probably an entry 12 bytes into 8c260540: it reads registers that code sets before it
  */
-int cri_sub_26054c(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
+int alt_entry_26054c(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -547,7 +547,7 @@ int cri_sub_26054c(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * is_spsd_header  0x8c260636
  * 1 when a0 starts with "SPSD"
- * called by: cri_sub_25fdb2, cri_sub_25fdbe
+ * called by: alt_entry_25fdbe, cri_sub_25fdb2
  */
 u32 is_spsd_header(u32 a0, u32 a1) {
     int iVar1;
@@ -642,7 +642,7 @@ u32 cri_sub_260658(int a0, u32 a1, short *a2, u8 *a3, char *s0, char *s4, char *
 /*
  * cri_sub_260810  0x8c260810
  * area name: in the cri library code range
- * called by: cri_sub_25fdb2, cri_sub_25fdbe
+ * called by: alt_entry_25fdbe, cri_sub_25fdb2
  */
 int cri_sub_260810(int a0, u32 a1, u32 a2) {
     int iVar1;
@@ -754,10 +754,10 @@ int cri_sub_2608f8(int a0) {
 }
 
 /*
- * cri_sub_260904  0x8c260904
- * area name: in the cri library code range
+ * alt_entry_260904  0x8c260904
+ * probably an entry 12 bytes into 8c2608f8: it reads registers that code sets before it
  */
-int cri_sub_260904(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
+int alt_entry_260904(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -898,10 +898,10 @@ int cri_sub_2609f0(int a0) {
 }
 
 /*
- * cri_sub_2609fc  0x8c2609fc
- * area name: in the cri library code range
+ * alt_entry_2609fc  0x8c2609fc
+ * probably an entry 12 bytes into 8c2609f0: it reads registers that code sets before it
  */
-int cri_sub_2609fc(u32 unused_a0, u32 a1, u32 unused_a2, int a3) {
+int alt_entry_2609fc(u32 unused_a0, u32 a1, u32 unused_a2, int a3) {
     u8 bVar1;
     int iVar2;
     int iVar3;
@@ -1047,10 +1047,10 @@ int cri_sub_260afc(int a0) {
 }
 
 /*
- * cri_sub_260b08  0x8c260b08
- * area name: in the cri library code range
+ * alt_entry_260b08  0x8c260b08
+ * probably an entry 12 bytes into 8c260afc: it reads registers that code sets before it
  */
-int cri_sub_260b08(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
+int alt_entry_260b08(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
     u8 *puVar1;
     int iVar2;
     int iVar3;
@@ -1129,7 +1129,7 @@ int cri_sub_260b08(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * is_wav_header  0x8c260c2c
  * 1 when a0 starts a "RIFF"...."WAVE" header
- * called by: cri_sub_25fdb2, cri_sub_25fdbe
+ * called by: alt_entry_25fdbe, cri_sub_25fdb2
  */
 u32 is_wav_header(int a0) {
     int iVar1;
@@ -1167,7 +1167,7 @@ u32 cri_sub_260c60(int a0) {
 /*
  * cri_sub_260c98  0x8c260c98
  * area name: in the cri library code range
- * called by: cri_sub_262810, cri_sub_262814
+ * called by: alt_entry_262814, cri_sub_262810
  */
 u32 cri_sub_260c98(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     g_8c277fb0 = 0;
@@ -1177,8 +1177,8 @@ u32 cri_sub_260c98(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u
 /*
  * irq_disable_nested  0x8c260ca0
  * raises SR.IMASK to 15 on the first call and counts the nesting (pairs with irq_restore_nested)
- * called by: ADXF_Close_like, ADXF_ExecServer_like, ADXF_Open_like, ADXF_Stop, ADXF_sub_2620c8, ADXF_sub_26216c,
- * ADXF_sub_262208, ADXF_sub_2622e4 (+17 more)
+ * called by: ADXF_Close_like, ADXF_ExecServer_like, ADXF_Open_like, ADXF_Stop, ADXF_sub_2620c8, ADXF_sub_262208,
+ * ADXF_sub_2622e4, ADXF_sub_262312 (+17 more)
  */
 u32 irq_disable_nested(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u8 in_MD;
@@ -1202,8 +1202,8 @@ u32 irq_disable_nested(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 
 /*
  * irq_restore_nested  0x8c260cc8
  * drops the interrupt-disable nesting count and restores SR.IMASK when it reaches 0
- * called by: ADXF_Close_like, ADXF_ExecServer_like, ADXF_Open_like, ADXF_Stop, ADXF_sub_2620c8, ADXF_sub_26216c,
- * ADXF_sub_262208, ADXF_sub_2622e4 (+17 more)
+ * called by: ADXF_Close_like, ADXF_ExecServer_like, ADXF_Open_like, ADXF_Stop, ADXF_sub_2620c8, ADXF_sub_262208,
+ * ADXF_sub_2622e4, ADXF_sub_262312 (+17 more)
  */
 u32 irq_restore_nested(u32 unused_a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u8 in_MD;
@@ -1743,7 +1743,7 @@ u32 cri_sub_2614d6(int a0, u32 unused_a1, int **a2, int **a3) {
 /*
  * cri_sub_261640  0x8c261640
  * area name: in the cri library code range
- * called by: cri_sub_26165c
+ * called by: alt_entry_26165c
  */
 u32 cri_sub_261640(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1756,10 +1756,10 @@ u32 cri_sub_261640(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * cri_sub_26165c  0x8c26165c
- * area name: in the cri library code range
+ * alt_entry_26165c  0x8c26165c
+ * probably an entry 28 bytes into 8c261640: it reads registers that code sets before it
  */
-int cri_sub_26165c(char *a0, u32 unused_a1, u32 a2, u32 a3) {
+int alt_entry_26165c(char *a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     int unaff_r13;
     char *pcVar2;
@@ -1856,7 +1856,7 @@ u32 cri_sub_261786(u32 a0, u32 a1) {
 
 /*
  * ta_fifo_2619b4  0x8c2619b4
- * called by: cri_sub_262810, cri_sub_262814
+ * called by: alt_entry_262814, cri_sub_262810
  */
 u32 *ta_fifo_2619b4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u8 *puVar1;
@@ -1918,8 +1918,8 @@ u32 ta_fifo_2619f8(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * cri_sub_261a4c  0x8c261a4c
  * area name: in the cri library code range
- * called by: ADXF_Close_like, ADXF_Open_like, ADXF_Seek, ADXF_Seek_262560, ADXF_Stop, ADXF_sub_2620c8, ADXF_sub_26216c,
- * ADXF_sub_262312
+ * called by: ADXF_Close_like, ADXF_Open_like, ADXF_Seek, ADXF_Seek_262560, ADXF_Stop, ADXF_sub_2620c8, ADXF_sub_262312,
+ * alt_entry_26216c
  */
 int cri_sub_261a4c(int a0, int a1, u32 a2, u32 a3, u32 s0) {
     u32 *puVar1;
@@ -2510,10 +2510,10 @@ u32 ADXF_Close_like(int a0) {
 }
 
 /*
- * ADXF_sub_26216c  0x8c26216c
- * area name: sits between ADXF functions (same compilation unit)
+ * alt_entry_26216c  0x8c26216c
+ * probably an entry 4 bytes into 8c262168: it reads registers that code sets before it
  */
-u32 ADXF_sub_26216c(int a0) {
+u32 alt_entry_26216c(int a0) {
     u32 uVar1;
     u32 in_r3;
     u32 uVar2;
@@ -2706,7 +2706,7 @@ u32 ADXF_sub_262312(int *a0, int a1, u32 a2) {
 /*
  * ADXF_Stop  0x8c262406
  * named from the library error message it prints (ADXF_Stop)
- * called by: ADXF_Close_like, ADXF_Seek, ADXF_Seek_262560, ADXF_sub_26216c
+ * called by: ADXF_Close_like, ADXF_Seek, ADXF_Seek_262560, alt_entry_26216c
  * strings: "E9040822:\'adxf\' is NULL.(ADXF_Stop)\n"; "E9040823:\'adxf->stm\' is NULL.(ADXF_Stop)\n"
  */
 u32 ADXF_Stop(int a0) {
@@ -3128,10 +3128,10 @@ u32 cri_sub_262810(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
 }
 
 /*
- * cri_sub_262814  0x8c262814
- * area name: in the cri library code range
+ * alt_entry_262814  0x8c262814
+ * probably an entry 4 bytes into 8c262810: it reads registers that code sets before it
  */
-u32 cri_sub_262814(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
+u32 alt_entry_262814(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
     u8 *ar4_00;
     code *ar5_00;
     u32 ar6_00;
@@ -3203,7 +3203,7 @@ u32 cri_sub_2628fa(int *a0, u32 a1, u32 unused_a2, u32 a3, u32 ain0) {
 
 /*
  * thunk_FUN_8c2689c8  0x8c2629a0
- * called by: cri_sub_262810, cri_sub_262814
+ * called by: alt_entry_262814, cri_sub_262810
  */
 u32 thunk_FUN_8c2689c8(void) {
     u32 uVar1;
@@ -3390,7 +3390,7 @@ u32 cri_sub_262a4c(u32 a0, u32 a1) {
 /*
  * cri_sub_262ac4  0x8c262ac4
  * area name: in the cri library code range
- * called by: cri_sub_262810, cri_sub_262814
+ * called by: alt_entry_262814, cri_sub_262810
  */
 u32 cri_sub_262ac4(void) {
     u32 uVar1;
@@ -3544,8 +3544,8 @@ u32 ta_fifo_262c08(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
 
 /*
  * get_field_1_s8_262c38  0x8c262c38
- * called by: ADXT_sub_2647f4, ADXT_sub_264a42, ADXT_sub_264b14, ADXT_sub_264b1a, ADXT_sub_264c92, cri_sub_264e84,
- * cri_sub_264e88
+ * called by: ADXT_sub_2647f4, ADXT_sub_264a42, ADXT_sub_264b14, ADXT_sub_264c92, alt_entry_264b1a, alt_entry_264e88,
+ * cri_sub_264e84
  */
 int get_field_1_s8_262c38(int a0, u32 a1) {
     return (int)*(char *)(a0 + 1);
@@ -3826,7 +3826,7 @@ u32 cri_sub_26304a(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * cri_sub_26307e  0x8c26307e
  * area name: in the cri library code range
- * called by: cri_sub_2630cc, cri_sub_2630d6
+ * called by: alt_entry_2630d6, cri_sub_2630cc
  */
 u32 cri_sub_26307e(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -3878,10 +3878,10 @@ int cri_sub_2630cc(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * cri_sub_2630d6  0x8c2630d6
- * area name: in the cri library code range
+ * alt_entry_2630d6  0x8c2630d6
+ * probably an entry 10 bytes into 8c2630cc: it reads registers that code sets before it
  */
-int cri_sub_2630d6(char *a0, u32 unused_a1, u32 a2, u32 a3) {
+int alt_entry_2630d6(char *a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     int unaff_r12;
     char *pcVar2;
@@ -3901,7 +3901,7 @@ int cri_sub_2630d6(char *a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * get_field_2c_2630fe  0x8c2630fe
- * called by: ADXT_sub_264c92, cri_sub_264e84, cri_sub_264e88
+ * called by: ADXT_sub_264c92, alt_entry_264e88, cri_sub_264e84
  */
 u32 get_field_2c_2630fe(int a0) {
     return *(u32 *)(a0 + 0x2c);
@@ -3973,7 +3973,7 @@ u32 get_field_a8_s16_wrap(int a0) {
 /*
  * get_field_14_of_field_4  0x8c26314a
  * returns +0x14 of the object at +0x4
- * called by: ADXT_GetTime_like, ADXT_sub_263ce4, ADXT_sub_263dd8, ADXT_sub_2647f4
+ * called by: ADXT_GetTime_like, ADXT_sub_263dd8, ADXT_sub_2647f4, alt_entry_263ce4
  * decompiler: Switch with 1 destination removed at 0x8c263152
  */
 u32 get_field_14_of_field_4(int a0) {
@@ -3983,7 +3983,7 @@ u32 get_field_14_of_field_4(int a0) {
 /*
  * get_field_e_s8_wrap  0x8c263156
  * only calls get_field_e_s8
- * called by: ADXT_sub_263df6, ADXT_sub_264784, ADXT_sub_264788, ADXT_sub_2647f4, ADXT_sub_264b14, ADXT_sub_264b1a
+ * called by: ADXT_sub_263df6, ADXT_sub_264784, ADXT_sub_2647f4, ADXT_sub_264b14, alt_entry_264788, alt_entry_264b1a
  */
 u32 get_field_e_s8_wrap(int a0) {
     u32 uVar1;
@@ -3995,7 +3995,7 @@ u32 get_field_e_s8_wrap(int a0) {
 /*
  * cri_sub_263162  0x8c263162
  * area name: in the cri library code range
- * called by: ADXT_GetTime_like, ADXT_sub_263ce4, ADXT_sub_2647f4
+ * called by: ADXT_GetTime_like, ADXT_sub_2647f4, alt_entry_263ce4
  */
 u32 cri_sub_263162(int a0) {
     u32 uVar1;
@@ -4017,7 +4017,7 @@ u32 get_field_10_of_field_4(int a0) {
 /*
  * get_field_18_wrap  0x8c263186
  * only calls get_field_18_25ff16
- * called by: ADXT_GetTime_like, ADXT_sub_263ce4, ADXT_sub_2647f4, cri_sub_262e10
+ * called by: ADXT_GetTime_like, ADXT_sub_2647f4, alt_entry_263ce4, cri_sub_262e10
  */
 u32 get_field_18_wrap(int a0) {
     u32 uVar1;
@@ -4090,7 +4090,7 @@ int field_ptr_58(int a0) {
 /*
  * memset_wrap_263244  0x8c263244
  * only calls memset
- * called by: cri_sub_262810, cri_sub_262814
+ * called by: alt_entry_262814, cri_sub_262810
  */
 u32 memset_wrap_263244(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     memset(0x8c4b9828, 0, (int)0xc80);
@@ -4150,10 +4150,10 @@ u8 *cri_sub_26325e(u32 a0, u32 a1, u32 a2, int *a3) {
 }
 
 /*
- * cri_sub_26326e  0x8c26326e
- * area name: in the cri library code range
+ * alt_entry_26326e  0x8c26326e
+ * probably an entry 16 bytes into 8c26325e: it reads registers that code sets before it
  */
-u8 *cri_sub_26326e(u32 a0, u32 a1, u32 a2) {
+u8 *alt_entry_26326e(u32 a0, u32 a1, u32 a2) {
     int in_r0;
     u8 *puVar1;
     u32 uVar2;
@@ -4197,7 +4197,7 @@ u8 *cri_sub_26326e(u32 a0, u32 a1, u32 a2) {
 /*
  * memset_wrap_2632e2  0x8c2632e2
  * only calls memset
- * called by: ADXSTM_Destroy_like, ADXSTM_sub_26344a
+ * called by: ADXSTM_Destroy_like, alt_entry_26344a
  */
 u32 memset_wrap_2632e2(void) {
     u32 uVar1;
@@ -4319,10 +4319,10 @@ u32 ADXSTM_Destroy_like(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ADXSTM_sub_26344a  0x8c26344a
- * area name: sits between ADXSTM functions (same compilation unit)
+ * alt_entry_26344a  0x8c26344a
+ * probably an entry 4 bytes into 8c263446: it reads registers that code sets before it
  */
-u32 ADXSTM_sub_26344a(u32 a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
+u32 alt_entry_26344a(u32 a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     u32 uVar1;
     int unaff_r14;
 
@@ -4340,7 +4340,7 @@ u32 ADXSTM_sub_26344a(u32 a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 /*
  * ADXSTM_rewind  0x8c26346e
  * resets the stream read state (status 2, or 3 when there is no file)
- * called by: ADXF_sub_262208, ADXT_sub_264ba0, cri_sub_263bc0, cri_sub_263bc8
+ * called by: ADXF_sub_262208, ADXT_sub_264ba0, alt_entry_263bc8, cri_sub_263bc0
  */
 u32 ADXSTM_rewind(int a0) {
     u32 uVar1;
@@ -4359,10 +4359,10 @@ u32 ADXSTM_rewind(int a0) {
 }
 
 /*
- * ADXSTM_sub_263472  0x8c263472
- * area name: sits between ADXSTM functions (same compilation unit)
+ * alt_entry_263472  0x8c263472
+ * probably an entry 4 bytes into 8c26346e: it reads registers that code sets before it
  */
-u32 ADXSTM_sub_263472(u32 a0) {
+u32 alt_entry_263472(u32 a0) {
     u32 uVar1;
     int unaff_r14;
 
@@ -4382,7 +4382,7 @@ u32 ADXSTM_sub_263472(u32 a0) {
 /*
  * ADXSTM_stop_read  0x8c263498
  * aborts the stream's file read (timing it into 0x8c278480) and marks the stream stopped
- * called by: ADXF_Stop, ADXSTM_Destroy_like, ADXSTM_sub_26344a, ADXT_sub_264ba0, cri_sub_263c64
+ * called by: ADXF_Stop, ADXSTM_Destroy_like, ADXT_sub_264ba0, alt_entry_26344a, cri_sub_263c64
  */
 u32 ADXSTM_stop_read(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -4404,7 +4404,7 @@ u32 ADXSTM_stop_read(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ADXSTM_get_read_pos  0x8c2634dc
  * read position of the stream's file (+8) relative to its start (+0x10); 0 without a file
- * called by: ADXSTM_Seek_like, ADXSTM_get_read_offset, ADXSTM_rewind, ADXSTM_sub_263472, adxstmf_stat_exec
+ * called by: ADXSTM_Seek_like, ADXSTM_get_read_offset, ADXSTM_rewind, adxstmf_stat_exec, alt_entry_263472
  */
 int ADXSTM_get_read_pos(int a0, u32 a1) {
     int iVar1;
@@ -4417,10 +4417,10 @@ int ADXSTM_get_read_pos(int a0, u32 a1) {
 }
 
 /*
- * ADXSTM_sub_2634e0  0x8c2634e0
- * area name: sits between ADXSTM functions (same compilation unit)
+ * alt_entry_2634e0  0x8c2634e0
+ * probably an entry 4 bytes into 8c2634dc: it reads registers that code sets before it
  */
-int ADXSTM_sub_2634e0(void) {
+int alt_entry_2634e0(void) {
     int iVar1;
     int unaff_r14;
 
@@ -4471,7 +4471,7 @@ u32 set_fields_38_3c(int a0, u32 a1, u32 a2) {
 /*
  * ADXSTM_set_sector_count  0x8c26357a
  * +0x30 = a1, or the file size (+0x14) in 2 KB sectors when a1 is negative
- * called by: ADXT_sub_2646fe, ADXT_sub_2647f4, cri_sub_263bc0, cri_sub_263bc8
+ * called by: ADXT_sub_2646fe, ADXT_sub_2647f4, alt_entry_263bc8, cri_sub_263bc0
  */
 u32 ADXSTM_set_sector_count(int a0, int a1) {
     u32 in_r0;
@@ -4598,7 +4598,7 @@ int adxstmf_stat_exec(int a0, int a1, u8 *a2, u8 *a3) {
 /*
  * ADXSTM_sub_263702  0x8c263702
  * area name: sits between ADXSTM functions (same compilation unit)
- * called by: ADXSTM_ExecServer_like, ADXSTM_sub_263726
+ * called by: ADXSTM_ExecServer_like, alt_entry_263726
  */
 u32 ADXSTM_sub_263702(int a0, u32 a1, u32 a2, u32 a3) {
     int ain0;
@@ -4639,10 +4639,10 @@ int ADXSTM_ExecServer_like(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ADXSTM_sub_263726  0x8c263726
- * area name: sits between ADXSTM functions (same compilation unit)
+ * alt_entry_263726  0x8c263726
+ * probably an entry 8 bytes into 8c26371e: it reads registers that code sets before it
  */
-int ADXSTM_sub_263726(char *a0, u32 a1, u32 a2, u32 a3) {
+int alt_entry_263726(char *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int unaff_r13;
     char *pcVar2;
@@ -4660,7 +4660,7 @@ int ADXSTM_sub_263726(char *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * get_field_1_s8_263746  0x8c263746
- * called by: ADXF_sub_2624a0, ADXT_sub_264c92, cri_sub_264e84, cri_sub_264e88
+ * called by: ADXF_sub_2624a0, ADXT_sub_264c92, alt_entry_264e88, cri_sub_264e84
  */
 int get_field_1_s8_263746(int a0) {
     return (int)*(char *)(a0 + 1);
@@ -4957,7 +4957,7 @@ int cri_sub_263b0c(char *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * cri_sub_263b34  0x8c263b34
  * area name: in the cri library code range
- * called by: ADXT_StartMem, ADXT_StartMemIdx, ADXT_sub_264ba0, cri_sub_263bc0, cri_sub_263bc8
+ * called by: ADXT_StartMem, ADXT_StartMemIdx, ADXT_sub_264ba0, alt_entry_263bc8, cri_sub_263bc0
  */
 u32 cri_sub_263b34(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
@@ -5003,10 +5003,10 @@ u32 cri_sub_263bc0(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * cri_sub_263bc8  0x8c263bc8
- * area name: in the cri library code range
+ * alt_entry_263bc8  0x8c263bc8
+ * probably an entry 8 bytes into 8c263bc0: it reads registers that code sets before it
  */
-u32 cri_sub_263bc8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, int ain0) {
+u32 alt_entry_263bc8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, int ain0) {
     code *in_r3;
     u32 ar5_00;
     int ar6_00;
@@ -5056,7 +5056,7 @@ u32 cri_sub_263bfe(int a0, u32 a1, u32 a2, u32 a3) {
  * cri_sub_263c64  0x8c263c64
  * area name: in the cri library code range
  * called by: ADXSTM_sub_2639fa, ADXT_StartAfs, ADXT_StartFname, ADXT_StartMem, ADXT_StartMemIdx, ADXT_sub_2647f4,
- * ADXT_sub_264c92, cri_sub_263bfe (+3 more)
+ * ADXT_sub_264c92, alt_entry_264e88 (+3 more)
  */
 u32 cri_sub_263c64(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int *ar4_00;
@@ -5122,10 +5122,10 @@ u32 ADXT_GetTime_like(int a0, int *a1, u32 *a2, u32 a3) {
 }
 
 /*
- * ADXT_sub_263ce4  0x8c263ce4
- * area name: sits between ADXT functions (same compilation unit)
+ * alt_entry_263ce4  0x8c263ce4
+ * probably an entry 12 bytes into 8c263cd8: it reads registers that code sets before it
  */
-u32 ADXT_sub_263ce4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 alt_entry_263ce4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 *unaff_r12;
@@ -5765,10 +5765,10 @@ u32 ADXT_sub_264784(int a0) {
 }
 
 /*
- * ADXT_sub_264788  0x8c264788
- * area name: sits between ADXT functions (same compilation unit)
+ * alt_entry_264788  0x8c264788
+ * probably an entry 4 bytes into 8c264784: it reads registers that code sets before it
  */
-u32 ADXT_sub_264788(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 alt_entry_264788(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u8 *puVar1;
     int iVar2;
     u32 uVar3;
@@ -5803,7 +5803,7 @@ u32 ADXT_sub_264788(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * ADXT_sub_2647f4  0x8c2647f4
  * name hint from a string it uses: E9081001 can t play d ch dat; area name: sits between ADXT functions (same
- * compilation unit) called by: cri_sub_264e84, cri_sub_264e88 strings: "E9081001: can't play %d ch data (maxch=%d)
+ * compilation unit) called by: alt_entry_264e88, cri_sub_264e84 strings: "E9081001: can't play %d ch data (maxch=%d)
  * [adxt_stat_decinf"
  */
 int ADXT_sub_2647f4(int a0, u32 a1, int a2, u32 a3) {
@@ -5903,7 +5903,7 @@ int ADXT_sub_2647f4(int a0, u32 a1, int a2, u32 a3) {
 /*
  * ADXT_sub_264a42  0x8c264a42
  * area name: sits between ADXT functions (same compilation unit)
- * called by: cri_sub_264e84, cri_sub_264e88
+ * called by: alt_entry_264e88, cri_sub_264e84
  */
 int ADXT_sub_264a42(int a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -5960,7 +5960,7 @@ int ADXT_sub_264a42(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ADXT_sub_264b14  0x8c264b14
  * area name: sits between ADXT functions (same compilation unit)
- * called by: cri_sub_264e84, cri_sub_264e88
+ * called by: alt_entry_264e88, cri_sub_264e84
  */
 int ADXT_sub_264b14(int a0) {
     int iVar1;
@@ -5992,10 +5992,10 @@ int ADXT_sub_264b14(int a0) {
 }
 
 /*
- * ADXT_sub_264b1a  0x8c264b1a
- * area name: sits between ADXT functions (same compilation unit)
+ * alt_entry_264b1a  0x8c264b1a
+ * probably an entry 6 bytes into 8c264b14: it reads registers that code sets before it
  */
-int ADXT_sub_264b1a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+int alt_entry_264b1a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     int *a4;
@@ -6028,7 +6028,7 @@ int ADXT_sub_264b1a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ADXT_stop_when_drained  0x8c264b7a
  * stops the mwRna output and sets state 5 once its read position reaches 0
- * called by: cri_sub_264e84, cri_sub_264e88
+ * called by: alt_entry_264e88, cri_sub_264e84
  */
 int ADXT_stop_when_drained(int a0) {
     int iVar1;
@@ -6043,10 +6043,10 @@ int ADXT_stop_when_drained(int a0) {
 }
 
 /*
- * ADXT_sub_264b7e  0x8c264b7e
- * area name: sits between ADXT functions (same compilation unit)
+ * alt_entry_264b7e  0x8c264b7e
+ * probably an entry 4 bytes into 8c264b7a: it reads registers that code sets before it
  */
-int ADXT_sub_264b7e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+int alt_entry_264b7e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int unaff_r14;
 
@@ -6061,7 +6061,7 @@ int ADXT_sub_264b7e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * noop_264b9c  0x8c264b9c
- * called by: cri_sub_264e84, cri_sub_264e88
+ * called by: alt_entry_264e88, cri_sub_264e84
  */
 u32 noop_264b9c(void) {
     u32 in_r0;
@@ -6072,7 +6072,7 @@ u32 noop_264b9c(void) {
 /*
  * ADXT_sub_264ba0  0x8c264ba0
  * area name: sits between ADXT functions (same compilation unit)
- * called by: ADXT_sub_264c92, cri_sub_264e84, cri_sub_264e88
+ * called by: ADXT_sub_264c92, alt_entry_264e88, cri_sub_264e84
  */
 u32 ADXT_sub_264ba0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6316,10 +6316,10 @@ LAB_8c264e04:
 }
 
 /*
- * cri_sub_264e88  0x8c264e88
- * area name: in the cri library code range
+ * alt_entry_264e88  0x8c264e88
+ * probably an entry 4 bytes into 8c264e84: it reads registers that code sets before it
  */
-int cri_sub_264e88(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+int alt_entry_264e88(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     char cVar1;
     u32 ar5_00;
     u32 ar4_00;
@@ -6488,7 +6488,7 @@ u32 vram_sub_264f52(int a0, u32 unused_a1, u32 a2) {
 /*
  * vram_sub_264f6a  0x8c264f6a
  * area name: sits between vram functions (same compilation unit)
- * called by: cri_sub_25fc5c, cri_sub_25fc60
+ * called by: alt_entry_25fc60, cri_sub_25fc5c
  */
 u32 vram_sub_264f6a(u32 *a0) {
     u8 *puVar1;
@@ -6506,8 +6506,8 @@ u32 vram_sub_264f6a(u32 *a0) {
 
 /*
  * get_field_c_264f82  0x8c264f82
- * called by: cri_sub_25f1e8, cri_sub_25f1f4, cri_sub_25f306, cri_sub_25f312, cri_sub_25f830, cri_sub_25f83c,
- * cri_sub_25f950, cri_sub_25f95c (+12 more)
+ * called by: alt_entry_25f1f4, alt_entry_25f312, alt_entry_25f83c, alt_entry_25f95c, alt_entry_25fa64,
+ * alt_entry_26054c, alt_entry_260904, alt_entry_2609fc (+12 more)
  */
 u32 get_field_c_264f82(int a0, u32 a1) {
     return *(u32 *)(a0 + 0xc);
@@ -6576,7 +6576,7 @@ u32 vram_sub_264fd4(int a0) {
 /*
  * vram_sub_264fea  0x8c264fea
  * area name: sits between vram functions (same compilation unit)
- * called by: cri_sub_25ffb6, cri_sub_25ffba, cri_sub_260284, cri_sub_2602f4
+ * called by: alt_entry_25ffba, cri_sub_25ffb6, cri_sub_260284, cri_sub_2602f4
  */
 int vram_sub_264fea(int a0) {
     int iVar1;
@@ -6701,7 +6701,7 @@ u32 sd_sub_2650ec(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * sd_flush_host_commands  0x8c26518c
- * called by: sdSysFlushHostCmd, sdSysServer, sd_sub_2688e2
+ * called by: alt_entry_2688e2, sdSysFlushHostCmd, sdSysServer
  */
 int sd_flush_host_commands(u32 unused_a0, u32 unused_a1, u32 a2) {
     int iVar1;
@@ -6759,7 +6759,7 @@ LAB_8c26522c:
 
 /*
  * aica_reg_265278  0x8c265278
- * called by: aica_ram_2684b8, aica_sub_2654f4, aica_sub_2654fc
+ * called by: aica_ram_2684b8, aica_sub_2654f4, alt_entry_2654fc
  */
 u32 aica_reg_265278(void) {
     u32 *ar4_00;
@@ -6780,7 +6780,7 @@ u32 aica_reg_265278(void) {
 
 /*
  * aica_reg_2652f4  0x8c2652f4
- * called by: aica_sub_2654f4, aica_sub_2654fc
+ * called by: aica_sub_2654f4, alt_entry_2654fc
  */
 u32 aica_reg_2652f4(void) {
     u8 *ar4_00;
@@ -6834,7 +6834,7 @@ int aica_sub_265374(u32 a0, u32 a1, u32 a2) {
 /*
  * aica_sub_2653e0  0x8c2653e0
  * area name: sits between aica functions (same compilation unit)
- * called by: aica_sub_2654fc
+ * called by: alt_entry_2654fc
  */
 int aica_sub_2653e0(u32 a0) {
     u8 *puVar1;
@@ -6879,10 +6879,10 @@ int aica_sub_2653e0(u32 a0) {
 }
 
 /*
- * aica_sub_2653e8  0x8c2653e8
- * area name: sits between aica functions (same compilation unit)
+ * alt_entry_2653e8  0x8c2653e8
+ * probably an entry 8 bytes into 8c2653e0: it reads registers that code sets before it
  */
-int aica_sub_2653e8(u32 unused_a0, u32 unused_a1, u32 a2) {
+int alt_entry_2653e8(u32 unused_a0, u32 unused_a1, u32 a2) {
     int iVar1;
     int ar5_00;
     int iVar2;
@@ -6955,10 +6955,10 @@ int aica_sub_2654f4(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * aica_sub_2654fc  0x8c2654fc
- * area name: sits between aica functions (same compilation unit)
+ * alt_entry_2654fc  0x8c2654fc
+ * probably an entry 8 bytes into 8c2654f4: it reads registers that code sets before it
  */
-int aica_sub_2654fc(u32 unused_a0, u32 unused_a1, int a2, u32 a3) {
+int alt_entry_2654fc(u32 unused_a0, u32 unused_a1, int a2, u32 a3) {
     u32 ar4_00;
     int iVar1;
     u32 ar5_00;
@@ -7053,8 +7053,8 @@ int sd_dma_kick(int a0, u32 a1, u32 a2, code *a3) {
 /*
  * aica_sub_265704  0x8c265704
  * area name: sits between aica functions (same compilation unit)
- * called by: aica_driver_upload, aica_sub_2654f4, aica_sub_2654fc, aica_sub_2669f4, game_sub_022504, sd_sub_266bd4,
- * sd_sub_266bda, sd_sub_26a246
+ * called by: aica_driver_upload, aica_sub_2654f4, aica_sub_2669f4, alt_entry_2654fc, alt_entry_266bda, game_sub_022504,
+ * sd_sub_266bd4, sd_sub_26a246
  */
 int aica_sub_265704(u32 *a0) {
     u32 r7;
@@ -7095,10 +7095,10 @@ LAB_8c26574e:
 }
 
 /*
- * aica_sub_26570c  0x8c26570c
- * area name: sits between aica functions (same compilation unit)
+ * alt_entry_26570c  0x8c26570c
+ * probably an entry 8 bytes into 8c265704: it reads registers that code sets before it
  */
-int aica_sub_26570c(int *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int ain1) {
+int alt_entry_26570c(int *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int ain1) {
     int *in_r3;
     int *dst;
     int ar6_00;
@@ -7155,10 +7155,10 @@ int sd_handle_release(int *a0) {
 }
 
 /*
- * aica_sub_26578c  0x8c26578c
- * area name: sits between aica functions (same compilation unit)
+ * alt_entry_26578c  0x8c26578c
+ * probably an entry 8 bytes into 8c265784: it reads registers that code sets before it
  */
-int aica_sub_26578c(int *a0, u32 unused_a1, int a2) {
+int alt_entry_26578c(int *a0, u32 unused_a1, int a2) {
     u32 r7;
     int *in_r2;
     int unaff_r14;
@@ -7347,7 +7347,7 @@ u32 sd_dma_end(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * sd_sub_2659dc  0x8c2659dc
  * area name: in the sd library code range
- * called by: aica_sub_2654f4, aica_sub_2654fc
+ * called by: aica_sub_2654f4, alt_entry_2654fc
  */
 int sd_sub_2659dc(int a0) {
     int iVar1;
@@ -7369,10 +7369,10 @@ int sd_sub_2659dc(int a0) {
 }
 
 /*
- * sd_sub_2659e4  0x8c2659e4
- * area name: in the sd library code range
+ * alt_entry_2659e4  0x8c2659e4
+ * probably an entry 8 bytes into 8c2659dc: it reads registers that code sets before it
  */
-int sd_sub_2659e4(int a0, u32 a1, u32 a2, u32 a3) {
+int alt_entry_2659e4(int a0, u32 a1, u32 a2, u32 a3) {
     int unaff_r13;
     char in_T;
 
@@ -7527,10 +7527,10 @@ int sd_sub_265b68(u32 *a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * sd_sub_265b6a  0x8c265b6a
- * area name: sits between sd functions (same compilation unit)
+ * alt_entry_265b6a  0x8c265b6a
+ * probably an entry 2 bytes into 8c265b68: it reads registers that code sets before it
  */
-int sd_sub_265b6a(u32 *a0, u32 unused_a1, u32 a2) {
+int alt_entry_265b6a(u32 *a0, u32 unused_a1, u32 a2) {
     int *in_r3;
     int ar5_00;
 
@@ -7693,7 +7693,7 @@ int sd_dma_queue_push(u32 a0, u32 a1) {
 /*
  * sd_dma_poll  0x8c265e08
  * polls the G2 DMA when interrupts are masked
- * called by: mwSndGetTrnsStat, sdMemBlkGetStat, sdSysServer, sd_sub_2688e2
+ * called by: alt_entry_2688e2, mwSndGetTrnsStat, sdMemBlkGetStat, sdSysServer
  */
 u32 sd_dma_poll(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int *ar5_00;
@@ -7740,7 +7740,7 @@ u32 sd_sub_265e88(int a0, u32 a1, u32 a2) {
 
 /*
  * sd_dma_setup  0x8c265ea0
- * called by: aica_driver_upload, aica_sub_2654f4, aica_sub_2654fc, aica_sub_2669f4, game_sub_022504, mwSndTrns_26abf0,
+ * called by: aica_driver_upload, aica_sub_2654f4, aica_sub_2669f4, alt_entry_2654fc, game_sub_022504, mwSndTrns_26abf0,
  * mwSndTrns_26aca8, sd_send_host_commands
  */
 int sd_dma_setup(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
@@ -7815,7 +7815,7 @@ u32 sd_wait_idle_set_1a8(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * sd_dma_start  0x8c265ff4
- * called by: aica_sub_265374, aica_sub_2654f4, aica_sub_2654fc, mwSndTrns_26abf0, mwSndTrns_26aca8, sd_dma_end,
+ * called by: aica_sub_265374, aica_sub_2654f4, alt_entry_2654fc, mwSndTrns_26abf0, mwSndTrns_26aca8, sd_dma_end,
  * sd_send_host_commands
  */
 int sd_dma_start(int a0, u32 a1, u32 a2, u32 a3) {
@@ -7877,7 +7877,7 @@ int sd_dma_start(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * sd_sub_266134  0x8c266134
  * area name: in the sd library code range
- * called by: sd_sub_2664c4, sd_sub_2664d4
+ * called by: alt_entry_2664d4, sd_sub_2664c4
  */
 int sd_sub_266134(int a0, u32 *a1, u32 a2) {
     int ar5_00;
@@ -7901,7 +7901,7 @@ int sd_sub_266134(int a0, u32 *a1, u32 a2) {
 /*
  * sd_sub_2661a4  0x8c2661a4
  * area name: in the sd library code range
- * called by: sd_sub_2664c4, sd_sub_2664d4
+ * called by: alt_entry_2664d4, sd_sub_2664c4
  */
 int sd_sub_2661a4(int a0, u8 *a1, u32 a2) {
     int ar5_00;
@@ -7925,7 +7925,7 @@ int sd_sub_2661a4(int a0, u8 *a1, u32 a2) {
 /*
  * sd_sub_266214  0x8c266214
  * area name: in the sd library code range
- * called by: sd_sub_2664c4, sd_sub_2664d4
+ * called by: alt_entry_2664d4, sd_sub_2664c4
  */
 int sd_sub_266214(int a0, u32 *a1, u32 a2) {
     int ar5_00;
@@ -7949,7 +7949,7 @@ int sd_sub_266214(int a0, u32 *a1, u32 a2) {
 /*
  * sd_sub_266288  0x8c266288
  * area name: in the sd library code range
- * called by: sd_sub_2664c4, sd_sub_2664d4
+ * called by: alt_entry_2664d4, sd_sub_2664c4
  */
 int sd_sub_266288(int a0, u32 *a1, u32 a2) {
     int ar5_00;
@@ -7973,7 +7973,7 @@ int sd_sub_266288(int a0, u32 *a1, u32 a2) {
 /*
  * sd_sub_2662f8  0x8c2662f8
  * area name: in the sd library code range
- * called by: sd_sub_2664c4, sd_sub_2664d4
+ * called by: alt_entry_2664d4, sd_sub_2664c4
  */
 int sd_sub_2662f8(int a0, u8 *a1, u32 a2) {
     int ar5_00;
@@ -7997,7 +7997,7 @@ int sd_sub_2662f8(int a0, u8 *a1, u32 a2) {
 /*
  * sd_sub_266368  0x8c266368
  * area name: in the sd library code range
- * called by: sd_sub_2664c4, sd_sub_2664d4
+ * called by: alt_entry_2664d4, sd_sub_2664c4
  */
 int sd_sub_266368(int a0, u8 *a1, u32 a2) {
     int ar5_00;
@@ -8021,7 +8021,7 @@ int sd_sub_266368(int a0, u8 *a1, u32 a2) {
 /*
  * sd_sub_2663d8  0x8c2663d8
  * area name: in the sd library code range
- * called by: sd_sub_2664c4, sd_sub_2664d4
+ * called by: alt_entry_2664d4, sd_sub_2664c4
  */
 u32 sd_sub_2663d8(int a0, u16 *a1, u32 a2) {
     int ar5_00;
@@ -8045,7 +8045,7 @@ u32 sd_sub_2663d8(int a0, u16 *a1, u32 a2) {
 /*
  * sd_sub_266448  0x8c266448
  * area name: in the sd library code range
- * called by: sd_sub_2664c4, sd_sub_2664d4
+ * called by: alt_entry_2664d4, sd_sub_2664c4
  */
 int sd_sub_266448(int a0, u16 *a1, u32 a2) {
     int iVar1;
@@ -8105,10 +8105,10 @@ int sd_sub_2664c4(int a0, u8 *a1, u32 a2) {
 }
 
 /*
- * sd_sub_2664d4  0x8c2664d4
- * area name: in the sd library code range
+ * alt_entry_2664d4  0x8c2664d4
+ * probably an entry 16 bytes into 8c2664c4: it reads registers that code sets before it
  */
-int sd_sub_2664d4(u32 unused_a0, u32 unused_a1, u32 a2) {
+int alt_entry_2664d4(u32 unused_a0, u32 unused_a1, u32 a2) {
     int *in_r2;
     int unaff_r11;
     int unaff_r13;
@@ -8141,7 +8141,7 @@ int sd_sub_2664d4(u32 unused_a0, u32 unused_a1, u32 a2) {
 /*
  * sd_sub_2665b0  0x8c2665b0
  * area name: in the sd library code range
- * called by: sd_sub_2664c4, sd_sub_2664d4
+ * called by: alt_entry_2664d4, sd_sub_2664c4
  */
 int sd_sub_2665b0(int a0, u32 *a1, u32 a2) {
     int ar5_00;
@@ -8165,7 +8165,7 @@ int sd_sub_2665b0(int a0, u32 *a1, u32 a2) {
 /*
  * sd_sub_266620  0x8c266620
  * area name: in the sd library code range
- * called by: sd_sub_2664c4, sd_sub_2664d4
+ * called by: alt_entry_2664d4, sd_sub_2664c4
  */
 int sd_sub_266620(int a0, u8 *a1, u32 a2) {
     int ar5_00;
@@ -8229,7 +8229,7 @@ int sd_sub_266694(int a0, u32 unused_a1, u32 a2) {
 /*
  * sd_sub_2666cc  0x8c2666cc
  * area name: in the sd library code range
- * called by: sd_sub_266ccc, sd_sub_266cce, sd_sub_26809c, sd_sub_26809e
+ * called by: alt_entry_266cce, alt_entry_26809e, sd_sub_266ccc, sd_sub_26809c
  */
 int sd_sub_2666cc(int a0, u32 unused_a1, u32 a2) {
     int ar5_00;
@@ -8246,7 +8246,7 @@ int sd_sub_2666cc(int a0, u32 unused_a1, u32 a2) {
 /*
  * sd_sub_266708  0x8c266708
  * area name: in the sd library code range
- * called by: sd_sub_267470, sd_sub_2675d8, sd_sub_2680ec, sd_sub_2680ee
+ * called by: alt_entry_2680ee, sd_sub_267470, sd_sub_2675d8, sd_sub_2680ec
  */
 int sd_sub_266708(int *a0, int a1) {
     int iVar1;
@@ -8311,10 +8311,10 @@ LAB_8c2667a0:
 }
 
 /*
- * sd_sub_266710  0x8c266710
- * area name: in the sd library code range
+ * alt_entry_266710  0x8c266710
+ * probably an entry 8 bytes into 8c266708: it reads registers that code sets before it
  */
-int sd_sub_266710(int *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int ain0) {
+int alt_entry_266710(int *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int ain0) {
     int iVar1;
     int ar6_00;
     int iVar2;
@@ -8643,10 +8643,10 @@ u32 sd_send_host_commands(void) {
 }
 
 /*
- * sd_sub_266b0e  0x8c266b0e
- * area name: in the sd library code range
+ * alt_entry_266b0e  0x8c266b0e
+ * probably an entry 6 bytes into 8c266b08: it reads registers that code sets before it
  */
-u32 sd_sub_266b0e(void) {
+u32 alt_entry_266b0e(void) {
     int in_r0;
     int iVar1;
     int ar6_00;
@@ -8718,10 +8718,10 @@ int sd_sub_266bd4(u32 a0) {
 }
 
 /*
- * sd_sub_266bda  0x8c266bda
- * area name: in the sd library code range
+ * alt_entry_266bda  0x8c266bda
+ * probably an entry 6 bytes into 8c266bd4: it reads registers that code sets before it
  */
-int sd_sub_266bda(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
+int alt_entry_266bda(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 ar5_00;
     int *unaff_r13;
     int ar5_01;
@@ -8778,10 +8778,10 @@ int sd_sub_266c48(u32 *a0) {
 }
 
 /*
- * sd_sub_266c54  0x8c266c54
- * area name: in the sd library code range
+ * alt_entry_266c54  0x8c266c54
+ * probably an entry 12 bytes into 8c266c48: it reads registers that code sets before it
  */
-int sd_sub_266c54(u32 unused_a0, u32 unused_a1, u32 a2, u32 unused_a3, int ain0) {
+int alt_entry_266c54(u32 unused_a0, u32 unused_a1, u32 a2, u32 unused_a3, int ain0) {
     int in_r2;
     int *in_r3;
     int iVar1;
@@ -8834,10 +8834,10 @@ int sd_sub_266ccc(int a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * sd_sub_266cce  0x8c266cce
- * area name: in the sd library code range
+ * alt_entry_266cce  0x8c266cce
+ * probably an entry 2 bytes into 8c266ccc: it reads registers that code sets before it
  */
-int sd_sub_266cce(int a0, u32 unused_a1, u32 a2) {
+int alt_entry_266cce(int a0, u32 unused_a1, u32 a2) {
     int *in_r2;
     int ar5_00;
 
@@ -8868,7 +8868,7 @@ u32 thunk_FUN_8c266ccc(void) {
 /*
  * sd_sub_266d28  0x8c266d28
  * area name: in the sd library code range
- * called by: sd_sub_267250, sd_sub_267264, thunk_FUN_8c266d28
+ * called by: alt_entry_267264, sd_sub_267250, thunk_FUN_8c266d28
  */
 int sd_sub_266d28(int a0, u32 a1, int *a2, u8 *a3) {
     int iVar1;
@@ -8922,7 +8922,7 @@ u32 thunk_FUN_8c266d28(void) {
 /*
  * sd_sub_266e2c  0x8c266e2c
  * area name: in the sd library code range
- * called by: sd_sub_267250, sd_sub_267264
+ * called by: alt_entry_267264, sd_sub_267250
  */
 u32 sd_sub_266e2c(int a0, u32 a1, u8 *a2, u32 a3) {
     int ar6_00;
@@ -8946,7 +8946,7 @@ u32 sd_sub_266e2c(int a0, u32 a1, u8 *a2, u32 a3) {
 /*
  * sd_sub_266ea8  0x8c266ea8
  * area name: in the sd library code range
- * called by: sd_sub_267250, sd_sub_267264
+ * called by: alt_entry_267264, sd_sub_267250
  */
 int sd_sub_266ea8(int a0, u32 a1, u32 *a2) {
     int iVar1;
@@ -8975,7 +8975,7 @@ int sd_sub_266ea8(int a0, u32 a1, u32 *a2) {
 /*
  * sd_sub_266f38  0x8c266f38
  * area name: in the sd library code range
- * called by: mwSndGetPlayPos, sd_sub_267250, sd_sub_267264
+ * called by: alt_entry_267264, mwSndGetPlayPos, sd_sub_267250
  */
 int sd_sub_266f38(int a0, u32 a1, u32 *a2) {
     int iVar1;
@@ -9004,7 +9004,7 @@ int sd_sub_266f38(int a0, u32 a1, u32 *a2) {
 /*
  * sd_sub_266fc8  0x8c266fc8
  * area name: in the sd library code range
- * called by: sd_sub_267250, sd_sub_267264
+ * called by: alt_entry_267264, sd_sub_267250
  */
 int sd_sub_266fc8(int a0, u32 a1, u8 *a2) {
     int iVar1;
@@ -9033,7 +9033,7 @@ int sd_sub_266fc8(int a0, u32 a1, u8 *a2) {
 /*
  * sd_sub_267058  0x8c267058
  * area name: in the sd library code range
- * called by: sd_sub_267250, sd_sub_267264
+ * called by: alt_entry_267264, sd_sub_267250
  */
 int sd_sub_267058(int a0, u32 a1, char *a2) {
     char cVar1;
@@ -9079,7 +9079,7 @@ int sd_sub_267058(int a0, u32 a1, char *a2) {
 /*
  * sd_sub_267130  0x8c267130
  * area name: in the sd library code range
- * called by: sd_sub_267250, sd_sub_267264
+ * called by: alt_entry_267264, sd_sub_267250
  */
 int sd_sub_267130(int a0, u32 a1, u16 *a2) {
     int iVar1;
@@ -9108,7 +9108,7 @@ int sd_sub_267130(int a0, u32 a1, u16 *a2) {
 /*
  * sd_sub_2671c0  0x8c2671c0
  * area name: in the sd library code range
- * called by: sd_sub_267250, sd_sub_267264
+ * called by: alt_entry_267264, sd_sub_267250
  */
 int sd_sub_2671c0(int a0, u32 a1, u16 *a2) {
     int iVar1;
@@ -9167,10 +9167,10 @@ int sd_sub_267250(int a0, u32 a1, u8 *a2) {
 }
 
 /*
- * sd_sub_267264  0x8c267264
- * area name: in the sd library code range
+ * alt_entry_267264  0x8c267264
+ * probably an entry 20 bytes into 8c267250: it reads registers that code sets before it
  */
-int sd_sub_267264(u32 unused_a0, u32 unused_a1, u8 *a2, u32 a3) {
+int alt_entry_267264(u32 unused_a0, u32 unused_a1, u8 *a2, u32 a3) {
     int *in_r2;
     int unaff_r10;
     u32 unaff_r12;
@@ -9216,7 +9216,7 @@ u32 thunk_FUN_8c267250(u32 unused_a0, u32 a1) {
 /*
  * sd_sub_267360  0x8c267360
  * area name: in the sd library code range
- * called by: sd_sub_267250, sd_sub_267264
+ * called by: alt_entry_267264, sd_sub_267250
  */
 int sd_sub_267360(int a0, u32 a1, u32 *a2) {
     int iVar1;
@@ -9245,7 +9245,7 @@ int sd_sub_267360(int a0, u32 a1, u32 *a2) {
 /*
  * sd_sub_2673f0  0x8c2673f0
  * area name: in the sd library code range
- * called by: sd_sub_267264
+ * called by: alt_entry_267264
  */
 int sd_sub_2673f0(int a0, u32 a1, u8 *a2) {
     int iVar1;
@@ -9473,10 +9473,10 @@ LAB_8c267802:
 }
 
 /*
- * sd_sub_267744  0x8c267744
- * area name: in the sd library code range
+ * alt_entry_267744  0x8c267744
+ * probably an entry 4 bytes into 8c267740: it reads registers that code sets before it
  */
-int sd_sub_267744(int a0, int a1, u8 *a2, u32 a3) {
+int alt_entry_267744(int a0, int a1, u8 *a2, u32 a3) {
     u8 uVar1;
     u8 bVar2;
     int *in_r3;
@@ -9595,10 +9595,10 @@ int sd_sub_2678a4(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * sd_sub_2678a6  0x8c2678a6
- * area name: sits between sd functions (same compilation unit)
+ * alt_entry_2678a6  0x8c2678a6
+ * probably an entry 2 bytes into 8c2678a4: it reads registers that code sets before it
  */
-int sd_sub_2678a6(int a0, u32 a1, u32 a2, u32 a3) {
+int alt_entry_2678a6(int a0, u32 a1, u32 a2, u32 a3) {
     int *in_r2;
     int ar5_00;
 
@@ -9675,10 +9675,10 @@ int sd_sub_267924(int a0, int a1) {
 }
 
 /*
- * sd_sub_267926  0x8c267926
- * area name: sits between sd functions (same compilation unit)
+ * alt_entry_267926  0x8c267926
+ * probably an entry 2 bytes into 8c267924: it reads registers that code sets before it
  */
-int sd_sub_267926(int a0, u32 a1) {
+int alt_entry_267926(int a0, u32 a1) {
     char cVar1;
     int *in_r3;
     int ar6_00;
@@ -9736,10 +9736,10 @@ int sd_sub_2679a0(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * sd_sub_2679a2  0x8c2679a2
- * area name: sits between sd functions (same compilation unit)
+ * alt_entry_2679a2  0x8c2679a2
+ * probably an entry 2 bytes into 8c2679a0: it reads registers that code sets before it
  */
-int sd_sub_2679a2(int a0, u32 a1, u32 a2, u32 a3) {
+int alt_entry_2679a2(int a0, u32 a1, u32 a2, u32 a3) {
     int *in_r2;
     int ar5_00;
 
@@ -9799,10 +9799,10 @@ int sd_sub_267a20(int a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * sd_sub_267a22  0x8c267a22
- * area name: sits between sd functions (same compilation unit)
+ * alt_entry_267a22  0x8c267a22
+ * probably an entry 2 bytes into 8c267a20: it reads registers that code sets before it
  */
-int sd_sub_267a22(int a0, u32 a1, int a2, u32 a3) {
+int alt_entry_267a22(int a0, u32 a1, int a2, u32 a3) {
     int *in_r2;
     int ar5_00;
 
@@ -9862,10 +9862,10 @@ int sd_sub_267ab0(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * sd_sub_267ab2  0x8c267ab2
- * area name: in the sd library code range
+ * alt_entry_267ab2  0x8c267ab2
+ * probably an entry 2 bytes into 8c267ab0: it reads registers that code sets before it
  */
-int sd_sub_267ab2(int a0, u32 a1, u32 a2, u32 a3) {
+int alt_entry_267ab2(int a0, u32 a1, u32 a2, u32 a3) {
     int *in_r2;
     int ar5_00;
 
@@ -9899,7 +9899,7 @@ u32 sd_sub_267b20(u32 unused_a0, u32 unused_a1, u32 a2) {
 /*
  * sd_sub_267b30  0x8c267b30
  * area name: in the sd library code range
- * called by: sd_sub_267d98, thunk_FUN_8c267b30
+ * called by: alt_entry_267d98, thunk_FUN_8c267b30
  */
 int sd_sub_267b30(int a0, u32 a1, u32 a2, u32 a3) {
     u8 bVar1;
@@ -10016,10 +10016,10 @@ int sd_sub_267ccc(int a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * sd_sub_267cce  0x8c267cce
- * area name: in the sd library code range
+ * alt_entry_267cce  0x8c267cce
+ * probably an entry 2 bytes into 8c267ccc: it reads registers that code sets before it
  */
-int sd_sub_267cce(int a0, u32 a1, int a2, u32 a3) {
+int alt_entry_267cce(int a0, u32 a1, int a2, u32 a3) {
     int *in_r2;
     int iVar1;
     int iVar2;
@@ -10054,7 +10054,7 @@ int sd_sub_267cce(int a0, u32 a1, int a2, u32 a3) {
 /*
  * sd_sub_267d74  0x8c267d74
  * area name: in the sd library code range
- * called by: mwSnd_sub_26aa5c
+ * called by: alt_entry_26aa5c
  */
 u32 sd_sub_267d74(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -10098,10 +10098,10 @@ int sd_sub_267d88(int a0, u32 a1) {
 }
 
 /*
- * sd_sub_267d98  0x8c267d98
- * area name: in the sd library code range
+ * alt_entry_267d98  0x8c267d98
+ * probably an entry 16 bytes into 8c267d88: it reads registers that code sets before it
  */
-int sd_sub_267d98(u32 unused_a0, u32 a1, int a2, int a3) {
+int alt_entry_267d98(u32 unused_a0, u32 a1, int a2, int a3) {
     int *in_r3;
     int iVar1;
     int unaff_r10;
@@ -10194,10 +10194,10 @@ int sd_sub_267e54(int a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * sd_sub_267e56  0x8c267e56
- * area name: in the sd library code range
+ * alt_entry_267e56  0x8c267e56
+ * probably an entry 2 bytes into 8c267e54: it reads registers that code sets before it
  */
-int sd_sub_267e56(int a0, u32 a1, int a2, u32 a3) {
+int alt_entry_267e56(int a0, u32 a1, int a2, u32 a3) {
     int *in_r3;
     u8 uVar1;
     int ar5_00;
@@ -10233,7 +10233,7 @@ int sd_sub_267e56(int a0, u32 a1, int a2, u32 a3) {
 
 /*
  * thunk_FUN_8c267e54  0x8c267f20
- * called by: mwSndSetVol, mwSnd_sub_26a870
+ * called by: alt_entry_26a870, mwSndSetVol
  */
 u32 thunk_FUN_8c267e54(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -10295,8 +10295,8 @@ u32 thunk_FUN_8c267f2c(void) {
 /*
  * sd_sub_267fe8  0x8c267fe8
  * area name: in the sd library code range
- * called by: sd_sub_267740, sd_sub_267744, sd_sub_2678a4, sd_sub_2678a6, sd_sub_2679a0, sd_sub_2679a2, sd_sub_267a20,
- * sd_sub_267a22 (+17 more)
+ * called by: alt_entry_267744, alt_entry_2678a6, alt_entry_2679a2, alt_entry_267a22, alt_entry_267ab2,
+ * alt_entry_267cce, alt_entry_267e56, alt_entry_26813e (+17 more)
  */
 int sd_sub_267fe8(u32 a0, u32 a1, int a2, int a3) {
     int iVar1;
@@ -10361,10 +10361,10 @@ int sd_sub_26809c(int a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * sd_sub_26809e  0x8c26809e
- * area name: in the sd library code range
+ * alt_entry_26809e  0x8c26809e
+ * probably an entry 2 bytes into 8c26809c: it reads registers that code sets before it
  */
-int sd_sub_26809e(int a0, u32 unused_a1, u32 a2) {
+int alt_entry_26809e(int a0, u32 unused_a1, u32 a2) {
     int *in_r2;
     int ar5_00;
 
@@ -10405,10 +10405,10 @@ int sd_sub_2680ec(int a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * sd_sub_2680ee  0x8c2680ee
- * area name: in the sd library code range
+ * alt_entry_2680ee  0x8c2680ee
+ * probably an entry 2 bytes into 8c2680ec: it reads registers that code sets before it
  */
-int sd_sub_2680ee(int a0, u32 unused_a1, u32 a2) {
+int alt_entry_2680ee(int a0, u32 unused_a1, u32 a2) {
     int *in_r2;
     int ar5_00;
 
@@ -10459,10 +10459,10 @@ int sd_sub_26813c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * sd_sub_26813e  0x8c26813e
- * area name: in the sd library code range
+ * alt_entry_26813e  0x8c26813e
+ * probably an entry 2 bytes into 8c26813c: it reads registers that code sets before it
  */
-int sd_sub_26813e(int a0, u32 a1, u32 a2, u32 a3) {
+int alt_entry_26813e(int a0, u32 a1, u32 a2, u32 a3) {
     int *in_r2;
     int iVar1;
 
@@ -10521,10 +10521,10 @@ int sd_sub_2681d0(int a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * sd_sub_2681d2  0x8c2681d2
- * area name: in the sd library code range
+ * alt_entry_2681d2  0x8c2681d2
+ * probably an entry 2 bytes into 8c2681d0: it reads registers that code sets before it
  */
-int sd_sub_2681d2(int a0, u32 a1, int a2, u32 a3) {
+int alt_entry_2681d2(int a0, u32 a1, int a2, u32 a3) {
     int *in_r2;
     int iVar1;
     int ar5_00;
@@ -10637,10 +10637,10 @@ int sd_sub_2682bc(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * sd_sub_2682be  0x8c2682be
- * area name: in the sd library code range
+ * alt_entry_2682be  0x8c2682be
+ * probably an entry 2 bytes into 8c2682bc: it reads registers that code sets before it
  */
-int sd_sub_2682be(int a0, u32 a1, u32 a2, u32 a3) {
+int alt_entry_2682be(int a0, u32 a1, u32 a2, u32 a3) {
     int *in_r2;
     int ar5_00;
 
@@ -10743,7 +10743,7 @@ LAB_8c26846a:
 
 /*
  * aica_ram_2684b8  0x8c2684b8
- * called by: aica_sub_2654f4, aica_sub_2654fc
+ * called by: aica_sub_2654f4, alt_entry_2654fc
  * strings: "SEGA"
  */
 u32 aica_ram_2684b8(void) {
@@ -10841,7 +10841,7 @@ LAB_8c2685de:
 
 /*
  * aica_ram_268618  0x8c268618
- * called by: aica_sub_2653e0, aica_sub_2653e8, sd_sub_266134, sd_sub_2663d8, sd_sub_266448, sd_sub_266d28,
+ * called by: aica_sub_2653e0, alt_entry_2653e8, sd_sub_266134, sd_sub_2663d8, sd_sub_266448, sd_sub_266d28,
  * sd_sub_267130, sd_sub_2671c0
  */
 u32 aica_ram_268618(int a0, u32 a1) {
@@ -10854,8 +10854,8 @@ u32 aica_ram_268618(int a0, u32 a1) {
 /*
  * aica_ram_read_u8  0x8c268650
  * reads one byte of sound RAM at a0 (below 2 MB) into *a1
- * called by: aica_sub_2653e8, sd_sub_2661a4, sd_sub_2662f8, sd_sub_266368, sd_sub_266620, sd_sub_266fc8, sd_sub_267058,
- * sd_sub_2673f0
+ * called by: alt_entry_2653e8, sd_sub_2661a4, sd_sub_2662f8, sd_sub_266368, sd_sub_266620, sd_sub_266fc8,
+ * sd_sub_267058, sd_sub_2673f0
  */
 u32 aica_ram_read_u8(u32 a0, u8 *a1) {
     u8 auStack_8[8];
@@ -10987,10 +10987,10 @@ LAB_8c268860:
 }
 
 /*
- * sd_sub_26881a  0x8c26881a
- * area name: in the sd library code range
+ * alt_entry_26881a  0x8c26881a
+ * probably an entry 2 bytes into 8c268818: it reads registers that code sets before it
  */
-int sd_sub_26881a(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int alt_entry_26881a(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int *in_r2;
     int ar5_00;
 
@@ -11019,8 +11019,8 @@ LAB_8c268860:
 /*
  * sd_set_last_error  0x8c2688a0
  * records an sd library error code and detail
- * called by: aica_ram_2657ec, aica_ram_2668fc, aica_sub_265374, aica_sub_2653e0, aica_sub_2653e8, aica_sub_2654f4,
- * aica_sub_2654fc, aica_sub_2655f4 (+99 more)
+ * called by: aica_ram_2657ec, aica_ram_2668fc, aica_sub_265374, aica_sub_2653e0, aica_sub_2654f4, aica_sub_2655f4,
+ * aica_sub_265704, aica_sub_2669f4 (+99 more)
  */
 u32 sd_set_last_error(u32 a0, u32 a1, u32 a2) {
     u8 *puVar1;
@@ -11063,10 +11063,10 @@ u32 sdSysServer(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * sd_sub_2688e2  0x8c2688e2
- * area name: sits between sd functions (same compilation unit)
+ * alt_entry_2688e2  0x8c2688e2
+ * probably an entry 2 bytes into 8c2688e0: it reads registers that code sets before it
  */
-u32 sd_sub_2688e2(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_2688e2(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int *in_r3;
     int ar4_00;
 
@@ -11117,10 +11117,10 @@ int sd_sub_268920(u32 a0, u32 a1, u8 *a2, u32 a3) {
 }
 
 /*
- * sd_sub_26892c  0x8c26892c
- * area name: sits between sd functions (same compilation unit)
+ * alt_entry_26892c  0x8c26892c
+ * probably an entry 12 bytes into 8c268920: it reads registers that code sets before it
  */
-u32 sd_sub_26892c(u32 a0, u32 unused_a1, u8 *a2, u32 a3) {
+u32 alt_entry_26892c(u32 a0, u32 unused_a1, u8 *a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u32 unaff_r12;
@@ -11250,11 +11250,11 @@ u32 sd_sub_268a24(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * sd_sub_268a36  0x8c268a36
- * area name: sits between sd functions (same compilation unit)
+ * alt_entry_268a36  0x8c268a36
+ * probably an entry 18 bytes into 8c268a24: it reads registers that code sets before it
  * decompiler: Switch with 1 destination removed at 0x8c268ab4
  */
-u32 sd_sub_268a36(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_268a36(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     int a6;
     u32 *a7;
@@ -11430,7 +11430,7 @@ u32 sd_sub_268b70(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * mwRnaDestroy  0x8c268c7e
  * stops an mwRna output if playing, releases its channels and clears the 0x90-byte handle
- * called by: mwRna_stop_and_destroy, sd_sub_268a24, sd_sub_268a36
+ * called by: alt_entry_268a36, mwRna_stop_and_destroy, sd_sub_268a24
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRnaDestroy(u8 *a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -11497,7 +11497,7 @@ u32 noop_268d60(void) {
 /*
  * mwRnaStop  0x8c268d64
  * stops an mwRna output: play switch off, buffers reset, status cleared (interrupts masked)
- * called by: mwRnaDestroy, mwRnaStart_like, mwRna_stop_and_destroy, sd_sub_268a24, sd_sub_268a36
+ * called by: alt_entry_268a36, mwRnaDestroy, mwRnaStart_like, mwRna_stop_and_destroy, sd_sub_268a24
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRnaStop(int a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -11695,10 +11695,10 @@ u32 mwRna_sub_269056(int a0) {
 }
 
 /*
- * mwRna_sub_26905a  0x8c26905a
- * area name: sits between mwRna functions (same compilation unit)
+ * alt_entry_26905a  0x8c26905a
+ * probably an entry 4 bytes into 8c269056: it reads registers that code sets before it
  */
-u32 mwRna_sub_26905a(int a0) {
+u32 alt_entry_26905a(int a0) {
     u32 uVar1;
     code *in_r2;
 
@@ -12291,7 +12291,7 @@ u32 mwRnaDiscardData(int a0, int a1, u8 *a2, u8 *a3) {
 /*
  * mwRnaGetTime  0x8c2699d0
  * *a1 = samples played (+0x4c - +0x34), *a2 = sampling rate (+0xc); matches the CRI mwRna API shape
- * called by: ADXT_GetTime_like, ADXT_sub_263ce4, mwRnaGetTime_wrap
+ * called by: ADXT_GetTime_like, alt_entry_263ce4, mwRnaGetTime_wrap
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRnaGetTime(int a0, int *a1, u32 *a2, u32 a3) {
@@ -12781,7 +12781,7 @@ u32 mwRna_get_fx2_level(int a0) {
 
 /*
  * thunk_FUN_8c26a130  0x8c269f3a
- * called by: cri_sub_262810, cri_sub_262814
+ * called by: alt_entry_262814, cri_sub_262810
  */
 u32 thunk_FUN_8c26a130(u32 unused_a0, u32 a1) {
     u32 uVar1;
@@ -12972,8 +12972,8 @@ u32 sd_sub_26a130(int a0, u32 a1) {
 
 /*
  * debug_printf  0x8c26a14e
- * called by: mwRnaDestroy, mwRnaDiscardData, mwRnaGetBitPerSmpl, mwRnaGetFx, mwRnaGetOutPan, mwRnaGetOutVol,
- * mwRnaGetSfreq, mwRnaGetTime (+47 more)
+ * called by: alt_entry_26a870, alt_entry_26aa5c, mwRnaDestroy, mwRnaDiscardData, mwRnaGetBitPerSmpl, mwRnaGetFx,
+ * mwRnaGetOutPan, mwRnaGetOutVol (+47 more)
  */
 u32 debug_printf(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s4) {
     u32 uVar1;
@@ -13429,10 +13429,10 @@ int mwSnd_sub_26a772(int a0) {
 }
 
 /*
- * mwSnd_sub_26a776  0x8c26a776
- * area name: sits between mwSnd functions (same compilation unit)
+ * alt_entry_26a776  0x8c26a776
+ * probably an entry 4 bytes into 8c26a772: it reads registers that code sets before it
  */
-int mwSnd_sub_26a776(void) {
+int alt_entry_26a776(void) {
     int iVar1;
     code *in_r3;
 
@@ -13560,11 +13560,10 @@ LAB_8c26a8aa:
 }
 
 /*
- * mwSnd_sub_26a870  0x8c26a870
- * name hint from a string it uses: E1237 sdPstmSetVol return er; area name: sits between mwSnd functions (same
- * compilation unit)
+ * alt_entry_26a870  0x8c26a870
+ * probably an entry 16 bytes into 8c26a860: it reads registers that code sets before it
  */
-int mwSnd_sub_26a870(int a0, int a1, u32 unused_a2, u32 unused_a3, int ain0) {
+int alt_entry_26a870(int a0, int a1, u32 unused_a2, u32 unused_a3, int ain0) {
     int iVar1;
     int a4;
     int a5;
@@ -13719,11 +13718,10 @@ u32 mwSnd_sub_26aa48(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0) {
 }
 
 /*
- * mwSnd_sub_26aa5c  0x8c26aa5c
- * name hint from a string it uses: E1239 sdPstmSetPitch return ; area name: sits between mwSnd functions (same
- * compilation unit)
+ * alt_entry_26aa5c  0x8c26aa5c
+ * probably an entry 20 bytes into 8c26aa48: it reads registers that code sets before it
  */
-int mwSnd_sub_26aa5c(int a0, int a1, int a2) {
+int alt_entry_26aa5c(int a0, int a1, int a2) {
     int iVar1;
     int a4;
     int iVar2;
@@ -14232,7 +14230,7 @@ u32 sr_with_imask(u32 unused_a0, u32 a1) {
 /*
  * init_once_clear_4bf038  0x8c26b212
  * clears the 0x480-byte table at 8c4bf038 on the first call; counts calls
- * called by: cri_sub_262810, cri_sub_262814
+ * called by: alt_entry_262814, cri_sub_262810
  */
 u32 init_once_clear_4bf038(void) {
     u8 *puVar1;
@@ -14247,10 +14245,10 @@ u32 init_once_clear_4bf038(void) {
 }
 
 /*
- * game_sub_26b216  0x8c26b216
- * area name: game code; nothing names its area yet
+ * alt_entry_26b216  0x8c26b216
+ * probably an entry 4 bytes into 8c26b212: it reads registers that code sets before it
  */
-u32 game_sub_26b216(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 alt_entry_26b216(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 in_r0;
     int *unaff_r14;
 
@@ -14313,10 +14311,10 @@ u32 ADXT_sub_26b250(u32 a0, u32 a1) {
 }
 
 /*
- * game_sub_26b254  0x8c26b254
- * area name: game code; nothing names its area yet
+ * alt_entry_26b254  0x8c26b254
+ * probably an entry 4 bytes into 8c26b250: it reads registers that code sets before it
  */
-u32 game_sub_26b254(u32 a0, u32 a1) {
+u32 alt_entry_26b254(u32 a0, u32 a1) {
     int iVar1;
     int ar6_00;
     int unaff_r14;
@@ -14362,7 +14360,7 @@ u32 game_sub_26b2b6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * game_sub_26b2da  0x8c26b2da
  * area name: game code; nothing names its area yet
- * called by: ADXT_sub_26b250, game_sub_26b254
+ * called by: ADXT_sub_26b250, alt_entry_26b254
  */
 u32 game_sub_26b2da(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 in_r0;
@@ -14565,7 +14563,7 @@ u32 sr_with_imask_b(u32 unused_a0, u32 a1) {
 /*
  * init_once_clear_4bf4b8  0x8c26b526
  * clears the 0xc00-byte table at 8c4bf4b8 on the first call; counts calls
- * called by: cri_sub_262810, cri_sub_262814
+ * called by: alt_entry_262814, cri_sub_262810
  */
 u32 init_once_clear_4bf4b8(void) {
     u8 *puVar1;
@@ -14580,10 +14578,10 @@ u32 init_once_clear_4bf4b8(void) {
 }
 
 /*
- * game_sub_26b52a  0x8c26b52a
- * area name: game code; nothing names its area yet
+ * alt_entry_26b52a  0x8c26b52a
+ * probably an entry 4 bytes into 8c26b526: it reads registers that code sets before it
  */
-u32 game_sub_26b52a(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 alt_entry_26b52a(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 in_r0;
     int *unaff_r14;
 
@@ -14692,10 +14690,10 @@ u32 game_sub_26b5c6(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_26b5ca  0x8c26b5ca
- * area name: game code; nothing names its area yet
+ * alt_entry_26b5ca  0x8c26b5ca
+ * probably an entry 4 bytes into 8c26b5c6: it reads registers that code sets before it
  */
-u32 game_sub_26b5ca(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 alt_entry_26b5ca(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 in_r0;
     int unaff_r14;
 
@@ -15009,7 +15007,7 @@ u32 sr_with_imask_c(u32 unused_a0, u32 a1) {
 /*
  * init_once_clear_4c00b8  0x8c26b992
  * clears the 0xc00-byte table at 8c4c00b8 on the first call; counts calls
- * called by: cri_sub_262810, cri_sub_262814
+ * called by: alt_entry_262814, cri_sub_262810
  */
 u32 init_once_clear_4c00b8(void) {
     u8 *puVar1;
@@ -15024,10 +15022,10 @@ u32 init_once_clear_4c00b8(void) {
 }
 
 /*
- * game_sub_26b996  0x8c26b996
- * area name: game code; nothing names its area yet
+ * alt_entry_26b996  0x8c26b996
+ * probably an entry 4 bytes into 8c26b992: it reads registers that code sets before it
  */
-u32 game_sub_26b996(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 alt_entry_26b996(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 in_r0;
     int *unaff_r14;
 

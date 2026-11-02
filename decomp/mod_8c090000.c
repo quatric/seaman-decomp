@@ -4863,10 +4863,10 @@ int set_field_280_u8(int a0, u32 a1) {
 }
 
 /*
- * game_sub_0982c4  0x8c0982c4
- * area name: game code; nothing names its area yet
+ * alt_entry_0982c4  0x8c0982c4
+ * probably an entry 12 bytes into 8c0982b8: it reads registers that code sets before it
  */
-u32 game_sub_0982c4(int *a0, float *a1, int a2, u32 a3) {
+u32 alt_entry_0982c4(int *a0, float *a1, int a2, u32 a3) {
     u32 uVar1;
     float *pfVar2;
     u8 *puVar3;

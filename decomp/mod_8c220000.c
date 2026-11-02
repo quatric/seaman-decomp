@@ -1347,10 +1347,10 @@ u32 gfxlib_sub_2219f6(void) {
 }
 
 /*
- * gfxlib_sub_221a0a  0x8c221a0a
- * area name: in the gfxlib library code range
+ * alt_entry_221a0a  0x8c221a0a
+ * probably an entry 20 bytes into 8c2219f6: it reads registers that code sets before it
  */
-u32 gfxlib_sub_221a0a(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 alt_entry_221a0a(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u8 *puVar1;
     u8 *puVar2;
     u32 in_r0;

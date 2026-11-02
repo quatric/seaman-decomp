@@ -18,11 +18,11 @@ u32 ret_const_0_04667c(void) {
 }
 
 /*
- * game_sub_046684  0x8c046684
- * area name: game code; nothing names its area yet
+ * alt_entry_046684  0x8c046684
+ * probably an entry 8 bytes into 8c04667c: it reads registers that code sets before it
  * called by: Vec3_sub_03f4a4
  */
-u32 game_sub_046684(int a0, u8 **a1, u32 a2, code *a3) {
+u32 alt_entry_046684(int a0, u8 **a1, u32 a2, code *a3) {
     u32 uVar1;
     code *pcVar2;
     int iVar3;
@@ -3483,7 +3483,7 @@ switchD_8c04b39c_caseD_2:
 /*
  * game_sub_04c314  0x8c04c314
  * area name: game code; nothing names its area yet
- * called by: Vec3_sub_03f4a4, Vec3_sub_04e0e0, game_sub_046684, game_sub_04f034, game_sub_054b74, game_sub_055750,
+ * called by: Vec3_sub_03f4a4, Vec3_sub_04e0e0, alt_entry_046684, game_sub_04f034, game_sub_054b74, game_sub_055750,
  * game_sub_057164, game_sub_05c640
  */
 u32 game_sub_04c314(int a0, code *a1, code *a2) {

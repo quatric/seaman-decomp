@@ -8034,10 +8034,10 @@ u32 gfxlib_sub_233d14(int a0, int a1) {
 }
 
 /*
- * gfxlib_sub_233d20  0x8c233d20
- * area name: in the gfxlib library code range
+ * alt_entry_233d20  0x8c233d20
+ * probably an entry 12 bytes into 8c233d14: it reads registers that code sets before it
  */
-u32 gfxlib_sub_233d20(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int ain0) {
+u32 alt_entry_233d20(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int ain0) {
     double *unaff_r13;
     u32 *unaff_r14;
     u64 *puVar1;
@@ -9821,7 +9821,7 @@ u32 gfxlib_sub_235248(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gfxlib_sub_235294  0x8c235294
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_23598e, gfxlib_sub_2359ae
+ * called by: alt_entry_2359ae, gfxlib_sub_23598e
  */
 u32 gfxlib_sub_235294(int a0, int a1) {
     float fVar1;
@@ -10180,10 +10180,10 @@ u32 gfxlib_sub_23598e(int *a0, int a1) {
 }
 
 /*
- * gfxlib_sub_2359ae  0x8c2359ae
- * area name: in the gfxlib library code range
+ * alt_entry_2359ae  0x8c2359ae
+ * probably an entry 32 bytes into 8c23598e: it reads registers that code sets before it
  */
-u32 gfxlib_sub_2359ae(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int ain0) {
+u32 alt_entry_2359ae(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int ain0) {
     u32 in_r1;
     u64 *puVar1;
     u32 *puVar2;
@@ -10621,10 +10621,10 @@ u32 pvr_sub_235eb4(void) {
 }
 
 /*
- * pvr_sub_235eba  0x8c235eba
- * area name: sits between pvr functions (same compilation unit)
+ * alt_entry_235eba  0x8c235eba
+ * probably an entry 6 bytes into 8c235eb4: it reads registers that code sets before it
  */
-u32 pvr_sub_235eba(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_235eba(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 in_r2;
     int *unaff_r14;
@@ -10655,10 +10655,10 @@ u32 pvr_sub_235ee4(void) {
 }
 
 /*
- * pvr_sub_235eea  0x8c235eea
- * area name: sits between pvr functions (same compilation unit)
+ * alt_entry_235eea  0x8c235eea
+ * probably an entry 6 bytes into 8c235ee4: it reads registers that code sets before it
  */
-u32 pvr_sub_235eea(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_235eea(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 in_r2;
     int *unaff_r14;
@@ -10688,10 +10688,10 @@ u32 pvr_sub_235f14(void) {
 }
 
 /*
- * pvr_sub_235f1a  0x8c235f1a
- * area name: sits between pvr functions (same compilation unit)
+ * alt_entry_235f1a  0x8c235f1a
+ * probably an entry 6 bytes into 8c235f14: it reads registers that code sets before it
  */
-u32 pvr_sub_235f1a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_235f1a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 in_r2;
     int *unaff_r14;
@@ -11096,7 +11096,7 @@ u32 gfxlib_sub_236278(int a0) {
 /*
  * gfxlib_sub_2362de  0x8c2362de
  * area name: in the gfxlib library code range
- * called by: ninja_sub_2565c4, ninja_sub_2565d8
+ * called by: alt_entry_2565d8, ninja_sub_2565c4
  */
 u32 gfxlib_sub_2362de(int a0) {
     u32 in_r0;
@@ -11237,8 +11237,8 @@ u32 gfxlib_sub_2363e8(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 
 /*
  * draw_state_save  0x8c236454
  * saves the TA polygon state (0x8c4aabbc +0x90..) into 0x8c4ab238
- * called by: gfxlib_sub_218f56, gfxlib_sub_218f96, gfxlib_sub_219a86, gfxlib_sub_219a9a, gfxlib_sub_21a7ce,
- * gfxlib_sub_21a80e, gfxlib_sub_21aa1e, gfxlib_sub_21ab7a (+27 more)
+ * called by: alt_entry_21af36, alt_entry_21ba6a, alt_entry_21bbba, gfxlib_sub_218f56, gfxlib_sub_218f96,
+ * gfxlib_sub_219a86, gfxlib_sub_219a9a, gfxlib_sub_21a7ce (+27 more)
  */
 int draw_state_save(u32 a0, u32 a1, u32 a2, u32 a3) {
     int *piVar1;
@@ -11277,8 +11277,8 @@ int draw_state_save(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * draw_state_restore  0x8c2364b2
  * restores the TA polygon state saved by draw_state_save
- * called by: gfxlib_sub_218f56, gfxlib_sub_218f96, gfxlib_sub_219a86, gfxlib_sub_219a9a, gfxlib_sub_21a7ce,
- * gfxlib_sub_21a80e, gfxlib_sub_21aa1e, gfxlib_sub_21ab7a (+27 more)
+ * called by: alt_entry_21af36, alt_entry_21ba6a, alt_entry_21bbba, gfxlib_sub_218f56, gfxlib_sub_218f96,
+ * gfxlib_sub_219a86, gfxlib_sub_219a9a, gfxlib_sub_21a7ce (+27 more)
  */
 int draw_state_restore(u32 a0) {
     int *piVar1;
@@ -11750,10 +11750,10 @@ u32 ta_sub_23728c(int a0) {
 }
 
 /*
- * ta_sub_23729c  0x8c23729c
- * area name: sits between ta functions (same compilation unit)
+ * alt_entry_23729c  0x8c23729c
+ * probably an entry 16 bytes into 8c23728c: it reads registers that code sets before it
  */
-u32 ta_sub_23729c(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int *ain1) {
+u32 alt_entry_23729c(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int *ain1) {
     int iVar1;
     u32 *in_r3;
     int unaff_r11;
@@ -11925,10 +11925,10 @@ int gfxlib_sub_2376c4(void) {
 }
 
 /*
- * gfxlib_sub_2376d8  0x8c2376d8
- * area name: in the gfxlib library code range
+ * alt_entry_2376d8  0x8c2376d8
+ * probably an entry 20 bytes into 8c2376c4: it reads registers that code sets before it
  */
-u32 gfxlib_sub_2376d8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
+u32 alt_entry_2376d8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
     int in_r2;
     u32 ar6_00;
     int ar5_00;
@@ -12024,7 +12024,7 @@ u32 gfxlib_sub_2377e4(void) {
 /*
  * gfxlib_sub_23782c  0x8c23782c
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_2378a6, gfxlib_sub_2378ba
+ * called by: alt_entry_2378ba, gfxlib_sub_2378a6
  */
 u32 gfxlib_sub_23782c(u32 *a0) {
     u8 *puVar1;
@@ -12055,10 +12055,10 @@ u32 gfxlib_sub_23782c(u32 *a0) {
 }
 
 /*
- * gfxlib_sub_237830  0x8c237830
- * area name: in the gfxlib library code range
+ * alt_entry_237830  0x8c237830
+ * probably an entry 4 bytes into 8c23782c: it reads registers that code sets before it
  */
-u32 gfxlib_sub_237830(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_237830(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     u32 *ar5_00;
     u32 *unaff_r14;
@@ -12115,10 +12115,10 @@ int gfxlib_sub_2378a6(int a0) {
 }
 
 /*
- * gfxlib_sub_2378ba  0x8c2378ba
- * area name: in the gfxlib library code range
+ * alt_entry_2378ba  0x8c2378ba
+ * probably an entry 20 bytes into 8c2378a6: it reads registers that code sets before it
  */
-int gfxlib_sub_2378ba(void) {
+int alt_entry_2378ba(void) {
     int iVar1;
     int iVar2;
     int in_r2;
@@ -15113,8 +15113,8 @@ u32 gfxlib_sub_23a8a4(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 a
 /*
  * gfxlib_sub_23a8d8  0x8c23a8d8
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_23ab90, gfxlib_sub_23ae70, gfxlib_sub_23affc, gfxlib_sub_23b508, gfxlib_sub_23b6dc,
- * gfxlib_sub_23c4ba, gfxlib_sub_23c4cc
+ * called by: alt_entry_23c4cc, gfxlib_sub_23ab90, gfxlib_sub_23ae70, gfxlib_sub_23affc, gfxlib_sub_23b508,
+ * gfxlib_sub_23b6dc, gfxlib_sub_23c4ba
  */
 int gfxlib_sub_23a8d8(u32 a0) {
     int in_r0;
@@ -16629,10 +16629,10 @@ u8 *gfxlib_sub_23ba42(void) {
 }
 
 /*
- * gfxlib_sub_23ba48  0x8c23ba48
- * area name: in the gfxlib library code range
+ * alt_entry_23ba48  0x8c23ba48
+ * probably an entry 6 bytes into 8c23ba42: it reads registers that code sets before it
  */
-u32 *gfxlib_sub_23ba48(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 *ain0, u32 *ain1) {
+u32 *alt_entry_23ba48(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 *ain0, u32 *ain1) {
     u32 *in_r2;
     u32 a5;
     u32 a6;
@@ -17908,10 +17908,10 @@ code_r0x8c23c2f0:
 }
 
 /*
- * gfxlib_sub_23c2a6  0x8c23c2a6
- * area name: in the gfxlib library code range
+ * alt_entry_23c2a6  0x8c23c2a6
+ * probably an entry 6 bytes into 8c23c2a0: it reads registers that code sets before it
  */
-int gfxlib_sub_23c2a6(void) {
+int alt_entry_23c2a6(void) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -18432,10 +18432,10 @@ u32 gfxlib_sub_23c4ba(u32 a0) {
 }
 
 /*
- * gfxlib_sub_23c4cc  0x8c23c4cc
- * area name: in the gfxlib library code range
+ * alt_entry_23c4cc  0x8c23c4cc
+ * probably an entry 18 bytes into 8c23c4ba: it reads registers that code sets before it
  */
-int gfxlib_sub_23c4cc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int ain0) {
+int alt_entry_23c4cc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int ain0) {
     u32 unaff_r10;
     int unaff_r11;
     int iVar1;
@@ -18573,7 +18573,7 @@ u32 gfxlib_sub_23c70c(void) {
 /*
  * memcpy_words_n  0x8c23c7f4
  * copies a2 32-bit words from a1 to a0
- * called by: flashrom_sub_1f6e5e, gfxlib_sub_2376c4, gfxlib_sub_2376d8, ninja_sub_2560b4
+ * called by: alt_entry_2376d8, flashrom_sub_1f6e5e, gfxlib_sub_2376c4, ninja_sub_2560b4
  */
 u32 memcpy_words_n(u32 *a0, u32 *a1, int a2) {
     u32 uVar1;

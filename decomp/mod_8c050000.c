@@ -3529,7 +3529,7 @@ u32 game_sub_055b50(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_055c38  0x8c055c38
  * area name: game code; nothing names its area yet
- * called by: Vec3_sub_03f4a4, game_sub_046684, game_sub_04f034, game_sub_054b74, game_sub_058d60, game_sub_05c640
+ * called by: Vec3_sub_03f4a4, alt_entry_046684, game_sub_04f034, game_sub_054b74, game_sub_058d60, game_sub_05c640
  */
 u32 game_sub_055c38(int a0, int a1, float *a2, u8 *a3) {
     int iVar1;
@@ -3886,7 +3886,7 @@ LAB_8c0563fa:
 /*
  * game_sub_0564c4  0x8c0564c4
  * area name: game code; nothing names its area yet
- * called by: Vec3_sub_03f4a4, game_sub_046684, game_sub_054d6c
+ * called by: Vec3_sub_03f4a4, alt_entry_046684, game_sub_054d6c
  */
 u32 game_sub_0564c4(int a0, u32 a1, int a2, u8 *a3) {
     int iVar1;
@@ -4269,7 +4269,7 @@ u32 game_sub_0570cc(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_057164  0x8c057164
  * area name: game code; nothing names its area yet
- * called by: Vec3_sub_03f4a4, game_sub_046684, game_sub_04eb14, game_sub_0526a0, game_sub_054b74, game_sub_055750,
+ * called by: Vec3_sub_03f4a4, alt_entry_046684, game_sub_04eb14, game_sub_0526a0, game_sub_054b74, game_sub_055750,
  * game_sub_0564c4, game_sub_058d60 (+2 more)
  */
 u32 game_sub_057164(int a0, u32 a1, u32 a2, u32 a3) {
@@ -5909,7 +5909,7 @@ u32 ret_const_0_059fbc(void) {
 /*
  * game_sub_059fc4  0x8c059fc4
  * area name: game code; nothing names its area yet
- * called by: Vec3_sub_03f4a4, game_sub_046684, game_sub_04eb14
+ * called by: Vec3_sub_03f4a4, alt_entry_046684, game_sub_04eb14
  */
 u32 game_sub_059fc4(int a0, u32 *a1, int a2, u8 *a3) {
     int iVar1;
@@ -6560,7 +6560,7 @@ u32 game_sub_05a54c(int a0, u32 a1, int a2, int a3) {
 /*
  * game_sub_05ae54  0x8c05ae54
  * area name: game code; nothing names its area yet
- * called by: Vec3_sub_03f4a4, game_sub_03c94c, game_sub_046684, game_sub_048868, game_sub_04d62c, game_sub_04e7e0,
+ * called by: Vec3_sub_03f4a4, alt_entry_046684, game_sub_03c94c, game_sub_048868, game_sub_04d62c, game_sub_04e7e0,
  * game_sub_050300, game_sub_051a68 (+7 more)
  */
 u32 game_sub_05ae54(int a0, u32 a1, u32 a2, u32 a3) {
@@ -7329,7 +7329,7 @@ u32 get_field_24_05c284(int a0, u32 a1) {
 /*
  * Vec3_sub_05c28c  0x8c05c28c
  * area name: sits between Vec3 functions (same compilation unit)
- * called by: game_sub_03c94c, game_sub_046684, game_sub_048868, game_sub_048f8c, game_sub_049b68, game_sub_04b168,
+ * called by: alt_entry_046684, game_sub_03c94c, game_sub_048868, game_sub_048f8c, game_sub_049b68, game_sub_04b168,
  * game_sub_0526a0, game_sub_05c640 (+1 more)
  */
 u32 Vec3_sub_05c28c(int a0, u32 a1, u32 a2, u32 a3) {
@@ -7738,7 +7738,7 @@ LAB_8c05c608:
 /*
  * game_sub_05c640  0x8c05c640
  * area name: game code; nothing names its area yet
- * called by: game_sub_046684
+ * called by: alt_entry_046684
  */
 u32 game_sub_05c640(int a0, u32 a1, int a2, u32 a3) {
     int iVar1;

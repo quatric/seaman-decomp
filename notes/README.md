@@ -452,7 +452,7 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
 - Hand names in `tools/readable_names.tsv` for the most-called helpers: libc (strcmp, memcmp, strcat, sprintf, the printf
   core), Vec3 math, the matrix stack, and the Ninja texture calls (njSetTexture 8c25b3ec selects the list at 0x8c277b04,
   njSetTextureNum 8c25b434 loads one texture's TA parameters through 8c20fe00).
-- `decomp/`: every function named: 2,805 precise names (was 1,026) and 3,542 area names, all unique. About 700 of those are shape names. Also named: strtol/atoi, spline and lerp math, interrupt nesting (8c260ca0/8c260cc8), the RTC date conversion (8c1f826c, epoch 1950).
+- `decomp/`: every function named: 3,088 precise names (was 1,026) and 3,259 area names, all unique. About 700 of those are shape names. Also named: strtol/atoi, spline and lerp math, interrupt nesting (8c260ca0/8c260cc8), the RTC date conversion (8c1f826c, epoch 1950).
 - Also named: the speech player at 0x8c35468c (speech_start 8c0f8368 plays a named line such as "HIGYOLINE0"; speech_request,
   speech_restart, speech_stop), the serial debug output (scif_putc 8c1fac58, used by the crash dump), Ninja's outer product,
   sin/cos and polygon-state copies.
@@ -529,3 +529,7 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
   `save_pose_record_*`), child-object helpers at +0x330, Maple `*_hooked` commands (the `_locked` command, then the PVR
   hook when +0x10e8 is set), ASR module definitions registered through 8c120580 (`asr_module_def_*`, with their input,
   output and state sizes) and ASR wrappers (`asr_call_<callee>_err`, `asr_vcall_<slot>_*`).
+- 283 functions are named `alt_entry_<addr>`: each starts at most 0x20 bytes after another function and reads registers
+  (r10-r14, r2/r3, MACL) that the code before it sets, so it is almost certainly an extra entry point inside that function
+  rather than a function of its own. Together with the 47 `not_code_*` stubs these are markers, not real names, so about
+  330 of the precise-name count are markers.

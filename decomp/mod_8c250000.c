@@ -8051,10 +8051,10 @@ u32 ninja_sub_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_253d20  0x8c253d20
- * area name: in the ninja library code range
+ * alt_entry_253d20  0x8c253d20
+ * probably an entry 4 bytes into 8c253d1c: it reads registers that code sets before it
  */
-u32 ninja_sub_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 *unaff_r14;
     u32 in_PR;
@@ -8229,7 +8229,7 @@ u32 ninja_sub_254006(u32 a0) {
 /*
  * ninja_sub_254026  0x8c254026
  * area name: in the ninja library code range
- * called by: gfxlib_sub_247df4, ninja_sub_253d1c, ninja_sub_253d20
+ * called by: alt_entry_253d20, gfxlib_sub_247df4, ninja_sub_253d1c
  */
 u32 ninja_sub_254026(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -8257,7 +8257,7 @@ u32 ninja_sub_254042(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ninja_sub_254066  0x8c254066
  * area name: in the ninja library code range
- * called by: ninja_sub_253cfc, ninja_sub_253d1c, ninja_sub_253d20
+ * called by: alt_entry_253d20, ninja_sub_253cfc, ninja_sub_253d1c
  */
 u32 ninja_sub_254066(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -10629,7 +10629,7 @@ int ninja_sub_255bf6(int a0, int a1, u32 a2, int *a3) {
  * ninja_sub_255d6c  0x8c255d6c
  * area name: in the ninja library code range
  * called by: CAnimal_sub_026968, Class_1299f8_m4_019588, Class_1299f8_sub_02430c, Class_129a24_m1_019b68,
- * game_sub_023e98, gfxlib_sub_2163d4, gfxlib_sub_2166e8, gfxlib_sub_22b7a8 (+8 more) decompiler: Heritage AFTER dead
+ * alt_entry_2376d8, game_sub_023e98, gfxlib_sub_2163d4, gfxlib_sub_2166e8 (+8 more) decompiler: Heritage AFTER dead
  * removal. Example location: s0xffffffe0 : 0x8c255f08
  */
 u32 ninja_sub_255d6c(u32 *a0, int a1, u32 a2, u32 a3, u32 ain0) {
@@ -10892,8 +10892,8 @@ u32 matrix_pop_n(int a0) {
 /*
  * matrix_pop1  0x8c256254
  * pops one 4x4 matrix off the matrix stack if more than one is on it
- * called by: gfxlib_sub_218e8a, gfxlib_sub_218ea0, gfxlib_sub_2199aa, gfxlib_sub_2199c0, gfxlib_sub_21a702,
- * gfxlib_sub_21a718, gfxlib_sub_21a8b0, gfxlib_sub_21a8be (+8 more)
+ * called by: alt_entry_218ea0, alt_entry_2199c0, alt_entry_21a718, alt_entry_21a8be, alt_entry_21a952,
+ * alt_entry_21b916, alt_entry_21b9a8, gfxlib_sub_218e8a (+8 more)
  */
 u32 matrix_pop1(void) {
     if (0 < g_8c4aa5a0 + -1) {
@@ -11077,8 +11077,8 @@ u32 matrix_push(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 /*
  * matrix_push_regs  0x8c2563ac
  * pushes a matrix held in the FPU registers onto the matrix stack
- * called by: gfxlib_sub_218e8a, gfxlib_sub_218ea0, gfxlib_sub_2199aa, gfxlib_sub_2199c0, gfxlib_sub_21a702,
- * gfxlib_sub_21a718, gfxlib_sub_21a8be, gfxlib_sub_21a952 (+4 more)
+ * called by: alt_entry_218ea0, alt_entry_2199c0, alt_entry_21a718, alt_entry_21a8be, alt_entry_21a952,
+ * alt_entry_21b916, alt_entry_21b9a8, gfxlib_sub_218e8a (+4 more)
  */
 u32 matrix_push_regs(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 *puVar1;
@@ -11544,10 +11544,10 @@ u32 ninja_sub_2565c4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 }
 
 /*
- * ninja_sub_2565d8  0x8c2565d8
- * area name: in the ninja library code range
+ * alt_entry_2565d8  0x8c2565d8
+ * probably an entry 20 bytes into 8c2565c4: it reads registers that code sets before it
  */
-u32 ninja_sub_2565d8(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 alt_entry_2565d8(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int iVar1;
     u32 uVar2;
     u32 unaff_r8;
@@ -11607,10 +11607,10 @@ u32 ninja_sub_256670(int *a0) {
 }
 
 /*
- * ninja_sub_25667e  0x8c25667e
- * area name: in the ninja library code range
+ * alt_entry_25667e  0x8c25667e
+ * probably an entry 14 bytes into 8c256670: it reads registers that code sets before it
  */
-u32 ninja_sub_25667e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_25667e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar1;
     u8 *puVar2;
     int iVar3;
@@ -11778,10 +11778,10 @@ u32 ninja_sub_2567f8(int *a0) {
 }
 
 /*
- * ninja_sub_2567fe  0x8c2567fe
- * area name: in the ninja library code range
+ * alt_entry_2567fe  0x8c2567fe
+ * probably an entry 6 bytes into 8c2567f8: it reads registers that code sets before it
  */
-u32 ninja_sub_2567fe(void) {
+u32 alt_entry_2567fe(void) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -11893,8 +11893,8 @@ u32 ninja_sub_25699c(int a0) {
 /*
  * ninja_sub_2569e0  0x8c2569e0
  * area name: in the ninja library code range
- * called by: gfxlib_sub_218e8a, gfxlib_sub_218ea0, gfxlib_sub_2199aa, gfxlib_sub_2199c0, gfxlib_sub_21a702,
- * gfxlib_sub_21a718, gfxlib_sub_21a8be, gfxlib_sub_21a952 (+9 more)
+ * called by: alt_entry_218ea0, alt_entry_2199c0, alt_entry_21a718, alt_entry_21a8be, alt_entry_21a952,
+ * alt_entry_21b916, alt_entry_21b9a8, gfxlib_sub_218e8a (+9 more)
  */
 u32 ninja_sub_2569e0(u32 *a0, int a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -12284,7 +12284,7 @@ u32 njRotateZ(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 /*
  * ninja_sub_256e18  0x8c256e18
  * area name: in the ninja library code range
- * called by: game_sub_029af0, ninja_sub_253d1c, ninja_sub_253d20, ninja_sub_254f1e
+ * called by: alt_entry_253d20, game_sub_029af0, ninja_sub_253d1c, ninja_sub_254f1e
  * decompiler: Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256f72
  */
 u32 ninja_sub_256e18(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
@@ -12464,8 +12464,8 @@ u32 matrix_scale(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 /*
  * noop_257098  0x8c257098
  * does nothing
- * called by: gfxlib_sub_218e8a, gfxlib_sub_218ea0, gfxlib_sub_2199aa, gfxlib_sub_2199c0, gfxlib_sub_21a702,
- * gfxlib_sub_21a718, gfxlib_sub_21a8be, gfxlib_sub_21a942 (+8 more)
+ * called by: alt_entry_218ea0, alt_entry_2199c0, alt_entry_21a718, alt_entry_21a8be, alt_entry_21a952,
+ * alt_entry_21b916, alt_entry_21b9a8, gfxlib_sub_218e8a (+8 more)
  */
 u32 noop_257098(void) {
     u32 in_r0;
@@ -12624,7 +12624,7 @@ u32 set_fields_0_4_8_257196(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * tex_size_to_index  0x8c2571a8
  * texture size 8..1024 to 0..7
- * called by: tex_sub_2571fe, tex_sub_257208
+ * called by: alt_entry_257208, tex_sub_2571fe
  */
 int tex_size_to_index(int a0) {
     if (a0 == 8) {
@@ -12650,8 +12650,8 @@ int tex_size_to_index(int a0) {
 /*
  * tex_sub_2571fe  0x8c2571fe
  * area name: sits between tex functions (same compilation unit)
- * called by: gfxlib_sub_237830, gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212,
- * ninja_sub_25b4ea, pvr_sub_23a29c, tex_entry_alloc (+2 more)
+ * called by: alt_entry_237830, alt_entry_25a394, gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0,
+ * gfxlib_sub_239212, ninja_sub_25b4ea, pvr_sub_23a29c (+2 more)
  */
 u32 tex_sub_2571fe(int a0) {
     int iVar1;
@@ -12687,10 +12687,10 @@ LAB_8c2572b6:
 }
 
 /*
- * tex_sub_257208  0x8c257208
- * area name: sits between tex functions (same compilation unit)
+ * alt_entry_257208  0x8c257208
+ * probably an entry 10 bytes into 8c2571fe: it reads registers that code sets before it
  */
-u32 tex_sub_257208(int a0) {
+u32 alt_entry_257208(int a0) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -14353,8 +14353,8 @@ u32 ninja_sub_257e10(float *a0, int a1, u32 a2) {
 /*
  * noop_fr4_test  0x8c258030
  * tests fr4 against 0 and returns the same value either way
- * called by: Vec3_length_sq, gfxlib_sub_2336e8, gfxlib_sub_233d14, gfxlib_sub_233d20, gfxlib_sub_23c2a0,
- * gfxlib_sub_23c2a6, kamui_sub_212a30, ninja_sub_212898
+ * called by: Vec3_length_sq, alt_entry_233d20, alt_entry_23c2a6, gfxlib_sub_2336e8, gfxlib_sub_233d14,
+ * gfxlib_sub_23c2a0, kamui_sub_212a30, ninja_sub_212898
  */
 u32 noop_fr4_test(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float in_fr4;
@@ -14412,10 +14412,10 @@ u8 *ninja_sub_258096(void) {
 }
 
 /*
- * ninja_sub_25809a  0x8c25809a
- * area name: in the ninja library code range
+ * alt_entry_25809a  0x8c25809a
+ * probably an entry 4 bytes into 8c258096: it reads registers that code sets before it
  */
-u8 *ninja_sub_25809a(u32 a0, u32 a1, u32 a2, u32 a3) {
+u8 *alt_entry_25809a(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
     u32 in_r3;
 
@@ -15440,7 +15440,7 @@ u32 set_g_8c277ae8(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0
 /*
  * ninja_sub_258e50  0x8c258e50
  * area name: in the ninja library code range
- * called by: game_frame, ninja_sub_258e70
+ * called by: alt_entry_258e70, game_frame
  */
 u32 ninja_sub_258e50(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     if (g_8c277ae8 != NULL) {
@@ -15450,10 +15450,10 @@ u32 ninja_sub_258e50(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 }
 
 /*
- * ninja_sub_258e52  0x8c258e52
- * area name: in the ninja library code range
+ * alt_entry_258e52  0x8c258e52
+ * probably an entry 2 bytes into 8c258e50: it reads registers that code sets before it
  */
-u32 ninja_sub_258e52(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 alt_entry_258e52(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 in_r0;
     u32 *in_r3;
 
@@ -15506,10 +15506,10 @@ u8 *game_frame(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_258e70  0x8c258e70
- * area name: in the ninja library code range
+ * alt_entry_258e70  0x8c258e70
+ * probably an entry 10 bytes into 8c258e66: it reads registers that code sets before it
  */
-u8 *ninja_sub_258e70(u32 a0, u32 a1, u32 a2, u32 a3) {
+u8 *alt_entry_258e70(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 *ar4_00;
     u32 unaff_r11;
@@ -15770,10 +15770,10 @@ u32 ta_fifo_259274(int a0) {
 }
 
 /*
- * ta_sub_25927e  0x8c25927e
- * area name: sits between ta functions (same compilation unit)
+ * alt_entry_25927e  0x8c25927e
+ * probably an entry 10 bytes into 8c259274: it reads registers that code sets before it
  */
-u32 ta_sub_25927e(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_25927e(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int in_r0;
     u32 uVar1;
     u32 in_r2;
@@ -15891,10 +15891,10 @@ LAB_8c259396:
 }
 
 /*
- * ta_sub_259362  0x8c259362
- * area name: sits between ta functions (same compilation unit)
+ * alt_entry_259362  0x8c259362
+ * probably an entry 10 bytes into 8c259358: it reads registers that code sets before it
  */
-u32 ta_sub_259362(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_259362(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int in_r0;
     u32 uVar1;
     u32 in_r2;
@@ -15965,10 +15965,10 @@ u32 ta_sub_2593ac(int a0) {
 }
 
 /*
- * ta_sub_2593b4  0x8c2593b4
- * area name: sits between ta functions (same compilation unit)
+ * alt_entry_2593b4  0x8c2593b4
+ * probably an entry 8 bytes into 8c2593ac: it reads registers that code sets before it
  */
-u32 ta_sub_2593b4(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_2593b4(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int in_r0;
     u32 uVar1;
     int ar5_00;
@@ -16158,10 +16158,10 @@ LAB_8c259594:
 }
 
 /*
- * ta_sub_259560  0x8c259560
- * area name: sits between ta functions (same compilation unit)
+ * alt_entry_259560  0x8c259560
+ * probably an entry 10 bytes into 8c259556: it reads registers that code sets before it
  */
-u32 ta_sub_259560(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_259560(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int in_r0;
     u32 uVar1;
     u32 in_r2;
@@ -16610,10 +16610,10 @@ u32 thunk_FUN_8c207f80(void) {
 }
 
 /*
- * draw_sub_2599ca  0x8c2599ca
- * area name: sits between draw functions (same compilation unit)
+ * alt_entry_2599ca  0x8c2599ca
+ * probably an entry 16 bytes into 8c2599ba: it reads registers that code sets before it
  */
-u32 draw_sub_2599ca(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 alt_entry_2599ca(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int in_r0;
     u32 uVar1;
     u32 in_r2;
@@ -17120,8 +17120,8 @@ u32 ninja_sub_25a174(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * tex_is_palettized  0x8c25a1ee
  * 1 for the palettised texture formats 0x500..0x800 (4- and 8-bit, with and without mipmaps)
- * called by: gfxlib_sub_237830, gfxlib_sub_23793c, gfxlib_sub_2387a0, ninja_sub_2565c4, ninja_sub_2565d8,
- * ninja_sub_2566c8, ninja_sub_2567f8, ninja_sub_2567fe
+ * called by: alt_entry_237830, alt_entry_2565d8, alt_entry_2567fe, gfxlib_sub_23793c, gfxlib_sub_2387a0,
+ * ninja_sub_2565c4, ninja_sub_2566c8, ninja_sub_2567f8
  */
 u32 tex_is_palettized(int a0) {
     if ((((a0 != 0x500) && (a0 != 0x600)) && (a0 != 0x700)) && (a0 != 0x800)) {
@@ -17261,11 +17261,11 @@ u32 tex_entry_alloc(int *a0, u32 *a1, u32 a2, u32 a3, u32 s0) {
 }
 
 /*
- * tex_sub_25a394  0x8c25a394
- * area name: sits between tex functions (same compilation unit)
+ * alt_entry_25a394  0x8c25a394
+ * probably an entry 20 bytes into 8c25a380: it reads registers that code sets before it
  */
-u32 tex_sub_25a394(int *a0, u32 *a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16, u32 s20, u32 s24,
-                   u32 s28) {
+u32 alt_entry_25a394(int *a0, u32 *a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16, u32 s20, u32 s24,
+                     u32 s28) {
     u32 uVar1;
     u32 unaff_r8;
     u32 *unaff_r9;
@@ -17316,7 +17316,7 @@ u32 tex_sub_25a394(int *a0, u32 *a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32
 /*
  * tex_sub_25a49e  0x8c25a49e
  * area name: sits between tex functions (same compilation unit)
- * called by: ninja_sub_2565c4, ninja_sub_2565d8, ninja_sub_2566c8, ninja_sub_2567f8, ninja_sub_2567fe, tex_sub_25a674
+ * called by: alt_entry_2565d8, alt_entry_2567fe, ninja_sub_2565c4, ninja_sub_2566c8, ninja_sub_2567f8, tex_sub_25a674
  */
 int tex_sub_25a49e(u32 *a0) {
     int iVar1;
@@ -17353,10 +17353,10 @@ int tex_sub_25a49e(u32 *a0) {
 }
 
 /*
- * tex_sub_25a4a6  0x8c25a4a6
- * area name: sits between tex functions (same compilation unit)
+ * alt_entry_25a4a6  0x8c25a4a6
+ * probably an entry 8 bytes into 8c25a49e: it reads registers that code sets before it
  */
-int tex_sub_25a4a6(u32 *a0, u32 a1, u32 a2, int *a3, int ain0) {
+int alt_entry_25a4a6(u32 *a0, u32 a1, u32 a2, int *a3, int ain0) {
     int iVar1;
     code *in_r2;
     u32 uVar2;
@@ -17392,8 +17392,8 @@ int tex_sub_25a4a6(u32 *a0, u32 a1, u32 a2, int *a3, int ain0) {
 /*
  * tex_entry_find  0x8c25a536
  * index of the texture-table entry (0x44 bytes each, a1 of them at a0) whose id is a2; -1 if none
- * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212, ninja_sub_255ff8,
- * ninja_sub_25b08a, pvr_sub_23a29c, ta_sub_23728c (+2 more)
+ * called by: alt_entry_23729c, gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212,
+ * ninja_sub_255ff8, ninja_sub_25b08a, pvr_sub_23a29c (+2 more)
  */
 u32 tex_entry_find(int a0, u32 a1, int a2) {
     u32 uVar1;
@@ -17412,7 +17412,7 @@ u32 tex_entry_find(int a0, u32 a1, int a2) {
 /*
  * array44_index_of  0x8c25a566
  * index of entry a2 in the array a0 of a1 0x44-byte entries, else -1
- * called by: gfxlib_sub_2378a6, gfxlib_sub_2378ba
+ * called by: alt_entry_2378ba, gfxlib_sub_2378a6
  */
 u32 array44_index_of(int a0, u32 a1, int a2) {
     int iVar1;
@@ -17453,7 +17453,7 @@ u32 tex_entry_find_pair(int a0, u32 a1, int a2, int a3) {
 /*
  * tex_entry_set_flags  0x8c25a608
  * ORs a1 into the flags of every texture-table entry whose id is a0
- * called by: gfxlib_sub_23782c, gfxlib_sub_237830, gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0,
+ * called by: alt_entry_237830, gfxlib_sub_23782c, gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0,
  * gfxlib_sub_239212, pvr_sub_23a29c
  */
 u32 tex_entry_set_flags(int a0, u32 a1, int a2, u32 unused_a3, u32 ain0) {
@@ -17480,7 +17480,7 @@ u32 tex_entry_set_flags(int a0, u32 a1, int a2, u32 unused_a3, u32 ain0) {
 /*
  * tex_sub_25a674  0x8c25a674
  * area name: sits between tex functions (same compilation unit)
- * called by: ninja_sub_2565c4, ninja_sub_2565d8
+ * called by: alt_entry_2565d8, ninja_sub_2565c4
  */
 u32 tex_sub_25a674(int a0, u32 a1, u32 a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
@@ -17684,7 +17684,7 @@ int tex_copy_to_alloc(u32 unused_a0, int *a1) {
 /*
  * tex_sub_25a914  0x8c25a914
  * area name: sits between tex functions (same compilation unit)
- * called by: gfxlib_sub_23782c, gfxlib_sub_237830, gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0,
+ * called by: alt_entry_237830, gfxlib_sub_23782c, gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0,
  * gfxlib_sub_239212, pvr_sub_23a29c
  */
 int tex_sub_25a914(u32 a0, u32 *a1, u32 a2, u32 a3) {
@@ -17709,10 +17709,10 @@ int tex_sub_25a914(u32 a0, u32 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * tex_sub_25a918  0x8c25a918
- * area name: sits between tex functions (same compilation unit)
+ * alt_entry_25a918  0x8c25a918
+ * probably an entry 4 bytes into 8c25a914: it reads registers that code sets before it
  */
-int tex_sub_25a918(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+int alt_entry_25a918(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
     int iVar2;
     u32 *ar4_00;
@@ -17741,7 +17741,7 @@ int tex_sub_25a918(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * tex_sub_25a962  0x8c25a962
  * area name: sits between tex functions (same compilation unit)
- * called by: tex_copy_to_alloc, tex_sub_25a914, tex_sub_25a918
+ * called by: alt_entry_25a918, tex_copy_to_alloc, tex_sub_25a914
  */
 u32 tex_sub_25a962(int a0) {
     int iVar1;
@@ -17755,10 +17755,10 @@ u32 tex_sub_25a962(int a0) {
 }
 
 /*
- * tex_sub_25a966  0x8c25a966
- * area name: sits between tex functions (same compilation unit)
+ * alt_entry_25a966  0x8c25a966
+ * probably an entry 4 bytes into 8c25a962: it reads registers that code sets before it
  */
-u32 tex_sub_25a966(int a0) {
+u32 alt_entry_25a966(int a0) {
     int iVar1;
     int unaff_r14;
 
@@ -17885,7 +17885,7 @@ u32 ninja_sub_25ab02(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ninja_sub_25ab74  0x8c25ab74
  * area name: in the ninja library code range
- * called by: tex_sub_25a914, tex_sub_25a918
+ * called by: alt_entry_25a918, tex_sub_25a914
  */
 u32 ninja_sub_25ab74(u32 *a0, u32 a1) {
     int iVar1;
@@ -18249,10 +18249,10 @@ u32 ninja_sub_25b044(int a0) {
 }
 
 /*
- * ninja_sub_25b052  0x8c25b052
- * area name: in the ninja library code range
+ * alt_entry_25b052  0x8c25b052
+ * probably an entry 14 bytes into 8c25b044: it reads registers that code sets before it
  */
-u32 ninja_sub_25b052(int a0) {
+u32 alt_entry_25b052(int a0) {
     code *in_r2;
     u32 *in_r3;
     u32 uVar1;
@@ -18556,10 +18556,10 @@ u32 njSetTextureNum(int a0) {
 }
 
 /*
- * ninja_sub_25b440  0x8c25b440
- * area name: in the ninja library code range
+ * alt_entry_25b440  0x8c25b440
+ * probably an entry 12 bytes into 8c25b434: it reads registers that code sets before it
  */
-u32 ninja_sub_25b440(int a0) {
+u32 alt_entry_25b440(int a0) {
     u32 *in_r3;
     int *ar5_00;
 
@@ -18659,7 +18659,7 @@ u32 ninja_sub_25b4ea(u32 *a0, u32 *a1, u32 *a2, u32 a3) {
 /*
  * tex_error_reset  0x8c25b5b4
  * clears the texture loader's error state (0x8c4aa6ac)
- * called by: gfxlib_sub_2378a6, gfxlib_sub_2378ba, gfxlib_sub_239212, ninja_sub_256164, njLoadTexture, pvr_sub_23a29c
+ * called by: alt_entry_2378ba, gfxlib_sub_2378a6, gfxlib_sub_239212, ninja_sub_256164, njLoadTexture, pvr_sub_23a29c
  */
 u32 tex_error_reset(void) {
     u32 *puVar1;
@@ -18693,8 +18693,8 @@ u32 touch_fields_30_3c(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 
 
 /*
  * noop_25b638  0x8c25b638
- * called by: gfxlib_sub_218e8a, gfxlib_sub_218ea0, gfxlib_sub_2199aa, gfxlib_sub_2199c0, gfxlib_sub_21a702,
- * gfxlib_sub_21a718, gfxlib_sub_21a8b0, gfxlib_sub_21a8be (+10 more)
+ * called by: alt_entry_218ea0, alt_entry_2199c0, alt_entry_21a718, alt_entry_21a8be, alt_entry_21a952,
+ * alt_entry_21b916, alt_entry_21b9a8, gfxlib_sub_218e8a (+10 more)
  */
 u32 noop_25b638(void) {
     u32 in_r0;
@@ -24568,7 +24568,7 @@ u32 ret_const_1_25eca4(void) {
 /*
  * cri_clear_table_4b3340  0x8c25eca8
  * clears the 0x100-byte table at 8c4b3340 and its two counters
- * called by: cri_sub_262810, cri_sub_262814
+ * called by: alt_entry_262814, cri_sub_262810
  */
 u32 cri_clear_table_4b3340(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -24735,7 +24735,7 @@ u8 *cri_sub_25ed3c(u8 *a0, u32 *a1, u32 *a2, u32 *a3, u32 *s0) {
 /*
  * is_aiff_header  0x8c25f01e
  * 1 when a0 starts a "FORM"...."AIFF" header
- * called by: cri_sub_25fdb2, cri_sub_25fdbe
+ * called by: alt_entry_25fdbe, cri_sub_25fdb2
  */
 u32 is_aiff_header(int a0) {
     int iVar1;
@@ -24791,7 +24791,7 @@ u32 cri_sub_25f052(u32 a0, int a1, short *a2, u8 *a3, char *s0, u8 *s4, char *s8
 /*
  * cri_sub_25f0ea  0x8c25f0ea
  * area name: in the cri library code range
- * called by: cri_sub_25fdb2, cri_sub_25fdbe
+ * called by: alt_entry_25fdbe, cri_sub_25fdb2
  */
 u32 cri_sub_25f0ea(int a0, u32 a1, u32 a2) {
     int iVar1;
@@ -24907,10 +24907,10 @@ int cri_sub_25f1e8(int a0) {
 }
 
 /*
- * cri_sub_25f1f4  0x8c25f1f4
- * area name: in the cri library code range
+ * alt_entry_25f1f4  0x8c25f1f4
+ * probably an entry 12 bytes into 8c25f1e8: it reads registers that code sets before it
  */
-int cri_sub_25f1f4(u32 unused_a0, u32 a1, u32 unused_a2, int *a3) {
+int alt_entry_25f1f4(u32 unused_a0, u32 a1, u32 unused_a2, int *a3) {
     u16 uVar1;
     int iVar2;
     int iVar3;
@@ -25053,10 +25053,10 @@ int cri_sub_25f306(int a0) {
 }
 
 /*
- * cri_sub_25f312  0x8c25f312
- * area name: in the cri library code range
+ * alt_entry_25f312  0x8c25f312
+ * probably an entry 12 bytes into 8c25f306: it reads registers that code sets before it
  */
-int cri_sub_25f312(u32 unused_a0, u32 a1, u32 unused_a2, int a3) {
+int alt_entry_25f312(u32 unused_a0, u32 a1, u32 unused_a2, int a3) {
     u8 bVar1;
     int iVar2;
     int iVar3;
@@ -25197,10 +25197,10 @@ LAB_8c25f636:
 }
 
 /*
- * cri_sub_25f42c  0x8c25f42c
- * area name: in the cri library code range
+ * alt_entry_25f42c  0x8c25f42c
+ * probably an entry 4 bytes into 8c25f428: it reads registers that code sets before it
  */
-u32 cri_sub_25f42c(int a0, int a1, u32 *a2, u32 *a3, u32 s0, u32 *s4, u32 *s8, int *s12) {
+u32 alt_entry_25f42c(int a0, int a1, u32 *a2, u32 *a3, u32 s0, u32 *s4, u32 *s8, int *s12) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -25261,7 +25261,7 @@ LAB_8c25f636:
 /*
  * is_au_header  0x8c25f64c
  * 1 when a0 starts with ".snd" or ".sd"
- * called by: cri_sub_25fdb2, cri_sub_25fdbe
+ * called by: alt_entry_25fdbe, cri_sub_25fdb2
  */
 u32 is_au_header(u32 a0) {
     int iVar1;
@@ -25317,7 +25317,7 @@ u32 cri_sub_25f67e(u32 a0, int a1, short *a2, u8 *a3, char *s0, u8 *s4, char *s8
 /*
  * cri_sub_25f742  0x8c25f742
  * area name: in the cri library code range
- * called by: cri_sub_25fdb2, cri_sub_25fdbe
+ * called by: alt_entry_25fdbe, cri_sub_25fdb2
  */
 int cri_sub_25f742(int a0, u32 a1, u32 a2) {
     int iVar1;
@@ -25432,10 +25432,10 @@ int cri_sub_25f830(int a0) {
 }
 
 /*
- * cri_sub_25f83c  0x8c25f83c
- * area name: in the cri library code range
+ * alt_entry_25f83c  0x8c25f83c
+ * probably an entry 12 bytes into 8c25f830: it reads registers that code sets before it
  */
-int cri_sub_25f83c(u32 unused_a0, u32 a1, u32 unused_a2, int *a3) {
+int alt_entry_25f83c(u32 unused_a0, u32 a1, u32 unused_a2, int *a3) {
     u16 uVar1;
     int iVar2;
     int iVar3;
@@ -25578,10 +25578,10 @@ int cri_sub_25f950(int a0) {
 }
 
 /*
- * cri_sub_25f95c  0x8c25f95c
- * area name: in the cri library code range
+ * alt_entry_25f95c  0x8c25f95c
+ * probably an entry 12 bytes into 8c25f950: it reads registers that code sets before it
  */
-int cri_sub_25f95c(u32 unused_a0, u32 a1, u32 unused_a2, int a3) {
+int alt_entry_25f95c(u32 unused_a0, u32 a1, u32 unused_a2, int a3) {
     u8 bVar1;
     int iVar2;
     int iVar3;
@@ -25722,10 +25722,10 @@ int cri_sub_25fa58(int a0, u32 a1) {
 }
 
 /*
- * cri_sub_25fa64  0x8c25fa64
- * area name: in the cri library code range
+ * alt_entry_25fa64  0x8c25fa64
+ * probably an entry 12 bytes into 8c25fa58: it reads registers that code sets before it
  */
-int cri_sub_25fa64(u32 unused_a0, u32 a1, u32 unused_a2, u16 *a3) {
+int alt_entry_25fa64(u32 unused_a0, u32 a1, u32 unused_a2, u16 *a3) {
     u8 bVar1;
     int iVar2;
     int iVar3;
@@ -25911,10 +25911,10 @@ u32 cri_sub_25fc5c(u16 *a0) {
 }
 
 /*
- * cri_sub_25fc60  0x8c25fc60
- * area name: in the cri library code range
+ * alt_entry_25fc60  0x8c25fc60
+ * probably an entry 4 bytes into 8c25fc5c: it reads registers that code sets before it
  */
-u32 cri_sub_25fc60(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
+u32 alt_entry_25fc60(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
     u16 *unaff_r14;
 
     if (unaff_r14 != NULL) {
@@ -25928,7 +25928,7 @@ u32 cri_sub_25fc60(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0
 /*
  * cri_sub_25fca4  0x8c25fca4
  * area name: in the cri library code range
- * called by: cri_sub_25fdb2, cri_sub_25fdbe
+ * called by: alt_entry_25fdbe, cri_sub_25fdb2
  */
 int cri_sub_25fca4(int a0, u32 a1, u32 a2) {
     u8 *puVar1;
@@ -26003,10 +26003,10 @@ u32 cri_sub_25fdb2(u32 a0, u16 *a1, u32 a2) {
 }
 
 /*
- * cri_sub_25fdbe  0x8c25fdbe
- * area name: in the cri library code range
+ * alt_entry_25fdbe  0x8c25fdbe
+ * probably an entry 12 bytes into 8c25fdb2: it reads registers that code sets before it
  */
-u32 cri_sub_25fdbe(u32 unused_a0, u32 a1, u32 a2) {
+u32 alt_entry_25fdbe(u32 unused_a0, u32 a1, u32 a2) {
     u32 uVar1;
     int iVar2;
     u32 in_r2;
@@ -26223,10 +26223,10 @@ int cri_sub_25ffb6(int a0) {
 }
 
 /*
- * cri_sub_25ffba  0x8c25ffba
- * area name: in the cri library code range
+ * alt_entry_25ffba  0x8c25ffba
+ * probably an entry 4 bytes into 8c25ffb6: it reads registers that code sets before it
  */
-int cri_sub_25ffba(void) {
+int alt_entry_25ffba(void) {
     int iVar1;
     int unaff_r14;
 
