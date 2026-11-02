@@ -515,3 +515,7 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
   8c12fb10/8c12fb14, 12/13 block writes through bios 8c1f3c78. The Shinobi calls behind them (buLoadFile_like,
   buDeleteFile_like, buIsExistFile_like, buGetFileSize_like, buGetFreeBlocks_like, buCalcBackupFileSize_like) each have a
   `_now` worker that reads the drive's FAT/directory (drives of 0x148 bytes at 0x8c4783e0, free FAT entries 0xfffc).
+- Analog stick: the control object (pad pointer at +0xcc) keeps the stick X at +0x13c and Y at +0x140 (negative Y is up:
+  the `input_up_or_stick_up` style tests fall back to the D-pad). +0x14c/+0x150 are a second axis pair, cleared with them.
+- Creature state objects (Class_129c70 subclasses) have their own vtables: 8c12a7a8 MothLine, 8c12acc8 MushroomerLine,
+  8c12b0c4 SpiderLine, 8c12b2e8 Squid.
