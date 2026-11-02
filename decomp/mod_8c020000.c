@@ -244,7 +244,7 @@ u32 CDCGD_uses_ADXF_Close_like_02049c(int *a0, int *a1, u32 a2, u32 a3) {
 /*
  * CDCGD_find_request  0x8c02051c
  * walks the request list from a2 for the one matching type a1
- * called by: CDCGD_release_request, CDCGD_request, game_release_01fec4
+ * called by: CDCGD_queue_unique_request, CDCGD_release_request, CDCGD_request
  */
 int CDCGD_find_request(u32 unused_a0, u32 a1, int a2, u32 a3) {
     int ar6_00;
@@ -296,7 +296,7 @@ u32 CDCGD_request_matches(u32 unused_a0, int a1, int *a2, u32 a3, u32 s0) {
 /*
  * list_push_front  0x8c0205e8
  * links node a2 in front of the list head *a1
- * called by: CDCGD_new_request, CDCGD_request, CDCGD_uses_ADXF_Close_like_02049c, game_release_01fec4,
+ * called by: CDCGD_new_request, CDCGD_queue_unique_request, CDCGD_request, CDCGD_uses_ADXF_Close_like_02049c,
  * game_uses_ADXF_GetStat_01fab4, game_uses_list_push_front_01f8a4, game_uses_njLoadTexture_01f9c4
  */
 u32 list_push_front(u32 unused_a0, int *a1, int a2) {
@@ -10442,7 +10442,7 @@ u32 game_uses_get_field_0_s8_02bd9c(int a0) {
 
 /*
  * get_field_4_02be9c  0x8c02be9c
- * called by: CAnimal_uses_get_field_134_02cf20, game_uses_get_field_0_s8_02bd9c, game_uses_get_field_0_s8_02c3a8
+ * called by: CAnimal_uses_get_field_134_02cf20, game_uses_get_field_0_s8_02bd9c, talk_uses_get_field_0_s8_02c3a8
  */
 u32 get_field_4_02be9c(int a0) {
     return *(u32 *)(a0 + 4);
@@ -10451,7 +10451,7 @@ u32 get_field_4_02be9c(int a0) {
 /*
  * game_calc_02bea4  0x8c02bea4
  * area name: game code; nothing names its area yet; behaviour name: integer arithmetic on its arguments
- * called by: game_uses_get_field_0_s8_02bd9c, game_uses_get_field_0_s8_02c3a8, game_uses_rand_02dfa0
+ * called by: game_uses_get_field_0_s8_02bd9c, game_uses_rand_02dfa0, talk_uses_get_field_0_s8_02c3a8
  */
 int game_calc_02bea4(int a0) {
     return *(int *)(*(char *)(a0 + 8) * 4 + *(int *)(a0 + 0x10)) - *(int *)(a0 + 4);
@@ -10599,7 +10599,7 @@ u32 talk_uses_set_field_a_s8_02c030(int a0, int *a1, int *a2, u32 a3) {
         }
     }
     if (a1 != *(int **)(a0 + 0x148)) {
-        a3 = game_uses_get_field_0_s8_02c518(a0, ar5_00, ar6_00);
+        a3 = talk_pick_highest_active(a0, ar5_00, ar6_00);
         ar5_00 = a2;
         ar6_00 = a1;
         game_fill_loop_02e4cc(a0 + 0xf8, a2, a1, a3);
@@ -10607,7 +10607,7 @@ u32 talk_uses_set_field_a_s8_02c030(int a0, int *a1, int *a2, u32 a3) {
     iVar1 = get_field_0_02c380(a0 + 0xf8);
     if ((iVar1 == 0) && (a1 != *(int **)(a0 + 0x148))) {
         if (a1 != *(int **)(a0 + 0x148)) {
-            ar6_00 = (int *)game_uses_get_field_0_s8_02c518(a0, ar5_00, ar6_00);
+            ar6_00 = (int *)talk_pick_highest_active(a0, ar5_00, ar6_00);
             ar5_00 = a1;
             game_uses_libgcc_divide_helper_02d854(a0 + 0x90, a1, ar6_00, a3);
         }
@@ -10629,7 +10629,7 @@ u32 talk_uses_set_field_a_s8_02c030(int a0, int *a1, int *a2, u32 a3) {
         ar5_00 = a2;
         game_uses_rand_02df24(a0 + 0x60, a2, ar6_00, a3);
     }
-    uVar2 = game_uses_get_field_0_s8_02c518(a0, ar5_00, ar6_00);
+    uVar2 = talk_pick_highest_active(a0, ar5_00, ar6_00);
     set_field_48(a0 + 0xa8, uVar2);
     uVar3 = (**(code **)(*a2 + 0x148))(a2, uVar2, ar6_00, a3);
     uVar2 = table13019c_find_row(a0);
@@ -10639,7 +10639,7 @@ u32 talk_uses_set_field_a_s8_02c030(int a0, int *a1, int *a2, u32 a3) {
     uVar2 = *(u32 *)(a0 + 0x13c);
     game_uses_rand_02db6c(a0 + 0xa8, uVar2, ar6_01);
     *(u8 *)(a0 + 0x144) = 0;
-    game_uses_get_field_0_s8_02c5b4(a0);
+    talk_uses_get_field_0_s8_02c5b4(a0);
     *(int **)(a0 + 0x148) = a1;
     return 0x148;
 }
@@ -10745,11 +10745,11 @@ int clear_field_144_u8(int a0) {
 }
 
 /*
- * game_uses_get_field_0_s8_02c3a8  0x8c02c3a8
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_0_s8
- * called by: game_select_intro_or_ending
+ * talk_uses_get_field_0_s8_02c3a8  0x8c02c3a8
+ * area name: sits between talk functions (same compilation unit); behaviour name: its main named callee is
+ * get_field_0_s8 called by: game_select_intro_or_ending
  */
-u32 game_uses_get_field_0_s8_02c3a8(int a0) {
+u32 talk_uses_get_field_0_s8_02c3a8(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -10790,7 +10790,7 @@ u32 game_uses_get_field_0_s8_02c3a8(int a0) {
 /*
  * get_field_a8_1c_s8  0x8c02c4e8
  * get_field_1c_s8 of the sub-object at +0xa8
- * called by: game_uses_get_field_0_s8_02c3a8, game_uses_get_field_a8_1c_s8_02ebfc
+ * called by: game_uses_get_field_a8_1c_s8_02ebfc, talk_uses_get_field_0_s8_02c3a8
  */
 int get_field_a8_1c_s8(int a0) {
     u32 uVar1;
@@ -10808,13 +10808,13 @@ int get_field_1c_s8(int a0) {
 }
 
 /*
- * game_uses_get_field_0_s8_02c518  0x8c02c518
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_0_s8
- * called by: CAnimal_m2_0386d0, Class_12a078_uses_get_field_8_0665a0, Class_12a990_m2_09bc2c,
- * Class_12acc8_uses_rand_0a00f8, Class_12acc8_uses_set_field_38_09ff1c, Class_12c3c4_uses_get_field_8_109b18,
+ * talk_pick_highest_active  0x8c02c518
+ * index of the active entry (of six 0x18-byte records, excluding the last) with the highest priority byte (+8); -1 if
+ * none called by: CAnimal_m2_0386d0, Class_12a078_uses_get_field_8_0665a0, Class_12a990_m2_09bc2c,
+ * Class_12acc8_talk_0a00f8, Class_12acc8_uses_set_field_38_09ff1c, Class_12c3c4_uses_get_field_8_109b18,
  * FrogMan_choose_status_event, FrogMan_jump_events (+15 more)
  */
-int game_uses_get_field_0_s8_02c518(int a0, u32 a1, u32 a2) {
+int talk_pick_highest_active(int a0, u32 a1, u32 a2) {
     u32 uVar1;
     int iVar2;
     char cVar3;
@@ -10838,19 +10838,19 @@ int game_uses_get_field_0_s8_02c518(int a0, u32 a1, u32 a2) {
 /*
  * get_field_8_s8  0x8c02c5ac
  * called by: CAnimal_uses_get_field_134_02cf20, FrogMan_choose_status_event, FrogMan_update_sleep_light,
- * Higyo_update_sleep_light, game_uses_count_list_until_end_02c668, game_uses_get_field_0_s8_02c518,
- * game_uses_get_field_8_s8_108f3c, talk_state_switch_10862c (+1 more)
+ * Higyo_update_sleep_light, game_talk_108f3c, talk_pick_highest_active, talk_state_switch_10862c,
+ * talk_talk_helper_02c668 (+1 more)
  */
 int get_field_8_s8(int a0, u32 a1) {
     return (int)*(char *)(a0 + 8);
 }
 
 /*
- * game_uses_get_field_0_s8_02c5b4  0x8c02c5b4
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_0_s8
- * called by: talk_uses_set_field_a_s8_02c030
+ * talk_uses_get_field_0_s8_02c5b4  0x8c02c5b4
+ * area name: sits between talk functions (same compilation unit); behaviour name: its main named callee is
+ * get_field_0_s8 called by: talk_uses_set_field_a_s8_02c030
  */
-u32 game_uses_get_field_0_s8_02c5b4(int a0) {
+u32 talk_uses_get_field_0_s8_02c5b4(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -10870,34 +10870,34 @@ u32 game_uses_get_field_0_s8_02c5b4(int a0) {
 }
 
 /*
- * game_uses_count_list_until_end_02c668  0x8c02c668
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is count_list_until_end
+ * talk_talk_helper_02c668  0x8c02c668
+ * area name: sits between talk functions (same compilation unit); behaviour name: mostly calls talk functions
  * called by: game_uses_get_field_a8_1c_s8_02ebfc
  */
-int game_uses_count_list_until_end_02c668(int a0, int a1, u32 a2) {
+int talk_talk_helper_02c668(int a0, int a1, u32 a2) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
     int iVar4;
 
     iVar4 = 0;
-    iVar1 = game_uses_get_field_0_s8_02c518(a0, a1, a2);
+    iVar1 = talk_pick_highest_active(a0, a1, a2);
     if (iVar1 != -1) {
-        iVar1 = game_uses_get_field_0_s8_02c518(a0, a1, a2);
+        iVar1 = talk_pick_highest_active(a0, a1, a2);
         uVar2 = count_list_until_end(iVar1 * 0x18 + a0);
         if ((char)uVar2 == '\0') {
             iVar4 = 0;
         } else {
-            iVar1 = game_uses_get_field_0_s8_02c518(a0, a1, a2);
+            iVar1 = talk_pick_highest_active(a0, a1, a2);
             uVar2 = count_list_until_end(iVar1 * 0x18 + a0);
-            iVar1 = game_uses_get_field_0_s8_02c518(a0, a1, a2);
+            iVar1 = talk_pick_highest_active(a0, a1, a2);
             uVar3 = get_field_8_s8(iVar1 * 0x18 + a0, a1);
             a1 = (int)(char)uVar2;
             iVar4 = libgcc_divide_helper_0101e4(0x1e, a1);
             iVar4 = iVar4 * (char)uVar3;
         }
     }
-    iVar1 = game_uses_get_field_0_s8_02c518(a0, a1, a2);
+    iVar1 = talk_pick_highest_active(a0, a1, a2);
     return iVar4 + (u32)(iVar1 != -1) * 0x46;
 }
 
@@ -10968,17 +10968,17 @@ u32 game_uses_set_field_b_s8_02c758(int a0, int a1, u32 a2, u32 a3) {
     set_field_0_u8_02cb7c(a0 + 0xa8, 0, iVar3, a3);
     set_field_1_s8(a0 + 0xa8, 0);
     set_field_3c(a0 + 0xa8, 0);
-    game_update_fields_02cb24(a0 + 0xf8, *(u32 *)(&g_8c1304cc + iVar4), iVar3, a3);
-    uVar2 = game_update_fields_02cadc(a0 + 0xf8, *(u32 *)(&g_8c1304d0 + iVar4), iVar3, a3);
+    talk_update_fields_02cb24(a0 + 0xf8, *(u32 *)(&g_8c1304cc + iVar4), iVar3, a3);
+    uVar2 = talk_update_fields_02cadc(a0 + 0xf8, *(u32 *)(&g_8c1304d0 + iVar4), iVar3, a3);
     return uVar2;
 }
 
 /*
- * game_update_fields_02cadc  0x8c02cadc
- * area name: game code; nothing names its area yet; behaviour name: conditionally writes members
+ * talk_update_fields_02cadc  0x8c02cadc
+ * area name: sits between talk functions (same compilation unit); behaviour name: conditionally writes members
  * called by: game_calls_update_fields_02e460, game_uses_set_field_b_s8_02c758
  */
-u32 game_update_fields_02cadc(int a0, int a1, u32 a2, u32 a3) {
+u32 talk_update_fields_02cadc(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (*(code *)(&libgcc_divide_helper_0101e4))(a1 * 0x708 * 0x3e8, 0x34bc0, a2, a3);
@@ -10987,11 +10987,11 @@ u32 game_update_fields_02cadc(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_update_fields_02cb24  0x8c02cb24
- * area name: game code; nothing names its area yet; behaviour name: conditionally writes members
+ * talk_update_fields_02cb24  0x8c02cb24
+ * area name: sits between talk functions (same compilation unit); behaviour name: conditionally writes members
  * called by: game_calls_update_fields_02e460, game_uses_set_field_b_s8_02c758
  */
-u32 game_update_fields_02cb24(int a0, int a1, u32 a2, u32 a3) {
+u32 talk_update_fields_02cb24(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (*(code *)(&libgcc_divide_helper_0101e4))(a1 * 0x708 * 0x3e8, 0x34bc0, a2, a3);
@@ -11520,7 +11520,7 @@ u32 talk_uses_set_field_4_02d2e0(int a0, int a1, u32 a2, u32 a3) {
     uVar1 = get_field_0_s8_02d3e0(a0 + 0x90);
     ain0 = CONCAT31((s32)((u32)in_stack_ffffffe4 >> 8), (char)uVar1);
     if ((char)uVar1 == '\0') {
-        uVar1 = game_uses_get_field_0_s8_02c518(a0, ar5_00, a2);
+        uVar1 = talk_pick_highest_active(a0, ar5_00, a2);
         set_field_48(a0 + 0xa8, uVar1);
         uVar1 = game_uses_rand_02de00(a0 + 0xa8, a1, *(u32 *)(a0 + 0x13c));
     } else {
@@ -12396,7 +12396,7 @@ int game_calls_update_fields_02e3cc(char *a0, u32 a1) {
 /*
  * count_list_until_end  0x8c02e400
  * entries in the five-entry list at *(a0+0xc) before the first -1
- * called by: game_uses_count_list_until_end_02c668
+ * called by: talk_talk_helper_02c668
  */
 int count_list_until_end(int a0) {
     int iVar1;
@@ -12437,8 +12437,8 @@ u32 *game_calls_update_fields_02e460(u32 *a0, u32 a1, u32 a2, u32 a3) {
     *a0 = 0;
     a0[1] = 1;
     ar6_00 = a2;
-    game_update_fields_02cb24(a0, a1, a2, a3);
-    game_update_fields_02cadc(a0, a2, ar6_00, a3);
+    talk_update_fields_02cb24(a0, a1, a2, a3);
+    talk_update_fields_02cadc(a0, a2, ar6_00, a3);
     a0[4] = 0;
     a0[10] = 0;
     a0[5] = 0;
@@ -12851,7 +12851,7 @@ int game_uses_get_field_a8_1c_s8_02ebfc(int a0, u32 a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 8) = uVar1;
     uVar1 = game_uses_get_field_0_s8_02bd9c(a1);
     *(u32 *)(a0 + 0xc) = uVar1;
-    uVar1 = game_uses_count_list_until_end_02c668(a1, uVar2, a2);
+    uVar1 = talk_talk_helper_02c668(a1, uVar2, a2);
     *(u32 *)(a0 + 0x10) = uVar1;
     uVar1 = game_uses_get_field_0_02d4c4(a1);
     *(u32 *)(a0 + 0x18) = uVar1;

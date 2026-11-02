@@ -24631,10 +24631,10 @@ u32 cri_clear_table_4b3340_b(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3
 }
 
 /*
- * cri_calc_25ecdc  0x8c25ecdc
- * area name: in the cri library code range; behaviour name: integer arithmetic on its arguments
+ * cri_set_error_callback  0x8c25ecdc
+ * registers the CRI error callback (a0) and its argument (a1)
  */
-u32 cri_calc_25ecdc(u32 a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 cri_set_error_callback(u32 a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     g_8c277d98 = a0;
     g_8c277d9c = a1;
     return ain0;
@@ -24657,10 +24657,10 @@ u32 lib_error_printf(u32 a0, u32 unused_a1, u32 a2, u32 unused_a3, u32 s0, u32 s
 }
 
 /*
- * cri_uses_vsprintf_like_25ecea  0x8c25ecea
- * area name: in the cri library code range; behaviour name: its main named callee is vsprintf_like
+ * cri_error_printf  0x8c25ecea
+ * formats the message into the CRI error buffer and passes it to the registered error callback, if any
  */
-u32 cri_uses_vsprintf_like_25ecea(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12) {
+u32 cri_error_printf(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12) {
     u32 uVar1;
     u32 *ar6_00;
 

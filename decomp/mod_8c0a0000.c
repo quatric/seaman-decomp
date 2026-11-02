@@ -25,7 +25,7 @@ int Class_12acc8_sequence_step(int a0, u32 a1, u32 a2, u32 a3) {
             a2 = ar6_00;
         } else {
             set_field_38_02f404(a0, 3);
-            Class_12acc8_uses_rand_0a00f8(a0, a1, a2, a3);
+            Class_12acc8_talk_0a00f8(a0, a1, a2, a3);
         }
     }
     iVar1 = *(int *)(a0 + 0x3c);
@@ -36,11 +36,11 @@ int Class_12acc8_sequence_step(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12acc8_uses_rand_0a00f8  0x8c0a00f8
- * area name: only called from Class_12acc8 methods; behaviour name: its callees mostly do: uses_rand
+ * Class_12acc8_talk_0a00f8  0x8c0a00f8
+ * area name: only called from Class_12acc8 methods; behaviour name: mostly calls talk functions
  * called by: Class_12acc8_sequence_step, Class_12acc8_uses_set_field_38_09ff1c
  */
-int Class_12acc8_uses_rand_0a00f8(int a0, u32 a1, int a2, u32 a3) {
+int Class_12acc8_talk_0a00f8(int a0, u32 a1, int a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     int ar6_00;
@@ -55,7 +55,7 @@ int Class_12acc8_uses_rand_0a00f8(int a0, u32 a1, int a2, u32 a3) {
     if (iVar1 == 3) {
         iVar1 = Class_12acc8_uses_rand_0a0278(a0, a1, ar6_00);
     } else if ((((iVar1 != 6) && (iVar1 == 10)) &&
-                (iVar1 = game_uses_get_field_0_s8_02c518(*(u32 *)(a2 + 4), ar5_00, ar6_00), iVar1 != 0)) &&
+                (iVar1 = talk_pick_highest_active(*(u32 *)(a2 + 4), ar5_00, ar6_00), iVar1 != 0)) &&
                (iVar1 == 1)) {
         iVar1 = 0x40;
         *(u32 *)(a0 + 0x40) = 0xe;
@@ -125,7 +125,7 @@ u32 *Class_12acc8_uses_get_field_8_0a0224(int a0) {
 /*
  * Class_12acc8_uses_rand_0a0278  0x8c0a0278
  * area name: only called from Class_12acc8 methods; behaviour name: its main named callee is rand
- * called by: Class_12acc8_m1_09f470, Class_12acc8_uses_rand_0a00f8, Class_12acc8_uses_set_field_38_09ff1c
+ * called by: Class_12acc8_m1_09f470, Class_12acc8_talk_0a00f8, Class_12acc8_uses_set_field_38_09ff1c
  */
 u32 Class_12acc8_uses_rand_0a0278(int a0, int *a1, u32 a2) {
     int iVar1;

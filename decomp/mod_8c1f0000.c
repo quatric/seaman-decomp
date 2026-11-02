@@ -14227,8 +14227,9 @@ u32 *malloc_fill_loop_1fb4c2(int a0) {
 /*
  * free_sys  0x8c1fb57c
  * frees a block from malloc_sys
- * called by: CDCGD_release_request, CDCGD_uses_ADXF_Close_like_02049c, CProlog_uses_free_sys_0b96e4,
- * draw_uses_free_sys_258b26, free_01e14c, free_ptr_and_clear, game_release_01d7cc, game_release_01fd08 (+9 more)
+ * called by: CDCGD_queue_unique_request, CDCGD_release_request, CDCGD_uses_ADXF_Close_like_02049c,
+ * CProlog_uses_free_sys_0b96e4, draw_uses_free_sys_258b26, free_01e14c, free_ptr_and_clear, game_release_01d7cc (+9
+ * more)
  */
 u32 free_sys(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;

@@ -1370,7 +1370,7 @@ u32 bswap32(u32 a0) {
 /*
  * kamui_uses_bswap32_2124d0  0x8c2124d0
  * area name: in the kamui library code range; behaviour name: its main named callee is bswap32
- * called by: game_release_01fd08
+ * called by: game_uses_CDCGD_queue_unique_request_01fd08
  */
 u32 kamui_uses_bswap32_2124d0(int a0, int *a1, int *a2, u32 a3) {
     u8 *puVar1;

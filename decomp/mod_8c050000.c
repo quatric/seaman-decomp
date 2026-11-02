@@ -8820,7 +8820,7 @@ u32 FrogMan_update_sleep_light(int *a0, code *a1, code *a2) {
         Class_12a078_uses_get_field_8_0665a0(a0, a2, pcVar4);
         set_field_130(*(int *)(a2 + 8));
         if (a0[1] == 2) {
-            iVar9 = game_uses_get_field_0_s8_02c518(*(int *)(a2 + 4), pcVar11, pcVar4);
+            iVar9 = talk_pick_highest_active(*(int *)(a2 + 4), pcVar11, pcVar4);
             if (iVar9 == 0) {
                 if (a0[0xe1] == -1) {
                     a0[0x10] = 0;
@@ -8869,7 +8869,7 @@ u32 FrogMan_update_sleep_light(int *a0, code *a1, code *a2) {
         iVar9 = 1;
         set_field_c0(*(int *)(a2 + 0xc), 1);
     }
-    iVar12 = game_uses_get_field_0_s8_02c518(*(int *)(a2 + 4), iVar9, pcVar4);
+    iVar12 = talk_pick_highest_active(*(int *)(a2 + 4), iVar9, pcVar4);
     if (iVar12 != -1) {
         iVar9 = 0;
         set_field_d0(*(int *)(a2 + 0xc), 0);
@@ -9453,7 +9453,7 @@ u32 FrogMan_choose_status_event(int a0, u32 a1, int *a2, int a3) {
                 break;
             case 0x10:
                 if (((*(int *)(a0 + 4) != 0xd) &&
-                     (iVar4 = game_uses_get_field_0_s8_02c518(a2[1], ar5_00, piVar3), iVar4 < 6)) &&
+                     (iVar4 = talk_pick_highest_active(a2[1], ar5_00, piVar3), iVar4 < 6)) &&
                     (-1 < iVar4)) {
                     switch (iVar4) {
                     case 0:

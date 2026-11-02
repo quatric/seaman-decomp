@@ -2786,7 +2786,7 @@ u32 Higyo_update_sleep_light(int *a0, code *a1, code *a2, u32 a3) {
     game_fill_loop_0301f8(a0 + 0x27, pcVar2, pcVar10, pcVar4);
     game_uses_Vec3_dtor_1089e4(a0, a1, a2, pcVar4);
     pcVar2 = a2;
-    game_uses_get_field_8_s8_108f3c(a0, a1, a2);
+    game_talk_108f3c(a0, a1, a2);
     pcVar10 = get_field_124_027930;
     iVar3 = get_field_124_027930(*(int *)(a2 + 8), get_field_124_027930, pcVar2, pcVar4);
     if (iVar3 != 2) {
@@ -2798,7 +2798,7 @@ u32 Higyo_update_sleep_light(int *a0, code *a1, code *a2, u32 a3) {
         set_field_40(a0, uVar1);
         if ((a0[1] == 2) &&
             (pcVar4 = (code *)get_field_a0_035724(*(int *)(a2 + 0x18), uVar1), (char)pcVar4 != '\x02')) {
-            iVar3 = game_uses_get_field_0_s8_02c518(*(int *)(a2 + 4), uVar1, pcVar2);
+            iVar3 = talk_pick_highest_active(*(int *)(a2 + 4), uVar1, pcVar2);
             if (iVar3 == 0) {
                 if (a0[0xe1] == -1) {
                     a0[0x10] = 0;
@@ -2831,7 +2831,7 @@ u32 Higyo_update_sleep_light(int *a0, code *a1, code *a2, u32 a3) {
         }
     }
     *(u8 *)((int)a0 + 0x83) = 4;
-    pcVar4 = (code *)game_uses_get_field_0_s8_02c518(*(int *)(a2 + 4), pcVar10, pcVar2);
+    pcVar4 = (code *)talk_pick_highest_active(*(int *)(a2 + 4), pcVar10, pcVar2);
     if (pcVar4 != (code *)0xffffffff) {
         pcVar2 = NULL;
         pcVar10 = NULL;
@@ -4001,7 +4001,7 @@ int Higyo_attention_events(code *a0, code *a1, code *a2, char *a3) {
     pcVar4 = a1;
     uVar1 = talk_uses_table13019c_find_row_02bef8(*(int *)(a2 + 4), a1, a2);
     if (((6 < (short)uVar1) && (iVar3 = percent_field_4_of_c(*(int *)(a2 + 4) + 0x90, a1, pcVar6, a3), iVar3 < 0x30)) &&
-        (iVar3 = game_uses_get_field_0_s8_02c518(*(int *)(a2 + 4), a1, pcVar6), iVar3 == -1)) {
+        (iVar3 = talk_pick_highest_active(*(int *)(a2 + 4), a1, pcVar6), iVar3 == -1)) {
         uVar1 = get_field_bc_s8(*(int *)(a2 + 0xc), a1, pcVar6, a3);
         pcVar6 = (code *)(int)(char)uVar1;
         if ((((char)uVar1 == '\x02') &&
@@ -4009,7 +4009,7 @@ int Higyo_attention_events(code *a0, code *a1, code *a2, char *a3) {
             ((iVar3 = get_field_178_035734(*(int *)(a2 + 8), a1, pcVar6), iVar3 == 0 && (a0[0x98] == (code)0x5)))) {
             uVar1 = get_field_39_s8(*(int *)(a2 + 0xc));
             if ((((char)uVar1 < '\x03') &&
-                 (iVar3 = game_uses_get_field_0_s8_02c518(*(int *)(a2 + 4), a1, pcVar6), iVar3 == -1)) &&
+                 (iVar3 = talk_pick_highest_active(*(int *)(a2 + 4), a1, pcVar6), iVar3 == -1)) &&
                 ((a1 = a2, iVar3 = game_vec_02fcc4(a0, a2, pcVar6, a3),
                   iVar3 == 1 && ((iVar3 = get_field_4_on_field_d8(*(u32 *)(*(int *)(a2 + 0x18) + 0x7cc), a1, pcVar6),
                                   iVar3 == 0 && (iVar3 = *(int *)(a0 + 0x878), iVar3 == 0)))))) {
@@ -4056,8 +4056,8 @@ int Higyo_attention_events(code *a0, code *a1, code *a2, char *a3) {
             ar7_00 = get_field_39_s8;
             uVar1 = get_field_39_s8(*(int *)(a2 + 0xc));
             a3 = (char *)ar7_00;
-            if (((char)uVar1 == '\x03') && (iVar3 = game_uses_get_field_0_s8_02c518(*(int *)(a2 + 4), a1, pcVar6),
-                                            a3 = (char *)ar7_00, iVar3 == -1)) {
+            if (((char)uVar1 == '\x03') &&
+                (iVar3 = talk_pick_highest_active(*(int *)(a2 + 4), a1, pcVar6), a3 = (char *)ar7_00, iVar3 == -1)) {
                 pcVar6 = get_field_18_on_field_a8;
                 a1 = (code *)get_field_18_on_field_a8(*(int *)(a2 + 4));
                 a3 = (char *)ar7_00;
@@ -4149,7 +4149,7 @@ LAB_8c107c10:
                 uVar1 = get_field_bc_s8(*(int *)(a2 + 0xc), *(int *)(a2 + 0xc), 0, 0);
                 a1 = (code *)(int)(char)uVar1;
                 if (((a1 == (code *)0x2) &&
-                     (iVar3 = game_uses_get_field_0_s8_02c518(*(int *)(a2 + 4), 2, pcVar6), iVar3 == -1)) &&
+                     (iVar3 = talk_pick_highest_active(*(int *)(a2 + 4), 2, pcVar6), iVar3 == -1)) &&
                     (iVar3 = get_field_4_062878(*(int *)(a2 + 0xc)), iVar3 == 1)) {
                     a1 = NULL;
                     set_field_4_063800(*(int *)(a2 + 0xc), 0);
@@ -4418,7 +4418,7 @@ int talk_state_switch_10862c(int a0, u32 a1, int a2, u32 a3) {
 
     cVar4 = '\0';
     ar6_00 = a2;
-    iVar1 = game_uses_get_field_0_s8_02c518(*(u32 *)(a2 + 4), a1, a2);
+    iVar1 = talk_pick_highest_active(*(u32 *)(a2 + 4), a1, a2);
     if ((iVar1 < 6) && (-1 < iVar1)) {
         switch (iVar1) {
         case 0:
@@ -4714,11 +4714,11 @@ u32 game_uses_Vec3_dtor_1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
 }
 
 /*
- * game_uses_get_field_8_s8_108f3c  0x8c108f3c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_8_s8
+ * game_talk_108f3c  0x8c108f3c
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls talk functions
  * called by: Higyo_update_sleep_light
  */
-int game_uses_get_field_8_s8_108f3c(int a0, u32 a1, int a2) {
+int game_talk_108f3c(int a0, u32 a1, int a2) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -4746,10 +4746,10 @@ int game_uses_get_field_8_s8_108f3c(int a0, u32 a1, int a2) {
                     if (-1 < iVar3) {
                         if (iVar3 == 0) {
                             iVar3 = a2;
-                            iVar1 = game_uses_get_field_0_s8_02c518(*(u32 *)(a2 + 4), a1, a2);
+                            iVar1 = talk_pick_highest_active(*(u32 *)(a2 + 4), a1, a2);
                             uVar2 = get_field_8_s8(iVar1 * 0x18 + *(int *)(a2 + 4), a1);
                             if ('\0' < (char)uVar2) {
-                                iVar3 = game_uses_get_field_0_s8_02c518(*(u32 *)(a2 + 4), a1, iVar3);
+                                iVar3 = talk_pick_highest_active(*(u32 *)(a2 + 4), a1, iVar3);
                                 if (iVar3 == 0) {
                                     *(u32 *)(a0 + 0x94) = 0x14;
                                 } else if (iVar3 == 1) {
@@ -4761,7 +4761,7 @@ int game_uses_get_field_8_s8_108f3c(int a0, u32 a1, int a2) {
                                 }
                             }
                         } else if (iVar3 == 3) {
-                            iVar3 = game_uses_get_field_0_s8_02c518(*(u32 *)(a2 + 4), a1, a2);
+                            iVar3 = talk_pick_highest_active(*(u32 *)(a2 + 4), a1, a2);
                             if (iVar3 == 0) {
                                 *(u32 *)(a0 + 0x94) = 0x14;
                             } else if (iVar3 == 1) {
@@ -4934,7 +4934,7 @@ int Higyo_react_feed_full(int a0, int *a1, int *a2, char *a3) {
     LAB_8c109510:
         iVar1 = get_field_8_1097a0(a2[3]);
         if ((((iVar1 == 1) && (*(char *)(a0 + 0x864) != '\x01')) &&
-             (iVar1 = game_uses_get_field_0_s8_02c518(a2[1], ar5_00, ar6_00), iVar1 == -1)) &&
+             (iVar1 = talk_pick_highest_active(a2[1], ar5_00, ar6_00), iVar1 == -1)) &&
             (*(int *)(a0 + 4) != 0xd)) {
             *(u8 *)(a0 + 0x864) = 1;
             list5_push(a0, 0x2b9);
@@ -5137,7 +5137,7 @@ u32 *Class_12c3c4_uses_get_field_8_109b18(int a0, int a1, u32 a2) {
     int iVar1;
     u32 *puVar2;
 
-    iVar1 = game_uses_get_field_0_s8_02c518(*(u32 *)(a1 + 4), a1, a2);
+    iVar1 = talk_pick_highest_active(*(u32 *)(a1 + 4), a1, a2);
     if ((iVar1 == 0) || (iVar1 != 1)) {
         if (*(int *)(a0 + 4) == 2) {
             puVar2 = (u32 *)get_field_8_066620(a0);

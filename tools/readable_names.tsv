@@ -1890,3 +1890,11 @@
 8c20135c	vmu_file_skip_blocks	advances the open file's block cursor a1 blocks along its FAT chain; 0xffff0000 on a broken chain
 8c237770	gfx_light_globals_reset	resets the global light colours and parameters and clears the 32-entry light index list
 8c25dac0	pvr_pack_display_regs	packs the display mode parameters from the stack into the shadow values of the PVR display registers
+8c25ecea	cri_error_printf	formats the message into the CRI error buffer and passes it to the registered error callback, if any
+8c25ecdc	cri_set_error_callback	registers the CRI error callback (a0) and its argument (a1)
+8c26a152	sd_error_printf	formats the message into the sound driver's buffer and passes it to its registered error callback, if any
+8c26686a	sd_check_index_0_32	error 0x3000001 (recorded) unless 0 <= a1 <= 32
+8c26686e	sd_check_index_0_32_alt	second entry into sd_check_index_0_32 testing a0
+8c030538	talk_get_word_674	returns word a1 of the table at +0x674
+8c02c518	talk_pick_highest_active	index of the active entry (of six 0x18-byte records, excluding the last) with the highest priority byte (+8); -1 if none
+8c01fec4	CDCGD_queue_unique_request	queues a new request for a3 (copying a1's names and 32 callbacks, buffer a2) unless one already exists, in which case a2 is freed

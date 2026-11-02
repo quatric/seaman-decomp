@@ -150,7 +150,7 @@ u32 talk_queue_mode1(int a0, u32 a1, int a2, u32 a3, u32 s0) {
         iVar4 = 0;
         set_word_array_674(a0, a1, 0);
     }
-    if ((((*(int *)(a0 + 0x2e8) == -1) && (iVar1 = talk_calc_030538(a0, a1), iVar1 == 0)) &&
+    if ((((*(int *)(a0 + 0x2e8) == -1) && (iVar1 = talk_get_word_674(a0, a1), iVar1 == 0)) &&
          (*(int *)(a0 + 0x770) == 0)) &&
         ((*(int *)(a0 + 0x778) == 0 && (*(int *)(a0 + 0x60) <= a2)))) {
         uVar2 = talk_event_priority(a0, a3, iVar4, uVar3);
@@ -173,11 +173,11 @@ u32 talk_queue_mode1(int a0, u32 a1, int a2, u32 a3, u32 s0) {
 }
 
 /*
- * talk_calc_030538  0x8c030538
- * area name: sits between talk functions (same compilation unit); behaviour name: integer arithmetic on its arguments
+ * talk_get_word_674  0x8c030538
+ * returns word a1 of the table at +0x674
  * called by: talk_queue_mode1, talk_queue_mode2
  */
-u32 talk_calc_030538(int a0, int a1) {
+u32 talk_get_word_674(int a0, int a1) {
     return *(u32 *)(0x674 + a0 + a1 * 4);
 }
 
@@ -223,7 +223,7 @@ u32 talk_queue_mode2(int a0, u32 a1, int a2, u32 a3, u32 s0) {
         iVar4 = iVar4 + -1;
     } while (iVar4 != 0);
     uVar3 = CONCAT13(g_8c132997, CONCAT12(g_8c132996, CONCAT11(g_8c132995, g_8c132994)));
-    if ((((*(int *)(a0 + 0x2e8) == -1) && (iVar4 = a2, ar7_00 = a3, iVar1 = talk_calc_030538(a0, a1), iVar1 == 0)) &&
+    if ((((*(int *)(a0 + 0x2e8) == -1) && (iVar4 = a2, ar7_00 = a3, iVar1 = talk_get_word_674(a0, a1), iVar1 == 0)) &&
          (*(int *)(a0 + 0x770) == 0)) &&
         ((*(int *)(a0 + 0x778) == 0 && (*(int *)(a0 + 0x60) <= a2)))) {
         uVar2 = talk_event_priority(a0, a3, iVar4, ar7_00);
@@ -6198,7 +6198,7 @@ u32 CAnimal_uses_table13019c_find_row_034d48(short *a0, u32 *a1, u32 *a2, u32 a3
         }
         *(int *)(a0 + 0x10) = iVar2;
         if (*a0 == -1) {
-            game_vec_035110(a0, a2, ar6_00, a3);
+            game_talk_035110(a0, a2, ar6_00, a3);
         } else {
             if (*(int *)(a0 + 4) == 1) {
                 uVar4 = (**(code **)(*(int *)(*(int *)(a0 + 0xe) + *a0 * 4 + 4) + 0x14))(a2, uVar1, ar6_00, a3);
@@ -6305,11 +6305,11 @@ int game_fill_loop_035028(int a0, u32 a1) {
 }
 
 /*
- * game_vec_035110  0x8c035110
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * game_talk_035110  0x8c035110
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls talk functions
  * called by: CAnimal_uses_table13019c_find_row_034d48
  */
-int game_vec_035110(u16 *a0, int a1, u32 a2, u32 a3) {
+int game_talk_035110(u16 *a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     int ar5_00;
     int iVar2;
@@ -6321,7 +6321,7 @@ int game_vec_035110(u16 *a0, int a1, u32 a2, u32 a3) {
     ar5_00 = a1;
     for (iVar4 = 0; iVar4 < *(short *)(*(int *)(a0 + 0xe) + 2); iVar4 = iVar4 + 1) {
         if (*(char *)((int)a0 + iVar4 + 0xc) == '\x02') {
-            iVar1 = game_uses_get_field_0_s8_02c518(*(u32 *)(a1 + 8), ar5_00, a2);
+            iVar1 = talk_pick_highest_active(*(u32 *)(a1 + 8), ar5_00, a2);
             if ((iVar1 == -1) && (sVar3 < *(short *)(*(int *)(*(int *)(a0 + 0xe) + iVar4 * 4 + 4) + 2))) {
                 if (*(char *)(*(int *)(*(int *)(a0 + 0xe) + iVar4 * 4 + 4) + 0x21) == '\0') {
                     iVar1 = (**(code **)(*(int *)(*(int *)(a0 + 0xe) + iVar4 * 4 + 4) + 0x10))(a1, ar5_00, a2, a3);
@@ -6357,7 +6357,7 @@ int game_vec_035110(u16 *a0, int a1, u32 a2, u32 a3) {
 /*
  * game_vec_03525c  0x8c03525c
  * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
- * called by: game_vec_035110
+ * called by: game_talk_035110
  */
 u32 game_vec_03525c(u32 unused_a0, int a1, u32 a2, u32 a3) {
     float *ar6_00;
@@ -8883,7 +8883,7 @@ u32 CAnimal_m2_0386d0(int a0, u32 a1, int *a2, int *a3) {
             talk_uses_set_field_a_s8_02c030(a0 + 0x174, uVar3, a3, piVar7);
             piVar6 = a3;
         }
-        iVar4 = game_uses_get_field_0_s8_02c518(a0 + 0x174, uVar5, piVar6);
+        iVar4 = talk_pick_highest_active(a0 + 0x174, uVar5, piVar6);
         if (iVar4 == -1) {
             a1 = 0x3c;
             iVar4 = libgcc_divide_helper_0101e4(uVar3, 0x3c);

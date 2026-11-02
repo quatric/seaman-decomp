@@ -8368,15 +8368,15 @@ u32 game_select_intro_or_ending(int a0, int a1, u32 unused_a2, char *a3) {
                         *(code **)(puVar7 + -0x4c) = pcVar6;
                         switch (*(u32 *)(puVar7 + -0x4c)) {
                         case 1:
-                            pcVar6 = game_uses_get_field_0_s8_02c3a8;
-                            uVar1 = game_uses_get_field_0_s8_02c3a8(g_8c436700);
+                            pcVar6 = talk_uses_get_field_0_s8_02c3a8;
+                            uVar1 = talk_uses_get_field_0_s8_02c3a8(g_8c436700);
                             *(u32 *)(puVar7 + -0x50) = uVar1;
                             if (*(int *)(puVar7 + -0x50) == -1) {
                                 g_8c436738 = g_8c436738 + 1;
                             }
                             break;
                         case 2:
-                            uVar1 = game_uses_get_field_0_s8_02c3a8(g_8c436700);
+                            uVar1 = talk_uses_get_field_0_s8_02c3a8(g_8c436700);
                             *(u32 *)(puVar7 + -0x54) = uVar1;
                             if (*(int *)(puVar7 + -0x54) == -1) {
                                 *(u8 **)(puVar7 + -0x98) = &g_8c436738;
@@ -8385,7 +8385,7 @@ u32 game_select_intro_or_ending(int a0, int a1, u32 unused_a2, char *a3) {
                             }
                             break;
                         case 3:
-                            uVar1 = game_uses_get_field_0_s8_02c3a8(g_8c436700);
+                            uVar1 = talk_uses_get_field_0_s8_02c3a8(g_8c436700);
                             *(u32 *)(puVar7 + -0x58) = uVar1;
                             if (*(int *)(puVar7 + -0x58) == -1) {
                                 *(u8 **)(puVar7 + -0x9c) = &g_8c436738;
@@ -8414,7 +8414,7 @@ u32 game_select_intro_or_ending(int a0, int a1, u32 unused_a2, char *a3) {
                             }
                             break;
                         case 4:
-                            uVar1 = game_uses_get_field_0_s8_02c3a8(g_8c436700);
+                            uVar1 = talk_uses_get_field_0_s8_02c3a8(g_8c436700);
                             *(u32 *)(puVar7 + -0x60) = uVar1;
                             if (*(int *)(puVar7 + -0x60) == -1) {
                                 pcVar6 = (code *)&g_8c436738;
@@ -8448,7 +8448,7 @@ u32 game_select_intro_or_ending(int a0, int a1, u32 unused_a2, char *a3) {
                             }
                             break;
                         case 6:
-                            uVar1 = game_uses_get_field_0_s8_02c3a8(g_8c436700);
+                            uVar1 = talk_uses_get_field_0_s8_02c3a8(g_8c436700);
                             *(u32 *)(puVar7 + -0x68) = uVar1;
                             if (*(int *)(puVar7 + -0x68) == -1) {
                                 *(u8 **)(puVar7 + -0xac) = &g_8c436738;
@@ -8457,7 +8457,7 @@ u32 game_select_intro_or_ending(int a0, int a1, u32 unused_a2, char *a3) {
                             }
                             break;
                         case 7:
-                            uVar1 = game_uses_get_field_0_s8_02c3a8(g_8c436700);
+                            uVar1 = talk_uses_get_field_0_s8_02c3a8(g_8c436700);
                             *(u32 *)(puVar7 + -0x6c) = uVar1;
                             if (*(int *)(puVar7 + -0x6c) == -1) {
                                 *(u8 **)(puVar7 + -0xb0) = &g_8c436738;

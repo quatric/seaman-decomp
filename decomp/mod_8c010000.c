@@ -12161,8 +12161,8 @@ int toupper_0146b4(u32 a0) {
 
 /*
  * vsprintf_like  0x8c0146d0
- * called by: alt_entry_1f4574, cri_uses_vsprintf_like_25ecea, debug_log_printf, debug_printf, debug_printf_to_hook,
- * lib_error_printf, sd_uses_vsprintf_like_26a152
+ * called by: alt_entry_1f4574, cri_error_printf, debug_log_printf, debug_printf, debug_printf_to_hook,
+ * lib_error_printf, sd_error_printf
  */
 u32 vsprintf_like(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -23272,7 +23272,7 @@ int game_uses_list_push_front_01f8a4(int *a0, u32 unused_a1, int *a2, int a3) {
                 switch (iVar1) {
                 default:
                     ar5_00 = (int *)a0[1];
-                    game_release_01fd08(a0, ar5_00, a2, a3);
+                    game_uses_CDCGD_queue_unique_request_01fd08(a0, ar5_00, a2, a3);
                     break;
                 case 0xb:
                 case 0xc:
@@ -23459,18 +23459,19 @@ u32 game_copy_01fc78(int a0, u32 *a1, u32 a2, u32 a3) {
     strcpy(auStack_dc, iVar2);
     uStack_e0 = *(u32 *)(iVar2 + 0x20);
     iStack_e4 = iVar2 + 0x40;
-    uVar1 = game_release_01fd08(a0, &uStack_ec, a2, a3);
+    uVar1 = game_uses_CDCGD_queue_unique_request_01fd08(a0, &uStack_ec, a2, a3);
     return uVar1;
 }
 
 /*
- * game_release_01fd08  0x8c01fd08
+ * game_uses_CDCGD_queue_unique_request_01fd08  0x8c01fd08
  * name hint from a string it uses: MCJNMBJNLTJNILJNACJNMDMNMILN; area name: game code; nothing names its area yet;
- * behaviour name: mostly calls release functions called by: game_copy_01fc78, game_uses_list_push_front_01f8a4 strings:
- * "MCJNMBJNLTJNILJNACJNMDMNMILNMACNMSSNDAJN0FOP\\"; "MBJNLTJNILJNACJNMDMNMILNMACNMSSNDAJN0FOP\\";
- * "LTJNILJNACJNMDMNMILNMACNMSSNDAJN0FOP\\"; "ILJNACJNMDMNMILNMACNMSSNDAJN0FOP\\" ...
+ * behaviour name: its main named callee is CDCGD_queue_unique_request called by: game_copy_01fc78,
+ * game_uses_list_push_front_01f8a4 strings: "MCJNMBJNLTJNILJNACJNMDMNMILNMACNMSSNDAJN0FOP\\";
+ * "MBJNLTJNILJNACJNMDMNMILNMACNMSSNDAJN0FOP\\"; "LTJNILJNACJNMDMNMILNMACNMSSNDAJN0FOP\\";
+ * "ILJNACJNMDMNMILNMACNMSSNDAJN0FOP\\" ...
  */
-int game_release_01fd08(u32 a0, int *a1, u32 unused_a2, u32 a3) {
+int game_uses_CDCGD_queue_unique_request_01fd08(u32 a0, int *a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int *ar5_00;
     int *ar6_00;
@@ -23507,37 +23508,37 @@ int game_release_01fd08(u32 a0, int *a1, u32 unused_a2, u32 a3) {
             break;
         if (aiStack_44[2] == aiStack_44[0]) {
             a3 = 0;
-            game_release_01fec4(a0, a1, iVar1, 0);
+            CDCGD_queue_unique_request(a0, a1, iVar1, 0);
         } else if (iStack_38 == aiStack_44[0]) {
             a3 = 1;
-            game_release_01fec4(a0, a1, iVar1, 1);
+            CDCGD_queue_unique_request(a0, a1, iVar1, 1);
         } else if (iStack_34 == aiStack_44[0]) {
             a3 = 2;
-            game_release_01fec4(a0, a1, iVar1, 2);
+            CDCGD_queue_unique_request(a0, a1, iVar1, 2);
         } else if (iStack_30 == aiStack_44[0]) {
             a3 = 3;
-            game_release_01fec4(a0, a1, iVar1, 3);
+            CDCGD_queue_unique_request(a0, a1, iVar1, 3);
         } else if (iStack_2c == aiStack_44[0]) {
             a3 = 4;
-            game_release_01fec4(a0, a1, iVar1, 4);
+            CDCGD_queue_unique_request(a0, a1, iVar1, 4);
         } else if (iStack_28 == aiStack_44[0]) {
             a3 = 5;
-            game_release_01fec4(a0, a1, iVar1, 5);
+            CDCGD_queue_unique_request(a0, a1, iVar1, 5);
         } else if (iStack_24 == aiStack_44[0]) {
             a3 = 6;
-            game_release_01fec4(a0, a1, iVar1, 6);
+            CDCGD_queue_unique_request(a0, a1, iVar1, 6);
         } else if (iStack_20 == aiStack_44[0]) {
             a3 = 7;
-            game_release_01fec4(a0, a1, iVar1, 7);
+            CDCGD_queue_unique_request(a0, a1, iVar1, 7);
         } else if (iStack_1c == aiStack_44[0]) {
             a3 = 8;
-            game_release_01fec4(a0, a1, iVar1, 8);
+            CDCGD_queue_unique_request(a0, a1, iVar1, 8);
         } else if (iStack_18 == aiStack_44[0]) {
             a3 = 9;
-            game_release_01fec4(a0, a1, iVar1, 9);
+            CDCGD_queue_unique_request(a0, a1, iVar1, 9);
         } else if (iStack_14 == aiStack_44[0]) {
             a3 = 10;
-            game_release_01fec4(a0, a1, iVar1, 10);
+            CDCGD_queue_unique_request(a0, a1, iVar1, 10);
         } else {
             free_sys(iVar1, ar5_00, ar6_00, a3);
         }
@@ -23550,11 +23551,11 @@ int game_release_01fd08(u32 a0, int *a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_release_01fec4  0x8c01fec4
- * area name: game code; nothing names its area yet; behaviour name: mostly calls release functions
- * called by: game_release_01fd08
+ * CDCGD_queue_unique_request  0x8c01fec4
+ * queues a new request for a3 (copying a1's names and 32 callbacks, buffer a2) unless one already exists, in which case
+ * a2 is freed called by: game_uses_CDCGD_queue_unique_request_01fd08
  */
-u32 game_release_01fec4(int a0, int a1, u32 a2, u32 a3) {
+u32 CDCGD_queue_unique_request(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 ar6_00;

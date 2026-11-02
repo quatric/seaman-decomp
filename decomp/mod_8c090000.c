@@ -7611,7 +7611,7 @@ u32 Class_12a990_m2_09bc2c(int a0, float *a1, code *a2, code *a3) {
                     *(u8 *)(a0 + 0x6e0) = 2;
                 }
                 if ((*(char *)(a0 + 0x9a0) == '\0') &&
-                    (iVar5 = game_uses_get_field_0_s8_02c518(a0 + 0x174, pfVar7, a2), iVar5 != -1)) {
+                    (iVar5 = talk_pick_highest_active(a0 + 0x174, pfVar7, a2), iVar5 != -1)) {
                     *(u8 *)(a0 + 0x6e0) = 0xff;
                     *(u32 *)(a0 + 0x9d4) = 0;
                 }
@@ -7846,7 +7846,7 @@ u32 Class_12a990_m2_09bc2c(int a0, float *a1, code *a2, code *a3) {
             } else {
                 *(u64 *)(a0 + 0x6c4) = uVar12;
             }
-            iVar5 = game_uses_get_field_0_s8_02c518(a0 + 0x174, pfVar7, a2);
+            iVar5 = talk_pick_highest_active(a0 + 0x174, pfVar7, a2);
             if (iVar5 == -1) {
                 if (cVar18 == '\0') {
                     *(u32 *)(a0 + 0x6cc) = 0x3f99999a;
@@ -10398,7 +10398,7 @@ u32 Class_12acc8_uses_set_field_38_09ff1c(int a0, u32 a1, int *a2, int a3) {
     if (*(int *)(a0 + 0x38) == 2) {
         *(u32 *)(a0 + 0xc) = 0;
         *(u32 *)(a0 + 0x40) = *(u32 *)(&g_8c13adfc + *(int *)(a0 + 0xc) * 4 + a3 * 0xc);
-        Class_12acc8_uses_rand_0a00f8(a0, a1, a2, a3);
+        Class_12acc8_talk_0a00f8(a0, a1, a2, a3);
         a5 = 1;
         set_field_38_02f404(a0, 1);
     }
@@ -10419,8 +10419,7 @@ u32 Class_12acc8_uses_set_field_38_09ff1c(int a0, u32 a1, int *a2, int a3) {
             mask_74_fffffffe(iVar2);
             CAnimal_calls_test_0c4e2c(iVar2, a5, ar6_00, a3);
         }
-    } else if (((iVar1 == 10) && (iVar2 = game_uses_get_field_0_s8_02c518(a2[1], a5, ar6_00), iVar2 != 0)) &&
-               (iVar2 == 1)) {
+    } else if (((iVar1 == 10) && (iVar2 = talk_pick_highest_active(a2[1], a5, ar6_00), iVar2 != 0)) && (iVar2 == 1)) {
         *(u32 *)(a0 + 0x40) = 0xe;
     }
     return 1;

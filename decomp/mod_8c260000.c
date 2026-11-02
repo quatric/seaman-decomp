@@ -8438,10 +8438,10 @@ u32 sd_fill_loop_2667cc(void) {
 }
 
 /*
- * sd_sound_26686a  0x8c26686a
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_check_index_0_32  0x8c26686a
+ * error 0x3000001 (recorded) unless 0 <= a1 <= 32
  */
-int sd_sound_26686a(u32 unused_a0, u32 a1, u32 a2) {
+int sd_check_index_0_32(u32 unused_a0, u32 a1, u32 a2) {
     int ar5_00;
 
     ar5_00 = 0;
@@ -8449,16 +8449,16 @@ int sd_sound_26686a(u32 unused_a0, u32 a1, u32 a2) {
         ar5_00 = 0x3000001;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sound_26686a, ar5_00, a2);
+        sd_set_last_error(sd_check_index_0_32, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sound_26686e  0x8c26686e
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_check_index_0_32_alt  0x8c26686e
+ * second entry into sd_check_index_0_32 testing a0
  */
-int sd_sound_26686e(int a0, u32 unused_a1, u32 a2) {
+int sd_check_index_0_32_alt(int a0, u32 unused_a1, u32 a2) {
     int ar5_00;
 
     ar5_00 = 0;
@@ -13003,10 +13003,10 @@ u32 debug_printf(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0, u3
 }
 
 /*
- * sd_uses_vsprintf_like_26a152  0x8c26a152
- * area name: in the sd library code range; behaviour name: its main named callee is vsprintf_like
+ * sd_error_printf  0x8c26a152
+ * formats the message into the sound driver's buffer and passes it to its registered error callback, if any
  */
-u32 sd_uses_vsprintf_like_26a152(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12) {
+u32 sd_error_printf(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12) {
     u32 uVar1;
     u32 *ar6_00;
 

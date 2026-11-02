@@ -602,7 +602,7 @@ int game_uses_get_word_array_a4_0620d4(int a0, int *a1, int a2, u32 a3) {
     uVar2 = talk_uses_table13019c_find_row_02bef8(*(u32 *)(a2 + 4), uVar5, ar6_00);
     iVar3 = 3;
     if ((((3 < (short)uVar2) && (iVar3 = (int)cVar6, iVar3 == 1)) &&
-         (iVar3 = game_uses_get_field_0_s8_02c518(*(u32 *)(a2 + 4), uVar5, ar6_00), iVar3 == -1)) &&
+         (iVar3 = talk_pick_highest_active(*(u32 *)(a2 + 4), uVar5, ar6_00), iVar3 == -1)) &&
         (iVar3 = 0xf, 0xf < uVar1)) {
         for (iVar3 = 0; iVar4 = (**(code **)(*a1 + 0x11c))(a1, 5, ar6_00, a3), iVar3 < iVar4; iVar3 = iVar3 + 1) {
             uVar2 = 5;
@@ -1102,7 +1102,7 @@ int FrogMan_react_tap(int a0, code *a1, code *a2, char *a3) {
             if (((((cVar9 == '\0' && fVar8 < fVar7) &&
                    (iVar2 = (**(code **)(*(int *)a1 + 0x18c))(a1, pcVar5, pcVar6, a3), iVar2 == 0)) &&
                   (uVar3 = get_field_bc_s8(*(u32 *)(a2 + 0xc), pcVar5, pcVar6, a3), (char)uVar3 == '\x02')) &&
-                 ((iVar2 = game_uses_get_field_0_s8_02c518(*(u32 *)(a2 + 4), pcVar5, pcVar6),
+                 ((iVar2 = talk_pick_highest_active(*(u32 *)(a2 + 4), pcVar5, pcVar6),
                    iVar2 == -1 && (uVar3 = get_field_0_s8(*(int *)(a2 + 4) + 0x78), (char)uVar3 != '\x01')))) &&
                 (iVar2 = get_field_4_062878(*(u32 *)(a2 + 0xc)), iVar2 == 1)) {
                 counter_set_clamped(*(int *)(a2 + 4) + 0x90, 0, pcVar6);
@@ -1321,7 +1321,7 @@ u8 **FrogMan_jump_events(code *a0, int *a1, code *a2, u32 a3) {
     uVar5 = *(u32 *)(a2 + 0xc);
     ar5_00 = a1;
     get_field_44_s8(uVar5, a1, uVar5, a3);
-    game_uses_get_field_0_s8_02c518(*(u32 *)(a2 + 4), ar5_00, uVar5);
+    talk_pick_highest_active(*(u32 *)(a2 + 4), ar5_00, uVar5);
     get_field_4_on_field_d8(*(u32 *)(*(int *)(a2 + 0x18) + 0x7cc), ar5_00, uVar5);
     get_field_a0_035724(*(u32 *)(a2 + 0x18), ar5_00);
     uVar1 = talk_uses_table13019c_find_row_02bef8(*(u32 *)(a2 + 4), ar5_00, uVar5);
@@ -1346,7 +1346,7 @@ u8 **FrogMan_jump_events(code *a0, int *a1, code *a2, u32 a3) {
         if (iVar4 == 4) {
             ar5_01 = *(code **)(a2 + 0x18);
             pcVar6 = (code *)get_field_4_on_field_d8(*(u32 *)(ar5_01 + 0x7cc), ar5_01, pcVar6);
-            if (((pcVar6 == NULL) && (ar5_01 = (code *)game_uses_get_field_0_s8_02c518(*(u32 *)(a2 + 4), ar5_01, 0),
+            if (((pcVar6 == NULL) && (ar5_01 = (code *)talk_pick_highest_active(*(u32 *)(a2 + 4), ar5_01, 0),
                                       ar5_01 == (code *)0xffffffff)) &&
                 (iVar4 = get_field_124_027930(*(u32 *)(a2 + 8), 0xffffffff, pcVar6, ar7_00), iVar4 == 0)) {
                 ar5_01 = *(code **)(a2 + 0x18);
@@ -1419,7 +1419,7 @@ u8 **FrogMan_jump_events(code *a0, int *a1, code *a2, u32 a3) {
             pcVar6 = get_field_bc_s8;
             uVar1 = get_field_bc_s8(*(u32 *)(a2 + 0xc), ar5_01, get_field_bc_s8, ar7_00);
             if (((char)uVar1 == '\x02') &&
-                (iVar4 = game_uses_get_field_0_s8_02c518(*(u32 *)(a2 + 4), ar5_01, pcVar6), iVar4 == -1)) {
+                (iVar4 = talk_pick_highest_active(*(u32 *)(a2 + 4), ar5_01, pcVar6), iVar4 == -1)) {
                 ar5_01 = get_field_124_027930;
                 iVar4 = get_field_124_027930(*(u32 *)(a2 + 8), get_field_124_027930, pcVar6, ar7_00);
                 if ((((iVar4 == 0) &&
@@ -1674,7 +1674,7 @@ LAB_8c063f66:
         }
         uVar1 = get_field_3b_s8(*(u32 *)(a2 + 0xc));
         if (((((char)uVar1 < '\x02') ||
-              (iVar4 = game_uses_get_field_0_s8_02c518(*(u32 *)(a2 + 4), ar5_01, pcVar6), iVar4 != -1)) ||
+              (iVar4 = talk_pick_highest_active(*(u32 *)(a2 + 4), ar5_01, pcVar6), iVar4 != -1)) ||
              (uVar1 = get_field_bc_s8(*(u32 *)(a2 + 0xc), ar5_01, pcVar6, ar7_01), (char)uVar1 != '\x02')) ||
             (*(int *)(a0 + 0x10c) != 4)) {
             if (*(int *)(a0 + 0x10c) == 4) {
@@ -2049,7 +2049,7 @@ int talk_uses_get_field_8_s8_0652f4(int a0, u32 a1, int a2, u32 a3) {
 
     cVar3 = '\0';
     ar6_00 = a2;
-    iVar1 = game_uses_get_field_0_s8_02c518(*(u32 *)(a2 + 4), a1, a2);
+    iVar1 = talk_pick_highest_active(*(u32 *)(a2 + 4), a1, a2);
     if (iVar1 == 0) {
         *(u32 *)(a0 + 0x118) = 0;
         uVar2 = get_field_8_s8(*(u32 *)(a2 + 4), a1);
@@ -2460,7 +2460,7 @@ int game_uses_get_field_0_s8_065cb0(int a0, u32 a1, int a2) {
         if (iVar2 != 0x10)
             goto LAB_8c065e2a;
     }
-    iVar3 = game_uses_get_field_0_s8_02c518(*(u32 *)(a2 + 4), a1, iVar3);
+    iVar3 = talk_pick_highest_active(*(u32 *)(a2 + 4), a1, iVar3);
     if (iVar3 == 0) {
         *(u32 *)(a0 + 0x94) = 0x14;
     } else if (iVar3 == 1) {
@@ -2763,7 +2763,7 @@ u32 *Class_12a078_uses_get_field_8_0665a0(int a0, int a1, u32 a2) {
     int iVar1;
     u32 *puVar2;
 
-    iVar1 = game_uses_get_field_0_s8_02c518(*(u32 *)(a1 + 4), a1, a2);
+    iVar1 = talk_pick_highest_active(*(u32 *)(a1 + 4), a1, a2);
     if ((iVar1 == 0) || (iVar1 != 1)) {
         if (*(int *)(a0 + 4) == 2) {
             puVar2 = (u32 *)get_field_8_066620(a0);
@@ -2944,7 +2944,7 @@ u32 game_vec_066834(int a0, int *a1, u32 *a2, u32 a3) {
         puVar5 = auStack_17c;
         get_vec3_field_50(*a2, puVar5, ar6_01, ar7_00);
         Vec3_set_xyz(auStack_88, puVar5, ar6_01, ar7_00);
-        iVar1 = game_uses_get_field_0_s8_02c518(a2[1], puVar5, ar6_01);
+        iVar1 = talk_pick_highest_active(a2[1], puVar5, ar6_01);
         if (iVar1 == 4) {
             uVar2 = talk_uses_table13019c_find_row_02bef8(a2[1], puVar5, ar6_01);
             if ((short)uVar2 < 3) {
