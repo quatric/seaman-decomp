@@ -824,3 +824,5 @@
 8c01e028	buf256_clear	zeroes the length word and the 256 bytes after it at a1
 8c01e4dc	buf256_clear_b	zeroes the length word and the 256 bytes after it at a0
 8c01e04c	buf256_copy_from_global	copies the global buffer (8c279288, length 8c27928c) into a1
+8c01ab78	memcard_queue_request	appends a request (op a1, file name a2) to the 128-entry memory-card queue; returns its id or -1
+8c01a760	memcard_run_request	runs the request at the head of the memory-card queue through the handler for its op (0..13)

@@ -338,12 +338,12 @@ address	name	file	params
 8c01a3e4	Class_129a24_sub_01a3e4	mod_8c010000.c	3
 8c01a5cc	game_sub_01a5cc	mod_8c010000.c	4
 8c01a630	game_sub_01a630	mod_8c010000.c	4
-8c01a760	game_sub_01a760	mod_8c010000.c	4
+8c01a760	memcard_run_request	mod_8c010000.c	4
 8c01a900	game_sub_01a900	mod_8c010000.c	1
 8c01a98c	game_sub_01a98c	mod_8c010000.c	4
 8c01aa94	game_sub_01aa94	mod_8c010000.c	1
 8c01ab2c	memcard_flush_and_close	mod_8c010000.c	4
-8c01ab78	game_sub_01ab78	mod_8c010000.c	4
+8c01ab78	memcard_queue_request	mod_8c010000.c	4
 8c01acd0	wait_state_rtc_10s	mod_8c010000.c	4
 8c01ad88	Class_12b388_sub_01ad88	mod_8c010000.c	1
 8c01ad9c	memcard_request_status	mod_8c010000.c	2

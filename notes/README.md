@@ -452,7 +452,7 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
 - Hand names in `tools/readable_names.tsv` for the most-called helpers: libc (strcmp, memcmp, strcat, sprintf, the printf
   core), Vec3 math, the matrix stack, and the Ninja texture calls (njSetTexture 8c25b3ec selects the list at 0x8c277b04,
   njSetTextureNum 8c25b434 loads one texture's TA parameters through 8c20fe00).
-- `decomp/`: every function named: 2,410 precise names (was 1,026) and 3,937 area names, all unique. About 700 of those are shape names. Also named: strtol/atoi, spline and lerp math, interrupt nesting (8c260ca0/8c260cc8), the RTC date conversion (8c1f826c, epoch 1950).
+- `decomp/`: every function named: 2,412 precise names (was 1,026) and 3,935 area names, all unique. About 700 of those are shape names. Also named: strtol/atoi, spline and lerp math, interrupt nesting (8c260ca0/8c260cc8), the RTC date conversion (8c1f826c, epoch 1950).
 - Also named: the speech player at 0x8c35468c (speech_start 8c0f8368 plays a named line such as "HIGYOLINE0"; speech_request,
   speech_restart, speech_stop), the serial debug output (scif_putc 8c1fac58, used by the crash dump), Ninja's outer product,
   sin/cos and polygon-state copies.
@@ -498,3 +498,17 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
 - Creature constructors from their name strings: CAnimal_ctor 8c0254d0 (base) and the FrogMan, Higyo, Moth, Spider egg and
   line stages, CMushroomerLine; memory-card save layer (memcard_save_start, memcard_load_wait, save_file_load,
   save_files_presence) and the environment model loaders (heater, O2 supply, sprinkler, ring, tank, event 1 whirlpool).
+
+### More function names (2026-11-02, eighth session)
+
+- 47 "functions" at 8c1b8a34..8c1bab30 decompile only to `halt_baddata`/`halt_unimplemented`: they are data that Ghidra
+  decoded as code. They are named `not_code_<addr>` so they stand out (and no longer count as area names).
+- CRI sound-file checks from their magic strings: AIFF (FORM/AIFF), AU (.snd/.sd), SPSD, WAV (RIFF/WAVE);
+  adxf_ChkPrmPt from its error string; mwSnd_flush_host_cmd (E1241).
+- Shinobi: day_of_week is Zeller's congruence; ipbin_get_disc_info reads the "n/m" disc number (+0x2b) and the product
+  number (+0x40) of the IP.BIN at 8c008000; be_read_n/be_write_n, bswap32, cache_writeback_range, the exit-handler list.
+- Ninja: catmull_rom_vec3 (Catmull-Rom spline with t in fr5); njCalcVector_like rotates a vector by a matrix and normalises
+  it when 8c4ab148 is set.
+- Memory-card queue: memcard_queue_request adds (op, file name) to 128 slots of 0x28 bytes at +0x244c;
+  memcard_run_request dispatches ops 0..13 (0 load, 2 save, 3 save with icon, 10/11 Maple set-condition with the 4 bytes
+  at 8c12fb10/8c12fb14, 12/13 LCD-like writes through bios 8c1f3c78; the rest map to Shinobi bu* calls not yet identified).
