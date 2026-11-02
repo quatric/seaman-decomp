@@ -1148,7 +1148,7 @@ u32 ret_const_0_200aec(void) {
 /*
  * shinobi_save_200b10  0x8c200b10
  * area name: in the shinobi library code range; behaviour name: mostly calls save functions
- * called by: shinobi_input_2014e6, shinobi_save_1fe534, shinobi_save_1ff478, shinobi_save_20147c
+ * called by: shinobi_input_2014e6, shinobi_save_1fe534, shinobi_save_1ff478, vmu_file_get_block_list
  */
 int shinobi_save_200b10(int a0, u32 a1) {
     int iVar1;
@@ -1363,10 +1363,10 @@ u32 shinobi_update_fields_200cf4(int a0) {
 }
 
 /*
- * shinobi_input_200d94  0x8c200d94
- * area name: in the shinobi library code range; behaviour name: mostly calls input functions
+ * vmu_read_blocks_to  0x8c200d94
+ * reads every block of the drive's area into the buffer a1, 512 bytes each; stops at the first error
  */
-u32 shinobi_input_200d94(int a0, int a1) {
+u32 vmu_read_blocks_to(int a0, int a1) {
     int iVar1;
     int ar5_00;
     int iVar2;
@@ -1425,10 +1425,10 @@ u32 alt_entry_200db0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * shinobi_input_200e1e  0x8c200e1e
- * area name: in the shinobi library code range; behaviour name: mostly calls input functions
+ * vmu_write_blocks_from  0x8c200e1e
+ * writes every block of the drive's area from the buffer a1, 512 bytes each; stops at the first error
  */
-u32 shinobi_input_200e1e(int a0, int a1, u32 unused_a2, u32 a3) {
+u32 vmu_write_blocks_from(int a0, int a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int ar5_00;
     int iVar2;
@@ -1885,10 +1885,10 @@ int shinobi_save_2013c2(int a0, u32 a1, int a2, int a3, u32 s0) {
 }
 
 /*
- * shinobi_save_20147c  0x8c20147c
- * area name: in the shinobi library code range; behaviour name: mostly calls save functions
+ * vmu_file_get_block_list  0x8c20147c
+ * finds file a1 on drive a0 and fills a2 with its chain of block numbers from the FAT; 0xffffff05 if not found
  */
-int shinobi_save_20147c(u32 a0, u32 a1, u16 *a2) {
+int vmu_file_get_block_list(u32 a0, u32 a1, u16 *a2) {
     int a5;
     u32 uVar1;
     u8 *a6;
@@ -2317,7 +2317,7 @@ u32 ta_copy_201994(void) {
     ar6_00 = 0x20;
     ar5_00 = (&shinobi_input_201b10);
     uVar2 = ta_uses_ret_const_1_1fa244(ar4_00, (&shinobi_input_201b10), 0x20, 0);
-    puVar1 = (&shinobi_fill_loop_2029fc);
+    puVar1 = (&maple_port_info_snapshot);
     g_8c47e920 = uVar2;
     (*(code *)puVar1)(ar4_00, ar5_00, ar6_00, ar7_00);
     return 0;
@@ -4137,10 +4137,10 @@ u32 cmp_u64_pair(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32
 }
 
 /*
- * shinobi_fill_loop_2029fc  0x8c2029fc
- * area name: in the shinobi library code range; behaviour name: a loop that writes memory
+ * maple_port_info_snapshot  0x8c2029fc
+ * copies the first byte of each of the 24 maple port info records into the table at 8c47e928
  */
-int shinobi_fill_loop_2029fc(void) {
+int maple_port_info_snapshot(void) {
     int iVar1;
     u8 *puVar2;
     u8 *pbVar3;
@@ -8422,7 +8422,7 @@ u32 callback_table_call(int a0) {
  * pvr_scan_loop_207300  0x8c207300
  * area name: sits between pvr functions (same compilation unit); behaviour name: a loop that only reads
  * called by: alt_entry_20af22, kamui_calls_scan_loop_212220, kamui_calls_scan_loop_212284,
- * kamui_calls_scan_loop_2122ea, pvr_calls_scan_loop_2103c4, ta_calls_scan_loop_20af20
+ * kamui_calls_scan_loop_2122ea, pvr_calls_scan_loop_2103c4, shinobi_calls_scan_loop_20af20
  */
 u32 pvr_scan_loop_207300(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -8936,7 +8936,7 @@ u32 pvr_write_saved_regs(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * shinobi_scan_loop_2079fc  0x8c2079fc
  * area name: in the shinobi library code range; behaviour name: a loop that only reads
- * called by: ta_draw_20ade0
+ * called by: pvr_draw_20ade0
  */
 u32 shinobi_scan_loop_2079fc(void) {
     u32 in_r0;
@@ -11191,10 +11191,10 @@ u32 ta_fifo_20a2aa(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_scan_loop_20a2e2  0x8c20a2e2
- * area name: in the shinobi library code range; behaviour name: a loop that only reads
+ * pvr_palette_upload  0x8c20a2e2
+ * writes palette entries a0..a1 (at most 0x3ff) from the table a2 into PVR palette RAM (a05f9000)
  */
-u32 shinobi_scan_loop_20a2e2(int a0, int a1, int a2, u32 a3) {
+u32 pvr_palette_upload(int a0, int a1, int a2, u32 a3) {
     u8 *puVar1;
     int in_r3;
     u32 ar5_00;
@@ -11648,10 +11648,10 @@ u32 ta_fill_loop_20aacc(int a0) {
 }
 
 /*
- * ta_draw_20ad04  0x8c20ad04
- * area name: sits between ta functions (same compilation unit); behaviour name: mostly calls draw functions
+ * pvr_set_yuv_converter  0x8c20ad04
+ * programs TA_YUV_TEX_CTRL (size a3 x s0 macroblocks, format a1, a2 = tex) and TA_YUV_TEX_BASE from a0
  */
-u32 ta_draw_20ad04(int a0, int a1, int a2, int a3, int s0) {
+u32 pvr_set_yuv_converter(int a0, int a1, int a2, int a3, int s0) {
     u32 uVar1;
     u32 ar7_00;
 
@@ -11670,10 +11670,10 @@ u32 ta_draw_20ad04(int a0, int a1, int a2, int a3, int s0) {
 }
 
 /*
- * ta_draw_20ade0  0x8c20ade0
- * area name: sits between ta functions (same compilation unit); behaviour name: mostly calls draw functions
+ * pvr_draw_20ade0  0x8c20ade0
+ * area name: sits between pvr functions (same compilation unit); behaviour name: mostly calls draw functions
  */
-u32 ta_draw_20ade0(int a0) {
+u32 pvr_draw_20ade0(int a0) {
     u32 ar5_00;
     int iVar1;
     u32 ar6_00;
@@ -11711,21 +11711,21 @@ u32 ta_draw_20ade0(int a0) {
 }
 
 /*
- * ta_test_20aed8  0x8c20aed8
- * area name: sits between ta functions (same compilation unit); behaviour name: returns the result of a comparison
+ * pvr_test_20aed8  0x8c20aed8
+ * area name: sits between pvr functions (same compilation unit); behaviour name: returns the result of a comparison
  * called by: ninja_uses_aica_reg_258604
  */
-u32 ta_test_20aed8(u32 a0) {
+u32 pvr_test_20aed8(u32 a0) {
     g_8c4aa098 = a0;
     return 0;
 }
 
 /*
- * ta_calls_scan_loop_20af20  0x8c20af20
- * area name: sits between ta functions (same compilation unit); behaviour name: its callees mostly do: scan_loop
+ * shinobi_calls_scan_loop_20af20  0x8c20af20
+ * area name: in the shinobi library code range; behaviour name: its callees mostly do: scan_loop
  * called by: ta_copy_20b7a0
  */
-u32 ta_calls_scan_loop_20af20(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 shinobi_calls_scan_loop_20af20(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u8 *ar5_00;
@@ -11773,11 +11773,11 @@ int alt_entry_20af22(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * ta_draw_20af76  0x8c20af76
- * area name: sits between ta functions (same compilation unit); behaviour name: mostly calls draw functions
+ * shinobi_draw_20af76  0x8c20af76
+ * area name: in the shinobi library code range; behaviour name: mostly calls draw functions
  * called by: kamui_draw_211f40
  */
-u32 ta_draw_20af76(int a0, int a1, int a2, u32 a3) {
+u32 shinobi_draw_20af76(int a0, int a1, int a2, u32 a3) {
     int iVar1;
     int *piVar2;
     u8 *puVar3;
@@ -12098,7 +12098,7 @@ u32 ta_copy_20b7a0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
     puStack_68 = g_8c26d400;
     if (((((g_8c4a9bb0 & 0x40) != 0) && (g_8c4aa05c != 0)) && (g_8c4aa064 != 0)) && (g_8c4a9d70 != 0)) {
-        ta_calls_scan_loop_20af20(unused_a0, unused_a1, unused_a2, a3);
+        shinobi_calls_scan_loop_20af20(unused_a0, unused_a1, unused_a2, a3);
     }
     iVar5 = g_8c4a9f08 * 4;
     apuStack_34[0] = (u32 *)(iVar5 + 0x8c4a9f2c);

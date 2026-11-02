@@ -424,10 +424,10 @@ u32 set_field_10ac(int a0) {
 }
 
 /*
- * pack_update_fields_0e08b0  0x8c0e08b0
- * area name: sits between pack functions (same compilation unit); behaviour name: conditionally writes members
+ * env_set_flag_22810  0x8c0e08b0
+ * sets the environment flag at +0x22810 to 1 when a1 is 1, else 0
  */
-int pack_update_fields_0e08b0(int a0, int a1) {
+int env_set_flag_22810(int a0, int a1) {
     int iVar1;
 
     if (a1 == 1) {
@@ -441,10 +441,10 @@ int pack_update_fields_0e08b0(int a0, int a1) {
 }
 
 /*
- * pack_update_fields_0e08d0  0x8c0e08d0
- * area name: sits between pack functions (same compilation unit); behaviour name: conditionally writes members
+ * env_set_flag_22814  0x8c0e08d0
+ * sets the environment flag at +0x22814 to 1 when a1 is 1, else 0
  */
-int pack_update_fields_0e08d0(int a0, int a1) {
+int env_set_flag_22814(int a0, int a1) {
     int iVar1;
 
     if (a1 == 1) {
@@ -458,10 +458,10 @@ int pack_update_fields_0e08d0(int a0, int a1) {
 }
 
 /*
- * pack_calc_0e08f0  0x8c0e08f0
- * area name: sits between pack functions (same compilation unit); behaviour name: integer arithmetic on its arguments
+ * env_get_flags_22810_22814  0x8c0e08f0
+ * packs the two flags into *s0: bit 0 = +0x22810, bit 1 = +0x22814
  */
-u32 pack_calc_0e08f0(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 *s0) {
+u32 env_get_flags_22810_22814(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 *s0) {
     u32 uStack_4;
 
     uStack_4 = uStack_4 & 0xfffffffc;
@@ -566,10 +566,10 @@ u32 game_vec_0e0988(int a0, u32 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_float_10_positive_0e0b2c  0x8c0e0b2c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is float_10_positive
+ * env_mode_effect_active  0x8c0e0b2c
+ * whether the effect for mode a1 (0, 1 or 4) is active
  */
-u32 game_uses_float_10_positive_0e0b2c(int a0, int a1) {
+u32 env_mode_effect_active(int a0, int a1) {
     u32 uVar1;
 
     if (a1 == 0) {
@@ -587,7 +587,7 @@ u32 game_uses_float_10_positive_0e0b2c(int a0, int a1) {
 /*
  * field_eb44_is_1  0x8c0e0ba8
  * 1 when the word at +0xeb44 is 1
- * called by: game_uses_float_10_positive_0e0b2c
+ * called by: env_mode_effect_active
  */
 u32 field_eb44_is_1(int a0, u32 a1) {
     return (u32)(*(int *)(0xeb44 + a0) == 1);
@@ -596,7 +596,7 @@ u32 field_eb44_is_1(int a0, u32 a1) {
 /*
  * fields_14_18_both_1  0x8c0e0bb8
  * 1 when the words at +0x14 and +0x18 are both 1
- * called by: game_uses_float_10_positive_0e0b2c
+ * called by: env_mode_effect_active
  */
 u32 fields_14_18_both_1(int a0, u32 a1) {
     if ((*(int *)(a0 + 0x18) == 1) && (*(int *)(a0 + 0x14) == 1)) {
@@ -608,7 +608,7 @@ u32 fields_14_18_both_1(int a0, u32 a1) {
 /*
  * float_10_positive  0x8c0e0bd0
  * 1 when the float at +0x10 is above 0
- * called by: game_uses_float_10_positive_0e0b2c
+ * called by: env_mode_effect_active
  */
 u32 float_10_positive(int a0, u32 a1) {
     if (*(float *)(a0 + 0x10) <= 0.0) {
@@ -1801,7 +1801,7 @@ u32 game_uses_stick_x_right_half_0e1f90(int a0, u32 *a1, u8 *a2, u32 a3) {
 /*
  * input_a_pressed_wrap  0x8c0e252c
  * only calls input_a_pressed
- * called by: game_uses_get_field_cc_0e6804, game_uses_stick_x_right_half_0e1f90, input_uses_get_field_24_0e25c0
+ * called by: a_button_mic_start_stop_like, game_uses_stick_x_right_half_0e1f90, input_uses_get_field_24_0e25c0
  */
 u32 input_a_pressed_wrap(int a0) {
     u32 uVar1;
@@ -3158,7 +3158,7 @@ u32 game_uses_set_timeout_120_mode6_0e4348(int a0, u32 a1) {
 /*
  * Class_12b758_ctor  0x8c0e4378
  * stores the vtable 0x8c12b758
- * called by: game_uses_Class_12b36c_ctor_0c5340
+ * called by: Class_12b388_ctor
  * strings: "SoilTank"
  */
 u32 *Class_12b758_ctor(u32 *a0) {
@@ -4221,7 +4221,7 @@ u32 game_uses_gfx_set_vec_0e5dac(void) {
 /*
  * Class_12b580_ctor  0x8c0e5e54
  * stores the vtable 0x8c12b580
- * called by: game_uses_Class_12b36c_ctor_0c5340
+ * called by: Class_12b388_ctor
  * strings: "Outside"; "Outside"
  */
 u32 *Class_12b580_ctor(u32 *a0) {
@@ -4555,10 +4555,10 @@ u32 game_vec_0e676c(int *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_get_field_cc_0e6804  0x8c0e6804
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_cc_0dfee8
+ * a_button_mic_start_stop_like  0x8c0e6804
+ * starts the microphone talk when A is pressed and stops it when A is released
  */
-u32 game_uses_get_field_cc_0e6804(u32 unused_a0, u32 a1, u32 a2) {
+u32 a_button_mic_start_stop_like(u32 unused_a0, u32 a1, u32 a2) {
     u32 ar6_00;
     int iVar1;
     u32 uVar2;
@@ -5082,7 +5082,7 @@ u32 ret_const_11940_0e749c(void) {
 /*
  * Class_12b3b8_ctor  0x8c0e74a8
  * stores the vtable 0x8c12b3b8
- * called by: game_uses_Class_12b36c_ctor_0c5340
+ * called by: Class_12b388_ctor
  * strings: "INCUBATOR"
  */
 u32 *Class_12b3b8_ctor(u32 *a0) {
@@ -5102,20 +5102,20 @@ u32 *Class_12b3b8_ctor(u32 *a0) {
 
     cVar8 = '\0';
     cVar7 = '\0';
-    game_copy_0d99e8(a0, "INCUBATOR", 3);
+    Class_12bce0_ctor(a0, "INCUBATOR", 3);
     *a0 = &g_8c12b3b8;
     uVar2 = 0x20;
     ar6_00 = game_release_0d6f68;
     vec_new_array(a0 + 0x29, game_vec_0d6f28, game_release_0d6f68, 0x20, 0xc);
     set_fields_0_2_wrap(a0 + 0x89);
     Class_129a50_ctor(a0 + 0x8a);
-    Class_12b3b8_vec_01a0cc(a0 + 0xaa);
+    Class_1299ec_ctor(a0 + 0xaa);
     uVar1 = 0;
-    Class_12b3b8_calls_float_calc_015c58(a0 + 0x105, 0);
-    Class_12b3b8_copy_016410(a0 + 0x111);
+    Class_12988c_ctor_arg(a0 + 0x105, 0);
+    Class_129808_copy_016410(a0 + 0x111);
     Class_129908_ctor(a0 + 0x122, uVar1);
     Class_12b3b8_calc_0e89a0(a0, uVar1, ar6_00, uVar2);
-    Class_12b3b8_draw_019384(a0 + 0x8a);
+    Class_129a50_draw_019384(a0 + 0x8a);
     if (cVar8 != '\0') {
         in_fr1 = 0xc1200000;
     }
@@ -5798,10 +5798,10 @@ u32 game_fill_loop_0e8598(int a0, int a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_fill_loop_0e8840  0x8c0e8840
- * area name: game code; nothing names its area yet; behaviour name: a loop that writes memory
+ * item_grid_save_records  0x8c0e8840
+ * clears twelve 0x80-byte records at a1 and has each item of the 3x4 grid save itself (method 0x15c) into the next one
  */
-u32 game_fill_loop_0e8840(int a0, int a1, u32 a2, u32 a3) {
+u32 item_grid_save_records(int a0, int a1, u32 a2, u32 a3) {
     int a4;
     int iVar1;
     int iVar2;
@@ -6499,10 +6499,10 @@ u32 *get_ptr_8c0e8df4(void) {
 }
 
 /*
- * game_calc_0e8df8  0x8c0e8df8
- * area name: game code; nothing names its area yet; behaviour name: integer arithmetic on its arguments
+ * env_grid_lookup_2281c  0x8c0e8df8
+ * the first word of the 11 x 10 floor grid cell under point a1 (x / 224.5, z / 150, clamped)
  */
-u32 game_calc_0e8df8(int a0, float *a1) {
+u32 env_grid_lookup_2281c(int a0, float *a1) {
     int iVar1;
     int iVar2;
 
@@ -6522,10 +6522,10 @@ u32 game_calc_0e8df8(int a0, float *a1) {
 }
 
 /*
- * game_calc_0e8e74  0x8c0e8e74
- * area name: game code; nothing names its area yet; behaviour name: integer arithmetic on its arguments
+ * env_grid_lookup_22820  0x8c0e8e74
+ * the second word of the 11 x 10 floor grid cell under point a1 (x / 224.5, z / 150, clamped)
  */
-u32 game_calc_0e8e74(int a0, float *a1) {
+u32 env_grid_lookup_22820(int a0, float *a1) {
     int iVar1;
     int iVar2;
 
@@ -6666,7 +6666,7 @@ u32 game_list_0e8f54(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     uVar3 = 0x8c437af0;
     pcVar2 = Class_12c394_dtor;
     global_list_push(uVar1, Class_12c394_dtor, 0x8c437af0, a3);
-    uVar1 = game_uses_linear_map_set_range_10291c(0x8c437b28);
+    uVar1 = Class_12c3a4_ctor(0x8c437b28);
     uVar3 = 0x8c437b1c;
     pcVar2 = Class_12c3a4_dtor;
     global_list_push(uVar1, Class_12c3a4_dtor, 0x8c437b1c, a3);

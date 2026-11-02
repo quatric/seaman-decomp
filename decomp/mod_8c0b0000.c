@@ -3467,10 +3467,11 @@ int Class_12b2ac_m7_0b58e8(int a0) {
 }
 
 /*
- * game_uses_Vec3_ctor_xyz_0b590c  0x8c0b590c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is Vec3_ctor_xyz
+ * static_init_vec3s_286d88  0x8c0b590c
+ * static initialiser: builds 4 global Vec3 constants (8c286d88..8c286dac) and registers their destructors, then more
+ * set-up
  */
-u32 game_uses_Vec3_ctor_xyz_0b590c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_286d88(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -6252,7 +6253,7 @@ u32 game_update_fields_0ba870(int a0) {
 /*
  * Class_12b36c_ctor  0x8c0ba898
  * vtable 0x8c12b36c, +4 = 0
- * called by: Class_12b334_ctor, Class_12b350_ctor, game_uses_Class_12b36c_ctor_0c5340
+ * called by: Class_12b334_ctor, Class_12b350_ctor, Class_12b388_ctor
  */
 u32 *Class_12b36c_ctor(u32 *a0) {
     *a0 = (&DATA_8c12b36c);
@@ -6263,7 +6264,7 @@ u32 *Class_12b36c_ctor(u32 *a0) {
 /*
  * Class_12b36c_dtor  0x8c0ba8ac
  * stores the vtable 0x8c12b36c
- * called by: Class_12b334_dtor, Class_12b350_dtor_0baa08, Class_12b388_dtor
+ * called by: Class_12b334_dtor, Class_12b350_dtor, Class_12b388_dtor
  */
 u32 *Class_12b36c_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -6320,11 +6321,11 @@ u32 *Class_12b350_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12b350_dtor  0x8c0ba9c8
+ * vec3_member_dtor_0ba9c8  0x8c0ba9c8
  * destroys the vector and frees the object when a1 > 0
- * called by: Class_12b350_dtor_0baa08
+ * called by: Class_12b350_dtor
  */
-int Class_12b350_dtor(int a0, u32 a1, u32 a2, u32 a3) {
+int vec3_member_dtor_0ba9c8(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
     u32 in_stack_fffffff4;
     u32 ain0;
@@ -6341,11 +6342,11 @@ int Class_12b350_dtor(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12b350_dtor_0baa08  0x8c0baa08
- * stores the vtable 0x8c12b350
- * called by: game_release_0c0368
+ * Class_12b350_dtor  0x8c0baa08
+ * restores the Class_12b350 vtable, destroys its members (+0x158, +0x50, +0x48) and the Class_12b36c base, and frees a0
+ * when asked called by: game_release_0c0368
  */
-u32 *Class_12b350_dtor_0baa08(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 *Class_12b350_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
     u32 in_stack_fffffff4;
     u32 ain0;
@@ -6353,7 +6354,7 @@ u32 *Class_12b350_dtor_0baa08(u32 *a0, u32 a1, u32 a2, u32 a3) {
     ain0 = CONCAT22((short)((u32)in_stack_fffffff4 >> 0x10), (u16)a1);
     if (a0 != NULL) {
         *a0 = &g_8c12b350;
-        Class_12b350_dtor(a0 + 0x56, 0xffffffff, a2, a3);
+        vec3_member_dtor_0ba9c8(a0 + 0x56, 0xffffffff, a2, a3);
         free_if_nonnull_wrap_0151a0(a0 + 0x14, 0xffffffff, a2, a3);
         Class_129920_dtor(a0 + 0x12, 0xffffffff, a2, a3);
         ar5_00 = 0;
@@ -10030,10 +10031,10 @@ int *game_uses_Class_12b350_ctor_0bff8c(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar3;
 
     Class_12b350_ctor(a0 + 3, a1, a2, a3);
-    game_uses_Class_12b36c_ctor_0c5340((int)a0 + 0x17c, a1);
+    Class_12b388_ctor((int)a0 + 0x17c, a1);
     Class_12b334_ctor((int)a0 + 0x2d578);
     game_copy_0ba2cc((int)a0 + 0x2d59c);
-    Class_12b3b8_copy_016410((int)a0 + 0x2ddc4);
+    Class_129808_copy_016410((int)a0 + 0x2ddc4);
     game_vec_0ffb98((int)a0 + 0x2de08, a1, a2, a3);
     CItemGLoader_list_0fed18((int)a0 + 0x2e3a8, a1, a2);
     Class_129920_ctor((int)a0 + 0x2e64c, a1);

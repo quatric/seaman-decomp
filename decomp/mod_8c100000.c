@@ -1896,7 +1896,7 @@ u32 game_vec_102634(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * clear_2_words  0x8c1026ec
  * a0[0..1] = 0
- * called by: Vec3_uses_clear_3_words_0c84f4, game_copy_0bf478, game_copy_0d99e8, game_uses_clear_3_words_0c9588,
+ * called by: Class_12bce0_ctor, Vec3_uses_clear_3_words_0c84f4, game_copy_0bf478, game_uses_clear_3_words_0c9588,
  * game_uses_clear_3_words_0c9ee0, game_uses_clear_3_words_0ca88c, game_uses_clear_3_words_0cb9c8
  */
 u32 *clear_2_words(u32 *a0) {
@@ -1933,8 +1933,8 @@ u16 *set_fields_0_2(u16 *a0, u32 a1, u32 a2) {
 /*
  * clear_3_words_102748  0x8c102748
  * a0[0..2] = 0
- * called by: CAnimal_copy_030e10, Class_12b088_vec_0aa70c, Vec3_uses_clear_3_words_0c84f4, alt_entry_046684,
- * game_copy_0d99e8, game_uses_clear_3_words_0c9588, game_uses_clear_3_words_0c9ee0, game_uses_clear_3_words_0ca88c (+7
+ * called by: CAnimal_copy_030e10, Class_12b088_vec_0aa70c, Class_12bce0_ctor, Vec3_uses_clear_3_words_0c84f4,
+ * alt_entry_046684, game_uses_clear_3_words_0c9588, game_uses_clear_3_words_0c9ee0, game_uses_clear_3_words_0ca88c (+7
  * more)
  */
 u32 *clear_3_words_102748(u32 *a0) {
@@ -1994,8 +1994,7 @@ u16 *clear_record_10(u16 *a0) {
 /*
  * color_set_white  0x8c102800
  * a0[0..3] = 1.0
- * called by: Class_12b580_uses_Vec3_ctor_zero_0d7f18, Class_12c1f0_uses_Vec3_ctor_zero_0f4040,
- * game_uses_Vec3_ctor_zero_0f3ebc
+ * called by: Class_12b580_uses_Vec3_ctor_zero_0d7f18, Class_12c1f0_ctor, Class_12c1f0_ctor_kind
  */
 u32 *color_set_white(u32 *a0) {
     *a0 = 0x3f800000;
@@ -2092,11 +2091,11 @@ u32 game_update_fields_102914(int a0, u32 a1) {
 }
 
 /*
- * game_uses_linear_map_set_range_10291c  0x8c10291c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is linear_map_set_range
- * called by: Class_12c394_uses_linear_map_set_range_0d63f8, game_list_0e8f54
+ * Class_12c3a4_ctor  0x8c10291c
+ * stores the Class_12c3a4 vtable in a0 and sets up its linear maps
+ * called by: Class_12c3a4_ctor_wrap, game_list_0e8f54
  */
-u32 *game_uses_linear_map_set_range_10291c(u32 *a0) {
+u32 *Class_12c3a4_ctor(u32 *a0) {
     *a0 = (&DATA_8c12c3a4);
     linear_map_set_range(a0);
     return a0;
@@ -2106,8 +2105,8 @@ u32 *game_uses_linear_map_set_range_10291c(u32 *a0) {
  * linear_map_set_range  0x8c102974
  * linear_map_set plus a range (+0xc, +0x10) from fr8, fr9
  * called by: Class_12b580_uses_linear_map_set_0e6ef0, Class_12b758_uses_linear_map_set_0e5c4c,
- * Class_12b930_uses_linear_map_set_0e0da4, Class_12bea8_uses_linear_map_set_range_0d7e80,
- * game_uses_linear_map_set_range_10291c, linear_map_set
+ * Class_12b930_uses_linear_map_set_0e0da4, Class_12bea8_uses_linear_map_set_range_0d7e80, Class_12c3a4_ctor,
+ * linear_map_set
  */
 int linear_map_set_range(int a0) {
     u64 in_dr4;
@@ -2145,7 +2144,7 @@ int Class_12c3a4_m0_1029d0(int a0) {
  * called by: Class_12c394_ctor_b_wrap, game_list_0e8f54
  */
 u32 *Class_12c394_ctor_b(u32 *a0) {
-    Class_12c394_uses_linear_map_set_range_0d63f8(a0);
+    Class_12c3a4_ctor_wrap(a0);
     *a0 = (&DATA_8c12c394);
     linear_map_set(a0);
     return a0;
@@ -2305,10 +2304,10 @@ u32 system_init_libs(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_102d9c  0x8c102d9c
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_470880  0x8c102d9c
+ * static initialiser: builds 4 global Vec3 constants (8c470880..8c4708a4) and registers their destructors
  */
-u32 game_vec_102d9c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_470880(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -2331,10 +2330,10 @@ u32 game_vec_102d9c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_102e44  0x8c102e44
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_4708b0  0x8c102e44
+ * static initialiser: builds 4 global Vec3 constants (8c4708b0..8c4708d4) and registers their destructors
  */
-u32 game_vec_102e44(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_4708b0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;

@@ -594,8 +594,8 @@ int CAnimal_copy_030e10(int a0) {
 /*
  * set_6_floats  0x8c030e34
  * a0[0..5] = fr4..fr9
- * called by: game_list_0ab5c0, game_uses_Vec3_ctor_xyz_084bcc, game_uses_Vec3_ctor_xyz_098b6c,
- * game_uses_Vec3_ctor_xyz_0a4448, game_uses_Vec3_ctor_xyz_0b590c, game_uses_global_list_push_05d2bc
+ * called by: game_uses_Vec3_ctor_xyz_098b6c, static_init_vec3s_280330, static_init_vec3s_280e00,
+ * static_init_vec3s_285180, static_init_vec3s_285840, static_init_vec3s_286d88
  */
 u32 *set_6_floats(u32 *a0) {
     u32 in_fr5;
@@ -698,7 +698,7 @@ u32 *Class_129cbc_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     Vec3_ctor_zero(a0 + 0x1b, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x80, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x90, a1, a2);
-    game_calls_init_fields_033954((int)a0 + 0xb0);
+    Class_129cf8_ctor((int)a0 + 0xb0);
     Vec3_ctor_zero((int)a0 + 0x13c, a1, a2);
     Vec3_set_zero((int)a0 + 0x14c);
     Vec3_set_zero((int)a0 + 0x158);
@@ -3631,10 +3631,11 @@ u32 ret_const_0_0337c8(void) {
 }
 
 /*
- * game_vec_0337d0  0x8c0337d0
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_27d530  0x8c0337d0
+ * static initialiser: builds 6 global Vec3 constants (8c27d530..8c27d578) and registers their destructors, then more
+ * set-up
  */
-u32 game_vec_0337d0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_27d530(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -3673,13 +3674,13 @@ u32 game_vec_0337d0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_calls_init_fields_033954  0x8c033954
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: init_fields
+ * Class_129cf8_ctor  0x8c033954
+ * stores the Class_129cf8 vtable in a0 and initialises the object
  * called by: Class_129cbc_ctor, Class_12b2ac_ctor
  */
-u32 *game_calls_init_fields_033954(u32 *a0) {
+u32 *Class_129cf8_ctor(u32 *a0) {
     *a0 = (&DATA_8c129cf8);
-    game_init_fields_0339b0(a0);
+    Class_129cf8_init_fields_0339b0(a0);
     return a0;
 }
 
@@ -3698,11 +3699,11 @@ u32 *Class_129cf8_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_init_fields_0339b0  0x8c0339b0
- * area name: game code; nothing names its area yet; behaviour name: writes 29 members
- * called by: game_calls_init_fields_033954
+ * Class_129cf8_init_fields_0339b0  0x8c0339b0
+ * area name: only called from Class_129cf8 methods; behaviour name: writes 29 members
+ * called by: Class_129cf8_ctor
  */
-u32 game_init_fields_0339b0(int a0) {
+u32 Class_129cf8_init_fields_0339b0(int a0) {
     *(u32 *)(a0 + 0x14) = 0;
     *(u32 *)(a0 + 0x10) = 0;
     *(u32 *)(a0 + 0x18) = 0;
@@ -6087,10 +6088,10 @@ u32 record18_take(u32 unused_a0, int *a1, u32 *a2, int a3) {
 }
 
 /*
- * game_vec_034ba8  0x8c034ba8
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_27df08  0x8c034ba8
+ * static initialiser: builds 4 global Vec3 constants (8c27df08..8c27df2c) and registers their destructors
  */
-u32 game_vec_034ba8(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_27df08(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -6589,8 +6590,8 @@ u32 set_flag_byte(int a0, u32 a1) {
 
 /*
  * get_field_a0_035724  0x8c035724
- * called by: CAnimal_m2_03640c, CAnimal_m3_036568, CTexture_uses_rand_0d97ec, Class_12b0c4_m1_0ab7f4,
- * Class_12b930_m1_0de1dc, Class_12b930_m2_0de3d4, FrogMan_gratification_events, FrogMan_jump_events (+9 more)
+ * called by: CAnimal_m2_03640c, CAnimal_m3_036568, Class_12b0c4_m1_0ab7f4, Class_12b930_m1_0de1dc,
+ * Class_12b930_m2_0de3d4, FrogMan_gratification_events, FrogMan_jump_events, FrogMan_update_sleep_light (+9 more)
  */
 u32 get_field_a0_035724(int a0, u32 a1) {
     return (u32) * (u8 *)(0xa0 + a0);

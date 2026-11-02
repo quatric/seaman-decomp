@@ -559,7 +559,7 @@ int pvr_1efaf4(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * pvr_uses_memset_1efcae  0x8c1efcae
  * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is memset
- * called by: device_info_table_reset, shinobi_uses_memset_1f62f6
+ * called by: device_info_table_reset, device_info_table_reset_alt
  */
 u32 pvr_uses_memset_1efcae(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;

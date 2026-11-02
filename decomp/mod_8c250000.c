@@ -14863,7 +14863,7 @@ u32 ninja_uses_aica_reg_258604(u32 a0, u32 a1, u32 a2) {
     *(u32 *)(puVar7 + -0xc) = a2;
     thunk_FUN_8c207f80();
     uVar5 = (u32)in_dr14;
-    ta_test_20aed8(1);
+    pvr_test_20aed8(1);
     piVar2 = 0x8c4aa508;
     g_8c4aa4e8 = *(u32 *)(puVar7 + -8);
     ar5_00 = 0x8c4aa4a8;
@@ -15020,7 +15020,7 @@ LAB_8c258846:
     a4 = (&set_g_8c4aa558);
     shinobi_calls_update_fields_2078be((&set_g_8c4aa558));
     screen_reset_view();
-    uVar8 = ta_test_20aed8(0);
+    uVar8 = pvr_test_20aed8(0);
     return uVar8;
 }
 

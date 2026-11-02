@@ -898,7 +898,7 @@
 8c10003c	input_no_buttons_held	1 when A, B, X, Y and Start are all up on the pad at +0xcc
 8c0fa624	format_int_18	sprintf "%d" of a1 into +0x18
 8c0bf7d0	set_name_10	copies string a1 into +0x10 (sprintf "%s")
-8c0ba9c8	Class_12b350_dtor	destroys the vector and frees the object when a1 > 0
+8c0ba9c8	vec3_member_dtor_0ba9c8	destroys the vector and frees the object when a1 > 0
 8c258fd8	ninja_set_event900_callback	removes the previous handler and, when a0 is set, installs a0 for interrupt event 0x900
 8c235e84	pvr_fill_fog_table_like	fills a 128-entry table with fr4 and loads it through pvr_sub_20a1d0
 8c0c2c0c	pack_release_entry_384_if_done	releases the pack entry handle at +0x384 once its load has finished
@@ -1648,9 +1648,9 @@
 8c23a8a4	camera_set_direction_to	sets the camera's (a0, or the current one) unit direction (+0x4c..+0x54) toward the point in dr4/dr6 from its position (+0x40)
 8c01a308	memcard_manager_init	marks all 128 file records unused, resets the drive and state fields and the count limit (10)
 8c01a900	memcard_poll_slot_busy	polls the memory-card slot: when idle runs the next step, else records the slot's busy result in the current record
-8c01bebc	memcard_queue_1fc740_with_date	queues request 1fc740 for the current file record with today's date; record state 3 on success, 0 on failure
-8c01bfd0	memcard_queue_1fc79e_with_date	queues request 1fc79e for the current file record with today's date; record state 3 on success, 0 on failure
-8c01c0e4	memcard_queue_1fc852_op11	queues request 1fc852 (op 0x11) for the current file record; record state 3 on success, 0 on failure
+8c01bebc	memcard_queue_op0c_with_date	queues slot request 0xc for the current file record with today's date; record state 3 on success, 0 on failure
+8c01bfd0	memcard_queue_op0d_with_date	queues slot request 0xd for the current file record with today's date; record state 3 on success, 0 on failure
+8c01c0e4	memcard_queue_op14	queues slot request 0x14 (argument 0x11) for the current file record; record state 3 on success, 0 on failure
 8c1fbe12	vmu_system_shutdown	fails (-1) while any of the eight slots is active; otherwise removes the slot handler and clears the drive tables
 8c201c3e	slot16_alloc	takes the first free one of 16 16-byte records at 8c47e820 for a0; 0 when full
 8c01d440	asr_session_end	tears down the speech-recognition session for its current state (2, 3 or 4) and sets the state to 0
@@ -1725,3 +1725,81 @@
 8c266c48	sd_cmd_queue_push	appends a 16-byte command (type byte and 14 data bytes) to the sound driver's queue of 32; error 0xa000001 when full
 8c265b68	sd_get_field_1a4	returns the sound driver's word at +0x1a4; error 0xd000001 when the driver is not set up
 8c2673f0	sd_slot_ch_get_field_01	reads byte 1 of channel a1's record in this slot's AICA block
+8c0baa08	Class_12b350_dtor	restores the Class_12b350 vtable, destroys its members (+0x158, +0x50, +0x48) and the Class_12b36c base, and frees a0 when asked
+8c019208	Class_129a50_ctor_b	Class_129a50 vtable, then the alternative field initialiser (019384)
+8c015c58	Class_12988c_ctor_arg	Class_12988c vtable, then its initialiser with argument a1 (Class_12988c_ctor passes 0)
+8c0199d4	Class_129a24_ctor	stores the Class_129a24 vtable in a0 and initialises the object
+8c01a0cc	Class_1299ec_ctor	stores the Class_1299ec vtable in a0 and initialises the object
+8c033954	Class_129cf8_ctor	stores the Class_129cf8 vtable in a0 and initialises the object
+8c0c5340	Class_12b388_ctor	Class_12b36c base constructor, then the Class_12b388 vtable and its members
+8c0d99e8	Class_12bce0_ctor	stores the Class_12bce0 vtable in a0 and initialises the object
+8c0f3ebc	Class_12c1f0_ctor	builds the base, stores the Class_12c1f0 vtable at +8 and builds its vectors
+8c0f4040	Class_12c1f0_ctor_kind	as Class_12c1f0_ctor, also taking the object kind (a1) used by the CAnimal subclasses
+8c0f54ec	Class_12c058_ctor	builds the Class_129920 base, stores the Class_12c058 vtable at +8 and initialises the object
+8c0f58a4	Class_12bec0_ctor	builds the Class_129920 base, stores the Class_12bec0 vtable at +8 and initialises the object
+8c10291c	Class_12c3a4_ctor	stores the Class_12c3a4 vtable in a0 and sets up its linear maps
+8c2679a0	sd_slot_send_cmd_2b	sends driver command 0x2b for this slot with value a1 + 0x80
+8c267a20	sd_slot_send_cmd_29	sends driver command 0x29 for this slot with a1 and a2 + 0x80
+8c267ab0	sd_slot_send_cmd_2a	sends driver command 0x2a for this slot with value a1 + 0x80
+8c2682bc	sd_slot_send_cmd_12	sends driver command 0x12 for this slot
+8c26a1ca	rec8_alloc_4beb48	marks and returns the first free of the two 8-byte records at 8c4beb48; 0 when both are used
+8c26ba62	pool16_init	links the a0 pool's 16-byte nodes (+0xc, count +0x10) into a free list and clears its four counters
+8c013c88	libm_errno_wrap_013c88	calls libc_uses_delay_loop_6_011e10 and sets errno to 0x44c for an infinite or 0x44d for a NaN result
+8c013cd8	libm_errno_wrap_013cd8	calls libc_calls_calc_011f18 and sets errno to 0x44c for an infinite or 0x44d for a NaN result
+8c013d28	libm_errno_wrap_013d28	calls libc_float_calc_011bfc and sets errno to 0x44c for an infinite or 0x44d for a NaN result
+8c013dfc	libm_errno_wrap_013dfc	calls libc_scan_loop_012090 and sets errno to 0x44c for an infinite or 0x44d for a NaN result
+8c014064	libm_errno_wrap_014064	calls libc_calls_scan_loop_0121bc and sets errno to 0x44c for an infinite or 0x44d for a NaN result
+8c0142e4	libm_errno_wrap_0142e4	calls libc_uses_delay_loop_6_012328 and sets errno to 0x44c for an infinite or 0x44d for a NaN result
+8c0150e0	static_init_vec3s_2787b8	static initialiser: builds four global Vec3 constants (8c2787b8..8c2787dc) and registers their destructors, then the object at 8c2787e8
+8c02ad88	tint_ramp_90s_02ad88	scales the colour (0, -0.847, -0.847, -1) by frame/5400 (90 seconds) into +0x438..+0x444; at the end resets the frame count and clears bit 31 of +0x74
+8c02d5e8	static_init_vec3s_27d400	static initialiser: builds 4 global Vec3 constants (8c27d400..8c27d424) and registers their destructors
+8c02d720	static_init_vec3s_27d438	static initialiser: builds 4 global Vec3 constants (8c27d438..8c27d45c) and registers their destructors
+8c02e838	static_init_vec3s_27d468	static initialiser: builds 4 global Vec3 constants (8c27d468..8c27d48c) and registers their destructors
+8c02efbc	static_init_vec3s_27d4a0	static initialiser: builds 4 global Vec3 constants (8c27d4a0..8c27d4c4) and registers their destructors
+8c0337d0	static_init_vec3s_27d530	static initialiser: builds 6 global Vec3 constants (8c27d530..8c27d578) and registers their destructors, then more set-up
+8c034ba8	static_init_vec3s_27df08	static initialiser: builds 4 global Vec3 constants (8c27df08..8c27df2c) and registers their destructors
+8c05d2bc	static_init_vec3s_280330	static initialiser: builds 12 global Vec3 constants (8c280330..8c2803c8) and registers their destructors, then more set-up
+8c084bcc	static_init_vec3s_280e00	static initialiser: builds 15 global Vec3 constants (8c280e00..8c280ea8) and registers their destructors, then more set-up
+8c0a4448	static_init_vec3s_285180	static initialiser: builds 5 global Vec3 constants (8c285180..8c2851e0) and registers their destructors, then more set-up
+8c0ab5c0	static_init_vec3s_285840	static initialiser: builds 4 global Vec3 constants (8c285840..8c285864) and registers their destructors, then more set-up
+8c0b590c	static_init_vec3s_286d88	static initialiser: builds 4 global Vec3 constants (8c286d88..8c286dac) and registers their destructors, then more set-up
+8c0f74a4	static_init_vec3s_43b188	static initialiser: builds 20 global Vec3 constants (8c43b188..8c43b454) and registers their destructors
+8c0f7a78	static_init_vec3s_43b510	static initialiser: builds 4 global Vec3 constants (8c43b510..8c43b534) and registers their destructors
+8c102d9c	static_init_vec3s_470880	static initialiser: builds 4 global Vec3 constants (8c470880..8c4708a4) and registers their destructors
+8c102e44	static_init_vec3s_4708b0	static initialiser: builds 4 global Vec3 constants (8c4708b0..8c4708d4) and registers their destructors
+8c013b3c	libm_errno_wrap_013b3c	calls libc_uses_busy_wait_5_011850 and sets errno (8c2787a8) to 0x44c for an infinite or 0x44d for a NaN result
+8c013b8c	libm_errno_wrap_013b8c	calls libc_uses_busy_wait_5_011b44 and sets errno (8c2787a8) to 0x44c for an infinite or 0x44d for a NaN result
+8c0e08b0	env_set_flag_22810	sets the environment flag at +0x22810 to 1 when a1 is 1, else 0
+8c0e08d0	env_set_flag_22814	sets the environment flag at +0x22814 to 1 when a1 is 1, else 0
+8c0e08f0	env_get_flags_22810_22814	packs the two flags into *s0: bit 0 = +0x22810, bit 1 = +0x22814
+8c0e8df8	env_grid_lookup_2281c	the first word of the 11 x 10 floor grid cell under point a1 (x / 224.5, z / 150, clamped)
+8c0e8e74	env_grid_lookup_22820	the second word of the 11 x 10 floor grid cell under point a1 (x / 224.5, z / 150, clamped)
+8c0e8840	item_grid_save_records	clears twelve 0x80-byte records at a1 and has each item of the 3x4 grid save itself (method 0x15c) into the next one
+8c0e0b2c	env_mode_effect_active	whether the effect for mode a1 (0, 1 or 4) is active
+8c0e6804	a_button_mic_start_stop_like	starts the microphone talk when A is pressed and stops it when A is released
+8c1f094c	memeq_n	1 when the first a2 bytes of a0 and a1 are equal
+8c1f2acc	streq	1 when strings a0 and a1 are equal
+8c1f1f98	gdfs_shutdown	releases the two GDFS work buffers, closes every file handle and clears the GDFS state pointer
+8c1f1fa0	gdfs_shutdown_alt	second entry into gdfs_shutdown, taking the first buffer from the caller
+8c1f550a	device_name_set_none	clears the record and sets its name field to "(none)" padded with spaces
+8c1f5b28	irq_list_ref	with interrupts masked, adds one reference to a0's handler list entry and returns its handler (0 if absent)
+8c1f62f6	device_info_table_reset_alt	second entry into device_info_table_reset
+8c1fa73e	cache_init_clear_arrays	disables the caches, zeroes every operand-cache address-array entry (f4000000..f4004000) and invalidates the instruction cache
+8c1fc07c	slot80_queue_op_03	queues request 3 (args a1..a3 and one stacked) on idle slot a0 and prepares its buffers; -1 when busy
+8c1fc3a6	slot80_queue_op_05	queues request 5 for a0 (args a1, a2) on its slot (+0x28) when idle; -1 when busy
+8c1f804e	sysinfo_read_id6	copies the 6-byte system ID into a0; 1 when its checksum is good, 2 when not, 0 without a buffer
+8c1f81dc	rtc_set_date	converts the date to RTC seconds, writes them to the AICA RTC registers and checks the readback; -1 on mismatch
+8c1fbfd2	slot80_queue_op_01	queues request 0x1 on the idle slot (args from the caller); -1 when the slot is busy
+8c1fc428	slot80_queue_op_06	queues request 0x6 on the idle slot (args from the caller); -1 when the slot is busy
+8c1fc504	slot80_queue_op_0a	queues request 0xa on the idle slot (args from the caller); -1 when the slot is busy
+8c1fc604	slot80_queue_op_08	queues request 0x8 on the idle slot (args from the caller); -1 when the slot is busy
+8c1fc682	slot80_queue_op_09	queues request 0x9 on the idle slot (args from the caller); -1 when the slot is busy
+8c1fc740	slot80_queue_op_0c	queues request 0xc on the idle slot (args from the caller); -1 when the slot is busy
+8c1fc79e	slot80_queue_op_0d	queues request 0xd on the idle slot (args from the caller); -1 when the slot is busy
+8c1fc852	slot80_queue_op_14	queues request 0x14 on the idle slot (args from the caller); -1 when the slot is busy
+8c20a2e2	pvr_palette_upload	writes palette entries a0..a1 (at most 0x3ff) from the table a2 into PVR palette RAM (a05f9000)
+8c20ad04	pvr_set_yuv_converter	programs TA_YUV_TEX_CTRL (size a3 x s0 macroblocks, format a1, a2 = tex) and TA_YUV_TEX_BASE from a0
+8c200d94	vmu_read_blocks_to	reads every block of the drive's area into the buffer a1, 512 bytes each; stops at the first error
+8c200e1e	vmu_write_blocks_from	writes every block of the drive's area from the buffer a1, 512 bytes each; stops at the first error
+8c20147c	vmu_file_get_block_list	finds file a1 on drive a0 and fills a2 with its chain of block numbers from the FAT; 0xffffff05 if not found
+8c2029fc	maple_port_info_snapshot	copies the first byte of each of the 24 maple port info records into the table at 8c47e928

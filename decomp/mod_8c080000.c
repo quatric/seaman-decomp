@@ -240,7 +240,7 @@ u32 game_uses_copy6_to_fields_080e80(int a0, u32 a1, int *a2, u32 a3) {
             *(u32 *)(a0 + 0x40) = 5;
             *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
             uVar1 = (**(code **)(*a2 + 0x10c))(a2, a1, ar6_00, a3);
-            CTexture_float_calc_0d9898(uVar1);
+            game_float_calc_0d9898(uVar1);
             rand_float(a0, a1, ar6_00);
             if (cVar8 == '\0') {
                 uStack_44 = (double)CONCAT44(uVar1, (int)((u64)uStack_44 >> 0x20));
@@ -2521,10 +2521,11 @@ u32 get_field_2cc_084bc0(int a0) {
 }
 
 /*
- * game_uses_Vec3_ctor_xyz_084bcc  0x8c084bcc
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is Vec3_ctor_xyz
+ * static_init_vec3s_280e00  0x8c084bcc
+ * static initialiser: builds 15 global Vec3 constants (8c280e00..8c280ea8) and registers their destructors, then more
+ * set-up
  */
-u32 game_uses_Vec3_ctor_xyz_084bcc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_280e00(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 *puVar2;
     u32 uVar3;

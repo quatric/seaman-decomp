@@ -9728,11 +9728,11 @@ int alt_entry_267926(int a0, u32 a1) {
 }
 
 /*
- * sd_sound_2679a0  0x8c2679a0
- * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls sound functions
- * called by: sd_sound_267a10
+ * sd_slot_send_cmd_2b  0x8c2679a0
+ * sends driver command 0x2b for this slot with value a1 + 0x80
+ * called by: sd_slot_send_cmd_2b_wrap
  */
-int sd_sound_2679a0(int a0, u32 a1, u32 a2, u32 a3) {
+int sd_slot_send_cmd_2b(int a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
     int ar5_00;
 
@@ -9748,7 +9748,7 @@ int sd_sound_2679a0(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sound_2679a0, ar5_00, a2);
+        sd_set_last_error(sd_slot_send_cmd_2b, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -9772,28 +9772,28 @@ int alt_entry_2679a2(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = sd_sound_267fe8(&g_8c4bd458, (char)a1 + 0x80, a2, a3);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sound_2679a0, ar5_00, a2);
+        sd_set_last_error(sd_slot_send_cmd_2b, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sound_267a10  0x8c267a10
- * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls sound functions
+ * sd_slot_send_cmd_2b_wrap  0x8c267a10
+ * only calls sd_slot_send_cmd_2b
  */
-u32 sd_sound_267a10(u32 unused_a0, u32 unused_a1, u32 a2) {
+u32 sd_slot_send_cmd_2b_wrap(u32 unused_a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
 
-    uVar1 = sd_sound_2679a0((int)(char)a2);
+    uVar1 = sd_slot_send_cmd_2b((int)(char)a2);
     return uVar1;
 }
 
 /*
- * sd_sound_267a20  0x8c267a20
- * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls sound functions
- * called by: sd_sound_267a98
+ * sd_slot_send_cmd_29  0x8c267a20
+ * sends driver command 0x29 for this slot with a1 and a2 + 0x80
+ * called by: sd_slot_send_cmd_29_wrap
  */
-int sd_sound_267a20(int a0, u32 a1, int a2, u32 a3) {
+int sd_slot_send_cmd_29(int a0, u32 a1, int a2, u32 a3) {
     int in_r0;
     int ar5_00;
 
@@ -9811,7 +9811,7 @@ int sd_sound_267a20(int a0, u32 a1, int a2, u32 a3) {
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sound_267a20, ar5_00, a2);
+        sd_set_last_error(sd_slot_send_cmd_29, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -9837,28 +9837,28 @@ int alt_entry_267a22(int a0, u32 a1, int a2, u32 a3) {
         ar5_00 = sd_sound_267fe8(&g_8c4bd470, a1, a2, a3);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sound_267a20, ar5_00, a2);
+        sd_set_last_error(sd_slot_send_cmd_29, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sound_267a98  0x8c267a98
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_slot_send_cmd_29_wrap  0x8c267a98
+ * only calls sd_slot_send_cmd_29
  */
-u32 sd_sound_267a98(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 sd_slot_send_cmd_29_wrap(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = sd_sound_267a20((int)(char)a2, (int)(char)a3);
+    uVar1 = sd_slot_send_cmd_29((int)(char)a2, (int)(char)a3);
     return uVar1;
 }
 
 /*
- * sd_sound_267ab0  0x8c267ab0
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
- * called by: sd_sound_267b20
+ * sd_slot_send_cmd_2a  0x8c267ab0
+ * sends driver command 0x2a for this slot with value a1 + 0x80
+ * called by: sd_slot_send_cmd_2a_wrap
  */
-int sd_sound_267ab0(int a0, u32 a1, u32 a2, u32 a3) {
+int sd_slot_send_cmd_2a(int a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
     int ar5_00;
 
@@ -9874,7 +9874,7 @@ int sd_sound_267ab0(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sound_267ab0, ar5_00, a2);
+        sd_set_last_error(sd_slot_send_cmd_2a, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -9898,19 +9898,19 @@ int alt_entry_267ab2(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = sd_sound_267fe8(&g_8c4bd488, (char)a1 + 0x80, a2, a3);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sound_267ab0, ar5_00, a2);
+        sd_set_last_error(sd_slot_send_cmd_2a, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sound_267b20  0x8c267b20
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_slot_send_cmd_2a_wrap  0x8c267b20
+ * only calls sd_slot_send_cmd_2a
  */
-u32 sd_sound_267b20(u32 unused_a0, u32 unused_a1, u32 a2) {
+u32 sd_slot_send_cmd_2a_wrap(u32 unused_a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
 
-    uVar1 = sd_sound_267ab0((int)(char)a2);
+    uVar1 = sd_slot_send_cmd_2a((int)(char)a2);
     return uVar1;
 }
 
@@ -10630,11 +10630,11 @@ int sd_sound_268254(int a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * sd_sound_2682bc  0x8c2682bc
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_slot_send_cmd_12  0x8c2682bc
+ * sends driver command 0x12 for this slot
  * called by: se_slot_status
  */
-int sd_sound_2682bc(int a0, u32 a1, u32 a2, u32 a3) {
+int sd_slot_send_cmd_12(int a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
     int ar5_00;
 
@@ -10649,7 +10649,7 @@ int sd_sound_2682bc(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sound_2682bc, ar5_00, a2);
+        sd_set_last_error(sd_slot_send_cmd_12, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10672,7 +10672,7 @@ int alt_entry_2682be(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = sd_sound_267fe8(&g_8c4bd548, a1, a2, a3);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sound_2682bc, ar5_00, a2);
+        sd_set_last_error(sd_slot_send_cmd_12, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -13052,11 +13052,11 @@ u32 sd_copy_26a1a4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * sd_scan_loop_26a1ca  0x8c26a1ca
- * area name: in the sd library code range; behaviour name: a loop that only reads
+ * rec8_alloc_4beb48  0x8c26a1ca
+ * marks and returns the first free of the two 8-byte records at 8c4beb48; 0 when both are used
  * called by: sd_sound_26a246
  */
-u32 sd_scan_loop_26a1ca(void) {
+u32 rec8_alloc_4beb48(void) {
     int *piVar1;
     int *piVar2;
 
@@ -13158,7 +13158,7 @@ u32 sd_sound_26a246(int a0, int a1, int a2, int a3) {
         *puVar5 = (&DATA_8c278600);
         for (iVar10 = 0; puVar2 = (&clear_field_0_26a1f2), iVar10 < a0; iVar10 = iVar10 + 1) {
             puVar8 = puVar5 + iVar10 + 6;
-            uVar9 = sd_scan_loop_26a1ca();
+            uVar9 = rec8_alloc_4beb48();
             *puVar8 = uVar9;
             if (puVar5[iVar10 + 6] == 0) {
                 (*(code *)puVar1)(iVar6, a1, a2, a3);
@@ -13695,7 +13695,7 @@ u32 mwSnd_fill_loop_26a9b8(int a0, u32 unused_a1, int a2, u32 a3) {
     int iVar7;
     char in_T;
 
-    puVar2 = (&sd_sound_267a98);
+    puVar2 = (&sd_slot_send_cmd_29_wrap);
     puVar1 = (&debug_printf);
     if (in_T == '\x01') {
         if (a2 < 0) {
@@ -13718,7 +13718,7 @@ u32 mwSnd_fill_loop_26a9b8(int a0, u32 unused_a1, int a2, u32 a3) {
         }
         *(int *)(a0 + 0x48) = unaff_r10;
     }
-    puVar2 = (&sd_sound_267b20);
+    puVar2 = (&sd_slot_send_cmd_2a_wrap);
     uVar4 = 0x48;
     for (iVar7 = 0; iVar7 < *(int *)(a0 + 0xc); iVar7 = iVar7 + 1) {
         iVar5 = iVar7;
@@ -13815,7 +13815,7 @@ u32 mwSnd_scan_loop_26aaea(int a0, int a1, u32 unused_a2, u32 a3) {
     int a5_00;
     char in_T;
 
-    puVar2 = (&sd_sound_267a10);
+    puVar2 = (&sd_slot_send_cmd_2b_wrap);
     puVar1 = (&debug_printf);
     if (in_T == '\x01') {
         if (a1 < 0) {
@@ -15089,10 +15089,10 @@ u32 release_clear_4c00b8(void) {
 }
 
 /*
- * game_calls_fill_loop_26b9d4  0x8c26b9d4
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: fill_loop
+ * game_uses_pool16_init_26b9d4  0x8c26b9d4
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is pool16_init
  */
-u32 game_calls_fill_loop_26b9d4(u32 a0, u32 a1, u32 a2, u32 unused_a3, int ain1) {
+u32 game_uses_pool16_init_26b9d4(u32 a0, u32 a1, u32 a2, u32 unused_a3, int ain1) {
     int iVar1;
     u32 *a4;
 
@@ -15116,7 +15116,7 @@ u32 game_calls_fill_loop_26b9d4(u32 a0, u32 a1, u32 a2, u32 unused_a3, int ain1)
     *(u32 *)(iVar1 + 0x8c4c00c8) = a2 >> 4;
     *(u8 **)(iVar1 + 0x8c4c00e0) = &g_8c26b98e;
     *(u32 **)(iVar1 + 0x8c4c00e4) = a4;
-    game_fill_loop_26ba62(a4);
+    pool16_init(a4);
     return a4;
 }
 
@@ -15137,11 +15137,11 @@ u32 game_copy_26ba3e(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_fill_loop_26ba62  0x8c26ba62
- * area name: game code; nothing names its area yet; behaviour name: a loop that writes memory
- * called by: game_calls_fill_loop_26b9d4
+ * pool16_init  0x8c26ba62
+ * links the a0 pool's 16-byte nodes (+0xc, count +0x10) into a free list and clears its four counters
+ * called by: game_uses_pool16_init_26b9d4
  */
-u32 *game_fill_loop_26ba62(int a0) {
+u32 *pool16_init(int a0) {
     int *piVar1;
     u32 *puVar2;
     int iVar3;

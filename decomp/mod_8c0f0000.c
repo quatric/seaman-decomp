@@ -49,11 +49,11 @@ u32 *game_vec_0f3e84(u32 *a0) {
 }
 
 /*
- * game_uses_Vec3_ctor_zero_0f3ebc  0x8c0f3ebc
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is Vec3_ctor_zero
+ * Class_12c1f0_ctor  0x8c0f3ebc
+ * builds the base, stores the Class_12c1f0 vtable at +8 and builds its vectors
  * called by: named_list_ctor_170
  */
-int game_uses_Vec3_ctor_zero_0f3ebc(int a0, u32 a1, u32 a2) {
+int Class_12c1f0_ctor(int a0, u32 a1, u32 a2) {
     set_fields_4_0(a0);
     *(u8 **)(a0 + 8) = (&DATA_8c12c1f0);
     Vec3_ctor_zero(a0 + 0x30, a1, a2);
@@ -63,7 +63,7 @@ int game_uses_Vec3_ctor_zero_0f3ebc(int a0, u32 a1, u32 a2) {
     color_set_white(a0 + 0x80);
     color_set_white(a0 + 0x90);
     Class_12c1f0_ctor_like(a0 + 0xa0, a1, a2);
-    game_init_fields_0f50b4(a0);
+    Class_12c1f0_init_fields_0f50b4(a0);
     return a0;
 }
 
@@ -112,7 +112,7 @@ int free_if_nonnull_wrap_0f3ffc(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * set_fields_4_0  0x8c0f402c
  * stores +0x4, +0x0
- * called by: Class_12c1f0_uses_Vec3_ctor_zero_0f4040, game_uses_Vec3_ctor_zero_0f3ebc, game_uses_set_fields_4_0_0fddc4,
+ * called by: Class_12c1f0_ctor, Class_12c1f0_ctor_kind, game_uses_set_fields_4_0_0fddc4,
  * game_uses_set_fields_4_0_0fde34, game_vec_0fdde4
  */
 u32 *set_fields_4_0(u32 *a0) {
@@ -122,12 +122,11 @@ u32 *set_fields_4_0(u32 *a0) {
 }
 
 /*
- * Class_12c1f0_uses_Vec3_ctor_zero_0f4040  0x8c0f4040
- * area name: sits between Class_12c1f0 functions (same compilation unit); behaviour name: its main named callee is
- * Vec3_ctor_zero called by: CAnimal_ctor, Class_12a0c4_ctor, game_uses_Class_129920_ctor_0f54ec,
- * game_uses_Class_129920_ctor_0f58a4
+ * Class_12c1f0_ctor_kind  0x8c0f4040
+ * as Class_12c1f0_ctor, also taking the object kind (a1) used by the CAnimal subclasses
+ * called by: CAnimal_ctor, Class_12a0c4_ctor, Class_12bec0_ctor, Class_12c058_ctor
  */
-int Class_12c1f0_uses_Vec3_ctor_zero_0f4040(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
+int Class_12c1f0_ctor_kind(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     u32 ar5_00;
     u32 ar6_00;
     u32 extraout_fr1;
@@ -145,7 +144,7 @@ int Class_12c1f0_uses_Vec3_ctor_zero_0f4040(int a0, u32 a1, u32 a2, u32 a3, u32 
     color_set_white(a0 + 0x80);
     color_set_white(a0 + 0x90);
     Class_12c1f0_ctor_like(a0 + 0xa0, ar5_00, ar6_00);
-    game_init_fields_0f50b4(a0);
+    Class_12c1f0_init_fields_0f50b4(a0);
     *(u32 *)(a0 + 0x24) = a1;
     *(u32 *)(a0 + 0x28) = a2;
     *(u32 *)(a0 + 0x20) = s0;
@@ -1321,11 +1320,11 @@ u32 debug_print_object(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * game_init_fields_0f50b4  0x8c0f50b4
- * area name: game code; nothing names its area yet; behaviour name: writes 12 members
- * called by: Class_12c1f0_uses_Vec3_ctor_zero_0f4040, game_uses_Vec3_ctor_zero_0f3ebc
+ * Class_12c1f0_init_fields_0f50b4  0x8c0f50b4
+ * area name: only called from Class_12c1f0 methods; behaviour name: writes 12 members
+ * called by: Class_12c1f0_ctor, Class_12c1f0_ctor_kind
  */
-u32 game_init_fields_0f50b4(int a0) {
+u32 Class_12c1f0_init_fields_0f50b4(int a0) {
     *(u8 *)(a0 + 0xc) = 0;
     *(u32 *)(a0 + 0x20) = 0;
     *(u32 *)(a0 + 0x24) = 0xffffffff;
@@ -1512,11 +1511,11 @@ u32 CAnimal_calls_calc_0f52c8(void) {
 }
 
 /*
- * CAnimal_calls_calc_0f5308  0x8c0f5308
- * area name: sits between CAnimal functions (same compilation unit); behaviour name: its callees mostly do: calc
+ * game_calls_calc_0f5308  0x8c0f5308
+ * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: calc
  * called by: game_draw_0297b8, game_draw_029dec
  */
-u32 CAnimal_calls_calc_0f5308(void) {
+u32 game_calls_calc_0f5308(void) {
     u32 uVar1;
 
     uVar1 = gfxlib_calc_219070();
@@ -1662,11 +1661,11 @@ u32 *get_vec3_field_30_0f54d0(int a0, u32 *a1, u32 *a2, u32 *a3) {
 }
 
 /*
- * game_uses_Class_129920_ctor_0f54ec  0x8c0f54ec
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is Class_129920_ctor
+ * Class_12c058_ctor  0x8c0f54ec
+ * builds the Class_129920 base, stores the Class_12c058 vtable at +8 and initialises the object
  * called by: CItemGLoader_state_switch_0fef94
  */
-int game_uses_Class_129920_ctor_0f54ec(int a0, u32 a1, int a2, u32 unused_a3, u32 s0, u32 s4) {
+int Class_12c058_ctor(int a0, u32 a1, int a2, u32 unused_a3, u32 s0, u32 s4) {
     int ar5_00;
     u32 ar6_00;
     u32 ar7_00;
@@ -1679,7 +1678,7 @@ int game_uses_Class_129920_ctor_0f54ec(int a0, u32 a1, int a2, u32 unused_a3, u3
     ar7_00 = 0xffffffff;
     ar6_00 = 2;
     ar5_00 = a2;
-    Class_12c1f0_uses_Vec3_ctor_zero_0f4040(a0, a2, 2, 0xffffffff, 0);
+    Class_12c1f0_ctor_kind(a0, a2, 2, 0xffffffff, 0);
     *(u8 **)(a0 + 8) = &g_8c12c058;
     Class_129920_ctor(a0 + 0x170, ar5_00);
     clear_field_0_wrap_015ab8(a0 + 0x178);
@@ -1724,7 +1723,7 @@ int Class_12c058_m0_0f55d8(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * Class_12c058_m1_0f5660  0x8c0f5660
- * called by: game_uses_Class_129920_ctor_0f54ec
+ * called by: Class_12c058_ctor
  */
 u32 Class_12c058_m1_0f5660(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -1828,7 +1827,7 @@ int field_ptr_178(int a0) {
 
 /*
  * noop_0f58a0  0x8c0f58a0
- * called by: game_uses_Class_129920_ctor_0f54ec
+ * called by: Class_12c058_ctor
  */
 u32 noop_0f58a0(void) {
     u32 in_r0;
@@ -1837,19 +1836,19 @@ u32 noop_0f58a0(void) {
 }
 
 /*
- * game_uses_Class_129920_ctor_0f58a4  0x8c0f58a4
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is Class_129920_ctor
+ * Class_12bec0_ctor  0x8c0f58a4
+ * builds the Class_129920 base, stores the Class_12bec0 vtable at +8 and initialises the object
  * called by: CItemGLoader_state_switch_0fef94
  */
-int game_uses_Class_129920_ctor_0f58a4(int a0, u32 a1, u32 a2) {
+int Class_12bec0_ctor(int a0, u32 a1, u32 a2) {
     u32 ar5_00;
     u32 ar6_00;
 
     ar6_00 = 3;
     ar5_00 = 0xf;
-    Class_12c1f0_uses_Vec3_ctor_zero_0f4040(a0, 0xf, 3, a1, a2);
+    Class_12c1f0_ctor_kind(a0, 0xf, 3, a1, a2);
     *(u8 **)(a0 + 8) = (&DATA_8c12bec0);
-    Class_12b3b8_copy_016410(a0 + 0x170);
+    Class_129808_copy_016410(a0 + 0x170);
     Class_129920_ctor(a0 + 0x1b4, ar5_00);
     Vec3_ctor_zero(a0 + 0x1bc, ar5_00, ar6_00);
     Class_129938_ctor(a0 + 0x1dc, ar5_00, ar6_00);
@@ -1916,8 +1915,8 @@ int Class_12bec0_m0_0f5a48(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * Class_12bec0_init_fields_0f5ad0  0x8c0f5ad0
- * area name: sits between Class_12bec0 functions (same compilation unit); behaviour name: writes 4 members
- * called by: game_uses_Class_129920_ctor_0f58a4
+ * area name: only called from Class_12bec0 methods; behaviour name: writes 4 members
+ * called by: Class_12bec0_ctor
  */
 u32 Class_12bec0_init_fields_0f5ad0(int a0) {
     *(u32 *)(a0 + 0x1cc) = 0;
@@ -2107,7 +2106,7 @@ u32 Class_12bec0_draw_0f5e0c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     matrix_push(0, unused_a1, a2, a3, (u32)uStack_4c);
     uVar1 = 0;
     touch_fields_30_3c(0, unused_a1, a2, a3, (u32)uStack_4c);
-    libc_uses_busy_wait_5_013b3c();
+    libm_errno_wrap_013b3c();
     if (cVar6 == '\0') {
         uVar1 = (u32)((u64)in_dr0 >> 0x20);
         uStack_4c._0_4_ = uVar1;
@@ -3911,10 +3910,10 @@ u32 Vec3_uses_get_field_0_0f7470(int a0) {
 }
 
 /*
- * Vec3_vec_0f74a4  0x8c0f74a4
- * area name: sits between Vec3 functions (same compilation unit); behaviour name: mostly calls vec functions
+ * static_init_vec3s_43b188  0x8c0f74a4
+ * static initialiser: builds 20 global Vec3 constants (8c43b188..8c43b454) and registers their destructors
  */
-u32 Vec3_vec_0f74a4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_43b188(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -4032,7 +4031,7 @@ u32 set_fields_0_4_0f78cc(u32 *a0) {
 /*
  * Class_12c1f0_ctor_like  0x8c0f78d8
  * builds the base (+8), the two three-entry arrays (+0x4c, +0x6c) and the three vectors (+0x8c, +0xa0, +0xb0) and
- * clears the state called by: Class_12c1f0_uses_Vec3_ctor_zero_0f4040, game_uses_Vec3_ctor_zero_0f3ebc
+ * clears the state called by: Class_12c1f0_ctor, Class_12c1f0_ctor_kind
  */
 u32 *Class_12c1f0_ctor_like(u32 *a0, u32 a1, u32 a2) {
     u8 *ar5_00;
@@ -4090,10 +4089,10 @@ int game_vec_0f79b8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_0f7a78  0x8c0f7a78
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_43b510  0x8c0f7a78
+ * static initialiser: builds 4 global Vec3 constants (8c43b510..8c43b534) and registers their destructors
  */
-u32 game_vec_0f7a78(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_43b510(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -7703,8 +7702,8 @@ int named_list_ctor_170(int a0, u32 a1, u32 a2) {
     int ar5_01;
 
     ar5_00 = a1;
-    game_uses_Vec3_ctor_zero_0f3ebc(a0, a1, a2);
-    game_uses_Vec3_ctor_zero_0f3ebc(a0 + 0x170, ar5_00, a2);
+    Class_12c1f0_ctor(a0, a1, a2);
+    Class_12c1f0_ctor(a0 + 0x170, ar5_00, a2);
     set_field_0_0fdf10(a0, a0 + 0x170);
     ar5_01 = a0;
     set_field_4_0fdf08(a0 + 0x170, a0);
@@ -8677,7 +8676,7 @@ int CItemGLoader_state_switch_0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
             a4 = iStack_4c;
             piVar3 = (int *)auStack_c4;
             if (iStack_bc != 0) {
-                game_uses_Class_129920_ctor_0f58a4(iStack_bc, 0, 0);
+                Class_12bec0_ctor(iStack_bc, 0, 0);
                 a4 = iStack_4c;
                 piVar3 = (int *)auStack_c4;
             }
@@ -8695,8 +8694,8 @@ int CItemGLoader_state_switch_0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
                 }
                 a2 = 0x10;
                 a5 = "Shell";
-                game_uses_Class_129920_ctor_0f54ec(*(u32 *)((int)puVar1 + 0x80), "Shell", 0x10, a3, *(u32 *)puVar1,
-                                                   *(u32 *)((int)puVar1 + 4));
+                Class_12c058_ctor(*(u32 *)((int)puVar1 + 0x80), "Shell", 0x10, a3, *(u32 *)puVar1,
+                                  *(u32 *)((int)puVar1 + 4));
                 puVar2 = (u32 *)((int)puVar1 + 4);
             }
             a4 = *(int *)((int)puVar2 + 0x7c);

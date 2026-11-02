@@ -8197,10 +8197,11 @@ u32 game_test_05d2a4(int a0) {
 }
 
 /*
- * game_uses_global_list_push_05d2bc  0x8c05d2bc
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is global_list_push
+ * static_init_vec3s_280330  0x8c05d2bc
+ * static initialiser: builds 12 global Vec3 constants (8c280330..8c2803c8) and registers their destructors, then more
+ * set-up
  */
-u32 game_uses_global_list_push_05d2bc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_280330(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -8283,8 +8284,8 @@ u32 game_uses_global_list_push_05d2bc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * copy_6_words  0x8c05d608
  * a0[0..5] = a1[0..5]
- * called by: game_list_0ab5c0, game_uses_Vec3_ctor_xyz_084bcc, game_uses_Vec3_ctor_xyz_098b6c,
- * game_uses_Vec3_ctor_xyz_0a4448, game_uses_Vec3_ctor_xyz_0b590c, game_uses_global_list_push_05d2bc
+ * called by: game_uses_Vec3_ctor_xyz_098b6c, static_init_vec3s_280330, static_init_vec3s_280e00,
+ * static_init_vec3s_285180, static_init_vec3s_285840, static_init_vec3s_286d88
  */
 u32 *copy_6_words(u32 *a0, u32 *a1) {
     u32 uVar1;

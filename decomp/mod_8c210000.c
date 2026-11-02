@@ -1068,7 +1068,7 @@ u32 ta_fifo_211c98(int a0, int a1, int a2, int a3, int s0, u32 s4, u32 s8) {
 /*
  * kamui_draw_211f40  0x8c211f40
  * area name: in the kamui library code range; behaviour name: mostly calls draw functions
- * called by: kamui_uses_kamui_cfg_texture_memory_211120, kamui_uses_ta_fifo_21092e, ta_draw_20af76,
+ * called by: kamui_uses_kamui_cfg_texture_memory_211120, kamui_uses_ta_fifo_21092e, shinobi_draw_20af76,
  * ta_uses_sh4_dmac_210e40
  */
 int kamui_draw_211f40(int a0, u32 a1, u32 a2, u32 a3) {
@@ -1100,7 +1100,7 @@ int kamui_draw_211f40(int a0, u32 a1, u32 a2, u32 a3) {
                 iVar1 = iVar1 + 0x10;
             } while (uVar3 < uVar4);
         }
-        iVar1 = ta_draw_20af76(g_8c4aa1dc, g_8c4aa1e0, g_8c4aa1b8, g_8c4aa1e4);
+        iVar1 = shinobi_draw_20af76(g_8c4aa1dc, g_8c4aa1e0, g_8c4aa1b8, g_8c4aa1e4);
         if ((iVar1 == 0) && ((g_8c4a9ef0 == 1 || (g_8c2758ec == 1)))) {
             g_8c4a9f10 = g_8c4a9f08;
             *(u32 *)(&g_8c4a9ef8 + g_8c4a9f08 * 4) = 0;
@@ -1127,7 +1127,7 @@ int kamui_draw_211f40(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * kamui_set_flags_2758e8  0x8c2120c0
  * ORs a0 into the flag word at 8c2758e8
- * called by: shinobi_uses_sh4_dmac_202a80, ta_draw_20af76
+ * called by: shinobi_draw_20af76, shinobi_uses_sh4_dmac_202a80
  */
 u32 kamui_set_flags_2758e8(u32 a0) {
     g_8c2758e8 = g_8c2758e8 | a0;
@@ -1137,7 +1137,7 @@ u32 kamui_set_flags_2758e8(u32 a0) {
 /*
  * set_g_8c2758e8  0x8c212140
  * stores its argument in the global at 0x8c2758e8
- * called by: ta_draw_20af76
+ * called by: shinobi_draw_20af76
  */
 u32 set_g_8c2758e8(u32 a0) {
     g_8c2758e8 = a0;
@@ -16214,8 +16214,8 @@ u32 gfxlib_float_calc_219038(void) {
 /*
  * gfxlib_calc_219070  0x8c219070
  * area name: in the gfxlib library code range; behaviour name: integer arithmetic on its arguments
- * called by: CAnimal_calls_calc_0f52c8, CAnimal_calls_calc_0f5308, Class_12b3b8_uses_object_dtor_delete_0e7a78,
- * Class_12b758_draw_0e4dd0, Vec3_uses_set_vec_0e3f24, game_calls_calc_0f4b44, game_draw_0cb220,
+ * called by: CAnimal_calls_calc_0f52c8, Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b758_draw_0e4dd0,
+ * Vec3_uses_set_vec_0e3f24, game_calls_calc_0f4b44, game_calls_calc_0f5308, game_draw_0cb220,
  * game_uses_gfx_set_vec_0e5dac (+7 more)
  */
 u32 gfxlib_calc_219070(void) {

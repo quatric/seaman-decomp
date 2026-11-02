@@ -3287,7 +3287,7 @@ int Class_12a0c4_ctor(int a0, u32 a1) {
     ar7_00 = 0;
     ar6_00 = 0;
     ar5_00 = 0xe;
-    Class_12c1f0_uses_Vec3_ctor_zero_0f4040(a0, 0xe, 0, 0, a1);
+    Class_12c1f0_ctor_kind(a0, 0xe, 0, 0, a1);
     *(u8 **)(a0 + 8) = (&DATA_8c12a0c4);
     Class_129938_ctor(a0 + 0x170, ar5_00, ar6_00);
     clear_field_0_wrap_015ab8(a0 + 0x204);

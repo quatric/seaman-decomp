@@ -2001,8 +2001,8 @@ u32 libgcc_divide_helper_010284(u32 a0, int a1, u32 a2) {
 /*
  * libgcc_divide_helper_01031c  0x8c01031c
  * called by: CAnimBody_random_flags_delay, CAnimal_ctor, CAnimal_m2_02573c, CAnimal_m3_026078,
- * CAnimal_uses_set_field_4_on_field_f8_02911c, CHerb_LoadGRWait, CTexture_uses_rand_0d97ec,
- * Class_129808_uses_libgcc_divide_helper_01679c (+69 more)
+ * CAnimal_uses_set_field_4_on_field_f8_02911c, CHerb_LoadGRWait, Class_129808_uses_libgcc_divide_helper_01679c,
+ * Class_129c70_uses_libgcc_divide_helper_02f2c8 (+69 more)
  */
 int libgcc_divide_helper_01031c(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -2955,9 +2955,9 @@ int libgcc_divide_helper_01031c(u32 a0, u32 a1, u32 a2) {
 /*
  * libgcc_divide_helper_0103d0  0x8c0103d0
  * called by: CAnimal_uses_table13019c_find_row_034d48, CGame_uses_libgcc_divide_helper_0cc784,
- * CProlog_uses_libgcc_divide_helper_0cd3c8, CTexture_uses_libgcc_divide_helper_0d6164, CTexture_uses_rand_0d97ec,
+ * CProlog_uses_libgcc_divide_helper_0cd3c8, CTexture_uses_libgcc_divide_helper_0d6164,
  * Class_12bea8_uses_libgcc_divide_helper_0d7b60, game_uses_libgcc_divide_helper_02d854,
- * game_uses_libgcc_divide_helper_0ba3e0 (+2 more)
+ * game_uses_libgcc_divide_helper_0ba3e0, game_uses_rand_0d8890 (+2 more)
  */
 u32 libgcc_divide_helper_0103d0(u32 a0, int a1) {
     u32 uVar1;
@@ -8975,7 +8975,7 @@ u32 libc_test_011836(int *a0) {
 /*
  * libc_uses_busy_wait_5_011850  0x8c011850
  * area name: in the libc library code range; behaviour name: its callees mostly do: uses_busy_wait_5
- * called by: libc_uses_busy_wait_5_013b3c, libm_errno_wrap_013aec
+ * called by: libm_errno_wrap_013aec, libm_errno_wrap_013b3c
  */
 u32 libc_uses_busy_wait_5_011850(void) {
     u32 uVar1;
@@ -9089,7 +9089,7 @@ u32 libc_uses_busy_wait_5_011960(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * libc_uses_busy_wait_5_011b44  0x8c011b44
  * area name: in the libc library code range; behaviour name: its callees mostly do: uses_busy_wait_5
- * called by: libc_uses_busy_wait_5_013b8c
+ * called by: libm_errno_wrap_013b8c
  */
 u32 libc_uses_busy_wait_5_011b44(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9120,7 +9120,7 @@ int libc_float_calc_011b9c(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unus
 /*
  * libc_float_calc_011bfc  0x8c011bfc
  * area name: in the libc library code range; behaviour name: floating-point arithmetic
- * called by: libc_calls_float_calc_013d28
+ * called by: libm_errno_wrap_013d28
  */
 int libc_float_calc_011bfc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int ain0) {
     u64 in_dr4;
@@ -9213,7 +9213,7 @@ joined_r0x8c011d76:
 /*
  * libc_uses_delay_loop_6_011e10  0x8c011e10
  * area name: in the libc library code range; behaviour name: its main named callee is delay_loop_6
- * called by: libc_uses_delay_loop_6_013c88, libm_errno_wrap_013c38
+ * called by: libm_errno_wrap_013c38, libm_errno_wrap_013c88
  */
 u32 libc_uses_delay_loop_6_011e10(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9279,7 +9279,7 @@ u32 libc_uses_delay_loop_6_011e10(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) 
 /*
  * libc_calls_calc_011f18  0x8c011f18
  * area name: in the libc library code range; behaviour name: its callees mostly do: calc
- * called by: libc_calls_calc_013cd8, libc_calls_scan_loop_0121bc
+ * called by: libc_calls_scan_loop_0121bc, libm_errno_wrap_013cd8
  */
 u32 libc_calls_calc_011f18(void) {
     u32 uVar1;
@@ -9344,7 +9344,7 @@ u32 libc_calls_calc_011f18(void) {
 /*
  * libc_scan_loop_012090  0x8c012090
  * area name: in the libc library code range; behaviour name: a loop that only reads
- * called by: libc_calls_scan_loop_0121bc, libc_calls_scan_loop_013dfc
+ * called by: libc_calls_scan_loop_0121bc, libm_errno_wrap_013dfc
  */
 u32 *libc_scan_loop_012090(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar1;
@@ -9387,7 +9387,7 @@ u32 *libc_scan_loop_012090(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * libc_calls_scan_loop_0121bc  0x8c0121bc
  * area name: in the libc library code range; behaviour name: its callees mostly do: scan_loop
- * called by: libc_calls_scan_loop_014064
+ * called by: libm_errno_wrap_014064
  */
 u32 libc_calls_scan_loop_0121bc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 ar4_00;
@@ -9443,7 +9443,7 @@ u32 libc_calls_scan_loop_0121bc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32
 /*
  * libc_uses_delay_loop_6_012328  0x8c012328
  * area name: in the libc library code range; behaviour name: its main named callee is delay_loop_6_010ad4
- * called by: libc_uses_delay_loop_6_0142e4, libm_errno_wrap_014294
+ * called by: libm_errno_wrap_014294, libm_errno_wrap_0142e4
  */
 u32 libc_uses_delay_loop_6_012328(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 ain0;
@@ -11076,11 +11076,11 @@ u32 libm_errno_wrap_013aec(void) {
 }
 
 /*
- * libc_uses_busy_wait_5_013b3c  0x8c013b3c
- * area name: in the libc library code range; behaviour name: its callees mostly do: uses_busy_wait_5
+ * libm_errno_wrap_013b3c  0x8c013b3c
+ * calls libc_uses_busy_wait_5_011850 and sets errno (8c2787a8) to 0x44c for an infinite or 0x44d for a NaN result
  * called by: CSquidLine_uses_matrix_push_0ad354, Class_12bec0_draw_0f5e0c
  */
-u32 libc_uses_busy_wait_5_013b3c(void) {
+u32 libm_errno_wrap_013b3c(void) {
     u32 uVar1;
     u64 in_dr0;
     char cVar2;
@@ -11105,11 +11105,11 @@ u32 libc_uses_busy_wait_5_013b3c(void) {
 }
 
 /*
- * libc_uses_busy_wait_5_013b8c  0x8c013b8c
- * area name: in the libc library code range; behaviour name: its callees mostly do: uses_busy_wait_5
+ * libm_errno_wrap_013b8c  0x8c013b8c
+ * calls libc_uses_busy_wait_5_011b44 and sets errno (8c2787a8) to 0x44c for an infinite or 0x44d for a NaN result
  * called by: Class_1299f8_m4_019588
  */
-u32 libc_uses_busy_wait_5_013b8c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 libm_errno_wrap_013b8c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u64 in_dr0;
     char cVar2;
@@ -11210,10 +11210,10 @@ u32 libm_errno_wrap_013c38(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * libc_uses_delay_loop_6_013c88  0x8c013c88
- * area name: in the libc library code range; behaviour name: its callees mostly do: uses_delay_loop_6
+ * libm_errno_wrap_013c88  0x8c013c88
+ * calls libc_uses_delay_loop_6_011e10 and sets errno to 0x44c for an infinite or 0x44d for a NaN result
  */
-u32 libc_uses_delay_loop_6_013c88(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 libm_errno_wrap_013c88(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     u64 in_dr0;
     char cVar2;
@@ -11238,10 +11238,10 @@ u32 libc_uses_delay_loop_6_013c88(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) 
 }
 
 /*
- * libc_calls_calc_013cd8  0x8c013cd8
- * area name: in the libc library code range; behaviour name: its callees mostly do: calls_calc
+ * libm_errno_wrap_013cd8  0x8c013cd8
+ * calls libc_calls_calc_011f18 and sets errno to 0x44c for an infinite or 0x44d for a NaN result
  */
-u32 libc_calls_calc_013cd8(void) {
+u32 libm_errno_wrap_013cd8(void) {
     u32 uVar1;
     u64 in_dr0;
     char cVar2;
@@ -11266,10 +11266,10 @@ u32 libc_calls_calc_013cd8(void) {
 }
 
 /*
- * libc_calls_float_calc_013d28  0x8c013d28
- * area name: in the libc library code range; behaviour name: its callees mostly do: float_calc
+ * libm_errno_wrap_013d28  0x8c013d28
+ * calls libc_float_calc_011bfc and sets errno to 0x44c for an infinite or 0x44d for a NaN result
  */
-u32 libc_calls_float_calc_013d28(void) {
+u32 libm_errno_wrap_013d28(void) {
     u32 r4;
     u32 r5;
     u32 r6;
@@ -11336,10 +11336,10 @@ int labs(int a0) {
 }
 
 /*
- * libc_calls_scan_loop_013dfc  0x8c013dfc
- * area name: in the libc library code range; behaviour name: its callees mostly do: scan_loop
+ * libm_errno_wrap_013dfc  0x8c013dfc
+ * calls libc_scan_loop_012090 and sets errno to 0x44c for an infinite or 0x44d for a NaN result
  */
-u32 libc_calls_scan_loop_013dfc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 libm_errno_wrap_013dfc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u64 in_dr0;
     char cVar2;
@@ -11587,10 +11587,10 @@ int operator_new(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * libc_calls_scan_loop_014064  0x8c014064
- * area name: in the libc library code range; behaviour name: its callees mostly do: calls_scan_loop
+ * libm_errno_wrap_014064  0x8c014064
+ * calls libc_calls_scan_loop_0121bc and sets errno to 0x44c for an infinite or 0x44d for a NaN result
  */
-u32 libc_calls_scan_loop_014064(void) {
+u32 libm_errno_wrap_014064(void) {
     u32 r4;
     u32 r5;
     u32 r6;
@@ -11706,8 +11706,8 @@ int libc_fill_loop_0140cc(u32 a0, u32 a1, int *a2, int a3, int ain0) {
 /*
  * rand  0x8c014200
  * called by: CAnimBody_random_flags_delay, CAnimal_ctor, CAnimal_uses_set_field_4_on_field_f8_02911c,
- * CTexture_uses_rand_0d97ec, Class_1297f4_uses_rand_014be4, Class_129808_m0_0147a4, Class_12a0c4_state_switch_0679cc,
- * Class_12a0c4_state_switch_068e64 (+62 more)
+ * Class_1297f4_uses_rand_014be4, Class_129808_m0_0147a4, Class_12a0c4_state_switch_0679cc,
+ * Class_12a0c4_state_switch_068e64, Class_12a0c4_uses_libgcc_divide_helper_067594 (+62 more)
  */
 u32 rand(void) {
     u32 uVar1;
@@ -11833,10 +11833,10 @@ u32 libm_errno_wrap_014294(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) 
 }
 
 /*
- * libc_uses_delay_loop_6_0142e4  0x8c0142e4
- * area name: in the libc library code range; behaviour name: its callees mostly do: uses_delay_loop_6
+ * libm_errno_wrap_0142e4  0x8c0142e4
+ * calls libc_uses_delay_loop_6_012328 and sets errno to 0x44c for an infinite or 0x44d for a NaN result
  */
-u32 libc_uses_delay_loop_6_0142e4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 libm_errno_wrap_0142e4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     u64 in_dr0;
     char cVar2;
@@ -11863,7 +11863,7 @@ u32 libc_uses_delay_loop_6_0142e4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u
 /*
  * sprintf  0x8c014334
  * called by: CAnimal_m1_0f41c8, CFrogManEgg_ctor, CFrogManLine_ctor, CHigyoEgg_ctor, CMothEgg_ctor,
- * CMushroomerEgg_ctor, CSpiderEgg_ctor, SaveData_ctor (+16 more)
+ * CMushroomerEgg_ctor, CSpiderEgg_ctor, Class_12bce0_ctor (+16 more)
  */
 u32 sprintf(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0) {
     u32 uVar1;
@@ -13018,10 +13018,11 @@ u32 noop_0150dc(void) {
 }
 
 /*
- * game_uses_Vec3_ctor_xyz_0150e0  0x8c0150e0
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is Vec3_ctor_xyz
+ * static_init_vec3s_2787b8  0x8c0150e0
+ * static initialiser: builds four global Vec3 constants (8c2787b8..8c2787dc) and registers their destructors, then the
+ * object at 8c2787e8
  */
-u32 game_uses_Vec3_ctor_xyz_0150e0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_2787b8(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -13042,7 +13043,7 @@ u32 game_uses_Vec3_ctor_xyz_0150e0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     puVar3 = (&Vec3_dtor);
     uVar2 = 0x8c2787dc;
     global_list_push(uVar1, (&Vec3_dtor), 0x8c2787dc, a3);
-    uVar2 = Class_12b3b8_copy_016410(0x8c2787e8);
+    uVar2 = Class_129808_copy_016410(0x8c2787e8);
     return uVar2;
 }
 
@@ -13061,7 +13062,7 @@ u32 set_field_10(int a0, u32 a1) {
 /*
  * free_if_nonnull_wrap_0151a0  0x8c0151a0
  * called by: CSeamanDomain_uses_set_fields_0_4_c_0c2068, Class_129808_m6_0166b4, Class_12984c_release_0c4b84,
- * Class_12b350_dtor_0baa08, Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12bb08_dtor, ambient_sound_update,
+ * Class_12b350_dtor, Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12bb08_dtor, ambient_sound_update,
  * confirm_exit_save (+10 more)
  */
 int free_if_nonnull_wrap_0151a0(int a0, u32 a1, u32 a2, u32 a3) {
@@ -13119,8 +13120,8 @@ u32 game_calls_one_0151fc(u32 a0) {
 
 /*
  * Class_129920_ctor  0x8c015224
- * called by: CSquid_Init, Class_129908_ctor, Class_12a0c4_ctor, Class_12b350_ctor, Class_12b580_ctor,
- * Class_12b758_ctor, Class_12b758_uses_Class_129920_ctor_0d5e9c, Class_12b930_ctor (+17 more)
+ * called by: CSquid_Init, Class_129908_ctor, Class_12a0c4_ctor, Class_12b350_ctor, Class_12b388_ctor,
+ * Class_12b580_ctor, Class_12b758_ctor, Class_12b758_uses_Class_129920_ctor_0d5e9c (+17 more)
  */
 u32 *Class_129920_ctor(u32 *a0, u32 a1) {
     *a0 = (&DATA_8c129920);
@@ -13228,7 +13229,7 @@ u32 *Class_129908_ctor(u32 *a0, u32 a1) {
  * Class_129920_dtor  0x8c0153e4
  * stores the vtable 0x8c129920
  * called by: CAnimal_m0_0aca4c, Class_12984c_release_0c4b84, Class_129908_dtor, Class_12a0c4_m0_0674c8,
- * Class_12b350_dtor_0baa08, Class_12b388_dtor, Class_12b580_dtor, Class_12b758_dtor (+15 more)
+ * Class_12b350_dtor, Class_12b388_dtor, Class_12b580_dtor, Class_12b758_dtor (+15 more)
  */
 u32 *Class_129920_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -14081,11 +14082,11 @@ u32 *Class_12988c_ctor(u32 *a0) {
 }
 
 /*
- * Class_12b3b8_calls_float_calc_015c58  0x8c015c58
- * area name: only called from Class_12b3b8 methods; behaviour name: its callees mostly do: float_calc
+ * Class_12988c_ctor_arg  0x8c015c58
+ * Class_12988c vtable, then its initialiser with argument a1 (Class_12988c_ctor passes 0)
  * called by: Class_12b3b8_ctor
  */
-u32 *Class_12b3b8_calls_float_calc_015c58(u32 *a0, u32 a1) {
+u32 *Class_12988c_ctor_arg(u32 *a0, u32 a1) {
     *a0 = (&DATA_8c12988c);
     Class_12988c_float_calc_015dc0(a0, a1);
     return a0;
@@ -14169,7 +14170,7 @@ u32 Class_12988c_draw_015d74(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * Class_12988c_float_calc_015dc0  0x8c015dc0
  * area name: only called from Class_12988c methods; behaviour name: floating-point arithmetic
- * called by: Class_12988c_ctor, Class_12b3b8_calls_float_calc_015c58
+ * called by: Class_12988c_ctor, Class_12988c_ctor_arg
  */
 u32 Class_12988c_float_calc_015dc0(int a0, u32 a1) {
     u32 in_fr5;
@@ -14504,12 +14505,12 @@ u32 Class_129808_draw_offset(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * Class_12b3b8_copy_016410  0x8c016410
- * area name: only called from Class_12b3b8 methods; behaviour name: mostly calls copy functions
- * called by: Class_12b3b8_ctor, Class_12b930_copy_017830, Class_12b930_uses_vec_new_array_0d2fd8, game_copy_0d99e8,
- * game_uses_Class_129920_ctor_0f58a4, game_uses_Class_12b350_ctor_0bff8c, game_uses_Vec3_ctor_xyz_0150e0
+ * Class_129808_copy_016410  0x8c016410
+ * area name: sits between Class_129808 functions (same compilation unit); behaviour name: mostly calls copy functions
+ * called by: Class_12b3b8_ctor, Class_12b930_copy_017830, Class_12b930_uses_vec_new_array_0d2fd8, Class_12bce0_ctor,
+ * Class_12bec0_ctor, game_uses_Class_12b350_ctor_0bff8c, static_init_vec3s_2787b8
  */
-u32 Class_12b3b8_copy_016410(u32 a0) {
+u32 Class_129808_copy_016410(u32 a0) {
     Class_129808_copy_016584(a0);
     return a0;
 }
@@ -14644,7 +14645,7 @@ u32 Class_129808_draw_016544(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * Class_129808_copy_016584  0x8c016584
  * area name: sits between Class_129808 functions (same compilation unit); behaviour name: mostly calls copy functions
- * called by: Class_129808_copy_01642c, Class_12b3b8_copy_016410
+ * called by: Class_129808_copy_016410, Class_129808_copy_01642c
  */
 u32 Class_129808_copy_016584(int *a0) {
     u32 uVar1;
@@ -15764,7 +15765,7 @@ u32 *Class_12b930_copy_017830(u32 *a0) {
     char cVar1;
 
     cVar1 = '\0';
-    Class_12b3b8_copy_016410(a0 + 4);
+    Class_129808_copy_016410(a0 + 4);
     *a0 = 0;
     a0[1] = 0;
     a0[2] = 0;
@@ -17651,13 +17652,13 @@ u32 *Class_129a50_ctor(u32 *a0) {
 }
 
 /*
- * Class_12bb08_draw_019208  0x8c019208
- * area name: only called from Class_12bb08 methods; behaviour name: mostly calls draw functions
- * called by: Class_12bb08_ctor, game_vec_0199d4
+ * Class_129a50_ctor_b  0x8c019208
+ * Class_129a50 vtable, then the alternative field initialiser (019384)
+ * called by: Class_129a24_ctor, Class_12bb08_ctor
  */
-u32 *Class_12bb08_draw_019208(u32 *a0) {
+u32 *Class_129a50_ctor_b(u32 *a0) {
     *a0 = (&DATA_8c129a50);
-    Class_12b3b8_draw_019384(a0);
+    Class_129a50_draw_019384(a0);
     return a0;
 }
 
@@ -17701,11 +17702,11 @@ u8 *Class_129a50_init_fields_0192a8(int a0) {
 }
 
 /*
- * Class_12b3b8_draw_019384  0x8c019384
- * area name: only called from Class_12b3b8 methods; behaviour name: mostly calls draw functions
- * called by: Class_12b3b8_ctor, Class_12bb08_draw_019208, game_uses_Vec3_ctor_zero_0cac08
+ * Class_129a50_draw_019384  0x8c019384
+ * area name: sits between Class_129a50 functions (same compilation unit); behaviour name: mostly calls draw functions
+ * called by: Class_129a50_ctor_b, Class_12b3b8_ctor, game_uses_Vec3_ctor_zero_0cac08
  */
-u32 Class_12b3b8_draw_019384(int a0) {
+u32 Class_129a50_draw_019384(int a0) {
     u32 uVar1;
     u64 in_dr4;
     u32 in_fr7;
@@ -17740,7 +17741,7 @@ u32 Class_12b3b8_draw_019384(int a0) {
 /*
  * rotate_degrees_7c  0x8c0194c0
  * stores fr4 degrees at +0x7c and rotates the matrix by it
- * called by: Class_12b3b8_draw_019384, Class_12b3b8_uses_object_dtor_delete_0e7a78, game_draw_0e84f8,
+ * called by: Class_129a50_draw_019384, Class_12b3b8_uses_object_dtor_delete_0e7a78, game_draw_0e84f8,
  * rotate_degrees_7c_on_field_9e8
  */
 u32 rotate_degrees_7c(int a0) {
@@ -17907,7 +17908,7 @@ u32 Class_1299f8_m4_019588(int a0, u32 a1, u32 a2, u32 a3) {
     } else {
         fVar9 = (float)((u64)(dVar4 - dVar7) >> 0x20);
     }
-    libc_uses_busy_wait_5_013b8c(puVar1, a1, a2, a3);
+    libm_errno_wrap_013b8c(puVar1, a1, a2, a3);
     uVar8 = (u32)((u64)dVar7 >> 0x20);
     if (cVar13 == '\0') {
         dVar4 = (double)CONCAT44(0x47800000, uVar8);
@@ -17953,7 +17954,7 @@ u32 Class_1299f8_m4_019588(int a0, u32 a1, u32 a2, u32 a3) {
     } else {
         dVar4 = dVar4 / dVar5;
     }
-    libc_uses_busy_wait_5_013b8c(puVar1, a1, a2, a3);
+    libm_errno_wrap_013b8c(puVar1, a1, a2, a3);
     if (cVar13 == '\0') {
         dVar6 = (double)CONCAT44(0x47800000, (int)((u64)dVar5 >> 0x20));
         dVar5 = dVar7;
@@ -18213,12 +18214,12 @@ u32 debug_print_vec3(u32 unused_a0, u32 a1, u32 a2) {
 }
 
 /*
- * game_vec_0199d4  0x8c0199d4
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * Class_129a24_ctor  0x8c0199d4
+ * stores the Class_129a24 vtable in a0 and initialises the object
  * called by: game_list_0cfbcc
  */
-u32 *game_vec_0199d4(u32 *a0, u32 a1, u32 a2, u32 a3) {
-    Class_12bb08_draw_019208(a0);
+u32 *Class_129a24_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
+    Class_129a50_ctor_b(a0);
     *a0 = (&DATA_8c129a24);
     Vec3_ctor_zero((int)a0 + 0x80, a1, a2);
     Vec3_ctor_xyz((int)a0 + 0x90, a1, a2, a3);
@@ -18757,11 +18758,11 @@ u32 Class_1299f8_m3_019f00(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12b3b8_vec_01a0cc  0x8c01a0cc
- * area name: only called from Class_12b3b8 methods; behaviour name: mostly calls vec functions
+ * Class_1299ec_ctor  0x8c01a0cc
+ * stores the Class_1299ec vtable in a0 and initialises the object
  * called by: Class_12b3b8_ctor
  */
-u32 *Class_12b3b8_vec_01a0cc(u32 *a0) {
+u32 *Class_1299ec_ctor(u32 *a0) {
     *a0 = (&DATA_8c1299ec);
     Vec3_set_zero((int)a0 + 0x15c);
     return a0;
@@ -19177,16 +19178,16 @@ u32 memcard_run_request(int *a0, u32 a1, u32 a2, u32 a3) {
                 uVar1 = game_calls_scan_loop_01a98c(a0, a1, a2, a3);
             } else {
                 set_field_18_to_1e(a0);
-                uVar1 = memcard_queue_1fc740_with_date(a0, a1, a2, a3);
+                uVar1 = memcard_queue_op0c_with_date(a0, a1, a2, a3);
             }
             break;
         case 3:
             set_field_18_to_1e(a0);
-            uVar1 = memcard_queue_1fc79e_with_date(a0, a1, a2, a3);
+            uVar1 = memcard_queue_op0d_with_date(a0, a1, a2, a3);
             break;
         case 4:
             set_field_18_to_1e(a0);
-            uVar1 = memcard_queue_1fc852_op11(a0);
+            uVar1 = memcard_queue_op14(a0);
             break;
         case 5:
             uVar1 = memcard_op_delete(a0);
@@ -19614,7 +19615,7 @@ u32 game_uses_bu_get_game_file_name_01b144(u32 a0, u32 a1, u32 a2, u32 a3, u32 s
             return 0;
         }
         ar5_00 = (int)&s20 + iVar1;
-        uVar2 = shinobi_uses_slot80_get_active_1fc682(g_8c2791b4, ar5_00);
+        uVar2 = slot80_queue_op_09(g_8c2791b4, ar5_00);
         *(u32 *)((int)&s0 + iVar1) = uVar2;
         if (*(int *)((int)&s0 + iVar1) != 0) {
             return 0;
@@ -20273,11 +20274,11 @@ int memcard_queue_lcd_b(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * memcard_queue_1fc740_with_date  0x8c01bebc
- * queues request 1fc740 for the current file record with today's date; record state 3 on success, 0 on failure
+ * memcard_queue_op0c_with_date  0x8c01bebc
+ * queues slot request 0xc for the current file record with today's date; record state 3 on success, 0 on failure
  * called by: memcard_run_request
  */
-int memcard_queue_1fc740_with_date(int *a0, u32 a1, u32 unused_a2, u32 a3) {
+int memcard_queue_op0c_with_date(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int iVar2;
     u16 uStack_38;
@@ -20291,9 +20292,9 @@ int memcard_queue_1fc740_with_date(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     iStack_20 = *a0;
     iStack_24 = *a0;
     iStack_28 = *a0;
-    iVar2 = (*(code *)(&shinobi_uses_slot80_get_active_1fc740))(
-        g_8c2791b4, (int)a0 + 0x245c + iStack_20 * 0x28, *(u32 *)((int)a0 + 0x2470 + iStack_24 * 0x28),
-        *(u32 *)((int)a0 + 0x246c + iStack_28 * 0x28), &uStack_38);
+    iVar2 = (*(code *)(&slot80_queue_op_0c))(g_8c2791b4, (int)a0 + 0x245c + iStack_20 * 0x28,
+                                             *(u32 *)((int)a0 + 0x2470 + iStack_24 * 0x28),
+                                             *(u32 *)((int)a0 + 0x246c + iStack_28 * 0x28), &uStack_38);
     iVar1 = 0x2450;
     if (iVar2 != -1) {
         if (iVar2 == 0) {
@@ -20308,11 +20309,11 @@ int memcard_queue_1fc740_with_date(int *a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * memcard_queue_1fc79e_with_date  0x8c01bfd0
- * queues request 1fc79e for the current file record with today's date; record state 3 on success, 0 on failure
+ * memcard_queue_op0d_with_date  0x8c01bfd0
+ * queues slot request 0xd for the current file record with today's date; record state 3 on success, 0 on failure
  * called by: memcard_run_request
  */
-int memcard_queue_1fc79e_with_date(int *a0, u32 a1, u32 unused_a2, u32 a3) {
+int memcard_queue_op0d_with_date(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int iVar2;
     u16 uStack_38;
@@ -20326,9 +20327,9 @@ int memcard_queue_1fc79e_with_date(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     iStack_20 = *a0;
     iStack_24 = *a0;
     iStack_28 = *a0;
-    iVar2 = (*(code *)(&shinobi_uses_slot80_get_active_1fc79e))(
-        g_8c2791b4, (int)a0 + 0x245c + iStack_20 * 0x28, *(u32 *)((int)a0 + 0x2470 + iStack_24 * 0x28),
-        *(u32 *)((int)a0 + 0x246c + iStack_28 * 0x28), &uStack_38);
+    iVar2 = (*(code *)(&slot80_queue_op_0d))(g_8c2791b4, (int)a0 + 0x245c + iStack_20 * 0x28,
+                                             *(u32 *)((int)a0 + 0x2470 + iStack_24 * 0x28),
+                                             *(u32 *)((int)a0 + 0x246c + iStack_28 * 0x28), &uStack_38);
     iVar1 = 0x2450;
     if (iVar2 != -1) {
         if (iVar2 == 0) {
@@ -20343,16 +20344,16 @@ int memcard_queue_1fc79e_with_date(int *a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * memcard_queue_1fc852_op11  0x8c01c0e4
- * queues request 1fc852 (op 0x11) for the current file record; record state 3 on success, 0 on failure
+ * memcard_queue_op14  0x8c01c0e4
+ * queues slot request 0x14 (argument 0x11) for the current file record; record state 3 on success, 0 on failure
  * called by: memcard_run_request
  */
-int memcard_queue_1fc852_op11(int *a0) {
+int memcard_queue_op14(int *a0) {
     int iVar1;
     int iVar2;
 
-    iVar2 = (*(code *)(&shinobi_uses_slot80_get_active_1fc852))(g_8c2791b4, (int)a0 + 0x245c + *a0 * 0x28,
-                                                                *(u32 *)((int)a0 + 0x2470 + *a0 * 0x28), 0x11);
+    iVar2 = (*(code *)(&slot80_queue_op_14))(g_8c2791b4, (int)a0 + 0x245c + *a0 * 0x28,
+                                             *(u32 *)((int)a0 + 0x2470 + *a0 * 0x28), 0x11);
     iVar1 = 0x2450;
     if (iVar2 != -1) {
         if (iVar2 == 0) {
@@ -21592,7 +21593,7 @@ int speech_talk_01d9ac(void) {
 /*
  * speech_talk_01d9e0  0x8c01d9e0
  * area name: sits between speech functions (same compilation unit); behaviour name: mostly calls talk functions
- * called by: game_uses_get_field_cc_0e6804, game_uses_stick_x_right_half_0e1f90, input_uses_get_field_24_0e25c0
+ * called by: a_button_mic_start_stop_like, game_uses_stick_x_right_half_0e1f90, input_uses_get_field_24_0e25c0
  */
 int speech_talk_01d9e0(void) {
     int iVar1;
@@ -21618,7 +21619,7 @@ int speech_talk_01d9e0(void) {
 /*
  * speech_talk_01da60  0x8c01da60
  * area name: sits between speech functions (same compilation unit); behaviour name: mostly calls talk functions
- * called by: game_uses_get_field_cc_0e6804, game_uses_pure_virtual_stub_0dfe2c
+ * called by: a_button_mic_start_stop_like, game_uses_pure_virtual_stub_0dfe2c
  */
 u32 speech_talk_01da60(void) {
     if (g_8c2791b8 == 4) {
@@ -23026,7 +23027,7 @@ u32 identity(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
  * field_ptr_384c  0x8c01f528
  * returns the address of the member at +0x384c
  * called by: CGame_GetUserGameInfo, CGame_uses_libgcc_divide_helper_0cc784, CProlog_uses_libgcc_divide_helper_0cd3c8,
- * game_copy_0c67f4, game_uses_get_field_cc_0e6804, game_uses_pure_virtual_stub_0dfe2c,
+ * a_button_mic_start_stop_like, game_copy_0c67f4, game_uses_pure_virtual_stub_0dfe2c,
  * game_uses_stick_x_right_half_0e1f90, input_uses_get_field_24_0e25c0 (+1 more)
  */
 int field_ptr_384c(int a0) {

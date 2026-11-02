@@ -3491,10 +3491,11 @@ u32 Class_12ad14_m4_0a43d4(int a0) {
 }
 
 /*
- * game_uses_Vec3_ctor_xyz_0a4448  0x8c0a4448
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is Vec3_ctor_xyz
+ * static_init_vec3s_285180  0x8c0a4448
+ * static initialiser: builds 5 global Vec3 constants (8c285180..8c2851e0) and registers their destructors, then more
+ * set-up
  */
-u32 game_uses_Vec3_ctor_xyz_0a4448(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_285180(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -9386,10 +9387,11 @@ u32 game_vec_0ab0d8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_list_0ab5c0  0x8c0ab5c0
- * area name: game code; nothing names its area yet; behaviour name: mostly calls list functions
+ * static_init_vec3s_285840  0x8c0ab5c0
+ * static initialiser: builds 4 global Vec3 constants (8c285840..8c285864) and registers their destructors, then more
+ * set-up
  */
-u32 game_list_0ab5c0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_285840(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -10211,11 +10213,11 @@ int CSquid_Init(int a0, u32 a1) {
     Class_12b2ac_ctor(a0 + 0x53c, uVar1, uVar2, ar7_00);
     Class_129938_ctor(a0 + 0x894, uVar1, uVar2);
     Class_129920_ctor(a0 + 0x9bc, uVar1);
-    vec_new_array(a0 + 0x9c4, (&Class_12b3b8_copy_016410), 0, 0x44, 10);
+    vec_new_array(a0 + 0x9c4, (&Class_129808_copy_016410), 0, 0x44, 10);
     uVar2 = 0x44;
     uVar1 = 0;
-    ar5_00 = (&Class_12b3b8_copy_016410);
-    vec_new_array(a0 + 0xc6c, (&Class_12b3b8_copy_016410), 0, 0x44, 0x28);
+    ar5_00 = (&Class_129808_copy_016410);
+    vec_new_array(a0 + 0xc6c, (&Class_129808_copy_016410), 0, 0x44, 0x28);
     (*(code *)(&sprintf))(a0 + 0xc, ar5_00, uVar1, uVar2, "SquidLine");
     *(u32 *)(0x170c + a0) = 0;
     *(u32 *)(0x1710 + a0) = 0;
@@ -10777,7 +10779,7 @@ int CSquidLine_uses_matrix_push_0ad354(int a0) {
                 matrix_push(0, uVar2, ar6_00, ar7_00, in_stack_ffffff48);
                 ar4_00 = 0;
                 touch_fields_30_3c(0, uVar2, ar6_00, ar7_00, in_stack_ffffff48);
-                libc_uses_busy_wait_5_013b3c();
+                libm_errno_wrap_013b3c();
                 if (cVar12 == '\0') {
                     dVar7 = (double)CONCAT44(0x47800000, pcVar9);
                 } else {
@@ -12516,7 +12518,7 @@ u32 *Class_12b2ac_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     *a0 = (&DATA_8c12b2ac);
     Vec3_ctor_zero((int)a0 + 0x224, a1, a2);
     Vec3_set_zero((int)a0 + 0x234);
-    game_calls_init_fields_033954((int)a0 + 0x248);
+    Class_129cf8_ctor((int)a0 + 0x248);
     Vec3_ctor_zero((int)a0 + 0x2bc, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x2d4, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x2e4, a1, a2);

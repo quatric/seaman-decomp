@@ -2152,7 +2152,7 @@ int se_slot_status(int a0, u32 a1, u32 a2, u32 a3) {
     if (a1 < 7) {
         iVar1 = *(int *)(a1 * 0x10 + a0);
         if (iVar1 == 1) {
-            iVar1 = sd_sound_2682bc(*(u32 *)(a0 + a1 * 0x10 + 0xc), a1, a2, a3);
+            iVar1 = sd_slot_send_cmd_12(*(u32 *)(a0 + a1 * 0x10 + 0xc), a1, a2, a3);
         }
     }
     return iVar1;
@@ -2489,7 +2489,7 @@ int Vec3_dtor(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_ctor_xyz  0x8c022ce8
  * called by: CAnimBody_vec_0342d8, CAnimal_list_039124, CAnimal_list_08894c, CGame_uses_global_list_push_0e99e4,
- * CGame_vec_0e992c, Class_1299f8_m3_019f00, Class_1299f8_m4_019588, Class_129c24_vec_02ffec (+123 more)
+ * CGame_vec_0e992c, Class_1299f8_m3_019f00, Class_1299f8_m4_019588, Class_129a24_ctor (+123 more)
  */
 u32 *Vec3_ctor_xyz(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_fr5;
@@ -4033,7 +4033,7 @@ u32 Vec3_not_equal(float *a0, float *a1) {
 /*
  * Vec3_set_zero  0x8c023d34
  * called by: CAnimal_ctor, CAnimal_vec_024848, CMothLine_ctor, COutside_Create, CSoilTank_Create,
- * CWaterTank_CreateStage, Class_1299b0_ctor, Class_129cbc_ctor (+60 more)
+ * CWaterTank_CreateStage, Class_1299b0_ctor, Class_1299ec_ctor (+60 more)
  */
 u32 *Vec3_set_zero(u32 *a0) {
     a0[2] = 0;
@@ -4092,7 +4092,7 @@ u32 *vec3_copy_8c023d8c(u32 *a0, u32 *a1, u32 a2, u32 a3) {
  * Vec3_set_one  0x8c023dac
  * sets x, y, z to 1.0
  * called by: CAnimal_ctor, CEnv_vec_0d2050, CMothLine_ctor, CMushroomerEgg_vec_09b508, Class_1299b0_ctor,
- * Class_12a0c4_ctor, Class_12c1f0_uses_Vec3_ctor_zero_0f4040, game_state_switch_04f034 (+6 more)
+ * Class_12a0c4_ctor, Class_12c1f0_ctor, Class_12c1f0_ctor_kind (+6 more)
  */
 u32 *Vec3_set_one(u32 *a0) {
     a0[2] = 0x3f800000;
@@ -5200,7 +5200,7 @@ int CAnimal_ctor(int a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12
     cVar8 = '\0';
     cVar7 = '\0';
     iVar3 = a0;
-    Class_12c1f0_uses_Vec3_ctor_zero_0f4040(a0, a1, a2, s0, s4);
+    Class_12c1f0_ctor_kind(a0, a1, a2, s0, s4);
     *(u8 **)(a0 + 8) = &g_8c129a88;
     uVar1 = rand();
     ar7_00 = libgcc_divide_helper_01031c(uVar1, 2, a2);
@@ -8261,7 +8261,7 @@ u32 game_draw_0297b8(int a0, u32 *a1, int a2, int a3) {
             ar5_00 = (u32 *)(a0 + 900);
             game_draw_029ca8(a0, ar5_00, iVar3, a3);
             obj_set_texlist(*(u32 *)(a0 + 0x42c), ar5_00, iVar3);
-            CAnimal_calls_calc_0f5308();
+            game_calls_calc_0f5308();
         } else if (*(u32 **)(a0 + 0x34c) == a1) {
             CAnimal_calls_calc_0f52c8();
             a3 = a0 + 0x3b0;
@@ -8272,7 +8272,7 @@ u32 game_draw_0297b8(int a0, u32 *a1, int a2, int a3) {
             ar5_00 = (u32 *)(a0 + 0x3b0);
             game_draw_029ca8(a0, ar5_00, iVar3, a3);
             obj_set_texlist(*(u32 *)(a0 + 0x42c), ar5_00, iVar3);
-            CAnimal_calls_calc_0f5308();
+            game_calls_calc_0f5308();
         } else if ((((*(u32 **)(a0 + 0x358) == a1) || (*(u32 **)(a0 + 0x354) == a1)) ||
                     (*(u32 **)(a0 + 0x360) == a1)) ||
                    (*(u32 **)(a0 + 0x35c) == a1)) {
@@ -8297,7 +8297,7 @@ u32 game_draw_0297b8(int a0, u32 *a1, int a2, int a3) {
         iVar3 = a2;
         game_draw_029d64(a0, ar5_00, a2, a3);
         obj_set_texlist(*(u32 *)(a0 + 0x42c), ar5_00, iVar3);
-        CAnimal_calls_calc_0f5308();
+        game_calls_calc_0f5308();
     }
     if (a1[0xb] != 0) {
         ar5_00 = (u32 *)a1[0xb];
@@ -8746,7 +8746,7 @@ LAB_8c029f42:
         gfx_set_color4_4aa52c(a0 + 0x448);
     }
     obj_set_texlist(*(u32 *)(a0 + 0x42c), uVar1, ar6_00);
-    uVar1 = CAnimal_calls_calc_0f5308();
+    uVar1 = game_calls_calc_0f5308();
     return uVar1;
 }
 
@@ -9454,10 +9454,11 @@ u32 Vec3_vec_02ad5c(int a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
 }
 
 /*
- * Vec3_float_calc_02ad88  0x8c02ad88
- * area name: sits between Vec3 functions (same compilation unit); behaviour name: floating-point arithmetic
+ * tint_ramp_90s_02ad88  0x8c02ad88
+ * scales the colour (0, -0.847, -0.847, -1) by frame/5400 (90 seconds) into +0x438..+0x444; at the end resets the frame
+ * count and clears bit 31 of +0x74
  */
-u32 Vec3_float_calc_02ad88(int a0) {
+u32 tint_ramp_90s_02ad88(int a0) {
     int iVar1;
     u32 uVar2;
     float fVar3;
@@ -11660,10 +11661,10 @@ u32 *game_init_fields_02d5b8(u32 *a0) {
 }
 
 /*
- * game_vec_02d5e8  0x8c02d5e8
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_27d400  0x8c02d5e8
+ * static initialiser: builds 4 global Vec3 constants (8c27d400..8c27d424) and registers their destructors
  */
-u32 game_vec_02d5e8(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_27d400(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -11693,10 +11694,10 @@ u32 game_vec_02d5e8(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_02d720  0x8c02d720
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_27d438  0x8c02d720
+ * static initialiser: builds 4 global Vec3 constants (8c27d438..8c27d45c) and registers their destructors
  */
-u32 game_vec_02d720(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_27d438(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -12599,10 +12600,10 @@ u32 game_fill_loop_02e4cc(u32 *a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_02e838  0x8c02e838
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_27d468  0x8c02e838
+ * static initialiser: builds 4 global Vec3 constants (8c27d468..8c27d48c) and registers their destructors
  */
-u32 game_vec_02e838(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_27d468(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -12970,10 +12971,10 @@ u32 game_test_02ef60(u32 unused_a0, int a1) {
 }
 
 /*
- * game_vec_02efbc  0x8c02efbc
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_27d4a0  0x8c02efbc
+ * static initialiser: builds 4 global Vec3 constants (8c27d4a0..8c27d4c4) and registers their destructors
  */
-u32 game_vec_02efbc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_27d4a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;

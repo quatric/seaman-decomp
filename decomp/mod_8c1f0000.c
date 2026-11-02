@@ -712,10 +712,10 @@ u32 maple_set_condition_sync(u32 a0, u32 a1, int a2, u32 a3, u32 s0) {
 }
 
 /*
- * shinobi_scan_loop_1f094c  0x8c1f094c
- * area name: in the shinobi library code range; behaviour name: a loop that only reads
+ * memeq_n  0x8c1f094c
+ * 1 when the first a2 bytes of a0 and a1 are equal
  */
-u32 shinobi_scan_loop_1f094c(char *a0, char *a1, int a2) {
+u32 memeq_n(char *a0, char *a1, int a2) {
     char cVar1;
     char cVar2;
     bool bVar3;
@@ -2909,11 +2909,10 @@ u32 gdfs_uses_read_u32_le_1f1eaa(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gdfs_uses_gdfs_close_like_1f1f98  0x8c1f1f98
- * area name: sits between gdfs functions (same compilation unit); behaviour name: its main named callee is
- * gdfs_close_like
+ * gdfs_shutdown  0x8c1f1f98
+ * releases the two GDFS work buffers, closes every file handle and clears the GDFS state pointer
  */
-u32 gdfs_uses_gdfs_close_like_1f1f98(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
+u32 gdfs_shutdown(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     int *ar4_00;
     int iVar1;
 
@@ -2935,11 +2934,10 @@ u32 gdfs_uses_gdfs_close_like_1f1f98(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 
 }
 
 /*
- * gdfs_uses_gdfs_close_like_1f1fa0  0x8c1f1fa0
- * area name: sits between gdfs functions (same compilation unit); behaviour name: its main named callee is
- * gdfs_close_like
+ * gdfs_shutdown_alt  0x8c1f1fa0
+ * second entry into gdfs_shutdown, taking the first buffer from the caller
  */
-u32 gdfs_uses_gdfs_close_like_1f1fa0(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 ain0, int *ain1) {
+u32 gdfs_shutdown_alt(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 ain0, int *ain1) {
     int *a4;
     int iVar1;
 
@@ -3841,10 +3839,10 @@ u32 alt_entry_1f2a80(u32 unused_a0, char *a1) {
 }
 
 /*
- * shinobi_scan_loop_1f2acc  0x8c1f2acc
- * area name: in the shinobi library code range; behaviour name: a loop that only reads
+ * streq  0x8c1f2acc
+ * 1 when strings a0 and a1 are equal
  */
-u32 shinobi_scan_loop_1f2acc(char *a0, char *a1) {
+u32 streq(char *a0, char *a1) {
     char cVar1;
     char cVar2;
 
@@ -4438,8 +4436,8 @@ u32 *set_fields_0_4_8_1f3078(u32 *a0, u32 a1) {
 /*
  * gdfs_close_like  0x8c1f309c
  * closes a file handle: aborts a transfer in progress (status 2..4) and clears +0x4c (probably gdFsClose)
- * called by: ADXSTM_Destroy_like, ADXSTM_OpenFname, alt_entry_26344a, gdfs_uses_gdfs_close_like_1f1f98,
- * gdfs_uses_gdfs_close_like_1f1fa0, gdfs_uses_read_u32_le_1f1eaa, kamui_uses_gdfs_close_like_212440
+ * called by: ADXSTM_Destroy_like, ADXSTM_OpenFname, alt_entry_26344a, gdfs_shutdown, gdfs_shutdown_alt,
+ * gdfs_uses_read_u32_le_1f1eaa, kamui_uses_gdfs_close_like_212440
  */
 u32 gdfs_close_like(int a0, u32 a1, u32 a2, u32 a3) {
     short sVar1;
@@ -5184,7 +5182,7 @@ u32 shinobi_test_1f3a4c(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * bios_sysinfo_init  0x8c1f3b1c
  * BIOS system-info call 0 (vector 0x8c0000b0)
- * called by: shinobi_uses_bios_sysinfo_init_1f804e, sysinfo_get_id
+ * called by: sysinfo_get_id, sysinfo_read_id6
  */
 u32 bios_sysinfo_init(u32 a0) {
     u32 uVar1;
@@ -5198,7 +5196,7 @@ u32 bios_sysinfo_init(u32 a0) {
 /*
  * bios_sysinfo_id  0x8c1f3b44
  * BIOS system-info call 3: pointer to the console's unique ID
- * called by: shinobi_uses_bios_sysinfo_init_1f804e, shinobi_uses_flashrom_open_partition_1f97b4, sysinfo_get_id
+ * called by: shinobi_uses_flashrom_open_partition_1f97b4, sysinfo_get_id, sysinfo_read_id6
  */
 u32 bios_sysinfo_id(u32 a0) {
     u32 uVar1;
@@ -7143,10 +7141,10 @@ u32 maple_devinfo_clear(int a0) {
 }
 
 /*
- * shinobi_copy_1f550a  0x8c1f550a
- * area name: in the shinobi library code range; behaviour name: mostly calls copy functions
+ * device_name_set_none  0x8c1f550a
+ * clears the record and sets its name field to "(none)" padded with spaces
  */
-u32 shinobi_copy_1f550a(int a0, u32 unused_a1, u32 a2) {
+u32 device_name_set_none(int a0, u32 unused_a1, u32 a2) {
     u8 *puVar1;
 
     memset_words(a0, 0, a2);
@@ -8020,7 +8018,7 @@ u32 maple_mark_last_frame(void) {
 /*
  * memset_words  0x8c1f59dc
  * stores a1 in a2 consecutive words at a0
- * called by: g2dma_1f4794, maple_devinfo_clear, shinobi_copy_1f550a
+ * called by: device_name_set_none, g2dma_1f4794, maple_devinfo_clear
  */
 int memset_words(u32 *a0, u32 a1, int a2) {
     int iVar1;
@@ -8062,7 +8060,7 @@ int shinobi_update_fields_1f59fc(void) {
 /*
  * irq_disable_save  0x8c1f5a30
  * saves SR.IMASK in *a0 and returns SR with IMASK 15 (Shinobi's copy)
- * called by: irq_list_add_unique, irq_list_unref, irq_uses_irq_disable_save_1f5b28, irq_uses_irq_disable_save_1f5c04
+ * called by: irq_list_add_unique, irq_list_ref, irq_list_unref, irq_uses_irq_disable_save_1f5c04
  */
 u32 irq_disable_save(u32 *a0) {
     u32 uVar1;
@@ -8087,7 +8085,7 @@ u32 irq_disable_save(u32 *a0) {
 /*
  * irq_restore_saved  0x8c1f5a48
  * SR with IMASK from *a0 (Shinobi's copy)
- * called by: irq_list_add_unique, irq_list_unref, irq_uses_irq_disable_save_1f5b28, irq_uses_irq_disable_save_1f5c04
+ * called by: irq_list_add_unique, irq_list_ref, irq_list_unref, irq_uses_irq_disable_save_1f5c04
  */
 u32 irq_restore_saved(u32 *a0) {
     u8 in_MD;
@@ -8108,8 +8106,8 @@ u32 irq_restore_saved(u32 *a0) {
 /*
  * irq_calls_calc_1f5a5e  0x8c1f5a5e
  * area name: sits between irq functions (same compilation unit); behaviour name: its callees mostly do: calc
- * called by: irq_calls_calc_1f5ac6, irq_list_add_unique, irq_list_find, irq_list_unref,
- * irq_uses_irq_disable_save_1f5b28, irq_uses_irq_disable_save_1f5c04
+ * called by: irq_calls_calc_1f5ac6, irq_list_add_unique, irq_list_find, irq_list_ref, irq_list_unref,
+ * irq_uses_irq_disable_save_1f5c04
  */
 int irq_calls_calc_1f5a5e(u32 *a0) {
     int iVar1;
@@ -8148,7 +8146,7 @@ u32 irq_list_find(int a0) {
 /*
  * irq_calls_calc_1f5ac6  0x8c1f5ac6
  * area name: sits between irq functions (same compilation unit); behaviour name: its callees mostly do: calls_calc
- * called by: irq_list_add_unique, irq_list_unref, irq_uses_irq_disable_save_1f5b28
+ * called by: irq_list_add_unique, irq_list_ref, irq_list_unref
  */
 u32 irq_calls_calc_1f5ac6(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u8 *puVar1;
@@ -8188,11 +8186,10 @@ u32 irq_calc_1f5b1a(u32 a0, u32 a1) {
 }
 
 /*
- * irq_uses_irq_disable_save_1f5b28  0x8c1f5b28
- * area name: sits between irq functions (same compilation unit); behaviour name: its main named callee is
- * irq_disable_save
+ * irq_list_ref  0x8c1f5b28
+ * with interrupts masked, adds one reference to a0's handler list entry and returns its handler (0 if absent)
  */
-u32 irq_uses_irq_disable_save_1f5b28(u32 a0, u32 *a1, u32 unused_a2, u32 a3) {
+u32 irq_list_ref(u32 a0, u32 *a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u8 auStack_18[4];
@@ -8587,8 +8584,8 @@ u8 *shinobi_input_1f5ea8(u32 a0, u32 a1, int a2, int a3, int s0) {
 /*
  * device_info_clear  0x8c1f5f4e
  * resets a device-info record ("(no device)")
- * called by: device_info_table_reset, shinobi_input_1f5dd0, shinobi_input_1f5ea8, shinobi_uses_maple_port_info_1f61c6,
- * shinobi_uses_maple_port_info_1f620e, shinobi_uses_memset_1f62f6 strings: "(no device)"
+ * called by: device_info_table_reset, device_info_table_reset_alt, shinobi_input_1f5dd0, shinobi_input_1f5ea8,
+ * shinobi_uses_maple_port_info_1f61c6, shinobi_uses_maple_port_info_1f620e strings: "(no device)"
  */
 u32 device_info_clear(u32 *a0) {
     *a0 = 0;
@@ -8928,10 +8925,10 @@ u32 device_info_table_reset(void) {
 }
 
 /*
- * shinobi_uses_memset_1f62f6  0x8c1f62f6
- * area name: in the shinobi library code range; behaviour name: its main named callee is memset
+ * device_info_table_reset_alt  0x8c1f62f6
+ * second entry into device_info_table_reset
  */
-u32 shinobi_uses_memset_1f62f6(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 device_info_table_reset_alt(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int *in_r1;
     u32 a5;
@@ -11244,10 +11241,10 @@ u32 sysinfo_read_byte_0c(void) {
 }
 
 /*
- * shinobi_uses_bios_sysinfo_init_1f804e  0x8c1f804e
- * area name: in the shinobi library code range; behaviour name: its main named callee is bios_sysinfo_init
+ * sysinfo_read_id6  0x8c1f804e
+ * copies the 6-byte system ID into a0; 1 when its checksum is good, 2 when not, 0 without a buffer
  */
-u32 shinobi_uses_bios_sysinfo_init_1f804e(int a0) {
+u32 sysinfo_read_id6(int a0) {
     int iVar1;
     u32 uVar2;
     int ar5_00;
@@ -11290,7 +11287,7 @@ u32 sysinfo_get_id(void) {
 /*
  * checksum8_header_ok  0x8c1f80d0
  * 1 when the byte sum of a0[2..7] equals a0[1] and its complement equals a0[0]
- * called by: shinobi_uses_bios_sysinfo_init_1f804e
+ * called by: sysinfo_read_id6
  */
 u32 checksum8_header_ok(u8 *a0) {
     int iVar1;
@@ -11365,8 +11362,8 @@ u32 shinobi_sound_1f814c(u32 a0) {
  * rtc_get_date  0x8c1f8176
  * fills a {year, month, day, hour, minute, second, weekday} struct from the real-time clock
  * called by: CProlog_uses_free_sys_0b96e4, game_state_switch_0fc94c, game_state_switch_0fcd2c,
- * input_uses_set_fields_0_4_c_0bf804, memcard_queue_1fc740_with_date, memcard_queue_1fc79e_with_date,
- * rtc_get_date_wrap, shinobi_uses_flashrom_get_block_1f7558 (+9 more)
+ * input_uses_set_fields_0_4_c_0bf804, memcard_queue_op0c_with_date, memcard_queue_op0d_with_date, rtc_get_date_wrap,
+ * shinobi_uses_flashrom_get_block_1f7558 (+9 more)
  */
 u32 rtc_get_date(short *a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 *puVar1;
@@ -11392,10 +11389,10 @@ u32 rtc_get_date(short *a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * rtc_sound_1f81dc  0x8c1f81dc
- * area name: sits between rtc functions (same compilation unit); behaviour name: mostly calls sound functions
+ * rtc_set_date  0x8c1f81dc
+ * converts the date to RTC seconds, writes them to the AICA RTC registers and checks the readback; -1 on mismatch
  */
-int rtc_sound_1f81dc(u32 a0, u32 unused_a1, u32 a2) {
+int rtc_set_date(u32 a0, u32 unused_a1, u32 a2) {
     int iVar1;
     u32 uVar2;
     u32 auStack_8[2];
@@ -11443,7 +11440,7 @@ u32 rtc_date_compare(u32 a0, u32 a1, u32 a2) {
  * seconds since 1950-01-01 (the Dreamcast RTC epoch) for a {year, month, day, hour, minute, second} struct
  * called by: CGame_uses_libgcc_divide_helper_0cc784, CProlog_uses_free_sys_0b96e4,
  * CProlog_uses_libgcc_divide_helper_0cd3c8, date_compare, game_select_intro_or_ending, game_state_switch_0fcd2c,
- * rtc_date_compare, rtc_sound_1f81dc (+12 more)
+ * rtc_date_compare, rtc_set_date (+12 more)
  */
 u32 date_to_rtc_seconds(u16 *a0, int *a1, u32 a2) {
     u16 uVar1;
@@ -11586,7 +11583,7 @@ int shinobi_sound_1f8462(int a0) {
 /*
  * shinobi_sound_1f84d8  0x8c1f84d8
  * area name: in the shinobi library code range; behaviour name: mostly calls sound functions
- * called by: rtc_get_date, rtc_sound_1f81dc, shinobi_install_event900, shinobi_sound_1f814c
+ * called by: rtc_get_date, rtc_set_date, shinobi_install_event900, shinobi_sound_1f814c
  */
 int shinobi_sound_1f84d8(u32 a0) {
     bool bVar1;
@@ -11650,7 +11647,7 @@ u32 aica_reg_1f8544(u32 *a0) {
 
 /*
  * aica_reg_1f85a0  0x8c1f85a0
- * called by: rtc_sound_1f81dc
+ * called by: rtc_set_date
  */
 u32 aica_reg_1f85a0(void) {
     u16 auStack_c[4];
@@ -11662,7 +11659,7 @@ u32 aica_reg_1f85a0(void) {
 
 /*
  * aica_reg_1f85c8  0x8c1f85c8
- * called by: rtc_sound_1f81dc
+ * called by: rtc_set_date
  */
 u32 aica_reg_1f85c8(u32 a0) {
     u32 auStack_c[2];
@@ -11674,7 +11671,7 @@ u32 aica_reg_1f85c8(u32 a0) {
 
 /*
  * aica_reg_1f85ee  0x8c1f85ee
- * called by: rtc_sound_1f81dc
+ * called by: rtc_set_date
  */
 u32 aica_reg_1f85ee(u32 a0) {
     u32 auStack_c[2];
@@ -13302,9 +13299,8 @@ u32 *shinobi_uses_int_call_handlers_1fa496(void) {
 /*
  * shinobi_uses_ret_const_1_1fa54c  0x8c1fa54c
  * area name: in the shinobi library code range; behaviour name: its callees mostly do: uses_ret_const_1
- * called by: cri_uses_irq_disable_nested_2628fa, gdfs_uses_gdfs_close_like_1f1f98, gdfs_uses_gdfs_close_like_1f1fa0,
- * ninja_set_event900_callback, ninja_uses_ret_const_1_2580c6, pvr_uses_memset_1efcae, shinobi_remove_event900,
- * ta_copy_2019e0
+ * called by: cri_uses_irq_disable_nested_2628fa, gdfs_shutdown, gdfs_shutdown_alt, ninja_set_event900_callback,
+ * ninja_uses_ret_const_1_2580c6, pvr_uses_memset_1efcae, shinobi_remove_event900, ta_copy_2019e0
  */
 u32 shinobi_uses_ret_const_1_1fa54c(int a0) {
     u32 *puVar1;
@@ -13502,15 +13498,16 @@ u32 shinobi_calc_1fa72e(u32 a0, u32 a1, u32 a2, u32 a3) {
 
     /* WARNING: Could not recover jumptable at 0x8c1fa73a. Too many branches */
     /* WARNING: Treating indirect jump as call */
-    uVar1 = (*(code *)((u32)(&shinobi_scan_loop_1fa73e) | 0xa0000000))();
+    uVar1 = (*(code *)((u32)(&cache_init_clear_arrays) | 0xa0000000))();
     return uVar1;
 }
 
 /*
- * shinobi_scan_loop_1fa73e  0x8c1fa73e
- * area name: in the shinobi library code range; behaviour name: a loop that only reads
+ * cache_init_clear_arrays  0x8c1fa73e
+ * disables the caches, zeroes every operand-cache address-array entry (f4000000..f4004000) and invalidates the
+ * instruction cache
  */
-u32 shinobi_scan_loop_1fa73e(void) {
+u32 cache_init_clear_arrays(void) {
     int *piVar1;
     int iVar2;
     u32 in_r0;
@@ -14598,7 +14595,7 @@ u32 shinobi_input_1fba98(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * shinobi_input_1fbb6c  0x8c1fbb6c
  * area name: in the shinobi library code range; behaviour name: mostly calls input functions
- * called by: alt_entry_2001d0, shinobi_input_1fee6c, shinobi_input_2001b8, shinobi_input_200d94, shinobi_save_200038
+ * called by: alt_entry_2001d0, shinobi_input_1fee6c, shinobi_input_2001b8, shinobi_save_200038, vmu_read_blocks_to
  */
 u32 shinobi_input_1fbb6c(int a0, u32 a1, u32 a2) {
     int iVar1;
@@ -14636,8 +14633,8 @@ u32 shinobi_input_1fbb6c(int a0, u32 a1, u32 a2) {
 /*
  * shinobi_input_1fbc44  0x8c1fbc44
  * area name: in the shinobi library code range; behaviour name: mostly calls input functions
- * called by: alt_entry_1febe6, shinobi_input_200e1e, shinobi_input_2014e6, shinobi_save_1febd6, shinobi_save_1fecf2,
- * shinobi_save_200038, shinobi_save_200346, shinobi_uses_memset_1fde30
+ * called by: alt_entry_1febe6, shinobi_input_2014e6, shinobi_save_1febd6, shinobi_save_1fecf2, shinobi_save_200038,
+ * shinobi_save_200346, shinobi_uses_memset_1fde30, vmu_write_blocks_from
  */
 u32 shinobi_input_1fbc44(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -14832,7 +14829,7 @@ u32 shinobi_uses_maple_ready_port_mask_1fbe84(u32 unused_a0, u32 a1, u32 a2, u32
         if (g_8c475f98 == 0) {
             pcVar2 = slot80_queue_op_12;
         } else {
-            pcVar2 = shinobi_uses_slot80_get_active_1fbfd2;
+            pcVar2 = slot80_queue_op_01;
         }
         thunk_FUN_8c1fcfbe();
         g_8c475f88 = g_8c475f8c;
@@ -14928,11 +14925,11 @@ u32 thunk_FUN_8c1fda7e(void) {
 }
 
 /*
- * shinobi_uses_slot80_get_active_1fbfd2  0x8c1fbfd2
- * area name: in the shinobi library code range; behaviour name: its main named callee is slot80_get_active
+ * slot80_queue_op_01  0x8c1fbfd2
+ * queues request 0x1 on the idle slot (args from the caller); -1 when the slot is busy
  * called by: shinobi_copy_1fc93c
  */
-u32 shinobi_uses_slot80_get_active_1fbfd2(u32 a0) {
+u32 slot80_queue_op_01(u32 a0) {
     int iVar1;
     u32 uVar2;
 
@@ -14995,10 +14992,10 @@ u32 thunk_FUN_8c1ffcc2(void) {
 }
 
 /*
- * shinobi_uses_slot80_get_active_1fc07c  0x8c1fc07c
- * area name: in the shinobi library code range; behaviour name: its main named callee is slot80_get_active
+ * slot80_queue_op_03  0x8c1fc07c
+ * queues request 3 (args a1..a3 and one stacked) on idle slot a0 and prepares its buffers; -1 when busy
  */
-u32 shinobi_uses_slot80_get_active_1fc07c(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 slot80_queue_op_03(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 in_stack_00000000;
@@ -15215,10 +15212,10 @@ u32 slot80_queue_op_04(int a0) {
 }
 
 /*
- * shinobi_uses_slot80_get_active_1fc3a6  0x8c1fc3a6
- * area name: in the shinobi library code range; behaviour name: its main named callee is slot80_get_active
+ * slot80_queue_op_05  0x8c1fc3a6
+ * queues request 5 for a0 (args a1, a2) on its slot (+0x28) when idle; -1 when busy
  */
-u32 shinobi_uses_slot80_get_active_1fc3a6(int a0, u32 a1, u32 a2) {
+u32 slot80_queue_op_05(int a0, u32 a1, u32 a2) {
     int iVar1;
     u32 uVar2;
     u32 ar4_00;
@@ -15237,10 +15234,10 @@ u32 shinobi_uses_slot80_get_active_1fc3a6(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * shinobi_uses_slot80_get_active_1fc428  0x8c1fc428
- * area name: in the shinobi library code range; behaviour name: its main named callee is slot80_get_active
+ * slot80_queue_op_06  0x8c1fc428
+ * queues request 0x6 on the idle slot (args from the caller); -1 when the slot is busy
  */
-u32 shinobi_uses_slot80_get_active_1fc428(int a0, u32 a1, u32 a2) {
+u32 slot80_queue_op_06(int a0, u32 a1, u32 a2) {
     int iVar1;
     u32 uVar2;
     u32 ar4_00;
@@ -15324,10 +15321,10 @@ u32 slot80_queue_op_11(u32 a0, u32 a1, u32 a2) {
 }
 
 /*
- * shinobi_uses_slot80_get_active_1fc504  0x8c1fc504
- * area name: in the shinobi library code range; behaviour name: its main named callee is slot80_get_active
+ * slot80_queue_op_0a  0x8c1fc504
+ * queues request 0xa on the idle slot (args from the caller); -1 when the slot is busy
  */
-u32 shinobi_uses_slot80_get_active_1fc504(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 slot80_queue_op_0a(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -15413,10 +15410,10 @@ u32 shinobi_uses_slot80_get_active_1fc5de(int a0) {
 }
 
 /*
- * shinobi_uses_slot80_get_active_1fc604  0x8c1fc604
- * area name: in the shinobi library code range; behaviour name: its main named callee is slot80_get_active
+ * slot80_queue_op_08  0x8c1fc604
+ * queues request 0x8 on the idle slot (args from the caller); -1 when the slot is busy
  */
-u32 shinobi_uses_slot80_get_active_1fc604(u32 a0, u32 a1, u32 a2) {
+u32 slot80_queue_op_08(u32 a0, u32 a1, u32 a2) {
     int iVar1;
     u32 uVar2;
 
@@ -15452,11 +15449,11 @@ u32 buGetFileSize_like(u32 a0, u32 a1) {
 }
 
 /*
- * shinobi_uses_slot80_get_active_1fc682  0x8c1fc682
- * area name: in the shinobi library code range; behaviour name: its main named callee is slot80_get_active
+ * slot80_queue_op_09  0x8c1fc682
+ * queues request 0x9 on the idle slot (args from the caller); -1 when the slot is busy
  * called by: game_uses_bu_get_game_file_name_01b144
  */
-u32 shinobi_uses_slot80_get_active_1fc682(u32 a0, u32 a1) {
+u32 slot80_queue_op_09(u32 a0, u32 a1) {
     int iVar1;
     u32 uVar2;
 
@@ -15495,10 +15492,10 @@ u32 buLoadFile_like(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_uses_slot80_get_active_1fc740  0x8c1fc740
- * area name: in the shinobi library code range; behaviour name: its main named callee is slot80_get_active
+ * slot80_queue_op_0c  0x8c1fc740
+ * queues request 0xc on the idle slot (args from the caller); -1 when the slot is busy
  */
-u32 shinobi_uses_slot80_get_active_1fc740(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0) {
+u32 slot80_queue_op_0c(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     int iVar1;
     u32 uVar2;
     u32 ain0;
@@ -15520,10 +15517,10 @@ u32 shinobi_uses_slot80_get_active_1fc740(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0
 }
 
 /*
- * shinobi_uses_slot80_get_active_1fc79e  0x8c1fc79e
- * area name: in the shinobi library code range; behaviour name: its main named callee is slot80_get_active
+ * slot80_queue_op_0d  0x8c1fc79e
+ * queues request 0xd on the idle slot (args from the caller); -1 when the slot is busy
  */
-u32 shinobi_uses_slot80_get_active_1fc79e(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0) {
+u32 slot80_queue_op_0d(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     int iVar1;
     u32 uVar2;
     u32 ain0;
@@ -15569,10 +15566,10 @@ u32 buLoadFileEx_like(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_uses_slot80_get_active_1fc852  0x8c1fc852
- * area name: in the shinobi library code range; behaviour name: its main named callee is slot80_get_active
+ * slot80_queue_op_14  0x8c1fc852
+ * queues request 0x14 on the idle slot (args from the caller); -1 when the slot is busy
  */
-u32 shinobi_uses_slot80_get_active_1fc852(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 slot80_queue_op_14(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 in_stack_00000000;
@@ -15640,7 +15637,7 @@ u32 shinobi_copy_1fc93c(u32 a0, u32 a1, u32 a2) {
 
     iVar1 = shinobi_copy_1fd8fc(a0, a1, a2);
     if (iVar1 == 0) {
-        uVar2 = shinobi_uses_slot80_get_active_1fbfd2(a0);
+        uVar2 = slot80_queue_op_01(a0);
         return uVar2;
     }
     return iVar1;
@@ -15914,9 +15911,8 @@ u32 slot80_get_active(int a0) {
 /*
  * slot80_set_8  0x8c1fce98
  * +8 of entry a0 in the 0x80-byte table at 0x8c475fc0 = a1
- * called by: alt_entry_1fc476, buDeleteFile_like, buLoadFileEx_like, buLoadFile_like,
- * shinobi_uses_slot80_get_active_1fbfd2, shinobi_uses_slot80_get_active_1fc07c, shinobi_uses_slot80_get_active_1fc3a6,
- * shinobi_uses_slot80_get_active_1fc428 (+11 more)
+ * called by: alt_entry_1fc476, buDeleteFile_like, buLoadFileEx_like, buLoadFile_like, slot80_queue_op_01,
+ * slot80_queue_op_03, slot80_queue_op_04, slot80_queue_op_05 (+11 more)
  */
 u32 slot80_set_8(int a0, u32 a1) {
     u32 in_r0;
@@ -15928,9 +15924,8 @@ u32 slot80_set_8(int a0, u32 a1) {
 /*
  * slot80_set_params  0x8c1fcea8
  * stores six parameters in entry a0 of the table at 0x8c475fc0 and marks it active
- * called by: alt_entry_1fc476, buDeleteFile_like, buLoadFileEx_like, buLoadFile_like,
- * shinobi_uses_slot80_get_active_1fbfd2, shinobi_uses_slot80_get_active_1fc07c, shinobi_uses_slot80_get_active_1fc3a6,
- * shinobi_uses_slot80_get_active_1fc428 (+11 more)
+ * called by: alt_entry_1fc476, buDeleteFile_like, buLoadFileEx_like, buLoadFile_like, slot80_queue_op_01,
+ * slot80_queue_op_03, slot80_queue_op_04, slot80_queue_op_05 (+11 more)
  */
 u32 slot80_set_params(int a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8) {
     u32 in_r0;
@@ -15950,7 +15945,7 @@ u32 slot80_set_params(int a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8) {
 /*
  * shinobi_scan_loop_1fcecc  0x8c1fcecc
  * area name: in the shinobi library code range; behaviour name: a loop that only reads
- * called by: shinobi_uses_slot80_get_active_1fc07c
+ * called by: slot80_queue_op_03
  */
 u32 shinobi_scan_loop_1fcecc(int a0, u8 *a1) {
     u8 uVar1;
@@ -15972,9 +15967,8 @@ u32 shinobi_scan_loop_1fcecc(int a0, u8 *a1) {
 /*
  * shinobi_scan_loop_1fcef8  0x8c1fcef8
  * area name: in the shinobi library code range; behaviour name: a loop that only reads
- * called by: alt_entry_1fc476, buDeleteFile_like, buLoadFileEx_like, buLoadFile_like,
- * shinobi_uses_slot80_get_active_1fc504, shinobi_uses_slot80_get_active_1fc604, shinobi_uses_slot80_get_active_1fc740,
- * shinobi_uses_slot80_get_active_1fc79e (+1 more)
+ * called by: alt_entry_1fc476, buDeleteFile_like, buLoadFileEx_like, buLoadFile_like, slot80_queue_op_08,
+ * slot80_queue_op_0a, slot80_queue_op_0c, slot80_queue_op_0d (+1 more)
  */
 u32 shinobi_scan_loop_1fcef8(int a0, char *a1, char *a2) {
     char cVar1;
@@ -16017,8 +16011,7 @@ u32 shinobi_scan_loop_1fcef8(int a0, char *a1, char *a2) {
 /*
  * memmove_wrap_1fcf6e  0x8c1fcf6e
  * only calls memmove
- * called by: shinobi_uses_slot80_get_active_1fc07c, shinobi_uses_slot80_get_active_1fc740,
- * shinobi_uses_slot80_get_active_1fc79e
+ * called by: slot80_queue_op_03, slot80_queue_op_0c, slot80_queue_op_0d
  */
 u32 memmove_wrap_1fcf6e(int a0) {
     u32 uVar1;
