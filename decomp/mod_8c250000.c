@@ -10912,9 +10912,9 @@ u32 matrix_pop1(void) {
 /*
  * matrix_float_calc_256294  0x8c256294
  * area name: sits between matrix functions (same compilation unit); behaviour name: floating-point arithmetic
- * called by: CSquidLine_vec_085c3c, Class_12acc8_m1_09f470, game_calls_float_calc_019508, game_calls_float_calc_0d1754,
- * game_calls_float_calc_0d43cc, game_uses_list_node_next_wrap_0da754, game_uses_stick_x_right_half_0e1f90,
- * game_vec_02fcc4 (+2 more)
+ * called by: CSquidLine_vec_085c3c, Class_12acc8_m1_09f470, Class_12b580_uses_list_node_next_wrap_0da754,
+ * game_calls_float_calc_019508, game_calls_float_calc_0d1754, game_calls_float_calc_0d43cc,
+ * game_uses_input_track_r_hold_0e1f90, game_vec_02fcc4 (+2 more)
  */
 u32 matrix_float_calc_256294(int a0, double *a1, double *a2) {
     double in_dr0;
@@ -14623,7 +14623,7 @@ u32 ninja_update_fields_258252(int a0) {
 
 /*
  * pvr_25825a  0x8c25825a
- * called by: Class_12c394_uses_imask_to_sr_bits_102bd0
+ * called by: startup_init_hardware
  */
 u32 pvr_25825a(u32 a0, int a1, u32 a2, u32 a3) {
     int iVar1;

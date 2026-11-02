@@ -962,9 +962,9 @@ u32 CAnimal_m7_0f49b8(int a0, int *a1, u32 a2, u32 a3) {
 /*
  * game_calls_calc_0f4b44  0x8c0f4b44
  * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: calc
- * called by: CAnimal_draw_088288, Class_12b3b8_uses_object_dtor_delete_0e7a78, game_draw_038b04, game_draw_09c930,
- * game_uses_light_set_vec_0da88c, game_uses_light_set_vec_0df8d0, game_uses_list_node_next_wrap_0da754,
- * game_uses_matrix_push_0cc524 (+1 more)
+ * called by: CAnimal_draw_088288, Class_12b3b8_uses_object_dtor_delete_0e7a78,
+ * Class_12b580_uses_list_node_next_wrap_0da754, game_draw_038b04, game_draw_09c930, game_uses_light_set_vec_0da88c,
+ * game_uses_light_set_vec_0df8d0, game_uses_matrix_push_0cc524 (+1 more)
  */
 u32 game_calls_calc_0f4b44(int a0) {
     u32 uVar1;
@@ -3030,7 +3030,7 @@ int game_vec_0f69ec(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * has_field_2c  0x8c0f6ab0
  * 1 when +0x2c is non-zero
- * called by: Class_12b580_draw_0e660c, Class_12b580_m1_0e634c, Class_12b580_m2_0e6548, Class_12bb08_m1_0da338,
+ * called by: Class_12b580_draw_with_children, Class_12b580_m1_0e634c, Class_12b580_m2_0e6548, Class_12bb08_m1_0da338,
  * Class_12bb08_m2_0da5a8, game_draw_0df668, game_uses_color_set_white_a0_0df250, game_uses_noop_0de6d0 (+4 more)
  */
 u32 has_field_2c(int a0) {
@@ -3640,12 +3640,12 @@ u32 game_vec_0f6ac4(u64 *a0, int *a1, u32 a2) {
 }
 
 /*
- * game_draw_0f7118  0x8c0f7118
- * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
- * called by: Class_12b580_draw_0e660c, game_draw_0df668, game_uses_color_set_white_a0_0df250, game_uses_noop_0de6d0,
- * game_uses_noop_0deb60, game_uses_noop_0def78
+ * Class_12b580_draw_0f7118  0x8c0f7118
+ * area name: only called from Class_12b580 methods; behaviour name: mostly calls draw functions
+ * called by: Class_12b580_draw_with_children, game_draw_0df668, game_uses_color_set_white_a0_0df250,
+ * game_uses_noop_0de6d0, game_uses_noop_0deb60, game_uses_noop_0def78
  */
-u32 game_draw_0f7118(int a0, u32 a1, u32 a2) {
+u32 Class_12b580_draw_0f7118(int a0, u32 a1, u32 a2) {
     u32 r7;
     u32 uVar1;
     float fVar2;
@@ -4153,11 +4153,11 @@ u32 game_init(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     if (iVar1 == 0) {
         uVar3 = 2;
         uVar2 = 0;
-        Class_12c394_uses_imask_to_sr_bits_102bd0(0x31, 0, 2, a3);
+        startup_init_hardware(0x31, 0, 2, a3);
     } else {
         uVar3 = 1;
         uVar2 = 0;
-        Class_12c394_uses_imask_to_sr_bits_102bd0(0x34, 0, 1, a3);
+        startup_init_hardware(0x34, 0, 1, a3);
     }
     draw_draw_helper_259a1c(0);
     g_8c43b578 = malloc_thunk(0x2b000, uVar2, uVar3, a3);

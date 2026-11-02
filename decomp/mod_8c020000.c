@@ -1190,8 +1190,8 @@ u32 pack_close_and_flush(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * game_sound_021720  0x8c021720
  * area name: game code; nothing names its area yet; behaviour name: mostly calls sound functions
- * called by: event1_begin, game_list_0daea8, game_uses_get_field_24_0e5238, game_uses_set_field_d0_0c4e58,
- * game_uses_set_field_d4_0e4298, game_uses_set_timeout_120_mode6_0caac0, game_uses_stick_x_right_half_0e1f90,
+ * called by: event1_begin, game_list_0daea8, game_uses_get_field_24_0e5238, game_uses_input_track_r_hold_0e1f90,
+ * game_uses_set_field_d0_0c4e58, game_uses_set_field_d4_0e4298, game_uses_set_timeout_120_mode6_0caac0,
  * input_uses_get_field_24_0e25c0
  */
 u32 game_sound_021720(int *a0, u32 a1, u32 unused_a2, u32 a3) {
@@ -1331,7 +1331,7 @@ int se_play_3d(int *a0, u32 a1, u32 unused_a2, u32 a3) {
  * se_open_bank1  0x8c02190c
  * opens an SE port on bank 1 of a sound manager
  * called by: Class_129974_sound_0db32c, Class_12b930_sound_0d3d6c, chance_play_se_12_start, draw_sound_0d4c74,
- * game_uses_get_field_24_0e5238, game_uses_stick_x_right_half_0e1f90, input_uses_edge_detect_update_0e2a14,
+ * game_uses_get_field_24_0e5238, game_uses_input_track_r_hold_0e1f90, input_uses_edge_detect_update_0e2a14,
  * input_uses_edge_detect_update_0e3210 (+2 more)
  */
 u32 se_open_bank1(u32 a0) {
@@ -1375,7 +1375,7 @@ int se_open(int *a0, u32 a1) {
  * se_play  0x8c021994
  * plays request a2 on port a1 of manager a0
  * called by: Class_129974_sound_0db32c, Class_12b930_sound_0d3d6c, chance_play_se_12_start, draw_sound_0d4c74,
- * game_sound_0d55d0, game_uses_get_field_24_0e5238, game_uses_stick_x_right_half_0e1f90,
+ * game_sound_0d55d0, game_uses_get_field_24_0e5238, game_uses_input_track_r_hold_0e1f90,
  * input_uses_edge_detect_update_0e2a14 (+5 more)
  */
 u32 se_play(u32 a0, u32 a1, u32 a2) {
@@ -1457,7 +1457,7 @@ u32 se_status(int *a0, u32 a1, u32 a2, u32 a3) {
  * se_close_port_handle  0x8c021a8c
  * closes the port handle *a1 and sets it to -1
  * called by: Class_129974_sound_0db32c, Class_12b930_sound_0d3d6c, chance_play_se_12_start, draw_sound_0d4c74,
- * game_uses_get_field_24_0e5238, game_uses_stick_x_right_half_0e1f90, input_uses_edge_detect_update_0e2a14,
+ * game_uses_get_field_24_0e5238, game_uses_input_track_r_hold_0e1f90, input_uses_edge_detect_update_0e2a14,
  * input_uses_edge_detect_update_0e3210 (+6 more)
  */
 u32 se_close_port_handle(u32 a0, u32 *a1) {
@@ -1781,7 +1781,7 @@ u32 pack_find_by_name_buffered(int *a0, u32 a1, u32 a2, u32 a3) {
  * Class_12b580_clear_request  0x8c0220bc
  * clears the request (+0x9ec94 = -1) and the ready flag
  * called by: Class_12b580_m1_0e634c, event_out_water_cat, game_uses_game_clear_node_and_item_lis_0e6dc4,
- * pack_sound_0e0764, se_close_two_ports, se_sound_0d50b4
+ * panel_slide_down_then_stop_sound, se_close_two_ports, se_sound_0d50b4
  */
 int Class_12b580_clear_request(int a0) {
     int iVar1;
@@ -1813,7 +1813,7 @@ u32 Class_12b580_set_request(int *a0, u32 a1) {
  * Class_12b580_sound_022104  0x8c022104
  * area name: sits between Class_12b580 functions (same compilation unit); behaviour name: mostly calls sound functions
  * called by: Class_12b580_m1_0e634c, event_out_water_cat, game_sound_0d5614, game_sound_0d56b4,
- * game_uses_call_all_list_a8_0e6d24, pack_sound_0e0764, se_close_two_ports, se_sound_0d50b4
+ * game_uses_call_all_list_a8_0e6d24, panel_slide_down_then_stop_sound, se_close_two_ports, se_sound_0d50b4
  */
 u32 Class_12b580_sound_022104(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -13374,7 +13374,7 @@ u32 game_vec_02f474(int a0, int *a1, u32 *a2, u32 a3) {
  * Vec3_ctor_copy_wrap_02f670  0x8c02f670
  * only calls Vec3_ctor_copy
  * called by: CEnv_vec_0dac50, Class_12a7a8_vec_099b0c, Class_12acc8_m1_09f470, Class_12acc8_uses_rand_0a0278,
- * Class_12b0c4_vec_0ac1f0, Class_12b2e8_vec_0b67cc, FrogMan_ending_event, Higyo_choose_status_event (+19 more)
+ * Class_12b0c4_vec_0ac1f0, Class_12b2e8_vec_0b67cc, Class_12b580_vec_0e676c, FrogMan_ending_event (+19 more)
  */
 u32 Vec3_ctor_copy_wrap_02f670(int a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;

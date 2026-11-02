@@ -3184,9 +3184,8 @@ u32 noop_0c519c(void) {
 /*
  * set_timeout_120  0x8c0c51a0
  * +0x188 = a1 and a 120-frame countdown at +0x18c
- * called by: event1_end, game_uses_Vec3_pair_ctor_0c8fc4, game_uses_ret_const_140_0dbf90,
- * game_uses_set_field_d0_0c4e58, input_input_helper_1002a8, input_input_helper_100e4c, input_r_only_start_timeout,
- * input_uses_get_field_4_10031c (+5 more)
+ * called by: cursor_step_x_max_615, cursor_step_x_min_25, cursor_step_y_max_430, cursor_step_y_min_50, event1_end,
+ * game_uses_Vec3_pair_ctor_0c8fc4, game_uses_ret_const_140_0dbf90, game_uses_set_field_d0_0c4e58 (+5 more)
  */
 int set_timeout_120(int a0, u32 a1) {
     int iVar1;
@@ -5578,7 +5577,7 @@ u32 game_uses_Vec3_pair_ctor_0c8fc4(int a0, int a1, u32 a2, u32 a3) {
  * set_fields_12c_130  0x8c0c90d0
  * stores +0x12c, +0x130
  * called by: event1_end, game_uses_Vec3_pair_ctor_0c8fc4, game_uses_free_if_nonnull_wrap_0e8280,
- * game_uses_stick_x_right_half_0e1f90
+ * game_uses_input_track_r_hold_0e1f90
  */
 u32 set_fields_12c_130(int a0) {
     u32 in_fr5;

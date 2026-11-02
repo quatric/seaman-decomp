@@ -1241,8 +1241,8 @@ u32 get_field_4_on_field_d8(int a0, u32 unused_a1, u32 a2) {
 
 /*
  * get_field_4_0637f8  0x8c0637f8
- * called by: get_field_4_on_field_d8, input_input_helper_100154, input_l_and_r_held, input_uses_get_field_4_10031c,
- * input_uses_set_timeout_120_1003b0
+ * called by: get_field_4_on_field_d8, input_input_helper_100154, input_l_and_r_held, input_track_r_hold,
+ * input_uses_get_field_4_10031c
  */
 u32 get_field_4_0637f8(int a0) {
     return *(u32 *)(a0 + 4);

@@ -5382,7 +5382,7 @@ u32 game_uses_free_ptr_and_clear_0b95a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
             uVar5 = 0;
             iVar4 = iStack_11c;
             ain0 = puVar2;
-            iVar3 = flashrom_uses_flashrom_select_partition_1f6f20(iStack_11c, puVar2, 0, 0);
+            iVar3 = flashrom_open_game_partition(iStack_11c, puVar2, 0, 0);
             if (iVar3 != 0) {
                 memset(auStack_10c, 0, 0xf0);
                 uVar5 = 10;
@@ -5393,7 +5393,7 @@ u32 game_uses_free_ptr_and_clear_0b95a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                 puVar2 = auStack_1c;
                 iVar4 = memcmp(puVar2, ar5_00, 10);
                 if (iVar4 != 0) {
-                    shinobi_calc_1f710c(puVar2, ar5_00, uVar5, ar7_00, ain0);
+                    flashrom_calc_1f710c(puVar2, ar5_00, uVar5, ar7_00, ain0);
                     free_ptr_and_clear(&iStack_11c, ar5_00, uVar5, ar7_00);
                     free_ptr_and_clear(&puStack_120, ar5_00, uVar5, ar7_00);
                     return 0;
@@ -5403,7 +5403,7 @@ u32 game_uses_free_ptr_and_clear_0b95a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                 uVar1 = (u32)bStack_116;
                 iVar4 = iStack_a0;
             }
-            shinobi_calc_1f710c(iVar4, puVar2, uVar5, ar7_00, ain0);
+            flashrom_calc_1f710c(iVar4, puVar2, uVar5, ar7_00, ain0);
             free_ptr_and_clear(&iStack_11c, puVar2, uVar5, ar7_00);
             free_ptr_and_clear(&puStack_120, puVar2, uVar5, ar7_00);
         }
@@ -5463,7 +5463,7 @@ int CProlog_uses_free_sys_0b96e4(int a0, u32 a1, u32 a2, u32 a3) {
                     ar6_00 = 0;
                     ar4_01 = g_8c4365f0;
                     ar5_01 = g_8c4365f4;
-                    iVar2 = flashrom_uses_flashrom_select_partition_1f6f20(g_8c4365f0, g_8c4365f4, 0, 0);
+                    iVar2 = flashrom_open_game_partition(g_8c4365f0, g_8c4365f4, 0, 0);
                     if (iVar2 != 0) {
                         for (iVar2 = 0; iVar2 < 10; iVar2 = iVar2 + 1) {
                             acStack_30[iVar2] = ' ';
@@ -5566,7 +5566,7 @@ int CProlog_uses_free_sys_0b96e4(int a0, u32 a1, u32 a2, u32 a3) {
                             }
                         }
                     }
-                    shinobi_calc_1f710c(ar4_01, ar5_01, ar6_00, ar7_00, a1);
+                    flashrom_calc_1f710c(ar4_01, ar5_01, ar6_00, ar7_00, a1);
                     free_sys(g_8c4365f0, ar5_01, ar6_00, ar7_00);
                     free_sys(g_8c4365f4, ar5_01, ar6_00, ar7_00);
                     free_sys(ar4_00, ar5_01, ar6_00, ar7_00);
@@ -9186,8 +9186,8 @@ u32 get_field_300_on_field_a4(int a0) {
 /*
  * get_field_300_0bf154  0x8c0bf154
  * called by: CEnv_item_cursor_next, CWaterTank_uses_get_field_300_0e0f48, Class_129974_vec_0db3bc,
- * Class_12b580_uses_get_field_300_0e6718, Class_12b930_m3_0de4b0, Class_12bb08_m1_0da338, Class_12bb08_m2_0da5a8,
- * call_all_list_64 (+20 more)
+ * Class_12b580_uses_get_field_300_0e6718, Class_12b580_uses_list_node_next_wrap_0da754, Class_12b930_m3_0de4b0,
+ * Class_12bb08_m1_0da338, Class_12bb08_m2_0da5a8 (+20 more)
  */
 u32 get_field_300_0bf154(int a0) {
     return *(u32 *)(0x300 + a0);

@@ -1541,8 +1541,8 @@ u32 point_transform_or_copy(int a0, float *a1, float *a2, u32 unused_a3, u32 ain
 /*
  * njCalcVector_like  0x8c21279c
  * *a2 = vector a1 rotated by matrix a0 (the current matrix when 0), normalised when 8c4ab148 is set
- * called by: Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12b758_draw_0e4dd0, Vec3_uses_set_vec_0e3f24,
- * Vec3_vec_023484, Vec3_vec_023570, Vec3_vec_023668, Vec3_vec_02374c (+9 more)
+ * called by: Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12b580_uses_njCalcVector_like_0d8808,
+ * Class_12b758_draw_0e4dd0, Vec3_uses_set_vec_0e3f24, Vec3_vec_023484, Vec3_vec_023570, Vec3_vec_023668 (+9 more)
  */
 u32 njCalcVector_like(int a0, float *a1, float *a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -16171,9 +16171,9 @@ u32 gfxlib_calc_218fdc(void) {
 /*
  * gfxlib_float_calc_219038  0x8c219038
  * area name: in the gfxlib library code range; behaviour name: floating-point arithmetic
- * called by: Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b758_draw_0e4dd0, Vec3_uses_set_vec_0e3f24,
- * draw_uses_njCalcVector_like_0d4bdc, game_uses_gfx_set_vec_0e5dac, game_uses_matrix_push_0cc524,
- * game_uses_njCalcVector_like_0d8808, game_uses_set_vec3_g_0e743c (+1 more)
+ * called by: Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b580_uses_njCalcVector_like_0d8808,
+ * Class_12b758_draw_0e4dd0, Vec3_uses_set_vec_0e3f24, draw_uses_njCalcVector_like_0d4bdc, game_uses_gfx_set_vec_0e5dac,
+ * game_uses_matrix_push_0cc524, game_uses_set_vec3_g_0e743c (+1 more)
  */
 u32 gfxlib_float_calc_219038(void) {
     u64 *puVar1;
@@ -16215,9 +16215,9 @@ u32 gfxlib_float_calc_219038(void) {
 /*
  * gfxlib_calc_219070  0x8c219070
  * area name: in the gfxlib library code range; behaviour name: integer arithmetic on its arguments
- * called by: CAnimal_calls_calc_0f52c8, Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b758_draw_0e4dd0,
- * Vec3_uses_set_vec_0e3f24, draw_uses_njCalcVector_like_0d4bdc, game_calls_calc_0f4b44, game_calls_calc_0f5308,
- * game_draw_0cb220 (+7 more)
+ * called by: CAnimal_calls_calc_0f52c8, Class_12b3b8_uses_object_dtor_delete_0e7a78,
+ * Class_12b580_uses_njCalcVector_like_0d8808, Class_12b758_draw_0e4dd0, Vec3_uses_set_vec_0e3f24,
+ * draw_uses_njCalcVector_like_0d4bdc, game_calls_calc_0f4b44, game_calls_calc_0f5308 (+7 more)
  */
 u32 gfxlib_calc_219070(void) {
     u64 in_dr4;
@@ -16230,8 +16230,8 @@ u32 gfxlib_calc_219070(void) {
 /*
  * set_vec3_g_278744  0x8c21907e
  * stores fr4..fr6 at 0x8c278744
- * called by: Class_12b3b8_uses_object_dtor_delete_0e7a78, Vec3_uses_set_vec_0e3f24, game_uses_gfx_set_vec_0e5dac,
- * game_uses_matrix_push_0cc524, game_uses_njCalcVector_like_0d8808, game_uses_set_vec3_g_0e743c,
+ * called by: Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b580_uses_njCalcVector_like_0d8808,
+ * Vec3_uses_set_vec_0e3f24, game_uses_gfx_set_vec_0e5dac, game_uses_matrix_push_0cc524, game_uses_set_vec3_g_0e743c,
  * game_uses_touch_fields_30_3c_0ff928
  */
 u32 set_vec3_g_278744(void) {

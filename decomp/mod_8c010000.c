@@ -24,7 +24,7 @@ u32 *run_atexit_list(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * run_static_ctors  0x8c0100b0
  * calls each function of the static constructor table at 8c12c410 until a null entry
- * called by: Class_12c394_uses_imask_to_sr_bits_102bd0
+ * called by: startup_init_hardware
  */
 u32 run_static_ctors(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 in_r0;
@@ -13905,8 +13905,9 @@ u32 set_field_0_015ad4(u32 *a0, u32 a1, u32 a2) {
 /*
  * game_draw_015adc  0x8c015adc
  * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
- * called by: CEnv_draw_with_three_parts_swapped, CTexture_draw_0d6090, Class_12b580_draw_0e660c,
- * Class_12b758_draw_0e4dd0, Class_12c058_draw, Class_12c058_draw_0f577c, game_draw_0d0564, game_draw_0d05d0 (+8 more)
+ * called by: CEnv_draw_with_three_parts_swapped, CTexture_draw_0d6090, Class_12b580_draw_0f7118,
+ * Class_12b580_draw_with_children, Class_12b758_draw_0e4dd0, Class_12c058_draw, Class_12c058_draw_0f577c,
+ * game_draw_0d0564 (+8 more)
  */
 u32 game_draw_015adc(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -21595,7 +21596,7 @@ int speech_talk_01d9ac(void) {
 /*
  * speech_talk_01d9e0  0x8c01d9e0
  * area name: sits between speech functions (same compilation unit); behaviour name: mostly calls talk functions
- * called by: a_button_mic_start_stop_like, game_uses_stick_x_right_half_0e1f90, input_uses_get_field_24_0e25c0
+ * called by: a_button_mic_start_stop_like, game_uses_input_track_r_hold_0e1f90, input_uses_get_field_24_0e25c0
  */
 int speech_talk_01d9e0(void) {
     int iVar1;
@@ -23029,8 +23030,8 @@ u32 identity(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
  * field_ptr_384c  0x8c01f528
  * returns the address of the member at +0x384c
  * called by: CGame_GetUserGameInfo, CGame_uses_libgcc_divide_helper_0cc784, CProlog_uses_libgcc_divide_helper_0cd3c8,
- * a_button_mic_start_stop_like, game_copy_0c67f4, game_uses_pure_virtual_stub_0dfe2c,
- * game_uses_stick_x_right_half_0e1f90, input_uses_get_field_24_0e25c0 (+1 more)
+ * a_button_mic_start_stop_like, game_copy_0c67f4, game_uses_input_track_r_hold_0e1f90,
+ * game_uses_pure_virtual_stub_0dfe2c, input_uses_get_field_24_0e25c0 (+1 more)
  */
 int field_ptr_384c(int a0) {
     return a0 + 0x384c;

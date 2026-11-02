@@ -11830,7 +11830,7 @@ int nautilus_load_shell(u32 a0, u32 unused_a1, u32 a2, u32 *a3) {
 /*
  * game_release_0ae640  0x8c0ae640
  * name hint from a string it uses: GRAPHICS SQUIDLINE; area name: game code; nothing names its area yet; behaviour
- * name: mostly calls release functions called by: Squid_FreeGraphicResource, game_uses_get_field_38_0dfbdc
+ * name: mostly calls release functions called by: Squid_FreeGraphicResource, game_scene_reset
  */
 u32 game_release_0ae640(u32 a0, u32 a1, int a2) {
     u32 uVar1;

@@ -86,10 +86,10 @@ u32 crt_init_sections(void) {
 }
 
 /*
- * shinobi_draw_1ef4fa  0x8c1ef4fa
- * area name: in the shinobi library code range; behaviour name: mostly calls draw functions
+ * shinobi_vsync_callbacks  0x8c1ef4fa
+ * on alternate calls counts the frame, runs the PVR/TA update and calls each registered vsync callback
  */
-u32 shinobi_draw_1ef4fa(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3, u32 ain0) {
+u32 shinobi_vsync_callbacks(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3, u32 ain0) {
     u32 uVar1;
     u32 in_r3;
     u8 *puVar2;
@@ -123,7 +123,7 @@ u32 shinobi_draw_1ef4fa(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3, u32 ain0) 
 
 /*
  * ta_fifo_1ef558  0x8c1ef558
- * called by: shinobi_draw_1ef4fa
+ * called by: shinobi_vsync_callbacks
  */
 u32 ta_fifo_1ef558(void) {
     int *piVar1;
@@ -183,11 +183,11 @@ int maple_port_info_refresh(void) {
 }
 
 /*
- * shinobi_init_fields_1ef682  0x8c1ef682
- * area name: in the shinobi library code range; behaviour name: writes 3 members
+ * shinobi_register_pvr_irqs_entry  0x8c1ef682
+ * alternate entry of shinobi_register_pvr_irqs
  * called by: shinobi_input_1ef78c, shinobi_input_1ef7e6
  */
-u32 shinobi_init_fields_1ef682(void) {
+u32 shinobi_register_pvr_irqs_entry(void) {
     u8 *puVar1;
     u8 *puVar2;
     u32 *puVar3;
@@ -237,10 +237,11 @@ u32 shinobi_init_fields_1ef682(void) {
 }
 
 /*
- * shinobi_init_fields_1ef686  0x8c1ef686
- * area name: in the shinobi library code range; behaviour name: writes 3 members
+ * shinobi_register_pvr_irqs  0x8c1ef686
+ * registers the four PVR interrupt handlers (events 0x900, 0xa00, 0xa00, 0xa20) and clears the vsync state and callback
+ * tables
  */
-u32 shinobi_init_fields_1ef686(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 shinobi_register_pvr_irqs(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u8 *puVar1;
     u8 *puVar2;
     u32 *puVar3;
@@ -303,7 +304,7 @@ u32 shinobi_input_1ef78c(u32 a0, u32 a1) {
 
     a4 = (&DATA_8c1f5a28);
     *(u32 *)(&DATA_8c1f5a28) = *(u32 *)(&DATA_8c1f5a28) | 0xa0000000;
-    shinobi_init_fields_1ef682();
+    shinobi_register_pvr_irqs_entry();
     a5 = 0xc000;
     a7 = 0xc000;
     uVar1 = shinobi_input_1f3dd8(a1, 0xc000, a0, 0xc000);
@@ -323,7 +324,7 @@ u32 shinobi_input_1ef7e6(u32 a0, u32 a1, u32 a2, u32 a3) {
 
     a4 = (&DATA_8c1f5a28);
     *(u32 *)(&DATA_8c1f5a28) = *(u32 *)(&DATA_8c1f5a28) | 0xa0000000;
-    shinobi_init_fields_1ef682();
+    shinobi_register_pvr_irqs_entry();
     uVar1 = shinobi_input_1f3ef4(a0, a1, a2, a3);
     maple_port_info_refresh();
     g_8c470e60 = 1;
@@ -433,11 +434,11 @@ int pvr_1ef84c(u32 unused_a0, u32 *unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * pvr_input_1efa2a  0x8c1efa2a
- * area name: sits between pvr functions (same compilation unit); behaviour name: mostly calls input functions
+ * maple_first_port_bit2_pressed  0x8c1efa2a
+ * returns 1 + the first enabled maple port whose controller bit 2 newly reads 0 (pressed, active low), or 0
  * called by: pvr_1efaf4
  */
-u32 pvr_input_1efa2a(u32 unused_a0, u32 a1) {
+u32 maple_first_port_bit2_pressed(u32 unused_a0, u32 a1) {
     u8 bVar1;
     int iVar2;
     int iVar3;
@@ -518,7 +519,7 @@ int pvr_1efaf4(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
         iVar5 = shinobi_calc_1f4734();
         if (iVar5 != 0) {
             if (((code *)*0x8c470c1c == NULL) || (iVar5 = (*(code *)*0x8c470c1c)(iVar7, a5, a2, a3), iVar5 != 0)) {
-                iVar5 = pvr_input_1efa2a(iVar7, a5);
+                iVar5 = maple_first_port_bit2_pressed(iVar7, a5);
                 g_8c470e70 = iVar5;
             }
             puVar8 = 0xa05f8040;
@@ -611,7 +612,7 @@ u32 pvr_uses_memset_1efcae(u32 a0, u32 a1, u32 a2, u32 a3) {
  * maple_port_info  0x8c1efd14
  * the 0x18-byte device record of port a0 (0x8c4709a0)
  * called by: alt_entry_2020ba, alt_entry_202280, alt_entry_202550, maple_device_ready, maple_device_ready_idle,
- * pvr_1efaf4, pvr_input_1efa2a, shinobi_input_1fd008 (+9 more)
+ * maple_first_port_bit2_pressed, pvr_1efaf4, shinobi_input_1fd008 (+9 more)
  */
 int maple_port_info(int a0, u32 a1) {
     return a0 * 0x18 + 0x8c4709a0;
@@ -621,7 +622,7 @@ int maple_port_info(int a0, u32 a1) {
  * maple_port_status  0x8c1efd26
  * status flags of port a0
  * called by: bios_input_1f3b5c, bios_input_1f3d28, irq_input_1f5dd0, maple_device_ready, maple_device_ready_idle,
- * maple_port_status_wrap, pvr_1efaf4, pvr_input_1efa2a (+6 more)
+ * maple_first_port_bit2_pressed, maple_port_status_wrap, pvr_1efaf4 (+6 more)
  */
 u32 maple_port_status(u32 a0) {
     u32 uVar1;

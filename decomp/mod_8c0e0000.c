@@ -357,10 +357,10 @@ int pack_find_and_request_23258(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * pack_sound_0e0764  0x8c0e0764
- * area name: sits between pack functions (same compilation unit); behaviour name: mostly calls sound functions
+ * panel_slide_down_then_stop_sound  0x8c0e0764
+ * slides +0x2324c down by 8.9 a frame to -1314.45, waits 90 frames, then stops and clears the sound request at +0x2325c
  */
-u64 *pack_sound_0e0764(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u64 *panel_slide_down_then_stop_sound(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u64 *puVar1;
 
     if (g_8c438258 == '\0') {
@@ -1404,10 +1404,10 @@ u32 CWaterTank_CreateStage(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * game_uses_stick_x_right_half_0e1f90  0x8c0e1f90
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is stick_x_right_half
+ * game_uses_input_track_r_hold_0e1f90  0x8c0e1f90
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is input_track_r_hold
  */
-u32 game_uses_stick_x_right_half_0e1f90(int a0, u32 *a1, u8 *a2, u32 a3) {
+u32 game_uses_input_track_r_hold_0e1f90(int a0, u32 *a1, u8 *a2, u32 a3) {
     int iVar1;
     u64 *puVar2;
     double *pdVar3;
@@ -1449,11 +1449,11 @@ u32 game_uses_stick_x_right_half_0e1f90(int a0, u32 *a1, u8 *a2, u32 a3) {
     puVar6 = a1;
     uStack_c = in_PR;
     input_uses_get_field_300_0dc61c(a0, a1, a2, a3);
-    iVar1 = input_uses_set_timeout_120_1003b0(a1, puVar6, a2, a3);
+    iVar1 = input_track_r_hold(a1, puVar6, a2, a3);
     if ((iVar1 != 1) && (*(int *)(a0 + 0x9d8) != 0)) {
         *(u32 *)(a0 + 0x9d8) = 0;
     }
-    iVar1 = input_calls_scan_loop_100ce8(a1, puVar6, a2, a3);
+    iVar1 = input_input_helper_100ce8(a1, puVar6, a2, a3);
     if ((iVar1 == 1) && (*(int *)(a0 + 0x9d4) != 0)) {
         (**(code **)(*(int *)(*(int *)(a0 + 0x9d4) + 8) + 0x88))(*(int *)(a0 + 0x9d4), puVar6, a2, a3);
     }
@@ -1482,7 +1482,7 @@ u32 game_uses_stick_x_right_half_0e1f90(int a0, u32 *a1, u8 *a2, u32 a3) {
             game_sound_021720(0x8c2b59d0, 2, a2, a3);
         }
     }
-    iVar1 = input_uses_set_timeout_120_1003b0(a1, puVar6, a2, a3);
+    iVar1 = input_track_r_hold(a1, puVar6, a2, a3);
     if (((iVar1 == 1) && (*(int *)(a0 + 0x9d8) != 0)) && (*(int *)(a0 + 0x9d4) == 0)) {
         puVar2 = (u64 *)(*(int *)(a0 + 0x9d8) + 4);
         if (cVar13 == '\0') {
@@ -1801,7 +1801,7 @@ u32 game_uses_stick_x_right_half_0e1f90(int a0, u32 *a1, u8 *a2, u32 a3) {
 /*
  * input_a_pressed_wrap  0x8c0e252c
  * only calls input_a_pressed
- * called by: a_button_mic_start_stop_like, game_uses_stick_x_right_half_0e1f90, input_uses_get_field_24_0e25c0
+ * called by: a_button_mic_start_stop_like, game_uses_input_track_r_hold_0e1f90, input_uses_get_field_24_0e25c0
  */
 u32 input_a_pressed_wrap(int a0) {
     u32 uVar1;
@@ -1813,7 +1813,7 @@ u32 input_a_pressed_wrap(int a0) {
 /*
  * input_l_and_r_held  0x8c0e2554
  * 1 when L and R are both held on the pad at +0xcc (and field 4 of +0xd8 is 0)
- * called by: game_uses_stick_x_right_half_0e1f90, input_input_helper_0e29dc
+ * called by: game_uses_input_track_r_hold_0e1f90, input_input_helper_0e29dc
  */
 u32 input_l_and_r_held(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -1869,7 +1869,7 @@ u32 input_uses_get_field_24_0e25c0(int a0, u32 a1, u32 a2, u32 a3) {
                 (**(code **)(*(int *)(*(int *)(a0 + 0x9d4) + 8) + 0x188))(*(int *)(a0 + 0x9d4), ar5_00, a2, a3);
             }
         }
-        iVar1 = input_calls_scan_loop_100ce8(a1, ar5_00, a2, a3);
+        iVar1 = input_input_helper_100ce8(a1, ar5_00, a2, a3);
         if ((iVar1 == 1) && (*(int *)(a0 + 0x9d4) != 0)) {
             (**(code **)(*(int *)(*(int *)(a0 + 0x9d4) + 8) + 0x88))(*(int *)(a0 + 0x9d4), ar5_00, a2, a3);
         }
@@ -2638,11 +2638,11 @@ int input_uses_edge_detect_update_0e3210(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12b930_float_calc_0e389c  0x8c0e389c
- * area name: only called from Class_12b930 methods; behaviour name: floating-point arithmetic
+ * Class_12b930_panel_slide_tick  0x8c0e389c
+ * slides the panel position at +0x1048 down to 395 (state 1) or up to 447 (state 3) by 8 a frame
  * called by: Class_12b930_m1_0de1dc, Class_12b930_m3_0de4b0
  */
-u32 *Class_12b930_float_calc_0e389c(int a0) {
+u32 *Class_12b930_panel_slide_tick(int a0) {
     u32 *puVar1;
     float fVar2;
 
@@ -3098,7 +3098,7 @@ u32 game_draw_0e4198(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_uses_set_field_d4_0e4298  0x8c0e4298
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_field_d4
- * called by: game_uses_stick_x_right_half_0e1f90, input_uses_get_field_24_0e25c0
+ * called by: game_uses_input_track_r_hold_0e1f90, input_uses_get_field_24_0e25c0
  */
 u32 game_uses_set_field_d4_0e4298(int *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -3145,7 +3145,7 @@ int set_field_d4(int a0, u32 a1) {
 /*
  * game_uses_set_timeout_120_mode6_0e4348  0x8c0e4348
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_timeout_120_mode6
- * called by: game_uses_stick_x_right_half_0e1f90, input_input_helper_0e29dc
+ * called by: game_uses_input_track_r_hold_0e1f90, input_input_helper_0e29dc
  */
 u32 game_uses_set_timeout_120_mode6_0e4348(int a0, u32 a1) {
     u32 uVar1;
@@ -3635,7 +3635,7 @@ u32 Class_12b758_draw_0e4dd0(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     if (*(int *)(a0 + 0x15c8) == 1) {
         CTexture_draw_0d6090(a0 + 0x15bc, ar5_00, ar6_00, a3);
     }
-    game_uses_list_node_next_wrap_0da754(a0);
+    Class_12b580_uses_list_node_next_wrap_0da754(a0);
     return 1;
 }
 
@@ -3649,7 +3649,7 @@ u32 game_draw_0e505c(int a0, u32 a1, u32 a2, u32 a3) {
     rotate_degrees_7c_on_field_9e8(a0);
     obj_set_texlist(a0 + 0x28, a1, a2);
     game_draw_015adc(a0 + 0x30, a1, a2, a3);
-    uVar1 = game_uses_list_node_next_wrap_0da754(a0);
+    uVar1 = Class_12b580_uses_list_node_next_wrap_0da754(a0);
     return uVar1;
 }
 
@@ -4475,17 +4475,17 @@ u32 Class_12b580_m2_0e6548(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12b580_draw_0e660c  0x8c0e660c
- * area name: sits between Class_12b580 functions (same compilation unit); behaviour name: mostly calls draw functions
+ * Class_12b580_draw_with_children  0x8c0e660c
+ * updates the view angles, draws the main model and each of the eight active child records, then the node list
  */
-u32 Class_12b580_draw_0e660c(int a0, int a1, int a2, u32 a3) {
+u32 Class_12b580_draw_with_children(int a0, int a1, int a2, u32 a3) {
     int iVar1;
     int iVar2;
     char cVar3;
 
     cVar3 = '\0';
     rotate_degrees_7c_on_field_9e8(a0);
-    game_uses_njCalcVector_like_0d8808(a0 + 0x10dc);
+    Class_12b580_uses_njCalcVector_like_0d8808(a0 + 0x10dc);
     if (cVar3 == '\0') {
         *(u32 *)(a0 + 0x78) = *(u32 *)(a0 + 0x1120);
         *(u32 *)(a0 + 0x7c) = *(u32 *)(a0 + 0x1124);
@@ -4493,7 +4493,7 @@ u32 Class_12b580_draw_0e660c(int a0, int a1, int a2, u32 a3) {
         *(u64 *)(a0 + 0x78) = *(u64 *)(a0 + 0x1120);
         *(u64 *)(a0 + 0x7c) = *(u64 *)(a0 + 0x1124);
     }
-    game_uses_get_field_10_0d89d8(a0 + 0x10dc, a1);
+    Class_12b580_uses_get_field_10_0d89d8(a0 + 0x10dc, a1);
     obj_set_texlist(a0 + 0x28, a1, a2);
     game_draw_015adc(a0 + 0x30, a1, a2, a3);
     for (iVar2 = 0; iVar2 < 8; iVar2 = iVar2 + 1) {
@@ -4501,10 +4501,10 @@ u32 Class_12b580_draw_0e660c(int a0, int a1, int a2, u32 a3) {
         if (iVar1 == 1) {
             a2 = a0 + 4;
             a1 = a0 + 0xc;
-            game_draw_0f7118(a0 + iVar2 * 0x68 + 0xc0c, a1, a2);
+            Class_12b580_draw_0f7118(a0 + iVar2 * 0x68 + 0xc0c, a1, a2);
         }
     }
-    game_uses_list_node_next_wrap_0da754(a0);
+    Class_12b580_uses_list_node_next_wrap_0da754(a0);
     return 1;
 }
 
@@ -4535,10 +4535,10 @@ u32 Class_12b580_uses_get_field_300_0e6718(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_0e676c  0x8c0e676c
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * Class_12b580_vec_0e676c  0x8c0e676c
+ * area name: sits between Class_12b580 functions (same compilation unit); behaviour name: mostly calls vec functions
  */
-u32 game_vec_0e676c(int *a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12b580_vec_0e676c(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 auStack_28[16];
     u8 auStack_18[20];
@@ -4980,7 +4980,7 @@ u32 env_handle_input(int a0, u32 a1, u32 a2, u32 a3) {
 
     auStack_10[0] = 0;
     a5 = a1;
-    iVar1 = input_calls_scan_loop_100ce8(a1, a1, a2, a3);
+    iVar1 = input_input_helper_100ce8(a1, a1, a2, a3);
     if ((iVar1 == 1) && (*(int *)(a0 + 0x9d4) != 0)) {
         (**(code **)(*(int *)(*(int *)(a0 + 0x9d4) + 8) + 0x88))(*(int *)(a0 + 0x9d4), a5, a2, a3);
     }
@@ -5002,10 +5002,10 @@ u32 env_handle_input(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_get_field_24_0e727c  0x8c0e727c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_24_05c284
+ * game_items_handle_input  0x8c0e727c
+ * passes the pad input to the held item and the item list (drop, rotate, use) and runs the input list handlers
  */
-u32 game_uses_get_field_24_0e727c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_items_handle_input(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int a4;
     u32 uVar2;
@@ -5042,7 +5042,7 @@ u32 game_uses_get_field_24_0e727c(int a0, u32 a1, u32 a2, u32 a3) {
                 (**(code **)(*(int *)(*(int *)(a0 + 0x9d4) + 8) + 0x188))(*(int *)(a0 + 0x9d4), ar5_00, a2, a3);
             }
         }
-        iVar1 = input_calls_scan_loop_100ce8(a1, ar5_00, a2, a3);
+        iVar1 = input_input_helper_100ce8(a1, ar5_00, a2, a3);
         if ((iVar1 == 1) && (*(int *)(a0 + 0x9d4) != 0)) {
             (**(code **)(*(int *)(*(int *)(a0 + 0x9d4) + 8) + 0x88))(*(int *)(a0 + 0x9d4), ar5_00, a2, a3);
         }
@@ -5626,19 +5626,19 @@ u32 game_uses_free_if_nonnull_wrap_0e8280(int a0, u32 a1, u32 a2, u32 a3) {
     if (iStack_34 == 0) {
         iStack_38 = input_up_or_stick_up(a1);
         if (iStack_38 == 1) {
-            input_uses_set_timeout_120_1004b4(a1);
+            cursor_step_y_min_50(a1);
         }
         iStack_3c = input_down_or_stick_down(a1);
         if (iStack_3c == 1) {
-            input_uses_set_timeout_120_10052c(a1);
+            cursor_step_y_max_430(a1);
         }
         iStack_40 = input_right_or_stick_right(a1);
         if (iStack_40 == 1) {
-            input_uses_set_timeout_120_1005a4(a1);
+            cursor_step_x_max_615(a1);
         }
         iStack_44 = input_left_or_stick_left(a1);
         if (iStack_44 == 1) {
-            input_uses_set_timeout_120_10061c(a1);
+            cursor_step_x_min_25(a1);
         }
         input_input_helper_1002a8(a1);
         ar6_00 = auStack_1c;
@@ -6872,8 +6872,8 @@ int dec_counter_be(int a0) {
 /*
  * game_fill_loop_0e96b8  0x8c0e96b8
  * area name: game code; nothing names its area yet; behaviour name: a loop that writes memory
- * called by: Class_12bb08_calls_fill_loop_0e91b8, game_uses_game_clear_node_and_item_lis_0e51ac,
- * game_uses_game_clear_node_and_item_lis_0e6dc4, game_uses_get_field_38_0dfbdc
+ * called by: Class_12bb08_calls_fill_loop_0e91b8, game_scene_reset, game_uses_game_clear_node_and_item_lis_0e51ac,
+ * game_uses_game_clear_node_and_item_lis_0e6dc4
  */
 u32 game_fill_loop_0e96b8(int a0) {
     int iVar1;

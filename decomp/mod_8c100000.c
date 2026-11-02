@@ -143,7 +143,7 @@ u32 input_input_helper_1002a8(int a0) {
  * input_uses_get_field_4_10031c  0x8c10031c
  * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
  * get_field_4_0637f8 called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_get_field_24_0e5238,
- * game_uses_stick_x_right_half_0e1f90, input_uses_get_field_24_0e25c0
+ * game_uses_input_track_r_hold_0e1f90, input_uses_get_field_24_0e25c0
  */
 u32 input_uses_get_field_4_10031c(int a0) {
     int iVar1;
@@ -165,11 +165,11 @@ u32 input_uses_get_field_4_10031c(int a0) {
 }
 
 /*
- * input_uses_set_timeout_120_1003b0  0x8c1003b0
- * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * set_timeout_120 called by: game_uses_stick_x_right_half_0e1f90
+ * input_track_r_hold  0x8c1003b0
+ * tracks whether R is held in mode 2 and, on releasing R (or X) while held, sets the hand timeout mode to 2 (or 0);
+ * returns the held flag called by: game_uses_input_track_r_hold_0e1f90
  */
-int input_uses_set_timeout_120_1003b0(int a0, u32 a1, u32 a2, u32 a3) {
+int input_track_r_hold(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
     if (g_8c441430 == '\0') {
@@ -202,12 +202,12 @@ int input_uses_set_timeout_120_1003b0(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * input_uses_set_timeout_120_1004b4  0x8c1004b4
- * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * set_timeout_120 called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90,
- * input_stick_with_x_dispatch, input_uses_input_y_pressed_wrap_0dc28c
+ * cursor_step_y_min_50  0x8c1004b4
+ * resets the idle timer to 120, adds the y speed to the cursor y and clamps it to at least 50
+ * called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90, input_stick_with_x_dispatch,
+ * input_uses_input_y_pressed_wrap_0dc28c
  */
-u32 *input_uses_set_timeout_120_1004b4(int a0) {
+u32 *cursor_step_y_min_50(int a0) {
     float fVar1;
     double dVar2;
     float fVar3;
@@ -252,12 +252,12 @@ u32 *input_uses_set_timeout_120_1004b4(int a0) {
 }
 
 /*
- * input_uses_set_timeout_120_10052c  0x8c10052c
- * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * set_timeout_120 called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90,
- * input_stick_with_x_dispatch, input_uses_input_y_pressed_wrap_0dc28c
+ * cursor_step_y_max_430  0x8c10052c
+ * resets the idle timer to 120, adds the y speed to the cursor y and clamps it to at most 430
+ * called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90, input_stick_with_x_dispatch,
+ * input_uses_input_y_pressed_wrap_0dc28c
  */
-u32 *input_uses_set_timeout_120_10052c(int a0) {
+u32 *cursor_step_y_max_430(int a0) {
     float fVar1;
     double dVar2;
     float fVar3;
@@ -302,12 +302,12 @@ u32 *input_uses_set_timeout_120_10052c(int a0) {
 }
 
 /*
- * input_uses_set_timeout_120_1005a4  0x8c1005a4
- * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * set_timeout_120 called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90,
- * input_stick_with_x_dispatch, input_uses_input_y_pressed_wrap_0dc28c
+ * cursor_step_x_max_615  0x8c1005a4
+ * resets the idle timer to 120, adds the x speed to the cursor x and clamps it to at most 615
+ * called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90, input_stick_with_x_dispatch,
+ * input_uses_input_y_pressed_wrap_0dc28c
  */
-u32 *input_uses_set_timeout_120_1005a4(int a0) {
+u32 *cursor_step_x_max_615(int a0) {
     float fVar1;
     double dVar2;
     float fVar3;
@@ -352,12 +352,12 @@ u32 *input_uses_set_timeout_120_1005a4(int a0) {
 }
 
 /*
- * input_uses_set_timeout_120_10061c  0x8c10061c
- * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * set_timeout_120 called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90,
- * input_stick_with_x_dispatch, input_uses_input_y_pressed_wrap_0dc28c
+ * cursor_step_x_min_25  0x8c10061c
+ * resets the idle timer to 120, adds the x speed to the cursor x and clamps it to at least 25
+ * called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90, input_stick_with_x_dispatch,
+ * input_uses_input_y_pressed_wrap_0dc28c
  */
-u32 *input_uses_set_timeout_120_10061c(int a0) {
+u32 *cursor_step_x_min_25(int a0) {
     float fVar1;
     double dVar2;
     float fVar3;
@@ -497,7 +497,7 @@ u32 stick_left_with_x(int a0) {
 /*
  * stick_y_up_half  0x8c100808
  * 1 when the stick Y (+0x140) is below -0.5
- * called by: game_uses_stick_x_right_half_0e1f90
+ * called by: game_uses_input_track_r_hold_0e1f90
  */
 u32 stick_y_up_half(int a0) {
     if (-0.5 <= *(float *)(a0 + 0x140)) {
@@ -509,7 +509,7 @@ u32 stick_y_up_half(int a0) {
 /*
  * stick_y_down_half  0x8c10082c
  * 1 when the stick Y (+0x140) is above 0.5
- * called by: game_uses_stick_x_right_half_0e1f90
+ * called by: game_uses_input_track_r_hold_0e1f90
  */
 u32 stick_y_down_half(int a0) {
     if (*(float *)(a0 + 0x140) <= 0.5) {
@@ -521,7 +521,7 @@ u32 stick_y_down_half(int a0) {
 /*
  * stick_x_right_half  0x8c100850
  * 1 when the stick X (+0x13c) is above 0.5
- * called by: game_uses_stick_x_right_half_0e1f90
+ * called by: game_uses_input_track_r_hold_0e1f90
  */
 u32 stick_x_right_half(int a0) {
     if (*(float *)(a0 + 0x13c) <= 0.5) {
@@ -533,7 +533,7 @@ u32 stick_x_right_half(int a0) {
 /*
  * stick_x_left_half  0x8c100874
  * 1 when the stick X (+0x13c) is below -0.5
- * called by: game_uses_stick_x_right_half_0e1f90
+ * called by: game_uses_input_track_r_hold_0e1f90
  */
 u32 stick_x_left_half(int a0) {
     if (-0.5 <= *(float *)(a0 + 0x13c)) {
@@ -779,7 +779,7 @@ u32 input_asr_flag_b_set(int a0) {
 /*
  * input_input_helper_100cb4  0x8c100cb4
  * area name: sits between input functions (same compilation unit); behaviour name: mostly calls input functions
- * called by: game_uses_get_field_24_0e727c, input_uses_get_field_24_0e25c0, input_uses_get_field_300_0dc61c
+ * called by: game_items_handle_input, input_uses_get_field_24_0e25c0, input_uses_get_field_300_0dc61c
  */
 u32 input_input_helper_100cb4(int a0) {
     int iVar1;
@@ -789,17 +789,17 @@ u32 input_input_helper_100cb4(int a0) {
 }
 
 /*
- * input_calls_scan_loop_100ce8  0x8c100ce8
- * area name: sits between input functions (same compilation unit); behaviour name: its callees mostly do: scan_loop
- * called by: env_handle_input, game_uses_get_field_24_0e727c, game_uses_stick_x_right_half_0e1f90,
+ * input_input_helper_100ce8  0x8c100ce8
+ * area name: sits between input functions (same compilation unit); behaviour name: mostly calls input functions
+ * called by: env_handle_input, game_items_handle_input, game_uses_input_track_r_hold_0e1f90,
  * input_uses_get_field_24_0e25c0
  */
-u32 input_calls_scan_loop_100ce8(int a0, u32 a1, u32 a2, u32 a3) {
+u32 input_input_helper_100ce8(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
     iVar1 = (*(code *)(&input_r_held))(*(u32 *)(0xcc + a0), a1, a2, a3);
     if (iVar1 == 0) {
-        iVar1 = input_scan_loop_101358(a0);
+        iVar1 = input_recent_activity_sustained(a0);
         if (iVar1 == 1) {
             *(u32 *)(0x594 + a0) = 0xf;
         }
@@ -821,9 +821,9 @@ u32 input_calls_test_100d5c(int a0) {
     int iVar1;
 
     if (*(int *)(0x590 + a0) == 0) {
-        iVar1 = game_calls_test_101510(a0, 5);
-        if (((iVar1 == 1) || (iVar1 = game_calls_test_101510(a0, 10), iVar1 == 1)) ||
-            (iVar1 = game_calls_test_101510(a0, 0xf), iVar1 == 1)) {
+        iVar1 = input_calls_test_101510(a0, 5);
+        if (((iVar1 == 1) || (iVar1 = input_calls_test_101510(a0, 10), iVar1 == 1)) ||
+            (iVar1 = input_calls_test_101510(a0, 0xf), iVar1 == 1)) {
             *(u32 *)(0x590 + a0) = 1;
         }
     } else {
@@ -841,7 +841,7 @@ u32 input_calls_test_100d5c(int a0) {
 /*
  * input_input_helper_100e4c  0x8c100e4c
  * area name: sits between input functions (same compilation unit); behaviour name: mostly calls input functions
- * called by: env_handle_input, game_uses_get_field_24_0e727c, game_uses_stick_x_right_half_0e1f90,
+ * called by: env_handle_input, game_items_handle_input, game_uses_input_track_r_hold_0e1f90,
  * input_uses_get_field_24_0e25c0
  */
 u32 input_input_helper_100e4c(int a0, u64 *a1) {
@@ -944,7 +944,7 @@ int input_uses_input_r_pressed_101004(int a0, u32 a1, u32 a2, u32 a3) {
     if (iVar2 == 1) {
         iVar2 = input_x_off(*(u32 *)(0xcc + a0));
         if (iVar2 == 1) {
-            input_uses_libgcc_divide_helper_1017f4(a0, a1, a2, a3);
+            input_uses_level_tracker_reset_1017f4(a0, a1, a2, a3);
             *(u8 *)(0xb8 + a0) = 1;
             *(int *)(0xc4 + a0) = *(int *)(0xc4 + a0) + 1;
             goto LAB_8c1010c2;
@@ -954,11 +954,11 @@ int input_uses_input_r_pressed_101004(int a0, u32 a1, u32 a2, u32 a3) {
 LAB_8c1010c2:
     game_uses_sh4_tmu_1019f8(a0, a1, a2, a3);
     if (*(int *)(0xb0 + a0) == 1) {
-        iVar2 = game_calls_update_fields_101a4c(a0, a1, a2, a3);
+        iVar2 = game_uses_level_tracker_reset_101a4c(a0, a1, a2, a3);
     } else {
         iVar2 = (int)*(char *)(a0 + 0x28);
         if (iVar2 == 4) {
-            game_calls_update_fields_101a4c(a0, a1, a2, a3);
+            game_uses_level_tracker_reset_101a4c(a0, a1, a2, a3);
             iVar2 = clear_5_pairs(a0);
         }
     }
@@ -1082,18 +1082,18 @@ u32 cursor_reset_center(int a0, u32 unused_a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 0xd4) = 0;
     *(u32 *)(a0 + 0x128) = 0xffffffff;
     *(u16 *)(a0 + 0x18e) = 0;
-    game_copy_10169c(a0, uVar1, a2, a3);
-    input_copy_101784(a0, uVar1, a2, a3);
+    input_copy_10169c(a0, uVar1, a2, a3);
+    input_uses_level_tracker_reset_101784(a0, uVar1, a2, a3);
     uVar1 = clear_field_59c(a0);
     return uVar1;
 }
 
 /*
- * input_scan_loop_101358  0x8c101358
- * area name: sits between input functions (same compilation unit); behaviour name: a loop that only reads
- * called by: input_calls_scan_loop_100ce8
+ * input_recent_activity_sustained  0x8c101358
+ * returns 1 when five groups of 10 history entries in a row (among the last 80) each contain an active flag
+ * called by: input_input_helper_100ce8
  */
-u32 input_scan_loop_101358(int a0) {
+u32 input_recent_activity_sustained(int a0) {
     bool bVar1;
     int iVar2;
     int iVar3;
@@ -1132,7 +1132,7 @@ u32 input_scan_loop_101358(int a0) {
 /*
  * input_test_1013f4  0x8c1013f4
  * area name: sits between input functions (same compilation unit); behaviour name: returns the result of a comparison
- * called by: game_calls_test_101510
+ * called by: input_calls_test_101510
  */
 int input_test_1013f4(u32 unused_a0, int *a1, int a2) {
     int iVar1;
@@ -1185,11 +1185,11 @@ int input_test_1013f4(u32 unused_a0, int *a1, int a2) {
 }
 
 /*
- * game_test_101480  0x8c101480
- * area name: game code; nothing names its area yet; behaviour name: returns the result of a comparison
- * called by: game_calls_test_101510
+ * input_test_101480  0x8c101480
+ * area name: sits between input functions (same compilation unit); behaviour name: returns the result of a comparison
+ * called by: input_calls_test_101510
  */
-int game_test_101480(u32 unused_a0, int *a1, int a2) {
+int input_test_101480(u32 unused_a0, int *a1, int a2) {
     int iVar1;
 
     iVar1 = *a1;
@@ -1241,11 +1241,11 @@ int game_test_101480(u32 unused_a0, int *a1, int a2) {
 }
 
 /*
- * game_calls_test_101510  0x8c101510
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: test
+ * input_calls_test_101510  0x8c101510
+ * area name: sits between input functions (same compilation unit); behaviour name: its callees mostly do: test
  * called by: input_calls_test_100d5c
  */
-u32 game_calls_test_101510(int a0, u32 a1) {
+u32 input_calls_test_101510(int a0, u32 a1) {
     char cVar1;
     char cVar2;
     char cVar3;
@@ -1281,7 +1281,7 @@ u32 game_calls_test_101510(int a0, u32 a1) {
                     return 1;
                 }
             }
-            game_test_101480(a0, &iStack_2c, ar6_00);
+            input_test_101480(a0, &iStack_2c, ar6_00);
             if (iStack_2c == 4) {
                 iStack_30 = iStack_30 + 1;
                 iStack_2c = 0;
@@ -1320,11 +1320,11 @@ int clear_field_59c(int a0) {
 }
 
 /*
- * game_copy_10169c  0x8c10169c
- * area name: game code; nothing names its area yet; behaviour name: mostly calls copy functions
+ * input_copy_10169c  0x8c10169c
+ * area name: sits between input functions (same compilation unit); behaviour name: mostly calls copy functions
  * called by: cursor_reset_center
  */
-int game_copy_10169c(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int input_copy_10169c(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
 
     memset(a0 + 0x190, 0, 0x400);
@@ -1359,11 +1359,11 @@ u32 input_history_push(int a0) {
 }
 
 /*
- * input_copy_101784  0x8c101784
- * area name: sits between input functions (same compilation unit); behaviour name: mostly calls copy functions
- * called by: cursor_reset_center
+ * input_uses_level_tracker_reset_101784  0x8c101784
+ * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
+ * level_tracker_reset called by: cursor_reset_center
  */
-u32 input_copy_101784(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 input_uses_level_tracker_reset_101784(int a0, u32 unused_a1, u32 a2, u32 a3) {
     bool bVar1;
     u32 uVar2;
     u8 bVar3;
@@ -1377,16 +1377,16 @@ u32 input_copy_101784(int a0, u32 unused_a1, u32 a2, u32 a3) {
         *(u32 *)(0x88 + a0) = 0xffffffff;
         bVar1 = true;
     }
-    uVar2 = game_copy_101c64(a0, unused_a1, a2, a3);
+    uVar2 = level_tracker_reset(a0, unused_a1, a2, a3);
     return uVar2;
 }
 
 /*
- * input_uses_libgcc_divide_helper_1017f4  0x8c1017f4
+ * input_uses_level_tracker_reset_1017f4  0x8c1017f4
  * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * libgcc_divide_helper_01031c called by: input_uses_input_r_pressed_101004
+ * level_tracker_reset called by: input_uses_input_r_pressed_101004
  */
-u32 input_uses_libgcc_divide_helper_1017f4(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 input_uses_level_tracker_reset_1017f4(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     int ar4_00;
@@ -1412,7 +1412,7 @@ u32 input_uses_libgcc_divide_helper_1017f4(int a0, u32 unused_a1, u32 a2, u32 a3
     if (*(int *)(0xb0 + a0) != 0) {
         if (*(u32 *)(0xbc + a0) < *(u32 *)(a0 + *(char *)(a0 + 0x28) * 8 + 4)) {
             if (0x124f80 < (u32)(*(int *)(a0 + *(char *)(a0 + 0x28) * 8 + 4) - *(int *)(0xbc + a0))) {
-                uVar2 = game_copy_101c64(a0, ar5_00, a2, a3);
+                uVar2 = level_tracker_reset(a0, ar5_00, a2, a3);
             } else {
                 uVar2 = 0xc3500;
                 if (0xc3500 < (u32)(*(int *)(a0 + *(char *)(a0 + 0x28) * 8 + 4) - *(int *)(0xbc + a0))) {
@@ -1425,7 +1425,7 @@ u32 input_uses_libgcc_divide_helper_1017f4(int a0, u32 unused_a1, u32 a2, u32 a3
             uVar2 = *(u32 *)(0xbc + a0);
             if (*(u32 *)(a0 + *(char *)(a0 + 0x28) * 8 + 4) < *(u32 *)(0xbc + a0)) {
                 if (0x124f80 < (u32)(*(int *)(0xbc + a0) - *(int *)(a0 + *(char *)(a0 + 0x28) * 8 + 4))) {
-                    uVar2 = game_copy_101c64(a0, ar5_00, a2, a3);
+                    uVar2 = level_tracker_reset(a0, ar5_00, a2, a3);
                 } else {
                     uVar2 = 0xc3500;
                     if (0xc3500 < (u32)(*(int *)(0xbc + a0) - *(int *)(a0 + *(char *)(a0 + 0x28) * 8 + 4))) {
@@ -1456,17 +1456,17 @@ u32 game_uses_sh4_tmu_1019f8(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     uVar1 = game_uses_int_diff_101de0(a0, ar5_00, ar6_00);
     uVar2 = 0x16e360;
     if (0x16e360 < uVar1) {
-        uVar2 = game_copy_101c64(a0, ar5_00, ar6_00, a3);
+        uVar2 = level_tracker_reset(a0, ar5_00, ar6_00, a3);
     }
     return uVar2;
 }
 
 /*
- * game_calls_update_fields_101a4c  0x8c101a4c
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: update_fields
+ * game_uses_level_tracker_reset_101a4c  0x8c101a4c
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is level_tracker_reset
  * called by: input_uses_input_r_pressed_101004
  */
-u32 game_calls_update_fields_101a4c(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 game_uses_level_tracker_reset_101a4c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 bVar2;
     u32 uVar3;
@@ -1497,7 +1497,7 @@ u32 game_calls_update_fields_101a4c(int a0, u32 unused_a1, u32 a2, u32 a3) {
                 uVar1 = game_update_fields_101c10(a0, uVar3);
             }
         } else {
-            uVar1 = game_copy_101c64(a0, unused_a1, a2, a3);
+            uVar1 = level_tracker_reset(a0, unused_a1, a2, a3);
         }
     }
     return uVar1;
@@ -1506,7 +1506,7 @@ u32 game_calls_update_fields_101a4c(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * game_sound_101b5c  0x8c101b5c
  * area name: game code; nothing names its area yet; behaviour name: mostly calls sound functions
- * called by: game_calls_update_fields_101a4c
+ * called by: game_uses_level_tracker_reset_101a4c
  */
 int game_sound_101b5c(int a0, u32 a1) {
     u32 uVar1;
@@ -1533,7 +1533,7 @@ int game_sound_101b5c(int a0, u32 a1) {
 /*
  * game_update_fields_101c10  0x8c101c10
  * area name: game code; nothing names its area yet; behaviour name: conditionally writes members
- * called by: game_calls_update_fields_101a4c
+ * called by: game_uses_level_tracker_reset_101a4c
  */
 u32 game_update_fields_101c10(int a0, u32 a1) {
     u32 uVar1;
@@ -1549,12 +1549,12 @@ u32 game_update_fields_101c10(int a0, u32 a1) {
 }
 
 /*
- * game_copy_101c64  0x8c101c64
- * area name: game code; nothing names its area yet; behaviour name: mostly calls copy functions
- * called by: game_calls_update_fields_101a4c, game_uses_sh4_tmu_1019f8, input_copy_101784,
- * input_uses_libgcc_divide_helper_1017f4
+ * level_tracker_reset  0x8c101c64
+ * clears the five samples and tracker state, stops the four tracked sound requests and resets the reference level to
+ * 0xa2be8 called by: game_uses_level_tracker_reset_101a4c, game_uses_sh4_tmu_1019f8,
+ * input_uses_level_tracker_reset_101784, input_uses_level_tracker_reset_1017f4
  */
-int game_copy_101c64(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int level_tracker_reset(int a0, u32 unused_a1, u32 a2, u32 a3) {
     bool bVar1;
     int iVar2;
     u8 bVar3;
@@ -1588,7 +1588,7 @@ int game_copy_101c64(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * clear_5_pairs  0x8c101da0
  * zeroes five word pairs at a0 and sets byte +0x28 to 0xff
- * called by: game_copy_101c64, input_uses_input_r_pressed_101004
+ * called by: input_uses_input_r_pressed_101004, level_tracker_reset
  */
 u32 clear_5_pairs(int a0) {
     char cVar1;
@@ -1604,7 +1604,7 @@ u32 clear_5_pairs(int a0) {
 /*
  * game_uses_int_diff_101de0  0x8c101de0
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is int_diff
- * called by: game_sound_101e1c, game_uses_sh4_tmu_1019f8, input_uses_libgcc_divide_helper_1017f4
+ * called by: game_sound_101e1c, game_uses_sh4_tmu_1019f8, input_uses_level_tracker_reset_1017f4
  */
 u32 game_uses_int_diff_101de0(u32 unused_a0, u32 a1, u32 a2) {
     u32 ar4_00;
@@ -2225,11 +2225,11 @@ u32 clear_field_4_102bc8(int a0) {
 }
 
 /*
- * Class_12c394_uses_imask_to_sr_bits_102bd0  0x8c102bd0
- * area name: sits between Class_12c394 functions (same compilation unit); behaviour name: its main named callee is
- * imask_to_sr_bits called by: game_init
+ * startup_init_hardware  0x8c102bd0
+ * masks interrupts, resets the interrupt controller, sets up the system heap, PVR and event handlers, retries the
+ * GD-ROM init 8 times and runs the static constructors called by: game_init
  */
-u32 Class_12c394_uses_imask_to_sr_bits_102bd0(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 startup_init_hardware(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -2276,7 +2276,7 @@ u32 Class_12c394_uses_imask_to_sr_bits_102bd0(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * imask_to_sr_bits  0x8c102d20
  * (a0 & 15) << 4, the SR IMASK field
- * called by: Class_12c394_uses_imask_to_sr_bits_102bd0, system_init_libs
+ * called by: startup_init_hardware, system_init_libs
  */
 int imask_to_sr_bits(u32 a0) {
     return (a0 & 0xf) << 4;
@@ -2285,7 +2285,7 @@ int imask_to_sr_bits(u32 a0) {
 /*
  * system_init_libs  0x8c102d40
  * initialises the runtime, the disc file system, Shinobi, Ninja and the sound/graphics services at boot
- * called by: Class_12c394_uses_imask_to_sr_bits_102bd0, game_shutdown_a, game_uses_memcard_flush_and_close_8c3d_0b6c10
+ * called by: game_shutdown_a, game_uses_memcard_flush_and_close_8c3d_0b6c10, startup_init_hardware
  */
 u32 system_init_libs(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
