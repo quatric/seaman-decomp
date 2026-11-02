@@ -18,43 +18,43 @@ u32 crt0_start(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         *a4 = uVar1;
         a4 = a4 + 1;
     } while (a4 < a5);
-    shinobi_sub_1ef440();
-    shinobi_sub_1ef430();
+    shinobi_scan_loop_1ef440();
+    shinobi_uses_memcmp_1ef430();
     main(a4, a5, uVar1, a3);
-    uVar1 = shinobi_sub_1ef438();
+    uVar1 = shinobi_uses_memcmp_1ef438();
     return uVar1;
 }
 
 /*
- * shinobi_sub_1ef430  0x8c1ef430
- * area name: in the shinobi library code range
+ * shinobi_uses_memcmp_1ef430  0x8c1ef430
+ * area name: in the shinobi library code range; behaviour name: its callees mostly do: uses_memcmp
  * called by: crt0_start
  */
-u32 shinobi_sub_1ef430(void) {
+u32 shinobi_uses_memcmp_1ef430(void) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f5c9e(*(u32 *)(&DATA_8c26be70));
+    uVar1 = shinobi_uses_memcmp_1f5c9e(*(u32 *)(&DATA_8c26be70));
     return uVar1;
 }
 
 /*
- * shinobi_sub_1ef438  0x8c1ef438
- * area name: in the shinobi library code range
+ * shinobi_uses_memcmp_1ef438  0x8c1ef438
+ * area name: in the shinobi library code range; behaviour name: its callees mostly do: uses_memcmp
  * called by: crt0_start
  */
-u32 shinobi_sub_1ef438(void) {
+u32 shinobi_uses_memcmp_1ef438(void) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f5cf6(*(u32 *)(&DATA_8c26be70));
+    uVar1 = shinobi_uses_memcmp_1f5cf6(*(u32 *)(&DATA_8c26be70));
     return uVar1;
 }
 
 /*
- * shinobi_sub_1ef440  0x8c1ef440
- * area name: in the shinobi library code range
+ * shinobi_scan_loop_1ef440  0x8c1ef440
+ * area name: in the shinobi library code range; behaviour name: a loop that only reads
  * called by: crt0_start
  */
-u32 shinobi_sub_1ef440(void) {
+u32 shinobi_scan_loop_1ef440(void) {
     u8 uVar1;
     u8 *puVar2;
     u8 *puVar3;
@@ -86,10 +86,10 @@ u32 shinobi_sub_1ef440(void) {
 }
 
 /*
- * shinobi_sub_1ef4fa  0x8c1ef4fa
- * area name: in the shinobi library code range
+ * shinobi_draw_1ef4fa  0x8c1ef4fa
+ * area name: in the shinobi library code range; behaviour name: mostly calls draw functions
  */
-u32 shinobi_sub_1ef4fa(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3, u32 ain0) {
+u32 shinobi_draw_1ef4fa(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3, u32 ain0) {
     u32 uVar1;
     u32 in_r3;
     u8 *puVar2;
@@ -123,7 +123,7 @@ u32 shinobi_sub_1ef4fa(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3, u32 ain0) {
 
 /*
  * ta_fifo_1ef558  0x8c1ef558
- * called by: shinobi_sub_1ef4fa
+ * called by: shinobi_draw_1ef4fa
  */
 u32 ta_fifo_1ef558(void) {
     int *piVar1;
@@ -143,7 +143,7 @@ u32 ta_fifo_1ef558(void) {
         *(u32 *)(*(int *)(iVar2 + *piVar1) + 4) = uVar3;
         *(u32 *)(*(int *)(iVar2 + *piVar1) + 0x18) = 1;
         auStack_10[0] = 1;
-        in_r0 = shinobi_sub_1f4cb8(iVar4 * 6, 9, auStack_10, 1, 0, 0);
+        in_r0 = shinobi_uses_addr_to_physical_1f4cb8(iVar4 * 6, 9, auStack_10, 1, 0, 0);
         g_8c470e78 = g_8c470e70;
     }
     return in_r0;
@@ -152,7 +152,7 @@ u32 ta_fifo_1ef558(void) {
 /*
  * maple_port_info_refresh  0x8c1ef640
  * copies the 24 0x2c-byte port records at (0x8c4727b4)+0x28 into the 0x18-byte records at 0x8c4709a0
- * called by: pvr_1ef84c, pvr_1efaf4, shinobi_sub_1ef78c, shinobi_sub_1ef7e6
+ * called by: pvr_1ef84c, pvr_1efaf4, shinobi_input_1ef78c, shinobi_input_1ef7e6
  */
 int maple_port_info_refresh(void) {
     char cVar1;
@@ -183,11 +183,11 @@ int maple_port_info_refresh(void) {
 }
 
 /*
- * shinobi_sub_1ef682  0x8c1ef682
- * area name: in the shinobi library code range
- * called by: shinobi_sub_1ef78c, shinobi_sub_1ef7e6
+ * shinobi_init_fields_1ef682  0x8c1ef682
+ * area name: in the shinobi library code range; behaviour name: writes 3 members
+ * called by: shinobi_input_1ef78c, shinobi_input_1ef7e6
  */
-u32 shinobi_sub_1ef682(void) {
+u32 shinobi_init_fields_1ef682(void) {
     u8 *puVar1;
     u8 *puVar2;
     u32 *puVar3;
@@ -198,9 +198,10 @@ u32 shinobi_sub_1ef682(void) {
     int iVar8;
 
     puVar3 = 0x8c470910;
-    puVar2 = (&ta_sub_1fa244);
+    puVar2 = (&ta_uses_ret_const_1_1fa244);
     puVar1 = (&DATA_8c26bf98);
-    uVar7 = (*(code *)(&ta_sub_1fa244))((int)0x900, (&DATA_8c1ef4e4), *(u32 *)(&DATA_8c26bf98), 0, 0x8c4727c4);
+    uVar7 =
+        (*(code *)(&ta_uses_ret_const_1_1fa244))((int)0x900, (&DATA_8c1ef4e4), *(u32 *)(&DATA_8c26bf98), 0, 0x8c4727c4);
     puVar4 = (&DATA_8c1ef4f0);
     iVar8 = (int)0xa00;
     *puVar3 = uVar7;
@@ -236,10 +237,10 @@ u32 shinobi_sub_1ef682(void) {
 }
 
 /*
- * shinobi_sub_1ef686  0x8c1ef686
- * area name: in the shinobi library code range
+ * shinobi_init_fields_1ef686  0x8c1ef686
+ * area name: in the shinobi library code range; behaviour name: writes 3 members
  */
-u32 shinobi_sub_1ef686(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 shinobi_init_fields_1ef686(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u8 *puVar1;
     u8 *puVar2;
     u32 *puVar3;
@@ -251,9 +252,9 @@ u32 shinobi_sub_1ef686(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 a7;
 
     puVar3 = 0x8c470910;
-    puVar2 = (&ta_sub_1fa244);
+    puVar2 = (&ta_uses_ret_const_1_1fa244);
     puVar1 = (&DATA_8c26bf98);
-    uVar7 = (*(code *)(&ta_sub_1fa244))((int)0x900, (&DATA_8c1ef4e4), *(u32 *)(&DATA_8c26bf98), a3);
+    uVar7 = (*(code *)(&ta_uses_ret_const_1_1fa244))((int)0x900, (&DATA_8c1ef4e4), *(u32 *)(&DATA_8c26bf98), a3);
     puVar4 = (&DATA_8c1ef4f0);
     iVar8 = (int)0xa00;
     *puVar3 = uVar7;
@@ -290,11 +291,11 @@ u32 shinobi_sub_1ef686(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1ef78c  0x8c1ef78c
- * area name: in the shinobi library code range
- * called by: shinobi_sub_1f5dd0
+ * shinobi_input_1ef78c  0x8c1ef78c
+ * area name: in the shinobi library code range; behaviour name: mostly calls input functions
+ * called by: shinobi_input_1f5dd0
  */
-u32 shinobi_sub_1ef78c(u32 a0, u32 a1) {
+u32 shinobi_input_1ef78c(u32 a0, u32 a1) {
     u8 *a4;
     u32 uVar1;
     u32 a5;
@@ -302,28 +303,28 @@ u32 shinobi_sub_1ef78c(u32 a0, u32 a1) {
 
     a4 = (&DATA_8c1f5a28);
     *(u32 *)(&DATA_8c1f5a28) = *(u32 *)(&DATA_8c1f5a28) | 0xa0000000;
-    shinobi_sub_1ef682();
+    shinobi_init_fields_1ef682();
     a5 = 0xc000;
     a7 = 0xc000;
-    uVar1 = shinobi_sub_1f3dd8(a1, 0xc000, a0, 0xc000);
+    uVar1 = shinobi_input_1f3dd8(a1, 0xc000, a0, 0xc000);
     maple_port_info_refresh();
     g_8c470e60 = 1;
     return uVar1;
 }
 
 /*
- * shinobi_sub_1ef7e6  0x8c1ef7e6
- * area name: in the shinobi library code range
- * called by: shinobi_sub_1f5ea8
+ * shinobi_input_1ef7e6  0x8c1ef7e6
+ * area name: in the shinobi library code range; behaviour name: mostly calls input functions
+ * called by: shinobi_input_1f5ea8
  */
-u32 shinobi_sub_1ef7e6(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 shinobi_input_1ef7e6(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 *a4;
     u32 uVar1;
 
     a4 = (&DATA_8c1f5a28);
     *(u32 *)(&DATA_8c1f5a28) = *(u32 *)(&DATA_8c1f5a28) | 0xa0000000;
-    shinobi_sub_1ef682();
-    uVar1 = shinobi_sub_1f3ef4(a0, a1, a2, a3);
+    shinobi_init_fields_1ef682();
+    uVar1 = shinobi_input_1f3ef4(a0, a1, a2, a3);
     maple_port_info_refresh();
     g_8c470e60 = 1;
     return uVar1;
@@ -372,7 +373,7 @@ int pvr_1ef84c(u32 unused_a0, u32 *unused_a1, u32 unused_a2, u32 a3) {
         piVar4 = 0x8c470c18;
         puVar2 = 0xa05f6908;
         if ((*0xa05f6908 & (int)0xf00) == 0) {
-            a7 = shinobi_sub_1f4202();
+            a7 = shinobi_uses_libgcc_divide_helper_1f4202();
             a4 = 0x8c470e64;
             if (a7 < 0) {
                 pvr_1efaf4(piVar6, unused_a1, ar6_00, a3);
@@ -418,7 +419,7 @@ int pvr_1ef84c(u32 unused_a0, u32 *unused_a1, u32 unused_a2, u32 a3) {
             }
             *puVar2 = (int)0xf00;
             pvr_1efaf4(piVar6, unused_a1, ar6_00, a3);
-            a7 = shinobi_sub_1f4202();
+            a7 = shinobi_uses_libgcc_divide_helper_1f4202();
             if (a7 < 0) {
                 if (*piVar4 != 0) {
                     (*(code *)*piVar4)(1, 0xfffffffa, piVar5[2], a7);
@@ -432,11 +433,11 @@ int pvr_1ef84c(u32 unused_a0, u32 *unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * pvr_sub_1efa2a  0x8c1efa2a
- * area name: sits between pvr functions (same compilation unit)
+ * pvr_input_1efa2a  0x8c1efa2a
+ * area name: sits between pvr functions (same compilation unit); behaviour name: mostly calls input functions
  * called by: pvr_1efaf4
  */
-u32 pvr_sub_1efa2a(u32 unused_a0, u32 a1) {
+u32 pvr_input_1efa2a(u32 unused_a0, u32 a1) {
     u8 bVar1;
     int iVar2;
     int iVar3;
@@ -507,17 +508,17 @@ int pvr_1efaf4(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
             (*(code *)*0x8c470c18)(2, 0xfffffff8, *(u32 *)(iVar2 + 8), a7);
         }
     } else {
-        shinobi_sub_1f442a();
+        shinobi_calls_update_fields_1f442a();
         a5 = (int)(short)0x3ff;
         iVar7 = g_8c470e64 * 2;
         *(u16 *)(iVar2 + 0x30 + iVar7) =
             ((u16) * 0xa05f810c & 0x3ff) + *(short *)(iVar2 + 0x34 + iVar7) * ((u16) * 0xa05f80dc & 0x3ff);
         maple_port_info_refresh();
-        shinobi_sub_1f4414();
-        iVar5 = shinobi_sub_1f4734();
+        shinobi_update_fields_1f4414();
+        iVar5 = shinobi_calc_1f4734();
         if (iVar5 != 0) {
             if (((code *)*0x8c470c1c == NULL) || (iVar5 = (*(code *)*0x8c470c1c)(iVar7, a5, a2, a3), iVar5 != 0)) {
-                iVar5 = pvr_sub_1efa2a(iVar7, a5);
+                iVar5 = pvr_input_1efa2a(iVar7, a5);
                 g_8c470e70 = iVar5;
             }
             puVar8 = 0xa05f8040;
@@ -556,11 +557,11 @@ int pvr_1efaf4(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * pvr_sub_1efcae  0x8c1efcae
- * area name: sits between pvr functions (same compilation unit)
- * called by: shinobi_sub_1f62f0, shinobi_sub_1f62f6
+ * pvr_uses_memset_1efcae  0x8c1efcae
+ * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is memset
+ * called by: shinobi_uses_memset_1f62f0, shinobi_uses_memset_1f62f6
  */
-u32 pvr_sub_1efcae(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 pvr_uses_memset_1efcae(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
     int iVar2;
     u32 ar4_00;
@@ -592,13 +593,13 @@ u32 pvr_sub_1efcae(u32 a0, u32 a1, u32 a2, u32 a3) {
     bVar3 = ((bVar3 | (u8)(((u32)in_MD << 0x1e) >> 0x18)) & 0x40) >> 6;
     *0xa05f6920 = *0xa05f6920 & (int)(int)0xffffcfff;
     iVar2 = 0x8c470910;
-    puVar1 = (&shinobi_sub_1fa54c);
-    shinobi_sub_1fa54c(*(u32 *)(0x8c470910 + 0xc));
+    puVar1 = (&shinobi_uses_ret_const_1_1fa54c);
+    shinobi_uses_ret_const_1_1fa54c(*(u32 *)(0x8c470910 + 0xc));
     (*(code *)puVar1)(*(u32 *)(iVar2 + 0x10), a1, a2, a3);
     (*(code *)puVar1)(*(u32 *)(iVar2 + 8), a1, a2, a3);
     ar4_00 = *(u32 *)(iVar2 + 4);
     (*(code *)puVar1)(ar4_00, a1, a2, a3);
-    shinobi_sub_1f44cc(ar4_00, a1, a2, a3);
+    shinobi_uses_sh4_tmu_1f44cc(ar4_00, a1, a2, a3);
     memset(0x8c4709a0, 0, (int)0x240);
     return ((u32)in_T | (u32)in_S << 1 | (u32)in_IMASK << 4) & 0xf0 |
            ((u32)extraout_T | (u32)extraout_S << 1 | (u32)bVar7 << 4 | (u32)extraout_Q << 8 | (u32)extraout_M << 9 |
@@ -610,7 +611,7 @@ u32 pvr_sub_1efcae(u32 a0, u32 a1, u32 a2, u32 a3) {
  * maple_port_info  0x8c1efd14
  * the 0x18-byte device record of port a0 (0x8c4709a0)
  * called by: alt_entry_2020ba, alt_entry_202280, alt_entry_202550, maple_device_ready, maple_device_ready_idle,
- * pvr_1efaf4, pvr_sub_1efa2a, shinobi_sub_1f61c6 (+9 more)
+ * pvr_1efaf4, pvr_input_1efa2a, shinobi_input_1fd008 (+9 more)
  */
 int maple_port_info(int a0, u32 a1) {
     return a0 * 0x18 + 0x8c4709a0;
@@ -619,43 +620,43 @@ int maple_port_info(int a0, u32 a1) {
 /*
  * maple_port_status  0x8c1efd26
  * status flags of port a0
- * called by: bios_sub_1f3b5c, bios_sub_1f3d28, maple_device_ready, maple_device_ready_idle, maple_port_status_wrap,
- * pvr_1efaf4, pvr_sub_1efa2a, shinobi_sub_1f5dd0 (+6 more)
+ * called by: bios_input_1f3b5c, bios_input_1f3d28, maple_device_ready, maple_device_ready_idle, maple_port_status_wrap,
+ * pvr_1efaf4, pvr_input_1efa2a, shinobi_input_1f5dd0 (+6 more)
  */
 u32 maple_port_status(u32 a0) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f45c8(a0);
+    uVar1 = shinobi_calc_1f45c8(a0);
     return uVar1;
 }
 
 /*
- * shinobi_sub_1efd34  0x8c1efd34
- * area name: in the shinobi library code range
- * called by: shinobi_sub_202a30, shinobi_sub_202a34
+ * shinobi_calls_calc_1efd34  0x8c1efd34
+ * area name: in the shinobi library code range; behaviour name: its callees mostly do: calc
+ * called by: shinobi_uses_libgcc_divide_helper_202a30, shinobi_uses_libgcc_divide_helper_202a34
  */
-u32 shinobi_sub_1efd34(u32 a0) {
+u32 shinobi_calls_calc_1efd34(u32 a0) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f45da(a0);
+    uVar1 = shinobi_calc_1f45da(a0);
     return uVar1;
 }
 
 /*
  * thunk_FUN_8c1f461c  0x8c1efd42
- * called by: pvr_1efaf4, shinobi_sub_1fd008, shinobi_sub_1fd1e2, shinobi_sub_1fd312, shinobi_sub_201f8a
+ * called by: pvr_1efaf4, shinobi_calls_one_201f8a, shinobi_input_1fd008, shinobi_input_1fd1e2, shinobi_input_1fd312
  */
 u32 thunk_FUN_8c1f461c(void) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f461c();
+    uVar1 = shinobi_calls_calc_1f461c();
     return uVar1;
 }
 
 /*
  * maple_device_request_hooked  0x8c1efd7c
  * maple_device_request_locked, then the PVR hook when +0x10e8 is set
- * called by: alt_entry_202786, shinobi_sub_202424, shinobi_sub_202782
+ * called by: alt_entry_202786, shinobi_input_202424, shinobi_uses_maple_device_reset_hooked_202782
  */
 u32 maple_device_request_hooked(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -684,7 +685,7 @@ u32 maple_all_status_request_hooked(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * maple_device_reset_hooked  0x8c1efdc8
  * maple_device_reset_locked, then the PVR hook when +0x10e8 is set
- * called by: alt_entry_202786, shinobi_sub_202424, shinobi_sub_202782
+ * called by: alt_entry_202786, shinobi_input_202424, shinobi_uses_maple_device_reset_hooked_202782
  */
 u32 maple_device_reset_hooked(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -727,7 +728,7 @@ u32 maple_get_condition_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * maple_get_mem_info_hooked  0x8c1efe3a
  * maple_get_mem_info_locked, then the PVR hook when +0x10e8 is set
- * called by: shinobi_sub_1fd008
+ * called by: shinobi_input_1fd008
  */
 u32 maple_get_mem_info_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -742,7 +743,7 @@ u32 maple_get_mem_info_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * maple_block_read_hooked  0x8c1efe80
  * maple_block_read_locked, then the PVR hook when +0x10e8 is set
- * called by: shinobi_sub_1fd1e2
+ * called by: shinobi_input_1fd1e2
  */
 u32 maple_block_read_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -757,7 +758,7 @@ u32 maple_block_read_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * maple_block_write_hooked  0x8c1efeac
  * maple_block_write_locked, then the PVR hook when +0x10e8 is set
- * called by: bios_sub_1f3c78, bios_sub_1f3cde, shinobi_sub_1fd312
+ * called by: bios_input_1f3c78, bios_input_1f3cde, shinobi_input_1fd312
  */
 u32 maple_block_write_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -772,7 +773,7 @@ u32 maple_block_write_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * maple_block_complete_hooked  0x8c1efee0
  * maple_block_complete_locked, then the PVR hook when +0x10e8 is set
- * called by: shinobi_sub_1fd312
+ * called by: shinobi_input_1fd312
  */
 u32 maple_block_complete_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -801,7 +802,8 @@ u32 maple_cmd16_func20_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * maple_cmd15_func10_hooked  0x8c1eff32
  * maple_cmd15_func10_locked, then the PVR hook when +0x10e8 is set
- * called by: alt_entry_202786, shinobi_sub_202342, shinobi_sub_202782
+ * called by: alt_entry_202786, shinobi_uses_maple_cmd15_func10_hooked_202342,
+ * shinobi_uses_maple_device_reset_hooked_202782
  */
 u32 maple_cmd15_func10_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -816,7 +818,7 @@ u32 maple_cmd15_func10_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * maple_set_condition_hooked  0x8c1eff58
  * maple_set_condition_locked, then the PVR hook when +0x10e8 is set
- * called by: shinobi_sub_1f5d6c
+ * called by: shinobi_input_1f5d6c
  */
 u32 maple_set_condition_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -843,10 +845,10 @@ u32 maple_queue_frame_wrap_hooked(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1effc2  0x8c1effc2
- * area name: in the shinobi library code range
+ * shinobi_draw_1effc2  0x8c1effc2
+ * area name: in the shinobi library code range; behaviour name: mostly calls draw functions
  */
-u32 shinobi_sub_1effc2(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 shinobi_draw_1effc2(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = thunk_FUN_8c1f4ec6(a0);
@@ -858,23 +860,23 @@ u32 shinobi_sub_1effc2(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * thunk_FUN_8c1f4636  0x8c1effee
- * called by: maple_device_ready_idle, shinobi_sub_1fd008, shinobi_sub_1fd1e2, shinobi_sub_1fd312
+ * called by: maple_device_ready_idle, shinobi_input_1fd008, shinobi_input_1fd1e2, shinobi_input_1fd312
  */
 u32 thunk_FUN_8c1f4636(void) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f4636();
+    uVar1 = shinobi_calls_calc_1f4636();
     return uVar1;
 }
 
 /*
  * thunk_FUN_8c1f4646  0x8c1efff4
- * called by: shinobi_sub_1fd008
+ * called by: shinobi_input_1fd008
  */
 u32 thunk_FUN_8c1f4646(void) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f4646();
+    uVar1 = shinobi_calls_calc_1f4646();
     return uVar1;
 }
 

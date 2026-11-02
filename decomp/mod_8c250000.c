@@ -4,12 +4,12 @@
 #include "globals.h"
 
 /*
- * gfxlib_sub_250144  0x8c250144
- * area name: in the gfxlib library code range
- * called by: ninja_sub_2536a8
+ * gfxlib_uses_float_to_color_u8_250144  0x8c250144
+ * area name: in the gfxlib library code range; behaviour name: its main named callee is float_to_color_u8
+ * called by: ninja_uses_ta_fifo_2536a8
  * decompiler: Heritage AFTER dead removal. Example location: r0x8c4c2630 : 0x8c250546
  */
-u32 gfxlib_sub_250144(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 gfxlib_uses_float_to_color_u8_250144(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
     u16 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -258,7 +258,7 @@ u32 gfxlib_sub_250144(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     fStack_24 = fVar29;
                 }
                 puVar13 = &uStack_30;
-                gfxlib_sub_23bae2(&g_8c4c2620, puVar13, puVar12, iStack_54);
+                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar13, puVar12, iStack_54);
                 uVar30 = SUB84(dVar23, 0);
                 dVar23 = g_8c4c2624;
                 if (cVar37 == '\0') {
@@ -592,7 +592,7 @@ u32 gfxlib_sub_250144(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     fStack_24 = fVar29;
                 }
                 puVar13 = &uStack_30;
-                gfxlib_sub_23bae2(&g_8c4c2620, puVar13, puVar12, uStack_4c);
+                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar13, puVar12, uStack_4c);
                 uVar30 = SUB84(dVar23, 0);
                 uVar3 = float_to_color_u8(puVar11, puVar13, puVar12, uStack_4c);
                 uVar7 = g_8c4c2630;
@@ -1029,7 +1029,7 @@ u32 gfxlib_sub_250144(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     fStack_24 = (float)((u64)in_xd2 >> 0x20);
                 }
                 puVar13 = &uStack_30;
-                gfxlib_sub_23bae2(&g_8c4c2620, puVar13, ar6_01, uStack_48);
+                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar13, ar6_01, uStack_48);
                 uVar7 = float_to_color_u8(puVar12, puVar13, ar6_01, uStack_48);
                 uVar30 = g_8c4c2630;
                 if (cVar37 == '\0') {
@@ -1294,9 +1294,9 @@ u32 gfxlib_sub_250144(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
         }
     } else if (uVar2 == 0xc000) {
         if ((g_8c4ab308 & 0x800000) == 0) {
-            pcVar9 = gfxlib_sub_241722;
+            pcVar9 = gfxlib_uses_float_to_color_u8_241722;
         } else {
-            pcVar9 = gfxlib_sub_24149e;
+            pcVar9 = gfxlib_uses_float_to_color_u8_24149e;
         }
         uVar2 = (*pcVar9)(a0, uVar1 & 0x3fff, a2, a3);
     }
@@ -1305,7 +1305,7 @@ u32 gfxlib_sub_250144(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * vram_250a54  0x8c250a54
- * called by: ninja_sub_2536a8
+ * called by: ninja_uses_ta_fifo_2536a8
  * decompiler: Heritage AFTER dead removal. Example location: r0x8c4c262c : 0x8c250fb4
  */
 u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -1579,7 +1579,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                         fStack_28 = fVar34;
                     }
                     puVar13 = &uStack_34;
-                    gfxlib_sub_23bae2(&g_8c4c2620, puVar13, puVar16, iStack_5c);
+                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar13, puVar16, iStack_5c);
                     uVar37 = SUB84(dVar32, 0);
                     if (cVar43 != '\0') {
                         in_xd6 = *(double *)(puVar11 + 0xc);
@@ -1973,7 +1973,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                         fStack_28 = fVar34;
                     }
                     puVar13 = &uStack_34;
-                    gfxlib_sub_23bae2(&g_8c4c2620, puVar13, puVar16, iStack_5c);
+                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar13, puVar16, iStack_5c);
                     if (cVar43 != '\0') {
                         in_xd6 = *(double *)(puVar11 + 0xc);
                     }
@@ -1985,7 +1985,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                         in_dr4 = (double)CONCAT44(g_8c4c2634, g_8c4c2630);
                     }
                     uStack_44 = float_to_color_u8(puVar10, puVar13, puVar16, iStack_5c);
-                    gfxlib_sub_247b20(pdVar7, pdVar20, pdVar21, &uStack_48);
+                    gfxlib_fill_loop_247b20(pdVar7, pdVar20, pdVar21, &uStack_48);
                 }
             }
         LAB_8c250e3e:
@@ -2144,7 +2144,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                         fStack_28 = fVar34;
                     }
                     puVar13 = &uStack_34;
-                    gfxlib_sub_23bae2(&g_8c4c2620, puVar13, puVar10, uStack_58);
+                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar13, puVar10, uStack_58);
                     uVar37 = SUB84(dVar32, 0);
                     if (cVar43 != '\0') {
                         in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
@@ -2574,7 +2574,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                         fStack_28 = fVar34;
                     }
                     puVar13 = &uStack_34;
-                    gfxlib_sub_23bae2(&g_8c4c2620, puVar13, puVar10, uStack_58);
+                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar13, puVar10, uStack_58);
                     if (cVar43 != '\0') {
                         in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
                     }
@@ -2589,10 +2589,10 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     }
                     uStack_44 = float_to_color_u8(puVar11, puVar13, puVar10, uStack_58);
                     if ((*(u32 *)pdVar20 & *(u32 *)pdVar21 & *(u32 *)pdVar22 & 1) == 0) {
-                        gfxlib_sub_247b20(pdVar20, pdVar21, pdVar22, &uStack_48);
+                        gfxlib_fill_loop_247b20(pdVar20, pdVar21, pdVar22, &uStack_48);
                     }
                     if ((*(u32 *)pdVar21 & *(u32 *)pdVar22 & *(u32 *)pdVar7 & 1) == 0) {
-                        gfxlib_sub_247b20(pdVar21, pdVar22, pdVar7, &uStack_48);
+                        gfxlib_fill_loop_247b20(pdVar21, pdVar22, pdVar7, &uStack_48);
                     }
                 }
             }
@@ -2820,7 +2820,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                         fStack_28 = (float)((u64)in_xd2 >> 0x20);
                     }
                     puVar15 = &uStack_34;
-                    gfxlib_sub_23bae2(&g_8c4c2620, puVar15, puVar10, uStack_50);
+                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar15, puVar10, uStack_50);
                     if (cVar43 != '\0') {
                         in_xd4 = (double)CONCAT44(g_8c4c2628, g_8c4c2624);
                     }
@@ -3341,7 +3341,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                         fStack_28 = (float)((u64)in_xd2 >> 0x20);
                     }
                     puVar15 = &uStack_34;
-                    gfxlib_sub_23bae2(&g_8c4c2620, puVar15, puVar10, uStack_50);
+                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar15, puVar10, uStack_50);
                     if (cVar43 != '\0') {
                         in_xd4 = (double)CONCAT44(g_8c4c2628, g_8c4c2624);
                     }
@@ -3368,7 +3368,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                             puVar24 = puVar24 + 1;
                             ar6_00 = (u32 *)((u32)uVar1 * 0x40 + g_8c4aa510);
                             if ((*ar4_00 & *puStack_68 & *ar6_00 & 1) == 0) {
-                                gfxlib_sub_247b20(ar4_00, puStack_68, ar6_00, &uStack_48);
+                                gfxlib_fill_loop_247b20(ar4_00, puStack_68, ar6_00, &uStack_48);
                             }
                             iStack_64 = iStack_64 + 1;
                             ar4_00 = puStack_68;
@@ -3387,9 +3387,9 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
         }
     } else if (uVar3 == 0xc000) {
         if ((g_8c4ab318 & 1) == 0) {
-            pcVar5 = gfxlib_sub_246254;
+            pcVar5 = gfxlib_uses_float_to_color_u8_246254;
         } else {
-            pcVar5 = gfxlib_sub_245cc8;
+            pcVar5 = gfxlib_uses_float_to_color_u8_245cc8;
         }
         uVar3 = (*pcVar5)(a0, uVar1 & 0x3fff, a2, a3);
     }
@@ -3398,7 +3398,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * vram_2518b4  0x8c2518b4
- * called by: ninja_sub_2536a8
+ * called by: ninja_uses_ta_fifo_2536a8
  */
 u32 vram_2518b4(u16 *a0, double *a1, int a2, u32 a3) {
     u16 uVar1;
@@ -4423,9 +4423,9 @@ u32 vram_2518b4(u16 *a0, double *a1, int a2, u32 a3) {
         }
     } else if (uVar3 == 0xc000) {
         if ((g_8c4ab308 & 0x800000) == 0) {
-            UNRECOVERED_JUMPTABLE = gfxlib_sub_241d90;
+            UNRECOVERED_JUMPTABLE = gfxlib_uses_float_to_color_u8_241d90;
         } else {
-            UNRECOVERED_JUMPTABLE = gfxlib_sub_241be8;
+            UNRECOVERED_JUMPTABLE = gfxlib_uses_float_to_color_u8_241be8;
         }
         /* WARNING: Could not recover jumptable at 0x8c251f46. Too many branches */
         /* WARNING: Treating indirect jump as call */
@@ -4436,11 +4436,11 @@ u32 vram_2518b4(u16 *a0, double *a1, int a2, u32 a3) {
 }
 
 /*
- * gfxlib_sub_251f78  0x8c251f78
- * area name: in the gfxlib library code range
- * called by: ninja_sub_2536a8
+ * gfxlib_uses_float_to_color_u8_251f78  0x8c251f78
+ * area name: in the gfxlib library code range; behaviour name: its main named callee is float_to_color_u8
+ * called by: ninja_uses_ta_fifo_2536a8
  */
-u32 gfxlib_sub_251f78(u16 *a0, double *a1, double *a2, u32 a3) {
+u32 gfxlib_uses_float_to_color_u8_251f78(u16 *a0, double *a1, double *a2, u32 a3) {
     u16 uVar1;
     double *pdVar2;
     u32 uVar3;
@@ -4967,7 +4967,7 @@ u32 gfxlib_sub_251f78(u16 *a0, double *a1, double *a2, u32 a3) {
                         if (bVar34)
                             goto LAB_8c25223c;
                     }
-                    gfxlib_sub_23e4c8(pdVar8, pdVar9, pdVar15, a3);
+                    gfxlib_uses_float_to_color_u8_23e4c8(pdVar8, pdVar9, pdVar15, a3);
                     a1 = pdVar9;
                     a2 = pdVar15;
                 }
@@ -5510,10 +5510,10 @@ u32 gfxlib_sub_251f78(u16 *a0, double *a1, double *a2, u32 a3) {
                     if ((*(u32 *)pdVar9 & *(u32 *)pdVar15 & *(u32 *)pdVar17 & 1) == 0) {
                         a1 = pdVar15;
                         a2 = pdVar17;
-                        gfxlib_sub_23e4c8(pdVar9, pdVar15, pdVar17, a3);
+                        gfxlib_uses_float_to_color_u8_23e4c8(pdVar9, pdVar15, pdVar17, a3);
                     }
                     if ((*(u32 *)pdVar15 & *(u32 *)pdVar17 & *(u32 *)pdVar8 & 1) == 0) {
-                        gfxlib_sub_23e4c8(pdVar15, pdVar17, pdVar8, a3);
+                        gfxlib_uses_float_to_color_u8_23e4c8(pdVar15, pdVar17, pdVar8, a3);
                         a1 = pdVar17;
                         a2 = pdVar8;
                     }
@@ -5951,7 +5951,7 @@ u32 gfxlib_sub_251f78(u16 *a0, double *a1, double *a2, u32 a3) {
                             puVar19 = puVar19 + 1;
                             ar6_00 = (u32 *)((u32)uVar1 * 0x40 + g_8c4aa510);
                             if ((*ar4_00 & *ar5_00 & *ar6_00 & 1) == 0) {
-                                gfxlib_sub_23e4c8(ar4_00, ar5_00, ar6_00, puVar14);
+                                gfxlib_uses_float_to_color_u8_23e4c8(ar4_00, ar5_00, ar6_00, puVar14);
                             }
                             iStack_34 = iStack_34 + 1;
                             ar4_00 = ar5_00;
@@ -5969,9 +5969,9 @@ u32 gfxlib_sub_251f78(u16 *a0, double *a1, double *a2, u32 a3) {
         }
     } else if (uVar3 == 0xc000) {
         if ((g_8c4ab318 & 1) == 0) {
-            UNRECOVERED_JUMPTABLE = gfxlib_sub_246b7a;
+            UNRECOVERED_JUMPTABLE = gfxlib_uses_float_to_color_u8_246b7a;
         } else {
-            UNRECOVERED_JUMPTABLE = gfxlib_sub_246756;
+            UNRECOVERED_JUMPTABLE = gfxlib_uses_float_to_color_u8_246756;
         }
         /* WARNING: Could not recover jumptable at 0x8c2528b0. Too many branches */
         /* WARNING: Treating indirect jump as call */
@@ -5982,12 +5982,12 @@ u32 gfxlib_sub_251f78(u16 *a0, double *a1, double *a2, u32 a3) {
 }
 
 /*
- * gfxlib_sub_2528e8  0x8c2528e8
- * area name: in the gfxlib library code range
- * called by: ninja_sub_2536a8
+ * gfxlib_fill_loop_2528e8  0x8c2528e8
+ * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * called by: ninja_uses_ta_fifo_2536a8
  * decompiler: Heritage AFTER dead removal. Example location: r0x8c4c11b4 : 0x8c252a54
  */
-u32 gfxlib_sub_2528e8(u16 *a0) {
+u32 gfxlib_fill_loop_2528e8(u16 *a0) {
     u16 uVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -6207,7 +6207,7 @@ u32 gfxlib_sub_2528e8(u16 *a0) {
         if ((g_8c4ab308 & 0x800000) == 0) {
             UNRECOVERED_JUMPTABLE = (code *)&LAB_8c242234;
         } else {
-            UNRECOVERED_JUMPTABLE = gfxlib_sub_2420fe;
+            UNRECOVERED_JUMPTABLE = gfxlib_uses_noop_2420fe;
         }
         /* WARNING: Could not recover jumptable at 0x8c252e56. Too many branches */
         /* WARNING: Treating indirect jump as call */
@@ -6218,11 +6218,11 @@ u32 gfxlib_sub_2528e8(u16 *a0) {
 }
 
 /*
- * gfxlib_sub_252e7c  0x8c252e7c
- * area name: in the gfxlib library code range
- * called by: ninja_sub_2536a8
+ * gfxlib_calls_fill_loop_252e7c  0x8c252e7c
+ * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
+ * called by: ninja_uses_ta_fifo_2536a8
  */
-u32 gfxlib_sub_252e7c(u16 *a0) {
+u32 gfxlib_calls_fill_loop_252e7c(u16 *a0) {
     u16 uVar1;
     u32 uVar2;
     code *UNRECOVERED_JUMPTABLE;
@@ -6616,7 +6616,7 @@ u32 gfxlib_sub_252e7c(u16 *a0) {
                         if (bVar30)
                             goto LAB_8c2530dc;
                     }
-                    gfxlib_sub_23eb44(pdVar3, pdVar4, pdVar13);
+                    gfxlib_fill_loop_23eb44(pdVar3, pdVar4, pdVar13);
                 }
             }
         LAB_8c2530dc:
@@ -7012,11 +7012,11 @@ u32 gfxlib_sub_252e7c(u16 *a0) {
                     }
                     in_xd0 = dVar26;
                     if ((*(u32 *)pdVar4 & *(u32 *)pdVar13 & *(u32 *)pdVar11 & 1) == 0) {
-                        gfxlib_sub_23eb44(pdVar4, pdVar13, pdVar11);
+                        gfxlib_fill_loop_23eb44(pdVar4, pdVar13, pdVar11);
                         in_xd0 = dVar26;
                     }
                     if ((*(u32 *)pdVar13 & *(u32 *)pdVar11 & *(u32 *)pdVar3 & 1) == 0) {
-                        gfxlib_sub_23eb44(pdVar13, pdVar11, pdVar3);
+                        gfxlib_fill_loop_23eb44(pdVar13, pdVar11, pdVar3);
                     }
                 }
             }
@@ -7361,7 +7361,7 @@ u32 gfxlib_sub_252e7c(u16 *a0) {
                             puVar15 = puVar15 + 1;
                             ar6_00 = (u32 *)((u32)uVar1 * 0x40 + g_8c4aa510);
                             if ((*ar4_00 & *ar5_00 & *ar6_00 & 1) == 0) {
-                                gfxlib_sub_23eb44(ar4_00, ar5_00, ar6_00);
+                                gfxlib_fill_loop_23eb44(ar4_00, ar5_00, ar6_00);
                             }
                             iStack_30 = iStack_30 + 1;
                             ar4_00 = ar5_00;
@@ -7377,9 +7377,9 @@ u32 gfxlib_sub_252e7c(u16 *a0) {
         }
     } else if (uVar2 == 0xc000) {
         if ((g_8c4ab318 & 1) == 0) {
-            UNRECOVERED_JUMPTABLE = gfxlib_sub_247280;
+            UNRECOVERED_JUMPTABLE = gfxlib_uses_noop_247280;
         } else {
-            UNRECOVERED_JUMPTABLE = gfxlib_sub_246f1a;
+            UNRECOVERED_JUMPTABLE = gfxlib_uses_noop_246f1a;
         }
         /* WARNING: Could not recover jumptable at 0x8c253690. Too many branches */
         /* WARNING: Treating indirect jump as call */
@@ -7390,11 +7390,11 @@ u32 gfxlib_sub_252e7c(u16 *a0) {
 }
 
 /*
- * ninja_sub_2536a8  0x8c2536a8
- * area name: in the ninja library code range
- * called by: ninja_sub_254026
+ * ninja_uses_ta_fifo_2536a8  0x8c2536a8
+ * area name: in the ninja library code range; behaviour name: its main named callee is ta_fifo_237124
+ * called by: ninja_uses_ta_fifo_254026
  */
-u32 ninja_sub_2536a8(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
+u32 ninja_uses_ta_fifo_2536a8(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
     float fVar1;
     u16 uVar2;
     int iVar3;
@@ -7425,12 +7425,12 @@ u32 ninja_sub_2536a8(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
         if ((g_8c4aa4f0 & 1) != 0) {
             a2 = 1;
             a1 = (u8 *)0x3;
-            gfxlib_sub_234d68(&PTR_DAT_8c277c00, 3, 1, a3);
+            gfxlib_draw_234d68(&PTR_DAT_8c277c00, 3, 1, a3);
         }
         g_8c4aa554 = 0;
-        ain0 = ninja_sub_254006(a0);
+        ain0 = ninja_calls_fill_loop_254006(a0);
         if (ain0 == 0) {
-            gfxlib_sub_23c2a0(&g_8c4ab30c);
+            gfxlib_uses_noop_fr4_test_23c2a0(&g_8c4ab30c);
             iVar3 = 0;
             while (true) {
                 fVar10 = g_8c4c11c0;
@@ -7506,7 +7506,7 @@ u32 ninja_sub_2536a8(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
                             fVar1 = g_8c4c11b4;
                         }
                     } else {
-                        ta_sub_2371be(*(u32 *)(unaff_r13 + 0xc) & 0x3fffffff);
+                        ta_calc_2371be(*(u32 *)(unaff_r13 + 0xc) & 0x3fffffff);
                         fVar10 = g_8c4c11c0;
                         g_8c4c11a0 = SUB84(in_xd2, 0);
                         if ((g_8c4aa4f0 & 0x200) == 0) {
@@ -7726,9 +7726,9 @@ u32 ninja_sub_2536a8(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
                     g_8c4c11a4 = g_8c4c11b4;
                     g_8c4c11a8 = g_8c4c11b8;
                     g_8c4c11ac = g_8c4c11bc;
-                    gfxlib_sub_23c4ba(&g_8c4aa52c);
+                    gfxlib_state_switch_23c4ba(&g_8c4aa52c);
                     uStack_24 = g_8c4ab308 & 0x3600000;
-                    gfxlib_sub_237370(g_8c4ab308);
+                    gfxlib_update_fields_237370(g_8c4ab308);
                     a3 = 0x1000000;
                     a2 = 0x2000000;
                     a1 = (u8 *)0x80000;
@@ -7819,16 +7819,16 @@ u32 ninja_sub_2536a8(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
                 if (g_8c4ab318 == 0) {
                     if (uStack_24 == 0) {
                         a1 = unaff_r13;
-                        gfxlib_sub_247e16(ar4_00);
+                        gfxlib_calls_scan_loop_247e16(ar4_00);
                     } else if (uStack_24 == 0x200000) {
                         a1 = unaff_r13;
-                        gfxlib_sub_24901e(ar4_00);
+                        gfxlib_uses_float_to_color_u8_24901e(ar4_00);
                     } else if (uStack_24 == 0x600000) {
                         a1 = unaff_r13;
-                        gfxlib_sub_24a808(ar4_00);
+                        gfxlib_uses_float_to_color_u8_24a808(ar4_00);
                     } else if (uStack_24 == 0x1000000) {
                         a1 = unaff_r13;
-                        gfxlib_sub_24bdc8(ar4_00, unaff_r13, a2, a3);
+                        gfxlib_uses_float_to_color_u8_24bdc8(ar4_00, unaff_r13, a2, a3);
                     } else if (uStack_24 == 0x1200000) {
                         a1 = unaff_r13;
                         vram_24d5a8(ar4_00, unaff_r13, a2, a3);
@@ -7837,29 +7837,29 @@ u32 ninja_sub_2536a8(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
                         vram_24ef30(ar4_00, unaff_r13, a2, a3);
                     } else if (uStack_24 == 0x1600000) {
                         a1 = unaff_r13;
-                        gfxlib_sub_250144(ar4_00, unaff_r13, a2, a3);
+                        gfxlib_uses_float_to_color_u8_250144(ar4_00, unaff_r13, a2, a3);
                     } else if ((uStack_24 == 0x2600000) || (uStack_24 == 0x3600000)) {
                         a1 = unaff_r13;
                         vram_2518b4(ar4_00, unaff_r13, a2, a3);
                     } else if ((uStack_24 == 0x2000000) || (uStack_24 == 0x3000000)) {
                         a1 = unaff_r13;
-                        gfxlib_sub_2528e8(ar4_00);
+                        gfxlib_fill_loop_2528e8(ar4_00);
                     }
                 } else if (uStack_24 == 0) {
                     a1 = unaff_r13;
-                    gfxlib_sub_2485bc(ar4_00);
+                    gfxlib_calls_scan_loop_2485bc(ar4_00);
                 } else if (uStack_24 == 0x200000) {
                     a1 = unaff_r13;
                     vram_2499ec(ar4_00);
                 } else if (uStack_24 == 0x600000) {
                     a1 = unaff_r13;
-                    gfxlib_sub_24b154(ar4_00);
+                    gfxlib_uses_float_to_color_u8_24b154(ar4_00);
                 } else if (uStack_24 == 0x1000000) {
                     a1 = unaff_r13;
-                    gfxlib_sub_24c6f0(ar4_00, unaff_r13, a2, a3);
+                    gfxlib_uses_float_to_color_u8_24c6f0(ar4_00, unaff_r13, a2, a3);
                 } else if (uStack_24 == 0x1200000) {
                     a1 = unaff_r13;
-                    gfxlib_sub_24df18(ar4_00, unaff_r13, a2, a3);
+                    gfxlib_uses_float_to_color_u8_24df18(ar4_00, unaff_r13, a2, a3);
                 } else if ((uStack_24 == 0x2200000) || (uStack_24 == 0x3200000)) {
                     a1 = unaff_r13;
                     vram_24f64c(ar4_00, unaff_r13, a2, a3);
@@ -7868,10 +7868,10 @@ u32 ninja_sub_2536a8(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
                     vram_250a54(ar4_00, unaff_r13, a2, a3);
                 } else if ((uStack_24 == 0x2600000) || (uStack_24 == 0x3600000)) {
                     a1 = unaff_r13;
-                    gfxlib_sub_251f78(ar4_00, unaff_r13, a2, a3);
+                    gfxlib_uses_float_to_color_u8_251f78(ar4_00, unaff_r13, a2, a3);
                 } else if ((uStack_24 == 0x2000000) || (uStack_24 == 0x3000000)) {
                     a1 = unaff_r13;
-                    gfxlib_sub_252e7c(ar4_00);
+                    gfxlib_calls_fill_loop_252e7c(ar4_00);
                 }
                 ta_set_list_addr(unaff_r8);
                 ar4_00 = ar4_00 + 0xc;
@@ -7883,28 +7883,28 @@ u32 ninja_sub_2536a8(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
 }
 
 /*
- * ninja_sub_253cfc  0x8c253cfc
- * area name: in the ninja library code range
- * called by: ninja_sub_254042
+ * ninja_calls_fill_loop_253cfc  0x8c253cfc
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: calls_fill_loop
+ * called by: ninja_draw_254042
  */
-u32 ninja_sub_253cfc(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_calls_fill_loop_253cfc(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = a0;
-    gfxlib_sub_23c70c();
-    gfxlib_sub_237630();
-    gfxlib_sub_2376c4();
-    ninja_sub_254066(a0, a1, a2, a3);
-    uVar1 = gfxlib_sub_237760();
+    gfxlib_calls_fill_loop_23c70c();
+    gfxlib_fill_loop_237630();
+    gfxlib_uses_memcpy_words_n_2376c4();
+    ninja_vec_254066(a0, a1, a2, a3);
+    uVar1 = gfxlib_calc_237760();
     return uVar1;
 }
 
 /*
- * ninja_sub_253d1c  0x8c253d1c
- * area name: in the ninja library code range
- * called by: ninja_sub_254066
+ * ninja_uses_matrix_push_253d1c  0x8c253d1c
+ * area name: in the ninja library code range; behaviour name: its main named callee is matrix_push
+ * called by: ninja_vec_254066
  */
-u32 ninja_sub_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_uses_matrix_push_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
 
@@ -7922,14 +7922,14 @@ u32 ninja_sub_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                 a1 = a0[5];
                 a2 = a0[6];
                 a3 = a0[7];
-                ninja_sub_256e18(0, a1, a2, a3, uVar2);
+                ninja_float_calc_256e18(0, a1, a2, a3, uVar2);
             }
             matrix_scale(0, a1, a2, a3, 4);
             if ((*a0 & 8) == 0) {
-                ninja_sub_254026(a0[1], a1, a2, a3);
+                ninja_uses_ta_fifo_254026(a0[1], a1, a2, a3);
             }
             if ((*a0 & 0x10) == 0) {
-                ninja_sub_254066(a0[0xb], a1, a2, a3);
+                ninja_vec_254066(a0[0xb], a1, a2, a3);
             }
         LAB_8c253fa8:
             uVar1 = matrix_pop_n(1);
@@ -7945,14 +7945,14 @@ u32 ninja_sub_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                     a1 = a0[5];
                     a2 = a0[6];
                     a3 = a0[7];
-                    ninja_sub_256e18(0, a1, a2, a3, uVar2);
+                    ninja_float_calc_256e18(0, a1, a2, a3, uVar2);
                 }
                 matrix_scale(0, a1, a2, a3, 4);
                 if ((*a0 & 8) == 0) {
-                    ninja_sub_254026(a0[1], a1, a2, a3);
+                    ninja_uses_ta_fifo_254026(a0[1], a1, a2, a3);
                 }
                 if ((*a0 & 0x10) == 0) {
-                    ninja_sub_254066(a0[0xb], a1, a2, a3);
+                    ninja_vec_254066(a0[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -7961,10 +7961,10 @@ u32 ninja_sub_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                 touch_fields_30_3c(0, a1, a2, a3, 4);
                 matrix_scale(0, a1, a2, a3, 4);
                 if ((*a0 & 8) == 0) {
-                    ninja_sub_254026(a0[1], a1, a2, a3);
+                    ninja_uses_ta_fifo_254026(a0[1], a1, a2, a3);
                 }
                 if ((*a0 & 0x10) == 0) {
-                    ninja_sub_254066(a0[0xb], a1, a2, a3);
+                    ninja_vec_254066(a0[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -7972,10 +7972,10 @@ u32 ninja_sub_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                 matrix_push(0, a1, a2, a3, 3);
                 matrix_scale(0, a1, a2, a3, 4);
                 if ((*a0 & 8) == 0) {
-                    ninja_sub_254026(a0[1], a1, a2, a3);
+                    ninja_uses_ta_fifo_254026(a0[1], a1, a2, a3);
                 }
                 if ((*a0 & 0x10) == 0) {
-                    ninja_sub_254066(a0[0xb], a1, a2, a3);
+                    ninja_vec_254066(a0[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -7991,13 +7991,13 @@ u32 ninja_sub_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                     a1 = a0[5];
                     a2 = a0[6];
                     a3 = a0[7];
-                    ninja_sub_256e18(0, a1, a2, a3, uVar2);
+                    ninja_float_calc_256e18(0, a1, a2, a3, uVar2);
                 }
                 if ((*a0 & 8) == 0) {
-                    ninja_sub_254026(a0[1], a1, a2, a3);
+                    ninja_uses_ta_fifo_254026(a0[1], a1, a2, a3);
                 }
                 if ((*a0 & 0x10) == 0) {
-                    ninja_sub_254066(a0[0xb], a1, a2, a3);
+                    ninja_vec_254066(a0[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -8012,13 +8012,13 @@ u32 ninja_sub_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                     a1 = a0[5];
                     a2 = a0[6];
                     a3 = a0[7];
-                    ninja_sub_256e18(0, a1, a2, a3, uVar2);
+                    ninja_float_calc_256e18(0, a1, a2, a3, uVar2);
                 }
                 if ((*a0 & 8) == 0) {
-                    ninja_sub_254026(a0[1], a1, a2, a3);
+                    ninja_uses_ta_fifo_254026(a0[1], a1, a2, a3);
                 }
                 if ((*a0 & 0x10) == 0) {
-                    ninja_sub_254066(a0[0xb], a1, a2, a3);
+                    ninja_vec_254066(a0[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -8026,20 +8026,20 @@ u32 ninja_sub_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                 matrix_push(0, a1, a2, a3, 6);
                 touch_fields_30_3c(0, a1, a2, a3, 4);
                 if ((*a0 & 8) == 0) {
-                    ninja_sub_254026(a0[1], a1, a2, a3);
+                    ninja_uses_ta_fifo_254026(a0[1], a1, a2, a3);
                 }
                 if ((*a0 & 0x10) == 0) {
-                    ninja_sub_254066(a0[0xb], a1, a2, a3);
+                    ninja_vec_254066(a0[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
             if (uVar1 == 7) {
                 uVar1 = *a0;
                 if ((uVar1 & 8) == 0) {
-                    uVar1 = ninja_sub_254026(a0[1], a1, a2, a3);
+                    uVar1 = ninja_uses_ta_fifo_254026(a0[1], a1, a2, a3);
                 }
                 if ((*a0 & 0x10) == 0) {
-                    uVar1 = ninja_sub_254066(a0[0xb], a1, a2, a3);
+                    uVar1 = ninja_vec_254066(a0[0xb], a1, a2, a3);
                 }
             }
         }
@@ -8073,14 +8073,14 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                 a1 = unaff_r14[5];
                 a2 = unaff_r14[6];
                 a3 = unaff_r14[7];
-                ninja_sub_256e18(0, a1, a2, a3);
+                ninja_float_calc_256e18(0, a1, a2, a3);
             }
             matrix_scale(0, a1, a2, a3);
             if ((*unaff_r14 & 8) == 0) {
-                ninja_sub_254026(unaff_r14[1], a1, a2, a3);
+                ninja_uses_ta_fifo_254026(unaff_r14[1], a1, a2, a3);
             }
             if ((*unaff_r14 & 0x10) == 0) {
-                ninja_sub_254066(unaff_r14[0xb], a1, a2, a3);
+                ninja_vec_254066(unaff_r14[0xb], a1, a2, a3);
             }
         LAB_8c253fa8:
             uVar1 = matrix_pop_n(1);
@@ -8096,14 +8096,14 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     a1 = unaff_r14[5];
                     a2 = unaff_r14[6];
                     a3 = unaff_r14[7];
-                    ninja_sub_256e18(0, a1, a2, a3);
+                    ninja_float_calc_256e18(0, a1, a2, a3);
                 }
                 matrix_scale(0, a1, a2, a3);
                 if ((*unaff_r14 & 8) == 0) {
-                    ninja_sub_254026(unaff_r14[1], a1, a2, a3);
+                    ninja_uses_ta_fifo_254026(unaff_r14[1], a1, a2, a3);
                 }
                 if ((*unaff_r14 & 0x10) == 0) {
-                    ninja_sub_254066(unaff_r14[0xb], a1, a2, a3);
+                    ninja_vec_254066(unaff_r14[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -8112,10 +8112,10 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                 touch_fields_30_3c(0, a1, a2, a3, in_PR);
                 matrix_scale(0, a1, a2, a3);
                 if ((*unaff_r14 & 8) == 0) {
-                    ninja_sub_254026(unaff_r14[1], a1, a2, a3);
+                    ninja_uses_ta_fifo_254026(unaff_r14[1], a1, a2, a3);
                 }
                 if ((*unaff_r14 & 0x10) == 0) {
-                    ninja_sub_254066(unaff_r14[0xb], a1, a2, a3);
+                    ninja_vec_254066(unaff_r14[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -8123,10 +8123,10 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                 matrix_push(0, a1, a2, a3);
                 matrix_scale(0, a1, a2, a3);
                 if ((*unaff_r14 & 8) == 0) {
-                    ninja_sub_254026(unaff_r14[1], a1, a2, a3);
+                    ninja_uses_ta_fifo_254026(unaff_r14[1], a1, a2, a3);
                 }
                 if ((*unaff_r14 & 0x10) == 0) {
-                    ninja_sub_254066(unaff_r14[0xb], a1, a2, a3);
+                    ninja_vec_254066(unaff_r14[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -8142,13 +8142,13 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     a1 = unaff_r14[5];
                     a2 = unaff_r14[6];
                     a3 = unaff_r14[7];
-                    ninja_sub_256e18(0, a1, a2, a3);
+                    ninja_float_calc_256e18(0, a1, a2, a3);
                 }
                 if ((*unaff_r14 & 8) == 0) {
-                    ninja_sub_254026(unaff_r14[1], a1, a2, a3);
+                    ninja_uses_ta_fifo_254026(unaff_r14[1], a1, a2, a3);
                 }
                 if ((*unaff_r14 & 0x10) == 0) {
-                    ninja_sub_254066(unaff_r14[0xb], a1, a2, a3);
+                    ninja_vec_254066(unaff_r14[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -8163,13 +8163,13 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     a1 = unaff_r14[5];
                     a2 = unaff_r14[6];
                     a3 = unaff_r14[7];
-                    ninja_sub_256e18(0, a1, a2, a3);
+                    ninja_float_calc_256e18(0, a1, a2, a3);
                 }
                 if ((*unaff_r14 & 8) == 0) {
-                    ninja_sub_254026(unaff_r14[1], a1, a2, a3);
+                    ninja_uses_ta_fifo_254026(unaff_r14[1], a1, a2, a3);
                 }
                 if ((*unaff_r14 & 0x10) == 0) {
-                    ninja_sub_254066(unaff_r14[0xb], a1, a2, a3);
+                    ninja_vec_254066(unaff_r14[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -8177,20 +8177,20 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                 matrix_push(0, a1, a2, a3);
                 touch_fields_30_3c(0, a1, a2, a3, in_PR);
                 if ((*unaff_r14 & 8) == 0) {
-                    ninja_sub_254026(unaff_r14[1], a1, a2, a3);
+                    ninja_uses_ta_fifo_254026(unaff_r14[1], a1, a2, a3);
                 }
                 if ((*unaff_r14 & 0x10) == 0) {
-                    ninja_sub_254066(unaff_r14[0xb], a1, a2, a3);
+                    ninja_vec_254066(unaff_r14[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
             if (uVar1 == 7) {
                 uVar1 = *unaff_r14;
                 if ((uVar1 & 8) == 0) {
-                    uVar1 = ninja_sub_254026(unaff_r14[1], a1, a2, a3);
+                    uVar1 = ninja_uses_ta_fifo_254026(unaff_r14[1], a1, a2, a3);
                 }
                 if ((*unaff_r14 & 0x10) == 0) {
-                    uVar1 = ninja_sub_254066(unaff_r14[0xb], a1, a2, a3);
+                    uVar1 = ninja_vec_254066(unaff_r14[0xb], a1, a2, a3);
                 }
             }
         }
@@ -8202,76 +8202,76 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_253fe0  0x8c253fe0
- * area name: in the ninja library code range
+ * ninja_draw_253fe0  0x8c253fe0
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
  */
-u32 ninja_sub_253fe0(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_draw_253fe0(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     draw_state_save(a0, a1, a2, a3);
-    gfxlib_sub_247df4(a0, a1, a2, a3);
+    gfxlib_calls_fill_loop_247df4(a0, a1, a2, a3);
     uVar1 = draw_state_restore(&stack0xfffffff4);
     return uVar1;
 }
 
 /*
- * ninja_sub_254006  0x8c254006
- * area name: in the ninja library code range
- * called by: ninja_sub_2536a8
+ * ninja_calls_fill_loop_254006  0x8c254006
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: calls_fill_loop
+ * called by: ninja_uses_ta_fifo_2536a8
  */
-u32 ninja_sub_254006(u32 a0) {
+u32 ninja_calls_fill_loop_254006(u32 a0) {
     u32 uVar1;
 
-    uVar1 = gfxlib_sub_23d386(a0);
+    uVar1 = gfxlib_calls_fill_loop_23d386(a0);
     return uVar1;
 }
 
 /*
- * ninja_sub_254026  0x8c254026
- * area name: in the ninja library code range
- * called by: alt_entry_253d20, gfxlib_sub_247df4, ninja_sub_253d1c
+ * ninja_uses_ta_fifo_254026  0x8c254026
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: uses_ta_fifo
+ * called by: alt_entry_253d20, gfxlib_calls_fill_loop_247df4, ninja_uses_matrix_push_253d1c
  */
-u32 ninja_sub_254026(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_uses_ta_fifo_254026(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 unaff_r8;
 
-    uVar1 = ninja_sub_2536a8(a0, a1, a2, a3, unaff_r8);
+    uVar1 = ninja_uses_ta_fifo_2536a8(a0, a1, a2, a3, unaff_r8);
     return uVar1;
 }
 
 /*
- * ninja_sub_254042  0x8c254042
- * area name: in the ninja library code range
+ * ninja_draw_254042  0x8c254042
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
  * called by: Class_1298b8_m10_0159d0, Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8,
  * Class_1298b8_m4_0156a0, Class_1298b8_m5_015720, Class_1298b8_m6_0157f8, Class_1298b8_m7_015890 (+2 more)
  */
-u32 ninja_sub_254042(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_draw_254042(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     draw_state_save(a0, a1, a2, a3);
-    ninja_sub_253cfc(a0, a1, a2, a3);
+    ninja_calls_fill_loop_253cfc(a0, a1, a2, a3);
     uVar1 = draw_state_restore(&stack0xfffffff4);
     return uVar1;
 }
 
 /*
- * ninja_sub_254066  0x8c254066
- * area name: in the ninja library code range
- * called by: alt_entry_253d20, ninja_sub_253cfc, ninja_sub_253d1c
+ * ninja_vec_254066  0x8c254066
+ * area name: in the ninja library code range; behaviour name: mostly calls vec functions
+ * called by: alt_entry_253d20, ninja_calls_fill_loop_253cfc, ninja_uses_matrix_push_253d1c
  */
-u32 ninja_sub_254066(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_vec_254066(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = ninja_sub_253d1c(a0, a1, a2, a3);
+    uVar1 = ninja_uses_matrix_push_253d1c(a0, a1, a2, a3);
     return uVar1;
 }
 
 /*
- * ninja_sub_2540a0  0x8c2540a0
- * area name: in the ninja library code range
- * called by: CAnimBody_sub_026de0, CAnimal_sub_026968
+ * ninja_float_calc_2540a0  0x8c2540a0
+ * area name: in the ninja library code range; behaviour name: floating-point arithmetic
+ * called by: CAnimBody_uses_get_field_1c_on_field_b0_026de0, CAnimal_uses_njGetMatrix_026968
  */
-u32 ninja_sub_2540a0(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ninja_float_calc_2540a0(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
     float in_fr4;
 
@@ -8298,29 +8298,29 @@ u32 ninja_sub_2540a0(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 a
     if ((g_8c4aad82 & 1) == 0) {
         g_8c4aad34 = (code *)&LAB_8c2559bc;
     } else {
-        g_8c4aad34 = ninja_sub_254d1a;
+        g_8c4aad34 = ninja_draw_254d1a;
     }
     if ((g_8c4aad82 & 2) == 0) {
         g_8c4aad38 = (code *)&LAB_8c2559da;
         g_8c4aad40 = (code *)&LAB_8c2559f4;
     } else {
-        g_8c4aad38 = ninja_sub_254e80;
-        g_8c4aad40 = ninja_sub_254f1e;
+        g_8c4aad38 = ninja_vec_254e80;
+        g_8c4aad40 = ninja_calls_float_calc_254f1e;
     }
     if ((g_8c4aad82 & 4) == 0) {
         g_8c4aad3c = (code *)&LAB_8c255a0e;
     } else {
-        g_8c4aad3c = ninja_sub_254db0;
+        g_8c4aad3c = ninja_vec_254db0;
     }
     g_8c4aad54 = in_fr4;
     return (u32)g_8c4aad82;
 }
 
 /*
- * ninja_sub_25415c  0x8c25415c
- * area name: in the ninja library code range
+ * ninja_calls_update_fields_25415c  0x8c25415c
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: update_fields
  */
-u32 ninja_sub_25415c(int a0, int a1, int a2, u32 a3, int ain0, u32 *ain1) {
+u32 ninja_calls_update_fields_25415c(int a0, int a1, int a2, u32 a3, int ain0, u32 *ain1) {
     u32 ain0_00;
     u32 uVar1;
     u32 *in_r2;
@@ -8379,15 +8379,15 @@ LAB_8c25423c:
     if (unaff_r14[6] == 0) {
         return ain0_00;
     }
-    uVar1 = ninja_sub_255d6c(0, unaff_r14[6], a2, a3, ain0_00);
+    uVar1 = ninja_update_fields_255d6c(0, unaff_r14[6], a2, a3, ain0_00);
     return uVar1;
 }
 
 /*
- * ninja_sub_254280  0x8c254280
- * area name: in the ninja library code range
+ * ninja_calls_update_fields_254280  0x8c254280
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: update_fields
  */
-u32 ninja_sub_254280(int a0, int a1, int a2, u32 a3, int ain0, u32 *ain1) {
+u32 ninja_calls_update_fields_254280(int a0, int a1, int a2, u32 a3, int ain0, u32 *ain1) {
     u32 ain0_00;
     u32 uVar1;
     u32 *in_r2;
@@ -8446,16 +8446,16 @@ LAB_8c2543be:
     if (unaff_r14[6] == 0) {
         return ain0_00;
     }
-    uVar1 = ninja_sub_255d6c(0, unaff_r14[6], a2, a3, ain0_00);
+    uVar1 = ninja_update_fields_255d6c(0, unaff_r14[6], a2, a3, ain0_00);
     return uVar1;
 }
 
 /*
- * ninja_sub_2545ec  0x8c2545ec
- * area name: in the ninja library code range
- * called by: game_sub_029af0
+ * ninja_scan_loop_2545ec  0x8c2545ec
+ * area name: in the ninja library code range; behaviour name: a loop that only reads
+ * called by: game_uses_njGetMatrix_029af0
  */
-u32 ninja_sub_2545ec(u32 a0, int a1) {
+u32 ninja_scan_loop_2545ec(u32 a0, int a1) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -8498,11 +8498,11 @@ LAB_8c25463a:
 }
 
 /*
- * ninja_sub_254698  0x8c254698
- * area name: in the ninja library code range
- * called by: game_sub_029af0
+ * ninja_scan_loop_254698  0x8c254698
+ * area name: in the ninja library code range; behaviour name: a loop that only reads
+ * called by: game_uses_njGetMatrix_029af0
  */
-u32 ninja_sub_254698(u32 a0, int a1) {
+u32 ninja_scan_loop_254698(u32 a0, int a1) {
     u32 uVar1;
     int iVar2;
     u32 uVar3;
@@ -8547,11 +8547,11 @@ LAB_8c2546fa:
 }
 
 /*
- * ninja_sub_254780  0x8c254780
- * area name: in the ninja library code range
- * called by: game_sub_029af0
+ * ninja_scan_loop_254780  0x8c254780
+ * area name: in the ninja library code range; behaviour name: a loop that only reads
+ * called by: game_uses_njGetMatrix_029af0
  */
-u32 ninja_sub_254780(u32 a0, int a1) {
+u32 ninja_scan_loop_254780(u32 a0, int a1) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -8599,11 +8599,11 @@ LAB_8c2547ea:
 }
 
 /*
- * ninja_sub_25484c  0x8c25484c
- * area name: in the ninja library code range
- * called by: game_sub_029af0
+ * ninja_calls_update_fields_25484c  0x8c25484c
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: update_fields
+ * called by: game_uses_njGetMatrix_029af0
  */
-u32 ninja_sub_25484c(void) {
+u32 ninja_calls_update_fields_25484c(void) {
     int *piVar1;
     u32 uVar2;
     u32 uVar3;
@@ -8628,15 +8628,15 @@ LAB_8c25487a:
     if (piVar1[6] == 0) {
         return uVar2;
     }
-    uVar3 = ninja_sub_255d6c(0);
+    uVar3 = ninja_update_fields_255d6c(0);
     return uVar3;
 }
 
 /*
- * ninja_sub_2548a8  0x8c2548a8
- * area name: in the ninja library code range
+ * ninja_uses_switch_jump_2548a8  0x8c2548a8
+ * area name: in the ninja library code range; behaviour name: its main named callee is switch_jump
  */
-u32 ninja_sub_2548a8(int a0, int a1, u32 a2, u64 *a3) {
+u32 ninja_uses_switch_jump_2548a8(int a0, int a1, u32 a2, u64 *a3) {
     int iVar1;
     int *piVar2;
     int *piVar3;
@@ -8784,10 +8784,10 @@ u32 ninja_sub_2548a8(int a0, int a1, u32 a2, u64 *a3) {
 }
 
 /*
- * ninja_sub_254956  0x8c254956
- * area name: in the ninja library code range
+ * ninja_uses_switch_jump_254956  0x8c254956
+ * area name: in the ninja library code range; behaviour name: its main named callee is switch_jump
  */
-int ninja_sub_254956(int a0, int a1, u32 a2, int *a3) {
+int ninja_uses_switch_jump_254956(int a0, int a1, u32 a2, int *a3) {
     int iVar1;
     u32 uVar2;
     int *piVar3;
@@ -8912,10 +8912,10 @@ int ninja_sub_254956(int a0, int a1, u32 a2, int *a3) {
 }
 
 /*
- * ninja_sub_254a1e  0x8c254a1e
- * area name: in the ninja library code range
+ * ninja_uses_libgcc_divide_helper_254a1e  0x8c254a1e
+ * area name: in the ninja library code range; behaviour name: its main named callee is libgcc_divide_helper_0106dc
  */
-u32 ninja_sub_254a1e(int a0, int a1, int a2, double *a3) {
+u32 ninja_uses_libgcc_divide_helper_254a1e(int a0, int a1, int a2, double *a3) {
     double dVar1;
     int iVar2;
     int iVar3;
@@ -9171,10 +9171,10 @@ u32 ninja_sub_254a1e(int a0, int a1, int a2, double *a3) {
 }
 
 /*
- * ninja_sub_254b94  0x8c254b94
- * area name: in the ninja library code range
+ * ninja_uses_libgcc_divide_helper_254b94  0x8c254b94
+ * area name: in the ninja library code range; behaviour name: its main named callee is libgcc_divide_helper_0106dc
  */
-u32 *ninja_sub_254b94(int a0, int a1, int a2, int *a3) {
+u32 *ninja_uses_libgcc_divide_helper_254b94(int a0, int a1, int a2, int *a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -9529,10 +9529,10 @@ u32 *ninja_sub_254b94(int a0, int a1, int a2, int *a3) {
 }
 
 /*
- * ninja_sub_254d1a  0x8c254d1a
- * area name: in the ninja library code range
+ * ninja_draw_254d1a  0x8c254d1a
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
  */
-u32 ninja_sub_254d1a(u32 a0, u32 unused_a1, u32 a2, u8 *a3) {
+u32 ninja_draw_254d1a(u32 a0, u32 unused_a1, u32 a2, u8 *a3) {
     u32 uVar1;
     int a4;
     u32 a5;
@@ -9567,10 +9567,10 @@ u32 ninja_sub_254d1a(u32 a0, u32 unused_a1, u32 a2, u8 *a3) {
 }
 
 /*
- * ninja_sub_254db0  0x8c254db0
- * area name: in the ninja library code range
+ * ninja_vec_254db0  0x8c254db0
+ * area name: in the ninja library code range; behaviour name: mostly calls vec functions
  */
-u32 ninja_sub_254db0(u32 a0, u32 unused_a1, u32 a2, u8 *a3) {
+u32 ninja_vec_254db0(u32 a0, u32 unused_a1, u32 a2, u8 *a3) {
     u32 uVar1;
     int a4;
     u32 a5;
@@ -9605,10 +9605,10 @@ u32 ninja_sub_254db0(u32 a0, u32 unused_a1, u32 a2, u8 *a3) {
 }
 
 /*
- * ninja_sub_254e80  0x8c254e80
- * area name: in the ninja library code range
+ * ninja_vec_254e80  0x8c254e80
+ * area name: in the ninja library code range; behaviour name: mostly calls vec functions
  */
-u32 ninja_sub_254e80(int a0) {
+u32 ninja_vec_254e80(int a0) {
     u32 uVar1;
     int a4;
     u32 a5;
@@ -9646,10 +9646,10 @@ u32 ninja_sub_254e80(int a0) {
 }
 
 /*
- * ninja_sub_254f1e  0x8c254f1e
- * area name: in the ninja library code range
+ * ninja_calls_float_calc_254f1e  0x8c254f1e
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: float_calc
  */
-u32 ninja_sub_254f1e(int a0) {
+u32 ninja_calls_float_calc_254f1e(int a0) {
     u32 uVar1;
     int a4;
     u32 a5;
@@ -9663,7 +9663,7 @@ u32 ninja_sub_254f1e(int a0) {
 
     a4 = *(int *)(g_8c4aad4c + g_8c4aad5c * 4);
     if (a4 == 0) {
-        uVar1 = ninja_sub_256e18(g_8c4aad60, *(u32 *)(a0 + 0x14), *(u32 *)(a0 + 0x18), *(u32 *)(a0 + 0x1c), a0);
+        uVar1 = ninja_float_calc_256e18(g_8c4aad60, *(u32 *)(a0 + 0x14), *(u32 *)(a0 + 0x18), *(u32 *)(a0 + 0x1c), a0);
     } else {
         a6 = *(u32 *)(g_8c4aad50 + g_8c4aad5c * 4);
         fVar4 = g_8c4aad54;
@@ -9680,18 +9680,18 @@ u32 ninja_sub_254f1e(int a0) {
             }
         }
         (*g_8c4ab0b8)(a4, a5, a6, &uStack_18);
-        uVar1 = ninja_sub_256e18(g_8c4aad60, uStack_18, uStack_14, uStack_10, a0);
+        uVar1 = ninja_float_calc_256e18(g_8c4aad60, uStack_18, uStack_14, uStack_10, a0);
     }
     g_8c4aad5c = g_8c4aad5c + 1;
     return uVar1;
 }
 
 /*
- * ninja_sub_254fbc  0x8c254fbc
- * area name: in the ninja library code range
- * called by: ninja_sub_255346
+ * ninja_uses_libgcc_divide_helper_254fbc  0x8c254fbc
+ * area name: in the ninja library code range; behaviour name: its main named callee is libgcc_divide_helper_0106dc
+ * called by: ninja_uses_catmull_rom_vec3_255346
  */
-int ninja_sub_254fbc(int a0, int a1, int a2, u32 *a3) {
+int ninja_uses_libgcc_divide_helper_254fbc(int a0, int a1, int a2, u32 *a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -9719,7 +9719,7 @@ int ninja_sub_254fbc(int a0, int a1, int a2, u32 *a3) {
 /*
  * keyframe_pair_nj  0x8c255080
  * the Ninja library's copy of keyframe_pair
- * called by: ninja_sub_2556c8
+ * called by: ninja_uses_keyframe_pair_nj_2556c8
  */
 int keyframe_pair_nj(int a0, int a1, u32 a2, int *a3) {
     int iVar1;
@@ -9740,11 +9740,11 @@ int keyframe_pair_nj(int a0, int a1, u32 a2, int *a3) {
 }
 
 /*
- * ninja_sub_25513c  0x8c25513c
- * area name: in the ninja library code range
- * called by: ninja_sub_2556c8
+ * ninja_float_calc_25513c  0x8c25513c
+ * area name: in the ninja library code range; behaviour name: floating-point arithmetic
+ * called by: ninja_uses_keyframe_pair_nj_2556c8
  */
-u32 *ninja_sub_25513c(float *a0, float *a1, float *a2) {
+u32 *ninja_float_calc_25513c(float *a0, float *a1, float *a2) {
     float *pfVar1;
     float *pfVar2;
     float fVar3;
@@ -9776,7 +9776,7 @@ u32 *ninja_sub_25513c(float *a0, float *a1, float *a2) {
 /*
  * Vec3_lerp_nj  0x8c2551aa
  * a2 = lerp(a0, a1, fr4) (the Ninja library's copy)
- * called by: ninja_sub_2556c8
+ * called by: ninja_uses_keyframe_pair_nj_2556c8
  */
 u32 Vec3_lerp_nj(float *a0, float *a1, float *a2) {
     float fVar1;
@@ -9792,11 +9792,11 @@ u32 Vec3_lerp_nj(float *a0, float *a1, float *a2) {
 }
 
 /*
- * ninja_sub_2551d4  0x8c2551d4
- * area name: in the ninja library code range
- * called by: ninja_sub_255346
+ * ninja_float_calc_2551d4  0x8c2551d4
+ * area name: in the ninja library code range; behaviour name: floating-point arithmetic
+ * called by: ninja_uses_catmull_rom_vec3_255346
  */
-u32 *ninja_sub_2551d4(float *a0, float *a1, float *a2, float *a3) {
+u32 *ninja_float_calc_2551d4(float *a0, float *a1, float *a2, float *a3) {
     float *pfVar1;
     float *pfVar2;
     float fVar3;
@@ -9837,7 +9837,7 @@ u32 *ninja_sub_2551d4(float *a0, float *a1, float *a2, float *a3) {
 /*
  * catmull_rom_vec3  0x8c2552b0
  * *s0 = point at t (fr5) on the Catmull-Rom spline through a0, a1, a2, a3
- * called by: ninja_sub_255346
+ * called by: ninja_uses_catmull_rom_vec3_255346
  */
 u32 catmull_rom_vec3(float *a0, float *a1, float *a2, float *a3, float *s0) {
     float fVar1;
@@ -9861,10 +9861,10 @@ u32 catmull_rom_vec3(float *a0, float *a1, float *a2, float *a3, float *s0) {
 }
 
 /*
- * ninja_sub_255346  0x8c255346
- * area name: in the ninja library code range
+ * ninja_uses_catmull_rom_vec3_255346  0x8c255346
+ * area name: in the ninja library code range; behaviour name: its main named callee is catmull_rom_vec3
  */
-u32 ninja_sub_255346(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ninja_uses_catmull_rom_vec3_255346(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -9936,7 +9936,7 @@ u32 ninja_sub_255346(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 a
                     uVar6 = uVar8;
                 }
             }
-            ninja_sub_254fbc(iVar10, uVar7, *(u32 *)(g_8c4aad6c + iVar5), &iStack_3c);
+            ninja_uses_libgcc_divide_helper_254fbc(iVar10, uVar7, *(u32 *)(g_8c4aad6c + iVar5), &iStack_3c);
             iVar9 = 1;
         }
     } else if (g_8c4aad84 == 2) {
@@ -9955,7 +9955,7 @@ u32 ninja_sub_255346(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 a
                     uVar6 = uVar8;
                 }
             }
-            ninja_sub_254fbc(iVar10, uVar7, *(u32 *)(g_8c4aad6c + iVar5), &iStack_4c);
+            ninja_uses_libgcc_divide_helper_254fbc(iVar10, uVar7, *(u32 *)(g_8c4aad6c + iVar5), &iStack_4c);
             iVar9 = 2;
         }
     } else if (g_8c4aad84 == 3) {
@@ -9975,7 +9975,7 @@ u32 ninja_sub_255346(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 a
                     uVar6 = uVar8;
                 }
             }
-            ninja_sub_254fbc(iVar10, uVar7, *(u32 *)(g_8c4aad6c + iVar5), &iStack_3c);
+            ninja_uses_libgcc_divide_helper_254fbc(iVar10, uVar7, *(u32 *)(g_8c4aad6c + iVar5), &iStack_3c);
             iVar9 = 1;
         }
         g_8c4aad78 = g_8c4aad78 + 1;
@@ -10022,7 +10022,7 @@ u32 ninja_sub_255346(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 a
                     uVar8 = uStack_74;
                 }
             }
-            ninja_sub_254fbc(iVar5, uVar6, uVar7, &iStack_4c);
+            ninja_uses_libgcc_divide_helper_254fbc(iVar5, uVar6, uVar7, &iStack_4c);
             iVar9 = iVar9 + 2;
         }
     }
@@ -10053,7 +10053,7 @@ u32 ninja_sub_255346(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 a
                     a5 = (int *)(iVar10 + iStack_48);
                     a7 = (int *)(iStack_40 + iVar10);
                     a6 = (int *)(iStack_44 + iVar10);
-                    ninja_sub_2551d4(iStack_4c + iVar10, a5, a6, a7);
+                    ninja_float_calc_2551d4(iStack_4c + iVar10, a5, a6, a7);
                     iVar9 = iVar9 + 1;
                     iVar10 = iVar10 + 0xc;
                 } while (iVar9 < iVar11);
@@ -10071,7 +10071,7 @@ u32 ninja_sub_255346(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 a
                     a5 = (int *)(iStack_48 + iVar12);
                     a7 = (int *)(iStack_40 + iVar12);
                     a6 = (int *)(iStack_44 + iVar12);
-                    ninja_sub_2551d4(iStack_4c + iVar12, a5, a6, a7);
+                    ninja_float_calc_2551d4(iStack_4c + iVar12, a5, a6, a7);
                     iVar9 = iVar9 + 1;
                     iVar12 = iVar12 + 0xc;
                 } while (iVar9 < iVar11);
@@ -10089,10 +10089,10 @@ LAB_8c25569a:
 }
 
 /*
- * ninja_sub_2556c8  0x8c2556c8
- * area name: in the ninja library code range
+ * ninja_uses_keyframe_pair_nj_2556c8  0x8c2556c8
+ * area name: in the ninja library code range; behaviour name: its main named callee is keyframe_pair_nj
  */
-u32 ninja_sub_2556c8(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ninja_uses_keyframe_pair_nj_2556c8(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -10275,7 +10275,7 @@ u32 ninja_sub_2556c8(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 a
                 do {
                     a5 = (int *)(iVar11 + iStack_38);
                     a6 = (int *)(iVar11 + iVar5);
-                    ninja_sub_25513c(iStack_3c + iVar11, a5, a6);
+                    ninja_float_calc_25513c(iStack_3c + iVar11, a5, a6);
                     iVar9 = iVar9 + 1;
                     iVar11 = iVar11 + 0xc;
                 } while (iVar9 < iVar12);
@@ -10291,7 +10291,7 @@ u32 ninja_sub_2556c8(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 a
                     Vec3_lerp_nj(iStack_34 + iVar13, iStack_30 + iVar13, iVar13 + iVar5);
                     a5 = (int *)(iStack_38 + iVar13);
                     a6 = (int *)(iVar13 + iVar11);
-                    ninja_sub_25513c(iStack_3c + iVar13, a5, a6);
+                    ninja_float_calc_25513c(iStack_3c + iVar13, a5, a6);
                     iVar9 = iVar9 + 1;
                     iVar13 = iVar13 + 0xc;
                 } while (iVar9 < iVar12);
@@ -10309,10 +10309,10 @@ LAB_8c25598e:
 }
 
 /*
- * ninja_sub_255a2e  0x8c255a2e
- * area name: in the ninja library code range
+ * ninja_calc_255a2e  0x8c255a2e
+ * area name: in the ninja library code range; behaviour name: integer arithmetic on its arguments
  */
-u32 ninja_sub_255a2e(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_calc_255a2e(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 *in_r2;
 
@@ -10325,10 +10325,10 @@ u32 ninja_sub_255a2e(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_255a5a  0x8c255a5a
- * area name: in the ninja library code range
+ * ninja_init_fields_255a5a  0x8c255a5a
+ * area name: in the ninja library code range; behaviour name: writes 3 members
  */
-u32 ninja_sub_255a5a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_init_fields_255a5a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 *in_r1;
     int in_r3;
@@ -10348,10 +10348,10 @@ u32 ninja_sub_255a5a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_255a9a  0x8c255a9a
- * area name: in the ninja library code range
+ * ninja_init_fields_255a9a  0x8c255a9a
+ * area name: in the ninja library code range; behaviour name: writes 3 members
  */
-u32 ninja_sub_255a9a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_init_fields_255a9a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 *in_r1;
     int in_r3;
@@ -10371,10 +10371,10 @@ u32 ninja_sub_255a9a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_255ada  0x8c255ada
- * area name: in the ninja library code range
+ * ninja_init_fields_255ada  0x8c255ada
+ * area name: in the ninja library code range; behaviour name: writes 3 members
  */
-u32 ninja_sub_255ada(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_init_fields_255ada(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 *in_r1;
     int in_r3;
@@ -10394,10 +10394,10 @@ u32 ninja_sub_255ada(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_255b46  0x8c255b46
- * area name: in the ninja library code range
+ * ninja_init_fields_255b46  0x8c255b46
+ * area name: in the ninja library code range; behaviour name: writes 3 members
  */
-u32 ninja_sub_255b46(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_init_fields_255b46(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 *in_r1;
     int in_r3;
@@ -10417,10 +10417,10 @@ u32 ninja_sub_255b46(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_255ba0  0x8c255ba0
- * area name: in the ninja library code range
+ * ninja_init_fields_255ba0  0x8c255ba0
+ * area name: in the ninja library code range; behaviour name: writes 3 members
  */
-u32 ninja_sub_255ba0(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_init_fields_255ba0(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 *in_r1;
     int in_r3;
@@ -10437,10 +10437,10 @@ u32 ninja_sub_255ba0(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_255bca  0x8c255bca
- * area name: in the ninja library code range
+ * ninja_init_fields_255bca  0x8c255bca
+ * area name: in the ninja library code range; behaviour name: writes 3 members
  */
-u32 ninja_sub_255bca(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_init_fields_255bca(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 *in_r1;
     int in_r3;
@@ -10457,11 +10457,11 @@ u32 ninja_sub_255bca(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_255bea  0x8c255bea
- * area name: in the ninja library code range
+ * ninja_calc_255bea  0x8c255bea
+ * area name: in the ninja library code range; behaviour name: integer arithmetic on its arguments
  * called by: game_init
  */
-u32 ninja_sub_255bea(u32 a0) {
+u32 ninja_calc_255bea(u32 a0) {
     u32 in_r0;
 
     g_8c4ab0c4 = a0;
@@ -10469,10 +10469,10 @@ u32 ninja_sub_255bea(u32 a0) {
 }
 
 /*
- * ninja_sub_255bf6  0x8c255bf6
- * area name: in the ninja library code range
+ * ninja_uses_switch_jump_255bf6  0x8c255bf6
+ * area name: in the ninja library code range; behaviour name: its main named callee is switch_jump
  */
-int ninja_sub_255bf6(int a0, int a1, u32 a2, int *a3) {
+int ninja_uses_switch_jump_255bf6(int a0, int a1, u32 a2, int *a3) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -10626,13 +10626,14 @@ int ninja_sub_255bf6(int a0, int a1, u32 a2, int *a3) {
 }
 
 /*
- * ninja_sub_255d6c  0x8c255d6c
- * area name: in the ninja library code range
- * called by: CAnimal_sub_026968, Class_1299f8_m4_019588, Class_1299f8_sub_02430c, Class_129a24_m1_019b68,
- * alt_entry_2376d8, game_sub_023e98, gfxlib_sub_2163d4, gfxlib_sub_2166e8 (+8 more) decompiler: Heritage AFTER dead
- * removal. Example location: s0xffffffe0 : 0x8c255f08
+ * ninja_update_fields_255d6c  0x8c255d6c
+ * area name: in the ninja library code range; behaviour name: conditionally writes members
+ * called by: CAnimal_uses_njGetMatrix_026968, Class_1299f8_calls_update_fields_02430c, Class_1299f8_m4_019588,
+ * Class_129a24_m1_019b68, alt_entry_2376d8, game_calls_update_fields_023e98, gfxlib_uses_memcpy_words_n_2376c4,
+ * gfxlib_uses_njUnitVector_2163d4 (+8 more) decompiler: Heritage AFTER dead removal. Example location: s0xffffffe0 :
+ * 0x8c255f08
  */
-u32 ninja_sub_255d6c(u32 *a0, int a1, u32 a2, u32 a3, u32 ain0) {
+u32 ninja_update_fields_255d6c(u32 *a0, int a1, u32 a2, u32 a3, u32 ain0) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -10712,11 +10713,11 @@ u32 njOuterProduct(float *a0, float *a1, float *a2) {
 }
 
 /*
- * ninja_sub_255f88  0x8c255f88
- * area name: sits between ninja functions (same compilation unit)
- * called by: ninja_sub_256164
+ * ninja_draw_255f88  0x8c255f88
+ * area name: sits between ninja functions (same compilation unit); behaviour name: mostly calls draw functions
+ * called by: ninja_uses_ninja_close_file_256164
  */
-u32 ninja_sub_255f88(u32 a0) {
+u32 ninja_draw_255f88(u32 a0) {
     int *piVar1;
     u32 uVar2;
 
@@ -10727,11 +10728,11 @@ u32 ninja_sub_255f88(u32 a0) {
 }
 
 /*
- * ninja_sub_255f96  0x8c255f96
- * area name: sits between ninja functions (same compilation unit)
- * called by: ninja_sub_255ff8
+ * ninja_update_fields_255f96  0x8c255f96
+ * area name: sits between ninja functions (same compilation unit); behaviour name: conditionally writes members
+ * called by: ninja_uses_tex_entry_find_255ff8
  */
-u32 ninja_sub_255f96(int a0, u32 a1) {
+u32 ninja_update_fields_255f96(int a0, u32 a1) {
     u32 uVar1;
     u32 uVar2;
 
@@ -10751,26 +10752,27 @@ u32 ninja_sub_255f96(int a0, u32 a1) {
 }
 
 /*
- * ninja_sub_255ff8  0x8c255ff8
- * area name: sits between ninja functions (same compilation unit)
+ * ninja_uses_tex_entry_find_255ff8  0x8c255ff8
+ * area name: sits between ninja functions (same compilation unit); behaviour name: its main named callee is
+ * tex_entry_find
  */
-u32 ninja_sub_255ff8(u32 a0, u32 a1) {
+u32 ninja_uses_tex_entry_find_255ff8(u32 a0, u32 a1) {
     int iVar1;
     u32 uVar2;
 
     iVar1 = tex_entry_find(g_8c277b08, g_8c277b0c, a0);
     if (-1 < iVar1) {
-        uVar2 = ninja_sub_255f96(iVar1 * 0x44 + g_8c277b08, a1);
+        uVar2 = ninja_update_fields_255f96(iVar1 * 0x44 + g_8c277b08, a1);
         return uVar2;
     }
     return iVar1;
 }
 
 /*
- * ninja_sub_25603a  0x8c25603a
- * area name: in the ninja library code range
+ * ninja_draw_25603a  0x8c25603a
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
  */
-u32 ninja_sub_25603a(int a0) {
+u32 ninja_draw_25603a(int a0) {
     u32 *puVar1;
     u32 uVar2;
 
@@ -10792,15 +10794,15 @@ u32 ninja_sub_25603a(int a0) {
     }
     *puVar1 = 0x10;
 LAB_8c256072:
-    uVar2 = shinobi_sub_20a280(uVar2);
+    uVar2 = shinobi_draw_20a280(uVar2);
     return uVar2;
 }
 
 /*
- * ninja_sub_2560b4  0x8c2560b4
- * area name: in the ninja library code range
+ * ninja_copy_2560b4  0x8c2560b4
+ * area name: in the ninja library code range; behaviour name: mostly calls copy functions
  */
-u32 ninja_sub_2560b4(int a0, int a1, u16 *a2) {
+u32 ninja_copy_2560b4(int a0, int a1, u16 *a2) {
     u16 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -10824,10 +10826,10 @@ u32 ninja_sub_2560b4(int a0, int a1, u16 *a2) {
 }
 
 /*
- * ninja_sub_256164  0x8c256164
- * area name: in the ninja library code range
+ * ninja_uses_ninja_close_file_256164  0x8c256164
+ * area name: in the ninja library code range; behaviour name: its main named callee is ninja_close_file
  */
-u32 ninja_sub_256164(u32 a0, int *a1, u32 a2, u32 a3) {
+u32 ninja_uses_ninja_close_file_256164(u32 a0, int *a1, u32 a2, u32 a3) {
     int iVar1;
     int *a4;
     int *ar5_00;
@@ -10845,7 +10847,7 @@ u32 ninja_sub_256164(u32 a0, int *a1, u32 a2, u32 a3) {
     iVar1 = nj_file_open(a0, ar5_00, a2, a3);
     if (-1 < iVar1) {
         a5 = 4;
-        iVar1 = ninja_sub_259c48(&stack0xffffffdc, 4, a2, a3);
+        iVar1 = ninja_uses_memcpy_bytes_259c48(&stack0xffffffdc, 4, a2, a3);
         if (-1 < iVar1) {
             if (in_stack_ffffffdc != 0x4c505650) {
                 ninja_close_file();
@@ -10853,12 +10855,12 @@ u32 ninja_sub_256164(u32 a0, int *a1, u32 a2, u32 a3) {
             }
             a5 = 0xc;
             a4 = &iStack_1c;
-            iVar1 = ninja_sub_259c48(a4, 0xc, a2, a3);
+            iVar1 = ninja_uses_memcpy_bytes_259c48(a4, 0xc, a2, a3);
             if (-1 < iVar1) {
-                ninja_sub_255f88((int)sStack_16);
+                ninja_draw_255f88((int)sStack_16);
                 a5 = iStack_1c + -8;
                 a4 = (int *)*a1;
-                iVar1 = ninja_sub_259c48(a4, a5, a2, a3);
+                iVar1 = ninja_uses_memcpy_bytes_259c48(a4, a5, a2, a3);
                 if (-1 < iVar1) {
                     *(short *)((int)a1 + 6) = sStack_16;
                     *(u16 *)(a1 + 2) = uStack_14;
@@ -10877,8 +10879,9 @@ u32 ninja_sub_256164(u32 a0, int *a1, u32 a2, u32 a3) {
 /*
  * matrix_pop_n  0x8c256210
  * pops a0 matrices off the matrix stack
- * called by: CAnimal_sub_026968, CAnimal_sub_029510, CAnimal_sub_088288, CSquidLine_sub_0ad354,
- * Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0 (+50 more)
+ * called by: CAnimal_draw_029510, CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968,
+ * CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8,
+ * Class_1298b8_m4_0156a0 (+50 more)
  */
 u32 matrix_pop_n(int a0) {
     if (g_8c4aa5a0 - a0 != 0) {
@@ -10893,7 +10896,7 @@ u32 matrix_pop_n(int a0) {
  * matrix_pop1  0x8c256254
  * pops one 4x4 matrix off the matrix stack if more than one is on it
  * called by: alt_entry_218ea0, alt_entry_2199c0, alt_entry_21a718, alt_entry_21a8be, alt_entry_21a952,
- * alt_entry_21b916, alt_entry_21b9a8, gfxlib_sub_218e8a (+8 more)
+ * alt_entry_21b916, alt_entry_21b9a8, gfxlib_draw_21a8b0 (+8 more)
  */
 u32 matrix_pop1(void) {
     if (0 < g_8c4aa5a0 + -1) {
@@ -10905,12 +10908,13 @@ u32 matrix_pop1(void) {
 }
 
 /*
- * matrix_sub_256294  0x8c256294
- * area name: sits between matrix functions (same compilation unit)
- * called by: CSquidLine_sub_085c3c, Class_12acc8_m1_09f470, game_sub_019508, game_sub_02fcc4, game_sub_03525c,
- * game_sub_036adc, game_sub_0d1754, game_sub_0d43cc (+2 more)
+ * matrix_float_calc_256294  0x8c256294
+ * area name: sits between matrix functions (same compilation unit); behaviour name: floating-point arithmetic
+ * called by: CSquidLine_vec_085c3c, Class_12acc8_m1_09f470, game_calls_float_calc_019508, game_calls_float_calc_0d1754,
+ * game_calls_float_calc_0d43cc, game_uses_list_node_next_wrap_0da754, game_uses_stick_x_right_half_0e1f90,
+ * game_vec_02fcc4 (+2 more)
  */
-u32 matrix_sub_256294(int a0, double *a1, double *a2) {
+u32 matrix_float_calc_256294(int a0, double *a1, double *a2) {
     double in_dr0;
     u64 uVar1;
     u32 in_fr3;
@@ -11028,8 +11032,9 @@ u32 matrix_sub_256294(int a0, double *a1, double *a2) {
 /*
  * matrix_push  0x8c256328
  * pushes the current 4x4 matrix onto the matrix stack
- * called by: CAnimal_sub_026968, CAnimal_sub_029510, CAnimal_sub_088288, CSquidLine_sub_0ad354,
- * Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0 (+50 more)
+ * called by: CAnimal_draw_029510, CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968,
+ * CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8,
+ * Class_1298b8_m4_0156a0 (+50 more)
  */
 u32 matrix_push(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 *puVar1;
@@ -11078,7 +11083,7 @@ u32 matrix_push(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
  * matrix_push_regs  0x8c2563ac
  * pushes a matrix held in the FPU registers onto the matrix stack
  * called by: alt_entry_218ea0, alt_entry_2199c0, alt_entry_21a718, alt_entry_21a8be, alt_entry_21a952,
- * alt_entry_21b916, alt_entry_21b9a8, gfxlib_sub_218e8a (+4 more)
+ * alt_entry_21b916, alt_entry_21b9a8, gfxlib_uses_matrix_push_regs_218e8a (+4 more)
  */
 u32 matrix_push_regs(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 *puVar1;
@@ -11113,11 +11118,11 @@ u32 matrix_push_regs(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 }
 
 /*
- * matrix_sub_2563f8  0x8c2563f8
- * area name: sits between matrix functions (same compilation unit)
- * called by: gfxlib_sub_21d06c
+ * matrix_uses_switch_jump_2563f8  0x8c2563f8
+ * area name: sits between matrix functions (same compilation unit); behaviour name: its main named callee is
+ * switch_jump called by: gfxlib_uses_switch_jump_21d06c
  */
-u32 matrix_sub_2563f8(double *a0) {
+u32 matrix_uses_switch_jump_2563f8(double *a0) {
     u32 uVar1;
     double *pdVar2;
     u64 in_dr0;
@@ -11505,11 +11510,11 @@ u32 matrix_sub_2563f8(double *a0) {
 }
 
 /*
- * ninja_sub_2565c4  0x8c2565c4
- * area name: in the ninja library code range
- * called by: Class_12b388_sub_0c5cb4, ninja_sub_25b37c
+ * ninja_uses_tex_is_palettized_2565c4  0x8c2565c4
+ * area name: in the ninja library code range; behaviour name: its main named callee is tex_is_palettized
+ * called by: Class_12b388_uses_Class_129808_draw_0c5cb4, ninja_uses_tex_is_palettized_25b37c
  */
-u32 ninja_sub_2565c4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ninja_uses_tex_is_palettized_2565c4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int ain0_00;
     u32 uVar1;
     u32 uVar2;
@@ -11521,22 +11526,22 @@ u32 ninja_sub_2565c4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
         ar4_00 = (u32 *)(g_8c277b08 + iVar3);
         if ((ar4_00[4] & 1) != 0) {
             ain0_00 = tex_is_palettized(ar4_00[6] >> 0x10 & 0xff00);
-            gfxlib_sub_2362de(ar4_00[5]);
+            gfxlib_update_fields_2362de(ar4_00[5]);
             if (ain0_00 == 1) {
                 unused_a2 = 0;
                 unused_a1 = 1;
-                tex_sub_25a674(*ar4_00, 1, 0, unused_a3, 1);
+                tex_uses_libgcc_divide_helper_25a674(*ar4_00, 1, 0, unused_a3, 1);
             } else {
                 uVar1 = ar4_00[4];
                 ar4_00[4] = uVar1 & 0xfffffffe;
                 if ((uVar1 & 0xfffffffe) == 0) {
-                    tex_sub_25a49e(ar4_00);
+                    tex_uses_libgcc_divide_helper_25a49e(ar4_00);
                 }
             }
         }
         ain0 = *ar4_00;
         if ((ain0 != 0xffffffff) && (ain0 = ar4_00[4], (ain0 & 3) == 0)) {
-            ain0 = tex_sub_25a49e(ar4_00);
+            ain0 = tex_uses_libgcc_divide_helper_25a49e(ar4_00);
         }
         iVar3 = iVar3 + 0x44;
     }
@@ -11559,22 +11564,22 @@ u32 alt_entry_2565d8(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ai
         a4 = (u32 *)(g_8c277b08 + a0);
         if ((a4[4] & unaff_r8) != 0) {
             iVar1 = tex_is_palettized(a4[6] >> 0x10 & 0xff00);
-            gfxlib_sub_2362de(a4[5]);
+            gfxlib_update_fields_2362de(a4[5]);
             if (iVar1 == 1) {
                 unused_a2 = 0;
                 unused_a1 = 1;
-                tex_sub_25a674(*a4, 1, 0, unused_a3, in_PR);
+                tex_uses_libgcc_divide_helper_25a674(*a4, 1, 0, unused_a3, in_PR);
             } else {
                 uVar2 = a4[4];
                 a4[4] = uVar2 & 0xfffffffe;
                 if ((uVar2 & 0xfffffffe) == 0) {
-                    tex_sub_25a49e(a4);
+                    tex_uses_libgcc_divide_helper_25a49e(a4);
                 }
             }
         }
         ain0 = *a4;
         if ((ain0 != 0xffffffff) && (ain0 = a4[4], (ain0 & 3) == 0)) {
-            ain0 = tex_sub_25a49e(a4);
+            ain0 = tex_uses_libgcc_divide_helper_25a49e(a4);
         }
         a0 = a0 + 0x44;
     }
@@ -11582,18 +11587,18 @@ u32 alt_entry_2565d8(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ai
 }
 
 /*
- * ninja_sub_256670  0x8c256670
- * area name: in the ninja library code range
- * called by: CMothLine_FreeGraphicResource, CTexture_ReleaseFromVRAM, game_sub_0ae640
+ * ninja_scan_loop_256670  0x8c256670
+ * area name: in the ninja library code range; behaviour name: a loop that only reads
+ * called by: CMothLine_FreeGraphicResource, CTexture_ReleaseFromVRAM, game_release_0ae640
  */
-u32 ninja_sub_256670(int *a0) {
+u32 ninja_scan_loop_256670(int *a0) {
     u32 *puVar1;
     u8 *puVar2;
     int iVar3;
     u32 uVar4;
     u32 uVar5;
 
-    puVar2 = (&ninja_sub_2567f8);
+    puVar2 = (&ninja_uses_tex_is_palettized_2567f8);
     puVar1 = 0x8c4aa6ac;
     uVar4 = 1;
     for (uVar5 = 0; uVar5 < (u32)a0[1]; uVar5 = uVar5 + 1) {
@@ -11619,7 +11624,7 @@ u32 alt_entry_25667e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int *unaff_r13;
     u32 uVar4;
 
-    puVar2 = (&ninja_sub_2567f8);
+    puVar2 = (&ninja_uses_tex_is_palettized_2567f8);
     puVar1 = 0x8c4aa6ac;
     for (uVar4 = 0; uVar4 < (u32)unaff_r13[1]; uVar4 = uVar4 + 1) {
         iVar3 = (*(code *)puVar2)(*(u32 *)(uVar4 * 0xc + *unaff_r13 + 8), a1, a2, a3);
@@ -11632,11 +11637,11 @@ u32 alt_entry_25667e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_2566c8  0x8c2566c8
- * area name: in the ninja library code range
- * called by: ninja_sub_25b37c
+ * ninja_uses_tex_is_palettized_2566c8  0x8c2566c8
+ * area name: in the ninja library code range; behaviour name: its main named callee is tex_is_palettized
+ * called by: ninja_uses_tex_is_palettized_25b37c
  */
-u32 ninja_sub_2566c8(u32 unused_a0, int a1, u32 a2, u32 unused_a3, u32 ain0) {
+u32 ninja_uses_tex_is_palettized_2566c8(u32 unused_a0, int a1, u32 a2, u32 unused_a3, u32 ain0) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -11650,7 +11655,7 @@ u32 ninja_sub_2566c8(u32 unused_a0, int a1, u32 a2, u32 unused_a3, u32 ain0) {
         a4 = (u32 *)(iStack_24 + g_8c277b08);
         if ((a4[4] & 2) != 0) {
             iVar1 = tex_is_palettized(a4[6] >> 0x10 & 0xff00);
-            kamui_sub_20cf88(a4 + 6);
+            kamui_list_20cf88(a4 + 6);
             if (iVar1 == 1) {
                 uVar2 = *a4;
                 if ((a4[4] & 1) == 0) {
@@ -11658,7 +11663,7 @@ u32 ninja_sub_2566c8(u32 unused_a0, int a1, u32 a2, u32 unused_a3, u32 ain0) {
                     iVar3 = 0;
                     for (uStack_30 = 0; uStack_30 < g_8c277b0c; uStack_30 = uStack_30 + 1) {
                         if (*(u32 *)(g_8c277b08 + iVar3) == uVar2) {
-                            tex_sub_25a49e(g_8c277b08 + iVar1);
+                            tex_uses_libgcc_divide_helper_25a49e(g_8c277b08 + iVar1);
                         }
                         iVar3 = iVar3 + 0x44;
                         iVar1 = iVar1 + 0x44;
@@ -11681,7 +11686,7 @@ u32 ninja_sub_2566c8(u32 unused_a0, int a1, u32 a2, u32 unused_a3, u32 ain0) {
                 uVar2 = a4[4];
                 a4[4] = uVar2 & 0xfffffffd;
                 if ((uVar2 & 0xfffffffd) == 0) {
-                    tex_sub_25a49e(a4);
+                    tex_uses_libgcc_divide_helper_25a49e(a4);
                 } else {
                     *(u16 *)(a4 + 0x10) = 0;
                 }
@@ -11689,7 +11694,7 @@ u32 ninja_sub_2566c8(u32 unused_a0, int a1, u32 a2, u32 unused_a3, u32 ain0) {
         }
         ain0 = *a4;
         if ((ain0 != 0xffffffff) && (ain0 = a4[4], (ain0 & 3) == 0)) {
-            ain0 = tex_sub_25a49e(a4);
+            ain0 = tex_uses_libgcc_divide_helper_25a49e(a4);
         }
         iStack_24 = iStack_24 + 0x44;
     }
@@ -11698,11 +11703,11 @@ u32 ninja_sub_2566c8(u32 unused_a0, int a1, u32 a2, u32 unused_a3, u32 ain0) {
 }
 
 /*
- * ninja_sub_2567f8  0x8c2567f8
- * area name: in the ninja library code range
- * called by: ninja_sub_256944
+ * ninja_uses_tex_is_palettized_2567f8  0x8c2567f8
+ * area name: in the ninja library code range; behaviour name: its main named callee is tex_is_palettized
+ * called by: ninja_uses_tex_is_palettized_256944
  */
-u32 ninja_sub_2567f8(int *a0) {
+u32 ninja_uses_tex_is_palettized_2567f8(int *a0) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -11731,7 +11736,7 @@ u32 ninja_sub_2567f8(int *a0) {
                 }
                 return 1;
             }
-            kamui_sub_20cf88(a0 + 6);
+            kamui_list_20cf88(a0 + 6);
             if ((a0[4] & 1U) != 0) {
                 iVar3 = 0;
                 iVar2 = 0;
@@ -11751,7 +11756,7 @@ u32 ninja_sub_2567f8(int *a0) {
             iVar2 = 0;
             for (uVar4 = 0; uVar4 < g_8c277b0c; uVar4 = uVar4 + 1) {
                 if (*(int *)(iVar2 + g_8c277b08) == iVar1) {
-                    tex_sub_25a49e(iVar3 + g_8c277b08);
+                    tex_uses_libgcc_divide_helper_25a49e(iVar3 + g_8c277b08);
                 }
                 iVar2 = iVar2 + 0x44;
                 iVar3 = iVar3 + 0x44;
@@ -11764,7 +11769,7 @@ u32 ninja_sub_2567f8(int *a0) {
         if ((short)a0[0x10] != 0) {
             return 1;
         }
-        kamui_sub_20cf88(a0 + 6);
+        kamui_list_20cf88(a0 + 6);
         a0[4] = a0[4] & 0xfffffffd;
         if (g_8c277b10 == *a0) {
             g_8c277b10 = -1;
@@ -11773,7 +11778,7 @@ u32 ninja_sub_2567f8(int *a0) {
             return 1;
         }
     }
-    tex_sub_25a49e(a0);
+    tex_uses_libgcc_divide_helper_25a49e(a0);
     return 1;
 }
 
@@ -11811,7 +11816,7 @@ u32 alt_entry_2567fe(void) {
                 }
                 return 1;
             }
-            kamui_sub_20cf88(unaff_r13 + 6);
+            kamui_list_20cf88(unaff_r13 + 6);
             if ((unaff_r13[4] & 1U) != 0) {
                 iVar3 = 0;
                 iVar2 = 0;
@@ -11831,7 +11836,7 @@ u32 alt_entry_2567fe(void) {
             iVar2 = 0;
             for (uVar4 = 0; uVar4 < g_8c277b0c; uVar4 = uVar4 + 1) {
                 if (*(int *)(iVar2 + g_8c277b08) == iVar1) {
-                    tex_sub_25a49e(iVar3 + g_8c277b08);
+                    tex_uses_libgcc_divide_helper_25a49e(iVar3 + g_8c277b08);
                 }
                 iVar2 = iVar2 + 0x44;
                 iVar3 = iVar3 + 0x44;
@@ -11844,7 +11849,7 @@ u32 alt_entry_2567fe(void) {
         if ((short)unaff_r13[0x10] != 0) {
             return 1;
         }
-        kamui_sub_20cf88(unaff_r13 + 6);
+        kamui_list_20cf88(unaff_r13 + 6);
         unaff_r13[4] = unaff_r13[4] & 0xfffffffd;
         if (g_8c277b10 == *unaff_r13) {
             g_8c277b10 = -1;
@@ -11853,18 +11858,18 @@ u32 alt_entry_2567fe(void) {
             return 1;
         }
     }
-    tex_sub_25a49e(unaff_r13);
+    tex_uses_libgcc_divide_helper_25a49e(unaff_r13);
     return 1;
 }
 
 /*
- * ninja_sub_256944  0x8c256944
- * area name: in the ninja library code range
+ * ninja_uses_tex_is_palettized_256944  0x8c256944
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: uses_tex_is_palettized
  */
-int ninja_sub_256944(int a0) {
+int ninja_uses_tex_is_palettized_256944(int a0) {
     int iVar1;
 
-    iVar1 = ninja_sub_2567f8(*(u32 *)(*g_8c277b04 + a0 * 0xc + 8));
+    iVar1 = ninja_uses_tex_is_palettized_2567f8(*(u32 *)(*g_8c277b04 + a0 * 0xc + 8));
     if (iVar1 < 0) {
         g_8c4aa6ac = a0;
     }
@@ -11872,11 +11877,11 @@ int ninja_sub_256944(int a0) {
 }
 
 /*
- * ninja_sub_25699c  0x8c25699c
- * area name: in the ninja library code range
- * called by: game_sub_01a180
+ * ninja_update_fields_25699c  0x8c25699c
+ * area name: in the ninja library code range; behaviour name: conditionally writes members
+ * called by: game_calls_update_fields_01a180
  */
-u32 ninja_sub_25699c(int a0) {
+u32 ninja_update_fields_25699c(int a0) {
     if (a0 == 0) {
         a0 = g_8c4c0cc0;
     }
@@ -11891,12 +11896,12 @@ u32 ninja_sub_25699c(int a0) {
 }
 
 /*
- * ninja_sub_2569e0  0x8c2569e0
- * area name: in the ninja library code range
+ * ninja_scan_loop_2569e0  0x8c2569e0
+ * area name: in the ninja library code range; behaviour name: a loop that only reads
  * called by: alt_entry_218ea0, alt_entry_2199c0, alt_entry_21a718, alt_entry_21a8be, alt_entry_21a952,
- * alt_entry_21b916, alt_entry_21b9a8, gfxlib_sub_218e8a (+9 more)
+ * alt_entry_21b916, alt_entry_21b9a8, gfxlib_calls_scan_loop_21cf22 (+9 more)
  */
-u32 ninja_sub_2569e0(u32 *a0, int a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ninja_scan_loop_2569e0(u32 *a0, int a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
 
     if (0 < a1)
@@ -11926,12 +11931,13 @@ u32 ninja_sub_2569e0(u32 *a0, int a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 }
 
 /*
- * ninja_sub_256a78  0x8c256a78
- * area name: in the ninja library code range
- * called by: CSquidLine_sub_0ad354, Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12aeec_sub_0a481c,
- * Class_12bec0_sub_0f5e0c, Vec3_sub_02374c, matrix_rotate_deg, matrix_rotate_deg_m
+ * ninja_float_calc_256a78  0x8c256a78
+ * area name: in the ninja library code range; behaviour name: floating-point arithmetic
+ * called by: CSquidLine_uses_matrix_push_0ad354, Class_1299f8_m4_019588, Class_129a24_m1_019b68,
+ * Class_12aeec_uses_gfx_set_color4_0a481c, Class_12bec0_draw_0f5e0c, Vec3_vec_02374c, matrix_rotate_deg,
+ * matrix_rotate_deg_m
  */
-u32 ninja_sub_256a78(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ninja_float_calc_256a78(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -11996,9 +12002,9 @@ u32 ninja_sub_256a78(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 /*
  * njRotateXYZ  0x8c256b0c
  * rotates matrix a0 (NULL: current) by Ninja angles a1, a2, a3
- * called by: CAnimal_sub_026968, CAnimal_sub_088288, CSquidLine_sub_0ad354, Class_1298b8_m11_0159ec,
- * Class_1298b8_m3_0155e8, Class_1298b8_m5_015720, Class_1298b8_m6_0157f8, Class_1298b8_m7_015890 (+28 more) decompiler:
- * Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256c66
+ * called by: CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968, CSquidLine_uses_matrix_push_0ad354,
+ * Class_1298b8_m11_0159ec, Class_1298b8_m3_0155e8, Class_1298b8_m5_015720, Class_1298b8_m6_0157f8,
+ * Class_1298b8_m7_015890 (+28 more) decompiler: Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256c66
  */
 u32 njRotateXYZ(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     float fVar1;
@@ -12148,8 +12154,8 @@ u32 njRotateXYZ(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 /*
  * njRotateY  0x8c256ce0
  * rotates matrix a0 (NULL: current) about Y by Ninja angle a1
- * called by: Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12aeec_sub_0a481c, Vec3_sub_0238b4, njRotateY_wrap,
- * rotate_y_degrees
+ * called by: Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12aeec_uses_gfx_set_color4_0a481c, Vec3_vec_0238b4,
+ * njRotateY_wrap, rotate_y_degrees
  */
 u32 njRotateY(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -12219,7 +12225,7 @@ u32 njRotateY(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 /*
  * njRotateZ  0x8c256d7c
  * rotates matrix a0 (NULL: current) about Z by Ninja angle a1
- * called by: Class_129a24_m1_019b68, Class_12aeec_sub_0a481c, njRotateZ_wrap, rotate_degrees
+ * called by: Class_129a24_m1_019b68, Class_12aeec_uses_gfx_set_color4_0a481c, njRotateZ_wrap, rotate_degrees
  */
 u32 njRotateZ(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -12282,12 +12288,12 @@ u32 njRotateZ(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 }
 
 /*
- * ninja_sub_256e18  0x8c256e18
- * area name: in the ninja library code range
- * called by: alt_entry_253d20, game_sub_029af0, ninja_sub_253d1c, ninja_sub_254f1e
- * decompiler: Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256f72
+ * ninja_float_calc_256e18  0x8c256e18
+ * area name: in the ninja library code range; behaviour name: floating-point arithmetic
+ * called by: alt_entry_253d20, game_uses_njGetMatrix_029af0, ninja_calls_float_calc_254f1e,
+ * ninja_uses_matrix_push_253d1c decompiler: Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256f72
  */
-u32 ninja_sub_256e18(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
+u32 ninja_float_calc_256e18(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     float fVar1;
     float fVar2;
     float fVar4;
@@ -12435,8 +12441,9 @@ u32 ninja_sub_256e18(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 /*
  * matrix_scale  0x8c256fec
  * scales the matrix rows by fr4, fr5, fr6
- * called by: CAnimal_sub_026968, CAnimal_sub_088288, CSquidLine_sub_0369c4, CSquidLine_sub_0ad354,
- * Class_1298b8_m11_0159ec, Class_1298b8_m4_0156a0, Class_1298b8_m5_015720, Class_1298b8_m7_015890 (+26 more)
+ * called by: CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968, CSquidLine_uses_matrix_push_0ad354,
+ * CSquidLine_uses_matrix_scale_0369c4, Class_1298b8_m11_0159ec, Class_1298b8_m4_0156a0, Class_1298b8_m5_015720,
+ * Class_1298b8_m7_015890 (+26 more)
  */
 u32 matrix_scale(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float in_fr5;
@@ -12465,7 +12472,7 @@ u32 matrix_scale(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
  * noop_257098  0x8c257098
  * does nothing
  * called by: alt_entry_218ea0, alt_entry_2199c0, alt_entry_21a718, alt_entry_21a8be, alt_entry_21a952,
- * alt_entry_21b916, alt_entry_21b9a8, gfxlib_sub_218e8a (+8 more)
+ * alt_entry_21b916, alt_entry_21b9a8, gfxlib_uses_matrix_push_regs_218e8a (+8 more)
  */
 u32 noop_257098(void) {
     u32 in_r0;
@@ -12485,11 +12492,11 @@ u32 noop_2570d8(u32 a0) {
 }
 
 /*
- * ninja_sub_2570ec  0x8c2570ec
- * area name: in the ninja library code range
+ * ninja_float_calc_2570ec  0x8c2570ec
+ * area name: in the ninja library code range; behaviour name: floating-point arithmetic
  * called by: game_init
  */
-u32 ninja_sub_2570ec(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ninja_float_calc_2570ec(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 in_fr5;
     u32 in_fr4;
 
@@ -12499,11 +12506,11 @@ u32 ninja_sub_2570ec(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 }
 
 /*
- * ninja_sub_257104  0x8c257104
- * area name: in the ninja library code range
+ * ninja_draw_257104  0x8c257104
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
  * called by: CProlog_Ready
  */
-u32 ninja_sub_257104(u32 a0) {
+u32 ninja_draw_257104(u32 a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -12514,11 +12521,11 @@ u32 ninja_sub_257104(u32 a0) {
 }
 
 /*
- * ninja_sub_257120  0x8c257120
- * area name: in the ninja library code range
- * called by: WEATHRE_UNIT_CreateGraphics, game_sub_0d8400
+ * ninja_draw_257120  0x8c257120
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
+ * called by: WEATHRE_UNIT_CreateGraphics, game_draw_0d8400
  */
-u32 ninja_sub_257120(u32 a0) {
+u32 ninja_draw_257120(u32 a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -12530,7 +12537,7 @@ u32 ninja_sub_257120(u32 a0) {
 
 /*
  * thunk_FUN_8c20a1d0  0x8c25713c
- * called by: WEATHRE_UNIT_CreateGraphics, game_sub_0d1c3c, game_sub_0d8400, game_sub_0de07c
+ * called by: WEATHRE_UNIT_CreateGraphics, game_draw_0d1c3c, game_draw_0d8400, game_uses_CWaterTank_CreateStage_0de07c
  */
 u32 thunk_FUN_8c20a1d0(u32 a0) {
     u32 uVar1;
@@ -12540,11 +12547,11 @@ u32 thunk_FUN_8c20a1d0(u32 a0) {
 }
 
 /*
- * ninja_sub_257148  0x8c257148
- * area name: in the ninja library code range
- * called by: game_sub_0ff928, rotate_degrees_7c
+ * ninja_uses_ninja_angle_sincos_257148  0x8c257148
+ * area name: in the ninja library code range; behaviour name: its main named callee is ninja_angle_sincos
+ * called by: game_uses_touch_fields_30_3c_0ff928, rotate_degrees_7c
  */
-u32 ninja_sub_257148(int a0) {
+u32 ninja_uses_ninja_angle_sincos_257148(int a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -12581,11 +12588,11 @@ u32 ninja_sub_257148(int a0) {
 }
 
 /*
- * ninja_sub_257170  0x8c257170
- * area name: in the ninja library code range
- * called by: game_sub_0ff928
+ * ninja_calc_257170  0x8c257170
+ * area name: in the ninja library code range; behaviour name: integer arithmetic on its arguments
+ * called by: game_uses_touch_fields_30_3c_0ff928
  */
-u32 ninja_sub_257170(u32 *a0) {
+u32 ninja_calc_257170(u32 *a0) {
     g_8c4aa4a8 = *a0;
     g_8c4aa4b4 = a0[3];
     g_8c4aa4b8 = a0[4];
@@ -12593,11 +12600,11 @@ u32 ninja_sub_257170(u32 *a0) {
 }
 
 /*
- * ninja_sub_257188  0x8c257188
- * area name: in the ninja library code range
- * called by: C3DRenderPly_SetMem, game_sub_015470, game_sub_015f18
+ * ninja_init_fields_257188  0x8c257188
+ * area name: in the ninja library code range; behaviour name: writes 3 members
+ * called by: C3DRenderPly_SetMem, game_uses_malloc_thunk_015f18, game_uses_set_fields_0_4_8_015470
  */
-u32 ninja_sub_257188(u32 *a0, u32 a1, int a2, u32 a3, u32 s0) {
+u32 ninja_init_fields_257188(u32 *a0, u32 a1, int a2, u32 a3, u32 s0) {
     u32 in_r0;
 
     *a0 = a1;
@@ -12610,7 +12617,8 @@ u32 ninja_sub_257188(u32 *a0, u32 a1, int a2, u32 a3, u32 s0) {
 /*
  * set_fields_0_4_8_257196  0x8c257196
  * stores +0x0, +0x4, +0x8
- * called by: C3DRenderPly_SetMem, game_sub_015470, game_sub_015f18, game_sub_0c2490
+ * called by: C3DRenderPly_SetMem, game_uses_Class_129920_ctor_0c2490, game_uses_malloc_thunk_015f18,
+ * game_uses_set_fields_0_4_8_015470
  */
 u32 set_fields_0_4_8_257196(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_r0;
@@ -12624,7 +12632,7 @@ u32 set_fields_0_4_8_257196(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * tex_size_to_index  0x8c2571a8
  * texture size 8..1024 to 0..7
- * called by: alt_entry_257208, tex_sub_2571fe
+ * called by: alt_entry_257208, tex_uses_tex_size_to_index_2571fe
  */
 int tex_size_to_index(int a0) {
     if (a0 == 8) {
@@ -12648,12 +12656,13 @@ int tex_size_to_index(int a0) {
 }
 
 /*
- * tex_sub_2571fe  0x8c2571fe
- * area name: sits between tex functions (same compilation unit)
- * called by: alt_entry_237830, alt_entry_25a394, gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0,
- * gfxlib_sub_239212, ninja_sub_25b4ea, pvr_sub_23a29c (+2 more)
+ * tex_uses_tex_size_to_index_2571fe  0x8c2571fe
+ * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is
+ * tex_size_to_index called by: alt_entry_237830, alt_entry_25a394, gfxlib_uses_ninja_close_file_239212,
+ * gfxlib_uses_tex_entry_alloc_23793c, gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0,
+ * ninja_draw_25b4ea, pvr_uses_tex_entry_alloc_23a29c (+2 more)
  */
-u32 tex_sub_2571fe(int a0) {
+u32 tex_uses_tex_size_to_index_2571fe(int a0) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -12725,11 +12734,12 @@ LAB_8c2572b6:
 }
 
 /*
- * ninja_sub_2572ec  0x8c2572ec
- * area name: in the ninja library code range
- * called by: Class_1299f8_m1_01a148, Class_129a24_m1_019b68, game_sub_0cc524, game_sub_0ff928
+ * ninja_vec_2572ec  0x8c2572ec
+ * area name: in the ninja library code range; behaviour name: mostly calls vec functions
+ * called by: Class_1299f8_m1_01a148, Class_129a24_m1_019b68, game_uses_matrix_push_0cc524,
+ * game_uses_touch_fields_30_3c_0ff928
  */
-u32 ninja_sub_2572ec(float *a0) {
+u32 ninja_vec_2572ec(float *a0) {
     u32 uVar1;
     float *ar6_00;
     float *ar7_00;
@@ -12775,15 +12785,15 @@ u32 ninja_sub_2572ec(float *a0) {
     a0[0xe] = (-(a0[0x10] * a0[2]) - a0[0x11] * *ar7_00) - a0[0x12] * a0[10];
     a0[0xf] = 1.0;
     g_8c4c0cc0 = a0;
-    uVar1 = ta_sub_213e2c(a0, a0, ar6_00, ar7_00);
+    uVar1 = ta_vec_213e2c(a0, a0, ar6_00, ar7_00);
     return uVar1;
 }
 
 /*
  * njSinCos  0x8c25747c
  * sine and cosine of a Ninja angle (0..65535 = one turn)
- * called by: Class_12a990_m2_09bc2c, Class_12b580_sub_0e705c, Class_12b930_sub_0d3d6c, game_sub_03207c,
- * game_sub_0d4124, game_sub_0d4428
+ * called by: Class_12a990_m2_09bc2c, Class_12b580_uses_njSinCos_0e705c, Class_12b930_sound_0d3d6c, game_draw_0d4124,
+ * game_draw_0d4428, game_vec_03207c
  */
 u32 njSinCos(u32 a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -12796,7 +12806,7 @@ u32 njSinCos(u32 a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 
 /*
  * noop_257488  0x8c257488
- * called by: ninja_sub_2588f8
+ * called by: ninja_draw_2588f8
  */
 u32 noop_257488(void) {
     u32 in_r0;
@@ -12805,11 +12815,11 @@ u32 noop_257488(void) {
 }
 
 /*
- * ninja_sub_25748c  0x8c25748c
- * area name: sits between ninja functions (same compilation unit)
- * called by: Class_12988c_sub_015d74
+ * ninja_draw_25748c  0x8c25748c
+ * area name: sits between ninja functions (same compilation unit); behaviour name: mostly calls draw functions
+ * called by: Class_12988c_draw_015d74
  */
-u32 ninja_sub_25748c(int a0, int a1, u32 a2, u32 a3) {
+u32 ninja_draw_25748c(int a0, int a1, u32 a2, u32 a3) {
     u32 ar4_00;
     u32 uVar1;
     u8 *a4;
@@ -12819,13 +12829,13 @@ u32 ninja_sub_25748c(int a0, int a1, u32 a2, u32 a3) {
     ar6_00 = a2;
     draw_state_save(a0, a1, a2, a3);
     njSetTexture(*(u32 *)(a0 + 0x18));
-    ta_sub_2371be((int)*(short *)(*(int *)(a0 + 0x1c) + a1 * 0x14 + 0x10));
+    ta_calc_2371be((int)*(short *)(*(int *)(a0 + 0x1c) + a1 * 0x14 + 0x10));
     if ((a2 & 0x20) == 0) {
         uVar1 = 0x80028;
-        ar5_01 = ta_sub_236b3c;
+        ar5_01 = ta_init_fields_236b3c;
     } else {
         uVar1 = 0x2100028;
-        ar5_01 = ta_sub_236c38;
+        ar5_01 = ta_init_fields_236c38;
     }
     pcVar2 = ar5_01;
     ta_fifo_237124(uVar1, ar5_01, ar6_00, a3);
@@ -12834,7 +12844,7 @@ u32 ninja_sub_25748c(int a0, int a1, u32 a2, u32 a3) {
         a4 = &g_8c271de8;
     }
     (*pcVar2)(a4, ar5_01, ar6_00, a3);
-    ninja_sub_257e10(a0, a1, a2);
+    ninja_float_calc_257e10(a0, a1, a2);
     uVar1 = ar4_00;
     ta_set_list_addr(ar4_00);
     uVar1 = draw_state_restore(uVar1);
@@ -12842,11 +12852,11 @@ u32 ninja_sub_25748c(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_25754c  0x8c25754c
- * area name: sits between ninja functions (same compilation unit)
- * called by: Class_12984c_sub_016014, Class_12984c_sub_016068
+ * ninja_draw_25754c  0x8c25754c
+ * area name: sits between ninja functions (same compilation unit); behaviour name: mostly calls draw functions
+ * called by: Class_12984c_draw_016014, Class_12984c_draw_016068
  */
-u32 ninja_sub_25754c(int a0, int a1, u32 a2, u32 a3) {
+u32 ninja_draw_25754c(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     int ar4_00;
     u32 uVar2;
@@ -12859,13 +12869,13 @@ u32 ninja_sub_25754c(int a0, int a1, u32 a2, u32 a3) {
     ar6_00 = a2;
     draw_state_save(a0, a1, a2, a3);
     njSetTexture(*(u32 *)(a0 + 0x18));
-    ta_sub_2371be((int)*(short *)(*(int *)(a0 + 0x1c) + a1 * 0x14 + 0x10));
+    ta_calc_2371be((int)*(short *)(*(int *)(a0 + 0x1c) + a1 * 0x14 + 0x10));
     if ((a2 & 0x20) == 0) {
         uVar2 = 0x80028;
-        pcVar3 = ta_sub_236b3c;
+        pcVar3 = ta_init_fields_236b3c;
     } else {
         uVar2 = 0x2100028;
-        pcVar3 = ta_sub_236c38;
+        pcVar3 = ta_init_fields_236c38;
     }
     pcVar4 = pcVar3;
     ta_fifo_237124(uVar2, pcVar3, ar6_00, a3);
@@ -12874,9 +12884,9 @@ u32 ninja_sub_25754c(int a0, int a1, u32 a2, u32 a3) {
         a4 = &g_8c271de8;
     }
     (*pcVar4)(a4, pcVar3, ar6_00, a3);
-    pcVar3 = ninja_sub_257610;
+    pcVar3 = ninja_float_calc_257610;
     if ((a2 & 0x10) == 0) {
-        pcVar3 = ninja_sub_2578ac;
+        pcVar3 = ninja_calls_fill_loop_2578ac;
     }
     iVar1 = (*pcVar3)(a0, a1, a2, a3);
     if (iVar1 != 0) {
@@ -12888,10 +12898,10 @@ u32 ninja_sub_25754c(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_257610  0x8c257610
- * area name: sits between ninja functions (same compilation unit)
+ * ninja_float_calc_257610  0x8c257610
+ * area name: sits between ninja functions (same compilation unit); behaviour name: floating-point arithmetic
  */
-u32 ninja_sub_257610(double *a0, int a1, u32 a2) {
+u32 ninja_float_calc_257610(double *a0, int a1, u32 a2) {
     short sVar1;
     short sVar2;
     short sVar3;
@@ -13329,10 +13339,10 @@ u32 ninja_sub_257610(double *a0, int a1, u32 a2) {
 }
 
 /*
- * ninja_sub_2578ac  0x8c2578ac
- * area name: in the ninja library code range
+ * ninja_calls_fill_loop_2578ac  0x8c2578ac
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: fill_loop
  */
-u32 ninja_sub_2578ac(double *a0, int a1, u32 a2) {
+u32 ninja_calls_fill_loop_2578ac(double *a0, int a1, u32 a2) {
     short sVar1;
     short sVar2;
     short sVar3;
@@ -13897,7 +13907,7 @@ u32 ninja_sub_2578ac(double *a0, int a1, u32 a2) {
                 *(float *)((int)puVar11 + -0xa4) = fVar21;
 
                 *(u32 *)(puVar12 + -8) = in_PR;
-                ninja_sub_257be8(bVar7, puVar12 + -4);
+                ninja_fill_loop_257be8(bVar7, puVar12 + -4);
                 uVar6 = 1;
             }
         } else {
@@ -13908,10 +13918,10 @@ u32 ninja_sub_2578ac(double *a0, int a1, u32 a2) {
 }
 
 /*
- * ninja_sub_257bc0  0x8c257bc0
- * area name: in the ninja library code range
+ * ninja_test_257bc0  0x8c257bc0
+ * area name: in the ninja library code range; behaviour name: returns the result of a comparison
  */
-u32 ninja_sub_257bc0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_test_257bc0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     code *in_r1;
     u32 in_r3;
 
@@ -13920,11 +13930,11 @@ u32 ninja_sub_257bc0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_257be8  0x8c257be8
- * area name: in the ninja library code range
- * called by: ninja_sub_2578ac
+ * ninja_fill_loop_257be8  0x8c257be8
+ * area name: in the ninja library code range; behaviour name: a loop that writes memory
+ * called by: ninja_calls_fill_loop_2578ac
  */
-int ninja_sub_257be8(u32 a0, int a1) {
+int ninja_fill_loop_257be8(u32 a0, int a1) {
     int iVar1;
     double *pdVar2;
     int in_r2;
@@ -14233,11 +14243,11 @@ int ninja_sub_257be8(u32 a0, int a1) {
 }
 
 /*
- * ninja_sub_257e10  0x8c257e10
- * area name: in the ninja library code range
- * called by: ninja_sub_25748c
+ * ninja_float_calc_257e10  0x8c257e10
+ * area name: in the ninja library code range; behaviour name: floating-point arithmetic
+ * called by: ninja_draw_25748c
  */
-u32 ninja_sub_257e10(float *a0, int a1, u32 a2) {
+u32 ninja_float_calc_257e10(float *a0, int a1, u32 a2) {
     u32 *in_r2;
     short *psVar1;
     float fVar2;
@@ -14353,8 +14363,9 @@ u32 ninja_sub_257e10(float *a0, int a1, u32 a2) {
 /*
  * noop_fr4_test  0x8c258030
  * tests fr4 against 0 and returns the same value either way
- * called by: Vec3_length_sq, alt_entry_233d20, alt_entry_23c2a6, gfxlib_sub_2336e8, gfxlib_sub_233d14,
- * gfxlib_sub_23c2a0, kamui_sub_212a30, ninja_sub_212898
+ * called by: Vec3_length_sq, alt_entry_233d20, alt_entry_23c2a6, gfxlib_uses_noop_fr4_test_2336e8,
+ * gfxlib_uses_noop_fr4_test_233d14, gfxlib_uses_noop_fr4_test_23c2a0, kamui_uses_noop_fr4_test_212a30,
+ * ninja_uses_noop_fr4_test_212898
  */
 u32 noop_fr4_test(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float in_fr4;
@@ -14366,11 +14377,11 @@ u32 noop_fr4_test(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0)
 }
 
 /*
- * ninja_sub_258048  0x8c258048
- * area name: in the ninja library code range
- * called by: gfxlib_sub_234a6a, line_closest_point
+ * ninja_float_calc_258048  0x8c258048
+ * area name: in the ninja library code range; behaviour name: floating-point arithmetic
+ * called by: gfxlib_calls_float_calc_234a6a, line_closest_point
  */
-u32 ninja_sub_258048(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ninja_float_calc_258048(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float in_fr4;
 
     if (0.0 <= in_fr4) {
@@ -14380,26 +14391,26 @@ u32 ninja_sub_258048(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 }
 
 /*
- * ninja_sub_25806c  0x8c25806c
- * area name: in the ninja library code range
+ * ninja_uses_kamui_cfg_texture_memory_25806c  0x8c25806c
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: uses_kamui_cfg_texture_memory
  */
-u32 ninja_sub_25806c(u32 a0, u32 *a1, u32 unused_a2, u32 a3) {
+u32 ninja_uses_kamui_cfg_texture_memory_25806c(u32 a0, u32 *a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     u32 *in_r2;
 
     *a1 = a0;
     *in_r2 = a0;
-    kamui_sub_211120(0x8c4aacbc, a1, unused_a2, a3);
-    uVar1 = ninja_sub_25b49e(0);
+    kamui_uses_kamui_cfg_texture_memory_211120(0x8c4aacbc, a1, unused_a2, a3);
+    uVar1 = ninja_calls_scan_loop_25b49e(0);
     g_8c4aa6a8 = uVar1;
     return uVar1;
 }
 
 /*
- * ninja_sub_258096  0x8c258096
- * area name: in the ninja library code range
+ * ninja_calc_258096  0x8c258096
+ * area name: in the ninja library code range; behaviour name: integer arithmetic on its arguments
  */
-u8 *ninja_sub_258096(void) {
+u8 *ninja_calc_258096(void) {
     u8 *puVar1;
 
     g_8c4aa6d4 = 0;
@@ -14429,10 +14440,10 @@ u8 *alt_entry_25809a(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_2580b8  0x8c2580b8
- * area name: in the ninja library code range
+ * ninja_calc_2580b8  0x8c2580b8
+ * area name: in the ninja library code range; behaviour name: integer arithmetic on its arguments
  */
-u32 ninja_sub_2580b8(void) {
+u32 ninja_calc_2580b8(void) {
     u32 in_r0;
 
     g_8c4aa6d8 = 0;
@@ -14451,12 +14462,12 @@ u32 set_g_8c4aa558(u32 a0) {
 }
 
 /*
- * ninja_sub_2580c6  0x8c2580c6
- * area name: in the ninja library code range
+ * ninja_uses_ret_const_1_2580c6  0x8c2580c6
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: uses_ret_const_1
  */
-u32 ninja_sub_2580c6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ninja_uses_ret_const_1_2580c6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     if (g_8c4aa6dc != 0) {
-        ain0 = shinobi_sub_1fa54c(g_8c4ab334);
+        ain0 = shinobi_uses_ret_const_1_1fa54c(g_8c4ab334);
     }
     g_8c277c68 = g_8c277c68 + 1;
     return ain0;
@@ -14464,7 +14475,7 @@ u32 ninja_sub_2580c6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 
 /*
  * pvr_2580e4  0x8c2580e4
- * called by: draw_sub_258b26, pvr_25825a
+ * called by: draw_uses_free_sys_258b26, pvr_25825a
  */
 u32 pvr_2580e4(void) {
     u32 in_r0;
@@ -14490,7 +14501,7 @@ u32 g2dma_2580f8(u32 *a0) {
 
 /*
  * aica_reg_258104  0x8c258104
- * called by: ninja_sub_258604, pvr_25825a
+ * called by: ninja_uses_aica_reg_258604, pvr_25825a
  */
 u32 aica_reg_258104(u32 a0) {
     u32 uVar1;
@@ -14583,7 +14594,7 @@ u32 aica_reg_258104(u32 a0) {
 
 /*
  * aica_reg_258210  0x8c258210
- * called by: ninja_sub_258604
+ * called by: ninja_uses_aica_reg_258604
  */
 u32 aica_reg_258210(u32 a0) {
     u32 uVar1;
@@ -14591,17 +14602,17 @@ u32 aica_reg_258210(u32 a0) {
     u32 uStack_c;
 
     uStack_c = a0;
-    shinobi_sub_1f92c0(0xa0702c00, &uStack_10, 4, 1, 0, 0);
+    shinobi_uses_syG2FifoWait_1f92c0(0xa0702c00, &uStack_10, 4, 1, 0, 0);
     uStack_10 = uStack_10 & (int)(int)0xfffffcff | uStack_c;
     uVar1 = syG2CpuCopy(&uStack_10, 0xa0702c00, 4, 1, 0, 0);
     return uVar1;
 }
 
 /*
- * ninja_sub_258252  0x8c258252
- * area name: in the ninja library code range
+ * ninja_update_fields_258252  0x8c258252
+ * area name: in the ninja library code range; behaviour name: conditionally writes members
  */
-u32 ninja_sub_258252(int a0) {
+u32 ninja_update_fields_258252(int a0) {
     u32 in_r0;
 
     *(u32 *)(a0 + 4) = g_8c4aa6e0;
@@ -14610,7 +14621,7 @@ u32 ninja_sub_258252(int a0) {
 
 /*
  * pvr_25825a  0x8c25825a
- * called by: Class_12c394_sub_102bd0
+ * called by: Class_12c394_uses_imask_to_sr_bits_102bd0
  */
 u32 pvr_25825a(u32 a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -14672,7 +14683,7 @@ u32 pvr_25825a(u32 a0, int a1, u32 a2, u32 a3) {
         g_8c4aa50c = 0x1e0;
     } else {
         uVar4 = a0;
-        iVar1 = shinobi_sub_1f7ea8(a0);
+        iVar1 = shinobi_calls_calc_1f7ea8(a0);
         pvr_2580e4();
         if (iVar1 == 2) {
             uVar3 = 0x200;
@@ -14744,7 +14755,7 @@ u32 pvr_25825a(u32 a0, int a1, u32 a2, u32 a3) {
     if ((a0 & 0x40) != 0) {
         uVar4 = a0 & 0xe0000;
         g_8c4aa6e0 = (int)(short)((int)uVar4 >> 0x11);
-        shinobi_sub_2078d8(ninja_sub_258252, 0);
+        shinobi_calls_update_fields_2078d8(ninja_update_fields_258252, 0);
         if (g_8c4aa50c == 0xf0) {
             if (uVar4 == 0) {
                 g_8c4aa50c = 0xf8;
@@ -14797,15 +14808,15 @@ u32 pvr_25825a(u32 a0, int a1, u32 a2, u32 a3) {
     g_8c4aacec = g_8c4aacf8;
     g_8c4aacf0 = g_8c4aacf8;
     g_8c4aacf4 = g_8c4aacf8;
-    pvr_sub_20757e(ninja_sub_258096, 0);
+    pvr_calls_update_fields_20757e(ninja_calc_258096, 0);
     ar5_00 = 0;
-    shinobi_sub_20786a(ninja_sub_2580b8, 0);
-    shinobi_sub_2078be(set_g_8c4aa558);
+    shinobi_calls_update_fields_20786a(ninja_calc_2580b8, 0);
+    shinobi_calls_update_fields_2078be(set_g_8c4aa558);
     uVar2 = g_8c4aa4ec;
-    pvr_sub_20a786(g_8c4aa4ec);
-    uVar2 = ninja_sub_2588f8();
+    pvr_test_20a786(g_8c4aa4ec);
+    uVar2 = ninja_draw_2588f8();
     if ((_DAT_a05f689c & 0xff) < 10) {
-        draw_sub_259a1c(0xffff6600);
+        draw_draw_helper_259a1c(0xffff6600);
         /* WARNING: Could not recover jumptable at 0x8c25857e. Too many branches */
         /* WARNING: Treating indirect jump as call */
         uVar5 = (*g_8c277c70)();
@@ -14815,10 +14826,10 @@ u32 pvr_25825a(u32 a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_258604  0x8c258604
- * area name: in the ninja library code range
+ * ninja_uses_aica_reg_258604  0x8c258604
+ * area name: in the ninja library code range; behaviour name: its main named callee is aica_reg_258104
  */
-u32 ninja_sub_258604(u32 a0, u32 a1, u32 a2) {
+u32 ninja_uses_aica_reg_258604(u32 a0, u32 a1, u32 a2) {
     short sVar1;
     int *piVar2;
     int *piVar3;
@@ -14852,7 +14863,7 @@ u32 ninja_sub_258604(u32 a0, u32 a1, u32 a2) {
     *(u32 *)(puVar7 + -0xc) = a2;
     thunk_FUN_8c207f80();
     uVar5 = (u32)in_dr14;
-    ta_sub_20aed8(1);
+    ta_test_20aed8(1);
     piVar2 = 0x8c4aa508;
     g_8c4aa4e8 = *(u32 *)(puVar7 + -8);
     ar5_00 = 0x8c4aa4a8;
@@ -14902,7 +14913,7 @@ u32 ninja_sub_258604(u32 a0, u32 a1, u32 a2) {
 
         *piVar3 = iVar4;
     } else {
-        iVar4 = shinobi_sub_1f7ea8(a0 & 3);
+        iVar4 = shinobi_calls_calc_1f7ea8(a0 & 3);
         if (iVar4 == 2) {
             iVar4 = (int)0x200;
         } else if (iVar4 == 3) {
@@ -14950,7 +14961,7 @@ u32 ninja_sub_258604(u32 a0, u32 a1, u32 a2) {
         goto LAB_8c258846;
     uVar6 = 0xe0000 & a0;
     g_8c4aa6e0 = (int)(short)((int)uVar6 >> 0x11);
-    shinobi_sub_2078d8((&ninja_sub_258252), 0);
+    shinobi_calls_update_fields_2078d8((&ninja_update_fields_258252), 0);
     if (*piVar3 == (int)0xf0) {
         sVar1 = 0xf8;
         if (uVar6 != 0) {
@@ -14998,27 +15009,27 @@ u32 ninja_sub_258604(u32 a0, u32 a1, u32 a2) {
 LAB_8c258846:
     ar6_00 = 1;
     kamui_set_display_mode_cfg(*(u32 *)(puVar7 + -0xc), ar5_00, 1, uVar8);
-    pvr_sub_20a786(g_8c4aa4ec);
+    pvr_test_20a786(g_8c4aa4ec);
     g_8c4aa6dc = 0;
     g_8c4aa6d4 = 0;
     g_8c4aa6d8 = 1;
     g_8c4aa558 = 0;
-    pvr_sub_20757e((&ninja_sub_258096), 0);
+    pvr_calls_update_fields_20757e((&ninja_calc_258096), 0);
     uVar5 = 0;
-    shinobi_sub_20786a((&ninja_sub_2580b8), 0);
+    shinobi_calls_update_fields_20786a((&ninja_calc_2580b8), 0);
     a4 = (&set_g_8c4aa558);
-    shinobi_sub_2078be((&set_g_8c4aa558));
+    shinobi_calls_update_fields_2078be((&set_g_8c4aa558));
     screen_reset_view();
-    uVar8 = ta_sub_20aed8(0);
+    uVar8 = ta_test_20aed8(0);
     return uVar8;
 }
 
 /*
- * ninja_sub_2588f8  0x8c2588f8
- * area name: in the ninja library code range
+ * ninja_draw_2588f8  0x8c2588f8
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
  * called by: pvr_25825a
  */
-u32 ninja_sub_2588f8(void) {
+u32 ninja_draw_2588f8(void) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -15064,16 +15075,16 @@ u32 ninja_sub_2588f8(void) {
     g_8c4aa4c8 = 0;
     uVar9 = CONCAT44(g_8c4aa4d0, g_8c4aa4cc);
     fStack_24 = g_8c4aa4cc;
-    gfxlib_sub_237770(&g_8c4aa4cc, ar5_00, ar6_00, &g_8c4aa4c4);
+    gfxlib_scan_loop_237770(&g_8c4aa4cc, ar5_00, ar6_00, &g_8c4aa4c4);
     puVar8 = (u8 *)0x8c4aa73c;
     puVar7 = (u32 *)&g_8c4aabc0;
     do {
-        ninja_sub_258d82(puVar8);
+        ninja_draw_258d82(puVar8);
         puVar8 = puVar8 + 0xc0;
         *puVar7 = 0x80012;
         puVar7 = puVar7 + 1;
     } while (puVar8 < &g_8c4aabbc);
-    ninja_sub_258d82(&g_8c4aabfc);
+    ninja_draw_258d82(&g_8c4aabfc);
     g_8c4aabfc = 0xc0;
     g_8c4aac28 = 10;
     g_8c4aac2c = 0xb;
@@ -15127,7 +15138,7 @@ u32 ninja_sub_2588f8(void) {
 /*
  * screen_reset_view  0x8c258ac0
  * centres the view on the screen size and sets the clip rectangle to the full screen
- * called by: ninja_sub_258604
+ * called by: ninja_uses_aica_reg_258604
  */
 u32 screen_reset_view(void) {
     g_8c4aa518 = 0;
@@ -15143,11 +15154,11 @@ u32 screen_reset_view(void) {
 }
 
 /*
- * draw_sub_258b26  0x8c258b26
- * area name: sits between draw functions (same compilation unit)
+ * draw_uses_free_sys_258b26  0x8c258b26
+ * area name: sits between draw functions (same compilation unit); behaviour name: its main named callee is free_sys
  * called by: game_init
  */
-u32 draw_sub_258b26(int a0, int a1, int a2, int a3) {
+u32 draw_uses_free_sys_258b26(int a0, int a1, int a2, int a3) {
     u32 uVar1;
     u32 ar5_00;
     u32 *ar6_00;
@@ -15358,15 +15369,15 @@ LAB_8c258cae:
         uRam8c4aacfc = uVar9;
     }
     pvr_2580e4(uVar1, ar5_00, ar6_00, iVar2, (((u32)bVar13 | (u32)in_S << 1 | (u32)in_IMASK << 4) & 0xf0) >> 4);
-    kamui_sub_211120(&g_8c4aacbc, ar5_00, ar6_00, iVar2);
-    g_8c4aa6a8 = ninja_sub_25b49e(0);
+    kamui_uses_kamui_cfg_texture_memory_211120(&g_8c4aacbc, ar5_00, ar6_00, iVar2);
+    g_8c4aa6a8 = ninja_calls_scan_loop_25b49e(0);
     return g_8c4aa6a8;
 }
 
 /*
  * draw_state_select  0x8c258d4c
  * makes polygon-state block a0 (0xc0 bytes each at 0x8c4aa73c) current and loads it
- * called by: ninja_sub_2588f8
+ * called by: ninja_draw_2588f8
  */
 u32 draw_state_select(int a0) {
     u32 uVar1;
@@ -15380,11 +15391,11 @@ u32 draw_state_select(int a0) {
 }
 
 /*
- * ninja_sub_258d82  0x8c258d82
- * area name: in the ninja library code range
- * called by: ninja_sub_2588f8
+ * ninja_draw_258d82  0x8c258d82
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
+ * called by: ninja_draw_2588f8
  */
-u32 ninja_sub_258d82(u32 *a0) {
+u32 ninja_draw_258d82(u32 *a0) {
     u32 uVar1;
 
     *a0 = 0x3f3ffff;
@@ -15430,7 +15441,7 @@ u32 ninja_sub_258d82(u32 *a0) {
 /*
  * set_g_8c277ae8  0x8c258e0a
  * stores its argument in the global at 0x8c277ae8
- * called by: CGame_Initial, Class_12b388_sub_0c5cb4
+ * called by: CGame_Initial, Class_12b388_uses_Class_129808_draw_0c5cb4
  */
 u32 set_g_8c277ae8(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     g_8c277ae8 = a0;
@@ -15438,11 +15449,11 @@ u32 set_g_8c277ae8(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0
 }
 
 /*
- * ninja_sub_258e50  0x8c258e50
- * area name: in the ninja library code range
+ * ninja_calc_258e50  0x8c258e50
+ * area name: in the ninja library code range; behaviour name: integer arithmetic on its arguments
  * called by: alt_entry_258e70, game_frame
  */
-u32 ninja_sub_258e50(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ninja_calc_258e50(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     if (g_8c277ae8 != NULL) {
         ain0 = (*g_8c277ae8)();
     }
@@ -15484,18 +15495,18 @@ u8 *game_frame(u32 a0, u32 a1, u32 a2, u32 a3) {
             uVar1 = ain0;
         }
         if (uVar1 < 0x28870) {
-            ninja_sub_258e50(a0, a1, a2, a3, ain0);
+            ninja_calc_258e50(a0, a1, a2, a3, ain0);
         }
     }
     g_8c4aa6d4 = 1;
-    ta_sub_20b7a0(a0, a1, a2, a3);
+    ta_copy_20b7a0(a0, a1, a2, a3);
     ar4_00 = &g_8c4aa540;
     g_8c4aa518 = 0;
     g_8c4aa51c = 0;
     g_8c4aa520 = 0;
     g_8c4aa540 = g_8c4aa540 + 1;
-    ain0_00 = ta_sub_20b260(&g_8c4aa540, a1, a2, a3);
-    shinobi_sub_1f61c6(ar4_00, a1, a2, a3, ain0_00);
+    ain0_00 = ta_draw_20b260(&g_8c4aa540, a1, a2, a3);
+    shinobi_uses_maple_port_info_1f61c6(ar4_00, a1, a2, a3, ain0_00);
     g_8c4aad28 = sh4_tmu_1f88e6(ar4_00);
     g_8c4aa4f4 = *g_8c4aabdc;
     g_8c4aa4f8 = g_8c4aabdc[1];
@@ -15524,18 +15535,18 @@ u8 *alt_entry_258e70(u32 a0, u32 a1, u32 a2, u32 a3) {
             uVar1 = fix7_to_hundredths(a0);
         }
         if (uVar1 < 0x28870) {
-            ninja_sub_258e50(a0, a1, a2, a3, in_PR);
+            ninja_calc_258e50(a0, a1, a2, a3, in_PR);
         }
     }
     g_8c4aa6d4 = 1;
-    ta_sub_20b7a0(a0, a1, a2, a3);
+    ta_copy_20b7a0(a0, a1, a2, a3);
     ar4_00 = &g_8c4aa540;
     g_8c4aa540 = g_8c4aa540 + 1;
     g_8c4aa518 = unaff_r11;
     g_8c4aa51c = unaff_r11;
     g_8c4aa520 = unaff_r11;
-    ta_sub_20b260(&g_8c4aa540, a1, a2, a3);
-    shinobi_sub_1f61c6(ar4_00, a1, a2, a3, in_PR);
+    ta_draw_20b260(&g_8c4aa540, a1, a2, a3);
+    shinobi_uses_maple_port_info_1f61c6(ar4_00, a1, a2, a3, in_PR);
     g_8c4aad28 = sh4_tmu_1f88e6(ar4_00);
     g_8c4aa4f4 = *g_8c4aabdc;
     g_8c4aa4f8 = g_8c4aabdc[1];
@@ -15546,16 +15557,16 @@ u8 *alt_entry_258e70(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_258f1c  0x8c258f1c
- * area name: in the ninja library code range
+ * ninja_calc_258f1c  0x8c258f1c
+ * area name: in the ninja library code range; behaviour name: integer arithmetic on its arguments
  */
-u32 ninja_sub_258f1c(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_calc_258f1c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
     u32 *puVar2;
     u32 *puVar3;
     u32 uVar4;
 
-    puVar1 = (&ta_sub_20b7a0);
+    puVar1 = (&ta_copy_20b7a0);
     g_8c4aa6d4 = 1;
     uVar4 = (*(code *)puVar1)(a0, a1, a2, a3);
     puVar3 = 0x8c4aa520;
@@ -15567,10 +15578,10 @@ u32 ninja_sub_258f1c(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_258f3a  0x8c258f3a
- * area name: in the ninja library code range
+ * ninja_uses_sh4_tmu_258f3a  0x8c258f3a
+ * area name: in the ninja library code range; behaviour name: its main named callee is sh4_tmu_1f88e6
  */
-u32 *ninja_sub_258f3a(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 *ninja_uses_sh4_tmu_258f3a(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
     int *ar4_00;
     u32 uVar2;
@@ -15578,7 +15589,7 @@ u32 *ninja_sub_258f3a(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar4;
 
     uVar2 = sh4_tmu_1f88e6(a0);
-    puVar1 = (&ta_sub_20b260);
+    puVar1 = (&ta_draw_20b260);
     g_8c4aad24 = uVar2;
     (*(code *)puVar1)(a0, a1, a2, a3);
     ar4_00 = 0x8c4aa540;
@@ -15608,22 +15619,22 @@ int ninja_set_event900_callback(int a0) {
 
     piVar1 = 0x8c4ab330;
     if (g_8c4ab330 != 0) {
-        in_r0 = shinobi_sub_1fa54c(g_8c4ab330);
+        in_r0 = shinobi_uses_ret_const_1_1fa54c(g_8c4ab330);
         *piVar1 = 0;
     }
     if (a0 != 0) {
-        in_r0 = ta_sub_1fa244((int)0x900, a0, 0x58, 0);
+        in_r0 = ta_uses_ret_const_1_1fa244((int)0x900, a0, 0x58, 0);
         *piVar1 = in_r0;
     }
     return in_r0;
 }
 
 /*
- * ninja_sub_259046  0x8c259046
- * area name: in the ninja library code range
- * called by: game_init, game_sub_0ff928
+ * ninja_calls_calc_259046  0x8c259046
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: calc
+ * called by: game_init, game_uses_touch_fields_30_3c_0ff928
  */
-u32 ninja_sub_259046(u32 a0, u32 a1, u32 a2) {
+u32 ninja_calls_calc_259046(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
     u32 *puStack_74;
     u32 *puStack_70;
@@ -15652,19 +15663,19 @@ u32 ninja_sub_259046(u32 a0, u32 a1, u32 a2) {
     uStack_28 = 0xf0000000;
     uStack_24 = 0;
     uStack_1c = 0x3727c5ac;
-    uVar1 = pvr_sub_20a420(&puStack_74, 0, 0x20, puStack_74);
+    uVar1 = pvr_calc_20a420(&puStack_74, 0, 0x20, puStack_74);
     return uVar1;
 }
 
 /*
- * ninja_sub_2590bc  0x8c2590bc
- * area name: in the ninja library code range
+ * ninja_release_2590bc  0x8c2590bc
+ * area name: in the ninja library code range; behaviour name: mostly calls release functions
  * called by: system_init_libs
  */
-u32 ninja_sub_2590bc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_release_2590bc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = kamui_sub_210fd2(&g_8c4aabdc, a1, a2, a3);
+    uVar1 = kamui_list_210fd2(&g_8c4aabdc, a1, a2, a3);
     if (g_8c277b30 == 0) {
         uVar1 = free_sys(g_8c4aace0 & 0x8fffffff, a1, a2, a3);
         return uVar1;
@@ -15673,10 +15684,10 @@ u32 ninja_sub_2590bc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_259138  0x8c259138
- * area name: in the ninja library code range
+ * ninja_draw_259138  0x8c259138
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
  */
-u32 ninja_sub_259138(void) {
+u32 ninja_draw_259138(void) {
     int *piVar1;
     u32 uVar2;
     u32 uVar3;
@@ -15706,10 +15717,10 @@ u32 ninja_sub_259138(void) {
 }
 
 /*
- * ninja_sub_2591f8  0x8c2591f8
- * area name: in the ninja library code range
+ * ninja_draw_2591f8  0x8c2591f8
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
  */
-u32 ninja_sub_2591f8(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 ninja_draw_2591f8(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int in_r0;
     u32 uVar1;
     u32 in_r2;
@@ -15729,10 +15740,10 @@ u32 ninja_sub_2591f8(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_25922e  0x8c25922e
- * area name: in the ninja library code range
+ * ninja_draw_25922e  0x8c25922e
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
  */
-u32 ninja_sub_25922e(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_draw_25922e(u32 a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
     u32 uVar1;
     u32 in_r2;
@@ -15796,10 +15807,10 @@ u32 alt_entry_25927e(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * ta_sub_2592c4  0x8c2592c4
- * area name: sits between ta functions (same compilation unit)
+ * ta_draw_2592c4  0x8c2592c4
+ * area name: sits between ta functions (same compilation unit); behaviour name: mostly calls draw functions
  */
-u32 ta_sub_2592c4(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 ta_draw_2592c4(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int in_r0;
     u32 uVar1;
     u32 in_r2;
@@ -15820,10 +15831,10 @@ u32 ta_sub_2592c4(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * ta_sub_2592fe  0x8c2592fe
- * area name: sits between ta functions (same compilation unit)
+ * ta_draw_2592fe  0x8c2592fe
+ * area name: sits between ta functions (same compilation unit); behaviour name: mostly calls draw functions
  */
-u32 ta_sub_2592fe(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 ta_draw_2592fe(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int in_r0;
     u32 uVar1;
     u32 in_r2;
@@ -15856,11 +15867,11 @@ LAB_8c259332:
 }
 
 /*
- * ta_sub_259358  0x8c259358
- * area name: sits between ta functions (same compilation unit)
+ * ta_draw_259358  0x8c259358
+ * area name: sits between ta functions (same compilation unit); behaviour name: mostly calls draw functions
  * called by: game_init
  */
-u32 ta_sub_259358(int a0) {
+u32 ta_draw_259358(int a0) {
     int *piVar1;
     u32 uVar2;
     int iVar3;
@@ -15938,11 +15949,11 @@ u32 thunk_FUN_8c20a13a(void) {
 }
 
 /*
- * ta_sub_2593ac  0x8c2593ac
- * area name: sits between ta functions (same compilation unit)
+ * ta_draw_2593ac  0x8c2593ac
+ * area name: sits between ta functions (same compilation unit); behaviour name: mostly calls draw functions
  * called by: game_init
  */
-u32 ta_sub_2593ac(int a0) {
+u32 ta_draw_2593ac(int a0) {
     int *piVar1;
     u32 uVar2;
     int iVar3;
@@ -15991,10 +16002,10 @@ u32 alt_entry_2593b4(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * ta_sub_25940c  0x8c25940c
- * area name: sits between ta functions (same compilation unit)
+ * ta_draw_25940c  0x8c25940c
+ * area name: sits between ta functions (same compilation unit); behaviour name: mostly calls draw functions
  */
-u32 ta_sub_25940c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 ta_draw_25940c(int a0, u32 a1, u32 a2, u32 a3) {
     int *piVar1;
     u32 in_r0;
     u32 uVar2;
@@ -16051,10 +16062,10 @@ u32 ta_sub_25940c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ta_sub_2594a0  0x8c2594a0
- * area name: sits between ta functions (same compilation unit)
+ * ta_draw_2594a0  0x8c2594a0
+ * area name: sits between ta functions (same compilation unit); behaviour name: mostly calls draw functions
  */
-u32 ta_sub_2594a0(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 ta_draw_2594a0(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int in_r0;
     u32 uVar1;
     u32 in_r2;
@@ -16075,10 +16086,10 @@ u32 ta_sub_2594a0(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * ta_sub_2594da  0x8c2594da
- * area name: sits between ta functions (same compilation unit)
+ * ta_draw_2594da  0x8c2594da
+ * area name: sits between ta functions (same compilation unit); behaviour name: mostly calls draw functions
  */
-u32 ta_sub_2594da(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 ta_draw_2594da(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int in_r0;
     u32 uVar1;
     u32 in_r2;
@@ -16099,10 +16110,10 @@ u32 ta_sub_2594da(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * ta_sub_259526  0x8c259526
- * area name: sits between ta functions (same compilation unit)
+ * ta_draw_259526  0x8c259526
+ * area name: sits between ta functions (same compilation unit); behaviour name: mostly calls draw functions
  */
-u32 ta_sub_259526(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 ta_draw_259526(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int in_r0;
     u32 uVar1;
     u32 in_r2;
@@ -16123,11 +16134,11 @@ u32 ta_sub_259526(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * ta_sub_259556  0x8c259556
- * area name: sits between ta functions (same compilation unit)
+ * ta_draw_259556  0x8c259556
+ * area name: sits between ta functions (same compilation unit); behaviour name: mostly calls draw functions
  * called by: game_init
  */
-u32 ta_sub_259556(int a0) {
+u32 ta_draw_259556(int a0) {
     int *piVar1;
     u32 uVar2;
     int iVar3;
@@ -16195,7 +16206,8 @@ LAB_8c259594:
 
 /*
  * ta_fifo_2595aa  0x8c2595aa
- * called by: game_sub_0ba494, game_sub_0ff7d4, game_sub_0ff928
+ * called by: game_uses_Vec3_ctor_zero_0ff7d4, game_uses_show_date_time_message_0ba494,
+ * game_uses_touch_fields_30_3c_0ff928
  */
 u32 ta_fifo_2595aa(int a0, u64 *a1, int a2, int a3) {
     u32 uVar1;
@@ -16257,7 +16269,7 @@ LAB_8c25962e:
             a2 = (int)in_dr2;
         }
         puVar2 = NULL;
-        kamui_sub_2122ea(&g_8c4aabdc, 0, a2, a3);
+        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 0, a2, a3);
     }
     if (g_8c277ad4 != 0) {
         if (cVar12 == '\0') {
@@ -16281,7 +16293,7 @@ LAB_8c25962e:
             a2 = (int)in_dr2;
         }
         puVar2 = (u64 *)0x1;
-        kamui_sub_2122ea(&g_8c4aabdc, 1, a2, a3);
+        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 1, a2, a3);
     }
     if (g_8c277ad8 != 0) {
         if (cVar12 == '\0') {
@@ -16305,7 +16317,7 @@ LAB_8c25962e:
             a2 = (int)in_dr2;
         }
         puVar2 = (u64 *)0x2;
-        kamui_sub_2122ea(&g_8c4aabdc, 2, a2, a3);
+        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 2, a2, a3);
     }
     if (g_8c277adc != 0) {
         if (cVar12 == '\0') {
@@ -16329,7 +16341,7 @@ LAB_8c25962e:
             a2 = (int)in_dr2;
         }
         puVar2 = (u64 *)0x3;
-        kamui_sub_2122ea(&g_8c4aabdc, 3, a2, a3);
+        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 3, a2, a3);
     }
     if (g_8c277ae0 != 0) {
         if (cVar12 == '\0') {
@@ -16353,7 +16365,7 @@ LAB_8c25962e:
             a2 = (int)in_dr2;
         }
         puVar2 = (u64 *)0x4;
-        kamui_sub_2122ea(&g_8c4aabdc, 4, a2, a3);
+        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 4, a2, a3);
     }
     *g_8c4aabbc = 0x10000000;
     g_8c4aabbc[0x2f] = a0;
@@ -16381,7 +16393,7 @@ LAB_8c25962e:
         } else {
             iVar10 = (int)in_dr2;
         }
-        kamui_sub_2122ea(&g_8c4aabdc, 0, iVar10, iVar9);
+        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 0, iVar10, iVar9);
     }
     if (g_8c277ad4 != 0) {
         if (cVar12 == '\0') {
@@ -16404,7 +16416,7 @@ LAB_8c25962e:
         } else {
             iVar10 = (int)in_dr2;
         }
-        kamui_sub_2122ea(&g_8c4aabdc, 1, iVar10, iVar9);
+        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 1, iVar10, iVar9);
     }
     if (g_8c277ad8 != 0) {
         if (cVar12 == '\0') {
@@ -16427,7 +16439,7 @@ LAB_8c25962e:
         } else {
             iVar10 = (int)in_dr2;
         }
-        kamui_sub_2122ea(&g_8c4aabdc, 2, iVar10, iVar9);
+        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 2, iVar10, iVar9);
     }
     if (g_8c277adc != 0) {
         if (cVar12 == '\0') {
@@ -16450,7 +16462,7 @@ LAB_8c25962e:
         } else {
             iVar10 = (int)in_dr2;
         }
-        kamui_sub_2122ea(&g_8c4aabdc, 3, iVar10, iVar9);
+        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 3, iVar10, iVar9);
     }
     if (g_8c277ae0 != 0) {
         if (cVar12 == '\0') {
@@ -16473,7 +16485,7 @@ LAB_8c25962e:
         } else {
             iVar10 = (int)in_dr2;
         }
-        kamui_sub_2122ea(&g_8c4aabdc, 4, iVar10, iVar9);
+        kamui_calls_scan_loop_2122ea(&g_8c4aabdc, 4, iVar10, iVar9);
     }
     switch_jump(8, &g_8c277c78, a1);
     switch_jump(8, &g_8c277c80, src);
@@ -16600,7 +16612,7 @@ u32 *draw_state_copy_in(u32 a0) {
 
 /*
  * thunk_FUN_8c207f80  0x8c2599ba
- * called by: ninja_sub_258604
+ * called by: ninja_uses_aica_reg_258604
  */
 u32 thunk_FUN_8c207f80(void) {
     u32 uVar1;
@@ -16634,24 +16646,24 @@ u32 alt_entry_2599ca(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * draw_sub_2599fa  0x8c2599fa
- * area name: sits between draw functions (same compilation unit)
+ * draw_draw_helper_2599fa  0x8c2599fa
+ * area name: sits between draw functions (same compilation unit); behaviour name: mostly calls draw functions
  */
-u32 draw_sub_2599fa(u32 a0, u32 a1) {
+u32 draw_draw_helper_2599fa(u32 a0, u32 a1) {
     u32 r6;
     u32 r7;
     u32 uVar1;
 
-    uVar1 = pvr_sub_20a156(a0, a1, r6, r7, a0, a1);
+    uVar1 = pvr_draw_20a156(a0, a1, r6, r7, a0, a1);
     return uVar1;
 }
 
 /*
- * draw_sub_259a1c  0x8c259a1c
- * area name: sits between draw functions (same compilation unit)
+ * draw_draw_helper_259a1c  0x8c259a1c
+ * area name: sits between draw functions (same compilation unit); behaviour name: mostly calls draw functions
  * called by: game_init, pvr_25825a
  */
-u32 draw_sub_259a1c(u32 a0) {
+u32 draw_draw_helper_259a1c(u32 a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -16662,10 +16674,10 @@ u32 draw_sub_259a1c(u32 a0) {
 }
 
 /*
- * draw_sub_259a70  0x8c259a70
- * area name: sits between draw functions (same compilation unit)
+ * draw_copy_259a70  0x8c259a70
+ * area name: sits between draw functions (same compilation unit); behaviour name: mostly calls copy functions
  */
-int draw_sub_259a70(u32 *a0) {
+int draw_copy_259a70(u32 *a0) {
     float fVar1;
     u64 in_dr2;
     u32 uVar3;
@@ -16694,7 +16706,7 @@ int draw_sub_259a70(u32 *a0) {
     uVar3 = (u32)((u64)in_dr2 >> 0x20);
     cVar11 = '\0';
     cVar10 = '\0';
-    ta_sub_20aacc(auStack_d0);
+    ta_fill_loop_20aacc(auStack_d0);
     *a0 = uStack_c4;
     a0[1] = uStack_bc;
     if ((u32)a0[2] < uStack_bc) {
@@ -16809,7 +16821,7 @@ int draw_sub_259a70(u32 *a0) {
 /*
  * ninja_angle_sincos  0x8c259bd8
  * sin and cos of Ninja angle a0 (65536 units per turn)
- * called by: ninja_sub_257148
+ * called by: ninja_uses_ninja_angle_sincos_257148
  */
 u32 ninja_angle_sincos(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -16823,7 +16835,8 @@ u32 ninja_angle_sincos(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 
 /*
  * nj_file_open  0x8c259be8
  * opens file a0 for the Ninja loader and records its size and sector count; -2 on failure
- * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_239212, ninja_sub_256164
+ * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
+ * gfxlib_uses_tex_entry_alloc_237964, ninja_uses_ninja_close_file_256164
  */
 u32 nj_file_open(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -16845,7 +16858,8 @@ u32 nj_file_open(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * ninja_close_file  0x8c259c40
  * closes Ninja's file handle (0x8c4b3338) through gdfs_close_like
- * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_239212, ninja_sub_256164
+ * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
+ * gfxlib_uses_tex_entry_alloc_237964, ninja_uses_ninja_close_file_256164
  */
 u32 ninja_close_file(void) {
     u32 uVar1;
@@ -16855,12 +16869,13 @@ u32 ninja_close_file(void) {
 }
 
 /*
- * ninja_sub_259c48  0x8c259c48
- * area name: in the ninja library code range
- * called by: gfxlib_sub_238f2a, gfxlib_sub_239212, ninja_sub_256164, ta_fifo_239012, ta_sub_2391a8, tex_sub_25a216,
- * tex_sub_25a770, tex_sub_25a838 (+1 more)
+ * ninja_uses_memcpy_bytes_259c48  0x8c259c48
+ * area name: in the ninja library code range; behaviour name: its main named callee is memcpy_bytes
+ * called by: gfxlib_copy_238f2a, gfxlib_uses_ninja_close_file_239212, ninja_uses_ninja_close_file_256164,
+ * ta_fifo_239012, ta_uses_nj_seek_2391a8, tex_uses_dcache_writeback_range_25a770,
+ * tex_uses_dcache_writeback_range_25a838, tex_uses_nj_seek_25a216 (+1 more)
  */
-u32 ninja_sub_259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 ninja_uses_memcpy_bytes_259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -16904,7 +16919,7 @@ u32 ninja_sub_259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
                         iVar4 = libgcc_divide_helper_01051c(ar6_00, g_8c277c8c);
                         iVar1 = iVar1 * iVar4;
                         iVar5 = a0 + uVar6;
-                        iVar2 = gdfs_sub_1f31c6(ar4_00, iVar1, iVar5, a3);
+                        iVar2 = gdfs_calls_update_fields_1f31c6(ar4_00, iVar1, iVar5, a3);
                         if (iVar2 != 0) {
                             g_8c4aa6b8 = gdfs_get_stat_like(g_8c4b3338);
                             g_8c4aa6bc = gdfs_get_err_like(g_8c4b3338);
@@ -16916,7 +16931,7 @@ u32 ninja_sub_259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
                         g_8c277c94 = g_8c277c94 + g_8c277c90 * iVar4;
                         g_8c277ca4 = 0;
                     } else {
-                        iVar2 = gdfs_sub_1f31c6(ar4_00, iVar1, iVar4, a3);
+                        iVar2 = gdfs_calls_update_fields_1f31c6(ar4_00, iVar1, iVar4, a3);
                         if (iVar2 != 0) {
                             g_8c4aa6b8 = gdfs_get_stat_like(g_8c4b3338);
                             g_8c4aa6bc = gdfs_get_err_like(g_8c4b3338);
@@ -16944,7 +16959,7 @@ u32 ninja_sub_259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
         iVar2 = gdFsSeek(g_8c4b3338, iVar1 * iVar4, 0);
         if (iVar2 == 0) {
             iVar5 = g_8c277c90;
-            iVar3 = gdfs_sub_1f31c6(g_8c4b3338, g_8c277c90, g_8c277c88, a3);
+            iVar3 = gdfs_calls_update_fields_1f31c6(g_8c4b3338, g_8c277c90, g_8c277c88, a3);
             iVar2 = iVar1 * iVar4;
             if (iVar3 == 0)
                 goto LAB_8c259d32;
@@ -16957,10 +16972,10 @@ u32 ninja_sub_259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * ninja_sub_259e80  0x8c259e80
- * area name: in the ninja library code range
+ * ninja_uses_memcpy_bytes_259e80  0x8c259e80
+ * area name: in the ninja library code range; behaviour name: its main named callee is memcpy_bytes
  */
-u32 ninja_sub_259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 ninja_uses_memcpy_bytes_259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -17002,7 +17017,7 @@ u32 ninja_sub_259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
                             iVar4 = libgcc_divide_helper_01051c(uVar7, g_8c277c8c);
                             iVar1 = iVar1 * iVar4;
                             iVar5 = a0 + uVar6;
-                            iVar2 = gdfs_sub_1f31c6(ar4_00, iVar1, iVar5, a3);
+                            iVar2 = gdfs_calls_update_fields_1f31c6(ar4_00, iVar1, iVar5, a3);
                             if (iVar2 != 0) {
                                 g_8c4aa6b8 = gdfs_get_stat_like(g_8c4b3338);
                                 g_8c4aa6bc = gdfs_get_err_like(g_8c4b3338);
@@ -17014,7 +17029,7 @@ u32 ninja_sub_259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
                             g_8c277c94 = g_8c277c94 + g_8c277c90 * iVar4;
                             g_8c277ca4 = 0;
                         } else {
-                            iVar2 = gdfs_sub_1f31c6(ar4_00, iVar1, iVar4, a3);
+                            iVar2 = gdfs_calls_update_fields_1f31c6(ar4_00, iVar1, iVar4, a3);
                             if (iVar2 != 0) {
                                 g_8c4aa6b8 = gdfs_get_stat_like(g_8c4b3338);
                                 g_8c4aa6bc = gdfs_get_err_like(g_8c4b3338);
@@ -17033,7 +17048,7 @@ u32 ninja_sub_259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
                     }
                 } else {
                     uVar7 = (a1 - uVar6) + 0x7ff >> 0xb;
-                    gdfs_sub_1f31c6(g_8c4b3338, uVar7, a0 + uVar6, a3);
+                    gdfs_calls_update_fields_1f31c6(g_8c4b3338, uVar7, a0 + uVar6, a3);
                     g_8c277ca0 = g_8c277ca0 + uVar7 * 0x800;
                     g_8c277c94 = 0;
                     g_8c277ca4 = 0;
@@ -17049,7 +17064,7 @@ u32 ninja_sub_259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
         iVar2 = gdFsSeek(g_8c4b3338, iVar1 * iVar4, 0);
         if (iVar2 == 0) {
             iVar5 = g_8c277c90;
-            iVar3 = gdfs_sub_1f31c6(g_8c4b3338, g_8c277c90, g_8c277c88, a3);
+            iVar3 = gdfs_calls_update_fields_1f31c6(g_8c4b3338, g_8c277c90, g_8c277c88, a3);
             iVar2 = iVar1 * iVar4;
             if (iVar3 == 0)
                 goto LAB_8c259f6a;
@@ -17064,7 +17079,8 @@ u32 ninja_sub_259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * nj_seek  0x8c25a122
  * moves the position at 0x8c277ca0: a1 = 0 sets it, 1 adds a0, 2 sets it to size - a0
- * called by: gfxlib_sub_239212, ta_sub_2391a8, tex_sub_25a216, tex_sub_25a770, tex_sub_25a838, vram_sub_25ae38
+ * called by: gfxlib_uses_ninja_close_file_239212, ta_uses_nj_seek_2391a8, tex_uses_dcache_writeback_range_25a770,
+ * tex_uses_dcache_writeback_range_25a838, tex_uses_nj_seek_25a216, vram_uses_nj_seek_25ae38
  */
 int nj_seek(int a0, int a1) {
     int iVar1;
@@ -17082,11 +17098,12 @@ int nj_seek(int a0, int a1) {
 }
 
 /*
- * ninja_sub_25a174  0x8c25a174
- * area name: in the ninja library code range
- * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_239212
+ * ninja_uses_strcat_25a174  0x8c25a174
+ * area name: in the ninja library code range; behaviour name: its main named callee is strcat
+ * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
+ * gfxlib_uses_tex_entry_alloc_237964
  */
-u32 ninja_sub_25a174(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_uses_strcat_25a174(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     u8 *ar4_00;
@@ -17097,7 +17114,7 @@ u32 ninja_sub_25a174(u32 a0, u32 a1, u32 a2, u32 a3) {
     ar5_00 = a1;
     ain0 = a2;
     uVar1 = log_message(a1, a1, a2);
-    libc_sub_010998();
+    libc_calls_fill_loop_010998();
     ar4_00 = &stack0xffffffe8;
     strupr(ar4_00, ar5_00, a2, a3);
     uVar1 = ain0;
@@ -17106,12 +17123,12 @@ u32 ninja_sub_25a174(u32 a0, u32 a1, u32 a2, u32 a3) {
         iVar2 = strcmp_word(ar4_00, ain0);
         ar5_00 = ain0;
         if (iVar2 == 0) {
-            libc_sub_010998();
+            libc_calls_fill_loop_010998();
             strcat(a0, a1);
             return 1;
         }
     }
-    libc_sub_010998();
+    libc_calls_fill_loop_010998();
     strcat(a0, a1);
     strcat(a0, uVar1);
     return 1;
@@ -17120,8 +17137,9 @@ u32 ninja_sub_25a174(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * tex_is_palettized  0x8c25a1ee
  * 1 for the palettised texture formats 0x500..0x800 (4- and 8-bit, with and without mipmaps)
- * called by: alt_entry_237830, alt_entry_2565d8, alt_entry_2567fe, gfxlib_sub_23793c, gfxlib_sub_2387a0,
- * ninja_sub_2565c4, ninja_sub_2566c8, ninja_sub_2567f8
+ * called by: alt_entry_237830, alt_entry_2565d8, alt_entry_2567fe, gfxlib_uses_tex_entry_alloc_23793c,
+ * gfxlib_uses_tex_entry_alloc_2387a0, ninja_uses_tex_is_palettized_2565c4, ninja_uses_tex_is_palettized_2566c8,
+ * ninja_uses_tex_is_palettized_2567f8
  */
 u32 tex_is_palettized(int a0) {
     if ((((a0 != 0x500) && (a0 != 0x600)) && (a0 != 0x700)) && (a0 != 0x800)) {
@@ -17131,11 +17149,11 @@ u32 tex_is_palettized(int a0) {
 }
 
 /*
- * tex_sub_25a216  0x8c25a216
- * area name: sits between tex functions (same compilation unit)
- * called by: gfxlib_sub_23793c, gfxlib_sub_237964
+ * tex_uses_nj_seek_25a216  0x8c25a216
+ * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is nj_seek
+ * called by: gfxlib_uses_tex_entry_alloc_23793c, gfxlib_uses_tex_entry_alloc_237964
  */
-u32 tex_sub_25a216(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 tex_uses_nj_seek_25a216(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int iStack_34;
@@ -17149,19 +17167,19 @@ u32 tex_sub_25a216(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     nj_seek(0, 0);
     iStack_18 = -1;
     do {
-        iVar1 = ninja_sub_259c48(&iStack_34, 4, unused_a2, a3);
+        iVar1 = ninja_uses_memcpy_bytes_259c48(&iStack_34, 4, unused_a2, a3);
         if (iVar1 < 0) {
             return 0xfffffffc;
         }
         if (iStack_34 == 0x58494247) {
             nj_seek(0xfffffffc, 1);
-            iVar1 = ninja_sub_259c48(auStack_20, 0xc, unused_a2, a3);
+            iVar1 = ninja_uses_memcpy_bytes_259c48(auStack_20, 0xc, unused_a2, a3);
         joined_r0x8c25a25e:
             if (iVar1 < 0) {
                 return 0xfffffffc;
             }
         } else if (iStack_34 == 0x54525650) {
-            iVar1 = ninja_sub_259c48(auStack_2c, 0xc, unused_a2, a3);
+            iVar1 = ninja_uses_memcpy_bytes_259c48(auStack_2c, 0xc, unused_a2, a3);
             goto joined_r0x8c25a25e;
         }
         if (iStack_34 == 0x54525650) {
@@ -17186,11 +17204,11 @@ u32 tex_sub_25a216(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * tex_sub_25a33c  0x8c25a33c
- * area name: sits between tex functions (same compilation unit)
- * called by: ninja_sub_25b34a
+ * tex_fill_loop_25a33c  0x8c25a33c
+ * area name: sits between tex functions (same compilation unit); behaviour name: a loop that writes memory
+ * called by: ninja_calls_fill_loop_25b34a
  */
-u32 tex_sub_25a33c(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 tex_fill_loop_25a33c(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -17215,7 +17233,8 @@ u32 tex_sub_25a33c(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 /*
  * tex_entry_alloc  0x8c25a380
  * takes a free 0x44-byte entry in the texture table (0x8c277b08) and fills it from a1
- * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212, pvr_sub_23a29c
+ * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
+ * gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0, pvr_uses_tex_entry_alloc_23a29c
  */
 u32 tex_entry_alloc(int *a0, u32 *a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;
@@ -17252,7 +17271,7 @@ u32 tex_entry_alloc(int *a0, u32 *a1, u32 a2, u32 a3, u32 s0) {
         *(u16 *)(g_8c277b08 + iVar3 + 0x40) = 0;
     } else {
         *(u16 *)(g_8c277b08 + iVar3 + 0x40) = 1;
-        uVar1 = tex_sub_2571fe(g_8c277b08 + iVar3);
+        uVar1 = tex_uses_tex_size_to_index_2571fe(g_8c277b08 + iVar3);
     }
     if (g_8c4aa5a4 <= uVar2) {
         g_8c4aa5a4 = g_8c4aa5a4 + 1;
@@ -17305,7 +17324,7 @@ u32 alt_entry_25a394(int *a0, u32 *a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u
         *(short *)(*unaff_r14 + iVar4 + 0x40) = (short)unaff_r8;
     } else {
         *(u16 *)(*unaff_r14 + iVar4 + 0x40) = 1;
-        uVar1 = tex_sub_2571fe(*unaff_r14 + iVar4);
+        uVar1 = tex_uses_tex_size_to_index_2571fe(*unaff_r14 + iVar4);
     }
     if (g_8c4aa5a4 <= uVar2) {
         g_8c4aa5a4 = g_8c4aa5a4 + 1;
@@ -17314,11 +17333,12 @@ u32 alt_entry_25a394(int *a0, u32 *a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u
 }
 
 /*
- * tex_sub_25a49e  0x8c25a49e
- * area name: sits between tex functions (same compilation unit)
- * called by: alt_entry_2565d8, alt_entry_2567fe, ninja_sub_2565c4, ninja_sub_2566c8, ninja_sub_2567f8, tex_sub_25a674
+ * tex_uses_libgcc_divide_helper_25a49e  0x8c25a49e
+ * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is
+ * libgcc_divide_helper_01051c called by: alt_entry_2565d8, alt_entry_2567fe, ninja_uses_tex_is_palettized_2565c4,
+ * ninja_uses_tex_is_palettized_2566c8, ninja_uses_tex_is_palettized_2567f8, tex_uses_libgcc_divide_helper_25a674
  */
-int tex_sub_25a49e(u32 *a0) {
+int tex_uses_libgcc_divide_helper_25a49e(u32 *a0) {
     int iVar1;
     u32 uVar2;
     int *piVar3;
@@ -17392,8 +17412,9 @@ int alt_entry_25a4a6(u32 *a0, u32 a1, u32 a2, int *a3, int ain0) {
 /*
  * tex_entry_find  0x8c25a536
  * index of the texture-table entry (0x44 bytes each, a1 of them at a0) whose id is a2; -1 if none
- * called by: alt_entry_23729c, gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212,
- * ninja_sub_255ff8, ninja_sub_25b08a, pvr_sub_23a29c (+2 more)
+ * called by: alt_entry_23729c, gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
+ * gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0, ninja_draw_25b08a,
+ * ninja_uses_tex_entry_find_255ff8, pvr_uses_tex_entry_alloc_23a29c (+2 more)
  */
 u32 tex_entry_find(int a0, u32 a1, int a2) {
     u32 uVar1;
@@ -17412,7 +17433,7 @@ u32 tex_entry_find(int a0, u32 a1, int a2) {
 /*
  * array44_index_of  0x8c25a566
  * index of entry a2 in the array a0 of a1 0x44-byte entries, else -1
- * called by: alt_entry_2378ba, gfxlib_sub_2378a6
+ * called by: alt_entry_2378ba, gfxlib_uses_array44_index_of_2378a6
  */
 u32 array44_index_of(int a0, u32 a1, int a2) {
     int iVar1;
@@ -17434,7 +17455,8 @@ u32 array44_index_of(int a0, u32 a1, int a2) {
 /*
  * tex_entry_find_pair  0x8c25a5c0
  * index of the texture-table entry whose first two words are a2, a3; -1 if none
- * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212, pvr_sub_23a29c
+ * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
+ * gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0, pvr_uses_tex_entry_alloc_23a29c
  */
 u32 tex_entry_find_pair(int a0, u32 a1, int a2, int a3) {
     u32 uVar1;
@@ -17453,8 +17475,9 @@ u32 tex_entry_find_pair(int a0, u32 a1, int a2, int a3) {
 /*
  * tex_entry_set_flags  0x8c25a608
  * ORs a1 into the flags of every texture-table entry whose id is a0
- * called by: alt_entry_237830, gfxlib_sub_23782c, gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0,
- * gfxlib_sub_239212, pvr_sub_23a29c
+ * called by: alt_entry_237830, gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
+ * gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0, gfxlib_uses_tex_entry_set_flags_23782c,
+ * pvr_uses_tex_entry_alloc_23a29c
  */
 u32 tex_entry_set_flags(int a0, u32 a1, int a2, u32 unused_a3, u32 ain0) {
     int *a4;
@@ -17469,7 +17492,7 @@ u32 tex_entry_set_flags(int a0, u32 a1, int a2, u32 unused_a3, u32 ain0) {
             a4[5] = a2;
             if ((a1 & 2) != 0) {
                 *(short *)(a4 + 0x10) = (short)a4[0x10] + 1;
-                ain0 = tex_sub_2571fe(a4);
+                ain0 = tex_uses_tex_size_to_index_2571fe(a4);
             }
         }
         iVar2 = iVar2 + 0x44;
@@ -17478,11 +17501,11 @@ u32 tex_entry_set_flags(int a0, u32 a1, int a2, u32 unused_a3, u32 ain0) {
 }
 
 /*
- * tex_sub_25a674  0x8c25a674
- * area name: sits between tex functions (same compilation unit)
- * called by: alt_entry_2565d8, ninja_sub_2565c4
+ * tex_uses_libgcc_divide_helper_25a674  0x8c25a674
+ * area name: sits between tex functions (same compilation unit); behaviour name: its callees mostly do:
+ * uses_libgcc_divide_helper called by: alt_entry_2565d8, ninja_uses_tex_is_palettized_2565c4
  */
-u32 tex_sub_25a674(int a0, u32 a1, u32 a2, u32 unused_a3, u32 ain0) {
+u32 tex_uses_libgcc_divide_helper_25a674(int a0, u32 a1, u32 a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     int *a4;
     u32 uVar2;
@@ -17505,7 +17528,7 @@ u32 tex_sub_25a674(int a0, u32 a1, u32 a2, u32 unused_a3, u32 ain0) {
                 a4[5] = 0;
             }
             if ((a4[4] & 3U) == 0) {
-                ain0 = tex_sub_25a49e(a4);
+                ain0 = tex_uses_libgcc_divide_helper_25a49e(a4);
             }
         }
         iVar4 = iVar4 + 0x44;
@@ -17516,7 +17539,8 @@ u32 tex_sub_25a674(int a0, u32 a1, u32 a2, u32 unused_a3, u32 ain0) {
 /*
  * tex_entry_addref  0x8c25a6ea
  * adds a reference (+0x40) to every texture-table entry whose id is a0
- * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212, pvr_sub_23a29c
+ * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
+ * gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0, pvr_uses_tex_entry_alloc_23a29c
  */
 u32 tex_entry_addref(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int *piVar1;
@@ -17536,7 +17560,8 @@ u32 tex_entry_addref(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ai
 /*
  * tex_entry_next_free  0x8c25a710
  * +0x14 of the next free texture-table entry
- * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212, pvr_sub_23a29c
+ * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
+ * gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0, pvr_uses_tex_entry_alloc_23a29c
  */
 int tex_entry_next_free(void) {
     u32 uVar1;
@@ -17550,11 +17575,12 @@ int tex_entry_next_free(void) {
 }
 
 /*
- * tex_sub_25a770  0x8c25a770
- * area name: sits between tex functions (same compilation unit)
- * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_239212
+ * tex_uses_dcache_writeback_range_25a770  0x8c25a770
+ * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is
+ * dcache_writeback_range called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
+ * gfxlib_uses_tex_entry_alloc_237964
  */
-int tex_sub_25a770(int a0, int a1, u32 unused_a2, u32 a3) {
+int tex_uses_dcache_writeback_range_25a770(int a0, int a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int iVar2;
     u32 uVar3;
@@ -17565,7 +17591,7 @@ int tex_sub_25a770(int a0, int a1, u32 unused_a2, u32 a3) {
     int in_stack_ffffffc8;
 
     ar6_00 = &stack0xffffffc8;
-    iVar1 = ninja_sub_25af3c(a1, *(u32 *)(a0 + 4), &stack0xffffffc8);
+    iVar1 = ninja_uses_nj_seek_25af3c(a1, *(u32 *)(a0 + 4), &stack0xffffffc8);
     if (-1 < iVar1) {
         uVar5 = *(u32 *)(a1 + 0x18);
         uVar3 = in_stack_ffffffc8 - 8;
@@ -17583,22 +17609,22 @@ int tex_sub_25a770(int a0, int a1, u32 unused_a2, u32 a3) {
         if (0 < (int)uVar3) {
             do {
                 uVar4 = uVar5;
-                iVar2 = ninja_sub_259c48(g_8c4aa6cc, uVar5, ar6_00, a3);
+                iVar2 = ninja_uses_memcpy_bytes_259c48(g_8c4aa6cc, uVar5, ar6_00, a3);
                 if (iVar2 < 0) {
-                    kamui_sub_20cf88(a1 + 4);
+                    kamui_list_20cf88(a1 + 4);
                     return 0xffffffff;
                 }
                 dcache_writeback_range(g_8c4aa6cc, uVar5);
                 ar6_00 = (u8 *)ar6_01;
                 a3 = uVar5;
-                ninja_sub_25ab02(a1 + 4, g_8c4aa6cc, ar6_01, uVar5);
+                ninja_uses_vram64_25ab02(a1 + 4, g_8c4aa6cc, ar6_01, uVar5);
                 ar6_01 = ar6_01 + uVar5;
                 uVar4 = uVar3 - ar6_01;
                 if (uVar4 < g_8c4aa6d0) {
                     uVar5 = uVar4;
                 }
                 do {
-                    iVar2 = pvr_sub_20a7e0();
+                    iVar2 = pvr_calls_scan_loop_20a7e0();
                 } while (iVar2 != 0);
             } while (ar6_01 != uVar3);
         }
@@ -17611,11 +17637,12 @@ int tex_sub_25a770(int a0, int a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * tex_sub_25a838  0x8c25a838
- * area name: sits between tex functions (same compilation unit)
- * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_239212
+ * tex_uses_dcache_writeback_range_25a838  0x8c25a838
+ * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is
+ * dcache_writeback_range called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
+ * gfxlib_uses_tex_entry_alloc_237964
  */
-int tex_sub_25a838(int a0, int *a1, u32 unused_a2, u32 a3) {
+int tex_uses_dcache_writeback_range_25a838(int a0, int *a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int ar4_00;
     int ain0;
@@ -17625,7 +17652,7 @@ int tex_sub_25a838(int a0, int *a1, u32 unused_a2, u32 a3) {
 
     ar6_00 = &stack0xffffffd8;
     ar5_00 = *(u32 *)(a0 + 4);
-    iVar1 = ninja_sub_25afc0(a1, ar5_00, &stack0xffffffd8);
+    iVar1 = ninja_draw_25afc0(a1, ar5_00, &stack0xffffffd8);
     if (-1 < iVar1) {
         iVar1 = a1[6];
         in_stack_ffffffd8 = in_stack_ffffffd8 + -8;
@@ -17635,12 +17662,12 @@ int tex_sub_25a838(int a0, int *a1, u32 unused_a2, u32 a3) {
         } else {
             ain0 = 0;
         }
-        ar4_00 = gfxlib_sub_236278(in_stack_ffffffd8);
+        ar4_00 = gfxlib_fill_loop_236278(in_stack_ffffffd8);
         if (ar4_00 == 0) {
             g_8c4aa6b4 = 7;
             iVar1 = -7;
         } else {
-            iVar1 = ninja_sub_259c48(ar4_00, in_stack_ffffffd8, ar6_00, a3);
+            iVar1 = ninja_uses_memcpy_bytes_259c48(ar4_00, in_stack_ffffffd8, ar6_00, a3);
             if (iVar1 < 0) {
                 iVar1 = -5;
             } else {
@@ -17659,15 +17686,15 @@ int tex_sub_25a838(int a0, int *a1, u32 unused_a2, u32 a3) {
 /*
  * tex_copy_to_alloc  0x8c25a8c0
  * copies a texture's data into newly allocated texture memory and writes the cache back; -7 when out of memory
- * called by: gfxlib_sub_23793c, gfxlib_sub_2387a0, pvr_sub_23a29c
+ * called by: gfxlib_uses_tex_entry_alloc_23793c, gfxlib_uses_tex_entry_alloc_2387a0, pvr_uses_tex_entry_alloc_23a29c
  */
 int tex_copy_to_alloc(u32 unused_a0, int *a1) {
     int iVar1;
     int ar4_00;
-    iVar1 = tex_sub_25a962(a1);
+    iVar1 = tex_test_25a962(a1);
     if (-1 < iVar1) {
         iVar1 = a1[6];
-        ar4_00 = gfxlib_sub_236278(iVar1);
+        ar4_00 = gfxlib_fill_loop_236278(iVar1);
         if (ar4_00 == 0) {
             g_8c4aa6b4 = 7;
             iVar1 = -7;
@@ -17682,28 +17709,29 @@ int tex_copy_to_alloc(u32 unused_a0, int *a1) {
 }
 
 /*
- * tex_sub_25a914  0x8c25a914
- * area name: sits between tex functions (same compilation unit)
- * called by: alt_entry_237830, gfxlib_sub_23782c, gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0,
- * gfxlib_sub_239212, pvr_sub_23a29c
+ * tex_calls_test_25a914  0x8c25a914
+ * area name: sits between tex functions (same compilation unit); behaviour name: its callees mostly do: test
+ * called by: alt_entry_237830, gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
+ * gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0, gfxlib_uses_tex_entry_set_flags_23782c,
+ * pvr_uses_tex_entry_alloc_23a29c
  */
-int tex_sub_25a914(u32 a0, u32 *a1, u32 a2, u32 a3) {
+int tex_calls_test_25a914(u32 a0, u32 *a1, u32 a2, u32 a3) {
     u8 *puVar1;
     int iVar2;
 
-    iVar2 = tex_sub_25a962(a1);
+    iVar2 = tex_test_25a962(a1);
     if (iVar2 < 0) {
         return iVar2;
     }
-    iVar2 = ninja_sub_25ab74(a1 + 1, *a1);
-    puVar1 = (&pvr_sub_20a7e0);
+    iVar2 = ninja_uses_vram64_25ab74(a1 + 1, *a1);
+    puVar1 = (&pvr_calls_scan_loop_20a7e0);
     if (iVar2 == 0) {
         do {
             iVar2 = (*(code *)puVar1)();
         } while (iVar2 != 0);
         return 1;
     }
-    kamui_sub_20cf88(a1 + 1);
+    kamui_list_20cf88(a1 + 1);
     g_8c4aa6b4 = 8;
     return 0xfffffff8;
 }
@@ -17719,34 +17747,35 @@ int alt_entry_25a918(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
     u32 *unaff_r14;
 
-    iVar2 = tex_sub_25a962(a1);
+    iVar2 = tex_test_25a962(a1);
     if (iVar2 < 0) {
         return iVar2;
     }
     ar5_00 = *unaff_r14;
     ar4_00 = unaff_r14 + 1;
-    iVar2 = ninja_sub_25ab74(ar4_00, ar5_00);
-    puVar1 = (&pvr_sub_20a7e0);
+    iVar2 = ninja_uses_vram64_25ab74(ar4_00, ar5_00);
+    puVar1 = (&pvr_calls_scan_loop_20a7e0);
     if (iVar2 == 0) {
         do {
             iVar2 = (*(code *)puVar1)(ar4_00, ar5_00, a2, a3);
         } while (iVar2 != 0);
         return 1;
     }
-    kamui_sub_20cf88(unaff_r14 + 1);
+    kamui_list_20cf88(unaff_r14 + 1);
     g_8c4aa6b4 = 8;
     return 0xfffffff8;
 }
 
 /*
- * tex_sub_25a962  0x8c25a962
- * area name: sits between tex functions (same compilation unit)
- * called by: alt_entry_25a918, tex_copy_to_alloc, tex_sub_25a914
+ * tex_test_25a962  0x8c25a962
+ * area name: sits between tex functions (same compilation unit); behaviour name: returns the result of a comparison
+ * called by: alt_entry_25a918, tex_calls_test_25a914, tex_copy_to_alloc
  */
-u32 tex_sub_25a962(int a0) {
+u32 tex_test_25a962(int a0) {
     int iVar1;
 
-    iVar1 = (*(code *)(&gfxlib_sub_233e10))(a0 + 4, *(u32 *)(a0 + 0x10), *(u32 *)(a0 + 0x14), *(u32 *)(a0 + 4) >> 0x10);
+    iVar1 = (*(code *)(&gfxlib_uses_ta_fifo_233e10))(a0 + 4, *(u32 *)(a0 + 0x10), *(u32 *)(a0 + 0x14),
+                                                     *(u32 *)(a0 + 4) >> 0x10);
     if (iVar1 != 0) {
         g_8c4aa6b4 = 6;
         return 0xfffffffa;
@@ -17762,8 +17791,8 @@ u32 alt_entry_25a966(int a0) {
     int iVar1;
     int unaff_r14;
 
-    iVar1 = (*(code *)(&gfxlib_sub_233e10))(a0 + 4, *(u32 *)(unaff_r14 + 0x10), *(u32 *)(unaff_r14 + 0x14),
-                                            *(u32 *)(unaff_r14 + 4) >> 0x10);
+    iVar1 = (*(code *)(&gfxlib_uses_ta_fifo_233e10))(a0 + 4, *(u32 *)(unaff_r14 + 0x10), *(u32 *)(unaff_r14 + 0x14),
+                                                     *(u32 *)(unaff_r14 + 4) >> 0x10);
     if (iVar1 != 0) {
         g_8c4aa6b4 = 6;
         return 0xfffffffa;
@@ -17772,17 +17801,17 @@ u32 alt_entry_25a966(int a0) {
 }
 
 /*
- * tex_sub_25a9cc  0x8c25a9cc
- * area name: sits between tex functions (same compilation unit)
- * called by: ninja_sub_25ab02
+ * tex_uses_vram64_25a9cc  0x8c25a9cc
+ * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is vram64_20a8e0
+ * called by: ninja_uses_vram64_25ab02
  */
-u32 tex_sub_25a9cc(int a0, int a1, u32 a2, u32 a3) {
+u32 tex_uses_vram64_25a9cc(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
     u32 uVar4;
     u32 ar6_00;
-    iVar1 = ta_sub_213a04(*(u32 *)(a0 + 0xc), *(u32 *)(a0 + 0x10));
+    iVar1 = ta_test_213a04(*(u32 *)(a0 + 0xc), *(u32 *)(a0 + 0x10));
     iVar1 = iVar1 * 4;
     if ((*(u32 *)(a0 + 0x18) & 1) == 0) {
         uVar2 = *(u32 *)(&g_8c277ce0 + iVar1);
@@ -17823,16 +17852,16 @@ LAB_8c25aa36:
 }
 
 /*
- * ninja_sub_25aa80  0x8c25aa80
- * area name: in the ninja library code range
- * called by: ninja_sub_25ab74
+ * ninja_uses_vram64_25aa80  0x8c25aa80
+ * area name: in the ninja library code range; behaviour name: its main named callee is vram64_20a8e0
+ * called by: ninja_uses_vram64_25ab74
  */
-u32 ninja_sub_25aa80(int a0, int a1) {
+u32 ninja_uses_vram64_25aa80(int a0, int a1) {
     int iVar1;
     int ar6_00;
     int ar4_00;
 
-    iVar1 = ta_sub_213a04(*(u32 *)(a0 + 0xc), *(u32 *)(a0 + 0x10));
+    iVar1 = ta_test_213a04(*(u32 *)(a0 + 0xc), *(u32 *)(a0 + 0x10));
     iVar1 = iVar1 * 4;
     if ((*(u32 *)(a0 + 0x18) & 1) == 0) {
         ar6_00 = *(int *)(&g_8c277ce0 + iVar1);
@@ -17848,11 +17877,11 @@ u32 ninja_sub_25aa80(int a0, int a1) {
 }
 
 /*
- * ninja_sub_25ab02  0x8c25ab02
- * area name: in the ninja library code range
- * called by: ninja_sub_25ac94, tex_sub_25a770
+ * ninja_uses_vram64_25ab02  0x8c25ab02
+ * area name: in the ninja library code range; behaviour name: its main named callee is vram64_20a8e0
+ * called by: ninja_uses_vram64_25ac94, tex_uses_dcache_writeback_range_25a770
  */
-u32 ninja_sub_25ab02(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_uses_vram64_25ab02(u32 *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar6_00;
     u32 uVar2;
@@ -17861,7 +17890,7 @@ u32 ninja_sub_25ab02(u32 *a0, u32 a1, u32 a2, u32 a3) {
     uVar2 = a3 & 0xfffffffc;
     if (uVar2 != 0) {
         if ((*a0 & 0xffff) == 3) {
-            tex_sub_25a9cc(a0, a1, a2, a3);
+            tex_uses_vram64_25a9cc(a0, a1, a2, a3);
         } else {
             if ((*a0 >> 0x10 & 0xff00) == (int)0x200) {
                 iVar1 = 4;
@@ -17883,20 +17912,20 @@ u32 ninja_sub_25ab02(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_25ab74  0x8c25ab74
- * area name: in the ninja library code range
- * called by: alt_entry_25a918, tex_sub_25a914
+ * ninja_uses_vram64_25ab74  0x8c25ab74
+ * area name: in the ninja library code range; behaviour name: its main named callee is vram64_20a8e0
+ * called by: alt_entry_25a918, tex_calls_test_25a914
  */
-u32 ninja_sub_25ab74(u32 *a0, u32 a1) {
+u32 ninja_uses_vram64_25ab74(u32 *a0, u32 a1) {
     int iVar1;
     u32 ar4_00;
     u32 ar6_00;
 
     if ((*a0 & 0xffff) == 3) {
-        ninja_sub_25aa80(a0, a1);
+        ninja_uses_vram64_25aa80(a0, a1);
     } else {
         if ((*a0 >> 0x10 & 0xff00) == 0x200) {
-            iVar1 = ta_sub_213a04(a0[3], a0[4]);
+            iVar1 = ta_test_213a04(a0[3], a0[4]);
             ar6_00 = *(int *)(&g_8c277d50 + iVar1 * 4) + 4;
             ar4_00 = a0[7] + 4;
         } else {
@@ -17911,7 +17940,7 @@ u32 ninja_sub_25ab74(u32 *a0, u32 a1) {
 /*
  * pvr_parse_header  0x8c25abf0
  * walks a PVR file's chunks: GBIX sets *a1 to the global index, PVRT copies the 8-byte header to a0
- * called by: gfxlib_sub_23793c, gfxlib_sub_2387a0
+ * called by: gfxlib_uses_tex_entry_alloc_23793c, gfxlib_uses_tex_entry_alloc_2387a0
  */
 int *pvr_parse_header(u32 a0, int *a1, int *a2, u32 a3) {
     u8 *puVar1;
@@ -17940,13 +17969,14 @@ int *pvr_parse_header(u32 a0, int *a1, int *a2, u32 a3) {
 }
 
 /*
- * ninja_sub_25ac56  0x8c25ac56
- * area name: in the ninja library code range
+ * ninja_test_25ac56  0x8c25ac56
+ * area name: in the ninja library code range; behaviour name: returns the result of a comparison
  */
-u32 ninja_sub_25ac56(int a0, u32 *a1) {
+u32 ninja_test_25ac56(int a0, u32 *a1) {
     int iVar1;
 
-    iVar1 = (*(code *)(&gfxlib_sub_233e10))(a0 + 0x18, (u32) * (u16 *)(a1 + 1), (u32) * (u16 *)((int)a1 + 6), *a1);
+    iVar1 =
+        (*(code *)(&gfxlib_uses_ta_fifo_233e10))(a0 + 0x18, (u32) * (u16 *)(a1 + 1), (u32) * (u16 *)((int)a1 + 6), *a1);
     if (iVar1 != 0) {
         g_8c4aa6b4 = 6;
         return 0xffffffff;
@@ -17955,13 +17985,13 @@ u32 ninja_sub_25ac56(int a0, u32 *a1) {
 }
 
 /*
- * ninja_sub_25ac94  0x8c25ac94
- * area name: in the ninja library code range
+ * ninja_uses_vram64_25ac94  0x8c25ac94
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: uses_vram64
  */
-u32 ninja_sub_25ac94(int a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_uses_vram64_25ac94(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
-    iVar1 = ninja_sub_25ab02(a0 + 0x18, a1, a2, a3);
+    iVar1 = ninja_uses_vram64_25ab02(a0 + 0x18, a1, a2, a3);
     if (iVar1 != 0) {
         g_8c4aa6b4 = 8;
         return 0xffffffff;
@@ -17970,19 +18000,19 @@ u32 ninja_sub_25ac94(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_25acc2  0x8c25acc2
- * area name: in the ninja library code range
+ * ninja_uses_vram64_25acc2  0x8c25acc2
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: uses_vram64
  */
-u32 ninja_sub_25acc2(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_uses_vram64_25acc2(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 in_r3;
     int unaff_r14;
 
     if (((in_r3 & *(u32 *)(unaff_r14 + 0x18)) == 0) && ((*(u32 *)(unaff_r14 + 0x18) & 0x11000000) == 0)) {
-        iVar1 = kamui_sub_20cc56(unaff_r14 + 0x18, a1, a2, a3);
+        iVar1 = kamui_uses_vram64_20cc56(unaff_r14 + 0x18, a1, a2, a3);
     } else {
         g_8c277cd4 = *(int *)(unaff_r14 + 0x34) + -4;
-        iVar1 = kamui_sub_20cc56(&g_8c277cb8, a1, a2, a3);
+        iVar1 = kamui_uses_vram64_20cc56(&g_8c277cb8, a1, a2, a3);
     }
     if (iVar1 == 0) {
         return 1;
@@ -17998,18 +18028,19 @@ u32 vram64_25ad0a(int a0, u32 a1, int a2, u32 a3) {
     if (a0 == 0) {
         return 0xffffffff;
     }
-    vram_sub_25ad98(a1, (*(u32 *)(a0 + 0x34) | 0xa4000000) + a2, a3);
+    vram_fill_loop_25ad98(a1, (*(u32 *)(a0 + 0x34) | 0xa4000000) + a2, a3);
     return 1;
 }
 
 /*
- * vram_sub_25ad42  0x8c25ad42
- * area name: sits between vram functions (same compilation unit)
+ * vram_calls_scan_loop_25ad42  0x8c25ad42
+ * area name: sits between vram functions (same compilation unit); behaviour name: its callees mostly do:
+ * calls_scan_loop
  */
-u32 vram_sub_25ad42(void) {
+u32 vram_calls_scan_loop_25ad42(void) {
     int iVar1;
 
-    iVar1 = pvr_sub_20a7e0();
+    iVar1 = pvr_calls_scan_loop_20a7e0();
     if (iVar1 == 0) {
         return 1;
     }
@@ -18017,11 +18048,11 @@ u32 vram_sub_25ad42(void) {
 }
 
 /*
- * vram_sub_25ad98  0x8c25ad98
- * area name: sits between vram functions (same compilation unit)
+ * vram_fill_loop_25ad98  0x8c25ad98
+ * area name: sits between vram functions (same compilation unit); behaviour name: a loop that writes memory
  * called by: vram64_25ad0a
  */
-u32 vram_sub_25ad98(u32 *a0, u32 *a1, u32 a2) {
+u32 vram_fill_loop_25ad98(u32 *a0, u32 *a1, u32 a2) {
     u32 uVar1;
     u32 *puVar2;
     u32 uVar3;
@@ -18106,11 +18137,11 @@ u32 vram_sub_25ad98(u32 *a0, u32 *a1, u32 a2) {
 }
 
 /*
- * vram_sub_25ae38  0x8c25ae38
- * area name: sits between vram functions (same compilation unit)
- * called by: ninja_sub_25af3c, ninja_sub_25afc0
+ * vram_uses_nj_seek_25ae38  0x8c25ae38
+ * area name: sits between vram functions (same compilation unit); behaviour name: its main named callee is nj_seek
+ * called by: ninja_draw_25afc0, ninja_uses_nj_seek_25af3c
  */
-u32 vram_sub_25ae38(u32 *a0, u32 *a1, u32 *a2, u32 *a3) {
+u32 vram_uses_nj_seek_25ae38(u32 *a0, u32 *a1, u32 *a2, u32 *a3) {
     u8 *puVar1;
     int iVar2;
     u32 uVar3;
@@ -18130,8 +18161,8 @@ u32 vram_sub_25ae38(u32 *a0, u32 *a1, u32 *a2, u32 *a3) {
     puStack_1c = a2;
     puStack_18 = a3;
     do {
-        puVar1 = (&ninja_sub_259c48);
-        iVar2 = ninja_sub_259c48(&iStack_2c, 4, a2, a3);
+        puVar1 = (&ninja_uses_memcpy_bytes_259c48);
+        iVar2 = ninja_uses_memcpy_bytes_259c48(&iStack_2c, 4, a2, a3);
         if (iVar2 < 0) {
             return 0xffffffff;
         }
@@ -18169,11 +18200,11 @@ u32 vram_sub_25ae38(u32 *a0, u32 *a1, u32 *a2, u32 *a3) {
 }
 
 /*
- * ninja_sub_25af3c  0x8c25af3c
- * area name: in the ninja library code range
- * called by: tex_sub_25a770
+ * ninja_uses_nj_seek_25af3c  0x8c25af3c
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: uses_nj_seek
+ * called by: tex_uses_dcache_writeback_range_25a770
  */
-int ninja_sub_25af3c(int a0, u32 a1, u32 a2) {
+int ninja_uses_nj_seek_25af3c(int a0, u32 a1, u32 a2) {
     int iVar1;
     u32 uStack_1c;
     u32 uStack_18;
@@ -18181,14 +18212,14 @@ int ninja_sub_25af3c(int a0, u32 a1, u32 a2) {
     u32 uStack_10;
 
     uStack_10 = a1;
-    iVar1 = vram_sub_25ae38(&uStack_18, &uStack_14, &uStack_1c, a2);
+    iVar1 = vram_uses_nj_seek_25ae38(&uStack_18, &uStack_14, &uStack_1c, a2);
     if (iVar1 < 0) {
         return iVar1;
     }
     if ((uStack_1c == (int)0xe00) && ((uStack_10 & 0x400000) != 0)) {
         uStack_1c = uStack_1c & 0xff | (int)0xf00;
     }
-    iVar1 = gfxlib_sub_233e10(a0 + 4, uStack_18, uStack_14, uStack_1c);
+    iVar1 = gfxlib_uses_ta_fifo_233e10(a0 + 4, uStack_18, uStack_14, uStack_1c);
     if (iVar1 != 0) {
         g_8c4aa6b4 = 6;
         return 0xfffffffa;
@@ -18198,11 +18229,11 @@ int ninja_sub_25af3c(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * ninja_sub_25afc0  0x8c25afc0
- * area name: in the ninja library code range
- * called by: tex_sub_25a838
+ * ninja_draw_25afc0  0x8c25afc0
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
+ * called by: tex_uses_dcache_writeback_range_25a838
  */
-int ninja_sub_25afc0(int a0, u32 a1, u32 a2) {
+int ninja_draw_25afc0(int a0, u32 a1, u32 a2) {
     int iVar1;
     u32 uStack_1c;
     u32 uStack_18;
@@ -18212,7 +18243,7 @@ int ninja_sub_25afc0(int a0, u32 a1, u32 a2) {
 
     iStack_10 = a0;
     uStack_c = a1;
-    iVar1 = vram_sub_25ae38(&uStack_18, &uStack_14, &uStack_1c, a2);
+    iVar1 = vram_uses_nj_seek_25ae38(&uStack_18, &uStack_14, &uStack_1c, a2);
     if (iVar1 < 0) {
         return iVar1;
     }
@@ -18228,11 +18259,11 @@ int ninja_sub_25afc0(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * ninja_sub_25b044  0x8c25b044
- * area name: in the ninja library code range
- * called by: game_sub_0154c4, game_sub_015e18
+ * ninja_draw_25b044  0x8c25b044
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
+ * called by: game_draw_0154c4, game_draw_015e18
  */
-u32 ninja_sub_25b044(int a0) {
+u32 ninja_draw_25b044(int a0) {
     u32 uVar1;
     int ar6_00;
     int ar7_00;
@@ -18243,7 +18274,7 @@ u32 ninja_sub_25b044(int a0) {
     ar6_00 = *(int *)(iVar2 + 0x24) + -1;
     ar7_00 = *(int *)(iVar2 + 0x28) + -1;
     pvr_set_clip_rect(0, 0, ar6_00, ar7_00);
-    kamui_sub_20bdc0(iVar2 + 0x18, uVar1, ar6_00, ar7_00);
+    kamui_draw_20bdc0(iVar2 + 0x18, uVar1, ar6_00, ar7_00);
     uVar1 = pvr_set_clip_rect(0, 0, g_8c4aa508 + -1, g_8c4aa50c + -1);
     return uVar1;
 }
@@ -18265,16 +18296,16 @@ u32 alt_entry_25b052(int a0) {
     ar6_00 = *(int *)(iVar2 + 0x24) + -1;
     ar7_00 = *(int *)(iVar2 + 0x28) + -1;
     (*in_r2)(0, 0, ar6_00, ar7_00);
-    kamui_sub_20bdc0(iVar2 + 0x18, uVar1, ar6_00, ar7_00);
+    kamui_draw_20bdc0(iVar2 + 0x18, uVar1, ar6_00, ar7_00);
     uVar1 = pvr_set_clip_rect(0, g_8c4aa508 + -1, g_8c4aa50c + -1);
     return uVar1;
 }
 
 /*
- * ninja_sub_25b08a  0x8c25b08a
- * area name: in the ninja library code range
+ * ninja_draw_25b08a  0x8c25b08a
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
  */
-u32 ninja_sub_25b08a(u32 a0) {
+u32 ninja_draw_25b08a(u32 a0) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -18287,7 +18318,7 @@ u32 ninja_sub_25b08a(u32 a0) {
         ar7_00 = *(int *)(iVar3 + 0x28) + -1;
         iVar3 = *(int *)(iVar3 + 0x24) + -1;
         pvr_set_clip_rect(0, 0, iVar3, ar7_00);
-        kamui_sub_20bdc0(iVar1 * 0x44 + g_8c277b08 + 0x18, uVar2, iVar3, ar7_00);
+        kamui_draw_20bdc0(iVar1 * 0x44 + g_8c277b08 + 0x18, uVar2, iVar3, ar7_00);
         uVar2 = pvr_set_clip_rect(0, 0, g_8c4aa508 + -1, g_8c4aa50c + -1);
         return uVar2;
     }
@@ -18295,11 +18326,11 @@ u32 ninja_sub_25b08a(u32 a0) {
 }
 
 /*
- * ninja_sub_25b100  0x8c25b100
- * area name: in the ninja library code range
- * called by: C3DRenderPly_SetMem, game_sub_015f18
+ * ninja_calc_25b100  0x8c25b100
+ * area name: in the ninja library code range; behaviour name: integer arithmetic on its arguments
+ * called by: C3DRenderPly_SetMem, game_uses_malloc_thunk_015f18
  */
-u32 ninja_sub_25b100(void) {
+u32 ninja_calc_25b100(void) {
     u32 uVar1;
 
     uVar1 = (g_8c20c8e0)();
@@ -18309,7 +18340,7 @@ u32 ninja_sub_25b100(void) {
 /*
  * write_u32_le  0x8c25b10c
  * stores a0 little-endian at a1 (any alignment)
- * called by: ninja_sub_25b12e
+ * called by: ninja_uses_write_u32_le_25b12e
  */
 u32 write_u32_le(u32 a0, u8 *a1) {
     *a1 = (char)a0;
@@ -18322,7 +18353,7 @@ u32 write_u32_le(u32 a0, u8 *a1) {
 /*
  * put_u16_le  0x8c25b124
  * stores a0 as a little-endian u16 at a1
- * called by: ninja_sub_25b12e
+ * called by: ninja_uses_write_u32_le_25b12e
  */
 u32 put_u16_le(u32 a0, u8 *a1) {
     *a1 = (char)a0;
@@ -18331,10 +18362,11 @@ u32 put_u16_le(u32 a0, u8 *a1) {
 }
 
 /*
- * ninja_sub_25b12e  0x8c25b12e
- * area name: in the ninja library code range
+ * ninja_uses_write_u32_le_25b12e  0x8c25b12e
+ * area name: in the ninja library code range; behaviour name: its main named callee is write_u32_le
  */
-u32 ninja_sub_25b12e(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16, u32 s20) {
+u32 ninja_uses_write_u32_le_25b12e(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s4, u32 s8, u32 s12,
+                                   u32 s16, u32 s20) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -18348,7 +18380,7 @@ u32 ninja_sub_25b12e(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s
 
     iVar1 = (int)(int)0xffffff24;
     *(u32 *)((int)aiStack_24 + iVar1 + 4) = a1;
-    ta_sub_20aacc(&stack0xffffffe4 + iVar1);
+    ta_fill_loop_20aacc(&stack0xffffffe4 + iVar1);
     iVar3 = 0x8c4aa70c;
     if (g_8c4aa6f8 == *(int *)((int)&s20 + iVar1)) {
         iVar3 = 0x8c4aa6e4;
@@ -18357,7 +18389,7 @@ u32 ninja_sub_25b12e(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s
     a4_00 = *(int *)(iVar3 + 0xc);
     ar4_00 = *(u8 **)((int)aiStack_24 + iVar1 + 4);
     *(int *)((int)aiStack_24 + 0xd0 + iVar1 + 4) = a4_00 * a4 * 3;
-    uVar2 = kamui_sub_20d082(ar4_00, iVar3);
+    uVar2 = kamui_uses_vram_20d082(ar4_00, iVar3);
     if (a0 != 0) {
         put_u16_le((int)0x4d42, a0);
         write_u32_le(*(u32 *)((int)aiStack_24 + 0xd0 + iVar1 + 4), a0 + 2);
@@ -18425,17 +18457,17 @@ u32 ninja_sub_25b12e(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s
             }
             *(u32 *)((int)aiStack_24 + iVar1) = 3;
         }
-        uVar2 = ta_sub_20de80(a0 + 0x36, ar4_00, a4_00, a4);
+        uVar2 = ta_fill_loop_20de80(a0 + 0x36, ar4_00, a4_00, a4);
     }
     return uVar2;
 }
 
 /*
- * ninja_sub_25b334  0x8c25b334
- * area name: in the ninja library code range
+ * ninja_calc_25b334  0x8c25b334
+ * area name: in the ninja library code range; behaviour name: integer arithmetic on its arguments
  * called by: game_init
  */
-u32 ninja_sub_25b334(u32 a0, u32 a1) {
+u32 ninja_calc_25b334(u32 a0, u32 a1) {
     u32 *puVar1;
     u32 in_r0;
 
@@ -18446,16 +18478,16 @@ u32 ninja_sub_25b334(u32 a0, u32 a1) {
 }
 
 /*
- * ninja_sub_25b34a  0x8c25b34a
- * area name: in the ninja library code range
+ * ninja_calls_fill_loop_25b34a  0x8c25b34a
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: fill_loop
  * called by: game_init
  */
-u32 *ninja_sub_25b34a(u32 a0, u32 a1) {
+u32 *ninja_calls_fill_loop_25b34a(u32 a0, u32 a1) {
     u32 r6;
     u32 r7;
     u32 in_PR;
 
-    tex_sub_25a33c(a0, a1, r6, r7, in_PR);
+    tex_fill_loop_25a33c(a0, a1, r6, r7, in_PR);
     g_8c4aa5a8 = 0;
     g_8c277b24 = 2;
     g_8c277b28 = 0;
@@ -18471,17 +18503,17 @@ u32 *ninja_sub_25b34a(u32 a0, u32 a1) {
 }
 
 /*
- * ninja_sub_25b37c  0x8c25b37c
- * area name: in the ninja library code range
+ * ninja_uses_tex_is_palettized_25b37c  0x8c25b37c
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: uses_tex_is_palettized
  * called by: game_shutdown_a
  */
-u32 ninja_sub_25b37c(u32 unused_a0, u32 a1, u32 a2) {
+u32 ninja_uses_tex_is_palettized_25b37c(u32 unused_a0, u32 a1, u32 a2) {
     u32 r7;
     u32 uVar1;
     u32 in_PR;
 
-    ninja_sub_2566c8(unused_a0, a1, a2, r7, in_PR);
-    uVar1 = ninja_sub_2565c4(unused_a0, a1, a2, r7, in_PR);
+    ninja_uses_tex_is_palettized_2566c8(unused_a0, a1, a2, r7, in_PR);
+    uVar1 = ninja_uses_tex_is_palettized_2565c4(unused_a0, a1, a2, r7, in_PR);
     g_8c4ab10c = 0;
     g_8c4ab110 = 0;
     g_8c4ab114 = 0;
@@ -18496,7 +18528,7 @@ u32 ninja_sub_25b37c(u32 unused_a0, u32 a1, u32 a2) {
 /*
  * njLoadTexture  0x8c25b3a2
  * loads every texture of the list a0 (count at +4); 1 on success, -1 on error
- * called by: C2DSprite_Load, C3DRenderPly_SetMem, game_sub_015f18, game_sub_01f9c4
+ * called by: C2DSprite_Load, C3DRenderPly_SetMem, game_uses_malloc_thunk_015f18, game_uses_njLoadTexture_01f9c4
  */
 u32 njLoadTexture(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -18512,7 +18544,7 @@ u32 njLoadTexture(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         uVar2 = 0xffffffff;
     } else {
         for (ar5_00 = 0; ar5_00 < *(u32 *)(a0 + 4); ar5_00 = ar5_00 + 1) {
-            iVar1 = gfxlib_sub_23793c(a0, ar5_00, unused_a2, a3);
+            iVar1 = gfxlib_uses_tex_entry_alloc_23793c(a0, ar5_00, unused_a2, a3);
             if (iVar1 < 0)
                 goto LAB_8c25b3d2;
         }
@@ -18524,8 +18556,9 @@ u32 njLoadTexture(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * njSetTexture  0x8c25b3ec
  * makes a0 the current texture list (0x8c277b04); -1 for NULL
- * called by: CSquidLine_sub_0ad354, CTexture_LoadFromCache, Class_129808_m10_0162bc, Class_129808_sub_016544,
- * Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0, Class_1298b8_m5_015720 (+13 more)
+ * called by: CSquidLine_uses_matrix_push_0ad354, CTexture_LoadFromCache, Class_129808_draw_016544,
+ * Class_129808_m10_0162bc, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0,
+ * Class_1298b8_m5_015720 (+13 more)
  */
 u32 njSetTexture(int a0) {
     if (a0 == 0) {
@@ -18538,7 +18571,7 @@ u32 njSetTexture(int a0) {
 /*
  * njSetTextureNum  0x8c25b434
  * selects texture a0 of the current list and loads its parameters when it changes
- * called by: Class_129808_sub_016544, obj_set_texture_num
+ * called by: Class_129808_draw_016544, obj_set_texture_num
  */
 u32 njSetTextureNum(int a0) {
     int *ar5_00;
@@ -18576,11 +18609,11 @@ u32 alt_entry_25b440(int a0) {
 }
 
 /*
- * ninja_sub_25b49e  0x8c25b49e
- * area name: in the ninja library code range
- * called by: draw_sub_258b26, ninja_sub_25806c
+ * ninja_calls_scan_loop_25b49e  0x8c25b49e
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: calls_scan_loop
+ * called by: draw_uses_free_sys_258b26, ninja_uses_kamui_cfg_texture_memory_25806c
  */
-u32 ninja_sub_25b49e(int a0) {
+u32 ninja_calls_scan_loop_25b49e(int a0) {
     u32 uStack_10;
     u32 uStack_c;
     int iStack_8;
@@ -18589,7 +18622,7 @@ u32 ninja_sub_25b49e(int a0) {
         return g_8c4aa6a8;
     }
     iStack_8 = a0;
-    kamui_sub_20cfe0(&uStack_10, &uStack_c);
+    kamui_calls_scan_loop_20cfe0(&uStack_10, &uStack_c);
     if (iStack_8 == 0) {
         return uStack_10;
     }
@@ -18597,22 +18630,22 @@ u32 ninja_sub_25b49e(int a0) {
 }
 
 /*
- * ninja_sub_25b4da  0x8c25b4da
- * area name: in the ninja library code range
+ * ninja_calls_fill_loop_25b4da  0x8c25b4da
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: calls_fill_loop
  */
-u32 ninja_sub_25b4da(void) {
+u32 ninja_calls_fill_loop_25b4da(void) {
     u32 uVar1;
 
-    uVar1 = libc_sub_010998();
+    uVar1 = libc_calls_fill_loop_010998();
     return uVar1;
 }
 
 /*
- * ninja_sub_25b4ea  0x8c25b4ea
- * area name: in the ninja library code range
- * called by: game_sub_0f7ea0
+ * ninja_draw_25b4ea  0x8c25b4ea
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
+ * called by: game_draw_0f7ea0
  */
-u32 ninja_sub_25b4ea(u32 *a0, u32 *a1, u32 *a2, u32 a3) {
+u32 ninja_draw_25b4ea(u32 *a0, u32 *a1, u32 *a2, u32 a3) {
     u32 uVar1;
     u32 ar7_00;
     u32 *puVar2;
@@ -18623,7 +18656,7 @@ u32 ninja_sub_25b4ea(u32 *a0, u32 *a1, u32 *a2, u32 a3) {
     u32 *ar4_00;
 
     ar5_00 = a1;
-    uVar1 = kamui_sub_20d114(a0, a1, a2, a3);
+    uVar1 = kamui_draw_20d114(a0, a1, a2, a3);
     puVar4 = a0;
     puVar5 = a0;
     ar4_00 = a0;
@@ -18647,7 +18680,7 @@ u32 ninja_sub_25b4ea(u32 *a0, u32 *a1, u32 *a2, u32 a3) {
                     } while (a2 < a1);
                 }
             }
-            uVar1 = tex_sub_2571fe(ar4_00);
+            uVar1 = tex_uses_tex_size_to_index_2571fe(ar4_00);
         }
         puVar4 = puVar4 + 0x11;
         puVar5 = puVar5 + 0x11;
@@ -18659,7 +18692,8 @@ u32 ninja_sub_25b4ea(u32 *a0, u32 *a1, u32 *a2, u32 a3) {
 /*
  * tex_error_reset  0x8c25b5b4
  * clears the texture loader's error state (0x8c4aa6ac)
- * called by: alt_entry_2378ba, gfxlib_sub_2378a6, gfxlib_sub_239212, ninja_sub_256164, njLoadTexture, pvr_sub_23a29c
+ * called by: alt_entry_2378ba, gfxlib_uses_array44_index_of_2378a6, gfxlib_uses_ninja_close_file_239212,
+ * ninja_uses_ninja_close_file_256164, njLoadTexture, pvr_uses_tex_entry_alloc_23a29c
  */
 u32 tex_error_reset(void) {
     u32 *puVar1;
@@ -18677,8 +18711,9 @@ u32 tex_error_reset(void) {
 /*
  * touch_fields_30_3c  0x8c25b5d0
  * rewrites the four words at +0x30..+0x3c with themselves (no effect)
- * called by: CAnimal_sub_026968, CAnimal_sub_088288, CSquidLine_sub_0ad354, Class_1298b8_m11_0159ec,
- * Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0, Class_1298b8_m5_015720 (+23 more)
+ * called by: CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968, CSquidLine_uses_matrix_push_0ad354,
+ * Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0,
+ * Class_1298b8_m5_015720 (+23 more)
  */
 u32 touch_fields_30_3c(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     if (a0 != 0) {
@@ -18694,7 +18729,7 @@ u32 touch_fields_30_3c(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 
 /*
  * noop_25b638  0x8c25b638
  * called by: alt_entry_218ea0, alt_entry_2199c0, alt_entry_21a718, alt_entry_21a8be, alt_entry_21a952,
- * alt_entry_21b916, alt_entry_21b9a8, gfxlib_sub_218e8a (+10 more)
+ * alt_entry_21b916, alt_entry_21b9a8, gfxlib_draw_21a8b0 (+10 more)
  */
 u32 noop_25b638(void) {
     u32 in_r0;
@@ -18703,11 +18738,11 @@ u32 noop_25b638(void) {
 }
 
 /*
- * tex_sub_25b650  0x8c25b650
- * area name: sits between tex functions (same compilation unit)
- * called by: gfxlib_sub_235bfc
+ * tex_calls_fill_loop_25b650  0x8c25b650
+ * area name: sits between tex functions (same compilation unit); behaviour name: its callees mostly do: fill_loop
+ * called by: gfxlib_draw_235bfc
  */
-u64 *tex_sub_25b650(u32 *a0, int a1, u64 *a2, int a3) {
+u64 *tex_calls_fill_loop_25b650(u32 *a0, int a1, u64 *a2, int a3) {
     bool bVar1;
     bool bVar2;
     int iVar3;
@@ -18879,7 +18914,7 @@ u64 *tex_sub_25b650(u32 *a0, int a1, u64 *a2, int a3) {
                 if (!bVar14)
                     goto LAB_8c25b7c2;
             LAB_8c25b7de:
-                a2 = (u64 *)ninja_sub_25b858(puVar4, ar5_00, ar6_00, a2);
+                a2 = (u64 *)ninja_fill_loop_25b858(puVar4, ar5_00, ar6_00, a2);
             } else {
             LAB_8c25b7c2:
                 if (cVar16 == '\0') {
@@ -18991,10 +19026,10 @@ u64 *tex_sub_25b650(u32 *a0, int a1, u64 *a2, int a3) {
 }
 
 /*
- * tex_sub_25b6c6  0x8c25b6c6
- * area name: sits between tex functions (same compilation unit)
+ * tex_calls_fill_loop_25b6c6  0x8c25b6c6
+ * area name: sits between tex functions (same compilation unit); behaviour name: its callees mostly do: fill_loop
  */
-u64 *tex_sub_25b6c6(u32 a0, u32 a1, u64 *a2) {
+u64 *tex_calls_fill_loop_25b6c6(u32 a0, u32 a1, u64 *a2) {
     bool bVar1;
     bool bVar2;
     u32 uVar3;
@@ -19120,7 +19155,7 @@ u64 *tex_sub_25b6c6(u32 a0, u32 a1, u64 *a2) {
                 if (!bVar14)
                     goto LAB_8c25b7c2;
             LAB_8c25b7de:
-                a2 = (u64 *)ninja_sub_25b858(a4, puVar8, a6, a2);
+                a2 = (u64 *)ninja_fill_loop_25b858(a4, puVar8, a6, a2);
             } else {
             LAB_8c25b7c2:
 
@@ -19206,11 +19241,11 @@ u64 *tex_sub_25b6c6(u32 a0, u32 a1, u64 *a2) {
 }
 
 /*
- * ninja_sub_25b858  0x8c25b858
- * area name: in the ninja library code range
- * called by: tex_sub_25b650, tex_sub_25b6c6
+ * ninja_fill_loop_25b858  0x8c25b858
+ * area name: in the ninja library code range; behaviour name: a loop that writes memory
+ * called by: tex_calls_fill_loop_25b650, tex_calls_fill_loop_25b6c6
  */
-u32 *ninja_sub_25b858(u32 *a0, u32 *a1, u32 *a2, u64 *a3) {
+u32 *ninja_fill_loop_25b858(u32 *a0, u32 *a1, u32 *a2, u64 *a3) {
     u32 *puVar1;
     int iVar2;
     u32 uVar3;
@@ -19775,11 +19810,11 @@ u32 *ninja_sub_25b858(u32 *a0, u32 *a1, u32 *a2, u64 *a3) {
 }
 
 /*
- * ninja_sub_25bc88  0x8c25bc88
- * area name: in the ninja library code range
- * called by: gfxlib_sub_235bfc
+ * ninja_calls_fill_loop_25bc88  0x8c25bc88
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: fill_loop
+ * called by: gfxlib_draw_235bfc
  */
-u64 *ninja_sub_25bc88(u32 *a0, int a1, u64 *a2, int a3) {
+u64 *ninja_calls_fill_loop_25bc88(u32 *a0, int a1, u64 *a2, int a3) {
     bool bVar1;
     int iVar2;
     u32 *puVar3;
@@ -19957,7 +19992,7 @@ u64 *ninja_sub_25bc88(u32 *a0, int a1, u64 *a2, int a3) {
                 if (!bVar14)
                     goto LAB_8c25be34;
             LAB_8c25be50:
-                a2 = (u64 *)ninja_sub_25bed8(puVar3, ar5_00, ar6_00, a2);
+                a2 = (u64 *)ninja_fill_loop_25bed8(puVar3, ar5_00, ar6_00, a2);
             } else {
             LAB_8c25be34:
                 if (cVar16 == '\0') {
@@ -20081,10 +20116,10 @@ u64 *ninja_sub_25bc88(u32 *a0, int a1, u64 *a2, int a3) {
 }
 
 /*
- * ninja_sub_25bd0a  0x8c25bd0a
- * area name: in the ninja library code range
+ * ninja_calls_fill_loop_25bd0a  0x8c25bd0a
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: fill_loop
  */
-u64 *ninja_sub_25bd0a(u32 a0, u32 a1, u64 *a2) {
+u64 *ninja_calls_fill_loop_25bd0a(u32 a0, u32 a1, u64 *a2) {
     bool bVar1;
     u32 uVar2;
     u32 uVar3;
@@ -20212,7 +20247,7 @@ u64 *ninja_sub_25bd0a(u32 a0, u32 a1, u64 *a2) {
                 if (!bVar14)
                     goto LAB_8c25be34;
             LAB_8c25be50:
-                a2 = (u64 *)ninja_sub_25bed8(a4, puVar7, a6, a2);
+                a2 = (u64 *)ninja_fill_loop_25bed8(a4, puVar7, a6, a2);
             } else {
             LAB_8c25be34:
 
@@ -20304,11 +20339,11 @@ u64 *ninja_sub_25bd0a(u32 a0, u32 a1, u64 *a2) {
 }
 
 /*
- * ninja_sub_25bed8  0x8c25bed8
- * area name: in the ninja library code range
- * called by: ninja_sub_25bc88, ninja_sub_25bd0a
+ * ninja_fill_loop_25bed8  0x8c25bed8
+ * area name: in the ninja library code range; behaviour name: a loop that writes memory
+ * called by: ninja_calls_fill_loop_25bc88, ninja_calls_fill_loop_25bd0a
  */
-u32 *ninja_sub_25bed8(u32 *a0, u32 *a1, u32 *a2, u64 *a3) {
+u32 *ninja_fill_loop_25bed8(u32 *a0, u32 *a1, u32 *a2, u64 *a3) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -20909,11 +20944,11 @@ u32 *ninja_sub_25bed8(u32 *a0, u32 *a1, u32 *a2, u64 *a3) {
 }
 
 /*
- * ninja_sub_25c3a4  0x8c25c3a4
- * area name: in the ninja library code range
- * called by: gfxlib_sub_235bfc
+ * ninja_calls_float_calc_25c3a4  0x8c25c3a4
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: float_calc
+ * called by: gfxlib_draw_235bfc
  */
-int ninja_sub_25c3a4(double *a0, int a1, int a2) {
+int ninja_calls_float_calc_25c3a4(double *a0, int a1, int a2) {
     u64 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -21247,7 +21282,7 @@ int ninja_sub_25c3a4(double *a0, int a1, int a2) {
                     goto LAB_8c25c406;
             LAB_8c25c410:
                 dVar14 = (double)(uVar1 << 0x20);
-                a2 = ninja_sub_25c4d2(pdVar5, a0, a2);
+                a2 = ninja_float_calc_25c4d2(pdVar5, a0, a2);
                 dVar23 = in_xd4;
             } else {
             LAB_8c25c406:
@@ -21292,10 +21327,10 @@ int ninja_sub_25c3a4(double *a0, int a1, int a2) {
 }
 
 /*
- * ninja_sub_25c3d0  0x8c25c3d0
- * area name: in the ninja library code range
+ * ninja_calls_float_calc_25c3d0  0x8c25c3d0
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: float_calc
  */
-int ninja_sub_25c3d0(u32 unused_a0, u32 unused_a1, u32 *a2) {
+int ninja_calls_float_calc_25c3d0(u32 unused_a0, u32 unused_a1, u32 *a2) {
     u64 uVar1;
     u32 uVar2;
     double *in_r3;
@@ -21533,7 +21568,7 @@ int ninja_sub_25c3d0(u32 unused_a0, u32 unused_a1, u32 *a2) {
                     goto LAB_8c25c406;
             LAB_8c25c410:
                 in_dr2 = (double)(uVar1 << 0x20);
-                unaff_r14 = ninja_sub_25c4d2(unaff_r9, unaff_r12, unaff_r14);
+                unaff_r14 = ninja_float_calc_25c4d2(unaff_r9, unaff_r12, unaff_r14);
                 dVar24 = in_xd4;
             } else {
             LAB_8c25c406:
@@ -21574,11 +21609,11 @@ int ninja_sub_25c3d0(u32 unused_a0, u32 unused_a1, u32 *a2) {
 }
 
 /*
- * ninja_sub_25c4d2  0x8c25c4d2
- * area name: in the ninja library code range
- * called by: ninja_sub_25c3a4, ninja_sub_25c3d0
+ * ninja_float_calc_25c4d2  0x8c25c4d2
+ * area name: in the ninja library code range; behaviour name: floating-point arithmetic
+ * called by: ninja_calls_float_calc_25c3a4, ninja_calls_float_calc_25c3d0
  */
-int ninja_sub_25c4d2(u32 *a0, u32 *a1, int a2) {
+int ninja_float_calc_25c4d2(u32 *a0, u32 *a1, int a2) {
     u64 *puVar1;
     double *pdVar2;
     u32 unaff_r12;
@@ -22284,11 +22319,11 @@ LAB_8c25c5fc:
 }
 
 /*
- * ninja_sub_25c868  0x8c25c868
- * area name: in the ninja library code range
- * called by: gfxlib_sub_235bfc
+ * ninja_calls_float_calc_25c868  0x8c25c868
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: float_calc
+ * called by: gfxlib_draw_235bfc
  */
-double *ninja_sub_25c868(double *a0, int a1, double *a2) {
+double *ninja_calls_float_calc_25c868(double *a0, int a1, double *a2) {
     u64 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -22653,7 +22688,7 @@ double *ninja_sub_25c868(double *a0, int a1, double *a2) {
                     goto LAB_8c25c8e0;
             LAB_8c25c8ea:
                 dVar9 = (double)(uVar1 << 0x20);
-                a2 = (double *)ninja_sub_25c9d8(pdVar5, a0, a2);
+                a2 = (double *)ninja_float_calc_25c9d8(pdVar5, a0, a2);
                 dVar26 = in_xd6;
             } else {
             LAB_8c25c8e0:
@@ -22702,11 +22737,11 @@ double *ninja_sub_25c868(double *a0, int a1, double *a2) {
 }
 
 /*
- * ninja_sub_25c9d8  0x8c25c9d8
- * area name: in the ninja library code range
- * called by: ninja_sub_25c868
+ * ninja_float_calc_25c9d8  0x8c25c9d8
+ * area name: in the ninja library code range; behaviour name: floating-point arithmetic
+ * called by: ninja_calls_float_calc_25c868
  */
-int ninja_sub_25c9d8(u32 *a0, u32 *a1, int a2) {
+int ninja_float_calc_25c9d8(u32 *a0, u32 *a1, int a2) {
     double *pdVar1;
     u64 *puVar2;
     double *pdVar3;
@@ -23420,8 +23455,8 @@ int ninja_sub_25c9d8(u32 *a0, u32 *a1, int a2) {
 /*
  * njGetMatrix  0x8c25cddc
  * copies the current matrix into a0
- * called by: CAnimal_sub_026968, Class_129938_m1_0170e0, Class_129938_m2_0171f4, Class_1299f8_m4_019588,
- * Class_129a24_m1_019b68, Vec3_sub_023484, Vec3_sub_023570, Vec3_sub_023668 (+6 more)
+ * called by: CAnimal_uses_njGetMatrix_026968, Class_129938_m1_0170e0, Class_129938_m2_0171f4, Class_1299f8_m4_019588,
+ * Class_129a24_m1_019b68, Vec3_vec_023484, Vec3_vec_023570, Vec3_vec_023668 (+6 more)
  */
 u32 njGetMatrix(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
@@ -23471,8 +23506,9 @@ u32 njGetMatrix(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) 
 /*
  * njUnitVector  0x8c25ce48
  * normalises the Vec3 at a0 in place
- * called by: Class_1299f8_m3_019f00, gfxlib_sub_2163d4, gfxlib_sub_2166e8, gfxlib_sub_22b7a8, gfxlib_sub_22bb70,
- * gfxlib_sub_24bdc8, gfxlib_sub_24c6f0, gfxlib_sub_24df18 (+3 more)
+ * called by: Class_1299f8_m3_019f00, gfxlib_uses_float_to_color_u8_24bdc8, gfxlib_uses_float_to_color_u8_24c6f0,
+ * gfxlib_uses_float_to_color_u8_24df18, gfxlib_uses_float_to_color_u8_250144, gfxlib_uses_njUnitVector_2163d4,
+ * gfxlib_uses_njUnitVector_2166e8, gfxlib_uses_njUnitVector_22b7a8 (+3 more)
  */
 u32 njUnitVector(float *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -23493,11 +23529,11 @@ u32 njUnitVector(float *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain
 }
 
 /*
- * ninja_sub_25ce80  0x8c25ce80
- * area name: in the ninja library code range
- * called by: ninja_sub_25d7c6
+ * ninja_calc_25ce80  0x8c25ce80
+ * area name: in the ninja library code range; behaviour name: integer arithmetic on its arguments
+ * called by: ninja_draw_25d7c6
  */
-int ninja_sub_25ce80(int a0, u32 a1) {
+int ninja_calc_25ce80(int a0, u32 a1) {
     return (*(int *)(&g_8c277d80 + g_8c4aa05c * 4) + *(int *)(&g_8c277d80 + g_8c4aa060 * 4) +
             *(int *)(&g_8c277d80 + g_8c4aa064 * 4) + *(int *)(&g_8c277d80 + g_8c4aa068 * 4) +
             *(int *)(&g_8c277d80 + g_8c4aa06c * 4)) *
@@ -23505,11 +23541,11 @@ int ninja_sub_25ce80(int a0, u32 a1) {
 }
 
 /*
- * ninja_sub_25cebc  0x8c25cebc
- * area name: in the ninja library code range
+ * ninja_calc_25cebc  0x8c25cebc
+ * area name: in the ninja library code range; behaviour name: integer arithmetic on its arguments
  * called by: ta_fifo_25d0a0
  */
-u32 ninja_sub_25cebc(int a0, int a1, int a2, u32 a3) {
+u32 ninja_calc_25cebc(int a0, int a1, int a2, u32 a3) {
     u8 *puVar1;
     u32 uVar2;
     u32 uVar3;
@@ -23589,7 +23625,7 @@ u32 ta_fifo_25d028(u32 a0) {
 
 /*
  * ta_fifo_25d0a0  0x8c25d0a0
- * called by: ninja_sub_25d7c6, pvr_20672a, pvr_2069a0
+ * called by: ninja_draw_25d7c6, pvr_20672a, pvr_2069a0
  */
 int ta_fifo_25d0a0(int a0, int a1, u32 a2, u32 a3) {
     bool bVar1;
@@ -23645,7 +23681,7 @@ int ta_fifo_25d0a0(int a0, int a1, u32 a2, u32 a3) {
     uVar18 = a2;
     if (g_8c4a9db8 == 0) {
         uVar18 = in_stack_00000000;
-        ninja_sub_25cebc(a0, a1, in_stack_00000000, a3);
+        ninja_calc_25cebc(a0, a1, in_stack_00000000, a3);
     }
     uVar21 = a0 * a1;
     iVar19 = in_stack_00000000 * 0x20;
@@ -23788,11 +23824,11 @@ int ta_fifo_25d0a0(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_25d780  0x8c25d780
- * area name: in the ninja library code range
- * called by: shinobi_sub_206162
+ * ninja_draw_25d780  0x8c25d780
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
+ * called by: shinobi_draw_206162
  */
-u32 *ninja_sub_25d780(void) {
+u32 *ninja_draw_25d780(void) {
     u32 *puVar1;
     u32 *puVar2;
     u32 ar4_00;
@@ -23815,11 +23851,12 @@ u32 *ninja_sub_25d780(void) {
 }
 
 /*
- * ninja_sub_25d7c6  0x8c25d7c6
- * area name: in the ninja library code range
- * called by: kamui_sub_21092e, kamui_sub_211120, shinobi_sub_206162, ta_sub_210e40
+ * ninja_draw_25d7c6  0x8c25d7c6
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
+ * called by: kamui_uses_kamui_cfg_texture_memory_211120, kamui_uses_ta_fifo_21092e, shinobi_draw_206162,
+ * ta_uses_sh4_dmac_210e40
  */
-u32 ninja_sub_25d7c6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0) {
+u32 ninja_draw_25d7c6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0) {
     u32 *puVar1;
     u32 *puVar2;
     int iVar3;
@@ -23843,7 +23880,7 @@ u32 ninja_sub_25d7c6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
     puVar1[4] = (0x1800000 & s0) >> 0x17;
     puVar2[4] = (s0 & 0x6000000) >> 0x19;
     puVar1[-0x18] = (puVar1[-0x15] >> 2) * 3;
-    iVar3 = ninja_sub_25ce80(puVar2[-0x15] * g_8c4aa00c, 1);
+    iVar3 = ninja_calc_25ce80(puVar2[-0x15] * g_8c4aa00c, 1);
     iVar10 = (int)(int)0xffffff00;
     iVar7 = 0;
     iVar11 = 0;
@@ -23894,10 +23931,10 @@ u32 ninja_sub_25d7c6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 }
 
 /*
- * ninja_sub_25da4c  0x8c25da4c
- * area name: in the ninja library code range
+ * ninja_draw_25da4c  0x8c25da4c
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
  */
-u32 ninja_sub_25da4c(void) {
+u32 ninja_draw_25da4c(void) {
     u32 uVar1;
 
     pvr_20a844(8, 1);
@@ -23906,11 +23943,11 @@ u32 ninja_sub_25da4c(void) {
 }
 
 /*
- * ninja_sub_25dac0  0x8c25dac0
- * area name: in the ninja library code range
- * called by: ninja_sub_25dc60
+ * ninja_update_fields_25dac0  0x8c25dac0
+ * area name: in the ninja library code range; behaviour name: conditionally writes members
+ * called by: ninja_uses_libgcc_divide_helper_25dc60
  */
-u32 ninja_sub_25dac0(void) {
+u32 ninja_update_fields_25dac0(void) {
     u32 *puVar1;
     u32 uVar2;
     u32 uVar3;
@@ -23969,11 +24006,11 @@ u32 ninja_sub_25dac0(void) {
 }
 
 /*
- * ninja_sub_25dc60  0x8c25dc60
- * area name: in the ninja library code range
- * called by: kamui_set_display_mode_cfg, shinobi_sub_207da0
+ * ninja_uses_libgcc_divide_helper_25dc60  0x8c25dc60
+ * area name: in the ninja library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
+ * called by: kamui_set_display_mode_cfg, shinobi_draw_207da0
  */
-u32 ninja_sub_25dc60(int a0, u32 a1, int a2, int a3) {
+u32 ninja_uses_libgcc_divide_helper_25dc60(int a0, u32 a1, int a2, int a3) {
     int iVar1;
     int iVar2;
     u32 uVar3;
@@ -24237,18 +24274,18 @@ LAB_8c25dde8:
         uStack_38 = uVar4 - 1;
     }
     libgcc_movstr_i4(iVar6, a1, 0xf, ar7_00);
-    ninja_sub_25dac0();
+    ninja_update_fields_25dac0();
     g_8c4a9be8 = 0;
     g_8c4a9be4 = 0;
     return 0;
 }
 
 /*
- * ninja_sub_25e260  0x8c25e260
- * area name: in the ninja library code range
- * called by: ninja_sub_25e540, ninja_sub_25e884, ninja_sub_25eb60
+ * ninja_draw_25e260  0x8c25e260
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
+ * called by: ninja_draw_25e540, ninja_draw_25e884, ninja_draw_25eb60
  */
-u32 ninja_sub_25e260(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 ninja_draw_25e260(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int *piVar1;
     u8 *puVar2;
     int iVar3;
@@ -24342,11 +24379,11 @@ u32 ninja_sub_25e260(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * ninja_sub_25e540  0x8c25e540
- * area name: in the ninja library code range
+ * ninja_draw_25e540  0x8c25e540
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
  * called by: kamui_set_display_mode_cfg
  */
-u32 ninja_sub_25e540(u32 a0, u32 a1) {
+u32 ninja_draw_25e540(u32 a0, u32 a1) {
     u32 uVar1;
     int ar5_00;
     u32 ar6_00;
@@ -24495,16 +24532,16 @@ u32 ninja_sub_25e540(u32 a0, u32 a1) {
     g_8c4a9ec4 = (aiStack_118[8] >> 1) + g_8c4a9ecc;
     g_8c4a9ec8 = aiStack_118[8];
     libgcc_movstr_i4(1, ar5_00, ar6_00, 0x42);
-    uVar1 = ninja_sub_25e260(uVar1, ar5_00, ar6_00, a7);
+    uVar1 = ninja_draw_25e260(uVar1, ar5_00, ar6_00, a7);
     return uVar1;
 }
 
 /*
- * ninja_sub_25e884  0x8c25e884
- * area name: in the ninja library code range
+ * ninja_draw_25e884  0x8c25e884
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
  * called by: kamui_set_display_mode_cfg
  */
-u32 ninja_sub_25e884(u32 a0, u32 a1) {
+u32 ninja_draw_25e884(u32 a0, u32 a1) {
     u32 uVar1;
     u32 a5;
     u32 a6;
@@ -24524,16 +24561,16 @@ u32 ninja_sub_25e884(u32 a0, u32 a1) {
     g_8c4a9ec4 = (iStack_f8 >> 1) + 0xf0;
     g_8c4a9ec8 = iStack_f8;
     libgcc_movstr_i4(1, 0, 0x12, 0x1f);
-    uVar1 = ninja_sub_25e260(uVar1, a5, a6, a7);
+    uVar1 = ninja_draw_25e260(uVar1, a5, a6, a7);
     return uVar1;
 }
 
 /*
- * ninja_sub_25eb60  0x8c25eb60
- * area name: in the ninja library code range
+ * ninja_draw_25eb60  0x8c25eb60
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
  * called by: kamui_set_display_mode_cfg
  */
-u32 ninja_sub_25eb60(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 ninja_draw_25eb60(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     u32 a5;
     u32 a6;
@@ -24545,13 +24582,13 @@ u32 ninja_sub_25eb60(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     g_8c4a9ec4 = 0x208;
     g_8c4a9ec8 = 0x28;
     libgcc_movstr_i4(0x1e0, 0x28, 0x23, a3);
-    uVar1 = ninja_sub_25e260(uVar1, a5, a6, a3);
+    uVar1 = ninja_draw_25e260(uVar1, a5, a6, a3);
     return uVar1;
 }
 
 /*
  * ret_const_1_25eca0  0x8c25eca0
- * called by: pvr_sub_20759a
+ * called by: pvr_uses_ret_const_1_20759a
  */
 u32 ret_const_1_25eca0(u32 a0) {
     return 1;
@@ -24559,7 +24596,7 @@ u32 ret_const_1_25eca0(u32 a0) {
 
 /*
  * ret_const_1_25eca4  0x8c25eca4
- * called by: pvr_sub_2075bc
+ * called by: pvr_uses_ret_const_1_2075bc
  */
 u32 ret_const_1_25eca4(void) {
     return 1;
@@ -24568,7 +24605,7 @@ u32 ret_const_1_25eca4(void) {
 /*
  * cri_clear_table_4b3340  0x8c25eca8
  * clears the 0x100-byte table at 8c4b3340 and its two counters
- * called by: alt_entry_262814, cri_sub_262810
+ * called by: alt_entry_262814, cri_uses_irq_disable_nested_262810
  */
 u32 cri_clear_table_4b3340(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -24582,7 +24619,7 @@ u32 cri_clear_table_4b3340(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) 
 /*
  * cri_clear_table_4b3340_b  0x8c25ecc2
  * clears the 0x100-byte table at 8c4b3340 and its two counters
- * called by: cri_sub_2628fa
+ * called by: cri_uses_irq_disable_nested_2628fa
  */
 u32 cri_clear_table_4b3340_b(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -24594,10 +24631,10 @@ u32 cri_clear_table_4b3340_b(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3
 }
 
 /*
- * cri_sub_25ecdc  0x8c25ecdc
- * area name: in the cri library code range
+ * cri_calc_25ecdc  0x8c25ecdc
+ * area name: in the cri library code range; behaviour name: integer arithmetic on its arguments
  */
-u32 cri_sub_25ecdc(u32 a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 cri_calc_25ecdc(u32 a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     g_8c277d98 = a0;
     g_8c277d9c = a1;
     return ain0;
@@ -24620,10 +24657,10 @@ u32 lib_error_printf(u32 a0, u32 unused_a1, u32 a2, u32 unused_a3, u32 s0, u32 s
 }
 
 /*
- * cri_sub_25ecea  0x8c25ecea
- * area name: in the cri library code range
+ * cri_uses_vsprintf_like_25ecea  0x8c25ecea
+ * area name: in the cri library code range; behaviour name: its main named callee is vsprintf_like
  */
-u32 cri_sub_25ecea(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12) {
+u32 cri_uses_vsprintf_like_25ecea(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12) {
     u32 uVar1;
     u32 *ar6_00;
 
@@ -24640,11 +24677,11 @@ u32 cri_sub_25ecea(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3, u32 s0, u32 s4,
 }
 
 /*
- * cri_sub_25ed3c  0x8c25ed3c
- * area name: in the cri library code range
- * called by: cri_sub_25f052
+ * cri_calc_25ed3c  0x8c25ed3c
+ * area name: in the cri library code range; behaviour name: integer arithmetic on its arguments
+ * called by: cri_calls_calc_25f052
  */
-u8 *cri_sub_25ed3c(u8 *a0, u32 *a1, u32 *a2, u32 *a3, u32 *s0) {
+u8 *cri_calc_25ed3c(u8 *a0, u32 *a1, u32 *a2, u32 *a3, u32 *s0) {
     u8 bVar1;
     u8 bVar2;
     bool bVar3;
@@ -24735,7 +24772,7 @@ u8 *cri_sub_25ed3c(u8 *a0, u32 *a1, u32 *a2, u32 *a3, u32 *s0) {
 /*
  * is_aiff_header  0x8c25f01e
  * 1 when a0 starts a "FORM"...."AIFF" header
- * called by: alt_entry_25fdbe, cri_sub_25fdb2
+ * called by: alt_entry_25fdbe, cri_uses_is_spsd_header_25fdb2
  */
 u32 is_aiff_header(int a0) {
     int iVar1;
@@ -24748,11 +24785,11 @@ u32 is_aiff_header(int a0) {
 }
 
 /*
- * cri_sub_25f052  0x8c25f052
- * area name: in the cri library code range
- * called by: cri_sub_25f0ea
+ * cri_calls_calc_25f052  0x8c25f052
+ * area name: in the cri library code range; behaviour name: its callees mostly do: calc
+ * called by: cri_copy_25f0ea
  */
-u32 cri_sub_25f052(u32 a0, int a1, short *a2, u8 *a3, char *s0, u8 *s4, char *s8, u32 *s12, u32 *s16, u32 *s20) {
+u32 cri_calls_calc_25f052(u32 a0, int a1, short *a2, u8 *a3, char *s0, u8 *s4, char *s8, u32 *s12, u32 *s16, u32 *s20) {
     int iVar1;
     short sVar2;
     u32 uStack_20;
@@ -24769,7 +24806,7 @@ u32 cri_sub_25f052(u32 a0, int a1, short *a2, u8 *a3, char *s0, u8 *s4, char *s8
         uStack_10 = a0;
         psStack_c = a2;
         puStack_8 = a3;
-        iVar1 = cri_sub_25ed3c(a0, &uStack_20, acStack_1c, acStack_18);
+        iVar1 = cri_calc_25ed3c(a0, &uStack_20, acStack_1c, acStack_18);
         if ((iVar1 != 0) && (sVar2 = (short)iVar1 - (short)uStack_10, *psStack_c = sVar2, 0 < sVar2)) {
             *s12 = uStack_20;
             *s8 = acStack_1c[0];
@@ -24789,18 +24826,18 @@ u32 cri_sub_25f052(u32 a0, int a1, short *a2, u8 *a3, char *s0, u8 *s4, char *s8
 }
 
 /*
- * cri_sub_25f0ea  0x8c25f0ea
- * area name: in the cri library code range
- * called by: alt_entry_25fdbe, cri_sub_25fdb2
+ * cri_copy_25f0ea  0x8c25f0ea
+ * area name: in the cri library code range; behaviour name: mostly calls copy functions
+ * called by: alt_entry_25fdbe, cri_uses_is_spsd_header_25fdb2
  */
-u32 cri_sub_25f0ea(int a0, u32 a1, u32 a2) {
+u32 cri_copy_25f0ea(int a0, u32 a1, u32 a2) {
     int iVar1;
     int a7;
     short asStack_14[2];
 
     *(u16 *)(a0 + 2) = 1;
     a7 = a0 + 0xc;
-    iVar1 = cri_sub_25f052(a1, a2, asStack_14, a7);
+    iVar1 = cri_calls_calc_25f052(a1, a2, asStack_14, a7);
     if (iVar1 < 0) {
         return 0;
     }
@@ -24836,11 +24873,11 @@ u32 cri_sub_25f0ea(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * cri_sub_25f1e8  0x8c25f1e8
- * area name: in the cri library code range
- * called by: cri_sub_25f40e
+ * cri_uses_get_field_c_25f1e8  0x8c25f1e8
+ * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
+ * called by: cri_uses_get_field_c_25f40e
  */
-int cri_sub_25f1e8(int a0) {
+int cri_uses_get_field_c_25f1e8(int a0) {
     u16 uVar1;
     int iVar2;
     int iVar3;
@@ -24981,11 +25018,11 @@ int alt_entry_25f1f4(u32 unused_a0, u32 a1, u32 unused_a2, int *a3) {
 }
 
 /*
- * cri_sub_25f306  0x8c25f306
- * area name: in the cri library code range
- * called by: cri_sub_25f40e
+ * cri_uses_get_field_c_25f306  0x8c25f306
+ * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
+ * called by: cri_uses_get_field_c_25f40e
  */
-int cri_sub_25f306(int a0) {
+int cri_uses_get_field_c_25f306(int a0) {
     u8 bVar1;
     int iVar2;
     int iVar3;
@@ -25125,27 +25162,27 @@ int alt_entry_25f312(u32 unused_a0, u32 a1, u32 unused_a2, int a3) {
 }
 
 /*
- * cri_sub_25f40e  0x8c25f40e
- * area name: in the cri library code range
- * called by: cri_sub_2602f4
+ * cri_uses_get_field_c_25f40e  0x8c25f40e
+ * area name: in the cri library code range; behaviour name: its callees mostly do: uses_get_field_c
+ * called by: cri_uses_get_field_c_2602f4
  */
-u32 cri_sub_25f40e(int a0) {
+u32 cri_uses_get_field_c_25f40e(int a0) {
     u32 uVar1;
 
     if (*(short *)(0xaa + a0) == 1) {
-        uVar1 = cri_sub_25f306(a0);
+        uVar1 = cri_uses_get_field_c_25f306(a0);
         return uVar1;
     }
-    uVar1 = cri_sub_25f1e8(a0);
+    uVar1 = cri_uses_get_field_c_25f1e8(a0);
     return uVar1;
 }
 
 /*
- * cri_sub_25f428  0x8c25f428
- * area name: in the cri library code range
- * called by: cri_sub_25f67e
+ * cri_uses_libgcc_divide_helper_25f428  0x8c25f428
+ * area name: in the cri library code range; behaviour name: its main named callee is libgcc_divide_helper_01051c
+ * called by: cri_uses_libgcc_divide_helper_25f67e
  */
-u32 cri_sub_25f428(u8 *a0, int a1, u32 *a2, u32 *a3, u32 *s0, u32 *s4, int *s8) {
+u32 cri_uses_libgcc_divide_helper_25f428(u8 *a0, int a1, u32 *a2, u32 *a3, u32 *s0, u32 *s4, int *s8) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -25261,7 +25298,7 @@ LAB_8c25f636:
 /*
  * is_au_header  0x8c25f64c
  * 1 when a0 starts with ".snd" or ".sd"
- * called by: alt_entry_25fdbe, cri_sub_25fdb2
+ * called by: alt_entry_25fdbe, cri_uses_is_spsd_header_25fdb2
  */
 u32 is_au_header(u32 a0) {
     int iVar1;
@@ -25274,11 +25311,12 @@ u32 is_au_header(u32 a0) {
 }
 
 /*
- * cri_sub_25f67e  0x8c25f67e
- * area name: in the cri library code range
- * called by: cri_sub_25f742
+ * cri_uses_libgcc_divide_helper_25f67e  0x8c25f67e
+ * area name: in the cri library code range; behaviour name: its callees mostly do: uses_libgcc_divide_helper
+ * called by: cri_copy_25f742
  */
-u32 cri_sub_25f67e(u32 a0, int a1, short *a2, u8 *a3, char *s0, u8 *s4, char *s8, u32 *s12, u32 *s16, u32 *s20) {
+u32 cri_uses_libgcc_divide_helper_25f67e(u32 a0, int a1, short *a2, u8 *a3, char *s0, u8 *s4, char *s8, u32 *s12,
+                                         u32 *s16, u32 *s20) {
     int iVar1;
     short sVar2;
     u32 uStack_20;
@@ -25295,7 +25333,7 @@ u32 cri_sub_25f67e(u32 a0, int a1, short *a2, u8 *a3, char *s0, u8 *s4, char *s8
         psStack_10 = a2;
         uStack_c = a0;
         puStack_8 = a3;
-        iVar1 = cri_sub_25f428(a0, a1, &uStack_20, acStack_1c);
+        iVar1 = cri_uses_libgcc_divide_helper_25f428(a0, a1, &uStack_20, acStack_1c);
         if ((iVar1 != 0) && (sVar2 = (short)iVar1 - (short)uStack_c, *psStack_10 = sVar2, 0 < sVar2)) {
             *s12 = uStack_20;
             *s8 = acStack_1c[0];
@@ -25315,11 +25353,11 @@ u32 cri_sub_25f67e(u32 a0, int a1, short *a2, u8 *a3, char *s0, u8 *s4, char *s8
 }
 
 /*
- * cri_sub_25f742  0x8c25f742
- * area name: in the cri library code range
- * called by: alt_entry_25fdbe, cri_sub_25fdb2
+ * cri_copy_25f742  0x8c25f742
+ * area name: in the cri library code range; behaviour name: mostly calls copy functions
+ * called by: alt_entry_25fdbe, cri_uses_is_spsd_header_25fdb2
  */
-int cri_sub_25f742(int a0, u32 a1, u32 a2) {
+int cri_copy_25f742(int a0, u32 a1, u32 a2) {
     int iVar1;
     int a7;
     short asStack_1c[2];
@@ -25327,7 +25365,7 @@ int cri_sub_25f742(int a0, u32 a1, u32 a2) {
 
     a7 = a0 + 0xc;
     *(u16 *)(a0 + 2) = 1;
-    iVar1 = cri_sub_25f67e(a1, a2, asStack_1c, a7);
+    iVar1 = cri_uses_libgcc_divide_helper_25f67e(a1, a2, asStack_1c, a7);
     if (iVar1 < 0) {
         iVar1 = 0;
     } else {
@@ -25361,11 +25399,11 @@ int cri_sub_25f742(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * cri_sub_25f830  0x8c25f830
- * area name: in the cri library code range
- * called by: cri_sub_25fb5c
+ * cri_uses_get_field_c_25f830  0x8c25f830
+ * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
+ * called by: cri_uses_get_field_c_25fb5c
  */
-int cri_sub_25f830(int a0) {
+int cri_uses_get_field_c_25f830(int a0) {
     u16 uVar1;
     int iVar2;
     int iVar3;
@@ -25506,11 +25544,11 @@ int alt_entry_25f83c(u32 unused_a0, u32 a1, u32 unused_a2, int *a3) {
 }
 
 /*
- * cri_sub_25f950  0x8c25f950
- * area name: in the cri library code range
- * called by: cri_sub_25fb5c
+ * cri_uses_get_field_c_25f950  0x8c25f950
+ * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
+ * called by: cri_uses_get_field_c_25fb5c
  */
-int cri_sub_25f950(int a0) {
+int cri_uses_get_field_c_25f950(int a0) {
     u8 bVar1;
     int iVar2;
     int iVar3;
@@ -25650,11 +25688,11 @@ int alt_entry_25f95c(u32 unused_a0, u32 a1, u32 unused_a2, int a3) {
 }
 
 /*
- * cri_sub_25fa58  0x8c25fa58
- * area name: in the cri library code range
- * called by: cri_sub_25fb5c
+ * cri_uses_get_field_c_25fa58  0x8c25fa58
+ * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
+ * called by: cri_uses_get_field_c_25fb5c
  */
-int cri_sub_25fa58(int a0, u32 a1) {
+int cri_uses_get_field_c_25fa58(int a0, u32 a1) {
     u8 bVar1;
     int iVar2;
     int iVar3;
@@ -25794,31 +25832,31 @@ int alt_entry_25fa64(u32 unused_a0, u32 a1, u32 unused_a2, u16 *a3) {
 }
 
 /*
- * cri_sub_25fb5c  0x8c25fb5c
- * area name: in the cri library code range
- * called by: cri_sub_2602f4
+ * cri_uses_get_field_c_25fb5c  0x8c25fb5c
+ * area name: in the cri library code range; behaviour name: its callees mostly do: uses_get_field_c
+ * called by: cri_uses_get_field_c_2602f4
  */
-u32 cri_sub_25fb5c(int a0, u32 a1) {
+u32 cri_uses_get_field_c_25fb5c(int a0, u32 a1) {
     u32 uVar1;
 
     if (*(short *)(0xaa + a0) == 2) {
-        uVar1 = cri_sub_25fa58(a0, a1);
+        uVar1 = cri_uses_get_field_c_25fa58(a0, a1);
         return uVar1;
     }
     if (*(short *)(0xaa + a0) == 1) {
-        uVar1 = cri_sub_25f950(a0);
+        uVar1 = cri_uses_get_field_c_25f950(a0);
         return uVar1;
     }
-    uVar1 = cri_sub_25f830(a0);
+    uVar1 = cri_uses_get_field_c_25f830(a0);
     return uVar1;
 }
 
 /*
- * cri_sub_25fb8c  0x8c25fb8c
- * area name: in the cri library code range
- * called by: cri_sub_262ac4
+ * cri_copy_25fb8c  0x8c25fb8c
+ * area name: in the cri library code range; behaviour name: mostly calls copy functions
+ * called by: cri_copy_262ac4
  */
-u32 cri_sub_25fb8c(void) {
+u32 cri_copy_25fb8c(void) {
     u32 uVar1;
 
     memset_wrap_264ed0();
@@ -25827,10 +25865,10 @@ u32 cri_sub_25fb8c(void) {
 }
 
 /*
- * cri_sub_25fba0  0x8c25fba0
- * area name: in the cri library code range
+ * cri_calc_25fba0  0x8c25fba0
+ * area name: in the cri library code range; behaviour name: integer arithmetic on its arguments
  */
-u32 cri_sub_25fba0(int a0, u32 *a1, int *a2, int *a3) {
+u32 cri_calc_25fba0(int a0, u32 *a1, int *a2, int *a3) {
     *a1 = *(u32 *)(a0 + 0x9c);
     *a2 = *(int *)(a0 + 0x40) - *(int *)(a0 + 0x9c);
     *a3 = *(int *)(a0 + 0x18) - *(int *)(a0 + 0x98);
@@ -25838,21 +25876,21 @@ u32 cri_sub_25fba0(int a0, u32 *a1, int *a2, int *a3) {
 }
 
 /*
- * cri_sub_25fbbe  0x8c25fbbe
- * area name: in the cri library code range
+ * cri_update_fields_25fbbe  0x8c25fbbe
+ * area name: in the cri library code range; behaviour name: conditionally writes members
  */
-u32 cri_sub_25fbbe(int a0, u32 unused_a1, int a2) {
+u32 cri_update_fields_25fbbe(int a0, u32 unused_a1, int a2) {
     *(int *)(a0 + 0x9c) = *(int *)(a0 + 0x9c) + a2;
     *(int *)(a0 + 0x98) = *(int *)(a0 + 0x98) + a2;
     return 0x98;
 }
 
 /*
- * cri_sub_25fbd0  0x8c25fbd0
- * area name: in the cri library code range
- * called by: cri_sub_262b04
+ * cri_copy_25fbd0  0x8c25fbd0
+ * area name: in the cri library code range; behaviour name: mostly calls copy functions
+ * called by: cri_uses_get_field_1c_262b04
  */
-u32 cri_sub_25fbd0(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 cri_copy_25fbd0(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     u16 *ar4_00;
@@ -25889,21 +25927,21 @@ u32 cri_sub_25fbd0(u32 a0, u32 a1, u32 a2, u32 a3) {
             *(u16 **)(iVar2 + 0x8c4b34d4) = ar4_01;
             return ar4_01;
         }
-        cri_sub_25fc5c(ar4_01);
+        cri_copy_25fc5c(ar4_01);
     }
     return 0;
 }
 
 /*
- * cri_sub_25fc5c  0x8c25fc5c
- * area name: in the cri library code range
- * called by: cri_sub_25fbd0, ta_fifo_262c04, ta_fifo_262c08
+ * cri_copy_25fc5c  0x8c25fc5c
+ * area name: in the cri library code range; behaviour name: mostly calls copy functions
+ * called by: cri_copy_25fbd0, ta_fifo_262c04, ta_fifo_262c08
  */
-u32 cri_sub_25fc5c(u16 *a0) {
+u32 cri_copy_25fc5c(u16 *a0) {
     u32 in_r0;
 
     if (a0 != NULL) {
-        vram_sub_264f6a(*(u32 *)(a0 + 4));
+        vram_calc_264f6a(*(u32 *)(a0 + 4));
         in_r0 = memset(a0, 0, (int)0xac);
         *a0 = 0;
     }
@@ -25918,7 +25956,7 @@ u32 alt_entry_25fc60(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ai
     u16 *unaff_r14;
 
     if (unaff_r14 != NULL) {
-        vram_sub_264f6a(*(u32 *)(unaff_r14 + 4));
+        vram_calc_264f6a(*(u32 *)(unaff_r14 + 4));
         ain0 = memset(unaff_r14, 0, 0xac);
         *unaff_r14 = 0;
     }
@@ -25926,11 +25964,11 @@ u32 alt_entry_25fc60(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ai
 }
 
 /*
- * cri_sub_25fca4  0x8c25fca4
- * area name: in the cri library code range
- * called by: alt_entry_25fdbe, cri_sub_25fdb2
+ * cri_sound_25fca4  0x8c25fca4
+ * area name: in the cri library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_25fdbe, cri_uses_is_spsd_header_25fdb2
  */
-int cri_sub_25fca4(int a0, u32 a1, u32 a2) {
+int cri_sound_25fca4(int a0, u32 a1, u32 a2) {
     u8 *puVar1;
     int iVar2;
     int ar7_00;
@@ -25940,14 +25978,15 @@ int cri_sub_25fca4(int a0, u32 a1, u32 a2) {
     puStack_c = &g_8c4b9828;
     *(u16 *)(a0 + 2) = 1;
     ar7_00 = a0 + 0xc;
-    iVar2 =
-        (*(code *)(&cri_sub_260d7c))(a1, a2, asStack_14, ar7_00, a0 + 0xd, a0 + 0xf, a0 + 0xe, a0 + 0x14, a0 + 0x18);
+    iVar2 = (*(code *)(&cri_uses_libgcc_divide_helper_260d7c))(a1, a2, asStack_14, ar7_00, a0 + 0xd, a0 + 0xf, a0 + 0xe,
+                                                               a0 + 0x14, a0 + 0x18);
     if ((iVar2 < 0) || (iVar2 = adx_get_highpass_freq(a1, a2, a0 + 0x1c), iVar2 < 0)) {
         iVar2 = 0;
     } else {
-        (*(code *)(&vram_sub_264f52))(*(u32 *)(a0 + 8), *(u32 *)(a0 + 0x14), (int)*(short *)(a0 + 0x1c), ar7_00);
+        (*(code *)(&vram_uses_delay_loop_6_264f52))(*(u32 *)(a0 + 8), *(u32 *)(a0 + 0x14), (int)*(short *)(a0 + 0x1c),
+                                                    ar7_00);
         iVar2 = a0 + 0x24;
-        (*(code *)(&ADX_sub_260f02))(a1, a2, a0 + 0x20, iVar2, a0 + 0x26, a0 + 0x28, a0 + 0x2c, a0 + 0x30, a0 + 0x34);
+        (*(code *)(&ADX_test_260f02))(a1, a2, a0 + 0x20, iVar2, a0 + 0x26, a0 + 0x28, a0 + 0x2c, a0 + 0x30, a0 + 0x34);
         *(int *)(a0 + 0x58) = (int)*(char *)(a0 + 0xe);
         *(int *)(a0 + 0x5c) = (int)*(char *)(a0 + 0xf);
         *(u32 *)(a0 + 0x60) = *(u32 *)(a0 + 0x10);
@@ -25967,26 +26006,26 @@ int cri_sub_25fca4(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * cri_sub_25fdb2  0x8c25fdb2
- * area name: in the cri library code range
- * called by: ta_sub_262c80
+ * cri_uses_is_spsd_header_25fdb2  0x8c25fdb2
+ * area name: in the cri library code range; behaviour name: its main named callee is is_spsd_header
+ * called by: ta_uses_get_field_a8_s16_262c80
  */
-u32 cri_sub_25fdb2(u32 a0, u16 *a1, u32 a2) {
+u32 cri_uses_is_spsd_header_25fdb2(u32 a0, u16 *a1, u32 a2) {
     u32 uVar1;
     int iVar2;
 
     if (((int)(u32)*a1 >> 8 | (u32)*a1 << 8 & 0xff00 & 0xffff) == 0x8000) {
-        uVar1 = cri_sub_25fca4(a0, a1, a2);
+        uVar1 = cri_sound_25fca4(a0, a1, a2);
         return uVar1;
     }
     iVar2 = is_spsd_header(a1, &g_8c4b9828);
     if (iVar2 != 0) {
-        uVar1 = cri_sub_26045c(a0, a1, a2);
+        uVar1 = cri_copy_26045c(a0, a1, a2);
         return uVar1;
     }
     iVar2 = is_wav_header(a1);
     if (iVar2 != 0) {
-        uVar1 = cri_sub_260810(a0, a1, a2);
+        uVar1 = cri_copy_260810(a0, a1, a2);
         return uVar1;
     }
     iVar2 = is_aiff_header(a1);
@@ -25995,10 +26034,10 @@ u32 cri_sub_25fdb2(u32 a0, u16 *a1, u32 a2) {
         if (iVar2 == 0) {
             return 0;
         }
-        uVar1 = cri_sub_25f742(a0, a1, a2);
+        uVar1 = cri_copy_25f742(a0, a1, a2);
         return uVar1;
     }
-    uVar1 = cri_sub_25f0ea(a0, a1, a2);
+    uVar1 = cri_copy_25f0ea(a0, a1, a2);
     return uVar1;
 }
 
@@ -26022,38 +26061,38 @@ u32 alt_entry_25fdbe(u32 unused_a0, u32 a1, u32 a2) {
         uVar3 = uVar4 << (in_r2 & 0x1f);
     }
     if ((uVar3 & 0xff | uVar4 << 8 & 0xff00 & 0xffff) == 0x8000) {
-        uVar1 = cri_sub_25fca4(unaff_r12, unaff_r14, a2);
+        uVar1 = cri_sound_25fca4(unaff_r12, unaff_r14, a2);
         return uVar1;
     }
     uVar1 = a2;
     iVar2 = is_spsd_header(unaff_r14, a1);
     if (iVar2 != 0) {
-        uVar1 = cri_sub_26045c(a2);
+        uVar1 = cri_copy_26045c(a2);
         return uVar1;
     }
     iVar2 = is_wav_header(unaff_r14);
     if (iVar2 != 0) {
-        uVar1 = cri_sub_260810(a2);
+        uVar1 = cri_copy_260810(a2);
         return uVar1;
     }
     iVar2 = is_aiff_header(unaff_r14);
     if (iVar2 != 0) {
-        uVar1 = cri_sub_25f0ea(a2);
+        uVar1 = cri_copy_25f0ea(a2);
         return uVar1;
     }
     iVar2 = is_au_header(unaff_r14);
     if (iVar2 != 0) {
-        uVar1 = cri_sub_25f742(a2);
+        uVar1 = cri_copy_25f742(a2);
         return uVar1;
     }
     return 0;
 }
 
 /*
- * cri_sub_25fea8  0x8c25fea8
- * area name: in the cri library code range
+ * cri_update_fields_25fea8  0x8c25fea8
+ * area name: in the cri library code range; behaviour name: conditionally writes members
  */
-int cri_sub_25fea8(int a0, u32 a1, u32 a2) {
+int cri_update_fields_25fea8(int a0, u32 a1, u32 a2) {
     int iVar1;
 
     iVar1 = (int)0x88;
@@ -26065,7 +26104,7 @@ int cri_sub_25fea8(int a0, u32 a1, u32 a2) {
 
 /*
  * get_field_a8_s16  0x8c25fec0
- * called by: cri_sub_262e10, get_field_a8_s16_wrap, ta_sub_262c80
+ * called by: cri_uses_get_field_a8_s16_262e10, get_field_a8_s16_wrap, ta_uses_get_field_a8_s16_262c80
  */
 int get_field_a8_s16(int a0) {
     return (int)*(short *)(0xa8 + a0);
@@ -26073,18 +26112,18 @@ int get_field_a8_s16(int a0) {
 
 /*
  * get_field_e_s8  0x8c25feca
- * called by: cri_sub_262f02, get_field_e_s8_wrap
+ * called by: cri_uses_get_field_18_262f02, get_field_e_s8_wrap
  */
 int get_field_e_s8(int a0) {
     return (int)*(char *)(a0 + 0xe);
 }
 
 /*
- * cri_sub_25fed2  0x8c25fed2
- * area name: in the cri library code range
- * called by: cri_sub_263162
+ * cri_calc_25fed2  0x8c25fed2
+ * area name: in the cri library code range; behaviour name: integer arithmetic on its arguments
+ * called by: cri_calls_calc_263162
  */
-u32 cri_sub_25fed2(int a0) {
+u32 cri_calc_25fed2(int a0) {
     if (*(short *)(0xa8 + a0) != 0) {
         if (*(short *)(0xa8 + a0) == 2) {
             if (*(short *)(0xaa + a0) == 2) {
@@ -26102,7 +26141,7 @@ u32 cri_sub_25fed2(int a0) {
 
 /*
  * get_field_18_25ff16  0x8c25ff16
- * called by: cri_sub_262f02, get_field_18_wrap
+ * called by: cri_uses_get_field_18_262f02, get_field_18_wrap
  */
 u32 get_field_18_25ff16(int a0) {
     return *(u32 *)(a0 + 0x18);
@@ -26118,18 +26157,18 @@ int get_field_24_s16(int a0) {
 
 /*
  * get_field_4_25ff38  0x8c25ff38
- * called by: cri_sub_26304a, cri_sub_26307e
+ * called by: cri_uses_get_field_4_26304a, cri_uses_get_field_4_26307e
  */
 u32 get_field_4_25ff38(int a0) {
     return *(u32 *)(a0 + 4);
 }
 
 /*
- * cri_sub_25ff3c  0x8c25ff3c
- * area name: in the cri library code range
- * called by: cri_sub_262e10
+ * cri_uses_libgcc_divide_helper_25ff3c  0x8c25ff3c
+ * area name: in the cri library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
+ * called by: cri_uses_get_field_a8_s16_262e10
  */
-u32 cri_sub_25ff3c(int a0, u32 a1, u32 a2) {
+u32 cri_uses_libgcc_divide_helper_25ff3c(int a0, u32 a1, u32 a2) {
     u32 uVar1;
     int iVar2;
 
@@ -26152,10 +26191,10 @@ u32 cri_sub_25ff3c(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * cri_sub_25ff3e  0x8c25ff3e
- * area name: in the cri library code range
+ * cri_uses_libgcc_divide_helper_25ff3e  0x8c25ff3e
+ * area name: in the cri library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
  */
-u32 cri_sub_25ff3e(int a0, u32 a1, u32 a2, u32 unused_a3, int ain0) {
+u32 cri_uses_libgcc_divide_helper_25ff3e(int a0, u32 a1, u32 a2, u32 unused_a3, int ain0) {
     u32 uVar1;
     int iVar2;
 
@@ -26178,11 +26217,11 @@ u32 cri_sub_25ff3e(int a0, u32 a1, u32 a2, u32 unused_a3, int ain0) {
 }
 
 /*
- * cri_sub_25ff8e  0x8c25ff8e
- * area name: in the cri library code range
- * called by: cri_sub_262e10
+ * cri_update_fields_25ff8e  0x8c25ff8e
+ * area name: in the cri library code range; behaviour name: conditionally writes members
+ * called by: cri_uses_get_field_a8_s16_262e10
  */
-u32 cri_sub_25ff8e(int a0) {
+u32 cri_update_fields_25ff8e(int a0) {
     u32 in_r0;
 
     if (*(int *)(a0 + 4) == 0) {
@@ -26192,29 +26231,29 @@ u32 cri_sub_25ff8e(int a0) {
 }
 
 /*
- * cri_sub_25ff9c  0x8c25ff9c
- * area name: in the cri library code range
- * called by: ta_sub_262c66
+ * cri_copy_25ff9c  0x8c25ff9c
+ * area name: in the cri library code range; behaviour name: mostly calls copy functions
+ * called by: ta_copy_262c66
  */
-u32 cri_sub_25ff9c(int a0) {
+u32 cri_copy_25ff9c(int a0) {
     u32 uVar1;
 
-    uVar1 = vram_sub_264fd4(*(u32 *)(a0 + 8));
+    uVar1 = vram_copy_264fd4(*(u32 *)(a0 + 8));
     *(u32 *)(a0 + 4) = 0;
     return uVar1;
 }
 
 /*
- * cri_sub_25ffb6  0x8c25ffb6
- * area name: in the cri library code range
- * called by: cri_sub_262f02
+ * cri_calls_update_fields_25ffb6  0x8c25ffb6
+ * area name: in the cri library code range; behaviour name: its callees mostly do: update_fields
+ * called by: cri_uses_get_field_18_262f02
  */
-int cri_sub_25ffb6(int a0) {
+int cri_calls_update_fields_25ffb6(int a0) {
     int iVar1;
 
     iVar1 = *(int *)(a0 + 4);
     if (iVar1 == 3) {
-        vram_sub_264fea(*(u32 *)(a0 + 8));
+        vram_update_fields_264fea(*(u32 *)(a0 + 8));
         iVar1 = (int)0x9c;
         *(u32 *)(iVar1 + a0) = 0;
         *(u32 *)(a0 + 4) = 0;
@@ -26232,7 +26271,7 @@ int alt_entry_25ffba(void) {
 
     iVar1 = *(int *)(unaff_r14 + 4);
     if (iVar1 == 3) {
-        vram_sub_264fea(*(u32 *)(unaff_r14 + 8));
+        vram_update_fields_264fea(*(u32 *)(unaff_r14 + 8));
         iVar1 = (int)0x9c;
         *(u32 *)(iVar1 + unaff_r14) = 0;
         *(u32 *)(unaff_r14 + 4) = 0;
@@ -26242,7 +26281,7 @@ int alt_entry_25ffba(void) {
 
 /*
  * get_field_a000a4_25fff0  0x8c25fff0
- * called by: cri_sub_262f02
+ * called by: cri_uses_get_field_18_262f02
  */
 u32 get_field_a000a4_25fff0(int a0) {
     return *(u32 *)(0xa4 + a0);
@@ -26250,7 +26289,7 @@ u32 get_field_a000a4_25fff0(int a0) {
 
 /*
  * get_field_a0_25fff6  0x8c25fff6
- * called by: cri_sub_262f02
+ * called by: cri_uses_get_field_18_262f02
  */
 u32 get_field_a0_25fff6(int a0) {
     return *(u32 *)(0xa0 + a0);

@@ -4,68 +4,71 @@
 #include "globals.h"
 
 /*
- * cri_sub_260000  0x8c260000
- * area name: in the cri library code range
- * called by: cri_sub_260062
+ * cri_calls_update_fields_260000  0x8c260000
+ * area name: in the cri library code range; behaviour name: its callees mostly do: update_fields
+ * called by: cri_uses_libgcc_divide_helper_260062
  */
-u32 cri_sub_260000(int a0, u32 a1) {
+u32 cri_calls_update_fields_260000(int a0, u32 a1) {
     u32 uVar1;
 
     uVar1 = *(u32 *)(a0 + 8);
-    (*(code *)(&vram_sub_264f86))(uVar1, *(u32 *)(a0 + 0x50), a1, *(int *)(a0 + 100) + *(int *)(a0 + 0x70) * 2);
-    uVar1 = vram_sub_264fc2(uVar1);
+    (*(code *)(&vram_update_fields_264f86))(uVar1, *(u32 *)(a0 + 0x50), a1,
+                                            *(int *)(a0 + 100) + *(int *)(a0 + 0x70) * 2);
+    uVar1 = vram_update_fields_264fc2(uVar1);
     return uVar1;
 }
 
 /*
- * cri_sub_260006  0x8c260006
- * area name: in the cri library code range
+ * cri_calls_update_fields_260006  0x8c260006
+ * area name: in the cri library code range; behaviour name: its callees mostly do: update_fields
  */
-u32 cri_sub_260006(int a0, u32 a1, int a2) {
+u32 cri_calls_update_fields_260006(int a0, u32 a1, int a2) {
     u32 uVar1;
 
     uVar1 = *(u32 *)(a0 + 8);
-    (*(code *)(&vram_sub_264f86))(uVar1, *(u32 *)(a0 + 0x50), a1, *(int *)(a2 + 0x14) + *(int *)(a2 + 0x20) * 2);
-    uVar1 = vram_sub_264fc2(uVar1);
+    (*(code *)(&vram_update_fields_264f86))(uVar1, *(u32 *)(a0 + 0x50), a1,
+                                            *(int *)(a2 + 0x14) + *(int *)(a2 + 0x20) * 2);
+    uVar1 = vram_update_fields_264fc2(uVar1);
     return uVar1;
 }
 
 /*
- * cri_sub_26002c  0x8c26002c
- * area name: in the cri library code range
- * called by: cri_sub_260062
+ * cri_calls_update_fields_26002c  0x8c26002c
+ * area name: in the cri library code range; behaviour name: its callees mostly do: update_fields
+ * called by: cri_uses_libgcc_divide_helper_260062
  */
-u32 cri_sub_26002c(int a0, int a1) {
+u32 cri_calls_update_fields_26002c(int a0, int a1) {
     u32 uVar1;
 
     uVar1 = *(u32 *)(a0 + 8);
-    (*(code *)(&vram_sub_264fa4))(uVar1, *(u32 *)(a0 + 0x50), a1 << 1,
-                                  *(int *)(a0 + 0x6c) * 2 + *(int *)(a0 + 100) + *(int *)(a0 + 0x70) * 2);
-    uVar1 = vram_sub_264fc2(uVar1);
+    (*(code *)(&vram_update_fields_264fa4))(uVar1, *(u32 *)(a0 + 0x50), a1 << 1,
+                                            *(int *)(a0 + 0x6c) * 2 + *(int *)(a0 + 100) + *(int *)(a0 + 0x70) * 2);
+    uVar1 = vram_update_fields_264fc2(uVar1);
     return uVar1;
 }
 
 /*
- * cri_sub_260030  0x8c260030
- * area name: in the cri library code range
+ * cri_calls_update_fields_260030  0x8c260030
+ * area name: in the cri library code range; behaviour name: its callees mostly do: update_fields
  */
-u32 cri_sub_260030(int a0, int a1, int a2) {
+u32 cri_calls_update_fields_260030(int a0, int a1, int a2) {
     int ar7_00;
     u32 uVar1;
 
     uVar1 = *(u32 *)(a0 + 8);
     ar7_00 = *(int *)(a2 + 100) + *(int *)(a2 + 0x70) * 2;
-    (*(code *)(&vram_sub_264fa4))(uVar1, *(u32 *)(a0 + 0x50), a1 << 1, ar7_00, *(int *)(a2 + 0x6c) * 2 + ar7_00);
-    uVar1 = vram_sub_264fc2(uVar1);
+    (*(code *)(&vram_update_fields_264fa4))(uVar1, *(u32 *)(a0 + 0x50), a1 << 1, ar7_00,
+                                            *(int *)(a2 + 0x6c) * 2 + ar7_00);
+    uVar1 = vram_update_fields_264fc2(uVar1);
     return uVar1;
 }
 
 /*
- * cri_sub_260062  0x8c260062
- * area name: in the cri library code range
- * called by: cri_sub_260284, cri_sub_2602f4
+ * cri_uses_libgcc_divide_helper_260062  0x8c260062
+ * area name: in the cri library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
+ * called by: cri_uses_get_field_c_260284, cri_uses_get_field_c_2602f4
  */
-u32 cri_sub_260062(int a0) {
+u32 cri_uses_libgcc_divide_helper_260062(int a0) {
     int ar5_00;
     int iVar1;
     u32 uVar2;
@@ -107,17 +110,17 @@ u32 cri_sub_260062(int a0) {
         ar5_00 = iVar3;
     }
     if (*(int *)(iVar4 + 8) == 2) {
-        uVar2 = cri_sub_26002c(a0, ar5_00);
+        uVar2 = cri_calls_update_fields_26002c(a0, ar5_00);
         return uVar2;
     }
-    uVar2 = cri_sub_260000(a0, ar5_00);
+    uVar2 = cri_calls_update_fields_260000(a0, ar5_00);
     return uVar2;
 }
 
 /*
  * memcpy_u16  0x8c26011e
  * copies a2 16-bit values from a1 to a0
- * called by: cri_sub_26014c, memcpy_u16_wrap
+ * called by: cri_copy_26014c, memcpy_u16_wrap
  */
 u32 memcpy_u16(u16 *a0, u16 *a1, int a2) {
     u16 uVar1;
@@ -133,11 +136,11 @@ u32 memcpy_u16(u16 *a0, u16 *a1, int a2) {
 }
 
 /*
- * cri_sub_26014c  0x8c26014c
- * area name: in the cri library code range
- * called by: cri_sub_260198
+ * cri_copy_26014c  0x8c26014c
+ * area name: in the cri library code range; behaviour name: mostly calls copy functions
+ * called by: cri_uses_libgcc_divide_helper_260198
  */
-u32 cri_sub_26014c(int a0, int a1, int a2, u32 a3) {
+u32 cri_copy_26014c(int a0, int a1, int a2, u32 a3) {
     u32 ain0;
     u32 uVar1;
 
@@ -150,7 +153,7 @@ u32 cri_sub_26014c(int a0, int a1, int a2, u32 a3) {
 /*
  * memcpy_u16_wrap  0x8c260180
  * only calls memcpy_u16
- * called by: cri_sub_260198
+ * called by: cri_uses_libgcc_divide_helper_260198
  */
 u32 memcpy_u16_wrap(int a0, int a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -160,11 +163,11 @@ u32 memcpy_u16_wrap(int a0, int a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * cri_sub_260198  0x8c260198
- * area name: in the cri library code range
- * called by: cri_sub_260284, cri_sub_2602f4
+ * cri_uses_libgcc_divide_helper_260198  0x8c260198
+ * area name: in the cri library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
+ * called by: cri_uses_get_field_c_260284, cri_uses_get_field_c_2602f4
  */
-u32 cri_sub_260198(int a0) {
+u32 cri_uses_libgcc_divide_helper_260198(int a0) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -196,7 +199,7 @@ u32 cri_sub_260198(int a0) {
     if (ar5_00 <= iVar7) {
         iVar7 = iVar7 - ar5_00;
         if (*(int *)(a0 + 0x58) == 2) {
-            uVar6 = cri_sub_26014c(ar4_00, ar5_00, uVar6, iVar7);
+            uVar6 = cri_copy_26014c(ar4_00, ar5_00, uVar6, iVar7);
             return uVar6;
         }
         uVar6 = memcpy_u16_wrap(ar4_00, ar5_00, uVar6, iVar7);
@@ -206,10 +209,10 @@ u32 cri_sub_260198(int a0) {
 }
 
 /*
- * cri_sub_260284  0x8c260284
- * area name: in the cri library code range
+ * cri_uses_get_field_c_260284  0x8c260284
+ * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
  */
-int cri_sub_260284(u32 unused_a0, int a1, int a2, int a3) {
+int cri_uses_get_field_c_260284(u32 unused_a0, int a1, int a2, int a3) {
     int iVar1;
     int unaff_r13;
     int unaff_r14;
@@ -219,16 +222,16 @@ int cri_sub_260284(u32 unused_a0, int a1, int a2, int a3) {
         a3 = unaff_r13 + 0x78;
         a2 = unaff_r13 + 0x74;
         (**(code **)(0x88 + unaff_r14))(*(u32 *)(0x88 + 4 + unaff_r14), a1, a2, a3);
-        cri_sub_260062(unaff_r14);
+        cri_uses_libgcc_divide_helper_260062(unaff_r14);
         *(u32 *)(unaff_r14 + 4) = 2;
     }
     iVar1 = *(int *)(unaff_r14 + 4);
     if (iVar1 == 2) {
-        vram_sub_26501c(*(u32 *)(unaff_r14 + 8));
+        vram_calls_fill_loop_26501c(*(u32 *)(unaff_r14 + 8));
         iVar1 = get_field_c_264f82(*(u32 *)(unaff_r14 + 8), a1);
         if (iVar1 == 3) {
-            cri_sub_260198(unaff_r14);
-            vram_sub_264fea(*(u32 *)(unaff_r14 + 8));
+            cri_uses_libgcc_divide_helper_260198(unaff_r14);
+            vram_update_fields_264fea(*(u32 *)(unaff_r14 + 8));
             iVar1 = (int)0x90;
             iVar1 =
                 (**(code **)(iVar1 + unaff_r14))(*(u32 *)(iVar1 + 4 + unaff_r14), *(u32 *)(iVar1 + 0x14 + unaff_r14),
@@ -240,11 +243,11 @@ int cri_sub_260284(u32 unused_a0, int a1, int a2, int a3) {
 }
 
 /*
- * cri_sub_2602f4  0x8c2602f4
- * area name: in the cri library code range
- * called by: cri_sub_260340, cri_sub_26304a, cri_sub_26307e
+ * cri_uses_get_field_c_2602f4  0x8c2602f4
+ * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
+ * called by: cri_uses_get_field_4_26304a, cri_uses_get_field_4_26307e, cri_uses_get_field_c_260340
  */
-u32 cri_sub_2602f4(int a0) {
+u32 cri_uses_get_field_c_2602f4(int a0) {
     int r5;
     int r6;
     int r7;
@@ -257,16 +260,16 @@ u32 cri_sub_2602f4(int a0) {
             r7 = a0 + 0x78;
             r6 = a0 + 0x74;
             (**(code **)(0x88 + a0))(*(u32 *)(0x88 + 4 + a0));
-            cri_sub_260062(a0);
+            cri_uses_libgcc_divide_helper_260062(a0);
             *(u32 *)(a0 + 4) = 2;
         }
         iVar1 = *(int *)(a0 + 4);
         if (iVar1 == 2) {
-            vram_sub_26501c(*(u32 *)(a0 + 8));
+            vram_calls_fill_loop_26501c(*(u32 *)(a0 + 8));
             iVar1 = get_field_c_264f82(*(u32 *)(a0 + 8));
             if (iVar1 == 3) {
-                cri_sub_260198(a0);
-                vram_sub_264fea(*(u32 *)(a0 + 8));
+                cri_uses_libgcc_divide_helper_260198(a0);
+                vram_update_fields_264fea(*(u32 *)(a0 + 8));
                 iVar1 = (int)0x90;
                 iVar1 = (**(code **)(iVar1 + a0))(*(u32 *)(iVar1 + 4 + a0), *(u32 *)(iVar1 + 0x14 + a0),
                                                   *(u32 *)(iVar1 + 0x10 + a0));
@@ -276,29 +279,29 @@ u32 cri_sub_2602f4(int a0) {
         return iVar1;
     }
     if (*(short *)(0xa8 + a0) == 2) {
-        uVar2 = cri_sub_260540();
+        uVar2 = cri_uses_get_field_c_260540();
         return uVar2;
     }
     if (*(short *)(0xa8 + a0) == 3) {
-        uVar2 = cri_sub_25f40e();
+        uVar2 = cri_uses_get_field_c_25f40e();
         return uVar2;
     }
     if (*(short *)(0xa8 + a0) == 4) {
-        uVar2 = cri_sub_25fb5c();
+        uVar2 = cri_uses_get_field_c_25fb5c();
         return uVar2;
     }
     if (*(short *)(0xa8 + a0) == 1) {
-        uVar2 = cri_sub_260c60();
+        uVar2 = cri_uses_get_field_c_260c60();
         return uVar2;
     }
     return (int)*(short *)(0xa8 + a0);
 }
 
 /*
- * cri_sub_260340  0x8c260340
- * area name: in the cri library code range
+ * cri_uses_get_field_c_260340  0x8c260340
+ * area name: in the cri library code range; behaviour name: its callees mostly do: uses_get_field_c
  */
-int cri_sub_260340(short *a0) {
+int cri_uses_get_field_c_260340(short *a0) {
     int iVar1;
     int unaff_r12;
     short *psVar2;
@@ -309,7 +312,7 @@ int cri_sub_260340(short *a0) {
     do {
         iVar1 = (int)*a0;
         if (iVar1 == 1) {
-            iVar1 = cri_sub_2602f4(a0);
+            iVar1 = cri_uses_get_field_c_2602f4(a0);
         }
         a0 = (short *)((int)a0 + iVar3);
     } while (a0 < psVar2);
@@ -317,12 +320,12 @@ int cri_sub_260340(short *a0) {
 }
 
 /*
- * cri_sub_260390  0x8c260390
- * area name: in the cri library code range
- * called by: cri_sub_26045c
+ * cri_test_260390  0x8c260390
+ * area name: in the cri library code range; behaviour name: returns the result of a comparison
+ * called by: cri_copy_26045c
  */
-u32 cri_sub_260390(int a0, u32 unused_a1, short *a2, u8 *a3, u8 *s0, char *s4, char *s8, u32 *s12, int *s16, u32 *s20,
-                   u16 *s24) {
+u32 cri_test_260390(int a0, u32 unused_a1, short *a2, u8 *a3, u8 *s0, char *s4, char *s8, u32 *s12, int *s16, u32 *s20,
+                    u16 *s24) {
     char cVar1;
     int *piVar2;
 
@@ -359,18 +362,18 @@ u32 cri_sub_260390(int a0, u32 unused_a1, short *a2, u8 *a3, u8 *s0, char *s4, c
 }
 
 /*
- * cri_sub_26045c  0x8c26045c
- * area name: in the cri library code range
- * called by: alt_entry_25fdbe, cri_sub_25fdb2
+ * cri_copy_26045c  0x8c26045c
+ * area name: in the cri library code range; behaviour name: mostly calls copy functions
+ * called by: alt_entry_25fdbe, cri_uses_is_spsd_header_25fdb2
  */
-int cri_sub_26045c(int a0, u32 a1, u32 a2) {
+int cri_copy_26045c(int a0, u32 a1, u32 a2) {
     int iVar1;
     int a7;
     short asStack_18[2];
 
     a7 = a0 + 0xc;
     *(u16 *)(a0 + 2) = 1;
-    iVar1 = cri_sub_260390(a1, a2, asStack_18, a7);
+    iVar1 = cri_test_260390(a1, a2, asStack_18, a7);
     if (iVar1 < 0) {
         iVar1 = 0;
     } else {
@@ -403,11 +406,11 @@ int cri_sub_26045c(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * cri_sub_260540  0x8c260540
- * area name: in the cri library code range
- * called by: cri_sub_2602f4
+ * cri_uses_get_field_c_260540  0x8c260540
+ * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
+ * called by: cri_uses_get_field_c_2602f4
  */
-int cri_sub_260540(int a0) {
+int cri_uses_get_field_c_260540(int a0) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -547,7 +550,7 @@ int alt_entry_26054c(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * is_spsd_header  0x8c260636
  * 1 when a0 starts with "SPSD"
- * called by: alt_entry_25fdbe, cri_sub_25fdb2
+ * called by: alt_entry_25fdbe, cri_uses_is_spsd_header_25fdb2
  */
 u32 is_spsd_header(u32 a0, u32 a1) {
     int iVar1;
@@ -557,12 +560,12 @@ u32 is_spsd_header(u32 a0, u32 a1) {
 }
 
 /*
- * cri_sub_260658  0x8c260658
- * area name: in the cri library code range
- * called by: cri_sub_260810
+ * cri_uses_memcmp_260658  0x8c260658
+ * area name: in the cri library code range; behaviour name: its main named callee is memcmp
+ * called by: cri_copy_260810
  */
-u32 cri_sub_260658(int a0, u32 a1, short *a2, u8 *a3, char *s0, char *s4, char *s8, u32 *s12, u32 s16, u32 *s20,
-                   u16 *s24) {
+u32 cri_uses_memcmp_260658(int a0, u32 a1, short *a2, u8 *a3, char *s0, char *s4, char *s8, u32 *s12, u32 s16, u32 *s20,
+                           u16 *s24) {
     u8 bVar1;
     u8 bVar2;
     u8 bVar3;
@@ -640,18 +643,18 @@ u32 cri_sub_260658(int a0, u32 a1, short *a2, u8 *a3, char *s0, char *s4, char *
 }
 
 /*
- * cri_sub_260810  0x8c260810
- * area name: in the cri library code range
- * called by: alt_entry_25fdbe, cri_sub_25fdb2
+ * cri_copy_260810  0x8c260810
+ * area name: in the cri library code range; behaviour name: mostly calls copy functions
+ * called by: alt_entry_25fdbe, cri_uses_is_spsd_header_25fdb2
  */
-int cri_sub_260810(int a0, u32 a1, u32 a2) {
+int cri_copy_260810(int a0, u32 a1, u32 a2) {
     int iVar1;
     int a7;
     short asStack_18[2];
 
     a7 = a0 + 0xc;
     *(u16 *)(a0 + 2) = 1;
-    iVar1 = cri_sub_260658(a1, a2, asStack_18, a7);
+    iVar1 = cri_uses_memcmp_260658(a1, a2, asStack_18, a7);
     if (iVar1 < 0) {
         iVar1 = 0;
     } else {
@@ -684,11 +687,11 @@ int cri_sub_260810(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * cri_sub_2608f8  0x8c2608f8
- * area name: in the cri library code range
- * called by: cri_sub_260c60
+ * cri_uses_get_field_c_2608f8  0x8c2608f8
+ * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
+ * called by: cri_uses_get_field_c_260c60
  */
-int cri_sub_2608f8(int a0) {
+int cri_uses_get_field_c_2608f8(int a0) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -826,11 +829,11 @@ int alt_entry_260904(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * cri_sub_2609f0  0x8c2609f0
- * area name: in the cri library code range
- * called by: cri_sub_260c60
+ * cri_uses_get_field_c_2609f0  0x8c2609f0
+ * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
+ * called by: cri_uses_get_field_c_260c60
  */
-int cri_sub_2609f0(int a0) {
+int cri_uses_get_field_c_2609f0(int a0) {
     u8 bVar1;
     int iVar2;
     int iVar3;
@@ -970,11 +973,11 @@ int alt_entry_2609fc(u32 unused_a0, u32 a1, u32 unused_a2, int a3) {
 }
 
 /*
- * cri_sub_260afc  0x8c260afc
- * area name: in the cri library code range
- * called by: cri_sub_260c60
+ * cri_uses_get_field_c_260afc  0x8c260afc
+ * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
+ * called by: cri_uses_get_field_c_260c60
  */
-int cri_sub_260afc(int a0) {
+int cri_uses_get_field_c_260afc(int a0) {
     u8 *puVar1;
     int iVar2;
     int iVar3;
@@ -1129,7 +1132,7 @@ int alt_entry_260b08(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * is_wav_header  0x8c260c2c
  * 1 when a0 starts a "RIFF"...."WAVE" header
- * called by: alt_entry_25fdbe, cri_sub_25fdb2
+ * called by: alt_entry_25fdbe, cri_uses_is_spsd_header_25fdb2
  */
 u32 is_wav_header(int a0) {
     int iVar1;
@@ -1142,34 +1145,34 @@ u32 is_wav_header(int a0) {
 }
 
 /*
- * cri_sub_260c60  0x8c260c60
- * area name: in the cri library code range
- * called by: cri_sub_2602f4
+ * cri_uses_get_field_c_260c60  0x8c260c60
+ * area name: in the cri library code range; behaviour name: its callees mostly do: uses_get_field_c
+ * called by: cri_uses_get_field_c_2602f4
  */
-u32 cri_sub_260c60(int a0) {
+u32 cri_uses_get_field_c_260c60(int a0) {
     u32 uVar1;
 
     if (*(short *)(0xaa + a0) == 2) {
-        uVar1 = cri_sub_260afc(a0);
+        uVar1 = cri_uses_get_field_c_260afc(a0);
         return uVar1;
     }
     if (*(short *)(0xaa + a0) == 1) {
-        uVar1 = cri_sub_2609f0(a0);
+        uVar1 = cri_uses_get_field_c_2609f0(a0);
         return uVar1;
     }
     if (*(short *)(0xaa + a0) == 0) {
-        uVar1 = cri_sub_2608f8(a0);
+        uVar1 = cri_uses_get_field_c_2608f8(a0);
         return uVar1;
     }
     return (int)0xaa;
 }
 
 /*
- * cri_sub_260c98  0x8c260c98
- * area name: in the cri library code range
- * called by: alt_entry_262814, cri_sub_262810
+ * cri_calc_260c98  0x8c260c98
+ * area name: in the cri library code range; behaviour name: integer arithmetic on its arguments
+ * called by: alt_entry_262814, cri_uses_irq_disable_nested_262810
  */
-u32 cri_sub_260c98(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 cri_calc_260c98(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     g_8c277fb0 = 0;
     return ain0;
 }
@@ -1177,8 +1180,8 @@ u32 cri_sub_260c98(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u
 /*
  * irq_disable_nested  0x8c260ca0
  * raises SR.IMASK to 15 on the first call and counts the nesting (pairs with irq_restore_nested)
- * called by: ADXF_Close_like, ADXF_ExecServer_like, ADXF_Open_like, ADXF_Stop, ADXF_sub_2620c8, ADXF_sub_262208,
- * ADXF_sub_2622e4, ADXF_sub_262312 (+17 more)
+ * called by: ADXF_Close_like, ADXF_ExecServer_like, ADXF_Open_like, ADXF_Stop, ADXF_uses_irq_disable_nested_2620c8,
+ * ADXF_uses_irq_disable_nested_2622e4, ADXF_uses_lib_error_printf_262208, ADXF_uses_lib_error_printf_262312 (+17 more)
  */
 u32 irq_disable_nested(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u8 in_MD;
@@ -1202,8 +1205,8 @@ u32 irq_disable_nested(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 
 /*
  * irq_restore_nested  0x8c260cc8
  * drops the interrupt-disable nesting count and restores SR.IMASK when it reaches 0
- * called by: ADXF_Close_like, ADXF_ExecServer_like, ADXF_Open_like, ADXF_Stop, ADXF_sub_2620c8, ADXF_sub_262208,
- * ADXF_sub_2622e4, ADXF_sub_262312 (+17 more)
+ * called by: ADXF_Close_like, ADXF_ExecServer_like, ADXF_Open_like, ADXF_Stop, ADXF_uses_irq_disable_nested_2620c8,
+ * ADXF_uses_irq_disable_nested_2622e4, ADXF_uses_lib_error_printf_262208, ADXF_uses_lib_error_printf_262312 (+17 more)
  */
 u32 irq_restore_nested(u32 unused_a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u8 in_MD;
@@ -1224,11 +1227,11 @@ u32 irq_restore_nested(u32 unused_a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 
 }
 
 /*
- * cri_sub_260cf8  0x8c260cf8
- * area name: in the cri library code range
- * called by: vram64_264eda, vram_sub_264f52
+ * cri_uses_delay_loop_6_260cf8  0x8c260cf8
+ * area name: in the cri library code range; behaviour name: its callees mostly do: uses_delay_loop_6
+ * called by: vram64_264eda, vram_uses_delay_loop_6_264f52
  */
-u32 *cri_sub_260cf8(int a0, int a1, u16 *a2, u16 *a3) {
+u32 *cri_uses_delay_loop_6_260cf8(int a0, int a1, u16 *a2, u16 *a3) {
     float fVar1;
     float fVar2;
     float fVar4;
@@ -1247,7 +1250,7 @@ u32 *cri_sub_260cf8(int a0, int a1, u16 *a2, u16 *a3) {
     dVar3 = (double)CONCAT44((float)a1, 0x40c90fdb);
     fVar4 = (float)a0 * 6.2831855;
     dVar6 = (double)CONCAT44(0x3fb504f3, in_fr13);
-    libc_sub_013c38(a0, a1, a2, a3);
+    libc_uses_delay_loop_6_013c38(a0, a1, a2, a3);
     if (cVar9 == '\0') {
         fVar4 = 2.0;
     } else {
@@ -1340,10 +1343,11 @@ u32 *cri_sub_260cf8(int a0, int a1, u16 *a2, u16 *a3) {
 }
 
 /*
- * cri_sub_260d7c  0x8c260d7c
- * area name: in the cri library code range
+ * cri_uses_libgcc_divide_helper_260d7c  0x8c260d7c
+ * area name: in the cri library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
  */
-u32 cri_sub_260d7c(u16 *a0, int a1, short *a2, u8 *a3, u8 *s0, u8 *s4, u8 *s8, u32 *s12, u32 *s16) {
+u32 cri_uses_libgcc_divide_helper_260d7c(u16 *a0, int a1, short *a2, u8 *a3, u8 *s0, u8 *s4, u8 *s8, u32 *s12,
+                                         u32 *s16) {
     u32 uVar1;
     u32 *extraout_r3;
     u32 uVar2;
@@ -1371,7 +1375,7 @@ u32 cri_sub_260d7c(u16 *a0, int a1, short *a2, u8 *a3, u8 *s0, u8 *s4, u8 *s8, u
 /*
  * adx_get_highpass_freq  0x8c260e9c
  * *a2 = the high-pass cutoff of the ADX header a0 (a1 bytes); -2 without the 0x8000 magic
- * called by: cri_sub_25fca4
+ * called by: cri_sound_25fca4
  */
 u32 adx_get_highpass_freq(u16 *a0, int a1, u16 *a2) {
     if (0x11 < a1) {
@@ -1387,10 +1391,10 @@ u32 adx_get_highpass_freq(u16 *a0, int a1, u16 *a2) {
 }
 
 /*
- * ADX_sub_260f02  0x8c260f02
- * area name: sits between ADX functions (same compilation unit)
+ * ADX_test_260f02  0x8c260f02
+ * area name: sits between ADX functions (same compilation unit); behaviour name: returns the result of a comparison
  */
-u32 ADX_sub_260f02(u16 *a0, int a1, u32 *a2, u16 *a3, u16 *s0, u32 *s4, u32 *s8, u32 *s12, u32 *s16) {
+u32 ADX_test_260f02(u16 *a0, int a1, u32 *a2, u16 *a3, u16 *s0, u32 *s4, u32 *s8, u32 *s12, u32 *s16) {
     u16 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -1426,11 +1430,11 @@ u32 ADX_sub_260f02(u16 *a0, int a1, u32 *a2, u16 *a3, u16 *s0, u32 *s4, u32 *s8,
 }
 
 /*
- * ADX_sub_261058  0x8c261058
- * area name: sits between ADX functions (same compilation unit)
- * called by: vram_sub_26501c
+ * ADX_fill_loop_261058  0x8c261058
+ * area name: sits between ADX functions (same compilation unit); behaviour name: a loop that writes memory
+ * called by: vram_calls_fill_loop_26501c
  */
-int ADX_sub_261058(u16 *a0, int a1, u16 *a2, short *a3, u32 s0, u32 s4) {
+int ADX_fill_loop_261058(u16 *a0, int a1, u16 *a2, short *a3, u32 s0, u32 s4) {
     u16 uVar1;
     u32 uVar2;
     int iVar3;
@@ -1476,11 +1480,11 @@ int ADX_sub_261058(u16 *a0, int a1, u16 *a2, short *a3, u32 s0, u32 s4) {
 }
 
 /*
- * cri_sub_261170  0x8c261170
- * area name: in the cri library code range
- * called by: vram_sub_26501c
+ * cri_fill_loop_261170  0x8c261170
+ * area name: in the cri library code range; behaviour name: a loop that writes memory
+ * called by: vram_calls_fill_loop_26501c
  */
-int cri_sub_261170(u16 *a0, int a1, u16 *a2, short *a3, u16 *s0, short *s4, u32 s8, u32 s12) {
+int cri_fill_loop_261170(u16 *a0, int a1, u16 *a2, short *a3, u16 *s0, short *s4, u32 s8, u32 s12) {
     u16 *puVar1;
     int iVar2;
     u16 uVar3;
@@ -1559,10 +1563,10 @@ int cri_sub_261170(u16 *a0, int a1, u16 *a2, short *a3, u16 *s0, short *s4, u32 
 }
 
 /*
- * cri_sub_261370  0x8c261370
- * area name: in the cri library code range
+ * cri_copy_261370  0x8c261370
+ * area name: in the cri library code range; behaviour name: mostly calls copy functions
  */
-u32 cri_sub_261370(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 cri_copy_261370(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 in_r0;
     int *unaff_r14;
 
@@ -1574,10 +1578,10 @@ u32 cri_sub_261370(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * cri_sub_2613aa  0x8c2613aa
- * area name: in the cri library code range
+ * cri_uses_irq_disable_nested_2613aa  0x8c2613aa
+ * area name: in the cri library code range; behaviour name: its main named callee is irq_disable_nested
  */
-u8 *cri_sub_2613aa(int a0, int a1, int a2) {
+u8 *cri_uses_irq_disable_nested_2613aa(int a0, int a1, int a2) {
     u32 r7;
     u8 *puVar1;
     int ar4_00;
@@ -1632,7 +1636,7 @@ u8 *cri_sub_2613aa(int a0, int a1, int a2) {
 /*
  * cri_clear_30_masked  0x8c26145e
  * zeroes the 0x30 bytes at a0 with interrupts masked
- * called by: ADXSTM_sub_2639fa
+ * called by: ADXSTM_uses_mwRna_stop_and_destroy_2639fa
  */
 u32 cri_clear_30_masked(int a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
     u32 uVar1;
@@ -1651,11 +1655,11 @@ u32 cri_clear_30_masked(int a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) 
 }
 
 /*
- * cri_sub_2614d6  0x8c2614d6
- * area name: in the cri library code range
- * called by: cri_sub_261640
+ * cri_uses_libgcc_divide_helper_2614d6  0x8c2614d6
+ * area name: in the cri library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
+ * called by: cri_uses_libgcc_divide_helper_261640
  */
-u32 cri_sub_2614d6(int a0, u32 unused_a1, int **a2, int **a3) {
+u32 cri_uses_libgcc_divide_helper_2614d6(int a0, u32 unused_a1, int **a2, int **a3) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -1741,15 +1745,15 @@ u32 cri_sub_2614d6(int a0, u32 unused_a1, int **a2, int **a3) {
 }
 
 /*
- * cri_sub_261640  0x8c261640
- * area name: in the cri library code range
+ * cri_uses_libgcc_divide_helper_261640  0x8c261640
+ * area name: in the cri library code range; behaviour name: its callees mostly do: uses_libgcc_divide_helper
  * called by: alt_entry_26165c
  */
-u32 cri_sub_261640(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 cri_uses_libgcc_divide_helper_261640(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     if (*(char *)(a0 + 1) == 2) {
-        uVar1 = cri_sub_2614d6(a0, unused_a1, a2, a3);
+        uVar1 = cri_uses_libgcc_divide_helper_2614d6(a0, unused_a1, a2, a3);
         return uVar1;
     }
     return (int)*(char *)(a0 + 1);
@@ -1768,7 +1772,7 @@ int alt_entry_26165c(char *a0, u32 unused_a1, u32 a2, u32 a3) {
     do {
         iVar1 = (int)*a0;
         if (iVar1 == 1) {
-            iVar1 = cri_sub_261640(a0, unused_a1, a2, a3);
+            iVar1 = cri_uses_libgcc_divide_helper_261640(a0, unused_a1, a2, a3);
         }
         a0 = a0 + 0x30;
     } while (a0 < pcVar2);
@@ -1777,7 +1781,7 @@ int alt_entry_26165c(char *a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * set_field_20_261680  0x8c261680
- * called by: ADXT_sub_2647f4
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4
  */
 u32 set_field_20_261680(int a0, u32 a1) {
     u32 in_r0;
@@ -1787,11 +1791,11 @@ u32 set_field_20_261680(int a0, u32 a1) {
 }
 
 /*
- * cri_sub_2616a8  0x8c2616a8
- * area name: in the cri library code range
- * called by: cri_sub_26175c
+ * cri_calc_2616a8  0x8c2616a8
+ * area name: in the cri library code range; behaviour name: integer arithmetic on its arguments
+ * called by: cri_calls_calc_26175c
  */
-u32 cri_sub_2616a8(void) {
+u32 cri_calc_2616a8(void) {
     u32 uVar1;
     u8 in_IMASK;
     u8 in_S;
@@ -1805,14 +1809,14 @@ u32 cri_sub_2616a8(void) {
 }
 
 /*
- * cri_sub_26175c  0x8c26175c
- * area name: in the cri library code range
+ * cri_calls_calc_26175c  0x8c26175c
+ * area name: in the cri library code range; behaviour name: its callees mostly do: calc
  */
-u32 cri_sub_26175c(u32 a0) {
+u32 cri_calls_calc_26175c(u32 a0) {
     u32 *puVar1;
     u32 uVar2;
 
-    cri_sub_2616a8();
+    cri_calc_2616a8();
     puVar1 = 0xff00001c;
     *0xff00001c = a0 & (int)(int)0xfffff7ff | (int)0x800;
     uVar2 = *puVar1 & 0xfffffff7 | 8;
@@ -1821,14 +1825,14 @@ u32 cri_sub_26175c(u32 a0) {
 }
 
 /*
- * cri_sub_261786  0x8c261786
- * area name: in the cri library code range
- * called by: ADXF_sub_26211c, ADXF_sub_262312
+ * cri_scan_loop_261786  0x8c261786
+ * area name: in the cri library code range; behaviour name: a loop that only reads
+ * called by: ADXF_sound_26211c, ADXF_uses_lib_error_printf_262312
  * decompiler: Switch with 1 destination removed at 0x8c261798
  * decompiler: Switch with 1 destination removed at 0x8c2617a8
  * decompiler: Switch with 1 destination removed at 0x8c2617e6
  */
-u32 cri_sub_261786(u32 a0, u32 a1) {
+u32 cri_scan_loop_261786(u32 a0, u32 a1) {
     u32 in_r0;
     u32 uVar1;
     u32 uVar2;
@@ -1856,7 +1860,7 @@ u32 cri_sub_261786(u32 a0, u32 a1) {
 
 /*
  * ta_fifo_2619b4  0x8c2619b4
- * called by: alt_entry_262814, cri_sub_262810
+ * called by: alt_entry_262814, cri_uses_irq_disable_nested_262810
  */
 u32 *ta_fifo_2619b4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u8 *puVar1;
@@ -1875,7 +1879,7 @@ u32 *ta_fifo_2619b4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
 /*
  * ta_fifo_2619ee  0x8c2619ee
- * called by: cri_sub_2628fa
+ * called by: cri_uses_irq_disable_nested_2628fa
  */
 u32 ta_fifo_2619ee(void) {
     u8 *puVar1;
@@ -1916,12 +1920,12 @@ u32 ta_fifo_2619f8(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * cri_sub_261a4c  0x8c261a4c
- * area name: in the cri library code range
- * called by: ADXF_Close_like, ADXF_Open_like, ADXF_Seek, ADXF_Seek_262560, ADXF_Stop, ADXF_sub_2620c8, ADXF_sub_262312,
- * alt_entry_26216c
+ * cri_update_fields_261a4c  0x8c261a4c
+ * area name: in the cri library code range; behaviour name: conditionally writes members
+ * called by: ADXF_Close_like, ADXF_Open_like, ADXF_Seek, ADXF_Seek_262560, ADXF_Stop,
+ * ADXF_uses_irq_disable_nested_2620c8, ADXF_uses_lib_error_printf_262312, alt_entry_26216c
  */
-int cri_sub_261a4c(int a0, int a1, u32 a2, u32 a3, u32 s0) {
+int cri_update_fields_261a4c(int a0, int a1, u32 a2, u32 a3, u32 s0) {
     u32 *puVar1;
     int iVar2;
     int iVar3;
@@ -1955,7 +1959,7 @@ int cri_sub_261a4c(int a0, int a1, u32 a2, u32 a3, u32 s0) {
 /*
  * busy_wait_50000  0x8c261aa8
  * spins 50,000 times
- * called by: cri_sub_261ae2
+ * called by: cri_sound_261ae2
  */
 u32 busy_wait_50000(void) {
     u32 in_r0;
@@ -1992,11 +1996,11 @@ u32 adxf_ChkPrmPt(int a0, int a1, u32 a2) {
 }
 
 /*
- * cri_sub_261ae2  0x8c261ae2
- * area name: in the cri library code range
+ * cri_sound_261ae2  0x8c261ae2
+ * area name: in the cri library code range; behaviour name: mostly calls sound functions
  * called by: ADXF_AddPartition, ADXF_LoadPartition
  */
-u32 cri_sub_261ae2(int a0, u32 a1, u32 a2, u32 a3) {
+u32 cri_sound_261ae2(int a0, u32 a1, u32 a2, u32 a3) {
     int a4;
     int iVar1;
     u32 uVar2;
@@ -2008,10 +2012,10 @@ u32 cri_sub_261ae2(int a0, u32 a1, u32 a2, u32 a3) {
         a5 = a1;
         uVar2 = a2;
         a1 = a5;
-        a4 = ADXF_sub_262312(a0, a5, a2);
+        a4 = ADXF_uses_lib_error_printf_262312(a0, a5, a2);
         if (0 < a4)
             break;
-        shinobi_sub_1f39f0(a4, a5, uVar2, a3);
+        shinobi_calc_1f39f0(a4, a5, uVar2, a3);
         ADXSTM_ExecServer_like(a4, a5, uVar2, a3);
         ADXF_ExecServer_like(a4, a5, uVar2, a3);
         busy_wait_50000();
@@ -2022,7 +2026,7 @@ u32 cri_sub_261ae2(int a0, u32 a1, u32 a2, u32 a3) {
     }
     iVar3 = 0;
     do {
-        shinobi_sub_1f39f0(a4, a5, uVar2, a3);
+        shinobi_calc_1f39f0(a4, a5, uVar2, a3);
         ADXSTM_ExecServer_like(a4, a5, uVar2, a3);
         ADXF_ExecServer_like(a4, a5, uVar2, a3);
         a4 = a0;
@@ -2039,7 +2043,7 @@ u32 cri_sub_261ae2(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ADXF_LoadPartition  0x8c261b96
  * named from the library error message it prints (ADXF_LoadPartition)
- * called by: game_sub_0221c8
+ * called by: game_sound_0221c8
  * strings: "E9040803:can't get FAD of '%s'.(ADXF_LoadPartition)\n"; "E9040805:read error'%s'.(ADXF_LoadPartition)\n";
  * "E9040806:'%s' is broken.(ADXF_LoadPartition)\n"; "E9040804:can't open '%s'.(ADXF_LoadPartition)\n"
  */
@@ -2071,7 +2075,7 @@ int ADXF_LoadPartition(int a0, u32 a1, u32 *a2, int a3) {
     if (-1 < iVar2) {
         puVar6 = &uStack_3c;
         uVar7 = a1;
-        iVar2 = ADXSTM_sub_2637ca(a1, puVar6, puVar5, a3);
+        iVar2 = ADXSTM_calls_test_2637ca(a1, puVar6, puVar5, a3);
         if (iVar2 < 0) {
             s0 = "E9040803:can't get FAD of '%s'.(ADXF_LoadPartition)\n";
         } else {
@@ -2115,7 +2119,7 @@ int ADXF_LoadPartition(int a0, u32 a1, u32 *a2, int a3) {
                     ar5_00 = (int *)0x1;
                     puVar5 = puStack_34;
                     uVar7 = 0x8c4b5260;
-                    iVar3 = cri_sub_261ae2(puStack_34, 1, 0x8c4b5260, a3);
+                    iVar3 = cri_sound_261ae2(puStack_34, 1, 0x8c4b5260, a3);
                     if (0 < iVar3) {
                         uVar7 = 0x800;
                         if (a2[3] == 0) {
@@ -2199,7 +2203,7 @@ int ADXF_AddPartition(int a0, u32 a1, int *a2, int a3) {
     if (-1 < iVar1) {
         ar5_00 = &iStack_38;
         uVar3 = a1;
-        iVar1 = ADXSTM_sub_2637ca(a1, ar5_00, ar6_00, a3);
+        iVar1 = ADXSTM_calls_test_2637ca(a1, ar5_00, ar6_00, a3);
         if (iVar1 < 0) {
             s0 = "E9040807:can't find '%s'.(ADXF_AddPartition)\n";
         } else {
@@ -2238,7 +2242,7 @@ int ADXF_AddPartition(int a0, u32 a1, int *a2, int a3) {
                     }
                     ar5_00 = (int *)0x1;
                     ar6_00 = (int *)0x8c4b72e0;
-                    iVar2 = cri_sub_261ae2(iStack_34, 1, 0x8c4b72e0, a3);
+                    iVar2 = cri_sound_261ae2(iStack_34, 1, 0x8c4b72e0, a3);
                     if (0 < iVar2) {
                         ar4_00 = 0;
                         if (a2[3] == 0) {
@@ -2299,7 +2303,7 @@ int ADXF_AddPartition(int a0, u32 a1, int *a2, int a3) {
 /*
  * ADXF_find_free_handle  0x8c261f22
  * first free 0x30-byte ADXF handle of the ten at 8c4b3b20, else 0
- * called by: ADXF_sub_261f48
+ * called by: ADXF_sound_261f48
  */
 char *ADXF_find_free_handle(void) {
     char *pcVar1;
@@ -2315,11 +2319,11 @@ char *ADXF_find_free_handle(void) {
 }
 
 /*
- * ADXF_sub_261f48  0x8c261f48
- * area name: sits between ADXF functions (same compilation unit)
- * called by: ADXF_Open_like, ADXF_sub_2620c8
+ * ADXF_sound_261f48  0x8c261f48
+ * area name: sits between ADXF functions (same compilation unit); behaviour name: mostly calls sound functions
+ * called by: ADXF_Open_like, ADXF_uses_irq_disable_nested_2620c8
  */
-u32 ADXF_sub_261f48(void) {
+u32 ADXF_sound_261f48(void) {
     u8 *puVar1;
 
     puVar1 = (u8 *)ADXF_find_free_handle();
@@ -2338,11 +2342,11 @@ u32 ADXF_sub_261f48(void) {
 }
 
 /*
- * ADXF_sub_261f7a  0x8c261f7a
+ * ADXF_sound_261f7a  0x8c261f7a
  * name hint from a string it uses: E9040901 can t find s ADXF O; area name: sits between ADXF functions (same
- * compilation unit) called by: ADXF_Open_like
+ * compilation unit); behaviour name: mostly calls sound functions called by: ADXF_Open_like
  */
-int ADXF_sub_261f7a(int a0, u32 a1, u32 a2, u32 a3) {
+int ADXF_sound_261f7a(int a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
     int iVar2;
     u32 a4;
@@ -2355,7 +2359,7 @@ int ADXF_sub_261f7a(int a0, u32 a1, u32 a2, u32 a3) {
     a5 = &uStack_20;
     ar5_00 = auStack_18;
     a4 = a1;
-    iVar2 = ADXSTM_sub_2637ca(a1, ar5_00, a2, a3);
+    iVar2 = ADXSTM_calls_test_2637ca(a1, ar5_00, a2, a3);
     puVar1 = (&lib_error_printf);
     if (-1 < iVar2) {
         ar5_00 = &uStack_1c;
@@ -2380,7 +2384,7 @@ int ADXF_sub_261f7a(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ADXF_Open_like  0x8c26201c
  * allocates an ADXF handle and opens file a0 on it; NULL on failure
- * called by: ADXF_AddPartition, ADXF_LoadPartition, CDCGD_sub_0202c0, CDCGD_sub_02041c
+ * called by: ADXF_AddPartition, ADXF_LoadPartition, CDCGD_sound_02041c, CDCGD_uses_strcpy_0202c0
  */
 int ADXF_Open_like(u32 a0, u32 a1) {
     int a4;
@@ -2394,30 +2398,30 @@ int ADXF_Open_like(u32 a0, u32 a1) {
     ar4_00 = 1;
     ar6_00 = a0;
     ain0 = a1;
-    cri_sub_261a4c(1, 0, a0, a1);
+    cri_update_fields_261a4c(1, 0, a0, a1);
     irq_disable_nested(ar4_00, ar5_00, ar6_00, a1, ain0);
-    a4 = ADXF_sub_261f48();
+    a4 = ADXF_sound_261f48();
     iVar1 = a4;
-    if ((a4 != 0) && (ar5_00 = a0, ar4_00 = ADXF_sub_261f7a(a4, a0, ar6_00, a1), ar4_00 < 0)) {
+    if ((a4 != 0) && (ar5_00 = a0, ar4_00 = ADXF_sound_261f7a(a4, a0, ar6_00, a1), ar4_00 < 0)) {
         ADXF_Close_like(a4);
         iVar1 = 0;
         ar4_00 = a4;
     }
     irq_restore_nested(ar4_00, ar5_00, ar6_00, a1, ain0);
-    cri_sub_261a4c(1, 1, a0, ain0);
+    cri_update_fields_261a4c(1, 1, a0, ain0);
     return iVar1;
 }
 
 /*
- * ADXF_sub_262078  0x8c262078
- * area name: sits between ADXF functions (same compilation unit)
- * called by: ADXF_sub_2620c8
+ * ADXF_sound_262078  0x8c262078
+ * area name: sits between ADXF functions (same compilation unit); behaviour name: mostly calls sound functions
+ * called by: ADXF_uses_irq_disable_nested_2620c8
  */
-u32 ADXF_sub_262078(int a0, u32 a1, u32 a2) {
+u32 ADXF_sound_262078(int a0, u32 a1, u32 a2) {
     int iVar1;
     int iStack_18;
     u32 uStack_14;
-    iVar1 = ADXF_sub_26270c(a1, a2, &uStack_14, &iStack_18);
+    iVar1 = ADXF_sound_26270c(a1, a2, &uStack_14, &iStack_18);
     if (iVar1 < 0) {
         return 0xfffffffd;
     }
@@ -2428,10 +2432,11 @@ u32 ADXF_sub_262078(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * ADXF_sub_2620c8  0x8c2620c8
- * area name: sits between ADXF functions (same compilation unit)
+ * ADXF_uses_irq_disable_nested_2620c8  0x8c2620c8
+ * area name: sits between ADXF functions (same compilation unit); behaviour name: its main named callee is
+ * irq_disable_nested
  */
-int ADXF_sub_2620c8(void) {
+int ADXF_uses_irq_disable_nested_2620c8(void) {
     int a4;
     int ar4_00;
     u32 ar5_00;
@@ -2446,27 +2451,27 @@ int ADXF_sub_2620c8(void) {
     ar4_00 = 2;
     ar6_00 = unaff_r12;
     ar7_00 = unaff_r13;
-    cri_sub_261a4c(2, 0, unaff_r12, unaff_r13);
+    cri_update_fields_261a4c(2, 0, unaff_r12, unaff_r13);
     irq_disable_nested(ar4_00, ar5_00, ar6_00, ar7_00, in_PR);
-    a4 = ADXF_sub_261f48();
+    a4 = ADXF_sound_261f48();
     iVar1 = a4;
     if ((a4 != 0) &&
-        (ar5_00 = unaff_r12, ar6_00 = unaff_r13, ar4_00 = ADXF_sub_262078(a4, unaff_r12, unaff_r13), ar4_00 < 0)) {
+        (ar5_00 = unaff_r12, ar6_00 = unaff_r13, ar4_00 = ADXF_sound_262078(a4, unaff_r12, unaff_r13), ar4_00 < 0)) {
         ADXF_Close_like(a4);
         iVar1 = 0;
         ar4_00 = a4;
     }
     irq_restore_nested(ar4_00, ar5_00, ar6_00, ar7_00, in_PR);
-    cri_sub_261a4c(2, 1, unaff_r12, unaff_r13);
+    cri_update_fields_261a4c(2, 1, unaff_r12, unaff_r13);
     return iVar1;
 }
 
 /*
- * ADXF_sub_26211c  0x8c26211c
- * area name: sits between ADXF functions (same compilation unit)
- * called by: ADXF_Stop, ADXF_sub_2624a0
+ * ADXF_sound_26211c  0x8c26211c
+ * area name: sits between ADXF functions (same compilation unit); behaviour name: mostly calls sound functions
+ * called by: ADXF_Stop, ADXF_sound_2624a0
  */
-int ADXF_sub_26211c(int a0, u32 a1, u32 a2, u32 a3, int ain0) {
+int ADXF_sound_26211c(int a0, u32 a1, u32 a2, u32 a3, int ain0) {
 
     if (*(int *)(a0 + 4) != 0) {
         ain0 = ADXSTM_Destroy_like(*(u32 *)(a0 + 4), a1, a2, a3);
@@ -2475,7 +2480,7 @@ int ADXF_sub_26211c(int a0, u32 a1, u32 a2, u32 a3, int ain0) {
     if ((*(int *)(a0 + 8) != 0) && (ain0 = (int)*(char *)(a0 + 2), ain0 == 0)) {
         if (g_8c4b4220 == 1) {
             a1 = *(u32 *)(a0 + 0x2c);
-            cri_sub_261786(*(u32 *)(a0 + 0x28), a1);
+            cri_scan_loop_261786(*(u32 *)(a0 + 0x28), a1);
         }
         ain0 = (**(code **)(**(int **)(a0 + 8) + 0xc))(*(int **)(a0 + 8), a1, a2, a3);
         *(u32 *)(a0 + 8) = 0;
@@ -2486,8 +2491,9 @@ int ADXF_sub_26211c(int a0, u32 a1, u32 a2, u32 a3, int ain0) {
 /*
  * ADXF_Close_like  0x8c262168
  * stops an ADXF handle that is reading and clears it (0x30 bytes)
- * called by: ADXF_AddPartition, ADXF_LoadPartition, ADXF_Open_like, ADXF_sub_2620c8, ADXF_sub_2621e2, CDCGD_sub_02049c,
- * game_sub_01f8a4, game_sub_01fab4
+ * called by: ADXF_AddPartition, ADXF_LoadPartition, ADXF_Open_like, ADXF_sound_2621e2,
+ * ADXF_uses_irq_disable_nested_2620c8, CDCGD_uses_ADXF_Close_like_02049c, game_uses_ADXF_GetStat_01fab4,
+ * game_uses_list_push_front_01f8a4
  */
 u32 ADXF_Close_like(int a0) {
     u32 uVar1;
@@ -2496,7 +2502,7 @@ u32 ADXF_Close_like(int a0) {
 
     ar5_00 = 0;
     ar7_00 = 0xffffffff;
-    uVar1 = cri_sub_261a4c(3, 0, a0, 0xffffffff, 0xffffffff);
+    uVar1 = cri_update_fields_261a4c(3, 0, a0, 0xffffffff, 0xffffffff);
     if (a0 != 0) {
         irq_disable_nested();
         if (*(char *)(a0 + 1) == '\x02') {
@@ -2504,7 +2510,7 @@ u32 ADXF_Close_like(int a0) {
         }
         memset(a0, 0, 0x30);
         irq_restore_nested();
-        uVar1 = cri_sub_261a4c(3, 1, a0, 0xffffffff, 0xffffffff);
+        uVar1 = cri_update_fields_261a4c(3, 1, a0, 0xffffffff, 0xffffffff);
     }
     return uVar1;
 }
@@ -2524,7 +2530,7 @@ u32 alt_entry_26216c(int a0) {
     ar5_00 = 0;
     uVar2 = 3;
     iVar3 = a0;
-    uVar1 = cri_sub_261a4c(3, 0, a0, in_r3);
+    uVar1 = cri_update_fields_261a4c(3, 0, a0, in_r3);
     if (a0 != 0) {
         irq_disable_nested(uVar2, ar5_00, iVar3, in_r3, in_PR);
         if (*(char *)(a0 + 1) == '\x02') {
@@ -2535,16 +2541,16 @@ u32 alt_entry_26216c(int a0) {
         iVar3 = a0;
         memset(a0, 0, 0x30);
         irq_restore_nested(iVar3, uVar1, uVar2, in_r3, in_PR);
-        uVar1 = cri_sub_261a4c(3, 1, a0, 0xffffffff);
+        uVar1 = cri_update_fields_261a4c(3, 1, a0, 0xffffffff);
     }
     return uVar1;
 }
 
 /*
- * ADXF_sub_2621e2  0x8c2621e2
- * area name: sits between ADXF functions (same compilation unit)
+ * ADXF_sound_2621e2  0x8c2621e2
+ * area name: sits between ADXF functions (same compilation unit); behaviour name: mostly calls sound functions
  */
-int ADXF_sub_2621e2(u32 unused_a0, char *a1) {
+int ADXF_sound_2621e2(u32 unused_a0, char *a1) {
     int iVar1;
     int unaff_r12;
     char *pcVar2;
@@ -2566,11 +2572,12 @@ int ADXF_sub_2621e2(u32 unused_a0, char *a1) {
 }
 
 /*
- * ADXF_sub_262208  0x8c262208
+ * ADXF_uses_lib_error_printf_262208  0x8c262208
  * name hint from a string it uses: E9040811 adxf is NULL adxf r; area name: sits between ADXF functions (same
- * compilation unit) called by: ADXF_sub_2622e4, ADXF_sub_262312
+ * compilation unit); behaviour name: its main named callee is lib_error_printf called by:
+ * ADXF_uses_irq_disable_nested_2622e4, ADXF_uses_lib_error_printf_262312
  */
-u32 ADXF_sub_262208(int a0, int a1, int a2, u32 a3) {
+u32 ADXF_uses_lib_error_printf_262208(int a0, int a1, int a2, u32 a3) {
     int iVar1;
     int iVar2;
     u32 ar4_00;
@@ -2618,27 +2625,29 @@ u32 ADXF_sub_262208(int a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * ADXF_sub_2622e4  0x8c2622e4
- * area name: sits between ADXF functions (same compilation unit)
+ * ADXF_uses_irq_disable_nested_2622e4  0x8c2622e4
+ * area name: sits between ADXF functions (same compilation unit); behaviour name: its main named callee is
+ * irq_disable_nested
  */
-u32 ADXF_sub_2622e4(int a0, u32 a1, u32 a2, u32 a3) {
+u32 ADXF_uses_irq_disable_nested_2622e4(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ain0;
     int ar4_00;
 
     irq_disable_nested(a0, a1, a2, a3, a2);
     ar4_00 = a0;
-    ain0 = ADXF_sub_262208(a0, a1, a2, a3);
+    ain0 = ADXF_uses_lib_error_printf_262208(a0, a1, a2, a3);
     *(u8 *)(a0 + 2) = 1;
     irq_restore_nested(ar4_00, a1, a2, a3, ain0);
     return ain0;
 }
 
 /*
- * ADXF_sub_262312  0x8c262312
+ * ADXF_uses_lib_error_printf_262312  0x8c262312
  * name hint from a string it uses: E9040816 adxf is NULL ADXF R; area name: sits between ADXF functions (same
- * compilation unit) called by: CDCGD_sub_0202c0, cri_sub_261ae2, game_sub_01fab4
+ * compilation unit); behaviour name: its main named callee is lib_error_printf called by: CDCGD_uses_strcpy_0202c0,
+ * cri_sound_261ae2, game_uses_ADXF_GetStat_01fab4
  */
-u32 ADXF_sub_262312(int *a0, int a1, u32 a2) {
+u32 ADXF_uses_lib_error_printf_262312(int *a0, int a1, u32 a2) {
     int *piVar1;
     u32 uVar2;
     u32 ar4_00;
@@ -2653,7 +2662,7 @@ u32 ADXF_sub_262312(int *a0, int a1, u32 a2) {
     uVar2 = 4;
     piVar1 = a0;
     ar7_00 = a1;
-    cri_sub_261a4c(4, 0, a0, a1);
+    cri_update_fields_261a4c(4, 0, a0, a1);
     if ((a0 == NULL) || (a1 < 0)) {
         lib_error_printf(uVar2, a5, piVar1, ar7_00);
     } else if (a2 == 0) {
@@ -2671,7 +2680,7 @@ u32 ADXF_sub_262312(int *a0, int a1, u32 a2) {
             uVar2 = 0;
             ar4_00 = a2;
             iVar4 = iVar3;
-            piVar1 = (int *)game_sub_26b564(a2, iVar3, 0);
+            piVar1 = (int *)game_calls_init_fields_26b564(a2, iVar3, 0);
             if (piVar1 == NULL) {
                 return 0xfffffffe;
             }
@@ -2680,13 +2689,13 @@ u32 ADXF_sub_262312(int *a0, int a1, u32 a2) {
             if (g_8c4b4220 == 1) {
                 iVar3 = a0[0xb];
                 ar4_00 = a0[10];
-                cri_sub_261786(ar4_00, iVar3);
+                cri_scan_loop_261786(ar4_00, iVar3);
             }
             irq_disable_nested(ar4_00, iVar3, uVar2, ar7_00, iVar4);
             ar4_01 = a0;
             iVar4 = a1;
             a6 = piVar1;
-            iVar3 = ADXF_sub_262208(a0, a1, piVar1, ar7_00);
+            iVar3 = ADXF_uses_lib_error_printf_262208(a0, a1, piVar1, ar7_00);
             if (iVar3 < 1) {
                 (**(code **)(*piVar1 + 0xc))(piVar1, iVar4, a6, ar7_00);
                 ar4_01 = piVar1;
@@ -2695,7 +2704,7 @@ u32 ADXF_sub_262312(int *a0, int a1, u32 a2) {
             }
             *(u8 *)((int)a0 + 2) = 0;
             irq_restore_nested(ar4_01, iVar4, a6, ar7_00, iVar3);
-            cri_sub_261a4c(4, 1, a0, a1);
+            cri_update_fields_261a4c(4, 1, a0, a1);
             return iVar3;
         }
         lib_error_printf(a2, a5, piVar1, ar7_00);
@@ -2723,7 +2732,7 @@ u32 ADXF_Stop(int a0) {
     ar7_00 = 0xffffffff;
     ar4_00 = 5;
     ar6_00 = a0;
-    cri_sub_261a4c(5, 0, a0, 0xffffffff);
+    cri_update_fields_261a4c(5, 0, a0, 0xffffffff);
     if (a0 == 0) {
         lib_error_printf(ar4_00, ar5_00, ar6_00, ar7_00, "E9040822:\'adxf\' is NULL.(ADXF_Stop)\n", in_stack_fffffff4);
         return 0xfffffffd;
@@ -2742,21 +2751,21 @@ u32 ADXF_Stop(int a0) {
             ADXSTM_get_read_offset(*(u32 *)(a0 + 4), &stack0xfffffff4);
             *(u32 *)(a0 + 0x24) = in_stack_fffffff4;
             ar4_01 = a0;
-            ADXF_sub_26211c(a0, ar5_01, ar6_00, ar7_00, in_stack_fffffff4);
+            ADXF_sound_26211c(a0, ar5_01, ar6_00, ar7_00, in_stack_fffffff4);
             *(u8 *)(a0 + 1) = 1;
             irq_restore_nested(ar4_01, ar5_01, ar6_00, ar7_00, in_stack_fffffff4);
-            cri_sub_261a4c(5, 1, a0, 0xffffffff);
+            cri_update_fields_261a4c(5, 1, a0, 0xffffffff);
         }
     }
     return *(u32 *)(a0 + 0x18);
 }
 
 /*
- * ADXF_sub_2624a0  0x8c2624a0
- * area name: sits between ADXF functions (same compilation unit)
+ * ADXF_sound_2624a0  0x8c2624a0
+ * area name: sits between ADXF functions (same compilation unit); behaviour name: mostly calls sound functions
  * called by: ADXF_ExecServer_like
  */
-int ADXF_sub_2624a0(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int ADXF_sound_2624a0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u8 *ar5_00;
@@ -2772,7 +2781,7 @@ int ADXF_sub_2624a0(int a0, u32 unused_a1, u32 a2, u32 a3) {
         iVar1 = (int)*(char *)(a0 + 1);
         if ((iVar1 == 3) || (iVar1 == 4)) {
             *(int *)(a0 + 0x18) = *(int *)(a0 + 0x18) + *(int *)(a0 + 0x24);
-            iVar1 = ADXF_sub_26211c(a0, ar5_00, a2, a3, in_stack_fffffff4);
+            iVar1 = ADXF_sound_26211c(a0, ar5_00, a2, a3, in_stack_fffffff4);
         }
     }
     return iVar1;
@@ -2781,7 +2790,7 @@ int ADXF_sub_2624a0(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * ADXF_ExecServer_like  0x8c262524
  * runs every open ADXF handle (16 of 0x30 bytes at 0x8c4b3b20) with interrupts masked
- * called by: adx_server, cri_sub_261ae2
+ * called by: adx_server, cri_sound_261ae2
  */
 u32 ADXF_ExecServer_like(u32 a0, u32 a1, u32 a2, u32 a3) {
     int ain0;
@@ -2796,7 +2805,7 @@ u32 ADXF_ExecServer_like(u32 a0, u32 a1, u32 a2, u32 a3) {
         ain0 = (int)*a4;
         ar4_00 = a4;
         if (ain0 == 1) {
-            ain0 = ADXF_sub_2624a0(a4, a1, a2, a3);
+            ain0 = ADXF_sound_2624a0(a4, a1, a2, a3);
         }
         a4 = a4 + 0x30;
     } while (a4 < (char *)0x8c4b3e20);
@@ -2807,7 +2816,7 @@ u32 ADXF_ExecServer_like(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ADXF_Seek  0x8c262554
  * named from the library error message it prints (ADXF_Seek)
- * called by: CDCGD_sub_0202c0
+ * called by: CDCGD_uses_strcpy_0202c0
  * strings: "E9040825:'adxf' is NULL.(ADXF_Seek)\n"; "E9040826:'type' is illigal.(ADXF_Seek)\n"
  */
 u32 ADXF_Seek(int a0, int a1, int a2) {
@@ -2821,7 +2830,7 @@ u32 ADXF_Seek(int a0, int a1, int a2) {
     ar4_00 = 6;
     ar6_00 = a0;
     ar7_00 = a1;
-    cri_sub_261a4c(6, 0, a0, a1, a2);
+    cri_update_fields_261a4c(6, 0, a0, a1, a2);
     if (a0 == 0) {
         lib_error_printf(ar4_00, uVar1, ar6_00, ar7_00, "E9040825:'adxf' is NULL.(ADXF_Seek)\n", in_PR);
     LAB_8c2625b4:
@@ -2847,7 +2856,7 @@ u32 ADXF_Seek(int a0, int a1, int a2) {
         } else if (*(int *)(a0 + 0x10) < *(int *)(a0 + 0x18)) {
             *(u32 *)(a0 + 0x18) = *(u32 *)(a0 + 0x10);
         }
-        cri_sub_261a4c(6, 1, a0, a1, a2);
+        cri_update_fields_261a4c(6, 1, a0, a1, a2);
         uVar1 = *(u32 *)(a0 + 0x18);
     }
     return uVar1;
@@ -2872,7 +2881,7 @@ u32 ADXF_Seek_262560(void) {
     ar4_00 = 6;
     a6 = unaff_r14;
     a7 = unaff_r12;
-    cri_sub_261a4c(6, 0, unaff_r14, unaff_r12);
+    cri_update_fields_261a4c(6, 0, unaff_r14, unaff_r12);
     if (unaff_r14 == 0) {
         lib_error_printf(ar4_00, uVar1, a6, a7, "E9040825:'adxf' is NULL.(ADXF_Seek)\n", in_PR);
     LAB_8c2625b4:
@@ -2898,7 +2907,7 @@ u32 ADXF_Seek_262560(void) {
         } else if (*(int *)(unaff_r14 + 0x10) < *(int *)(unaff_r14 + 0x18)) {
             *(u32 *)(unaff_r14 + 0x18) = *(u32 *)(unaff_r14 + 0x10);
         }
-        cri_sub_261a4c(6, 1, unaff_r14, unaff_r12);
+        cri_update_fields_261a4c(6, 1, unaff_r14, unaff_r12);
         uVar1 = *(u32 *)(unaff_r14 + 0x18);
     }
     return uVar1;
@@ -2939,7 +2948,7 @@ u32 ADXF_GetFsizeSct(int a0, u32 unused_a1, u32 a2) {
 /*
  * ADXF_GetFsizeByte  0x8c262646
  * named from the library error message it prints (ADXF_GetFsizeByte)
- * called by: CDCGD_sub_0202c0, CDCGD_sub_02041c
+ * called by: CDCGD_sound_02041c, CDCGD_uses_strcpy_0202c0
  * strings: "E9040829:'adxf' is NULL.(ADXF_GetFsizeByte)\n"
  */
 u32 ADXF_GetFsizeByte(int a0, u32 unused_a1, u32 a2) {
@@ -2972,7 +2981,7 @@ u32 ADXF_GetNumReqSct(int a0, u32 *a1, u32 a2) {
 /*
  * ADXF_GetNumReadSct  0x8c262696
  * named from the library error message it prints (ADXF_GetNumReadSct)
- * called by: cri_sub_261ae2
+ * called by: cri_sound_261ae2
  * strings: "E9040831:'adxf' is NULL.(ADXF_GetNumReadSct)\n"
  */
 u32 ADXF_GetNumReadSct(int a0, u32 unused_a1, u32 a2) {
@@ -2989,7 +2998,7 @@ u32 ADXF_GetNumReadSct(int a0, u32 unused_a1, u32 a2) {
 /*
  * ADXF_GetStat  0x8c2626b4
  * named from the library error message it prints (ADXF_GetStat)
- * called by: cri_sub_261ae2, game_sub_01f8a4, game_sub_01fab4
+ * called by: cri_sound_261ae2, game_uses_ADXF_GetStat_01fab4, game_uses_list_push_front_01f8a4
  * strings: "E9040832:'adxf' is NULL.(ADXF_GetStat)\n"
  */
 u32 ADXF_GetStat(int a0, u32 unused_a1, u32 a2) {
@@ -3006,7 +3015,7 @@ u32 ADXF_GetStat(int a0, u32 unused_a1, u32 a2) {
 /*
  * ADXF_GetFileRange  0x8c2626d2
  * named from the library error message it prints (ADXF_GetFileRange)
- * called by: ADXF_sub_26270c
+ * called by: ADXF_sound_26270c
  * strings: "E9040828:'ptid' is range outside.(ADXF_GetFileRange)\n"; "E9040828:'flid' is range
  * outside.(ADXF_GetFileRange)\n"
  */
@@ -3029,11 +3038,11 @@ u32 ADXF_GetFileRange(int a0, int a1, u32 a2) {
 }
 
 /*
- * ADXF_sub_26270c  0x8c26270c
- * area name: sits between ADXF functions (same compilation unit)
- * called by: ADXF_sub_262078, ADXT_StartAfs
+ * ADXF_sound_26270c  0x8c26270c
+ * area name: sits between ADXF functions (same compilation unit); behaviour name: mostly calls sound functions
+ * called by: ADXF_sound_262078, ADXT_StartAfs
  */
-int ADXF_sub_26270c(int a0, u32 a1, int *a2, u32 *a3) {
+int ADXF_sound_26270c(int a0, u32 a1, int *a2, u32 *a3) {
     u16 uVar1;
     int iVar2;
     u16 *puVar3;
@@ -3086,25 +3095,25 @@ u32 lib_error_printf_wrap(u32 a0, u32 a1, u32 a2) {
 }
 
 /*
- * cri_sub_262810  0x8c262810
- * area name: in the cri library code range
- * called by: input_sub_01f608
+ * cri_uses_irq_disable_nested_262810  0x8c262810
+ * area name: in the cri library code range; behaviour name: its main named callee is irq_disable_nested
+ * called by: input_uses_file_slot_open_01f608
  */
-u32 cri_sub_262810(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
+u32 cri_uses_irq_disable_nested_262810(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
     u32 uVar1;
     int ain0_00;
     u8 *ar4_00;
     code *ar5_00;
 
     if (g_8c278478 == 0) {
-        uVar1 = cri_sub_260c98(a0, unused_a1, unused_a2, a3, ain0);
+        uVar1 = cri_calc_260c98(a0, unused_a1, unused_a2, a3, ain0);
         uVar1 = irq_disable_nested(a0, unused_a1, unused_a2, a3, uVar1);
         uVar1 = init_once_clear_4c00b8();
         uVar1 = init_once_clear_4bf4b8();
         init_once_clear_4bf038();
         cri_clear_table_4b3340(a0, unused_a1, unused_a2, a3);
         memset_wrap_263244(a0, unused_a1, unused_a2, a3);
-        cri_sub_262ac4();
+        cri_copy_262ac4();
         ta_fifo_2619b4(a0, unused_a1, unused_a2, a3);
         thunk_FUN_8c2689c8();
         thunk_FUN_8c26a130(lib_error_printf_wrap, 0);
@@ -3118,7 +3127,7 @@ u32 cri_sub_262810(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
             a3 = 0;
             ar5_00 = adx_server;
             uVar1 = 0x70;
-            ain0_00 = ta_sub_1fa244(0x900, adx_server, 0x70, 0);
+            ain0_00 = ta_uses_ret_const_1_1fa244(0x900, adx_server, 0x70, 0);
             g_8c278470 = ain0_00;
         }
         ain0 = irq_restore_nested(ar4_00, ar5_00, uVar1, a3, ain0_00);
@@ -3139,14 +3148,14 @@ u32 alt_entry_262814(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
     u32 in_PR;
 
     if (*unaff_r14 == 0) {
-        cri_sub_260c98(a0, unused_a1, unused_a2, a3, in_PR);
+        cri_calc_260c98(a0, unused_a1, unused_a2, a3, in_PR);
         irq_disable_nested(a0, unused_a1, unused_a2, a3, in_PR);
         init_once_clear_4c00b8();
         init_once_clear_4bf4b8();
         init_once_clear_4bf038();
         cri_clear_table_4b3340(a0, unused_a1, unused_a2, a3);
         memset_wrap_263244(a0, unused_a1, unused_a2, a3);
-        cri_sub_262ac4();
+        cri_copy_262ac4();
         ta_fifo_2619b4(a0, unused_a1, unused_a2, a3);
         thunk_FUN_8c2689c8();
         thunk_FUN_8c26a130(lib_error_printf_wrap, 0);
@@ -3159,7 +3168,7 @@ u32 alt_entry_262814(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
             a3 = 0;
             ar5_00 = adx_server;
             ar6_00 = 0x70;
-            g_8c278470 = ta_sub_1fa244(0x900, adx_server, 0x70, 0);
+            g_8c278470 = ta_uses_ret_const_1_1fa244(0x900, adx_server, 0x70, 0);
         }
         ain0 = irq_restore_nested(ar4_00, ar5_00, ar6_00, a3, in_PR);
     }
@@ -3168,10 +3177,10 @@ u32 alt_entry_262814(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
 }
 
 /*
- * cri_sub_2628fa  0x8c2628fa
- * area name: in the cri library code range
+ * cri_uses_irq_disable_nested_2628fa  0x8c2628fa
+ * area name: in the cri library code range; behaviour name: its main named callee is irq_disable_nested
  */
-u32 cri_sub_2628fa(int *a0, u32 a1, u32 unused_a2, u32 a3, u32 ain0) {
+u32 cri_uses_irq_disable_nested_2628fa(int *a0, u32 a1, u32 unused_a2, u32 a3, u32 ain0) {
     u32 uVar1;
     int iVar2;
     u32 in_PR;
@@ -3182,7 +3191,7 @@ u32 cri_sub_2628fa(int *a0, u32 a1, u32 unused_a2, u32 a3, u32 ain0) {
         irq_disable_nested(a0, a1, unused_a2, a3, in_PR);
         iVar2 = g_8c278470;
         if (g_8c278470 != 0) {
-            shinobi_sub_1fa54c(g_8c278470);
+            shinobi_uses_ret_const_1_1fa54c(g_8c278470);
             g_8c278470 = 0;
         }
         irq_restore_nested(iVar2, a1, unused_a2, a3, in_PR);
@@ -3203,7 +3212,7 @@ u32 cri_sub_2628fa(int *a0, u32 a1, u32 unused_a2, u32 a3, u32 ain0) {
 
 /*
  * thunk_FUN_8c2689c8  0x8c2629a0
- * called by: alt_entry_262814, cri_sub_262810
+ * called by: alt_entry_262814, cri_uses_irq_disable_nested_262810
  */
 u32 thunk_FUN_8c2689c8(void) {
     u32 uVar1;
@@ -3214,7 +3223,7 @@ u32 thunk_FUN_8c2689c8(void) {
 
 /*
  * thunk_FUN_8c268a24  0x8c2629a6
- * called by: cri_sub_2628fa
+ * called by: cri_uses_irq_disable_nested_2628fa
  */
 u32 thunk_FUN_8c268a24(void) {
     u32 uVar1;
@@ -3224,20 +3233,20 @@ u32 thunk_FUN_8c268a24(void) {
 }
 
 /*
- * cri_sub_2629ac  0x8c2629ac
- * area name: in the cri library code range
+ * cri_sound_2629ac  0x8c2629ac
+ * area name: in the cri library code range; behaviour name: mostly calls sound functions
  */
-u32 cri_sub_2629ac(void) {
+u32 cri_sound_2629ac(void) {
     u32 uVar1;
 
-    uVar1 = sd_sub_268b70();
+    uVar1 = sd_sound_268b70();
     return uVar1;
 }
 
 /*
  * mwRna_stop_and_destroy  0x8c2629b2
  * mwRnaStop, then mwRnaDestroy
- * called by: ADXSTM_sub_2639fa
+ * called by: ADXSTM_uses_mwRna_stop_and_destroy_2639fa
  */
 u32 mwRna_stop_and_destroy(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -3248,13 +3257,13 @@ u32 mwRna_stop_and_destroy(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * cri_sub_2629d0  0x8c2629d0
- * area name: in the cri library code range
+ * cri_sound_2629d0  0x8c2629d0
+ * area name: in the cri library code range; behaviour name: mostly calls sound functions
  */
-u32 cri_sub_2629d0(void) {
+u32 cri_sound_2629d0(void) {
     u32 uVar1;
 
-    uVar1 = mwRna_sub_2690d8();
+    uVar1 = mwRna_sound_2690d8();
     return uVar1;
 }
 
@@ -3293,7 +3302,7 @@ u32 mwRna_get_read_pos_wrap(void) {
 
 /*
  * ret_const_7fffffff_2629e8  0x8c2629e8
- * called by: ADXT_sub_264a42
+ * called by: ADXT_uses_get_field_1_s8_264a42
  */
 u32 ret_const_7fffffff_2629e8(void) {
     return 0x7fffffff;
@@ -3306,7 +3315,7 @@ u32 ret_const_7fffffff_2629e8(void) {
 u32 thunk_FUN_8c2695e4(void) {
     u32 uVar1;
 
-    uVar1 = mwRna_sub_2695e4();
+    uVar1 = mwRna_sound_2695e4();
     return uVar1;
 }
 
@@ -3367,7 +3376,7 @@ u32 mwRnaDiscardData_wrap(void) {
 
 /*
  * noop_262a44  0x8c262a44
- * called by: ADXT_sub_2647f4
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4
  */
 u32 noop_262a44(void) {
     u32 in_r0;
@@ -3376,26 +3385,26 @@ u32 noop_262a44(void) {
 }
 
 /*
- * cri_sub_262a4c  0x8c262a4c
- * area name: in the cri library code range
- * called by: ADXT_sub_2647f4
+ * cri_sound_262a4c  0x8c262a4c
+ * area name: in the cri library code range; behaviour name: mostly calls sound functions
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4
  */
-u32 cri_sub_262a4c(u32 a0, u32 a1) {
+u32 cri_sound_262a4c(u32 a0, u32 a1) {
     u32 auStack_8[2];
 
-    mwRna_sub_269fc8(a0, a1, auStack_8);
+    mwRna_sound_269fc8(a0, a1, auStack_8);
     return auStack_8[0];
 }
 
 /*
- * cri_sub_262ac4  0x8c262ac4
- * area name: in the cri library code range
- * called by: alt_entry_262814, cri_sub_262810
+ * cri_copy_262ac4  0x8c262ac4
+ * area name: in the cri library code range; behaviour name: mostly calls copy functions
+ * called by: alt_entry_262814, cri_uses_irq_disable_nested_262810
  */
-u32 cri_sub_262ac4(void) {
+u32 cri_copy_262ac4(void) {
     u32 uVar1;
 
-    cri_sub_25fb8c();
+    cri_copy_25fb8c();
     uVar1 = memset(0x8c4b9348, 0, (int)0x4e0);
     return uVar1;
 }
@@ -3403,7 +3412,7 @@ u32 cri_sub_262ac4(void) {
 /*
  * memset_wrap_262ad8  0x8c262ad8
  * only calls memset
- * called by: cri_sub_2628fa
+ * called by: cri_uses_irq_disable_nested_2628fa
  */
 u32 memset_wrap_262ad8(void) {
     u32 uVar1;
@@ -3413,11 +3422,11 @@ u32 memset_wrap_262ad8(void) {
 }
 
 /*
- * cri_sub_262ae2  0x8c262ae2
- * area name: in the cri library code range
- * called by: cri_sub_262b04, ta_sub_262c50
+ * cri_init_fields_262ae2  0x8c262ae2
+ * area name: in the cri library code range; behaviour name: writes 9 members
+ * called by: cri_uses_get_field_1c_262b04, ta_calls_init_fields_262c50
  */
-u32 cri_sub_262ae2(int a0) {
+u32 cri_init_fields_262ae2(int a0) {
     u32 uVar1;
 
     uVar1 = 0x7fffffff;
@@ -3434,11 +3443,11 @@ u32 cri_sub_262ae2(int a0) {
 }
 
 /*
- * cri_sub_262b04  0x8c262b04
- * area name: in the cri library code range
- * called by: ADXSTM_sub_263840
+ * cri_uses_get_field_1c_262b04  0x8c262b04
+ * area name: in the cri library code range; behaviour name: its main named callee is get_field_1c_26b94e
+ * called by: ADXSTM_uses_memset_263840
  */
-u32 cri_sub_262b04(u32 a0, int a1, u32 *a2) {
+u32 cri_uses_get_field_1c_262b04(u32 a0, int a1, u32 *a2) {
     u8 *ar5_00;
     u8 *puVar1;
     u32 ar5_01;
@@ -3467,9 +3476,9 @@ u32 cri_sub_262b04(u32 a0, int a1, u32 *a2) {
         uVar2 = get_field_20_26b952(ar4_00);
         uVar3 = get_field_24_26b956(ar4_00);
         iVar4 = (uVar2 >> 1) + (uVar3 >> 1);
-        uVar6 = cri_sub_25fbd0(a1, ar5_01, uVar2 >> 1, iVar4);
-        puVar1 = (&cri_sub_25fea8);
-        ar5_00 = (&ta_sub_262d6c);
+        uVar6 = cri_copy_25fbd0(a1, ar5_01, uVar2 >> 1, iVar4);
+        puVar1 = (&cri_update_fields_25fea8);
+        ar5_00 = (&ta_uses_get_field_1c_262d6c);
         *(u32 *)(ar6_00 + 4) = uVar6;
         (*(code *)puVar1)(uVar6, ar5_00, ar6_00, iVar4);
         if (*(int *)(ar6_00 + 4) != 0) {
@@ -3485,7 +3494,7 @@ u32 cri_sub_262b04(u32 a0, int a1, u32 *a2) {
                 } while (a5 < a1);
             }
             ar6_00[1] = 0;
-            cri_sub_262ae2(ar6_00);
+            cri_init_fields_262ae2(ar6_00);
             *(u32 *)(ar6_00 + 0x48) = 0;
             *(u32 *)(ar6_00 + 0x4c) = 0;
             *(u32 *)(ar6_00 + 0x50) = 0;
@@ -3499,7 +3508,7 @@ u32 cri_sub_262b04(u32 a0, int a1, u32 *a2) {
 
 /*
  * ta_fifo_262c04  0x8c262c04
- * called by: ADXSTM_sub_2639fa
+ * called by: ADXSTM_uses_mwRna_stop_and_destroy_2639fa
  */
 u32 ta_fifo_262c04(int a0) {
     u32 in_r0;
@@ -3507,7 +3516,7 @@ u32 ta_fifo_262c04(int a0) {
 
     if (a0 != 0) {
         if (*(int *)(a0 + 4) != 0) {
-            cri_sub_25fc5c(*(u32 *)(a0 + 4));
+            cri_copy_25fc5c(*(u32 *)(a0 + 4));
         }
         irq_disable_nested();
         memset(a0, 0, (int)0x9c);
@@ -3530,7 +3539,7 @@ u32 ta_fifo_262c08(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
     if (unaff_r14 != 0) {
         if (*(int *)(unaff_r14 + 4) != 0) {
             a0 = *(u32 *)(unaff_r14 + 4);
-            cri_sub_25fc5c(a0);
+            cri_copy_25fc5c(a0);
         }
         irq_disable_nested(a0, unused_a1, unused_a2, a3, in_PR);
         ar5_00 = 0;
@@ -3544,8 +3553,8 @@ u32 ta_fifo_262c08(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
 
 /*
  * get_field_1_s8_262c38  0x8c262c38
- * called by: ADXT_sub_2647f4, ADXT_sub_264a42, ADXT_sub_264b14, ADXT_sub_264c92, alt_entry_264b1a, alt_entry_264e88,
- * cri_sub_264e84
+ * called by: ADXT_uses_get_field_1_s8_264a42, ADXT_uses_get_field_1_s8_264b14, ADXT_uses_libgcc_divide_helper_2647f4,
+ * ADXT_uses_libgcc_divide_helper_264c92, alt_entry_264b1a, alt_entry_264e88, cri_uses_libgcc_divide_helper_264e84
  */
 int get_field_1_s8_262c38(int a0, u32 a1) {
     return (int)*(char *)(a0 + 1);
@@ -3553,7 +3562,7 @@ int get_field_1_s8_262c38(int a0, u32 a1) {
 
 /*
  * set_field_8_262c3c  0x8c262c3c
- * called by: cri_sub_263b34, cri_sub_263bfe
+ * called by: cri_uses_irq_disable_nested_263bfe, cri_uses_set_field_8_263b34
  */
 u32 set_field_8_262c3c(int a0, u32 a1) {
     u32 in_r0;
@@ -3564,7 +3573,7 @@ u32 set_field_8_262c3c(int a0, u32 a1) {
 
 /*
  * set_field_38_262c4c  0x8c262c4c
- * called by: ADXT_sub_2647f4
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4
  */
 u32 set_field_38_262c4c(int a0, u32 a1) {
     u32 in_r0;
@@ -3574,33 +3583,33 @@ u32 set_field_38_262c4c(int a0, u32 a1) {
 }
 
 /*
- * ta_sub_262c50  0x8c262c50
- * area name: sits between ta functions (same compilation unit)
- * called by: cri_sub_263b34, cri_sub_263bfe
+ * ta_calls_init_fields_262c50  0x8c262c50
+ * area name: sits between ta functions (same compilation unit); behaviour name: its callees mostly do: init_fields
+ * called by: cri_uses_irq_disable_nested_263bfe, cri_uses_set_field_8_263b34
  */
-u32 ta_sub_262c50(int a0) {
-    cri_sub_262ae2(a0);
+u32 ta_calls_init_fields_262c50(int a0) {
+    cri_init_fields_262ae2(a0);
     *(u8 *)(a0 + 1) = 1;
     return 1;
 }
 
 /*
- * ta_sub_262c66  0x8c262c66
- * area name: sits between ta functions (same compilation unit)
- * called by: ADXT_sub_264ba0, cri_sub_263c64
+ * ta_copy_262c66  0x8c262c66
+ * area name: sits between ta functions (same compilation unit); behaviour name: mostly calls copy functions
+ * called by: ADXT_sound_264ba0, cri_sound_263c64
  */
-u32 ta_sub_262c66(int a0) {
-    cri_sub_25ff9c(*(u32 *)(a0 + 4));
+u32 ta_copy_262c66(int a0) {
+    cri_copy_25ff9c(*(u32 *)(a0 + 4));
     *(u8 *)(a0 + 1) = 0;
     return 0;
 }
 
 /*
- * ta_sub_262c80  0x8c262c80
- * area name: sits between ta functions (same compilation unit)
- * called by: cri_sub_26307e
+ * ta_uses_get_field_a8_s16_262c80  0x8c262c80
+ * area name: sits between ta functions (same compilation unit); behaviour name: its main named callee is
+ * get_field_a8_s16 called by: cri_uses_get_field_4_26307e
  */
-u32 ta_sub_262c80(int a0) {
+u32 ta_uses_get_field_a8_s16_262c80(int a0) {
     u8 *puVar1;
     int ar5_00;
     int iVar2;
@@ -3619,7 +3628,7 @@ u32 ta_sub_262c80(int a0) {
     a7 = &uStack_1c;
     (**(code **)(*a4 + 0x18))(a4, 1, (int)0x1000, a7);
     if (((iStack_18 < 0x10) ||
-         (ar5_01 = uStack_1c, iVar3 = iStack_18, ar5_00 = cri_sub_25fdb2(uVar4, uStack_1c, iStack_18),
+         (ar5_01 = uStack_1c, iVar3 = iStack_18, ar5_00 = cri_uses_is_spsd_header_25fdb2(uVar4, uStack_1c, iStack_18),
           puVar1 = (&get_field_a8_s16), ar5_00 == 0)) ||
         (iStack_18 < ar5_00)) {
         uVar4 = (**(code **)(*a4 + 0x1c))(a4, 1, &uStack_1c, a7);
@@ -3647,11 +3656,11 @@ u32 ta_sub_262c80(int a0) {
 }
 
 /*
- * ta_sub_262d6c  0x8c262d6c
- * area name: sits between ta functions (same compilation unit)
- * decompiler: Switch with 1 destination removed at 0x8c262e0c
+ * ta_uses_get_field_1c_262d6c  0x8c262d6c
+ * area name: sits between ta functions (same compilation unit); behaviour name: its main named callee is
+ * get_field_1c_26b94e decompiler: Switch with 1 destination removed at 0x8c262e0c
  */
-u32 ta_sub_262d6c(int a0, u32 *a1, u32 *a2, int *a3) {
+u32 ta_uses_get_field_1c_262d6c(int a0, u32 *a1, u32 *a2, int *a3) {
     u8 *puVar1;
     int iVar2;
     u32 ar4_00;
@@ -3694,11 +3703,11 @@ u32 ta_sub_262d6c(int a0, u32 *a1, u32 *a2, int *a3) {
 }
 
 /*
- * cri_sub_262e10  0x8c262e10
- * area name: in the cri library code range
- * called by: cri_sub_26304a, cri_sub_26307e
+ * cri_uses_get_field_a8_s16_262e10  0x8c262e10
+ * area name: in the cri library code range; behaviour name: its main named callee is get_field_a8_s16
+ * called by: cri_uses_get_field_4_26304a, cri_uses_get_field_4_26307e
  */
-u32 cri_sub_262e10(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 cri_uses_get_field_a8_s16_262e10(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 ar5_00;
@@ -3727,8 +3736,8 @@ u32 cri_sub_262e10(int a0, u32 unused_a1, u32 a2, u32 a3) {
         iVar1 = get_field_10_of_field_4(a0);
         uVar2 = (**(code **)(**(int **)(a0 + 0xc) + 0x24))(*(int **)(a0 + 0xc), 0, ar6_00, a7);
         if (iVar1 <= (int)(uVar2 >> 1)) {
-            cri_sub_25ff3c(uVar3, *(u32 *)(a0 + 0x14), *(u32 *)(a0 + 0x18));
-            uVar3 = cri_sub_25ff8e(uVar3);
+            cri_uses_libgcc_divide_helper_25ff3c(uVar3, *(u32 *)(a0 + 0x14), *(u32 *)(a0 + 0x18));
+            uVar3 = cri_update_fields_25ff8e(uVar3);
             return uVar3;
         }
     }
@@ -3739,11 +3748,11 @@ u32 cri_sub_262e10(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * cri_sub_262f02  0x8c262f02
- * area name: in the cri library code range
- * called by: cri_sub_26304a, cri_sub_26307e
+ * cri_uses_get_field_18_262f02  0x8c262f02
+ * area name: in the cri library code range; behaviour name: its main named callee is get_field_18_25ff16
+ * called by: cri_uses_get_field_4_26304a, cri_uses_get_field_4_26307e
  */
-u32 cri_sub_262f02(int a0) {
+u32 cri_uses_get_field_18_262f02(int a0) {
     u8 *puVar1;
     int iVar2;
     int ar5_00;
@@ -3796,15 +3805,15 @@ u32 cri_sub_262f02(int a0) {
     if (((-1 < *(int *)(a0 + 0x3c)) && (*(int *)(a0 + 0x3c) <= *(int *)(a0 + 0x40))) && (*(int *)(a0 + 0x48) != 0)) {
         (**(code **)(a0 + 0x48))(*(u32 *)(a0 + 0x4c), ar5_01, a6, ar7_00);
     }
-    uVar5 = cri_sub_25ffb6(uVar5);
+    uVar5 = cri_calls_update_fields_25ffb6(uVar5);
     return uVar5;
 }
 
 /*
- * cri_sub_26304a  0x8c26304a
- * area name: in the cri library code range
+ * cri_uses_get_field_4_26304a  0x8c26304a
+ * area name: in the cri library code range; behaviour name: its main named callee is get_field_4_25ff38
  */
-u32 cri_sub_26304a(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 cri_uses_get_field_4_26304a(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     int unaff_r13;
     u32 uVar2;
@@ -3812,29 +3821,29 @@ u32 cri_sub_26304a(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     uVar2 = *(u32 *)(unaff_r13 + 4);
     iVar1 = get_field_4_25ff38(uVar2);
     if (iVar1 == 0) {
-        cri_sub_262e10(unaff_r13, unused_a1, a2, a3);
+        cri_uses_get_field_a8_s16_262e10(unaff_r13, unused_a1, a2, a3);
     }
-    cri_sub_2602f4(uVar2);
+    cri_uses_get_field_c_2602f4(uVar2);
     iVar1 = get_field_4_25ff38(uVar2);
     if (iVar1 == 3) {
-        uVar2 = cri_sub_262f02(unaff_r13);
+        uVar2 = cri_uses_get_field_18_262f02(unaff_r13);
         return uVar2;
     }
     return iVar1;
 }
 
 /*
- * cri_sub_26307e  0x8c26307e
- * area name: in the cri library code range
- * called by: alt_entry_2630d6, cri_sub_2630cc
+ * cri_uses_get_field_4_26307e  0x8c26307e
+ * area name: in the cri library code range; behaviour name: its main named callee is get_field_4_25ff38
+ * called by: alt_entry_2630d6, cri_uses_get_field_4_2630cc
  */
-u32 cri_sub_26307e(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 cri_uses_get_field_4_26307e(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
 
     if (*(char *)(a0 + 1) != '\x02') {
         if (*(char *)(a0 + 1) == 1) {
-            uVar2 = ta_sub_262c80(a0);
+            uVar2 = ta_uses_get_field_a8_s16_262c80(a0);
             return uVar2;
         }
         return (int)*(char *)(a0 + 1);
@@ -3842,23 +3851,23 @@ u32 cri_sub_26307e(int a0, u32 unused_a1, u32 a2, u32 a3) {
     uVar2 = *(u32 *)(a0 + 4);
     iVar1 = get_field_4_25ff38(uVar2);
     if (iVar1 == 0) {
-        cri_sub_262e10(a0, unused_a1, a2, a3);
+        cri_uses_get_field_a8_s16_262e10(a0, unused_a1, a2, a3);
     }
-    cri_sub_2602f4(uVar2);
+    cri_uses_get_field_c_2602f4(uVar2);
     iVar1 = get_field_4_25ff38(uVar2);
     if (iVar1 == 3) {
-        uVar2 = cri_sub_262f02(a0);
+        uVar2 = cri_uses_get_field_18_262f02(a0);
         return uVar2;
     }
     return iVar1;
 }
 
 /*
- * cri_sub_2630cc  0x8c2630cc
- * area name: in the cri library code range
+ * cri_uses_get_field_4_2630cc  0x8c2630cc
+ * area name: in the cri library code range; behaviour name: its callees mostly do: uses_get_field_4
  * called by: adx_server
  */
-int cri_sub_2630cc(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+int cri_uses_get_field_4_2630cc(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     char *pcVar2;
     int iVar3;
@@ -3870,7 +3879,7 @@ int cri_sub_2630cc(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     do {
         iVar1 = (int)*ar4_00;
         if (iVar1 == 1) {
-            iVar1 = cri_sub_26307e(ar4_00, unused_a1, a2, a3);
+            iVar1 = cri_uses_get_field_4_26307e(ar4_00, unused_a1, a2, a3);
         }
         ar4_00 = ar4_00 + iVar3;
     } while (ar4_00 < pcVar2);
@@ -3892,7 +3901,7 @@ int alt_entry_2630d6(char *a0, u32 unused_a1, u32 a2, u32 a3) {
     do {
         iVar1 = (int)*a0;
         if (iVar1 == 1) {
-            iVar1 = cri_sub_26307e(a0, unused_a1, a2, a3);
+            iVar1 = cri_uses_get_field_4_26307e(a0, unused_a1, a2, a3);
         }
         a0 = a0 + iVar3;
     } while (a0 < pcVar2);
@@ -3901,7 +3910,7 @@ int alt_entry_2630d6(char *a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * get_field_2c_2630fe  0x8c2630fe
- * called by: ADXT_sub_264c92, alt_entry_264e88, cri_sub_264e84
+ * called by: ADXT_uses_libgcc_divide_helper_264c92, alt_entry_264e88, cri_uses_libgcc_divide_helper_264e84
  */
 u32 get_field_2c_2630fe(int a0) {
     return *(u32 *)(a0 + 0x2c);
@@ -3921,7 +3930,7 @@ u32 set_field_34_263102(int a0, u32 a1) {
 /*
  * set_fields_48_4c  0x8c263114
  * stores +0x48, +0x4c
- * called by: ADXT_sub_2647f4
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4
  */
 u32 set_fields_48_4c(int a0, u32 a1, u32 a2) {
     *(u32 *)(a0 + 0x48) = a1;
@@ -3931,7 +3940,7 @@ u32 set_fields_48_4c(int a0, u32 a1, u32 a2) {
 
 /*
  * set_field_3c_26311e  0x8c26311e
- * called by: ADXT_sub_2646fe, ADXT_sub_2647f4, adxt_trap_entry
+ * called by: ADXT_sound_2646fe, ADXT_uses_libgcc_divide_helper_2647f4, adxt_trap_entry
  */
 u32 set_field_3c_26311e(int a0, u32 a1) {
     u32 in_r0;
@@ -3942,7 +3951,7 @@ u32 set_field_3c_26311e(int a0, u32 a1) {
 
 /*
  * set_field_40_263126  0x8c263126
- * called by: ADXT_sub_2647f4, adxt_trap_entry
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4, adxt_trap_entry
  */
 u32 set_field_40_263126(int a0, u32 a1) {
     *(u32 *)(a0 + 0x40) = a1;
@@ -3951,7 +3960,7 @@ u32 set_field_40_263126(int a0, u32 a1) {
 
 /*
  * set_field_44_263132  0x8c263132
- * called by: ADXT_sub_2647f4, adxt_trap_entry
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4, adxt_trap_entry
  */
 u32 set_field_44_263132(int a0, u32 a1) {
     *(u32 *)(a0 + 0x44) = a1;
@@ -3961,7 +3970,7 @@ u32 set_field_44_263132(int a0, u32 a1) {
 /*
  * get_field_a8_s16_wrap  0x8c26313e
  * only calls get_field_a8_s16
- * called by: ADXT_sub_2647f4
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4
  */
 u32 get_field_a8_s16_wrap(int a0) {
     u32 uVar1;
@@ -3973,8 +3982,8 @@ u32 get_field_a8_s16_wrap(int a0) {
 /*
  * get_field_14_of_field_4  0x8c26314a
  * returns +0x14 of the object at +0x4
- * called by: ADXT_GetTime_like, ADXT_sub_263dd8, ADXT_sub_2647f4, alt_entry_263ce4
- * decompiler: Switch with 1 destination removed at 0x8c263152
+ * called by: ADXT_GetTime_like, ADXT_uses_get_field_14_of_field_4_263dd8, ADXT_uses_libgcc_divide_helper_2647f4,
+ * alt_entry_263ce4 decompiler: Switch with 1 destination removed at 0x8c263152
  */
 u32 get_field_14_of_field_4(int a0) {
     return *(u32 *)(*(int *)(a0 + 4) + 0x14);
@@ -3983,7 +3992,8 @@ u32 get_field_14_of_field_4(int a0) {
 /*
  * get_field_e_s8_wrap  0x8c263156
  * only calls get_field_e_s8
- * called by: ADXT_sub_263df6, ADXT_sub_264784, ADXT_sub_2647f4, ADXT_sub_264b14, alt_entry_264788, alt_entry_264b1a
+ * called by: ADXT_uses_get_field_1_s8_264b14, ADXT_uses_get_field_e_s8_wrap_263df6,
+ * ADXT_uses_get_field_e_s8_wrap_264784, ADXT_uses_libgcc_divide_helper_2647f4, alt_entry_264788, alt_entry_264b1a
  */
 u32 get_field_e_s8_wrap(int a0) {
     u32 uVar1;
@@ -3993,21 +4003,21 @@ u32 get_field_e_s8_wrap(int a0) {
 }
 
 /*
- * cri_sub_263162  0x8c263162
- * area name: in the cri library code range
- * called by: ADXT_GetTime_like, ADXT_sub_2647f4, alt_entry_263ce4
+ * cri_calls_calc_263162  0x8c263162
+ * area name: in the cri library code range; behaviour name: its callees mostly do: calc
+ * called by: ADXT_GetTime_like, ADXT_uses_libgcc_divide_helper_2647f4, alt_entry_263ce4
  */
-u32 cri_sub_263162(int a0) {
+u32 cri_calls_calc_263162(int a0) {
     u32 uVar1;
 
-    uVar1 = cri_sub_25fed2(*(u32 *)(a0 + 4));
+    uVar1 = cri_calc_25fed2(*(u32 *)(a0 + 4));
     return uVar1;
 }
 
 /*
  * get_field_10_of_field_4  0x8c26316e
  * returns +0x10 of the object at +0x4
- * called by: ADXT_sub_2647f4, ADXT_sub_264a42, cri_sub_262e10
+ * called by: ADXT_uses_get_field_1_s8_264a42, ADXT_uses_libgcc_divide_helper_2647f4, cri_uses_get_field_a8_s16_262e10
  * decompiler: Switch with 1 destination removed at 0x8c263176
  */
 u32 get_field_10_of_field_4(int a0) {
@@ -4017,7 +4027,8 @@ u32 get_field_10_of_field_4(int a0) {
 /*
  * get_field_18_wrap  0x8c263186
  * only calls get_field_18_25ff16
- * called by: ADXT_GetTime_like, ADXT_sub_2647f4, alt_entry_263ce4, cri_sub_262e10
+ * called by: ADXT_GetTime_like, ADXT_uses_libgcc_divide_helper_2647f4, alt_entry_263ce4,
+ * cri_uses_get_field_a8_s16_262e10
  */
 u32 get_field_18_wrap(int a0) {
     u32 uVar1;
@@ -4029,7 +4040,7 @@ u32 get_field_18_wrap(int a0) {
 /*
  * get_field_24_s16_wrap  0x8c26319e
  * only calls get_field_24_s16
- * called by: ADXT_sub_2647f4
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4
  */
 u32 get_field_24_s16_wrap(int a0) {
     u32 uVar1;
@@ -4051,7 +4062,7 @@ u32 get_field_28_of_field_4(int a0) {
 /*
  * get_field_2c_of_field_4  0x8c2631c2
  * returns +0x2c of the object at +0x4
- * called by: ADXT_sub_2646fe, adxt_trap_entry
+ * called by: ADXT_sound_2646fe, adxt_trap_entry
  * decompiler: Switch with 1 destination removed at 0x8c2631ca
  */
 u32 get_field_2c_of_field_4(int a0) {
@@ -4061,7 +4072,7 @@ u32 get_field_2c_of_field_4(int a0) {
 /*
  * get_field_30_of_field_4  0x8c2631ce
  * returns +0x30 of the object at +0x4
- * called by: ADXT_sub_2647f4, adxt_trap_entry
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4, adxt_trap_entry
  * decompiler: Switch with 1 destination removed at 0x8c2631d6
  */
 u32 get_field_30_of_field_4(int a0) {
@@ -4071,7 +4082,7 @@ u32 get_field_30_of_field_4(int a0) {
 /*
  * get_field_34_of_field_4  0x8c2631da
  * returns +0x34 of the object at +0x4
- * called by: ADXT_sub_2647f4, adxt_trap_entry
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4, adxt_trap_entry
  * decompiler: Switch with 1 destination removed at 0x8c2631e2
  */
 u32 get_field_34_of_field_4(int a0) {
@@ -4081,7 +4092,7 @@ u32 get_field_34_of_field_4(int a0) {
 /*
  * field_ptr_58  0x8c2631f8
  * returns the address of the member at +0x58
- * called by: ADXT_sub_2647f4
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4
  */
 int field_ptr_58(int a0) {
     return a0 + 0x58;
@@ -4090,7 +4101,7 @@ int field_ptr_58(int a0) {
 /*
  * memset_wrap_263244  0x8c263244
  * only calls memset
- * called by: alt_entry_262814, cri_sub_262810
+ * called by: alt_entry_262814, cri_uses_irq_disable_nested_262810
  */
 u32 memset_wrap_263244(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     memset(0x8c4b9828, 0, (int)0xc80);
@@ -4099,7 +4110,7 @@ u32 memset_wrap_263244(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
 /*
  * noop_26325a  0x8c26325a
- * called by: cri_sub_2628fa
+ * called by: cri_uses_irq_disable_nested_2628fa
  */
 u32 noop_26325a(void) {
     u32 in_r0;
@@ -4108,11 +4119,11 @@ u32 noop_26325a(void) {
 }
 
 /*
- * cri_sub_26325e  0x8c26325e
- * area name: in the cri library code range
+ * cri_fill_loop_26325e  0x8c26325e
+ * area name: in the cri library code range; behaviour name: a loop that writes memory
  * called by: ADXSTM_OpenFname, ADXSTM_OpenFnameRange, ADXSTM_OpenRange
  */
-u8 *cri_sub_26325e(u32 a0, u32 a1, u32 a2, int *a3) {
+u8 *cri_fill_loop_26325e(u32 a0, u32 a1, u32 a2, int *a3) {
     u8 *puVar1;
     u32 uVar2;
     int iVar3;
@@ -4231,7 +4242,7 @@ u32 ADXSTM_OpenFname(u32 a0, u32 a1, u32 a2, u32 a3) {
         ar4_01 = iVar1;
         iVar2 = gdfs_get_size_like(iVar1, &stack0xffffffec);
         if (iVar2 != 0) {
-            iVar1 = cri_sub_26325e(iVar1, 0, in_stack_ffffffec, a1);
+            iVar1 = cri_fill_loop_26325e(iVar1, 0, in_stack_ffffffec, a1);
             if (iVar1 == 0) {
                 return 0;
             }
@@ -4247,7 +4258,7 @@ u32 ADXSTM_OpenFname(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ADXSTM_OpenRange  0x8c263388
  * named from the library error message it prints (ADXSTM_OpenRange)
- * called by: ADXF_sub_262208
+ * called by: ADXF_uses_lib_error_printf_262208
  * strings: "E8101212: can't open fad=%d, nsct=%d (ADXSTM_OpenRange)"; "OpenRange"
  */
 u32 ADXSTM_OpenRange(u32 a0, int a1, u32 a2, u32 a3) {
@@ -4257,12 +4268,12 @@ u32 ADXSTM_OpenRange(u32 a0, int a1, u32 a2, u32 a3) {
 
     iVar1 = a1;
     ar6_00 = a2;
-    a4 = shinobi_sub_1f39ac(a0, a1, a2, a3);
+    a4 = shinobi_test_1f39ac(a0, a1, a2, a3);
     if (a4 == 0) {
         lib_error_printf(0, iVar1, ar6_00, a3, "E8101212: can't open fad=%d, nsct=%d (ADXSTM_OpenRange)", a0);
         return 0;
     }
-    iVar1 = cri_sub_26325e(a4, 0, a1 << 0xb, a2);
+    iVar1 = cri_fill_loop_26325e(a4, 0, a1 << 0xb, a2);
     if (iVar1 != 0) {
         strncpy(iVar1 + 0x40, "OpenRange", 0x20);
     }
@@ -4288,7 +4299,7 @@ int ADXSTM_OpenFnameRange(u32 a0, u32 a1, int a2, u32 a3) {
         lib_error_printf(0, ar5_00, iVar1, uVar2, "E8101213: can't open '%s'(ADXSTM_OpenFnameRange)", a0);
         iVar1 = 0;
     } else {
-        iVar1 = cri_sub_26325e(a4, a1, a2 << 0xb, a3);
+        iVar1 = cri_fill_loop_26325e(a4, a1, a2 << 0xb, a3);
         if (iVar1 != 0) {
             uVar2 = 0x20;
             strncpy(iVar1 + 0x40, a0, 0x20);
@@ -4301,7 +4312,7 @@ int ADXSTM_OpenFnameRange(u32 a0, u32 a1, int a2, u32 a3) {
 /*
  * ADXSTM_Destroy_like  0x8c263446
  * stops reading, closes the stream's file and clears the handle
- * called by: ADXF_sub_26211c, ADXSTM_sub_2639fa, cri_sub_263c64
+ * called by: ADXF_sound_26211c, ADXSTM_uses_mwRna_stop_and_destroy_2639fa, cri_sound_263c64
  */
 u32 ADXSTM_Destroy_like(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_r0;
@@ -4340,7 +4351,7 @@ u32 alt_entry_26344a(u32 a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 /*
  * ADXSTM_rewind  0x8c26346e
  * resets the stream read state (status 2, or 3 when there is no file)
- * called by: ADXF_sub_262208, ADXT_sub_264ba0, alt_entry_263bc8, cri_sub_263bc0
+ * called by: ADXF_uses_lib_error_printf_262208, ADXT_sound_264ba0, alt_entry_263bc8, cri_sound_263bc0
  */
 u32 ADXSTM_rewind(int a0) {
     u32 uVar1;
@@ -4382,7 +4393,7 @@ u32 alt_entry_263472(u32 a0) {
 /*
  * ADXSTM_stop_read  0x8c263498
  * aborts the stream's file read (timing it into 0x8c278480) and marks the stream stopped
- * called by: ADXF_Stop, ADXSTM_Destroy_like, ADXT_sub_264ba0, alt_entry_26344a, cri_sub_263c64
+ * called by: ADXF_Stop, ADXSTM_Destroy_like, ADXT_sound_264ba0, alt_entry_26344a, cri_sound_263c64
  */
 u32 ADXSTM_stop_read(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -4391,7 +4402,7 @@ u32 ADXSTM_stop_read(int a0, u32 a1, u32 a2, u32 a3) {
     if ((*(char *)(a0 + 2) == '\x01') && (*(int *)(a0 + 8) != 0)) {
         uVar1 = sh4_tmu_1f88e6(a0);
         uVar2 = *(u32 *)(a0 + 8);
-        gdfs_sub_1f367a(uVar2, a1, a2, a3);
+        gdfs_uses_sh4_tmu_1f367a(uVar2, a1, a2, a3);
         uVar2 = sh4_tmu_1f88e6(uVar2);
         uVar1 = int_diff(uVar1, uVar2);
         *(u32 *)(&DATA_8c278480) = uVar1;
@@ -4410,7 +4421,7 @@ int ADXSTM_get_read_pos(int a0, u32 a1) {
     int iVar1;
 
     if (*(int *)(a0 + 8) != 0) {
-        iVar1 = gdfs_sub_1f316e(*(u32 *)(a0 + 8));
+        iVar1 = gdfs_test_1f316e(*(u32 *)(a0 + 8));
         return iVar1 - *(int *)(a0 + 0x10);
     }
     return 0;
@@ -4425,7 +4436,7 @@ int alt_entry_2634e0(void) {
     int unaff_r14;
 
     if (*(int *)(unaff_r14 + 8) != 0) {
-        iVar1 = gdfs_sub_1f316e(*(u32 *)(unaff_r14 + 8));
+        iVar1 = gdfs_test_1f316e(*(u32 *)(unaff_r14 + 8));
         return iVar1 - *(int *)(unaff_r14 + 0x10);
     }
     return 0;
@@ -4434,7 +4445,7 @@ int alt_entry_2634e0(void) {
 /*
  * ADXSTM_Seek_like  0x8c263534
  * seeks the stream to sector a1 (clamped to the file length) and updates the read position
- * called by: ADXSTM_OpenFnameRange, ADXT_sub_2646fe, ADXT_sub_264ba0
+ * called by: ADXSTM_OpenFnameRange, ADXT_sound_2646fe, ADXT_sound_264ba0
  */
 u32 ADXSTM_Seek_like(int a0, int a1) {
     int iVar1;
@@ -4458,7 +4469,7 @@ u32 ADXSTM_Seek_like(int a0, int a1) {
 /*
  * set_fields_38_3c  0x8c263574
  * stores +0x38, +0x3c
- * called by: ADXT_sub_2647f4
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4
  */
 u32 set_fields_38_3c(int a0, u32 a1, u32 a2) {
     u32 in_r0;
@@ -4471,7 +4482,7 @@ u32 set_fields_38_3c(int a0, u32 a1, u32 a2) {
 /*
  * ADXSTM_set_sector_count  0x8c26357a
  * +0x30 = a1, or the file size (+0x14) in 2 KB sectors when a1 is negative
- * called by: ADXT_sub_2646fe, ADXT_sub_2647f4, alt_entry_263bc8, cri_sub_263bc0
+ * called by: ADXT_sound_2646fe, ADXT_uses_libgcc_divide_helper_2647f4, alt_entry_263bc8, cri_sound_263bc0
  */
 u32 ADXSTM_set_sector_count(int a0, int a1) {
     u32 in_r0;
@@ -4490,11 +4501,11 @@ u32 ADXSTM_set_sector_count(int a0, int a1) {
 }
 
 /*
- * ADXSTM_sub_26359a  0x8c26359a
- * area name: sits between ADXSTM functions (same compilation unit)
+ * ADXSTM_update_fields_26359a  0x8c26359a
+ * area name: sits between ADXSTM functions (same compilation unit); behaviour name: conditionally writes members
  * called by: adxstmf_stat_exec
  */
-u32 ADXSTM_sub_26359a(void) {
+u32 ADXSTM_update_fields_26359a(void) {
     u32 in_r0;
 
     *(int *)(&DATA_8c278484) = *(int *)(&DATA_8c278484) + 1;
@@ -4504,7 +4515,7 @@ u32 ADXSTM_sub_26359a(void) {
 /*
  * adxstmf_stat_exec  0x8c2635a4
  * ADX stream file state machine step (from its error string)
- * called by: ADXSTM_sub_263702
+ * called by: ADXSTM_uses_irq_disable_nested_263702
  * strings: "E8101214: GDFS error (adxstmf_stat_exec)\n"
  */
 int adxstmf_stat_exec(int a0, int a1, u8 *a2, u8 *a3) {
@@ -4558,7 +4569,7 @@ int adxstmf_stat_exec(int a0, int a1, u8 *a2, u8 *a3) {
     iVar6 = (int)*(char *)(a0 + 2);
     if (iVar6 == 0) {
         if ((a4 == NULL) || (*a4 == 0)) {
-            iVar6 = ADXSTM_sub_26359a();
+            iVar6 = ADXSTM_update_fields_26359a();
         } else {
             iVar6 = (**(code **)(*a4 + 0x24))(a4, 1, a2, a3);
             if (iVar6 < *(int *)(a0 + 0x1c)) {
@@ -4581,7 +4592,7 @@ int adxstmf_stat_exec(int a0, int a1, u8 *a2, u8 *a3) {
                     iVar6 = iVar4;
                 }
                 if (iVar6 != 0) {
-                    iVar6 = gdfs_sub_1f332c(*(u32 *)(a0 + 8), iVar6, *(u32 *)(a0 + 0x24));
+                    iVar6 = gdfs_update_fields_1f332c(*(u32 *)(a0 + 8), iVar6, *(u32 *)(a0 + 0x24));
                     *(int *)(a0 + 0x20) = iVar6;
                     if (0 < iVar6) {
                         *(u8 *)(a0 + 2) = 1;
@@ -4596,11 +4607,11 @@ int adxstmf_stat_exec(int a0, int a1, u8 *a2, u8 *a3) {
 }
 
 /*
- * ADXSTM_sub_263702  0x8c263702
- * area name: sits between ADXSTM functions (same compilation unit)
- * called by: ADXSTM_ExecServer_like, alt_entry_263726
+ * ADXSTM_uses_irq_disable_nested_263702  0x8c263702
+ * area name: sits between ADXSTM functions (same compilation unit); behaviour name: its main named callee is
+ * irq_disable_nested called by: ADXSTM_ExecServer_like, alt_entry_263726
  */
-u32 ADXSTM_sub_263702(int a0, u32 a1, u32 a2, u32 a3) {
+u32 ADXSTM_uses_irq_disable_nested_263702(int a0, u32 a1, u32 a2, u32 a3) {
     int ain0;
     u32 uVar1;
     int a4;
@@ -4619,7 +4630,7 @@ u32 ADXSTM_sub_263702(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ADXSTM_ExecServer_like  0x8c26371e
  * runs every active stream of the 32 100-byte ADXSTM handles at 0x8c4b9828
- * called by: adx_server, cri_sub_261ae2
+ * called by: adx_server, cri_sound_261ae2
  */
 int ADXSTM_ExecServer_like(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -4631,7 +4642,7 @@ int ADXSTM_ExecServer_like(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     do {
         iVar1 = (int)*ar4_00;
         if (iVar1 == 1) {
-            iVar1 = ADXSTM_sub_263702(ar4_00, a1, a2, a3);
+            iVar1 = ADXSTM_uses_irq_disable_nested_263702(ar4_00, a1, a2, a3);
         }
         ar4_00 = ar4_00 + 100;
     } while (ar4_00 < pcVar2);
@@ -4651,7 +4662,7 @@ int alt_entry_263726(char *a0, u32 a1, u32 a2, u32 a3) {
     do {
         iVar1 = (int)*a0;
         if (iVar1 == 1) {
-            iVar1 = ADXSTM_sub_263702(a0, a1, a2, a3);
+            iVar1 = ADXSTM_uses_irq_disable_nested_263702(a0, a1, a2, a3);
         }
         a0 = a0 + 100;
     } while (a0 < pcVar2);
@@ -4660,7 +4671,8 @@ int alt_entry_263726(char *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * get_field_1_s8_263746  0x8c263746
- * called by: ADXF_sub_2624a0, ADXT_sub_264c92, alt_entry_264e88, cri_sub_264e84
+ * called by: ADXF_sound_2624a0, ADXT_uses_libgcc_divide_helper_264c92, alt_entry_264e88,
+ * cri_uses_libgcc_divide_helper_264e84
  */
 int get_field_1_s8_263746(int a0) {
     return (int)*(char *)(a0 + 1);
@@ -4669,7 +4681,7 @@ int get_field_1_s8_263746(int a0) {
 /*
  * ADXSTM_get_read_offset  0x8c263768
  * *a1 = read position relative to the stream start
- * called by: ADXF_Stop, ADXF_sub_2624a0
+ * called by: ADXF_Stop, ADXF_sound_2624a0
  */
 u32 ADXSTM_get_read_offset(int a0, int *a1) {
     int iVar1;
@@ -4682,7 +4694,7 @@ u32 ADXSTM_get_read_offset(int a0, int *a1) {
 /*
  * set_fields_1c_18  0x8c263798
  * stores +0x1c, +0x18
- * called by: cri_sub_263bc0
+ * called by: cri_sound_263bc0
  */
 u32 set_fields_1c_18(int a0, u32 a1, u32 a2) {
     *(u32 *)(a0 + 0x1c) = a1;
@@ -4691,10 +4703,11 @@ u32 set_fields_1c_18(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * ADXSTM_sub_2637ae  0x8c2637ae
- * area name: sits between ADXSTM functions (same compilation unit)
+ * ADXSTM_uses_gdfs_get_stat_like_2637ae  0x8c2637ae
+ * area name: sits between ADXSTM functions (same compilation unit); behaviour name: its main named callee is
+ * gdfs_get_stat_like
  */
-u32 ADXSTM_sub_2637ae(int a0, u32 *a1) {
+u32 ADXSTM_uses_gdfs_get_stat_like_2637ae(int a0, u32 *a1) {
     u32 uVar1;
 
     uVar1 = gdfs_get_stat_like(*(u32 *)(a0 + 8));
@@ -4703,15 +4716,15 @@ u32 ADXSTM_sub_2637ae(int a0, u32 *a1) {
 }
 
 /*
- * ADXSTM_sub_2637ca  0x8c2637ca
- * area name: sits between ADXSTM functions (same compilation unit)
- * called by: ADXF_AddPartition, ADXF_LoadPartition, ADXF_sub_261f7a
+ * ADXSTM_calls_test_2637ca  0x8c2637ca
+ * area name: sits between ADXSTM functions (same compilation unit); behaviour name: its callees mostly do: test
+ * called by: ADXF_AddPartition, ADXF_LoadPartition, ADXF_sound_261f7a
  */
-u32 ADXSTM_sub_2637ca(u32 a0, u32 *a1, u32 a2, u32 a3) {
+u32 ADXSTM_calls_test_2637ca(u32 a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 auStack_10[4];
 
-    uVar1 = gdfs_sub_1f3968(a0, auStack_10, a2, a3);
+    uVar1 = gdfs_test_1f3968(a0, auStack_10, a2, a3);
     *a1 = auStack_10[0];
     return uVar1;
 }
@@ -4719,14 +4732,14 @@ u32 ADXSTM_sub_2637ca(u32 a0, u32 *a1, u32 a2, u32 a3) {
 /*
  * ADXSTM_get_file_sectors  0x8c2637e8
  * *a1 = the stream file's size in 2048-byte sectors, rounded up
- * called by: ADXF_sub_261f7a
+ * called by: ADXF_sound_261f7a
  */
 u32 ADXSTM_get_file_sectors(u32 a0, int *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 auStack_10[4];
     int iStack_c;
 
-    uVar1 = gdfs_sub_1f3968(a0, auStack_10, a2, a3);
+    uVar1 = gdfs_test_1f3968(a0, auStack_10, a2, a3);
     iStack_c = iStack_c + 0x7ff;
     if (iStack_c < 0) {
         iStack_c = iStack_c + 0x7ff;
@@ -4738,24 +4751,24 @@ u32 ADXSTM_get_file_sectors(u32 a0, int *a1, u32 a2, u32 a3) {
 /*
  * ADXSTM_get_file_size  0x8c263816
  * *a1 = the stream file's size in bytes
- * called by: ADXF_sub_261f7a
+ * called by: ADXF_sound_261f7a
  */
 u32 ADXSTM_get_file_size(u32 a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 auStack_10[4];
     u32 uStack_c;
 
-    uVar1 = gdfs_sub_1f3968(a0, auStack_10, a2, a3);
+    uVar1 = gdfs_test_1f3968(a0, auStack_10, a2, a3);
     *a1 = uStack_c;
     return uVar1;
 }
 
 /*
- * ADXSTM_sub_263840  0x8c263840
- * area name: sits between ADXSTM functions (same compilation unit)
- * called by: game_sub_0221c8
+ * ADXSTM_uses_memset_263840  0x8c263840
+ * area name: sits between ADXSTM functions (same compilation unit); behaviour name: its main named callee is memset
+ * called by: game_sound_0221c8
  */
-u32 ADXSTM_sub_263840(int a0, int a1, int a2, u32 a3) {
+u32 ADXSTM_uses_memset_263840(int a0, int a1, int a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -4795,7 +4808,7 @@ u32 ADXSTM_sub_263840(int a0, int a1, int a2, u32 a3) {
         *(u32 *)(iVar4 + 0x8c278004) = 0x2020;
         a6 = *(int *)(iVar4 + 0x8c277ff8);
         iVar6 = *(int *)(iVar4 + 0x8c277ff4);
-        iVar1 = game_sub_26b564(*(u32 *)(iVar4 + 0x8c277ff0), iVar6, a6);
+        iVar1 = game_calls_init_fields_26b564(*(u32 *)(iVar4 + 0x8c277ff0), iVar6, a6);
         *(int *)(iVar4 + 0x8c277fe0) = iVar1;
         *(int *)(iVar4 + 0x8c277fe4) = iVar1;
         if (iVar1 != 0) {
@@ -4806,8 +4819,8 @@ u32 ADXSTM_sub_263840(int a0, int a1, int a2, u32 a3) {
                     puVar3 = (u32 *)(iVar7 + iVar4 + 0x8c277fe8);
                     a6 = (*(int *)(iVar4 + 0x8c278004) - *(int *)(iVar4 + 0x8c278000)) * 2;
                     iVar6 = *(int *)(iVar4 + 0x8c278000) << 1;
-                    uVar2 = game_sub_26b564(*(int *)(iVar4 + 0x8c278004) * iVar1 * 2 + *(int *)(iVar4 + 0x8c277ffc),
-                                            iVar6, a6);
+                    uVar2 = game_calls_init_fields_26b564(
+                        *(int *)(iVar4 + 0x8c278004) * iVar1 * 2 + *(int *)(iVar4 + 0x8c277ffc), iVar6, a6);
                     *puVar3 = uVar2;
                     if (*(int *)(iVar4 + 0x8c277fe8 + iVar7) == 0)
                         goto override_prt_8c26394e_7a4d7f16;
@@ -4816,11 +4829,11 @@ u32 ADXSTM_sub_263840(int a0, int a1, int a2, u32 a3) {
             }
             a6 = iVar4 + 0x8c277fe8;
             iVar6 = a0;
-            iVar1 = cri_sub_262b04(*(u32 *)(iVar4 + 0x8c277fe4), a0, a6);
+            iVar1 = cri_uses_get_field_1c_262b04(*(u32 *)(iVar4 + 0x8c277fe4), a0, a6);
             *(int *)(iVar4 + 0x8c277fd4) = iVar1;
             if (iVar1 != 0) {
                 iVar6 = a0;
-                iVar1 = sd_sub_268b70(iVar4 + 0x8c277fe8, a0, a6, a3);
+                iVar1 = sd_sound_268b70(iVar4 + 0x8c277fe8, a0, a6, a3);
                 *(int *)(iVar4 + 0x8c277fdc) = iVar1;
                 if (iVar1 != 0) {
                     *(u32 *)(iVar4 + 0x8c278008) = 0x3c;
@@ -4868,17 +4881,17 @@ u32 ADXSTM_sub_263840(int a0, int a1, int a2, u32 a3) {
             }
         }
     override_prt_8c26394e_7a4d7f16:
-        ADXSTM_sub_2639fa(ar4_00, iVar6, a6, a3, iVar7);
+        ADXSTM_uses_mwRna_stop_and_destroy_2639fa(ar4_00, iVar6, a6, a3, iVar7);
     }
     return 0;
 }
 
 /*
- * ADXSTM_sub_2639fa  0x8c2639fa
- * area name: sits between ADXSTM functions (same compilation unit)
- * called by: ADXSTM_sub_263840, cri_sub_263b0c
+ * ADXSTM_uses_mwRna_stop_and_destroy_2639fa  0x8c2639fa
+ * area name: sits between ADXSTM functions (same compilation unit); behaviour name: its main named callee is
+ * mwRna_stop_and_destroy called by: ADXSTM_uses_memset_263840, cri_uses_mwRna_stop_and_destroy_263b0c
  */
-u32 ADXSTM_sub_2639fa(u8 *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
+u32 ADXSTM_uses_mwRna_stop_and_destroy_2639fa(u8 *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     u32 uVar1;
     u8 *puVar2;
     u32 ar5_00;
@@ -4889,7 +4902,7 @@ u32 ADXSTM_sub_2639fa(u8 *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 
     if (a0 != NULL) {
         puVar2 = a0;
-        cri_sub_263c64(a0, a1, a2, a3);
+        cri_sound_263c64(a0, a1, a2, a3);
         if (*(int *)(a0 + 0xc) != 0) {
             puVar2 = *(u8 **)(a0 + 0xc);
             mwRna_stop_and_destroy(puVar2, a1, a2, a3);
@@ -4934,10 +4947,10 @@ u32 ADXSTM_sub_2639fa(u8 *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 }
 
 /*
- * cri_sub_263b0c  0x8c263b0c
- * area name: in the cri library code range
+ * cri_uses_mwRna_stop_and_destroy_263b0c  0x8c263b0c
+ * area name: in the cri library code range; behaviour name: its callees mostly do: uses_mwRna_stop_and_destroy
  */
-int cri_sub_263b0c(char *a0, u32 a1, u32 a2, u32 a3) {
+int cri_uses_mwRna_stop_and_destroy_263b0c(char *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int unaff_r12;
     char *pcVar2;
@@ -4947,7 +4960,7 @@ int cri_sub_263b0c(char *a0, u32 a1, u32 a2, u32 a3) {
     do {
         iVar1 = (int)*a0;
         if (iVar1 == 1) {
-            iVar1 = ADXSTM_sub_2639fa(a0, a1, a2, a3, in_PR);
+            iVar1 = ADXSTM_uses_mwRna_stop_and_destroy_2639fa(a0, a1, a2, a3, in_PR);
         }
         a0 = a0 + 0x94;
     } while (a0 < pcVar2);
@@ -4955,11 +4968,11 @@ int cri_sub_263b0c(char *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * cri_sub_263b34  0x8c263b34
- * area name: in the cri library code range
- * called by: ADXT_StartMem, ADXT_StartMemIdx, ADXT_sub_264ba0, alt_entry_263bc8, cri_sub_263bc0
+ * cri_uses_set_field_8_263b34  0x8c263b34
+ * area name: in the cri library code range; behaviour name: its main named callee is set_field_8_262c3c
+ * called by: ADXT_StartMem, ADXT_StartMemIdx, ADXT_sound_264ba0, alt_entry_263bc8, cri_sound_263bc0
  */
-u32 cri_sub_263b34(int a0, u32 a1, u32 a2, u32 a3) {
+u32 cri_uses_set_field_8_263b34(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
     int *a4;
     int iVar1;
@@ -4973,7 +4986,7 @@ u32 cri_sub_263b34(int a0, u32 a1, u32 a2, u32 a3) {
     uVar2 = ar5_00;
     set_field_8_262c3c(*(u32 *)(a0 + 4), ar5_00);
     *(u32 *)(a0 + 0x14) = uVar2;
-    ta_sub_262c50(*(u32 *)(a0 + 4));
+    ta_calls_init_fields_262c50(*(u32 *)(a0 + 4));
     *(u8 *)(a0 + 1) = 1;
     *(u32 *)(a0 + 0x4c) = 0;
     *(u8 *)(a0 + 0x71) = 0;
@@ -4983,11 +4996,11 @@ u32 cri_sub_263b34(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * cri_sub_263bc0  0x8c263bc0
- * area name: in the cri library code range
+ * cri_sound_263bc0  0x8c263bc0
+ * area name: in the cri library code range; behaviour name: mostly calls sound functions
  * called by: ADXT_StartAfs, ADXT_StartFname
  */
-u32 cri_sub_263bc0(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 cri_sound_263bc0(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 ain0;
     u32 ar5_00;
     int ar6_00;
@@ -4997,7 +5010,7 @@ u32 cri_sub_263bc0(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     ar5_00 = 0x19;
     ADXSTM_set_sector_count(*(u32 *)(a0 + 8), 0x19);
     ADXSTM_rewind(*(u32 *)(a0 + 8));
-    cri_sub_263b34(a0, *(u32 *)(a0 + 0x10), ar6_00, a3);
+    cri_uses_set_field_8_263b34(a0, *(u32 *)(a0 + 0x10), ar6_00, a3);
     *(u8 *)(a0 + 2) = 0;
     return 0;
 }
@@ -5017,16 +5030,16 @@ u32 alt_entry_263bc8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, int ai
     ar5_00 = 0x19;
     ADXSTM_set_sector_count(*(u32 *)(unaff_r14 + 8), 0x19);
     ADXSTM_rewind(*(u32 *)(unaff_r14 + 8));
-    cri_sub_263b34(unaff_r14, *(u32 *)(unaff_r14 + 0x10), ar6_00, a3);
+    cri_uses_set_field_8_263b34(unaff_r14, *(u32 *)(unaff_r14 + 0x10), ar6_00, a3);
     *(u8 *)(unaff_r14 + 2) = 0;
     return 0;
 }
 
 /*
- * cri_sub_263bfe  0x8c263bfe
- * area name: in the cri library code range
+ * cri_uses_irq_disable_nested_263bfe  0x8c263bfe
+ * area name: in the cri library code range; behaviour name: its main named callee is irq_disable_nested
  */
-u32 cri_sub_263bfe(int a0, u32 a1, u32 a2, u32 a3) {
+u32 cri_uses_irq_disable_nested_263bfe(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     int *a4;
@@ -5034,7 +5047,7 @@ u32 cri_sub_263bfe(int a0, u32 a1, u32 a2, u32 a3) {
 
     iVar3 = a0;
     uVar1 = a1;
-    cri_sub_263c64(a0, a1, a2, a3);
+    cri_sound_263c64(a0, a1, a2, a3);
     irq_disable_nested(iVar3, a1, a2, a3, uVar1);
     for (iVar3 = 0; iVar3 < *(char *)(a0 + 3); iVar3 = iVar3 + 1) {
         a4 = *(int **)(iVar3 * 4 + a0 + 0x18);
@@ -5044,7 +5057,7 @@ u32 cri_sub_263bfe(int a0, u32 a1, u32 a2, u32 a3) {
     set_field_8_262c3c(*(u32 *)(a0 + 4), uVar1);
     *(u32 *)(a0 + 0x14) = uVar2;
     uVar2 = *(u32 *)(a0 + 4);
-    ta_sub_262c50(uVar2);
+    ta_calls_init_fields_262c50(uVar2);
     *(u8 *)(a0 + 1) = 1;
     *(u8 *)(a0 + 2) = 3;
     *(u32 *)(a0 + 0x4c) = 0;
@@ -5053,22 +5066,23 @@ u32 cri_sub_263bfe(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * cri_sub_263c64  0x8c263c64
- * area name: in the cri library code range
- * called by: ADXSTM_sub_2639fa, ADXT_StartAfs, ADXT_StartFname, ADXT_StartMem, ADXT_StartMemIdx, ADXT_sub_2647f4,
- * ADXT_sub_264c92, alt_entry_264e88 (+3 more)
+ * cri_sound_263c64  0x8c263c64
+ * area name: in the cri library code range; behaviour name: mostly calls sound functions
+ * called by: ADXSTM_uses_mwRna_stop_and_destroy_2639fa, ADXT_StartAfs, ADXT_StartFname, ADXT_StartMem,
+ * ADXT_StartMemIdx, ADXT_uses_libgcc_divide_helper_2647f4, ADXT_uses_libgcc_divide_helper_264c92, alt_entry_264e88 (+3
+ * more)
  */
-u32 cri_sub_263c64(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 cri_sound_263c64(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int *ar4_00;
     u32 uVar1;
     u32 in_stack_fffffff0;
 
     irq_disable_nested(a0, unused_a1, a2, a3, in_stack_fffffff0);
-    mwRna_sub_2690d8(*(u32 *)(a0 + 0xc), 0, a2, a3);
+    mwRna_sound_2690d8(*(u32 *)(a0 + 0xc), 0, a2, a3);
     uVar1 = 0;
     mwRna_set_play_sw(*(u32 *)(a0 + 0xc), 0, a2, a3);
     ar4_00 = *(int **)(a0 + 4);
-    ta_sub_262c66(ar4_00);
+    ta_copy_262c66(ar4_00);
     if (*(int *)(a0 + 8) != 0) {
         ADXSTM_stop_read(*(u32 *)(a0 + 8), uVar1, a2, a3);
         ADXSTM_Destroy_like(*(u32 *)(a0 + 8), uVar1, a2, a3);
@@ -5088,7 +5102,7 @@ u32 cri_sub_263c64(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * get_field_1_s8_263cd4  0x8c263cd4
- * called by: ADX_sub_264104, adx_stall_watchdog, cri_sub_263f54
+ * called by: ADX_uses_get_field_1_s8_264104, adx_stall_watchdog, cri_uses_get_field_1_s8_263f54
  */
 int get_field_1_s8_263cd4(int a0) {
     return (int)*(char *)(a0 + 1);
@@ -5097,7 +5111,7 @@ int get_field_1_s8_263cd4(int a0) {
 /*
  * ADXT_GetTime_like  0x8c263cd8
  * playing time of an ADXT handle: samples and rate from mwRnaGetTime while playing, else from the stream
- * called by: ADXT_sub_263d90, adx_stall_watchdog
+ * called by: ADXT_sound_263d90, adx_stall_watchdog
  */
 u32 ADXT_GetTime_like(int a0, int *a1, u32 *a2, u32 a3) {
     int iVar1;
@@ -5110,7 +5124,7 @@ u32 ADXT_GetTime_like(int a0, int *a1, u32 *a2, u32 a3) {
         *a1 = iVar1;
         uVar2 = get_field_14_of_field_4(*(u32 *)(a0 + 4));
         *a2 = uVar2;
-        uVar2 = cri_sub_263162(*(u32 *)(a0 + 4));
+        uVar2 = cri_calls_calc_263162(*(u32 *)(a0 + 4));
         iVar1 = libgcc_divide_helper_010468(0x10, uVar2);
         *a1 = *a1 * iVar1;
     } else {
@@ -5139,7 +5153,7 @@ u32 alt_entry_263ce4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         *unaff_r13 = iVar1;
         uVar2 = get_field_14_of_field_4(*(u32 *)(unaff_r14 + 4));
         *unaff_r12 = uVar2;
-        uVar2 = cri_sub_263162(*(u32 *)(unaff_r14 + 4));
+        uVar2 = cri_calls_calc_263162(*(u32 *)(unaff_r14 + 4));
         iVar1 = libgcc_divide_helper_010468(0x10, uVar2);
         *unaff_r13 = *unaff_r13 * iVar1;
     } else {
@@ -5151,10 +5165,10 @@ u32 alt_entry_263ce4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * ADXT_sub_263d90  0x8c263d90
- * area name: sits between ADXT functions (same compilation unit)
+ * ADXT_sound_263d90  0x8c263d90
+ * area name: sits between ADXT functions (same compilation unit); behaviour name: mostly calls sound functions
  */
-int ADXT_sub_263d90(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int ADXT_sound_263d90(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     float fVar1;
     double dVar2;
     int iVar3;
@@ -5185,11 +5199,11 @@ int ADXT_sub_263d90(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * ADXT_sub_263dd8  0x8c263dd8
- * area name: sits between ADXT functions (same compilation unit)
- * called by: cri_sub_263f54
+ * ADXT_uses_get_field_14_of_field_4_263dd8  0x8c263dd8
+ * area name: sits between ADXT functions (same compilation unit); behaviour name: its main named callee is
+ * get_field_14_of_field_4 called by: cri_uses_get_field_1_s8_263f54
  */
-u32 ADXT_sub_263dd8(int a0) {
+u32 ADXT_uses_get_field_14_of_field_4_263dd8(int a0) {
     u32 uVar1;
 
     if ('\x01' < *(char *)(a0 + 1)) {
@@ -5200,11 +5214,11 @@ u32 ADXT_sub_263dd8(int a0) {
 }
 
 /*
- * ADXT_sub_263df6  0x8c263df6
- * area name: sits between ADXT functions (same compilation unit)
- * called by: ADXT_sub_264a42, cri_sub_263f54
+ * ADXT_uses_get_field_e_s8_wrap_263df6  0x8c263df6
+ * area name: sits between ADXT functions (same compilation unit); behaviour name: its main named callee is
+ * get_field_e_s8_wrap called by: ADXT_uses_get_field_1_s8_264a42, cri_uses_get_field_1_s8_263f54
  */
-u32 ADXT_sub_263df6(int a0) {
+u32 ADXT_uses_get_field_e_s8_wrap_263df6(int a0) {
     u32 uVar1;
 
     if ('\x01' < *(char *)(a0 + 1)) {
@@ -5270,10 +5284,10 @@ u32 ADXT_SetOutVol_like(int a0, u32 a1) {
 }
 
 /*
- * cri_sub_263f1a  0x8c263f1a
- * area name: in the cri library code range
+ * cri_test_263f1a  0x8c263f1a
+ * area name: in the cri library code range; behaviour name: returns the result of a comparison
  */
-int cri_sub_263f1a(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int cri_test_263f1a(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
 
     if (*(int *)(a0 + 0x14) == 0) {
@@ -5287,10 +5301,10 @@ int cri_sub_263f1a(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * cri_sub_263f54  0x8c263f54
- * area name: in the cri library code range
+ * cri_uses_get_field_1_s8_263f54  0x8c263f54
+ * area name: in the cri library code range; behaviour name: its main named callee is get_field_1_s8_263cd4
  */
-int cri_sub_263f54(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int cri_uses_get_field_1_s8_263f54(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int *a4;
@@ -5310,9 +5324,9 @@ int cri_sub_263f54(int a0, u32 unused_a1, u32 a2, u32 a3) {
         *(int **)(puVar3 + -0xc) = a4;
         uVar2 = (**(code **)(*a4 + 0x24))(a4, 1, a2, a3);
         *(u32 *)(puVar3 + -0xc) = uVar2;
-        uVar2 = ADXT_sub_263df6(a0);
+        uVar2 = ADXT_uses_get_field_e_s8_wrap_263df6(a0);
         *(u32 *)(puVar3 + -8) = uVar2;
-        ADXT_sub_263dd8(a0);
+        ADXT_uses_get_field_14_of_field_4_263dd8(a0);
         iVar1 = libgcc_divide_helper_010468(*(u32 *)(puVar3 + -0xc), *(int *)(puVar3 + -8) * 0x12);
         iVar1 = iVar1 << 5;
     }
@@ -5320,10 +5334,10 @@ int cri_sub_263f54(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * cri_sub_263fba  0x8c263fba
- * area name: in the cri library code range
+ * cri_test_263fba  0x8c263fba
+ * area name: in the cri library code range; behaviour name: returns the result of a comparison
  */
-u32 cri_sub_263fba(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 cri_test_263fba(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
 
     if (*(int *)(a0 + 0x14) != 0) {
@@ -5337,7 +5351,7 @@ u32 cri_sub_263fba(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * set_field_6d_u8  0x8c263ffa
- * called by: game_sub_0221c8
+ * called by: game_sound_0221c8
  */
 u32 set_field_6d_u8(int a0, u32 a1) {
     *(u8 *)(a0 + 0x6d) = (u8)a1;
@@ -5347,7 +5361,7 @@ u32 set_field_6d_u8(int a0, u32 a1) {
 /*
  * adx_server  0x8c264010
  * ADX file/stream server (V-blank job)
- * called by: ADX_sub_2641ee
+ * called by: ADX_sound_2641ee
  */
 u32 adx_server(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 ar4_00;
@@ -5358,7 +5372,7 @@ u32 adx_server(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     char *a4;
 
     ar4_00 = sh4_tmu_1f88e6(a0);
-    cri_sub_2630cc(a0, unused_a1, a2, a3);
+    cri_uses_get_field_4_2630cc(a0, unused_a1, a2, a3);
     uVar1 = sh4_tmu_1f88e6(a0);
     uVar3 = ar4_00;
     uVar2 = uVar1;
@@ -5379,7 +5393,7 @@ u32 adx_server(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     do {
         ar4_01 = a4;
         if (*a4 == '\x01') {
-            cri_sub_264e84(a4, uVar3, a2, a3);
+            cri_uses_libgcc_divide_helper_264e84(a4, uVar3, a2, a3);
         }
         a4 = a4 + 0x94;
     } while (a4 < &g_8c278470);
@@ -5390,10 +5404,11 @@ u32 adx_server(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * ADX_sub_264104  0x8c264104
- * area name: sits between ADX functions (same compilation unit)
+ * ADX_uses_get_field_1_s8_264104  0x8c264104
+ * area name: sits between ADX functions (same compilation unit); behaviour name: its main named callee is
+ * get_field_1_s8_263cd4
  */
-u32 ADX_sub_264104(int a0, int a1, u32 a2, u32 a3) {
+u32 ADX_uses_get_field_1_s8_264104(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
 
@@ -5408,7 +5423,7 @@ u32 ADX_sub_264104(int a0, int a1, u32 a2, u32 a3) {
         do {
             iVar1 = iVar1 + -1;
         } while (iVar1 != 0);
-        uVar2 = (*(code *)(&mwRna_sub_269738))(*(u32 *)(a0 + 0xc));
+        uVar2 = (*(code *)(&mwRna_uses_debug_printf_269738))(*(u32 *)(a0 + 0xc));
         return uVar2;
     }
     uVar2 = (*(code *)(&mwRna_set_play_sw))(*(u32 *)(a0 + 0xc), 1);
@@ -5417,7 +5432,7 @@ u32 ADX_sub_264104(int a0, int a1, u32 a2, u32 a3) {
 
 /*
  * thunk_FUN_8c25ecdc  0x8c2641e2
- * called by: game_sub_0221c8
+ * called by: game_sound_0221c8
  */
 u32 thunk_FUN_8c25ecdc(u32 unused_a0, u32 a1) {
     u32 uVar1;
@@ -5427,10 +5442,10 @@ u32 thunk_FUN_8c25ecdc(u32 unused_a0, u32 a1) {
 }
 
 /*
- * ADX_sub_2641ee  0x8c2641ee
- * area name: sits between ADX functions (same compilation unit)
+ * ADX_sound_2641ee  0x8c2641ee
+ * area name: sits between ADX functions (same compilation unit); behaviour name: mostly calls sound functions
  */
-u32 ADX_sub_2641ee(int a0, u32 a1, u32 a2, u32 a3) {
+u32 ADX_sound_2641ee(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 ar4_00;
 
@@ -5444,10 +5459,10 @@ u32 ADX_sub_2641ee(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * cri_sub_264222  0x8c264222
- * area name: in the cri library code range
+ * cri_test_264222  0x8c264222
+ * area name: in the cri library code range; behaviour name: returns the result of a comparison
  */
-u32 cri_sub_264222(u16 *a0, int a1, int *a2) {
+u32 cri_test_264222(u16 *a0, int a1, int *a2) {
     int iVar1;
     short asStack_28[2];
     u8 auStack_24[4];
@@ -5460,8 +5475,8 @@ u32 cri_sub_264222(u16 *a0, int a1, int *a2) {
 
     if (((1 < a1) && (((int)(u32)*a0 >> 8 | (u32)*a0 << 8 & 0xff00 & 0xffff) == 0x8000)) &&
         (piStack_8 = a2,
-         iVar1 = (*(code *)(&cri_sub_260d7c))(a0, a1, asStack_28, auStack_24, auStack_20, auStack_1c, auStack_18,
-                                              auStack_14, auStack_10),
+         iVar1 = (*(code *)(&cri_uses_libgcc_divide_helper_260d7c))(a0, a1, asStack_28, auStack_24, auStack_20,
+                                                                    auStack_1c, auStack_18, auStack_14, auStack_10),
          -1 < iVar1)) {
         *piStack_8 = (int)asStack_28[0];
         return 1;
@@ -5470,10 +5485,10 @@ u32 cri_sub_264222(u16 *a0, int a1, int *a2) {
 }
 
 /*
- * cri_sub_264308  0x8c264308
- * area name: in the cri library code range
+ * cri_uses_libgcc_divide_helper_264308  0x8c264308
+ * area name: in the cri library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
  */
-int cri_sub_264308(int a0, int a1, int a2) {
+int cri_uses_libgcc_divide_helper_264308(int a0, int a1, int a2) {
     int iVar1;
     u32 *puVar2;
     u8 *a7;
@@ -5516,7 +5531,7 @@ int cri_sub_264308(int a0, int a1, int a2) {
 /*
  * ADXT_StartAfs  0x8c264408
  * named from the library error message it prints (ADXT_StartAfs)
- * called by: game_sub_022918
+ * called by: game_sound_022918
  * strings: "E8101202: can't open %d, %d (ADXT_StartAfs)\n"
  */
 u32 ADXT_StartAfs(int a0, u32 a1, u32 a2, u32 a3) {
@@ -5531,10 +5546,10 @@ u32 ADXT_StartAfs(int a0, u32 a1, u32 a2, u32 a3) {
     iVar1 = a0;
     uStack_10 = a1;
     uStack_c = a2;
-    cri_sub_263c64(a0, a1, a2, a3);
+    cri_sound_263c64(a0, a1, a2, a3);
     irq_disable_nested(iVar1, a1, a2, a3);
     ar7_00 = &uStack_14;
-    ADXF_sub_26270c(uStack_10, uStack_c, &iStack_18, ar7_00);
+    ADXF_sound_26270c(uStack_10, uStack_c, &iStack_18, ar7_00);
     uVar2 = *(u32 *)(a0 + 0x10);
     iVar1 = (*(code *)(&ADXSTM_OpenRange))(iStack_18, uStack_14, uVar2, ar7_00);
     *(int *)(a0 + 8) = iVar1;
@@ -5543,7 +5558,7 @@ u32 ADXT_StartAfs(int a0, u32 a1, u32 a2, u32 a3) {
         (*(code *)(&lib_error_printf))(iStack_18, uStack_14, uVar2, ar7_00,
                                        "E8101202: can't open %d, %d (ADXT_StartAfs)\n", uStack_10);
     } else {
-        cri_sub_263bc0(a0, uStack_14, uVar2, ar7_00);
+        cri_sound_263bc0(a0, uStack_14, uVar2, ar7_00);
         iStack_18 = a0;
     }
     uVar2 = irq_restore_nested(iStack_18, uStack_14, uVar2, ar7_00);
@@ -5564,7 +5579,7 @@ u32 ADXT_StartFname(int a0, int a1, u32 a2, u32 a3) {
 
     iVar2 = a0;
     ain0_00 = a1;
-    cri_sub_263c64(a0, a1, a2, a3);
+    cri_sound_263c64(a0, a1, a2, a3);
     irq_disable_nested(iVar2, a1, a2, a3, ain0_00);
     uVar3 = *(u32 *)(a0 + 0x10);
     iVar2 = ain0_00;
@@ -5575,7 +5590,7 @@ u32 ADXT_StartFname(int a0, int a1, u32 a2, u32 a3) {
         ain0 = lib_error_printf(ain0_00, uVar3, a2, a3, "E8101205: can\'t open \'%s\' (ADXT_StartFname)", iVar2);
         a0 = ain0_00;
     } else {
-        ain0 = cri_sub_263bc0(a0, uVar3, a2, a3);
+        ain0 = cri_sound_263bc0(a0, uVar3, a2, a3);
     }
     uVar3 = irq_restore_nested(a0, uVar3, a2, a3, ain0);
     return uVar3;
@@ -5596,16 +5611,16 @@ u32 ADXT_StartMem(int a0, int a1, u32 a2, u32 a3) {
     iVar2 = a0;
     uVar1 = a2;
     ain0_00 = a1;
-    cri_sub_263c64(a0, a1, a2, a3);
+    cri_sound_263c64(a0, a1, a2, a3);
     irq_disable_nested(iVar2, a1, uVar1, a3, ain0_00);
     iVar2 = ain0_00;
-    ar5_00 = ADXT_sub_26b250(ain0_00, a2);
+    ar5_00 = ADXT_calls_update_fields_26b250(ain0_00, a2);
     if (ar5_00 == 0) {
         irq_restore_nested(ain0_00, 0, uVar1, a3, iVar2);
         ain0 = lib_error_printf(ain0_00, ar5_00, uVar1, a3, "E8101207: can\'t create sj (ADXT_StartMem)\n", iVar2);
     } else {
         ain0_00 = a0;
-        cri_sub_263b34(a0, ar5_00, uVar1, a3);
+        cri_uses_set_field_8_263b34(a0, ar5_00, uVar1, a3);
         ain0 = 2;
         *(u8 *)(a0 + 2) = 2;
     }
@@ -5629,19 +5644,19 @@ u32 ADXT_StartMemIdx(int a0, int a1, int a2, u32 a3) {
     iVar3 = a1;
     ar6_00 = a2;
     ain0 = a1;
-    cri_sub_263c64(a0, a1, a2, a3);
+    cri_sound_263c64(a0, a1, a2, a3);
     uVar2 = *(u32 *)(a1 + 4);
     if ((a2 < (int)(uVar2 >> 0x18 | (int)uVar2 >> 8 & 0xff00U | (uVar2 & 0xff00) << 8 | uVar2 << 0x18)) && (-1 < a2)) {
         irq_disable_nested(uVar2, iVar3, ar6_00, a3, ain0);
         uVar2 = *(u32 *)((a2 + 1) * 8 + a1);
         iVar3 = (uVar2 >> 0x18 | (int)uVar2 >> 8 & 0xff00U | (uVar2 & 0xff00) << 8 | uVar2 << 0x18) + ain0;
-        ar5_00 = ADXT_sub_26b250(iVar3, 0x40000000);
+        ar5_00 = ADXT_calls_update_fields_26b250(iVar3, 0x40000000);
         if (ar5_00 == 0) {
             irq_restore_nested(iVar3, 0, ar6_00, a3, ain0);
             uVar1 = lib_error_printf(iVar3, ar5_00, ar6_00, a3, "E8101207: can\'t create sj (ADXT_StartMemIdx)", ain0);
         } else {
             iVar3 = a0;
-            cri_sub_263b34(a0, ar5_00, ar6_00, a3);
+            cri_uses_set_field_8_263b34(a0, ar5_00, ar6_00, a3);
             uVar1 = 2;
             *(u8 *)(a0 + 2) = 2;
         }
@@ -5707,10 +5722,10 @@ u32 adxt_trap_entry(int a0) {
 }
 
 /*
- * ADXT_sub_2646fe  0x8c2646fe
- * area name: sits between ADXT functions (same compilation unit)
+ * ADXT_sound_2646fe  0x8c2646fe
+ * area name: sits between ADXT functions (same compilation unit); behaviour name: mostly calls sound functions
  */
-u32 ADXT_sub_2646fe(int a0) {
+u32 ADXT_sound_2646fe(int a0) {
     int ain0;
     u32 uVar1;
 
@@ -5729,11 +5744,11 @@ u32 ADXT_sub_2646fe(int a0) {
 }
 
 /*
- * ADXT_sub_264784  0x8c264784
- * area name: sits between ADXT functions (same compilation unit)
- * called by: ADXT_sub_2647f4
+ * ADXT_uses_get_field_e_s8_wrap_264784  0x8c264784
+ * area name: sits between ADXT functions (same compilation unit); behaviour name: its main named callee is
+ * get_field_e_s8_wrap called by: ADXT_uses_libgcc_divide_helper_2647f4
  */
-u32 ADXT_sub_264784(int a0) {
+u32 ADXT_uses_get_field_e_s8_wrap_264784(int a0) {
     u8 *puVar1;
     int iVar2;
     u32 uVar3;
@@ -5801,12 +5816,12 @@ u32 alt_entry_264788(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * ADXT_sub_2647f4  0x8c2647f4
+ * ADXT_uses_libgcc_divide_helper_2647f4  0x8c2647f4
  * name hint from a string it uses: E9081001 can t play d ch dat; area name: sits between ADXT functions (same
- * compilation unit) called by: alt_entry_264e88, cri_sub_264e84 strings: "E9081001: can't play %d ch data (maxch=%d)
- * [adxt_stat_decinf"
+ * compilation unit); behaviour name: its main named callee is libgcc_divide_helper_010468 called by: alt_entry_264e88,
+ * cri_uses_libgcc_divide_helper_264e84 strings: "E9081001: can't play %d ch data (maxch=%d) [adxt_stat_decinf"
  */
-int ADXT_sub_2647f4(int a0, u32 a1, int a2, u32 a3) {
+int ADXT_uses_libgcc_divide_helper_2647f4(int a0, u32 a1, int a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -5824,7 +5839,7 @@ int ADXT_sub_2647f4(int a0, u32 a1, int a2, u32 a3) {
         if (*(char *)(a0 + 3) < iVar1) {
             lib_error_printf(iVar1, a1, a2, a3, "E9081001: can't play %d ch data (maxch=%d) [adxt_stat_decinfo]\n",
                              iVar1);
-            uVar5 = cri_sub_263c64(a0, a1, a2, a3);
+            uVar5 = cri_sound_263c64(a0, a1, a2, a3);
             return uVar5;
         }
         uVar2 = get_field_14_of_field_4(uVar5);
@@ -5860,9 +5875,9 @@ int ADXT_sub_2647f4(int a0, u32 a1, int a2, u32 a3) {
                 uVar2 = libgcc_divide_helper_010468(iVar1 + 0x7ff, 0x800);
                 *(u32 *)(a0 + 0x8c) = uVar2;
                 ADXSTM_set_sector_count(*(u32 *)(a0 + 8), uVar2);
-                ar5_02 = ADXT_sub_2646fe;
+                ar5_02 = ADXT_sound_2646fe;
                 a2 = a0;
-                set_fields_38_3c(*(u32 *)(a0 + 8), ADXT_sub_2646fe, a0);
+                set_fields_38_3c(*(u32 *)(a0 + 8), ADXT_sound_2646fe, a0);
             }
             uVar2 = get_field_30_of_field_4(uVar5);
             *(u32 *)(a0 + 0x90) = uVar2;
@@ -5876,14 +5891,14 @@ int ADXT_sub_2647f4(int a0, u32 a1, int a2, u32 a3) {
         iVar3 = get_field_14_of_field_4(uVar5);
         uVar2 = get_field_e_s8_wrap(uVar5);
         ar5_00 = get_field_18_wrap(uVar5);
-        ar5_01 = cri_sub_263162(uVar5);
+        ar5_01 = cri_calls_calc_263162(uVar5);
         mwRnaSetBitPerSmpl(*(u32 *)(a0 + 0xc), ar5_01, a2, a3);
         mwRnaSetSfreq(*(u32 *)(a0 + 0xc), iVar3, a2, a3);
         mwRnaSetNumChan(*(u32 *)(a0 + 0xc), uVar2, a2, a3);
         noop_262a44(*(u32 *)(a0 + 0xc), ar5_00, a2, a3, ar5_00);
         iVar1 = (int)*(short *)(a0 + 0x40);
         mwRnaSetOutVol(*(u32 *)(a0 + 0xc), iVar1, a2, a3);
-        ADXT_sub_264784(a0);
+        ADXT_uses_get_field_e_s8_wrap_264784(a0);
         if (*(int *)(a0 + 0x74) != 0) {
             set_field_20_261680(*(u32 *)(a0 + 0x74), iVar3);
             iVar1 = iVar3;
@@ -5891,9 +5906,9 @@ int ADXT_sub_2647f4(int a0, u32 a1, int a2, u32 a3) {
         iVar3 = get_field_a8_s16_wrap(uVar5);
         if (iVar3 == 2) {
             uVar5 = field_ptr_58(uVar5);
-            cri_sub_262a4c(*(u32 *)(a0 + 0xc), uVar5);
+            cri_sound_262a4c(*(u32 *)(a0 + 0xc), uVar5);
         }
-        mwRna_sub_2690d8(*(u32 *)(a0 + 0xc), 1, a2, a3);
+        mwRna_sound_2690d8(*(u32 *)(a0 + 0xc), 1, a2, a3);
         iVar1 = 2;
         *(u8 *)(a0 + 1) = 2;
     }
@@ -5901,11 +5916,11 @@ int ADXT_sub_2647f4(int a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * ADXT_sub_264a42  0x8c264a42
- * area name: sits between ADXT functions (same compilation unit)
- * called by: alt_entry_264e88, cri_sub_264e84
+ * ADXT_uses_get_field_1_s8_264a42  0x8c264a42
+ * area name: sits between ADXT functions (same compilation unit); behaviour name: its main named callee is
+ * get_field_1_s8_262c38 called by: alt_entry_264e88, cri_uses_libgcc_divide_helper_264e84
  */
-int ADXT_sub_264a42(int a0, u32 a1, u32 a2, u32 a3) {
+int ADXT_uses_get_field_1_s8_264a42(int a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
     int iVar2;
     int iVar3;
@@ -5936,7 +5951,7 @@ int ADXT_sub_264a42(int a0, u32 a1, u32 a2, u32 a3) {
     }
     iVar2 = get_field_1_s8_262c38(*(u32 *)(a0 + 4), a1);
     if (iVar2 == 3) {
-        iVar3 = ADXT_sub_263df6(a0);
+        iVar3 = ADXT_uses_get_field_e_s8_wrap_263df6(a0);
         puVar1 = (&memset);
         iVar2 = 0x48;
         iVar4 = *(int *)(a0 + 0x48);
@@ -5958,11 +5973,11 @@ int ADXT_sub_264a42(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ADXT_sub_264b14  0x8c264b14
- * area name: sits between ADXT functions (same compilation unit)
- * called by: alt_entry_264e88, cri_sub_264e84
+ * ADXT_uses_get_field_1_s8_264b14  0x8c264b14
+ * area name: sits between ADXT functions (same compilation unit); behaviour name: its main named callee is
+ * get_field_1_s8_262c38 called by: alt_entry_264e88, cri_uses_libgcc_divide_helper_264e84
  */
-int ADXT_sub_264b14(int a0) {
+int ADXT_uses_get_field_1_s8_264b14(int a0) {
     int iVar1;
     int iVar2;
     int *piVar3;
@@ -5983,7 +5998,7 @@ int ADXT_sub_264b14(int a0) {
             } while (iVar4 < iVar2);
         }
         if (iVar4 == iVar2) {
-            mwRna_sub_2690d8(*(u32 *)(a0 + 0xc), 0);
+            mwRna_sound_2690d8(*(u32 *)(a0 + 0xc), 0);
             iVar1 = 4;
             *(u8 *)(a0 + 1) = 4;
         }
@@ -6017,7 +6032,7 @@ int alt_entry_264b1a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
             } while (iVar3 < iVar2);
         }
         if (iVar3 == iVar2) {
-            (*(code *)(&mwRna_sub_2690d8))(*(u32 *)(unaff_r13 + 0xc), 0, a2, a3);
+            (*(code *)(&mwRna_sound_2690d8))(*(u32 *)(unaff_r13 + 0xc), 0, a2, a3);
             iVar1 = 4;
             *(u8 *)(unaff_r13 + 1) = 4;
         }
@@ -6028,7 +6043,7 @@ int alt_entry_264b1a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ADXT_stop_when_drained  0x8c264b7a
  * stops the mwRna output and sets state 5 once its read position reaches 0
- * called by: alt_entry_264e88, cri_sub_264e84
+ * called by: alt_entry_264e88, cri_uses_libgcc_divide_helper_264e84
  */
 int ADXT_stop_when_drained(int a0) {
     int iVar1;
@@ -6061,7 +6076,7 @@ int alt_entry_264b7e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * noop_264b9c  0x8c264b9c
- * called by: alt_entry_264e88, cri_sub_264e84
+ * called by: alt_entry_264e88, cri_uses_libgcc_divide_helper_264e84
  */
 u32 noop_264b9c(void) {
     u32 in_r0;
@@ -6070,11 +6085,11 @@ u32 noop_264b9c(void) {
 }
 
 /*
- * ADXT_sub_264ba0  0x8c264ba0
- * area name: sits between ADXT functions (same compilation unit)
- * called by: ADXT_sub_264c92, alt_entry_264e88, cri_sub_264e84
+ * ADXT_sound_264ba0  0x8c264ba0
+ * area name: sits between ADXT functions (same compilation unit); behaviour name: mostly calls sound functions
+ * called by: ADXT_uses_libgcc_divide_helper_264c92, alt_entry_264e88, cri_uses_libgcc_divide_helper_264e84
  */
-u32 ADXT_sub_264ba0(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 ADXT_sound_264ba0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 ar5_00;
     int *a4;
@@ -6082,10 +6097,10 @@ u32 ADXT_sub_264ba0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 in_stack_ffffffec;
 
     irq_disable_nested(a0, unused_a1, a2, a3, in_stack_ffffffec);
-    mwRna_sub_2690d8(*(u32 *)(a0 + 0xc), 0, a2, a3);
+    mwRna_sound_2690d8(*(u32 *)(a0 + 0xc), 0, a2, a3);
     uVar1 = 0;
     mwRna_set_play_sw(*(u32 *)(a0 + 0xc), 0, a2, a3);
-    ta_sub_262c66(*(u32 *)(a0 + 4));
+    ta_copy_262c66(*(u32 *)(a0 + 4));
     if (*(int *)(a0 + 8) != 0) {
         ADXSTM_stop_read(*(u32 *)(a0 + 8), uVar1, a2, a3);
         (**(code **)(**(int **)(a0 + 0x14) + 0x14))(*(int **)(a0 + 0x14), uVar1, a2, a3);
@@ -6100,16 +6115,17 @@ u32 ADXT_sub_264ba0(int a0, u32 unused_a1, u32 a2, u32 a3) {
         ADXSTM_rewind(*(u32 *)(a0 + 8));
     }
     ar5_00 = *(u32 *)(a0 + 0x14);
-    uVar1 = cri_sub_263b34(a0, ar5_00, a2, a3);
+    uVar1 = cri_uses_set_field_8_263b34(a0, ar5_00, a2, a3);
     uVar1 = irq_restore_nested(a0, ar5_00, a2, a3, uVar1);
     return uVar1;
 }
 
 /*
- * ADXT_sub_264c92  0x8c264c92
- * area name: sits between ADXT functions (same compilation unit)
+ * ADXT_uses_libgcc_divide_helper_264c92  0x8c264c92
+ * area name: sits between ADXT functions (same compilation unit); behaviour name: its main named callee is
+ * libgcc_divide_helper_010468
  */
-int ADXT_sub_264c92(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int ADXT_uses_libgcc_divide_helper_264c92(int a0, u32 unused_a1, u32 a2, u32 a3) {
     char cVar1;
     u32 ar5_00;
     u32 ar4_00;
@@ -6121,7 +6137,7 @@ int ADXT_sub_264c92(int a0, u32 unused_a1, u32 a2, u32 a3) {
     ar5_00 = sh4_tmu_1f88e6(a0);
     ar5_01 = ar5_00;
     ar4_00 = int_diff(g_8c2784a0, ar5_00);
-    iVar2 = sh4_sub_1f88f6(ar4_00);
+    iVar2 = sh4_uses_libgcc_divide_helper_1f88f6(ar4_00);
     iVar3 = libgcc_divide_helper_010468(1000000, *(u32 *)(a0 + 0x38));
     iVar3 = libgcc_divide_helper_010468(iVar3 << 3, 10);
     if (iVar2 < iVar3) {
@@ -6142,7 +6158,7 @@ int ADXT_sub_264c92(int a0, u32 unused_a1, u32 a2, u32 a3) {
         *(int *)(a0 + 100) = iVar2;
         if (*(short *)(a0 + 0x60) != 0) {
             if ((*(char *)(a0 + 0x6d) == '\x01') || (*(char *)(a0 + 0x6d) == '\x02')) {
-                cri_sub_263c64(a0, ar5_01, a2, a3);
+                cri_sound_263c64(a0, ar5_01, a2, a3);
             }
             if (*(char *)(a0 + 0x6d) != '\0') {
                 *(u16 *)(a0 + 0x60) = 0;
@@ -6174,9 +6190,9 @@ int ADXT_sub_264c92(int a0, u32 unused_a1, u32 a2, u32 a3) {
             if (*(short *)(a0 + 0x60) == 0)
                 goto LAB_8c264e04;
             if (*(char *)(a0 + 0x6d) == '\x01') {
-                cri_sub_263c64(a0, ar5_01, a2, a3);
+                cri_sound_263c64(a0, ar5_01, a2, a3);
             } else if (*(char *)(a0 + 0x6d) == '\x02') {
-                ADXT_sub_264ba0(a0, ar5_01, a2, a3);
+                ADXT_sound_264ba0(a0, ar5_01, a2, a3);
             }
             iVar2 = 0x6d;
             if (*(char *)(a0 + 0x6d) == '\0')
@@ -6189,9 +6205,9 @@ int ADXT_sub_264c92(int a0, u32 unused_a1, u32 a2, u32 a3) {
 LAB_8c264e04:
     if ((*(int *)(a0 + 8) != 0) && (iVar2 = get_field_1_s8_263746(*(u32 *)(a0 + 8)), iVar2 == 4)) {
         if (*(char *)(a0 + 0x6d) == '\x01') {
-            cri_sub_263c64(a0, ar5_01, a2, a3);
+            cri_sound_263c64(a0, ar5_01, a2, a3);
         } else if (*(char *)(a0 + 0x6d) == '\x02') {
-            ADXT_sub_264ba0(a0, ar5_01, a2, a3);
+            ADXT_sound_264ba0(a0, ar5_01, a2, a3);
         }
         iVar2 = 0x6d;
         if (*(char *)(a0 + 0x6d) != '\0') {
@@ -6204,11 +6220,11 @@ LAB_8c264e04:
 }
 
 /*
- * cri_sub_264e84  0x8c264e84
- * area name: in the cri library code range
+ * cri_uses_libgcc_divide_helper_264e84  0x8c264e84
+ * area name: in the cri library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
  * called by: adx_server
  */
-int cri_sub_264e84(int a0, u32 a1, u32 a2, u32 a3) {
+int cri_uses_libgcc_divide_helper_264e84(int a0, u32 a1, u32 a2, u32 a3) {
     char cVar1;
     u32 ar5_00;
     u32 ar4_00;
@@ -6218,11 +6234,11 @@ int cri_sub_264e84(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_01;
 
     if (*(char *)(a0 + 1) == '\x03') {
-        ADXT_sub_264b14(a0);
+        ADXT_uses_get_field_1_s8_264b14(a0);
     } else if (*(char *)(a0 + 1) == '\x01') {
-        ADXT_sub_2647f4(a0, a1, a2, a3);
+        ADXT_uses_libgcc_divide_helper_2647f4(a0, a1, a2, a3);
     } else if (*(char *)(a0 + 1) == '\x02') {
-        ADXT_sub_264a42(a0, a1, a2, a3);
+        ADXT_uses_get_field_1_s8_264a42(a0, a1, a2, a3);
     } else if (*(char *)(a0 + 1) == '\x04') {
         ADXT_stop_when_drained(a0);
     } else if (*(char *)(a0 + 1) == '\x05') {
@@ -6232,7 +6248,7 @@ int cri_sub_264e84(int a0, u32 a1, u32 a2, u32 a3) {
     ar5_00 = sh4_tmu_1f88e6(a0);
     ar5_01 = ar5_00;
     ar4_00 = int_diff(g_8c2784a0, ar5_00);
-    iVar2 = sh4_sub_1f88f6(ar4_00);
+    iVar2 = sh4_uses_libgcc_divide_helper_1f88f6(ar4_00);
     iVar3 = libgcc_divide_helper_010468(1000000, *(u32 *)(a0 + 0x38));
     iVar3 = libgcc_divide_helper_010468(iVar3 << 3, 10);
     if (iVar2 < iVar3) {
@@ -6253,7 +6269,7 @@ int cri_sub_264e84(int a0, u32 a1, u32 a2, u32 a3) {
         *(int *)(a0 + 100) = iVar2;
         if (*(short *)(a0 + 0x60) != 0) {
             if ((*(char *)(a0 + 0x6d) == '\x01') || (*(char *)(a0 + 0x6d) == '\x02')) {
-                cri_sub_263c64(a0, ar5_01, a2, a3);
+                cri_sound_263c64(a0, ar5_01, a2, a3);
             }
             if (*(char *)(a0 + 0x6d) != '\0') {
                 *(u16 *)(a0 + 0x60) = 0;
@@ -6286,9 +6302,9 @@ int cri_sub_264e84(int a0, u32 a1, u32 a2, u32 a3) {
             if (*(short *)(a0 + 0x60) == 0)
                 goto LAB_8c264e04;
             if (*(char *)(a0 + 0x6d) == '\x01') {
-                cri_sub_263c64(a0, ar5_01, a2, a3);
+                cri_sound_263c64(a0, ar5_01, a2, a3);
             } else if (*(char *)(a0 + 0x6d) == '\x02') {
-                ADXT_sub_264ba0(a0, ar5_01, a2, a3);
+                ADXT_sound_264ba0(a0, ar5_01, a2, a3);
             }
             iVar2 = 0x6d;
             if (*(char *)(a0 + 0x6d) == '\0')
@@ -6301,9 +6317,9 @@ int cri_sub_264e84(int a0, u32 a1, u32 a2, u32 a3) {
 LAB_8c264e04:
     if ((*(int *)(a0 + 8) != 0) && (iVar2 = get_field_1_s8_263746(*(u32 *)(a0 + 8)), iVar2 == 4)) {
         if (*(char *)(a0 + 0x6d) == '\x01') {
-            cri_sub_263c64(a0, ar5_01, a2, a3);
+            cri_sound_263c64(a0, ar5_01, a2, a3);
         } else if (*(char *)(a0 + 0x6d) == '\x02') {
-            ADXT_sub_264ba0(a0, ar5_01, a2, a3);
+            ADXT_sound_264ba0(a0, ar5_01, a2, a3);
         }
         iVar2 = 0x6d;
         if (*(char *)(a0 + 0x6d) != '\0') {
@@ -6330,11 +6346,11 @@ int alt_entry_264e88(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int unaff_r14;
 
     if (*(char *)(unaff_r14 + 1) == '\x03') {
-        ADXT_sub_264b14(unaff_r14);
+        ADXT_uses_get_field_1_s8_264b14(unaff_r14);
     } else if (*(char *)(unaff_r14 + 1) == '\x01') {
-        ADXT_sub_2647f4(unaff_r14, a1, a2, a3);
+        ADXT_uses_libgcc_divide_helper_2647f4(unaff_r14, a1, a2, a3);
     } else if (*(char *)(unaff_r14 + 1) == '\x02') {
-        ADXT_sub_264a42(unaff_r14, a1, a2, a3);
+        ADXT_uses_get_field_1_s8_264a42(unaff_r14, a1, a2, a3);
     } else if (*(char *)(unaff_r14 + 1) == '\x04') {
         ADXT_stop_when_drained(unaff_r14);
     } else if (*(char *)(unaff_r14 + 1) == '\x05') {
@@ -6344,7 +6360,7 @@ int alt_entry_264e88(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     ar5_00 = sh4_tmu_1f88e6(unaff_r14);
     ar5_01 = ar5_00;
     ar4_00 = int_diff(g_8c2784a0, ar5_00);
-    iVar2 = sh4_sub_1f88f6(ar4_00);
+    iVar2 = sh4_uses_libgcc_divide_helper_1f88f6(ar4_00);
     iVar3 = libgcc_divide_helper_010468(1000000, *(u32 *)(unaff_r14 + 0x38));
     iVar3 = libgcc_divide_helper_010468(iVar3 << 3, 10);
     if (iVar2 < iVar3) {
@@ -6365,7 +6381,7 @@ int alt_entry_264e88(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
         *(int *)(unaff_r14 + 100) = iVar2;
         if (*(short *)(unaff_r14 + 0x60) != 0) {
             if ((*(char *)(unaff_r14 + 0x6d) == '\x01') || (*(char *)(unaff_r14 + 0x6d) == '\x02')) {
-                cri_sub_263c64(unaff_r14, ar5_01, a2, a3);
+                cri_sound_263c64(unaff_r14, ar5_01, a2, a3);
             }
             if (*(char *)(unaff_r14 + 0x6d) != '\0') {
                 *(u16 *)(unaff_r14 + 0x60) = 0;
@@ -6399,9 +6415,9 @@ int alt_entry_264e88(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
             if (*(short *)(unaff_r14 + 0x60) == 0)
                 goto LAB_8c264e04;
             if (*(char *)(unaff_r14 + 0x6d) == '\x01') {
-                cri_sub_263c64(unaff_r14, ar5_01, a2, a3);
+                cri_sound_263c64(unaff_r14, ar5_01, a2, a3);
             } else if (*(char *)(unaff_r14 + 0x6d) == '\x02') {
-                ADXT_sub_264ba0(unaff_r14, ar5_01, a2, a3);
+                ADXT_sound_264ba0(unaff_r14, ar5_01, a2, a3);
             }
             iVar2 = 0x6d;
             if (*(char *)(unaff_r14 + 0x6d) == '\0')
@@ -6414,9 +6430,9 @@ int alt_entry_264e88(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 LAB_8c264e04:
     if ((*(int *)(unaff_r14 + 8) != 0) && (iVar2 = get_field_1_s8_263746(*(u32 *)(unaff_r14 + 8)), iVar2 == 4)) {
         if (*(char *)(unaff_r14 + 0x6d) == '\x01') {
-            cri_sub_263c64(unaff_r14, ar5_01, a2, a3);
+            cri_sound_263c64(unaff_r14, ar5_01, a2, a3);
         } else if (*(char *)(unaff_r14 + 0x6d) == '\x02') {
-            ADXT_sub_264ba0(unaff_r14, ar5_01, a2, a3);
+            ADXT_sound_264ba0(unaff_r14, ar5_01, a2, a3);
         }
         iVar2 = 0x6d;
         if (*(char *)(unaff_r14 + 0x6d) != '\0') {
@@ -6431,7 +6447,7 @@ LAB_8c264e04:
 /*
  * memset_wrap_264ed0  0x8c264ed0
  * only calls memset
- * called by: cri_sub_25fb8c
+ * called by: cri_copy_25fb8c
  */
 u32 memset_wrap_264ed0(void) {
     u32 uVar1;
@@ -6442,7 +6458,7 @@ u32 memset_wrap_264ed0(void) {
 
 /*
  * vram64_264eda  0x8c264eda
- * called by: cri_sub_25fbd0
+ * called by: cri_copy_25fbd0
  */
 u32 *vram64_264eda(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 ar5_00;
@@ -6468,29 +6484,30 @@ u32 *vram64_264eda(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         ar4_00[2] = 0;
         ar4_00[3] = 0;
         iVar1 = (int)ar4_00 + 0x32;
-        cri_sub_260cf8(ar4_01, ar5_00, ar4_00 + 0xc, iVar1);
+        cri_uses_delay_loop_6_260cf8(ar4_01, ar5_00, ar4_00 + 0xc, iVar1);
         memset(ar4_00 + 10, 0, 8);
     }
     return ar4_00;
 }
 
 /*
- * vram_sub_264f52  0x8c264f52
- * area name: sits between vram functions (same compilation unit)
+ * vram_uses_delay_loop_6_264f52  0x8c264f52
+ * area name: sits between vram functions (same compilation unit); behaviour name: its callees mostly do:
+ * uses_delay_loop_6
  */
-u32 vram_sub_264f52(int a0, u32 unused_a1, u32 a2) {
+u32 vram_uses_delay_loop_6_264f52(int a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
 
-    uVar1 = cri_sub_260cf8(a2, a0 + 0x30, a0 + 0x32);
+    uVar1 = cri_uses_delay_loop_6_260cf8(a2, a0 + 0x30, a0 + 0x32);
     return uVar1;
 }
 
 /*
- * vram_sub_264f6a  0x8c264f6a
- * area name: sits between vram functions (same compilation unit)
- * called by: alt_entry_25fc60, cri_sub_25fc5c
+ * vram_calc_264f6a  0x8c264f6a
+ * area name: sits between vram functions (same compilation unit); behaviour name: integer arithmetic on its arguments
+ * called by: alt_entry_25fc60, cri_copy_25fc5c
  */
-u32 vram_sub_264f6a(u32 *a0) {
+u32 vram_calc_264f6a(u32 *a0) {
     u8 *puVar1;
     u32 in_r0;
     u32 uVar2;
@@ -6514,10 +6531,10 @@ u32 get_field_c_264f82(int a0, u32 a1) {
 }
 
 /*
- * vram_sub_264f86  0x8c264f86
- * area name: sits between vram functions (same compilation unit)
+ * vram_update_fields_264f86  0x8c264f86
+ * area name: sits between vram functions (same compilation unit); behaviour name: conditionally writes members
  */
-u32 vram_sub_264f86(int a0, u32 a1, u32 a2, u32 a3) {
+u32 vram_update_fields_264f86(int a0, u32 a1, u32 a2, u32 a3) {
     if (*(int *)(a0 + 0xc) == 0) {
         *(u32 *)(a0 + 0x14) = 1;
         *(u32 *)(a0 + 0x18) = a1;
@@ -6530,10 +6547,10 @@ u32 vram_sub_264f86(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * vram_sub_264fa4  0x8c264fa4
- * area name: sits between vram functions (same compilation unit)
+ * vram_update_fields_264fa4  0x8c264fa4
+ * area name: sits between vram functions (same compilation unit); behaviour name: conditionally writes members
  */
-u32 vram_sub_264fa4(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
+u32 vram_update_fields_264fa4(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     if (*(int *)(a0 + 0xc) == 0) {
         *(u32 *)(a0 + 0x14) = 2;
         *(u32 *)(a0 + 0x18) = a1;
@@ -6546,11 +6563,12 @@ u32 vram_sub_264fa4(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
 }
 
 /*
- * vram_sub_264fc2  0x8c264fc2
- * area name: sits between vram functions (same compilation unit)
- * called by: cri_sub_260000, cri_sub_260006, cri_sub_26002c, cri_sub_260030
+ * vram_update_fields_264fc2  0x8c264fc2
+ * area name: sits between vram functions (same compilation unit); behaviour name: conditionally writes members
+ * called by: cri_calls_update_fields_260000, cri_calls_update_fields_260006, cri_calls_update_fields_26002c,
+ * cri_calls_update_fields_260030
  */
-u32 vram_sub_264fc2(int a0) {
+u32 vram_update_fields_264fc2(int a0) {
     u32 in_r0;
 
     if (*(int *)(a0 + 0xc) == 0) {
@@ -6561,11 +6579,11 @@ u32 vram_sub_264fc2(int a0) {
 }
 
 /*
- * vram_sub_264fd4  0x8c264fd4
- * area name: sits between vram functions (same compilation unit)
- * called by: cri_sub_25ff9c
+ * vram_copy_264fd4  0x8c264fd4
+ * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls copy functions
+ * called by: cri_copy_25ff9c
  */
-u32 vram_sub_264fd4(int a0) {
+u32 vram_copy_264fd4(int a0) {
     u32 uVar1;
 
     *(u32 *)(a0 + 0xc) = 0;
@@ -6574,11 +6592,11 @@ u32 vram_sub_264fd4(int a0) {
 }
 
 /*
- * vram_sub_264fea  0x8c264fea
- * area name: sits between vram functions (same compilation unit)
- * called by: alt_entry_25ffba, cri_sub_25ffb6, cri_sub_260284, cri_sub_2602f4
+ * vram_update_fields_264fea  0x8c264fea
+ * area name: sits between vram functions (same compilation unit); behaviour name: conditionally writes members
+ * called by: alt_entry_25ffba, cri_calls_update_fields_25ffb6, cri_uses_get_field_c_260284, cri_uses_get_field_c_2602f4
  */
-int vram_sub_264fea(int a0) {
+int vram_update_fields_264fea(int a0) {
     int iVar1;
 
     iVar1 = *(int *)(a0 + 0xc);
@@ -6590,18 +6608,18 @@ int vram_sub_264fea(int a0) {
 
 /*
  * get_field_10_264ff8  0x8c264ff8
- * called by: cri_sub_260198
+ * called by: cri_uses_libgcc_divide_helper_260198
  */
 u32 get_field_10_264ff8(int a0) {
     return *(u32 *)(a0 + 0x10);
 }
 
 /*
- * vram_sub_264ffc  0x8c264ffc
- * area name: sits between vram functions (same compilation unit)
- * called by: vram_sub_26501c
+ * vram_update_fields_264ffc  0x8c264ffc
+ * area name: sits between vram functions (same compilation unit); behaviour name: conditionally writes members
+ * called by: vram_calls_fill_loop_26501c
  */
-u32 vram_sub_264ffc(void) {
+u32 vram_update_fields_264ffc(void) {
     u32 in_r0;
 
     *(u32 *)(&DATA_8c2784a8) = 1;
@@ -6609,11 +6627,11 @@ u32 vram_sub_264ffc(void) {
 }
 
 /*
- * vram_sub_26501c  0x8c26501c
- * area name: sits between vram functions (same compilation unit)
- * called by: cri_sub_260284, cri_sub_2602f4, sd_sub_2650be
+ * vram_calls_fill_loop_26501c  0x8c26501c
+ * area name: sits between vram functions (same compilation unit); behaviour name: its callees mostly do: fill_loop
+ * called by: cri_uses_get_field_c_260284, cri_uses_get_field_c_2602f4, sd_calls_fill_loop_2650be
  */
-u32 vram_sub_26501c(int a0) {
+u32 vram_calls_fill_loop_26501c(int a0) {
     u32 uVar1;
     int ar7_00;
     u32 ar4_00;
@@ -6626,16 +6644,16 @@ u32 vram_sub_26501c(int a0) {
     uVar1 = *(u32 *)(a0 + 0xc);
     if (uVar1 == 2) {
         if (*(int *)(a0 + 0x14) == 1) {
-            uVar1 = ADX_sub_261058(*(u32 *)(a0 + 0x18), *(u32 *)(a0 + 0x1c), *(u32 *)(a0 + 0x20), a0 + 0x28,
-                                   (int)*(short *)(a0 + 0x30), (int)*(short *)(a0 + 0x32));
+            uVar1 = ADX_fill_loop_261058(*(u32 *)(a0 + 0x18), *(u32 *)(a0 + 0x1c), *(u32 *)(a0 + 0x20), a0 + 0x28,
+                                         (int)*(short *)(a0 + 0x30), (int)*(short *)(a0 + 0x32));
             *(u32 *)(a0 + 0x10) = uVar1;
         } else {
             ar7_00 = a0 + 0x28;
             ar5_00 = *(u32 *)(a0 + 0x1c);
             ar6_00 = *(u32 *)(a0 + 0x20);
             ar4_00 = *(u32 *)(a0 + 0x18);
-            uVar1 = cri_sub_261170(ar4_00, ar5_00, ar6_00, ar7_00, *(u32 *)(a0 + 0x24), a0 + 0x2c,
-                                   (int)*(short *)(a0 + 0x30), (int)*(short *)(a0 + 0x32));
+            uVar1 = cri_fill_loop_261170(ar4_00, ar5_00, ar6_00, ar7_00, *(u32 *)(a0 + 0x24), a0 + 0x2c,
+                                         (int)*(short *)(a0 + 0x30), (int)*(short *)(a0 + 0x32));
             *(u32 *)(a0 + 0x10) = uVar1;
             if ((int)uVar1 < 0) {
                 uVar1 = ~(~uVar1 + 1 & 1) + 1;
@@ -6643,7 +6661,7 @@ u32 vram_sub_26501c(int a0) {
                 uVar1 = uVar1 & 1;
             }
             if (uVar1 == 1) {
-                uVar1 = vram_sub_264ffc();
+                uVar1 = vram_update_fields_264ffc();
             }
         }
         *(u32 *)(a0 + 0xc) = 3;
@@ -6652,10 +6670,10 @@ u32 vram_sub_26501c(int a0) {
 }
 
 /*
- * sd_sub_2650be  0x8c2650be
- * area name: in the sd library code range
+ * sd_calls_fill_loop_2650be  0x8c2650be
+ * area name: in the sd library code range; behaviour name: its callees mostly do: calls_fill_loop
  */
-int sd_sub_2650be(int *a0) {
+int sd_calls_fill_loop_2650be(int *a0) {
     int iVar1;
     int unaff_r13;
     int *piVar2;
@@ -6664,7 +6682,7 @@ int sd_sub_2650be(int *a0) {
     do {
         iVar1 = *a0;
         if (iVar1 == 1) {
-            iVar1 = vram_sub_26501c(a0);
+            iVar1 = vram_calls_fill_loop_26501c(a0);
         }
         a0 = a0 + 0xd;
     } while (a0 < piVar2);
@@ -6672,11 +6690,11 @@ int sd_sub_2650be(int *a0) {
 }
 
 /*
- * sd_sub_2650ec  0x8c2650ec
- * area name: in the sd library code range
- * called by: aica_sub_2655f4
+ * sd_sound_2650ec  0x8c2650ec
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: aica_sound_2655f4
  */
-u32 sd_sub_2650ec(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 sd_sound_2650ec(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
     int ar5_00;
     u32 ar4_00;
@@ -6686,15 +6704,15 @@ u32 sd_sub_2650ec(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     ar5_00 = (int)0x100;
     *(u32 *)(&DATA_8c2784c0) = 0x8c4ba677 & 0xffffffe0;
     ar4_00 = 0x8c4bb603 & 0xffffffe0;
-    sd_sub_265ac8(0x8c4babe4, 0x40);
+    sd_sound_265ac8(0x8c4babe4, 0x40);
     uVar2 = 0x40;
-    sd_sub_265ba8(0x8c4bb3e4, 0x40);
-    sd_sub_266bd4(ar4_00);
+    sd_sound_265ba8(0x8c4bb3e4, 0x40);
+    sd_sound_266bd4(ar4_00);
     uVar2 = 0x8c4bb804;
-    sd_sub_268920(0x8c4bb804, ar5_00, a2, a3);
-    sd_sub_2667cc();
+    sd_uses_memset_268920(0x8c4bb804, ar5_00, a2, a3);
+    sd_fill_loop_2667cc();
     *(u32 *)((int)0x1a8 + *(int *)puVar1) = 0;
-    shinobi_sub_1f8d98(*(int *)puVar1 + (int)0x1ac, 0);
+    shinobi_update_fields_1f8d98(*(int *)puVar1 + (int)0x1ac, 0);
     g_8c4ba648 = *(u32 *)((int)0x1ac + *(int *)puVar1);
     return 0;
 }
@@ -6734,7 +6752,7 @@ int sd_flush_host_commands(u32 unused_a0, u32 unused_a1, u32 a2) {
                             *(u32 *)(iVar1 + 0x174) = 0;
                         }
                         if (*(int *)(iVar2 + 0x14) == 1) {
-                            ar5_01 = sd_sub_266c48(iVar2);
+                            ar5_01 = sd_sound_266c48(iVar2);
                             if (ar5_01 != 0)
                                 goto LAB_8c26522c;
                             iVar4 = iVar4 + 1;
@@ -6759,14 +6777,14 @@ LAB_8c26522c:
 
 /*
  * aica_reg_265278  0x8c265278
- * called by: aica_ram_2684b8, aica_sub_2654f4, alt_entry_2654fc
+ * called by: aica_ram_2684b8, aica_sound_2654f4, alt_entry_2654fc
  */
 u32 aica_reg_265278(void) {
     u32 *ar4_00;
     u32 ar5_00;
     int iVar1;
 
-    shinobi_sub_1f92c0(0xa0702c00, 0x8c4ba650, 4, 1, 1, 1);
+    shinobi_uses_syG2FifoWait_1f92c0(0xa0702c00, 0x8c4ba650, 4, 1, 1, 1);
     ar5_00 = 0xa0702c00;
     ar4_00 = 0x8c4ba650;
     g_8c4ba650 = g_8c4ba650 | 1;
@@ -6780,14 +6798,14 @@ u32 aica_reg_265278(void) {
 
 /*
  * aica_reg_2652f4  0x8c2652f4
- * called by: aica_sub_2654f4, alt_entry_2654fc
+ * called by: aica_sound_2654f4, alt_entry_2654fc
  */
 u32 aica_reg_2652f4(void) {
     u8 *ar4_00;
     u32 ar5_00;
     int iVar1;
 
-    shinobi_sub_1f92c0(0xa0702c00, (&DATA_8c2784b0), 4, 1, 1, 1);
+    shinobi_uses_syG2FifoWait_1f92c0(0xa0702c00, (&DATA_8c2784b0), 4, 1, 1, 1);
     ar5_00 = 0xa0702c00;
     ar4_00 = (&DATA_8c2784b0);
     *(u32 *)(&DATA_8c2784b0) = *(u32 *)(&DATA_8c2784b0) & 0xfffffffe;
@@ -6800,11 +6818,11 @@ u32 aica_reg_2652f4(void) {
 }
 
 /*
- * aica_sub_265374  0x8c265374
- * area name: sits between aica functions (same compilation unit)
- * called by: aica_sub_2669f4
+ * aica_sound_265374  0x8c265374
+ * area name: sits between aica functions (same compilation unit); behaviour name: mostly calls sound functions
+ * called by: aica_sound_2669f4
  */
-int aica_sub_265374(u32 a0, u32 a1, u32 a2) {
+int aica_sound_265374(u32 a0, u32 a1, u32 a2) {
     int ar5_00;
     u8 *ar6_00;
     int *ar7_00;
@@ -6817,7 +6835,7 @@ int aica_sub_265374(u32 a0, u32 a1, u32 a2) {
     ar7_00 = &iStack_18;
     uStack_14 = a0;
     cStack_c = (char)a2;
-    ar5_00 = aica_sub_2684f0(a1, (int)(char)a2, &stack0xffffffe4, ar7_00);
+    ar5_00 = aica_calc_2684f0(a1, (int)(char)a2, &stack0xffffffe4, ar7_00);
     if (ar5_00 == 0) {
         if ((in_stack_ffffffe4 == 0) || (iStack_18 < 1)) {
             ar5_00 = 0x7fffffff;
@@ -6826,17 +6844,17 @@ int aica_sub_265374(u32 a0, u32 a1, u32 a2) {
         }
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(aica_sub_265374, ar5_00, ar6_00);
+        sd_set_last_error(aica_sound_265374, ar5_00, ar6_00);
     }
     return ar5_00;
 }
 
 /*
- * aica_sub_2653e0  0x8c2653e0
- * area name: sits between aica functions (same compilation unit)
+ * aica_sound_2653e0  0x8c2653e0
+ * area name: sits between aica functions (same compilation unit); behaviour name: mostly calls sound functions
  * called by: alt_entry_2654fc
  */
-int aica_sub_2653e0(u32 a0) {
+int aica_sound_2653e0(u32 a0) {
     u8 *puVar1;
     u8 *puVar2;
     int iVar3;
@@ -6873,7 +6891,7 @@ int aica_sub_2653e0(u32 a0) {
         iVar3 = 0;
     }
     if (iVar3 != 0) {
-        sd_set_last_error((&aica_sub_2653e0), iVar3);
+        sd_set_last_error((&aica_sound_2653e0), iVar3);
     }
     return iVar3;
 }
@@ -6912,17 +6930,17 @@ int alt_entry_2653e8(u32 unused_a0, u32 unused_a1, u32 a2) {
         aica_ram_268618(iVar2 + 0xd4, *unaff_r14 + 0x1c8);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(aica_sub_2653e0, ar5_00, a2);
+        sd_set_last_error(aica_sound_2653e0, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * aica_sub_2654f4  0x8c2654f4
- * area name: sits between aica functions (same compilation unit)
+ * aica_sound_2654f4  0x8c2654f4
+ * area name: sits between aica functions (same compilation unit); behaviour name: mostly calls sound functions
  * called by: aica_driver_upload
  */
-int aica_sub_2654f4(int a0, u32 a1, u32 a2, u32 a3) {
+int aica_sound_2654f4(int a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
     int iVar2;
     int *piVar3;
@@ -6933,23 +6951,23 @@ int aica_sub_2654f4(int a0, u32 a1, u32 a2, u32 a3) {
         (*(char *)((int)piVar3 + 5) < '\x02')) {
         aica_reg_265278();
         aica_ram_2684b8();
-        aica_sub_265704((&DATA_8c2784b8));
+        aica_sound_265704((&DATA_8c2784b8));
         sd_dma_setup(*(u32 *)(&DATA_8c2784b8), piVar3 + 8, piVar3[2], 0xffffffff, 0);
         sd_dma_start(*(u32 *)(&DATA_8c2784b8), 0);
         aica_reg_2652f4();
-        puVar1 = (&aica_sub_2653e0);
+        puVar1 = (&aica_sound_2653e0);
         for (iVar2 = 0x200000; iVar2 != 0; iVar2 = iVar2 + -1) {
         }
         *(u32 *)(&DATA_8c2784c4) = 1;
         (*(code *)puVar1)();
-        sd_sub_2659dc(a0);
+        sd_sound_2659dc(a0);
         iVar2 = 0;
     }
     if (*(int *)(&DATA_8c2784b8) != 0) {
         sd_handle_release(*(u32 *)(&DATA_8c2784b8));
     }
     if (iVar2 != 0) {
-        sd_set_last_error((&aica_sub_2654f4), iVar2);
+        sd_set_last_error((&aica_sound_2654f4), iVar2);
     }
     return iVar2;
 }
@@ -6975,7 +6993,7 @@ int alt_entry_2654fc(u32 unused_a0, u32 unused_a1, int a2, u32 a3) {
             if (((char)piVar2[1] == '\x01') && (*(char *)((int)piVar2 + 5) < '\x02')) {
                 aica_reg_265278();
                 aica_ram_2684b8();
-                aica_sub_265704(&g_8c2784b8);
+                aica_sound_265704(&g_8c2784b8);
                 a3 = 0xffffffff;
                 a2 = piVar2[2];
                 sd_dma_setup(0, piVar2 + 8, a2, 0xffffffff, 0);
@@ -6986,8 +7004,8 @@ int alt_entry_2654fc(u32 unused_a0, u32 unused_a1, int a2, u32 a3) {
                 for (iVar1 = 0x200000; iVar1 != 0; iVar1 = iVar1 + -1) {
                 }
                 g_8c2784c4 = 1;
-                aica_sub_2653e0(0);
-                sd_sub_2659dc(unaff_r12);
+                aica_sound_2653e0(0);
+                sd_sound_2659dc(unaff_r12);
             } else {
                 ar5_01 = 0xb000002;
             }
@@ -6996,22 +7014,22 @@ int alt_entry_2654fc(u32 unused_a0, u32 unused_a1, int a2, u32 a3) {
         }
     }
     if (ar5_01 != 0) {
-        sd_set_last_error(aica_sub_2654f4, ar5_01, a2);
+        sd_set_last_error(aica_sound_2654f4, ar5_01, a2);
     }
     return ar5_01;
 }
 
 /*
- * aica_sub_2655f4  0x8c2655f4
- * area name: sits between aica functions (same compilation unit)
+ * aica_sound_2655f4  0x8c2655f4
+ * area name: sits between aica functions (same compilation unit); behaviour name: mostly calls sound functions
  * called by: aica_driver_upload
  */
-int aica_sub_2655f4(u32 a0, u32 a1, u32 a2, u32 a3) {
+int aica_sound_2655f4(u32 a0, u32 a1, u32 a2, u32 a3) {
     int ar5_00;
 
-    ar5_00 = sd_sub_2650ec(0, a1, a2, a3);
+    ar5_00 = sd_sound_2650ec(0, a1, a2, a3);
     if (ar5_00 != 0) {
-        sd_set_last_error(aica_sub_2655f4, ar5_00, a2);
+        sd_set_last_error(aica_sound_2655f4, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -7051,12 +7069,12 @@ int sd_dma_kick(int a0, u32 a1, u32 a2, code *a3) {
 }
 
 /*
- * aica_sub_265704  0x8c265704
- * area name: sits between aica functions (same compilation unit)
- * called by: aica_driver_upload, aica_sub_2654f4, aica_sub_2669f4, alt_entry_2654fc, alt_entry_266bda, game_sub_022504,
- * sd_sub_266bd4, sd_sub_26a246
+ * aica_sound_265704  0x8c265704
+ * area name: sits between aica functions (same compilation unit); behaviour name: mostly calls sound functions
+ * called by: aica_driver_upload, aica_sound_2654f4, aica_sound_2669f4, alt_entry_2654fc, alt_entry_266bda,
+ * game_sound_022504, sd_sound_266bd4, sd_sound_26a246
  */
-int aica_sub_265704(u32 *a0) {
+int aica_sound_265704(u32 *a0) {
     u32 r7;
     u32 ain0;
     int *dst;
@@ -7089,7 +7107,7 @@ int aica_sub_265704(u32 *a0) {
     }
 LAB_8c26574e:
     if (ar5_00 != 0) {
-        sd_set_last_error(aica_sub_265704, ar5_00, ar6_00);
+        sd_set_last_error(aica_sound_265704, ar5_00, ar6_00);
     }
     return ar5_00;
 }
@@ -7126,7 +7144,7 @@ int alt_entry_26570c(int *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int a
     }
 LAB_8c26574e:
     if (unaff_r14 != 0) {
-        sd_set_last_error(aica_sub_265704, unaff_r14, ar6_00);
+        sd_set_last_error(aica_sound_265704, unaff_r14, ar6_00);
     }
     return unaff_r14;
 }
@@ -7134,7 +7152,7 @@ LAB_8c26574e:
 /*
  * sd_handle_release  0x8c265784
  * releases a sound handle and drops the driver's handle count (+0x184)
- * called by: aica_driver_upload, aica_sub_2654f4, aica_sub_2669f4, game_sub_022504, sd_sub_26a5de
+ * called by: aica_driver_upload, aica_sound_2654f4, aica_sound_2669f4, game_sound_022504, sd_uses_debug_printf_26a5de
  */
 int sd_handle_release(int *a0) {
     u8 *puVar1;
@@ -7207,9 +7225,9 @@ int aica_ram_2657ec(int a0, int a1, u32 a2, u32 a3) {
             a3 = *(u32 *)(a0 + 0xc);
             a2 = *(u32 *)(a0 + 8);
             uVar1 = *(u32 *)(g_8c2784c0 + 0x1ac);
-            g_8c4bd404 = shinobi_sub_1f900c(uVar1, iVar2, a2, a3, 0, 1, 1, sd_dma_end, a0);
+            g_8c4bd404 = shinobi_update_fields_1f900c(uVar1, iVar2, a2, a3, 0, 1, 1, sd_dma_end, a0);
             if (g_8c4bd404 != 0) {
-                sd_sub_2658e2();
+                sd_update_fields_2658e2();
             }
             iVar2 = set_field_4_265f74(a0, 2);
             if (iVar2 == 0) {
@@ -7217,9 +7235,9 @@ int aica_ram_2657ec(int a0, int a1, u32 a2, u32 a3) {
                 *(int *)(g_8c2784c0 + 400) = a0;
                 *(int *)(g_8c2784c0 + 0x188) = *(int *)(g_8c2784c0 + 0x188) + 1;
                 uVar1 = *(u32 *)(g_8c2784c0 + 0x1ac);
-                g_8c4bd404 = shinobi_sub_1f9194(uVar1, 0);
+                g_8c4bd404 = shinobi_uses_syG2DmaGetStatus_1f9194(uVar1, 0);
                 if (g_8c4bd404 != 0) {
-                    sd_sub_2658e2();
+                    sd_update_fields_2658e2();
                 }
             }
         }
@@ -7241,11 +7259,11 @@ u32 noop_2658de(void) {
 }
 
 /*
- * sd_sub_2658e2  0x8c2658e2
- * area name: in the sd library code range
+ * sd_update_fields_2658e2  0x8c2658e2
+ * area name: in the sd library code range; behaviour name: conditionally writes members
  * called by: aica_ram_2657ec
  */
-u32 sd_sub_2658e2(void) {
+u32 sd_update_fields_2658e2(void) {
     u32 in_r0;
 
     *(int *)(&DATA_8c2784f0) = *(int *)(&DATA_8c2784f0) + 1;
@@ -7296,7 +7314,7 @@ u32 sd_dma_end(int a0, u32 a1, u32 a2, u32 a3) {
     int iStack_10;
     u32 uStack_c;
 
-    puVar1 = (&sd_sub_2659dc);
+    puVar1 = (&sd_sound_2659dc);
     uStack_c = (((u32)in_T | (u32)in_S << 1 | (u32)in_IMASK << 4) & 0xf0) >> 4;
     bVar5 = (u8)(((u32)in_BL << 0x1c) >> 0x18);
     bVar3 = bVar5 | (u8)(((u32)in_RB << 0x1d) >> 0x18);
@@ -7311,7 +7329,7 @@ u32 sd_dma_end(int a0, u32 a1, u32 a2, u32 a3) {
     *(u32 *)((int)0x190 + *(int *)(&DATA_8c2784c0)) = 0;
     iVar2 = *(int *)puVar1;
     *(int *)(0x18c + iVar2) = *(int *)(0x18c + iVar2) + 1;
-    sd_sub_265b68(&iStack_10, a1, a2);
+    sd_sound_265b68(&iStack_10, a1, a2);
     bVar11 = 0;
     bVar7 = extraout_M;
     bVar8 = extraout_Q;
@@ -7345,11 +7363,11 @@ u32 sd_dma_end(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * sd_sub_2659dc  0x8c2659dc
- * area name: in the sd library code range
- * called by: aica_sub_2654f4, alt_entry_2654fc
+ * sd_sound_2659dc  0x8c2659dc
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: aica_sound_2654f4, alt_entry_2654fc
  */
-int sd_sub_2659dc(int a0) {
+int sd_sound_2659dc(int a0) {
     int iVar1;
     int iVar2;
 
@@ -7363,7 +7381,7 @@ int sd_sub_2659dc(int a0) {
         }
     }
     if (iVar2 != 0) {
-        sd_set_last_error((&sd_sub_2659dc), iVar2);
+        sd_set_last_error((&sd_sound_2659dc), iVar2);
     }
     return iVar2;
 }
@@ -7388,7 +7406,7 @@ int alt_entry_2659e4(int a0, u32 a1, u32 a2, u32 a3) {
         unaff_r13 = 0x7000103;
     }
     if (unaff_r13 != 0) {
-        sd_set_last_error(sd_sub_2659dc, unaff_r13, a2);
+        sd_set_last_error(sd_sound_2659dc, unaff_r13, a2);
     }
     return unaff_r13;
 }
@@ -7417,11 +7435,11 @@ int sdMemBlkGetStat(int a0, u32 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * sd_sub_265ab0  0x8c265ab0
- * area name: sits between sd functions (same compilation unit)
- * called by: game_sub_26b092, game_sub_26b132
+ * sd_test_265ab0  0x8c265ab0
+ * area name: sits between sd functions (same compilation unit); behaviour name: returns the result of a comparison
+ * called by: game_uses_libgcc_divide_helper_26b132, game_uses_sd_wait_idle_set_1a8_26b092
  */
-u32 sd_sub_265ab0(u32 *a0) {
+u32 sd_test_265ab0(u32 *a0) {
     if (*(int *)(&DATA_8c2784c0) != 0) {
         *a0 = *(u32 *)((int)0x1a8 + *(int *)(&DATA_8c2784c0));
     }
@@ -7429,11 +7447,11 @@ u32 sd_sub_265ab0(u32 *a0) {
 }
 
 /*
- * sd_sub_265ac8  0x8c265ac8
- * area name: sits between sd functions (same compilation unit)
- * called by: sd_sub_2650ec
+ * sd_sound_265ac8  0x8c265ac8
+ * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls sound functions
+ * called by: sd_sound_2650ec
  */
-int sd_sub_265ac8(u32 a0, int a1) {
+int sd_sound_265ac8(u32 a0, int a1) {
     u32 in_r0;
     int iVar1;
     int *ar6_00;
@@ -7466,16 +7484,16 @@ int sd_sub_265ac8(u32 a0, int a1) {
         }
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_265ac8, ar5_00, ar6_00);
+        sd_set_last_error(sd_sound_265ac8, ar5_00, ar6_00);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_265ace  0x8c265ace
- * area name: sits between sd functions (same compilation unit)
+ * sd_sound_265ace  0x8c265ace
+ * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls sound functions
  */
-int sd_sub_265ace(u32 a0, int a1, int *a2, int a3) {
+int sd_sound_265ace(u32 a0, int a1, int *a2, int a3) {
     int iVar1;
     int iVar3;
     if (*a2 == 0) {
@@ -7499,17 +7517,17 @@ int sd_sub_265ace(u32 a0, int a1, int *a2, int a3) {
         }
     }
     if (a3 != 0) {
-        sd_set_last_error(sd_sub_265ac8, a3, a2);
+        sd_set_last_error(sd_sound_265ac8, a3, a2);
     }
     return a3;
 }
 
 /*
- * sd_sub_265b68  0x8c265b68
- * area name: sits between sd functions (same compilation unit)
+ * sd_sound_265b68  0x8c265b68
+ * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls sound functions
  * called by: sd_dma_end
  */
-int sd_sub_265b68(u32 *a0, u32 unused_a1, u32 a2) {
+int sd_sound_265b68(u32 *a0, u32 unused_a1, u32 a2) {
     u32 in_r0;
     int ar5_00;
 
@@ -7521,7 +7539,7 @@ int sd_sub_265b68(u32 *a0, u32 unused_a1, u32 a2) {
         *a0 = *(u32 *)(g_8c2784c0 + 0x1a4);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_265b68, ar5_00, a2);
+        sd_set_last_error(sd_sound_265b68, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -7541,17 +7559,17 @@ int alt_entry_265b6a(u32 *a0, u32 unused_a1, u32 a2) {
         *a0 = *(u32 *)(*in_r3 + 0x1a4);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_265b68, ar5_00, a2);
+        sd_set_last_error(sd_sound_265b68, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_265ba8  0x8c265ba8
- * area name: sits between sd functions (same compilation unit)
- * called by: sd_sub_2650ec
+ * sd_sound_265ba8  0x8c265ba8
+ * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls sound functions
+ * called by: sd_sound_2650ec
  */
-int sd_sub_265ba8(u32 a0, int a1) {
+int sd_sound_265ba8(u32 a0, int a1) {
     u32 in_r0;
     int iVar1;
     int *ar6_00;
@@ -7585,16 +7603,16 @@ int sd_sub_265ba8(u32 a0, int a1) {
         }
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_265ba8, ar5_00, ar6_00);
+        sd_set_last_error(sd_sound_265ba8, ar5_00, ar6_00);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_265bae  0x8c265bae
- * area name: sits between sd functions (same compilation unit)
+ * sd_sound_265bae  0x8c265bae
+ * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls sound functions
  */
-int sd_sub_265bae(u32 a0, int a1, int *a2, int a3) {
+int sd_sound_265bae(u32 a0, int a1, int *a2, int a3) {
     int iVar1;
     int iVar3;
     if (*a2 == 0) {
@@ -7619,7 +7637,7 @@ int sd_sub_265bae(u32 a0, int a1, int *a2, int a3) {
         }
     }
     if (a3 != 0) {
-        sd_set_last_error(sd_sub_265ba8, a3, a2);
+        sd_set_last_error(sd_sound_265ba8, a3, a2);
     }
     return a3;
 }
@@ -7722,11 +7740,11 @@ u32 set_field_8_265e80(int a0, u32 a1) {
 }
 
 /*
- * sd_sub_265e88  0x8c265e88
- * area name: in the sd library code range
+ * sd_update_fields_265e88  0x8c265e88
+ * area name: in the sd library code range; behaviour name: conditionally writes members
  * called by: sd_dma_setup
  */
-u32 sd_sub_265e88(int a0, u32 a1, u32 a2) {
+u32 sd_update_fields_265e88(int a0, u32 a1, u32 a2) {
     u32 uVar1;
 
     uVar1 = 0x7000103;
@@ -7740,8 +7758,8 @@ u32 sd_sub_265e88(int a0, u32 a1, u32 a2) {
 
 /*
  * sd_dma_setup  0x8c265ea0
- * called by: aica_driver_upload, aica_sub_2654f4, aica_sub_2669f4, alt_entry_2654fc, game_sub_022504, mwSndTrns_26abf0,
- * mwSndTrns_26aca8, sd_send_host_commands
+ * called by: aica_driver_upload, aica_sound_2654f4, aica_sound_2669f4, alt_entry_2654fc, game_sound_022504,
+ * mwSndTrns_26abf0, mwSndTrns_26aca8, sd_send_host_commands
  */
 int sd_dma_setup(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;
@@ -7762,7 +7780,7 @@ int sd_dma_setup(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
             set_field_4_265f74(a0, 0);
             set_field_8_265e80(a0, a1);
             set_field_c_265f7c(a0, a2);
-            sd_sub_265e88(a0, a3, s0);
+            sd_update_fields_265e88(a0, a3, s0);
             set_field_4_265f74(a0, 0);
             uVar1 = s0;
         }
@@ -7794,7 +7812,7 @@ u32 set_field_c_265f7c(int a0, u32 a1) {
 /*
  * sd_wait_idle_set_1a8  0x8c265f84
  * runs sdSysServer until the host-command queue is idle, then sets +0x1a8 = a0
- * called by: game_sub_0221c8, game_sub_26b092, game_sub_26b132
+ * called by: game_sound_0221c8, game_uses_libgcc_divide_helper_26b132, game_uses_sd_wait_idle_set_1a8_26b092
  */
 u32 sd_wait_idle_set_1a8(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -7815,7 +7833,7 @@ u32 sd_wait_idle_set_1a8(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * sd_dma_start  0x8c265ff4
- * called by: aica_sub_265374, aica_sub_2654f4, alt_entry_2654fc, mwSndTrns_26abf0, mwSndTrns_26aca8, sd_dma_end,
+ * called by: aica_sound_265374, aica_sound_2654f4, alt_entry_2654fc, mwSndTrns_26abf0, mwSndTrns_26aca8, sd_dma_end,
  * sd_send_host_commands
  */
 int sd_dma_start(int a0, u32 a1, u32 a2, u32 a3) {
@@ -7875,11 +7893,11 @@ int sd_dma_start(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * sd_sub_266134  0x8c266134
- * area name: in the sd library code range
- * called by: alt_entry_2664d4, sd_sub_2664c4
+ * sd_sound_266134  0x8c266134
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_2664d4, sd_sound_2664c4
  */
-int sd_sub_266134(int a0, u32 *a1, u32 a2) {
+int sd_sound_266134(int a0, u32 *a1, u32 a2) {
     int ar5_00;
     u32 in_stack_fffffff0;
 
@@ -7893,17 +7911,17 @@ int sd_sub_266134(int a0, u32 *a1, u32 a2) {
         *a1 = in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_266134, ar5_00, a2);
+        sd_set_last_error(sd_sound_266134, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_2661a4  0x8c2661a4
- * area name: in the sd library code range
- * called by: alt_entry_2664d4, sd_sub_2664c4
+ * sd_sound_2661a4  0x8c2661a4
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_2664d4, sd_sound_2664c4
  */
-int sd_sub_2661a4(int a0, u8 *a1, u32 a2) {
+int sd_sound_2661a4(int a0, u8 *a1, u32 a2) {
     int ar5_00;
     u32 in_stack_fffffff0;
 
@@ -7923,11 +7941,11 @@ int sd_sub_2661a4(int a0, u8 *a1, u32 a2) {
 }
 
 /*
- * sd_sub_266214  0x8c266214
- * area name: in the sd library code range
- * called by: alt_entry_2664d4, sd_sub_2664c4
+ * sd_sound_266214  0x8c266214
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_2664d4, sd_sound_2664c4
  */
-int sd_sub_266214(int a0, u32 *a1, u32 a2) {
+int sd_sound_266214(int a0, u32 *a1, u32 a2) {
     int ar5_00;
     u32 in_stack_fffffff0;
 
@@ -7941,17 +7959,17 @@ int sd_sub_266214(int a0, u32 *a1, u32 a2) {
         *a1 = in_stack_fffffff0 & 0xffff;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_266214, ar5_00, a2);
+        sd_set_last_error(sd_sound_266214, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_266288  0x8c266288
- * area name: in the sd library code range
- * called by: alt_entry_2664d4, sd_sub_2664c4
+ * sd_sound_266288  0x8c266288
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_2664d4, sd_sound_2664c4
  */
-int sd_sub_266288(int a0, u32 *a1, u32 a2) {
+int sd_sound_266288(int a0, u32 *a1, u32 a2) {
     int ar5_00;
     u32 in_stack_fffffff0;
 
@@ -7965,17 +7983,17 @@ int sd_sub_266288(int a0, u32 *a1, u32 a2) {
         *a1 = in_stack_fffffff0 & 0xff;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_266288, ar5_00, a2);
+        sd_set_last_error(sd_sound_266288, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_2662f8  0x8c2662f8
- * area name: in the sd library code range
- * called by: alt_entry_2664d4, sd_sub_2664c4
+ * sd_sound_2662f8  0x8c2662f8
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_2664d4, sd_sound_2664c4
  */
-int sd_sub_2662f8(int a0, u8 *a1, u32 a2) {
+int sd_sound_2662f8(int a0, u8 *a1, u32 a2) {
     int ar5_00;
     u32 in_stack_fffffff0;
 
@@ -7989,17 +8007,17 @@ int sd_sub_2662f8(int a0, u8 *a1, u32 a2) {
         *a1 = (char)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_2662f8, ar5_00, a2);
+        sd_set_last_error(sd_sound_2662f8, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_266368  0x8c266368
- * area name: in the sd library code range
- * called by: alt_entry_2664d4, sd_sub_2664c4
+ * sd_sound_266368  0x8c266368
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_2664d4, sd_sound_2664c4
  */
-int sd_sub_266368(int a0, u8 *a1, u32 a2) {
+int sd_sound_266368(int a0, u8 *a1, u32 a2) {
     int ar5_00;
     u32 in_stack_fffffff0;
 
@@ -8013,17 +8031,17 @@ int sd_sub_266368(int a0, u8 *a1, u32 a2) {
         *a1 = (char)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_266368, ar5_00, a2);
+        sd_set_last_error(sd_sound_266368, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_2663d8  0x8c2663d8
- * area name: in the sd library code range
- * called by: alt_entry_2664d4, sd_sub_2664c4
+ * sd_sound_2663d8  0x8c2663d8
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_2664d4, sd_sound_2664c4
  */
-u32 sd_sub_2663d8(int a0, u16 *a1, u32 a2) {
+u32 sd_sound_2663d8(int a0, u16 *a1, u32 a2) {
     int ar5_00;
     u32 in_stack_fffffff0;
 
@@ -8037,17 +8055,17 @@ u32 sd_sub_2663d8(int a0, u16 *a1, u32 a2) {
         *a1 = (short)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_2663d8, ar5_00, a2);
+        sd_set_last_error(sd_sound_2663d8, ar5_00, a2);
     }
     return 0;
 }
 
 /*
- * sd_sub_266448  0x8c266448
- * area name: in the sd library code range
- * called by: alt_entry_2664d4, sd_sub_2664c4
+ * sd_sound_266448  0x8c266448
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_2664d4, sd_sound_2664c4
  */
-int sd_sub_266448(int a0, u16 *a1, u32 a2) {
+int sd_sound_266448(int a0, u16 *a1, u32 a2) {
     int iVar1;
     int ar5_00;
     int in_stack_fffffff0;
@@ -8066,16 +8084,16 @@ int sd_sub_266448(int a0, u16 *a1, u32 a2) {
         *a1 = (short)(iVar1 >> 2);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_266448, ar5_00, a2);
+        sd_set_last_error(sd_sound_266448, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_2664c4  0x8c2664c4
- * area name: in the sd library code range
+ * sd_sound_2664c4  0x8c2664c4
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  */
-int sd_sub_2664c4(int a0, u8 *a1, u32 a2) {
+int sd_sound_2664c4(int a0, u8 *a1, u32 a2) {
     u32 in_r0;
     int ar5_00;
 
@@ -8085,21 +8103,21 @@ int sd_sub_2664c4(int a0, u8 *a1, u32 a2) {
     } else if (a0 == 0) {
         ar5_00 = 0x7000103;
     } else {
-        sd_sub_266214(a0, a1 + 0x14, a2);
-        sd_sub_266288(a0, a1 + 0x18, a2);
+        sd_sound_266214(a0, a1 + 0x14, a2);
+        sd_sound_266288(a0, a1 + 0x18, a2);
         *a1 = 0;
         a1[1] = 0;
-        sd_sub_266620(a0, a1 + 2, a2);
-        sd_sub_266368(a0, a1 + 3, a2);
-        sd_sub_2663d8(a0, a1 + 6, a2);
-        sd_sub_266448(a0, a1 + 8, a2);
-        sd_sub_2662f8(a0, a1 + 4, a2);
-        sd_sub_2661a4(a0, a1 + 5, a2);
-        sd_sub_266134(a0, a1 + 0x10, a2);
-        in_r0 = sd_sub_2665b0(a0, a1 + 0xc, a2);
+        sd_sound_266620(a0, a1 + 2, a2);
+        sd_sound_266368(a0, a1 + 3, a2);
+        sd_sound_2663d8(a0, a1 + 6, a2);
+        sd_sound_266448(a0, a1 + 8, a2);
+        sd_sound_2662f8(a0, a1 + 4, a2);
+        sd_sound_2661a4(a0, a1 + 5, a2);
+        sd_sound_266134(a0, a1 + 0x10, a2);
+        in_r0 = sd_sound_2665b0(a0, a1 + 0xc, a2);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_2664c4, ar5_00, a2);
+        sd_set_last_error(sd_sound_2664c4, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -8119,18 +8137,18 @@ int alt_entry_2664d4(u32 unused_a0, u32 unused_a1, u32 a2) {
     } else if (unaff_r13 == 0) {
         unaff_r11 = 0x7000103;
     } else {
-        sd_sub_266214(unaff_r13, unaff_r14 + 0x14, a2);
-        sd_sub_266288(unaff_r13, unaff_r14 + 0x18, a2);
+        sd_sound_266214(unaff_r13, unaff_r14 + 0x14, a2);
+        sd_sound_266288(unaff_r13, unaff_r14 + 0x18, a2);
         *unaff_r14 = (char)unaff_r11;
         unaff_r14[1] = (char)unaff_r11;
-        sd_sub_266620(unaff_r13, unaff_r14 + 2, a2);
-        sd_sub_266368(unaff_r13, unaff_r14 + 3, a2);
-        sd_sub_2663d8(unaff_r13, unaff_r14 + 6, a2);
-        sd_sub_266448(unaff_r13, unaff_r14 + 8, a2);
-        sd_sub_2662f8(unaff_r13, unaff_r14 + 4, a2);
-        sd_sub_2661a4(unaff_r13, unaff_r14 + 5, a2);
-        sd_sub_266134(unaff_r13, unaff_r14 + 0x10, a2);
-        sd_sub_2665b0(unaff_r13, unaff_r14 + 0xc, a2);
+        sd_sound_266620(unaff_r13, unaff_r14 + 2, a2);
+        sd_sound_266368(unaff_r13, unaff_r14 + 3, a2);
+        sd_sound_2663d8(unaff_r13, unaff_r14 + 6, a2);
+        sd_sound_266448(unaff_r13, unaff_r14 + 8, a2);
+        sd_sound_2662f8(unaff_r13, unaff_r14 + 4, a2);
+        sd_sound_2661a4(unaff_r13, unaff_r14 + 5, a2);
+        sd_sound_266134(unaff_r13, unaff_r14 + 0x10, a2);
+        sd_sound_2665b0(unaff_r13, unaff_r14 + 0xc, a2);
     }
     if (unaff_r11 != 0) {
         sd_set_last_error(&LAB_8c2664c4, unaff_r11, a2);
@@ -8139,11 +8157,11 @@ int alt_entry_2664d4(u32 unused_a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * sd_sub_2665b0  0x8c2665b0
- * area name: in the sd library code range
- * called by: alt_entry_2664d4, sd_sub_2664c4
+ * sd_sound_2665b0  0x8c2665b0
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_2664d4, sd_sound_2664c4
  */
-int sd_sub_2665b0(int a0, u32 *a1, u32 a2) {
+int sd_sound_2665b0(int a0, u32 *a1, u32 a2) {
     int ar5_00;
     u32 in_stack_fffffff0;
 
@@ -8157,17 +8175,17 @@ int sd_sub_2665b0(int a0, u32 *a1, u32 a2) {
         *a1 = in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_2665b0, ar5_00, a2);
+        sd_set_last_error(sd_sound_2665b0, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_266620  0x8c266620
- * area name: in the sd library code range
- * called by: alt_entry_2664d4, sd_sub_2664c4
+ * sd_sound_266620  0x8c266620
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_2664d4, sd_sound_2664c4
  */
-int sd_sub_266620(int a0, u8 *a1, u32 a2) {
+int sd_sound_266620(int a0, u8 *a1, u32 a2) {
     int ar5_00;
     u32 in_stack_fffffff0;
 
@@ -8181,7 +8199,7 @@ int sd_sub_266620(int a0, u8 *a1, u32 a2) {
         *a1 = (char)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_266620, ar5_00, a2);
+        sd_set_last_error(sd_sound_266620, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -8189,7 +8207,7 @@ int sd_sub_266620(int a0, u8 *a1, u32 a2) {
 /*
  * sd_check_handle  0x8c266690
  * 0 for an open handle, else sets sd error 0x7000103 (null) or 0x7000102 (not open)
- * called by: sd_sub_2666cc, sd_sub_266892
+ * called by: sd_sound_2666cc, sd_sound_266892
  */
 int sd_check_handle(int a0) {
     int iVar1;
@@ -8205,10 +8223,10 @@ int sd_check_handle(int a0) {
 }
 
 /*
- * sd_sub_266694  0x8c266694
- * area name: in the sd library code range
+ * sd_sound_266694  0x8c266694
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  */
-int sd_sub_266694(int a0, u32 unused_a1, u32 a2) {
+int sd_sound_266694(int a0, u32 unused_a1, u32 a2) {
     int ar5_00;
     char in_T;
 
@@ -8227,28 +8245,28 @@ int sd_sub_266694(int a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * sd_sub_2666cc  0x8c2666cc
- * area name: in the sd library code range
- * called by: alt_entry_266cce, alt_entry_26809e, sd_sub_266ccc, sd_sub_26809c
+ * sd_sound_2666cc  0x8c2666cc
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_266cce, alt_entry_26809e, sd_sound_266ccc, sd_sound_26809c
  */
-int sd_sub_2666cc(int a0, u32 unused_a1, u32 a2) {
+int sd_sound_2666cc(int a0, u32 unused_a1, u32 a2) {
     int ar5_00;
 
     ar5_00 = sd_check_handle(a0);
     if (ar5_00 == 0) {
         *(u32 *)(a0 + 4) = 0;
     } else {
-        sd_set_last_error(sd_sub_2666cc, ar5_00, a2);
+        sd_set_last_error(sd_sound_2666cc, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_266708  0x8c266708
- * area name: in the sd library code range
- * called by: alt_entry_2680ee, sd_sub_267470, sd_sub_2675d8, sd_sub_2680ec
+ * sd_sound_266708  0x8c266708
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_2680ee, sd_sound_267470, sd_sound_2675d8, sd_sound_2680ec
  */
-int sd_sub_266708(int *a0, int a1) {
+int sd_sound_266708(int *a0, int a1) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -8305,7 +8323,7 @@ int sd_sub_266708(int *a0, int a1) {
     }
 LAB_8c2667a0:
     if (iVar2 != 0) {
-        sd_set_last_error((&sd_sub_266708), iVar2);
+        sd_set_last_error((&sd_sound_266708), iVar2);
     }
     return iVar2;
 }
@@ -8373,17 +8391,17 @@ int alt_entry_266710(int *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int a
     }
 LAB_8c2667a0:
     if (iVar1 != 0) {
-        sd_set_last_error(sd_sub_266708, iVar1, ar6_00);
+        sd_set_last_error(sd_sound_266708, iVar1, ar6_00);
     }
     return iVar1;
 }
 
 /*
- * sd_sub_2667cc  0x8c2667cc
- * area name: in the sd library code range
- * called by: sd_sub_2650ec
+ * sd_fill_loop_2667cc  0x8c2667cc
+ * area name: in the sd library code range; behaviour name: a loop that writes memory
+ * called by: sd_sound_2650ec
  */
-u32 sd_sub_2667cc(void) {
+u32 sd_fill_loop_2667cc(void) {
     u8 *puVar1;
     int iVar2;
     u32 uVar3;
@@ -8427,10 +8445,10 @@ u32 sd_sub_2667cc(void) {
 }
 
 /*
- * sd_sub_26686a  0x8c26686a
- * area name: in the sd library code range
+ * sd_sound_26686a  0x8c26686a
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  */
-int sd_sub_26686a(u32 unused_a0, u32 a1, u32 a2) {
+int sd_sound_26686a(u32 unused_a0, u32 a1, u32 a2) {
     int ar5_00;
 
     ar5_00 = 0;
@@ -8438,16 +8456,16 @@ int sd_sub_26686a(u32 unused_a0, u32 a1, u32 a2) {
         ar5_00 = 0x3000001;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_26686a, ar5_00, a2);
+        sd_set_last_error(sd_sound_26686a, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_26686e  0x8c26686e
- * area name: in the sd library code range
+ * sd_sound_26686e  0x8c26686e
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  */
-int sd_sub_26686e(int a0, u32 unused_a1, u32 a2) {
+int sd_sound_26686e(int a0, u32 unused_a1, u32 a2) {
     int ar5_00;
 
     ar5_00 = 0;
@@ -8461,10 +8479,10 @@ int sd_sub_26686e(int a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * sd_sub_266892  0x8c266892
- * area name: in the sd library code range
+ * sd_sound_266892  0x8c266892
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  */
-int sd_sub_266892(int a0, u32 a1, u32 a2) {
+int sd_sound_266892(int a0, u32 a1, u32 a2) {
     char cVar1;
     int iVar2;
 
@@ -8480,7 +8498,7 @@ int sd_sub_266892(int a0, u32 a1, u32 a2) {
         *(char *)(a0 + 2) = cVar1;
     }
     if (iVar2 != 0) {
-        sd_set_last_error(sd_sub_266892, iVar2, a2);
+        sd_set_last_error(sd_sound_266892, iVar2, a2);
     }
     return iVar2;
 }
@@ -8502,7 +8520,7 @@ int aica_ram_2668fc(int a0, u32 a1, u32 a2, int a3) {
         }
         a3 = iVar1 >> 2;
         ar6_00 = 4;
-        g_8c4bd404 = shinobi_sub_1f92c0(a0 + -0x5f800000, a1, 4, a3, 1, 1);
+        g_8c4bd404 = shinobi_uses_syG2FifoWait_1f92c0(a0 + -0x5f800000, a1, 4, a3, 1, 1);
     } else {
         ar5_00 = 0x7fffffff;
         ar6_00 = a2;
@@ -8548,11 +8566,11 @@ int sd_g2_transfer(u32 a0, int a1, u32 a2, code *a3, u32 s0) {
 }
 
 /*
- * aica_sub_2669f4  0x8c2669f4
- * area name: sits between aica functions (same compilation unit)
- * called by: game_sub_022504
+ * aica_sound_2669f4  0x8c2669f4
+ * area name: sits between aica functions (same compilation unit); behaviour name: mostly calls sound functions
+ * called by: game_sound_022504
  */
-int aica_sub_2669f4(int a0, int a1, int a2, int a3) {
+int aica_sound_2669f4(int a0, int a1, int a2, int a3) {
     int iVar1;
     int iVar2;
     int *piVar3;
@@ -8569,7 +8587,7 @@ int aica_sub_2669f4(int a0, int a1, int a2, int a3) {
     } else {
         piVar3 = *(int **)(a0 + 8);
         if (*piVar3 == 0x544c4d53) {
-            aica_sub_265704(&stack0xffffffdc);
+            aica_sound_265704(&stack0xffffffdc);
             iVar1 = piVar3[2];
             piVar4 = piVar3 + 8;
             if ((char)piVar3[1] < '\x01') {
@@ -8585,7 +8603,7 @@ int aica_sub_2669f4(int a0, int a1, int a2, int a3) {
                         a1 = piVar4[1];
                         a3 = piVar4[3];
                         a2 = piVar4[2];
-                        ar5_00 = sd_sub_268320(*piVar4, a1, a2, a3);
+                        ar5_00 = sd_sound_268320(*piVar4, a1, a2, a3);
                         if (ar5_00 != 0)
                             break;
                     }
@@ -8598,7 +8616,7 @@ int aica_sub_2669f4(int a0, int a1, int a2, int a3) {
                             break;
                         a1 = *piVar4;
                         a2 = piVar4[1];
-                        ar5_00 = aica_sub_265374(ar4_00, a1, a2);
+                        ar5_00 = aica_sound_265374(ar4_00, a1, a2);
                         if (ar5_00 != 0)
                             break;
                     }
@@ -8614,7 +8632,7 @@ int aica_sub_2669f4(int a0, int a1, int a2, int a3) {
         sd_handle_release(ar4_00);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(aica_sub_2669f4, ar5_00, a2);
+        sd_set_last_error(aica_sound_2669f4, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -8671,10 +8689,10 @@ u32 alt_entry_266b0e(void) {
 }
 
 /*
- * sd_sub_266b76  0x8c266b76
- * area name: in the sd library code range
+ * sd_sound_266b76  0x8c266b76
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  */
-int sd_sub_266b76(u32 unused_a0, u32 a1) {
+int sd_sound_266b76(u32 unused_a0, u32 a1) {
     int iVar1;
     int iVar2;
     int *unaff_r14;
@@ -8689,11 +8707,11 @@ int sd_sub_266b76(u32 unused_a0, u32 a1) {
 }
 
 /*
- * sd_sub_266bd4  0x8c266bd4
- * area name: in the sd library code range
- * called by: sd_sub_2650ec
+ * sd_sound_266bd4  0x8c266bd4
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: sd_sound_2650ec
  */
-int sd_sub_266bd4(u32 a0) {
+int sd_sound_266bd4(u32 a0) {
     u8 *puVar1;
     u32 *puVar2;
     u8 *puVar3;
@@ -8709,10 +8727,10 @@ int sd_sub_266bd4(u32 a0) {
         *puVar2 = a0;
         (*(code *)puVar3)(0, iVar4);
         *(u32 *)((int)0x160 + *(int *)puVar1) = 0;
-        iVar4 = aica_sub_265704(*(int *)puVar1 + (int)0x178);
+        iVar4 = aica_sound_265704(*(int *)puVar1 + (int)0x178);
     }
     if (iVar4 != 0) {
-        sd_set_last_error((&sd_sub_266bd4), iVar4);
+        sd_set_last_error((&sd_sound_266bd4), iVar4);
     }
     return iVar4;
 }
@@ -8735,20 +8753,20 @@ int alt_entry_266bda(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
         g_8c4bd420 = a0;
         memset(a0, 0, 0x200);
         *(u32 *)(*unaff_r13 + 0x160) = 0;
-        ar5_01 = aica_sub_265704(*unaff_r13 + 0x178);
+        ar5_01 = aica_sound_265704(*unaff_r13 + 0x178);
     }
     if (ar5_01 != 0) {
-        sd_set_last_error(sd_sub_266bd4, ar5_01, a2);
+        sd_set_last_error(sd_sound_266bd4, ar5_01, a2);
     }
     return ar5_01;
 }
 
 /*
- * sd_sub_266c48  0x8c266c48
- * area name: in the sd library code range
+ * sd_sound_266c48  0x8c266c48
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  * called by: sd_flush_host_commands
  */
-int sd_sub_266c48(u32 *a0) {
+int sd_sound_266c48(u32 *a0) {
     u8 *puVar1;
     int iVar2;
     int iVar3;
@@ -8772,7 +8790,7 @@ int sd_sub_266c48(u32 *a0) {
         iVar4 = 0;
     }
     if (iVar4 != 0) {
-        sd_set_last_error((&sd_sub_266c48), iVar4);
+        sd_set_last_error((&sd_sound_266c48), iVar4);
     }
     return iVar4;
 }
@@ -8805,17 +8823,17 @@ int alt_entry_266c54(u32 unused_a0, u32 unused_a1, u32 a2, u32 unused_a3, int ai
         ar5_00 = 0xa000001;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_266c48, ar5_00, a2);
+        sd_set_last_error(sd_sound_266c48, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_266ccc  0x8c266ccc
- * area name: in the sd library code range
+ * sd_sound_266ccc  0x8c266ccc
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  * called by: thunk_FUN_8c266ccc
  */
-int sd_sub_266ccc(int a0, u32 unused_a1, u32 a2) {
+int sd_sound_266ccc(int a0, u32 unused_a1, u32 a2) {
     int in_r0;
     int ar5_00;
 
@@ -8824,11 +8842,11 @@ int sd_sub_266ccc(int a0, u32 unused_a1, u32 a2) {
     } else if (a0 == 0) {
         ar5_00 = 0x7000103;
     } else {
-        in_r0 = sd_sub_2666cc(a0, unused_a1, a2);
+        in_r0 = sd_sound_2666cc(a0, unused_a1, a2);
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_266ccc, ar5_00, a2);
+        sd_set_last_error(sd_sound_266ccc, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -8846,31 +8864,31 @@ int alt_entry_266cce(int a0, u32 unused_a1, u32 a2) {
     } else if (a0 == 0) {
         ar5_00 = 0x7000103;
     } else {
-        ar5_00 = sd_sub_2666cc(a0, unused_a1, a2);
+        ar5_00 = sd_sound_2666cc(a0, unused_a1, a2);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_266ccc, ar5_00, a2);
+        sd_set_last_error(sd_sound_266ccc, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
  * thunk_FUN_8c266ccc  0x8c266d1c
- * called by: sd_sub_26a5de
+ * called by: sd_uses_debug_printf_26a5de
  */
 u32 thunk_FUN_8c266ccc(void) {
     u32 uVar1;
 
-    uVar1 = sd_sub_266ccc();
+    uVar1 = sd_sound_266ccc();
     return uVar1;
 }
 
 /*
- * sd_sub_266d28  0x8c266d28
- * area name: in the sd library code range
- * called by: alt_entry_267264, sd_sub_267250, thunk_FUN_8c266d28
+ * sd_sound_266d28  0x8c266d28
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_267264, sd_sound_267250, thunk_FUN_8c266d28
  */
-int sd_sub_266d28(int a0, u32 a1, int *a2, u8 *a3) {
+int sd_sound_266d28(int a0, u32 a1, int *a2, u8 *a3) {
     int iVar1;
     int *piVar2;
     int *piVar3;
@@ -8893,7 +8911,7 @@ int sd_sub_266d28(int a0, u32 a1, int *a2, u8 *a3) {
                         &stack0xffffffd8);
         a3 = auStack_18;
         piVar2 = &iStack_1c;
-        aica_sub_2684f0(0x52535053, (int)*(char *)((int)piVar3 + (char)a1 + 7), piVar2, a3);
+        aica_calc_2684f0(0x52535053, (int)*(char *)((int)piVar3 + (char)a1 + 7), piVar2, a3);
         iVar1 = *piVar3;
         if (iVar1 == 1) {
             in_stack_ffffffd8 = in_stack_ffffffd8 * 2;
@@ -8903,7 +8921,7 @@ int sd_sub_266d28(int a0, u32 a1, int *a2, u8 *a3) {
         *a2 = in_stack_ffffffd8;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_266d28, ar5_00, piVar2);
+        sd_set_last_error(sd_sound_266d28, ar5_00, piVar2);
     }
     return ar5_00;
 }
@@ -8915,16 +8933,16 @@ int sd_sub_266d28(int a0, u32 a1, int *a2, u8 *a3) {
 u32 thunk_FUN_8c266d28(void) {
     u32 uVar1;
 
-    uVar1 = sd_sub_266d28();
+    uVar1 = sd_sound_266d28();
     return uVar1;
 }
 
 /*
- * sd_sub_266e2c  0x8c266e2c
- * area name: in the sd library code range
- * called by: alt_entry_267264, sd_sub_267250
+ * sd_calc_266e2c  0x8c266e2c
+ * area name: in the sd library code range; behaviour name: integer arithmetic on its arguments
+ * called by: alt_entry_267264, sd_sound_267250
  */
-u32 sd_sub_266e2c(int a0, u32 a1, u8 *a2, u32 a3) {
+u32 sd_calc_266e2c(int a0, u32 a1, u8 *a2, u32 a3) {
     int ar6_00;
     u32 uVar1;
     u8 auStack_10[4];
@@ -8944,11 +8962,11 @@ u32 sd_sub_266e2c(int a0, u32 a1, u8 *a2, u32 a3) {
 }
 
 /*
- * sd_sub_266ea8  0x8c266ea8
- * area name: in the sd library code range
- * called by: alt_entry_267264, sd_sub_267250
+ * sd_sound_266ea8  0x8c266ea8
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_267264, sd_sound_267250
  */
-int sd_sub_266ea8(int a0, u32 a1, u32 *a2) {
+int sd_sound_266ea8(int a0, u32 a1, u32 *a2) {
     int iVar1;
     int ar5_00;
     u32 in_stack_fffffff0;
@@ -8967,17 +8985,17 @@ int sd_sub_266ea8(int a0, u32 a1, u32 *a2) {
         *a2 = in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_266ea8, ar5_00, iVar1);
+        sd_set_last_error(sd_sound_266ea8, ar5_00, iVar1);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_266f38  0x8c266f38
- * area name: in the sd library code range
- * called by: alt_entry_267264, mwSndGetPlayPos, sd_sub_267250
+ * sd_sound_266f38  0x8c266f38
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_267264, mwSndGetPlayPos, sd_sound_267250
  */
-int sd_sub_266f38(int a0, u32 a1, u32 *a2) {
+int sd_sound_266f38(int a0, u32 a1, u32 *a2) {
     int iVar1;
     int ar5_00;
     u32 in_stack_fffffff0;
@@ -8996,17 +9014,17 @@ int sd_sub_266f38(int a0, u32 a1, u32 *a2) {
         *a2 = in_stack_fffffff0 & 0xff;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_266f38, ar5_00, iVar1);
+        sd_set_last_error(sd_sound_266f38, ar5_00, iVar1);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_266fc8  0x8c266fc8
- * area name: in the sd library code range
- * called by: alt_entry_267264, sd_sub_267250
+ * sd_sound_266fc8  0x8c266fc8
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_267264, sd_sound_267250
  */
-int sd_sub_266fc8(int a0, u32 a1, u8 *a2) {
+int sd_sound_266fc8(int a0, u32 a1, u8 *a2) {
     int iVar1;
     int ar5_00;
     u32 in_stack_fffffff0;
@@ -9025,17 +9043,17 @@ int sd_sub_266fc8(int a0, u32 a1, u8 *a2) {
         *a2 = (char)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_266fc8, ar5_00, iVar1);
+        sd_set_last_error(sd_sound_266fc8, ar5_00, iVar1);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_267058  0x8c267058
- * area name: in the sd library code range
- * called by: alt_entry_267264, sd_sub_267250
+ * sd_sound_267058  0x8c267058
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_267264, sd_sound_267250
  */
-int sd_sub_267058(int a0, u32 a1, char *a2) {
+int sd_sound_267058(int a0, u32 a1, char *a2) {
     char cVar1;
     int iVar2;
     char cVar3;
@@ -9071,17 +9089,17 @@ int sd_sub_267058(int a0, u32 a1, char *a2) {
         *a2 = cVar3;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_267058, ar5_00, pcVar4);
+        sd_set_last_error(sd_sound_267058, ar5_00, pcVar4);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_267130  0x8c267130
- * area name: in the sd library code range
- * called by: alt_entry_267264, sd_sub_267250
+ * sd_sound_267130  0x8c267130
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_267264, sd_sound_267250
  */
-int sd_sub_267130(int a0, u32 a1, u16 *a2) {
+int sd_sound_267130(int a0, u32 a1, u16 *a2) {
     int iVar1;
     int ar5_00;
     u32 in_stack_fffffff0;
@@ -9100,17 +9118,17 @@ int sd_sub_267130(int a0, u32 a1, u16 *a2) {
         *a2 = (short)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_267130, ar5_00, iVar1);
+        sd_set_last_error(sd_sound_267130, ar5_00, iVar1);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_2671c0  0x8c2671c0
- * area name: in the sd library code range
- * called by: alt_entry_267264, sd_sub_267250
+ * sd_sound_2671c0  0x8c2671c0
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_267264, sd_sound_267250
  */
-int sd_sub_2671c0(int a0, u32 a1, u16 *a2) {
+int sd_sound_2671c0(int a0, u32 a1, u16 *a2) {
     int iVar1;
     int ar5_00;
     u32 in_stack_fffffff0;
@@ -9129,39 +9147,39 @@ int sd_sub_2671c0(int a0, u32 a1, u16 *a2) {
         *a2 = (short)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_2671c0, ar5_00, iVar1);
+        sd_set_last_error(sd_sound_2671c0, ar5_00, iVar1);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_267250  0x8c267250
- * area name: in the sd library code range
+ * sd_sound_267250  0x8c267250
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  * called by: thunk_FUN_8c267250
  */
-int sd_sub_267250(int a0, u32 a1, u8 *a2) {
+int sd_sound_267250(int a0, u32 a1, u8 *a2) {
     u8 *puVar1;
     int iVar2;
 
     iVar2 = 0xd000001;
     if ((*(int *)(&DATA_8c2784c0) != 0) && (iVar2 = 0x7000103, a0 != 0)) {
-        sd_sub_266ea8(a0, a1, a2 + 0x14);
-        sd_sub_266f38(a0, a1, a2 + 0x18);
-        puVar1 = (&sd_sub_2673f0);
+        sd_sound_266ea8(a0, a1, a2 + 0x14);
+        sd_sound_266f38(a0, a1, a2 + 0x18);
+        puVar1 = (&sd_sound_2673f0);
         *a2 = 0;
         a2[1] = 0;
         (*(code *)puVar1)(a0, a1, a2 + 2);
-        sd_sub_267058(a0, a1, a2 + 3);
-        sd_sub_267130(a0, a1, a2 + 6);
-        sd_sub_2671c0(a0, a1, a2 + 8);
-        sd_sub_266fc8(a0, a1, a2 + 4);
-        sd_sub_266e2c(a0, a1, a2 + 5);
-        sd_sub_266d28(a0, a1, a2 + 0x10);
-        sd_sub_267360(a0, a1, a2 + 0xc);
+        sd_sound_267058(a0, a1, a2 + 3);
+        sd_sound_267130(a0, a1, a2 + 6);
+        sd_sound_2671c0(a0, a1, a2 + 8);
+        sd_sound_266fc8(a0, a1, a2 + 4);
+        sd_calc_266e2c(a0, a1, a2 + 5);
+        sd_sound_266d28(a0, a1, a2 + 0x10);
+        sd_sound_267360(a0, a1, a2 + 0xc);
         iVar2 = 0;
     }
     if (iVar2 != 0) {
-        sd_set_last_error((&sd_sub_2664c4), iVar2);
+        sd_set_last_error((&sd_sound_2664c4), iVar2);
     }
     return iVar2;
 }
@@ -9182,19 +9200,19 @@ int alt_entry_267264(u32 unused_a0, u32 unused_a1, u8 *a2, u32 a3) {
     } else if (unaff_r13 == 0) {
         unaff_r10 = 0x7000103;
     } else {
-        sd_sub_266ea8(unaff_r13, unaff_r12, unaff_r14 + 0x14);
-        sd_sub_266f38(unaff_r13, unaff_r12, unaff_r14 + 0x18);
+        sd_sound_266ea8(unaff_r13, unaff_r12, unaff_r14 + 0x14);
+        sd_sound_266f38(unaff_r13, unaff_r12, unaff_r14 + 0x18);
         *unaff_r14 = (char)unaff_r10;
         unaff_r14[1] = (char)unaff_r10;
-        sd_sub_2673f0(unaff_r13, unaff_r12, unaff_r14 + 2);
-        sd_sub_267058(unaff_r13, unaff_r12, unaff_r14 + 3);
-        sd_sub_267130(unaff_r13, unaff_r12, unaff_r14 + 6);
-        sd_sub_2671c0(unaff_r13, unaff_r12, unaff_r14 + 8);
-        sd_sub_266fc8(unaff_r13, unaff_r12, unaff_r14 + 4);
-        sd_sub_266e2c(unaff_r13, unaff_r12, unaff_r14 + 5, a3);
-        sd_sub_266d28(unaff_r13, unaff_r12, unaff_r14 + 0x10, a3);
+        sd_sound_2673f0(unaff_r13, unaff_r12, unaff_r14 + 2);
+        sd_sound_267058(unaff_r13, unaff_r12, unaff_r14 + 3);
+        sd_sound_267130(unaff_r13, unaff_r12, unaff_r14 + 6);
+        sd_sound_2671c0(unaff_r13, unaff_r12, unaff_r14 + 8);
+        sd_sound_266fc8(unaff_r13, unaff_r12, unaff_r14 + 4);
+        sd_calc_266e2c(unaff_r13, unaff_r12, unaff_r14 + 5, a3);
+        sd_sound_266d28(unaff_r13, unaff_r12, unaff_r14 + 0x10, a3);
         a2 = unaff_r14 + 0xc;
-        sd_sub_267360(unaff_r13, unaff_r12, a2);
+        sd_sound_267360(unaff_r13, unaff_r12, a2);
     }
     if (unaff_r10 != 0) {
         sd_set_last_error(&LAB_8c2664c4, unaff_r10, a2);
@@ -9209,16 +9227,16 @@ int alt_entry_267264(u32 unused_a0, u32 unused_a1, u8 *a2, u32 a3) {
 u32 thunk_FUN_8c267250(u32 unused_a0, u32 a1) {
     u32 uVar1;
 
-    uVar1 = sd_sub_267250();
+    uVar1 = sd_sound_267250();
     return uVar1;
 }
 
 /*
- * sd_sub_267360  0x8c267360
- * area name: in the sd library code range
- * called by: alt_entry_267264, sd_sub_267250
+ * sd_sound_267360  0x8c267360
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: alt_entry_267264, sd_sound_267250
  */
-int sd_sub_267360(int a0, u32 a1, u32 *a2) {
+int sd_sound_267360(int a0, u32 a1, u32 *a2) {
     int iVar1;
     int ar5_00;
     u32 in_stack_fffffff0;
@@ -9237,17 +9255,17 @@ int sd_sub_267360(int a0, u32 a1, u32 *a2) {
         *a2 = in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_267360, ar5_00, iVar1);
+        sd_set_last_error(sd_sound_267360, ar5_00, iVar1);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_2673f0  0x8c2673f0
- * area name: in the sd library code range
+ * sd_sound_2673f0  0x8c2673f0
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  * called by: alt_entry_267264
  */
-int sd_sub_2673f0(int a0, u32 a1, u8 *a2) {
+int sd_sound_2673f0(int a0, u32 a1, u8 *a2) {
     int iVar1;
     int ar5_00;
     u32 in_stack_fffffff0;
@@ -9264,16 +9282,16 @@ int sd_sub_2673f0(int a0, u32 a1, u8 *a2) {
         *a2 = (char)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_2673f0, ar5_00, iVar1);
+        sd_set_last_error(sd_sound_2673f0, ar5_00, iVar1);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_267470  0x8c267470
- * area name: in the sd library code range
+ * sd_sound_267470  0x8c267470
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  */
-int sd_sub_267470(int *a0, u32 unused_a1, int a2, int a3, u32 s0, u32 s4) {
+int sd_sound_267470(int *a0, u32 unused_a1, int a2, int a3, u32 s0, u32 s4) {
     u32 *puVar1;
     u8 *puVar2;
     int iVar3;
@@ -9315,13 +9333,13 @@ int sd_sub_267470(int *a0, u32 unused_a1, int a2, int a3, u32 s0, u32 s4) {
                 puVar2 = puVar2 + 1;
             } while (puVar2 < &stack0xffffffe2);
         }
-        ar5_00 = sd_sub_266708(a0, 3);
+        ar5_00 = sd_sound_266708(a0, 3);
         if (ar5_00 == 0) {
             puVar4 = (u32 *)(g_8c2784c0 + 0xa8 + (short)*(char *)(*a0 + 1) * 0x2c);
             *puVar4 = 1;
             *(char *)(puVar4 + 1) = (char)s0;
-            sd_sub_267d88(*a0, (int)(char)s0);
-            sd_sub_267924(*a0, 0);
+            sd_sound_267d88(*a0, (int)(char)s0);
+            sd_sound_267924(*a0, 0);
             for (iVar3 = 0; iVar3 < (char)s0; iVar3 = iVar3 + 1) {
                 *(u8 *)((int)puVar4 + iVar3 + 7) = (&stack0xffffffe0)[iVar3];
                 puVar4[iVar3 + 3] = 1;
@@ -9331,17 +9349,17 @@ int sd_sub_267470(int *a0, u32 unused_a1, int a2, int a3, u32 s0, u32 s4) {
         }
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_267470, ar5_00, a2);
+        sd_set_last_error(sd_sound_267470, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_2675d8  0x8c2675d8
- * area name: in the sd library code range
- * called by: sd_sub_26a246
+ * sd_sound_2675d8  0x8c2675d8
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: sd_sound_26a246
  */
-int sd_sub_2675d8(int *a0, u32 unused_a1, int a2, int a3, u32 s0, u32 s4) {
+int sd_sound_2675d8(int *a0, u32 unused_a1, int a2, int a3, u32 s0, u32 s4) {
     u32 *puVar1;
     u8 *puVar2;
     int iVar3;
@@ -9383,13 +9401,13 @@ int sd_sub_2675d8(int *a0, u32 unused_a1, int a2, int a3, u32 s0, u32 s4) {
                 puVar2 = puVar2 + 1;
             } while (puVar2 < &stack0xffffffe2);
         }
-        ar5_00 = sd_sub_266708(a0, 3);
+        ar5_00 = sd_sound_266708(a0, 3);
         if (ar5_00 == 0) {
             puVar4 = (u32 *)(g_8c2784c0 + 0xa8 + (short)*(char *)(*a0 + 1) * 0x2c);
             *puVar4 = 1;
             *(char *)(puVar4 + 1) = (char)s0;
-            sd_sub_267d88(*a0, (int)(char)s0);
-            sd_sub_267924(*a0, 0);
+            sd_sound_267d88(*a0, (int)(char)s0);
+            sd_sound_267924(*a0, 0);
             for (iVar3 = 0; iVar3 < (char)s0; iVar3 = iVar3 + 1) {
                 *(u8 *)((int)puVar4 + iVar3 + 7) = (&stack0xffffffe0)[iVar3];
                 puVar4[iVar3 + 3] = 1;
@@ -9399,17 +9417,17 @@ int sd_sub_2675d8(int *a0, u32 unused_a1, int a2, int a3, u32 s0, u32 s4) {
         }
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_267470, ar5_00, a2);
+        sd_set_last_error(sd_sound_267470, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_267740  0x8c267740
- * area name: in the sd library code range
+ * sd_sound_267740  0x8c267740
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  * called by: sdPstmPlay
  */
-int sd_sub_267740(int a0, int a1, u32 a2, u32 a3) {
+int sd_sound_267740(int a0, int a1, u32 a2, u32 a3) {
     u8 bVar1;
     u32 *puVar2;
     u8 *puVar3;
@@ -9463,11 +9481,11 @@ int sd_sub_267740(int a0, int a1, u32 a2, u32 a3) {
             pbVar9 = pbVar9 + 1;
             0x8c4bd42c [iVar7] = bVar1;
         }
-        iVar7 = sd_sub_267fe8(0x8c4bd428, sd_sub_267740);
+        iVar7 = sd_sound_267fe8(0x8c4bd428, sd_sound_267740);
     }
 LAB_8c267802:
     if (iVar7 != 0) {
-        sd_set_last_error((&sd_sub_267740), iVar7);
+        sd_set_last_error((&sd_sound_267740), iVar7);
     }
     return iVar7;
 }
@@ -9529,14 +9547,14 @@ int alt_entry_267744(int a0, int a1, u8 *a2, u32 a3) {
             a2 = a2 + 1;
             (&g_8c4bd42c)[iVar6] = uVar1;
         }
-        iVar6 = sd_sub_267fe8(&g_8c4bd428, 7, a2, a3);
+        iVar6 = sd_sound_267fe8(&g_8c4bd428, 7, a2, a3);
     } else {
     LAB_8c2677e6:
         iVar6 = 0x3000001;
     }
 LAB_8c267802:
     if (iVar6 != 0) {
-        sd_set_last_error(sd_sub_267740, iVar6, a2);
+        sd_set_last_error(sd_sound_267740, iVar6, a2);
     }
     return iVar6;
 }
@@ -9562,7 +9580,7 @@ int sdPstmPlay(u32 a0, u32 a1, u32 a2, u32 a3) {
         }
         if ((a2 & 0xffff) == *puVar1) {
             a2 = (u32)(short)puVar1[1];
-            ar5_00 = sd_sub_267740(a0, a1, a2, a3);
+            ar5_00 = sd_sound_267740(a0, a1, a2, a3);
             goto LAB_8c267878;
         }
         puVar1 = puVar1 + 2;
@@ -9570,11 +9588,11 @@ int sdPstmPlay(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * sd_sub_2678a4  0x8c2678a4
- * area name: sits between sd functions (same compilation unit)
+ * sd_sound_2678a4  0x8c2678a4
+ * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls sound functions
  * called by: thunk_FUN_8c2678a4
  */
-int sd_sub_2678a4(int a0, u32 a1, u32 a2, u32 a3) {
+int sd_sound_2678a4(int a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
     int ar5_00;
 
@@ -9585,11 +9603,11 @@ int sd_sub_2678a4(int a0, u32 a1, u32 a2, u32 a3) {
     } else {
         g_8c4bd440 = 0x2e;
         g_8c4bd444 = *(u8 *)(a0 + 1);
-        in_r0 = sd_sub_267fe8(&g_8c4bd440, a1, a2, a3);
+        in_r0 = sd_sound_267fe8(&g_8c4bd440, a1, a2, a3);
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_2678a4, ar5_00, a2);
+        sd_set_last_error(sd_sound_2678a4, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -9609,42 +9627,42 @@ int alt_entry_2678a6(int a0, u32 a1, u32 a2, u32 a3) {
     } else {
         g_8c4bd440 = 0x2e;
         g_8c4bd444 = *(u8 *)(a0 + 1);
-        ar5_00 = sd_sub_267fe8(&g_8c4bd440, a1, a2, a3);
+        ar5_00 = sd_sound_267fe8(&g_8c4bd440, a1, a2, a3);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_2678a4, ar5_00, a2);
+        sd_set_last_error(sd_sound_2678a4, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
  * thunk_FUN_8c2678a4  0x8c267908
- * called by: sd_sub_26a5de
+ * called by: sd_uses_debug_printf_26a5de
  */
 u32 thunk_FUN_8c2678a4(void) {
     u32 uVar1;
 
-    uVar1 = sd_sub_2678a4();
+    uVar1 = sd_sound_2678a4();
     return uVar1;
 }
 
 /*
- * sd_sub_267914  0x8c267914
- * area name: sits between sd functions (same compilation unit)
+ * sd_sound_267914  0x8c267914
+ * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls sound functions
  */
-u32 sd_sub_267914(u32 unused_a0, u32 unused_a1, u32 a2) {
+u32 sd_sound_267914(u32 unused_a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
 
-    uVar1 = sd_sub_267924((int)(char)a2);
+    uVar1 = sd_sound_267924((int)(char)a2);
     return uVar1;
 }
 
 /*
- * sd_sub_267924  0x8c267924
- * area name: sits between sd functions (same compilation unit)
- * called by: sd_sub_267470, sd_sub_2675d8, sd_sub_267914
+ * sd_sound_267924  0x8c267924
+ * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls sound functions
+ * called by: sd_sound_267470, sd_sound_2675d8, sd_sound_267914
  */
-int sd_sub_267924(int a0, int a1) {
+int sd_sound_267924(int a0, int a1) {
     int ar6_00;
     int in_r0;
     int ar7_00;
@@ -9669,7 +9687,7 @@ int sd_sub_267924(int a0, int a1) {
         *(char *)((short)*(char *)(a0 + 1) * 0x2c + g_8c2784c0 + 0xae) = (char)in_r0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_267924, ar5_00, ar6_00);
+        sd_set_last_error(sd_sound_267924, ar5_00, ar6_00);
     }
     return ar5_00;
 }
@@ -9704,17 +9722,17 @@ int alt_entry_267926(int a0, u32 a1) {
         *(char *)((short)*(char *)(a0 + 1) * 0x2c + ar6_00 + 0xae) = cVar1;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_267924, ar5_00, ar6_00);
+        sd_set_last_error(sd_sound_267924, ar5_00, ar6_00);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_2679a0  0x8c2679a0
- * area name: sits between sd functions (same compilation unit)
- * called by: sd_sub_267a10
+ * sd_sound_2679a0  0x8c2679a0
+ * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls sound functions
+ * called by: sd_sound_267a10
  */
-int sd_sub_2679a0(int a0, u32 a1, u32 a2, u32 a3) {
+int sd_sound_2679a0(int a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
     int ar5_00;
 
@@ -9726,11 +9744,11 @@ int sd_sub_2679a0(int a0, u32 a1, u32 a2, u32 a3) {
         g_8c4bd458 = 0x2b;
         g_8c4bd45c = *(u8 *)(a0 + 1);
         g_8c4bd45d = (u8)((char)a1 + 0x80);
-        in_r0 = sd_sub_267fe8(&g_8c4bd458, (char)a1 + 0x80, a2, a3);
+        in_r0 = sd_sound_267fe8(&g_8c4bd458, (char)a1 + 0x80, a2, a3);
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_2679a0, ar5_00, a2);
+        sd_set_last_error(sd_sound_2679a0, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -9751,31 +9769,31 @@ int alt_entry_2679a2(int a0, u32 a1, u32 a2, u32 a3) {
         g_8c4bd458 = 0x2b;
         g_8c4bd45c = *(u8 *)(a0 + 1);
         g_8c4bd45d = (u8)((char)a1 + 0x80);
-        ar5_00 = sd_sub_267fe8(&g_8c4bd458, (char)a1 + 0x80, a2, a3);
+        ar5_00 = sd_sound_267fe8(&g_8c4bd458, (char)a1 + 0x80, a2, a3);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_2679a0, ar5_00, a2);
+        sd_set_last_error(sd_sound_2679a0, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_267a10  0x8c267a10
- * area name: sits between sd functions (same compilation unit)
+ * sd_sound_267a10  0x8c267a10
+ * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls sound functions
  */
-u32 sd_sub_267a10(u32 unused_a0, u32 unused_a1, u32 a2) {
+u32 sd_sound_267a10(u32 unused_a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
 
-    uVar1 = sd_sub_2679a0((int)(char)a2);
+    uVar1 = sd_sound_2679a0((int)(char)a2);
     return uVar1;
 }
 
 /*
- * sd_sub_267a20  0x8c267a20
- * area name: sits between sd functions (same compilation unit)
- * called by: sd_sub_267a98
+ * sd_sound_267a20  0x8c267a20
+ * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls sound functions
+ * called by: sd_sound_267a98
  */
-int sd_sub_267a20(int a0, u32 a1, int a2, u32 a3) {
+int sd_sound_267a20(int a0, u32 a1, int a2, u32 a3) {
     int in_r0;
     int ar5_00;
 
@@ -9789,11 +9807,11 @@ int sd_sub_267a20(int a0, u32 a1, int a2, u32 a3) {
         g_8c4bd474 = *(u8 *)(a0 + 1);
         g_8c4bd475 = (u8)a1;
         g_8c4bd476 = (u8)a2;
-        in_r0 = sd_sub_267fe8(&g_8c4bd470, a1, a2, a3);
+        in_r0 = sd_sound_267fe8(&g_8c4bd470, a1, a2, a3);
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_267a20, ar5_00, a2);
+        sd_set_last_error(sd_sound_267a20, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -9816,31 +9834,31 @@ int alt_entry_267a22(int a0, u32 a1, int a2, u32 a3) {
         g_8c4bd474 = *(u8 *)(a0 + 1);
         g_8c4bd475 = (u8)a1;
         g_8c4bd476 = (u8)a2;
-        ar5_00 = sd_sub_267fe8(&g_8c4bd470, a1, a2, a3);
+        ar5_00 = sd_sound_267fe8(&g_8c4bd470, a1, a2, a3);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_267a20, ar5_00, a2);
+        sd_set_last_error(sd_sound_267a20, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_267a98  0x8c267a98
- * area name: in the sd library code range
+ * sd_sound_267a98  0x8c267a98
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  */
-u32 sd_sub_267a98(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 sd_sound_267a98(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = sd_sub_267a20((int)(char)a2, (int)(char)a3);
+    uVar1 = sd_sound_267a20((int)(char)a2, (int)(char)a3);
     return uVar1;
 }
 
 /*
- * sd_sub_267ab0  0x8c267ab0
- * area name: in the sd library code range
- * called by: sd_sub_267b20
+ * sd_sound_267ab0  0x8c267ab0
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: sd_sound_267b20
  */
-int sd_sub_267ab0(int a0, u32 a1, u32 a2, u32 a3) {
+int sd_sound_267ab0(int a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
     int ar5_00;
 
@@ -9852,11 +9870,11 @@ int sd_sub_267ab0(int a0, u32 a1, u32 a2, u32 a3) {
         g_8c4bd488 = 0x2a;
         g_8c4bd48c = *(u8 *)(a0 + 1);
         g_8c4bd48d = (u8)((char)a1 + 0x80);
-        in_r0 = sd_sub_267fe8(&g_8c4bd488, (char)a1 + 0x80, a2, a3);
+        in_r0 = sd_sound_267fe8(&g_8c4bd488, (char)a1 + 0x80, a2, a3);
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_267ab0, ar5_00, a2);
+        sd_set_last_error(sd_sound_267ab0, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -9877,31 +9895,31 @@ int alt_entry_267ab2(int a0, u32 a1, u32 a2, u32 a3) {
         g_8c4bd488 = 0x2a;
         g_8c4bd48c = *(u8 *)(a0 + 1);
         g_8c4bd48d = (u8)((char)a1 + 0x80);
-        ar5_00 = sd_sub_267fe8(&g_8c4bd488, (char)a1 + 0x80, a2, a3);
+        ar5_00 = sd_sound_267fe8(&g_8c4bd488, (char)a1 + 0x80, a2, a3);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_267ab0, ar5_00, a2);
+        sd_set_last_error(sd_sound_267ab0, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_267b20  0x8c267b20
- * area name: in the sd library code range
+ * sd_sound_267b20  0x8c267b20
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  */
-u32 sd_sub_267b20(u32 unused_a0, u32 unused_a1, u32 a2) {
+u32 sd_sound_267b20(u32 unused_a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
 
-    uVar1 = sd_sub_267ab0((int)(char)a2);
+    uVar1 = sd_sound_267ab0((int)(char)a2);
     return uVar1;
 }
 
 /*
- * sd_sub_267b30  0x8c267b30
- * area name: in the sd library code range
+ * sd_sound_267b30  0x8c267b30
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  * called by: alt_entry_267d98, thunk_FUN_8c267b30
  */
-int sd_sub_267b30(int a0, u32 a1, u32 a2, u32 a3) {
+int sd_sound_267b30(int a0, u32 a1, u32 a2, u32 a3) {
     u8 bVar1;
     char cVar2;
     u32 uVar3;
@@ -9958,10 +9976,10 @@ int sd_sub_267b30(int a0, u32 a1, u32 a2, u32 a3) {
             g_8c4bd4aa = (char)a3;
             g_8c4bd4ab = uVar4;
         }
-        iVar5 = sd_sub_267fe8(&g_8c4bd4a0, &g_8c4bd4a5, 0, a3);
+        iVar5 = sd_sound_267fe8(&g_8c4bd4a0, &g_8c4bd4a5, 0, a3);
     }
     if (iVar5 != 0) {
-        sd_set_last_error(sd_sub_267b30, iVar5, a2);
+        sd_set_last_error(sd_sound_267b30, iVar5, a2);
     }
     return iVar5;
 }
@@ -9973,16 +9991,16 @@ int sd_sub_267b30(int a0, u32 a1, u32 a2, u32 a3) {
 u32 thunk_FUN_8c267b30(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = sd_sub_267b30();
+    uVar1 = sd_sound_267b30();
     return uVar1;
 }
 
 /*
- * sd_sub_267ccc  0x8c267ccc
- * area name: in the sd library code range
- * called by: sd_sub_267d74
+ * sd_sound_267ccc  0x8c267ccc
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: sd_sound_267d74
  */
-int sd_sub_267ccc(int a0, u32 a1, int a2, u32 a3) {
+int sd_sound_267ccc(int a0, u32 a1, int a2, u32 a3) {
     int in_r0;
     int iVar1;
     int iVar2;
@@ -10005,12 +10023,12 @@ int sd_sub_267ccc(int a0, u32 a1, int a2, u32 a3) {
             g_8c4bd4c0 = (u8)a2;
             iVar1 = a2 >> 8;
             g_8c4bd4c1 = (u8)((u32)a2 >> 8);
-            in_r0 = sd_sub_267fe8(&g_8c4bd4b8, iVar2 >> 8, iVar1, a3);
+            in_r0 = sd_sound_267fe8(&g_8c4bd4b8, iVar2 >> 8, iVar1, a3);
             iVar2 = in_r0;
         }
     }
     if (iVar2 != 0) {
-        sd_set_last_error(sd_sub_267ccc, iVar2, iVar1);
+        sd_set_last_error(sd_sound_267ccc, iVar2, iVar1);
     }
     return iVar2;
 }
@@ -10042,33 +10060,33 @@ int alt_entry_267cce(int a0, u32 a1, int a2, u32 a3) {
             g_8c4bd4c0 = (u8)a2;
             iVar1 = a2 >> 8;
             g_8c4bd4c1 = (u8)((u32)a2 >> 8);
-            iVar2 = sd_sub_267fe8(&g_8c4bd4b8, iVar2 >> 8, iVar1, a3);
+            iVar2 = sd_sound_267fe8(&g_8c4bd4b8, iVar2 >> 8, iVar1, a3);
         }
     }
     if (iVar2 != 0) {
-        sd_set_last_error(sd_sub_267ccc, iVar2, iVar1);
+        sd_set_last_error(sd_sound_267ccc, iVar2, iVar1);
     }
     return iVar2;
 }
 
 /*
- * sd_sub_267d74  0x8c267d74
- * area name: in the sd library code range
+ * sd_sound_267d74  0x8c267d74
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  * called by: alt_entry_26aa5c
  */
-u32 sd_sub_267d74(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 sd_sound_267d74(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = sd_sub_267ccc((int)(short)a2, a3);
+    uVar1 = sd_sound_267ccc((int)(short)a2, a3);
     return uVar1;
 }
 
 /*
- * sd_sub_267d88  0x8c267d88
- * area name: in the sd library code range
- * called by: sd_sub_267470, sd_sub_2675d8, thunk_FUN_8c267d88
+ * sd_sound_267d88  0x8c267d88
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: sd_sound_267470, sd_sound_2675d8, thunk_FUN_8c267d88
  */
-int sd_sub_267d88(int a0, u32 a1) {
+int sd_sound_267d88(int a0, u32 a1) {
     u8 *puVar1;
     int iVar2;
     int iVar3;
@@ -10081,7 +10099,7 @@ int sd_sub_267d88(int a0, u32 a1) {
         (((iVar3 < 3 && (iVar2 = (short)*(char *)(a0 + 1) * 0x2c + (int)0xa8 + *(int *)(&DATA_8c2784c0), -1 < iVar3)) &&
           (iVar3 <= *(char *)(iVar2 + 4))))) {
         *(char *)(iVar2 + 5) = (char)a1;
-        puVar1 = (&sd_sub_267b30);
+        puVar1 = (&sd_sound_267b30);
         iVar5 = 0;
         iVar4 = 0;
         if (0 < iVar3) {
@@ -10092,7 +10110,7 @@ int sd_sub_267d88(int a0, u32 a1) {
         }
     }
     if (iVar4 != 0) {
-        sd_set_last_error((&sd_sub_267d88), iVar4);
+        sd_set_last_error((&sd_sound_267d88), iVar4);
     }
     return iVar4;
 }
@@ -10126,7 +10144,7 @@ int alt_entry_267d98(u32 unused_a0, u32 a1, int a2, int a3) {
                     do {
                         a2 = *(int *)(ar5_00 * 4 + iVar2 + 0x1c);
                         iVar1 = 0;
-                        sd_sub_267b30(unaff_r10, ar5_00, a2, 0);
+                        sd_sound_267b30(unaff_r10, ar5_00, a2, 0);
                         ar5_00 = ar5_00 + 1;
                     } while (ar5_00 < iVar3);
                 }
@@ -10137,7 +10155,7 @@ int alt_entry_267d98(u32 unused_a0, u32 a1, int a2, int a3) {
     }
 LAB_8c267e0a:
     if (a3 != 0) {
-        sd_set_last_error(sd_sub_267d88, a3, a2);
+        sd_set_last_error(sd_sound_267d88, a3, a2);
     }
     return a3;
 }
@@ -10149,16 +10167,16 @@ LAB_8c267e0a:
 u32 thunk_FUN_8c267d88(void) {
     u32 uVar1;
 
-    uVar1 = sd_sub_267d88();
+    uVar1 = sd_sound_267d88();
     return uVar1;
 }
 
 /*
- * sd_sub_267e54  0x8c267e54
- * area name: in the sd library code range
+ * sd_sound_267e54  0x8c267e54
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  * called by: thunk_FUN_8c267e54
  */
-int sd_sub_267e54(int a0, u32 a1, int a2, u32 a3) {
+int sd_sound_267e54(int a0, u32 a1, int a2, u32 a3) {
     int in_r0;
     u8 uVar1;
     u32 uVar2;
@@ -10184,11 +10202,11 @@ int sd_sub_267e54(int a0, u32 a1, int a2, u32 a3) {
             g_8c4bd4da = (char)a3;
             g_8c4bd4db = uVar1;
         }
-        in_r0 = sd_sub_267fe8(&g_8c4bd4d0, a3, a2, a3);
+        in_r0 = sd_sound_267fe8(&g_8c4bd4d0, a3, a2, a3);
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_267e54, ar5_00, a2);
+        sd_set_last_error(sd_sound_267e54, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10223,10 +10241,10 @@ int alt_entry_267e56(int a0, u32 a1, int a2, u32 a3) {
             g_8c4bd4da = (char)a3;
             g_8c4bd4db = uVar1;
         }
-        ar5_00 = sd_sub_267fe8(&g_8c4bd4d0, a3, a2, a3);
+        ar5_00 = sd_sound_267fe8(&g_8c4bd4d0, a3, a2, a3);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_267e54, ar5_00, a2);
+        sd_set_last_error(sd_sound_267e54, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10238,16 +10256,16 @@ int alt_entry_267e56(int a0, u32 a1, int a2, u32 a3) {
 u32 thunk_FUN_8c267e54(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = sd_sub_267e54();
+    uVar1 = sd_sound_267e54();
     return uVar1;
 }
 
 /*
- * sd_sub_267f2c  0x8c267f2c
- * area name: in the sd library code range
+ * sd_sound_267f2c  0x8c267f2c
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  * called by: thunk_FUN_8c267f2c
  */
-int sd_sub_267f2c(int a0, u32 unused_a1, int a2, int a3) {
+int sd_sound_267f2c(int a0, u32 unused_a1, int a2, int a3) {
     char cVar1;
     int iVar2;
     u32 in_stack_fffffff0;
@@ -10273,10 +10291,10 @@ int sd_sub_267f2c(int a0, u32 unused_a1, int a2, int a3) {
             } while (a3 < cVar1);
         }
         g_8c4bd4e8 = 0x22;
-        iVar2 = sd_sub_267fe8(&g_8c4bd4e8, 0, a2, a3);
+        iVar2 = sd_sound_267fe8(&g_8c4bd4e8, 0, a2, a3);
     }
     if (iVar2 != 0) {
-        sd_set_last_error(sd_sub_267f2c, iVar2, a2);
+        sd_set_last_error(sd_sound_267f2c, iVar2, a2);
     }
     return iVar2;
 }
@@ -10288,17 +10306,17 @@ int sd_sub_267f2c(int a0, u32 unused_a1, int a2, int a3) {
 u32 thunk_FUN_8c267f2c(void) {
     u32 uVar1;
 
-    uVar1 = sd_sub_267f2c();
+    uVar1 = sd_sound_267f2c();
     return uVar1;
 }
 
 /*
- * sd_sub_267fe8  0x8c267fe8
- * area name: in the sd library code range
+ * sd_sound_267fe8  0x8c267fe8
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  * called by: alt_entry_267744, alt_entry_2678a6, alt_entry_2679a2, alt_entry_267a22, alt_entry_267ab2,
  * alt_entry_267cce, alt_entry_267e56, alt_entry_26813e (+17 more)
  */
-int sd_sub_267fe8(u32 a0, u32 a1, int a2, int a3) {
+int sd_sound_267fe8(u32 a0, u32 a1, int a2, int a3) {
     int iVar1;
     u32 ain0;
     int iVar2;
@@ -10332,17 +10350,17 @@ int sd_sub_267fe8(u32 a0, u32 a1, int a2, int a3) {
         }
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_267fe8, ar5_00, a2);
+        sd_set_last_error(sd_sound_267fe8, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_26809c  0x8c26809c
- * area name: in the sd library code range
- * called by: game_sub_02257c, se_slot_close
+ * sd_sound_26809c  0x8c26809c
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: game_sound_02257c, se_slot_close
  */
-int sd_sub_26809c(int a0, u32 unused_a1, u32 a2) {
+int sd_sound_26809c(int a0, u32 unused_a1, u32 a2) {
     int in_r0;
     int ar5_00;
 
@@ -10351,11 +10369,11 @@ int sd_sub_26809c(int a0, u32 unused_a1, u32 a2) {
     } else if (a0 == 0) {
         ar5_00 = 0x7000103;
     } else {
-        in_r0 = sd_sub_2666cc(a0, unused_a1, a2);
+        in_r0 = sd_sound_2666cc(a0, unused_a1, a2);
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_26809c, ar5_00, a2);
+        sd_set_last_error(sd_sound_26809c, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10373,20 +10391,20 @@ int alt_entry_26809e(int a0, u32 unused_a1, u32 a2) {
     } else if (a0 == 0) {
         ar5_00 = 0x7000103;
     } else {
-        ar5_00 = sd_sub_2666cc(a0, unused_a1, a2);
+        ar5_00 = sd_sound_2666cc(a0, unused_a1, a2);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_26809c, ar5_00, a2);
+        sd_set_last_error(sd_sound_26809c, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_2680ec  0x8c2680ec
- * area name: in the sd library code range
- * called by: game_sub_02257c, se_slot_open
+ * sd_sound_2680ec  0x8c2680ec
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: game_sound_02257c, se_slot_open
  */
-int sd_sub_2680ec(int a0, u32 unused_a1, u32 a2) {
+int sd_sound_2680ec(int a0, u32 unused_a1, u32 a2) {
     int in_r0;
     int ar5_00;
 
@@ -10395,11 +10413,11 @@ int sd_sub_2680ec(int a0, u32 unused_a1, u32 a2) {
     } else if (a0 == 0) {
         ar5_00 = 0x7000103;
     } else {
-        in_r0 = sd_sub_266708(a0, 2);
+        in_r0 = sd_sound_266708(a0, 2);
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_2680ec, ar5_00, a2);
+        sd_set_last_error(sd_sound_2680ec, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10417,20 +10435,20 @@ int alt_entry_2680ee(int a0, u32 unused_a1, u32 a2) {
     } else if (a0 == 0) {
         ar5_00 = 0x7000103;
     } else {
-        ar5_00 = sd_sub_266708(a0, 2);
+        ar5_00 = sd_sound_266708(a0, 2);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_2680ec, ar5_00, a2);
+        sd_set_last_error(sd_sound_2680ec, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_26813c  0x8c26813c
- * area name: in the sd library code range
- * called by: game_sub_02257c
+ * sd_sound_26813c  0x8c26813c
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: game_sound_02257c
  */
-int sd_sub_26813c(int a0, u32 a1, u32 a2, u32 a3) {
+int sd_sound_26813c(int a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
     int iVar1;
 
@@ -10448,12 +10466,12 @@ int sd_sub_26813c(int a0, u32 a1, u32 a2, u32 a3) {
             g_8c4bd505 = (u8)a1;
             g_8c4bd506 = (u8)a2;
             g_8c4bd507 = (u8)(iVar1 << 3);
-            in_r0 = sd_sub_267fe8(&g_8c4bd500, a1, a2, a3);
+            in_r0 = sd_sound_267fe8(&g_8c4bd500, a1, a2, a3);
             iVar1 = in_r0;
         }
     }
     if (iVar1 != 0) {
-        sd_set_last_error(sd_sub_26813c, iVar1, a2);
+        sd_set_last_error(sd_sound_26813c, iVar1, a2);
     }
     return iVar1;
 }
@@ -10480,21 +10498,21 @@ int alt_entry_26813e(int a0, u32 a1, u32 a2, u32 a3) {
             g_8c4bd505 = (u8)a1;
             g_8c4bd506 = (u8)a2;
             g_8c4bd507 = (u8)(iVar1 << 3);
-            iVar1 = sd_sub_267fe8(&g_8c4bd500, a1, a2, a3);
+            iVar1 = sd_sound_267fe8(&g_8c4bd500, a1, a2, a3);
         }
     }
     if (iVar1 != 0) {
-        sd_set_last_error(sd_sub_26813c, iVar1, a2);
+        sd_set_last_error(sd_sound_26813c, iVar1, a2);
     }
     return iVar1;
 }
 
 /*
- * sd_sub_2681d0  0x8c2681d0
- * area name: in the sd library code range
- * called by: game_sub_02257c, se_sub_0227bc
+ * sd_sound_2681d0  0x8c2681d0
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: game_sound_02257c, se_sound_0227bc
  */
-int sd_sub_2681d0(int a0, u32 a1, int a2, u32 a3) {
+int sd_sound_2681d0(int a0, u32 a1, int a2, u32 a3) {
     int in_r0;
     int iVar1;
     int ar5_00;
@@ -10511,11 +10529,11 @@ int sd_sub_2681d0(int a0, u32 a1, int a2, u32 a3) {
         g_8c4bd51e = (u8)a2;
         iVar1 = a2 >> 8;
         g_8c4bd51f = (u8)((u32)a2 >> 8);
-        in_r0 = sd_sub_267fe8(&g_8c4bd518, (char)a1 + 0x80, iVar1, a3);
+        in_r0 = sd_sound_267fe8(&g_8c4bd518, (char)a1 + 0x80, iVar1, a3);
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_2681d0, ar5_00, iVar1);
+        sd_set_last_error(sd_sound_2681d0, ar5_00, iVar1);
     }
     return ar5_00;
 }
@@ -10541,20 +10559,20 @@ int alt_entry_2681d2(int a0, u32 a1, int a2, u32 a3) {
         g_8c4bd51e = (u8)a2;
         iVar1 = a2 >> 8;
         g_8c4bd51f = (u8)((u32)a2 >> 8);
-        ar5_00 = sd_sub_267fe8(&g_8c4bd518, (char)a1 + 0x80, iVar1, a3);
+        ar5_00 = sd_sound_267fe8(&g_8c4bd518, (char)a1 + 0x80, iVar1, a3);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_2681d0, ar5_00, iVar1);
+        sd_set_last_error(sd_sound_2681d0, ar5_00, iVar1);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_268250  0x8c268250
- * area name: in the sd library code range
- * called by: game_sub_02257c, se_sub_022804
+ * sd_sound_268250  0x8c268250
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: game_sound_02257c, se_sound_022804
  */
-int sd_sub_268250(int a0, u32 a1, u32 a2) {
+int sd_sound_268250(int a0, u32 a1, u32 a2) {
     char cVar1;
     u32 *puVar2;
     u32 *puVar3;
@@ -10573,22 +10591,22 @@ int sd_sub_268250(int a0, u32 a1, u32 a2) {
         *puVar4 = *(u8 *)(a0 + 1);
         puVar4[1] = (char)a1 + cVar1;
         *puVar5 = (char)a2;
-        puVar6 = (&sd_sub_267fe8);
+        puVar6 = (&sd_sound_267fe8);
         puVar3 = 0x8c4bd530;
         *(char *)((int)puVar2 + 7) = (char)((u32)a2 >> 8);
         iVar7 = (*(code *)puVar6)(puVar3);
     }
     if (iVar7 != 0) {
-        sd_set_last_error((&sd_sub_268250), iVar7);
+        sd_set_last_error((&sd_sound_268250), iVar7);
     }
     return iVar7;
 }
 
 /*
- * sd_sub_268254  0x8c268254
- * area name: in the sd library code range
+ * sd_sound_268254  0x8c268254
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  */
-int sd_sub_268254(int a0, u32 a1, int a2, u32 a3) {
+int sd_sound_268254(int a0, u32 a1, int a2, u32 a3) {
     int ar6_00;
     int ar5_00;
     char in_T;
@@ -10600,23 +10618,23 @@ int sd_sub_268254(int a0, u32 a1, int a2, u32 a3) {
         g_8c4bd536 = (u8)a2;
         ar6_00 = a2 >> 8;
         g_8c4bd537 = (u8)((u32)a2 >> 8);
-        ar5_00 = sd_sub_267fe8(&g_8c4bd530, (char)a1 + 0x80, ar6_00, a3);
+        ar5_00 = sd_sound_267fe8(&g_8c4bd530, (char)a1 + 0x80, ar6_00, a3);
     } else {
         ar5_00 = 0x7000103;
         ar6_00 = a2;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_268250, ar5_00, ar6_00);
+        sd_set_last_error(sd_sound_268250, ar5_00, ar6_00);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_2682bc  0x8c2682bc
- * area name: in the sd library code range
+ * sd_sound_2682bc  0x8c2682bc
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  * called by: se_slot_status
  */
-int sd_sub_2682bc(int a0, u32 a1, u32 a2, u32 a3) {
+int sd_sound_2682bc(int a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
     int ar5_00;
 
@@ -10627,11 +10645,11 @@ int sd_sub_2682bc(int a0, u32 a1, u32 a2, u32 a3) {
     } else {
         g_8c4bd548 = 0x12;
         g_8c4bd54c = *(u8 *)(a0 + 1);
-        in_r0 = sd_sub_267fe8(&g_8c4bd548, a1, a2, a3);
+        in_r0 = sd_sound_267fe8(&g_8c4bd548, a1, a2, a3);
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_2682bc, ar5_00, a2);
+        sd_set_last_error(sd_sound_2682bc, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10651,20 +10669,20 @@ int alt_entry_2682be(int a0, u32 a1, u32 a2, u32 a3) {
     } else {
         g_8c4bd548 = 0x12;
         g_8c4bd54c = *(u8 *)(a0 + 1);
-        ar5_00 = sd_sub_267fe8(&g_8c4bd548, a1, a2, a3);
+        ar5_00 = sd_sound_267fe8(&g_8c4bd548, a1, a2, a3);
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_2682bc, ar5_00, a2);
+        sd_set_last_error(sd_sound_2682bc, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sub_268320  0x8c268320
- * area name: in the sd library code range
- * called by: aica_sub_2669f4, sd_sub_26a246
+ * sd_sound_268320  0x8c268320
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: aica_sound_2669f4, sd_sound_26a246
  */
-u32 sd_sub_268320(int a0, u32 a1, u32 a2, u32 a3) {
+u32 sd_sound_268320(int a0, u32 a1, u32 a2, u32 a3) {
     int ar6_00;
     int ar7_00;
     int iVar1;
@@ -10743,7 +10761,7 @@ LAB_8c26846a:
 
 /*
  * aica_ram_2684b8  0x8c2684b8
- * called by: aica_sub_2654f4, alt_entry_2654fc
+ * called by: aica_sound_2654f4, alt_entry_2654fc
  * strings: "SEGA"
  */
 u32 aica_ram_2684b8(void) {
@@ -10753,11 +10771,11 @@ u32 aica_ram_2684b8(void) {
 }
 
 /*
- * aica_sub_2684f0  0x8c2684f0
- * area name: sits between aica functions (same compilation unit)
- * called by: aica_sub_265374, sd_sub_266d28
+ * aica_calc_2684f0  0x8c2684f0
+ * area name: sits between aica functions (same compilation unit); behaviour name: integer arithmetic on its arguments
+ * called by: aica_sound_265374, sd_sound_266d28
  */
-u32 aica_sub_2684f0(int a0, u32 a1, u32 *a2, u32 *a3) {
+u32 aica_calc_2684f0(int a0, u32 a1, u32 *a2, u32 *a3) {
     int iVar1;
     u32 *puVar2;
     u32 uVar3;
@@ -10841,12 +10859,12 @@ LAB_8c2685de:
 
 /*
  * aica_ram_268618  0x8c268618
- * called by: aica_sub_2653e0, alt_entry_2653e8, sd_sub_266134, sd_sub_2663d8, sd_sub_266448, sd_sub_266d28,
- * sd_sub_267130, sd_sub_2671c0
+ * called by: aica_sound_2653e0, alt_entry_2653e8, sd_sound_266134, sd_sound_2663d8, sd_sound_266448, sd_sound_266d28,
+ * sd_sound_267130, sd_sound_2671c0
  */
 u32 aica_ram_268618(int a0, u32 a1) {
     if (a0 < 0x200000) {
-        shinobi_sub_1f92c0(a0 + 0xa0800000, a1, 4, 1, 0, 0);
+        shinobi_uses_syG2FifoWait_1f92c0(a0 + 0xa0800000, a1, 4, 1, 0, 0);
     }
     return 0;
 }
@@ -10854,8 +10872,8 @@ u32 aica_ram_268618(int a0, u32 a1) {
 /*
  * aica_ram_read_u8  0x8c268650
  * reads one byte of sound RAM at a0 (below 2 MB) into *a1
- * called by: alt_entry_2653e8, sd_sub_2661a4, sd_sub_2662f8, sd_sub_266368, sd_sub_266620, sd_sub_266fc8,
- * sd_sub_267058, sd_sub_2673f0
+ * called by: alt_entry_2653e8, sd_sound_2661a4, sd_sound_2662f8, sd_sound_266368, sd_sound_266620, sd_sound_266fc8,
+ * sd_sound_267058, sd_sound_2673f0
  */
 u32 aica_ram_read_u8(u32 a0, u8 *a1) {
     u8 auStack_8[8];
@@ -10870,7 +10888,7 @@ u32 aica_ram_read_u8(u32 a0, u8 *a1) {
 /*
  * aica_read_u16  0x8c26868c
  * *a1 = the u16 at sound-RAM address a0 (below 2 MB)
- * called by: sd_sub_266214
+ * called by: sd_sound_266214
  */
 u32 aica_read_u16(u32 a0, u16 *a1) {
     u16 auStack_c[4];
@@ -10884,12 +10902,12 @@ u32 aica_read_u16(u32 a0, u16 *a1) {
 
 /*
  * aica_ram_2686d4  0x8c2686d4
- * called by: aica_ram_read_byte, aica_ram_read_u8, aica_read_u16, aica_write_u8, sd_sub_2665b0, sd_sub_266ea8,
- * sd_sub_267360
+ * called by: aica_ram_read_byte, aica_ram_read_u8, aica_read_u16, aica_write_u8, sd_sound_2665b0, sd_sound_266ea8,
+ * sd_sound_267360
  */
 u32 aica_ram_2686d4(int a0, u32 a1) {
     if (a0 < 0x200000) {
-        shinobi_sub_1f92c0(a0 + 0xa0800000, a1, 4, 1, 0, 0);
+        shinobi_uses_syG2FifoWait_1f92c0(a0 + 0xa0800000, a1, 4, 1, 0, 0);
     }
     return 0;
 }
@@ -10897,7 +10915,7 @@ u32 aica_ram_2686d4(int a0, u32 a1) {
 /*
  * aica_ram_read_byte  0x8c26870c
  * reads the byte at a0 of sound RAM (below 2 MB) into *a1
- * called by: sd_flush_host_commands, sd_sub_266288, sd_sub_266f38
+ * called by: sd_flush_host_commands, sd_sound_266288, sd_sound_266f38
  */
 u32 aica_ram_read_byte(u32 a0, u8 *a1) {
     u8 auStack_8[8];
@@ -10911,7 +10929,7 @@ u32 aica_ram_read_byte(u32 a0, u8 *a1) {
 
 /*
  * aica_ram_268748  0x8c268748
- * called by: sd_sub_268320
+ * called by: sd_sound_268320
  */
 u32 aica_ram_268748(int a0, u32 a1) {
     u32 auStack_8[2];
@@ -10940,7 +10958,7 @@ u32 aica_ram_268788(int a0, u32 a1) {
 /*
  * aica_write_u8  0x8c2687c8
  * writes byte a1 to sound-RAM address a0 (below 2 MB) by read-modify-write of its word
- * called by: sd_sub_266b76
+ * called by: sd_sound_266b76
  */
 u32 aica_write_u8(u32 a0, u32 a1) {
     u32 auStack_10[2];
@@ -10954,11 +10972,11 @@ u32 aica_write_u8(u32 a0, u32 a1) {
 }
 
 /*
- * sd_sub_268818  0x8c268818
- * area name: in the sd library code range
- * called by: game_sub_0221c8
+ * sd_sound_268818  0x8c268818
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * called by: game_sound_0221c8
  */
-int sd_sub_268818(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int sd_sound_268818(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int in_r0;
     int ar5_00;
 
@@ -10976,12 +10994,12 @@ int sd_sub_268818(int a0, u32 unused_a1, u32 a2, u32 a3) {
             }
             g_8c4bd564 = 0;
         }
-        a0 = sd_sub_267fe8(&g_8c4bd560, &g_8c4bd564, a2, a3);
+        a0 = sd_sound_267fe8(&g_8c4bd560, &g_8c4bd564, a2, a3);
         ar5_00 = a0;
     }
 LAB_8c268860:
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_268818, ar5_00, a2);
+        sd_set_last_error(sd_sound_268818, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -11007,11 +11025,11 @@ int alt_entry_26881a(int a0, u32 unused_a1, u32 a2, u32 a3) {
             }
             g_8c4bd564 = 0;
         }
-        ar5_00 = sd_sub_267fe8(&g_8c4bd560, &g_8c4bd564, a2, a3);
+        ar5_00 = sd_sound_267fe8(&g_8c4bd560, &g_8c4bd564, a2, a3);
     }
 LAB_8c268860:
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_268818, ar5_00, a2);
+        sd_set_last_error(sd_sound_268818, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -11019,8 +11037,8 @@ LAB_8c268860:
 /*
  * sd_set_last_error  0x8c2688a0
  * records an sd library error code and detail
- * called by: aica_ram_2657ec, aica_ram_2668fc, aica_sub_265374, aica_sub_2653e0, aica_sub_2654f4, aica_sub_2655f4,
- * aica_sub_265704, aica_sub_2669f4 (+99 more)
+ * called by: aica_ram_2657ec, aica_ram_2668fc, aica_sound_265374, aica_sound_2653e0, aica_sound_2654f4,
+ * aica_sound_2655f4, aica_sound_265704, aica_sound_2669f4 (+99 more)
  */
 u32 sd_set_last_error(u32 a0, u32 a1, u32 a2) {
     u8 *puVar1;
@@ -11079,11 +11097,11 @@ u32 alt_entry_2688e2(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * sd_sub_268920  0x8c268920
- * area name: sits between sd functions (same compilation unit)
- * called by: sd_sub_2650ec
+ * sd_uses_memset_268920  0x8c268920
+ * area name: sits between sd functions (same compilation unit); behaviour name: its main named callee is memset
+ * called by: sd_sound_2650ec
  */
-int sd_sub_268920(u32 a0, u32 a1, u8 *a2, u32 a3) {
+int sd_uses_memset_268920(u32 a0, u32 a1, u8 *a2, u32 a3) {
     u32 in_r0;
     int iVar1;
     u32 uVar2;
@@ -11111,7 +11129,7 @@ int sd_sub_268920(u32 a0, u32 a1, u8 *a2, u32 a3) {
         }
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sub_268920, ar5_00, a2);
+        sd_set_last_error(sd_uses_memset_268920, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -11148,14 +11166,14 @@ u32 alt_entry_26892c(u32 a0, u32 unused_a1, u8 *a2, u32 a3) {
         }
     }
     if (unaff_r13 != 0) {
-        sd_set_last_error(sd_sub_268920, unaff_r13, a2);
+        sd_set_last_error(sd_uses_memset_268920, unaff_r13, a2);
     }
     return unaff_r13;
 }
 
 /*
  * noop_2689c4  0x8c2689c4
- * called by: sd_sub_2689c8
+ * called by: sd_copy_2689c8
  */
 u32 noop_2689c4(void) {
     u32 in_r0;
@@ -11164,10 +11182,10 @@ u32 noop_2689c4(void) {
 }
 
 /*
- * sd_sub_2689c8  0x8c2689c8
- * area name: sits between sd functions (same compilation unit)
+ * sd_copy_2689c8  0x8c2689c8
+ * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls copy functions
  */
-u32 sd_sub_2689c8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 sd_copy_2689c8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int ar4_00;
     u32 ar4_01;
     u32 uVar1;
@@ -11192,16 +11210,16 @@ u32 sd_sub_2689c8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     ar4_01 = 0;
     (**(code **)(g_8c2785cc + 0xc))(0, uVar1, ar6_00, a7);
     noop_2689c4();
-    uVar1 = sd_sub_26a130(0, 0);
+    uVar1 = sd_copy_26a130(0, 0);
     return uVar1;
 }
 
 /*
- * sd_sub_268a24  0x8c268a24
- * area name: sits between sd functions (same compilation unit)
+ * sd_sound_268a24  0x8c268a24
+ * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls sound functions
  * decompiler: Switch with 1 destination removed at 0x8c268ab4
  */
-u32 sd_sub_268a24(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 sd_sound_268a24(u32 a0, u32 a1, u32 a2, u32 a3) {
     char *pcVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -11302,11 +11320,11 @@ u32 alt_entry_268a36(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * sd_sub_268afc  0x8c268afc
- * area name: in the sd library code range
- * called by: sd_sub_268b70
+ * sd_init_fields_268afc  0x8c268afc
+ * area name: in the sd library code range; behaviour name: writes 20 members
+ * called by: sd_sound_268b70
  */
-int sd_sub_268afc(int a0) {
+int sd_init_fields_268afc(int a0) {
     int iVar1;
 
     iVar1 = (int)0x2000;
@@ -11337,7 +11355,7 @@ int sd_sub_268afc(int a0) {
 /*
  * mwRna_find_free_handle  0x8c268b48
  * first free 0x90-byte mwRna handle of the eight at 8c4bd580, else 0
- * called by: sd_sub_268b70
+ * called by: sd_sound_268b70
  */
 char *mwRna_find_free_handle(void) {
     char *pcVar1;
@@ -11353,11 +11371,11 @@ char *mwRna_find_free_handle(void) {
 }
 
 /*
- * sd_sub_268b70  0x8c268b70
- * name hint from a string it uses: E1201 mwRnaCreate Illigal pa; area name: in the sd library code range
- * called by: ADXSTM_sub_263840, cri_sub_2629ac
+ * sd_sound_268b70  0x8c268b70
+ * name hint from a string it uses: E1201 mwRnaCreate Illigal pa; area name: in the sd library code range; behaviour
+ * name: mostly calls sound functions called by: ADXSTM_uses_memset_263840, cri_sound_2629ac
  */
-u32 sd_sub_268b70(int *a0, u32 a1, u32 a2, u32 a3) {
+u32 sd_sound_268b70(int *a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
     u8 *a4;
     u32 uVar2;
@@ -11407,7 +11425,7 @@ u32 sd_sub_268b70(int *a0, u32 a1, u32 a2, u32 a3) {
                     (*(code *)puVar1)(a1, ar5_00, a2, a3);
                     a4 = NULL;
                 } else {
-                    sd_sub_268afc(a4);
+                    sd_init_fields_268afc(a4);
                     mwRnaSetBitPerSmpl(a4, 0x10, a2, a3);
                     mwRnaSetSfreq(a4, 0xac44, a2, a3);
                     ar5_00 = (u32)(u8)a4[3];
@@ -11430,7 +11448,7 @@ u32 sd_sub_268b70(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * mwRnaDestroy  0x8c268c7e
  * stops an mwRna output if playing, releases its channels and clears the 0x90-byte handle
- * called by: alt_entry_268a36, mwRna_stop_and_destroy, sd_sub_268a24
+ * called by: alt_entry_268a36, mwRna_stop_and_destroy, sd_sound_268a24
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRnaDestroy(u8 *a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -11479,14 +11497,14 @@ u32 mwRnaStart_like(int a0, u32 unused_a1, u32 a2, u32 a3) {
     *(u8 *)(a0 + 1) = 4;
     uVar1 = 1;
     *(u32 *)(a0 + 0x40) = *(u32 *)(a0 + 0x44);
-    mwRna_sub_2690d8(a0, 1, a2, a3);
+    mwRna_sound_2690d8(a0, 1, a2, a3);
     uVar1 = sd_irq_restore(&stack0xfffffff4);
     return uVar1;
 }
 
 /*
  * noop_268d60  0x8c268d60
- * called by: mwRnaStop, mwRna_sub_2694a4
+ * called by: mwRnaStop, mwRna_sound_2694a4
  */
 u32 noop_268d60(void) {
     u32 in_r0;
@@ -11497,7 +11515,7 @@ u32 noop_268d60(void) {
 /*
  * mwRnaStop  0x8c268d64
  * stops an mwRna output: play switch off, buffers reset, status cleared (interrupts masked)
- * called by: alt_entry_268a36, mwRnaDestroy, mwRnaStart_like, mwRna_stop_and_destroy, sd_sub_268a24
+ * called by: alt_entry_268a36, mwRnaDestroy, mwRnaStart_like, mwRna_stop_and_destroy, sd_sound_268a24
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRnaStop(int a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -11513,7 +11531,7 @@ u32 mwRnaStop(int a0, u32 unused_a1, u32 a2, u32 a3) {
         sd_irq_disable(&stack0xfffffff4);
         mwRna_set_play_sw(a0, 0, a2, a3);
         uVar1 = 0;
-        mwRna_sub_2690d8(a0, 0, a2, a3);
+        mwRna_sound_2690d8(a0, 0, a2, a3);
         noop_268d60();
         *(u8 *)(a0 + 7) = 0;
         *(u8 *)(a0 + 1) = 0;
@@ -11523,11 +11541,12 @@ u32 mwRnaStop(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * mwRna_sub_268db4  0x8c268db4
+ * mwRna_uses_debug_printf_268db4  0x8c268db4
  * name hint from a string it uses: E1205 Illigal parameter MWRN; area name: sits between mwRna functions (same
- * compilation unit) strings: "E1205:Illigal parameter (MWRNA=NULL)"
+ * compilation unit); behaviour name: its main named callee is debug_printf strings: "E1205:Illigal parameter
+ * (MWRNA=NULL)"
  */
-u32 mwRna_sub_268db4(int a0) {
+u32 mwRna_uses_debug_printf_268db4(int a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -11545,11 +11564,11 @@ u32 mwRna_sub_268db4(int a0) {
 }
 
 /*
- * mwRna_sub_268ddc  0x8c268ddc
- * area name: sits between mwRna functions (same compilation unit)
- * called by: mwRna_sub_269244, mwRna_sub_2693ce
+ * mwRna_update_fields_268ddc  0x8c268ddc
+ * area name: sits between mwRna functions (same compilation unit); behaviour name: conditionally writes members
+ * called by: mwRna_uses_libgcc_divide_helper_269244, mwRna_uses_libgcc_divide_helper_2693ce
  */
-u32 mwRna_sub_268ddc(int a0, u32 a1, u32 a2, u32 a3, int s0) {
+u32 mwRna_update_fields_268ddc(int a0, u32 a1, u32 a2, u32 a3, int s0) {
     if (s0 < 1) {
         return 0;
     }
@@ -11561,7 +11580,7 @@ u32 mwRna_sub_268ddc(int a0, u32 a1, u32 a2, u32 a3, int s0) {
 /*
  * mwRna_all_channels_ready  0x8c268e1a
  * 1 (and clears +0x5c) once every channel reports ready through output vtable slot 0x50
- * called by: mwRnaPause, mwRna_sub_2694a4
+ * called by: mwRnaPause, mwRna_sound_2694a4
  */
 int mwRna_all_channels_ready(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -11592,11 +11611,11 @@ int mwRna_all_channels_ready(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * mwRna_sub_268ea8  0x8c268ea8
- * area name: sits between mwRna functions (same compilation unit)
- * called by: mwRnaGetTime, mwRna_sub_2694a4, mwRna_suspend
+ * mwRna_sound_268ea8  0x8c268ea8
+ * area name: sits between mwRna functions (same compilation unit); behaviour name: mostly calls sound functions
+ * called by: mwRnaGetTime, mwRna_sound_2694a4, mwRna_suspend
  */
-u32 mwRna_sub_268ea8(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 mwRna_sound_268ea8(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -11634,11 +11653,12 @@ u32 mwRna_sub_268ea8(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * mwRna_sub_268f3e  0x8c268f3e
+ * mwRna_uses_sd_irq_disable_268f3e  0x8c268f3e
  * name hint from a string it uses: E1213 mwlRnaAddWrPos rna sj ; area name: sits between mwRna functions (same
- * compilation unit) called by: mwRnaDiscardData, mwRna_sub_2690d8, mwRna_sub_2694a4, mwRna_sub_269738
+ * compilation unit); behaviour name: its main named callee is sd_irq_disable called by: mwRnaDiscardData,
+ * mwRna_sound_2690d8, mwRna_sound_2694a4, mwRna_uses_debug_printf_269738
  */
-u32 mwRna_sub_268f3e(int a0, u32 unused_a1, u8 *a2, u8 *a3) {
+u32 mwRna_uses_sd_irq_disable_268f3e(int a0, u32 unused_a1, u8 *a2, u8 *a3) {
     u32 uVar1;
     u8 *puVar2;
     int *piVar3;
@@ -11680,11 +11700,11 @@ u32 mwRna_sub_268f3e(int a0, u32 unused_a1, u8 *a2, u8 *a3) {
 }
 
 /*
- * mwRna_sub_269056  0x8c269056
- * area name: sits between mwRna functions (same compilation unit)
- * called by: mwRnaDiscardData, mwRna_sub_2690d8, mwRna_sub_2694a4, mwRna_sub_269738
+ * mwRna_init_fields_269056  0x8c269056
+ * area name: sits between mwRna functions (same compilation unit); behaviour name: writes 3 members
+ * called by: mwRnaDiscardData, mwRna_sound_2690d8, mwRna_sound_2694a4, mwRna_uses_debug_printf_269738
  */
-u32 mwRna_sub_269056(int a0) {
+u32 mwRna_init_fields_269056(int a0) {
     u32 uVar1;
 
     uVar1 = libgcc_divide_helper_010614(*(int *)(a0 + 0x50) + *(int *)(a0 + 0x58), *(u32 *)(a0 + 0x28));
@@ -11712,7 +11732,7 @@ u32 alt_entry_26905a(int a0) {
 /*
  * mwRnaPause  0x8c269086
  * named from the library error message it prints (mwRnaPause)
- * called by: mwRnaDiscardData, mwRna_sub_2690d8, mwRna_suspend
+ * called by: mwRnaDiscardData, mwRna_sound_2690d8, mwRna_suspend
  * strings: "E1209:mwRnaPause Time out of wait for DMA finish"
  */
 int mwRnaPause(u32 a0, u32 unused_a1, u32 a2, u32 a3, int ain0) {
@@ -11741,12 +11761,13 @@ int mwRnaPause(u32 a0, u32 unused_a1, u32 a2, u32 a3, int ain0) {
 }
 
 /*
- * mwRna_sub_2690d8  0x8c2690d8
+ * mwRna_sound_2690d8  0x8c2690d8
  * name hint from a string it uses: E1205 Illigal parameter MWRN; area name: sits between mwRna functions (same
- * compilation unit) called by: ADXT_sub_2647f4, ADXT_sub_264b14, ADXT_sub_264ba0, cri_sub_2629d0, cri_sub_263c64,
- * mwRnaStart_like, mwRnaStop, mwRna_sub_2694a4 strings: "E1205:Illigal parameter (MWRNA=NULL)"
+ * compilation unit); behaviour name: mostly calls sound functions called by: ADXT_sound_264ba0,
+ * ADXT_uses_get_field_1_s8_264b14, ADXT_uses_libgcc_divide_helper_2647f4, cri_sound_2629d0, cri_sound_263c64,
+ * mwRnaStart_like, mwRnaStop, mwRna_sound_2694a4 strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
-u32 mwRna_sub_2690d8(int a0, int a1, u32 a2, u32 a3) {
+u32 mwRna_sound_2690d8(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     int a5;
@@ -11761,9 +11782,9 @@ u32 mwRna_sub_2690d8(int a0, int a1, u32 a2, u32 a3) {
             mwRnaPause(a0, a1, a2, a3, in_stack_ffffffec);
             iVar2 = mwRna_is_playing(a0);
             if (iVar2 == 1) {
-                mwRna_sub_268f3e(a0, a5, a2, a3);
+                mwRna_uses_sd_irq_disable_268f3e(a0, a5, a2, a3);
             } else {
-                mwRna_sub_269056(a0);
+                mwRna_init_fields_269056(a0);
             }
             *(u8 *)(a0 + 5) = 0;
         }
@@ -11799,8 +11820,8 @@ u32 mwRna_sub_2690d8(int a0, int a1, u32 a2, u32 a3) {
 /*
  * mwRna_set_play_sw  0x8c2691b8
  * a1 = 1 starts (vtable +0x10, sets bit 1), 0 stops (vtable +0x14) an mwRna handle's output
- * called by: ADXT_stop_when_drained, ADXT_sub_264a42, ADXT_sub_264ba0, cri_sub_263c64, mwRnaStop, mwRna_resume,
- * mwRna_set_play_sw_wrap, mwRna_sub_2694a4 (+1 more) strings: "E1205:Illigal parameter (MWRNA=NULL)"
+ * called by: ADXT_sound_264ba0, ADXT_stop_when_drained, ADXT_uses_get_field_1_s8_264a42, cri_sound_263c64, mwRnaStop,
+ * mwRna_resume, mwRna_set_play_sw_wrap, mwRna_sound_2694a4 (+1 more) strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRna_set_play_sw(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -11828,11 +11849,11 @@ u32 mwRna_set_play_sw(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * mwRna_sub_269244  0x8c269244
+ * mwRna_uses_libgcc_divide_helper_269244  0x8c269244
  * name hint from a string it uses: E1212 mwlRnaStartTrans rna s; area name: sits between mwRna functions (same
- * compilation unit) called by: mwRna_sub_2694a4
+ * compilation unit); behaviour name: its main named callee is libgcc_divide_helper_010468 called by: mwRna_sound_2694a4
  */
-int *mwRna_sub_269244(u8 *a0, u32 unused_a1, u8 *a2, u8 *a3) {
+int *mwRna_uses_libgcc_divide_helper_269244(u8 *a0, u32 unused_a1, u8 *a2, u8 *a3) {
     int iVar1;
     int iVar2;
     u8 *a7;
@@ -11901,7 +11922,7 @@ int *mwRna_sub_269244(u8 *a0, u32 unused_a1, u8 *a2, u8 *a3) {
             g_8c4bea40 = sh4_tmu_1f88e6(puVar4);
             puVar4 = a0;
             a5 = piVar3;
-            piVar5 = (int *)mwRna_sub_268ddc(a0, piVar3, a6, a7);
+            piVar5 = (int *)mwRna_update_fields_268ddc(a0, piVar3, a6, a7);
             g_8c4bea44 = sh4_tmu_1f88e6(puVar4);
             a2 = a6;
             a3 = a7;
@@ -11912,11 +11933,11 @@ int *mwRna_sub_269244(u8 *a0, u32 unused_a1, u8 *a2, u8 *a3) {
 }
 
 /*
- * mwRna_sub_2693ce  0x8c2693ce
- * area name: sits between mwRna functions (same compilation unit)
- * called by: mwRna_sub_2694a4
+ * mwRna_uses_libgcc_divide_helper_2693ce  0x8c2693ce
+ * area name: sits between mwRna functions (same compilation unit); behaviour name: its main named callee is
+ * libgcc_divide_helper_010468 called by: mwRna_sound_2694a4
  */
-u8 *mwRna_sub_2693ce(int a0) {
+u8 *mwRna_uses_libgcc_divide_helper_2693ce(int a0) {
     int iVar1;
     u8 *puVar2;
     int iVar3;
@@ -11949,7 +11970,7 @@ u8 *mwRna_sub_2693ce(int a0) {
         }
         a7 = puVar2 + 0x20;
         for (iVar3 = 0; iVar3 < (int)(u32) * (u8 *)(a0 + 3); iVar3 = iVar3 + 1) {
-            puVar2 = (u8 *)mwRna_sub_268ddc(a0, iVar3, *(u32 *)(a0 + 0x50), a7);
+            puVar2 = (u8 *)mwRna_update_fields_268ddc(a0, iVar3, *(u32 *)(a0 + 0x50), a7);
         }
         *(u8 **)(a0 + 0x58) = puVar2;
     }
@@ -11957,11 +11978,11 @@ u8 *mwRna_sub_2693ce(int a0) {
 }
 
 /*
- * mwRna_sub_2694a4  0x8c2694a4
- * area name: sits between mwRna functions (same compilation unit)
- * called by: mwRna_sub_2695e4
+ * mwRna_sound_2694a4  0x8c2694a4
+ * area name: sits between mwRna functions (same compilation unit); behaviour name: mostly calls sound functions
+ * called by: mwRna_sound_2695e4
  */
-u32 mwRna_sub_2694a4(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 mwRna_sound_2694a4(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
     int iVar2;
     u32 uVar3;
@@ -11974,7 +11995,7 @@ u32 mwRna_sub_2694a4(int a0, u32 unused_a1, u32 a2, u32 a3) {
     if ((iVar2 == 1) && (*(char *)(a0 + 5) == '\x01')) {
         iVar2 = mwRna_all_channels_ready(a0, unused_a1, a2, a3);
         if (iVar2 == 1) {
-            mwRna_sub_268f3e(a0, unused_a1, a2, a3);
+            mwRna_uses_sd_irq_disable_268f3e(a0, unused_a1, a2, a3);
             *(u8 *)(a0 + 5) = 0;
             *(u32 *)puVar1 = 0;
         } else {
@@ -11986,30 +12007,30 @@ u32 mwRna_sub_2694a4(int a0, u32 unused_a1, u32 a2, u32 a3) {
         iVar2 = (**(code **)(**(int **)(a0 + 0x10) + 0x24))(*(int **)(a0 + 0x10), 1, a2, a3);
         if (iVar2 < 0x20) {
             unused_a1 = 0;
-            mwRna_sub_2690d8(a0, 0, a2, a3);
+            mwRna_sound_2690d8(a0, 0, a2, a3);
             *(u8 *)(a0 + 6) = 0;
         }
     }
     iVar2 = mwRna_is_output_on(a0);
     if (iVar2 == 1) {
-        mwRna_sub_268ea8(a0, unused_a1, a2, a3);
+        mwRna_sound_268ea8(a0, unused_a1, a2, a3);
     }
     iVar2 = mwRna_is_playing(a0);
     if (iVar2 == 1) {
         if (*(char *)(a0 + 5) != '\0')
             goto LAB_8c26958c;
-        iVar2 = mwRna_sub_269244(a0, unused_a1, a2, a3);
+        iVar2 = mwRna_uses_libgcc_divide_helper_269244(a0, unused_a1, a2, a3);
     } else {
         iVar2 = mwRna_is_output_on(a0);
         if ((iVar2 != 1) || (*(int *)(a0 + 0x28) <= *(int *)(a0 + 0x54)))
             goto LAB_8c26958c;
         if ((*(char *)(a0 + 5) == '\x01') && (iVar2 = mwRna_all_channels_ready(a0, unused_a1, a2, a3), iVar2 == 1)) {
-            mwRna_sub_269056(a0);
+            mwRna_init_fields_269056(a0);
             *(u8 *)(a0 + 5) = 0;
         }
         if (*(char *)(a0 + 5) != '\0')
             goto LAB_8c26958c;
-        iVar2 = mwRna_sub_2693ce(a0);
+        iVar2 = mwRna_uses_libgcc_divide_helper_2693ce(a0);
     }
     if (0 < iVar2) {
         *(u8 *)(a0 + 5) = 1;
@@ -12030,11 +12051,11 @@ LAB_8c26958c:
 }
 
 /*
- * mwRna_sub_2695e4  0x8c2695e4
- * area name: sits between mwRna functions (same compilation unit)
+ * mwRna_sound_2695e4  0x8c2695e4
+ * area name: sits between mwRna functions (same compilation unit); behaviour name: mostly calls sound functions
  * called by: thunk_FUN_8c2695e4
  */
-u32 mwRna_sub_2695e4(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 mwRna_sound_2695e4(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     char *a5;
     char *pcVar2;
@@ -12051,7 +12072,7 @@ u32 mwRna_sub_2695e4(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     pcVar4 = 0x8c4bd580;
     do {
         if (*pcVar4 == '\x01') {
-            mwRna_sub_2694a4(a4, a5, a2, a3);
+            mwRna_sound_2694a4(a4, a5, a2, a3);
         }
         pcVar4 = pcVar4 + iVar3;
         a4 = a4 + iVar3;
@@ -12079,7 +12100,7 @@ u32 mwRna_suspend(int a0, u32 a1, u32 a2, u32 a3) {
             iVar2 = mwRna_is_output_on(a0);
             uVar3 = mwRna_is_playing(a0);
             *(u32 *)(a0 + 0x88) = iVar2 << 1 | uVar3;
-            mwRna_sub_268ea8(a0, a1, a2, a3);
+            mwRna_sound_268ea8(a0, a1, a2, a3);
             a1 = 0;
             mwRna_set_play_sw(a0, 0, a2, a3);
             *(u8 *)(a0 + 7) = 1;
@@ -12090,7 +12111,7 @@ u32 mwRna_suspend(int a0, u32 a1, u32 a2, u32 a3) {
                 sd_irq_disable(&stack0xfffffff0);
                 *(u32 *)(a0 + 0x8c) = 0;
             }
-            mwRna_sub_269738(a0, a1, a2, a3);
+            mwRna_uses_debug_printf_269738(a0, a1, a2, a3);
         }
         uVar1 = sd_irq_restore(&stack0xfffffff0);
     }
@@ -12141,11 +12162,12 @@ u32 mwRna_is_suspended(int a0) {
 }
 
 /*
- * mwRna_sub_269738  0x8c269738
+ * mwRna_uses_debug_printf_269738  0x8c269738
  * name hint from a string it uses: E1205 Illigal parameter MWRN; area name: sits between mwRna functions (same
- * compilation unit) called by: mwRna_suspend strings: "E1205:Illigal parameter (MWRNA=NULL)"
+ * compilation unit); behaviour name: its main named callee is debug_printf called by: mwRna_suspend strings:
+ * "E1205:Illigal parameter (MWRNA=NULL)"
  */
-u32 mwRna_sub_269738(int a0, int a1, u8 *a2, u32 a3) {
+u32 mwRna_uses_debug_printf_269738(int a0, int a1, u8 *a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     u8 *puVar3;
@@ -12162,9 +12184,9 @@ u32 mwRna_sub_269738(int a0, int a1, u8 *a2, u32 a3) {
     if (*(char *)(a0 + 5) == '\x01') {
         iVar2 = mwRna_is_playing(a0);
         if (iVar2 == 1) {
-            mwRna_sub_268f3e(a0, a1, a2, a3);
+            mwRna_uses_sd_irq_disable_268f3e(a0, a1, a2, a3);
         } else {
-            mwRna_sub_269056(a0);
+            mwRna_init_fields_269056(a0);
         }
         *(u8 *)(a0 + 5) = 0;
     }
@@ -12191,7 +12213,7 @@ u32 mwRna_sub_269738(int a0, int a1, u8 *a2, u32 a3) {
 /*
  * mwRnaDiscardData  0x8c269808
  * named from the library error message it prints (mwRnaDiscardData)
- * called by: ADX_sub_2641ee, mwRnaDiscardData_wrap
+ * called by: ADX_sound_2641ee, mwRnaDiscardData_wrap
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"; "E1210:mwRnaDiscardData Play Switch is ON"
  */
 u32 mwRnaDiscardData(int a0, int a1, u8 *a2, u8 *a3) {
@@ -12228,9 +12250,9 @@ u32 mwRnaDiscardData(int a0, int a1, u8 *a2, u8 *a3) {
                 mwRnaPause(a0, a1, a2, a3, iVar3);
                 iVar2 = mwRna_is_playing(a0);
                 if (iVar2 == 1) {
-                    mwRna_sub_268f3e(a0, a1, a2, a3);
+                    mwRna_uses_sd_irq_disable_268f3e(a0, a1, a2, a3);
                 } else {
-                    mwRna_sub_269056(a0);
+                    mwRna_init_fields_269056(a0);
                 }
                 *(u8 *)(a0 + 5) = 0;
             }
@@ -12302,7 +12324,7 @@ u32 mwRnaGetTime(int a0, int *a1, u32 *a2, u32 a3) {
         uVar1 = debug_printf(0, a1, a2, a3, "E1205:Illigal parameter (MWRNA=NULL)", a2);
     } else {
         puVar2 = a2;
-        mwRna_sub_268ea8(a0, a1, a2, a3);
+        mwRna_sound_268ea8(a0, a1, a2, a3);
         *a1 = *(int *)(a0 + 0x4c) - *(int *)(a0 + 0x34);
         uVar1 = mwRnaGetSfreq(a0);
         *puVar2 = uVar1;
@@ -12331,8 +12353,8 @@ u32 mwRna_get_status(int a0) {
 /*
  * mwRna_is_playing  0x8c269a30
  * bit 0 of +1 of an mwRna handle; -1 for NULL
- * called by: mwRnaDiscardData, mwRna_sub_268ea8, mwRna_sub_2690d8, mwRna_sub_2694a4, mwRna_sub_269738, mwRna_suspend
- * strings: "E1205:Illigal parameter (MWRNA=NULL)"
+ * called by: mwRnaDiscardData, mwRna_sound_268ea8, mwRna_sound_2690d8, mwRna_sound_2694a4, mwRna_suspend,
+ * mwRna_uses_debug_printf_269738 strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRna_is_playing(int a0) {
     u32 r5;
@@ -12350,7 +12372,7 @@ u32 mwRna_is_playing(int a0) {
 /*
  * mwRna_is_output_on  0x8c269a56
  * bit 1 of +1 of an mwRna handle; -1 for NULL
- * called by: mwRnaDiscardData, mwRna_set_play_sw, mwRna_sub_2694a4, mwRna_suspend
+ * called by: mwRnaDiscardData, mwRna_set_play_sw, mwRna_sound_2694a4, mwRna_suspend
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRna_is_output_on(int a0) {
@@ -12387,7 +12409,7 @@ u32 mwRna_status_bit2(int a0) {
 /*
  * mwRna_get_read_pos  0x8c269aa8
  * +0x34 of an mwRna handle
- * called by: ADXT_stop_when_drained, ADXT_sub_264a42, mwRna_get_read_pos_wrap
+ * called by: ADXT_stop_when_drained, ADXT_uses_get_field_1_s8_264a42, mwRna_get_read_pos_wrap
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRna_get_read_pos(int a0) {
@@ -12424,7 +12446,7 @@ u32 mwRna_get_buffered(int a0) {
 /*
  * mwRnaSetNumChan  0x8c269ae8
  * named from the library error message it prints (mwRnaSetNumChan)
- * called by: ADXT_sub_2647f4, mwRnaSetNumChan_wrap, sd_sub_268b70
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4, mwRnaSetNumChan_wrap, sd_sound_268b70
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"; "E1211:mwRnaSetNumChan Illigal parameter(NCH>MAXNCH)"
  */
 u32 mwRnaSetNumChan(int a0, int a1, u32 a2, u32 a3) {
@@ -12477,7 +12499,7 @@ u32 mwRna_set_field_44(int a0, u32 a1) {
 /*
  * mwRnaSetBitPerSmpl  0x8c269b8e
  * sets bits per sample (+8), rescaling the buffer length +0x28; output vtable slot 0x2c
- * called by: ADXT_sub_2647f4, mwRnaSetBitPerSmpl_wrap, mwRna_sub_269fc8, sd_sub_268b70
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4, mwRnaSetBitPerSmpl_wrap, mwRna_sound_269fc8, sd_sound_268b70
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRnaSetBitPerSmpl(int a0, u32 a1, u32 a2, u32 a3) {
@@ -12503,7 +12525,7 @@ u32 mwRnaSetBitPerSmpl(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * mwRnaSetSfreq  0x8c269c04
  * sets the sampling rate (+0xc); output vtable slot 0x24
- * called by: ADXT_sub_2647f4, mwRnaSetSfreq_wrap, mwRna_sub_269fc8, sd_sub_268b70
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4, mwRnaSetSfreq_wrap, mwRna_sound_269fc8, sd_sound_268b70
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRnaSetSfreq(int a0, u32 a1, u32 a2, u32 a3) {
@@ -12521,7 +12543,7 @@ u32 mwRnaSetSfreq(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * mwRnaSetOutVol  0x8c269c3e
  * output volume clamped to -999..0 (+0x60); output vtable slot 0x34
- * called by: ADXT_SetOutVol_like, ADXT_sub_2647f4, mwRnaSetOutVol_wrap
+ * called by: ADXT_SetOutVol_like, ADXT_uses_libgcc_divide_helper_2647f4, mwRnaSetOutVol_wrap
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRnaSetOutVol(int a0, int a1, u32 a2, u32 a3) {
@@ -12781,7 +12803,7 @@ u32 mwRna_get_fx2_level(int a0) {
 
 /*
  * thunk_FUN_8c26a130  0x8c269f3a
- * called by: alt_entry_262814, cri_sub_262810
+ * called by: alt_entry_262814, cri_uses_irq_disable_nested_262810
  */
 u32 thunk_FUN_8c26a130(u32 unused_a0, u32 a1) {
     u32 uVar1;
@@ -12831,11 +12853,12 @@ u32 mwRna_get_param3(int a0, u32 *a1, u32 *a2) {
 }
 
 /*
- * mwRna_sub_269fc8  0x8c269fc8
+ * mwRna_sound_269fc8  0x8c269fc8
  * name hint from a string it uses: E1205 Illigal parameter MWRN; area name: sits between mwRna functions (same
- * compilation unit) called by: cri_sub_262a4c strings: "E1205:Illigal parameter (MWRNA=NULL)"
+ * compilation unit); behaviour name: mostly calls sound functions called by: cri_sound_262a4c strings: "E1205:Illigal
+ * parameter (MWRNA=NULL)"
  */
-u32 mwRna_sub_269fc8(int a0, u32 a1, int *a2) {
+u32 mwRna_sound_269fc8(int a0, u32 a1, int *a2) {
     u32 r7;
     u32 uVar1;
     u32 uVar2;
@@ -12893,7 +12916,7 @@ u32 mwRna_sub_269fc8(int a0, u32 a1, int *a2) {
 
 /*
  * noop_26a0f8  0x8c26a0f8
- * called by: sd_sub_2689c8
+ * called by: sd_copy_2689c8
  */
 u32 noop_26a0f8(void) {
     u32 in_r0;
@@ -12905,7 +12928,7 @@ u32 noop_26a0f8(void) {
  * sd_irq_disable  0x8c26a100
  * saves SR.IMASK in *a0 and returns SR with IMASK 15
  * called by: mwRnaDestroy, mwRnaDiscardData, mwRnaStart_like, mwRnaStop, mwRna_resume, mwRna_set_play_sw,
- * mwRna_sub_268ea8, mwRna_sub_268f3e (+5 more)
+ * mwRna_sound_268ea8, mwRna_sound_2690d8 (+5 more)
  */
 u32 sd_irq_disable(u32 *a0) {
     u32 uVar1;
@@ -12931,7 +12954,7 @@ u32 sd_irq_disable(u32 *a0) {
  * sd_irq_restore  0x8c26a118
  * SR with IMASK from *a0
  * called by: mwRnaDestroy, mwRnaDiscardData, mwRnaStart_like, mwRnaStop, mwRna_resume, mwRna_set_play_sw,
- * mwRna_sub_268ea8, mwRna_sub_268f3e (+5 more)
+ * mwRna_sound_268ea8, mwRna_sound_2690d8 (+5 more)
  */
 u32 sd_irq_restore(u32 *a0) {
     u8 in_MD;
@@ -12950,11 +12973,11 @@ u32 sd_irq_restore(u32 *a0) {
 }
 
 /*
- * sd_sub_26a130  0x8c26a130
- * area name: in the sd library code range
- * called by: sd_sub_2689c8
+ * sd_copy_26a130  0x8c26a130
+ * area name: in the sd library code range; behaviour name: mostly calls copy functions
+ * called by: sd_copy_2689c8
  */
-u32 sd_sub_26a130(int a0, u32 a1) {
+u32 sd_copy_26a130(int a0, u32 a1) {
     u8 *puVar1;
     u32 uVar2;
 
@@ -12986,10 +13009,10 @@ u32 debug_printf(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0, u3
 }
 
 /*
- * sd_sub_26a152  0x8c26a152
- * area name: in the sd library code range
+ * sd_uses_vsprintf_like_26a152  0x8c26a152
+ * area name: in the sd library code range; behaviour name: its main named callee is vsprintf_like
  */
-u32 sd_sub_26a152(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12) {
+u32 sd_uses_vsprintf_like_26a152(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12) {
     u32 uVar1;
     u32 *ar6_00;
 
@@ -13006,11 +13029,11 @@ u32 sd_sub_26a152(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3, u32 s0, u32 s4, 
 }
 
 /*
- * sd_sub_26a1a4  0x8c26a1a4
- * area name: in the sd library code range
- * called by: sd_sub_26a204
+ * sd_copy_26a1a4  0x8c26a1a4
+ * area name: in the sd library code range; behaviour name: mostly calls copy functions
+ * called by: sd_copy_26a204
  */
-u32 sd_sub_26a1a4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 sd_copy_26a1a4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -13029,11 +13052,11 @@ u32 sd_sub_26a1a4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * sd_sub_26a1ca  0x8c26a1ca
- * area name: in the sd library code range
- * called by: sd_sub_26a246
+ * sd_scan_loop_26a1ca  0x8c26a1ca
+ * area name: in the sd library code range; behaviour name: a loop that only reads
+ * called by: sd_sound_26a246
  */
-u32 sd_sub_26a1ca(void) {
+u32 sd_scan_loop_26a1ca(void) {
     int *piVar1;
     int *piVar2;
 
@@ -13054,7 +13077,7 @@ u32 sd_sub_26a1ca(void) {
 
 /*
  * clear_field_0_26a1f2  0x8c26a1f2
- * called by: sd_sub_26a5de
+ * called by: sd_uses_debug_printf_26a5de
  */
 u32 clear_field_0_26a1f2(u32 *a0) {
     u32 in_r0;
@@ -13065,28 +13088,28 @@ u32 clear_field_0_26a1f2(u32 *a0) {
 
 /*
  * get_field_4_26a1f8  0x8c26a1f8
- * called by: sd_sub_26a246
+ * called by: sd_sound_26a246
  */
 u32 get_field_4_26a1f8(int a0) {
     return *(u32 *)(a0 + 4);
 }
 
 /*
- * sd_sub_26a204  0x8c26a204
- * area name: in the sd library code range
+ * sd_copy_26a204  0x8c26a204
+ * area name: in the sd library code range; behaviour name: mostly calls copy functions
  */
-u32 sd_sub_26a204(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 sd_copy_26a204(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
     memset(0x8c4beb88, 0, (int)0x2a0);
-    uVar1 = sd_sub_26a1a4();
+    uVar1 = sd_copy_26a1a4();
     return uVar1;
 }
 
 /*
  * sd_find_free_slot_beb88  0x8c26a220
  * first free 0x54-byte slot of the eight at 8c4beb88, else 0
- * called by: sd_sub_26a246
+ * called by: sd_sound_26a246
  */
 u32 sd_find_free_slot_beb88(void) {
     u32 uVar1;
@@ -13102,10 +13125,11 @@ u32 sd_find_free_slot_beb88(void) {
 }
 
 /*
- * sd_sub_26a246  0x8c26a246
- * name hint from a string it uses: E1221 Illigal parameter NCH ; area name: in the sd library code range
+ * sd_sound_26a246  0x8c26a246
+ * name hint from a string it uses: E1221 Illigal parameter NCH ; area name: in the sd library code range; behaviour
+ * name: mostly calls sound functions
  */
-u32 sd_sub_26a246(int a0, int a1, int a2, int a3) {
+u32 sd_sound_26a246(int a0, int a1, int a2, int a3) {
     u8 *puVar1;
     u8 *puVar2;
     u8 *puVar3;
@@ -13134,7 +13158,7 @@ u32 sd_sub_26a246(int a0, int a1, int a2, int a3) {
         *puVar5 = (&DATA_8c278600);
         for (iVar10 = 0; puVar2 = (&clear_field_0_26a1f2), iVar10 < a0; iVar10 = iVar10 + 1) {
             puVar8 = puVar5 + iVar10 + 6;
-            uVar9 = sd_sub_26a1ca();
+            uVar9 = sd_scan_loop_26a1ca();
             *puVar8 = uVar9;
             if (puVar5[iVar10 + 6] == 0) {
                 (*(code *)puVar1)(iVar6, a1, a2, a3);
@@ -13165,7 +13189,7 @@ u32 sd_sub_26a246(int a0, int a1, int a2, int a3) {
                 a1 = *piStack_3c;
                 iVar10 = (0x10 - a1) * -0x4040 + 0x200000;
                 a2 = iVar10;
-                iVar6 = sd_sub_268320(0x52535053, a1, iVar10, a3);
+                iVar6 = sd_sound_268320(0x52535053, a1, iVar10, a3);
                 if (iVar6 != 0) {
                     (*(code *)puVar1)(iVar6, a1, a2, a3);
                 }
@@ -13178,7 +13202,7 @@ u32 sd_sub_26a246(int a0, int a1, int a2, int a3) {
         puVar5[0x10] = (int)0x4000;
         for (puStack_40 = NULL; puVar3 = (&sd_handle_release), (int)puStack_40 < a0;
              puStack_40 = (u32 *)((int)puStack_40 + 1)) {
-            iVar6 = aica_sub_265704(&uStack_30);
+            iVar6 = aica_sound_265704(&uStack_30);
             if (iVar6 != 0) {
                 (*(code *)puVar1)(iVar6, a1, a2, a3);
                 piStack_3c = puVar5 + 8;
@@ -13210,7 +13234,7 @@ u32 sd_sub_26a246(int a0, int a1, int a2, int a3) {
         }
         for (puStack_40 = NULL; (int)puStack_40 < a0; puStack_40 = (u32 *)((int)puStack_40 + 1)) {
             puVar8 = &uStack_30;
-            iVar6 = aica_sub_265704(puVar8);
+            iVar6 = aica_sound_265704(puVar8);
             if (iVar6 != 0) {
                 (*(code *)puVar1)(puVar8, a1, a2, a3);
                 puStack_38 = puVar5 + 10;
@@ -13256,17 +13280,17 @@ u32 sd_sub_26a246(int a0, int a1, int a2, int a3) {
         }
         if (a0 == 1) {
             puVar8 = &uStack_2c;
-            iVar6 = sd_sub_2675d8(puVar8, a1, a2, a3, 1, (int)(char)aiStack_28[0]);
+            iVar6 = sd_sound_2675d8(puVar8, a1, a2, a3, 1, (int)(char)aiStack_28[0]);
         } else {
             puVar8 = &uStack_2c;
-            iVar6 = sd_sub_2675d8(puVar8, a1, a2, a3, a0, (int)(char)aiStack_28[0]);
+            iVar6 = sd_sound_2675d8(puVar8, a1, a2, a3, a0, (int)(char)aiStack_28[0]);
         }
         puVar4 = (&thunk_FUN_8c2678a4);
         if (iVar6 == 0) {
             puVar5[0xc] = uStack_2c;
             puVar5[3] = a0;
             puVar5[2] = a0;
-            for (iVar6 = 0; puVar2 = (&sd_sub_267914), iVar6 < (int)puVar5[2]; iVar6 = iVar6 + 1) {
+            for (iVar6 = 0; puVar2 = (&sd_sound_267914), iVar6 < (int)puVar5[2]; iVar6 = iVar6 + 1) {
                 iVar10 = iVar6;
                 iVar7 = (*(code *)puVar4)(puVar5[0xc], iVar6, a2, a3);
                 if (iVar7 != 0) {
@@ -13307,10 +13331,11 @@ u32 sd_sub_26a246(int a0, int a1, int a2, int a3) {
 }
 
 /*
- * sd_sub_26a5de  0x8c26a5de
- * name hint from a string it uses: E1230 sdMemBlkDestroy return; area name: in the sd library code range
+ * sd_uses_debug_printf_26a5de  0x8c26a5de
+ * name hint from a string it uses: E1230 sdMemBlkDestroy return; area name: in the sd library code range; behaviour
+ * name: its main named callee is debug_printf
  */
-u32 sd_sub_26a5de(u32 unused_a0, int unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
+u32 sd_uses_debug_printf_26a5de(u32 unused_a0, int unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
     int iVar1;
     int iVar2;
     int unaff_r14;
@@ -13418,10 +13443,11 @@ u32 mwSndStop(u32 unused_a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * mwSnd_sub_26a772  0x8c26a772
- * area name: sits between mwSnd functions (same compilation unit)
+ * mwSnd_uses_libgcc_divide_helper_26a772  0x8c26a772
+ * area name: sits between mwSnd functions (same compilation unit); behaviour name: its main named callee is
+ * libgcc_divide_helper_010468
  */
-int mwSnd_sub_26a772(int a0) {
+int mwSnd_uses_libgcc_divide_helper_26a772(int a0) {
     int iVar1;
 
     iVar1 = libgcc_divide_helper_010468(*(u32 *)(a0 + 0x40), *(u32 *)(a0 + 0x10));
@@ -13477,7 +13503,7 @@ int mwSndGetPlayPos(int a0, u32 a1) {
 
     s4 = 1;
     uStack_c = a1;
-    sd_sub_266f38(*(u32 *)(a0 + 0x30), 0, &stack0xffffffec);
+    sd_sound_266f38(*(u32 *)(a0 + 0x30), 0, &stack0xffffffec);
     if ((s4 & 1) == 0) {
         iVar1 = 0;
     } else {
@@ -13653,11 +13679,11 @@ u32 mwSndGetPan(int a0, u32 a1) {
 }
 
 /*
- * mwSnd_sub_26a9b8  0x8c26a9b8
+ * mwSnd_fill_loop_26a9b8  0x8c26a9b8
  * name hint from a string it uses: E1245 sdPstmSetFxCh return e; area name: sits between mwSnd functions (same
- * compilation unit)
+ * compilation unit); behaviour name: a loop that writes memory
  */
-u32 mwSnd_sub_26a9b8(int a0, u32 unused_a1, int a2, u32 a3) {
+u32 mwSnd_fill_loop_26a9b8(int a0, u32 unused_a1, int a2, u32 a3) {
     u8 *puVar1;
     u8 *puVar2;
     int iVar3;
@@ -13669,7 +13695,7 @@ u32 mwSnd_sub_26a9b8(int a0, u32 unused_a1, int a2, u32 a3) {
     int iVar7;
     char in_T;
 
-    puVar2 = (&sd_sub_267a98);
+    puVar2 = (&sd_sound_267a98);
     puVar1 = (&debug_printf);
     if (in_T == '\x01') {
         if (a2 < 0) {
@@ -13692,7 +13718,7 @@ u32 mwSnd_sub_26a9b8(int a0, u32 unused_a1, int a2, u32 a3) {
         }
         *(int *)(a0 + 0x48) = unaff_r10;
     }
-    puVar2 = (&sd_sub_267b20);
+    puVar2 = (&sd_sound_267b20);
     uVar4 = 0x48;
     for (iVar7 = 0; iVar7 < *(int *)(a0 + 0xc); iVar7 = iVar7 + 1) {
         iVar5 = iVar7;
@@ -13707,11 +13733,11 @@ u32 mwSnd_sub_26a9b8(int a0, u32 unused_a1, int a2, u32 a3) {
 }
 
 /*
- * mwSnd_sub_26aa48  0x8c26aa48
- * area name: sits between mwSnd functions (same compilation unit)
- * called by: mwSnd_sub_26ab86
+ * mwSnd_calc_26aa48  0x8c26aa48
+ * area name: sits between mwSnd functions (same compilation unit); behaviour name: integer arithmetic on its arguments
+ * called by: mwSnd_uses_ret_const_0_26ab86
  */
-u32 mwSnd_sub_26aa48(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0) {
+u32 mwSnd_calc_26aa48(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0) {
     *a1 = 0;
     *a2 = 0;
     return ain0;
@@ -13753,7 +13779,7 @@ int alt_entry_26aa5c(int a0, int a1, int a2) {
         a7 = 0;
         a5 = a5_00;
         a6 = iVar2;
-        a4 = sd_sub_267d74(*(u32 *)(unaff_r14 + 0x30), a5_00, iVar2, 0);
+        a4 = sd_sound_267d74(*(u32 *)(unaff_r14 + 0x30), a5_00, iVar2, 0);
         iVar1 = 0;
         if (a4 != 0) {
             iVar1 = debug_printf(a4, a5, a6, a7);
@@ -13763,22 +13789,22 @@ int alt_entry_26aa5c(int a0, int a1, int a2) {
 }
 
 /*
- * mwSnd_sub_26aad4  0x8c26aad4
- * area name: sits between mwSnd functions (same compilation unit)
- * called by: mwSnd_sub_26ab86
+ * mwSnd_calc_26aad4  0x8c26aad4
+ * area name: sits between mwSnd functions (same compilation unit); behaviour name: integer arithmetic on its arguments
+ * called by: mwSnd_uses_ret_const_0_26ab86
  */
-u32 mwSnd_sub_26aad4(int a0, u32 *a1, u32 *a2) {
+u32 mwSnd_calc_26aad4(int a0, u32 *a1, u32 *a2) {
     *a1 = *(u32 *)(a0 + 0x4c);
     *a2 = *(u32 *)(a0 + 0x50);
     return 0x50;
 }
 
 /*
- * mwSnd_sub_26aaea  0x8c26aaea
+ * mwSnd_scan_loop_26aaea  0x8c26aaea
  * name hint from a string it uses: E1247 sdPstmSetDrctLev retur; area name: sits between mwSnd functions (same
- * compilation unit)
+ * compilation unit); behaviour name: a loop that only reads
  */
-u32 mwSnd_sub_26aaea(int a0, int a1, u32 unused_a2, u32 a3) {
+u32 mwSnd_scan_loop_26aaea(int a0, int a1, u32 unused_a2, u32 a3) {
     u8 *puVar1;
     u8 *puVar2;
     u32 in_r0;
@@ -13789,7 +13815,7 @@ u32 mwSnd_sub_26aaea(int a0, int a1, u32 unused_a2, u32 a3) {
     int a5_00;
     char in_T;
 
-    puVar2 = (&sd_sub_267a10);
+    puVar2 = (&sd_sound_267a10);
     puVar1 = (&debug_printf);
     if (in_T == '\x01') {
         if (a1 < 0) {
@@ -13814,27 +13840,28 @@ u32 mwSnd_sub_26aaea(int a0, int a1, u32 unused_a2, u32 a3) {
 
 /*
  * ret_const_0_26ab42  0x8c26ab42
- * called by: mwSnd_sub_26ab86
+ * called by: mwSnd_uses_ret_const_0_26ab86
  */
 u32 ret_const_0_26ab42(u32 unused_a0, u32 a1) {
     return 0;
 }
 
 /*
- * mwSnd_sub_26ab86  0x8c26ab86
- * area name: sits between mwSnd functions (same compilation unit)
+ * mwSnd_uses_ret_const_0_26ab86  0x8c26ab86
+ * area name: sits between mwSnd functions (same compilation unit); behaviour name: its main named callee is
+ * ret_const_0_26ab42
  */
-u32 mwSnd_sub_26ab86(u32 a0, int a1, u32 unused_a2, u32 *a3) {
+u32 mwSnd_uses_ret_const_0_26ab86(u32 a0, int a1, u32 unused_a2, u32 *a3) {
     u32 uVar1;
     int *unaff_r14;
     char in_T;
 
     if (in_T != '\0') {
-        uVar1 = mwSnd_sub_26aa48(a0, unaff_r14, a3, a3);
+        uVar1 = mwSnd_calc_26aa48(a0, unaff_r14, a3, a3);
         return uVar1;
     }
     if (a1 == 1) {
-        uVar1 = mwSnd_sub_26aad4(a0, unaff_r14, a3);
+        uVar1 = mwSnd_calc_26aad4(a0, unaff_r14, a3);
         return uVar1;
     }
     if (a1 == 2) {
@@ -13850,7 +13877,7 @@ u32 mwSnd_sub_26ab86(u32 a0, int a1, u32 unused_a2, u32 *a3) {
 /*
  * mwSndTrns_26abf0  0x8c26abf0
  * named from the library error message it prints (mwSndTrns)
- * called by: mwSndTrns, mwSnd_sub_26ae54, mwSnd_sub_26af7a
+ * called by: mwSndTrns, mwSnd_sound_26ae54, mwSnd_sound_26af7a
  * strings: "E1243:sdMemBlkTransfer return error in mwSndTrns"; "E1242:sdMemBlkSetPrm return error in mwSndTrns"
  */
 u32 mwSndTrns_26abf0(int a0, int a1, int a2, u32 a3, int s0) {
@@ -13964,7 +13991,7 @@ u32 mwSndGetTrnsStat(int a0, int a1, u32 a2, u32 a3) {
 /*
  * mwSnd_move_to_work_mem  0x8c26ae04
  * copies a sound from sound memory into the work area; prints E1227 on error
- * called by: mwSnd_sub_26ae54, mwSnd_sub_26af7a
+ * called by: mwSnd_sound_26ae54, mwSnd_sound_26af7a
  * strings: "E1227:sdMoveSndMemToWrkMem return error"
  */
 u32 mwSnd_move_to_work_mem(int a0, int a1, u32 a2, int a3) {
@@ -13990,10 +14017,10 @@ u32 mwSnd_move_to_work_mem(int a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * mwSnd_sub_26ae54  0x8c26ae54
- * area name: sits between mwSnd functions (same compilation unit)
+ * mwSnd_sound_26ae54  0x8c26ae54
+ * area name: sits between mwSnd functions (same compilation unit); behaviour name: mostly calls sound functions
  */
-int mwSnd_sub_26ae54(int a0, u32 a1) {
+int mwSnd_sound_26ae54(int a0, u32 a1) {
     u32 r6;
     int iVar1;
     int a7;
@@ -14027,11 +14054,11 @@ int mwSnd_sub_26ae54(int a0, u32 a1) {
 }
 
 /*
- * mwSnd_sub_26af42  0x8c26af42
- * area name: sits between mwSnd functions (same compilation unit)
- * called by: game_sub_26b092, game_sub_26b132
+ * mwSnd_uses_libgcc_divide_helper_26af42  0x8c26af42
+ * area name: sits between mwSnd functions (same compilation unit); behaviour name: its main named callee is
+ * libgcc_divide_helper_010614 called by: game_uses_libgcc_divide_helper_26b132, game_uses_sd_wait_idle_set_1a8_26b092
  */
-int mwSnd_sub_26af42(u32 unused_a0, int a1, int *a2, u32 unused_a3, int ain0) {
+int mwSnd_uses_libgcc_divide_helper_26af42(u32 unused_a0, int a1, int *a2, u32 unused_a3, int ain0) {
     int d;
     int iVar1;
 
@@ -14050,11 +14077,11 @@ int mwSnd_sub_26af42(u32 unused_a0, int a1, int *a2, u32 unused_a3, int ain0) {
 }
 
 /*
- * mwSnd_sub_26af7a  0x8c26af7a
- * area name: sits between mwSnd functions (same compilation unit)
- * called by: game_sub_26b092, game_sub_26b132
+ * mwSnd_sound_26af7a  0x8c26af7a
+ * area name: sits between mwSnd functions (same compilation unit); behaviour name: mostly calls sound functions
+ * called by: game_uses_libgcc_divide_helper_26b132, game_uses_sd_wait_idle_set_1a8_26b092
  */
-int mwSnd_sub_26af7a(int a0, u32 a1, u32 a2, int a3) {
+int mwSnd_sound_26af7a(int a0, u32 a1, u32 a2, int a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -14105,10 +14132,10 @@ int mwSnd_sub_26af7a(int a0, u32 a1, u32 a2, int a3) {
 }
 
 /*
- * game_sub_26b092  0x8c26b092
- * area name: game code; nothing names its area yet
+ * game_uses_sd_wait_idle_set_1a8_26b092  0x8c26b092
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is sd_wait_idle_set_1a8
  */
-u32 game_sub_26b092(int a0, int a1, int *a2, u32 a3) {
+u32 game_uses_sd_wait_idle_set_1a8_26b092(int a0, int a1, int *a2, u32 a3) {
     int iVar1;
     int *piVar2;
     int ar5_00;
@@ -14119,7 +14146,7 @@ u32 game_sub_26b092(int a0, int a1, int *a2, u32 a3) {
 
     ar5_00 = a1;
     piStack_20 = a2;
-    sd_sub_265ab0(&uStack_24);
+    sd_test_265ab0(&uStack_24);
     sd_wait_idle_set_1a8(0, ar5_00, a2, a3);
     iVar1 = libgcc_divide_helper_010468(0x100, *(u32 *)(a0 + 0x10));
     iVar1 = iVar1 << 3;
@@ -14132,11 +14159,11 @@ u32 game_sub_26b092(int a0, int a1, int *a2, u32 a3) {
         if (0 < iVar1) {
             a2 = (int *)((int)piVar2 + 1);
         }
-        mwSnd_sub_26af42(a1, a2, &stack0xffffffd8, a3, in_stack_ffffffd8);
+        mwSnd_uses_libgcc_divide_helper_26af42(a1, a2, &stack0xffffffd8, a3, in_stack_ffffffd8);
         a3 = in_stack_ffffffd8;
         ar5_00 = iVar3;
         in_stack_ffffffd8 = a3;
-        mwSnd_sub_26af7a(a0, iVar3, a2, a3);
+        mwSnd_sound_26af7a(a0, iVar3, a2, a3);
     }
     sd_wait_idle_set_1a8(uStack_24, ar5_00, a2, a3);
     *piStack_20 = a1 + *(int *)(a0 + 0x44);
@@ -14144,10 +14171,11 @@ u32 game_sub_26b092(int a0, int a1, int *a2, u32 a3) {
 }
 
 /*
- * game_sub_26b132  0x8c26b132
- * area name: game code; nothing names its area yet
+ * game_uses_libgcc_divide_helper_26b132  0x8c26b132
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is
+ * libgcc_divide_helper_010468
  */
-int game_sub_26b132(int a0, u32 a1, u32 unused_a2, u32 a3) {
+int game_uses_libgcc_divide_helper_26b132(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u8 *ar5_00;
     int iVar2;
@@ -14168,14 +14196,14 @@ int game_sub_26b132(int a0, u32 a1, u32 unused_a2, u32 a3) {
         iVar2 = libgcc_divide_helper_010614(a1, iVar1);
         *(int *)(a0 + 0x44) = iVar1 - iVar2;
         ar5_01 = ar5_00;
-        mwSnd_sub_26af42(a1, ar5_00, &stack0xffffffe4, a3, in_stack_ffffffe4);
-        sd_sub_265ab0(auStack_18);
+        mwSnd_uses_libgcc_divide_helper_26af42(a1, ar5_00, &stack0xffffffe4, a3, in_stack_ffffffe4);
+        sd_test_265ab0(auStack_18);
         sd_wait_idle_set_1a8(0, ar5_01, ar6_00, a3);
         for (a5 = NULL; (int)a5 < *(int *)(a0 + 0xc); a5 = a5 + 1) {
             ar5_01 = a5;
             ar6_00 = ar5_00;
             uVar3 = in_stack_ffffffe4;
-            mwSnd_sub_26af7a(a0, a5, ar5_00, in_stack_ffffffe4);
+            mwSnd_sound_26af7a(a0, a5, ar5_00, in_stack_ffffffe4);
             a3 = in_stack_ffffffe4;
             in_stack_ffffffe4 = uVar3;
         }
@@ -14187,7 +14215,7 @@ int game_sub_26b132(int a0, u32 a1, u32 unused_a2, u32 a3) {
 
 /*
  * ret_const_8c2785e8_26b1ca  0x8c26b1ca
- * called by: sd_sub_2689c8
+ * called by: sd_copy_2689c8
  */
 u32 ret_const_8c2785e8_26b1ca(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
     return 0x8c2785e8;
@@ -14196,7 +14224,8 @@ u32 ret_const_8c2785e8_26b1ca(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * sr_get_imask  0x8c26b1e0
  * the SR interrupt mask (IMASK)
- * called by: game_sub_26b32e, game_sub_26b3a0, game_sub_26b3f8, game_sub_26b490
+ * called by: game_uses_sr_get_imask_26b32e, game_uses_sr_get_imask_26b3a0, game_uses_sr_get_imask_26b3f8,
+ * game_uses_sr_get_imask_26b490
  */
 u32 sr_get_imask(void) {
     u8 in_IMASK;
@@ -14209,7 +14238,8 @@ u32 sr_get_imask(void) {
 /*
  * sr_with_imask  0x8c26b1f8
  * SR with IMASK replaced by a1
- * called by: game_sub_26b32e, game_sub_26b3a0, game_sub_26b3f8, game_sub_26b490
+ * called by: game_uses_sr_get_imask_26b32e, game_uses_sr_get_imask_26b3a0, game_uses_sr_get_imask_26b3f8,
+ * game_uses_sr_get_imask_26b490
  */
 u32 sr_with_imask(u32 unused_a0, u32 a1) {
     u8 in_MD;
@@ -14230,7 +14260,7 @@ u32 sr_with_imask(u32 unused_a0, u32 a1) {
 /*
  * init_once_clear_4bf038  0x8c26b212
  * clears the 0x480-byte table at 8c4bf038 on the first call; counts calls
- * called by: alt_entry_262814, cri_sub_262810
+ * called by: alt_entry_262814, cri_uses_irq_disable_nested_262810
  */
 u32 init_once_clear_4bf038(void) {
     u8 *puVar1;
@@ -14262,7 +14292,7 @@ u32 alt_entry_26b216(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * release_clear_4bf038  0x8c26b234
  * drops a reference; clears the 0x480-byte table at 8c4bf038 when the last one goes
- * called by: cri_sub_2628fa
+ * called by: cri_uses_irq_disable_nested_2628fa
  */
 u32 release_clear_4bf038(void) {
     u32 in_r0;
@@ -14279,11 +14309,11 @@ u32 release_clear_4bf038(void) {
 }
 
 /*
- * ADXT_sub_26b250  0x8c26b250
- * area name: most of its named callers are ADXT
+ * ADXT_calls_update_fields_26b250  0x8c26b250
+ * area name: most of its named callers are ADXT; behaviour name: its callees mostly do: update_fields
  * called by: ADXT_StartMem, ADXT_StartMemIdx
  */
-u32 ADXT_sub_26b250(u32 a0, u32 a1) {
+u32 ADXT_calls_update_fields_26b250(u32 a0, u32 a1) {
     int iVar1;
     int ar6_00;
     u32 *ar4_00;
@@ -14306,7 +14336,7 @@ u32 ADXT_sub_26b250(u32 a0, u32 a1) {
     *(u8 **)(iVar1 + 0x8c4bf040) = &g_8c273978;
     *(u8 **)(iVar1 + 0x8c4bf054) = &g_8c26b20e;
     *(u32 **)(iVar1 + 0x8c4bf058) = ar4_00;
-    game_sub_26b2da(ar4_00, a1, ar6_00, 0x8c4bf038);
+    game_update_fields_26b2da(ar4_00, a1, ar6_00, 0x8c4bf038);
     return ar4_00;
 }
 
@@ -14338,15 +14368,15 @@ u32 alt_entry_26b254(u32 a0, u32 a1) {
     *(u8 **)(iVar1 + 0x8c4bf040) = &g_8c273978;
     *(u8 **)(iVar1 + 0x8c4bf054) = &g_8c26b20e;
     *(u32 **)(iVar1 + 0x8c4bf058) = ar4_00;
-    game_sub_26b2da(ar4_00, a1, ar6_00, 0x8c4bf038);
+    game_update_fields_26b2da(ar4_00, a1, ar6_00, 0x8c4bf038);
     return ar4_00;
 }
 
 /*
- * game_sub_26b2b6  0x8c26b2b6
- * area name: game code; nothing names its area yet
+ * game_copy_26b2b6  0x8c26b2b6
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls copy functions
  */
-u32 game_sub_26b2b6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 game_copy_26b2b6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 in_r0;
     int unaff_r14;
 
@@ -14358,11 +14388,11 @@ u32 game_sub_26b2b6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_26b2da  0x8c26b2da
- * area name: game code; nothing names its area yet
- * called by: ADXT_sub_26b250, alt_entry_26b254
+ * game_update_fields_26b2da  0x8c26b2da
+ * area name: game code; nothing names its area yet; behaviour name: conditionally writes members
+ * called by: ADXT_calls_update_fields_26b250, alt_entry_26b254
  */
-u32 game_sub_26b2da(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 game_update_fields_26b2da(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 in_r0;
 
     *(u32 *)(a0 + 0xc) = *(u32 *)(a0 + 0x18);
@@ -14371,10 +14401,10 @@ u32 game_sub_26b2da(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_26b2e8  0x8c26b2e8
- * area name: game code; nothing names its area yet
+ * game_test_26b2e8  0x8c26b2e8
+ * area name: game code; nothing names its area yet; behaviour name: returns the result of a comparison
  */
-u32 game_sub_26b2e8(int a0, int a1, u32 a2, u32 a3) {
+u32 game_test_26b2e8(int a0, int a1, u32 a2, u32 a3) {
     int in_r0;
 
     if (in_r0 == 1) {
@@ -14387,10 +14417,10 @@ u32 game_sub_26b2e8(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_26b32e  0x8c26b32e
- * area name: game code; nothing names its area yet
+ * game_uses_sr_get_imask_26b32e  0x8c26b32e
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is sr_get_imask
  */
-u32 game_sub_26b32e(int a0, int a1, int a2, int *a3) {
+u32 game_uses_sr_get_imask_26b32e(int a0, int a1, int a2, int *a3) {
     u32 uVar1;
     int a6;
     int *a7;
@@ -14421,10 +14451,10 @@ u32 game_sub_26b32e(int a0, int a1, int a2, int *a3) {
 }
 
 /*
- * game_sub_26b3a0  0x8c26b3a0
- * area name: game code; nothing names its area yet
+ * game_uses_sr_get_imask_26b3a0  0x8c26b3a0
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is sr_get_imask
  */
-u32 game_sub_26b3a0(int a0, int a1, int *a2, u32 a3) {
+u32 game_uses_sr_get_imask_26b3a0(int a0, int a1, int *a2, u32 a3) {
     u32 in_r0;
     u32 uVar1;
     int *a6;
@@ -14446,10 +14476,10 @@ u32 game_sub_26b3a0(int a0, int a1, int *a2, u32 a3) {
 }
 
 /*
- * game_sub_26b3f8  0x8c26b3f8
- * area name: game code; nothing names its area yet
+ * game_uses_sr_get_imask_26b3f8  0x8c26b3f8
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is sr_get_imask
  */
-u32 game_sub_26b3f8(int a0, int a1, int *a2, u32 a3) {
+u32 game_uses_sr_get_imask_26b3f8(int a0, int a1, int *a2, u32 a3) {
     u32 in_r0;
     u32 uVar1;
     int iVar2;
@@ -14492,10 +14522,10 @@ LAB_8c26b478:
 }
 
 /*
- * game_sub_26b490  0x8c26b490
- * area name: game code; nothing names its area yet
+ * game_uses_sr_get_imask_26b490  0x8c26b490
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is sr_get_imask
  */
-u32 game_sub_26b490(int a0, int a1, int a2, int *a3) {
+u32 game_uses_sr_get_imask_26b490(int a0, int a1, int a2, int *a3) {
     u32 a5;
     int iVar1;
     int a6;
@@ -14529,7 +14559,8 @@ LAB_8c26b4d2:
 /*
  * sr_get_imask_b  0x8c26b4f4
  * another copy of sr_get_imask
- * called by: game_sub_26b64e, game_sub_26b720, game_sub_26b7f4, game_sub_26b8c8
+ * called by: game_uses_libgcc_divide_helper_26b64e, game_uses_libgcc_divide_helper_26b7f4,
+ * game_uses_sr_get_imask_b_26b720, game_uses_sr_get_imask_b_26b8c8
  */
 u32 sr_get_imask_b(void) {
     u8 in_IMASK;
@@ -14542,7 +14573,8 @@ u32 sr_get_imask_b(void) {
 /*
  * sr_with_imask_b  0x8c26b50c
  * another copy of sr_with_imask
- * called by: game_sub_26b64e, game_sub_26b720, game_sub_26b7f4, game_sub_26b8c8
+ * called by: game_uses_libgcc_divide_helper_26b64e, game_uses_libgcc_divide_helper_26b7f4,
+ * game_uses_sr_get_imask_b_26b720, game_uses_sr_get_imask_b_26b8c8
  */
 u32 sr_with_imask_b(u32 unused_a0, u32 a1) {
     u8 in_MD;
@@ -14563,7 +14595,7 @@ u32 sr_with_imask_b(u32 unused_a0, u32 a1) {
 /*
  * init_once_clear_4bf4b8  0x8c26b526
  * clears the 0xc00-byte table at 8c4bf4b8 on the first call; counts calls
- * called by: alt_entry_262814, cri_sub_262810
+ * called by: alt_entry_262814, cri_uses_irq_disable_nested_262810
  */
 u32 init_once_clear_4bf4b8(void) {
     u8 *puVar1;
@@ -14595,7 +14627,7 @@ u32 alt_entry_26b52a(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * release_clear_4bf4b8  0x8c26b548
  * drops a reference; clears the 0xc00-byte table at 8c4bf4b8 when the last one goes
- * called by: cri_sub_2628fa
+ * called by: cri_uses_irq_disable_nested_2628fa
  */
 u32 release_clear_4bf4b8(void) {
     u32 in_r0;
@@ -14612,11 +14644,11 @@ u32 release_clear_4bf4b8(void) {
 }
 
 /*
- * game_sub_26b564  0x8c26b564
- * area name: game code; nothing names its area yet
- * called by: ADXF_sub_262312, ADXSTM_sub_263840
+ * game_calls_init_fields_26b564  0x8c26b564
+ * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: init_fields
+ * called by: ADXF_uses_lib_error_printf_262312, ADXSTM_uses_memset_263840
  */
-u32 game_sub_26b564(u32 a0, u32 a1, u32 a2) {
+u32 game_calls_init_fields_26b564(u32 a0, u32 a1, u32 a2) {
     int ain0;
     int ar7_00;
     u32 *ar4_00;
@@ -14640,15 +14672,15 @@ u32 game_sub_26b564(u32 a0, u32 a1, u32 a2) {
     *(u8 **)(ar7_00 + 0x8c4bf4c0) = &g_8c273988;
     *(u8 **)(ar7_00 + 0x8c4bf4e0) = &g_8c26b522;
     *(u32 **)(ar7_00 + 0x8c4bf4e4) = ar4_00;
-    game_sub_26b5ee(ar4_00);
+    game_init_fields_26b5ee(ar4_00);
     return ar4_00;
 }
 
 /*
- * game_sub_26b568  0x8c26b568
- * area name: game code; nothing names its area yet
+ * game_calls_init_fields_26b568  0x8c26b568
+ * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: init_fields
  */
-u32 game_sub_26b568(u32 a0, u32 a1, u32 a2, u32 unused_a3, int ain0) {
+u32 game_calls_init_fields_26b568(u32 a0, u32 a1, u32 a2, u32 unused_a3, int ain0) {
     int iVar1;
     u32 *ar4_00;
 
@@ -14671,15 +14703,15 @@ u32 game_sub_26b568(u32 a0, u32 a1, u32 a2, u32 unused_a3, int ain0) {
     *(u8 **)(iVar1 + 0x8c4bf4c0) = &g_8c273988;
     *(u8 **)(iVar1 + 0x8c4bf4e0) = &g_8c26b522;
     *(u32 **)(iVar1 + 0x8c4bf4e4) = ar4_00;
-    game_sub_26b5ee(ar4_00);
+    game_init_fields_26b5ee(ar4_00);
     return ar4_00;
 }
 
 /*
- * game_sub_26b5c6  0x8c26b5c6
- * area name: game code; nothing names its area yet
+ * game_copy_26b5c6  0x8c26b5c6
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls copy functions
  */
-u32 game_sub_26b5c6(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 game_copy_26b5c6(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 in_r0;
 
     if (a0 != 0) {
@@ -14705,11 +14737,11 @@ u32 alt_entry_26b5ca(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_26b5ee  0x8c26b5ee
- * area name: game code; nothing names its area yet
- * called by: game_sub_26b564, game_sub_26b568
+ * game_init_fields_26b5ee  0x8c26b5ee
+ * area name: game code; nothing names its area yet; behaviour name: writes 4 members
+ * called by: game_calls_init_fields_26b564, game_calls_init_fields_26b568
  */
-u32 game_sub_26b5ee(int a0) {
+u32 game_init_fields_26b5ee(int a0) {
     u32 in_r0;
 
     *(u32 *)(a0 + 0xc) = 0;
@@ -14720,10 +14752,10 @@ u32 game_sub_26b5ee(int a0) {
 }
 
 /*
- * game_sub_26b5fc  0x8c26b5fc
- * area name: game code; nothing names its area yet
+ * game_test_26b5fc  0x8c26b5fc
+ * area name: game code; nothing names its area yet; behaviour name: returns the result of a comparison
  */
-u32 game_sub_26b5fc(int a0, int a1) {
+u32 game_test_26b5fc(int a0, int a1) {
     if (a1 == 1) {
         return *(u32 *)(a0 + 0xc);
     }
@@ -14737,10 +14769,10 @@ u32 game_sub_26b5fc(int a0, int a1) {
 }
 
 /*
- * game_sub_26b600  0x8c26b600
- * area name: game code; nothing names its area yet
+ * game_test_26b600  0x8c26b600
+ * area name: game code; nothing names its area yet; behaviour name: returns the result of a comparison
  */
-u32 game_sub_26b600(int a0, int a1, u32 a2, u32 a3) {
+u32 game_test_26b600(int a0, int a1, u32 a2, u32 a3) {
     int in_r0;
 
     if (in_r0 == 1) {
@@ -14756,10 +14788,11 @@ u32 game_sub_26b600(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_26b64e  0x8c26b64e
- * area name: game code; nothing names its area yet
+ * game_uses_libgcc_divide_helper_26b64e  0x8c26b64e
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is
+ * libgcc_divide_helper_010614
  */
-u32 game_sub_26b64e(int a0, int a1, int a2, int *a3) {
+u32 game_uses_libgcc_divide_helper_26b64e(int a0, int a1, int a2, int *a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -14809,10 +14842,10 @@ u32 game_sub_26b64e(int a0, int a1, int a2, int *a3) {
 }
 
 /*
- * game_sub_26b720  0x8c26b720
- * area name: game code; nothing names its area yet
+ * game_uses_sr_get_imask_b_26b720  0x8c26b720
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is sr_get_imask_b
  */
-u32 game_sub_26b720(int a0, int a1, int *a2, u32 a3) {
+u32 game_uses_sr_get_imask_b_26b720(int a0, int a1, int *a2, u32 a3) {
     u32 in_r0;
     u32 uVar1;
     int *a6;
@@ -14855,10 +14888,11 @@ u32 game_sub_26b720(int a0, int a1, int *a2, u32 a3) {
 }
 
 /*
- * game_sub_26b7f4  0x8c26b7f4
- * area name: game code; nothing names its area yet
+ * game_uses_libgcc_divide_helper_26b7f4  0x8c26b7f4
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is
+ * libgcc_divide_helper_010614
  */
-u32 game_sub_26b7f4(int a0, int a1, int *a2, u32 a3, u32 ain0) {
+u32 game_uses_libgcc_divide_helper_26b7f4(int a0, int a1, int *a2, u32 a3, u32 ain0) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -14903,10 +14937,10 @@ LAB_8c26b8b0:
 }
 
 /*
- * game_sub_26b8c8  0x8c26b8c8
- * area name: game code; nothing names its area yet
+ * game_uses_sr_get_imask_b_26b8c8  0x8c26b8c8
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is sr_get_imask_b
  */
-u32 game_sub_26b8c8(int a0, int a1, int a2, int *a3) {
+u32 game_uses_sr_get_imask_b_26b8c8(int a0, int a1, int a2, int *a3) {
     u32 a5;
     int iVar1;
     int a6;
@@ -14948,7 +14982,7 @@ LAB_8c26b934:
 
 /*
  * get_field_1c_26b94e  0x8c26b94e
- * called by: cri_sub_262b04, ta_sub_262d6c
+ * called by: cri_uses_get_field_1c_262b04, ta_uses_get_field_1c_262d6c
  */
 u32 get_field_1c_26b94e(int a0, u32 unused_a1, u32 a2, u32 a3) {
     return *(u32 *)(a0 + 0x1c);
@@ -14956,7 +14990,7 @@ u32 get_field_1c_26b94e(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * get_field_20_26b952  0x8c26b952
- * called by: cri_sub_262b04
+ * called by: cri_uses_get_field_1c_262b04
  */
 u32 get_field_20_26b952(int a0) {
     return *(u32 *)(a0 + 0x20);
@@ -14964,7 +14998,7 @@ u32 get_field_20_26b952(int a0) {
 
 /*
  * get_field_24_26b956  0x8c26b956
- * called by: cri_sub_262b04
+ * called by: cri_uses_get_field_1c_262b04
  */
 u32 get_field_24_26b956(int a0) {
     return *(u32 *)(a0 + 0x24);
@@ -14973,7 +15007,7 @@ u32 get_field_24_26b956(int a0) {
 /*
  * sr_get_imask_c  0x8c26b960
  * another copy of sr_get_imask
- * called by: game_sub_26bb16, game_sub_26bbe2, game_sub_26bcaa
+ * called by: game_uses_sr_get_imask_c_26bbe2, game_uses_sr_get_imask_c_26bcaa, game_uses_switch_jump_26bb16
  */
 u32 sr_get_imask_c(void) {
     u8 in_IMASK;
@@ -14986,7 +15020,7 @@ u32 sr_get_imask_c(void) {
 /*
  * sr_with_imask_c  0x8c26b978
  * another copy of sr_with_imask
- * called by: game_sub_26bb16, game_sub_26bbe2, game_sub_26bcaa
+ * called by: game_uses_sr_get_imask_c_26bbe2, game_uses_sr_get_imask_c_26bcaa, game_uses_switch_jump_26bb16
  */
 u32 sr_with_imask_c(u32 unused_a0, u32 a1) {
     u8 in_MD;
@@ -15007,7 +15041,7 @@ u32 sr_with_imask_c(u32 unused_a0, u32 a1) {
 /*
  * init_once_clear_4c00b8  0x8c26b992
  * clears the 0xc00-byte table at 8c4c00b8 on the first call; counts calls
- * called by: alt_entry_262814, cri_sub_262810
+ * called by: alt_entry_262814, cri_uses_irq_disable_nested_262810
  */
 u32 init_once_clear_4c00b8(void) {
     u8 *puVar1;
@@ -15039,7 +15073,7 @@ u32 alt_entry_26b996(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * release_clear_4c00b8  0x8c26b9b4
  * drops a reference; clears the 0xc00-byte table at 8c4c00b8 when the last one goes
- * called by: cri_sub_2628fa
+ * called by: cri_uses_irq_disable_nested_2628fa
  */
 u32 release_clear_4c00b8(void) {
     u32 in_r0;
@@ -15056,10 +15090,10 @@ u32 release_clear_4c00b8(void) {
 }
 
 /*
- * game_sub_26b9d4  0x8c26b9d4
- * area name: game code; nothing names its area yet
+ * game_calls_fill_loop_26b9d4  0x8c26b9d4
+ * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: fill_loop
  */
-u32 game_sub_26b9d4(u32 a0, u32 a1, u32 a2, u32 unused_a3, int ain1) {
+u32 game_calls_fill_loop_26b9d4(u32 a0, u32 a1, u32 a2, u32 unused_a3, int ain1) {
     int iVar1;
     u32 *a4;
 
@@ -15083,15 +15117,15 @@ u32 game_sub_26b9d4(u32 a0, u32 a1, u32 a2, u32 unused_a3, int ain1) {
     *(u32 *)(iVar1 + 0x8c4c00c8) = a2 >> 4;
     *(u8 **)(iVar1 + 0x8c4c00e0) = &g_8c26b98e;
     *(u32 **)(iVar1 + 0x8c4c00e4) = a4;
-    game_sub_26ba62(a4);
+    game_fill_loop_26ba62(a4);
     return a4;
 }
 
 /*
- * game_sub_26ba3e  0x8c26ba3e
- * area name: game code; nothing names its area yet
+ * game_copy_26ba3e  0x8c26ba3e
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls copy functions
  */
-u32 game_sub_26ba3e(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 game_copy_26ba3e(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 in_r0;
     int unaff_r14;
 
@@ -15104,11 +15138,11 @@ u32 game_sub_26ba3e(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_26ba62  0x8c26ba62
- * area name: game code; nothing names its area yet
- * called by: game_sub_26b9d4
+ * game_fill_loop_26ba62  0x8c26ba62
+ * area name: game code; nothing names its area yet; behaviour name: a loop that writes memory
+ * called by: game_calls_fill_loop_26b9d4
  */
-u32 *game_sub_26ba62(int a0) {
+u32 *game_fill_loop_26ba62(int a0) {
     int *piVar1;
     u32 *puVar2;
     int iVar3;
@@ -15136,10 +15170,10 @@ u32 *game_sub_26ba62(int a0) {
 }
 
 /*
- * game_sub_26bad4  0x8c26bad4
- * area name: game code; nothing names its area yet
+ * game_scan_loop_26bad4  0x8c26bad4
+ * area name: game code; nothing names its area yet; behaviour name: a loop that only reads
  */
-u32 game_sub_26bad4(int a0, int a1, u32 a2, u32 a3) {
+u32 game_scan_loop_26bad4(int a0, int a1, u32 a2, u32 a3) {
     int *piVar1;
     int iVar2;
     char in_T;
@@ -15159,10 +15193,10 @@ u32 game_sub_26bad4(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_26bb16  0x8c26bb16
- * area name: game code; nothing names its area yet
+ * game_uses_switch_jump_26bb16  0x8c26bb16
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is switch_jump
  */
-u32 game_sub_26bb16(int a0, int a1, u8 *a2, u32 *a3, u32 ain0) {
+u32 game_uses_switch_jump_26bb16(int a0, int a1, u8 *a2, u32 *a3, u32 ain0) {
     u32 uVar1;
     int iVar2;
     u8 *ar6_00;
@@ -15211,10 +15245,10 @@ LAB_8c26bbce:
 }
 
 /*
- * game_sub_26bbe2  0x8c26bbe2
- * area name: game code; nothing names its area yet
+ * game_uses_sr_get_imask_c_26bbe2  0x8c26bbe2
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is sr_get_imask_c
  */
-u32 game_sub_26bbe2(int a0, int a1, int *a2, u32 unused_a3, u32 ain0) {
+u32 game_uses_sr_get_imask_c_26bbe2(int a0, int a1, int *a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     int *piVar2;
     int *piVar3;
@@ -15262,10 +15296,10 @@ u32 game_sub_26bbe2(int a0, int a1, int *a2, u32 unused_a3, u32 ain0) {
 }
 
 /*
- * game_sub_26bcaa  0x8c26bcaa
- * area name: game code; nothing names its area yet
+ * game_uses_sr_get_imask_c_26bcaa  0x8c26bcaa
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is sr_get_imask_c
  */
-u32 game_sub_26bcaa(int a0, int a1, int *a2, u32 a3, u32 ain0) {
+u32 game_uses_sr_get_imask_c_26bcaa(int a0, int a1, int *a2, u32 a3, u32 ain0) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -15308,10 +15342,10 @@ u32 game_sub_26bcaa(int a0, int a1, int *a2, u32 a3, u32 ain0) {
 }
 
 /*
- * game_sub_26bd86  0x8c26bd86
- * area name: game code; nothing names its area yet
+ * game_uses_switch_jump_26bd86  0x8c26bd86
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is switch_jump
  */
-u32 game_sub_26bd86(int a0, int a1, int a2, u32 *a3) {
+u32 game_uses_switch_jump_26bd86(int a0, int a1, int a2, u32 *a3) {
     int iVar1;
     u8 *puVar2;
     u8 auStack_10[12];
@@ -15342,8 +15376,8 @@ u32 game_sub_26bd86(int a0, int a1, int a2, u32 *a3) {
 /*
  * span_take  0x8c26be30
  * takes at most a1 bytes from the span a2 (pointer, length) into a3 and advances it
- * called by: adxstmf_stat_exec, cri_sub_262f02, cri_sub_264308, game_sub_26bb16, mwRnaDiscardData, mwRna_sub_268f3e,
- * ta_sub_262c80
+ * called by: adxstmf_stat_exec, cri_uses_get_field_18_262f02, cri_uses_libgcc_divide_helper_264308,
+ * game_uses_switch_jump_26bb16, mwRnaDiscardData, mwRna_uses_sd_irq_disable_268f3e, ta_uses_get_field_a8_s16_262c80
  */
 u32 span_take(u32 a0, int a1, int *a2, int *a3) {
     u32 uVar1;

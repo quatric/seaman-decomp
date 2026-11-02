@@ -659,6 +659,93 @@ def area_names(allf, names):
         out[a] = ('%s_sub_%06x' % (t, a & 0xffffff), 'area name: ' + why)
     return out
 
+# ---------------------------------------------------------------- behaviour names
+# words for what a function mostly calls: the first group whose pattern matches most of its named callees wins
+BEHAVIOUR = [
+    ('draw', r'^(obj_set_tex|obj_draw|draw_|Class_129808_draw|matrix_(push|pop)|njDraw|njSetTexture|gfx|pvr_|ta_|touch_fields_30_3c|rotate_|Class_129938_sub_015af8|game_sub_015adc|game_sub_015b14)'),
+    ('sound', r'^(se_|sound_|bgm_|ADX|adx|mwRna|mwSnd|sd[A-Z_]|aica_|Class_12b580_(set|clear)_request)'),
+    ('input', r'^(input_|stick_|maple_|field_1[34][0-9a-f]_(above|below))'),
+    ('load', r'(LoadGR|Load(From|Texture|Model|Message)|_load|retry_until_done|CDCGD_request|file_load|pack_acquire|njLoad|asset_table)'),
+    ('release', r'(Release|_release|free_|_dtor|CDCGD_release|pack_release|delete)'),
+    ('save', r'^(save_|memcard_|bu[A-Z]|vmu_)'),
+    ('talk', r'^(talk_|speech_|asr_|msg_|CSysMessage)'),
+    ('vec', r'^(Vec3_|vec3_|Vec4_|matrix_|nj(Rotate|Translate|Scale|Calc|Sin|Cos|Push|Pop)|catmull|lerp|sin$|cos$|sqrt)'),
+    ('list', r'(List_|list_|_list|CItemList|CNodePtrList|array_|vec_new_array|vec_delete_array)'),
+    ('copy', r'^(memcpy|memmove|memset|strcpy|strcat|sprintf|copy|clear_)'),
+]
+
+
+WORDS = [w for w, _ in BEHAVIOUR] + ['ctor', 'dtor', 'state_switch']
+
+
+def behaviour_name(f, names, by_old, beh):
+    """(word, detail) describing what an area-named function does, from its body: constructor, destructor, state switch,
+    the kind of functions it mostly calls (precise names by pattern, behaviour-named callees by their word), or for leaf
+    functions the kind of work it does. beh maps behaviour-named functions to their word."""
+    b = f.body or ''
+    calls = [names[by_old[c].addr] for c in re.findall(r'\b(\w+)\(', b) if c in by_old and by_old[c].addr != f.addr]
+    calls += [n for n in re.findall(r'\(&(\w+)\)\)\(', b)]
+    precise = [c for c in calls if c not in beh and '_sub_' not in c and not c.startswith(('FUN_', 'thunk_'))]
+    words = [beh[c] for c in calls if c in beh]
+    if re.search(r'\*\(?(?:\w+ \*+\)?\s*)?\(?a0\)? = \(?(?:\w+ \*+\))?\(?&DATA_8c12[0-9a-f]{4}\)?;', b) or \
+       re.search(r'\*a0 = \(?(?:\w+\)?)?\(&DATA_8c12', b):
+        return 'ctor', 'stores a vtable in a0: a constructor'
+    if 'free_if_nonnull(a0)' in b and '(short)ain0' in b:
+        return 'dtor', 'destroys its members and frees a0 when asked: a destructor'
+    if 'switch (' in b or 'switchD_' in b:
+        return 'state_switch', 'dispatches on a state or mode value (switch)'
+    if precise or words:
+        votes = collections.Counter()
+        for word, pat in BEHAVIOUR:
+            votes[word] += sum(1 for c in precise if re.search(pat, c))
+        for w in words:
+            if w in WORDS: votes[w] += 1
+        best, bn = votes.most_common(1)[0] if votes and votes.most_common(1)[0][1] else (None, 0)
+        if best and bn * 2 >= len(precise) + len(words):
+            return best, 'mostly calls %s functions' % best
+        if precise:
+            top = collections.Counter(precise).most_common(1)[0][0]
+            return 'uses_' + re.sub(r'_[0-9a-f]{6}$', '', top)[:28], 'its main named callee is %s' % top
+        w = collections.Counter(words).most_common(1)[0][0]
+        return ('calls_' + w if not w.startswith(('calls_', 'uses_')) else w), 'its callees mostly do: %s' % w
+    if calls:
+        return 'calls_' + ('%d' % len(set(calls)) if len(set(calls)) > 1 else 'one'), \
+            'calls %d not yet named function%s' % (len(set(calls)), 's' if len(set(calls)) > 1 else '')
+    # leaf functions
+    stores = len(re.findall(r'^\s+\*\([^;]*\) = ', b, re.M)) + len(re.findall(r'^\s+\w+\[[^]]+\] = ', b, re.M))
+    loops = len(re.findall(r'\b(for|while|do)\b', b))
+    floats = len(re.findall(r'\bfloat\b|\bfVar|\bin_fr|\d\.\d', b))
+    ifs = len(re.findall(r'\bif \(', b))
+    ret_test = re.search(r'return \(u32\)\(.*[<>=!]=?.*\);|return [01];', b)
+    if loops and stores: return 'fill_loop', 'a loop that writes memory'
+    if loops: return 'scan_loop', 'a loop that only reads'
+    if ret_test and stores == 0: return 'test', 'returns the result of a comparison'
+    if floats >= 3: return 'float_calc', 'floating-point arithmetic'
+    if stores >= 3 and ifs == 0: return 'init_fields', 'writes %d members' % stores
+    if stores: return 'update_fields', 'conditionally writes members'
+    return 'calc', 'integer arithmetic on its arguments'
+
+
+def behaviour_names(allf, names):
+    """`<area>_<behaviour>_<addr>` for every function that only has an area name; repeated so that callers can use the words
+    their callees got. Returns {addr: (name, reason)}"""
+    by_old = {f.name: f for f in allf}
+    todo = [(f, m) for f in allf if f.body is not None for m in [re.fullmatch(r'(\w+)_sub_([0-9a-f]{6})', names[f.addr])] if m]
+    cur = dict(names)
+    beh = {}
+    out = {}
+    for rnd in range(6):
+        new_out = {}
+        for f, m in todo:
+            word, why = behaviour_name(f, cur, by_old, beh)
+            if word == m.group(1).lower(): word += '_helper'
+            new_out[f.addr] = ('%s_%s_%s' % (m.group(1), word, m.group(2)), 'behaviour name: ' + why, word)
+        if new_out == out: break
+        out = new_out
+        for a, (n, _, w) in out.items(): cur[a] = n
+        beh = {n: w for n, _, w in out.values()}
+    return {a: (n, why) for a, (n, why, _) in out.items()}
+
 
 def main():
     mods = sorted(x for x in os.listdir(SRC) if x.startswith('mod_') and x.endswith('.c'))
@@ -758,6 +845,10 @@ def main():
     precise = sum(1 for f in allf if f.body is not None and not names[f.addr].startswith('FUN_'))
     for a, (new, why) in area_names(allf, names).items():
         names[a] = new; hints[a] = why if a not in hints else hints[a] + '; ' + why
+    # and then a behaviour word in place of `sub`, from what the body does (reported separately from the precise names)
+    behaviour = set()
+    for a, (new, why) in behaviour_names(allf, names).items():
+        names[a] = new; behaviour.add(new); hints[a] = hints[a] + '; ' + why if a in hints else why
     # names must be unique: the notes tables and the rounds above can hand one name to two functions; a curated one keeps it,
     # otherwise the lowest address does, and the rest get their address appended
     seen = set()
@@ -811,8 +902,9 @@ def main():
     trimmed = sum(1 for f in allf if f.body is not None and arity.get(f.name, 4) < len(f.params))
     area = sum(1 for _, n, _, _ in index if re.search(r'_sub_[0-9a-f]{6}$', n))
     unnamed = sum(1 for _, n, _, _ in index if n.startswith('FUN_'))
-    print('%d functions, %d with trimmed parameters, %d with precise names, %d with area names, %d unnamed, %d globals'
-          % (len(index), trimmed, len(index) - area - unnamed, area, unnamed, len(globals_used)))
+    beh = sum(1 for _, n, _, _ in index if n in behaviour or re.sub(r'_[0-9a-f]{6}$', '', n) in behaviour)
+    print('%d functions, %d with trimmed parameters, %d with precise names, %d with behaviour names, %d with area names, '
+          '%d unnamed, %d globals' % (len(index), trimmed, len(index) - area - unnamed - beh, beh, area, unnamed, len(globals_used)))
 
 
 main()
