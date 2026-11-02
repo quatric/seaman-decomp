@@ -510,7 +510,7 @@ u32 maple_get_mem_info_sync(u32 a0, u32 a1, int a2, u32 a3) {
 /*
  * maple_block_read_sync  0x8c1f06ac
  * maple_block_read under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
- * called by: shinobi_input_1f667e
+ * called by: maple_clock_read_date
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
 u32 maple_block_read_sync(u32 a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4) {
@@ -544,7 +544,7 @@ u32 maple_block_read_sync(u32 a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4) {
 /*
  * maple_block_write_sync  0x8c1f070c
  * maple_block_write under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
- * called by: shinobi_input_1f6516
+ * called by: maple_clock_write_date
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
 u32 maple_block_write_sync(u32 a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12) {
@@ -8589,8 +8589,8 @@ u8 *shinobi_input_1f5ea8(u32 a0, u32 a1, int a2, int a3, int s0) {
 /*
  * device_info_clear  0x8c1f5f4e
  * resets a device-info record ("(no device)")
- * called by: device_info_table_reset, device_info_table_reset_alt, maple_driver_init, shinobi_input_1f5ea8,
- * shinobi_uses_maple_port_info_1f61c6, shinobi_uses_maple_port_info_1f620e strings: "(no device)"
+ * called by: device_info_table_reset, device_info_table_reset_alt, maple_driver_init, maple_update_controllers,
+ * shinobi_input_1f5ea8, shinobi_uses_maple_port_info_1f61c6 strings: "(no device)"
  */
 u32 device_info_clear(u32 *a0) {
     *a0 = 0;
@@ -8620,7 +8620,7 @@ u32 device_info_clear(u32 *a0) {
 /*
  * shinobi_update_fields_1f5f8c  0x8c1f5f8c
  * area name: in the shinobi library code range; behaviour name: conditionally writes members
- * called by: shinobi_uses_maple_port_info_1f61c6, shinobi_uses_maple_port_info_1f620e
+ * called by: maple_update_controllers, shinobi_uses_maple_port_info_1f61c6
  */
 u32 shinobi_update_fields_1f5f8c(int a0, int a1, int a2) {
     u32 uVar1;
@@ -8733,7 +8733,7 @@ u32 shinobi_calc_1f6120(u32 a0) {
 /*
  * shinobi_uses_maple_controller_caps_1f6142  0x8c1f6142
  * area name: in the shinobi library code range; behaviour name: its main named callee is maple_controller_caps
- * called by: shinobi_uses_maple_port_info_1f61c6, shinobi_uses_maple_port_info_1f620e
+ * called by: maple_update_controllers, shinobi_uses_maple_port_info_1f61c6
  */
 int shinobi_uses_maple_controller_caps_1f6142(u32 *a0, u32 *a1) {
     int iVar1;
@@ -8758,7 +8758,7 @@ int shinobi_uses_maple_controller_caps_1f6142(u32 *a0, u32 *a1) {
 /*
  * shinobi_test_1f6192  0x8c1f6192
  * area name: in the shinobi library code range; behaviour name: returns the result of a comparison
- * called by: shinobi_uses_maple_port_info_1f61c6, shinobi_uses_maple_port_info_1f620e
+ * called by: maple_update_controllers, shinobi_uses_maple_port_info_1f61c6
  */
 u32 shinobi_test_1f6192(u32 unused_a0, u32 unused_a1, int a2) {
     u16 uVar1;
@@ -8834,10 +8834,11 @@ u32 shinobi_uses_maple_port_info_1f61c6(u32 unused_a0, u32 *a1, int unused_a2, u
 }
 
 /*
- * shinobi_uses_maple_port_info_1f620e  0x8c1f620e
- * area name: in the shinobi library code range; behaviour name: its main named callee is maple_port_info
+ * maple_update_controllers  0x8c1f620e
+ * for each port in range refreshes the device info and, for a connected controller, its buttons and pressed/released
+ * edges
  */
-int shinobi_uses_maple_port_info_1f620e(u32 unused_a0, u32 *a1) {
+int maple_update_controllers(u32 unused_a0, u32 *a1) {
     int a6;
     u32 *a5;
     u32 uVar1;
@@ -9074,7 +9075,7 @@ u32 shinobi_calls_calc_1f6454(void) {
 /*
  * shinobi_input_1f6494  0x8c1f6494
  * area name: in the shinobi library code range; behaviour name: mostly calls input functions
- * called by: irq_input_1f5d6c, shinobi_input_1f6516, shinobi_input_1f667e
+ * called by: irq_input_1f5d6c, maple_clock_read_date, maple_clock_write_date
  */
 u32 shinobi_input_1f6494(u32 a0) {
     u32 ar5_00;
@@ -9114,10 +9115,11 @@ u8 *shinobi_calc_1f64b6(int a0, u32 unused_a1, int a2, u32 *a3) {
 }
 
 /*
- * shinobi_input_1f6516  0x8c1f6516
- * area name: in the shinobi library code range; behaviour name: mostly calls input functions
+ * maple_clock_write_date  0x8c1f6516
+ * writes the date a1 (year, month, day, hour, minute, second, weekday) to the maple clock function of port a0 and calls
+ * a2 on failure
  */
-u32 shinobi_input_1f6516(int a0, u16 *a1, code *a2, u32 a3) {
+u32 maple_clock_write_date(int a0, u16 *a1, code *a2, u32 a3) {
     int iVar1;
     code *a6;
     u32 a7;
@@ -9164,10 +9166,11 @@ u32 shinobi_input_1f6516(int a0, u16 *a1, code *a2, u32 a3) {
 }
 
 /*
- * shinobi_update_fields_1f65e8  0x8c1f65e8
- * area name: in the shinobi library code range; behaviour name: conditionally writes members
+ * maple_clock_read_done  0x8c1f65e8
+ * callback for maple_clock_read_date: unpacks the returned date into the caller's buffer (capping 30th-day February)
+ * and calls the user callback
  */
-u32 shinobi_update_fields_1f65e8(int a0, u32 unused_a1, int a2, u32 *a3) {
+u32 maple_clock_read_done(int a0, u32 unused_a1, int a2, u32 *a3) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -9204,10 +9207,10 @@ u32 shinobi_update_fields_1f65e8(int a0, u32 unused_a1, int a2, u32 *a3) {
 }
 
 /*
- * shinobi_input_1f667e  0x8c1f667e
- * area name: in the shinobi library code range; behaviour name: mostly calls input functions
+ * maple_clock_read_date  0x8c1f667e
+ * requests the date from the maple clock function of port a0 into a1, calling a2 when done or on failure
  */
-u32 shinobi_input_1f667e(int a0, u32 a1, code *a2, u32 a3) {
+u32 maple_clock_read_date(int a0, u32 a1, code *a2, u32 a3) {
     int iVar1;
     code *a6;
     u32 a7;
@@ -10948,7 +10951,7 @@ u32 ipbin_get_disc_info(int a0, u32 *a1, u32 unused_a2, u32 a3) {
     }
     iStack_c = a0 + 0x40;
     iStack_10 = a0 + 0x2b;
-    iStack_10 = shinobi_scan_loop_1f7d80(iStack_10, &uStack_18, &uStack_14);
+    iStack_10 = parse_mm_dd(iStack_10, &uStack_18, &uStack_14);
     a1[1] = uStack_18;
     puVar1 = (&memmove);
     *a1 = uStack_14;
@@ -10958,11 +10961,11 @@ u32 ipbin_get_disc_info(int a0, u32 *a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * shinobi_scan_loop_1f7d80  0x8c1f7d80
- * area name: in the shinobi library code range; behaviour name: a loop that only reads
- * called by: ipbin_get_disc_info
+ * parse_mm_dd  0x8c1f7d80
+ * parses two 2-digit numbers "NN/NN " from a0 into a2 (first) and a1 (second); returns 0 when a character is not a
+ * digit called by: ipbin_get_disc_info
  */
-u32 shinobi_scan_loop_1f7d80(int a0, int *a1, int *a2) {
+u32 parse_mm_dd(int a0, int *a1, int *a2) {
     char *pcVar1;
     int iVar2;
     u32 uVar3;
@@ -11326,7 +11329,7 @@ u32 checksum8_header_ok(u8 *a0) {
 u32 shinobi_install_event900(u32 a0) {
     u32 uVar1;
 
-    uVar1 = shinobi_sound_1f84d8(a0);
+    uVar1 = aica_rtc_read_stable(a0);
     g_8c474a10 = uVar1;
     g_8c474a14 = 0;
     shinobi_sound_1f814c(a0);
@@ -11363,7 +11366,7 @@ u32 shinobi_sound_1f814c(u32 a0) {
     }
     uVar1 = g_8c474a14;
     if ((uVar1 & 2) != 0) {
-        uVar1 = shinobi_sound_1f84d8(a0);
+        uVar1 = aica_rtc_read_stable(a0);
         g_8c474a10 = uVar1;
     }
     return uVar1;
@@ -11383,11 +11386,11 @@ u32 rtc_get_date(short *a0, u32 a1, u32 unused_a2, u32 a3) {
     int a5;
 
     if ((g_8c474a14 & 1) == 1) {
-        uVar2 = shinobi_sound_1f84d8(a0);
-        rtc_uses_libgcc_divide_helper_1f8300(uVar2, a0);
+        uVar2 = aica_rtc_read_stable(a0);
+        shinobi_uses_libgcc_divide_helper_1f8300(uVar2, a0);
         g_8c474a10 = uVar2;
     } else {
-        rtc_uses_libgcc_divide_helper_1f8300(g_8c474a10, a0);
+        shinobi_uses_libgcc_divide_helper_1f8300(g_8c474a10, a0);
     }
     a6 = (int)*(char *)((int)a0 + 3);
     a5 = (int)(char)a0[1];
@@ -11411,7 +11414,7 @@ int rtc_set_date(u32 a0, u32 unused_a1, u32 a2) {
     iVar1 = aica_reg_1f85a0();
     if (((iVar1 == 0) && (iVar1 = aica_reg_1f85c8(auStack_8[0] & 0xffff), iVar1 == 0)) &&
         (iVar1 = aica_reg_1f85ee(auStack_8[0] >> 0x10), iVar1 == 0)) {
-        uVar2 = shinobi_sound_1f84d8(0);
+        uVar2 = aica_rtc_read_stable(0);
         if ((uVar2 == auStack_8[0]) || (uVar2 == auStack_8[0] + 1)) {
             g_8c474a10 = uVar2;
             iVar1 = 0;
@@ -11474,11 +11477,11 @@ u32 date_to_rtc_seconds(u16 *a0, int *a1, u32 a2) {
 }
 
 /*
- * rtc_uses_libgcc_divide_helper_1f8300  0x8c1f8300
- * area name: sits between rtc functions (same compilation unit); behaviour name: its main named callee is
- * libgcc_divide_helper_0106dc called by: game_state_switch_0fcd2c, game_uses_free_ptr_and_clear_0b95a0, rtc_get_date
+ * shinobi_uses_libgcc_divide_helper_1f8300  0x8c1f8300
+ * area name: in the shinobi library code range; behaviour name: its main named callee is libgcc_divide_helper_0106dc
+ * called by: game_state_switch_0fcd2c, game_uses_free_ptr_and_clear_0b95a0, rtc_get_date
  */
-u32 rtc_uses_libgcc_divide_helper_1f8300(u32 a0, u16 *a1) {
+u32 shinobi_uses_libgcc_divide_helper_1f8300(u32 a0, u16 *a1) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -11592,11 +11595,11 @@ int shinobi_sound_1f8462(int a0) {
 }
 
 /*
- * shinobi_sound_1f84d8  0x8c1f84d8
- * area name: in the shinobi library code range; behaviour name: mostly calls sound functions
+ * aica_rtc_read_stable  0x8c1f84d8
+ * reads the AICA real-time clock until three reads in a row agree and returns that value
  * called by: rtc_get_date, rtc_set_date, shinobi_install_event900, shinobi_sound_1f814c
  */
-int shinobi_sound_1f84d8(u32 a0) {
+int aica_rtc_read_stable(u32 a0) {
     bool bVar1;
     int iVar2;
     int iVar3;
@@ -11633,7 +11636,7 @@ int shinobi_sound_1f84d8(u32 a0) {
 
 /*
  * aica_reg_1f8544  0x8c1f8544
- * called by: shinobi_sound_1f8462, shinobi_sound_1f84d8
+ * called by: aica_rtc_read_stable, shinobi_sound_1f8462
  */
 u32 aica_reg_1f8544(u32 *a0) {
     int iVar1;
@@ -11695,7 +11698,7 @@ u32 aica_reg_1f85ee(u32 a0) {
 /*
  * day_of_week  0x8c1f8614
  * Zeller's congruence: weekday of year a0, month a1, day a2
- * called by: rtc_get_date, rtc_uses_libgcc_divide_helper_1f8300
+ * called by: rtc_get_date, shinobi_uses_libgcc_divide_helper_1f8300
  */
 u32 day_of_week(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -11713,7 +11716,7 @@ u32 day_of_week(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * shinobi_uses_libgcc_divide_helper_1f8650  0x8c1f8650
  * area name: in the shinobi library code range; behaviour name: its main named callee is libgcc_divide_helper_0106dc
- * called by: rtc_get_date, rtc_uses_libgcc_divide_helper_1f8300
+ * called by: rtc_get_date, shinobi_uses_libgcc_divide_helper_1f8300
  */
 u32 shinobi_uses_libgcc_divide_helper_1f8650(u32 a0, u32 unused_a1, u32 a2) {
     int iVar1;
@@ -12844,10 +12847,10 @@ u32 cache_invalidate_range(u32 a0, u32 a1) {
 }
 
 /*
- * bios_scan_loop_1f9a14  0x8c1f9a14
- * area name: sits between bios functions (same compilation unit); behaviour name: a loop that only reads
+ * oc_invalidate_range_walk  0x8c1f9a14
+ * walks the operand cache address array and invalidates each line whose tag falls inside the range
  */
-u32 bios_scan_loop_1f9a14(void) {
+u32 oc_invalidate_range_walk(void) {
     u32 uVar1;
     u32 uVar2;
     int unaff_r12;
@@ -12986,10 +12989,10 @@ u32 shinobi_calc_1fa0c4(void) {
 }
 
 /*
- * shinobi_fill_loop_1fa0f0  0x8c1fa0f0
- * area name: in the shinobi library code range; behaviour name: a loop that writes memory
+ * oc_invalidate_all  0x8c1fa0f0
+ * clears every entry of the operand cache address array (only the cache half when the OC RAM mode is on)
  */
-u32 shinobi_fill_loop_1fa0f0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0) {
+u32 oc_invalidate_all(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -13575,7 +13578,7 @@ u32 exception_dump_registers(u32 a0, u32 *a1) {
         return uVar1;
     }
     g_8c475ec8 = a1;
-    iVar2 = shinobi_fill_loop_1fab8c();
+    iVar2 = serial_port_init();
     scif_puts(s_____ADDRESS_CHECKER_TRAP_____8c26cf24);
     debug_dump_words("FR0-7:    ", 10, 8);
     debug_dump_words("FR8-15:   ", 0x12, 8);
@@ -13666,11 +13669,11 @@ u32 debug_dump_words(u32 a0, int a1, int a2) {
 }
 
 /*
- * shinobi_fill_loop_1fab8c  0x8c1fab8c
- * area name: in the shinobi library code range; behaviour name: a loop that writes memory
- * called by: exception_dump_registers
+ * serial_port_init  0x8c1fab8c
+ * resets the serial port, picks SCIF or SCI from the stored flags and programs its mode and baud rate with settling
+ * delays called by: exception_dump_registers
  */
-int shinobi_fill_loop_1fab8c(void) {
+int serial_port_init(void) {
     int *piVar1;
     int *piVar2;
     int iVar3;
@@ -14190,10 +14193,11 @@ u32 malloc_sys(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * malloc_fill_loop_1fb4c2  0x8c1fb4c2
- * area name: sits between malloc functions (same compilation unit); behaviour name: a loop that writes memory
+ * heap_alloc_first_fit  0x8c1fb4c2
+ * takes a1 rounded to 32-byte units (plus a header) from the first free block large enough, splitting it from the end;
+ * returns the data or 0
  */
-u32 *malloc_fill_loop_1fb4c2(int a0) {
+u32 *heap_alloc_first_fit(int a0) {
     u32 *puVar1;
     int iVar2;
     u32 *puVar3;

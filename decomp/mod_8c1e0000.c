@@ -612,7 +612,7 @@ u32 pvr_uses_maple_reset_dma_1efcae(u32 a0, u32 a1, u32 a2, u32 a3) {
  * maple_port_info  0x8c1efd14
  * the 0x18-byte device record of port a0 (0x8c4709a0)
  * called by: alt_entry_2020ba, alt_entry_202280, alt_entry_202550, maple_device_ready, maple_device_ready_idle,
- * maple_first_port_bit2_pressed, pvr_1efaf4, shinobi_input_1fd008 (+9 more)
+ * maple_first_port_bit2_pressed, maple_update_controllers, pvr_1efaf4 (+9 more)
  */
 int maple_port_info(int a0, u32 a1) {
     return a0 * 0x18 + 0x8c4709a0;
@@ -622,7 +622,7 @@ int maple_port_info(int a0, u32 a1) {
  * maple_port_status  0x8c1efd26
  * status flags of port a0
  * called by: bios_input_1f3b5c, bios_input_1f3d28, maple_device_ready, maple_device_ready_idle, maple_driver_init,
- * maple_first_port_bit2_pressed, maple_port_status_wrap, pvr_1efaf4 (+6 more)
+ * maple_first_port_bit2_pressed, maple_port_status_wrap, maple_update_controllers (+6 more)
  */
 u32 maple_port_status(u32 a0) {
     u32 uVar1;

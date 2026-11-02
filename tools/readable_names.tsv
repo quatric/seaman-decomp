@@ -2012,3 +2012,13 @@
 8c1f44cc	maple_reset_dma	waits for the maple DMA to stop, disables it, writes the DMA protection key and resets the system and timing registers
 8c1f4f82	maple_update_port_presence	updates port a0's connected flag and its connect/disconnect edges, counting missed responses up to the timeout
 8c1f5dd0	maple_driver_init	clears the maple driver state, sets up the receive buffers when given and resets the status of all 24 ports
+8c1f620e	maple_update_controllers	for each port in range refreshes the device info and, for a connected controller, its buttons and pressed/released edges
+8c1f6516	maple_clock_write_date	writes the date a1 (year, month, day, hour, minute, second, weekday) to the maple clock function of port a0 and calls a2 on failure
+8c1f65e8	maple_clock_read_done	callback for maple_clock_read_date: unpacks the returned date into the caller's buffer (capping 30th-day February) and calls the user callback
+8c1f667e	maple_clock_read_date	requests the date from the maple clock function of port a0 into a1, calling a2 when done or on failure
+8c1f7d80	parse_mm_dd	parses two 2-digit numbers "NN/NN " from a0 into a2 (first) and a1 (second); returns 0 when a character is not a digit
+8c1f84d8	aica_rtc_read_stable	reads the AICA real-time clock until three reads in a row agree and returns that value
+8c1f9a14	oc_invalidate_range_walk	walks the operand cache address array and invalidates each line whose tag falls inside the range
+8c1fa0f0	oc_invalidate_all	clears every entry of the operand cache address array (only the cache half when the OC RAM mode is on)
+8c1fab8c	serial_port_init	resets the serial port, picks SCIF or SCI from the stored flags and programs its mode and baud rate with settling delays
+8c1fb4c2	heap_alloc_first_fit	takes a1 rounded to 32-byte units (plus a header) from the first free block large enough, splitting it from the end; returns the data or 0

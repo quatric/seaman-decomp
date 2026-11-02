@@ -4296,7 +4296,7 @@ address	name	file	params
 8c1f6142	shinobi_uses_maple_controller_caps_1f6142	mod_8c1f0000.c	2
 8c1f6192	shinobi_test_1f6192	mod_8c1f0000.c	3
 8c1f61c6	shinobi_uses_maple_port_info_1f61c6	mod_8c1f0000.c	5
-8c1f620e	shinobi_uses_maple_port_info_1f620e	mod_8c1f0000.c	2
+8c1f620e	maple_update_controllers	mod_8c1f0000.c	2
 8c1f62cc	shinobi_calc_1f62cc	mod_8c1f0000.c	1
 8c1f62f0	device_info_table_reset	mod_8c1f0000.c	0
 8c1f62f6	device_info_table_reset_alt	mod_8c1f0000.c	4
@@ -4310,9 +4310,9 @@ address	name	file	params
 8c1f6454	shinobi_calls_calc_1f6454	mod_8c1f0000.c	0
 8c1f6494	shinobi_input_1f6494	mod_8c1f0000.c	1
 8c1f64b6	shinobi_calc_1f64b6	mod_8c1f0000.c	4
-8c1f6516	shinobi_input_1f6516	mod_8c1f0000.c	4
-8c1f65e8	shinobi_update_fields_1f65e8	mod_8c1f0000.c	4
-8c1f667e	shinobi_input_1f667e	mod_8c1f0000.c	4
+8c1f6516	maple_clock_write_date	mod_8c1f0000.c	4
+8c1f65e8	maple_clock_read_done	mod_8c1f0000.c	4
+8c1f667e	maple_clock_read_date	mod_8c1f0000.c	4
 8c1f670c	shinobi_copy_1f670c	mod_8c1f0000.c	4
 8c1f672c	shinobi_copy_1f672c	mod_8c1f0000.c	4
 8c1f67c2	shinobi_copy_1f67c2	mod_8c1f0000.c	4
@@ -4367,7 +4367,7 @@ address	name	file	params
 8c1f7d04	ipbin_get_disc_info_boot	mod_8c1f0000.c	4
 8c1f7d1a	ipbin_get_disc_info_wrap	mod_8c1f0000.c	4
 8c1f7d30	ipbin_get_disc_info	mod_8c1f0000.c	4
-8c1f7d80	shinobi_scan_loop_1f7d80	mod_8c1f0000.c	3
+8c1f7d80	parse_mm_dd	mod_8c1f0000.c	3
 8c1f7e48	game_shutdown_b	mod_8c1f0000.c	0
 8c1f7e78	shinobi_calls_calc_1f7e78	mod_8c1f0000.c	0
 8c1f7ea8	shinobi_calls_calc_1f7ea8	mod_8c1f0000.c	1
@@ -4392,9 +4392,9 @@ address	name	file	params
 8c1f81dc	rtc_set_date	mod_8c1f0000.c	3
 8c1f823a	rtc_date_compare	mod_8c1f0000.c	3
 8c1f826c	date_to_rtc_seconds	mod_8c1f0000.c	3
-8c1f8300	rtc_uses_libgcc_divide_helper_1f8300	mod_8c1f0000.c	2
+8c1f8300	shinobi_uses_libgcc_divide_helper_1f8300	mod_8c1f0000.c	2
 8c1f8462	shinobi_sound_1f8462	mod_8c1f0000.c	1
-8c1f84d8	shinobi_sound_1f84d8	mod_8c1f0000.c	1
+8c1f84d8	aica_rtc_read_stable	mod_8c1f0000.c	1
 8c1f8544	aica_reg_1f8544	mod_8c1f0000.c	1
 8c1f85a0	aica_reg_1f85a0	mod_8c1f0000.c	0
 8c1f85c8	aica_reg_1f85c8	mod_8c1f0000.c	1
@@ -4445,11 +4445,11 @@ address	name	file	params
 8c1f98ec	bios_flashrom_delete	mod_8c1f0000.c	0
 8c1f9914	bios_calls_calc_1f9914	mod_8c1f0000.c	1
 8c1f9980	cache_invalidate_range	mod_8c1f0000.c	2
-8c1f9a14	bios_scan_loop_1f9a14	mod_8c1f0000.c	0
+8c1f9a14	oc_invalidate_range_walk	mod_8c1f0000.c	0
 8c1f9bde	cache_purge_range	mod_8c1f0000.c	2
 8c1f9e32	dcache_writeback_range	mod_8c1f0000.c	2
 8c1fa0c4	shinobi_calc_1fa0c4	mod_8c1f0000.c	0
-8c1fa0f0	shinobi_fill_loop_1fa0f0	mod_8c1f0000.c	5
+8c1fa0f0	oc_invalidate_all	mod_8c1f0000.c	5
 8c1fa1f4	ta_fifo_1fa1f4	mod_8c1f0000.c	0
 8c1fa244	ta_uses_ret_const_1_1fa244	mod_8c1f0000.c	4
 8c1fa3f2	int_call_handlers	mod_8c1f0000.c	1
@@ -4466,7 +4466,7 @@ address	name	file	params
 8c1fa758	intc_reset_and_init_regs	mod_8c1f0000.c	5
 8c1fa7d0	exception_dump_registers	mod_8c1f0000.c	2
 8c1faa08	debug_dump_words	mod_8c1f0000.c	3
-8c1fab8c	shinobi_fill_loop_1fab8c	mod_8c1f0000.c	0
+8c1fab8c	serial_port_init	mod_8c1f0000.c	0
 8c1fac58	scif_putc	mod_8c1f0000.c	1
 8c1fad0a	scif_getchar_like	mod_8c1f0000.c	2
 8c1fad44	scif_update_fields_1fad44	mod_8c1f0000.c	0
@@ -4484,7 +4484,7 @@ address	name	file	params
 8c1fb43a	noop_1fb43a	mod_8c1f0000.c	0
 8c1fb4ae	malloc_thunk	mod_8c1f0000.c	4
 8c1fb4b8	malloc_sys	mod_8c1f0000.c	4
-8c1fb4c2	malloc_fill_loop_1fb4c2	mod_8c1f0000.c	1
+8c1fb4c2	heap_alloc_first_fit	mod_8c1f0000.c	1
 8c1fb57c	free_sys	mod_8c1f0000.c	4
 8c1fb586	malloc_calc_1fb586	mod_8c1f0000.c	4
 8c1fb590	malloc_fill_loop_1fb590	mod_8c1f0000.c	1

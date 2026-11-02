@@ -5399,7 +5399,7 @@ u32 game_uses_free_ptr_and_clear_0b95a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     return 0;
                 }
                 puVar2 = auStack_118;
-                rtc_uses_libgcc_divide_helper_1f8300(iStack_a0, puVar2);
+                shinobi_uses_libgcc_divide_helper_1f8300(iStack_a0, puVar2);
                 uVar1 = (u32)bStack_116;
                 iVar4 = iStack_a0;
             }
