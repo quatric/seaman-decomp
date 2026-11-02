@@ -8247,7 +8247,7 @@ u32 libc_sub_010c60(short *a0, u32 a1, u32 a2, u32 a3) {
     memset(auStack_48, 0, 0x10);
     ain0 = &cStack_3d;
     for (iVar3 = 0x42; iVar3 != 0; iVar3 = iVar3 + -1) {
-        libc_sub_012854(auStack_48, 0xc);
+        bytes_shl1(auStack_48, 0xc);
         a3 = 0xc;
         a6 = auStack_38;
         iVar1 = libc_sub_012eac(0, &cStack_2c, auStack_38, 0xc);
@@ -8257,7 +8257,7 @@ u32 libc_sub_010c60(short *a0, u32 a1, u32 a2, u32 a3) {
         } else {
             *ain0 = *ain0 + '\x01';
         }
-        libc_sub_012854(&cStack_2c, 0xc);
+        bytes_shl1(&cStack_2c, 0xc);
     }
     for (iVar3 = 2; iVar3 != 0; iVar3 = iVar3 + -1) {
         libc_sub_012d5c(auStack_48, 0x10);
@@ -8273,7 +8273,7 @@ u32 libc_sub_010c60(short *a0, u32 a1, u32 a2, u32 a3) {
          (((cStack_42 != '\0' || ((cStack_41 != '\0' || (cStack_40 != '\0')))) || (cStack_3f != '\0')))) ||
         (((cStack_3e != '\0' || (*ain0 != '\0')) || (bStack_3c != 0)))) {
         while ((bStack_44 & 0x80) == 0) {
-            libc_sub_012854(&bStack_44, 9);
+            bytes_shl1(&bStack_44, 9);
             *a0 = *a0 + -1;
         }
     }
@@ -9628,14 +9628,14 @@ u32 libc_sub_0125b6(int *a0) {
         if (iVar1 == -0x3fe) {
             *a0 = *a0 + 1;
             uStack_22 = uStack_22 & 0x800f;
-            libc_sub_012a24(&uStack_30, &uStack_24);
-            libc_sub_012a24(auStack_2c, &uStack_28);
+            store_u32_be(&uStack_30, &uStack_24);
+            store_u32_be(auStack_2c, &uStack_28);
             while ((abStack_2f[0] & 0x10) == 0) {
-                libc_sub_012854(abStack_2f, 7);
+                bytes_shl1(abStack_2f, 7);
                 *a0 = *a0 + -1;
             }
-            libc_sub_012a24(&uStack_24, &uStack_30);
-            libc_sub_012a24(&uStack_28, auStack_2c);
+            store_u32_be(&uStack_24, &uStack_30);
+            store_u32_be(&uStack_28, auStack_2c);
         }
     } else {
         if (iVar1 == 1) {
@@ -9706,11 +9706,11 @@ u32 libc_sub_012734(u32 *a0) {
 }
 
 /*
- * libc_sub_012854  0x8c012854
- * area name: in the libc library code range
+ * bytes_shl1  0x8c012854
+ * shifts the a1-byte big-endian number at a0 left by one bit; returns the bit shifted out
  * called by: libc_sub_010c60, libc_sub_0125b6, libc_sub_0129b4
  */
-u32 libc_sub_012854(u8 *a0, int a1) {
+u32 bytes_shl1(u8 *a0, int a1) {
     u16 uVar1;
     u16 uVar2;
     u8 *pbVar3;
@@ -9841,7 +9841,7 @@ u32 libc_sub_0129b4(short *a0, u32 a1, u32 a2, u32 a3) {
     *a0 = (short)a2 + *a0;
     (*(code *)puVar1)(a1, a3, abStack_1c, a3);
     if ((abStack_1c[0] & 0x80) == 0) {
-        libc_sub_012854(abStack_1c, 0x10);
+        bytes_shl1(abStack_1c, 0x10);
     } else {
         *a0 = *a0 + 1;
     }
@@ -9852,11 +9852,11 @@ u32 libc_sub_0129b4(short *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * libc_sub_012a24  0x8c012a24
- * area name: in the libc library code range
+ * store_u32_be  0x8c012a24
+ * stores *a1 big-endian at a0; returns a0 + 4
  * called by: libc_sub_0125b6, libc_sub_012f58
  */
-u8 *libc_sub_012a24(u8 *a0, u32 *a1) {
+u8 *store_u32_be(u8 *a0, u32 *a1) {
     u8 *puVar1;
     u8 uVar2;
     u32 uVar3;
@@ -10388,10 +10388,10 @@ u32 libc_sub_012f58(u8 *a0, u16 *a1, u8 *a2) {
     *a0 = uVar2;
     *a1 = uStack_16;
     *a1 = (short)(*a1 & 0x7ff0) >> 4;
-    libc_sub_012a24(&stack0xffffffe0, auStack_18);
+    store_u32_be(&stack0xffffffe0, auStack_18);
     ar6_00 = 3;
     memmove(a2, &stack0xffffffe1, 3);
-    libc_sub_012a24(&stack0xffffffe0, auStack_1c);
+    store_u32_be(&stack0xffffffe0, auStack_1c);
     memmove(a2 + 3, &stack0xffffffe0, 4);
     libc_sub_01289c(a2, 7, 3);
     if ((short)*a1 < 1) {
@@ -11916,12 +11916,11 @@ int log_message(char *a0, u32 a1, u32 a2) {
 }
 
 /*
- * libc_sub_0143c0  0x8c0143c0
- * area name: in the libc library code range
+ * strncpy  0x8c0143c0
  * called by: ADXSTM_OpenFname, ADXSTM_OpenFnameRange, ADXSTM_OpenRange, game_sub_0fde5c, game_sub_0fe1b8,
  * game_sub_0fe4f8, game_sub_0fe82c
  */
-char *libc_sub_0143c0(char *a0, char *a1, u32 a2) {
+char *strncpy(char *a0, char *a1, u32 a2) {
     char cVar1;
     u32 uVar2;
     char *pcVar3;
@@ -15388,7 +15387,7 @@ u32 Class_129938_m1_0170e0(int a0, u32 a1, u32 a2, int *a3) {
     }
     matrix_sub_256b0c(auStack_ac, ar5_00, iVar3, ar7_00, a1);
     for (iVar3 = 0; iVar3 < 8; iVar3 = iVar3 + 1) {
-        kamui_sub_212740(auStack_ac, auStack_6c + iVar3 * 0xc, iVar3 * 0xc + a0 + 0x30, ar7_00, a1);
+        point_transform_or_copy(auStack_ac, auStack_6c + iVar3 * 0xc, iVar3 * 0xc + a0 + 0x30, ar7_00, a1);
     }
     return 8;
 }
@@ -15483,7 +15482,7 @@ u32 Class_129938_m2_0171f4(int a0, u32 a1, u32 a2, u32 a3) {
     matrix_sub_256b0c(auStack_ac, ar5_00, iVar3, ar7_01, a1);
     matrix_scale(auStack_ac, ar5_00, iVar3, ar7_01, a1);
     for (iVar3 = 0; iVar3 < 8; iVar3 = iVar3 + 1) {
-        kamui_sub_212740(auStack_ac, auStack_6c + iVar3 * 0xc, iVar3 * 0xc + a0 + 0x30, ar7_01, a1);
+        point_transform_or_copy(auStack_ac, auStack_6c + iVar3 * 0xc, iVar3 * 0xc + a0 + 0x30, ar7_01, a1);
     }
     return 8;
 }
@@ -23121,7 +23120,7 @@ u32 game_sub_01f6dc(int a0, u32 a1, int a2, u32 a3) {
         strcpy(a0 + a2 * 0x16034 + 0x38, a1);
         uVar1 = set_fields_0_4_8_1f3078(a0 + a2 * 0x16034 + 0x5c, 0x800);
         *(u32 *)(a0 + a2 * 0x16034 + 0x58) = uVar1;
-        uVar1 = shinobi_sub_1f3926(a0 + a2 * 0x16034 + 0x38, *(u32 *)(a0 + a2 * 0x16034 + 0x58), ar6_00, a3);
+        uVar1 = gdfs_sub_1f3926(a0 + a2 * 0x16034 + 0x38, *(u32 *)(a0 + a2 * 0x16034 + 0x58), ar6_00, a3);
     }
     return uVar1;
 }

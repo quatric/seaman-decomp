@@ -7700,7 +7700,7 @@ int game_sub_0fde5c(int a0, u32 a1, u32 a2) {
     if (0x1d < ar6_00) {
         ar6_00 = 0x1d;
     }
-    libc_sub_0143c0(a0 + 0x2e0, a1, ar6_00);
+    strncpy(a0 + 0x2e0, a1, ar6_00);
     *(u8 *)(a0 + ar6_00 + 0x2e1) = 0;
     *(u32 *)(a0 + 0x300) = 0;
     return a0;
@@ -7840,7 +7840,7 @@ int game_sub_0fe1b8(int a0, u32 a1, u32 a2) {
     if (0x1d < ar6_00) {
         ar6_00 = 0x1d;
     }
-    libc_sub_0143c0(a0 + 0x18, a1, ar6_00);
+    strncpy(a0 + 0x18, a1, ar6_00);
     *(u8 *)(a0 + ar6_00 + 0x19) = 0;
     *(u32 *)(a0 + 0x38) = 0;
     return a0;
@@ -7970,7 +7970,7 @@ int game_sub_0fe4f8(int a0, u32 a1, u32 a2) {
     if (0x1d < ar6_00) {
         ar6_00 = 0x1d;
     }
-    libc_sub_0143c0(a0 + 0xb0, a1, ar6_00);
+    strncpy(a0 + 0xb0, a1, ar6_00);
     *(u8 *)(a0 + ar6_00 + 0xb1) = 0;
     *(u32 *)(a0 + 0xd0) = 0;
     return a0;
@@ -8098,7 +8098,7 @@ int game_sub_0fe82c(int a0, u32 a1, u32 a2) {
     if (0x1d < ar6_00) {
         ar6_00 = 0x1d;
     }
-    libc_sub_0143c0(a0 + 0x28, a1, ar6_00);
+    strncpy(a0 + 0x28, a1, ar6_00);
     *(u8 *)(a0 + ar6_00 + 0x29) = 0;
     *(u32 *)(a0 + 0x48) = 0;
     return a0;
@@ -9029,7 +9029,7 @@ u32 game_sub_0ff928(int a0, u64 *a1, u64 *a2, u32 a3) {
     ninja_sub_2572ec(ar4_00);
     gfxlib_sub_219038();
     gfxlib_sub_219070();
-    gfxlib_sub_21907e();
+    set_vec3_g_278744();
     game_sub_0f4b44(*(u32 *)(a0 + 4));
     matrix_push(0, uVar4, a6, uVar3, in_stack_ffffff50);
     touch_fields_30_3c(0, uVar4, a6, uVar3, in_stack_ffffff50);

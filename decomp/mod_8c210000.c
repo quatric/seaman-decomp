@@ -1334,7 +1334,7 @@ u32 kamui_sub_212440(u32 a0, u32 unused_a1, int a2, u32 a3) {
     u8 *ain0;
 
     ar5_00 = &stack0xfffffff0;
-    ar4_00 = shinobi_sub_1f397e(a0, 0, a2, a3);
+    ar4_00 = gdfs_open_like(a0, 0, a2, a3);
     if (ar4_00 != 0) {
         iVar1 = gdfs_sub_1f30ee(ar4_00, &stack0xfffffff0);
         ain0 = in_stack_fffffff0;
@@ -1496,12 +1496,12 @@ LAB_8c212588:
 }
 
 /*
- * kamui_sub_212740  0x8c212740
- * area name: in the kamui library code range
+ * point_transform_or_copy  0x8c212740
+ * a2 = the current matrix times a1, or the position at +0x30 of object a0 when it is set
  * called by: Class_129938_m1_0170e0, Class_129938_m2_0171f4, Vec3_sub_02a568, Vec3_sub_02a5d4, gfxlib_sub_218e00,
  * gfxlib_sub_21a678, gfxlib_sub_2376c4, gfxlib_sub_2376d8
  */
-u32 kamui_sub_212740(int a0, float *a1, float *a2, u32 unused_a3, u32 ain0) {
+u32 point_transform_or_copy(int a0, float *a1, float *a2, u32 unused_a3, u32 ain0) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -4704,8 +4704,8 @@ LAB_8c213882:
 /*
  * ta_sub_213a04  0x8c213a04
  * area name: sits between ta functions (same compilation unit)
- * called by: ninja_sub_25ab74, ta_fifo_213bf4, ta_sub_213ab6, ta_sub_213d0e, ta_sub_213d12, ta_sub_213d3e,
- * ta_sub_213d8a, ta_sub_213d8e (+4 more)
+ * called by: ninja_sub_25aa80, ninja_sub_25ab74, ta_fifo_213bf4, ta_sub_213ab6, ta_sub_213d0e, ta_sub_213d12,
+ * ta_sub_213d3e, ta_sub_213d8a (+4 more)
  */
 u32 ta_sub_213a04(u32 a0, u32 a1) {
     if (a1 <= a0) {
@@ -5328,7 +5328,7 @@ u32 kamui_sub_2141a6(void) {
     u32 uVar5;
 
     puVar2 = (&kamui_sub_21279c);
-    puVar1 = (&kamui_sub_212740);
+    puVar1 = (&point_transform_or_copy);
     uVar5 = *(u32 *)(0x8c4c0d60 + 0x50);
     iVar3 = 0x8c4c0dc0;
     iVar4 = 0x8c4c0d60;
@@ -5363,7 +5363,7 @@ u32 kamui_sub_2141ba(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar3;
 
     puVar2 = (&kamui_sub_21279c);
-    puVar1 = (&kamui_sub_212740);
+    puVar1 = (&point_transform_or_copy);
     uVar3 = *unaff_r14;
     a6 = 0x8c4c0dc0;
     while (true) {
@@ -15220,7 +15220,7 @@ u8 *gfxlib_sub_217f12(u16 *a0, int a1, int a2, u32 *a3, u8 *ain0) {
                                             uVar6 = 0x80000;
                                         }
                                         ta_fifo_237124(uVar6, &g_8c277acc, a6, 0x20);
-                                        pcVar7 = gfxlib_sub_236510;
+                                        pcVar7 = ta_sq_write_header4_short;
                                     } else {
                                         if ((a6 & 0x20) == 0) {
                                             uVar6 = 0x2100002;
@@ -15228,7 +15228,7 @@ u8 *gfxlib_sub_217f12(u16 *a0, int a1, int a2, u32 *a3, u8 *ain0) {
                                             uVar6 = 0x2100000;
                                         }
                                         ta_fifo_237124(uVar6, &g_8c277acc, a6, 0x20);
-                                        pcVar7 = gfxlib_sub_2365e2;
+                                        pcVar7 = ta_sq_write_header5_short;
                                     }
                                     a7 = (u32 *)(*pcVar7)(uVar6, a5, a6, a7);
                                 } else {
@@ -15754,7 +15754,7 @@ u32 vram_sub_218804(u16 *a0, int a1, u8 *a2, u32 unused_a3, u32 ain0) {
                             uVar6 = 0x80010;
                         }
                         ta_fifo_237124(uVar6, a5, a6, 0x20);
-                        pcVar7 = gfxlib_sub_236510;
+                        pcVar7 = ta_sq_write_header4_short;
                     } else {
                         if ((a6 & 0x20) == 0) {
                             uVar6 = 0x2100012;
@@ -15762,7 +15762,7 @@ u32 vram_sub_218804(u16 *a0, int a1, u8 *a2, u32 unused_a3, u32 ain0) {
                             uVar6 = 0x2100010;
                         }
                         ta_fifo_237124(uVar6, a5, a6, 0x20);
-                        pcVar7 = gfxlib_sub_2365e2;
+                        pcVar7 = ta_sq_write_header5_short;
                     }
                     ar7_00 = (u8 *)(*pcVar7)(uVar6, a5, a6, ar7_00);
                     if (a1 == 0) {
@@ -15892,7 +15892,7 @@ u32 gfxlib_sub_218e00(int *a0, u32 a1) {
     if ((((g_8c4aa4f0 & 0x100) == 0) || ((float)a0[5] <= 0.0)) || (iVar1 = gfxlib_sub_217e18(a0), iVar1 == 0)) {
         g_8c4aa554 = 0;
         if ((g_8c4aa4f0 & 0x40) != 0) {
-            kamui_sub_212740(0, a0 + 2, &stack0xffffffe8, r7, in_stack_ffffffe8);
+            point_transform_or_copy(0, a0 + 2, &stack0xffffffe8, r7, in_stack_ffffffe8);
             if (cVar5 == '\0') {
                 dVar3 = (double)CONCAT44(uStack_10, a0[5]);
             } else {
@@ -16220,12 +16220,12 @@ u32 gfxlib_sub_219070(void) {
 }
 
 /*
- * gfxlib_sub_21907e  0x8c21907e
- * area name: in the gfxlib library code range
+ * set_vec3_g_278744  0x8c21907e
+ * stores fr4..fr6 at 0x8c278744
  * called by: Class_12b3b8_sub_0e7a78, Vec3_sub_0e3f24, game_sub_0cc524, game_sub_0d8808, game_sub_0e5dac,
  * game_sub_0e743c, game_sub_0ff928
  */
-u32 gfxlib_sub_21907e(void) {
+u32 set_vec3_g_278744(void) {
     u32 in_fr5;
     u32 in_fr4;
     u32 in_fr6;
@@ -16573,9 +16573,9 @@ u8 *gfxlib_sub_21908e(u16 *a0, int a1, u32 a2) {
                             uVar15 = a6;
                             ta_fifo_237124(uVar5, 0x40, a6, &g_8c4aa4f0);
                             if ((a6 & 8) == 0) {
-                                pcVar12 = gfxlib_sub_236510;
+                                pcVar12 = ta_sq_write_header4_short;
                             } else {
-                                pcVar12 = gfxlib_sub_2365e2;
+                                pcVar12 = ta_sq_write_header5_short;
                             }
                             ar7_00 = (u8 *)(*pcVar12)(uVar5, uVar8, uVar15, ar7_00);
                             if (a1 != 0)
@@ -17047,7 +17047,7 @@ int gfxlib_sub_219ad0(u16 *a0, u16 *a1, u16 *a2, u32 unused_a3, int ain0) {
                                 ta_fifo_237124(0x80010, a5, a6, 0);
                                 g_8c277acc = 1;
                             }
-                            pcVar7 = gfxlib_sub_236510;
+                            pcVar7 = ta_sq_write_header4_short;
                         } else {
                             if (a5 == NULL) {
                                 uVar3 = 0x2100012;
@@ -17057,7 +17057,7 @@ int gfxlib_sub_219ad0(u16 *a0, u16 *a1, u16 *a2, u32 unused_a3, int ain0) {
                                 ta_fifo_237124(0x2100010, a5, a6, ar7_00);
                                 g_8c277acc = 1;
                             }
-                            pcVar7 = gfxlib_sub_2365e2;
+                            pcVar7 = ta_sq_write_header5_short;
                         }
                         ar7_00 = (u8 *)(*pcVar7)(uVar3, a5, a6, ar7_00);
                         if (a1 == NULL) {
@@ -17333,7 +17333,7 @@ u32 gfxlib_sub_21a678(int *a0, u32 a1) {
     if ((((g_8c4aa4f0 & 0x100) == 0) || ((float)a0[5] <= 0.0)) || (iVar1 = gfxlib_sub_217e18(a0), iVar1 == 0)) {
         g_8c4aa554 = 0;
         if ((g_8c4aa4f0 & 0x40) != 0) {
-            kamui_sub_212740(0, a0 + 2, &stack0xffffffe8, r7, in_stack_ffffffe8);
+            point_transform_or_copy(0, a0 + 2, &stack0xffffffe8, r7, in_stack_ffffffe8);
             if (cVar5 == '\0') {
                 dVar3 = (double)CONCAT44(uStack_10, a0[5]);
             } else {

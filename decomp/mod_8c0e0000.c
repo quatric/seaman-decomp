@@ -2998,7 +2998,7 @@ u32 Vec3_sub_0e3f24(int a0) {
     uVar2 = 0;
     kamui_sub_21279c(0, ar5_00, &stack0xffffffd8, r7, in_stack_ffffffd8);
     gfxlib_sub_219038();
-    gfxlib_sub_21907e();
+    set_vec3_g_278744();
     gfxlib_sub_219070();
     gfxlib_sub_217ebc();
     gfxlib_sub_217f02();
@@ -4199,7 +4199,7 @@ u32 game_sub_0e5dac(void) {
     gfxlib_sub_217f02();
     gfxlib_sub_217ef4();
     gfxlib_sub_219038();
-    gfxlib_sub_21907e();
+    set_vec3_g_278744();
     uVar1 = gfxlib_sub_219070();
     return uVar1;
 }
@@ -5049,7 +5049,7 @@ u32 game_sub_0e743c(void) {
     u32 uVar1;
 
     gfxlib_sub_219038();
-    gfxlib_sub_21907e();
+    set_vec3_g_278744();
     uVar1 = gfxlib_sub_219070();
     return uVar1;
 }
@@ -5351,7 +5351,7 @@ u32 Class_12b3b8_sub_0e7a78(int a0, u32 a1, u32 a2, u32 a3) {
     iVar1 = a0 + 0x228;
     game_sub_0194c0(iVar1);
     gfxlib_sub_219038();
-    gfxlib_sub_21907e();
+    set_vec3_g_278744();
     (**(code **)(*(int *)(a0 + 0x414) + 0x14))((int *)(a0 + 0x414), a1, a2, a3);
     if (*(int *)(a0 + 0x410) == 0) {
         free_if_nonnull_wrap_0151a0(auStack_74, 0xffffffff, a2, a3);

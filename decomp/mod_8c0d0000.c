@@ -8390,7 +8390,7 @@ u32 game_sub_0d8808(int a0) {
     uVar1 = 0;
     kamui_sub_21279c(0, ar5_00, &stack0xffffffe0, r7, in_stack_ffffffe0);
     gfxlib_sub_219038();
-    gfxlib_sub_21907e();
+    set_vec3_g_278744();
     uVar1 = gfxlib_sub_219070();
     return uVar1;
 }

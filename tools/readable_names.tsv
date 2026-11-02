@@ -290,3 +290,26 @@
 8c2691b8	mwRna_set_play_sw	a1 = 1 starts (vtable +0x10, sets bit 1), 0 stops (vtable +0x14) an mwRna handle's output
 8c25a8c0	tex_copy_to_alloc	copies a texture's data into newly allocated texture memory and writes the cache back; -7 when out of memory
 8c01636c	Class_129808_draw_offset	draws the object's quad moved by the x/y offset in dr4
+8c0143c0	strncpy		3
+8c012a24	store_u32_be	stores *a1 big-endian at a0; returns a0 + 4
+8c012854	bytes_shl1	shifts the a1-byte big-endian number at a0 left by one bit; returns the bit shifted out
+8c259be8	nj_file_open	opens file a0 for the Ninja loader and records its size and sector count; -2 on failure
+8c1f397e	gdfs_open_like	opens a file on the disc (probably gdFsOpen)
+8c1f30d4	gdfs_get_size_like	stores an open file's size in *a1 (probably gdFsGetFileSize)
+8c1f19ec	gdfs_read_sectors_like	reads a1 sectors of file a0 into a2 through a temporary handle; -13 when no handle is free
+8c238eba	gfx_stream_seek	a1 = 0 sets the read pointer (0x8c4ab274) to base + a0, 1 moves it by a0
+8c2029b4	cmp_u64_pair	compares the 64-bit values (s0, s4) and (s8, s12): -1, 0 or 1
+8c20a482	pvr_set_clip_rect	sets the tile clip rectangle (a0, a1)-(a2, a3), at most 2047, even in mode 4; 0xdddd if empty
+8c1efffa	bitmask_table_find	entry a1 of a table whose first word flags which of 32 entries follow; NULL if absent
+8c204eb6	dlist_insert_before	links node a1 in front of node a2 (prev +4, next +8), updating the head *a0
+8c265784	sd_handle_release	releases a sound handle and drops the driver's handle count (+0x184)
+8c265f84	sd_wait_idle_set_1a8	runs sdSysServer until the host-command queue is idle, then sets +0x1a8 = a0
+8c1fcdc2	slot80_call_78	calls the callback at +0x78 of entry a0 of the table at 0x8c475fc0
+8c236510	ta_sq_write_header4_short	three-word variant of ta_sq_write_header4
+8c2365e2	ta_sq_write_header5_short	three-word variant of ta_sq_write_header5
+8c25b5b4	tex_error_reset	clears the texture loader's error state (0x8c4aa6ac)
+8c25a710	tex_entry_next_free	+0x14 of the next free texture-table entry
+8c25abf0	pvr_parse_header	walks a PVR file's chunks: GBIX sets *a1 to the global index, PVRT copies the 8-byte header to a0
+8c23ba30	clear_4_words	a0[0..3] = 0
+8c21907e	set_vec3_g_278744	stores fr4..fr6 at 0x8c278744
+8c212740	point_transform_or_copy	a2 = the current matrix times a1, or the position at +0x30 of object a0 when it is set

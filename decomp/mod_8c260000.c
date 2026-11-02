@@ -4225,18 +4225,18 @@ u32 ADXSTM_OpenFname(u32 a0, u32 a1, u32 a2, u32 a3) {
     ar5_01 = &stack0xffffffec;
     ar5_00 = 0;
     ar4_00 = a0;
-    iVar1 = shinobi_sub_1f397e(a0, 0, a2, a3);
+    iVar1 = gdfs_open_like(a0, 0, a2, a3);
     if (iVar1 == 0) {
         lib_error_printf(ar4_00, ar5_00, a2, a3, "E8101210: can\'t open \'%s\' (ADXSTM_OpenFname)", a0);
     } else {
         ar4_01 = iVar1;
-        iVar2 = gdfs_sub_1f30d4(iVar1, &stack0xffffffec);
+        iVar2 = gdfs_get_size_like(iVar1, &stack0xffffffec);
         if (iVar2 != 0) {
             iVar1 = cri_sub_26325e(iVar1, 0, in_stack_ffffffec, a1);
             if (iVar1 == 0) {
                 return 0;
             }
-            libc_sub_0143c0(iVar1 + 0x40, a0, 0x20);
+            strncpy(iVar1 + 0x40, a0, 0x20);
             return iVar1;
         }
         lib_error_printf(ar4_01, ar5_01, a2, a3, "E8101211: can\'t GetFileSize (ADXSTM_OpenFname)", in_stack_ffffffec);
@@ -4265,7 +4265,7 @@ u32 ADXSTM_OpenRange(u32 a0, int a1, u32 a2, u32 a3) {
     }
     iVar1 = cri_sub_26325e(a4, 0, a1 << 0xb, a2);
     if (iVar1 != 0) {
-        libc_sub_0143c0(iVar1 + 0x40, "OpenRange", 0x20);
+        strncpy(iVar1 + 0x40, "OpenRange", 0x20);
     }
     return iVar1;
 }
@@ -4284,7 +4284,7 @@ int ADXSTM_OpenFnameRange(u32 a0, u32 a1, int a2, u32 a3) {
     ar5_00 = 0;
     iVar1 = a2;
     uVar2 = a3;
-    a4 = shinobi_sub_1f397e(a0, 0, a2, a3);
+    a4 = gdfs_open_like(a0, 0, a2, a3);
     if (a4 == 0) {
         lib_error_printf(0, ar5_00, iVar1, uVar2, "E8101213: can't open '%s'(ADXSTM_OpenFnameRange)", a0);
         iVar1 = 0;
@@ -4292,7 +4292,7 @@ int ADXSTM_OpenFnameRange(u32 a0, u32 a1, int a2, u32 a3) {
         iVar1 = cri_sub_26325e(a4, a1, a2 << 0xb, a3);
         if (iVar1 != 0) {
             uVar2 = 0x20;
-            libc_sub_0143c0(iVar1 + 0x40, a0, 0x20);
+            strncpy(iVar1 + 0x40, a0, 0x20);
             ADXSTM_sub_263534(iVar1, 0);
         }
     }
@@ -4711,7 +4711,7 @@ u32 cri_sub_2637ca(u32 a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 auStack_10[4];
 
-    uVar1 = shinobi_sub_1f3968(a0, auStack_10, a2, a3);
+    uVar1 = gdfs_sub_1f3968(a0, auStack_10, a2, a3);
     *a1 = auStack_10[0];
     return uVar1;
 }
@@ -4726,7 +4726,7 @@ u32 cri_sub_2637e8(u32 a0, int *a1, u32 a2, u32 a3) {
     u8 auStack_10[4];
     int iStack_c;
 
-    uVar1 = shinobi_sub_1f3968(a0, auStack_10, a2, a3);
+    uVar1 = gdfs_sub_1f3968(a0, auStack_10, a2, a3);
     iStack_c = iStack_c + 0x7ff;
     if (iStack_c < 0) {
         iStack_c = iStack_c + 0x7ff;
@@ -4745,7 +4745,7 @@ u32 cri_sub_263816(u32 a0, u32 *a1, u32 a2, u32 a3) {
     u8 auStack_10[4];
     u32 uStack_c;
 
-    uVar1 = shinobi_sub_1f3968(a0, auStack_10, a2, a3);
+    uVar1 = gdfs_sub_1f3968(a0, auStack_10, a2, a3);
     *a1 = uStack_c;
     return uVar1;
 }
@@ -6946,7 +6946,7 @@ int aica_sub_2654f4(int a0, u32 a1, u32 a2, u32 a3) {
         iVar2 = 0;
     }
     if (*(int *)(&DATA_8c2784b8) != 0) {
-        aica_sub_265784(*(u32 *)(&DATA_8c2784b8));
+        sd_handle_release(*(u32 *)(&DATA_8c2784b8));
     }
     if (iVar2 != 0) {
         sd_set_last_error((&aica_sub_2654f4), iVar2);
@@ -7132,11 +7132,11 @@ LAB_8c26574e:
 }
 
 /*
- * aica_sub_265784  0x8c265784
- * area name: sits between aica functions (same compilation unit)
+ * sd_handle_release  0x8c265784
+ * releases a sound handle and drops the driver's handle count (+0x184)
  * called by: aica_driver_upload, aica_sub_2654f4, aica_sub_2669f4, game_sub_022504, sd_sub_26a5de
  */
-int aica_sub_265784(int *a0) {
+int sd_handle_release(int *a0) {
     u8 *puVar1;
     int iVar2;
 
@@ -7149,7 +7149,7 @@ int aica_sub_265784(int *a0) {
         iVar2 = 0;
     }
     if (iVar2 != 0) {
-        sd_set_last_error((&aica_sub_265784), iVar2);
+        sd_set_last_error((&sd_handle_release), iVar2);
     }
     return iVar2;
 }
@@ -7177,7 +7177,7 @@ int aica_sub_26578c(int *a0, u32 unused_a1, int a2) {
         }
     }
     if (unaff_r14 != 0) {
-        sd_set_last_error(aica_sub_265784, unaff_r14, a2);
+        sd_set_last_error(sd_handle_release, unaff_r14, a2);
     }
     return unaff_r14;
 }
@@ -7792,11 +7792,11 @@ u32 set_field_c_265f7c(int a0, u32 a1) {
 }
 
 /*
- * sd_sub_265f84  0x8c265f84
- * area name: in the sd library code range
+ * sd_wait_idle_set_1a8  0x8c265f84
+ * runs sdSysServer until the host-command queue is idle, then sets +0x1a8 = a0
  * called by: game_sub_0221c8, game_sub_26b092, game_sub_26b132
  */
-u32 sd_sub_265f84(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 sd_wait_idle_set_1a8(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
     u8 *puVar2;
     u32 a4;
@@ -8611,7 +8611,7 @@ int aica_sub_2669f4(int a0, int a1, int a2, int a3) {
         }
     }
     if (ar4_00 != 0) {
-        aica_sub_265784(ar4_00);
+        sd_handle_release(ar4_00);
     }
     if (ar5_00 != 0) {
         sd_set_last_error(aica_sub_2669f4, ar5_00, a2);
@@ -13175,7 +13175,7 @@ u32 sd_sub_26a246(int a0, int a1, int a2, int a3) {
             } while ((int)puStack_40 < a0);
         }
         puVar5[0x10] = (int)0x4000;
-        for (puStack_40 = NULL; puVar3 = (&aica_sub_265784), (int)puStack_40 < a0;
+        for (puStack_40 = NULL; puVar3 = (&sd_handle_release), (int)puStack_40 < a0;
              puStack_40 = (u32 *)((int)puStack_40 + 1)) {
             iVar6 = aica_sub_265704(&uStack_30);
             if (iVar6 != 0) {
@@ -13318,13 +13318,13 @@ u32 sd_sub_26a5de(u32 unused_a0, int unused_a1, u32 unused_a2, u32 a3, u32 ain0)
     if (in_T != '\x01') {
         for (iVar2 = 0; iVar2 < *(int *)(unaff_r14 + 8); iVar2 = iVar2 + 1) {
             clear_field_0_26a1f2(*(u32 *)(unaff_r14 + 0x18 + iVar2 * 4));
-            iVar1 = aica_sub_265784(*(u32 *)(unaff_r14 + 0x20 + iVar2 * 4));
+            iVar1 = sd_handle_release(*(u32 *)(unaff_r14 + 0x20 + iVar2 * 4));
             if (iVar1 != 0) {
                 debug_printf(iVar1, unused_a1, unused_a2, a3);
             }
         }
         for (iVar2 = 0; iVar2 < *(int *)(unaff_r14 + 8); iVar2 = iVar2 + 1) {
-            iVar1 = aica_sub_265784(*(u32 *)(iVar2 * 4 + unaff_r14 + 0x28));
+            iVar1 = sd_handle_release(*(u32 *)(iVar2 * 4 + unaff_r14 + 0x28));
             if (iVar1 != 0) {
                 debug_printf(iVar1, unused_a1, unused_a2, a3);
             }
@@ -14120,7 +14120,7 @@ u32 game_sub_26b092(int a0, int a1, int *a2, u32 a3) {
     ar5_00 = a1;
     piStack_20 = a2;
     sd_sub_265ab0(&uStack_24);
-    sd_sub_265f84(0, ar5_00, a2, a3);
+    sd_wait_idle_set_1a8(0, ar5_00, a2, a3);
     iVar1 = libgcc_divide_helper_010468(0x100, *(u32 *)(a0 + 0x10));
     iVar1 = iVar1 << 3;
     piVar2 = (int *)libgcc_divide_helper_010468(a1, iVar1);
@@ -14138,7 +14138,7 @@ u32 game_sub_26b092(int a0, int a1, int *a2, u32 a3) {
         in_stack_ffffffd8 = a3;
         mwSnd_sub_26af7a(a0, iVar3, a2, a3);
     }
-    sd_sub_265f84(uStack_24, ar5_00, a2, a3);
+    sd_wait_idle_set_1a8(uStack_24, ar5_00, a2, a3);
     *piStack_20 = a1 + *(int *)(a0 + 0x44);
     return *(u32 *)(a0 + 0x44);
 }
@@ -14170,7 +14170,7 @@ int game_sub_26b132(int a0, u32 a1, u32 unused_a2, u32 a3) {
         ar5_01 = ar5_00;
         mwSnd_sub_26af42(a1, ar5_00, &stack0xffffffe4, a3, in_stack_ffffffe4);
         sd_sub_265ab0(auStack_18);
-        sd_sub_265f84(0, ar5_01, ar6_00, a3);
+        sd_wait_idle_set_1a8(0, ar5_01, ar6_00, a3);
         for (a5 = NULL; (int)a5 < *(int *)(a0 + 0xc); a5 = a5 + 1) {
             ar5_01 = a5;
             ar6_00 = ar5_00;
@@ -14179,7 +14179,7 @@ int game_sub_26b132(int a0, u32 a1, u32 unused_a2, u32 a3) {
             a3 = in_stack_ffffffe4;
             in_stack_ffffffe4 = uVar3;
         }
-        sd_sub_265f84(auStack_18[0], ar5_01, ar6_00, a3);
+        sd_wait_idle_set_1a8(auStack_18[0], ar5_01, ar6_00, a3);
         iVar1 = (int)ar5_00 * iVar1;
     }
     return iVar1;

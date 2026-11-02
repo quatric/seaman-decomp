@@ -7942,7 +7942,7 @@ u32 game_sub_0cc524(int a0, int a1, u32 a2, u32 a3) {
     uVar2 = 0;
     kamui_sub_21279c(0, ar5_00, ar6_00, a3, in_stack_ffffff50);
     gfxlib_sub_219038();
-    gfxlib_sub_21907e();
+    set_vec3_g_278744();
     gfxlib_sub_219070();
     obj_set_texlist(0x8c43691c, ar5_00, ar6_00);
     matrix_push(0, ar5_00, ar6_00, a3, in_stack_ffffff50);

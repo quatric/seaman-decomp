@@ -91,7 +91,7 @@ u32 game_sub_020148(int a0, char *a1, u32 a2, u32 a3) {
                     iVar3 = a0 + iVar1 * 0x16034 + 0x38;
                     iVar2 = game_sub_020258(acStack_3c, iVar3);
                     if ((iVar2 == 0) &&
-                        (iVar2 = (*(code *)(&shinobi_sub_1f3952))(*(u32 *)(a0 + iVar1 * 0x16034 + 0x58), iVar3, a2, a3),
+                        (iVar2 = (*(code *)(&gdfs_sub_1f3952))(*(u32 *)(a0 + iVar1 * 0x16034 + 0x58), iVar3, a2, a3),
                          iVar2 == 0))
                         break;
                     iVar1 = iVar1 + 1;
@@ -103,7 +103,7 @@ u32 game_sub_020148(int a0, char *a1, u32 a2, u32 a3) {
             iVar3 = iVar3 + 1;
         }
     }
-    iVar1 = shinobi_sub_1f3952(*(u32 *)(a0 + 0x58), a1, a2, a3);
+    iVar1 = gdfs_sub_1f3952(*(u32 *)(a0 + 0x58), a1, a2, a3);
     return (u32)(iVar1 == 0);
 }
 
@@ -1894,7 +1894,7 @@ u32 game_sub_0221c8(int a0, u32 a1, u32 a2) {
             } else {
                 sd_sub_268818(0x4f4e4f4d, a1, ar6_00, uVar1);
             }
-            sd_sub_265f84(1, a1, ar6_00, uVar1);
+            sd_wait_idle_set_1a8(1, a1, ar6_00, uVar1);
             uVar3 = 0x2d0c4;
             uVar2 = cri_sub_263840(2, a0 + 0x8c, 0x2d0c4, uVar1);
             *(u32 *)(a0 + 0x74) = uVar2;
@@ -1976,7 +1976,7 @@ int aica_driver_upload(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
         }
     }
     if (aiStack_10[0] != 0) {
-        aica_sub_265784(aiStack_10[0]);
+        sd_handle_release(aiStack_10[0]);
     }
     return iVar1;
 }
@@ -2022,7 +2022,7 @@ int game_sub_022504(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
         }
     }
     if (aiStack_10[0] != 0) {
-        aica_sub_265784(aiStack_10[0]);
+        sd_handle_release(aiStack_10[0]);
     }
     return iVar1;
 }
@@ -9050,7 +9050,7 @@ u32 Vec3_sub_02a568(u32 unused_a0, u32 *a1, u64 *a2) {
     uStack_54 = a1[1];
     uStack_50 = a1[2];
     memmove_bytes_wrap(auStack_4c);
-    kamui_sub_212740(auStack_4c, &uStack_58, &stack0xffffff9c, r7, in_stack_ffffff9c);
+    point_transform_or_copy(auStack_4c, &uStack_58, &stack0xffffff9c, r7, in_stack_ffffff9c);
     if (cVar1 == '\0') {
         *(u32 *)a2 = in_stack_ffffff9c;
         *(u32 *)((int)a2 + 4) = uStack_60;
@@ -9101,7 +9101,7 @@ u32 Vec3_sub_02a5d4(u32 unused_a0, u32 *a1, u64 *a2) {
     }
     uStack_14 = 0;
     uStack_18 = 0;
-    kamui_sub_212740(auStack_4c, &uStack_58, &uStack_64, r7, uStack_1c);
+    point_transform_or_copy(auStack_4c, &uStack_58, &uStack_64, r7, uStack_1c);
     if (cVar1 == '\0') {
         *(u32 *)a2 = uStack_64;
         *(u32 *)((int)a2 + 4) = uStack_60;

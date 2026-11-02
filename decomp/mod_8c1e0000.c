@@ -878,12 +878,12 @@ u32 thunk_FUN_8c1f4646(void) {
 }
 
 /*
- * shinobi_sub_1efffa  0x8c1efffa
- * area name: in the shinobi library code range
+ * bitmask_table_find  0x8c1efffa
+ * entry a1 of a table whose first word flags which of 32 entries follow; NULL if absent
  * called by: shinobi_sub_1f002a, shinobi_sub_1f0074, shinobi_sub_1f00f8, shinobi_sub_1f0142, shinobi_sub_1f01ae,
  * shinobi_sub_1f01e8, shinobi_sub_1f0232
  */
-u32 *shinobi_sub_1efffa(u32 *a0, u32 a1) {
+u32 *bitmask_table_find(u32 *a0, u32 a1) {
     int iVar1;
     u32 *puVar2;
     u32 uVar3;
