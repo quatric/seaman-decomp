@@ -8060,7 +8060,7 @@ int shinobi_update_fields_1f59fc(void) {
 /*
  * irq_disable_save  0x8c1f5a30
  * saves SR.IMASK in *a0 and returns SR with IMASK 15 (Shinobi's copy)
- * called by: irq_list_add_unique, irq_list_ref, irq_list_unref, irq_uses_irq_disable_save_1f5c04
+ * called by: irq_list_add_unique, irq_list_ref, irq_list_remove, irq_list_unref
  */
 u32 irq_disable_save(u32 *a0) {
     u32 uVar1;
@@ -8085,7 +8085,7 @@ u32 irq_disable_save(u32 *a0) {
 /*
  * irq_restore_saved  0x8c1f5a48
  * SR with IMASK from *a0 (Shinobi's copy)
- * called by: irq_list_add_unique, irq_list_ref, irq_list_unref, irq_uses_irq_disable_save_1f5c04
+ * called by: irq_list_add_unique, irq_list_ref, irq_list_remove, irq_list_unref
  */
 u32 irq_restore_saved(u32 *a0) {
     u8 in_MD;
@@ -8106,8 +8106,7 @@ u32 irq_restore_saved(u32 *a0) {
 /*
  * irq_calls_calc_1f5a5e  0x8c1f5a5e
  * area name: sits between irq functions (same compilation unit); behaviour name: its callees mostly do: calc
- * called by: irq_calls_calc_1f5ac6, irq_list_add_unique, irq_list_find, irq_list_ref, irq_list_unref,
- * irq_uses_irq_disable_save_1f5c04
+ * called by: irq_calls_calc_1f5ac6, irq_list_add_unique, irq_list_find, irq_list_ref, irq_list_remove, irq_list_unref
  */
 int irq_calls_calc_1f5a5e(u32 *a0) {
     int iVar1;
@@ -8123,7 +8122,7 @@ int irq_calls_calc_1f5a5e(u32 *a0) {
 /*
  * irq_list_find  0x8c1f5a86
  * index of a0 in the handler list, -3 if absent
- * called by: irq_uses_irq_disable_save_1f5c04
+ * called by: irq_list_remove
  */
 u32 irq_list_find(int a0) {
     int *piVar1;
@@ -8264,11 +8263,11 @@ u32 irq_list_add_unique(int a0, int *a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * irq_uses_irq_disable_save_1f5c04  0x8c1f5c04
- * area name: sits between irq functions (same compilation unit); behaviour name: its main named callee is
- * irq_disable_save called by: alt_entry_1f5d04, lib_handles_remove_all_like
+ * irq_list_remove  0x8c1f5c04
+ * with interrupts masked removes a0 from the handler list, shifting the later entries down; -2 if absent
+ * called by: alt_entry_1f5d04, lib_handles_remove_all
  */
-u32 irq_uses_irq_disable_save_1f5c04(u32 a0, u32 unused_a1, int *a2, int *a3) {
+u32 irq_list_remove(u32 a0, u32 unused_a1, int *a2, int *a3) {
     int iVar1;
     int *piVar2;
     int a5;
@@ -8372,13 +8371,13 @@ u32 alt_entry_1f5cac(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * lib_handles_remove_all_like  0x8c1f5cf6
- * walks the library handle records between the start and end markers and passes each to
- * irq_uses_irq_disable_save_1f5c04; -1 without the start marker called by: lib_handles_remove_all_like_wrap strings:
- * "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 19"; "Lib Handle StartLib Handle End  \nov
- * Ver.1.00Build:Apr 23 19"; "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 19"
+ * lib_handles_remove_all  0x8c1f5cf6
+ * walks the library handle records between the start and end markers and removes each from the handler list; -1 without
+ * the start marker called by: lib_handles_remove_all_wrap strings: "Lib Handle StartLib Handle End  \nov
+ * Ver.1.00Build:Apr 23 19"; "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 19"; "Lib Handle StartLib Handle
+ * End  \nov Ver.1.00Build:Apr 23 19"
  */
-u32 lib_handles_remove_all_like(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 lib_handles_remove_all(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -8396,7 +8395,7 @@ u32 lib_handles_remove_all_like(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
                            "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n" + 0x10, 0x10);
             if (iVar3 == 0)
                 break;
-            irq_uses_irq_disable_save_1f5c04(ar4_00, ar5_00, uVar2, a3);
+            irq_list_remove(ar4_00, ar5_00, uVar2, a3);
             iVar1 = iVar1 + 1;
         }
         uVar2 = 0;
@@ -8431,7 +8430,7 @@ u32 alt_entry_1f5d04(int a0, u32 unused_a1, u32 a2, u32 a3) {
                            "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n" + 0x10, 0x10);
             if (iVar3 == 0)
                 break;
-            irq_uses_irq_disable_save_1f5c04(a4, a5, uVar2, a3);
+            irq_list_remove(a4, a5, uVar2, a3);
             iVar1 = iVar1 + 1;
         }
         uVar2 = 0;
@@ -8471,11 +8470,11 @@ u32 irq_input_1f5d6c(u32 a0, u8 *a1) {
 }
 
 /*
- * shinobi_input_1f5dd0  0x8c1f5dd0
- * area name: in the shinobi library code range; behaviour name: mostly calls input functions
+ * irq_input_1f5dd0  0x8c1f5dd0
+ * area name: sits between irq functions (same compilation unit); behaviour name: mostly calls input functions
  * called by: Class_12c394_uses_imask_to_sr_bits_102bd0
  */
-u8 *shinobi_input_1f5dd0(u32 a0, int a1, int a2, u32 a3) {
+u8 *irq_input_1f5dd0(u32 a0, int a1, int a2, u32 a3) {
     u16 uVar1;
     u32 *puVar2;
     u32 *puVar3;
@@ -8584,7 +8583,7 @@ u8 *shinobi_input_1f5ea8(u32 a0, u32 a1, int a2, int a3, int s0) {
 /*
  * device_info_clear  0x8c1f5f4e
  * resets a device-info record ("(no device)")
- * called by: device_info_table_reset, device_info_table_reset_alt, shinobi_input_1f5dd0, shinobi_input_1f5ea8,
+ * called by: device_info_table_reset, device_info_table_reset_alt, irq_input_1f5dd0, shinobi_input_1f5ea8,
  * shinobi_uses_maple_port_info_1f61c6, shinobi_uses_maple_port_info_1f620e strings: "(no device)"
  */
 u32 device_info_clear(u32 *a0) {
@@ -8887,7 +8886,7 @@ int shinobi_uses_maple_port_info_1f620e(u32 unused_a0, u32 *a1) {
 /*
  * shinobi_calc_1f62cc  0x8c1f62cc
  * area name: in the shinobi library code range; behaviour name: integer arithmetic on its arguments
- * called by: input_device_select_and_reset, input_poll_device_state, shinobi_uses_flashrom_get_block_1f7558
+ * called by: input_device_select_and_reset, input_poll_device_state, shinobi_uses_flashrom_write_block_retry_1f7558
  */
 int shinobi_calc_1f62cc(int a0) {
     return a0 * 0x34 + 0x8c4727c4;
@@ -8967,7 +8966,7 @@ u32 shinobi_calc_1f6338(int a0) {
 /*
  * maple_port_status_wrap  0x8c1f6342
  * only calls maple_port_status
- * called by: game_input_01cbc8, shinobi_uses_flashrom_get_block_1f7558
+ * called by: game_input_01cbc8, shinobi_uses_flashrom_write_block_retry_1f7558
  */
 u32 maple_port_status_wrap(void) {
     u32 uVar1;
@@ -9838,7 +9837,7 @@ int alt_entry_1f6d56(int a0, int a1, u32 a2, u32 a3) {
  * flashrom_select_partition  0x8c1f6dcc
  * opens flash partition |a0| (1..4) unless it is the one already open
  * called by: alt_entry_1f6f2a, alt_entry_1f7170, alt_entry_1f7c50, flashrom_get_block,
- * flashrom_uses_flashrom_select_partition_1f6f20, flashrom_uses_flashrom_write_if_changed_1f6e5e,
+ * flashrom_uses_flashrom_select_partition_1f6f20, flashrom_write_block_retry,
  * shinobi_uses_flashrom_select_partition_1f716c, shinobi_uses_flashrom_select_partition_1f7b64 (+1 more)
  */
 u32 flashrom_select_partition(int a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -9870,8 +9869,8 @@ u32 flashrom_select_partition(int a0, u32 unused_a1, u32 a2, u32 a3) {
  * flashrom_get_block  0x8c1f6e0c
  * reads flash block a0 of the open partition into a1 (0x3c bytes)
  * called by: flashrom_uses_flashrom_get_block_1f6fc8, shinobi_uses_flashrom_get_block_1f74b0,
- * shinobi_uses_flashrom_get_block_1f7558, shinobi_uses_flashrom_get_block_1f875c,
- * shinobi_uses_flashrom_select_partition_1f7b64, shinobi_uses_flashrom_select_partition_1f7c40
+ * shinobi_uses_flashrom_get_block_1f875c, shinobi_uses_flashrom_select_partition_1f7b64,
+ * shinobi_uses_flashrom_select_partition_1f7c40, shinobi_uses_flashrom_write_block_retry_1f7558
  */
 u32 flashrom_get_block(u32 a0, int a1, u32 a2, u32 a3) {
     u32 *puVar1;
@@ -9896,12 +9895,13 @@ u32 flashrom_get_block(u32 a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * flashrom_uses_flashrom_write_if_changed_1f6e5e  0x8c1f6e5e
- * area name: sits between flashrom functions (same compilation unit); behaviour name: its main named callee is
- * flashrom_write_if_changed called by: shinobi_uses_flashrom_get_block_1f7558, shinobi_uses_flashrom_get_block_1f7a50,
- * shinobi_uses_rtc_get_date_1f71b6, shinobi_uses_rtc_get_date_1f7264, shinobi_uses_u16_add_saturate_1f736c
+ * flashrom_write_block_retry  0x8c1f6e5e
+ * writes 60 bytes from a1 to flash block a0 when they differ; on failure reselects the partition and retries once
+ * (error state 8) called by: shinobi_uses_flashrom_write_block_retry_1f7558,
+ * shinobi_uses_flashrom_write_block_retry_1f7a50, shinobi_uses_rtc_get_date_1f71b6, shinobi_uses_rtc_get_date_1f7264,
+ * shinobi_uses_u16_add_saturate_1f736c
  */
-u32 flashrom_uses_flashrom_write_if_changed_1f6e5e(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 flashrom_write_block_retry(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 *puVar1;
     int *piVar2;
     int iVar3;
@@ -9935,7 +9935,7 @@ u32 flashrom_uses_flashrom_write_if_changed_1f6e5e(u32 a0, u32 a1, u32 unused_a2
 /*
  * flashrom_calls_calc_1f6f06  0x8c1f6f06
  * area name: sits between flashrom functions (same compilation unit); behaviour name: its callees mostly do: calc
- * called by: shinobi_uses_flashrom_get_block_1f7558, shinobi_uses_u16_add_saturate_1f736c
+ * called by: shinobi_uses_flashrom_write_block_retry_1f7558, shinobi_uses_u16_add_saturate_1f736c
  */
 int flashrom_calls_calc_1f6f06(u32 a0, u32 a1) {
     int iVar1;
@@ -9974,7 +9974,7 @@ int flashrom_uses_flashrom_select_partition_1f6f20(u32 a0, u32 a1, u32 a2, u32 a
         g_8c273a10 = '\x01';
         ipbin_get_disc_info_boot(0x8c4749bc, 1, a2, a3);
         g_8c4748bc = 0x8c4749c4;
-        iVar1 = shinobi_uses_flashrom_get_block_1f7558(ar4_00, uVar2, a2, a3);
+        iVar1 = shinobi_uses_flashrom_write_block_retry_1f7558(ar4_00, uVar2, a2, a3);
         if (iVar1 == 0) {
             g_8c273a10 = '\0';
         }
@@ -10010,7 +10010,7 @@ int alt_entry_1f6f2a(u32 a0, u32 a1, u32 a2, u32 a3, u32 *ain0, u32 *ain1) {
         g_8c273a10 = 1;
         ipbin_get_disc_info_boot(0x8c4749bc, 1, a2, a3);
         g_8c4748bc = 0x8c4749c4;
-        iVar1 = shinobi_uses_flashrom_get_block_1f7558(ar4_00, uVar2, a2, a3);
+        iVar1 = shinobi_uses_flashrom_write_block_retry_1f7558(ar4_00, uVar2, a2, a3);
         if (iVar1 == 0) {
             g_8c273a10 = 0;
         }
@@ -10021,8 +10021,8 @@ int alt_entry_1f6f2a(u32 a0, u32 a1, u32 a2, u32 a3, u32 *ain0, u32 *ain1) {
 /*
  * flashrom_uses_flashrom_get_block_1f6fc8  0x8c1f6fc8
  * area name: sits between flashrom functions (same compilation unit); behaviour name: its main named callee is
- * flashrom_get_block called by: shinobi_uses_flashrom_get_block_1f74b0, shinobi_uses_flashrom_get_block_1f7558,
- * shinobi_uses_flashrom_get_block_1f7a50, shinobi_uses_flashrom_select_partition_1f7b64
+ * flashrom_get_block called by: shinobi_uses_flashrom_get_block_1f74b0, shinobi_uses_flashrom_select_partition_1f7b64,
+ * shinobi_uses_flashrom_write_block_retry_1f7558, shinobi_uses_flashrom_write_block_retry_1f7a50
  */
 u32 flashrom_uses_flashrom_get_block_1f6fc8(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -10141,7 +10141,7 @@ u32 inc_u16_saturating(u16 *a0) {
 /*
  * shinobi_uses_flashrom_select_partition_1f716c  0x8c1f716c
  * area name: in the shinobi library code range; behaviour name: its main named callee is flashrom_select_partition
- * called by: shinobi_uses_flashrom_get_block_1f74b0, shinobi_uses_flashrom_get_block_1f7a50
+ * called by: shinobi_uses_flashrom_get_block_1f74b0, shinobi_uses_flashrom_write_block_retry_1f7a50
  */
 u32 shinobi_uses_flashrom_select_partition_1f716c(void) {
     u32 uVar1;
@@ -10204,7 +10204,7 @@ u32 shinobi_uses_rtc_get_date_1f71b6(int a0, u32 a1, u32 a2, u32 a3) {
         u16_add_saturate(&g_8c474986, in_stack_ffffffe8 - g_8c474a00);
     }
     if (1 < g_8c4748c0) {
-        uVar1 = flashrom_uses_flashrom_write_if_changed_1f6e5e(a0 + 3, &g_8c474978, a2, a3);
+        uVar1 = flashrom_write_block_retry(a0 + 3, &g_8c474978, a2, a3);
     }
     return uVar1;
 }
@@ -10231,7 +10231,7 @@ u32 shinobi_uses_rtc_get_date_1f7264(int a0, u32 a1, u32 a2, u32 a3) {
         inc_u16_saturating(&g_8c474984);
     }
     if (1 < g_8c4748c0) {
-        uVar1 = flashrom_uses_flashrom_write_if_changed_1f6e5e(a0 + 3, &g_8c474978, a2, a3);
+        uVar1 = flashrom_write_block_retry(a0 + 3, &g_8c474978, a2, a3);
     }
     return uVar1;
 }
@@ -10253,7 +10253,7 @@ u32 shinobi_copy_1f72d8(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     ar6_00 = 0x3c;
     memset(g_8c4748b0, (int)0xff, 0x3c);
     puVar3 = 0x8c4748a8;
-    puVar1 = (&flashrom_uses_flashrom_write_if_changed_1f6e5e);
+    puVar1 = (&flashrom_write_block_retry);
     iVar5 = 0;
     iStack_20 = a0;
     do {
@@ -10311,10 +10311,10 @@ u32 shinobi_uses_u16_add_saturate_1f736c(int a0, u32 a1, u32 a2, u32 a3) {
     ar6_00 = 10;
     memmove(0x8c4749e8, 0x8c4749f2, 10);
     ar4_00 = iVar1 + 1;
-    iVar1 = flashrom_uses_flashrom_write_if_changed_1f6e5e(iVar1, 0x8c47493c, ar6_00, a3);
+    iVar1 = flashrom_write_block_retry(iVar1, 0x8c47493c, ar6_00, a3);
     if (iVar1 == 1) {
         ar5_01 = &g_8c474978;
-        iVar1 = flashrom_uses_flashrom_write_if_changed_1f6e5e(ar4_00, &g_8c474978, ar6_00, a3);
+        iVar1 = flashrom_write_block_retry(ar4_00, &g_8c474978, ar6_00, a3);
         if (iVar1 == 1) {
             g_8c4748c0 = flashrom_calls_calc_1f6f06(ar4_00, ar5_01);
             return 1;
@@ -10362,7 +10362,7 @@ u32 shinobi_uses_flashrom_get_block_1f74b0(code *a0, int a1, u32 a2, u32 a3) {
 /*
  * be_read_n  0x8c1f752a
  * the a1-byte big-endian number at a0
- * called by: shinobi_uses_flashrom_get_block_1f7558
+ * called by: shinobi_uses_flashrom_write_block_retry_1f7558
  */
 u32 be_read_n(u8 *a0, int a1) {
     u8 bVar1;
@@ -10383,7 +10383,7 @@ u32 be_read_n(u8 *a0, int a1) {
 /*
  * be_write_n  0x8c1f7540
  * writes a0 as an a1-byte big-endian number at a2
- * called by: shinobi_uses_flashrom_get_block_1f7558
+ * called by: shinobi_uses_flashrom_write_block_retry_1f7558
  */
 u32 be_write_n(u32 a0, int a1, int a2) {
     u32 in_r0;
@@ -10402,11 +10402,11 @@ u32 be_write_n(u32 a0, int a1, int a2) {
 }
 
 /*
- * shinobi_uses_flashrom_get_block_1f7558  0x8c1f7558
- * area name: in the shinobi library code range; behaviour name: its main named callee is flashrom_get_block
+ * shinobi_uses_flashrom_write_block_retry_1f7558  0x8c1f7558
+ * area name: in the shinobi library code range; behaviour name: its main named callee is flashrom_write_block_retry
  * called by: alt_entry_1f6f2a, flashrom_uses_flashrom_select_partition_1f6f20
  */
-u32 shinobi_uses_flashrom_get_block_1f7558(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 shinobi_uses_flashrom_write_block_retry_1f7558(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     bool bVar1;
     int *piVar2;
     int *piVar3;
@@ -10500,9 +10500,9 @@ u32 shinobi_uses_flashrom_get_block_1f7558(u32 unused_a0, u32 a1, u32 a2, u32 a3
                 }
             }
             if (bVar1) {
-                flashrom_uses_flashrom_write_if_changed_1f6e5e(0x14, aiStack_98, iVar12, piVar10);
+                flashrom_write_block_retry(0x14, aiStack_98, iVar12, piVar10);
                 piVar9 = aiStack_98 + 0xf;
-                flashrom_uses_flashrom_write_if_changed_1f6e5e(0x15, piVar9, iVar12, piVar10);
+                flashrom_write_block_retry(0x15, piVar9, iVar12, piVar10);
             }
             piStack_160 = aiStack_140;
             pbVar14 = &g_8c26c8c7;
@@ -10543,8 +10543,8 @@ u32 shinobi_uses_flashrom_get_block_1f7558(u32 unused_a0, u32 a1, u32 a2, u32 a3
                 }
             }
             if (bVar1) {
-                flashrom_uses_flashrom_write_if_changed_1f6e5e(0x16, aiStack_110, iVar12, piVar9);
-                flashrom_uses_flashrom_write_if_changed_1f6e5e(0x17, aiStack_110 + 0xf, iVar12, piVar9);
+                flashrom_write_block_retry(0x16, aiStack_110, iVar12, piVar9);
+                flashrom_write_block_retry(0x17, aiStack_110 + 0xf, iVar12, piVar9);
             }
             piStack_160 = NULL;
             uVar13 = 0;
@@ -10573,7 +10573,7 @@ u32 shinobi_uses_flashrom_get_block_1f7558(u32 unused_a0, u32 a1, u32 a2, u32 a3
             be_write_n(~((int)piStack_160 >> 1 | ~uVar6), 3, 0x8c474936);
             uVar11 = 0x8c474939;
             be_write_n(uVar7, 3, 0x8c474939);
-            flashrom_uses_flashrom_write_if_changed_1f6e5e(iVar4 * 4 + 0x19, 0x8c474900, uVar11, piVar9);
+            flashrom_write_block_retry(iVar4 * 4 + 0x19, 0x8c474900, uVar11, piVar9);
         }
         uVar11 = 1;
         g_8c4749e4 = 0;
@@ -10662,10 +10662,10 @@ u32 alt_entry_1f79da(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_uses_flashrom_get_block_1f7a50  0x8c1f7a50
- * area name: in the shinobi library code range; behaviour name: its callees mostly do: uses_flashrom_get_block
+ * shinobi_uses_flashrom_write_block_retry_1f7a50  0x8c1f7a50
+ * area name: in the shinobi library code range; behaviour name: its main named callee is flashrom_write_block_retry
  */
-u32 shinobi_uses_flashrom_get_block_1f7a50(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 shinobi_uses_flashrom_write_block_retry_1f7a50(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     int ar4_00;
     u32 uVar1;
 
@@ -10681,7 +10681,7 @@ u32 shinobi_uses_flashrom_get_block_1f7a50(u32 a0, u32 unused_a1, u32 a2, u32 a3
             if (g_8c4748c0 < 1) {
                 shinobi_uses_flashrom_select_partition_1f716c();
             }
-            flashrom_uses_flashrom_write_if_changed_1f6e5e(ar4_00, 0x8c4748c4, a2, a3);
+            flashrom_write_block_retry(ar4_00, 0x8c4748c4, a2, a3);
             uVar1 = 1;
         }
     }
@@ -10747,7 +10747,8 @@ u32 shinobi_uses_flashrom_get_block_1f7b06(u32 unused_a0, u32 unused_a1, u32 a2,
 /*
  * shinobi_uses_flashrom_select_partition_1f7b64  0x8c1f7b64
  * area name: in the shinobi library code range; behaviour name: its main named callee is flashrom_select_partition
- * called by: CProlog_uses_free_sys_0b96e4, game_uses_free_ptr_and_clear_0b95a0, shinobi_uses_flashrom_get_block_1f7558
+ * called by: CProlog_uses_free_sys_0b96e4, game_uses_free_ptr_and_clear_0b95a0,
+ * shinobi_uses_flashrom_write_block_retry_1f7558
  */
 u32 shinobi_uses_flashrom_select_partition_1f7b64(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -11363,7 +11364,7 @@ u32 shinobi_sound_1f814c(u32 a0) {
  * fills a {year, month, day, hour, minute, second, weekday} struct from the real-time clock
  * called by: CProlog_uses_free_sys_0b96e4, game_state_switch_0fc94c, game_state_switch_0fcd2c,
  * input_uses_set_fields_0_4_c_0bf804, memcard_queue_op0c_with_date, memcard_queue_op0d_with_date, rtc_get_date_wrap,
- * shinobi_uses_flashrom_get_block_1f7558 (+9 more)
+ * shinobi_uses_flashrom_write_block_retry_1f7558 (+9 more)
  */
 u32 rtc_get_date(short *a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 *puVar1;
@@ -11800,7 +11801,7 @@ u32 shinobi_calls_scan_loop_1f87ae(void) {
 
     iVar1 = 0x8c474a28;
     uVar3 = shinobi_scan_loop_1f8710(0x8c474a28);
-    puVar2 = (&flashrom_uses_flashrom_write_if_changed_1f6e5e);
+    puVar2 = (&flashrom_write_block_retry);
     *(char *)(iVar1 + 0x3b) = (char)uVar3;
     uVar3 = (*(code *)puVar2)(0, iVar1);
     return uVar3;
@@ -11830,7 +11831,7 @@ u32 flashrom_read_sync(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * flashrom_write_if_changed  0x8c1f884c
  * reads the block; returns 3 when the 0x3c bytes at a1 already match, else writes them and waits
- * called by: flash_header_signature, flashrom_uses_flashrom_write_if_changed_1f6e5e
+ * called by: flash_header_signature, flashrom_write_block_retry
  */
 u32 flashrom_write_if_changed(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;

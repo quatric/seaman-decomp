@@ -9303,7 +9303,7 @@ u32 gfxlib_draw_234c94(u32 *a0, int a1, u32 a2, int a3) {
 /*
  * gfxlib_draw_234d68  0x8c234d68
  * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: Class_12b088_uses_vec_new_array_03220c, draw_line_ray, game_draw_015098, ninja_uses_ta_fifo_2536a8
+ * called by: draw_line_ray, game_draw_015098, ninja_uses_ta_fifo_2536a8, static_init_27def0
  * decompiler: Heritage AFTER dead removal. Example location: s0xffffff98 : 0x8c234e76
  */
 u32 gfxlib_draw_234d68(u32 a0, int a1, u8 *a2, u8 *a3) {
@@ -9455,8 +9455,7 @@ u32 gfxlib_draw_234d68(u32 a0, int a1, u8 *a2, u8 *a3) {
 /*
  * gfxlib_draw_234fd0  0x8c234fd0
  * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: Class_12b088_uses_vec_new_array_03220c, game_draw_015054, game_draw_0d2c84, game_list_0a98cc,
- * game_list_0d49cc
+ * called by: game_draw_015054, game_draw_0d2c84, game_list_0a98cc, game_list_0d49cc, static_init_27def0
  */
 u32 gfxlib_draw_234fd0(u32 a0, int a1, u32 a2, u32 *a3) {
     u32 uVar1;
@@ -10643,7 +10642,8 @@ u32 alt_entry_235eba(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
  * pvr_draw_235ee4  0x8c235ee4
  * area name: sits between pvr functions (same compilation unit); behaviour name: mostly calls draw functions
  * called by: CGame_draw_0ca458, Class_12b580_uses_pack_acquire_entry_handle_0d84e8, WATER_ELEMENT_release,
- * game_draw_0d8444, game_draw_0e14fc, game_draw_0e157c, game_draw_0e84f8, game_uses_get_field_d0_0cbd74 (+3 more)
+ * game_draw_0d8444, game_draw_0e14fc, game_draw_0e157c, game_draw_0e84f8, game_uses_set_timeout_120_mode6_0caac0 (+3
+ * more)
  */
 u32 pvr_draw_235ee4(void) {
     int *piVar1;
@@ -18587,8 +18587,7 @@ u32 gfxlib_calls_fill_loop_23c70c(void) {
 /*
  * memcpy_words_n  0x8c23c7f4
  * copies a2 32-bit words from a1 to a0
- * called by: alt_entry_2376d8, flashrom_uses_flashrom_write_if_changed_1f6e5e, gfxlib_uses_memcpy_words_n_2376c4,
- * ninja_copy_2560b4
+ * called by: alt_entry_2376d8, flashrom_write_block_retry, gfxlib_uses_memcpy_words_n_2376c4, ninja_copy_2560b4
  */
 u32 memcpy_words_n(u32 *a0, u32 *a1, int a2) {
     u32 uVar1;

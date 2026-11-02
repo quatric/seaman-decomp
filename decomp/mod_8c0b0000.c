@@ -4375,10 +4375,10 @@ int get_field_9c_s8(int a0) {
 }
 
 /*
- * game_vec_0b6b3c  0x8c0b6b3c
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_286df0  0x8c0b6b3c
+ * static initialiser: builds 4 global Vec3 constants (8c286df0..8c286e14) and registers their destructors
  */
-u32 game_vec_0b6b3c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_286df0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -4437,9 +4437,8 @@ u32 game_uses_memcard_flush_and_close_8c3d_0b6c10(u32 unused_a0, u32 a1, u32 a2,
 /*
  * save_write_step  0x8c0b6c3c
  * one state of the save sequence: starts writing SM2000US.USR or SM2000US.INC (as SM2000US._VM)
- * called by: game_uses_Vec3_ctor_zero_0c91f4, game_uses_Vec3_ctor_zero_0ca4e8, game_uses_Vec3_ctor_zero_0cb668,
- * game_uses_get_field_d0_0c6e74, input_uses_Vec3_ctor_zero_0c8134 strings: "SM2000US.USR"; "SM2000US.INC";
- * "SM2000US._VM"
+ * called by: game_uses_get_field_d0_0c6e74, static_init_437218, static_init_43724c, static_init_4372a8,
+ * static_init_4372f4 strings: "SM2000US.USR"; "SM2000US.INC"; "SM2000US._VM"
  */
 u32 save_write_step(u32 a0, u8 *a1, u8 *a2, u8 *a3) {
     int iVar1;
@@ -4499,8 +4498,8 @@ u32 save_write_step(u32 a0, u8 *a1, u8 *a2, u8 *a3) {
 
 /*
  * strcmp_0b6e04  0x8c0b6e04
- * called by: CSeamanDomain_Init, game_uses_speech_is_playing_0bad68, save_check_files, save_files_check,
- * save_write_step
+ * called by: game_uses_speech_is_playing_0bad68, save_check_files, save_files_check, save_write_step,
+ * static_init_4367d4
  */
 u32 strcmp_0b6e04(u8 *a0, u8 *a1) {
     u8 bVar1;
@@ -4726,7 +4725,7 @@ u32 game_uses_identity_0b726c(u32 a0, u32 a1, u8 *a2, u32 a3, u32 s0, int s4) {
 /*
  * save_files_check  0x8c0b7454
  * checks the memory-card files SM2000US.USR / SM2000US._VM / SM2000US.INC
- * called by: CGame_Initial, CProlog_Ready, CSeamanDomain_Init
+ * called by: CGame_Initial, CProlog_Ready, static_init_4367d4
  * strings: "SM2000US.USR"; "SM2000US._VM"; "SM2000US.INC"; "SM2000US._VM"
  */
 u32 save_files_check(u32 a0, u32 a1, u32 a2) {
@@ -4819,8 +4818,9 @@ u32 save_file_load(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * save_files_presence  0x8c0b76d8
  * bit flags for which save files exist: 1 USR, 2 and 4 _VM states, 8 SEAMANDC.USR, 0x10 SEAMANDC._VM
- * called by: CGame_Initial, CSeamanDomain_Init, game_uses_get_field_d0_0c6e74, game_uses_speech_is_playing_0bad68,
- * save_check_presence_and_date strings: "SM2000US._VM"; "SEAMANDC.USR"; "SEAMANDC._VM"; "SM2000US.USR" ...
+ * called by: CGame_Initial, game_uses_get_field_d0_0c6e74, game_uses_speech_is_playing_0bad68,
+ * save_check_presence_and_date, static_init_4367d4 strings: "SM2000US._VM"; "SEAMANDC.USR"; "SEAMANDC._VM";
+ * "SM2000US.USR" ...
  */
 u32 save_files_presence(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 ar4_00;
@@ -5205,8 +5205,7 @@ u32 sh4_tmu_wrap(void) {
 /*
  * sh4_uses_sh4_tmu_0b9244  0x8c0b9244
  * area name: sits between sh4 functions (same compilation unit); behaviour name: its main named callee is
- * sh4_tmu_1f8b88 called by: game_uses_Vec3_ctor_zero_0c91f4, game_uses_Vec3_ctor_zero_0ca4e8,
- * game_uses_Vec3_ctor_zero_0cb668, input_uses_Vec3_ctor_zero_0c8134
+ * sh4_tmu_1f8b88 called by: static_init_437218, static_init_43724c, static_init_4372a8, static_init_4372f4
  */
 u32 sh4_uses_sh4_tmu_0b9244(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5673,8 +5672,8 @@ u32 CProlog_uses_rtc_get_date_wrap_0b9bb0(int a0, u32 unused_a1, u32 a2, u32 a3)
  * rtc_get_date_wrap  0x8c0b9d14
  * only calls rtc_get_date
  * called by: CGame_GetUserGameInfo, CGame_uses_libgcc_divide_helper_0cc784, CProlog_uses_libgcc_divide_helper_0cd3c8,
- * CProlog_uses_rtc_get_date_wrap_0b9bb0, CSeamanDomain_Init, ambient_sound_update, game_copy_0c67f4,
- * game_select_intro_or_ending (+1 more)
+ * CProlog_uses_rtc_get_date_wrap_0b9bb0, ambient_sound_update, game_copy_0c67f4, game_select_intro_or_ending,
+ * game_uses_rand_0d8890 (+1 more)
  */
 u32 rtc_get_date_wrap(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -5795,7 +5794,7 @@ int rtc_uses_libgcc_divide_helper_0b9d30(u32 unused_a0, u16 *a1, u16 *a2) {
  * recent5_push_unique  0x8c0b9ed4
  * pushes a1 onto the five-entry recent list at +0x30 unless it is already there
  * called by: CAnimal_m2_0386d0, CAnimal_m2_088094, Class_12a078_m2_05eee0, Class_12a078_m4_067284,
- * Class_12a7a8_m1_098d14, Class_12a990_m2_09bc2c, Class_12b2e8_m1_0b5ad0, Class_12b2e8_state_switch_0b6440 (+12 more)
+ * Class_12a7a8_m1_098d14, Class_12a7a8_state_switch_0999ac, Class_12a990_m2_09bc2c, Class_12b2e8_m1_0b5ad0 (+12 more)
  */
 u32 recent5_push_unique(int a0, int a1, u32 a2) {
     u32 uVar1;
@@ -5841,7 +5840,7 @@ u8 *copy_record_56(u8 *a0, u8 *a1) {
 /*
  * SaveData_ctor  0x8c0b9fb4
  * the save-data block: tables of 0xf0-byte entries and the "SM2000US.USR" name
- * called by: game_list_0c4644
+ * called by: static_init_vec3s_286e20
  * strings: "SM2000US.USR"
  */
 int SaveData_ctor(int a0, u32 a1, u32 a2) {
@@ -5922,7 +5921,7 @@ int game_release_0ba180(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * vec_new_array_wrap  0x8c0ba1c0
  * only calls vec_new_array
- * called by: game_list_0c4644
+ * called by: static_init_vec3s_286e20
  */
 u32 vec_new_array_wrap(u32 a0) {
     vec_new_array(a0, (&game_uses_clear_15_bytes_0ba284), (&game_release_0ba1f4), 0x80, 0xc);
@@ -6002,7 +6001,7 @@ int game_copy_0ba2cc(int a0) {
 /*
  * set_2_words_wrap  0x8c0ba324
  * only calls set_2_words
- * called by: CSeamanDomain_uses_set_2_words_wrap_0c1d1c
+ * called by: input_uses_set_2_words_wrap_0c1d1c
  */
 u32 set_2_words_wrap(u32 a0, u32 a1, u32 a2) {
     set_2_words(a0, a1, a2);
@@ -6012,7 +6011,7 @@ u32 set_2_words_wrap(u32 a0, u32 a1, u32 a2) {
 /*
  * set_2_words  0x8c0ba34c
  * a0[0] = a1, a0[1] = a2
- * called by: CSeamanDomain_Init, set_2_words_wrap
+ * called by: set_2_words_wrap, static_init_4367d4
  */
 u32 set_2_words(u32 *a0, u32 a1, u32 a2) {
     u32 in_r0;
@@ -9187,8 +9186,8 @@ u32 get_field_300_on_field_a4(int a0) {
 /*
  * get_field_300_0bf154  0x8c0bf154
  * called by: CEnv_item_cursor_next, CWaterTank_uses_get_field_300_0e0f48, Class_129974_vec_0db3bc,
- * Class_12b580_uses_get_field_300_0e6718, Class_12b930_m3_0de4b0, Class_12b930_vec_0e3994, Class_12bb08_m1_0da338,
- * Class_12bb08_m2_0da5a8 (+20 more)
+ * Class_12b580_uses_get_field_300_0e6718, Class_12b930_m3_0de4b0, Class_12bb08_m1_0da338, Class_12bb08_m2_0da5a8,
+ * Class_12bb08_uses_get_field_24_0dbbe8 (+20 more)
  */
 u32 get_field_300_0bf154(int a0) {
     return *(u32 *)(0x300 + a0);
@@ -9360,11 +9359,11 @@ int game_copy_0bf478(int a0) {
 }
 
 /*
- * CSeamanDomain_copy_0bf4a4  0x8c0bf4a4
- * area name: only called from CSeamanDomain methods; behaviour name: mostly calls copy functions
- * called by: CSeamanDomain_Init
+ * slide_offset_step_660  0x8c0bf4a4
+ * slides the offset at +0x2c by 15 per call: down to 0 (mode 1) or up to 660 (mode 2), then ends the mode
+ * called by: static_init_4367d4
  */
-u8 *CSeamanDomain_copy_0bf4a4(int a0) {
+u8 *slide_offset_step_660(int a0) {
     u8 *puVar1;
     float fVar2;
 
@@ -9393,7 +9392,7 @@ u8 *CSeamanDomain_copy_0bf4a4(int a0) {
 
 /*
  * clear_field_0_0bf548  0x8c0bf548
- * called by: CSeamanDomain_copy_0bf4a4
+ * called by: slide_offset_step_660
  */
 u32 clear_field_0_0bf548(u32 *a0) {
     *a0 = 0;
@@ -9401,11 +9400,11 @@ u32 clear_field_0_0bf548(u32 *a0) {
 }
 
 /*
- * CSeamanDomain_uses_set_fields_0_4_c_0bf550  0x8c0bf550
- * area name: only called from CSeamanDomain methods; behaviour name: its callees mostly do: uses_set_fields_0_4_c
- * called by: CSeamanDomain_Init
+ * game_uses_set_fields_0_4_c_0bf550  0x8c0bf550
+ * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: uses_set_fields_0_4_c
+ * called by: static_init_4367d4
  */
-u32 CSeamanDomain_uses_set_fields_0_4_c_0bf550(int *a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 game_uses_set_fields_0_4_c_0bf550(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = 0;
@@ -9417,11 +9416,11 @@ u32 CSeamanDomain_uses_set_fields_0_4_c_0bf550(int *a0, u32 a1, u32 unused_a2, u
 }
 
 /*
- * CSeamanDomain_uses_menu_next_pressed_0bf588  0x8c0bf588
- * area name: only called from CSeamanDomain methods; behaviour name: its main named callee is menu_next_pressed
- * called by: CSeamanDomain_Init
+ * game_uses_menu_next_pressed_0bf588  0x8c0bf588
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is menu_next_pressed
+ * called by: static_init_4367d4
  */
-u32 CSeamanDomain_uses_menu_next_pressed_0bf588(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_uses_menu_next_pressed_0bf588(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     u32 uVar2;
@@ -9455,7 +9454,7 @@ u32 CSeamanDomain_uses_menu_next_pressed_0bf588(int a0, u32 a1, u32 a2, u32 a3) 
 /*
  * input_a_or_start_pressed  0x8c0bf618
  * 1 when A or Start was just pressed on the pad at +0xcc and the pad is connected
- * called by: CSeamanDomain_uses_menu_next_pressed_0bf588, save_menu_update
+ * called by: game_uses_menu_next_pressed_0bf588, save_menu_update
  */
 u32 input_a_or_start_pressed(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -9474,7 +9473,7 @@ u32 input_a_or_start_pressed(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * menu_prev_pressed  0x8c0bf690
  * Left or L pressed on the controller at +0xcc (ignored during demo input)
- * called by: CSeamanDomain_uses_menu_next_pressed_0bf588, confirm_exit_save, save_menu_update
+ * called by: confirm_exit_save, game_uses_menu_next_pressed_0bf588, save_menu_update
  */
 u32 menu_prev_pressed(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -9493,7 +9492,7 @@ u32 menu_prev_pressed(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * menu_next_pressed  0x8c0bf708
  * Right or R pressed on the controller at +0xcc (ignored during demo input)
- * called by: CSeamanDomain_uses_menu_next_pressed_0bf588, confirm_exit_save, save_menu_update
+ * called by: confirm_exit_save, game_uses_menu_next_pressed_0bf588, save_menu_update
  */
 u32 menu_next_pressed(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -9512,7 +9511,7 @@ u32 menu_next_pressed(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * input_start_pressed_wrap_0bf780  0x8c0bf780
  * only calls input_start_pressed
- * called by: CSeamanDomain_Init, CSeamanDomain_uses_set_field_0_to_1_0c23fc, save_menu_update
+ * called by: game_uses_set_field_0_to_1_0c23fc, save_menu_update, static_init_4367d4
  */
 u32 input_start_pressed_wrap_0bf780(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -9538,7 +9537,7 @@ u32 input_init_fields_0bf7a8(u32 *a0) {
 
 /*
  * set_field_0_to_1  0x8c0bf7c8
- * called by: CSeamanDomain_Init, CSeamanDomain_uses_set_field_0_to_1_0c23fc
+ * called by: game_uses_set_field_0_to_1_0c23fc, static_init_4367d4
  */
 u32 set_field_0_to_1(u32 *a0) {
     *a0 = 1;
@@ -9548,7 +9547,7 @@ u32 set_field_0_to_1(u32 *a0) {
 /*
  * set_name_10  0x8c0bf7d0
  * copies string a1 into +0x10 (sprintf "%s")
- * called by: CSeamanDomain_Init
+ * called by: static_init_4367d4
  */
 u32 set_name_10(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9560,7 +9559,7 @@ u32 set_name_10(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * input_uses_set_fields_0_4_c_0bf804  0x8c0bf804
  * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * set_fields_0_4_c called by: CSeamanDomain_uses_set_fields_0_4_c_0bf550
+ * set_fields_0_4_c called by: game_uses_set_fields_0_4_c_0bf550
  */
 u32 input_uses_set_fields_0_4_c_0bf804(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -9652,7 +9651,7 @@ u32 input_uses_set_fields_0_4_c_0bf804(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * game_uses_Class_129808_set_model_0bfa78  0x8c0bfa78
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is Class_129808_set_model
- * called by: CSeamanDomain_uses_set_fields_0_4_c_0bf550
+ * called by: game_uses_set_fields_0_4_c_0bf550
  */
 u32 game_uses_Class_129808_set_model_0bfa78(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -10023,7 +10022,7 @@ u32 game_uses_Class_129808_set_model_0bfa78(int a0, u32 a1, u32 unused_a2, u32 a
 /*
  * game_uses_Class_12b350_ctor_0bff8c  0x8c0bff8c
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is Class_12b350_ctor
- * called by: game_list_0c4644
+ * called by: static_init_vec3s_286e20
  */
 int *game_uses_Class_12b350_ctor_0bff8c(int *a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;

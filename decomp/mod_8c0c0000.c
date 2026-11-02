@@ -397,10 +397,12 @@ u32 memcard_flush_and_close_8c3dd7dc(u32 a0, u32 unused_a1, u32 unused_a2, u32 a
 }
 
 /*
- * CSeamanDomain_Init  0x8c0c09d0
- * strings: "BeforeStartMessage.pvm"; "GRAPHICS\\MESSAGE"; "Failed to load sys message pvm.."; "CSeamanDomain::Init" ...
+ * static_init_4367d4  0x8c0c09d0
+ * static initialiser: constructs 2 global objects (8c4367d4..8c436828) and registers free_if_nonnull_wrap_0151a0,
+ * free_if_nonnull_wrap_0c1cec for exit strings: "BeforeStartMessage.pvm"; "GRAPHICS\\MESSAGE"; "Failed to load sys
+ * message pvm.."; "CSeamanDomain::Init" ...
  */
-u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
+u32 static_init_4367d4(int a0, int *a1, u32 unused_a2, code *a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -442,7 +444,7 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
         g_8c436820 = CONCAT14(1, g_8c436820);
     }
     if (g_8c436834 == '\0') {
-        uVar2 = CSeamanDomain_uses_set_2_words_wrap_0c1d1c(&g_8c436838);
+        uVar2 = input_uses_set_2_words_wrap_0c1d1c(&g_8c436838);
         global_list_push(uVar2, free_if_nonnull_wrap_0c1cec, 0x8c436828, a3);
         g_8c436834 = '\x01';
     }
@@ -472,14 +474,14 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
             g_8c4367bc = 1;
             break;
         case 1:
-            iVar6 = CSeamanDomain_uses_set_fields_0_4_c_0c2068(a0, 0xe, a1, a3);
+            iVar6 = game_uses_set_fields_0_4_c_0c2068(a0, 0xe, a1, a3);
             if (iVar6 == 4) {
                 set_2_words(&g_8c436838, 0, 0);
                 g_8c4367bc = 2;
             }
             break;
         case 2:
-            iVar6 = CSeamanDomain_uses_set_fields_0_4_c_0c2068(a0, 0xd, a1, a3);
+            iVar6 = game_uses_set_fields_0_4_c_0c2068(a0, 0xd, a1, a3);
             if (iVar6 == 4) {
                 g_8c4367c4 = g_8c4367bc;
                 g_8c4367bc = 0x12;
@@ -519,7 +521,7 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
             strcpy(0x8c4367f8, "SEAMANDC._VM");
             uVar1 = 0;
             set_2_words(&g_8c436838, 1, 0);
-            iVar6 = CSeamanDomain_uses_menu_next_pressed_0bf588(a0 + 0x2e710, a1[499], uVar1, a3);
+            iVar6 = game_uses_menu_next_pressed_0bf588(a0 + 0x2e710, a1[499], uVar1, a3);
             if (iVar6 == 0) {
                 g_8c4367c4 = g_8c4367bc;
                 g_8c4367bc = 0x12;
@@ -546,7 +548,7 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
             strcpy(0x8c4367f8, "SM2000US._VM");
             uVar1 = 1;
             set_2_words(&g_8c436838, 0, 1);
-            a3 = (code *)CSeamanDomain_uses_menu_next_pressed_0bf588(a0 + 0x2e710, a1[499], uVar1, a3);
+            a3 = (code *)game_uses_menu_next_pressed_0bf588(a0 + 0x2e710, a1[499], uVar1, a3);
             if (a3 == NULL) {
                 g_8c4367c4 = g_8c4367bc;
                 g_8c4367bc = 0x12;
@@ -568,7 +570,7 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
             strcpy(0x8c4367f8, "SM2000US._VM");
             uVar1 = 1;
             set_2_words(&g_8c436838, 1, 1);
-            iVar6 = CSeamanDomain_uses_menu_next_pressed_0bf588(a0 + 0x2e710, a1[499], uVar1, a3);
+            iVar6 = game_uses_menu_next_pressed_0bf588(a0 + 0x2e710, a1[499], uVar1, a3);
             if (iVar6 == 0) {
                 g_8c4367c4 = g_8c4367bc;
                 g_8c4367bc = 0x12;
@@ -701,7 +703,7 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
                 (iVar6 = memcard_free_bytes_wait(uVar1, &g_8c436838, puVar8, a3), iVar6 < 0x8000)) {
                 g_8c4367bc = 0x1b;
             } else {
-                g_8c4367bc = CSeamanDomain_state_switch_0c236c(a0, g_8c4367c4);
+                g_8c4367bc = game_state_switch_0c236c(a0, g_8c4367c4);
                 a3 = (code *)&g_8c4367bc;
             }
             break;
@@ -715,7 +717,7 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
             break;
         case 0x15:
             a3 = (code *)&g_8c13c025;
-            CSeamanDomain_draw_0c3530(&g_8c2b5628, 1, 0, &g_8c13c025);
+            game_draw_0c3530(&g_8c2b5628, 1, 0, &g_8c13c025);
             *(u32 *)(a0 + 0x2e75c) = 1;
             if ((iVar6 != 1) && (iVar6 != 2)) {
                 a3 = (code *)0x12;
@@ -725,7 +727,7 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
         case 0x16:
             uVar1 = get_field_a524_01f514(0x8c3dd7dc, iVar3, 0x8c3dd7dc);
             a3 = (code *)&g_8c13c025;
-            CSeamanDomain_draw_0c3530(&g_8c2b5628, 6, uVar1, &g_8c13c025);
+            game_draw_0c3530(&g_8c2b5628, 6, uVar1, &g_8c13c025);
             *(u32 *)(a0 + 0x2e75c) = 1;
             if (((iVar6 != 3) && (iVar6 != 5)) && (iVar6 != 2)) {
                 g_8c4367bc = 0x12;
@@ -734,7 +736,7 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
         case 0x17:
             uVar1 = get_field_a524_01f514(0x8c3dd7dc, iVar3, puVar8);
             a3 = (code *)&g_8c13c025;
-            CSeamanDomain_draw_0c3530(&g_8c2b5628, 4, uVar1, &g_8c13c025);
+            game_draw_0c3530(&g_8c2b5628, 4, uVar1, &g_8c13c025);
             *(u32 *)(a0 + 0x2e75c) = 1;
             if ((iVar6 != 4) && (iVar6 != 2)) {
                 g_8c4367bc = 0x12;
@@ -743,7 +745,7 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
         case 0x18:
             strcpy(a0 + 0x2e740, "DESTRUCTION");
             set_2_words(&g_8c436838, 1, 0);
-            iVar6 = CSeamanDomain_uses_menu_next_pressed_0bf588(a0 + 0x2e710, a1[499], a1[499], a3);
+            iVar6 = game_uses_menu_next_pressed_0bf588(a0 + 0x2e710, a1[499], a1[499], a3);
             if (iVar6 == 0) {
                 g_8c4367c4 = g_8c4367bc;
                 g_8c4367bc = 0x12;
@@ -777,7 +779,7 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
                     break;
                 }
             }
-            iVar6 = CSeamanDomain_uses_menu_next_pressed_0bf588(a0 + 0x2e710, a1[499], pcVar7, a3);
+            iVar6 = game_uses_menu_next_pressed_0bf588(a0 + 0x2e710, a1[499], pcVar7, a3);
             if (iVar6 == 0) {
                 set_2_words(&g_8c436838, 0, 0);
                 g_8c4367c4 = g_8c4367bc;
@@ -789,14 +791,14 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
             break;
         case 0x1b:
             a3 = (code *)0x6;
-            g_8c4367bc = CSeamanDomain_uses_set_field_0_to_1_0c23fc(a0, a1, g_8c4367bc, 6, 1, "NOSPACE");
+            g_8c4367bc = game_uses_set_field_0_to_1_0c23fc(a0, a1, g_8c4367bc, 6, 1, "NOSPACE");
             if (g_8c4367bc == 0x11) {
                 a1[0x1f7] = 4;
             }
             break;
         case 0x1c:
             a3 = (code *)0x8;
-            g_8c4367bc = CSeamanDomain_uses_set_field_0_to_1_0c23fc(a0, a1, g_8c4367bc, 8, 1, "MADTIME");
+            g_8c4367bc = game_uses_set_field_0_to_1_0c23fc(a0, a1, g_8c4367bc, 8, 1, "MADTIME");
             if (g_8c4367bc == 0x11) {
                 a1[0x1f7] = 4;
             }
@@ -817,8 +819,8 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
         iVar3 = 6;
         g_8c43627c = speech_request(0x8c35468c, 6, 0x8c436280, a3);
     }
-    CSeamanDomain_copy_0bf4a4(a0 + 0x2e710);
-    CSeamanDomain_uses_set_fields_0_4_c_0bf550(a0 + 0x2e710, a0 + 0x2e64c, ar6_02, a3);
+    slide_offset_step_660(a0 + 0x2e710);
+    game_uses_set_fields_0_4_c_0bf550(a0 + 0x2e710, a0 + 0x2e64c, ar6_02, a3);
     if (*(int *)(a0 + 0x2e75c) == 1) {
         obj_set_texlist(a0 + 0x2e64c, a0 + 0x2e64c, ar6_02);
         uVar1 = 0;
@@ -830,7 +832,7 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
 
 /*
  * get_field_0_0c1cac  0x8c0c1cac
- * called by: CSeamanDomain_Init
+ * called by: static_init_4367d4
  */
 u32 get_field_0_0c1cac(u32 *a0) {
     return *a0;
@@ -839,7 +841,7 @@ u32 get_field_0_0c1cac(u32 *a0) {
 /*
  * input_b_held_wrap  0x8c0c1cb4
  * only calls input_b_held
- * called by: CSeamanDomain_Init
+ * called by: static_init_4367d4
  */
 u32 input_b_held_wrap(int a0) {
     u32 uVar1;
@@ -850,7 +852,7 @@ u32 input_b_held_wrap(int a0) {
 
 /*
  * set_field_c_0c1cdc  0x8c0c1cdc
- * called by: CSeamanDomain_Init, CSeamanDomain_uses_set_field_0_to_1_0c23fc
+ * called by: game_uses_set_field_0_to_1_0c23fc, static_init_4367d4
  */
 u32 set_field_c_0c1cdc(int a0, u32 a1) {
     u32 in_r0;
@@ -861,7 +863,7 @@ u32 set_field_c_0c1cdc(int a0, u32 a1) {
 
 /*
  * set_field_8_0c1ce4  0x8c0c1ce4
- * called by: CSeamanDomain_Init, CSeamanDomain_uses_set_field_0_to_1_0c23fc
+ * called by: game_uses_set_field_0_to_1_0c23fc, static_init_4367d4
  */
 u32 set_field_8_0c1ce4(int a0, u32 a1, u32 a2) {
     u32 in_r0;
@@ -883,11 +885,11 @@ int free_if_nonnull_wrap_0c1cec(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CSeamanDomain_uses_set_2_words_wrap_0c1d1c  0x8c0c1d1c
- * area name: only called from CSeamanDomain methods; behaviour name: its main named callee is set_2_words_wrap
- * called by: CSeamanDomain_Init
+ * input_uses_set_2_words_wrap_0c1d1c  0x8c0c1d1c
+ * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
+ * set_2_words_wrap called by: static_init_4367d4
  */
-u32 CSeamanDomain_uses_set_2_words_wrap_0c1d1c(u32 a0) {
+u32 input_uses_set_2_words_wrap_0c1d1c(u32 a0) {
     u32 uVar1;
 
     uVar1 = set_2_words_wrap(a0, 0, 0);
@@ -908,7 +910,7 @@ u32 input_uses_pure_virtual_stub_0c1d40(u32 unused_a0, int a1) {
 /*
  * save_menu_update  0x8c0c1d98
  * the save-file selection menu (SEAMAN / Seaman Storage Matrix)
- * called by: CSeamanDomain_Init
+ * called by: static_init_4367d4
  * strings: "SM2000US.USR"; "SM2000US.USR"; "Seaman User Data"; "SEAMAN" ...
  */
 u32 save_menu_update(int a0, int a1, u32 a2, int a3, u32 s0) {
@@ -1016,11 +1018,11 @@ u32 game_calc_0c2044(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CSeamanDomain_uses_set_fields_0_4_c_0c2068  0x8c0c2068
- * area name: only called from CSeamanDomain methods; behaviour name: its main named callee is set_fields_0_4_c
- * called by: CSeamanDomain_Init
+ * game_uses_set_fields_0_4_c_0c2068  0x8c0c2068
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_fields_0_4_c
+ * called by: static_init_4367d4
  */
-u32 CSeamanDomain_uses_set_fields_0_4_c_0c2068(int a0, int a1, int *a2, u32 a3) {
+u32 game_uses_set_fields_0_4_c_0c2068(int a0, int a1, int *a2, u32 a3) {
     int ar5_00;
     u32 ar5_01;
     int *ar6_00;
@@ -1118,7 +1120,7 @@ u32 CSeamanDomain_uses_set_fields_0_4_c_0c2068(int a0, int a1, int *a2, u32 a3) 
 /*
  * save_set_names_seamandc  0x8c0c2324
  * selects the SEAMANDC.USR / SEAMANDC._VM save names
- * called by: CSeamanDomain_Init
+ * called by: static_init_4367d4
  * strings: "SEAMANDC.USR"; "SEAMANDC._VM"
  */
 u32 save_set_names_seamandc(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -1131,11 +1133,11 @@ u32 save_set_names_seamandc(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * CSeamanDomain_state_switch_0c236c  0x8c0c236c
- * area name: only called from CSeamanDomain methods; behaviour name: dispatches on a state or mode value (switch)
- * called by: CSeamanDomain_Init
+ * game_state_switch_0c236c  0x8c0c236c
+ * area name: game code; nothing names its area yet; behaviour name: dispatches on a state or mode value (switch)
+ * called by: static_init_4367d4
  */
-u32 CSeamanDomain_state_switch_0c236c(u32 unused_a0, int a1) {
+u32 game_state_switch_0c236c(u32 unused_a0, int a1) {
     if (a1 < 0x19) {
         if (a1 < 0x18) {
             if (0xe < a1) {
@@ -1169,11 +1171,11 @@ switchD_8c0c2396_caseD_3:
 }
 
 /*
- * CSeamanDomain_uses_set_field_0_to_1_0c23fc  0x8c0c23fc
- * area name: only called from CSeamanDomain methods; behaviour name: its main named callee is set_field_0_to_1
- * called by: CSeamanDomain_Init
+ * game_uses_set_field_0_to_1_0c23fc  0x8c0c23fc
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_field_0_to_1
+ * called by: static_init_4367d4
  */
-u32 CSeamanDomain_uses_set_field_0_to_1_0c23fc(int a0, int a1, u32 a2, u32 a3, u32 s0, u32 s4) {
+u32 game_uses_set_field_0_to_1_0c23fc(int a0, int a1, u32 a2, u32 a3, u32 s0, u32 s4) {
     int iVar1;
     u32 ar6_00;
     u32 ar7_00;
@@ -1195,8 +1197,8 @@ u32 CSeamanDomain_uses_set_field_0_to_1_0c23fc(int a0, int a1, u32 a2, u32 a3, u
 /*
  * game_uses_Class_129920_ctor_0c2490  0x8c0c2490
  * name hint from a string it uses: Mess ICON00 pvr; area name: game code; nothing names its area yet; behaviour name:
- * its main named callee is Class_129920_ctor called by: game_list_0c4644 strings: "Mess_ICON00.pvr"; "Mess_ICON01.pvr";
- * "Mess_ICON02.pvr"
+ * its main named callee is Class_129920_ctor called by: static_init_vec3s_286e20 strings: "Mess_ICON00.pvr";
+ * "Mess_ICON01.pvr"; "Mess_ICON02.pvr"
  */
 int game_uses_Class_129920_ctor_0c2490(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u64 *puVar1;
@@ -1867,11 +1869,11 @@ u32 startup_warning_check(int a0, char *a1, u32 a2, u32 a3) {
 }
 
 /*
- * CSeamanDomain_draw_0c3530  0x8c0c3530
- * area name: only called from CSeamanDomain methods; behaviour name: mostly calls draw functions
- * called by: CSeamanDomain_Init
+ * game_draw_0c3530  0x8c0c3530
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
+ * called by: static_init_4367d4
  */
-u32 CSeamanDomain_draw_0c3530(int a0, int a1, u32 a2, u32 a3) {
+u32 game_draw_0c3530(int a0, int a1, u32 a2, u32 a3) {
     short sVar1;
     float *pfVar2;
     int iVar3;
@@ -2034,7 +2036,7 @@ u32 CSeamanDomain_draw_0c3530(int a0, int a1, u32 a2, u32 a3) {
 /*
  * CSeamanDomain_warning_message  0x8c0c38d4
  * message key for warning a1 (NOPAD, NOMIC, NOVMS, NOTFOUND)
- * called by: CSeamanDomain_Init
+ * called by: static_init_4367d4
  * strings: "WARNING_NOPAD"; "WARNING_NOPAD"; "WARNING_NOVMS"; "WARNING_NOVMS" ...
  */
 int CSeamanDomain_warning_message(int a0, char *a1, u32 a2, u32 a3) {
@@ -2102,7 +2104,7 @@ int pack_release_entry_384(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * pack_draw_0c3a48  0x8c0c3a48
  * area name: sits between pack functions (same compilation unit); behaviour name: mostly calls draw functions
- * called by: CSeamanDomain_draw_0c3530, startup_warning_check
+ * called by: game_draw_0c3530, startup_warning_check
  */
 u32 pack_draw_0c3a48(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -2117,7 +2119,7 @@ u32 pack_draw_0c3a48(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * set_texlist_19c_draw  0x8c0c3aac
  * sets texture list a1 (texture 0) on the object at +0x19c and draws the object at +0x1ac
- * called by: CSeamanDomain_draw_0c3530, startup_warning_check
+ * called by: game_draw_0c3530, startup_warning_check
  */
 u32 set_texlist_19c_draw(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -2132,7 +2134,7 @@ u32 set_texlist_19c_draw(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * set_texlist_1a4_draw  0x8c0c3b10
  * sets texture list a1 (texture 0) on the object at +0x1a4 and draws the object at +0x1ac
- * called by: CSeamanDomain_draw_0c3530, startup_warning_check
+ * called by: game_draw_0c3530, startup_warning_check
  */
 u32 set_texlist_1a4_draw(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -2571,7 +2573,7 @@ u32 game_uses_obj_set_texlist_0c4370(int a0, int a1, int a2, int a3) {
 /*
  * game_uses_clear_5_words_0c453c  0x8c0c453c
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is clear_5_words
- * called by: CSeamanDomain_draw_0c3530, confirm_exit_save, input_uses_set_fields_0_4_c_0bf804, startup_warning_check
+ * called by: confirm_exit_save, game_draw_0c3530, input_uses_set_fields_0_4_c_0bf804, startup_warning_check
  */
 u32 game_uses_clear_5_words_0c453c(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -2635,10 +2637,10 @@ u32 ret_const_0_0c463c(void) {
 }
 
 /*
- * game_list_0c4644  0x8c0c4644
- * area name: game code; nothing names its area yet; behaviour name: mostly calls list functions
+ * static_init_vec3s_286e20  0x8c0c4644
+ * static initialiser: builds 4 global Vec3 constants (8c286e20..8c286e44) and registers their destructors
  */
-u32 game_list_0c4644(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_286e20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -3025,9 +3027,9 @@ int game_uses_dec_counter_4e_0c4dd0(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CAnimal_calls_test_0c4e2c  0x8c0c4e2c
  * area name: only called from CAnimal methods; behaviour name: its callees mostly do: test
- * called by: CAnimal_m2_0acaec, Class_12a7a8_uses_set_field_38_099714, Class_12acc8_uses_set_field_38_09ff1c,
- * Class_12b0c4_uses_set_field_38_0abe84, Class_12b2e8_state_switch_0b6440, Class_12bb08_uses_get_field_24_0dbbe8,
- * FrogMan_choose_status_event, FrogMan_ending_event (+13 more)
+ * called by: CAnimal_m2_0acaec, Class_12a7a8_state_switch_0999ac, Class_12a7a8_uses_mask_74_fffffffe_099914,
+ * Class_12a7a8_uses_set_field_38_099714, Class_12acc8_uses_set_field_38_09ff1c, Class_12b0c4_uses_set_field_38_0abe84,
+ * Class_12b2e8_state_switch_0b6440, Class_12bb08_uses_get_field_24_0dbbe8 (+13 more)
  */
 u32 CAnimal_calls_test_0c4e2c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -3234,9 +3236,8 @@ u32 ret_const_0_0c51f4(void) {
 
 /*
  * get_field_d0_0c51fc  0x8c0c51fc
- * called by: CGame_GetUserGameInfo, bugbox_4_screen, game_uses_Vec3_ctor_zero_0c91f4, game_uses_Vec3_ctor_zero_0ca4e8,
- * game_uses_Vec3_ctor_zero_0cb668, game_uses_get_field_d0_0c6e74, game_uses_get_field_d0_0cbd74,
- * game_uses_set_field_d0_0c4e58 (+6 more)
+ * called by: CGame_GetUserGameInfo, bugbox_4_screen, game_uses_get_field_d0_0c6e74, game_uses_set_field_d0_0c4e58,
+ * game_vec_0cdf50, menu_pick_option_0, menu_pick_option_1, menu_pick_option_2 (+6 more)
  */
 u32 get_field_d0_0c51fc(int a0, u32 unused_a1, u32 a2) {
     return *(u32 *)(0xd0 + a0);
@@ -3245,7 +3246,7 @@ u32 get_field_d0_0c51fc(int a0, u32 unused_a1, u32 a2) {
 /*
  * game_uses_Class_129920_ctor_0c5208  0x8c0c5208
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is Class_129920_ctor
- * called by: game_list_0cfbcc
+ * called by: static_init_vec3s_4368d0
  */
 int game_uses_Class_129920_ctor_0c5208(int a0, u32 a1) {
     u32 extraout_fr1;
@@ -4494,8 +4495,8 @@ LAB_8c0c7340:
 
 /*
  * get_field_d4_0c7424  0x8c0c7424
- * called by: confirm_exit_save, game_uses_Vec3_ctor_zero_0c91f4, game_uses_Vec3_ctor_zero_0ca4e8,
- * game_uses_get_field_d0_0c6e74, input_uses_Vec3_ctor_zero_0c8134
+ * called by: confirm_exit_save, game_uses_get_field_d0_0c6e74, static_init_437218, static_init_43724c,
+ * static_init_4372a8
  */
 u32 get_field_d4_0c7424(int a0, u32 a1) {
     return *(u32 *)(0xd4 + a0);
@@ -4930,12 +4931,11 @@ u32 noop_0c8130(void) {
 }
 
 /*
- * input_uses_Vec3_ctor_zero_0c8134  0x8c0c8134
- * name hint from a string it uses: SEAMAN SM; area name: sits between input functions (same compilation unit);
- * behaviour name: its main named callee is Vec3_ctor_zero strings: "Seaman Storage Matrix"; "SM2000US.INC"; "Seaman
- * Storage Matrix"
+ * static_init_437218  0x8c0c8134
+ * static initialiser: constructs 1 global object (8c437218..8c437218) and registers Vec3_dtor for exit
+ * strings: "Seaman Storage Matrix"; "SM2000US.INC"; "Seaman Storage Matrix"
  */
-u32 input_uses_Vec3_ctor_zero_0c8134(int a0, code *a1, int a2, u32 a3) {
+u32 static_init_437218(int a0, code *a1, int a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -5049,7 +5049,7 @@ u32 input_uses_Vec3_ctor_zero_0c8134(int a0, code *a1, int a2, u32 a3) {
     } else {
         puVar6 = *(u32 **)(a1 + 0x7cc);
         a7 = (char *)a1;
-        iVar4 = game_uses_get_field_d0_0cbd74(a0, iVar3, puVar6, a1);
+        iVar4 = static_init_437330(a0, iVar3, puVar6, a1);
         if (iVar4 == 5) {
             uVar1 = take_field_d4(*(u32 *)(a1 + 0x7cc));
             piVar5 = *(int **)(a0 + iVar2 * 4 + 8);
@@ -5074,7 +5074,7 @@ u32 noop_0c8460(void) {
 /*
  * take_field_d4  0x8c0c8464
  * returns +0xd4 and clears it
- * called by: game_uses_Vec3_ctor_zero_0c91f4, game_uses_Vec3_ctor_zero_0ca4e8, input_uses_Vec3_ctor_zero_0c8134
+ * called by: static_init_437218, static_init_43724c, static_init_4372a8
  */
 u32 take_field_d4(int a0) {
     u32 uVar1;
@@ -5096,9 +5096,8 @@ u32 noop_0c847c(void) {
 /*
  * Vec3_pair_dtor  0x8c0c8480
  * destroys the two Vec3 of a Vec3 pair and frees it when the delete flag is set
- * called by: bugbox_3_screen, bugbox_4_screen, event_out_water_cat, game_uses_Vec3_ctor_zero_0c91f4,
- * game_uses_Vec3_ctor_zero_0ca4e8, game_uses_Vec3_ctor_zero_0cac08, game_uses_Vec3_ctor_zero_0cb668,
- * game_uses_Vec3_pair_ctor_0c8fc4 (+2 more)
+ * called by: bugbox_3_screen, bugbox_4_screen, event_out_water_cat, game_uses_Vec3_ctor_zero_0cac08,
+ * game_uses_Vec3_pair_ctor_0c8fc4, static_init_437218, static_init_43724c, static_init_4372a8 (+2 more)
  */
 int Vec3_pair_dtor(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
@@ -5120,9 +5119,8 @@ int Vec3_pair_dtor(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_pair_ctor  0x8c0c84cc
  * constructs two Vec3 at +0 and +0x10
- * called by: bugbox_3_screen, bugbox_4_screen, event_out_water_cat, game_uses_Vec3_ctor_zero_0c91f4,
- * game_uses_Vec3_ctor_zero_0ca4e8, game_uses_Vec3_ctor_zero_0cac08, game_uses_Vec3_ctor_zero_0cb668,
- * game_uses_Vec3_pair_ctor_0c8fc4 (+2 more)
+ * called by: bugbox_3_screen, bugbox_4_screen, event_out_water_cat, game_uses_Vec3_ctor_zero_0cac08,
+ * game_uses_Vec3_pair_ctor_0c8fc4, static_init_437218, static_init_43724c, static_init_4372a8 (+2 more)
  */
 int Vec3_pair_ctor(int a0, u32 a1, u32 a2) {
     Vec3_ctor_zero(a0, a1, a2);
@@ -5632,11 +5630,11 @@ u32 noop_0c91f0(void) {
 }
 
 /*
- * game_uses_Vec3_ctor_zero_0c91f4  0x8c0c91f4
- * name hint from a string it uses: SEAMAN SM; area name: game code; nothing names its area yet; behaviour name: its
- * main named callee is Vec3_ctor_zero strings: "Seaman Storage Matrix"; "SM2000US.INC"; "Seaman Storage Matrix"
+ * static_init_43724c  0x8c0c91f4
+ * static initialiser: constructs 1 global object (8c43724c..8c43724c) and registers Vec3_dtor for exit
+ * strings: "Seaman Storage Matrix"; "SM2000US.INC"; "Seaman Storage Matrix"
  */
-u32 game_uses_Vec3_ctor_zero_0c91f4(int a0, code *a1, int a2, u32 a3) {
+u32 static_init_43724c(int a0, code *a1, int a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -5758,7 +5756,7 @@ u32 game_uses_Vec3_ctor_zero_0c91f4(int a0, code *a1, int a2, u32 a3) {
     } else {
         puVar6 = *(u32 **)(a1 + 0x7cc);
         a7 = (char *)a1;
-        iVar4 = game_uses_get_field_d0_0cbd74(a0, iVar3, puVar6, a1);
+        iVar4 = static_init_437330(a0, iVar3, puVar6, a1);
         if (iVar4 == 5) {
             uVar1 = take_field_d4(*(u32 *)(a1 + 0x7cc));
             piVar5 = *(int **)(a0 + iVar2 * 4 + 8);
@@ -6495,11 +6493,11 @@ u32 noop_0ca4e4(void) {
 }
 
 /*
- * game_uses_Vec3_ctor_zero_0ca4e8  0x8c0ca4e8
- * name hint from a string it uses: SEAMAN SM; area name: game code; nothing names its area yet; behaviour name: its
- * main named callee is Vec3_ctor_zero strings: "Seaman Storage Matrix"; "SM2000US.INC"; "Seaman Storage Matrix"
+ * static_init_4372a8  0x8c0ca4e8
+ * static initialiser: constructs 1 global object (8c4372a8..8c4372a8) and registers Vec3_dtor for exit
+ * strings: "Seaman Storage Matrix"; "SM2000US.INC"; "Seaman Storage Matrix"
  */
-u32 game_uses_Vec3_ctor_zero_0ca4e8(int a0, code *a1, int a2, u32 a3) {
+u32 static_init_4372a8(int a0, code *a1, int a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -6622,7 +6620,7 @@ u32 game_uses_Vec3_ctor_zero_0ca4e8(int a0, code *a1, int a2, u32 a3) {
     } else {
         puVar6 = *(u32 **)(a1 + 0x7cc);
         a7 = (char *)a1;
-        iVar4 = game_uses_get_field_d0_0cbd74(a0, iVar3, puVar6, a1);
+        iVar4 = static_init_437330(a0, iVar3, puVar6, a1);
         if (iVar4 == 5) {
             uVar1 = take_field_d4(*(u32 *)(a1 + 0x7cc));
             piVar5 = *(int **)(a0 + iVar2 * 4 + 8);
@@ -7161,11 +7159,11 @@ u32 staff_credit_start_like(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_Vec3_ctor_zero_0cb668  0x8c0cb668
- * name hint from a string it uses: SEAMAN SM; area name: game code; nothing names its area yet; behaviour name: its
- * main named callee is Vec3_ctor_zero strings: "Seaman Storage Matrix"; "SM2000US.INC"; "Seaman Storage Matrix"
+ * static_init_4372f4  0x8c0cb668
+ * static initialiser: constructs 1 global object (8c4372f4..8c4372f4) and registers Vec3_dtor for exit
+ * strings: "Seaman Storage Matrix"; "SM2000US.INC"; "Seaman Storage Matrix"
  */
-u32 game_uses_Vec3_ctor_zero_0cb668(int a0, code *a1, u32 a2, u32 a3) {
+u32 static_init_4372f4(int a0, code *a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -7358,7 +7356,7 @@ u32 game_release_0cbb2c(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * menu_pick_option_0  0x8c0cbbcc
  * on confirm selects option 0, then calls the current page's method 0x6c with option 0
- * called by: input_uses_Vec3_ctor_zero_0c8134
+ * called by: static_init_437218
  */
 u32 menu_pick_option_0(u32 unused_a0, int a1, int a2, u32 a3) {
     int iVar1;
@@ -7390,7 +7388,7 @@ u32 ret_const_1_0cbc34(void) {
 /*
  * menu_pick_option_1  0x8c0cbc3c
  * on confirm selects option 1, then calls the current page's method 0x6c with option 1
- * called by: game_uses_Vec3_ctor_zero_0c91f4
+ * called by: static_init_43724c
  */
 u32 menu_pick_option_1(u32 unused_a0, int a1, int a2, u32 a3) {
     int iVar1;
@@ -7415,7 +7413,7 @@ u32 menu_pick_option_1(u32 unused_a0, int a1, int a2, u32 a3) {
 /*
  * menu_pick_option_2  0x8c0cbca4
  * on confirm selects option 2, then calls the current page's method 0x6c with option 2
- * called by: game_uses_Vec3_ctor_zero_0ca4e8
+ * called by: static_init_4372a8
  */
 u32 menu_pick_option_2(u32 unused_a0, int a1, int a2, u32 a3) {
     int iVar1;
@@ -7440,7 +7438,7 @@ u32 menu_pick_option_2(u32 unused_a0, int a1, int a2, u32 a3) {
 /*
  * menu_pick_option_3  0x8c0cbd0c
  * on confirm selects option 3, then calls the current page's method 0x6c with option 3
- * called by: game_uses_Vec3_ctor_zero_0cb668
+ * called by: static_init_4372f4
  */
 u32 menu_pick_option_3(u32 unused_a0, int a1, int a2, u32 a3) {
     int iVar1;
@@ -7463,11 +7461,11 @@ u32 menu_pick_option_3(u32 unused_a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * game_uses_get_field_d0_0cbd74  0x8c0cbd74
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_d0_0c51fc
- * called by: game_uses_Vec3_ctor_zero_0c91f4, game_uses_Vec3_ctor_zero_0ca4e8, input_uses_Vec3_ctor_zero_0c8134
+ * static_init_437330  0x8c0cbd74
+ * static initialiser: constructs 1 global object (8c437330..8c437330) and registers Vec3_dtor for exit
+ * called by: static_init_437218, static_init_43724c, static_init_4372a8
  */
-u32 game_uses_get_field_d0_0cbd74(int a0, u8 *a1, int a2, int a3) {
+u32 static_init_437330(int a0, u8 *a1, int a2, int a3) {
     int iVar1;
     int *piVar2;
     u8 *puVar3;
@@ -8645,8 +8643,7 @@ u32 CProlog_uses_libgcc_divide_helper_0cd3c8(int a0, int a1, double *a2, u32 a3)
 /*
  * game_vec_0cdf50  0x8c0cdf50
  * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
- * called by: game_uses_Vec3_ctor_zero_0c91f4, game_uses_Vec3_ctor_zero_0ca4e8, game_uses_Vec3_ctor_zero_0cb668,
- * input_uses_Vec3_ctor_zero_0c8134
+ * called by: static_init_437218, static_init_43724c, static_init_4372a8, static_init_4372f4
  */
 u32 game_vec_0cdf50(int a0, int a1, u32 a2, u32 a3) {
     short sVar1;
@@ -9134,7 +9131,7 @@ u32 ret_const_0_0cebf0(void) {
 /*
  * game_uses_vec_new_array_0cebf8  0x8c0cebf8
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is vec_new_array
- * called by: game_list_0cfbcc
+ * called by: static_init_vec3s_4368d0
  */
 u32 *game_uses_vec_new_array_0cebf8(u32 *a0) {
     int iVar1;
@@ -9319,7 +9316,7 @@ int STAFF_CREDIT_LoadData(int a0, u32 a1) {
 /*
  * game_calls_fill_loop_0ceff8  0x8c0ceff8
  * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: fill_loop
- * called by: game_uses_Vec3_ctor_zero_0cb668
+ * called by: static_init_4372f4
  */
 int game_calls_fill_loop_0ceff8(int *a0, int a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -9825,10 +9822,10 @@ u32 get_field_2d15c_0cfbc0(int a0) {
 }
 
 /*
- * game_list_0cfbcc  0x8c0cfbcc
- * area name: game code; nothing names its area yet; behaviour name: mostly calls list functions
+ * static_init_vec3s_4368d0  0x8c0cfbcc
+ * static initialiser: builds 5 global Vec3 constants (8c4368d0..8c437100) and registers their destructors
  */
-u32 game_list_0cfbcc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_4368d0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;

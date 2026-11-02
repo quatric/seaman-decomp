@@ -11530,7 +11530,7 @@ u32 ninja_uses_tex_is_palettized_2565c4(u32 unused_a0, u32 unused_a1, u32 unused
             if (ain0_00 == 1) {
                 unused_a2 = 0;
                 unused_a1 = 1;
-                tex_uses_libgcc_divide_helper_25a674(*ar4_00, 1, 0, unused_a3, 1);
+                tex_entry_clear_flags_by_id(*ar4_00, 1, 0, unused_a3, 1);
             } else {
                 uVar1 = ar4_00[4];
                 ar4_00[4] = uVar1 & 0xfffffffe;
@@ -11568,7 +11568,7 @@ u32 alt_entry_2565d8(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ai
             if (iVar1 == 1) {
                 unused_a2 = 0;
                 unused_a1 = 1;
-                tex_uses_libgcc_divide_helper_25a674(*a4, 1, 0, unused_a3, in_PR);
+                tex_entry_clear_flags_by_id(*a4, 1, 0, unused_a3, in_PR);
             } else {
                 uVar2 = a4[4];
                 a4[4] = uVar2 & 0xfffffffe;
@@ -17336,7 +17336,7 @@ u32 alt_entry_25a394(int *a0, u32 *a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u
  * tex_uses_libgcc_divide_helper_25a49e  0x8c25a49e
  * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is
  * libgcc_divide_helper_01051c called by: alt_entry_2565d8, alt_entry_2567fe, ninja_uses_tex_is_palettized_2565c4,
- * ninja_uses_tex_is_palettized_2566c8, ninja_uses_tex_is_palettized_2567f8, tex_uses_libgcc_divide_helper_25a674
+ * ninja_uses_tex_is_palettized_2566c8, ninja_uses_tex_is_palettized_2567f8, tex_entry_clear_flags_by_id
  */
 int tex_uses_libgcc_divide_helper_25a49e(u32 *a0) {
     int iVar1;
@@ -17501,11 +17501,11 @@ u32 tex_entry_set_flags(int a0, u32 a1, int a2, u32 unused_a3, u32 ain0) {
 }
 
 /*
- * tex_uses_libgcc_divide_helper_25a674  0x8c25a674
- * area name: sits between tex functions (same compilation unit); behaviour name: its callees mostly do:
- * uses_libgcc_divide_helper called by: alt_entry_2565d8, ninja_uses_tex_is_palettized_2565c4
+ * tex_entry_clear_flags_by_id  0x8c25a674
+ * clears flags a1 on every texture entry with id a0 and releases an entry once it is no longer used
+ * called by: alt_entry_2565d8, ninja_uses_tex_is_palettized_2565c4
  */
-u32 tex_uses_libgcc_divide_helper_25a674(int a0, u32 a1, u32 a2, u32 unused_a3, u32 ain0) {
+u32 tex_entry_clear_flags_by_id(int a0, u32 a1, u32 a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     int *a4;
     u32 uVar2;

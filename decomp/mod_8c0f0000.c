@@ -6,7 +6,7 @@
 /*
  * copy_5_words  0x8c0f3df8
  * copies five 32-bit words
- * called by: CGame_uses_global_list_push_0e99e4
+ * called by: static_init_vec3s_438478
  */
 u32 *copy_5_words(u32 *a0, u32 *a1, u32 a2) {
     *a0 = *a1;
@@ -4252,10 +4252,10 @@ u32 game_draw_0f7ea0(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_0f7ec0  0x8c0f7ec0
- * area name: sits between game functions (same compilation unit); behaviour name: mostly calls vec functions
+ * static_init_vec3s_43b540  0x8c0f7ec0
+ * static initialiser: builds 4 global Vec3 constants (8c43b540..8c43b564) and registers their destructors
  */
-u32 game_vec_0f7ec0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_43b540(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -4288,7 +4288,7 @@ u32 game_vec_0f7ec0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_copy_0f7f78  0x8c0f7f78
  * area name: sits between game functions (same compilation unit); behaviour name: mostly calls copy functions
- * called by: game_list_0c4644
+ * called by: static_init_vec3s_286e20
  */
 int game_copy_0f7f78(int a0, u32 unused_a1, u32 a2, u32 a3) {
     game_copy_0fdc20(a0, unused_a1, a2, a3);
@@ -4422,8 +4422,9 @@ int game_talk_0f816c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * speech_stop  0x8c0f8214
  * stops the current speech and clears its active flag (+0x89134)
- * called by: CSeamanDomain_Init, Class_12a078_m2_05eee0, Class_12a078_m5_0671f4, Class_12c3c4_m2_104264,
- * Class_12c3c4_m5_10a0dc, FrogMan_update_sleep_light, Higyo_update_sleep_light, game_uses_get_field_d0_0c6e74 (+4 more)
+ * called by: Class_12a078_m2_05eee0, Class_12a078_m5_0671f4, Class_12c3c4_m2_104264, Class_12c3c4_m5_10a0dc,
+ * FrogMan_update_sleep_light, Higyo_update_sleep_light, game_uses_get_field_d0_0c6e74, game_uses_get_word_8_0bf22c (+4
+ * more)
  */
 int speech_stop(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -4479,8 +4480,9 @@ u32 speech_restart(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * speech_request  0x8c0f8320
  * speech_start when the player is idle (+0x1014 == 0); 0 otherwise
- * called by: CSeamanDomain_Init, FrogMan_gratification_events, FrogMan_jump_events, FrogMan_react_tap,
- * FrogMan_react_touch, FrogMan_update_sleep_light, Higyo_attention_events, Higyo_update_sleep_light (+6 more)
+ * called by: FrogMan_gratification_events, FrogMan_jump_events, FrogMan_react_tap, FrogMan_react_touch,
+ * FrogMan_update_sleep_light, Higyo_attention_events, Higyo_update_sleep_light, game_uses_speech_is_playing_0bad68 (+6
+ * more)
  */
 u32 speech_request(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5203,9 +5205,9 @@ u32 speech_start_chapter(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * speech_is_playing  0x8c0fa2b8
  * the player's active flag (+0x89134) while speech is set up (+0x1014)
- * called by: CSeamanDomain_Init, Class_12a078_m2_05eee0, Class_12c3c4_m2_104264, FrogMan_ending_event,
- * game_select_intro_or_ending, game_uses_Vec3_dtor_1089e4, game_uses_get_word_8_0bf22c,
- * game_uses_speech_is_playing_0bad68 (+3 more)
+ * called by: Class_12a078_m2_05eee0, Class_12c3c4_m2_104264, FrogMan_ending_event, game_select_intro_or_ending,
+ * game_uses_Vec3_dtor_1089e4, game_uses_get_word_8_0bf22c, game_uses_speech_is_playing_0bad68, react_catch_object (+3
+ * more)
  */
 u32 speech_is_playing(int a0, u32 a1) {
     if (*(int *)(0x1014 + a0) == 0) {
@@ -5508,10 +5510,10 @@ u32 get_field_89130_0fa740(int a0) {
 }
 
 /*
- * speech_vec_0fa74c  0x8c0fa74c
- * area name: sits between speech functions (same compilation unit); behaviour name: mostly calls vec functions
+ * static_init_vec3s_441280  0x8c0fa74c
+ * static initialiser: builds 4 global Vec3 constants (8c441280..8c4412a4) and registers their destructors
  */
-u32 speech_vec_0fa74c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_441280(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -7583,7 +7585,7 @@ u32 *game_copy_0fdc20(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * game_fill_loop_0fdc98  0x8c0fdc98
  * area name: game code; nothing names its area yet; behaviour name: a loop that writes memory
- * called by: Class_129c24_calls_fill_loop_0300a4, game_list_0c4644
+ * called by: Class_129c24_calls_fill_loop_0300a4, static_init_vec3s_286e20
  */
 u8 *game_fill_loop_0fdc98(u8 *a0) {
     int iVar1;
@@ -8263,7 +8265,7 @@ int game_vec_0feb98(int a0, u32 a1, u32 a2) {
 /*
  * vec_new_array_wrap_0febbc  0x8c0febbc
  * only calls vec_new_array
- * called by: game_list_0c4644
+ * called by: static_init_vec3s_286e20
  */
 u32 vec_new_array_wrap_0febbc(u32 a0) {
     vec_new_array(a0, (&game_vec_0feb98), (&game_release_0c4a90), 0x5c, 0x96);
@@ -8499,7 +8501,7 @@ u32 CItemGLoader_clear_requests(int a0, u32 *a1, u32 a2, u32 a3) {
 /*
  * CItemGLoader_calc_0fef8c  0x8c0fef8c
  * area name: sits between CItemGLoader functions (same compilation unit); behaviour name: integer arithmetic on its
- * arguments called by: game_list_0c4644
+ * arguments called by: static_init_vec3s_286e20
  */
 u32 CItemGLoader_calc_0fef8c(u32 a0) {
     return a0;
@@ -8741,10 +8743,10 @@ u32 game_uses_get_field_24_0ff500(u32 a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_list_0ff558  0x8c0ff558
- * area name: game code; nothing names its area yet; behaviour name: mostly calls list functions
+ * static_init_vec3s_4412b8  0x8c0ff558
+ * static initialiser: builds 4 global Vec3 constants (8c4412b8..8c4412dc) and registers their destructors
  */
-u32 game_list_0ff558(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_4412b8(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -9186,8 +9188,7 @@ u32 game_uses_fullscreen_quad_init_0ffd7c(int a0, u32 a1) {
 /*
  * game_input_0ffdb0  0x8c0ffdb0
  * area name: game code; nothing names its area yet; behaviour name: mostly calls input functions
- * called by: game_uses_Vec3_ctor_zero_0c91f4, game_uses_Vec3_ctor_zero_0ca4e8, game_uses_Vec3_ctor_zero_0cb668,
- * input_uses_Vec3_ctor_zero_0c8134
+ * called by: static_init_437218, static_init_43724c, static_init_4372a8, static_init_4372f4
  */
 u32 game_input_0ffdb0(int a0) {
     int iVar1;
@@ -9281,8 +9282,7 @@ u32 game_input_0ffdb0(int a0) {
 /*
  * game_uses_Vec3_ctor_zero_0fff28  0x8c0fff28
  * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: uses_Vec3_ctor_zero
- * called by: game_uses_Vec3_ctor_zero_0c91f4, game_uses_Vec3_ctor_zero_0ca4e8, game_uses_Vec3_ctor_zero_0cb668,
- * input_uses_Vec3_ctor_zero_0c8134
+ * called by: static_init_437218, static_init_43724c, static_init_4372a8, static_init_4372f4
  */
 u32 game_uses_Vec3_ctor_zero_0fff28(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9335,7 +9335,7 @@ u32 set_field_24_0fffec(int a0, u32 a1) {
 /*
  * input_reset_combo_held  0x8c0ffff4
  * 1 when A, B, X, Y and Start (0x60e) are all held on the controller at +0xcc (the Dreamcast soft-reset combination)
- * called by: CSeamanDomain_Init, Class_12b388_m1_0c5c08, game_uses_speech_is_playing_0bad68
+ * called by: Class_12b388_m1_0c5c08, game_uses_speech_is_playing_0bad68, static_init_4367d4
  */
 u32 input_reset_combo_held(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;

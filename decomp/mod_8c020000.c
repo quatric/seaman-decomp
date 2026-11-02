@@ -381,11 +381,11 @@ u32 CDCGD_slot_add(u32 unused_a0, int a1, int a2) {
 }
 
 /*
- * CDCGD_fill_loop_020714  0x8c020714
- * area name: only called from CDCGD methods; behaviour name: a loop that writes memory
+ * CDCGD_remove_request_ptr  0x8c020714
+ * removes a2 from the 32-entry request table at a1+0x58; 1 while other requests remain, else 0
  * called by: CDCGD_release_request
  */
-u32 CDCGD_fill_loop_020714(u32 unused_a0, int a1, int a2) {
+u32 CDCGD_remove_request_ptr(u32 unused_a0, int a1, int a2) {
     int iVar1;
 
     iVar1 = 0;
@@ -475,7 +475,7 @@ u32 CDCGD_release_request(u32 unused_a0, int a1, u32 *a2, u32 a3, u32 s0, u32 s4
         if (((a1 == 0xc) || (a1 == 0xd)) || (a1 == 0xe)) {
             CDCGD_load_020600(unused_a0, a1, a2, a3);
         } else {
-            iVar1 = CDCGD_fill_loop_020714(unused_a0, iVar1, s4);
+            iVar1 = CDCGD_remove_request_ptr(unused_a0, iVar1, s4);
             if (iVar1 == 1) {
                 return 1;
             }
@@ -841,7 +841,7 @@ int CDCGD_request_typeE(int a0, u32 a1, u32 a2, u32 a3) {
  * retry_until_done_020f90  0x8c02100c
  * calls 8c020f90 until it returns 0 or 1, asking 8c01f810 whether to retry in between
  * called by: CAnimal_LoadGResourceWait, CGame_Init, CHerb_LoadGRWait, CIncubater_Create, COutside_Create,
- * CProlog_Ready, CSeamanDomain_Init, CSoilTank_Create (+6 more)
+ * CProlog_Ready, CSoilTank_Create, CSysMessage_LoadMessage (+6 more)
  */
 u32 retry_until_done_020f90(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -1089,7 +1089,7 @@ u32 *game_init_fields_02145c(u32 *a0) {
 
 /*
  * pack_ctor  0x8c02147c
- * called by: game_list_0c4644
+ * called by: static_init_vec3s_286e20
  */
 u32 *pack_ctor(u32 *a0) {
     int iVar1;
@@ -1330,9 +1330,9 @@ int se_play_3d(int *a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * se_open_bank1  0x8c02190c
  * opens an SE port on bank 1 of a sound manager
- * called by: Class_129974_sound_0db32c, Class_12b930_sound_0d3d6c, Class_12b930_uses_rand_0d0d1c, game_sound_0d4c74,
- * game_sound_0d7508, game_uses_get_field_24_0e5238, game_uses_stick_x_right_half_0e1f90,
- * input_uses_edge_detect_update_0e2a14 (+2 more)
+ * called by: Class_129974_sound_0db32c, Class_12b930_sound_0d3d6c, game_sound_0d4c74, game_sound_0d7508,
+ * game_uses_get_field_24_0e5238, game_uses_stick_x_right_half_0e1f90, input_uses_edge_detect_update_0e2a14,
+ * input_uses_edge_detect_update_0e3210 (+2 more)
  */
 u32 se_open_bank1(u32 a0) {
     u32 uVar1;
@@ -1374,8 +1374,9 @@ int se_open(int *a0, u32 a1) {
 /*
  * se_play  0x8c021994
  * plays request a2 on port a1 of manager a0
- * called by: Class_129974_sound_0db32c, Class_12b930_sound_0d3d6c, Class_12b930_uses_rand_0d0d1c, game_sound_0d4c74,
- * game_sound_0d55d0, game_sound_0d7508, game_uses_get_field_24_0e5238, game_uses_stick_x_right_half_0e1f90 (+5 more)
+ * called by: Class_129974_sound_0db32c, Class_12b930_sound_0d3d6c, game_sound_0d4c74, game_sound_0d55d0,
+ * game_sound_0d7508, game_uses_get_field_24_0e5238, game_uses_stick_x_right_half_0e1f90,
+ * input_uses_edge_detect_update_0e2a14 (+5 more)
  */
 u32 se_play(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -1439,8 +1440,8 @@ u32 se_sound_021a30(int *a0, u32 a1, u32 a2) {
 /*
  * se_status  0x8c021a60
  * sound-effect port status (se_slot_status) when the port is open
- * called by: Class_12b930_sound_0d3d6c, Class_12b930_uses_rand_0d0d1c, se_close_port_34, se_close_port_eb4c,
- * se_status_34, se_status_eb4c, sound_env_reset_ports, tank_device_sound_update
+ * called by: Class_12b930_sound_0d3d6c, se_close_port_34, se_close_port_eb4c, se_status_34, se_status_eb4c,
+ * sound_env_reset_ports, static_init_4374c8, tank_device_sound_update
  */
 u32 se_status(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1455,9 +1456,9 @@ u32 se_status(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * se_close_port_handle  0x8c021a8c
  * closes the port handle *a1 and sets it to -1
- * called by: Class_129974_sound_0db32c, Class_12b930_sound_0d3d6c, Class_12b930_uses_rand_0d0d1c, game_sound_0d4c74,
- * game_sound_0d7508, game_uses_get_field_24_0e5238, game_uses_stick_x_right_half_0e1f90,
- * input_uses_edge_detect_update_0e2a14 (+6 more)
+ * called by: Class_129974_sound_0db32c, Class_12b930_sound_0d3d6c, game_sound_0d4c74, game_sound_0d7508,
+ * game_uses_get_field_24_0e5238, game_uses_stick_x_right_half_0e1f90, input_uses_edge_detect_update_0e2a14,
+ * input_uses_edge_detect_update_0e3210 (+6 more)
  */
 u32 se_close_port_handle(u32 a0, u32 *a1) {
     game_sound_021ad4(a0, *a1);
@@ -2488,8 +2489,9 @@ int Vec3_dtor(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * Vec3_ctor_xyz  0x8c022ce8
- * called by: CAnimBody_vec_0342d8, CAnimal_list_039124, CAnimal_list_08894c, CGame_uses_global_list_push_0e99e4,
- * CGame_vec_0e992c, Class_1299f8_m3_019f00, Class_1299f8_m4_019588, Class_129a24_ctor (+123 more)
+ * called by: CAnimBody_vec_0342d8, Class_1299f8_m3_019f00, Class_1299f8_m4_019588, Class_129a24_ctor,
+ * Class_12a25c_vec_06f93c, Class_12a7a8_vec_099b0c, Class_12ad14_uses_rand_float_0a37c8, Class_12b088_vec_0a6370 (+123
+ * more)
  */
 u32 *Vec3_ctor_xyz(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_fr5;
@@ -2507,8 +2509,7 @@ u32 *Vec3_ctor_xyz(u32 *a0, u32 a1, u32 a2, u32 a3) {
  * Vec3_assign_f  0x8c022d04
  * stores fr4..fr6 as x, y, z
  * called by: CAnimBody_vec_02b3d4, Class_1299f8_m4_019588, Class_129a24_m2_01a1d8, Class_129cbc_vec_0310c0,
- * Class_12a03c_vec_03c100, Class_12a25c_vec_06e5a4, Class_12b088_state_switch_0a99c4, Class_12b088_vec_0aa70c (+33
- * more)
+ * Class_12a03c_vec_03c100, Class_12a25c_reset, Class_12b088_state_switch_0a99c4, Class_12b088_vec_0aa70c (+33 more)
  */
 u32 *Vec3_assign_f(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_fr5;
@@ -2545,8 +2546,8 @@ u32 Vec3_ctor_xyz_wrap(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0) {
 /*
  * Vec3_cos_angle  0x8c022dac
  * dot(a0, a1) / (|a0| |a1|)
- * called by: Class_12b088_vec_0aa70c, Class_12b930_vec_0e3994, Vec3_state_switch_03f4a4, Vec3_vec_0231c8,
- * Vec3_vec_02327c, Vec3_vec_023334, Vec3_vec_04e0e0, alt_entry_046684 (+54 more)
+ * called by: Class_12b088_vec_0aa70c, Vec3_state_switch_03f4a4, Vec3_vec_0231c8, Vec3_vec_02327c, Vec3_vec_023334,
+ * Vec3_vec_04e0e0, alt_entry_046684, game_state_switch_049b68 (+54 more)
  */
 u32 Vec3_cos_angle(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -3277,7 +3278,7 @@ u32 Vec3_vec_023570(u64 *a0, u32 a1, u32 a2, u32 unused_a3, u32 s0) {
 /*
  * Vec3_vec_023668  0x8c023668
  * area name: sits between Vec3 functions (same compilation unit); behaviour name: mostly calls vec functions
- * called by: Class_12b930_uses_rand_0d0d1c
+ * called by: static_init_4374c8
  */
 u32 Vec3_vec_023668(u64 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0) {
     u32 uVar1;
@@ -3918,9 +3919,8 @@ u32 Vec3_scale(u64 *a0, double *a1, u32 a2, u32 a3, u32 s0) {
 /*
  * Vec3_scale_assign  0x8c023bf4
  * a0 *= *a1
- * called by: CWaterTank_uses_get_field_300_0e0f48, Class_12b2ac_m1_0aff3c, Class_12b930_uses_rand_0d0d1c,
- * Class_12bec0_uses_rand_0f5fdc, game_state_switch_0564c4, game_uses_Vec3_dtor_08f354, game_vec_054f7c, game_vec_05af78
- * (+11 more)
+ * called by: CWaterTank_uses_get_field_300_0e0f48, Class_12b2ac_m1_0aff3c, Class_12bec0_uses_rand_0f5fdc,
+ * game_state_switch_0564c4, game_uses_Vec3_dtor_08f354, game_vec_054f7c, game_vec_05af78, game_vec_07b2d4 (+11 more)
  */
 float *Vec3_scale_assign(float *a0, float *a1) {
     *a0 = *a0 * *a1;
@@ -4619,7 +4619,7 @@ u32 memmove_bytes_wrap_024378(u32 a0) {
 /*
  * Class_1299f8_uses_clear_15_bytes_0243b0  0x8c0243b0
  * area name: sits between Class_1299f8 functions (same compilation unit); behaviour name: its main named callee is
- * clear_15_bytes called by: SaveData_ctor, game_list_0e8f54
+ * clear_15_bytes called by: SaveData_ctor, static_init_vec3s_437520
  */
 int Class_1299f8_uses_clear_15_bytes_0243b0(int a0, u32 a1, u32 a2) {
     u32 extraout_fr1;
@@ -4721,8 +4721,8 @@ u32 *set_fields_0_4_10(u32 *a0) {
 /*
  * game_list_02452c  0x8c02452c
  * area name: game code; nothing names its area yet; behaviour name: mostly calls list functions
- * called by: CAnimal_list_039124, CAnimal_list_08894c, Class_12a990_list_09d718, Class_12ab2c_list_09f060,
- * Class_12ad50_list_0a5c90, game_list_09b210, game_list_0af3c4
+ * called by: static_init_vec3s_27df98, static_init_vec3s_280f78, static_init_vec3s_284730, static_init_vec3s_284a50,
+ * static_init_vec3s_284d50, static_init_vec3s_285220, static_init_vec3s_285938
  */
 u32 *game_list_02452c(u32 *a0, u32 a1) {
     code *pcVar1;
@@ -4870,8 +4870,8 @@ u32 *set_fields_0_4_8_024810(u32 *a0) {
 /*
  * game_uses_set_fields_0_4_8_024824  0x8c024824
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_fields_0_4_8_024810
- * called by: CAnimal_list_039124, CAnimal_list_08894c, Class_12a990_list_09d718, Class_12ab2c_list_09f060,
- * Class_12ad50_list_0a5c90, game_list_09b210, game_list_0af3c4
+ * called by: static_init_vec3s_27df98, static_init_vec3s_280f78, static_init_vec3s_284730, static_init_vec3s_284a50,
+ * static_init_vec3s_284d50, static_init_vec3s_285220, static_init_vec3s_285938
  */
 u16 *game_uses_set_fields_0_4_8_024824(u16 *a0) {
     set_fields_0_4_8_024810(a0 + 2);
@@ -5599,9 +5599,9 @@ int get_field_0_s8(char *a0) {
 
 /*
  * get_field_140_025f70  0x8c025f70
- * called by: CAnimal_m2_02573c, CAnimal_m3_026078, CAnimal_uses_get_field_134_02cf20,
- * CAnimal_uses_get_field_134_02d1f4, FrogMan_choose_status_event, FrogMan_gratification_events,
- * FrogMan_update_sleep_light, Higyo_choose_status_event (+7 more)
+ * called by: CAnimal_m2_02573c, CAnimal_m3_026078, CAnimal_uses_get_field_134_02cf20, FrogMan_choose_status_event,
+ * FrogMan_gratification_events, FrogMan_update_sleep_light, Higyo_choose_status_event, Higyo_gratification_events (+7
+ * more)
  */
 u32 get_field_140_025f70(int a0, u32 a1) {
     return *(u32 *)(0x140 + a0);
@@ -6657,8 +6657,8 @@ u32 set_field_44(int a0, u32 a1) {
 
 /*
  * get_field_138_02737c  0x8c02737c
- * called by: CAnimal_uses_get_field_134_02cf20, CAnimal_uses_get_field_134_02d1f4, game_uses_get_field_138_0274bc,
- * game_uses_set_field_144_u8_027270
+ * called by: CAnimal_uses_get_field_134_02cf20, game_uses_get_field_138_0274bc, game_uses_set_field_144_u8_027270,
+ * talk_state_save_fields
  */
 u32 get_field_138_02737c(int a0) {
     return *(u32 *)(0x138 + a0);
@@ -6861,16 +6861,16 @@ LAB_8c027550:
         if ((*a1 == 0) && (7 < a1[1])) {
             if (a1[1] < 0x18) {
                 ar5_00 = (u16 *)libgcc_divide_helper_0101e4((u32)a1[1], 8);
-                game_uses_set_field_4_02d2e0(a0 + 0x174, ar5_00, a2, a3);
+                talk_uses_set_field_4_02d2e0(a0 + 0x174, ar5_00, a2, a3);
             } else {
                 ar5_00 = (u16 *)libgcc_divide_helper_0101e4((u32)a1[1], 0x18);
-                game_uses_set_field_4_02d2e0(a0 + 0x174, ar5_00, a2, a3);
+                talk_uses_set_field_4_02d2e0(a0 + 0x174, ar5_00, a2, a3);
             }
             set_field_9b_u8_to_1(*(u32 *)(0x308 + a0));
         }
     } else {
         ar5_00 = (u16 *)(u32)*a1;
-        game_uses_set_field_4_02d2e0(a0 + 0x174, ar5_00, a2, a3);
+        talk_uses_set_field_4_02d2e0(a0 + 0x174, ar5_00, a2, a3);
         set_field_9b_u8_to_1(*(u32 *)(0x308 + a0));
     }
     iVar1 = CAnimal_uses_get_field_1_s8_025ff4(a0 + 0x174);
@@ -7065,9 +7065,9 @@ u32 flag_74_bit1(int a0) {
 
 /*
  * mask_74_fffffffe  0x8c027954
- * called by: Class_12a7a8_uses_set_field_38_099714, Class_12a7f4_m2_09a060, Class_12a7f4_m3_09a558,
- * Class_12acc8_uses_set_field_38_09ff1c, Class_12ad50_m2_0a4fdc, Class_12b0c4_uses_set_field_38_0abe84,
- * Class_12b2e8_uses_set_field_38_0b61bc, FrogMan_choose_status_event (+3 more)
+ * called by: Class_12a7a8_state_switch_0999ac, Class_12a7a8_uses_mask_74_fffffffe_099914,
+ * Class_12a7a8_uses_set_field_38_099714, Class_12a7f4_m2_09a060, Class_12a7f4_m3_09a558,
+ * Class_12acc8_uses_set_field_38_09ff1c, Class_12ad50_m2_0a4fdc, Class_12b0c4_uses_set_field_38_0abe84 (+3 more)
  */
 u32 mask_74_fffffffe(int a0) {
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) & 0xfffffffe;
@@ -7721,7 +7721,7 @@ u32 CAnimal_state_load(int a0, int a1, u32 a2, u32 a3) {
 /*
  * get_field_13c_028d9c  0x8c028d9c
  * called by: CAnimal_state_load, CAnimal_state_save, CAnimal_uses_get_field_134_02cf20,
- * CAnimal_uses_get_field_134_02d1f4, CAnimal_uses_get_field_a2_s16_028e20, Class_12a7a8_m1_098d14,
+ * CAnimal_uses_get_field_a2_s16_028e20, Class_12a7a8_m1_098d14, Class_12a7a8_state_switch_0999ac,
  * Class_12c3c4_m2_104264, FrogMan_gratification_events (+14 more)
  */
 u32 get_field_13c_028d9c(int a0, u32 a1, u32 a2) {
@@ -7878,7 +7878,7 @@ u32 CAnimal_state_save(int a0, int a1, u32 a2, u32 a3) {
  */
 u32 CAnimal_save_record(int a0, int a1, u32 a2, u32 a3) {
     obj_pose_save(a0, a1, a2, a3);
-    CAnimal_uses_get_field_134_02d1f4(a0 + 0x174, a1 + 0x24, a2);
+    talk_state_save_fields(a0 + 0x174, a1 + 0x24, a2);
     copy15_out(a0 + 0x2dc, a1 + 0x58);
     (**(code **)(**(int **)(0x308 + a0) + 0x28))(*(int **)(0x308 + a0), a1 + 0x48, a2, a3);
     *(u32 *)(a1 + 0x68) = *(u32 *)(0x460 + a0);
@@ -10197,10 +10197,10 @@ u32 ret_const_0_02b770(void) {
 }
 
 /*
- * Vec3_list_02b778  0x8c02b778
- * area name: sits between Vec3 functions (same compilation unit); behaviour name: mostly calls list functions
+ * static_init_vec3s_2792d8  0x8c02b778
+ * static initialiser: builds 4 global Vec3 constants (8c2792d8..8c2792fc) and registers their destructors
  */
-u32 Vec3_list_02b778(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_2792d8(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -10274,7 +10274,7 @@ int free_if_nonnull_wrap_02b8f0(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_copy_02b920  0x8c02b920
  * area name: game code; nothing names its area yet; behaviour name: mostly calls copy functions
- * called by: Vec3_list_02b778
+ * called by: static_init_vec3s_2792d8
  */
 int game_copy_02b920(int a0) {
     u8 *ar5_00;
@@ -10511,7 +10511,7 @@ int talk_uses_get_field_16_s16_02bf8c(int a0, u32 a1) {
 
 /*
  * get_field_16_s16  0x8c02bfb4
- * called by: CAnimal_uses_get_field_134_02cf20, CAnimal_uses_get_field_134_02d1f4, talk_uses_get_field_16_s16_02bf8c
+ * called by: CAnimal_uses_get_field_134_02cf20, talk_state_save_fields, talk_uses_get_field_16_s16_02bf8c
  */
 int get_field_16_s16(int a0) {
     return (int)*(short *)(a0 + 0x16);
@@ -10663,7 +10663,7 @@ int get_byte_51_2col(int a0, u32 a1, u32 a2) {
 
 /*
  * set_field_48  0x8c02c328
- * called by: game_uses_set_field_4_02d2e0, talk_uses_set_field_a_s8_02c030
+ * called by: talk_uses_set_field_4_02d2e0, talk_uses_set_field_a_s8_02c030
  */
 u32 set_field_48(int a0, u32 a1) {
     *(u32 *)(a0 + 0x48) = a1;
@@ -10673,7 +10673,7 @@ u32 set_field_48(int a0, u32 a1) {
 /*
  * set_field_0_u8  0x8c02c330
  * called by: CAnimal_uses_set_field_8_s8_02cbe4, Class_12a078_m2_05eee0, FrogMan_gratification_events,
- * FrogMan_update_sleep_light, Higyo_gratification_events, game_uses_set_field_4_02d2e0, talk_uses_set_field_a_s8_02c030
+ * FrogMan_update_sleep_light, Higyo_gratification_events, talk_uses_set_field_4_02d2e0, talk_uses_set_field_a_s8_02c030
  */
 u32 set_field_0_u8(u8 *a0, u32 a1) {
     u32 in_r0;
@@ -11195,7 +11195,7 @@ u32 set_field_9_s8(int a0, u32 a1) {
 
 /*
  * set_field_4_02ce00  0x8c02ce00
- * called by: CAnimal_uses_set_field_8_s8_02cbe4, FrogMan_update_sleep_light, game_uses_set_field_4_02d2e0
+ * called by: CAnimal_uses_set_field_8_s8_02cbe4, FrogMan_update_sleep_light, talk_uses_set_field_4_02d2e0
  */
 u32 set_field_4_02ce00(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 in_r0;
@@ -11379,8 +11379,8 @@ u32 get_field_10_02d198(int a0) {
 
 /*
  * get_field_18_02d1a0  0x8c02d1a0
- * called by: CAnimal_m2_0386d0, CAnimal_uses_get_field_134_02cf20, CAnimal_uses_get_field_134_02d1f4,
- * Class_12b0c4_m2_0abc38, get_field_18_on_field_a8
+ * called by: CAnimal_m2_0386d0, CAnimal_uses_get_field_134_02cf20, Class_12b0c4_m2_0abc38, get_field_18_on_field_a8,
+ * talk_state_save_fields
  */
 u32 get_field_18_02d1a0(int a0) {
     return *(u32 *)(a0 + 0x18);
@@ -11388,7 +11388,7 @@ u32 get_field_18_02d1a0(int a0) {
 
 /*
  * get_field_14_s16  0x8c02d1a8
- * called by: CAnimal_uses_get_field_134_02cf20, CAnimal_uses_get_field_134_02d1f4
+ * called by: CAnimal_uses_get_field_134_02cf20, talk_state_save_fields
  */
 int get_field_14_s16(int a0) {
     return (int)*(short *)(a0 + 0x14);
@@ -11396,7 +11396,7 @@ int get_field_14_s16(int a0) {
 
 /*
  * get_field_10_02d1b0  0x8c02d1b0
- * called by: CAnimal_uses_get_field_134_02cf20, CAnimal_uses_get_field_134_02d1f4
+ * called by: CAnimal_uses_get_field_134_02cf20, talk_state_save_fields
  */
 u32 get_field_10_02d1b0(int a0) {
     return *(u32 *)(a0 + 0x10);
@@ -11405,8 +11405,8 @@ u32 get_field_10_02d1b0(int a0) {
 /*
  * get_field_c_02d1b8  0x8c02d1b8
  * called by: CAnimal_m2_0386d0, CAnimal_m2_088094, CAnimal_uses_get_field_134_02cf20,
- * CAnimal_uses_get_field_134_02d1f4, CAnimal_uses_table13019c_find_row_034d48, Class_12a7f4_m2_09a060,
- * Class_12a7f4_m3_09a558, Class_12a990_m2_09bc2c (+1 more)
+ * CAnimal_uses_table13019c_find_row_034d48, Class_12a7f4_m2_09a060, Class_12a7f4_m3_09a558, Class_12a990_m2_09bc2c,
+ * Class_12ad50_m2_0a4fdc (+1 more)
  */
 u32 get_field_c_02d1b8(int a0) {
     return *(u32 *)(a0 + 0xc);
@@ -11414,7 +11414,7 @@ u32 get_field_c_02d1b8(int a0) {
 
 /*
  * get_field_8_02d1c0  0x8c02d1c0
- * called by: CAnimal_uses_get_field_134_02cf20, CAnimal_uses_get_field_134_02d1f4
+ * called by: CAnimal_uses_get_field_134_02cf20, talk_state_save_fields
  */
 u32 get_field_8_02d1c0(int a0) {
     return *(u32 *)(a0 + 8);
@@ -11455,18 +11455,18 @@ u32 get_field_4_02d1e0(int a0) {
 
 /*
  * get_field_134_02d1e8  0x8c02d1e8
- * called by: CAnimal_uses_get_field_134_02cf20, CAnimal_uses_get_field_134_02d1f4
+ * called by: CAnimal_uses_get_field_134_02cf20, talk_state_save_fields
  */
 u32 get_field_134_02d1e8(int a0) {
     return *(u32 *)(0x134 + a0);
 }
 
 /*
- * CAnimal_uses_get_field_134_02d1f4  0x8c02d1f4
- * area name: only called from CAnimal methods; behaviour name: its main named callee is get_field_134_02d1e8
+ * talk_state_save_fields  0x8c02d1f4
+ * copies the creature's talk/growth values (+0x134..+0x140 and the +0xa8 block) into the a1 record
  * called by: CAnimal_save_record, save_pose_record_09ae4c, save_pose_record_09c8d8, save_pose_record_0a572c
  */
-u32 CAnimal_uses_get_field_134_02d1f4(int a0, u32 *a1, u32 a2) {
+u32 talk_state_save_fields(int a0, u32 *a1, u32 a2) {
     u32 uVar1;
     u32 *ar5_00;
 
@@ -11495,11 +11495,11 @@ u32 CAnimal_uses_get_field_134_02d1f4(int a0, u32 *a1, u32 a2) {
 }
 
 /*
- * game_uses_set_field_4_02d2e0  0x8c02d2e0
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_field_4_02ce00
- * called by: game_uses_get_field_138_0274bc
+ * talk_uses_set_field_4_02d2e0  0x8c02d2e0
+ * area name: sits between talk functions (same compilation unit); behaviour name: its main named callee is
+ * set_field_4_02ce00 called by: game_uses_get_field_138_0274bc
  */
-u32 game_uses_set_field_4_02d2e0(int a0, int a1, u32 a2, u32 a3) {
+u32 talk_uses_set_field_4_02d2e0(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
     int ar5_00;
     int iVar2;
@@ -11531,7 +11531,7 @@ u32 game_uses_set_field_4_02d2e0(int a0, int a1, u32 a2, u32 a3) {
 
 /*
  * get_field_0_s8_02d3e0  0x8c02d3e0
- * called by: Higyo_update_sleep_light, game_uses_set_field_4_02d2e0
+ * called by: Higyo_update_sleep_light, talk_uses_set_field_4_02d2e0
  */
 int get_field_0_s8_02d3e0(char *a0) {
     return (int)*a0;
@@ -11814,7 +11814,7 @@ u32 game_update_fields_02d930(int a0) {
 /*
  * game_uses_libgcc_divide_helper_02d944  0x8c02d944
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is
- * libgcc_divide_helper_0101e4 called by: game_uses_set_field_4_02d2e0
+ * libgcc_divide_helper_0101e4 called by: talk_uses_set_field_4_02d2e0
  */
 int game_uses_libgcc_divide_helper_02d944(u8 *a0, int a1, u32 unused_a2, u32 unused_a3, int ain0) {
     int iVar1;
@@ -12065,7 +12065,7 @@ int game_state_switch_02dc8c(int a0) {
 /*
  * game_uses_rand_02de00  0x8c02de00
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is rand
- * called by: game_uses_set_field_4_02d2e0
+ * called by: talk_uses_set_field_4_02d2e0
  */
 u32 game_uses_rand_02de00(int a0, int a1, int a2) {
     u32 uVar1;
@@ -12380,7 +12380,7 @@ int game_update_fields_02e38c(char *a0, int a1) {
 /*
  * game_calls_update_fields_02e3cc  0x8c02e3cc
  * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: update_fields
- * called by: game_uses_set_field_4_02d2e0
+ * called by: talk_uses_set_field_4_02d2e0
  */
 int game_calls_update_fields_02e3cc(char *a0, u32 a1) {
     int iVar1;
@@ -13224,9 +13224,9 @@ int min_nonzero_entry_14(int a0) {
 
 /*
  * set_field_38_02f404  0x8c02f404
- * called by: Class_12a078_uses_set_field_38_05ff40, Class_12a7a8_uses_set_field_38_099714,
- * Class_12a7a8_uses_set_field_38_099858, Class_12a7a8_vec_099b0c, Class_12acc8_sequence_step,
- * Class_12acc8_uses_rand_0a0278, Class_12acc8_uses_set_field_38_09ff1c, Class_12b0c4_sequence_step (+8 more)
+ * called by: Class_12a078_uses_set_field_38_05ff40, Class_12a7a8_sequence_step, Class_12a7a8_uses_set_field_38_099714,
+ * Class_12a7a8_vec_099b0c, Class_12acc8_sequence_step, Class_12acc8_uses_rand_0a0278,
+ * Class_12acc8_uses_set_field_38_09ff1c, Class_12b0c4_sequence_step (+8 more)
  */
 u32 set_field_38_02f404(int a0, u32 a1) {
     u32 in_r0;
@@ -13373,7 +13373,7 @@ u32 game_vec_02f474(int a0, int *a1, u32 *a2, u32 a3) {
  * Vec3_ctor_copy_wrap_02f670  0x8c02f670
  * only calls Vec3_ctor_copy
  * called by: CEnv_vec_0dac50, Class_12a7a8_vec_099b0c, Class_12acc8_m1_09f470, Class_12acc8_uses_rand_0a0278,
- * Class_12b0c4_vec_0ac1f0, Class_12b2e8_vec_0b67cc, Class_12b930_vec_0e3994, FrogMan_ending_event (+19 more)
+ * Class_12b0c4_vec_0ac1f0, Class_12b2e8_vec_0b67cc, FrogMan_ending_event, Higyo_choose_status_event (+19 more)
  */
 u32 Vec3_ctor_copy_wrap_02f670(int a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;
@@ -14018,10 +14018,10 @@ u32 ret_const_0_02ffe4(void) {
 }
 
 /*
- * Class_129c24_vec_02ffec  0x8c02ffec
- * area name: sits between Class_129c24 functions (same compilation unit); behaviour name: mostly calls vec functions
+ * static_init_vec3s_27d4d0  0x8c02ffec
+ * static initialiser: builds 4 global Vec3 constants (8c27d4d0..8c27d4f4) and registers their destructors
  */
-u32 Class_129c24_vec_02ffec(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_27d4d0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;

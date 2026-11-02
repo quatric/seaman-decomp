@@ -1703,7 +1703,7 @@
 8c120890	asr_u16_list_dup	copies a zero-terminated list of 2-byte entries into a new block (count, 0, entries) from allocator a1
 8c1ef440	crt_init_sections	start-up: zeroes the two BSS ranges and copies the two initialised-data ranges from their load addresses
 8c1f5c9e	lib_handles_add_all	walks the 32-byte library handle records between the "Lib Handle Start" and "Lib Handle End" markers and adds each to the handler list; -1 without the start marker
-8c1f5cf6	lib_handles_remove_all_like	walks the library handle records between the start and end markers and passes each to irq_uses_irq_disable_save_1f5c04; -1 without the start marker
+8c1f5cf6	lib_handles_remove_all	walks the library handle records between the start and end markers and removes each from the handler list; -1 without the start marker
 8c1f099c	bitmap_find_first_set	index of the first set bit (MSB first) in a1 * 64 bytes at a0, or the bit count when none is set
 8c1f2ae2	stricmp_equal	1 when a0 and a1 are equal ignoring case, else 0
 8c1fda44	maple_ready_port_mask	bit mask of the maple ports (0..7) whose device is ready
@@ -1803,3 +1803,54 @@
 8c200e1e	vmu_write_blocks_from	writes every block of the drive's area from the buffer a1, 512 bytes each; stops at the first error
 8c20147c	vmu_file_get_block_list	finds file a1 on drive a0 and fills a2 with its chain of block numbers from the FAT; 0xffffff05 if not found
 8c2029fc	maple_port_info_snapshot	copies the first byte of each of the 24 maple port info records into the table at 8c47e928
+8c1f6e5e	flashrom_write_block_retry	writes 60 bytes from a1 to flash block a0 when they differ; on failure reselects the partition and retries once (error state 8)
+8c264ba0	ADXT_stop_internal_like	with interrupts masked stops playback and the stream read, stops every channel and rewinds the stream to the start
+8c02d1f4	talk_state_save_fields	copies the creature's talk/growth values (+0x134..+0x140 and the +0xa8 block) into the a1 record
+8c1f5c04	irq_list_remove	with interrupts masked removes a0 from the handler list, shifting the later entries down; -2 if absent
+8c25a674	tex_entry_clear_flags_by_id	clears flags a1 on every texture entry with id a0 and releases an entry once it is no longer used
+8c020714	CDCGD_remove_request_ptr	removes a2 from the 32-entry request table at a1+0x58; 1 while other requests remain, else 0
+8c02b778	static_init_vec3s_2792d8	static initialiser: builds 4 global Vec3 constants (8c2792d8..8c2792fc) and registers their destructors
+8c02ffec	static_init_vec3s_27d4d0	static initialiser: builds 4 global Vec3 constants (8c27d4d0..8c27d4f4) and registers their destructors
+8c030d58	static_init_vec3s_27d500	static initialiser: builds 4 global Vec3 constants (8c27d500..8c27d524) and registers their destructors
+8c036078	static_init_vec3s_27df38	static initialiser: builds 4 global Vec3 constants (8c27df38..8c27df5c) and registers their destructors
+8c039124	static_init_vec3s_27df98	static initialiser: builds 52 global Vec3 constants (8c27df98..8c280274) and registers their destructors
+8c067314	static_init_vec3s_280480	static initialiser: builds 4 global Vec3 constants (8c280480..8c2804a4) and registers their destructors
+8c06d8e4	static_init_vec3s_2804b0	static initialiser: builds 31 global Vec3 constants (8c2804b0..8c280d40) and registers their destructors
+8c08894c	static_init_vec3s_280f78	static initialiser: builds 60 global Vec3 constants (8c280f78..8c283a28) and registers their destructors
+8c08d380	static_init_vec3s_283ae8	static initialiser: builds 21 global Vec3 constants (8c283ae8..8c2845e0) and registers their destructors
+8c098b6c	static_init_vec3s_2846a0	static initialiser: builds 4 global Vec3 constants (8c2846a0..8c2846c4) and registers their destructors
+8c099858	Class_12a7a8_sequence_step	at the end of a step advances the three-step sequence from the table at 8c13a884 (row +4) and starts the next step
+8c099dbc	static_init_vec3s_284700	static initialiser: builds 4 global Vec3 constants (8c284700..8c284724) and registers their destructors
+8c09b210	static_init_vec3s_284730	static initialiser: builds 12 global Vec3 constants (8c284730..8c284990) and registers their destructors
+8c09d718	static_init_vec3s_284a50	static initialiser: builds 12 global Vec3 constants (8c284a50..8c284c90) and registers their destructors
+8c09f060	static_init_vec3s_284d50	static initialiser: builds 12 global Vec3 constants (8c284d50..8c285080) and registers their destructors
+8c0a0730	static_init_vec3s_285140	static initialiser: builds 5 global Vec3 constants (8c285140..8c285170) and registers their destructors
+8c0a5c90	static_init_vec3s_285220	static initialiser: builds 12 global Vec3 constants (8c285220..8c285574) and registers their destructors
+8c0ac5b8	static_init_vec3s_2858f8	static initialiser: builds 5 global Vec3 constants (8c2858f8..8c285928) and registers their destructors
+8c0af3c4	static_init_vec3s_285938	static initialiser: builds 20 global Vec3 constants (8c285938..8c286ccc) and registers their destructors
+8c0b6b3c	static_init_vec3s_286df0	static initialiser: builds 4 global Vec3 constants (8c286df0..8c286e14) and registers their destructors
+8c0c4644	static_init_vec3s_286e20	static initialiser: builds 4 global Vec3 constants (8c286e20..8c286e44) and registers their destructors
+8c0cfbcc	static_init_vec3s_4368d0	static initialiser: builds 5 global Vec3 constants (8c4368d0..8c437100) and registers their destructors
+8c0d15c4	static_init_vec3s_437478	static initialiser: builds 4 global Vec3 constants (8c437478..8c43749c) and registers their destructors
+8c0e3994	static_init_vec3s_438274	static initialiser: builds 2 global Vec3 constants (8c438274..8c438294) and registers their destructors
+8c0e8f54	static_init_vec3s_437520	static initialiser: builds 4 global Vec3 constants (8c437520..8c437544) and registers their destructors
+8c0e992c	static_init_vec3s_438440	static initialiser: builds 4 global Vec3 constants (8c438440..8c438464) and registers their destructors
+8c0e99e4	static_init_vec3s_438478	static initialiser: builds 4 global Vec3 constants (8c438478..8c43849c) and registers their destructors
+8c0f7ec0	static_init_vec3s_43b540	static initialiser: builds 4 global Vec3 constants (8c43b540..8c43b564) and registers their destructors
+8c0fa74c	static_init_vec3s_441280	static initialiser: builds 4 global Vec3 constants (8c441280..8c4412a4) and registers their destructors
+8c0ff558	static_init_vec3s_4412b8	static initialiser: builds 4 global Vec3 constants (8c4412b8..8c4412dc) and registers their destructors
+8c102634	static_init_vec3s_441390	static initialiser: builds 4 global Vec3 constants (8c441390..8c4413b4) and registers their destructors
+8c10a214	static_init_vec3s_4708e0	static initialiser: builds 4 global Vec3 constants (8c4708e0..8c470904) and registers their destructors
+8c06e5a4	Class_12a25c_reset	clears the motion state, sets the action table (Idle, 0x22 entries) and starts the timer
+8c0bf4a4	slide_offset_step_660	slides the offset at +0x2c by 15 per call: down to 0 (mode 1) or up to 660 (mode 2), then ends the mode
+8c03220c	static_init_27def0	static initialiser: constructs 1 global object (8c27def0..8c27def0) and registers destroy_array_8c27d590 for exit
+8c0a23c4	static_init_285204	static initialiser: constructs 1 global object (8c285204..8c285204) and registers object_dtor_delete for exit
+8c0c09d0	static_init_4367d4	static initialiser: constructs 2 global objects (8c4367d4..8c436828) and registers free_if_nonnull_wrap_0151a0, free_if_nonnull_wrap_0c1cec for exit
+8c0c8134	static_init_437218	static initialiser: constructs 1 global object (8c437218..8c437218) and registers Vec3_dtor for exit
+8c0c91f4	static_init_43724c	static initialiser: constructs 1 global object (8c43724c..8c43724c) and registers Vec3_dtor for exit
+8c0ca4e8	static_init_4372a8	static initialiser: constructs 1 global object (8c4372a8..8c4372a8) and registers Vec3_dtor for exit
+8c0cb668	static_init_4372f4	static initialiser: constructs 1 global object (8c4372f4..8c4372f4) and registers Vec3_dtor for exit
+8c0cbd74	static_init_437330	static initialiser: constructs 1 global object (8c437330..8c437330) and registers Vec3_dtor for exit
+8c0d0d1c	static_init_4374c8	static initialiser: constructs 1 global object (8c4374c8..8c4374c8) and registers Vec3_dtor for exit
+8c0d8bf0	static_init_437ca8	static initialiser: constructs 2 global objects (8c437ca8..8c437ccc) and registers free_if_nonnull_wrap_0d76b8 for exit
+8c266f38	sd_slot_ch_get_field_00	reads byte 0 of channel a1's record in this slot's AICA block

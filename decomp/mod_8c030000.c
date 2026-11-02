@@ -539,10 +539,10 @@ u8 *set_fields_0_1_4(u8 *a0) {
 }
 
 /*
- * Class_12c3c4_vec_030d58  0x8c030d58
- * area name: sits between Class_12c3c4 functions (same compilation unit); behaviour name: mostly calls vec functions
+ * static_init_vec3s_27d500  0x8c030d58
+ * static initialiser: builds 4 global Vec3 constants (8c27d500..8c27d524) and registers their destructors
  */
-u32 Class_12c3c4_vec_030d58(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_27d500(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -594,8 +594,8 @@ int CAnimal_copy_030e10(int a0) {
 /*
  * set_6_floats  0x8c030e34
  * a0[0..5] = fr4..fr9
- * called by: game_uses_Vec3_ctor_xyz_098b6c, static_init_vec3s_280330, static_init_vec3s_280e00,
- * static_init_vec3s_285180, static_init_vec3s_285840, static_init_vec3s_286d88
+ * called by: static_init_vec3s_280330, static_init_vec3s_280e00, static_init_vec3s_2846a0, static_init_vec3s_285180,
+ * static_init_vec3s_285840, static_init_vec3s_286d88
  */
 u32 *set_6_floats(u32 *a0) {
     u32 in_fr5;
@@ -951,7 +951,7 @@ u32 CAnimBody_CheckThisMotionData(int a0, u8 *a1, u32 a2, u32 a3) {
  * get_field_4_of_field_0  0x8c031588
  * (*a0)->+4
  * called by: CAnimBody_CheckThisMotionData, Class_12a7f4_m2_09a060, Class_12a7f4_m3_09a558, Class_12ad50_m2_0a4fdc,
- * Class_12b930_state_switch_0d9600, game_uses_get_field_d0_0cbd74, get_motion_data
+ * Class_12b930_state_switch_0d9600, get_motion_data, static_init_437330
  */
 u32 get_field_4_of_field_0(int *a0) {
     return *(u32 *)(*a0 + 4);
@@ -1073,7 +1073,7 @@ u32 timer_stop_94(int a0, u32 a1, u32 a2, u32 a3) {
  * CMushroomerBody_vec_031764  0x8c031764
  * area name: only called from CMushroomerBody methods; behaviour name: mostly calls vec functions
  * called by: CMushroomerBody_AwayFrom, Class_12a25c_vec_06f93c, draw_vec_032d48, game_state_switch_073cac,
- * game_state_switch_074d1c, game_state_switch_0755e0, game_state_switch_091924, game_state_switch_0a23c4 (+11 more)
+ * game_state_switch_074d1c, game_state_switch_0755e0, game_state_switch_091924, game_state_switch_0a2bf4 (+11 more)
  */
 u32 CMushroomerBody_vec_031764(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1713,8 +1713,7 @@ float *game_float_calc_031e84(int a0, u32 a1) {
  * game_vec_031eb0  0x8c031eb0
  * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
  * called by: Vec3_state_switch_03f4a4, game_state_switch_049b68, game_state_switch_04b168, game_state_switch_04c314,
- * game_state_switch_0526a0, game_state_switch_091e60, game_state_switch_0a23c4, game_uses_CAnimBody_GetCurFrame_0a3aac
- * (+4 more)
+ * game_state_switch_0526a0, game_state_switch_091e60, game_uses_CAnimBody_GetCurFrame_0a3aac, game_vec_03c94c (+4 more)
  */
 u32 game_vec_031eb0(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;
@@ -1966,11 +1965,11 @@ u32 set_field_68(int a0, u32 a1, u32 unused_a2, u32 a3, u32 ain0) {
 }
 
 /*
- * Class_12b088_uses_vec_new_array_03220c  0x8c03220c
- * area name: only called from Class_12b088 methods; behaviour name: its main named callee is vec_new_array
+ * static_init_27def0  0x8c03220c
+ * static initialiser: constructs 1 global object (8c27def0..8c27def0) and registers destroy_array_8c27d590 for exit
  * called by: Class_12b088_m1_0a6468
  */
-int Class_12b088_uses_vec_new_array_03220c(int a0, u32 *a1, u32 a2, u32 a3) {
+int static_init_27def0(int a0, u32 *a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     u64 *puVar3;
@@ -2835,7 +2834,7 @@ u32 *game_uses_rand_float_032be0(u32 a0, int a1, u32 a2) {
 /*
  * draw_line_ray  0x8c032cb8
  * draws one line from point a1 to a1 + a2 in colour a3
- * called by: Class_12b088_uses_vec_new_array_03220c
+ * called by: static_init_27def0
  */
 u32 draw_line_ray(u32 unused_a0, float *a1, float *a2, u32 a3) {
     u32 uVar1;
@@ -7203,10 +7202,10 @@ int clear_15_bytes(int a0) {
 }
 
 /*
- * game_vec_036078  0x8c036078
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_27df38  0x8c036078
+ * static initialiser: builds 4 global Vec3 constants (8c27df38..8c27df5c) and registers their destructors
  */
-u32 game_vec_036078(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_27df38(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -9311,10 +9310,10 @@ u32 ret_const_1_03911c(void) {
 }
 
 /*
- * CAnimal_list_039124  0x8c039124
- * area name: sits between CAnimal functions (same compilation unit); behaviour name: mostly calls list functions
+ * static_init_vec3s_27df98  0x8c039124
+ * static initialiser: builds 52 global Vec3 constants (8c27df98..8c280274) and registers their destructors
  */
-u32 CAnimal_list_039124(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_27df98(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -10451,7 +10450,7 @@ u32 Class_12a03c_vec_03c100(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * timer_start_94  0x8c03c314
  * +0x94 = fr4, +0xa4 = 1
- * called by: Class_12a03c_m1_03c43c, Class_12a03c_vec_03c100, Class_12a25c_vec_06e5a4, Class_12a25c_vec_06f93c,
+ * called by: Class_12a03c_m1_03c43c, Class_12a03c_vec_03c100, Class_12a25c_reset, Class_12a25c_vec_06f93c,
  * Class_12a76c_vec_08db9c, Class_12ad14_uses_rand_float_0a37c8, Class_12b088_state_switch_0a99c4,
  * Class_12b2ac_uses_timer_stop_94_0b5344 (+34 more)
  */

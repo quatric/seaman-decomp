@@ -1229,8 +1229,8 @@ int get_field_44_s8(int a0, u32 a1, u32 a2, u32 a3) {
  * get_field_4_on_field_d8  0x8c0637d0
  * calls get_field_4_0637f8 on the member at +0xd8
  * called by: FrogMan_jump_events, FrogMan_react_tap, Higyo_attention_events, Vec3_uses_clear_3_words_0c84f4,
- * confirm_exit_save, game_uses_Vec3_ctor_zero_0c91f4, game_uses_Vec3_ctor_zero_0ca4e8, game_uses_Vec3_ctor_zero_0cb668
- * (+9 more)
+ * confirm_exit_save, game_uses_clear_3_words_0c9588, game_uses_clear_3_words_0c9ee0, game_uses_clear_3_words_0ca88c (+9
+ * more)
  */
 u32 get_field_4_on_field_d8(int a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
@@ -3219,10 +3219,10 @@ u32 get_field_100_067308(int a0) {
 }
 
 /*
- * game_vec_067314  0x8c067314
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_280480  0x8c067314
+ * static initialiser: builds 4 global Vec3 constants (8c280480..8c2804a4) and registers their destructors
  */
-u32 game_vec_067314(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_280480(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -8510,10 +8510,10 @@ u32 ret_const_1_06d8dc(void) {
 }
 
 /*
- * game_vec_06d8e4  0x8c06d8e4
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_2804b0  0x8c06d8e4
+ * static initialiser: builds 31 global Vec3 constants (8c2804b0..8c280d40) and registers their destructors
  */
-u32 game_vec_06d8e4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_2804b0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -8808,16 +8808,16 @@ u32 *Class_12a25c_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     Vec3_ctor_zero((int)a0 + 0x270, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x280, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x2bc, a1, a2);
-    Class_12a25c_vec_06e5a4(a0, a1, a2, a3);
+    Class_12a25c_reset(a0, a1, a2, a3);
     return a0;
 }
 
 /*
- * Class_12a25c_vec_06e5a4  0x8c06e5a4
- * area name: only called from Class_12a25c methods; behaviour name: mostly calls vec functions
+ * Class_12a25c_reset  0x8c06e5a4
+ * clears the motion state, sets the action table (Idle, 0x22 entries) and starts the timer
  * called by: Class_12a25c_ctor
  */
-u32 Class_12a25c_vec_06e5a4(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12a25c_reset(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     *(u32 *)(a0 + 0x260) = 0;

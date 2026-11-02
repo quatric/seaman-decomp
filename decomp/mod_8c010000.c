@@ -65,8 +65,8 @@ u32 call_function_list(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * vec_delete_array  0x8c0100dc
- * called by: Class_12a990_m0_09bb44, Class_12b088_dtor, Class_12b088_uses_vec_new_array_03220c, Class_12b3b8_dtor,
- * Class_12b580_dtor, Class_12b580_release_0e6114, Class_12b758_dtor, Class_12b930_dtor (+78 more)
+ * called by: Class_12a990_m0_09bb44, Class_12b088_dtor, Class_12b3b8_dtor, Class_12b580_dtor,
+ * Class_12b580_release_0e6114, Class_12b758_dtor, Class_12b930_dtor, Class_12b930_release_0ddbc8 (+78 more)
  */
 u32 vec_delete_array(int a0, code *a1, int a2, int a3) {
     u32 in_r0;
@@ -103,9 +103,8 @@ u32 array_destruct_backwards(int a0, code *a1, u32 a2, u32 a3) {
 /*
  * vec_new_array  0x8c010120
  * constructs count elements of size bytes with ctor; on failure destroys the built ones with dtor (pairs with
- * vec_delete_array) called by: CAnimal_list_039124, CAnimal_list_08894c, CAnimal_uses_set_field_b_s8_02b9a8,
- * CMushroomerEgg_ctor, CSquid_Init, Class_12ab2c_list_09f060, Class_12ad50_list_0a5c90,
- * Class_12b088_uses_vec_new_array_03220c (+25 more)
+ * vec_delete_array) called by: CAnimal_uses_set_field_b_s8_02b9a8, CMushroomerEgg_ctor, CSquid_Init, Class_12b3b8_ctor,
+ * Class_12b580_ctor, Class_12b580_uses_Vec3_ctor_zero_0d7f18, Class_12b758_ctor, Class_12b930_ctor (+25 more)
  */
 u32 vec_new_array(int a0, code *a1, code *a2, int a3, u32 s0) {
     int iVar1;
@@ -156,8 +155,8 @@ u32 alt_entry_01012c(int a0, code *a1, code *a2, u32 a3, u32 s0, u32 s4, u32 s8,
 
 /*
  * global_list_push  0x8c0101a0
- * called by: CAnimal_list_039124, CAnimal_list_08894c, CGame_uses_global_list_push_0e99e4, CGame_vec_0e992c,
- * CSeamanDomain_Init, Class_129c24_vec_02ffec, Class_12a990_list_09d718, Class_12ab2c_list_09f060 (+55 more)
+ * called by: confirm_exit_save, static_init_27def0, static_init_285204, static_init_4367d4, static_init_437218,
+ * static_init_43724c, static_init_4372a8, static_init_4372f4 (+55 more)
  */
 u32 global_list_push(u32 a0, u32 a1, u32 *a2, u32 a3) {
     u32 *puVar1;
@@ -183,9 +182,8 @@ u32 pure_virtual_stub(void) {
 
 /*
  * strcpy  0x8c0101d4
- * called by: CDCGD_new_request_c, CDCGD_uses_strcpy_0202c0, CSeamanDomain_Init,
- * CSeamanDomain_uses_set_field_0_to_1_0c23fc, CSeamanDomain_warning_message, Class_12a078_ctor, Class_12c3c4_ctor,
- * asr_copy_01d4c4 (+41 more)
+ * called by: CDCGD_new_request_c, CDCGD_uses_strcpy_0202c0, CSeamanDomain_warning_message, Class_12a078_ctor,
+ * Class_12c3c4_ctor, asr_copy_01d4c4, asr_copy_01d684, asr_switch_vocab (+41 more)
  */
 u32 strcpy(char *a0, char *a1) {
     char cVar1;
@@ -1182,7 +1180,7 @@ int libgcc_divide_helper_0101e4(u32 a0, u32 a1) {
 /*
  * libgcc_divide_helper_010284  0x8c010284
  * called by: CAnimal_uses_table13019c_find_row_034d48, CGame_draw_0c3e78, CGame_uses_libgcc_divide_helper_0cc784,
- * CProlog_uses_libgcc_divide_helper_0cd3c8, CSeamanDomain_draw_0c3530, FrogMan_react_tap, Higyo_react_tap,
+ * CProlog_uses_libgcc_divide_helper_0cd3c8, FrogMan_react_tap, Higyo_react_tap, game_draw_0c3530,
  * game_select_intro_or_ending (+1 more)
  */
 u32 libgcc_divide_helper_010284(u32 a0, int a1, u32 a2) {
@@ -12552,9 +12550,9 @@ u32 set_flag_14_bit31_and_20(int a0) {
 /*
  * obj_set_texture_num  0x8c014a94
  * njSetTextureNum(a1)
- * called by: CEnv_set_texlist, CGame_draw_0c3e78, CSeamanDomain_Init, CSeamanDomain_draw_0c3530,
- * CSeamanDomain_uses_set_fields_0_4_c_0c2068, CSquidLine_uses_matrix_push_0ad354,
- * Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12bea8_uses_Class_129808_m2_0d7900 (+23 more)
+ * called by: CEnv_set_texlist, CGame_draw_0c3e78, CSquidLine_uses_matrix_push_0ad354,
+ * Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12bea8_uses_Class_129808_m2_0d7900, Class_12bec0_draw_0f5e0c,
+ * Class_12bec0_draw_0f5f08, ambient_sound_update (+23 more)
  */
 u32 obj_set_texture_num(u32 a0, u32 a1) {
     u32 uVar1;
@@ -12643,7 +12641,7 @@ u32 *Class_1297f4_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Class_1297f4_uses_rand_014be4  0x8c014be4
  * area name: sits between Class_1297f4 functions (same compilation unit); behaviour name: its main named callee is rand
- * called by: Class_12b930_uses_rand_0d0d1c
+ * called by: static_init_4374c8
  */
 u32 Class_1297f4_uses_rand_014be4(int a0, u32 a1, u32 a2) {
     int iVar1;
@@ -12867,7 +12865,7 @@ u32 *vec3_clear(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_add_fr_54_dirty  0x8c014e38
  * adds (fr4, fr5, fr6) to the vector at +0x54 and sets the changed flag +0x64
- * called by: Class_12b930_uses_rand_0d0d1c
+ * called by: static_init_4374c8
  */
 u32 Vec3_add_fr_54_dirty(int a0) {
     u32 uVar1;
@@ -13049,8 +13047,8 @@ u32 static_init_vec3s_2787b8(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * set_field_10  0x8c015198
- * called by: CGame_Init, CSeamanDomain_Init, CSeamanDomain_uses_set_fields_0_4_c_0c2068, Class_129808_m6_0166b4,
- * Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12bb08_ctor, ambient_sound_update, bugbox_3_screen (+11 more)
+ * called by: CGame_Init, Class_129808_m6_0166b4, Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12bb08_ctor,
+ * ambient_sound_update, bugbox_3_screen, confirm_exit_save, fullscreen_quad_init (+11 more)
  */
 u32 set_field_10(int a0, u32 a1) {
     u32 in_r0;
@@ -13061,9 +13059,9 @@ u32 set_field_10(int a0, u32 a1) {
 
 /*
  * free_if_nonnull_wrap_0151a0  0x8c0151a0
- * called by: CSeamanDomain_uses_set_fields_0_4_c_0c2068, Class_129808_m6_0166b4, Class_12984c_release_0c4b84,
- * Class_12b350_dtor, Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12bb08_dtor, ambient_sound_update,
- * confirm_exit_save (+10 more)
+ * called by: Class_129808_m6_0166b4, Class_12984c_release_0c4b84, Class_12b350_dtor,
+ * Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12bb08_dtor, ambient_sound_update, confirm_exit_save,
+ * game_release_0cfed8 (+10 more)
  */
 int free_if_nonnull_wrap_0151a0(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -13173,9 +13171,9 @@ u32 CTexture_LoadFromCache(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * CTexture_ReleaseFromVRAM  0x8c015310
- * called by: CAnimal_release_part_textures, CHerb_release_06d5e4, CSeamanDomain_Init,
- * CTexture_ReleaseFromVRAM_on_field_20, CTexture_ReleaseFromVRAM_on_field_28, CTexture_ReleaseFromVRAM_on_field_488,
- * CTexture_ReleaseFromVRAM_wrap, CTexture_ReleaseFromVRAM_wrap_0d0a18 (+12 more) strings: "Failed..:%s";
+ * called by: CAnimal_release_part_textures, CHerb_release_06d5e4, CTexture_ReleaseFromVRAM_on_field_20,
+ * CTexture_ReleaseFromVRAM_on_field_28, CTexture_ReleaseFromVRAM_on_field_488, CTexture_ReleaseFromVRAM_wrap,
+ * CTexture_ReleaseFromVRAM_wrap_0d0a18, CTexture_ReleaseFromVRAM_wrap_0d14cc (+12 more) strings: "Failed..:%s";
  * "CTexture::ReleaseFromVRAM()"
  */
 u32 CTexture_ReleaseFromVRAM(int a0, u32 a1, u32 a2, u32 a3) {
@@ -13194,8 +13192,8 @@ u32 CTexture_ReleaseFromVRAM(int a0, u32 a1, u32 a2, u32 a3) {
  * obj_set_texlist  0x8c01538c
  * njSetTexture on the texture list the object keeps at +4
  * called by: CAnimBody_uses_get_field_1c_on_field_b0_026de0, CAnimal_draw_029510, CAnimal_draw_088288,
- * CAnimal_uses_njGetMatrix_026968, CEnv_set_texlist, CGame_draw_0c3e78, CSeamanDomain_Init, CSeamanDomain_draw_0c3530
- * (+75 more)
+ * CAnimal_uses_njGetMatrix_026968, CEnv_set_texlist, CGame_draw_0c3e78, CSquidLine_uses_matrix_push_0ad354,
+ * CTexture_draw_0d6090 (+75 more)
  */
 u32 obj_set_texlist(int a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -13988,8 +13986,8 @@ u32 clear_field_0_015b8c(u32 *a0) {
 /*
  * clear_field_0_wrap_015b94  0x8c015b94
  * only calls clear_field_0_015bc0
- * called by: CAnimal_list_039124, CAnimal_list_08894c, CMothLine_ctor, Class_12ad50_list_0a5c90, game_list_02452c,
- * game_list_09b210
+ * called by: CMothLine_ctor, game_list_02452c, static_init_vec3s_27df98, static_init_vec3s_280f78,
+ * static_init_vec3s_284730, static_init_vec3s_285220
  */
 u32 clear_field_0_wrap_015b94(u32 a0, u32 a1) {
     clear_field_0_015bc0(a0);
@@ -14030,7 +14028,8 @@ u32 clear_field_0_015bc0(u32 *a0) {
 /*
  * clear_field_0_wrap_015bc8  0x8c015bc8
  * only calls clear_field_0_015bec
- * called by: CAnimal_list_039124, CAnimal_list_08894c, CMothLine_ctor, Class_12ad50_list_0a5c90, game_list_09b210
+ * called by: CMothLine_ctor, static_init_vec3s_27df98, static_init_vec3s_280f78, static_init_vec3s_284730,
+ * static_init_vec3s_285220
  */
 u32 clear_field_0_wrap_015bc8(u32 a0) {
     clear_field_0_015bec(a0);
@@ -14408,8 +14407,8 @@ u32 Class_129808_m10_0162bc(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * clear_5_words  0x8c0162f8
  * a0[0..4] = 0
- * called by: CSeamanDomain_Init, CSeamanDomain_uses_set_fields_0_4_c_0c2068, Class_129808_m6_0166b4, Class_12b350_ctor,
- * Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12bb08_ctor, ambient_sound_update, confirm_exit_save (+13 more)
+ * called by: Class_129808_m6_0166b4, Class_12b350_ctor, Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12bb08_ctor,
+ * ambient_sound_update, confirm_exit_save, game_copy_0ff6c4, game_uses_Class_129808_set_model_0bfa78 (+13 more)
  */
 u32 *clear_5_words(u32 *a0, u32 a1, u32 unused_a2, u32 a3) {
     a0[4] = 0;
@@ -14424,9 +14423,8 @@ u32 *clear_5_words(u32 *a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * set_fields_0_4_c  0x8c016318
  * stores +0x0, +0x4, +0xc
- * called by: CGame_Init, CGame_draw_0c3e78, CSeamanDomain_Init, CSeamanDomain_draw_0c3530,
- * CSeamanDomain_uses_set_fields_0_4_c_0c2068, Class_129808_m6_0166b4, Class_12b3b8_uses_object_dtor_delete_0e7a78,
- * Class_12bb08_ctor (+20 more)
+ * called by: CGame_Init, CGame_draw_0c3e78, Class_129808_m6_0166b4, Class_12b3b8_uses_object_dtor_delete_0e7a78,
+ * Class_12bb08_ctor, ambient_sound_update, bugbox_3_screen, confirm_exit_save (+20 more)
  */
 u32 set_fields_0_4_c(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_r0;
@@ -14440,9 +14438,8 @@ u32 set_fields_0_4_c(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Class_129808_set_model  0x8c016324
  * +8 = a1 and sets flags 0x80000020 at +0x10
- * called by: CGame_draw_0c3e78, CSeamanDomain_Init, CSeamanDomain_draw_0c3530,
- * CSeamanDomain_uses_set_fields_0_4_c_0c2068, Class_129808_m6_0166b4, Class_12b3b8_uses_object_dtor_delete_0e7a78,
- * Class_12bb08_ctor, ambient_sound_update (+12 more)
+ * called by: CGame_draw_0c3e78, Class_129808_m6_0166b4, Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12bb08_ctor,
+ * ambient_sound_update, confirm_exit_save, game_draw_0c3530, game_draw_0c42b0 (+12 more)
  */
 u32 Class_129808_set_model(int a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -14456,9 +14453,8 @@ u32 Class_129808_set_model(int a0, u32 a1, u32 a2) {
 /*
  * Class_129808_draw  0x8c016340
  * draws the object's model (+0xc) with its flags (+0x10)
- * called by: CGame_draw_0c3e78, CSeamanDomain_Init, CSeamanDomain_draw_0c3530,
- * CSeamanDomain_uses_set_fields_0_4_c_0c2068, Class_129808_m6_0166b4, Class_12b388_uses_Class_129808_draw_0c5cb4,
- * Class_12b758_draw_0e4dd0, ambient_sound_update (+17 more)
+ * called by: CGame_draw_0c3e78, Class_129808_m6_0166b4, Class_12b388_uses_Class_129808_draw_0c5cb4,
+ * Class_12b758_draw_0e4dd0, ambient_sound_update, bugbox_3_screen, confirm_exit_save, game_draw_0c3530 (+17 more)
  */
 u32 Class_129808_draw(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -14470,9 +14466,9 @@ u32 Class_129808_draw(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * Class_129808_draw_offset  0x8c01636c
  * draws the object's quad moved by the x/y offset in dr4
- * called by: CSeamanDomain_draw_0c3530, Class_12b3b8_uses_object_dtor_delete_0e7a78, game_draw_0c42b0,
- * game_draw_0cf6bc, game_uses_Class_129808_set_model_0bfa78, game_uses_clear_5_words_0ba5e0,
- * game_uses_clear_5_words_0c453c, input_uses_set_fields_0_4_c_0bf804 (+4 more)
+ * called by: Class_12b3b8_uses_object_dtor_delete_0e7a78, game_draw_0c3530, game_draw_0c42b0, game_draw_0cf6bc,
+ * game_uses_Class_129808_set_model_0bfa78, game_uses_clear_5_words_0ba5e0, game_uses_clear_5_words_0c453c,
+ * input_uses_set_fields_0_4_c_0bf804 (+4 more)
  */
 u32 Class_129808_draw_offset(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -15296,8 +15292,8 @@ u32 *Class_129938_ctor(u32 *a0, u32 a1, u32 a2) {
 /*
  * Class_129938_ctor_init  0x8c017010
  * constructs, then calls the init method (slot 0x2c)
- * called by: CAnimal_list_039124, CAnimal_list_08894c, Class_12a990_list_09d718, Class_12ab2c_list_09f060,
- * Class_12ad50_list_0a5c90, game_list_08d380, game_list_09b210, game_list_0af3c4 (+1 more)
+ * called by: static_init_vec3s_27df98, static_init_vec3s_2804b0, static_init_vec3s_280f78, static_init_vec3s_283ae8,
+ * static_init_vec3s_284730, static_init_vec3s_284a50, static_init_vec3s_284d50, static_init_vec3s_285220 (+1 more)
  */
 int *Class_129938_ctor_init(int *a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16) {
     Class_1299b0_ctor(a0, a1, a2);
@@ -15758,7 +15754,7 @@ u32 Class_129938_uses_set_field_0_017804(int a0, u32 unused_a1, u32 a2) {
 /*
  * Class_12b930_copy_017830  0x8c017830
  * area name: only called from Class_12b930 methods; behaviour name: mostly calls copy functions
- * called by: Class_12b930_ctor, game_list_0cfbcc
+ * called by: Class_12b930_ctor, static_init_vec3s_4368d0
  */
 u32 *Class_12b930_copy_017830(u32 *a0) {
     u32 extraout_fr1;
@@ -18216,7 +18212,7 @@ u32 debug_print_vec3(u32 unused_a0, u32 a1, u32 a2) {
 /*
  * Class_129a24_ctor  0x8c0199d4
  * stores the Class_129a24 vtable in a0 and initialises the object
- * called by: game_list_0cfbcc
+ * called by: static_init_vec3s_4368d0
  */
 u32 *Class_129a24_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     Class_129a50_ctor_b(a0);
@@ -19937,7 +19933,7 @@ int memcard_queue_load_raw(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * memcard_file_data_size_wait  0x8c01b920
  * data bytes of file a1 (blocks*512 minus the 0x280 header), waiting up to 10 s; -1 on failure
- * called by: CSeamanDomain_Init
+ * called by: static_init_4367d4
  */
 int memcard_file_data_size_wait(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -19979,7 +19975,7 @@ int memcard_queue_file_size(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * memcard_free_bytes_wait  0x8c01b9e4
  * free bytes on the card, waiting up to 10 s; -1 on failure
- * called by: CSeamanDomain_Init, game_uses_bu_get_game_file_name_01b144
+ * called by: game_uses_bu_get_game_file_name_01b144, static_init_4367d4
  */
 int memcard_free_bytes_wait(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -20118,7 +20114,7 @@ int memcard_queue_exist(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * memcard_stat_file_wait  0x8c01bc2c
  * queries a file and copies its description into a2 when found (result 5)
- * called by: CSeamanDomain_Init, save_check_files, save_files_check, save_user_file_check
+ * called by: save_check_files, save_files_check, save_user_file_check, static_init_4367d4
  */
 int memcard_stat_file_wait(int a0, u32 a1, u8 *a2, u32 a3) {
     int iVar1;
@@ -21987,7 +21983,7 @@ u32 *buf256_clear_b(u32 *a0) {
 /*
  * game_save_01e504  0x8c01e504
  * area name: game code; nothing names its area yet; behaviour name: mostly calls save functions
- * called by: game_list_0c4644
+ * called by: static_init_vec3s_286e20
  */
 int game_save_01e504(int a0) {
     memcard_manager_init(a0);
@@ -23005,8 +23001,8 @@ LAB_8c01f4ea:
 
 /*
  * get_field_a524_01f514  0x8c01f514
- * called by: CGame_draw_0c3e78, CGame_uses_startup_warning_check_0b7920, CSeamanDomain_Init, save_check_files,
- * save_files_check, save_write_step
+ * called by: CGame_draw_0c3e78, CGame_uses_startup_warning_check_0b7920, save_check_files, save_files_check,
+ * save_write_step, static_init_4367d4
  */
 u32 get_field_a524_01f514(int a0, u32 unused_a1, u32 a2) {
     return *(u32 *)(0xa524 + a0);
@@ -23015,9 +23011,9 @@ u32 get_field_a524_01f514(int a0, u32 unused_a1, u32 a2) {
 /*
  * identity  0x8c01f520
  * returns its first argument
- * called by: CSeamanDomain_Init, Class_12b388_m1_0c5c08, confirm_exit_save, game_uses_free_if_nonnull_wrap_0e8280,
- * game_uses_get_field_24_0e5238, game_uses_identity_0b726c, memcard_flush_and_close_8c3dd7dc, save_check_files (+10
- * more)
+ * called by: Class_12b388_m1_0c5c08, confirm_exit_save, game_uses_free_if_nonnull_wrap_0e8280,
+ * game_uses_get_field_24_0e5238, game_uses_identity_0b726c, memcard_flush_and_close_8c3dd7dc, save_check_files,
+ * save_file_load (+10 more)
  */
 u32 identity(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     return a0;
@@ -23092,7 +23088,7 @@ u32 gd_check_lid_open(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * identity_01f5d0  0x8c01f5d0
  * returns a0
- * called by: game_list_0c4644
+ * called by: static_init_vec3s_286e20
  */
 u32 identity_01f5d0(u32 a0) {
     return a0;

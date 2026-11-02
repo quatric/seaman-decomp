@@ -732,11 +732,11 @@ u32 set_fields_68_78(int a0, u32 a1) {
 }
 
 /*
- * Class_12b930_uses_rand_0d0d1c  0x8c0d0d1c
- * area name: only called from Class_12b930 methods; behaviour name: its main named callee is rand
+ * static_init_4374c8  0x8c0d0d1c
+ * static initialiser: constructs 1 global object (8c4374c8..8c4374c8) and registers Vec3_dtor for exit
  * called by: CWaterTank_uses_Vec3_distance_sq_to_xyz_0e1398, Class_12b930_m3_0de4b0
  */
-u32 Class_12b930_uses_rand_0d0d1c(int a0, code *a1, u32 a2, u32 a3) {
+u32 static_init_4374c8(int a0, code *a1, u32 a2, u32 a3) {
     u64 uVar1;
     u32 uVar2;
     int iVar3;
@@ -910,7 +910,7 @@ u32 Class_12b930_uses_rand_0d0d1c(int a0, code *a1, u32 a2, u32 a3) {
 
 /*
  * get_field_100_0d1058  0x8c0d1058
- * called by: Class_12b930_uses_rand_0d0d1c, game_uses_obj_set_texlist_0d1168, particle_pool_update_350
+ * called by: game_uses_obj_set_texlist_0d1168, particle_pool_update_350, static_init_4374c8
  */
 u32 get_field_100_0d1058(int a0) {
     return *(u32 *)(a0 + 100);
@@ -919,7 +919,7 @@ u32 get_field_100_0d1058(int a0) {
 /*
  * particle_pool_update_350  0x8c0d1060
  * ramps the level at +0xeb40 up (0.05) or down (1/3600) between 0 and 100, then updates each of the 350 active
- * 0xac-byte particles called by: Class_12b930_uses_rand_0d0d1c, particle_pool_update_350_on_field_13b8c
+ * 0xac-byte particles called by: particle_pool_update_350_on_field_13b8c, static_init_4374c8
  */
 u32 particle_pool_update_350(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -1309,10 +1309,10 @@ u32 se_init_fields_0d1564(int a0) {
 }
 
 /*
- * se_vec_0d15c4  0x8c0d15c4
- * area name: sits between se functions (same compilation unit); behaviour name: mostly calls vec functions
+ * static_init_vec3s_437478  0x8c0d15c4
+ * static initialiser: builds 4 global Vec3 constants (8c437478..8c43749c) and registers their destructors
  */
-u32 se_vec_0d15c4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_437478(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -4528,7 +4528,7 @@ u32 game_uses_njCalcVector_like_0d4bdc(float *a0, int a1) {
 /*
  * game_sound_0d4c74  0x8c0d4c74
  * area name: game code; nothing names its area yet; behaviour name: mostly calls sound functions
- * called by: Class_12b930_vec_0e3994
+ * called by: static_init_vec3s_438274
  */
 u32 game_sound_0d4c74(float *a0, u32 *a1, int a2, float a3) {
     int iVar1;
@@ -7170,7 +7170,7 @@ u32 game_test_0d75a0(int a0, float *a1, int a2, u32 a3) {
 /*
  * game_init_fields_0d761c  0x8c0d761c
  * area name: game code; nothing names its area yet; behaviour name: writes 4 members
- * called by: game_calls_init_fields_0d7688, game_uses_rand_0d8bf0
+ * called by: game_calls_init_fields_0d7688, static_init_437ca8
  */
 u32 *game_init_fields_0d761c(u32 *a0) {
     a0[2] = 0x3f800000;
@@ -7184,7 +7184,7 @@ u32 *game_init_fields_0d761c(u32 *a0) {
 /*
  * set_5_floats  0x8c0d7668
  * stores fr4..fr8 into five consecutive floats
- * called by: CGame_uses_global_list_push_0e99e4
+ * called by: static_init_vec3s_438478
  */
 u32 *set_5_floats(u32 *a0) {
     u32 in_fr5;
@@ -7217,7 +7217,7 @@ u32 *game_calls_init_fields_0d7688(u32 *a0) {
 
 /*
  * free_if_nonnull_wrap_0d76b8  0x8c0d76b8
- * called by: CGame_uses_global_list_push_0e99e4, Class_12bea8_release_0d8128
+ * called by: Class_12bea8_release_0d8128, static_init_vec3s_438478
  */
 int free_if_nonnull_wrap_0d76b8(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -7492,7 +7492,7 @@ u32 Class_12bea8_copy_0d7b44(u32 a0) {
 /*
  * Class_12bea8_uses_libgcc_divide_helper_0d7b60  0x8c0d7b60
  * area name: sits between Class_12bea8 functions (same compilation unit); behaviour name: its main named callee is
- * libgcc_divide_helper_0103d0 called by: Class_12b580_uses_rand_0d8710
+ * libgcc_divide_helper_0103d0 called by: Class_12b580_uses_static_init_0d8710
  */
 u32 Class_12bea8_uses_libgcc_divide_helper_0d7b60(int *a0, u32 a1, u32 a2, u32 a3) {
     float fVar1;
@@ -7617,7 +7617,7 @@ u32 get_field_2c_0d7ca8(int a0) {
 /*
  * Class_12bea8_uses_get_field_2c_0d7cb0  0x8c0d7cb0
  * area name: sits between Class_12bea8 functions (same compilation unit); behaviour name: its main named callee is
- * get_field_2c_0d7ca8 called by: Class_12b580_uses_rand_0d8710
+ * get_field_2c_0d7ca8 called by: Class_12b580_uses_static_init_0d8710
  */
 int *Class_12bea8_uses_get_field_2c_0d7cb0(int *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -7811,7 +7811,7 @@ u32 Class_12bea8_uses_linear_map_set_range_0d7e80(int a0, u32 a1, u32 a2, u32 a3
 /*
  * Class_12bea8_init_fields_0d7f04  0x8c0d7f04
  * area name: sits between Class_12bea8 functions (same compilation unit); behaviour name: writes 3 members
- * called by: game_uses_rand_0d8bf0
+ * called by: static_init_437ca8
  */
 u32 Class_12bea8_init_fields_0d7f04(u32 *a0, u32 a1) {
     *a0 = 1;
@@ -8239,7 +8239,7 @@ u32 Class_12b580_uses_pack_acquire_entry_handle_0d84e8(u32 *a0, u32 a1, u32 a2, 
         g_8c437ca4 = CONCAT31(DAT_8c437ca4_1, 1);
     }
     fVar4 = 0.0;
-    Class_12b580_uses_rand_0d8710(a0, a1, a2, a3);
+    Class_12b580_uses_static_init_0d8710(a0, a1, a2, a3);
     if (a0[1] == 0) {
         iVar1 = game_vec_0d8aa0(a0, *a0);
         puVar2 = (u64 *)(iVar1 * 0x14 + 0x8c43957c);
@@ -8332,11 +8332,11 @@ u32 Class_12b580_uses_pack_acquire_entry_handle_0d84e8(u32 *a0, u32 a1, u32 a2, 
 }
 
 /*
- * Class_12b580_uses_rand_0d8710  0x8c0d8710
- * area name: only called from Class_12b580 methods; behaviour name: its callees mostly do: uses_rand
+ * Class_12b580_uses_static_init_0d8710  0x8c0d8710
+ * area name: only called from Class_12b580 methods; behaviour name: its main named callee is static_init_437ca8
  * called by: Class_12b580_m2_0e6548, Class_12b580_uses_pack_acquire_entry_handle_0d84e8
  */
-u32 Class_12b580_uses_rand_0d8710(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12b580_uses_static_init_0d8710(u32 *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 ar5_00;
@@ -8349,7 +8349,7 @@ u32 Class_12b580_uses_rand_0d8710(u32 *a0, u32 a1, u32 a2, u32 a3) {
         game_uses_rand_0d8890(a0, a1, a2, a3);
     }
     ar5_00 = *a0;
-    iVar1 = game_uses_rand_0d8bf0(a0, ar5_00, a2, a3);
+    iVar1 = static_init_437ca8(a0, ar5_00, a2, a3);
     if (cVar4 == '\0') {
         puVar3 = (u64 *)((int)&uStack_24 + 4);
         uStack_24 = CONCAT44(a0[0x1b87], (u32)uStack_24);
@@ -8407,7 +8407,7 @@ u32 game_uses_njCalcVector_like_0d8808(int a0) {
 /*
  * game_uses_rand_0d8890  0x8c0d8890
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is rand
- * called by: Class_12b580_uses_rand_0d8710
+ * called by: Class_12b580_uses_static_init_0d8710
  */
 u32 game_uses_rand_0d8890(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -8793,11 +8793,11 @@ int game_vec_0d8aa0(int a0, int a1) {
 }
 
 /*
- * game_uses_rand_0d8bf0  0x8c0d8bf0
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is rand
- * called by: Class_12b580_uses_rand_0d8710
+ * static_init_437ca8  0x8c0d8bf0
+ * static initialiser: constructs 2 global objects (8c437ca8..8c437ccc) and registers free_if_nonnull_wrap_0d76b8 for
+ * exit called by: Class_12b580_uses_static_init_0d8710
  */
-u32 game_uses_rand_0d8bf0(int a0, code *a1, u32 a2, u32 a3) {
+u32 static_init_437ca8(int a0, code *a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     code *ar5_00;
@@ -9358,7 +9358,7 @@ u32 game_uses_rand_0d8bf0(int a0, code *a1, u32 a2, u32 a3) {
 
 /*
  * set_field_0_to_3  0x8c0d92a0
- * called by: game_uses_rand_0d8bf0
+ * called by: static_init_437ca8
  */
 u32 set_field_0_to_3(u32 *a0) {
     *a0 = 3;
@@ -9367,7 +9367,7 @@ u32 set_field_0_to_3(u32 *a0) {
 
 /*
  * get_field_4_0d92a8  0x8c0d92a8
- * called by: game_uses_rand_0d8bf0
+ * called by: static_init_437ca8
  */
 u32 get_field_4_0d92a8(int a0) {
     return *(u32 *)(a0 + 4);
@@ -10370,8 +10370,8 @@ u32 Class_12bb08_test_0da4f8(int a0) {
  * list_node_next_wrap_0da588  0x8c0da588
  * only calls list_node_next
  * called by: CEnv_item_cursor_next, CWaterTank_uses_get_field_300_0e0f48, Class_129974_vec_0db3bc,
- * Class_12b930_m3_0de4b0, Class_12b930_vec_0e3994, Class_12bb08_m1_0da338, Class_12bb08_m2_0da5a8,
- * Class_12bb08_uses_get_field_24_0dbbe8 (+15 more)
+ * Class_12b930_m3_0de4b0, Class_12bb08_m1_0da338, Class_12bb08_m2_0da5a8, Class_12bb08_uses_get_field_24_0dbbe8,
+ * call_all_list_64 (+15 more)
  */
 u32 list_node_next_wrap_0da588(u32 a0) {
     u32 uVar1;
@@ -13264,7 +13264,7 @@ u32 Class_12b930_m1_0de1dc(int a0, int a1, u8 *a2, u8 *a3) {
     pure_virtual_stub();
     Class_12bb08_m1_0da338(a0, a1, a2);
     iVar2 = a0 + 0x10ac;
-    Class_12b930_vec_0e3994(a0, iVar2, a2, a3);
+    static_init_vec3s_438274(a0, iVar2, a2, a3);
     Class_12c394_vec_0d64a0(a0 + 0xa68, iVar2, a2, a3);
     game_list_0dbd80(a0, iVar2, a2, a3);
     clear_field_48(a0 + 0x13b24);
@@ -13317,7 +13317,7 @@ u32 Class_12b930_m3_0de4b0(int a0, int a1, u32 a2, int a3) {
     a4 = list_node_next_wrap_0da588(a0 + 0xa4);
     Class_12b930_float_calc_0e389c(a0);
     tank_device_sound_update(a0 + 0x13b24, iVar4, uVar3, a3);
-    Class_12b930_uses_rand_0d0d1c(a0 + 0x13b8c, iVar4, uVar3, a3);
+    static_init_4374c8(a0 + 0x13b8c, iVar4, uVar3, a3);
     iVar4 = a1;
     Class_12b930_state_switch_0d9600(a0 + 0x22704, a1, uVar3);
     set_float_c_nonneg(a0 + 0x13b24, iVar4, uVar3, a3, in_stack_ffffffb8);
@@ -13352,7 +13352,7 @@ u32 Class_12b930_m3_0de4b0(int a0, int a1, u32 a2, int a3) {
         a4 = list_node_next(a4);
     }
     Class_12bb08_uses_get_field_24_0dbbe8(a0, iVar4, uVar3, a3);
-    Class_12b930_vec_0e3994(a0, a0 + 0x10ac, uVar3, a3);
+    static_init_vec3s_438274(a0, a0 + 0x10ac, uVar3, a3);
     iVar4 = a0 + 0x22eb4;
     Class_12b930_sound_0d3d6c(a0 + 0x10ac, iVar4, uVar3, a3);
     game_list_0dbd80(a0, iVar4, uVar3, a3);

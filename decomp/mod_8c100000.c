@@ -80,7 +80,7 @@ int get_field_a546_s16(int a0) {
 /*
  * input_input_helper_1001e0  0x8c1001e0
  * area name: sits between input functions (same compilation unit); behaviour name: mostly calls input functions
- * called by: game_uses_Vec3_ctor_zero_0ff7d4, game_uses_get_field_d0_0cbd74
+ * called by: game_uses_Vec3_ctor_zero_0ff7d4, static_init_437330
  */
 u32 input_input_helper_1001e0(int a0) {
     int iVar1;
@@ -613,7 +613,7 @@ u32 input_left_or_stick_left(int a0) {
 /*
  * field_150_below_neg03  0x8c1009c8
  * 1 when the float at +0x150 is at most -0.3
- * called by: game_uses_get_field_d0_0cbd74
+ * called by: static_init_437330
  */
 u32 field_150_below_neg03(int a0) {
     if (*(float *)(a0 + 0x150) <= -0.3) {
@@ -625,7 +625,7 @@ u32 field_150_below_neg03(int a0) {
 /*
  * field_150_above_03  0x8c1009ec
  * 1 when the float at +0x150 is at least 0.3
- * called by: game_uses_get_field_d0_0cbd74
+ * called by: static_init_437330
  */
 u32 field_150_above_03(int a0) {
     if (0.3 <= *(float *)(a0 + 0x150)) {
@@ -637,7 +637,7 @@ u32 field_150_above_03(int a0) {
 /*
  * field_14c_above_03  0x8c100a10
  * 1 when the float at +0x14c is at least 0.3
- * called by: game_uses_get_field_d0_0cbd74
+ * called by: static_init_437330
  */
 u32 field_14c_above_03(int a0) {
     if (0.3 <= *(float *)(a0 + 0x14c)) {
@@ -649,7 +649,7 @@ u32 field_14c_above_03(int a0) {
 /*
  * field_14c_below_neg03  0x8c100a34
  * 1 when the float at +0x14c is at most -0.3
- * called by: game_uses_get_field_d0_0cbd74
+ * called by: static_init_437330
  */
 u32 field_14c_below_neg03(int a0) {
     if (*(float *)(a0 + 0x14c) <= -0.3) {
@@ -923,7 +923,7 @@ u32 input_input_helper_100e4c(int a0, u64 *a1) {
 /*
  * input_uses_input_r_pressed_101004  0x8c101004
  * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * input_r_pressed called by: game_uses_Vec3_ctor_zero_0ca4e8, game_uses_Vec3_ctor_zero_0cb668
+ * input_r_pressed called by: static_init_4372a8, static_init_4372f4
  */
 int input_uses_input_r_pressed_101004(int a0, u32 a1, u32 a2, u32 a3) {
     bool bVar1;
@@ -988,7 +988,7 @@ int set_field_b4(int a0, u32 a1) {
 /*
  * Class_12b580_test_101154  0x8c101154
  * area name: only called from Class_12b580 methods; behaviour name: returns the result of a comparison
- * called by: CWaterTank_uses_Vec3_distance_sq_to_xyz_0e1398, Class_12b580_m1_0e634c, game_uses_Vec3_ctor_zero_0cb668
+ * called by: CWaterTank_uses_Vec3_distance_sq_to_xyz_0e1398, Class_12b580_m1_0e634c, static_init_4372f4
  */
 u32 Class_12b580_test_101154(int a0) {
     if ((*(int *)(0xb0 + a0) == 1) && (*(int *)(0xb4 + a0) == 1)) {
@@ -1008,7 +1008,7 @@ u32 get_field_b8_101178(int a0) {
 /*
  * input_sound_101188  0x8c101188
  * area name: sits between input functions (same compilation unit); behaviour name: mostly calls sound functions
- * called by: game_uses_Vec3_ctor_zero_0cb668
+ * called by: static_init_4372f4
  */
 int input_sound_101188(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -1046,9 +1046,8 @@ u32 CGame_uses_cursor_reset_center_1011e0(int a0, u32 unused_a1, u32 a2, u32 a3)
 /*
  * Class_12acc8_calc_101210  0x8c101210
  * area name: only called from Class_12acc8 methods; behaviour name: integer arithmetic on its arguments
- * called by: Class_12acc8_m1_09f470, game_uses_Vec3_ctor_zero_0c91f4, game_uses_Vec3_ctor_zero_0ca4e8,
- * game_uses_Vec3_ctor_zero_0cb668, game_uses_free_if_nonnull_wrap_0e8280, input_uses_Vec3_ctor_zero_0c8134,
- * input_uses_get_field_24_0dc7e8
+ * called by: Class_12acc8_m1_09f470, game_uses_free_if_nonnull_wrap_0e8280, input_uses_get_field_24_0dc7e8,
+ * static_init_437218, static_init_43724c, static_init_4372a8, static_init_4372f4
  */
 u32 *Class_12acc8_calc_101210(int a0, u32 *a1, u32 *a2) {
     if (*(int *)(a0 + 0x188) == 6) {
@@ -1860,10 +1859,10 @@ u32 game_sound_101e1c(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_vec_102634  0x8c102634
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_441390  0x8c102634
+ * static initialiser: builds 4 global Vec3 constants (8c441390..8c4413b4) and registers their destructors
  */
-u32 game_vec_102634(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_441390(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -2060,7 +2059,7 @@ u32 free_ptr_and_clear(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * date_compare  0x8c1028c0
  * compares two dates as RTC seconds: 1 when a0 is later, 2 when a1 is later, 0 when equal
- * called by: CSeamanDomain_Init
+ * called by: static_init_4367d4
  */
 u32 date_compare(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -2093,7 +2092,7 @@ u32 game_update_fields_102914(int a0, u32 a1) {
 /*
  * Class_12c3a4_ctor  0x8c10291c
  * stores the Class_12c3a4 vtable in a0 and sets up its linear maps
- * called by: Class_12c3a4_ctor_wrap, game_list_0e8f54
+ * called by: Class_12c3a4_ctor_wrap, static_init_vec3s_437520
  */
 u32 *Class_12c3a4_ctor(u32 *a0) {
     *a0 = (&DATA_8c12c3a4);
@@ -2141,7 +2140,7 @@ int Class_12c3a4_m0_1029d0(int a0) {
 /*
  * Class_12c394_ctor_b  0x8c102a08
  * constructs the base (8c0d63f8), stores the vtable 0x8c12c394 and resets the linear map
- * called by: Class_12c394_ctor_b_wrap, game_list_0e8f54
+ * called by: Class_12c394_ctor_b_wrap, static_init_vec3s_437520
  */
 u32 *Class_12c394_ctor_b(u32 *a0) {
     Class_12c3a4_ctor_wrap(a0);
@@ -2250,7 +2249,7 @@ u32 Class_12c394_uses_imask_to_sr_bits_102bd0(u32 a0, u32 a1, u32 a2, u32 a3) {
     ar6_00 = 0x8c44d498;
     uVar3 = 0x8c441478;
     uVar2 = 0;
-    shinobi_input_1f5dd0(0, 0x8c441478, 0x8c44d498, a3);
+    irq_input_1f5dd0(0, 0x8c441478, 0x8c44d498, a3);
     shinobi_install_event900(uVar2);
     uVar2 = 0;
     imask_to_sr_bits(0);
@@ -5463,10 +5462,10 @@ u32 get_field_870_10a208(int a0) {
 }
 
 /*
- * asr_vec_10a214  0x8c10a214
- * area name: in the asr library code range; behaviour name: mostly calls vec functions
+ * static_init_vec3s_4708e0  0x8c10a214
+ * static initialiser: builds 4 global Vec3 constants (8c4708e0..8c470904) and registers their destructors
  */
-u32 asr_vec_10a214(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_4708e0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;

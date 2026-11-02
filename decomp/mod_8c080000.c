@@ -4688,10 +4688,10 @@ u32 ret_const_1_088944(void) {
 }
 
 /*
- * CAnimal_list_08894c  0x8c08894c
- * area name: sits between CAnimal functions (same compilation unit); behaviour name: mostly calls list functions
+ * static_init_vec3s_280f78  0x8c08894c
+ * static initialiser: builds 60 global Vec3 constants (8c280f78..8c283a28) and registers their destructors
  */
-u32 CAnimal_list_08894c(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_280f78(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -6967,10 +6967,10 @@ u32 CAnimal_LoadGRReq_b(int a0, u32 a1, int a2) {
 }
 
 /*
- * game_list_08d380  0x8c08d380
- * area name: game code; nothing names its area yet; behaviour name: mostly calls list functions
+ * static_init_vec3s_283ae8  0x8c08d380
+ * static initialiser: builds 21 global Vec3 constants (8c283ae8..8c2845e0) and registers their destructors
  */
-u32 game_list_08d380(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_283ae8(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;

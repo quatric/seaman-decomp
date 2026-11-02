@@ -469,10 +469,10 @@ u32 game_uses_Class_12c3c4_save_record_0a06f8(int a0, u8 *a1) {
 }
 
 /*
- * game_vec_0a0730  0x8c0a0730
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_285140  0x8c0a0730
+ * static initialiser: builds 5 global Vec3 constants (8c285140..8c285170) and registers their destructors
  */
-u32 game_vec_0a0730(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_285140(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -1371,10 +1371,10 @@ LAB_8c0a231a:
 }
 
 /*
- * game_state_switch_0a23c4  0x8c0a23c4
- * area name: game code; nothing names its area yet; behaviour name: dispatches on a state or mode value (switch)
+ * static_init_285204  0x8c0a23c4
+ * static initialiser: constructs 1 global object (8c285204..8c285204) and registers object_dtor_delete for exit
  */
-u32 game_state_switch_0a23c4(int a0, double *a1, double *a2, double *a3) {
+u32 static_init_285204(int a0, double *a1, double *a2, double *a3) {
     u32 uVar1;
     int iVar2;
     double *pdVar3;
@@ -3104,7 +3104,7 @@ u32 game_vec_0a3d08(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_vec_0a3dc0  0x8c0a3dc0
  * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
- * called by: game_state_switch_0a23c4
+ * called by: static_init_285204
  */
 u32 game_vec_0a3dc0(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;
@@ -4388,7 +4388,7 @@ u32 save_pose_record_0a572c(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_pose_save(a0, a1, a2, a3);
-    CAnimal_uses_get_field_134_02d1f4(a0 + 0x174, a1 + 0x24, a2);
+    talk_state_save_fields(a0 + 0x174, a1 + 0x24, a2);
     uVar1 = copy15_out(a0 + 0x2dc, a1 + 0x58);
     return uVar1;
 }
@@ -4718,10 +4718,10 @@ u32 ret_const_1_0a5c88(void) {
 }
 
 /*
- * Class_12ad50_list_0a5c90  0x8c0a5c90
- * area name: sits between Class_12ad50 functions (same compilation unit); behaviour name: mostly calls list functions
+ * static_init_vec3s_285220  0x8c0a5c90
+ * static initialiser: builds 12 global Vec3 constants (8c285220..8c285574) and registers their destructors
  */
-u32 Class_12ad50_list_0a5c90(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_285220(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -5044,7 +5044,7 @@ LAB_8c0a64f8:
     Vec3_dtor(auStack_20, 0xffffffff, a2, a3);
     Vec3_ctor_copy_wrap_03f480(*a1, uVar2, a2, a3, auStack_50);
     ar6_00 = auStack_50;
-    Class_12b088_uses_vec_new_array_03220c(a0, a1[1], ar6_00, a3);
+    static_init_27def0(a0, a1[1], ar6_00, a3);
     uVar2 = Vec3_dtor(auStack_50, 0xffffffff, ar6_00, a3);
     return uVar2;
 }
@@ -10154,10 +10154,10 @@ int game_calc_0ac5a8(int a0, char *a1) {
 }
 
 /*
- * game_vec_0ac5b8  0x8c0ac5b8
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_2858f8  0x8c0ac5b8
+ * static initialiser: builds 5 global Vec3 constants (8c2858f8..8c285928) and registers their destructors
  */
-u32 game_vec_0ac5b8(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_2858f8(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -12314,10 +12314,10 @@ int game_release_0af368(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_list_0af3c4  0x8c0af3c4
- * area name: game code; nothing names its area yet; behaviour name: mostly calls list functions
+ * static_init_vec3s_285938  0x8c0af3c4
+ * static initialiser: builds 20 global Vec3 constants (8c285938..8c286ccc) and registers their destructors
  */
-u32 game_list_0af3c4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_285938(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;

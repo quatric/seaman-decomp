@@ -21,7 +21,7 @@ u32 crt0_start(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     crt_init_sections();
     lib_handles_add_all_wrap();
     main(a4, a5, uVar1, a3);
-    uVar1 = lib_handles_remove_all_like_wrap();
+    uVar1 = lib_handles_remove_all_wrap();
     return uVar1;
 }
 
@@ -38,14 +38,14 @@ u32 lib_handles_add_all_wrap(void) {
 }
 
 /*
- * lib_handles_remove_all_like_wrap  0x8c1ef438
- * only calls lib_handles_remove_all_like
+ * lib_handles_remove_all_wrap  0x8c1ef438
+ * only calls lib_handles_remove_all
  * called by: crt0_start
  */
-u32 lib_handles_remove_all_like_wrap(void) {
+u32 lib_handles_remove_all_wrap(void) {
     u32 uVar1;
 
-    uVar1 = lib_handles_remove_all_like(*(u32 *)(&DATA_8c26be70));
+    uVar1 = lib_handles_remove_all(*(u32 *)(&DATA_8c26be70));
     return uVar1;
 }
 
@@ -293,7 +293,7 @@ u32 shinobi_init_fields_1ef686(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 
 /*
  * shinobi_input_1ef78c  0x8c1ef78c
  * area name: in the shinobi library code range; behaviour name: mostly calls input functions
- * called by: shinobi_input_1f5dd0
+ * called by: irq_input_1f5dd0
  */
 u32 shinobi_input_1ef78c(u32 a0, u32 a1) {
     u8 *a4;
@@ -620,8 +620,8 @@ int maple_port_info(int a0, u32 a1) {
 /*
  * maple_port_status  0x8c1efd26
  * status flags of port a0
- * called by: bios_input_1f3b5c, bios_input_1f3d28, maple_device_ready, maple_device_ready_idle, maple_port_status_wrap,
- * pvr_1efaf4, pvr_input_1efa2a, shinobi_input_1f5dd0 (+6 more)
+ * called by: bios_input_1f3b5c, bios_input_1f3d28, irq_input_1f5dd0, maple_device_ready, maple_device_ready_idle,
+ * maple_port_status_wrap, pvr_1efaf4, pvr_input_1efa2a (+6 more)
  */
 u32 maple_port_status(u32 a0) {
     u32 uVar1;

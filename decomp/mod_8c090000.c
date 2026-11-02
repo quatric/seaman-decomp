@@ -5264,10 +5264,10 @@ int game_uses_rand_float_0989f0(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_Vec3_ctor_xyz_098b6c  0x8c098b6c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is Vec3_ctor_xyz
+ * static_init_vec3s_2846a0  0x8c098b6c
+ * static initialiser: builds 4 global Vec3 constants (8c2846a0..8c2846c4) and registers their destructors
  */
-u32 game_uses_Vec3_ctor_xyz_098b6c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_2846a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -5359,7 +5359,7 @@ int Class_12a7a8_m1_098d14(int a0, int *a1, int *a2, u32 a3) {
     g_8c13a928 = *(u32 *)(a0 + 0xa4);
     piVar5 = a1;
     ar6_00 = a2;
-    Class_12a7a8_uses_set_field_38_099858(a0, a1, a2, a3);
+    Class_12a7a8_sequence_step(a0, a1, a2, a3);
     iVar1 = get_field_24_026024(a1, piVar5, ar6_00, a3);
     if (iVar1 == 0) {
         iVar4 = a2[1];
@@ -5483,7 +5483,7 @@ u32 dec_counter_50(int a0) {
 
 /*
  * set_field_4c_u8_0996dc  0x8c0996dc
- * called by: game_state_switch_0999ac
+ * called by: Class_12a7a8_state_switch_0999ac
  */
 u32 set_field_4c_u8_0996dc(int a0, u32 a1) {
     *(u8 *)(a0 + 0x4c) = (u8)a1;
@@ -5531,7 +5531,7 @@ u32 Class_12a7a8_uses_set_field_38_099714(int a0, u32 a1, int *a2, int a3) {
     if (*(int *)(a0 + 0x38) == 2) {
         *(u32 *)(a0 + 0xc) = 0;
         *(u32 *)(a0 + 0x40) = *(u32 *)(&g_8c13a884 + *(int *)(a0 + 0xc) * 4 + a3 * 0xc);
-        game_uses_mask_74_fffffffe_099914(a0, a1, a2, a3);
+        Class_12a7a8_uses_mask_74_fffffffe_099914(a0, a1, a2, a3);
         a5 = 1;
         set_field_38_02f404(a0, 1);
     } else {
@@ -5572,18 +5572,18 @@ u32 set_field_45_u8(int a0, u32 a1) {
 }
 
 /*
- * Class_12a7a8_uses_set_field_38_099858  0x8c099858
- * area name: only called from Class_12a7a8 methods; behaviour name: its main named callee is set_field_38_02f404
+ * Class_12a7a8_sequence_step  0x8c099858
+ * at the end of a step advances the three-step sequence from the table at 8c13a884 (row +4) and starts the next step
  * called by: Class_12a7a8_m1_098d14
  */
-int Class_12a7a8_uses_set_field_38_099858(int a0, u32 a1, u32 a2, u32 a3) {
+int Class_12a7a8_sequence_step(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar6_00;
     int in_stack_ffffffe4;
 
     if (*(int *)(a0 + 0x3c) == 0) {
         ar6_00 = a2;
-        game_state_switch_0999ac(a0, a1, a2, a3);
+        Class_12a7a8_state_switch_0999ac(a0, a1, a2, a3);
         *(int *)(a0 + 0xc) = *(int *)(a0 + 0xc) + 1;
         in_stack_ffffffe4 = *(int *)(a0 + 0xc);
         *(u32 *)(a0 + 0x40) = *(u32 *)(&g_8c13a884 + in_stack_ffffffe4 * 4 + *(int *)(a0 + 4) * 0xc);
@@ -5594,7 +5594,7 @@ int Class_12a7a8_uses_set_field_38_099858(int a0, u32 a1, u32 a2, u32 a3) {
             a2 = ar6_00;
         } else {
             set_field_38_02f404(a0, 3);
-            game_uses_mask_74_fffffffe_099914(a0, a1, a2, a3);
+            Class_12a7a8_uses_mask_74_fffffffe_099914(a0, a1, a2, a3);
         }
     }
     iVar1 = *(int *)(a0 + 0x3c);
@@ -5605,11 +5605,11 @@ int Class_12a7a8_uses_set_field_38_099858(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_mask_74_fffffffe_099914  0x8c099914
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is mask_74_fffffffe
- * called by: Class_12a7a8_uses_set_field_38_099714, Class_12a7a8_uses_set_field_38_099858
+ * Class_12a7a8_uses_mask_74_fffffffe_099914  0x8c099914
+ * area name: only called from Class_12a7a8 methods; behaviour name: its main named callee is mask_74_fffffffe
+ * called by: Class_12a7a8_sequence_step, Class_12a7a8_uses_set_field_38_099714
  */
-int game_uses_mask_74_fffffffe_099914(int a0, u32 a1, int *a2, u32 a3) {
+int Class_12a7a8_uses_mask_74_fffffffe_099914(int a0, u32 a1, int *a2, u32 a3) {
     int iVar1;
     u32 a5;
     int *ar6_00;
@@ -5632,11 +5632,11 @@ int game_uses_mask_74_fffffffe_099914(int a0, u32 a1, int *a2, u32 a3) {
 }
 
 /*
- * game_state_switch_0999ac  0x8c0999ac
- * area name: game code; nothing names its area yet; behaviour name: dispatches on a state or mode value (switch)
- * called by: Class_12a7a8_uses_set_field_38_099858
+ * Class_12a7a8_state_switch_0999ac  0x8c0999ac
+ * area name: only called from Class_12a7a8 methods; behaviour name: dispatches on a state or mode value (switch)
+ * called by: Class_12a7a8_sequence_step
  */
-u8 *game_state_switch_0999ac(int a0, u32 a1, int *a2, u32 a3) {
+u8 *Class_12a7a8_state_switch_0999ac(int a0, u32 a1, int *a2, u32 a3) {
     u8 *puVar1;
     int iVar2;
     u32 ar5_00;
@@ -5709,7 +5709,7 @@ u32 *Class_12a7a8_uses_get_field_8_099ab8(int a0) {
 /*
  * Class_12a7a8_vec_099b0c  0x8c099b0c
  * area name: only called from Class_12a7a8 methods; behaviour name: mostly calls vec functions
- * called by: Class_12a7a8_m1_098d14, Class_12a7a8_uses_set_field_38_099714, game_uses_mask_74_fffffffe_099914
+ * called by: Class_12a7a8_m1_098d14, Class_12a7a8_uses_mask_74_fffffffe_099914, Class_12a7a8_uses_set_field_38_099714
  */
 u32 Class_12a7a8_vec_099b0c(int a0, int *a1, u32 a2, u32 a3) {
     int iVar1;
@@ -5806,10 +5806,10 @@ u32 Class_12a7a8_vec_099b0c(int a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_099dbc  0x8c099dbc
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_284700  0x8c099dbc
+ * static initialiser: builds 4 global Vec3 constants (8c284700..8c284724) and registers their destructors
  */
-u32 game_vec_099dbc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_284700(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -6553,7 +6553,7 @@ u32 save_pose_record_09ae4c(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_pose_save(a0, a1, a2, a3);
-    CAnimal_uses_get_field_134_02d1f4(a0 + 0x174, a1 + 0x24, a2);
+    talk_state_save_fields(a0 + 0x174, a1 + 0x24, a2);
     uVar1 = copy15_out(a0 + 0x2dc, a1 + 0x58);
     return uVar1;
 }
@@ -6661,10 +6661,10 @@ u32 ret_const_1_09b208(void) {
 }
 
 /*
- * game_list_09b210  0x8c09b210
- * area name: game code; nothing names its area yet; behaviour name: mostly calls list functions
+ * static_init_vec3s_284730  0x8c09b210
+ * static initialiser: builds 12 global Vec3 constants (8c284730..8c284990) and registers their destructors
  */
-u32 game_list_09b210(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_284730(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -8008,7 +8008,7 @@ u32 save_pose_record_09c8d8(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_pose_save(a0, a1, a2, a3);
-    CAnimal_uses_get_field_134_02d1f4(a0 + 0x174, a1 + 0x24, a2);
+    talk_state_save_fields(a0 + 0x174, a1 + 0x24, a2);
     uVar1 = copy15_out(a0 + 0x2dc, a1 + 0x58);
     return uVar1;
 }
@@ -8644,10 +8644,10 @@ u32 ret_const_1_09d710(void) {
 }
 
 /*
- * Class_12a990_list_09d718  0x8c09d718
- * area name: sits between Class_12a990 functions (same compilation unit); behaviour name: mostly calls list functions
+ * static_init_vec3s_284a50  0x8c09d718
+ * static initialiser: builds 12 global Vec3 constants (8c284a50..8c284c90) and registers their destructors
  */
-u32 Class_12a990_list_09d718(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_284a50(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -9683,10 +9683,10 @@ u32 Class_12ab2c_m3_09f038(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12ab2c_list_09f060  0x8c09f060
- * area name: sits between Class_12ab2c functions (same compilation unit); behaviour name: mostly calls list functions
+ * static_init_vec3s_284d50  0x8c09f060
+ * static initialiser: builds 12 global Vec3 constants (8c284d50..8c285080) and registers their destructors
  */
-u32 Class_12ab2c_list_09f060(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_284d50(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;

@@ -188,8 +188,8 @@ u32 game_vec_050300(int a0, u32 a1, u32 a2, u32 a3) {
  * get_vec3_field_30  0x8c0507a4
  * copies x, y, z at +0x30 to three out pointers
  * called by: CHerb_vec_06d714, CWaterTank_uses_get_field_300_0e0f48, Class_12a25c_vec_06f93c,
- * game_uses_Vec3_ctor_zero_0cac08, game_uses_get_field_d0_0cbd74, game_uses_list_node_next_wrap_0da754,
- * game_vec_050300, game_vec_077a38 (+3 more)
+ * game_uses_Vec3_ctor_zero_0cac08, game_uses_list_node_next_wrap_0da754, game_vec_050300, game_vec_077a38,
+ * game_vec_091854 (+3 more)
  */
 u32 *get_vec3_field_30(int a0, u32 *a1, u32 *a2, u32 *a3) {
     *a1 = *(u32 *)(a0 + 0x30);
@@ -7324,7 +7324,7 @@ u32 ret_const_3f800000_05c27c(void) {
 /*
  * get_field_24_05c284  0x8c05c284
  * called by: CEnv_AddItem, CEnv_take_out_item, CEnv_vec_0dac50, CGame_GetUserGameInfo, CGame_uses_get_field_24_0c4c84,
- * Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b930_vec_0e3994, Class_12bb08_uses_get_field_24_0dbbe8 (+19
+ * Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12bb08_uses_get_field_24_0dbbe8, Higyo_gratification_events (+19
  * more)
  */
 u32 get_field_24_05c284(int a0, u32 a1) {
@@ -8284,8 +8284,8 @@ u32 static_init_vec3s_280330(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * copy_6_words  0x8c05d608
  * a0[0..5] = a1[0..5]
- * called by: game_uses_Vec3_ctor_xyz_098b6c, static_init_vec3s_280330, static_init_vec3s_280e00,
- * static_init_vec3s_285180, static_init_vec3s_285840, static_init_vec3s_286d88
+ * called by: static_init_vec3s_280330, static_init_vec3s_280e00, static_init_vec3s_2846a0, static_init_vec3s_285180,
+ * static_init_vec3s_285840, static_init_vec3s_286d88
  */
 u32 *copy_6_words(u32 *a0, u32 *a1) {
     u32 uVar1;

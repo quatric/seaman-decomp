@@ -1079,7 +1079,7 @@ int CWaterTank_uses_Vec3_distance_sq_to_xyz_0e1398(int a0, int a1, u32 a2, u32 a
         uVar2 = 0;
         set_field_eb44(a0 + 0x13b8c, 0);
     }
-    Class_12b930_uses_rand_0d0d1c(a0 + 0x13b8c, uVar2, a2, a3);
+    static_init_4374c8(a0 + 0x13b8c, uVar2, a2, a3);
     ar4_00 = Class_12b580_test_101154(*(u32 *)(a1 + 0x7cc));
     if (ar4_00 == 1) {
         iVar1 = get_field_38_0db5a0(a0 + 0x4d4);
@@ -2673,11 +2673,11 @@ u32 *Class_12b930_float_calc_0e389c(int a0) {
 }
 
 /*
- * Class_12b930_vec_0e3994  0x8c0e3994
- * area name: only called from Class_12b930 methods; behaviour name: mostly calls vec functions
+ * static_init_vec3s_438274  0x8c0e3994
+ * static initialiser: builds 2 global Vec3 constants (8c438274..8c438294) and registers their destructors
  * called by: Class_12b930_m1_0de1dc, Class_12b930_m3_0de4b0
  */
-u32 Class_12b930_vec_0e3994(int a0, code *a1, u32 a2, int a3) {
+u32 static_init_vec3s_438274(int a0, code *a1, u32 a2, int a3) {
     int iVar1;
     int ar4_00;
     u32 uVar2;
@@ -2900,7 +2900,7 @@ u32 Class_12b930_vec_0e3994(int a0, code *a1, u32 a2, int a3) {
 /*
  * Vec3_ctor_copy_wrap_0e3e98  0x8c0e3e98
  * only calls Vec3_ctor_copy
- * called by: Class_12b930_vec_0e3994
+ * called by: static_init_vec3s_438274
  */
 u32 Vec3_ctor_copy_wrap_0e3e98(int a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;
@@ -4462,7 +4462,7 @@ u32 Class_12b580_m2_0e6548(int a0, int a1, u32 a2, u32 a3) {
     Class_12b580_uses_njSinCos_0e705c(a0, ar5_00, a2);
     game_list_0dbd80(a0, ar5_00, a2, a3);
     ar6_00 = a0 + 0xa68;
-    Class_12b580_uses_rand_0d8710(a0 + 0x10dc, a1, ar6_00, a3);
+    Class_12b580_uses_static_init_0d8710(a0 + 0x10dc, a1, ar6_00, a3);
     for (iVar2 = 0; iVar2 < 8; iVar2 = iVar2 + 1) {
         iVar1 = has_field_2c(a0 + iVar2 * 0x68 + 0xc0c);
         if (iVar1 == 1) {
@@ -6614,10 +6614,10 @@ u32 ret_const_0_0e8f4c(void) {
 }
 
 /*
- * game_list_0e8f54  0x8c0e8f54
- * area name: game code; nothing names its area yet; behaviour name: mostly calls list functions
+ * static_init_vec3s_437520  0x8c0e8f54
+ * static initialiser: builds 4 global Vec3 constants (8c437520..8c437544) and registers their destructors
  */
-u32 game_list_0e8f54(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_437520(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -7016,10 +7016,10 @@ u8 *clear_5_bytes(u8 *a0) {
 }
 
 /*
- * CGame_vec_0e992c  0x8c0e992c
- * area name: sits between CGame functions (same compilation unit); behaviour name: mostly calls vec functions
+ * static_init_vec3s_438440  0x8c0e992c
+ * static initialiser: builds 4 global Vec3 constants (8c438440..8c438464) and registers their destructors
  */
-u32 CGame_vec_0e992c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_438440(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -7050,11 +7050,10 @@ u32 CGame_vec_0e992c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CGame_uses_global_list_push_0e99e4  0x8c0e99e4
- * area name: sits between CGame functions (same compilation unit); behaviour name: its main named callee is
- * global_list_push
+ * static_init_vec3s_438478  0x8c0e99e4
+ * static initialiser: builds 4 global Vec3 constants (8c438478..8c43849c) and registers their destructors
  */
-u32 CGame_uses_global_list_push_0e99e4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_438478(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
