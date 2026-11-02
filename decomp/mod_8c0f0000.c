@@ -1210,7 +1210,7 @@ int set_field_128_0f4e28(int a0, u32 a1) {
 /*
  * obj_state_load  0x8c0f4e34
  * loads a saved object record (name, two words, three Vec3s, flags) from a1 into a0
- * called by: CAnimal_sub_028ccc, Class_12a990_sub_09c7c0, game_sub_038a44, game_sub_06c148, game_sub_0883e0,
+ * called by: CAnimal_sub_028ccc, Class_12a990_sub_09c7c0, egg_load_record, egg_load_record_b, game_sub_06c148,
  * game_sub_08b694, game_sub_09ad34, game_sub_0a5614
  */
 u32 obj_state_load(int a0, int a1, u32 a2, u32 a3) {
@@ -1228,7 +1228,7 @@ u32 obj_state_load(int a0, int a1, u32 a2, u32 a3) {
 /*
  * obj_pose_load  0x8c0f4ebc
  * loads a pose record (a word, two Vec3s, flags) from a1 into a0
- * called by: CAnimal_sub_028da8, Class_12a990_sub_09c820, game_sub_08b720, game_sub_09ad94, game_sub_0a5674
+ * called by: CAnimal_load_record, Class_12a990_sub_09c820, game_sub_08b720, game_sub_09ad94, game_sub_0a5674
  */
 u32 obj_pose_load(int a0, u32 *a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 0x24) = *a1;
@@ -1242,7 +1242,7 @@ u32 obj_pose_load(int a0, u32 *a1, u32 a2, u32 a3) {
 /*
  * obj_state_save  0x8c0f4f0c
  * saves the object a0 into the record a1 (inverse of obj_state_load)
- * called by: CAnimal_sub_028f60, Class_12a990_sub_09c878, game_sub_038aa4, game_sub_06c89c, game_sub_088440,
+ * called by: CAnimal_sub_028f60, Class_12a990_sub_09c878, egg_save_record, egg_save_record_b, game_sub_06c89c,
  * game_sub_09adec, game_sub_0a56cc
  */
 u32 obj_state_save(int a0, int a1, u32 a2, u32 a3) {
@@ -1260,7 +1260,7 @@ u32 obj_state_save(int a0, int a1, u32 a2, u32 a3) {
 /*
  * obj_pose_save  0x8c0f4fa4
  * saves a0's pose into the record a1 (inverse of obj_pose_load)
- * called by: Class_12a990_sub_09c8d8, game_sub_02903c, game_sub_09ae4c, game_sub_0a572c, obj_pose_save_wrap
+ * called by: CAnimal_save_record, Class_12a990_sub_09c8d8, game_sub_09ae4c, game_sub_0a572c, obj_pose_save_wrap
  */
 u32 obj_pose_save(int a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;

@@ -29,10 +29,10 @@ u32 game_sub_060044(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_06115c  0x8c06115c
- * area name: game code; nothing names its area yet
+ * set_byte_51_2col  0x8c06115c
+ * byte a0[0x51 + a1*2 + a2] = a3
  */
-u32 game_sub_06115c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 set_byte_51_2col(int a0, u32 a1, u32 a2, u32 a3) {
     *(u8 *)(a0 + (short)a1 * 2 + (int)(short)a2 + 0x51) = (u8)a3;
     return 0x51;
 }
@@ -6682,10 +6682,10 @@ u32 game_sub_06add8(int a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_06af1c  0x8c06af1c
- * area name: game code; nothing names its area yet
+ * dec_counters_248  0x8c06af1c
+ * decrements each of the nine byte counters at +0x248 down to 0
  */
-u32 game_sub_06af1c(int a0) {
+u32 dec_counters_248(int a0) {
     int iVar1;
 
     for (iVar1 = 0; iVar1 < 9; iVar1 = iVar1 + 1) {

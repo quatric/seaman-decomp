@@ -4385,7 +4385,7 @@ u32 game_sub_0a572c(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_pose_save(a0, a1, a2, a3);
-    game_sub_02d1f4(a0 + 0x174, a1 + 0x24, a2);
+    CAnimal_sub_02d1f4(a0 + 0x174, a1 + 0x24, a2);
     uVar1 = copy15_out(a0 + 0x2dc, a1 + 0x58);
     return uVar1;
 }

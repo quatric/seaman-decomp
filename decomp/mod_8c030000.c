@@ -6404,8 +6404,8 @@ u32 game_sub_03525c(u32 unused_a0, int a1, u32 a2, u32 a3) {
 /*
  * copy15_in_normalize  0x8c035338
  * copies 15 bytes from a1 to +0xc, turning values 2, 3, 4 and 6 into 1
- * called by: CAnimal_sub_028ccc, CAnimal_sub_028da8, Class_12a990_sub_09c7c0, Class_12a990_sub_09c820, game_sub_038a44,
- * game_sub_0883e0, game_sub_08b694, game_sub_08b720 (+4 more)
+ * called by: CAnimal_load_record, CAnimal_sub_028ccc, Class_12a990_sub_09c7c0, Class_12a990_sub_09c820,
+ * egg_load_record, egg_load_record_b, game_sub_08b694, game_sub_08b720 (+4 more)
  */
 u32 copy15_in_normalize(int a0, int a1) {
     int iVar1;
@@ -6426,8 +6426,8 @@ u32 copy15_in_normalize(int a0, int a1) {
 /*
  * copy15_out  0x8c03539c
  * copies the 15 bytes at +0xc to a1
- * called by: CAnimal_sub_028f60, Class_12a990_sub_09c878, Class_12a990_sub_09c8d8, game_sub_02903c, game_sub_038aa4,
- * game_sub_088440, game_sub_09adec, game_sub_09ae4c (+2 more)
+ * called by: CAnimal_save_record, CAnimal_sub_028f60, Class_12a990_sub_09c878, Class_12a990_sub_09c8d8,
+ * egg_save_record, egg_save_record_b, game_sub_09adec, game_sub_09ae4c (+2 more)
  */
 u32 copy15_out(int a0, int a1) {
     int iVar1;
@@ -8953,10 +8953,10 @@ u32 noop_038a40(void) {
 }
 
 /*
- * game_sub_038a44  0x8c038a44
- * area name: game code; nothing names its area yet
+ * egg_load_record  0x8c038a44
+ * restores object state, status and the 15 bytes at +0x2dc from save record a1
  */
-u32 game_sub_038a44(int a0, int a1, u32 a2, u32 a3) {
+u32 egg_load_record(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_load(a0, a1, a2, a3);
@@ -8966,10 +8966,10 @@ u32 game_sub_038a44(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_038aa4  0x8c038aa4
- * area name: game code; nothing names its area yet
+ * egg_save_record  0x8c038aa4
+ * stores object state, status and the 15 bytes at +0x2dc into save record a1
  */
-u32 game_sub_038aa4(int a0, int a1, u32 a2, u32 a3) {
+u32 egg_save_record(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_save(a0, a1, a2, a3);

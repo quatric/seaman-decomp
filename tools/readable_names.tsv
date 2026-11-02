@@ -1084,3 +1084,20 @@
 8c0a4af0	Spider_asset_table_init	fills the spider asset table (Sp_Home, Sp_Creep, SPIDER_BODY, SP_PVM)
 8c0ae2fc	Squid_asset_table_init	fills the squid asset table (Sq_Bone_Home, Sq_KeyMotionPack, SQUID_BODY)
 8c1f9408	syG2_init	logs "syG2 Ver 1.01.12" and initialises the G2 bus DMA channel table at 8c474a80
+8c02793c	flag_74_bit1	1 when bit 0x1 of the flags at +0x74 is set
+8c027970	flag_74_bit2	1 when bit 0x2 of the flags at +0x74 is set
+8c0279a0	flag_74_bit100	1 when bit 0x100 of the flags at +0x74 is set
+8c0279e0	flag_74_bit80	1 when bit 0x80 of the flags at +0x74 is set
+8c028da8	CAnimal_load_record	restores pose, status, the 15 bytes at +0x2dc, the body state and +0x460 from save record a1
+8c02903c	CAnimal_save_record	stores pose, status, the 15 bytes at +0x2dc, the body state and +0x460 into save record a1
+8c038a44	egg_load_record	restores object state, status and the 15 bytes at +0x2dc from save record a1
+8c038aa4	egg_save_record	stores object state, status and the 15 bytes at +0x2dc into save record a1
+8c0883e0	egg_load_record_b	restores object state, status and the 15 bytes at +0x2dc from save record a1
+8c088440	egg_save_record_b	stores object state, status and the 15 bytes at +0x2dc into save record a1
+8c028ef0	CAnimal_get_world_pos	*a1, *a2, *a3 = position (+0x30) plus the offset at +0x3c8
+8c02fed0	load_bytes_98	+0x98, +0x99 = a1[0], a1[1]
+8c02ff08	load_bytes_98_b	+0x98, +0x99 = a1[0], a1[1]
+8c02feec	save_bytes_98	a1[0], a1[1] = +0x98, +0x99 and clears a1[1..]
+8c02ff24	save_bytes_98_b	a1[0], a1[1] = +0x98, +0x99 and clears a1[1..]
+8c06115c	set_byte_51_2col	byte a0[0x51 + a1*2 + a2] = a3
+8c06af1c	dec_counters_248	decrements each of the nine byte counters at +0x248 down to 0

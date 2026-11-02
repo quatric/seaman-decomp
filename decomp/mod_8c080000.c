@@ -4496,10 +4496,10 @@ u32 game_sub_0883a8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0883e0  0x8c0883e0
- * area name: game code; nothing names its area yet
+ * egg_load_record_b  0x8c0883e0
+ * restores object state, status and the 15 bytes at +0x2dc from save record a1
  */
-u32 game_sub_0883e0(int a0, int a1, u32 a2, u32 a3) {
+u32 egg_load_record_b(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_load(a0, a1, a2, a3);
@@ -4509,10 +4509,10 @@ u32 game_sub_0883e0(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_088440  0x8c088440
- * area name: game code; nothing names its area yet
+ * egg_save_record_b  0x8c088440
+ * stores object state, status and the 15 bytes at +0x2dc into save record a1
  */
-u32 game_sub_088440(int a0, int a1, u32 a2, u32 a3) {
+u32 egg_save_record_b(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_save(a0, a1, a2, a3);
