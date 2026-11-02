@@ -519,3 +519,9 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
   the `input_up_or_stick_up` style tests fall back to the D-pad). +0x14c/+0x150 are a second axis pair, cleared with them.
 - Creature state objects (Class_129c70 subclasses) have their own vtables: 8c12a7a8 MothLine, 8c12acc8 MushroomerLine,
   8c12b0c4 SpiderLine, 8c12b2e8 Squid.
+- Names from strings: CRI error strings name their function (ADXF_AddPartition, adxstmf_stat_exec, adxt_trap_entry);
+  the creature state classes are Class_12a078 (built by CFrogManLine_ctor) and Class_12c3c4 (CHigyoLine_ctor), and
+  their behaviour functions are named from the event keys they raise (`FrogMan_*`, `Higyo_*`: REQUEST_*, STATUS_*,
+  REACTION_*, GRATIFIC_*, IDLEACTION_*). Each creature has an `*_asset_table_init` that fills its model/motion/texture
+  name table (0x124-byte entries). 8c205e00 is a configuration lookup stub (`kamui_cfg_get`), not a texture-memory
+  reader; kamui_cfg_texture_memory is the function that uses its answer.
