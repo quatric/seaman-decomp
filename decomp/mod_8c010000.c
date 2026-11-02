@@ -13124,7 +13124,7 @@ u32 Class_129920_m0_015248(int a0, u32 a1, u32 a2, u32 a3) {
  * CTexture_LoadFromCache  0x8c015250
  * called by: CTexture_LoadFromCache_on_field_20, CTexture_LoadFromCache_on_field_488, CTexture_LoadFromCache_wrap,
  * CTexture_LoadFromCache_wrap_0d09fc, CTexture_LoadFromCache_wrap_0d14b0, CTexture_LoadFromCache_wrap_0d6058,
- * game_sub_0d5578, game_sub_0d9b60 (+3 more) strings: "Failed to set texture..:%s"; "CTexture::LoadFromCache()";
+ * game_sub_0d5578, game_sub_0e0320 (+3 more) strings: "Failed to set texture..:%s"; "CTexture::LoadFromCache()";
  * "Failed to load from cache..:%s"; "CTexture::LoadFromCache()"
  */
 u32 CTexture_LoadFromCache(int a0, u32 a1, u32 a2, u32 a3) {
@@ -22204,11 +22204,11 @@ u32 input_poll_device_state(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * input_sub_01eb50  0x8c01eb50
- * area name: sits between input functions (same compilation unit)
- * called by: game_sub_10003c
+ * input_start_held  0x8c01eb50
+ * Start button (0x8) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
+ * called by: input_sub_10003c
  */
-u32 input_sub_01eb50(int a0) {
+u32 input_start_held(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22226,11 +22226,11 @@ u32 input_sub_01eb50(int a0) {
 }
 
 /*
- * input_test_8_mode2  0x8c01eb94
- * input_mask_test(8, 2); 2 while the demo input is active
- * called by: game_sub_0bf618, game_sub_1000c8, input_test_8_mode2_wrap, input_test_8_mode2_wrap_0bf780
+ * input_start_pressed  0x8c01eb94
+ * Start button (0x8) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
+ * called by: game_sub_0bf618, input_start_pressed_wrap, input_start_pressed_wrap_0bf780, input_sub_1000c8
  */
-u32 input_test_8_mode2(int a0) {
+u32 input_start_pressed(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22248,9 +22248,10 @@ u32 input_test_8_mode2(int a0) {
 }
 
 /*
- * input_is_mask_set_20000_01ebd8  0x8c01ebd8
+ * input_l_held  0x8c01ebd8
+ * L button (0x20000) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
  */
-u32 input_is_mask_set_20000_01ebd8(int a0) {
+u32 input_l_held(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22268,11 +22269,11 @@ u32 input_is_mask_set_20000_01ebd8(int a0) {
 }
 
 /*
- * input_sub_01ec20  0x8c01ec20
- * area name: sits between input functions (same compilation unit)
- * called by: game_sub_0bf690, game_sub_100154
+ * input_l_pressed  0x8c01ec20
+ * L button (0x20000) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
+ * called by: game_sub_0bf690, input_sub_100154
  */
-u32 input_sub_01ec20(int a0) {
+u32 input_l_pressed(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22290,10 +22291,11 @@ u32 input_sub_01ec20(int a0) {
 }
 
 /*
- * input_is_mask_set_10000_01ec68  0x8c01ec68
+ * input_r_held  0x8c01ec68
+ * R button (0x10000) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
  * called by: game_sub_0ffdb0, game_sub_1002a8, game_sub_10031c, game_sub_1016f0
  */
-u32 input_is_mask_set_10000_01ec68(int a0) {
+u32 input_r_held(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22311,11 +22313,11 @@ u32 input_is_mask_set_10000_01ec68(int a0) {
 }
 
 /*
- * input_sub_01ecb0  0x8c01ecb0
- * area name: sits between input functions (same compilation unit)
- * called by: game_sub_1001e0
+ * input_r_off  0x8c01ecb0
+ * R button (0x10000) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
+ * called by: input_sub_1001e0
  */
-u32 input_sub_01ecb0(int a0) {
+u32 input_r_off(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22333,11 +22335,11 @@ u32 input_sub_01ecb0(int a0) {
 }
 
 /*
- * input_test_10000_mode2  0x8c01ecf8
- * input_mask_test(0x10000, 2); 2 while the demo input is active
- * called by: game_sub_0bf708, game_sub_10022c, game_sub_100e4c, game_sub_101004
+ * input_r_pressed  0x8c01ecf8
+ * R button (0x10000) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
+ * called by: game_sub_0bf708, game_sub_100e4c, game_sub_101004, input_sub_10022c
  */
-u32 input_test_10000_mode2(int a0) {
+u32 input_r_pressed(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22355,11 +22357,11 @@ u32 input_test_10000_mode2(int a0) {
 }
 
 /*
- * input_sub_01ed40  0x8c01ed40
- * area name: sits between input functions (same compilation unit)
+ * input_r_released  0x8c01ed40
+ * R button (0x10000) went up this frame (PDS_PERIPHERAL release bits); 2 while the demo input is active
  * called by: game_sub_100e4c
  */
-u32 input_sub_01ed40(int a0) {
+u32 input_r_released(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22377,11 +22379,11 @@ u32 input_sub_01ed40(int a0) {
 }
 
 /*
- * input_sub_01ed88  0x8c01ed88
- * area name: sits between input functions (same compilation unit)
- * called by: game_sub_0dc7c0, game_sub_10003c, game_sub_1000c8
+ * input_a_held  0x8c01ed88
+ * A button (0x4) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
+ * called by: input_a_held_wrap, input_sub_10003c, input_sub_1000c8
  */
-u32 input_sub_01ed88(int a0) {
+u32 input_a_held(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22399,11 +22401,11 @@ u32 input_sub_01ed88(int a0) {
 }
 
 /*
- * input_test_4_mode2  0x8c01edcc
- * input_mask_test(4, 2); 2 while the demo input is active
- * called by: game_sub_0bf618, game_sub_0c8058, input_test_4_mode2_wrap
+ * input_a_pressed  0x8c01edcc
+ * A button (0x4) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
+ * called by: game_sub_0bf618, game_sub_0c8058, input_a_pressed_wrap
  */
-u32 input_test_4_mode2(int a0) {
+u32 input_a_pressed(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22421,11 +22423,11 @@ u32 input_test_4_mode2(int a0) {
 }
 
 /*
- * input_sub_01ee10  0x8c01ee10
- * area name: sits between input functions (same compilation unit)
- * called by: game_sub_0dfef4
+ * input_a_released  0x8c01ee10
+ * A button (0x4) went up this frame (PDS_PERIPHERAL release bits); 2 while the demo input is active
+ * called by: input_a_released_wrap
  */
-u32 input_sub_01ee10(int a0) {
+u32 input_a_released(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22443,11 +22445,11 @@ u32 input_sub_01ee10(int a0) {
 }
 
 /*
- * input_test_2_mode0  0x8c01ee54
- * input_mask_test(2, 0); 2 while the demo input is active
- * called by: game_sub_10003c, game_sub_1000c8, game_sub_100a58, game_sub_100abc, input_test_2_mode0_wrap
+ * input_b_held  0x8c01ee54
+ * B button (0x2) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
+ * called by: game_sub_100a58, game_sub_100abc, input_b_held_wrap, input_sub_10003c, input_sub_1000c8
  */
-u32 input_test_2_mode0(int a0) {
+u32 input_b_held(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22465,11 +22467,11 @@ u32 input_test_2_mode0(int a0) {
 }
 
 /*
- * input_sub_01ee98  0x8c01ee98
- * area name: sits between input functions (same compilation unit)
+ * input_b_off  0x8c01ee98
+ * B button (0x2) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
  * called by: game_sub_100b20, game_sub_100b84
  */
-u32 input_sub_01ee98(int a0) {
+u32 input_b_off(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22487,11 +22489,11 @@ u32 input_sub_01ee98(int a0) {
 }
 
 /*
- * input_sub_01eedc  0x8c01eedc
- * area name: sits between input functions (same compilation unit)
+ * input_b_pressed  0x8c01eedc
+ * B button (0x2) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
  * called by: game_sub_0c8024
  */
-u32 input_sub_01eedc(int a0) {
+u32 input_b_pressed(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22509,11 +22511,12 @@ u32 input_sub_01eedc(int a0) {
 }
 
 /*
- * input_is_mask_set_400_01ef20  0x8c01ef20
+ * input_x_held  0x8c01ef20
+ * X button (0x400) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
  * called by: game_sub_0ffdb0, game_sub_1002a8, game_sub_1006d8, game_sub_100724, game_sub_100770, game_sub_1007bc,
  * game_sub_100e4c
  */
-u32 input_is_mask_set_400_01ef20(int a0) {
+u32 input_x_held(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22531,12 +22534,12 @@ u32 input_is_mask_set_400_01ef20(int a0) {
 }
 
 /*
- * input_test_400_mode1  0x8c01ef68
- * input_mask_test(0x400, 1); 2 while the demo input is active (+0xa510)
- * called by: game_sub_1001e0, game_sub_100a58, game_sub_100abc, game_sub_100b20, game_sub_100b84, game_sub_100be8,
- * game_sub_100c34, game_sub_101004
+ * input_x_off  0x8c01ef68
+ * X button (0x400) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
+ * called by: game_sub_100a58, game_sub_100abc, game_sub_100b20, game_sub_100b84, game_sub_100be8, game_sub_100c34,
+ * game_sub_101004, input_sub_1001e0
  */
-u32 input_test_400_mode1(int a0) {
+u32 input_x_off(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22554,11 +22557,11 @@ u32 input_test_400_mode1(int a0) {
 }
 
 /*
- * input_test_400_mode2  0x8c01efb0
- * input_mask_test(0x400, 2); 2 while the demo input is active
+ * input_x_pressed  0x8c01efb0
+ * X button (0x400) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
  * called by: game_sub_1016f0
  */
-u32 input_test_400_mode2(int a0) {
+u32 input_x_pressed(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22576,9 +22579,10 @@ u32 input_test_400_mode2(int a0) {
 }
 
 /*
- * input_is_mask_set_200_01eff8  0x8c01eff8
+ * input_y_held  0x8c01eff8
+ * Y button (0x200) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
  */
-u32 input_is_mask_set_200_01eff8(int a0) {
+u32 input_y_held(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22596,11 +22600,11 @@ u32 input_is_mask_set_200_01eff8(int a0) {
 }
 
 /*
- * input_sub_01f040  0x8c01f040
- * area name: sits between input functions (same compilation unit)
- * called by: game_sub_0dc244, game_sub_0dc520
+ * input_y_pressed  0x8c01f040
+ * Y button (0x200) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
+ * called by: input_y_pressed_wrap, input_y_pressed_wrap_0dc520
  */
-u32 input_sub_01f040(int a0) {
+u32 input_y_pressed(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22618,10 +22622,11 @@ u32 input_sub_01f040(int a0) {
 }
 
 /*
- * input_is_mask_set_80_01f088  0x8c01f088
+ * input_right_held  0x8c01f088
+ * Right button (0x80) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
  * called by: game_sub_100930
  */
-u32 input_is_mask_set_80_01f088(int a0) {
+u32 input_right_held(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22639,11 +22644,11 @@ u32 input_is_mask_set_80_01f088(int a0) {
 }
 
 /*
- * input_sub_01f0d0  0x8c01f0d0
- * area name: sits between input functions (same compilation unit)
- * called by: game_sub_0e30f0
+ * input_right_off  0x8c01f0d0
+ * Right button (0x80) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
+ * called by: input_sub_0e30f0
  */
-u32 input_sub_01f0d0(int a0) {
+u32 input_right_off(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22661,11 +22666,11 @@ u32 input_sub_01f0d0(int a0) {
 }
 
 /*
- * input_sub_01f118  0x8c01f118
- * area name: sits between input functions (same compilation unit)
- * called by: game_sub_0bf708, game_sub_0e319c
+ * input_right_pressed  0x8c01f118
+ * Right button (0x80) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
+ * called by: game_sub_0bf708, input_sub_0e319c
  */
-u32 input_sub_01f118(int a0) {
+u32 input_right_pressed(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22683,10 +22688,11 @@ u32 input_sub_01f118(int a0) {
 }
 
 /*
- * input_is_mask_set_40_01f160  0x8c01f160
+ * input_left_held  0x8c01f160
+ * Left button (0x40) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
  * called by: game_sub_10097c
  */
-u32 input_is_mask_set_40_01f160(int a0) {
+u32 input_left_held(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22704,11 +22710,11 @@ u32 input_is_mask_set_40_01f160(int a0) {
 }
 
 /*
- * input_sub_01f1a4  0x8c01f1a4
- * area name: sits between input functions (same compilation unit)
- * called by: game_sub_0e30f0
+ * input_left_off  0x8c01f1a4
+ * Left button (0x40) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
+ * called by: input_sub_0e30f0
  */
-u32 input_sub_01f1a4(int a0) {
+u32 input_left_off(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22726,11 +22732,11 @@ u32 input_sub_01f1a4(int a0) {
 }
 
 /*
- * input_sub_01f1e8  0x8c01f1e8
- * area name: sits between input functions (same compilation unit)
- * called by: game_sub_0bf690, game_sub_0e3150
+ * input_left_pressed  0x8c01f1e8
+ * Left button (0x40) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
+ * called by: game_sub_0bf690, input_sub_0e3150
  */
-u32 input_sub_01f1e8(int a0) {
+u32 input_left_pressed(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22748,10 +22754,11 @@ u32 input_sub_01f1e8(int a0) {
 }
 
 /*
- * input_is_mask_set_20_01f22c  0x8c01f22c
+ * input_down_held  0x8c01f22c
+ * Down button (0x20) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
  * called by: game_sub_1008e4
  */
-u32 input_is_mask_set_20_01f22c(int a0) {
+u32 input_down_held(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22769,11 +22776,11 @@ u32 input_is_mask_set_20_01f22c(int a0) {
 }
 
 /*
- * input_sub_01f270  0x8c01f270
- * area name: sits between input functions (same compilation unit)
- * called by: game_sub_0e30c8
+ * input_down_pressed  0x8c01f270
+ * Down button (0x20) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
+ * called by: input_down_pressed_wrap
  */
-u32 input_sub_01f270(int a0) {
+u32 input_down_pressed(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22791,10 +22798,11 @@ u32 input_sub_01f270(int a0) {
 }
 
 /*
- * input_is_mask_set_10_01f2b4  0x8c01f2b4
+ * input_up_held  0x8c01f2b4
+ * Up button (0x10) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
  * called by: game_sub_100898
  */
-u32 input_is_mask_set_10_01f2b4(int a0) {
+u32 input_up_held(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22812,11 +22820,11 @@ u32 input_is_mask_set_10_01f2b4(int a0) {
 }
 
 /*
- * input_sub_01f2f8  0x8c01f2f8
- * area name: sits between input functions (same compilation unit)
- * called by: game_sub_0e30f0, game_sub_0e3150, game_sub_0e319c
+ * input_up_off  0x8c01f2f8
+ * Up button (0x10) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
+ * called by: input_sub_0e30f0, input_sub_0e3150, input_sub_0e319c
  */
-u32 input_sub_01f2f8(int a0) {
+u32 input_up_off(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22834,11 +22842,11 @@ u32 input_sub_01f2f8(int a0) {
 }
 
 /*
- * input_sub_01f33c  0x8c01f33c
- * area name: sits between input functions (same compilation unit)
- * called by: game_sub_0e30a0, game_sub_0e31e8, game_sub_0e5998
+ * input_up_pressed  0x8c01f33c
+ * Up button (0x10) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
+ * called by: input_up_pressed_wrap, input_up_pressed_wrap_0e31e8, input_up_pressed_wrap_0e5998
  */
-u32 input_sub_01f33c(int a0) {
+u32 input_up_pressed(int a0) {
     u32 uVar1;
     int iVar2;
 
@@ -22885,9 +22893,8 @@ u32 input_sub_01f398(int a0) {
 
 /*
  * input_mask_test  0x8c01f3b0
- * called by: input_is_mask_set_10000_01ec68, input_is_mask_set_10_01f2b4, input_is_mask_set_20000_01ebd8,
- * input_is_mask_set_200_01eff8, input_is_mask_set_20_01f22c, input_is_mask_set_400_01ef20, input_is_mask_set_40_01f160,
- * input_is_mask_set_80_01f088 (+22 more)
+ * called by: input_a_held, input_a_pressed, input_a_released, input_b_held, input_b_off, input_b_pressed,
+ * input_down_held, input_down_pressed (+22 more)
  */
 u32 input_mask_test(int a0, u32 a1, int a2) {
     u32 uVar1;

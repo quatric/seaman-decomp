@@ -1325,7 +1325,7 @@ int se_play_3d(int *a0, u32 a1, u32 unused_a2, u32 a3) {
  * se_open_bank1  0x8c02190c
  * opens an SE port on bank 1 of a sound manager
  * called by: Class_129974_sub_0db32c, Class_12b930_sub_0d0d1c, Class_12b930_sub_0d3d6c, game_sub_0d4c74,
- * game_sub_0d7508, game_sub_0e1f90, game_sub_0e2a14, game_sub_0e3210 (+2 more)
+ * game_sub_0d7508, game_sub_0e1f90, game_sub_0e5238, input_sub_0e2a14 (+2 more)
  */
 u32 se_open_bank1(u32 a0) {
     u32 uVar1;
@@ -2797,7 +2797,7 @@ u32 Vec3_distance_sq(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_distance_sq_to_xyz  0x8c023040
  * squared distance from a0 to the point (a1, a2, a3)
- * called by: game_sub_0e0f48, game_sub_0e1398, game_sub_0e2a14, game_sub_0e3210
+ * called by: game_sub_0e0f48, game_sub_0e1398, input_sub_0e2a14, input_sub_0e3210
  */
 u32 Vec3_distance_sq_to_xyz(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;

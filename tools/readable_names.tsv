@@ -268,9 +268,9 @@
 8c02cbbc	counter_set_clamped_4	+4 = min(a1, +0xc); returns how far a1 was below the limit
 8c269a30	mwRna_is_playing	bit 0 of +1 of an mwRna handle; -1 for NULL
 8c012e84	strtol_too_long	sets errno 0x450 when the number text runs 512 characters or more
-8c01ef68	input_test_400_mode1	input_mask_test(0x400, 1); 2 while the demo input is active (+0xa510)
-8c01efb0	input_test_400_mode2	input_mask_test(0x400, 2); 2 while the demo input is active
-8c01edcc	input_test_4_mode2	input_mask_test(4, 2); 2 while the demo input is active
+8c01ef68	input_x_off	X button (0x400) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
+8c01efb0	input_x_pressed	X button (0x400) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
+8c01edcc	input_a_pressed	A button (0x4) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
 8c0294c0	CAnimal_set_state_flag_40	clears bits 4, 5 and sets bit 6 of the state flags at +0x74
 8c0c51c4	set_timeout_120_mode6	clears +0x59c and starts a 120-frame countdown with value 6
 8c0209fc	retry_until_done_0209b0	calls 8c0209b0 until it returns 0 or 1, asking 8c01f810 whether to retry in between
@@ -337,7 +337,7 @@
 8c0feef8	CItemGLoader_is_done	1 when the load request a1 has finished (+0x10 == 2)
 8c0d2028	CEnv_set_texlist	selects the environment texture list (0x8c4377f4) and its first texture
 8c01f6dc	file_slot_open	opens file a1 in slot a2 (< 3, 0x16034 bytes each) with a 2 KB buffer
-8c01ee54	input_test_2_mode0	input_mask_test(2, 0); 2 while the demo input is active
+8c01ee54	input_b_held	B button (0x2) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
 8c02077c	CDCGD_request	looks request type a1 up in the pending (+0x20), failed (+0x24) and finished lists; queues it when new. 2 queued, 1 done (buffer and size returned in *s4, *s8), 0 failed
 8c02000c	CDCGD_new_request_c	creates a request of type 0xc..0xe and puts it on the pending list
 8c01ffa0	CDCGD_new_request	creates a request of another type
@@ -384,8 +384,8 @@
 8c023e44	identity	returns its first argument
 8c01ade8	file_slot_find	index of the 0x28-byte slot (128 of them at +0x244c) whose id is a1; -1 if none
 8c01b5dc	bytes_to_512_blocks	a1 rounded up to 512-byte blocks
-8c01eb94	input_test_8_mode2	input_mask_test(8, 2); 2 while the demo input is active
-8c01ecf8	input_test_10000_mode2	input_mask_test(0x10000, 2); 2 while the demo input is active
+8c01eb94	input_start_pressed	Start button (0x8) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
+8c01ecf8	input_r_pressed	R button (0x10000) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
 8c020aa8	CDCGD_request_type2	disc request type 2 (list at +0x28)
 8c020ba0	CDCGD_request_type5	disc request type 5 (list at +0x28)
 8c023040	Vec3_distance_sq_to_xyz	squared distance from a0 to the point (a1, a2, a3)
@@ -448,3 +448,40 @@
 8c030550	set_word_array_674	+0x674[a1] = a2
 8c0620bc	set_byte_grid_75	+0x75[a1*2 + a2] = a3
 8c0b77a0	save_file_date_matches	reads SM2000US.USR and compares its saved date with a0
+8c01eb50	input_start_held	Start button (0x8) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
+8c01ebd8	input_l_held	L button (0x20000) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
+8c01ec20	input_l_pressed	L button (0x20000) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
+8c01ec68	input_r_held	R button (0x10000) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
+8c01ecb0	input_r_off	R button (0x10000) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
+8c01ed40	input_r_released	R button (0x10000) went up this frame (PDS_PERIPHERAL release bits); 2 while the demo input is active
+8c01ed88	input_a_held	A button (0x4) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
+8c01ee10	input_a_released	A button (0x4) went up this frame (PDS_PERIPHERAL release bits); 2 while the demo input is active
+8c01ee98	input_b_off	B button (0x2) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
+8c01eedc	input_b_pressed	B button (0x2) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
+8c01ef20	input_x_held	X button (0x400) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
+8c01eff8	input_y_held	Y button (0x200) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
+8c01f040	input_y_pressed	Y button (0x200) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
+8c01f088	input_right_held	Right button (0x80) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
+8c01f0d0	input_right_off	Right button (0x80) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
+8c01f118	input_right_pressed	Right button (0x80) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
+8c01f160	input_left_held	Left button (0x40) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
+8c01f1a4	input_left_off	Left button (0x40) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
+8c01f1e8	input_left_pressed	Left button (0x40) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
+8c01f22c	input_down_held	Down button (0x20) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
+8c01f270	input_down_pressed	Down button (0x20) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
+8c01f2b4	input_up_held	Up button (0x10) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
+8c01f2f8	input_up_off	Up button (0x10) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
+8c01f33c	input_up_pressed	Up button (0x10) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
+8c0ffff4	input_reset_combo_held	1 when A, B, X, Y and Start (0x60e) are all held on the controller at +0xcc (the Dreamcast soft-reset combination)
+8c1f56f4	maple_get_mem_info	queues Maple command 10 (get memory information) for function a1, partition a2 of port a0
+8c1f574c	maple_block_read	queues Maple command 11 (block read) for function a1 of port a0: partition a2, phase a3, block s0
+8c1f57b4	maple_block_write	queues Maple command 12 (block write) for function a1 of port a0: partition a2, phase a3, block s0
+8c1f5816	maple_block_complete	queues Maple command 13 (get last error / block write complete) for function a1 of port a0
+8c1f58c0	maple_cmd16_func20	queues Maple command 16 with function word 0x20 for port a0
+8c1f5910	maple_cmd15_func10	queues Maple command 15 with function word 0x10 (microphone) for port a0
+8c0c8464	take_field_d4	returns +0xd4 and clears it
+8c0d9b60	obj_load_texlist_28	loads the texture list at +0x28 through the cache and attaches it
+8c0de6b0	set_field_c_nonneg	+0xc = fr4, clamped at 0
+8c0fc44c	history_push_string	shifts the 16 0x20-byte strings at (+0x10)->+0x40 + 200 down and copies a1 into the first
+8c102d20	imask_to_sr_bits	(a0 & 15) << 4, the SR IMASK field
+8c100030	input_get_held_bits	the PDS_PERIPHERAL on bits (+0xa528) of the controller state a0

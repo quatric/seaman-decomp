@@ -6598,15 +6598,15 @@ u32 game_sub_0fbf28(u32 *a0, u32 unused_a1, char *a2, u8 *a3) {
                 }
                 if (iVar2 < *(int *)(ar5_03 + 0x6c)) {
                     if (ar5_03[iVar2 * 0x68 + 0xb0] == '\0') {
-                        game_sub_0fc44c(a0, ar5_03 + iVar2 * 0x68 + 0x70, a2, a3);
+                        history_push_string(a0, ar5_03 + iVar2 * 0x68 + 0x70, a2, a3);
                     } else if (ar5_03[iVar2 * 0x68 + 0x90] == '\0') {
                         a2 = ar5_03 + iVar2 * 0x68 + 0x70;
                         game_sub_0fc94c(a0, ar5_03 + iVar2 * 0x68 + 0xb0, a2, a3);
-                        game_sub_0fc44c(a0, ar5_03 + iVar2 * 0x68 + 0x70, a2, a3);
+                        history_push_string(a0, ar5_03 + iVar2 * 0x68 + 0x70, a2, a3);
                     } else {
                         a2 = ar5_03 + iVar2 * 0x68 + 0x90;
                         game_sub_0fc94c(a0, ar5_03 + iVar2 * 0x68 + 0xb0, a2, a3);
-                        game_sub_0fc44c(a0, ar5_03 + iVar2 * 0x68 + 0x90, a2, a3);
+                        history_push_string(a0, ar5_03 + iVar2 * 0x68 + 0x90, a2, a3);
                     }
                     ar5_01 = *(char **)(ar5_03 + iVar2 * 0x68 + 0xd4);
                     game_sub_0fdd68(*(u32 *)(a0[4] + 0x40), ar5_01);
@@ -6664,11 +6664,11 @@ u32 get_field_c8_0fc440(int a0) {
 }
 
 /*
- * game_sub_0fc44c  0x8c0fc44c
- * area name: game code; nothing names its area yet
+ * history_push_string  0x8c0fc44c
+ * shifts the 16 0x20-byte strings at (+0x10)->+0x40 + 200 down and copies a1 into the first
  * called by: game_sub_0fbf28
  */
-u32 game_sub_0fc44c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 history_push_string(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
 
@@ -8898,7 +8898,7 @@ int game_sub_0ff7d4(int *a0, u8 *a1, u32 a2, u32 a3) {
         } else {
             *(u64 *)(a0 + 2) = in_xd0;
         }
-        iVar1 = game_sub_1001e0(a1);
+        iVar1 = input_sub_1001e0(a1);
         if (iVar1 == 1) {
             *a0 = 3;
         }
@@ -8920,7 +8920,7 @@ int game_sub_0ff7d4(int *a0, u8 *a1, u32 a2, u32 a3) {
             *a0 = 2;
         }
     } else if (iVar1 == 2) {
-        iVar1 = game_sub_1001e0(a1);
+        iVar1 = input_sub_1001e0(a1);
         if (iVar1 == 1) {
             *a0 = 3;
         }
@@ -9183,9 +9183,8 @@ u32 game_sub_0ffdb0(int a0) {
 
     cVar6 = '\0';
     cVar5 = '\0';
-    iVar1 = input_is_mask_set_10000_01ec68(*(u32 *)(a0 + 0xcc));
-    if ((((iVar1 == 0) && (iVar1 = input_is_mask_set_400_01ef20(*(u32 *)(a0 + 0xcc)), iVar1 == 0)) &&
-         (*(int *)(a0 + 0x59c) == 0)) &&
+    iVar1 = input_r_held(*(u32 *)(a0 + 0xcc));
+    if ((((iVar1 == 0) && (iVar1 = input_x_held(*(u32 *)(a0 + 0xcc)), iVar1 == 0)) && (*(int *)(a0 + 0x59c) == 0)) &&
         (*(int *)(a0 + 0x188) != 6)) {
         *(u32 *)(a0 + 0x188) = 0;
     }
@@ -9314,13 +9313,13 @@ u32 set_field_24_0fffec(int a0, u32 a1) {
 }
 
 /*
- * game_sub_0ffff4  0x8c0ffff4
- * area name: game code; nothing names its area yet
+ * input_reset_combo_held  0x8c0ffff4
+ * 1 when A, B, X, Y and Start (0x60e) are all held on the controller at +0xcc (the Dreamcast soft-reset combination)
  * called by: CSeamanDomain_Init, Class_12b388_m1_0c5c08, game_sub_0bad68
  */
-u32 game_sub_0ffff4(int a0, u32 a1, u32 a2, u32 a3) {
+u32 input_reset_combo_held(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = (*(code *)(&get_field_a528_100030))(*(u32 *)(0xcc + a0), a1, a2, a3);
+    uVar1 = (*(code *)(&input_get_held_bits))(*(u32 *)(0xcc + a0), a1, a2, a3);
     return (u32)((uVar1 & 0x60e) == 0x60e);
 }

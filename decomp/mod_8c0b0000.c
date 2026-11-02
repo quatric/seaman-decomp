@@ -6514,13 +6514,13 @@ u32 game_sub_0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
         }
     }
     ar4_02 = *(u32 *)(a1 + 0x7cc);
-    iVar1 = game_sub_10003c(ar4_02, ar5_00, a2, a3);
+    iVar1 = input_sub_10003c(ar4_02, ar5_00, a2, a3);
     if (iVar1 == 1) {
         *(u32 *)(a0 + 0x40) = 1;
     }
     if (*(int *)(a0 + 0x40) == 1) {
         ar4_02 = *(u32 *)(a1 + 0x7cc);
-        iVar1 = game_sub_0ffff4(ar4_02, ar5_00, a2, a3);
+        iVar1 = input_reset_combo_held(ar4_02, ar5_00, a2, a3);
         if (iVar1 == 1) {
             pack_release_entry_handle(0x8c2b59d0, *(u32 *)(a0 + 0x144), a2, a3);
             ar5_00 = *(u8 **)(a0 + 0x148);
@@ -6551,7 +6551,7 @@ u32 game_sub_0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
                     game_sub_0ba3e0(a0 + 0x158, a1);
                 }
                 if (((*(int *)(a0 + 0x14c) != 0) &&
-                     (iVar2 = input_test_8_mode2_wrap(*(u32 *)(a1 + 0x7cc)), iVar2 == 1)) &&
+                     (iVar2 = input_start_pressed_wrap(*(u32 *)(a1 + 0x7cc)), iVar2 == 1)) &&
                     (*(int *)(a0 + 0x30) == 2)) {
                     ar5_00 = auStack_4c;
                     game_sub_0bb158(a1, ar5_00);
@@ -6624,14 +6624,14 @@ u32 game_sub_0bb158(int a0, u16 *a1) {
 }
 
 /*
- * input_test_8_mode2_wrap  0x8c0bb1bc
- * only calls input_test_8_mode2
+ * input_start_pressed_wrap  0x8c0bb1bc
+ * only calls input_start_pressed
  * called by: Class_12b334_m1_0bf3d4, game_sub_0bad68
  */
-u32 input_test_8_mode2_wrap(int a0) {
+u32 input_start_pressed_wrap(int a0) {
     u32 uVar1;
 
-    uVar1 = input_test_8_mode2(*(u32 *)(0xcc + a0));
+    uVar1 = input_start_pressed(*(u32 *)(0xcc + a0));
     return uVar1;
 }
 
@@ -9316,7 +9316,7 @@ int Class_12b334_m1_0bf3d4(int a0, int a1) {
 
     iVar1 = a1;
     pure_virtual_stub();
-    iVar1 = input_test_8_mode2_wrap(*(u32 *)(0x7cc + a1));
+    iVar1 = input_start_pressed_wrap(*(u32 *)(0x7cc + a1));
     if (iVar1 == 1) {
         *(u32 *)(a0 + 8) = 0;
         iVar1 = 0x7dc;
@@ -9451,8 +9451,8 @@ u32 game_sub_0bf618(int a0, u32 a1, u32 a2, u32 a3) {
     if ((iVar1 == 1) || (iVar1 = (*(code *)(&get_field_a510_01f538))(*(u32 *)(0xcc + a0), a1, a2, a3), iVar1 == 2)) {
         return 0;
     }
-    iVar1 = input_test_4_mode2(*(u32 *)(0xcc + a0));
-    if ((iVar1 == 0) && (iVar1 = input_test_8_mode2(*(u32 *)(0xcc + a0)), iVar1 == 0)) {
+    iVar1 = input_a_pressed(*(u32 *)(0xcc + a0));
+    if ((iVar1 == 0) && (iVar1 = input_start_pressed(*(u32 *)(0xcc + a0)), iVar1 == 0)) {
         return 0;
     }
     return 1;
@@ -9470,8 +9470,8 @@ u32 game_sub_0bf690(int a0, u32 a1, u32 a2, u32 a3) {
     if ((iVar1 == 1) || (iVar1 = (*(code *)(&get_field_a510_01f538))(*(u32 *)(0xcc + a0), a1, a2, a3), iVar1 == 2)) {
         return 0;
     }
-    iVar1 = input_sub_01f1e8(*(u32 *)(0xcc + a0));
-    if ((iVar1 == 0) && (iVar1 = input_sub_01ec20(*(u32 *)(0xcc + a0)), iVar1 == 0)) {
+    iVar1 = input_left_pressed(*(u32 *)(0xcc + a0));
+    if ((iVar1 == 0) && (iVar1 = input_l_pressed(*(u32 *)(0xcc + a0)), iVar1 == 0)) {
         return 0;
     }
     return 1;
@@ -9489,22 +9489,22 @@ u32 game_sub_0bf708(int a0, u32 a1, u32 a2, u32 a3) {
     if ((iVar1 == 1) || (iVar1 = (*(code *)(&get_field_a510_01f538))(*(u32 *)(0xcc + a0), a1, a2, a3), iVar1 == 2)) {
         return 0;
     }
-    iVar1 = input_sub_01f118(*(u32 *)(0xcc + a0));
-    if ((iVar1 == 0) && (iVar1 = input_test_10000_mode2(*(u32 *)(0xcc + a0)), iVar1 == 0)) {
+    iVar1 = input_right_pressed(*(u32 *)(0xcc + a0));
+    if ((iVar1 == 0) && (iVar1 = input_r_pressed(*(u32 *)(0xcc + a0)), iVar1 == 0)) {
         return 0;
     }
     return 1;
 }
 
 /*
- * input_test_8_mode2_wrap_0bf780  0x8c0bf780
- * only calls input_test_8_mode2
+ * input_start_pressed_wrap_0bf780  0x8c0bf780
+ * only calls input_start_pressed
  * called by: CSeamanDomain_Init, CSeamanDomain_sub_0c1d98, CSeamanDomain_sub_0c23fc
  */
-u32 input_test_8_mode2_wrap_0bf780(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 input_start_pressed_wrap_0bf780(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = input_test_8_mode2(*(u32 *)(0xcc + a0));
+    uVar1 = input_start_pressed(*(u32 *)(0xcc + a0));
     return uVar1;
 }
 

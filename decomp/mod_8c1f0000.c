@@ -491,7 +491,7 @@ u32 shinobi_sub_1f0650(u32 a0, u32 a1, int a2, u32 a3) {
     }
     a7 = a3;
     a4 = a0;
-    a6 = shinobi_sub_1f56f4(a0, a1, a2);
+    a6 = maple_get_mem_info(a0, a1, a2);
     if (0 < a6) {
         a2 = a6;
         shinobi_sub_1f0420(a4, a3, a6);
@@ -525,7 +525,7 @@ u32 shinobi_sub_1f06ac(u32 a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4) {
         return 0xfffffffe;
     }
     a4 = a0;
-    a6 = shinobi_sub_1f574c(a0, a1, a2, a3, s0);
+    a6 = maple_block_read(a0, a1, a2, a3, s0);
     if (0 < a6) {
         a2 = a6;
         shinobi_sub_1f0420(a4, s4, a6);
@@ -559,7 +559,7 @@ u32 shinobi_sub_1f070c(u32 a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4, u32 s8, u
         return 0xfffffffe;
     }
     a4 = a0;
-    a6 = shinobi_sub_1f57b4(a0, a1, a2, a3, s0);
+    a6 = maple_block_write(a0, a1, a2, a3, s0);
     if (0 < a6) {
         a2 = a6;
         shinobi_sub_1f0420(a4, s12, a6);
@@ -592,7 +592,7 @@ u32 shinobi_sub_1f0790(u32 a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4) {
         return 0xfffffffe;
     }
     a4 = a0;
-    a6 = shinobi_sub_1f5816(a0, a1, a2, a3, s0);
+    a6 = maple_block_complete(a0, a1, a2, a3, s0);
     if (0 < a6) {
         a2 = a6;
         shinobi_sub_1f0420(a4, s4, a6);
@@ -627,7 +627,7 @@ u32 shinobi_sub_1f07f0(u32 a0, int a1, int a2, u32 a3) {
     }
     a6_00 = a2;
     a4 = a0;
-    a6 = shinobi_sub_1f58c0(a0, a1);
+    a6 = maple_cmd16_func20(a0, a1);
     if (0 < a6) {
         a6_00 = a6;
         shinobi_sub_1f0420(a4, a2, a6);
@@ -662,7 +662,7 @@ u32 shinobi_sub_1f086c(u32 a0, int a1, int a2, u32 a3) {
     }
     a6_00 = a2;
     a4 = a0;
-    a6 = shinobi_sub_1f5910(a0, a1);
+    a6 = maple_cmd15_func10(a0, a1);
     if (0 < a6) {
         a6_00 = a6;
         shinobi_sub_1f0420(a4, a2, a6);
@@ -6516,8 +6516,8 @@ u32 shinobi_sub_1f4a00(int a0, u32 a1) {
 /*
  * maple_queue_frame  0x8c1f4a44
  * adds a Maple bus frame to the DMA list: command a1 to the device on port a0 with a3 data words from a2
- * called by: maple_all_status_request, maple_device_kill, maple_device_request, maple_device_reset,
- * maple_get_condition, maple_queue_frame_wrap, shinobi_sub_1f56f4, shinobi_sub_1f574c (+5 more)
+ * called by: maple_all_status_request, maple_block_complete, maple_block_read, maple_block_write, maple_cmd15_func10,
+ * maple_cmd16_func20, maple_device_kill, maple_device_request (+5 more)
  */
 u32 maple_queue_frame(int a0, u32 a1, u32 *a2, int a3, u32 *s0, int s4) {
     u8 bVar1;
@@ -7472,7 +7472,7 @@ u32 shinobi_sub_1f56c8(u32 a0, u32 a1, u32 a2) {
         debug_log_printf(a0, a1, a2, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
-    uVar2 = shinobi_sub_1f56f4(a0, a1, a2);
+    uVar2 = maple_get_mem_info(a0, a1, a2);
     *(&DATA_8c1f5a2c) = 0;
     return uVar2;
 }
@@ -7495,17 +7495,17 @@ u32 shinobi_sub_1f56ca(u32 a0, u32 a1, u32 a2) {
         debug_log_printf(a0, a1, a2, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
-    uVar2 = shinobi_sub_1f56f4(a0, a1, a2);
+    uVar2 = maple_get_mem_info(a0, a1, a2);
     *(&DATA_8c1f5a2c) = 0;
     return uVar2;
 }
 
 /*
- * shinobi_sub_1f56f4  0x8c1f56f4
- * area name: in the shinobi library code range
+ * maple_get_mem_info  0x8c1f56f4
+ * queues Maple command 10 (get memory information) for function a1, partition a2 of port a0
  * called by: shinobi_sub_1f0650, shinobi_sub_1f56c8, shinobi_sub_1f56ca
  */
-u32 shinobi_sub_1f56f4(u32 a0, u32 a1, int a2) {
+u32 maple_get_mem_info(u32 a0, u32 a1, int a2) {
     u32 uVar1;
     u32 uStack_10;
     int iStack_c;
@@ -7534,7 +7534,7 @@ u32 shinobi_sub_1f571a(u32 a0, u32 a1, u32 a2, u32 a3) {
         debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
-    uVar2 = shinobi_sub_1f574c(a0, a1, a2, a3, in_stack_00000000);
+    uVar2 = maple_block_read(a0, a1, a2, a3, in_stack_00000000);
     *(&DATA_8c1f5a2c) = 0;
     return uVar2;
 }
@@ -7556,17 +7556,17 @@ u32 shinobi_sub_1f571c(u32 a0, u32 a1, u32 a2, u32 a3) {
         debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
-    uVar2 = shinobi_sub_1f574c(a0, a1, a2, a3);
+    uVar2 = maple_block_read(a0, a1, a2, a3);
     *(&DATA_8c1f5a2c) = 0;
     return uVar2;
 }
 
 /*
- * shinobi_sub_1f574c  0x8c1f574c
- * area name: in the shinobi library code range
+ * maple_block_read  0x8c1f574c
+ * queues Maple command 11 (block read) for function a1 of port a0: partition a2, phase a3, block s0
  * called by: shinobi_sub_1f06ac, shinobi_sub_1f571a, shinobi_sub_1f571c
  */
-u32 shinobi_sub_1f574c(u32 a0, u32 a1, int a2, int a3, u32 s0) {
+u32 maple_block_read(u32 a0, u32 a1, int a2, int a3, u32 s0) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -7595,7 +7595,7 @@ u32 shinobi_sub_1f577a(u32 a0, u32 a1, u32 a2, u32 a3) {
         debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
-    uVar2 = shinobi_sub_1f57b4(a0, a1, a2, a3, in_stack_00000000);
+    uVar2 = maple_block_write(a0, a1, a2, a3, in_stack_00000000);
     *(&DATA_8c1f5a2c) = 0;
     return uVar2;
 }
@@ -7617,17 +7617,17 @@ u32 shinobi_sub_1f577c(u32 a0, u32 a1, u32 a2, u32 a3) {
         debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
-    uVar2 = shinobi_sub_1f57b4(a0, a1, a2, a3);
+    uVar2 = maple_block_write(a0, a1, a2, a3);
     *(&DATA_8c1f5a2c) = 0;
     return uVar2;
 }
 
 /*
- * shinobi_sub_1f57b4  0x8c1f57b4
- * area name: in the shinobi library code range
+ * maple_block_write  0x8c1f57b4
+ * queues Maple command 12 (block write) for function a1 of port a0: partition a2, phase a3, block s0
  * called by: shinobi_sub_1f070c, shinobi_sub_1f577a, shinobi_sub_1f577c
  */
-u32 shinobi_sub_1f57b4(u32 a0, u32 a1, int a2, int a3, u32 s0) {
+u32 maple_block_write(u32 a0, u32 a1, int a2, int a3, u32 s0) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -7656,7 +7656,7 @@ u32 shinobi_sub_1f57e4(u32 a0, u32 a1, u32 a2, u32 a3) {
         debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
-    uVar2 = shinobi_sub_1f5816(a0, a1, a2, a3, in_stack_00000000);
+    uVar2 = maple_block_complete(a0, a1, a2, a3, in_stack_00000000);
     *(&DATA_8c1f5a2c) = 0;
     return uVar2;
 }
@@ -7678,17 +7678,17 @@ u32 shinobi_sub_1f57e6(u32 a0, u32 a1, u32 a2, u32 a3) {
         debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
-    uVar2 = shinobi_sub_1f5816(a0, a1, a2, a3);
+    uVar2 = maple_block_complete(a0, a1, a2, a3);
     *(&DATA_8c1f5a2c) = 0;
     return uVar2;
 }
 
 /*
- * shinobi_sub_1f5816  0x8c1f5816
- * area name: in the shinobi library code range
+ * maple_block_complete  0x8c1f5816
+ * queues Maple command 13 (get last error / block write complete) for function a1 of port a0
  * called by: shinobi_sub_1f0790, shinobi_sub_1f57e4, shinobi_sub_1f57e6
  */
-u32 shinobi_sub_1f5816(u32 a0, u32 a1, int a2, int a3, u32 s0) {
+u32 maple_block_complete(u32 a0, u32 a1, int a2, int a3, u32 s0) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -7780,7 +7780,7 @@ u32 shinobi_sub_1f5894(u32 a0, u32 a1) {
         debug_log_printf(a0, a1, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
-    uVar2 = shinobi_sub_1f58c0(a0, a1);
+    uVar2 = maple_cmd16_func20(a0, a1);
     *(&DATA_8c1f5a2c) = 0;
     return uVar2;
 }
@@ -7804,17 +7804,17 @@ u32 shinobi_sub_1f5896(u32 a0, u32 a1) {
         debug_log_printf(a0, a1, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
-    uVar2 = shinobi_sub_1f58c0(a0, a1);
+    uVar2 = maple_cmd16_func20(a0, a1);
     *(&DATA_8c1f5a2c) = 0;
     return uVar2;
 }
 
 /*
- * shinobi_sub_1f58c0  0x8c1f58c0
- * area name: in the shinobi library code range
+ * maple_cmd16_func20  0x8c1f58c0
+ * queues Maple command 16 with function word 0x20 for port a0
  * called by: shinobi_sub_1f07f0, shinobi_sub_1f5894, shinobi_sub_1f5896
  */
-u32 shinobi_sub_1f58c0(u32 a0, u32 a1) {
+u32 maple_cmd16_func20(u32 a0, u32 a1) {
     u32 uVar1;
     u32 uStack_c;
 
@@ -7842,7 +7842,7 @@ u32 shinobi_sub_1f58e4(u32 a0, u32 a1) {
         debug_log_printf(a0, a1, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
-    uVar2 = shinobi_sub_1f5910(a0, a1);
+    uVar2 = maple_cmd15_func10(a0, a1);
     *(&DATA_8c1f5a2c) = 0;
     return uVar2;
 }
@@ -7866,17 +7866,17 @@ u32 shinobi_sub_1f58e6(u32 a0, u32 a1) {
         debug_log_printf(a0, a1, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
-    uVar2 = shinobi_sub_1f5910(a0, a1);
+    uVar2 = maple_cmd15_func10(a0, a1);
     *(&DATA_8c1f5a2c) = 0;
     return uVar2;
 }
 
 /*
- * shinobi_sub_1f5910  0x8c1f5910
- * area name: in the shinobi library code range
+ * maple_cmd15_func10  0x8c1f5910
+ * queues Maple command 15 with function word 0x10 (microphone) for port a0
  * called by: shinobi_sub_1f086c, shinobi_sub_1f58e4, shinobi_sub_1f58e6
  */
-u32 shinobi_sub_1f5910(u32 a0, u32 a1) {
+u32 maple_cmd15_func10(u32 a0, u32 a1) {
     u32 uVar1;
     u32 uStack_c;
 
