@@ -452,7 +452,7 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
 - Hand names in `tools/readable_names.tsv` for the most-called helpers: libc (strcmp, memcmp, strcat, sprintf, the printf
   core), Vec3 math, the matrix stack, and the Ninja texture calls (njSetTexture 8c25b3ec selects the list at 0x8c277b04,
   njSetTextureNum 8c25b434 loads one texture's TA parameters through 8c20fe00).
-- `decomp/`: every function named: 2,145 precise names (was 1,026) and 4,202 area names, all unique. About 700 of those are shape names. Also named: strtol/atoi, spline and lerp math, interrupt nesting (8c260ca0/8c260cc8), the RTC date conversion (8c1f826c, epoch 1950).
+- `decomp/`: every function named: 2,184 precise names (was 1,026) and 4,163 area names, all unique. About 700 of those are shape names. Also named: strtol/atoi, spline and lerp math, interrupt nesting (8c260ca0/8c260cc8), the RTC date conversion (8c1f826c, epoch 1950).
 - Also named: the speech player at 0x8c35468c (speech_start 8c0f8368 plays a named line such as "HIGYOLINE0"; speech_request,
   speech_restart, speech_stop), the serial debug output (scif_putc 8c1fac58, used by the crash dump), Ninja's outer product,
   sin/cos and polygon-state copies.
@@ -486,3 +486,15 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
   wrappers send commands 1 (device request), 2 (all status), 3 (reset), 4 (kill), 9 (get condition). Device records are
   0x18 bytes per port at 0x8c4709a0. Memory-card file system: drives of 0x148 bytes at 0x8c4783e0, 32-byte directory entries
   (types 0x33 data, 0xcc game). Disc requests go through CDCGD_request 8c02077c (pending/failed/finished lists).
+- Controller input: the game copies Shinobi's PDS_PERIPHERAL on/off/press/release words (+8/+0xc/+0x10/+0x14) to
+  +0xa528..+0xa534 of its input state; the 30 test functions at 8c01eb50..8c01f33c are named `input_<button>_<held|off|
+  pressed|released>` from the PDD_DGT bits (B 2, A 4, Start 8, Up/Down/Left/Right 0x10..0x80, Y 0x200, X 0x400, R 0x10000,
+  L 0x20000). 8c0ffff4 tests A+B+X+Y+Start held (the soft-reset combination).
+- More Maple commands: 10 get memory info, 11 block read, 12 block write, 13 block complete, 14 set condition. Each has two
+  locked wrappers: `_sync` (lock byte 0x8c1f5a28, then the frame hook) and `_locked` (lock byte 0x8c1f5a2c; Ghidra also
+  made an `_alt` entry 2 bytes in).
+- mwRna (CRI raw audio output) accessors named by the API shape: Set/GetSfreq (+0xc), Set/GetBitPerSmpl (+8), Set/GetOutVol
+  (+0x60, -999..0), Set/GetOutPan (+0x64[ch], -15..15), GetFx, GetTime; each setter forwards to the output object's vtable.
+- Creature constructors from their name strings: CAnimal_ctor 8c0254d0 (base) and the FrogMan, Higyo, Moth, Spider egg and
+  line stages, CMushroomerLine; memory-card save layer (memcard_save_start, memcard_load_wait, save_file_load,
+  save_files_presence) and the environment model loaders (heater, O2 supply, sprinkler, ring, tank, event 1 whirlpool).

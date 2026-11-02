@@ -283,8 +283,8 @@ int set_handler_slot32(u32 a0, u32 a1) {
 /*
  * shinobi_sub_1f0420  0x8c1f0420
  * area name: in the shinobi library code range
- * called by: shinobi_sub_1f0444, shinobi_sub_1f04a0, shinobi_sub_1f04fc, shinobi_sub_1f057a, shinobi_sub_1f05d6,
- * shinobi_sub_1f0650, shinobi_sub_1f06ac, shinobi_sub_1f070c (+4 more)
+ * called by: maple_all_status_request_sync, maple_block_complete_sync, maple_block_read_sync, maple_block_write_sync,
+ * maple_cmd15_func10_sync, maple_cmd16_func20_sync, maple_device_kill_sync, maple_device_request_sync (+4 more)
  */
 u32 shinobi_sub_1f0420(int a0, u32 a1, u32 a2) {
     int iVar1;
@@ -297,11 +297,11 @@ u32 shinobi_sub_1f0420(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * shinobi_sub_1f0444  0x8c1f0444
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_device_request_sync  0x8c1f0444
+ * maple_device_request under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f0444(u32 a0, u32 a1, int a2, u32 a3) {
+u32 maple_device_request_sync(u32 a0, u32 a1, int a2, u32 a3) {
     u8 bVar1;
     int *piVar2;
     int a6;
@@ -332,11 +332,11 @@ u32 shinobi_sub_1f0444(u32 a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1f04a0  0x8c1f04a0
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_all_status_request_sync  0x8c1f04a0
+ * maple_all_status_request under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f04a0(u32 a0, u32 a1, int a2, u32 a3) {
+u32 maple_all_status_request_sync(u32 a0, u32 a1, int a2, u32 a3) {
     u8 bVar1;
     int *piVar2;
     int a6;
@@ -367,11 +367,11 @@ u32 shinobi_sub_1f04a0(u32 a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1f04fc  0x8c1f04fc
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_device_reset_sync  0x8c1f04fc
+ * maple_device_reset under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f04fc(u32 a0, u32 a1, int a2, u32 a3) {
+u32 maple_device_reset_sync(u32 a0, u32 a1, int a2, u32 a3) {
     u8 bVar1;
     int *piVar2;
     int a6;
@@ -402,11 +402,11 @@ u32 shinobi_sub_1f04fc(u32 a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1f057a  0x8c1f057a
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_device_kill_sync  0x8c1f057a
+ * maple_device_kill under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f057a(u32 a0, u32 a1, int a2, u32 a3) {
+u32 maple_device_kill_sync(u32 a0, u32 a1, int a2, u32 a3) {
     u8 bVar1;
     int *piVar2;
     int a6;
@@ -437,11 +437,11 @@ u32 shinobi_sub_1f057a(u32 a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1f05d6  0x8c1f05d6
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_get_condition_sync  0x8c1f05d6
+ * maple_get_condition under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f05d6(u32 a0, int a1, int a2, u32 a3) {
+u32 maple_get_condition_sync(u32 a0, int a1, int a2, u32 a3) {
     u8 bVar1;
     int *piVar2;
     int a6;
@@ -472,11 +472,11 @@ u32 shinobi_sub_1f05d6(u32 a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1f0650  0x8c1f0650
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_get_mem_info_sync  0x8c1f0650
+ * maple_get_mem_info under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f0650(u32 a0, u32 a1, int a2, u32 a3) {
+u32 maple_get_mem_info_sync(u32 a0, u32 a1, int a2, u32 a3) {
     u8 bVar1;
     int *piVar2;
     int a6;
@@ -507,12 +507,12 @@ u32 shinobi_sub_1f0650(u32 a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1f06ac  0x8c1f06ac
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_block_read_sync  0x8c1f06ac
+ * maple_block_read under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
  * called by: shinobi_sub_1f667e
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f06ac(u32 a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4) {
+u32 maple_block_read_sync(u32 a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4) {
     u8 bVar1;
     int *piVar2;
     int a6;
@@ -541,12 +541,12 @@ u32 shinobi_sub_1f06ac(u32 a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4) {
 }
 
 /*
- * shinobi_sub_1f070c  0x8c1f070c
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_block_write_sync  0x8c1f070c
+ * maple_block_write under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
  * called by: shinobi_sub_1f6516
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f070c(u32 a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12) {
+u32 maple_block_write_sync(u32 a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12) {
     u8 bVar1;
     int *piVar2;
     int a6;
@@ -575,11 +575,11 @@ u32 shinobi_sub_1f070c(u32 a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4, u32 s8, u
 }
 
 /*
- * shinobi_sub_1f0790  0x8c1f0790
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_block_complete_sync  0x8c1f0790
+ * maple_block_complete under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f0790(u32 a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4) {
+u32 maple_block_complete_sync(u32 a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4) {
     u8 bVar1;
     int *piVar2;
     int a6;
@@ -608,11 +608,11 @@ u32 shinobi_sub_1f0790(u32 a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4) {
 }
 
 /*
- * shinobi_sub_1f07f0  0x8c1f07f0
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_cmd16_func20_sync  0x8c1f07f0
+ * maple_cmd16_func20 under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f07f0(u32 a0, int a1, int a2, u32 a3) {
+u32 maple_cmd16_func20_sync(u32 a0, int a1, int a2, u32 a3) {
     u8 bVar1;
     int *piVar2;
     int a6;
@@ -643,11 +643,11 @@ u32 shinobi_sub_1f07f0(u32 a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1f086c  0x8c1f086c
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_cmd15_func10_sync  0x8c1f086c
+ * maple_cmd15_func10 under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f086c(u32 a0, int a1, int a2, u32 a3) {
+u32 maple_cmd15_func10_sync(u32 a0, int a1, int a2, u32 a3) {
     u8 bVar1;
     int *piVar2;
     int a6;
@@ -678,11 +678,11 @@ u32 shinobi_sub_1f086c(u32 a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1f08c8  0x8c1f08c8
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_set_condition_sync  0x8c1f08c8
+ * maple_set_condition under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f08c8(u32 a0, u32 a1, int a2, u32 a3, u32 s0) {
+u32 maple_set_condition_sync(u32 a0, u32 a1, int a2, u32 a3, u32 s0) {
     u8 bVar1;
     int *piVar2;
     int a6;
@@ -6038,8 +6038,9 @@ u32 shinobi_sub_1f44cc(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * debug_log_printf  0x8c1f4570
  * formats into a buffer and hands it to the log hook when logging is enabled
- * called by: shinobi_sub_1f0444, shinobi_sub_1f04a0, shinobi_sub_1f04fc, shinobi_sub_1f057a, shinobi_sub_1f05d6,
- * shinobi_sub_1f0650, shinobi_sub_1f06ac, shinobi_sub_1f070c (+35 more)
+ * called by: maple_all_status_request_locked, maple_all_status_request_locked_alt, maple_all_status_request_sync,
+ * maple_block_complete_locked, maple_block_complete_locked_alt, maple_block_complete_sync, maple_block_read_locked,
+ * maple_block_read_locked_alt (+35 more)
  */
 u32 debug_log_printf(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s4) {
     u32 uVar1;
@@ -7144,12 +7145,12 @@ u32 shinobi_sub_1f550a(int a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * shinobi_sub_1f5556  0x8c1f5556
- * area name: in the shinobi library code range
+ * maple_get_condition_locked  0x8c1f5556
+ * maple_get_condition under the lock byte at 0x8c1f5a2c; -2 if it is held
  * called by: shinobi_sub_1efe14
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f5556(u32 a0, u32 a1) {
+u32 maple_get_condition_locked(u32 a0, u32 a1) {
     u32 r6;
     u32 r7;
     u8 bVar1;
@@ -7168,11 +7169,11 @@ u32 shinobi_sub_1f5556(u32 a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_1f5558  0x8c1f5558
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_get_condition_locked_alt  0x8c1f5558
+ * maple_get_condition under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f5558(u32 a0, u32 a1) {
+u32 maple_get_condition_locked_alt(u32 a0, u32 a1) {
     u32 r6;
     u32 r7;
     u8 bVar1;
@@ -7194,7 +7195,8 @@ u32 shinobi_sub_1f5558(u32 a0, u32 a1) {
 /*
  * maple_get_condition  0x8c1f5582
  * queues Maple command 9 (get condition) for function a1 of port a0
- * called by: shinobi_sub_1f05d6, shinobi_sub_1f4102, shinobi_sub_1f4110, shinobi_sub_1f5556, shinobi_sub_1f5558
+ * called by: maple_get_condition_locked, maple_get_condition_locked_alt, maple_get_condition_sync, shinobi_sub_1f4102,
+ * shinobi_sub_1f4110
  */
 u32 maple_get_condition(u32 a0, u32 a1) {
     u32 uVar1;
@@ -7206,12 +7208,12 @@ u32 maple_get_condition(u32 a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_1f55b8  0x8c1f55b8
- * area name: in the shinobi library code range
+ * maple_device_request_locked  0x8c1f55b8
+ * maple_device_request under the lock byte at 0x8c1f5a2c; -2 if it is held
  * called by: shinobi_sub_1efd7c
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f55b8(u32 a0) {
+u32 maple_device_request_locked(u32 a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -7231,11 +7233,11 @@ u32 shinobi_sub_1f55b8(u32 a0) {
 }
 
 /*
- * shinobi_sub_1f55ba  0x8c1f55ba
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_device_request_locked_alt  0x8c1f55ba
+ * maple_device_request under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f55ba(u32 a0) {
+u32 maple_device_request_locked_alt(u32 a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -7258,8 +7260,8 @@ u32 shinobi_sub_1f55ba(u32 a0) {
 /*
  * maple_device_request  0x8c1f55e4
  * queues Maple command 1 (device info request) for port a0
- * called by: shinobi_sub_1f0444, shinobi_sub_1f3dd8, shinobi_sub_1f3de2, shinobi_sub_1f3ef4, shinobi_sub_1f55b8,
- * shinobi_sub_1f55ba
+ * called by: maple_device_request_locked, maple_device_request_locked_alt, maple_device_request_sync,
+ * shinobi_sub_1f3dd8, shinobi_sub_1f3de2, shinobi_sub_1f3ef4
  */
 u32 maple_device_request(u32 a0) {
     u32 uVar1;
@@ -7269,12 +7271,12 @@ u32 maple_device_request(u32 a0) {
 }
 
 /*
- * shinobi_sub_1f55fc  0x8c1f55fc
- * area name: in the shinobi library code range
+ * maple_device_kill_locked  0x8c1f55fc
+ * maple_device_kill under the lock byte at 0x8c1f5a2c; -2 if it is held
  * called by: shinobi_sub_1efdee
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f55fc(u32 a0) {
+u32 maple_device_kill_locked(u32 a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -7294,11 +7296,11 @@ u32 shinobi_sub_1f55fc(u32 a0) {
 }
 
 /*
- * shinobi_sub_1f55fe  0x8c1f55fe
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_device_kill_locked_alt  0x8c1f55fe
+ * maple_device_kill under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f55fe(u32 a0) {
+u32 maple_device_kill_locked_alt(u32 a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -7321,7 +7323,8 @@ u32 shinobi_sub_1f55fe(u32 a0) {
 /*
  * maple_device_kill  0x8c1f5628
  * queues Maple command 4 (device kill) for port a0
- * called by: shinobi_sub_1f057a, shinobi_sub_1f4102, shinobi_sub_1f4110, shinobi_sub_1f55fc, shinobi_sub_1f55fe
+ * called by: maple_device_kill_locked, maple_device_kill_locked_alt, maple_device_kill_sync, shinobi_sub_1f4102,
+ * shinobi_sub_1f4110
  */
 u32 maple_device_kill(u32 a0) {
     u32 uVar1;
@@ -7331,12 +7334,12 @@ u32 maple_device_kill(u32 a0) {
 }
 
 /*
- * shinobi_sub_1f5640  0x8c1f5640
- * area name: in the shinobi library code range
+ * maple_device_reset_locked  0x8c1f5640
+ * maple_device_reset under the lock byte at 0x8c1f5a2c; -2 if it is held
  * called by: shinobi_sub_1efdc8
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f5640(u32 a0) {
+u32 maple_device_reset_locked(u32 a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -7356,11 +7359,11 @@ u32 shinobi_sub_1f5640(u32 a0) {
 }
 
 /*
- * shinobi_sub_1f5642  0x8c1f5642
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_device_reset_locked_alt  0x8c1f5642
+ * maple_device_reset under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f5642(u32 a0) {
+u32 maple_device_reset_locked_alt(u32 a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -7383,7 +7386,8 @@ u32 shinobi_sub_1f5642(u32 a0) {
 /*
  * maple_device_reset  0x8c1f566c
  * queues Maple command 3 (device reset) for port a0
- * called by: shinobi_sub_1f04fc, shinobi_sub_1f4102, shinobi_sub_1f4110, shinobi_sub_1f5640, shinobi_sub_1f5642
+ * called by: maple_device_reset_locked, maple_device_reset_locked_alt, maple_device_reset_sync, shinobi_sub_1f4102,
+ * shinobi_sub_1f4110
  */
 u32 maple_device_reset(u32 a0) {
     u32 uVar1;
@@ -7393,12 +7397,12 @@ u32 maple_device_reset(u32 a0) {
 }
 
 /*
- * shinobi_sub_1f5684  0x8c1f5684
- * area name: in the shinobi library code range
+ * maple_all_status_request_locked  0x8c1f5684
+ * maple_all_status_request under the lock byte at 0x8c1f5a2c; -2 if it is held
  * called by: shinobi_sub_1efda2
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f5684(u32 a0) {
+u32 maple_all_status_request_locked(u32 a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -7418,11 +7422,11 @@ u32 shinobi_sub_1f5684(u32 a0) {
 }
 
 /*
- * shinobi_sub_1f5686  0x8c1f5686
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_all_status_request_locked_alt  0x8c1f5686
+ * maple_all_status_request under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f5686(u32 a0) {
+u32 maple_all_status_request_locked_alt(u32 a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -7445,7 +7449,8 @@ u32 shinobi_sub_1f5686(u32 a0) {
 /*
  * maple_all_status_request  0x8c1f56b0
  * queues Maple command 2 (all status request) for port a0
- * called by: shinobi_sub_1f04a0, shinobi_sub_1f4102, shinobi_sub_1f4110, shinobi_sub_1f5684, shinobi_sub_1f5686
+ * called by: maple_all_status_request_locked, maple_all_status_request_locked_alt, maple_all_status_request_sync,
+ * shinobi_sub_1f4102, shinobi_sub_1f4110
  */
 u32 maple_all_status_request(u32 a0) {
     u32 uVar1;
@@ -7455,12 +7460,12 @@ u32 maple_all_status_request(u32 a0) {
 }
 
 /*
- * shinobi_sub_1f56c8  0x8c1f56c8
- * area name: in the shinobi library code range
+ * maple_get_mem_info_locked  0x8c1f56c8
+ * maple_get_mem_info under the lock byte at 0x8c1f5a2c; -2 if it is held
  * called by: shinobi_sub_1efe3a
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f56c8(u32 a0, u32 a1, u32 a2) {
+u32 maple_get_mem_info_locked(u32 a0, u32 a1, u32 a2) {
     u32 r7;
     u8 bVar1;
     u32 uVar2;
@@ -7478,11 +7483,11 @@ u32 shinobi_sub_1f56c8(u32 a0, u32 a1, u32 a2) {
 }
 
 /*
- * shinobi_sub_1f56ca  0x8c1f56ca
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_get_mem_info_locked_alt  0x8c1f56ca
+ * maple_get_mem_info under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f56ca(u32 a0, u32 a1, u32 a2) {
+u32 maple_get_mem_info_locked_alt(u32 a0, u32 a1, u32 a2) {
     u32 r7;
     u8 bVar1;
     u32 uVar2;
@@ -7503,7 +7508,7 @@ u32 shinobi_sub_1f56ca(u32 a0, u32 a1, u32 a2) {
 /*
  * maple_get_mem_info  0x8c1f56f4
  * queues Maple command 10 (get memory information) for function a1, partition a2 of port a0
- * called by: shinobi_sub_1f0650, shinobi_sub_1f56c8, shinobi_sub_1f56ca
+ * called by: maple_get_mem_info_locked, maple_get_mem_info_locked_alt, maple_get_mem_info_sync
  */
 u32 maple_get_mem_info(u32 a0, u32 a1, int a2) {
     u32 uVar1;
@@ -7517,12 +7522,12 @@ u32 maple_get_mem_info(u32 a0, u32 a1, int a2) {
 }
 
 /*
- * shinobi_sub_1f571a  0x8c1f571a
- * area name: in the shinobi library code range
+ * maple_block_read_locked  0x8c1f571a
+ * maple_block_read under the lock byte at 0x8c1f5a2c; -2 if it is held
  * called by: shinobi_sub_1efe80
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f571a(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 maple_block_read_locked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 bVar1;
     u32 uVar2;
     u32 in_PR;
@@ -7540,11 +7545,11 @@ u32 shinobi_sub_1f571a(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1f571c  0x8c1f571c
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_block_read_locked_alt  0x8c1f571c
+ * maple_block_read under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f571c(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 maple_block_read_locked_alt(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 bVar1;
     u32 uVar2;
     u32 *in_r3;
@@ -7564,7 +7569,7 @@ u32 shinobi_sub_1f571c(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * maple_block_read  0x8c1f574c
  * queues Maple command 11 (block read) for function a1 of port a0: partition a2, phase a3, block s0
- * called by: shinobi_sub_1f06ac, shinobi_sub_1f571a, shinobi_sub_1f571c
+ * called by: maple_block_read_locked, maple_block_read_locked_alt, maple_block_read_sync
  */
 u32 maple_block_read(u32 a0, u32 a1, int a2, int a3, u32 s0) {
     u32 uVar1;
@@ -7578,12 +7583,12 @@ u32 maple_block_read(u32 a0, u32 a1, int a2, int a3, u32 s0) {
 }
 
 /*
- * shinobi_sub_1f577a  0x8c1f577a
- * area name: in the shinobi library code range
+ * maple_block_write_locked  0x8c1f577a
+ * maple_block_write under the lock byte at 0x8c1f5a2c; -2 if it is held
  * called by: shinobi_sub_1efeac
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f577a(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 maple_block_write_locked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 bVar1;
     u32 uVar2;
     u32 in_PR;
@@ -7601,11 +7606,11 @@ u32 shinobi_sub_1f577a(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1f577c  0x8c1f577c
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_block_write_locked_alt  0x8c1f577c
+ * maple_block_write under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f577c(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 maple_block_write_locked_alt(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 bVar1;
     u32 uVar2;
     u32 *in_r3;
@@ -7625,7 +7630,7 @@ u32 shinobi_sub_1f577c(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * maple_block_write  0x8c1f57b4
  * queues Maple command 12 (block write) for function a1 of port a0: partition a2, phase a3, block s0
- * called by: shinobi_sub_1f070c, shinobi_sub_1f577a, shinobi_sub_1f577c
+ * called by: maple_block_write_locked, maple_block_write_locked_alt, maple_block_write_sync
  */
 u32 maple_block_write(u32 a0, u32 a1, int a2, int a3, u32 s0) {
     u32 uVar1;
@@ -7639,12 +7644,12 @@ u32 maple_block_write(u32 a0, u32 a1, int a2, int a3, u32 s0) {
 }
 
 /*
- * shinobi_sub_1f57e4  0x8c1f57e4
- * area name: in the shinobi library code range
+ * maple_block_complete_locked  0x8c1f57e4
+ * maple_block_complete under the lock byte at 0x8c1f5a2c; -2 if it is held
  * called by: shinobi_sub_1efee0
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f57e4(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 maple_block_complete_locked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 bVar1;
     u32 uVar2;
     u32 in_PR;
@@ -7662,11 +7667,11 @@ u32 shinobi_sub_1f57e4(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1f57e6  0x8c1f57e6
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_block_complete_locked_alt  0x8c1f57e6
+ * maple_block_complete under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f57e6(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 maple_block_complete_locked_alt(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 bVar1;
     u32 uVar2;
     u32 *in_r3;
@@ -7686,7 +7691,7 @@ u32 shinobi_sub_1f57e6(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * maple_block_complete  0x8c1f5816
  * queues Maple command 13 (get last error / block write complete) for function a1 of port a0
- * called by: shinobi_sub_1f0790, shinobi_sub_1f57e4, shinobi_sub_1f57e6
+ * called by: maple_block_complete_locked, maple_block_complete_locked_alt, maple_block_complete_sync
  */
 u32 maple_block_complete(u32 a0, u32 a1, int a2, int a3, u32 s0) {
     u32 uVar1;
@@ -7700,12 +7705,12 @@ u32 maple_block_complete(u32 a0, u32 a1, int a2, int a3, u32 s0) {
 }
 
 /*
- * shinobi_sub_1f5850  0x8c1f5850
- * area name: in the shinobi library code range
+ * maple_queue_frame_wrap_locked  0x8c1f5850
+ * maple_queue_frame_wrap under the lock byte at 0x8c1f5a2c; -2 if it is held
  * called by: shinobi_sub_1eff9c
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f5850(u32 a0) {
+u32 maple_queue_frame_wrap_locked(u32 a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -7725,11 +7730,11 @@ u32 shinobi_sub_1f5850(u32 a0) {
 }
 
 /*
- * shinobi_sub_1f5852  0x8c1f5852
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_queue_frame_wrap_locked_alt  0x8c1f5852
+ * maple_queue_frame_wrap under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f5852(u32 a0) {
+u32 maple_queue_frame_wrap_locked_alt(u32 a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -7752,7 +7757,7 @@ u32 shinobi_sub_1f5852(u32 a0) {
 /*
  * maple_queue_frame_wrap  0x8c1f587c
  * only calls maple_queue_frame
- * called by: shinobi_sub_1f5850, shinobi_sub_1f5852
+ * called by: maple_queue_frame_wrap_locked, maple_queue_frame_wrap_locked_alt
  */
 u32 maple_queue_frame_wrap(u32 a0) {
     u32 uVar1;
@@ -7762,12 +7767,12 @@ u32 maple_queue_frame_wrap(u32 a0) {
 }
 
 /*
- * shinobi_sub_1f5894  0x8c1f5894
- * area name: in the shinobi library code range
+ * maple_cmd16_func20_locked  0x8c1f5894
+ * maple_cmd16_func20 under the lock byte at 0x8c1f5a2c; -2 if it is held
  * called by: shinobi_sub_1eff0c
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f5894(u32 a0, u32 a1) {
+u32 maple_cmd16_func20_locked(u32 a0, u32 a1) {
     u32 r6;
     u32 r7;
     u8 bVar1;
@@ -7786,11 +7791,11 @@ u32 shinobi_sub_1f5894(u32 a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_1f5896  0x8c1f5896
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_cmd16_func20_locked_alt  0x8c1f5896
+ * maple_cmd16_func20 under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f5896(u32 a0, u32 a1) {
+u32 maple_cmd16_func20_locked_alt(u32 a0, u32 a1) {
     u32 r6;
     u32 r7;
     u8 bVar1;
@@ -7812,7 +7817,7 @@ u32 shinobi_sub_1f5896(u32 a0, u32 a1) {
 /*
  * maple_cmd16_func20  0x8c1f58c0
  * queues Maple command 16 with function word 0x20 for port a0
- * called by: shinobi_sub_1f07f0, shinobi_sub_1f5894, shinobi_sub_1f5896
+ * called by: maple_cmd16_func20_locked, maple_cmd16_func20_locked_alt, maple_cmd16_func20_sync
  */
 u32 maple_cmd16_func20(u32 a0, u32 a1) {
     u32 uVar1;
@@ -7824,12 +7829,12 @@ u32 maple_cmd16_func20(u32 a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_1f58e4  0x8c1f58e4
- * area name: in the shinobi library code range
+ * maple_cmd15_func10_locked  0x8c1f58e4
+ * maple_cmd15_func10 under the lock byte at 0x8c1f5a2c; -2 if it is held
  * called by: shinobi_sub_1eff32
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f58e4(u32 a0, u32 a1) {
+u32 maple_cmd15_func10_locked(u32 a0, u32 a1) {
     u32 r6;
     u32 r7;
     u8 bVar1;
@@ -7848,11 +7853,11 @@ u32 shinobi_sub_1f58e4(u32 a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_1f58e6  0x8c1f58e6
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_cmd15_func10_locked_alt  0x8c1f58e6
+ * maple_cmd15_func10 under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f58e6(u32 a0, u32 a1) {
+u32 maple_cmd15_func10_locked_alt(u32 a0, u32 a1) {
     u32 r6;
     u32 r7;
     u8 bVar1;
@@ -7874,7 +7879,7 @@ u32 shinobi_sub_1f58e6(u32 a0, u32 a1) {
 /*
  * maple_cmd15_func10  0x8c1f5910
  * queues Maple command 15 with function word 0x10 (microphone) for port a0
- * called by: shinobi_sub_1f086c, shinobi_sub_1f58e4, shinobi_sub_1f58e6
+ * called by: maple_cmd15_func10_locked, maple_cmd15_func10_locked_alt, maple_cmd15_func10_sync
  */
 u32 maple_cmd15_func10(u32 a0, u32 a1) {
     u32 uVar1;
@@ -7886,12 +7891,12 @@ u32 maple_cmd15_func10(u32 a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_1f5934  0x8c1f5934
- * area name: in the shinobi library code range
+ * maple_set_condition_locked  0x8c1f5934
+ * maple_set_condition under the lock byte at 0x8c1f5a2c; -2 if it is held
  * called by: shinobi_sub_1eff58
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f5934(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 maple_set_condition_locked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 bVar1;
     u32 uVar2;
     u32 in_PR;
@@ -7908,11 +7913,11 @@ u32 shinobi_sub_1f5934(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1f5936  0x8c1f5936
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_set_condition_locked_alt  0x8c1f5936
+ * maple_set_condition under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f5936(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 maple_set_condition_locked_alt(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 bVar1;
     u32 uVar2;
     u32 *in_r3;
@@ -7932,7 +7937,7 @@ u32 shinobi_sub_1f5936(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * maple_set_condition  0x8c1f5970
  * queues Maple command 14 (set condition) for function a1 of port a0
- * called by: shinobi_sub_1f08c8, shinobi_sub_1f5934, shinobi_sub_1f5936
+ * called by: maple_set_condition_locked, maple_set_condition_locked_alt, maple_set_condition_sync
  */
 u32 maple_set_condition(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -7955,11 +7960,11 @@ u32 thunk_FUN_8c1f4ec6(u32 a0) {
 }
 
 /*
- * shinobi_sub_1f599e  0x8c1f599e
- * name hint from a string it uses: FATAL ERROR Cannot get semap; area name: in the shinobi library code range
+ * maple_mark_last_frame_locked  0x8c1f599e
+ * maple_mark_last_frame under the lock byte at 0x8c1f5a2c; -2 if it is held
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f599e(void) {
+u32 maple_mark_last_frame_locked(void) {
     u32 r4;
     u32 r5;
     u32 r6;
@@ -7983,8 +7988,8 @@ u32 shinobi_sub_1f599e(void) {
 /*
  * maple_mark_last_frame  0x8c1f59c8
  * sets the end-of-list bit on the last frame descriptor
- * called by: shinobi_sub_1f3dd8, shinobi_sub_1f3de2, shinobi_sub_1f3ef4, shinobi_sub_1f4102, shinobi_sub_1f4110,
- * shinobi_sub_1f599e
+ * called by: maple_mark_last_frame_locked, shinobi_sub_1f3dd8, shinobi_sub_1f3de2, shinobi_sub_1f3ef4,
+ * shinobi_sub_1f4102, shinobi_sub_1f4110
  */
 u32 maple_mark_last_frame(void) {
     **(u32 **)((int)0xfcc + g_8c4727b4) = **(u32 **)((int)0xfcc + g_8c4727b4) | 0x80000000;
@@ -9119,7 +9124,7 @@ u32 shinobi_sub_1f6516(int a0, u16 *a1, code *a2, u32 a3) {
         uStack_11 = (&g_8c26c824)[*(u8 *)((int)a1 + 7) & 7];
         a6 = NULL;
         a7 = 0;
-        iVar1 = shinobi_sub_1f070c(a0, 8, 0, 0, 0, &uStack_18, 2, &LAB_8c1f64b6);
+        iVar1 = maple_block_write_sync(a0, 8, 0, 0, 0, &uStack_18, 2, &LAB_8c1f64b6);
         if (iVar1 < 0) {
             iVar1 = -1;
         } else {
@@ -9193,7 +9198,7 @@ u32 shinobi_sub_1f667e(int a0, u32 a1, code *a2, u32 a3) {
     } else {
         a6 = NULL;
         a7 = 0;
-        iVar1 = shinobi_sub_1f06ac(a0, 8, 0, 0, 0, &LAB_8c1f65e8);
+        iVar1 = maple_block_read_sync(a0, 8, 0, 0, 0, &LAB_8c1f65e8);
         if (iVar1 < 0) {
             iVar1 = -1;
         } else {

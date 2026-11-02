@@ -479,8 +479,8 @@ u32 pvr_sub_1efa2a(u32 unused_a0, u32 a1) {
 
 /*
  * pvr_1efaf4  0x8c1efaf4
- * called by: pvr_1ef84c, shinobi_sub_1ef4fa, shinobi_sub_1efd7c, shinobi_sub_1efda2, shinobi_sub_1efdc8,
- * shinobi_sub_1efdee, shinobi_sub_1efe14, shinobi_sub_1efe3a (+20 more)
+ * called by: maple_all_status_request_sync, maple_block_complete_sync, maple_block_read_sync, maple_block_write_sync,
+ * maple_cmd15_func10_sync, maple_cmd16_func20_sync, maple_device_kill_sync, maple_device_request_sync (+20 more)
  */
 int pvr_1efaf4(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     int *piVar1;
@@ -659,7 +659,7 @@ u32 thunk_FUN_8c1f461c(void) {
 u32 shinobi_sub_1efd7c(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f55b8(a0);
+    uVar1 = maple_device_request_locked(a0);
     if (*(int *)((int)0x10e8 + g_8c4727b4) != 0) {
         pvr_1efaf4(a0, unused_a1, a2, a3);
     }
@@ -673,7 +673,7 @@ u32 shinobi_sub_1efd7c(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 u32 shinobi_sub_1efda2(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f5684(a0);
+    uVar1 = maple_all_status_request_locked(a0);
     if (*(int *)((int)0x10e8 + g_8c4727b4) != 0) {
         pvr_1efaf4(a0, unused_a1, a2, a3);
     }
@@ -688,7 +688,7 @@ u32 shinobi_sub_1efda2(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 u32 shinobi_sub_1efdc8(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f5640(a0);
+    uVar1 = maple_device_reset_locked(a0);
     if (*(int *)((int)0x10e8 + g_8c4727b4) != 0) {
         pvr_1efaf4(a0, unused_a1, a2, a3);
     }
@@ -702,7 +702,7 @@ u32 shinobi_sub_1efdc8(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 u32 shinobi_sub_1efdee(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f55fc(a0);
+    uVar1 = maple_device_kill_locked(a0);
     if (*(int *)((int)0x10e8 + g_8c4727b4) != 0) {
         pvr_1efaf4(a0, unused_a1, a2, a3);
     }
@@ -716,7 +716,7 @@ u32 shinobi_sub_1efdee(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 u32 shinobi_sub_1efe14(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f5556(a0, a1);
+    uVar1 = maple_get_condition_locked(a0, a1);
     if (*(int *)((int)0x10e8 + g_8c4727b4) != 0) {
         pvr_1efaf4(a0, a1, a2, a3);
     }
@@ -731,7 +731,7 @@ u32 shinobi_sub_1efe14(u32 a0, u32 a1, u32 a2, u32 a3) {
 u32 shinobi_sub_1efe3a(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f56c8(a0, a1, a2);
+    uVar1 = maple_get_mem_info_locked(a0, a1, a2);
     if (*(int *)((int)0x10e8 + g_8c4727b4) != 0) {
         pvr_1efaf4(a0, a1, a2, a3);
     }
@@ -746,7 +746,7 @@ u32 shinobi_sub_1efe3a(u32 a0, u32 a1, u32 a2, u32 a3) {
 u32 shinobi_sub_1efe80(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f571a(a0, a1, a2, a3);
+    uVar1 = maple_block_read_locked(a0, a1, a2, a3);
     if (*(int *)((int)0x10e8 + g_8c4727b4) != 0) {
         pvr_1efaf4(a0, a1, a2, a3);
     }
@@ -761,7 +761,7 @@ u32 shinobi_sub_1efe80(u32 a0, u32 a1, u32 a2, u32 a3) {
 u32 shinobi_sub_1efeac(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f577a(a0, a1, a2, a3);
+    uVar1 = maple_block_write_locked(a0, a1, a2, a3);
     if (*(int *)((int)0x10e8 + g_8c4727b4) != 0) {
         pvr_1efaf4(a0, a1, a2, a3);
     }
@@ -776,7 +776,7 @@ u32 shinobi_sub_1efeac(u32 a0, u32 a1, u32 a2, u32 a3) {
 u32 shinobi_sub_1efee0(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f57e4(a0, a1, a2, a3);
+    uVar1 = maple_block_complete_locked(a0, a1, a2, a3);
     if (*(int *)((int)0x10e8 + g_8c4727b4) != 0) {
         pvr_1efaf4(a0, a1, a2, a3);
     }
@@ -790,7 +790,7 @@ u32 shinobi_sub_1efee0(u32 a0, u32 a1, u32 a2, u32 a3) {
 u32 shinobi_sub_1eff0c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f5894(a0, a1);
+    uVar1 = maple_cmd16_func20_locked(a0, a1);
     if (*(int *)((int)0x10e8 + g_8c4727b4) != 0) {
         pvr_1efaf4(a0, a1, a2, a3);
     }
@@ -805,7 +805,7 @@ u32 shinobi_sub_1eff0c(u32 a0, u32 a1, u32 a2, u32 a3) {
 u32 shinobi_sub_1eff32(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f58e4(a0, a1);
+    uVar1 = maple_cmd15_func10_locked(a0, a1);
     if (*(int *)((int)0x10e8 + g_8c4727b4) != 0) {
         pvr_1efaf4(a0, a1, a2, a3);
     }
@@ -820,7 +820,7 @@ u32 shinobi_sub_1eff32(u32 a0, u32 a1, u32 a2, u32 a3) {
 u32 shinobi_sub_1eff58(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f5934(a0, a1, a2, a3);
+    uVar1 = maple_set_condition_locked(a0, a1, a2, a3);
     if (*(int *)((int)0x10e8 + g_8c4727b4) != 0) {
         pvr_1efaf4(a0, a1, a2, a3);
     }
@@ -834,7 +834,7 @@ u32 shinobi_sub_1eff58(u32 a0, u32 a1, u32 a2, u32 a3) {
 u32 shinobi_sub_1eff9c(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f5850(a0);
+    uVar1 = maple_queue_frame_wrap_locked(a0);
     if (*(int *)((int)0x10e8 + g_8c4727b4) != 0) {
         pvr_1efaf4(a0, unused_a1, a2, a3);
     }

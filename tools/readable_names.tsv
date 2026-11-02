@@ -565,3 +565,42 @@
 8c108560	talk_complain_tank_env_b	queues the GRATIFIC_RID_HOT / _COLD / _OXYGEN line for the tank condition
 8c1f0e98	flashrom_format_partition	deletes flash partition a0 (0 or 1) and writes the "KATANA_FLASH____" header block
 8c1f0e9c	flashrom_format_partition_b	second entry into flashrom_format_partition
+8c1f0444	maple_device_request_sync	maple_device_request under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
+8c1f04a0	maple_all_status_request_sync	maple_all_status_request under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
+8c1f04fc	maple_device_reset_sync	maple_device_reset under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
+8c1f057a	maple_device_kill_sync	maple_device_kill under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
+8c1f05d6	maple_get_condition_sync	maple_get_condition under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
+8c1f0650	maple_get_mem_info_sync	maple_get_mem_info under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
+8c1f06ac	maple_block_read_sync	maple_block_read under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
+8c1f070c	maple_block_write_sync	maple_block_write under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
+8c1f0790	maple_block_complete_sync	maple_block_complete under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
+8c1f07f0	maple_cmd16_func20_sync	maple_cmd16_func20 under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
+8c1f086c	maple_cmd15_func10_sync	maple_cmd15_func10 under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
+8c1f08c8	maple_set_condition_sync	maple_set_condition under the lock byte at 0x8c1f5a28, then the frame hook when enabled; -2 if the lock is held
+8c1f5556	maple_get_condition_locked	maple_get_condition under the lock byte at 0x8c1f5a2c; -2 if it is held
+8c1f5558	maple_get_condition_locked_alt	maple_get_condition under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
+8c1f55b8	maple_device_request_locked	maple_device_request under the lock byte at 0x8c1f5a2c; -2 if it is held
+8c1f55ba	maple_device_request_locked_alt	maple_device_request under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
+8c1f55fc	maple_device_kill_locked	maple_device_kill under the lock byte at 0x8c1f5a2c; -2 if it is held
+8c1f55fe	maple_device_kill_locked_alt	maple_device_kill under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
+8c1f5640	maple_device_reset_locked	maple_device_reset under the lock byte at 0x8c1f5a2c; -2 if it is held
+8c1f5642	maple_device_reset_locked_alt	maple_device_reset under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
+8c1f5684	maple_all_status_request_locked	maple_all_status_request under the lock byte at 0x8c1f5a2c; -2 if it is held
+8c1f5686	maple_all_status_request_locked_alt	maple_all_status_request under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
+8c1f56c8	maple_get_mem_info_locked	maple_get_mem_info under the lock byte at 0x8c1f5a2c; -2 if it is held
+8c1f56ca	maple_get_mem_info_locked_alt	maple_get_mem_info under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
+8c1f571a	maple_block_read_locked	maple_block_read under the lock byte at 0x8c1f5a2c; -2 if it is held
+8c1f571c	maple_block_read_locked_alt	maple_block_read under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
+8c1f577a	maple_block_write_locked	maple_block_write under the lock byte at 0x8c1f5a2c; -2 if it is held
+8c1f577c	maple_block_write_locked_alt	maple_block_write under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
+8c1f57e4	maple_block_complete_locked	maple_block_complete under the lock byte at 0x8c1f5a2c; -2 if it is held
+8c1f57e6	maple_block_complete_locked_alt	maple_block_complete under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
+8c1f5850	maple_queue_frame_wrap_locked	maple_queue_frame_wrap under the lock byte at 0x8c1f5a2c; -2 if it is held
+8c1f5852	maple_queue_frame_wrap_locked_alt	maple_queue_frame_wrap under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
+8c1f5894	maple_cmd16_func20_locked	maple_cmd16_func20 under the lock byte at 0x8c1f5a2c; -2 if it is held
+8c1f5896	maple_cmd16_func20_locked_alt	maple_cmd16_func20 under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
+8c1f58e4	maple_cmd15_func10_locked	maple_cmd15_func10 under the lock byte at 0x8c1f5a2c; -2 if it is held
+8c1f58e6	maple_cmd15_func10_locked_alt	maple_cmd15_func10 under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
+8c1f5934	maple_set_condition_locked	maple_set_condition under the lock byte at 0x8c1f5a2c; -2 if it is held
+8c1f5936	maple_set_condition_locked_alt	maple_set_condition under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
+8c1f599e	maple_mark_last_frame_locked	maple_mark_last_frame under the lock byte at 0x8c1f5a2c; -2 if it is held
