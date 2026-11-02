@@ -63,7 +63,7 @@ u32 cri_calls_update_fields_260030(int a0, int a1, int a2) {
 /*
  * cri_uses_libgcc_divide_helper_260062  0x8c260062
  * area name: in the cri library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
- * called by: cri_uses_get_field_c_260284, cri_uses_get_field_c_2602f4
+ * called by: audio_decoder_exec, cri_uses_get_field_c_260284
  */
 u32 cri_uses_libgcc_divide_helper_260062(int a0) {
     int ar5_00;
@@ -162,7 +162,7 @@ u32 memcpy_u16_wrap(int a0, int a1, u32 unused_a2, u32 a3) {
 /*
  * cri_uses_libgcc_divide_helper_260198  0x8c260198
  * area name: in the cri library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
- * called by: cri_uses_get_field_c_260284, cri_uses_get_field_c_2602f4
+ * called by: audio_decoder_exec, cri_uses_get_field_c_260284
  */
 u32 cri_uses_libgcc_divide_helper_260198(int a0) {
     int iVar1;
@@ -224,7 +224,7 @@ int cri_uses_get_field_c_260284(u32 unused_a0, int a1, int a2, int a3) {
     }
     iVar1 = *(int *)(unaff_r14 + 4);
     if (iVar1 == 2) {
-        vram_calls_fill_loop_26501c(*(u32 *)(unaff_r14 + 8));
+        vram_sound_26501c(*(u32 *)(unaff_r14 + 8));
         iVar1 = get_field_c_264f82(*(u32 *)(unaff_r14 + 8), a1);
         if (iVar1 == 3) {
             cri_uses_libgcc_divide_helper_260198(unaff_r14);
@@ -240,11 +240,11 @@ int cri_uses_get_field_c_260284(u32 unused_a0, int a1, int a2, int a3) {
 }
 
 /*
- * cri_uses_get_field_c_2602f4  0x8c2602f4
- * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
- * called by: cri_uses_get_field_4_26304a, cri_uses_get_field_4_26307e, cri_uses_get_field_c_260340
+ * audio_decoder_exec  0x8c2602f4
+ * runs the decoder handle a0's step for its format (ADX, WAV, SPSD, AIFF or AU)
+ * called by: cri_uses_audio_decoder_exec_260340, cri_uses_get_field_4_26304a, cri_uses_get_field_4_26307e
  */
-u32 cri_uses_get_field_c_2602f4(int a0) {
+u32 audio_decoder_exec(int a0) {
     int r5;
     int r6;
     int r7;
@@ -262,7 +262,7 @@ u32 cri_uses_get_field_c_2602f4(int a0) {
         }
         iVar1 = *(int *)(a0 + 4);
         if (iVar1 == 2) {
-            vram_calls_fill_loop_26501c(*(u32 *)(a0 + 8));
+            vram_sound_26501c(*(u32 *)(a0 + 8));
             iVar1 = get_field_c_264f82(*(u32 *)(a0 + 8));
             if (iVar1 == 3) {
                 cri_uses_libgcc_divide_helper_260198(a0);
@@ -276,7 +276,7 @@ u32 cri_uses_get_field_c_2602f4(int a0) {
         return iVar1;
     }
     if (*(short *)(0xa8 + a0) == 2) {
-        uVar2 = cri_uses_get_field_c_260540();
+        uVar2 = spsd_decode_pcm16();
         return uVar2;
     }
     if (*(short *)(0xa8 + a0) == 3) {
@@ -284,21 +284,21 @@ u32 cri_uses_get_field_c_2602f4(int a0) {
         return uVar2;
     }
     if (*(short *)(0xa8 + a0) == 4) {
-        uVar2 = cri_uses_get_field_c_25fb5c();
+        uVar2 = cri_uses_au_decode_ulaw_25fb5c();
         return uVar2;
     }
     if (*(short *)(0xa8 + a0) == 1) {
-        uVar2 = cri_uses_get_field_c_260c60();
+        uVar2 = cri_uses_wav_decode_pcm16_unaligned_260c60();
         return uVar2;
     }
     return (int)*(short *)(0xa8 + a0);
 }
 
 /*
- * cri_uses_get_field_c_260340  0x8c260340
- * area name: in the cri library code range; behaviour name: its callees mostly do: uses_get_field_c
+ * cri_uses_audio_decoder_exec_260340  0x8c260340
+ * area name: in the cri library code range; behaviour name: its main named callee is audio_decoder_exec
  */
-int cri_uses_get_field_c_260340(short *a0) {
+int cri_uses_audio_decoder_exec_260340(short *a0) {
     int iVar1;
     int unaff_r12;
     short *psVar2;
@@ -309,7 +309,7 @@ int cri_uses_get_field_c_260340(short *a0) {
     do {
         iVar1 = (int)*a0;
         if (iVar1 == 1) {
-            iVar1 = cri_uses_get_field_c_2602f4(a0);
+            iVar1 = audio_decoder_exec(a0);
         }
         a0 = (short *)((int)a0 + iVar3);
     } while (a0 < psVar2);
@@ -317,12 +317,12 @@ int cri_uses_get_field_c_260340(short *a0) {
 }
 
 /*
- * cri_test_260390  0x8c260390
- * area name: in the cri library code range; behaviour name: returns the result of a comparison
- * called by: cri_copy_26045c
+ * spsd_parse_header_fields  0x8c260390
+ * reads the SPSD header's rate, channels, loop start and sample count; the decoder treats every SPSD as 16-bit
+ * stereo-interleaved called by: spsd_handle_parse_header
  */
-u32 cri_test_260390(int a0, u32 unused_a1, short *a2, u8 *a3, u8 *s0, char *s4, char *s8, u32 *s12, int *s16, u32 *s20,
-                    u16 *s24) {
+u32 spsd_parse_header_fields(int a0, u32 unused_a1, short *a2, u8 *a3, u8 *s0, char *s4, char *s8, u32 *s12, int *s16,
+                             u32 *s20, u16 *s24) {
     char cVar1;
     int *piVar2;
 
@@ -359,18 +359,18 @@ u32 cri_test_260390(int a0, u32 unused_a1, short *a2, u8 *a3, u8 *s0, char *s4, 
 }
 
 /*
- * cri_copy_26045c  0x8c26045c
- * area name: in the cri library code range; behaviour name: mostly calls copy functions
+ * spsd_handle_parse_header  0x8c26045c
+ * reads the SPSD header of a1 into decoder handle a0 with no loop info
  * called by: alt_entry_25fdbe, audio_parse_header_any
  */
-int cri_copy_26045c(int a0, u32 a1, u32 a2) {
+int spsd_handle_parse_header(int a0, u32 a1, u32 a2) {
     int iVar1;
     int a7;
     short asStack_18[2];
 
     a7 = a0 + 0xc;
     *(u16 *)(a0 + 2) = 1;
-    iVar1 = cri_test_260390(a1, a2, asStack_18, a7);
+    iVar1 = spsd_parse_header_fields(a1, a2, asStack_18, a7);
     if (iVar1 < 0) {
         iVar1 = 0;
     } else {
@@ -403,11 +403,11 @@ int cri_copy_26045c(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * cri_uses_get_field_c_260540  0x8c260540
- * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
- * called by: cri_uses_get_field_c_2602f4
+ * spsd_decode_pcm16  0x8c260540
+ * when data is ready, copies the 16-bit samples into the output channel buffers and hands them to the output callback
+ * called by: audio_decoder_exec
  */
-int cri_uses_get_field_c_260540(int a0) {
+int spsd_decode_pcm16(int a0) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -559,7 +559,7 @@ u32 is_spsd_header(u32 a0, u32 a1) {
 /*
  * cri_uses_memcmp_260658  0x8c260658
  * area name: in the cri library code range; behaviour name: its main named callee is memcmp
- * called by: cri_copy_260810
+ * called by: wav_handle_parse_header
  */
 u32 cri_uses_memcmp_260658(int a0, u32 a1, short *a2, u8 *a3, char *s0, char *s4, char *s8, u32 *s12, u32 s16, u32 *s20,
                            u16 *s24) {
@@ -640,11 +640,11 @@ u32 cri_uses_memcmp_260658(int a0, u32 a1, short *a2, u8 *a3, char *s0, char *s4
 }
 
 /*
- * cri_copy_260810  0x8c260810
- * area name: in the cri library code range; behaviour name: mostly calls copy functions
+ * wav_handle_parse_header  0x8c260810
+ * reads the WAV header of a1 into decoder handle a0 with no loop info
  * called by: alt_entry_25fdbe, audio_parse_header_any
  */
-int cri_copy_260810(int a0, u32 a1, u32 a2) {
+int wav_handle_parse_header(int a0, u32 a1, u32 a2) {
     int iVar1;
     int a7;
     short asStack_18[2];
@@ -684,11 +684,11 @@ int cri_copy_260810(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * cri_uses_get_field_c_2608f8  0x8c2608f8
- * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
- * called by: cri_uses_get_field_c_260c60
+ * wav_decode_pcm16  0x8c2608f8
+ * when data is ready, copies the 16-bit little-endian samples into the output channel buffers and hands them on
+ * called by: cri_uses_wav_decode_pcm16_unaligned_260c60
  */
-int cri_uses_get_field_c_2608f8(int a0) {
+int wav_decode_pcm16(int a0) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -826,11 +826,11 @@ int alt_entry_260904(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * cri_uses_get_field_c_2609f0  0x8c2609f0
- * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
- * called by: cri_uses_get_field_c_260c60
+ * wav_decode_pcm8  0x8c2609f0
+ * when data is ready, converts the unsigned 8-bit samples to signed 16 bits into the output channel buffers and hands
+ * them on called by: cri_uses_wav_decode_pcm16_unaligned_260c60
  */
-int cri_uses_get_field_c_2609f0(int a0) {
+int wav_decode_pcm8(int a0) {
     u8 bVar1;
     int iVar2;
     int iVar3;
@@ -970,11 +970,11 @@ int alt_entry_2609fc(u32 unused_a0, u32 a1, u32 unused_a2, int a3) {
 }
 
 /*
- * cri_uses_get_field_c_260afc  0x8c260afc
- * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
- * called by: cri_uses_get_field_c_260c60
+ * wav_decode_pcm16_unaligned  0x8c260afc
+ * when data is ready, assembles the 16-bit little-endian samples byte by byte into the output channel buffers and hands
+ * them on called by: cri_uses_wav_decode_pcm16_unaligned_260c60
  */
-int cri_uses_get_field_c_260afc(int a0) {
+int wav_decode_pcm16_unaligned(int a0) {
     u8 *puVar1;
     int iVar2;
     int iVar3;
@@ -1142,23 +1142,23 @@ u32 is_wav_header(int a0) {
 }
 
 /*
- * cri_uses_get_field_c_260c60  0x8c260c60
- * area name: in the cri library code range; behaviour name: its callees mostly do: uses_get_field_c
- * called by: cri_uses_get_field_c_2602f4
+ * cri_uses_wav_decode_pcm16_unaligned_260c60  0x8c260c60
+ * area name: in the cri library code range; behaviour name: its main named callee is wav_decode_pcm16_unaligned
+ * called by: audio_decoder_exec
  */
-u32 cri_uses_get_field_c_260c60(int a0) {
+u32 cri_uses_wav_decode_pcm16_unaligned_260c60(int a0) {
     u32 uVar1;
 
     if (*(short *)(0xaa + a0) == 2) {
-        uVar1 = cri_uses_get_field_c_260afc(a0);
+        uVar1 = wav_decode_pcm16_unaligned(a0);
         return uVar1;
     }
     if (*(short *)(0xaa + a0) == 1) {
-        uVar1 = cri_uses_get_field_c_2609f0(a0);
+        uVar1 = wav_decode_pcm8(a0);
         return uVar1;
     }
     if (*(short *)(0xaa + a0) == 0) {
-        uVar1 = cri_uses_get_field_c_2608f8(a0);
+        uVar1 = wav_decode_pcm16(a0);
         return uVar1;
     }
     return (int)0xaa;
@@ -1428,11 +1428,11 @@ u32 adx_get_loop_info(u16 *a0, int a1, u32 *a2, u16 *a3, u16 *s0, u32 *s4, u32 *
 }
 
 /*
- * ADX_fill_loop_261058  0x8c261058
- * area name: sits between ADX functions (same compilation unit); behaviour name: a loop that writes memory
- * called by: vram_calls_fill_loop_26501c
+ * adx_decode_mono_blocks  0x8c261058
+ * decodes a1 ADX blocks from a0 (scale word plus 32 4-bit samples) into a2 with the prediction coefficients s0/s4 and
+ * history a3; stops at the end marker called by: vram_sound_26501c
  */
-int ADX_fill_loop_261058(u16 *a0, int a1, u16 *a2, short *a3, u32 s0, u32 s4) {
+int adx_decode_mono_blocks(u16 *a0, int a1, u16 *a2, short *a3, u32 s0, u32 s4) {
     u16 uVar1;
     u32 uVar2;
     int iVar3;
@@ -1478,11 +1478,11 @@ int ADX_fill_loop_261058(u16 *a0, int a1, u16 *a2, short *a3, u32 s0, u32 s4) {
 }
 
 /*
- * cri_fill_loop_261170  0x8c261170
- * area name: in the cri library code range; behaviour name: a loop that writes memory
- * called by: vram_calls_fill_loop_26501c
+ * adx_decode_stereo_blocks  0x8c261170
+ * decodes a1 interleaved stereo ADX blocks from a0 into a2 (left) and s0 (right) with histories a3 and s4; stops at the
+ * end marker called by: vram_sound_26501c
  */
-int cri_fill_loop_261170(u16 *a0, int a1, u16 *a2, short *a3, u16 *s0, short *s4, u32 s8, u32 s12) {
+int adx_decode_stereo_blocks(u16 *a0, int a1, u16 *a2, short *a3, u16 *s0, short *s4, u32 s8, u32 s12) {
     u16 *puVar1;
     int iVar2;
     u16 uVar3;
@@ -3473,7 +3473,7 @@ u32 cri_uses_get_field_1c_262b04(u32 a0, int a1, u32 *a2) {
         uVar2 = get_field_20_26b952(ar4_00);
         uVar3 = get_field_24_26b956(ar4_00);
         iVar4 = (uVar2 >> 1) + (uVar3 >> 1);
-        uVar6 = cri_copy_25fbd0(a1, ar5_01, uVar2 >> 1, iVar4);
+        uVar6 = audio_decoder_alloc(a1, ar5_01, uVar2 >> 1, iVar4);
         puVar1 = (&cri_update_fields_25fea8);
         ar5_00 = (&ta_uses_get_field_1c_262d6c);
         *(u32 *)(ar6_00 + 4) = uVar6;
@@ -3820,7 +3820,7 @@ u32 cri_uses_get_field_4_26304a(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     if (iVar1 == 0) {
         cri_uses_get_field_a8_s16_262e10(unaff_r13, unused_a1, a2, a3);
     }
-    cri_uses_get_field_c_2602f4(uVar2);
+    audio_decoder_exec(uVar2);
     iVar1 = get_field_4_25ff38(uVar2);
     if (iVar1 == 3) {
         uVar2 = cri_uses_get_field_18_262f02(unaff_r13);
@@ -3850,7 +3850,7 @@ u32 cri_uses_get_field_4_26307e(int a0, u32 unused_a1, u32 a2, u32 a3) {
     if (iVar1 == 0) {
         cri_uses_get_field_a8_s16_262e10(a0, unused_a1, a2, a3);
     }
-    cri_uses_get_field_c_2602f4(uVar2);
+    audio_decoder_exec(uVar2);
     iVar1 = get_field_4_25ff38(uVar2);
     if (iVar1 == 3) {
         uVar2 = cri_uses_get_field_18_262f02(a0);
@@ -6454,7 +6454,7 @@ u32 memset_wrap_264ed0(void) {
 
 /*
  * vram64_264eda  0x8c264eda
- * called by: cri_copy_25fbd0
+ * called by: audio_decoder_alloc
  */
 u32 *vram64_264eda(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 ar5_00;
@@ -6590,7 +6590,7 @@ u32 vram_copy_264fd4(int a0) {
 /*
  * vram_update_fields_264fea  0x8c264fea
  * area name: sits between vram functions (same compilation unit); behaviour name: conditionally writes members
- * called by: alt_entry_25ffba, cri_calls_update_fields_25ffb6, cri_uses_get_field_c_260284, cri_uses_get_field_c_2602f4
+ * called by: alt_entry_25ffba, audio_decoder_exec, cri_calls_update_fields_25ffb6, cri_uses_get_field_c_260284
  */
 int vram_update_fields_264fea(int a0) {
     int iVar1;
@@ -6613,7 +6613,7 @@ u32 get_field_10_264ff8(int a0) {
 /*
  * vram_update_fields_264ffc  0x8c264ffc
  * area name: sits between vram functions (same compilation unit); behaviour name: conditionally writes members
- * called by: vram_calls_fill_loop_26501c
+ * called by: vram_sound_26501c
  */
 u32 vram_update_fields_264ffc(void) {
     u32 in_r0;
@@ -6623,11 +6623,11 @@ u32 vram_update_fields_264ffc(void) {
 }
 
 /*
- * vram_calls_fill_loop_26501c  0x8c26501c
- * area name: sits between vram functions (same compilation unit); behaviour name: its callees mostly do: fill_loop
- * called by: cri_uses_get_field_c_260284, cri_uses_get_field_c_2602f4, sd_calls_fill_loop_2650be
+ * vram_sound_26501c  0x8c26501c
+ * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls sound functions
+ * called by: audio_decoder_exec, cri_uses_get_field_c_260284, sd_sound_2650be
  */
-u32 vram_calls_fill_loop_26501c(int a0) {
+u32 vram_sound_26501c(int a0) {
     u32 uVar1;
     int ar7_00;
     u32 ar4_00;
@@ -6640,16 +6640,16 @@ u32 vram_calls_fill_loop_26501c(int a0) {
     uVar1 = *(u32 *)(a0 + 0xc);
     if (uVar1 == 2) {
         if (*(int *)(a0 + 0x14) == 1) {
-            uVar1 = ADX_fill_loop_261058(*(u32 *)(a0 + 0x18), *(u32 *)(a0 + 0x1c), *(u32 *)(a0 + 0x20), a0 + 0x28,
-                                         (int)*(short *)(a0 + 0x30), (int)*(short *)(a0 + 0x32));
+            uVar1 = adx_decode_mono_blocks(*(u32 *)(a0 + 0x18), *(u32 *)(a0 + 0x1c), *(u32 *)(a0 + 0x20), a0 + 0x28,
+                                           (int)*(short *)(a0 + 0x30), (int)*(short *)(a0 + 0x32));
             *(u32 *)(a0 + 0x10) = uVar1;
         } else {
             ar7_00 = a0 + 0x28;
             ar5_00 = *(u32 *)(a0 + 0x1c);
             ar6_00 = *(u32 *)(a0 + 0x20);
             ar4_00 = *(u32 *)(a0 + 0x18);
-            uVar1 = cri_fill_loop_261170(ar4_00, ar5_00, ar6_00, ar7_00, *(u32 *)(a0 + 0x24), a0 + 0x2c,
-                                         (int)*(short *)(a0 + 0x30), (int)*(short *)(a0 + 0x32));
+            uVar1 = adx_decode_stereo_blocks(ar4_00, ar5_00, ar6_00, ar7_00, *(u32 *)(a0 + 0x24), a0 + 0x2c,
+                                             (int)*(short *)(a0 + 0x30), (int)*(short *)(a0 + 0x32));
             *(u32 *)(a0 + 0x10) = uVar1;
             if ((int)uVar1 < 0) {
                 uVar1 = ~(~uVar1 + 1 & 1) + 1;
@@ -6666,10 +6666,10 @@ u32 vram_calls_fill_loop_26501c(int a0) {
 }
 
 /*
- * sd_calls_fill_loop_2650be  0x8c2650be
- * area name: in the sd library code range; behaviour name: its callees mostly do: calls_fill_loop
+ * sd_sound_2650be  0x8c2650be
+ * area name: in the sd library code range; behaviour name: mostly calls sound functions
  */
-int sd_calls_fill_loop_2650be(int *a0) {
+int sd_sound_2650be(int *a0) {
     int iVar1;
     int unaff_r13;
     int *piVar2;
@@ -6678,7 +6678,7 @@ int sd_calls_fill_loop_2650be(int *a0) {
     do {
         iVar1 = *a0;
         if (iVar1 == 1) {
-            iVar1 = vram_calls_fill_loop_26501c(a0);
+            iVar1 = vram_sound_26501c(a0);
         }
         a0 = a0 + 0xd;
     } while (a0 < piVar2);

@@ -25167,7 +25167,7 @@ int alt_entry_25f312(u32 unused_a0, u32 a1, u32 unused_a2, int a3) {
 /*
  * cri_uses_aiff_decode_pcm8_25f40e  0x8c25f40e
  * area name: in the cri library code range; behaviour name: its main named callee is aiff_decode_pcm8
- * called by: cri_uses_get_field_c_2602f4
+ * called by: audio_decoder_exec
  */
 u32 cri_uses_aiff_decode_pcm8_25f40e(int a0) {
     u32 uVar1;
@@ -25316,7 +25316,7 @@ u32 is_au_header(u32 a0) {
 /*
  * cri_uses_au_parse_header_fields_25f67e  0x8c25f67e
  * area name: in the cri library code range; behaviour name: its main named callee is au_parse_header_fields
- * called by: cri_copy_25f742
+ * called by: au_handle_parse_header
  */
 u32 cri_uses_au_parse_header_fields_25f67e(u32 a0, int a1, short *a2, u8 *a3, char *s0, u8 *s4, char *s8, u32 *s12,
                                            u32 *s16, u32 *s20) {
@@ -25356,11 +25356,11 @@ u32 cri_uses_au_parse_header_fields_25f67e(u32 a0, int a1, short *a2, u8 *a3, ch
 }
 
 /*
- * cri_copy_25f742  0x8c25f742
- * area name: in the cri library code range; behaviour name: mostly calls copy functions
+ * au_handle_parse_header  0x8c25f742
+ * reads the AU header of a1 into decoder handle a0 with no loop info and records its encoding
  * called by: alt_entry_25fdbe, audio_parse_header_any
  */
-int cri_copy_25f742(int a0, u32 a1, u32 a2) {
+int au_handle_parse_header(int a0, u32 a1, u32 a2) {
     int iVar1;
     int a7;
     short asStack_1c[2];
@@ -25402,11 +25402,11 @@ int cri_copy_25f742(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * cri_uses_get_field_c_25f830  0x8c25f830
- * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
- * called by: cri_uses_get_field_c_25fb5c
+ * au_decode_pcm16  0x8c25f830
+ * when data is ready, byte-swaps the big-endian 16-bit samples into the output channel buffers and hands them to the
+ * output callback called by: cri_uses_au_decode_ulaw_25fb5c
  */
-int cri_uses_get_field_c_25f830(int a0) {
+int au_decode_pcm16(int a0) {
     u16 uVar1;
     int iVar2;
     int iVar3;
@@ -25547,11 +25547,11 @@ int alt_entry_25f83c(u32 unused_a0, u32 a1, u32 unused_a2, int *a3) {
 }
 
 /*
- * cri_uses_get_field_c_25f950  0x8c25f950
- * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
- * called by: cri_uses_get_field_c_25fb5c
+ * au_decode_pcm8  0x8c25f950
+ * when data is ready, widens the 8-bit samples to 16 bits into the output channel buffers and hands them to the output
+ * callback called by: cri_uses_au_decode_ulaw_25fb5c
  */
-int cri_uses_get_field_c_25f950(int a0) {
+int au_decode_pcm8(int a0) {
     u8 bVar1;
     int iVar2;
     int iVar3;
@@ -25691,11 +25691,11 @@ int alt_entry_25f95c(u32 unused_a0, u32 a1, u32 unused_a2, int a3) {
 }
 
 /*
- * cri_uses_get_field_c_25fa58  0x8c25fa58
- * area name: in the cri library code range; behaviour name: its main named callee is get_field_c_264f82
- * called by: cri_uses_get_field_c_25fb5c
+ * au_decode_ulaw  0x8c25fa58
+ * when data is ready, expands the 8-bit mu-law samples through the table into the output channel buffers and hands them
+ * on called by: cri_uses_au_decode_ulaw_25fb5c
  */
-int cri_uses_get_field_c_25fa58(int a0, u32 a1) {
+int au_decode_ulaw(int a0, u32 a1) {
     u8 bVar1;
     int iVar2;
     int iVar3;
@@ -25835,22 +25835,22 @@ int alt_entry_25fa64(u32 unused_a0, u32 a1, u32 unused_a2, u16 *a3) {
 }
 
 /*
- * cri_uses_get_field_c_25fb5c  0x8c25fb5c
- * area name: in the cri library code range; behaviour name: its callees mostly do: uses_get_field_c
- * called by: cri_uses_get_field_c_2602f4
+ * cri_uses_au_decode_ulaw_25fb5c  0x8c25fb5c
+ * area name: in the cri library code range; behaviour name: its main named callee is au_decode_ulaw
+ * called by: audio_decoder_exec
  */
-u32 cri_uses_get_field_c_25fb5c(int a0, u32 a1) {
+u32 cri_uses_au_decode_ulaw_25fb5c(int a0, u32 a1) {
     u32 uVar1;
 
     if (*(short *)(0xaa + a0) == 2) {
-        uVar1 = cri_uses_get_field_c_25fa58(a0, a1);
+        uVar1 = au_decode_ulaw(a0, a1);
         return uVar1;
     }
     if (*(short *)(0xaa + a0) == 1) {
-        uVar1 = cri_uses_get_field_c_25f950(a0);
+        uVar1 = au_decode_pcm8(a0);
         return uVar1;
     }
-    uVar1 = cri_uses_get_field_c_25f830(a0);
+    uVar1 = au_decode_pcm16(a0);
     return uVar1;
 }
 
@@ -25889,11 +25889,11 @@ u32 cri_update_fields_25fbbe(int a0, u32 unused_a1, int a2) {
 }
 
 /*
- * cri_copy_25fbd0  0x8c25fbd0
- * area name: in the cri library code range; behaviour name: mostly calls copy functions
- * called by: cri_uses_get_field_1c_262b04
+ * audio_decoder_alloc  0x8c25fbd0
+ * takes a free decoder handle of the eight, creates its input buffer and stores the callbacks a0..a3; returns 0 when
+ * none is free called by: cri_uses_get_field_1c_262b04
  */
-u32 cri_copy_25fbd0(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 audio_decoder_alloc(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     u16 *ar4_00;
@@ -25938,7 +25938,7 @@ u32 cri_copy_25fbd0(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * cri_copy_25fc5c  0x8c25fc5c
  * area name: in the cri library code range; behaviour name: mostly calls copy functions
- * called by: cri_copy_25fbd0, ta_fifo_262c04, ta_fifo_262c08
+ * called by: audio_decoder_alloc, ta_fifo_262c04, ta_fifo_262c08
  */
 u32 cri_copy_25fc5c(u16 *a0) {
     u32 in_r0;
@@ -26024,12 +26024,12 @@ u32 audio_parse_header_any(u32 a0, u16 *a1, u32 a2) {
     }
     iVar2 = is_spsd_header(a1, &g_8c4b9828);
     if (iVar2 != 0) {
-        uVar1 = cri_copy_26045c(a0, a1, a2);
+        uVar1 = spsd_handle_parse_header(a0, a1, a2);
         return uVar1;
     }
     iVar2 = is_wav_header(a1);
     if (iVar2 != 0) {
-        uVar1 = cri_copy_260810(a0, a1, a2);
+        uVar1 = wav_handle_parse_header(a0, a1, a2);
         return uVar1;
     }
     iVar2 = is_aiff_header(a1);
@@ -26038,7 +26038,7 @@ u32 audio_parse_header_any(u32 a0, u16 *a1, u32 a2) {
         if (iVar2 == 0) {
             return 0;
         }
-        uVar1 = cri_copy_25f742(a0, a1, a2);
+        uVar1 = au_handle_parse_header(a0, a1, a2);
         return uVar1;
     }
     uVar1 = aiff_handle_parse_header(a0, a1, a2);
@@ -26071,12 +26071,12 @@ u32 alt_entry_25fdbe(u32 unused_a0, u32 a1, u32 a2) {
     uVar1 = a2;
     iVar2 = is_spsd_header(unaff_r14, a1);
     if (iVar2 != 0) {
-        uVar1 = cri_copy_26045c(a2);
+        uVar1 = spsd_handle_parse_header(a2);
         return uVar1;
     }
     iVar2 = is_wav_header(unaff_r14);
     if (iVar2 != 0) {
-        uVar1 = cri_copy_260810(a2);
+        uVar1 = wav_handle_parse_header(a2);
         return uVar1;
     }
     iVar2 = is_aiff_header(unaff_r14);
@@ -26086,7 +26086,7 @@ u32 alt_entry_25fdbe(u32 unused_a0, u32 a1, u32 a2) {
     }
     iVar2 = is_au_header(unaff_r14);
     if (iVar2 != 0) {
-        uVar1 = cri_copy_25f742(a2);
+        uVar1 = au_handle_parse_header(a2);
         return uVar1;
     }
     return 0;

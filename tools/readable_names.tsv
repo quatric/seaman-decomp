@@ -2262,3 +2262,18 @@
 8c25f1e8	aiff_decode_pcm16	when data is ready, byte-swaps the big-endian 16-bit samples into the output channel buffers and hands them to the output callback
 8c25f306	aiff_decode_pcm8	when data is ready, widens the 8-bit samples to 16 bits into the output channel buffers and hands them to the output callback
 8c25f428	au_parse_header_fields	checks the ".snd" magic and reads the AU header's data offset, size, encoding, rate and channels
+8c25f742	au_handle_parse_header	reads the AU header of a1 into decoder handle a0 with no loop info and records its encoding
+8c25f830	au_decode_pcm16	when data is ready, byte-swaps the big-endian 16-bit samples into the output channel buffers and hands them to the output callback
+8c25f950	au_decode_pcm8	when data is ready, widens the 8-bit samples to 16 bits into the output channel buffers and hands them to the output callback
+8c25fa58	au_decode_ulaw	when data is ready, expands the 8-bit mu-law samples through the table into the output channel buffers and hands them on
+8c25fbd0	audio_decoder_alloc	takes a free decoder handle of the eight, creates its input buffer and stores the callbacks a0..a3; returns 0 when none is free
+8c2602f4	audio_decoder_exec	runs the decoder handle a0's step for its format (ADX, WAV, SPSD, AIFF or AU)
+8c260390	spsd_parse_header_fields	reads the SPSD header's rate, channels, loop start and sample count; the decoder treats every SPSD as 16-bit stereo-interleaved
+8c26045c	spsd_handle_parse_header	reads the SPSD header of a1 into decoder handle a0 with no loop info
+8c260540	spsd_decode_pcm16	when data is ready, copies the 16-bit samples into the output channel buffers and hands them to the output callback
+8c260810	wav_handle_parse_header	reads the WAV header of a1 into decoder handle a0 with no loop info
+8c2608f8	wav_decode_pcm16	when data is ready, copies the 16-bit little-endian samples into the output channel buffers and hands them on
+8c2609f0	wav_decode_pcm8	when data is ready, converts the unsigned 8-bit samples to signed 16 bits into the output channel buffers and hands them on
+8c260afc	wav_decode_pcm16_unaligned	when data is ready, assembles the 16-bit little-endian samples byte by byte into the output channel buffers and hands them on
+8c261058	adx_decode_mono_blocks	decodes a1 ADX blocks from a0 (scale word plus 32 4-bit samples) into a2 with the prediction coefficients s0/s4 and history a3; stops at the end marker
+8c261170	adx_decode_stereo_blocks	decodes a1 interleaved stereo ADX blocks from a0 into a2 (left) and s0 (right) with histories a3 and s4; stops at the end marker
