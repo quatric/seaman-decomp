@@ -4416,8 +4416,8 @@ u32 *set_fields_0_4_8_1f3078(u32 *a0, u32 a1) {
 /*
  * gdfs_close_like  0x8c1f309c
  * closes a file handle: aborts a transfer in progress (status 2..4) and clears +0x4c (probably gdFsClose)
- * called by: ADXSTM_OpenFname, ADXSTM_sub_263446, ADXSTM_sub_26344a, gdfs_sub_1f1eaa, gdfs_sub_1f1f98, gdfs_sub_1f1fa0,
- * kamui_sub_212440
+ * called by: ADXSTM_Destroy_like, ADXSTM_OpenFname, ADXSTM_sub_26344a, gdfs_sub_1f1eaa, gdfs_sub_1f1f98,
+ * gdfs_sub_1f1fa0, kamui_sub_212440
  */
 u32 gdfs_close_like(int a0, u32 a1, u32 a2, u32 a3) {
     short sVar1;
@@ -4483,7 +4483,7 @@ u32 gdfs_sub_1f30ee(int a0, u32 *a1) {
 /*
  * gdFsSeek  0x8c1f3122
  * moves the sector position (+0x14) of file a0 to a1 from the start (0), the current position (1) or the end (2)
- * called by: ADXSTM_sub_263534, ninja_sub_259c48, ninja_sub_259e80
+ * called by: ADXSTM_Seek_like, ninja_sub_259c48, ninja_sub_259e80
  */
 u32 gdFsSeek(int a0, int a1, int a2) {
     if ((a0 == 0) || (*(short *)(a0 + 0x4c) == 0)) {
@@ -14722,7 +14722,7 @@ u32 shinobi_sub_1fbdfc(u32 unused_a0, u32 a1, u32 a2, u32 a3, code *ain1) {
 /*
  * shinobi_sub_1fbe12  0x8c1fbe12
  * area name: in the shinobi library code range
- * called by: game_sub_01ab2c
+ * called by: memcard_flush_and_close
  */
 u32 shinobi_sub_1fbe12(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;

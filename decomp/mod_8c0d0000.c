@@ -9463,7 +9463,7 @@ u32 RING_UNIT_CreateModel(int a0, u32 a1, u32 a2) {
     if (iVar1 == 0) {
         report_error_message("Failed to load ring textuer..", "RING_UNIT::CreateModel", 0, 2);
     }
-    iVar1 = CAnimal_sub_020ddc(a1, "RingMotion.npd", "GRAPHICS\\ENV", a0);
+    iVar1 = retry_until_done_020d90(a1, "RingMotion.npd", "GRAPHICS\\ENV", a0);
     if (iVar1 == 0) {
         report_error_message("RingMotion.npd", "Failed to Load MotionPack :RING_UNIT::CreateModel()", 0, 2);
     }

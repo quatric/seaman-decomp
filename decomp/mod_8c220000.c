@@ -1269,11 +1269,11 @@ u32 gfxlib_sub_2219a8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3
 }
 
 /*
- * gfxlib_sub_2219ac  0x8c2219ac
- * area name: in the gfxlib library code range
+ * light_set_vector  0x8c2219ac
+ * stores fr4..fr6 as the vector of light a0 (1-based) at 0x8c4c0e80 and marks it set
  * called by: Class_12ab2c_sub_09ea78, Class_12ab2c_sub_09edf0
  */
-u32 gfxlib_sub_2219ac(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 light_set_vector(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int iVar1;
     u32 uVar2;
     u32 in_fr5;

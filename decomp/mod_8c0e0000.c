@@ -3758,7 +3758,7 @@ u32 game_sub_0e5238(int *a0, u32 *a1, u32 a2, u32 a3) {
     ar6_00 = a2 & 0xff;
     pure_virtual_stub_wrap_0daf3c();
     ar5_00 = g_8c431a58;
-    iVar2 = game_sub_01ad9c(uVar1, g_8c431a58);
+    iVar2 = memcard_request_status(uVar1, g_8c431a58);
     if ((iVar2 == 4) && (iVar2 = game_sub_10031c(a1), iVar2 == 1)) {
         if (a0[0x2b3] == 0) {
             if (a0[0x275] != 0) {
@@ -5624,7 +5624,7 @@ u32 game_sub_0e8280(int a0, u32 a1, u32 a2, u32 a3) {
         free_if_nonnull_wrap_016660(&uStack_5c, 0xffffffff, ar6_00, a3);
         if ((*(short *)(0x224 + a0) != -1) && (*(short *)(0x226 + a0) != -1)) {
             uVar2 = g_8c431a58;
-            iStack_48 = game_sub_01ad9c(ar4_00, uVar2);
+            iStack_48 = memcard_request_status(ar4_00, uVar2);
             if (iStack_48 == 4) {
                 iStack_54 = (int)*(short *)(0x226 + a0);
                 iStack_58 = (int)*(short *)(0x224 + a0);

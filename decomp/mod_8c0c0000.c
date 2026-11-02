@@ -392,7 +392,7 @@ u32 game_sub_0c09a4(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 ar4_00;
 
     ar4_00 = identity(0x8c3dd7dc, unused_a1, unused_a2, a3);
-    game_sub_01ab2c(ar4_00, unused_a1, unused_a2, a3);
+    memcard_flush_and_close(ar4_00, unused_a1, unused_a2, a3);
     return 1;
 }
 
@@ -4812,7 +4812,7 @@ u32 game_sub_0c76d0(int a0, int a1) {
             iVar2 = Class_12b388_sub_01ad88(uVar1);
             if (iVar2 == 1) {
                 uVar7 = identity(0x8c3dd7dc, pcVar5, puVar4, ar7_00);
-                game_sub_01ab2c(uVar7, pcVar5, puVar4, ar7_00);
+                memcard_flush_and_close(uVar7, pcVar5, puVar4, ar7_00);
                 free_if_nonnull_wrap_0151a0(auStack_2c, 0xffffffff, puVar4, ar7_00);
                 return 2;
             }

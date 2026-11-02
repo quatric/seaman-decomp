@@ -9480,7 +9480,7 @@ u32 Class_12ab2c_sub_09ea78(int a0, u32 a1, u32 a2, u32 a3) {
                         uVar1 = uStack_14;
                     }
                     uStack_14 = uVar1;
-                    gfxlib_sub_2219ac(iVar3 + 2, ar5_00, a2, a3, in_stack_ffffff88);
+                    light_set_vector(iVar3 + 2, ar5_00, a2, a3, in_stack_ffffff88);
                     if (cVar9 == '\0') {
                         *(u32 *)(&g_8c13aae4 + iVar3 * 4) = 0x3dcccccd;
                     } else {
@@ -9499,7 +9499,7 @@ u32 Class_12ab2c_sub_09ea78(int a0, u32 a1, u32 a2, u32 a3) {
     if (*(int *)(a0 + 0xfd0) != 0) {
         light_set_vec_4c0ef4(*(int *)(a0 + 0xfd0) + 1, a1, a2, a3, in_stack_ffffff88);
         light_set_vec_4c0dd4(*(int *)(a0 + 0xfd0) + 1, a1, a2, a3, in_stack_ffffff88);
-        gfxlib_sub_2219ac(*(int *)(a0 + 0xfd0) + 1, a1, a2, a3, in_stack_ffffff88);
+        light_set_vector(*(int *)(a0 + 0xfd0) + 1, a1, a2, a3, in_stack_ffffff88);
         iVar3 = *(int *)(a0 + 0xfd0) + 1;
         kamui_sub_21415c(iVar3, a1, a2, a3, in_stack_ffffff88);
         if (*(int *)(&g_8c13aaf0 + (*(int *)(a0 + 0xfd0) + -1) * 4) == 1) {
@@ -9598,7 +9598,7 @@ u32 *Class_12ab2c_sub_09edf0(int a0) {
 
     cVar7 = '\0';
     cVar6 = '\0';
-    gfxlib_sub_2219ac(*(int *)(a0 + 0xfd0) + 1, r5, r6, r7, in_stack_ffffffcc);
+    light_set_vector(*(int *)(a0 + 0xfd0) + 1, r5, r6, r7, in_stack_ffffffcc);
     light_set_vec_4c0ef4(*(int *)(a0 + 0xfd0) + 1, r5, r6, r7, in_stack_ffffffcc);
     kamui_sub_21415c(*(int *)(a0 + 0xfd0) + 1, r5, r6, r7, in_stack_ffffffcc);
     light_set_vec_4c0dd4(*(int *)(a0 + 0xfd0) + 1, r5, r6, r7, in_stack_ffffffcc);

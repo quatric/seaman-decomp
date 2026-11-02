@@ -4575,7 +4575,7 @@ u32 game_sub_0b6e6c(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
                     iVar1 = strcmp_0b6e04(a0, "SM2000US.INC");
                     if ((iVar1 == 0) &&
                         (iVar1 = memcard_stat_file_wait(uVar2, "SM2000US._VM", auStack_48, ar7_00), iVar1 == 1)) {
-                        iVar1 = game_sub_01b47c(uVar2, "SM2000US._VM", a1, a2);
+                        iVar1 = memcard_save_vm_wait(uVar2, "SM2000US._VM", a1, a2);
                         ar6_00 = a1;
                         ar7_00 = a2;
                         if (iVar1 == 1) {
@@ -4617,7 +4617,7 @@ u32 game_sub_0b6e6c(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
                         }
                     } else {
                         iVar1 = strcmp_0b6e04(a0, "SM2000US.INC");
-                        if ((iVar1 == 0) && (iVar1 = game_sub_01b47c(uVar2, "SM2000US._VM", a1, a2), ar6_00 = a1,
+                        if ((iVar1 == 0) && (iVar1 = memcard_save_vm_wait(uVar2, "SM2000US._VM", a1, a2), ar6_00 = a1,
                                              ar7_00 = a2, iVar1 == 1)) {
                             uVar3 = 0;
                             ar6_00 = a1;
@@ -4688,7 +4688,8 @@ u32 game_sub_0b726c(u32 a0, u32 a1, u8 *a2, u32 a3, u32 s0, int s4) {
             iVar1 = (*(code *)(&strcmp_0b6e04))(a0, "SM2000US.INC", ar6_00, ar7_00);
             if ((iVar1 == 0) &&
                 ((iVar1 = (*(code *)(&memcard_stat_file_wait))(ar4_00, "SM2000US._VM", auStack_34, ar7_00),
-                  iVar1 == 1 && (iVar1 = (*(code *)(&game_sub_01b47c))(ar4_00, "SM2000US._VM", a1, a2), iVar1 == 1)))) {
+                  iVar1 == 1 &&
+                      (iVar1 = (*(code *)(&memcard_save_vm_wait))(ar4_00, "SM2000US._VM", a1, a2), iVar1 == 1)))) {
                 uVar2 = 0;
             }
         }
@@ -4709,7 +4710,7 @@ u32 game_sub_0b726c(u32 a0, u32 a1, u8 *a2, u32 a3, u32 s0, int s4) {
             } else {
                 iVar1 = (*(code *)(&strcmp_0b6e04))(a0, "SM2000US.INC", ar6_00, ar7_00);
                 if ((iVar1 == 0) &&
-                    (iVar1 = (*(code *)(&game_sub_01b47c))(ar4_00, "SM2000US._VM", a1, a2), iVar1 == 1)) {
+                    (iVar1 = (*(code *)(&memcard_save_vm_wait))(ar4_00, "SM2000US._VM", a1, a2), iVar1 == 1)) {
                     uVar2 = 0;
                 }
             }

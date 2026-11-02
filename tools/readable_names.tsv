@@ -633,3 +633,18 @@
 8c201948	crc16_xmodem	bitwise CRC-16 (polynomial 0x1021, initial 0) of a1 bytes at a0, as used in VMS file headers
 8c23a1b0	pvr_stream_find_pvrt	skips chunks in the texture stream until 'PVRT' and reads the size and format
 8c26371e	ADXSTM_ExecServer_like	runs every active stream of the 32 100-byte ADXSTM handles at 0x8c4b9828
+8c020ddc	retry_until_done_020d90	CDCGD_request_type_b, retried through 8c01f810 until done; 1 done, 0 failed
+8c262524	ADXF_ExecServer_like	runs every open ADXF handle (16 of 0x30 bytes at 0x8c4b3b20) with interrupts masked
+8c263446	ADXSTM_Destroy_like	stops reading, closes the stream's file and clears the handle
+8c263534	ADXSTM_Seek_like	seeks the stream to sector a1 (clamped to the file length) and updates the read position
+8c268c7e	mwRnaDestroy	stops an mwRna output if playing, releases its channels and clears the 0x90-byte handle
+8c268e1a	mwRna_all_channels_ready	1 (and clears +0x5c) once every channel reports ready through output vtable slot 0x50
+8c2219ac	light_set_vector	stores fr4..fr6 as the vector of light a0 (1-based) at 0x8c4c0e80 and marks it set
+8c010af8	bytes_add_be	adds the a2-byte big-endian number at a1 to the one at a0
+8c010b40	bytes_all_zero	1 when the a1 bytes at a0 are all zero
+8c013a72	decimal_round_digits	rounds the decimal digit string a0 at digit a1, carrying into the digits before it
+8c234a68	line_closest_point	*a2 = the point on line a1 (origin, direction) closest to a0
+8c0213bc	retry_until_done_021370	CDCGD request 8c021370, retried through 8c01f810 until done; 1 done, 0 failed
+8c01ab2c	memcard_flush_and_close	runs the memory-card queue until it is empty, then shuts the card layer down (state 0)
+8c01ad9c	memcard_request_status	status of request a1 (4 when there is no such request)
+8c01b47c	memcard_save_vm_wait	memcard_save_vm_start, then waits up to 10 s for it

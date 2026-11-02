@@ -8072,11 +8072,11 @@ u32 delay_loop_6_010ad4(void) {
 }
 
 /*
- * libc_sub_010af8  0x8c010af8
- * area name: in the libc library code range
+ * bytes_add_be  0x8c010af8
+ * adds the a2-byte big-endian number at a1 to the one at a0
  * called by: libc_sub_010c60, libc_sub_0128e8
  */
-int libc_sub_010af8(char *a0, int a1, int a2, u32 unused_a3, int ain0) {
+int bytes_add_be(char *a0, int a1, int a2, u32 unused_a3, int ain0) {
     u8 *pbVar1;
     u8 *pbVar2;
     int iVar3;
@@ -8122,11 +8122,11 @@ int libc_sub_010b08(char *a0, int a1, char *a2, u32 unused_a3, int ain0) {
 }
 
 /*
- * libc_sub_010b40  0x8c010b40
- * area name: in the libc library code range
+ * bytes_all_zero  0x8c010b40
+ * 1 when the a1 bytes at a0 are all zero
  * called by: libc_sub_013060
  */
-u32 libc_sub_010b40(char *a0, int a1) {
+u32 bytes_all_zero(char *a0, int a1) {
     int iVar1;
 
     iVar1 = 0;
@@ -8253,7 +8253,7 @@ u32 libc_sub_010c60(short *a0, u32 a1, u32 a2, u32 a3) {
         iVar1 = libc_sub_012eac(0, &cStack_2c, auStack_38, 0xc);
         if (iVar1 < 0) {
             a6 = (u8 *)0xc;
-            libc_sub_010af8(&cStack_2c, auStack_38, 0xc, a3, ain0);
+            bytes_add_be(&cStack_2c, auStack_38, 0xc, a3, ain0);
         } else {
             *ain0 = *ain0 + '\x01';
         }
@@ -9818,7 +9818,7 @@ int libc_sub_0128e8(int a0, int a1, int a2, u32 a3) {
             if (sVar2 == 7) {
                 iVar4 = memmove(a2 + 7, abStack_34 + 7, 9);
             } else {
-                iVar4 = libc_sub_010af8(iVar4 + a2, abStack_34 + iVar4, 9, a3, in_stack_ffffffc4);
+                iVar4 = bytes_add_be(iVar4 + a2, abStack_34 + iVar4, 9, a3, in_stack_ffffffc4);
             }
         }
         sVar2 = sVar2 + -1;
@@ -10438,7 +10438,7 @@ u32 libc_sub_013060(int a0, u8 *a1, int *a2, char *a3) {
     uStack_28 = (u32)in_dr4;
     uStack_24 = (u32)(in_dr4 >> 0x20);
     bVar1 = false;
-    if (((in_dr4 & 0x7f00000000000000) == 0) && (iVar2 = libc_sub_010b40(ar4_01, 7), iVar2 != 0)) {
+    if (((in_dr4 & 0x7f00000000000000) == 0) && (iVar2 = bytes_all_zero(ar4_01, 7), iVar2 != 0)) {
         puVar6 = a1 + 8;
         for (; a1 < puVar6; a1 = a1 + 1) {
             *a1 = 0;
@@ -10459,7 +10459,7 @@ u32 libc_sub_013060(int a0, u8 *a1, int *a2, char *a3) {
                 return 2;
             }
             puVar6 = (u8 *)0x6;
-            iVar2 = libc_sub_010b40(ar4_01, 6);
+            iVar2 = bytes_all_zero(ar4_01, 6);
             if (iVar2 == 0) {
                 return 2;
             }
@@ -10691,7 +10691,7 @@ LAB_8c013572:
             in_stack_ffffffa0 = in_stack_ffffffa0 + iVar3;
             iVar8 = in_stack_ffffffa0 + *(int *)(a3 + 8);
             if ((iVar8 < iVar3) && (-1 < iVar8)) {
-                libc_sub_013a72(acStack_48, iVar8 + 1);
+                decimal_round_digits(acStack_48, iVar8 + 1);
             }
             if (in_stack_ffffffa0 < 1) {
                 bVar15 = acStack_48[0] != '0';
@@ -10894,7 +10894,7 @@ LAB_8c013572:
         }
     } else {
         if (*(int *)(a3 + 8) + 1 < iVar3) {
-            libc_sub_013a72(acStack_48, *(int *)(a3 + 8) + 2);
+            decimal_round_digits(acStack_48, *(int *)(a3 + 8) + 2);
         }
         if (acStack_48[0] != '0') {
             iVar3 = iVar3 + 1;
@@ -10990,11 +10990,11 @@ LAB_8c013572:
 }
 
 /*
- * libc_sub_013a72  0x8c013a72
- * area name: in the libc library code range
+ * decimal_round_digits  0x8c013a72
+ * rounds the decimal digit string a0 at digit a1, carrying into the digits before it
  * called by: libc_sub_013374
  */
-u32 libc_sub_013a72(char *a0, int a1) {
+u32 decimal_round_digits(char *a0, int a1) {
     u32 in_r0;
     char *pcVar1;
     char *pcVar2;
@@ -16249,7 +16249,7 @@ u32 Class_129938_sub_017900(int a0, double *a1, float *a2, float *a3) {
             }
             pfVar7 = NULL;
             ar5_00 = &fStack_a4;
-            gfxlib_sub_234a68(&uStack_b0, ar5_00, 0);
+            line_closest_point(&uStack_b0, ar5_00, 0);
             fVar10 = (float)((u64)dVar11 >> 0x20);
             dVar15 = dVar11;
             if (cVar19 == '\0') {
@@ -17112,7 +17112,7 @@ u32 game_sub_0185a4(int a0, double *a1, float *a2, float *a3) {
             }
             pfVar6 = NULL;
             ar5_00 = &fStack_84;
-            gfxlib_sub_234a68(&uStack_90, ar5_00, 0);
+            line_closest_point(&uStack_90, ar5_00, 0);
             fVar11 = (float)((u64)dVar12 >> 0x20);
             dVar14 = dVar12;
             if (cVar18 == '\0') {
@@ -19019,7 +19019,7 @@ int Class_129a24_sub_01a3e4(int *a0, int a1, int a2) {
     ar7_00 = a0 + 4;
     ar6_00 = (&DATA_8c12fb18) + 0x11;
     ar5_00 = "VM_User_Icon.VMI";
-    iVar1 = CDCGD_sub_0213bc(0x8c3eb334, "VM_User_Icon.VMI", ar6_00, ar7_00);
+    iVar1 = retry_until_done_021370(0x8c3eb334, "VM_User_Icon.VMI", ar6_00, ar7_00);
     if (iVar1 == 0) {
         a0[4] = 0;
     }
@@ -19031,7 +19031,7 @@ int Class_129a24_sub_01a3e4(int *a0, int a1, int a2) {
 /*
  * game_sub_01a5cc  0x8c01a5cc
  * area name: game code; nothing names its area yet
- * called by: game_sub_01ab2c, input_peripheral_state_machine
+ * called by: input_peripheral_state_machine, memcard_flush_and_close
  */
 u32 game_sub_01a5cc(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -19257,11 +19257,11 @@ u32 game_sub_01aa94(int *a0) {
 }
 
 /*
- * game_sub_01ab2c  0x8c01ab2c
- * area name: game code; nothing names its area yet
+ * memcard_flush_and_close  0x8c01ab2c
+ * runs the memory-card queue until it is empty, then shuts the card layer down (state 0)
  * called by: game_sub_0c09a4, game_sub_0c76d0
  */
-u32 game_sub_01ab2c(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 memcard_flush_and_close(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int *ar4_00;
 
@@ -19321,8 +19321,8 @@ u32 game_sub_01ab78(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * wait_state_rtc_10s  0x8c01acd0
  * runs the sound server while slot a1's state (+0x2450) is 2 or 3, for at most 10 RTC seconds
- * called by: CSeamanDomain_sub_01b920, CSeamanDomain_sub_01b9e4, game_sub_01ae98, game_sub_01b144, game_sub_01b47c,
- * game_sub_01bb00, memcard_check_file_wait, memcard_load_raw_wait (+2 more)
+ * called by: CSeamanDomain_sub_01b920, CSeamanDomain_sub_01b9e4, game_sub_01ae98, game_sub_01b144, game_sub_01bb00,
+ * memcard_check_file_wait, memcard_load_raw_wait, memcard_load_wait (+2 more)
  */
 u32 wait_state_rtc_10s(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -19365,11 +19365,11 @@ u32 Class_12b388_sub_01ad88(int *a0) {
 }
 
 /*
- * game_sub_01ad9c  0x8c01ad9c
- * area name: game code; nothing names its area yet
+ * memcard_request_status  0x8c01ad9c
+ * status of request a1 (4 when there is no such request)
  * called by: game_sub_0e5238, game_sub_0e8280
  */
-u32 game_sub_01ad9c(int a0, u32 a1) {
+u32 memcard_request_status(int a0, u32 a1) {
     int iVar1;
     u32 uVar2;
 
@@ -19385,7 +19385,7 @@ u32 game_sub_01ad9c(int a0, u32 a1) {
 /*
  * file_slot_find  0x8c01ade8
  * index of the 0x28-byte slot (128 of them at +0x244c) whose id is a1; -1 if none
- * called by: game_sub_01ad9c, game_sub_01ae98, game_sub_01b47c, game_sub_01bb00
+ * called by: game_sub_01ae98, game_sub_01bb00, memcard_request_status, memcard_save_vm_wait
  */
 u32 file_slot_find(int a0, int a1) {
     int iVar1;
@@ -19623,7 +19623,7 @@ int vmu_file_add_with_icon(int a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4) {
     int aiStack_24[2];
 
     ar7_00 = aiStack_24;
-    iVar1 = CDCGD_sub_0213bc(0x8c3eb334, "VM_App_Icon.VMI", &g_8c12fb29, ar7_00);
+    iVar1 = retry_until_done_021370(0x8c3eb334, "VM_App_Icon.VMI", &g_8c12fb29, ar7_00);
     if (iVar1 == 0) {
         unaff_r8 = -1;
     } else {
@@ -19654,7 +19654,7 @@ int vmu_file_add_with_icon(int a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4) {
 /*
  * memcard_save_vm_start  0x8c01b400
  * starts writing a file of at most 0x600 bytes; returns the request handle or -1
- * called by: game_sub_01b47c, save_write_step
+ * called by: memcard_save_vm_wait, save_write_step
  */
 u32 memcard_save_vm_start(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -19678,11 +19678,11 @@ u32 memcard_save_vm_start(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_01b47c  0x8c01b47c
- * area name: game code; nothing names its area yet
+ * memcard_save_vm_wait  0x8c01b47c
+ * memcard_save_vm_start, then waits up to 10 s for it
  * called by: game_sub_0b6e6c
  */
-u32 game_sub_01b47c(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 memcard_save_vm_wait(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int ar5_00;
 
@@ -23170,8 +23170,8 @@ u32 game_sub_01f794(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_01f810  0x8c01f810
  * area name: game code; nothing names its area yet
- * called by: CAnimal_sub_020ce4, CAnimal_sub_020ddc, CDCGD_sub_0213bc, file_load_into_object_buffer,
- * file_load_to_buffer, retry_until_done_0209b0, retry_until_done_020aa8, retry_until_done_020ba0 (+2 more)
+ * called by: CAnimal_sub_020ce4, file_load_into_object_buffer, file_load_to_buffer, retry_until_done_0209b0,
+ * retry_until_done_020aa8, retry_until_done_020ba0, retry_until_done_020d90, retry_until_done_020e80 (+2 more)
  */
 u32 game_sub_01f810(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;

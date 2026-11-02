@@ -7925,7 +7925,7 @@ u32 game_sub_06ce04(int a0, u32 a1) {
         if (*(int *)(iVar4 + 0x18) != 0) {
             puVar7 = (u32 *)(a0 + a6);
             puVar6 = PTR_s_GRAPHICS_HERBLINE_8c136f4c;
-            iVar2 = CAnimal_sub_020ddc(a1, *(u32 *)(iVar4 + 0x18), PTR_s_GRAPHICS_HERBLINE_8c136f4c, puVar7);
+            iVar2 = retry_until_done_020d90(a1, *(u32 *)(iVar4 + 0x18), PTR_s_GRAPHICS_HERBLINE_8c136f4c, puVar7);
             if (iVar2 == 0) {
                 puVar7 = (u32 *)0x2;
                 puVar6 = NULL;

@@ -708,7 +708,7 @@ u32 CDCGD_release_request_wrap_020d58(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * CDCGD_request_type_b  0x8c020d90
  * disc request type 0xb (handle at +0x28, results at +0xc and +8)
- * called by: CAnimal_sub_020ddc, Vec3_sub_027a78, game_sub_08c9dc
+ * called by: Vec3_sub_027a78, game_sub_08c9dc, retry_until_done_020d90
  */
 u32 CDCGD_request_type_b(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -718,11 +718,11 @@ u32 CDCGD_request_type_b(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CAnimal_sub_020ddc  0x8c020ddc
- * area name: only called from CAnimal methods
+ * retry_until_done_020d90  0x8c020ddc
+ * CDCGD_request_type_b, retried through 8c01f810 until done; 1 done, 0 failed
  * called by: CAnimal_LoadGRWait, RING_UNIT_CreateModel, game_sub_06ce04
  */
-u32 CAnimal_sub_020ddc(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 retry_until_done_020d90(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     u32 ar6_00;
@@ -1017,7 +1017,7 @@ u32 CDCGD_release_type10(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CDCGD_sub_021370  0x8c021370
  * area name: sits between CDCGD functions (same compilation unit)
- * called by: CDCGD_sub_0213bc
+ * called by: retry_until_done_021370
  */
 u32 CDCGD_sub_021370(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1027,11 +1027,11 @@ u32 CDCGD_sub_021370(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CDCGD_sub_0213bc  0x8c0213bc
- * area name: sits between CDCGD functions (same compilation unit)
+ * retry_until_done_021370  0x8c0213bc
+ * CDCGD request 8c021370, retried through 8c01f810 until done; 1 done, 0 failed
  * called by: Class_129a24_sub_01a3e4, vmu_file_add_with_icon
  */
-u32 CDCGD_sub_0213bc(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 retry_until_done_021370(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     u32 ar6_00;
@@ -7404,7 +7404,7 @@ u32 CAnimal_LoadGRWait(int a0, u32 a1, int a2, u32 *a3) {
     if (*(int *)(iVar5 + 0x18) != 0) {
         iVar3 = *(int *)(a0 + 0x410);
         a3 = ar7_01;
-        iVar1 = CAnimal_sub_020ddc(a1, *(u32 *)(iVar5 + 0x18), iVar3, ar7_01);
+        iVar1 = retry_until_done_020d90(a1, *(u32 *)(iVar5 + 0x18), iVar3, ar7_01);
         if (iVar1 == 0) {
             a3 = (u32 *)0x2;
             iVar3 = 0;

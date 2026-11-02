@@ -14368,7 +14368,7 @@ u32 noop_fr4_test(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0)
 /*
  * ninja_sub_258048  0x8c258048
  * area name: in the ninja library code range
- * called by: gfxlib_sub_234a68, gfxlib_sub_234a6a
+ * called by: gfxlib_sub_234a6a, line_closest_point
  */
 u32 ninja_sub_258048(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float in_fr4;

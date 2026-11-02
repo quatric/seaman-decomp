@@ -8950,11 +8950,11 @@ u32 gfxlib_sub_234a1c(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 s0, u32 
 }
 
 /*
- * gfxlib_sub_234a68  0x8c234a68
- * area name: in the gfxlib library code range
+ * line_closest_point  0x8c234a68
+ * *a2 = the point on line a1 (origin, direction) closest to a0
  * called by: Class_129938_sub_017900, game_sub_0185a4
  */
-u32 gfxlib_sub_234a68(float *a0, float *a1, float *a2) {
+u32 line_closest_point(float *a0, float *a1, float *a2) {
     u32 r7;
     u32 uVar1;
     float fVar2;
