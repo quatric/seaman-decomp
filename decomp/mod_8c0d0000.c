@@ -3305,7 +3305,7 @@ u32 game_sub_0d33e8(double *a0, u32 a1, u32 a2) {
             return 1;
         }
         uVar7 = 0x8c3e7d30;
-        ar5_00 = (char *)game_sub_0febf0(0x8c3e7d30);
+        ar5_00 = (char *)pool_5c_alloc(0x8c3e7d30);
         if (ar5_00 == NULL) {
             uVar2 = 2;
             ar6_00 = (char *)0x1;
@@ -3387,7 +3387,7 @@ u32 game_sub_0d33e8(double *a0, u32 a1, u32 a2) {
         } else {
             *(u64 *)(ar5_00 + 0x10) = in_xd0;
         }
-        game_sub_0fe5f0((u32 *)((int)a0 + 0x34), ar5_00);
+        list_append_58((u32 *)((int)a0 + 0x34), ar5_00);
         iVar1 = iVar1 + 1;
         pcVar4 = ar5_00;
     } while (true);
@@ -3458,7 +3458,7 @@ u32 WATER_ELEMETNT_Create(double *a0, u32 a1) {
             return 1;
         }
         ar4_00 = 0x8c3e7d30;
-        ar5_00 = game_sub_0febf0(0x8c3e7d30);
+        ar5_00 = pool_5c_alloc(0x8c3e7d30);
         if (ar5_00 == 0) {
             puVar4 = (u32 *)0x2;
             report_error_message("Lack of mem..", "WATER_ELEMETNT::Create()", 1, 2);
@@ -3558,7 +3558,7 @@ u32 WATER_ELEMETNT_Create(double *a0, u32 a1) {
         } else {
             *(u64 *)(ar5_00 + 0x10) = in_xd0;
         }
-        game_sub_0fe5f0((u32 *)((int)a0 + 0x34), ar5_00);
+        list_append_58((u32 *)((int)a0 + 0x34), ar5_00);
         iVar5 = iVar5 + 1;
         iVar1 = ar5_00;
     } while (true);
@@ -4980,7 +4980,7 @@ u32 se_sub_0d5218(double *a0, u32 a1) {
     game_sub_0fe7f4((int)a0 + 0x34);
     for (iVar1 = 0; uVar2 = SUB84(in_dr2, 0), iVar1 < 0x32; iVar1 = iVar1 + 1) {
         ar4_00 = 0x8c3e7d30;
-        appuStack_18[0] = (u32 **)game_sub_0febf0(0x8c3e7d30);
+        appuStack_18[0] = (u32 **)pool_5c_alloc(0x8c3e7d30);
         if ((u32 ***)appuStack_18[0] == NULL)
             break;
         iVar3 = rand();
@@ -5078,7 +5078,7 @@ u32 se_sub_0d5218(double *a0, u32 a1) {
             *(u64 *)(appuStack_18[0] + 4) = in_xd0;
         }
         ar5_00 = (u32 ***)appuStack_18[0];
-        game_sub_0fe5f0((int)a0 + 0x34, appuStack_18[0]);
+        list_append_58((int)a0 + 0x34, appuStack_18[0]);
     }
     uVar2 = se_play_ike1(a0, ar5_00, pcVar4, puVar6);
     return uVar2;
@@ -10681,7 +10681,7 @@ u32 get_field_4_on_field_170(int a0) {
 /*
  * get_field_4_0dac48  0x8c0dac48
  * called by: CEnv_sub_0fdf74, CEnv_sub_0fe2a0, CItemGLoadRequestList_TakeOu, CItemGLoader_sub_0fe8c4,
- * CItemList_TakeOutItem, CNodePtrList_TakeOutItem, CWaterSnowList_TakeOut, game_sub_0fe5f0 (+1 more)
+ * CItemList_TakeOutItem, CNodePtrList_TakeOutItem, CWaterSnowList_TakeOut, get_field_4_on_field_170 (+1 more)
  */
 u32 get_field_4_0dac48(int a0) {
     return *(u32 *)(a0 + 4);

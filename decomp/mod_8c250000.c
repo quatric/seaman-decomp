@@ -12651,7 +12651,7 @@ int tex_size_to_index(int a0) {
  * tex_sub_2571fe  0x8c2571fe
  * area name: sits between tex functions (same compilation unit)
  * called by: gfxlib_sub_237830, gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212,
- * gfxlib_sub_23a29c, ninja_sub_25b4ea, tex_entry_alloc (+2 more)
+ * ninja_sub_25b4ea, pvr_sub_23a29c, tex_entry_alloc (+2 more)
  */
 u32 tex_sub_2571fe(int a0) {
     int iVar1;
@@ -16941,7 +16941,7 @@ u32 ninja_sub_259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
             }
             return 1;
         }
-        iVar2 = gdfs_sub_1f3122(g_8c4b3338, iVar1 * iVar4, 0);
+        iVar2 = gdFsSeek(g_8c4b3338, iVar1 * iVar4, 0);
         if (iVar2 == 0) {
             iVar5 = g_8c277c90;
             iVar3 = gdfs_sub_1f31c6(g_8c4b3338, g_8c277c90, g_8c277c88, a3);
@@ -17046,7 +17046,7 @@ u32 ninja_sub_259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
             }
             return 1;
         }
-        iVar2 = gdfs_sub_1f3122(g_8c4b3338, iVar1 * iVar4, 0);
+        iVar2 = gdFsSeek(g_8c4b3338, iVar1 * iVar4, 0);
         if (iVar2 == 0) {
             iVar5 = g_8c277c90;
             iVar3 = gdfs_sub_1f31c6(g_8c4b3338, g_8c277c90, g_8c277c88, a3);
@@ -17215,7 +17215,7 @@ u32 tex_sub_25a33c(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 /*
  * tex_entry_alloc  0x8c25a380
  * takes a free 0x44-byte entry in the texture table (0x8c277b08) and fills it from a1
- * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212, gfxlib_sub_23a29c
+ * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212, pvr_sub_23a29c
  */
 u32 tex_entry_alloc(int *a0, u32 *a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;
@@ -17392,8 +17392,8 @@ int tex_sub_25a4a6(u32 *a0, u32 a1, u32 a2, int *a3, int ain0) {
 /*
  * tex_entry_find  0x8c25a536
  * index of the texture-table entry (0x44 bytes each, a1 of them at a0) whose id is a2; -1 if none
- * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212, gfxlib_sub_23a29c,
- * ninja_sub_255ff8, ninja_sub_25b08a, ta_sub_23728c (+2 more)
+ * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212, ninja_sub_255ff8,
+ * ninja_sub_25b08a, pvr_sub_23a29c, ta_sub_23728c (+2 more)
  */
 u32 tex_entry_find(int a0, u32 a1, int a2) {
     u32 uVar1;
@@ -17434,7 +17434,7 @@ u32 tex_sub_25a566(int a0, u32 a1, int a2) {
 /*
  * tex_entry_find_pair  0x8c25a5c0
  * index of the texture-table entry whose first two words are a2, a3; -1 if none
- * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212, gfxlib_sub_23a29c
+ * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212, pvr_sub_23a29c
  */
 u32 tex_entry_find_pair(int a0, u32 a1, int a2, int a3) {
     u32 uVar1;
@@ -17454,7 +17454,7 @@ u32 tex_entry_find_pair(int a0, u32 a1, int a2, int a3) {
  * tex_entry_set_flags  0x8c25a608
  * ORs a1 into the flags of every texture-table entry whose id is a0
  * called by: gfxlib_sub_23782c, gfxlib_sub_237830, gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0,
- * gfxlib_sub_239212, gfxlib_sub_23a29c
+ * gfxlib_sub_239212, pvr_sub_23a29c
  */
 u32 tex_entry_set_flags(int a0, u32 a1, int a2, u32 unused_a3, u32 ain0) {
     int *a4;
@@ -17516,7 +17516,7 @@ u32 tex_sub_25a674(int a0, u32 a1, u32 a2, u32 unused_a3, u32 ain0) {
 /*
  * tex_entry_addref  0x8c25a6ea
  * adds a reference (+0x40) to every texture-table entry whose id is a0
- * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212, gfxlib_sub_23a29c
+ * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212, pvr_sub_23a29c
  */
 u32 tex_entry_addref(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int *piVar1;
@@ -17536,7 +17536,7 @@ u32 tex_entry_addref(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ai
 /*
  * tex_entry_next_free  0x8c25a710
  * +0x14 of the next free texture-table entry
- * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212, gfxlib_sub_23a29c
+ * called by: gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212, pvr_sub_23a29c
  */
 int tex_entry_next_free(void) {
     u32 uVar1;
@@ -17659,7 +17659,7 @@ int tex_sub_25a838(int a0, int *a1, u32 unused_a2, u32 a3) {
 /*
  * tex_copy_to_alloc  0x8c25a8c0
  * copies a texture's data into newly allocated texture memory and writes the cache back; -7 when out of memory
- * called by: gfxlib_sub_23793c, gfxlib_sub_2387a0, gfxlib_sub_23a29c
+ * called by: gfxlib_sub_23793c, gfxlib_sub_2387a0, pvr_sub_23a29c
  */
 int tex_copy_to_alloc(u32 unused_a0, int *a1) {
     int iVar1;
@@ -17685,7 +17685,7 @@ int tex_copy_to_alloc(u32 unused_a0, int *a1) {
  * tex_sub_25a914  0x8c25a914
  * area name: sits between tex functions (same compilation unit)
  * called by: gfxlib_sub_23782c, gfxlib_sub_237830, gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0,
- * gfxlib_sub_239212, gfxlib_sub_23a29c
+ * gfxlib_sub_239212, pvr_sub_23a29c
  */
 int tex_sub_25a914(u32 a0, u32 *a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -18659,8 +18659,7 @@ u32 ninja_sub_25b4ea(u32 *a0, u32 *a1, u32 *a2, u32 a3) {
 /*
  * tex_error_reset  0x8c25b5b4
  * clears the texture loader's error state (0x8c4aa6ac)
- * called by: gfxlib_sub_2378a6, gfxlib_sub_2378ba, gfxlib_sub_239212, gfxlib_sub_23a29c, ninja_sub_256164,
- * njLoadTexture
+ * called by: gfxlib_sub_2378a6, gfxlib_sub_2378ba, gfxlib_sub_239212, ninja_sub_256164, njLoadTexture, pvr_sub_23a29c
  */
 u32 tex_error_reset(void) {
     u32 *puVar1;

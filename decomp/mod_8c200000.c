@@ -1097,11 +1097,11 @@ int vmu_fat_mark(int a0, int a1) {
 }
 
 /*
- * shinobi_sub_200ab6  0x8c200ab6
- * area name: in the shinobi library code range
+ * vmu_handle_alloc  0x8c200ab6
+ * claims a free 0x48-byte file handle at 0x8c47d0a0; error -249 when none is free
  * called by: shinobi_sub_1fe534, shinobi_sub_1fe646, shinobi_sub_1fe7aa
  */
-u32 shinobi_sub_200ab6(void) {
+u32 vmu_handle_alloc(void) {
     char *pcVar1;
     int iVar2;
 
@@ -2074,7 +2074,7 @@ int shinobi_sub_2015b0(char *a0, char *a1, u32 unused_a2, u32 a3) {
             iVar2 = 0x200 - uVar7;
             memset(a0 + a5, 0, iVar2);
         }
-        uVar3 = ta_sub_201948(a0, a5);
+        uVar3 = crc16_xmodem(a0, a5);
         *(short *)(a0 + 0x46) = (short)uVar3;
         iVar2 = (u32)(uVar7 != 0) + (a5 >> 9);
     }
@@ -2163,7 +2163,7 @@ u32 ta_fifo_2017fc(u8 *a0, u8 *a1) {
             }
             uVar2 = *(u16 *)(a1 + 0x46);
             *(u16 *)(a1 + 0x46) = 0;
-            uVar8 = ta_sub_201948(a1, uVar8);
+            uVar8 = crc16_xmodem(a1, uVar8);
             *(u16 *)(a1 + 0x46) = uVar2;
             if ((uVar8 & 0xffff) != (u32)uVar2) {
                 return 0xffffff20;
@@ -2242,7 +2242,7 @@ u32 ta_fifo_201804(u8 *a0, int a1, u32 unused_a2, u32 unused_a3, int ain0) {
             }
             uVar2 = *(u16 *)(unaff_r14 + 0x46);
             *(u16 *)(unaff_r14 + 0x46) = 0;
-            uVar8 = ta_sub_201948(a1, uVar8);
+            uVar8 = crc16_xmodem(a1, uVar8);
             *(u16 *)(unaff_r14 + 0x46) = uVar2;
             if ((uVar8 & 0xffff) != (u32)uVar2) {
                 return 0xffffff20;
@@ -2254,11 +2254,11 @@ u32 ta_fifo_201804(u8 *a0, int a1, u32 unused_a2, u32 unused_a3, int ain0) {
 }
 
 /*
- * ta_sub_201948  0x8c201948
- * area name: sits between ta functions (same compilation unit)
+ * crc16_xmodem  0x8c201948
+ * bitwise CRC-16 (polynomial 0x1021, initial 0) of a1 bytes at a0, as used in VMS file headers
  * called by: shinobi_sub_2015b0, ta_fifo_2017fc, ta_fifo_201804
  */
-u32 ta_sub_201948(char *a0, u32 a1) {
+u32 crc16_xmodem(char *a0, u32 a1) {
     char cVar1;
     u32 uVar2;
     u32 uVar3;

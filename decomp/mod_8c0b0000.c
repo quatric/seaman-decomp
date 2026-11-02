@@ -9416,11 +9416,11 @@ u32 CSeamanDomain_sub_0bf588(int a0, u32 a1, u32 a2, u32 a3) {
     uVar2 = 2;
     if (*(int *)(a0 + 4) == 0) {
         ar5_00 = a1;
-        iVar1 = game_sub_0bf708(a1, a1, a2, a3);
+        iVar1 = menu_next_pressed(a1, a1, a2, a3);
         if ((iVar1 == 1) && (*(int *)(a0 + 0x24) == 1)) {
             *(u32 *)(a0 + 0x24) = 0;
         } else {
-            iVar1 = game_sub_0bf690(a1, ar5_00, a2, a3);
+            iVar1 = menu_prev_pressed(a1, ar5_00, a2, a3);
             if ((iVar1 == 1) && (*(int *)(a0 + 0x24) == 0)) {
                 *(u32 *)(a0 + 0x24) = 1;
             }
@@ -9459,11 +9459,11 @@ u32 game_sub_0bf618(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0bf690  0x8c0bf690
- * area name: game code; nothing names its area yet
+ * menu_prev_pressed  0x8c0bf690
+ * Left or L pressed on the controller at +0xcc (ignored during demo input)
  * called by: CSeamanDomain_sub_0bf588, CSeamanDomain_sub_0c1d98, game_sub_0c76d0
  */
-u32 game_sub_0bf690(int a0, u32 a1, u32 a2, u32 a3) {
+u32 menu_prev_pressed(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
     iVar1 = (*(code *)(&get_field_a510_01f538))(*(u32 *)(0xcc + a0), a1, a2, a3);
@@ -9478,11 +9478,11 @@ u32 game_sub_0bf690(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0bf708  0x8c0bf708
- * area name: game code; nothing names its area yet
+ * menu_next_pressed  0x8c0bf708
+ * Right or R pressed on the controller at +0xcc (ignored during demo input)
  * called by: CSeamanDomain_sub_0bf588, CSeamanDomain_sub_0c1d98, game_sub_0c76d0
  */
-u32 game_sub_0bf708(int a0, u32 a1, u32 a2, u32 a3) {
+u32 menu_next_pressed(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
     iVar1 = (*(code *)(&get_field_a510_01f538))(*(u32 *)(0xcc + a0), a1, a2, a3);

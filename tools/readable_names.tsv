@@ -618,3 +618,18 @@
 8c26ae04	mwSnd_move_to_work_mem	copies a sound from sound memory into the work area; prints E1227 on error
 8c0206b8	CDCGD_slot_add	adds a2 to the 32-entry set at +0x58 unless it is already there
 8c020588	CDCGD_request_matches	1 when request a2 has type a1, directory a3 and file name s0
+8c0bf708	menu_next_pressed	Right or R pressed on the controller at +0xcc (ignored during demo input)
+8c0bf690	menu_prev_pressed	Left or L pressed on the controller at +0xcc (ignored during demo input)
+8c0febf0	pool_5c_alloc	claims a free entry of the 150 0x5c-byte entries at a0 (flag at +0x58); 0 when full
+8c0fe5f0	list_append_58	links node a1 at the tail of the ring list at +0x58 and counts it in +0xd0
+8c1f823a	rtc_date_compare	compares two dates: 1 when a0 is later, -1 when earlier, 0 when equal
+8c1041fc	strcmp		2
+8c1f3122	gdFsSeek	moves the sector position (+0x14) of file a0 to a1 from the start (0), the current position (1) or the end (2)
+8c1f2172	gdfs_lookup_file	finds a1's directory entry: FAD (LBA + 150), size and flags
+8c1f173a	iso9660_is_cd001	1 when the volume descriptor at a0 carries "CD001"
+8c1f881c	flashrom_read_sync	starts a flash-ROM block read into a1 and polls until it finishes; -1 on error
+8c1f884c	flashrom_write_if_changed	reads the block; returns 3 when the 0x3c bytes at a1 already match, else writes them and waits
+8c200ab6	vmu_handle_alloc	claims a free 0x48-byte file handle at 0x8c47d0a0; error -249 when none is free
+8c201948	crc16_xmodem	bitwise CRC-16 (polynomial 0x1021, initial 0) of a1 bytes at a0, as used in VMS file headers
+8c23a1b0	pvr_stream_find_pvrt	skips chunks in the texture stream until 'PVRT' and reads the size and format
+8c26371e	ADXSTM_ExecServer_like	runs every active stream of the 32 100-byte ADXSTM handles at 0x8c4b9828

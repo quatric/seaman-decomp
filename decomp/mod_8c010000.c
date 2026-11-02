@@ -4667,8 +4667,8 @@ int libgcc_divide_helper_010468(u32 a0, u32 a1) {
 
 /*
  * libgcc_divide_helper_01051c  0x8c01051c
- * called by: aica_sub_1f8650, asr_sub_1117e4, asr_sub_112d82, asr_sub_112f40, asr_sub_112f48, asr_sub_112fd8,
- * asr_sub_11318e, asr_sub_11319e (+29 more)
+ * called by: asr_sub_1117e4, asr_sub_112d82, asr_sub_112f40, asr_sub_112f48, asr_sub_112fd8, asr_sub_11318e,
+ * asr_sub_11319e, asr_sub_113354 (+29 more)
  */
 u32 libgcc_divide_helper_01051c(u32 a0, u32 a1) {
     u32 uVar1;
@@ -6905,8 +6905,8 @@ int libgcc_divide_helper_010614(u32 unused_a0, u32 a1) {
 
 /*
  * libgcc_divide_helper_0106dc  0x8c0106dc
- * called by: aica_sub_1f8650, asr_sub_10e818, gfxlib_sub_21c1b0, gfxlib_sub_21c2ea, gfxlib_sub_21c398,
- * gfxlib_sub_21c47c, gfxlib_sub_21c5ca, gfxlib_sub_21c774 (+22 more)
+ * called by: asr_sub_10e818, gfxlib_sub_21c1b0, gfxlib_sub_21c2ea, gfxlib_sub_21c398, gfxlib_sub_21c47c,
+ * gfxlib_sub_21c5ca, gfxlib_sub_21c774, gfxlib_sub_21caa0 (+22 more)
  */
 u32 libgcc_divide_helper_0106dc(u32 a0, u32 a1) {
     u32 uVar1;
@@ -11516,8 +11516,8 @@ u8 *memmove_bytes(u8 *a0, u8 *a1, u32 a2) {
 
 /*
  * memset  0x8c013ff8
- * called by: ADXF_Close_like, ADXF_LoadPartition, ADXF_sub_26216c, asr_calloc, asr_sub_10a308, asr_sub_10f22a,
- * asr_sub_10fece, asr_sub_11346c (+95 more)
+ * called by: ADXF_Close_like, ADXF_LoadPartition, ADXF_sub_26216c, ADXSTM_sub_263840, asr_calloc, asr_sub_10a308,
+ * asr_sub_10f22a, asr_sub_10fece (+95 more)
  */
 u8 *memset(u8 *a0, u32 a1, u32 a2) {
     u8 *puVar1;
@@ -22270,7 +22270,7 @@ u32 input_l_held(int a0) {
 /*
  * input_l_pressed  0x8c01ec20
  * L button (0x20000) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
- * called by: game_sub_0bf690, input_sub_100154
+ * called by: input_sub_100154, menu_prev_pressed
  */
 u32 input_l_pressed(int a0) {
     u32 uVar1;
@@ -22336,7 +22336,7 @@ u32 input_r_off(int a0) {
 /*
  * input_r_pressed  0x8c01ecf8
  * R button (0x10000) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
- * called by: game_sub_0bf708, game_sub_100e4c, game_sub_101004, input_sub_10022c
+ * called by: game_sub_100e4c, game_sub_101004, input_sub_10022c, menu_next_pressed
  */
 u32 input_r_pressed(int a0) {
     u32 uVar1;
@@ -22667,7 +22667,7 @@ u32 input_right_off(int a0) {
 /*
  * input_right_pressed  0x8c01f118
  * Right button (0x80) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
- * called by: game_sub_0bf708, input_sub_0e319c
+ * called by: input_sub_0e319c, menu_next_pressed
  */
 u32 input_right_pressed(int a0) {
     u32 uVar1;
@@ -22733,7 +22733,7 @@ u32 input_left_off(int a0) {
 /*
  * input_left_pressed  0x8c01f1e8
  * Left button (0x40) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
- * called by: game_sub_0bf690, input_sub_0e3150
+ * called by: input_sub_0e3150, menu_prev_pressed
  */
 u32 input_left_pressed(int a0) {
     u32 uVar1;

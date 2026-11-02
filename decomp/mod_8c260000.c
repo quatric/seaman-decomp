@@ -2012,7 +2012,7 @@ u32 cri_sub_261ae2(int a0, u32 a1, u32 a2, u32 a3) {
         if (0 < a4)
             break;
         shinobi_sub_1f39f0(a4, a5, uVar2, a3);
-        ADXSTM_sub_26371e(a4, a5, uVar2, a3);
+        ADXSTM_ExecServer_like(a4, a5, uVar2, a3);
         ADXF_sub_262524(a4, a5, uVar2, a3);
         cri_sub_261aa8();
         iVar3 = iVar3 + 1;
@@ -2023,7 +2023,7 @@ u32 cri_sub_261ae2(int a0, u32 a1, u32 a2, u32 a3) {
     iVar3 = 0;
     do {
         shinobi_sub_1f39f0(a4, a5, uVar2, a3);
-        ADXSTM_sub_26371e(a4, a5, uVar2, a3);
+        ADXSTM_ExecServer_like(a4, a5, uVar2, a3);
         ADXF_sub_262524(a4, a5, uVar2, a3);
         a4 = a0;
         iVar1 = ADXF_GetStat(a0, a5, uVar2);
@@ -2071,7 +2071,7 @@ int ADXF_LoadPartition(int a0, u32 a1, u32 *a2, int a3) {
     if (-1 < iVar2) {
         puVar6 = &uStack_3c;
         uVar7 = a1;
-        iVar2 = cri_sub_2637ca(a1, puVar6, puVar5, a3);
+        iVar2 = ADXSTM_sub_2637ca(a1, puVar6, puVar5, a3);
         if (iVar2 < 0) {
             s0 = "E9040803:can't get FAD of '%s'.(ADXF_LoadPartition)\n";
         } else {
@@ -2200,7 +2200,7 @@ int ADXF_sub_261d46(int a0, u32 a1, int *a2, int a3) {
     if (-1 < iVar1) {
         ar5_00 = &iStack_38;
         uVar3 = a1;
-        iVar1 = cri_sub_2637ca(a1, ar5_00, ar6_00, a3);
+        iVar1 = ADXSTM_sub_2637ca(a1, ar5_00, ar6_00, a3);
         if (iVar1 < 0) {
             s0 = "E9040807:can't find '%s'.(ADXF_AddPartition)\n";
         } else {
@@ -2356,14 +2356,14 @@ int ADXF_sub_261f7a(int a0, u32 a1, u32 a2, u32 a3) {
     a5 = &uStack_20;
     ar5_00 = auStack_18;
     a4 = a1;
-    iVar2 = cri_sub_2637ca(a1, ar5_00, a2, a3);
+    iVar2 = ADXSTM_sub_2637ca(a1, ar5_00, a2, a3);
     puVar1 = (&lib_error_printf);
     if (-1 < iVar2) {
         ar5_00 = &uStack_1c;
         a4 = a1;
-        iVar2 = cri_sub_2637e8(a1, ar5_00, a2, a3);
+        iVar2 = ADXSTM_sub_2637e8(a1, ar5_00, a2, a3);
         if (-1 < iVar2) {
-            iVar2 = cri_sub_263816(a1, &uStack_20, a2, a3);
+            iVar2 = ADXSTM_sub_263816(a1, &uStack_20, a2, a3);
             if (iVar2 < 0) {
                 (*(code *)puVar1)(a1, a5, a2, a3);
                 return iVar2;
@@ -3437,7 +3437,7 @@ u32 cri_sub_262ae2(int a0) {
 /*
  * cri_sub_262b04  0x8c262b04
  * area name: in the cri library code range
- * called by: cri_sub_263840
+ * called by: ADXSTM_sub_263840
  */
 u32 cri_sub_262b04(u32 a0, int a1, u32 *a2) {
     u8 *ar5_00;
@@ -4451,7 +4451,7 @@ u32 ADXSTM_sub_263534(int a0, int a1) {
     }
     uVar2 = 0;
     iVar1 = *(int *)(a0 + 0x10) + iVar1;
-    gdfs_sub_1f3122(*(u32 *)(a0 + 8), iVar1, 0);
+    gdFsSeek(*(u32 *)(a0 + 8), iVar1, 0);
     uVar2 = ADXSTM_get_read_pos(a0, iVar1);
     return uVar2;
 }
@@ -4598,7 +4598,7 @@ int ADXSTM_sub_2635a4(int a0, int a1, u8 *a2, u8 *a3) {
 /*
  * ADXSTM_sub_263702  0x8c263702
  * area name: sits between ADXSTM functions (same compilation unit)
- * called by: ADXSTM_sub_26371e, ADXSTM_sub_263726
+ * called by: ADXSTM_ExecServer_like, ADXSTM_sub_263726
  */
 u32 ADXSTM_sub_263702(int a0, u32 a1, u32 a2, u32 a3) {
     int ain0;
@@ -4617,11 +4617,11 @@ u32 ADXSTM_sub_263702(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ADXSTM_sub_26371e  0x8c26371e
- * area name: sits between ADXSTM functions (same compilation unit)
+ * ADXSTM_ExecServer_like  0x8c26371e
+ * runs every active stream of the 32 100-byte ADXSTM handles at 0x8c4b9828
  * called by: adx_server, cri_sub_261ae2
  */
-int ADXSTM_sub_26371e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+int ADXSTM_ExecServer_like(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     char *pcVar2;
     char *ar4_00;
@@ -4691,10 +4691,10 @@ u32 set_fields_1c_18(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * cri_sub_2637ae  0x8c2637ae
- * area name: in the cri library code range
+ * ADXSTM_sub_2637ae  0x8c2637ae
+ * area name: sits between ADXSTM functions (same compilation unit)
  */
-u32 cri_sub_2637ae(int a0, u32 *a1) {
+u32 ADXSTM_sub_2637ae(int a0, u32 *a1) {
     u32 uVar1;
 
     uVar1 = gdfs_get_stat_like(*(u32 *)(a0 + 8));
@@ -4703,11 +4703,11 @@ u32 cri_sub_2637ae(int a0, u32 *a1) {
 }
 
 /*
- * cri_sub_2637ca  0x8c2637ca
- * area name: in the cri library code range
+ * ADXSTM_sub_2637ca  0x8c2637ca
+ * area name: sits between ADXSTM functions (same compilation unit)
  * called by: ADXF_LoadPartition, ADXF_sub_261d46, ADXF_sub_261f7a
  */
-u32 cri_sub_2637ca(u32 a0, u32 *a1, u32 a2, u32 a3) {
+u32 ADXSTM_sub_2637ca(u32 a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 auStack_10[4];
 
@@ -4717,11 +4717,11 @@ u32 cri_sub_2637ca(u32 a0, u32 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * cri_sub_2637e8  0x8c2637e8
- * area name: in the cri library code range
+ * ADXSTM_sub_2637e8  0x8c2637e8
+ * area name: sits between ADXSTM functions (same compilation unit)
  * called by: ADXF_sub_261f7a
  */
-u32 cri_sub_2637e8(u32 a0, int *a1, u32 a2, u32 a3) {
+u32 ADXSTM_sub_2637e8(u32 a0, int *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 auStack_10[4];
     int iStack_c;
@@ -4736,11 +4736,11 @@ u32 cri_sub_2637e8(u32 a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * cri_sub_263816  0x8c263816
- * area name: in the cri library code range
+ * ADXSTM_sub_263816  0x8c263816
+ * area name: sits between ADXSTM functions (same compilation unit)
  * called by: ADXF_sub_261f7a
  */
-u32 cri_sub_263816(u32 a0, u32 *a1, u32 a2, u32 a3) {
+u32 ADXSTM_sub_263816(u32 a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 auStack_10[4];
     u32 uStack_c;
@@ -4751,11 +4751,11 @@ u32 cri_sub_263816(u32 a0, u32 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * cri_sub_263840  0x8c263840
- * area name: in the cri library code range
+ * ADXSTM_sub_263840  0x8c263840
+ * area name: sits between ADXSTM functions (same compilation unit)
  * called by: game_sub_0221c8
  */
-u32 cri_sub_263840(int a0, int a1, int a2, u32 a3) {
+u32 ADXSTM_sub_263840(int a0, int a1, int a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -4876,7 +4876,7 @@ u32 cri_sub_263840(int a0, int a1, int a2, u32 a3) {
 /*
  * cri_sub_2639fa  0x8c2639fa
  * area name: in the cri library code range
- * called by: cri_sub_263840, cri_sub_263b0c
+ * called by: ADXSTM_sub_263840, cri_sub_263b0c
  */
 u32 cri_sub_2639fa(u8 *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     u32 uVar1;
@@ -5371,7 +5371,7 @@ u32 adx_server(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     uVar1 = sh4_tmu_1f88e6(uVar1);
     uVar3 = uVar1;
     g_8c278494 = int_diff(uVar2, uVar1);
-    ADXSTM_sub_26371e(uVar2, uVar3, a2, a3);
+    ADXSTM_ExecServer_like(uVar2, uVar3, a2, a3);
     uVar2 = sh4_tmu_1f88e6(uVar2);
     uVar3 = uVar2;
     g_8c278498 = int_diff(uVar1, uVar2);
@@ -11355,7 +11355,7 @@ char *sd_sub_268b48(void) {
 /*
  * sd_sub_268b70  0x8c268b70
  * name hint from a string it uses: E1201 mwRnaCreate Illigal pa; area name: in the sd library code range
- * called by: cri_sub_2629ac, cri_sub_263840
+ * called by: ADXSTM_sub_263840, cri_sub_2629ac
  */
 u32 sd_sub_268b70(int *a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -14616,7 +14616,7 @@ u32 game_sub_26b548(void) {
 /*
  * game_sub_26b564  0x8c26b564
  * area name: game code; nothing names its area yet
- * called by: ADXF_sub_262312, cri_sub_263840
+ * called by: ADXF_sub_262312, ADXSTM_sub_263840
  */
 u32 game_sub_26b564(u32 a0, u32 a1, u32 a2) {
     int ain0;

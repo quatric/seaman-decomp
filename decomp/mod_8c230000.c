@@ -13773,7 +13773,7 @@ u32 gfxlib_sub_2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
 /*
  * gfxlib_sub_238e8c  0x8c238e8c
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_23a29c
+ * called by: pvr_sub_23a29c
  */
 u32 gfxlib_sub_238e8c(u32 a0) {
     u32 *puVar1;
@@ -13788,7 +13788,7 @@ u32 gfxlib_sub_238e8c(u32 a0) {
 /*
  * gfx_stream_read  0x8c238e98
  * copies a1 bytes from the read pointer at 0x8c4ab274 to a0 and advances it
- * called by: gfxlib_sub_239f84, gfxlib_sub_23a29c, ta_fifo_23a078, ta_sub_23a1b0, ta_sub_23a21c
+ * called by: gfxlib_sub_239f84, pvr_stream_find_pvrt, pvr_sub_23a21c, pvr_sub_23a29c, ta_fifo_23a078
  */
 u32 gfx_stream_read(u32 a0, int a1) {
     int *piVar1;
@@ -13803,7 +13803,7 @@ u32 gfx_stream_read(u32 a0, int a1) {
 /*
  * gfx_stream_seek  0x8c238eba
  * a1 = 0 sets the read pointer (0x8c4ab274) to base + a0, 1 moves it by a0
- * called by: gfxlib_sub_23a29c, ta_fifo_23a078, ta_sub_23a1b0, ta_sub_23a21c
+ * called by: pvr_stream_find_pvrt, pvr_sub_23a21c, pvr_sub_23a29c, ta_fifo_23a078
  */
 int gfx_stream_seek(int a0, int a1) {
     if (a1 == 1) {
@@ -13845,7 +13845,7 @@ u32 copy_4_bytes(u8 *a0, u8 *a1) {
 /*
  * gfxlib_sub_238f02  0x8c238f02
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_239212, gfxlib_sub_23a29c
+ * called by: gfxlib_sub_239212, pvr_sub_23a29c
  */
 int gfxlib_sub_238f02(u32 a0) {
     int iVar1;
@@ -14001,7 +14001,7 @@ u32 ta_fifo_239012(u32 unused_a0, u32 unused_a1, int a2, u32 a3, u32 s0) {
 /*
  * ta_sub_239150  0x8c239150
  * area name: sits between ta functions (same compilation unit)
- * called by: gfxlib_sub_239212, gfxlib_sub_23a29c
+ * called by: gfxlib_sub_239212, pvr_sub_23a29c
  */
 int ta_sub_239150(int *a0, u32 a1) {
     int iVar1;
@@ -14599,7 +14599,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
 /*
  * gfxlib_sub_239f84  0x8c239f84
  * area name: in the gfxlib library code range
- * called by: gfxlib_sub_23a29c
+ * called by: pvr_sub_23a29c
  */
 u32 gfxlib_sub_239f84(u32 *a0, u32 a1, int a2) {
     u16 uVar1;
@@ -14654,7 +14654,7 @@ u32 gfxlib_sub_239f84(u32 *a0, u32 a1, int a2) {
 
 /*
  * ta_fifo_23a078  0x8c23a078
- * called by: gfxlib_sub_23a29c
+ * called by: pvr_sub_23a29c
  */
 u32 ta_fifo_23a078(u32 unused_a0, u32 unused_a1, u8 *a2, u32 a3) {
     int iVar1;
@@ -14709,11 +14709,11 @@ u32 ta_fifo_23a078(u32 unused_a0, u32 unused_a1, u8 *a2, u32 a3) {
 }
 
 /*
- * ta_sub_23a1b0  0x8c23a1b0
- * area name: sits between ta functions (same compilation unit)
- * called by: gfxlib_sub_23a29c
+ * pvr_stream_find_pvrt  0x8c23a1b0
+ * skips chunks in the texture stream until 'PVRT' and reads the size and format
+ * called by: pvr_sub_23a29c
  */
-u32 ta_sub_23a1b0(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 pvr_stream_find_pvrt(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
     int iVar2;
     u32 uVar3;
@@ -14744,11 +14744,11 @@ u32 ta_sub_23a1b0(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * ta_sub_23a21c  0x8c23a21c
- * area name: sits between ta functions (same compilation unit)
- * called by: gfxlib_sub_23a29c
+ * pvr_sub_23a21c  0x8c23a21c
+ * area name: sits between pvr functions (same compilation unit)
+ * called by: pvr_sub_23a29c
  */
-u32 ta_sub_23a21c(u32 unused_a0, u32 a1) {
+u32 pvr_sub_23a21c(u32 unused_a0, u32 a1) {
     int iStack_14;
     u8 auStack_10[4];
     u32 uStack_c;
@@ -14768,11 +14768,11 @@ u32 ta_sub_23a21c(u32 unused_a0, u32 a1) {
 }
 
 /*
- * gfxlib_sub_23a29c  0x8c23a29c
- * area name: in the gfxlib library code range
+ * pvr_sub_23a29c  0x8c23a29c
+ * area name: sits between pvr functions (same compilation unit)
  * called by: CDCGD_ReadPVMFileReq
  */
-u32 gfxlib_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
+u32 pvr_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int ain0;
     int iVar2;
@@ -14820,7 +14820,7 @@ u32 gfxlib_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                 ar4_00 = *a1 + iVar4;
                 ar4_01 = (int *)(ar4_00 + 8);
                 if ((*(u32 *)(ar4_00 + 4) & 0x1000000) == 0) {
-                    ain0 = ta_sub_23a21c(iVar4, 0x1000000);
+                    ain0 = pvr_sub_23a21c(iVar4, 0x1000000);
                     iVar4 = g_8c277b0c;
                     if (ain0 == 1) {
                         ar6_00 = (int *)(*(u32 *)(ar4_00 + 8) & 0x3ffffff);
@@ -14871,7 +14871,7 @@ u32 gfxlib_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                 }
                 if (iVar2 == 0) {
                     iVar2 = iStack_68 * 0x44 + g_8c277b08;
-                    ta_sub_23a1b0(auStack_54, iVar4, piVar6, a3);
+                    pvr_stream_find_pvrt(auStack_54, iVar4, piVar6, a3);
                     if ((*(u32 *)(iVar2 + 0x10) & 2) == 0) {
                         uVar3 = *(u32 *)(ar4_00 + 4) & 0xa0000000;
                         if ((uVar3 != 0) && (uVar3 != 0x20000000)) {
@@ -14956,7 +14956,7 @@ u32 gfxlib_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                         tex_entry_set_flags(ar6_00, uVar5, piVar6, a3, ain0);
                     }
                 } else if (iVar2 == 1) {
-                    ta_sub_23a1b0(auStack_54, iVar4, piVar6, a3);
+                    pvr_stream_find_pvrt(auStack_54, iVar4, piVar6, a3);
                     iVar2 = iStack_68 * 0x44 + g_8c277b08;
                     *(int *)(ar4_00 + 8) = iVar2;
                     uVar3 = *(u32 *)(ar4_00 + 4) & 0xa0000000;
@@ -15023,7 +15023,7 @@ u32 gfxlib_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                         goto LAB_8c23a82a;
                     }
                 } else if (iVar2 == 2) {
-                    ta_sub_23a1b0(auStack_54, iVar4, piVar6, a3);
+                    pvr_stream_find_pvrt(auStack_54, iVar4, piVar6, a3);
                     uVar5 = tex_entry_next_free();
                     piVar6 = (int *)0x2c;
                     memcpy_bytes(uVar5, auStack_54, 0x2c);

@@ -7004,7 +7004,7 @@ u32 game_sub_0fc94c(int a0, char *a1, char *a2, u32 a3) {
         uStack_2e = 0;
         atoi(*(int *)(*(int *)(a0 + 0x10) + 0x3c) + 0xbc);
         ar5_00 = auStack_34;
-        rtc_sub_1f823a(auStack_2a, ar5_00, a2);
+        rtc_date_compare(auStack_2a, ar5_00, a2);
         uVar3 = sprintf(*(int *)(*(int *)(a0 + 0x10) + 0x3c) + 0x1c4, ar5_00, a2, a3, &g_8c141e10);
         return uVar3;
     }
@@ -7274,7 +7274,7 @@ u32 game_sub_0fcd2c(int a0, char *a1, u32 a2, u32 a3) {
             uStack_27 = 0;
             uStack_26 = 0;
             ar5_00 = auStack_2c;
-            rtc_sub_1f823a(&uStack_22, ar5_00, a2);
+            rtc_date_compare(&uStack_22, ar5_00, a2);
             if ((bStack_2a != '\0') && (bStack_29 != '\0')) {
                 atoi(*(int *)(*(int *)(a0 + 0x10) + 0x3c) + 0x1c4);
                 ar5_00 = *(u8 **)(*(int *)(a0 + 0x10) + 0x3c);
@@ -7295,7 +7295,7 @@ u32 game_sub_0fcd2c(int a0, char *a1, u32 a2, u32 a3) {
             if ((bStack_2a == 0) || (bStack_29 == 0)) {
                 return 0;
             }
-            iVar6 = rtc_sub_1f823a(&uStack_22, auStack_2c, a2);
+            iVar6 = rtc_date_compare(&uStack_22, auStack_2c, a2);
             if (iVar6 == 0) {
                 return 2;
             }
@@ -8000,11 +8000,11 @@ int game_sub_0fe59c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0fe5f0  0x8c0fe5f0
- * area name: game code; nothing names its area yet
+ * list_append_58  0x8c0fe5f0
+ * links node a1 at the tail of the ring list at +0x58 and counts it in +0xd0
  * called by: WATER_ELEMETNT_Create, game_sub_0d33e8, se_sub_0d5218
  */
-int game_sub_0fe5f0(int a0, u32 a1) {
+int list_append_58(int a0, u32 a1) {
     u32 uVar1;
     u32 uVar2;
     uVar1 = get_field_4_0dac48(a0 + 0x58);
@@ -8258,11 +8258,11 @@ u32 vec_new_array_wrap_0febbc(u32 a0) {
 }
 
 /*
- * game_sub_0febf0  0x8c0febf0
- * area name: game code; nothing names its area yet
+ * pool_5c_alloc  0x8c0febf0
+ * claims a free entry of the 150 0x5c-byte entries at a0 (flag at +0x58); 0 when full
  * called by: WATER_ELEMETNT_Create, game_sub_0d33e8, se_sub_0d5218
  */
-u32 game_sub_0febf0(int a0) {
+u32 pool_5c_alloc(int a0) {
     int iVar1;
 
     iVar1 = 0;

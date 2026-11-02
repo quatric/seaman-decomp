@@ -927,11 +927,11 @@ u32 CSeamanDomain_sub_0c1d98(int a0, int a1, u32 a2, int a3, u32 s0) {
         uVar3 = 0;
     } else if (a3 == 1) {
         iVar2 = a1;
-        iVar1 = game_sub_0bf708(*(u32 *)(0x7cc + a1), a1, a2, 1);
+        iVar1 = menu_next_pressed(*(u32 *)(0x7cc + a1), a1, a2, 1);
         if ((iVar1 == 1) && (g_8c436840 == 1)) {
             g_8c436840 = 0;
         } else {
-            iVar1 = game_sub_0bf690(*(u32 *)(0x7cc + a1), iVar2, a2, a3);
+            iVar1 = menu_prev_pressed(*(u32 *)(0x7cc + a1), iVar2, a2, a3);
             if ((iVar1 == 1) && (g_8c436840 == 0)) {
                 g_8c436840 = 1;
             }
@@ -4725,11 +4725,11 @@ u32 game_sub_0c76d0(int a0, int a1) {
         puVar3 = &g_8c13ce50;
         set_fields_0_4_c(0x8c4371cc, &g_8c13ce50, 0x8c437144, 4);
         Class_129808_draw(0x8c4371cc, puVar3, uVar1, uVar6);
-        iVar2 = game_sub_0bf708(*(u32 *)(a1 + 0x7cc), puVar3, uVar1, uVar6);
+        iVar2 = menu_next_pressed(*(u32 *)(a1 + 0x7cc), puVar3, uVar1, uVar6);
         if ((iVar2 == 1) && (g_8c437130 == 1)) {
             g_8c437130 = 0;
         } else {
-            iVar2 = game_sub_0bf690(*(u32 *)(a1 + 0x7cc), puVar3, uVar1, uVar6);
+            iVar2 = menu_prev_pressed(*(u32 *)(a1 + 0x7cc), puVar3, uVar1, uVar6);
             if ((iVar2 == 1) && (g_8c437130 == 0)) {
                 g_8c437130 = 1;
             }
