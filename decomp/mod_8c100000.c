@@ -6426,10 +6426,10 @@ int asr_sub_10afbe(int a0) {
 }
 
 /*
- * asr_sub_10aff4  0x8c10aff4
- * area name: sits between asr functions (same compilation unit)
+ * asr_vcall_8_10aff4  0x8c10aff4
+ * calls interface slot 8 with the (id, sub-id) context of its handle pair
  */
-u32 asr_sub_10aff4(u32 a0, int *a1, u32 a2, u32 a3) {
+u32 asr_vcall_8_10aff4(u32 a0, int *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -6444,10 +6444,10 @@ u32 asr_sub_10aff4(u32 a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10b02a  0x8c10b02a
- * area name: sits between asr functions (same compilation unit)
+ * asr_vcall_0xc_10b02a  0x8c10b02a
+ * calls interface slot 0xc with the (id, sub-id) context of its handle pair
  */
-u32 asr_sub_10b02a(u32 a0, int *a1, u32 a2, u32 a3) {
+u32 asr_vcall_0xc_10b02a(u32 a0, int *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -6462,10 +6462,10 @@ u32 asr_sub_10b02a(u32 a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10b060  0x8c10b060
- * area name: sits between asr functions (same compilation unit)
+ * asr_vcall_0x10_10b060  0x8c10b060
+ * calls interface slot 0x10 with the (id, sub-id) context of its handle pair
  */
-u32 asr_sub_10b060(u32 a0, u32 a1, int *a2, u32 a3) {
+u32 asr_vcall_0x10_10b060(u32 a0, u32 a1, int *a2, u32 a3) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -6480,10 +6480,10 @@ u32 asr_sub_10b060(u32 a0, u32 a1, int *a2, u32 a3) {
 }
 
 /*
- * asr_sub_10b096  0x8c10b096
- * area name: sits between asr functions (same compilation unit)
+ * asr_vcall_0x14_10b096  0x8c10b096
+ * calls interface slot 0x14 with the (id, sub-id) context of its handle pair
  */
-u32 asr_sub_10b096(int *a0, u32 a1, u32 a2, u32 a3) {
+u32 asr_vcall_0x14_10b096(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -6498,10 +6498,10 @@ u32 asr_sub_10b096(int *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10b0d8  0x8c10b0d8
- * area name: sits between asr functions (same compilation unit)
+ * asr_vcall_0x18_10b0d8  0x8c10b0d8
+ * calls interface slot 0x18 with the (id, sub-id) context of its handle pair
  */
-u32 asr_sub_10b0d8(int *a0, u32 a1, u32 a2, u32 a3) {
+u32 asr_vcall_0x18_10b0d8(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -6516,10 +6516,10 @@ u32 asr_sub_10b0d8(int *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10b10e  0x8c10b10e
- * area name: sits between asr functions (same compilation unit)
+ * asr_vcall_0x1c_10b10e  0x8c10b10e
+ * calls interface slot 0x1c with the (id, sub-id) context of its handle pair
  */
-u32 asr_sub_10b10e(int *a0, u32 a1, u32 a2, u32 a3) {
+u32 asr_vcall_0x1c_10b10e(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -6534,10 +6534,10 @@ u32 asr_sub_10b10e(int *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10b144  0x8c10b144
- * area name: sits between asr functions (same compilation unit)
+ * asr_vcall_0x20_10b144  0x8c10b144
+ * calls interface slot 0x20 with the (id, sub-id) context of its handle pair
  */
-u32 asr_sub_10b144(u32 a0, int *a1, u32 a2, u32 a3) {
+u32 asr_vcall_0x20_10b144(u32 a0, int *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -6552,10 +6552,10 @@ u32 asr_sub_10b144(u32 a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10b17a  0x8c10b17a
- * area name: sits between asr functions (same compilation unit)
+ * asr_vcall_0x24_10b17a  0x8c10b17a
+ * calls interface slot 0x24 with the (id, sub-id) context of its handle pair
  */
-u32 asr_sub_10b17a(u32 a0, int *a1, u32 a2, u32 a3) {
+u32 asr_vcall_0x24_10b17a(u32 a0, int *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -6570,10 +6570,10 @@ u32 asr_sub_10b17a(u32 a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10b1b0  0x8c10b1b0
- * area name: sits between asr functions (same compilation unit)
+ * asr_vcall_0x28_10b1b0  0x8c10b1b0
+ * calls interface slot 0x28 with the (id, sub-id) context of its handle pair
  */
-u32 asr_sub_10b1b0(u32 a0, int *a1, u32 a2, u32 a3) {
+u32 asr_vcall_0x28_10b1b0(u32 a0, int *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -6778,10 +6778,10 @@ u32 asr_sub_10b1ec(int *a0, int *a1, u32 *a2, int *a3) {
 }
 
 /*
- * asr_sub_10b576  0x8c10b576
- * area name: sits between asr functions (same compilation unit)
+ * asr_vcall_0x10_10b576  0x8c10b576
+ * calls interface slot 0x10 with the (id, sub-id) context of its handle pair
  */
-u32 asr_sub_10b576(u32 a0, int *a1, u32 a2, u32 a3) {
+u32 asr_vcall_0x10_10b576(u32 a0, int *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -6796,10 +6796,10 @@ u32 asr_sub_10b576(u32 a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10b5b8  0x8c10b5b8
- * area name: sits between asr functions (same compilation unit)
+ * asr_vcall_0x14_10b5b8  0x8c10b5b8
+ * calls interface slot 0x14 with the (id, sub-id) context of its handle pair
  */
-u32 asr_sub_10b5b8(u32 a0, int *a1, u32 a2, u32 a3) {
+u32 asr_vcall_0x14_10b5b8(u32 a0, int *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -6814,10 +6814,10 @@ u32 asr_sub_10b5b8(u32 a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10b5f0  0x8c10b5f0
- * area name: sits between asr functions (same compilation unit)
+ * asr_vcall_0x18_10b5f0  0x8c10b5f0
+ * calls interface slot 0x18 with the (id, sub-id) context of its handle pair
  */
-u32 asr_sub_10b5f0(u32 a0, int *a1, u32 a2, u32 a3) {
+u32 asr_vcall_0x18_10b5f0(u32 a0, int *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -6832,10 +6832,10 @@ u32 asr_sub_10b5f0(u32 a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10b628  0x8c10b628
- * area name: sits between asr functions (same compilation unit)
+ * asr_vcall_0x1c_10b628  0x8c10b628
+ * calls interface slot 0x1c with the (id, sub-id) context of its handle pair
  */
-u32 asr_sub_10b628(u32 a0, int *a1, u32 a2, u32 a3) {
+u32 asr_vcall_0x1c_10b628(u32 a0, int *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -6850,10 +6850,10 @@ u32 asr_sub_10b628(u32 a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10b660  0x8c10b660
- * area name: sits between asr functions (same compilation unit)
+ * asr_vcall_0x20_10b660  0x8c10b660
+ * calls interface slot 0x20 with the (id, sub-id) context of its handle pair
  */
-u32 asr_sub_10b660(int *a0, u32 a1, u32 a2, u32 a3) {
+u32 asr_vcall_0x20_10b660(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -7122,16 +7122,16 @@ u32 asr_lib_create_engine(int *a0, int a1, int *a2, u32 a3) {
         ar5_00[9] = a0[7];
         ar5_00[10] = a0[8];
         ar5_00[1] = a1;
-        puStack_34 = (&asr_sub_10aff4);
+        puStack_34 = (&asr_vcall_8_10aff4);
         *a2 = (int)ar5_00;
-        puStack_30 = (&asr_sub_10b02a);
-        puStack_2c = (&asr_sub_10b060);
-        puStack_28 = (&asr_sub_10b096);
-        puStack_24 = (&asr_sub_10b0d8);
-        puStack_20 = (&asr_sub_10b10e);
-        puStack_1c = (&asr_sub_10b144);
-        puStack_18 = (&asr_sub_10b17a);
-        puStack_14 = (&asr_sub_10b1b0);
+        puStack_30 = (&asr_vcall_0xc_10b02a);
+        puStack_2c = (&asr_vcall_0x10_10b060);
+        puStack_28 = (&asr_vcall_0x14_10b096);
+        puStack_24 = (&asr_vcall_0x18_10b0d8);
+        puStack_20 = (&asr_vcall_0x1c_10b10e);
+        puStack_1c = (&asr_vcall_0x20_10b144);
+        puStack_18 = (&asr_vcall_0x24_10b17a);
+        puStack_14 = (&asr_vcall_0x28_10b1b0);
         iVar1 = asr_sub_11cdb6(&puStack_34, ar5_00, ar6_00, a3);
         if (iVar1 == 0) {
             uVar2 = lib11c_take_error(0, 0, ar6_00, a3);
@@ -7553,11 +7553,11 @@ u32 asr_lib_create_recognizer(u32 *a0, int *a1, int a2, int *a3) {
 
     uVar3 = 0;
     puStack_2c = (&asr_sub_10b1ec);
-    puStack_28 = (&asr_sub_10b576);
-    puStack_24 = (&asr_sub_10b5b8);
-    puStack_20 = (&asr_sub_10b5f0);
-    puStack_1c = (&asr_sub_10b628);
-    puStack_18 = (&asr_sub_10b660);
+    puStack_28 = (&asr_vcall_0x10_10b576);
+    puStack_24 = (&asr_vcall_0x14_10b5b8);
+    puStack_20 = (&asr_vcall_0x18_10b5f0);
+    puStack_1c = (&asr_vcall_0x1c_10b628);
+    puStack_18 = (&asr_vcall_0x20_10b660);
     uStack_34 = a0[1];
     ar7_00 = a3;
     ar6_00 = (int *)(*(code *)a0[2])(0x30, &uStack_34, a2, a3);

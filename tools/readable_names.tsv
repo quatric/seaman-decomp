@@ -1203,3 +1203,17 @@
 8c1f01e8	maple_argun_info	*a0 = the function definition word for function 0x20 (AR gun) of device a1; -1 if it has none
 8c1f0232	maple_vibration_info	decodes device a1's vibration (function 0x100) definition bytes into a0[0], a0[1]
 8c1f38c0	gdfs_install_driver	sets the GD driver to the table at 8c26c4a4 and initialises it
+8c10aff4	asr_vcall_8_10aff4	calls interface slot 8 with the (id, sub-id) context of its handle pair
+8c10b02a	asr_vcall_0xc_10b02a	calls interface slot 0xc with the (id, sub-id) context of its handle pair
+8c10b060	asr_vcall_0x10_10b060	calls interface slot 0x10 with the (id, sub-id) context of its handle pair
+8c10b096	asr_vcall_0x14_10b096	calls interface slot 0x14 with the (id, sub-id) context of its handle pair
+8c10b0d8	asr_vcall_0x18_10b0d8	calls interface slot 0x18 with the (id, sub-id) context of its handle pair
+8c10b10e	asr_vcall_0x1c_10b10e	calls interface slot 0x1c with the (id, sub-id) context of its handle pair
+8c10b144	asr_vcall_0x20_10b144	calls interface slot 0x20 with the (id, sub-id) context of its handle pair
+8c10b17a	asr_vcall_0x24_10b17a	calls interface slot 0x24 with the (id, sub-id) context of its handle pair
+8c10b1b0	asr_vcall_0x28_10b1b0	calls interface slot 0x28 with the (id, sub-id) context of its handle pair
+8c10b576	asr_vcall_0x10_10b576	calls interface slot 0x10 with the (id, sub-id) context of its handle pair
+8c10b5b8	asr_vcall_0x14_10b5b8	calls interface slot 0x14 with the (id, sub-id) context of its handle pair
+8c10b5f0	asr_vcall_0x18_10b5f0	calls interface slot 0x18 with the (id, sub-id) context of its handle pair
+8c10b628	asr_vcall_0x1c_10b628	calls interface slot 0x1c with the (id, sub-id) context of its handle pair
+8c10b660	asr_vcall_0x20_10b660	calls interface slot 0x20 with the (id, sub-id) context of its handle pair
