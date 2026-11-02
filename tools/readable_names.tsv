@@ -2208,3 +2208,20 @@
 8c217618	gfx_project_points_2d	projects the job's 2D points through the current matrix to screen x, y and 1/z, counting the points with z <= 1
 8c21768c	gfx_project_points_2d_minz	projects the job's points through the current matrix to screen x, y and 1/z, keeping the larger of a running value and the job's +0x10 in w
 8c217744	gfx_project_points_3d	projects the job's 3D points through the current matrix to screen x, y and 1/z, counting the points with z <= 1
+8c218e00	gfx_model_draw_a	skips model a0 when its bounding sphere is culled, flags it when near, then draws its mesh sets and material list (variant a)
+8c218e8a	gfx_object_tree_eval_draw_a	walks an object tree honouring its eval flags (skip translate/rotate/scale, hide, skip children), drawing each model with gfx_model_draw_a
+8c218f56	gfx_model_draw_a_entry	saves the draw state, sets the projection scale parameters, draws model a0 with gfx_model_draw_a and restores the state
+8c218f96	gfx_object_draw_a_entry	saves the draw state, sets the projection scale parameters, draws object tree a0 with gfx_object_tree_eval_draw_a and restores the state
+8c21982e	gfx_meshsets_emit	walks the mesh-set list a0 (ended by 0xff), dispatching each set's strips to the emitter for its type and counting polygons
+8c2199aa	gfx_object_tree_eval_draw_b	the eval-flag object-tree walk, drawing each model with gfxlib_calls_test_219954
+8c21a678	gfx_model_draw_c	skips model a0 when its bounding sphere is culled, flags it when near, then draws its mesh sets and material list (variant c)
+8c21a702	gfx_object_tree_eval_draw_c	the eval-flag object-tree walk, drawing each model with gfx_model_draw_c
+8c21a7ce	gfx_model_draw_c_entry	saves the draw state, sets the projection scale parameters, draws model a0 with gfx_model_draw_c and restores the state
+8c21a80e	gfx_object_draw_c_entry	saves the draw state, sets the projection scale parameters, draws object tree a0 with gfx_object_tree_eval_draw_c and restores the state
+8c21a942	gfx_object_tree_draw_hooked	object-tree walk like gfx_object_tree_draw that calls the 0x8c4aa36c hook for nodes without flag 0x80 instead of drawing their model
+8c21b998	gfx_object_tree_draw_hooked_alt	the hooked object-tree walk, drawing models through gfxlib_calls_test_219954
+8c21ba62	gfx_draw_motion	draws object tree a0 posed by motion a1 at frame fr4: picks the position, rotation and scale key appliers from the motion's flags (nothing when past the end)
+8c21bdd6	gfx_draw_motion_alt	the gfx_draw_motion setup for the object in r14, using the alternative rotation interpolator table
+8c21d7d4	gfx_material_colors_unpack	unpacks the material's diffuse (optionally overridden or offset), ambient and specular ARGB words into float colours a2, a3 and s0
+8c2340a0	dbg_font_quad_char	writes a textured quad for debug-font character a2 at screen position (a0, a1) into the store queue
+8c2341d6	dbg_font_print	formats the message a1, then draws it with the debug font at (a0 & 0xffff, a0 >> 16) scaled by the font size

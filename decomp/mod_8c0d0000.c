@@ -4020,7 +4020,7 @@ u32 *game_draw_0d4124(int a0, int a1, u32 a2, u32 a3) {
                             matrix_push(0, ar5_00, a2, a3, in_stack_ffffff9c);
                             touch_fields_30_3c_wrap();
                             rotate_degrees();
-                            game_draw_015b30(a0 + iVar5 * 4 + 0x20, ar5_00, a2, a3);
+                            gfx_object_draw_a_entry_wrap(a0 + iVar5 * 4 + 0x20, ar5_00, a2, a3);
                             matrix_pop_n(1);
                         }
                     }
@@ -6999,7 +6999,7 @@ u32 Class_12b930_draw_0d7354(int a0, u32 a1, u32 a2, u32 a3) {
     matrix_push(0, a1, a2, a3, uVar1);
     touch_fields_30_3c_wrap();
     rotate_degrees();
-    game_draw_015b30(a0, a1, a2, a3);
+    gfx_object_draw_a_entry_wrap(a0, a1, a2, a3);
     matrix_pop_n(1);
     uVar1 = gfx_set_color4_4aa52c(&stack0xffffffd8);
     return uVar1;

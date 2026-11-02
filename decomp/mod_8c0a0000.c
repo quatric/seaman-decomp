@@ -3804,7 +3804,7 @@ u32 Class_12aeec_uses_gfx_set_color4_0a481c(int a0) {
         dVar4 = (double)CONCAT44(uVar2, (int)((u64)dVar4 >> 0x20));
     }
     uVar2 = (u32)((u64)dVar4 >> 0x20);
-    gfxlib_draw_21ba62(uVar1, uVar2, ar6_00, ar7_00, ain0);
+    gfx_draw_motion(uVar1, uVar2, ar6_00, ar7_00, ain0);
     matrix_pop_n(1);
     gfx_set_color4_4aa52c(&g_8c13b07c);
     game_list_0a98cc(a0 + 0x53c, uVar2, ar6_00, ar7_00, ain0, SUB84(dVar4, 0), (int)((u64)dVar4 >> 0x20), s12, uVar1,
@@ -3848,7 +3848,7 @@ u32 Vec3_uses_obj_set_texlist_0a4a5c(int a0, u32 a1, u32 a2, u32 a3) {
     if (cVar3 == '\0') {
         uStack_14 = uVar2;
     }
-    uVar1 = gfxlib_draw_21ba62(uVar1, uStack_14, a2, a3, ain0);
+    uVar1 = gfx_draw_motion(uVar1, uStack_14, a2, a3, ain0);
     return uVar1;
 }
 
@@ -10743,7 +10743,7 @@ int CSquidLine_uses_matrix_push_0ad354(int a0) {
         }
         njRotateXYZ(0, iVar3, iStack_7c, ar7_00, in_stack_ffffff48);
         njSetTexture(*(u32 *)(a0 + 0x890));
-        gfxlib_draw_21a80e(*(u32 *)(a0 + 0x88c), iVar3, iStack_7c, ar7_00);
+        gfx_object_draw_c_entry(*(u32 *)(a0 + 0x88c), iVar3, iStack_7c, ar7_00);
         matrix_pop_n(1);
     }
     iVar10 = *(int *)(a0 + 0x170c);

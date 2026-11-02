@@ -8099,7 +8099,7 @@ u32 game_draw_09c930(int a0, u32 a1, u32 a2) {
     njRotateXYZ(0, ar5_00, ar6_00, ar7_00, in_stack_ffffffe4);
     matrix_scale(0, ar5_00, ar6_00, ar7_00, in_stack_ffffffe4);
     ar4_00 = get_field_0_015bb8(*(int *)(a0 + 0x328) + 0x70);
-    gfxlib_draw_21a80e(ar4_00, ar5_00, ar6_00, ar7_00);
+    gfx_object_draw_c_entry(ar4_00, ar5_00, ar6_00, ar7_00);
     matrix_pop_n(1);
     for (iVar1 = 0; iVar1 < 8; iVar1 = iVar1 + 1) {
         if (*(int *)(a0 + iVar1 * 4 + 0x524) != 0) {

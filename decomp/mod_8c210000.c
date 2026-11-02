@@ -1502,8 +1502,7 @@ LAB_8c212588:
  * point_transform_or_copy  0x8c212740
  * a2 = the current matrix times a1, or the position at +0x30 of object a0 when it is set
  * called by: Class_129938_m1_0170e0, Class_129938_m2_0171f4, Vec3_copy_02a568, Vec3_copy_02a5d4, alt_entry_2376d8,
- * gfxlib_uses_memcpy_words_n_2376c4, gfxlib_uses_point_transform_or_copy_218e00,
- * gfxlib_uses_point_transform_or_copy_21a678
+ * gfx_model_draw_a, gfx_model_draw_c, gfxlib_uses_memcpy_words_n_2376c4
  */
 u32 point_transform_or_copy(int a0, float *a1, float *a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -14688,8 +14687,7 @@ int gfxlib_fill_loop_217d1c(int a0) {
 /*
  * gfxlib_test_217e18  0x8c217e18
  * area name: in the gfxlib library code range; behaviour name: returns the result of a comparison
- * called by: alt_entry_219962, gfxlib_calls_test_219954, gfxlib_uses_point_transform_or_copy_218e00,
- * gfxlib_uses_point_transform_or_copy_21a678, vram64_21869c, vram64_2186a0
+ * called by: alt_entry_219962, gfx_model_draw_a, gfx_model_draw_c, gfxlib_draw_219954, vram64_21869c, vram64_2186a0
  */
 u32 gfxlib_test_217e18(int a0) {
     double *pdVar1;
@@ -15040,7 +15038,7 @@ u8 *gfxlib_draw_217f12(u16 *a0, int a1, int a2, u32 *a3, u8 *ain0) {
                         a7 = NULL;
                         ar5_00 = a0 + 2;
                         uVar5 = *puVar12;
-                        ain0 = (u8 *)gfxlib_calls_calc_21d7d4(iVar3, ar5_00, &g_8c275950, 0, &g_8c275960);
+                        ain0 = (u8 *)gfx_material_colors_unpack(iVar3, ar5_00, &g_8c275950, 0, &g_8c275960);
                         a0 = ar5_00 + (short)uVar5;
                     } else {
                         uVar1 = *puVar12;
@@ -15622,7 +15620,7 @@ u32 vram_draw_2187ce(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * vram_draw_218804  0x8c218804
  * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls draw functions
- * called by: gfxlib_uses_point_transform_or_copy_218e00, vram_draw_218804
+ * called by: gfx_model_draw_a, vram_draw_218804
  */
 u32 vram_draw_218804(u16 *a0, int a1, u8 *a2, u32 unused_a3, u32 ain0) {
     u16 uVar1;
@@ -15687,7 +15685,7 @@ u32 vram_draw_218804(u16 *a0, int a1, u8 *a2, u32 unused_a3, u32 ain0) {
             iVar2 = (int)(short)*puVar5;
             puVar5 = a0 + 2;
             ar7_00 = puStack_28;
-            ain0 = gfxlib_calls_calc_21d7d4((int)(short)uVar4, puVar5, ar6_00, 0x8c4aa2e0, 0);
+            ain0 = gfx_material_colors_unpack((int)(short)uVar4, puVar5, ar6_00, 0x8c4aa2e0, 0);
         } else {
             uVar1 = *puVar5;
             a6_00 = (u32)(short)a0[2];
@@ -15801,7 +15799,7 @@ u32 vram_draw_218804(u16 *a0, int a1, u8 *a2, u32 unused_a3, u32 ain0) {
 /*
  * gfxlib_calls_fill_loop_218c82  0x8c218c82
  * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
- * called by: gfxlib_uses_point_transform_or_copy_218e00
+ * called by: gfx_model_draw_a
  */
 u32 gfxlib_calls_fill_loop_218c82(short *a0, int a1) {
     u16 uVar1;
@@ -15880,11 +15878,11 @@ u32 gfxlib_calls_fill_loop_218c82(short *a0, int a1) {
 }
 
 /*
- * gfxlib_uses_point_transform_or_copy_218e00  0x8c218e00
- * area name: in the gfxlib library code range; behaviour name: its main named callee is point_transform_or_copy
- * called by: alt_entry_218ea0, gfxlib_draw_218f56, gfxlib_uses_matrix_push_regs_218e8a
+ * gfx_model_draw_a  0x8c218e00
+ * skips model a0 when its bounding sphere is culled, flags it when near, then draws its mesh sets and material list
+ * (variant a) called by: alt_entry_218ea0, gfx_model_draw_a_entry, gfx_object_tree_eval_draw_a
  */
-u32 gfxlib_uses_point_transform_or_copy_218e00(int *a0, u32 a1) {
+u32 gfx_model_draw_a(int *a0, u32 a1) {
     u32 r7;
     u32 ar6_00;
     int iVar1;
@@ -15932,11 +15930,11 @@ u32 gfxlib_uses_point_transform_or_copy_218e00(int *a0, u32 a1) {
 }
 
 /*
- * gfxlib_uses_matrix_push_regs_218e8a  0x8c218e8a
- * area name: in the gfxlib library code range; behaviour name: its main named callee is matrix_push_regs
- * called by: alt_entry_218ea0, gfxlib_draw_218f96, gfxlib_uses_matrix_push_regs_218e8a
+ * gfx_object_tree_eval_draw_a  0x8c218e8a
+ * walks an object tree honouring its eval flags (skip translate/rotate/scale, hide, skip children), drawing each model
+ * with gfx_model_draw_a called by: alt_entry_218ea0, gfx_object_draw_a_entry, gfx_object_tree_eval_draw_a
  */
-u32 gfxlib_uses_matrix_push_regs_218e8a(u32 *a0, u32 a1) {
+u32 gfx_object_tree_eval_draw_a(u32 *a0, u32 a1) {
     u32 r6;
     u32 r7;
     u32 uVar1;
@@ -15951,11 +15949,11 @@ u32 gfxlib_uses_matrix_push_regs_218e8a(u32 *a0, u32 a1) {
             uVar1 = 7;
             if ((uVar3 & 8) == 0) {
                 a0 = (u32 *)puVar2[1];
-                uVar1 = gfxlib_uses_point_transform_or_copy_218e00(a0, a1);
+                uVar1 = gfx_model_draw_a(a0, a1);
             }
             if ((uVar3 & 0x10) == 0) {
                 a0 = (u32 *)puVar2[0xb];
-                uVar1 = gfxlib_uses_matrix_push_regs_218e8a(a0, a1);
+                uVar1 = gfx_object_tree_eval_draw_a(a0, a1);
             }
         } else {
             uVar1 = matrix_push_regs(a0, a1, r6, r7, uVar3 & 7);
@@ -15975,11 +15973,11 @@ u32 gfxlib_uses_matrix_push_regs_218e8a(u32 *a0, u32 a1) {
             }
             if ((uVar3 & 8) == 0) {
                 a0 = (u32 *)puVar2[1];
-                unaff_r13 = gfxlib_uses_point_transform_or_copy_218e00(a0, a1);
+                unaff_r13 = gfx_model_draw_a(a0, a1);
             }
             if (((uVar3 & 0x10) == 0) && (((uVar3 & 0x100) == 0 || (unaff_r13 == 0)))) {
                 a0 = (u32 *)puVar2[0xb];
-                gfxlib_uses_matrix_push_regs_218e8a(a0, a1);
+                gfx_object_tree_eval_draw_a(a0, a1);
             }
             uVar1 = matrix_pop1();
         }
@@ -16010,11 +16008,11 @@ u32 alt_entry_218ea0(u32 *a0, u32 a1) {
             uVar1 = 7;
             if ((uVar2 & unaff_r11) == 0) {
                 a0 = (u32 *)unaff_r12[1];
-                uVar1 = gfxlib_uses_point_transform_or_copy_218e00(a0, a1);
+                uVar1 = gfx_model_draw_a(a0, a1);
             }
             if ((uVar2 & unaff_r10) == 0) {
                 a0 = (u32 *)unaff_r12[0xb];
-                uVar1 = gfxlib_uses_matrix_push_regs_218e8a(a0, a1);
+                uVar1 = gfx_object_tree_eval_draw_a(a0, a1);
             }
         } else {
             matrix_push_regs(a0, a1, r6, r7, in_PR);
@@ -16034,11 +16032,11 @@ u32 alt_entry_218ea0(u32 *a0, u32 a1) {
             }
             if ((uVar2 & unaff_r11) == 0) {
                 a0 = (u32 *)unaff_r12[1];
-                unaff_r13 = gfxlib_uses_point_transform_or_copy_218e00(a0, a1);
+                unaff_r13 = gfx_model_draw_a(a0, a1);
             }
             if (((uVar2 & unaff_r10) == 0) && (((uVar2 & 0x100) == 0 || (unaff_r13 == 0)))) {
                 a0 = (u32 *)unaff_r12[0xb];
-                gfxlib_uses_matrix_push_regs_218e8a(a0, a1);
+                gfx_object_tree_eval_draw_a(a0, a1);
             }
             uVar1 = matrix_pop1();
         }
@@ -16048,10 +16046,11 @@ u32 alt_entry_218ea0(u32 *a0, u32 a1) {
 }
 
 /*
- * gfxlib_draw_218f56  0x8c218f56
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfx_model_draw_a_entry  0x8c218f56
+ * saves the draw state, sets the projection scale parameters, draws model a0 with gfx_model_draw_a and restores the
+ * state
  */
-u32 gfxlib_draw_218f56(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 gfx_model_draw_a_entry(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 *ar5_00;
     double dVar2;
@@ -16092,17 +16091,17 @@ u32 gfxlib_draw_218f56(u32 a0, u32 a1, u32 a2, u32 a3) {
     }
     g_8c4aa2cc = g_8c4aa4b8;
     g_8c4aa2c8 = g_8c4aa4b4;
-    gfxlib_uses_point_transform_or_copy_218e00(a0, &g_8c4aa2b0);
+    gfx_model_draw_a(a0, &g_8c4aa2b0);
     uVar1 = draw_state_restore(a0);
     return uVar1;
 }
 
 /*
- * gfxlib_draw_218f96  0x8c218f96
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: game_draw_015b30
+ * gfx_object_draw_a_entry  0x8c218f96
+ * saves the draw state, sets the projection scale parameters, draws object tree a0 with gfx_object_tree_eval_draw_a and
+ * restores the state called by: gfx_object_draw_a_entry_wrap
  */
-u32 gfxlib_draw_218f96(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 gfx_object_draw_a_entry(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 *ar5_00;
     double dVar2;
@@ -16143,7 +16142,7 @@ u32 gfxlib_draw_218f96(u32 a0, u32 a1, u32 a2, u32 a3) {
     }
     g_8c4aa2cc = g_8c4aa4b8;
     g_8c4aa2c8 = g_8c4aa4b4;
-    gfxlib_uses_matrix_push_regs_218e8a(a0, &g_8c4aa2b0);
+    gfx_object_tree_eval_draw_a(a0, &g_8c4aa2b0);
     uVar1 = draw_state_restore(a0);
     return uVar1;
 }
@@ -16252,7 +16251,7 @@ u32 set_vec3_g_278744(void) {
 /*
  * gfxlib_draw_21908e  0x8c21908e
  * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: alt_entry_219962, gfxlib_calls_test_219954, gfxlib_draw_21908e
+ * called by: alt_entry_219962, gfxlib_draw_21908e, gfxlib_draw_219954
  */
 u8 *gfxlib_draw_21908e(u16 *a0, int a1, u32 a2) {
     u16 uVar1;
@@ -16406,7 +16405,7 @@ u8 *gfxlib_draw_21908e(u16 *a0, int a1, u32 a2) {
             ar7_00 = NULL;
             puStack_78 = puStack_78 + 2;
             iVar13 = (int)(short)*puVar11;
-            puVar2 = (u8 *)gfxlib_calls_calc_21d7d4(iVar4, puStack_78, &g_8c275970, 0, &g_8c275990);
+            puVar2 = (u8 *)gfx_material_colors_unpack(iVar4, puStack_78, &g_8c275970, 0, &g_8c275990);
         } else {
             puVar7 = puStack_78 + 2;
             uVar1 = *puVar11;
@@ -16706,11 +16705,11 @@ u8 *gfxlib_draw_21908e(u16 *a0, int a1, u32 a2) {
 }
 
 /*
- * gfxlib_calls_fill_loop_21982e  0x8c21982e
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
- * called by: alt_entry_219962, gfxlib_calls_test_219954
+ * gfx_meshsets_emit  0x8c21982e
+ * walks the mesh-set list a0 (ended by 0xff), dispatching each set's strips to the emitter for its type and counting
+ * polygons called by: alt_entry_219962, gfxlib_draw_219954
  */
-u8 *gfxlib_calls_fill_loop_21982e(short *a0, u32 a1, u32 a2, u32 a3, u8 *ain0) {
+u8 *gfx_meshsets_emit(short *a0, u32 a1, u32 a2, u32 a3, u8 *ain0) {
     u16 uVar1;
     int iVar2;
     u32 ar5_00;
@@ -16760,12 +16759,12 @@ u8 *gfxlib_calls_fill_loop_21982e(short *a0, u32 a1, u32 a2, u32 a3, u8 *ain0) {
 }
 
 /*
- * gfxlib_calls_test_219954  0x8c219954
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: test
- * called by: alt_entry_2199c0, alt_entry_21b916, alt_entry_21b9a8, gfx_object_tree_draw_alt, gfxlib_draw_219a86,
- * gfxlib_uses_matrix_push_regs_2199aa, gfxlib_uses_noop_21b998
+ * gfxlib_draw_219954  0x8c219954
+ * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * called by: alt_entry_2199c0, alt_entry_21b916, alt_entry_21b9a8, gfx_object_tree_draw_alt,
+ * gfx_object_tree_draw_hooked_alt, gfx_object_tree_eval_draw_b, gfxlib_draw_219a86
  */
-u32 gfxlib_calls_test_219954(int *a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 gfxlib_draw_219954(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *ain0;
     int iVar1;
     u32 uVar2;
@@ -16777,7 +16776,7 @@ u32 gfxlib_calls_test_219954(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     if ((((g_8c4aa4f0 & 0x100) == 0) || (ain0 = (u8 *)0x14, (float)a0[5] <= 0.0)) ||
         (iVar1 = gfxlib_test_217e18(a0), ain0 = NULL, iVar1 == 0)) {
         if (ar4_00 != 0) {
-            gfxlib_calls_fill_loop_21982e(ar4_00, uVar2, a2, a3, ain0);
+            gfx_meshsets_emit(ar4_00, uVar2, a2, a3, ain0);
         }
         if (a0[1] != 0) {
             gfxlib_draw_21908e(a0[1], g_8c4c0fa0, uVar2);
@@ -16814,7 +16813,7 @@ u32 alt_entry_219962(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3, u32 *ain0) {
         }
     }
     if (ar4_00 != 0) {
-        gfxlib_calls_fill_loop_21982e(ar4_00, ar5_00, a2, a3, in_PR);
+        gfx_meshsets_emit(ar4_00, ar5_00, a2, a3, in_PR);
     }
     if (unaff_r12[1] != 0) {
         gfxlib_draw_21908e(unaff_r12[1], g_8c4c0fa0, ar5_00);
@@ -16823,11 +16822,11 @@ u32 alt_entry_219962(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3, u32 *ain0) {
 }
 
 /*
- * gfxlib_uses_matrix_push_regs_2199aa  0x8c2199aa
- * area name: in the gfxlib library code range; behaviour name: its main named callee is matrix_push_regs
- * called by: alt_entry_2199c0, gfxlib_draw_219a9a, gfxlib_uses_matrix_push_regs_2199aa
+ * gfx_object_tree_eval_draw_b  0x8c2199aa
+ * the eval-flag object-tree walk, drawing each model with gfxlib_calls_test_219954
+ * called by: alt_entry_2199c0, gfx_object_tree_eval_draw_b, gfxlib_draw_219a9a
  */
-u32 gfxlib_uses_matrix_push_regs_2199aa(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 gfx_object_tree_eval_draw_b(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u32 unaff_r13;
@@ -16839,10 +16838,10 @@ u32 gfxlib_uses_matrix_push_regs_2199aa(u32 *a0, u32 unused_a1, u32 a2, u32 a3) 
         if ((uVar3 & 7) == 7) {
             uVar1 = 7;
             if ((uVar3 & 8) == 0) {
-                uVar1 = gfxlib_calls_test_219954(a0[1], unused_a1, a2, a3);
+                uVar1 = gfxlib_draw_219954(a0[1], unused_a1, a2, a3);
             }
             if ((uVar3 & 0x10) == 0) {
-                uVar1 = gfxlib_uses_matrix_push_regs_2199aa((u32 *)a0[0xb], unused_a1, a2, a3);
+                uVar1 = gfx_object_tree_eval_draw_b((u32 *)a0[0xb], unused_a1, a2, a3);
             }
         } else {
             matrix_push_regs();
@@ -16858,10 +16857,10 @@ u32 gfxlib_uses_matrix_push_regs_2199aa(u32 *a0, u32 unused_a1, u32 a2, u32 a3) 
                 noop_257098(a0 + 8);
             }
             if ((uVar3 & 8) == 0) {
-                unaff_r13 = gfxlib_calls_test_219954(a0[1], unused_a1, a2, a3);
+                unaff_r13 = gfxlib_draw_219954(a0[1], unused_a1, a2, a3);
             }
             if (((uVar3 & 0x10) == 0) && (((uVar3 & uVar2) == 0 || (unaff_r13 == 0)))) {
-                gfxlib_uses_matrix_push_regs_2199aa((u32 *)a0[0xb], unused_a1, a2, a3);
+                gfx_object_tree_eval_draw_b((u32 *)a0[0xb], unused_a1, a2, a3);
             }
             uVar1 = matrix_pop1();
         }
@@ -16890,11 +16889,11 @@ u32 alt_entry_2199c0(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
             uVar1 = 7;
             if ((uVar2 & unaff_r11) == 0) {
                 a0 = (u32 *)unaff_r12[1];
-                uVar1 = gfxlib_calls_test_219954(a0, unused_a1, a2, a3);
+                uVar1 = gfxlib_draw_219954(a0, unused_a1, a2, a3);
             }
             if ((uVar2 & unaff_r10) == 0) {
                 a0 = (u32 *)unaff_r12[0xb];
-                uVar1 = gfxlib_uses_matrix_push_regs_2199aa(a0, unused_a1, a2, a3);
+                uVar1 = gfx_object_tree_eval_draw_b(a0, unused_a1, a2, a3);
             }
         } else {
             matrix_push_regs(a0, unused_a1, a2, a3, in_PR);
@@ -16914,11 +16913,11 @@ u32 alt_entry_2199c0(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
             }
             if ((uVar2 & unaff_r11) == 0) {
                 a0 = (u32 *)unaff_r12[1];
-                unaff_r13 = gfxlib_calls_test_219954(a0, unused_a1, a2, a3);
+                unaff_r13 = gfxlib_draw_219954(a0, unused_a1, a2, a3);
             }
             if (((uVar2 & unaff_r10) == 0) && (((uVar2 & 0x100) == 0 || (unaff_r13 == 0)))) {
                 a0 = (u32 *)unaff_r12[0xb];
-                gfxlib_uses_matrix_push_regs_2199aa(a0, unused_a1, a2, a3);
+                gfx_object_tree_eval_draw_b(a0, unused_a1, a2, a3);
             }
             uVar1 = matrix_pop1();
         }
@@ -16936,7 +16935,7 @@ u32 gfxlib_draw_219a86(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     draw_state_save(a0, a1, a2, a3);
-    gfxlib_calls_test_219954(a0, a1, a2, a3);
+    gfxlib_draw_219954(a0, a1, a2, a3);
     uVar1 = draw_state_restore();
     return uVar1;
 }
@@ -16951,7 +16950,7 @@ u32 gfxlib_draw_219a9a(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     draw_state_save(a0, a1, a2, a3);
-    gfxlib_uses_matrix_push_regs_2199aa(a0, a1, a2, a3);
+    gfx_object_tree_eval_draw_b(a0, a1, a2, a3);
     uVar1 = draw_state_restore();
     return uVar1;
 }
@@ -16959,7 +16958,7 @@ u32 gfxlib_draw_219a9a(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gfxlib_draw_219ad0  0x8c219ad0
  * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: gfxlib_draw_219ad0, gfxlib_uses_point_transform_or_copy_21a678
+ * called by: gfx_model_draw_c, gfxlib_draw_219ad0
  */
 int gfxlib_draw_219ad0(u16 *a0, u16 *a1, u16 *a2, u32 unused_a3, int ain0) {
     u16 uVar1;
@@ -17027,7 +17026,7 @@ int gfxlib_draw_219ad0(u16 *a0, u16 *a1, u16 *a2, u32 unused_a3, int ain0) {
             a5 = puStack_58;
             ar7_00 = puStack_28;
             puVar6 = ar6_00;
-            ain0 = gfxlib_calls_calc_21d7d4((int)(short)uVar5, puStack_58, ar6_00, 0x8c4aa328, 0);
+            ain0 = gfx_material_colors_unpack((int)(short)uVar5, puStack_58, ar6_00, 0x8c4aa328, 0);
             a6 = ar6_00;
             ar6_00 = puVar6;
         } else {
@@ -17245,7 +17244,7 @@ int gfxlib_draw_219ad0(u16 *a0, u16 *a1, u16 *a2, u32 unused_a3, int ain0) {
 /*
  * gfxlib_calls_fill_loop_21a4f6  0x8c21a4f6
  * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
- * called by: gfxlib_uses_point_transform_or_copy_21a678
+ * called by: gfx_model_draw_c
  */
 u32 gfxlib_calls_fill_loop_21a4f6(short *a0, int a1) {
     u16 uVar1;
@@ -17324,11 +17323,11 @@ u32 gfxlib_calls_fill_loop_21a4f6(short *a0, int a1) {
 }
 
 /*
- * gfxlib_uses_point_transform_or_copy_21a678  0x8c21a678
- * area name: in the gfxlib library code range; behaviour name: its main named callee is point_transform_or_copy
- * called by: alt_entry_21a718, gfxlib_draw_21a7ce, gfxlib_uses_matrix_push_regs_21a702
+ * gfx_model_draw_c  0x8c21a678
+ * skips model a0 when its bounding sphere is culled, flags it when near, then draws its mesh sets and material list
+ * (variant c) called by: alt_entry_21a718, gfx_model_draw_c_entry, gfx_object_tree_eval_draw_c
  */
-u32 gfxlib_uses_point_transform_or_copy_21a678(int *a0, u32 a1) {
+u32 gfx_model_draw_c(int *a0, u32 a1) {
     u32 r7;
     u32 ar6_00;
     int iVar1;
@@ -17376,11 +17375,11 @@ u32 gfxlib_uses_point_transform_or_copy_21a678(int *a0, u32 a1) {
 }
 
 /*
- * gfxlib_uses_matrix_push_regs_21a702  0x8c21a702
- * area name: in the gfxlib library code range; behaviour name: its main named callee is matrix_push_regs
- * called by: alt_entry_21a718, gfxlib_draw_21a80e, gfxlib_uses_matrix_push_regs_21a702
+ * gfx_object_tree_eval_draw_c  0x8c21a702
+ * the eval-flag object-tree walk, drawing each model with gfx_model_draw_c
+ * called by: alt_entry_21a718, gfx_object_draw_c_entry, gfx_object_tree_eval_draw_c
  */
-u32 gfxlib_uses_matrix_push_regs_21a702(u32 *a0, u32 a1) {
+u32 gfx_object_tree_eval_draw_c(u32 *a0, u32 a1) {
     u32 r6;
     u32 r7;
     u32 uVar1;
@@ -17395,11 +17394,11 @@ u32 gfxlib_uses_matrix_push_regs_21a702(u32 *a0, u32 a1) {
             uVar1 = 7;
             if ((uVar3 & 8) == 0) {
                 a0 = (u32 *)puVar2[1];
-                uVar1 = gfxlib_uses_point_transform_or_copy_21a678(a0, a1);
+                uVar1 = gfx_model_draw_c(a0, a1);
             }
             if ((uVar3 & 0x10) == 0) {
                 a0 = (u32 *)puVar2[0xb];
-                uVar1 = gfxlib_uses_matrix_push_regs_21a702(a0, a1);
+                uVar1 = gfx_object_tree_eval_draw_c(a0, a1);
             }
         } else {
             uVar1 = matrix_push_regs(a0, a1, r6, r7, uVar3 & 7);
@@ -17419,11 +17418,11 @@ u32 gfxlib_uses_matrix_push_regs_21a702(u32 *a0, u32 a1) {
             }
             if ((uVar3 & 8) == 0) {
                 a0 = (u32 *)puVar2[1];
-                unaff_r13 = gfxlib_uses_point_transform_or_copy_21a678(a0, a1);
+                unaff_r13 = gfx_model_draw_c(a0, a1);
             }
             if (((uVar3 & 0x10) == 0) && (((uVar3 & 0x100) == 0 || (unaff_r13 == 0)))) {
                 a0 = (u32 *)puVar2[0xb];
-                gfxlib_uses_matrix_push_regs_21a702(a0, a1);
+                gfx_object_tree_eval_draw_c(a0, a1);
             }
             uVar1 = matrix_pop1();
         }
@@ -17454,11 +17453,11 @@ u32 alt_entry_21a718(u32 *a0, u32 a1) {
             uVar1 = 7;
             if ((uVar2 & unaff_r11) == 0) {
                 a0 = (u32 *)unaff_r12[1];
-                uVar1 = gfxlib_uses_point_transform_or_copy_21a678(a0, a1);
+                uVar1 = gfx_model_draw_c(a0, a1);
             }
             if ((uVar2 & unaff_r10) == 0) {
                 a0 = (u32 *)unaff_r12[0xb];
-                uVar1 = gfxlib_uses_matrix_push_regs_21a702(a0, a1);
+                uVar1 = gfx_object_tree_eval_draw_c(a0, a1);
             }
         } else {
             matrix_push_regs(a0, a1, r6, r7, in_PR);
@@ -17478,11 +17477,11 @@ u32 alt_entry_21a718(u32 *a0, u32 a1) {
             }
             if ((uVar2 & unaff_r11) == 0) {
                 a0 = (u32 *)unaff_r12[1];
-                unaff_r13 = gfxlib_uses_point_transform_or_copy_21a678(a0, a1);
+                unaff_r13 = gfx_model_draw_c(a0, a1);
             }
             if (((uVar2 & unaff_r10) == 0) && (((uVar2 & 0x100) == 0 || (unaff_r13 == 0)))) {
                 a0 = (u32 *)unaff_r12[0xb];
-                gfxlib_uses_matrix_push_regs_21a702(a0, a1);
+                gfx_object_tree_eval_draw_c(a0, a1);
             }
             uVar1 = matrix_pop1();
         }
@@ -17492,10 +17491,11 @@ u32 alt_entry_21a718(u32 *a0, u32 a1) {
 }
 
 /*
- * gfxlib_draw_21a7ce  0x8c21a7ce
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfx_model_draw_c_entry  0x8c21a7ce
+ * saves the draw state, sets the projection scale parameters, draws model a0 with gfx_model_draw_c and restores the
+ * state
  */
-u32 gfxlib_draw_21a7ce(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 gfx_model_draw_c_entry(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 *ar5_00;
     double dVar2;
@@ -17536,17 +17536,17 @@ u32 gfxlib_draw_21a7ce(u32 a0, u32 a1, u32 a2, u32 a3) {
     }
     g_8c4aa314 = g_8c4aa4b8;
     g_8c4aa310 = g_8c4aa4b4;
-    gfxlib_uses_point_transform_or_copy_21a678(a0, &g_8c4aa2f8);
+    gfx_model_draw_c(a0, &g_8c4aa2f8);
     uVar1 = draw_state_restore(a0);
     return uVar1;
 }
 
 /*
- * gfxlib_draw_21a80e  0x8c21a80e
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: CSquidLine_uses_matrix_push_0ad354, game_draw_015b14, game_draw_09c930
+ * gfx_object_draw_c_entry  0x8c21a80e
+ * saves the draw state, sets the projection scale parameters, draws object tree a0 with gfx_object_tree_eval_draw_c and
+ * restores the state called by: CSquidLine_uses_matrix_push_0ad354, game_draw_09c930, gfx_object_draw_c_entry_wrap
  */
-u32 gfxlib_draw_21a80e(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 gfx_object_draw_c_entry(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 *ar5_00;
     double dVar2;
@@ -17587,7 +17587,7 @@ u32 gfxlib_draw_21a80e(u32 a0, u32 a1, u32 a2, u32 a3) {
     }
     g_8c4aa314 = g_8c4aa4b8;
     g_8c4aa310 = g_8c4aa4b4;
-    gfxlib_uses_matrix_push_regs_21a702(a0, &g_8c4aa2f8);
+    gfx_object_tree_eval_draw_c(a0, &g_8c4aa2f8);
     uVar1 = draw_state_restore(a0);
     return uVar1;
 }
@@ -17710,12 +17710,12 @@ u32 alt_entry_21a8be(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_uses_noop_21a942  0x8c21a942
- * area name: in the gfxlib library code range; behaviour name: its main named callee is noop_25b638
- * called by: alt_entry_21a952, alt_entry_21af36, gfxlib_draw_21ab7a, gfxlib_draw_21af26, gfxlib_draw_21b2f2,
- * gfxlib_draw_21b6ae, gfxlib_uses_noop_21a942
+ * gfx_object_tree_draw_hooked  0x8c21a942
+ * object-tree walk like gfx_object_tree_draw that calls the 0x8c4aa36c hook for nodes without flag 0x80 instead of
+ * drawing their model called by: alt_entry_21a952, alt_entry_21af36, gfx_object_tree_draw_hooked, gfxlib_draw_21ab7a,
+ * gfxlib_draw_21af26, gfxlib_draw_21b2f2, gfxlib_draw_21b6ae
  */
-u32 gfxlib_uses_noop_21a942(u32 *a0) {
+u32 gfx_object_tree_draw_hooked(u32 *a0) {
     u32 r5;
     u8 *puVar1;
     u8 *puVar2;
@@ -17746,7 +17746,7 @@ u32 gfxlib_uses_noop_21a942(u32 *a0) {
             (*(code *)*0x8c4aa368)(a0[1]);
         }
         if (a0[0xb] != 0) {
-            gfxlib_uses_noop_21a942((u32 *)a0[0xb]);
+            gfx_object_tree_draw_hooked((u32 *)a0[0xb]);
         }
         uVar3 = matrix_pop1();
         a0 = (u32 *)a0[0xc];
@@ -17790,7 +17790,7 @@ u32 alt_entry_21a952(u32 *a0, u32 a1, u32 a2, u32 a3) {
         }
         if (unaff_r14[0xb] != 0) {
             a0 = (u32 *)unaff_r14[0xb];
-            gfxlib_uses_noop_21a942(a0);
+            gfx_object_tree_draw_hooked(a0);
         }
         uVar1 = matrix_pop1();
         unaff_r14 = (u32 *)unaff_r14[0xc];
@@ -17974,7 +17974,7 @@ u32 gfxlib_draw_21ab7a(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0
     g_8c4aad70 = in_fr4;
     draw_state_save(&g_8c4aa350, ar5_00, 0x20, &g_8c4aad82);
     (*g_8c4aa338)(a4, ar5_00, uVar1, a7);
-    gfxlib_uses_noop_21a942(unaff_r13);
+    gfx_object_tree_draw_hooked(unaff_r13);
     uVar1 = draw_state_restore(unaff_r13);
     return uVar1;
 }
@@ -18070,7 +18070,7 @@ u32 gfxlib_draw_21af26(u32 *a0, u32 *a1, u32 *a2) {
 
     ar7_00 = &g_8c4aad82;
     g_8c4aa338 = gfxlib_update_fields_21a854;
-    g_8c4aa368 = gfxlib_uses_point_transform_or_copy_21a678;
+    g_8c4aa368 = gfx_model_draw_c;
     if (a1 == NULL) {
         g_8c4aad80 = 0;
         g_8c4ab0c0 = 0;
@@ -18151,7 +18151,7 @@ u32 gfxlib_draw_21af26(u32 *a0, u32 *a1, u32 *a2) {
     g_8c4aad70 = in_fr4;
     draw_state_save(&g_8c4aa350, ar5_00, 0x20, &g_8c4aad82);
     (*g_8c4aa338)();
-    gfxlib_uses_noop_21a942(a0);
+    gfx_object_tree_draw_hooked(a0);
     uVar1 = draw_state_restore(a0);
     return uVar1;
 }
@@ -18271,7 +18271,7 @@ u32 alt_entry_21af36(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0, 
     g_8c4ab0b8 = gfxlib_uses_switch_jump_21c398;
     draw_state_save(&g_8c4aa350, ar5_00, 0x20, &g_8c4aad82);
     (*g_8c4aa338)(a4, ar5_00, uVar1, a7);
-    gfxlib_uses_noop_21a942(unaff_r13);
+    gfx_object_tree_draw_hooked(unaff_r13);
     uVar1 = draw_state_restore(unaff_r13);
     return uVar1;
 }
@@ -18452,7 +18452,7 @@ u32 gfxlib_draw_21b2f2(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0
     g_8c4aad70 = in_fr4;
     draw_state_save(&g_8c4aa350, ar5_00, 0x20, &g_8c4aad82);
     (*g_8c4aa338)(a4, ar5_00, uVar1, a7);
-    gfxlib_uses_noop_21a942(unaff_r13);
+    gfx_object_tree_draw_hooked(unaff_r13);
     uVar1 = draw_state_restore(unaff_r13);
     return uVar1;
 }
@@ -18633,7 +18633,7 @@ u32 gfxlib_draw_21b6ae(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0
     g_8c4aad70 = in_fr4;
     draw_state_save(&g_8c4aa350, ar5_00, 0x20, &g_8c4aad82);
     (*g_8c4aa338)(a4, ar5_00, uVar1, a7);
-    gfxlib_uses_noop_21a942(unaff_r13);
+    gfx_object_tree_draw_hooked(unaff_r13);
     uVar1 = draw_state_restore(unaff_r13);
     return uVar1;
 }
@@ -18641,7 +18641,7 @@ u32 gfxlib_draw_21b6ae(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0
 /*
  * gfx_object_tree_draw_alt  0x8c21b908
  * the same object-tree walk as gfx_object_tree_draw, drawing each model through gfxlib_calls_test_219954 instead of the
- * hook called by: alt_entry_21b916, alt_entry_21ba6a, gfx_object_tree_draw_alt, gfxlib_draw_21ba62, gfxlib_draw_21bdd6
+ * hook called by: alt_entry_21b916, alt_entry_21ba6a, gfx_draw_motion, gfx_draw_motion_alt, gfx_object_tree_draw_alt
  */
 u32 gfx_object_tree_draw_alt(u32 *a0) {
     u32 r5;
@@ -18669,7 +18669,7 @@ u32 gfx_object_tree_draw_alt(u32 *a0) {
             (*(code *)*0x8c4aa358)(a0);
         }
         if ((a0[1] != 0) && ((*a0 & 8) == 0)) {
-            gfxlib_calls_test_219954(a0[1]);
+            gfxlib_draw_219954(a0[1]);
         }
         if (a0[0xb] != 0) {
             gfx_object_tree_draw_alt((u32 *)a0[0xb]);
@@ -18709,7 +18709,7 @@ u32 alt_entry_21b916(u32 *a0, u32 a1, u32 a2, u32 a3) {
         }
         if ((unaff_r14[1] != 0) && ((*unaff_r14 & 8) == 0)) {
             a0 = (u32 *)unaff_r14[1];
-            gfxlib_calls_test_219954(a0, a1, a2, a3);
+            gfxlib_draw_219954(a0, a1, a2, a3);
         }
         if (unaff_r14[0xb] != 0) {
             a0 = (u32 *)unaff_r14[0xb];
@@ -18722,11 +18722,12 @@ u32 alt_entry_21b916(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_uses_noop_21b998  0x8c21b998
- * area name: in the gfxlib library code range; behaviour name: its main named callee is noop_25b638
- * called by: alt_entry_21b9a8, alt_entry_21bbba, gfxlib_draw_21bbb0, gfxlib_draw_21bf44, gfxlib_uses_noop_21b998
+ * gfx_object_tree_draw_hooked_alt  0x8c21b998
+ * the hooked object-tree walk, drawing models through gfxlib_calls_test_219954
+ * called by: alt_entry_21b9a8, alt_entry_21bbba, gfx_object_tree_draw_hooked_alt, gfxlib_draw_21bbb0,
+ * gfxlib_draw_21bf44
  */
-u32 gfxlib_uses_noop_21b998(u32 *a0) {
+u32 gfx_object_tree_draw_hooked_alt(u32 *a0) {
     u32 r5;
     u8 *puVar1;
     u8 *puVar2;
@@ -18754,10 +18755,10 @@ u32 gfxlib_uses_noop_21b998(u32 *a0) {
         if ((*a0 & uVar4) == 0) {
             (*(code *)*0x8c4aa36c)(a0);
         } else if ((a0[1] != 0) && ((*a0 & 8) == 0)) {
-            gfxlib_calls_test_219954(a0[1]);
+            gfxlib_draw_219954(a0[1]);
         }
         if (a0[0xb] != 0) {
-            gfxlib_uses_noop_21b998((u32 *)a0[0xb]);
+            gfx_object_tree_draw_hooked_alt((u32 *)a0[0xb]);
         }
         uVar3 = matrix_pop1();
         a0 = (u32 *)a0[0xc];
@@ -18797,11 +18798,11 @@ u32 alt_entry_21b9a8(u32 *a0, u32 a1, u32 a2, u32 a3) {
             (*g_8c4aa36c)(unaff_r14, a1, a2, a3);
         } else if ((unaff_r14[1] != 0) && ((*unaff_r14 & 8) == 0)) {
             a0 = (u32 *)unaff_r14[1];
-            gfxlib_calls_test_219954(a0, a1, a2, a3);
+            gfxlib_draw_219954(a0, a1, a2, a3);
         }
         if (unaff_r14[0xb] != 0) {
             a0 = (u32 *)unaff_r14[0xb];
-            gfxlib_uses_noop_21b998(a0);
+            gfx_object_tree_draw_hooked_alt(a0);
         }
         uVar1 = matrix_pop1();
         unaff_r14 = (u32 *)unaff_r14[0xc];
@@ -18810,11 +18811,12 @@ u32 alt_entry_21b9a8(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_draw_21ba62  0x8c21ba62
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: Class_12aeec_uses_gfx_set_color4_0a481c, Vec3_uses_obj_set_texlist_0a4a5c, game_draw_015b54
+ * gfx_draw_motion  0x8c21ba62
+ * draws object tree a0 posed by motion a1 at frame fr4: picks the position, rotation and scale key appliers from the
+ * motion's flags (nothing when past the end) called by: Class_12aeec_uses_gfx_set_color4_0a481c,
+ * Vec3_uses_obj_set_texlist_0a4a5c, game_draw_015b54
  */
-u32 gfxlib_draw_21ba62(u32 *a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 gfx_draw_motion(u32 *a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     u8 *ar5_00;
     u32 ar6_00;
@@ -19057,11 +19059,11 @@ u32 gfxlib_draw_21bbb0(u32 *a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0) {
     uVar1 = (u32)g_8c4ab0c0;
     g_8c4ab0b4 = (&PTR_FUN_8c2759b4)[uVar1];
     g_8c4ab0b8 = (&PTR_FUN_8c2759bc)[uVar1];
-    g_8c4aa368 = gfxlib_calls_test_219954;
+    g_8c4aa368 = gfxlib_draw_219954;
     g_8c4aad54 = in_fr4;
     g_8c4aad70 = in_fr4;
     draw_state_save(uVar1 * 4, ar5_00, 0x20, &g_8c4aad82);
-    gfxlib_uses_noop_21b998(a0);
+    gfx_object_tree_draw_hooked_alt(a0);
     uVar2 = draw_state_restore(a0);
     return uVar2;
 }
@@ -19176,18 +19178,18 @@ u32 alt_entry_21bbba(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0) {
     uVar1 = (u32)g_8c4ab0c0;
     g_8c4ab0b4 = (&PTR_FUN_8c2759b4)[uVar1];
     g_8c4ab0b8 = (&PTR_FUN_8c2759bc)[uVar1];
-    g_8c4aa368 = gfxlib_calls_test_219954;
+    g_8c4aa368 = gfxlib_draw_219954;
     draw_state_save(uVar1 * 4, ar5_00, 0x20, &g_8c4aad82);
-    gfxlib_uses_noop_21b998(unaff_r12);
+    gfx_object_tree_draw_hooked_alt(unaff_r12);
     uVar2 = draw_state_restore(unaff_r12);
     return uVar2;
 }
 
 /*
- * gfxlib_draw_21bdd6  0x8c21bdd6
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfx_draw_motion_alt  0x8c21bdd6
+ * the gfx_draw_motion setup for the object in r14, using the alternative rotation interpolator table
  */
-u32 gfxlib_draw_21bdd6(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 gfx_draw_motion_alt(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     u8 *a5;
     u32 ar6_00;
@@ -19348,11 +19350,11 @@ u32 gfxlib_draw_21bf44(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0)
     uVar1 = (u32)g_8c4ab0c0;
     g_8c4ab0b4 = (&PTR_FUN_8c2759b4)[uVar1];
     g_8c4ab0b8 = (&PTR_FUN_8c2759c4)[uVar1];
-    g_8c4aa368 = gfxlib_calls_test_219954;
+    g_8c4aa368 = gfxlib_draw_219954;
     g_8c4aad54 = in_fr4;
     g_8c4aad70 = in_fr4;
     draw_state_save(uVar1 * 4, ar5_00, 0x20, &g_8c4aad82);
-    gfxlib_uses_noop_21b998(unaff_r12);
+    gfx_object_tree_draw_hooked_alt(unaff_r12);
     uVar2 = draw_state_restore(unaff_r12);
     return uVar2;
 }
@@ -24162,11 +24164,11 @@ u32 gfxlib_uses_libgcc_divide_helper_21d3e8(int a0, int a1, int a2, int *a3) {
 }
 
 /*
- * gfxlib_calls_calc_21d7d4  0x8c21d7d4
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: calc
- * called by: gfxlib_draw_217f12, gfxlib_draw_21908e, gfxlib_draw_219ad0, vram_draw_218804
+ * gfx_material_colors_unpack  0x8c21d7d4
+ * unpacks the material's diffuse (optionally overridden or offset), ambient and specular ARGB words into float colours
+ * a2, a3 and s0 called by: gfxlib_draw_217f12, gfxlib_draw_21908e, gfxlib_draw_219ad0, vram_draw_218804
  */
-u32 gfxlib_calls_calc_21d7d4(u32 a0, u32 *a1, float *a2, float *a3, float *s0) {
+u32 gfx_material_colors_unpack(u32 a0, u32 *a1, float *a2, float *a3, float *s0) {
     u32 uVar1;
     u32 uVar2;
     float *pfVar3;

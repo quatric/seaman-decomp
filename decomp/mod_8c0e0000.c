@@ -1119,13 +1119,13 @@ u32 game_draw_0e14fc(int a0, u32 a1, u32 a2, u32 a3) {
 
     pvr_draw_235ee4();
     obj_set_texlist(a0 + 0x106c, a1, a2);
-    game_draw_015b14(a0 + 0x1074, a1, a2, a3);
+    gfx_object_draw_c_entry_wrap(a0 + 0x1074, a1, a2, a3);
     ar4_00 = a0 + 0x107c;
-    game_draw_015b14(ar4_00, a1, a2, a3);
+    gfx_object_draw_c_entry_wrap(ar4_00, a1, a2, a3);
     pvr_draw_235f14();
-    game_draw_015b14(a0 + 0x1078, a1, a2, a3);
+    gfx_object_draw_c_entry_wrap(a0 + 0x1078, a1, a2, a3);
     obj_set_texlist(a0 + 0x28, a1, a2);
-    uVar1 = game_draw_015b14(a0 + 0x30, a1, a2, a3);
+    uVar1 = gfx_object_draw_c_entry_wrap(a0 + 0x30, a1, a2, a3);
     return uVar1;
 }
 

@@ -11916,9 +11916,8 @@ u32 strcmp_01439c(u32 a0, u32 a1) {
 
 /*
  * log_message  0x8c0143b0
- * called by: filename_add_ext_if_missing, format_output, gfxlib_copy_238f2a, gfxlib_copy_239f84,
- * gfxlib_uses_log_message_2341d6, gfxlib_uses_sprintf_234834, libc_uses_log_message_013374, msg_substitute_name (+7
- * more)
+ * called by: dbg_font_print, filename_add_ext_if_missing, format_output, gfxlib_copy_238f2a, gfxlib_copy_239f84,
+ * gfxlib_uses_dbg_font_quad_char_234834, libc_uses_log_message_013374, msg_substitute_name (+7 more)
  */
 int log_message(char *a0, u32 a1, u32 a2) {
     char cVar1;
@@ -13928,26 +13927,26 @@ u32 Class_129938_draw_015af8(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_draw_015b14  0x8c015b14
- * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
+ * gfx_object_draw_c_entry_wrap  0x8c015b14
+ * only calls gfx_object_draw_c_entry
  * called by: game_draw_0e14fc
  */
-u32 game_draw_015b14(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 gfx_object_draw_c_entry_wrap(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = gfxlib_draw_21a80e(*a0, a1, a2, a3);
+    uVar1 = gfx_object_draw_c_entry(*a0, a1, a2, a3);
     return uVar1;
 }
 
 /*
- * game_draw_015b30  0x8c015b30
- * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
+ * gfx_object_draw_a_entry_wrap  0x8c015b30
+ * only calls gfx_object_draw_a_entry
  * called by: Class_12b930_draw_0d7354, game_draw_0d4124
  */
-u32 game_draw_015b30(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 gfx_object_draw_a_entry_wrap(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = gfxlib_draw_218f96(*a0, a1, a2, a3);
+    uVar1 = gfx_object_draw_a_entry(*a0, a1, a2, a3);
     return uVar1;
 }
 
@@ -13972,7 +13971,7 @@ u32 game_draw_015b54(u32 *a0, u32 a1) {
     u32 uVar1;
 
     uVar1 = deref_u32(a1);
-    uVar1 = gfxlib_draw_21ba62(*a0, uVar1, r6, r7, a0);
+    uVar1 = gfx_draw_motion(*a0, uVar1, r6, r7, a0);
     return uVar1;
 }
 

@@ -6380,7 +6380,7 @@ int gfxlib_fill_loop_232748(int a0) {
 /*
  * gfxlib_fill_loop_232cd0  0x8c232cd0
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21982e
+ * called by: gfx_meshsets_emit
  */
 int gfxlib_fill_loop_232cd0(int a0, u32 a1) {
     float fVar1;
@@ -8376,12 +8376,12 @@ u32 gfxlib_calc_23403e(void) {
 }
 
 /*
- * gfxlib_float_calc_2340a0  0x8c2340a0
- * area name: in the gfxlib library code range; behaviour name: floating-point arithmetic
- * called by: gfxlib_calls_float_calc_2345c8, gfxlib_calls_float_calc_2346ce, gfxlib_uses_libgcc_divide_helper_234348,
- * gfxlib_uses_log_message_2341d6, gfxlib_uses_sprintf_234834
+ * dbg_font_quad_char  0x8c2340a0
+ * writes a textured quad for debug-font character a2 at screen position (a0, a1) into the store queue
+ * called by: dbg_font_print, gfxlib_uses_dbg_font_quad_char_2345c8, gfxlib_uses_dbg_font_quad_char_2346ce,
+ * gfxlib_uses_dbg_font_quad_char_234834, gfxlib_uses_libgcc_divide_helper_234348
  */
-u32 *gfxlib_float_calc_2340a0(u32 a0, u32 a1, u32 a2) {
+u32 *dbg_font_quad_char(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
     u32 uVar2;
     float fVar3;
@@ -8430,11 +8430,11 @@ u32 *gfxlib_float_calc_2340a0(u32 a0, u32 a1, u32 a2) {
 }
 
 /*
- * gfxlib_uses_log_message_2341d6  0x8c2341d6
- * area name: in the gfxlib library code range; behaviour name: its main named callee is log_message
- * called by: gfxlib_uses_log_message_234a1c
+ * dbg_font_print  0x8c2341d6
+ * formats the message a1, then draws it with the debug font at (a0 & 0xffff, a0 >> 16) scaled by the font size
+ * called by: gfxlib_uses_dbg_font_print_234a1c
  */
-u32 gfxlib_uses_log_message_2341d6(u32 a0, char *a1) {
+u32 dbg_font_print(u32 a0, char *a1) {
     char cVar1;
     u32 uVar2;
     u32 uVar3;
@@ -8484,7 +8484,7 @@ u32 gfxlib_uses_log_message_2341d6(u32 a0, char *a1) {
             fVar5 = SUB84(dVar7, 0);
             cVar1 = *a1;
             a1 = a1 + 1;
-            gfxlib_float_calc_2340a0(a4, a5, (int)cVar1);
+            dbg_font_quad_char(a4, a5, (int)cVar1);
 
             fVar5 = g_8c4aa394;
 
@@ -8549,7 +8549,7 @@ u32 gfxlib_uses_libgcc_divide_helper_234348(u32 a0, int a1, int a2) {
 
     fVar4 = SUB84(dVar6, 0);
     if (a1 < 0) {
-        gfxlib_float_calc_2340a0(a4, (int)sVar7, 0x2d);
+        dbg_font_quad_char(a4, (int)sVar7, 0x2d);
         a1 = -a1;
 
         fVar4 = g_8c4aa394;
@@ -8620,7 +8620,7 @@ u32 gfxlib_uses_libgcc_divide_helper_234348(u32 a0, int a1, int a2) {
         if (9 < iVar1) {
             iVar1 = 0;
         }
-        gfxlib_float_calc_2340a0(a4, (int)sVar7, iVar1 + 0x30);
+        dbg_font_quad_char(a4, (int)sVar7, iVar1 + 0x30);
         a2 = a2 + -1;
 
         fVar4 = g_8c4aa394;
@@ -8633,10 +8633,10 @@ u32 gfxlib_uses_libgcc_divide_helper_234348(u32 a0, int a1, int a2) {
 }
 
 /*
- * gfxlib_calls_float_calc_2345c8  0x8c2345c8
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: float_calc
+ * gfxlib_uses_dbg_font_quad_char_2345c8  0x8c2345c8
+ * area name: in the gfxlib library code range; behaviour name: its main named callee is dbg_font_quad_char
  */
-u32 gfxlib_calls_float_calc_2345c8(u32 a0, u32 a1, int a2) {
+u32 gfxlib_uses_dbg_font_quad_char_2345c8(u32 a0, u32 a1, int a2) {
     u32 uVar1;
     u8 *a7;
     float fVar2;
@@ -8686,7 +8686,7 @@ u32 gfxlib_calls_float_calc_2345c8(u32 a0, u32 a1, int a2) {
         } else {
             uVar1 = a1 << (uVar1 & 0x1f);
         }
-        gfxlib_float_calc_2340a0(a4, a5, (uVar1 & 1) + 0x30);
+        dbg_font_quad_char(a4, a5, (uVar1 & 1) + 0x30);
 
         fVar2 = g_8c4aa394;
 
@@ -8700,10 +8700,10 @@ u32 gfxlib_calls_float_calc_2345c8(u32 a0, u32 a1, int a2) {
 }
 
 /*
- * gfxlib_calls_float_calc_2346ce  0x8c2346ce
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: float_calc
+ * gfxlib_uses_dbg_font_quad_char_2346ce  0x8c2346ce
+ * area name: in the gfxlib library code range; behaviour name: its main named callee is dbg_font_quad_char
  */
-u32 gfxlib_calls_float_calc_2346ce(u32 a0, u32 a1, int a2) {
+u32 gfxlib_uses_dbg_font_quad_char_2346ce(u32 a0, u32 a1, int a2) {
     u32 uVar1;
     u8 *a7;
     int iVar2;
@@ -8758,7 +8758,7 @@ u32 gfxlib_calls_float_calc_2346ce(u32 a0, u32 a1, int a2) {
         } else {
             uVar1 = a1 << (uVar1 & 0x1f);
         }
-        gfxlib_float_calc_2340a0(a4, (int)sVar7, (int)(char)(&g_8c277a90)[uVar1 & 0xf]);
+        dbg_font_quad_char(a4, (int)sVar7, (int)(char)(&g_8c277a90)[uVar1 & 0xf]);
 
         fVar4 = g_8c4aa394;
 
@@ -8776,11 +8776,11 @@ u32 gfxlib_calls_float_calc_2346ce(u32 a0, u32 a1, int a2) {
 }
 
 /*
- * gfxlib_uses_sprintf_234834  0x8c234834
- * area name: in the gfxlib library code range; behaviour name: its main named callee is sprintf
+ * gfxlib_uses_dbg_font_quad_char_234834  0x8c234834
+ * area name: in the gfxlib library code range; behaviour name: its main named callee is dbg_font_quad_char
  * strings: "%0.*f"
  */
-u32 gfxlib_uses_sprintf_234834(u32 a0, u32 a1) {
+u32 gfxlib_uses_dbg_font_quad_char_234834(u32 a0, u32 a1) {
     u32 r7;
     char cVar1;
     int iVar2;
@@ -8858,7 +8858,7 @@ u32 gfxlib_uses_sprintf_234834(u32 a0, u32 a1) {
     if (bVar16) {
         puVar6 = (u8 *)0x2d;
         puVar5 = a5;
-        gfxlib_float_calc_2340a0(a4, a5, 0x2d);
+        dbg_font_quad_char(a4, a5, 0x2d);
         fVar13 = fRam8c4aa398;
 
         fVar13 = g_8c4aa394;
@@ -8912,7 +8912,7 @@ u32 gfxlib_uses_sprintf_234834(u32 a0, u32 a1) {
             fVar13 = SUB84(dVar14, 0);
             cVar1 = *pcVar9;
             pcVar9 = pcVar9 + 1;
-            gfxlib_float_calc_2340a0(a4, a5, (int)cVar1);
+            dbg_font_quad_char(a4, a5, (int)cVar1);
 
             fVar13 = g_8c4aa394;
 
@@ -8930,10 +8930,10 @@ u32 gfxlib_uses_sprintf_234834(u32 a0, u32 a1) {
 }
 
 /*
- * gfxlib_uses_log_message_234a1c  0x8c234a1c
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: uses_log_message
+ * gfxlib_uses_dbg_font_print_234a1c  0x8c234a1c
+ * area name: in the gfxlib library code range; behaviour name: its main named callee is dbg_font_print
  */
-u32 gfxlib_uses_log_message_234a1c(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 s0, u32 s4) {
+u32 gfxlib_uses_dbg_font_print_234a1c(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 s0, u32 s4) {
     int iVar1;
     u32 uVar2;
     int ar6_00;
@@ -8947,7 +8947,7 @@ u32 gfxlib_uses_log_message_234a1c(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3,
         ar6_00 = (int)&s4 + 0x88 + iVar1;
     }
     (*(code *)(&vsprintf_like))((int)&s0 + iVar1, *(u32 *)((int)&uStack_4 + 0x88 + iVar1), ar6_00, a3);
-    uVar2 = gfxlib_uses_log_message_2341d6(*(u32 *)((int)&uStack_4 + iVar1), (int)&s0 + iVar1);
+    uVar2 = dbg_font_print(*(u32 *)((int)&uStack_4 + iVar1), (int)&s0 + iVar1);
     return uVar2;
 }
 
@@ -11242,8 +11242,8 @@ u32 gfxlib_float_calc_2363e8(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a
 /*
  * draw_state_save  0x8c236454
  * saves the TA polygon state (0x8c4aabbc +0x90..) into 0x8c4ab238
- * called by: alt_entry_21af36, alt_entry_21ba6a, alt_entry_21bbba, gfxlib_draw_218f56, gfxlib_draw_218f96,
- * gfxlib_draw_219a86, gfxlib_draw_219a9a, gfxlib_draw_21a7ce (+27 more)
+ * called by: alt_entry_21af36, alt_entry_21ba6a, alt_entry_21bbba, gfx_draw_motion, gfx_draw_motion_alt,
+ * gfx_model_draw_a_entry, gfx_model_draw_c_entry, gfx_object_draw_a_entry (+27 more)
  */
 int draw_state_save(u32 a0, u32 a1, u32 a2, u32 a3) {
     int *piVar1;
@@ -11282,8 +11282,8 @@ int draw_state_save(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * draw_state_restore  0x8c2364b2
  * restores the TA polygon state saved by draw_state_save
- * called by: alt_entry_21af36, alt_entry_21ba6a, alt_entry_21bbba, gfxlib_draw_218f56, gfxlib_draw_218f96,
- * gfxlib_draw_219a86, gfxlib_draw_219a9a, gfxlib_draw_21a7ce (+27 more)
+ * called by: alt_entry_21af36, alt_entry_21ba6a, alt_entry_21bbba, gfx_draw_motion, gfx_draw_motion_alt,
+ * gfx_model_draw_a_entry, gfx_model_draw_c_entry, gfx_object_draw_a_entry (+27 more)
  */
 int draw_state_restore(u32 a0) {
     int *piVar1;
@@ -11839,7 +11839,7 @@ u32 gfxlib_calc_23752c(u32 a0, u32 a1) {
 /*
  * gfxlib_calc_2375ae  0x8c2375ae
  * area name: in the gfxlib library code range; behaviour name: integer arithmetic on its arguments
- * called by: gfxlib_calls_calc_21d7d4, gfxlib_draw_217f12, gfxlib_draw_21908e
+ * called by: gfx_material_colors_unpack, gfxlib_draw_217f12, gfxlib_draw_21908e
  */
 u32 *gfxlib_calc_2375ae(int a0, u32 a1) {
     u32 *puVar1;

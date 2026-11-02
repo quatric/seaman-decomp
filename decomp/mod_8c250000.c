@@ -11086,7 +11086,7 @@ u32 matrix_push(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
  * matrix_push_regs  0x8c2563ac
  * pushes a matrix held in the FPU registers onto the matrix stack
  * called by: alt_entry_218ea0, alt_entry_2199c0, alt_entry_21a718, alt_entry_21a8be, alt_entry_21a952,
- * alt_entry_21b916, alt_entry_21b9a8, gfxlib_uses_matrix_push_regs_218e8a (+4 more)
+ * alt_entry_21b916, alt_entry_21b9a8, gfx_object_tree_eval_draw_a (+4 more)
  */
 u32 matrix_push_regs(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 *puVar1;
@@ -11902,7 +11902,7 @@ u32 ninja_update_fields_25699c(int a0) {
  * ninja_scan_loop_2569e0  0x8c2569e0
  * area name: in the ninja library code range; behaviour name: a loop that only reads
  * called by: alt_entry_218ea0, alt_entry_2199c0, alt_entry_21a718, alt_entry_21a8be, alt_entry_21a952,
- * alt_entry_21b916, alt_entry_21b9a8, gfxlib_calls_scan_loop_21d112 (+9 more)
+ * alt_entry_21b916, alt_entry_21b9a8, gfx_object_tree_eval_draw_a (+9 more)
  */
 u32 ninja_scan_loop_2569e0(u32 *a0, int a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -12475,7 +12475,7 @@ u32 matrix_scale(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
  * noop_257098  0x8c257098
  * does nothing
  * called by: alt_entry_218ea0, alt_entry_2199c0, alt_entry_21a718, alt_entry_21a8be, alt_entry_21a952,
- * alt_entry_21b916, alt_entry_21b9a8, gfxlib_uses_matrix_push_regs_218e8a (+8 more)
+ * alt_entry_21b916, alt_entry_21b9a8, gfx_object_tree_draw_hooked (+8 more)
  */
 u32 noop_257098(void) {
     u32 in_r0;
