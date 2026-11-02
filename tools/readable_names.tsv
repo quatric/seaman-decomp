@@ -984,3 +984,23 @@
 8c259bd8	ninja_angle_sincos	sin and cos of Ninja angle a0 (65536 units per turn)
 8c25ecc2	cri_clear_table_4b3340_b	clears the 0x100-byte table at 8c4b3340 and its two counters
 8c260e9c	adx_get_highpass_freq	*a2 = the high-pass cutoff of the ADX header a0 (a1 bytes); -2 without the 0x8000 magic
+8c261f22	ADXF_find_free_handle	first free 0x30-byte ADXF handle of the ten at 8c4b3b20, else 0
+8c268b48	mwRna_find_free_handle	first free 0x90-byte mwRna handle of the eight at 8c4bd580, else 0
+8c26a220	sd_find_free_slot_beb88	first free 0x54-byte slot of the eight at 8c4beb88, else 0
+8c26b234	release_clear_4bf038	drops a reference; clears the 0x480-byte table at 8c4bf038 when the last one goes
+8c26b548	release_clear_4bf4b8	drops a reference; clears the 0xc00-byte table at 8c4bf4b8 when the last one goes
+8c26b9b4	release_clear_4c00b8	drops a reference; clears the 0xc00-byte table at 8c4c00b8 when the last one goes
+8c2629b2	mwRna_stop_and_destroy	mwRnaStop, then mwRnaDestroy
+8c2637e8	ADXSTM_get_file_sectors	*a1 = the stream file's size in 2048-byte sectors, rounded up
+8c263816	ADXSTM_get_file_size	*a1 = the stream file's size in bytes
+8c26868c	aica_read_u16	*a1 = the u16 at sound-RAM address a0 (below 2 MB)
+8c2687c8	aica_write_u8	writes byte a1 to sound-RAM address a0 (below 2 MB) by read-modify-write of its word
+8c26145e	cri_clear_30_masked	zeroes the 0x30 bytes at a0 with interrupts masked
+8c0100b6	call_function_list	calls each function of the null-terminated list in r13
+8c0100ec	array_destruct_backwards	calls destructor a1 on each of r11 elements of size r10 at a0, last first
+8c0151e8	find_byte_in_ff_list	the entry whose low byte is a1 in the 0xff-terminated u16 list a0, else 0
+8c01e168	realloc_like	allocates a1 bytes, copies a1 bytes from a0 into them and frees a0
+8c1fb57c	free_sys	frees a block from malloc_sys
+8c01e14c	free_01e14c	free_sys(a0)
+8c016ecc	copy_8_vec3_30	copies the eight vectors at +0x30 to a1
+8c016e6c	get_vec4_30	copies the four words at +0x30 to a1

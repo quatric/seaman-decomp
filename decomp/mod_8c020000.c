@@ -228,7 +228,7 @@ u32 CDCGD_sub_02049c(int *a0, int *a1, u32 a2, u32 a3) {
             ADXF_Close_like(*a0);
         }
         if (a1[2] != 0) {
-            malloc_sub_1fb57c(a1[2], piVar3, a2, a3);
+            free_sys(a1[2], piVar3, a2, a3);
         }
     }
     *a0 = 0;
@@ -478,10 +478,10 @@ u32 CDCGD_release_request(u32 unused_a0, int a1, u32 *a2, u32 a3, u32 s0, u32 s4
             }
             iVar1 = CDCGD_sub_020600(unused_a0, a1, a2, a3);
             if (*(int *)(iVar1 + 8) != 0) {
-                malloc_sub_1fb57c(*(u32 *)(iVar1 + 8), a1, a2, a3);
+                free_sys(*(u32 *)(iVar1 + 8), a1, a2, a3);
             }
         }
-        uVar2 = malloc_sub_1fb57c(iVar1, a1, a2, a3);
+        uVar2 = free_sys(iVar1, a1, a2, a3);
     }
     return uVar2;
 }

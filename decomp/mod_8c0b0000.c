@@ -5445,13 +5445,13 @@ int CProlog_sub_0b96e4(int a0, u32 a1, u32 a2, u32 a3) {
         } else {
             g_8c4365f4 = (char *)malloc_thunk(0x3c, ar5_00, a2, a3);
             if (g_8c4365f4 == NULL) {
-                malloc_sub_1fb57c(g_8c4365f0, ar5_00, a2, a3);
+                free_sys(g_8c4365f0, ar5_00, a2, a3);
                 iVar1 = 0xb6;
             } else {
                 ar4_00 = (char *)malloc_thunk(0x44c, ar5_00, a2, a3);
                 if (ar4_00 == NULL) {
-                    malloc_sub_1fb57c(g_8c4365f0, ar5_00, a2, a3);
-                    malloc_sub_1fb57c(g_8c4365f4, ar5_00, a2, a3);
+                    free_sys(g_8c4365f0, ar5_00, a2, a3);
+                    free_sys(g_8c4365f4, ar5_00, a2, a3);
                     iVar1 = 0xb6;
                 } else {
                     iVar1 = 0xb6;
@@ -5562,9 +5562,9 @@ int CProlog_sub_0b96e4(int a0, u32 a1, u32 a2, u32 a3) {
                         }
                     }
                     shinobi_sub_1f710c(ar4_01, ar5_01, ar6_00, ar7_00, a1);
-                    malloc_sub_1fb57c(g_8c4365f0, ar5_01, ar6_00, ar7_00);
-                    malloc_sub_1fb57c(g_8c4365f4, ar5_01, ar6_00, ar7_00);
-                    malloc_sub_1fb57c(ar4_00, ar5_01, ar6_00, ar7_00);
+                    free_sys(g_8c4365f0, ar5_01, ar6_00, ar7_00);
+                    free_sys(g_8c4365f4, ar5_01, ar6_00, ar7_00);
+                    free_sys(ar4_00, ar5_01, ar6_00, ar7_00);
                 }
             }
         }

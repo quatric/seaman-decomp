@@ -1630,11 +1630,11 @@ u8 *cri_sub_2613aa(int a0, int a1, int a2) {
 }
 
 /*
- * cri_sub_26145e  0x8c26145e
- * area name: in the cri library code range
- * called by: cri_sub_2639fa
+ * cri_clear_30_masked  0x8c26145e
+ * zeroes the 0x30 bytes at a0 with interrupts masked
+ * called by: ADXSTM_sub_2639fa
  */
-u32 cri_sub_26145e(int a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
+u32 cri_clear_30_masked(int a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
     u32 uVar1;
     u32 ar5_00;
     u32 ar6_00;
@@ -2298,11 +2298,11 @@ int ADXF_sub_261d46(int a0, u32 a1, int *a2, int a3) {
 }
 
 /*
- * ADXF_sub_261f22  0x8c261f22
- * area name: sits between ADXF functions (same compilation unit)
+ * ADXF_find_free_handle  0x8c261f22
+ * first free 0x30-byte ADXF handle of the ten at 8c4b3b20, else 0
  * called by: ADXF_sub_261f48
  */
-char *ADXF_sub_261f22(void) {
+char *ADXF_find_free_handle(void) {
     char *pcVar1;
     char *pcVar2;
     char *pcVar3;
@@ -2323,7 +2323,7 @@ char *ADXF_sub_261f22(void) {
 u32 ADXF_sub_261f48(void) {
     u8 *puVar1;
 
-    puVar1 = (u8 *)ADXF_sub_261f22();
+    puVar1 = (u8 *)ADXF_find_free_handle();
     if (puVar1 == NULL) {
         return 0;
     }
@@ -2361,9 +2361,9 @@ int ADXF_sub_261f7a(int a0, u32 a1, u32 a2, u32 a3) {
     if (-1 < iVar2) {
         ar5_00 = &uStack_1c;
         a4 = a1;
-        iVar2 = ADXSTM_sub_2637e8(a1, ar5_00, a2, a3);
+        iVar2 = ADXSTM_get_file_sectors(a1, ar5_00, a2, a3);
         if (-1 < iVar2) {
-            iVar2 = ADXSTM_sub_263816(a1, &uStack_20, a2, a3);
+            iVar2 = ADXSTM_get_file_size(a1, &uStack_20, a2, a3);
             if (iVar2 < 0) {
                 (*(code *)puVar1)(a1, a5, a2, a3);
                 return iVar2;
@@ -3193,9 +3193,9 @@ u32 cri_sub_2628fa(int *a0, u32 a1, u32 unused_a2, u32 a3, u32 ain0) {
         memset_wrap_262ad8();
         noop_26325a();
         cri_clear_table_4b3340_b(iVar2, a1, unused_a2, a3);
-        game_sub_26b234();
-        game_sub_26b548();
-        uVar1 = game_sub_26b9b4();
+        release_clear_4bf038();
+        release_clear_4bf4b8();
+        uVar1 = release_clear_4c00b8();
         uVar1 = irq_restore_nested(iVar2, a1, unused_a2, a3, uVar1);
         return uVar1;
     }
@@ -3236,11 +3236,11 @@ u32 cri_sub_2629ac(void) {
 }
 
 /*
- * cri_sub_2629b2  0x8c2629b2
- * area name: in the cri library code range
- * called by: cri_sub_2639fa
+ * mwRna_stop_and_destroy  0x8c2629b2
+ * mwRnaStop, then mwRnaDestroy
+ * called by: ADXSTM_sub_2639fa
  */
-u32 cri_sub_2629b2(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 mwRna_stop_and_destroy(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     mwRnaStop(a0, unused_a1, a2, a3);
@@ -3500,7 +3500,7 @@ u32 cri_sub_262b04(u32 a0, int a1, u32 *a2) {
 
 /*
  * ta_fifo_262c04  0x8c262c04
- * called by: cri_sub_2639fa
+ * called by: ADXSTM_sub_2639fa
  */
 u32 ta_fifo_262c04(int a0) {
     u32 in_r0;
@@ -4302,7 +4302,7 @@ int ADXSTM_OpenFnameRange(u32 a0, u32 a1, int a2, u32 a3) {
 /*
  * ADXSTM_Destroy_like  0x8c263446
  * stops reading, closes the stream's file and clears the handle
- * called by: ADXF_sub_26211c, cri_sub_2639fa, cri_sub_263c64
+ * called by: ADXF_sub_26211c, ADXSTM_sub_2639fa, cri_sub_263c64
  */
 u32 ADXSTM_Destroy_like(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_r0;
@@ -4717,11 +4717,11 @@ u32 ADXSTM_sub_2637ca(u32 a0, u32 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * ADXSTM_sub_2637e8  0x8c2637e8
- * area name: sits between ADXSTM functions (same compilation unit)
+ * ADXSTM_get_file_sectors  0x8c2637e8
+ * *a1 = the stream file's size in 2048-byte sectors, rounded up
  * called by: ADXF_sub_261f7a
  */
-u32 ADXSTM_sub_2637e8(u32 a0, int *a1, u32 a2, u32 a3) {
+u32 ADXSTM_get_file_sectors(u32 a0, int *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 auStack_10[4];
     int iStack_c;
@@ -4736,11 +4736,11 @@ u32 ADXSTM_sub_2637e8(u32 a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * ADXSTM_sub_263816  0x8c263816
- * area name: sits between ADXSTM functions (same compilation unit)
+ * ADXSTM_get_file_size  0x8c263816
+ * *a1 = the stream file's size in bytes
  * called by: ADXF_sub_261f7a
  */
-u32 ADXSTM_sub_263816(u32 a0, u32 *a1, u32 a2, u32 a3) {
+u32 ADXSTM_get_file_size(u32 a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 auStack_10[4];
     u32 uStack_c;
@@ -4833,7 +4833,7 @@ u32 ADXSTM_sub_263840(int a0, int a1, int a2, u32 a3) {
                     if (cVar13 == '\0') {
                         pcVar10 = (code *)0x3f59999a;
                     } else {
-                        pcVar10 = cri_sub_2629b2;
+                        pcVar10 = mwRna_stop_and_destroy;
                     }
                     dVar9 = (double)CONCAT44(pcVar10, (float)(int)*(short *)(iVar4 + 0x8c27800c));
                     if (cVar12 == '\0') {
@@ -4868,17 +4868,17 @@ u32 ADXSTM_sub_263840(int a0, int a1, int a2, u32 a3) {
             }
         }
     override_prt_8c26394e_7a4d7f16:
-        cri_sub_2639fa(ar4_00, iVar6, a6, a3, iVar7);
+        ADXSTM_sub_2639fa(ar4_00, iVar6, a6, a3, iVar7);
     }
     return 0;
 }
 
 /*
- * cri_sub_2639fa  0x8c2639fa
- * area name: in the cri library code range
+ * ADXSTM_sub_2639fa  0x8c2639fa
+ * area name: sits between ADXSTM functions (same compilation unit)
  * called by: ADXSTM_sub_263840, cri_sub_263b0c
  */
-u32 cri_sub_2639fa(u8 *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
+u32 ADXSTM_sub_2639fa(u8 *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     u32 uVar1;
     u8 *puVar2;
     u32 ar5_00;
@@ -4892,7 +4892,7 @@ u32 cri_sub_2639fa(u8 *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
         cri_sub_263c64(a0, a1, a2, a3);
         if (*(int *)(a0 + 0xc) != 0) {
             puVar2 = *(u8 **)(a0 + 0xc);
-            cri_sub_2629b2(puVar2, a1, a2, a3);
+            mwRna_stop_and_destroy(puVar2, a1, a2, a3);
         }
         if (*(int *)(a0 + 4) != 0) {
             puVar2 = *(u8 **)(a0 + 4);
@@ -4920,7 +4920,7 @@ u32 cri_sub_2639fa(u8 *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
             }
         }
         if (*(int *)(a0 + 0x74) != 0) {
-            cri_sub_26145e(*(u32 *)(a0 + 0x74), a1, a2, a3, in_stack_ffffffe8);
+            cri_clear_30_masked(*(u32 *)(a0 + 0x74), a1, a2, a3, in_stack_ffffffe8);
         }
         ar5_00 = 0;
         ar6_00 = 0x94;
@@ -4947,7 +4947,7 @@ int cri_sub_263b0c(char *a0, u32 a1, u32 a2, u32 a3) {
     do {
         iVar1 = (int)*a0;
         if (iVar1 == 1) {
-            iVar1 = cri_sub_2639fa(a0, a1, a2, a3, in_PR);
+            iVar1 = ADXSTM_sub_2639fa(a0, a1, a2, a3, in_PR);
         }
         a0 = a0 + 0x94;
     } while (a0 < pcVar2);
@@ -5055,8 +5055,8 @@ u32 cri_sub_263bfe(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * cri_sub_263c64  0x8c263c64
  * area name: in the cri library code range
- * called by: ADXT_StartAfs, ADXT_StartFname, ADXT_StartMem, ADXT_StartMemIdx, ADXT_sub_2647f4, ADXT_sub_264c92,
- * cri_sub_2639fa, cri_sub_263bfe (+3 more)
+ * called by: ADXSTM_sub_2639fa, ADXT_StartAfs, ADXT_StartFname, ADXT_StartMem, ADXT_StartMemIdx, ADXT_sub_2647f4,
+ * ADXT_sub_264c92, cri_sub_263bfe (+3 more)
  */
 u32 cri_sub_263c64(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int *ar4_00;
@@ -7937,7 +7937,7 @@ int sd_sub_266214(int a0, u32 *a1, u32 a2) {
     } else if (a0 == 0) {
         ar5_00 = 0x7000103;
     } else {
-        aica_sub_26868c(*(char *)(a0 + 1) * 0x20 + *(int *)(g_8c2784c0 + 0x1b8) + 0x1c, &stack0xfffffff0);
+        aica_read_u16(*(char *)(a0 + 1) * 0x20 + *(int *)(g_8c2784c0 + 0x1b8) + 0x1c, &stack0xfffffff0);
         *a1 = in_stack_fffffff0 & 0xffff;
     }
     if (ar5_00 != 0) {
@@ -8679,7 +8679,7 @@ int sd_sub_266b76(u32 unused_a0, u32 a1) {
     int iVar2;
     int *unaff_r14;
 
-    sd_sub_2687c8(*(u32 *)((int)0x1bc + *unaff_r14), a1);
+    aica_write_u8(*(u32 *)((int)0x1bc + *unaff_r14), a1);
     for (iVar2 = 0; iVar1 = (int)0x15c, iVar2 < *(int *)(iVar1 + *unaff_r14); iVar2 = iVar2 + 1) {
         *(u8 *)(iVar2 * 0x10 + *(int *)((int)0x158 + *unaff_r14)) = 0;
     }
@@ -10868,11 +10868,11 @@ u32 aica_ram_read_u8(u32 a0, u8 *a1) {
 }
 
 /*
- * aica_sub_26868c  0x8c26868c
- * area name: sits between aica functions (same compilation unit)
+ * aica_read_u16  0x8c26868c
+ * *a1 = the u16 at sound-RAM address a0 (below 2 MB)
  * called by: sd_sub_266214
  */
-u32 aica_sub_26868c(u32 a0, u16 *a1) {
+u32 aica_read_u16(u32 a0, u16 *a1) {
     u16 auStack_c[4];
 
     if ((int)a0 < 0x200000) {
@@ -10884,8 +10884,8 @@ u32 aica_sub_26868c(u32 a0, u16 *a1) {
 
 /*
  * aica_ram_2686d4  0x8c2686d4
- * called by: aica_ram_read_byte, aica_ram_read_u8, aica_sub_26868c, sd_sub_2665b0, sd_sub_266ea8, sd_sub_267360,
- * sd_sub_2687c8
+ * called by: aica_ram_read_byte, aica_ram_read_u8, aica_read_u16, aica_write_u8, sd_sub_2665b0, sd_sub_266ea8,
+ * sd_sub_267360
  */
 u32 aica_ram_2686d4(int a0, u32 a1) {
     if (a0 < 0x200000) {
@@ -10925,7 +10925,7 @@ u32 aica_ram_268748(int a0, u32 a1) {
 
 /*
  * aica_ram_268788  0x8c268788
- * called by: sd_sub_2687c8
+ * called by: aica_write_u8
  */
 u32 aica_ram_268788(int a0, u32 a1) {
     u32 auStack_8[2];
@@ -10938,11 +10938,11 @@ u32 aica_ram_268788(int a0, u32 a1) {
 }
 
 /*
- * sd_sub_2687c8  0x8c2687c8
- * area name: in the sd library code range
+ * aica_write_u8  0x8c2687c8
+ * writes byte a1 to sound-RAM address a0 (below 2 MB) by read-modify-write of its word
  * called by: sd_sub_266b76
  */
-u32 sd_sub_2687c8(u32 a0, u32 a1) {
+u32 aica_write_u8(u32 a0, u32 a1) {
     u32 auStack_10[2];
 
     if ((int)a0 < 0x200000) {
@@ -11335,11 +11335,11 @@ int sd_sub_268afc(int a0) {
 }
 
 /*
- * sd_sub_268b48  0x8c268b48
- * area name: in the sd library code range
+ * mwRna_find_free_handle  0x8c268b48
+ * first free 0x90-byte mwRna handle of the eight at 8c4bd580, else 0
  * called by: sd_sub_268b70
  */
-char *sd_sub_268b48(void) {
+char *mwRna_find_free_handle(void) {
     char *pcVar1;
     char *pcVar2;
     char *pcVar3;
@@ -11386,7 +11386,7 @@ u32 sd_sub_268b70(int *a0, u32 a1, u32 a2, u32 a3) {
                 } while ((int)ar5_00 < (int)a1);
             }
             sd_irq_disable(auStack_20);
-            a4 = (u8 *)sd_sub_268b48();
+            a4 = (u8 *)mwRna_find_free_handle();
             if (a4 == NULL) {
                 (*(code *)puVar1)(a4_01, ar5_00, a2, a3);
             } else {
@@ -11430,7 +11430,7 @@ u32 sd_sub_268b70(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * mwRnaDestroy  0x8c268c7e
  * stops an mwRna output if playing, releases its channels and clears the 0x90-byte handle
- * called by: cri_sub_2629b2, sd_sub_268a24, sd_sub_268a36
+ * called by: mwRna_stop_and_destroy, sd_sub_268a24, sd_sub_268a36
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRnaDestroy(u8 *a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -11497,7 +11497,7 @@ u32 noop_268d60(void) {
 /*
  * mwRnaStop  0x8c268d64
  * stops an mwRna output: play switch off, buffers reset, status cleared (interrupts masked)
- * called by: cri_sub_2629b2, mwRnaDestroy, mwRna_sub_268cee, sd_sub_268a24, sd_sub_268a36
+ * called by: mwRnaDestroy, mwRna_stop_and_destroy, mwRna_sub_268cee, sd_sub_268a24, sd_sub_268a36
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRnaStop(int a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -13084,11 +13084,11 @@ u32 sd_sub_26a204(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * sd_sub_26a220  0x8c26a220
- * area name: in the sd library code range
+ * sd_find_free_slot_beb88  0x8c26a220
+ * first free 0x54-byte slot of the eight at 8c4beb88, else 0
  * called by: sd_sub_26a246
  */
-u32 sd_sub_26a220(void) {
+u32 sd_find_free_slot_beb88(void) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -13128,7 +13128,7 @@ u32 sd_sub_26a246(int a0, int a1, int a2, int a3) {
 
     puVar1 = (&debug_printf);
     iVar6 = a0;
-    if (((a0 < 1) || (2 < a0)) || (puVar5 = (u32 *)sd_sub_26a220(), puVar5 == NULL)) {
+    if (((a0 < 1) || (2 < a0)) || (puVar5 = (u32 *)sd_find_free_slot_beb88(), puVar5 == NULL)) {
         (*(code *)puVar1)(iVar6, a1, a2, a3);
     } else {
         *puVar5 = (&DATA_8c278600);
@@ -14262,11 +14262,11 @@ u32 game_sub_26b216(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_26b234  0x8c26b234
- * area name: game code; nothing names its area yet
+ * release_clear_4bf038  0x8c26b234
+ * drops a reference; clears the 0x480-byte table at 8c4bf038 when the last one goes
  * called by: cri_sub_2628fa
  */
-u32 game_sub_26b234(void) {
+u32 release_clear_4bf038(void) {
     u32 in_r0;
     u32 uVar1;
     int iVar2;
@@ -14595,11 +14595,11 @@ u32 game_sub_26b52a(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_26b548  0x8c26b548
- * area name: game code; nothing names its area yet
+ * release_clear_4bf4b8  0x8c26b548
+ * drops a reference; clears the 0xc00-byte table at 8c4bf4b8 when the last one goes
  * called by: cri_sub_2628fa
  */
-u32 game_sub_26b548(void) {
+u32 release_clear_4bf4b8(void) {
     u32 in_r0;
     u32 uVar1;
     int iVar2;
@@ -15039,11 +15039,11 @@ u32 game_sub_26b996(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_26b9b4  0x8c26b9b4
- * area name: game code; nothing names its area yet
+ * release_clear_4c00b8  0x8c26b9b4
+ * drops a reference; clears the 0xc00-byte table at 8c4c00b8 when the last one goes
  * called by: cri_sub_2628fa
  */
-u32 game_sub_26b9b4(void) {
+u32 release_clear_4c00b8(void) {
     u32 in_r0;
     u32 uVar1;
     int iVar2;

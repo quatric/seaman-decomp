@@ -44,10 +44,10 @@ u32 libc_sub_0100b0(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * libc_sub_0100b6  0x8c0100b6
- * area name: in the libc library code range
+ * call_function_list  0x8c0100b6
+ * calls each function of the null-terminated list in r13
  */
-u32 libc_sub_0100b6(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 call_function_list(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 in_r0;
     u32 *unaff_r13;
 
@@ -83,10 +83,10 @@ u32 vec_delete_array(int a0, code *a1, int a2, int a3) {
 }
 
 /*
- * libc_sub_0100ec  0x8c0100ec
- * area name: in the libc library code range
+ * array_destruct_backwards  0x8c0100ec
+ * calls destructor a1 on each of r11 elements of size r10 at a0, last first
  */
-u32 libc_sub_0100ec(int a0, code *a1, u32 a2, u32 a3) {
+u32 array_destruct_backwards(int a0, code *a1, u32 a2, u32 a3) {
     u32 in_r0;
     int unaff_r10;
     int unaff_r11;
@@ -11516,8 +11516,8 @@ u8 *memmove_bytes(u8 *a0, u8 *a1, u32 a2) {
 
 /*
  * memset  0x8c013ff8
- * called by: ADXF_Close_like, ADXF_LoadPartition, ADXF_sub_26216c, ADXSTM_sub_263840, asr_calloc, asr_sub_10a308,
- * asr_sub_10f22a, asr_sub_10fece (+95 more)
+ * called by: ADXF_Close_like, ADXF_LoadPartition, ADXF_sub_26216c, ADXSTM_sub_263840, ADXSTM_sub_2639fa, asr_calloc,
+ * asr_sub_10a308, asr_sub_10f22a (+95 more)
  */
 u8 *memset(u8 *a0, u32 a1, u32 a2) {
     u8 *puVar1;
@@ -13070,10 +13070,10 @@ u32 thunk_FUN_8c0151e8(short *a0, u32 a1) {
 }
 
 /*
- * game_sub_0151e8  0x8c0151e8
- * area name: game code; nothing names its area yet
+ * find_byte_in_ff_list  0x8c0151e8
+ * the entry whose low byte is a1 in the 0xff-terminated u16 list a0, else 0
  */
-u32 game_sub_0151e8(short *a0, u32 a1) {
+u32 find_byte_in_ff_list(short *a0, u32 a1) {
     while (true) {
         if (*a0 == 0xff) {
             return 0;
@@ -14277,7 +14277,7 @@ u32 game_sub_015f18(int a0, u32 a1, u32 a2, u32 a3) {
         noop_102824("Error", 0, 0, 0xd);
     }
     ninja_sub_25b100((int)**(short **)(a0 + 0x20), ar5_00, ar6_00, ar7_00);
-    uVar3 = malloc_sub_1fb57c(uVar3, ar5_00, ar6_00, ar7_00);
+    uVar3 = free_sys(uVar3, ar5_00, ar6_00, ar7_00);
     return uVar3;
 }
 
@@ -15173,10 +15173,10 @@ u32 game_sub_016e38(int a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_016e6c  0x8c016e6c
- * area name: game code; nothing names its area yet
+ * get_vec4_30  0x8c016e6c
+ * copies the four words at +0x30 to a1
  */
-u32 *game_sub_016e6c(int a0, u32 *a1) {
+u32 *get_vec4_30(int a0, u32 *a1) {
     a1[3] = *(u32 *)(a0 + 0x3c);
     *a1 = *(u32 *)(a0 + 0x30);
     a1[1] = *(u32 *)(a0 + 0x34);
@@ -15198,10 +15198,10 @@ u32 game_sub_016e98(int a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_016ecc  0x8c016ecc
- * area name: game code; nothing names its area yet
+ * copy_8_vec3_30  0x8c016ecc
+ * copies the eight vectors at +0x30 to a1
  */
-u32 game_sub_016ecc(int a0, int a1) {
+u32 copy_8_vec3_30(int a0, int a1) {
     int iVar1;
 
     for (iVar1 = 0; iVar1 < 8; iVar1 = iVar1 + 1) {
@@ -19222,7 +19222,7 @@ int game_sub_01a98c(int *a0, u32 a1, u32 a2, u32 a3) {
     while (true) {
         iVar1 = *(int *)((int)a0 + 0x2454 + *a0 * 0x28);
         if ((((iVar1 == 2) || (iVar1 == 3)) || (iVar1 == 4)) && (*(int *)((int)a0 + 0x2470 + *a0 * 0x28) != 0)) {
-            (*(code *)(&malloc_sub_1fb57c))(*(u32 *)((int)a0 + 0x2470 + *a0 * 0x28), a1, a2, a3);
+            (*(code *)(&free_sys))(*(u32 *)((int)a0 + 0x2470 + *a0 * 0x28), a1, a2, a3);
         }
         iVar2 = *a0;
         iVar1 = *(int *)((int)a0 + 0x2458 + *a0 * 0x28);
@@ -19501,7 +19501,7 @@ int memcard_queue_save(int a0, u32 a1, u32 a2, u32 a3) {
             } else {
                 ar5_01 = auStack_80;
                 uVar3 = shinobi_sub_2015b0(iVar2, ar5_01, uVar4, ar7_00);
-                malloc_sub_1fb57c(ar4_00, ar5_01, uVar4, ar7_00);
+                free_sys(ar4_00, ar5_01, uVar4, ar7_00);
                 *(u32 *)(iVar1 * 0x28 + a0 + 0x246c) = uVar3;
                 *(int *)(iVar1 * 0x28 + a0 + 0x2470) = iVar2;
             }
@@ -19785,7 +19785,7 @@ u32 memcard_load_wait(int a0, u32 a1, u32 a2, u32 a3) {
             iVar3 = ar5_00;
             iVar2 = wait_state_rtc_10s(a0, ar5_00, ar6_00, ar7_00);
             if (iVar2 == 0) {
-                (*(code *)(&malloc_sub_1fb57c))(*(u32 *)(0x2470 + ar5_00 * 0x28 + a0), iVar3, ar6_00, ar7_00);
+                (*(code *)(&free_sys))(*(u32 *)(0x2470 + ar5_00 * 0x28 + a0), iVar3, ar6_00, ar7_00);
                 uVar1 = 0;
             } else {
                 ar5_01 = *(u32 *)(0x2470 + ar5_00 * 0x28 + a0);
@@ -19798,7 +19798,7 @@ u32 memcard_load_wait(int a0, u32 a1, u32 a2, u32 a3) {
                     ar5_01 = uStack_1c;
                     ar6_00 = a3;
                 }
-                (*(code *)(&malloc_sub_1fb57c))(*(u32 *)(0x2470 + ar5_00 * 0x28 + a0), ar5_01, ar6_00, ar7_00);
+                (*(code *)(&free_sys))(*(u32 *)(0x2470 + ar5_00 * 0x28 + a0), ar5_01, ar6_00, ar7_00);
             }
         }
     } else {
@@ -19855,12 +19855,12 @@ u32 memcard_load_raw_wait(int a0, u32 a1, u32 a2, u32 a3) {
             ar5_01 = ar5_00;
             iVar2 = wait_state_rtc_10s(a0, ar5_00, uVar1, ar7_00);
             if (iVar2 == 0) {
-                (*(code *)(&malloc_sub_1fb57c))(*(u32 *)(0x2470 + ar5_00 * 0x28 + a0), ar5_01, uVar1, ar7_00);
+                (*(code *)(&free_sys))(*(u32 *)(0x2470 + ar5_00 * 0x28 + a0), ar5_01, uVar1, ar7_00);
                 uVar1 = 0;
             } else {
                 uVar1 = *(u32 *)(0x2470 + ar5_00 * 0x28 + a0);
                 memmove(a2, uVar1, a3);
-                (*(code *)(&malloc_sub_1fb57c))(*(u32 *)(0x2470 + ar5_00 * 0x28 + a0), uVar1, a3, ar7_00);
+                (*(code *)(&free_sys))(*(u32 *)(0x2470 + ar5_00 * 0x28 + a0), uVar1, a3, ar7_00);
                 uVar1 = 1;
             }
         }
@@ -21443,7 +21443,7 @@ int game_sub_01d7cc(int a0, u32 a1, u32 a2, u32 a3) {
     iVar1 = g_8c2791b8;
     if ((iVar1 == 4) && (iVar1 = g_8c279284, iVar1 == 0)) {
         if (g_8c279288 != 0) {
-            malloc_sub_1fb57c(g_8c279288, a1, a2, a3);
+            free_sys(g_8c279288, a1, a2, a3);
             g_8c279288 = 0;
             g_8c27928c = 0;
         }
@@ -21690,7 +21690,7 @@ u32 game_sub_01ddfc(int a0, u32 a1, u32 a2, u32 a3) {
 
     g_8c279254 = *(int *)(*(int *)(0x5b3c + a0) + 4);
     if (g_8c279250 != 0) {
-        malloc_sub_1fb57c(g_8c279250, a1, a2, a3);
+        free_sys(g_8c279250, a1, a2, a3);
     }
     iVar1 = malloc_thunk(g_8c279254 << 2, a1, a2, a3);
     g_8c279250 = iVar1;
@@ -21801,7 +21801,7 @@ int game_sub_01e0a4(u32 unused_a0, int *a1, u32 a2, u32 a3) {
 
     ar5_00 = a1;
     if (g_8c279288 != 0) {
-        malloc_sub_1fb57c(g_8c279288, a1, a2, a3);
+        free_sys(g_8c279288, a1, a2, a3);
     }
     g_8c279288 = 0;
     g_8c27928c = 0;
@@ -21830,21 +21830,21 @@ u32 malloc_thunk_wrap(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * malloc_sub_01e14c  0x8c01e14c
- * area name: sits between malloc functions (same compilation unit)
+ * free_01e14c  0x8c01e14c
+ * free_sys(a0)
  */
-u32 malloc_sub_01e14c(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 free_01e14c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = malloc_sub_1fb57c(a0, a1, a2, a3);
+    uVar1 = free_sys(a0, a1, a2, a3);
     return uVar1;
 }
 
 /*
- * malloc_sub_01e168  0x8c01e168
- * area name: sits between malloc functions (same compilation unit)
+ * realloc_like  0x8c01e168
+ * allocates a1 bytes, copies a1 bytes from a0 into them and frees a0
  */
-int malloc_sub_01e168(u32 a0, u32 a1, u32 a2, u32 a3) {
+int realloc_like(u32 a0, u32 a1, u32 a2, u32 a3) {
     int ar4_00;
     u32 ar5_00;
 
@@ -21855,7 +21855,7 @@ int malloc_sub_01e168(u32 a0, u32 a1, u32 a2, u32 a3) {
         memmove(ar4_00, a0, a1);
         a2 = a1;
     }
-    malloc_sub_1fb57c(a0, ar5_00, a2, a3);
+    free_sys(a0, ar5_00, a2, a3);
     return ar4_00;
 }
 
@@ -23492,12 +23492,12 @@ int game_sub_01fd08(u32 a0, int *a1, u32 unused_a2, u32 a3) {
             a3 = 10;
             game_sub_01fec4(a0, a1, iVar1, 10);
         } else {
-            malloc_sub_1fb57c(iVar1, ar5_00, ar6_00, a3);
+            free_sys(iVar1, ar5_00, ar6_00, a3);
         }
     }
     iVar1 = *a1;
     if (iVar1 != 0xb) {
-        iVar1 = malloc_sub_1fb57c(a1, ar5_00, ar6_00, a3);
+        iVar1 = free_sys(a1, ar5_00, ar6_00, a3);
     }
     return iVar1;
 }
@@ -23523,7 +23523,7 @@ u32 game_sub_01fec4(int a0, int a1, u32 a2, u32 a3) {
         iVar3 = a1 + 0x10;
         iVar1 = (*(code *)(&CDCGD_new_request_c))(a0, a3, iVar3, ar7_00, *(u32 *)(a1 + 0x50), *(u32 *)(a1 + 0x54));
         if (iVar1 == 0) {
-            uVar2 = malloc_sub_1fb57c(a2, a3, iVar3, ar7_00);
+            uVar2 = free_sys(a2, a3, iVar3, ar7_00);
         } else {
             *(u32 *)(iVar1 + 8) = a2;
             for (iVar3 = 0; iVar3 < 0x20; iVar3 = iVar3 + 1) {
@@ -23532,7 +23532,7 @@ u32 game_sub_01fec4(int a0, int a1, u32 a2, u32 a3) {
             uVar2 = list_push_front(a0, a0 + 0x28, iVar1);
         }
     } else {
-        uVar2 = malloc_sub_1fb57c(a2, uVar2, ar6_00, iVar3);
+        uVar2 = free_sys(a2, uVar2, ar6_00, iVar3);
     }
     return uVar2;
 }

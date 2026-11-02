@@ -5059,7 +5059,7 @@ u32 gdfs_sub_1f3952(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gdfs_sub_1f3968  0x8c1f3968
  * area name: sits between gdfs functions (same compilation unit)
- * called by: ADXSTM_sub_2637ca, ADXSTM_sub_2637e8, ADXSTM_sub_263816
+ * called by: ADXSTM_get_file_sectors, ADXSTM_get_file_size, ADXSTM_sub_2637ca
  */
 u32 gdfs_sub_1f3968(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -14179,12 +14179,12 @@ u32 *malloc_sub_1fb4c2(int a0) {
 }
 
 /*
- * malloc_sub_1fb57c  0x8c1fb57c
- * area name: sits between malloc functions (same compilation unit)
- * called by: CDCGD_release_request, CDCGD_sub_02049c, CProlog_sub_0b96e4, draw_sub_258b26, free_ptr_and_clear,
- * game_shutdown_a, game_sub_015f18, game_sub_01d7cc (+9 more)
+ * free_sys  0x8c1fb57c
+ * frees a block from malloc_sys
+ * called by: CDCGD_release_request, CDCGD_sub_02049c, CProlog_sub_0b96e4, draw_sub_258b26, free_01e14c,
+ * free_ptr_and_clear, game_shutdown_a, game_sub_015f18 (+9 more)
  */
-u32 malloc_sub_1fb57c(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 free_sys(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     /* WARNING: Could not recover jumptable at 0x8c1fb582. Too many branches */

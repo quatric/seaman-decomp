@@ -2038,7 +2038,7 @@ u32 malloc_thunk_wrap_10287c(u32 a0, u32 a1, u32 a2, u32 a3) {
  */
 u32 free_ptr_and_clear(int *a0, u32 a1, u32 a2, u32 a3) {
     if (*a0 != 0) {
-        malloc_sub_1fb57c(*a0, a1, a2, a3);
+        free_sys(*a0, a1, a2, a3);
         *a0 = 0;
     }
     return 0;

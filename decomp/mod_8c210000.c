@@ -1346,7 +1346,7 @@ u32 kamui_sub_212440(u32 a0, u32 unused_a1, int a2, u32 a3) {
                 gdfs_close_like(ar4_00, in_stack_fffffff0, a2, a3);
                 return iVar1;
             }
-            malloc_sub_1fb57c(iVar1, in_stack_fffffff0, a2, a3);
+            free_sys(iVar1, in_stack_fffffff0, a2, a3);
             ar5_00 = in_stack_fffffff0;
         }
         gdfs_close_like(ar4_00, ar5_00, a2, a3);

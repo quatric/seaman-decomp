@@ -4208,23 +4208,23 @@ u32 game_shutdown_a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     gfxlib_sub_23403e();
     if (g_8c43b570 != 0) {
         ar4_00 = g_8c43b570;
-        malloc_sub_1fb57c(ar4_00, a1, a2, a3);
+        free_sys(ar4_00, a1, a2, a3);
     }
     if (g_8c43b574 != 0) {
         ar4_00 = g_8c43b574;
-        malloc_sub_1fb57c(ar4_00, a1, a2, a3);
+        free_sys(ar4_00, a1, a2, a3);
     }
     if (g_8c43b578 != 0) {
         ar4_00 = g_8c43b578;
-        malloc_sub_1fb57c(ar4_00, a1, a2, a3);
+        free_sys(ar4_00, a1, a2, a3);
     }
     if (g_8c43b57c != 0) {
         ar4_00 = g_8c43b57c;
-        malloc_sub_1fb57c(ar4_00, a1, a2, a3);
+        free_sys(ar4_00, a1, a2, a3);
     }
     if (g_8c43b580 != 0) {
         ar4_00 = g_8c43b580;
-        malloc_sub_1fb57c(ar4_00, a1, a2, a3);
+        free_sys(ar4_00, a1, a2, a3);
     }
     uVar1 = system_init_libs(ar4_00, a1, a2, a3);
     return uVar1;

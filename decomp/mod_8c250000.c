@@ -15214,7 +15214,7 @@ u32 draw_sub_258b26(int a0, int a1, int a2, int a3) {
     g_8c277ae0 = in_stack_00000000;
     if (g_8c277b30 == 0) {
         if (g_8c4aace0 != 0) {
-            malloc_sub_1fb57c(g_8c4aace0 & 0x8fffffff, 0x100010, &g_8c277c6c, a3);
+            free_sys(g_8c4aace0 & 0x8fffffff, 0x100010, &g_8c277c6c, a3);
         }
         fVar3 = (float)g_8c277b2c;
         dVar5 = (double)(u64)(u32)fVar3;
@@ -15666,7 +15666,7 @@ u32 ninja_sub_2590bc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
     uVar1 = kamui_sub_210fd2(&g_8c4aabdc, a1, a2, a3);
     if (g_8c277b30 == 0) {
-        uVar1 = malloc_sub_1fb57c(g_8c4aace0 & 0x8fffffff, a1, a2, a3);
+        uVar1 = free_sys(g_8c4aace0 & 0x8fffffff, a1, a2, a3);
         return uVar1;
     }
     return uVar1;
