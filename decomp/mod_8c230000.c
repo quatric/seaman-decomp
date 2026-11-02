@@ -10937,6 +10937,7 @@ u32 FUN_8c23617c(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0)
     a0[2] = in_fr2;
     a0[1] = in_fr1;
     *a0 = in_fr0;
+    return ain0;
 }
 
 /*
@@ -11162,6 +11163,7 @@ u32 FUN_8c2363e8(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0)
     a0[2] = uVar2;
     a0[1] = in_fr9;
     *a0 = uVar1;
+    return ain0;
 }
 
 /*
@@ -14988,6 +14990,7 @@ u32 FUN_8c23a8a4(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) 
     *(float *)(a0 + 0x54) = (float)((u64)lVar3 >> 0x20) * fVar4;
     *(float *)(a0 + 0x50) = fVar1 * fVar4;
     *(float *)(a0 + 0x4c) = fVar2 * fVar4;
+    return ain0;
 }
 
 /*

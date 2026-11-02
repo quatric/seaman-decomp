@@ -288,13 +288,13 @@ u32 FUN_8c0f4258(int a0, int *a1, u32 a2, u32 a3) {
         ar5_00 = (int *)(**(code **)(0x104 + *a1))(a1, iVar4, a2, a3);
         iVar5 = (**(code **)(**(int **)(0xa4 + a0) + 0x14))(*(int **)(0xa4 + a0), (int)ar5_00 + 0xc4, a2, a3);
         if (iVar5 == 1) {
-            FUN_8c0f4e1c(a0, ar5_00);
+            set_field_108(a0, ar5_00);
             goto LAB_8c0f42f4;
         }
         a5 = (int *)((int)ar5_00 + 0xc4);
         iVar5 = (**(code **)(*(int *)(a0 + 0xa8) + 0x14))((int *)(a0 + 0xa8), a5, a2, a3);
         if (iVar5 == 1) {
-            FUN_8c0f4e28(a0, ar5_00);
+            set_field_128_0f4e28(a0, ar5_00);
             goto LAB_8c0f42f4;
         }
         iVar4 = iVar4 + 1;
@@ -1165,10 +1165,10 @@ int FUN_8c0f4dc4(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c0f4e1c  0x8c0f4e1c
+ * set_field_108  0x8c0f4e1c
  * called by: FUN_8c0f4258
  */
-int FUN_8c0f4e1c(int a0, u32 a1) {
+int set_field_108(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x108;
@@ -1177,10 +1177,10 @@ int FUN_8c0f4e1c(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c0f4e28  0x8c0f4e28
+ * set_field_128_0f4e28  0x8c0f4e28
  * called by: FUN_8c0f4258
  */
-int FUN_8c0f4e28(int a0, u32 a1) {
+int set_field_128_0f4e28(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x128;
@@ -2966,11 +2966,12 @@ int FUN_8c0f69ec(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c0f6ab0  0x8c0f6ab0
+ * has_field_2c  0x8c0f6ab0
+ * 1 when +0x2c is non-zero
  * called by: Class_12b580_m1_0e634c, Class_12b580_m2_0e6548, Class_12bb08_m1_0da338, Class_12bb08_m2_0da5a8,
  * FUN_8c0dba50, FUN_8c0de6d0, FUN_8c0deb60, FUN_8c0def78 (+4 more)
  */
-u32 FUN_8c0f6ab0(int a0) {
+u32 has_field_2c(int a0) {
     if (*(int *)(a0 + 0x2c) != 0) {
         return 1;
     }
@@ -3018,7 +3019,7 @@ u32 FUN_8c0f6ac4(u64 *a0, int *a1, u32 a2) {
     cVar11 = '\0';
     piVar2 = a1;
     uStack_18 = in_PR;
-    FUN_8c102748(&uStack_24);
+    clear_3_words_102748(&uStack_24);
     Vec3_ctor_zero(auStack_34, piVar2, a2);
     Vec3_ctor_zero(auStack_44, piVar2, a2);
     a7 = &fStack_1c;
@@ -3738,7 +3739,7 @@ u32 FUN_8c0f72ec(int a0, int *a1, u32 a2, u32 a3) {
         if (7 < iVar3) {
             return 0;
         }
-        iVar2 = FUN_8c0f6ab0(iVar1 + iVar3 * 0x68);
+        iVar2 = has_field_2c(iVar1 + iVar3 * 0x68);
         if ((iVar2 == 1) && (iVar1 + iVar3 * 0x68 != a0)) {
             if (cVar6 == '\0') {
                 in_dr14 = (double)CONCAT44((int)((u64)in_dr14 >> 0x20), *(u32 *)(iVar1 + iVar3 * 0x68 + 0x1c));
@@ -3831,7 +3832,7 @@ u32 FUN_8c0f743c(int a0, u32 a1, u32 a2, u32 a3) {
 u32 FUN_8c0f7470(int a0) {
     int iVar1;
 
-    iVar1 = noop_015bb8(a0 + 0x178);
+    iVar1 = get_field_0_015bb8(a0 + 0x178);
     return (u32)(iVar1 != 0);
 }
 
@@ -4209,7 +4210,7 @@ u32 FUN_8c0f7ec0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
  */
 int FUN_8c0f7f78(int a0, u32 unused_a1, u32 a2, u32 a3) {
     FUN_8c0fdc20(a0, unused_a1, a2, a3);
-    noop_0fa804(a0 + 0x1054);
+    FUN_8c0fa804(a0 + 0x1054);
     return a0;
 }
 
@@ -4365,7 +4366,7 @@ u32 FUN_8c0f824c(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * speech_restart  0x8c0f82a4
  * stops the current speech if one is running, then speech_start
- * called by: FUN_8c0306d4
+ * called by: talk_start_line
  */
 u32 speech_restart(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5296,11 +5297,11 @@ int FUN_8c0fa538(int a0, u8 *unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * noop_0fa5b4  0x8c0fa5b4
- * does nothing
+ * get_field_0_0fa5b4  0x8c0fa5b4
  * called by: FUN_8c0274bc, FUN_8c0276f4
  */
-u32 noop_0fa5b4(u32 *a0) {
+u32 get_field_0_0fa5b4(u32 *a0) {
+    return *a0;
 }
 
 /*
@@ -5356,7 +5357,7 @@ int FUN_8c0fa688(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 ar4_00;
     int iVar1;
 
-    ar4_00 = noop_01f520(0x8c3dd7dc, unused_a1, a2, a3);
+    ar4_00 = FUN_8c01f520(0x8c3dd7dc, unused_a1, a2, a3);
     FUN_8c01c944(ar4_00);
     iVar1 = 0x8913c;
     *(u32 *)(0x8913c + a0) = 0;
@@ -5371,7 +5372,7 @@ int FUN_8c0fa6c8(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 ar4_00;
     int iVar1;
 
-    ar4_00 = noop_01f520(0x8c3dd7dc, a1, unused_a2, a3);
+    ar4_00 = FUN_8c01f520(0x8c3dd7dc, a1, unused_a2, a3);
     FUN_8c01c964(ar4_00, (&DATA_8c1402d0));
     iVar1 = 0x8913c;
     *(u32 *)(0x8913c + a0) = 1;
@@ -5437,11 +5438,11 @@ u32 FUN_8c0fa74c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * noop_0fa804  0x8c0fa804
- * does nothing
+ * FUN_8c0fa804  0x8c0fa804
  * called by: FUN_8c0f7f78
  */
-u32 noop_0fa804(u32 a0) {
+u32 FUN_8c0fa804(u32 a0) {
+    return a0;
 }
 
 /*
@@ -5481,7 +5482,7 @@ u32 FUN_8c0fa83c(u32 *a0, u32 a1, u32 a2, u32 a3) {
     date_to_rtc_seconds(auStack_14, ar5_00, a2);
     uVar1 = field_ptr_384c(0x8c3dd7dc);
     a0[2] = uVar1;
-    uVar1 = noop_01f520(0x8c3dd7dc, ar5_00, a2, a3);
+    uVar1 = FUN_8c01f520(0x8c3dd7dc, ar5_00, a2, a3);
     a0[3] = uVar1;
     *a0 = 1;
     memset_on_field_d0(a0, ar5_00, a2, a3);
@@ -5738,7 +5739,7 @@ u32 FUN_8c0fae24(u32 *a0, u32 unused_a1, char *a2, u32 a3) {
     strcat(auStack_28, &g_8c141dd9);
     strcpy(auStack_48, *(u32 *)(a0[4] + 0x40));
     strcat(auStack_48, &g_8c141dde);
-    iVar1 = FUN_8c0faf30(a0 + 5, auStack_28);
+    iVar1 = strcmp_0faf30(a0 + 5, auStack_28);
     if (iVar1 != 0) {
         if (*(char *)(a0 + 5) != '\0') {
             FUN_8c021338(0x8c3eb334, a0 + 5, "SPEECH", 1);
@@ -5759,11 +5760,11 @@ u32 FUN_8c0fae24(u32 *a0, u32 unused_a1, char *a2, u32 a3) {
 }
 
 /*
- * FUN_8c0faf30  0x8c0faf30
+ * strcmp_0faf30  0x8c0faf30
  * called by: FUN_8c0fae24, FUN_8c0faf98, FUN_8c0fb0d4, FUN_8c0fb268, FUN_8c0fbdfc, FUN_8c0fbf28, FUN_8c0fc4fc,
  * FUN_8c0fcd2c (+1 more)
  */
-u32 FUN_8c0faf30(u8 *a0, u8 *a1) {
+u32 strcmp_0faf30(u8 *a0, u8 *a1) {
     u8 bVar1;
 
     do {
@@ -5798,7 +5799,7 @@ u32 FUN_8c0faf98(int a0, char *a1, char *a2, u32 a3) {
         strcpy(auStack_30, a1);
         iVar2 = 0;
         while ((iVar2 < *(int *)(a0 + 0x34) &&
-                (iVar1 = FUN_8c0faf30(iVar2 * 0x28 + *(int *)(a0 + 0x38), auStack_30), iVar1 != 0))) {
+                (iVar1 = strcmp_0faf30(iVar2 * 0x28 + *(int *)(a0 + 0x38), auStack_30), iVar1 != 0))) {
             iVar2 = iVar2 + 1;
         }
         if (*(int *)(a0 + 0x34) <= iVar2) {
@@ -5807,7 +5808,7 @@ u32 FUN_8c0faf98(int a0, char *a1, char *a2, u32 a3) {
     }
     if ((*(char *)(a0 + 0x5c) != '\0') &&
         ((*(int *)(iVar2 * 0x28 + *(int *)(a0 + 0x38) + 0x20) != *(int *)(a0 + 0x7c) ||
-          (iVar1 = FUN_8c0faf30(auStack_30, a0 + 0x5c), iVar1 != 0)))) {
+          (iVar1 = strcmp_0faf30(auStack_30, a0 + 0x5c), iVar1 != 0)))) {
         a3 = 1;
         a2 = "SPEECH";
         FUN_8c021338(0x8c3eb334, a0 + 0x3c, "SPEECH", 1);
@@ -5837,7 +5838,7 @@ u32 FUN_8c0fb0d4(u32 *a0, char *a1) {
         uVar1 = 2;
         *a0 = 2;
     } else {
-        iVar2 = FUN_8c0faf30(a1, "@ERROR");
+        iVar2 = strcmp_0faf30(a1, "@ERROR");
         if (iVar2 == 0) {
             uVar1 = 2;
             *a0 = 2;
@@ -5858,7 +5859,7 @@ u32 FUN_8c0fb0d4(u32 *a0, char *a1) {
         } else {
             for (ar4_00 = *(char **)(0x84 + (int)a0); (*(int *)(ar4_00 + 0x20) != 0 && (*ar4_00 != '\0'));
                  ar4_00 = ar4_00 + *(int *)(ar4_00 + 0x24) + 0x28) {
-                iVar2 = FUN_8c0faf30(ar4_00, a1);
+                iVar2 = strcmp_0faf30(ar4_00, a1);
                 if (iVar2 == 0) {
                     *(char **)(0x88 + (int)a0) = ar4_00;
                     *a0 = 6;
@@ -5940,7 +5941,7 @@ u32 FUN_8c0fb268(u32 *a0, u32 a1, u32 a2, u32 a3) {
             a0[0x23] = *(int *)(iVar3 + 0x4c) + -1;
         }
     }
-    iVar2 = FUN_8c0faf30(a0[0x23] * 0x24 + iVar3 + 0x54, "@NONE");
+    iVar2 = strcmp_0faf30(a0[0x23] * 0x24 + iVar3 + 0x54, "@NONE");
     if (iVar2 == 0) {
         uVar1 = FUN_8c0fb0d4(a0, iVar3 + 0x28);
         return uVar1;
@@ -6346,7 +6347,7 @@ u32 FUN_8c0fbdfc(u32 *a0, u32 unused_a1, char *a2, u32 a3) {
     int ar5_01;
 
     ar5_01 = a0[0x22];
-    iVar1 = FUN_8c0faf30(ar5_01 + 0x2c, a0 + 0x24);
+    iVar1 = strcmp_0faf30(ar5_01 + 0x2c, a0 + 0x24);
     if (iVar1 != 0) {
         if (*(char *)(a0 + 0x24) != '\0') {
             a2 = "SPEECH";
@@ -6449,7 +6450,7 @@ u32 FUN_8c0fbf28(u32 *a0, u32 unused_a1, char *a2, u8 *a3) {
             uVar1 = 0;
         } else {
             ar5_01 = "@NAME";
-            iVar2 = FUN_8c0faf30(acStack_90, "@NAME");
+            iVar2 = strcmp_0faf30(acStack_90, "@NAME");
             if (((iVar2 == 0) && (0 < **(int **)(a0[4] + 0x3c))) &&
                 (*(int *)(*(int *)(a0[4] + 0x40) + 100) != **(int **)(a0[4] + 0x3c))) {
                 FUN_8c01d868(a0[2]);
@@ -6458,7 +6459,7 @@ u32 FUN_8c0fbf28(u32 *a0, u32 unused_a1, char *a2, u8 *a3) {
             } else {
                 for (iVar2 = 0; iVar2 < *(int *)(ar5_03 + 0x6c); iVar2 = iVar2 + 1) {
                     ar5_01 = ar5_03 + iVar2 * 0x68 + 0x70;
-                    iVar3 = FUN_8c0faf30(acStack_90, ar5_01);
+                    iVar3 = strcmp_0faf30(acStack_90, ar5_01);
                     if (iVar3 == 0)
                         break;
                 }
@@ -6467,7 +6468,7 @@ u32 FUN_8c0fbf28(u32 *a0, u32 unused_a1, char *a2, u8 *a3) {
                     strcpy(acStack_90, &g_8c141e26);
                     for (iVar2 = 0; iVar2 < *(int *)(ar5_03 + 0x6c); iVar2 = iVar2 + 1) {
                         ar5_01 = ar5_03 + iVar2 * 0x68 + 0x70;
-                        iVar3 = FUN_8c0faf30(acStack_90, ar5_01);
+                        iVar3 = strcmp_0faf30(acStack_90, ar5_01);
                         if (iVar3 == 0)
                             break;
                     }
@@ -6603,10 +6604,10 @@ u32 FUN_8c0fc4fc(u32 unused_a0, int a1) {
     if ((*(int *)(a1 + 0x28) != 1) && (*(int *)(a1 + 0x28) != 2)) {
         for (iVar2 = 0; iVar2 < *(int *)(a1 + 0x6c); iVar2 = iVar2 + 1) {
             ar5_00 = a1 + iVar2 * 0x68 + 0x70;
-            iVar1 = FUN_8c0faf30("---", ar5_00);
+            iVar1 = strcmp_0faf30("---", ar5_00);
             if (iVar1 == 0) {
                 sprintf(auStack_18, ar5_00, r6, r7, "%d");
-                iVar1 = FUN_8c0faf30(auStack_18, a1 + iVar2 * 0x68 + 0xb0);
+                iVar1 = strcmp_0faf30(auStack_18, a1 + iVar2 * 0x68 + 0xb0);
                 if (iVar1 == 0) {
                     return 1;
                 }
@@ -7051,8 +7052,8 @@ u32 FUN_8c0fcd2c(int a0, char *a1, u32 a2, u32 a3) {
             if (*(char *)(*(int *)(*(int *)(a0 + 0x10) + 0x40) + 200) != '\0') {
                 iVar6 = 1;
                 while (
-                    (iVar6 < 0x10 && (iVar2 = FUN_8c0faf30(*(int *)(*(int *)(a0 + 0x10) + 0x40) + 200,
-                                                           *(int *)(*(int *)(a0 + 0x10) + 0x40) + iVar6 * 0x20 + 200),
+                    (iVar6 < 0x10 && (iVar2 = strcmp_0faf30(*(int *)(*(int *)(a0 + 0x10) + 0x40) + 200,
+                                                            *(int *)(*(int *)(a0 + 0x10) + 0x40) + iVar6 * 0x20 + 200),
                                       iVar2 == 0))) {
                     uVar7 = uVar7 + 1;
                     iVar6 = iVar6 + 1;
@@ -7078,8 +7079,8 @@ u32 FUN_8c0fcd2c(int a0, char *a1, u32 a2, u32 a3) {
         case 0x54:
             if (*(char *)(*(int *)(*(int *)(a0 + 0x10) + 0x40) + 200) != '\0') {
                 for (iVar6 = 1; iVar6 < 0x10; iVar6 = iVar6 + 1) {
-                    iVar2 = FUN_8c0faf30(*(int *)(*(int *)(a0 + 0x10) + 0x40) + 200,
-                                         *(int *)(*(int *)(a0 + 0x10) + 0x40) + iVar6 * 0x20 + 200);
+                    iVar2 = strcmp_0faf30(*(int *)(*(int *)(a0 + 0x10) + 0x40) + 200,
+                                          *(int *)(*(int *)(a0 + 0x10) + 0x40) + iVar6 * 0x20 + 200);
                     if (iVar2 == 0) {
                         uVar7 = uVar7 + 1;
                     }
@@ -7411,9 +7412,9 @@ u32 FUN_8c0fdaac(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar3;
 
     uVar1 = (u32) * (u8 *)(a0 + 0xd0);
-    iVar2 = FUN_8c0faf30(uVar1 * 0x880 + a0 + 0x8d1, a0 + 0x14);
-    if (((iVar2 != 0) || (iVar2 = FUN_8c0faf30(uVar1 * 0x880 + a0 + 0x911, a0 + 0x5c), iVar2 != 0)) ||
-        (iVar2 = FUN_8c0faf30(uVar1 * 0x880 + a0 + 0x931, a1), uVar3 = 0, iVar2 != 0)) {
+    iVar2 = strcmp_0faf30(uVar1 * 0x880 + a0 + 0x8d1, a0 + 0x14);
+    if (((iVar2 != 0) || (iVar2 = strcmp_0faf30(uVar1 * 0x880 + a0 + 0x911, a0 + 0x5c), iVar2 != 0)) ||
+        (iVar2 = strcmp_0faf30(uVar1 * 0x880 + a0 + 0x931, a1), uVar3 = 0, iVar2 != 0)) {
         uVar1 = (u32) * (u8 *)(a0 + 0xd0);
         strcpy(uVar1 * 0x880 + a0 + 0x8d1, a0 + 0x14);
         strcpy(uVar1 * 0x880 + a0 + 0x8f1, a0 + 0x3c);
@@ -8323,11 +8324,11 @@ u32 FUN_8c0fef10(int a0, u32 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * noop_0fef8c  0x8c0fef8c
- * does nothing
+ * FUN_8c0fef8c  0x8c0fef8c
  * called by: FUN_8c0c4644
  */
-u32 noop_0fef8c(u32 a0) {
+u32 FUN_8c0fef8c(u32 a0) {
+    return a0;
 }
 
 /*
@@ -8372,7 +8373,7 @@ int FUN_8c0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
     if (((int)a1 < 0x11) && (-1 < (int)a1)) {
         switch (a1) {
         case NULL:
-            iStack_88 = FUN_8c014028(0x9d8, a1, a2, a3);
+            iStack_88 = operator_new(0x9d8, a1, a2, a3);
             iStack_18 = iStack_88;
             if (iStack_88 != 0) {
                 FUN_8c09b8e4(iStack_88, 0);
@@ -8382,7 +8383,7 @@ int FUN_8c0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
             piVar3 = (int *)auStack_c4;
             break;
         case (char *)0x1:
-            a4 = FUN_8c014028(0xfd4, a1, a2, a3);
+            a4 = operator_new(0xfd4, a1, a2, a3);
             piVar3 = (int *)auStack_c4;
             iStack_1c = a4;
             if (a4 != 0) {
@@ -8392,7 +8393,7 @@ int FUN_8c0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
             }
             break;
         case (char *)0x2:
-            a4 = FUN_8c014028(0x1718, a1, a2, a3);
+            a4 = operator_new(0x1718, a1, a2, a3);
             piVar3 = (int *)auStack_c4;
             iStack_20 = a4;
             if (a4 != 0) {
@@ -8402,7 +8403,7 @@ int FUN_8c0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
             }
             break;
         case (char *)0x3:
-            a4 = FUN_8c014028(0x10dc, a1, a2, a3);
+            a4 = operator_new(0x10dc, a1, a2, a3);
             piVar3 = (int *)auStack_c4;
             iStack_3c = a4;
             if (a4 != 0) {
@@ -8412,7 +8413,7 @@ int FUN_8c0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
             }
             break;
         case (char *)0x4:
-            iStack_94 = FUN_8c014028(0x7e4, a1, a2, a3);
+            iStack_94 = operator_new(0x7e4, a1, a2, a3);
             iStack_24 = iStack_94;
             if (iStack_94 != 0) {
                 FUN_8c087ed0(iStack_94, 0);
@@ -8422,7 +8423,7 @@ int FUN_8c0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
             piVar3 = (int *)auStack_c4;
             break;
         case (char *)0x5:
-            a4 = FUN_8c014028(0x1150, a1, a2, a3);
+            a4 = operator_new(0x1150, a1, a2, a3);
             piVar3 = (int *)auStack_c4;
             iStack_40 = a4;
             if (a4 != 0) {
@@ -8432,7 +8433,7 @@ int FUN_8c0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
             }
             break;
         case (char *)0x6:
-            iStack_98 = FUN_8c014028(0x7e4, a1, a2, a3);
+            iStack_98 = operator_new(0x7e4, a1, a2, a3);
             iStack_28 = iStack_98;
             if (iStack_98 != 0) {
                 FUN_8c0384f8(iStack_98, 0);
@@ -8444,7 +8445,7 @@ int FUN_8c0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
         default:
             goto switchD_8c0fefc4_caseD_7;
         case (char *)0xa:
-            a4 = FUN_8c014028(0x92c, a1, a2, a3);
+            a4 = operator_new(0x92c, a1, a2, a3);
             piVar3 = (int *)auStack_c4;
             iStack_44 = a4;
             if (a4 != 0) {
@@ -8454,7 +8455,7 @@ int FUN_8c0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
             }
             break;
         case (char *)0xb:
-            iStack_9c = FUN_8c014028(0x7ec, a1, a2, a3);
+            iStack_9c = operator_new(0x7ec, a1, a2, a3);
             iStack_2c = iStack_9c;
             if (iStack_9c != 0) {
                 FUN_8c099e74(iStack_9c, 0);
@@ -8464,7 +8465,7 @@ int FUN_8c0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
             piVar3 = (int *)auStack_c4;
             break;
         case (char *)0xc:
-            iStack_a0 = FUN_8c014028(0x7ec, a1, a2, a3);
+            iStack_a0 = operator_new(0x7ec, a1, a2, a3);
             iStack_30 = iStack_a0;
             if (iStack_a0 != 0) {
                 FUN_8c0a4de8(iStack_a0, 0);
@@ -8474,7 +8475,7 @@ int FUN_8c0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
             piVar3 = (int *)auStack_c4;
             break;
         case (char *)0xd:
-            a4 = FUN_8c014028(0x2790, a1, a2, a3);
+            a4 = operator_new(0x2790, a1, a2, a3);
             piVar3 = (int *)auStack_c4;
             iStack_34 = a4;
             if (a4 != 0) {
@@ -8484,7 +8485,7 @@ int FUN_8c0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
             }
             break;
         case (char *)0xe:
-            a4 = FUN_8c014028(0x294, a1, a2, a3);
+            a4 = operator_new(0x294, a1, a2, a3);
             piVar3 = (int *)auStack_c4;
             iStack_38 = a4;
             if (a4 != 0) {
@@ -8494,7 +8495,7 @@ int FUN_8c0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
             }
             break;
         case (char *)0xf:
-            iStack_bc = FUN_8c014028(0x270, a1, a2, a3);
+            iStack_bc = operator_new(0x270, a1, a2, a3);
             iStack_4c = iStack_bc;
             a4 = iStack_4c;
             piVar3 = (int *)auStack_c4;
@@ -8506,7 +8507,7 @@ int FUN_8c0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
             break;
         case (char *)0x10:
             a5 = a1;
-            iStack_b8 = FUN_8c014028(0x210, a1, a2, a3);
+            iStack_b8 = operator_new(0x210, a1, a2, a3);
             if (iStack_b8 != 0) {
                 if (cVar4 == '\0') {
                     puVar1 = (u64 *)((int)&uStack_cc + 4);

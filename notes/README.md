@@ -452,9 +452,14 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
 - Hand names in `tools/readable_names.tsv` for the most-called helpers: libc (strcmp, memcmp, strcat, sprintf, the printf
   core), Vec3 math, the matrix stack, and the Ninja texture calls (njSetTexture 8c25b3ec selects the list at 0x8c277b04,
   njSetTextureNum 8c25b434 loads one texture's TA parameters through 8c20fe00).
-- `decomp/`: 1,567 of 6,347 functions named (was 1,026), every name unique. About 700 of those are shape names. Also named: strtol/atoi, spline and lerp math, interrupt nesting (8c260ca0/8c260cc8), the RTC date conversion (8c1f826c, epoch 1950).
+- `decomp/`: 1,657 of 6,347 functions named (was 1,026), every name unique. About 700 of those are shape names. Also named: strtol/atoi, spline and lerp math, interrupt nesting (8c260ca0/8c260cc8), the RTC date conversion (8c1f826c, epoch 1950).
 - Also named: the speech player at 0x8c35468c (speech_start 8c0f8368 plays a named line such as "HIGYOLINE0"; speech_request,
   speech_restart, speech_stop), the serial debug output (scif_putc 8c1fac58, used by the crash dump), Ninja's outer product,
   sin/cos and polygon-state copies.
 - Ghidra had given a few one-call stubs the name of the function they jump to; readable.py now gives those stubs their own
   names (`<target>_wrap` where the target is named).
+- Fixed in readable.py: the declaration patterns matched `return x;`, so the shape rules missed setters that end in
+  `return iVar1;`, and the unused-local cleanup deleted `return *a0;`-style lines from 63 functions. Both now skip `return`.
+- Also named: operator_new (8c014028, retries the allocator 8c1fb4b8 through the new-handler), scif_put_hex32, the talk-line
+  queue (talk_queue_mode1/2, talk_start_line), edge_detect_update, and more copies of strcmp/Vec3 helpers (the first one
+  listed keeps the plain name, copies get their address appended).

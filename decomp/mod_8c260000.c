@@ -1143,6 +1143,7 @@ u32 FUN_8c260c60(int a0) {
  */
 u32 FUN_8c260c98(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     g_8c277fb0 = 0;
+    return ain0;
 }
 
 /*
@@ -1609,6 +1610,7 @@ u32 FUN_8c26145e(int a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
         uVar1 = irq_restore_nested(a0, ar5_00, ar6_00, a3, uVar1);
         return uVar1;
     }
+    return ain0;
 }
 
 /*
@@ -3134,6 +3136,7 @@ u32 FUN_8c2628fa(int *a0, u32 a1, u32 unused_a2, u32 a3, u32 ain0) {
         uVar1 = irq_restore_nested(iVar2, a1, unused_a2, a3, uVar1);
         return uVar1;
     }
+    return ain0;
 }
 
 /*
@@ -3461,6 +3464,7 @@ u32 ta_fifo_262c08(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
         uVar1 = irq_restore_nested(unaff_r14, ar5_00, ar6_00, a3, uVar1);
         return uVar1;
     }
+    return ain0;
 }
 
 /*
@@ -4232,6 +4236,7 @@ u32 FUN_8c26344a(u32 a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
         uVar1 = memset_wrap_2632e2();
         return uVar1;
     }
+    return ain0;
 }
 
 /*
@@ -4807,6 +4812,7 @@ u32 FUN_8c2639fa(u8 *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
         uVar1 = irq_restore_nested(puVar2, ar5_00, ar6_00, a3, uVar1);
         return uVar1;
     }
+    return ain0;
 }
 
 /*
@@ -13409,6 +13415,7 @@ u32 FUN_8c26a9b8(int a0, u32 unused_a1, int a2, u32 a3) {
 u32 FUN_8c26aa48(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0) {
     *a1 = 0;
     *a2 = 0;
+    return ain0;
 }
 
 /*
@@ -14522,6 +14529,7 @@ u32 FUN_8c26b7f4(int a0, int a1, int *a2, u32 a3, u32 ain0) {
     int *a6;
 
     if ((a2[1] < 1) || (*a2 == 0)) {
+        return ain0;
     }
     a6 = a2;
     uVar1 = FUN_8c26b4f4();
@@ -14902,6 +14910,7 @@ u32 FUN_8c26bbe2(int a0, int a1, int *a2, u32 unused_a3, u32 ain0) {
         uVar1 = FUN_8c26b978(a0, uVar1);
         return uVar1;
     }
+    return ain0;
 }
 
 /*
@@ -14946,6 +14955,7 @@ u32 FUN_8c26bcaa(int a0, int a1, int *a2, u32 a3, u32 ain0) {
         uVar1 = FUN_8c26b978(a0, uVar1);
         return uVar1;
     }
+    return ain0;
 }
 
 /*

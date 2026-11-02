@@ -78,9 +78,9 @@ u32 FUN_8c046684(int a0, u8 **a1, u32 a2, code *a3) {
     fVar15 = SUB84(dVar16, 0) + (float)((u64)dVar16 >> 0x20);
 
     pcVar2 = a3;
-    FUN_8c10277c((u8 *)((int)puVar14 + -0x2c));
-    FUN_8c10277c((u8 *)((int)puVar14 + -0x38));
-    FUN_8c102748((u8 *)((int)puVar14 + -0x44));
+    Vec3_assign_f_10277c((u8 *)((int)puVar14 + -0x2c));
+    Vec3_assign_f_10277c((u8 *)((int)puVar14 + -0x38));
+    clear_3_words_102748((u8 *)((int)puVar14 + -0x44));
 
     *(u32 *)((int)puVar14 + -0xf4) = 0;
 
@@ -1087,7 +1087,7 @@ u32 FUN_8c048868(int a0, int a1, int a2, u32 a3) {
     u8 auStack_2c[16];
 
     uVar5 = 1;
-    FUN_8c10277c(auStack_2c);
+    Vec3_assign_f_10277c(auStack_2c);
     iVar2 = a0 + 0x14;
     Vec3_assign(a0 + 0x80, iVar2, a2, a3);
 LAB_8c0488bc:
@@ -4690,7 +4690,7 @@ u32 FUN_8c04ddd4(int a0, u32 a1, u32 a2, u32 a3) {
         if (iVar1 == 0x4c) {
             uVar3 = 5;
             se_play_at_object(a0, 5, a1, in_stack_00000000);
-            FUN_8c03f39c(a3, uVar3, a1, in_stack_00000000);
+            set_field_8c_to_1(a3, uVar3, a1, in_stack_00000000);
             a2 = a1;
             uVar3 = in_stack_00000000;
         }
@@ -5528,7 +5528,7 @@ LAB_8c04f31c:
             uVar7 = 0xb0;
             iVar1 = CAnimBody_AdvanceFrame_033b98(a0 + 0xb0, 0xb0, pcVar9, pcVar5);
             if (iVar1 == 1) {
-                FUN_8c03f3e8(a1, uVar7, pcVar9);
+                set_field_88_to_1(a1, uVar7, pcVar9);
                 flags6_set_all(a0 + 0x1fc, 0x1fc, pcVar9);
                 *(u32 *)(a0 + 0x2b8) = 2;
                 uVar10 = 0;

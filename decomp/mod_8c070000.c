@@ -531,7 +531,7 @@ LAB_8c071c68:
         switch (iVar3) {
         case 0:
             if ((a1[4] == 1) || (*(int *)(a0 + 0x2ac) == 2)) {
-                FUN_8c10277c((u8 *)((int)pdVar11 + -0x3c), ar5_00, a1[7] + 4, pcVar10);
+                Vec3_assign_f_10277c((u8 *)((int)pdVar11 + -0x3c), ar5_00, a1[7] + 4, pcVar10);
                 *(u32 *)((int)pdVar11 + -800) = a1[6];
                 pcVar10 = (code *)((int)pdVar11 + -0x3c);
                 pcVar7 = *(code **)(a1[1] + 4);
@@ -853,7 +853,7 @@ LAB_8c071c68:
 
                         pcVar10 = (code *)0x1a4;
                         if ((iVar3 == 0x1a4) && (a1[2] == 1)) {
-                            FUN_8c03f39c(*a1, FUN_8c03f39c, pcVar7, 0x1a4);
+                            set_field_8c_to_1(*a1, set_field_8c_to_1, pcVar7, 0x1a4);
                             pcVar10 = (code *)a1[6];
                             pcVar7 = *(code **)a1[1];
                             se_play_at_object(a0, 2, pcVar7, pcVar10);
@@ -3967,7 +3967,7 @@ u32 FUN_8c077a38(int a0, float *a1, float *a2, code *a3) {
     if (iVar2 == 0) {
         a3 = (code *)auStack_30;
         pfVar8 = &fStack_34;
-        FUN_8c0507a4(iVar1, auStack_38, pfVar8, a3);
+        get_vec3_field_30(iVar1, auStack_38, pfVar8, a3);
         if (cVar18 == '\0') {
             fVar12 = 900.0;
         } else {
@@ -4004,7 +4004,7 @@ u32 FUN_8c077a38(int a0, float *a1, float *a2, code *a3) {
                 *(u32 *)(a0 + 0x294) = 2;
             }
             *(u32 *)(a0 + 0x214) = 0;
-            FUN_8c03f3e8(pcVar10, pcVar6, uVar5);
+            set_field_88_to_1(pcVar10, pcVar6, uVar5);
             iVar2 = get_field_6c_02f46c(iVar1);
             if (iVar2 < 0x32) {
                 *(u32 *)(a0 + 0x2d0) = 1;
@@ -4038,7 +4038,7 @@ u32 FUN_8c077a38(int a0, float *a1, float *a2, code *a3) {
         if ((*(int *)(a0 + 0x128) < 2) && (*(int *)(a0 + 0x40) == 4)) {
             a3 = (code *)auStack_30;
             pfVar8 = &fStack_34;
-            FUN_8c0507a4(iVar1, auStack_38, pfVar8, a3);
+            get_vec3_field_30(iVar1, auStack_38, pfVar8, a3);
             Vec3_scale(a0 + 0x80, a0 + 0x48, pfVar8, a3, auStack_7c);
             Vec3_scale(auStack_7c, in_stack_00000004 + 4, pfVar8, a3, auStack_8c);
             Vec3_add(auStack_8c, a1, pfVar8, a3, auStack_9c);
@@ -4118,7 +4118,7 @@ u32 FUN_8c077a38(int a0, float *a1, float *a2, code *a3) {
             }
         }
     }
-    FUN_8c0507a4(iVar1, auStack_38, &fStack_34, auStack_30);
+    get_vec3_field_30(iVar1, auStack_38, &fStack_34, auStack_30);
     a3 = (code *)auStack_48;
     pcVar6 = (code *)auStack_4c;
     FUN_8c03f3f8(iVar1, auStack_50, pcVar6, a3);
@@ -4199,7 +4199,7 @@ u32 FUN_8c077a38(int a0, float *a1, float *a2, code *a3) {
         } else {
             ar7_00 = auStack_30;
             pfVar8 = &fStack_34;
-            FUN_8c0507a4(iVar1, auStack_38, pfVar8, ar7_00);
+            get_vec3_field_30(iVar1, auStack_38, pfVar8, ar7_00);
             Vec3_scale(a0 + 0x80, a0 + 0x48, pfVar8, ar7_00, auStack_26c);
             a3 = (code *)auStack_27c;
             pcVar6 = (code *)(in_stack_00000004 + 4);
@@ -4375,7 +4375,7 @@ u32 FUN_8c078fd0(int a0, int *a1, int *a2, int *a3) {
     ar6_00 = a2;
     ar7_00 = a3;
     Vec3_ctor_zero(auStack_30, a1, a2);
-    FUN_8c102748(auStack_3c);
+    clear_3_words_102748(auStack_3c);
     (**(code **)(*in_stack_00000004 + 0x184))(in_stack_00000004, piVar2, ar6_00, ar7_00);
     if (cVar12 == '\0') {
         uVar7 = CONCAT44(0x44610000, (int)((u64)in_dr0 >> 0x20));
@@ -6266,7 +6266,7 @@ u32 FUN_8c07c5f8(int a0, int a1, u32 a2, u8 *a3) {
             }
             *(u32 *)(a0 + 0x2ac) = 1;
             timer_stop_94(a0, iVar1 * 4, ar6_00, ar7_00);
-            FUN_8c03f39c(in_stack_0000000c, FUN_8c03f39c, ar6_00, ar7_00);
+            set_field_8c_to_1(in_stack_0000000c, set_field_8c_to_1, ar6_00, ar7_00);
             Vec3_scale(a3, &g_8c1379b4, ar6_00, ar7_00, auStack_48);
             Vec3_add(a2, auStack_48, ar6_00, ar7_00, auStack_58);
             Vec3_sub(auStack_58, a1, ar6_00, ar7_00, auStack_68);
@@ -6566,7 +6566,7 @@ u32 FUN_8c07cce0(int a0, u32 a1, u32 a2, u32 a3) {
         if (bVar9) {
             uVar4 = 5;
             se_play_at_object(a0, 5, a1, in_stack_00000000);
-            FUN_8c03f39c(a3, uVar4, a1, in_stack_00000000);
+            set_field_8c_to_1(a3, uVar4, a1, in_stack_00000000);
             a2 = a1;
             uVar4 = in_stack_00000000;
         }
@@ -6778,7 +6778,7 @@ u32 FUN_8c07d048(int a0, u32 a1, u32 a2, int *a3) {
                 ar6_00 = &g_8c1378a0;
                 ar5_00 = (u8 *)0x28;
                 FUN_8c07f1e4(a0, 0x28, &g_8c1378a0, ar7_00);
-                FUN_8c03f39c(a2, ar5_00, ar6_00, ar7_00);
+                set_field_8c_to_1(a2, ar5_00, ar6_00, ar7_00);
                 *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
             } else {
                 vec3_copy_8c02b5fc(auStack_10c, in_stack_00000000, ar6_00);
@@ -6902,9 +6902,9 @@ u32 FUN_8c07d904(int a0, u32 a1, u32 a2, u32 a3) {
             uVar2 = FUN_8c023334(a0 + 0x14, &g_8c125e68, a2, a3);
             *(u32 *)(a0 + 0x220) = uVar2;
             if (*(int *)(a0 + 0x220) == 3) {
-                FUN_8c023d7c(a0 + 0x254, ar5_00);
+                Vec3_assign_f_023d7c(a0 + 0x254, ar5_00);
             } else {
-                FUN_8c023d7c(a0 + 0x254, ar5_00);
+                Vec3_assign_f_023d7c(a0 + 0x254, ar5_00);
             }
             *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
         case 1:
@@ -6946,7 +6946,7 @@ u32 FUN_8c07d904(int a0, u32 a1, u32 a2, u32 a3) {
                     uVar3 = 0;
                 }
             } else {
-                FUN_8c03f39c(uVar2, a1, a2, a3);
+                set_field_8c_to_1(uVar2, a1, a2, a3);
                 *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
             }
             break;
@@ -7203,7 +7203,7 @@ u32 FUN_8c07dc50(code *a0, code *a1, code *a2, u32 a3) {
                 uVar7 = 0;
             }
         } else {
-            FUN_8c03f39c(a1, iVar3, FUN_8c03f39c, a3);
+            set_field_8c_to_1(a1, iVar3, set_field_8c_to_1, a3);
             *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
         }
         break;

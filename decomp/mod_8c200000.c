@@ -4113,7 +4113,7 @@ u32 FUN_8c202a80(u32 *a0, int a1, u32 a2, int a3, int s0) {
         a1 = a3;
         sh4_dmac_202c60(0xff, a3, a2);
     }
-    iVar1 = noop_212148();
+    iVar1 = get_g_8c2758e8();
     if (iVar1 == -0x80000000) {
         iVar1 = FUN_8c2036a0(g_8c4aa200, a0);
         if (iVar1 != 0) {
@@ -4653,7 +4653,7 @@ u32 FUN_8c2034c0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         FUN_8c203400();
         g_8c275410 = g_8c2753f4;
         g_8c275424 = g_8c2753fc;
-        iVar1 = FUN_8c204e40(uVar2, uVar3, uVar5, a3);
+        iVar1 = pool47eba8_alloc(uVar2, uVar3, uVar5, a3);
         if (iVar1 != 0) {
             *(u32 *)(iVar1 + 0xc) = g_8c2753f0;
             *(u32 *)(iVar1 + 0x10) = g_8c2753f4;
@@ -4692,7 +4692,7 @@ u32 FUN_8c2034c0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         FUN_8c203400();
         g_8c275410 = g_8c2753f4;
         g_8c275424 = g_8c2753fc;
-        iVar1 = FUN_8c204e40(uVar2, uVar3, uVar5, a3);
+        iVar1 = pool47eba8_alloc(uVar2, uVar3, uVar5, a3);
         if (iVar1 != 0) {
             *(u32 *)(iVar1 + 0xc) = g_8c2753f0;
             *(u32 *)(iVar1 + 0x10) = g_8c2753f4;
@@ -4700,7 +4700,7 @@ u32 FUN_8c2034c0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
             g_8c275408 = iVar1;
             *(int *)(iVar1 + 4) = g_8c27540c;
             g_8c27540c = iVar1;
-            iVar1 = FUN_8c204e40(iVar1, &g_8c275400, uVar5, a3);
+            iVar1 = pool47eba8_alloc(iVar1, &g_8c275400, uVar5, a3);
             if (iVar1 != 0) {
                 puVar4 = &g_8c275414;
                 *(u32 *)(iVar1 + 0xc) = g_8c2753f8;
@@ -4752,7 +4752,7 @@ u32 FUN_8c2034cc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         FUN_8c203400();
         g_8c275410 = g_8c2753f4;
         g_8c275424 = g_8c2753fc;
-        iVar1 = FUN_8c204e40(uVar2, uVar3, uVar5, a3);
+        iVar1 = pool47eba8_alloc(uVar2, uVar3, uVar5, a3);
         if (iVar1 != 0) {
             *(u32 *)(iVar1 + 0xc) = g_8c2753f0;
             *(u32 *)(iVar1 + 0x10) = g_8c2753f4;
@@ -4791,7 +4791,7 @@ u32 FUN_8c2034cc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         FUN_8c203400();
         g_8c275410 = g_8c2753f4;
         g_8c275424 = g_8c2753fc;
-        iVar1 = FUN_8c204e40(uVar2, uVar3, uVar5, a3);
+        iVar1 = pool47eba8_alloc(uVar2, uVar3, uVar5, a3);
         if (iVar1 != 0) {
             *(u32 *)(iVar1 + 0xc) = g_8c2753f0;
             *(u32 *)(iVar1 + 0x10) = g_8c2753f4;
@@ -4799,7 +4799,7 @@ u32 FUN_8c2034cc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
             g_8c275408 = iVar1;
             *(int *)(iVar1 + 4) = g_8c27540c;
             g_8c27540c = iVar1;
-            iVar1 = FUN_8c204e40(iVar1, &g_8c275400, uVar5, a3);
+            iVar1 = pool47eba8_alloc(iVar1, &g_8c275400, uVar5, a3);
             if (iVar1 != 0) {
                 puVar4 = &g_8c275414;
                 *(u32 *)(iVar1 + 0xc) = g_8c2753f8;
@@ -5681,7 +5681,7 @@ u32 FUN_8c2043d4(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
     } else {
         if (*(int *)(ar6_00 + 6) != a1) {
             if (*(int *)(ar6_00 + 6) + *(int *)(ar6_00 + 8) == iVar5) {
-                ar6_01 = (u16 *)FUN_8c204e40(0, iVar4, iVar5, 0);
+                ar6_01 = (u16 *)pool47eba8_alloc(0, iVar4, iVar5, 0);
                 if (ar6_01 == NULL) {
                     return 3;
                 }
@@ -5703,11 +5703,11 @@ u32 FUN_8c2043d4(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
                     *ar6_01 = *ar6_01 | 4;
                 }
             } else {
-                ar6_01 = (u16 *)FUN_8c204e40(0, iVar4, iVar5, 0);
+                ar6_01 = (u16 *)pool47eba8_alloc(0, iVar4, iVar5, 0);
                 if (ar6_01 == NULL) {
                     return 3;
                 }
-                ain0 = FUN_8c204e40(puVar3, iVar4, iVar5, a7);
+                ain0 = pool47eba8_alloc(puVar3, iVar4, iVar5, a7);
                 if (ain0 == 0) {
                     FUN_8c204e6c(ar6_01);
                     return 3;
@@ -5738,7 +5738,7 @@ u32 FUN_8c2043d4(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
             (&g_8c275410)[iVar2 * 5] = (&g_8c275410)[iVar2 * 5] - *(int *)(ar6_01 + 8);
             return 0;
         }
-        puVar3 = (u16 *)FUN_8c204e40(0, iVar4, iVar5, 0);
+        puVar3 = (u16 *)pool47eba8_alloc(0, iVar4, iVar5, 0);
         if (puVar3 == NULL) {
             return 3;
         }
@@ -5822,7 +5822,7 @@ u32 FUN_8c2046d2(u32 a0, u32 a1, u32 *a2, u32 a3) {
             *ar6_00 = *ar6_00 | 4;
             iVar5 = *(int *)(ar6_00 + 8);
         } else {
-            puVar3 = (u16 *)FUN_8c204e40(0, 0, a2, a3);
+            puVar3 = (u16 *)pool47eba8_alloc(0, 0, a2, a3);
             if (puVar3 == NULL)
                 goto LAB_8c204880;
             *(u32 *)(puVar3 + 6) = *(u32 *)(ar6_00 + 6);
@@ -5902,7 +5902,7 @@ u32 FUN_8c2048aa(u32 a0, u32 a1, int a2, u32 a3) {
             *ar6_00 = *ar6_00 | 4;
             iVar6 = *(int *)(ar6_00 + 8);
         } else {
-            puVar4 = (u16 *)FUN_8c204e40(0, 0, a2, a3);
+            puVar4 = (u16 *)pool47eba8_alloc(0, 0, a2, a3);
             if (puVar4 == NULL)
                 goto LAB_8c204964;
             *(u32 *)(puVar4 + 6) = *(u32 *)(ar6_00 + 6);
@@ -6016,7 +6016,7 @@ u32 FUN_8c2049ec(u32 a0, u32 a1, int a2, int a3) {
             *ar6_00 = *ar6_00 | 4;
             iVar7 = *(int *)(ar6_00 + 8);
         } else {
-            puVar8 = (u16 *)FUN_8c204e40(0, a1, iVar7, a3);
+            puVar8 = (u16 *)pool47eba8_alloc(0, a1, iVar7, a3);
             if (puVar8 == NULL)
                 goto LAB_8c204b6a;
             *(u32 *)(puVar8 + 6) = *(u32 *)(ar6_00 + 6);
@@ -6174,11 +6174,12 @@ u32 FUN_8c204cfc(u32 a0, u16 *a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * FUN_8c204e40  0x8c204e40
+ * pool47eba8_alloc  0x8c204e40
+ * marks and returns the first free 0x18-byte entry of the pool at 0x8c47eba8; NULL when full
  * called by: FUN_8c2034c0, FUN_8c2034cc, FUN_8c2043d4, FUN_8c2046d2, FUN_8c2048aa, FUN_8c2049ec, ta_fifo_2050cc,
  * ta_fifo_2050de (+1 more)
  */
-u16 *FUN_8c204e40(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
+u16 *pool47eba8_alloc(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     u16 *puVar1;
     u16 *puVar2;
 
@@ -6467,7 +6468,7 @@ u32 ta_fifo_2050cc(int *a0, int a1, u32 *a2, int a3) {
                     uVar2 = uVar2 & 0x1f;
                 }
                 if (uVar2 != 0) {
-                    iVar3 = FUN_8c204e40(uVar5, iVar3, a2, a3);
+                    iVar3 = pool47eba8_alloc(uVar5, iVar3, a2, a3);
                     if (iVar3 == 0) {
                         return 3;
                     }
@@ -6599,7 +6600,7 @@ u32 ta_fifo_2050de(u32 unused_a0, int a1, u32 *a2, int a3) {
                     uVar2 = uVar2 & 0x1f;
                 }
                 if (uVar2 != 0) {
-                    iVar3 = FUN_8c204e40((u32)uVar1, a1, a2, a3);
+                    iVar3 = pool47eba8_alloc((u32)uVar1, a1, a2, a3);
                     if (iVar3 == 0) {
                         return 3;
                     }
@@ -6727,7 +6728,7 @@ u32 ta_fifo_2052f2(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
     } else {
         if (*(int *)(ar6_00 + 6) != a1) {
             if (*(int *)(ar6_00 + 6) + *(int *)(ar6_00 + 8) == iVar5) {
-                ar6_01 = (u16 *)FUN_8c204e40(0, iVar4, iVar5, 0);
+                ar6_01 = (u16 *)pool47eba8_alloc(0, iVar4, iVar5, 0);
                 if (ar6_01 == NULL) {
                     return 3;
                 }
@@ -6749,11 +6750,11 @@ u32 ta_fifo_2052f2(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
                     *ar6_01 = *ar6_01 | 4;
                 }
             } else {
-                ar6_01 = (u16 *)FUN_8c204e40(0, iVar4, iVar5, 0);
+                ar6_01 = (u16 *)pool47eba8_alloc(0, iVar4, iVar5, 0);
                 if (ar6_01 == NULL) {
                     return 3;
                 }
-                ain0 = FUN_8c204e40(puVar3, iVar4, iVar5, a7);
+                ain0 = pool47eba8_alloc(puVar3, iVar4, iVar5, a7);
                 if (ain0 == 0) {
                     FUN_8c204e6c(ar6_01);
                     return 3;
@@ -6784,7 +6785,7 @@ u32 ta_fifo_2052f2(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
             (&g_8c275410)[iVar2 * 5] = (&g_8c275410)[iVar2 * 5] - *(int *)(ar6_01 + 8);
             return 0;
         }
-        puVar3 = (u16 *)FUN_8c204e40(0, iVar4, iVar5, 0);
+        puVar3 = (u16 *)pool47eba8_alloc(0, iVar4, iVar5, 0);
         if (puVar3 == NULL) {
             return 3;
         }
@@ -11517,7 +11518,7 @@ u32 FUN_8c20af76(int a0, int a1, int a2, u32 a3) {
     u32 ar7_00;
     u32 uVar6;
 
-    puVar3 = (&noop_212148);
+    puVar3 = (&get_g_8c2758e8);
     iVar1 = 0x8c4aa1a0;
     uVar6 = 0;
     if ((a0 == 0) || (a1 == 0)) {

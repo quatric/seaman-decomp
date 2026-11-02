@@ -4971,6 +4971,7 @@ u32 FUN_8c1f39f0(u32 a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
         uVar1 = (**(code **)(g_8c2739f0 + 0x48))();
         return uVar1;
     }
+    return ain0;
 }
 
 /*
@@ -8491,6 +8492,7 @@ u32 FUN_8c1f61c6(u32 unused_a0, u32 *a1, int unused_a2, u32 unused_a3, u32 ain0)
     int iVar4;
 
     if (g_8c26c7c0 == 0) {
+        return ain0;
     }
     ar4_00 = 0;
     do {
@@ -9756,6 +9758,7 @@ u32 FUN_8c1f70c0(void) {
  */
 u32 FUN_8c1f710c(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     g_8c273a10 = 0;
+    return ain0;
 }
 
 /*
@@ -13081,6 +13084,7 @@ u32 FUN_8c1fa758(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32
     for (piVar1 = &g_8c26cb34; *piVar1 != 0; piVar1 = piVar1 + 2) {
         *(int *)*piVar1 = piVar1[1];
     }
+    return ain0;
 }
 
 /*
@@ -13114,9 +13118,9 @@ u32 FUN_8c1fa7d0(u32 a0, u32 *a1) {
     uVar5 = 0x22;
     FUN_8c1faa08("FR8-15(B):", 0x22, 8);
     scif_puts("FPUL: ");
-    FUN_8c1fadd0(g_8c475ec8[0x2a]);
+    scif_put_hex32(g_8c475ec8[0x2a]);
     scif_puts(" FPSCR: ");
-    FUN_8c1fadd0(g_8c475ec8[0x2b]);
+    scif_put_hex32(g_8c475ec8[0x2b]);
     FUN_8c1faa08(s_R0_7__8c26cf8c, 0x2d, 8);
     uVar5 = g_8c475ec8[0x3c];
     g_8c475ec8[0x3c] = g_8c475ec8[1];
@@ -13126,21 +13130,21 @@ u32 FUN_8c1fa7d0(u32 a0, u32 *a1) {
     uVar5 = 2;
     FUN_8c1faa08(s_R0_7_B___8c26cfa8, 2, 8);
     scif_puts("MACL: ");
-    FUN_8c1fadd0(g_8c475ec8[0x3c]);
+    scif_put_hex32(g_8c475ec8[0x3c]);
     scif_puts(" MACH: ");
-    FUN_8c1fadd0(g_8c475ec8[0x3d]);
+    scif_put_hex32(g_8c475ec8[0x3d]);
     scif_puts(s_VBR__8c26cfc8);
-    FUN_8c1fadd0(g_8c475ec8[0x3e]);
+    scif_put_hex32(g_8c475ec8[0x3e]);
     scif_puts(" GBR: ");
-    FUN_8c1fadd0(g_8c475ec8[0x3f]);
+    scif_put_hex32(g_8c475ec8[0x3f]);
     scif_puts(" DBR: ");
-    FUN_8c1fadd0(*g_8c475ec8);
+    scif_put_hex32(*g_8c475ec8);
     scif_puts(s_PR__8c26cfe0);
-    FUN_8c1fadd0(g_8c475ec8[0x40]);
+    scif_put_hex32(g_8c475ec8[0x40]);
     scif_puts(" PC: ");
-    FUN_8c1fadd0(g_8c475ec8[0x41]);
+    scif_put_hex32(g_8c475ec8[0x41]);
     scif_puts(" SR: ");
-    FUN_8c1fadd0(g_8c475ec8[0x42]);
+    scif_put_hex32(g_8c475ec8[0x42]);
     uVar1 = 0;
     do {
         if ((int)uVar1 < 0) {
@@ -13151,9 +13155,9 @@ u32 FUN_8c1fa7d0(u32 a0, u32 *a1) {
         if (uVar3 == 0) {
             scif_puts(&g_8c26cff8);
         }
-        FUN_8c1fadd0((&g_8c26ce10)[uVar1]);
+        scif_put_hex32((&g_8c26ce10)[uVar1]);
         scif_puts(&g_8c26cffc);
-        FUN_8c1fadd0(*(u32 *)(&g_8c26ce10)[uVar1]);
+        scif_put_hex32(*(u32 *)(&g_8c26ce10)[uVar1]);
         scif_puts(&g_8c26d000);
         uVar1 = uVar1 + 1;
     } while ((int)uVar1 < 0x45);
@@ -13186,7 +13190,7 @@ u32 FUN_8c1faa08(u32 a0, int a1, int a2) {
     iVar2 = iVar3 + a2;
     iVar4 = iVar3 << 2;
     for (; iVar3 < iVar2; iVar3 = iVar3 + 1) {
-        FUN_8c1fadd0(*(u32 *)(g_8c475ec8 + iVar4));
+        scif_put_hex32(*(u32 *)(g_8c475ec8 + iVar4));
         scif_puts(&g_8c26d000);
         iVar4 = iVar4 + 4;
     }
@@ -13250,7 +13254,7 @@ int FUN_8c1fab8c(void) {
 /*
  * scif_putc  0x8c1fac58
  * writes one byte to the SH-4 serial port (SCIF, or SCI when 0x8c475ed8 is 1), waiting for room
- * called by: FUN_8c1fadd0, scif_puts
+ * called by: scif_put_hex32, scif_puts
  */
 u32 scif_putc(u32 a0) {
     int *piVar1;
@@ -13338,10 +13342,11 @@ u32 scif_puts(char *a0) {
 }
 
 /*
- * FUN_8c1fadd0  0x8c1fadd0
+ * scif_put_hex32  0x8c1fadd0
+ * prints a0 as eight hex digits on the serial port
  * called by: FUN_8c1fa7d0, FUN_8c1faa08
  */
-u32 FUN_8c1fadd0(u32 a0) {
+u32 scif_put_hex32(u32 a0) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -13692,10 +13697,11 @@ u32 malloc_thunk(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c1fb4b8  0x8c1fb4b8
+ * malloc_sys  0x8c1fb4b8
+ * the allocator operator_new calls
  * called by: C3DRenderPly_SetMem, FUN_8c1fb77a
  */
-u32 FUN_8c1fb4b8(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 malloc_sys(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     /* WARNING: Could not recover jumptable at 0x8c1fb4be. Too many branches */
@@ -13900,7 +13906,7 @@ int FUN_8c1fb77a(int a0, int a1, u32 a2, u32 a3) {
     u32 a4;
 
     a4 = a1 * a0;
-    iVar1 = FUN_8c1fb4b8(a4, a1, a2, a3);
+    iVar1 = malloc_sys(a4, a1, a2, a3);
     if (iVar1 == 0) {
         iVar1 = 0;
     } else {
@@ -15527,6 +15533,7 @@ u32 thunk_FUN_8c1f6a30(void) {
  */
 u32 FUN_8c1fcffc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     g_8c273a48 = 0;
+    return ain0;
 }
 
 /*

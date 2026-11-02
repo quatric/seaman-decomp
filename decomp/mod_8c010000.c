@@ -8293,6 +8293,7 @@ u32 float_check_errno(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3
             g_8c2787a8 = 0x44d;
         }
     }
+    return ain0;
 }
 
 /*
@@ -11475,15 +11476,16 @@ u32 free_if_nonnull(int a0) {
 }
 
 /*
- * FUN_8c014028  0x8c014028
- * called by: FUN_8c0fef94
+ * operator_new  0x8c014028
+ * calls the allocator (8c1fb4b8) and, while it returns NULL and a new-handler is set (0x8c12c4f0), calls the handler
+ * and retries called by: FUN_8c0fef94
  */
-int FUN_8c014028(u32 a0, u32 a1, u32 a2, u32 a3) {
+int operator_new(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
     u8 *puVar2;
     int iVar3;
 
-    puVar2 = (&FUN_8c1fb4b8);
+    puVar2 = (&malloc_sys);
     puVar1 = (&DATA_8c12c4f0);
     while ((iVar3 = (*(code *)puVar2)(a0, a1, a2, a3), iVar3 == 0 && (*(int *)(&DATA_8c12c4f0) != 0))) {
         (**(code **)puVar1)(0, a1, a2, a3);
@@ -11783,8 +11785,8 @@ u32 FUN_8c014370(u32 a0) {
 
 /*
  * strcat  0x8c01437c
- * called by: FUN_8c01da90, FUN_8c01dea4, FUN_8c01e1e8, FUN_8c030304, FUN_8c0303b8, FUN_8c030568, FUN_8c03087c,
- * FUN_8c0309c8 (+6 more)
+ * called by: FUN_8c01da90, FUN_8c01dea4, FUN_8c01e1e8, FUN_8c030304, FUN_8c03087c, FUN_8c0309c8, FUN_8c0fa204,
+ * FUN_8c0fae24 (+6 more)
  */
 char *strcat(char *a0, char *a1) {
     char cVar1;
@@ -13183,11 +13185,11 @@ u32 set_field_0(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * noop_015510  0x8c015510
- * does nothing
+ * get_field_0  0x8c015510
  * called by: FUN_8c029ca8, FUN_8c037034, FUN_8c085704
  */
-u32 noop_015510(u32 *a0) {
+u32 get_field_0(u32 *a0) {
+    return *a0;
 }
 
 /*
@@ -13815,6 +13817,7 @@ u32 FUN_8c015b30(u32 *a0, u32 a1, u32 a2, u32 a3) {
  * Class_12b2ac_m6_0afcc0, FUN_8c015b54, FUN_8c026968, FUN_8c026de0 (+45 more)
  */
 u32 deref_u32(u32 *a0) {
+    return *a0;
 }
 
 /*
@@ -13862,12 +13865,12 @@ u32 set_field_0_015bb0(u32 *a0, u32 a1) {
 }
 
 /*
- * noop_015bb8  0x8c015bb8
- * does nothing
+ * get_field_0_015bb8  0x8c015bb8
  * called by: CSoilTank_Create, Class_129938_m6_01733c, FUN_8c026968, FUN_8c026de0, FUN_8c029510, FUN_8c0297b8,
  * FUN_8c037034, FUN_8c038b04 (+26 more)
  */
-u32 noop_015bb8(u32 *a0) {
+u32 get_field_0_015bb8(u32 *a0) {
+    return *a0;
 }
 
 /*
@@ -14220,7 +14223,7 @@ u32 C3DRenderPly_SetMem(int a0, int a1, int a2, short *a3, u32 s0, int s4) {
     *(u16 *)(*(int *)(a0 + 0xc) + 10) = 0;
     *(u16 *)(*(int *)(a0 + 0xc) + 0xc) = 0xff;
     *(u16 *)(*(int *)(a0 + 0xc) + 0xe) = 0xff;
-    ar5_00 = FUN_8c1fb4b8((int)*a3 * (int)a3[1] * s4, a1, a2, a3);
+    ar5_00 = malloc_sys((int)*a3 * (int)a3[1] * s4, a1, a2, a3);
     if (ar5_00 == 0) {
         report_error_message("Lack of memory!", "C3DRenderPly::SetMem()", 1, 2);
     }
@@ -15334,7 +15337,7 @@ u32 Class_129938_m6_01733c(int a0, u32 a1, u32 a2, u32 a3) {
     char cVar6;
 
     cVar6 = '\0';
-    iVar1 = noop_015bb8(a0 + 0x90);
+    iVar1 = get_field_0_015bb8(a0 + 0x90);
     iVar1 = **(int **)(iVar1 + 4) + 8;
     for (iVar5 = 0; iVar5 < 8; iVar5 = iVar5 + 1) {
         puVar4 = (u64 *)(iVar5 * 0x18 + iVar1);
@@ -17648,7 +17651,7 @@ u32 Class_1299f8_m4_019588(int a0, u32 a1, u32 a2, u32 a3) {
     Vec3_ctor_zero(auStack_28, a1, a2);
     FUN_8c0241e8(&uStack_48, a1, a2, a3);
     FUN_8c024088(&uStack_68, a1, a2, a3);
-    noop_023e44(auStack_a8);
+    FUN_8c023e44(auStack_a8);
     Vec3_ctor_xyz(auStack_b8, a1, a2, a3);
     if (cVar13 == '\0') {
         uStack_144 = *(u32 *)(a0 + 0x50);
@@ -18619,9 +18622,9 @@ u32 ret_const_1_01a1a4(void) {
 }
 
 /*
- * FUN_8c01a1ac  0x8c01a1ac
+ * clear_field_bc  0x8c01a1ac
  */
-int FUN_8c01a1ac(int a0) {
+int clear_field_bc(int a0) {
     int iVar1;
 
     iVar1 = 0xbc;
@@ -18630,9 +18633,9 @@ int FUN_8c01a1ac(int a0) {
 }
 
 /*
- * FUN_8c01a1bc  0x8c01a1bc
+ * set_field_bc_to_1  0x8c01a1bc
  */
-int FUN_8c01a1bc(int a0) {
+int set_field_bc_to_1(int a0) {
     int iVar1;
 
     iVar1 = 0xbc;
@@ -18654,7 +18657,7 @@ int Class_129a24_m2_01a1d8(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
     FUN_8c01a180(a0);
-    FUN_8c023d7c(a0 + 0xb0, a1);
+    Vec3_assign_f_023d7c(a0 + 0xb0, a1);
     Vec3_assign_f(a0 + 0x90, a1, a2, a3);
     iVar1 = 0xbc;
     *(u32 *)(0xbc + a0) = 1;
@@ -22631,12 +22634,12 @@ u32 get_field_a524_01f514(int a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * noop_01f520  0x8c01f520
- * does nothing
+ * FUN_8c01f520  0x8c01f520
  * called by: Class_12b388_m1_0c5c08, FUN_8c0b6c3c, FUN_8c0b6e6c, FUN_8c0b726c, FUN_8c0b7454, FUN_8c0b7628,
  * FUN_8c0b76d8, FUN_8c0c09a4 (+10 more)
  */
-u32 noop_01f520(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 FUN_8c01f520(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+    return a0;
 }
 
 /*
@@ -22701,11 +22704,11 @@ u32 FUN_8c01f594(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * noop_01f5d0  0x8c01f5d0
- * does nothing
+ * FUN_8c01f5d0  0x8c01f5d0
  * called by: FUN_8c0c4644
  */
-u32 noop_01f5d0(u32 a0) {
+u32 FUN_8c01f5d0(u32 a0) {
+    return a0;
 }
 
 /*

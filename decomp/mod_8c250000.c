@@ -8271,6 +8271,7 @@ u32 FUN_8c2540a0(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0)
             fVar1 = fVar1 + 4.2949673e+09;
         }
         if (fVar1 <= in_fr4) {
+            return ain0;
         }
         g_8c4aad80 = *(u16 *)((int)a0 + 10) & 0xff3f;
         g_8c4ab0c0 = (u16)((*(u16 *)((int)a0 + 10) & 0xc0) != 0);
@@ -9874,6 +9875,7 @@ u32 FUN_8c255346(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0)
     uStack_24 = (u32)((u64)in_dr14 >> 0x20);
     iVar9 = 0;
     if (a0[1] == 0) {
+        return ain0;
     }
     if ((*a0 & 8) != 0) {
         return *a0;
@@ -10095,6 +10097,7 @@ u32 FUN_8c2556c8(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0)
     uStack_24 = (u32)((u64)in_dr14 >> 0x20);
     iVar9 = 0;
     if (a0[1] == 0) {
+        return ain0;
     }
     if ((*a0 & 8) != 0) {
         return *a0;
@@ -10634,6 +10637,7 @@ u32 FUN_8c255d6c(u32 *a0, int a1, u32 a2, u32 a3, u32 ain0) {
         *a0 = uVar1;
         return 4;
     }
+    return ain0;
 }
 
 /*
@@ -12369,6 +12373,7 @@ u32 matrix_scale(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float in_fr6;
 
     if (a0 == NULL) {
+        return ain0;
     }
     *a0 = *a0 * in_fr4;
     a0[1] = a0[1] * in_fr4;
@@ -12418,6 +12423,7 @@ u32 FUN_8c2570ec(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32
 
     g_8c4aa4dc = in_fr4;
     g_8c4aa4e0 = in_fr5;
+    return ain0;
 }
 
 /*
@@ -12702,6 +12708,7 @@ u32 njSinCos(u32 a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     fVar1 = ((float)(u16)a0 * 6.2831855) / 65536.0;
     sin(fVar1);
     cos(fVar1);
+    return ain0;
 }
 
 /*
@@ -15325,6 +15332,7 @@ u32 FUN_8c258d82(u32 *a0) {
  */
 u32 set_g_8c277ae8(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     g_8c277ae8 = a0;
+    return ain0;
 }
 
 /*
@@ -16678,6 +16686,7 @@ u32 FUN_8c259bd8(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) 
     fVar1 = ((float)(u16)a0 * 6.2831855) / 65536.0;
     sin(fVar1);
     cos(fVar1);
+    return ain0;
 }
 
 /*
@@ -18491,6 +18500,7 @@ u32 FUN_8c25b5d0(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) 
         *(u32 *)(a0 + 0x3c) = *(u32 *)(a0 + 0x3c);
         return 0x3c;
     }
+    return ain0;
 }
 
 /*
@@ -23280,6 +23290,7 @@ u32 njUnitVector(float *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain
     a0[2] = (float)((u64)lVar3 >> 0x20) * fVar4;
     a0[1] = fVar1 * fVar4;
     *a0 = fVar2 * fVar4;
+    return ain0;
 }
 
 /*
@@ -24376,6 +24387,7 @@ u32 FUN_8c25ecc2(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 u32 FUN_8c25ecdc(u32 a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     g_8c277d98 = a0;
     g_8c277d9c = a1;
+    return ain0;
 }
 
 /*

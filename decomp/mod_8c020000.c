@@ -1043,7 +1043,7 @@ u32 *FUN_8c02145c(u32 *a0) {
 u32 *pack_ctor(u32 *a0) {
     int iVar1;
 
-    noop_022190(a0 + 1);
+    FUN_8c022190(a0 + 1);
     *a0 = 0;
     *(u8 *)(0x9ec14 + (int)a0) = 0;
     *(u32 *)(0x9ec94 + (int)a0) = 0xffffffff;
@@ -1770,11 +1770,11 @@ u32 FUN_8c022128(int *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * noop_022190  0x8c022190
- * does nothing
+ * FUN_8c022190  0x8c022190
  * called by: pack_ctor
  */
-u32 noop_022190(u32 a0) {
+u32 FUN_8c022190(u32 a0) {
+    return a0;
 }
 
 /*
@@ -3938,11 +3938,12 @@ u32 *Vec3_set_xyz(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c023d7c  0x8c023d7c
+ * Vec3_assign_f_023d7c  0x8c023d7c
+ * stores fr4..fr6 as x, y, z
  * called by: Class_129a24_m2_01a1d8, FUN_8c057e58, FUN_8c07d904, FUN_8c08a17c, FUN_8c0a6370, FUN_8c0a77c8,
  * FUN_8c0a8c0c, FUN_8c0a8f94 (+3 more)
  */
-u32 *FUN_8c023d7c(u32 *a0, u32 a1) {
+u32 *Vec3_assign_f_023d7c(u32 *a0, u32 a1) {
     u32 in_fr5;
     u32 in_fr4;
     u32 in_fr6;
@@ -4033,11 +4034,11 @@ u32 *FUN_8c023e24(u32 *a0, u32 *a1) {
 }
 
 /*
- * noop_023e44  0x8c023e44
- * does nothing
+ * FUN_8c023e44  0x8c023e44
  * called by: CAnimal_m2_02573c, Class_1299f8_m4_019588, FUN_8c0d167c
  */
-u32 noop_023e44(u32 a0) {
+u32 FUN_8c023e44(u32 a0) {
+    return a0;
 }
 
 /*
@@ -5051,7 +5052,7 @@ int FUN_8c0254d0(int a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12
     ar5_00 = 0;
     uVar1 = a3;
     FUN_8c02b9a8(a0 + 0x174, 0, a3);
-    uVar1 = FUN_8c02bfd8(a0 + 0x174);
+    uVar1 = table13019c_find_row(a0 + 0x174);
     iVar3 = (int)(short)uVar1;
     FUN_8c034c50(a0 + 0x2dc, iVar3, a3);
     FUN_8c02b1dc(a0 + 0x310, iVar3, a3, ar7_00);
@@ -5215,7 +5216,7 @@ u32 CAnimal_m2_02573c(int a0, u32 a1, int ****a2, int ****a3) {
     FUN_8c030e5c(&uStack_ac);
     uVar2 = FUN_8c02bef8(a0 + 0x174, uVar5, a2);
     a6_00 = (int ****)(int)(short)uVar2;
-    noop_023e44(auStack_ec);
+    FUN_8c023e44(auStack_ec);
     uVar3 = get_field_a4_s16(a1, uVar5);
     ar5_00 = uVar3 & 0xffff;
     iVar4 = get_field_24_026024(a3, uVar5, a2, ar7_00);
@@ -5369,7 +5370,7 @@ LAB_8c02590e:
     uStack_84 = CONCAT31(uStack_84._1_3_, 1);
     iStack_9c = ((*(u32 *)(a0 + 0x74) & 0x70) >> 4) - 1;
     pppiStack_94 = (int ***)a3;
-    FUN_8c10277c(auStack_f8);
+    Vec3_assign_f_10277c(auStack_f8);
     iVar4 = get_field_24_026024(a3, a5, a6, a7);
     if (iVar4 == 0) {
         if (cVar13 == '\0') {
@@ -5776,7 +5777,7 @@ u32 CAnimal_m3_026078(int a0, u32 a1, int ****a2, int ****a3) {
     uStack_84 = uStack_84 & 0xffffff00;
     iStack_9c = ((*(u32 *)(a0 + 0x74) & 0x70) >> 4) - 1;
     pppiStack_94 = (int ***)a3;
-    FUN_8c10277c(auStack_b8);
+    Vec3_assign_f_10277c(auStack_b8);
     iVar4 = get_field_24_026024(a3, a5, a6, a7);
     if (iVar4 == 0) {
         if (cVar12 == '\0') {
@@ -5897,7 +5898,7 @@ u32 CAnimal_RunIncubator(int a0, u8 *a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) & 0xffffffef;
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) & 0xffffffdf;
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) | 0x40;
-    FUN_8c02c398(a0 + 0x174);
+    clear_field_144_u8(a0 + 0x174);
     if (*(int *)(0x30c + a0) == 0) {
         a3 = 2;
         a2 = 1;
@@ -6106,21 +6107,21 @@ int FUN_8c026968(int a0, u32 a1, u32 a2, u32 a3) {
     puVar3 = (u32 *)deref_u32(*(int *)(iVar7 + 0xa0) + iVar2 * 4);
     *(u32 *)(a0 + 0x434) = *puVar3;
     iVar2 = get_field_1c_on_field_b0(*(u32 *)(a0 + 0x30c), iVar12, iVar11);
-    iVar2 = noop_026d74(*(int *)(iVar7 + 0xa8) + iVar2 * 4);
+    iVar2 = get_field_0_026d74(*(int *)(iVar7 + 0xa8) + iVar2 * 4);
     if (iVar2 == 0) {
-        uVar1 = noop_015bb8(iVar7 + 0x70);
+        uVar1 = get_field_0_015bb8(iVar7 + 0x70);
         uVar6 = 0;
         FUN_8c029510(a0, uVar1, 0, iVar4);
     } else {
         iVar2 = get_field_1c_on_field_b0(*(u32 *)(a0 + 0x30c), iVar12, iVar11);
-        uVar1 = noop_026d74(*(int *)(iVar7 + 0xa8) + iVar2 * 4);
+        uVar1 = get_field_0_026d74(*(int *)(iVar7 + 0xa8) + iVar2 * 4);
         CAnimBody_GetCurFrame_on_field_b0(*(u32 *)(a0 + 0x30c), iVar12, iVar11, iVar4);
         if (cVar14 == '\0') {
             uStack_b0 = uVar1;
         }
         uVar1 = 0x29;
         FUN_8c21f200(uStack_b0, 0x29, iVar11, iVar4, uVar6);
-        uVar1 = noop_015bb8(iVar7 + 0x70);
+        uVar1 = get_field_0_015bb8(iVar7 + 0x70);
         uVar6 = 0;
         FUN_8c0297b8(a0, uVar1, 0, iVar4);
     }
@@ -6135,12 +6136,12 @@ int FUN_8c026968(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * noop_026d74  0x8c026d74
- * does nothing
+ * get_field_0_026d74  0x8c026d74
  * called by: CAnimBody_SetInterpolate, FUN_8c026968, FUN_8c026de0, FUN_8c06b460, FUN_8c08b020, FUN_8c08b5a8,
  * FUN_8c09aad0, FUN_8c09dec8 (+7 more)
  */
-u32 noop_026d74(u32 *a0) {
+u32 get_field_0_026d74(u32 *a0) {
+    return *a0;
 }
 
 /*
@@ -6222,13 +6223,13 @@ u32 FUN_8c026de0(int a0, u32 a1, u32 a2, u32 a3) {
     puVar3 = (u32 *)deref_u32(*(int *)(iVar4 + 0xa0) + iVar2 * 4);
     *(u32 *)(a0 + 0x434) = *puVar3;
     iVar2 = get_field_1c_on_field_b0(*(u32 *)(a0 + 0x30c), a1, a2);
-    iVar2 = noop_026d74(*(int *)(iVar4 + 0xa8) + iVar2 * 4);
+    iVar2 = get_field_0_026d74(*(int *)(iVar4 + 0xa8) + iVar2 * 4);
     if (iVar2 == 0) {
-        uVar1 = noop_015bb8(iVar4 + 0x70);
+        uVar1 = get_field_0_015bb8(iVar4 + 0x70);
         uVar1 = FUN_8c029510(a0, uVar1, 0, a3);
     } else {
         iVar2 = get_field_1c_on_field_b0(*(u32 *)(a0 + 0x30c), a1, a2);
-        uVar1 = noop_026d74(*(int *)(iVar4 + 0xa8) + iVar2 * 4);
+        uVar1 = get_field_0_026d74(*(int *)(iVar4 + 0xa8) + iVar2 * 4);
         CAnimBody_GetCurFrame_on_field_b0(*(u32 *)(a0 + 0x30c), a1, a2, a3);
         uStack_30 = extraout_fr0_00;
         if (cVar5 == '\0') {
@@ -6236,7 +6237,7 @@ u32 FUN_8c026de0(int a0, u32 a1, u32 a2, u32 a3) {
         }
         uVar1 = 0x29;
         FUN_8c21f200(uStack_30, 0x29, a2, a3, ain0);
-        uVar1 = noop_015bb8(iVar4 + 0x70);
+        uVar1 = get_field_0_015bb8(iVar4 + 0x70);
         uVar1 = FUN_8c0297b8(a0, uVar1, 0, a3);
     }
     return uVar1;
@@ -6253,7 +6254,7 @@ int FUN_8c026f7c(int a0, u32 a1, u32 a2, u32 a3) {
     FUN_8c02bef8(a0 + 0x174, a1, a2);
     uVar1 = FUN_8c02bef8(a0 + 0x174, a1, a2);
     puVar2 =
-        (u32 *)(*(code *)(&noop_015510))(*(int *)((short)uVar1 * 0x124 + *(int *)(0x328 + a0)) + 0x1e4, a1, a2, a3);
+        (u32 *)(*(code *)(&get_field_0))(*(int *)((short)uVar1 * 0x124 + *(int *)(0x328 + a0)) + 0x1e4, a1, a2, a3);
     *puVar2 = *(u32 *)(*(int *)((short)uVar1 * 0x124 + *(int *)(0x328 + a0)) + 0x40);
     iVar3 = *(int *)(0x344 + a0);
     *(u32 **)(iVar3 + 4) = puVar2;
@@ -6412,7 +6413,7 @@ u32 FUN_8c027270(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar2;
 
     uVar2 = 1;
-    FUN_8c027388(a0 + 0x174, 1);
+    set_field_144_u8(a0 + 0x174, 1);
     uVar1 = get_field_138_02737c(a0 + 0x174);
     uVar2 = FUN_8c02bef8(a0 + 0x174, uVar2, a2);
     ar6_00 = (int)(short)uVar2;
@@ -6423,15 +6424,15 @@ u32 FUN_8c027270(int a0, u32 unused_a1, u32 a2, u32 a3) {
     set_field_40_u8(a0 + 0x21c, uVar1);
     uVar1 = 1;
     set_field_28_u8(a0 + 0x2dc, 1);
-    uVar1 = FUN_8c027344(*(u32 *)(0x308 + a0));
+    uVar1 = set_field_9b_u8_to_1(*(u32 *)(0x308 + a0));
     return uVar1;
 }
 
 /*
- * FUN_8c027344  0x8c027344
+ * set_field_9b_u8_to_1  0x8c027344
  * called by: FUN_8c027270, FUN_8c0274bc
  */
-int FUN_8c027344(int a0) {
+int set_field_9b_u8_to_1(int a0) {
     int iVar1;
 
     iVar1 = 0x9b;
@@ -6483,10 +6484,10 @@ u32 get_field_138_02737c(int a0) {
 }
 
 /*
- * FUN_8c027388  0x8c027388
+ * set_field_144_u8  0x8c027388
  * called by: FUN_8c027270
  */
-int FUN_8c027388(int a0, u32 a1) {
+int set_field_144_u8(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x144;
@@ -6516,20 +6517,21 @@ u32 noop_0273d0(void) {
 }
 
 /*
- * FUN_8c0273d4  0x8c0273d4
+ * set_field_81_u8_wrap  0x8c0273d4
+ * only calls set_field_81_u8
  */
-u32 FUN_8c0273d4(int a0) {
+u32 set_field_81_u8_wrap(int a0) {
     u32 uVar1;
 
-    uVar1 = FUN_8c0273f8(*(u32 *)(0x308 + a0), 1);
+    uVar1 = set_field_81_u8(*(u32 *)(0x308 + a0), 1);
     return uVar1;
 }
 
 /*
- * FUN_8c0273f8  0x8c0273f8
- * called by: FUN_8c0273d4
+ * set_field_81_u8  0x8c0273f8
+ * called by: set_field_81_u8_wrap
  */
-int FUN_8c0273f8(int a0, u32 a1) {
+int set_field_81_u8(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x81;
@@ -6543,16 +6545,16 @@ int FUN_8c0273f8(int a0, u32 a1) {
 u32 FUN_8c027404(int a0) {
     u32 uVar1;
 
-    FUN_8c027448(*(u32 *)(0x308 + a0), 1);
-    uVar1 = FUN_8c02743c(*(u32 *)(0x30c + a0), 1);
+    set_field_82_u8(*(u32 *)(0x308 + a0), 1);
+    uVar1 = set_field_21c(*(u32 *)(0x30c + a0), 1);
     return uVar1;
 }
 
 /*
- * FUN_8c02743c  0x8c02743c
+ * set_field_21c  0x8c02743c
  * called by: FUN_8c027404
  */
-int FUN_8c02743c(int a0, u32 a1) {
+int set_field_21c(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x21c;
@@ -6561,10 +6563,10 @@ int FUN_8c02743c(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c027448  0x8c027448
+ * set_field_82_u8  0x8c027448
  * called by: FUN_8c027404
  */
-int FUN_8c027448(int a0, u32 a1) {
+int set_field_82_u8(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x82;
@@ -6573,20 +6575,21 @@ int FUN_8c027448(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c027454  0x8c027454
+ * set_field_84_u8_wrap  0x8c027454
+ * only calls set_field_84_u8
  */
-u32 FUN_8c027454(int a0) {
+u32 set_field_84_u8_wrap(int a0) {
     u32 uVar1;
 
-    uVar1 = FUN_8c027478(*(u32 *)(0x308 + a0), 1);
+    uVar1 = set_field_84_u8(*(u32 *)(0x308 + a0), 1);
     return uVar1;
 }
 
 /*
- * FUN_8c027478  0x8c027478
- * called by: FUN_8c027454
+ * set_field_84_u8  0x8c027478
+ * called by: set_field_84_u8_wrap
  */
-int FUN_8c027478(int a0, u32 a1) {
+int set_field_84_u8(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x84;
@@ -6613,20 +6616,21 @@ u32 noop_027488(void) {
 }
 
 /*
- * FUN_8c02748c  0x8c02748c
+ * set_field_87_u8_wrap  0x8c02748c
+ * only calls set_field_87_u8
  */
-u32 FUN_8c02748c(int a0) {
+u32 set_field_87_u8_wrap(int a0) {
     u32 uVar1;
 
-    uVar1 = FUN_8c0274b0(*(u32 *)(0x308 + a0), 1);
+    uVar1 = set_field_87_u8(*(u32 *)(0x308 + a0), 1);
     return uVar1;
 }
 
 /*
- * FUN_8c0274b0  0x8c0274b0
- * called by: FUN_8c02748c
+ * set_field_87_u8  0x8c0274b0
+ * called by: set_field_87_u8_wrap
  */
-int FUN_8c0274b0(int a0, u32 a1) {
+int set_field_87_u8(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x87;
@@ -6660,13 +6664,13 @@ u32 FUN_8c0274bc(int a0, u16 *a1, int a2, u32 a3) {
     ar5_00 = (u16 *)get_field_99_s8(*(u32 *)(0x308 + a0));
     set_field_40_u8(a0 + 0x21c, ar5_00);
 LAB_8c027550:
-    iVar1 = noop_0fa5b4(0x8c35468c);
+    iVar1 = get_field_0_0fa5b4(0x8c35468c);
     iVar4 = (**(code **)(**(int **)(0x308 + a0) + 0x40))(*(int **)(0x308 + a0), ar5_00, a2, a3);
     if (iVar1 == iVar4) {
         iVar1 = (**(code **)(**(int **)(0x308 + a0) + 0x40))(*(int **)(0x308 + a0), ar5_00, a2, a3);
         if (0 < iVar1) {
             ar5_00 = (u16 *)0x1;
-            FUN_8c02b04c(a0, 1);
+            set_field_478(a0, 1);
         }
     }
     if (*a1 == 0) {
@@ -6678,12 +6682,12 @@ LAB_8c027550:
                 ar5_00 = (u16 *)libgcc_divide_helper_0101e4((u32)a1[1], 0x18);
                 FUN_8c02d2e0(a0 + 0x174, ar5_00, a2, a3);
             }
-            FUN_8c027344(*(u32 *)(0x308 + a0));
+            set_field_9b_u8_to_1(*(u32 *)(0x308 + a0));
         }
     } else {
         ar5_00 = (u16 *)(u32)*a1;
         FUN_8c02d2e0(a0 + 0x174, ar5_00, a2, a3);
-        FUN_8c027344(*(u32 *)(0x308 + a0));
+        set_field_9b_u8_to_1(*(u32 *)(0x308 + a0));
     }
     iVar1 = FUN_8c025ff4(a0 + 0x174);
     if (iVar1 == 1) {
@@ -6712,12 +6716,12 @@ int FUN_8c0276f4(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
 
-    iVar1 = noop_0fa5b4(0x8c35468c);
+    iVar1 = get_field_0_0fa5b4(0x8c35468c);
     iVar2 = (**(code **)(**(int **)(0x308 + a0) + 0x40))(*(int **)(0x308 + a0), a1, a2, a3);
     if (iVar1 == iVar2) {
         iVar2 = (**(code **)(**(int **)(0x308 + a0) + 0x40))(*(int **)(0x308 + a0), a1, a2, a3);
         if (0 < iVar2) {
-            iVar2 = FUN_8c02b04c(a0, 1);
+            iVar2 = set_field_478(a0, 1);
         }
     }
     return iVar2;
@@ -7550,16 +7554,16 @@ u32 FUN_8c028e20(int a0, u32 a1, u32 a2) {
     set_field_c(a0 + 0x21c, ar5_00, a2, r7, CONCAT22(uVar3, (short)uVar1));
     uVar2 = get_field_13c_028d9c(a0 + 0x174, ar5_00, a2);
     uVar2 = FUN_8c034d38(a0 + 0x2dc, uVar2);
-    uVar2 = FUN_8c028ec8(*(u32 *)(a0 + 0x308), uVar2);
+    uVar2 = set_field_98_u8(*(u32 *)(a0 + 0x308), uVar2);
     return uVar2;
 }
 
 /*
- * FUN_8c028ec8  0x8c028ec8
- * called by: FUN_8c028e20, FUN_8c035d7c, FUN_8c035d9c, FUN_8c035dbc, FUN_8c035ddc, FUN_8c035dfc, FUN_8c035e1c,
- * FUN_8c035e3c (+7 more)
+ * set_field_98_u8  0x8c028ec8
+ * called by: FUN_8c028e20, FUN_8c035e94, FUN_8c035f58, FUN_8c035fa0, FUN_8c035fe8, FUN_8c036260, FUN_8c0851f4,
+ * FUN_8c08a17c (+7 more)
  */
-int FUN_8c028ec8(int a0, u32 a1) {
+int set_field_98_u8(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x98;
@@ -7937,7 +7941,7 @@ u32 FUN_8c029510(int a0, int a1, int a2, int a3) {
     }
     if (*(int *)(a0 + 0x350) == a1) {
         obj_set_texlist(*piVar4 + 0x1f8, iVar3, ar6_00);
-        iVar3 = noop_015bb8(0x8c27d3e8);
+        iVar3 = get_field_0_015bb8(0x8c27d3e8);
         ar6_00 = a2;
         FUN_8c029d64(a0, iVar3, a2, a3);
         obj_set_texlist(*(u32 *)(a0 + 0x42c), iVar3, ar6_00);
@@ -8066,7 +8070,7 @@ u32 FUN_8c0297b8(int a0, u32 *a1, int a2, int a3) {
     if (*(u32 **)(a0 + 0x350) == a1) {
         FUN_8c0f52c8();
         obj_set_texlist(*piVar4 + 0x1f8, ar5_00, iVar3);
-        ar5_00 = (u32 *)noop_015bb8(0x8c27d3e8);
+        ar5_00 = (u32 *)get_field_0_015bb8(0x8c27d3e8);
         iVar3 = a2;
         FUN_8c029d64(a0, ar5_00, a2, a3);
         obj_set_texlist(*(u32 *)(a0 + 0x42c), ar5_00, iVar3);
@@ -8187,7 +8191,7 @@ u32 FUN_8c029ca8(int a0, u32 a1, u32 a2, u32 a3) {
     matrix_push(0, a1, a2, a3, CONCAT22(uVar3, (short)uVar1));
     FUN_8c019088();
     matrix_scale_wrap(ar4_00, a1);
-    uVar1 = noop_015510(*(int *)(iVar2 + (short)uVar1 * 0x124) + 0x1e8);
+    uVar1 = get_field_0(*(int *)(iVar2 + (short)uVar1 * 0x124) + 0x1e8);
     FUN_8c02a29c(a0, uVar1, a2, a3);
     uVar1 = matrix_pop_n(1);
     return uVar1;
@@ -9009,7 +9013,7 @@ u32 FUN_8c02a788(int a0, u32 a1, u32 a2, u32 a3) {
             *(short *)(a0 + 0x3f0) = *(short *)(a0 + 0x3f0) + 1;
             if (*(int *)(*(short *)(a0 + 0x3f0) * 4 + **(int **)(a0 + 0x3ec)) == 0x50) {
                 a1 = *(u32 *)(a0 + 0x3e4);
-                FUN_8c02aab0(*(u32 *)(a0 + 0x308), a1);
+                set_field_94(*(u32 *)(a0 + 0x308), a1);
                 *(u16 *)(a0 + 0x3f0) = 0;
                 *(u32 *)(a0 + 0x3f4) = 0;
                 *(u32 *)(a0 + 0x3ec) = 0;
@@ -9065,10 +9069,10 @@ u32 get_field_94_02aaa4(int a0) {
 }
 
 /*
- * FUN_8c02aab0  0x8c02aab0
+ * set_field_94  0x8c02aab0
  * called by: FUN_8c02a788
  */
-int FUN_8c02aab0(int a0, u32 a1) {
+int set_field_94(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x94;
@@ -9086,7 +9090,7 @@ int FUN_8c02aabc(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar2;
 
     uVar1 = FUN_8c02bef8(a0 + 0x174, a1, a2);
-    uVar1 = (*(code *)(&noop_015510))(*(int *)((short)uVar1 * 0x124 + *(int *)(0x328 + a0)) + 0x1e4, a1, a2, a3);
+    uVar1 = (*(code *)(&get_field_0))(*(int *)((short)uVar1 * 0x124 + *(int *)(0x328 + a0)) + 0x1e4, a1, a2, a3);
     iVar2 = *(int *)(0x344 + a0);
     *(u32 *)(iVar2 + 4) = uVar1;
     return iVar2;
@@ -9196,6 +9200,7 @@ u32 Vec3_normalize_on_field_4_wrap(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
  */
 u32 Vec3_normalize_on_field_4(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     Vec3_normalize(a0 + 4, a1, a2, a3);
+    return s0;
 }
 
 /*
@@ -9379,10 +9384,10 @@ int CAnimal_ChangeBodyTexture(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c02b04c  0x8c02b04c
+ * set_field_478  0x8c02b04c
  * called by: FUN_8c0274bc, FUN_8c0276f4
  */
-int FUN_8c02b04c(int a0, u32 a1) {
+int set_field_478(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x478;
@@ -9596,9 +9601,9 @@ u32 get_field_48c_02b444(int a0) {
 }
 
 /*
- * FUN_8c02b450  0x8c02b450
+ * set_field_48c  0x8c02b450
  */
-int FUN_8c02b450(int a0, u32 a1) {
+int set_field_48c(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x48c;
@@ -10046,7 +10051,7 @@ int FUN_8c02b9a8(int a0, u32 a1, int a2) {
     iVar3 = a2 * 0x140;
     *(u32 *)(a0 + 0x134) = a1;
     *(int *)(a0 + 0x13c) = a2;
-    uVar1 = FUN_8c02bfd8(a0);
+    uVar1 = table13019c_find_row(a0);
     *(int *)(a0 + 0x138) = (int)(short)uVar1;
     *(u8 *)(a0 + 0x144) = 0;
     *(u8 *)(a0 + 0x164) = 0;
@@ -10208,7 +10213,7 @@ int FUN_8c02bef8(int a0, u32 a1, u32 a2) {
     u32 uVar1;
     int iStack_10;
 
-    uVar1 = FUN_8c02bfd8(a0);
+    uVar1 = table13019c_find_row(a0);
     iStack_10 = *(short *)((&DATA_8c1302bc) + (short)uVar1 * 2) + -1;
     uVar1 = FUN_8c02bf8c(a0, a1);
     if ((int)*(short *)((&DATA_8c1302e0) + *(int *)(0x13c + a0) * 2) + (int)(short)uVar1 < iStack_10) {
@@ -10246,11 +10251,12 @@ int FUN_8c02bfbc(int a0) {
 }
 
 /*
- * FUN_8c02bfd8  0x8c02bfd8
+ * table13019c_find_row  0x8c02bfd8
+ * row (0..17) of the 4-column table at 0x8c13019c that holds the value at +0x13c; -1 if none
  * called by: FUN_8c0254d0, FUN_8c02b9a8, FUN_8c02bef8, FUN_8c02c030, FUN_8c02c758, FUN_8c034d48, FUN_8c0611cc,
  * FUN_8c1063a8
  */
-u32 FUN_8c02bfd8(int a0) {
+u32 table13019c_find_row(int a0) {
     int iVar1;
     int iVar2;
 
@@ -10319,18 +10325,18 @@ u32 FUN_8c02c030(int a0, int *a1, int *a2, u32 a3) {
         ar6_00 = a1;
         FUN_8c02e4cc(a0 + 0xf8, a2, a1, a3);
     }
-    iVar1 = noop_02c380(a0 + 0xf8);
+    iVar1 = get_field_0_02c380(a0 + 0xf8);
     if ((iVar1 == 0) && (a1 != *(int **)(a0 + 0x148))) {
         if (a1 != *(int **)(a0 + 0x148)) {
             ar6_00 = (int *)FUN_8c02c518(a0, ar5_00, ar6_00);
             ar5_00 = a1;
             FUN_8c02d854(a0 + 0x90, a1, ar6_00, a3);
         }
-        iVar1 = FUN_8c02c340(a0 + 0x90, ar5_00, ar6_00, a3);
+        iVar1 = percent_field_4_of_c(a0 + 0x90, ar5_00, ar6_00, a3);
         uVar3 = 0xd;
         uVar2 = libgcc_divide_helper_0101e4(iVar1 + -0x32, 0xd);
         ar5_01 = (int)(char)uVar2;
-        iVar1 = FUN_8c02c340(a0 + 0x90, uVar3, ar6_00, a3);
+        iVar1 = percent_field_4_of_c(a0 + 0x90, uVar3, ar6_00, a3);
         if ((iVar1 == 100) && (ar5_01 = 5, g_8c27d430 == 1)) {
             ar5_01 = 4;
         }
@@ -10347,7 +10353,7 @@ u32 FUN_8c02c030(int a0, int *a1, int *a2, u32 a3) {
     uVar2 = FUN_8c02c518(a0, ar5_00, ar6_00);
     set_field_48(a0 + 0xa8, uVar2);
     uVar3 = (**(code **)(*a2 + 0x148))(a2, uVar2, ar6_00, a3);
-    uVar2 = FUN_8c02bfd8(a0);
+    uVar2 = table13019c_find_row(a0);
     ar6_01 = *(u32 *)(a0 + 0x140);
     uVar2 = FUN_8c02c310(uVar3, (int)(short)uVar2, ar6_01);
     set_field_3_s8(a0 + 0xa8, (int)(char)uVar2);
@@ -10406,11 +10412,12 @@ u32 set_field_8_s8(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c02c340  0x8c02c340
- * called by: FUN_8c02c030, FUN_8c02d3e8, FUN_8c035740, FUN_8c035858, FUN_8c05d860, FUN_8c0620d4, FUN_8c062b0c,
- * FUN_8c063838 (+3 more)
+ * percent_field_4_of_c  0x8c02c340
+ * 100 * (+4) / (+0xc)
+ * called by: FUN_8c02c030, FUN_8c035740, FUN_8c035858, FUN_8c05d860, FUN_8c0620d4, FUN_8c062b0c, FUN_8c063838,
+ * FUN_8c103100 (+3 more)
  */
-u32 FUN_8c02c340(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 percent_field_4_of_c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (*(code *)(&libgcc_divide_helper_0101e4))(*(int *)(a0 + 4) * 0x3e8, *(int *)(a0 + 0xc) * 10, a2, a3);
@@ -10418,11 +10425,11 @@ u32 FUN_8c02c340(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * noop_02c380  0x8c02c380
- * does nothing
+ * get_field_0_02c380  0x8c02c380
  * called by: FUN_8c02c030, FUN_8c02d478, FUN_8c02d4c4
  */
-u32 noop_02c380(u32 *a0) {
+u32 get_field_0_02c380(u32 *a0) {
+    return *a0;
 }
 
 /*
@@ -10444,10 +10451,10 @@ u32 set_field_4c_u8(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c02c398  0x8c02c398
+ * clear_field_144_u8  0x8c02c398
  * called by: CAnimal_RunIncubator, Class_12a5d0_m6_08aad8, Class_12ab2c_m6_09dd64, Class_12aeec_m6_0a47f0
  */
-int FUN_8c02c398(int a0) {
+int clear_field_144_u8(int a0) {
     int iVar1;
 
     iVar1 = 0x144;
@@ -10630,7 +10637,7 @@ u32 FUN_8c02c758(int a0, int a1, u32 a2, u32 a3) {
     *(u8 *)(a0 + 0x144) = 0;
     *(u8 *)(a0 + 0x164) = 0;
     *(int *)(a0 + 0x13c) = a1;
-    uVar2 = FUN_8c02bfd8(a0);
+    uVar2 = table13019c_find_row(a0);
     ain0 = CONCAT22(uVar5, (short)uVar2);
     *(int *)(a0 + 0x138) = (int)(short)uVar2;
     set_field_b_s8(a0, (int)(char)(&g_8c1304d4)[iVar4]);
@@ -10851,10 +10858,10 @@ u32 FUN_8c02cbe4(int a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
     int ain0;
 
-    FUN_8c02ce4c(a0, *a1);
-    FUN_8c02ce40(a0, a1[1]);
-    FUN_8c02ce34(a0, a1[2]);
-    FUN_8c02ce28(a0, a1[3]);
+    set_field_134(a0, *a1);
+    set_field_138(a0, a1[1]);
+    set_field_13c(a0, a1[2]);
+    set_field_140(a0, a1[3]);
     FUN_8c02cbbc(a0 + 0x90, a1[4]);
     counter_set_clamped(a0 + 0x90, a1[5], a2);
     set_field_0_u8_02cb7c(a0 + 0xa8, (int)*(char *)(a1 + 6), a2, a3);
@@ -10927,10 +10934,10 @@ u32 counter_set_clamped(int a0, int a1, u32 a2) {
 }
 
 /*
- * FUN_8c02ce28  0x8c02ce28
+ * set_field_140  0x8c02ce28
  * called by: FUN_8c02cbe4, FUN_8c02ce58
  */
-int FUN_8c02ce28(int a0, u32 a1) {
+int set_field_140(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x140;
@@ -10939,10 +10946,10 @@ int FUN_8c02ce28(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c02ce34  0x8c02ce34
+ * set_field_13c  0x8c02ce34
  * called by: FUN_8c02cbe4, FUN_8c02ce58
  */
-int FUN_8c02ce34(int a0, u32 a1) {
+int set_field_13c(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x13c;
@@ -10951,10 +10958,10 @@ int FUN_8c02ce34(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c02ce40  0x8c02ce40
+ * set_field_138  0x8c02ce40
  * called by: FUN_8c02cbe4, FUN_8c02ce58
  */
-int FUN_8c02ce40(int a0, u32 a1) {
+int set_field_138(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x138;
@@ -10963,10 +10970,10 @@ int FUN_8c02ce40(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c02ce4c  0x8c02ce4c
+ * set_field_134  0x8c02ce4c
  * called by: FUN_8c02cbe4, FUN_8c02ce58
  */
-int FUN_8c02ce4c(int a0, u32 a1) {
+int set_field_134(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x134;
@@ -10982,10 +10989,10 @@ u32 FUN_8c02ce58(int a0, u32 *a1) {
     u32 uVar1;
 
     uVar1 = 0;
-    FUN_8c02ce4c(a0, *a1);
-    FUN_8c02ce40(a0, a1[1]);
-    FUN_8c02ce34(a0, a1[2]);
-    FUN_8c02ce28(a0, a1[3]);
+    set_field_134(a0, *a1);
+    set_field_138(a0, a1[1]);
+    set_field_13c(a0, a1[2]);
+    set_field_140(a0, a1[3]);
     set_field_8(a0 + 0xa8, a1[4]);
     set_field_c(a0 + 0xa8, a1[5]);
     set_field_10_02cbd4(a0 + 0xa8, a1[6]);
@@ -11221,13 +11228,14 @@ int get_field_0_s8_02d3e0(char *a0) {
 }
 
 /*
- * FUN_8c02d3e8  0x8c02d3e8
+ * percent_field_4_of_c_on_field_90  0x8c02d3e8
+ * calls percent_field_4_of_c on the member at +0x90
  * called by: FUN_8c02ebfc, FUN_8c0bcedc
  */
-u32 FUN_8c02d3e8(int a0, u32 a1, u32 a2, u32 a3) {
+u32 percent_field_4_of_c_on_field_90(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = FUN_8c02c340(a0 + 0x90, a1, a2, a3);
+    uVar1 = percent_field_4_of_c(a0 + 0x90, a1, a2, a3);
     return uVar1;
 }
 
@@ -11261,7 +11269,7 @@ int FUN_8c02d478(int a0) {
     int iVar1;
     int iVar2;
 
-    iVar1 = noop_02c380(a0 + 0xf8);
+    iVar1 = get_field_0_02c380(a0 + 0xf8);
     iVar2 = get_field_4_02d4bc(a0 + 0xf8);
     return iVar1 * iVar2;
 }
@@ -11282,7 +11290,7 @@ int FUN_8c02d4c4(int a0) {
     int iVar1;
     int iVar2;
 
-    iVar1 = noop_02c380(a0 + 0xf8);
+    iVar1 = get_field_0_02c380(a0 + 0xf8);
     iVar2 = get_field_4_02d4bc(a0 + 0xf8);
     return (1 - iVar1) * iVar2;
 }
@@ -12420,11 +12428,11 @@ int free_if_nonnull_wrap_02eaec(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * noop_02eb1c  0x8c02eb1c
- * does nothing
+ * FUN_8c02eb1c  0x8c02eb1c
  * called by: Class_129c70_ctor
  */
-u32 noop_02eb1c(u32 a0) {
+u32 FUN_8c02eb1c(u32 a0) {
+    return a0;
 }
 
 /*
@@ -12499,7 +12507,7 @@ int FUN_8c02ebfc(int a0, u32 a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 0x14) = uVar1;
     uVar1 = FUN_8c02d410(a1, uVar2, a2, a3);
     *(u32 *)(a0 + 0x24) = uVar1;
-    uVar1 = FUN_8c02d3e8(a1, uVar2, a2, a3);
+    uVar1 = percent_field_4_of_c_on_field_90(a1, uVar2, a2, a3);
     *(u32 *)(a0 + 0x20) = uVar1;
     uVar2 = FUN_8c02ede0(a1, uVar2, a2, a3);
     *(u32 *)(a0 + 0x1c) = uVar2;
@@ -12644,7 +12652,7 @@ u32 *Class_129c70_ctor(u32 *a0, u32 a1, u32 a2) {
     cVar1 = '\0';
     *a0 = &g_8c129c70;
     Vec3_ctor_zero(a0 + 10, a1, a2);
-    noop_02eb1c(a0 + 0x11);
+    FUN_8c02eb1c(a0 + 0x11);
     Vec3_ctor_zero(a0 + 0x1c, a1, a2);
     a0[1] = 0;
     a0[0x1b] = 0;

@@ -2202,6 +2202,7 @@ u32 FUN_8c112658(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) 
             }
         } while (uVar1 < *(u32 *)(a0 + 8));
     }
+    return ain0;
 }
 
 /*
@@ -2459,6 +2460,7 @@ u32 FUN_8c1129e4(int a0, int a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
             puVar4 = puVar4 + 1;
         } while (uVar1 < uVar3);
     }
+    return ain0;
 }
 
 /*
@@ -2481,6 +2483,7 @@ u32 FUN_8c112a02(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) 
             puVar3 = puVar3 + 1;
         } while (uVar1 < uVar2);
     }
+    return ain0;
 }
 
 /*

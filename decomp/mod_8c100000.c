@@ -397,13 +397,14 @@ u32 set_field_20_on_field_15c(int a0) {
 }
 
 /*
- * FUN_8c1006bc  0x8c1006bc
+ * clear_field_59c_wrap  0x8c1006bc
+ * only calls clear_field_59c
  * called by: FUN_8c0c4e58, FUN_8c0c97bc, FUN_8c0caac0, FUN_8c0e4298
  */
-u32 FUN_8c1006bc(u32 a0) {
+u32 clear_field_59c_wrap(u32 a0) {
     u32 uVar1;
 
-    uVar1 = FUN_8c10168c(a0);
+    uVar1 = clear_field_59c(a0);
     return uVar1;
 }
 
@@ -925,10 +926,10 @@ u32 get_field_b0_10113c(int a0) {
 }
 
 /*
- * FUN_8c101148  0x8c101148
+ * set_field_b4  0x8c101148
  * called by: FUN_8c0611cc
  */
-int FUN_8c101148(int a0, u32 a1) {
+int set_field_b4(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0xb4;
@@ -1028,7 +1029,7 @@ u32 FUN_8c101250(int a0, u32 unused_a1, u32 a2, u32 a3) {
     *(u16 *)(a0 + 0x18e) = 0;
     FUN_8c10169c(a0, uVar1, a2, a3);
     FUN_8c101784(a0, uVar1, a2, a3);
-    uVar1 = FUN_8c10168c(a0);
+    uVar1 = clear_field_59c(a0);
     return uVar1;
 }
 
@@ -1248,10 +1249,10 @@ u32 FUN_8c101510(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c10168c  0x8c10168c
- * called by: FUN_8c0c51c4, FUN_8c1006bc, FUN_8c101250
+ * clear_field_59c  0x8c10168c
+ * called by: FUN_8c0c51c4, FUN_8c101250, clear_field_59c_wrap
  */
-int FUN_8c10168c(int a0) {
+int clear_field_59c(int a0) {
     int iVar1;
 
     iVar1 = 0x59c;
@@ -1852,11 +1853,12 @@ u16 *FUN_8c10273c(u16 *a0, u32 a1, u32 a2) {
 }
 
 /*
- * FUN_8c102748  0x8c102748
+ * clear_3_words_102748  0x8c102748
+ * a0[0..2] = 0
  * called by: FUN_8c030e10, FUN_8c03c94c, FUN_8c046684, FUN_8c054f7c, FUN_8c078fd0, FUN_8c08fd38, FUN_8c0967d8,
  * FUN_8c0aa70c (+7 more)
  */
-u32 *FUN_8c102748(u32 *a0) {
+u32 *clear_3_words_102748(u32 *a0) {
     a0[2] = 0;
     a0[1] = 0;
     *a0 = 0;
@@ -1864,11 +1866,12 @@ u32 *FUN_8c102748(u32 *a0) {
 }
 
 /*
- * FUN_8c10277c  0x8c10277c
+ * Vec3_assign_f_10277c  0x8c10277c
+ * stores fr4..fr6 as x, y, z
  * called by: CAnimal_m2_02573c, CAnimal_m3_026078, Class_12bb08_ctor, FUN_8c0337d0, FUN_8c03c94c, FUN_8c03f4a4,
  * FUN_8c046684, FUN_8c048868 (+4 more)
  */
-u32 *FUN_8c10277c(u32 *a0) {
+u32 *Vec3_assign_f_10277c(u32 *a0) {
     u32 in_fr5;
     u32 in_fr4;
     u32 in_fr6;
@@ -2014,7 +2017,7 @@ u32 *FUN_8c10291c(u32 *a0) {
 
 /*
  * FUN_8c102974  0x8c102974
- * called by: FUN_8c0d7e80, FUN_8c0e0da4, FUN_8c0e5c4c, FUN_8c0e6ef0, FUN_8c10291c, FUN_8c102a7c
+ * called by: FUN_8c0d7e80, FUN_8c0e0da4, FUN_8c0e5c4c, FUN_8c0e6ef0, FUN_8c10291c, linear_map_set
  */
 int FUN_8c102974(int a0) {
     u64 in_dr4;
@@ -2053,15 +2056,16 @@ int Class_12c3a4_m0_1029d0(int a0) {
 u32 *FUN_8c102a08(u32 *a0) {
     FUN_8c0d63f8(a0);
     *a0 = (&DATA_8c12c394);
-    FUN_8c102a7c(a0);
+    linear_map_set(a0);
     return a0;
 }
 
 /*
- * FUN_8c102a7c  0x8c102a7c
+ * linear_map_set  0x8c102a7c
+ * sets the slope (+0x18) and intercept (+0x14) of the line through two points passed in dr6/dr8
  * called by: FUN_8c0d6264, FUN_8c0d69a8, FUN_8c0e0da4, FUN_8c0e5c4c, FUN_8c0e6ef0, FUN_8c102a08
  */
-u32 FUN_8c102a7c(int a0) {
+u32 linear_map_set(int a0) {
     u32 uVar1;
     u64 in_dr6;
     u64 in_dr8;
@@ -2382,7 +2386,7 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
     iVar3 = get_field_13c_028d9c(*(int *)(a2 + 4), iVar9, 0x9c);
     a0[0x218] = iVar3;
     uVar1 = FUN_8c02bef8(*(int *)(a2 + 4), iVar9, uVar11);
-    FUN_8c030d04(a0 + 0x27, (int)(short)uVar1);
+    set_field_728_u8(a0 + 0x27, (int)(short)uVar1);
     FUN_8c104f5c(a0, a1, a2, a3);
     FUN_8c1093a4(a0, a1, a2, a3);
     FUN_8c1097a8(a0, a1, a2, a3);
@@ -2426,7 +2430,7 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
                     ar7_00 = "REQUEST_SLEEP";
                     pcVar10 = NULL;
                     pcVar2 = NULL;
-                    FUN_8c0306d4(a0 + 0x27, 0, 0, "REQUEST_SLEEP");
+                    talk_start_line(a0 + 0x27, 0, 0, "REQUEST_SLEEP");
                 }
             }
             uVar1 = get_field_bc_s8(*(int *)(a2 + 0xc), pcVar2, pcVar10, ar7_00);
@@ -2438,11 +2442,11 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
                     if (a0[0x223] == 1) {
                         ar7_00 = "REQUEST_WAKE_UP";
                         pcVar10 = NULL;
-                        FUN_8c0306d4(a0 + 0x27, 0x21, 0, "REQUEST_WAKE_UP");
+                        talk_start_line(a0 + 0x27, 0x21, 0, "REQUEST_WAKE_UP");
                     } else {
                         ar7_00 = "REQUEST_WANT_LIGHT";
                         pcVar10 = NULL;
-                        FUN_8c0306d4(a0 + 0x27, 0x21, 0, "REQUEST_WANT_LIGHT");
+                        talk_start_line(a0 + 0x27, 0x21, 0, "REQUEST_WANT_LIGHT");
                     }
                     pcVar2 = NULL;
                     a0[0x223] = 0;
@@ -2460,14 +2464,14 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
                             ar7_00 = "STATUS_LIGHT_OFF";
                             pcVar10 = NULL;
                             pcVar2 = (code *)0xa;
-                            FUN_8c0306d4(a0 + 0x27, 10, 0, "STATUS_LIGHT_OFF");
+                            talk_start_line(a0 + 0x27, 10, 0, "STATUS_LIGHT_OFF");
                         } else {
                             uVar1 = get_field_bc_s8(*(int *)(a2 + 0xc), pcVar2, pcVar10, ar7_00);
                             if (*(char *)((int)a0 + 0x9a) < (char)uVar1) {
                                 ar7_00 = "STATUS_LIGHT";
                                 pcVar10 = NULL;
                                 pcVar2 = NULL;
-                                FUN_8c0306d4(a0 + 0x27, 0, 0, "STATUS_LIGHT");
+                                talk_start_line(a0 + 0x27, 0, 0, "STATUS_LIGHT");
                             }
                         }
                     }
@@ -2487,7 +2491,7 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
                 if ((char)a0[0x26] < '\0') {
                     a0[0x25] = 0;
                     pcVar2 = (code *)0x3;
-                    FUN_8c030870(a0 + 0x27, 3, pcVar10, ar7_00);
+                    set_field_770(a0 + 0x27, 3, pcVar10, ar7_00);
                     a0[1] = 0;
                     a0[0x10] = 0;
                     a0[2] = 0x19;
@@ -2502,7 +2506,7 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
                 }
             } else {
                 pcVar2 = (code *)0x2;
-                FUN_8c030870(a0 + 0x27, 2, pcVar10, ar7_00);
+                set_field_770(a0 + 0x27, 2, pcVar10, ar7_00);
             }
         }
         iVar3 = get_field_124_027930(*(int *)(a2 + 8), pcVar2, pcVar10, ar7_00);
@@ -2598,7 +2602,7 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
                     pcVar4 = speech_stop;
                     speech_stop(0x8c35468c, pcVar2, pcVar10, speech_stop);
                     pcVar10 = (code *)0x3;
-                    FUN_8c030870(a0 + 0x27, 3, 3, pcVar4);
+                    set_field_770(a0 + 0x27, 3, 3, pcVar4);
                     *(u8 *)(a0 + 0x20) = 1;
                     pcVar2 = (code *)0x384;
                     a0[0xe1] = -1;
@@ -2734,13 +2738,13 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
     if (pcVar4 != (code *)0xffffffff) {
         pcVar2 = NULL;
         pcVar10 = NULL;
-        FUN_8c1041d8(*(int *)(a2 + 0xc), 0, 0);
+        set_field_cc(*(int *)(a2 + 0xc), 0, 0);
     }
     uVar5 = get_field_a4_s16(*(int *)(a2 + 0x18), pcVar10);
     if (a0[0x217] != (uVar5 & 0xffff)) {
         uVar5 = get_field_a4_s16(*(int *)(a2 + 0x18), pcVar10);
         a0[0x217] = uVar5 & 0xffff;
-        iVar3 = FUN_8c02c340(*(int *)(a2 + 4) + 0x90, pcVar10, pcVar2, pcVar4);
+        iVar3 = percent_field_4_of_c(*(int *)(a2 + 4) + 0x90, pcVar10, pcVar2, pcVar4);
         if (iVar3 < 0x31) {
             FUN_8c0e9668(*(int *)(a2 + 0xc));
         } else {
@@ -2769,7 +2773,7 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
         iVar3 = FUN_8c1041fc("start", ar5_01, pcVar2, pcVar4);
         if (iVar3 == 0) {
             speech_stop(0x8c35468c, ar5_01, pcVar2, pcVar4);
-            FUN_8c030870(a0 + 0x27, 3, a0 + 0x27, 0x9c);
+            set_field_770(a0 + 0x27, 3, a0 + 0x27, 0x9c);
             a0[2] = 0;
             a0[3] = 0;
             *(u8 *)(a0 + 0x20) = 1;
@@ -2795,10 +2799,10 @@ u32 get_field_cc_1041cc(int a0) {
 }
 
 /*
- * FUN_8c1041d8  0x8c1041d8
+ * set_field_cc  0x8c1041d8
  * called by: FUN_8c103100
  */
-int FUN_8c1041d8(int a0, u32 a1, u32 a2) {
+int set_field_cc(int a0, u32 a1, u32 a2) {
     int iVar1;
 
     iVar1 = 0xcc;
@@ -2948,7 +2952,7 @@ u32 Class_12c3c4_m2_104264(int *a0, int a1, int *a2, u32 a3) {
         iVar5 = FUN_8c0fa2b8(0x8c35468c, a1);
         if (iVar5 == 0) {
             a0[0x25] = 0;
-            FUN_8c030870(a0 + 0x27, 3, piVar2, uVar1);
+            set_field_770(a0 + 0x27, 3, piVar2, uVar1);
             a0[1] = 0;
             a0[0x10] = 0;
             a0[2] = 0x19;
@@ -3002,10 +3006,10 @@ int FUN_8c10469c(int a0, int a1, int a2, char *a3) {
         Vec3_dtor(auStack_1c, 0xffffffff, a2, a3);
         *(u32 *)(a0 + 0x94) = 0x15;
         if (*(int *)(a0 + 900) == -1) {
-            FUN_8c030870(a0 + 0x9c, 0, a2, a3);
+            set_field_770(a0 + 0x9c, 0, a2, a3);
             a3 = "REACTION_CATCH";
             uVar2 = 0;
-            FUN_8c030568(a0 + 0x9c, 0x25, 0, "REACTION_CATCH", &g_8c1eeec3);
+            talk_queue_mode2(a0 + 0x9c, 0x25, 0, "REACTION_CATCH", &g_8c1eeec3);
             strcpy(a0 + 0xbc, "REACTION_CATCH");
             strcpy(a0 + 0xdc, &g_8c1eeec3);
             *(u32 *)(a0 + 0xfc) = 0;
@@ -3014,7 +3018,7 @@ int FUN_8c10469c(int a0, int a1, int a2, char *a3) {
             *(u32 *)(a0 + 900) = uVar2;
             *(u32 *)(a0 + 0x14c) = 0;
             uVar2 = 2;
-            FUN_8c030870(a0 + 0x9c, 2, a2, a3);
+            set_field_770(a0 + 0x9c, 2, a2, a3);
         }
         iVar1 = *(int *)(a0 + 900);
         if (iVar1 != -1) {
@@ -3022,7 +3026,7 @@ int FUN_8c10469c(int a0, int a1, int a2, char *a3) {
             iVar1 = FUN_8c0fa2b8(0x8c35468c, uVar2);
             if (iVar1 == 0) {
                 *(u32 *)(a0 + 0x94) = 0;
-                FUN_8c030870(a0 + 0x9c, 3, a2, a3);
+                set_field_770(a0 + 0x9c, 3, a2, a3);
                 *(u32 *)(a0 + 4) = 0;
                 *(u32 *)(a0 + 0x40) = 0;
                 *(u32 *)(a0 + 8) = 0x19;
@@ -3104,7 +3108,7 @@ u32 FUN_8c104854(int a0, u32 a1, int *a2, char *a3) {
             iVar2 = FUN_8c02f414(a0, uVar3, piVar4, a3);
             if (iVar2 == 1) {
                 if (*(int *)(a0 + 0x88) == 1) {
-                    FUN_8c05feec(*(u32 *)(a0 + 0x6c), 1, piVar4, a3);
+                    take_from_field_6c(*(u32 *)(a0 + 0x6c), 1, piVar4, a3);
                 }
                 FUN_8c109b98(a0, a1, piVar4);
             } else {
@@ -3118,7 +3122,7 @@ u32 FUN_8c104854(int a0, u32 a1, int *a2, char *a3) {
             if (iVar2 == 0xe) {
                 pcVar6 = "STATUS_SNORE";
                 uVar3 = 0;
-                FUN_8c0306d4(a0 + 0x9c, 0x11, 0, "STATUS_SNORE");
+                talk_start_line(a0 + 0x9c, 0x11, 0, "STATUS_SNORE");
                 set_field_38_02f404(a0, 3);
             }
             break;
@@ -3140,7 +3144,7 @@ u32 FUN_8c104854(int a0, u32 a1, int *a2, char *a3) {
             iVar2 = FUN_8c02f414(a0, uVar3, piVar4, a3);
             if (iVar2 == 1) {
                 if (*(int *)(a0 + 0x88) == 1) {
-                    FUN_8c05feec(*(u32 *)(a0 + 0x6c), 1, piVar4, a3);
+                    take_from_field_6c(*(u32 *)(a0 + 0x6c), 1, piVar4, a3);
                     *(u32 *)(a0 + 0x88) = 0;
                 }
                 FUN_8c109b98(a0, a1, piVar4);
@@ -3158,9 +3162,9 @@ u32 FUN_8c104854(int a0, u32 a1, int *a2, char *a3) {
                 format_int_at_10(0x8c35468c, (int)*(char *)(a0 + 0x855), piVar4, a3);
                 iVar2 = FUN_8c02fcc4(a0, a2, piVar4, a3);
                 if (iVar2 == 0) {
-                    FUN_8c0306d4(a0 + 0x9c, 10, 0, "STATUS_UNCONSIDERED");
+                    talk_start_line(a0 + 0x9c, 10, 0, "STATUS_UNCONSIDERED");
                 } else {
-                    FUN_8c0306d4(a0 + 0x9c, 10, 0, "STATUS_COUPLING");
+                    talk_start_line(a0 + 0x9c, 10, 0, "STATUS_COUPLING");
                 }
                 *(u8 *)(a0 + 0x855) = 1;
             }
@@ -3191,16 +3195,16 @@ u32 FUN_8c104854(int a0, u32 a1, int *a2, char *a3) {
                 if ((char)uVar3 == '\x04') {
                     *(u8 *)(a0 + 0x98) = 7;
                     set_field_18(a2[1] + 0xa8, 1, piVar4, a3, CONCAT31((s32)((u32)ain0 >> 8), (char)uVar3));
-                    FUN_8c064ba0(a2[6], 2);
+                    set_field_a1_u8(a2[6], 2);
                     recent5_push_unique(a2[6], 0x18, 0x1b);
                 }
-                FUN_8c0306d4(a0 + 0x9c, 0x1f, 0, "EVENT_ROCK_PUSH");
+                talk_start_line(a0 + 0x9c, 0x1f, 0, "EVENT_ROCK_PUSH");
                 *(u32 *)(a0 + 0x8c) = 0;
             }
             break;
         case 0x1b:
             if (*(int *)(a0 + 0x8c) == 1) {
-                FUN_8c0306d4(a0 + 0x9c, 0x2a, 0, "REACTION_GURUGURU");
+                talk_start_line(a0 + 0x9c, 0x2a, 0, "REACTION_GURUGURU");
                 *(u32 *)(a0 + 0x8c) = 0;
             }
             break;
@@ -3208,7 +3212,7 @@ u32 FUN_8c104854(int a0, u32 a1, int *a2, char *a3) {
             if (*(int *)(a0 + 0x8c) == 1) {
                 a3 = "EVENT_LANDING";
                 piVar4 = NULL;
-                FUN_8c0306d4(a0 + 0x9c, 0x2a, 0, "EVENT_LANDING");
+                talk_start_line(a0 + 0x9c, 0x2a, 0, "EVENT_LANDING");
                 *(u32 *)(a0 + 0x8c) = 0;
             }
             Vec3_ctor_copy_wrap_02f670(*a2, *a2, piVar4, a3, auStack_38);
@@ -3220,7 +3224,7 @@ u32 FUN_8c104854(int a0, u32 a1, int *a2, char *a3) {
             }
             Vec3_dtor(auStack_38, 0xffffffff, piVar4, a3);
             if (cVar7 != '\0' || (float)pcVar5 <= fStack_34) {
-                FUN_8c0306d4(a0 + 0x9c, 0x14, 0, "STATUS_GROAN");
+                talk_start_line(a0 + 0x9c, 0x14, 0, "STATUS_GROAN");
             }
             break;
         case 0x1f:
@@ -3228,7 +3232,7 @@ u32 FUN_8c104854(int a0, u32 a1, int *a2, char *a3) {
             if (iVar2 == 1) {
                 pcVar6 = "REACTION_INSPIDER";
                 uVar3 = 0;
-                FUN_8c030568(a0 + 0x9c, 0x26, 0, "REACTION_INSPIDER", &g_8c1eeec3);
+                talk_queue_mode2(a0 + 0x9c, 0x26, 0, "REACTION_INSPIDER", &g_8c1eeec3);
                 FUN_8c109b98(a0, a1, uVar3);
             } else {
                 *(u32 *)(a0 + 0x38) = 2;
@@ -3369,15 +3373,15 @@ u8 *FUN_8c1063a8(int a0, int *a1, int *a2, char *a3) {
                 iVar1 = get_field_24_05c284(*(u32 *)(a0 + 0x6c), piVar4);
                 if ((iVar1 == 0xf) && (a3 = (char *)get_field_13c_028d9c(a2[1], piVar4, piVar6), a3 == (char *)0x2)) {
                     piVar4 = (int *)0x1e;
-                    FUN_8c05feec(*(u32 *)(a0 + 0x6c), 0x1e, piVar6, 2);
+                    take_from_field_6c(*(u32 *)(a0 + 0x6c), 0x1e, piVar6, 2);
                 } else {
                     iVar1 = get_field_24_05c284(*(u32 *)(a0 + 0x6c), piVar4);
                     if (iVar1 == 0xf) {
                         uVar3 = get_field_6c_02f46c(*(u32 *)(a0 + 0x6c));
-                        piVar4 = (int *)FUN_8c05feec(*(u32 *)(a0 + 0x6c), uVar3, piVar6, a3);
+                        piVar4 = (int *)take_from_field_6c(*(u32 *)(a0 + 0x6c), uVar3, piVar6, a3);
                         FUN_8c05fec4(a2[1]);
                     } else {
-                        piVar4 = (int *)FUN_8c05feec(*(u32 *)(a0 + 0x6c), 0x1e, piVar6, a3);
+                        piVar4 = (int *)take_from_field_6c(*(u32 *)(a0 + 0x6c), 0x1e, piVar6, a3);
                         FUN_8c05fec4(a2[1]);
                     }
                 }
@@ -3387,7 +3391,7 @@ u8 *FUN_8c1063a8(int a0, int *a1, int *a2, char *a3) {
             } else {
                 (**(code **)(*(int *)(*(int *)(a0 + 0x6c) + 8) + 0x78))(*(int *)(a0 + 0x6c), piVar4, piVar6, a3);
                 *(u32 *)(a0 + 0x6c) = 0;
-                puVar2 = (u8 *)FUN_8c0306d4(a0 + 0x9c, 2, 0, "GRATIFIC_EAT");
+                puVar2 = (u8 *)talk_start_line(a0 + 0x9c, 2, 0, "GRATIFIC_EAT");
             }
             break;
         case 6:
@@ -3411,14 +3415,14 @@ u8 *FUN_8c1063a8(int a0, int *a1, int *a2, char *a3) {
             if (*(int *)(a0 + 900) == -1) {
                 puVar2 = (u8 *)0xffffffff;
             } else {
-                puVar2 = (u8 *)FUN_8c030870(a0 + 0x9c, 2, piVar6, a3);
+                puVar2 = (u8 *)set_field_770(a0 + 0x9c, 2, piVar6, a3);
             }
             break;
         case 0xc:
             iVar1 = FUN_8c02f414(a0, piVar4, piVar6, a3);
             if (iVar1 == 1) {
                 uVar3 = get_field_6c_02f46c(*(u32 *)(a0 + 0x6c));
-                uVar3 = FUN_8c05feec(*(u32 *)(a0 + 0x6c), uVar3, piVar6, a3);
+                uVar3 = take_from_field_6c(*(u32 *)(a0 + 0x6c), uVar3, piVar6, a3);
                 FUN_8c05fec4(a2[1]);
                 piVar6 = *(int **)(*(int *)(a0 + 0x6c) + 8);
                 (*(code *)piVar6[0x1e])(*(int *)(a0 + 0x6c), uVar3, piVar6, a3);
@@ -3473,13 +3477,13 @@ u8 *FUN_8c1063a8(int a0, int *a1, int *a2, char *a3) {
         case 0x10:
             (**(code **)(*(int *)(*a2 + 8) + 0xbc))(*a2, piVar4, piVar6, a3);
             uVar3 = (**(code **)(*a1 + 0x148))(a1, piVar4, piVar6, a3);
-            uVar5 = FUN_8c02bfd8(a2[1]);
+            uVar5 = table13019c_find_row(a2[1]);
             ar6_00 = get_field_140_025f70(a2[1], piVar4);
             a7 = 1;
             iVar1 = (int)(short)uVar5;
             FUN_8c0620bc(uVar3, iVar1, ar6_00, 1);
             uVar3 = (**(code **)(*a1 + 0x148))(a1, iVar1, ar6_00, a7);
-            uVar5 = FUN_8c02bfd8(a2[1]);
+            uVar5 = table13019c_find_row(a2[1]);
             iVar1 = get_field_140_025f70(a2[1], iVar1);
             uVar3 = FUN_8c0620a4(uVar3, (int)(short)uVar5, 1 - iVar1);
             if ((char)uVar3 == '\x01') {
@@ -3503,7 +3507,7 @@ u8 *FUN_8c1063a8(int a0, int *a1, int *a2, char *a3) {
                 *(u8 *)(a0 + 0x98) = 10;
                 FUN_8c0fa688(0x8c35468c, piVar4, piVar6, a3);
                 a3 = "GRATIFIC_COPULATION_DONE";
-                FUN_8c0306d4(a0 + 0x9c, 9, 0, "GRATIFIC_COPULATION_DONE");
+                talk_start_line(a0 + 0x9c, 9, 0, "GRATIFIC_COPULATION_DONE");
                 piVar6 = (int *)0x1b;
                 recent5_push_unique(a2[6], 0x14, 0x1b);
             }
@@ -3527,7 +3531,7 @@ u8 *FUN_8c1063a8(int a0, int *a1, int *a2, char *a3) {
             ar7_00 = "GRATIFIC_GROAN_DONE";
             uVar3 = 0;
             iVar1 = a0 + 0x9c;
-            FUN_8c0306d4(iVar1, 0x1f, 0, "GRATIFIC_GROAN_DONE");
+            talk_start_line(iVar1, 0x1f, 0, "GRATIFIC_GROAN_DONE");
             puVar2 = (u8 *)FUN_8c0c4e2c(iVar1, FUN_8c0c4e2c, uVar3, ar7_00);
             break;
         case 0x18:
@@ -3540,7 +3544,7 @@ u8 *FUN_8c1063a8(int a0, int *a1, int *a2, char *a3) {
                 format_int_at_10(0x8c35468c, (int)(char)uVar3, piVar6, a3);
                 a3 = "EVENT_AFTER_ROCK_PUSH";
                 piVar6 = NULL;
-                FUN_8c0306d4(a0 + 0x9c, 0x26, 0, "EVENT_AFTER_ROCK_PUSH");
+                talk_start_line(a0 + 0x9c, 0x26, 0, "EVENT_AFTER_ROCK_PUSH");
                 FUN_8c02cbbc(a2[1] + 0x90, 1);
                 set_field_0_u8(a2[1], 0);
                 set_field_0_u8(a2[1] + 0x18, 0);
@@ -3563,11 +3567,11 @@ u8 *FUN_8c1063a8(int a0, int *a1, int *a2, char *a3) {
                 } else {
                     FUN_8c0fa5f0(0x8c35468c, 1, iVar1, ar7_01);
                 }
-                puVar2 = (u8 *)FUN_8c0306d4(a0 + 0x9c, 0x1e, 0, "EVENT_AFTER_ROCK_PUSH");
+                puVar2 = (u8 *)talk_start_line(a0 + 0x9c, 0x1e, 0, "EVENT_AFTER_ROCK_PUSH");
             }
             break;
         case 0x19:
-            puVar2 = (u8 *)FUN_8c0303b8(a0 + 0x9c, 0x1f, 0, "REACTION_AFTER_DEKOPIN", &g_8c1eeec3);
+            puVar2 = (u8 *)talk_queue_mode1(a0 + 0x9c, 0x1f, 0, "REACTION_AFTER_DEKOPIN", &g_8c1eeec3);
             break;
         case 0x1f:
             if (*(int *)(a0 + 0x6c) == 0) {
@@ -3625,7 +3629,7 @@ u32 *FUN_8c106c84(int a0, int *a1, int a2, char *a3) {
                     (uVar2 = get_field_a4_s16(*(u32 *)(a2 + 0x18), uVar4), 2 < (u16)uVar2)) {
                     a3 = "REACTION_TEMP_LACK";
                     a6 = 0;
-                    FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "REACTION_TEMP_LACK");
+                    talk_start_line(a0 + 0x9c, 0x2c, 0, "REACTION_TEMP_LACK");
                     *(u32 *)(a0 + 0x880) = 1;
                 }
             }
@@ -3648,7 +3652,7 @@ u32 *FUN_8c106c84(int a0, int *a1, int a2, char *a3) {
                     (uVar2 = get_field_a4_s16(*(u32 *)(a2 + 0x18), uVar2), 2 < (u16)uVar2)) {
                     a3 = "REACTION_SWITCH_OFF";
                     a6 = 0;
-                    FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "REACTION_SWITCH_OFF");
+                    talk_start_line(a0 + 0x9c, 0x2c, 0, "REACTION_SWITCH_OFF");
                     *(u32 *)(a0 + 0x884) = 1;
                 }
             } else {
@@ -3662,7 +3666,7 @@ u32 *FUN_8c106c84(int a0, int *a1, int a2, char *a3) {
                     (uVar2 = get_field_a4_s16(*(u32 *)(a2 + 0x18), uVar2), 2 < (u16)uVar2)) {
                     a3 = "REACTION_SWITCH_OFF";
                     a6 = 0;
-                    FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "REACTION_SWITCH_OFF");
+                    talk_start_line(a0 + 0x9c, 0x2c, 0, "REACTION_SWITCH_OFF");
                     *(u32 *)(a0 + 0x884) = 1;
                 }
             }
@@ -3704,7 +3708,7 @@ u32 *FUN_8c106c84(int a0, int *a1, int a2, char *a3) {
                     uVar2 = get_field_a4_s16(*(u32 *)(a2 + 0x18), uVar4);
                     puVar3 = (u32 *)0x3;
                     if (2 < (u16)uVar2) {
-                        FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "REACTION_OXYGEN_LACK");
+                        talk_start_line(a0 + 0x9c, 0x2c, 0, "REACTION_OXYGEN_LACK");
                         puVar3 = (u32 *)0x888;
                         *(u32 *)(a0 + 0x888) = 1;
                     }
@@ -3799,7 +3803,7 @@ u32 FUN_8c106f58(int a0, u32 a1, int a2, u32 a3) {
                     *(u64 *)(a0 + 0x30) = 0x44af000044960000;
                     *(u64 *)(a0 + 0x78) = 0x8c1eee9044af0000;
                 }
-                FUN_8c0303b8(a0 + 0x9c, 0, 0, "REACTION_TAP_RESPONSE", &g_8c1eeec3);
+                talk_queue_mode1(a0 + 0x9c, 0, 0, "REACTION_TAP_RESPONSE", &g_8c1eeec3);
                 *(u32 *)(a0 + 4) = 0xd;
                 *(u32 *)(a0 + 8) = 0x4b;
                 *(u32 *)(a0 + 0xc) = 0;
@@ -3815,7 +3819,7 @@ u32 FUN_8c106f58(int a0, u32 a1, int a2, u32 a3) {
             iVar2 = get_field_124_027930(*(u32 *)(a2 + 8), a1, iVar3, a3);
             if (iVar2 == 6) {
                 set_field_2c(*(int *)(a2 + 4) + 0xf8, 1, iVar3, a3);
-                FUN_8c0306d4(a0 + 0x9c, 0x22, 0, "REACTION_WAKED_TAP");
+                talk_start_line(a0 + 0x9c, 0x22, 0, "REACTION_WAKED_TAP");
             }
         }
     } else if (*(char *)(a0 + 0x83) == '\x02') {
@@ -3863,7 +3867,7 @@ u32 FUN_8c106f58(int a0, u32 a1, int a2, u32 a3) {
             iVar2 = get_field_124_027930(*(u32 *)(a2 + 8), get_field_124_027930, iVar3, a3);
             if (iVar2 == 6) {
                 set_field_2c(*(int *)(a2 + 4) + 0xf8, 2, iVar3, a3);
-                FUN_8c0306d4(a0 + 0x9c, 0x23, 0, "REACTION_WAKED_TAP");
+                talk_start_line(a0 + 0x9c, 0x23, 0, "REACTION_WAKED_TAP");
             }
         }
     }
@@ -3897,7 +3901,7 @@ int FUN_8c107590(code *a0, code *a1, code *a2, char *a3) {
     pcVar6 = a2;
     pcVar4 = a1;
     uVar1 = FUN_8c02bef8(*(int *)(a2 + 4), a1, a2);
-    if (((6 < (short)uVar1) && (iVar3 = FUN_8c02c340(*(int *)(a2 + 4) + 0x90, a1, pcVar6, a3), iVar3 < 0x30)) &&
+    if (((6 < (short)uVar1) && (iVar3 = percent_field_4_of_c(*(int *)(a2 + 4) + 0x90, a1, pcVar6, a3), iVar3 < 0x30)) &&
         (iVar3 = FUN_8c02c518(*(int *)(a2 + 4), a1, pcVar6), iVar3 == -1)) {
         uVar1 = get_field_bc_s8(*(int *)(a2 + 0xc), a1, pcVar6, a3);
         pcVar6 = (code *)(int)(char)uVar1;
@@ -3920,7 +3924,7 @@ int FUN_8c107590(code *a0, code *a1, code *a2, char *a3) {
                         format_int_at_10(0x8c35468c, (int)(char)uVar1, pcVar6, iVar3);
                         a3 = "EVENT_QUIZ";
                         pcVar6 = NULL;
-                        FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "EVENT_QUIZ");
+                        talk_start_line(a0 + 0x9c, 0x2c, 0, "EVENT_QUIZ");
                         counter_set_clamped(*(int *)(a2 + 4) + 0x90, 0, pcVar6);
                         *(int *)(a0 + 4) = 0xd;
                         *(int *)(a0 + 8) = 99;
@@ -3968,7 +3972,7 @@ int FUN_8c107590(code *a0, code *a1, code *a2, char *a3) {
                         format_int_at_10(0x8c35468c, (int)(char)uVar1, pcVar6, ar7_00);
                         pcVar5 = "EVENT_QUIZ";
                         uVar1 = 0;
-                        FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "EVENT_QUIZ");
+                        talk_start_line(a0 + 0x9c, 0x2c, 0, "EVENT_QUIZ");
                         counter_set_clamped(*(int *)(a2 + 4) + 0x90, 0, uVar1);
                         *(int *)(a0 + 4) = 0xd;
                         *(int *)(a0 + 8) = 99;
@@ -4014,7 +4018,7 @@ int FUN_8c107590(code *a0, code *a1, code *a2, char *a3) {
                     a3 = "EVENT_ROCK_PUSH_INTERVAL";
                     pcVar6 = NULL;
                     a1 = (code *)0x3;
-                    FUN_8c0306d4(a0 + 0x9c, 3, 0, "EVENT_ROCK_PUSH_INTERVAL");
+                    talk_start_line(a0 + 0x9c, 3, 0, "EVENT_ROCK_PUSH_INTERVAL");
                 }
                 uVar1 = get_field_39_s8(*(int *)(a2 + 0xc));
                 if (((char)uVar1 == '\x03') && (iVar3 = get_field_18_on_field_a8(*(int *)(a2 + 4)), iVar3 == 0)) {
@@ -4027,7 +4031,7 @@ int FUN_8c107590(code *a0, code *a1, code *a2, char *a3) {
                     a3 = "EVENT_ROCK_PUSH_INTERVAL";
                     pcVar6 = NULL;
                     a1 = (code *)0x3;
-                    FUN_8c0306d4(a0 + 0x9c, 3, 0, "EVENT_ROCK_PUSH_INTERVAL");
+                    talk_start_line(a0 + 0x9c, 3, 0, "EVENT_ROCK_PUSH_INTERVAL");
                 }
             }
         }
@@ -4075,15 +4079,15 @@ LAB_8c107c10:
         pcVar4 = (code *)0x1;
         if (iVar3 != 1) {
             if (*(int *)(a0 + 900) == -1) {
-                FUN_8c030870(a0 + 0x9c, 0, pcVar6, a3);
+                set_field_770(a0 + 0x9c, 0, pcVar6, a3);
                 pcVar5 = "REQUEST_ATTENTION";
-                FUN_8c0303b8(a0 + 0x9c, 10, 0, "REQUEST_ATTENTION", &g_8c1eeec3);
+                talk_queue_mode1(a0 + 0x9c, 10, 0, "REQUEST_ATTENTION", &g_8c1eeec3);
                 *(int *)(a0 + 0xfc) = 0;
                 pcVar6 = a0 + 0x9c;
                 iVar3 = speech_request(0x8c35468c, *(int *)(a0 + 0x388), pcVar6, pcVar5);
                 *(int *)(a0 + 900) = iVar3;
                 *(int *)(a0 + 0x14c) = 0;
-                FUN_8c030870(a0 + 0x9c, 2, pcVar6, pcVar5);
+                set_field_770(a0 + 0x9c, 2, pcVar6, pcVar5);
             }
             *(int *)(a0 + 0x858) = *(int *)(a0 + 0x858) + 1;
             pcVar4 = a0;
@@ -4102,9 +4106,9 @@ LAB_8c107eb4:
     if ((pcVar6 == (code *)0x1) && (pcVar4 = a2, iVar3 = FUN_8c02fcc4(a0, a2, 1, pcVar5), iVar3 == 1)) {
         pcVar4 = *(code **)(a0 + 900);
         if (pcVar4 == (code *)0xffffffff) {
-            FUN_8c030870(a0 + 0x9c, 0, pcVar6, pcVar5);
+            set_field_770(a0 + 0x9c, 0, pcVar6, pcVar5);
             pcVar5 = "EVENT_GET_WORMBOX";
-            FUN_8c0303b8(a0 + 0x9c, 0x2a, 0, "EVENT_GET_WORMBOX", &g_8c1eeec3);
+            talk_queue_mode1(a0 + 0x9c, 0x2a, 0, "EVENT_GET_WORMBOX", &g_8c1eeec3);
             *(int *)(a0 + 0xfc) = 0;
             pcVar6 = a0 + 0x9c;
             pcVar4 = *(code **)(a0 + 0x388);
@@ -4165,15 +4169,15 @@ int FUN_8c1080dc(int a0, int *a1, int a2, u8 *a3) {
     if (*(char *)(0x84 + a0) == '\x01') {
         if ((*(int *)(a0 + 0x40) == 0x1a) || (*(int *)(a0 + 0x40) != 0)) {
             if ((*(int *)(a0 + 0x40) == 0x1a) && (*(u32 *)(a0 + 0x40) = 0x1a, *(int *)(0x384 + a0) == -1)) {
-                FUN_8c030870(a0 + 0x9c, 0, a2, a3);
+                set_field_770(a0 + 0x9c, 0, a2, a3);
                 a3 = "REACTION_TITILLATE";
-                (*(code *)(&FUN_8c0303b8))(a0 + 0x9c, 0x28, 0, a3, (&DATA_8c1eee90) + 0x33);
+                (*(code *)(&talk_queue_mode1))(a0 + 0x9c, 0x28, 0, a3, (&DATA_8c1eee90) + 0x33);
                 *(u32 *)(0xfc + a0) = 0;
                 iVar2 = a0 + 0x9c;
                 uVar1 = (*(code *)(&speech_request))(0x8c35468c, *(u32 *)(0x388 + a0), iVar2, a3);
                 *(u32 *)(0x384 + a0) = uVar1;
                 *(u32 *)(0x14c + a0) = 0;
-                FUN_8c030870(a0 + 0x9c, 2, iVar2, a3);
+                set_field_770(a0 + 0x9c, 2, iVar2, a3);
             }
         } else {
             *(u32 *)(a0 + 4) = 0xd;
@@ -4230,7 +4234,7 @@ int FUN_8c1080dc(int a0, int *a1, int a2, u8 *a3) {
             FUN_8c0fdd68(a0 + 0x9c, 0xffffffff);
             a3 = "REACTION_DEKOPIN";
             iVar2 = 4;
-            FUN_8c0306d4(a0 + 0x9c, 0x27, 4, a3);
+            talk_start_line(a0 + 0x9c, 0x27, 4, a3);
         } else if (*(int *)(a0 + 0x40) == 0x19) {
             *(u32 *)(a0 + 0x40) = 0x19;
         }
@@ -4281,15 +4285,15 @@ int FUN_8c108560(int a0, u32 unused_a1, int a2) {
     iVar1 = FUN_8c02bebc(*(u32 *)(a2 + 4));
     if (iVar1 != -1) {
         if (iVar1 == 0) {
-            (*(code *)(&FUN_8c0303b8))(a0 + 0x9c, 7, 0, "GRATIFIC_RID_HOT", (&DATA_8c1eee90) + 0x33);
+            (*(code *)(&talk_queue_mode1))(a0 + 0x9c, 7, 0, "GRATIFIC_RID_HOT", (&DATA_8c1eee90) + 0x33);
             iVar1 = 0x118;
             *(u32 *)(0x118 + a0) = 7;
         } else if (iVar1 == 1) {
-            (*(code *)(&FUN_8c0303b8))(a0 + 0x9c, 8, 0, "GRATIFIC_RID_COLD", (&DATA_8c1eee90) + 0x33);
+            (*(code *)(&talk_queue_mode1))(a0 + 0x9c, 8, 0, "GRATIFIC_RID_COLD", (&DATA_8c1eee90) + 0x33);
             iVar1 = 0x118;
             *(u32 *)(0x118 + a0) = 7;
         } else if (iVar1 == 2) {
-            (*(code *)(&FUN_8c0303b8))(a0 + 0x9c, 0x1a, 0, "GRATIFIC_RID_OXYGEN", (&DATA_8c1eee90) + 0x33);
+            (*(code *)(&talk_queue_mode1))(a0 + 0x9c, 0x1a, 0, "GRATIFIC_RID_OXYGEN", (&DATA_8c1eee90) + 0x33);
             iVar1 = 0x118;
             *(u32 *)(0x118 + a0) = 7;
         }
@@ -4378,7 +4382,7 @@ int FUN_8c10862c(int a0, u32 a1, int a2, u32 a3) {
             }
         }
         if ((*(int *)(a0 + 0x40) == 6) && (*(int *)(a0 + 900) != -1)) {
-            FUN_8c030870(a0 + 0x9c, 1, ar6_00, a3);
+            set_field_770(a0 + 0x9c, 1, ar6_00, a3);
         }
     }
     iVar1 = *(int *)(a0 + 4);
@@ -4495,10 +4499,10 @@ u32 FUN_8c1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
         iVar3 = get_field_89130_0fa740(0x8c35468c);
         if ((iVar3 == 3) || (iVar3 = get_field_89130_0fa740(0x8c35468c), iVar3 == 5)) {
             a1 = 1;
-            FUN_8c065ca4(a2[3], 1);
+            set_field_c8(a2[3], 1);
         } else {
             a1 = 0;
-            FUN_8c065ca4(a2[3], 0);
+            set_field_c8(a2[3], 0);
         }
         iVar3 = get_field_770_05eeb8(a0 + 0x9c);
         if (iVar3 == 2) {
@@ -4508,7 +4512,7 @@ u32 FUN_8c1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
         if (iVar3 == 0) {
             *(u32 *)(a0 + 0x94) = 0;
             uVar4 = 3;
-            FUN_8c030870(a0 + 0x9c, 3, ar6_00, a3);
+            set_field_770(a0 + 0x9c, 3, ar6_00, a3);
             if (*(int *)(a0 + 0x40) == 10) {
                 *(u32 *)(a0 + 4) = 0;
                 *(u32 *)(a0 + 0x40) = 0;
@@ -4538,7 +4542,7 @@ u32 FUN_8c1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
                         recent5_push_unique(a2[6], 0xc, 0x1b);
                         set_field_44_u8(a2[3], 0);
                         set_field_3c_u8(a2[3], 1);
-                        FUN_8c064ba0(a2[6], 1);
+                        set_field_a1_u8(a2[6], 1);
                         *(u32 *)(a0 + 0x10c) = 0;
                         uVar4 = 2;
                         set_field_0_u8_061180(a2[3], 2);
@@ -4550,7 +4554,7 @@ u32 FUN_8c1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
                 a1 = 0;
                 FUN_8c02af68(*a2, 0);
             } else {
-                FUN_8c065c80(a2[3], *(u32 *)(a0 + 0x100));
+                set_field_b0(a2[3], *(u32 *)(a0 + 0x100));
                 FUN_8c02af68(*a2, 1);
                 ar6_00 = (u32 *)0x1b;
                 a1 = 0xd;
@@ -4594,7 +4598,7 @@ u32 FUN_8c1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
     }
     iVar3 = FUN_8c0fa2b8(0x8c35468c, a1);
     if ((iVar3 == 0) && ((*(int *)(a0 + 0x40) == 10 || (*(int *)(a0 + 0x40) == 0xb)))) {
-        FUN_8c030870(a0 + 0x9c, 3, ar6_00, a3);
+        set_field_770(a0 + 0x9c, 3, ar6_00, a3);
         *(u32 *)(a0 + 4) = 0;
         *(u32 *)(a0 + 0x40) = 0;
         *(u32 *)(a0 + 0xfc) = 0;
@@ -4720,49 +4724,49 @@ int FUN_8c1091cc(int a0, u32 a1, int a2, char *a3) {
                 a3 = "IDLEACTION_PAW";
                 iVar1 = 0;
                 a1 = 0x19;
-                FUN_8c030568(a0 + 0x9c, 0x19, 0, "IDLEACTION_PAW", &g_8c1eeec3);
+                talk_queue_mode2(a0 + 0x9c, 0x19, 0, "IDLEACTION_PAW", &g_8c1eeec3);
                 break;
             case 0xc:
                 a3 = "IDLEACTION_TREMOR";
                 iVar1 = 0;
                 a1 = 0x19;
-                FUN_8c030568(a0 + 0x9c, 0x19, 0, "IDLEACTION_TREMOR", &g_8c1eeec3);
+                talk_queue_mode2(a0 + 0x9c, 0x19, 0, "IDLEACTION_TREMOR", &g_8c1eeec3);
                 break;
             case 0xd:
                 a3 = "IDLEACTION_BITE";
                 iVar1 = 0;
                 a1 = 0x19;
-                FUN_8c030568(a0 + 0x9c, 0x19, 0, "IDLEACTION_BITE", &g_8c1eeec3);
+                talk_queue_mode2(a0 + 0x9c, 0x19, 0, "IDLEACTION_BITE", &g_8c1eeec3);
                 break;
             case 0xe:
                 a3 = "IDLEACTION_ACTION_JUMP";
                 iVar1 = 0;
                 a1 = 0x19;
-                FUN_8c030568(a0 + 0x9c, 0x19, 0, "IDLEACTION_ACTION_JUMP", &g_8c1eeec3);
+                talk_queue_mode2(a0 + 0x9c, 0x19, 0, "IDLEACTION_ACTION_JUMP", &g_8c1eeec3);
                 break;
             case 0xf:
                 if (*(char *)(a0 + 0x98) < '\x05') {
                     a3 = "IDLEACTION_STAND_SWIM";
                     iVar1 = 0;
                     a1 = 0x19;
-                    FUN_8c030568(a0 + 0x9c, 0x19, 0, "IDLEACTION_STAND_SWIM", &g_8c1eeec3);
+                    talk_queue_mode2(a0 + 0x9c, 0x19, 0, "IDLEACTION_STAND_SWIM", &g_8c1eeec3);
                 } else {
                     a3 = "EVENT_WANT_LAND";
                     iVar1 = 0;
                     a1 = 0x19;
-                    FUN_8c030568(a0 + 0x9c, 0x19, 0, "EVENT_WANT_LAND", &g_8c1eeec3);
+                    talk_queue_mode2(a0 + 0x9c, 0x19, 0, "EVENT_WANT_LAND", &g_8c1eeec3);
                 }
                 break;
             case 0x10:
                 a3 = "IDLEACTION_REVERSE_SWIM";
                 iVar1 = 0;
                 a1 = 0x19;
-                FUN_8c030568(a0 + 0x9c, 0x19, 0, "IDLEACTION_REVERSE_SWIM", &g_8c1eeec3);
+                talk_queue_mode2(a0 + 0x9c, 0x19, 0, "IDLEACTION_REVERSE_SWIM", &g_8c1eeec3);
             }
         }
         iVar1 = (**(code **)(**(int **)(a2 + 8) + 0x30))(*(int **)(a2 + 8), a1, iVar1, a3);
         if (iVar1 == 0x11) {
-            iVar1 = FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "IDLEACTION_HEAD_DAMAGE");
+            iVar1 = talk_start_line(a0 + 0x9c, 0x2c, 0, "IDLEACTION_HEAD_DAMAGE");
         }
     }
     return iVar1;
@@ -4811,7 +4815,7 @@ int FUN_8c1093a4(int a0, int *a1, int *a2, char *a3) {
             a3 = "STATUS_SUCKED";
             ar6_00 = NULL;
             ar5_00 = (int *)0x19;
-            FUN_8c0306d4(a0 + 0x9c, 0x19, 0, "STATUS_SUCKED");
+            talk_start_line(a0 + 0x9c, 0x19, 0, "STATUS_SUCKED");
             if (*(int *)(a0 + 0x6c) != 0) {
                 (**(code **)(*(int *)(*(int *)(a0 + 0x6c) + 8) + 0x78))(*(int *)(a0 + 0x6c), ar5_00, ar6_00, a3);
                 *(u32 *)(a0 + 0x6c) = 0;
@@ -4861,9 +4865,9 @@ int FUN_8c1093a4(int a0, int *a1, int *a2, char *a3) {
             if (((char)uVar2 == '\x02') && (*(char *)(a0 + 0x98) < '\b')) {
                 a3 = "REACTION_FEED_FULL";
                 ar6_00 = NULL;
-                FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "REACTION_FEED_FULL");
+                talk_start_line(a0 + 0x9c, 0x2c, 0, "REACTION_FEED_FULL");
                 ar5_00 = (int *)0x1;
-                FUN_8c06643c(a2[3], 1);
+                set_field_c4(a2[3], 1);
             }
         } else {
             ar5_00 = (int *)0xf;
@@ -4871,9 +4875,9 @@ int FUN_8c1093a4(int a0, int *a1, int *a2, char *a3) {
             if ((0 < iVar1) && (*(char *)(a0 + 0x865) == '\x01')) {
                 a3 = "REACTION_FEED_FULL";
                 ar6_00 = NULL;
-                FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "REACTION_FEED_FULL");
+                talk_start_line(a0 + 0x9c, 0x2c, 0, "REACTION_FEED_FULL");
                 ar5_00 = (int *)0x1;
-                FUN_8c06643c(a2[3], 1);
+                set_field_c4(a2[3], 1);
             }
         }
     }
@@ -4977,7 +4981,7 @@ int FUN_8c1097a8(int a0, int *a1, int *a2, u8 *a3) {
                   ((iVar6 == 1 && ((*(char *)(0x98 + a0) < '\x04' && (*(int *)(a0 + 4) == 0)))))))) {
                 a3 = "STATUS_LIFE";
                 piVar5 = NULL;
-                (*(code *)(&FUN_8c030568))(a0 + 0x9c, 0x16, 0, a3, (&DATA_8c1eee90) + 0x33);
+                (*(code *)(&talk_queue_mode2))(a0 + 0x9c, 0x16, 0, a3, (&DATA_8c1eee90) + 0x33);
                 piVar3 = NULL;
                 set_field_1c_u8(a2[1] + 0xa8, 0);
             }
@@ -5003,7 +5007,7 @@ int FUN_8c1097a8(int a0, int *a1, int *a2, u8 *a3) {
             iVar1 = 2;
             if (2 < iVar6) {
                 *(u8 *)(0x854 + a0) = 1;
-                iVar1 = (*(code *)(&FUN_8c0303b8))(a0 + 0x9c, 0x16, 0, "STATUS_LASTONE", (&DATA_8c1eee90) + 0x33);
+                iVar1 = (*(code *)(&talk_queue_mode1))(a0 + 0x9c, 0x16, 0, "STATUS_LASTONE", (&DATA_8c1eee90) + 0x33);
             }
         }
     }
@@ -5169,7 +5173,7 @@ int FUN_8c109e40(int a0, int a1, u32 a2, u32 a3) {
         set_field_1_s8(*(int *)(a1 + 4) + 0xa8, 0);
         uVar2 = 1;
         FUN_8c035718(*(u32 *)(a1 + 0x10), 1);
-        iVar1 = FUN_8c02c340(*(int *)(a1 + 4) + 0x90, uVar2, a2, a3);
+        iVar1 = percent_field_4_of_c(*(int *)(a1 + 4) + 0x90, uVar2, a2, a3);
         if (0x5e < iVar1) {
             uVar2 = get_field_4_02d1e0(*(int *)(a1 + 4) + 0x90);
             iVar1 = libgcc_divide_helper_0101e4(uVar2, 10);
@@ -5204,9 +5208,9 @@ u32 get_field_150_109f58(int a0) {
 }
 
 /*
- * FUN_8c109f64  0x8c109f64
+ * set_field_150_109f64  0x8c109f64
  */
-int FUN_8c109f64(int a0, u32 a1) {
+int set_field_150_109f64(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x150;
@@ -5287,7 +5291,7 @@ int Class_12c3c4_m5_10a0dc(int a0, u32 a1, u32 a2, u32 a3) {
     if (iVar1 != -1) {
         speech_stop(0x8c35468c, a1, a2, a3);
         ar5_00 = 3;
-        FUN_8c030870(a0 + 0x9c, 3, a2, a3);
+        set_field_770(a0 + 0x9c, 3, a2, a3);
         *(u8 *)(0x80 + a0) = 1;
         *(u32 *)(0x384 + a0) = 0xffffffff;
         *(u32 *)(0xfc + a0) = 0;

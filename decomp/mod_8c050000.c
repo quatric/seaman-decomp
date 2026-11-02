@@ -58,7 +58,7 @@ u32 FUN_8c050300(int a0, u32 a1, u32 a2, u32 a3) {
         ar7_01 = auStack_3c;
         ar6_00 = &uStack_40;
         ar5_00 = &uStack_44;
-        FUN_8c0507a4(iVar1, ar5_00, ar6_00, ar7_01);
+        get_vec3_field_30(iVar1, ar5_00, ar6_00, ar7_01);
         iVar2 = *(int *)(a0 + 300);
         if (iVar2 == 0) {
             iVar1 = CAnimBody_AdvanceFrame_033b98(a0 + 0xb0, ar5_00, ar6_00, ar7_01);
@@ -125,7 +125,7 @@ u32 FUN_8c050300(int a0, u32 a1, u32 a2, u32 a3) {
             *(u32 *)(a0 + 0x214) = 0;
             ar7_01 = auStack_3c;
             ar6_00 = &uStack_40;
-            FUN_8c0507a4(iVar1, &uStack_44, ar6_00, ar7_01);
+            get_vec3_field_30(iVar1, &uStack_44, ar6_00, ar7_01);
             Vec3_scale(a0 + 0x14, a0 + 0x48, ar6_00, ar7_01, auStack_54);
             Vec3_scale(auStack_54, &g_8c136598, ar6_00, ar7_01, auStack_64);
             Vec3_add(auStack_64, a2, ar6_00, ar7_01, auStack_74);
@@ -161,7 +161,7 @@ u32 FUN_8c050300(int a0, u32 a1, u32 a2, u32 a3) {
                 uVar4 = 0;
                 *(u32 *)(a0 + 0x280) = 0;
                 *(u8 *)(a0 + 0x1fc) = *(u8 *)(a0 + 0x1fc) & 0xfb | 4;
-                FUN_8c03f3e8(a1, uVar3, ar6_00);
+                set_field_88_to_1(a1, uVar3, ar6_00);
                 ar7_01 = NULL;
                 ar6_00 = (u32 *)0xffffffff;
                 uVar3 = 0;
@@ -184,11 +184,12 @@ u32 FUN_8c050300(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c0507a4  0x8c0507a4
+ * get_vec3_field_30  0x8c0507a4
+ * copies x, y, z at +0x30 to three out pointers
  * called by: FUN_8c050300, FUN_8c06d714, FUN_8c06f93c, FUN_8c077a38, FUN_8c091854, FUN_8c0aa11c, FUN_8c0cac08,
  * FUN_8c0cbd74 (+3 more)
  */
-u32 *FUN_8c0507a4(int a0, u32 *a1, u32 *a2, u32 *a3) {
+u32 *get_vec3_field_30(int a0, u32 *a1, u32 *a2, u32 *a3) {
     *a1 = *(u32 *)(a0 + 0x30);
     *a2 = *(u32 *)(a0 + 0x34);
     *a3 = *(u32 *)(a0 + 0x38);
@@ -3099,7 +3100,7 @@ u32 FUN_8c054f7c(int a0, u32 a1, int a2, u32 a3) {
         in_fr15 = 1.5;
     }
     Vec3_ctor_zero(auStack_38, uVar2, ar6_00);
-    FUN_8c102748(auStack_44);
+    clear_3_words_102748(auStack_44);
     iVar1 = *(int *)(a0 + 300);
     if (iVar1 == 0) {
         if ((in_stack_00000000 == 0) || (in_stack_00000000 == 2)) {
@@ -3366,7 +3367,7 @@ u32 FUN_8c055750(int a0, u32 a1, int a2, int a3) {
     ar6_00 = a2;
     ar7_00 = a3;
     Vec3_ctor_zero(auStack_28, a1, a2);
-    FUN_8c10277c(auStack_34);
+    Vec3_assign_f_10277c(auStack_34);
     uVar4 = (u32)in_dr0;
     iVar1 = *(int *)(a0 + 300);
     if (iVar1 == 0) {
@@ -4831,7 +4832,7 @@ u32 FUN_8c057e58(int a0, u32 a1, u32 a2, u32 a3) {
     iVar1 = CAnimBody_AdvanceFrame_033b98(a0 + 0xb0, uVar2, a2, a3);
     if (iVar1 == 1) {
         *(u32 *)(a0 + 0x2b8) = 0;
-        FUN_8c023d7c(a0 + 0x2c8, uVar2);
+        Vec3_assign_f_023d7c(a0 + 0x2c8, uVar2);
     }
     object_dtor_delete(&uStack_24, 0xffffffff, a2, a3);
     object_dtor_delete(&fStack_18, 0xffffffff, a2, a3);
@@ -5703,7 +5704,7 @@ u32 FUN_8c0593cc(int a0, int *a1, u32 a2, u32 a3) {
                     CAnimBody_SetAnimation(a0 + 0xb0, 0x1a, 0xffffffff, 0);
                     CAnimBody_SetFrame(a0 + 0xb0, uVar5, uVar2, uVar6);
                     *(u32 *)(a0 + 0x2b8) = 2;
-                    FUN_8c03f39c(a2, uVar5, uVar2, uVar6);
+                    set_field_8c_to_1(a2, uVar5, uVar2, uVar6);
                 }
             } else if (in_stack_00000004 == 0x1d) {
                 uVar5 = 0x1d;
@@ -5764,7 +5765,7 @@ u32 FUN_8c0593cc(int a0, int *a1, u32 a2, u32 a3) {
                     iVar1 = a0 + 0xb0;
                     CAnimBody_SetFrame(iVar1, iVar1, uVar5, uVar2);
                     *(u32 *)(a0 + 0x2b8) = 2;
-                    FUN_8c03f39c(a2, iVar1, uVar5, uVar2);
+                    set_field_8c_to_1(a2, iVar1, uVar5, uVar2);
                 }
             }
             break;
@@ -8288,7 +8289,7 @@ u32 *Class_12a078_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     strcpy(a0 + 0x2f, "STATUS_FORMAT");
     strcpy(a0 + 0x37, &g_8c1369bf);
     a0[0xe2] = 4;
-    FUN_8c05d7f8(a0 + 0x27, 1);
+    set_field_778(a0 + 0x27, 1);
     *(u8 *)((int)a0 + 0x9a) = 2;
     a0[0x222] = 1;
     a0[0x221] = 1;
@@ -8302,10 +8303,10 @@ u32 *Class_12a078_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c05d7f8  0x8c05d7f8
+ * set_field_778  0x8c05d7f8
  * called by: Class_12a078_ctor, FUN_8c05d860
  */
-int FUN_8c05d7f8(int a0, u32 a1) {
+int set_field_778(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x778;
@@ -8392,9 +8393,9 @@ u32 FUN_8c05d860(int *a0, code *a1, code *a2) {
     iVar9 = get_field_13c_028d9c(*(int *)(a2 + 4), 0xa4, &g_8c13686c);
     a0[0x21d] = iVar9;
     uVar3 = FUN_8c02bef8(*(int *)(a2 + 4), uVar3, ar6_00);
-    FUN_8c030d04(a0 + 0x27, (int)(short)uVar3);
+    set_field_728_u8(a0 + 0x27, (int)(short)uVar3);
     if ('\x01' < (char)a0[0x26]) {
-        FUN_8c05d7f8(a0 + 0x27, 0);
+        set_field_778(a0 + 0x27, 0);
     }
     FUN_8c05ff40(a0, a1, a2, pcVar14);
     FUN_8c0660d4(a0, a1, a2, pcVar14);
@@ -8412,7 +8413,7 @@ u32 FUN_8c05d860(int *a0, code *a1, code *a2) {
             uVar3 = get_field_8_s8(*(int *)(a2 + 4) + 0x78, uVar3);
             format_int_at_10(0x8c35468c, (int)(char)uVar3, pcVar4, pcVar14);
             pcVar14 = "STATUS_SICK";
-            FUN_8c0303b8(a0 + 0x27, 0x12, 0, "STATUS_SICK", &g_8c1369bf);
+            talk_queue_mode1(a0 + 0x27, 0x12, 0, "STATUS_SICK", &g_8c1369bf);
         }
     }
     pcVar4 = a1;
@@ -8480,7 +8481,7 @@ u32 FUN_8c05d860(int *a0, code *a1, code *a2) {
                         pcVar14 = "REQUEST_SLEEP";
                         pcVar11 = NULL;
                         pcVar4 = NULL;
-                        FUN_8c0306d4(a0 + 0x27, 0, 0, "REQUEST_SLEEP");
+                        talk_start_line(a0 + 0x27, 0, 0, "REQUEST_SLEEP");
                     }
                 }
                 uVar3 = get_field_bc_s8(*(int *)(a2 + 0xc), pcVar4, pcVar11, pcVar14);
@@ -8493,12 +8494,12 @@ u32 FUN_8c05d860(int *a0, code *a1, code *a2) {
                             pcVar14 = "REQUEST_WAKE_UP";
                             pcVar11 = NULL;
                             pcVar4 = (code *)0x21;
-                            FUN_8c0306d4(a0 + 0x27, 0x21, 0, "REQUEST_WAKE_UP");
+                            talk_start_line(a0 + 0x27, 0x21, 0, "REQUEST_WAKE_UP");
                         } else {
                             pcVar14 = "REQUEST_WANT_LIGHT";
                             pcVar11 = NULL;
                             pcVar4 = (code *)0x21;
-                            FUN_8c0306d4(a0 + 0x27, 0x21, 0, "REQUEST_WANT_LIGHT");
+                            talk_start_line(a0 + 0x27, 0x21, 0, "REQUEST_WANT_LIGHT");
                         }
                         a0[0x226] = 0;
                     }
@@ -8511,14 +8512,14 @@ u32 FUN_8c05d860(int *a0, code *a1, code *a2) {
                         pcVar14 = "STATUS_LIGHT_OFF";
                         pcVar11 = NULL;
                         pcVar4 = (code *)0xa;
-                        FUN_8c0306d4(a0 + 0x27, 10, 0, "STATUS_LIGHT_OFF");
+                        talk_start_line(a0 + 0x27, 10, 0, "STATUS_LIGHT_OFF");
                     } else {
                         pcVar4 = (code *)get_field_bc_s8(*(int *)(a2 + 0xc), pcVar4, pcVar11, pcVar14);
                         if (*(char *)((int)a0 + 0x9a) < (char)pcVar4) {
                             pcVar14 = "STATUS_LIGHT";
                             pcVar11 = NULL;
                             pcVar4 = NULL;
-                            FUN_8c0306d4(a0 + 0x27, 0, 0, "STATUS_LIGHT");
+                            talk_start_line(a0 + 0x27, 0, 0, "STATUS_LIGHT");
                         }
                     }
                 }
@@ -8536,7 +8537,7 @@ u32 FUN_8c05d860(int *a0, code *a1, code *a2) {
                     a0[0xe1] = iVar9;
                 } else {
                     pcVar4 = (code *)0x2;
-                    FUN_8c030870(a0 + 0x27, 2, pcVar11, pcVar14);
+                    set_field_770(a0 + 0x27, 2, pcVar11, pcVar14);
                 }
             }
             uVar3 = get_field_4_s8(*(int *)(a2 + 4) + 0xa8);
@@ -8823,12 +8824,12 @@ u32 FUN_8c05d860(int *a0, code *a1, code *a2) {
     iVar9 = (int)cVar1;
     if (cVar1 == '\x01') {
         iVar9 = 1;
-        FUN_8c05ee84(*(int *)(a2 + 0xc), 1);
+        set_field_c0(*(int *)(a2 + 0xc), 1);
     }
     iVar12 = FUN_8c02c518(*(int *)(a2 + 4), iVar9, pcVar4);
     if (iVar12 != -1) {
         iVar9 = 0;
-        FUN_8c05ee78(*(int *)(a2 + 0xc), 0);
+        set_field_d0(*(int *)(a2 + 0xc), 0);
     }
     uVar2 = get_field_a4_s16(*(int *)(a2 + 0x18), iVar9);
     uVar2 = uVar2 & 0xffff;
@@ -8849,7 +8850,7 @@ u32 FUN_8c05d860(int *a0, code *a1, code *a2) {
             uVar2 = 0;
             set_field_18_05ee64(*(int *)(a2 + 4) + 0xf8, 0);
         }
-        iVar9 = FUN_8c02c340(*(int *)(a2 + 4) + 0x90, uVar2, pcVar4, iVar12);
+        iVar9 = percent_field_4_of_c(*(int *)(a2 + 4) + 0x90, uVar2, pcVar4, iVar12);
         if (iVar9 < 0x31) {
             FUN_8c0e9668(*(int *)(a2 + 0xc));
         } else {
@@ -8872,7 +8873,7 @@ u32 FUN_8c05d860(int *a0, code *a1, code *a2) {
         iVar9 = FUN_8c05edfc("start", ar5_00);
         if (iVar9 == 0) {
             speech_stop(0x8c35468c, ar5_00, pcVar4, uVar6);
-            FUN_8c030870(a0 + 0x27, 3, pcVar4, uVar6);
+            set_field_770(a0 + 0x27, 3, pcVar4, uVar6);
             a0[2] = 0;
             a0[3] = 0;
             *(u8 *)(a0 + 0x20) = 1;
@@ -8922,10 +8923,10 @@ u32 get_field_d0_05ee6c(int a0) {
 }
 
 /*
- * FUN_8c05ee78  0x8c05ee78
+ * set_field_d0  0x8c05ee78
  * called by: FUN_8c05d860
  */
-int FUN_8c05ee78(int a0, u32 a1) {
+int set_field_d0(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0xd0;
@@ -8934,10 +8935,10 @@ int FUN_8c05ee78(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c05ee84  0x8c05ee84
+ * set_field_c0  0x8c05ee84
  * called by: FUN_8c05d860
  */
-int FUN_8c05ee84(int a0, u32 a1) {
+int set_field_c0(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0xc0;
@@ -9151,7 +9152,7 @@ u32 Class_12a078_m2_05eee0(int *a0, u32 a1, int *a2, u32 a3) {
         iVar4 = FUN_8c0fa2b8(0x8c35468c, a1);
         if (iVar4 == 0) {
             a0[0x25] = 0;
-            FUN_8c030870(a0 + 0x27, 3, piVar3, uVar2);
+            set_field_770(a0 + 0x27, 3, piVar3, uVar2);
             a0[1] = 0;
             a0[0x10] = 0;
             a0[2] = 0x19;
@@ -9236,7 +9237,7 @@ int FUN_8c05f4a0(int a0, int a1, u32 a2, u32 a3) {
         iVar1 = FUN_8c0fa2b8(0x8c35468c, uVar2);
         if (iVar1 == 0) {
             *(u32 *)(a0 + 0x94) = 0;
-            FUN_8c030870(a0 + 0x9c, 3, a2, a3);
+            set_field_770(a0 + 0x9c, 3, a2, a3);
             *(u32 *)(a0 + 4) = 2;
             *(u32 *)(a0 + 0x40) = 0x10;
             *(u32 *)(a0 + 8) = 0x19;
@@ -9248,10 +9249,10 @@ int FUN_8c05f4a0(int a0, int a1, u32 a2, u32 a3) {
     }
     iVar1 = *(int *)(a0 + 900);
     if (iVar1 == -1) {
-        FUN_8c030870(a0 + 0x9c, 0, a2, a3);
+        set_field_770(a0 + 0x9c, 0, a2, a3);
         ar7_00 = "REACTION_CATCH";
         uVar2 = 0;
-        FUN_8c030568(a0 + 0x9c, 0x25, 0, "REACTION_CATCH", &g_8c1369bf);
+        talk_queue_mode2(a0 + 0x9c, 0x25, 0, "REACTION_CATCH", &g_8c1369bf);
         strcpy(a0 + 0xbc, "REACTION_CATCH");
         strcpy(a0 + 0xdc, &g_8c1369bf);
         *(u32 *)(a0 + 0xfc) = 0;
@@ -9259,7 +9260,7 @@ int FUN_8c05f4a0(int a0, int a1, u32 a2, u32 a3) {
         uVar2 = speech_request(0x8c35468c, *(u32 *)(a0 + 0x388), iVar1, ar7_00);
         *(u32 *)(a0 + 900) = uVar2;
         *(u32 *)(a0 + 0x14c) = 0;
-        iVar1 = FUN_8c030870(a0 + 0x9c, 2, iVar1, ar7_00);
+        iVar1 = set_field_770(a0 + 0x9c, 2, iVar1, ar7_00);
     }
     return iVar1;
 }
@@ -9337,7 +9338,7 @@ u32 FUN_8c05f660(int a0, u32 a1, int *a2, int a3) {
                 uVar1 = get_field_a4_s16(a2[6], ar5_00);
                 iVar4 = libgcc_divide_helper_01031c(uVar1 & 0xffff, 0x25, libgcc_divide_helper_01031c);
                 if (iVar4 == 0xe) {
-                    FUN_8c0306d4(a0 + 0x9c, 0x11, 0, "STATUS_SNORE");
+                    talk_start_line(a0 + 0x9c, 0x11, 0, "STATUS_SNORE");
                     set_field_38_02f404(a0, 3);
                 }
                 break;
@@ -9349,7 +9350,7 @@ u32 FUN_8c05f660(int a0, u32 a1, int *a2, int a3) {
                 if (iVar4 == 1) {
                     if (*(int *)(a0 + 0x88) == 1) {
                         uVar2 = get_field_6c_02f46c(*(u32 *)(a0 + 0x6c));
-                        uVar2 = FUN_8c05feec(*(u32 *)(a0 + 0x6c), uVar2, piVar3, a3);
+                        uVar2 = take_from_field_6c(*(u32 *)(a0 + 0x6c), uVar2, piVar3, a3);
                         FUN_8c05fec4(a2[1]);
                         if (*(int *)(a0 + 0x6c) != 0) {
                             (**(code **)(*(int *)(*(int *)(a0 + 0x6c) + 8) + 0x78))(*(int *)(a0 + 0x6c), uVar2, piVar3,
@@ -9372,9 +9373,9 @@ u32 FUN_8c05f660(int a0, u32 a1, int *a2, int a3) {
                     format_int_at_10(0x8c35468c, (int)*(char *)(a0 + 0x870), piVar3, a3);
                     iVar4 = FUN_8c02fcc4(a0, a2, piVar3, a3);
                     if (iVar4 == 0) {
-                        FUN_8c0306d4(a0 + 0x9c, 10, 0, "STATUS_UNCONSIDERED");
+                        talk_start_line(a0 + 0x9c, 10, 0, "STATUS_UNCONSIDERED");
                     } else {
-                        FUN_8c0306d4(a0 + 0x9c, 10, 0, "STATUS_COUPLING");
+                        talk_start_line(a0 + 0x9c, 10, 0, "STATUS_COUPLING");
                     }
                     *(u8 *)(a0 + 0x870) = 1;
                 }
@@ -9394,7 +9395,7 @@ u32 FUN_8c05f660(int a0, u32 a1, int *a2, int a3) {
                 iVar4 = FUN_8c02f414(a0, ar5_00, piVar3, a3);
                 if (iVar4 == 1) {
                     if (*(int *)(a0 + 0x88) == 1) {
-                        FUN_8c05feec(*(u32 *)(a0 + 0x6c), 1, piVar3, a3);
+                        take_from_field_6c(*(u32 *)(a0 + 0x6c), 1, piVar3, a3);
                         *(u32 *)(a0 + 0x88) = 0;
                     }
                     FUN_8c066628(a0, a1, piVar3);
@@ -9410,59 +9411,59 @@ u32 FUN_8c05f660(int a0, u32 a1, int *a2, int a3) {
                     switch (iVar4) {
                     case 0:
                         uVar2 = get_field_8_s8(a2[1], ar5_00);
-                        FUN_8c0303b8(a0 + 0x9c, 4, (int)(char)uVar2, "REQUEST_HOT", &g_8c1369bf);
+                        talk_queue_mode1(a0 + 0x9c, 4, (int)(char)uVar2, "REQUEST_HOT", &g_8c1369bf);
                         break;
                     case 1:
                         uVar2 = get_field_8_s8(a2[1] + 0x18, ar5_00);
-                        FUN_8c0303b8(a0 + 0x9c, 5, (int)(char)uVar2, "REQUEST_COLD", &g_8c1369bf);
+                        talk_queue_mode1(a0 + 0x9c, 5, (int)(char)uVar2, "REQUEST_COLD", &g_8c1369bf);
                         break;
                     case 3:
                         uVar2 = get_field_8_s8(a2[1] + 0x48, ar5_00);
-                        FUN_8c0303b8(a0 + 0x9c, 0x10, (int)(char)uVar2, "REQUEST_HUMIDITY", &g_8c1369bf);
+                        talk_queue_mode1(a0 + 0x9c, 0x10, (int)(char)uVar2, "REQUEST_HUMIDITY", &g_8c1369bf);
                         break;
                     case 4:
                         uVar2 = get_field_8_s8(a2[1] + 0x60, ar5_00);
-                        FUN_8c0303b8(a0 + 0x9c, 0xd, (int)(char)uVar2, "REQUEST_HUNGRY", &g_8c1369bf);
+                        talk_queue_mode1(a0 + 0x9c, 0xd, (int)(char)uVar2, "REQUEST_HUNGRY", &g_8c1369bf);
                         break;
                     case 5:
                         uVar2 = get_field_8_s8(a2[1] + 0x78, ar5_00);
-                        FUN_8c0303b8(a0 + 0x9c, 0x12, (int)(char)uVar2, "STATUS_SICK", &g_8c1369bf);
+                        talk_queue_mode1(a0 + 0x9c, 0x12, (int)(char)uVar2, "STATUS_SICK", &g_8c1369bf);
                     }
                 }
                 break;
             case 0x16:
                 if (*(int *)(a0 + 0x8c) == 1) {
-                    FUN_8c0306d4(a0 + 0x9c, 0x2a, 0, "REACTION_GURUGURU");
+                    talk_start_line(a0 + 0x9c, 0x2a, 0, "REACTION_GURUGURU");
                     *(u32 *)(a0 + 0x8c) = 0;
                 }
                 break;
             case 0x22:
                 if (*(int *)(a0 + 0x8c) == 1) {
-                    FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "STATUS_AFTER_BINTA");
+                    talk_start_line(a0 + 0x9c, 0x2c, 0, "STATUS_AFTER_BINTA");
                     *(u32 *)(a0 + 0x8c) = 0;
                 }
                 break;
             case 0x23:
                 if (*(int *)(a0 + 0x8c) == 1) {
-                    FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "STATUS_BEFORE_BINTA");
+                    talk_start_line(a0 + 0x9c, 0x2c, 0, "STATUS_BEFORE_BINTA");
                     *(u32 *)(a0 + 0x8c) = 0;
                 }
                 break;
             case 0x26:
                 if (*(int *)(a0 + 0x8c) == 1) {
-                    FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "STATUS_AFTER_FIGHT");
+                    talk_start_line(a0 + 0x9c, 0x2c, 0, "STATUS_AFTER_FIGHT");
                     *(u32 *)(a0 + 0x8c) = 0;
                 }
                 break;
             case 0x27:
                 if (*(int *)(a0 + 0x8c) == 1) {
-                    FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "STATUS_BEFORE_FIGHT");
+                    talk_start_line(a0 + 0x9c, 0x2c, 0, "STATUS_BEFORE_FIGHT");
                     *(u32 *)(a0 + 0x8c) = 0;
                 }
             }
         }
     } else if ((iVar4 == 0x34) && (*(int *)(a0 + 0x8c) == 1)) {
-        FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "STATUS_SNIFFING");
+        talk_start_line(a0 + 0x9c, 0x2c, 0, "STATUS_SNIFFING");
         *(u32 *)(a0 + 0x8c) = 0;
     }
     return 1;
@@ -9489,10 +9490,11 @@ u32 FUN_8c05fec4(int a0) {
 }
 
 /*
- * FUN_8c05feec  0x8c05feec
+ * take_from_field_6c  0x8c05feec
+ * takes up to a1 from the amount at +0x6c and flags +0x74 bit 1; returns what was taken
  * called by: FUN_8c05f660, FUN_8c0611cc, FUN_8c0abe84, FUN_8c0b61bc, FUN_8c0b6440, FUN_8c104854, FUN_8c1063a8
  */
-int FUN_8c05feec(int a0, int a1, u32 unused_a2, u32 a3) {
+int take_from_field_6c(int a0, int a1, u32 unused_a2, u32 a3) {
     int iStack_8;
 
     iStack_8 = a1;

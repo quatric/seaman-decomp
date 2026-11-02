@@ -952,7 +952,7 @@ u32 FUN_8c0b1ac0(double *a0, double *a1, code *a2, double *a3) {
             } else {
                 *(u64 *)pcVar8 = (u64)(u32)fVar11;
             }
-            FUN_8c031c64(a0);
+            timer_start_24(a0);
             *(int *)(a0 + 8) = 3;
             *(int *)((int)a0 + 0x44) = 0;
             *(int *)(a0 + 99) = 0;
@@ -1682,7 +1682,7 @@ u32 FUN_8c0b3184(int a0, u64 *a1, u64 *a2, u32 a3) {
             } else {
                 *(u64 *)(a0 + 0x2c) = uVar7;
             }
-            FUN_8c031c64(a0);
+            timer_start_24(a0);
             in_fr1 = (float)uVar7;
             *(u32 *)(a0 + 0x40) = 3;
             *(u32 *)(a0 + 0x44) = 0;
@@ -1897,7 +1897,7 @@ u32 FUN_8c0b3604(int a0, double *a1, double *a2, int *a3) {
     pdVar5 = a1;
     Vec3_ctor_zero(&uStack_2c, a1, a2);
     uVar8 = 1;
-    FUN_8c10277c(&dStack_38);
+    Vec3_assign_f_10277c(&dStack_38);
     uVar14 = SUB84(in_dr2, 0);
     iVar4 = *(int *)(a0 + 0x40);
     if ((5 < iVar4) || (iVar4 < 0))
@@ -2132,7 +2132,7 @@ u32 FUN_8c0b3604(int a0, double *a1, double *a2, int *a3) {
     } else {
         *pdVar5 = in_dr0;
     }
-    FUN_8c031c64(a0);
+    timer_start_24(a0);
     *(u32 *)(a0 + 0x40) = 3;
     *(u32 *)(a0 + 0x44) = 0;
     *(u32 *)(a0 + 0x318) = 0;
@@ -2904,7 +2904,7 @@ u32 FUN_8c0b4d14(int a0, u32 a1, u32 a2, u32 a3) {
                 iVar2 = (int)dVar8;
             }
             if (iVar2 == 0x28) {
-                FUN_8c03f3e8(a1, uVar4, ar6_00);
+                set_field_88_to_1(a1, uVar4, ar6_00);
                 *(u32 *)(a0 + 0x348) = 1;
             }
             iVar2 = CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, uVar4, ar6_00, a3);
@@ -3001,7 +3001,7 @@ u32 FUN_8c0b5098(int a0, u32 a1, u32 a2, u32 a3) {
                 *(u32 *)(a0 + 300) = 2;
                 *(u32 *)(a0 + 0x32c) = 0;
                 uVar4 = 0;
-                FUN_8c03f39c(uVar3, a1, a2, a3);
+                set_field_8c_to_1(uVar3, a1, a2, a3);
             } else {
                 CAnimBody_GetCurFrame(a0 + 0xb0, a1, a2, a3);
                 dVar8 = in_dr0;
@@ -3431,10 +3431,10 @@ u32 get_field_314_0b58d0(int a0) {
 }
 
 /*
- * FUN_8c0b58dc  0x8c0b58dc
+ * set_field_314  0x8c0b58dc
  * called by: FUN_8c0ae2b8
  */
-int FUN_8c0b58dc(int a0, u32 a1) {
+int set_field_314(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x314;
@@ -3833,7 +3833,7 @@ u32 FUN_8c0b61bc(int a0, u32 a1, int *a2, int a3) {
                     uVar3 = 7;
                     recent5_push_unique(a2[6], 7, 0x1b);
                     uVar3 = get_field_6c_02f46c(*(u32 *)(a0 + 0x6c));
-                    FUN_8c05feec(*(u32 *)(a0 + 0x6c), uVar3, ar6_01, a3);
+                    take_from_field_6c(*(u32 *)(a0 + 0x6c), uVar3, ar6_01, a3);
                     *(char *)(a0 + 0x9c) = *(char *)(a0 + 0x9c) + '\x01';
                     if (*(int *)(a0 + 0x6c) != 0) {
                         (**(code **)(*(int *)(*(int *)(a0 + 0x6c) + 8) + 0x78))(*(int *)(a0 + 0x6c), uVar3, ar6_01, a3);
@@ -3926,7 +3926,7 @@ u8 *FUN_8c0b6440(int a0, u32 a1, int a2, u32 a3) {
                 uVar3 = 7;
                 recent5_push_unique(*(u32 *)(a2 + 0x18), 7, 0x1b);
                 uVar3 = get_field_6c_02f46c(*(u32 *)(a0 + 0x6c));
-                FUN_8c05feec(*(u32 *)(a0 + 0x6c), uVar3, ar6_00, a3);
+                take_from_field_6c(*(u32 *)(a0 + 0x6c), uVar3, ar6_00, a3);
                 *(char *)(a0 + 0x9c) = *(char *)(a0 + 0x9c) + '\x01';
                 if (*(char *)(a0 + 0x9c) == '\b') {
                     uVar3 = 1;
@@ -4430,14 +4430,14 @@ u32 FUN_8c0b6c3c(u32 a0, u8 *a1, u8 *a2, u8 *a3) {
             ar6_00 = NULL;
             uVar2 = 0xb;
             FUN_8c0c2efc(&g_8c2b5628, 0xb, 0, &g_8c13c025);
-            uVar2 = noop_01f520(0x8c3dd7dc, uVar2, ar6_00, a3);
-            iVar1 = FUN_8c0b6e04(a0, "SM2000US.USR", ar6_00);
+            uVar2 = FUN_8c01f520(0x8c3dd7dc, uVar2, ar6_00, a3);
+            iVar1 = strcmp_0b6e04(a0, "SM2000US.USR");
             if (iVar1 == 0) {
                 g_8c431a58 = FUN_8c01ae28(uVar2, a0, a1, a2);
                 ar6_00 = a1;
                 a3 = a2;
             } else {
-                iVar1 = FUN_8c0b6e04(a0, "SM2000US.INC", ar6_00);
+                iVar1 = strcmp_0b6e04(a0, "SM2000US.INC");
                 if (iVar1 == 0) {
                     g_8c431a58 = FUN_8c01b400(uVar2, "SM2000US._VM", a1, a2);
                     ar6_00 = a1;
@@ -4468,10 +4468,10 @@ u32 FUN_8c0b6c3c(u32 a0, u8 *a1, u8 *a2, u8 *a3) {
 }
 
 /*
- * FUN_8c0b6e04  0x8c0b6e04
+ * strcmp_0b6e04  0x8c0b6e04
  * called by: FUN_8c0b6c3c, FUN_8c0b6e6c, FUN_8c0b7454, FUN_8c0bad68, FUN_8c0c09d0
  */
-u32 FUN_8c0b6e04(u8 *a0, u8 *a1, u32 a2) {
+u32 strcmp_0b6e04(u8 *a0, u8 *a1) {
     u8 bVar1;
 
     do {
@@ -4516,9 +4516,9 @@ u32 FUN_8c0b6e6c(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
             ar6_00 = NULL;
             uVar2 = 0xb;
             FUN_8c0c2efc(&g_8c2b5628, 0xb, 0, &g_8c13c025);
-            uVar2 = noop_01f520(0x8c3dd7dc, uVar2, ar6_00, ar7_00);
+            uVar2 = FUN_8c01f520(0x8c3dd7dc, uVar2, ar6_00, ar7_00);
             if (in_stack_00000004 == 1) {
-                iVar1 = FUN_8c0b6e04(a0, "SM2000US._VM", ar6_00);
+                iVar1 = strcmp_0b6e04(a0, "SM2000US._VM");
                 if (iVar1 == 0) {
                     ar6_00 = auStack_48;
                     iVar1 = FUN_8c01bc2c(uVar2, "SM2000US._VM", ar6_00, ar7_00);
@@ -4532,7 +4532,7 @@ u32 FUN_8c0b6e6c(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
                         break;
                     }
                 }
-                iVar1 = FUN_8c0b6e04(a0, "SM2000US.USR", ar6_00);
+                iVar1 = strcmp_0b6e04(a0, "SM2000US.USR");
                 if ((iVar1 == 0) && (iVar1 = FUN_8c01bba0(uVar2, "SM2000US.USR", ar6_00, ar7_00), iVar1 == 1)) {
                     iVar1 = FUN_8c01ae98(uVar2, a0, a1, a2);
                     ar6_00 = a1;
@@ -4543,7 +4543,7 @@ u32 FUN_8c0b6e6c(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
                         ar7_00 = a2;
                     }
                 } else {
-                    iVar1 = FUN_8c0b6e04(a0, "SM2000US.INC", ar6_00);
+                    iVar1 = strcmp_0b6e04(a0, "SM2000US.INC");
                     if ((iVar1 == 0) && (iVar1 = FUN_8c01bc2c(uVar2, "SM2000US._VM", auStack_48, ar7_00), iVar1 == 1)) {
                         iVar1 = FUN_8c01b47c(uVar2, "SM2000US._VM", a1, a2);
                         ar6_00 = a1;
@@ -4566,7 +4566,7 @@ u32 FUN_8c0b6e6c(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
                     }
                 }
             } else {
-                iVar1 = FUN_8c0b6e04(a0, "SM2000US._VM", ar6_00);
+                iVar1 = strcmp_0b6e04(a0, "SM2000US._VM");
                 if (iVar1 == 0) {
                     iVar1 = FUN_8c01b0a8(uVar2, a0, a3, in_stack_00000000);
                     ar6_00 = a3;
@@ -4575,7 +4575,7 @@ u32 FUN_8c0b6e6c(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
                         uVar3 = 0;
                     }
                 } else {
-                    iVar1 = FUN_8c0b6e04(a0, "SM2000US.USR", ar6_00);
+                    iVar1 = strcmp_0b6e04(a0, "SM2000US.USR");
                     if (iVar1 == 0) {
                         iVar1 = FUN_8c01ae98(uVar2, a0, a1, a2);
                         ar6_00 = a1;
@@ -4586,7 +4586,7 @@ u32 FUN_8c0b6e6c(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
                             ar7_00 = a2;
                         }
                     } else {
-                        iVar1 = FUN_8c0b6e04(a0, "SM2000US.INC", ar6_00);
+                        iVar1 = strcmp_0b6e04(a0, "SM2000US.INC");
                         if ((iVar1 == 0) && (iVar1 = FUN_8c01b47c(uVar2, "SM2000US._VM", a1, a2), ar6_00 = a1,
                                              ar7_00 = a2, iVar1 == 1)) {
                             uVar3 = 0;
@@ -4632,9 +4632,9 @@ u32 FUN_8c0b726c(u32 a0, u32 a1, u8 *a2, u32 a3, u32 s0, int s4) {
     uVar2 = 1;
     ar6_00 = a2;
     ar7_00 = a3;
-    ar4_00 = noop_01f520(0x8c3dd7dc, a1, a2, a3);
+    ar4_00 = FUN_8c01f520(0x8c3dd7dc, a1, a2, a3);
     if (s4 == 1) {
-        iVar1 = (*(code *)(&FUN_8c0b6e04))(a0, "SM2000US._VM", ar6_00, ar7_00);
+        iVar1 = (*(code *)(&strcmp_0b6e04))(a0, "SM2000US._VM", ar6_00, ar7_00);
         if (iVar1 == 0) {
             ar6_00 = auStack_34;
             iVar1 = (*(code *)(&FUN_8c01bc2c))(ar4_00, "SM2000US._VM", ar6_00, ar7_00);
@@ -4646,14 +4646,14 @@ u32 FUN_8c0b726c(u32 a0, u32 a1, u8 *a2, u32 a3, u32 s0, int s4) {
                 return 0;
             }
         }
-        iVar1 = (*(code *)(&FUN_8c0b6e04))(a0, "SM2000US.USR", ar6_00, ar7_00);
+        iVar1 = (*(code *)(&strcmp_0b6e04))(a0, "SM2000US.USR", ar6_00, ar7_00);
         if ((iVar1 == 0) && (iVar1 = (*(code *)(&FUN_8c01bba0))(ar4_00, "SM2000US.USR", ar6_00, ar7_00), iVar1 == 1)) {
             iVar1 = FUN_8c01ae98(ar4_00, a0, a1, a2);
             if (iVar1 == 1) {
                 uVar2 = 0;
             }
         } else {
-            iVar1 = (*(code *)(&FUN_8c0b6e04))(a0, "SM2000US.INC", ar6_00, ar7_00);
+            iVar1 = (*(code *)(&strcmp_0b6e04))(a0, "SM2000US.INC", ar6_00, ar7_00);
             if ((iVar1 == 0) &&
                 ((iVar1 = (*(code *)(&FUN_8c01bc2c))(ar4_00, "SM2000US._VM", auStack_34, ar7_00),
                   iVar1 == 1 && (iVar1 = (*(code *)(&FUN_8c01b47c))(ar4_00, "SM2000US._VM", a1, a2), iVar1 == 1)))) {
@@ -4661,21 +4661,21 @@ u32 FUN_8c0b726c(u32 a0, u32 a1, u8 *a2, u32 a3, u32 s0, int s4) {
             }
         }
     } else {
-        iVar1 = (*(code *)(&FUN_8c0b6e04))(a0, "SM2000US._VM", ar6_00, ar7_00);
+        iVar1 = (*(code *)(&strcmp_0b6e04))(a0, "SM2000US._VM", ar6_00, ar7_00);
         if (iVar1 == 0) {
             iVar1 = FUN_8c01b0a8(ar4_00, a0, a3, s0);
             if (iVar1 == 1) {
                 uVar2 = 0;
             }
         } else {
-            iVar1 = (*(code *)(&FUN_8c0b6e04))(a0, "SM2000US.USR", ar6_00, ar7_00);
+            iVar1 = (*(code *)(&strcmp_0b6e04))(a0, "SM2000US.USR", ar6_00, ar7_00);
             if (iVar1 == 0) {
                 iVar1 = FUN_8c01ae98(ar4_00, a0, a1, a2);
                 if (iVar1 == 1) {
                     uVar2 = 0;
                 }
             } else {
-                iVar1 = (*(code *)(&FUN_8c0b6e04))(a0, "SM2000US.INC", ar6_00, ar7_00);
+                iVar1 = (*(code *)(&strcmp_0b6e04))(a0, "SM2000US.INC", ar6_00, ar7_00);
                 if ((iVar1 == 0) && (iVar1 = (*(code *)(&FUN_8c01b47c))(ar4_00, "SM2000US._VM", a1, a2), iVar1 == 1)) {
                     uVar2 = 0;
                 }
@@ -4710,10 +4710,10 @@ u32 FUN_8c0b7454(u32 a0, u32 a1, u32 a2) {
             uVar3 = 0;
             uVar2 = 0xb;
             FUN_8c0c2efc(&g_8c2b5628, 0xb, 0, &g_8c13c025);
-            uVar2 = noop_01f520(0x8c3dd7dc, uVar2, uVar3, ar7_00);
+            uVar2 = FUN_8c01f520(0x8c3dd7dc, uVar2, uVar3, ar7_00);
             iVar1 = FUN_8c01bba0(uVar2, a0, uVar3, ar7_00);
             if (iVar1 == 1) {
-                iVar1 = FUN_8c0b6e04(a0, "SM2000US.USR", uVar3);
+                iVar1 = strcmp_0b6e04(a0, "SM2000US.USR");
                 if ((iVar1 == 0) && (iVar1 = FUN_8c01b5f8(uVar2, a0, a1, a2), iVar1 == 1)) {
                     uVar4 = 0;
                 }
@@ -4721,7 +4721,7 @@ u32 FUN_8c0b7454(u32 a0, u32 a1, u32 a2) {
                 ar6_00 = auStack_30;
                 iVar1 = FUN_8c01bc2c(uVar2, "SM2000US._VM", ar6_00, ar7_00);
                 if (iVar1 == 1) {
-                    iVar1 = FUN_8c0b6e04(a0, "SM2000US.INC", ar6_00);
+                    iVar1 = strcmp_0b6e04(a0, "SM2000US.INC");
                     if ((iVar1 == 0) && (iVar1 = FUN_8c01b7b0(uVar2, "SM2000US._VM", a1, a2), iVar1 == 1)) {
                         uVar4 = 0;
                     }
@@ -4757,15 +4757,15 @@ u32 FUN_8c0b7628(u32 a0, u32 a1, u32 a2, u32 a3) {
 
     uVar2 = 1;
     ar6_00 = a2;
-    ar4_00 = noop_01f520(0x8c3dd7dc, a1, a2, a3);
-    iVar1 = (*(code *)(&FUN_8c0b6e04))(a0, "SM2000US.USR", ar6_00, a3);
+    ar4_00 = FUN_8c01f520(0x8c3dd7dc, a1, a2, a3);
+    iVar1 = (*(code *)(&strcmp_0b6e04))(a0, "SM2000US.USR", ar6_00, a3);
     if (iVar1 == 0) {
         iVar1 = FUN_8c01b5f8(ar4_00, a0, a1, a2);
         if (iVar1 == 1) {
             uVar2 = 0;
         }
     } else {
-        iVar1 = (*(code *)(&FUN_8c0b6e04))(a0, "SM2000US.INC", ar6_00, a3);
+        iVar1 = (*(code *)(&strcmp_0b6e04))(a0, "SM2000US.INC", ar6_00, a3);
         if (iVar1 == 0) {
             iVar1 = (*(code *)(&FUN_8c01b7b0))(ar4_00, "SM2000US._VM", a1, a2);
             if (iVar1 == 1) {
@@ -4789,7 +4789,7 @@ u32 FUN_8c0b76d8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar3;
     u8 auStack_20[24];
 
-    ar4_00 = noop_01f520(0x8c3dd7dc, unused_a1, unused_a2, a3);
+    ar4_00 = FUN_8c01f520(0x8c3dd7dc, unused_a1, unused_a2, a3);
     uVar3 = 0;
     puVar2 = auStack_20;
     iVar1 = (*(code *)(&FUN_8c01bc2c))(ar4_00, "SM2000US._VM", puVar2, a3);
@@ -5933,19 +5933,21 @@ int FUN_8c0ba2cc(int a0) {
 }
 
 /*
- * FUN_8c0ba324  0x8c0ba324
+ * set_2_words_wrap  0x8c0ba324
+ * only calls set_2_words
  * called by: FUN_8c0c1d1c
  */
-u32 FUN_8c0ba324(u32 a0, u32 a1, u32 a2) {
-    FUN_8c0ba34c(a0, a1, a2);
+u32 set_2_words_wrap(u32 a0, u32 a1, u32 a2) {
+    set_2_words(a0, a1, a2);
     return a0;
 }
 
 /*
- * FUN_8c0ba34c  0x8c0ba34c
- * called by: FUN_8c0ba324, FUN_8c0c09d0
+ * set_2_words  0x8c0ba34c
+ * a0[0] = a1, a0[1] = a2
+ * called by: FUN_8c0c09d0, set_2_words_wrap
  */
-u32 FUN_8c0ba34c(u32 *a0, u32 a1, u32 a2) {
+u32 set_2_words(u32 *a0, u32 a1, u32 a2) {
     u32 in_r0;
 
     *a0 = a1;
@@ -6515,7 +6517,7 @@ u32 FUN_8c0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
         *(int *)(a0 + 0x154) = *(int *)(a0 + 0x154) + 0x5000000;
         if (((*(u32 *)(a0 + 0x154) < 0x20000001) &&
              (iVar2 = a0, iVar3 = FUN_8c0fa2b8(0x8c35468c, ar5_00), iVar3 == 0)) &&
-            ((iVar3 = FUN_8c0b6e04(&g_8c13c8e2, 0x8c4362a0, a2), iVar3 == 0 && (*(int *)(a0 + 0x14c) != 4)))) {
+            ((iVar3 = strcmp_0b6e04(&g_8c13c8e2, 0x8c4362a0), iVar3 == 0 && (*(int *)(a0 + 0x14c) != 4)))) {
             strcpy(0x8c4362c0, &g_8c13c025);
             a2 = 0x8c436280;
             g_8c43627c = speech_request(0x8c35468c, 6, 0x8c436280, a3);
@@ -8305,7 +8307,7 @@ u32 FUN_8c0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
                             if (*(int *)(puVar7 + -0x58) == -1) {
                                 *(u8 **)(puVar7 + -0x9c) = &g_8c436738;
                                 *(int *)(*(int *)(puVar7 + -0x9c) + 8) = *(int *)(*(int *)(puVar7 + -0x9c) + 8) + 1;
-                                uVar1 = FUN_8c02d3e8(g_8c436700, iVar2, pcVar6, a3);
+                                uVar1 = percent_field_4_of_c_on_field_90(g_8c436700, iVar2, pcVar6, a3);
                                 *(u32 *)(puVar7 + -0x5c) = uVar1;
                                 iVar2 = *(int *)(puVar7 + -0x5c);
                                 if (iVar2 < 0x5a) {
@@ -8334,7 +8336,7 @@ u32 FUN_8c0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
                                 pcVar6 = (code *)&g_8c436738;
                                 *(u8 **)(puVar7 + -0xa0) = &g_8c436738;
                                 *(int *)(*(int *)(puVar7 + -0xa0) + 0xc) = *(int *)(*(int *)(puVar7 + -0xa0) + 0xc) + 1;
-                                uVar1 = FUN_8c02d3e8(g_8c436700, &g_8c436700, &g_8c436738, a3);
+                                uVar1 = percent_field_4_of_c_on_field_90(g_8c436700, &g_8c436700, &g_8c436738, a3);
                                 *(u32 *)(puVar7 + -100) = uVar1;
                                 iVar2 = *(int *)(puVar7 + -100);
                                 if (iVar2 < 0x5a) {
@@ -8378,7 +8380,7 @@ u32 FUN_8c0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
                                 iVar2 = *(int *)(*(int *)(puVar7 + -0xb0) + 0x14);
                                 pcVar6 = (code *)(iVar2 + 1);
                                 *(code **)(*(int *)(puVar7 + -0xb0) + 0x14) = pcVar6;
-                                uVar1 = FUN_8c02d3e8(g_8c436700, iVar2, pcVar6, a3);
+                                uVar1 = percent_field_4_of_c_on_field_90(g_8c436700, iVar2, pcVar6, a3);
                                 *(u32 *)(puVar7 + -0x70) = uVar1;
                                 iVar5 = *(int *)(puVar7 + -0x70);
                                 if (iVar5 < 0x5a) {

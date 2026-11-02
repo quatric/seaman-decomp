@@ -152,3 +152,24 @@
 8c259968	draw_state_copy_out	copies the current 0xc0-byte polygon state and texture selection into a0
 8c259988	draw_state_copy_in	loads a polygon state saved by draw_state_copy_out
 8c258ac0	screen_reset_view	centres the view on the screen size and sets the clip rectangle to the full screen
+8c014028	operator_new	calls the allocator (8c1fb4b8) and, while it returns NULL and a new-handler is set (0x8c12c4f0), calls the handler and retries
+8c1fb4b8	malloc_sys	the allocator operator_new calls
+8c1fadd0	scif_put_hex32	prints a0 as eight hex digits on the serial port
+8c0303b8	talk_queue_mode1	queues a talk line (name built from +0x2c8 and a letter) with priority a2, cancelling a pending one; sets +0x770 = 1
+8c030568	talk_queue_mode2	same as talk_queue_mode1 without the cancel; sets +0x770 = 2
+8c0306d4	talk_start_line	starts the talk line through speech_restart when the talker is idle (+0x774, +0x778 clear)
+8c0faf30	strcmp		2
+8c0b6e04	strcmp		2
+8c102748	clear_3_words	a0[0..2] = 0
+8c10277c	Vec3_assign_f	stores fr4..fr6 as x, y, z
+8c023d7c	Vec3_assign_f	stores fr4..fr6 as x, y, z
+8c102a7c	linear_map_set	sets the slope (+0x18) and intercept (+0x14) of the line through two points passed in dr6/dr8
+8c0d0538	edge_detect_update	stores input a1 at +0x14; +0x48 = 1 on a 0->1 change, 2 on 1->0
+8c05feec	take_from_field_6c	takes up to a1 from the amount at +0x6c and flags +0x74 bit 1; returns what was taken
+8c02c340	percent_field_4_of_c	100 * (+4) / (+0xc)
+8c02bfd8	table13019c_find_row	row (0..17) of the 4-column table at 0x8c13019c that holds the value at +0x13c; -1 if none
+8c0f6ab0	has_field_2c	1 when +0x2c is non-zero
+8c204e40	pool47eba8_alloc	marks and returns the first free 0x18-byte entry of the pool at 0x8c47eba8; NULL when full
+8c0507a4	get_vec3_field_30	copies x, y, z at +0x30 to three out pointers
+8c031c64	timer_start_24	+0x24 = fr4, +0x44 = 1
+8c0ba34c	set_2_words	a0[0] = a1, a0[1] = a2

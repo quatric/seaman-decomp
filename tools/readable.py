@@ -182,10 +182,15 @@ def load_names(fns):
         else: new = n
         final[a] = new
         if hint: hints[a] = hint
-    # unique names
+    # unique names: of several curated functions with one name (copies of strcmp, ...) the first listed keeps it
     seen = collections.Counter(final.values())
-    for a in sorted(final):
-        if seen[final[a]] > 1 and not final[a].startswith('FUN_'): final[a] = '%s_%06x' % (final[a], a & 0xffffff)
+    order = {a: i for i, a in enumerate(curated)}
+    kept = set()
+    for a in sorted(final, key=lambda a: (order.get(a, len(order)), a)):
+        n = final[a]
+        if seen[n] < 2 or n.startswith('FUN_'): continue
+        if a in curated and n not in kept: kept.add(n); continue
+        final[a] = '%s_%06x' % (n, a & 0xffffff)
     return final, hints, curated
 
 
@@ -403,16 +408,16 @@ def rewrite(f, names, live, byname_arity, globals_used):
     for a, b in ren.items(): body = sub_code(re.compile(r'\b%s\b' % a), b, body)
     # register-copy locals that only feed dead arguments: `x = y;` with x used nowhere else
     for _ in range(3):
-        decl = [v for v in re.findall(r'\n\s+[A-Za-z_]\w*(?: \w+)*\s*\**\s*\b([A-Za-z_]\w*);', body) if v not in ('break', 'continue')]
+        decl = [v for v in re.findall(r'\n\s+(?!return\b)[A-Za-z_]\w*(?: \w+)*\s*\**\s*\b([A-Za-z_]\w*);', body) if v not in ('break', 'continue')]
         removed = False
         for v in decl:
             uses = len(re.findall(r'\b%s\b' % re.escape(v), body))
             copies = re.findall(r'\n\s*%s = [A-Za-z_]\w*;' % re.escape(v), body)
             if uses == 1 + len(copies) and copies:
                 body = re.sub(r'\n\s*%s = [A-Za-z_]\w*;' % re.escape(v), '', body)
-                body = re.sub(r'\n\s+[A-Za-z_][\w ]*?\**\s*\b%s;' % re.escape(v), '', body, count=1); removed = True
+                body = re.sub(r'\n\s+(?!return\b)[A-Za-z_][\w ]*?\**\s*\b%s;' % re.escape(v), '', body, count=1); removed = True
             elif uses == 1:
-                body = re.sub(r'\n\s+[A-Za-z_][\w ]*?\**\s*\b%s;' % re.escape(v), '', body, count=1); removed = True
+                body = re.sub(r'\n\s+(?!return\b)[A-Za-z_][\w ]*?\**\s*\b%s;' % re.escape(v), '', body, count=1); removed = True
         if not removed: break
     body = strings_and_addresses(body)
     body = re.sub(r'\+ (0x8c[0-9a-f]{6})', r'+ \1', body)
@@ -452,7 +457,7 @@ def header(f, newname, callers, hint, strings, curated_note):
 NUM = r'(?:0x[0-9a-f]+|\d+)'
 FIELD_T = {'char': '_s8', 'undefined1': '_u8', 'undefined': '_u8', 'byte': '_u8', 'uchar': '_u8', 'short': '_s16',
            'undefined2': '_u16', 'ushort': '_u16', 'float': '_f32'}
-DECL = re.compile(r'[A-Za-z_][\w ]*?[\s*]+[A-Za-z_]\w*(?:\s*\[\d+\])?;')
+DECL = re.compile(r'(?!return\b)[A-Za-z_][\w ]*?[\s*]+[A-Za-z_]\w*(?:\s*\[\d+\])?;')
 
 
 def statements(body):

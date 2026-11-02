@@ -152,7 +152,7 @@ u8 **FUN_8c0611cc(u8 **a0, int *a1, code *a2, char *a3) {
             ppuVar4 = (u8 **)FUN_8c02f414(a0, 0x35, pcVar11, a3);
             if (ppuVar4 == (u8 **)0x1) {
                 uVar3 = get_field_6c_02f46c(a0[0x1b]);
-                uVar3 = FUN_8c05feec(a0[0x1b], uVar3, pcVar11, a3);
+                uVar3 = take_from_field_6c(a0[0x1b], uVar3, pcVar11, a3);
                 pcVar11 = FUN_8c05fec4;
                 FUN_8c05fec4(*(int *)(a2 + 4));
                 puVar6 = (u8 *)FUN_8c02ea00(a0 + 0x207, 0x81c);
@@ -166,12 +166,12 @@ u8 **FUN_8c0611cc(u8 **a0, int *a1, code *a2, char *a3) {
                     pcVar7 = "REACTION_SPIDER_AFTER_EAT";
                     uVar8 = 0;
                     uVar3 = 2;
-                    FUN_8c0306d4(a0 + 0x27, 2, 0, "REACTION_SPIDER_AFTER_EAT");
+                    talk_start_line(a0 + 0x27, 2, 0, "REACTION_SPIDER_AFTER_EAT");
                 } else {
                     pcVar7 = "GRATIFIC_EAT";
                     uVar8 = 0;
                     uVar3 = 2;
-                    FUN_8c0306d4(a0 + 0x27, 2, 0, "GRATIFIC_EAT");
+                    talk_start_line(a0 + 0x27, 2, 0, "GRATIFIC_EAT");
                 }
                 (**(code **)(*(int *)(a0[0x1b] + 8) + 0x78))(a0[0x1b], uVar3, uVar8, pcVar7);
                 a0[0x1b] = NULL;
@@ -181,13 +181,13 @@ u8 **FUN_8c0611cc(u8 **a0, int *a1, code *a2, char *a3) {
         case (u8 **)0x8:
             (**(code **)(*(int *)(*(int *)a2 + 8) + 0xbc))(*(int *)a2, 0x35, pcVar11, a3);
             uVar3 = (**(code **)(*a1 + 0x148))(a1, puVar6, pcVar11, a3);
-            uVar8 = FUN_8c02bfd8(*(int *)(a2 + 4));
+            uVar8 = table13019c_find_row(*(int *)(a2 + 4));
             uVar9 = get_field_140_025f70(*(int *)(a2 + 4), puVar6);
             uVar10 = 1;
             iVar1 = (int)(short)uVar8;
             FUN_8c0620bc(uVar3, iVar1, uVar9, 1);
             uVar3 = (**(code **)(*a1 + 0x148))(a1, iVar1, uVar9, uVar10);
-            uVar8 = FUN_8c02bfd8(*(int *)(a2 + 4));
+            uVar8 = table13019c_find_row(*(int *)(a2 + 4));
             iVar1 = get_field_140_025f70(*(int *)(a2 + 4), get_field_140_025f70);
             uVar3 = FUN_8c0620a4(uVar3, (int)(short)uVar8, 1 - iVar1);
             if ((char)uVar3 == '\x01') {
@@ -198,7 +198,7 @@ u8 **FUN_8c0611cc(u8 **a0, int *a1, code *a2, char *a3) {
                 iVar1 = *a1;
                 ppuVar4 = a0;
                 uVar3 = (**(code **)(iVar1 + 0x148))(a1, iVar1, a0, uVar10);
-                uVar8 = FUN_8c02bfd8(*(int *)(a2 + 4));
+                uVar8 = table13019c_find_row(*(int *)(a2 + 4));
                 iVar1 = get_field_140_025f70(*(int *)(a2 + 4), iVar1);
                 uVar3 = FUN_8c02c310(uVar3, (int)(short)uVar8, 1 - iVar1);
                 if ((char)uVar3 == '\x01') {
@@ -209,8 +209,8 @@ u8 **FUN_8c0611cc(u8 **a0, int *a1, code *a2, char *a3) {
                     uVar9 = 0;
                     a0[0x216] = NULL;
                     uVar3 = (**(code **)(*a1 + 0x148))(a1, *a1, 0, uVar10);
-                    pcVar11 = FUN_8c02bfd8;
-                    uVar8 = FUN_8c02bfd8(*(int *)(a2 + 4));
+                    pcVar11 = table13019c_find_row;
+                    uVar8 = table13019c_find_row(*(int *)(a2 + 4));
                     uVar9 = get_field_140_025f70(*(int *)(a2 + 4), pcVar11);
                     uVar10 = 0;
                     FUN_8c0620bc(uVar3, (int)(short)uVar8, uVar9, 0);
@@ -236,7 +236,7 @@ u8 **FUN_8c0611cc(u8 **a0, int *a1, code *a2, char *a3) {
             if (iVar1 == 0) {
                 a3 = "GRATIFIC_COPULATION_DONE";
                 pcVar11 = NULL;
-                FUN_8c0306d4(a0 + 0x27, 9, 0, "GRATIFIC_COPULATION_DONE");
+                talk_start_line(a0 + 0x27, 9, 0, "GRATIFIC_COPULATION_DONE");
                 *(u8 *)(a0 + 0x26) = 4;
             }
             uVar3 = 1;
@@ -248,14 +248,14 @@ u8 **FUN_8c0611cc(u8 **a0, int *a1, code *a2, char *a3) {
             if (a0[0xe1] == (u8 *)0xffffffff) {
                 ppuVar4 = (u8 **)0xffffffff;
             } else {
-                ppuVar4 = (u8 **)FUN_8c030870(a0 + 0x27, 2, a0[0xe1], a3);
+                ppuVar4 = (u8 **)set_field_770(a0 + 0x27, 2, a0[0xe1], a3);
             }
             break;
         case (u8 **)0xf:
             iVar1 = FUN_8c02f414(a0, 0x35, pcVar11, a3);
             if (iVar1 == 1) {
                 uVar3 = get_field_6c_02f46c(a0[0x1b]);
-                uVar3 = FUN_8c05feec(a0[0x1b], uVar3, pcVar11, a3);
+                uVar3 = take_from_field_6c(a0[0x1b], uVar3, pcVar11, a3);
                 FUN_8c05fec4(*(int *)(a2 + 4));
                 (**(code **)(*(int *)(a0[0x1b] + 8) + 0x78))(a0[0x1b], uVar3, pcVar11, a3);
                 pcVar11 = NULL;
@@ -294,7 +294,7 @@ u8 **FUN_8c0611cc(u8 **a0, int *a1, code *a2, char *a3) {
             ppuVar4 = (u8 **)recent5_push_unique(*(int *)(a2 + 0x18), 0x22, uVar3);
             break;
         case (u8 **)0x14:
-            ppuVar4 = (u8 **)FUN_8c0306d4(a0 + 0x27, 0x1f, a0[0x41], "REACTION_AFTER_DEKOPIN");
+            ppuVar4 = (u8 **)talk_start_line(a0 + 0x27, 0x1f, a0[0x41], "REACTION_AFTER_DEKOPIN");
             break;
         case (u8 **)0x17:
             counter_set_clamped(*(int *)(a2 + 4) + 0x90, 1, pcVar11);
@@ -305,9 +305,9 @@ u8 **FUN_8c0611cc(u8 **a0, int *a1, code *a2, char *a3) {
             }
             if (((a0[0xe1] == (u8 *)0xffffffff) && (a0[0x21f] != (u8 *)0x1)) &&
                 (*(char *)((int)a0 + 0x879) == '\x02')) {
-                FUN_8c030870(a0 + 0x27, 0, pcVar11, a3);
+                set_field_770(a0 + 0x27, 0, pcVar11, a3);
                 pcVar7 = "EVENT_ENDING";
-                FUN_8c0303b8(a0 + 0x27, 0x2a, 0, "EVENT_ENDING", "start");
+                talk_queue_mode1(a0 + 0x27, 0x2a, 0, "EVENT_ENDING", "start");
                 a0[0x3f] = NULL;
                 puVar6 = (u8 *)speech_request(0x8c35468c, a0[0xe2], a0 + 0x27, pcVar7);
                 a0[0xe1] = puVar6;
@@ -349,7 +349,7 @@ u8 **FUN_8c0611cc(u8 **a0, int *a1, code *a2, char *a3) {
             break;
         case (u8 **)0x1c:
             set_field_40_05f498(*(int *)(a2 + 0xc), 8);
-            ppuVar4 = (u8 **)FUN_8c030568(a0 + 0x27, 0x1f, 0, "EVENT_JUMP_FAIL", &g_8c1369bf);
+            ppuVar4 = (u8 **)talk_queue_mode2(a0 + 0x27, 0x1f, 0, "EVENT_JUMP_FAIL", &g_8c1369bf);
             break;
         case (u8 **)0x1d:
             ppuVar4 = (u8 **)set_field_40_05f498(*(int *)(a2 + 0xc), 5);
@@ -374,7 +374,7 @@ u8 **FUN_8c0611cc(u8 **a0, int *a1, code *a2, char *a3) {
             uVar8 = (**(code **)(*a1 + 0x148))(a1, uVar8, uVar9, uVar3);
             uVar9 = 0;
             FUN_8c062054(uVar8, 1, 0);
-            ppuVar4 = (u8 **)FUN_8c062048(*(int *)(a2 + 0xc), 4);
+            ppuVar4 = (u8 **)set_field_ac(*(int *)(a2 + 0xc), 4);
             break;
         case (u8 **)0x23:
         case (u8 **)0x27:
@@ -438,7 +438,7 @@ u8 **FUN_8c0611cc(u8 **a0, int *a1, code *a2, char *a3) {
             }
             break;
         case (u8 **)0x29:
-            ppuVar4 = (u8 **)FUN_8c101148(*(u32 *)(*(int *)(a2 + 0x18) + 0x7cc), 1);
+            ppuVar4 = (u8 **)set_field_b4(*(u32 *)(*(int *)(a2 + 0x18) + 0x7cc), 1);
             break;
         case (u8 **)0x30:
             ppuVar4 = (u8 **)a0[3];
@@ -446,17 +446,17 @@ u8 **FUN_8c0611cc(u8 **a0, int *a1, code *a2, char *a3) {
             break;
         case (u8 **)0x31:
             set_field_40_05f498(*(int *)(a2 + 0xc), 8);
-            ppuVar4 = (u8 **)FUN_8c030568(a0 + 0x27, 0x1f, 0, "EVENT_JUMP_HALF_SUCCESS", &g_8c1369bf);
+            ppuVar4 = (u8 **)talk_queue_mode2(a0 + 0x27, 0x1f, 0, "EVENT_JUMP_HALF_SUCCESS", &g_8c1369bf);
         }
     }
     return ppuVar4;
 }
 
 /*
- * FUN_8c062048  0x8c062048
+ * set_field_ac  0x8c062048
  * called by: FUN_8c0611cc, FUN_8c0620d4
  */
-int FUN_8c062048(int a0, u32 a1) {
+int set_field_ac(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0xac;
@@ -553,7 +553,7 @@ int FUN_8c0620d4(int a0, int *a1, int a2, u32 a3) {
     uVar1 = libgcc_divide_helper_0101e4(uVar1 & 0xffff, 0x3c);
     uVar2 = get_field_a0_035724(*(u32 *)(a2 + 0x18), uVar5);
     if ((char)uVar2 == '\x02') {
-        iVar3 = FUN_8c02c340(*(int *)(a2 + 4) + 0x90, uVar5, ar6_00, a3);
+        iVar3 = percent_field_4_of_c(*(int *)(a2 + 4) + 0x90, uVar5, ar6_00, a3);
         if (iVar3 < 0x28) {
             (**(code **)(*a1 + 0x178))(a1, uVar5, ar6_00, a3);
             if (cVar12 == '\0') {
@@ -639,7 +639,7 @@ int FUN_8c0620d4(int a0, int *a1, int a2, u32 a3) {
                             counter_set_clamped(iVar7, 0, ar6_00);
                             uVar2 = rand();
                             uVar2 = libgcc_divide_helper_01031c(uVar2, 3, ar6_00);
-                            FUN_8c062048(*(u32 *)(a2 + 0xc), uVar2);
+                            set_field_ac(*(u32 *)(a2 + 0xc), uVar2);
                             iVar7 = get_field_ac_062880(*(u32 *)(a2 + 0xc));
                             if (iVar7 == 0) {
                                 *(u32 *)(a0 + 0x40) = 0x23;
@@ -786,7 +786,7 @@ u32 *FUN_8c0628a4(int a0, int *a1, int a2, char *a3) {
                     (uVar2 = get_field_a4_s16(*(u32 *)(a2 + 0x18), uVar4), 2 < (u16)uVar2)) {
                     a3 = "REACTION_TEMP_LACK";
                     a6 = 0;
-                    FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "REACTION_TEMP_LACK");
+                    talk_start_line(a0 + 0x9c, 0x2c, 0, "REACTION_TEMP_LACK");
                     *(u32 *)(a0 + 0x88c) = 1;
                 }
             }
@@ -806,7 +806,7 @@ u32 *FUN_8c0628a4(int a0, int *a1, int a2, char *a3) {
                 (uVar2 = get_field_a4_s16(*(u32 *)(a2 + 0x18), uVar2), 2 < (u16)uVar2)) {
                 a3 = "REACTION_SWITCH_OFF";
                 a6 = 0;
-                FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "REACTION_SWITCH_OFF");
+                talk_start_line(a0 + 0x9c, 0x2c, 0, "REACTION_SWITCH_OFF");
                 *(u32 *)(a0 + 0x890) = 1;
             }
         }
@@ -847,7 +847,7 @@ u32 *FUN_8c0628a4(int a0, int *a1, int a2, char *a3) {
                     uVar2 = get_field_a4_s16(*(u32 *)(a2 + 0x18), uVar4);
                     puVar3 = (u32 *)0x3;
                     if (2 < (u16)uVar2) {
-                        FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "REACTION_OXYGEN_LACK");
+                        talk_start_line(a0 + 0x9c, 0x2c, 0, "REACTION_OXYGEN_LACK");
                         puVar3 = (u32 *)0x894;
                         *(u32 *)(a0 + 0x894) = 1;
                     }
@@ -991,7 +991,7 @@ int FUN_8c062b0c(int a0, code *a1, code *a2, char *a3) {
                 a3 = "REACTION_WAKED_TAP";
                 pcVar6 = NULL;
                 pcVar5 = NULL;
-                FUN_8c0306d4(a0 + 0x9c, 0, 0, "REACTION_WAKED_TAP");
+                talk_start_line(a0 + 0x9c, 0, 0, "REACTION_WAKED_TAP");
             }
         }
     } else if (*(char *)(a0 + 0x83) == '\x02') {
@@ -1047,7 +1047,7 @@ int FUN_8c062b0c(int a0, code *a1, code *a2, char *a3) {
                 a3 = "REACTION_WAKED_TAP";
                 pcVar6 = NULL;
                 pcVar5 = NULL;
-                FUN_8c0306d4(a0 + 0x9c, 0, 0, "REACTION_WAKED_TAP");
+                talk_start_line(a0 + 0x9c, 0, 0, "REACTION_WAKED_TAP");
             }
         }
     }
@@ -1059,7 +1059,7 @@ int FUN_8c062b0c(int a0, code *a1, code *a2, char *a3) {
             a3 = "REACTION_WAKED_TAP";
             pcVar6 = NULL;
             pcVar5 = NULL;
-            FUN_8c0306d4(a0 + 0x9c, 0, 0, "REACTION_WAKED_TAP");
+            talk_start_line(a0 + 0x9c, 0, 0, "REACTION_WAKED_TAP");
         }
     }
     if ((*(char *)(a0 + 0x83) == '\x02') &&
@@ -1068,11 +1068,12 @@ int FUN_8c062b0c(int a0, code *a1, code *a2, char *a3) {
         a3 = "REACTION_WAKED_TAP";
         pcVar6 = NULL;
         pcVar5 = NULL;
-        FUN_8c0306d4(a0 + 0x9c, 0, 0, "REACTION_WAKED_TAP");
+        talk_start_line(a0 + 0x9c, 0, 0, "REACTION_WAKED_TAP");
     }
     *(u8 *)(a0 + 0x81) = 0;
     uVar3 = FUN_8c02bef8(*(u32 *)(a2 + 4), pcVar5, pcVar6);
-    if (((short)uVar3 == 3) && (iVar2 = FUN_8c02c340(*(int *)(a2 + 4) + 0x90, pcVar5, pcVar6, a3), iVar2 < 0x31)) {
+    if (((short)uVar3 == 3) &&
+        (iVar2 = percent_field_4_of_c(*(int *)(a2 + 4) + 0x90, pcVar5, pcVar6, a3), iVar2 < 0x31)) {
         (**(code **)(*(int *)a1 + 0x178))(a1, pcVar5, pcVar6, a3);
         if (cVar10 == '\0') {
             fVar8 = 20.0;
@@ -1115,15 +1116,15 @@ int FUN_8c062b0c(int a0, code *a1, code *a2, char *a3) {
                 uVar3 = get_field_44_s8(*(u32 *)(a2 + 0xc), ar5_00, pcVar6, a3);
                 if (((char)uVar3 == '\0') && (iVar2 = FUN_8c02fcc4(a0, a2, pcVar6, a3), iVar2 != 1)) {
                     if (*(int *)(a0 + 900) == -1) {
-                        FUN_8c030870(a0 + 0x9c, 0, pcVar6, a3);
+                        set_field_770(a0 + 0x9c, 0, pcVar6, a3);
                         a3 = "REQUEST_ATTENTION";
-                        FUN_8c0303b8(a0 + 0x9c, 10, 0, "REQUEST_ATTENTION", &g_8c1369bf);
+                        talk_queue_mode1(a0 + 0x9c, 10, 0, "REQUEST_ATTENTION", &g_8c1369bf);
                         *(u32 *)(a0 + 0xfc) = 0;
                         pcVar6 = (code *)(a0 + 0x9c);
                         uVar3 = speech_request(0x8c35468c, *(u32 *)(a0 + 0x388), pcVar6, a3);
                         *(u32 *)(a0 + 900) = uVar3;
                         *(u32 *)(a0 + 0x14c) = 0;
-                        FUN_8c030870(a0 + 0x9c, 2, pcVar6, a3);
+                        set_field_770(a0 + 0x9c, 2, pcVar6, a3);
                     }
                     pcVar5 = (code *)(*(int *)(a0 + 0x86c) + 1);
                     *(code **)(a0 + 0x86c) = pcVar5;
@@ -1138,9 +1139,9 @@ int FUN_8c062b0c(int a0, code *a1, code *a2, char *a3) {
                 uVar3 = get_field_44_s8(*(u32 *)(a2 + 0xc), pcVar5, pcVar6, a3);
                 if (((char)uVar3 == '\x01') && (iVar2 = FUN_8c02fcc4(a0, a2, pcVar6, a3), iVar2 == 1)) {
                     if (*(int *)(a0 + 900) == -1) {
-                        FUN_8c030870(a0 + 0x9c, 0, pcVar6, a3);
+                        set_field_770(a0 + 0x9c, 0, pcVar6, a3);
                         ar7_00 = "EVENT_GET_SPRINKLER";
-                        FUN_8c0303b8(a0 + 0x9c, 0x2a, 0, "EVENT_GET_SPRINKLER", &g_8c1369bf);
+                        talk_queue_mode1(a0 + 0x9c, 0x2a, 0, "EVENT_GET_SPRINKLER", &g_8c1369bf);
                         *(u32 *)(a0 + 0xfc) = 0;
                         pcVar6 = (code *)(a0 + 0x9c);
                         uVar3 = speech_request(0x8c35468c, *(u32 *)(a0 + 0x388), pcVar6, ar7_00);
@@ -1340,7 +1341,7 @@ u8 **FUN_8c063838(code *a0, int *a1, code *a2, u32 a3) {
                       ((iVar4 = get_field_40_03598c(*(u32 *)(a2 + 0xc), ar5_01),
                         iVar4 == 0 && (uVar1 = get_field_bc_s8(*(u32 *)(a2 + 0xc), ar5_01, pcVar6, ar7_00),
                                        (char)uVar1 == '\x02')))))) {
-                    iVar4 = FUN_8c02c340(*(int *)(a2 + 4) + 0x90, ar5_01, pcVar6, ar7_00);
+                    iVar4 = percent_field_4_of_c(*(int *)(a2 + 4) + 0x90, ar5_01, pcVar6, ar7_00);
                     uVar1 = (u32)((u64)in_dr0 >> 0x20);
                     if (iVar4 < 0x2d) {
                         (**(code **)(*a1 + 0x178))(a1, ar5_01, pcVar6, ar7_00);
@@ -1411,7 +1412,7 @@ u8 **FUN_8c063838(code *a0, int *a1, code *a2, u32 a3) {
                     (((ar5_01 = (code *)get_field_4_062878(*(u32 *)(a2 + 0xc)),
                        ar5_01 == (code *)0x1 && (iVar4 = get_field_40_03598c(*(u32 *)(a2 + 0xc), 1), iVar4 == 0)) &&
                       (uVar1 = get_field_bc_s8(*(u32 *)(a2 + 0xc), ar5_01, pcVar6, ar7_00), (char)uVar1 == '\x02')))) {
-                    iVar4 = FUN_8c02c340(*(int *)(a2 + 4) + 0x90, FUN_8c02c340, pcVar6, ar7_00);
+                    iVar4 = percent_field_4_of_c(*(int *)(a2 + 4) + 0x90, percent_field_4_of_c, pcVar6, ar7_00);
                     ar5_01 = (code *)0x2d;
                     if (iVar4 < 0x2d) {
                         (**(code **)(*a1 + 0x178))(a1, 0x2d, pcVar6, ar7_00);
@@ -1478,15 +1479,15 @@ LAB_8c063f66:
     ar7_01 = (char *)ar7_00;
     if (a0[0x879] == (code)0x1) {
         if (*(int *)(a0 + 900) == -1) {
-            FUN_8c030870(a0 + 0x9c, 0, pcVar6, ar7_00);
+            set_field_770(a0 + 0x9c, 0, pcVar6, ar7_00);
             ar7_01 = "REQUEST_ATTENTION";
-            FUN_8c0303b8(a0 + 0x9c, 10, 0, "REQUEST_ATTENTION", &g_8c1369bf);
+            talk_queue_mode1(a0 + 0x9c, 10, 0, "REQUEST_ATTENTION", &g_8c1369bf);
             *(u32 *)(a0 + 0xfc) = 0;
             pcVar6 = a0 + 0x9c;
             uVar1 = speech_request(0x8c35468c, *(u32 *)(a0 + 0x388), pcVar6, ar7_01);
             *(u32 *)(a0 + 900) = uVar1;
             *(u32 *)(a0 + 0x14c) = 0;
-            FUN_8c030870(a0 + 0x9c, 2, pcVar6, ar7_01);
+            set_field_770(a0 + 0x9c, 2, pcVar6, ar7_01);
         }
         *(int *)(a0 + 0x86c) = *(int *)(a0 + 0x86c) + 1;
         pcVar6 = a0;
@@ -1552,11 +1553,11 @@ LAB_8c063f66:
                 } else {
                     if (*(int *)(a0 + 900) == -1) {
                         uVar1 = 0;
-                        FUN_8c030870(a0 + 0x9c, 0, pcVar6, ar7_01);
+                        set_field_770(a0 + 0x9c, 0, pcVar6, ar7_01);
                         uVar1 = get_field_3b_s8(*(u32 *)(a2 + 0xc));
                         if ((char)uVar1 == '\0') {
                             ar7_01 = "EVENT_JUMP1";
-                            FUN_8c0303b8(a0 + 0x9c, 0x2a, 0, "EVENT_JUMP1", "start");
+                            talk_queue_mode1(a0 + 0x9c, 0x2a, 0, "EVENT_JUMP1", "start");
                             *(u32 *)(a0 + 0xfc) = 0;
                             pcVar6 = a0 + 0x9c;
                             uVar1 = speech_request(0x8c35468c, *(u32 *)(a0 + 0x388), pcVar6, ar7_01);
@@ -1564,7 +1565,7 @@ LAB_8c063f66:
                             *(u32 *)(a0 + 0x14c) = 1;
                         } else {
                             ar7_01 = "EVENT_JUMP3";
-                            FUN_8c0303b8(a0 + 0x9c, 0x2a, 0, "EVENT_JUMP3", &g_8c1369bf);
+                            talk_queue_mode1(a0 + 0x9c, 0x2a, 0, "EVENT_JUMP3", &g_8c1369bf);
                             *(u32 *)(a0 + 0xfc) = 0;
                             pcVar6 = a0 + 0x9c;
                             uVar1 = speech_request(0x8c35468c, *(u32 *)(a0 + 0x388), pcVar6, ar7_01);
@@ -1612,8 +1613,8 @@ LAB_8c063f66:
     case 3:
         ppuVar3 = *(u8 ***)(a0 + 900);
         if (ppuVar3 == (u8 **)0xffffffff) {
-            FUN_8c030870(a0 + 0x9c, 0, pcVar6, ar7_01);
-            FUN_8c0303b8(a0 + 0x9c, 3, 0, "EVENT_JUMP2", "start");
+            set_field_770(a0 + 0x9c, 0, pcVar6, ar7_01);
+            talk_queue_mode1(a0 + 0x9c, 3, 0, "EVENT_JUMP2", "start");
             *(u32 *)(a0 + 0xfc) = 0;
             uVar1 = speech_request(0x8c35468c, *(u32 *)(a0 + 0x388), a0 + 0x9c, speech_request);
             uVar5 = 900;
@@ -1688,7 +1689,7 @@ LAB_8c063f66:
             g_8c136910 = 0x36;
             recent5_push_unique(*(u32 *)(a2 + 0x18), 0x24, 0x1b);
         } else {
-            FUN_8c064ba0(*(u32 *)(a2 + 0x18), 3);
+            set_field_a1_u8(*(u32 *)(a2 + 0x18), 3);
             (**(code **)(*a1 + 0xd8))(a1, *(u32 *)a2, pcVar6, ar7_01);
             set_field_44_u8(*(u32 *)(a2 + 0xc), 1);
             *(u32 *)(a0 + 4) = 0xd;
@@ -1794,10 +1795,10 @@ u32 noop_064b9c(void) {
 }
 
 /*
- * FUN_8c064ba0  0x8c064ba0
+ * set_field_a1_u8  0x8c064ba0
  * called by: FUN_8c063838, FUN_8c104854, FUN_8c1089e4
  */
-int FUN_8c064ba0(int a0, u32 a1) {
+int set_field_a1_u8(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0xa1;
@@ -1848,16 +1849,16 @@ u32 FUN_8c064bb4(int a0, u32 unused_a1, int a2, char *a3) {
             if (((*(int *)(a0 + 0x40) == 0x15) &&
                  ((*(u32 *)(a0 + 0x40) = 0x15, *(int *)(a0 + 0x874) == 6 || (*(int *)(a0 + 0x874) == 7)))) &&
                 (*(int *)(a0 + 900) == -1)) {
-                FUN_8c030870(a0 + 0x9c, 0, a2, a3);
+                set_field_770(a0 + 0x9c, 0, a2, a3);
                 a3 = "REACTION_TITILLATE";
-                FUN_8c0303b8(a0 + 0x9c, 0x28, 0, "REACTION_TITILLATE", &g_8c1369bf);
+                talk_queue_mode1(a0 + 0x9c, 0x28, 0, "REACTION_TITILLATE", &g_8c1369bf);
                 *(u32 *)(a0 + 0xfc) = 0;
                 iVar2 = a0 + 0x9c;
                 uVar1 = speech_request(0x8c35468c, *(u32 *)(a0 + 0x388), iVar2, a3);
                 *(u32 *)(a0 + 900) = uVar1;
                 *(u32 *)(a0 + 0x14c) = 0;
                 ar5_00 = (u8 *)0x2;
-                FUN_8c030870(a0 + 0x9c, 2, iVar2, a3);
+                set_field_770(a0 + 0x9c, 2, iVar2, a3);
             }
         } else {
             *(u32 *)(a0 + 4) = 0xd;
@@ -1921,7 +1922,7 @@ u32 FUN_8c064bb4(int a0, u32 unused_a1, int a2, char *a3) {
             a3 = "REACTION_DEKOPIN";
             iVar2 = 0;
             ar5_00 = (u8 *)0x27;
-            FUN_8c0306d4(a0 + 0x9c, 0x27, 0, "REACTION_DEKOPIN");
+            talk_start_line(a0 + 0x9c, 0x27, 0, "REACTION_DEKOPIN");
         }
     }
     if (((*(char *)(a0 + 0x86) == '\x01') &&
@@ -1971,7 +1972,7 @@ u32 FUN_8c064bb4(int a0, u32 unused_a1, int a2, char *a3) {
         }
     } else if ((*(int *)(a0 + 0x40) == 0x29) || (*(int *)(a0 + 0x40) == 0x2a)) {
         if ((*(int *)(a0 + 0x40) == 0x2a) && (0x1e < *(int *)(a0 + 0x860))) {
-            FUN_8c0306d4(a0 + 0x9c, 0x15, 0, "STATUS_AFTER_DANCE");
+            talk_start_line(a0 + 0x9c, 0x15, 0, "STATUS_AFTER_DANCE");
             *(u32 *)(a0 + 0x860) = 0;
         }
         *(u32 *)(a0 + 4) = 0;
@@ -1999,15 +2000,15 @@ int FUN_8c065228(int a0, u32 unused_a1, int a2) {
     iVar1 = FUN_8c02bebc(*(u32 *)(a2 + 4));
     if (iVar1 != -1) {
         if (iVar1 == 0) {
-            (*(code *)(&FUN_8c0303b8))(a0 + 0x9c, 7, 0, "GRATIFIC_RID_HOT", (&DATA_8c136988) + 0x37);
+            (*(code *)(&talk_queue_mode1))(a0 + 0x9c, 7, 0, "GRATIFIC_RID_HOT", (&DATA_8c136988) + 0x37);
             iVar1 = 0x118;
             *(u32 *)(0x118 + a0) = 7;
         } else if (iVar1 == 1) {
-            (*(code *)(&FUN_8c0303b8))(a0 + 0x9c, 8, 0, "GRATIFIC_RID_COLD", (&DATA_8c136988) + 0x37);
+            (*(code *)(&talk_queue_mode1))(a0 + 0x9c, 8, 0, "GRATIFIC_RID_COLD", (&DATA_8c136988) + 0x37);
             iVar1 = 0x118;
             *(u32 *)(0x118 + a0) = 7;
         } else if (iVar1 == 3) {
-            (*(code *)(&FUN_8c0303b8))(a0 + 0x9c, 0x1c, 0, "GRATIFIC_RID_HUMIDITY", (&DATA_8c136988) + 0x37);
+            (*(code *)(&talk_queue_mode1))(a0 + 0x9c, 0x1c, 0, "GRATIFIC_RID_HUMIDITY", (&DATA_8c136988) + 0x37);
             iVar1 = 0x118;
             *(u32 *)(0x118 + a0) = 7;
         }
@@ -2087,7 +2088,7 @@ int FUN_8c0652f4(int a0, u32 a1, int a2, u32 a3) {
                 *(u32 *)(a0 + 900) = uVar2;
             }
             if ((*(int *)(a0 + 0x40) == 3) && (*(int *)(a0 + 900) != -1)) {
-                FUN_8c030870(a0 + 0x9c, 1, ar6_00, a3);
+                set_field_770(a0 + 0x9c, 1, ar6_00, a3);
             }
         }
         iVar1 = *(int *)(a0 + 4);
@@ -2212,10 +2213,10 @@ u32 FUN_8c0656d4(int a0, int *a1, u32 *a2, u32 a3) {
     iVar1 = get_field_89130_0fa740(0x8c35468c);
     if ((iVar1 == 3) || (iVar1 = get_field_89130_0fa740(0x8c35468c), iVar1 == 5)) {
         ar5_00 = (code *)0x1;
-        FUN_8c065ca4(a2[3], 1);
+        set_field_c8(a2[3], 1);
     } else {
         ar5_00 = NULL;
-        FUN_8c065ca4(a2[3], 0);
+        set_field_c8(a2[3], 0);
     }
     iVar1 = get_field_770_05eeb8(a0 + 0x9c);
     if (iVar1 == 2) {
@@ -2226,7 +2227,7 @@ u32 FUN_8c0656d4(int a0, int *a1, u32 *a2, u32 a3) {
         goto LAB_8c065be6;
     *(u32 *)(a0 + 0x94) = 0;
     ar5_01 = (char *)0x3;
-    FUN_8c030870(a0 + 0x9c, 3, ar6_00, a3);
+    set_field_770(a0 + 0x9c, 3, ar6_00, a3);
     if (*(int *)(a0 + 0x40) == 0xc) {
         *(u32 *)(a0 + 4) = 0;
         *(u32 *)(a0 + 0x40) = 0;
@@ -2296,7 +2297,7 @@ u32 FUN_8c0656d4(int a0, int *a1, u32 *a2, u32 a3) {
         ar5_00 = NULL;
         FUN_8c02af68(*a2, 0);
     } else {
-        FUN_8c065c80(a2[3], *(u32 *)(a0 + 0x100));
+        set_field_b0(a2[3], *(u32 *)(a0 + 0x100));
         ar5_00 = (code *)0x1;
         FUN_8c02af68(*a2, 1);
     }
@@ -2307,7 +2308,7 @@ u32 FUN_8c0656d4(int a0, int *a1, u32 *a2, u32 a3) {
 LAB_8c065be6:
     iVar1 = FUN_8c0fa2b8(0x8c35468c, ar5_00);
     if ((iVar1 == 0) && ((*(int *)(a0 + 0x40) == 0xc || (*(int *)(a0 + 0x40) == 0xb)))) {
-        FUN_8c030870(a0 + 0x9c, 3, ar6_00, a3);
+        set_field_770(a0 + 0x9c, 3, ar6_00, a3);
         *(u32 *)(a0 + 4) = 0;
         *(u32 *)(a0 + 0x40) = 0;
         *(u32 *)(a0 + 8) = 0;
@@ -2319,10 +2320,10 @@ LAB_8c065be6:
 }
 
 /*
- * FUN_8c065c80  0x8c065c80
+ * set_field_b0  0x8c065c80
  * called by: FUN_8c0656d4, FUN_8c1089e4
  */
-int FUN_8c065c80(int a0, u32 a1) {
+int set_field_b0(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0xb0;
@@ -2357,10 +2358,10 @@ u32 set_field_3d_u8(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c065ca4  0x8c065ca4
+ * set_field_c8  0x8c065ca4
  * called by: FUN_8c0656d4, FUN_8c1089e4
  */
-int FUN_8c065ca4(int a0, u32 a1) {
+int set_field_c8(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0xc8;
@@ -2478,7 +2479,7 @@ u8 *FUN_8c065e6c(int a0, u32 a1, int a2, char *a3) {
         a3 = "IDLEACTION_SNEEZE";
         iVar3 = 0;
         a1 = 0x19;
-        FUN_8c0306d4(a0 + 0x9c, 0x19, 0, "IDLEACTION_SNEEZE");
+        talk_start_line(a0 + 0x9c, 0x19, 0, "IDLEACTION_SNEEZE");
     }
     puVar2 = *(u8 **)(a0 + 900);
     if (((puVar2 == (u8 *)0xffffffff) &&
@@ -2490,31 +2491,31 @@ u8 *FUN_8c065e6c(int a0, u32 a1, int a2, char *a3) {
             puVar2 = (&switchD_8c065f22::switchdataD_8c065f28)[iVar3 + -2];
             switch (iVar3) {
             case 2:
-                puVar2 = (u8 *)FUN_8c030568(a0 + 0x9c, 0x19, 0, "IDLEACTION_YAWN", &g_8c1369bf);
+                puVar2 = (u8 *)talk_queue_mode2(a0 + 0x9c, 0x19, 0, "IDLEACTION_YAWN", &g_8c1369bf);
                 break;
             case 3:
-                puVar2 = (u8 *)FUN_8c030568(a0 + 0x9c, 0x19, 0, "IDLEACTION_PURUPURU", &g_8c1369bf);
+                puVar2 = (u8 *)talk_queue_mode2(a0 + 0x9c, 0x19, 0, "IDLEACTION_PURUPURU", &g_8c1369bf);
                 break;
             case 4:
-                puVar2 = (u8 *)FUN_8c030568(a0 + 0x9c, 0x19, 0, "IDLEACTION_WHAT", &g_8c1369bf);
+                puVar2 = (u8 *)talk_queue_mode2(a0 + 0x9c, 0x19, 0, "IDLEACTION_WHAT", &g_8c1369bf);
                 break;
             case 5:
-                puVar2 = (u8 *)FUN_8c030568(a0 + 0x9c, 0x19, 0, "IDLEACTION_SNEEZE", &g_8c1369bf);
+                puVar2 = (u8 *)talk_queue_mode2(a0 + 0x9c, 0x19, 0, "IDLEACTION_SNEEZE", &g_8c1369bf);
                 break;
             case 6:
-                puVar2 = (u8 *)FUN_8c030568(a0 + 0x9c, 0x19, 0, "IDLEACTION_STERN_SWING", &g_8c1369bf);
+                puVar2 = (u8 *)talk_queue_mode2(a0 + 0x9c, 0x19, 0, "IDLEACTION_STERN_SWING", &g_8c1369bf);
                 break;
             case 9:
-                puVar2 = (u8 *)FUN_8c030568(a0 + 0x9c, 0x19, 0, "IDLEACTION_WANT_FREE", &g_8c1369bf);
+                puVar2 = (u8 *)talk_queue_mode2(a0 + 0x9c, 0x19, 0, "IDLEACTION_WANT_FREE", &g_8c1369bf);
                 break;
             case 0xb:
-                puVar2 = (u8 *)FUN_8c030568(a0 + 0x9c, 0x19, 0, "IDLEACTION_PAW", &g_8c1369bf);
+                puVar2 = (u8 *)talk_queue_mode2(a0 + 0x9c, 0x19, 0, "IDLEACTION_PAW", &g_8c1369bf);
                 break;
             case 0xd:
-                puVar2 = (u8 *)FUN_8c030568(a0 + 0x9c, 0x19, 0, "IDLEACTION_BITE", &g_8c1369bf);
+                puVar2 = (u8 *)talk_queue_mode2(a0 + 0x9c, 0x19, 0, "IDLEACTION_BITE", &g_8c1369bf);
                 break;
             case 0xe:
-                puVar2 = (u8 *)FUN_8c030568(a0 + 0x9c, 0x19, 0, "IDLEACTION_ACTION_JUMP", &g_8c1369bf);
+                puVar2 = (u8 *)talk_queue_mode2(a0 + 0x9c, 0x19, 0, "IDLEACTION_ACTION_JUMP", &g_8c1369bf);
             }
         }
     }
@@ -2580,7 +2581,7 @@ int FUN_8c0660d4(int a0, int *a1, int *a2, char *a3) {
                     a3 = "STATUS_SUCKED";
                     a6 = NULL;
                     a5 = (int *)0x19;
-                    FUN_8c0306d4(a0 + 0x9c, 0x19, 0, "STATUS_SUCKED");
+                    talk_start_line(a0 + 0x9c, 0x19, 0, "STATUS_SUCKED");
                 }
                 if (*(int *)(a0 + 0x6c) != 0) {
                     (**(code **)(*(int *)(*(int *)(a0 + 0x6c) + 8) + 0x78))(*(int *)(a0 + 0x6c), a5, a6, a3);
@@ -2638,8 +2639,8 @@ LAB_8c0662e6:
                 iVar2 = (int)(char)uVar1;
                 if (iVar2 == 2) {
                     uVar1 = 0;
-                    FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "REACTION_FEED_FULL");
-                    iVar2 = FUN_8c06643c(a2[3], 1);
+                    talk_start_line(a0 + 0x9c, 0x2c, 0, "REACTION_FEED_FULL");
+                    iVar2 = set_field_c4(a2[3], 1);
                 }
             }
         }
@@ -2648,10 +2649,10 @@ LAB_8c0662e6:
 }
 
 /*
- * FUN_8c06643c  0x8c06643c
+ * set_field_c4  0x8c06643c
  * called by: FUN_8c0660d4, FUN_8c1093a4
  */
-int FUN_8c06643c(int a0, u32 a1) {
+int set_field_c4(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0xc4;
@@ -2722,8 +2723,8 @@ int FUN_8c066464(int a0, int *a1, int a2, u32 a3) {
                             iVar1 = 2;
                             if ((2 < iVar3) && (iVar1 = *(int *)(0x868 + a0), iVar1 == 0)) {
                                 *(u32 *)(0x868 + a0) = 1;
-                                iVar1 = (*(code *)(&FUN_8c0303b8))(a0 + 0x9c, 0x16, 0, "STATUS_LASTONE",
-                                                                   (&DATA_8c136988) + 0x37);
+                                iVar1 = (*(code *)(&talk_queue_mode1))(a0 + 0x9c, 0x16, 0, "STATUS_LASTONE",
+                                                                       (&DATA_8c136988) + 0x37);
                             }
                         }
                     }
@@ -3092,9 +3093,9 @@ u32 get_field_150_067140(int a0) {
 }
 
 /*
- * FUN_8c06714c  0x8c06714c
+ * set_field_150  0x8c06714c
  */
-int FUN_8c06714c(int a0, u32 a1) {
+int set_field_150(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = 0x150;
@@ -3140,7 +3141,7 @@ int Class_12a078_m5_0671f4(int a0, u32 a1, u32 a2, u32 a3) {
     if (iVar1 != -1) {
         speech_stop(0x8c35468c, a1, a2, a3);
         ar5_00 = 3;
-        FUN_8c030870(a0 + 0x9c, 3, a2, a3);
+        set_field_770(a0 + 0x9c, 3, a2, a3);
         *(u8 *)(0x80 + a0) = 1;
         *(u32 *)(0x384 + a0) = 0xffffffff;
         *(u32 *)(0xfc + a0) = 0;
@@ -5450,7 +5451,7 @@ u32 FUN_8c069c24(int *a0, int a1, int a2, u32 a3) {
         }
         uVar2 = field_ptr_204(unaff_r8);
         *(u32 *)((int)&uStack_1d8 + 0xc0) = uVar2;
-        uVar2 = (*(code *)(&noop_015bb8))(*(u32 *)((int)&uStack_1d8 + 0xc0), a1, iVar5, a3);
+        uVar2 = (*(code *)(&get_field_0_015bb8))(*(u32 *)((int)&uStack_1d8 + 0xc0), a1, iVar5, a3);
         *(u32 *)((int)&uStack_1d8 + 0xbc) = uVar2;
         iVar6 = *(int *)(*(int *)((int)&uStack_1d8 + 0xbc) + 0x2c);
         uVar2 = get_field_210_06b3f4(unaff_r8);
@@ -7042,67 +7043,67 @@ u32 FUN_8c06b460(int a0) {
         iVar9 = a0 + 100;
         matrix_scale(0, iVar9, ar6_00, iVar8, in_stack_fffffef4);
         obj_set_texlist(*(int *)(a0 + 0x224) + *(int *)(a0 + 0x220) * 0x124 + 0x78, iVar9, ar6_00);
-        uVar4 = noop_015bb8(*(int *)(a0 + 0x224) + *(int *)(a0 + 0x220) * 0x124 + 0x70);
+        uVar4 = get_field_0_015bb8(*(int *)(a0 + 0x224) + *(int *)(a0 + 0x220) * 0x124 + 0x70);
         FUN_8c219a9a(uVar4, iVar9, ar6_00, iVar8);
     } else {
         matrix_scale(0, iVar9, ar6_00, iVar8, in_stack_fffffef4);
-        iVar2 = noop_015bb8(a0 + 0x204);
+        iVar2 = get_field_0_015bb8(a0 + 0x204);
         puVar5 = (u64 *)(*(int *)(iVar2 + 0x2c) + 0x20);
         if (cVar11 == '\0') {
             *(u32 *)puVar5 = *(u32 *)(a0 + 0x234);
         } else {
             *puVar5 = *(u64 *)(a0 + 0x234);
         }
-        iVar2 = noop_015bb8(a0 + 0x204);
+        iVar2 = get_field_0_015bb8(a0 + 0x204);
         puVar5 = (u64 *)(*(int *)(iVar2 + 0x2c) + 0x24);
         if (cVar11 == '\0') {
             *(u32 *)puVar5 = *(u32 *)(a0 + 0x234);
         } else {
             *puVar5 = *(u64 *)(a0 + 0x234);
         }
-        iVar2 = noop_015bb8(a0 + 0x204);
+        iVar2 = get_field_0_015bb8(a0 + 0x204);
         puVar5 = (u64 *)(*(int *)(iVar2 + 0x2c) + 0x28);
         if (cVar11 == '\0') {
             *(u32 *)puVar5 = *(u32 *)(a0 + 0x234);
         } else {
             *puVar5 = *(u64 *)(a0 + 0x234);
         }
-        iVar2 = noop_015bb8(a0 + 0x204);
+        iVar2 = get_field_0_015bb8(a0 + 0x204);
         puVar5 = (u64 *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x30) + 0x20);
         if (cVar11 == '\0') {
             *(u32 *)puVar5 = *(u32 *)(a0 + 0x238);
         } else {
             *puVar5 = *(u64 *)(a0 + 0x238);
         }
-        iVar2 = noop_015bb8(a0 + 0x204);
+        iVar2 = get_field_0_015bb8(a0 + 0x204);
         puVar5 = (u64 *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x30) + 0x24);
         if (cVar11 == '\0') {
             *(u32 *)puVar5 = *(u32 *)(a0 + 0x238);
         } else {
             *puVar5 = *(u64 *)(a0 + 0x238);
         }
-        iVar2 = noop_015bb8(a0 + 0x204);
+        iVar2 = get_field_0_015bb8(a0 + 0x204);
         puVar5 = (u64 *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x30) + 0x28);
         if (cVar11 == '\0') {
             *(u32 *)puVar5 = *(u32 *)(a0 + 0x238);
         } else {
             *puVar5 = *(u64 *)(a0 + 0x238);
         }
-        iVar2 = noop_015bb8(a0 + 0x204);
+        iVar2 = get_field_0_015bb8(a0 + 0x204);
         puVar5 = (u64 *)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x30) + 0x30) + 0x20);
         if (cVar11 == '\0') {
             *(u32 *)puVar5 = *(u32 *)(a0 + 0x23c);
         } else {
             *puVar5 = *(u64 *)(a0 + 0x23c);
         }
-        iVar2 = noop_015bb8(a0 + 0x204);
+        iVar2 = get_field_0_015bb8(a0 + 0x204);
         puVar5 = (u64 *)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x30) + 0x30) + 0x24);
         if (cVar11 == '\0') {
             *(u32 *)puVar5 = *(u32 *)(a0 + 0x23c);
         } else {
             *puVar5 = *(u64 *)(a0 + 0x23c);
         }
-        iVar2 = noop_015bb8(a0 + 0x204);
+        iVar2 = get_field_0_015bb8(a0 + 0x204);
         puVar5 = (u64 *)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x30) + 0x30) + 0x28);
         if (cVar11 == '\0') {
             *(u32 *)puVar5 = *(u32 *)(a0 + 0x23c);
@@ -7110,19 +7111,19 @@ u32 FUN_8c06b460(int a0) {
             *puVar5 = *(u64 *)(a0 + 0x23c);
         }
         if (*(int *)(a0 + 0x210) < 4) {
-            iVar2 = noop_015bb8(a0 + 0x204);
+            iVar2 = get_field_0_015bb8(a0 + 0x204);
             **(u32 **)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x30) + 0x30) + 0x2c) = 0x25;
-            iVar2 = noop_015bb8(a0 + 0x204);
+            iVar2 = get_field_0_015bb8(a0 + 0x204);
             **(u32 **)(*(int *)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x30) + 0x30) + 0x2c) + 0x2c) = 0x24;
-            iVar2 = noop_015bb8(a0 + 0x204);
+            iVar2 = get_field_0_015bb8(a0 + 0x204);
             **(u32 **)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x30) + 0x30) + 0x2c) + 0x2c) +
                        0x2c) = 0x24;
-            iVar2 = noop_015bb8(a0 + 0x204);
+            iVar2 = get_field_0_015bb8(a0 + 0x204);
             **(u32 **)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x30) + 0x30) + 0x2c) +
                                          0x2c) +
                                 0x2c) +
                        0x2c) = 0x24;
-            iVar2 = noop_015bb8(a0 + 0x204);
+            iVar2 = get_field_0_015bb8(a0 + 0x204);
             **(u32 **)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x30) +
                                                                              0x30) +
                                                                     0x2c) +
@@ -7131,10 +7132,10 @@ u32 FUN_8c06b460(int a0) {
                                          0x2c) +
                                 0x2c) +
                        0x2c) = 0x37;
-            iVar9 = noop_015bb8(a0 + 0x204);
+            iVar9 = get_field_0_015bb8(a0 + 0x204);
             iVar2 = *(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar9 + 0x2c) + 0x30) + 0x30) + 0x2c) + 0x2c);
             **(u32 **)(*(int *)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x2c) + 0x2c) + 0x2c) + 0x2c) = 0x37;
-            iVar9 = noop_015bb8(a0 + 0x204);
+            iVar9 = get_field_0_015bb8(a0 + 0x204);
             **(u32 **)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar9 + 0x2c) +
                                                                                                0x30) +
                                                                                       0x30) +
@@ -7145,7 +7146,7 @@ u32 FUN_8c06b460(int a0) {
                                          0x2c) +
                                 0x2c) +
                        0x30) = 0x35;
-            iVar9 = noop_015bb8(a0 + 0x204);
+            iVar9 = get_field_0_015bb8(a0 + 0x204);
             **(u32 **)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar9 +
                                                                                                                  0x2c) +
                                                                                                         0x30) +
@@ -7158,7 +7159,7 @@ u32 FUN_8c06b460(int a0) {
                                          0x2c) +
                                 0x30) +
                        0x2c) = 0x37;
-            iVar2 = noop_015bb8(a0 + 0x204);
+            iVar2 = get_field_0_015bb8(a0 + 0x204);
             **(u32 **)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar2 +
                                                                                                                  0x2c) +
                                                                                                         0x30) +
@@ -7171,7 +7172,7 @@ u32 FUN_8c06b460(int a0) {
                                          0x2c) +
                                 0x30) +
                        0x30) = 0x35;
-            iVar8 = noop_015bb8(a0 + 0x204);
+            iVar8 = get_field_0_015bb8(a0 + 0x204);
             iVar2 =
                 *(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar8 + 0x2c) + 0x30) + 0x30) + 0x2c) +
                                            0x2c) +
@@ -7179,7 +7180,7 @@ u32 FUN_8c06b460(int a0) {
                          0x2c);
             iVar9 = *(int *)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x2c) + 0x30) + 0x30);
             **(u32 **)(iVar9 + 0x2c) = 0x37;
-            iVar8 = noop_015bb8(a0 + 0x204);
+            iVar8 = get_field_0_015bb8(a0 + 0x204);
             **(u32 *
                    *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar8 +
                                                                                                                          0x2c) +
@@ -7194,7 +7195,7 @@ u32 FUN_8c06b460(int a0) {
                                         0x30) +
                                0x30) +
                       0x30) = 0x35;
-            iVar8 = noop_015bb8(a0 + 0x204);
+            iVar8 = get_field_0_015bb8(a0 + 0x204);
             **(u32 *
                    *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar8 +
                                                                                                                                   0x2c) +
@@ -7210,7 +7211,7 @@ u32 FUN_8c06b460(int a0) {
                                         0x30) +
                                0x30) +
                       0x2c) = 0x37;
-            iVar8 = noop_015bb8(a0 + 0x204);
+            iVar8 = get_field_0_015bb8(a0 + 0x204);
             **(u32 *
                    *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar8 +
                                                                                                                                   0x2c) +
@@ -7226,7 +7227,7 @@ u32 FUN_8c06b460(int a0) {
                                         0x30) +
                                0x30) +
                       0x30) = 0x35;
-            iVar8 = noop_015bb8(a0 + 0x204);
+            iVar8 = get_field_0_015bb8(a0 + 0x204);
             **(u32 *
                    *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar8 +
                                                                                                                                            0x2c) +
@@ -7244,19 +7245,19 @@ u32 FUN_8c06b460(int a0) {
                                0x30) +
                       0x2c) = 0x37;
         } else {
-            iVar2 = noop_015bb8(a0 + 0x204);
+            iVar2 = get_field_0_015bb8(a0 + 0x204);
             **(u32 **)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x30) + 0x30) + 0x2c) = 0x2d;
-            iVar2 = noop_015bb8(a0 + 0x204);
+            iVar2 = get_field_0_015bb8(a0 + 0x204);
             **(u32 **)(*(int *)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x30) + 0x30) + 0x2c) + 0x2c) = 0x2c;
-            iVar2 = noop_015bb8(a0 + 0x204);
+            iVar2 = get_field_0_015bb8(a0 + 0x204);
             **(u32 **)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x30) + 0x30) + 0x2c) + 0x2c) +
                        0x2c) = 0x2c;
-            iVar2 = noop_015bb8(a0 + 0x204);
+            iVar2 = get_field_0_015bb8(a0 + 0x204);
             **(u32 **)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x30) + 0x30) + 0x2c) +
                                          0x2c) +
                                 0x2c) +
                        0x2c) = 0x2c;
-            iVar2 = noop_015bb8(a0 + 0x204);
+            iVar2 = get_field_0_015bb8(a0 + 0x204);
             **(u32 **)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x30) +
                                                                              0x30) +
                                                                     0x2c) +
@@ -7265,7 +7266,7 @@ u32 FUN_8c06b460(int a0) {
                                          0x2c) +
                                 0x2c) +
                        0x2c) = 0x3f;
-            iVar2 = noop_015bb8(a0 + 0x204);
+            iVar2 = get_field_0_015bb8(a0 + 0x204);
             **(u32 **)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) +
                                                                                                0x30) +
                                                                                       0x30) +
@@ -7276,7 +7277,7 @@ u32 FUN_8c06b460(int a0) {
                                          0x2c) +
                                 0x2c) +
                        0x2c) = 0x3f;
-            iVar9 = noop_015bb8(a0 + 0x204);
+            iVar9 = get_field_0_015bb8(a0 + 0x204);
             ar5_00 = *(
                 u32 **)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar9 + 0x2c) +
                                                                                                 0x30) +
@@ -7289,7 +7290,7 @@ u32 FUN_8c06b460(int a0) {
                                  0x2c) +
                         0x30);
             *ar5_00 = 0x3d;
-            iVar9 = noop_015bb8(a0 + 0x204);
+            iVar9 = get_field_0_015bb8(a0 + 0x204);
             **(u32 **)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar9 +
                                                                                                                  0x2c) +
                                                                                                         0x30) +
@@ -7302,13 +7303,13 @@ u32 FUN_8c06b460(int a0) {
                                          0x2c) +
                                 0x30) +
                        0x2c) = 0x3f;
-            iVar9 = noop_015bb8(a0 + 0x204);
+            iVar9 = get_field_0_015bb8(a0 + 0x204);
             iVar2 = *(int *)(*(int *)(*(int *)(*(int *)(iVar9 + 0x2c) + 0x30) + 0x30) + 0x2c);
             **(u32 **)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x2c) + 0x2c) + 0x2c) +
                                          0x2c) +
                                 0x30) +
                        0x30) = 0x3d;
-            iVar9 = noop_015bb8(a0 + 0x204);
+            iVar9 = get_field_0_015bb8(a0 + 0x204);
             **(u32 *
                    *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar9 +
                                                                                                                          0x2c) +
@@ -7323,7 +7324,7 @@ u32 FUN_8c06b460(int a0) {
                                         0x30) +
                                0x30) +
                       0x2c) = 0x3f;
-            iVar8 = noop_015bb8(a0 + 0x204);
+            iVar8 = get_field_0_015bb8(a0 + 0x204);
             iVar2 = *(
                 int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar8 +
                                                                                                                  0x2c) +
@@ -7339,7 +7340,7 @@ u32 FUN_8c06b460(int a0) {
                        0x30);
             **(u32 **)(iVar2 + 0x30) = 0x3d;
             iVar9 = a0 + 0x204;
-            iVar8 = noop_015bb8(iVar9);
+            iVar8 = get_field_0_015bb8(iVar9);
             **(u32 *
                    *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar8 +
                                                                                                                                   0x2c) +
@@ -7355,7 +7356,7 @@ u32 FUN_8c06b460(int a0) {
                                         0x30) +
                                0x30) +
                       0x2c) = 0x3f;
-            iVar8 = noop_015bb8(a0 + 0x204);
+            iVar8 = get_field_0_015bb8(a0 + 0x204);
             **(u32 *
                    *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar8 +
                                                                                                                                   0x2c) +
@@ -7371,7 +7372,7 @@ u32 FUN_8c06b460(int a0) {
                                         0x30) +
                                0x30) +
                       0x30) = 0x3d;
-            iVar8 = noop_015bb8(a0 + 0x204);
+            iVar8 = get_field_0_015bb8(a0 + 0x204);
             **(u32 *
                    *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar8 +
                                                                                                                                            0x2c) +
@@ -7398,31 +7399,31 @@ u32 FUN_8c06b460(int a0) {
             if ((iVar8 < 9) && (-1 < iVar8)) {
                 switch (iVar8) {
                 case 0:
-                    iVar9 = noop_015bb8(a0 + 0x204);
+                    iVar9 = get_field_0_015bb8(a0 + 0x204);
                     unaff_r13 = *(u32 *)(*(int *)(*(int *)(*(int *)(iVar9 + 0x2c) + 0x2c) + 4) + 4);
                     break;
                 case 1:
-                    iVar9 = noop_015bb8(a0 + 0x204);
+                    iVar9 = get_field_0_015bb8(a0 + 0x204);
                     unaff_r13 = *(u32 *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar9 + 0x2c) + 0x2c) + 0x30) + 4) + 4);
                     break;
                 case 2:
-                    iVar9 = noop_015bb8(a0 + 0x204);
+                    iVar9 = get_field_0_015bb8(a0 + 0x204);
                     unaff_r13 = *(u32 *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar9 + 0x2c) + 0x30) + 0x2c) + 4) + 4);
                     break;
                 case 3:
-                    iVar9 = noop_015bb8(a0 + 0x204);
+                    iVar9 = get_field_0_015bb8(a0 + 0x204);
                     unaff_r13 = *(
                         u32 *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar9 + 0x2c) + 0x2c) + 0x30) + 0x30) + 4) +
                                4);
                     break;
                 case 4:
-                    iVar9 = noop_015bb8(a0 + 0x204);
+                    iVar9 = get_field_0_015bb8(a0 + 0x204);
                     unaff_r13 = *(
                         u32 *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar9 + 0x2c) + 0x30) + 0x2c) + 0x30) + 4) +
                                4);
                     break;
                 case 5:
-                    iVar9 = noop_015bb8(a0 + 0x204);
+                    iVar9 = get_field_0_015bb8(a0 + 0x204);
                     unaff_r13 =
                         *(u32 *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar9 + 0x2c) + 0x2c) + 0x30) +
                                                             0x30) +
@@ -7431,7 +7432,7 @@ u32 FUN_8c06b460(int a0) {
                                  4);
                     break;
                 case 6:
-                    iVar9 = noop_015bb8(a0 + 0x204);
+                    iVar9 = get_field_0_015bb8(a0 + 0x204);
                     unaff_r13 =
                         *(u32 *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar9 + 0x2c) + 0x30) + 0x2c) +
                                                             0x30) +
@@ -7440,7 +7441,7 @@ u32 FUN_8c06b460(int a0) {
                                  4);
                     break;
                 case 7:
-                    iVar9 = noop_015bb8(a0 + 0x204);
+                    iVar9 = get_field_0_015bb8(a0 + 0x204);
                     unaff_r13 =
                         *(u32 *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar9 + 0x2c) + 0x2c) +
                                                                               0x30) +
@@ -7451,7 +7452,7 @@ u32 FUN_8c06b460(int a0) {
                                  4);
                     break;
                 case 8:
-                    iVar9 = noop_015bb8(a0 + 0x204);
+                    iVar9 = get_field_0_015bb8(a0 + 0x204);
                     unaff_r13 =
                         *(u32 *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(*(int *)(iVar9 + 0x2c) +
                                                                                                 0x2c) +
@@ -7475,9 +7476,9 @@ u32 FUN_8c06b460(int a0) {
             iVar8 = iVar8 + 1;
         }
         obj_set_texlist(a0 + 0x208, uVar4, ar6_00);
-        ar4_00 = noop_015bb8(a0 + 0x204);
+        ar4_00 = get_field_0_015bb8(a0 + 0x204);
         iVar9 = deref_u32(*(int *)(*(int *)(a0 + 0x224) + 0x1c4) + *(int *)(a0 + 0x228) * 4);
-        ar6_00 = noop_026d74(*(int *)(*(int *)(a0 + 0x224) + 0x1cc) + *(int *)(a0 + 0x228) * 4);
+        ar6_00 = get_field_0_026d74(*(int *)(*(int *)(a0 + 0x224) + 0x1cc) + *(int *)(a0 + 0x228) * 4);
         iVar8 = ar6_00;
         FUN_8c21bbb0(ar4_00, iVar9, ar6_00, ar6_00, in_stack_fffffef4);
     }
@@ -7493,7 +7494,7 @@ u32 FUN_8c06c04c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     (*(code *)(&obj_set_texlist))(*(int *)(0x224 + a0) + *(int *)(0x220 + a0) * 0x124 + 0x78, a1, a2, a3);
-    uVar1 = (*(code *)(&noop_015bb8))(*(int *)(0x224 + a0) + *(int *)(0x220 + a0) * 0x124 + 0x70, a1, a2, a3);
+    uVar1 = (*(code *)(&get_field_0_015bb8))(*(int *)(0x224 + a0) + *(int *)(0x220 + a0) * 0x124 + 0x70, a1, a2, a3);
     uVar1 = FUN_8c219a9a(uVar1, a1, a2, a3);
     return uVar1;
 }
@@ -7505,7 +7506,7 @@ u32 FUN_8c06c0b8(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     (*(code *)(&obj_set_texlist))(*(int *)(0x224 + a0) + *(int *)(0x220 + a0) * 0x124 + 0x78, a1, a2, a3);
-    uVar1 = (*(code *)(&noop_015bb8))(*(int *)(0x224 + a0) + *(int *)(0x220 + a0) * 0x124 + 0x70, a1, a2, a3);
+    uVar1 = (*(code *)(&get_field_0_015bb8))(*(int *)(0x224 + a0) + *(int *)(0x220 + a0) * 0x124 + 0x70, a1, a2, a3);
     uVar1 = FUN_8c219a9a(uVar1, a1, a2, a3);
     return uVar1;
 }
@@ -8162,7 +8163,7 @@ int FUN_8c06d714(u32 unused_a0, int *a1, float *a2, u8 *a3) {
         a3 = auStack_20;
         a2 = &fStack_24;
         ar5_00 = auStack_28;
-        FUN_8c0507a4(ar4_00, ar5_00, a2, a3);
+        get_vec3_field_30(ar4_00, ar5_00, a2, a3);
         uVar2 = (**(code **)(*(int *)(ar4_00 + 8) + 0x148))(ar4_00, ar5_00, a2, a3);
         if ((short)uVar2 == 2) {
             if (cVar7 == '\0') {
@@ -9558,7 +9559,7 @@ code *FUN_8c06f93c(int a0, u32 *a1, u32 unused_a2, code *a3) {
             Vec3_dtor(auStack_30, 0xffffffff, puVar5, a3);
             return (code *)2;
         }
-        FUN_8c0507a4(iVar2, auStack_30, &fStack_2c, &fStack_28);
+        get_vec3_field_30(iVar2, auStack_30, &fStack_2c, &fStack_28);
         FUN_8c03f414(iVar2, auStack_3c, auStack_38, auStack_34);
         ar7_01 = &uStack_158;
         ar6_00 = &uStack_158;
@@ -9623,7 +9624,7 @@ code *FUN_8c06f93c(int a0, u32 *a1, u32 unused_a2, code *a3) {
         uVar1 = *(u32 *)a1[1];
         iVar2 = pure_virtual_stub();
         if (iVar2 == 0) {
-            FUN_8c03f3e8(*a1, uVar1, puVar5);
+            set_field_88_to_1(*a1, uVar1, puVar5);
             *(int *)(a0 + 0x134) = *(int *)(a0 + 0x134) + 1;
         }
         Vec3_assign(a0 + 0x80, a0 + 0x14, puVar5, a3);
