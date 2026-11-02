@@ -78,6 +78,9 @@ static void run(void)
           if (t < 25) { pad_script_x = dir[k & 7][0]; pad_script_y = dir[k & 7][1]; }
           else if (t >= 40 && t < 44) { static const unsigned btn[4] = { 4, 4, 2, 0x400 }; w = btn[k & 3]; }
           if (k % 6 == 5 && t >= 60 && t < 63) w = 0x200; } }
+      /* and switch the tank device at 0x8c29ab74 (its update, 8c0d0178, plays start sound 9, then loop 10, and stops it when switched
+         off; +0x14 is its on flag, set by the tank controls) on for 600 frames, so the game's own state machine drives Manatee */
+      if (n == PAD_SE_SCRIPT + 200 || n == PAD_SE_SCRIPT + 800) { GM(unsigned, 0x8c29ab74 + 0x14) = n == PAD_SE_SCRIPT + 200; host_log("se script: tank device %s at frame %u\n", n == PAD_SE_SCRIPT + 200 ? "on" : "off", n); }
 #endif
       int quit = 0; pad_live = host_pad_frame(w, &quit);
       if (quit) { host_log("exit requested at frame %u\n", n); break; } }

@@ -1,0 +1,50 @@
+# address	name	note (curated names for tools/readable.py; worked out while porting, see notes/README.md)
+8c022a1c	adx_stall_watchdog	restarts an ADX stream whose play time stops advancing (5 polls)
+8c022384	sound_server	calls sdSysServer
+8c01c984	sound_server_2	calls sdSysServer
+8c0225f4	se_slot_open	opens one of 7 sound-effect port slots (sd port open)
+8c022688	se_slot_close
+8c022710	se_slot_play	plays request a2 on an open slot
+8c022778	se_slot_status
+8c02190c	se_open_bank1	opens an SE port on bank 1 of a sound manager
+8c02192c	se_open_bank3	opens an SE port on bank 3 of a sound manager
+8c02194c	se_open
+8c021994	se_play	plays request a2 on port a1 of manager a0
+8c0219b8	se_play_2
+8c0219dc	se_play_request
+8c02174c	se_play_3d	plays a sound effect with volume/pan from a position
+8c0d0178	tank_device_sound_update	state machine for a tank device: start sound 9, loop 10, stop when switched off (+0x14)
+8c2688e0	sdSysServer	flushes queued host commands when auto-flush is on, then polls the DMA
+8c2688b4	sdSysFlushHostCmd
+8c26518c	sd_flush_host_commands
+8c266b08	sd_send_host_commands	G2 DMA of the command slots to sound RAM 0x13200
+8c266b70	sd_host_commands_sent	DMA-end callback: clears the busy state (+0x160)
+8c265ea0	sd_dma_setup
+8c265ff4	sd_dma_start
+8c265620	sd_dma_kick
+8c265d38	sd_dma_queue_push
+8c265c50	sd_dma_queue_pop
+8c265e08	sd_dma_poll	polls the G2 DMA when interrupts are masked
+8c26592c	sd_dma_end	G2 DMA end callback
+8c266970	sd_g2_transfer
+8c1f8d48	syG2DmaGetStatus
+8c1f8cbc	syG2DmaEndHandler	G2 DMA end interrupt: clears the channel and runs its callback
+8c1f9610	syG2CpuCopy	CPU copy over G2 with FIFO waits
+8c1f9284	syG2FifoWait
+8c264010	adx_server	ADX file/stream server (V-blank job)
+8c26a5d6	mwSnd_Destroy
+8c26a6fc	mwSnd_Play
+8c26a74c	mwSnd_Stop
+8c26a7b4	mwSnd_GetPlayPos
+8c26a860	mwSnd_SetOutVol
+8c26a8e4	mwSnd_GetOutVol
+8c26a914	mwSnd_SetOutPan
+8c26a956	mwSnd_GetOutPan
+8c26ad32	mwSnd_Trns
+8c26ada4	mwSnd_GetTrnsStat
+8c022404	aica_driver_upload	copies MANATEE.DRV to sound RAM and releases the ARM
+8c0101d4	-		2
+8c013ef4	-		3
+8c013ff8	-		3
+8c014010	-		1
+8c014200	-		0

@@ -9,6 +9,14 @@ with devkitPPC. Code that the decompile can't express faithfully runs in a built
 **No game data is included.** You need your own copy of the game. Put its files (`1ST_READ.BIN`, `ADXPACK.AFS`,
 `MANATEE.DRV`, `SEAMANSOUND.MLT`, `TMCPACK.DAT`, ...) in `disc/`.
 
+## Reading the code
+
+Start with [`decomp/`](decomp/): the whole program, one file per 64 KB region. Functions have their real parameter counts,
+readable types, named globals, the game's strings written out, and a header listing callers. Names come from the game's own
+`Class::Method()` strings and from what was worked out while porting. [`decomp/README.md`](decomp/README.md) explains the
+conventions and what each file holds. It is regenerated from the Ghidra export with
+`python3 tools/readable.py .` (needs `disc/1ST_READ.BIN` for the strings).
+
 ## Status
 
 - Boots past the warning screen and the title into the aquarium. 3D rendering goes through GX.
@@ -22,7 +30,8 @@ with devkitPPC. Code that the decompile can't express faithfully runs in a built
 
 | Path | Contents |
 | --- | --- |
-| `src/` | Ghidra decompilation: `decompiled_all.c`, per-module files, recovered headers |
+| `decomp/` | the readable decompile (start here) |
+| `src/` | raw Ghidra output: `decompiled_all.c`, per-module files, recovered headers |
 | `port/wii/` | Wii port: `exec/` generated units, `host/` the host layer (SH-4 interpreter, DSI hardware handler, GX renderer, audio, AICA/ARM7, pad) |
 | `port/exec`, `port/fn` | earlier x86 harness build of the same units (used for differential tracing) |
 | `tools/` | generators and build scripts (`wii_xform.py`, `wii_build.sh`, `wii_link.sh`, `wii_sdimage.py`, ...) |
