@@ -4600,15 +4600,15 @@ u32 sh4_sub_203320(u32 a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_2033c0  0x8c2033c0
- * area name: in the shinobi library code range
+ * strupr  0x8c2033c0
+ * converts string a0 to upper case in place
  * called by: ninja_sub_25a174
  */
-u32 shinobi_sub_2033c0(char *a0, u32 a1, u32 a2, u32 a3) {
+u32 strupr(char *a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
     u32 in_r0;
 
-    puVar1 = (&game_sub_0146b4);
+    puVar1 = (&toupper_0146b4);
     for (; *a0 != '\0'; a0 = a0 + 1) {
         in_r0 = (*(code *)puVar1)((int)*a0, a1, a2, a3);
         *a0 = (char)in_r0;
@@ -5266,7 +5266,7 @@ u32 shinobi_sub_203a92(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
                 puVar4 = puVar4 + 2;
             } while (puVar4 < ar5_01 + 0x26);
             unaff_r12 = 0;
-            shinobi_sub_2057e6(&g_8c275428, ar5_01);
+            list_push_front_2057e6(&g_8c275428, ar5_01);
             *ar5_01 = *ar5_01 | (u16)uStack_28;
             puVar4 = ar5_01;
             if ((g_8c4a9bb0 & 4) == 0) {
@@ -7174,11 +7174,11 @@ u32 pool496ba8_free(u16 *a0) {
 }
 
 /*
- * shinobi_sub_2057e6  0x8c2057e6
- * area name: in the shinobi library code range
+ * list_push_front_2057e6  0x8c2057e6
+ * pushes node a1 (next pointer at +4) onto the list *a0
  * called by: shinobi_sub_203a92
  */
-u32 shinobi_sub_2057e6(int *a0, int a1) {
+u32 list_push_front_2057e6(int *a0, int a1) {
     u32 in_r0;
     int iVar1;
 
@@ -7525,8 +7525,8 @@ u32 noop_205dd4(void) {
 /*
  * kamui_cfg_texture16mb  0x8c205e00
  * reads the "HARDWARE" / "EnableTexture16MB" configuration option
- * called by: kamui_sub_205e64, kamui_sub_211120, pvr_sub_207a0c, pvr_sub_207a9c, shinobi_sub_2034c0, shinobi_sub_2034cc
- * strings: "HARDWARE"; "EnableTexture16MB"
+ * called by: kamui_set_video_mode_like, kamui_sub_205e64, kamui_sub_207a9c, kamui_sub_211120, shinobi_sub_2034c0,
+ * shinobi_sub_2034cc strings: "HARDWARE"; "EnableTexture16MB"
  */
 u32 kamui_cfg_texture16mb(u32 a0, u32 a1, u32 a2) {
     int iVar1;
@@ -7540,7 +7540,7 @@ u32 kamui_cfg_texture16mb(u32 a0, u32 a1, u32 a2) {
 /*
  * kamui_sub_205e64  0x8c205e64
  * name hint from a string it uses: r nCOPYRIGHT C NEC Corporati; area name: sits between kamui functions (same
- * compilation unit) called by: pvr_sub_207a0c strings: "RENDER"; "VSYNCCount"; "RENDER"; "RegionSize" ...
+ * compilation unit) called by: kamui_set_video_mode_like strings: "RENDER"; "VSYNCCount"; "RENDER"; "RegionSize" ...
  */
 u32 kamui_sub_205e64(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -7653,7 +7653,7 @@ u32 shinobi_sub_206146(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a
 /*
  * shinobi_sub_206162  0x8c206162
  * area name: in the shinobi library code range
- * called by: pvr_sub_207a0c
+ * called by: kamui_set_video_mode_like
  */
 u32 shinobi_sub_206162(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -8900,7 +8900,7 @@ u32 shinobi_sub_2078d8(u32 a0, u32 a1) {
 /*
  * pvr_write_saved_regs  0x8c2079a0
  * writes the saved PVR register values back to their registers
- * called by: pvr_sub_207a9c, shinobi_sub_207da0
+ * called by: kamui_sub_207a9c, shinobi_sub_207da0
  */
 u32 pvr_write_saved_regs(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -8920,11 +8920,11 @@ u32 pvr_write_saved_regs(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * pvr_sub_2079fc  0x8c2079fc
- * area name: sits between pvr functions (same compilation unit)
+ * shinobi_sub_2079fc  0x8c2079fc
+ * area name: in the shinobi library code range
  * called by: ta_sub_20ade0
  */
-u32 pvr_sub_2079fc(void) {
+u32 shinobi_sub_2079fc(void) {
     u32 in_r0;
 
     do {
@@ -8933,12 +8933,12 @@ u32 pvr_sub_2079fc(void) {
 }
 
 /*
- * pvr_sub_207a0c  0x8c207a0c
- * name hint from a string it uses: KAMUI; area name: sits between pvr functions (same compilation unit)
+ * kamui_set_video_mode_like  0x8c207a0c
+ * sets video mode a0 (0..2) and stores it as the KAMUI VideoMode setting; 2 when out of range
  * called by: pvr_25825a
  * strings: "KAMUI"; "VideoMode"; "KAMUI"; "VideoMode"
  */
-u32 pvr_sub_207a0c(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 kamui_set_video_mode_like(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     char *ar4_00;
     char *ar5_00;
     u32 ar6_00;
@@ -8956,12 +8956,12 @@ u32 pvr_sub_207a0c(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * pvr_sub_207a9c  0x8c207a9c
- * name hint from a string it uses: DisplayMode; area name: sits between pvr functions (same compilation unit)
+ * kamui_sub_207a9c  0x8c207a9c
+ * name hint from a string it uses: DisplayMode; area name: sits between kamui functions (same compilation unit)
  * called by: ninja_sub_258604, pvr_25825a
  * strings: "KAMUI"; "DisplayMode"; "KAMUI"; "AntiAlias" ...
  */
-int pvr_sub_207a9c(u32 a0, int a1, u32 a2, u32 a3) {
+int kamui_sub_207a9c(u32 a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -11213,11 +11213,11 @@ u32 pvr_wrap_20a356(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, 
 }
 
 /*
- * pvr_sub_20a366  0x8c20a366
- * area name: sits between pvr functions (same compilation unit)
+ * colors_float_to_argb_70_80  0x8c20a366
+ * packs the RGBA float colours at +0x70 and +0x80 into ARGB words and copies +0x94..+0x9c
  * called by: ninja_sub_2588f8
  */
-u32 pvr_sub_20a366(int a0) {
+u32 colors_float_to_argb_70_80(int a0) {
     g_8c4a9d64 = (int)(*(float *)(a0 + 0x70) * 255.0) << 0x18 | (int)(*(float *)(a0 + 0x74) * 255.0) << 0x10 |
                  (int)(*(float *)(a0 + 0x78) * 255.0) << 8 | (int)(*(float *)(a0 + 0x7c) * 255.0);
     g_8c4a9d68 = (int)(*(float *)(a0 + 0x80) * 255.0) << 0x18 | (int)(*(float *)(a0 + 0x84) * 255.0) << 0x10 |
@@ -11684,7 +11684,7 @@ u32 ta_sub_20ade0(int a0) {
     ain0 = g_8c4a9eac & 0xffff0000 | ar5_00;
     ar6_00 = (iVar1 + g_8c4a9c00) * 0x10000;
     ar7_00 = iVar2 + g_8c4a9c00 | ar6_00;
-    pvr_sub_2079fc();
+    shinobi_sub_2079fc();
     pvr_20a844(0x44, g_8c4a9e74 & 0xfffffffe);
     pvr_20a844(0xe8, g_8c4a9eb0 | 8);
     pvr_20a844(0xf0, ar7_00);

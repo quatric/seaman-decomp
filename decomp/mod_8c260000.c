@@ -1224,11 +1224,11 @@ u32 irq_restore_nested(u32 unused_a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 
 }
 
 /*
- * irq_sub_260cf8  0x8c260cf8
- * area name: sits between irq functions (same compilation unit)
+ * cri_sub_260cf8  0x8c260cf8
+ * area name: in the cri library code range
  * called by: vram64_264eda, vram_sub_264f52
  */
-u32 *irq_sub_260cf8(int a0, int a1, u16 *a2, u16 *a3) {
+u32 *cri_sub_260cf8(int a0, int a1, u16 *a2, u16 *a3) {
     float fVar1;
     float fVar2;
     float fVar4;
@@ -1340,10 +1340,10 @@ u32 *irq_sub_260cf8(int a0, int a1, u16 *a2, u16 *a3) {
 }
 
 /*
- * irq_sub_260d7c  0x8c260d7c
- * area name: sits between irq functions (same compilation unit)
+ * cri_sub_260d7c  0x8c260d7c
+ * area name: in the cri library code range
  */
-u32 irq_sub_260d7c(u16 *a0, int a1, short *a2, u8 *a3, u8 *s0, u8 *s4, u8 *s8, u32 *s12, u32 *s16) {
+u32 cri_sub_260d7c(u16 *a0, int a1, short *a2, u8 *a3, u8 *s0, u8 *s4, u8 *s8, u32 *s12, u32 *s16) {
     u32 uVar1;
     u32 *extraout_r3;
     u32 uVar2;
@@ -1369,11 +1369,11 @@ u32 irq_sub_260d7c(u16 *a0, int a1, short *a2, u8 *a3, u8 *s0, u8 *s4, u8 *s8, u
 }
 
 /*
- * irq_sub_260e9c  0x8c260e9c
- * area name: sits between irq functions (same compilation unit)
+ * adx_get_highpass_freq  0x8c260e9c
+ * *a2 = the high-pass cutoff of the ADX header a0 (a1 bytes); -2 without the 0x8000 magic
  * called by: cri_sub_25fca4
  */
-u32 irq_sub_260e9c(u16 *a0, int a1, u16 *a2) {
+u32 adx_get_highpass_freq(u16 *a0, int a1, u16 *a2) {
     if (0x11 < a1) {
         if (((int)(u32)*a0 >> 8 | (u32)*a0 << 8 & 0xff00 & 0xffff) != 0x8000) {
             return 0xfffffffe;
@@ -1387,10 +1387,10 @@ u32 irq_sub_260e9c(u16 *a0, int a1, u16 *a2) {
 }
 
 /*
- * cri_sub_260f02  0x8c260f02
- * area name: in the cri library code range
+ * ADX_sub_260f02  0x8c260f02
+ * area name: sits between ADX functions (same compilation unit)
  */
-u32 cri_sub_260f02(u16 *a0, int a1, u32 *a2, u16 *a3, u16 *s0, u32 *s4, u32 *s8, u32 *s12, u32 *s16) {
+u32 ADX_sub_260f02(u16 *a0, int a1, u32 *a2, u16 *a3, u16 *s0, u32 *s4, u32 *s8, u32 *s12, u32 *s16) {
     u16 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -1426,11 +1426,11 @@ u32 cri_sub_260f02(u16 *a0, int a1, u32 *a2, u16 *a3, u16 *s0, u32 *s4, u32 *s8,
 }
 
 /*
- * cri_sub_261058  0x8c261058
- * area name: in the cri library code range
+ * ADX_sub_261058  0x8c261058
+ * area name: sits between ADX functions (same compilation unit)
  * called by: vram_sub_26501c
  */
-int cri_sub_261058(u16 *a0, int a1, u16 *a2, short *a3, u32 s0, u32 s4) {
+int ADX_sub_261058(u16 *a0, int a1, u16 *a2, short *a3, u32 s0, u32 s4) {
     u16 uVar1;
     u32 uVar2;
     int iVar3;
@@ -3192,7 +3192,7 @@ u32 cri_sub_2628fa(int *a0, u32 a1, u32 unused_a2, u32 a3, u32 ain0) {
         ta_fifo_2619ee();
         memset_wrap_262ad8();
         noop_26325a();
-        cri_sub_25ecc2(iVar2, a1, unused_a2, a3);
+        cri_clear_table_4b3340_b(iVar2, a1, unused_a2, a3);
         game_sub_26b234();
         game_sub_26b548();
         uVar1 = game_sub_26b9b4();
@@ -5460,7 +5460,7 @@ u32 cri_sub_264222(u16 *a0, int a1, int *a2) {
 
     if (((1 < a1) && (((int)(u32)*a0 >> 8 | (u32)*a0 << 8 & 0xff00 & 0xffff) == 0x8000)) &&
         (piStack_8 = a2,
-         iVar1 = (*(code *)(&irq_sub_260d7c))(a0, a1, asStack_28, auStack_24, auStack_20, auStack_1c, auStack_18,
+         iVar1 = (*(code *)(&cri_sub_260d7c))(a0, a1, asStack_28, auStack_24, auStack_20, auStack_1c, auStack_18,
                                               auStack_14, auStack_10),
          -1 < iVar1)) {
         *piStack_8 = (int)asStack_28[0];
@@ -6468,7 +6468,7 @@ u32 *vram64_264eda(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         ar4_00[2] = 0;
         ar4_00[3] = 0;
         iVar1 = (int)ar4_00 + 0x32;
-        irq_sub_260cf8(ar4_01, ar5_00, ar4_00 + 0xc, iVar1);
+        cri_sub_260cf8(ar4_01, ar5_00, ar4_00 + 0xc, iVar1);
         memset(ar4_00 + 10, 0, 8);
     }
     return ar4_00;
@@ -6481,7 +6481,7 @@ u32 *vram64_264eda(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 u32 vram_sub_264f52(int a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
 
-    uVar1 = irq_sub_260cf8(a2, a0 + 0x30, a0 + 0x32);
+    uVar1 = cri_sub_260cf8(a2, a0 + 0x30, a0 + 0x32);
     return uVar1;
 }
 
@@ -6626,7 +6626,7 @@ u32 vram_sub_26501c(int a0) {
     uVar1 = *(u32 *)(a0 + 0xc);
     if (uVar1 == 2) {
         if (*(int *)(a0 + 0x14) == 1) {
-            uVar1 = cri_sub_261058(*(u32 *)(a0 + 0x18), *(u32 *)(a0 + 0x1c), *(u32 *)(a0 + 0x20), a0 + 0x28,
+            uVar1 = ADX_sub_261058(*(u32 *)(a0 + 0x18), *(u32 *)(a0 + 0x1c), *(u32 *)(a0 + 0x20), a0 + 0x28,
                                    (int)*(short *)(a0 + 0x30), (int)*(short *)(a0 + 0x32));
             *(u32 *)(a0 + 0x10) = uVar1;
         } else {

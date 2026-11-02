@@ -115,7 +115,7 @@ address	name	file	params
 8c0143b0	log_message	mod_8c010000.c	3
 8c0143c0	strncpy	mod_8c010000.c	3
 8c0143f0	strtol	mod_8c010000.c	3
-8c0146b4	game_sub_0146b4	mod_8c010000.c	1
+8c0146b4	toupper_0146b4	mod_8c010000.c	1
 8c0146d0	vsprintf_like	mod_8c010000.c	3
 8c0146f8	game_sub_0146f8	mod_8c010000.c	4
 8c014764	set_flags_14_60	mod_8c010000.c	1
@@ -4545,7 +4545,7 @@ address	name	file	params
 8c1fc8a8	shinobi_sub_1fc8a8	mod_8c1f0000.c	2
 8c1fc8ec	shinobi_sub_1fc8ec	mod_8c1f0000.c	2
 8c1fc93c	shinobi_sub_1fc93c	mod_8c1f0000.c	3
-8c1fc980	shinobi_sub_1fc980	mod_8c1f0000.c	3
+8c1fc980	copy_words_b	mod_8c1f0000.c	3
 8c1fc9b0	shinobi_sub_1fc9b0	mod_8c1f0000.c	1
 8c1fc9c0	shinobi_sub_1fc9c0	mod_8c1f0000.c	4
 8c1fcadc	memset_wrap	mod_8c1f0000.c	4
@@ -4762,7 +4762,7 @@ address	name	file	params
 8c203160	sh4_dmac_203160	mod_8c200000.c	0
 8c203298	sh4_sub_203298	mod_8c200000.c	1
 8c203320	sh4_sub_203320	mod_8c200000.c	2
-8c2033c0	shinobi_sub_2033c0	mod_8c200000.c	4
+8c2033c0	strupr	mod_8c200000.c	4
 8c203400	shinobi_sub_203400	mod_8c200000.c	0
 8c203406	shinobi_sub_203406	mod_8c200000.c	0
 8c2034c0	shinobi_sub_2034c0	mod_8c200000.c	4
@@ -4809,7 +4809,7 @@ address	name	file	params
 8c205644	shinobi_sub_205644	mod_8c200000.c	2
 8c205768	shinobi_sub_205768	mod_8c200000.c	1
 8c2057c0	pool496ba8_free	mod_8c200000.c	1
-8c2057e6	shinobi_sub_2057e6	mod_8c200000.c	2
+8c2057e6	list_push_front_2057e6	mod_8c200000.c	2
 8c2057f8	shinobi_sub_2057f8	mod_8c200000.c	2
 8c205860	shinobi_sub_205860	mod_8c200000.c	3
 8c205948	shinobi_sub_205948	mod_8c200000.c	5
@@ -4859,9 +4859,9 @@ address	name	file	params
 8c2078be	shinobi_sub_2078be	mod_8c200000.c	1
 8c2078d8	shinobi_sub_2078d8	mod_8c200000.c	2
 8c2079a0	pvr_write_saved_regs	mod_8c200000.c	4
-8c2079fc	pvr_sub_2079fc	mod_8c200000.c	0
-8c207a0c	pvr_sub_207a0c	mod_8c200000.c	4
-8c207a9c	pvr_sub_207a9c	mod_8c200000.c	4
+8c2079fc	shinobi_sub_2079fc	mod_8c200000.c	0
+8c207a0c	kamui_set_video_mode_like	mod_8c200000.c	4
+8c207a9c	kamui_sub_207a9c	mod_8c200000.c	4
 8c207d32	shinobi_sub_207d32	mod_8c200000.c	4
 8c207da0	shinobi_sub_207da0	mod_8c200000.c	2
 8c207f80	shinobi_sub_207f80	mod_8c200000.c	0
@@ -4901,7 +4901,7 @@ address	name	file	params
 8c20a2aa	ta_fifo_20a2aa	mod_8c200000.c	4
 8c20a2e2	shinobi_sub_20a2e2	mod_8c200000.c	4
 8c20a356	pvr_wrap_20a356	mod_8c200000.c	5
-8c20a366	pvr_sub_20a366	mod_8c200000.c	1
+8c20a366	colors_float_to_argb_70_80	mod_8c200000.c	1
 8c20a420	pvr_sub_20a420	mod_8c200000.c	4
 8c20a482	pvr_set_clip_rect	mod_8c200000.c	4
 8c20a52c	pvr_sub_20a52c	mod_8c200000.c	4
@@ -5342,7 +5342,7 @@ address	name	file	params
 8c2360b0	gfxlib_sub_2360b0	mod_8c230000.c	3
 8c23617c	gfxlib_sub_23617c	mod_8c230000.c	5
 8c2361a8	triangle_normal	mod_8c230000.c	4
-8c23620c	gfxlib_sub_23620c	mod_8c230000.c	3
+8c23620c	sphere_to_aabb	mod_8c230000.c	3
 8c236250	gfxlib_sub_236250	mod_8c230000.c	2
 8c236278	gfxlib_sub_236278	mod_8c230000.c	1
 8c2362de	gfxlib_sub_2362de	mod_8c230000.c	1
@@ -5674,7 +5674,7 @@ address	name	file	params
 8c2599fa	draw_sub_2599fa	mod_8c250000.c	2
 8c259a1c	draw_sub_259a1c	mod_8c250000.c	1
 8c259a70	draw_sub_259a70	mod_8c250000.c	1
-8c259bd8	ninja_sub_259bd8	mod_8c250000.c	5
+8c259bd8	ninja_angle_sincos	mod_8c250000.c	5
 8c259be8	nj_file_open	mod_8c250000.c	4
 8c259c40	ninja_close_file	mod_8c250000.c	0
 8c259c48	ninja_sub_259c48	mod_8c250000.c	4
@@ -5766,7 +5766,7 @@ address	name	file	params
 8c25eca0	ret_const_1_25eca0	mod_8c250000.c	1
 8c25eca4	ret_const_1_25eca4	mod_8c250000.c	0
 8c25eca8	cri_clear_table_4b3340	mod_8c250000.c	4
-8c25ecc2	cri_sub_25ecc2	mod_8c250000.c	4
+8c25ecc2	cri_clear_table_4b3340_b	mod_8c250000.c	4
 8c25ecdc	cri_sub_25ecdc	mod_8c250000.c	5
 8c25ece6	lib_error_printf	mod_8c250000.c	6
 8c25ecea	cri_sub_25ecea	mod_8c250000.c	8
@@ -5845,11 +5845,11 @@ address	name	file	params
 8c260c98	cri_sub_260c98	mod_8c260000.c	5
 8c260ca0	irq_disable_nested	mod_8c260000.c	5
 8c260cc8	irq_restore_nested	mod_8c260000.c	5
-8c260cf8	irq_sub_260cf8	mod_8c260000.c	4
-8c260d7c	irq_sub_260d7c	mod_8c260000.c	9
-8c260e9c	irq_sub_260e9c	mod_8c260000.c	3
-8c260f02	cri_sub_260f02	mod_8c260000.c	9
-8c261058	cri_sub_261058	mod_8c260000.c	6
+8c260cf8	cri_sub_260cf8	mod_8c260000.c	4
+8c260d7c	cri_sub_260d7c	mod_8c260000.c	9
+8c260e9c	adx_get_highpass_freq	mod_8c260000.c	3
+8c260f02	ADX_sub_260f02	mod_8c260000.c	9
+8c261058	ADX_sub_261058	mod_8c260000.c	6
 8c261170	cri_sub_261170	mod_8c260000.c	8
 8c261370	cri_sub_261370	mod_8c260000.c	4
 8c2613aa	cri_sub_2613aa	mod_8c260000.c	3

@@ -1154,7 +1154,7 @@ u32 get_g_8c2758e8(void) {
 /*
  * kamui_sub_21214e  0x8c21214e
  * area name: sits between kamui functions (same compilation unit)
- * called by: kamui_sub_211120, pvr_sub_207a9c, pvr_sub_20a6f2, shinobi_sub_207da0, shinobi_sub_207f80,
+ * called by: kamui_sub_207a9c, kamui_sub_211120, pvr_sub_20a6f2, shinobi_sub_207da0, shinobi_sub_207f80,
  * shinobi_sub_207f84
  */
 int *kamui_sub_21214e(void) {

@@ -15605,11 +15605,11 @@ u32 shinobi_sub_1fc93c(u32 a0, u32 a1, u32 a2) {
 }
 
 /*
- * shinobi_sub_1fc980  0x8c1fc980
- * area name: in the shinobi library code range
+ * copy_words_b  0x8c1fc980
+ * copies a2/4 words from a1 to a0
  * called by: shinobi_sub_1fd1e2
  */
-u32 shinobi_sub_1fc980(u32 *a0, u32 *a1, u32 a2) {
+u32 copy_words_b(u32 *a0, u32 *a1, u32 a2) {
     u32 in_r0;
     u32 uVar1;
     u32 uVar2;
@@ -16212,7 +16212,7 @@ u32 shinobi_sub_1fd1e2(int a0, int a1, int a2) {
         }
         a2 = *(int *)(*(int *)(&g_8c4783fc + iVar6) + 0x44);
         a1 = *(int *)(iVar3 + 8) + 0xc;
-        shinobi_sub_1fc980(ar4_00, a1, a2);
+        copy_words_b(ar4_00, a1, a2);
         iVar2 = iVar2 + 1;
         ar4_00 = ar4_00 + *(int *)(*(int *)(&g_8c4783fc + iVar6) + 0x44);
         iVar7 = iVar7 + 1;

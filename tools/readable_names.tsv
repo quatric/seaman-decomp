@@ -974,3 +974,13 @@
 8c1f7ffa	sysinfo_get_byte_b	*a0 = byte +0xb of the system information block; -1 when it is unavailable
 8c1fa758	intc_reset_and_init_regs	clears the interrupt priority registers and writes the register/value table at 8c26cb34
 8c1fad0a	scif_getchar_like	waits for and returns a byte from the serial port (mode 0); CR when a break is seen (mode 1)
+8c0146b4	toupper	upper-case of character a0 (ctype table 8c125470, lower-case bit 2)
+8c2033c0	strupr	converts string a0 to upper case in place
+8c1fc980	copy_words_b	copies a2/4 words from a1 to a0
+8c2057e6	list_push_front	pushes node a1 (next pointer at +4) onto the list *a0
+8c207a0c	kamui_set_video_mode_like	sets video mode a0 (0..2) and stores it as the KAMUI VideoMode setting; 2 when out of range
+8c20a366	colors_float_to_argb_70_80	packs the RGBA float colours at +0x70 and +0x80 into ARGB words and copies +0x94..+0x9c
+8c23620c	sphere_to_aabb	a1 = centre - r and a2 = centre + r for the sphere a0 (x, y, z, r)
+8c259bd8	ninja_angle_sincos	sin and cos of Ninja angle a0 (65536 units per turn)
+8c25ecc2	cri_clear_table_4b3340_b	clears the 0x100-byte table at 8c4b3340 and its two counters
+8c260e9c	adx_get_highpass_freq	*a2 = the high-pass cutoff of the ADX header a0 (a1 bytes); -2 without the 0x8000 magic

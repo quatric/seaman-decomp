@@ -12559,7 +12559,7 @@ u32 ninja_sub_257148(int a0) {
 
     cVar6 = '\0';
     cVar5 = '\0';
-    uVar1 = ninja_sub_259bd8(a0 >> 1, r5, r6, r7, in_PR);
+    uVar1 = ninja_angle_sincos(a0 >> 1, r5, r6, r7, in_PR);
     fVar2 = (float)((u64)in_dr0 >> 0x20);
     if (cVar6 == '\0') {
         dVar3 = (double)CONCAT44(g_8c4aa4ac, fVar2);
@@ -14740,7 +14740,7 @@ u32 pvr_25825a(u32 a0, int a1, u32 a2, u32 a3) {
     }
     _DAT_a05f80e8 = _DAT_a05f80e8 | 8;
     _DAT_a05f6900 = 8;
-    pvr_sub_207a0c(a0 & 3, &DAT_a05f6900, a2, a3);
+    kamui_set_video_mode_like(a0 & 3, &DAT_a05f6900, a2, a3);
     if ((a0 & 0x40) != 0) {
         uVar4 = a0 & 0xe0000;
         g_8c4aa6e0 = (int)(short)((int)uVar4 >> 0x11);
@@ -14770,7 +14770,7 @@ u32 pvr_25825a(u32 a0, int a1, u32 a2, u32 a3) {
         }
     }
     uVar3 = 1;
-    pvr_sub_207a9c(a0 & 0xfff, ar5_01, 1, uVar5);
+    kamui_sub_207a9c(a0 & 0xfff, ar5_01, 1, uVar5);
     g_8c4aacbc = 0x60;
     g_8c4aacc0 = 1;
     g_8c4aad1c = 0x8c4aa6e4;
@@ -14997,7 +14997,7 @@ u32 ninja_sub_258604(u32 a0, u32 a1, u32 a2) {
     *piVar3 = (int)sVar1;
 LAB_8c258846:
     ar6_00 = 1;
-    pvr_sub_207a9c(*(u32 *)(puVar7 + -0xc), ar5_00, 1, uVar8);
+    kamui_sub_207a9c(*(u32 *)(puVar7 + -0xc), ar5_00, 1, uVar8);
     pvr_sub_20a786(g_8c4aa4ec);
     g_8c4aa6dc = 0;
     g_8c4aa6d4 = 0;
@@ -15079,7 +15079,7 @@ u32 ninja_sub_2588f8(void) {
     g_8c4aac2c = 0xb;
     ta_fifo_20f640(&g_8c4aabfc, ar5_00, ar6_00, a7);
     puVar8 = &g_8c4aabfc;
-    pvr_sub_20a366(&g_8c4aabfc);
+    colors_float_to_argb_70_80(&g_8c4aabfc);
     noop_257488();
     pvr_wrap();
     uVar1 = 0;
@@ -16807,11 +16807,11 @@ int draw_sub_259a70(u32 *a0) {
 }
 
 /*
- * ninja_sub_259bd8  0x8c259bd8
- * area name: in the ninja library code range
+ * ninja_angle_sincos  0x8c259bd8
+ * sin and cos of Ninja angle a0 (65536 units per turn)
  * called by: ninja_sub_257148
  */
-u32 ninja_sub_259bd8(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ninja_angle_sincos(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
 
     fVar1 = ((float)(u16)a0 * 6.2831855) / 65536.0;
@@ -17099,7 +17099,7 @@ u32 ninja_sub_25a174(u32 a0, u32 a1, u32 a2, u32 a3) {
     uVar1 = log_message(a1, a1, a2);
     libc_sub_010998();
     ar4_00 = &stack0xffffffe8;
-    shinobi_sub_2033c0(ar4_00, ar5_00, a2, a3);
+    strupr(ar4_00, ar5_00, a2, a3);
     uVar1 = ain0;
     if ((char)in_stack_ffffffe8 == '.') {
         ar4_00 = &stack0xffffffe8;
@@ -23971,7 +23971,7 @@ u32 ninja_sub_25dac0(void) {
 /*
  * ninja_sub_25dc60  0x8c25dc60
  * area name: in the ninja library code range
- * called by: pvr_sub_207a9c, shinobi_sub_207da0
+ * called by: kamui_sub_207a9c, shinobi_sub_207da0
  */
 u32 ninja_sub_25dc60(int a0, u32 a1, int a2, int a3) {
     int iVar1;
@@ -24344,7 +24344,7 @@ u32 ninja_sub_25e260(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * ninja_sub_25e540  0x8c25e540
  * area name: in the ninja library code range
- * called by: pvr_sub_207a9c
+ * called by: kamui_sub_207a9c
  */
 u32 ninja_sub_25e540(u32 a0, u32 a1) {
     u32 uVar1;
@@ -24502,7 +24502,7 @@ u32 ninja_sub_25e540(u32 a0, u32 a1) {
 /*
  * ninja_sub_25e884  0x8c25e884
  * area name: in the ninja library code range
- * called by: pvr_sub_207a9c
+ * called by: kamui_sub_207a9c
  */
 u32 ninja_sub_25e884(u32 a0, u32 a1) {
     u32 uVar1;
@@ -24531,7 +24531,7 @@ u32 ninja_sub_25e884(u32 a0, u32 a1) {
 /*
  * ninja_sub_25eb60  0x8c25eb60
  * area name: in the ninja library code range
- * called by: pvr_sub_207a9c
+ * called by: kamui_sub_207a9c
  */
 u32 ninja_sub_25eb60(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -24580,11 +24580,11 @@ u32 cri_clear_table_4b3340(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) 
 }
 
 /*
- * cri_sub_25ecc2  0x8c25ecc2
- * area name: in the cri library code range
+ * cri_clear_table_4b3340_b  0x8c25ecc2
+ * clears the 0x100-byte table at 8c4b3340 and its two counters
  * called by: cri_sub_2628fa
  */
-u32 cri_sub_25ecc2(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 cri_clear_table_4b3340_b(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = memset(0x8c4b3340, 0, 0x100);
@@ -25941,13 +25941,13 @@ int cri_sub_25fca4(int a0, u32 a1, u32 a2) {
     *(u16 *)(a0 + 2) = 1;
     ar7_00 = a0 + 0xc;
     iVar2 =
-        (*(code *)(&irq_sub_260d7c))(a1, a2, asStack_14, ar7_00, a0 + 0xd, a0 + 0xf, a0 + 0xe, a0 + 0x14, a0 + 0x18);
-    if ((iVar2 < 0) || (iVar2 = irq_sub_260e9c(a1, a2, a0 + 0x1c), iVar2 < 0)) {
+        (*(code *)(&cri_sub_260d7c))(a1, a2, asStack_14, ar7_00, a0 + 0xd, a0 + 0xf, a0 + 0xe, a0 + 0x14, a0 + 0x18);
+    if ((iVar2 < 0) || (iVar2 = adx_get_highpass_freq(a1, a2, a0 + 0x1c), iVar2 < 0)) {
         iVar2 = 0;
     } else {
         (*(code *)(&vram_sub_264f52))(*(u32 *)(a0 + 8), *(u32 *)(a0 + 0x14), (int)*(short *)(a0 + 0x1c), ar7_00);
         iVar2 = a0 + 0x24;
-        (*(code *)(&cri_sub_260f02))(a1, a2, a0 + 0x20, iVar2, a0 + 0x26, a0 + 0x28, a0 + 0x2c, a0 + 0x30, a0 + 0x34);
+        (*(code *)(&ADX_sub_260f02))(a1, a2, a0 + 0x20, iVar2, a0 + 0x26, a0 + 0x28, a0 + 0x2c, a0 + 0x30, a0 + 0x34);
         *(int *)(a0 + 0x58) = (int)*(char *)(a0 + 0xe);
         *(int *)(a0 + 0x5c) = (int)*(char *)(a0 + 0xf);
         *(u32 *)(a0 + 0x60) = *(u32 *)(a0 + 0x10);

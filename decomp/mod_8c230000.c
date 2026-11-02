@@ -6734,7 +6734,7 @@ u32 gfxlib_sub_2336e8(double *a0, double *a1) {
     uStack_2c = (u32)((u64)in_dr12 >> 0x20);
     dVar29 = (double)CONCAT44(0x3f800000, uStack_20);
     gfxlib_sub_2360b0(a0, auStack_3c, auStack_48);
-    gfxlib_sub_23620c(a1, &dStack_54, &dStack_60);
+    sphere_to_aabb(a1, &dStack_54, &dStack_60);
     pdVar4 = &dStack_54;
     ar5_00 = auStack_48;
     pdVar9 = &dStack_60;
@@ -11015,11 +11015,11 @@ u32 triangle_normal(float *a0, float *a1, float *a2, float *a3) {
 }
 
 /*
- * gfxlib_sub_23620c  0x8c23620c
- * area name: in the gfxlib library code range
+ * sphere_to_aabb  0x8c23620c
+ * a1 = centre - r and a2 = centre + r for the sphere a0 (x, y, z, r)
  * called by: gfxlib_sub_2336e8
  */
-u32 gfxlib_sub_23620c(float *a0, float *a1, float *a2) {
+u32 sphere_to_aabb(float *a0, float *a1, float *a2) {
     *a1 = *a0 - a0[3];
     a1[1] = a0[1] - a0[3];
     a1[2] = a0[2] - a0[3];

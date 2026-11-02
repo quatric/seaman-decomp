@@ -11168,7 +11168,7 @@ u32 libc_sub_013be8(void) {
 /*
  * libc_sub_013c38  0x8c013c38
  * area name: in the libc library code range
- * called by: irq_sub_260cf8
+ * called by: cri_sub_260cf8
  */
 u32 libc_sub_013c38(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -12131,10 +12131,10 @@ u32 strtol(u8 *a0, u32 *a1, int a2) {
 }
 
 /*
- * game_sub_0146b4  0x8c0146b4
- * area name: game code; nothing names its area yet
+ * toupper_0146b4  0x8c0146b4
+ * upper-case of character a0 (ctype table 8c125470, lower-case bit 2)
  */
-int game_sub_0146b4(u32 a0) {
+int toupper_0146b4(u32 a0) {
     if (((&DATA_8c125470)[a0 & 0xff] & 2) != 0) {
         return a0 - 0x20;
     }
