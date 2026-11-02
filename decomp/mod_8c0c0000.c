@@ -1542,7 +1542,7 @@ int pack_release_entry_384_if_done(int a0, u32 unused_a1, u32 a2, u32 a3) {
     iVar1 = *(int *)(0x384 + a0);
     if (iVar1 != -1) {
         ar5_00 = *(u32 *)(0x384 + a0);
-        iVar1 = pack_state_switch_021f18(0x8c2b59d0, ar5_00, a2);
+        iVar1 = pack_entry_poll_status_wrap(0x8c2b59d0, ar5_00, a2);
         if (iVar1 == 1) {
             iVar1 = pack_release_entry_384(a0, ar5_00, a2, a3);
         }
@@ -1698,7 +1698,7 @@ u32 startup_warning_check(int a0, char *a1, u32 a2, u32 a3) {
         g_8c436894 = '\x01';
     }
     if (a1 == (char *)0xb) {
-        iVar4 = pack_state_switch_021f18(0x8c2b59d0, g_8c436890, a2);
+        iVar4 = pack_entry_poll_status_wrap(0x8c2b59d0, g_8c436890, a2);
         if (iVar4 != 2) {
             pack_release_entry_handle(0x8c2b59d0, g_8c436890, a2, a3);
             g_8c436890 = 0xffffffff;
@@ -1853,7 +1853,7 @@ u32 startup_warning_check(int a0, char *a1, u32 a2, u32 a3) {
                 speech_stop(0x8c35468c, ar5_00, ar6_00, uVar2);
             }
             uVar8 = g_8c436890;
-            iVar4 = pack_state_switch_021f18(0x8c2b59d0, g_8c436890, ar6_00);
+            iVar4 = pack_entry_poll_status_wrap(0x8c2b59d0, g_8c436890, ar6_00);
             if (iVar4 != 2) {
                 uVar8 = g_8c436890;
                 pack_release_entry_handle(0x8c2b59d0, g_8c436890, ar6_00, uVar2);
@@ -4714,7 +4714,7 @@ u32 confirm_exit_save(int a0, int a1) {
         g_8c437138 = 1;
         ar7_00 = (char *)pcVar5;
     case 1:
-        iVar2 = pack_state_switch_021f18(0x8c2b59d0, g_8c437140, puVar4);
+        iVar2 = pack_entry_poll_status_wrap(0x8c2b59d0, g_8c437140, puVar4);
         if (iVar2 != 2) {
             pack_release_entry_handle(0x8c2b59d0, g_8c437140, puVar4, ar7_00);
         }
@@ -4779,7 +4779,7 @@ u32 confirm_exit_save(int a0, int a1) {
         if (iVar2 == 1) {
             puVar4 = (u8 *)0x8c2b59d0;
             pcVar5 = g_8c437140;
-            iVar2 = pack_state_switch_021f18(0x8c2b59d0, g_8c437140, 0x8c2b59d0);
+            iVar2 = pack_entry_poll_status_wrap(0x8c2b59d0, g_8c437140, 0x8c2b59d0);
             if (iVar2 != 2) {
                 pcVar5 = g_8c437140;
                 pack_release_entry_handle(0x8c2b59d0, g_8c437140, puVar4, ar7_00);
@@ -4795,7 +4795,7 @@ u32 confirm_exit_save(int a0, int a1) {
         iVar2 = input_b_pressed_pad(*(u32 *)(a1 + 0x7cc));
         if ((iVar2 == 1) || ((iVar2 = input_start_only_pressed(*(u32 *)(a1 + 0x7cc), pcVar5, puVar4, ar7_00),
                               iVar2 == 1 && (0xf < (int)g_8c4371e0)))) {
-            iVar2 = pack_state_switch_021f18(0x8c2b59d0, g_8c437140, puVar4);
+            iVar2 = pack_entry_poll_status_wrap(0x8c2b59d0, g_8c437140, puVar4);
             if (iVar2 != 2) {
                 pack_release_entry_handle(0x8c2b59d0, g_8c437140, puVar4, ar7_00);
             }
@@ -5414,7 +5414,7 @@ u32 bugbox_4_screen(int a0, int a1, u32 a2, u32 a3) {
         g_8c437248 = 0;
         (**(code **)(**(int **)(a0 + 0xc) + 200))(*(int **)(a0 + 0xc), iVar4, a2, a3);
         iVar4 = g_8c13cbf4;
-        iVar2 = pack_state_switch_021f18(0x8c2b59d0, g_8c13cbf4, a2);
+        iVar2 = pack_entry_poll_status_wrap(0x8c2b59d0, g_8c13cbf4, a2);
         if (iVar2 == 1) {
             pack_release_entry_handle(0x8c2b59d0, g_8c13cbf4, a2, a3);
             g_8c13cbf4 = 0xffffffff;
@@ -5461,7 +5461,7 @@ u32 bugbox_4_screen(int a0, int a1, u32 a2, u32 a3) {
         (**(code **)(**(int **)(a0 + 0xc) + 200))(*(int **)(a0 + 0xc), iVar4, a2, a3);
     } else if (sVar1 == 5) {
         iVar4 = g_8c13cbf4;
-        iVar2 = pack_state_switch_021f18(0x8c2b59d0, g_8c13cbf4, a2);
+        iVar2 = pack_entry_poll_status_wrap(0x8c2b59d0, g_8c13cbf4, a2);
         if (iVar2 == 1) {
             pack_release_entry_handle(0x8c2b59d0, g_8c13cbf4, a2, a3);
             g_8c13cbf4 = -1;
@@ -6195,7 +6195,7 @@ u32 event_out_water_cat(int a0, int *a1, u32 a2, u32 a3) {
                 puVar8 = &g_8c437278;
             }
             if (cVar10 != '\0' || in_fr1 <= (float)puVar8) {
-                Class_12b580_sound_022104(0x8c2b59d0, *(u32 *)(g_8c437278 + 0x5e4), a2, a3);
+                game_sound_022104(0x8c2b59d0, *(u32 *)(g_8c437278 + 0x5e4), a2, a3);
                 Class_12b580_clear_request(0x8c2b59d0, *(u32 *)(g_8c437278 + 0x5e4), a2, a3);
                 if (cVar11 == '\0') {
                     g_8c437270 = (double)CONCAT44(g_8c437274, 0x43200000);
@@ -6551,7 +6551,7 @@ u32 static_init_4372a8(int a0, code *a1, int a2, u32 a3) {
     }
     iVar2 = get_field_d0_0c51fc(*(u32 *)(a1 + 0x7cc), ar5_00, a2);
     game_input_0ffdb0(*(u32 *)(a1 + 0x7cc));
-    input_uses_input_r_pressed_101004(*(u32 *)(a1 + 0x7cc), ar5_00, a2, a3);
+    input_uses_pack_entry_poll_status_wrap_101004(*(u32 *)(a1 + 0x7cc), ar5_00, a2, a3);
     a7 = (char *)&uStack_60;
     a6 = &uStack_5c;
     puVar6 = &uStack_58;
@@ -7255,7 +7255,7 @@ u32 static_init_4372f4(int a0, code *a1, u32 a2, u32 a3) {
         game_vec_0cdf50(a0, a1, a6, a7);
     }
     if (iVar2 == 2) {
-        input_uses_input_r_pressed_101004(*(u32 *)(a1 + 0x7cc), pcVar5, a6, a7);
+        input_uses_pack_entry_poll_status_wrap_101004(*(u32 *)(a1 + 0x7cc), pcVar5, a6, a7);
         input_sound_101188(*(u32 *)(a1 + 0x7cc), pcVar5, a6, a7);
         uVar1 = Class_12b580_test_101154(*(u32 *)(a1 + 0x7cc));
         (**(code **)(**(int **)(a0 + 0x10) + 0xc))(*(int **)(a0 + 0x10), a1, &uStack_54, a7);

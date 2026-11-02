@@ -182,8 +182,8 @@ u32 pure_virtual_stub(void) {
 
 /*
  * strcpy  0x8c0101d4
- * called by: CDCGD_copy_01fc78, CDCGD_new_request_c, CDCGD_uses_strcpy_0202c0, CSeamanDomain_warning_message,
- * Class_12a078_ctor, Class_12c3c4_ctor, asr_switch_vocab, asr_uses_strcpy_0fbf28 (+41 more)
+ * called by: CDCGD_copy_01fc78, CDCGD_new_request_c, CSeamanDomain_warning_message, Class_12a078_ctor,
+ * Class_12c3c4_ctor, asr_switch_vocab, asr_uses_strcpy_0fbf28, cd_load_open_read (+41 more)
  */
 u32 strcpy(char *a0, char *a1) {
     char cVar1;
@@ -5495,7 +5495,7 @@ u32 libgcc_divide_helper_01051c(u32 a0, u32 a1) {
 /*
  * libc_test_0105c4  0x8c0105c4
  * area name: in the libc library code range; behaviour name: returns the result of a comparison
- * called by: libc_uses_memmove_010b60
+ * called by: libc_uses_softfloat_scale_pow10_010b60
  */
 int libc_test_0105c4(void) {
     u32 uVar1;
@@ -7731,10 +7731,10 @@ u32 libgcc_movstr_i4(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * libc_fill_loop_0108f8  0x8c0108f8
- * area name: in the libc library code range; behaviour name: a loop that writes memory
+ * strcpy_words_entry  0x8c0108f8
+ * alternate entry of strcpy_words: copies the string at r1 to r0 a word at a time until a word holds a zero byte
  */
-u32 *libc_fill_loop_0108f8(void) {
+u32 *strcpy_words_entry(void) {
     char cVar1;
     u32 *in_r0;
     u32 *puVar2;
@@ -7793,11 +7793,11 @@ u32 *libc_fill_loop_0108f8(void) {
 }
 
 /*
- * libc_fill_loop_0108fc  0x8c0108fc
- * area name: in the libc library code range; behaviour name: a loop that writes memory
+ * strcpy_words  0x8c0108fc
+ * copies the string at r1 to r0 a word at a time until a word holds a zero byte, then finishes byte by byte
  * called by: strcpy_like
  */
-u32 *libc_fill_loop_0108fc(void) {
+u32 *strcpy_words(void) {
     char cVar1;
     u32 *in_r0;
     u32 *puVar2;
@@ -7910,7 +7910,7 @@ char *strcpy_like(void) {
     char *pcVar3;
 
     if (((u32)in_r1 & 3) == 0 && ((u32)in_r0 & 3) == 0) {
-        uVar2 = libc_fill_loop_0108fc();
+        uVar2 = strcpy_words();
         return (char *)uVar2;
     }
     cVar1 = *in_r1;
@@ -8085,7 +8085,7 @@ u32 delay_loop_6_010ad4(void) {
 /*
  * bytes_add_be  0x8c010af8
  * adds the a2-byte big-endian number at a1 to the one at a0
- * called by: bytes_mul_8x8_be, libc_copy_010c60
+ * called by: bytes_mul_8x8_be, softfloat_div_mantissa
  */
 int bytes_add_be(char *a0, int a1, int a2, u32 unused_a3, int ain0) {
     u8 *pbVar1;
@@ -8154,11 +8154,11 @@ u32 bytes_all_zero(char *a0, int a1) {
 }
 
 /*
- * libc_uses_memmove_010b60  0x8c010b60
- * area name: in the libc library code range; behaviour name: its main named callee is memmove
+ * libc_uses_softfloat_scale_pow10_010b60  0x8c010b60
+ * area name: in the libc library code range; behaviour name: its main named callee is softfloat_scale_pow10
  * called by: libc_uses_memmove_013060
  */
-u32 libc_uses_memmove_010b60(u32 a0, u32 a1, int a2, u32 a3) {
+u32 libc_uses_softfloat_scale_pow10_010b60(u32 a0, u32 a1, int a2, u32 a3) {
     short sVar1;
     int iVar2;
     int iVar3;
@@ -8177,13 +8177,13 @@ u32 libc_uses_memmove_010b60(u32 a0, u32 a1, int a2, u32 a3) {
     puVar8 = &stack0xffffffcc;
     uVar4 = CONCAT22((short)((u32)in_stack_ffffffd0 >> 0x10), (u16)a0);
     if (a2 < 1) {
-        libc_uses_memmove_012b1c(-a2, &stack0xffffffcc, auStack_20, a3);
+        softfloat_scale_pow10(-a2, &stack0xffffffcc, auStack_20, a3);
         iVar2 = (int)(short)uVar4;
         libc_uses_bytes_shl1_0129b4(&stack0xffffffcc, auStack_20, iVar2, a1);
     } else {
-        libc_uses_memmove_012b1c(a2, &stack0xffffffcc, auStack_20, a3);
+        softfloat_scale_pow10(a2, &stack0xffffffcc, auStack_20, a3);
         iVar2 = (int)(short)uVar4;
-        libc_copy_010c60(&stack0xffffffcc, auStack_20, iVar2, a1);
+        softfloat_div_mantissa(&stack0xffffffcc, auStack_20, iVar2, a1);
         puVar8 = puVar5;
     }
     iVar9 = 0x3f - (short)in_stack_ffffffcc;
@@ -8214,11 +8214,11 @@ u32 libc_uses_memmove_010b60(u32 a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * libc_copy_010c60  0x8c010c60
- * area name: in the libc library code range; behaviour name: mostly calls copy functions
- * called by: libc_uses_memmove_010b60
+ * softfloat_div_mantissa  0x8c010c60
+ * divides the 8-byte mantissa a1 by a3 with shift-and-subtract long division into a 9-byte quotient (sticky bit kept)
+ * and adjusts the exponent *a0 called by: libc_uses_softfloat_scale_pow10_010b60
  */
-u32 libc_copy_010c60(short *a0, u32 a1, u32 a2, u32 a3) {
+u32 softfloat_div_mantissa(short *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u8 *a6;
@@ -8295,7 +8295,7 @@ u32 libc_copy_010c60(short *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * double_inf_or_nan  0x8c010df4
  * 2 for an infinite double fr4:fr5, 1 for NaN, else 0
- * called by: libc_uses_double_inf_or_nan_012734, libc_uses_store_u32_be_0125b6
+ * called by: libc_uses_double_inf_or_nan_012734, libm_frexp
  */
 u32 double_inf_or_nan(void) {
     int in_fr5;
@@ -9175,8 +9175,7 @@ u32 *libc_float_calc_011c5c(int *a0, u32 a1, u32 a2, u32 a3, u32 *ain0) {
 /*
  * libc_calc_011d50  0x8c011d50
  * area name: in the libc library code range; behaviour name: integer arithmetic on its arguments
- * called by: libc_calls_calc_011f18, libc_calls_scan_loop_0121bc, libc_uses_busy_wait_5_01186c,
- * libc_uses_busy_wait_5_011960
+ * called by: libc_uses_busy_wait_5_01186c, libc_uses_busy_wait_5_011960, libc_uses_libm_exp_0121bc, libm_exp
  */
 u32 libc_calc_011d50(int a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
     u32 uVar1;
@@ -9276,11 +9275,11 @@ u32 libc_uses_delay_loop_6_011e10(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) 
 }
 
 /*
- * libc_calls_calc_011f18  0x8c011f18
- * area name: in the libc library code range; behaviour name: its callees mostly do: calc
- * called by: libc_calls_scan_loop_0121bc, libm_errno_wrap_013cd8
+ * libm_exp  0x8c011f18
+ * expf-style: splits x * log2(e) into an integer and a fraction and evaluates the table polynomial (handles zero,
+ * infinity and large inputs) called by: libc_uses_libm_exp_0121bc, libm_errno_wrap_013cd8
  */
-u32 libc_calls_calc_011f18(void) {
+u32 libm_exp(void) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -9343,7 +9342,7 @@ u32 libc_calls_calc_011f18(void) {
 /*
  * libc_scan_loop_012090  0x8c012090
  * area name: in the libc library code range; behaviour name: a loop that only reads
- * called by: libc_calls_scan_loop_0121bc, libm_errno_wrap_013dfc
+ * called by: libc_uses_libm_exp_0121bc, libm_errno_wrap_013dfc
  */
 u32 *libc_scan_loop_012090(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar1;
@@ -9384,11 +9383,11 @@ u32 *libc_scan_loop_012090(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * libc_calls_scan_loop_0121bc  0x8c0121bc
- * area name: in the libc library code range; behaviour name: its callees mostly do: scan_loop
+ * libc_uses_libm_exp_0121bc  0x8c0121bc
+ * area name: in the libc library code range; behaviour name: its main named callee is libm_exp
  * called by: libm_errno_wrap_014064
  */
-u32 libc_calls_scan_loop_0121bc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 libc_uses_libm_exp_0121bc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 ar4_00;
     u32 ar4_01;
     u32 ar5_00;
@@ -9428,12 +9427,12 @@ u32 libc_calls_scan_loop_0121bc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32
             fVar1 = (float)((u32)fVar1 | ar5_01);
             if ((fVar2 == fVar1) && ((ar4_00 & 2) == 0)) {
                 libc_scan_loop_012090(ar4_01, ar5_01, 8, 1);
-                libc_calls_calc_011f18();
+                libm_exp();
                 ain0 = libc_calc_011d50(0xffffffff, ar5_01, ar6_00, ar7_00, fVar1);
             }
         } else {
             libc_scan_loop_012090(ar4_00, 4, 8, 1);
-            ain0 = libc_calls_calc_011f18();
+            ain0 = libm_exp();
         }
     }
     return ain0;
@@ -9504,11 +9503,11 @@ u32 libc_uses_delay_loop_6_012328(u32 unused_a0, u32 unused_a1, u32 unused_a2, u
 }
 
 /*
- * libc_uses_memmove_01243c  0x8c01243c
- * area name: in the libc library code range; behaviour name: its main named callee is memmove
+ * double_to_digits  0x8c01243c
+ * writes a2 decimal digits of the 8-byte mantissa a0 into a1 by repeated subtraction of powers of ten from a table
  * called by: libc_uses_log_message_013374
  */
-int libc_uses_memmove_01243c(u32 a0, char *a1, int a2) {
+int double_to_digits(u32 a0, char *a1, int a2) {
     int iVar1;
     int iVar2;
     char cVar3;
@@ -9575,18 +9574,18 @@ int libc_uses_memmove_01243c(u32 a0, char *a1, int a2) {
 }
 
 /*
- * libc_uses_store_u32_be_01256c  0x8c01256c
- * area name: in the libc library code range; behaviour name: its callees mostly do: uses_store_u32_be
+ * libc_uses_libm_frexp_01256c  0x8c01256c
+ * area name: in the libc library code range; behaviour name: its main named callee is libm_frexp
  * called by: libc_uses_memmove_013060
  */
-int libc_uses_store_u32_be_01256c(void) {
+int libc_uses_libm_frexp_01256c(void) {
     double dVar1;
     char cVar2;
     u32 uStack_10;
     u32 uStack_c;
     u32 auStack_8[2];
 
-    libc_uses_store_u32_be_0125b6(auStack_8);
+    libm_frexp(auStack_8);
     cVar2 = '\0';
     libc_uses_double_inf_or_nan_012734(&uStack_10);
     if (cVar2 == '\0') {
@@ -9598,11 +9597,11 @@ int libc_uses_store_u32_be_01256c(void) {
 }
 
 /*
- * libc_uses_store_u32_be_0125b6  0x8c0125b6
- * area name: in the libc library code range; behaviour name: its main named callee is store_u32_be
- * called by: libc_uses_store_u32_be_01256c
+ * libm_frexp  0x8c0125b6
+ * frexp-style: returns the mantissa of the double in fr4 and stores its binary exponent in *a0 (normalising denormals,
+ * setting errno for inf/nan) called by: libc_uses_libm_frexp_01256c
  */
-u32 libc_uses_store_u32_be_0125b6(int *a0) {
+u32 libm_frexp(int *a0) {
     int iVar1;
     double dVar2;
     double dVar3;
@@ -9664,7 +9663,7 @@ u32 libc_uses_store_u32_be_0125b6(int *a0) {
 /*
  * libc_uses_double_inf_or_nan_012734  0x8c012734
  * area name: in the libc library code range; behaviour name: its main named callee is double_inf_or_nan
- * called by: libc_uses_store_u32_be_01256c
+ * called by: libc_uses_libm_frexp_01256c
  */
 u32 libc_uses_double_inf_or_nan_012734(u32 *a0) {
     int iVar1;
@@ -9721,7 +9720,7 @@ u32 libc_uses_double_inf_or_nan_012734(u32 *a0) {
 /*
  * bytes_shl1  0x8c012854
  * shifts the a1-byte big-endian number at a0 left by one bit; returns the bit shifted out
- * called by: libc_copy_010c60, libc_uses_bytes_shl1_0129b4, libc_uses_store_u32_be_0125b6
+ * called by: libc_uses_bytes_shl1_0129b4, libm_frexp, softfloat_div_mantissa
  */
 u32 bytes_shl1(u8 *a0, int a1) {
     u16 uVar1;
@@ -9842,7 +9841,7 @@ int bytes_mul_8x8_be(int a0, int a1, int a2, u32 a3) {
 /*
  * libc_uses_bytes_shl1_0129b4  0x8c0129b4
  * area name: in the libc library code range; behaviour name: its main named callee is bytes_shl1
- * called by: libc_uses_memmove_010b60, libc_uses_memmove_012b1c
+ * called by: libc_uses_softfloat_scale_pow10_010b60, softfloat_scale_pow10
  */
 u32 libc_uses_bytes_shl1_0129b4(short *a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -9867,7 +9866,7 @@ u32 libc_uses_bytes_shl1_0129b4(short *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * store_u32_be  0x8c012a24
  * stores *a1 big-endian at a0; returns a0 + 4
- * called by: double_unpack_mantissa, libc_uses_store_u32_be_0125b6
+ * called by: double_unpack_mantissa, libm_frexp
  */
 u8 *store_u32_be(u8 *a0, u32 *a1) {
     u8 *puVar1;
@@ -9921,7 +9920,7 @@ char *store_u16_be(char *a0, u16 *a1) {
 /*
  * libc_copy_012a60  0x8c012a60
  * area name: in the libc library code range; behaviour name: mostly calls copy functions
- * called by: libc_uses_memmove_012b1c
+ * called by: softfloat_scale_pow10
  */
 u32 libc_copy_012a60(u32 a0, short *a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9962,11 +9961,11 @@ u32 memmove_wrap(int a0, u32 a1) {
 }
 
 /*
- * libc_uses_memmove_012b1c  0x8c012b1c
- * area name: in the libc library code range; behaviour name: its main named callee is memmove
- * called by: libc_uses_memmove_010b60
+ * softfloat_scale_pow10  0x8c012b1c
+ * multiplies the mantissa by 10^a0 using the power-of-ten tables (negative exponents through the reciprocal table)
+ * called by: libc_uses_softfloat_scale_pow10_010b60
  */
-u32 libc_uses_memmove_012b1c(int a0, short *a1, u8 *a2, u8 *a3) {
+u32 softfloat_scale_pow10(int a0, short *a1, u8 *a2, u8 *a3) {
     u32 uVar1;
     int iVar2;
     u32 uVar3;
@@ -10042,7 +10041,7 @@ u32 libc_uses_memmove_012b1c(int a0, short *a1, u8 *a2, u8 *a3) {
 /*
  * libc_uses_libgcc_divide_helper_012c70  0x8c012c70
  * area name: in the libc library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
- * called by: libc_uses_memmove_010b60, libc_uses_memmove_012b1c
+ * called by: libc_uses_softfloat_scale_pow10_010b60, softfloat_scale_pow10
  */
 u32 libc_uses_libgcc_divide_helper_012c70(u8 *a0, u32 a1) {
     u8 bVar1;
@@ -10115,7 +10114,7 @@ u32 libc_uses_libgcc_divide_helper_012c70(u8 *a0, u32 a1) {
 /*
  * bytes_shr1  0x8c012d5c
  * shifts an a1-byte big-endian number right by one bit; returns the bit shifted out
- * called by: libc_copy_010c60
+ * called by: softfloat_div_mantissa
  */
 u32 bytes_shr1(u8 *a0, int a1) {
     u8 *pbVar1;
@@ -10145,7 +10144,7 @@ u32 bytes_shr1(u8 *a0, int a1) {
 /*
  * libc_scan_loop_012da8  0x8c012da8
  * area name: in the libc library code range; behaviour name: a loop that only reads
- * called by: libc_uses_memmove_010b60, libc_uses_memmove_01243c
+ * called by: double_to_digits, libc_uses_softfloat_scale_pow10_010b60
  */
 u32 libc_scan_loop_012da8(u8 *a0, int a1, u32 a2) {
     u8 bVar1;
@@ -10200,7 +10199,7 @@ u32 libc_scan_loop_012da8(u8 *a0, int a1, u32 a2) {
 /*
  * libc_uses_libgcc_divide_helper_012e00  0x8c012e00
  * area name: in the libc library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
- * called by: libc_uses_bytes_shl1_0129b4, libc_uses_memmove_010b60
+ * called by: libc_uses_bytes_shl1_0129b4, libc_uses_softfloat_scale_pow10_010b60
  */
 u32 libc_uses_libgcc_divide_helper_012e00(int a0, int a1, u32 a2) {
     int iVar1;
@@ -10309,7 +10308,7 @@ u32 strtol_too_long(char *a0, int a1) {
 /*
  * bytes_sub_be  0x8c012eac
  * subtracts a2 from a1 (a3 big-endian bytes) in place; returns -1 on borrow (when a0 is 0), 0 when the result is zero,
- * else 1 called by: libc_copy_010c60, libc_uses_memmove_01243c
+ * else 1 called by: double_to_digits, softfloat_div_mantissa
  */
 u32 bytes_sub_be(int a0, u8 *a1, int a2, int a3) {
     bool bVar1;
@@ -10353,7 +10352,7 @@ u32 bytes_sub_be(int a0, u8 *a1, int a2, int a3) {
 /*
  * memcmp_libc  0x8c012f24
  * compares a2 bytes of a0 and a1
- * called by: libc_uses_memmove_01243c
+ * called by: double_to_digits
  */
 u32 memcmp_libc(char *a0, char *a1, u32 a2) {
     char cVar1;
@@ -10486,10 +10485,10 @@ u32 libc_uses_memmove_013060(int a0, u8 *a1, int *a2, char *a3) {
         sVar4 = (short)in_stack_ffffffa4 + -0x3ff;
         ain0 = CONCAT22((short)((u32)in_stack_ffffffa4 >> 0x10), sVar4);
         if (sVar4 < 0) {
-            iVar2 = libc_uses_store_u32_be_01256c();
+            iVar2 = libc_uses_libm_frexp_01256c();
             iVar2 = iVar2 + -1;
         } else {
-            iVar2 = libc_uses_store_u32_be_01256c();
+            iVar2 = libc_uses_libm_frexp_01256c();
         }
         uStack_29 = 0;
         *a2 = (iVar2 - a0) + 1;
@@ -10527,7 +10526,7 @@ u32 libc_uses_memmove_013060(int a0, u8 *a1, int *a2, char *a3) {
         while (true) {
             while (true) {
                 puVar6 = a1;
-                libc_uses_memmove_010b60((int)(short)ain0, auStack_30, *a2, a1);
+                libc_uses_softfloat_scale_pow10_010b60((int)(short)ain0, auStack_30, *a2, a1);
                 memmove(auStack_48, a1, 8);
                 iVar2 = memcmp(auStack_48, auStack_38, 8);
                 if (iVar2 < 1)
@@ -10551,7 +10550,7 @@ u32 libc_uses_memmove_013060(int a0, u8 *a1, int *a2, char *a3) {
         }
         iVar2 = *a2;
         *a2 = iVar2 + 1;
-        libc_uses_memmove_010b60((int)(short)ain0, auStack_30, iVar2 + 1, a1);
+        libc_uses_softfloat_scale_pow10_010b60((int)(short)ain0, auStack_30, iVar2 + 1, a1);
     }
     return 0;
 }
@@ -10634,7 +10633,7 @@ int libc_uses_log_message_013374(u32 *a0, char *a1, int a2, u8 *a3) {
         }
         pcVar5 = acStack_48 + 1;
         uVar11 = 0x11;
-        libc_uses_memmove_01243c(auStack_28, pcVar5, 0x11);
+        double_to_digits(auStack_28, pcVar5, 0x11);
     }
     for (iVar3 = 1; acStack_48[iVar3] == '0'; iVar3 = iVar3 + 1) {
     }
@@ -11035,7 +11034,7 @@ u32 decimal_round_digits(char *a0, int a1) {
 
 /*
  * abs  0x8c013adc
- * called by: CProlog_uses_abs_0b93c0, Class_12b580_sound_022128, asr_uses_abs_12381c, pack_step_from_value,
+ * called by: CProlog_uses_abs_0b93c0, asr_uses_abs_12381c, game_sound_022128, pack_step_from_value,
  * pack_uses_abs_021ec8, se_play_3d
  */
 int abs(int a0) {
@@ -11247,7 +11246,7 @@ u32 libm_errno_wrap_013cd8(void) {
     u32 uStack_8;
 
     cVar2 = '\0';
-    uVar1 = libc_calls_calc_011f18();
+    uVar1 = libm_exp();
     if (cVar2 == '\0') {
         uStack_8 = (u32)((u64)in_dr0 >> 0x20);
     } else {
@@ -11602,7 +11601,7 @@ u32 libm_errno_wrap_014064(void) {
     u32 uVar3;
 
     cVar2 = '\0';
-    uVar1 = libc_calls_scan_loop_0121bc(r4, r5, r6, r7, in_stack_fffffff8);
+    uVar1 = libc_uses_libm_exp_0121bc(r4, r5, r6, r7, in_stack_fffffff8);
     if (cVar2 == '\0') {
         uVar3 = (u32)((u64)in_dr0 >> 0x20);
     } else {
@@ -15101,10 +15100,11 @@ u32 Class_129974_init_fields_016c84(int a0, u32 *a1) {
 }
 
 /*
- * Class_129974_float_calc_016cec  0x8c016cec
- * area name: sits between Class_129974 functions (same compilation unit); behaviour name: floating-point arithmetic
+ * Class_129974_set_point_dir  0x8c016cec
+ * calls method 0x34, stores the point a1 (at +4 and +0x30) and the direction a3 (+0x20) and caches the direction's
+ * squared z at +0x3c
  */
-float *Class_129974_float_calc_016cec(int a0, u64 *a1, u32 a2, u64 *a3, int *s0) {
+float *Class_129974_set_point_dir(int a0, u64 *a1, u32 a2, u64 *a3, int *s0) {
     float *pfVar1;
     float fVar2;
     u64 uVar3;
@@ -15595,10 +15595,10 @@ u32 Class_129938_m5_01745c(int a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_129938_vec_017490  0x8c017490
- * area name: sits between Class_129938 functions (same compilation unit); behaviour name: mostly calls vec functions
+ * Class_129938_set_corners  0x8c017490
+ * stores the eight corner points a1, a2, a3, s0..s16 and the squared distances from a1 to s0, s4 and a2
  */
-u32 Class_129938_vec_017490(int a0, u32 *a1, u32 *a2, u32 *a3, u32 *s0, u32 *s4, u32 *s8, u32 *s12, u32 *s16) {
+u32 Class_129938_set_corners(int a0, u32 *a1, u32 *a2, u32 *a3, u32 *s0, u32 *s4, u32 *s8, u32 *s12, u32 *s16) {
     u32 *ar6_00;
     u32 in_fr1;
     u32 uVar2;
@@ -15666,10 +15666,10 @@ u32 Class_129938_vec_017490(int a0, u32 *a1, u32 *a2, u32 *a3, u32 *s0, u32 *s4,
 }
 
 /*
- * Class_129938_vec_017630  0x8c017630
- * area name: sits between Class_129938 functions (same compilation unit); behaviour name: mostly calls vec functions
+ * Class_129938_set_corners_strided  0x8c017630
+ * stores eight corner points read from a1 at a 0x10-byte stride and the squared distances of three edges
  */
-u32 Class_129938_vec_017630(int a0, u32 *a1, u32 a2, u32 a3) {
+u32 Class_129938_set_corners_strided(int a0, u32 *a1, u32 a2, u32 a3) {
     u32 in_fr1;
     u32 uVar2;
     u64 uVar1;
@@ -19066,11 +19066,11 @@ int vmu_load_user_icon(int *a0, int a1, int a2) {
 }
 
 /*
- * game_uses_memmove_01a5cc  0x8c01a5cc
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: uses_memmove
+ * game_save_01a5cc  0x8c01a5cc
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls save functions
  * called by: input_peripheral_state_machine, memcard_flush_and_close
  */
-u32 game_uses_memmove_01a5cc(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 game_save_01a5cc(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     int iVar2;
 
@@ -19080,7 +19080,7 @@ u32 game_uses_memmove_01a5cc(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
             g_8c2791b0 = 1;
             uVar1 = 0;
         } else {
-            iVar2 = game_uses_memmove_01a630(a0, unused_a1, unused_a2, a3);
+            iVar2 = memcard_tick(a0, unused_a1, unused_a2, a3);
             if (iVar2 == 3) {
                 uVar1 = 1;
             } else {
@@ -19094,11 +19094,11 @@ u32 game_uses_memmove_01a5cc(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_uses_memmove_01a630  0x8c01a630
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is memmove
- * called by: game_uses_memmove_01a5cc, wait_state_rtc_10s
+ * memcard_tick  0x8c01a630
+ * refreshes the 0x600-byte working buffer (and the 0x210-byte icon data on a timer), redraws when it changed and runs
+ * the current memory card request called by: game_save_01a5cc, wait_state_rtc_10s
  */
-u32 game_uses_memmove_01a630(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 memcard_tick(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     int *ar5_00;
@@ -19159,7 +19159,7 @@ u32 game_uses_memmove_01a630(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * memcard_run_request  0x8c01a760
  * runs the request at the head of the memory-card queue through the handler for its op (0..13)
- * called by: game_uses_memmove_01a630
+ * called by: memcard_tick
  */
 u32 memcard_run_request(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -19226,7 +19226,7 @@ u32 memcard_run_request(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * memcard_poll_slot_busy  0x8c01a900
  * polls the memory-card slot: when idle runs the next step, else records the slot's busy result in the current record
- * called by: game_uses_memmove_01a630
+ * called by: memcard_tick
  */
 int memcard_poll_slot_busy(int *a0) {
     int iVar1;
@@ -19250,7 +19250,7 @@ int memcard_poll_slot_busy(int *a0) {
 /*
  * game_calls_scan_loop_01a98c  0x8c01a98c
  * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: scan_loop
- * called by: game_uses_memmove_01a630, memcard_run_request
+ * called by: memcard_run_request, memcard_tick
  */
 int game_calls_scan_loop_01a98c(int *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -19304,7 +19304,7 @@ u32 memcard_flush_and_close(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
     do {
         ar4_00 = a0;
-        iVar1 = game_uses_memmove_01a5cc(a0, unused_a1, unused_a2, a3);
+        iVar1 = game_save_01a5cc(a0, unused_a1, unused_a2, a3);
         if (iVar1 == 0)
             break;
     } while (-1 < *a0);
@@ -19358,9 +19358,9 @@ u32 memcard_queue_request(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * wait_state_rtc_10s  0x8c01acd0
  * runs the sound server while slot a1's state (+0x2450) is 2 or 3, for at most 10 RTC seconds
- * called by: game_uses_bu_get_game_file_name_01b144, game_uses_memcard_delete_start_01bb00,
- * game_uses_memcard_save_start_01ae98, memcard_check_file_wait, memcard_file_data_size_wait, memcard_free_bytes_wait,
- * memcard_load_raw_wait, memcard_load_wait (+2 more)
+ * called by: game_uses_memcard_delete_start_01bb00, game_uses_memcard_save_start_01ae98, memcard_check_file_wait,
+ * memcard_file_data_size_wait, memcard_free_bytes_wait, memcard_load_raw_wait, memcard_load_wait,
+ * memcard_save_game_file (+2 more)
  */
 u32 wait_state_rtc_10s(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -19385,7 +19385,7 @@ u32 wait_state_rtc_10s(int a0, int a1, u32 a2, u32 a3) {
         iVar1 = *(int *)(0x2450 + a1 * 0x28 + a0);
         if ((iVar1 != 2) && (iVar1 != 3))
             break;
-        game_uses_memmove_01a630(a0, ar5_00, a2, a3);
+        memcard_tick(a0, ar5_00, a2, a3);
     }
     return *(u32 *)(0x2450 + a1 * 0x28 + a0);
 }
@@ -19566,8 +19566,8 @@ u32 game_release_01b0a8(u32 a0, u32 a1, u32 a2, u32 a3) {
         if (iVar2 == 0) {
             uVar1 = 0;
         } else {
-            (*(code *)(&game_uses_bu_get_game_file_name_01b144))(a0, a1, auStack_c[0], uStack_10, a2, a3, a0, a2, a3,
-                                                                 in_stack_ffffffe4);
+            (*(code *)(&memcard_save_game_file))(a0, a1, auStack_c[0], uStack_10, a2, a3, a0, a2, a3,
+                                                 in_stack_ffffffe4);
             CDCGD_release_request_wrap_021234(0x8c3eb334, a1, (&DATA_8c12fb18) + 0x11, 1);
             uVar1 = 1;
         }
@@ -19578,11 +19578,11 @@ u32 game_release_01b0a8(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_bu_get_game_file_name_01b144  0x8c01b144
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is bu_get_game_file_name
+ * memcard_save_game_file  0x8c01b144
+ * checks for the game file (deleting it when needed), makes room on the card, writes the file with its icon and waits
+ * for it to finish
  */
-u32 game_uses_bu_get_game_file_name_01b144(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16,
-                                           u32 s20) {
+u32 memcard_save_game_file(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16, u32 s20) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -19982,7 +19982,7 @@ int memcard_queue_file_size(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * memcard_free_bytes_wait  0x8c01b9e4
  * free bytes on the card, waiting up to 10 s; -1 on failure
- * called by: game_uses_bu_get_game_file_name_01b144, static_init_4367d4
+ * called by: memcard_save_game_file, static_init_4367d4
  */
 int memcard_free_bytes_wait(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -20046,7 +20046,7 @@ u32 memcard_delete_start(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * game_uses_memcard_delete_start_01bb00  0x8c01bb00
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is memcard_delete_start
- * called by: game_uses_bu_get_game_file_name_01b144, save_menu_update, save_set_names_seamandc
+ * called by: memcard_save_game_file, save_menu_update, save_set_names_seamandc
  */
 u32 game_uses_memcard_delete_start_01bb00(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -20678,7 +20678,7 @@ int memcard_op_lcd_b(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * game_input_01c8c8  0x8c01c8c8
  * area name: game code; nothing names its area yet; behaviour name: mostly calls input functions
- * called by: game_uses_memmove_01a630, memcard_op_lcd_a, memcard_op_lcd_b
+ * called by: memcard_op_lcd_a, memcard_op_lcd_b, memcard_tick
  */
 u32 game_input_01c8c8(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -22160,7 +22160,7 @@ u8 *input_peripheral_state_machine(int a0, u32 a1, u32 a2, u32 a3) {
             }
             break;
         case 4:
-            iVar2 = game_uses_memmove_01a5cc(a0, a1, a2, a3);
+            iVar2 = game_save_01a5cc(a0, a1, a2, a3);
             if (iVar2 == 0) {
                 *(u32 *)(a0 + 0xa510) = 5;
             }
@@ -22171,7 +22171,7 @@ u8 *input_peripheral_state_machine(int a0, u32 a1, u32 a2, u32 a3) {
             }
         }
     } else {
-        iVar2 = game_uses_memmove_01a5cc(a0, a1, a2, a3);
+        iVar2 = game_save_01a5cc(a0, a1, a2, a3);
         if (iVar2 == 0) {
             *(u32 *)(a0 + 0xa510) = 3;
         }
@@ -22378,7 +22378,7 @@ u32 input_r_off(int a0) {
 /*
  * input_r_pressed  0x8c01ecf8
  * R button (0x10000) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
- * called by: input_input_helper_100e4c, input_r_only_start_timeout, input_uses_input_r_pressed_101004,
+ * called by: input_input_helper_100e4c, input_r_only_start_timeout, input_uses_pack_entry_poll_status_wrap_101004,
  * menu_next_pressed
  */
 u32 input_r_pressed(int a0) {
@@ -22580,8 +22580,8 @@ u32 input_x_held(int a0) {
  * input_x_off  0x8c01ef68
  * X button (0x400) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
  * called by: input_input_helper_1001e0, input_input_helper_100b20, input_input_helper_100b84,
- * input_input_helper_100be8, input_input_helper_100c34, input_uses_input_r_pressed_101004, stick_down_with_b_x_up,
- * stick_up_with_b_x_up
+ * input_input_helper_100be8, input_input_helper_100c34, input_uses_pack_entry_poll_status_wrap_101004,
+ * stick_down_with_b_x_up, stick_up_with_b_x_up
  */
 u32 input_x_off(int a0) {
     u32 uVar1;
@@ -23209,7 +23209,7 @@ u32 game_uses_CDCGD_finish_texture_request_01f794(int a0, u32 a1, u32 a2, u32 a3
         } else if (((iVar1 == 0xc) || (iVar1 == 0xd)) || (iVar1 == 0xe)) {
             CDCGD_finish_texture_request(a0, a1, a2, a3);
         } else {
-            game_uses_list_push_front_01f8a4(a0, a1, a2, a3);
+            cd_load_poll_finish(a0, a1, a2, a3);
         }
     }
     uVar2 = game_calls_test_01f83c(a0, a1, a2, a3);
@@ -23253,11 +23253,11 @@ u32 game_calls_test_01f83c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_list_push_front_01f8a4  0x8c01f8a4
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is list_push_front
- * called by: game_uses_CDCGD_finish_texture_request_01f794
+ * cd_load_poll_finish  0x8c01f8a4
+ * when the current ADXF read ends, closes the file and hands the data to the request's handler (types 0xf/0x10 go onto
+ * the done lists) called by: game_uses_CDCGD_finish_texture_request_01f794
  */
-int game_uses_list_push_front_01f8a4(int *a0, u32 unused_a1, int *a2, int a3) {
+int cd_load_poll_finish(int *a0, u32 unused_a1, int *a2, int a3) {
     int iVar1;
     int *ar5_00;
 
@@ -23472,7 +23472,7 @@ u32 CDCGD_copy_01fc78(int a0, u32 *a1, u32 a2, u32 a3) {
  * CDCGD_uses_CDCGD_queue_unique_request_01fd08  0x8c01fd08
  * name hint from a string it uses: MCJNMBJNLTJNILJNACJNMDMNMILN; area name: sits between CDCGD functions (same
  * compilation unit); behaviour name: its main named callee is CDCGD_queue_unique_request called by: CDCGD_copy_01fc78,
- * game_uses_list_push_front_01f8a4 strings: "MCJNMBJNLTJNILJNACJNMDMNMILNMACNMSSNDAJN0FOP\\";
+ * cd_load_poll_finish strings: "MCJNMBJNLTJNILJNACJNMDMNMILNMACNMSSNDAJN0FOP\\";
  * "MBJNLTJNILJNACJNMDMNMILNMACNMSSNDAJN0FOP\\"; "LTJNILJNACJNMDMNMILNMACNMSSNDAJN0FOP\\";
  * "ILJNACJNMDMNMILNMACNMSSNDAJN0FOP\\" ...
  */

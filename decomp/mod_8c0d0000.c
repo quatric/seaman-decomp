@@ -4826,7 +4826,7 @@ u32 se_play_ike1(int a0, u32 unused_a1, u32 a2, u32 a3) {
     uVar1 = (*(code *)(&pack_find_by_name_buffered))(0x8c2b59d0, "75_IKE1", a2, a3);
     *(u32 *)(0x5e4 + a0) = uVar1;
     Class_12b580_set_request(0x8c2b59d0, *(u32 *)(0x5e4 + a0));
-    uVar1 = Class_12b580_sound_022128(0x8c2b59d0, 0x1f4, a2, a3);
+    uVar1 = game_sound_022128(0x8c2b59d0, 0x1f4, a2, a3);
     return uVar1;
 }
 
@@ -4850,7 +4850,7 @@ u32 se_draw_0d50a0(void) {
 u32 se_sound_0d50b4(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    Class_12b580_sound_022104(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
+    game_sound_022104(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
     uVar1 = Class_12b580_clear_request(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
     return uVar1;
 }
@@ -4879,7 +4879,7 @@ u32 se_sound_0d50ec(u32 a0, u32 a1, u32 a2, u32 a3) {
 u32 se_close_two_ports(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
 
-    Class_12b580_sound_022104(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
+    game_sound_022104(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
     Class_12b580_clear_request(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
     for (iVar1 = 0; iVar1 < 2; iVar1 = iVar1 + 1) {
         if (*(int *)(0x600 + iVar1 * 0x18 + a0) != -1) {
@@ -4900,7 +4900,7 @@ u32 se_sound_0d51ec(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = 0;
-    Class_12b580_sound_022128(0x8c2b59d0, 0, a2, a3);
+    game_sound_022128(0x8c2b59d0, 0, a2, a3);
     uVar1 = se_close_two_ports(a0, uVar1, a2, a3);
     return uVar1;
 }
@@ -5141,7 +5141,7 @@ int game_sound_0d55d0(int a0) {
 u32 game_sound_0d5614(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
 
-    Class_12b580_sound_022104(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
+    game_sound_022104(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
     for (iVar1 = 0; iVar1 < 2; iVar1 = iVar1 + 1) {
         if (*(int *)(0x600 + iVar1 * 0x18 + a0) != -1) {
             (*(code *)(&se_status))(0x8c2b59d0, *(u32 *)(0x600 + iVar1 * 0x18 + a0), a2, a3);
@@ -5170,7 +5170,7 @@ u32 Class_12b580_set_request_wrap(int a0) {
 u32 game_sound_0d56b4(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = Class_12b580_sound_022104(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
+    uVar1 = game_sound_022104(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
     return uVar1;
 }
 

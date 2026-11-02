@@ -921,11 +921,11 @@ u32 input_input_helper_100e4c(int a0, u64 *a1) {
 }
 
 /*
- * input_uses_input_r_pressed_101004  0x8c101004
+ * input_uses_pack_entry_poll_status_wrap_101004  0x8c101004
  * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * input_r_pressed called by: static_init_4372a8, static_init_4372f4
+ * pack_entry_poll_status_wrap called by: static_init_4372a8, static_init_4372f4
  */
-int input_uses_input_r_pressed_101004(int a0, u32 a1, u32 a2, u32 a3) {
+int input_uses_pack_entry_poll_status_wrap_101004(int a0, u32 a1, u32 a2, u32 a3) {
     bool bVar1;
     int iVar2;
 
@@ -933,7 +933,7 @@ int input_uses_input_r_pressed_101004(int a0, u32 a1, u32 a2, u32 a3) {
     while (!bVar1) {
         if (*(int *)(0x88 + a0) != -1) {
             a1 = *(u32 *)(0x88 + a0);
-            iVar2 = pack_state_switch_021f18(0x8c2b59d0, a1, a2);
+            iVar2 = pack_entry_poll_status_wrap(0x8c2b59d0, a1, a2);
             if ((iVar2 == 1) || (iVar2 == 2)) {
                 *(u32 *)(0x88 + a0) = 0xffffffff;
             }
@@ -1384,7 +1384,7 @@ u32 input_uses_level_tracker_reset_101784(int a0, u32 unused_a1, u32 a2, u32 a3)
 /*
  * input_uses_level_tracker_reset_1017f4  0x8c1017f4
  * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * level_tracker_reset called by: input_uses_input_r_pressed_101004
+ * level_tracker_reset called by: input_uses_pack_entry_poll_status_wrap_101004
  */
 u32 input_uses_level_tracker_reset_1017f4(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1443,7 +1443,7 @@ u32 input_uses_level_tracker_reset_1017f4(int a0, u32 unused_a1, u32 a2, u32 a3)
 /*
  * game_uses_sh4_tmu_1019f8  0x8c1019f8
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is sh4_tmu_1f88e6
- * called by: input_uses_input_r_pressed_101004
+ * called by: input_uses_pack_entry_poll_status_wrap_101004
  */
 u32 game_uses_sh4_tmu_1019f8(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 ar6_00;
@@ -1464,7 +1464,7 @@ u32 game_uses_sh4_tmu_1019f8(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * game_uses_level_tracker_reset_101a4c  0x8c101a4c
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is level_tracker_reset
- * called by: input_uses_input_r_pressed_101004
+ * called by: input_uses_pack_entry_poll_status_wrap_101004
  */
 u32 game_uses_level_tracker_reset_101a4c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1588,7 +1588,7 @@ int level_tracker_reset(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * clear_5_pairs  0x8c101da0
  * zeroes five word pairs at a0 and sets byte +0x28 to 0xff
- * called by: input_uses_input_r_pressed_101004, level_tracker_reset
+ * called by: input_uses_pack_entry_poll_status_wrap_101004, level_tracker_reset
  */
 u32 clear_5_pairs(int a0) {
     char cVar1;

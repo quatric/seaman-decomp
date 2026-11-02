@@ -11096,7 +11096,7 @@ u32 alt_entry_1f7eea(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * shinobi_uses_flashrom_open_partition_1f7f1e  0x8c1f7f1e
  * area name: in the shinobi library code range; behaviour name: its callees mostly do: uses_flashrom_open_partition
- * called by: game_sound_0221c8
+ * called by: game_sound_init
  */
 u32 shinobi_uses_flashrom_open_partition_1f7f1e(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -14166,7 +14166,7 @@ u32 noop_1fb43a(void) {
 
 /*
  * malloc_thunk  0x8c1fb4ae
- * called by: CDCGD_new_request_c, CDCGD_uses_strcpy_0202c0, CProlog_uses_free_sys_0b96e4, draw_uses_free_sys_258b26,
+ * called by: CDCGD_new_request_c, CProlog_uses_free_sys_0b96e4, cd_load_open_read, draw_uses_free_sys_258b26,
  * game_init, game_uses_free_sys_01e0a4, game_uses_malloc_thunk_015f18, gdfs_load_file_alloc (+11 more)
  */
 u32 malloc_thunk(u32 a0, u32 a1, u32 a2, u32 a3) {
@@ -14929,7 +14929,7 @@ u32 thunk_FUN_8c1fce50(void) {
 
 /*
  * thunk_FUN_8c1fda7e  0x8c1fbfcc
- * called by: game_uses_memmove_01a5cc, vmu_load_user_icon
+ * called by: game_save_01a5cc, vmu_load_user_icon
  */
 u32 thunk_FUN_8c1fda7e(void) {
     u32 uVar1;
@@ -15046,7 +15046,7 @@ u32 shinobi_uses_slot80_get_active_1fc13c(u32 a0, u32 a1) {
 /*
  * buGetFreeBlocks_like  0x8c1fc16a
  * free blocks on drive a0 (mode a1); -1 while busy
- * called by: game_uses_bu_get_game_file_name_01b144, memcard_op_free_blocks
+ * called by: memcard_op_free_blocks, memcard_save_game_file
  */
 u32 buGetFreeBlocks_like(u32 a0, u32 a1) {
     int iVar1;
@@ -15127,7 +15127,7 @@ u32 shinobi_input_1fc226(u32 a0, u32 a1, u32 a2) {
 /*
  * bu_get_game_file_name  0x8c1fc258
  * copies the 12-character name of the drive's game file into a1; -1 while busy
- * called by: game_uses_bu_get_game_file_name_01b144, memcard_op_game_name_check
+ * called by: memcard_op_game_name_check, memcard_save_game_file
  */
 u32 bu_get_game_file_name(u32 a0, u32 a1) {
     int iVar1;
@@ -15396,7 +15396,7 @@ u32 shinobi_input_1fc592(u32 a0, u32 a1, u32 a2) {
 /*
  * slot80_busy_error  0x8c1fc5c4
  * -1 while slot80_get_active(a0), else 0
- * called by: game_uses_bu_get_game_file_name_01b144, memcard_poll_slot_busy, shinobi_uses_maple_ready_port_mask_1fbe84
+ * called by: memcard_poll_slot_busy, memcard_save_game_file, shinobi_uses_maple_ready_port_mask_1fbe84
  */
 u32 slot80_busy_error(u32 a0) {
     int iVar1;
@@ -15411,7 +15411,7 @@ u32 slot80_busy_error(u32 a0) {
 /*
  * shinobi_uses_slot80_get_active_1fc5de  0x8c1fc5de
  * area name: in the shinobi library code range; behaviour name: its main named callee is slot80_get_active
- * called by: game_uses_bu_get_game_file_name_01b144, memcard_poll_slot_busy
+ * called by: memcard_poll_slot_busy, memcard_save_game_file
  */
 u32 shinobi_uses_slot80_get_active_1fc5de(int a0) {
     int iVar1;
@@ -15465,7 +15465,7 @@ u32 buGetFileSize_like(u32 a0, u32 a1) {
 /*
  * slot80_queue_op_09  0x8c1fc682
  * queues request 0x9 on the idle slot (args from the caller); -1 when the slot is busy
- * called by: game_uses_bu_get_game_file_name_01b144
+ * called by: memcard_save_game_file
  */
 u32 slot80_queue_op_09(u32 a0, u32 a1) {
     int iVar1;

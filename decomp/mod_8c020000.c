@@ -33,8 +33,8 @@ u32 *CDCGD_new_request_c(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4) 
 /*
  * CDCGD_uses_CDCGD_file_exists_02009c  0x8c02009c
  * area name: only called from CDCGD methods; behaviour name: its main named callee is CDCGD_file_exists
- * called by: CDCGD_finish_texture_request, CDCGD_uses_ADXF_GetStat_01fab4,
- * game_uses_CDCGD_finish_texture_request_01f794, game_uses_list_push_front_01f8a4
+ * called by: CDCGD_finish_texture_request, CDCGD_uses_ADXF_GetStat_01fab4, cd_load_poll_finish,
+ * game_uses_CDCGD_finish_texture_request_01f794
  */
 int CDCGD_uses_CDCGD_file_exists_02009c(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -56,7 +56,7 @@ int CDCGD_uses_CDCGD_file_exists_02009c(u32 *a0, u32 unused_a1, u32 a2, u32 a3) 
             } else if (((iVar1 == 0xc) || (iVar1 == 0xd)) || (iVar1 == 0xe)) {
                 iVar1 = 1;
             } else {
-                iVar1 = CDCGD_uses_strcpy_0202c0(a0, ar5_00, a2, a3);
+                iVar1 = cd_load_open_read(a0, ar5_00, a2, a3);
             }
             if (iVar1 == 1) {
                 a0[1] = ar5_00;
@@ -128,12 +128,11 @@ u32 CDCGD_strcmp(u8 *a0, u8 *a1) {
 }
 
 /*
- * CDCGD_uses_strcpy_0202c0  0x8c0202c0
- * area name: sits between CDCGD functions (same compilation unit); behaviour name: its main named callee is strcpy
- * called by: CDCGD_uses_CDCGD_file_exists_02009c
- * decompiler: Switch with 1 destination removed at 0x8c020362
+ * cd_load_open_read  0x8c0202c0
+ * opens the request's file with ADXF, sizes or seeks it, picks or allocates the buffer and starts the read; returns 0
+ * on failure called by: CDCGD_uses_CDCGD_file_exists_02009c decompiler: Switch with 1 destination removed at 0x8c020362
  */
-u32 CDCGD_uses_strcpy_0202c0(int *a0, int *a1, u32 a2, u32 a3) {
+u32 cd_load_open_read(int *a0, int *a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -216,7 +215,7 @@ u32 CDCGD_open_file_retry(int *a0, int a1, u32 a2, u32 a3) {
  * CDCGD_uses_ADXF_Close_like_02049c  0x8c02049c
  * area name: only called from CDCGD methods; behaviour name: its main named callee is ADXF_Close_like
  * called by: CDCGD_finish_texture_request, CDCGD_open_file_retry, CDCGD_uses_ADXF_GetStat_01fab4,
- * CDCGD_uses_CDCGD_file_exists_02009c, CDCGD_uses_strcpy_0202c0, game_uses_list_push_front_01f8a4
+ * CDCGD_uses_CDCGD_file_exists_02009c, cd_load_open_read, cd_load_poll_finish
  */
 u32 CDCGD_uses_ADXF_Close_like_02049c(int *a0, int *a1, u32 a2, u32 a3) {
     int iVar1;
@@ -297,7 +296,7 @@ u32 CDCGD_request_matches(u32 unused_a0, int a1, int *a2, u32 a3, u32 s0) {
  * list_push_front  0x8c0205e8
  * links node a2 in front of the list head *a1
  * called by: CDCGD_finish_texture_request, CDCGD_new_request, CDCGD_queue_unique_request, CDCGD_request,
- * CDCGD_uses_ADXF_Close_like_02049c, CDCGD_uses_ADXF_GetStat_01fab4, game_uses_list_push_front_01f8a4
+ * CDCGD_uses_ADXF_Close_like_02049c, CDCGD_uses_ADXF_GetStat_01fab4, cd_load_poll_finish
  */
 u32 list_push_front(u32 unused_a0, int *a1, int a2) {
     int iVar1;
@@ -316,7 +315,7 @@ u32 list_push_front(u32 unused_a0, int *a1, int a2) {
  * CDCGD_load_020600  0x8c020600
  * area name: only called from CDCGD methods; behaviour name: mostly calls load functions
  * called by: CDCGD_finish_texture_request, CDCGD_release_request, CDCGD_uses_ADXF_Close_like_02049c,
- * CDCGD_uses_ADXF_GetStat_01fab4, game_uses_list_push_front_01f8a4
+ * CDCGD_uses_ADXF_GetStat_01fab4, cd_load_poll_finish
  */
 int CDCGD_load_020600(u32 unused_a0, u32 a1, int *a2, u32 a3) {
     int ar6_00;
@@ -1133,7 +1132,7 @@ u32 pack_open(u32 *a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar2;
 
     *a0 = 0;
-    iVar1 = game_sound_0221c8(a0 + 1, a1, a2);
+    iVar1 = game_sound_init(a0 + 1, a1, a2);
     if (iVar1 == 0) {
         uVar2 = 0;
     } else {
@@ -1169,7 +1168,7 @@ u32 pack_close_and_flush(int *a0, u32 unused_a1, u32 a2, u32 a3) {
         if (iVar1 != 1) {
             if (-1 < *(int *)(0x9ec94 + (int)a0)) {
                 adxt_start_afs_queued_wrap(a0 + 1, *(u32 *)(0x9ec94 + (int)a0));
-                Class_12b580_sound_022128(a0, 0x3e8, a2, a3);
+                game_sound_022128(a0, 0x3e8, a2, a3);
                 *(u32 *)(0x9ec94 + (int)a0) = 0xffffffff;
             }
             for (iVar1 = 0; uVar2 = 3, iVar1 < 3; iVar1 = iVar1 + 1) {
@@ -1687,27 +1686,27 @@ int pack_uses_abs_021ec8(u32 unused_a0, u32 a1) {
 }
 
 /*
- * pack_state_switch_021f18  0x8c021f18
- * area name: sits between pack functions (same compilation unit); behaviour name: mostly calls state_switch functions
- * called by: ambient_sound_update, bugbox_4_screen, confirm_exit_save, input_uses_input_r_pressed_101004,
+ * pack_entry_poll_status_wrap  0x8c021f18
+ * only calls pack_entry_poll_status
+ * called by: ambient_sound_update, bugbox_4_screen, confirm_exit_save, input_uses_pack_entry_poll_status_wrap_101004,
  * pack_release_entry_384_if_done, startup_warning_check
  */
-u32 pack_state_switch_021f18(u32 a0, u32 a1, u32 a2) {
+u32 pack_entry_poll_status_wrap(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
     u8 auStack_10[4];
     u8 auStack_c[4];
     u8 auStack_8[8];
 
-    uVar1 = pack_state_switch_021f4c(a0, a1, auStack_8, auStack_c, auStack_10);
+    uVar1 = pack_entry_poll_status(a0, a1, auStack_8, auStack_c, auStack_10);
     return uVar1;
 }
 
 /*
- * pack_state_switch_021f4c  0x8c021f4c
- * area name: sits between pack functions (same compilation unit); behaviour name: dispatches on a state or mode value
- * (switch) called by: game_state_switch_0fb494, pack_state_switch_021f18
+ * pack_entry_poll_status  0x8c021f4c
+ * polls pack entry a1's stream and maps its status nibbles to a result code (1 done, 3 busy, 5..8 by state)
+ * called by: game_state_switch_0fb494, pack_entry_poll_status_wrap
  */
-u32 pack_state_switch_021f4c(int *a0, int a1, int *a2, int *a3, int *s0) {
+u32 pack_entry_poll_status(int *a0, int a1, int *a2, int *a3, int *s0) {
     u32 uVar1;
     u16 *ar6_00;
     int *ar7_00;
@@ -1810,12 +1809,12 @@ u32 Class_12b580_set_request(int *a0, u32 a1) {
 }
 
 /*
- * Class_12b580_sound_022104  0x8c022104
- * area name: sits between Class_12b580 functions (same compilation unit); behaviour name: mostly calls sound functions
+ * game_sound_022104  0x8c022104
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls sound functions
  * called by: Class_12b580_m1_0e634c, event_out_water_cat, game_sound_0d5614, game_sound_0d56b4,
  * game_uses_call_all_list_a8_0e6d24, panel_slide_down_then_stop_sound, se_close_two_ports, se_sound_0d50b4
  */
-u32 Class_12b580_sound_022104(int *a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 game_sound_022104(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = 0;
@@ -1826,11 +1825,11 @@ u32 Class_12b580_sound_022104(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12b580_sound_022128  0x8c022128
- * area name: sits between Class_12b580 functions (same compilation unit); behaviour name: mostly calls sound functions
+ * game_sound_022128  0x8c022128
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls sound functions
  * called by: Class_12b580_m1_0e634c, pack_close_and_flush, se_play_ike1, se_sound_0d51ec
  */
-u32 Class_12b580_sound_022128(int *a0, u32 a1, u32 a2, u32 a3) {
+u32 game_sound_022128(int *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
 
@@ -1866,11 +1865,11 @@ int free_if_nonnull_wrap_022198(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sound_0221c8  0x8c0221c8
- * area name: game code; nothing names its area yet; behaviour name: mostly calls sound functions
- * called by: pack_open
+ * game_sound_init  0x8c0221c8
+ * clears the stream slots, loads the partition and the Manatee sound driver, picks mono/stereo from the flash ROM and
+ * creates the stream ring buffers called by: pack_open
  */
-u32 game_sound_0221c8(int a0, u32 a1, u32 a2) {
+u32 game_sound_init(int a0, u32 a1, u32 a2) {
     u32 r7;
     u32 uVar1;
     u32 uVar2;
@@ -1939,7 +1938,7 @@ u32 sound_server(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * aica_driver_load_manatee  0x8c022398
- * called by: game_sound_0221c8
+ * called by: game_sound_init
  * strings: "MANATEE.DRV"; "MANATEE.DRV"
  */
 u32 aica_driver_load_manatee(void) {
@@ -1996,7 +1995,7 @@ int aica_driver_upload(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * game_uses_file_load_to_buffer_022494  0x8c022494
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is file_load_to_buffer
- * called by: game_sound_0221c8
+ * called by: game_sound_init
  */
 u32 game_uses_file_load_to_buffer_022494(u32 unused_a0, u32 a1, u32 a2) {
     int iVar1;
@@ -2280,7 +2279,7 @@ u32 game_sound_02296c(int a0, int a1, u32 a2, u32 a3) {
 /*
  * game_sound_0229a8  0x8c0229a8
  * area name: game code; nothing names its area yet; behaviour name: mostly calls sound functions
- * called by: Class_12b580_sound_022104, pack_sound_021d4c
+ * called by: game_sound_022104, pack_sound_021d4c
  */
 u32 game_sound_0229a8(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -2323,7 +2322,7 @@ u32 handle_slot_free(int a0, int a1) {
 /*
  * adx_stall_watchdog  0x8c022a1c
  * restarts an ADX stream whose play time stops advancing (5 polls)
- * called by: pack_state_switch_021f4c
+ * called by: pack_entry_poll_status
  */
 u32 adx_stall_watchdog(int a0, int a1, u16 *a2, u32 a3) {
     int iVar1;
@@ -2423,7 +2422,7 @@ u32 sound_set_out_vol_wrap(int a0, int a1, u32 a2) {
 /*
  * sound_set_out_vol_wrap_022bf8  0x8c022bf8
  * only calls sound_set_out_vol
- * called by: Class_12b580_sound_022128
+ * called by: game_sound_022128
  */
 u32 sound_set_out_vol_wrap_022bf8(int a0, u32 a1) {
     u32 uVar1;
@@ -2784,8 +2783,8 @@ double *Vec3_length(double *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_distance_sq  0x8c022fc0
  * squared distance between two points
- * called by: CMushroomerBody_uses_rand_float_031bb4, CMushroomerBody_vec_031764, Class_129938_vec_017490,
- * Class_129938_vec_017630, draw_vec_032d48, game_state_switch_049b68, game_state_switch_04b168,
+ * called by: CMushroomerBody_uses_rand_float_031bb4, CMushroomerBody_vec_031764, Class_129938_set_corners,
+ * Class_129938_set_corners_strided, draw_vec_032d48, game_state_switch_049b68, game_state_switch_04b168,
  * game_state_switch_04c314 (+41 more)
  */
 u32 Vec3_distance_sq(u32 a0, u32 a1, u32 a2, u32 a3) {

@@ -2090,3 +2090,19 @@
 8c268920	sd_set_cmd_queue_buffer	sets the driver's command ring to a0 with a1 entries of 0x1c bytes and fills them from the template
 8c268afc	rna_handle_reset	clears the RNA (raw PCM) playback handle a0's state fields
 8c268ea8	mwRna_update_play_position	reads the stream's play position, advances the played and buffered byte counts and clears the underrun flag once playing again
+8c0108f8	strcpy_words_entry	alternate entry of strcpy_words: copies the string at r1 to r0 a word at a time until a word holds a zero byte
+8c0108fc	strcpy_words	copies the string at r1 to r0 a word at a time until a word holds a zero byte, then finishes byte by byte
+8c010c60	softfloat_div_mantissa	divides the 8-byte mantissa a1 by a3 with shift-and-subtract long division into a 9-byte quotient (sticky bit kept) and adjusts the exponent *a0
+8c011f18	libm_exp	expf-style: splits x * log2(e) into an integer and a fraction and evaluates the table polynomial (handles zero, infinity and large inputs)
+8c01243c	double_to_digits	writes a2 decimal digits of the 8-byte mantissa a0 into a1 by repeated subtraction of powers of ten from a table
+8c0125b6	libm_frexp	frexp-style: returns the mantissa of the double in fr4 and stores its binary exponent in *a0 (normalising denormals, setting errno for inf/nan)
+8c012b1c	softfloat_scale_pow10	multiplies the mantissa by 10^a0 using the power-of-ten tables (negative exponents through the reciprocal table)
+8c016cec	Class_129974_set_point_dir	calls method 0x34, stores the point a1 (at +4 and +0x30) and the direction a3 (+0x20) and caches the direction's squared z at +0x3c
+8c017490	Class_129938_set_corners	stores the eight corner points a1, a2, a3, s0..s16 and the squared distances from a1 to s0, s4 and a2
+8c017630	Class_129938_set_corners_strided	stores eight corner points read from a1 at a 0x10-byte stride and the squared distances of three edges
+8c01a630	memcard_tick	refreshes the 0x600-byte working buffer (and the 0x210-byte icon data on a timer), redraws when it changed and runs the current memory card request
+8c01b144	memcard_save_game_file	checks for the game file (deleting it when needed), makes room on the card, writes the file with its icon and waits for it to finish
+8c01f8a4	cd_load_poll_finish	when the current ADXF read ends, closes the file and hands the data to the request's handler (types 0xf/0x10 go onto the done lists)
+8c0202c0	cd_load_open_read	opens the request's file with ADXF, sizes or seeks it, picks or allocates the buffer and starts the read; returns 0 on failure
+8c021f4c	pack_entry_poll_status	polls pack entry a1's stream and maps its status nibbles to a result code (1 done, 3 busy, 5..8 by state)
+8c0221c8	game_sound_init	clears the stream slots, loads the partition and the Manatee sound driver, picks mono/stereo from the flash ROM and creates the stream ring buffers

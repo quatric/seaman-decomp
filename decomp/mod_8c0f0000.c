@@ -6143,7 +6143,7 @@ u8 *game_state_switch_0fb494(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
         ar7_00 = &iStack_18;
         ar6_00 = auStack_14;
         ar5_01 = (u8 *)a0[0x2d];
-        ar5_00 = pack_state_switch_021f4c(0x8c2b59d0, ar5_01, ar6_00, ar7_00, &iStack_1c);
+        ar5_00 = pack_entry_poll_status(0x8c2b59d0, ar5_01, ar6_00, ar7_00, &iStack_1c);
         puVar1 = (u8 *)0x8;
         if ((ar5_00 < 9) && (-1 < ar5_00)) {
             puVar1 = (&switchD_8c0fb4fa::switchdataD_8c0fb500)[ar5_00];

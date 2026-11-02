@@ -6953,7 +6953,7 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
         ar6_00 = NULL;
         pack_sound_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x144), 0, 0x898);
     }
-    iVar2 = pack_state_switch_021f18(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_00);
+    iVar2 = pack_entry_poll_status_wrap(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_00);
     if (iVar2 == 2) {
         ar6_00 = (char *)pack_acquire_entry_handle(0x8c2b59d0, "AMB_FOREST", ar6_00, puVar10);
         puVar10 = (u8 *)0x144;
@@ -7023,7 +7023,7 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
             }
             ar6_00 = NULL;
             pack_sound_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x144), 0, puVar10);
-            iVar2 = pack_state_switch_021f18(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_00);
+            iVar2 = pack_entry_poll_status_wrap(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_00);
             if (iVar2 == 2) {
                 puVar10 = (u8 *)0x8ea;
                 ar6_00 = "AMB_FOREST";
@@ -7032,7 +7032,7 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
             }
         }
     }
-    iVar2 = pack_state_switch_021f18(0x8c2b59d0, *(u32 *)(a0 + 0x148), ar6_00);
+    iVar2 = pack_entry_poll_status_wrap(0x8c2b59d0, *(u32 *)(a0 + 0x148), ar6_00);
     if (iVar2 == 2) {
         uVar1 = pack_acquire_entry_handle(0x8c2b59d0, "AMB_RAIN", ar6_00, puVar10);
         *(u32 *)(a0 + 0x148) = uVar1;
@@ -7904,8 +7904,8 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
                 *(u32 *)(&g_8c43663c + iVar2 * 4) = 0xffffffff;
             }
             iVar2 = 0x8c2b59d0;
-            pcVar9 = pack_state_switch_021f18;
-            puVar10 = (u8 *)pack_state_switch_021f18(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_01);
+            pcVar9 = pack_entry_poll_status_wrap;
+            puVar10 = (u8 *)pack_entry_poll_status_wrap(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_01);
             if (puVar10 == (u8 *)0x2) {
                 uVar1 = rand();
                 uVar1 = libgcc_divide_helper_01031c(uVar1, 2, ar6_01);
@@ -7934,7 +7934,7 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
         if (cVar23 == '\0' && fVar14 < fVar11) {
             uVar1 = *(u32 *)(a0 + 0x144);
             uVar8 = 0x8c2b59d0;
-            iVar2 = pack_state_switch_021f18(0x8c2b59d0, uVar1, ar6_01);
+            iVar2 = pack_entry_poll_status_wrap(0x8c2b59d0, uVar1, ar6_01);
             if (iVar2 == 2) {
                 uVar1 = rand();
                 uVar8 = 2;
@@ -7950,7 +7950,7 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
             }
         }
     }
-    iVar2 = pack_state_switch_021f18(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_01);
+    iVar2 = pack_entry_poll_status_wrap(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_01);
     if (iVar2 != 2) {
         if (cVar24 == '\0') {
             fVar14 = 72.0;
@@ -7965,7 +7965,7 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
             pack_sound_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x144), g_8c4366e4, 600);
         }
     }
-    iVar2 = pack_state_switch_021f18(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_01);
+    iVar2 = pack_entry_poll_status_wrap(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_01);
     if (iVar2 == 2) {
         pack_release_entry_handle(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_01, pcVar9);
     }

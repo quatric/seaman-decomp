@@ -390,7 +390,7 @@ u64 *panel_slide_down_then_stop_sound(int a0, u32 unused_a1, u32 a2, u32 a3) {
                 *(u32 *)(a0 + 0x2324c) = 0xc4a44e66;
                 puVar1 = *(u64 **)(a0 + 0x2325c);
                 if (*(u64 **)(a0 + 0x2325c) != (u64 *)0xffffffff) {
-                    Class_12b580_sound_022104(0x8c2b59d0, *(u32 *)(a0 + 0x2325c), a2, a3);
+                    game_sound_022104(0x8c2b59d0, *(u32 *)(a0 + 0x2325c), a2, a3);
                     Class_12b580_clear_request(0x8c2b59d0, *(u32 *)(a0 + 0x2325c), a2, a3);
                     *(u32 *)(a0 + 0x2325c) = 0xffffffff;
                     g_8c43825c = NULL;
@@ -4411,7 +4411,7 @@ u32 Class_12b580_m1_0e634c(int a0, int a1, u32 a2, u32 a3) {
     Class_12b580_uses_njSinCos_0e705c(a0, uVar3, iVar4);
     if ((*(int *)(0x10dc + a0) == 0) || (*(int *)(0x10dc + a0) == 0x8ca0)) {
         if (*(int *)(0x83fc + a0) != -1) {
-            Class_12b580_sound_022104(0x8c2b59d0, *(u32 *)(0x83fc + a0), iVar4, a3);
+            game_sound_022104(0x8c2b59d0, *(u32 *)(0x83fc + a0), iVar4, a3);
             Class_12b580_clear_request(0x8c2b59d0, *(u32 *)(0x83fc + a0), iVar4, a3);
         }
         uVar1 = (*(code *)(&pack_find_by_name_buffered))(0x8c2b59d0, *(u32 *)(0x83f8 + a0), iVar4, a3);
@@ -4421,7 +4421,7 @@ u32 Class_12b580_m1_0e634c(int a0, int a1, u32 a2, u32 a3) {
     }
     if ((*(u32 *)(0x10dc + a0) & 1) == 0) {
         uVar3 = *(u32 *)(0x8400 + a0);
-        Class_12b580_sound_022128(0x8c2b59d0, uVar3, iVar4, a3);
+        game_sound_022128(0x8c2b59d0, uVar3, iVar4, a3);
     }
     iVar2 = Class_12b580_test_101154(*(u32 *)(0x7cc + a1));
     if (iVar2 == 1) {
@@ -4794,7 +4794,7 @@ u32 game_uses_call_all_list_a8_0e6d24(int a0, u32 a1, u32 a2, u32 a3) {
     call_all_list_a8(a0, ar5_00, a2, a3);
     if (*(int *)(0x83fc + a0) != -1) {
         ar5_00 = *(u32 *)(0x83fc + a0);
-        Class_12b580_sound_022104(0x8c2b59d0, ar5_00, a2, a3);
+        game_sound_022104(0x8c2b59d0, ar5_00, a2, a3);
     }
     uVar1 = pack_release_entries_6e24(a0 + 0x10dc, ar5_00, a2, a3);
     return uVar1;
