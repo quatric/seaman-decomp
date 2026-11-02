@@ -3177,8 +3177,8 @@ u32 noop_0c519c(void) {
 /*
  * set_timeout_120  0x8c0c51a0
  * +0x188 = a1 and a 120-frame countdown at +0x18c
- * called by: event1_end, game_sub_0c4e58, game_sub_0c8fc4, game_sub_0dbf90, game_sub_10031c, game_sub_1003b0,
- * game_sub_1004b4, game_sub_10052c (+5 more)
+ * called by: event1_end, game_sub_0c4e58, game_sub_0c8fc4, game_sub_0dbf90, input_sub_10022c, input_sub_1002a8,
+ * input_sub_10031c, input_sub_1003b0 (+5 more)
  */
 int set_timeout_120(int a0, u32 a1) {
     int iVar1;

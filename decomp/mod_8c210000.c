@@ -5221,11 +5221,11 @@ u32 flags_4c0db0_set(int a0, int a1) {
 }
 
 /*
- * ta_sub_2140fe  0x8c2140fe
- * area name: sits between ta functions (same compilation unit)
+ * set_vec_4c0db4  0x8c2140fe
+ * stores fr4..fr6 at 8c4c0db4
  * called by: Vec3_sub_0e3f24
  */
-u32 ta_sub_2140fe(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 set_vec_4c0db4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 in_fr5;
     u32 in_fr4;
     u32 in_fr6;

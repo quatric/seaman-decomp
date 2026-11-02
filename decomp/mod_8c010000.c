@@ -14094,7 +14094,7 @@ u32 set_field_1c(int a0, u32 a1) {
 
 /*
  * set_field_20  0x8c015cd4
- * called by: CIncubater_Create, UsrPointer_LoadTexture, game_sub_0d261c, game_sub_10031c, input_sub_1002a8,
+ * called by: CIncubater_Create, UsrPointer_LoadTexture, game_sub_0d261c, input_sub_1002a8, input_sub_10031c,
  * set_field_20_on_field_15c
  */
 u32 set_field_20(int a0, u32 a1) {
@@ -22291,7 +22291,7 @@ u32 input_l_pressed(int a0) {
 /*
  * input_r_held  0x8c01ec68
  * R button (0x10000) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
- * called by: game_sub_0ffdb0, game_sub_10031c, game_sub_1016f0, input_sub_1002a8
+ * called by: game_sub_0ffdb0, game_sub_1016f0, input_sub_1002a8, input_sub_10031c
  */
 u32 input_r_held(int a0) {
     u32 uVar1;
@@ -22335,7 +22335,7 @@ u32 input_r_off(int a0) {
 /*
  * input_r_pressed  0x8c01ecf8
  * R button (0x10000) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
- * called by: game_sub_100e4c, game_sub_101004, input_sub_10022c, menu_next_pressed
+ * called by: game_sub_101004, input_sub_10022c, input_sub_100e4c, menu_next_pressed
  */
 u32 input_r_pressed(int a0) {
     u32 uVar1;
@@ -22357,7 +22357,7 @@ u32 input_r_pressed(int a0) {
 /*
  * input_r_released  0x8c01ed40
  * R button (0x10000) went up this frame (PDS_PERIPHERAL release bits); 2 while the demo input is active
- * called by: game_sub_100e4c
+ * called by: input_sub_100e4c
  */
 u32 input_r_released(int a0) {
     u32 uVar1;
@@ -22445,7 +22445,8 @@ u32 input_a_released(int a0) {
 /*
  * input_b_held  0x8c01ee54
  * B button (0x2) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
- * called by: game_sub_100a58, game_sub_100abc, input_b_held_wrap, input_no_buttons_held, input_start_only_pressed
+ * called by: input_b_held_wrap, input_no_buttons_held, input_start_only_pressed, stick_down_with_b_x_up,
+ * stick_up_with_b_x_up
  */
 u32 input_b_held(int a0) {
     u32 uVar1;
@@ -22467,7 +22468,7 @@ u32 input_b_held(int a0) {
 /*
  * input_b_off  0x8c01ee98
  * B button (0x2) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
- * called by: game_sub_100b20, game_sub_100b84
+ * called by: input_sub_100b20, input_sub_100b84
  */
 u32 input_b_off(int a0) {
     u32 uVar1;
@@ -22511,8 +22512,8 @@ u32 input_b_pressed(int a0) {
 /*
  * input_x_held  0x8c01ef20
  * X button (0x400) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
- * called by: game_sub_0ffdb0, game_sub_1006d8, game_sub_100724, game_sub_100770, game_sub_1007bc, game_sub_100e4c,
- * input_sub_1002a8
+ * called by: game_sub_0ffdb0, input_sub_1002a8, input_sub_100e4c, stick_down_with_x, stick_left_with_x,
+ * stick_right_with_x, stick_up_with_x
  */
 u32 input_x_held(int a0) {
     u32 uVar1;
@@ -22534,8 +22535,8 @@ u32 input_x_held(int a0) {
 /*
  * input_x_off  0x8c01ef68
  * X button (0x400) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
- * called by: game_sub_100a58, game_sub_100abc, game_sub_100b20, game_sub_100b84, game_sub_100be8, game_sub_100c34,
- * game_sub_101004, input_sub_1001e0
+ * called by: game_sub_101004, input_sub_1001e0, input_sub_100b20, input_sub_100b84, input_sub_100be8, input_sub_100c34,
+ * stick_down_with_b_x_up, stick_up_with_b_x_up
  */
 u32 input_x_off(int a0) {
     u32 uVar1;
@@ -22622,7 +22623,7 @@ u32 input_y_pressed(int a0) {
 /*
  * input_right_held  0x8c01f088
  * Right button (0x80) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
- * called by: game_sub_100930
+ * called by: input_sub_100930
  */
 u32 input_right_held(int a0) {
     u32 uVar1;
@@ -22688,7 +22689,7 @@ u32 input_right_pressed(int a0) {
 /*
  * input_left_held  0x8c01f160
  * Left button (0x40) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
- * called by: game_sub_10097c
+ * called by: input_sub_10097c
  */
 u32 input_left_held(int a0) {
     u32 uVar1;
@@ -22754,7 +22755,7 @@ u32 input_left_pressed(int a0) {
 /*
  * input_down_held  0x8c01f22c
  * Down button (0x20) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
- * called by: game_sub_1008e4
+ * called by: input_down_or_stick_down
  */
 u32 input_down_held(int a0) {
     u32 uVar1;
@@ -22798,7 +22799,7 @@ u32 input_down_pressed(int a0) {
 /*
  * input_up_held  0x8c01f2b4
  * Up button (0x10) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
- * called by: game_sub_100898
+ * called by: input_up_or_stick_up
  */
 u32 input_up_held(int a0) {
     u32 uVar1;
@@ -23000,7 +23001,7 @@ u32 get_field_a510_01f538(int a0) {
 /*
  * input_asr_take_flag_a  0x8c01f544
  * asr_take_flag_279278 for the input object
- * called by: game_sub_100cb4
+ * called by: input_sub_100cb4
  */
 u32 input_asr_take_flag_a(int a0) {
     u32 r5;
@@ -23015,7 +23016,7 @@ u32 input_asr_take_flag_a(int a0) {
 /*
  * input_asr_take_flag_b  0x8c01f56c
  * asr_take_flag_27927c for the input object
- * called by: game_sub_100c80
+ * called by: input_asr_flag_b_set
  */
 u32 input_asr_take_flag_b(int a0) {
     u32 r5;

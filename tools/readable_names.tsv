@@ -696,8 +696,8 @@
 8c0d2fc0	fill_colors_8c43784c	stores colour a0 in the four words at 8c43784c
 8c0d5c58	Vec3_set_fr4_6_b	a0 = (fr4, fr5, fr6)
 8c0de6c0	set_float_c_nonneg	stores fr4 (negative values as 0) at +0xc
-8c100850	field_13c_above_half	1 when the float at +0x13c is above 0.5
-8c100874	field_13c_below_neg_half	1 when the float at +0x13c is below -0.5
+8c100850	stick_x_right_half	1 when the stick X (+0x13c) is above 0.5
+8c100874	stick_x_left_half	1 when the stick X (+0x13c) is below -0.5
 8c0e2554	input_l_and_r_held	1 when L and R are both held on the pad at +0xcc (and field 4 of +0xd8 is 0)
 8c0e3078	input_up_held_pad	input_up_held on the pad at +0xcc
 8c0e3050	input_up_held_pad	input_up_held on the pad at +0xcc
@@ -923,3 +923,26 @@
 8c0d4fa8	se_play_bubble_or_ike	se_play_bubble_mono for a1 < 2, else se_play_ike1
 8c0d2f04	set_pair_10_fr4_5	stores fr4 and fr5 at +0x10 and +0x14
 8c0d267c	set_flag_2_28	ORs 2 into the flags at +0x28
+8c100898	input_up_or_stick_up	1 when the stick Y (+0x140) is below -0.3 or Up is held
+8c1008e4	input_down_or_stick_down	1 when the stick Y (+0x140) is above 0.3 or Down is held
+8c100808	stick_y_up_half	1 when the stick Y (+0x140) is below -0.5
+8c10082c	stick_y_down_half	1 when the stick Y (+0x140) is above 0.5
+8c1006d8	stick_up_with_x	1 when X is held and the stick Y is below -0.3
+8c100724	stick_down_with_x	1 when X is held and the stick Y is above 0.3
+8c100770	stick_right_with_x	1 when X is held and the stick X (+0x13c) is above 0.3
+8c1007bc	stick_left_with_x	1 when X is held and the stick X (+0x13c) is below -0.3
+8c100a58	stick_up_with_b_x_up	1 when B is held, X is up and the stick Y is below -0.4
+8c100abc	stick_down_with_b_x_up	1 when B is held, X is up and the stick Y is above 0.4
+8c0dc5d0	input_not_l_and_r	0 when L and R are both held on the pad at +0xcc, else 1
+8c100c80	input_asr_flag_b_set	1 when input_asr_take_flag_b returns 1
+8c0e0bd0	float_10_positive	1 when the float at +0x10 is above 0
+8c0e0bb8	fields_14_18_both_1	1 when the words at +0x14 and +0x18 are both 1
+8c0e0ba8	field_eb44_is_1	1 when the word at +0xeb44 is 1
+8c22194e	set_vec_4c0ed4	stores fr4..fr6 at 8c4c0ed4
+8c2140fe	set_vec_4c0db4	stores fr4..fr6 at 8c4c0db4
+8c0db810	list_a4_position	1-based position of node a1 in the list at +0xa4
+8c0db864	list_a4_count_after	number of nodes after a1 in the list at +0xa4
+8c0db008	call_all_list_64	calls vtable slot 0x64 on each node of the list at +0xa4
+8c0df998	env_add_item_if_room	CEnv_AddItem unless the list at +0xa4 already holds 25 items
+8c0d8460	pack_release_entries_6e24	releases the pack entry handles at +0x6e24 and +0x6e3c when set
+8c0f4d34	flag_74_bit31	1 when bit 31 of the flags at +0x74 is set

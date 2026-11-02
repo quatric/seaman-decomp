@@ -139,11 +139,11 @@ u32 input_sub_1002a8(int a0) {
 }
 
 /*
- * game_sub_10031c  0x8c10031c
- * area name: game code; nothing names its area yet
+ * input_sub_10031c  0x8c10031c
+ * area name: sits between input functions (same compilation unit)
  * called by: game_sub_0e1f90, game_sub_0e5238, game_sub_0e8280, input_sub_0e25c0
  */
-u32 game_sub_10031c(int a0) {
+u32 input_sub_10031c(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -163,11 +163,11 @@ u32 game_sub_10031c(int a0) {
 }
 
 /*
- * game_sub_1003b0  0x8c1003b0
- * area name: game code; nothing names its area yet
+ * input_sub_1003b0  0x8c1003b0
+ * area name: sits between input functions (same compilation unit)
  * called by: game_sub_0e1f90
  */
-int game_sub_1003b0(int a0, u32 a1, u32 a2, u32 a3) {
+int input_sub_1003b0(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
     if (g_8c441430 == '\0') {
@@ -200,11 +200,11 @@ int game_sub_1003b0(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_1004b4  0x8c1004b4
- * area name: game code; nothing names its area yet
+ * input_sub_1004b4  0x8c1004b4
+ * area name: sits between input functions (same compilation unit)
  * called by: game_sub_0dbf90, game_sub_0dc990, game_sub_0e8280, input_sub_0dc28c
  */
-u32 *game_sub_1004b4(int a0) {
+u32 *input_sub_1004b4(int a0) {
     float fVar1;
     double dVar2;
     float fVar3;
@@ -249,11 +249,11 @@ u32 *game_sub_1004b4(int a0) {
 }
 
 /*
- * game_sub_10052c  0x8c10052c
- * area name: game code; nothing names its area yet
+ * input_sub_10052c  0x8c10052c
+ * area name: sits between input functions (same compilation unit)
  * called by: game_sub_0dbf90, game_sub_0dc990, game_sub_0e8280, input_sub_0dc28c
  */
-u32 *game_sub_10052c(int a0) {
+u32 *input_sub_10052c(int a0) {
     float fVar1;
     double dVar2;
     float fVar3;
@@ -298,11 +298,11 @@ u32 *game_sub_10052c(int a0) {
 }
 
 /*
- * game_sub_1005a4  0x8c1005a4
- * area name: game code; nothing names its area yet
+ * input_sub_1005a4  0x8c1005a4
+ * area name: sits between input functions (same compilation unit)
  * called by: game_sub_0dbf90, game_sub_0dc990, game_sub_0e8280, input_sub_0dc28c
  */
-u32 *game_sub_1005a4(int a0) {
+u32 *input_sub_1005a4(int a0) {
     float fVar1;
     double dVar2;
     float fVar3;
@@ -347,11 +347,11 @@ u32 *game_sub_1005a4(int a0) {
 }
 
 /*
- * game_sub_10061c  0x8c10061c
- * area name: game code; nothing names its area yet
+ * input_sub_10061c  0x8c10061c
+ * area name: sits between input functions (same compilation unit)
  * called by: game_sub_0dbf90, game_sub_0dc990, game_sub_0e8280, input_sub_0dc28c
  */
-u32 *game_sub_10061c(int a0) {
+u32 *input_sub_10061c(int a0) {
     float fVar1;
     double dVar2;
     float fVar3;
@@ -420,11 +420,11 @@ u32 clear_field_59c_wrap(u32 a0) {
 }
 
 /*
- * game_sub_1006d8  0x8c1006d8
- * area name: game code; nothing names its area yet
+ * stick_up_with_x  0x8c1006d8
+ * 1 when X is held and the stick Y is below -0.3
  * called by: game_sub_0dc990
  */
-u32 game_sub_1006d8(int a0) {
+u32 stick_up_with_x(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -437,11 +437,11 @@ u32 game_sub_1006d8(int a0) {
 }
 
 /*
- * game_sub_100724  0x8c100724
- * area name: game code; nothing names its area yet
+ * stick_down_with_x  0x8c100724
+ * 1 when X is held and the stick Y is above 0.3
  * called by: game_sub_0dc990
  */
-u32 game_sub_100724(int a0) {
+u32 stick_down_with_x(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -454,11 +454,11 @@ u32 game_sub_100724(int a0) {
 }
 
 /*
- * game_sub_100770  0x8c100770
- * area name: game code; nothing names its area yet
+ * stick_right_with_x  0x8c100770
+ * 1 when X is held and the stick X (+0x13c) is above 0.3
  * called by: game_sub_0dc990
  */
-u32 game_sub_100770(int a0) {
+u32 stick_right_with_x(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -471,11 +471,11 @@ u32 game_sub_100770(int a0) {
 }
 
 /*
- * game_sub_1007bc  0x8c1007bc
- * area name: game code; nothing names its area yet
+ * stick_left_with_x  0x8c1007bc
+ * 1 when X is held and the stick X (+0x13c) is below -0.3
  * called by: game_sub_0dc990
  */
-u32 game_sub_1007bc(int a0) {
+u32 stick_left_with_x(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -488,11 +488,11 @@ u32 game_sub_1007bc(int a0) {
 }
 
 /*
- * game_sub_100808  0x8c100808
- * area name: game code; nothing names its area yet
+ * stick_y_up_half  0x8c100808
+ * 1 when the stick Y (+0x140) is below -0.5
  * called by: game_sub_0e1f90
  */
-u32 game_sub_100808(int a0) {
+u32 stick_y_up_half(int a0) {
     if (-0.5 <= *(float *)(a0 + 0x140)) {
         return 0;
     }
@@ -500,11 +500,11 @@ u32 game_sub_100808(int a0) {
 }
 
 /*
- * game_sub_10082c  0x8c10082c
- * area name: game code; nothing names its area yet
+ * stick_y_down_half  0x8c10082c
+ * 1 when the stick Y (+0x140) is above 0.5
  * called by: game_sub_0e1f90
  */
-u32 game_sub_10082c(int a0) {
+u32 stick_y_down_half(int a0) {
     if (*(float *)(a0 + 0x140) <= 0.5) {
         return 0;
     }
@@ -512,11 +512,11 @@ u32 game_sub_10082c(int a0) {
 }
 
 /*
- * field_13c_above_half  0x8c100850
- * 1 when the float at +0x13c is above 0.5
+ * stick_x_right_half  0x8c100850
+ * 1 when the stick X (+0x13c) is above 0.5
  * called by: game_sub_0e1f90
  */
-u32 field_13c_above_half(int a0) {
+u32 stick_x_right_half(int a0) {
     if (*(float *)(a0 + 0x13c) <= 0.5) {
         return 0;
     }
@@ -524,11 +524,11 @@ u32 field_13c_above_half(int a0) {
 }
 
 /*
- * field_13c_below_neg_half  0x8c100874
- * 1 when the float at +0x13c is below -0.5
+ * stick_x_left_half  0x8c100874
+ * 1 when the stick X (+0x13c) is below -0.5
  * called by: game_sub_0e1f90
  */
-u32 field_13c_below_neg_half(int a0) {
+u32 stick_x_left_half(int a0) {
     if (-0.5 <= *(float *)(a0 + 0x13c)) {
         return 0;
     }
@@ -536,11 +536,11 @@ u32 field_13c_below_neg_half(int a0) {
 }
 
 /*
- * game_sub_100898  0x8c100898
- * area name: game code; nothing names its area yet
+ * input_up_or_stick_up  0x8c100898
+ * 1 when the stick Y (+0x140) is below -0.3 or Up is held
  * called by: game_sub_0e8280
  */
-u32 game_sub_100898(int a0) {
+u32 input_up_or_stick_up(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -553,11 +553,11 @@ u32 game_sub_100898(int a0) {
 }
 
 /*
- * game_sub_1008e4  0x8c1008e4
- * area name: game code; nothing names its area yet
+ * input_down_or_stick_down  0x8c1008e4
+ * 1 when the stick Y (+0x140) is above 0.3 or Down is held
  * called by: game_sub_0e8280
  */
-u32 game_sub_1008e4(int a0) {
+u32 input_down_or_stick_down(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -570,11 +570,11 @@ u32 game_sub_1008e4(int a0) {
 }
 
 /*
- * game_sub_100930  0x8c100930
- * area name: game code; nothing names its area yet
+ * input_sub_100930  0x8c100930
+ * area name: sits between input functions (same compilation unit)
  * called by: game_sub_0e8280
  */
-u32 game_sub_100930(int a0) {
+u32 input_sub_100930(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -587,11 +587,11 @@ u32 game_sub_100930(int a0) {
 }
 
 /*
- * game_sub_10097c  0x8c10097c
- * area name: game code; nothing names its area yet
+ * input_sub_10097c  0x8c10097c
+ * area name: sits between input functions (same compilation unit)
  * called by: game_sub_0e8280
  */
-u32 game_sub_10097c(int a0) {
+u32 input_sub_10097c(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -652,11 +652,11 @@ u32 field_14c_below_neg03(int a0) {
 }
 
 /*
- * game_sub_100a58  0x8c100a58
- * area name: game code; nothing names its area yet
+ * stick_up_with_b_x_up  0x8c100a58
+ * 1 when B is held, X is up and the stick Y is below -0.4
  * called by: game_sub_0dbf90
  */
-u32 game_sub_100a58(int a0) {
+u32 stick_up_with_b_x_up(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -670,11 +670,11 @@ u32 game_sub_100a58(int a0) {
 }
 
 /*
- * game_sub_100abc  0x8c100abc
- * area name: game code; nothing names its area yet
+ * stick_down_with_b_x_up  0x8c100abc
+ * 1 when B is held, X is up and the stick Y is above 0.4
  * called by: game_sub_0dbf90
  */
-u32 game_sub_100abc(int a0) {
+u32 stick_down_with_b_x_up(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -688,11 +688,11 @@ u32 game_sub_100abc(int a0) {
 }
 
 /*
- * game_sub_100b20  0x8c100b20
- * area name: game code; nothing names its area yet
+ * input_sub_100b20  0x8c100b20
+ * area name: sits between input functions (same compilation unit)
  * called by: game_sub_0dbf90, input_sub_0dc28c, input_sub_0e28a0
  */
-u32 game_sub_100b20(int a0) {
+u32 input_sub_100b20(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -706,11 +706,11 @@ u32 game_sub_100b20(int a0) {
 }
 
 /*
- * game_sub_100b84  0x8c100b84
- * area name: game code; nothing names its area yet
+ * input_sub_100b84  0x8c100b84
+ * area name: sits between input functions (same compilation unit)
  * called by: game_sub_0dbf90, input_sub_0dc28c, input_sub_0e28a0
  */
-u32 game_sub_100b84(int a0) {
+u32 input_sub_100b84(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -724,11 +724,11 @@ u32 game_sub_100b84(int a0) {
 }
 
 /*
- * game_sub_100be8  0x8c100be8
- * area name: game code; nothing names its area yet
+ * input_sub_100be8  0x8c100be8
+ * area name: sits between input functions (same compilation unit)
  * called by: game_sub_0dbf90, input_sub_0dc28c, input_sub_0e28a0
  */
-u32 game_sub_100be8(int a0) {
+u32 input_sub_100be8(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -741,11 +741,11 @@ u32 game_sub_100be8(int a0) {
 }
 
 /*
- * game_sub_100c34  0x8c100c34
- * area name: game code; nothing names its area yet
+ * input_sub_100c34  0x8c100c34
+ * area name: sits between input functions (same compilation unit)
  * called by: game_sub_0dbf90, input_sub_0dc28c, input_sub_0e28a0
  */
-u32 game_sub_100c34(int a0) {
+u32 input_sub_100c34(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -758,11 +758,11 @@ u32 game_sub_100c34(int a0) {
 }
 
 /*
- * game_sub_100c80  0x8c100c80
- * area name: game code; nothing names its area yet
+ * input_asr_flag_b_set  0x8c100c80
+ * 1 when input_asr_take_flag_b returns 1
  * called by: input_sub_0dc61c
  */
-u32 game_sub_100c80(int a0) {
+u32 input_asr_flag_b_set(int a0) {
     int iVar1;
 
     iVar1 = input_asr_take_flag_b(*(u32 *)(0xcc + a0));
@@ -770,11 +770,11 @@ u32 game_sub_100c80(int a0) {
 }
 
 /*
- * game_sub_100cb4  0x8c100cb4
- * area name: game code; nothing names its area yet
+ * input_sub_100cb4  0x8c100cb4
+ * area name: sits between input functions (same compilation unit)
  * called by: game_sub_0e727c, input_sub_0dc61c, input_sub_0e25c0
  */
-u32 game_sub_100cb4(int a0) {
+u32 input_sub_100cb4(int a0) {
     int iVar1;
 
     iVar1 = input_asr_take_flag_a(*(u32 *)(0xcc + a0));
@@ -782,11 +782,11 @@ u32 game_sub_100cb4(int a0) {
 }
 
 /*
- * game_sub_100ce8  0x8c100ce8
- * area name: game code; nothing names its area yet
+ * input_sub_100ce8  0x8c100ce8
+ * area name: sits between input functions (same compilation unit)
  * called by: game_sub_0e1f90, game_sub_0e7190, game_sub_0e727c, input_sub_0e25c0
  */
-u32 game_sub_100ce8(int a0, u32 a1, u32 a2, u32 a3) {
+u32 input_sub_100ce8(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
     iVar1 = (*(code *)(&input_r_held))(*(u32 *)(0xcc + a0), a1, a2, a3);
@@ -805,11 +805,11 @@ u32 game_sub_100ce8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_100d5c  0x8c100d5c
- * area name: game code; nothing names its area yet
+ * input_sub_100d5c  0x8c100d5c
+ * area name: sits between input functions (same compilation unit)
  * called by: input_sub_0dc7e8
  */
-u32 game_sub_100d5c(int a0) {
+u32 input_sub_100d5c(int a0) {
     int iVar1;
 
     if (*(int *)(0x590 + a0) == 0) {
@@ -831,11 +831,11 @@ u32 game_sub_100d5c(int a0) {
 }
 
 /*
- * game_sub_100e4c  0x8c100e4c
- * area name: game code; nothing names its area yet
+ * input_sub_100e4c  0x8c100e4c
+ * area name: sits between input functions (same compilation unit)
  * called by: game_sub_0e1f90, game_sub_0e7190, game_sub_0e727c, input_sub_0e25c0
  */
-u32 game_sub_100e4c(int a0, u64 *a1) {
+u32 input_sub_100e4c(int a0, u64 *a1) {
     int iVar1;
     u32 uVar2;
     u8 bVar3;
@@ -1082,7 +1082,7 @@ u32 game_sub_101250(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * game_sub_101358  0x8c101358
  * area name: game code; nothing names its area yet
- * called by: game_sub_100ce8
+ * called by: input_sub_100ce8
  */
 u32 game_sub_101358(int a0) {
     bool bVar1;
@@ -1234,7 +1234,7 @@ int game_sub_101480(u32 unused_a0, int *a1, int a2) {
 /*
  * game_sub_101510  0x8c101510
  * area name: game code; nothing names its area yet
- * called by: game_sub_100d5c
+ * called by: input_sub_100d5c
  */
 u32 game_sub_101510(int a0, u32 a1) {
     char cVar1;

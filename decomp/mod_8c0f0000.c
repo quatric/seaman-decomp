@@ -278,7 +278,7 @@ u32 CAnimal_sub_0f4258(int a0, int *a1, u32 a2, u32 a3) {
             uVar2 = 1;
             if (1 < iVar1) {
                 iVar1 = a0;
-                iVar4 = game_sub_0db864(a1, a0);
+                iVar4 = list_a4_count_after(a1, a0);
                 uVar2 = list_node_next(a0);
                 for (iVar5 = 0; iVar5 < iVar4; iVar5 = iVar5 + 1) {
                     iVar1 = get_field_a4_032154(uVar2);
@@ -1083,11 +1083,11 @@ float *Vec3_sub_0f4cf0(int a0, float *a1) {
 }
 
 /*
- * Vec3_sub_0f4d34  0x8c0f4d34
- * area name: sits between Vec3 functions (same compilation unit)
+ * flag_74_bit31  0x8c0f4d34
+ * 1 when bit 31 of the flags at +0x74 is set
  * called by: Class_12bb08_sub_0dbbe8
  */
-u32 Vec3_sub_0f4d34(int a0) {
+u32 flag_74_bit31(int a0) {
     if ((*(u32 *)(a0 + 0x74) & 0x80000000) == 0x80000000) {
         return 1;
     }

@@ -1238,7 +1238,7 @@ u32 get_field_4_on_field_d8(int a0, u32 unused_a1, u32 a2) {
 
 /*
  * get_field_4_0637f8  0x8c0637f8
- * called by: game_sub_10031c, game_sub_1003b0, get_field_4_on_field_d8, input_l_and_r_held, input_sub_100154
+ * called by: get_field_4_on_field_d8, input_l_and_r_held, input_sub_100154, input_sub_10031c, input_sub_1003b0
  */
 u32 get_field_4_0637f8(int a0) {
     return *(u32 *)(a0 + 4);
