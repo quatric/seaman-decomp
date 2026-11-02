@@ -8378,8 +8378,8 @@ u32 gfxlib_calc_23403e(void) {
 /*
  * dbg_font_quad_char  0x8c2340a0
  * writes a textured quad for debug-font character a2 at screen position (a0, a1) into the store queue
- * called by: dbg_font_print, gfxlib_uses_dbg_font_quad_char_2345c8, gfxlib_uses_dbg_font_quad_char_2346ce,
- * gfxlib_uses_dbg_font_quad_char_234834, gfxlib_uses_libgcc_divide_helper_234348
+ * called by: dbg_font_print, dbg_font_print_binary, dbg_font_print_hex, gfxlib_uses_dbg_font_quad_char_234834,
+ * gfxlib_uses_libgcc_divide_helper_234348
  */
 u32 *dbg_font_quad_char(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -8633,10 +8633,10 @@ u32 gfxlib_uses_libgcc_divide_helper_234348(u32 a0, int a1, int a2) {
 }
 
 /*
- * gfxlib_uses_dbg_font_quad_char_2345c8  0x8c2345c8
- * area name: in the gfxlib library code range; behaviour name: its main named callee is dbg_font_quad_char
+ * dbg_font_print_binary  0x8c2345c8
+ * draws the low a2 bits of a1 as '0'/'1' characters with the debug font at (a0 & 0xffff, a0 >> 16)
  */
-u32 gfxlib_uses_dbg_font_quad_char_2345c8(u32 a0, u32 a1, int a2) {
+u32 dbg_font_print_binary(u32 a0, u32 a1, int a2) {
     u32 uVar1;
     u8 *a7;
     float fVar2;
@@ -8700,10 +8700,10 @@ u32 gfxlib_uses_dbg_font_quad_char_2345c8(u32 a0, u32 a1, int a2) {
 }
 
 /*
- * gfxlib_uses_dbg_font_quad_char_2346ce  0x8c2346ce
- * area name: in the gfxlib library code range; behaviour name: its main named callee is dbg_font_quad_char
+ * dbg_font_print_hex  0x8c2346ce
+ * draws the low a2 hex digits of a1 with the debug font at (a0 & 0xffff, a0 >> 16)
  */
-u32 gfxlib_uses_dbg_font_quad_char_2346ce(u32 a0, u32 a1, int a2) {
+u32 dbg_font_print_hex(u32 a0, u32 a1, int a2) {
     u32 uVar1;
     u8 *a7;
     int iVar2;
@@ -9124,10 +9124,10 @@ u32 gfxlib_calls_float_calc_234a6a(double *a0, double *a1, double *a2, u32 unuse
 }
 
 /*
- * gfxlib_draw_234b10  0x8c234b10
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfx_draw_strip_plain  0x8c234b10
+ * sends a1 untextured 4-word vertices from a0 as one strip (opaque header, or translucent when a2 is set)
  */
-u32 gfxlib_draw_234b10(u32 *a0, int a1, int a2, u32 a3) {
+u32 gfx_draw_strip_plain(u32 *a0, int a1, int a2, u32 a3) {
     int iVar1;
     int iVar2;
     u32 uVar3;
@@ -9176,11 +9176,11 @@ u32 gfxlib_draw_234b10(u32 *a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * gfxlib_draw_234bc0  0x8c234bc0
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfx_draw_strip_tex  0x8c234bc0
+ * selects texture a2 (cached) and sends a1 textured 6-word vertices from a0 as one strip (translucent when a3 is set)
  * called by: draw_debug_quad
  */
-u32 gfxlib_draw_234bc0(u32 *a0, int a1, u32 a2, int a3) {
+u32 gfx_draw_strip_tex(u32 *a0, int a1, u32 a2, int a3) {
     int iVar1;
     u32 *puVar2;
     u32 uVar3;
@@ -9239,10 +9239,10 @@ u32 gfxlib_draw_234bc0(u32 *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * gfxlib_draw_234c94  0x8c234c94
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfx_draw_strip_tex_alt  0x8c234c94
+ * the gfx_draw_strip_tex sender selecting the texture through ta_calc_23732a
  */
-u32 gfxlib_draw_234c94(u32 *a0, int a1, u32 a2, int a3) {
+u32 gfx_draw_strip_tex_alt(u32 *a0, int a1, u32 a2, int a3) {
     int iVar1;
     u32 *puVar2;
     u32 uVar3;
@@ -9711,10 +9711,10 @@ u32 gfxlib_draw_234fd0(u32 a0, int a1, u32 a2, u32 *a3) {
 }
 
 /*
- * gfxlib_draw_2351fc  0x8c2351fc
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfx_2d_begin  0x8c2351fc
+ * writes the 2D polygon header for type a0 and sets the 2D depth from fr4 (1/-z when beyond -1, else 1)
  */
-u32 gfxlib_draw_2351fc(int a0, u32 a1, u32 a2, u32 a3) {
+u32 gfx_2d_begin(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     float fVar2;
     double in_dr2;
@@ -9821,11 +9821,11 @@ u32 gfxlib_draw_235248(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_float_calc_235294  0x8c235294
- * area name: in the gfxlib library code range; behaviour name: floating-point arithmetic
- * called by: alt_entry_2359ae, gfxlib_uses_switch_jump_23598e
+ * gfx_2d_line_quad  0x8c235294
+ * writes a quad of half-width 0.525 along the line from point a0 to a1 with their colours
+ * called by: alt_entry_2359ae, gfx_2d_polyline
  */
-u32 gfxlib_float_calc_235294(int a0, int a1) {
+u32 gfx_2d_line_quad(int a0, int a1) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -9955,11 +9955,11 @@ u32 gfxlib_float_calc_23541c(int a0, int a1) {
 }
 
 /*
- * gfxlib_scan_loop_2355c4  0x8c2355c4
- * area name: in the gfxlib library code range; behaviour name: a loop that only reads
+ * gfx_2d_strip_emit_uv  0x8c2355c4
+ * writes a1 + 2 points from a0 (positions, colours and 1/256-scaled UVs) as a 2D strip
  * called by: gfxlib_uses_switch_jump_2358a0
  */
-u32 gfxlib_scan_loop_2355c4(int *a0, int a1) {
+u32 gfx_2d_strip_emit_uv(int *a0, int a1) {
     int iVar1;
     int iVar2;
 
@@ -10005,11 +10005,11 @@ u32 gfxlib_scan_loop_2355c4(int *a0, int a1) {
 }
 
 /*
- * gfxlib_scan_loop_235704  0x8c235704
- * area name: in the gfxlib library code range; behaviour name: a loop that only reads
+ * gfx_2d_strip_emit_color  0x8c235704
+ * writes a1 + 2 points from a0 (positions and colours) as a 2D strip
  * called by: gfxlib_uses_switch_jump_2357d8
  */
-u32 gfxlib_scan_loop_235704(int *a0, int a1) {
+u32 gfx_2d_strip_emit_color(int *a0, int a1) {
     int iVar1;
 
     iVar1 = 0;
@@ -10077,7 +10077,7 @@ u32 gfxlib_uses_switch_jump_2357d8(int a0, int a1) {
         } while (a6 < iVar5);
     }
     puStack_24 = auStack_124;
-    uVar1 = gfxlib_scan_loop_235704(&puStack_24, a1 + -2);
+    uVar1 = gfx_2d_strip_emit_color(&puStack_24, a1 + -2);
     return uVar1;
 }
 
@@ -10124,15 +10124,15 @@ u32 gfxlib_uses_switch_jump_2358a0(int a0, int a1) {
     }
     puStack_2c = auStack_12c;
     puStack_24 = (u8 *)auStack_22c;
-    uVar1 = gfxlib_scan_loop_2355c4(&puStack_2c, a1 + -2);
+    uVar1 = gfx_2d_strip_emit_uv(&puStack_2c, a1 + -2);
     return uVar1;
 }
 
 /*
- * gfxlib_uses_switch_jump_23598e  0x8c23598e
- * area name: in the gfxlib library code range; behaviour name: its main named callee is switch_jump
+ * gfx_2d_polyline  0x8c23598e
+ * draws a1 points from a0 (positions and colours) as a line of gfx_2d_line_quad segments
  */
-u32 gfxlib_uses_switch_jump_23598e(int *a0, int a1) {
+u32 gfx_2d_polyline(int *a0, int a1) {
     u32 uVar1;
     u64 *puVar2;
     u8 *puVar3;
@@ -10173,11 +10173,11 @@ u32 gfxlib_uses_switch_jump_23598e(int *a0, int a1) {
             }
             *(u32 *)(&g_8c4aa400 + iVar4) = *(u32 *)(uVar7 * 4 + a0[1]);
             *(u32 *)(&g_8c4aa3e8 + iVar4) = 0xe0000000;
-            gfxlib_float_calc_235294(&g_8c4aa3e8, puVar3 + 0x20);
+            gfx_2d_line_quad(&g_8c4aa3e8, puVar3 + 0x20);
             uVar7 = uVar7 + 1;
         } while ((int)uVar7 < a1);
     }
-    uVar1 = gfxlib_float_calc_235294(&g_8c4aa3e8 + uVar6 * 0x20, 0x8c4aa428);
+    uVar1 = gfx_2d_line_quad(&g_8c4aa3e8 + uVar6 * 0x20, 0x8c4aa428);
     return uVar1;
 }
 
@@ -10230,12 +10230,12 @@ u32 alt_entry_2359ae(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int a
 
             puVar2[6] = *(u32 *)(uVar4 * 4 + unaff_r12[1]);
             *puVar2 = unaff_r10;
-            gfxlib_float_calc_235294(unaff_r13, a0 + 8);
+            gfx_2d_line_quad(unaff_r13, a0 + 8);
             uVar4 = uVar4 + 1;
             uVar5 = extraout_fr3_00;
         } while ((int)uVar4 < unaff_r9);
     }
-    uVar5 = gfxlib_float_calc_235294(unaff_r11 * 0x20 + unaff_r13, unaff_r13 + 0x40);
+    uVar5 = gfx_2d_line_quad(unaff_r11 * 0x20 + unaff_r13, unaff_r13 + 0x40);
     return uVar5;
 }
 
@@ -10363,11 +10363,11 @@ u32 gfxlib_draw_235b6c(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_draw_235bfc  0x8c235bfc
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: game_draw_0d2c84
+ * gfx_draw_polygon_flags  0x8c235bfc
+ * builds polygon a0's vertices and sends them with the header chosen by a2's flags (textured, translucent, and the
+ * vertex writer variant) called by: game_draw_0d2c84
  */
-u32 gfxlib_draw_235bfc(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 gfx_draw_polygon_flags(u32 a0, u32 a1, u32 a2, u32 a3) {
     int ar7_00;
     u32 uVar1;
     u32 uVar2;
@@ -10438,7 +10438,7 @@ u32 gfxlib_draw_235bfc(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gfxlib_fill_loop_235d8c  0x8c235d8c
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_draw_235bfc
+ * called by: gfx_draw_polygon_flags
  */
 u32 gfxlib_fill_loop_235d8c(int *a0, int a1, u32 *a2) {
     float fVar1;
@@ -10517,7 +10517,7 @@ u32 gfxlib_fill_loop_235d8c(int *a0, int a1, u32 *a2) {
 /*
  * gfxlib_fill_loop_235e1c  0x8c235e1c
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_draw_235bfc
+ * called by: gfx_draw_polygon_flags
  */
 u32 gfxlib_fill_loop_235e1c(int *a0, int a1, u32 *a2) {
     float fVar1;
@@ -11243,7 +11243,7 @@ u32 gfxlib_float_calc_2363e8(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a
  * draw_state_save  0x8c236454
  * saves the TA polygon state (0x8c4aabbc +0x90..) into 0x8c4ab238
  * called by: alt_entry_21af36, alt_entry_21ba6a, alt_entry_21bbba, gfx_draw_motion, gfx_draw_motion_alt,
- * gfx_model_draw_a_entry, gfx_model_draw_c_entry, gfx_object_draw_a_entry (+27 more)
+ * gfx_draw_polygon_flags, gfx_draw_strip_plain, gfx_draw_strip_tex (+27 more)
  */
 int draw_state_save(u32 a0, u32 a1, u32 a2, u32 a3) {
     int *piVar1;
@@ -11283,7 +11283,7 @@ int draw_state_save(u32 a0, u32 a1, u32 a2, u32 a3) {
  * draw_state_restore  0x8c2364b2
  * restores the TA polygon state saved by draw_state_save
  * called by: alt_entry_21af36, alt_entry_21ba6a, alt_entry_21bbba, gfx_draw_motion, gfx_draw_motion_alt,
- * gfx_model_draw_a_entry, gfx_model_draw_c_entry, gfx_object_draw_a_entry (+27 more)
+ * gfx_draw_polygon_flags, gfx_draw_strip_plain, gfx_draw_strip_tex (+27 more)
  */
 int draw_state_restore(u32 a0) {
     int *piVar1;
@@ -11317,7 +11317,7 @@ int draw_state_restore(u32 a0) {
 /*
  * ta_sq_write_header4_short  0x8c236510
  * three-word variant of ta_sq_write_header4
- * called by: gfxlib_draw_234b10, gfxlib_draw_234d68, gfxlib_draw_234fd0, gfxlib_draw_2351fc, gfxlib_draw_235bfc,
+ * called by: gfx_2d_begin, gfx_draw_polygon_flags, gfx_draw_strip_plain, gfxlib_draw_234d68, gfxlib_draw_234fd0,
  * ta_fifo_2595aa
  */
 u32 *ta_sq_write_header4_short(void) {
@@ -11349,7 +11349,7 @@ u32 *ta_sq_write_header4_short(void) {
 /*
  * ta_sq_write_header5_short  0x8c2365e2
  * three-word variant of ta_sq_write_header5
- * called by: gfxlib_draw_234b10, gfxlib_draw_234d68, gfxlib_draw_234fd0, gfxlib_draw_2351fc, gfxlib_draw_235bfc,
+ * called by: gfx_2d_begin, gfx_draw_polygon_flags, gfx_draw_strip_plain, gfxlib_draw_234d68, gfxlib_draw_234fd0,
  * ta_fifo_2595aa
  */
 u32 *ta_sq_write_header5_short(void) {
@@ -11380,8 +11380,8 @@ u32 *ta_sq_write_header5_short(void) {
 /*
  * ta_sq_write_header4  0x8c23666c
  * writes the saved polygon header (0x8c4ab238) to the TA through store queue 0 (list word 4)
- * called by: gfxlib_draw_217f12, gfxlib_draw_21908e, gfxlib_draw_219ad0, gfxlib_draw_234bc0, gfxlib_draw_234c94,
- * gfxlib_draw_234d68, gfxlib_draw_234fd0, gfxlib_draw_235248 (+1 more)
+ * called by: gfx_draw_polygon_flags, gfx_draw_strip_tex, gfx_draw_strip_tex_alt, gfxlib_draw_217f12,
+ * gfxlib_draw_21908e, gfxlib_draw_219ad0, gfxlib_draw_234d68, gfxlib_draw_234fd0 (+1 more)
  */
 u32 *ta_sq_write_header4(void) {
     u32 *puVar1;
@@ -11413,8 +11413,8 @@ u32 *ta_sq_write_header4(void) {
 /*
  * ta_sq_write_header5  0x8c236718
  * same as ta_sq_write_header4 for list word 5
- * called by: gfxlib_draw_217f12, gfxlib_draw_21908e, gfxlib_draw_219ad0, gfxlib_draw_234bc0, gfxlib_draw_234c94,
- * gfxlib_draw_234d68, gfxlib_draw_234fd0, gfxlib_draw_235248 (+1 more)
+ * called by: gfx_draw_polygon_flags, gfx_draw_strip_tex, gfx_draw_strip_tex_alt, gfxlib_draw_217f12,
+ * gfxlib_draw_21908e, gfxlib_draw_219ad0, gfxlib_draw_234d68, gfxlib_draw_234fd0 (+1 more)
  */
 u32 *ta_sq_write_header5(void) {
     u32 *puVar1;
@@ -11660,8 +11660,8 @@ u32 *ta_init_fields_236dd8(u32 *a0, u32 *a1) {
 /*
  * ta_set_list_addr  0x8c2370dc
  * writes the TA list address a0 (26 bits) with the flags in 0x8c4ab25c
- * called by: gfxlib_draw_217f12, gfxlib_draw_21908e, gfxlib_draw_219ad0, gfxlib_draw_234b10, gfxlib_draw_234bc0,
- * gfxlib_draw_234c94, gfxlib_draw_234d68, gfxlib_draw_234fd0 (+7 more)
+ * called by: gfx_draw_polygon_flags, gfx_draw_strip_plain, gfx_draw_strip_tex, gfx_draw_strip_tex_alt,
+ * gfxlib_draw_217f12, gfxlib_draw_21908e, gfxlib_draw_219ad0, gfxlib_draw_234d68 (+7 more)
  */
 u32 ta_set_list_addr(u32 a0) {
     u32 uVar1;
@@ -11673,8 +11673,8 @@ u32 ta_set_list_addr(u32 a0) {
 
 /*
  * ta_fifo_237124  0x8c237124
- * called by: gfxlib_draw_217f12, gfxlib_draw_21908e, gfxlib_draw_219ad0, gfxlib_draw_234b10, gfxlib_draw_234bc0,
- * gfxlib_draw_234c94, gfxlib_draw_234d68, gfxlib_draw_234fd0 (+8 more)
+ * called by: gfx_2d_begin, gfx_draw_polygon_flags, gfx_draw_strip_plain, gfx_draw_strip_tex, gfx_draw_strip_tex_alt,
+ * gfxlib_draw_217f12, gfxlib_draw_21908e, gfxlib_draw_219ad0 (+8 more)
  */
 u32 ta_fifo_237124(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar1;
@@ -11726,7 +11726,7 @@ u32 ta_calc_2371be(int a0) {
 /*
  * ta_select_texture_cached  0x8c23728c
  * makes texture entry a0 current, refreshing the TSP/texture words only when the entry or its address changed; returns
- * its height field called by: gfxlib_draw_234bc0
+ * its height field called by: gfx_draw_strip_tex
  */
 u32 ta_select_texture_cached(int a0) {
     bool bVar1;
@@ -11788,7 +11788,7 @@ u32 alt_entry_23729c(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 /*
  * ta_calc_23732a  0x8c23732a
  * area name: sits between ta functions (same compilation unit); behaviour name: integer arithmetic on its arguments
- * called by: gfxlib_draw_234c94
+ * called by: gfx_draw_strip_tex_alt
  */
 u32 ta_calc_23732a(int a0) {
     u32 *puVar1;
@@ -13793,8 +13793,8 @@ u32 gfxlib_calc_238e8c(u32 a0) {
 /*
  * gfx_stream_read  0x8c238e98
  * copies a1 bytes from the read pointer at 0x8c4ab274 to a0 and advances it
- * called by: gfxlib_copy_239f84, pvr_stream_find_pvrt, pvr_uses_tex_entry_alloc_23a29c, pvrt_gfx_stream_is_palettized,
- * ta_fifo_23a078
+ * called by: gfx_texlist_entries_from_stream, pvr_stream_find_pvrt, pvr_uses_tex_entry_alloc_23a29c,
+ * pvrt_gfx_stream_is_palettized, ta_fifo_23a078
  */
 u32 gfx_stream_read(u32 a0, int a1) {
     int *piVar1;
@@ -13823,7 +13823,7 @@ int gfx_stream_seek(int a0, int a1) {
 /*
  * copy_2_bytes  0x8c238ede
  * a0[0..1] = a1[0..1]
- * called by: gfxlib_copy_238f2a, gfxlib_copy_239f84
+ * called by: gfx_texlist_entries_from_mem, gfx_texlist_entries_from_stream
  */
 u32 copy_2_bytes(u8 *a0, u8 *a1) {
     u32 in_r0;
@@ -13836,7 +13836,7 @@ u32 copy_2_bytes(u8 *a0, u8 *a1) {
 /*
  * copy_4_bytes  0x8c238eea
  * a0[0..3] = a1[0..3]
- * called by: gfxlib_copy_238f2a, gfxlib_copy_239f84
+ * called by: gfx_texlist_entries_from_mem, gfx_texlist_entries_from_stream
  */
 u32 copy_4_bytes(u8 *a0, u8 *a1) {
     u32 in_r0;
@@ -13873,11 +13873,11 @@ int gfxlib_vertex_size_from_flags(u32 a0) {
 }
 
 /*
- * gfxlib_copy_238f2a  0x8c238f2a
- * area name: in the gfxlib library code range; behaviour name: mostly calls copy functions
- * called by: gfxlib_uses_ninja_close_file_239212
+ * gfx_texlist_entries_from_mem  0x8c238f2a
+ * reads a2's texture-list records from memory a1 into the entries at *a0: id, optional name, and the attribute and
+ * address words by the header flags called by: gfxlib_uses_ninja_close_file_239212
  */
-u32 gfxlib_copy_238f2a(u32 *a0, u32 a1, int a2, u32 a3) {
+u32 gfx_texlist_entries_from_mem(u32 *a0, u32 a1, int a2, u32 a3) {
     u16 uVar1;
     short sVar2;
     int iVar3;
@@ -14132,7 +14132,7 @@ u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) 
                 piStack_c[1] = (int)sStack_116;
                 uStack_148 = gfxlib_vertex_size_from_flags((int)sStack_118);
                 piVar3 = &iStack_11c;
-                gfxlib_copy_238f2a(piStack_c, uStack_148, piVar3, a3);
+                gfx_texlist_entries_from_mem(piStack_c, uStack_148, piVar3, a3);
                 nj_seek(0, 0);
                 piVar7 = (int *)0x1;
                 piVar4 = (int *)(iStack_11c + 8);
@@ -14606,11 +14606,11 @@ u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) 
 }
 
 /*
- * gfxlib_copy_239f84  0x8c239f84
- * area name: in the gfxlib library code range; behaviour name: mostly calls copy functions
- * called by: pvr_uses_tex_entry_alloc_23a29c
+ * gfx_texlist_entries_from_stream  0x8c239f84
+ * reads a2's texture-list records from the stream a1 into the entries at *a0: id, optional name, and the attribute and
+ * address words by the header flags called by: pvr_uses_tex_entry_alloc_23a29c
  */
-u32 gfxlib_copy_239f84(u32 *a0, u32 a1, int a2) {
+u32 gfx_texlist_entries_from_stream(u32 *a0, u32 a1, int a2) {
     u16 uVar1;
     u32 uVar2;
     int iVar3;
@@ -14814,7 +14814,7 @@ u32 pvr_uses_tex_entry_alloc_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
         a1[1] = iVar1;
         uVar5 = gfxlib_vertex_size_from_flags((int)sStack_24);
         piVar6 = &iStack_28;
-        gfxlib_copy_239f84(a1, uVar5, piVar6);
+        gfx_texlist_entries_from_stream(a1, uVar5, piVar6);
         gfx_stream_seek(0, 0);
         uVar5 = 1;
         iVar4 = iStack_28 + 8;
@@ -18602,8 +18602,8 @@ u32 memcpy_words_n(u32 *a0, u32 *a1, int a2) {
  * memcpy_bytes  0x8c23c814
  * copies a2 bytes (a2 > 0)
  * called by: common_load_eye_scsi, draw_copy_259a70, draw_state_copy_in, draw_state_copy_out,
- * flashrom_uses_flashrom_select_partition_1f7c40, gdfs_uses_bswap32_2124d0, gfx_stream_read, gfxlib_copy_238f2a (+8
- * more)
+ * flashrom_uses_flashrom_select_partition_1f7c40, gdfs_uses_bswap32_2124d0, gfx_stream_read,
+ * gfx_texlist_entries_from_mem (+8 more)
  */
 int memcpy_bytes(char *a0, char *a1, int a2) {
     char cVar1;

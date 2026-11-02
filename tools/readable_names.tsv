@@ -2225,3 +2225,16 @@
 8c21d7d4	gfx_material_colors_unpack	unpacks the material's diffuse (optionally overridden or offset), ambient and specular ARGB words into float colours a2, a3 and s0
 8c2340a0	dbg_font_quad_char	writes a textured quad for debug-font character a2 at screen position (a0, a1) into the store queue
 8c2341d6	dbg_font_print	formats the message a1, then draws it with the debug font at (a0 & 0xffff, a0 >> 16) scaled by the font size
+8c2345c8	dbg_font_print_binary	draws the low a2 bits of a1 as '0'/'1' characters with the debug font at (a0 & 0xffff, a0 >> 16)
+8c2346ce	dbg_font_print_hex	draws the low a2 hex digits of a1 with the debug font at (a0 & 0xffff, a0 >> 16)
+8c234b10	gfx_draw_strip_plain	sends a1 untextured 4-word vertices from a0 as one strip (opaque header, or translucent when a2 is set)
+8c234bc0	gfx_draw_strip_tex	selects texture a2 (cached) and sends a1 textured 6-word vertices from a0 as one strip (translucent when a3 is set)
+8c234c94	gfx_draw_strip_tex_alt	the gfx_draw_strip_tex sender selecting the texture through ta_calc_23732a
+8c2351fc	gfx_2d_begin	writes the 2D polygon header for type a0 and sets the 2D depth from fr4 (1/-z when beyond -1, else 1)
+8c235294	gfx_2d_line_quad	writes a quad of half-width 0.525 along the line from point a0 to a1 with their colours
+8c2355c4	gfx_2d_strip_emit_uv	writes a1 + 2 points from a0 (positions, colours and 1/256-scaled UVs) as a 2D strip
+8c235704	gfx_2d_strip_emit_color	writes a1 + 2 points from a0 (positions and colours) as a 2D strip
+8c23598e	gfx_2d_polyline	draws a1 points from a0 (positions and colours) as a line of gfx_2d_line_quad segments
+8c235bfc	gfx_draw_polygon_flags	builds polygon a0's vertices and sends them with the header chosen by a2's flags (textured, translucent, and the vertex writer variant)
+8c238f2a	gfx_texlist_entries_from_mem	reads a2's texture-list records from memory a1 into the entries at *a0: id, optional name, and the attribute and address words by the header flags
+8c239f84	gfx_texlist_entries_from_stream	reads a2's texture-list records from the stream a1 into the entries at *a0: id, optional name, and the attribute and address words by the header flags

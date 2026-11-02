@@ -16873,7 +16873,7 @@ u32 ninja_close_file(void) {
 /*
  * ninja_uses_memcpy_bytes_259c48  0x8c259c48
  * area name: in the ninja library code range; behaviour name: its main named callee is memcpy_bytes
- * called by: gfxlib_copy_238f2a, gfxlib_uses_ninja_close_file_239212, ninja_uses_ninja_close_file_256164,
+ * called by: gfx_texlist_entries_from_mem, gfxlib_uses_ninja_close_file_239212, ninja_uses_ninja_close_file_256164,
  * pvrt_stream_is_palettized, ta_fifo_239012, tex_uses_dcache_writeback_range_25a770, tex_uses_gfx_heap_alloc_25a838,
  * tex_uses_nj_seek_25a216 (+1 more)
  */
@@ -18742,7 +18742,7 @@ u32 noop_25b638(void) {
 /*
  * tex_calls_fill_loop_25b650  0x8c25b650
  * area name: sits between tex functions (same compilation unit); behaviour name: its callees mostly do: fill_loop
- * called by: gfxlib_draw_235bfc
+ * called by: gfx_draw_polygon_flags
  */
 u64 *tex_calls_fill_loop_25b650(u32 *a0, int a1, u64 *a2, int a3) {
     bool bVar1;
@@ -19814,7 +19814,7 @@ u32 *ninja_fill_loop_25b858(u32 *a0, u32 *a1, u32 *a2, u64 *a3) {
 /*
  * ninja_calls_fill_loop_25bc88  0x8c25bc88
  * area name: in the ninja library code range; behaviour name: its callees mostly do: fill_loop
- * called by: gfxlib_draw_235bfc
+ * called by: gfx_draw_polygon_flags
  */
 u64 *ninja_calls_fill_loop_25bc88(u32 *a0, int a1, u64 *a2, int a3) {
     bool bVar1;
@@ -20948,7 +20948,7 @@ u32 *ninja_fill_loop_25bed8(u32 *a0, u32 *a1, u32 *a2, u64 *a3) {
 /*
  * ninja_calls_float_calc_25c3a4  0x8c25c3a4
  * area name: in the ninja library code range; behaviour name: its callees mostly do: float_calc
- * called by: gfxlib_draw_235bfc
+ * called by: gfx_draw_polygon_flags
  */
 int ninja_calls_float_calc_25c3a4(double *a0, int a1, int a2) {
     u64 uVar1;
@@ -22323,7 +22323,7 @@ LAB_8c25c5fc:
 /*
  * ninja_calls_float_calc_25c868  0x8c25c868
  * area name: in the ninja library code range; behaviour name: its callees mostly do: float_calc
- * called by: gfxlib_draw_235bfc
+ * called by: gfx_draw_polygon_flags
  */
 double *ninja_calls_float_calc_25c868(double *a0, int a1, double *a2) {
     u64 uVar1;

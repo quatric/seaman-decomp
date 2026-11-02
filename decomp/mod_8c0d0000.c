@@ -2956,7 +2956,7 @@ u32 game_draw_0d2c84(float *a0, u32 a1, u32 a2, u32 a3) {
             uStack_6e = 0;
             obj_set_texlist(a1, a1, a2);
             obj_set_texture_num(a1, 0);
-            uVar1 = gfxlib_draw_235bfc(&pfStack_8c, 4, 0x80000060, a3);
+            uVar1 = gfx_draw_polygon_flags(&pfStack_8c, 4, 0x80000060, a3);
         } else {
             set_pair_10_fr4_5(a0 + 0x12);
             uVar1 = (**(code **)((int)a0[0x12] + 0x1c))(a0 + 0x12, a0[0x20], a2, a3);

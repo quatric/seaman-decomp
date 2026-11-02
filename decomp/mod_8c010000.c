@@ -11916,8 +11916,9 @@ u32 strcmp_01439c(u32 a0, u32 a1) {
 
 /*
  * log_message  0x8c0143b0
- * called by: dbg_font_print, filename_add_ext_if_missing, format_output, gfxlib_copy_238f2a, gfxlib_copy_239f84,
- * gfxlib_uses_dbg_font_quad_char_234834, libc_uses_log_message_013374, msg_substitute_name (+7 more)
+ * called by: dbg_font_print, filename_add_ext_if_missing, format_output, gfx_texlist_entries_from_mem,
+ * gfx_texlist_entries_from_stream, gfxlib_uses_dbg_font_quad_char_234834, libc_uses_log_message_013374,
+ * msg_substitute_name (+7 more)
  */
 int log_message(char *a0, u32 a1, u32 a2) {
     char cVar1;
@@ -14268,7 +14269,7 @@ u32 draw_debug_quad(void) {
     uStack_10 = 0x3f800000;
     uStack_c = 0x3f800000;
     uStack_8 = 0xffffffff;
-    uVar1 = gfxlib_draw_234bc0(&uStack_64, 4, 10000, 0);
+    uVar1 = gfx_draw_strip_tex(&uStack_64, 4, 10000, 0);
     return uVar1;
 }
 
@@ -14401,7 +14402,7 @@ u32 Class_129808_m10_0162bc(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
     njSetTexture(a0 + 0x8c);
-    uVar1 = (*(code *)(&gfxlib_draw_235bfc))(a0 + 4, *(u32 *)(a0 + 0x10), *(u32 *)(0xcc + a0), a3);
+    uVar1 = (*(code *)(&gfx_draw_polygon_flags))(a0 + 4, *(u32 *)(a0 + 0x10), *(u32 *)(0xcc + a0), a3);
     return uVar1;
 }
 
@@ -14622,7 +14623,7 @@ u32 Class_129808_calc_016504(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 u32 Class_12bea8_calc_016524(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = (*(code *)(&gfxlib_draw_235bfc))(a0, *(u32 *)(a0 + 0x10), *(u32 *)(a0 + 0x14), a3);
+    uVar1 = (*(code *)(&gfx_draw_polygon_flags))(a0, *(u32 *)(a0 + 0x10), *(u32 *)(a0 + 0x14), a3);
     return uVar1;
 }
 
@@ -14637,7 +14638,7 @@ u32 Class_129808_draw_016544(int a0, u32 a1, u32 unused_a2, u32 a3) {
     uVar1 = a1;
     njSetTexture(*(u32 *)(a0 + 0x40));
     njSetTextureNum(a1);
-    uVar1 = (*(code *)(&gfxlib_draw_235bfc))(a0, *(u32 *)(a0 + 0x10), *(u32 *)(a0 + 0x14), a3);
+    uVar1 = (*(code *)(&gfx_draw_polygon_flags))(a0, *(u32 *)(a0 + 0x10), *(u32 *)(a0 + 0x14), a3);
     return uVar1;
 }
 
