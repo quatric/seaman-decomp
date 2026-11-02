@@ -10898,7 +10898,7 @@ u32 matrix_pop_n(int a0) {
  * matrix_pop1  0x8c256254
  * pops one 4x4 matrix off the matrix stack if more than one is on it
  * called by: alt_entry_218ea0, alt_entry_2199c0, alt_entry_21a718, alt_entry_21a8be, alt_entry_21a952,
- * alt_entry_21b916, alt_entry_21b9a8, gfxlib_draw_21a8b0 (+8 more)
+ * alt_entry_21b916, alt_entry_21b9a8, gfx_object_tree_draw (+8 more)
  */
 u32 matrix_pop1(void) {
     if (0 < g_8c4aa5a0 + -1) {
@@ -11122,7 +11122,7 @@ u32 matrix_push_regs(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 /*
  * matrix_uses_switch_jump_2563f8  0x8c2563f8
  * area name: sits between matrix functions (same compilation unit); behaviour name: its main named callee is
- * switch_jump called by: gfxlib_uses_switch_jump_21d06c
+ * switch_jump called by: motion_node_apply_rot_keys20
  */
 u32 matrix_uses_switch_jump_2563f8(double *a0) {
     u32 uVar1;
@@ -11901,7 +11901,7 @@ u32 ninja_update_fields_25699c(int a0) {
  * ninja_scan_loop_2569e0  0x8c2569e0
  * area name: in the ninja library code range; behaviour name: a loop that only reads
  * called by: alt_entry_218ea0, alt_entry_2199c0, alt_entry_21a718, alt_entry_21a8be, alt_entry_21a952,
- * alt_entry_21b916, alt_entry_21b9a8, gfxlib_calls_scan_loop_21cf22 (+9 more)
+ * alt_entry_21b916, alt_entry_21b9a8, gfxlib_calls_scan_loop_21d112 (+9 more)
  */
 u32 ninja_scan_loop_2569e0(u32 *a0, int a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -18010,10 +18010,10 @@ u32 ninja_uses_vram64_25acc2(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int unaff_r14;
 
     if (((in_r3 & *(u32 *)(unaff_r14 + 0x18)) == 0) && ((*(u32 *)(unaff_r14 + 0x18) & 0x11000000) == 0)) {
-        iVar1 = kamui_uses_vram64_20cc56(unaff_r14 + 0x18, a1, a2, a3);
+        iVar1 = tex_uses_vram64_20cc56(unaff_r14 + 0x18, a1, a2, a3);
     } else {
         g_8c277cd4 = *(int *)(unaff_r14 + 0x34) + -4;
-        iVar1 = kamui_uses_vram64_20cc56(&g_8c277cb8, a1, a2, a3);
+        iVar1 = tex_uses_vram64_20cc56(&g_8c277cb8, a1, a2, a3);
     }
     if (iVar1 == 0) {
         return 1;
@@ -18730,7 +18730,7 @@ u32 touch_fields_30_3c(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 
 /*
  * noop_25b638  0x8c25b638
  * called by: alt_entry_218ea0, alt_entry_2199c0, alt_entry_21a718, alt_entry_21a8be, alt_entry_21a952,
- * alt_entry_21b916, alt_entry_21b9a8, gfxlib_draw_21a8b0 (+10 more)
+ * alt_entry_21b916, alt_entry_21b9a8, gfx_object_tree_draw (+10 more)
  */
 u32 noop_25b638(void) {
     u32 in_r0;

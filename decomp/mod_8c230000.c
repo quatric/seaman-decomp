@@ -10601,7 +10601,7 @@ u32 pvr_fill_fog_table_like(void) {
         *puVar2 = in_fr4;
         puVar2 = puVar2 + 1;
     } while (puVar2 < &uStack_8);
-    uVar1 = pvr_draw_20a1d0(auStack_208, &uStack_8);
+    uVar1 = pvr_fog_table_write(auStack_208, &uStack_8);
     return uVar1;
 }
 

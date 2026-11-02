@@ -8085,7 +8085,7 @@ u32 delay_loop_6_010ad4(void) {
 /*
  * bytes_add_be  0x8c010af8
  * adds the a2-byte big-endian number at a1 to the one at a0
- * called by: libc_copy_010c60, libc_copy_0128e8
+ * called by: bytes_mul_8x8_be, libc_copy_010c60
  */
 int bytes_add_be(char *a0, int a1, int a2, u32 unused_a3, int ain0) {
     u8 *pbVar1;
@@ -8261,7 +8261,7 @@ u32 libc_copy_010c60(short *a0, u32 a1, u32 a2, u32 a3) {
         bytes_shl1(auStack_48, 0xc);
         a3 = 0xc;
         a6 = auStack_38;
-        iVar1 = libc_scan_loop_012eac(0, &cStack_2c, auStack_38, 0xc);
+        iVar1 = bytes_sub_be(0, &cStack_2c, auStack_38, 0xc);
         if (iVar1 < 0) {
             a6 = (u8 *)0xc;
             bytes_add_be(&cStack_2c, auStack_38, 0xc, a3, ain0);
@@ -9547,7 +9547,7 @@ int libc_uses_memmove_01243c(u32 a0, char *a1, int a2) {
         do {
             iVar2 = memcmp_libc(auStack_28 + iVar6, auStack_28 + iVar1, ar6_00);
             if (-1 < iVar2) {
-                iVar2 = libc_scan_loop_012eac(0, auStack_28 + iVar6, auStack_28 + iVar1, ar6_00);
+                iVar2 = bytes_sub_be(0, auStack_28 + iVar6, auStack_28 + iVar1, ar6_00);
                 iStack_44 = iStack_44 + iVar4;
                 iStack_34 = iVar2;
             }
@@ -9752,7 +9752,7 @@ u32 bytes_shl1(u8 *a0, int a1) {
 /*
  * bytes_shift_left_carry  0x8c01289c
  * shifts the a1-byte big-number at a0 left by a2 bits, carrying between bytes from the end
- * called by: libc_copy_012a60, libc_uses_memmove_013060, libc_uses_store_u32_be_012f58
+ * called by: double_unpack_mantissa, libc_copy_012a60, libc_uses_memmove_013060
  */
 u32 bytes_shift_left_carry(u8 *a0, int a1, u32 a2) {
     u8 bVar1;
@@ -9801,10 +9801,10 @@ u32 bytes_shift_left_carry(u8 *a0, int a1, u32 a2) {
 }
 
 /*
- * libc_copy_0128e8  0x8c0128e8
- * area name: in the libc library code range; behaviour name: mostly calls copy functions
+ * bytes_mul_8x8_be  0x8c0128e8
+ * multiplies the 8-byte big-endian numbers a0 and a1 into the 16-byte product a2 (soft-float mantissa helper)
  */
-int libc_copy_0128e8(int a0, int a1, int a2, u32 a3) {
+int bytes_mul_8x8_be(int a0, int a1, int a2, u32 a3) {
     int iVar1;
     short sVar2;
     short sVar3;
@@ -9850,7 +9850,7 @@ u32 libc_uses_bytes_shl1_0129b4(short *a0, u32 a1, u32 a2, u32 a3) {
     u8 abStack_1c[8];
     u8 bStack_14;
 
-    puVar1 = (&libc_copy_0128e8);
+    puVar1 = (&bytes_mul_8x8_be);
     *a0 = (short)a2 + *a0;
     (*(code *)puVar1)(a1, a3, abStack_1c, a3);
     if ((abStack_1c[0] & 0x80) == 0) {
@@ -9867,7 +9867,7 @@ u32 libc_uses_bytes_shl1_0129b4(short *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * store_u32_be  0x8c012a24
  * stores *a1 big-endian at a0; returns a0 + 4
- * called by: libc_uses_store_u32_be_0125b6, libc_uses_store_u32_be_012f58
+ * called by: double_unpack_mantissa, libc_uses_store_u32_be_0125b6
  */
 u8 *store_u32_be(u8 *a0, u32 *a1) {
     u8 *puVar1;
@@ -9894,7 +9894,7 @@ u8 *store_u32_be(u8 *a0, u32 *a1) {
 /*
  * store_u16_be  0x8c012a40
  * stores the u16 at a1 as two big-endian bytes at a0
- * called by: libc_copy_0128e8
+ * called by: bytes_mul_8x8_be
  */
 char *store_u16_be(char *a0, u16 *a1) {
     char *pcVar1;
@@ -10307,11 +10307,11 @@ u32 strtol_too_long(char *a0, int a1) {
 }
 
 /*
- * libc_scan_loop_012eac  0x8c012eac
- * area name: in the libc library code range; behaviour name: a loop that only reads
- * called by: libc_copy_010c60, libc_uses_memmove_01243c
+ * bytes_sub_be  0x8c012eac
+ * subtracts a2 from a1 (a3 big-endian bytes) in place; returns -1 on borrow (when a0 is 0), 0 when the result is zero,
+ * else 1 called by: libc_copy_010c60, libc_uses_memmove_01243c
  */
-u32 libc_scan_loop_012eac(int a0, u8 *a1, int a2, int a3) {
+u32 bytes_sub_be(int a0, u8 *a1, int a2, int a3) {
     bool bVar1;
     u32 uVar2;
     u8 *pbVar3;
@@ -10379,11 +10379,11 @@ u32 memcmp_libc(char *a0, char *a1, u32 a2) {
 }
 
 /*
- * libc_uses_store_u32_be_012f58  0x8c012f58
- * area name: in the libc library code range; behaviour name: its main named callee is store_u32_be
- * called by: libc_uses_memmove_013060
+ * double_unpack_mantissa  0x8c012f58
+ * splits the double in fr4 into a sign byte (*a0 = 1 or 0xff), the exponent (*a1) and a 7-byte mantissa with the hidden
+ * bit (a2) called by: libc_uses_memmove_013060
  */
-u32 libc_uses_store_u32_be_012f58(u8 *a0, u16 *a1, u8 *a2) {
+u32 double_unpack_mantissa(u8 *a0, u16 *a1, u8 *a2) {
     u32 uVar1;
     u8 uVar2;
     u32 ar6_00;
@@ -10463,7 +10463,7 @@ u32 libc_uses_memmove_013060(int a0, u8 *a1, int *a2, char *a3) {
             *a3 = -1;
         }
     } else {
-        libc_uses_store_u32_be_012f58(a3, &stack0xffffffa4, auStack_30);
+        double_unpack_mantissa(a3, &stack0xffffffa4, auStack_30);
         if (*a3 == -1) {
             uStack_24 = uStack_24 & 0x7fffffff;
         }

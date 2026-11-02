@@ -4596,7 +4596,7 @@ u32 sh4_scan_loop_203298(int a0) {
 /*
  * shinobi_calls_scan_loop_203320  0x8c203320
  * area name: in the shinobi library code range; behaviour name: its callees mostly do: scan_loop
- * called by: kamui_calls_scan_loop_20cd92, vram64_20a8e0
+ * called by: tex_calls_scan_loop_20cd92, vram64_20a8e0
  */
 u32 shinobi_calls_scan_loop_203320(u32 a0, u32 a1) {
     int iVar1;
@@ -5122,7 +5122,8 @@ int shinobi_list_203820(u32 a0, int *a1, u32 *a2) {
 /*
  * shinobi_list_2038c0  0x8c2038c0
  * area name: in the shinobi library code range; behaviour name: mostly calls list functions
- * called by: gfxlib_uses_ta_fifo_233e10, pvr_list_20c980, pvr_uses_callback_table_call_20ca32, pvr_uses_ta_fifo_20c90c
+ * called by: gfxlib_uses_ta_fifo_233e10, kamui_uses_callback_table_call_20ca32, pvr_list_20c980,
+ * pvr_uses_ta_fifo_20c90c
  */
 u32 shinobi_list_2038c0(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -5301,7 +5302,7 @@ u32 shinobi_uses_rec4c_alloc_203a92(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * shinobi_list_203bda  0x8c203bda
  * area name: in the shinobi library code range; behaviour name: mostly calls list functions
- * called by: alt_entry_20cf8c, kamui_list_20cf88, pvr_list_20c980, pvr_uses_callback_table_call_20ca32,
+ * called by: alt_entry_20cf8c, kamui_list_20cf88, kamui_uses_callback_table_call_20ca32, pvr_list_20c980,
  * shinobi_list_203914, shinobi_list_203ca0, shinobi_list_203cd0
  */
 u32 shinobi_list_203bda(int a0, u32 a1, u32 a2, u32 a3) {
@@ -7600,7 +7601,7 @@ u32 kamui_init_defaults(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     g_8c4a9d88 = 3;
     g_8c4a9e54 = 1;
     g_8c4a9d90 = g_8c4a9d8c;
-    ta_init_fields_20828c(0x800000);
+    ta_default_triangle_init(0x800000);
     uVar1 = kamui_cfg_get("RENDER", "RegionSize", 0x6000);
     uVar2 = kamui_cfg_get("RENDER", "ObjListSize", 0x7a000);
     uVar3 = kamui_cfg_get("RENDER", "ISPParamSize", 0x180000);
@@ -8407,7 +8408,7 @@ u32 pvr_206ff0(u32 unused_a0, u32 a1, u32 *a2, u32 a3) {
 /*
  * callback_table_call  0x8c2072b2
  * calls entry a0 of the callback table at 0x8c4a9ddc with its stored argument
- * called by: gfxlib_uses_ta_fifo_233e10, pvr_uses_callback_table_call_20ca32, pvr_uses_ta_fifo_20c90c
+ * called by: gfxlib_uses_ta_fifo_233e10, kamui_uses_callback_table_call_20ca32, pvr_uses_ta_fifo_20c90c
  */
 u32 callback_table_call(int a0) {
     u32 uVar1;
@@ -8422,7 +8423,7 @@ u32 callback_table_call(int a0) {
  * sq_copy_words  0x8c207300
  * copies a2 bytes of words from a1 to a0 for a store-queue/TA transfer (unaligned: word by word; aligned: one word per
  * 8-byte step) called by: alt_entry_20af22, kamui_uses_sq_copy_words_212220, kamui_uses_sq_copy_words_212284,
- * kamui_uses_sq_copy_words_2122ea, pvr_uses_sq_copy_words_2103c4, shinobi_uses_sq_copy_words_20af20
+ * kamui_uses_sq_copy_words_2122ea, pvr_uses_sq_copy_words_20af20, pvr_uses_sq_copy_words_2103c4
  */
 u32 sq_copy_words(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -8477,7 +8478,7 @@ u32 memcpy_words(u32 *a0, u32 *a1, u32 a2) {
  * CacheBlockWriteBack_wrap  0x8c20732e
  * only calls CacheBlockWriteBack
  * called by: kamui_uses_CacheBlockWriteBack_wrap_20d9ce, kamui_uses_CacheBlockWriteBack_wrap_20daa0,
- * kamui_uses_CacheBlockWriteBack_wrap_20db80, ta_uses_CacheBlockWriteBack_wrap_20d82e
+ * kamui_uses_CacheBlockWriteBack_wrap_20db80, tex_uses_CacheBlockWriteBack_wrap_20d82e
  */
 u32 CacheBlockWriteBack_wrap(u32 a0) {
     u32 in_r0;
@@ -8936,7 +8937,7 @@ u32 pvr_write_saved_regs(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * shinobi_scan_loop_2079fc  0x8c2079fc
  * area name: in the shinobi library code range; behaviour name: a loop that only reads
- * called by: pvr_draw_20ade0
+ * called by: pvr_display_regs_apply
  */
 u32 shinobi_scan_loop_2079fc(void) {
     u32 in_r0;
@@ -9260,8 +9261,8 @@ u32 shinobi_calc_207fe4(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * ta_fifo_2081e0  0x8c2081e0
- * called by: shinobi_draw_208484, shinobi_draw_208680, shinobi_draw_2087e4, shinobi_draw_208980, shinobi_draw_208b00,
- * shinobi_draw_208e00, shinobi_draw_2090e0, shinobi_draw_209380 (+7 more)
+ * called by: shinobi_draw_208980, shinobi_draw_208b00, shinobi_draw_208e00, shinobi_draw_2090e0, shinobi_draw_209380,
+ * shinobi_draw_209a40, shinobi_draw_209c00, shinobi_draw_209e80 (+7 more)
  */
 u32 ta_fifo_2081e0(u32 a0, int a1, int a2) {
     u32 *puVar1;
@@ -9282,8 +9283,8 @@ u32 ta_fifo_2081e0(u32 a0, int a1, int a2) {
 /*
  * ta_param_word_count  0x8c20820a
  * number of colour words a polygon header with flags a0 needs
- * called by: shinobi_draw_208484, shinobi_draw_208680, shinobi_draw_2087e4, shinobi_draw_208980, shinobi_draw_208b00,
- * shinobi_draw_208e00, shinobi_draw_2090e0, shinobi_draw_209380 (+7 more)
+ * called by: shinobi_draw_208980, shinobi_draw_208b00, shinobi_draw_208e00, shinobi_draw_2090e0, shinobi_draw_209380,
+ * shinobi_draw_209a40, shinobi_draw_209c00, shinobi_draw_209e80 (+7 more)
  */
 int ta_param_word_count(u32 a0, u32 a1, u32 a2) {
     int iVar1;
@@ -9304,8 +9305,8 @@ int ta_param_word_count(u32 a0, u32 a1, u32 a2) {
 /*
  * ta_param_push1_if  0x8c208228
  * appends a2 to the polygon parameter buffer (0x8c4a9c50) when a0 has bit 24; returns the new count
- * called by: shinobi_draw_2087e4, shinobi_draw_208980, shinobi_draw_208b00, shinobi_draw_208e00, shinobi_draw_2090e0,
- * shinobi_draw_209380, shinobi_draw_2098c0, shinobi_draw_209a40 (+2 more)
+ * called by: shinobi_draw_208980, shinobi_draw_208b00, shinobi_draw_208e00, shinobi_draw_2090e0, shinobi_draw_209380,
+ * shinobi_draw_209a40, shinobi_draw_209c00, shinobi_draw_209e80 (+2 more)
  */
 int ta_param_push1_if(u32 a0, int a1, u32 a2) {
     int iVar1;
@@ -9344,7 +9345,7 @@ int ta_param_push_color_if(u32 a0, int a1, u32 a2) {
 /*
  * ta_param_push2_if  0x8c208270
  * appends a2, a3 to the polygon parameter buffer when a0 has bit 25; returns the new count
- * called by: shinobi_draw_2087e4, shinobi_draw_208b00, shinobi_draw_2090e0, shinobi_draw_2098c0, shinobi_draw_209c00
+ * called by: shinobi_draw_208b00, shinobi_draw_2090e0, shinobi_draw_209c00, ta_draw_2087e4, ta_draw_2098c0
  */
 int ta_param_push2_if(u32 a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -9361,11 +9362,11 @@ int ta_param_push2_if(u32 a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * ta_init_fields_20828c  0x8c20828c
- * area name: sits between ta functions (same compilation unit); behaviour name: writes 6 members
+ * ta_default_triangle_init  0x8c20828c
+ * sets the default polygon header and three vertices (positions and opaque black colour) used by the triangle senders
  * called by: kamui_init_defaults
  */
-u32 ta_init_fields_20828c(u32 a0) {
+u32 ta_default_triangle_init(u32 a0) {
     u32 *puVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -9403,10 +9404,10 @@ u32 ta_init_fields_20828c(u32 a0) {
 }
 
 /*
- * ta_draw_208380  0x8c208380
- * area name: sits between ta functions (same compilation unit); behaviour name: mostly calls draw functions
+ * ta_send_triangle_color18  0x8c208380
+ * copies three vertices (position and the packed colour at +0x18) and sends the triangle to the TA FIFO
  */
-u32 ta_draw_208380(int *a0) {
+u32 ta_send_triangle_color18(int *a0) {
     u32 ar4_00;
     int iVar1;
     int iStack_14;
@@ -9438,10 +9439,10 @@ u32 ta_draw_208380(int *a0) {
 }
 
 /*
- * shinobi_draw_208484  0x8c208484
- * area name: in the shinobi library code range; behaviour name: mostly calls draw functions
+ * ta_send_triangle_rgba_floats  0x8c208484
+ * copies three vertices, packing the float ARGB at +0x10..+0x1c into colour words, and sends the triangle
  */
-u32 shinobi_draw_208484(int *a0) {
+u32 ta_send_triangle_rgba_floats(int *a0) {
     u32 ar4_00;
     int iVar1;
     int iStack_14;
@@ -9478,10 +9479,10 @@ u32 shinobi_draw_208484(int *a0) {
 }
 
 /*
- * shinobi_draw_208680  0x8c208680
- * area name: in the shinobi library code range; behaviour name: mostly calls draw functions
+ * ta_send_triangle_gray18  0x8c208680
+ * copies three vertices, turning the float at +0x18 into a grey colour word, and sends the triangle
  */
-u32 shinobi_draw_208680(int *a0) {
+u32 ta_send_triangle_gray18(int *a0) {
     u32 ar4_00;
     int iVar1;
     int *a7;
@@ -9518,10 +9519,10 @@ u32 shinobi_draw_208680(int *a0) {
 }
 
 /*
- * shinobi_draw_2087e4  0x8c2087e4
- * area name: in the shinobi library code range; behaviour name: mostly calls draw functions
+ * ta_draw_2087e4  0x8c2087e4
+ * area name: sits between ta functions (same compilation unit); behaviour name: mostly calls draw functions
  */
-u32 shinobi_draw_2087e4(int *a0) {
+u32 ta_draw_2087e4(int *a0) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -10556,10 +10557,10 @@ u32 shinobi_draw_209380(int *a0) {
 }
 
 /*
- * shinobi_draw_209600  0x8c209600
- * area name: in the shinobi library code range; behaviour name: mostly calls draw functions
+ * ta_send_triangle_color10  0x8c209600
+ * copies three vertices (position and the packed colour at +0x10) and sends the triangle to the TA FIFO
  */
-u32 shinobi_draw_209600(int *a0) {
+u32 ta_send_triangle_color10(int *a0) {
     u32 ar4_00;
     int iVar1;
     int iStack_14;
@@ -10591,10 +10592,10 @@ u32 shinobi_draw_209600(int *a0) {
 }
 
 /*
- * shinobi_draw_209708  0x8c209708
- * area name: in the shinobi library code range; behaviour name: mostly calls draw functions
+ * ta_send_triangle_gray10  0x8c209708
+ * copies three vertices, turning the float at +0x10 into a grey colour word, and sends the triangle
  */
-u32 shinobi_draw_209708(int *a0) {
+u32 ta_send_triangle_gray10(int *a0) {
     u32 ar4_00;
     int iVar1;
     int *ar7_00;
@@ -10631,10 +10632,10 @@ u32 shinobi_draw_209708(int *a0) {
 }
 
 /*
- * shinobi_draw_2098c0  0x8c2098c0
- * area name: in the shinobi library code range; behaviour name: mostly calls draw functions
+ * ta_draw_2098c0  0x8c2098c0
+ * area name: sits between ta functions (same compilation unit); behaviour name: mostly calls draw functions
  */
-u32 shinobi_draw_2098c0(int *a0) {
+u32 ta_draw_2098c0(int *a0) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -11034,11 +11035,11 @@ u32 pvr_wrap_20a1c0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, 
 }
 
 /*
- * pvr_draw_20a1d0  0x8c20a1d0
- * area name: sits between pvr functions (same compilation unit); behaviour name: mostly calls draw functions
- * called by: pvr_fill_fog_table_like
+ * pvr_fog_table_write  0x8c20a1d0
+ * writes the 128-entry fog table (PVR 0x200) from a0's float densities scaled to 0..255, pairing each entry with the
+ * next called by: pvr_fill_fog_table_like
  */
-u32 pvr_draw_20a1d0(int a0, u32 a1) {
+u32 pvr_fog_table_write(int a0, u32 a1) {
     u32 uVar1;
     int iVar2;
     float fVar4;
@@ -11475,7 +11476,7 @@ u32 vram_20a892(u32 a0, int a1, u32 a2) {
  * vram64_20a8e0  0x8c20a8e0
  * called by: kamui_uses_CacheBlockWriteBack_wrap_20d9ce, kamui_uses_CacheBlockWriteBack_wrap_20daa0,
  * kamui_uses_CacheBlockWriteBack_wrap_20db80, kamui_uses_vram64_20cb5a, kamui_uses_vram64_20cb5e,
- * kamui_uses_vram64_20cbbc, kamui_uses_vram64_20cc56, kamui_uses_vram64_20ccd6 (+9 more)
+ * kamui_uses_vram64_20cefe, ninja_uses_vram64_25aa80, ninja_uses_vram64_25ab02 (+9 more)
  */
 u32 vram64_20a8e0(u32 a0, u32 a1, u32 a2) {
     u32 r7;
@@ -11520,7 +11521,7 @@ u32 vram64_20a8e0(u32 a0, u32 a1, u32 a2) {
  * vram64_20a9c2  0x8c20a9c2
  * called by: alt_entry_20d086, kamui_uses_CacheBlockWriteBack_wrap_20d9ce, kamui_uses_CacheBlockWriteBack_wrap_20daa0,
  * kamui_uses_CacheBlockWriteBack_wrap_20db80, kamui_uses_vram_20d082, shinobi_uses_vram64_204f2a,
- * ta_uses_CacheBlockWriteBack_wrap_20d82e, ta_uses_vram64_20d6ea (+1 more)
+ * tex_uses_CacheBlockWriteBack_wrap_20d82e, tex_uses_vram64_20d6ea (+1 more)
  */
 u32 vram64_20a9c2(u32 a0, int a1, u32 a2) {
     memcpy_words(a0, a1 + -0x5c000000, a2);
@@ -11670,10 +11671,10 @@ u32 pvr_set_yuv_converter(int a0, int a1, int a2, int a3, int s0) {
 }
 
 /*
- * pvr_draw_20ade0  0x8c20ade0
- * area name: sits between pvr functions (same compilation unit); behaviour name: mostly calls draw functions
+ * pvr_display_regs_apply  0x8c20ade0
+ * writes the frame buffer, video output, display start, frame size and scaler registers for display mode a0
  */
-u32 pvr_draw_20ade0(int a0) {
+u32 pvr_display_regs_apply(int a0) {
     u32 ar5_00;
     int iVar1;
     u32 ar6_00;
@@ -11721,11 +11722,11 @@ u32 pvr_test_20aed8(u32 a0) {
 }
 
 /*
- * shinobi_uses_sq_copy_words_20af20  0x8c20af20
- * area name: in the shinobi library code range; behaviour name: its main named callee is sq_copy_words
+ * pvr_uses_sq_copy_words_20af20  0x8c20af20
+ * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is sq_copy_words
  * called by: ta_copy_20b7a0
  */
-u32 shinobi_uses_sq_copy_words_20af20(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 pvr_uses_sq_copy_words_20af20(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u8 *ar5_00;
@@ -12098,7 +12099,7 @@ u32 ta_copy_20b7a0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
     puStack_68 = g_8c26d400;
     if (((((g_8c4a9bb0 & 0x40) != 0) && (g_8c4aa05c != 0)) && (g_8c4aa064 != 0)) && (g_8c4a9d70 != 0)) {
-        shinobi_uses_sq_copy_words_20af20(unused_a0, unused_a1, unused_a2, a3);
+        pvr_uses_sq_copy_words_20af20(unused_a0, unused_a1, unused_a2, a3);
     }
     iVar5 = g_8c4a9f08 * 4;
     apuStack_34[0] = (u32 *)(iVar5 + 0x8c4a9f2c);
@@ -12751,11 +12752,10 @@ int pvr_list_20c980(u32 *a0, u32 *a1, u32 *a2, u32 a3, u32 s0) {
 }
 
 /*
- * pvr_uses_callback_table_call_20ca32  0x8c20ca32
- * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is
- * callback_table_call
+ * kamui_uses_callback_table_call_20ca32  0x8c20ca32
+ * area name: in the kamui library code range; behaviour name: its main named callee is callback_table_call
  */
-int pvr_uses_callback_table_call_20ca32(u32 *a0, int a1, u32 a2, u32 a3, u32 s0) {
+int kamui_uses_callback_table_call_20ca32(u32 *a0, int a1, u32 a2, u32 a3, u32 s0) {
     u8 *puVar1;
     u8 *puVar2;
     int iVar3;
@@ -12829,13 +12829,13 @@ u32 kamui_uses_vram64_20cb5a(u32 *a0, u32 a1, int a2, int a3) {
 
     if ((a2 != 1) && (a3 != 1)) {
         if ((*a0 & 0xffff) == 3) {
-            ta_uses_vram64_20d740(a0[7], a1, a0[3], a0[6]);
+            tex_uses_vram64_20d740(a0[7], a1, a0[3], a0[6]);
         } else {
             uVar1 = a0[6];
             if (((((uVar1 & 4) == 0) || ((uVar1 & 1) == 0)) || ((uVar1 & 8) != 0)) || ((uVar1 & 0x20) != 0)) {
                 vram64_20a8e0(a0[7], a1, a0[5]);
             } else {
-                ta_uses_vram64_20d6c0(a0[7], a1, a0[3]);
+                tex_uses_vram64_20d6c0(a0[7], a1, a0[3]);
             }
         }
         return 0;
@@ -12853,13 +12853,13 @@ u32 kamui_uses_vram64_20cb5e(u32 *a0, u32 a1, u32 unused_a2, int a3) {
 
     if ((in_r0 != 1) && (a3 != 1)) {
         if ((*a0 & 0xffff) == 3) {
-            ta_uses_vram64_20d740(a0[7], a1, a0[3], a0[6]);
+            tex_uses_vram64_20d740(a0[7], a1, a0[3], a0[6]);
         } else {
             uVar1 = a0[6];
             if (((((uVar1 & 4) == 0) || ((uVar1 & 1) == 0)) || ((uVar1 & 8) != 0)) || ((uVar1 & 0x20) != 0)) {
                 vram64_20a8e0(a0[7], a1, a0[5]);
             } else {
-                ta_uses_vram64_20d6c0(a0[7], a1, a0[3]);
+                tex_uses_vram64_20d6c0(a0[7], a1, a0[3]);
             }
         }
         return 0;
@@ -12868,10 +12868,10 @@ u32 kamui_uses_vram64_20cb5e(u32 *a0, u32 a1, u32 unused_a2, int a3) {
 }
 
 /*
- * kamui_uses_vram64_20cbbc  0x8c20cbbc
- * area name: in the kamui library code range; behaviour name: its main named callee is vram64_20a8e0
+ * tex_vram_write_part  0x8c20cbbc
+ * copies part a2 (a3 * 32 bytes) of texture a0's data from a1 into its VRAM area; returns 0xc past the end
  */
-u32 kamui_uses_vram64_20cbbc(u32 *a0, u32 a1, int a2, int a3) {
+u32 tex_vram_write_part(u32 *a0, u32 a1, int a2, int a3) {
     u32 uVar1;
     u32 ar7_00;
     u32 uVar2;
@@ -12904,11 +12904,11 @@ u32 kamui_uses_vram64_20cbbc(u32 *a0, u32 a1, int a2, int a3) {
 }
 
 /*
- * kamui_uses_vram64_20cc56  0x8c20cc56
- * area name: in the kamui library code range; behaviour name: its main named callee is vram64_20a8e0
+ * tex_uses_vram64_20cc56  0x8c20cc56
+ * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is vram64_20a8e0
  * called by: ninja_uses_vram64_25acc2
  */
-u32 kamui_uses_vram64_20cc56(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 tex_uses_vram64_20cc56(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     u32 ar7_00;
@@ -12939,11 +12939,11 @@ u32 kamui_uses_vram64_20cc56(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * kamui_uses_vram64_20ccd6  0x8c20ccd6
- * area name: in the kamui library code range; behaviour name: its main named callee is vram64_20a8e0
+ * tex_vram_write_rect  0x8c20ccd6
+ * copies a rectangle of 16-bit texels from a1 into texture a0's VRAM row by row
  */
-u32 kamui_uses_vram64_20ccd6(int a0, int a1, int a2, u32 unused_a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16, u32 s20,
-                             int s24, int s28, int s32, int s36, int s40) {
+u32 tex_vram_write_rect(int a0, int a1, int a2, u32 unused_a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16, u32 s20,
+                        int s24, int s28, int s32, int s36, int s40) {
     u32 uVar1;
     u32 in_r3;
     u32 uVar2;
@@ -12980,10 +12980,10 @@ u32 kamui_uses_vram64_20ccd6(int a0, int a1, int a2, u32 unused_a3, u32 s0, u32 
 }
 
 /*
- * kamui_calls_scan_loop_20cd92  0x8c20cd92
- * area name: in the kamui library code range; behaviour name: its callees mostly do: calls_scan_loop
+ * tex_calls_scan_loop_20cd92  0x8c20cd92
+ * area name: sits between tex functions (same compilation unit); behaviour name: its callees mostly do: calls_scan_loop
  */
-u32 kamui_calls_scan_loop_20cd92(int a0, u32 a1, u32 a2, u32 a3, int s0, int s4) {
+u32 tex_calls_scan_loop_20cd92(int a0, u32 a1, u32 a2, u32 a3, int s0, int s4) {
     u8 *puVar1;
     int iVar2;
     u32 uVar3;
@@ -13142,7 +13142,7 @@ u32 kamui_uses_CacheBlockWriteBack_wrap_20d01a(u32 *a0, u32 a1, u32 a2) {
     u32 a7;
 
     if ((a0[2] == in_r3) && ((a0[6] & 1) != 0)) {
-        uVar1 = ta_uses_CacheBlockWriteBack_wrap_20d82e(a0, a1, a2);
+        uVar1 = tex_uses_CacheBlockWriteBack_wrap_20d82e(a0, a1, a2);
     } else if ((a0[2] == 0x30000000) && ((a0[6] & 1) != 0)) {
         uVar1 = kamui_uses_CacheBlockWriteBack_wrap_20d9ce(a0, a1, a2, r7);
     } else if ((*a0 & 0xffff) == 3) {
@@ -13171,13 +13171,13 @@ u32 kamui_uses_vram_20d082(u32 a0, u32 *a1) {
     if ((*a1 & 3) == 1) {
         vram_20a892(a1[7], a1[5]);
     } else if ((*a1 & 0xffff) == 3) {
-        ta_uses_vram64_20d7a0(a0, a1[7], a1[3], a1[6]);
+        tex_uses_vram64_20d7a0(a0, a1[7], a1[3], a1[6]);
     } else {
         uVar1 = a1[6];
         if (((((uVar1 & 4) == 0) || ((uVar1 & 1) == 0)) || ((uVar1 & 8) != 0)) || ((uVar1 & 0x20) != 0)) {
             vram64_20a9c2(a1[7], a1[5]);
         } else {
-            ta_uses_vram64_20d6ea(a0, a1[7], a1[3]);
+            tex_uses_vram64_20d6ea(a0, a1[7], a1[3]);
         }
     }
     return 0;
@@ -13194,13 +13194,13 @@ u32 alt_entry_20d086(u32 a0) {
     if ((*unaff_r14 & 3) == 1) {
         vram_20a892(a0, unaff_r14[7], unaff_r14[5]);
     } else if ((*unaff_r14 & 0xffff) == 3) {
-        ta_uses_vram64_20d7a0(a0, unaff_r14[7], unaff_r14[3], unaff_r14[6]);
+        tex_uses_vram64_20d7a0(a0, unaff_r14[7], unaff_r14[3], unaff_r14[6]);
     } else {
         uVar1 = unaff_r14[6];
         if (((((uVar1 & 4) == 0) || ((uVar1 & 1) == 0)) || ((uVar1 & 8) != 0)) || ((uVar1 & 0x20) != 0)) {
             vram64_20a9c2(a0, unaff_r14[7], unaff_r14[5]);
         } else {
-            ta_uses_vram64_20d6ea(a0, unaff_r14[7], unaff_r14[3]);
+            tex_uses_vram64_20d6ea(a0, unaff_r14[7], unaff_r14[3]);
         }
     }
     return 0;
@@ -13221,7 +13221,7 @@ u32 kamui_draw_20d114(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
 /*
  * ta_fifo_20d128  0x8c20d128
- * called by: pvr_list_20c980, pvr_uses_callback_table_call_20ca32, pvr_uses_ta_fifo_20c90c
+ * called by: kamui_uses_callback_table_call_20ca32, pvr_list_20c980, pvr_uses_ta_fifo_20c90c
  */
 u32 ta_fifo_20d128(u32 *a0, int a1, int a2, u32 a3) {
     u32 uVar1;
@@ -13313,7 +13313,7 @@ LAB_8c20d262:
     if (((uVar4 == 0x500) || (uVar4 == 0x600)) || ((uVar4 == 0x700 || (uVar4 == 0x800)))) {
         a0[6] = a0[6] | 0x24;
     }
-    kamui_calls_scan_loop_20d4a6(a0, a1, a2, 4);
+    kamui_uses_tex_small_vq_size_bytes_20d4a6(a0, a1, a2, 4);
     return uVar3;
 }
 
@@ -13321,8 +13321,8 @@ LAB_8c20d262:
  * kamui_test_20d400  0x8c20d400
  * area name: in the kamui library code range; behaviour name: returns the result of a comparison
  * called by: kamui_uses_CacheBlockWriteBack_wrap_20d9ce, kamui_uses_CacheBlockWriteBack_wrap_20daa0,
- * kamui_uses_CacheBlockWriteBack_wrap_20db80, kamui_uses_vram64_20cefe, ta_calls_test_20d63c,
- * ta_uses_CacheBlockWriteBack_wrap_20d82e, ta_uses_vram64_20d6c0, ta_uses_vram64_20d6ea (+2 more)
+ * kamui_uses_CacheBlockWriteBack_wrap_20db80, kamui_uses_vram64_20cefe, tex_small_vq_size_bytes,
+ * tex_uses_CacheBlockWriteBack_wrap_20d82e, tex_uses_vram64_20d6c0, tex_uses_vram64_20d6ea (+2 more)
  */
 u32 kamui_test_20d400(int a0, int a1) {
     if (a1 <= a0) {
@@ -13364,23 +13364,23 @@ u32 kamui_test_20d400(int a0, int a1) {
 }
 
 /*
- * kamui_calls_scan_loop_20d4a6  0x8c20d4a6
- * area name: in the kamui library code range; behaviour name: its callees mostly do: scan_loop
+ * kamui_uses_tex_small_vq_size_bytes_20d4a6  0x8c20d4a6
+ * area name: in the kamui library code range; behaviour name: its main named callee is tex_small_vq_size_bytes
  * called by: ta_fifo_20d128
  */
-u32 kamui_calls_scan_loop_20d4a6(u32 *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 kamui_uses_tex_small_vq_size_bytes_20d4a6(u32 *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
     if ((*a0 & 0xffff) == 3) {
-        uVar1 = ta_calls_test_20d63c(a0);
+        uVar1 = tex_small_vq_size_bytes(a0);
     } else if ((a0[6] & 8) == 0) {
         if ((a0[6] & 0x20) == 0) {
-            uVar1 = kamui_scan_loop_20d500(a0);
+            uVar1 = tex_size_bytes(a0);
         } else {
-            uVar1 = ta_scan_loop_20d5b2(a0);
+            uVar1 = tex_scan_loop_20d5b2(a0);
         }
     } else {
-        uVar1 = kamui_scan_loop_20d554(a0);
+        uVar1 = tex_vq_size_bytes(a0);
     }
     a0[5] = uVar1;
     return uVar1;
@@ -13395,26 +13395,26 @@ u32 alt_entry_20d4aa(void) {
     u32 *unaff_r14;
 
     if ((*unaff_r14 & 0xffff) == 3) {
-        uVar1 = ta_calls_test_20d63c(unaff_r14);
+        uVar1 = tex_small_vq_size_bytes(unaff_r14);
     } else if ((unaff_r14[6] & 8) == 0) {
         if ((unaff_r14[6] & 0x20) == 0) {
-            uVar1 = kamui_scan_loop_20d500(unaff_r14);
+            uVar1 = tex_size_bytes(unaff_r14);
         } else {
-            uVar1 = ta_scan_loop_20d5b2(unaff_r14);
+            uVar1 = tex_scan_loop_20d5b2(unaff_r14);
         }
     } else {
-        uVar1 = kamui_scan_loop_20d554(unaff_r14);
+        uVar1 = tex_vq_size_bytes(unaff_r14);
     }
     unaff_r14[5] = uVar1;
     return uVar1;
 }
 
 /*
- * kamui_scan_loop_20d500  0x8c20d500
- * area name: in the kamui library code range; behaviour name: a loop that only reads
- * called by: alt_entry_20d4aa, kamui_calls_scan_loop_20d4a6
+ * tex_size_bytes  0x8c20d500
+ * returns texture a0's size in bytes: width * height (plus the mipmap chain when bit 0 is set) times 2 or 4 bytes
+ * called by: alt_entry_20d4aa, kamui_uses_tex_small_vq_size_bytes_20d4a6
  */
-int kamui_scan_loop_20d500(int a0) {
+int tex_size_bytes(int a0) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -13450,11 +13450,11 @@ int kamui_scan_loop_20d500(int a0) {
 }
 
 /*
- * kamui_scan_loop_20d554  0x8c20d554
- * area name: in the kamui library code range; behaviour name: a loop that only reads
- * called by: alt_entry_20d4aa, kamui_calls_scan_loop_20d4a6
+ * tex_vq_size_bytes  0x8c20d554
+ * returns VQ texture a0's size in bytes: the index data (plus mipmaps) and the 0x800-byte codebook
+ * called by: alt_entry_20d4aa, kamui_uses_tex_small_vq_size_bytes_20d4a6
  */
-int kamui_scan_loop_20d554(int a0) {
+int tex_vq_size_bytes(int a0) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -13490,11 +13490,11 @@ int kamui_scan_loop_20d554(int a0) {
 }
 
 /*
- * ta_scan_loop_20d5b2  0x8c20d5b2
- * area name: sits between ta functions (same compilation unit); behaviour name: a loop that only reads
- * called by: alt_entry_20d4aa, kamui_calls_scan_loop_20d4a6
+ * tex_scan_loop_20d5b2  0x8c20d5b2
+ * area name: sits between tex functions (same compilation unit); behaviour name: a loop that only reads
+ * called by: alt_entry_20d4aa, kamui_uses_tex_small_vq_size_bytes_20d4a6
  */
-u32 ta_scan_loop_20d5b2(int a0) {
+u32 tex_scan_loop_20d5b2(int a0) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -13537,11 +13537,11 @@ u32 ta_scan_loop_20d5b2(int a0) {
 }
 
 /*
- * ta_calls_test_20d63c  0x8c20d63c
- * area name: sits between ta functions (same compilation unit); behaviour name: its callees mostly do: test
- * called by: alt_entry_20d4aa, kamui_calls_scan_loop_20d4a6
+ * tex_small_vq_size_bytes  0x8c20d63c
+ * returns small-VQ texture a0's size in bytes, taking the codebook size from a table by texture size
+ * called by: alt_entry_20d4aa, kamui_uses_tex_small_vq_size_bytes_20d4a6
  */
-int ta_calls_test_20d63c(int a0) {
+int tex_small_vq_size_bytes(int a0) {
     u32 uVar1;
     int iVar2;
     u32 uVar3;
@@ -13579,11 +13579,11 @@ int ta_calls_test_20d63c(int a0) {
 }
 
 /*
- * ta_uses_vram64_20d6c0  0x8c20d6c0
- * area name: sits between ta functions (same compilation unit); behaviour name: its main named callee is vram64_20a8e0
+ * tex_uses_vram64_20d6c0  0x8c20d6c0
+ * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is vram64_20a8e0
  * called by: kamui_uses_vram64_20cb5a, kamui_uses_vram64_20cb5e
  */
-u32 ta_uses_vram64_20d6c0(int a0, u32 a1, u32 a2) {
+u32 tex_uses_vram64_20d6c0(int a0, u32 a1, u32 a2) {
     int iVar1;
     u32 uVar2;
 
@@ -13593,11 +13593,11 @@ u32 ta_uses_vram64_20d6c0(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * ta_uses_vram64_20d6ea  0x8c20d6ea
- * area name: sits between ta functions (same compilation unit); behaviour name: its main named callee is vram64_20a9c2
+ * tex_uses_vram64_20d6ea  0x8c20d6ea
+ * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is vram64_20a9c2
  * called by: alt_entry_20d086, kamui_uses_vram_20d082
  */
-u32 ta_uses_vram64_20d6ea(u32 a0, int a1, u32 a2) {
+u32 tex_uses_vram64_20d6ea(u32 a0, int a1, u32 a2) {
     int iVar1;
     u32 uVar2;
 
@@ -13607,11 +13607,11 @@ u32 ta_uses_vram64_20d6ea(u32 a0, int a1, u32 a2) {
 }
 
 /*
- * ta_uses_vram64_20d740  0x8c20d740
- * area name: sits between ta functions (same compilation unit); behaviour name: its main named callee is vram64_20a8e0
+ * tex_uses_vram64_20d740  0x8c20d740
+ * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is vram64_20a8e0
  * called by: kamui_uses_vram64_20cb5a, kamui_uses_vram64_20cb5e
  */
-u32 ta_uses_vram64_20d740(int a0, int a1, u32 a2, u32 a3) {
+u32 tex_uses_vram64_20d740(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int ar6_00;
@@ -13630,11 +13630,11 @@ u32 ta_uses_vram64_20d740(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * ta_uses_vram64_20d7a0  0x8c20d7a0
- * area name: sits between ta functions (same compilation unit); behaviour name: its main named callee is vram64_20a9c2
+ * tex_uses_vram64_20d7a0  0x8c20d7a0
+ * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is vram64_20a9c2
  * called by: alt_entry_20d086, kamui_uses_vram_20d082
  */
-u32 ta_uses_vram64_20d7a0(int a0, int a1, u32 a2, u32 a3) {
+u32 tex_uses_vram64_20d7a0(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int ar6_00;
@@ -13653,11 +13653,11 @@ u32 ta_uses_vram64_20d7a0(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * ta_uses_CacheBlockWriteBack_wrap_20d82e  0x8c20d82e
- * area name: sits between ta functions (same compilation unit); behaviour name: its main named callee is
+ * tex_uses_CacheBlockWriteBack_wrap_20d82e  0x8c20d82e
+ * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is
  * CacheBlockWriteBack_wrap called by: kamui_uses_CacheBlockWriteBack_wrap_20d01a
  */
-u32 ta_uses_CacheBlockWriteBack_wrap_20d82e(int a0, u8 *a1, int a2) {
+u32 tex_uses_CacheBlockWriteBack_wrap_20d82e(int a0, u8 *a1, int a2) {
     u8 uVar1;
     int iVar2;
     int iVar3;

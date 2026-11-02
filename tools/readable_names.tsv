@@ -2039,3 +2039,26 @@
 8c20075a	vmu_fat_find_free_run	searches backwards for a run of free (0xfffc) FAT blocks as long as the root block's count and returns its first block
 8c200b10	vmu_file_check_chain	checks that file a1's FAT chain on port a0 has the right length, ends with 0xfffa and has no free or out-of-range links
 8c204006	mem_pools_largest_free	stores the largest block size of each of the two pool lists in *a0 and *a1
+8c0128e8	bytes_mul_8x8_be	multiplies the 8-byte big-endian numbers a0 and a1 into the 16-byte product a2 (soft-float mantissa helper)
+8c012eac	bytes_sub_be	subtracts a2 from a1 (a3 big-endian bytes) in place; returns -1 on borrow (when a0 is 0), 0 when the result is zero, else 1
+8c012f58	double_unpack_mantissa	splits the double in fr4 into a sign byte (*a0 = 1 or 0xff), the exponent (*a1) and a 7-byte mantissa with the hidden bit (a2)
+8c20828c	ta_default_triangle_init	sets the default polygon header and three vertices (positions and opaque black colour) used by the triangle senders
+8c208380	ta_send_triangle_color18	copies three vertices (position and the packed colour at +0x18) and sends the triangle to the TA FIFO
+8c208484	ta_send_triangle_rgba_floats	copies three vertices, packing the float ARGB at +0x10..+0x1c into colour words, and sends the triangle
+8c208680	ta_send_triangle_gray18	copies three vertices, turning the float at +0x18 into a grey colour word, and sends the triangle
+8c209600	ta_send_triangle_color10	copies three vertices (position and the packed colour at +0x10) and sends the triangle to the TA FIFO
+8c209708	ta_send_triangle_gray10	copies three vertices, turning the float at +0x10 into a grey colour word, and sends the triangle
+8c20a1d0	pvr_fog_table_write	writes the 128-entry fog table (PVR 0x200) from a0's float densities scaled to 0..255, pairing each entry with the next
+8c20ade0	pvr_display_regs_apply	writes the frame buffer, video output, display start, frame size and scaler registers for display mode a0
+8c20cbbc	tex_vram_write_part	copies part a2 (a3 * 32 bytes) of texture a0's data from a1 into its VRAM area; returns 0xc past the end
+8c20ccd6	tex_vram_write_rect	copies a rectangle of 16-bit texels from a1 into texture a0's VRAM row by row
+8c20d500	tex_size_bytes	returns texture a0's size in bytes: width * height (plus the mipmap chain when bit 0 is set) times 2 or 4 bytes
+8c20d554	tex_vq_size_bytes	returns VQ texture a0's size in bytes: the index data (plus mipmaps) and the 0x800-byte codebook
+8c20d63c	tex_small_vq_size_bytes	returns small-VQ texture a0's size in bytes, taking the codebook size from a table by texture size
+8c21a8b0	gfx_object_tree_draw	draws an object tree: for each sibling pushes the matrix, applies its transform, calls the model draw hook, recurses into the child and pops
+8c21b908	gfx_object_tree_draw_alt	the same object-tree walk as gfx_object_tree_draw, drawing each model through gfxlib_calls_test_219954 instead of the hook
+8c21ce02	motion_node_apply_pos	binary-searches the current node's position keys for the current frame and applies the result (the node's own position when there are no keys)
+8c21ce92	motion_node_apply_scale	binary-searches the current node's scale keys for the current frame and applies the result (the node's own scale when there are no keys)
+8c21cf22	motion_node_apply_rot_xyz	binary-searches the current node's rotation keys for the current frame and applies the angles in order 0
+8c21cfd8	motion_node_apply_rot_zxy	binary-searches the current node's rotation keys for the current frame and applies the angles in order 1
+8c21d06c	motion_node_apply_rot_keys20	binary-searches the current node's 0x14-byte rotation keys for the current frame and applies the interpolated rotation
