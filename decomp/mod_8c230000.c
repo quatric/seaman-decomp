@@ -18601,8 +18601,9 @@ u32 memcpy_words_n(u32 *a0, u32 *a1, int a2) {
 /*
  * memcpy_bytes  0x8c23c814
  * copies a2 bytes (a2 > 0)
- * called by: common_load_eye_scsi, draw_copy_259a70, draw_state_copy_in, draw_state_copy_out, gdfs_uses_bswap32_2124d0,
- * gfx_stream_read, gfxlib_copy_238f2a, gfxlib_copy_239f84 (+8 more)
+ * called by: common_load_eye_scsi, draw_copy_259a70, draw_state_copy_in, draw_state_copy_out,
+ * flashrom_uses_flashrom_select_partition_1f7c40, gdfs_uses_bswap32_2124d0, gfx_stream_read, gfxlib_copy_238f2a (+8
+ * more)
  */
 int memcpy_bytes(char *a0, char *a1, int a2) {
     char cVar1;

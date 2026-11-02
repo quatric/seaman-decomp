@@ -3124,7 +3124,7 @@ u32 cri_uses_irq_disable_nested_262810(u32 a0, u32 unused_a1, u32 unused_a2, u32
             a3 = 0;
             ar5_00 = adx_server;
             uVar1 = 0x70;
-            ain0_00 = ta_uses_ret_const_1_1fa244(0x900, adx_server, 0x70, 0);
+            ain0_00 = irq_add_handler(0x900, adx_server, 0x70, 0);
             g_8c278470 = ain0_00;
         }
         ain0 = irq_restore_nested(ar4_00, ar5_00, uVar1, a3, ain0_00);
@@ -3165,7 +3165,7 @@ u32 alt_entry_262814(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
             a3 = 0;
             ar5_00 = adx_server;
             ar6_00 = 0x70;
-            g_8c278470 = ta_uses_ret_const_1_1fa244(0x900, adx_server, 0x70, 0);
+            g_8c278470 = irq_add_handler(0x900, adx_server, 0x70, 0);
         }
         ain0 = irq_restore_nested(ar4_00, ar5_00, ar6_00, a3, in_PR);
     }
@@ -4399,7 +4399,7 @@ u32 ADXSTM_stop_read(int a0, u32 a1, u32 a2, u32 a3) {
     if ((*(char *)(a0 + 2) == '\x01') && (*(int *)(a0 + 8) != 0)) {
         uVar1 = sh4_tmu_1f88e6(a0);
         uVar2 = *(u32 *)(a0 + 8);
-        gdfs_uses_sh4_tmu_1f367a(uVar2, a1, a2, a3);
+        gdfs_stop_read_wait(uVar2, a1, a2, a3);
         uVar2 = sh4_tmu_1f88e6(uVar2);
         uVar1 = int_diff(uVar1, uVar2);
         *(u32 *)(&DATA_8c278480) = uVar1;

@@ -7314,7 +7314,7 @@ u32 game_state_switch_0fcd2c(int a0, char *a1, u32 a2, u32 a3) {
             }
             date_to_rtc_seconds(&uStack_22, &iStack_30, a2);
             iStack_30 = iStack_30 + 0x15180;
-            shinobi_uses_libgcc_divide_helper_1f8300(iStack_30, &uStack_22);
+            rtc_seconds_to_date(iStack_30, &uStack_22);
             if ((bStack_2a == bStack_20) && (bStack_29 == bStack_1f)) {
                 return 1;
             }

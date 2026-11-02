@@ -198,10 +198,9 @@ u32 shinobi_register_pvr_irqs_entry(void) {
     int iVar8;
 
     puVar3 = 0x8c470910;
-    puVar2 = (&ta_uses_ret_const_1_1fa244);
+    puVar2 = (&irq_add_handler);
     puVar1 = (&DATA_8c26bf98);
-    uVar7 =
-        (*(code *)(&ta_uses_ret_const_1_1fa244))((int)0x900, (&DATA_8c1ef4e4), *(u32 *)(&DATA_8c26bf98), 0, 0x8c4727c4);
+    uVar7 = (*(code *)(&irq_add_handler))((int)0x900, (&DATA_8c1ef4e4), *(u32 *)(&DATA_8c26bf98), 0, 0x8c4727c4);
     puVar4 = (&DATA_8c1ef4f0);
     iVar8 = (int)0xa00;
     *puVar3 = uVar7;
@@ -253,9 +252,9 @@ u32 shinobi_register_pvr_irqs(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a
     u32 a7;
 
     puVar3 = 0x8c470910;
-    puVar2 = (&ta_uses_ret_const_1_1fa244);
+    puVar2 = (&irq_add_handler);
     puVar1 = (&DATA_8c26bf98);
-    uVar7 = (*(code *)(&ta_uses_ret_const_1_1fa244))((int)0x900, (&DATA_8c1ef4e4), *(u32 *)(&DATA_8c26bf98), a3);
+    uVar7 = (*(code *)(&irq_add_handler))((int)0x900, (&DATA_8c1ef4e4), *(u32 *)(&DATA_8c26bf98), a3);
     puVar4 = (&DATA_8c1ef4f0);
     iVar8 = (int)0xa00;
     *puVar3 = uVar7;
@@ -612,7 +611,7 @@ u32 pvr_uses_maple_reset_dma_1efcae(u32 a0, u32 a1, u32 a2, u32 a3) {
  * maple_port_info  0x8c1efd14
  * the 0x18-byte device record of port a0 (0x8c4709a0)
  * called by: alt_entry_2020ba, alt_entry_202280, alt_entry_202550, maple_device_ready, maple_device_ready_idle,
- * maple_first_port_bit2_pressed, maple_update_controllers, pvr_1efaf4 (+9 more)
+ * maple_first_port_bit2_pressed, maple_update_all_ports, maple_update_controllers (+9 more)
  */
 int maple_port_info(int a0, u32 a1) {
     return a0 * 0x18 + 0x8c4709a0;
@@ -622,7 +621,7 @@ int maple_port_info(int a0, u32 a1) {
  * maple_port_status  0x8c1efd26
  * status flags of port a0
  * called by: bios_input_1f3b5c, bios_input_1f3d28, maple_device_ready, maple_device_ready_idle, maple_driver_init,
- * maple_first_port_bit2_pressed, maple_port_status_wrap, maple_update_controllers (+6 more)
+ * maple_first_port_bit2_pressed, maple_port_status_wrap, maple_update_all_ports (+6 more)
  */
 u32 maple_port_status(u32 a0) {
     u32 uVar1;
@@ -645,7 +644,7 @@ u32 shinobi_calls_calc_1efd34(u32 a0) {
 
 /*
  * thunk_FUN_8c1f461c  0x8c1efd42
- * called by: pvr_1efaf4, shinobi_calls_one_201f8a, shinobi_input_1fd008, shinobi_input_1fd1e2, vmu_block_write_phases
+ * called by: pvr_1efaf4, shinobi_calls_one_201f8a, shinobi_input_1fd008, vmu_block_read_phases, vmu_block_write_phases
  */
 u32 thunk_FUN_8c1f461c(void) {
     u32 uVar1;
@@ -744,7 +743,7 @@ u32 maple_get_mem_info_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * maple_block_read_hooked  0x8c1efe80
  * maple_block_read_locked, then the PVR hook when +0x10e8 is set
- * called by: shinobi_input_1fd1e2
+ * called by: vmu_block_read_phases
  */
 u32 maple_block_read_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -861,7 +860,7 @@ u32 shinobi_draw_1effc2(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * thunk_FUN_8c1f4636  0x8c1effee
- * called by: maple_device_ready_idle, shinobi_input_1fd008, shinobi_input_1fd1e2, vmu_block_write_phases
+ * called by: maple_device_ready_idle, shinobi_input_1fd008, vmu_block_read_phases, vmu_block_write_phases
  */
 u32 thunk_FUN_8c1f4636(void) {
     u32 uVar1;

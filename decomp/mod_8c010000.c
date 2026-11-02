@@ -19015,7 +19015,7 @@ int vmu_load_user_icon(int *a0, int a1, int a2) {
         }
         a2 = (int)a0 + 0x62c;
         r7 = (&game_calls_2_01c998);
-        iVar1 = shinobi_copy_1fbd2c(0xf, a1, a2, (&game_calls_2_01c998));
+        iVar1 = shinobi_uses_vmu_lib_init_1fbd2c(0xf, a1, a2, (&game_calls_2_01c998));
         if (iVar1 != 0) {
             return g_8c2791b0;
         }

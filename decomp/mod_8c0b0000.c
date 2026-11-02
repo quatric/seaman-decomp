@@ -5388,7 +5388,7 @@ u32 game_uses_free_ptr_and_clear_0b95a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                 memset(auStack_10c, 0, 0xf0);
                 uVar5 = 10;
                 memmove(auStack_1c, a1, 10);
-                shinobi_uses_flashrom_select_partition_1f7b64(auStack_1c, auStack_10c, uVar5, ar7_00);
+                flashrom_read_game_block(auStack_1c, auStack_10c, uVar5, ar7_00);
                 uVar5 = 10;
                 ar5_00 = auStack_10a;
                 puVar2 = auStack_1c;
@@ -5400,7 +5400,7 @@ u32 game_uses_free_ptr_and_clear_0b95a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     return 0;
                 }
                 puVar2 = auStack_118;
-                shinobi_uses_libgcc_divide_helper_1f8300(iStack_a0, puVar2);
+                rtc_seconds_to_date(iStack_a0, puVar2);
                 uVar1 = (u32)bStack_116;
                 iVar4 = iStack_a0;
             }
@@ -5471,14 +5471,13 @@ int CProlog_uses_free_sys_0b96e4(int a0, u32 a1, u32 a2, u32 a3) {
                         }
                         uVar4 = 0;
                         ar4_01 = ar4_00;
-                        iVar2 = shinobi_uses_flashrom_select_partition_1f7c40(ar4_00, ar5_01, ar6_00, ar7_00);
+                        iVar2 = flashrom_uses_flashrom_select_partition_1f7c40(ar4_00, ar5_01, ar6_00, ar7_00);
                         if (iVar2 != 0) {
                             for (iVar2 = 0; iVar2 < 100; iVar2 = iVar2 + 1) {
                                 if (ar4_00[iVar2 * 0xb] != -1) {
                                     ar5_01 = acStack_120;
                                     ar4_01 = ar4_00 + iVar2 * 0xb;
-                                    iVar3 =
-                                        shinobi_uses_flashrom_select_partition_1f7b64(ar4_01, ar5_01, ar6_00, ar7_00);
+                                    iVar3 = flashrom_read_game_block(ar4_01, ar5_01, ar6_00, ar7_00);
                                     if (iVar3 != 0) {
                                         ar6_00 = 10;
                                         ar5_01 = acStack_11e;

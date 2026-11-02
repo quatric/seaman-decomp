@@ -2128,3 +2128,20 @@
 8c1f15f4	gd_parse_subcode_q	unpacks the Q sub-channel bits of the 100-byte subcode block a0, checks its CRC and stores track, index, times and absolute frame into a1
 8c1f2d3e	gdfs_path_table_find	walks the ISO 9660 path table (reading sectors as needed) matching each '/' part of path a3 and returns the directory's extent
 8c1f332c	gdfs_start_read_dma_like	starts an asynchronous read of up to a1 sectors into the 32-byte aligned buffer a2 (clipped to the file end) and marks the handle busy
+8c1f367a	gdfs_stop_read_wait	for a reading handle, waits (with a timeout) for the current transfer, then aborts the drive command and waits for the handle to finish
+8c1f53c2	maple_device_info_unpack	unpacks a maple device-info reply a2 into a0: function codes, function data, region, connector direction, product name, licence and power values
+8c1f61c6	maple_update_all_ports	for all 0x18 maple ports refreshes the device info and, for a connected controller, its buttons and pressed/released edges
+8c1f736c	flashrom_record_play_time	adds the minutes since the last call to the flash ROM's 24 hourly play-time counters, stamps the date and writes both blocks back
+8c1f7b64	flashrom_read_game_block	finds the game's record in flash ROM partition 3 and copies its four 0x3c-byte blocks (or the cached copy) into a1
+8c1f8300	rtc_seconds_to_date	converts RTC seconds a0 into the date a1: year, month, day, hour, minute, second and weekday
+8c1fa244	irq_add_handler	adds callback a1 (with a3, priority a2) to interrupt a0's sorted handler list, installing the vector and enabling the Holly mask bit for the first one
+8c1fa496	holly_irq_dispatch	for the Holly external/normal interrupt, calls the handlers of every pending and enabled status bit
+8c1fb590	heap_free_coalesce	returns block a0 to the address-ordered free list, merging it with the free blocks just after and before it
+8c1fb664	heap_realloc_move	takes a free block for the new size a1 and moves the old block a0's data (in 32-byte units) into it; returns 0 when none fits
+8c1fb81c	utlb_map_page	finds a free UTLB entry from the replace counter and maps virtual a1 to physical a0 with page size a2 (1 KB, 4 KB, 64 KB or 1 MB); returns its index or 0xff
+8c1fb924	utlb_map_default_areas	when the MMU is on, maps 0x0c000000..0x0d000000 to 0xe0000000 and 0x10000000..0x10800000 (plus one) to 0xe1000000 in 1 MB pages
+8c1fd1e2	vmu_block_read_phases	reads block a1 of the VMU on port a0 phase by phase into a2, waiting for each reply (0xffffff30 on timeout)
+8c1fd626	vmu_lib_init	clears the VMU library state, counts the ports in mask a1, sets up the drive buffers or the shared pool a2 and the file handles
+8c1fd8fc	vmu_drive_set_buffer	gives the VMU on port a0 the work buffer a1 (sized by drive type) and lays out its root, FAT and directory areas with marker fills
+8c1fdab0	vmu_drive_mount	reads and validates the root block of the VMU on port a0 and loads its FAT and directory; returns 0xffffff83 on a bad root block
+8c1fdbaa	vmu_drive_mount_cached	reads and validates the root block of the VMU on port a0 and reads the FAT into the shared cache; returns a size code by drive type

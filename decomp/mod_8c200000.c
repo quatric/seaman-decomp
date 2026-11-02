@@ -1047,7 +1047,7 @@ u32 vmu_drive_read_like(int a0, int a1) {
 /*
  * shinobi_save_200a00  0x8c200a00
  * area name: in the shinobi library code range; behaviour name: mostly calls save functions
- * called by: shinobi_save_1fdab0, shinobi_save_1fdc80, shinobi_save_1fde30
+ * called by: shinobi_save_1fdc80, shinobi_save_1fde30, vmu_drive_mount
  */
 int shinobi_save_200a00(int a0, u32 a1) {
     int iVar1;
@@ -1331,7 +1331,7 @@ int alt_entry_200c8a(void) {
 /*
  * vmu_root_block_validate  0x8c200cf4
  * checks the drive's root block fields for consistency and sets the size class (0..3 for 256..2048 blocks); -1 when
- * invalid called by: shinobi_input_1fdbaa, shinobi_save_1fdab0, shinobi_save_1fde30
+ * invalid called by: shinobi_save_1fde30, vmu_drive_mount, vmu_drive_mount_cached
  */
 u32 vmu_root_block_validate(int a0) {
     int iVar1;
@@ -2316,7 +2316,7 @@ u32 ta_copy_201994(void) {
     ar7_00 = 0;
     ar6_00 = 0x20;
     ar5_00 = (&shinobi_input_201b10);
-    uVar2 = ta_uses_ret_const_1_1fa244(ar4_00, (&shinobi_input_201b10), 0x20, 0);
+    uVar2 = irq_add_handler(ar4_00, (&shinobi_input_201b10), 0x20, 0);
     puVar1 = (&maple_port_info_snapshot);
     g_8c47e920 = uVar2;
     (*(code *)puVar1)(ar4_00, ar5_00, ar6_00, ar7_00);
@@ -8731,7 +8731,7 @@ u32 pvr_calls_update_fields_20757e(u32 a0, u32 a1) {
 /*
  * pvr_uses_ret_const_1_20759a  0x8c20759a
  * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is
- * ret_const_1_25eca0 called by: shinobi_uses_ret_const_1_1fa54c, ta_uses_ret_const_1_1fa244
+ * ret_const_1_25eca0 called by: irq_add_handler, shinobi_uses_ret_const_1_1fa54c
  */
 u32 pvr_uses_ret_const_1_20759a(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     ret_const_1_25eca0(1);
@@ -8742,7 +8742,7 @@ u32 pvr_uses_ret_const_1_20759a(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * pvr_uses_ret_const_1_2075bc  0x8c2075bc
  * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is
- * ret_const_1_25eca4 called by: shinobi_uses_ret_const_1_1fa54c, ta_uses_ret_const_1_1fa244
+ * ret_const_1_25eca4 called by: irq_add_handler, shinobi_uses_ret_const_1_1fa54c
  */
 u32 pvr_uses_ret_const_1_2075bc(int a0, u32 a1, u32 unused_a2, u32 a3) {
     ret_const_1_25eca4(-((a0 == 0) - 1), a1, unused_a2, a3);

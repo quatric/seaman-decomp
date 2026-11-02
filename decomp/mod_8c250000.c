@@ -15509,7 +15509,7 @@ u8 *game_frame(u32 a0, u32 a1, u32 a2, u32 a3) {
     g_8c4aa520 = 0;
     g_8c4aa540 = g_8c4aa540 + 1;
     ain0_00 = ta_draw_20b260(&g_8c4aa540, a1, a2, a3);
-    shinobi_uses_maple_port_info_1f61c6(ar4_00, a1, a2, a3, ain0_00);
+    maple_update_all_ports(ar4_00, a1, a2, a3, ain0_00);
     g_8c4aad28 = sh4_tmu_1f88e6(ar4_00);
     g_8c4aa4f4 = *g_8c4aabdc;
     g_8c4aa4f8 = g_8c4aabdc[1];
@@ -15549,7 +15549,7 @@ u8 *alt_entry_258e70(u32 a0, u32 a1, u32 a2, u32 a3) {
     g_8c4aa51c = unaff_r11;
     g_8c4aa520 = unaff_r11;
     ta_draw_20b260(&g_8c4aa540, a1, a2, a3);
-    shinobi_uses_maple_port_info_1f61c6(ar4_00, a1, a2, a3, in_PR);
+    maple_update_all_ports(ar4_00, a1, a2, a3, in_PR);
     g_8c4aad28 = sh4_tmu_1f88e6(ar4_00);
     g_8c4aa4f4 = *g_8c4aabdc;
     g_8c4aa4f8 = g_8c4aabdc[1];
@@ -15626,7 +15626,7 @@ int ninja_set_event900_callback(int a0) {
         *piVar1 = 0;
     }
     if (a0 != 0) {
-        in_r0 = ta_uses_ret_const_1_1fa244((int)0x900, a0, 0x58, 0);
+        in_r0 = irq_add_handler((int)0x900, a0, 0x58, 0);
         *piVar1 = in_r0;
     }
     return in_r0;
