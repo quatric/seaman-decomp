@@ -24487,7 +24487,7 @@ u32 gfxlib_sub_21daf2(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
                         }
                     }
                     a3 = puVar8 + -0x2c;
-                    gfxlib_sub_22138a(iVar5, iVar6, a2, a3);
+                    keyframe_pair_b(iVar5, iVar6, a2, a3);
                     *(u32 *)(puVar8 + -0x50) = *(u32 *)(puVar8 + -0x2c);
                     *(u32 *)(puVar8 + -0x44) = *(u32 *)(puVar8 + -0x28);
                     *(int *)(puVar8 + -0x40) = *(int *)(puVar8 + -0x40) + 4;
@@ -25158,7 +25158,7 @@ u32 gfxlib_sub_21e4f8(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
                     }
                 }
                 a3 = &iStack_44;
-                gfxlib_sub_22138a(iVar5, puVar6, a2, a3);
+                keyframe_pair_b(iVar5, puVar6, a2, a3);
                 puStack_64 = (u32 *)iStack_44;
                 iStack_60 = iStack_40;
                 iStack_58 = iStack_58 + 4;
@@ -26068,7 +26068,7 @@ u32 *gfxlib_sub_21f2ae(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0
                     }
                 }
                 a3 = &iStack_54;
-                gfxlib_sub_22138a(iVar5, uVar6, uVar7, a3);
+                keyframe_pair_b(iVar5, uVar6, uVar7, a3);
                 iStack_70 = iStack_54;
                 iStack_64 = iStack_50;
                 puStack_60 = puStack_60 + 1;
@@ -26620,7 +26620,7 @@ u32 *gfxlib_sub_21fca8(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0
                     }
                 }
                 a3 = &iStack_44;
-                gfxlib_sub_22138a(iVar5, uVar6, uVar7, a3);
+                keyframe_pair_b(iVar5, uVar6, uVar7, a3);
                 iStack_5c = iStack_44;
                 iStack_58 = iStack_40;
                 puStack_50 = puStack_50 + 1;

@@ -6,7 +6,7 @@
 /*
  * libc_sub_010080  0x8c010080
  * area name: in the libc library code range
- * called by: game_sub_102d40
+ * called by: system_init_libs
  */
 u32 *libc_sub_010080(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 *puVar1;

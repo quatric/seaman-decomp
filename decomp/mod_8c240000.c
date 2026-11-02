@@ -15494,11 +15494,11 @@ u32 float_to_color_u8(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_sub_2475f2  0x8c2475f2
- * area name: in the gfxlib library code range
+ * argb_to_float4  0x8c2475f2
+ * unpacks the ARGB colour a0 into four floats 0..1 at a1 (a, r, g, b)
  * called by: gfxlib_sub_23d698, gfxlib_sub_23dc42
  */
-u32 gfxlib_sub_2475f2(u32 a0, float *a1) {
+u32 argb_to_float4(u32 a0, float *a1) {
     a1[3] = (float)(a0 & 0xff) * 0.0039215684;
     a1[2] = (float)(a0 >> 8 & 0xff) * 0.0039215684;
     a1[1] = (float)(a0 >> 0x10 & 0xff) * 0.0039215684;

@@ -2247,13 +2247,13 @@ u32 Class_12c394_sub_102bd0(u32 a0, u32 a1, u32 a2, u32 a3) {
         a3 = 0x8c45a860;
         iVar1 = thunk_FUN_8c1f38c0(8, 0x8c4594c0, 0x800, 0x8c45a860);
         if ((iVar1 == -0x17) || (iVar1 == -0x21)) {
-            game_sub_102d40(uVar2, uVar3, ar6_00, a3);
+            system_init_libs(uVar2, uVar3, ar6_00, a3);
             game_shutdown_b();
         } else if (iVar1 == 0)
             break;
     }
     if (iVar5 == 0) {
-        game_sub_102d40(uVar2, uVar3, ar6_00, a3);
+        system_init_libs(uVar2, uVar3, ar6_00, a3);
         game_shutdown_b();
     }
     uVar3 = libc_sub_0100b0(uVar2, uVar3, ar6_00, a3);
@@ -2263,18 +2263,18 @@ u32 Class_12c394_sub_102bd0(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_102d20  0x8c102d20
  * area name: game code; nothing names its area yet
- * called by: Class_12c394_sub_102bd0, game_sub_102d40
+ * called by: Class_12c394_sub_102bd0, system_init_libs
  */
 int game_sub_102d20(u32 a0) {
     return (a0 & 0xf) << 4;
 }
 
 /*
- * game_sub_102d40  0x8c102d40
- * area name: game code; nothing names its area yet
+ * system_init_libs  0x8c102d40
+ * initialises the runtime, the disc file system, Shinobi, Ninja and the sound/graphics services at boot
  * called by: Class_12c394_sub_102bd0, game_shutdown_a, game_sub_0b6c10
  */
-u32 game_sub_102d40(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 system_init_libs(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 in_PR;
 

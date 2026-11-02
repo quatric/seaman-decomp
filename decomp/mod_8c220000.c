@@ -927,11 +927,11 @@ int keyframe_pair(int a0, int a1, u32 a2, int *a3) {
 }
 
 /*
- * gfxlib_sub_22138a  0x8c22138a
- * area name: in the gfxlib library code range
+ * keyframe_pair_b  0x8c22138a
+ * another copy of keyframe_pair
  * called by: gfxlib_sub_21daf2, gfxlib_sub_21e4f8, gfxlib_sub_21f2ae, gfxlib_sub_21fca8
  */
-int gfxlib_sub_22138a(int a0, int a1, u32 a2, int *a3) {
+int keyframe_pair_b(int a0, int a1, u32 a2, int *a3) {
     int iVar1;
     int *piVar2;
     int iVar3;

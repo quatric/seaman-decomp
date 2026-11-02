@@ -10819,7 +10819,7 @@ u32 ninja_sub_2560b4(int a0, int a1, u16 *a2) {
         }
         return 0x10;
     }
-    uVar3 = gfxlib_sub_23c7f4(a0 * 4 + 0x5f9000 | 0xa0000000, a2, a1);
+    uVar3 = memcpy_words_n(a0 * 4 + 0x5f9000 | 0xa0000000, a2, a1);
     return uVar3;
 }
 
@@ -15659,7 +15659,7 @@ u32 ninja_sub_259046(u32 a0, u32 a1, u32 a2) {
 /*
  * ninja_sub_2590bc  0x8c2590bc
  * area name: in the ninja library code range
- * called by: game_sub_102d40
+ * called by: system_init_libs
  */
 u32 ninja_sub_2590bc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;

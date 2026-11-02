@@ -393,3 +393,18 @@
 8c023e24	Vec3_assign_copy	a0 = a1
 8c030d10	Class_12c3c4_load_record	loads two bytes and a word from the record a1 into +0x64, +0x68, +0x6c
 8c030d2c	Class_12c3c4_save_record	saves +0x64 and +0x6c into the record a1 (second byte 3)
+8c06288c	get_word_array_a4	+0xa4[a1] (pairs with set_word_array_a4)
+8c102d40	system_init_libs	initialises the runtime, the disc file system, Shinobi, Ninja and the sound/graphics services at boot
+8c0e84c8	copy_2_u16	a0[0..1] = a1[0..1] (16-bit)
+8c112642	asr_array2d_init	sets up a rows x columns array header (a1, a2) over the data at a3
+8c1f59f2	addr_to_physical	the low 28 bits of an address (drops the SH-4 area bits)
+8c1f59dc	memset_words	stores a1 in a2 consecutive words at a0
+8c1f5a30	irq_disable_save	saves SR.IMASK in *a0 and returns SR with IMASK 15 (Shinobi's copy)
+8c1f5a48	irq_restore_saved	SR with IMASK from *a0 (Shinobi's copy)
+8c23c7f4	memcpy_words_n	copies a2 32-bit words from a1 to a0
+8c1f7134	u16_add_saturate	*a0 += a1, saturating at 0xfffe
+8c1f8094	sysinfo_get_id	initialises system info and returns the console ID pointer; 0 on failure
+8c2057c0	pool496ba8_free	frees entry a0 of the 0x4c-byte pool at 0x8c496ba8
+8c22138a	keyframe_pair_b	another copy of keyframe_pair
+8c238eea	copy_4_bytes	a0[0..3] = a1[0..3]
+8c2475f2	argb_to_float4	unpacks the ARGB colour a0 into four floats 0..1 at a1 (a, r, g, b)

@@ -4428,7 +4428,7 @@ u32 game_sub_0b6c10(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
     uVar1 = 0x8c286ebc;
     game_sub_0c09a4(0x8c286ebc, a1, a2, a3);
-    game_sub_102d40(uVar1, a1, a2, a3);
+    system_init_libs(uVar1, a1, a2, a3);
     uVar1 = game_shutdown_b();
     return uVar1;
 }

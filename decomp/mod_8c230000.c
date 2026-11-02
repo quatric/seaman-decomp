@@ -11914,7 +11914,7 @@ int gfxlib_sub_2376c4(void) {
         do {
             piVar6 = piVar6 + -1;
             iVar4 = *(int *)(*piVar6 * 4 + iVar2);
-            gfxlib_sub_23c7f4(uVar3, uVar1, 0x10);
+            memcpy_words_n(uVar3, uVar1, 0x10);
             ninja_sub_255d6c(uVar3, iVar4);
             point_transform_or_copy(uVar3, iVar4 + 0x40, 0x90 + iVar4);
             iVar4 = kamui_sub_21279c(uVar3, iVar4 + 0x4c, 0x9c + iVar4);
@@ -11943,7 +11943,7 @@ u32 gfxlib_sub_2376d8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 a
             piVar1 = piVar1 + -1;
             ar6_00 = 0x10;
             ar5_00 = *(int *)(*piVar1 * 4 + 0x8c4c11e0);
-            gfxlib_sub_23c7f4(0x8c4c13a0, 0x8c4c0ce0, 0x10);
+            memcpy_words_n(0x8c4c13a0, 0x8c4c0ce0, 0x10);
             ninja_sub_255d6c(0x8c4c13a0, ar5_00, ar6_00, a3, in_PR);
             point_transform_or_copy(0x8c4c13a0, ar5_00 + 0x40, ar5_00 + 0x90, a3, in_PR);
             ain0 = kamui_sub_21279c(0x8c4c13a0, ar5_00 + 0x4c, ar5_00 + 0x9c, a3, in_PR);
@@ -13828,11 +13828,11 @@ u32 gfxlib_sub_238ede(u8 *a0, u8 *a1) {
 }
 
 /*
- * gfxlib_sub_238eea  0x8c238eea
- * area name: in the gfxlib library code range
+ * copy_4_bytes  0x8c238eea
+ * a0[0..3] = a1[0..3]
  * called by: gfxlib_sub_238f2a, gfxlib_sub_239f84
  */
-u32 gfxlib_sub_238eea(u8 *a0, u8 *a1) {
+u32 copy_4_bytes(u8 *a0, u8 *a1) {
     u32 in_r0;
 
     *a0 = *a1;
@@ -13909,10 +13909,10 @@ u32 gfxlib_sub_238f2a(u32 *a0, u32 a1, int a2, u32 a3) {
             puVar4 = auStack_48 + iVar3;
             if ((uVar1 & 0x400) == 0) {
                 if ((uVar1 & 8) != 0) {
-                    gfxlib_sub_238eea(puVar6 + 2, puVar4);
+                    copy_4_bytes(puVar6 + 2, puVar4);
                 }
             } else if ((uVar1 & 8) != 0) {
-                gfxlib_sub_238eea(puVar6 + 2, puVar4);
+                copy_4_bytes(puVar6 + 2, puVar4);
                 puVar6[1] = puVar6[1] | 0x1000000;
             }
             iVar5 = iVar5 + 1;
@@ -14639,10 +14639,10 @@ u32 gfxlib_sub_239f84(u32 *a0, u32 a1, int a2) {
             if ((uVar1 & 0x400) == 0) {
                 uVar2 = (u32)uVar1;
                 if ((uVar1 & 8) != 0) {
-                    uVar2 = gfxlib_sub_238eea(puVar6 + 2, puVar4);
+                    uVar2 = copy_4_bytes(puVar6 + 2, puVar4);
                 }
             } else if ((uVar1 & 8) != 0) {
-                uVar2 = gfxlib_sub_238eea(puVar6 + 2, puVar4);
+                uVar2 = copy_4_bytes(puVar6 + 2, puVar4);
                 puVar6[1] = puVar6[1] | 0x1000000;
             }
             iStack_54 = iStack_54 + 1;
@@ -18571,11 +18571,11 @@ u32 gfxlib_sub_23c70c(void) {
 }
 
 /*
- * gfxlib_sub_23c7f4  0x8c23c7f4
- * area name: in the gfxlib library code range
+ * memcpy_words_n  0x8c23c7f4
+ * copies a2 32-bit words from a1 to a0
  * called by: flashrom_sub_1f6e5e, gfxlib_sub_2376c4, gfxlib_sub_2376d8, ninja_sub_2560b4
  */
-u32 gfxlib_sub_23c7f4(u32 *a0, u32 *a1, int a2) {
+u32 memcpy_words_n(u32 *a0, u32 *a1, int a2) {
     u32 uVar1;
 
     do {
@@ -20069,9 +20069,9 @@ u32 gfxlib_sub_23d698(int a0, u32 a1, int a2, u32 a3) {
     piVar13 = aiStack_28;
     do {
         if (*(u32 *)(aiStack_28[iVar14] + 0x3c) == (u32)(u16)a3) {
-            gfxlib_sub_2475f2(*(u32 *)(*piVar13 + 0x28), puStack_44);
+            argb_to_float4(*(u32 *)(*piVar13 + 0x28), puStack_44);
             puVar8 = *(u8 **)(*piVar13 + 0x2c);
-            gfxlib_sub_2475f2(puVar8, puStack_44 + 0x10);
+            argb_to_float4(puVar8, puStack_44 + 0x10);
         } else {
             piVar12 = aiStack_28 + iVar14;
             a2 = *piVar12 + 0x30;
@@ -20753,8 +20753,8 @@ u32 gfxlib_sub_23dc42(int a0, u32 a1, int a2, u32 a3) {
         uVar15 = SUB84(in_dr2, 0);
         uVar14 = SUB84(in_dr0, 0);
         if (*(u32 *)(aiStack_2c[iVar11] + 0x3c) == (a3 & 0xffff)) {
-            gfxlib_sub_2475f2(*(u32 *)(*piVar10 + 0x28), puStack_50);
-            gfxlib_sub_2475f2(*(u32 *)(*piVar10 + 0x2c), puStack_50 + 0x10);
+            argb_to_float4(*(u32 *)(*piVar10 + 0x28), puStack_50);
+            argb_to_float4(*(u32 *)(*piVar10 + 0x2c), puStack_50 + 0x10);
         } else {
             piVar8 = aiStack_2c + iVar11;
             iVar12 = iVar11 * 0x20;

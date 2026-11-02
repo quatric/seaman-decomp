@@ -4226,7 +4226,7 @@ u32 game_shutdown_a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
         ar4_00 = g_8c43b580;
         malloc_sub_1fb57c(ar4_00, a1, a2, a3);
     }
-    uVar1 = game_sub_102d40(ar4_00, a1, a2, a3);
+    uVar1 = system_init_libs(ar4_00, a1, a2, a3);
     return uVar1;
 }
 

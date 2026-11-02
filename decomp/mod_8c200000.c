@@ -4671,7 +4671,7 @@ u32 shinobi_sub_203400(void) {
     iVar3 = g_8c275428;
     while (iVar3 != 0) {
         iVar2 = *(int *)(iVar3 + 4);
-        in_r0 = shinobi_sub_2057c0(iVar3);
+        in_r0 = pool496ba8_free(iVar3);
         iVar3 = iVar2;
     }
     g_8c275428 = 0;
@@ -4734,7 +4734,7 @@ u32 shinobi_sub_203406(void) {
     iVar1 = g_8c275428;
     while (iVar1 != 0) {
         iVar3 = *(int *)(iVar1 + 4);
-        shinobi_sub_2057c0(iVar1);
+        pool496ba8_free(iVar1);
         iVar1 = iVar3;
     }
     g_8c275428 = 0;
@@ -5277,7 +5277,7 @@ u32 shinobi_sub_203a92(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
             }
             if (iVar1 == 0)
                 goto LAB_8c203baa;
-            shinobi_sub_2057c0(ar5_01);
+            pool496ba8_free(ar5_01);
         }
         uVar2 = 3;
     } else {
@@ -5416,7 +5416,7 @@ u32 shinobi_sub_203cd0(int a0) {
             }
             puVar4 = ar5_00;
             shinobi_sub_2057f8(&g_8c275428, ar5_00);
-            shinobi_sub_2057c0(ar5_00);
+            pool496ba8_free(ar5_00);
         }
         uVar7 = 0;
     }
@@ -7148,11 +7148,11 @@ u16 *shinobi_sub_205768(u32 a0) {
 }
 
 /*
- * shinobi_sub_2057c0  0x8c2057c0
- * area name: in the shinobi library code range
+ * pool496ba8_free  0x8c2057c0
+ * frees entry a0 of the 0x4c-byte pool at 0x8c496ba8
  * called by: shinobi_sub_203400, shinobi_sub_203406, shinobi_sub_203a92, shinobi_sub_203cd0
  */
-u32 shinobi_sub_2057c0(u16 *a0) {
+u32 pool496ba8_free(u16 *a0) {
     u32 uVar1;
     u32 in_r0;
     u16 *puVar2;

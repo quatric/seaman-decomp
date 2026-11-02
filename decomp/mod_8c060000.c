@@ -621,9 +621,9 @@ int game_sub_0620d4(int a0, int *a1, int a2, u32 a3) {
         }
         iVar3 = 1;
         if (1 < iVar7) {
-            game_sub_06288c(*(u32 *)(a2 + 0xc), 0);
+            get_word_array_a4(*(u32 *)(a2 + 0xc), 0);
             uVar2 = 0;
-            iVar7 = game_sub_06288c(*(u32 *)(a2 + 0xc), 0);
+            iVar7 = get_word_array_a4(*(u32 *)(a2 + 0xc), 0);
             if ((iVar7 == 0) && (*(int *)(a0 + 0x40) == 0)) {
                 uVar5 = (**(code **)(*a1 + 0x148))(a1, uVar2, ar6_00, a3);
                 iVar7 = get_field_ac_062880(uVar5);
@@ -679,9 +679,9 @@ int game_sub_0620d4(int a0, int *a1, int a2, u32 a3) {
                 }
             }
             uVar2 = 0;
-            iVar3 = game_sub_06288c(*(u32 *)(a2 + 0xc), 0);
+            iVar3 = get_word_array_a4(*(u32 *)(a2 + 0xc), 0);
             if ((((iVar3 == 1) && (iVar3 = get_field_178_035734(*(u32 *)(a2 + 8), uVar2, ar6_00), iVar3 == 0)) &&
-                 (iVar3 = game_sub_06288c(*(u32 *)(a2 + 0xc), 1), iVar3 == 0)) &&
+                 (iVar3 = get_word_array_a4(*(u32 *)(a2 + 0xc), 1), iVar3 == 0)) &&
                 (iVar3 = *(int *)(a0 + 0x40), iVar3 == 0)) {
                 counter_set_clamped(*(int *)(a2 + 4) + 0x90, 0, ar6_00);
                 *(u32 *)(a0 + 0x38) = 1;
@@ -743,11 +743,11 @@ u32 get_field_ac_062880(int a0) {
 }
 
 /*
- * game_sub_06288c  0x8c06288c
- * area name: game code; nothing names its area yet
+ * get_word_array_a4  0x8c06288c
+ * +0xa4[a1] (pairs with set_word_array_a4)
  * called by: game_sub_0620d4
  */
-u32 game_sub_06288c(int a0, int a1) {
+u32 get_word_array_a4(int a0, int a1) {
     return *(u32 *)(0xa4 + a0 + a1 * 4);
 }
 

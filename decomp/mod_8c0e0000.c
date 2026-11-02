@@ -5632,7 +5632,7 @@ u32 game_sub_0e8280(int a0, u32 a1, u32 a2, u32 a3) {
                 if ((*(int *)(0xa4 + a0 + iStack_54 * 0x80 + iStack_58 * 0x20) != 0) &&
                     (iStack_4c = game_sub_10031c(a1), iStack_4c == 1)) {
                     set_timeout_120_mode6(a1);
-                    game_sub_0e84c8(auStack_60, a0 + 0x224);
+                    copy_2_u16(auStack_60, a0 + 0x224);
                     uStack_50 = CTexture_sub_0e81f0(a0, auStack_60);
                     set_fields_4_0_on_field_d8(a1, uStack_50);
                     free_if_nonnull_wrap_016660(auStack_60, 0xffffffff, ar6_00, a3);
@@ -5653,11 +5653,11 @@ u32 game_sub_0e8280(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0e84c8  0x8c0e84c8
- * area name: game code; nothing names its area yet
+ * copy_2_u16  0x8c0e84c8
+ * a0[0..1] = a1[0..1] (16-bit)
  * called by: game_sub_0e8280, game_sub_0e89c4, game_sub_0e8ae0
  */
-u16 *game_sub_0e84c8(u16 *a0, u16 *a1) {
+u16 *copy_2_u16(u16 *a0, u16 *a1) {
     *a0 = *a1;
     a0[1] = a1[1];
     return a0;
@@ -5870,7 +5870,7 @@ u32 game_sub_0e89c4(u32 unused_a0, double *a1, u32 unused_a2, u32 a3, u32 s0) {
         fVar4 = g_8c1264b8;
     }
     if (fVar2 == fVar4) {
-        game_sub_0e84c8(s0, &uStack_10);
+        copy_2_u16(s0, &uStack_10);
         free_if_nonnull_wrap_016660(&uStack_10, 0xffffffff, ar6_00, a3);
     } else {
         for (iVar1 = 0; iVar1 < 4; iVar1 = iVar1 + 1) {
@@ -6009,7 +6009,7 @@ u32 game_sub_0e89c4(u32 unused_a0, double *a1, u32 unused_a2, u32 a3, u32 s0) {
                 }
             }
         }
-        game_sub_0e84c8(s0, &uStack_10);
+        copy_2_u16(s0, &uStack_10);
         free_if_nonnull_wrap_016660(&uStack_10, 0xffffffff, ar6_00, a3);
     }
     return 0;
@@ -6033,7 +6033,7 @@ u32 game_sub_0e8ae0(int a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 s0) {
     do {
         if (2 < iVar1) {
         LAB_8c0e8b40:
-            game_sub_0e84c8(s0, &uStack_1c);
+            copy_2_u16(s0, &uStack_1c);
             free_if_nonnull_wrap_016660(&uStack_1c, 0xffffffff, ar6_00, a3);
             return 0;
         }
