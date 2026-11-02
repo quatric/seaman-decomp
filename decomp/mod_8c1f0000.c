@@ -1985,7 +1985,7 @@ u32 crc16_table(u32 a0, u8 *a1, int a2) {
 /*
  * check_crc_10  0x8c1f1576
  * 0 when the CRC-16 of the 10 bytes at a0 equals ~a1, else -1
- * called by: bios_uses_bcd_to_int_s8_1f15f4
+ * called by: gd_parse_subcode_q
  */
 u32 check_crc_10(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -2000,7 +2000,7 @@ u32 check_crc_10(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * bcd_to_int_s8  0x8c1f15a4
  * two packed BCD digits (signed char) to an integer
- * called by: bcd_msf_to_frames, bios_uses_bcd_to_int_s8_1f15f4
+ * called by: bcd_msf_to_frames, gd_parse_subcode_q
  */
 int bcd_to_int_s8(u32 a0) {
     return (((int)0xf0 & (int)(char)a0) >> 4) * 10 + ((int)(char)a0 & 0xfU);
@@ -2009,7 +2009,7 @@ int bcd_to_int_s8(u32 a0) {
 /*
  * bcd_msf_to_frames  0x8c1f15be
  * BCD minutes/seconds/frames at a0 as a frame count ((m*60 + s)*75 + f)
- * called by: bios_uses_bcd_to_int_s8_1f15f4
+ * called by: gd_parse_subcode_q
  */
 int bcd_msf_to_frames(char *a0) {
     int iVar1;
@@ -2023,11 +2023,11 @@ int bcd_msf_to_frames(char *a0) {
 }
 
 /*
- * bios_uses_bcd_to_int_s8_1f15f4  0x8c1f15f4
- * area name: sits between bios functions (same compilation unit); behaviour name: its main named callee is
- * bcd_to_int_s8 called by: shinobi_uses_bcd_to_int_s8_1f1766
+ * gd_parse_subcode_q  0x8c1f15f4
+ * unpacks the Q sub-channel bits of the 100-byte subcode block a0, checks its CRC and stores track, index, times and
+ * absolute frame into a1 called by: shinobi_uses_gd_parse_subcode_q_1f1766
  */
-u32 bios_uses_bcd_to_int_s8_1f15f4(char *a0, u32 *a1) {
+u32 gd_parse_subcode_q(char *a0, u32 *a1) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -2100,8 +2100,8 @@ u32 bios_uses_bcd_to_int_s8_1f15f4(char *a0, u32 *a1) {
 /*
  * read_u32_le  0x8c1f1714
  * little-endian 32-bit value at a0 (any alignment)
- * called by: gdfs_uses_bcopy_1f2d3e, gdfs_uses_bcopy_1f2e3e, gdfs_uses_read_u32_le_1f1a7c,
- * gdfs_uses_read_u32_le_1f1d8c, gdfs_uses_read_u32_le_1f1eaa
+ * called by: gdfs_path_table_find, gdfs_uses_bcopy_1f2e3e, gdfs_uses_read_u32_le_1f1a7c, gdfs_uses_read_u32_le_1f1d8c,
+ * gdfs_uses_read_u32_le_1f1eaa
  */
 u32 read_u32_le(u8 *a0) {
     return (u32)a0[1] << 8 | (u32)a0[2] << 0x10 | (u32)a0[3] << 0x18 | (u32)*a0;
@@ -2142,11 +2142,11 @@ u32 shinobi_update_fields_1f175c(u32 a0, u32 a1) {
 }
 
 /*
- * shinobi_uses_bcd_to_int_s8_1f1766  0x8c1f1766
- * area name: in the shinobi library code range; behaviour name: its callees mostly do: uses_bcd_to_int_s8
- * called by: alt_entry_1f231e, gdfs_uses_bcd_to_int_s8_1f1a44, gdfs_uses_bcd_to_int_s8_1f231a
+ * shinobi_uses_gd_parse_subcode_q_1f1766  0x8c1f1766
+ * area name: in the shinobi library code range; behaviour name: its main named callee is gd_parse_subcode_q
+ * called by: alt_entry_1f231e, gdfs_uses_gd_parse_subcode_q_1f1a44, gdfs_uses_gd_parse_subcode_q_1f231a
  */
-int shinobi_uses_bcd_to_int_s8_1f1766(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+int shinobi_uses_gd_parse_subcode_q_1f1766(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     short sVar1;
     int iVar2;
     int iVar3;
@@ -2196,7 +2196,7 @@ int shinobi_uses_bcd_to_int_s8_1f1766(u32 unused_a0, u32 unused_a1, u32 a2, u32 
         if (sVar1 != 3) {
             if (sVar1 != 4) {
                 if (sVar1 == 7) {
-                    iVar3 = bios_uses_bcd_to_int_s8_1f15f4(g_8c2739e0 + 0x40, &uStack_40);
+                    iVar3 = gd_parse_subcode_q(g_8c2739e0 + 0x40, &uStack_40);
                     if (iVar3 == 0) {
                         **(u32 **)(iVar5 + 8) = uStack_40;
                         *(u32 *)(*(int *)(iVar5 + 8) + 4) = uStack_3c;
@@ -2296,7 +2296,7 @@ LAB_8c1f19d4:
 /*
  * gdfs_read_sectors_like  0x8c1f19ec
  * reads a1 sectors of file a0 into a2 through a temporary handle; -13 when no handle is free
- * called by: gdfs_read_dir_sectors, gdfs_uses_bcopy_1f2d3e, gdfs_uses_bcopy_1f2e3e, gdfs_uses_read_u32_le_1f1a7c,
+ * called by: gdfs_path_table_find, gdfs_read_dir_sectors, gdfs_uses_bcopy_1f2e3e, gdfs_uses_read_u32_le_1f1a7c,
  * gdfs_uses_read_u32_le_1f1d8c, gdfs_uses_read_u32_le_1f1eaa
  */
 u32 gdfs_read_sectors_like(u32 a0, int a1, u32 a2) {
@@ -2336,11 +2336,11 @@ u32 gdfs_calc_1f1a2a(int a0) {
 }
 
 /*
- * gdfs_uses_bcd_to_int_s8_1f1a44  0x8c1f1a44
+ * gdfs_uses_gd_parse_subcode_q_1f1a44  0x8c1f1a44
  * area name: sits between gdfs functions (same compilation unit); behaviour name: its callees mostly do:
- * uses_bcd_to_int_s8
+ * uses_gd_parse_subcode_q
  */
-u32 gdfs_uses_bcd_to_int_s8_1f1a44(int a0, u32 a1, u32 a2, u32 a3) {
+u32 gdfs_uses_gd_parse_subcode_q_1f1a44(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     if (*(int *)(a0 + 0x20) == 1) {
@@ -2348,7 +2348,7 @@ u32 gdfs_uses_bcd_to_int_s8_1f1a44(int a0, u32 a1, u32 a2, u32 a3) {
     }
     uVar1 = (**(code **)(*(int *)(g_8c2739e0 + 0xc) + 0x40))();
     if (*(int *)(g_8c2739e0 + 0x1c) != 0) {
-        uVar1 = shinobi_uses_bcd_to_int_s8_1f1766(a0, a1, a2, a3);
+        uVar1 = shinobi_uses_gd_parse_subcode_q_1f1766(a0, a1, a2, a3);
         return uVar1;
     }
     return uVar1;
@@ -2976,7 +2976,7 @@ int gdfs_load_dir(char *a0, int a1, u32 unused_a2, u32 a3) {
             iVar1 = gdfs_uses_bcopy_1f2e3e(g_8c2739e0 + 0x80, *(u32 *)(g_8c2739e0 + 4), *(u32 *)(g_8c2739e0 + 8), a0,
                                            g_8c470f90 + 4);
         } else {
-            iVar1 = gdfs_uses_bcopy_1f2d3e(g_8c2739e0 + 0x80, *(u32 *)(g_8c2739e0 + 4), *(u32 *)(g_8c2739e0 + 8), a0);
+            iVar1 = gdfs_path_table_find(g_8c2739e0 + 0x80, *(u32 *)(g_8c2739e0 + 4), *(u32 *)(g_8c2739e0 + 8), a0);
         }
         if (iVar1 == 0) {
             return 0xfffffff8;
@@ -3024,8 +3024,8 @@ int alt_entry_1f2008(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
             iVar1 = gdfs_uses_bcopy_1f2e3e(g_8c2739e0 + 0x80, *(u32 *)(g_8c2739e0 + 4), *(u32 *)(g_8c2739e0 + 8),
                                            unaff_r12, g_8c470f90 + 4);
         } else {
-            iVar1 = gdfs_uses_bcopy_1f2d3e(g_8c2739e0 + 0x80, *(u32 *)(g_8c2739e0 + 4), *(u32 *)(g_8c2739e0 + 8),
-                                           unaff_r12);
+            iVar1 =
+                gdfs_path_table_find(g_8c2739e0 + 0x80, *(u32 *)(g_8c2739e0 + 4), *(u32 *)(g_8c2739e0 + 8), unaff_r12);
         }
         if (iVar1 == 0) {
             return 0xfffffff8;
@@ -3353,16 +3353,16 @@ u32 alt_entry_1f22b2(u32 unused_a0, int a1) {
 }
 
 /*
- * gdfs_uses_bcd_to_int_s8_1f231a  0x8c1f231a
+ * gdfs_uses_gd_parse_subcode_q_1f231a  0x8c1f231a
  * area name: sits between gdfs functions (same compilation unit); behaviour name: its callees mostly do:
- * uses_bcd_to_int_s8
+ * uses_gd_parse_subcode_q
  */
-u32 gdfs_uses_bcd_to_int_s8_1f231a(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 gdfs_uses_gd_parse_subcode_q_1f231a(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (**(code **)(*(int *)(g_8c2739e0 + 0xc) + 0x40))();
     if (*(int *)(g_8c2739e0 + 0x1c) != 0) {
-        uVar1 = shinobi_uses_bcd_to_int_s8_1f1766(a0, a1, a2, a3);
+        uVar1 = shinobi_uses_gd_parse_subcode_q_1f1766(a0, a1, a2, a3);
         return uVar1;
     }
     return uVar1;
@@ -3378,7 +3378,7 @@ u32 alt_entry_1f231e(u32 a0, u32 a1, u32 a2, u32 a3, int ain0) {
 
     uVar1 = (**(code **)(ain0 + *(int *)(*in_r2 + 0xc)))(a0, a1, a2, a3);
     if (*(int *)(g_8c2739e0 + 0x1c) != 0) {
-        uVar1 = shinobi_uses_bcd_to_int_s8_1f1766(a0, a1, a2, a3);
+        uVar1 = shinobi_uses_gd_parse_subcode_q_1f1766(a0, a1, a2, a3);
         return uVar1;
     }
     return uVar1;
@@ -3416,7 +3416,7 @@ u32 gdfs_uses_gdfs_handle_init_like_1f2356(u32 a0, u32 a1) {
 /*
  * gdfs_calc_1f23e0  0x8c1f23e0
  * area name: sits between gdfs functions (same compilation unit); behaviour name: integer arithmetic on its arguments
- * called by: gdfs_calls_calc_1f2a0a, shinobi_uses_bcd_to_int_s8_1f1766
+ * called by: gdfs_calls_calc_1f2a0a, shinobi_uses_gd_parse_subcode_q_1f1766
  */
 u32 gdfs_calc_1f23e0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -3759,7 +3759,7 @@ int toupper(int a0) {
 /*
  * bcopy  0x8c1f2a5c
  * copies a2 bytes from a0 to a1
- * called by: alt_entry_1f210e, alt_entry_1f2b70, gdfs_copy_dir_records, gdfs_uses_bcopy_1f2d3e, gdfs_uses_bcopy_1f2e3e,
+ * called by: alt_entry_1f210e, alt_entry_1f2b70, gdfs_copy_dir_records, gdfs_path_table_find, gdfs_uses_bcopy_1f2e3e,
  * iso9660_parse_dir_record
  */
 u32 bcopy(u8 *a0, u8 *a1, int a2) {
@@ -3778,7 +3778,7 @@ u32 bcopy(u8 *a0, u8 *a1, int a2) {
 /*
  * strnicmp_equal  0x8c1f2a74
  * 1 when the first a2 characters of a0 and a1 are equal ignoring case (or both end earlier together)
- * called by: gdfs_uses_bcopy_1f2d3e, gdfs_uses_bcopy_1f2e3e
+ * called by: gdfs_path_table_find, gdfs_uses_bcopy_1f2e3e
  */
 u32 strnicmp_equal(char *a0, char *a1, int a2) {
     char cVar1;
@@ -3928,7 +3928,7 @@ u32 alt_entry_1f2ae6(u32 unused_a0, char *a1) {
 /*
  * strcspn  0x8c1f2b1c
  * length of the prefix of a0 with no character from a1
- * called by: gdfs_uses_bcopy_1f2d3e, gdfs_uses_bcopy_1f2e3e
+ * called by: gdfs_path_table_find, gdfs_uses_bcopy_1f2e3e
  */
 int strcspn(char *a0, char *a1) {
     char *pcVar1;
@@ -4143,11 +4143,11 @@ u32 gdfs_dir_find_entry(u32 a0, int *a1, int a2, u32 a3) {
 }
 
 /*
- * gdfs_uses_bcopy_1f2d3e  0x8c1f2d3e
- * area name: sits between gdfs functions (same compilation unit); behaviour name: its main named callee is bcopy
- * called by: alt_entry_1f2008, gdfs_load_dir
+ * gdfs_path_table_find  0x8c1f2d3e
+ * walks the ISO 9660 path table (reading sectors as needed) matching each '/' part of path a3 and returns the
+ * directory's extent called by: alt_entry_1f2008, gdfs_load_dir
  */
-u32 gdfs_uses_bcopy_1f2d3e(int a0, int a1, int a2, int a3) {
+u32 gdfs_path_table_find(int a0, int a1, int a2, int a3) {
     u32 uVar1;
     u16 *ar5_00;
     int iVar2;
@@ -4567,7 +4567,7 @@ int gdfs_read_blocking(int a0, int a1, u32 a2, u32 a3) {
         if ((a2 & 0x1f) == 0) {
             ar5_00 = a1;
             ar6_00 = a2;
-            iVar2 = gdfs_update_fields_1f332c(a0, a1, a2);
+            iVar2 = gdfs_start_read_dma_like(a0, a1, a2);
         } else {
             ar5_00 = a1;
             ar6_00 = a2;
@@ -4611,7 +4611,7 @@ int alt_entry_1f31da(u32 unused_a0, int a1, u32 a2, u32 a3) {
         if (in_T == '\0') {
             iVar2 = gdfs_start_read_pio(unaff_r14, unaff_r12, unaff_r11);
         } else {
-            iVar2 = gdfs_update_fields_1f332c(unaff_r14, unaff_r12, unaff_r11);
+            iVar2 = gdfs_start_read_dma_like(unaff_r14, unaff_r12, unaff_r11);
         }
         if (((iVar2 != 0) || (unaff_r12 == 0)) ||
             (iVar3 = iVar1, *(int *)(unaff_r14 + 0x10) <= *(int *)(unaff_r14 + 0x14)))
@@ -4675,11 +4675,11 @@ u32 gdfs_start_read_pio(int *a0, int a1, u32 a2) {
 }
 
 /*
- * gdfs_update_fields_1f332c  0x8c1f332c
- * area name: sits between gdfs functions (same compilation unit); behaviour name: conditionally writes members
- * called by: adxstmf_stat_exec, alt_entry_1f31da, gdfs_read_blocking
+ * gdfs_start_read_dma_like  0x8c1f332c
+ * starts an asynchronous read of up to a1 sectors into the 32-byte aligned buffer a2 (clipped to the file end) and
+ * marks the handle busy called by: adxstmf_stat_exec, alt_entry_1f31da, gdfs_read_blocking
  */
-u32 gdfs_update_fields_1f332c(int *a0, int a1, u32 a2) {
+u32 gdfs_start_read_dma_like(int *a0, int a1, u32 a2) {
     int iVar1;
     int iVar2;
     int a7;

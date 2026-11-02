@@ -2106,3 +2106,25 @@
 8c0202c0	cd_load_open_read	opens the request's file with ADXF, sizes or seeks it, picks or allocates the buffer and starts the read; returns 0 on failure
 8c021f4c	pack_entry_poll_status	polls pack entry a1's stream and maps its status nibbles to a result code (1 done, 3 busy, 5..8 by state)
 8c0221c8	game_sound_init	clears the stream slots, loads the partition and the Manatee sound driver, picks mono/stereo from the flash ROM and creates the stream ring buffers
+8c023334	Vec3_angle_code_90	normalises the two vectors' flattened forms and returns 4 when the angle between them is under 90 degrees, else 3
+8c023c30	Vec3_div_scalar_out	divides each component of a0 by *a1 and copy-constructs the result into s0
+8c02b208	CAnimBody_pick_idle_variant	for motions 0, 0x2d and 0x1e switches to a left/right variant (0x48..0x4d by flag bit 1) when the target appears or vanishes or the random delay runs out, then rerolls the delay
+8c02b9a8	talk_state_init_stage	constructs the talk state's six entries and sets them, its counters and the +0xa8 block from growth stage a2's 0x140-byte table row
+8c02c758	talk_state_set_stage	switches the talk state to growth stage a1, reloading its six entries and the +0xa8 block from the stage's table row
+8c02cf20	talk_state_get_info	copies the talk state's values (stage fields, counters, the +0xa8 block and the six entries) into the info record a1
+8c02ebfc	creature_needs_pick_max	reads six of the creature's values (capped at 100), rolls each through game_uses_rand_02ee48 and returns index * 100 + value of the largest (0xc7 when none)
+8c02fcc4	game_target_in_view_box	below stage 5, returns 1 when the target's projected position lies inside the 150..500 by 80..400 screen box; else returns the +0x82 flag
+8c03525c	talk_target_in_view_box	returns 1 when the target's projected position lies inside the 150..500 by 80..400 screen box
+8c0329ac	point_inside_box_margin	returns 1 when point a1 lies inside the box (corners from the stack and a2) shrunk by margin fr4, checking the height through method 0x128
+8c0342d8	CAnimBody_vec_key_at	finds the 0x10-byte key {frame, x, y, z} at or before frame fr4 in table a1 and copy-constructs its vector into the stack result
+8c034d48	talk_rules_tick	advances the talk rule state machine: picks a rule when idle, runs its start/update/end methods and counts minutes
+8c0369c4	CSquidLine_draw_grow_scaled	advances the grow factor at +0x468 (capped at 1, or 1.01 at stage 1), scales the part's +0x14 value by it, draws the part and restores the value
+8c04db38	creature_action_motion49_step	action step: on entry clears the velocities, sets the heading and starts motion 0x49; then advances it and moves to the next motion when it ends
+8c054a14	creature_action_motion4e_step	action step: starts motion 0x4e, then advances it, playing a random sound 0x19..0x1b at six points through it; returns 0 when it ends
+8c0c3b74	pack_draw_number_digits	offsets the eight sprite quads by fr4/fr5, splits the stacked values into decimal digits and draws each digit's 16-pixel texture cell (leading zeros skipped)
+8c1013f4	input_quadrant_seq_up	steps the quadrant sequence counter *a1 for quadrants 0, 1, 2, 3 in order; returns 4 when the sequence completes and 0 when it breaks
+8c101480	input_quadrant_seq_down	steps the quadrant sequence counter *a1 for quadrants 3, 2, 1, 0 in order; returns 4 when the sequence completes and 0 when it breaks
+8c101510	input_detect_circle_gesture	walks the recent stick samples by step a1 and returns 1 once two full quadrant sequences in either direction are seen
+8c1f15f4	gd_parse_subcode_q	unpacks the Q sub-channel bits of the 100-byte subcode block a0, checks its CRC and stores track, index, times and absolute frame into a1
+8c1f2d3e	gdfs_path_table_find	walks the ISO 9660 path table (reading sectors as needed) matching each '/' part of path a3 and returns the directory's extent
+8c1f332c	gdfs_start_read_dma_like	starts an asynchronous read of up to a1 sectors into the 32-byte aligned buffer a2 (clipped to the file end) and marks the handle busy

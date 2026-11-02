@@ -2147,11 +2147,11 @@ u32 set_texlist_1a4_draw(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * pack_uses_libgcc_divide_helper_0c3b74  0x8c0c3b74
- * area name: sits between pack functions (same compilation unit); behaviour name: its main named callee is
- * libgcc_divide_helper_0101e4 called by: input_uses_set_fields_0_4_c_0bf804
+ * pack_draw_number_digits  0x8c0c3b74
+ * offsets the eight sprite quads by fr4/fr5, splits the stacked values into decimal digits and draws each digit's
+ * 16-pixel texture cell (leading zeros skipped) called by: input_uses_set_fields_0_4_c_0bf804
  */
-u32 pack_uses_libgcc_divide_helper_0c3b74(int a0, u32 unused_a1, u32 a2) {
+u32 pack_draw_number_digits(int a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
     int iVar2;
     int ar6_00;

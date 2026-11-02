@@ -10913,9 +10913,9 @@ u32 matrix_pop1(void) {
 /*
  * matrix_float_calc_256294  0x8c256294
  * area name: sits between matrix functions (same compilation unit); behaviour name: floating-point arithmetic
- * called by: CSquidLine_vec_085c3c, Class_12acc8_m1_09f470, Class_12b580_uses_list_node_next_wrap_0da754,
- * game_calls_float_calc_019508, game_calls_float_calc_0d1754, game_calls_float_calc_0d43cc,
- * game_uses_input_track_r_hold_0e1f90, game_vec_02fcc4 (+2 more)
+ * called by: CSquidLine_vec_036adc, CSquidLine_vec_085c3c, Class_12acc8_m1_09f470,
+ * Class_12b580_uses_list_node_next_wrap_0da754, game_calls_float_calc_019508, game_calls_float_calc_0d1754,
+ * game_calls_float_calc_0d43cc, game_target_in_view_box (+2 more)
  */
 u32 matrix_float_calc_256294(int a0, double *a1, double *a2) {
     double in_dr0;
@@ -12444,8 +12444,8 @@ u32 ninja_float_calc_256e18(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 /*
  * matrix_scale  0x8c256fec
  * scales the matrix rows by fr4, fr5, fr6
- * called by: CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968, CSquidLine_uses_matrix_push_0ad354,
- * CSquidLine_uses_matrix_scale_0369c4, Class_1298b8_m11_0159ec, Class_1298b8_m4_0156a0, Class_1298b8_m5_015720,
+ * called by: CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968, CSquidLine_draw_grow_scaled,
+ * CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec, Class_1298b8_m4_0156a0, Class_1298b8_m5_015720,
  * Class_1298b8_m7_015890 (+26 more)
  */
 u32 matrix_scale(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {

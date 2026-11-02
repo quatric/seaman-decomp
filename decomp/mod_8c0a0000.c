@@ -770,7 +770,7 @@ int Class_12ad14_vec_0a0c88(int a0, u32 a1, u8 *a2, u8 *a3) {
         case 3:
             puVar2 = a3;
             puVar3 = a2;
-            iVar4 = game_test_0329ac(a0, auStack_24, a3, a2);
+            iVar4 = point_inside_box_margin(a0, auStack_24, a3, a2);
             if (iVar4 == 0) {
                 puVar2 = a3;
                 puVar3 = a2;
@@ -3151,7 +3151,7 @@ u32 game_vec_0a3dc0(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     Vec3_dtor(auStack_54, 0xffffffff, ar6_00, ar7_00);
     Vec3_dtor(auStack_44, 0xffffffff, ar6_00, ar7_00);
     ar5_00 = auStack_24;
-    iStack_60 = Vec3_vec_023334(a3, ar5_00, ar6_00, ar7_00);
+    iStack_60 = Vec3_angle_code_90(a3, ar5_00, ar6_00, ar7_00);
     if (iStack_60 == 4) {
         if (cVar6 == '\0') {
             in_dr0 = (double)CONCAT44(0xbf800000, uStack_10);
@@ -4375,7 +4375,7 @@ u32 save_state_record_0a56cc(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_save(a0, a1, a2, a3);
-    CAnimal_uses_get_field_134_02cf20(a0 + 0x174, a1 + 0x4c, a2);
+    talk_state_get_info(a0 + 0x174, a1 + 0x4c, a2);
     uVar1 = copy15_out(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
 }

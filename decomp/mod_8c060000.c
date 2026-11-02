@@ -1124,7 +1124,7 @@ int FrogMan_react_tap(int a0, code *a1, code *a2, char *a3) {
             iVar2 = 0x7c;
             if ((iVar4 == 0) && (iVar2 = *(int *)(a0 + 0x854), iVar2 == -10)) {
                 uVar3 = get_field_44_s8(*(u32 *)(a2 + 0xc), ar5_00, pcVar6, a3);
-                if (((char)uVar3 == '\0') && (iVar2 = game_vec_02fcc4(a0, a2, pcVar6, a3), iVar2 != 1)) {
+                if (((char)uVar3 == '\0') && (iVar2 = game_target_in_view_box(a0, a2, pcVar6, a3), iVar2 != 1)) {
                     if (*(int *)(a0 + 900) == -1) {
                         set_field_770(a0 + 0x9c, 0, pcVar6, a3);
                         a3 = "REQUEST_ATTENTION";
@@ -1142,13 +1142,13 @@ int FrogMan_react_tap(int a0, code *a1, code *a2, char *a3) {
                     pcVar5 = get_field_44_s8;
                     uVar3 = get_field_44_s8(*(u32 *)(a2 + 0xc), get_field_44_s8, pcVar6, a3);
                     if (((char)uVar3 == '\0') &&
-                        (pcVar5 = a2, iVar2 = game_vec_02fcc4(a0, a2, pcVar6, a3), iVar2 == 1)) {
+                        (pcVar5 = a2, iVar2 = game_target_in_view_box(a0, a2, pcVar6, a3), iVar2 == 1)) {
                         pcVar5 = (code *)0x1;
                         set_field_44_u8(*(u32 *)(a2 + 0xc), 1);
                     }
                 }
                 uVar3 = get_field_44_s8(*(u32 *)(a2 + 0xc), pcVar5, pcVar6, a3);
-                if (((char)uVar3 == '\x01') && (iVar2 = game_vec_02fcc4(a0, a2, pcVar6, a3), iVar2 == 1)) {
+                if (((char)uVar3 == '\x01') && (iVar2 = game_target_in_view_box(a0, a2, pcVar6, a3), iVar2 == 1)) {
                     if (*(int *)(a0 + 900) == -1) {
                         set_field_770(a0 + 0x9c, 0, pcVar6, a3);
                         ar7_00 = "EVENT_GET_SPRINKLER";
@@ -1513,7 +1513,7 @@ LAB_8c063f66:
             *(u32 *)(a0 + 0x86c) = 0;
         }
         ar5_01 = a2;
-        iVar4 = game_vec_02fcc4(a0, a2, pcVar6, ar7_01);
+        iVar4 = game_target_in_view_box(a0, a2, pcVar6, ar7_01);
         if (((iVar4 == 1) &&
              (uVar1 = get_field_44_s8(*(u32 *)(a2 + 0xc), ar5_01, pcVar6, ar7_01), (char)uVar1 == '\0')) &&
             (iVar4 = get_field_40_03598c(*(u32 *)(a2 + 0xc), ar5_01), iVar4 == 0)) {
@@ -1563,7 +1563,7 @@ LAB_8c063f66:
             if (*(int *)(a0 + 4) == 0xd) {
                 ppuVar3 = (u8 **)0xd;
             } else {
-                iVar4 = game_vec_02fcc4(a0, a2, pcVar6, ar7_01);
+                iVar4 = game_target_in_view_box(a0, a2, pcVar6, ar7_01);
                 if (iVar4 == 1) {
                     ppuVar3 = (u8 **)0x1;
                 } else {
@@ -2725,7 +2725,7 @@ int talk_check_status_lastone(int a0, int *a1, int a2, u32 a3) {
         iVar1 = (**(code **)(0x11c + *a1))(a1, 5, iVar3, a3);
         if (iVar1 == 1) {
             ar5_00 = a2;
-            iVar1 = game_vec_02fcc4(a0, a2, iVar3, a3);
+            iVar1 = game_target_in_view_box(a0, a2, iVar3, a3);
             if (iVar1 == 1) {
                 iVar1 = (*(code *)(&get_field_40_03598c))(*(u32 *)(a2 + 0xc), ar5_00, iVar3, a3);
                 if (iVar1 == 0) {
@@ -9746,7 +9746,7 @@ code *Class_12a25c_vec_06f93c(int a0, u32 *a1, u32 unused_a2, code *a3) {
             Vec3_dtor(auStack_134, 0xffffffff, iVar2, a3);
             Vec3_dtor(auStack_124, 0xffffffff, iVar2, a3);
             a3 = (code *)a1[6];
-            iVar2 = game_test_0329ac(a0, a0 + 0x54, a1[3], a3);
+            iVar2 = point_inside_box_margin(a0, a0 + 0x54, a1[3], a3);
             if (iVar2 == 0) {
                 *(u32 *)(a0 + 300) = 2;
             } else {
@@ -9921,7 +9921,7 @@ code *Class_12a25c_vec_06f93c(int a0, u32 *a1, u32 unused_a2, code *a3) {
             a3 = NULL;
             uVar6 = 0xffffffff;
             CAnimBody_SetAnimation(a0 + 0xb0, 8, 0xffffffff, 0);
-            uVar1 = Vec3_vec_023334(a0 + 0x14, &g_8c125e68, uVar6, a3);
+            uVar1 = Vec3_angle_code_90(a0 + 0x14, &g_8c125e68, uVar6, a3);
             *(u32 *)(a0 + 0x220) = uVar1;
             if (*(int *)(a0 + 0x220) == 3) {
                 a3 = CAnimBody_SetFrame;

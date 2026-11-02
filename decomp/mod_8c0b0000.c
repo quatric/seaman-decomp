@@ -701,7 +701,7 @@ u32 game_vec_0b0eec(int a0, float *a1, float *a2, u32 a3) {
                 Vec3_assign_f(a0 + 0x304, ar5_01, a2, uVar9);
             }
             CAnimBody_GetCurFrame(a0 + 0xb0, CAnimBody_GetCurFrame, a2, uVar9);
-            game_vec_034384(a0 + 0xb0, g_8c286db8, a2, uVar9);
+            CAnimBody_vec_034384(a0 + 0xb0, g_8c286db8, a2, uVar9);
             Vec3_assign(auStack_30, auStack_140, a2, uVar9);
             Vec3_dtor(auStack_140, 0xffffffff, a2, uVar9);
             Vec3_sub(auStack_30, a0 + 0x54, a2, uVar9, auStack_150);
@@ -1314,8 +1314,8 @@ u32 game_vec_0b1ac0(double *a0, double *a1, code *a2, double *a3) {
         *(int *)((int)a0 + 0xbc) = piVar3[2];
         *(u8 **)((int)a0 + 0xb4) = &g_8c13ba4c + (iVar10 + -0x12) * 0x18;
         CAnimBody_GetCurFrame(a0 + 0x16, 0xb0, uVar5, pcVar8);
-        pcVar8 = game_vec_034384;
-        game_vec_034384(a0 + 0x16, **(u32 **)((int)a0 + 0xb4), uVar5, game_vec_034384);
+        pcVar8 = CAnimBody_vec_034384;
+        CAnimBody_vec_034384(a0 + 0x16, **(u32 **)((int)a0 + 0xb4), uVar5, CAnimBody_vec_034384);
         Vec3_assign(adStack_44, auStack_64, uVar5, pcVar8);
         Vec3_dtor(auStack_64, 0xffffffff, uVar5, pcVar8);
         Vec3_sub(adStack_44, (code *)((int)a0 + 0x54), uVar5, pcVar8, auStack_74);
@@ -2880,7 +2880,7 @@ u32 game_uses_Vec3_dtor_0b4d14(int a0, u32 a1, u32 a2, u32 a3) {
             ar5_00 = 0x16;
             uVar4 = array_at_field_14(a0 + 0xb0, 0x16, ar6_00, a3);
             puVar5 = (u32 *)deref_u32(uVar4);
-            game_vec_034384(a0 + 0xb0, *(u32 *)*puVar5, ar6_00, a3);
+            CAnimBody_vec_034384(a0 + 0xb0, *(u32 *)*puVar5, ar6_00, a3);
             Vec3_assign(auStack_2c, auStack_48, ar6_00, a3);
             uVar4 = 0xffffffff;
             Vec3_dtor(auStack_48, 0xffffffff, ar6_00, a3);
@@ -3588,7 +3588,8 @@ u32 Class_12b2e8_m1_0b5ad0(int a0, int *a1, int *a2, u32 a3) {
             }
         }
         if ((((*(int *)(a0 + 0x6c) == 0) && (*(int *)(a0 + 0x40) == 0)) && (*(char *)(a0 + 0x98) == '\x03')) &&
-            ((piVar9 = a2, iVar3 = game_vec_02fcc4(a0, a2, piVar10, a3), iVar3 == 1 && (*(int *)(a0 + 0xa0) == 1)))) {
+            ((piVar9 = a2, iVar3 = game_target_in_view_box(a0, a2, piVar10, a3),
+              iVar3 == 1 && (*(int *)(a0 + 0xa0) == 1)))) {
             piVar9 = a1;
             piVar10 = a2;
             uVar2 = Class_12b2e8_vec_0b67cc(a0, a1, a2, a3);
@@ -3642,7 +3643,7 @@ u32 Class_12b2e8_m1_0b5ad0(int a0, int *a1, int *a2, u32 a3) {
             piVar10 = a2;
             iVar7 = Class_12b2e8_vec_0b67cc(a0, a1, a2, uVar2);
             piVar9 = a1;
-            if ((iVar7 == 0) || (piVar9 = a2, iVar7 = game_vec_02fcc4(a0, a2, piVar10, uVar2), iVar7 != 1)) {
+            if ((iVar7 == 0) || (piVar9 = a2, iVar7 = game_target_in_view_box(a0, a2, piVar10, uVar2), iVar7 != 1)) {
                 if (*(int *)(a0 + 0x40) != 5) {
                     *(u32 *)(a0 + 8) = 0x5f;
                     *(u32 *)(a0 + 0xc) = 0;
@@ -3671,7 +3672,7 @@ u32 Class_12b2e8_m1_0b5ad0(int a0, int *a1, int *a2, u32 a3) {
             piVar10 = a2;
             iVar7 = Class_12b2e8_vec_0b67cc(a0, a1, a2, uVar2);
             if (((iVar7 == 0) || (*(int *)(a0 + 0x40) == 6)) ||
-                (a1 = a2, iVar7 = game_vec_02fcc4(a0, a2, piVar10, uVar2), iVar7 != 1)) {
+                (a1 = a2, iVar7 = game_target_in_view_box(a0, a2, piVar10, uVar2), iVar7 != 1)) {
                 piVar9 = a1;
                 if (*(int *)(a0 + 0x40) != 6) {
                     *(u32 *)(a0 + 8) = 0x5f;
@@ -9614,7 +9615,7 @@ u32 input_uses_set_fields_0_4_c_0bf804(int a0, u32 a1, u32 unused_a2, u32 a3) {
             g_8c436778 = (float)in_xd0;
             uRam8c43677c = (u32)((u64)in_xd0 >> 0x20);
         }
-        pack_uses_libgcc_divide_helper_0c3b74(&g_8c2b5628, uVar2, uVar3);
+        pack_draw_number_digits(&g_8c2b5628, uVar2, uVar3);
     } else if (iVar1 == 5) {
         rtc_get_date(&stack0xffffff94, uVar2, uVar3, uVar4);
         if (cVar7 == '\0') {
@@ -9633,7 +9634,7 @@ u32 input_uses_set_fields_0_4_c_0bf804(int a0, u32 a1, u32 unused_a2, u32 a3) {
             g_8c436778 = (float)in_xd0;
             uRam8c43677c = (u32)((u64)in_xd0 >> 0x20);
         }
-        pack_uses_libgcc_divide_helper_0c3b74(&g_8c2b5628, uVar2, uVar3);
+        pack_draw_number_digits(&g_8c2b5628, uVar2, uVar3);
     } else if (iVar1 == 9) {
         if (cVar7 != '\0') {
             uRam8c43677c = 0x3f19999a;

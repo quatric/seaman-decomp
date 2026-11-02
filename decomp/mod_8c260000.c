@@ -4589,7 +4589,7 @@ int adxstmf_stat_exec(int a0, int a1, u8 *a2, u8 *a3) {
                     iVar6 = iVar4;
                 }
                 if (iVar6 != 0) {
-                    iVar6 = gdfs_update_fields_1f332c(*(u32 *)(a0 + 8), iVar6, *(u32 *)(a0 + 0x24));
+                    iVar6 = gdfs_start_read_dma_like(*(u32 *)(a0 + 8), iVar6, *(u32 *)(a0 + 0x24));
                     *(int *)(a0 + 0x20) = iVar6;
                     if (0 < iVar6) {
                         *(u8 *)(a0 + 2) = 1;

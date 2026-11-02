@@ -12158,7 +12158,7 @@ int input_uses_get_field_24_0dc7e8(int a0, u32 *a1, u32 *a2, u32 a3) {
     auStack_1c[0] = 0;
     uStack_20 = 0;
     ar5_00 = a1;
-    iVar1 = input_calls_test_100d5c(a1);
+    iVar1 = input_input_helper_100d5c(a1);
     if ((iVar1 == 1) && (iVar1 = *(int *)(a0 + 0x9d8), iVar1 == 0)) {
         ar4_00 = list_node_next_wrap_0da588(a0 + 0xa4);
         iVar2 = get_field_300_0bf154(a0 + 0xa4);

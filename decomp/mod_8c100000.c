@@ -813,17 +813,17 @@ u32 input_input_helper_100ce8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * input_calls_test_100d5c  0x8c100d5c
- * area name: sits between input functions (same compilation unit); behaviour name: its callees mostly do: calls_test
+ * input_input_helper_100d5c  0x8c100d5c
+ * area name: sits between input functions (same compilation unit); behaviour name: mostly calls input functions
  * called by: input_uses_get_field_24_0dc7e8
  */
-u32 input_calls_test_100d5c(int a0) {
+u32 input_input_helper_100d5c(int a0) {
     int iVar1;
 
     if (*(int *)(0x590 + a0) == 0) {
-        iVar1 = input_calls_test_101510(a0, 5);
-        if (((iVar1 == 1) || (iVar1 = input_calls_test_101510(a0, 10), iVar1 == 1)) ||
-            (iVar1 = input_calls_test_101510(a0, 0xf), iVar1 == 1)) {
+        iVar1 = input_detect_circle_gesture(a0, 5);
+        if (((iVar1 == 1) || (iVar1 = input_detect_circle_gesture(a0, 10), iVar1 == 1)) ||
+            (iVar1 = input_detect_circle_gesture(a0, 0xf), iVar1 == 1)) {
             *(u32 *)(0x590 + a0) = 1;
         }
     } else {
@@ -1023,7 +1023,7 @@ int input_sound_101188(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * get_field_18e_div30  0x8c1011b0
  * the u16 at +0x18e divided by 30 (frames to seconds)
- * called by: CAnimal_m2_02573c, Class_12acc8_m1_09f470, game_vec_02fcc4
+ * called by: CAnimal_m2_02573c, Class_12acc8_m1_09f470, game_target_in_view_box
  */
 u32 get_field_18e_div30(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1130,11 +1130,11 @@ u32 input_recent_activity_sustained(int a0) {
 }
 
 /*
- * input_test_1013f4  0x8c1013f4
- * area name: sits between input functions (same compilation unit); behaviour name: returns the result of a comparison
- * called by: input_calls_test_101510
+ * input_quadrant_seq_up  0x8c1013f4
+ * steps the quadrant sequence counter *a1 for quadrants 0, 1, 2, 3 in order; returns 4 when the sequence completes and
+ * 0 when it breaks called by: input_detect_circle_gesture
  */
-int input_test_1013f4(u32 unused_a0, int *a1, int a2) {
+int input_quadrant_seq_up(u32 unused_a0, int *a1, int a2) {
     int iVar1;
 
     iVar1 = *a1;
@@ -1185,11 +1185,11 @@ int input_test_1013f4(u32 unused_a0, int *a1, int a2) {
 }
 
 /*
- * input_test_101480  0x8c101480
- * area name: sits between input functions (same compilation unit); behaviour name: returns the result of a comparison
- * called by: input_calls_test_101510
+ * input_quadrant_seq_down  0x8c101480
+ * steps the quadrant sequence counter *a1 for quadrants 3, 2, 1, 0 in order; returns 4 when the sequence completes and
+ * 0 when it breaks called by: input_detect_circle_gesture
  */
-int input_test_101480(u32 unused_a0, int *a1, int a2) {
+int input_quadrant_seq_down(u32 unused_a0, int *a1, int a2) {
     int iVar1;
 
     iVar1 = *a1;
@@ -1241,11 +1241,11 @@ int input_test_101480(u32 unused_a0, int *a1, int a2) {
 }
 
 /*
- * input_calls_test_101510  0x8c101510
- * area name: sits between input functions (same compilation unit); behaviour name: its callees mostly do: test
- * called by: input_calls_test_100d5c
+ * input_detect_circle_gesture  0x8c101510
+ * walks the recent stick samples by step a1 and returns 1 once two full quadrant sequences in either direction are seen
+ * called by: input_input_helper_100d5c
  */
-u32 input_calls_test_101510(int a0, u32 a1) {
+u32 input_detect_circle_gesture(int a0, u32 a1) {
     char cVar1;
     char cVar2;
     char cVar3;
@@ -1273,7 +1273,7 @@ u32 input_calls_test_101510(int a0, u32 a1) {
         if ((cVar1 < cVar3) && (cVar4 < cVar2)) {
             ar6_00 = 0;
         LAB_8c1015f0:
-            input_test_1013f4(a0, aiStack_24, ar6_00);
+            input_quadrant_seq_up(a0, aiStack_24, ar6_00);
             if (aiStack_24[0] == 4) {
                 iStack_28 = iStack_28 + 1;
                 aiStack_24[0] = 0;
@@ -1281,7 +1281,7 @@ u32 input_calls_test_101510(int a0, u32 a1) {
                     return 1;
                 }
             }
-            input_test_101480(a0, &iStack_2c, ar6_00);
+            input_quadrant_seq_down(a0, &iStack_2c, ar6_00);
             if (iStack_2c == 4) {
                 iStack_30 = iStack_30 + 1;
                 iStack_2c = 0;
@@ -3257,7 +3257,7 @@ u32 Higyo_choose_status_event(int a0, u32 a1, int *a2, char *a3) {
             if (((iVar2 == 5) && (*(char *)(a0 + 0x855) == '\0')) &&
                 (iVar2 = get_field_140_025f70(a2[1], uVar3), iVar2 == 0)) {
                 format_int_at_10(0x8c35468c, (int)*(char *)(a0 + 0x855), piVar4, a3);
-                iVar2 = game_vec_02fcc4(a0, a2, piVar4, a3);
+                iVar2 = game_target_in_view_box(a0, a2, piVar4, a3);
                 if (iVar2 == 0) {
                     talk_start_line(a0 + 0x9c, 10, 0, "STATUS_UNCONSIDERED");
                 } else {
@@ -4010,7 +4010,7 @@ int Higyo_attention_events(code *a0, code *a1, code *a2, char *a3) {
             uVar1 = get_field_39_s8(*(int *)(a2 + 0xc));
             if ((((char)uVar1 < '\x03') &&
                  (iVar3 = talk_pick_highest_active(*(int *)(a2 + 4), a1, pcVar6), iVar3 == -1)) &&
-                ((a1 = a2, iVar3 = game_vec_02fcc4(a0, a2, pcVar6, a3),
+                ((a1 = a2, iVar3 = game_target_in_view_box(a0, a2, pcVar6, a3),
                   iVar3 == 1 && ((iVar3 = get_field_4_on_field_d8(*(u32 *)(*(int *)(a2 + 0x18) + 0x7cc), a1, pcVar6),
                                   iVar3 == 0 && (iVar3 = *(int *)(a0 + 0x878), iVar3 == 0)))))) {
                 a1 = get_field_44_s8;
@@ -4176,7 +4176,7 @@ LAB_8c107c10:
     }
     pcVar4 = (code *)get_field_44_s8(*(int *)(a2 + 0xc), *(int *)(a2 + 0xc), pcVar6, a3);
     if ((char)pcVar4 == '\0') {
-        iVar3 = game_vec_02fcc4(a0, a2, pcVar6, a3);
+        iVar3 = game_target_in_view_box(a0, a2, pcVar6, a3);
         pcVar4 = (code *)0x1;
         if (iVar3 != 1) {
             if (*(int *)(a0 + 900) == -1) {
@@ -4196,7 +4196,8 @@ LAB_8c107c10:
         }
     }
     uVar1 = get_field_44_s8(*(int *)(a2 + 0xc), pcVar4, pcVar6, a3);
-    if (((char)uVar1 == '\0') && (pcVar4 = (code *)game_vec_02fcc4(a0, a2, pcVar6, a3), pcVar4 == (code *)0x1)) {
+    if (((char)uVar1 == '\0') &&
+        (pcVar4 = (code *)game_target_in_view_box(a0, a2, pcVar6, a3), pcVar4 == (code *)0x1)) {
         pcVar4 = (code *)0x1;
         set_field_44_u8(*(int *)(a2 + 0xc), 1);
     }
@@ -4204,7 +4205,7 @@ LAB_8c107eb4:
     uVar1 = get_field_44_s8(*(int *)(a2 + 0xc), pcVar4, pcVar6, get_field_44_s8);
     pcVar5 = (char *)(int)(char)uVar1;
     pcVar6 = (code *)(int)(char)uVar1;
-    if ((pcVar6 == (code *)0x1) && (pcVar4 = a2, iVar3 = game_vec_02fcc4(a0, a2, 1, pcVar5), iVar3 == 1)) {
+    if ((pcVar6 == (code *)0x1) && (pcVar4 = a2, iVar3 = game_target_in_view_box(a0, a2, 1, pcVar5), iVar3 == 1)) {
         pcVar4 = *(code **)(a0 + 900);
         if (pcVar4 == (code *)0xffffffff) {
             set_field_770(a0 + 0x9c, 0, pcVar6, pcVar5);
@@ -5042,7 +5043,7 @@ int Higyo_life_status(int a0, int *a1, int *a2, u8 *a3) {
     piVar3 = a1;
     piVar5 = a2;
     iVar1 = get_field_124_027930(a2[2], a1, a2, a3);
-    if ((iVar1 != 2) && (piVar3 = a2, iVar1 = game_vec_02fcc4(a0, a2, piVar5, a3), iVar1 == 1)) {
+    if ((iVar1 != 2) && (piVar3 = a2, iVar1 = game_target_in_view_box(a0, a2, piVar5, a3), iVar1 == 1)) {
         uVar2 = get_field_a4_s16(a2[6], piVar3);
         piVar3 = (int *)0x3c;
         iVar1 = libgcc_divide_helper_0101e4(uVar2 & 0xffff, 0x3c);
@@ -5102,7 +5103,7 @@ int Higyo_life_status(int a0, int *a1, int *a2, u8 *a3) {
         iVar1 = (**(code **)(0x11c + *a1))(a1, 3, piVar5, a3);
         if (((((iVar1 == 1) && (iVar1 = *(int *)(0x384 + a0), iVar1 == -1)) &&
               (iVar1 = 3, *(char *)(0x98 + a0) < '\x04')) &&
-             ((piVar3 = a2, iVar1 = game_vec_02fcc4(a0, a2, piVar5, a3),
+             ((piVar3 = a2, iVar1 = game_target_in_view_box(a0, a2, piVar5, a3),
                iVar1 == 1 &&
                    (iVar1 = (*(code *)(&get_field_4_on_field_d8))(*(u32 *)(0x7cc + a2[6]), piVar3, piVar5, a3),
                     iVar1 == 0)))) &&

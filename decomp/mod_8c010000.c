@@ -103,8 +103,9 @@ u32 array_destruct_backwards(int a0, code *a1, u32 a2, u32 a3) {
 /*
  * vec_new_array  0x8c010120
  * constructs count elements of size bytes with ctor; on failure destroys the built ones with dtor (pairs with
- * vec_delete_array) called by: CAnimal_uses_set_field_b_s8_02b9a8, CMushroomerEgg_ctor, CSquid_Init, Class_12b3b8_ctor,
- * Class_12b580_ctor, Class_12b580_uses_Vec3_ctor_zero_0d7f18, Class_12b758_ctor, Class_12b930_ctor (+25 more)
+ * vec_delete_array) called by: CMushroomerEgg_ctor, CSquid_Init, Class_12b3b8_ctor, Class_12b580_ctor,
+ * Class_12b580_uses_Vec3_ctor_zero_0d7f18, Class_12b758_ctor, Class_12b930_ctor,
+ * Class_12b930_uses_Class_129920_ctor_0d0b58 (+25 more)
  */
 u32 vec_new_array(int a0, code *a1, code *a2, int a3, u32 s0) {
     int iVar1;
@@ -1179,9 +1180,8 @@ int libgcc_divide_helper_0101e4(u32 a0, u32 a1) {
 
 /*
  * libgcc_divide_helper_010284  0x8c010284
- * called by: CAnimal_uses_table13019c_find_row_034d48, CGame_draw_0c3e78, CGame_uses_libgcc_divide_helper_0cc784,
- * CProlog_uses_libgcc_divide_helper_0cd3c8, FrogMan_react_tap, Higyo_react_tap, game_draw_0c3530,
- * game_select_intro_or_ending (+1 more)
+ * called by: CGame_draw_0c3e78, CGame_uses_libgcc_divide_helper_0cc784, CProlog_uses_libgcc_divide_helper_0cd3c8,
+ * FrogMan_react_tap, Higyo_react_tap, game_draw_0c3530, game_select_intro_or_ending, startup_warning_check (+1 more)
  */
 u32 libgcc_divide_helper_010284(u32 a0, int a1, u32 a2) {
     u32 uVar1;
@@ -2952,10 +2952,9 @@ int libgcc_divide_helper_01031c(u32 a0, u32 a1, u32 a2) {
 
 /*
  * libgcc_divide_helper_0103d0  0x8c0103d0
- * called by: CAnimal_uses_table13019c_find_row_034d48, CGame_uses_libgcc_divide_helper_0cc784,
- * CProlog_uses_libgcc_divide_helper_0cd3c8, Class_12bea8_uses_libgcc_divide_helper_0d7b60,
- * game_uses_libgcc_divide_helper_02d854, game_uses_libgcc_divide_helper_0ba3e0, game_uses_rand_0d8890, game_vec_0d8aa0
- * (+2 more)
+ * called by: CGame_uses_libgcc_divide_helper_0cc784, CProlog_uses_libgcc_divide_helper_0cd3c8,
+ * Class_12bea8_uses_libgcc_divide_helper_0d7b60, game_uses_libgcc_divide_helper_02d854,
+ * game_uses_libgcc_divide_helper_0ba3e0, game_uses_rand_0d8890, game_vec_0d8aa0, random_wait_reset_on_period (+2 more)
  */
 u32 libgcc_divide_helper_0103d0(u32 a0, int a1) {
     u32 uVar1;
@@ -12525,7 +12524,7 @@ u32 set_flag_10_28(int a0) {
 /*
  * object_dtor_delete  0x8c014a34
  * called by: CAnimal_m0_025688, CAnimal_release_0253ec, CHerb_vec_06d838, COutside_Create, CSoilTank_Create,
- * CSquidLine_vec_085c3c, CWaterTank_CreateStage, CWaterTank_uses_get_field_300_0e0f48 (+123 more)
+ * CSquidLine_vec_036adc, CSquidLine_vec_085c3c, CWaterTank_CreateStage (+123 more)
  */
 int object_dtor_delete(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -18635,7 +18634,7 @@ u32 Class_1299f8_m3_019f00(int a0, u32 a1, u32 a2, u32 a3) {
     Vec3_sub(uVar2, auStack_3c, a2, a3, auStack_58);
     Vec3_assign(&uStack_1c, auStack_58, a2, a3);
     Vec3_dtor(auStack_58, 0xffffffff, a2, a3);
-    Class_1299f8_vec_023c30(&uStack_1c, a0 + 0x80, a2, a3, (int)&uStack_6c + 4);
+    Vec3_div_scalar_out(&uStack_1c, a0 + 0x80, a2, a3, (int)&uStack_6c + 4);
     Vec3_assign(&uStack_2c, (int)&uStack_6c + 4, a2, a3);
     ar5_00 = 0xffffffff;
     Vec3_dtor((int)&uStack_6c + 4, 0xffffffff, a2, a3);
