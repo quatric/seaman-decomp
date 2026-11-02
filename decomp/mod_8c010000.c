@@ -5955,9 +5955,8 @@ int libc_test_0105c4(void) {
 
 /*
  * libgcc_divide_helper_010614  0x8c010614
- * called by: ADXT_uses_libgcc_divide_helper_2647f4, alt_entry_200c08, cri_uses_libgcc_divide_helper_260062,
- * cri_uses_libgcc_divide_helper_260198, date_to_bcd8, day_of_week, game_sound_26b132,
- * game_uses_libgcc_divide_helper_26b64e (+14 more)
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4, SJRBF_GetChunk_like, SJRBF_UngetChunk_like, alt_entry_200c08,
+ * cri_uses_libgcc_divide_helper_260062, cri_uses_libgcc_divide_helper_260198, date_to_bcd8, day_of_week (+14 more)
  */
 int libgcc_divide_helper_010614(u32 unused_a0, u32 a1) {
     u32 uVar1;
@@ -7653,9 +7652,8 @@ u32 libgcc_divide_helper_0106dc(u32 a0, u32 a1) {
 /*
  * switch_jump  0x8c010794
  * compiler switch helper: jumps through the table at 0x8c0107f4
- * called by: alt_entry_2359ae, alt_entry_26570c, date_to_rtc_seconds, game_uses_sr_get_imask_c_26bbe2,
- * game_uses_sr_get_imask_c_26bcaa, game_uses_switch_jump_26bb16, game_uses_switch_jump_26bd86, gfx_2d_polyline (+44
- * more)
+ * called by: SJUNI_GetChunk_like, SJUNI_PutChunk_like, SJUNI_UngetChunk_like, alt_entry_2359ae, alt_entry_26570c,
+ * date_to_rtc_seconds, game_uses_switch_jump_26bd86, gfx_2d_polyline (+44 more)
  */
 u32 switch_jump(u32 a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
@@ -11033,7 +11031,7 @@ u32 decimal_round_digits(char *a0, int a1) {
 
 /*
  * abs  0x8c013adc
- * called by: CProlog_uses_abs_0b93c0, asr_uses_abs_12381c, game_sound_022128, pack_step_from_value,
+ * called by: CProlog_classify_day_period, asr_uses_abs_12381c, game_sound_022128, pack_step_from_value,
  * pack_uses_abs_021ec8, se_play_3d
  */
 int abs(int a0) {

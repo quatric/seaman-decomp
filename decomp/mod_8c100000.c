@@ -2034,7 +2034,7 @@ u32 report_error_message(u32 a0, u32 a1, int a2, u32 a3) {
 /*
  * malloc_thunk_wrap_10287c  0x8c10287c
  * only calls malloc_thunk
- * called by: game_uses_free_ptr_and_clear_0b95a0
+ * called by: flashrom_game_block_date_byte
  */
 u32 malloc_thunk_wrap_10287c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -2046,7 +2046,7 @@ u32 malloc_thunk_wrap_10287c(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * free_ptr_and_clear  0x8c10289c
  * frees *a0 if set and clears it
- * called by: game_uses_free_ptr_and_clear_0b95a0
+ * called by: flashrom_game_block_date_byte
  */
 u32 free_ptr_and_clear(int *a0, u32 a1, u32 a2, u32 a3) {
     if (*a0 != 0) {

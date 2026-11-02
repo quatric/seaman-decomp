@@ -4997,7 +4997,7 @@ int game_copy_0b7a54(int a0) {
     *(u16 *)(0xb0 + a0) = 0;
     *(u16 *)(0xb2 + a0) = 0;
     *(u8 *)(0xb4 + a0) = 0;
-    sh4_init_fields_0b936c(a0);
+    game_init_fields_0b936c(a0);
     return a0;
 }
 
@@ -5242,11 +5242,11 @@ u32 creature_age_clock_tick(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * sh4_init_fields_0b936c  0x8c0b936c
- * area name: sits between sh4 functions (same compilation unit); behaviour name: writes 6 members
+ * game_init_fields_0b936c  0x8c0b936c
+ * area name: game code; nothing names its area yet; behaviour name: writes 6 members
  * called by: Class_12b388_uses_Class_129808_draw_0c5cb4, game_copy_0b7a54
  */
-int sh4_init_fields_0b936c(u32 *a0) {
+int game_init_fields_0b936c(u32 *a0) {
     int iVar1;
 
     *(u8 *)(0xa1 + (int)a0) = g_8c436548;
@@ -5261,11 +5261,11 @@ int sh4_init_fields_0b936c(u32 *a0) {
 }
 
 /*
- * CProlog_uses_abs_0b93c0  0x8c0b93c0
- * area name: only called from CProlog methods; behaviour name: its main named callee is abs
- * called by: CProlog_Ready, game_uses_abs_0f803c
+ * CProlog_classify_day_period  0x8c0b93c0
+ * sums eight counters, finds the largest, compares it and the day periods of two stored times with the period at +0xbc
+ * and returns a class 0..4 called by: CProlog_Ready, game_uses_CProlog_classify_day_period_0f803c
  */
-int CProlog_uses_abs_0b93c0(int a0, u32 a1, u32 a2, u32 a3) {
+int CProlog_classify_day_period(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -5316,23 +5316,23 @@ int CProlog_uses_abs_0b93c0(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_free_ptr_and_clear_0b951c  0x8c0b951c
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: uses_free_ptr_and_clear
- * called by: game_uses_abs_0f803c
- * strings: "T39403M   "; "T39404M   "
+ * game_uses_flashrom_game_block_date_byt_0b951c  0x8c0b951c
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is
+ * flashrom_game_block_date_byte called by: game_uses_CProlog_classify_day_period_0f803c strings: "T39403M   "; "T39404M
+ * "
  */
-u32 game_uses_free_ptr_and_clear_0b951c(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 game_uses_flashrom_game_block_date_byt_0b951c(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u8 auStack_18[16];
 
     uVar2 = 10;
     (*(code *)(&memmove))(auStack_18, "T39403M   ", 10, a3);
-    iVar1 = game_uses_free_ptr_and_clear_0b95a0(unused_a0, auStack_18, uVar2, a3);
+    iVar1 = flashrom_game_block_date_byte(unused_a0, auStack_18, uVar2, a3);
     if (iVar1 < 1) {
         uVar2 = 10;
         (*(code *)(&memmove))(auStack_18, "T39404M   ", 10, a3);
-        iVar1 = game_uses_free_ptr_and_clear_0b95a0(unused_a0, auStack_18, uVar2, a3);
+        iVar1 = flashrom_game_block_date_byte(unused_a0, auStack_18, uVar2, a3);
         if (iVar1 < 1) {
             uVar2 = 0;
         } else {
@@ -5345,11 +5345,11 @@ u32 game_uses_free_ptr_and_clear_0b951c(u32 unused_a0, u32 unused_a1, u32 unused
 }
 
 /*
- * game_uses_free_ptr_and_clear_0b95a0  0x8c0b95a0
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is free_ptr_and_clear
- * called by: game_uses_free_ptr_and_clear_0b951c
+ * flashrom_game_block_date_byte  0x8c0b95a0
+ * opens the flash game partition, reads the block with the 10-byte key a1 and returns one byte of its stored date (0
+ * when missing) called by: game_uses_flashrom_game_block_date_byt_0b951c
  */
-u32 game_uses_free_ptr_and_clear_0b95a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 flashrom_game_block_date_byte(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 *puVar2;
     int iVar3;
@@ -6437,7 +6437,7 @@ u32 CProlog_Ready(int a0, u32 *a1) {
     uVar3 = 0x8c431ab8;
     copy_record_56(a1 + 0xb, 0x8c431ab8);
     CProlog_record_visit_date(a1, uVar3, uVar4, uVar2);
-    uVar3 = CProlog_uses_abs_0b93c0(a1, 0, uVar4, uVar2);
+    uVar3 = CProlog_classify_day_period(a1, 0, uVar4, uVar2);
     a1[0x30] = uVar3;
     uVar4 = CProlog_uses_free_sys_0b96e4(a1, &g_8c431a7c, uVar4, uVar2);
     a1[0x31] = uVar4;
@@ -8288,7 +8288,7 @@ u32 game_select_intro_or_ending(int a0, int a1, u32 unused_a2, char *a3) {
         g_8c43676f = '\0';
         g_8c436770 = '\0';
         g_8c436771 = '\0';
-        game_uses_abs_0f803c(0x8c35468c, a1, &g_8c43676c, a3);
+        game_uses_CProlog_classify_day_period_0f803c(0x8c35468c, a1, &g_8c43676c, a3);
         for (iVar2 = 0; iVar2 < 8; iVar2 = iVar2 + 1) {
             puVar4 = &g_8c43670c;
             g_8c43670c = (u32) * (u8 *)(a1 + iVar2 + 4) + g_8c43670c;

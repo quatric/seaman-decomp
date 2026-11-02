@@ -9455,7 +9455,7 @@ u32 gfxlib_draw_234d68(u32 a0, int a1, u8 *a2, u8 *a3) {
 /*
  * gfxlib_draw_234fd0  0x8c234fd0
  * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: game_draw_015054, game_draw_0d2c84, game_list_0a98cc, list_draw_node_points, static_init_27def0
+ * called by: game_draw_015054, game_draw_0d2c84, game_draw_point_list, list_draw_node_points, static_init_27def0
  */
 u32 gfxlib_draw_234fd0(u32 a0, int a1, u32 a2, u32 *a3) {
     u32 uVar1;

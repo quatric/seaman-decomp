@@ -9958,7 +9958,7 @@ int flashrom_calls_calc_1f6f06(u32 a0, u32 a1) {
 /*
  * flashrom_open_game_partition  0x8c1f6f20
  * stores the request parameters, selects partition 3 and, the first time, reads the disc info and writes its record
- * called by: CProlog_uses_free_sys_0b96e4, game_uses_free_ptr_and_clear_0b95a0
+ * called by: CProlog_uses_free_sys_0b96e4, flashrom_game_block_date_byte
  */
 int flashrom_open_game_partition(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -10106,7 +10106,7 @@ u32 flashrom_uses_flashrom_open_partition_1f70c0(void) {
 /*
  * flashrom_calc_1f710c  0x8c1f710c
  * area name: sits between flashrom functions (same compilation unit); behaviour name: integer arithmetic on its
- * arguments called by: CProlog_uses_free_sys_0b96e4, game_uses_free_ptr_and_clear_0b95a0
+ * arguments called by: CProlog_uses_free_sys_0b96e4, flashrom_game_block_date_byte
  */
 u32 flashrom_calc_1f710c(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     g_8c273a10 = 0;
@@ -10766,8 +10766,8 @@ u32 flashrom_uses_flashrom_find_game_record_1f7b06(u32 unused_a0, u32 unused_a1,
 /*
  * flashrom_read_game_block  0x8c1f7b64
  * finds the game's record in flash ROM partition 3 and copies its four 0x3c-byte blocks (or the cached copy) into a1
- * called by: CProlog_uses_free_sys_0b96e4, flashrom_uses_flashrom_write_block_retry_1f7558,
- * game_uses_free_ptr_and_clear_0b95a0
+ * called by: CProlog_uses_free_sys_0b96e4, flashrom_game_block_date_byte,
+ * flashrom_uses_flashrom_write_block_retry_1f7558
  */
 u32 flashrom_read_game_block(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -11485,7 +11485,7 @@ u32 date_to_rtc_seconds(u16 *a0, int *a1, u32 a2) {
 /*
  * rtc_seconds_to_date  0x8c1f8300
  * converts RTC seconds a0 into the date a1: year, month, day, hour, minute, second and weekday
- * called by: game_state_switch_0fcd2c, game_uses_free_ptr_and_clear_0b95a0, rtc_get_date
+ * called by: flashrom_game_block_date_byte, game_state_switch_0fcd2c, rtc_get_date
  */
 u32 rtc_seconds_to_date(u32 a0, u16 *a1) {
     u32 uVar1;

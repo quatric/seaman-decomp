@@ -2304,3 +2304,17 @@
 8c268a24	mwRna_reset_all	stops and destroys every live RNA handle of the eight, clears the handle table and transfer buffers, fills the silence buffer with 0x80
 8c268b70	mwRnaCreate_like	creates an RNA output handle for one or two AICA channels a0[], set to 16-bit 44100 Hz
 8c2693ce	mwRna_fill_transfer_like	works out how much of each channel can be sent this frame and copies it into the transfer buffer
+8c0a98cc	game_draw_point_list	draws each of the a0+0x230 points stored at a0+0x234 (16 bytes apart) through gfxlib_draw_234fd0
+8c0b93c0	CProlog_classify_day_period	sums eight counters, finds the largest, compares it and the day periods of two stored times with the period at +0xbc and returns a class 0..4
+8c0b95a0	flashrom_game_block_date_byte	opens the flash game partition, reads the block with the 10-byte key a1 and returns one byte of its stored date (0 when missing)
+8c0cf39c	game_grid5x5_fall_tick	runs the 5x5 grid of falling cells: starts them, steps the active ones and returns 2 when all have settled
+8c0d75a0	Class_12b930_point_in_bounds_like	tests point a1 against the bounds returned by the object's +0x38 virtual
+8c0e8598	game_items_create_3x4	creates one item for each used record of the 3x4 table a1 (0x80 bytes each) and counts them at +0x410
+8c0e96b8	game_obj_reset_fields	clears the object's state fields and small arrays, setting +0xac to 4
+8c26b64e	SJRBF_GetChunk_like	takes up to a2 bytes of line a1 (0 free, 1 data) from ring buffer a0 into chunk a3, wrapping its position
+8c26b720	SJRBF_PutChunk_like	returns chunk a2 to line a1 of ring buffer a0; for data it also mirrors bytes across the wrap area
+8c26b7f4	SJRBF_UngetChunk_like	gives chunk a2 back to the front of line a1 of ring buffer a0 when it was the last one taken
+8c26b8c8	SJRBF_IsGetChunk_like	stores in *a3 how much of line a1 of ring buffer a0 could be taken now, returning whether all a2 bytes fit
+8c26bb16	SJUNI_GetChunk_like	takes up to a2 bytes from the first chunk on line a1 (0..3) of a unified stream joint, splitting it when allowed
+8c26bbe2	SJUNI_PutChunk_like	appends chunk a2 to the tail of line a1 (0..3), merging it into the last chunk when contiguous
+8c26bcaa	SJUNI_UngetChunk_like	pushes chunk a2 onto the head of line a1 (0..3), merging it into the first chunk when contiguous

@@ -1514,11 +1514,11 @@ u32 game_uses_input_track_r_hold_0e1f90(int a0, u32 *a1, u8 *a2, u32 a3) {
         if (*(int *)(a0 + 0x9d8) == a0 + 0x22d48) {
             iVar1 = stick_x_right_half(a1);
             if (iVar1 == 1) {
-                game_uses_set_field_164_0d74cc(a0 + 0x22d48);
+                Class_12b930_uses_set_field_164_0d74cc(a0 + 0x22d48);
             } else {
                 iVar1 = stick_x_left_half(a1);
                 if (iVar1 == 1) {
-                    game_uses_set_field_164_0d74cc(a0 + 0x22d48);
+                    Class_12b930_uses_set_field_164_0d74cc(a0 + 0x22d48);
                 }
             }
             if (cVar13 == '\0') {
@@ -3711,7 +3711,7 @@ u32 game_uses_game_clear_node_and_item_lis_0e51ac(int a0, u32 a1, u32 a2, u32 a3
 
     cVar1 = '\0';
     game_clear_node_and_item_lists(a0, a1, a2, a3);
-    game_fill_loop_0e96b8(a0 + 0xf4c);
+    game_obj_reset_fields(a0 + 0xf4c);
     game_vec_0d6920(a0 + 0xa68, a1, a2, a3);
     (**(code **)(*(int *)(a0 + 0x9e8) + 0x10))((int *)(a0 + 0x9e8), a1, a2, a3);
     if (cVar1 == '\0') {
@@ -4822,7 +4822,7 @@ u32 game_sound_0e6d80(int a0, u32 a1, u32 a2, u32 a3) {
  */
 u32 game_uses_game_clear_node_and_item_lis_0e6dc4(int a0, u32 a1, u32 a2, u32 a3) {
     game_clear_node_and_item_lists(a0, a1, a2, a3);
-    game_fill_loop_0e96b8(a0 + 0xf4c);
+    game_obj_reset_fields(a0 + 0xf4c);
     game_vec_0d6920(a0 + 0xa68, a1, a2, a3);
     (**(code **)(*(int *)(a0 + 0x9e8) + 0x10))((int *)(a0 + 0x9e8), a1, a2, a3);
     game_copy_0d92b0(a0 + 0x10dc);
@@ -5745,10 +5745,10 @@ u32 game_test_0e8574(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_fill_loop_0e8598  0x8c0e8598
- * area name: game code; nothing names its area yet; behaviour name: a loop that writes memory
+ * game_items_create_3x4  0x8c0e8598
+ * creates one item for each used record of the 3x4 table a1 (0x80 bytes each) and counts them at +0x410
  */
-u32 game_fill_loop_0e8598(int a0, int a1, u32 unused_a2, u32 a3) {
+u32 game_items_create_3x4(int a0, int a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -6679,12 +6679,12 @@ u32 static_init_vec3s_437520(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12bb08_calls_fill_loop_0e91b8  0x8c0e91b8
- * area name: only called from Class_12bb08 methods; behaviour name: its callees mostly do: fill_loop
+ * Class_12bb08_uses_game_obj_reset_fields_0e91b8  0x8c0e91b8
+ * area name: only called from Class_12bb08 methods; behaviour name: its main named callee is game_obj_reset_fields
  * called by: Class_12bb08_ctor
  */
-u8 *Class_12bb08_calls_fill_loop_0e91b8(u8 *a0) {
-    game_fill_loop_0e96b8(a0);
+u8 *Class_12bb08_uses_game_obj_reset_fields_0e91b8(u8 *a0) {
+    game_obj_reset_fields(a0);
     a0[0x39] = 0;
     a0[0x3c] = 0;
     a0[0x3b] = 0;
@@ -6870,12 +6870,12 @@ int dec_counter_be(int a0) {
 }
 
 /*
- * game_fill_loop_0e96b8  0x8c0e96b8
- * area name: game code; nothing names its area yet; behaviour name: a loop that writes memory
- * called by: Class_12bb08_calls_fill_loop_0e91b8, game_scene_reset, game_uses_game_clear_node_and_item_lis_0e51ac,
- * game_uses_game_clear_node_and_item_lis_0e6dc4
+ * game_obj_reset_fields  0x8c0e96b8
+ * clears the object's state fields and small arrays, setting +0xac to 4
+ * called by: Class_12bb08_uses_game_obj_reset_fields_0e91b8, game_scene_reset,
+ * game_uses_game_clear_node_and_item_lis_0e51ac, game_uses_game_clear_node_and_item_lis_0e6dc4
  */
-u32 game_fill_loop_0e96b8(int a0) {
+u32 game_obj_reset_fields(int a0) {
     int iVar1;
     int iVar2;
 

@@ -3807,8 +3807,8 @@ u32 Class_12aeec_uses_gfx_set_color4_0a481c(int a0) {
     gfx_draw_motion(uVar1, uVar2, ar6_00, ar7_00, ain0);
     matrix_pop_n(1);
     gfx_set_color4_4aa52c(&g_8c13b07c);
-    game_list_0a98cc(a0 + 0x53c, uVar2, ar6_00, ar7_00, ain0, SUB84(dVar4, 0), (int)((u64)dVar4 >> 0x20), s12, uVar1,
-                     in_stack_ffffffe0, in_stack_ffffffe4, in_stack_ffffffe8, in_stack_ffffffec);
+    game_draw_point_list(a0 + 0x53c, uVar2, ar6_00, ar7_00, ain0, SUB84(dVar4, 0), (int)((u64)dVar4 >> 0x20), s12,
+                         uVar1, in_stack_ffffffe0, in_stack_ffffffe4, in_stack_ffffffe8, in_stack_ffffffec);
     uVar1 = object_dtor_delete(&stack0xffffffec, 0xffffffff, ar6_00, ar7_00);
     return uVar1;
 }
@@ -7853,11 +7853,11 @@ LAB_8c0a984a:
 }
 
 /*
- * game_list_0a98cc  0x8c0a98cc
- * area name: game code; nothing names its area yet; behaviour name: mostly calls list functions
+ * game_draw_point_list  0x8c0a98cc
+ * draws each of the a0+0x230 points stored at a0+0x234 (16 bytes apart) through gfxlib_draw_234fd0
  * called by: Class_12aeec_uses_gfx_set_color4_0a481c
  */
-u32 game_list_0a98cc(int a0) {
+u32 game_draw_point_list(int a0) {
     u64 *puVar1;
     u32 uVar2;
     int iVar3;

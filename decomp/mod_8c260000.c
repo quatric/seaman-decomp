@@ -14555,8 +14555,7 @@ LAB_8c26b4d2:
 /*
  * sr_get_imask_b  0x8c26b4f4
  * another copy of sr_get_imask
- * called by: game_uses_libgcc_divide_helper_26b64e, game_uses_libgcc_divide_helper_26b7f4,
- * game_uses_sr_get_imask_b_26b720, game_uses_sr_get_imask_b_26b8c8
+ * called by: SJRBF_GetChunk_like, SJRBF_IsGetChunk_like, SJRBF_PutChunk_like, SJRBF_UngetChunk_like
  */
 u32 sr_get_imask_b(void) {
     u8 in_IMASK;
@@ -14569,8 +14568,7 @@ u32 sr_get_imask_b(void) {
 /*
  * sr_with_imask_b  0x8c26b50c
  * another copy of sr_with_imask
- * called by: game_uses_libgcc_divide_helper_26b64e, game_uses_libgcc_divide_helper_26b7f4,
- * game_uses_sr_get_imask_b_26b720, game_uses_sr_get_imask_b_26b8c8
+ * called by: SJRBF_GetChunk_like, SJRBF_IsGetChunk_like, SJRBF_PutChunk_like, SJRBF_UngetChunk_like
  */
 u32 sr_with_imask_b(u32 unused_a0, u32 a1) {
     u8 in_MD;
@@ -14784,11 +14782,10 @@ u32 game_test_26b600(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_libgcc_divide_helper_26b64e  0x8c26b64e
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is
- * libgcc_divide_helper_010614
+ * SJRBF_GetChunk_like  0x8c26b64e
+ * takes up to a2 bytes of line a1 (0 free, 1 data) from ring buffer a0 into chunk a3, wrapping its position
  */
-u32 game_uses_libgcc_divide_helper_26b64e(int a0, int a1, int a2, int *a3) {
+u32 SJRBF_GetChunk_like(int a0, int a1, int a2, int *a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -14838,10 +14835,10 @@ u32 game_uses_libgcc_divide_helper_26b64e(int a0, int a1, int a2, int *a3) {
 }
 
 /*
- * game_uses_sr_get_imask_b_26b720  0x8c26b720
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is sr_get_imask_b
+ * SJRBF_PutChunk_like  0x8c26b720
+ * returns chunk a2 to line a1 of ring buffer a0; for data it also mirrors bytes across the wrap area
  */
-u32 game_uses_sr_get_imask_b_26b720(int a0, int a1, int *a2, u32 a3) {
+u32 SJRBF_PutChunk_like(int a0, int a1, int *a2, u32 a3) {
     u32 in_r0;
     u32 uVar1;
     int *a6;
@@ -14884,11 +14881,10 @@ u32 game_uses_sr_get_imask_b_26b720(int a0, int a1, int *a2, u32 a3) {
 }
 
 /*
- * game_uses_libgcc_divide_helper_26b7f4  0x8c26b7f4
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is
- * libgcc_divide_helper_010614
+ * SJRBF_UngetChunk_like  0x8c26b7f4
+ * gives chunk a2 back to the front of line a1 of ring buffer a0 when it was the last one taken
  */
-u32 game_uses_libgcc_divide_helper_26b7f4(int a0, int a1, int *a2, u32 a3, u32 ain0) {
+u32 SJRBF_UngetChunk_like(int a0, int a1, int *a2, u32 a3, u32 ain0) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -14933,10 +14929,10 @@ LAB_8c26b8b0:
 }
 
 /*
- * game_uses_sr_get_imask_b_26b8c8  0x8c26b8c8
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is sr_get_imask_b
+ * SJRBF_IsGetChunk_like  0x8c26b8c8
+ * stores in *a3 how much of line a1 of ring buffer a0 could be taken now, returning whether all a2 bytes fit
  */
-u32 game_uses_sr_get_imask_b_26b8c8(int a0, int a1, int a2, int *a3) {
+u32 SJRBF_IsGetChunk_like(int a0, int a1, int a2, int *a3) {
     u32 a5;
     int iVar1;
     int a6;
@@ -15003,7 +14999,7 @@ u32 get_field_24_26b956(int a0) {
 /*
  * sr_get_imask_c  0x8c26b960
  * another copy of sr_get_imask
- * called by: game_uses_sr_get_imask_c_26bbe2, game_uses_sr_get_imask_c_26bcaa, game_uses_switch_jump_26bb16
+ * called by: SJUNI_GetChunk_like, SJUNI_PutChunk_like, SJUNI_UngetChunk_like
  */
 u32 sr_get_imask_c(void) {
     u8 in_IMASK;
@@ -15016,7 +15012,7 @@ u32 sr_get_imask_c(void) {
 /*
  * sr_with_imask_c  0x8c26b978
  * another copy of sr_with_imask
- * called by: game_uses_sr_get_imask_c_26bbe2, game_uses_sr_get_imask_c_26bcaa, game_uses_switch_jump_26bb16
+ * called by: SJUNI_GetChunk_like, SJUNI_PutChunk_like, SJUNI_UngetChunk_like
  */
 u32 sr_with_imask_c(u32 unused_a0, u32 a1) {
     u8 in_MD;
@@ -15190,10 +15186,10 @@ u32 SJUNI_GetNumData_like(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_switch_jump_26bb16  0x8c26bb16
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is switch_jump
+ * SJUNI_GetChunk_like  0x8c26bb16
+ * takes up to a2 bytes from the first chunk on line a1 (0..3) of a unified stream joint, splitting it when allowed
  */
-u32 game_uses_switch_jump_26bb16(int a0, int a1, u8 *a2, u32 *a3, u32 ain0) {
+u32 SJUNI_GetChunk_like(int a0, int a1, u8 *a2, u32 *a3, u32 ain0) {
     u32 uVar1;
     int iVar2;
     u8 *ar6_00;
@@ -15242,10 +15238,10 @@ LAB_8c26bbce:
 }
 
 /*
- * game_uses_sr_get_imask_c_26bbe2  0x8c26bbe2
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is sr_get_imask_c
+ * SJUNI_PutChunk_like  0x8c26bbe2
+ * appends chunk a2 to the tail of line a1 (0..3), merging it into the last chunk when contiguous
  */
-u32 game_uses_sr_get_imask_c_26bbe2(int a0, int a1, int *a2, u32 unused_a3, u32 ain0) {
+u32 SJUNI_PutChunk_like(int a0, int a1, int *a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     int *piVar2;
     int *piVar3;
@@ -15293,10 +15289,10 @@ u32 game_uses_sr_get_imask_c_26bbe2(int a0, int a1, int *a2, u32 unused_a3, u32 
 }
 
 /*
- * game_uses_sr_get_imask_c_26bcaa  0x8c26bcaa
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is sr_get_imask_c
+ * SJUNI_UngetChunk_like  0x8c26bcaa
+ * pushes chunk a2 onto the head of line a1 (0..3), merging it into the first chunk when contiguous
  */
-u32 game_uses_sr_get_imask_c_26bcaa(int a0, int a1, int *a2, u32 a3, u32 ain0) {
+u32 SJUNI_UngetChunk_like(int a0, int a1, int *a2, u32 a3, u32 ain0) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -15373,8 +15369,8 @@ u32 game_uses_switch_jump_26bd86(int a0, int a1, int a2, u32 *a3) {
 /*
  * span_take  0x8c26be30
  * takes at most a1 bytes from the span a2 (pointer, length) into a3 and advances it
- * called by: ADXT_uses_libgcc_divide_helper_264308, adx_player_parse_header, adx_player_transfer_decoded,
- * adxstmf_stat_exec, game_uses_switch_jump_26bb16, mwRnaDiscardData, mwRna_uses_sd_irq_disable_268f3e
+ * called by: ADXT_uses_libgcc_divide_helper_264308, SJUNI_GetChunk_like, adx_player_parse_header,
+ * adx_player_transfer_decoded, adxstmf_stat_exec, mwRnaDiscardData, mwRna_uses_sd_irq_disable_268f3e
  */
 u32 span_take(u32 a0, int a1, int *a2, int *a3) {
     u32 uVar1;

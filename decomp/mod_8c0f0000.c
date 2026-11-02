@@ -4334,17 +4334,17 @@ u32 tex_uses_rtc_get_date_0f7ff0(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_abs_0f803c  0x8c0f803c
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: uses_abs
- * called by: game_select_intro_or_ending
+ * game_uses_CProlog_classify_day_period_0f803c  0x8c0f803c
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is
+ * CProlog_classify_day_period called by: game_select_intro_or_ending
  */
-u32 game_uses_abs_0f803c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_uses_CProlog_classify_day_period_0f803c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 ar5_00;
 
     *(u32 *)(0x89140 + a0) = a1;
     ar5_00 = 0;
-    uVar1 = CProlog_uses_abs_0b93c0(*(u32 *)(0x89140 + a0), 0, a2, a3);
+    uVar1 = CProlog_classify_day_period(*(u32 *)(0x89140 + a0), 0, a2, a3);
     *(u32 *)(0x1028 + a0) = uVar1;
     uVar1 = (*(code *)(&get_field_c8_0bced0))(*(u32 *)(0x89140 + a0), ar5_00, a2, a3);
     *(u32 *)(0x1030 + a0) = uVar1;
@@ -4355,7 +4355,7 @@ u32 game_uses_abs_0f803c(int a0, u32 a1, u32 a2, u32 a3) {
     } else {
         *(u32 *)(0x1038 + a0) = 0;
     }
-    uVar1 = game_uses_free_ptr_and_clear_0b951c(*(u32 *)(0x89140 + a0), ar5_00, a2, a3);
+    uVar1 = game_uses_flashrom_game_block_date_byt_0b951c(*(u32 *)(0x89140 + a0), ar5_00, a2, a3);
     *(u32 *)(0x103c + a0) = uVar1;
     *(u32 *)(0x1040 + a0) = 0;
     if (*(char *)(*(int *)(0x89140 + a0) + 0x2c) == '\x01') {

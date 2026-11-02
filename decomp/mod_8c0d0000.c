@@ -6917,7 +6917,7 @@ int Class_12b930_uses_set_field_164_0d723c(int a0) {
 
 /*
  * set_field_164  0x8c0d7288
- * called by: Class_12b930_uses_set_field_164_0d723c, game_uses_set_field_164_0d74cc
+ * called by: Class_12b930_uses_set_field_164_0d723c, Class_12b930_uses_set_field_164_0d74cc
  */
 int set_field_164(int a0, u32 a1) {
     int iVar1;
@@ -6939,7 +6939,7 @@ int Class_12b930_update_slide_state(int a0, u32 a1, u32 a2, u32 a3) {
     iVar1 = *(int *)(0x160 + a0);
     if (iVar1 == 0) {
     LAB_8c0d72c0:
-        iVar2 = Class_12b930_test_0d75a0(a0, a1, a2, a3);
+        iVar2 = Class_12b930_point_in_bounds_like(a0, a1, a2, a3);
         iVar1 = 0x160;
         if (iVar2 == 1) {
             *(u32 *)(0x160 + a0) = 1;
@@ -6953,7 +6953,7 @@ int Class_12b930_update_slide_state(int a0, u32 a1, u32 a2, u32 a3) {
                 return iVar1;
             }
         }
-        iVar2 = Class_12b930_test_0d75a0(a0, a1, a2, a3);
+        iVar2 = Class_12b930_point_in_bounds_like(a0, a1, a2, a3);
         iVar1 = 0x160;
         if (iVar2 == 0) {
             *(u32 *)(0x160 + a0) = 0;
@@ -7030,11 +7030,11 @@ u32 Class_12b930_draw_0d7410(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_set_field_164_0d74cc  0x8c0d74cc
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_field_164
- * called by: game_uses_input_track_r_hold_0e1f90
+ * Class_12b930_uses_set_field_164_0d74cc  0x8c0d74cc
+ * area name: sits between Class_12b930 functions (same compilation unit); behaviour name: its main named callee is
+ * set_field_164 called by: game_uses_input_track_r_hold_0e1f90
  */
-u32 game_uses_set_field_164_0d74cc(int a0) {
+u32 Class_12b930_uses_set_field_164_0d74cc(int a0) {
     u32 in_fr4;
     u32 in_PR;
     char cVar1;
@@ -7107,11 +7107,11 @@ u32 *chance_play_se_12_start(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * Class_12b930_test_0d75a0  0x8c0d75a0
- * area name: only called from Class_12b930 methods; behaviour name: returns the result of a comparison
+ * Class_12b930_point_in_bounds_like  0x8c0d75a0
+ * tests point a1 against the bounds returned by the object's +0x38 virtual
  * called by: Class_12b930_update_slide_state
  */
-u32 Class_12b930_test_0d75a0(int a0, float *a1, int a2, u32 a3) {
+u32 Class_12b930_point_in_bounds_like(int a0, float *a1, int a2, u32 a3) {
     float fVar1;
     float fVar2;
     char cVar3;
@@ -10053,7 +10053,7 @@ u32 *Class_12bb08_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     pcVar2 = game_release_0f68c0;
     pcVar1 = game_vec_0f6870;
     vec_new_array(a0 + 0x303, game_vec_0f6870, game_release_0f68c0, 0x68, 8);
-    Class_12bb08_calls_fill_loop_0e91b8(a0 + 0x3d3);
+    Class_12bb08_uses_game_obj_reset_fields_0e91b8(a0 + 0x3d3);
     clear_5_words(a0 + 0x40a, pcVar1, pcVar2, uVar3);
     a0[0x275] = 0;
     a0[0x276] = 0;
@@ -14375,7 +14375,7 @@ u32 game_scene_reset(int a0, u32 a1, u32 a2, u32 a3) {
         }
     }
     game_clear_node_and_item_lists(a0, a1, a2, a3);
-    game_fill_loop_0e96b8(a0 + 0xf4c);
+    game_obj_reset_fields(a0 + 0xf4c);
     game_vec_0d6920(a0 + 0xa68, a1, a2, a3);
     (**(code **)(*(int *)(a0 + 0x9e8) + 0x10))((int *)(a0 + 0x9e8), a1, a2, a3);
     game_init_fields_0d0720(a0 + 0x13b24);

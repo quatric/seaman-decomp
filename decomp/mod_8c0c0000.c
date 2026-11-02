@@ -3287,7 +3287,7 @@ u32 game_vec_0c526c(u32 a0, u32 a1, u32 a2) {
 /*
  * fall_step_to_670  0x8c0c5294
  * adds 0.3 to the speed at +0x10 and moves +4 by it; at 670 it stops and clears the speed
- * called by: game_uses_set_field_14_to_1_0cf39c
+ * called by: game_grid5x5_fall_tick
  */
 u8 *fall_step_to_670(int a0) {
     u8 *puVar1;
@@ -3314,7 +3314,7 @@ u32 clear_field_14_0c52fc(int a0) {
 /*
  * set_fields_10_14  0x8c0c5304
  * stores +0x10, +0x14
- * called by: game_uses_set_field_14_to_1_0cf39c, game_vec_0c526c
+ * called by: game_grid5x5_fall_tick, game_vec_0c526c
  */
 u32 set_fields_10_14(int a0) {
     *(u32 *)(a0 + 0x10) = 0;
@@ -3805,7 +3805,7 @@ u32 Class_12b388_uses_Class_129808_draw_0c5cb4(u32 a0, int a1, u32 a2, u32 a3) {
         ar5_00 = 1;
         game_uses_get_field_24_0d1b90(aiStack_10, 1, a2, a3);
     }
-    sh4_init_fields_0b936c(a1);
+    game_init_fields_0b936c(a1);
     uVar1 = a0;
     ar5_01 = a1;
     game_uses_pure_virtual_stub_0c75f4(a0, a1, a2, a3);
@@ -7275,7 +7275,7 @@ u32 static_init_4372f4(int a0, code *a1, u32 a2, u32 a3) {
         a6 = &uStack_54;
         (**(code **)(**(int **)(a0 + 0xc) + 0x10))(*(int **)(a0 + 0xc), a1, a6, a7);
     }
-    game_calls_fill_loop_0ceff8(&g_8c436a28, uVar1, a6, a7);
+    game_uses_game_grid5x5_fall_tick_0ceff8(&g_8c436a28, uVar1, a6, a7);
     if ((g_8c436928 == 1) && (g_8c13bcc4 == 1)) {
         (**(code **)(**(int **)(a0 + 0x14) + 0xf8))(*(int **)(a0 + 0x14), 0x8c435c7c, a6, a7);
         a7 = "Seaman Storage Matrix";
@@ -9313,11 +9313,11 @@ int STAFF_CREDIT_LoadData(int a0, u32 a1) {
 }
 
 /*
- * game_calls_fill_loop_0ceff8  0x8c0ceff8
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: fill_loop
+ * game_uses_game_grid5x5_fall_tick_0ceff8  0x8c0ceff8
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is game_grid5x5_fall_tick
  * called by: static_init_4372f4
  */
-int game_calls_fill_loop_0ceff8(int *a0, int a1, u32 unused_a2, u32 a3) {
+int game_uses_game_grid5x5_fall_tick_0ceff8(int *a0, int a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int *ar5_00;
     int iVar2;
@@ -9372,7 +9372,7 @@ int game_calls_fill_loop_0ceff8(int *a0, int a1, u32 unused_a2, u32 a3) {
             }
             iVar2 = (int)*(short *)(0x148 + (int)a0);
             ar5_00 = a0 + *(short *)(0x148 + (int)a0) * 5 + 1;
-            iVar1 = game_uses_set_field_14_to_1_0cf39c(a0);
+            iVar1 = game_grid5x5_fall_tick(a0);
             if (iVar1 == 2) {
                 iVar1 = game_fill_loop_0cf144(a0, ar5_00);
             }
@@ -9384,7 +9384,7 @@ int game_calls_fill_loop_0ceff8(int *a0, int a1, u32 unused_a2, u32 a3) {
 /*
  * game_fill_loop_0cf144  0x8c0cf144
  * area name: game code; nothing names its area yet; behaviour name: a loop that writes memory
- * called by: game_calls_fill_loop_0ceff8, game_release_0cbb2c, game_uses_vec_new_array_0cebf8
+ * called by: game_release_0cbb2c, game_uses_game_grid5x5_fall_tick_0ceff8, game_uses_vec_new_array_0cebf8
  */
 u32 game_fill_loop_0cf144(int a0, u32 a1) {
     int iVar1;
@@ -9477,11 +9477,11 @@ u32 game_fill_loop_0cf1e4(int a0, int a1) {
 }
 
 /*
- * game_uses_set_field_14_to_1_0cf39c  0x8c0cf39c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_field_14_to_1
- * called by: game_calls_fill_loop_0ceff8
+ * game_grid5x5_fall_tick  0x8c0cf39c
+ * runs the 5x5 grid of falling cells: starts them, steps the active ones and returns 2 when all have settled
+ * called by: game_uses_game_grid5x5_fall_tick_0ceff8
  */
-u32 game_uses_set_field_14_to_1_0cf39c(int a0) {
+u32 game_grid5x5_fall_tick(int a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -9536,7 +9536,7 @@ u32 game_uses_set_field_14_to_1_0cf39c(int a0) {
 
 /*
  * get_field_14_0cf620  0x8c0cf620
- * called by: game_list_0cf9b4, game_uses_set_field_14_to_1_0cf39c
+ * called by: game_grid5x5_fall_tick, game_list_0cf9b4
  */
 u32 get_field_14_0cf620(int a0) {
     return *(u32 *)(a0 + 0x14);
@@ -9544,7 +9544,7 @@ u32 get_field_14_0cf620(int a0) {
 
 /*
  * set_field_14_to_1  0x8c0cf628
- * called by: game_uses_set_field_14_to_1_0cf39c
+ * called by: game_grid5x5_fall_tick
  */
 u32 set_field_14_to_1(int a0) {
     *(u32 *)(a0 + 0x14) = 1;
@@ -9554,7 +9554,7 @@ u32 set_field_14_to_1(int a0) {
 /*
  * set_fields_0_4_0cf630  0x8c0cf630
  * stores +0x0, +0x4
- * called by: game_uses_set_field_14_to_1_0cf39c
+ * called by: game_grid5x5_fall_tick
  */
 u32 set_fields_0_4_0cf630(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 in_fr5;
@@ -9736,7 +9736,7 @@ u32 draw_draw_helper_0cf7a4(int a0, int a1, int a2, u32 a3) {
 /*
  * game_list_0cf9b4  0x8c0cf9b4
  * area name: game code; nothing names its area yet; behaviour name: mostly calls list functions
- * called by: game_uses_set_field_14_to_1_0cf39c
+ * called by: game_grid5x5_fall_tick
  */
 int game_list_0cf9b4(int a0) {
     int iVar1;
