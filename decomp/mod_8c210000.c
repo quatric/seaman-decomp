@@ -1601,11 +1601,11 @@ u32 njCalcVector_like(int a0, float *a1, float *a2, u32 unused_a3, u32 ain0) {
 }
 
 /*
- * ninja_float_calc_212808  0x8c212808
- * area name: sits between ninja functions (same compilation unit); behaviour name: floating-point arithmetic
- * called by: gfxlib_uses_libgcc_movstr_i4_23340c, gfxlib_uses_noop_fr4_test_2336e8
+ * aabb_overlap_minmax  0x8c212808
+ * returns 1 when the boxes [a0, a1] and [a2, a3] overlap on all three axes
+ * called by: gfxlib_uses_aabb_overlap_minmax_23340c, gfxlib_uses_noop_fr4_test_2336e8
  */
-u32 ninja_float_calc_212808(float *a0, float *a1, float *a2, float *a3) {
+u32 aabb_overlap_minmax(float *a0, float *a1, float *a2, float *a3) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -1840,7 +1840,7 @@ u32 ninja_uses_noop_fr4_test_212946(u32 a0, u32 a1) {
 /*
  * kamui_uses_noop_fr4_test_212a30  0x8c212a30
  * area name: in the kamui library code range; behaviour name: its main named callee is noop_fr4_test
- * called by: gfxlib_uses_libgcc_movstr_i4_23340c
+ * called by: gfxlib_uses_aabb_overlap_minmax_23340c
  */
 u32 kamui_uses_noop_fr4_test_212a30(double *a0, float *a1) {
     u32 uVar1;
@@ -4468,7 +4468,7 @@ u32 kamui_uses_noop_fr4_test_212a30(double *a0, float *a1) {
 /*
  * kamui_uses_noop_fr4_test_2136b0  0x8c2136b0
  * area name: in the kamui library code range; behaviour name: its callees mostly do: uses_noop_fr4_test
- * called by: gfxlib_uses_libgcc_movstr_i4_23340c
+ * called by: gfxlib_uses_aabb_overlap_minmax_23340c
  */
 u32 kamui_uses_noop_fr4_test_2136b0(int a0, int a1) {
     int iVar1;
@@ -4700,18 +4700,19 @@ LAB_8c213882:
     if (uVar4 == (int)0x1200) {
         a0[6] = a0[6] | 5;
     }
-    uVar2 = ta_calls_test_213a76(a0, a1, a2, 4);
+    uVar2 = tex_uses_tex_size_log2_index_213a76(a0, a1, a2, 4);
     a0[5] = uVar2;
     return uVar5;
 }
 
 /*
- * ta_test_213a04  0x8c213a04
- * area name: sits between ta functions (same compilation unit); behaviour name: returns the result of a comparison
- * called by: alt_entry_213d12, alt_entry_213d8e, alt_entry_213de8, ninja_uses_vram64_25aa80, ninja_uses_vram64_25ab74,
- * ta_calls_test_213ab6, ta_calls_test_213d0e, ta_calls_test_213d3e (+4 more)
+ * tex_size_log2_index  0x8c213a04
+ * returns log2 of the smaller of a0 and a1 for powers of two 1..0x400, else -1
+ * called by: alt_entry_213d12, alt_entry_213d8e, alt_entry_213de8, ninja_uses_tex_size_log2_index_25ab74,
+ * ninja_uses_vram64_25aa80, ta_fifo_213bf4, ta_uses_tex_size_log2_index_213d0e, ta_uses_tex_size_log2_index_213d3e (+4
+ * more)
  */
-u32 ta_test_213a04(u32 a0, u32 a1) {
+u32 tex_size_log2_index(u32 a0, u32 a1) {
     if (a1 <= a0) {
         a0 = a1;
     }
@@ -4752,37 +4753,38 @@ u32 ta_test_213a04(u32 a0, u32 a1) {
 }
 
 /*
- * ta_calls_test_213a76  0x8c213a76
- * area name: sits between ta functions (same compilation unit); behaviour name: its callees mostly do: calls_test
- * called by: ta_fifo_2137c0
+ * tex_uses_tex_size_log2_index_213a76  0x8c213a76
+ * area name: sits between tex functions (same compilation unit); behaviour name: its callees mostly do:
+ * uses_tex_size_log2_index called by: ta_fifo_2137c0
  */
-u32 ta_calls_test_213a76(u32 *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 tex_uses_tex_size_log2_index_213a76(u32 *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
     if ((*a0 & 0xffff) == 3) {
-        uVar1 = ta_calls_test_213de4(a0);
+        uVar1 = ta_uses_tex_size_log2_index_213de4(a0);
     } else if ((a0[6] & 8) == 0) {
         if ((a0[6] & 0x20) == 0) {
-            uVar1 = ta_calls_test_213d0e(a0);
+            uVar1 = ta_uses_tex_size_log2_index_213d0e(a0);
         } else {
-            uVar1 = ta_calls_test_213d8a(a0);
+            uVar1 = ta_uses_tex_size_log2_index_213d8a(a0);
         }
     } else {
-        uVar1 = ta_calls_test_213d3e(a0);
+        uVar1 = ta_uses_tex_size_log2_index_213d3e(a0);
     }
     return uVar1;
 }
 
 /*
- * ta_calls_test_213ab6  0x8c213ab6
- * area name: sits between ta functions (same compilation unit); behaviour name: its callees mostly do: test
+ * tex_size_by_format  0x8c213ab6
+ * returns the VRAM size of an a0 x a1 texture of pixel/format code a2 (twiddled, VQ, palettised and mipmapped variants
+ * from tables)
  */
-u32 ta_calls_test_213ab6(int a0, int a1, u32 a2) {
+u32 tex_size_by_format(int a0, int a1, u32 a2) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
 
-    iVar1 = ta_test_213a04(a0, a1);
+    iVar1 = tex_size_log2_index(a0, a1);
     uVar3 = a0 * a1;
     uVar2 = a2 & 0xff00;
     iVar1 = iVar1 * 4;
@@ -4832,7 +4834,7 @@ u32 ta_fifo_213bf4(u32 *a0) {
     uVar4 = a0[1];
     uVar3 = *a0;
     uVar1 = *(u16 *)((int)a0 + 6);
-    iVar2 = ta_test_213a04((u32)(u16)uVar4, (u32)uVar1);
+    iVar2 = tex_size_log2_index((u32)(u16)uVar4, (u32)uVar1);
     uVar4 = (u32)(u16)uVar4 * (u32)uVar1;
     uVar3 = uVar3 & 0xff00;
     iVar2 = iVar2 * 4;
@@ -4863,17 +4865,17 @@ u32 ta_fifo_213bf4(u32 *a0) {
 }
 
 /*
- * ta_calls_test_213d0e  0x8c213d0e
- * area name: sits between ta functions (same compilation unit); behaviour name: its callees mostly do: test
- * called by: ta_calls_test_213a76
+ * ta_uses_tex_size_log2_index_213d0e  0x8c213d0e
+ * area name: sits between ta functions (same compilation unit); behaviour name: its main named callee is
+ * tex_size_log2_index called by: tex_uses_tex_size_log2_index_213a76
  */
-int ta_calls_test_213d0e(int a0) {
+int ta_uses_tex_size_log2_index_213d0e(int a0) {
     int iVar1;
 
     if ((*(u32 *)(a0 + 0x18) & 1) == 0) {
         iVar1 = *(int *)(a0 + 0xc) * *(int *)(a0 + 0x10) * 2;
     } else {
-        iVar1 = ta_test_213a04(*(int *)(a0 + 0xc), *(int *)(a0 + 0x10));
+        iVar1 = tex_size_log2_index(*(int *)(a0 + 0xc), *(int *)(a0 + 0x10));
         iVar1 = *(int *)(&g_8c277d50 + iVar1 * 4) + 4;
     }
     return iVar1;
@@ -4890,18 +4892,18 @@ int alt_entry_213d12(void) {
     if ((*(u32 *)(unaff_r14 + 0x18) & 1) == 0) {
         iVar1 = *(int *)(unaff_r14 + 0xc) * *(int *)(unaff_r14 + 0x10) * 2;
     } else {
-        iVar1 = ta_test_213a04(*(int *)(unaff_r14 + 0xc), *(int *)(unaff_r14 + 0x10));
+        iVar1 = tex_size_log2_index(*(int *)(unaff_r14 + 0xc), *(int *)(unaff_r14 + 0x10));
         iVar1 = *(int *)(&g_8c277d50 + iVar1 * 4) + 4;
     }
     return iVar1;
 }
 
 /*
- * ta_calls_test_213d3e  0x8c213d3e
- * area name: sits between ta functions (same compilation unit); behaviour name: its callees mostly do: test
- * called by: ta_calls_test_213a76
+ * ta_uses_tex_size_log2_index_213d3e  0x8c213d3e
+ * area name: sits between ta functions (same compilation unit); behaviour name: its main named callee is
+ * tex_size_log2_index called by: tex_uses_tex_size_log2_index_213a76
  */
-int ta_calls_test_213d3e(int a0) {
+int ta_uses_tex_size_log2_index_213d3e(int a0) {
     int iVar1;
     u32 uVar2;
 
@@ -4911,25 +4913,25 @@ int ta_calls_test_213d3e(int a0) {
             uVar2 = uVar2 + 0x10;
         }
     } else {
-        iVar1 = ta_test_213a04(*(int *)(a0 + 0xc), *(int *)(a0 + 0x10));
+        iVar1 = tex_size_log2_index(*(int *)(a0 + 0xc), *(int *)(a0 + 0x10));
         uVar2 = (*(int *)(&g_8c277d50 + iVar1 * 4) + 4U >> 3) + 10;
     }
     return uVar2 + 0x800;
 }
 
 /*
- * ta_calls_test_213d8a  0x8c213d8a
- * area name: sits between ta functions (same compilation unit); behaviour name: its callees mostly do: test
- * called by: ta_calls_test_213a76
+ * ta_uses_tex_size_log2_index_213d8a  0x8c213d8a
+ * area name: sits between ta functions (same compilation unit); behaviour name: its main named callee is
+ * tex_size_log2_index called by: tex_uses_tex_size_log2_index_213a76
  */
-u32 ta_calls_test_213d8a(int a0) {
+u32 ta_uses_tex_size_log2_index_213d8a(int a0) {
     int iVar1;
     u32 uVar2;
 
     if ((*(u32 *)(a0 + 0x18) & 1) == 0) {
         uVar2 = *(int *)(a0 + 0xc) * *(int *)(a0 + 0x10);
     } else {
-        iVar1 = ta_test_213a04(*(int *)(a0 + 0xc), *(int *)(a0 + 0x10));
+        iVar1 = tex_size_log2_index(*(int *)(a0 + 0xc), *(int *)(a0 + 0x10));
         uVar2 = *(int *)(&g_8c277d50 + iVar1 * 4) + 4U >> 1;
         if (*(int *)(a0 + 8) == 0x28000000) {
             uVar2 = uVar2 + 0x28;
@@ -4955,7 +4957,7 @@ u32 alt_entry_213d8e(void) {
     if ((*(u32 *)(unaff_r14 + 0x18) & 1) == 0) {
         uVar2 = *(int *)(unaff_r14 + 0xc) * *(int *)(unaff_r14 + 0x10);
     } else {
-        iVar1 = ta_test_213a04(*(int *)(unaff_r14 + 0xc), *(int *)(unaff_r14 + 0x10));
+        iVar1 = tex_size_log2_index(*(int *)(unaff_r14 + 0xc), *(int *)(unaff_r14 + 0x10));
         uVar2 = *(int *)(&g_8c277d50 + iVar1 * 4) + 4U >> 1;
         if (*(int *)(unaff_r14 + 8) == 0x28000000) {
             uVar2 = uVar2 + 0x28;
@@ -4970,14 +4972,14 @@ u32 alt_entry_213d8e(void) {
 }
 
 /*
- * ta_calls_test_213de4  0x8c213de4
- * area name: sits between ta functions (same compilation unit); behaviour name: its callees mostly do: test
- * called by: ta_calls_test_213a76
+ * ta_uses_tex_size_log2_index_213de4  0x8c213de4
+ * area name: sits between ta functions (same compilation unit); behaviour name: its main named callee is
+ * tex_size_log2_index called by: tex_uses_tex_size_log2_index_213a76
  */
-int ta_calls_test_213de4(int a0) {
+int ta_uses_tex_size_log2_index_213de4(int a0) {
     int iVar1;
 
-    iVar1 = ta_test_213a04(*(u32 *)(a0 + 0xc), *(u32 *)(a0 + 0x10));
+    iVar1 = tex_size_log2_index(*(u32 *)(a0 + 0xc), *(u32 *)(a0 + 0x10));
     iVar1 = iVar1 * 4;
     if ((*(u32 *)(a0 + 0x18) & 1) == 0) {
         iVar1 = *(int *)(&g_8c277ce0 + iVar1) + *(int *)(&g_8c277d18 + iVar1);
@@ -4995,7 +4997,7 @@ int alt_entry_213de8(void) {
     int iVar1;
     int unaff_r14;
 
-    iVar1 = ta_test_213a04(*(u32 *)(unaff_r14 + 0xc), *(u32 *)(unaff_r14 + 0x10));
+    iVar1 = tex_size_log2_index(*(u32 *)(unaff_r14 + 0xc), *(u32 *)(unaff_r14 + 0x10));
     iVar1 = iVar1 * 4;
     if ((*(u32 *)(unaff_r14 + 0x18) & 1) == 0) {
         iVar1 = *(int *)(&g_8c277ce0 + iVar1) + *(int *)(&g_8c277d18 + iVar1);
@@ -5388,11 +5390,11 @@ u32 alt_entry_2141ba(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * kamui_fill_loop_21423c  0x8c21423c
- * area name: sits between kamui functions (same compilation unit); behaviour name: a loop that writes memory
- * called by: vram_draw_218804
+ * gfx_strips_emit_v32  0x8c21423c
+ * writes a1's 0x20-byte vertices (position and scaled UV) as triangle strips from the strip list a0 into the vertex
+ * buffer a3, counting the vertices called by: vram_draw_218804
  */
-u32 *kamui_fill_loop_21423c(short *a0, int a1, u32 a2, u32 *a3) {
+u32 *gfx_strips_emit_v32(short *a0, int a1, u32 a2, u32 *a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -9664,10 +9666,11 @@ int gfxlib_fill_loop_215988(int *a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * gfxlib_fill_loop_215b74  0x8c215b74
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_strips_emit_v16  0x8c215b74
+ * writes a1's 0x10-byte vertices as triangle strips from the strip list a0 into the vertex buffer a3, counting the
+ * vertices
  */
-u32 *gfxlib_fill_loop_215b74(short *a0, int a1, u32 a2, u32 *a3) {
+u32 *gfx_strips_emit_v16(short *a0, int a1, u32 a2, u32 *a3) {
     u32 *puVar1;
     int iVar2;
     int iVar3;
@@ -10950,10 +10953,11 @@ u32 *gfxlib_fill_loop_215e10(double *a0, double *a1, double *a2, u32 *a3) {
 }
 
 /*
- * gfxlib_fill_loop_2162bc  0x8c2162bc
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_strips_emit_v16_u  0x8c2162bc
+ * writes a1's 0x10-byte vertices with the strip list's scaled texture coordinate as triangle strips into the vertex
+ * buffer a3
  */
-u32 *gfxlib_fill_loop_2162bc(short *a0, int a1, u32 a2, u32 *a3) {
+u32 *gfx_strips_emit_v16_u(short *a0, int a1, u32 a2, u32 *a3) {
     short sVar1;
     short sVar2;
     u32 *puVar3;
@@ -13742,11 +13746,11 @@ u64 *gfxlib_fill_loop_2170f4(double *a0, double *a1, double *a2, u64 *a3) {
 }
 
 /*
- * gfxlib_fill_loop_217618  0x8c217618
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21849c
+ * gfx_project_points_2d  0x8c217618
+ * projects the job's 2D points through the current matrix to screen x, y and 1/z, counting the points with z <= 1
+ * called by: gfxlib_uses_gfx_project_points_2d_21849c
  */
-int gfxlib_fill_loop_217618(int a0) {
+int gfx_project_points_2d(int a0) {
     float fVar1;
     bool bVar2;
     int iVar3;
@@ -13825,11 +13829,11 @@ int gfxlib_fill_loop_217618(int a0) {
 }
 
 /*
- * gfxlib_fill_loop_21768c  0x8c21768c
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21849c
+ * gfx_project_points_2d_minz  0x8c21768c
+ * projects the job's points through the current matrix to screen x, y and 1/z, keeping the larger of a running value
+ * and the job's +0x10 in w called by: gfxlib_uses_gfx_project_points_2d_21849c
  */
-int gfxlib_fill_loop_21768c(int a0) {
+int gfx_project_points_2d_minz(int a0) {
     float fVar1;
     float fVar2;
     bool bVar3;
@@ -13922,11 +13926,11 @@ int gfxlib_fill_loop_21768c(int a0) {
 }
 
 /*
- * gfxlib_fill_loop_217744  0x8c217744
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21849c
+ * gfx_project_points_3d  0x8c217744
+ * projects the job's 3D points through the current matrix to screen x, y and 1/z, counting the points with z <= 1
+ * called by: gfxlib_uses_gfx_project_points_2d_21849c
  */
-int gfxlib_fill_loop_217744(int a0) {
+int gfx_project_points_3d(int a0) {
     float fVar1;
     bool bVar2;
     int iVar3;
@@ -13999,7 +14003,7 @@ int gfxlib_fill_loop_217744(int a0) {
 /*
  * gfxlib_fill_loop_2177b8  0x8c2177b8
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21849c
+ * called by: gfxlib_uses_gfx_project_points_2d_21849c
  */
 int gfxlib_fill_loop_2177b8(int a0) {
     float fVar1;
@@ -14074,7 +14078,7 @@ int gfxlib_fill_loop_2177b8(int a0) {
 /*
  * gfxlib_fill_loop_21782c  0x8c21782c
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21849c
+ * called by: gfxlib_uses_gfx_project_points_2d_21849c
  */
 int gfxlib_fill_loop_21782c(int a0) {
     float fVar1;
@@ -14141,7 +14145,7 @@ int gfxlib_fill_loop_21782c(int a0) {
 /*
  * gfxlib_fill_loop_2178a0  0x8c2178a0
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21849c
+ * called by: gfxlib_uses_gfx_project_points_2d_21849c
  */
 int gfxlib_fill_loop_2178a0(int a0) {
     float fVar1;
@@ -14217,7 +14221,7 @@ int gfxlib_fill_loop_2178a0(int a0) {
 /*
  * gfxlib_fill_loop_217924  0x8c217924
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21849c
+ * called by: gfxlib_uses_gfx_project_points_2d_21849c
  */
 int gfxlib_fill_loop_217924(int a0) {
     float fVar1;
@@ -14284,7 +14288,7 @@ int gfxlib_fill_loop_217924(int a0) {
 /*
  * gfxlib_fill_loop_2179e4  0x8c2179e4
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21849c
+ * called by: gfxlib_uses_gfx_project_points_2d_21849c
  */
 int gfxlib_fill_loop_2179e4(int a0) {
     float fVar1;
@@ -14365,7 +14369,7 @@ int gfxlib_fill_loop_2179e4(int a0) {
 /*
  * gfxlib_fill_loop_217aa4  0x8c217aa4
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21849c
+ * called by: gfxlib_uses_gfx_project_points_2d_21849c
  */
 int gfxlib_fill_loop_217aa4(int a0) {
     float fVar1;
@@ -14432,7 +14436,7 @@ int gfxlib_fill_loop_217aa4(int a0) {
 /*
  * gfxlib_fill_loop_217b18  0x8c217b18
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21849c
+ * called by: gfxlib_uses_gfx_project_points_2d_21849c
  */
 int gfxlib_fill_loop_217b18(int a0, u32 a1) {
     float fVar1;
@@ -14520,7 +14524,7 @@ int gfxlib_fill_loop_217b18(int a0, u32 a1) {
 /*
  * gfxlib_fill_loop_217c20  0x8c217c20
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21849c
+ * called by: gfxlib_uses_gfx_project_points_2d_21849c
  */
 int gfxlib_fill_loop_217c20(int a0) {
     float fVar1;
@@ -14602,7 +14606,7 @@ int gfxlib_fill_loop_217c20(int a0) {
 /*
  * gfxlib_fill_loop_217d1c  0x8c217d1c
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21849c
+ * called by: gfxlib_uses_gfx_project_points_2d_21849c
  */
 int gfxlib_fill_loop_217d1c(int a0) {
     float fVar1;
@@ -15138,7 +15142,7 @@ u8 *gfxlib_draw_217f12(u16 *a0, int a1, int a2, u32 *a3, u8 *ain0) {
                                         a7 = (u32 *)(*pcVar7)(&g_8c278720, a5, a6, a7);
                                     }
                                     if (a2 == 0) {
-                                        pcVar7 = gfxlib_fill_loop_2162bc;
+                                        pcVar7 = gfx_strips_emit_v16_u;
                                         if (puVar4 == (u8 *)0x41) {
                                             if (cVar11 == '\0') {
                                                 in_dr4 = (double)((u64)in_dr4 & 0xffffffff);
@@ -15270,7 +15274,7 @@ u8 *gfxlib_draw_217f12(u16 *a0, int a1, int a2, u32 *a3, u8 *ain0) {
                                     a7 = (u32 *)(*pcVar7)(auStack_30, a5, a6, a7);
                                 }
                                 if (a2 == 0) {
-                                    pcVar7 = gfxlib_fill_loop_215b74;
+                                    pcVar7 = gfx_strips_emit_v16;
                                 } else {
                                     pcVar7 = gfxlib_calls_fill_loop_215c48;
                                 }
@@ -15311,11 +15315,11 @@ u8 *gfxlib_draw_217f12(u16 *a0, int a1, int a2, u32 *a3, u8 *ain0) {
 }
 
 /*
- * gfxlib_calls_fill_loop_21849c  0x8c21849c
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
+ * gfxlib_uses_gfx_project_points_2d_21849c  0x8c21849c
+ * area name: in the gfxlib library code range; behaviour name: its main named callee is gfx_project_points_2d
  * called by: vram64_21869c, vram64_2186a0
  */
-u32 gfxlib_calls_fill_loop_21849c(short *a0, u32 a1) {
+u32 gfxlib_uses_gfx_project_points_2d_21849c(short *a0, u32 a1) {
     u16 uVar1;
     short sVar2;
     int *piVar3;
@@ -15363,13 +15367,13 @@ u32 gfxlib_calls_fill_loop_21849c(short *a0, u32 a1) {
         *piVar9 = *piVar9 + iVar13;
         switch (unaff_r12 & 0xff) {
         case 0x20:
-            iVar11 = gfxlib_fill_loop_217618(0x8c4ab158);
+            iVar11 = gfx_project_points_2d(0x8c4ab158);
             break;
         case 0x21:
-            iVar11 = gfxlib_fill_loop_21768c(0x8c4ab158);
+            iVar11 = gfx_project_points_2d_minz(0x8c4ab158);
             break;
         case 0x22:
-            iVar11 = gfxlib_fill_loop_217744(0x8c4ab158);
+            iVar11 = gfx_project_points_3d(0x8c4ab158);
             break;
         case 0x23:
             iVar11 = gfxlib_fill_loop_21782c(0x8c4ab158);
@@ -15432,7 +15436,7 @@ u32 vram64_21869c(int *a0, u32 a1) {
         (iVar1 = gfxlib_test_217e18(a0), in_r0 = 0, iVar1 == 0)) {
         uVar2 = g_8c4aa510;
         if (*a0 != 0) {
-            in_r0 = gfxlib_calls_fill_loop_21849c(*a0, g_8c4aa510);
+            in_r0 = gfxlib_uses_gfx_project_points_2d_21849c(*a0, g_8c4aa510);
             a1 = in_r0;
         }
         if (a0[1] != 0) {
@@ -15465,7 +15469,7 @@ u32 vram64_2186a0(int *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 *ain1) {
     }
     ar7_00 = g_8c4aa510;
     if (*a0 != 0) {
-        a1 = gfxlib_calls_fill_loop_21849c(*a0, g_8c4aa510);
+        a1 = gfxlib_uses_gfx_project_points_2d_21849c(*a0, g_8c4aa510);
     }
     if (a0[1] != 0) {
         g_8c4ab1d8 = a1;
@@ -15773,7 +15777,7 @@ u32 vram_draw_218804(u16 *a0, int a1, u8 *a2, u32 unused_a3, u32 ain0) {
                     ar7_00 = (u8 *)(*pcVar7)(uVar6, a5, a6, ar7_00);
                     if (a1 == 0) {
                         a5 = a2;
-                        uVar3 = kamui_fill_loop_21423c(puVar5, a2, a6_00, ar7_00);
+                        uVar3 = gfx_strips_emit_v32(puVar5, a2, a6_00, ar7_00);
                         ar4_00 = uVar3;
                         a6 = a6_00;
                     } else {

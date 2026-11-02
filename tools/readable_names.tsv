@@ -2195,3 +2195,16 @@
 8c20d9ce	tex_write_mip_level_8	writes mipmap level a2 of texture a0 from a1; levels below 3 are merged into the first 8 bytes in VRAM
 8c20daa0	tex_write_mip_level_16	writes mipmap level a2 of texture a0 from a1; levels below 3 are merged into the first 16 bytes in VRAM
 8c20db80	tex_vq_write_mip_level	writes VQ mipmap level a2 of texture a0 from a1 after the 0x800-byte codebook, merging unaligned edges through 16-byte reads
+8c20de80	pixels16_to_bgr24_flip	converts an a2 x a3 image of 16-bit pixels at a1 (RGB565, or ARGB1555 for s0 1/3) into 24-bit BGR at a0, bottom row first
+8c20e838	tex_dim_to_index_b	a second copy of tex_dim_to_index: the size index of the smaller of a0 and a1 (1 -> 0 ... 0x400 -> 10, 3 otherwise)
+8c20ed60	tex_twiddle_from_argb8888	converts an a2 x a2 ARGB8888 image a1 into twiddled 16-bit texels at a0 (RGB565, ARGB4444 or ARGB1555 by a3)
+8c20eec0	mip_downsample_row_1221	builds one row of the next mipmap level from four source rows with a 1-2-2-1 filter in both directions (divide by 36)
+8c212808	aabb_overlap_minmax	returns 1 when the boxes [a0, a1] and [a2, a3] overlap on all three axes
+8c213a04	tex_size_log2_index	returns log2 of the smaller of a0 and a1 for powers of two 1..0x400, else -1
+8c213ab6	tex_size_by_format	returns the VRAM size of an a0 x a1 texture of pixel/format code a2 (twiddled, VQ, palettised and mipmapped variants from tables)
+8c21423c	gfx_strips_emit_v32	writes a1's 0x20-byte vertices (position and scaled UV) as triangle strips from the strip list a0 into the vertex buffer a3, counting the vertices
+8c215b74	gfx_strips_emit_v16	writes a1's 0x10-byte vertices as triangle strips from the strip list a0 into the vertex buffer a3, counting the vertices
+8c2162bc	gfx_strips_emit_v16_u	writes a1's 0x10-byte vertices with the strip list's scaled texture coordinate as triangle strips into the vertex buffer a3
+8c217618	gfx_project_points_2d	projects the job's 2D points through the current matrix to screen x, y and 1/z, counting the points with z <= 1
+8c21768c	gfx_project_points_2d_minz	projects the job's points through the current matrix to screen x, y and 1/z, keeping the larger of a running value and the job's +0x10 in w
+8c217744	gfx_project_points_3d	projects the job's 3D points through the current matrix to screen x, y and 1/z, counting the points with z <= 1

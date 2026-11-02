@@ -6491,11 +6491,11 @@ int gfxlib_fill_loop_232cd0(int a0, u32 a1) {
 }
 
 /*
- * gfxlib_uses_libgcc_movstr_i4_23340c  0x8c23340c
- * area name: in the gfxlib library code range; behaviour name: its main named callee is libgcc_movstr_i4
+ * gfxlib_uses_aabb_overlap_minmax_23340c  0x8c23340c
+ * area name: in the gfxlib library code range; behaviour name: its main named callee is aabb_overlap_minmax
  * called by: Class_129938_m5_01745c
  */
-u32 gfxlib_uses_libgcc_movstr_i4_23340c(int a0, int a1) {
+u32 gfxlib_uses_aabb_overlap_minmax_23340c(int a0, int a1) {
     int iVar1;
     u32 uVar2;
     u64 *puVar3;
@@ -6535,7 +6535,7 @@ u32 gfxlib_uses_libgcc_movstr_i4_23340c(int a0, int a1) {
     ar6_00 = auStack_44;
     ar5_00 = auStack_38;
     ar7_00 = auStack_50;
-    iVar1 = ninja_float_calc_212808(auStack_2c, ar5_00, ar6_00, ar7_00);
+    iVar1 = aabb_overlap_minmax(auStack_2c, ar5_00, ar6_00, ar7_00);
     if (iVar1 != 0) {
         ar4_00 = aiStack_b0;
         libgcc_movstr_i4(ar4_00, ar5_00, ar6_00, ar7_00);
@@ -6739,7 +6739,7 @@ u32 gfxlib_uses_noop_fr4_test_2336e8(double *a0, double *a1) {
     ar5_00 = auStack_48;
     pdVar9 = &dStack_60;
     ar4_00 = auStack_3c;
-    iVar2 = ninja_float_calc_212808(ar4_00, ar5_00, pdVar4, pdVar9);
+    iVar2 = aabb_overlap_minmax(ar4_00, ar5_00, pdVar4, pdVar9);
     if (iVar2 != 0) {
         libgcc_movstr_i4(ar4_00, ar5_00, pdVar4, pdVar9);
         libgcc_movstr_i4(ar4_00, ar5_00, pdVar4, pdVar9);
@@ -10919,7 +10919,7 @@ u8 *pvr_draw_235f84(double *a0) {
 /*
  * gfxlib_fill_loop_2360b0  0x8c2360b0
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_uses_libgcc_movstr_i4_23340c, gfxlib_uses_noop_fr4_test_2336e8
+ * called by: gfxlib_uses_aabb_overlap_minmax_23340c, gfxlib_uses_noop_fr4_test_2336e8
  */
 u32 gfxlib_fill_loop_2360b0(float *a0, float *a1, float *a2) {
     float *pfVar1;

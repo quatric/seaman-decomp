@@ -17725,7 +17725,7 @@ int tex_calls_test_25a914(u32 a0, u32 *a1, u32 a2, u32 a3) {
     if (iVar2 < 0) {
         return iVar2;
     }
-    iVar2 = ninja_uses_vram64_25ab74(a1 + 1, *a1);
+    iVar2 = ninja_uses_tex_size_log2_index_25ab74(a1 + 1, *a1);
     puVar1 = (&pvr_calls_scan_loop_20a7e0);
     if (iVar2 == 0) {
         do {
@@ -17755,7 +17755,7 @@ int alt_entry_25a918(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     }
     ar5_00 = *unaff_r14;
     ar4_00 = unaff_r14 + 1;
-    iVar2 = ninja_uses_vram64_25ab74(ar4_00, ar5_00);
+    iVar2 = ninja_uses_tex_size_log2_index_25ab74(ar4_00, ar5_00);
     puVar1 = (&pvr_calls_scan_loop_20a7e0);
     if (iVar2 == 0) {
         do {
@@ -17813,7 +17813,7 @@ u32 tex_uses_vram64_25a9cc(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar3;
     u32 uVar4;
     u32 ar6_00;
-    iVar1 = ta_test_213a04(*(u32 *)(a0 + 0xc), *(u32 *)(a0 + 0x10));
+    iVar1 = tex_size_log2_index(*(u32 *)(a0 + 0xc), *(u32 *)(a0 + 0x10));
     iVar1 = iVar1 * 4;
     if ((*(u32 *)(a0 + 0x18) & 1) == 0) {
         uVar2 = *(u32 *)(&g_8c277ce0 + iVar1);
@@ -17856,14 +17856,14 @@ LAB_8c25aa36:
 /*
  * ninja_uses_vram64_25aa80  0x8c25aa80
  * area name: in the ninja library code range; behaviour name: its main named callee is vram64_20a8e0
- * called by: ninja_uses_vram64_25ab74
+ * called by: ninja_uses_tex_size_log2_index_25ab74
  */
 u32 ninja_uses_vram64_25aa80(int a0, int a1) {
     int iVar1;
     int ar6_00;
     int ar4_00;
 
-    iVar1 = ta_test_213a04(*(u32 *)(a0 + 0xc), *(u32 *)(a0 + 0x10));
+    iVar1 = tex_size_log2_index(*(u32 *)(a0 + 0xc), *(u32 *)(a0 + 0x10));
     iVar1 = iVar1 * 4;
     if ((*(u32 *)(a0 + 0x18) & 1) == 0) {
         ar6_00 = *(int *)(&g_8c277ce0 + iVar1);
@@ -17914,11 +17914,11 @@ u32 ninja_uses_vram64_25ab02(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_uses_vram64_25ab74  0x8c25ab74
- * area name: in the ninja library code range; behaviour name: its main named callee is vram64_20a8e0
+ * ninja_uses_tex_size_log2_index_25ab74  0x8c25ab74
+ * area name: in the ninja library code range; behaviour name: its main named callee is tex_size_log2_index
  * called by: alt_entry_25a918, tex_calls_test_25a914
  */
-u32 ninja_uses_vram64_25ab74(u32 *a0, u32 a1) {
+u32 ninja_uses_tex_size_log2_index_25ab74(u32 *a0, u32 a1) {
     int iVar1;
     u32 ar4_00;
     u32 ar6_00;
@@ -17927,7 +17927,7 @@ u32 ninja_uses_vram64_25ab74(u32 *a0, u32 a1) {
         ninja_uses_vram64_25aa80(a0, a1);
     } else {
         if ((*a0 >> 0x10 & 0xff00) == 0x200) {
-            iVar1 = ta_test_213a04(a0[3], a0[4]);
+            iVar1 = tex_size_log2_index(a0[3], a0[4]);
             ar6_00 = *(int *)(&g_8c277d50 + iVar1 * 4) + 4;
             ar4_00 = a0[7] + 4;
         } else {
@@ -18459,7 +18459,7 @@ u32 ninja_uses_write_u32_le_25b12e(int a0, u32 a1, u32 unused_a2, u32 unused_a3,
             }
             *(u32 *)((int)aiStack_24 + iVar1) = 3;
         }
-        uVar2 = ta_fill_loop_20de80(a0 + 0x36, ar4_00, a4_00, a4);
+        uVar2 = pixels16_to_bgr24_flip(a0 + 0x36, ar4_00, a4_00, a4);
     }
     return uVar2;
 }

@@ -11481,7 +11481,7 @@ u32 vram_20a892(u32 a0, int a1, u32 a2) {
 
 /*
  * vram64_20a8e0  0x8c20a8e0
- * called by: ninja_uses_vram64_25aa80, ninja_uses_vram64_25ab02, ninja_uses_vram64_25ab74,
+ * called by: ninja_uses_tex_size_log2_index_25ab74, ninja_uses_vram64_25aa80, ninja_uses_vram64_25ab02,
  * tex_uses_CacheBlockWriteBack_wrap_20d82e, tex_uses_tex_dim_to_index_20cefe, tex_uses_tex_dim_to_index_20d6c0,
  * tex_uses_vram64_20cb5a, tex_uses_vram64_20cb5e (+9 more)
  */
@@ -13948,7 +13948,7 @@ u32 ta_fifo_20dd80(u32 a0, u32 a1, int a2, int a3, int s0, u32 s4) {
             if (a3 == 1) {
                 ta_fifo_20e9ae(a1, s0, s0, uVar1);
             }
-            ta_fill_loop_20ed60(a0, a1, s0, uVar1);
+            tex_twiddle_from_argb8888(a0, a1, s0, uVar1);
         }
         uVar1 = 0;
     }
@@ -13956,11 +13956,11 @@ u32 ta_fifo_20dd80(u32 a0, u32 a1, int a2, int a3, int s0, u32 s4) {
 }
 
 /*
- * ta_fill_loop_20de80  0x8c20de80
- * area name: sits between ta functions (same compilation unit); behaviour name: a loop that writes memory
- * called by: ninja_uses_write_u32_le_25b12e
+ * pixels16_to_bgr24_flip  0x8c20de80
+ * converts an a2 x a3 image of 16-bit pixels at a1 (RGB565, or ARGB1555 for s0 1/3) into 24-bit BGR at a0, bottom row
+ * first called by: ninja_uses_write_u32_le_25b12e
  */
-u32 ta_fill_loop_20de80(u8 *a0, int a1, int a2, int a3, int s0) {
+u32 pixels16_to_bgr24_flip(u8 *a0, int a1, int a2, int a3, int s0) {
     u32 uVar1;
     int iVar2;
     u16 *puVar3;
@@ -14083,42 +14083,42 @@ u32 kamui_calls_test_20e030(void) {
                 if (iVar1 != 0) {
                     return iVar1;
                 }
-                iVar1 = ta_test_20e1e6(unaff_r12, a5, unaff_r13);
+                iVar1 = kamui_test_20e1e6(unaff_r12, a5, unaff_r13);
                 if (iVar1 != 0) {
                     return iVar1;
                 }
-                iVar1 = ta_test_20e272(unaff_r12, a5, unaff_r13);
+                iVar1 = kamui_test_20e272(unaff_r12, a5, unaff_r13);
                 if (iVar1 != 0) {
                     return iVar1;
                 }
                 if (g_8c275798 == 1) {
-                    iVar1 = ta_test_20e300(unaff_r12, a5, unaff_r13);
+                    iVar1 = kamui_test_20e300(unaff_r12, a5, unaff_r13);
                     if (iVar1 != 0) {
                         return iVar1;
                     }
-                    iVar1 = ta_test_20e328(unaff_r12, a5, unaff_r13);
+                    iVar1 = kamui_test_20e328(unaff_r12, a5, unaff_r13);
                     if (iVar1 != 0) {
                         return iVar1;
                     }
-                    iVar1 = ta_test_20e368(unaff_r12, a5, unaff_r13);
+                    iVar1 = kamui_test_20e368(unaff_r12, a5, unaff_r13);
                     if (iVar1 != 0) {
                         return iVar1;
                     }
-                    iVar1 = ta_test_20e3a0(unaff_r12, a5, unaff_r13);
+                    iVar1 = kamui_test_20e3a0(unaff_r12, a5, unaff_r13);
                     if (iVar1 != 0) {
                         return iVar1;
                     }
-                    iVar1 = ta_test_20e400(unaff_r12, a5, unaff_r13);
+                    iVar1 = kamui_test_20e400(unaff_r12, a5, unaff_r13);
                     if (iVar1 != 0) {
                         return iVar1;
                     }
                 }
                 if ((g_8c275798 == 2) || (g_8c275798 == 3)) {
-                    iVar1 = ta_test_20e428(unaff_r12, a5, unaff_r13);
+                    iVar1 = kamui_test_20e428(unaff_r12, a5, unaff_r13);
                     if (iVar1 != 0) {
                         return iVar1;
                     }
-                    iVar1 = ta_calc_20e480(unaff_r12, a5, unaff_r13);
+                    iVar1 = kamui_calc_20e480(unaff_r12, a5, unaff_r13);
                     if (iVar1 != 0) {
                         return iVar1;
                     }
@@ -14167,11 +14167,11 @@ u32 kamui_test_20e16a(int a0, int a1, int *a2) {
 }
 
 /*
- * ta_test_20e1e6  0x8c20e1e6
- * area name: sits between ta functions (same compilation unit); behaviour name: returns the result of a comparison
+ * kamui_test_20e1e6  0x8c20e1e6
+ * area name: in the kamui library code range; behaviour name: returns the result of a comparison
  * called by: kamui_calls_test_20e030
  */
-u32 ta_test_20e1e6(int a0, int a1, int *a2) {
+u32 kamui_test_20e1e6(int a0, int a1, int *a2) {
     int iVar1;
     int iVar2;
 
@@ -14189,11 +14189,11 @@ u32 ta_test_20e1e6(int a0, int a1, int *a2) {
 }
 
 /*
- * ta_test_20e272  0x8c20e272
- * area name: sits between ta functions (same compilation unit); behaviour name: returns the result of a comparison
+ * kamui_test_20e272  0x8c20e272
+ * area name: in the kamui library code range; behaviour name: returns the result of a comparison
  * called by: kamui_calls_test_20e030
  */
-u32 ta_test_20e272(int a0, int a1, int *a2) {
+u32 kamui_test_20e272(int a0, int a1, int *a2) {
     int iVar1;
 
     iVar1 = *(int *)(a1 * 4 + a0);
@@ -14209,11 +14209,11 @@ u32 ta_test_20e272(int a0, int a1, int *a2) {
 }
 
 /*
- * ta_test_20e300  0x8c20e300
- * area name: sits between ta functions (same compilation unit); behaviour name: returns the result of a comparison
+ * kamui_test_20e300  0x8c20e300
+ * area name: in the kamui library code range; behaviour name: returns the result of a comparison
  * called by: kamui_calls_test_20e030
  */
-u32 ta_test_20e300(int a0, int a1, int *a2) {
+u32 kamui_test_20e300(int a0, int a1, int *a2) {
     int iVar1;
 
     iVar1 = *(int *)(a1 * 4 + a0);
@@ -14225,11 +14225,11 @@ u32 ta_test_20e300(int a0, int a1, int *a2) {
 }
 
 /*
- * ta_test_20e328  0x8c20e328
- * area name: sits between ta functions (same compilation unit); behaviour name: returns the result of a comparison
+ * kamui_test_20e328  0x8c20e328
+ * area name: in the kamui library code range; behaviour name: returns the result of a comparison
  * called by: kamui_calls_test_20e030
  */
-u32 ta_test_20e328(int a0, int a1, int *a2) {
+u32 kamui_test_20e328(int a0, int a1, int *a2) {
     int iVar1;
 
     iVar1 = *(int *)(a1 * 4 + a0);
@@ -14243,11 +14243,11 @@ u32 ta_test_20e328(int a0, int a1, int *a2) {
 }
 
 /*
- * ta_test_20e368  0x8c20e368
- * area name: sits between ta functions (same compilation unit); behaviour name: returns the result of a comparison
+ * kamui_test_20e368  0x8c20e368
+ * area name: in the kamui library code range; behaviour name: returns the result of a comparison
  * called by: kamui_calls_test_20e030
  */
-u32 ta_test_20e368(int a0, int a1, int *a2) {
+u32 kamui_test_20e368(int a0, int a1, int *a2) {
     int iVar1;
 
     iVar1 = *(int *)(a1 * 4 + a0);
@@ -14261,11 +14261,11 @@ u32 ta_test_20e368(int a0, int a1, int *a2) {
 }
 
 /*
- * ta_test_20e3a0  0x8c20e3a0
- * area name: sits between ta functions (same compilation unit); behaviour name: returns the result of a comparison
+ * kamui_test_20e3a0  0x8c20e3a0
+ * area name: in the kamui library code range; behaviour name: returns the result of a comparison
  * called by: kamui_calls_test_20e030
  */
-u32 ta_test_20e3a0(int a0, int a1, int *a2) {
+u32 kamui_test_20e3a0(int a0, int a1, int *a2) {
     int iVar1;
 
     iVar1 = *(int *)(a1 * 4 + a0);
@@ -14277,11 +14277,11 @@ u32 ta_test_20e3a0(int a0, int a1, int *a2) {
 }
 
 /*
- * ta_test_20e400  0x8c20e400
- * area name: sits between ta functions (same compilation unit); behaviour name: returns the result of a comparison
+ * kamui_test_20e400  0x8c20e400
+ * area name: in the kamui library code range; behaviour name: returns the result of a comparison
  * called by: kamui_calls_test_20e030
  */
-u32 ta_test_20e400(int a0, int a1, int *a2) {
+u32 kamui_test_20e400(int a0, int a1, int *a2) {
     int iVar1;
 
     iVar1 = *(int *)(a1 * 4 + a0);
@@ -14293,11 +14293,11 @@ u32 ta_test_20e400(int a0, int a1, int *a2) {
 }
 
 /*
- * ta_test_20e428  0x8c20e428
- * area name: sits between ta functions (same compilation unit); behaviour name: returns the result of a comparison
+ * kamui_test_20e428  0x8c20e428
+ * area name: in the kamui library code range; behaviour name: returns the result of a comparison
  * called by: kamui_calls_test_20e030
  */
-u32 ta_test_20e428(int a0, int a1, int *a2) {
+u32 kamui_test_20e428(int a0, int a1, int *a2) {
     if (((g_8c275798 == 2) || (g_8c275798 == 3)) && (*(int *)(*(int *)(a1 * 4 + a0) + 0xbc) == 1)) {
         *a2 = a1 + 1;
         return 0xb;
@@ -14306,11 +14306,11 @@ u32 ta_test_20e428(int a0, int a1, int *a2) {
 }
 
 /*
- * ta_calc_20e480  0x8c20e480
- * area name: sits between ta functions (same compilation unit); behaviour name: integer arithmetic on its arguments
+ * kamui_calc_20e480  0x8c20e480
+ * area name: in the kamui library code range; behaviour name: integer arithmetic on its arguments
  * called by: kamui_calls_test_20e030
  */
-u32 ta_calc_20e480(int a0, int a1, int *a2) {
+u32 kamui_calc_20e480(int a0, int a1, int *a2) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -14500,11 +14500,11 @@ int kamui_update_fields_20e78e(int *a0) {
 }
 
 /*
- * kamui_test_20e838  0x8c20e838
- * area name: in the kamui library code range; behaviour name: returns the result of a comparison
+ * tex_dim_to_index_b  0x8c20e838
+ * a second copy of tex_dim_to_index: the size index of the smaller of a0 and a1 (1 -> 0 ... 0x400 -> 10, 3 otherwise)
  * called by: alt_entry_20e8dc, kamui_draw_20e8c6
  */
-u32 kamui_test_20e838(int a0, int a1) {
+u32 tex_dim_to_index_b(int a0, int a1) {
     if (a1 <= a0) {
         a0 = a1;
     }
@@ -14561,12 +14561,12 @@ u32 kamui_draw_20e8c6(int a0, u32 a1, int a2, int a3, u32 s0) {
     u32 unaff_r14;
     u32 in_PR;
 
-    iVar1 = kamui_test_20e838(a3, a3);
+    iVar1 = tex_dim_to_index_b(a3, a3);
     if (a2 != 0) {
         ta_fifo_20e9ae(a1, a3, a3, s0, in_PR, unaff_r8, unaff_r9, unaff_r10, unaff_r11, unaff_r12, unaff_r13,
                        unaff_r14);
     }
-    ta_fill_loop_20ed60(*(int *)(&g_8c26d63c + iVar1 * 4) + a0, a1, a3, s0);
+    tex_twiddle_from_argb8888(*(int *)(&g_8c26d63c + iVar1 * 4) + a0, a1, a3, s0);
     piVar3 = (int *)(&g_8c26d63c + (iVar1 + -1) * 4);
     do {
         uVar2 = ta_fifo_20f25a(a1, a3, a3);
@@ -14575,7 +14575,7 @@ u32 kamui_draw_20e8c6(int a0, u32 a1, int a2, int a3, u32 s0) {
             uVar2 = ta_fifo_20e9ae(a1, a3, a3, s0, in_PR, unaff_r8, unaff_r9, unaff_r10, unaff_r11, unaff_r12,
                                    unaff_r13, unaff_r14);
         }
-        uVar2 = ta_fill_loop_20ed60(*piVar3 + a0, a1, a3, s0);
+        uVar2 = tex_twiddle_from_argb8888(*piVar3 + a0, a1, a3, s0);
         piVar3 = piVar3 + -1;
     } while ((u8 *)0x8c26d63b < piVar3);
     return uVar2;
@@ -14595,11 +14595,11 @@ u32 alt_entry_20e8dc(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3, u32 s0, u32 s
     int *piVar3;
     int unaff_r14;
 
-    iVar1 = kamui_test_20e838(a3, a1);
+    iVar1 = tex_dim_to_index_b(a3, a1);
     if (unaff_r10 != 0) {
         ta_fifo_20e9ae(unaff_r12, unaff_r14, unaff_r14, s24);
     }
-    ta_fill_loop_20ed60(*(int *)(&g_8c26d63c + iVar1 * 4) + unaff_r9, unaff_r12, unaff_r14, s24);
+    tex_twiddle_from_argb8888(*(int *)(&g_8c26d63c + iVar1 * 4) + unaff_r9, unaff_r12, unaff_r14, s24);
     piVar3 = (int *)(&g_8c26d63c + (iVar1 + -1) * 4);
     do {
         ta_fifo_20f25a(unaff_r12, unaff_r14, unaff_r14);
@@ -14607,7 +14607,7 @@ u32 alt_entry_20e8dc(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3, u32 s0, u32 s
         if (unaff_r10 != 0) {
             ta_fifo_20e9ae(unaff_r12, unaff_r14, unaff_r14, s24);
         }
-        uVar2 = ta_fill_loop_20ed60(*piVar3 + unaff_r9, unaff_r12, unaff_r14, s24);
+        uVar2 = tex_twiddle_from_argb8888(*piVar3 + unaff_r9, unaff_r12, unaff_r14, s24);
         piVar3 = piVar3 + -1;
     } while ((u8 *)0x8c26d63b < piVar3);
     return uVar2;
@@ -14758,12 +14758,12 @@ u32 ta_fifo_20e9ae(u8 *a0, int a1, u32 a2, int a3, u32 s0, u32 s4, u32 s8, u32 s
 }
 
 /*
- * ta_fill_loop_20ed60  0x8c20ed60
- * name hint from a string it uses: UUUU t; area name: sits between ta functions (same compilation unit); behaviour
- * name: a loop that writes memory called by: alt_entry_20e8dc, kamui_draw_20e8c6, ta_fifo_20dd80 strings: "UUUU\t";
- * "UUUU\t"; "UUUU\t"; "UUUU\t" ...
+ * tex_twiddle_from_argb8888  0x8c20ed60
+ * converts an a2 x a2 ARGB8888 image a1 into twiddled 16-bit texels at a0 (RGB565, ARGB4444 or ARGB1555 by a3)
+ * called by: alt_entry_20e8dc, kamui_draw_20e8c6, ta_fifo_20dd80
+ * strings: "UUUU\t"; "UUUU\t"; "UUUU\t"; "UUUU\t" ...
  */
-int ta_fill_loop_20ed60(int a0, u8 *a1, int a2, int a3) {
+int tex_twiddle_from_argb8888(int a0, u8 *a1, int a2, int a3) {
     u8 bVar1;
     u32 uVar2;
     int in_r0;
@@ -14827,11 +14827,11 @@ int ta_fill_loop_20ed60(int a0, u8 *a1, int a2, int a3) {
 }
 
 /*
- * ta_fill_loop_20eec0  0x8c20eec0
- * area name: sits between ta functions (same compilation unit); behaviour name: a loop that writes memory
+ * mip_downsample_row_1221  0x8c20eec0
+ * builds one row of the next mipmap level from four source rows with a 1-2-2-1 filter in both directions (divide by 36)
  * called by: ta_fifo_20f25a
  */
-int ta_fill_loop_20eec0(u8 *a0, u8 *a1, u8 *a2, u8 *a3, u8 *s0, int s4) {
+int mip_downsample_row_1221(u8 *a0, u8 *a1, u8 *a2, u8 *a3, u8 *s0, int s4) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -14949,7 +14949,7 @@ u32 ta_fifo_20f25a(u8 *a0, int a1, int a2) {
         iVar8 = *(int *)(&stack0xffffffe4 + iVar2);
         *(int *)((int)aiStack_28 + iVar2 + 4) = iVar6;
         *(u8 **)((int)aiStack_28 + iVar2) = a0;
-        ta_fill_loop_20eec0(puVar9, puVar5, puVar5 + iVar8, puVar5 + iVar7);
+        mip_downsample_row_1221(puVar9, puVar5, puVar5 + iVar8, puVar5 + iVar7);
         a0 = a0 + *(int *)(&stack0xffffffe8 + iVar2);
         puVar9 = puVar5 + iVar8;
         puVar5 = puVar5 + iVar7;
@@ -14957,7 +14957,7 @@ u32 ta_fifo_20f25a(u8 *a0, int a1, int a2) {
     iVar4 = *(int *)(&stack0xffffffe4 + iVar2);
     *(int *)((int)aiStack_28 + iVar2 + 4) = iVar6;
     *(u8 **)((int)aiStack_28 + iVar2) = a0;
-    uVar3 = ta_fill_loop_20eec0(puVar9, puVar5, puVar5 + iVar4, &stack0xffffffec + iVar2);
+    uVar3 = mip_downsample_row_1221(puVar9, puVar5, puVar5 + iVar4, &stack0xffffffec + iVar2);
     return uVar3;
 }
 

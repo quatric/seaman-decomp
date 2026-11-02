@@ -7696,7 +7696,7 @@ u32 noop(void) {
 /*
  * libgcc_movstr_i4  0x8c010838
  * compiler block-copy helper: copies r0 bytes from r2 to r1 in 32-bit words
- * called by: gfxlib_uses_libgcc_movstr_i4_23340c, gfxlib_uses_noop_fr4_test_2336e8, ninja_draw_2588f8,
+ * called by: gfxlib_uses_aabb_overlap_minmax_23340c, gfxlib_uses_noop_fr4_test_2336e8, ninja_draw_2588f8,
  * ninja_draw_25e540, ninja_draw_25e884, ninja_draw_25eb60, pvr_uses_libgcc_divide_helper_25dc60,
  * ta_uses_libgcc_movstr_i4_20df7a decompiler: Exceeded maximum restarts with more pending
  */
@@ -15589,7 +15589,7 @@ u32 Class_129938_m5_01745c(int a0, int *a1, u32 a2, u32 a3) {
     u8 auStack_64[100];
 
     (**(code **)(*a1 + 0x38))(a1, auStack_64, a2, a3);
-    uVar1 = gfxlib_uses_libgcc_movstr_i4_23340c(a0 + 0x30, auStack_64);
+    uVar1 = gfxlib_uses_aabb_overlap_minmax_23340c(a0 + 0x30, auStack_64);
     return uVar1;
 }
 
