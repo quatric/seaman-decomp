@@ -17851,9 +17851,9 @@ u32 *gfxlib_draw_21aa1e(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u3
             g_8c4aa348 = motion_node_apply_rot_keys20;
         }
     } else if ((*unaff_r13 & 0x20) == 0) {
-        g_8c4aa348 = motion_node_apply_rot_xyz;
+        g_8c4aa348 = motion_node_apply_rot_order0;
     } else {
-        g_8c4aa348 = motion_node_apply_rot_zxy;
+        g_8c4aa348 = motion_node_apply_rot_order1;
     }
     a5 = &g_8c4aa350;
     if ((g_8c4aad82 & 4) == 0) {
@@ -17954,9 +17954,9 @@ u32 gfxlib_draw_21ab7a(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0
             g_8c4aa348 = motion_node_apply_rot_keys20;
         }
     } else if ((*unaff_r13 & 0x20) == 0) {
-        g_8c4aa348 = motion_node_apply_rot_xyz;
+        g_8c4aa348 = motion_node_apply_rot_order0;
     } else {
-        g_8c4aa348 = motion_node_apply_rot_zxy;
+        g_8c4aa348 = motion_node_apply_rot_order1;
     }
     a4 = &g_8c4aa350;
     if ((g_8c4aad82 & 4) == 0) {
@@ -18032,9 +18032,9 @@ u32 *gfxlib_draw_21adb4(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u3
             g_8c4aa348 = motion_node_apply_rot_keys20;
         }
     } else if ((*unaff_r13 & 0x20) == 0) {
-        g_8c4aa348 = motion_node_apply_rot_xyz;
+        g_8c4aa348 = motion_node_apply_rot_order0;
     } else {
-        g_8c4aa348 = motion_node_apply_rot_zxy;
+        g_8c4aa348 = motion_node_apply_rot_order1;
     }
     a5 = &g_8c4aa350;
     if ((g_8c4aad82 & 4) == 0) {
@@ -18132,9 +18132,9 @@ u32 gfxlib_draw_21af26(u32 *a0, u32 *a1, u32 *a2) {
             g_8c4aa348 = motion_node_apply_rot_keys20;
         }
     } else if ((*a0 & 0x20) == 0) {
-        g_8c4aa348 = motion_node_apply_rot_xyz;
+        g_8c4aa348 = motion_node_apply_rot_order0;
     } else {
-        g_8c4aa348 = motion_node_apply_rot_zxy;
+        g_8c4aa348 = motion_node_apply_rot_order1;
     }
     if ((g_8c4aad82 & 4) == 0) {
         g_8c4aa350 = noop_21d13c;
@@ -18253,9 +18253,9 @@ u32 alt_entry_21af36(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0, 
             g_8c4aa348 = motion_node_apply_rot_keys20;
         }
     } else if ((*unaff_r13 & 0x20) == 0) {
-        g_8c4aa348 = motion_node_apply_rot_xyz;
+        g_8c4aa348 = motion_node_apply_rot_order0;
     } else {
-        g_8c4aa348 = motion_node_apply_rot_zxy;
+        g_8c4aa348 = motion_node_apply_rot_order1;
     }
     a4 = &g_8c4aa350;
     if ((g_8c4aad82 & 4) == 0) {
@@ -18329,9 +18329,9 @@ u32 *gfxlib_draw_21b170(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u3
             g_8c4aa348 = motion_node_apply_rot_keys20;
         }
     } else if ((*unaff_r13 & 0x20) == 0) {
-        g_8c4aa348 = motion_node_apply_rot_xyz;
+        g_8c4aa348 = motion_node_apply_rot_order0;
     } else {
-        g_8c4aa348 = motion_node_apply_rot_zxy;
+        g_8c4aa348 = motion_node_apply_rot_order1;
     }
     a5 = &g_8c4aa350;
     if ((g_8c4aad82 & 4) == 0) {
@@ -18432,9 +18432,9 @@ u32 gfxlib_draw_21b2f2(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0
             g_8c4aa348 = motion_node_apply_rot_keys20;
         }
     } else if ((*unaff_r13 & 0x20) == 0) {
-        g_8c4aa348 = motion_node_apply_rot_xyz;
+        g_8c4aa348 = motion_node_apply_rot_order0;
     } else {
-        g_8c4aa348 = motion_node_apply_rot_zxy;
+        g_8c4aa348 = motion_node_apply_rot_order1;
     }
     a4 = &g_8c4aa350;
     if ((g_8c4aad82 & 4) == 0) {
@@ -18510,9 +18510,9 @@ u32 *gfxlib_draw_21b52c(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u3
             g_8c4aa348 = motion_node_apply_rot_keys20;
         }
     } else if ((*unaff_r13 & 0x20) == 0) {
-        g_8c4aa348 = motion_node_apply_rot_xyz;
+        g_8c4aa348 = motion_node_apply_rot_order0;
     } else {
-        g_8c4aa348 = motion_node_apply_rot_zxy;
+        g_8c4aa348 = motion_node_apply_rot_order1;
     }
     a5 = &g_8c4aa350;
     if ((g_8c4aad82 & 4) == 0) {
@@ -18613,9 +18613,9 @@ u32 gfxlib_draw_21b6ae(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0
             g_8c4aa348 = motion_node_apply_rot_keys20;
         }
     } else if ((*unaff_r13 & 0x20) == 0) {
-        g_8c4aa348 = motion_node_apply_rot_xyz;
+        g_8c4aa348 = motion_node_apply_rot_order0;
     } else {
-        g_8c4aa348 = motion_node_apply_rot_zxy;
+        g_8c4aa348 = motion_node_apply_rot_order1;
     }
     a4 = &g_8c4aa350;
     if ((g_8c4aad82 & 4) == 0) {
@@ -18857,9 +18857,9 @@ u32 gfxlib_draw_21ba62(u32 *a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 ain0)
             g_8c4aa348 = motion_node_apply_rot_keys20;
         }
     } else if ((*a0 & 0x20) == 0) {
-        g_8c4aa348 = motion_node_apply_rot_xyz;
+        g_8c4aa348 = motion_node_apply_rot_order0;
     } else {
-        g_8c4aa348 = motion_node_apply_rot_zxy;
+        g_8c4aa348 = motion_node_apply_rot_order1;
     }
     ar5_00 = &g_8c4aa350;
     if ((g_8c4aad82 & 4) == 0) {
@@ -18941,9 +18941,9 @@ u32 alt_entry_21ba6a(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 a
             g_8c4aa348 = motion_node_apply_rot_keys20;
         }
     } else if ((*unaff_r14 & 0x20) == 0) {
-        g_8c4aa348 = motion_node_apply_rot_xyz;
+        g_8c4aa348 = motion_node_apply_rot_order0;
     } else {
-        g_8c4aa348 = motion_node_apply_rot_zxy;
+        g_8c4aa348 = motion_node_apply_rot_order1;
     }
     a5 = &g_8c4aa350;
     if ((g_8c4aad82 & 4) == 0) {
@@ -19041,9 +19041,9 @@ u32 gfxlib_draw_21bbb0(u32 *a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0) {
             g_8c4aa348 = motion_node_apply_rot_keys20;
         }
     } else if ((*a0 & 0x20) == 0) {
-        g_8c4aa348 = motion_node_apply_rot_xyz;
+        g_8c4aa348 = motion_node_apply_rot_order0;
     } else {
-        g_8c4aa348 = motion_node_apply_rot_zxy;
+        g_8c4aa348 = motion_node_apply_rot_order1;
     }
     if ((g_8c4aad82 & 4) == 0) {
         g_8c4aa350 = noop_21d13c;
@@ -19160,9 +19160,9 @@ u32 alt_entry_21bbba(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0) {
             g_8c4aa348 = motion_node_apply_rot_keys20;
         }
     } else if ((*unaff_r12 & 0x20) == 0) {
-        g_8c4aa348 = motion_node_apply_rot_xyz;
+        g_8c4aa348 = motion_node_apply_rot_order0;
     } else {
-        g_8c4aa348 = motion_node_apply_rot_zxy;
+        g_8c4aa348 = motion_node_apply_rot_order1;
     }
     if ((g_8c4aad82 & 4) == 0) {
         g_8c4aa350 = (code *)&LAB_8c21d13c;
@@ -19232,9 +19232,9 @@ u32 gfxlib_draw_21bdd6(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32
             g_8c4aa348 = motion_node_apply_rot_keys20;
         }
     } else if ((*unaff_r14 & 0x20) == 0) {
-        g_8c4aa348 = motion_node_apply_rot_xyz;
+        g_8c4aa348 = motion_node_apply_rot_order0;
     } else {
-        g_8c4aa348 = motion_node_apply_rot_zxy;
+        g_8c4aa348 = motion_node_apply_rot_order1;
     }
     a5 = &g_8c4aa350;
     if ((g_8c4aad82 & 4) == 0) {
@@ -19332,9 +19332,9 @@ u32 gfxlib_draw_21bf44(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0)
             g_8c4aa348 = motion_node_apply_rot_keys20;
         }
     } else if ((*unaff_r12 & 0x20) == 0) {
-        g_8c4aa348 = motion_node_apply_rot_xyz;
+        g_8c4aa348 = motion_node_apply_rot_order0;
     } else {
-        g_8c4aa348 = motion_node_apply_rot_zxy;
+        g_8c4aa348 = motion_node_apply_rot_order1;
     }
     if ((g_8c4aad82 & 4) == 0) {
         g_8c4aa350 = noop_21d13c;
@@ -22582,10 +22582,10 @@ u32 motion_node_apply_scale(int a0) {
 }
 
 /*
- * motion_node_apply_rot_xyz  0x8c21cf22
+ * motion_node_apply_rot_order0  0x8c21cf22
  * binary-searches the current node's rotation keys for the current frame and applies the angles in order 0
  */
-u32 motion_node_apply_rot_xyz(int a0) {
+u32 motion_node_apply_rot_order0(int a0) {
     u32 r6;
     u32 r7;
     u32 uVar1;
@@ -22625,10 +22625,10 @@ u32 motion_node_apply_rot_xyz(int a0) {
 }
 
 /*
- * motion_node_apply_rot_zxy  0x8c21cfd8
+ * motion_node_apply_rot_order1  0x8c21cfd8
  * binary-searches the current node's rotation keys for the current frame and applies the angles in order 1
  */
-u32 motion_node_apply_rot_zxy(int a0) {
+u32 motion_node_apply_rot_order1(int a0) {
     u32 r6;
     u32 r7;
     u32 uVar1;

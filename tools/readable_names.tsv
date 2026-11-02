@@ -2059,6 +2059,21 @@
 8c21b908	gfx_object_tree_draw_alt	the same object-tree walk as gfx_object_tree_draw, drawing each model through gfxlib_calls_test_219954 instead of the hook
 8c21ce02	motion_node_apply_pos	binary-searches the current node's position keys for the current frame and applies the result (the node's own position when there are no keys)
 8c21ce92	motion_node_apply_scale	binary-searches the current node's scale keys for the current frame and applies the result (the node's own scale when there are no keys)
-8c21cf22	motion_node_apply_rot_xyz	binary-searches the current node's rotation keys for the current frame and applies the angles in order 0
-8c21cfd8	motion_node_apply_rot_zxy	binary-searches the current node's rotation keys for the current frame and applies the angles in order 1
+8c21cf22	motion_node_apply_rot_order0	binary-searches the current node's rotation keys for the current frame and applies the angles in order 0
+8c21cfd8	motion_node_apply_rot_order1	binary-searches the current node's rotation keys for the current frame and applies the angles in order 1
 8c21d06c	motion_node_apply_rot_keys20	binary-searches the current node's 0x14-byte rotation keys for the current frame and applies the interpolated rotation
+8c254d1a	motion_matrix_apply_pos	binary-searches the current node's position keys for the current frame and translates the motion matrix by the result
+8c254db0	motion_matrix_apply_scale	binary-searches the current node's scale keys for the current frame and scales the motion matrix by the result
+8c254e80	motion_matrix_apply_rot_xyz	rotates the motion matrix with njRotateXYZ by the node's angles, or by the angles interpolated from its rotation keys
+8c254f1e	motion_matrix_apply_rot_other	rotates the motion matrix with ninja_float_calc_256e18 by the node's angles, or by the angles interpolated from its rotation keys
+8c2551d4	vec3_catmull_rom_normalized	evaluates the Catmull-Rom spline through a0..a3 at t and normalises the result (0, 0, 1 when it is near zero)
+8c2571fe	tex_build_control_words	builds texture a0's size word (+8) and texture control word (+0xc) from its sizes, flags, pixel format and palette bank
+8c25a49e	tex_entry_free	clears texture entry a0, trims the in-use count past trailing free entries and records the first free entry
+8c25fca4	adx_handle_parse_header	reads the ADX header (channels, rate, sample count, high-pass frequency and loop info) of a1 into decoder handle a0
+8c25fdb2	audio_parse_header_any	parses the header a1 into a0 with the matching reader: ADX (0x8000), SPSD, WAV, AIFF or AU; returns 0 for an unknown format
+8c260f02	adx_get_loop_info	reads the ADX header's loop block (version 3: loop flag, start/end samples and bytes); -1 when too short, -2 when there is none
+8c261f7a	adxf_read_file_info	stores file a1's ADXSTM info, sector count and byte size in a0 +0xc, +0x10 and +0x14, logging an error on failure
+8c2628fa	cri_lib_finish	drops the library's init count and, at zero, stops its server, clears its tables and releases its handles
+8c264784	adxt_apply_pan	sets the stream's pan from +0x42 (and +0x44 for the right channel of stereo), using centre or hard left/right for the -0x80 default
+8c2654f4	aica_load_sound_driver	checks the "SDRV" driver image a0 (version 1), DMAs it into AICA RAM, starts the ARM and fires the callback; returns an error code
+8c265ac8	sd_set_slot_buffer	sets the sound slot table to a0 with a1 entries and fills each 0x20-byte entry from the template

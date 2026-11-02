@@ -3797,7 +3797,7 @@ u32 Class_12b388_uses_Class_129808_draw_0c5cb4(u32 a0, int a1, u32 a2, u32 a3) {
     Class_129808_draw(0x8c431294, ar5_00, a2, a3);
     uVar1 = 0x8c35468c;
     game_release_0f8134(0x8c35468c, ar5_00, a2, a3);
-    ninja_uses_tex_is_palettized_2565c4(uVar1, ar5_00, a2, a3, in_stack_ffffffe8);
+    ninja_uses_tex_entry_free_2565c4(uVar1, ar5_00, a2, a3, in_stack_ffffffe8);
     set_g_8c277ae8(0, ar5_00, a2, a3, in_stack_ffffffe8);
     CItemGLoader_clear_requests(*(u32 *)(a1 + 2000), ar5_00, a2, a3);
     aiStack_10[0] = take_field_4_on_field_d8(*(u32 *)(a1 + 0x7cc));

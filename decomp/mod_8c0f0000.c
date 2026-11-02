@@ -4213,7 +4213,7 @@ u32 game_shutdown_a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
     ar4_00 = 0x8c286ebc;
     memcard_flush_and_close_8c3dd7dc(0x8c286ebc, a1, a2, a3);
-    ninja_uses_tex_is_palettized_25b37c(ar4_00, a1, a2);
+    ninja_uses_tex_entry_free_25b37c(ar4_00, a1, a2);
     gfxlib_calc_23403e();
     if (g_8c43b570 != 0) {
         ar4_00 = g_8c43b570;

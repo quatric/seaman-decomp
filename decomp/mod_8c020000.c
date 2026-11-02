@@ -1982,7 +1982,7 @@ int aica_driver_upload(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
             iVar1 = sd_dma_setup(aiStack_10[0], a1, 0, 0xffffffff, 0);
             ar5_00 = a1;
             if (iVar1 == 0) {
-                iVar1 = aica_sound_2654f4(aiStack_10[0], a1, ar6_00, a3);
+                iVar1 = aica_load_sound_driver(aiStack_10[0], a1, ar6_00, a3);
                 ar5_00 = a1;
             }
         }

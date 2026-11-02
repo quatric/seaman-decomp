@@ -13311,7 +13311,7 @@ u32 *shinobi_uses_int_call_handlers_1fa496(void) {
 /*
  * shinobi_uses_ret_const_1_1fa54c  0x8c1fa54c
  * area name: in the shinobi library code range; behaviour name: its callees mostly do: uses_ret_const_1
- * called by: cri_uses_irq_disable_nested_2628fa, gdfs_shutdown, gdfs_shutdown_alt, ninja_set_event900_callback,
+ * called by: cri_lib_finish, gdfs_shutdown, gdfs_shutdown_alt, ninja_set_event900_callback,
  * ninja_uses_ret_const_1_2580c6, pvr_uses_maple_reset_dma_1efcae, shinobi_remove_event900, ta_copy_2019e0
  */
 u32 shinobi_uses_ret_const_1_1fa54c(int a0) {

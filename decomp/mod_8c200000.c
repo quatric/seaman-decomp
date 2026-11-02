@@ -13079,8 +13079,8 @@ u32 kamui_uses_vram64_20cefe(u32 *a0, u32 a1) {
 /*
  * kamui_list_20cf88  0x8c20cf88
  * area name: in the kamui library code range; behaviour name: mostly calls list functions
- * called by: alt_entry_2567fe, alt_entry_25a918, ninja_uses_tex_is_palettized_2566c8,
- * ninja_uses_tex_is_palettized_2567f8, tex_calls_test_25a914, tex_uses_dcache_writeback_range_25a770
+ * called by: alt_entry_2567fe, alt_entry_25a918, ninja_uses_tex_entry_free_2566c8, ninja_uses_tex_entry_free_2567f8,
+ * tex_calls_test_25a914, tex_uses_dcache_writeback_range_25a770
  */
 u32 kamui_list_20cf88(u32 *a0) {
     u32 uVar1;
