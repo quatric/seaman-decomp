@@ -4496,7 +4496,7 @@ u32 save_write_step(u32 a0, u8 *a1, u8 *a2, u8 *a3) {
 
 /*
  * strcmp_0b6e04  0x8c0b6e04
- * called by: CSeamanDomain_Init, game_sub_0b6e6c, game_sub_0bad68, save_files_check, save_write_step
+ * called by: CSeamanDomain_Init, game_sub_0bad68, save_check_files, save_files_check, save_write_step
  */
 u32 strcmp_0b6e04(u8 *a0, u8 *a1) {
     u8 bVar1;
@@ -4513,11 +4513,11 @@ u32 strcmp_0b6e04(u8 *a0, u8 *a1) {
 }
 
 /*
- * game_sub_0b6e6c  0x8c0b6e6c
- * area name: game code; nothing names its area yet
+ * save_check_files  0x8c0b6e6c
+ * checks the SM2000US.USR/.INC/._VM save files on the card and writes the VM file when needed
  * strings: "SM2000US._VM"; "SM2000US._VM"; "SM2000US.USR"; "SM2000US.USR" ...
  */
-u32 game_sub_0b6e6c(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
+u32 save_check_files(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
     int iVar1;
     u8 *ar6_00;
     u8 *ar5_00;
@@ -4875,7 +4875,7 @@ u32 save_file_date_matches(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * save_usr_date_matches  0x8c0b7804
  * loads SM2000US.USR and compares its saved date with a0
- * called by: game_sub_0c7438
+ * called by: save_user_file_check
  * strings: "SM2000US.USR"
  */
 u32 save_usr_date_matches(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
@@ -4960,7 +4960,7 @@ u32 CGame_sub_0b7920(int a0, u32 unused_a1, u32 a2) {
 /*
  * game_sub_0b79f0  0x8c0b79f0
  * area name: game code; nothing names its area yet
- * called by: game_sub_0bad68, game_sub_0c6e74, game_sub_0c7438
+ * called by: game_sub_0bad68, game_sub_0c6e74, save_user_file_check
  */
 u32 game_sub_0b79f0(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -4997,12 +4997,12 @@ int game_sub_0b7a54(int a0) {
 }
 
 /*
- * game_sub_0b7ad0  0x8c0b7ad0
- * area name: game code; nothing names its area yet
+ * disc_product_id_index  0x8c0b7ad0
+ * matches the disc's product number against the HDR-000x list
  * called by: game_init_sound_and_messages
  * strings: "6107055   "; "HDR-0001  "; "HDR0010   "; "T38801M   " ...
  */
-u32 game_sub_0b7ad0(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 disc_product_id_index(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
     sh4_tmu_1f8b34(0);
@@ -6945,7 +6945,7 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
     if (cVar23 == '\0' && fVar11 < fVar14) {
         puVar10 = (u8 *)0x898;
         ar6_00 = NULL;
-        CSeamanDomain_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x144), 0, 0x898);
+        pack_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x144), 0, 0x898);
     }
     iVar2 = pack_sub_021f18(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_00);
     if (iVar2 == 2) {
@@ -7016,7 +7016,7 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
                 puVar10 = (u8 *)(int)(dVar16 + dVar16);
             }
             ar6_00 = NULL;
-            CSeamanDomain_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x144), 0, puVar10);
+            pack_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x144), 0, puVar10);
             iVar2 = pack_sub_021f18(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_00);
             if (iVar2 == 2) {
                 puVar10 = (u8 *)0x8ea;
@@ -7051,7 +7051,7 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
         if (cVar23 != '\0' || fVar14 <= fVar11) {
             fVar11 = 2.38221e-42;
             iVar2 = 0;
-            CSeamanDomain_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x148), 0, 0x6a4);
+            pack_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x148), 0, 0x6a4);
         } else {
             if (cVar24 == '\0') {
                 dVar16 = (double)CONCAT44(g_8c4366b8, 0x42960000);
@@ -7095,12 +7095,12 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
                 fVar11 = (float)(int)(dVar16 + dVar16);
             }
             iVar2 = 0;
-            CSeamanDomain_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x148), 0, fVar11);
+            pack_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x148), 0, fVar11);
         }
     } else {
         fVar11 = 9.80909e-42;
         iVar2 = 0;
-        CSeamanDomain_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x148), 0, 7000);
+        pack_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x148), 0, 7000);
     }
     g_8c4366c8 = g_8c4366c8 + 1;
     if (2 < g_8c4366c8) {
@@ -7956,7 +7956,7 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
         if (cVar23 == '\0' && fVar14 < fVar11) {
             pcVar9 = (code *)0x258;
             ar6_01 = g_8c4366e4;
-            CSeamanDomain_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x144), g_8c4366e4, 600);
+            pack_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x144), g_8c4366e4, 600);
         }
     }
     iVar2 = pack_sub_021f18(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_01);
@@ -9443,7 +9443,7 @@ u32 CSeamanDomain_sub_0bf588(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * input_a_or_start_pressed  0x8c0bf618
  * 1 when A or Start was just pressed on the pad at +0xcc and the pad is connected
- * called by: CSeamanDomain_sub_0bf588, CSeamanDomain_sub_0c1d98
+ * called by: CSeamanDomain_sub_0bf588, save_menu_update
  */
 u32 input_a_or_start_pressed(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -9462,7 +9462,7 @@ u32 input_a_or_start_pressed(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * menu_prev_pressed  0x8c0bf690
  * Left or L pressed on the controller at +0xcc (ignored during demo input)
- * called by: CSeamanDomain_sub_0bf588, CSeamanDomain_sub_0c1d98, confirm_exit_save
+ * called by: CSeamanDomain_sub_0bf588, confirm_exit_save, save_menu_update
  */
 u32 menu_prev_pressed(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -9481,7 +9481,7 @@ u32 menu_prev_pressed(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * menu_next_pressed  0x8c0bf708
  * Right or R pressed on the controller at +0xcc (ignored during demo input)
- * called by: CSeamanDomain_sub_0bf588, CSeamanDomain_sub_0c1d98, confirm_exit_save
+ * called by: CSeamanDomain_sub_0bf588, confirm_exit_save, save_menu_update
  */
 u32 menu_next_pressed(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -9500,7 +9500,7 @@ u32 menu_next_pressed(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * input_start_pressed_wrap_0bf780  0x8c0bf780
  * only calls input_start_pressed
- * called by: CSeamanDomain_Init, CSeamanDomain_sub_0c1d98, CSeamanDomain_sub_0c23fc
+ * called by: CSeamanDomain_Init, CSeamanDomain_sub_0c23fc, save_menu_update
  */
 u32 input_start_pressed_wrap_0bf780(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;

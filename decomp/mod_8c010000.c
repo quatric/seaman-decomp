@@ -11869,7 +11869,7 @@ u32 libc_sub_014370(u32 a0) {
 
 /*
  * strcat  0x8c01437c
- * called by: asr_sub_0fbf28, game_sub_01dea4, game_sub_0fae24, malloc_sub_01e1e8, ninja_sub_25a174,
+ * called by: asr_sub_0fbf28, game_sub_01dea4, game_sub_0fae24, msg_substitute_name, ninja_sub_25a174,
  * pack_find_entry_by_name, speech_start, speech_start_chapter (+6 more)
  */
 char *strcat(char *a0, char *a1) {
@@ -13110,8 +13110,8 @@ u32 *Class_129920_ctor(u32 *a0, u32 a1) {
 
 /*
  * Class_129920_m0_015248  0x8c015248
- * called by: CEnv_LoadDevicePanelTexture, CGame_Initial, CGame_LoadForEvent1Models, game_sub_024968, game_sub_0372a0,
- * game_sub_085f4c
+ * called by: CEnv_LoadDevicePanelTexture, CGame_Initial, CGame_LoadForEvent1Models, common_load_eye_scsi,
+ * game_sub_0372a0, game_sub_085f4c
  */
 u32 Class_129920_m0_015248(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_r0;
@@ -13287,7 +13287,7 @@ u32 clear_field_0_wrap(u32 a0) {
 
 /*
  * set_field_0  0x8c015508
- * called by: game_sub_024968
+ * called by: common_load_eye_scsi
  */
 u32 set_field_0(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_r0;
@@ -14429,8 +14429,8 @@ u32 Class_129808_set_model(int a0, u32 a1, u32 a2) {
 /*
  * Class_129808_draw  0x8c016340
  * draws the object's model (+0xc) with its flags (+0x10)
- * called by: CGame_sub_0c3e78, CSeamanDomain_Init, CSeamanDomain_sub_0c1d98, CSeamanDomain_sub_0c2068,
- * CSeamanDomain_sub_0c3530, Class_129808_m6_0166b4, Class_12b388_sub_0c5cb4, Class_12b758_sub_0e4dd0 (+17 more)
+ * called by: CGame_sub_0c3e78, CSeamanDomain_Init, CSeamanDomain_sub_0c2068, CSeamanDomain_sub_0c3530,
+ * Class_129808_m6_0166b4, Class_12b388_sub_0c5cb4, Class_12b758_sub_0e4dd0, ambient_sound_update (+17 more)
  */
 u32 Class_129808_draw(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -18940,16 +18940,17 @@ int free_if_nonnull_wrap_01a384(int a0, u32 a1, u32 a2, u32 a3) {
 u32 Class_129a24_sub_01a3b4(u32 a0, u32 a1, u32 a2) {
     int iVar1;
 
-    iVar1 = Class_129a24_sub_01a3e4(a0, a1, a2);
+    iVar1 = vmu_load_user_icon(a0, a1, a2);
     return (u32)(iVar1 == 3);
 }
 
 /*
- * Class_129a24_sub_01a3e4  0x8c01a3e4
- * name hint from a string it uses: VM User Icon VMI; area name: sits between Class_129a24 functions (same compilation
- * unit) called by: Class_129a24_sub_01a3b4 strings: "VM_User_Icon.VMI"; "VM_User_Icon.VMI"
+ * vmu_load_user_icon  0x8c01a3e4
+ * reads VM_User_Icon.VMI for the memory card in use
+ * called by: Class_129a24_sub_01a3b4
+ * strings: "VM_User_Icon.VMI"; "VM_User_Icon.VMI"
  */
-int Class_129a24_sub_01a3e4(int *a0, int a1, int a2) {
+int vmu_load_user_icon(int *a0, int a1, int a2) {
     u8 *r7;
     int iVar1;
     u8 *ar5_00;
@@ -19427,7 +19428,7 @@ u32 memcard_save_start(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_01ae98  0x8c01ae98
  * area name: game code; nothing names its area yet
- * called by: game_sub_0b6e6c, game_sub_0b726c
+ * called by: game_sub_0b726c, save_check_files
  */
 u32 game_sub_01ae98(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -19513,7 +19514,7 @@ int memcard_queue_save(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_01b0a8  0x8c01b0a8
  * area name: game code; nothing names its area yet
- * called by: game_sub_0b6e6c, game_sub_0b726c
+ * called by: game_sub_0b726c, save_check_files
  */
 u32 game_sub_01b0a8(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -19680,7 +19681,7 @@ u32 memcard_save_vm_start(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * memcard_save_vm_wait  0x8c01b47c
  * memcard_save_vm_start, then waits up to 10 s for it
- * called by: game_sub_0b6e6c
+ * called by: save_check_files
  */
 u32 memcard_save_vm_wait(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -20005,7 +20006,7 @@ u32 memcard_delete_start(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * game_sub_01bb00  0x8c01bb00
  * area name: game code; nothing names its area yet
- * called by: CSeamanDomain_sub_0c1d98, CSeamanDomain_sub_0c2324, game_sub_01b144
+ * called by: game_sub_01b144, save_menu_update, save_set_names_seamandc
  */
 u32 game_sub_01bb00(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -20043,7 +20044,7 @@ int memcard_queue_delete(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * memcard_check_file_wait  0x8c01bba0
  * starts a file query and waits up to 10 s for the result
- * called by: game_sub_0b6e6c, game_sub_0c7438, save_files_check
+ * called by: save_check_files, save_files_check, save_user_file_check
  */
 u32 memcard_check_file_wait(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -20080,7 +20081,7 @@ int memcard_queue_exist(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * memcard_stat_file_wait  0x8c01bc2c
  * queries a file and copies its description into a2 when found (result 5)
- * called by: CSeamanDomain_Init, game_sub_0b6e6c, game_sub_0c7438, save_files_check
+ * called by: CSeamanDomain_Init, save_check_files, save_files_check, save_user_file_check
  */
 int memcard_stat_file_wait(int a0, u32 a1, u8 *a2, u32 a3) {
     int iVar1;
@@ -20197,7 +20198,7 @@ int memcard_queue_condition_b(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * game_sub_01be1c  0x8c01be1c
  * area name: game code; nothing names its area yet
- * called by: Class_129a24_sub_01a3e4
+ * called by: vmu_load_user_icon
  */
 u32 game_sub_01be1c(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -20710,7 +20711,7 @@ u32 set_fields_24_20(int a0, u32 a1) {
 /*
  * game_sub_01c970  0x8c01c970
  * area name: game code; nothing names its area yet
- * called by: game_sub_0fa944, speech_sub_0fa83c
+ * called by: speech_sub_0fa83c, speech_sub_0fa944
  */
 u32 game_sub_01c970(int a0, u32 *a1) {
     u32 uVar1;
@@ -21860,15 +21861,15 @@ int realloc_like(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * malloc_sub_01e1e8  0x8c01e1e8
- * area name: sits between malloc functions (same compilation unit)
+ * msg_substitute_name  0x8c01e1e8
+ * replaces "@NAME" in a message with the player's name
  * strings: ";
           strcat(&g_8c2791c8,&g_8c12fbbb);
         }
      "; ";
         strcpy(&g_8c2791c8,"
  */
-u32 malloc_sub_01e1e8(int *a0, char *a1, u32 a2, u32 a3) {
+u32 msg_substitute_name(int *a0, char *a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
 
@@ -22963,7 +22964,8 @@ LAB_8c01f4ea:
 
 /*
  * get_field_a524_01f514  0x8c01f514
- * called by: CGame_sub_0b7920, CGame_sub_0c3e78, CSeamanDomain_Init, game_sub_0b6e6c, save_files_check, save_write_step
+ * called by: CGame_sub_0b7920, CGame_sub_0c3e78, CSeamanDomain_Init, save_check_files, save_files_check,
+ * save_write_step
  */
 u32 get_field_a524_01f514(int a0, u32 unused_a1, u32 a2) {
     return *(u32 *)(0xa524 + a0);
@@ -22972,8 +22974,8 @@ u32 get_field_a524_01f514(int a0, u32 unused_a1, u32 a2) {
 /*
  * identity  0x8c01f520
  * returns its first argument
- * called by: CSeamanDomain_Init, CSeamanDomain_sub_0c1d98, CSeamanDomain_sub_0c2324, Class_12b388_m1_0c5c08,
- * confirm_exit_save, game_sub_0b6e6c, game_sub_0b726c, game_sub_0c7438 (+10 more)
+ * called by: CSeamanDomain_Init, Class_12b388_m1_0c5c08, confirm_exit_save, game_sub_0b726c, game_sub_0e5238,
+ * game_sub_0e8280, memcard_flush_and_close_8c3dd7dc, save_check_files (+10 more)
  */
 u32 identity(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     return a0;
@@ -22991,7 +22993,7 @@ int field_ptr_384c(int a0) {
 
 /*
  * get_field_a510_01f538  0x8c01f538
- * called by: CGame_Initial, ambient_sound_update, game_sub_0b6e6c, game_sub_0bad68, game_sub_0fc4c4, save_files_check,
+ * called by: CGame_Initial, ambient_sound_update, game_sub_0bad68, game_sub_0fc4c4, save_check_files, save_files_check,
  * save_write_step
  */
 u32 get_field_a510_01f538(int a0) {

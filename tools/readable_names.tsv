@@ -1059,3 +1059,15 @@
 8c0bb1e4	ambient_sound_update	plays and switches the forest and rain ambience (AMB_FOREST, AMB_RAIN)
 8c0c8758	bugbox_3_screen	the BUGBOX_3 message screen
 8c0c8c28	bugbox_4_screen	the BUGBOX_4 message screen
+8c01a3e4	vmu_load_user_icon	reads VM_User_Icon.VMI for the memory card in use
+8c01e1e8	msg_substitute_name	replaces "@NAME" in a message with the player's name
+8c024968	common_load_eye_scsi	loads the COMMON_EYE and COMMON_SCSI textures from GRAPHICS\COMMON
+8c0b6e6c	save_check_files	checks the SM2000US.USR/.INC/._VM save files on the card and writes the VM file when needed
+8c0b7ad0	disc_product_id_index	matches the disc's product number against the HDR-000x list
+8c0c1d98	save_menu_update	the save-file selection menu (SEAMAN / Seaman Storage Matrix)
+8c0c2324	save_set_names_seamandc	selects the SEAMANDC.USR / SEAMANDC._VM save names
+8c0c7438	save_user_file_check	checks that SM2000US.USR and ._VM exist and match the saved date
+8c0c991c	event_out_water_cat	the 44_OUTWATERCAT event: loads its models and sound port
+8c0faa94	speech_update	per-frame speech recognition and reply logic (SPEECH)
+8c0fb268	talk_pick_grunt	picks a random grunt reply (GU_02..GU_09) when nothing matched (@NONE)
+8c1fa7d0	exception_dump_registers	prints PC, SR, GBR, VBR, DBR, PR, MACH/MACL, FPUL and FPSCR over the serial port

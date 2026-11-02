@@ -962,7 +962,7 @@ u32 CDCGD_release_request_wrap_021234(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * CDCGD_request_type_10  0x8c02126c
  * disc request type 0x10 (handle at +0x34)
- * called by: asr_sub_0fbf28, file_load_into_object_buffer, game_sub_0faa94, game_sub_0fae24, speech_sub_01da90
+ * called by: asr_sub_0fbf28, file_load_into_object_buffer, game_sub_0fae24, speech_sub_01da90, speech_update
  */
 u32 CDCGD_request_type_10(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1029,7 +1029,7 @@ u32 CDCGD_request_type10(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * retry_until_done_021370  0x8c0213bc
  * CDCGD request 8c021370, retried through 8c01f810 until done; 1 done, 0 failed
- * called by: Class_129a24_sub_01a3e4, vmu_file_add_with_icon
+ * called by: vmu_file_add_with_icon, vmu_load_user_icon
  */
 u32 retry_until_done_021370(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -1488,7 +1488,7 @@ u32 game_sub_021ad4(int *a0, u32 a1) {
 /*
  * pack_acquire_entry_handle  0x8c021b10
  * called by: CProlog_Ready, CSeamanDomain_warning_message, Class_12b580_sub_0d84e8, ambient_sound_update,
- * bugbox_3_screen, bugbox_4_screen, confirm_exit_save, game_sub_0c991c (+3 more)
+ * bugbox_3_screen, bugbox_4_screen, confirm_exit_save, event_out_water_cat (+3 more)
  */
 int pack_acquire_entry_handle(int *a0, u32 a1, u32 a2, u32 a3) {
     int ar5_00;
@@ -1594,12 +1594,12 @@ u32 pack_sub_021d4c(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * CSeamanDomain_sub_021d90  0x8c021d90
- * area name: only called from CSeamanDomain methods
+ * pack_sub_021d90  0x8c021d90
+ * area name: sits between pack functions (same compilation unit)
  * called by: CSeamanDomain_warning_message, Class_12b580_sub_0d84e8, ambient_sound_update, bugbox_3_screen,
- * bugbox_4_screen, confirm_exit_save, game_sub_0fb268, game_sub_0fb494 (+1 more)
+ * bugbox_4_screen, confirm_exit_save, game_sub_0fb494, startup_warning_check (+1 more)
  */
-int CSeamanDomain_sub_021d90(int *a0, int a1, u32 a2, u32 a3) {
+int pack_sub_021d90(int *a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar6_00;
     u32 uVar2;
@@ -1618,7 +1618,7 @@ int CSeamanDomain_sub_021d90(int *a0, int a1, u32 a2, u32 a3) {
 /*
  * pack_sub_021e10  0x8c021e10
  * area name: sits between pack functions (same compilation unit)
- * called by: CSeamanDomain_sub_021d90
+ * called by: pack_sub_021d90
  */
 int pack_sub_021e10(u32 unused_a0, int a1) {
     u32 ar4_00;
@@ -1667,7 +1667,7 @@ int pack_sub_021e10(u32 unused_a0, int a1) {
 /*
  * pack_sub_021ec8  0x8c021ec8
  * area name: sits between pack functions (same compilation unit)
- * called by: CSeamanDomain_sub_021d90
+ * called by: pack_sub_021d90
  */
 int pack_sub_021ec8(u32 unused_a0, u32 a1) {
     int iVar1;
@@ -1771,7 +1771,7 @@ u32 pack_find_by_name_buffered(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Class_12b580_clear_request  0x8c0220bc
  * clears the request (+0x9ec94 = -1) and the ready flag
- * called by: Class_12b580_m1_0e634c, game_sub_0c991c, game_sub_0e0764, game_sub_0e6dc4, se_close_two_ports,
+ * called by: Class_12b580_m1_0e634c, event_out_water_cat, game_sub_0e0764, game_sub_0e6dc4, se_close_two_ports,
  * se_sub_0d50b4
  */
 int Class_12b580_clear_request(int a0) {
@@ -1803,7 +1803,7 @@ u32 Class_12b580_set_request(int *a0, u32 a1) {
 /*
  * Class_12b580_sub_022104  0x8c022104
  * area name: sits between Class_12b580 functions (same compilation unit)
- * called by: Class_12b580_m1_0e634c, Class_12b580_sub_0d56b4, game_sub_0c991c, game_sub_0d5614, game_sub_0e0764,
+ * called by: Class_12b580_m1_0e634c, Class_12b580_sub_0d56b4, event_out_water_cat, game_sub_0d5614, game_sub_0e0764,
  * game_sub_0e6d24, se_close_two_ports, se_sub_0d50b4
  */
 u32 Class_12b580_sub_022104(int *a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -2384,7 +2384,7 @@ u32 adx_stall_watchdog(int a0, int a1, u16 *a2, u32 a3) {
 /*
  * bgm_set_pan_center  0x8c022b68
  * sets the output pan of ADX channel a1 (type 2) to centre
- * called by: CSeamanDomain_sub_021d90
+ * called by: pack_sub_021d90
  */
 int bgm_set_pan_center(int a0, int a1, u32 a2) {
     int iVar1;
@@ -2401,7 +2401,7 @@ int bgm_set_pan_center(int a0, int a1, u32 a2) {
 /*
  * sound_set_out_vol_wrap  0x8c022bb0
  * only calls sound_set_out_vol
- * called by: CSeamanDomain_sub_021d90
+ * called by: pack_sub_021d90
  */
 u32 sound_set_out_vol_wrap(int a0, int a1, u32 a2) {
     u32 uVar1;
@@ -4895,12 +4895,12 @@ u32 *CAnimal_sub_024848(u32 *a0, u32 a1, u32 a2) {
 }
 
 /*
- * game_sub_024968  0x8c024968
- * name hint from a string it uses: GRAPHICS COMMON; area name: game code; nothing names its area yet
+ * common_load_eye_scsi  0x8c024968
+ * loads the COMMON_EYE and COMMON_SCSI textures from GRAPHICS\COMMON
  * called by: game_init_sound_and_messages
  * strings: "GRAPHICS\\COMMON"; "COMMON_EYE"; "GRAPHICS\\COMMON"; "Failed to load eye textuer.." ...
  */
-int game_sub_024968(u32 a0) {
+int common_load_eye_scsi(u32 a0) {
     u32 *puVar1;
     int iVar2;
     u32 *puVar3;

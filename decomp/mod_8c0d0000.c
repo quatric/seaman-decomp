@@ -8301,7 +8301,7 @@ u32 Class_12b580_sub_0d84e8(u32 *a0, u32 a1, u32 a2, u32 a3) {
         if (a0[0x1b89] != -1) {
             a3 = a0[0x1b8a];
             a2 = 0;
-            CSeamanDomain_sub_021d90(0x8c2b59d0, a0[0x1b89], 0, a3);
+            pack_sub_021d90(0x8c2b59d0, a0[0x1b89], 0, a3);
         }
     }
     uVar3 = *a0;

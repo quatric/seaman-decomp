@@ -18591,7 +18591,7 @@ u32 memcpy_words_n(u32 *a0, u32 *a1, int a2) {
 /*
  * memcpy_bytes  0x8c23c814
  * copies a2 bytes (a2 > 0)
- * called by: draw_state_copy_in, draw_state_copy_out, draw_sub_259a70, game_sub_024968, gfx_stream_read,
+ * called by: common_load_eye_scsi, draw_state_copy_in, draw_state_copy_out, draw_sub_259a70, gfx_stream_read,
  * gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0 (+8 more)
  */
 int memcpy_bytes(char *a0, char *a1, int a2) {

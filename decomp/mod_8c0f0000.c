@@ -4371,7 +4371,7 @@ int game_sub_0f8134(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
     speech_sub_0fa688(a0, a1, a2, a3);
-    game_sub_0fa910(a0 + 0x1054, a1, a2, a3);
+    speech_sub_0fa910(a0 + 0x1054, a1, a2, a3);
     iVar1 = 0x1014;
     *(u32 *)(0x1014 + a0) = 0;
     return iVar1;
@@ -4388,7 +4388,7 @@ int game_sub_0f816c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar3;
     int iVar4;
 
-    game_sub_0faa94(a0 + 0x1054, a1, a2, a3);
+    speech_update(a0 + 0x1054, a1, a2, a3);
     iVar4 = 0;
     if (*(int *)(0x89134 + a0) != 0) {
         uVar2 = talk_pick_request_keyword(a0, a1, a2, a3);
@@ -4419,7 +4419,7 @@ int game_sub_0f816c(int a0, u32 a1, u32 a2, u32 a3) {
 int speech_stop(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
-    game_sub_0fa9fc(a0 + 0x1054, a1, a2, a3);
+    speech_sub_0fa9fc(a0 + 0x1054, a1, a2, a3);
     speech_sub_0fa70c(a0, a1, a2, a3);
     iVar1 = 0x89134;
     *(u32 *)(0x89134 + a0) = 0;
@@ -4434,7 +4434,7 @@ int speech_stop(int a0, u32 a1, u32 a2, u32 a3) {
 u32 speech_sub_0f824c(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
 
-    iVar1 = (*(code *)(&game_sub_0fa944))(a0 + 0x1054, a0 + 0x1010, *(u32 *)(0x89138 + a0), a3);
+    iVar1 = (*(code *)(&speech_sub_0fa944))(a0 + 0x1054, a0 + 0x1010, *(u32 *)(0x89138 + a0), a3);
     if (iVar1 == 0) {
         *(u32 *)(0x89138 + a0) = 0;
         *(u32 *)(0x89134 + a0) = 0;
@@ -5586,24 +5586,24 @@ u32 speech_sub_0fa83c(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0fa910  0x8c0fa910
- * area name: game code; nothing names its area yet
+ * speech_sub_0fa910  0x8c0fa910
+ * area name: sits between speech functions (same compilation unit)
  * called by: game_sub_0f8134
  */
-u32 game_sub_0fa910(int *a0, u32 a1, u32 a2, u32 a3) {
-    game_sub_0fa9fc(a0, a1, a2, a3);
+u32 speech_sub_0fa910(int *a0, u32 a1, u32 a2, u32 a3) {
+    speech_sub_0fa9fc(a0, a1, a2, a3);
     while (*a0 != 1) {
-        game_sub_0faa94(a0, a1, a2, a3);
+        speech_update(a0, a1, a2, a3);
     }
     *a0 = 1;
     return 1;
 }
 
 /*
- * game_sub_0fa944  0x8c0fa944
- * area name: game code; nothing names its area yet
+ * speech_sub_0fa944  0x8c0fa944
+ * area name: sits between speech functions (same compilation unit)
  */
-u32 game_sub_0fa944(int *a0, int a1, u32 a2, u32 a3) {
+u32 speech_sub_0fa944(int *a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
 
@@ -5634,16 +5634,16 @@ u32 game_sub_0fa944(int *a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0fa9fc  0x8c0fa9fc
- * area name: game code; nothing names its area yet
- * called by: game_sub_0fa910, speech_stop
+ * speech_sub_0fa9fc  0x8c0fa9fc
+ * area name: sits between speech functions (same compilation unit)
+ * called by: speech_stop, speech_sub_0fa910
  */
-u32 game_sub_0fa9fc(int *a0, u32 a1, u32 a2, u32 a3) {
+u32 speech_sub_0fa9fc(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = 1;
     if ((1 < *a0) && (uVar1 = 1, *(int *)(0xb0 + (int)a0) != 1)) {
-        game_sub_0faa40(a0, a1, a2, a3);
+        speech_sub_0faa40(a0, a1, a2, a3);
         *a0 = 1;
         *(u32 *)(a0[4] + 4) = 0;
         uVar1 = game_sub_0fda5c(a0, a1, a2, a3);
@@ -5652,11 +5652,11 @@ u32 game_sub_0fa9fc(int *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0faa40  0x8c0faa40
- * area name: game code; nothing names its area yet
- * called by: game_sub_0fa9fc
+ * speech_sub_0faa40  0x8c0faa40
+ * area name: sits between speech functions (same compilation unit)
+ * called by: speech_sub_0fa9fc
  */
-u32 game_sub_0faa40(int *a0, u32 a1, u32 a2, u32 a3) {
+u32 speech_sub_0faa40(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = 1;
@@ -5673,12 +5673,12 @@ u32 game_sub_0faa40(int *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0faa94  0x8c0faa94
- * name hint from a string it uses: SPEECH; area name: game code; nothing names its area yet
- * called by: game_sub_0f816c, game_sub_0fa910
+ * speech_update  0x8c0faa94
+ * per-frame speech recognition and reply logic (SPEECH)
+ * called by: game_sub_0f816c, speech_sub_0fa910
  * strings: "SPEECH"; "SPEECH"; "SPEECH"
  */
-u8 *game_sub_0faa94(int *a0, u32 a1, char *a2, int *a3) {
+u8 *speech_update(int *a0, u32 a1, char *a2, int *a3) {
     u8 *puVar1;
     int iVar2;
     int *ar7_00;
@@ -5790,7 +5790,7 @@ u8 *game_sub_0faa94(int *a0, u32 a1, char *a2, int *a3) {
                     break;
                 case 3:
                     game_sub_0fda5c(a0, a1, a2, a3);
-                    puVar1 = (u8 *)game_sub_0fb268(a0, a1, a2, a3);
+                    puVar1 = (u8 *)talk_pick_grunt(a0, a1, a2, a3);
                     break;
                 case 4:
                     puVar1 = (u8 *)asr_switch_vocab(a0, a1, a2, a3);
@@ -5825,7 +5825,7 @@ u8 *game_sub_0faa94(int *a0, u32 a1, char *a2, int *a3) {
 /*
  * game_sub_0fae24  0x8c0fae24
  * name hint from a string it uses: SPEECH; area name: game code; nothing names its area yet
- * called by: game_sub_0fa944
+ * called by: speech_sub_0fa944
  * strings: "SPEECH"; "SPEECH"; "SPEECH"; "SPEECH"
  */
 u32 game_sub_0fae24(u32 *a0, u32 unused_a1, char *a2, u32 a3) {
@@ -5860,8 +5860,8 @@ u32 game_sub_0fae24(u32 *a0, u32 unused_a1, char *a2, u32 a3) {
 
 /*
  * strcmp_0faf30  0x8c0faf30
- * called by: asr_sub_0fbf28, asr_switch_vocab, game_sub_0fae24, game_sub_0faf98, game_sub_0fb0d4, game_sub_0fb268,
- * game_sub_0fc4fc, game_sub_0fcd2c (+1 more)
+ * called by: asr_sub_0fbf28, asr_switch_vocab, game_sub_0fae24, game_sub_0faf98, game_sub_0fb0d4, game_sub_0fc4fc,
+ * game_sub_0fcd2c, game_sub_0fdaac (+1 more)
  */
 u32 strcmp_0faf30(u8 *a0, u8 *a1) {
     u8 bVar1;
@@ -5880,7 +5880,7 @@ u32 strcmp_0faf30(u8 *a0, u8 *a1) {
 /*
  * game_sub_0faf98  0x8c0faf98
  * name hint from a string it uses: SPEECH; area name: game code; nothing names its area yet
- * called by: game_sub_0faa94
+ * called by: speech_update
  * strings: "SPEECH"; "SPEECH"
  */
 u32 game_sub_0faf98(int a0, char *a1, char *a2, u32 a3) {
@@ -5922,8 +5922,8 @@ u32 game_sub_0faf98(int a0, char *a1, char *a2, u32 a3) {
 /*
  * game_sub_0fb0d4  0x8c0fb0d4
  * name hint from a string it uses: ERROR; area name: game code; nothing names its area yet
- * called by: asr_sub_0fbf28, game_sub_0faa94, game_sub_0fb1d4, game_sub_0fb268, game_sub_0fb494, game_sub_0fc5ac,
- * game_sub_0fc69c, game_sub_0fc7c4 strings: "@ERROR"
+ * called by: asr_sub_0fbf28, game_sub_0fb1d4, game_sub_0fb494, game_sub_0fc5ac, game_sub_0fc69c, game_sub_0fc7c4,
+ * speech_update, talk_pick_grunt strings: "@ERROR"
  */
 u32 game_sub_0fb0d4(u32 *a0, char *a1) {
     u32 uVar1;
@@ -5975,7 +5975,7 @@ u32 game_sub_0fb0d4(u32 *a0, char *a1) {
 /*
  * game_sub_0fb1d4  0x8c0fb1d4
  * name hint from a string it uses: ERR wrap; area name: game code; nothing names its area yet
- * called by: game_sub_0faa94
+ * called by: speech_update
  */
 u32 game_sub_0fb1d4(u32 *a0) {
     u32 uVar1;
@@ -5992,7 +5992,7 @@ u32 game_sub_0fb1d4(u32 *a0) {
 /*
  * game_sub_0fb20c  0x8c0fb20c
  * area name: game code; nothing names its area yet
- * called by: game_sub_0faa94
+ * called by: speech_update
  */
 u32 game_sub_0fb20c(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6012,12 +6012,12 @@ u32 game_sub_0fb20c(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0fb268  0x8c0fb268
- * area name: game code; nothing names its area yet
- * called by: game_sub_0faa94
+ * talk_pick_grunt  0x8c0fb268
+ * picks a random grunt reply (GU_02..GU_09) when nothing matched (@NONE)
+ * called by: speech_update
  * strings: "@NONE"; "GU_02"; "GU_04"; "GU_06" ...
  */
-u32 game_sub_0fb268(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 talk_pick_grunt(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     u32 ar4_00;
@@ -6086,7 +6086,7 @@ u32 game_sub_0fb268(u32 *a0, u32 a1, u32 a2, u32 a3) {
         return uVar1;
     }
 LAB_8c0fb436:
-    CSeamanDomain_sub_021d90(0x8c2b59d0, a0[0x2d], *(u32 *)(*(int *)(a0[4] + 0x40) + 0xc0), 0);
+    pack_sub_021d90(0x8c2b59d0, a0[0x2d], *(u32 *)(*(int *)(a0[4] + 0x40) + 0xc0), 0);
     *a0 = 7;
     return 7;
 }
@@ -6094,7 +6094,7 @@ LAB_8c0fb436:
 /*
  * game_sub_0fb494  0x8c0fb494
  * area name: game code; nothing names its area yet
- * called by: game_sub_0faa94
+ * called by: speech_update
  */
 u8 *game_sub_0fb494(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -6202,7 +6202,7 @@ u8 *game_sub_0fb494(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
                 }
                 ar7_01 = 0;
                 ar6_01 = *(u32 *)(*(int *)(a0[4] + 0x40) + 0xc0);
-                CSeamanDomain_sub_021d90(0x8c2b59d0, a0[0x2d], ar6_01, 0);
+                pack_sub_021d90(0x8c2b59d0, a0[0x2d], ar6_01, 0);
                 puVar1 = (u8 *)game_sub_0fb780(a0, ar5_00, ar6_01, ar7_01);
             }
         }
@@ -6226,7 +6226,7 @@ u32 game_sub_0fb780(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * game_sub_0fb7d0  0x8c0fb7d0
  * area name: game code; nothing names its area yet
- * called by: game_sub_0faa94
+ * called by: speech_update
  */
 u32 game_sub_0fb7d0(int a0) {
     int iVar1;
@@ -6443,7 +6443,7 @@ u32 game_sub_0fb83c(int a0, int a1, int a2) {
 /*
  * asr_switch_vocab  0x8c0fbdfc
  * unregisters the previous SPEECH vocabulary and registers the one named at (+0x88)->+0x2c
- * called by: game_sub_0faa94
+ * called by: speech_update
  * strings: "SPEECH"; "SPEECH"; "SPEECH"
  */
 u32 asr_switch_vocab(u32 *a0, u32 unused_a1, char *a2, u32 a3) {
@@ -6494,7 +6494,7 @@ u32 asr_switch_vocab(u32 *a0, u32 unused_a1, char *a2, u32 a3) {
 /*
  * asr_sub_0fbf28  0x8c0fbf28
  * name hint from a string it uses: SPEECH; area name: sits between asr functions (same compilation unit)
- * called by: game_sub_0faa94
+ * called by: speech_update
  * strings: "SPEECH"; "SPEECH"; "SPEECH"; "SPEECH" ...
  */
 u32 asr_sub_0fbf28(u32 *a0, u32 unused_a1, char *a2, u8 *a3) {
@@ -6731,7 +6731,7 @@ u32 game_sub_0fc4fc(u32 unused_a0, int a1) {
 /*
  * game_sub_0fc5ac  0x8c0fc5ac
  * area name: game code; nothing names its area yet
- * called by: game_sub_0faa94
+ * called by: speech_update
  */
 u32 game_sub_0fc5ac(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6748,7 +6748,7 @@ u32 game_sub_0fc5ac(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_0fc608  0x8c0fc608
  * area name: game code; nothing names its area yet
- * called by: game_sub_0faa94
+ * called by: speech_update
  */
 u32 game_sub_0fc608(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -6778,7 +6778,7 @@ u32 game_sub_0fc608(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * game_sub_0fc69c  0x8c0fc69c
  * area name: game code; nothing names its area yet
- * called by: game_sub_0faa94
+ * called by: speech_update
  */
 u32 game_sub_0fc69c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -6848,7 +6848,7 @@ u32 game_sub_0fc69c(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * game_sub_0fc7c4  0x8c0fc7c4
  * area name: game code; nothing names its area yet
- * called by: game_sub_0faa94
+ * called by: speech_update
  */
 u32 game_sub_0fc7c4(int a0, u32 unused_a1, u8 *a2, u32 a3) {
     u32 uVar1;
@@ -7036,7 +7036,7 @@ u32 game_sub_0fc94c(int a0, char *a1, char *a2, u32 a3) {
 /*
  * game_sub_0fcd2c  0x8c0fcd2c
  * area name: game code; nothing names its area yet
- * called by: game_sub_0fb268, game_sub_0fc608, game_sub_0fc69c, game_sub_0fc7c4, game_sub_0fd764
+ * called by: game_sub_0fc608, game_sub_0fc69c, game_sub_0fc7c4, game_sub_0fd764, talk_pick_grunt
  */
 u32 game_sub_0fcd2c(int a0, char *a1, u32 a2, u32 a3) {
     char cVar1;
@@ -7420,7 +7420,7 @@ u32 game_sub_0fd764(int a0, char *a1, u32 a2, u32 a3) {
 /*
  * game_sub_0fd8d0  0x8c0fd8d0
  * area name: game code; nothing names its area yet
- * called by: game_sub_0faa40, game_sub_0fc94c, game_sub_0fcd2c
+ * called by: game_sub_0fc94c, game_sub_0fcd2c, speech_sub_0faa40
  */
 int game_sub_0fd8d0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -7502,7 +7502,7 @@ u32 save_clear_entries_from(int a0, int a1) {
 /*
  * game_sub_0fda5c  0x8c0fda5c
  * area name: game code; nothing names its area yet
- * called by: game_sub_0fa9fc, game_sub_0faa94, game_sub_0fc94c, game_sub_0fd8d0
+ * called by: game_sub_0fc94c, game_sub_0fd8d0, speech_sub_0fa9fc, speech_update
  */
 u32 game_sub_0fda5c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;

@@ -5189,7 +5189,7 @@ u32 bios_sysinfo_id(u32 a0) {
 /*
  * bios_sub_1f3b5c  0x8c1f3b5c
  * area name: sits between bios functions (same compilation unit)
- * called by: Class_129a24_sub_01a3e4
+ * called by: vmu_load_user_icon
  */
 u32 bios_sub_1f3b5c(int a0) {
     int iVar1;
@@ -11905,7 +11905,7 @@ u32 sh4_tmu_1f8a64(void) {
 
 /*
  * sh4_tmu_1f8b34  0x8c1f8b34
- * called by: game_sub_0b7ad0
+ * called by: disc_product_id_index
  */
 u32 sh4_tmu_1f8b34(u32 a0) {
     char cVar1;
@@ -13507,11 +13507,11 @@ u32 intc_reset_and_init_regs(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 un
 }
 
 /*
- * shinobi_sub_1fa7d0  0x8c1fa7d0
- * name hint from a string it uses: r n ADDRESS CHECKER TRAP r n; area name: in the shinobi library code range
+ * exception_dump_registers  0x8c1fa7d0
+ * prints PC, SR, GBR, VBR, DBR, PR, MACH/MACL, FPUL and FPSCR over the serial port
  * strings: "FR0-7:    "; "FR8-15:   "; "FR0-7(B): "; "FR8-15(B):" ...
  */
-u32 shinobi_sub_1fa7d0(u32 a0, u32 *a1) {
+u32 exception_dump_registers(u32 a0, u32 *a1) {
     u32 uVar1;
     int iVar2;
     u32 uVar3;
@@ -13598,7 +13598,7 @@ u32 shinobi_sub_1fa7d0(u32 a0, u32 *a1) {
 /*
  * debug_dump_words  0x8c1faa08
  * prints a label and a2 words from the table at 0x8c475ec8 on the serial port
- * called by: shinobi_sub_1fa7d0
+ * called by: exception_dump_registers
  */
 u32 debug_dump_words(u32 a0, int a1, int a2) {
     u32 uVar1;
@@ -13621,7 +13621,7 @@ u32 debug_dump_words(u32 a0, int a1, int a2) {
 /*
  * shinobi_sub_1fab8c  0x8c1fab8c
  * area name: in the shinobi library code range
- * called by: shinobi_sub_1fa7d0
+ * called by: exception_dump_registers
  */
 int shinobi_sub_1fab8c(void) {
     int *piVar1;
@@ -13711,7 +13711,7 @@ u32 scif_putc(u32 a0) {
 /*
  * scif_getchar_like  0x8c1fad0a
  * waits for and returns a byte from the serial port (mode 0); CR when a break is seen (mode 1)
- * called by: shinobi_sub_1fa7d0
+ * called by: exception_dump_registers
  */
 int scif_getchar_like(u32 unused_a0, int a1) {
     if (g_8c475ed8 == 0) {
@@ -13727,7 +13727,7 @@ int scif_getchar_like(u32 unused_a0, int a1) {
 /*
  * scif_sub_1fad44  0x8c1fad44
  * area name: sits between scif functions (same compilation unit)
- * called by: shinobi_sub_1fa7d0
+ * called by: exception_dump_registers
  */
 u32 scif_sub_1fad44(void) {
     char cVar1;
@@ -13753,7 +13753,7 @@ u32 scif_sub_1fad44(void) {
 /*
  * scif_puts  0x8c1fad9a
  * scif_putc for each byte of a string
- * called by: debug_dump_words, shinobi_sub_1fa7d0
+ * called by: debug_dump_words, exception_dump_registers
  */
 u32 scif_puts(char *a0) {
     u32 in_r0;
@@ -13767,7 +13767,7 @@ u32 scif_puts(char *a0) {
 /*
  * scif_put_hex32  0x8c1fadd0
  * prints a0 as eight hex digits on the serial port
- * called by: debug_dump_words, shinobi_sub_1fa7d0
+ * called by: debug_dump_words, exception_dump_registers
  */
 u32 scif_put_hex32(u32 a0) {
     u32 uVar1;
@@ -14635,7 +14635,7 @@ u32 shinobi_sub_1fbc44(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * shinobi_sub_1fbd2c  0x8c1fbd2c
  * area name: in the shinobi library code range
- * called by: Class_129a24_sub_01a3e4
+ * called by: vmu_load_user_icon
  */
 int shinobi_sub_1fbd2c(u32 a0, u32 a1, u32 a2, code *a3) {
     int iVar1;
@@ -14876,7 +14876,7 @@ u32 thunk_FUN_8c1fce50(void) {
 
 /*
  * thunk_FUN_8c1fda7e  0x8c1fbfcc
- * called by: Class_129a24_sub_01a3e4, game_sub_01a5cc
+ * called by: game_sub_01a5cc, vmu_load_user_icon
  */
 u32 thunk_FUN_8c1fda7e(void) {
     u32 uVar1;
@@ -14942,8 +14942,8 @@ u32 shinobi_sub_1fc04e(u32 a0) {
 
 /*
  * thunk_FUN_8c1ffcc2  0x8c1fc076
- * called by: Class_129a24_sub_01a3e4, bu_get_file_size_now, bu_get_free_blocks_now, bu_get_game_file_name_now,
- * bu_is_exist_file_now, shinobi_sub_1fdd44, shinobi_sub_1fe236, shinobi_sub_1fe466 (+21 more)
+ * called by: bu_get_file_size_now, bu_get_free_blocks_now, bu_get_game_file_name_now, bu_is_exist_file_now,
+ * shinobi_sub_1fdd44, shinobi_sub_1fe236, shinobi_sub_1fe466, shinobi_sub_1fe534 (+21 more)
  */
 u32 thunk_FUN_8c1ffcc2(void) {
     u32 uVar1;

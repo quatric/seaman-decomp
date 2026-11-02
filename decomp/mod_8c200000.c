@@ -2569,7 +2569,7 @@ u32 switch_jump_wrap(int a0) {
 /*
  * set_field_18_mark_dirty  0x8c201c28
  * +0x18 = a1 and +0x28 = 4 when it changes
- * called by: malloc_sub_01e1e8
+ * called by: msg_substitute_name
  */
 u32 set_field_18_mark_dirty(int a0, int a1) {
     if (*(int *)(a0 + 0x18) != a1) {
