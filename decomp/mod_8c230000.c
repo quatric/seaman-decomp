@@ -16603,7 +16603,7 @@ u32 gfxlib_float_calc_23b930(int a0, float *a1) {
 /*
  * clear_4_words  0x8c23ba30
  * a0[0..3] = 0
- * called by: gfxlib_copy_23bbac, gfxlib_copy_23bcc8, gfxlib_copy_23be0c
+ * called by: gfx_lights_apply_color, gfxlib_copy_23bcc8, gfxlib_copy_23be0c
  */
 u32 clear_4_words(u32 *a0) {
     *a0 = 0;
@@ -16616,7 +16616,7 @@ u32 clear_4_words(u32 *a0) {
 /*
  * gfxlib_scan_loop_23ba42  0x8c23ba42
  * area name: in the gfxlib library code range; behaviour name: a loop that only reads
- * called by: gfxlib_calls_scan_loop_23bae2, gfxlib_copy_23bbac, gfxlib_copy_23bcc8, gfxlib_copy_23be0c
+ * called by: gfx_lights_apply_color, gfxlib_calls_scan_loop_23bae2, gfxlib_copy_23bcc8, gfxlib_copy_23be0c
  */
 u8 *gfxlib_scan_loop_23ba42(void) {
     u8 *puVar1;
@@ -16666,7 +16666,7 @@ u32 *alt_entry_23ba48(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3
 /*
  * gfxlib_float_calc_23ba9c  0x8c23ba9c
  * area name: in the gfxlib library code range; behaviour name: floating-point arithmetic
- * called by: gfxlib_copy_23bbac, gfxlib_copy_23bcc8, gfxlib_copy_23be0c
+ * called by: gfx_lights_apply_color, gfxlib_copy_23bcc8, gfxlib_copy_23be0c
  */
 u32 gfxlib_float_calc_23ba9c(void) {
     u32 in_r0;
@@ -16880,10 +16880,11 @@ u32 gfxlib_calls_scan_loop_23bae2(double *a0, int a1, float *a2, int a3) {
 }
 
 /*
- * gfxlib_copy_23bbac  0x8c23bbac
- * area name: in the gfxlib library code range; behaviour name: mostly calls copy functions
+ * gfx_lights_apply_color  0x8c23bbac
+ * sums every light's contribution for position a1 and normal a2 (negated when a3 is set) plus the ambient level, and
+ * multiplies colour block a0 by it
  */
-u32 gfxlib_copy_23bbac(double *a0, u32 a1, float *a2, int a3) {
+u32 gfx_lights_apply_color(double *a0, u32 a1, float *a2, int a3) {
     double *ar4_00;
     float in_fr3;
     float fVar1;

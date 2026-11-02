@@ -3081,7 +3081,7 @@ int CSquidLine_vec_085c3c(int a0, u32 unused_a1, u32 a2, u32 a3) {
         }
         ar6_00 = &uStack_90;
         puVar2 = auStack_24;
-        matrix_float_calc_256294(0, puVar2, ar6_00);
+        matrix_apply_point_w1(0, puVar2, ar6_00);
         Vec3_ctor_zero(&fStack_34, puVar2, ar6_00);
         if (cVar7 == '\0') {
             dVar4 = (double)CONCAT44(uStack_90, fVar5);

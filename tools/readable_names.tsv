@@ -2238,3 +2238,12 @@
 8c235bfc	gfx_draw_polygon_flags	builds polygon a0's vertices and sends them with the header chosen by a2's flags (textured, translucent, and the vertex writer variant)
 8c238f2a	gfx_texlist_entries_from_mem	reads a2's texture-list records from memory a1 into the entries at *a0: id, optional name, and the attribute and address words by the header flags
 8c239f84	gfx_texlist_entries_from_stream	reads a2's texture-list records from the stream a1 into the entries at *a0: id, optional name, and the attribute and address words by the header flags
+8c23bbac	gfx_lights_apply_color	sums every light's contribution for position a1 and normal a2 (negated when a3 is set) plus the ambient level, and multiplies colour block a0 by it
+8c2540a0	motion_matrix_setup	sets the current motion a0 (unless frame fr4 is past its end) and picks the matrix position, rotation and scale key appliers from its flags
+8c25415c	motion_matrix_node_xyz	applies the current node's position, XYZ rotation and scale keys to the motion matrix, advancing the per-node key pointers by the motion type
+8c254280	motion_matrix_node_other	applies the current node's position, alternative-order rotation and scale keys to the motion matrix, advancing the per-node key pointers
+8c2545ec	motion_lookup_pos_key	binary-searches the current node's position keys for the current frame and calls interpolator a1 into a0
+8c254698	motion_lookup_rot_key	binary-searches the current node's rotation keys for the current frame and calls interpolator a1 into a0
+8c254780	motion_lookup_scale_key	binary-searches the current node's scale keys for the current frame and calls interpolator a1 into a0
+8c256164	nj_palette_file_load	opens file a0, checks the "PVPL" magic and reads the palette entries and header fields into a1
+8c256294	matrix_apply_point_w1	transforms point a1 (w = 1) by matrix a0 (the current matrix when 0) into a2

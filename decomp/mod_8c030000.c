@@ -6379,7 +6379,7 @@ u32 talk_target_in_view_box(u32 unused_a0, int a1, u32 a2, u32 a3) {
     Vec3_ctor_copy(auStack_20, auStack_30, a2, a3);
     Vec3_dtor(auStack_30, 0xffffffff, a2, a3);
     ar6_00 = &fStack_38;
-    matrix_float_calc_256294(0, auStack_10, ar6_00);
+    matrix_apply_point_w1(0, auStack_10, ar6_00);
     if (cVar4 == '\0') {
         fVar2 = 150.0;
         fVar1 = fStack_38;
@@ -7714,7 +7714,7 @@ int CSquidLine_vec_036adc(int a0, u32 unused_a1, u32 a2, u32 a3) {
         }
         ar6_00 = &uStack_90;
         puVar2 = auStack_24;
-        matrix_float_calc_256294(0, puVar2, ar6_00);
+        matrix_apply_point_w1(0, puVar2, ar6_00);
         Vec3_ctor_zero(&fStack_34, puVar2, ar6_00);
         if (cVar7 == '\0') {
             dVar4 = (double)CONCAT44(uStack_90, fVar5);

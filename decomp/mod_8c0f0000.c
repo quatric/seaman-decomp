@@ -3031,7 +3031,8 @@ int game_vec_0f69ec(int a0, u32 a1, u32 a2, u32 a3) {
  * has_field_2c  0x8c0f6ab0
  * 1 when +0x2c is non-zero
  * called by: Class_12b580_draw_with_children, Class_12b580_m1_0e634c, Class_12b580_m2_0e6548, Class_12bb08_m1_0da338,
- * Class_12bb08_m2_0da5a8, game_draw_0df668, game_uses_color_set_white_a0_0df250, game_uses_noop_0de6d0 (+4 more)
+ * Class_12bb08_m2_0da5a8, game_draw_0df668, game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0 (+4
+ * more)
  */
 u32 has_field_2c(int a0) {
     if (*(int *)(a0 + 0x2c) != 0) {
@@ -3642,7 +3643,7 @@ u32 game_vec_0f6ac4(u64 *a0, int *a1, u32 a2) {
 /*
  * Class_12b580_draw_0f7118  0x8c0f7118
  * area name: only called from Class_12b580 methods; behaviour name: mostly calls draw functions
- * called by: Class_12b580_draw_with_children, game_draw_0df668, game_uses_color_set_white_a0_0df250,
+ * called by: Class_12b580_draw_with_children, game_draw_0df668, game_uses_matrix_apply_point_w1_wrap_0df250,
  * game_uses_noop_0de6d0, game_uses_noop_0deb60, game_uses_noop_0def78
  */
 u32 Class_12b580_draw_0f7118(int a0, u32 a1, u32 a2) {

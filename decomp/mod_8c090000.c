@@ -10054,7 +10054,7 @@ LAB_8c09f768:
                         Vec3_dtor(auStack_90, 0xffffffff, ar6_00, uVar1);
                         ar6_01 = &uStack_c0;
                         puVar5 = auStack_60;
-                        matrix_float_calc_256294(0, puVar5, ar6_01);
+                        matrix_apply_point_w1(0, puVar5, ar6_01);
                         Vec3_ctor_zero(auStack_70, puVar5, ar6_01);
                         pcVar11 = (code *)&uStack_b8;
                         Class_12acc8_calc_101210(*(u32 *)(*(int *)(a2 + 0x18) + 0x7cc), &uStack_b4, pcVar11);

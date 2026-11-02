@@ -302,7 +302,7 @@ address	name	file	params
 8c0192a8	Class_129a50_init_fields_0192a8	mod_8c010000.c	1
 8c019384	Class_129a50_draw_019384	mod_8c010000.c	1
 8c0194c0	rotate_degrees_7c	mod_8c010000.c	1
-8c019508	game_calls_float_calc_019508	mod_8c010000.c	4
+8c019508	game_vec_019508	mod_8c010000.c	4
 8c019560	set_vec3_field_44	mod_8c010000.c	1
 8c019574	set_vec_50_fr4_6	mod_8c010000.c	1
 8c019588	Class_1299f8_m4_019588	mod_8c010000.c	4
@@ -2432,7 +2432,7 @@ address	name	file	params
 8c0d1564	se_init_fields_0d1564	mod_8c0d0000.c	1
 8c0d15c4	static_init_vec3s_437478	mod_8c0d0000.c	4
 8c0d167c	se_uses_njGetMatrix_wrap_0d167c	mod_8c0d0000.c	4
-8c0d1754	game_calls_float_calc_0d1754	mod_8c0d0000.c	2
+8c0d1754	game_vec_0d1754	mod_8c0d0000.c	2
 8c0d1858	game_uses_sprintf_0d1858	mod_8c0d0000.c	1
 8c0d19dc	game_state_switch_0d19dc	mod_8c0d0000.c	4
 8c0d1b90	game_uses_get_field_24_0d1b90	mod_8c0d0000.c	4
@@ -2481,8 +2481,8 @@ address	name	file	params
 8c0d400c	game_draw_0d400c	mod_8c0d0000.c	4
 8c0d4038	game_draw_0d4038	mod_8c0d0000.c	4
 8c0d4124	game_draw_0d4124	mod_8c0d0000.c	4
-8c0d43cc	game_calls_float_calc_0d43cc	mod_8c0d0000.c	1
-8c0d4428	game_draw_0d4428	mod_8c0d0000.c	4
+8c0d43cc	matrix_apply_point_w1_wrap	mod_8c0d0000.c	1
+8c0d4428	matrix_draw_0d4428	mod_8c0d0000.c	4
 8c0d46cc	game_draw_0d46cc	mod_8c0d0000.c	4
 8c0d4900	game_draw_0d4900	mod_8c0d0000.c	4
 8c0d49cc	list_draw_node_points	mod_8c0d0000.c	4
@@ -2702,7 +2702,7 @@ address	name	file	params
 8c0dbd64	game_draw_0dbd64	mod_8c0d0000.c	4
 8c0dbd80	game_list_0dbd80	mod_8c0d0000.c	4
 8c0dbdf4	rotate_degrees_7c_on_field_9e8	mod_8c0d0000.c	1
-8c0dbe24	game_uses_Vec3_dtor_0dbe24	mod_8c0d0000.c	4
+8c0dbe24	game_vec_0dbe24	mod_8c0d0000.c	4
 8c0dbf88	field_ptr_30	mod_8c0d0000.c	1
 8c0dbf90	game_uses_ret_const_140_0dbf90	mod_8c0d0000.c	4
 8c0dc244	input_y_pressed_wrap	mod_8c0d0000.c	1
@@ -2741,7 +2741,7 @@ address	name	file	params
 8c0deb30	free_if_nonnull_wrap_0deb30	mod_8c0d0000.c	4
 8c0deb60	game_uses_noop_0deb60	mod_8c0d0000.c	4
 8c0def78	game_uses_noop_0def78	mod_8c0d0000.c	4
-8c0df250	game_uses_color_set_white_a0_0df250	mod_8c0d0000.c	4
+8c0df250	game_uses_matrix_apply_point_w1_wrap_0df250	mod_8c0d0000.c	4
 8c0df668	game_draw_0df668	mod_8c0d0000.c	4
 8c0df8d0	game_uses_light_set_vec_0df8d0	mod_8c0d0000.c	4
 8c0df998	env_add_item_if_room	mod_8c0d0000.c	4
@@ -5435,7 +5435,7 @@ address	name	file	params
 8c23ba48	alt_entry_23ba48	mod_8c230000.c	6
 8c23ba9c	gfxlib_float_calc_23ba9c	mod_8c230000.c	0
 8c23bae2	gfxlib_calls_scan_loop_23bae2	mod_8c230000.c	4
-8c23bbac	gfxlib_copy_23bbac	mod_8c230000.c	4
+8c23bbac	gfx_lights_apply_color	mod_8c230000.c	4
 8c23bcc8	gfxlib_copy_23bcc8	mod_8c230000.c	4
 8c23be0c	gfxlib_copy_23be0c	mod_8c230000.c	4
 8c23bfee	gfxlib_fill_loop_23bfee	mod_8c230000.c	0
@@ -5533,12 +5533,12 @@ address	name	file	params
 8c254026	ninja_uses_ta_fifo_254026	mod_8c250000.c	4
 8c254042	ninja_draw_254042	mod_8c250000.c	4
 8c254066	ninja_vec_254066	mod_8c250000.c	4
-8c2540a0	ninja_float_calc_2540a0	mod_8c250000.c	5
-8c25415c	ninja_calls_update_fields_25415c	mod_8c250000.c	6
-8c254280	ninja_calls_update_fields_254280	mod_8c250000.c	6
-8c2545ec	ninja_scan_loop_2545ec	mod_8c250000.c	2
-8c254698	ninja_scan_loop_254698	mod_8c250000.c	2
-8c254780	ninja_scan_loop_254780	mod_8c250000.c	2
+8c2540a0	motion_matrix_setup	mod_8c250000.c	5
+8c25415c	motion_matrix_node_xyz	mod_8c250000.c	6
+8c254280	motion_matrix_node_other	mod_8c250000.c	6
+8c2545ec	motion_lookup_pos_key	mod_8c250000.c	2
+8c254698	motion_lookup_rot_key	mod_8c250000.c	2
+8c254780	motion_lookup_scale_key	mod_8c250000.c	2
 8c25484c	ninja_calls_update_fields_25484c	mod_8c250000.c	0
 8c2548a8	ninja_uses_switch_jump_2548a8	mod_8c250000.c	4
 8c254956	ninja_uses_switch_jump_254956	mod_8c250000.c	4
@@ -5572,10 +5572,10 @@ address	name	file	params
 8c255ff8	tex_uses_tex_entry_find_255ff8	mod_8c250000.c	2
 8c25603a	ninja_set_palette_format	mod_8c250000.c	1
 8c2560b4	ninja_palette_load	mod_8c250000.c	3
-8c256164	ninja_uses_ninja_close_file_256164	mod_8c250000.c	4
+8c256164	nj_palette_file_load	mod_8c250000.c	4
 8c256210	matrix_pop_n	mod_8c250000.c	1
 8c256254	matrix_pop1	mod_8c250000.c	0
-8c256294	matrix_float_calc_256294	mod_8c250000.c	3
+8c256294	matrix_apply_point_w1	mod_8c250000.c	3
 8c256328	matrix_push	mod_8c250000.c	5
 8c2563ac	matrix_push_regs	mod_8c250000.c	5
 8c2563f8	matrix_uses_switch_jump_2563f8	mod_8c250000.c	1

@@ -6264,7 +6264,7 @@ int CAnimal_uses_njGetMatrix_026968(int a0, u32 a1, u32 a2, u32 a3) {
     if (cVar14 == '\0') {
         uStack_94 = uVar1;
     }
-    ninja_float_calc_2540a0(uStack_94, iVar12, iVar11, iVar4, uVar6);
+    motion_matrix_setup(uStack_94, iVar12, iVar11, iVar4, uVar6);
     iVar2 = get_field_1c_on_field_b0(*(u32 *)(a0 + 0x30c), iVar12, iVar11);
     puVar3 = (u32 *)deref_u32(*(int *)(iVar7 + 0xa0) + iVar2 * 4);
     *(u32 *)(a0 + 0x434) = *puVar3;
@@ -6388,7 +6388,7 @@ u32 CAnimBody_uses_get_field_1c_on_field_b0_026de0(int a0, u32 a1, u32 a2, u32 a
     if (cVar5 == '\0') {
         uStack_14 = uVar1;
     }
-    ninja_float_calc_2540a0(uStack_14, a1, a2, a3, ain0);
+    motion_matrix_setup(uStack_14, a1, a2, a3, ain0);
     iVar2 = get_field_1c_on_field_b0(*(u32 *)(a0 + 0x30c), a1, a2);
     puVar3 = (u32 *)deref_u32(*(int *)(iVar4 + 0xa0) + iVar2 * 4);
     *(u32 *)(a0 + 0x434) = *puVar3;
@@ -8346,7 +8346,7 @@ u32 game_uses_njGetMatrix_029af0(int a0, int a1, int a2) {
         ar5_00 = a1;
     } else {
         ar5_00 = a2;
-        ninja_scan_loop_2545ec(&uStack_1c, a2);
+        motion_lookup_pos_key(&uStack_1c, a2);
     }
     if (*(int *)(*(int *)(a0 + 0x434) + 4) == 0) {
         uStack_34 = *(u32 *)(a1 + 0x14);
@@ -8354,7 +8354,7 @@ u32 game_uses_njGetMatrix_029af0(int a0, int a1, int a2) {
         uStack_2c = *(u32 *)(a1 + 0x1c);
     } else {
         ar5_00 = a2;
-        ninja_scan_loop_254698(&uStack_34, a2);
+        motion_lookup_rot_key(&uStack_34, a2);
     }
     if (*(int *)(*(int *)(a0 + 0x434) + 8) == 0) {
         if (cVar5 == '\0') {
@@ -8368,7 +8368,7 @@ u32 game_uses_njGetMatrix_029af0(int a0, int a1, int a2) {
             uStack_1c = (u32)((u64) * (u64 *)(a1 + 0x28) >> 0x20);
         }
     } else {
-        ninja_scan_loop_254780(&uStack_28, a2);
+        motion_lookup_scale_key(&uStack_28, a2);
         ar5_00 = a2;
     }
     touch_fields_30_3c(0, ar5_00, iVar2, r7, in_stack_ffffff88);
@@ -13667,7 +13667,7 @@ u32 game_target_in_view_box(int a0, u32 *a1, u32 a2, u32 a3) {
         Vec3_ctor_copy(auStack_24, auStack_34, a2, a3);
         Vec3_dtor(auStack_34, 0xffffffff, a2, a3);
         ar6_00 = &fStack_3c;
-        matrix_float_calc_256294(0, auStack_14, ar6_00);
+        matrix_apply_point_w1(0, auStack_14, ar6_00);
         if (cVar5 == '\0') {
             fVar3 = 150.0;
             fVar2 = fStack_3c;

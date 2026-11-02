@@ -1153,7 +1153,7 @@ u32 game_draw_0e157c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_draw_0e15fc  0x8c0e15fc
  * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
- * called by: game_draw_0df668, game_uses_color_set_white_a0_0df250
+ * called by: game_draw_0df668, game_uses_matrix_apply_point_w1_wrap_0df250
  */
 u32 game_draw_0e15fc(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1506,7 +1506,7 @@ u32 game_uses_input_track_r_hold_0e1f90(int a0, u32 *a1, u8 *a2, u32 a3) {
         }
         a2 = auStack_30;
         puVar6 = &uStack_18;
-        matrix_float_calc_256294(0, puVar6, a2);
+        matrix_apply_point_w1(0, puVar6, a2);
         set_fields_12c_130(a1);
     }
     Class_12b930_uses_set_field_164_0d723c(a0 + 0x22d48);
@@ -2912,8 +2912,8 @@ u32 Vec3_ctor_copy_wrap_0e3e98(int a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
 /*
  * Vec3_calc_0e3ebc  0x8c0e3ebc
  * area name: sits between Vec3 functions (same compilation unit); behaviour name: integer arithmetic on its arguments
- * called by: game_draw_0df668, game_uses_color_set_white_a0_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60,
- * game_uses_noop_0def78
+ * called by: game_draw_0df668, game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0,
+ * game_uses_noop_0deb60, game_uses_noop_0def78
  */
 u32 *Vec3_calc_0e3ebc(int a0, u32 *a1, u32 *a2) {
     if ((*(int *)(a0 + 0x22810) == 1) && (*(int *)(a0 + 0x22814) == 1)) {
@@ -2934,7 +2934,7 @@ u32 *Vec3_calc_0e3ebc(int a0, u32 *a1, u32 *a2) {
 /*
  * Vec3_uses_set_vec_0e3f24  0x8c0e3f24
  * area name: sits between Vec3 functions (same compilation unit); behaviour name: its main named callee is
- * set_vec_4c0ed4 called by: game_draw_0df668, game_uses_color_set_white_a0_0df250, game_uses_noop_0de6d0,
+ * set_vec_4c0ed4 called by: game_draw_0df668, game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0,
  * game_uses_noop_0deb60, game_uses_noop_0def78, input_uses_set_fields_28_48_0dff1c
  */
 u32 Vec3_uses_set_vec_0e3f24(int a0) {
@@ -3020,8 +3020,8 @@ u32 Vec3_uses_set_vec_0e3f24(int a0) {
 /*
  * game_draw_0e4198  0x8c0e4198
  * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
- * called by: game_draw_0df668, game_uses_color_set_white_a0_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60,
- * game_uses_noop_0def78
+ * called by: game_draw_0df668, game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0,
+ * game_uses_noop_0deb60, game_uses_noop_0def78
  */
 u32 game_draw_0e4198(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;

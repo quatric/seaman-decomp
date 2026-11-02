@@ -8313,7 +8313,7 @@ u32 double_inf_or_nan(void) {
  * float_check_errno  0x8c010e38
  * sets errno 0x44c (inf) or 0x44d (NaN) for a non-finite fr4
  * called by: Class_12a990_uses_float_check_errno_09b6c4, Class_12b580_uses_njSinCos_0e705c, Vec3_state_switch_03f4a4,
- * game_draw_0d4124, game_draw_0d4428, game_state_switch_049b68, game_state_switch_04b168, game_state_switch_07ff08 (+4
+ * game_draw_0d4124, game_state_switch_049b68, game_state_switch_04b168, game_state_switch_07ff08, game_vec_03c94c (+4
  * more)
  */
 u32 float_check_errno(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
@@ -13918,7 +13918,7 @@ u32 game_draw_015adc(u32 *a0, u32 a1, u32 a2, u32 a3) {
  * Class_129938_draw_015af8  0x8c015af8
  * area name: only called from Class_129938 methods; behaviour name: mostly calls draw functions
  * called by: Class_129938_m6_01733c, Class_12b930_draw_0d7410, game_draw_016da8, game_draw_0d092c, game_draw_0d0990,
- * game_draw_0d4124, game_draw_0d4428, game_draw_0d46cc (+3 more)
+ * game_draw_0d4124, game_draw_0d46cc, game_draw_0d4900 (+3 more)
  */
 u32 Class_129938_draw_015af8(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -17599,7 +17599,7 @@ u32 rotate_y_degrees(void) {
  * rotate_degrees  0x8c019160
  * rotates the current matrix by fr4 degrees (converted to a Ninja angle)
  * called by: Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b930_draw_0d7354, Class_12b930_draw_0d7410,
- * game_draw_0d4124, game_draw_0d4428, game_draw_0d46cc
+ * game_draw_0d4124, game_draw_0d46cc, matrix_draw_0d4428
  */
 u32 rotate_degrees(void) {
     u32 r6;
@@ -17645,7 +17645,7 @@ u32 fpu_save_fr0_fr15_wrap(u32 a0) {
 /*
  * Class_129a50_ctor  0x8c0191e4
  * vtable 0x8c129a50
- * called by: Class_12b3b8_ctor, game_uses_Vec3_dtor_0dbe24, game_vec_0dfa84
+ * called by: Class_12b3b8_ctor, game_vec_0dbe24, game_vec_0dfa84
  */
 u32 *Class_129a50_ctor(u32 *a0) {
     *a0 = (&DATA_8c129a50);
@@ -17667,8 +17667,8 @@ u32 *Class_129a50_ctor_b(u32 *a0) {
 /*
  * Class_129a50_dtor  0x8c019270
  * stores the vtable 0x8c129a50
- * called by: Class_1299f8_dtor_019eb8, Class_129a24_dtor, Class_12b3b8_dtor, Class_12bb08_dtor,
- * game_uses_Vec3_dtor_0dbe24, game_vec_0dfa84
+ * called by: Class_1299f8_dtor_019eb8, Class_129a24_dtor, Class_12b3b8_dtor, Class_12bb08_dtor, game_vec_0dbe24,
+ * game_vec_0dfa84
  */
 u32 *Class_129a50_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -17756,11 +17756,11 @@ u32 rotate_degrees_7c(int a0) {
 }
 
 /*
- * game_calls_float_calc_019508  0x8c019508
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: float_calc
- * called by: game_uses_Vec3_dtor_0dbe24, game_vec_0dfa84
+ * game_vec_019508  0x8c019508
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * called by: game_vec_0dbe24, game_vec_0dfa84
  */
-u64 *game_calls_float_calc_019508(u32 unused_a0, u32 *a1, u64 *a2, u64 *a3) {
+u64 *game_vec_019508(u32 unused_a0, u32 *a1, u64 *a2, u64 *a3) {
     char cVar1;
     u32 uStack_1c;
     u32 uStack_18;
@@ -17772,7 +17772,7 @@ u64 *game_calls_float_calc_019508(u32 unused_a0, u32 *a1, u64 *a2, u64 *a3) {
     uStack_14 = *a1;
     uStack_10 = a1[1];
     uStack_c = a1[2];
-    matrix_float_calc_256294(0, &uStack_14, &uStack_1c);
+    matrix_apply_point_w1(0, &uStack_14, &uStack_1c);
     if (cVar1 == '\0') {
         *(u32 *)a2 = uStack_1c;
         *(u32 *)a3 = uStack_18;
@@ -23322,8 +23322,7 @@ u32 CDCGD_finish_texture_request(int a0, u32 unused_a1, u32 a2, int a3) {
             unaff_r13 = -1;
         }
     } else if (iVar1 == 0xd) {
-        iVar1 = (*(code *)(&ninja_uses_ninja_close_file_256164))(*(int *)(a0 + 4) + 0x10,
-                                                                 *(u32 *)(*(int *)(a0 + 4) + 8), a2, a3);
+        iVar1 = (*(code *)(&nj_palette_file_load))(*(int *)(a0 + 4) + 0x10, *(u32 *)(*(int *)(a0 + 4) + 8), a2, a3);
         if (iVar1 == 1) {
             unaff_r13 = 1;
         } else {

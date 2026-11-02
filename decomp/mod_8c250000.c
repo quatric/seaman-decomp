@@ -8267,11 +8267,11 @@ u32 ninja_vec_254066(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_float_calc_2540a0  0x8c2540a0
- * area name: in the ninja library code range; behaviour name: floating-point arithmetic
- * called by: CAnimBody_uses_get_field_1c_on_field_b0_026de0, CAnimal_uses_njGetMatrix_026968
+ * motion_matrix_setup  0x8c2540a0
+ * sets the current motion a0 (unless frame fr4 is past its end) and picks the matrix position, rotation and scale key
+ * appliers from its flags called by: CAnimBody_uses_get_field_1c_on_field_b0_026de0, CAnimal_uses_njGetMatrix_026968
  */
-u32 ninja_float_calc_2540a0(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 motion_matrix_setup(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
     float in_fr4;
 
@@ -8317,10 +8317,11 @@ u32 ninja_float_calc_2540a0(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3
 }
 
 /*
- * ninja_calls_update_fields_25415c  0x8c25415c
- * area name: in the ninja library code range; behaviour name: its callees mostly do: update_fields
+ * motion_matrix_node_xyz  0x8c25415c
+ * applies the current node's position, XYZ rotation and scale keys to the motion matrix, advancing the per-node key
+ * pointers by the motion type
  */
-u32 ninja_calls_update_fields_25415c(int a0, int a1, int a2, u32 a3, int ain0, u32 *ain1) {
+u32 motion_matrix_node_xyz(int a0, int a1, int a2, u32 a3, int ain0, u32 *ain1) {
     u32 ain0_00;
     u32 uVar1;
     u32 *in_r2;
@@ -8384,10 +8385,11 @@ LAB_8c25423c:
 }
 
 /*
- * ninja_calls_update_fields_254280  0x8c254280
- * area name: in the ninja library code range; behaviour name: its callees mostly do: update_fields
+ * motion_matrix_node_other  0x8c254280
+ * applies the current node's position, alternative-order rotation and scale keys to the motion matrix, advancing the
+ * per-node key pointers
  */
-u32 ninja_calls_update_fields_254280(int a0, int a1, int a2, u32 a3, int ain0, u32 *ain1) {
+u32 motion_matrix_node_other(int a0, int a1, int a2, u32 a3, int ain0, u32 *ain1) {
     u32 ain0_00;
     u32 uVar1;
     u32 *in_r2;
@@ -8451,11 +8453,11 @@ LAB_8c2543be:
 }
 
 /*
- * ninja_scan_loop_2545ec  0x8c2545ec
- * area name: in the ninja library code range; behaviour name: a loop that only reads
+ * motion_lookup_pos_key  0x8c2545ec
+ * binary-searches the current node's position keys for the current frame and calls interpolator a1 into a0
  * called by: game_uses_njGetMatrix_029af0
  */
-u32 ninja_scan_loop_2545ec(u32 a0, int a1) {
+u32 motion_lookup_pos_key(u32 a0, int a1) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -8498,11 +8500,11 @@ LAB_8c25463a:
 }
 
 /*
- * ninja_scan_loop_254698  0x8c254698
- * area name: in the ninja library code range; behaviour name: a loop that only reads
+ * motion_lookup_rot_key  0x8c254698
+ * binary-searches the current node's rotation keys for the current frame and calls interpolator a1 into a0
  * called by: game_uses_njGetMatrix_029af0
  */
-u32 ninja_scan_loop_254698(u32 a0, int a1) {
+u32 motion_lookup_rot_key(u32 a0, int a1) {
     u32 uVar1;
     int iVar2;
     u32 uVar3;
@@ -8547,11 +8549,11 @@ LAB_8c2546fa:
 }
 
 /*
- * ninja_scan_loop_254780  0x8c254780
- * area name: in the ninja library code range; behaviour name: a loop that only reads
+ * motion_lookup_scale_key  0x8c254780
+ * binary-searches the current node's scale keys for the current frame and calls interpolator a1 into a0
  * called by: game_uses_njGetMatrix_029af0
  */
-u32 ninja_scan_loop_254780(u32 a0, int a1) {
+u32 motion_lookup_scale_key(u32 a0, int a1) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -10716,7 +10718,7 @@ u32 njOuterProduct(float *a0, float *a1, float *a2) {
 /*
  * ninja_draw_255f88  0x8c255f88
  * area name: in the ninja library code range; behaviour name: mostly calls draw functions
- * called by: ninja_uses_ninja_close_file_256164
+ * called by: nj_palette_file_load
  */
 u32 ninja_draw_255f88(u32 a0) {
     int *piVar1;
@@ -10829,10 +10831,10 @@ u32 ninja_palette_load(int a0, int a1, u16 *a2) {
 }
 
 /*
- * ninja_uses_ninja_close_file_256164  0x8c256164
- * area name: in the ninja library code range; behaviour name: its main named callee is ninja_close_file
+ * nj_palette_file_load  0x8c256164
+ * opens file a0, checks the "PVPL" magic and reads the palette entries and header fields into a1
  */
-u32 ninja_uses_ninja_close_file_256164(u32 a0, int *a1, u32 a2, u32 a3) {
+u32 nj_palette_file_load(u32 a0, int *a1, u32 a2, u32 a3) {
     int iVar1;
     int *a4;
     int *ar5_00;
@@ -10911,13 +10913,13 @@ u32 matrix_pop1(void) {
 }
 
 /*
- * matrix_float_calc_256294  0x8c256294
- * area name: sits between matrix functions (same compilation unit); behaviour name: floating-point arithmetic
+ * matrix_apply_point_w1  0x8c256294
+ * transforms point a1 (w = 1) by matrix a0 (the current matrix when 0) into a2
  * called by: CSquidLine_vec_036adc, CSquidLine_vec_085c3c, Class_12acc8_m1_09f470,
- * Class_12b580_uses_list_node_next_wrap_0da754, game_calls_float_calc_019508, game_calls_float_calc_0d1754,
- * game_calls_float_calc_0d43cc, game_target_in_view_box (+2 more)
+ * Class_12b580_uses_list_node_next_wrap_0da754, game_target_in_view_box, game_uses_input_track_r_hold_0e1f90,
+ * game_vec_019508, game_vec_0d1754 (+2 more)
  */
-u32 matrix_float_calc_256294(int a0, double *a1, double *a2) {
+u32 matrix_apply_point_w1(int a0, double *a1, double *a2) {
     double in_dr0;
     u64 uVar1;
     u32 in_fr3;
@@ -12796,7 +12798,7 @@ u32 ninja_vec_2572ec(float *a0) {
  * njSinCos  0x8c25747c
  * sine and cosine of a Ninja angle (0..65535 = one turn)
  * called by: Class_12a990_m2_09bc2c, Class_12b580_uses_njSinCos_0e705c, Class_12b930_sound_0d3d6c, game_draw_0d4124,
- * game_draw_0d4428, game_vec_03207c
+ * game_vec_03207c, matrix_draw_0d4428
  */
 u32 njSinCos(u32 a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -16838,7 +16840,7 @@ u32 ninja_angle_sincos(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 
  * nj_file_open  0x8c259be8
  * opens file a0 for the Ninja loader and records its size and sector count; -2 on failure
  * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
- * gfxlib_uses_tex_entry_alloc_237964, ninja_uses_ninja_close_file_256164
+ * gfxlib_uses_tex_entry_alloc_237964, nj_palette_file_load
  */
 u32 nj_file_open(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -16861,7 +16863,7 @@ u32 nj_file_open(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
  * ninja_close_file  0x8c259c40
  * closes Ninja's file handle (0x8c4b3338) through gdfs_close_like
  * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
- * gfxlib_uses_tex_entry_alloc_237964, ninja_uses_ninja_close_file_256164
+ * gfxlib_uses_tex_entry_alloc_237964, nj_palette_file_load
  */
 u32 ninja_close_file(void) {
     u32 uVar1;
@@ -16873,7 +16875,7 @@ u32 ninja_close_file(void) {
 /*
  * ninja_uses_memcpy_bytes_259c48  0x8c259c48
  * area name: in the ninja library code range; behaviour name: its main named callee is memcpy_bytes
- * called by: gfx_texlist_entries_from_mem, gfxlib_uses_ninja_close_file_239212, ninja_uses_ninja_close_file_256164,
+ * called by: gfx_texlist_entries_from_mem, gfxlib_uses_ninja_close_file_239212, nj_palette_file_load,
  * pvrt_stream_is_palettized, ta_fifo_239012, tex_uses_dcache_writeback_range_25a770, tex_uses_gfx_heap_alloc_25a838,
  * tex_uses_nj_seek_25a216 (+1 more)
  */
@@ -18694,8 +18696,8 @@ u32 ninja_draw_25b4ea(u32 *a0, u32 *a1, u32 *a2, u32 a3) {
 /*
  * tex_error_reset  0x8c25b5b4
  * clears the texture loader's error state (0x8c4aa6ac)
- * called by: alt_entry_2378ba, gfxlib_uses_array44_index_of_2378a6, gfxlib_uses_ninja_close_file_239212,
- * ninja_uses_ninja_close_file_256164, njLoadTexture, pvr_uses_tex_entry_alloc_23a29c
+ * called by: alt_entry_2378ba, gfxlib_uses_array44_index_of_2378a6, gfxlib_uses_ninja_close_file_239212, njLoadTexture,
+ * nj_palette_file_load, pvr_uses_tex_entry_alloc_23a29c
  */
 u32 tex_error_reset(void) {
     u32 *puVar1;

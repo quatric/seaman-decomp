@@ -9110,7 +9110,7 @@ u64 *game_uses_ret_const_eb40_0bf064(int a0) {
 
 /*
  * ret_const_eb40  0x8c0bf0ac
- * called by: game_uses_color_set_white_a0_0df250, game_uses_ret_const_eb40_0bf064
+ * called by: game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_ret_const_eb40_0bf064
  */
 u32 ret_const_eb40(void) {
     return 0xeb40;
@@ -9131,8 +9131,8 @@ u32 noop_0bf0bc(int a0) {
 /*
  * noop_0bf0e8  0x8c0bf0e8
  * does nothing
- * called by: game_draw_0e4198, game_uses_color_set_white_a0_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60,
- * game_uses_noop_0def78, noop_0bf0bc
+ * called by: game_draw_0e4198, game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0,
+ * game_uses_noop_0deb60, game_uses_noop_0def78, noop_0bf0bc
  */
 u32 noop_0bf0e8(void) {
     u32 in_r0;

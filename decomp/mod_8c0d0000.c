@@ -242,7 +242,8 @@ u32 game_draw_0d0564(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_draw_0d05d0  0x8c0d05d0
  * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
- * called by: game_draw_0df668, game_uses_color_set_white_a0_0df250, game_uses_noop_0deb60, game_uses_noop_0def78
+ * called by: game_draw_0df668, game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0deb60,
+ * game_uses_noop_0def78
  */
 u32 game_draw_0d05d0(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -951,7 +952,7 @@ u32 particle_pool_update_350(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_uses_obj_set_texlist_0d1168  0x8c0d1168
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is obj_set_texlist
- * called by: game_draw_0df668, game_uses_color_set_white_a0_0df250
+ * called by: game_draw_0df668, game_uses_matrix_apply_point_w1_wrap_0df250
  */
 u32 game_uses_obj_set_texlist_0d1168(int a0, u32 a1, u32 a2) {
     u64 uVar1;
@@ -1372,11 +1373,11 @@ u32 se_uses_njGetMatrix_wrap_0d167c(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_calls_float_calc_0d1754  0x8c0d1754
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: float_calc
+ * game_vec_0d1754  0x8c0d1754
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
  * called by: CEnv_vec_0dac50
  */
-u32 game_calls_float_calc_0d1754(float *a0, int a1) {
+u32 game_vec_0d1754(float *a0, int a1) {
     u32 uVar1;
     int iVar2;
     float fVar3;
@@ -1395,10 +1396,10 @@ u32 game_calls_float_calc_0d1754(float *a0, int a1) {
     cVar6 = '\0';
     cVar5 = '\0';
     fStack_10 = in_PR;
-    matrix_float_calc_256294(0, a1, &fStack_20);
-    matrix_float_calc_256294(0, a1, &fStack_18);
+    matrix_apply_point_w1(0, a1, &fStack_20);
+    matrix_apply_point_w1(0, a1, &fStack_18);
     for (iVar2 = 1; iVar2 < 8; iVar2 = iVar2 + 1) {
-        matrix_float_calc_256294(0, iVar2 * 0xc + a1, &fStack_28);
+        matrix_apply_point_w1(0, iVar2 * 0xc + a1, &fStack_28);
         fVar3 = fStack_20;
         fVar4 = fStack_1c;
         if (cVar6 == '\0') {
@@ -1499,7 +1500,7 @@ u32 game_calls_float_calc_0d1754(float *a0, int a1) {
 /*
  * game_uses_sprintf_0d1858  0x8c0d1858
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is sprintf
- * called by: Class_12b758_draw_0e4dd0, game_uses_color_set_white_a0_0df250, game_uses_noop_0de6d0,
+ * called by: Class_12b758_draw_0e4dd0, game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0,
  * game_uses_noop_0deb60, game_uses_noop_0def78 strings: "GRAPHICS\\COMMON"; "%08.4lf"
  */
 u32 game_uses_sprintf_0d1858(double *a0) {
@@ -1908,8 +1909,8 @@ int CEnv_LoadDevicePanelTexture(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * CEnv_set_texlist  0x8c0d2028
  * selects the environment texture list (0x8c4377f4) and its first texture
- * called by: Class_12b758_draw_0e4dd0, game_draw_0df668, game_uses_color_set_white_a0_0df250, game_uses_noop_0de6d0,
- * game_uses_noop_0deb60, game_uses_noop_0def78
+ * called by: Class_12b758_draw_0e4dd0, game_draw_0df668, game_uses_matrix_apply_point_w1_wrap_0df250,
+ * game_uses_noop_0de6d0, game_uses_noop_0deb60, game_uses_noop_0def78
  */
 u32 CEnv_set_texlist(u32 unused_a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -3892,7 +3893,7 @@ u32 game_draw_0d3f7c(int a0, int a1, u32 a2, u32 a3) {
 /*
  * game_draw_0d400c  0x8c0d400c
  * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
- * called by: game_draw_0df668, game_uses_color_set_white_a0_0df250
+ * called by: game_draw_0df668, game_uses_matrix_apply_point_w1_wrap_0df250
  */
 u32 game_draw_0d400c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -3969,7 +3970,7 @@ u32 *game_draw_0d4124(int a0, int a1, u32 a2, u32 a3) {
     obj_set_texlist(a0 + 8, ar5_00, a2);
     Class_129938_draw_015af8(a0 + 0x1c, ar5_00, a2, a3);
     for (iVar5 = 0; iVar5 < 3; iVar5 = iVar5 + 1) {
-        game_calls_float_calc_0d43cc(&fStack_24);
+        matrix_apply_point_w1_wrap(&fStack_24);
         if (cVar11 == '\0') {
             fVar8 = -150.0;
             fVar6 = fStack_24;
@@ -4101,25 +4102,25 @@ u32 *game_draw_0d4124(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_calls_float_calc_0d43cc  0x8c0d43cc
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: float_calc
- * called by: game_draw_0d4124, game_draw_0d4428, game_draw_0d46cc, game_uses_color_set_white_a0_0df250,
- * game_uses_noop_0de6d0, game_uses_noop_0deb60
+ * matrix_apply_point_w1_wrap  0x8c0d43cc
+ * only calls matrix_apply_point_w1
+ * called by: game_draw_0d4124, game_draw_0d46cc, game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0,
+ * game_uses_noop_0deb60, matrix_draw_0d4428
  */
-u32 game_calls_float_calc_0d43cc(u32 a0) {
+u32 matrix_apply_point_w1_wrap(u32 a0) {
     u32 uVar1;
     u8 auStack_10[16];
 
-    uVar1 = matrix_float_calc_256294(0, auStack_10, a0);
+    uVar1 = matrix_apply_point_w1(0, auStack_10, a0);
     return uVar1;
 }
 
 /*
- * game_draw_0d4428  0x8c0d4428
- * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
+ * matrix_draw_0d4428  0x8c0d4428
+ * area name: sits between matrix functions (same compilation unit); behaviour name: mostly calls draw functions
  * called by: game_uses_noop_0deb60
  */
-u32 *game_draw_0d4428(int a0, int a1, u32 a2, u32 a3) {
+u32 *matrix_draw_0d4428(int a0, int a1, u32 a2, u32 a3) {
     u64 uVar1;
     int *piVar2;
     float *pfVar3;
@@ -4151,7 +4152,7 @@ u32 *game_draw_0d4428(int a0, int a1, u32 a2, u32 a3) {
     obj_set_texlist(a0 + 8, ar5_00, a2);
     Class_129938_draw_015af8(a0 + 0x1c, ar5_00, a2, a3);
     for (iVar5 = 0; iVar5 < 3; iVar5 = iVar5 + 1) {
-        game_calls_float_calc_0d43cc(&fStack_24);
+        matrix_apply_point_w1_wrap(&fStack_24);
         if (cVar11 == '\0') {
             fVar8 = -150.0;
             fVar6 = fStack_24;
@@ -4310,7 +4311,7 @@ u32 game_draw_0d46cc(int a0, u32 a1, u32 a2, u32 a3) {
     gfx_set_color4_4aa52c(a0 + 0x5ec);
     Class_129938_draw_015af8(a0 + 0x1c, a1, a2, a3);
     for (iVar3 = 0; iVar3 < 3; iVar3 = iVar3 + 1) {
-        game_calls_float_calc_0d43cc(&fStack_24);
+        matrix_apply_point_w1_wrap(&fStack_24);
         if (cVar8 == '\0') {
             fVar5 = -150.0;
             fVar4 = fStack_24;
@@ -4367,7 +4368,7 @@ u32 game_draw_0d46cc(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_draw_0d4900  0x8c0d4900
  * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
- * called by: game_draw_0df668, game_uses_color_set_white_a0_0df250
+ * called by: game_draw_0df668, game_uses_matrix_apply_point_w1_wrap_0df250
  */
 u32 game_draw_0d4900(int a0, u32 a1, u32 a2, u32 a3) {
     int *piVar1;
@@ -4390,7 +4391,7 @@ u32 game_draw_0d4900(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * list_draw_node_points  0x8c0d49cc
  * draws a point (draw call 0x40) at the position of every node in the list at a0 + 0x34
- * called by: game_draw_0d4124, game_draw_0d4428, game_draw_0d46cc, game_draw_0d4900
+ * called by: game_draw_0d4124, game_draw_0d46cc, game_draw_0d4900, matrix_draw_0d4428
  */
 int list_draw_node_points(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -4437,7 +4438,7 @@ int list_draw_node_points(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * draw_part_objects_x5  0x8c0d4a90
  * draws each of the five active records at +0x470 (skipping state-1 ones past 1200), with three or one mesh parts
- * swapped by kind called by: game_draw_0d4124, game_draw_0d4428, game_draw_0d46cc, game_draw_0d4900
+ * swapped by kind called by: game_draw_0d4124, game_draw_0d46cc, game_draw_0d4900, matrix_draw_0d4428
  */
 u32 draw_part_objects_x5(int a0, int a1, int a2, int a3) {
     int iVar1;
@@ -5442,7 +5443,7 @@ int update_active_entries_62c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_draw_0d5d28  0x8c0d5d28
  * area name: sits between Vec3 functions (same compilation unit); behaviour name: mostly calls draw functions
- * called by: game_draw_0d4124, game_draw_0d4428, game_draw_0d46cc
+ * called by: game_draw_0d4124, game_draw_0d46cc, matrix_draw_0d4428
  */
 u32 Vec3_draw_0d5d28(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -7008,7 +7009,8 @@ u32 Class_12b930_draw_0d7354(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Class_12b930_draw_0d7410  0x8c0d7410
  * area name: sits between Class_12b930 functions (same compilation unit); behaviour name: mostly calls draw functions
- * called by: game_draw_0df668, game_uses_color_set_white_a0_0df250, game_uses_noop_0deb60, game_uses_noop_0def78
+ * called by: game_draw_0df668, game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0deb60,
+ * game_uses_noop_0def78
  */
 u32 Class_12b930_draw_0d7410(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9612,8 +9614,8 @@ u32 *Class_12b930_state_switch_0d9600(int a0, u32 a1, u32 a2) {
 /*
  * game_draw_0d9720  0x8c0d9720
  * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
- * called by: game_draw_0df668, game_uses_color_set_white_a0_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60,
- * game_uses_noop_0def78
+ * called by: game_draw_0df668, game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0,
+ * game_uses_noop_0deb60, game_uses_noop_0def78
  */
 u32 game_draw_0d9720(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9784,8 +9786,8 @@ u32 RING_UNIT_ReleaseModel(u32 a0, u32 a1) {
 /*
  * color_set_white_a0  0x8c0d99b8
  * r, g, b = 1.0 and the fourth word 0
- * called by: game_draw_0df668, game_uses_color_set_white_a0_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60,
- * game_uses_noop_0def78
+ * called by: game_draw_0df668, game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0,
+ * game_uses_noop_0deb60, game_uses_noop_0def78
  */
 u32 *color_set_white_a0(u32 *a0) {
     *a0 = 0x3f800000;
@@ -10446,7 +10448,7 @@ u32 Class_12bb08_m2_0da5a8(int a0, int a1, u32 a2) {
  * Class_12b580_uses_list_node_next_wrap_0da754  0x8c0da754
  * area name: only called from Class_12b580 methods; behaviour name: its main named callee is list_node_next_wrap_0da588
  * called by: Class_12b580_draw_with_children, Class_12b758_draw_0e4dd0, game_draw_0df668, game_draw_0e505c,
- * game_uses_color_set_white_a0_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60, game_uses_noop_0def78
+ * game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60, game_uses_noop_0def78
  */
 u32 Class_12b580_uses_list_node_next_wrap_0da754(int a0) {
     int ar4_00;
@@ -10479,7 +10481,7 @@ u32 Class_12b580_uses_list_node_next_wrap_0da754(int a0) {
             get_vec3_field_30(ar4_00, auStack_20, auStack_1c, ar7_00);
             ar6_00 = &fStack_28;
             ar5_00 = auStack_20;
-            matrix_float_calc_256294(0, ar5_00, ar6_00);
+            matrix_apply_point_w1(0, ar5_00, ar6_00);
             if (cVar7 == '\0') {
                 fVar5 = -150.0;
                 fVar4 = fStack_28;
@@ -10749,7 +10751,7 @@ int CEnv_vec_0dac50(int a0, float *a1, u32 a2, u32 a3) {
     } else {
         ar6_00 = &fStack_98;
         ar5_00 = a1;
-        ar4_00 = game_uses_Vec3_dtor_0dbe24(a0, a1, ar6_00, a3);
+        ar4_00 = game_vec_0dbe24(a0, a1, ar6_00, a3);
         if (ar4_00 == 0) {
             *(u32 *)(a0 + 0x9d4) = 0;
             Vec3_dtor(auStack_84, 0xffffffff, ar6_00, a3);
@@ -10797,7 +10799,7 @@ int CEnv_vec_0dac50(int a0, float *a1, u32 a2, u32 a3) {
                         }
                         a4 = (int *)get_field_a4_032154(ar4_00);
                         (**(code **)(*a4 + 0x38))(a4, auStack_74, ar6_00, a3);
-                        iVar1 = game_calls_float_calc_0d1754(&fStack_a4, auStack_74);
+                        iVar1 = game_vec_0d1754(&fStack_a4, auStack_74);
                         if (iVar1 == 0) {
                             ar4_00 = 0;
                         }
@@ -11544,7 +11546,8 @@ u32 game_list_0dbd80(int a0, u32 unused_a1, u32 a2, u32 a3) {
  * rotate_degrees_7c_on_field_9e8  0x8c0dbdf4
  * calls rotate_degrees_7c on the member at +0x9e8
  * called by: Class_12b580_draw_with_children, Class_12b758_draw_0e4dd0, game_draw_0df668, game_draw_0e505c,
- * game_uses_color_set_white_a0_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60, game_uses_noop_0def78 (+3 more)
+ * game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60, game_uses_noop_0def78 (+3
+ * more)
  */
 u32 rotate_degrees_7c_on_field_9e8(int a0) {
     u32 uVar1;
@@ -11554,11 +11557,11 @@ u32 rotate_degrees_7c_on_field_9e8(int a0) {
 }
 
 /*
- * game_uses_Vec3_dtor_0dbe24  0x8c0dbe24
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is Vec3_dtor
+ * game_vec_0dbe24  0x8c0dbe24
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
  * called by: CEnv_vec_0dac50
  */
-u32 game_uses_Vec3_dtor_0dbe24(int a0, u32 a1, u64 *a2, int a3) {
+u32 game_vec_0dbe24(int a0, u32 a1, u64 *a2, int a3) {
     u64 uVar1;
     int iVar2;
     u32 ar4_00;
@@ -11595,7 +11598,7 @@ u32 game_uses_Vec3_dtor_0dbe24(int a0, u32 a1, u64 *a2, int a3) {
             Vec3_ctor_copy(auStack_c4, uVar3, ar6_00, a3);
             a3 = (int)&uStack_34 + 4;
             ar6_00 = &uStack_34;
-            game_calls_float_calc_019508(auStack_b4, auStack_c4, ar6_00, a3);
+            game_vec_019508(auStack_b4, auStack_c4, ar6_00, a3);
             Vec3_dtor(auStack_c4, 0xffffffff, ar6_00, a3);
             uVar3 = a1;
             Vec3_distance_sq(&uStack_34, a1, ar6_00, a3);
@@ -11625,7 +11628,7 @@ u32 game_uses_Vec3_dtor_0dbe24(int a0, u32 a1, u64 *a2, int a3) {
 /*
  * field_ptr_30  0x8c0dbf88
  * returns the address of the member at +0x30
- * called by: game_uses_Vec3_dtor_0dbe24
+ * called by: game_vec_0dbe24
  */
 int field_ptr_30(int a0) {
     return a0 + 0x30;
@@ -13491,7 +13494,7 @@ u32 game_uses_noop_0de6d0(int a0, u32 a1, u32 a2, u32 a3) {
     g_8c437e10 = uVar7;
     obj_set_texlist(a0 + 0x22d40, iVar3, puVar5);
     for (iVar4 = 0; iVar4 < 3; iVar4 = iVar4 + 1) {
-        game_calls_float_calc_0d43cc(&fStack_38);
+        matrix_apply_point_w1_wrap(&fStack_38);
         if (cVar10 == '\0') {
             fVar8 = -150.0;
             fVar6 = fStack_38;
@@ -13531,7 +13534,7 @@ u32 game_uses_noop_0de6d0(int a0, u32 a1, u32 a2, u32 a3) {
         }
     }
     game_draw_0e14fc(a0, iVar3, puVar5, a3);
-    game_calls_float_calc_0d43cc(&fStack_38);
+    matrix_apply_point_w1_wrap(&fStack_38);
     if (cVar10 == '\0') {
         fVar8 = -150.0;
         fVar6 = fStack_38;
@@ -13568,7 +13571,7 @@ u32 game_uses_noop_0de6d0(int a0, u32 a1, u32 a2, u32 a3) {
             }
         }
     }
-    game_calls_float_calc_0d43cc(&fStack_38);
+    matrix_apply_point_w1_wrap(&fStack_38);
     if (cVar10 == '\0') {
         fVar8 = 650.0;
         fVar6 = fStack_38;
@@ -13597,8 +13600,8 @@ u32 game_uses_noop_0de6d0(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * free_if_nonnull_wrap_0deb30  0x8c0deb30
- * called by: game_draw_0df668, game_uses_color_set_white_a0_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60,
- * game_uses_noop_0def78
+ * called by: game_draw_0df668, game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0,
+ * game_uses_noop_0deb60, game_uses_noop_0def78
  */
 int free_if_nonnull_wrap_0deb30(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -13690,7 +13693,7 @@ u32 game_uses_noop_0deb60(int a0, u32 a1, u32 a2, u32 a3) {
     Vec3_uses_set_vec_0e3f24(a0);
     puVar5 = &uStack_20;
     iVar3 = a0 + 0x22d48;
-    game_draw_0d4428(a0 + 0x10ac, iVar3, puVar5, a3);
+    matrix_draw_0d4428(a0 + 0x10ac, iVar3, puVar5, a3);
     if (cVar10 == '\0') {
         g_8c437f34 = CONCAT44(DAT_8c437f34_4, (int)((u64)uVar7 >> 0x20));
         uVar7 = g_8c437f34;
@@ -13699,7 +13702,7 @@ u32 game_uses_noop_0deb60(int a0, u32 a1, u32 a2, u32 a3) {
     game_draw_0e157c(a0, iVar3, puVar5, a3);
     obj_set_texlist(a0 + 0x22d40, iVar3, puVar5);
     for (iVar4 = 0; iVar4 < 3; iVar4 = iVar4 + 1) {
-        game_calls_float_calc_0d43cc(&fStack_38);
+        matrix_apply_point_w1_wrap(&fStack_38);
         if (cVar10 == '\0') {
             fVar8 = -150.0;
             fVar6 = fStack_38;
@@ -13738,7 +13741,7 @@ u32 game_uses_noop_0deb60(int a0, u32 a1, u32 a2, u32 a3) {
             }
         }
     }
-    game_calls_float_calc_0d43cc(&fStack_38);
+    matrix_apply_point_w1_wrap(&fStack_38);
     if (cVar10 == '\0') {
         fVar8 = -150.0;
         fVar6 = fStack_38;
@@ -13775,7 +13778,7 @@ u32 game_uses_noop_0deb60(int a0, u32 a1, u32 a2, u32 a3) {
             }
         }
     }
-    game_calls_float_calc_0d43cc(&fStack_38);
+    matrix_apply_point_w1_wrap(&fStack_38);
     if (cVar10 == '\0') {
         fVar8 = 650.0;
         fVar6 = fStack_38;
@@ -13899,10 +13902,10 @@ u32 game_uses_noop_0def78(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_color_set_white_a0_0df250  0x8c0df250
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is color_set_white_a0
+ * game_uses_matrix_apply_point_w1_wrap_0df250  0x8c0df250
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is matrix_apply_point_w1_wrap
  */
-u32 game_uses_color_set_white_a0_0df250(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_uses_matrix_apply_point_w1_wrap_0df250(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -13992,7 +13995,7 @@ u32 game_uses_color_set_white_a0_0df250(int a0, u32 a1, u32 a2, u32 a3) {
     obj_set_texlist(a0 + 0x22d40, puVar3, iVar4);
     Class_12b930_draw_0d7410(a0 + 0x22d48, puVar3, iVar4, a3);
     for (iVar5 = 1; iVar5 < 3; iVar5 = iVar5 + 1) {
-        game_calls_float_calc_0d43cc(&fStack_38);
+        matrix_apply_point_w1_wrap(&fStack_38);
         if (cVar11 == '\0') {
             fVar9 = -150.0;
             fVar6 = fStack_38;
@@ -14031,7 +14034,7 @@ u32 game_uses_color_set_white_a0_0df250(int a0, u32 a1, u32 a2, u32 a3) {
             }
         }
     }
-    game_calls_float_calc_0d43cc(&fStack_38);
+    matrix_apply_point_w1_wrap(&fStack_38);
     if (cVar11 == '\0') {
         fVar9 = -150.0;
         fVar6 = fStack_38;
@@ -14068,7 +14071,7 @@ u32 game_uses_color_set_white_a0_0df250(int a0, u32 a1, u32 a2, u32 a3) {
             }
         }
     }
-    game_calls_float_calc_0d43cc(&fStack_38);
+    matrix_apply_point_w1_wrap(&fStack_38);
     if (cVar11 == '\0') {
         fVar9 = 650.0;
         fVar6 = fStack_38;
@@ -14299,7 +14302,7 @@ u32 game_vec_0dfa84(int a0, u32 *a1, u8 *a2, u8 *a3) {
             for (iVar2 = 0; iVar2 < 3; iVar2 = iVar2 + 1) {
                 a3 = auStack_ac;
                 a2 = auStack_b0;
-                game_calls_float_calc_019508(auStack_a0, a0 + iVar2 * 0x16c + 0x22d4c, a2, a3);
+                game_vec_019508(auStack_a0, a0 + iVar2 * 0x16c + 0x22d4c, a2, a3);
                 uVar1 = SUB84(in_dr14, 0);
                 Vec3_distance_sq(auStack_b0, a1, a2, a3);
                 fVar5 = (float)((u64)dVar4 >> 0x20);
