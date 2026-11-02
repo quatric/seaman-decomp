@@ -33,7 +33,7 @@ u32 crt0_start(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 u32 shinobi_uses_memcmp_1ef430(void) {
     u32 uVar1;
 
-    uVar1 = shinobi_uses_memcmp_1f5c9e(*(u32 *)(&DATA_8c26be70));
+    uVar1 = irq_uses_memcmp_1f5c9e(*(u32 *)(&DATA_8c26be70));
     return uVar1;
 }
 
@@ -45,7 +45,7 @@ u32 shinobi_uses_memcmp_1ef430(void) {
 u32 shinobi_uses_memcmp_1ef438(void) {
     u32 uVar1;
 
-    uVar1 = shinobi_uses_memcmp_1f5cf6(*(u32 *)(&DATA_8c26be70));
+    uVar1 = irq_uses_memcmp_1f5cf6(*(u32 *)(&DATA_8c26be70));
     return uVar1;
 }
 
@@ -818,7 +818,7 @@ u32 maple_cmd15_func10_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * maple_set_condition_hooked  0x8c1eff58
  * maple_set_condition_locked, then the PVR hook when +0x10e8 is set
- * called by: shinobi_input_1f5d6c
+ * called by: irq_input_1f5d6c
  */
 u32 maple_set_condition_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;

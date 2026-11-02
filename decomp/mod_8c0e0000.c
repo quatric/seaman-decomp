@@ -339,10 +339,10 @@ u32 game_init_fields_0e06f0(int a0, u32 *a1) {
 }
 
 /*
- * game_sound_0e070c  0x8c0e070c
- * area name: game code; nothing names its area yet; behaviour name: mostly calls sound functions
+ * pack_find_and_request_23258  0x8c0e070c
+ * looks up the pack entry named at +0x23258 and queues a request for it, keeping the handle at +0x2325c
  */
-int game_sound_0e070c(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int pack_find_and_request_23258(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
 
@@ -357,10 +357,10 @@ int game_sound_0e070c(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sound_0e0764  0x8c0e0764
- * area name: game code; nothing names its area yet; behaviour name: mostly calls sound functions
+ * pack_sound_0e0764  0x8c0e0764
+ * area name: sits between pack functions (same compilation unit); behaviour name: mostly calls sound functions
  */
-u64 *game_sound_0e0764(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u64 *pack_sound_0e0764(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u64 *puVar1;
 
     if (g_8c438258 == '\0') {
@@ -403,10 +403,10 @@ u64 *game_sound_0e0764(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_test_0e087c  0x8c0e087c
- * area name: game code; nothing names its area yet; behaviour name: returns the result of a comparison
+ * pack_test_0e087c  0x8c0e087c
+ * area name: sits between pack functions (same compilation unit); behaviour name: returns the result of a comparison
  */
-u32 game_test_0e087c(int a0) {
+u32 pack_test_0e087c(int a0) {
     if (-1314.45 < *(float *)(a0 + 0x2324c)) {
         return 0;
     }
@@ -424,10 +424,10 @@ u32 set_field_10ac(int a0) {
 }
 
 /*
- * game_update_fields_0e08b0  0x8c0e08b0
- * area name: game code; nothing names its area yet; behaviour name: conditionally writes members
+ * pack_update_fields_0e08b0  0x8c0e08b0
+ * area name: sits between pack functions (same compilation unit); behaviour name: conditionally writes members
  */
-int game_update_fields_0e08b0(int a0, int a1) {
+int pack_update_fields_0e08b0(int a0, int a1) {
     int iVar1;
 
     if (a1 == 1) {
@@ -441,10 +441,10 @@ int game_update_fields_0e08b0(int a0, int a1) {
 }
 
 /*
- * game_update_fields_0e08d0  0x8c0e08d0
- * area name: game code; nothing names its area yet; behaviour name: conditionally writes members
+ * pack_update_fields_0e08d0  0x8c0e08d0
+ * area name: sits between pack functions (same compilation unit); behaviour name: conditionally writes members
  */
-int game_update_fields_0e08d0(int a0, int a1) {
+int pack_update_fields_0e08d0(int a0, int a1) {
     int iVar1;
 
     if (a1 == 1) {
@@ -458,10 +458,10 @@ int game_update_fields_0e08d0(int a0, int a1) {
 }
 
 /*
- * game_calc_0e08f0  0x8c0e08f0
- * area name: game code; nothing names its area yet; behaviour name: integer arithmetic on its arguments
+ * pack_calc_0e08f0  0x8c0e08f0
+ * area name: sits between pack functions (same compilation unit); behaviour name: integer arithmetic on its arguments
  */
-u32 game_calc_0e08f0(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 *s0) {
+u32 pack_calc_0e08f0(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 *s0) {
     u32 uStack_4;
 
     uStack_4 = uStack_4 & 0xfffffffc;
@@ -757,7 +757,7 @@ u32 CWaterTank_uses_get_field_300_0e0f48(int *a0, u32 a1, float *a2, float *a3) 
         set_field_18_to_1(a0 + 0x4edc);
         Class_12b580_set_request_wrap(a0 + 0x42b);
     }
-    game_float_calc_0d08c0(a0 + 0x4edc);
+    ramp_float_to_100(a0 + 0x4edc);
     iVar1 = get_field_14_0e1318(a0 + 0x4edc);
     if (iVar1 == 1) {
         iVar1 = get_field_300_0bf154(a0 + 0x29);
@@ -1040,7 +1040,7 @@ u32 set_fields_14_18(int a0) {
 u32 CWaterTank_uses_get_field_38_wrap_0e132c(int a0) {
     u32 uVar1;
 
-    game_calls_float_calc_0d0910(a0 + 0x13b70);
+    ramp_float_to_100_wrap(a0 + 0x13b70);
     get_field_38_wrap(a0, 1);
     uVar1 = 3;
     get_field_38_wrap(a0, 3);
@@ -1140,13 +1140,13 @@ u32 game_draw_0e157c(int a0, u32 a1, u32 a2, u32 a3) {
 
     pvr_draw_235ee4();
     obj_set_texlist(a0 + 0x106c, a1, a2);
-    game_draw_015adc(a0 + 0x1074, a1, a2, a3);
+    Class_12c058_draw_015adc(a0 + 0x1074, a1, a2, a3);
     ar4_00 = a0 + 0x107c;
-    game_draw_015adc(ar4_00, a1, a2, a3);
+    Class_12c058_draw_015adc(ar4_00, a1, a2, a3);
     pvr_draw_235f14();
-    game_draw_015adc(a0 + 0x1078, a1, a2, a3);
+    Class_12c058_draw_015adc(a0 + 0x1078, a1, a2, a3);
     obj_set_texlist(a0 + 0x28, a1, a2);
-    uVar1 = game_draw_015adc(a0 + 0x30, a1, a2, a3);
+    uVar1 = Class_12c058_draw_015adc(a0 + 0x30, a1, a2, a3);
     return uVar1;
 }
 
@@ -1160,15 +1160,15 @@ u32 game_draw_0e15fc(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_PR;
 
     obj_set_texlist(a0 + 0x106c, a1, a2);
-    game_draw_015adc(a0 + 0x107c, a1, a2, a3);
+    Class_12c058_draw_015adc(a0 + 0x107c, a1, a2, a3);
     uVar1 = 0;
     matrix_push(0, a1, a2, a3, in_PR);
     touch_fields_30_3c_wrap();
-    game_draw_015adc(a0 + 0x1074, a1, a2, a3);
-    game_draw_015adc(a0 + 0x1078, a1, a2, a3);
+    Class_12c058_draw_015adc(a0 + 0x1074, a1, a2, a3);
+    Class_12c058_draw_015adc(a0 + 0x1078, a1, a2, a3);
     matrix_pop_n(1);
     obj_set_texlist(a0 + 0x28, a1, a2);
-    uVar1 = game_draw_015adc(a0 + 0x30, a1, a2, a3);
+    uVar1 = Class_12c058_draw_015adc(a0 + 0x30, a1, a2, a3);
     return uVar1;
 }
 
@@ -3626,12 +3626,12 @@ u32 Class_12b758_draw_0e4dd0(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
             touch_fields_30_3c_wrap();
             in_stack_ffffffbc = iVar2;
             matrix_scale_wrap(uVar1, ar5_00);
-            game_draw_015adc(a0 + 0x10e4, ar5_00, ar6_00, a3);
+            Class_12c058_draw_015adc(a0 + 0x10e4, ar5_00, ar6_00, a3);
             matrix_pop_n(1);
         }
     }
     obj_set_texlist(a0 + 0x28, ar5_00, ar6_00);
-    game_draw_015adc(a0 + 0x30, ar5_00, ar6_00, a3);
+    Class_12c058_draw_015adc(a0 + 0x30, ar5_00, ar6_00, a3);
     if (*(int *)(a0 + 0x15c8) == 1) {
         CTexture_draw_0d6090(a0 + 0x15bc, ar5_00, ar6_00, a3);
     }
@@ -3648,7 +3648,7 @@ u32 game_draw_0e505c(int a0, u32 a1, u32 a2, u32 a3) {
 
     rotate_degrees_7c_on_field_9e8(a0);
     obj_set_texlist(a0 + 0x28, a1, a2);
-    game_draw_015adc(a0 + 0x30, a1, a2, a3);
+    Class_12c058_draw_015adc(a0 + 0x30, a1, a2, a3);
     uVar1 = game_uses_list_node_next_wrap_0da754(a0);
     return uVar1;
 }
@@ -4494,7 +4494,7 @@ u32 Class_12b580_draw_0e660c(int a0, int a1, int a2, u32 a3) {
     }
     game_uses_get_field_10_0d89d8(a0 + 0x10dc, a1);
     obj_set_texlist(a0 + 0x28, a1, a2);
-    game_draw_015adc(a0 + 0x30, a1, a2, a3);
+    Class_12c058_draw_015adc(a0 + 0x30, a1, a2, a3);
     for (iVar2 = 0; iVar2 < 8; iVar2 = iVar2 + 1) {
         iVar1 = has_field_2c(a0 + iVar2 * 0x68 + 0xc0c);
         if (iVar1 == 1) {
@@ -4744,10 +4744,10 @@ u32 *game_init_fields_0e6c54(int a0) {
 }
 
 /*
- * game_load_0e6c8c  0x8c0e6c8c
- * area name: game code; nothing names its area yet; behaviour name: mostly calls load functions
+ * scene_load_textures_like  0x8c0e6c8c
+ * loads the scene's texlist (+0x28) and cached texture (+4); above mode 2 also its extra set at +0x10dc
  */
-u32 game_load_0e6c8c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 scene_load_textures_like(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 ar5_00;
     u32 in_PR;
@@ -4763,10 +4763,10 @@ u32 game_load_0e6c8c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_release_0e6cd8  0x8c0e6cd8
- * area name: game code; nothing names its area yet; behaviour name: mostly calls release functions
+ * scene_release_textures_like  0x8c0e6cd8
+ * releases the scene's texlist (+0x28) and texture (+4) from VRAM; above mode 2 also its extra set at +0x10dc
  */
-u32 game_release_0e6cd8(int a0, u32 a1, u32 a2, u32 a3) {
+u32 scene_release_textures_like(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 ar5_00;
     u32 in_PR;

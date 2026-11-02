@@ -15420,7 +15420,7 @@ u32 gfxlib_calls_fill_loop_21849c(short *a0, u32 a1) {
 
 /*
  * vram64_21869c  0x8c21869c
- * called by: vram64_2186f8, vram64_21870e, vram_draw_2187ba
+ * called by: vram64_2186f8, vram64_21870e, vram_call_with_saved_draw_state
  */
 u32 vram64_21869c(int *a0, u32 a1) {
     u32 in_r0;
@@ -15588,10 +15588,10 @@ u32 vram64_21870e(u32 *a0, u32 a1) {
 }
 
 /*
- * vram_draw_2187ba  0x8c2187ba
- * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls draw functions
+ * vram_call_with_saved_draw_state  0x8c2187ba
+ * runs vram64_21869c between draw_state_save and draw_state_restore
  */
-u32 vram_draw_2187ba(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 vram_call_with_saved_draw_state(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     draw_state_save(a0, a1, a2, a3);
@@ -16939,8 +16939,8 @@ u32 gfxlib_draw_219a86(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gfxlib_draw_219a9a  0x8c219a9a
  * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: CAnimal_draw_088288, Class_12a7f4_draw_09abfc, Class_12ad50_draw_0a54dc, game_draw_015adc,
- * game_draw_038b04, game_draw_06c04c, game_draw_06c0b8, game_draw_09ca80 (+5 more)
+ * called by: CAnimal_draw_088288, Class_12a7f4_draw, Class_12ad50_draw, Class_12c058_draw_015adc, game_draw_038b04,
+ * game_draw_06c04c, game_draw_06c0b8, game_draw_09ca80 (+5 more)
  */
 u32 gfxlib_draw_219a9a(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;

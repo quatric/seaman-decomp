@@ -10036,7 +10036,7 @@ int *game_uses_Class_12b350_ctor_0bff8c(int *a0, u32 a1, u32 a2, u32 a3) {
     game_copy_0ba2cc((int)a0 + 0x2d59c);
     Class_12b3b8_copy_016410((int)a0 + 0x2ddc4);
     game_vec_0ffb98((int)a0 + 0x2de08, a1, a2, a3);
-    game_list_0fed18((int)a0 + 0x2e3a8, a1, a2);
+    CItemGLoader_list_0fed18((int)a0 + 0x2e3a8, a1, a2);
     Class_129920_ctor((int)a0 + 0x2e64c, a1);
     game_copy_0bf478((int)a0 + 0x2e710);
     puVar1 = (&DATA_8c13bee8);

@@ -13848,11 +13848,11 @@ u32 copy_4_bytes(u8 *a0, u8 *a1) {
 }
 
 /*
- * gfxlib_calc_238f02  0x8c238f02
- * area name: in the gfxlib library code range; behaviour name: integer arithmetic on its arguments
+ * gfxlib_vertex_size_from_flags  0x8c238f02
+ * vertex size from format flag bits (base 2 or 0x1e, +2/+2/+4 for bits 1..3)
  * called by: gfxlib_uses_ninja_close_file_239212, pvr_uses_tex_entry_alloc_23a29c
  */
-int gfxlib_calc_238f02(u32 a0) {
+int gfxlib_vertex_size_from_flags(u32 a0) {
     int iVar1;
 
     iVar1 = 2;
@@ -14045,11 +14045,11 @@ int *ptr_list_build_1c(int *a0, int *a1, int a2, int a3) {
 }
 
 /*
- * ta_uses_nj_seek_2391a8  0x8c2391a8
- * area name: sits between ta functions (same compilation unit); behaviour name: its main named callee is nj_seek
- * called by: gfxlib_uses_ninja_close_file_239212
+ * pvrt_stream_is_palettized  0x8c2391a8
+ * reads a PVRT header from the open stream; 1 for palettized pixel formats (types 5..8), 0 otherwise, -4 on a bad
+ * header called by: gfxlib_uses_ninja_close_file_239212
  */
-u32 ta_uses_nj_seek_2391a8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 pvrt_stream_is_palettized(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int iStack_14;
     u8 auStack_10[4];
@@ -14129,7 +14129,7 @@ u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) 
             } else {
                 sStack_112 = sStack_116;
                 piStack_c[1] = (int)sStack_116;
-                uStack_148 = gfxlib_calc_238f02((int)sStack_118);
+                uStack_148 = gfxlib_vertex_size_from_flags((int)sStack_118);
                 piVar3 = &iStack_11c;
                 gfxlib_copy_238f2a(piStack_c, uStack_148, piVar3, a3);
                 nj_seek(0, 0);
@@ -14176,7 +14176,7 @@ u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) 
                             iStack_154 = 1;
                             goto LAB_8c2394ac;
                         }
-                        iStack_154 = ta_uses_nj_seek_2391a8(piVar4, iVar1, piVar3, a3);
+                        iStack_154 = pvrt_stream_is_palettized(piVar4, iVar1, piVar3, a3);
                         if (iStack_154 < 0)
                             break;
                         piVar4 = g_8c277b08;
@@ -14815,7 +14815,7 @@ u32 pvr_uses_tex_entry_alloc_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
         gfx_stream_read(&iStack_28, 8);
         iVar1 = (int)sStack_22;
         a1[1] = iVar1;
-        uVar5 = gfxlib_calc_238f02((int)sStack_24);
+        uVar5 = gfxlib_vertex_size_from_flags((int)sStack_24);
         piVar6 = &iStack_28;
         gfxlib_copy_239f84(a1, uVar5, piVar6);
         gfx_stream_seek(0, 0);

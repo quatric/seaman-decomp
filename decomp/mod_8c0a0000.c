@@ -4256,10 +4256,10 @@ u32 Class_12ad50_draw_0a53b0(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * Class_12ad50_draw_0a54dc  0x8c0a54dc
- * area name: sits between Class_12ad50 functions (same compilation unit); behaviour name: mostly calls draw functions
+ * Class_12ad50_draw  0x8c0a54dc
+ * binds the model's texlist (+0x328 +0x78), draws its model (+0x70) and then the attached object at +0x330
  */
-u32 Class_12ad50_draw_0a54dc(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12ad50_draw(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_set_texlist(*(int *)(0x328 + a0) + 0x78, a1, a2);

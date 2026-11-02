@@ -359,7 +359,7 @@ u32 shinobi_uses_strnlen_12_2004a0(char *a0, char *a1) {
 /*
  * shinobi_fill_loop_2004ea  0x8c2004ea
  * area name: in the shinobi library code range; behaviour name: a loop that writes memory
- * called by: alt_entry_2005dc, shinobi_calls_fill_loop_2005d6, vmu_dir_find_file
+ * called by: alt_entry_2005dc, vmu_dir_find_file, vmu_dir_find_game_file
  */
 u32 shinobi_fill_loop_2004ea(u8 *a0, int a1) {
     u8 bVar1;
@@ -473,11 +473,11 @@ u32 vmu_dir_find_file(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * shinobi_calls_fill_loop_2005d6  0x8c2005d6
- * area name: in the shinobi library code range; behaviour name: its callees mostly do: fill_loop
+ * vmu_dir_find_game_file  0x8c2005d6
+ * scans the drive's 32-byte directory entries for type 0xcc (game file) and fills a1 from it; -1 if none
  * called by: bu_get_game_file_name_now, shinobi_save_1fe646
  */
-u32 shinobi_calls_fill_loop_2005d6(int a0, u32 a1) {
+u32 vmu_dir_find_game_file(int a0, u32 a1) {
     int ar6_00;
     u8 *ar4_00;
     int iVar1;
@@ -526,11 +526,11 @@ u32 alt_entry_2005dc(u32 unused_a0, u32 a1) {
 }
 
 /*
- * shinobi_scan_loop_200614  0x8c200614
- * area name: in the shinobi library code range; behaviour name: a loop that only reads
+ * vmu_dir_find_empty_entry  0x8c200614
+ * index of the first directory entry whose type byte is 0 (free); -1 if none
  * called by: shinobi_save_1fe646, shinobi_save_1fe7aa
  */
-u32 shinobi_scan_loop_200614(int a0) {
+u32 vmu_dir_find_empty_entry(int a0) {
     int iVar1;
     char *pcVar2;
     int iVar3;
@@ -880,7 +880,7 @@ int alt_entry_20080e(u32 unused_a0, int a1, int a2, u32 a3) {
 /*
  * vmu_fat_find  0x8c200890
  * last block of drive a0 whose map entry (drive operation +0xc) is a1; -1 if none
- * called by: alt_entry_1febe6, alt_entry_200900, shinobi_save_1febd6, shinobi_save_200038, shinobi_save_2008f4
+ * called by: alt_entry_1febe6, alt_entry_200900, shinobi_save_1febd6, shinobi_save_200038, vmu_fat_alloc_block
  */
 int vmu_fat_find(int a0, u32 a1, u32 a2, u32 a3) {
     int *piVar1;
@@ -902,11 +902,11 @@ int vmu_fat_find(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_save_2008f4  0x8c2008f4
- * area name: in the shinobi library code range; behaviour name: mostly calls save functions
+ * vmu_fat_alloc_block  0x8c2008f4
+ * finds a free FAT block, marking blocks that fail the check as bad (0xfffa) and retrying; -1 when full
  * called by: alt_entry_1febe6, shinobi_save_1febd6
  */
-u32 shinobi_save_2008f4(u32 a0, u32 unused_a1, int a2, u32 a3) {
+u32 vmu_fat_alloc_block(u32 a0, u32 unused_a1, int a2, u32 a3) {
     int ar5_00;
     int ar5_01;
     int iVar1;
@@ -955,7 +955,7 @@ u32 alt_entry_200900(u32 unused_a0, u32 unused_a1, int a2, u32 a3) {
 /*
  * shinobi_save_20093a  0x8c20093a
  * area name: in the shinobi library code range; behaviour name: mostly calls save functions
- * called by: alt_entry_200900, bu_get_free_blocks_now, shinobi_save_2008f4
+ * called by: alt_entry_200900, bu_get_free_blocks_now, vmu_fat_alloc_block
  */
 u32 shinobi_save_20093a(int a0, u32 a1) {
     int *piVar1;

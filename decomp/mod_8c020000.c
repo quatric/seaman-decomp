@@ -1688,7 +1688,7 @@ int pack_uses_abs_021ec8(u32 unused_a0, u32 a1) {
 /*
  * pack_state_switch_021f18  0x8c021f18
  * area name: sits between pack functions (same compilation unit); behaviour name: mostly calls state_switch functions
- * called by: ambient_sound_update, bugbox_4_screen, confirm_exit_save, game_uses_input_r_pressed_101004,
+ * called by: ambient_sound_update, bugbox_4_screen, confirm_exit_save, input_uses_input_r_pressed_101004,
  * pack_release_entry_384_if_done, startup_warning_check
  */
 u32 pack_state_switch_021f18(u32 a0, u32 a1, u32 a2) {
@@ -1779,8 +1779,8 @@ u32 pack_find_by_name_buffered(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Class_12b580_clear_request  0x8c0220bc
  * clears the request (+0x9ec94 = -1) and the ready flag
- * called by: Class_12b580_m1_0e634c, event_out_water_cat, game_sound_0e0764,
- * game_uses_Class_12b580_clear_request_0e6dc4, se_close_two_ports, se_sound_0d50b4
+ * called by: Class_12b580_m1_0e634c, event_out_water_cat, game_uses_Class_12b580_clear_request_0e6dc4,
+ * pack_sound_0e0764, se_close_two_ports, se_sound_0d50b4
  */
 int Class_12b580_clear_request(int a0) {
     int iVar1;
@@ -1794,8 +1794,8 @@ int Class_12b580_clear_request(int a0) {
 /*
  * Class_12b580_set_request  0x8c0220d4
  * stores request a1 (+0x9ec94) when the object is ready (+0x9ec14); 1 on success
- * called by: Class_12b580_m1_0e634c, Class_12b580_set_request_wrap, game_sound_0d55d0, game_sound_0e070c,
- * game_sound_0e6d80, se_play_bubble_mono, se_play_ike1
+ * called by: Class_12b580_m1_0e634c, Class_12b580_set_request_wrap, game_sound_0d55d0, game_sound_0e6d80,
+ * pack_find_and_request_23258, se_play_bubble_mono, se_play_ike1
  */
 u32 Class_12b580_set_request(int *a0, u32 a1) {
     if (*a0 == 0) {
@@ -1812,7 +1812,7 @@ u32 Class_12b580_set_request(int *a0, u32 a1) {
  * Class_12b580_sound_022104  0x8c022104
  * area name: sits between Class_12b580 functions (same compilation unit); behaviour name: mostly calls sound functions
  * called by: Class_12b580_m1_0e634c, Class_12b580_sound_0d56b4, event_out_water_cat, game_sound_0d5614,
- * game_sound_0e0764, game_uses_call_all_list_a8_0e6d24, se_close_two_ports, se_sound_0d50b4
+ * game_uses_call_all_list_a8_0e6d24, pack_sound_0e0764, se_close_two_ports, se_sound_0d50b4
  */
 u32 Class_12b580_sound_022104(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -7418,7 +7418,7 @@ u32 CAnimal_LoadMFile_step(u32 unused_a0, char *a1, u32 a2, u32 *a3, short *s0, 
 /*
  * CAnimal_LoadGRWait  0x8c0284ac
  * called by: egg_load_gr_wait_038e24, egg_load_gr_wait_0885fc, egg_load_gr_wait_09af68, egg_load_gr_wait_0a5854,
- * game_load_09d310, game_load_0ae160 strings: "Failed to Load :CAnimal::LoadGRWait"; "Attach NULL!!";
+ * game_load_0ae160, load_gr_wait_with_items strings: "Failed to Load :CAnimal::LoadGRWait"; "Attach NULL!!";
  * "CAnimal::LoadGRWait()"; "Read NMDM Failed.." ...
  */
 u32 CAnimal_LoadGRWait(int a0, u32 a1, int a2, u32 *a3) {

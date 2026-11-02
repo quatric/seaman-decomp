@@ -11492,7 +11492,7 @@ u32 *memmove(u32 *a0, u32 *a1, u32 a2) {
  * memmove_bytes  0x8c013fb4
  * byte-wise copy that handles overlapping buffers
  * called by: CAnimal_draw_029510, CAnimal_uses_njGetMatrix_026968, game_copy_0d1d54, game_copy_0d1eb8,
- * game_copy_0d1f38, game_copy_0fdaac, game_draw_0297b8, memmove_bytes_wrap (+1 more)
+ * game_copy_0d1f38, game_draw_0297b8, memmove_bytes_wrap, memmove_bytes_wrap_024378 (+1 more)
  */
 u8 *memmove_bytes(u8 *a0, u8 *a1, u32 a2) {
     u8 uVar1;
@@ -12160,8 +12160,8 @@ int toupper_0146b4(u32 a0) {
 
 /*
  * vsprintf_like  0x8c0146d0
- * called by: alt_entry_1f4574, cri_uses_vsprintf_like_25ecea, debug_log_printf, debug_printf, lib_error_printf,
- * sd_uses_vsprintf_like_26a152, shinobi_uses_vsprintf_like_1fd5c0
+ * called by: alt_entry_1f4574, cri_uses_vsprintf_like_25ecea, debug_log_printf, debug_printf, debug_printf_to_hook,
+ * lib_error_printf, sd_uses_vsprintf_like_26a152
  */
 u32 vsprintf_like(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -13145,7 +13145,7 @@ u32 Class_129920_m0_015248(int a0, u32 a1, u32 a2, u32 a3) {
  * CTexture_LoadFromCache  0x8c015250
  * called by: CTexture_LoadFromCache_on_field_20, CTexture_LoadFromCache_on_field_488, CTexture_LoadFromCache_wrap,
  * CTexture_LoadFromCache_wrap_0d09fc, CTexture_LoadFromCache_wrap_0d14b0, CTexture_LoadFromCache_wrap_0d6058,
- * game_load_0e0320, game_load_0e6c8c (+3 more) strings: "Failed to set texture..:%s"; "CTexture::LoadFromCache()";
+ * game_load_0e0320, obj_load_texlist_28 (+3 more) strings: "Failed to set texture..:%s"; "CTexture::LoadFromCache()";
  * "Failed to load from cache..:%s"; "CTexture::LoadFromCache()"
  */
 u32 CTexture_LoadFromCache(int a0, u32 a1, u32 a2, u32 a3) {
@@ -13901,12 +13901,12 @@ u32 set_field_0_015ad4(u32 *a0, u32 a1, u32 a2) {
 }
 
 /*
- * game_draw_015adc  0x8c015adc
- * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
- * called by: CTexture_draw_0d6090, Class_12b580_draw_0e660c, Class_12b758_draw_0e4dd0, Class_12c058_draw_0f577c,
- * Class_12c058_draw_0f57f0, game_draw_0d0564, game_draw_0d05d0, game_draw_0d2264 (+8 more)
+ * Class_12c058_draw_015adc  0x8c015adc
+ * area name: only called from Class_12c058 methods; behaviour name: mostly calls draw functions
+ * called by: CTexture_draw_0d6090, Class_12b580_draw_0e660c, Class_12b758_draw_0e4dd0, Class_12c058_draw,
+ * Class_12c058_draw_0f577c, game_draw_0d0564, game_draw_0d05d0, game_draw_0d2264 (+8 more)
  */
-u32 game_draw_015adc(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12c058_draw_015adc(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = gfxlib_draw_219a9a(*a0, a1, a2, a3);
@@ -17532,8 +17532,8 @@ u32 game_vec_018fb0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * touch_fields_30_3c_wrap  0x8c019058
  * only calls touch_fields_30_3c
- * called by: Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b758_draw_0e4dd0, Class_12c058_draw_0f577c,
- * Class_12c058_draw_0f57f0, game_draw_0cb220, game_draw_0d0564, game_draw_0d05d0, game_draw_0d092c (+14 more)
+ * called by: Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b758_draw_0e4dd0, Class_12c058_draw,
+ * Class_12c058_draw_0f577c, game_draw_0cb220, game_draw_0d0564, game_draw_0d05d0, game_draw_0d092c (+14 more)
  */
 u32 touch_fields_30_3c_wrap(void) {
     u32 r5;
@@ -17549,7 +17549,7 @@ u32 touch_fields_30_3c_wrap(void) {
 /*
  * rotate_xyz_degrees  0x8c019088
  * njRotateXYZ(current matrix) with angles fr4..fr6 in degrees
- * called by: Class_12c058_draw_0f577c, Class_12c058_draw_0f57f0, game_draw_029ca8
+ * called by: Class_12c058_draw, Class_12c058_draw_0f577c, game_draw_029ca8
  */
 u32 rotate_xyz_degrees(void) {
     u32 uVar1;
@@ -18572,7 +18572,7 @@ u32 Class_129a24_m4_019e40(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0) {
 
 /*
  * Class_1299f8_dtor_019eb8  0x8c019eb8
- * stores the vtable 0x8c1299f8
+ * restores the Class_1299f8 vtable, runs the Class_129a50 base destructor and frees a0 when asked
  */
 u32 *Class_1299f8_dtor_019eb8(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
@@ -20584,7 +20584,7 @@ int memcard_op_condition_a(int *a0) {
     uStack_17 = (&DATA_8c12fb10)[1];
     uStack_16 = (&DATA_8c12fb10)[2];
     uStack_15 = (&DATA_8c12fb10)[3];
-    iVar2 = shinobi_input_1f5d6c(a0[2], &uStack_18);
+    iVar2 = irq_input_1f5d6c(a0[2], &uStack_18);
     iVar1 = 0x2450;
     if (iVar2 != -1) {
         if (iVar2 == 0) {
@@ -20615,7 +20615,7 @@ int memcard_op_condition_b(int *a0) {
     uStack_17 = (&DATA_8c12fb14)[1];
     uStack_16 = (&DATA_8c12fb14)[2];
     uStack_15 = (&DATA_8c12fb14)[3];
-    iVar2 = shinobi_input_1f5d6c(a0[2], &uStack_18);
+    iVar2 = irq_input_1f5d6c(a0[2], &uStack_18);
     iVar1 = 0x2450;
     if (iVar2 != -1) {
         if (iVar2 == 0) {
@@ -22331,7 +22331,7 @@ u32 input_l_pressed(int a0) {
 /*
  * input_r_held  0x8c01ec68
  * R button (0x10000) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
- * called by: game_input_0ffdb0, game_input_1016f0, input_input_helper_1002a8, input_uses_get_field_4_10031c
+ * called by: game_input_0ffdb0, input_history_push, input_input_helper_1002a8, input_uses_get_field_4_10031c
  */
 u32 input_r_held(int a0) {
     u32 uVar1;
@@ -22375,7 +22375,8 @@ u32 input_r_off(int a0) {
 /*
  * input_r_pressed  0x8c01ecf8
  * R button (0x10000) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
- * called by: game_uses_input_r_pressed_101004, input_input_helper_10022c, input_input_helper_100e4c, menu_next_pressed
+ * called by: input_input_helper_100e4c, input_r_only_start_timeout, input_uses_input_r_pressed_101004,
+ * menu_next_pressed
  */
 u32 input_r_pressed(int a0) {
     u32 uVar1;
@@ -22575,8 +22576,8 @@ u32 input_x_held(int a0) {
 /*
  * input_x_off  0x8c01ef68
  * X button (0x400) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
- * called by: game_uses_input_r_pressed_101004, input_input_helper_1001e0, input_input_helper_100b20,
- * input_input_helper_100b84, input_input_helper_100be8, input_input_helper_100c34, stick_down_with_b_x_up,
+ * called by: input_input_helper_1001e0, input_input_helper_100b20, input_input_helper_100b84,
+ * input_input_helper_100be8, input_input_helper_100c34, input_uses_input_r_pressed_101004, stick_down_with_b_x_up,
  * stick_up_with_b_x_up
  */
 u32 input_x_off(int a0) {
@@ -22599,7 +22600,7 @@ u32 input_x_off(int a0) {
 /*
  * input_x_pressed  0x8c01efb0
  * X button (0x400) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
- * called by: game_input_1016f0
+ * called by: input_history_push
  */
 u32 input_x_pressed(int a0) {
     u32 uVar1;
@@ -22905,7 +22906,7 @@ u32 input_up_pressed(int a0) {
 
 /*
  * input_get_word_a538  0x8c01f380
- * called by: game_input_0ffdb0, game_input_1016f0
+ * called by: game_input_0ffdb0, input_history_push
  */
 u32 input_get_word_a538(int a0) {
     return *(u32 *)(0xa538 + a0);
@@ -22913,7 +22914,7 @@ u32 input_get_word_a538(int a0) {
 
 /*
  * input_get_word_a53c  0x8c01f38c
- * called by: game_input_0ffdb0, game_input_1016f0
+ * called by: game_input_0ffdb0, input_history_push
  */
 u32 input_get_word_a53c(int a0) {
     return *(u32 *)(0xa53c + a0);

@@ -1505,3 +1505,69 @@
 8c1fd8b2	vmu_drive_init	zeroes drive a0's 0x148-byte record at 8c4783e0 and points it at its 0x4c-byte work area at 8c47ce40
 8c1fda7e	vmu_drive_ready	1 when drive a0's device is ready and idle and its record says it is mounted (+8)
 8c206146	kamui_release_state	releases the Kamui state block pointer 8c2756b0
+8c0fa334	speech_state_copy	copies the 0x1010-byte speech state from a1 into a0, then clears the ready flag (+0xc) when mode +0x1040 is 1 and the next index is past 1
+8c0d08c0	ramp_float_to_100	raises the float at +0xc by 0.05 (mode +0x14 == 1) or 5e-05 while +0x18 is set, clamped at 100.0
+8c10022c	input_r_only_start_timeout	R pressed with neither L nor X held (and state +0x188 not 3) starts the 120-frame timeout
+8c0f4dc4	pair_queue3_push	appends (1, a1) to a three-entry pair queue at +0xec, count at +0x104
+8c1129e4	asr_array_copy_from	copies a0's word count (+8) of words from a1's array (+0xc) into a0's array
+8c112c90	asr_free_ptr_array	frees every pointer of the array at [0x16] (count [0x17]) and then the array, through the allocator's free slot (+0x18)
+8c1f9980	cache_invalidate_range	operand-cache invalidate of a0..a0+a1 by 32-byte line (ocbi); 192 KB or more goes to the whole-cache path through P2
+8c1f9bde	cache_purge_range	operand-cache purge (write back and invalidate, ocbp) of a0..a0+a1; 64 KB or more goes to the whole-cache path through P2
+8c261786	cri_cache_invalidate_range	CRI copy of cache_invalidate_range
+8c1f2b1c	strcspn	length of the prefix of a0 with no character from a1
+8c1f5bb4	irq_list_add_unique	with interrupts masked, adds a0 to the handler list if it is not there yet
+8c2005d6	vmu_dir_find_game_file	scans the drive's 32-byte directory entries for type 0xcc (game file) and fills a1 from it; -1 if none
+8c200614	vmu_dir_find_empty_entry	index of the first directory entry whose type byte is 0 (free); -1 if none
+8c2008f4	vmu_fat_alloc_block	finds a free FAT block, marking blocks that fail the check as bad (0xfffa) and retrying; -1 when full
+8c238f02	gfxlib_vertex_size_from_flags	vertex size from format flag bits (base 2 or 0x1e, +2/+2/+4 for bits 1..3)
+8c261f48	ADXF_alloc_handle	takes a free ADXF handle, marks it used and clears its fields; NULL if none
+8c26211c	ADXF_close_handle_like	destroys the handle's stream (+4) and releases its file object (+8) through its vtable, invalidating the read buffer first
+8c2659dc	sd_fire_callback_like	runs the callback at +0x10 with argument +0x14, or sets the done flag +0x18 when the callback is -1
+8c266134	sd_slot_get_field_18	reads the 32-bit word at +0x18 of this slot's 32-byte AICA record
+8c2661a4	sd_slot_get_field_11	reads byte +0x11 of this slot's AICA record
+8c266214	sd_slot_get_field_1c	reads the 16-bit value at +0x1c of this slot's AICA record
+8c266288	sd_slot_get_field_00	reads byte 0 of this slot's AICA record
+8c2662f8	sd_slot_get_field_10	reads byte +0x10 of this slot's AICA record
+8c266368	sd_slot_get_field_02	reads byte 2 of this slot's AICA record
+8c0feb3c	CEnv_take_free_slot	first of 35 16-byte slots whose in-use word (+0xc) is 0; marks it used and returns it, 0 when full
+8c0fecb0	CItemGLoader_take_free_slot	first of 25 0x18-byte slots whose in-use word (+0x14) is 0; marks it used and returns it, 0 when full
+8c0fe2a0	list_append_at_0c	links node a1 in before the head sentinel of the list at a0+0xc (tail insert) and bumps the count at +0x38
+8c0fdf74	list_append_at_170	links node a1 in at the tail of the list at a0+0x170 and bumps the count at +0x300
+8c0fe8c4	list_append_at_14	links node a1 in at the tail of the list at a0+0x14 and bumps the count at +0x48
+8c0f7278	fade_out_90s_step	lowers the float at +0x60 by 1/5400 (90 seconds at 60 fps) and copies it to +0x54..+0x5c; bumps the step +0x2c once it reaches 0
+8c0faa40	speech_release_pack_entry	in state 7 releases the pack entry handle (+0xb4) and drops to state 6, then clears +0xc0 and resets the request fields
+8c0fdaac	save_slot_store_if_changed	when the current names (+0x14, +0x5c, a1) differ from the selected 0x880-byte slot's, copies the four names and the 0x800-byte data block into it
+8c1016f0	input_history_push	appends this frame's two pad words, X-pressed and R-held as four bytes to the ring at +0x190, index byte +0x598
+8c10cb4c	asr_word_array_contains	1 when one of a1 words at a0 equals a2
+8c1125e8	asr_mat_remove_row	removes row a1 of a row-major word matrix (width [0], rows [1]) by shifting the later rows up
+8c112a02	asr_array_fill_float	fills a0's word array (+0xc, count +8) with the float in fr4
+8c11f898	asr_float_span_below_limit	1 when max - min of the floats from +0x2c up to +0x30 is below the limit at +0x38
+8c1209be	asr_byte_pair_remove_at	removes the 2-byte entry a1 from the list at a0+8, count at [0]
+8c1f5a86	irq_list_find	index of a0 in the handler list, -3 if absent
+8c1f80d0	checksum8_header_ok	1 when the byte sum of a0[2..7] equals a0[1] and its complement equals a0[0]
+8c1fb9d2	utlb_invalidate_saved_entries	invalidates every UTLB entry recorded in the two saved tables and the extra slot
+8c2391a8	pvrt_stream_is_palettized	reads a PVRT header from the open stream; 1 for palettized pixel formats (types 5..8), 0 otherwise, -4 on a bad header
+8c1f1286	gdrom_call6_sync_cache	runs BIOS GD-ROM call 6 and, for a cached destination buffer a1 of a2 bytes, invalidates (32-byte aligned) or purges its cache lines
+8c1f5b7c	irq_list_unref	with interrupts masked, drops one reference from a0's entry in the handler list
+8c1fc00e	slot80_queue_op_12	queues request 0x12 on idle slot a0; -1 when the slot is busy
+8c1fc360	slot80_queue_op_04	queues request 4 for a0 on its slot (+0x28) when idle; -1 when busy
+8c1fc4be	slot80_queue_op_11	queues request 0x11 (args a1, a2) on idle slot a0; -1 when busy
+8c1fc8a8	slot80_queue_op_0f	queues request 0xf (arg a1) on idle slot a0; -1 when busy
+8c1fc8ec	slot80_queue_op_10	queues request 0x10 (arg a1) on idle slot a0; -1 when busy
+8c1fce34	slot80_set_all_field_74	writes a0 into +0x74 of all eight 0x80-byte slots at 8c475fc0
+8c1fd5c0	debug_printf_to_hook	formats the message into the shared buffer and passes it to the installed print hook, if any
+8c1fa464	callback_list_run_all	calls every (function, argument) node of the linked list at 8c475e10
+8c1f7f70	sysinfo_read_byte_0a	stores byte 10 of the system ID record (default '0') through the out pointer; -1 without one
+8c1f8028	sysinfo_read_byte_0c	stores byte 12 of the system ID record (default '0') through the out pointer; -1 without one
+8c2187ba	vram_call_with_saved_draw_state	runs vram64_21869c between draw_state_save and draw_state_restore
+8c019eb8	Class_1299f8_dtor	restores the Class_1299f8 vtable, runs the Class_129a50 base destructor and frees a0 when asked
+8c09abfc	Class_12a7f4_draw	binds the model's texlist (+0x328 +0x78), draws its model (+0x70) and then the attached object at +0x330
+8c0a54dc	Class_12ad50_draw	binds the model's texlist (+0x328 +0x78), draws its model (+0x70) and then the attached object at +0x330
+8c09d310	load_gr_wait_with_items	CAnimal_LoadGRWait, then calls method 0xe0 of each of the eight held items at +0x524
+8c0cb5c8	staff_credit_start_like	puts the scene objects into credit mode and loads the STAFF_CREDIT data
+8c0e070c	pack_find_and_request_23258	looks up the pack entry named at +0x23258 and queues a request for it, keeping the handle at +0x2325c
+8c0db10c	list_call_method_68_each	calls method 0x68 on every node of the list at +0xa4
+8c0e6c8c	scene_load_textures_like	loads the scene's texlist (+0x28) and cached texture (+4); above mode 2 also its extra set at +0x10dc
+8c0e6cd8	scene_release_textures_like	releases the scene's texlist (+0x28) and texture (+4) from VRAM; above mode 2 also its extra set at +0x10dc
+8c0f57f0	Class_12c058_draw	binds the texlist at +0x170 and draws the model at +0x178 rotated by its XYZ angles, inside a matrix push/pop
+8c0f67ec	pos_add_random_offset	adds a random small offset vector (rand() % 3 based) to the position at +0x30

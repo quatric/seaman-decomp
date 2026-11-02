@@ -224,7 +224,7 @@ u32 asr_scan_loop_120284(u16 *a0, u8 *a1, u32 a2, u32 a3) {
     int *piVar9;
     u8 *pbVar10;
 
-    puVar3 = (&asr_calls_fill_loop_1112e2);
+    puVar3 = (&asr_talk_1112e2);
     a5_00 = a1;
     if (a1 == NULL) {
         uVar2 = *a0;
@@ -322,7 +322,7 @@ u32 asr_talk_120348(int *a0, u32 a1, u32 a2, u32 a3) {
                 }
             } else {
                 uVar3 = asr_table_lookup(a4, (int)*(char *)(iVar6 + 1));
-                iVar5 = asr_copy_1208fc(iVar6 + 8, uVar3, a4, a7);
+                iVar5 = asr_talk_1208fc(iVar6 + 8, uVar3, a4, a7);
                 uVar9 = (u32)(iVar5 == 0);
             }
             if (*(int *)(iVar6 + 4) != 0) {
@@ -577,9 +577,8 @@ u32 alt_entry_12072a(int a0) {
 
 /*
  * asr_calls_scan_loop_120798  0x8c120798
- * area name: in the asr library code range; behaviour name: its callees mostly do: scan_loop
- * called by: alt_entry_1207f0, asr_calls_scan_loop_1207e8, asr_calls_scan_loop_1219f4,
- * asr_uses_mring_read_advance_121896
+ * area name: sits between asr functions (same compilation unit); behaviour name: its callees mostly do: scan_loop
+ * called by: alt_entry_1207f0, asr_calls_scan_loop_1207e8, asr_calls_scan_loop_1219f4, asr_talk_121896
  */
 u32 asr_calls_scan_loop_120798(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -599,7 +598,7 @@ u32 asr_calls_scan_loop_120798(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * asr_calls_scan_loop_1207c6  0x8c1207c6
- * area name: in the asr library code range; behaviour name: its callees mostly do: scan_loop
+ * area name: sits between asr functions (same compilation unit); behaviour name: its callees mostly do: scan_loop
  * called by: alt_entry_1207f0, asr_calls_scan_loop_1207e8, asr_calls_scan_loop_1219f4
  */
 u32 asr_calls_scan_loop_1207c6(int a0, u32 a1, u32 a2, u32 a3) {
@@ -615,7 +614,7 @@ u32 asr_calls_scan_loop_1207c6(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * asr_calls_scan_loop_1207e8  0x8c1207e8
- * area name: in the asr library code range; behaviour name: its callees mostly do: calls_scan_loop
+ * area name: sits between asr functions (same compilation unit); behaviour name: its callees mostly do: calls_scan_loop
  * called by: asr_talk_120148
  */
 u32 asr_calls_scan_loop_1207e8(int a0, u32 a1, u32 a2) {
@@ -706,8 +705,8 @@ u32 alt_entry_1207f0(int a0) {
 
 /*
  * asr_copy_120890  0x8c120890
- * area name: in the asr library code range; behaviour name: mostly calls copy functions
- * called by: asr_copy_1208fc
+ * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls copy functions
+ * called by: asr_talk_1208fc
  */
 u32 *asr_copy_120890(int a0, int a1, u32 a2, u32 a3) {
     char cVar1;
@@ -733,11 +732,11 @@ u32 *asr_copy_120890(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_copy_1208fc  0x8c1208fc
- * area name: in the asr library code range; behaviour name: mostly calls copy functions
+ * asr_talk_1208fc  0x8c1208fc
+ * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls talk functions
  * called by: asr_talk_120348
  */
-u32 asr_copy_1208fc(u32 a0, u32 a1, int a2, u32 a3) {
+u32 asr_talk_1208fc(u32 a0, u32 a1, int a2, u32 a3) {
     u32 a4;
     u32 uVar1;
     int a6;
@@ -746,7 +745,7 @@ u32 asr_copy_1208fc(u32 a0, u32 a1, int a2, u32 a3) {
     a4 = asr_copy_120890(a0, a2, a2, a3);
     a7 = 0;
     a6 = a2;
-    uVar1 = asr_calls_fill_loop_1209ec(a4, a1, a2, 0);
+    uVar1 = asr_talk_1209ec(a4, a1, a2, 0);
     if ((uVar1 & 0xff) != 0) {
         (**(code **)(a2 + 0x18))(a2, a4, a6, a7);
         a4 = 0;
@@ -816,11 +815,11 @@ u32 alt_entry_12095c(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_fill_loop_1209be  0x8c1209be
- * area name: sits between asr functions (same compilation unit); behaviour name: a loop that writes memory
- * called by: asr_calls_fill_loop_1209ec
+ * asr_byte_pair_remove_at  0x8c1209be
+ * removes the 2-byte entry a1 from the list at a0+8, count at [0]
+ * called by: asr_talk_1209ec
  */
-int asr_fill_loop_1209be(int *a0, int a1) {
+int asr_byte_pair_remove_at(int *a0, int a1) {
     int in_r0;
     u8 *puVar1;
 
@@ -838,11 +837,11 @@ int asr_fill_loop_1209be(int *a0, int a1) {
 }
 
 /*
- * asr_calls_fill_loop_1209ec  0x8c1209ec
- * area name: sits between asr functions (same compilation unit); behaviour name: its callees mostly do: fill_loop
- * called by: asr_calls_fill_loop_111208, asr_copy_1208fc
+ * asr_talk_1209ec  0x8c1209ec
+ * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls talk functions
+ * called by: asr_talk_111208, asr_talk_1208fc
  */
-u32 asr_calls_fill_loop_1209ec(int *a0, int a1, int *a2, int *a3) {
+u32 asr_talk_1209ec(int *a0, int a1, int *a2, int *a3) {
     char cVar1;
     u32 uVar2;
     int *ar6_00;
@@ -868,7 +867,7 @@ u32 asr_calls_fill_loop_1209ec(int *a0, int a1, int *a2, int *a3) {
                     ar6_00 = a3;
                     uVar2 = (**(code **)(a1 + 0x1c))(a1, (int)*(char *)((int)a0 + iVar5 * 2 + 9), a3, 0);
                     uVar4 = uVar4 | (uVar2 & 0xff) == 0;
-                    asr_fill_loop_1209be(a0, iVar5);
+                    asr_byte_pair_remove_at(a0, iVar5);
                 } else {
                     iVar5 = iVar5 + 1;
                 }
@@ -1106,7 +1105,7 @@ u32 *asr_uses_libgcc_divide_helper_120c7c(int a0) {
 
 /*
  * asr_fill_loop_120e12  0x8c120e12
- * area name: in the asr library code range; behaviour name: a loop that writes memory
+ * area name: sits between asr functions (same compilation unit); behaviour name: a loop that writes memory
  * called by: alt_entry_12169e, asr_uses_asr_free_node_list_121690
  */
 int asr_fill_loop_120e12(int a0, int a1, int a2, u32 a3) {
@@ -1162,7 +1161,7 @@ int asr_fill_loop_120e12(int a0, int a1, int a2, u32 a3) {
 
 /*
  * asr_talk_120f04  0x8c120f04
- * area name: in the asr library code range; behaviour name: mostly calls talk functions
+ * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls talk functions
  * called by: asr_calls_talk_122358
  */
 u32 asr_talk_120f04(int a0, u32 a1, u32 a2, int a3) {
@@ -1686,7 +1685,7 @@ u32 asr_init_fields_121710(int a0) {
 /*
  * asr_talk_12172e  0x8c12172e
  * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls talk functions
- * called by: asr_uses_mring_read_advance_121896
+ * called by: asr_talk_121896
  */
 u32 asr_talk_12172e(int a0) {
     u32 uVar1;
@@ -1877,7 +1876,7 @@ u32 alt_entry_121736(void) {
 /*
  * asr_float_calc_12182e  0x8c12182e
  * area name: sits between asr functions (same compilation unit); behaviour name: floating-point arithmetic
- * called by: asr_uses_mring_read_advance_121896
+ * called by: asr_talk_121896
  */
 u32 asr_float_calc_12182e(int a0) {
     int iVar1;
@@ -1910,11 +1909,10 @@ u32 asr_float_calc_12182e(int a0) {
 }
 
 /*
- * asr_uses_mring_read_advance_121896  0x8c121896
- * area name: sits between asr functions (same compilation unit); behaviour name: its main named callee is
- * mring_read_advance
+ * asr_talk_121896  0x8c121896
+ * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls talk functions
  */
-u32 asr_uses_mring_read_advance_121896(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 asr_talk_121896(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
     u32 uVar2;
     int *piVar3;
@@ -1922,7 +1920,7 @@ u32 asr_uses_mring_read_advance_121896(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 ar6_00;
     u32 ar7_00;
 
-    uVar2 = asr_calls_fill_loop_112170(*(u32 *)(a0 + 0xc), 2);
+    uVar2 = asr_talk_112170(*(u32 *)(a0 + 0xc), 2);
     if ((uVar2 & 0xff) == 0) {
         return 0;
     }
@@ -2084,8 +2082,7 @@ u32 asr_talk_121b40(u32 a0, u32 unused_a1, u32 a2, u32 unused_a3, float *ain0) {
 u32 asr_module_def_121c50(u32 a0, u32 a1) {
     u32 uVar1;
 
-    uVar1 = (*(code *)(&asr_talk_120580))(a0, a1, 2, 0, (&asr_uses_mring_read_advance_121896), (&DATA_8c121b38),
-                                          (&DATA_8c1219f2), 0x68);
+    uVar1 = (*(code *)(&asr_talk_120580))(a0, a1, 2, 0, (&asr_talk_121896), (&DATA_8c121b38), (&DATA_8c1219f2), 0x68);
     return uVar1;
 }
 
@@ -2924,8 +2921,8 @@ int asr_copy_122664(u32 *a0, int *a1, u32 a2, u32 a3, int s0, int *s4, u32 *s8) 
                             if (piStack_64 != NULL) {
                                 do {
                                     ar6_00 = *(int **)(iStack_54 + (int)piStack_5c * 4);
-                                    iVar1 = (*(code *)(&asr_scan_loop_10cb4c))(piStack_58, *piStack_44 - *piStack_4c,
-                                                                               ar6_00, piVar6);
+                                    iVar1 = (*(code *)(&asr_word_array_contains))(piStack_58, *piStack_44 - *piStack_4c,
+                                                                                  ar6_00, piVar6);
                                     if (iVar1 != 0) {
                                         iVar1 = (*piStack_44 - *piVar10) + iVar5;
                                         iVar5 = iVar5 + 1;
@@ -3097,7 +3094,7 @@ int asr_copy_122e7c(u32 *a0, int *a1, u32 a2, u32 a3, int s0) {
                 puVar4 = (u16 *)((int)puVar17 * 2 + iStack_44);
                 for (puVar5 = puVar17; puVar5 < puVar19; puVar5 = (u32 *)((int)puVar5 + 1)) {
                     uVar12 = (u32)(*puVar4 >> 8);
-                    iVar9 = asr_scan_loop_10cb4c(uStack_54, uStack_38, uVar12);
+                    iVar9 = asr_word_array_contains(uStack_54, uStack_38, uVar12);
                     if (iVar9 == 0) {
                         (**(code **)(iStack_50 + 0xc))(uStack_54, &uStack_28, uVar12, puVar13);
                         goto LAB_8c123014;

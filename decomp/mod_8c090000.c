@@ -6422,10 +6422,10 @@ u32 Class_12a7f4_draw_09aad0(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * Class_12a7f4_draw_09abfc  0x8c09abfc
- * area name: sits between Class_12a7f4 functions (same compilation unit); behaviour name: mostly calls draw functions
+ * Class_12a7f4_draw  0x8c09abfc
+ * binds the model's texlist (+0x328 +0x78), draws its model (+0x70) and then the attached object at +0x330
  */
-u32 Class_12a7f4_draw_09abfc(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12a7f4_draw(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_set_texlist(*(int *)(0x328 + a0) + 0x78, a1, a2);
@@ -8488,10 +8488,10 @@ int game_update_fields_09d2b4(int a0) {
 }
 
 /*
- * game_load_09d310  0x8c09d310
- * area name: game code; nothing names its area yet; behaviour name: mostly calls load functions
+ * load_gr_wait_with_items  0x8c09d310
+ * CAnimal_LoadGRWait, then calls method 0xe0 of each of the eight held items at +0x524
  */
-u32 game_load_09d310(int a0, u32 a1, u32 a2, u32 a3) {
+u32 load_gr_wait_with_items(int a0, u32 a1, u32 a2, u32 a3) {
     int a4;
     int iVar1;
 

@@ -16872,7 +16872,7 @@ u32 ninja_close_file(void) {
  * ninja_uses_memcpy_bytes_259c48  0x8c259c48
  * area name: in the ninja library code range; behaviour name: its main named callee is memcpy_bytes
  * called by: gfxlib_copy_238f2a, gfxlib_uses_ninja_close_file_239212, ninja_uses_ninja_close_file_256164,
- * ta_fifo_239012, ta_uses_nj_seek_2391a8, tex_uses_dcache_writeback_range_25a770,
+ * pvrt_stream_is_palettized, ta_fifo_239012, tex_uses_dcache_writeback_range_25a770,
  * tex_uses_dcache_writeback_range_25a838, tex_uses_nj_seek_25a216 (+1 more)
  */
 u32 ninja_uses_memcpy_bytes_259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
@@ -17079,7 +17079,7 @@ u32 ninja_uses_memcpy_bytes_259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * nj_seek  0x8c25a122
  * moves the position at 0x8c277ca0: a1 = 0 sets it, 1 adds a0, 2 sets it to size - a0
- * called by: gfxlib_uses_ninja_close_file_239212, ta_uses_nj_seek_2391a8, tex_uses_dcache_writeback_range_25a770,
+ * called by: gfxlib_uses_ninja_close_file_239212, pvrt_stream_is_palettized, tex_uses_dcache_writeback_range_25a770,
  * tex_uses_dcache_writeback_range_25a838, tex_uses_nj_seek_25a216, vram_uses_nj_seek_25ae38
  */
 int nj_seek(int a0, int a1) {

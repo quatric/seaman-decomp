@@ -234,7 +234,7 @@ u32 game_draw_0d0564(int a0, u32 a1, u32 a2, u32 a3) {
     matrix_push(0, a1, a2, a3, in_PR);
     touch_fields_30_3c_wrap();
     obj_set_texlist(a0, a1, a2);
-    game_draw_015adc(a0 + 8, a1, a2, a3);
+    Class_12c058_draw_015adc(a0 + 8, a1, a2, a3);
     uVar1 = matrix_pop_n(1);
     return uVar1;
 }
@@ -252,7 +252,7 @@ u32 game_draw_0d05d0(int a0, u32 a1, u32 a2, u32 a3) {
     matrix_push(0, a1, a2, a3, in_PR);
     touch_fields_30_3c_wrap();
     obj_set_texlist(a0, a1, a2);
-    game_draw_015adc(a0 + 8, a1, a2, a3);
+    Class_12c058_draw_015adc(a0 + 8, a1, a2, a3);
     uVar1 = matrix_pop_n(1);
     return uVar1;
 }
@@ -420,11 +420,11 @@ int CO2Supply_LoadTexture(int *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_float_calc_0d08c0  0x8c0d08c0
- * area name: game code; nothing names its area yet; behaviour name: floating-point arithmetic
- * called by: CWaterTank_uses_get_field_300_0e0f48, game_calls_float_calc_0d0910
+ * ramp_float_to_100  0x8c0d08c0
+ * raises the float at +0xc by 0.05 (mode +0x14 == 1) or 5e-05 while +0x18 is set, clamped at 100.0
+ * called by: CWaterTank_uses_get_field_300_0e0f48, ramp_float_to_100_wrap
  */
-u8 *game_float_calc_0d08c0(int a0) {
+u8 *ramp_float_to_100(int a0) {
     u8 *puVar1;
     float fVar2;
 
@@ -445,14 +445,14 @@ u8 *game_float_calc_0d08c0(int a0) {
 }
 
 /*
- * game_calls_float_calc_0d0910  0x8c0d0910
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: float_calc
+ * ramp_float_to_100_wrap  0x8c0d0910
+ * only calls ramp_float_to_100
  * called by: CWaterTank_uses_get_field_38_wrap_0e132c
  */
-u32 game_calls_float_calc_0d0910(u32 a0) {
+u32 ramp_float_to_100_wrap(u32 a0) {
     u32 uVar1;
 
-    uVar1 = game_float_calc_0d08c0(a0);
+    uVar1 = ramp_float_to_100(a0);
     return uVar1;
 }
 
@@ -2104,7 +2104,7 @@ u32 game_draw_0d2264(int a0, u32 a1, u32 a2, u32 a3) {
     *(u32 *)(ar4_01 + 0x1e8) = *(u32 *)((*(short *)(a0 + 0x24) + 0x28) * 0xc + *piVar1 + 8);
     *(u32 *)((*(short *)(a0 + 0x24) + 0x28) * 0xc + *piVar1 + 8) = uVar3;
     matrix_scale_wrap(ar4_01, a1);
-    game_draw_015adc(a2, a1, uVar2, a3);
+    Class_12c058_draw_015adc(a2, a1, uVar2, a3);
     uVar3 = *(u32 *)(*(short *)(a0 + 0x24) * 0xc + *piVar1 + 8);
     *(u32 *)(*(short *)(a0 + 0x24) * 0xc + *piVar1 + 8) = *(u32 *)(*piVar1 + 8);
     *(u32 *)(*piVar1 + 8) = uVar3;
@@ -3836,9 +3836,9 @@ u32 Class_12b930_sound_0d3d6c(u64 *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * list_node_next  0x8c0d3f48
- * called by: CAnimal_uses_list_node_next_0f4258, CEnv_uses_get_field_4_0fdf74, CEnv_uses_get_field_4_0fe2a0,
- * CItemGLoadRequestList_GetPtr, CItemGLoadRequestList_TakeOu, CItemGLoader_list_0fedf4,
- * CItemGLoader_uses_get_field_4_0fe8c4, CItemList_DeleteItem (+37 more)
+ * called by: CAnimal_uses_list_node_next_0f4258, CItemGLoadRequestList_GetPtr, CItemGLoadRequestList_TakeOu,
+ * CItemGLoader_list_0fedf4, CItemList_DeleteItem, CItemList_TakeOutItem, CNodePtrList_DeleteItem,
+ * CNodePtrList_TakeOutItem (+37 more)
  */
 u32 list_node_next(u32 *a0) {
     return *a0;
@@ -3923,7 +3923,7 @@ int game_draw_0d4038(int a0, u32 a1, u32 a2, u32 a3) {
     uVar3 = 0;
     matrix_push(0, a1, a2, a3, uVar4);
     touch_fields_30_3c_wrap();
-    game_draw_015adc(a0 + 0x10, a1, a2, a3);
+    Class_12c058_draw_015adc(a0 + 0x10, a1, a2, a3);
     matrix_pop_n(1);
     uVar4 = *(u32 *)(*(short *)(a0 + 4) * 0xc + *piVar1 + 8);
     *(u32 *)(*(short *)(a0 + 4) * 0xc + *piVar1 + 8) = *(u32 *)(*piVar1 + 8);
@@ -5588,7 +5588,7 @@ u32 CTexture_draw_0d6090(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_set_texlist(a0, a1, a2);
-    uVar1 = game_draw_015adc(a0 + 8, a1, a2, a3);
+    uVar1 = Class_12c058_draw_015adc(a0 + 8, a1, a2, a3);
     return uVar1;
 }
 
@@ -8161,7 +8161,7 @@ u32 game_draw_0d8444(void) {
 
 /*
  * noop_0d8458  0x8c0d8458
- * called by: game_load_0e6c8c, game_uses_Vec3_dtor_0cb29c
+ * called by: game_uses_Vec3_dtor_0cb29c, scene_load_textures_like
  */
 u32 noop_0d8458(void) {
     u32 in_r0;
@@ -8171,7 +8171,7 @@ u32 noop_0d8458(void) {
 
 /*
  * noop_0d845c  0x8c0d845c
- * called by: game_release_0e6cd8
+ * called by: scene_release_textures_like
  */
 u32 noop_0d845c(void) {
     u32 in_r0;
@@ -9623,7 +9623,7 @@ u32 game_draw_0d9720(int a0, int a1, u32 a2, u32 a3) {
     matrix_push(0, a1, a2, a3, in_stack_fffffff4);
     touch_fields_30_3c_wrap();
     if (*(int *)(a0 + 0x10) == 8) {
-        game_draw_015adc(a0 + 0x28, a1, a2, a3);
+        Class_12c058_draw_015adc(a0 + 0x28, a1, a2, a3);
     } else {
         a1 = a0 + *(int *)(a0 + 0x10) * 4 + 0x2c;
         game_draw_015b54(a0 + 0x28, a1);
@@ -9853,14 +9853,14 @@ u32 game_draw_0d9b34(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_set_texlist(a0 + 0x28, a1, a2);
-    uVar1 = game_draw_015adc(a0 + 0x30, a1, a2, a3);
+    uVar1 = Class_12c058_draw_015adc(a0 + 0x30, a1, a2, a3);
     return uVar1;
 }
 
 /*
  * obj_load_texlist_28  0x8c0d9b60
  * loads the texture list at +0x28 through the cache and attaches it
- * called by: game_load_0e0320, game_load_0e6c8c, textures_load_3
+ * called by: game_load_0e0320, scene_load_textures_like, textures_load_3
  */
 u32 obj_load_texlist_28(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9873,7 +9873,7 @@ u32 obj_load_texlist_28(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CTexture_ReleaseFromVRAM_on_field_28  0x8c0d9b8c
  * calls CTexture_ReleaseFromVRAM on the member at +0x28
- * called by: game_release_0e03d4, game_release_0e6cd8, textures_release_3
+ * called by: game_release_0e03d4, scene_release_textures_like, textures_release_3
  */
 u32 CTexture_ReleaseFromVRAM_on_field_28(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -10563,7 +10563,7 @@ u32 CEnv_AddItem(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
 
-    iVar1 = CEnv_fill_loop_0feb3c(a0 + 0x7a4);
+    iVar1 = CEnv_take_free_slot(a0 + 0x7a4);
     if (iVar1 == 0) {
         a3 = 2;
         a2 = 1;
@@ -10573,11 +10573,11 @@ u32 CEnv_AddItem(int a0, int a1, u32 a2, u32 a3) {
     set_field_2c_wrap(a0, a1);
     *(int *)(iVar1 + 8) = a1;
     iVar2 = get_field_24_05c284(a1, iVar2);
-    CEnv_uses_get_field_4_0fe2a0(iVar2 * 0x3c + a0 + 0x3a8, iVar1);
+    list_append_at_0c(iVar2 * 0x3c + a0 + 0x3a8, iVar1);
     set_field_160(a1, iVar1);
     (**(code **)(*(int *)(a1 + 8) + 0x60))(a1, iVar1, a2, a3);
     iVar1 = a1;
-    CEnv_uses_get_field_4_0fdf74(a0 + 0xa4, a1);
+    list_append_at_170(a0 + 0xa4, a1);
     Vec3_assign_wrap_0f4da4(a1, iVar1, a2, a3);
     return 0;
 }
@@ -10696,9 +10696,8 @@ u32 get_field_4_on_field_170(int a0) {
 
 /*
  * get_field_4_0dac48  0x8c0dac48
- * called by: CEnv_uses_get_field_4_0fdf74, CEnv_uses_get_field_4_0fe2a0, CItemGLoadRequestList_TakeOu,
- * CItemGLoader_uses_get_field_4_0fe8c4, CItemList_TakeOutItem, CNodePtrList_TakeOutItem, CWaterSnowList_TakeOut,
- * get_field_4_on_field_170 (+1 more)
+ * called by: CItemGLoadRequestList_TakeOu, CItemList_TakeOutItem, CNodePtrList_TakeOutItem, CWaterSnowList_TakeOut,
+ * get_field_4_on_field_170, list_append_58, list_append_at_0c, list_append_at_14 (+1 more)
  */
 u32 get_field_4_0dac48(int a0) {
     return *(u32 *)(a0 + 4);
@@ -10936,10 +10935,10 @@ int call_all_list_a8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_list_0db10c  0x8c0db10c
- * area name: game code; nothing names its area yet; behaviour name: mostly calls list functions
+ * list_call_method_68_each  0x8c0db10c
+ * calls method 0x68 on every node of the list at +0xa4
  */
-int game_list_0db10c(int a0, u32 a1, u32 a2, u32 a3) {
+int list_call_method_68_each(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int a4;
     int iVar2;
@@ -11849,7 +11848,7 @@ u32 game_uses_ret_const_140_0dbf90(int *a0, int *a1, u32 a2, u32 a3) {
         a0[0x275] = 0;
         set_timeout_120_mode6(a1);
     }
-    iVar1 = input_input_helper_10022c(a1, piVar2, a2, a3);
+    iVar1 = input_r_only_start_timeout(a1, piVar2, a2, a3);
     if (iVar1 == 1) {
         piVar2 = a0 + 0x29a;
         (**(code **)(*a0 + 0x68))(a0, piVar2, a2, a3);
@@ -11999,7 +11998,7 @@ u32 input_uses_input_y_pressed_wrap_0dc28c(int *a0, int *a1, u32 a2, u32 a3) {
             }
             piVar3 = a1;
             game_input_0dc990(a0, a1);
-            iVar1 = input_input_helper_10022c(a1, piVar3, a2, a3);
+            iVar1 = input_r_only_start_timeout(a1, piVar3, a2, a3);
             if (iVar1 == 1) {
                 piVar3 = a0 + 0x29a;
                 (**(code **)(*a0 + 0x68))(a0, piVar3, a2, a3);

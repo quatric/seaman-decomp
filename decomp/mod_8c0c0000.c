@@ -3184,7 +3184,7 @@ u32 noop_0c519c(void) {
  * set_timeout_120  0x8c0c51a0
  * +0x188 = a1 and a 120-frame countdown at +0x18c
  * called by: event1_end, game_uses_Vec3_pair_ctor_0c8fc4, game_uses_ret_const_140_0dbf90,
- * game_uses_set_field_d0_0c4e58, input_input_helper_10022c, input_input_helper_1002a8, input_input_helper_100e4c,
+ * game_uses_set_field_d0_0c4e58, input_input_helper_1002a8, input_input_helper_100e4c, input_r_only_start_timeout,
  * input_uses_get_field_4_10031c (+5 more)
  */
 int set_timeout_120(int a0, u32 a1) {
@@ -3199,7 +3199,7 @@ int set_timeout_120(int a0, u32 a1) {
 /*
  * set_field_d0_0c51b8  0x8c0c51b8
  * called by: bugbox_3_screen, bugbox_4_screen, event1_begin, game_uses_Vec3_dtor_0cb29c, game_uses_set_field_d0_0c4e58,
- * game_uses_set_field_d0_0cb5c8, game_uses_set_timeout_120_mode6_0caac0
+ * game_uses_set_timeout_120_mode6_0caac0, staff_credit_start_like
  */
 int set_field_d0_0c51b8(int a0, u32 a1) {
     int iVar1;
@@ -3213,8 +3213,8 @@ int set_field_d0_0c51b8(int a0, u32 a1) {
  * set_timeout_120_mode6  0x8c0c51c4
  * clears +0x59c and starts a 120-frame countdown with value 6
  * called by: bugbox_3_screen, event1_begin, game_uses_Vec3_dtor_0cb29c, game_uses_free_if_nonnull_wrap_0e8280,
- * game_uses_ret_const_140_0dbf90, game_uses_set_field_d0_0c4e58, game_uses_set_field_d0_0cb5c8,
- * game_uses_set_timeout_120_mode6_0caac0 (+4 more)
+ * game_uses_ret_const_140_0dbf90, game_uses_set_field_d0_0c4e58, game_uses_set_timeout_120_mode6_0caac0,
+ * game_uses_set_timeout_120_mode6_0e4348 (+4 more)
  */
 int set_timeout_120_mode6(int a0) {
     int iVar1;
@@ -6319,7 +6319,7 @@ u32 game_uses_clear_3_words_0c9ee0(int a0, u8 *a1, u8 *a2, u8 *a3) {
         touch_fields_30_3c_wrap();
         rotate_y_degrees();
         matrix_scale_wrap(ar4_00, a5);
-        game_draw_015adc(0x8c437030, a5, a2, a3);
+        Class_12c058_draw_015adc(0x8c437030, a5, a2, a3);
         matrix_pop_n(1);
         ar5_00 = (u8 *)0x800;
         gfxlib_calc_233da2(0xffffffff, 0x800);
@@ -6554,7 +6554,7 @@ u32 game_uses_Vec3_ctor_zero_0ca4e8(int a0, code *a1, int a2, u32 a3) {
     }
     iVar2 = get_field_d0_0c51fc(*(u32 *)(a1 + 0x7cc), ar5_00, a2);
     game_input_0ffdb0(*(u32 *)(a1 + 0x7cc));
-    game_uses_input_r_pressed_101004(*(u32 *)(a1 + 0x7cc), ar5_00, a2, a3);
+    input_uses_input_r_pressed_101004(*(u32 *)(a1 + 0x7cc), ar5_00, a2, a3);
     a7 = (char *)&uStack_60;
     a6 = &uStack_5c;
     puVar6 = &uStack_58;
@@ -7142,10 +7142,10 @@ u32 game_calls_test_0cb560(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_set_field_d0_0cb5c8  0x8c0cb5c8
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_field_d0_0c51b8
+ * staff_credit_start_like  0x8c0cb5c8
+ * puts the scene objects into credit mode and loads the STAFF_CREDIT data
  */
-u32 game_uses_set_field_d0_0cb5c8(int a0, int a1, u32 a2, u32 a3) {
+u32 staff_credit_start_like(int a0, int a1, u32 a2, u32 a3) {
     u32 ar5_00;
 
     ar5_00 = 2;
@@ -7258,8 +7258,8 @@ u32 game_uses_Vec3_ctor_zero_0cb668(int a0, code *a1, u32 a2, u32 a3) {
         game_vec_0cdf50(a0, a1, a6, a7);
     }
     if (iVar2 == 2) {
-        game_uses_input_r_pressed_101004(*(u32 *)(a1 + 0x7cc), pcVar5, a6, a7);
-        game_sound_101188(*(u32 *)(a1 + 0x7cc), pcVar5, a6, a7);
+        input_uses_input_r_pressed_101004(*(u32 *)(a1 + 0x7cc), pcVar5, a6, a7);
+        input_sound_101188(*(u32 *)(a1 + 0x7cc), pcVar5, a6, a7);
         uVar1 = Class_12b580_test_101154(*(u32 *)(a1 + 0x7cc));
         (**(code **)(**(int **)(a0 + 0x10) + 0xc))(*(int **)(a0 + 0x10), a1, &uStack_54, a7);
         (**(code **)(**(int **)(a0 + 0xc) + 0x10))(*(int **)(a0 + 0xc), a1, &uStack_54, a7);
@@ -8101,7 +8101,7 @@ u32 CGame_uses_libgcc_divide_helper_0cc784(int a0, int a1, u32 a2, u32 a3) {
         *(short *)(a1 + 0xa2) = *(short *)(a1 + 0xa2) + (short)uVar1;
     }
     iVar6 = a2 + 0x30f4;
-    speech_talk_0fa334(0x8c35468c, iVar6);
+    speech_state_copy(0x8c35468c, iVar6);
     uVar1 = field_ptr_384c(0x8c3dd7dc);
     iVar6 = a2 + 0x4104;
     game_uses_free_sys_01e0a4(uVar1, iVar6, ar6_00, a3);
@@ -8434,7 +8434,7 @@ u32 CProlog_uses_libgcc_divide_helper_0cd3c8(int a0, int a1, double *a2, u32 a3)
         *(short *)(a1 + 0xa2) = *(short *)(a1 + 0xa2) + (short)uVar1;
     }
     pcVar6 = (code *)((int)a2 + 0x30f4);
-    speech_talk_0fa334(0x8c35468c, pcVar6);
+    speech_state_copy(0x8c35468c, pcVar6);
     uVar1 = field_ptr_384c(0x8c3dd7dc);
     pcVar6 = (code *)((int)a2 + 0x4104);
     game_uses_free_sys_01e0a4(uVar1, pcVar6, ar6_00, a3);
@@ -9292,7 +9292,7 @@ int game_release_0ceed8(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * STAFF_CREDIT_LoadData  0x8c0cef18
  * loads credit.PVM from GRAPHICS\MESSAGE for the staff roll
- * called by: game_uses_Vec3_dtor_0cb29c, game_uses_set_field_d0_0cb5c8
+ * called by: game_uses_Vec3_dtor_0cb29c, staff_credit_start_like
  * strings: "credit.PVM"; "GRAPHICS\\MESSAGE"; "Failed to load staff pvm.."; "STAFF_CREDIT::LoadData"
  */
 int STAFF_CREDIT_LoadData(int a0, u32 a1) {
