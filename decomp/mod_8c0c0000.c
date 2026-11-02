@@ -529,7 +529,7 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
             }
             break;
         case 6:
-            iVar6 = CSeamanDomain_sub_0c1cb4(a1[499]);
+            iVar6 = input_test_2_mode0_wrap(a1[499]);
             if (iVar6 == 1) {
                 set_field_0_to_1(a0 + 0x2e710);
                 uVar1 = 0x2e710;
@@ -837,14 +837,14 @@ u32 get_field_0_0c1cac(u32 *a0) {
 }
 
 /*
- * CSeamanDomain_sub_0c1cb4  0x8c0c1cb4
- * area name: only called from CSeamanDomain methods
+ * input_test_2_mode0_wrap  0x8c0c1cb4
+ * only calls input_test_2_mode0
  * called by: CSeamanDomain_Init
  */
-u32 CSeamanDomain_sub_0c1cb4(int a0) {
+u32 input_test_2_mode0_wrap(int a0) {
     u32 uVar1;
 
-    uVar1 = input_sub_01ee54(*(u32 *)(0xcc + a0));
+    uVar1 = input_test_2_mode0(*(u32 *)(0xcc + a0));
     return uVar1;
 }
 
@@ -895,10 +895,10 @@ u32 CSeamanDomain_sub_0c1d1c(u32 a0) {
 }
 
 /*
- * game_sub_0c1d40  0x8c0c1d40
- * area name: game code; nothing names its area yet
+ * input_sub_0c1d40  0x8c0c1d40
+ * area name: sits between input functions (same compilation unit)
  */
-u32 game_sub_0c1d40(u32 unused_a0, int a1) {
+u32 input_sub_0c1d40(u32 unused_a0, int a1) {
     pure_virtual_stub();
     g_8c2b5628 = *(u32 *)(0x88 + a1);
     return 1;
@@ -2695,7 +2695,7 @@ u32 game_sub_0c4644(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     uVar3 = 0x8c3e7d24;
     pcVar2 = game_sub_0c4a44;
     global_list_push(uVar1, game_sub_0c4a44, 0x8c3e7d24, ar7_00);
-    uVar1 = game_sub_0fef8c(0x8c3eb324);
+    uVar1 = CItemGLoader_sub_0fef8c(0x8c3eb324);
     uVar3 = 0x8c3eb318;
     pcVar2 = free_if_nonnull_wrap_0c4a14;
     global_list_push(uVar1, free_if_nonnull_wrap_0c4a14, 0x8c3eb318, ar7_00);
@@ -5856,7 +5856,7 @@ u32 game_sub_0c97bc(int a0, int a1, u32 a2, u32 a3) {
     (**(code **)(0x84 + **(int **)(a0 + 8)))(*(int **)(a0 + 8), 0x8c3eb334, a2, a3);
     *(u32 *)(0x2d1b0 + a0) = 2;
     *(u32 *)(0x2d1b4 + a0) = 0;
-    (*(code *)(&game_sub_0209b0))(0x8c3eb334, "uzu.nj", "GRAPHICS\\ENV", auStack_18);
+    (*(code *)(&CDCGD_request_type0))(0x8c3eb334, "uzu.nj", "GRAPHICS\\ENV", auStack_18);
     return 0;
 }
 
@@ -6178,7 +6178,7 @@ u32 game_sub_0c991c(int a0, int *a1, u32 a2, u32 a3) {
             }
             if (cVar10 != '\0' || in_fr1 <= (float)puVar8) {
                 Class_12b580_sub_022104(0x8c2b59d0, *(u32 *)(g_8c437278 + 0x5e4), a2, a3);
-                Class_12b580_sub_0220bc(0x8c2b59d0, *(u32 *)(g_8c437278 + 0x5e4), a2, a3);
+                Class_12b580_clear_request(0x8c2b59d0, *(u32 *)(g_8c437278 + 0x5e4), a2, a3);
                 if (cVar11 == '\0') {
                     g_8c437270 = (double)CONCAT44(g_8c437274, 0x43200000);
                 } else {
@@ -6337,11 +6337,11 @@ u32 game_sub_0ca0e0(int a0, int a1, u32 a2, u32 a3) {
     }
     set_fields_0_4_8_0c5330(a0 + 0x2d1b0);
     CTexture_ReleaseFromVRAM(0x8c437028, iVar1, a2, a3);
-    (*(code *)(&game_sub_020a70))(0x8c3eb334, "uzu.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type0))(0x8c3eb334, "uzu.nj", "GRAPHICS\\ENV", a0);
     ar6_00 = "GRAPHICS\\ENV";
     ar5_00 = "uzu.nj";
     iVar1 = a0;
-    game_sub_020b68(0x8c3eb334, ar5_00, ar6_00, a0);
+    CDCGD_release_type2(0x8c3eb334, ar5_00, ar6_00, a0);
     (**(code **)(0xb0 + **(int **)(a0 + 8)))(*(int **)(a0 + 8), ar5_00, ar6_00, iVar1);
     (**(code **)(**(int **)(a0 + 8) + 0x40))(*(int **)(a0 + 8), ar5_00, ar6_00, iVar1);
     (**(code **)(0x90 + **(int **)(a0 + 8)))(*(int **)(a0 + 8), 0x8c3eb334, ar6_00, iVar1);
@@ -6383,10 +6383,10 @@ u32 game_sub_0ca22c(int a0, u32 a1, u32 a2, u32 a3) {
         pack_release_entry_handle(0x8c2b59d0, ar5_00, a2, a3);
     }
     CTexture_ReleaseFromVRAM(0x8c437028, ar5_00, a2, a3);
-    (*(code *)(&game_sub_020a70))(0x8c3eb334, "uzu.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type0))(0x8c3eb334, "uzu.nj", "GRAPHICS\\ENV", a0);
     ar6_00 = "GRAPHICS\\ENV";
     ar7_00 = a0;
-    game_sub_020b68(0x8c3eb334, "uzu.nj", ar6_00, a0);
+    CDCGD_release_type2(0x8c3eb334, "uzu.nj", ar6_00, a0);
     game_sub_0c9738(a0, a1, ar6_00, ar7_00);
     return 0;
 }
@@ -6413,7 +6413,7 @@ u32 game_sub_0ca2cc(u32 unused_a0, int a1, u32 a2, u32 a3) {
     if (iVar1 == 0) {
         puVar3 = auStack_18;
         pcVar2 = "GRAPHICS\\ENV";
-        iVar1 = game_sub_0209b0(0x8c3eb334, "uzu.nj", "GRAPHICS\\ENV", puVar3);
+        iVar1 = CDCGD_request_type0(0x8c3eb334, "uzu.nj", "GRAPHICS\\ENV", puVar3);
         if (iVar1 == 1) {
             set_field_0_015ad4(0x8c437030, auStack_18[0], pcVar2);
             *(u32 *)(a1 + 4) = 1;
@@ -6423,7 +6423,7 @@ u32 game_sub_0ca2cc(u32 unused_a0, int a1, u32 a2, u32 a3) {
     } else if (iVar1 == 1) {
         puVar3 = &uStack_1c;
         pcVar2 = "GRAPHICS\\ENV";
-        iVar1 = game_sub_020aa8(0x8c3eb334, "uzu.nj", "GRAPHICS\\ENV", puVar3);
+        iVar1 = CDCGD_sub_020aa8(0x8c3eb334, "uzu.nj", "GRAPHICS\\ENV", puVar3);
         if (iVar1 == 1) {
             Class_129920_m0_015248(0x8c437028, uStack_1c, pcVar2, puVar3);
             *(u32 *)(a1 + 4) = 2;
@@ -6432,7 +6432,7 @@ u32 game_sub_0ca2cc(u32 unused_a0, int a1, u32 a2, u32 a3) {
         }
     } else if (iVar1 == 2) {
         ar7_00 = get_field_4_0253e4(0x8c437028, a1, a2, a3);
-        iVar1 = game_sub_020e80(0x8c3eb334, "SCREW", "GRAPHICS\\ENV", ar7_00);
+        iVar1 = CDCGD_request_type_c(0x8c3eb334, "SCREW", "GRAPHICS\\ENV", ar7_00);
         if (iVar1 == 1) {
             *(u32 *)(a1 + 4) = 3;
             uVar4 = 4;

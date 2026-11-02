@@ -374,8 +374,8 @@ u32 CTexture_sub_0d0720(int a0) {
 u32 CTexture_sub_0d0768(u32 a0, u32 a1) {
     u32 uVar1;
 
-    (*(code *)(&game_sub_020a70))(a1, "suisou_Heater.nj", "GRAPHICS\\ENV", a0);
-    uVar1 = (*(code *)(&game_sub_020b68))(a1, "suisou_Heater.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type0))(a1, "suisou_Heater.nj", "GRAPHICS\\ENV", a0);
+    uVar1 = (*(code *)(&CDCGD_release_type2))(a1, "suisou_Heater.nj", "GRAPHICS\\ENV", a0);
     return uVar1;
 }
 
@@ -1904,12 +1904,12 @@ int CEnv_LoadDevicePanelTexture(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * CEnv_sub_0d2028  0x8c0d2028
- * area name: sits between CEnv functions (same compilation unit)
+ * CEnv_set_texlist  0x8c0d2028
+ * selects the environment texture list (0x8c4377f4) and its first texture
  * called by: Class_12b758_sub_0e4dd0, game_sub_0de6d0, game_sub_0deb60, game_sub_0def78, game_sub_0df250,
  * game_sub_0df668
  */
-u32 CEnv_sub_0d2028(u32 unused_a0, u32 a1, u32 a2) {
+u32 CEnv_set_texlist(u32 unused_a0, u32 a1, u32 a2) {
     u32 uVar1;
 
     obj_set_texlist(0x8c4377f4, a1, a2);
@@ -1938,7 +1938,7 @@ int CEnv_sub_0d2050(int a0, u32 a1, u32 a2) {
 /*
  * CEnv_sub_0d20bc  0x8c0d20bc
  * area name: sits between CEnv functions (same compilation unit)
- * called by: CEnv_sub_0d2050, game_sub_0d21a0
+ * called by: CEnv_sub_0d2050, CEnv_sub_0d21a0
  */
 u32 CEnv_sub_0d20bc(int a0) {
     u32 extraout_fr1;
@@ -1981,11 +1981,11 @@ u32 CEnv_sub_0d20f0(int a0, u32 a1, int a2) {
 }
 
 /*
- * game_sub_0d21a0  0x8c0d21a0
- * area name: game code; nothing names its area yet
+ * CEnv_sub_0d21a0  0x8c0d21a0
+ * area name: sits between CEnv functions (same compilation unit)
  * called by: Class_12b930_sub_0d3c08
  */
-u64 *game_sub_0d21a0(int a0, u32 a1) {
+u64 *CEnv_sub_0d21a0(int a0, u32 a1) {
     u64 *puVar1;
     double *pdVar2;
     float fVar3;
@@ -3145,10 +3145,10 @@ int Class_12b930_sub_0d2fd8(int a0, u32 a1) {
     uVar4 = 4;
     iVar2 = a0 + 0x460;
     CSquid_sub_0164c8(a0 + 0x110, iVar2, 4);
-    game_sub_014790(a0 + 0x110);
-    CSquid_sub_014764(a0 + 0x110);
+    set_flag_14_20(a0 + 0x110);
+    set_flags_14_60(a0 + 0x110);
     CSquid_sub_014a64(a0 + 0x110);
-    game_sub_0d56dc(a0, iVar2, uVar4, ar7_00);
+    Class_12b580_sub_0d56dc(a0, iVar2, uVar4, ar7_00);
     for (iVar2 = 0; iVar2 < 0x226; iVar2 = iVar2 + 1) {
         game_sub_0d261c(iVar2 * 0x88 + a0 + 0x62c, a0 + 0x12a5c, &g_8c13f344, ar7_00);
     }
@@ -3636,7 +3636,7 @@ u32 Class_12b930_sub_0d3c08(int a0, u32 a1, u32 unused_a2, u32 a3) {
         iVar1 = get_field_40_0d3d64(iVar3 * 0x44 + a0 + 0x470);
         if (iVar1 != 0) {
             uVar2 = *(u32 *)(a0 + 0x5e8);
-            game_sub_0d21a0(iVar3 * 0x44 + a0 + 0x470, uVar2);
+            CEnv_sub_0d21a0(iVar3 * 0x44 + a0 + 0x470, uVar2);
         }
     }
     if (*(int *)(a0 + 0x30) == 1) {
@@ -3854,7 +3854,7 @@ u32 list_node_next_wrap(u32 a0) {
 
 /*
  * get_field_d0_0d3f70  0x8c0d3f70
- * called by: Class_12b930_sub_0d3d6c, game_sub_0d49cc, game_sub_0d5218, game_sub_0d57e8
+ * called by: Class_12b580_sub_0d57e8, Class_12b930_sub_0d3d6c, game_sub_0d49cc, game_sub_0d5218
  */
 u32 get_field_d0_0d3f70(int a0) {
     return *(u32 *)(0xd0 + a0);
@@ -4014,7 +4014,7 @@ u32 *game_sub_0d4124(int a0, int a1, u32 a2, u32 a3) {
                             uVar4 = 0;
                             matrix_push(0, ar5_00, a2, a3, in_stack_ffffff9c);
                             touch_fields_30_3c_wrap();
-                            game_sub_019160();
+                            rotate_degrees();
                             game_sub_015b30(a0 + iVar5 * 4 + 0x20, ar5_00, a2, a3);
                             matrix_pop_n(1);
                         }
@@ -4195,7 +4195,7 @@ u32 *game_sub_0d4428(int a0, int a1, u32 a2, u32 a3) {
                             uVar4 = 0;
                             matrix_push(0, ar5_00, a2, a3, in_stack_ffffff9c);
                             touch_fields_30_3c_wrap();
-                            game_sub_019160();
+                            rotate_degrees();
                             Class_129938_sub_015af8(a0 + iVar5 * 4 + 0x20, ar5_00, a2, a3);
                             matrix_pop_n(1);
                         }
@@ -4340,7 +4340,7 @@ u32 game_sub_0d46cc(int a0, u32 a1, u32 a2, u32 a3) {
                         uVar2 = 0;
                         matrix_push(0, a1, a2, a3, in_stack_ffffffa8);
                         touch_fields_30_3c_wrap();
-                        game_sub_019160();
+                        rotate_degrees();
                         Class_129938_sub_015af8(a0 + iVar3 * 4 + 0x20, a1, a2, a3);
                         matrix_pop_n(1);
                     }
@@ -4803,7 +4803,7 @@ u32 game_sub_0d4fe8(int a0, u32 unused_a1, u32 a2, u32 a3) {
     gfxlib_sub_235f14();
     uVar1 = (*(code *)(&pack_find_by_name_buffered))(0x8c2b59d0, "40_BUBBLE_MONO", a2, a3);
     *(u32 *)(0x5e4 + a0) = uVar1;
-    uVar1 = Class_12b580_sub_0220d4(0x8c2b59d0, *(u32 *)(0x5e4 + a0));
+    uVar1 = Class_12b580_set_request(0x8c2b59d0, *(u32 *)(0x5e4 + a0));
     return uVar1;
 }
 
@@ -4818,8 +4818,8 @@ u32 game_sub_0d5040(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
     uVar1 = (*(code *)(&pack_find_by_name_buffered))(0x8c2b59d0, "75_IKE1", a2, a3);
     *(u32 *)(0x5e4 + a0) = uVar1;
-    Class_12b580_sub_0220d4(0x8c2b59d0, *(u32 *)(0x5e4 + a0));
-    uVar1 = pack_sub_022128(0x8c2b59d0, 0x1f4, a2, a3);
+    Class_12b580_set_request(0x8c2b59d0, *(u32 *)(0x5e4 + a0));
+    uVar1 = Class_12b580_sub_022128(0x8c2b59d0, 0x1f4, a2, a3);
     return uVar1;
 }
 
@@ -4844,7 +4844,7 @@ u32 game_sub_0d50b4(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     Class_12b580_sub_022104(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
-    uVar1 = Class_12b580_sub_0220bc(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
+    uVar1 = Class_12b580_clear_request(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
     return uVar1;
 }
 
@@ -4873,7 +4873,7 @@ u32 game_sub_0d512c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
 
     Class_12b580_sub_022104(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
-    Class_12b580_sub_0220bc(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
+    Class_12b580_clear_request(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
     for (iVar1 = 0; iVar1 < 2; iVar1 = iVar1 + 1) {
         if (*(int *)(0x600 + iVar1 * 0x18 + a0) != -1) {
             (*(code *)(&se_status))(0x8c2b59d0, *(u32 *)(0x600 + iVar1 * 0x18 + a0), a2, a3);
@@ -4893,7 +4893,7 @@ u32 game_sub_0d51ec(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = 0;
-    pack_sub_022128(0x8c2b59d0, 0, a2, a3);
+    Class_12b580_sub_022128(0x8c2b59d0, 0, a2, a3);
     uVar1 = game_sub_0d512c(a0, uVar1, a2, a3);
     return uVar1;
 }
@@ -4929,13 +4929,13 @@ u32 game_sub_0d5218(double *a0, u32 a1) {
     ppuStack_1c = NULL;
     uStack_20 = 0;
     gfxlib_sub_235ee4();
-    game_sub_020a70(a1, "suisou_WaterFace.nj", "GRAPHICS\\ENV", a0);
+    CDCGD_release_type0(a1, "suisou_WaterFace.nj", "GRAPHICS\\ENV", a0);
     pcVar4 = "GRAPHICS\\ENV";
-    game_sub_020b68(a1, "suisou_WaterFace.nj", "GRAPHICS\\ENV", a0);
+    CDCGD_release_type2(a1, "suisou_WaterFace.nj", "GRAPHICS\\ENV", a0);
     set_field_0_015ad4(a0 + 2, 0, pcVar4);
-    game_sub_020a70(a1, "suisou_Effect.nj", "GRAPHICS\\ENV", a0);
+    CDCGD_release_type0(a1, "suisou_Effect.nj", "GRAPHICS\\ENV", a0);
     pcVar4 = "GRAPHICS\\ENV";
-    game_sub_020b68(a1, "suisou_Effect.nj", "GRAPHICS\\ENV", a0);
+    CDCGD_release_type2(a1, "suisou_Effect.nj", "GRAPHICS\\ENV", a0);
     set_field_0_015ad4((int)a0 + 0x1c, 0, pcVar4);
     iVar1 = retry_until_done_0209b0(a1, "suisou_WaterFace_small.nj", "GRAPHICS\\ENV", &ppuStack_1c);
     if (iVar1 == 0) {
@@ -5118,7 +5118,7 @@ u32 game_sub_0d55a4(int a0, u32 a1, u32 a2, u32 a3) {
 int game_sub_0d55d0(int a0) {
     int iVar1;
 
-    Class_12b580_sub_0220d4(0x8c2b59d0, *(u32 *)(0x5e4 + a0));
+    Class_12b580_set_request(0x8c2b59d0, *(u32 *)(0x5e4 + a0));
     iVar1 = *(int *)(0x618 + a0);
     if (iVar1 != -1) {
         iVar1 = se_play(0x8c2b59d0, *(u32 *)(0x618 + a0), 1);
@@ -5144,23 +5144,23 @@ u32 game_sub_0d5614(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0d568c  0x8c0d568c
- * area name: game code; nothing names its area yet
+ * Class_12b580_set_request_wrap  0x8c0d568c
+ * only calls Class_12b580_set_request
  * called by: game_sub_0e0f48
  */
-u32 game_sub_0d568c(int a0) {
+u32 Class_12b580_set_request_wrap(int a0) {
     u32 uVar1;
 
-    uVar1 = Class_12b580_sub_0220d4(0x8c2b59d0, *(u32 *)(0x5e4 + a0));
+    uVar1 = Class_12b580_set_request(0x8c2b59d0, *(u32 *)(0x5e4 + a0));
     return uVar1;
 }
 
 /*
- * game_sub_0d56b4  0x8c0d56b4
- * area name: game code; nothing names its area yet
+ * Class_12b580_sub_0d56b4  0x8c0d56b4
+ * area name: sits between Class_12b580 functions (same compilation unit)
  * called by: game_sub_0e0f48
  */
-u32 game_sub_0d56b4(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 Class_12b580_sub_0d56b4(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = Class_12b580_sub_022104(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
@@ -5168,11 +5168,11 @@ u32 game_sub_0d56b4(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0d56dc  0x8c0d56dc
- * area name: game code; nothing names its area yet
+ * Class_12b580_sub_0d56dc  0x8c0d56dc
+ * area name: sits between Class_12b580 functions (same compilation unit)
  * called by: Class_12b930_sub_0d2fd8
  */
-u32 game_sub_0d56dc(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 Class_12b580_sub_0d56dc(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
 
     *(u32 *)(a0 + 0x5c4) = 0x3f4ccccd;
@@ -5197,12 +5197,12 @@ u32 game_sub_0d56dc(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0d57e8  0x8c0d57e8
- * name hint from a string it uses: GRAPHICS ENV; area name: game code; nothing names its area yet
+ * Class_12b580_sub_0d57e8  0x8c0d57e8
+ * name hint from a string it uses: GRAPHICS ENV; area name: sits between Class_12b580 functions (same compilation unit)
  * called by: game_sub_0e0be8
  * strings: "suisou_WaterFace_small.nj"; "GRAPHICS\\ENV"; "GRAPHICS\\ENV"; "suisou_WaterFace_small.nj" ...
  */
-u32 game_sub_0d57e8(int a0, u32 *a1, u32 a2) {
+u32 Class_12b580_sub_0d57e8(int a0, u32 *a1, u32 a2) {
     int iVar1;
     u32 uVar2;
     u32 *ar5_00;
@@ -5226,26 +5226,26 @@ u32 game_sub_0d57e8(int a0, u32 *a1, u32 a2) {
     }
     game_sub_0fe7f4(a0 + 0x34);
     if ((char)uVar2 == '\x02') {
-        game_sub_020a70(a1, "suisou_WaterFace_small.nj", "GRAPHICS\\ENV", a0);
+        CDCGD_release_type0(a1, "suisou_WaterFace_small.nj", "GRAPHICS\\ENV", a0);
         pcVar3 = "GRAPHICS\\ENV";
         iVar1 = a0;
-        game_sub_020b68(a1, "suisou_WaterFace_small.nj", "GRAPHICS\\ENV", a0);
+        CDCGD_release_type2(a1, "suisou_WaterFace_small.nj", "GRAPHICS\\ENV", a0);
         set_field_0_015ad4(a0 + 0x10, 0, pcVar3);
-        game_sub_020a70(a1, "suisou_Effect_small.nj", "GRAPHICS\\ENV", a0);
+        CDCGD_release_type0(a1, "suisou_Effect_small.nj", "GRAPHICS\\ENV", a0);
         pcVar3 = "GRAPHICS\\ENV";
         iVar1 = a0;
-        game_sub_020b68(a1, "suisou_Effect_small.nj", "GRAPHICS\\ENV", a0);
+        CDCGD_release_type2(a1, "suisou_Effect_small.nj", "GRAPHICS\\ENV", a0);
         uVar2 = set_field_0_015ad4(a0 + 0x1c, 0, pcVar3);
     } else {
-        game_sub_020a70(a1, "suisou_WaterFace.nj", "GRAPHICS\\ENV", a0);
+        CDCGD_release_type0(a1, "suisou_WaterFace.nj", "GRAPHICS\\ENV", a0);
         pcVar3 = "GRAPHICS\\ENV";
         iVar1 = a0;
-        game_sub_020b68(a1, "suisou_WaterFace.nj", "GRAPHICS\\ENV", a0);
+        CDCGD_release_type2(a1, "suisou_WaterFace.nj", "GRAPHICS\\ENV", a0);
         set_field_0_015ad4(a0 + 0x10, 0, pcVar3);
-        game_sub_020a70(a1, "suisou_Effect.nj", "GRAPHICS\\ENV", a0);
+        CDCGD_release_type0(a1, "suisou_Effect.nj", "GRAPHICS\\ENV", a0);
         pcVar3 = "GRAPHICS\\ENV";
         iVar1 = a0;
-        game_sub_020b68(a1, "suisou_Effect.nj", "GRAPHICS\\ENV", a0);
+        CDCGD_release_type2(a1, "suisou_Effect.nj", "GRAPHICS\\ENV", a0);
         ar5_01 = 0;
         set_field_0_015ad4(a0 + 0x1c, 0, pcVar3);
         uVar2 = CTexture_ReleaseFromVRAM(a0 + 0x12a5c, ar5_01, pcVar3, iVar1);
@@ -5605,8 +5605,8 @@ u32 set_fields_c_20(int a0) {
 u32 CTexture_sub_0d60c8(u32 a0, u32 a1) {
     u32 uVar1;
 
-    (*(code *)(&game_sub_020a70))(a1, "kumonosu.nj", "GRAPHICS\\ENV", a0);
-    uVar1 = (*(code *)(&game_sub_020b68))(a1, "kumonosu.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type0))(a1, "kumonosu.nj", "GRAPHICS\\ENV", a0);
+    uVar1 = (*(code *)(&CDCGD_release_type2))(a1, "kumonosu.nj", "GRAPHICS\\ENV", a0);
     return uVar1;
 }
 
@@ -6989,7 +6989,7 @@ u32 game_sub_0d7354(int a0, u32 a1, u32 a2, u32 a3) {
     ar4_00 = 0;
     matrix_push(0, a1, a2, a3, uVar1);
     touch_fields_30_3c_wrap();
-    game_sub_019160();
+    rotate_degrees();
     game_sub_015b30(a0, a1, a2, a3);
     matrix_pop_n(1);
     uVar1 = gfx_set_color4_4aa52c(&stack0xffffffd8);
@@ -7011,7 +7011,7 @@ u32 game_sub_0d7410(int a0, u32 a1, u32 a2, u32 a3) {
     ar4_00 = 0;
     matrix_push(0, a1, a2, a3, uVar1);
     touch_fields_30_3c_wrap();
-    game_sub_019160();
+    rotate_degrees();
     Class_129938_sub_015af8(a0, a1, a2, a3);
     matrix_pop_n(1);
     uVar1 = gfx_set_color4_4aa52c(&stack0xffffffd8);
@@ -7784,8 +7784,8 @@ u32 Class_12bea8_sub_0d7e80(int a0, u32 a1, u32 a2, u32 a3, int s0, int s4) {
 
     cVar4 = '\0';
     cVar3 = '\0';
-    game_sub_102974(a0 + 0x1c);
-    uVar1 = game_sub_102974(a0 + 0x30);
+    linear_map_set_range(a0 + 0x1c);
+    uVar1 = linear_map_set_range(a0 + 0x30);
     if (cVar3 == '\0') {
         dVar2 = (double)CONCAT44((float)s4, in_fr1);
     } else {
@@ -9761,11 +9761,11 @@ u32 set_fields_18_10_14(int a0) {
 u32 game_sub_0d990c(u32 a0, u32 a1) {
     u32 uVar1;
 
-    (*(code *)(&game_sub_020a70))(a1, "Ring_Home.nj", "GRAPHICS\\ENV", a0);
-    (*(code *)(&game_sub_020b68))(a1, "Ring_Home.nj", "GRAPHICS\\ENV", a0);
-    (*(code *)(&CMothLine_sub_020e48))(a1, "RingMotion.npd", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type0))(a1, "Ring_Home.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type2))(a1, "Ring_Home.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_request_wrap_020e48))(a1, "RingMotion.npd", "GRAPHICS\\ENV", a0);
     for (uVar1 = 0; uVar1 < 7; uVar1 = uVar1 + 1) {
-        (*(code *)(&game_sub_020c60))(a1, *(u32 *)((&DATA_8c13f394) + uVar1 * 4), "GRAPHICS\\ENV", a0);
+        (*(code *)(&CDCGD_release_request_wrap))(a1, *(u32 *)((&DATA_8c13f394) + uVar1 * 4), "GRAPHICS\\ENV", a0);
     }
     return 7;
 }
@@ -13409,7 +13409,7 @@ u32 game_sub_0de6d0(int a0, u32 a1, u32 a2, u32 a3) {
     puVar5 = &uStack_20;
     game_sub_0d99b8(puVar5);
     if (*(int *)(a0 + 0x1024) != 0) {
-        CEnv_sub_0d2028(puVar5, a1, a2);
+        CEnv_set_texlist(puVar5, a1, a2);
         Class_129808_draw(a0 + 0x1028, a1, a2, a3);
     }
     if (*(int *)(a0 + 0x1024) == 2) {
@@ -13615,7 +13615,7 @@ u32 game_sub_0deb60(int a0, u32 a1, u32 a2, u32 a3) {
     puVar5 = &uStack_20;
     game_sub_0d99b8(puVar5);
     if (*(int *)(a0 + 0x1024) != 0) {
-        CEnv_sub_0d2028(puVar5, a1, a2);
+        CEnv_set_texlist(puVar5, a1, a2);
         Class_129808_draw(a0 + 0x1028, a1, a2, a3);
     }
     if (*(int *)(a0 + 0x1024) == 2) {
@@ -13802,7 +13802,7 @@ u32 game_sub_0def78(int a0, u32 a1, u32 a2, u32 a3) {
     puVar4 = &uStack_1c;
     game_sub_0d99b8(puVar4);
     if (*(int *)(a0 + 0x1024) != 0) {
-        CEnv_sub_0d2028(puVar4, a1, a2);
+        CEnv_set_texlist(puVar4, a1, a2);
         Class_129808_draw(a0 + 0x1028, a1, a2, a3);
     }
     if (*(int *)(a0 + 0x1024) == 2) {
@@ -13922,7 +13922,7 @@ u32 game_sub_0df250(int a0, u32 a1, u32 a2, u32 a3) {
     iVar4 = a0;
     game_sub_0dbdf4(a0);
     if (*(int *)(a0 + 0x1024) != 0) {
-        CEnv_sub_0d2028(iVar4, a1, a2);
+        CEnv_set_texlist(iVar4, a1, a2);
         Class_129808_draw(a0 + 0x1028, a1, a2, a3);
     }
     if (*(int *)(a0 + 0x1024) == 2) {
@@ -14115,7 +14115,7 @@ u32 game_sub_0df668(int a0, u32 a1, u32 a2, u32 a3) {
     iVar4 = a0;
     game_sub_0dbdf4(a0);
     if (*(int *)(a0 + 0x1024) != 0) {
-        CEnv_sub_0d2028(iVar4, a1, a2);
+        CEnv_set_texlist(iVar4, a1, a2);
         Class_129808_draw(a0 + 0x1028, a1, a2, a3);
     }
     iVar4 = a0 + 0x7c;

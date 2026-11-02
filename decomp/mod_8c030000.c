@@ -4529,12 +4529,12 @@ u32 CAnimBody_PlayToEnd(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CAnimBody_sub_0342ac  0x8c0342ac
- * area name: sits between CAnimBody functions (same compilation unit)
+ * motion_entry_get_0  0x8c0342ac
+ * word 0 of record a2 of the 0x18-byte motion table *a1
  * called by: game_sub_08eef4, game_sub_08f354, game_sub_08f9e8, game_sub_0911f0, game_sub_091570, game_sub_0b0eec,
  * record18_take
  */
-int CAnimBody_sub_0342ac(u32 unused_a0, u32 *a1, int a2) {
+int motion_entry_get_0(u32 unused_a0, u32 *a1, int a2) {
     int *piVar1;
     int iVar2;
 
@@ -4996,11 +4996,11 @@ u32 game_sub_034384(u32 unused_a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_034548  0x8c034548
- * area name: game code; nothing names its area yet
+ * motion_entry_get_4  0x8c034548
+ * word 1 of record a2 of the 0x18-byte motion table *a1
  * called by: game_sub_08eef4, game_sub_08f354, game_sub_08f9e8, game_sub_0911f0, game_sub_091570, record18_take
  */
-int game_sub_034548(u32 unused_a0, int *a1, int a2) {
+int motion_entry_get_4(u32 unused_a0, int *a1, int a2) {
     int iVar1;
     int iVar2;
 
@@ -6053,8 +6053,8 @@ u32 record18_take(u32 unused_a0, int *a1, u32 *a2, int a3) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
-    uVar1 = CAnimBody_sub_0342ac(unused_a0, a1, a3);
-    uVar2 = game_sub_034548(unused_a0, a1, a3);
+    uVar1 = motion_entry_get_0(unused_a0, a1, a3);
+    uVar2 = motion_entry_get_4(unused_a0, a1, a3);
     uVar3 = game_sub_034880(unused_a0, a1, a3);
     *a2 = uVar1;
     a2[1] = uVar2;
@@ -7465,13 +7465,13 @@ int CAnimal_sub_03679c(int a0, int a1, u32 a2, u32 a3) {
     int iVar3;
 
     for (iVar3 = 0; iVar3 < 5; iVar3 = iVar3 + 1) {
-        iVar1 = (*(code *)(&CItemGLoader_sub_0feef8))(*(u32 *)(0x7d0 + a1), *(u32 *)(0x1134 + a0 + iVar3 * 4), a2, a3);
+        iVar1 = (*(code *)(&CItemGLoader_is_done))(*(u32 *)(0x7d0 + a1), *(u32 *)(0x1134 + a0 + iVar3 * 4), a2, a3);
         if ((iVar1 == 1) && (*(int *)(0x1134 + a0 + iVar3 * 4) != 0)) {
             uVar2 = (*(code *)(&CItemGLoader_sub_0feeb0))(*(u32 *)(0x7d0 + a1), a0 + iVar3 * 4 + 0x1134, a2, a3);
             *(u32 *)(0x111c + a0 + iVar3 * 4) = uVar2;
         }
     }
-    iVar3 = (*(code *)(&CItemGLoader_sub_0feef8))(*(u32 *)(0x7d0 + a1), *(u32 *)(0x1148 + a0), a2, a3);
+    iVar3 = (*(code *)(&CItemGLoader_is_done))(*(u32 *)(0x7d0 + a1), *(u32 *)(0x1148 + a0), a2, a3);
     if ((iVar3 == 1) && (iVar3 = 0, *(int *)(0x1148 + a0) != 0)) {
         set_field_90_u8(a0 + 0x490, 2);
         uVar2 = (*(code *)(&CItemGLoader_sub_0feeb0))(*(u32 *)(0x7d0 + a1), a0 + 0x1148, a2, a3);
@@ -8959,7 +8959,7 @@ u32 noop_038a40(void) {
 u32 game_sub_038a44(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    Vec3_sub_0f4e34(a0, a1, a2, a3);
+    obj_state_load(a0, a1, a2, a3);
     game_sub_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
     uVar1 = copy15_in_normalize(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
@@ -8972,7 +8972,7 @@ u32 game_sub_038a44(int a0, int a1, u32 a2, u32 a3) {
 u32 game_sub_038aa4(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    Vec3_sub_0f4f0c(a0, a1, a2, a3);
+    obj_state_save(a0, a1, a2, a3);
     game_sub_02cf20(a0 + 0x174, a1 + 0x4c, a2);
     uVar1 = copy15_out(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;

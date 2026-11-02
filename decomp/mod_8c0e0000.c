@@ -349,7 +349,7 @@ int game_sub_0e070c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     *(u32 *)(0x2325c + a0) = uVar1;
     iVar2 = *(int *)(0x2325c + a0);
     if (iVar2 != -1) {
-        iVar2 = Class_12b580_sub_0220d4(0x8c2b59d0, *(u32 *)(0x2325c + a0));
+        iVar2 = Class_12b580_set_request(0x8c2b59d0, *(u32 *)(0x2325c + a0));
     }
     return iVar2;
 }
@@ -389,7 +389,7 @@ u64 *game_sub_0e0764(int a0, u32 unused_a1, u32 a2, u32 a3) {
                 puVar1 = *(u64 **)(a0 + 0x2325c);
                 if (*(u64 **)(a0 + 0x2325c) != (u64 *)0xffffffff) {
                     Class_12b580_sub_022104(0x8c2b59d0, *(u32 *)(a0 + 0x2325c), a2, a3);
-                    Class_12b580_sub_0220bc(0x8c2b59d0, *(u32 *)(a0 + 0x2325c), a2, a3);
+                    Class_12b580_clear_request(0x8c2b59d0, *(u32 *)(a0 + 0x2325c), a2, a3);
                     *(u32 *)(a0 + 0x2325c) = 0xffffffff;
                     g_8c43825c = NULL;
                     puVar1 = NULL;
@@ -624,19 +624,19 @@ u32 game_sub_0e0be8(int a0, u32 a1, u32 a2) {
     u32 ar6_00;
     u32 uVar1;
 
-    (*(code *)(&game_sub_020a70))(a1, "suisou.nj", "GRAPHICS\\ENV", a0);
-    (*(code *)(&game_sub_020b68))(a1, "suisou.nj", "GRAPHICS\\ENV", a0);
-    (*(code *)(&game_sub_020a70))(a1, "suisou_parts_S_GlassB_Up.nj", "GRAPHICS\\ENV", a0);
-    (*(code *)(&game_sub_020b68))(a1, "suisou_parts_S_GlassB_Up.nj", "GRAPHICS\\ENV", a0);
-    (*(code *)(&game_sub_020a70))(a1, "suisou_parts_S_GlassB_Dn.nj", "GRAPHICS\\ENV", a0);
-    (*(code *)(&game_sub_020b68))(a1, "suisou_parts_S_GlassB_Dn.nj", "GRAPHICS\\ENV", a0);
-    (*(code *)(&game_sub_020a70))(a1, "suisou_parts_S_GlassS_Up.nj", "GRAPHICS\\ENV", a0);
-    (*(code *)(&game_sub_020b68))(a1, "suisou_parts_S_GlassS_Up.nj", "GRAPHICS\\ENV", a0);
-    (*(code *)(&game_sub_020a70))(a1, "suisou_TempMeter.nj", "GRAPHICS\\ENV", a0);
-    (*(code *)(&game_sub_020b68))(a1, "suisou_TempMeter.nj", "GRAPHICS\\ENV", a0);
-    (*(code *)(&game_sub_020a70))(a1, "suisou_Collision.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type0))(a1, "suisou.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type2))(a1, "suisou.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type0))(a1, "suisou_parts_S_GlassB_Up.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type2))(a1, "suisou_parts_S_GlassB_Up.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type0))(a1, "suisou_parts_S_GlassB_Dn.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type2))(a1, "suisou_parts_S_GlassB_Dn.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type0))(a1, "suisou_parts_S_GlassS_Up.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type2))(a1, "suisou_parts_S_GlassS_Up.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type0))(a1, "suisou_TempMeter.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type2))(a1, "suisou_TempMeter.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type0))(a1, "suisou_Collision.nj", "GRAPHICS\\ENV", a0);
     ar6_00 = (u32)(u8)a2;
-    game_sub_0d57e8(a0 + 0x10ac, a1, ar6_00);
+    Class_12b580_sub_0d57e8(a0 + 0x10ac, a1, ar6_00);
     CTexture_sub_0d0768(a0 + 0x13b24, a1);
     uVar1 = game_sub_0d990c(a0 + 0x22704, a1);
     return uVar1;
@@ -678,7 +678,7 @@ u32 Class_12b930_sub_0e0da4(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     linear_map_set((int)a0 + 0xad0);
     linear_map_set((int)a0 + 0xaf0);
     linear_map_set((int)a0 + 0xb50);
-    uVar1 = game_sub_102974((int)a0 + 0xb70);
+    uVar1 = linear_map_set_range((int)a0 + 0xb70);
     return uVar1;
 }
 
@@ -743,7 +743,7 @@ u32 game_sub_0e0f48(int *a0, u32 a1, float *a2, float *a3) {
     }
     if (bVar11) {
         (**(code **)(*a0 + 0x15c))(a0, a1, a2, a3);
-        game_sub_0d56b4(a0 + 0x42b, a1, a2, a3);
+        Class_12b580_sub_0d56b4(a0 + 0x42b, a1, a2, a3);
     }
     ar5_00 = a0 + 0x8bad;
     iVar1 = Class_12b930_sub_0d3d6c(a0 + 0x42b, ar5_00, a2, a3);
@@ -751,7 +751,7 @@ u32 game_sub_0e0f48(int *a0, u32 a1, float *a2, float *a3) {
         set_fields_14_18(a0 + 0x4edc);
     } else {
         set_field_18_to_1(a0 + 0x4edc);
-        game_sub_0d568c(a0 + 0x42b);
+        Class_12b580_set_request_wrap(a0 + 0x42b);
     }
     CTexture_sub_0d08c0(a0 + 0x4edc);
     iVar1 = get_field_14_0e1318(a0 + 0x4edc);
@@ -3598,7 +3598,7 @@ u32 Class_12b758_sub_0e4dd0(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     gfxlib_sub_217ef4();
     gfxlib_sub_219070();
     if (*(int *)(a0 + 0x1024) != 0) {
-        CEnv_sub_0d2028(uVar1, ar5_00, ar6_00);
+        CEnv_set_texlist(uVar1, ar5_00, ar6_00);
         Class_129808_draw(a0 + 0x1028, ar5_00, ar6_00, a3);
     }
     if (*(int *)(a0 + 0x1024) == 2) {
@@ -4140,9 +4140,9 @@ u32 game_sub_0e5bb4(int a0, u32 a1) {
     u32 uVar1;
     u8 *ar6_00;
 
-    (*(code *)(&game_sub_020a70))(a1, "musikago.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type0))(a1, "musikago.nj", "GRAPHICS\\ENV", a0);
     ar6_00 = "GRAPHICS\\ENV";
-    game_sub_020b68(a1, "musikago.nj", ar6_00, a0);
+    CDCGD_release_type2(a1, "musikago.nj", ar6_00, a0);
     uVar1 = CTexture_sub_0d60c8(a0 + 0x15bc, a1);
     return uVar1;
 }
@@ -4183,7 +4183,7 @@ u32 Class_12b758_sub_0e5c4c(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     linear_map_set(a0 + 0x2cc);
     linear_map_set(a0 + 0x2b4);
     linear_map_set(a0 + 700);
-    uVar1 = game_sub_102974(a0 + 0x2dc);
+    uVar1 = linear_map_set_range(a0 + 0x2dc);
     return uVar1;
 }
 
@@ -4396,16 +4396,16 @@ u32 Class_12b580_m1_0e634c(int a0, int a1, u32 a2, u32 a3) {
     if ((*(int *)(0x10dc + a0) == 0) || (*(int *)(0x10dc + a0) == 0x8ca0)) {
         if (*(int *)(0x83fc + a0) != -1) {
             Class_12b580_sub_022104(0x8c2b59d0, *(u32 *)(0x83fc + a0), iVar4, a3);
-            Class_12b580_sub_0220bc(0x8c2b59d0, *(u32 *)(0x83fc + a0), iVar4, a3);
+            Class_12b580_clear_request(0x8c2b59d0, *(u32 *)(0x83fc + a0), iVar4, a3);
         }
         uVar1 = (*(code *)(&pack_find_by_name_buffered))(0x8c2b59d0, *(u32 *)(0x83f8 + a0), iVar4, a3);
         *(u32 *)(0x83fc + a0) = uVar1;
         uVar3 = *(u32 *)(0x83fc + a0);
-        Class_12b580_sub_0220d4(0x8c2b59d0, uVar3);
+        Class_12b580_set_request(0x8c2b59d0, uVar3);
     }
     if ((*(u32 *)(0x10dc + a0) & 1) == 0) {
         uVar3 = *(u32 *)(0x8400 + a0);
-        pack_sub_022128(0x8c2b59d0, uVar3, iVar4, a3);
+        Class_12b580_sub_022128(0x8c2b59d0, uVar3, iVar4, a3);
     }
     iVar2 = Class_12b580_sub_101154(*(u32 *)(0x7cc + a1));
     if (iVar2 == 1) {
@@ -4791,7 +4791,7 @@ u32 game_sub_0e6d80(int a0, u32 a1, u32 a2, u32 a3) {
 
     if (*(int *)(0x83fc + a0) != -1) {
         a1 = *(u32 *)(0x83fc + a0);
-        Class_12b580_sub_0220d4(0x8c2b59d0, a1);
+        Class_12b580_set_request(0x8c2b59d0, a1);
     }
     uVar1 = game_sub_0d84a8(a0 + 0x10dc, a1, a2, a3);
     return uVar1;
@@ -4808,7 +4808,7 @@ u32 game_sub_0e6dc4(int a0, u32 a1, u32 a2, u32 a3) {
     (**(code **)(*(int *)(a0 + 0x9e8) + 0x10))((int *)(a0 + 0x9e8), a1, a2, a3);
     game_sub_0d92b0(a0 + 0x10dc);
     if (*(int *)(0x83fc + a0) != -1) {
-        Class_12b580_sub_0220bc(0x8c2b59d0, *(u32 *)(0x83fc + a0), a2, a3);
+        Class_12b580_clear_request(0x8c2b59d0, *(u32 *)(0x83fc + a0), a2, a3);
         *(u32 *)(0x83fc + a0) = 0xffffffff;
     }
     return 1;
@@ -4822,8 +4822,8 @@ u32 game_sub_0e6dc4(int a0, u32 a1, u32 a2, u32 a3) {
 u32 game_sub_0e6e74(u32 a0, u32 a1) {
     u32 uVar1;
 
-    (*(code *)(&game_sub_020a70))(a1, "amazon.nj", "GRAPHICS\\ENV", a0);
-    uVar1 = (*(code *)(&game_sub_020b68))(a1, "amazon.nj", "GRAPHICS\\ENV", a0);
+    (*(code *)(&CDCGD_release_type0))(a1, "amazon.nj", "GRAPHICS\\ENV", a0);
+    uVar1 = (*(code *)(&CDCGD_release_type2))(a1, "amazon.nj", "GRAPHICS\\ENV", a0);
     return uVar1;
 }
 
@@ -4863,7 +4863,7 @@ u32 Class_12b580_sub_0e6ef0(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     linear_map_set(a0 + 0x2cc);
     linear_map_set(a0 + 0x2b4);
     linear_map_set(a0 + 700);
-    uVar1 = game_sub_102974(a0 + 0x2dc);
+    uVar1 = linear_map_set_range(a0 + 0x2dc);
     return uVar1;
 }
 
@@ -5141,7 +5141,7 @@ u32 *Class_12b3b8_ctor(u32 *a0) {
     ar6_01 = &g_8c4383f4;
     ar5_01 = &g_8c4383c4;
     Class_129808_sub_016464(a0 + 0x111, &g_8c4383c4, &g_8c4383f4, 4);
-    game_sub_014790(a0 + 0x111);
+    set_flag_14_20(a0 + 0x111);
     for (iVar3 = 0; iVar3 < 3; iVar3 = iVar3 + 1) {
         for (iVar4 = 0; iVar4 < 4; iVar4 = iVar4 + 1) {
             if (cVar8 == '\0') {
@@ -5446,7 +5446,7 @@ u32 Class_12b3b8_sub_0e7a78(int a0, u32 a1, u32 a2, u32 a3) {
                     touch_fields_30_3c_wrap();
                     game_sub_019128();
                     game_sub_0190f0();
-                    game_sub_019160();
+                    rotate_degrees();
                     matrix_scale_wrap(uVar2, a1);
                     (**(code **)(*(int *)(*piVar4 + 8) + 0x3c))(*piVar4, a1, a2, a3);
                     matrix_pop_n(1);

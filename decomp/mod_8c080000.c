@@ -2948,7 +2948,7 @@ int CAnimal_sub_0859c8(int a0, int a1) {
     for (iVar3 = 0; iVar3 < 5; iVar3 = iVar3 + 1) {
         if (*(int *)(0x10c0 + a0 + iVar3 * 4) != 0) {
             ar5_00 = *(int *)(0x10c0 + a0 + iVar3 * 4);
-            iVar1 = CItemGLoader_sub_0feef8(*(u32 *)(0x7d0 + a1), ar5_00);
+            iVar1 = CItemGLoader_is_done(*(u32 *)(0x7d0 + a1), ar5_00);
             if (iVar1 == 1) {
                 ar5_00 = a0 + iVar3 * 4 + 0x10c0;
                 uVar2 = CItemGLoader_sub_0feeb0(*(u32 *)(0x7d0 + a1), ar5_00);
@@ -2958,7 +2958,7 @@ int CAnimal_sub_0859c8(int a0, int a1) {
     }
     if (*(int *)(0x10d4 + a0) != 0) {
         ar5_00 = *(int *)(0x10d4 + a0);
-        iVar3 = CItemGLoader_sub_0feef8(*(u32 *)(0x7d0 + a1), ar5_00);
+        iVar3 = CItemGLoader_is_done(*(u32 *)(0x7d0 + a1), ar5_00);
         if (iVar3 == 1) {
             ar5_00 = a0 + 0x10d4;
             uVar2 = CItemGLoader_sub_0feeb0(*(u32 *)(0x7d0 + a1), ar5_00);
@@ -4501,7 +4501,7 @@ u32 game_sub_0883a8(int a0, u32 a1, u32 a2, u32 a3) {
 u32 game_sub_0883e0(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    Vec3_sub_0f4e34(a0, a1, a2, a3);
+    obj_state_load(a0, a1, a2, a3);
     game_sub_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
     uVar1 = copy15_in_normalize(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
@@ -4514,7 +4514,7 @@ u32 game_sub_0883e0(int a0, int a1, u32 a2, u32 a3) {
 u32 game_sub_088440(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    Vec3_sub_0f4f0c(a0, a1, a2, a3);
+    obj_state_save(a0, a1, a2, a3);
     game_sub_02cf20(a0 + 0x174, a1 + 0x4c, a2);
     uVar1 = copy15_out(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
@@ -5633,7 +5633,7 @@ int Class_12a5d0_sub_08ac38(int a0, int a1) {
     for (iVar3 = 0; iVar3 < 1; iVar3 = iVar3 + 1) {
         if (*(int *)(0x8f4 + a0 + iVar3 * 4) != 0) {
             ar5_00 = *(int *)(0x8f4 + a0 + iVar3 * 4);
-            iVar1 = CItemGLoader_sub_0feef8(*(u32 *)(0x7d0 + a1), ar5_00);
+            iVar1 = CItemGLoader_is_done(*(u32 *)(0x7d0 + a1), ar5_00);
             if (iVar1 == 1) {
                 ar5_00 = a0 + iVar3 * 4 + 0x8f4;
                 uVar2 = CItemGLoader_sub_0feeb0(*(u32 *)(0x7d0 + a1), ar5_00);
@@ -5643,7 +5643,7 @@ int Class_12a5d0_sub_08ac38(int a0, int a1) {
     }
     if (*(int *)(0x8f8 + a0) != 0) {
         ar5_00 = *(int *)(0x8f8 + a0);
-        iVar3 = CItemGLoader_sub_0feef8(*(u32 *)(0x7d0 + a1), ar5_00);
+        iVar3 = CItemGLoader_is_done(*(u32 *)(0x7d0 + a1), ar5_00);
         if (iVar3 == 1) {
             ar5_00 = a0 + 0x8f8;
             uVar2 = CItemGLoader_sub_0feeb0(*(u32 *)(0x7d0 + a1), ar5_00);
@@ -6054,7 +6054,7 @@ u32 game_sub_08b5a8(int a0, u32 a1, u32 a2, u32 a3) {
 int game_sub_08b694(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
 
-    Vec3_sub_0f4e34(a0, a1, a2, a3);
+    obj_state_load(a0, a1, a2, a3);
     game_sub_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
     copy15_in_normalize(a0 + 0x2dc, a1 + 0xd8);
     (**(code **)(**(int **)(0x308 + a0) + 0x24))(*(int **)(0x308 + a0), a1 + 0xc8, a2, a3);
@@ -6133,13 +6133,13 @@ int CMothLine_FreeGraphicResource(int a0, u32 a1, int a2) {
     iVar1 = -0x208;
     CMothLine_sub_028afc(a0, a1, a2);
     ar7_00 = a0 + a2;
-    (*(code *)(&game_sub_020a70))(a1, *(u32 *)(&DATA_8c139e9c), *(u32 *)(0x410 + a0), ar7_00);
+    (*(code *)(&CDCGD_release_type0))(a1, *(u32 *)(&DATA_8c139e9c), *(u32 *)(0x410 + a0), ar7_00);
     if (a2 == 2) {
-        (*(code *)(&game_sub_020a70))(a1, *(u32 *)(&DATA_8c139f68), *(u32 *)(0x410 + a0), ar7_00);
-        (*(code *)(&game_sub_020c60))(a1, *(u32 *)(&DATA_8c139f6c), *(u32 *)(0x410 + a0), ar7_00);
+        (*(code *)(&CDCGD_release_type0))(a1, *(u32 *)(&DATA_8c139f68), *(u32 *)(0x410 + a0), ar7_00);
+        (*(code *)(&CDCGD_release_request_wrap))(a1, *(u32 *)(&DATA_8c139f6c), *(u32 *)(0x410 + a0), ar7_00);
         uVar4 = *(u32 *)(0x410 + a0);
         uVar3 = *(u32 *)(&DATA_8c139f70);
-        CMothLine_sub_020d58(a1, uVar3, uVar4, ar7_00);
+        CDCGD_release_request_wrap_020d58(a1, uVar3, uVar4, ar7_00);
         uVar2 = ninja_sub_256670(*(u32 *)(0x844 + a0));
         *(u32 *)(&stack0xfffffff0 + iVar1) = uVar2;
         a2 = *(int *)(&stack0xfffffff0 + iVar1);
@@ -6153,15 +6153,16 @@ int CMothLine_FreeGraphicResource(int a0, u32 a1, int a2) {
                                                     "CMothLine::FreeGraphicResource(2)", 1, 2);
         }
     } else if (a2 == 3) {
-        (*(code *)(&game_sub_020a70))(a1, *(u32 *)(&DATA_8c139f44), *(u32 *)(0x410 + a0), ar7_00);
-        (*(code *)(&game_sub_020b68))(a1, *(u32 *)(&DATA_8c139f44), *(u32 *)(0x410 + a0), ar7_00);
-        (*(code *)(&game_sub_020c60))(a1, *(u32 *)(&DATA_8c139f54), *(u32 *)(0x410 + a0), ar7_00);
-        (*(code *)(&CMothLine_sub_020d58))(a1, *(u32 *)(&DATA_8c139f5c), *(u32 *)(0x410 + a0), ar7_00);
-        (*(code *)(&game_sub_020c60))(a1, *(u32 *)((&DATA_8c139f54) + 4), *(u32 *)(0x410 + a0), ar7_00);
-        (*(code *)(&CMothLine_sub_020d58))(a1, *(u32 *)((&DATA_8c139f5c) + 4), *(u32 *)(0x410 + a0), ar7_00);
+        (*(code *)(&CDCGD_release_type0))(a1, *(u32 *)(&DATA_8c139f44), *(u32 *)(0x410 + a0), ar7_00);
+        (*(code *)(&CDCGD_release_type2))(a1, *(u32 *)(&DATA_8c139f44), *(u32 *)(0x410 + a0), ar7_00);
+        (*(code *)(&CDCGD_release_request_wrap))(a1, *(u32 *)(&DATA_8c139f54), *(u32 *)(0x410 + a0), ar7_00);
+        (*(code *)(&CDCGD_release_request_wrap_020d58))(a1, *(u32 *)(&DATA_8c139f5c), *(u32 *)(0x410 + a0), ar7_00);
+        (*(code *)(&CDCGD_release_request_wrap))(a1, *(u32 *)((&DATA_8c139f54) + 4), *(u32 *)(0x410 + a0), ar7_00);
+        (*(code *)(&CDCGD_release_request_wrap_020d58))(a1, *(u32 *)((&DATA_8c139f5c) + 4), *(u32 *)(0x410 + a0),
+                                                        ar7_00);
         uVar4 = *(u32 *)(0x410 + a0);
         uVar3 = *(u32 *)(&DATA_8c139f4c);
-        CMothLine_sub_020e48(a1, uVar3, uVar4, ar7_00);
+        CDCGD_release_request_wrap_020e48(a1, uVar3, uVar4, ar7_00);
         uVar2 = ninja_sub_256670(*(u32 *)(0x844 + a0));
         *(u32 *)((int)aiStack_18 + iVar1 + 4) = uVar2;
         a2 = *(int *)((int)aiStack_18 + iVar1 + 4);
@@ -6773,7 +6774,7 @@ u32 game_sub_08c9dc(int a0, u32 a1, int a2) {
         switch (iVar2) {
         case 0:
             *(u16 *)(a0 + 0x414) = 0;
-            iVar2 = game_sub_0209b0(a1, PTR_s_cp_ESA_FRONT_HOME_njd_8c139e9c, *(u32 *)(a0 + 0x410), auStack_24);
+            iVar2 = CDCGD_request_type0(a1, PTR_s_cp_ESA_FRONT_HOME_njd_8c139e9c, *(u32 *)(a0 + 0x410), auStack_24);
             if (iVar2 == 1) {
                 *(u32 *)(a0 + 0x848) = auStack_24[0];
                 *(u32 *)(a0 + 0x418) = 1;
@@ -6785,7 +6786,7 @@ u32 game_sub_08c9dc(int a0, u32 a1, int a2) {
             if (*(int *)(iVar1 + 0x18) == 0) {
                 *(u32 *)(a0 + 0x418) = 2;
             } else {
-                iVar2 = game_sub_020d90(a1, *(u32 *)(iVar1 + 0x18), *(u32 *)(a0 + 0x410), s0);
+                iVar2 = CDCGD_sub_020d90(a1, *(u32 *)(iVar1 + 0x18), *(u32 *)(a0 + 0x410), s0);
                 if (iVar2 == 1) {
                     *(u32 *)(a0 + 0x418) = 2;
                 } else if (iVar2 == 0) {
@@ -6812,7 +6813,7 @@ u32 game_sub_08c9dc(int a0, u32 a1, int a2) {
             } else {
                 puVar4 = &uStack_2c;
                 uVar3 = *(u32 *)(a0 + 0x410);
-                iVar2 = game_sub_020ba0(a1, *(u32 *)(iVar1 + 0x1c), uVar3, puVar4);
+                iVar2 = CDCGD_sub_020ba0(a1, *(u32 *)(iVar1 + 0x1c), uVar3, puVar4);
                 if (iVar2 == 1) {
                     set_field_0_015bb0(iVar1 + 0xb0, uStack_2c);
                     *(u32 *)(a0 + 0x418) = 4;
@@ -6837,7 +6838,7 @@ u32 game_sub_08c9dc(int a0, u32 a1, int a2) {
         case 5:
             puVar4 = auStack_24;
             uVar3 = *(u32 *)(a0 + 0x410);
-            iVar2 = game_sub_0209b0(a1, *(u32 *)(iVar1 + 0xc), uVar3, puVar4);
+            iVar2 = CDCGD_request_type0(a1, *(u32 *)(iVar1 + 0xc), uVar3, puVar4);
             if (iVar2 == 1) {
                 set_field_0_015ad4(iVar1 + 0x70, auStack_24[0], uVar3);
                 *(u32 *)(a0 + 0x418) = 6;
@@ -6849,7 +6850,7 @@ u32 game_sub_08c9dc(int a0, u32 a1, int a2) {
             if (*(int *)(iVar1 + 0x20) == 0) {
                 puVar4 = &uStack_28;
                 uVar3 = *(u32 *)(a0 + 0x410);
-                iVar2 = game_sub_020aa8(a1, *(u32 *)(iVar1 + 0xc), uVar3, puVar4);
+                iVar2 = CDCGD_sub_020aa8(a1, *(u32 *)(iVar1 + 0xc), uVar3, puVar4);
                 if (iVar2 == 1) {
                     (**(code **)(*(int *)(iVar1 + 0x78) + 8))((int *)(iVar1 + 0x78), uStack_28, uVar3, puVar4);
                     *(u32 *)(a0 + 0x418) = 7;
@@ -6866,7 +6867,7 @@ u32 game_sub_08c9dc(int a0, u32 a1, int a2) {
         case 7:
             if (*(int *)(iVar1 + 0x20) == 0) {
                 uVar3 = get_field_4_0253e4(iVar1 + 0x78, ar5_00, 0xb, 2);
-                iVar2 = game_sub_020e80(a1, *(u32 *)(iVar1 + 0x14), *(u32 *)(a0 + 0x410), uVar3);
+                iVar2 = CDCGD_request_type_c(a1, *(u32 *)(iVar1 + 0x14), *(u32 *)(a0 + 0x410), uVar3);
                 if (iVar2 == 0) {
                     report_error_message(*(u32 *)(iVar1 + 0x14), "Failed to load tex:CAnimal::LoadTRReq()", 0, 2);
                 }
@@ -6893,7 +6894,7 @@ u32 game_sub_08c9dc(int a0, u32 a1, int a2) {
             } else {
                 if (*(int *)(iVar1 + 0x48) == 0) {
                     uVar3 = get_field_4_0253e4(iVar1 + 0x88, ar5_00, 0xb, 2);
-                    iVar2 = game_sub_020e80(a1, *(u32 *)(iVar1 + 0x10), *(u32 *)(a0 + 0x410), uVar3);
+                    iVar2 = CDCGD_request_type_c(a1, *(u32 *)(iVar1 + 0x10), *(u32 *)(a0 + 0x410), uVar3);
                     if (iVar2 == 0) {
                         report_error_message(*(u32 *)(iVar1 + 0x10), "Failed to load tex:CAnimal::LoadTRReq()", 0, 2);
                     }
@@ -7720,9 +7721,9 @@ u32 game_sub_08eef4(int a0, int a1, u32 a2, u32 a3) {
         iVar1 = ar5_02;
         uVar2 = array_at_field_14(a0 + 0xb0, ar5_02, a2, a3);
         uVar2 = deref_u32(uVar2);
-        ar5_00 = CAnimBody_sub_0342ac(a0 + 0xb0, uVar2, 0);
+        ar5_00 = motion_entry_get_0(a0 + 0xb0, uVar2, 0);
         ar6_00 = 0;
-        ar5_01 = game_sub_034548(a0 + 0xb0, uVar2, 0);
+        ar5_01 = motion_entry_get_4(a0 + 0xb0, uVar2, 0);
         if (cVar7 == '\0') {
             fVar3 = *(float *)(a0 + 0x2cc);
             fVar5 = 319.0;
@@ -7924,10 +7925,10 @@ u32 game_sub_08f354(int a0, int a1, int a2, int a3) {
         iVar2 = iVar4;
         uVar1 = array_at_field_14(a0 + 0xb0, iVar4, iVar3, a3);
         uVar1 = deref_u32(uVar1);
-        ar5_00 = CAnimBody_sub_0342ac(a0 + 0xb0, uVar1, 0);
+        ar5_00 = motion_entry_get_0(a0 + 0xb0, uVar1, 0);
         ar6_00 = 0;
         iVar3 = a0 + 0xb0;
-        ar5_01 = game_sub_034548(iVar3, uVar1, 0);
+        ar5_01 = motion_entry_get_4(iVar3, uVar1, 0);
         if (iVar4 < 0xe) {
             if (cVar11 == '\0') {
                 fVar5 = *(float *)(a0 + 0x2cc);
@@ -8096,9 +8097,9 @@ u32 game_sub_08f9e8(int a0, int a1, u32 a2, u32 a3) {
     }
     uVar1 = array_at_field_14(a0 + 0xb0, ar5_01, a2, a3);
     uVar1 = deref_u32(uVar1);
-    uVar2 = CAnimBody_sub_0342ac(a0 + 0xb0, uVar1, 0);
+    uVar2 = motion_entry_get_0(a0 + 0xb0, uVar1, 0);
     ar6_00 = 0;
-    uVar1 = game_sub_034548(a0 + 0xb0, uVar1, 0);
+    uVar1 = motion_entry_get_4(a0 + 0xb0, uVar1, 0);
     if (cVar7 == '\0') {
         fVar4 = *(float *)(a0 + 0x2cc);
         fVar5 = 6640.0;

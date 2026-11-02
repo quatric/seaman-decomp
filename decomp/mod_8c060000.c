@@ -362,7 +362,7 @@ u8 **game_sub_0611cc(u8 **a0, int *a1, code *a2, char *a3) {
             uVar3 = (**(code **)(*a1 + 0x148))(a1, 0x35, pcVar11, a3);
             uVar9 = 0;
             uVar8 = 0;
-            game_sub_062084(uVar3, 0, 0);
+            set_word_array_9c(uVar3, 0, 0);
             uVar3 = (**(code **)(*a1 + 0x148))(a1, uVar8, uVar9, a3);
             ppuVar4 = (u8 **)set_word_array_a4(uVar3, 0, 0);
             break;
@@ -372,7 +372,7 @@ u8 **game_sub_0611cc(u8 **a0, int *a1, code *a2, char *a3) {
             uVar3 = (**(code **)(*a1 + 0x148))(a1, 0x35, pcVar11, a3);
             uVar9 = 0;
             uVar8 = 1;
-            game_sub_062084(uVar3, 1, 0);
+            set_word_array_9c(uVar3, 1, 0);
             uVar8 = (**(code **)(*a1 + 0x148))(a1, uVar8, uVar9, uVar3);
             uVar9 = 0;
             set_word_array_a4(uVar8, 1, 0);
@@ -381,8 +381,8 @@ u8 **game_sub_0611cc(u8 **a0, int *a1, code *a2, char *a3) {
         case (u8 **)0x23:
         case (u8 **)0x27:
             uVar3 = (**(code **)(*a1 + 0x148))(a1, 0x35, pcVar11, a3);
-            pcVar11 = game_sub_062084;
-            game_sub_062084(uVar3, 0, 1);
+            pcVar11 = set_word_array_9c;
+            set_word_array_9c(uVar3, 0, 1);
             iVar1 = *a1;
             uVar3 = (**(code **)(iVar1 + 0x148))(a1, *(code **)(iVar1 + 0x148), iVar1, pcVar11);
             iVar1 = game_sub_06206c(uVar3, 1);
@@ -396,8 +396,8 @@ u8 **game_sub_0611cc(u8 **a0, int *a1, code *a2, char *a3) {
                     a0[0x216] = NULL;
                     uVar3 = (**(code **)(*a1 + 0x148))(a1, 0x858, a0, 0x858);
                     uVar8 = 0;
-                    pcVar11 = game_sub_062084;
-                    game_sub_062084(uVar3, 0, 0);
+                    pcVar11 = set_word_array_9c;
+                    set_word_array_9c(uVar3, 0, 0);
                     uVar3 = (**(code **)(*a1 + 0x148))(a1, uVar8, *(code **)(*a1 + 0x148), pcVar11);
                     set_word_array_a4(uVar3, 0, 0);
                     a0[0x10] = NULL;
@@ -413,7 +413,7 @@ u8 **game_sub_0611cc(u8 **a0, int *a1, code *a2, char *a3) {
         case (u8 **)0x28:
             uVar3 = (**(code **)(*a1 + 0x148))(a1, 0x35, pcVar11, a3);
             uVar8 = 1;
-            game_sub_062084(uVar3, 1, 1);
+            set_word_array_9c(uVar3, 1, 1);
             uVar3 = (**(code **)(*a1 + 0x148))(a1, *a1, uVar8, a3);
             iVar1 = game_sub_06206c(uVar3, 0);
             if (iVar1 == 1) {
@@ -427,7 +427,7 @@ u8 **game_sub_0611cc(u8 **a0, int *a1, code *a2, char *a3) {
                     uVar3 = (**(code **)(*a1 + 0x148))(a1, 0x708, uVar8, a3);
                     uVar9 = 0;
                     uVar8 = 1;
-                    game_sub_062084(uVar3, 1, 0);
+                    set_word_array_9c(uVar3, 1, 0);
                     uVar3 = (**(code **)(*a1 + 0x148))(a1, uVar8, uVar9, a3);
                     set_word_array_a4(uVar3, 1, 0);
                     a0[0x10] = NULL;
@@ -489,11 +489,11 @@ u32 game_sub_06206c(int a0, int a1) {
 }
 
 /*
- * game_sub_062084  0x8c062084
- * area name: game code; nothing names its area yet
+ * set_word_array_9c  0x8c062084
+ * +0x9c[a1] = a2
  * called by: game_sub_0611cc
  */
-int game_sub_062084(int a0, int a1, u32 a2) {
+int set_word_array_9c(int a0, int a1, u32 a2) {
     int iVar1;
 
     iVar1 = 0x9c;
@@ -7598,7 +7598,7 @@ u32 game_sub_06c148(code *a0, int a1, u32 a2, u32 a3) {
     auStack_1c[1] = g_8c1371d4;
     auStack_1c[2] = g_8c1371d8;
     auStack_1c[3] = g_8c1371dc;
-    Vec3_sub_0f4e34(a0, a1, a2, a3);
+    obj_state_load(a0, a1, a2, a3);
     Vec3_assign(a0 + 0x30, a1 + 0x1c, a2, a3);
     if (cVar4 == '\0') {
         *(u32 *)(a0 + 0x50) = *(u32 *)(a1 + 0x2c);
@@ -7754,7 +7754,7 @@ int game_sub_06c89c(int a0, int a1, u32 a2, u32 a3) {
 
     cVar2 = '\0';
     if ((*(int *)(a0 + 0x220) != 0) || (iVar1 = *(int *)(a0 + 0x230), iVar1 != 7)) {
-        Vec3_sub_0f4f0c(a0, a1, a2, a3);
+        obj_state_save(a0, a1, a2, a3);
         Vec3_assign(a1 + 0x4c, a0 + 0x268, a2, a3);
         vec3_copy_8c023d8c(a1 + 0x5c, a0 + 0x278, a2, a3);
         *(char *)(a1 + 0x68) = (char)*(u32 *)(a0 + 0x210);
@@ -8081,25 +8081,25 @@ u32 game_sub_06d474(int a0, u32 a1, u32 a2, int a3) {
             if (**(char **)(iVar4 * 4 + *(int *)(iVar3 + 4)) != '\0') {
                 a3 = a0 + iVar2;
                 a2 = *(u32 *)(&DATA_8c136f4c);
-                game_sub_020c60(a1, *(u32 *)(iVar4 * 4 + *(int *)(iVar3 + 4)), a2, a3);
+                CDCGD_release_request_wrap(a1, *(u32 *)(iVar4 * 4 + *(int *)(iVar3 + 4)), a2, a3);
             }
             if (**(char **)(iVar4 * 4 + *(int *)(iVar3 + 8)) != '\0') {
                 a3 = a0 + iVar2;
                 a2 = *(u32 *)(&DATA_8c136f4c);
-                CMothLine_sub_020d58(a1, *(u32 *)(iVar4 * 4 + *(int *)(iVar3 + 8)), a2, a3);
+                CDCGD_release_request_wrap_020d58(a1, *(u32 *)(iVar4 * 4 + *(int *)(iVar3 + 8)), a2, a3);
             }
         }
         if (*(int *)(iVar3 + 0x18) != 0) {
             a3 = a0 + iVar2;
             a2 = *(u32 *)(&DATA_8c136f4c);
-            CMothLine_sub_020e48(a1, *(u32 *)(iVar3 + 0x18), a2, a3);
+            CDCGD_release_request_wrap_020e48(a1, *(u32 *)(iVar3 + 0x18), a2, a3);
         }
     }
     iVar2 = (*(code *)(&libgcc_divide_helper_01031c))(*(u32 *)(0x210 + a0), 4, a2, a3);
-    (*(code *)(&game_sub_020a70))(a1, *(u32 *)((&DATA_8c136f54) + iVar2 * 4), *(u32 *)(&DATA_8c136f4c), a0 + 1);
-    (*(code *)(&game_sub_020a70))(a1, *(u32 *)(&DATA_8c136f50), *(u32 *)(&DATA_8c136f4c), a0);
+    (*(code *)(&CDCGD_release_type0))(a1, *(u32 *)((&DATA_8c136f54) + iVar2 * 4), *(u32 *)(&DATA_8c136f4c), a0 + 1);
+    (*(code *)(&CDCGD_release_type0))(a1, *(u32 *)(&DATA_8c136f50), *(u32 *)(&DATA_8c136f4c), a0);
     iVar2 = a0;
-    (*(code *)(&game_sub_020b68))(a1, *(u32 *)(&DATA_8c136f50), *(u32 *)(&DATA_8c136f4c), a0);
+    (*(code *)(&CDCGD_release_type2))(a1, *(u32 *)(&DATA_8c136f50), *(u32 *)(&DATA_8c136f4c), a0);
     uVar1 = (**(code **)(0xf0 + *(int *)(a0 + 8)))(a0, a1, 0, iVar2);
     return uVar1;
 }

@@ -1208,12 +1208,12 @@ int set_field_128_0f4e28(int a0, u32 a1) {
 }
 
 /*
- * Vec3_sub_0f4e34  0x8c0f4e34
- * area name: sits between Vec3 functions (same compilation unit)
+ * obj_state_load  0x8c0f4e34
+ * loads a saved object record (name, two words, three Vec3s, flags) from a1 into a0
  * called by: CAnimal_sub_028ccc, Class_12a990_sub_09c7c0, game_sub_038a44, game_sub_06c148, game_sub_0883e0,
  * game_sub_08b694, game_sub_09ad34, game_sub_0a5614
  */
-u32 Vec3_sub_0f4e34(int a0, int a1, u32 a2, u32 a3) {
+u32 obj_state_load(int a0, int a1, u32 a2, u32 a3) {
     (*(code *)(&sprintf))(a0 + 0xc, a1, a2, a3, "%s");
     *(u32 *)(a0 + 0x20) = *(u32 *)(a1 + 0x14);
     *(u32 *)(a0 + 0x24) = *(u32 *)(a1 + 0x18);
@@ -1240,12 +1240,12 @@ u32 Vec3_sub_0f4ebc(int a0, u32 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * Vec3_sub_0f4f0c  0x8c0f4f0c
- * area name: sits between Vec3 functions (same compilation unit)
+ * obj_state_save  0x8c0f4f0c
+ * saves the object a0 into the record a1 (inverse of obj_state_load)
  * called by: CAnimal_sub_028f60, Class_12a990_sub_09c878, game_sub_038aa4, game_sub_06c89c, game_sub_088440,
  * game_sub_09adec, game_sub_0a56cc
  */
-u32 Vec3_sub_0f4f0c(int a0, int a1, u32 a2, u32 a3) {
+u32 obj_state_save(int a0, int a1, u32 a2, u32 a3) {
     sprintf(a1, a1, a2, a3, "%s");
     *(u32 *)(a1 + 0x14) = *(u32 *)(a0 + 0x20);
     *(u32 *)(a1 + 0x18) = *(u32 *)(a0 + 0x24);
@@ -1977,8 +1977,8 @@ int Class_12bec0_sub_0f5b10(int a0, u32 a1) {
         ar5_01 = &g_8c43b368;
         CSquid_sub_0164c8(a0 + 0x170, &g_8c43b368, 4);
     }
-    game_sub_014790(a0 + 0x170);
-    CSquid_sub_014764(a0 + 0x170);
+    set_flag_14_20(a0 + 0x170);
+    set_flags_14_60(a0 + 0x170);
     CSquid_sub_014a64(a0 + 0x170);
     ar5_02 = &PTR_PTR_8c1401d0;
     (**(code **)(*(int *)(a0 + 0x1b4) + 8))((int *)(a0 + 0x1b4), &PTR_PTR_8c1401d0, ar6_01, ar7_00);
@@ -5722,7 +5722,7 @@ u8 *game_sub_0faa94(int *a0, u32 a1, char *a2, int *a3) {
         }
         a3 = a0 + 0xe;
         a2 = "SPEECH";
-        iVar2 = CDCGD_sub_02126c(0x8c3eb334, a0 + 5, "SPEECH", a3);
+        iVar2 = CDCGD_request_type_10(0x8c3eb334, a0 + 5, "SPEECH", a3);
         if (iVar2 == 2) {
             return (u8 *)2;
         }
@@ -5753,7 +5753,7 @@ u8 *game_sub_0faa94(int *a0, u32 a1, char *a2, int *a3) {
                     *a0 = 2;
                 } else {
                     ar7_00 = a0 + 0x21;
-                    iVar2 = CDCGD_sub_02126c(0x8c3eb334, a0 + 0xf, "SPEECH", ar7_00);
+                    iVar2 = CDCGD_request_type_10(0x8c3eb334, a0 + 0xf, "SPEECH", ar7_00);
                     if (iVar2 == 2) {
                         puVar1 = (u8 *)0x2;
                     } else if (iVar2 == 0) {
@@ -5841,14 +5841,14 @@ u32 game_sub_0fae24(u32 *a0, u32 unused_a1, char *a2, u32 a3) {
     iVar1 = strcmp_0faf30(a0 + 5, auStack_28);
     if (iVar1 != 0) {
         if (*(char *)(a0 + 5) != '\0') {
-            game_sub_021338(0x8c3eb334, a0 + 5, "SPEECH", 1);
+            CDCGD_release_type10(0x8c3eb334, a0 + 5, "SPEECH", 1);
             a3 = 1;
             a2 = "SPEECH";
-            game_sub_021338(0x8c3eb334, a0 + 0xf, "SPEECH", 1);
+            CDCGD_release_type10(0x8c3eb334, a0 + 0xf, "SPEECH", 1);
         }
         strcpy(a0 + 5, auStack_28);
         strcpy(a0 + 0xf, auStack_48);
-        iVar1 = CDCGD_sub_02126c(0x8c3eb334, a0 + 5, "SPEECH", a0 + 0xe);
+        iVar1 = CDCGD_request_type_10(0x8c3eb334, a0 + 5, "SPEECH", a0 + 0xe);
         if (iVar1 == 0) {
             *(u8 *)(a0 + 5) = 0;
             return 0;
@@ -5910,7 +5910,7 @@ u32 game_sub_0faf98(int a0, char *a1, char *a2, u32 a3) {
           (iVar1 = strcmp_0faf30(auStack_30, a0 + 0x5c), iVar1 != 0)))) {
         a3 = 1;
         a2 = "SPEECH";
-        game_sub_021338(0x8c3eb334, a0 + 0x3c, "SPEECH", 1);
+        CDCGD_release_type10(0x8c3eb334, a0 + 0x3c, "SPEECH", 1);
         *(u8 *)(a0 + 0x5c) = 0;
     }
     strcpy(a0 + 0x5c, auStack_30);
@@ -6524,12 +6524,12 @@ u32 game_sub_0fbf28(u32 *a0, u32 unused_a1, char *a2, u8 *a3) {
             strcat(auStack_11c, &g_8c141e17);
             a3 = auStack_120;
             a2 = "SPEECH";
-            iVar2 = CDCGD_sub_02126c(0x8c3eb334, auStack_11c, "SPEECH", a3);
+            iVar2 = CDCGD_request_type_10(0x8c3eb334, auStack_11c, "SPEECH", a3);
             if (iVar2 == 1) {
                 a3 = (u8 *)0x1;
                 a2 = "SPEECH";
                 ar5_00 = a0 + 0x24;
-                game_sub_021338(0x8c3eb334, ar5_00, "SPEECH", 1);
+                CDCGD_release_type10(0x8c3eb334, ar5_00, "SPEECH", 1);
                 if (a0[0x22035] == 0) {
                     game_sub_01bcf4(a0[3], ar5_00, a2, a3);
                 }
@@ -8023,7 +8023,7 @@ int game_sub_0fe5f0(int a0, u32 a1) {
 
 /*
  * CWaterSnowList_TakeOut  0x8c0fe690
- * called by: game_sub_0d5218, game_sub_0d57e8
+ * called by: Class_12b580_sub_0d57e8, game_sub_0d5218
  * strings: "POne pointer is NULL.."; "CWaterSnowList::TakeOut()"
  */
 int CWaterSnowList_TakeOut(int a0, int a1) {
@@ -8050,7 +8050,7 @@ int CWaterSnowList_TakeOut(int a0, int a1) {
 
 /*
  * CWaterSnowList_GetWaterSnowO  0x8c0fe764
- * called by: game_sub_0d5218, game_sub_0d57e8
+ * called by: Class_12b580_sub_0d57e8, game_sub_0d5218
  * strings: "Invalid POne number"; "CWaterSnowList::GetWaterSnowOnePtr()"
  */
 u32 CWaterSnowList_GetWaterSnowO(int a0, int a1) {
@@ -8071,7 +8071,7 @@ u32 CWaterSnowList_GetWaterSnowO(int a0, int a1) {
 /*
  * game_sub_0fe7f4  0x8c0fe7f4
  * area name: game code; nothing names its area yet
- * called by: game_sub_0d5218, game_sub_0d57e8
+ * called by: Class_12b580_sub_0d57e8, game_sub_0d5218
  */
 u32 game_sub_0fe7f4(int a0) {
 
@@ -8281,7 +8281,7 @@ u32 game_sub_0febf0(int a0) {
 /*
  * game_sub_0fec4c  0x8c0fec4c
  * area name: game code; nothing names its area yet
- * called by: game_sub_0d5218, game_sub_0d57e8
+ * called by: Class_12b580_sub_0d57e8, game_sub_0d5218
  */
 u32 game_sub_0fec4c(u32 a0, int *a1) {
     *(u32 *)(*a1 + 0x58) = 0;
@@ -8448,11 +8448,11 @@ u32 CItemGLoader_sub_0feeb0(int a0, int *a1) {
 }
 
 /*
- * CItemGLoader_sub_0feef8  0x8c0feef8
- * area name: sits between CItemGLoader functions (same compilation unit)
+ * CItemGLoader_is_done  0x8c0feef8
+ * 1 when the load request a1 has finished (+0x10 == 2)
  * called by: CAnimal_sub_0859c8, CAnimal_sub_0ad0e0, Class_12a5d0_sub_08ac38
  */
-u32 CItemGLoader_sub_0feef8(u32 unused_a0, int a1) {
+u32 CItemGLoader_is_done(u32 unused_a0, int a1) {
     return (u32)(*(int *)(a1 + 0x10) == 2);
 }
 
@@ -8482,11 +8482,11 @@ u32 CItemGLoader_sub_0fef10(int a0, u32 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0fef8c  0x8c0fef8c
- * area name: game code; nothing names its area yet
+ * CItemGLoader_sub_0fef8c  0x8c0fef8c
+ * area name: sits between CItemGLoader functions (same compilation unit)
  * called by: game_sub_0c4644
  */
-u32 game_sub_0fef8c(u32 a0) {
+u32 CItemGLoader_sub_0fef8c(u32 a0) {
     return a0;
 }
 

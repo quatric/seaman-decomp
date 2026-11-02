@@ -4515,7 +4515,7 @@ u32 game_sub_078fd0(int a0, int *a1, int *a2, int *a3) {
                 fVar6 = (float)((u64)uVar8 >> 0x20);
                 pcVar4 = Vec3_ctor_xyz;
                 Vec3_ctor_xyz(auStack_16c, piVar2, Vec3_ctor_xyz, ar7_00);
-                iVar1 = Class_12b2ac_sub_023cd4(a0 + 0x200, auStack_16c);
+                iVar1 = Vec3_equal(a0 + 0x200, auStack_16c);
                 uVar3 = 0xffffffff;
                 Vec3_dtor(auStack_16c, 0xffffffff, pcVar4, ar7_00);
                 if (iVar1 == 0) {
@@ -5721,7 +5721,7 @@ u32 game_sub_07baa0(int a0, u32 a1, u32 a2, u32 a3) {
     uVar2 = a2;
     ar6_00 = a2;
     ar7_00 = a3;
-    iVar1 = Class_12b2ac_sub_023cd4(a0 + 0x270, a2);
+    iVar1 = Vec3_equal(a0 + 0x270, a2);
     if (iVar1 != 0) {
         uVar2 = timer_sub_031de8(a0, 0, ar6_00, ar7_00);
         return uVar2;
@@ -5830,7 +5830,7 @@ u32 game_sub_07bec4(int a0, u32 a1, u8 *a2, u32 a3) {
     ar5_00 = a2;
     ar6_00 = a2;
     uVar2 = a3;
-    iVar1 = Class_12b2ac_sub_023cd4(a0 + 0x270, a2);
+    iVar1 = Vec3_equal(a0 + 0x270, a2);
     if (iVar1 != 0) {
         uVar2 = timer_sub_031de8(a0, 0x13, ar6_00, uVar2);
         return uVar2;

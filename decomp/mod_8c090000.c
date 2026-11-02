@@ -269,9 +269,9 @@ u32 game_sub_0911f0(int a0, u32 a1, int a2, u32 a3) {
         }
         uVar4 = array_at_field_14(a0 + 0xb0, iVar1, iVar3, a3);
         uVar4 = deref_u32(uVar4);
-        ar5_00 = CAnimBody_sub_0342ac(a0 + 0xb0, uVar4, 0);
+        ar5_00 = motion_entry_get_0(a0 + 0xb0, uVar4, 0);
         ar6_00 = 0;
-        ar5_01 = game_sub_034548(a0 + 0xb0, uVar4, 0);
+        ar5_01 = motion_entry_get_4(a0 + 0xb0, uVar4, 0);
         if (cVar9 == '\0') {
             fVar5 = *(float *)(a0 + 0x2cc);
             fVar7 = 319.0;
@@ -408,9 +408,9 @@ u32 game_sub_091570(int a0, u32 a1, int a2, u32 a3) {
     }
     uVar4 = array_at_field_14(a0 + 0xb0, iVar2, ar6_00, a3);
     uVar4 = deref_u32(uVar4);
-    uVar3 = CAnimBody_sub_0342ac(a0 + 0xb0, uVar4, 0);
+    uVar3 = motion_entry_get_0(a0 + 0xb0, uVar4, 0);
     ar6_01 = 0;
-    uVar4 = game_sub_034548(a0 + 0xb0, uVar4, 0);
+    uVar4 = motion_entry_get_4(a0 + 0xb0, uVar4, 0);
     if (cVar9 == '\0') {
         in_fr1 = *(float *)(a0 + 0x2cc);
     } else {
@@ -6513,7 +6513,7 @@ u32 game_sub_09ad00(int a0, u32 a1, u32 a2, u32 a3) {
 u32 game_sub_09ad34(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    Vec3_sub_0f4e34(a0, a1, a2, a3);
+    obj_state_load(a0, a1, a2, a3);
     game_sub_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
     uVar1 = copy15_in_normalize(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
@@ -6539,7 +6539,7 @@ u32 game_sub_09ad94(int a0, int a1, u32 a2, u32 a3) {
 u32 game_sub_09adec(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    Vec3_sub_0f4f0c(a0, a1, a2, a3);
+    obj_state_save(a0, a1, a2, a3);
     game_sub_02cf20(a0 + 0x174, a1 + 0x4c, a2);
     uVar1 = copy15_out(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
@@ -7967,7 +7967,7 @@ u32 noop_09c7bc(void) {
 u32 Class_12a990_sub_09c7c0(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    Vec3_sub_0f4e34(a0, a1, a2, a3);
+    obj_state_load(a0, a1, a2, a3);
     game_sub_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
     uVar1 = copy15_in_normalize(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
@@ -7993,7 +7993,7 @@ u32 Class_12a990_sub_09c820(int a0, int a1, u32 a2, u32 a3) {
 u32 Class_12a990_sub_09c878(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    Vec3_sub_0f4f0c(a0, a1, a2, a3);
+    obj_state_save(a0, a1, a2, a3);
     game_sub_02cf20(a0 + 0x174, a1 + 0x4c, a2);
     uVar1 = copy15_out(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;

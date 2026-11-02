@@ -313,3 +313,31 @@
 8c23ba30	clear_4_words	a0[0..3] = 0
 8c21907e	set_vec3_g_278744	stores fr4..fr6 at 0x8c278744
 8c212740	point_transform_or_copy	a2 = the current matrix times a1, or the position at +0x30 of object a0 when it is set
+8c0209b0	CDCGD_request_type0	disc request type 0 (handle at +0x28) through CDCGD_sub_02077c
+8c020e80	CDCGD_request_type_c	disc request type 0xc (handle at +0x2c); on success finishes it with 8c020f5c
+8c02126c	CDCGD_request_type_10	disc request type 0x10 (handle at +0x34)
+8c0208ec	CDCGD_release_request	finds the request of type a1 in list *a2 and frees it and its buffer
+8c02051c	CDCGD_find_request	walks the request list from a2 for the one matching type a1
+8c020a70	CDCGD_release_type0	CDCGD_release_request for type 0 (list at +0x28)
+8c020b68	CDCGD_release_type2	CDCGD_release_request for type 2 (list at +0x28)
+8c021338	CDCGD_release_type10	CDCGD_release_request for type 0x10 (list at +0x34)
+8c26be30	span_take	takes at most a1 bytes from the span a2 (pointer, length) into a3 and advances it
+8c0220d4	Class_12b580_set_request	stores request a1 (+0x9ec94) when the object is ready (+0x9ec14); 1 on success
+8c0220bc	Class_12b580_clear_request	clears the request (+0x9ec94 = -1) and the ready flag
+8c0f4e34	obj_state_load	loads a saved object record (name, two words, three Vec3s, flags) from a1 into a0
+8c0f4f0c	obj_state_save	saves the object a0 into the record a1 (inverse of obj_state_load)
+8c0342ac	motion_entry_get_0	word 0 of record a2 of the 0x18-byte motion table *a1
+8c034548	motion_entry_get_4	word 1 of record a2 of the 0x18-byte motion table *a1
+8c102974	linear_map_set_range	linear_map_set plus a range (+0xc, +0x10) from fr8, fr9
+8c014790	set_flag_14_20	sets bit 5 of the flags at +0x14
+8c014764	set_flags_14_60	sets bits 5 and 6 of the flags at +0x14
+8c019160	rotate_degrees	rotates the current matrix by fr4 degrees (converted to a Ninja angle)
+8c023cd4	Vec3_equal	1 when all three components match
+8c062084	set_word_array_9c	+0x9c[a1] = a2
+8c0feef8	CItemGLoader_is_done	1 when the load request a1 has finished (+0x10 == 2)
+8c0d2028	CEnv_set_texlist	selects the environment texture list (0x8c4377f4) and its first texture
+8c01f6dc	file_slot_open	opens file a1 in slot a2 (< 3, 0x16034 bytes each) with a 2 KB buffer
+8c01ee54	input_test_2_mode0	input_mask_test(2, 0); 2 while the demo input is active
+8c02077c	CDCGD_request	looks request type a1 up in the pending (+0x20), failed (+0x24) and finished lists; queues it when new. 2 queued, 1 done (buffer and size returned in *s4, *s8), 0 failed
+8c02000c	CDCGD_new_request_c	creates a request of type 0xc..0xe and puts it on the pending list
+8c01ffa0	CDCGD_new_request	creates a request of another type

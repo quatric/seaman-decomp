@@ -2381,7 +2381,7 @@ int ADXF_sub_261f7a(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ADXF_sub_26201c  0x8c26201c
  * area name: sits between ADXF functions (same compilation unit)
- * called by: ADXF_LoadPartition, ADXF_sub_261d46, game_sub_0202c0, game_sub_02041c
+ * called by: ADXF_LoadPartition, ADXF_sub_261d46, CDCGD_sub_0202c0, CDCGD_sub_02041c
  */
 int ADXF_sub_26201c(u32 a0, u32 a1) {
     int a4;
@@ -2487,8 +2487,8 @@ int ADXF_sub_26211c(int a0, u32 a1, u32 a2, u32 a3, int ain0) {
 /*
  * ADXF_Close_like  0x8c262168
  * stops an ADXF handle that is reading and clears it (0x30 bytes)
- * called by: ADXF_LoadPartition, ADXF_sub_261d46, ADXF_sub_26201c, ADXF_sub_2620c8, ADXF_sub_2621e2, game_sub_01f8a4,
- * game_sub_01fab4, game_sub_02049c
+ * called by: ADXF_LoadPartition, ADXF_sub_261d46, ADXF_sub_26201c, ADXF_sub_2620c8, ADXF_sub_2621e2, CDCGD_sub_02049c,
+ * game_sub_01f8a4, game_sub_01fab4
  */
 u32 ADXF_Close_like(int a0) {
     u32 uVar1;
@@ -2637,7 +2637,7 @@ u32 ADXF_sub_2622e4(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ADXF_sub_262312  0x8c262312
  * name hint from a string it uses: E9040816 adxf is NULL ADXF R; area name: sits between ADXF functions (same
- * compilation unit) called by: cri_sub_261ae2, game_sub_01fab4, game_sub_0202c0
+ * compilation unit) called by: CDCGD_sub_0202c0, cri_sub_261ae2, game_sub_01fab4
  */
 u32 ADXF_sub_262312(int *a0, int a1, u32 a2) {
     int *piVar1;
@@ -2808,7 +2808,7 @@ u32 ADXF_sub_262524(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ADXF_Seek  0x8c262554
  * named from the library error message it prints (ADXF_Seek)
- * called by: game_sub_0202c0
+ * called by: CDCGD_sub_0202c0
  * strings: "E9040825:'adxf' is NULL.(ADXF_Seek)\n"; "E9040826:'type' is illigal.(ADXF_Seek)\n"
  */
 u32 ADXF_Seek(int a0, int a1, int a2) {
@@ -2940,7 +2940,7 @@ u32 ADXF_GetFsizeSct(int a0, u32 unused_a1, u32 a2) {
 /*
  * ADXF_GetFsizeByte  0x8c262646
  * named from the library error message it prints (ADXF_GetFsizeByte)
- * called by: game_sub_0202c0, game_sub_02041c
+ * called by: CDCGD_sub_0202c0, CDCGD_sub_02041c
  * strings: "E9040829:'adxf' is NULL.(ADXF_GetFsizeByte)\n"
  */
 u32 ADXF_GetFsizeByte(int a0, u32 unused_a1, u32 a2) {
@@ -3638,7 +3638,7 @@ u32 ta_sub_262c80(int a0) {
             memmove(a0 + 0x58, uStack_1c, iStack_18);
         }
         ar7_00 = auStack_24;
-        game_sub_26be30(&uStack_1c, ar5_00, &uStack_1c, ar7_00);
+        span_take(&uStack_1c, ar5_00, &uStack_1c, ar7_00);
         (**(code **)(*a4 + 0x20))(a4, 0, &uStack_1c, ar7_00);
         (**(code **)(*a4 + 0x1c))(a4, 1, auStack_24, ar7_00);
         uVar4 = 2;
@@ -3764,13 +3764,13 @@ u32 cri_sub_262f02(int a0) {
     iVar2 = get_field_18_25ff16(uVar5);
     ar5_00 = get_field_a000a4_25fff0(uVar5);
     iVar3 = get_field_a0_25fff6(uVar5);
-    puVar1 = (&game_sub_26be30);
+    puVar1 = (&span_take);
     iVar2 = iVar2 - *(int *)(a0 + 0x34);
     if (iVar3 < iVar2) {
         iVar2 = iVar3;
     }
     ar7_00 = auStack_30;
-    game_sub_26be30(a0 + 0x14, ar5_00, &uStack_28, ar7_00);
+    span_take(a0 + 0x14, ar5_00, &uStack_28, ar7_00);
     (**(code **)(*piVar6 + 0x20))(piVar6, 0, &uStack_28, ar7_00);
     ar5_01 = 1;
     a6 = auStack_30;
@@ -4529,7 +4529,7 @@ int ADXSTM_sub_2635a4(int a0, int a1, u8 *a2, u8 *a3) {
         if (iVar1 == 1) {
             iVar6 = *(int *)(a0 + 0x20) * 0x800;
             a3 = auStack_20;
-            game_sub_26be30(a0 + 0x24, iVar6, auStack_18, a3);
+            span_take(a0 + 0x24, iVar6, auStack_18, a3);
             (**(code **)(*a4 + 0x20))(a4, 1, auStack_18, a3);
             uVar5 = 0;
             a2 = auStack_20;
@@ -5498,7 +5498,7 @@ int cri_sub_264308(int a0, int a1, int a2) {
     iVar1 = libgcc_divide_helper_010468(uStack_1c, d);
     iVar1 = iVar1 * d;
     memset(uStack_20, 0, iVar1);
-    game_sub_26be30(&uStack_20, iVar1, &uStack_20, auStack_28);
+    span_take(&uStack_20, iVar1, &uStack_20, auStack_28);
     (**(code **)(*a4 + 0x20))(a4, 1, &uStack_20, a7);
     (**(code **)(*a4 + 0x1c))(a4, 0, auStack_28, a7);
     puVar2 = &uStack_20;
@@ -5506,7 +5506,7 @@ int cri_sub_264308(int a0, int a1, int a2) {
     iVar3 = libgcc_divide_helper_010468(uStack_1c, d);
     iVar3 = iVar3 * d;
     memset(uStack_20, 0, iVar3);
-    game_sub_26be30(&uStack_20, iVar3, &uStack_20, auStack_28);
+    span_take(&uStack_20, iVar3, &uStack_20, auStack_28);
     (**(code **)(*a4 + 0x20))(a4, 1, &uStack_20, a7_00);
     (**(code **)(*a4 + 0x1c))(a4, 0, auStack_28, a7_00);
     iVar1 = libgcc_divide_helper_010468(iVar1 + iVar3, d);
@@ -11662,7 +11662,7 @@ u32 sd_sub_268f3e(int a0, u32 unused_a1, u8 *a2, u8 *a3) {
         puVar2 = auStack_30;
         a3 = auStack_38;
         uVar1 = libgcc_divide_helper_010468(*(int *)(a0 + 0x3c) * *(int *)(a0 + 8), 8);
-        game_sub_26be30(&uStack_28, uVar1, puVar2, a3);
+        span_take(&uStack_28, uVar1, puVar2, a3);
         piVar3 = *(int **)(a0 + 0x10 + iVar4 * 4);
         (**(code **)(*piVar3 + 0x20))(piVar3, 0, auStack_30, a3);
         piVar3 = *(int **)(a0 + 0x10 + iVar4 * 4);
@@ -12258,7 +12258,7 @@ u32 mwRnaDiscardData(int a0, int a1, u8 *a2, u8 *a3) {
                 }
                 for (iVar2 = 0; iVar2 < (int)(u32) * (u8 *)(a0 + 3); iVar2 = iVar2 + 1) {
                     a3 = auStack_40;
-                    game_sub_26be30(auStack_30 + iVar2 * 8, ar5_00, auStack_38, a3);
+                    span_take(auStack_30 + iVar2 * 8, ar5_00, auStack_38, a3);
                     piVar5 = *(int **)(a0 + 0x10 + iVar2 * 4);
                     (**(code **)(*piVar5 + 0x20))(piVar5, 0, auStack_38, a3);
                     piVar5 = *(int **)(a0 + 0x10 + iVar2 * 4);
@@ -15197,7 +15197,7 @@ u32 game_sub_26bb16(int a0, int a1, u8 *a2, u32 *a3, u32 ain0) {
         if (*(char *)(a0 + 5) == '\x01') {
             ar7_00 = auStack_24;
             ar6_00 = auStack_1c;
-            game_sub_26be30(auStack_1c, a2, ar6_00, ar7_00);
+            span_take(auStack_1c, a2, ar6_00, ar7_00);
             switch_jump(8, a3, auStack_1c);
             switch_jump(8, puVar3 + 2, auStack_24);
             goto LAB_8c26bbce;
@@ -15340,12 +15340,12 @@ u32 game_sub_26bd86(int a0, int a1, int a2, u32 *a3) {
 }
 
 /*
- * game_sub_26be30  0x8c26be30
- * area name: game code; nothing names its area yet
+ * span_take  0x8c26be30
+ * takes at most a1 bytes from the span a2 (pointer, length) into a3 and advances it
  * called by: ADXSTM_sub_2635a4, cri_sub_262f02, cri_sub_264308, game_sub_26bb16, mwRnaDiscardData, sd_sub_268f3e,
  * ta_sub_262c80
  */
-u32 game_sub_26be30(u32 a0, int a1, int *a2, int *a3) {
+u32 span_take(u32 a0, int a1, int *a2, int *a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;

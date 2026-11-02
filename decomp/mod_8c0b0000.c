@@ -584,7 +584,7 @@ u32 game_sub_0b0eec(int a0, float *a1, float *a2, u32 a3) {
                 uVar9 = array_at_field_14(a0 + 0xb0, 0xd, a1, a3);
                 ar5_00 = (int *)deref_u32(uVar9);
                 a2 = (float *)0x1;
-                iVar4 = CAnimBody_sub_0342ac(a0 + 0xb0, ar5_00, 1);
+                iVar4 = motion_entry_get_0(a0 + 0xb0, ar5_00, 1);
                 if (iVar4 != 0) {
                     g_8c286db8 = iVar4;
                 }

@@ -4406,7 +4406,7 @@ u32 gdfs_handle_init_like(int *a0, int a1, int a2, int a3) {
 /*
  * set_fields_0_4_8_1f3078  0x8c1f3078
  * stores +0x0, +0x4, +0x8
- * called by: game_sub_01f6dc, shinobi_sub_1f1d8c
+ * called by: file_slot_open, shinobi_sub_1f1d8c
  */
 u32 *set_fields_0_4_8_1f3078(u32 *a0, u32 a1) {
     *a0 = 0;
@@ -5027,7 +5027,7 @@ u32 gdfs_sub_1f38f4(u32 a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 /*
  * gdfs_sub_1f3926  0x8c1f3926
  * area name: sits between gdfs functions (same compilation unit)
- * called by: game_sub_01f6dc
+ * called by: file_slot_open
  */
 u32 gdfs_sub_1f3926(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5044,7 +5044,7 @@ u32 gdfs_sub_1f3926(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gdfs_sub_1f3952  0x8c1f3952
  * area name: sits between gdfs functions (same compilation unit)
- * called by: game_sub_020148
+ * called by: CDCGD_sub_020148
  */
 u32 gdfs_sub_1f3952(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -14113,8 +14113,8 @@ u32 noop_1fb43a(void) {
 
 /*
  * malloc_thunk  0x8c1fb4ae
- * called by: CProlog_sub_0b96e4, draw_sub_258b26, game_init, game_sub_015f18, game_sub_01af14, game_sub_01b2a4,
- * game_sub_01b4f0, game_sub_01b70c (+11 more)
+ * called by: CDCGD_new_request_c, CDCGD_sub_0202c0, CProlog_sub_0b96e4, draw_sub_258b26, game_init, game_sub_015f18,
+ * game_sub_01af14, game_sub_01b2a4 (+11 more)
  */
 u32 malloc_thunk(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -14178,8 +14178,8 @@ u32 *malloc_sub_1fb4c2(int a0) {
 /*
  * malloc_sub_1fb57c  0x8c1fb57c
  * area name: sits between malloc functions (same compilation unit)
- * called by: CProlog_sub_0b96e4, asr_sub_01d7cc, draw_sub_258b26, game_shutdown_a, game_sub_015f18, game_sub_01af14,
- * game_sub_01ddfc, game_sub_01e0a4 (+9 more)
+ * called by: CDCGD_release_request, CDCGD_sub_02049c, CProlog_sub_0b96e4, asr_sub_01d7cc, draw_sub_258b26,
+ * game_shutdown_a, game_sub_015f18, game_sub_01af14 (+9 more)
  */
 u32 malloc_sub_1fb57c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;

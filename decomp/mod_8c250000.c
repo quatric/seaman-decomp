@@ -12219,7 +12219,7 @@ u32 ninja_sub_256ce0(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) 
 /*
  * ninja_sub_256d7c  0x8c256d7c
  * area name: in the ninja library code range
- * called by: Class_129a24_m1_019b68, Class_12aeec_sub_0a481c, game_sub_019160, game_sub_023f34
+ * called by: Class_129a24_m1_019b68, Class_12aeec_sub_0a481c, game_sub_023f34, rotate_degrees
  */
 u32 ninja_sub_256d7c(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
