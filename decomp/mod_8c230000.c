@@ -8163,9 +8163,9 @@ int gfxlib_uses_ta_fifo_233e10(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     iVar1 = ta_fifo_2137c0(a0, a1, a2, a3);
     if (iVar1 == 0) {
         if ((*a0 & 0xffff) == 3) {
-            iVar1 = shinobi_uses_rec4c_alloc_203a92(a0, a1, a2, a3);
+            iVar1 = vram_small_tex_alloc(a0, a1, a2, a3);
         } else {
-            iVar1 = shinobi_list_2038c0(a0[5], a0, a2, a3);
+            iVar1 = vram_list_2038c0(a0[5], a0, a2, a3);
             a1 = a0;
         }
         if (iVar1 == 3) {

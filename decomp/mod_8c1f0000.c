@@ -14655,7 +14655,7 @@ u32 vmu_block_read_retry(int a0, u32 a1, u32 a2) {
  * vmu_block_write_retry  0x8c1fbc44
  * retries vmu_block_write_phases up to the global retry count, counting the retries and reporting them through the slot
  * callback called by: alt_entry_1febe6, shinobi_save_1fde30, shinobi_save_1fecf2, shinobi_save_200038,
- * shinobi_save_2014e6, vmu_file_write_next_block, vmu_flush_dir_blocks, vmu_write_blocks_from
+ * vmu_file_write_blocks_at, vmu_file_write_next_block, vmu_flush_dir_blocks, vmu_write_blocks_from
  */
 u32 vmu_block_write_retry(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -16391,7 +16391,7 @@ u32 vmu_block_write_phases(int a0, int a1, char *a2, u32 *a3) {
 /*
  * cmp_512_bytes  0x8c1fd4f0
  * 0 when the 512 bytes at a0 and a1 match, else -1
- * called by: shinobi_save_20103c, shinobi_save_201240
+ * called by: vmu_file_save_alt_verify, vmu_file_save_verify
  */
 u32 cmp_512_bytes(char *a0, char *a1) {
     int iVar1;
@@ -17264,7 +17264,7 @@ int vmu_get_drive_info(int a0, int a1) {
 /*
  * bu_get_free_blocks_now  0x8c1fe350
  * counts the free (0xfffc) FAT blocks of drive a0, else a negative bu error
- * called by: buGetFreeBlocks_like, shinobi_save_20112c, vmu_file_save, vmu_get_drive_info
+ * called by: buGetFreeBlocks_like, vmu_file_save, vmu_file_save_alt, vmu_get_drive_info
  */
 u32 bu_get_free_blocks_now(int a0, int a1) {
     int iVar1;
@@ -17370,8 +17370,8 @@ int vmu_count_free_blocks(int a0, u32 a1) {
 /*
  * vmu_file_open  0x8c1fe534
  * checks the FAT chain of file a1 on port a0, allocates a file handle and fills it from the directory entry; stores the
- * handle in *a2 called by: shinobi_save_1fc286, shinobi_save_20103c, shinobi_save_201240, shinobi_save_2013c2,
- * vmu_file_load
+ * handle in *a2 called by: shinobi_save_1fc286, vmu_file_load, vmu_file_load_range, vmu_file_save_alt_verify,
+ * vmu_file_save_verify
  */
 int vmu_file_open(int a0, u32 a1, int *a2) {
     int iVar1;
@@ -17435,7 +17435,7 @@ int vmu_file_open(int a0, u32 a1, int *a2) {
 /*
  * shinobi_save_1fe646  0x8c1fe646
  * area name: in the shinobi library code range; behaviour name: mostly calls save functions
- * called by: shinobi_save_1fc2ee, shinobi_save_20112c, shinobi_save_201240
+ * called by: shinobi_save_1fc2ee, vmu_file_save_alt, vmu_file_save_alt_verify
  */
 int shinobi_save_1fe646(int a0, char *a1, u32 a2, int *a3) {
     u8 *puVar1;
@@ -17515,7 +17515,7 @@ int shinobi_save_1fe646(int a0, char *a1, u32 a2, int *a3) {
 /*
  * vmu_file_create  0x8c1fe7aa
  * deletes any file named a1 on port a0, takes an empty directory entry and a handle, and fills in the name and date a2;
- * stores the handle in *a3 called by: shinobi_save_1fc2b8, shinobi_save_20103c, vmu_file_save
+ * stores the handle in *a3 called by: shinobi_save_1fc2b8, vmu_file_save, vmu_file_save_verify
  */
 int vmu_file_create(int a0, char *a1, u32 a2, int *a3) {
     u8 *puVar1;
@@ -17625,8 +17625,8 @@ int shinobi_input_1fe8f2(int a0, u32 a1, u32 a2) {
 /*
  * vmu_file_close  0x8c1fe9ae
  * writes the handle's directory entry back (type 0xcc game or 0x33 data, start block, size, header offset, name and
- * date) and frees the handle called by: shinobi_save_20103c, shinobi_save_20112c, shinobi_save_201240,
- * shinobi_save_2013c2, vmu_file_load, vmu_file_save
+ * date) and frees the handle called by: vmu_file_load, vmu_file_load_range, vmu_file_save, vmu_file_save_alt,
+ * vmu_file_save_alt_verify, vmu_file_save_verify
  */
 int vmu_file_close(int a0, int a1, u8 *a2, u32 a3) {
     int iVar1;
@@ -17790,7 +17790,7 @@ int alt_entry_1feb1e(u32 unused_a0, int a1, int a2, u32 a3) {
 /*
  * vmu_file_write_next_block  0x8c1febd6
  * allocates a free FAT block, writes a1 to it (moving on to another free block on failure) and links it to the end of
- * the file's chain called by: shinobi_save_20103c, vmu_file_save
+ * the file's chain called by: vmu_file_save, vmu_file_save_verify
  */
 int vmu_file_write_next_block(int a0, u32 a1) {
     u8 *puVar1;
@@ -17907,7 +17907,7 @@ int alt_entry_1febe6(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * shinobi_save_1fecf2  0x8c1fecf2
  * area name: in the shinobi library code range; behaviour name: mostly calls save functions
- * called by: shinobi_save_20112c, shinobi_save_201240
+ * called by: vmu_file_save_alt, vmu_file_save_alt_verify
  */
 int shinobi_save_1fecf2(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -18031,8 +18031,8 @@ int alt_entry_1fee02(u32 unused_a0, int a1, int a2) {
 /*
  * vmu_file_read_next_block  0x8c1fee6c
  * reads the file's next block into a1 and follows its FAT link; returns the number of blocks left
- * called by: alt_entry_1fee02, shinobi_save_20103c, shinobi_save_201240, shinobi_save_2013c2, vmu_file_load,
- * vmu_file_read_blocks
+ * called by: alt_entry_1fee02, vmu_file_load, vmu_file_load_range, vmu_file_read_blocks, vmu_file_save_alt_verify,
+ * vmu_file_save_verify
  */
 int vmu_file_read_next_block(int a0, u32 a1) {
     u32 r6;
@@ -18782,7 +18782,7 @@ u32 vmu_file_set_attrs(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * bu_get_file_size_now  0x8c1ffb70
  * size in blocks of file a1 from the directory of drive a0, else a negative bu error
- * called by: buGetFileSize_like, shinobi_save_2013c2, vmu_file_load, vmu_file_save
+ * called by: buGetFileSize_like, vmu_file_load, vmu_file_load_range, vmu_file_save
  */
 int bu_get_file_size_now(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;

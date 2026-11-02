@@ -106,7 +106,7 @@ int kamui_uses_ta_fifo_21092e(u32 *a0, int a1, int a2, int a3, int s0) {
             if (0x200000U - g_8c4aa200 < g_8c4aa1f8) {
                 g_8c4aa1f8 = 0x200000U - g_8c4aa200;
             }
-            iVar7 = shinobi_list_203820(g_8c4aa1f8, &g_8c4aa280, &g_8c4aa284);
+            iVar7 = vram_list_203820(g_8c4aa1f8, &g_8c4aa280, &g_8c4aa284);
             if (iVar7 == 0) {
                 g_8c4aa004 = g_8c4aa1f8;
                 uVar8 = g_8c4a9c24 >> 7;
@@ -239,7 +239,7 @@ u32 ta_fifo_210d80(int a0) {
 u32 ta_calls_scan_loop_210dfc(u32 a0) {
     int iVar1;
 
-    iVar1 = sh4_scan_loop_203298(g_8c4a9fd4);
+    iVar1 = shinobi_scan_loop_203298(g_8c4a9fd4);
     if (iVar1 != 1) {
         return 0xd;
     }
@@ -280,7 +280,7 @@ int ta_uses_sh4_dmac_210e40(int a0, u32 a1) {
         if (0x200000U - g_8c4aa200 < g_8c4aa1f8) {
             g_8c4aa1f8 = 0x200000U - g_8c4aa200;
         }
-        iVar1 = shinobi_list_203820(g_8c4aa1f8, &g_8c4aa280, &g_8c4aa284);
+        iVar1 = vram_list_203820(g_8c4aa1f8, &g_8c4aa280, &g_8c4aa284);
         if (iVar1 == 0) {
             g_8c4aa004 = g_8c4aa1f8;
             ninja_draw_25d7c6(g_8c4a9c18 >> 7, g_8c4a9c1c >> 7, g_8c4a9c20 >> 7, g_8c4a9c24 >> 7, uVar2 & ~g_8c4aa1b8);
@@ -297,15 +297,15 @@ int ta_uses_sh4_dmac_210e40(int a0, u32 a1) {
 }
 
 /*
- * kamui_list_210fd2  0x8c210fd2
- * area name: in the kamui library code range; behaviour name: mostly calls list functions
+ * kamui_release_210fd2  0x8c210fd2
+ * area name: in the kamui library code range; behaviour name: mostly calls release functions
  * called by: ninja_release_2590bc
  */
-int kamui_list_210fd2(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
+int kamui_release_210fd2(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     u32 *puVar2;
 
-    iVar1 = shinobi_list_203ca0(g_8c4aa280, g_8c4aa284, a2, a3);
+    iVar1 = vram_release_203ca0(g_8c4aa280, g_8c4aa284, a2, a3);
     if (iVar1 != 0) {
         return iVar1;
     }
@@ -316,15 +316,15 @@ int kamui_list_210fd2(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * kamui_list_210fd4  0x8c210fd4
- * area name: in the kamui library code range; behaviour name: mostly calls list functions
+ * kamui_release_210fd4  0x8c210fd4
+ * area name: in the kamui library code range; behaviour name: mostly calls release functions
  */
-int kamui_list_210fd4(u32 unused_a0, u32 *a1, u32 a2, u32 a3) {
+int kamui_release_210fd4(u32 unused_a0, u32 *a1, u32 a2, u32 a3) {
     int iVar1;
     u32 *puVar2;
     u32 *puVar3;
 
-    iVar1 = shinobi_list_203ca0(g_8c4aa280, *a1, a2, a3);
+    iVar1 = vram_release_203ca0(g_8c4aa280, *a1, a2, a3);
     if (iVar1 != 0) {
         return iVar1;
     }
@@ -695,7 +695,7 @@ int kamui_uses_kamui_cfg_texture_memory_211120(int a0, u32 unused_a1, u32 unused
     if (g_8c4aa1f8 < g_8c4aa204) {
         iVar4 = 3;
     } else {
-        iVar4 = shinobi_list_203820(g_8c4aa1f8, auStack_54, auStack_50);
+        iVar4 = vram_list_203820(g_8c4aa1f8, auStack_54, auStack_50);
         if (iVar4 == 0) {
             g_8c4aa004 = g_8c4aa1f8;
             uVar3 = g_8c4a9c24 >> 7;

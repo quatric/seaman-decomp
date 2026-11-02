@@ -2163,3 +2163,17 @@
 8c200346	vmu_flush_dir_blocks	writes each dirty directory block, moving a failing block to a free one and relinking, then flushes the FAT and root when anything moved
 8c2007f0	vmu_flush_fat_relocate	writes the FAT, moving it to a fresh run of free blocks when its blocks fail, then writes the root block
 8c200f2c	vmu_file_save	checks for space, creates file a1 on port a0, writes a3 blocks from a2 and closes it (s4 bit 31 picks the alternative writer)
+8c20103c	vmu_file_save_verify	creates file a1 on port a0, writes a3 blocks from a2, then reopens it and compares every block read back (0xffffff10 on a mismatch)
+8c20112c	vmu_file_save_alt	like vmu_file_save but counts the second free-block area and creates and writes the file with the alternative routines
+8c201240	vmu_file_save_alt_verify	like vmu_file_save_verify but creates and writes the file with the alternative routines
+8c2013c2	vmu_file_load_range	opens file a1 on port a0, skips a3 blocks and reads s0 blocks (the rest of the file when 0) into a2
+8c2014e6	vmu_file_write_blocks_at	for a game file a1 on port a0, checks its chain and writes s0 blocks from a2 to the blocks starting at a3 in place
+8c203400	vram_reset_all	frees every block on the two VRAM pools' used and free lists and the small-texture blocks, and clears the block record pool
+8c2036a0	vram_alloc_reuse_last	rounds a0 up to 32 bytes; when it matches the last request, hands out the second half of that allocation, else allocates a new pair
+8c2039e0	vram_tex_alloc	rounds a0 up to 32 bytes and gives texture a1 a free VRAM block from pool 0 or 1, or finds and splits space; returns 3 when none fits
+8c203a92	vram_small_tex_alloc	places small texture a0 in a free slot of a shared block of its size class, allocating a new shared block when needed
+8c203cd0	vram_small_tex_free	frees small texture a0's slot in its shared block and releases the block once all its slots are empty; 7 when not found
+8c2041e2	vram_find_fit_offset	searches the free list for an offset where a0 bytes fit in both pools (2 KB steps for twiddled mipmaps, 32 bytes otherwise); -1 when none
+8c204cfc	vram_block_free_merge	moves block a1 of pool a0 from the used to the free list, merging it with adjacent free blocks
+8c204f2a	vram64_copy_chunked	copies a2 bytes of VRAM from a1 to a0 through a 2 KB stack buffer, writing back the cache for each chunk
+8c205020	dlist_sort_desc_c	selection-sorts the doubly linked list (head a0, tail a1) by the +0xc field, largest first

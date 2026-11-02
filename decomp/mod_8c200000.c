@@ -1148,7 +1148,7 @@ u32 ret_const_0_200aec(void) {
 /*
  * vmu_file_check_chain  0x8c200b10
  * checks that file a1's FAT chain on port a0 has the right length, ends with 0xfffa and has no free or out-of-range
- * links called by: shinobi_save_2014e6, vmu_file_delete, vmu_file_get_block_list, vmu_file_open
+ * links called by: vmu_file_delete, vmu_file_get_block_list, vmu_file_open, vmu_file_write_blocks_at
  */
 int vmu_file_check_chain(int a0, u32 a1) {
     int iVar1;
@@ -1576,18 +1576,18 @@ u32 vmu_file_save(int a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4) {
                 vmu_file_close(iStack_20, 0, s0, ar7_00);
             }
         } else {
-            uVar1 = shinobi_save_20103c(a0, a1, iStack_1c, a3);
+            uVar1 = vmu_file_save_verify(a0, a1, iStack_1c, a3);
         }
     }
     return uVar1;
 }
 
 /*
- * shinobi_save_20103c  0x8c20103c
- * area name: in the shinobi library code range; behaviour name: mostly calls save functions
- * called by: vmu_file_save
+ * vmu_file_save_verify  0x8c20103c
+ * creates file a1 on port a0, writes a3 blocks from a2, then reopens it and compares every block read back (0xffffff10
+ * on a mismatch) called by: vmu_file_save
  */
-int shinobi_save_20103c(int a0, u32 a1, int a2, u32 a3, u8 *s0, u32 s4) {
+int vmu_file_save_verify(int a0, u32 a1, int a2, u32 a3, u8 *s0, u32 s4) {
     int iVar1;
     int *ar6_00;
     int *ar7_00;
@@ -1651,10 +1651,11 @@ int shinobi_save_20103c(int a0, u32 a1, int a2, u32 a3, u8 *s0, u32 s4) {
 }
 
 /*
- * shinobi_save_20112c  0x8c20112c
- * area name: in the shinobi library code range; behaviour name: mostly calls save functions
+ * vmu_file_save_alt  0x8c20112c
+ * like vmu_file_save but counts the second free-block area and creates and writes the file with the alternative
+ * routines
  */
-u32 shinobi_save_20112c(int a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4) {
+u32 vmu_file_save_alt(int a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4) {
     u32 uVar1;
     int *ar7_00;
     u32 uVar2;
@@ -1693,18 +1694,18 @@ u32 shinobi_save_20112c(int a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4) {
                 vmu_file_close(iStack_24, 0, s0, ar7_00);
             }
         } else {
-            uVar1 = shinobi_save_201240(a0, uStack_1c, iStack_20, a3);
+            uVar1 = vmu_file_save_alt_verify(a0, uStack_1c, iStack_20, a3);
         }
     }
     return uVar1;
 }
 
 /*
- * shinobi_save_201240  0x8c201240
- * area name: in the shinobi library code range; behaviour name: mostly calls save functions
- * called by: shinobi_save_20112c
+ * vmu_file_save_alt_verify  0x8c201240
+ * like vmu_file_save_verify but creates and writes the file with the alternative routines
+ * called by: vmu_file_save_alt
  */
-int shinobi_save_201240(int a0, u32 a1, int a2, u32 a3, u8 *s0, u32 s4) {
+int vmu_file_save_alt_verify(int a0, u32 a1, int a2, u32 a3, u8 *s0, u32 s4) {
     int iVar1;
     int *ar6_00;
     int *ar7_00;
@@ -1770,7 +1771,7 @@ int shinobi_save_201240(int a0, u32 a1, int a2, u32 a3, u8 *s0, u32 s4) {
 /*
  * vmu_file_skip_blocks  0x8c20135c
  * advances the open file's block cursor a1 blocks along its FAT chain; 0xffff0000 on a broken chain
- * called by: shinobi_save_2013c2
+ * called by: vmu_file_load_range
  */
 u32 vmu_file_skip_blocks(int a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -1835,10 +1836,10 @@ u32 alt_entry_20136c(void) {
 }
 
 /*
- * shinobi_save_2013c2  0x8c2013c2
- * area name: in the shinobi library code range; behaviour name: mostly calls save functions
+ * vmu_file_load_range  0x8c2013c2
+ * opens file a1 on port a0, skips a3 blocks and reads s0 blocks (the rest of the file when 0) into a2
  */
-int shinobi_save_2013c2(int a0, u32 a1, int a2, int a3, u32 s0) {
+int vmu_file_load_range(int a0, u32 a1, int a2, int a3, u32 s0) {
     int iVar1;
     int iVar2;
     u32 ar6_00;
@@ -1919,10 +1920,10 @@ int vmu_file_get_block_list(u32 a0, u32 a1, u16 *a2) {
 }
 
 /*
- * shinobi_save_2014e6  0x8c2014e6
- * area name: in the shinobi library code range; behaviour name: mostly calls save functions
+ * vmu_file_write_blocks_at  0x8c2014e6
+ * for a game file a1 on port a0, checks its chain and writes s0 blocks from a2 to the blocks starting at a3 in place
  */
-int shinobi_save_2014e6(int a0, u32 a1, int a2, u32 a3, u32 s0) {
+int vmu_file_write_blocks_at(int a0, u32 a1, int a2, u32 a3, u32 s0) {
     u8 *puVar1;
     u32 uVar2;
     u8 *ar6_00;
@@ -4245,7 +4246,7 @@ u32 shinobi_uses_sh4_dmac_202a80(u32 *a0, int a1, u32 a2, int a3, int s0) {
     }
     iVar1 = get_g_8c2758e8();
     if (iVar1 == -0x80000000) {
-        iVar1 = kamui_list_2036a0(g_8c4aa200, a0);
+        iVar1 = vram_alloc_reuse_last(g_8c4aa200, a0);
         if (iVar1 != 0) {
             return iVar1;
         }
@@ -4561,11 +4562,11 @@ u32 sh4_dmac_203160(void) {
 }
 
 /*
- * sh4_scan_loop_203298  0x8c203298
- * area name: sits between sh4 functions (same compilation unit); behaviour name: a loop that only reads
+ * shinobi_scan_loop_203298  0x8c203298
+ * area name: in the shinobi library code range; behaviour name: a loop that only reads
  * called by: pvr_calls_scan_loop_20a7e0, shinobi_calls_scan_loop_203320, ta_calls_scan_loop_210dfc
  */
-u32 sh4_scan_loop_203298(int a0) {
+u32 shinobi_scan_loop_203298(int a0) {
     u32 uVar1;
     int *piVar2;
     int *piVar3;
@@ -4603,7 +4604,7 @@ u32 shinobi_calls_scan_loop_203320(u32 a0, u32 a1) {
     int iVar1;
 
     do {
-        iVar1 = sh4_scan_loop_203298(a0);
+        iVar1 = shinobi_scan_loop_203298(a0);
     } while (iVar1 != 1);
     return 1;
 }
@@ -4627,11 +4628,11 @@ u32 strupr(char *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_uses_pool47eba8_free_203400  0x8c203400
- * area name: in the shinobi library code range; behaviour name: its main named callee is pool47eba8_free
- * called by: kamui_cfg_texture_memory, kamui_cfg_texture_memory_b
+ * vram_reset_all  0x8c203400
+ * frees every block on the two VRAM pools' used and free lists and the small-texture blocks, and clears the block
+ * record pool called by: kamui_cfg_texture_memory, kamui_cfg_texture_memory_b
  */
-u32 shinobi_uses_pool47eba8_free_203400(void) {
+u32 vram_reset_all(void) {
     u32 in_r0;
     u16 *puVar1;
     u8 *ar5_00;
@@ -4787,7 +4788,7 @@ u32 kamui_cfg_texture_memory(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3
             uVar3 = 0;
             pvr_20a844(0xe4, 0);
         }
-        shinobi_uses_pool47eba8_free_203400();
+        vram_reset_all();
         g_8c275410 = g_8c2753f4;
         g_8c275424 = g_8c2753fc;
         iVar1 = pool47eba8_alloc(uVar2, uVar3, uVar5, a3);
@@ -4826,7 +4827,7 @@ u32 kamui_cfg_texture_memory(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3
             uVar3 = 0;
             pvr_20a844(0xe4, 0);
         }
-        shinobi_uses_pool47eba8_free_203400();
+        vram_reset_all();
         g_8c275410 = g_8c2753f4;
         g_8c275424 = g_8c2753fc;
         iVar1 = pool47eba8_alloc(uVar2, uVar3, uVar5, a3);
@@ -4886,7 +4887,7 @@ u32 kamui_cfg_texture_memory_b(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 
             uVar3 = 0;
             pvr_20a844(0xe4, 0);
         }
-        shinobi_uses_pool47eba8_free_203400();
+        vram_reset_all();
         g_8c275410 = g_8c2753f4;
         g_8c275424 = g_8c2753fc;
         iVar1 = pool47eba8_alloc(uVar2, uVar3, uVar5, a3);
@@ -4925,7 +4926,7 @@ u32 kamui_cfg_texture_memory_b(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 
             uVar3 = 0;
             pvr_20a844(0xe4, 0);
         }
-        shinobi_uses_pool47eba8_free_203400();
+        vram_reset_all();
         g_8c275410 = g_8c2753f4;
         g_8c275424 = g_8c2753fc;
         iVar1 = pool47eba8_alloc(uVar2, uVar3, uVar5, a3);
@@ -4949,11 +4950,11 @@ u32 kamui_cfg_texture_memory_b(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 
 }
 
 /*
- * kamui_list_2036a0  0x8c2036a0
- * area name: sits between kamui functions (same compilation unit); behaviour name: mostly calls list functions
- * called by: shinobi_uses_sh4_dmac_202a80
+ * vram_alloc_reuse_last  0x8c2036a0
+ * rounds a0 up to 32 bytes; when it matches the last request, hands out the second half of that allocation, else
+ * allocates a new pair called by: shinobi_uses_sh4_dmac_202a80
  */
-int kamui_list_2036a0(u32 a0, int a1) {
+int vram_alloc_reuse_last(u32 a0, int a1) {
     u32 uVar1;
     int iVar2;
     u32 uVar3;
@@ -4978,10 +4979,10 @@ int kamui_list_2036a0(u32 a0, int a1) {
         ar5_00 = a0 << 1;
         if ((g_8c4a9bb0 & 4) == 0) {
             uVar3 = 8;
-            iVar2 = shinobi_list_2046d2(0, ar5_00, a1, 8);
+            iVar2 = vram_list_2046d2(0, ar5_00, a1, 8);
         } else {
             uVar3 = 8;
-            iVar2 = shinobi_list_2046d2((u32)(g_8c275410 < g_8c275424), ar5_00, a1, 8);
+            iVar2 = vram_list_2046d2((u32)(g_8c275410 < g_8c275424), ar5_00, a1, 8);
         }
         if (iVar2 == 0) {
             g_8c27542c = *(int *)(a1 + 0x1c);
@@ -5025,10 +5026,10 @@ int alt_entry_2036ac(u32 unused_a0, int a1, u32 unused_a2, u32 unused_a3, u32 ai
         ar5_00 = unaff_r13 << 1;
         if ((g_8c4a9bb0 & 4) == 0) {
             uVar3 = 8;
-            iVar2 = shinobi_list_2046d2(0, ar5_00, a1, 8);
+            iVar2 = vram_list_2046d2(0, ar5_00, a1, 8);
         } else {
             uVar3 = 8;
-            iVar2 = shinobi_list_2046d2((u32)(g_8c275410 < g_8c275424), ar5_00, a1, 8);
+            iVar2 = vram_list_2046d2((u32)(g_8c275410 < g_8c275424), ar5_00, a1, 8);
         }
         if (iVar2 == 0) {
             g_8c27542c = *(int *)(a1 + 0x1c);
@@ -5042,10 +5043,10 @@ int alt_entry_2036ac(u32 unused_a0, int a1, u32 unused_a2, u32 unused_a3, u32 ai
 }
 
 /*
- * shinobi_list_20374e  0x8c20374e
- * area name: in the shinobi library code range; behaviour name: mostly calls list functions
+ * vram_list_20374e  0x8c20374e
+ * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls list functions
  */
-int shinobi_list_20374e(u32 a0, int a1, int a2) {
+int vram_list_20374e(u32 a0, int a1, int a2) {
     u32 uVar1;
     int iVar2;
     u32 uVar3;
@@ -5064,10 +5065,10 @@ int shinobi_list_20374e(u32 a0, int a1, int a2) {
     ar5_00 = a0 << 1;
     if ((g_8c4a9bb0 & 4) == 0) {
         uVar4 = 8;
-        iVar2 = shinobi_list_2046d2(0, ar5_00, a1, 8);
+        iVar2 = vram_list_2046d2(0, ar5_00, a1, 8);
     } else {
         uVar4 = 8;
-        iVar2 = shinobi_list_2046d2((u32)(g_8c275410 <= g_8c275424), ar5_00, a1, 8);
+        iVar2 = vram_list_2046d2((u32)(g_8c275410 <= g_8c275424), ar5_00, a1, 8);
     }
     if (iVar2 == 0) {
         ar4_00 = *(int *)(a1 + 0x1c);
@@ -5082,11 +5083,11 @@ int shinobi_list_20374e(u32 a0, int a1, int a2) {
 }
 
 /*
- * shinobi_list_203820  0x8c203820
- * area name: in the shinobi library code range; behaviour name: mostly calls list functions
+ * vram_list_203820  0x8c203820
+ * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls list functions
  * called by: kamui_uses_kamui_cfg_texture_memory_211120, kamui_uses_ta_fifo_21092e, ta_uses_sh4_dmac_210e40
  */
-int shinobi_list_203820(u32 a0, int *a1, u32 *a2) {
+int vram_list_203820(u32 a0, int *a1, u32 *a2) {
     u8 *puVar1;
     u32 uVar2;
     int iVar3;
@@ -5108,7 +5109,7 @@ int shinobi_list_203820(u32 a0, int *a1, u32 *a2) {
     ar7_00 = (int)0x2000;
     ar5_00 = a0 << 1;
     ar6_00 = a1;
-    iVar3 = shinobi_list_2046d2(0, ar5_00, a1, ar7_00);
+    iVar3 = vram_list_2046d2(0, ar5_00, a1, ar7_00);
     if (iVar3 == 0) {
         ar4_00 = *a1;
         iVar4 = vram64_to_vram32(ar4_00);
@@ -5121,43 +5122,43 @@ int shinobi_list_203820(u32 a0, int *a1, u32 *a2) {
 }
 
 /*
- * shinobi_list_2038c0  0x8c2038c0
- * area name: in the shinobi library code range; behaviour name: mostly calls list functions
- * called by: gfxlib_uses_ta_fifo_233e10, kamui_uses_callback_table_call_20ca32, pvr_list_20c980,
- * pvr_uses_ta_fifo_20c90c
+ * vram_list_2038c0  0x8c2038c0
+ * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls list functions
+ * called by: gfxlib_uses_ta_fifo_233e10, kamui_uses_callback_table_call_20ca32, pvr_uses_ta_fifo_20c90c,
+ * pvr_uses_vram_small_tex_alloc_20c980
  */
-u32 shinobi_list_2038c0(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 vram_list_2038c0(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     int iStack_14;
     int aiStack_10[2];
 
     if ((g_8c4a9bb0 & 4) == 0) {
-        uVar1 = shinobi_list_2048aa(1, a0, a1, a3);
+        uVar1 = vram_list_2048aa(1, a0, a1, a3);
     } else {
         mem_pools_largest_free(&iStack_14, aiStack_10);
-        uVar1 = shinobi_list_2048aa((u32)(iStack_14 < aiStack_10[0]), a0, a1, a3);
+        uVar1 = vram_list_2048aa((u32)(iStack_14 < aiStack_10[0]), a0, a1, a3);
     }
     return uVar1;
 }
 
 /*
- * shinobi_list_203914  0x8c203914
- * area name: in the shinobi library code range; behaviour name: mostly calls list functions
+ * vram_list_203914  0x8c203914
+ * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls list functions
  */
-int shinobi_list_203914(u32 a0, int a1, u32 a2) {
+int vram_list_203914(u32 a0, int a1, u32 a2) {
     int iVar1;
     int iVar2;
 
-    iVar1 = shinobi_calls_scan_loop_2041e2(a0, a1);
+    iVar1 = vram_find_fit_offset(a0, a1);
     if (iVar1 == -1) {
         iVar2 = 3;
     } else {
-        iVar2 = shinobi_list_2043d4(0, iVar1, a0, a1);
+        iVar2 = vram_list_2043d4(0, iVar1, a0, a1);
         if (iVar2 == 0) {
             iVar1 = g_8c2753f4 + iVar1;
-            iVar2 = shinobi_list_2043d4(1, iVar1, a0, a2);
+            iVar2 = vram_list_2043d4(1, iVar1, a0, a2);
             if (iVar2 != 0) {
-                shinobi_list_203bda(*(u32 *)(a1 + 0x1c), iVar1, a0, a2);
+                vram_release_203bda(*(u32 *)(a1 + 0x1c), iVar1, a0, a2);
             }
         }
     }
@@ -5165,21 +5166,22 @@ int shinobi_list_203914(u32 a0, int a1, u32 a2) {
 }
 
 /*
- * shinobi_list_203980  0x8c203980
- * area name: in the shinobi library code range; behaviour name: mostly calls list functions
+ * vram_list_203980  0x8c203980
+ * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls list functions
  */
-u32 shinobi_list_203980(u32 a0, int a1) {
+u32 vram_list_203980(u32 a0, int a1) {
     u32 uVar1;
 
-    uVar1 = shinobi_list_2043d4((u32)(g_8c2753f8 <= *(int *)(a1 + 0x1c)), *(int *)(a1 + 0x1c), a0, a1);
+    uVar1 = vram_list_2043d4((u32)(g_8c2753f8 <= *(int *)(a1 + 0x1c)), *(int *)(a1 + 0x1c), a0, a1);
     return uVar1;
 }
 
 /*
- * shinobi_uses_mem_pool_find_block_2039e0  0x8c2039e0
- * area name: in the shinobi library code range; behaviour name: its callees mostly do: uses_mem_pool_find_block
+ * vram_tex_alloc  0x8c2039e0
+ * rounds a0 up to 32 bytes and gives texture a1 a free VRAM block from pool 0 or 1, or finds and splits space; returns
+ * 3 when none fits
  */
-int shinobi_uses_mem_pool_find_block_2039e0(u32 a0, int a1) {
+int vram_tex_alloc(u32 a0, int a1) {
     u32 uVar1;
     u16 *puVar2;
     int iVar3;
@@ -5201,13 +5203,13 @@ int shinobi_uses_mem_pool_find_block_2039e0(u32 a0, int a1) {
         puVar2 = (u16 *)shinobi_uses_mem_pool_find_block_204c00(1, a0, a1);
     }
     if (puVar2 == NULL) {
-        iVar4 = shinobi_calls_scan_loop_2041e2(a0, a1);
+        iVar4 = vram_find_fit_offset(a0, a1);
         if (iVar4 == -1) {
             iVar3 = 3;
         } else {
-            iVar3 = shinobi_list_2043d4(0, iVar4, a0, a1);
+            iVar3 = vram_list_2043d4(0, iVar4, a0, a1);
             if (iVar3 == 0) {
-                iVar3 = shinobi_list_2043d4(1, g_8c2753f4 + iVar4, a0, auStack_3c);
+                iVar3 = vram_list_2043d4(1, g_8c2753f4 + iVar4, a0, auStack_3c);
             }
         }
     } else {
@@ -5220,11 +5222,11 @@ int shinobi_uses_mem_pool_find_block_2039e0(u32 a0, int a1) {
 }
 
 /*
- * shinobi_uses_rec4c_alloc_203a92  0x8c203a92
- * area name: in the shinobi library code range; behaviour name: its main named callee is rec4c_alloc_496ba8
- * called by: gfxlib_uses_ta_fifo_233e10, pvr_list_20c980, pvr_uses_ta_fifo_20c90c
+ * vram_small_tex_alloc  0x8c203a92
+ * places small texture a0 in a free slot of a shared block of its size class, allocating a new shared block when needed
+ * called by: gfxlib_uses_ta_fifo_233e10, pvr_uses_ta_fifo_20c90c, pvr_uses_vram_small_tex_alloc_20c980
  */
-u32 shinobi_uses_rec4c_alloc_203a92(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 vram_small_tex_alloc(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u16 *puVar3;
@@ -5301,12 +5303,12 @@ u32 shinobi_uses_rec4c_alloc_203a92(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_list_203bda  0x8c203bda
- * area name: in the shinobi library code range; behaviour name: mostly calls list functions
- * called by: alt_entry_20cf8c, kamui_list_20cf88, kamui_uses_callback_table_call_20ca32, pvr_list_20c980,
- * shinobi_list_203914, shinobi_list_203ca0, shinobi_list_203cd0
+ * vram_release_203bda  0x8c203bda
+ * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls release functions
+ * called by: alt_entry_20cf8c, kamui_release_20cf88, kamui_uses_callback_table_call_20ca32,
+ * pvr_uses_vram_small_tex_alloc_20c980, vram_list_203914, vram_release_203ca0, vram_small_tex_free
  */
-u32 shinobi_list_203bda(int a0, u32 a1, u32 a2, u32 a3) {
+u32 vram_release_203bda(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u16 *ar5_00;
     u32 uVar2;
@@ -5318,7 +5320,7 @@ u32 shinobi_list_203bda(int a0, u32 a1, u32 a2, u32 a3) {
     if (ar5_00 == NULL) {
         uVar2 = 7;
     } else if ((*ar5_00 & 2) == 0) {
-        uVar2 = shinobi_list_204cfc((int)asStack_14[0], ar5_00, a2, a3);
+        uVar2 = vram_block_free_merge((int)asStack_14[0], ar5_00, a2, a3);
     } else {
         iVar1 = g_8c2753f4;
         if (asStack_14[0] != 0) {
@@ -5326,11 +5328,11 @@ u32 shinobi_list_203bda(int a0, u32 a1, u32 a2, u32 a3) {
         }
         ar5_01 = (u16 *)mem_pool_find_block(iVar1 + a0, asStack_10);
         if (ar5_01 == NULL) {
-            shinobi_list_204cfc((int)asStack_14[0], ar5_00, a2, a3);
+            vram_block_free_merge((int)asStack_14[0], ar5_00, a2, a3);
             uVar2 = 0;
         } else if ((*ar5_01 & 4) == 0) {
-            shinobi_list_204cfc((int)asStack_14[0], ar5_00, a2, a3);
-            uVar2 = shinobi_list_204cfc((int)asStack_10[0], ar5_01, a2, a3);
+            vram_block_free_merge((int)asStack_14[0], ar5_00, a2, a3);
+            uVar2 = vram_block_free_merge((int)asStack_10[0], ar5_01, a2, a3);
         } else {
             *ar5_00 = *ar5_00 & 0xfffb;
             uVar2 = 0;
@@ -5340,32 +5342,32 @@ u32 shinobi_list_203bda(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_list_203ca0  0x8c203ca0
- * area name: in the shinobi library code range; behaviour name: mostly calls list functions
- * called by: kamui_list_210fd2, kamui_list_210fd4
+ * vram_release_203ca0  0x8c203ca0
+ * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls release functions
+ * called by: kamui_release_210fd2, kamui_release_210fd4
  */
-u32 shinobi_list_203ca0(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 vram_release_203ca0(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     u32 a5;
 
     a5 = a1;
     uVar1 = vram_addr_64_to_32(a0);
-    iVar2 = shinobi_list_203bda(uVar1, a5, a2, a3);
+    iVar2 = vram_release_203bda(uVar1, a5, a2, a3);
     uVar1 = 0;
     if (iVar2 != 0) {
         uVar1 = vram_addr_64_to_32(a1);
-        uVar1 = shinobi_list_203bda(uVar1, a5, a2, a3);
+        uVar1 = vram_release_203bda(uVar1, a5, a2, a3);
     }
     return uVar1;
 }
 
 /*
- * shinobi_list_203cd0  0x8c203cd0
- * area name: in the shinobi library code range; behaviour name: mostly calls list functions
- * called by: alt_entry_20cf8c, kamui_list_20cf88, pvr_list_20c980
+ * vram_small_tex_free  0x8c203cd0
+ * frees small texture a0's slot in its shared block and releases the block once all its slots are empty; 7 when not
+ * found called by: alt_entry_20cf8c, kamui_release_20cf88, pvr_uses_vram_small_tex_alloc_20c980
  */
-u32 shinobi_list_203cd0(int a0) {
+u32 vram_small_tex_free(int a0) {
     bool bVar1;
     int iVar2;
     u16 *puVar3;
@@ -5420,7 +5422,7 @@ u32 shinobi_list_203cd0(int a0) {
             } while (uVar5 < uStack_1c);
         }
         if (!bVar1) {
-            iVar2 = shinobi_list_203bda(*(u32 *)(ar5_00 + 4), 1, 0, uStack_1c);
+            iVar2 = vram_release_203bda(*(u32 *)(ar5_00 + 4), 1, 0, uStack_1c);
             if (iVar2 != 0) {
                 return iVar2;
             }
@@ -5434,11 +5436,11 @@ u32 shinobi_list_203cd0(int a0) {
 }
 
 /*
- * shinobi_scan_loop_203de0  0x8c203de0
- * area name: in the shinobi library code range; behaviour name: a loop that only reads
+ * vram_scan_loop_203de0  0x8c203de0
+ * area name: sits between vram functions (same compilation unit); behaviour name: a loop that only reads
  * called by: kamui_calls_scan_loop_20cfe0
  */
-u32 shinobi_scan_loop_203de0(int *a0, int *a1, int *a2, int *a3) {
+u32 vram_scan_loop_203de0(int *a0, int *a1, int *a2, int *a3) {
     u16 *puVar1;
     u16 uVar2;
     u16 *puVar3;
@@ -5552,7 +5554,7 @@ u32 shinobi_scan_loop_203de0(int *a0, int *a1, int *a2, int *a3) {
 /*
  * mem_pools_largest_free  0x8c204006
  * stores the largest block size of each of the two pool lists in *a0 and *a1
- * called by: shinobi_list_2038c0, shinobi_uses_rec4c_alloc_203a92
+ * called by: vram_list_2038c0, vram_small_tex_alloc
  */
 u32 mem_pools_largest_free(int *a0, int *a1) {
     u16 *puVar1;
@@ -5588,18 +5590,18 @@ u32 mem_pools_largest_free(int *a0, int *a1) {
 }
 
 /*
- * shinobi_list_20408e  0x8c20408e
- * area name: in the shinobi library code range; behaviour name: mostly calls list functions
+ * vram_list_20408e  0x8c20408e
+ * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls list functions
  * called by: kamui_draw_20d114
  */
-u32 shinobi_list_20408e(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 vram_list_20408e(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 in_r0;
     u32 uVar1;
 
-    uVar1 = shinobi_list_205020(&g_8c275400, &g_8c275404, unused_a2, a3, in_r0);
-    uVar1 = shinobi_list_205020(&g_8c275414, &g_8c275418, unused_a2, a3, uVar1);
-    uVar1 = shinobi_list_205020(&g_8c275408, &g_8c27540c, unused_a2, a3, uVar1);
-    shinobi_list_205020(&g_8c27541c, &g_8c275420, unused_a2, a3, uVar1);
+    uVar1 = dlist_sort_desc_c(&g_8c275400, &g_8c275404, unused_a2, a3, in_r0);
+    uVar1 = dlist_sort_desc_c(&g_8c275414, &g_8c275418, unused_a2, a3, uVar1);
+    uVar1 = dlist_sort_desc_c(&g_8c275408, &g_8c27540c, unused_a2, a3, uVar1);
+    dlist_sort_desc_c(&g_8c27541c, &g_8c275420, unused_a2, a3, uVar1);
     return 0;
 }
 
@@ -5611,19 +5613,19 @@ u32 alt_entry_204092(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int unaff_r14;
     u32 in_PR;
 
-    shinobi_list_205020(unaff_r14, unaff_r14 + 4, unused_a2, a3, in_PR);
-    shinobi_list_205020(&g_8c275414, &g_8c275418, unused_a2, a3, in_PR);
-    shinobi_list_205020(unaff_r14 + 8, unaff_r14 + 0xc, unused_a2, a3, in_PR);
-    shinobi_list_205020(&g_8c27541c, &g_8c275420, unused_a2, a3, in_PR);
+    dlist_sort_desc_c(unaff_r14, unaff_r14 + 4, unused_a2, a3, in_PR);
+    dlist_sort_desc_c(&g_8c275414, &g_8c275418, unused_a2, a3, in_PR);
+    dlist_sort_desc_c(unaff_r14 + 8, unaff_r14 + 0xc, unused_a2, a3, in_PR);
+    dlist_sort_desc_c(&g_8c27541c, &g_8c275420, unused_a2, a3, in_PR);
     return 0;
 }
 
 /*
- * shinobi_draw_2040ce  0x8c2040ce
- * area name: in the shinobi library code range; behaviour name: mostly calls draw functions
+ * vram_draw_2040ce  0x8c2040ce
+ * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls draw functions
  * called by: kamui_draw_20d114
  */
-int shinobi_draw_2040ce(void) {
+int vram_draw_2040ce(void) {
     int iVar1;
 
     iVar1 = ta_fifo_2050cc(&g_8c275408, &g_8c27540c, &g_8c275400, &g_8c275404);
@@ -5649,11 +5651,11 @@ int alt_entry_2040d2(void) {
 }
 
 /*
- * shinobi_calc_204140  0x8c204140
- * area name: in the shinobi library code range; behaviour name: integer arithmetic on its arguments
- * called by: shinobi_calls_scan_loop_2041e2
+ * vram_calc_204140  0x8c204140
+ * area name: sits between vram functions (same compilation unit); behaviour name: integer arithmetic on its arguments
+ * called by: vram_find_fit_offset
  */
-u32 shinobi_calc_204140(int a0, u32 a1) {
+u32 vram_calc_204140(int a0, u32 a1) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -5682,11 +5684,11 @@ u32 shinobi_calc_204140(int a0, u32 a1) {
 }
 
 /*
- * shinobi_calls_scan_loop_2041e2  0x8c2041e2
- * area name: in the shinobi library code range; behaviour name: its callees mostly do: scan_loop
- * called by: shinobi_list_203914, shinobi_uses_mem_pool_find_block_2039e0
+ * vram_find_fit_offset  0x8c2041e2
+ * searches the free list for an offset where a0 bytes fit in both pools (2 KB steps for twiddled mipmaps, 32 bytes
+ * otherwise); -1 when none called by: vram_list_203914, vram_tex_alloc
  */
-int shinobi_calls_scan_loop_2041e2(u32 a0, int a1) {
+int vram_find_fit_offset(u32 a0, int a1) {
     int a4;
     u32 uVar1;
     int iVar2;
@@ -5719,16 +5721,16 @@ int shinobi_calls_scan_loop_2041e2(u32 a0, int a1) {
             if ((((uVar1 & 1) == 0) || ((uVar1 & 8) != 0)) || ((uVar1 & 0x20) != 0)) {
                 iStack_24 = 1;
                 for (iVar2 = *(int *)(a4 + 0xc); iVar2 <= iVar5; iVar2 = iVar2 + 0x20) {
-                    iVar3 = shinobi_scan_loop_20436c(1, g_8c2753f4 + iVar2, a0);
+                    iVar3 = vram_scan_loop_20436c(1, g_8c2753f4 + iVar2, a0);
                     if (iVar3 == 0) {
                         return iVar2;
                     }
                 }
             } else {
-                iVar2 = shinobi_calc_204140(a4, a0);
+                iVar2 = vram_calc_204140(a4, a0);
                 if (-1 < iVar2) {
                     for (; iVar2 <= iVar5; iVar2 = iVar2 + 0x800) {
-                        iVar3 = shinobi_scan_loop_20436c(1, g_8c2753f4 + iVar2, a0);
+                        iVar3 = vram_scan_loop_20436c(1, g_8c2753f4 + iVar2, a0);
                         if (iVar3 == 0) {
                             return iVar2;
                         }
@@ -5737,7 +5739,7 @@ int shinobi_calls_scan_loop_2041e2(u32 a0, int a1) {
                 iStack_24 = 2;
                 if (iVar4 == 0) {
                     for (iVar2 = *(int *)(a4 + 0xc); iVar2 <= iVar5; iVar2 = iVar2 + 0x20) {
-                        iVar3 = shinobi_scan_loop_20436c(1, g_8c2753f4 + iVar2, a0);
+                        iVar3 = vram_scan_loop_20436c(1, g_8c2753f4 + iVar2, a0);
                         if (iVar3 == 0) {
                             iVar4 = iVar2;
                             iVar2 = iVar5;
@@ -5751,11 +5753,11 @@ int shinobi_calls_scan_loop_2041e2(u32 a0, int a1) {
 }
 
 /*
- * shinobi_scan_loop_20436c  0x8c20436c
- * area name: in the shinobi library code range; behaviour name: a loop that only reads
- * called by: shinobi_calls_scan_loop_2041e2, shinobi_calls_scan_loop_205948
+ * vram_scan_loop_20436c  0x8c20436c
+ * area name: sits between vram functions (same compilation unit); behaviour name: a loop that only reads
+ * called by: shinobi_calls_scan_loop_205948, vram_find_fit_offset
  */
-u32 shinobi_scan_loop_20436c(u32 a0, int a1, int a2) {
+u32 vram_scan_loop_20436c(u32 a0, int a1, int a2) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -5779,11 +5781,11 @@ u32 shinobi_scan_loop_20436c(u32 a0, int a1, int a2) {
 }
 
 /*
- * shinobi_list_2043d4  0x8c2043d4
- * area name: in the shinobi library code range; behaviour name: mostly calls list functions
- * called by: shinobi_list_203914, shinobi_list_203980, shinobi_uses_mem_pool_find_block_2039e0
+ * vram_list_2043d4  0x8c2043d4
+ * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls list functions
+ * called by: vram_list_203914, vram_list_203980, vram_tex_alloc
  */
-u32 shinobi_list_2043d4(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
+u32 vram_list_2043d4(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
     u16 *ar6_00;
     u32 uVar1;
     int iVar2;
@@ -5928,11 +5930,11 @@ u32 shinobi_list_2043d4(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
 }
 
 /*
- * shinobi_list_2046d2  0x8c2046d2
- * area name: in the shinobi library code range; behaviour name: mostly calls list functions
- * called by: alt_entry_2036ac, kamui_list_2036a0, shinobi_list_20374e, shinobi_list_203820
+ * vram_list_2046d2  0x8c2046d2
+ * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls list functions
+ * called by: alt_entry_2036ac, vram_alloc_reuse_last, vram_list_20374e, vram_list_203820
  */
-u32 shinobi_list_2046d2(u32 a0, u32 a1, u32 *a2, u32 a3) {
+u32 vram_list_2046d2(u32 a0, u32 a1, u32 *a2, u32 a3) {
     u16 *puVar1;
     u16 *ar6_00;
     u32 uVar2;
@@ -6013,11 +6015,11 @@ u32 shinobi_list_2046d2(u32 a0, u32 a1, u32 *a2, u32 a3) {
 }
 
 /*
- * shinobi_list_2048aa  0x8c2048aa
- * area name: in the shinobi library code range; behaviour name: mostly calls list functions
- * called by: shinobi_list_2038c0
+ * vram_list_2048aa  0x8c2048aa
+ * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls list functions
+ * called by: vram_list_2038c0
  */
-u32 shinobi_list_2048aa(u32 a0, u32 a1, int a2, u32 a3) {
+u32 vram_list_2048aa(u32 a0, u32 a1, int a2, u32 a3) {
     u16 *puVar1;
     u16 *ar6_00;
     u16 uVar2;
@@ -6093,7 +6095,7 @@ u32 shinobi_list_2048aa(u32 a0, u32 a1, int a2, u32 a3) {
 /*
  * shinobi_list_2049ec  0x8c2049ec
  * area name: in the shinobi library code range; behaviour name: mostly calls list functions
- * called by: shinobi_uses_rec4c_alloc_203a92
+ * called by: vram_small_tex_alloc
  */
 u32 shinobi_list_2049ec(u32 a0, u32 a1, int a2, int a3) {
     u32 uVar1;
@@ -6207,7 +6209,7 @@ u32 shinobi_list_2049ec(u32 a0, u32 a1, int a2, int a3) {
 /*
  * shinobi_uses_mem_pool_find_block_204c00  0x8c204c00
  * area name: in the shinobi library code range; behaviour name: its main named callee is mem_pool_find_block
- * called by: shinobi_uses_mem_pool_find_block_2039e0
+ * called by: vram_tex_alloc
  */
 u16 *shinobi_uses_mem_pool_find_block_204c00(u32 a0, int a1, int a2) {
     u16 uVar1;
@@ -6245,7 +6247,7 @@ u16 *shinobi_uses_mem_pool_find_block_204c00(u32 a0, int a1, int a2) {
 /*
  * mem_pool_find_block  0x8c204cc0
  * finds the block starting at a0 in its pool's list (pool 0 below 0x8c2753f8's limit, else 1)
- * called by: shinobi_list_203bda, shinobi_uses_mem_pool_find_block_204c00, shinobi_uses_mem_pool_find_block_205860
+ * called by: shinobi_uses_mem_pool_find_block_204c00, shinobi_uses_mem_pool_find_block_205860, vram_release_203bda
  */
 int mem_pool_find_block(int a0, short *a1) {
     int iVar1;
@@ -6271,11 +6273,11 @@ int mem_pool_find_block(int a0, short *a1) {
 }
 
 /*
- * shinobi_list_204cfc  0x8c204cfc
- * area name: in the shinobi library code range; behaviour name: mostly calls list functions
- * called by: shinobi_list_203bda
+ * vram_block_free_merge  0x8c204cfc
+ * moves block a1 of pool a0 from the used to the free list, merging it with adjacent free blocks
+ * called by: vram_release_203bda
  */
-u32 shinobi_list_204cfc(u32 a0, u16 *a1, u32 unused_a2, u32 a3) {
+u32 vram_block_free_merge(u32 a0, u16 *a1, u32 unused_a2, u32 a3) {
     u16 *puVar1;
     u16 *puVar2;
     u32 *ar5_00;
@@ -6343,8 +6345,8 @@ u32 shinobi_list_204cfc(u32 a0, u16 *a1, u32 unused_a2, u32 a3) {
 /*
  * pool47eba8_alloc  0x8c204e40
  * marks and returns the first free 0x18-byte entry of the pool at 0x8c47eba8; NULL when full
- * called by: kamui_cfg_texture_memory, kamui_cfg_texture_memory_b, shinobi_list_2043d4, shinobi_list_2046d2,
- * shinobi_list_2048aa, shinobi_list_2049ec, ta_fifo_2050cc, ta_fifo_2050de (+1 more)
+ * called by: kamui_cfg_texture_memory, kamui_cfg_texture_memory_b, shinobi_list_2049ec, ta_fifo_2050cc, ta_fifo_2050de,
+ * ta_fifo_2052f2, vram_list_2043d4, vram_list_2046d2 (+1 more)
  */
 u16 *pool47eba8_alloc(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     u16 *puVar1;
@@ -6368,8 +6370,8 @@ u16 *pool47eba8_alloc(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * pool47eba8_free  0x8c204e6c
  * frees entry a0 of the pool at 0x8c47eba8 (pairs with pool47eba8_alloc)
- * called by: alt_entry_203406, shinobi_list_2043d4, shinobi_list_204cfc, shinobi_uses_pool47eba8_free_203400,
- * ta_fifo_2050cc, ta_fifo_2050de, ta_fifo_2052f2
+ * called by: alt_entry_203406, ta_fifo_2050cc, ta_fifo_2050de, ta_fifo_2052f2, vram_block_free_merge, vram_list_2043d4,
+ * vram_reset_all
  */
 u32 pool47eba8_free(u16 *a0) {
     u32 uVar1;
@@ -6395,8 +6397,8 @@ u32 pool47eba8_free(u16 *a0) {
 /*
  * dlist_push_front  0x8c204e92
  * links node a2 in front of the list with head *a0 and tail *a1 (prev +4, next +8)
- * called by: shinobi_list_2043d4, shinobi_list_2046d2, shinobi_list_2048aa, shinobi_list_2049ec, shinobi_list_204cfc,
- * ta_fifo_2050cc, ta_fifo_2050de, ta_fifo_2052f2
+ * called by: shinobi_list_2049ec, ta_fifo_2050cc, ta_fifo_2050de, ta_fifo_2052f2, vram_block_free_merge,
+ * vram_list_2043d4, vram_list_2046d2, vram_list_2048aa
  */
 u32 dlist_push_front(int *a0, int *a1, int a2) {
     u32 in_r0;
@@ -6420,7 +6422,7 @@ u32 dlist_push_front(int *a0, int *a1, int a2) {
 /*
  * dlist_insert_before  0x8c204eb6
  * links node a1 in front of node a2 (prev +4, next +8), updating the head *a0
- * called by: shinobi_list_2043d4, shinobi_list_205020, ta_fifo_2050cc, ta_fifo_2050de, ta_fifo_2052f2
+ * called by: dlist_sort_desc_c, ta_fifo_2050cc, ta_fifo_2050de, ta_fifo_2052f2, vram_list_2043d4
  */
 u32 dlist_insert_before(int *a0, int a1, int a2) {
     u32 in_r0;
@@ -6443,8 +6445,8 @@ u32 dlist_insert_before(int *a0, int a1, int a2) {
 /*
  * dlist_unlink  0x8c204ed2
  * unlinks node a2 (prev +4, next +8) from the list with head *a0 and tail *a1
- * called by: shinobi_list_2043d4, shinobi_list_2046d2, shinobi_list_2048aa, shinobi_list_2049ec, shinobi_list_204cfc,
- * shinobi_list_205020, ta_fifo_2050cc, ta_fifo_2050de (+1 more)
+ * called by: dlist_sort_desc_c, shinobi_list_2049ec, ta_fifo_2050cc, ta_fifo_2050de, ta_fifo_2052f2,
+ * vram_block_free_merge, vram_list_2043d4, vram_list_2046d2 (+1 more)
  */
 u32 dlist_unlink(u32 *a0, u32 *a1, int a2, u32 a3) {
     u32 in_r0;
@@ -6465,11 +6467,11 @@ u32 dlist_unlink(u32 *a0, u32 *a1, int a2, u32 a3) {
 }
 
 /*
- * shinobi_uses_vram64_204f2a  0x8c204f2a
- * area name: in the shinobi library code range; behaviour name: its main named callee is vram64_20a9c2
+ * vram64_copy_chunked  0x8c204f2a
+ * copies a2 bytes of VRAM from a1 to a0 through a 2 KB stack buffer, writing back the cache for each chunk
  * called by: ta_fifo_2050cc, ta_fifo_2050de
  */
-u32 shinobi_uses_vram64_204f2a(int a0, int a1, u32 a2, u32 a3) {
+u32 vram64_copy_chunked(int a0, int a1, u32 a2, u32 a3) {
     u8 *puVar1;
     int iVar2;
     u32 uVar3;
@@ -6513,11 +6515,11 @@ u32 shinobi_uses_vram64_204f2a(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_list_205020  0x8c205020
- * area name: in the shinobi library code range; behaviour name: mostly calls list functions
- * called by: alt_entry_204092, shinobi_list_20408e
+ * dlist_sort_desc_c  0x8c205020
+ * selection-sorts the doubly linked list (head a0, tail a1) by the +0xc field, largest first
+ * called by: alt_entry_204092, vram_list_20408e
  */
-u32 shinobi_list_205020(int *a0, int *a1, u32 unused_a2, u32 a3, u32 ain0) {
+u32 dlist_sort_desc_c(int *a0, int *a1, u32 unused_a2, u32 a3, u32 ain0) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -6574,7 +6576,7 @@ u32 shinobi_list_205020(int *a0, int *a1, u32 unused_a2, u32 a3, u32 ain0) {
 
 /*
  * ta_fifo_2050cc  0x8c2050cc
- * called by: alt_entry_2040d2, shinobi_draw_2040ce
+ * called by: alt_entry_2040d2, vram_draw_2040ce
  */
 u32 ta_fifo_2050cc(int *a0, int a1, u32 *a2, int a3) {
     u16 uVar1;
@@ -6658,7 +6660,7 @@ u32 ta_fifo_2050cc(int *a0, int a1, u32 *a2, int a3) {
                     }
                 }
                 iVar3 = *(int *)(puVar9 + 6);
-                shinobi_uses_vram64_204f2a(*(u32 *)(iVar8 + 0xc), iVar3, *(u32 *)(puVar9 + 8), a3);
+                vram64_copy_chunked(*(u32 *)(iVar8 + 0xc), iVar3, *(u32 *)(puVar9 + 8), a3);
                 iVar6 = *(int *)(puVar9 + 6);
                 iVar4 = *(int *)(iVar8 + 0xc);
                 *(int *)(puVar9 + 6) = iVar4;
@@ -6790,7 +6792,7 @@ u32 ta_fifo_2050de(u32 unused_a0, int a1, u32 *a2, int a3) {
                     }
                 }
                 a1 = *(int *)(puVar7 + 6);
-                shinobi_uses_vram64_204f2a(*(u32 *)(iVar6 + 0xc), a1, *(u32 *)(puVar7 + 8), a3);
+                vram64_copy_chunked(*(u32 *)(iVar6 + 0xc), a1, *(u32 *)(puVar7 + 8), a3);
                 iVar4 = *(int *)(puVar7 + 6);
                 iVar3 = *(int *)(iVar6 + 0xc);
                 *(int *)(puVar7 + 6) = iVar3;
@@ -6990,7 +6992,7 @@ u32 ta_fifo_2052f2(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
 /*
  * shinobi_uses_libgcc_divide_helper_205640  0x8c205640
  * area name: in the shinobi library code range; behaviour name: its main named callee is libgcc_divide_helper_01051c
- * called by: shinobi_list_203cd0, shinobi_uses_rec4c_alloc_203a92
+ * called by: vram_small_tex_alloc, vram_small_tex_free
  */
 u32 shinobi_uses_libgcc_divide_helper_205640(u32 *a0, int a1) {
     int iVar1;
@@ -7136,7 +7138,7 @@ LAB_8c205756:
 /*
  * rec4c_alloc_496ba8  0x8c205768
  * marks and returns the first free 0x4c-byte record of the table at 8c496ba8; NULL when full
- * called by: shinobi_uses_rec4c_alloc_203a92
+ * called by: vram_small_tex_alloc
  */
 u16 *rec4c_alloc_496ba8(u32 a0) {
     u16 *puVar1;
@@ -7160,8 +7162,7 @@ u16 *rec4c_alloc_496ba8(u32 a0) {
 /*
  * pool496ba8_free  0x8c2057c0
  * frees entry a0 of the 0x4c-byte pool at 0x8c496ba8
- * called by: alt_entry_203406, shinobi_list_203cd0, shinobi_uses_pool47eba8_free_203400,
- * shinobi_uses_rec4c_alloc_203a92
+ * called by: alt_entry_203406, vram_reset_all, vram_small_tex_alloc, vram_small_tex_free
  */
 u32 pool496ba8_free(u16 *a0) {
     u32 uVar1;
@@ -7187,7 +7188,7 @@ u32 pool496ba8_free(u16 *a0) {
 /*
  * list_push_front_2057e6  0x8c2057e6
  * pushes node a1 (next pointer at +4) onto the list *a0
- * called by: shinobi_uses_rec4c_alloc_203a92
+ * called by: vram_small_tex_alloc
  */
 u32 list_push_front_2057e6(int *a0, int a1) {
     u32 in_r0;
@@ -7206,7 +7207,7 @@ u32 list_push_front_2057e6(int *a0, int a1) {
 /*
  * slist_remove  0x8c2057f8
  * unlinks node a1 from the singly linked list whose head is *a0 (next at +4)
- * called by: shinobi_list_203cd0
+ * called by: vram_small_tex_free
  */
 int slist_remove(int *a0, int a1) {
     int iVar1;
@@ -7298,7 +7299,7 @@ u32 shinobi_calls_scan_loop_205948(int a0, u32 unused_a1, u32 unused_a2, u32 unu
             iVar5 = *(int *)(iVar1 + 0xc);
             iVar4 = *(int *)(iVar1 + 0x10);
             for (iVar6 = *(int *)(iVar1 + 0xc); iVar6 <= (iVar5 + iVar4) - a0; iVar6 = iVar6 + 0x20) {
-                iVar3 = shinobi_scan_loop_20436c(1, g_8c2753f4 + iVar6, a0);
+                iVar3 = vram_scan_loop_20436c(1, g_8c2753f4 + iVar6, a0);
                 if (iVar3 == 0) {
                     return iVar6;
                 }
@@ -7311,7 +7312,7 @@ u32 shinobi_calls_scan_loop_205948(int a0, u32 unused_a1, u32 unused_a2, u32 unu
 /*
  * vram64_to_vram32  0x8c2059be
  * converts a 64-bit-bus VRAM offset to the 32-bit (interleaved bank) view
- * called by: alt_entry_2036ac, kamui_list_2036a0, shinobi_list_20374e, shinobi_list_203820
+ * called by: alt_entry_2036ac, vram_alloc_reuse_last, vram_list_20374e, vram_list_203820
  */
 int vram64_to_vram32(u32 a0) {
     int iVar1;
@@ -7329,7 +7330,7 @@ int vram64_to_vram32(u32 a0) {
 /*
  * vram_addr_64_to_32  0x8c2059e0
  * converts an offset in the 64-bit VRAM view to the matching 32-bit view address (interleaved banks)
- * called by: shinobi_list_203ca0
+ * called by: vram_release_203ca0
  */
 int vram_addr_64_to_32(u32 a0) {
     int iVar1;
@@ -11383,7 +11384,7 @@ u32 pvr_draw_20a790(u32 *a0, u32 *a1) {
 u32 pvr_calls_scan_loop_20a7e0(void) {
     int iVar1;
 
-    if ((g_8c4a9fdc != 1) && (iVar1 = sh4_scan_loop_203298(g_8c4a9fd8), iVar1 != 1)) {
+    if ((g_8c4a9fdc != 1) && (iVar1 = shinobi_scan_loop_203298(g_8c4a9fd8), iVar1 != 1)) {
         return 0x11;
     }
     return 0;
@@ -11521,8 +11522,8 @@ u32 vram64_20a8e0(u32 a0, u32 a1, u32 a2) {
 /*
  * vram64_20a9c2  0x8c20a9c2
  * called by: alt_entry_20d086, kamui_uses_CacheBlockWriteBack_wrap_20d9ce, kamui_uses_CacheBlockWriteBack_wrap_20daa0,
- * kamui_uses_CacheBlockWriteBack_wrap_20db80, kamui_uses_vram_20d082, shinobi_uses_vram64_204f2a,
- * tex_uses_CacheBlockWriteBack_wrap_20d82e, tex_uses_vram64_20d6ea (+1 more)
+ * kamui_uses_CacheBlockWriteBack_wrap_20db80, kamui_uses_vram_20d082, tex_uses_CacheBlockWriteBack_wrap_20d82e,
+ * tex_uses_vram64_20d6ea, tex_uses_vram64_20d7a0 (+1 more)
  */
 u32 vram64_20a9c2(u32 a0, int a1, u32 a2) {
     memcpy_words(a0, a1 + -0x5c000000, a2);
@@ -12693,9 +12694,9 @@ int pvr_uses_ta_fifo_20c90c(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     iVar1 = ta_fifo_20d128(a0, a1, a2, a3);
     if (iVar1 == 0) {
         if ((*a0 & 0xffff) == 3) {
-            iVar1 = shinobi_uses_rec4c_alloc_203a92(a0, a1, a2, a3);
+            iVar1 = vram_small_tex_alloc(a0, a1, a2, a3);
         } else {
-            iVar1 = shinobi_list_2038c0(a0[5], a0, a2, a3);
+            iVar1 = vram_list_2038c0(a0[5], a0, a2, a3);
             a1 = a0;
         }
         if (iVar1 == 3) {
@@ -12706,10 +12707,11 @@ int pvr_uses_ta_fifo_20c90c(u32 *a0, u32 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * pvr_list_20c980  0x8c20c980
- * area name: sits between pvr functions (same compilation unit); behaviour name: mostly calls list functions
+ * pvr_uses_vram_small_tex_alloc_20c980  0x8c20c980
+ * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is
+ * vram_small_tex_alloc
  */
-int pvr_list_20c980(u32 *a0, u32 *a1, u32 *a2, u32 a3, u32 s0) {
+int pvr_uses_vram_small_tex_alloc_20c980(u32 *a0, u32 *a1, u32 *a2, u32 a3, u32 s0) {
     u8 *puVar1;
     int iVar2;
 
@@ -12724,25 +12726,25 @@ int pvr_list_20c980(u32 *a0, u32 *a1, u32 *a2, u32 a3, u32 s0) {
         a1[5] = a0[5];
         a1[6] = a0[6];
         if ((*a0 & 0xffff) == 3) {
-            iVar2 = shinobi_uses_rec4c_alloc_203a92(a0, a2, a3, s0);
+            iVar2 = vram_small_tex_alloc(a0, a2, a3, s0);
             if (iVar2 != 3) {
-                iVar2 = shinobi_uses_rec4c_alloc_203a92(a1, a2, a3, s0);
+                iVar2 = vram_small_tex_alloc(a1, a2, a3, s0);
                 if (iVar2 != 3) {
                     return iVar2;
                 }
-                shinobi_list_203cd0(a0);
+                vram_small_tex_free(a0);
                 (*(code *)puVar1)(3, a2, a3, s0);
                 return 3;
             }
         } else {
             a2 = a0;
-            iVar2 = shinobi_list_2038c0(a0[5], a0, a3, s0);
+            iVar2 = vram_list_2038c0(a0[5], a0, a3, s0);
             if (iVar2 != 3) {
-                iVar2 = shinobi_list_2038c0(a1[5], a1, a3, s0);
+                iVar2 = vram_list_2038c0(a1[5], a1, a3, s0);
                 if (iVar2 != 3) {
                     return iVar2;
                 }
-                shinobi_list_203bda(a0[7], a1, a3, s0);
+                vram_release_203bda(a0[7], a1, a3, s0);
                 (*(code *)puVar1)(3, a1, a3, s0);
                 return 3;
             }
@@ -12784,17 +12786,17 @@ int kamui_uses_callback_table_call_20ca32(u32 *a0, int a1, u32 a2, u32 a3, u32 s
                 } while (iVar3 < a1);
             }
             puVar4 = a0;
-            iVar3 = shinobi_list_2038c0(a0[5] * a1, a0, a3, s0);
-            puVar1 = (&shinobi_list_203bda);
+            iVar3 = vram_list_2038c0(a0[5] * a1, a0, a3, s0);
+            puVar1 = (&vram_release_203bda);
             if (iVar3 == 3) {
                 callback_table_call(3);
             } else {
                 ar4_00 = a0[7];
-                shinobi_list_203bda(ar4_00, puVar4, a3, s0);
+                vram_release_203bda(ar4_00, puVar4, a3, s0);
                 iVar5 = 0;
                 if (0 < a1) {
                     do {
-                        puVar2 = (&shinobi_list_203980);
+                        puVar2 = (&vram_list_203980);
                         ar5_00 = a0 + iVar5 * 10;
                         ar5_00[7] = ar4_00;
                         puVar4 = ar5_00;
@@ -13078,18 +13080,18 @@ u32 kamui_uses_vram64_20cefe(u32 *a0, u32 a1) {
 }
 
 /*
- * kamui_list_20cf88  0x8c20cf88
- * area name: in the kamui library code range; behaviour name: mostly calls list functions
+ * kamui_release_20cf88  0x8c20cf88
+ * area name: in the kamui library code range; behaviour name: mostly calls release functions
  * called by: alt_entry_2567fe, alt_entry_25a918, ninja_uses_tex_entry_free_2566c8, ninja_uses_tex_entry_free_2567f8,
  * tex_calls_test_25a914, tex_uses_dcache_writeback_range_25a770
  */
-u32 kamui_list_20cf88(u32 *a0) {
+u32 kamui_release_20cf88(u32 *a0) {
     u32 uVar1;
 
     if ((*a0 & 0xffff) == 3) {
-        uVar1 = shinobi_list_203cd0(a0);
+        uVar1 = vram_small_tex_free(a0);
     } else {
-        uVar1 = shinobi_list_203bda(a0[7]);
+        uVar1 = vram_release_203bda(a0[7]);
     }
     return uVar1;
 }
@@ -13103,9 +13105,9 @@ u32 alt_entry_20cf8c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 *unaff_r14;
 
     if ((*unaff_r14 & 0xffff) == 3) {
-        uVar1 = shinobi_list_203cd0(unaff_r14);
+        uVar1 = vram_small_tex_free(unaff_r14);
     } else {
-        uVar1 = shinobi_list_203bda(unaff_r14[7], a1, a2, a3);
+        uVar1 = vram_release_203bda(unaff_r14[7], a1, a2, a3);
     }
     return uVar1;
 }
@@ -13126,7 +13128,7 @@ u32 kamui_calls_scan_loop_20cfe0(int *a0, u32 *a1) {
 
     puStack_c = a1;
     piStack_8 = a0;
-    uVar1 = shinobi_scan_loop_203de0(&iStack_1c, &iStack_18, &iStack_14, &uStack_10);
+    uVar1 = vram_scan_loop_203de0(&iStack_1c, &iStack_18, &iStack_14, &uStack_10);
     *piStack_8 = iStack_1c + iStack_18 + iStack_14;
     *puStack_c = uStack_10;
     return uVar1;
@@ -13215,14 +13217,14 @@ u32 alt_entry_20d086(u32 a0) {
 u32 kamui_draw_20d114(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
-    shinobi_list_20408e(unused_a0, unused_a1, unused_a2, a3);
-    uVar1 = shinobi_draw_2040ce();
+    vram_list_20408e(unused_a0, unused_a1, unused_a2, a3);
+    uVar1 = vram_draw_2040ce();
     return uVar1;
 }
 
 /*
  * ta_fifo_20d128  0x8c20d128
- * called by: kamui_uses_callback_table_call_20ca32, pvr_list_20c980, pvr_uses_ta_fifo_20c90c
+ * called by: kamui_uses_callback_table_call_20ca32, pvr_uses_ta_fifo_20c90c, pvr_uses_vram_small_tex_alloc_20c980
  */
 u32 ta_fifo_20d128(u32 *a0, int a1, int a2, u32 a3) {
     u32 uVar1;
