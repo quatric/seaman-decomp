@@ -217,7 +217,7 @@ u32 game_init_sound_and_messages(int a0, u32 a1, u32 a2, u32 a3) {
     char cVar5;
 
     cVar5 = '\0';
-    ninja_set_event900_callback(game_sub_0b6bf4);
+    ninja_set_event900_callback(vblank_hook_check_lid);
     *(u32 *)(a0 + 0x2d59c) = 0;
     disc_product_id_index(a0 + 0x2d59c, a1, a2, a3);
     input_sub_01f608(0x8c3eb334, a1, a2, a3);

@@ -5127,7 +5127,7 @@ u32 shinobi_sub_1f39f0(u32 a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 /*
  * shinobi_sub_1f3a34  0x8c1f3a34
  * area name: in the shinobi library code range
- * called by: input_sub_01f594
+ * called by: gd_check_lid_open
  */
 u32 shinobi_sub_1f3a34(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;

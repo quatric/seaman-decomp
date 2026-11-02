@@ -6076,10 +6076,10 @@ u32 Class_12a7f4_m2_09a060(int a0, u32 a1, u32 a2, int *a3) {
 }
 
 /*
- * Class_12a7f4_sub_09a528  0x8c09a528
- * area name: sits between Class_12a7f4 functions (same compilation unit)
+ * dec_counter_4d  0x8c09a528
+ * decrements the byte counter at +0x4d
  */
-u32 Class_12a7f4_sub_09a528(int a0) {
+u32 dec_counter_4d(int a0) {
     *(char *)(a0 + 0x4d) = *(char *)(a0 + 0x4d) + -1;
     return 0x4d;
 }
@@ -6450,10 +6450,10 @@ u32 vcall_field_8_slot15(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12a7f4_sub_09ac70  0x8c09ac70
- * area name: sits between Class_12a7f4 functions (same compilation unit)
+ * child_330_tick_09ac70  0x8c09ac70
+ * calls slot 0x5c of the child object at +0x330 when there is one
  */
-u32 Class_12a7f4_sub_09ac70(int a0, u32 a1, u32 a2, u32 a3) {
+u32 child_330_tick_09ac70(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     noop_038c8c();
@@ -6493,10 +6493,10 @@ int game_sub_09acf4(int a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * game_sub_09ad00  0x8c09ad00
- * area name: game code; nothing names its area yet
+ * child_330_release_09ad00  0x8c09ad00
+ * releases the child object at +0x330 through the item loader
  */
-u32 game_sub_09ad00(int a0, u32 a1, u32 a2, u32 a3) {
+u32 child_330_release_09ad00(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = 0;
@@ -6507,10 +6507,10 @@ u32 game_sub_09ad00(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_09ad34  0x8c09ad34
- * area name: game code; nothing names its area yet
+ * load_state_record_09ad34  0x8c09ad34
+ * restores object state, status and the 15 bytes at +0x2dc from save record a1
  */
-u32 game_sub_09ad34(int a0, int a1, u32 a2, u32 a3) {
+u32 load_state_record_09ad34(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_load(a0, a1, a2, a3);
@@ -6520,10 +6520,10 @@ u32 game_sub_09ad34(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_09ad94  0x8c09ad94
- * area name: game code; nothing names its area yet
+ * load_pose_record_09ad94  0x8c09ad94
+ * restores pose, status and the 15 bytes at +0x2dc from save record a1
  */
-u32 game_sub_09ad94(int a0, int a1, u32 a2, u32 a3) {
+u32 load_pose_record_09ad94(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_pose_load(a0, a1, a2, a3);
@@ -6533,10 +6533,10 @@ u32 game_sub_09ad94(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_09adec  0x8c09adec
- * area name: game code; nothing names its area yet
+ * save_state_record_09adec  0x8c09adec
+ * stores object state, status and the 15 bytes at +0x2dc into save record a1
  */
-u32 game_sub_09adec(int a0, int a1, u32 a2, u32 a3) {
+u32 save_state_record_09adec(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_save(a0, a1, a2, a3);
@@ -6546,10 +6546,10 @@ u32 game_sub_09adec(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_09ae4c  0x8c09ae4c
- * area name: game code; nothing names its area yet
+ * save_pose_record_09ae4c  0x8c09ae4c
+ * stores pose, status and the 15 bytes at +0x2dc into save record a1
  */
-u32 game_sub_09ae4c(int a0, int a1, u32 a2, u32 a3) {
+u32 save_pose_record_09ae4c(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_pose_save(a0, a1, a2, a3);
@@ -6590,10 +6590,10 @@ u32 CMothEgg_LoadGRReq(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CMothEgg_sub_09af68  0x8c09af68
- * area name: sits between CMothEgg functions (same compilation unit)
+ * egg_load_gr_wait_09af68  0x8c09af68
+ * CAnimal_LoadGRWait, then the same for the child object at +0x330
  */
-u32 CMothEgg_sub_09af68(int a0, u32 a1, u32 a2, u32 a3) {
+u32 egg_load_gr_wait_09af68(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     CAnimal_LoadGRWait(a0, a1, a2, a3);
@@ -7961,10 +7961,10 @@ u32 noop_09c7bc(void) {
 }
 
 /*
- * Class_12a990_sub_09c7c0  0x8c09c7c0
- * area name: sits between Class_12a990 functions (same compilation unit)
+ * load_state_record_09c7c0  0x8c09c7c0
+ * restores object state, status and the 15 bytes at +0x2dc from save record a1
  */
-u32 Class_12a990_sub_09c7c0(int a0, int a1, u32 a2, u32 a3) {
+u32 load_state_record_09c7c0(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_load(a0, a1, a2, a3);
@@ -7974,10 +7974,10 @@ u32 Class_12a990_sub_09c7c0(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12a990_sub_09c820  0x8c09c820
- * area name: sits between Class_12a990 functions (same compilation unit)
+ * load_pose_record_09c820  0x8c09c820
+ * restores pose, status and the 15 bytes at +0x2dc from save record a1
  */
-u32 Class_12a990_sub_09c820(int a0, int a1, u32 a2, u32 a3) {
+u32 load_pose_record_09c820(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_pose_load(a0, a1, a2, a3);
@@ -7987,10 +7987,10 @@ u32 Class_12a990_sub_09c820(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12a990_sub_09c878  0x8c09c878
- * area name: sits between Class_12a990 functions (same compilation unit)
+ * save_state_record_09c878  0x8c09c878
+ * stores object state, status and the 15 bytes at +0x2dc into save record a1
  */
-u32 Class_12a990_sub_09c878(int a0, int a1, u32 a2, u32 a3) {
+u32 save_state_record_09c878(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_save(a0, a1, a2, a3);
@@ -8000,10 +8000,10 @@ u32 Class_12a990_sub_09c878(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12a990_sub_09c8d8  0x8c09c8d8
- * area name: sits between Class_12a990 functions (same compilation unit)
+ * save_pose_record_09c8d8  0x8c09c8d8
+ * stores pose, status and the 15 bytes at +0x2dc into save record a1
  */
-u32 Class_12a990_sub_09c8d8(int a0, int a1, u32 a2, u32 a3) {
+u32 save_pose_record_09c8d8(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_pose_save(a0, a1, a2, a3);
@@ -8892,10 +8892,10 @@ u32 Class_12ab2c_sub_09dde4(int a0) {
 }
 
 /*
- * Class_12ab2c_sub_09de7c  0x8c09de7c
- * area name: sits between Class_12ab2c functions (same compilation unit)
+ * lights_2_to_4_off  0x8c09de7c
+ * clears light flags 2..4 in both light tables (8c4c0ed0, 8c4c0db0)
  */
-u32 Class_12ab2c_sub_09de7c(void) {
+u32 lights_2_to_4_off(void) {
     u32 uVar1;
 
     flags_4c0ed0_set(2, 0);

@@ -4408,13 +4408,13 @@ u32 game_sub_0b6b3c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0b6bf4  0x8c0b6bf4
- * area name: game code; nothing names its area yet
+ * vblank_hook_check_lid  0x8c0b6bf4
+ * the event-0x900 hook installed at start-up: gd_check_lid_open
  */
-u32 game_sub_0b6bf4(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 vblank_hook_check_lid(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = input_sub_01f594(a0, a1, a2, a3);
+    uVar1 = gd_check_lid_open(a0, a1, a2, a3);
     return uVar1;
 }
 

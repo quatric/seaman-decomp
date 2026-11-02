@@ -4282,10 +4282,10 @@ u32 vcall_field_8_slot15_0a5538(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12ad50_sub_0a5550  0x8c0a5550
- * area name: sits between Class_12ad50 functions (same compilation unit)
+ * child_330_tick_0a5550  0x8c0a5550
+ * calls slot 0x5c of the child object at +0x330 when there is one
  */
-u32 Class_12ad50_sub_0a5550(int a0, u32 a1, u32 a2, u32 a3) {
+u32 child_330_tick_0a5550(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     noop_038c8c();
@@ -4325,10 +4325,10 @@ int game_sub_0a55d4(int a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * game_sub_0a55e0  0x8c0a55e0
- * area name: game code; nothing names its area yet
+ * child_330_release_0a55e0  0x8c0a55e0
+ * releases the child object at +0x330 through the item loader
  */
-u32 game_sub_0a55e0(int a0, u32 a1, u32 a2, u32 a3) {
+u32 child_330_release_0a55e0(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = 0;
@@ -4339,10 +4339,10 @@ u32 game_sub_0a55e0(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0a5614  0x8c0a5614
- * area name: game code; nothing names its area yet
+ * load_state_record_0a5614  0x8c0a5614
+ * restores object state, status and the 15 bytes at +0x2dc from save record a1
  */
-u32 game_sub_0a5614(int a0, int a1, u32 a2, u32 a3) {
+u32 load_state_record_0a5614(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_load(a0, a1, a2, a3);
@@ -4352,10 +4352,10 @@ u32 game_sub_0a5614(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0a5674  0x8c0a5674
- * area name: game code; nothing names its area yet
+ * load_pose_record_0a5674  0x8c0a5674
+ * restores pose, status and the 15 bytes at +0x2dc from save record a1
  */
-u32 game_sub_0a5674(int a0, int a1, u32 a2, u32 a3) {
+u32 load_pose_record_0a5674(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_pose_load(a0, a1, a2, a3);
@@ -4365,10 +4365,10 @@ u32 game_sub_0a5674(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0a56cc  0x8c0a56cc
- * area name: game code; nothing names its area yet
+ * save_state_record_0a56cc  0x8c0a56cc
+ * stores object state, status and the 15 bytes at +0x2dc into save record a1
  */
-u32 game_sub_0a56cc(int a0, int a1, u32 a2, u32 a3) {
+u32 save_state_record_0a56cc(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_save(a0, a1, a2, a3);
@@ -4378,10 +4378,10 @@ u32 game_sub_0a56cc(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0a572c  0x8c0a572c
- * area name: game code; nothing names its area yet
+ * save_pose_record_0a572c  0x8c0a572c
+ * stores pose, status and the 15 bytes at +0x2dc into save record a1
  */
-u32 game_sub_0a572c(int a0, int a1, u32 a2, u32 a3) {
+u32 save_pose_record_0a572c(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_pose_save(a0, a1, a2, a3);
@@ -4422,10 +4422,10 @@ u32 CSpiderEgg_LoadGRReq(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CSpiderEgg_sub_0a5854  0x8c0a5854
- * area name: sits between CSpiderEgg functions (same compilation unit)
+ * egg_load_gr_wait_0a5854  0x8c0a5854
+ * CAnimal_LoadGRWait, then the same for the child object at +0x330
  */
-u32 CSpiderEgg_sub_0a5854(int a0, u32 a1, u32 a2, u32 a3) {
+u32 egg_load_gr_wait_0a5854(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     CAnimal_LoadGRWait(a0, a1, a2, a3);

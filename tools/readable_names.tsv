@@ -1101,3 +1101,33 @@
 8c02ff24	save_bytes_98_b	a1[0], a1[1] = +0x98, +0x99 and clears a1[1..]
 8c06115c	set_byte_51_2col	byte a0[0x51 + a1*2 + a2] = a3
 8c06af1c	dec_counters_248	decrements each of the nine byte counters at +0x248 down to 0
+8c038c54	child_330_tick_038c54	calls slot 0x5c of the child object at +0x330 when there is one
+8c038d18	child_330_release_038d18	releases the child object at +0x330 through the item loader
+8c038e24	egg_load_gr_wait_038e24	CAnimal_LoadGRWait, then the same for the child object at +0x330
+8c0883a8	child_330_tick_0883a8	calls slot 0x5c of the child object at +0x330 when there is one
+8c0884f8	child_330_release_0884f8	releases the child object at +0x330 through the item loader
+8c0885fc	egg_load_gr_wait_0885fc	CAnimal_LoadGRWait, then the same for the child object at +0x330
+8c08b694	load_state_record_08b694	restores object state, status and the 15 bytes at +0x2dc from save record a1
+8c08b720	load_pose_record_08b720	restores pose, status and the 15 bytes at +0x2dc from save record a1
+8c09ac70	child_330_tick_09ac70	calls slot 0x5c of the child object at +0x330 when there is one
+8c09ad00	child_330_release_09ad00	releases the child object at +0x330 through the item loader
+8c09ad34	load_state_record_09ad34	restores object state, status and the 15 bytes at +0x2dc from save record a1
+8c09ad94	load_pose_record_09ad94	restores pose, status and the 15 bytes at +0x2dc from save record a1
+8c09adec	save_state_record_09adec	stores object state, status and the 15 bytes at +0x2dc into save record a1
+8c09ae4c	save_pose_record_09ae4c	stores pose, status and the 15 bytes at +0x2dc into save record a1
+8c09af68	egg_load_gr_wait_09af68	CAnimal_LoadGRWait, then the same for the child object at +0x330
+8c09c7c0	load_state_record_09c7c0	restores object state, status and the 15 bytes at +0x2dc from save record a1
+8c09c820	load_pose_record_09c820	restores pose, status and the 15 bytes at +0x2dc from save record a1
+8c09c878	save_state_record_09c878	stores object state, status and the 15 bytes at +0x2dc into save record a1
+8c09c8d8	save_pose_record_09c8d8	stores pose, status and the 15 bytes at +0x2dc into save record a1
+8c0a5550	child_330_tick_0a5550	calls slot 0x5c of the child object at +0x330 when there is one
+8c0a55e0	child_330_release_0a55e0	releases the child object at +0x330 through the item loader
+8c0a5614	load_state_record_0a5614	restores object state, status and the 15 bytes at +0x2dc from save record a1
+8c0a5674	load_pose_record_0a5674	restores pose, status and the 15 bytes at +0x2dc from save record a1
+8c0a56cc	save_state_record_0a56cc	stores object state, status and the 15 bytes at +0x2dc into save record a1
+8c0a572c	save_pose_record_0a572c	stores pose, status and the 15 bytes at +0x2dc into save record a1
+8c0a5854	egg_load_gr_wait_0a5854	CAnimal_LoadGRWait, then the same for the child object at +0x330
+8c01f594	gd_check_lid_open	sets 8c2792a0 to 6 when the GD drive status (driver slot 0x54) is 6 or 7 (lid open / no disc)
+8c0b6bf4	vblank_hook_check_lid	the event-0x900 hook installed at start-up: gd_check_lid_open
+8c09de7c	lights_2_to_4_off	clears light flags 2..4 in both light tables (8c4c0ed0, 8c4c0db0)
+8c09a528	dec_counter_4d	decrements the byte counter at +0x4d

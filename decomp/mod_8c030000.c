@@ -6404,8 +6404,8 @@ u32 game_sub_03525c(u32 unused_a0, int a1, u32 a2, u32 a3) {
 /*
  * copy15_in_normalize  0x8c035338
  * copies 15 bytes from a1 to +0xc, turning values 2, 3, 4 and 6 into 1
- * called by: CAnimal_load_record, CAnimal_sub_028ccc, Class_12a990_sub_09c7c0, Class_12a990_sub_09c820,
- * egg_load_record, egg_load_record_b, game_sub_08b694, game_sub_08b720 (+4 more)
+ * called by: CAnimal_load_record, CAnimal_sub_028ccc, egg_load_record, egg_load_record_b, load_pose_record_08b720,
+ * load_pose_record_09ad94, load_pose_record_09c820, load_pose_record_0a5674 (+4 more)
  */
 u32 copy15_in_normalize(int a0, int a1) {
     int iVar1;
@@ -6426,8 +6426,8 @@ u32 copy15_in_normalize(int a0, int a1) {
 /*
  * copy15_out  0x8c03539c
  * copies the 15 bytes at +0xc to a1
- * called by: CAnimal_save_record, CAnimal_sub_028f60, Class_12a990_sub_09c878, Class_12a990_sub_09c8d8,
- * egg_save_record, egg_save_record_b, game_sub_09adec, game_sub_09ae4c (+2 more)
+ * called by: CAnimal_save_record, CAnimal_sub_028f60, egg_save_record, egg_save_record_b, save_pose_record_09ae4c,
+ * save_pose_record_09c8d8, save_pose_record_0a572c, save_state_record_09adec (+2 more)
  */
 u32 copy15_out(int a0, int a1) {
     int iVar1;
@@ -9074,10 +9074,10 @@ u32 game_sub_038b04(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * game_sub_038c54  0x8c038c54
- * area name: game code; nothing names its area yet
+ * child_330_tick_038c54  0x8c038c54
+ * calls slot 0x5c of the child object at +0x330 when there is one
  */
-u32 game_sub_038c54(int a0, u32 a1, u32 a2, u32 a3) {
+u32 child_330_tick_038c54(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     noop_038c8c();
@@ -9090,7 +9090,8 @@ u32 game_sub_038c54(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * noop_038c8c  0x8c038c8c
- * called by: Class_12a7f4_sub_09ac70, Class_12ad50_sub_0a5550, game_sub_038c54, game_sub_0883a8, game_sub_09cb58
+ * called by: child_330_tick_038c54, child_330_tick_0883a8, child_330_tick_09ac70, child_330_tick_0a5550,
+ * game_sub_09cb58
  */
 u32 noop_038c8c(void) {
     u32 in_r0;
@@ -9128,10 +9129,10 @@ int CFrogManEgg_sub_038d0c(int a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * CFrogManEgg_sub_038d18  0x8c038d18
- * area name: sits between CFrogManEgg functions (same compilation unit)
+ * child_330_release_038d18  0x8c038d18
+ * releases the child object at +0x330 through the item loader
  */
-u32 CFrogManEgg_sub_038d18(int a0, u32 a1, u32 a2, u32 a3) {
+u32 child_330_release_038d18(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = 0;
@@ -9180,10 +9181,10 @@ u32 ret_const_1_038e1c(void) {
 }
 
 /*
- * CFrogManEgg_sub_038e24  0x8c038e24
- * area name: sits between CFrogManEgg functions (same compilation unit)
+ * egg_load_gr_wait_038e24  0x8c038e24
+ * CAnimal_LoadGRWait, then the same for the child object at +0x330
  */
-u32 CFrogManEgg_sub_038e24(int a0, u32 a1, u32 a2, u32 a3) {
+u32 egg_load_gr_wait_038e24(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     CAnimal_LoadGRWait(a0, a1, a2, a3);

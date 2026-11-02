@@ -1210,8 +1210,8 @@ int set_field_128_0f4e28(int a0, u32 a1) {
 /*
  * obj_state_load  0x8c0f4e34
  * loads a saved object record (name, two words, three Vec3s, flags) from a1 into a0
- * called by: CAnimal_sub_028ccc, Class_12a990_sub_09c7c0, egg_load_record, egg_load_record_b, game_sub_06c148,
- * game_sub_08b694, game_sub_09ad34, game_sub_0a5614
+ * called by: CAnimal_sub_028ccc, egg_load_record, egg_load_record_b, game_sub_06c148, load_state_record_08b694,
+ * load_state_record_09ad34, load_state_record_09c7c0, load_state_record_0a5614
  */
 u32 obj_state_load(int a0, int a1, u32 a2, u32 a3) {
     (*(code *)(&sprintf))(a0 + 0xc, a1, a2, a3, "%s");
@@ -1228,7 +1228,8 @@ u32 obj_state_load(int a0, int a1, u32 a2, u32 a3) {
 /*
  * obj_pose_load  0x8c0f4ebc
  * loads a pose record (a word, two Vec3s, flags) from a1 into a0
- * called by: CAnimal_load_record, Class_12a990_sub_09c820, game_sub_08b720, game_sub_09ad94, game_sub_0a5674
+ * called by: CAnimal_load_record, load_pose_record_08b720, load_pose_record_09ad94, load_pose_record_09c820,
+ * load_pose_record_0a5674
  */
 u32 obj_pose_load(int a0, u32 *a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 0x24) = *a1;
@@ -1242,8 +1243,8 @@ u32 obj_pose_load(int a0, u32 *a1, u32 a2, u32 a3) {
 /*
  * obj_state_save  0x8c0f4f0c
  * saves the object a0 into the record a1 (inverse of obj_state_load)
- * called by: CAnimal_sub_028f60, Class_12a990_sub_09c878, egg_save_record, egg_save_record_b, game_sub_06c89c,
- * game_sub_09adec, game_sub_0a56cc
+ * called by: CAnimal_sub_028f60, egg_save_record, egg_save_record_b, game_sub_06c89c, save_state_record_09adec,
+ * save_state_record_09c878, save_state_record_0a56cc
  */
 u32 obj_state_save(int a0, int a1, u32 a2, u32 a3) {
     sprintf(a1, a1, a2, a3, "%s");
@@ -1260,7 +1261,8 @@ u32 obj_state_save(int a0, int a1, u32 a2, u32 a3) {
 /*
  * obj_pose_save  0x8c0f4fa4
  * saves a0's pose into the record a1 (inverse of obj_pose_load)
- * called by: CAnimal_save_record, Class_12a990_sub_09c8d8, game_sub_09ae4c, game_sub_0a572c, obj_pose_save_wrap
+ * called by: CAnimal_save_record, obj_pose_save_wrap, save_pose_record_09ae4c, save_pose_record_09c8d8,
+ * save_pose_record_0a572c
  */
 u32 obj_pose_save(int a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -8706,8 +8708,8 @@ int CItemGLoader_sub_0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
 /*
  * game_sub_0ff500  0x8c0ff500
  * area name: game code; nothing names its area yet
- * called by: CFrogManEgg_sub_038d18, Class_12a990_sub_09cc4c, game_sub_0884f8, game_sub_09ad00, game_sub_0a55e0,
- * game_sub_0d1b90
+ * called by: Class_12a990_sub_09cc4c, child_330_release_038d18, child_330_release_0884f8, child_330_release_09ad00,
+ * child_330_release_0a55e0, game_sub_0d1b90
  */
 u32 game_sub_0ff500(u32 a0, int *a1, u32 a2, u32 a3) {
     int iVar1;

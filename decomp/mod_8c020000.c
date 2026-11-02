@@ -7383,9 +7383,9 @@ u32 CAnimal_LoadMFile_step(u32 unused_a0, char *a1, u32 a2, u32 *a3, short *s0, 
 
 /*
  * CAnimal_LoadGRWait  0x8c0284ac
- * called by: CFrogManEgg_sub_038e24, CHigyoEgg_sub_0885fc, CMothEgg_sub_09af68, CSpiderEgg_sub_0a5854, game_sub_09d310,
- * game_sub_0ae160 strings: "Failed to Load :CAnimal::LoadGRWait"; "Attach NULL!!"; "CAnimal::LoadGRWait()"; "Read NMDM
- * Failed.." ...
+ * called by: egg_load_gr_wait_038e24, egg_load_gr_wait_0885fc, egg_load_gr_wait_09af68, egg_load_gr_wait_0a5854,
+ * game_sub_09d310, game_sub_0ae160 strings: "Failed to Load :CAnimal::LoadGRWait"; "Attach NULL!!";
+ * "CAnimal::LoadGRWait()"; "Read NMDM Failed.." ...
  */
 u32 CAnimal_LoadGRWait(int a0, u32 a1, int a2, u32 *a3) {
     int iVar1;
@@ -11093,8 +11093,8 @@ u32 get_field_34_02cbdc(int a0) {
 /*
  * game_sub_02cbe4  0x8c02cbe4
  * area name: game code; nothing names its area yet
- * called by: CAnimal_sub_028ccc, Class_12a990_sub_09c7c0, egg_load_record, egg_load_record_b, game_sub_08b694,
- * game_sub_09ad34, game_sub_0a5614
+ * called by: CAnimal_sub_028ccc, egg_load_record, egg_load_record_b, load_state_record_08b694,
+ * load_state_record_09ad34, load_state_record_09c7c0, load_state_record_0a5614
  */
 u32 game_sub_02cbe4(int a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -11226,7 +11226,8 @@ int set_field_134(int a0, u32 a1) {
 /*
  * status_load_record  0x8c02ce58
  * sets the status fields (+0x134..+0x140 and the block at +0xa8) from the record a1
- * called by: CAnimal_load_record, Class_12a990_sub_09c820, game_sub_08b720, game_sub_09ad94, game_sub_0a5674
+ * called by: CAnimal_load_record, load_pose_record_08b720, load_pose_record_09ad94, load_pose_record_09c820,
+ * load_pose_record_0a5674
  */
 u32 status_load_record(int a0, u32 *a1) {
     u32 uVar1;
@@ -11248,8 +11249,8 @@ u32 status_load_record(int a0, u32 *a1) {
 /*
  * game_sub_02cf20  0x8c02cf20
  * area name: game code; nothing names its area yet
- * called by: CAnimal_sub_028f60, Class_12a990_sub_09c878, egg_save_record, egg_save_record_b, game_sub_09adec,
- * game_sub_0a56cc
+ * called by: CAnimal_sub_028f60, egg_save_record, egg_save_record_b, save_state_record_09adec,
+ * save_state_record_09c878, save_state_record_0a56cc
  */
 u32 game_sub_02cf20(int a0, u32 *a1, u32 a2) {
     u32 uVar1;
@@ -11401,7 +11402,7 @@ u32 get_field_134_02d1e8(int a0) {
 /*
  * CAnimal_sub_02d1f4  0x8c02d1f4
  * area name: only called from CAnimal methods
- * called by: CAnimal_save_record, Class_12a990_sub_09c8d8, game_sub_09ae4c, game_sub_0a572c
+ * called by: CAnimal_save_record, save_pose_record_09ae4c, save_pose_record_09c8d8, save_pose_record_0a572c
  */
 u32 CAnimal_sub_02d1f4(int a0, u32 *a1, u32 a2) {
     u32 uVar1;

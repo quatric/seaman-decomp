@@ -4481,10 +4481,10 @@ u32 CAnimal_sub_088288(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * game_sub_0883a8  0x8c0883a8
- * area name: game code; nothing names its area yet
+ * child_330_tick_0883a8  0x8c0883a8
+ * calls slot 0x5c of the child object at +0x330 when there is one
  */
-u32 game_sub_0883a8(int a0, u32 a1, u32 a2, u32 a3) {
+u32 child_330_tick_0883a8(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     noop_038c8c();
@@ -4550,10 +4550,10 @@ int game_sub_0884ec(int a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * game_sub_0884f8  0x8c0884f8
- * area name: game code; nothing names its area yet
+ * child_330_release_0884f8  0x8c0884f8
+ * releases the child object at +0x330 through the item loader
  */
-u32 game_sub_0884f8(int a0, u32 a1, u32 a2, u32 a3) {
+u32 child_330_release_0884f8(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = 0;
@@ -4595,10 +4595,10 @@ u32 CHigyoEgg_LoadGRReq(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CHigyoEgg_sub_0885fc  0x8c0885fc
- * area name: sits between CHigyoEgg functions (same compilation unit)
+ * egg_load_gr_wait_0885fc  0x8c0885fc
+ * CAnimal_LoadGRWait, then the same for the child object at +0x330
  */
-u32 CHigyoEgg_sub_0885fc(int a0, u32 a1, u32 a2, u32 a3) {
+u32 egg_load_gr_wait_0885fc(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     CAnimal_LoadGRWait(a0, a1, a2, a3);
@@ -6049,10 +6049,10 @@ u32 game_sub_08b5a8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_08b694  0x8c08b694
- * area name: game code; nothing names its area yet
+ * load_state_record_08b694  0x8c08b694
+ * restores object state, status and the 15 bytes at +0x2dc from save record a1
  */
-int game_sub_08b694(int a0, int a1, u32 a2, u32 a3) {
+int load_state_record_08b694(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
 
     obj_state_load(a0, a1, a2, a3);
@@ -6065,10 +6065,10 @@ int game_sub_08b694(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_08b720  0x8c08b720
- * area name: game code; nothing names its area yet
+ * load_pose_record_08b720  0x8c08b720
+ * restores pose, status and the 15 bytes at +0x2dc from save record a1
  */
-int game_sub_08b720(int a0, int a1, u32 a2, u32 a3) {
+int load_pose_record_08b720(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
 
     obj_pose_load(a0, a1, a2, a3);

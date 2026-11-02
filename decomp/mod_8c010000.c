@@ -23031,11 +23031,11 @@ u32 input_asr_take_flag_b(int a0) {
 }
 
 /*
- * input_sub_01f594  0x8c01f594
- * area name: sits between input functions (same compilation unit)
- * called by: game_sub_0b6bf4
+ * gd_check_lid_open  0x8c01f594
+ * sets 8c2792a0 to 6 when the GD drive status (driver slot 0x54) is 6 or 7 (lid open / no disc)
+ * called by: vblank_hook_check_lid
  */
-u32 input_sub_01f594(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 gd_check_lid_open(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
     g_8c2792a0 = 0;
