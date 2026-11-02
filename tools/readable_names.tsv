@@ -1166,3 +1166,26 @@
 8c1eff32	maple_cmd15_func10_hooked	maple_cmd15_func10_locked, then the PVR hook when +0x10e8 is set
 8c1eff9c	maple_queue_frame_wrap_hooked	maple_queue_frame_wrap_locked, then the PVR hook when +0x10e8 is set
 8c1f00f8	maple_mic_info	*a0 = the microphone function definition word of device a1; -1 if it has none
+8c10b698	asr_call_11f258_err	calls 8c11f258 on the handle; the library error code when it fails, else 0
+8c10b6a0	asr_call_11f258_err	calls 8c11f258 on the handle; the library error code when it fails, else 0
+8c10b8c6	asr_call_11ce44_err	calls 8c11ce44 on the handle; the library error code when it fails, else 0
+8c10bb3a	asr_call_11e3ea_err	calls 8c11e3ea on the handle; the library error code when it fails, else 0
+8c10bb6e	asr_call_11e146_err	calls 8c11e146 on the handle; the library error code when it fails, else 0
+8c10bb9a	asr_call_11eb6c_err	calls 8c11eb6c on the handle; the library error code when it fails, else 0
+8c10bba8	asr_call_11eb6c_err	calls 8c11eb6c on the handle; the library error code when it fails, else 0
+8c10bce4	asr_call_11d7b8_err	calls 8c11d7b8 on the handle; the library error code when it fails, else 0
+8c10bd20	asr_call_11dc7e_err	calls 8c11dc7e on the handle; the library error code when it fails, else 0
+8c10bdee	asr_call_11e214_err	calls 8c11e214 on the handle; the library error code when it fails, else 0
+8c10be22	asr_call_11e274_err	calls 8c11e274 on the handle; the library error code when it fails, else 0
+8c10be70	asr_call_11e190_err	calls 8c11e190 on the handle; the library error code when it fails, else 0
+8c10c2a2	asr_call_11dda2_err	calls 8c11dda2 on the handle; the library error code when it fails, else 0
+8c10c2aa	asr_call_11dda2_err	calls 8c11dda2 on the handle; the library error code when it fails, else 0
+8c10c2f4	asr_call_11daa4_err	calls 8c11daa4 on the handle; the library error code when it fails, else 0
+8c10c322	asr_call_11d370_err	calls 8c11d370 on the handle; the library error code when it fails, else 0
+8c10c32a	asr_call_11d370_err	calls 8c11d370 on the handle; the library error code when it fails, else 0
+8c10c356	asr_call_11d5d4_err	calls 8c11d5d4 on the handle; the library error code when it fails, else 0
+8c10c35e	asr_call_11d5d4_err	calls 8c11d5d4 on the handle; the library error code when it fails, else 0
+8c1225fc	asr_call_11f5d2_err	calls 8c11f5d2 on the handle; the library error code when it fails, else 0
+8c122604	asr_call_11f5d2_err	calls 8c11f5d2 on the handle; the library error code when it fails, else 0
+8c122630	asr_call_11f66a_err	calls 8c11f66a on the handle; the library error code when it fails, else 0
+8c122638	asr_call_11f66a_err	calls 8c11f66a on the handle; the library error code when it fails, else 0

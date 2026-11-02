@@ -2234,7 +2234,7 @@ u32 asr_sub_121e40(int a0, u32 unused_a1, u32 a2, int *a3, int s0) {
 
 /*
  * asr_sub_121ef0  0x8c121ef0
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_121f38
  */
 u32 asr_sub_121ef0(int a0, u32 unused_a1, u32 unused_a2, u32 *a3, int s0) {
@@ -2256,7 +2256,7 @@ u32 asr_sub_121ef0(int a0, u32 unused_a1, u32 unused_a2, u32 *a3, int s0) {
 
 /*
  * asr_sub_121f38  0x8c121f38
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_121f38(u32 a0, u32 unused_a1, u32 a2, u32 a3, int s0) {
     u32 uVar1;
@@ -2274,7 +2274,7 @@ u32 asr_sub_121f38(u32 a0, u32 unused_a1, u32 a2, u32 a3, int s0) {
 
 /*
  * asr_sub_121f72  0x8c121f72
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_121d36, asr_sub_121d3c
  */
 u32 asr_sub_121f72(int a0) {
@@ -2325,7 +2325,7 @@ u32 asr_sub_121f72(int a0) {
 
 /*
  * asr_sub_122060  0x8c122060
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_121d8a, asr_sub_122312
  */
 u32 asr_sub_122060(int a0) {
@@ -2362,7 +2362,7 @@ u32 asr_sub_122060(int a0) {
 
 /*
  * asr_sub_122070  0x8c122070
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_122070(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -2399,7 +2399,7 @@ u32 asr_sub_122070(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_12212e  0x8c12212e
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_11eb8c, asr_sub_11ec7c
  */
 u32 asr_sub_12212e(int a0) {
@@ -2411,7 +2411,7 @@ u32 asr_sub_12212e(int a0) {
 
 /*
  * asr_sub_12215c  0x8c12215c
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_11ec7c, asr_sub_122230
  */
 u32 asr_sub_12215c(int a0, u32 a1, int a2, int a3, int s0) {
@@ -2459,7 +2459,7 @@ u32 asr_sub_12215c(int a0, u32 a1, int a2, int a3, int s0) {
 
 /*
  * asr_sub_122230  0x8c122230
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_11eb8c, asr_sub_122358
  */
 u32 asr_sub_122230(int a0, u32 a1, int a2) {
@@ -2481,7 +2481,7 @@ u32 asr_sub_122230(int a0, u32 a1, int a2) {
 
 /*
  * asr_sub_1222b4  0x8c1222b4
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_11eb8c, asr_sub_122358
  */
 u32 asr_sub_1222b4(int a0, u32 a1) {
@@ -2501,7 +2501,7 @@ u32 asr_sub_1222b4(int a0, u32 a1) {
 
 /*
  * asr_sub_122312  0x8c122312
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_122312(u32 a0) {
     u32 uVar1;
@@ -2515,7 +2515,7 @@ u32 asr_sub_122312(u32 a0) {
 
 /*
  * asr_sub_122358  0x8c122358
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_122312
  */
 u32 asr_sub_122358(int a0) {
@@ -2630,11 +2630,11 @@ u32 asr_sub_122358(int a0) {
 }
 
 /*
- * asr_sub_1225fc  0x8c1225fc
- * area name: in the asr library code range
+ * asr_call_11f5d2_err  0x8c1225fc
+ * calls 8c11f5d2 on the handle; the library error code when it fails, else 0
  * called by: asr_sub_01d15c, speech_sub_01d9ac, speech_sub_01d9e0
  */
-u32 asr_sub_1225fc(u32 *a0, u32 a1) {
+u32 asr_call_11f5d2_err(u32 *a0, u32 a1) {
     int iVar1;
     u32 uVar2;
 
@@ -2647,10 +2647,10 @@ u32 asr_sub_1225fc(u32 *a0, u32 a1) {
 }
 
 /*
- * asr_sub_122604  0x8c122604
- * area name: in the asr library code range
+ * asr_call_11f5d2_err_122604  0x8c122604
+ * calls 8c11f5d2 on the handle; the library error code when it fails, else 0
  */
-u32 asr_sub_122604(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 asr_call_11f5d2_err_122604(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 *unaff_r13;
     u32 unaff_r14;
@@ -2663,11 +2663,11 @@ u32 asr_sub_122604(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_122630  0x8c122630
- * area name: in the asr library code range
+ * asr_call_11f66a_err  0x8c122630
+ * calls 8c11f66a on the handle; the library error code when it fails, else 0
  * called by: game_sub_01d7cc
  */
-u32 asr_sub_122630(u32 *a0, u32 a1, u32 a2) {
+u32 asr_call_11f66a_err(u32 *a0, u32 a1, u32 a2) {
     int iVar1;
     u32 uVar2;
 
@@ -2680,10 +2680,10 @@ u32 asr_sub_122630(u32 *a0, u32 a1, u32 a2) {
 }
 
 /*
- * asr_sub_122638  0x8c122638
- * area name: in the asr library code range
+ * asr_call_11f66a_err_122638  0x8c122638
+ * calls 8c11f66a on the handle; the library error code when it fails, else 0
  */
-u32 asr_sub_122638(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 asr_call_11f66a_err_122638(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 unaff_r13;
     u32 *unaff_r14;
@@ -2697,7 +2697,7 @@ u32 asr_sub_122638(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_122664  0x8c122664
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: game_sub_01dc80
  */
 int asr_sub_122664(u32 *a0, int *a1, u32 a2, u32 a3, int s0, int *s4, u32 *s8) {

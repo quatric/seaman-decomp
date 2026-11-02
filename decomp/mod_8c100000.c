@@ -6868,11 +6868,11 @@ u32 asr_sub_10b660(int *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10b698  0x8c10b698
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11f258_err  0x8c10b698
+ * calls 8c11f258 on the handle; the library error code when it fails, else 0
  * called by: asr_sub_01d15c
  */
-u32 asr_sub_10b698(u32 *a0, u32 a1) {
+u32 asr_call_11f258_err(u32 *a0, u32 a1) {
     int iVar1;
     u32 uVar2;
 
@@ -6885,10 +6885,10 @@ u32 asr_sub_10b698(u32 *a0, u32 a1) {
 }
 
 /*
- * asr_sub_10b6a0  0x8c10b6a0
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11f258_err_10b6a0  0x8c10b6a0
+ * calls 8c11f258 on the handle; the library error code when it fails, else 0
  */
-u32 asr_sub_10b6a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 asr_call_11f258_err_10b6a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 unaff_r13;
     u32 *unaff_r14;
@@ -7063,11 +7063,11 @@ int asr_sub_10b852(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10b8c6  0x8c10b8c6
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11ce44_err  0x8c10b8c6
+ * calls 8c11ce44 on the handle; the library error code when it fails, else 0
  * called by: asr_sub_01d008
  */
-u32 asr_sub_10b8c6(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 asr_call_11ce44_err(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 uStack_14;
@@ -7216,10 +7216,10 @@ int asr_sub_10bad4(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10bb3a  0x8c10bb3a
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11e3ea_err  0x8c10bb3a
+ * calls 8c11e3ea on the handle; the library error code when it fails, else 0
  */
-u32 asr_sub_10bb3a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 asr_call_11e3ea_err(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 unaff_r13;
     u32 *unaff_r14;
@@ -7232,10 +7232,10 @@ u32 asr_sub_10bb3a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10bb6e  0x8c10bb6e
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11e146_err  0x8c10bb6e
+ * calls 8c11e146 on the handle; the library error code when it fails, else 0
  */
-u32 asr_sub_10bb6e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 asr_call_11e146_err(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 *unaff_r13;
     u32 unaff_r14;
@@ -7248,11 +7248,11 @@ u32 asr_sub_10bb6e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10bb9a  0x8c10bb9a
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11eb6c_err  0x8c10bb9a
+ * calls 8c11eb6c on the handle; the library error code when it fails, else 0
  * called by: asr_sub_10c0b4
  */
-int asr_sub_10bb9a(u32 *a0, int *a1, u32 a2, u32 a3) {
+int asr_call_11eb6c_err(u32 *a0, int *a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -7269,10 +7269,10 @@ int asr_sub_10bb9a(u32 *a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10bba8  0x8c10bba8
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11eb6c_err_10bba8  0x8c10bba8
+ * calls 8c11eb6c on the handle; the library error code when it fails, else 0
  */
-int asr_sub_10bba8(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+int asr_call_11eb6c_err_10bba8(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     int *unaff_r11;
@@ -7338,10 +7338,10 @@ int asr_sub_10bbf2(u32 *a0, int *a1, u32 *a2, u32 a3) {
 }
 
 /*
- * asr_sub_10bce4  0x8c10bce4
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11d7b8_err  0x8c10bce4
+ * calls 8c11d7b8 on the handle; the library error code when it fails, else 0
  */
-u32 asr_sub_10bce4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 asr_call_11d7b8_err(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 unaff_r13;
     u32 *unaff_r14;
@@ -7354,10 +7354,10 @@ u32 asr_sub_10bce4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10bd20  0x8c10bd20
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11dc7e_err  0x8c10bd20
+ * calls 8c11dc7e on the handle; the library error code when it fails, else 0
  */
-u32 asr_sub_10bd20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 asr_call_11dc7e_err(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 unaff_r13;
     u32 *unaff_r14;
@@ -7413,10 +7413,10 @@ u32 asr_sub_10bd4c(u32 *a0, u32 *a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * asr_sub_10bdee  0x8c10bdee
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11e214_err  0x8c10bdee
+ * calls 8c11e214 on the handle; the library error code when it fails, else 0
  */
-u32 asr_sub_10bdee(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 asr_call_11e214_err(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 *unaff_r13;
     u32 unaff_r14;
@@ -7429,10 +7429,10 @@ u32 asr_sub_10bdee(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10be22  0x8c10be22
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11e274_err  0x8c10be22
+ * calls 8c11e274 on the handle; the library error code when it fails, else 0
  */
-u32 asr_sub_10be22(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 asr_call_11e274_err(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 *unaff_r13;
     u32 unaff_r14;
@@ -7457,10 +7457,10 @@ u32 asr_sub_10be4e(u32 unused_a0, u32 *a1) {
 }
 
 /*
- * asr_sub_10be70  0x8c10be70
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11e190_err  0x8c10be70
+ * calls 8c11e190 on the handle; the library error code when it fails, else 0
  */
-u32 asr_sub_10be70(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 asr_call_11e190_err(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 *unaff_r13;
     u32 unaff_r14;
@@ -7613,7 +7613,7 @@ int asr_sub_10c0b4(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     uStack_28 = *(u32 *)(iVar3 + 4);
     uStack_24 = a0[2];
     uVar4 = a2;
-    iStack_30 = asr_sub_10bb9a(a0, a5, a2, a3);
+    iStack_30 = asr_call_11eb6c_err(a0, a5, a2, a3);
     if (iStack_30 == 0) {
         ar4_00 = *(int *)*puStack_2c;
         iVar1 = asr_sub_10afbe(ar4_00);
@@ -7690,11 +7690,11 @@ int asr_sub_10c0b4(u32 *a0, u32 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10c2a2  0x8c10c2a2
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11dda2_err  0x8c10c2a2
+ * calls 8c11dda2 on the handle; the library error code when it fails, else 0
  * called by: asr_sub_01cee0
  */
-u32 asr_sub_10c2a2(u32 *a0, u32 a1, u32 a2) {
+u32 asr_call_11dda2_err(u32 *a0, u32 a1, u32 a2) {
     int iVar1;
     u32 uVar2;
 
@@ -7707,10 +7707,10 @@ u32 asr_sub_10c2a2(u32 *a0, u32 a1, u32 a2) {
 }
 
 /*
- * asr_sub_10c2aa  0x8c10c2aa
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11dda2_err_10c2aa  0x8c10c2aa
+ * calls 8c11dda2 on the handle; the library error code when it fails, else 0
  */
-u32 asr_sub_10c2aa(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 asr_call_11dda2_err_10c2aa(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 unaff_r13;
     u32 *unaff_r14;
@@ -7723,10 +7723,10 @@ u32 asr_sub_10c2aa(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10c2f4  0x8c10c2f4
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11daa4_err  0x8c10c2f4
+ * calls 8c11daa4 on the handle; the library error code when it fails, else 0
  */
-u32 asr_sub_10c2f4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 asr_call_11daa4_err(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 *unaff_r13;
     u32 uVar2;
@@ -7740,11 +7740,11 @@ u32 asr_sub_10c2f4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10c322  0x8c10c322
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11d370_err  0x8c10c322
+ * calls 8c11d370 on the handle; the library error code when it fails, else 0
  * called by: speech_sub_01d9e0
  */
-u32 asr_sub_10c322(u32 *a0) {
+u32 asr_call_11d370_err(u32 *a0) {
     int iVar1;
     u32 uVar2;
 
@@ -7757,10 +7757,10 @@ u32 asr_sub_10c322(u32 *a0) {
 }
 
 /*
- * asr_sub_10c32a  0x8c10c32a
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11d370_err_10c32a  0x8c10c32a
+ * calls 8c11d370 on the handle; the library error code when it fails, else 0
  */
-u32 asr_sub_10c32a(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 asr_call_11d370_err_10c32a(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     u32 unaff_r13;
     u32 *unaff_r14;
@@ -7773,11 +7773,11 @@ u32 asr_sub_10c32a(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_10c356  0x8c10c356
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11d5d4_err  0x8c10c356
+ * calls 8c11d5d4 on the handle; the library error code when it fails, else 0
  * called by: speech_sub_01d984, speech_sub_01da60
  */
-u32 asr_sub_10c356(u32 *a0) {
+u32 asr_call_11d5d4_err(u32 *a0) {
     int iVar1;
     u32 uVar2;
 
@@ -7790,10 +7790,10 @@ u32 asr_sub_10c356(u32 *a0) {
 }
 
 /*
- * asr_sub_10c35e  0x8c10c35e
- * area name: sits between asr functions (same compilation unit)
+ * asr_call_11d5d4_err_10c35e  0x8c10c35e
+ * calls 8c11d5d4 on the handle; the library error code when it fails, else 0
  */
-u32 asr_sub_10c35e(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 asr_call_11d5d4_err_10c35e(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     u32 unaff_r13;
     u32 *unaff_r14;
@@ -8150,7 +8150,7 @@ u32 asr_sub_10c530(int a0, float *a1, float *a2, int a3) {
 
 /*
  * asr_sub_10c838  0x8c10c838
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_10c838(int *a0, u32 a1, int a2, int *a3) {
     u8 *puVar1;
