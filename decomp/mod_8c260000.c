@@ -2489,7 +2489,7 @@ int ADXF_close_handle_like(int a0, u32 a1, u32 a2, u32 a3, int ain0) {
  * ADXF_Close_like  0x8c262168
  * stops an ADXF handle that is reading and clears it (0x30 bytes)
  * called by: ADXF_AddPartition, ADXF_LoadPartition, ADXF_Open_like, ADXF_close_all, ADXF_uses_cri_api_trace_2620c8,
- * CDCGD_uses_ADXF_Close_like_02049c, game_uses_ADXF_GetStat_01fab4, game_uses_list_push_front_01f8a4
+ * CDCGD_uses_ADXF_Close_like_02049c, CDCGD_uses_ADXF_GetStat_01fab4, game_uses_list_push_front_01f8a4
  */
 u32 ADXF_Close_like(int a0) {
     u32 uVar1;
@@ -2640,8 +2640,8 @@ u32 ADXF_uses_irq_disable_nested_2622e4(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ADXF_uses_lib_error_printf_262312  0x8c262312
  * name hint from a string it uses: E9040816 adxf is NULL ADXF R; area name: sits between ADXF functions (same
- * compilation unit); behaviour name: its main named callee is lib_error_printf called by: CDCGD_uses_strcpy_0202c0,
- * cri_sound_261ae2, game_uses_ADXF_GetStat_01fab4
+ * compilation unit); behaviour name: its main named callee is lib_error_printf called by:
+ * CDCGD_uses_ADXF_GetStat_01fab4, CDCGD_uses_strcpy_0202c0, cri_sound_261ae2
  */
 u32 ADXF_uses_lib_error_printf_262312(int *a0, int a1, u32 a2) {
     int *piVar1;
@@ -2994,7 +2994,7 @@ u32 ADXF_GetNumReadSct(int a0, u32 unused_a1, u32 a2) {
 /*
  * ADXF_GetStat  0x8c2626b4
  * named from the library error message it prints (ADXF_GetStat)
- * called by: cri_sound_261ae2, game_uses_ADXF_GetStat_01fab4, game_uses_list_push_front_01f8a4
+ * called by: CDCGD_uses_ADXF_GetStat_01fab4, cri_sound_261ae2, game_uses_list_push_front_01f8a4
  * strings: "E9040832:'adxf' is NULL.(ADXF_GetStat)\n"
  */
 u32 ADXF_GetStat(int a0, u32 unused_a1, u32 a2) {

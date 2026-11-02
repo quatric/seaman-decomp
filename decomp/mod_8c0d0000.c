@@ -2141,7 +2141,7 @@ u32 obj_draw_with_part_swapped(int a0, u32 a1, u32 a2, u32 a3) {
     uVar4 = 4;
     ar6_00 = a0 + 0x2c;
     uVar3 = a3;
-    Class_129808_update_fields_016464(a3, uVar5, ar6_00, 4);
+    Class_129808_set_params_by_mode(a3, uVar5, ar6_00, 4);
     uVar2 = *(u32 *)(*piVar1 + 8);
     *(u32 *)(*piVar1 + 8) = *(u32 *)(*(short *)(a0 + 0x24) * 0xc + *piVar1 + 8);
     *(u32 *)(*(short *)(a0 + 0x24) * 0xc + *piVar1 + 8) = uVar2;
@@ -3143,7 +3143,7 @@ int Class_12b930_uses_vec_new_array_0d2fd8(int a0, u32 a1) {
     *(u16 *)(a0 + 0x46c) = 0xff;
     *(u16 *)(a0 + 0x46e) = 0xff;
     ar7_00 = 4;
-    Class_129808_update_fields_016464(a0 + 0x110, a0 + 0x430, 0, 4);
+    Class_129808_set_params_by_mode(a0 + 0x110, a0 + 0x430, 0, 4);
     uVar4 = 4;
     iVar2 = a0 + 0x460;
     CSquid_update_fields_0164c8(a0 + 0x110, iVar2, 4);

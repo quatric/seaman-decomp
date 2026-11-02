@@ -285,7 +285,7 @@ u32 talk_start_line(int a0, u32 a1, u32 a2, u32 a3) {
             if (*(int *)(0x2e8 + a0) == -1) {
                 set_field_770(a0, 0, uVar2, ar7_00);
                 set_word_array_674(a0, a1, 0);
-                uVar7 = talk_copy_03087c(a0, a1, a2, a3, in_stack_00000000);
+                uVar7 = talk_start_event_named(a0, a1, a2, a3, in_stack_00000000);
                 *(u32 *)(0xb0 + a0) = 0;
                 *(u32 *)(a0 + 0x60) = a2;
                 iVar6 = a0;
@@ -302,7 +302,7 @@ u32 talk_start_line(int a0, u32 a1, u32 a2, u32 a3) {
             set_word_array_674(a0, a1, 0);
             set_field_770(a0, 0, uVar7, ar7_00);
             uVar2 = a2;
-            uVar7 = talk_copy_03087c(a0, a1, a2, a3, in_stack_00000000);
+            uVar7 = talk_start_event_named(a0, a1, a2, a3, in_stack_00000000);
             *(u32 *)(0xb0 + a0) = 0;
             *(u32 *)(a0 + 0x60) = a2;
             set_field_770(a0, 2, uVar2, a3);
@@ -330,11 +330,11 @@ int set_field_770(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * talk_copy_03087c  0x8c03087c
- * area name: sits between talk functions (same compilation unit); behaviour name: mostly calls copy functions
- * called by: talk_start_line
+ * talk_start_event_named  0x8c03087c
+ * when no talk event is pending, starts event a1/a2 and builds its three name strings (prefix plus level letter, a3,
+ * s0) called by: talk_start_line
  */
-u32 talk_copy_03087c(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
+u32 talk_start_event_named(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;
     int iVar2;
     u8 *puVar3;
@@ -434,7 +434,7 @@ u32 talk_set_start_scene(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * talk_event_priority  0x8c030ac4
  * 5 for the scripted events (EVENT_ROCK_PUSH, EVENT_QUIZ, EVENT_ENDING, ...), 4 for anything else
- * called by: talk_copy_03087c, talk_queue_mode1, talk_queue_mode2, talk_start_line
+ * called by: talk_queue_mode1, talk_queue_mode2, talk_start_event_named, talk_start_line
  * strings: "EVENT_ROCK_PUSH"; "EVENT_GET_WORMBOX"; "EVENT_GET_SPRINKLER"; "EVENT_JUNGLE_JUMP" ...
  */
 u32 talk_event_priority(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
@@ -901,7 +901,7 @@ u32 Class_129cbc_m5_031440(int a0) {
  * get_motion_data  0x8c0314f8
  * motion data entry a1 of the object's table; reports "Check This Motion Data" when it is missing
  * called by: CAnimBody_AdvanceFrame_033b98, CAnimBody_SetFrame, CAnimBody_SetInterpolate,
- CAnimBody_uses_get_motion_data_033d34, Class_129cbc_m5_031440, Class_12ad14_m3_0a427c, Class_12ad14_m4_0a43d4,
+ CAnimBody_wrap_frame_to_motion, Class_129cbc_m5_031440, Class_12ad14_m3_0a427c, Class_12ad14_m4_0a43d4,
  Vec3_state_switch_03f4a4 (+21 more)
  * strings: ",a1);
     (*(code *)(&report_error_message))
@@ -3679,7 +3679,7 @@ u32 static_init_vec3s_27d530(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
  */
 u32 *Class_129cf8_ctor(u32 *a0) {
     *a0 = (&DATA_8c129cf8);
-    Class_129cf8_init_fields_0339b0(a0);
+    Class_129cf8_reset(a0);
     return a0;
 }
 
@@ -3698,11 +3698,11 @@ u32 *Class_129cf8_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_129cf8_init_fields_0339b0  0x8c0339b0
- * area name: only called from Class_129cf8 methods; behaviour name: writes 29 members
+ * Class_129cf8_reset  0x8c0339b0
+ * clears the record's counters and timers, setting +0x2c and +0x6c to -1, +0x24 to 1, +0x64 to 30.0 and +0x68 to 1.0
  * called by: Class_129cf8_ctor
  */
-u32 Class_129cf8_init_fields_0339b0(int a0) {
+u32 Class_129cf8_reset(int a0) {
     *(u32 *)(a0 + 0x14) = 0;
     *(u32 *)(a0 + 0x10) = 0;
     *(u32 *)(a0 + 0x18) = 0;
@@ -3861,7 +3861,7 @@ u32 CAnimBody_AdvanceFrame_033b98(int a0, u32 a1, u32 a2, u32 a3) {
             dVar4 = (double)(iVar1 + -1);
         }
         if (cVar5 == '\0' && (float)((u64)dVar4 >> 0x20) < SUB84(dVar4, 0)) {
-            CAnimBody_uses_get_motion_data_033d34(a0, ar5_00, a2, a3);
+            CAnimBody_wrap_frame_to_motion(a0, ar5_00, a2, a3);
             uVar2 = 1;
             *(u32 *)(a0 + 0x70) = 1;
             if (*(int *)(a0 + 0x2c) != -1) {
@@ -3984,11 +3984,11 @@ u32 CAnimBody_AdvanceFrame_033b98(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CAnimBody_uses_get_motion_data_033d34  0x8c033d34
- * area name: only called from CAnimBody methods; behaviour name: its main named callee is get_motion_data
+ * CAnimBody_wrap_frame_to_motion  0x8c033d34
+ * wraps the frame at +0x20 back into the length of the current motion
  * called by: CAnimBody_AdvanceFrame_033b98, CAnimBody_AdvanceFrame_033d88, CAnimBody_SetFrame, CAnimBody_SetInterpolate
  */
-int CAnimBody_uses_get_motion_data_033d34(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int CAnimBody_wrap_frame_to_motion(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     u32 uVar3;
@@ -4099,7 +4099,7 @@ u32 CAnimBody_AdvanceFrame_033d88(int a0, char *a1, u32 a2, u32 a3) {
     } else {
         *(double *)(a0 + 0x20) = dVar5;
     }
-    CAnimBody_uses_get_motion_data_033d34(a0, a1, a2, a3);
+    CAnimBody_wrap_frame_to_motion(a0, a1, a2, a3);
     if (cVar8 == '\0') {
         dVar3 = (double)CONCAT44(*(u32 *)(a0 + 0x20), fVar2);
     } else {
@@ -4234,7 +4234,7 @@ u32 CAnimBody_SetFrame(int a0, u32 a1, u32 a2, u32 a3) {
             dVar6 = (double)(iVar1 + -1);
         }
         if (cVar7 == '\0' && (float)((u64)dVar6 >> 0x20) < SUB84(dVar6, 0)) {
-            CAnimBody_uses_get_motion_data_033d34(a0, ar5_00, a2, a3);
+            CAnimBody_wrap_frame_to_motion(a0, ar5_00, a2, a3);
             uVar2 = 1;
             *(u32 *)(a0 + 0x70) = 1;
             if (*(int *)(a0 + 0x2c) != -1) {
@@ -4287,7 +4287,7 @@ u32 CAnimBody_SetFrame(int a0, u32 a1, u32 a2, u32 a3) {
             } else {
                 *(u64 *)(a0 + 0x58) = (u64)(u32)fVar3;
             }
-            CAnimBody_uses_get_motion_data_033d34(a0, ar5_00, a2, a3);
+            CAnimBody_wrap_frame_to_motion(a0, ar5_00, a2, a3);
             uVar2 = 4;
             *(u32 *)(a0 + 0x70) = 1;
         }
@@ -4333,7 +4333,7 @@ u32 CAnimBody_SetInterpolate(int a0, char *a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 0x44) = uVar1;
     uVar1 = get_field_0_026d74(*(int *)(a0 + 0x18) + (int)a1 * 4);
     *(u32 *)(a0 + 0x48) = uVar1;
-    CAnimBody_uses_get_motion_data_033d34(a0, ar5_00, a2, a3);
+    CAnimBody_wrap_frame_to_motion(a0, ar5_00, a2, a3);
     if (cVar8 == '\0') {
         uVar1 = *(u32 *)(a0 + 0x20);
         *(u32 *)(a0 + 0x4c) = uVar1;
@@ -6198,7 +6198,7 @@ u32 CAnimal_uses_table13019c_find_row_034d48(short *a0, u32 *a1, u32 *a2, u32 a3
         }
         *(int *)(a0 + 0x10) = iVar2;
         if (*a0 == -1) {
-            game_talk_035110(a0, a2, ar6_00, a3);
+            talk_rules_pick_best(a0, a2, ar6_00, a3);
         } else {
             if (*(int *)(a0 + 4) == 1) {
                 uVar4 = (**(code **)(*(int *)(*(int *)(a0 + 0xe) + *a0 * 4 + 4) + 0x14))(a2, uVar1, ar6_00, a3);
@@ -6305,11 +6305,11 @@ int game_fill_loop_035028(int a0, u32 a1) {
 }
 
 /*
- * game_talk_035110  0x8c035110
- * area name: game code; nothing names its area yet; behaviour name: mostly calls talk functions
- * called by: CAnimal_uses_table13019c_find_row_034d48
+ * talk_rules_pick_best  0x8c035110
+ * among ready rules (state 2) whose condition passes, picks the one with the highest priority, marks it running (state
+ * 3) and returns its id, or -1 called by: CAnimal_uses_table13019c_find_row_034d48
  */
-int game_talk_035110(u16 *a0, int a1, u32 a2, u32 a3) {
+int talk_rules_pick_best(u16 *a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     int ar5_00;
     int iVar2;
@@ -6331,7 +6331,7 @@ int game_talk_035110(u16 *a0, int a1, u32 a2, u32 a3) {
                     }
                 } else if (*(char *)(*(int *)(*(int *)(a0 + 0xe) + iVar4 * 4 + 4) + 0x21) == '\x01') {
                     ar5_00 = a1;
-                    iVar1 = game_vec_03525c(a0, a1, a2, a3);
+                    iVar1 = talk_vec_03525c(a0, a1, a2, a3);
                     if (iVar1 == 1) {
                         iVar1 = (**(code **)(*(int *)(*(int *)(a0 + 0xe) + iVar4 * 4 + 4) + 0x10))(a1, ar5_00, a2, a3);
                         if (iVar1 == 1) {
@@ -6355,11 +6355,11 @@ int game_talk_035110(u16 *a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_03525c  0x8c03525c
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
- * called by: game_talk_035110
+ * talk_vec_03525c  0x8c03525c
+ * area name: sits between talk functions (same compilation unit); behaviour name: mostly calls vec functions
+ * called by: talk_rules_pick_best
  */
-u32 game_vec_03525c(u32 unused_a0, int a1, u32 a2, u32 a3) {
+u32 talk_vec_03525c(u32 unused_a0, int a1, u32 a2, u32 a3) {
     float *ar6_00;
     float fVar1;
     float fVar2;
@@ -6484,10 +6484,10 @@ int game_uses_get_field_18_on_field_a8_0353bc(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * game_uses_get_field_a4_s16_035470  0x8c035470
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_a4_s16
+ * level_minutes_threshold_reached  0x8c035470
+ * returns 1 when the level is 8+, or 7/6/5/4 with at least 10/12/15/20 minutes on the a0 + 0x20 clock
  */
-u32 game_uses_get_field_a4_s16_035470(int a0, u32 a1, u32 a2, u32 a3) {
+u32 level_minutes_threshold_reached(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;

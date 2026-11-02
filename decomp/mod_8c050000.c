@@ -8502,7 +8502,7 @@ u32 FrogMan_update_sleep_light(int *a0, code *a1, code *a2) {
         }
         iVar9 = get_field_40_03598c(*(int *)(a2 + 0xc), pcVar4);
         if (iVar9 == 0) {
-            game_copy_02e8e0(a0 + 0x207, 1);
+            timers_tick_and_clear(a0 + 0x207, 1);
             pcVar4 = a1;
             pcVar11 = a2;
             FrogMan_react_tap(a0, a1, a2, pcVar14);
@@ -9362,7 +9362,7 @@ u32 FrogMan_choose_status_event(int a0, u32 a1, int *a2, int a3) {
                 break;
             case 1:
                 set_field_38_02f404(a0, 3);
-                iVar4 = game_uses_get_field_6c_02f414(a0, game_uses_get_field_6c_02f414, piVar3, a3);
+                iVar4 = Class_129c70_uses_get_field_6c_02f414(a0, Class_129c70_uses_get_field_6c_02f414, piVar3, a3);
                 if (iVar4 == 1) {
                     talk_vec_066628(a0, a1, piVar3);
                 } else {
@@ -9392,7 +9392,7 @@ u32 FrogMan_choose_status_event(int a0, u32 a1, int *a2, int a3) {
                 set_field_38_02f404(a0, 3);
                 break;
             case 6:
-                iVar4 = game_uses_get_field_6c_02f414(a0, ar5_00, piVar3, a3);
+                iVar4 = Class_129c70_uses_get_field_6c_02f414(a0, ar5_00, piVar3, a3);
                 if (iVar4 == 1) {
                     if (*(int *)(a0 + 0x88) == 1) {
                         uVar2 = get_field_6c_02f46c(*(u32 *)(a0 + 0x6c));
@@ -9438,7 +9438,7 @@ u32 FrogMan_choose_status_event(int a0, u32 a1, int *a2, int a3) {
                 }
                 break;
             case 0xf:
-                iVar4 = game_uses_get_field_6c_02f414(a0, ar5_00, piVar3, a3);
+                iVar4 = Class_129c70_uses_get_field_6c_02f414(a0, ar5_00, piVar3, a3);
                 if (iVar4 == 1) {
                     if (*(int *)(a0 + 0x88) == 1) {
                         take_from_field_6c(*(u32 *)(a0 + 0x6c), 1, piVar3, a3);

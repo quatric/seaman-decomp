@@ -2698,7 +2698,7 @@ u32 asr_call_11f66a_err_122638(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * asr_copy_122664  0x8c122664
  * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls copy functions
- * called by: game_uses_strcpy_01dc80
+ * called by: speech_load_dictionary
  */
 int asr_copy_122664(u32 *a0, int *a1, u32 a2, u32 a3, int s0, int *s4, u32 *s8) {
     int iVar1;
@@ -3021,7 +3021,7 @@ LAB_8c12282a:
 /*
  * asr_copy_122e7c  0x8c122e7c
  * area name: in the asr library code range; behaviour name: mostly calls copy functions
- * called by: game_uses_strcpy_01dc80
+ * called by: speech_load_dictionary
  */
 int asr_copy_122e7c(u32 *a0, int *a1, u32 a2, u32 a3, int s0) {
     u32 *puVar1;

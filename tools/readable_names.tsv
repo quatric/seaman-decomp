@@ -1928,3 +1928,23 @@
 8c263f54	ADXT_buffered_samples_like	returns the number of decoded samples the input buffer holds (bytes / (channels * 18) * 32) once the player is running
 8c266892	sd_set_byte2_checked	sets byte +2 of sound handle a0 to a1 (0-16), recording error 0x3000001 when out of range
 8c2689c8	sd_clear_state	clears the sound driver tables, fills the 0x200-word buffer with 0x80808080 and calls the driver interface reset
+8c010960	memcpy_bytes_unrolled	copies r0 bytes from r2 to r1 four at a time (the unaligned tail of memcpy)
+8c010998	strcpy_like	copies the string at r1 to r0 (word-wise when both are aligned) and returns r0
+8c01289c	bytes_shift_left_carry	shifts the a1-byte big-number at a0 left by a2 bits, carrying between bytes from the end
+8c016464	Class_129808_set_params_by_mode	stores mode a3; mode 1 copies 3 + 1 words and mode 2 copies 6 + 2 words from a1/a2 into its buffers, otherwise it keeps the pointers
+8c01ca24	speech_state_reset	marks the 16 recogniser slots free, clears the session handles and resets the speech globals (threshold 0x7000, timeout 8000)
+8c01dc80	speech_load_dictionary	stores the three settings, copies the two dictionary names, builds the string index and loads the recogniser model; returns 1 on success
+8c01f9c4	CDCGD_finish_texture_request	loads the read texture by kind (0xc, 0xd or 0xe), registers it or closes the request, then opens the next file
+8c020148	CDCGD_file_exists	checks path a1 on the volume named by its first component (or the default one) and returns 1 when it exists
+8c021e10	pack_step_from_value	returns abs(a1) / 333 as a step 0-8 (15 when larger) with a1's sign
+8c02775c	group_index_to_id	maps group 1 indexes 0-7 to ids 0-7 and group 2 indexes 0-4 to ids 8-12; anything else gives 12
+8c029d64	draw_node_chain_scaled	draws node a1 (scaling its +0x14 value by a0 + 0x5c while drawing) and then each following sibling, inside a matrix push
+8c02c3a8	talk_pick_due_topic	returns the first talk topic whose timer has run out and is enabled (3, 2, 0, 1, then 4 or 10), or -1
+8c02e8e0	timers_tick_and_clear	counts the six timers at +0xc to +0x20 down and clears each group when its main timer reaches 0 (all of them when a1 is 0)
+8c02f2c8	Class_129c70_split_min_value	takes the smallest non-zero entry and stores it as hundreds (+4) and remainder (+8), flagging +0x91 when they change
+8c03087c	talk_start_event_named	when no talk event is pending, starts event a1/a2 and builds its three name strings (prefix plus level letter, a3, s0)
+8c0339b0	Class_129cf8_reset	clears the record's counters and timers, setting +0x2c and +0x6c to -1, +0x24 to 1, +0x64 to 30.0 and +0x68 to 1.0
+8c033d34	CAnimBody_wrap_frame_to_motion	wraps the frame at +0x20 back into the length of the current motion
+8c035110	talk_rules_pick_best	among ready rules (state 2) whose condition passes, picks the one with the highest priority, marks it running (state 3) and returns its id, or -1
+8c035470	level_minutes_threshold_reached	returns 1 when the level is 8+, or 7/6/5/4 with at least 10/12/15/20 minutes on the a0 + 0x20 clock
+8c06c89c	obj_state_save_full	saves the object state plus its two vectors, five state bytes, timers and four floats into record a1 (unless idle in state 7)

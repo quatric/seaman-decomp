@@ -151,7 +151,7 @@ u8 **FrogMan_gratification_events(u8 **a0, int *a1, code *a2, char *a3) {
             ppuVar4 = (u8 **)counter_set_clamped(*(int *)(a2 + 4) + 0x90, 0, pcVar11);
             break;
         case (u8 **)0x6:
-            ppuVar4 = (u8 **)game_uses_get_field_6c_02f414(a0, 0x35, pcVar11, a3);
+            ppuVar4 = (u8 **)Class_129c70_uses_get_field_6c_02f414(a0, 0x35, pcVar11, a3);
             if (ppuVar4 == (u8 **)0x1) {
                 uVar3 = get_field_6c_02f46c(a0[0x1b]);
                 uVar3 = take_from_field_6c(a0[0x1b], uVar3, pcVar11, a3);
@@ -254,7 +254,7 @@ u8 **FrogMan_gratification_events(u8 **a0, int *a1, code *a2, char *a3) {
             }
             break;
         case (u8 **)0xf:
-            iVar1 = game_uses_get_field_6c_02f414(a0, 0x35, pcVar11, a3);
+            iVar1 = Class_129c70_uses_get_field_6c_02f414(a0, 0x35, pcVar11, a3);
             if (iVar1 == 1) {
                 uVar3 = get_field_6c_02f46c(a0[0x1b]);
                 uVar3 = take_from_field_6c(a0[0x1b], uVar3, pcVar11, a3);
@@ -7760,10 +7760,11 @@ u32 game_uses_libgcc_divide_helper_06c148(code *a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_06c89c  0x8c06c89c
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * obj_state_save_full  0x8c06c89c
+ * saves the object state plus its two vectors, five state bytes, timers and four floats into record a1 (unless idle in
+ * state 7)
  */
-int game_vec_06c89c(int a0, int a1, u32 a2, u32 a3) {
+int obj_state_save_full(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     char cVar2;
 

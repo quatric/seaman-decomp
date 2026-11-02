@@ -9748,7 +9748,7 @@ u32 Class_12b0c4_uses_set_field_38_0abe84(int a0, u32 a1, int *a2, int a3) {
     } else if (iVar1 == 1) {
         set_field_38_02f404(a0, 3);
     } else if (iVar1 == 3) {
-        iVar2 = game_uses_get_field_6c_02f414(a0, ar5_00, ar6_00, a3);
+        iVar2 = Class_129c70_uses_get_field_6c_02f414(a0, ar5_00, ar6_00, a3);
         if ((iVar2 == 1) && (*(int *)(a0 + 0x88) == 1)) {
             iVar2 = get_field_6c_02f46c(*(u32 *)(a0 + 0x6c));
             take_from_field_6c(*(u32 *)(a0 + 0x6c), iVar2 + -1, ar6_00, a3);
@@ -9817,7 +9817,7 @@ int Class_12b0c4_uses_set_g_8c438470_0ac068(int a0, int *a1, u32 a2, u32 a3) {
         ar4_00 = (**(code **)(0x148 + *a1))(a1, a5, a2, a3);
         ar5_00 = 0;
         set_g_8c438470(ar4_00, 0);
-        iVar1 = game_uses_get_field_6c_02f414(a0, ar5_00, a2, a3);
+        iVar1 = Class_129c70_uses_get_field_6c_02f414(a0, ar5_00, a2, a3);
         if ((iVar1 == 1) && (iVar1 = 0, *(int *)(a0 + 0x6c) != 0)) {
             (**(code **)(*(int *)(*(int *)(a0 + 0x6c) + 8) + 0x78))(*(int *)(a0 + 0x6c), ar5_00, a2, a3);
             iVar1 = 0x6c;
@@ -9840,7 +9840,7 @@ int Class_12b0c4_uses_set_field_45_u8_0ac124(int a0, u32 unused_a1, int a2, u32 
     if (iVar1 == 3) {
         ar5_00 = 0;
         set_field_45_u8(*(u32 *)(a2 + 0xc), 0);
-        iVar1 = game_uses_get_field_6c_02f414(a0, ar5_00, a2, a3);
+        iVar1 = Class_129c70_uses_get_field_6c_02f414(a0, ar5_00, a2, a3);
         if (iVar1 == 1) {
             if (*(int *)(a0 + 0x6c) != 0) {
                 (**(code **)(*(int *)(*(int *)(a0 + 0x6c) + 8) + 0x78))(*(int *)(a0 + 0x6c), ar5_00, a2, a3);
@@ -10263,7 +10263,7 @@ int CSquid_Init(int a0, u32 a1) {
     *(u8 *)((int)0x8c286858 + 0xf) = 0;
     for (iVar3 = 0; iVar3 < 10; iVar3 = iVar3 + 1) {
         uVar2 = 4;
-        Class_129808_update_fields_016464(iVar3 * 0x44 + a0 + 0x9c4, (&DATA_8c13b474), 0x8c286858, 4);
+        Class_129808_set_params_by_mode(iVar3 * 0x44 + a0 + 0x9c4, (&DATA_8c13b474), 0x8c286858, 4);
         uVar1 = 4;
         ar5_01 = 0x8c286868;
         CSquid_update_fields_0164c8(iVar3 * 0x44 + a0 + 0x9c4, 0x8c286868, 4);
@@ -12244,14 +12244,14 @@ u32 game_uses_rand_0ae84c(int a0, u64 *a1, code *a2, int a3) {
         if (*(int *)(a0 + 0x1710) < (int)a2) {
             a3 = 4;
             ar6_00 = (code *)(iVar8 * 0x4c + 0x8c2859a4);
-            Class_129808_update_fields_016464(iVar8 * 0x44 + a0 + 0x9c4, &g_8c13b474, ar6_00, 4);
+            Class_129808_set_params_by_mode(iVar8 * 0x44 + a0 + 0x9c4, &g_8c13b474, ar6_00, 4);
         } else if (*(int *)(iVar8 * 0x4c + 0x8c2859b4) < 2) {
             iVar6 = iVar6 + 1;
             *(u32 *)(iVar8 * 0x4c + 0x8c2859b4) = 0;
         } else {
             a3 = 4;
             ar6_00 = (code *)(iVar8 * 0x4c + 0x8c2859a4);
-            Class_129808_update_fields_016464(iVar8 * 0x44 + a0 + 0x9c4, &g_8c13b474, ar6_00, 4);
+            Class_129808_set_params_by_mode(iVar8 * 0x44 + a0 + 0x9c4, &g_8c13b474, ar6_00, 4);
         }
     }
     *(int *)(a0 + 0x1710) = *(int *)(a0 + 0x1710) + 1;

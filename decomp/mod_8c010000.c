@@ -182,8 +182,8 @@ u32 pure_virtual_stub(void) {
 
 /*
  * strcpy  0x8c0101d4
- * called by: CDCGD_new_request_c, CDCGD_uses_strcpy_0202c0, CSeamanDomain_warning_message, Class_12a078_ctor,
- * Class_12c3c4_ctor, asr_switch_vocab, asr_uses_strcpy_0fbf28, file_slot_open (+41 more)
+ * called by: CDCGD_copy_01fc78, CDCGD_new_request_c, CDCGD_uses_strcpy_0202c0, CSeamanDomain_warning_message,
+ * Class_12a078_ctor, Class_12c3c4_ctor, asr_switch_vocab, asr_uses_strcpy_0fbf28 (+41 more)
  */
 u32 strcpy(char *a0, char *a1) {
     char cVar1;
@@ -201,8 +201,8 @@ u32 strcpy(char *a0, char *a1) {
 /*
  * libgcc_divide_helper_0101e4  0x8c0101e4
  * called by: CAnimal_m2_0386d0, CGame_uses_libgcc_divide_helper_0cc784, CProlog_uses_libgcc_divide_helper_0cd3c8,
- * Class_129808_uses_libgcc_divide_helper_01679c, Class_129938_vec_017900,
- * Class_129c70_uses_libgcc_divide_helper_02f2c8, Class_12a7f4_m2_09a060, Class_12a7f4_m3_09a558 (+32 more)
+ * Class_129808_uses_libgcc_divide_helper_01679c, Class_129938_vec_017900, Class_129c70_split_min_value,
+ * Class_12a7f4_m2_09a060, Class_12a7f4_m3_09a558 (+32 more)
  */
 int libgcc_divide_helper_0101e4(u32 a0, u32 a1) {
     u32 uVar1;
@@ -2000,7 +2000,7 @@ u32 libgcc_divide_helper_010284(u32 a0, int a1, u32 a2) {
  * libgcc_divide_helper_01031c  0x8c01031c
  * called by: CAnimBody_random_flags_delay, CAnimal_ctor, CAnimal_m2_02573c, CAnimal_m3_026078,
  * CAnimal_uses_set_field_4_on_field_f8_02911c, CHerb_LoadGRWait, Class_129808_uses_libgcc_divide_helper_01679c,
- * Class_129c70_uses_libgcc_divide_helper_02f2c8 (+69 more)
+ * Class_129c70_split_min_value (+69 more)
  */
 int libgcc_divide_helper_01031c(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -7795,7 +7795,7 @@ u32 *libc_fill_loop_0108f8(void) {
 /*
  * libc_fill_loop_0108fc  0x8c0108fc
  * area name: in the libc library code range; behaviour name: a loop that writes memory
- * called by: libc_calls_fill_loop_010998
+ * called by: strcpy_like
  */
 u32 *libc_fill_loop_0108fc(void) {
     char cVar1;
@@ -7856,11 +7856,11 @@ u32 *libc_fill_loop_0108fc(void) {
 }
 
 /*
- * libc_fill_loop_010960  0x8c010960
- * area name: in the libc library code range; behaviour name: a loop that writes memory
+ * memcpy_bytes_unrolled  0x8c010960
+ * copies r0 bytes from r2 to r1 four at a time (the unaligned tail of memcpy)
  * called by: g2dma_1f4794
  */
-int libc_fill_loop_010960(u32 unused_a0, u32 a1) {
+int memcpy_bytes_unrolled(u32 unused_a0, u32 a1) {
     char cVar1;
     int in_r0;
     int iVar2;
@@ -7898,11 +7898,11 @@ int libc_fill_loop_010960(u32 unused_a0, u32 a1) {
 }
 
 /*
- * libc_calls_fill_loop_010998  0x8c010998
- * area name: in the libc library code range; behaviour name: its callees mostly do: fill_loop
- * called by: filename_add_ext_if_missing, flash_header_signature, ninja_calls_fill_loop_25b4da
+ * strcpy_like  0x8c010998
+ * copies the string at r1 to r0 (word-wise when both are aligned) and returns r0
+ * called by: filename_add_ext_if_missing, flash_header_signature, strcpy_like_wrap
  */
-char *libc_calls_fill_loop_010998(void) {
+char *strcpy_like(void) {
     char cVar1;
     char *in_r0;
     u32 uVar2;
@@ -9750,11 +9750,11 @@ u32 bytes_shl1(u8 *a0, int a1) {
 }
 
 /*
- * libc_scan_loop_01289c  0x8c01289c
- * area name: in the libc library code range; behaviour name: a loop that only reads
+ * bytes_shift_left_carry  0x8c01289c
+ * shifts the a1-byte big-number at a0 left by a2 bits, carrying between bytes from the end
  * called by: libc_copy_012a60, libc_uses_memmove_013060, libc_uses_store_u32_be_012f58
  */
-u32 libc_scan_loop_01289c(u8 *a0, int a1, u32 a2) {
+u32 bytes_shift_left_carry(u8 *a0, int a1, u32 a2) {
     u8 bVar1;
     u32 in_r0;
     u32 uVar2;
@@ -9943,7 +9943,7 @@ u32 libc_copy_012a60(u32 a0, short *a1, u32 a2, u32 a3) {
     for (uVar2 = 0x80; (*ar4_00 & uVar2) == 0; uVar2 = uVar2 >> 1) {
         ar6_00 = ar6_00 + 1;
     }
-    libc_scan_loop_01289c(ar4_00, 8 - iVar3, ar6_00);
+    bytes_shift_left_carry(ar4_00, 8 - iVar3, ar6_00);
     *a1 = *a1 - (short)ar6_00;
     uVar1 = memmove(a2, ar4_00, 8 - iVar3);
     return uVar1;
@@ -10406,13 +10406,13 @@ u32 libc_uses_store_u32_be_012f58(u8 *a0, u16 *a1, u8 *a2) {
     memmove(a2, &stack0xffffffe1, 3);
     store_u32_be(&stack0xffffffe0, auStack_1c);
     memmove(a2 + 3, &stack0xffffffe0, 4);
-    libc_scan_loop_01289c(a2, 7, 3);
+    bytes_shift_left_carry(a2, 7, 3);
     if ((short)*a1 < 1) {
         *a1 = *a1 + 1;
         uVar1 = (int)(char)*a2 & 0x7f;
         *a2 = (u8)uVar1;
         while ((*a2 & 0x80) == 0) {
-            uVar1 = libc_scan_loop_01289c(a2, 7, 1);
+            uVar1 = bytes_shift_left_carry(a2, 7, 1);
             *a1 = *a1 - 1;
         }
     } else {
@@ -10508,7 +10508,7 @@ u32 libc_uses_memmove_013060(int a0, u8 *a1, int *a2, char *a3) {
             *puVar6 = 0;
         }
         iVar2 = a0 + iVar3 * -8;
-        libc_scan_loop_01289c(auStack_38, 8, iVar2);
+        bytes_shift_left_carry(auStack_38, 8, iVar2);
         memmove_wrap(a0 + -1, auStack_40);
         iVar3 = libgcc_divide_helper_010468(a0 + -1, 8);
         iVar5 = 0;
@@ -10523,7 +10523,7 @@ u32 libc_uses_memmove_013060(int a0, u8 *a1, int *a2, char *a3) {
         for (puVar6 = auStack_40 + iVar5; puVar6 < auStack_38; puVar6 = puVar6 + 1) {
             *puVar6 = 0;
         }
-        libc_scan_loop_01289c(auStack_40, 8, a0 + iVar3 * -8 + -1);
+        bytes_shift_left_carry(auStack_40, 8, a0 + iVar3 * -8 + -1);
         while (true) {
             while (true) {
                 puVar6 = a1;
@@ -11035,7 +11035,7 @@ u32 decimal_round_digits(char *a0, int a1) {
 
 /*
  * abs  0x8c013adc
- * called by: CProlog_uses_abs_0b93c0, Class_12b580_sound_022128, asr_uses_abs_12381c, pack_uses_abs_021e10,
+ * called by: CProlog_uses_abs_0b93c0, Class_12b580_sound_022128, asr_uses_abs_12381c, pack_step_from_value,
  * pack_uses_abs_021ec8, se_play_3d
  */
 int abs(int a0) {
@@ -11491,7 +11491,7 @@ u32 *memmove(u32 *a0, u32 *a1, u32 a2) {
  * memmove_bytes  0x8c013fb4
  * byte-wise copy that handles overlapping buffers
  * called by: CAnimal_draw_029510, CAnimal_uses_njGetMatrix_026968, game_copy_0d1eb8, game_copy_0d1f38,
- * game_draw_0297b8, memmove_bytes_wrap, memmove_bytes_wrap_024378, nautilus_group_reset (+1 more)
+ * game_uses_obj_set_texlist_0297b8, memmove_bytes_wrap, memmove_bytes_wrap_024378, nautilus_group_reset (+1 more)
  */
 u8 *memmove_bytes(u8 *a0, u8 *a1, u32 a2) {
     u8 uVar1;
@@ -12191,8 +12191,8 @@ int *game_vec_0146f8(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * set_flags_14_60  0x8c014764
  * sets bits 5 and 6 of the flags at +0x14
- * called by: CSquid_Init, Class_12b930_uses_vec_new_array_0d2fd8, Class_12bec0_uses_rand_0f5b10,
- * game_uses_set_flags_14_60_0149dc, game_vec_0146f8
+ * called by: CSquid_Init, Class_12b930_uses_vec_new_array_0d2fd8,
+ * Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10, game_uses_set_flags_14_60_0149dc, game_vec_0146f8
  */
 u32 set_flags_14_60(int a0) {
     u32 uVar1;
@@ -12205,8 +12205,8 @@ u32 set_flags_14_60(int a0) {
 /*
  * set_flag_14_20  0x8c014790
  * sets bit 5 of the flags at +0x14
- * called by: CSquid_Init, Class_12b3b8_ctor, Class_12b930_uses_vec_new_array_0d2fd8, Class_12bec0_uses_rand_0f5b10,
- * set_flag_14_bit31_and_20, set_flags_14_60
+ * called by: CSquid_Init, Class_12b3b8_ctor, Class_12b930_uses_vec_new_array_0d2fd8,
+ * Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10, set_flag_14_bit31_and_20, set_flags_14_60
  */
 u32 set_flag_14_20(int a0) {
     u32 uVar1;
@@ -12451,7 +12451,7 @@ u32 Class_129808_m2_0148d8(int a0) {
     fStack_c = *(float *)(a0 + 0xc) - *(float *)(a0 + 0x1c) * 3.0;
     uVar1 = 2;
     ar6_00 = &g_8c27882c;
-    Class_129808_update_fields_016464(*(u32 *)(a0 + 0x28), &uStack_20, &g_8c27882c, 2);
+    Class_129808_set_params_by_mode(*(u32 *)(a0 + 0x28), &uStack_20, &g_8c27882c, 2);
     uVar1 = Class_129808_calc_016504(*(u32 *)(a0 + 0x28), ar5_00, ar6_00, uVar1);
     return uVar1;
 }
@@ -12540,7 +12540,7 @@ int object_dtor_delete(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * set_flag_14_bit31_and_20  0x8c014a64
  * sets bit 31 of +0x14, then set_flag_14_20
- * called by: CSquid_Init, Class_12b930_uses_vec_new_array_0d2fd8, Class_12bec0_uses_rand_0f5b10
+ * called by: CSquid_Init, Class_12b930_uses_vec_new_array_0d2fd8, Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10
  */
 u32 set_flag_14_bit31_and_20(int a0) {
     u32 uVar1;
@@ -14521,18 +14521,18 @@ u32 Class_129808_copy_016410(u32 a0) {
  */
 u32 Class_129808_copy_01642c(u32 a0, u32 a1, u32 a2, u32 a3) {
     Class_129808_copy_016584(a0);
-    Class_129808_update_fields_016464(a0, a1, a2, a3);
+    Class_129808_set_params_by_mode(a0, a1, a2, a3);
     return a0;
 }
 
 /*
- * Class_129808_update_fields_016464  0x8c016464
- * area name: sits between Class_129808 functions (same compilation unit); behaviour name: conditionally writes members
- * called by: CSquid_Init, Class_129808_copy_01642c, Class_129808_m2_0148d8, Class_12b3b8_ctor,
- * Class_12b930_uses_vec_new_array_0d2fd8, Class_12bec0_uses_rand_0f5b10, game_uses_rand_0ae84c,
+ * Class_129808_set_params_by_mode  0x8c016464
+ * stores mode a3; mode 1 copies 3 + 1 words and mode 2 copies 6 + 2 words from a1/a2 into its buffers, otherwise it
+ * keeps the pointers called by: CSquid_Init, Class_129808_copy_01642c, Class_129808_m2_0148d8, Class_12b3b8_ctor,
+ * Class_12b930_uses_vec_new_array_0d2fd8, Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10, game_uses_rand_0ae84c,
  * obj_draw_with_part_swapped
  */
-u32 Class_129808_update_fields_016464(int *a0, u32 *a1, u32 *a2, int a3) {
+u32 Class_129808_set_params_by_mode(int *a0, u32 *a1, u32 *a2, int a3) {
     u32 uVar1;
     u32 *puVar2;
     int iVar3;
@@ -14573,7 +14573,7 @@ u32 Class_129808_update_fields_016464(int *a0, u32 *a1, u32 *a2, int a3) {
  * CSquid_update_fields_0164c8  0x8c0164c8
  * area name: only called from CSquid methods; behaviour name: conditionally writes members
  * called by: CSquid_Init, Class_12b930_uses_vec_new_array_0d2fd8, Class_12bea8_uses_Class_129808_m2_0d7900,
- * Class_12bec0_uses_rand_0f5b10, game_uses_obj_set_texlist_0d1168
+ * Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10, game_uses_obj_set_texlist_0d1168
  */
 int CSquid_update_fields_0164c8(int a0, u16 *a1, int a2) {
     short sVar1;
@@ -19013,8 +19013,8 @@ int vmu_load_user_icon(int *a0, int a1, int a2) {
             a0[2] = 1;
         }
         a2 = (int)a0 + 0x62c;
-        r7 = (&sound_calls_2_01c998);
-        iVar1 = shinobi_copy_1fbd2c(0xf, a1, a2, (&sound_calls_2_01c998));
+        r7 = (&game_calls_2_01c998);
+        iVar1 = shinobi_copy_1fbd2c(0xf, a1, a2, (&game_calls_2_01c998));
         if (iVar1 != 0) {
             return g_8c2791b0;
         }
@@ -20784,10 +20784,10 @@ u32 sound_server_2(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * sound_calls_2_01c998  0x8c01c998
- * area name: sits between sound functions (same compilation unit); behaviour name: calls 2 not yet named functions
+ * game_calls_2_01c998  0x8c01c998
+ * area name: game code; nothing names its area yet; behaviour name: calls 2 not yet named functions
  */
-u32 sound_calls_2_01c998(void) {
+u32 game_calls_2_01c998(void) {
     thunk_FUN_8c1fce34();
     thunk_FUN_8c1fce50();
     g_8c2791b0 = 1;
@@ -20795,11 +20795,11 @@ u32 sound_calls_2_01c998(void) {
 }
 
 /*
- * sound_fill_loop_01ca24  0x8c01ca24
- * area name: sits between sound functions (same compilation unit); behaviour name: a loop that writes memory
- * called by: game_save_01e504
+ * speech_state_reset  0x8c01ca24
+ * marks the 16 recogniser slots free, clears the session handles and resets the speech globals (threshold 0x7000,
+ * timeout 8000) called by: game_save_01e504
  */
-u32 *sound_fill_loop_01ca24(u32 *a0) {
+u32 *speech_state_reset(u32 *a0) {
     int iVar1;
 
     for (iVar1 = 0; iVar1 < 0x10; iVar1 = iVar1 + 1) {
@@ -20980,7 +20980,7 @@ u32 asr_load_language_model(int a0) {
 
 /*
  * asr_init_from_model  0x8c01ce00
- * called by: asr_load_language_model, game_uses_strcpy_01dc80
+ * called by: asr_load_language_model, speech_load_dictionary
  */
 u32 asr_init_from_model(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -21087,7 +21087,7 @@ u32 asr_copy_01cfc8(void) {
 /*
  * asr_talk_01d008  0x8c01d008
  * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls talk functions
- * called by: asr_session_end, game_talk_01cb54, game_uses_strcpy_01dc80
+ * called by: asr_session_end, game_talk_01cb54, speech_load_dictionary
  */
 u32 asr_talk_01d008(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     if (g_8c27925c != 0) {
@@ -21564,7 +21564,7 @@ u32 speech_register_idle_ctx(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * speech_talk_01d984  0x8c01d984
  * area name: sits between speech functions (same compilation unit); behaviour name: mostly calls talk functions
- * called by: game_talk_01d8d8, game_uses_strcmp_01dea4, game_uses_strcpy_01dc80
+ * called by: game_talk_01d8d8, game_uses_strcmp_01dea4, speech_load_dictionary
  */
 int speech_talk_01d984(void) {
     int iVar1;
@@ -21649,10 +21649,10 @@ u32 speech_uses_strcpy_01da90(int a0, u32 unused_a1, u32 a2, u32 a3) {
         } else if (iVar1 == 2) {
             *(u32 *)(*(int *)(a0 + 0x5630) * 0x50 + a0 + 0x5638) = 2;
         } else {
-            iVar1 = game_uses_strcpy_01dc80(
-                a0, *(int *)(a0 + 0x5630) * 0x50 + a0 + 0x5644, *(int *)(a0 + 0x5630) * 0x50 + a0 + 0x5664,
-                (int)piStack_98 + *piStack_98 + 0x20, (int)piStack_98 + piStack_98[2] + 0x20,
-                (int)piStack_98 + piStack_98[1] + 0x20);
+            iVar1 =
+                speech_load_dictionary(a0, *(int *)(a0 + 0x5630) * 0x50 + a0 + 0x5644,
+                                       *(int *)(a0 + 0x5630) * 0x50 + a0 + 0x5664, (int)piStack_98 + *piStack_98 + 0x20,
+                                       (int)piStack_98 + piStack_98[2] + 0x20, (int)piStack_98 + piStack_98[1] + 0x20);
             if (iVar1 == 1) {
                 *(u32 *)(*(int *)(a0 + 0x5630) * 0x50 + a0 + 0x5638) = 1;
             } else {
@@ -21667,11 +21667,11 @@ u32 speech_uses_strcpy_01da90(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_strcpy_01dc80  0x8c01dc80
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is strcpy
- * called by: speech_uses_strcpy_01da90
+ * speech_load_dictionary  0x8c01dc80
+ * stores the three settings, copies the two dictionary names, builds the string index and loads the recogniser model;
+ * returns 1 on success called by: speech_uses_strcpy_01da90
  */
-u32 game_uses_strcpy_01dc80(int a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4) {
+u32 speech_load_dictionary(int a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4) {
     int iVar1;
     u32 uVar2;
     u8 *ar6_00;
@@ -21721,7 +21721,7 @@ u32 game_uses_strcpy_01dc80(int a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4) {
 /*
  * string_table_index_build  0x8c01ddfc
  * (re)allocates an array of pointers to each of the count (+4) consecutive NUL-terminated strings of the block at
- * +0x5b3c called by: game_uses_strcpy_01dc80
+ * +0x5b3c called by: speech_load_dictionary
  */
 u32 string_table_index_build(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -21992,7 +21992,7 @@ u32 *buf256_clear_b(u32 *a0) {
  */
 int game_save_01e504(int a0) {
     memcard_manager_init(a0);
-    sound_fill_loop_01ca24(a0 + 0x384c);
+    speech_state_reset(a0 + 0x384c);
     *(u32 *)(0xa510 + a0) = 1;
     *(u32 *)(0xa514 + a0) = *(u32 *)(0xa510 + a0);
     *(u32 *)(0xa518 + a0) = 0;
@@ -23190,22 +23190,22 @@ u32 game_test_01f780(int a0) {
 }
 
 /*
- * game_uses_CDCGD_open_file_retry_01f794  0x8c01f794
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: uses_CDCGD_open_file_retry
- * called by: game_poll_exit, game_uses_CDCGD_open_file_retry_01f810
+ * game_uses_CDCGD_finish_texture_request_01f794  0x8c01f794
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is
+ * CDCGD_finish_texture_request called by: game_poll_exit, game_uses_CDCGD_finish_texture_request_01f810
  */
-u32 game_uses_CDCGD_open_file_retry_01f794(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_uses_CDCGD_finish_texture_request_01f794(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
 
     if (*(int *)(a0 + 4) == 0) {
-        CDCGD_uses_CDCGD_open_file_retry_02009c(a0, a1, a2, a3);
+        CDCGD_uses_CDCGD_file_exists_02009c(a0, a1, a2, a3);
     } else {
         iVar1 = **(int **)(a0 + 4);
         if (iVar1 == 0xb) {
-            game_uses_ADXF_GetStat_01fab4(a0, a1, a2, a3);
+            CDCGD_uses_ADXF_GetStat_01fab4(a0, a1, a2, a3);
         } else if (((iVar1 == 0xc) || (iVar1 == 0xd)) || (iVar1 == 0xe)) {
-            game_uses_njLoadTexture_01f9c4(a0, a1, a2, a3);
+            CDCGD_finish_texture_request(a0, a1, a2, a3);
         } else {
             game_uses_list_push_front_01f8a4(a0, a1, a2, a3);
         }
@@ -23215,22 +23215,23 @@ u32 game_uses_CDCGD_open_file_retry_01f794(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_CDCGD_open_file_retry_01f810  0x8c01f810
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: uses_CDCGD_open_file_retry
- * called by: file_load_into_object_buffer, file_load_to_buffer, retry_until_done_0209b0, retry_until_done_020aa8,
- * retry_until_done_020ba0, retry_until_done_020c98, retry_until_done_020d90, retry_until_done_020e80 (+2 more)
+ * game_uses_CDCGD_finish_texture_request_01f810  0x8c01f810
+ * area name: game code; nothing names its area yet; behaviour name: its callees mostly do:
+ * uses_CDCGD_finish_texture_request called by: file_load_into_object_buffer, file_load_to_buffer,
+ * retry_until_done_0209b0, retry_until_done_020aa8, retry_until_done_020ba0, retry_until_done_020c98,
+ * retry_until_done_020d90, retry_until_done_020e80 (+2 more)
  */
-u32 game_uses_CDCGD_open_file_retry_01f810(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 game_uses_CDCGD_finish_texture_request_01f810(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
-    iVar1 = game_uses_CDCGD_open_file_retry_01f794(a0, a1, a2, a3);
+    iVar1 = game_uses_CDCGD_finish_texture_request_01f794(a0, a1, a2, a3);
     return (u32)(iVar1 == 0);
 }
 
 /*
  * game_calls_test_01f83c  0x8c01f83c
  * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: test
- * called by: game_uses_CDCGD_open_file_retry_01f794
+ * called by: game_uses_CDCGD_finish_texture_request_01f794
  */
 u32 game_calls_test_01f83c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -23252,7 +23253,7 @@ u32 game_calls_test_01f83c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_uses_list_push_front_01f8a4  0x8c01f8a4
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is list_push_front
- * called by: game_uses_CDCGD_open_file_retry_01f794
+ * called by: game_uses_CDCGD_finish_texture_request_01f794
  */
 int game_uses_list_push_front_01f8a4(int *a0, u32 unused_a1, int *a2, int a3) {
     int iVar1;
@@ -23274,7 +23275,7 @@ int game_uses_list_push_front_01f8a4(int *a0, u32 unused_a1, int *a2, int a3) {
                 switch (iVar1) {
                 default:
                     ar5_00 = (int *)a0[1];
-                    game_uses_CDCGD_queue_unique_request_01fd08(a0, ar5_00, a2, a3);
+                    CDCGD_uses_CDCGD_queue_unique_request_01fd08(a0, ar5_00, a2, a3);
                     break;
                 case 0xb:
                 case 0xc:
@@ -23296,17 +23297,17 @@ int game_uses_list_push_front_01f8a4(int *a0, u32 unused_a1, int *a2, int a3) {
             ar5_00 = (int *)a0[1];
             CDCGD_uses_ADXF_Close_like_02049c(a0, ar5_00, a2, a3);
         }
-        iVar1 = CDCGD_uses_CDCGD_open_file_retry_02009c(a0, ar5_00, a2, a3);
+        iVar1 = CDCGD_uses_CDCGD_file_exists_02009c(a0, ar5_00, a2, a3);
     }
     return iVar1;
 }
 
 /*
- * game_uses_njLoadTexture_01f9c4  0x8c01f9c4
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is njLoadTexture
- * called by: game_uses_CDCGD_open_file_retry_01f794
+ * CDCGD_finish_texture_request  0x8c01f9c4
+ * loads the read texture by kind (0xc, 0xd or 0xe), registers it or closes the request, then opens the next file
+ * called by: game_uses_CDCGD_finish_texture_request_01f794
  */
-u32 game_uses_njLoadTexture_01f9c4(int a0, u32 unused_a1, u32 a2, int a3) {
+u32 CDCGD_finish_texture_request(int a0, u32 unused_a1, u32 a2, int a3) {
     int iVar1;
     u32 uVar2;
     int unaff_r13;
@@ -23346,16 +23347,16 @@ u32 game_uses_njLoadTexture_01f9c4(int a0, u32 unused_a1, u32 a2, int a3) {
         iVar1 = *(int *)(a0 + 4);
         CDCGD_uses_ADXF_Close_like_02049c(a0, iVar1, a2, a3);
     }
-    uVar2 = CDCGD_uses_CDCGD_open_file_retry_02009c(a0, iVar1, a2, a3);
+    uVar2 = CDCGD_uses_CDCGD_file_exists_02009c(a0, iVar1, a2, a3);
     return uVar2;
 }
 
 /*
- * game_uses_ADXF_GetStat_01fab4  0x8c01fab4
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is ADXF_GetStat
- * called by: game_uses_CDCGD_open_file_retry_01f794
+ * CDCGD_uses_ADXF_GetStat_01fab4  0x8c01fab4
+ * area name: sits between CDCGD functions (same compilation unit); behaviour name: its main named callee is
+ * ADXF_GetStat called by: game_uses_CDCGD_finish_texture_request_01f794
  */
-int game_uses_ADXF_GetStat_01fab4(int *a0, int *a1, int a2, int a3) {
+int CDCGD_uses_ADXF_GetStat_01fab4(int *a0, int *a1, int a2, int a3) {
     int iVar1;
     int iVar2;
     u32 uVar3;
@@ -23410,7 +23411,7 @@ int game_uses_ADXF_GetStat_01fab4(int *a0, int *a1, int a2, int a3) {
         }
     } else {
         if (iVar1 == 4) {
-            game_copy_01fc78(a0, a0[1], a2, a3);
+            CDCGD_copy_01fc78(a0, a0[1], a2, a3);
             if (0 < a0[6]) {
                 a0[5] = 1;
                 return 1;
@@ -23427,17 +23428,17 @@ int game_uses_ADXF_GetStat_01fab4(int *a0, int *a1, int a2, int a3) {
         }
         a0[5] = 0;
         a0[6] = 0;
-        iVar1 = CDCGD_uses_CDCGD_open_file_retry_02009c(a0, a1, a2, a3);
+        iVar1 = CDCGD_uses_CDCGD_file_exists_02009c(a0, a1, a2, a3);
     }
     return iVar1;
 }
 
 /*
- * game_copy_01fc78  0x8c01fc78
- * area name: game code; nothing names its area yet; behaviour name: mostly calls copy functions
- * called by: game_uses_ADXF_GetStat_01fab4
+ * CDCGD_copy_01fc78  0x8c01fc78
+ * area name: sits between CDCGD functions (same compilation unit); behaviour name: mostly calls copy functions
+ * called by: CDCGD_uses_ADXF_GetStat_01fab4
  */
-u32 game_copy_01fc78(int a0, u32 *a1, u32 a2, u32 a3) {
+u32 CDCGD_copy_01fc78(int a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -23461,19 +23462,19 @@ u32 game_copy_01fc78(int a0, u32 *a1, u32 a2, u32 a3) {
     strcpy(auStack_dc, iVar2);
     uStack_e0 = *(u32 *)(iVar2 + 0x20);
     iStack_e4 = iVar2 + 0x40;
-    uVar1 = game_uses_CDCGD_queue_unique_request_01fd08(a0, &uStack_ec, a2, a3);
+    uVar1 = CDCGD_uses_CDCGD_queue_unique_request_01fd08(a0, &uStack_ec, a2, a3);
     return uVar1;
 }
 
 /*
- * game_uses_CDCGD_queue_unique_request_01fd08  0x8c01fd08
- * name hint from a string it uses: MCJNMBJNLTJNILJNACJNMDMNMILN; area name: game code; nothing names its area yet;
- * behaviour name: its main named callee is CDCGD_queue_unique_request called by: game_copy_01fc78,
+ * CDCGD_uses_CDCGD_queue_unique_request_01fd08  0x8c01fd08
+ * name hint from a string it uses: MCJNMBJNLTJNILJNACJNMDMNMILN; area name: sits between CDCGD functions (same
+ * compilation unit); behaviour name: its main named callee is CDCGD_queue_unique_request called by: CDCGD_copy_01fc78,
  * game_uses_list_push_front_01f8a4 strings: "MCJNMBJNLTJNILJNACJNMDMNMILNMACNMSSNDAJN0FOP\\";
  * "MBJNLTJNILJNACJNMDMNMILNMACNMSSNDAJN0FOP\\"; "LTJNILJNACJNMDMNMILNMACNMSSNDAJN0FOP\\";
  * "ILJNACJNMDMNMILNMACNMSSNDAJN0FOP\\" ...
  */
-int game_uses_CDCGD_queue_unique_request_01fd08(u32 a0, int *a1, u32 unused_a2, u32 a3) {
+int CDCGD_uses_CDCGD_queue_unique_request_01fd08(u32 a0, int *a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int *ar5_00;
     int *ar6_00;
@@ -23555,7 +23556,7 @@ int game_uses_CDCGD_queue_unique_request_01fd08(u32 a0, int *a1, u32 unused_a2, 
 /*
  * CDCGD_queue_unique_request  0x8c01fec4
  * queues a new request for a3 (copying a1's names and 32 callbacks, buffer a2) unless one already exists, in which case
- * a2 is freed called by: game_uses_CDCGD_queue_unique_request_01fd08
+ * a2 is freed called by: CDCGD_uses_CDCGD_queue_unique_request_01fd08
  */
 u32 CDCGD_queue_unique_request(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;

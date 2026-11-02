@@ -1369,7 +1369,7 @@ u32 bswap32(u32 a0) {
 /*
  * gdfs_uses_bswap32_2124d0  0x8c2124d0
  * area name: sits between gdfs functions (same compilation unit); behaviour name: its main named callee is bswap32
- * called by: game_uses_CDCGD_queue_unique_request_01fd08
+ * called by: CDCGD_uses_CDCGD_queue_unique_request_01fd08
  */
 u32 gdfs_uses_bswap32_2124d0(int a0, int *a1, int *a2, u32 a3) {
     u8 *puVar1;
@@ -25855,7 +25855,7 @@ u32 gfxlib_state_switch_21f200(u32 *a0, u32 a1, u32 unused_a2, u32 unused_a3, u3
 /*
  * gfxlib_calc_21f27c  0x8c21f27c
  * area name: in the gfxlib library code range; behaviour name: integer arithmetic on its arguments
- * called by: game_draw_0297b8
+ * called by: game_uses_obj_set_texlist_0297b8
  */
 u32 gfxlib_calc_21f27c(u32 a0, int a1, int a2) {
     int *a7;

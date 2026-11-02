@@ -1246,7 +1246,7 @@ u32 obj_pose_load(int a0, u32 *a1, u32 a2, u32 a3) {
 /*
  * obj_state_save  0x8c0f4f0c
  * saves the object a0 into the record a1 (inverse of obj_state_load)
- * called by: CAnimal_state_save, egg_save_record, egg_save_record_b, game_vec_06c89c, save_state_record_09adec,
+ * called by: CAnimal_state_save, egg_save_record, egg_save_record_b, obj_state_save_full, save_state_record_09adec,
  * save_state_record_09c878, save_state_record_0a56cc
  */
 u32 obj_state_save(int a0, int a1, u32 a2, u32 a3) {
@@ -1501,7 +1501,7 @@ u32 CAnimal_float_calc_0f528c(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a
 /*
  * CAnimal_calls_calc_0f52c8  0x8c0f52c8
  * area name: sits between CAnimal functions (same compilation unit); behaviour name: its callees mostly do: calc
- * called by: game_draw_0297b8, game_draw_029dec
+ * called by: draw_draw_helper_029dec, game_uses_obj_set_texlist_0297b8
  */
 u32 CAnimal_calls_calc_0f52c8(void) {
     u32 uVar1;
@@ -1513,7 +1513,7 @@ u32 CAnimal_calls_calc_0f52c8(void) {
 /*
  * game_calls_calc_0f5308  0x8c0f5308
  * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: calc
- * called by: game_draw_0297b8, game_draw_029dec
+ * called by: draw_draw_helper_029dec, game_uses_obj_set_texlist_0297b8
  */
 u32 game_calls_calc_0f5308(void) {
     u32 uVar1;
@@ -1927,12 +1927,12 @@ u32 Class_12bec0_init_fields_0f5ad0(int a0) {
 }
 
 /*
- * Class_12bec0_uses_rand_0f5b10  0x8c0f5b10
+ * Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10  0x8c0f5b10
  * name hint from a string it uses: Failed to load textuer FOOD; area name: sits between Class_12bec0 functions (same
- * compilation unit); behaviour name: its main named callee is rand called by: Class_12bec0_uses_rand_0f5c88 strings:
- * "@@GRAPHICS\\COMMON"; "Failed to load textuer.. FOOD!"
+ * compilation unit); behaviour name: its main named callee is Class_129808_set_params_by_mode called by:
+ * Class_12bec0_uses_Class_129808_set_params_by_m_0f5c88 strings: "@@GRAPHICS\\COMMON"; "Failed to load textuer.. FOOD!"
  */
-int Class_12bec0_uses_rand_0f5b10(int a0, u32 a1) {
+int Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10(int a0, u32 a1) {
     int iVar1;
     u8 *ar5_00;
     u8 *ar5_01;
@@ -1952,7 +1952,7 @@ int Class_12bec0_uses_rand_0f5b10(int a0, u32 a1) {
     ar6_00 = &g_8c1401b4;
     ar5_00 = &g_8c140184;
     iVar1 = a0 + 0x170;
-    Class_129808_update_fields_016464(iVar1, &g_8c140184, &g_8c1401b4, 4);
+    Class_129808_set_params_by_mode(iVar1, &g_8c140184, &g_8c1401b4, 4);
     iVar1 = rand();
     if (cVar6 == '\0') {
         dVar4 = (double)CONCAT44(0x47000000, (float)iVar1);
@@ -1999,14 +1999,14 @@ int Class_12bec0_uses_rand_0f5b10(int a0, u32 a1) {
 }
 
 /*
- * Class_12bec0_uses_rand_0f5c88  0x8c0f5c88
+ * Class_12bec0_uses_Class_129808_set_params_by_m_0f5c88  0x8c0f5c88
  * name hint from a string it uses: Failed to load textuer FO wrap; area name: sits between Class_12bec0 functions (same
- * compilation unit); behaviour name: its callees mostly do: uses_rand
+ * compilation unit); behaviour name: its callees mostly do: uses_Class_129808_set_params_by_m
  */
-u32 Class_12bec0_uses_rand_0f5c88(u32 a0, u32 a1) {
+u32 Class_12bec0_uses_Class_129808_set_params_by_m_0f5c88(u32 a0, u32 a1) {
     u32 uVar1;
 
-    uVar1 = Class_12bec0_uses_rand_0f5b10(a0, a1);
+    uVar1 = Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10(a0, a1);
     return uVar1;
 }
 

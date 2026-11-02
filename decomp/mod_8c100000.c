@@ -2507,7 +2507,7 @@ u32 Higyo_update_sleep_light(int *a0, code *a1, code *a2, u32 a3) {
     }
     iVar3 = get_field_124_027930(*(int *)(a2 + 8), pcVar2, pcVar10, ar7_00);
     if (iVar3 != 2) {
-        game_copy_02e8e0(a0 + 0x207, 1);
+        timers_tick_and_clear(a0 + 0x207, 1);
         Higyo_react_tap(a0, a1, a2, ar7_00);
         talk_complain_tank_env_b(a0, a1, a2);
         pcVar2 = a1;
@@ -3183,7 +3183,7 @@ u32 Higyo_choose_status_event(int a0, u32 a1, int *a2, char *a3) {
         case 1:
             uVar3 = 3;
             set_field_38_02f404(a0, 3);
-            iVar2 = game_uses_get_field_6c_02f414(a0, uVar3, piVar4, a3);
+            iVar2 = Class_129c70_uses_get_field_6c_02f414(a0, uVar3, piVar4, a3);
             if (iVar2 == 1) {
                 game_vec_109b98(a0, a1, piVar4);
             } else {
@@ -3202,7 +3202,7 @@ u32 Higyo_choose_status_event(int a0, u32 a1, int *a2, char *a3) {
             }
             break;
         case 4:
-            iVar2 = game_uses_get_field_6c_02f414(a0, uVar3, piVar4, a3);
+            iVar2 = Class_129c70_uses_get_field_6c_02f414(a0, uVar3, piVar4, a3);
             if (iVar2 == 1) {
                 if (*(int *)(a0 + 0x88) == 1) {
                     take_from_field_6c(*(u32 *)(a0 + 0x6c), 1, piVar4, a3);
@@ -3238,7 +3238,7 @@ u32 Higyo_choose_status_event(int a0, u32 a1, int *a2, char *a3) {
             }
             break;
         case 0xc:
-            iVar2 = game_uses_get_field_6c_02f414(a0, uVar3, piVar4, a3);
+            iVar2 = Class_129c70_uses_get_field_6c_02f414(a0, uVar3, piVar4, a3);
             if (iVar2 == 1) {
                 if (*(int *)(a0 + 0x88) == 1) {
                     take_from_field_6c(*(u32 *)(a0 + 0x6c), 1, piVar4, a3);
@@ -3325,7 +3325,7 @@ u32 Higyo_choose_status_event(int a0, u32 a1, int *a2, char *a3) {
             }
             break;
         case 0x1f:
-            iVar2 = game_uses_get_field_6c_02f414(a0, uVar3, piVar4, a3);
+            iVar2 = Class_129c70_uses_get_field_6c_02f414(a0, uVar3, piVar4, a3);
             if (iVar2 == 1) {
                 pcVar6 = "REACTION_INSPIDER";
                 uVar3 = 0;
@@ -3467,7 +3467,7 @@ u8 *Higyo_gratification_events(int a0, int *a1, int *a2, char *a3) {
         puVar2 = (&switchD_8c1063ec::switchdataD_8c1063f4)[iVar1 + -1];
         switch (iVar1) {
         case 4:
-            iVar1 = game_uses_get_field_6c_02f414(a0, piVar4, piVar6, a3);
+            iVar1 = Class_129c70_uses_get_field_6c_02f414(a0, piVar4, piVar6, a3);
             if (iVar1 == 1) {
                 iVar1 = get_field_24_05c284(*(u32 *)(a0 + 0x6c), piVar4);
                 if ((iVar1 == 0xf) && (a3 = (char *)get_field_13c_028d9c(a2[1], piVar4, piVar6), a3 == (char *)0x2)) {
@@ -3518,7 +3518,7 @@ u8 *Higyo_gratification_events(int a0, int *a1, int *a2, char *a3) {
             }
             break;
         case 0xc:
-            iVar1 = game_uses_get_field_6c_02f414(a0, piVar4, piVar6, a3);
+            iVar1 = Class_129c70_uses_get_field_6c_02f414(a0, piVar4, piVar6, a3);
             if (iVar1 == 1) {
                 uVar3 = get_field_6c_02f46c(*(u32 *)(a0 + 0x6c));
                 uVar3 = take_from_field_6c(*(u32 *)(a0 + 0x6c), uVar3, piVar6, a3);
@@ -6923,7 +6923,7 @@ u32 asr_call_11f258_err_10b6a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * asr_uses_lib11c_take_error_10b6cc  0x8c10b6cc
  * area name: sits between asr functions (same compilation unit); behaviour name: its main named callee is
- * lib11c_take_error called by: game_uses_strcpy_01dc80
+ * lib11c_take_error called by: speech_load_dictionary
  */
 int asr_uses_lib11c_take_error_10b6cc(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     int iVar1;
@@ -7496,7 +7496,7 @@ u32 asr_call_11e190_err(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * asr_uses_lib11c_take_error_10be9c  0x8c10be9c
  * area name: sits between asr functions (same compilation unit); behaviour name: its main named callee is
- * lib11c_take_error called by: game_uses_strcpy_01dc80
+ * lib11c_take_error called by: speech_load_dictionary
  */
 u32 asr_uses_lib11c_take_error_10be9c(u32 *a0, u32 a1, u32 a2, int *a3) {
     u8 *puVar1;
@@ -7850,7 +7850,7 @@ u32 asr_test_10c3a0(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * asr_copy_10c3de  0x8c10c3de
  * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls copy functions
- * called by: game_uses_strcpy_01dc80
+ * called by: speech_load_dictionary
  */
 u32 asr_copy_10c3de(int a0, int *a1, int *a2, u32 a3) {
     int *a4;

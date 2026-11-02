@@ -5070,7 +5070,7 @@ u32 gdfs_test_1f3926(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gdfs_test_1f3952  0x8c1f3952
  * area name: sits between gdfs functions (same compilation unit); behaviour name: returns the result of a comparison
- * called by: CDCGD_uses_CDCGD_strcmp_020148
+ * called by: CDCGD_file_exists
  */
 u32 gdfs_test_1f3952(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6450,7 +6450,7 @@ u32 g2dma_1f4794(u32 a0, u32 a1, u32 a2) {
         *(u8 *)((int)g_8c4727b4 + iVar1) = 0;
     } while (iVar5 < 0x18);
     ar4_00 = &stack0xffffffdc;
-    libc_fill_loop_010960(ar4_00, 0x18);
+    memcpy_bytes_unrolled(ar4_00, 0x18);
     iVar5 = 0;
     if ((_DAT_a05f689c & 0xff) < 2) {
         bVar8 = 7;
@@ -9765,7 +9765,7 @@ u32 flash_header_signature(int a0, u32 a1, u32 unused_a2, u32 a3) {
         }
         ar4_00 = "SEGA_FH01_PROCESS2";
     }
-    libc_calls_fill_loop_010998();
+    strcpy_like();
     iVar1 = flashrom_write_if_changed(0x3fc, a1, ar6_00, a3);
     if (iVar1 == -1) {
         return 0xffffffff;
@@ -14228,8 +14228,8 @@ u32 *malloc_fill_loop_1fb4c2(int a0) {
  * free_sys  0x8c1fb57c
  * frees a block from malloc_sys
  * called by: CDCGD_queue_unique_request, CDCGD_release_request, CDCGD_uses_ADXF_Close_like_02049c,
- * CProlog_uses_free_sys_0b96e4, draw_uses_free_sys_258b26, free_01e14c, free_ptr_and_clear, game_release_01d7cc (+9
- * more)
+ * CDCGD_uses_CDCGD_queue_unique_request_01fd08, CProlog_uses_free_sys_0b96e4, draw_uses_free_sys_258b26, free_01e14c,
+ * free_ptr_and_clear (+9 more)
  */
 u32 free_sys(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -14902,7 +14902,7 @@ u32 shinobi_uses_maple_ready_port_mask_1fbe84(u32 unused_a0, u32 a1, u32 a2, u32
 
 /*
  * thunk_FUN_8c1fce34  0x8c1fbfb4
- * called by: sound_calls_2_01c998
+ * called by: game_calls_2_01c998
  */
 u32 thunk_FUN_8c1fce34(void) {
     u32 uVar1;
@@ -14913,7 +14913,7 @@ u32 thunk_FUN_8c1fce34(void) {
 
 /*
  * thunk_FUN_8c1fce50  0x8c1fbfba
- * called by: sound_calls_2_01c998
+ * called by: game_calls_2_01c998
  */
 u32 thunk_FUN_8c1fce50(void) {
     u32 uVar1;

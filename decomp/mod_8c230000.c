@@ -8142,7 +8142,7 @@ u32 gfxlib_calc_233da2(u32 a0, u32 a1) {
  * copies four words (a colour) to 0x8c4aa52c
  * called by: CAnimal_uses_njGetMatrix_026968, CSquidLine_uses_matrix_push_0ad354,
  * Class_12ab2c_uses_get_field_1c_on_field_b0_09dec8, Class_12aeec_uses_gfx_set_color4_0a481c, Class_12b930_draw_0d7354,
- * Class_12b930_draw_0d7410, Vec3_draw_0d5d28, game_draw_029dec (+6 more)
+ * Class_12b930_draw_0d7410, Vec3_draw_0d5d28, draw_draw_helper_029dec (+6 more)
  */
 u32 gfx_set_color4_4aa52c(u32 *a0) {
     g_8c4aa52c = *a0;

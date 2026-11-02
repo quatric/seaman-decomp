@@ -17115,7 +17115,7 @@ u32 filename_add_ext_if_missing(u32 a0, u32 a1, u32 a2, u32 a3) {
     ar5_00 = a1;
     ain0 = a2;
     uVar1 = log_message(a1, a1, a2);
-    libc_calls_fill_loop_010998();
+    strcpy_like();
     ar4_00 = &stack0xffffffe8;
     strupr(ar4_00, ar5_00, a2, a3);
     uVar1 = ain0;
@@ -17124,12 +17124,12 @@ u32 filename_add_ext_if_missing(u32 a0, u32 a1, u32 a2, u32 a3) {
         iVar2 = strcmp_word(ar4_00, ain0);
         ar5_00 = ain0;
         if (iVar2 == 0) {
-            libc_calls_fill_loop_010998();
+            strcpy_like();
             strcat(a0, a1);
             return 1;
         }
     }
-    libc_calls_fill_loop_010998();
+    strcpy_like();
     strcat(a0, a1);
     strcat(a0, uVar1);
     return 1;
@@ -18529,7 +18529,7 @@ u32 ninja_uses_tex_is_palettized_25b37c(u32 unused_a0, u32 a1, u32 a2) {
 /*
  * njLoadTexture  0x8c25b3a2
  * loads every texture of the list a0 (count at +4); 1 on success, -1 on error
- * called by: C2DSprite_Load, C3DRenderPly_SetMem, game_uses_malloc_thunk_015f18, game_uses_njLoadTexture_01f9c4
+ * called by: C2DSprite_Load, C3DRenderPly_SetMem, CDCGD_finish_texture_request, game_uses_malloc_thunk_015f18
  */
 u32 njLoadTexture(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -18631,13 +18631,13 @@ u32 ninja_calls_scan_loop_25b49e(int a0) {
 }
 
 /*
- * ninja_calls_fill_loop_25b4da  0x8c25b4da
- * area name: in the ninja library code range; behaviour name: its callees mostly do: calls_fill_loop
+ * strcpy_like_wrap  0x8c25b4da
+ * only calls strcpy_like
  */
-u32 ninja_calls_fill_loop_25b4da(void) {
+u32 strcpy_like_wrap(void) {
     u32 uVar1;
 
-    uVar1 = libc_calls_fill_loop_010998();
+    uVar1 = strcpy_like();
     return uVar1;
 }
 

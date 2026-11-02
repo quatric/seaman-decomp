@@ -5161,7 +5161,7 @@ u32 *Class_12b3b8_ctor(u32 *a0) {
     uVar1 = 4;
     ar6_01 = &g_8c4383f4;
     ar5_01 = &g_8c4383c4;
-    Class_129808_update_fields_016464(a0 + 0x111, &g_8c4383c4, &g_8c4383f4, 4);
+    Class_129808_set_params_by_mode(a0 + 0x111, &g_8c4383c4, &g_8c4383f4, 4);
     set_flag_14_20(a0 + 0x111);
     for (iVar3 = 0; iVar3 < 3; iVar3 = iVar3 + 1) {
         for (iVar4 = 0; iVar4 < 4; iVar4 = iVar4 + 1) {
