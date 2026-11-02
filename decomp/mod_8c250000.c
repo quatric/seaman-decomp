@@ -16920,7 +16920,7 @@ u32 ninja_uses_memcpy_bytes_259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
                         iVar4 = libgcc_divide_helper_01051c(ar6_00, g_8c277c8c);
                         iVar1 = iVar1 * iVar4;
                         iVar5 = a0 + uVar6;
-                        iVar2 = gdfs_calls_update_fields_1f31c6(ar4_00, iVar1, iVar5, a3);
+                        iVar2 = gdfs_read_blocking(ar4_00, iVar1, iVar5, a3);
                         if (iVar2 != 0) {
                             g_8c4aa6b8 = gdfs_get_stat_like(g_8c4b3338);
                             g_8c4aa6bc = gdfs_get_err_like(g_8c4b3338);
@@ -16932,7 +16932,7 @@ u32 ninja_uses_memcpy_bytes_259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
                         g_8c277c94 = g_8c277c94 + g_8c277c90 * iVar4;
                         g_8c277ca4 = 0;
                     } else {
-                        iVar2 = gdfs_calls_update_fields_1f31c6(ar4_00, iVar1, iVar4, a3);
+                        iVar2 = gdfs_read_blocking(ar4_00, iVar1, iVar4, a3);
                         if (iVar2 != 0) {
                             g_8c4aa6b8 = gdfs_get_stat_like(g_8c4b3338);
                             g_8c4aa6bc = gdfs_get_err_like(g_8c4b3338);
@@ -16960,7 +16960,7 @@ u32 ninja_uses_memcpy_bytes_259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
         iVar2 = gdFsSeek(g_8c4b3338, iVar1 * iVar4, 0);
         if (iVar2 == 0) {
             iVar5 = g_8c277c90;
-            iVar3 = gdfs_calls_update_fields_1f31c6(g_8c4b3338, g_8c277c90, g_8c277c88, a3);
+            iVar3 = gdfs_read_blocking(g_8c4b3338, g_8c277c90, g_8c277c88, a3);
             iVar2 = iVar1 * iVar4;
             if (iVar3 == 0)
                 goto LAB_8c259d32;
@@ -16973,10 +16973,10 @@ u32 ninja_uses_memcpy_bytes_259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * ninja_uses_memcpy_bytes_259e80  0x8c259e80
- * area name: in the ninja library code range; behaviour name: its main named callee is memcpy_bytes
+ * ninja_uses_gdfs_read_blocking_259e80  0x8c259e80
+ * area name: in the ninja library code range; behaviour name: its main named callee is gdfs_read_blocking
  */
-u32 ninja_uses_memcpy_bytes_259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 ninja_uses_gdfs_read_blocking_259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -17018,7 +17018,7 @@ u32 ninja_uses_memcpy_bytes_259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
                             iVar4 = libgcc_divide_helper_01051c(uVar7, g_8c277c8c);
                             iVar1 = iVar1 * iVar4;
                             iVar5 = a0 + uVar6;
-                            iVar2 = gdfs_calls_update_fields_1f31c6(ar4_00, iVar1, iVar5, a3);
+                            iVar2 = gdfs_read_blocking(ar4_00, iVar1, iVar5, a3);
                             if (iVar2 != 0) {
                                 g_8c4aa6b8 = gdfs_get_stat_like(g_8c4b3338);
                                 g_8c4aa6bc = gdfs_get_err_like(g_8c4b3338);
@@ -17030,7 +17030,7 @@ u32 ninja_uses_memcpy_bytes_259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
                             g_8c277c94 = g_8c277c94 + g_8c277c90 * iVar4;
                             g_8c277ca4 = 0;
                         } else {
-                            iVar2 = gdfs_calls_update_fields_1f31c6(ar4_00, iVar1, iVar4, a3);
+                            iVar2 = gdfs_read_blocking(ar4_00, iVar1, iVar4, a3);
                             if (iVar2 != 0) {
                                 g_8c4aa6b8 = gdfs_get_stat_like(g_8c4b3338);
                                 g_8c4aa6bc = gdfs_get_err_like(g_8c4b3338);
@@ -17049,7 +17049,7 @@ u32 ninja_uses_memcpy_bytes_259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
                     }
                 } else {
                     uVar7 = (a1 - uVar6) + 0x7ff >> 0xb;
-                    gdfs_calls_update_fields_1f31c6(g_8c4b3338, uVar7, a0 + uVar6, a3);
+                    gdfs_read_blocking(g_8c4b3338, uVar7, a0 + uVar6, a3);
                     g_8c277ca0 = g_8c277ca0 + uVar7 * 0x800;
                     g_8c277c94 = 0;
                     g_8c277ca4 = 0;
@@ -17065,7 +17065,7 @@ u32 ninja_uses_memcpy_bytes_259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
         iVar2 = gdFsSeek(g_8c4b3338, iVar1 * iVar4, 0);
         if (iVar2 == 0) {
             iVar5 = g_8c277c90;
-            iVar3 = gdfs_calls_update_fields_1f31c6(g_8c4b3338, g_8c277c90, g_8c277c88, a3);
+            iVar3 = gdfs_read_blocking(g_8c4b3338, g_8c277c90, g_8c277c88, a3);
             iVar2 = iVar1 * iVar4;
             if (iVar3 == 0)
                 goto LAB_8c259f6a;

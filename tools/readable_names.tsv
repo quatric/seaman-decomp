@@ -1995,3 +1995,20 @@
 8c1f0d34	flashrom_write_step	one step of a flash write: append the record, or when the partition is full delete it and then rewrite it compactly; returns 1 while more steps remain
 8c1f6f20	flashrom_open_game_partition	stores the request parameters, selects partition 3 and, the first time, reads the disc info and writes its record
 8c1f6fc8	flashrom_find_game_record	searches the 100 record pairs (blocks 0x18 + 4i) for one whose 10-byte id matches a0 and whose CRC is valid; returns its index or -1
+8c1f11ea	gdrom_read_sectors_cmd	sends a GD-ROM read of a1 sectors at a0 to a2 (command 0x10 PIO or 0x11 DMA by a3) and invalidates or purges the cache over the buffer
+8c1f1ffa	gdfs_load_dir	reads directory a0 (from the root when it starts with a slash, else looked up in the current one) into a1 or the current directory buffer
+8c1f210a	gdfs_copy_dir_records	copies up to the buffer's capacity of 0x2c-byte entries from directory record a0 into the current directory; -12 when it did not fit
+8c1f222c	gdfs_open_in_dir	looks file a0 up in directory a1 (or the current one) and initialises the first free file handle for it; returns the handle or 0
+8c1f24e8	gdfs_cdda_play_tracks_like	starts CDDA playback of tracks a0 to a1 (offset by the session's first track) with repeat a2 through drive method 0x28
+8c1f25f4	gdfs_cdda_play_sectors_like	starts CDDA playback from sector a0 (above 0xb05d) to a1 with repeat a2 through drive method 0x2c
+8c1f2b68	iso9660_parse_dir_record	unpacks an ISO 9660 directory record a0 into entry a1 (extent, size, flags, name with "." and ".." and its hash); returns the record length or 0
+8c1f2bfe	gdfs_read_dir_sectors	reads the directory starting at sector a1 one sector at a time and parses its records into a2 (capacity a2[1]); -12 when it did not fit
+8c1f2f98	gdfs_wait_handle_done	polls file handle a0 until its transfer finishes, fails or times out (-21)
+8c1f31c6	gdfs_read_blocking	reads a1 sectors of handle a0 into a2 (DMA when 32-byte aligned, else PIO), retrying while busy, then waits for completion
+8c1f3254	gdfs_start_read_pio	starts a PIO read of up to a1 sectors from the handle's position (clipped to the file) into a2; returns the sector count
+8c1f3416	gdfs_start_stream_read_like	starts a streamed read of up to a1 sectors from the handle's position (clipped to the file) through drive method 8
+8c1f3dd8	maple_start_frame	aligns the send/receive buffers to 32 bytes (uncached), queues a device request for each connected port and starts the maple DMA
+8c1f4102	maple_queue_port_commands	queues each connected port's pending command (1 device info, 2 all status, 3 reset, 4 kill, 9 get condition) and marks the last frame
+8c1f44cc	maple_reset_dma	waits for the maple DMA to stop, disables it, writes the DMA protection key and resets the system and timing registers
+8c1f4f82	maple_update_port_presence	updates port a0's connected flag and its connect/disconnect edges, counting missed responses up to the timeout
+8c1f5dd0	maple_driver_init	clears the maple driver state, sets up the receive buffers when given and resets the status of all 24 ports

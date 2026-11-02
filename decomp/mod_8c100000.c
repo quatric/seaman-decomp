@@ -2249,7 +2249,7 @@ u32 startup_init_hardware(u32 a0, u32 a1, u32 a2, u32 a3) {
     ar6_00 = 0x8c44d498;
     uVar3 = 0x8c441478;
     uVar2 = 0;
-    irq_input_1f5dd0(0, 0x8c441478, 0x8c44d498, a3);
+    maple_driver_init(0, 0x8c441478, 0x8c44d498, a3);
     shinobi_install_event900(uVar2);
     uVar2 = 0;
     imask_to_sr_bits(0);

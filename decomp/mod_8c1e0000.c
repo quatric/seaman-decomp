@@ -294,7 +294,7 @@ u32 shinobi_register_pvr_irqs(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a
 /*
  * shinobi_input_1ef78c  0x8c1ef78c
  * area name: in the shinobi library code range; behaviour name: mostly calls input functions
- * called by: irq_input_1f5dd0
+ * called by: maple_driver_init
  */
 u32 shinobi_input_1ef78c(u32 a0, u32 a1) {
     u8 *a4;
@@ -307,7 +307,7 @@ u32 shinobi_input_1ef78c(u32 a0, u32 a1) {
     shinobi_register_pvr_irqs_entry();
     a5 = 0xc000;
     a7 = 0xc000;
-    uVar1 = shinobi_input_1f3dd8(a1, 0xc000, a0, 0xc000);
+    uVar1 = maple_start_frame(a1, 0xc000, a0, 0xc000);
     maple_port_info_refresh();
     g_8c470e60 = 1;
     return uVar1;
@@ -509,7 +509,7 @@ int pvr_1efaf4(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
             (*(code *)*0x8c470c18)(2, 0xfffffff8, *(u32 *)(iVar2 + 8), a7);
         }
     } else {
-        shinobi_calls_update_fields_1f442a();
+        shinobi_input_1f442a();
         a5 = (int)(short)0x3ff;
         iVar7 = g_8c470e64 * 2;
         *(u16 *)(iVar2 + 0x30 + iVar7) =
@@ -558,11 +558,11 @@ int pvr_1efaf4(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * pvr_uses_memset_1efcae  0x8c1efcae
- * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is memset
- * called by: device_info_table_reset, device_info_table_reset_alt
+ * pvr_uses_maple_reset_dma_1efcae  0x8c1efcae
+ * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is
+ * maple_reset_dma called by: device_info_table_reset, device_info_table_reset_alt
  */
-u32 pvr_uses_memset_1efcae(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 pvr_uses_maple_reset_dma_1efcae(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
     int iVar2;
     u32 ar4_00;
@@ -600,7 +600,7 @@ u32 pvr_uses_memset_1efcae(u32 a0, u32 a1, u32 a2, u32 a3) {
     (*(code *)puVar1)(*(u32 *)(iVar2 + 8), a1, a2, a3);
     ar4_00 = *(u32 *)(iVar2 + 4);
     (*(code *)puVar1)(ar4_00, a1, a2, a3);
-    shinobi_uses_sh4_tmu_1f44cc(ar4_00, a1, a2, a3);
+    maple_reset_dma(ar4_00, a1, a2, a3);
     memset(0x8c4709a0, 0, (int)0x240);
     return ((u32)in_T | (u32)in_S << 1 | (u32)in_IMASK << 4) & 0xf0 |
            ((u32)extraout_T | (u32)extraout_S << 1 | (u32)bVar7 << 4 | (u32)extraout_Q << 8 | (u32)extraout_M << 9 |
@@ -621,7 +621,7 @@ int maple_port_info(int a0, u32 a1) {
 /*
  * maple_port_status  0x8c1efd26
  * status flags of port a0
- * called by: bios_input_1f3b5c, bios_input_1f3d28, irq_input_1f5dd0, maple_device_ready, maple_device_ready_idle,
+ * called by: bios_input_1f3b5c, bios_input_1f3d28, maple_device_ready, maple_device_ready_idle, maple_driver_init,
  * maple_first_port_bit2_pressed, maple_port_status_wrap, pvr_1efaf4 (+6 more)
  */
 u32 maple_port_status(u32 a0) {

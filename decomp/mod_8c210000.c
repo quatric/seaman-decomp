@@ -1344,7 +1344,7 @@ u32 gdfs_load_file_alloc(u32 a0, u32 unused_a1, int a2, u32 a3) {
         if ((iVar1 == 1) && (iVar1 = malloc_thunk((int)in_stack_fffffff0 * 0x800 + 8, ar5_00, a2, a3),
                              ain0 = in_stack_fffffff0, iVar1 != 0)) {
             a2 = iVar1;
-            iVar2 = gdfs_calls_update_fields_1f31c6(ar4_00, in_stack_fffffff0, iVar1, a3);
+            iVar2 = gdfs_read_blocking(ar4_00, in_stack_fffffff0, iVar1, a3);
             if (iVar2 == 0) {
                 gdfs_close_like(ar4_00, in_stack_fffffff0, a2, a3);
                 return iVar1;
