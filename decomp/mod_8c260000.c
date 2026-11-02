@@ -6844,7 +6844,7 @@ int aica_sub_2653e0(u32 a0) {
     int iVar5;
     int iVar6;
 
-    puVar2 = (&aica_sub_268650);
+    puVar2 = (&aica_ram_read_u8);
     puVar1 = (&DATA_8c2784c0);
     iVar4 = *(int *)(&DATA_8c2784c0);
     iVar3 = 0xd000001;
@@ -6895,14 +6895,14 @@ int aica_sub_2653e8(u32 unused_a0, u32 unused_a1, u32 a2) {
     } else {
         iVar2 = *(int *)(iVar1 + 0x1cc);
         *(int *)(iVar1 + 0x1b0) = iVar2 + 0x20;
-        aica_sub_268650(iVar2 + 0x20, *unaff_r14 + 0x1d0);
-        aica_sub_268650(iVar2 + 0x21, *unaff_r14 + 0x1d1);
+        aica_ram_read_u8(iVar2 + 0x20, *unaff_r14 + 0x1d0);
+        aica_ram_read_u8(iVar2 + 0x21, *unaff_r14 + 0x1d1);
         if ((*(char *)(*unaff_r14 + 0x1d0) == '\x01') && (*(char *)(*unaff_r14 + 0x1d1) == '\0')) {
             iVar1 = iVar2 + 0x23;
         } else {
             iVar1 = iVar2 + 0x22;
         }
-        aica_sub_268650(iVar1, *unaff_r14 + 0x1d2);
+        aica_ram_read_u8(iVar1, *unaff_r14 + 0x1d2);
         *(u8 *)(*unaff_r14 + 0x1d3) = 0;
         aica_ram_268618(iVar2 + 0xc0, *unaff_r14 + 0x1b4);
         aica_ram_268618(iVar2 + 0xc4, *unaff_r14 + 0x1b8);
@@ -7913,7 +7913,7 @@ int sd_sub_2661a4(int a0, u8 *a1, u32 a2) {
     } else if (a0 == 0) {
         ar5_00 = 0x7000103;
     } else {
-        aica_sub_268650(*(char *)(a0 + 1) * 0x20 + *(int *)(g_8c2784c0 + 0x1b8) + 0x11, &stack0xfffffff0);
+        aica_ram_read_u8(*(char *)(a0 + 1) * 0x20 + *(int *)(g_8c2784c0 + 0x1b8) + 0x11, &stack0xfffffff0);
         *a1 = (char)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
@@ -7985,7 +7985,7 @@ int sd_sub_2662f8(int a0, u8 *a1, u32 a2) {
     } else if (a0 == 0) {
         ar5_00 = 0x7000103;
     } else {
-        aica_sub_268650(*(char *)(a0 + 1) * 0x20 + *(int *)(g_8c2784c0 + 0x1b8) + 0x10, &stack0xfffffff0);
+        aica_ram_read_u8(*(char *)(a0 + 1) * 0x20 + *(int *)(g_8c2784c0 + 0x1b8) + 0x10, &stack0xfffffff0);
         *a1 = (char)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
@@ -8009,7 +8009,7 @@ int sd_sub_266368(int a0, u8 *a1, u32 a2) {
     } else if (a0 == 0) {
         ar5_00 = 0x7000103;
     } else {
-        aica_sub_268650(*(char *)(a0 + 1) * 0x20 + *(int *)(g_8c2784c0 + 0x1b8) + 2, &stack0xfffffff0);
+        aica_ram_read_u8(*(char *)(a0 + 1) * 0x20 + *(int *)(g_8c2784c0 + 0x1b8) + 2, &stack0xfffffff0);
         *a1 = (char)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
@@ -8177,7 +8177,7 @@ int sd_sub_266620(int a0, u8 *a1, u32 a2) {
     } else if (a0 == 0) {
         ar5_00 = 0x7000103;
     } else {
-        aica_sub_268650(*(char *)(a0 + 1) * 0x20 + *(int *)(g_8c2784c0 + 0x1b8) + 1, &stack0xfffffff0);
+        aica_ram_read_u8(*(char *)(a0 + 1) * 0x20 + *(int *)(g_8c2784c0 + 0x1b8) + 1, &stack0xfffffff0);
         *a1 = (char)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
@@ -8934,9 +8934,9 @@ u32 sd_sub_266e2c(int a0, u32 a1, u8 *a2, u32 a3) {
     uVar1 = 0xd000001;
     if (((ar6_00 != 0) && (uVar1 = 0x7000103, a0 != 0)) && (uVar1 = 0x7000203, a2 != NULL)) {
         puStack_c = a2;
-        (*(code *)(&aica_sub_268650))(*(char *)(a0 + 1) * 0x40 + (int)0x400 + *(int *)(0x1b8 + ar6_00) +
-                                          (char)a1 * 0x20 + 0x11,
-                                      auStack_10, ar6_00, a3);
+        (*(code *)(&aica_ram_read_u8))(*(char *)(a0 + 1) * 0x40 + (int)0x400 + *(int *)(0x1b8 + ar6_00) +
+                                           (char)a1 * 0x20 + 0x11,
+                                       auStack_10, ar6_00, a3);
         *puStack_c = auStack_10[0];
         uVar1 = 0;
     }
@@ -9020,8 +9020,8 @@ int sd_sub_266fc8(int a0, u32 a1, u8 *a2) {
     } else if (a2 == NULL) {
         ar5_00 = 0x7000203;
     } else {
-        aica_sub_268650(*(char *)(a0 + 1) * 0x40 + *(int *)(g_8c2784c0 + 0x1b8) + (char)a1 * 0x20 + 0x410,
-                        &stack0xfffffff0);
+        aica_ram_read_u8(*(char *)(a0 + 1) * 0x40 + *(int *)(g_8c2784c0 + 0x1b8) + (char)a1 * 0x20 + 0x410,
+                         &stack0xfffffff0);
         *a2 = (char)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
@@ -9053,8 +9053,8 @@ int sd_sub_267058(int a0, u32 a1, char *a2) {
         ar5_00 = 0x7000203;
     } else {
         iVar2 = (short)*(char *)(a0 + 1) * 0x2c + g_8c2784c0;
-        aica_sub_268650(*(int *)(g_8c2784c0 + 0x1b8) + *(char *)(a0 + 1) * 0x40 + (char)a1 * 0x20 + 0x402,
-                        &stack0xffffffe0);
+        aica_ram_read_u8(*(int *)(g_8c2784c0 + 0x1b8) + *(char *)(a0 + 1) * 0x40 + (char)a1 * 0x20 + 0x402,
+                         &stack0xffffffe0);
         cVar3 = (char)in_stack_ffffffe0;
         cVar1 = *(char *)(iVar2 + 0xad);
         if ((cVar1 != '\x01') && (cVar1 == '\x02')) {
@@ -9259,8 +9259,8 @@ int sd_sub_2673f0(int a0, u32 a1, u8 *a2) {
     } else if (a0 == 0) {
         ar5_00 = 0x7000103;
     } else {
-        aica_sub_268650(*(char *)(a0 + 1) * 0x40 + *(int *)(g_8c2784c0 + 0x1b8) + (char)a1 * 0x20 + 0x401,
-                        &stack0xfffffff0);
+        aica_ram_read_u8(*(char *)(a0 + 1) * 0x40 + *(int *)(g_8c2784c0 + 0x1b8) + (char)a1 * 0x20 + 0x401,
+                         &stack0xfffffff0);
         *a2 = (char)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
@@ -10852,12 +10852,12 @@ u32 aica_ram_268618(int a0, u32 a1) {
 }
 
 /*
- * aica_sub_268650  0x8c268650
- * area name: sits between aica functions (same compilation unit)
+ * aica_ram_read_u8  0x8c268650
+ * reads one byte of sound RAM at a0 (below 2 MB) into *a1
  * called by: aica_sub_2653e8, sd_sub_2661a4, sd_sub_2662f8, sd_sub_266368, sd_sub_266620, sd_sub_266fc8, sd_sub_267058,
  * sd_sub_2673f0
  */
-u32 aica_sub_268650(u32 a0, u8 *a1) {
+u32 aica_ram_read_u8(u32 a0, u8 *a1) {
     u8 auStack_8[8];
 
     if ((int)a0 < 0x200000) {
@@ -10884,7 +10884,7 @@ u32 aica_sub_26868c(u32 a0, u16 *a1) {
 
 /*
  * aica_ram_2686d4  0x8c2686d4
- * called by: aica_sub_268650, aica_sub_26868c, aica_sub_26870c, sd_sub_2665b0, sd_sub_266ea8, sd_sub_267360,
+ * called by: aica_ram_read_u8, aica_sub_26868c, aica_sub_26870c, sd_sub_2665b0, sd_sub_266ea8, sd_sub_267360,
  * sd_sub_2687c8
  */
 u32 aica_ram_2686d4(int a0, u32 a1) {
@@ -11385,7 +11385,7 @@ u32 sd_sub_268b70(int *a0, u32 a1, u32 a2, u32 a3) {
                     a4_00 = a4_00 + 1;
                 } while ((int)ar5_00 < (int)a1);
             }
-            sd_sub_26a100(auStack_20);
+            sd_irq_disable(auStack_20);
             a4 = (u8 *)sd_sub_268b48();
             if (a4 == NULL) {
                 (*(code *)puVar1)(a4_01, ar5_00, a2, a3);
@@ -11418,7 +11418,7 @@ u32 sd_sub_268b70(int *a0, u32 a1, u32 a2, u32 a3) {
                     *a4 = 1;
                 }
             }
-            sd_sub_26a118(auStack_20);
+            sd_irq_restore(auStack_20);
             return a4;
         }
     LAB_8c268bae:
@@ -11443,7 +11443,7 @@ u32 sd_sub_268c7e(u8 *a0, u32 unused_a1, u32 a2, u32 a3) {
         uVar1 = debug_printf(0, unused_a1, a2, a3, "E1205:Illigal parameter (MWRNA=NULL)", in_stack_fffffff0);
         return uVar1;
     }
-    sd_sub_26a100(&stack0xfffffff0);
+    sd_irq_disable(&stack0xfffffff0);
     if (a0[1] != '\0') {
         sd_sub_268d64(a0, unused_a1, a2, a3);
     }
@@ -11455,7 +11455,7 @@ u32 sd_sub_268c7e(u8 *a0, u32 unused_a1, u32 a2, u32 a3) {
     uVar1 = 0;
     ar6_00 = 0x90;
     memset(a0, 0, 0x90);
-    uVar1 = sd_sub_26a118(&stack0xfffffff0);
+    uVar1 = sd_irq_restore(&stack0xfffffff0);
     return uVar1;
 }
 
@@ -11472,7 +11472,7 @@ u32 sd_sub_268cee(int a0, u32 unused_a1, u32 a2, u32 a3) {
         uVar1 = debug_printf(0, unused_a1, a2, a3, "E1205:Illigal parameter (MWRNA=NULL)", in_stack_fffffff4);
         return uVar1;
     }
-    sd_sub_26a100(&stack0xfffffff4);
+    sd_irq_disable(&stack0xfffffff4);
     if (*(char *)(a0 + 1) != '\0') {
         sd_sub_268d64(a0, unused_a1, a2, a3);
     }
@@ -11480,7 +11480,7 @@ u32 sd_sub_268cee(int a0, u32 unused_a1, u32 a2, u32 a3) {
     uVar1 = 1;
     *(u32 *)(a0 + 0x40) = *(u32 *)(a0 + 0x44);
     mwRna_sub_2690d8(a0, 1, a2, a3);
-    uVar1 = sd_sub_26a118(&stack0xfffffff4);
+    uVar1 = sd_irq_restore(&stack0xfffffff4);
     return uVar1;
 }
 
@@ -11510,14 +11510,14 @@ u32 sd_sub_268d64(int a0, u32 unused_a1, u32 a2, u32 a3) {
     }
     uVar1 = 0;
     if (*(char *)(a0 + 1) != '\0') {
-        sd_sub_26a100(&stack0xfffffff4);
+        sd_irq_disable(&stack0xfffffff4);
         mwRna_sub_2691b8(a0, 0, a2, a3);
         uVar1 = 0;
         mwRna_sub_2690d8(a0, 0, a2, a3);
         noop_268d60();
         *(u8 *)(a0 + 7) = 0;
         *(u8 *)(a0 + 1) = 0;
-        uVar1 = sd_sub_26a118(&stack0xfffffff4);
+        uVar1 = sd_irq_restore(&stack0xfffffff4);
     }
     return uVar1;
 }
@@ -11605,7 +11605,7 @@ u32 sd_sub_268ea8(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 auStack_1c[4];
     int *piStack_18;
 
-    sd_sub_26a100(auStack_1c);
+    sd_irq_disable(auStack_1c);
     piStack_18 = *(int **)(a0 + 0x38);
     iVar4 = *(int *)(a0 + 0x30);
     uVar1 = (**(code **)(*piStack_18 + 0x20))(piStack_18, 0, a2, a3);
@@ -11623,13 +11623,13 @@ u32 sd_sub_268ea8(int a0, u32 unused_a1, u32 a2, u32 a3) {
         iVar2 = 0;
         iVar5 = *(int *)(a0 + 0x2c) - iVar4;
     }
-    if ((*(char *)(a0 + 4) == '\x01') && (iVar3 = mwRna_sub_269a30(a0), iVar3 == 1)) {
+    if ((*(char *)(a0 + 4) == '\x01') && (iVar3 = mwRna_is_playing(a0), iVar3 == 1)) {
         *(u32 *)(a0 + 0x2c) = *(u32 *)(a0 + 0x30);
         *(u8 *)(a0 + 4) = 0;
     }
     *(int *)(a0 + 0x34) = iVar2;
     *(int *)(a0 + 0x48) = *(int *)(a0 + 0x48) + iVar5;
-    uVar1 = sd_sub_26a118(auStack_1c);
+    uVar1 = sd_irq_restore(auStack_1c);
     return uVar1;
 }
 
@@ -11650,7 +11650,7 @@ u32 sd_sub_268f3e(int a0, u32 unused_a1, u8 *a2, u8 *a3) {
     u32 uStack_24;
 
     puVar2 = auStack_3c;
-    sd_sub_26a100(auStack_3c);
+    sd_irq_disable(auStack_3c);
     for (iVar4 = 0; iVar4 < (int)(u32) * (u8 *)(a0 + 3); iVar4 = iVar4 + 1) {
         if (*(int *)(iVar4 * 4 + a0 + 0x10) == 0) {
             debug_printf(puVar2, unused_a1, a2, a3);
@@ -11675,7 +11675,7 @@ u32 sd_sub_268f3e(int a0, u32 unused_a1, u8 *a2, u8 *a3) {
     *(int *)(a0 + 0x34) = *(int *)(a0 + 0x34) + *(int *)(a0 + 0x3c);
     *(int *)(a0 + 0x4c) = *(int *)(a0 + 0x4c) + *(int *)(a0 + 0x3c);
     *(u32 *)(a0 + 0x3c) = 0;
-    uVar1 = sd_sub_26a118(auStack_3c);
+    uVar1 = sd_irq_restore(auStack_3c);
     return uVar1;
 }
 
@@ -11759,7 +11759,7 @@ u32 mwRna_sub_2690d8(int a0, int a1, u32 a2, u32 a3) {
         a5 = a1;
         if (*(char *)(a0 + 5) == '\x01') {
             mwRnaPause(a0, a1, a2, a3, in_stack_ffffffec);
-            iVar2 = mwRna_sub_269a30(a0);
+            iVar2 = mwRna_is_playing(a0);
             if (iVar2 == 1) {
                 sd_sub_268f3e(a0, a5, a2, a3);
             } else {
@@ -11767,17 +11767,17 @@ u32 mwRna_sub_2690d8(int a0, int a1, u32 a2, u32 a3) {
             }
             *(u8 *)(a0 + 5) = 0;
         }
-        sd_sub_26a100(&stack0xffffffec);
+        sd_irq_disable(&stack0xffffffec);
         *(u32 *)(a0 + 0x8c) = 0;
         if (a1 == 0) {
-            iVar2 = mwRna_sub_269a30(a0);
+            iVar2 = mwRna_is_playing(a0);
             if (iVar2 != 0) {
                 *(u32 *)(a0 + 0x50) = *(u32 *)(a0 + 0x2c);
                 *(u32 *)(a0 + 0x54) = 0;
                 *(u32 *)(a0 + 0x58) = 0;
                 *(u8 *)(a0 + 1) = *(u8 *)(a0 + 1) & 6;
             }
-        } else if ((a1 == 1) && (iVar2 = mwRna_sub_269a30(a0), iVar2 != 1)) {
+        } else if ((a1 == 1) && (iVar2 = mwRna_is_playing(a0), iVar2 != 1)) {
             *(u32 *)(a0 + 0x2c) = 0;
             *(u32 *)(a0 + 0x30) = 0;
             *(u32 *)(a0 + 0x34) = 0;
@@ -11791,7 +11791,7 @@ u32 mwRna_sub_2690d8(int a0, int a1, u32 a2, u32 a3) {
             *(u32 *)(a0 + 0x54) = 0;
             *(u8 *)(a0 + 1) = *(u8 *)(a0 + 1) | 1;
         }
-        uVar1 = sd_sub_26a118(&stack0xffffffec);
+        uVar1 = sd_irq_restore(&stack0xffffffec);
     }
     return uVar1;
 }
@@ -11812,7 +11812,7 @@ u32 mwRna_sub_2691b8(int a0, int a1, u32 a2, u32 a3) {
         return uVar1;
     }
     iVar2 = a1;
-    sd_sub_26a100(auStack_c);
+    sd_irq_disable(auStack_c);
     if (iVar2 == 0) {
         iVar2 = mwRna_sub_269a56(a0);
         if (iVar2 != 0) {
@@ -11823,7 +11823,7 @@ u32 mwRna_sub_2691b8(int a0, int a1, u32 a2, u32 a3) {
         (**(code **)(**(int **)(a0 + 0x38) + 0x10))(*(int **)(a0 + 0x38), a1, a2, a3);
         *(u8 *)(a0 + 1) = *(u8 *)(a0 + 1) | 2;
     }
-    uVar1 = sd_sub_26a118(auStack_c);
+    uVar1 = sd_irq_restore(auStack_c);
     return uVar1;
 }
 
@@ -11969,7 +11969,7 @@ u32 mwRna_sub_2694a4(int a0, u32 unused_a1, u32 a2, u32 a3) {
     if (*(int *)(0x8c + a0) == 1) {
         return 1;
     }
-    iVar2 = mwRna_sub_269a30(a0);
+    iVar2 = mwRna_is_playing(a0);
     puVar1 = (&DATA_8c2785d8);
     if ((iVar2 == 1) && (*(char *)(a0 + 5) == '\x01')) {
         iVar2 = sd_sub_268e1a(a0, unused_a1, a2, a3);
@@ -11994,7 +11994,7 @@ u32 mwRna_sub_2694a4(int a0, u32 unused_a1, u32 a2, u32 a3) {
     if (iVar2 == 1) {
         sd_sub_268ea8(a0, unused_a1, a2, a3);
     }
-    iVar2 = mwRna_sub_269a30(a0);
+    iVar2 = mwRna_is_playing(a0);
     if (iVar2 == 1) {
         if (*(char *)(a0 + 5) != '\0')
             goto LAB_8c26958c;
@@ -12043,7 +12043,7 @@ u32 mwRna_sub_2695e4(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     char *pcVar4;
     u8 auStack_18[8];
 
-    sd_sub_26a100(auStack_18);
+    sd_irq_disable(auStack_18);
     iVar3 = (int)0x90;
     pcVar2 = 0x8c4bd580 + 0x480;
     a5 = 0x8c4bd580;
@@ -12056,7 +12056,7 @@ u32 mwRna_sub_2695e4(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
         pcVar4 = pcVar4 + iVar3;
         a4 = a4 + iVar3;
     } while (pcVar4 < pcVar2);
-    uVar1 = sd_sub_26a118(auStack_18);
+    uVar1 = sd_irq_restore(auStack_18);
     return uVar1;
 }
 
@@ -12074,10 +12074,10 @@ u32 mwRna_sub_26962c(int a0, u32 a1, u32 a2, u32 a3) {
     if (a0 == 0) {
         uVar1 = debug_printf(0, a1, a2, a3, "E1205:Illigal parameter (MWRNA=NULL)", in_stack_fffffff0);
     } else {
-        sd_sub_26a100(&stack0xfffffff0);
+        sd_irq_disable(&stack0xfffffff0);
         if (*(char *)(a0 + 7) == '\0') {
             iVar2 = mwRna_sub_269a56(a0);
-            uVar3 = mwRna_sub_269a30(a0);
+            uVar3 = mwRna_is_playing(a0);
             *(u32 *)(a0 + 0x88) = iVar2 << 1 | uVar3;
             sd_sub_268ea8(a0, a1, a2, a3);
             a1 = 0;
@@ -12085,14 +12085,14 @@ u32 mwRna_sub_26962c(int a0, u32 a1, u32 a2, u32 a3) {
             *(u8 *)(a0 + 7) = 1;
             if (*(char *)(a0 + 5) == '\x01') {
                 *(u32 *)(a0 + 0x8c) = 1;
-                sd_sub_26a118(&stack0xfffffff0);
+                sd_irq_restore(&stack0xfffffff0);
                 mwRnaPause(a0, a1, a2, a3, in_stack_fffffff0);
-                sd_sub_26a100(&stack0xfffffff0);
+                sd_irq_disable(&stack0xfffffff0);
                 *(u32 *)(a0 + 0x8c) = 0;
             }
             mwRna_sub_269738(a0, a1, a2, a3);
         }
-        uVar1 = sd_sub_26a118(&stack0xfffffff0);
+        uVar1 = sd_irq_restore(&stack0xfffffff0);
     }
     return uVar1;
 }
@@ -12110,7 +12110,7 @@ u32 mwRna_sub_2696aa(int a0, u32 unused_a1, u32 a2, u32 a3) {
         uVar1 = debug_printf(0, unused_a1, a2, a3, "E1205:Illigal parameter (MWRNA=NULL)", in_stack_fffffff4);
         return uVar1;
     }
-    sd_sub_26a100(&stack0xfffffff4);
+    sd_irq_disable(&stack0xfffffff4);
     if (*(char *)(a0 + 7) == '\x01') {
         if ((*(int *)(a0 + 0x88) != 0) && (*(int *)(a0 + 0x88) != 1)) {
             unused_a1 = 1;
@@ -12118,7 +12118,7 @@ u32 mwRna_sub_2696aa(int a0, u32 unused_a1, u32 a2, u32 a3) {
         }
         *(u8 *)(a0 + 7) = 0;
     }
-    uVar1 = sd_sub_26a118(&stack0xfffffff4);
+    uVar1 = sd_irq_restore(&stack0xfffffff4);
     return uVar1;
 }
 
@@ -12158,9 +12158,9 @@ u32 mwRna_sub_269738(int a0, int a1, u8 *a2, u32 a3) {
         uVar1 = debug_printf(0, a1, a2, a3, "E1205:Illigal parameter (MWRNA=NULL)", in_stack_ffffffec);
         return uVar1;
     }
-    sd_sub_26a100(auStack_10);
+    sd_irq_disable(auStack_10);
     if (*(char *)(a0 + 5) == '\x01') {
-        iVar2 = mwRna_sub_269a30(a0);
+        iVar2 = mwRna_is_playing(a0);
         if (iVar2 == 1) {
             sd_sub_268f3e(a0, a1, a2, a3);
         } else {
@@ -12184,7 +12184,7 @@ u32 mwRna_sub_269738(int a0, int a1, u8 *a2, u32 a3) {
         *(int *)(a0 + 0x30) = (*(int *)(a0 + 0x30) + iVar2) - in_stack_ffffffec;
         *(int *)(a0 + 0x34) = *(int *)(a0 + 0x34) - iVar2;
     }
-    uVar1 = sd_sub_26a118(auStack_10);
+    uVar1 = sd_irq_restore(auStack_10);
     return uVar1;
 }
 
@@ -12226,7 +12226,7 @@ u32 mwRnaDiscardData(int a0, int a1, u8 *a2, u8 *a3) {
             *(u32 *)(a0 + 0x8c) = 1;
             if (*(char *)(a0 + 5) == '\x01') {
                 mwRnaPause(a0, a1, a2, a3, iVar3);
-                iVar2 = mwRna_sub_269a30(a0);
+                iVar2 = mwRna_is_playing(a0);
                 if (iVar2 == 1) {
                     sd_sub_268f3e(a0, a1, a2, a3);
                 } else {
@@ -12234,7 +12234,7 @@ u32 mwRnaDiscardData(int a0, int a1, u8 *a2, u8 *a3) {
                 }
                 *(u8 *)(a0 + 5) = 0;
             }
-            sd_sub_26a100(auStack_4c);
+            sd_irq_disable(auStack_4c);
             *(u32 *)(a0 + 0x8c) = 0;
             iVar2 = libgcc_divide_helper_010468(0x20, *(u32 *)(a0 + 8));
             iVar2 = iVar2 << 3;
@@ -12279,7 +12279,7 @@ u32 mwRnaDiscardData(int a0, int a1, u8 *a2, u8 *a3) {
                 *(u32 *)(a0 + 0x2c) = uVar4;
             }
             *(u32 *)(a0 + 0x30) = 0;
-            sd_sub_26a118(auStack_4c);
+            sd_irq_restore(auStack_4c);
             return iVar2;
         }
         s0 = "E1210:mwRnaDiscardData Play Switch is ON";
@@ -12329,12 +12329,12 @@ u32 mwRna_sub_269a10(int a0) {
 }
 
 /*
- * mwRna_sub_269a30  0x8c269a30
- * name hint from a string it uses: E1205 Illigal parameter MWRN; area name: sits between mwRna functions (same
- * compilation unit) called by: mwRnaDiscardData, mwRna_sub_2690d8, mwRna_sub_2694a4, mwRna_sub_26962c,
- * mwRna_sub_269738, sd_sub_268ea8 strings: "E1205:Illigal parameter (MWRNA=NULL)"
+ * mwRna_is_playing  0x8c269a30
+ * bit 0 of +1 of an mwRna handle; -1 for NULL
+ * called by: mwRnaDiscardData, mwRna_sub_2690d8, mwRna_sub_2694a4, mwRna_sub_26962c, mwRna_sub_269738, sd_sub_268ea8
+ * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
-u32 mwRna_sub_269a30(int a0) {
+u32 mwRna_is_playing(int a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -12901,12 +12901,12 @@ u32 noop_26a0f8(void) {
 }
 
 /*
- * sd_sub_26a100  0x8c26a100
- * area name: in the sd library code range
+ * sd_irq_disable  0x8c26a100
+ * saves SR.IMASK in *a0 and returns SR with IMASK 15
  * called by: mwRnaDiscardData, mwRna_sub_2690d8, mwRna_sub_2691b8, mwRna_sub_2695e4, mwRna_sub_26962c,
  * mwRna_sub_2696aa, mwRna_sub_269738, sd_sub_268b70 (+5 more)
  */
-u32 sd_sub_26a100(u32 *a0) {
+u32 sd_irq_disable(u32 *a0) {
     u32 uVar1;
     u8 in_MD;
     u8 in_RB;
@@ -12927,12 +12927,12 @@ u32 sd_sub_26a100(u32 *a0) {
 }
 
 /*
- * sd_sub_26a118  0x8c26a118
- * area name: in the sd library code range
+ * sd_irq_restore  0x8c26a118
+ * SR with IMASK from *a0
  * called by: mwRnaDiscardData, mwRna_sub_2690d8, mwRna_sub_2691b8, mwRna_sub_2695e4, mwRna_sub_26962c,
  * mwRna_sub_2696aa, mwRna_sub_269738, sd_sub_268b70 (+5 more)
  */
-u32 sd_sub_26a118(u32 *a0) {
+u32 sd_irq_restore(u32 *a0) {
     u8 in_MD;
     u8 in_RB;
     u8 in_BL;
@@ -12971,8 +12971,8 @@ u32 sd_sub_26a130(int a0, u32 a1) {
 
 /*
  * debug_printf  0x8c26a14e
- * called by: mwRnaDiscardData, mwRnaPause, mwRnaSetFx, mwRnaSetNumChan, mwRna_sub_2690d8, mwRna_sub_2691b8,
- * mwRna_sub_269244, mwRna_sub_26962c (+47 more)
+ * called by: mwRnaDiscardData, mwRnaPause, mwRnaSetFx, mwRnaSetNumChan, mwRna_is_playing, mwRna_sub_2690d8,
+ * mwRna_sub_2691b8, mwRna_sub_269244 (+47 more)
  */
 u32 debug_printf(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s4) {
     u32 uVar1;

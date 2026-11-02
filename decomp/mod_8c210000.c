@@ -1672,8 +1672,8 @@ u32 *kamui_sub_212898(u32 a0, u32 unused_a1, u32 a2) {
     u32 ain0;
 
     ain0 = a2;
-    ninja_sub_258030(a0, unused_a1, a2, r7, a2);
-    ninja_sub_258030(a0, unused_a1, a2, r7, ain0);
+    noop_fr4_test(a0, unused_a1, a2, r7, a2);
+    noop_fr4_test(a0, unused_a1, a2, r7, ain0);
     return &g_8c212a28;
 }
 
@@ -2331,7 +2331,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
                     uVar26 = *puVar12;
                     puVar12 = puVar12 + 1;
                 }
-                ninja_sub_258030(0, iVar5, a0, a1);
+                noop_fr4_test(0, iVar5, a0, a1);
                 if (cVar29 == '\0') {
                     *(int *)((int)puVar12 + 0x128) = (int)((u64)uVar26 >> 0x20);
                     dVar20 = (double)CONCAT44(fStack_48, (int)uVar26);
@@ -2393,7 +2393,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
                     dVar20 = (double)(u64)uVar2;
                 }
                 uVar1 = SUB84(dVar20, 0);
-                ninja_sub_258030(iVar3, iVar5, a0, a1);
+                noop_fr4_test(iVar3, iVar5, a0, a1);
                 if (cVar29 == '\0') {
                     *(int *)((int)puVar8 + 0x118) = (int)((u64)uVar26 >> 0x20);
                     dVar20 = (double)CONCAT44(fStack_3c, (int)uVar26);
@@ -2448,7 +2448,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
                     dVar20 = *pdVar6;
                     pdVar6 = pdVar6 + 1;
                 }
-                ninja_sub_258030(iVar3, iVar5, a0, a1);
+                noop_fr4_test(iVar3, iVar5, a0, a1);
                 dVar19 = dVar20;
                 if (cVar29 == '\0') {
                     dVar19 = (double)CONCAT44((int)((u64)dVar20 >> 0x20), uVar22);
@@ -2525,7 +2525,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
                     uVar26 = *puVar12;
                     puVar12 = puVar12 + 1;
                 }
-                ninja_sub_258030(iVar3, iVar5, a0, a1);
+                noop_fr4_test(iVar3, iVar5, a0, a1);
                 if (cVar29 == '\0') {
                     *(int *)((int)puVar12 + 300) = (int)((u64)uVar26 >> 0x20);
                     dVar20 = (double)CONCAT44(fStack_60, (int)uVar26);
@@ -2587,7 +2587,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
                     dVar20 = (double)(u64)uVar2;
                 }
                 uVar1 = SUB84(dVar20, 0);
-                ninja_sub_258030(iVar3, iVar5, a0, a1);
+                noop_fr4_test(iVar3, iVar5, a0, a1);
                 if (cVar29 == '\0') {
                     *(int *)((int)puVar9 + 0x124) = (int)((u64)uVar26 >> 0x20);
                     dVar20 = (double)CONCAT44(fStack_54, (int)uVar26);
@@ -2642,7 +2642,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
                     in_dr0 = *pdVar6;
                     ppdVar15 = (double **)(pdVar6 + 1);
                 }
-                ninja_sub_258030(iVar3, iVar5, a0, a1);
+                noop_fr4_test(iVar3, iVar5, a0, a1);
                 dVar19 = in_dr0;
                 if (cVar29 == '\0') {
                     dVar19 = (double)CONCAT44((int)((u64)in_dr0 >> 0x20), uVar22);
@@ -3132,7 +3132,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
                     uVar26 = *puVar12;
                     puVar12 = puVar12 + 1;
                 }
-                ninja_sub_258030(0, iVar5, a0, a1);
+                noop_fr4_test(0, iVar5, a0, a1);
                 if (cVar29 == '\0') {
                     *(int *)((int)puVar12 + 0x138) = (int)((u64)uVar26 >> 0x20);
                     dVar20 = (double)CONCAT44(fStack_48, (int)uVar26);
@@ -3194,7 +3194,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
                     dVar20 = (double)(u64)uVar2;
                 }
                 uVar1 = SUB84(dVar20, 0);
-                ninja_sub_258030(iVar3, iVar5, a0, a1);
+                noop_fr4_test(iVar3, iVar5, a0, a1);
                 if (cVar29 == '\0') {
                     *(int *)((int)puVar10 + 0x110) = (int)((u64)uVar26 >> 0x20);
                     dVar20 = (double)CONCAT44(fStack_3c, (int)uVar26);
@@ -3249,7 +3249,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
                     dVar20 = *pdVar6;
                     pdVar6 = pdVar6 + 1;
                 }
-                ninja_sub_258030(iVar3, iVar5, a0, a1);
+                noop_fr4_test(iVar3, iVar5, a0, a1);
                 dVar19 = dVar20;
                 if (cVar29 == '\0') {
                     dVar19 = (double)CONCAT44((int)((u64)dVar20 >> 0x20), uVar22);
@@ -3326,7 +3326,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
                     uVar26 = *puVar12;
                     puVar12 = puVar12 + 1;
                 }
-                ninja_sub_258030(iVar3, iVar5, a0, a1);
+                noop_fr4_test(iVar3, iVar5, a0, a1);
                 if (cVar29 == '\0') {
                     *(int *)((int)puVar12 + 0x130) = (int)((u64)uVar26 >> 0x20);
                     dVar20 = (double)CONCAT44(fStack_60, (int)uVar26);
@@ -3388,7 +3388,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
                     dVar20 = (double)(u64)uVar2;
                 }
                 uVar1 = SUB84(dVar20, 0);
-                ninja_sub_258030(iVar3, iVar5, a0, a1);
+                noop_fr4_test(iVar3, iVar5, a0, a1);
                 if (cVar29 == '\0') {
                     *(int *)((int)puVar11 + 0x120) = (int)((u64)uVar26 >> 0x20);
                     dVar20 = (double)CONCAT44(fStack_54, (int)uVar26);
@@ -3443,7 +3443,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
                     in_dr0 = *pdVar6;
                     ppdVar15 = (double **)(pdVar6 + 1);
                 }
-                ninja_sub_258030(iVar3, iVar5, a0, a1);
+                noop_fr4_test(iVar3, iVar5, a0, a1);
                 dVar19 = in_dr0;
                 if (cVar29 == '\0') {
                     dVar19 = (double)CONCAT44((int)((u64)in_dr0 >> 0x20), uVar22);
@@ -3928,7 +3928,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
                     uVar26 = *puVar12;
                     puVar12 = puVar12 + 1;
                 }
-                ninja_sub_258030(0, iVar5, a0, a1);
+                noop_fr4_test(0, iVar5, a0, a1);
                 if (cVar29 == '\0') {
                     *(int *)((int)puVar12 + 0x134) = (int)((u64)uVar26 >> 0x20);
                     dVar20 = (double)CONCAT44(fStack_44, (int)uVar26);
@@ -3990,7 +3990,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
                     dVar20 = (double)(u64)uVar2;
                 }
                 uVar1 = SUB84(dVar20, 0);
-                ninja_sub_258030(iVar3, iVar5, a0, a1);
+                noop_fr4_test(iVar3, iVar5, a0, a1);
                 if (cVar29 == '\0') {
                     *(int *)((int)puVar13 + 0x114) = (int)((u64)uVar26 >> 0x20);
                     dVar20 = (double)CONCAT44(fStack_38, (int)uVar26);
@@ -4045,7 +4045,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
                     dVar20 = *pdVar6;
                     pdVar6 = pdVar6 + 1;
                 }
-                ninja_sub_258030(iVar3, iVar5, a0, a1);
+                noop_fr4_test(iVar3, iVar5, a0, a1);
                 dVar19 = dVar20;
                 if (cVar29 == '\0') {
                     dVar19 = (double)CONCAT44((int)((u64)dVar20 >> 0x20), uVar22);
@@ -4122,7 +4122,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
                     uVar26 = *puVar12;
                     puVar12 = puVar12 + 1;
                 }
-                ninja_sub_258030(iVar3, iVar5, a0, a1);
+                noop_fr4_test(iVar3, iVar5, a0, a1);
                 if (cVar29 == '\0') {
                     *(int *)((int)puVar12 + 0x13c) = (int)((u64)uVar26 >> 0x20);
                     dVar20 = (double)CONCAT44(fStack_5c, (int)uVar26);
@@ -4184,7 +4184,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
                     dVar20 = (double)(u64)uVar2;
                 }
                 uVar1 = SUB84(dVar20, 0);
-                ninja_sub_258030(iVar3, iVar5, a0, a1);
+                noop_fr4_test(iVar3, iVar5, a0, a1);
                 if (cVar29 == '\0') {
                     *(int *)((int)puVar14 + 0x11c) = (int)((u64)uVar26 >> 0x20);
                     dVar20 = (double)CONCAT44(fStack_50, (int)uVar26);
@@ -4239,7 +4239,7 @@ u32 kamui_sub_212a30(double *a0, float *a1) {
                     in_dr0 = *pdVar6;
                     ppdVar15 = (double **)(pdVar6 + 1);
                 }
-                ninja_sub_258030(iVar3, iVar5, a0, a1);
+                noop_fr4_test(iVar3, iVar5, a0, a1);
                 dVar19 = in_dr0;
                 if (cVar29 == '\0') {
                     dVar19 = (double)CONCAT44((int)((u64)in_dr0 >> 0x20), uVar22);
@@ -5237,11 +5237,11 @@ u32 ta_sub_2140fe(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u3
 }
 
 /*
- * ta_sub_21410c  0x8c21410c
- * area name: sits between ta functions (same compilation unit)
+ * light_set_vec_4c0dd4  0x8c21410c
+ * stores fr4..fr6 in light slot a0 (1-based, 0x20 bytes each at 0x8c4c0dd4)
  * called by: Class_12ab2c_sub_09ea78, Class_12ab2c_sub_09edf0, Vec3_sub_0e3f24
  */
-u32 ta_sub_21410c(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 light_set_vec_4c0dd4(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int iVar1;
     u32 in_fr5;
     u32 in_fr4;
@@ -15275,7 +15275,7 @@ u8 *gfxlib_sub_217f12(u16 *a0, int a1, int a2, u32 *a3, u8 *ain0) {
                             }
                             ain0 = puVar4;
                             if (ar4_00 != NULL) {
-                                ain0 = (u8 *)gfxlib_sub_2370dc(ar4_00);
+                                ain0 = (u8 *)ta_set_list_addr(ar4_00);
                             }
                         }
                         a0 = puVar12 + (uVar1 - 1);
@@ -15779,7 +15779,7 @@ u32 vram_sub_218804(u16 *a0, int a1, u8 *a2, u32 unused_a3, u32 ain0) {
                 }
                 ain0 = uVar3;
                 if (ar4_00 != 0) {
-                    ain0 = gfxlib_sub_2370dc(ar4_00);
+                    ain0 = ta_set_list_addr(ar4_00);
                 }
             }
             iVar2 = uVar1 - 1;
@@ -16683,7 +16683,7 @@ u8 *gfxlib_sub_21908e(u16 *a0, int a1, u32 a2) {
             LAB_8c2197ea:
                 puVar2 = puVar6;
                 if (ar4_00 != NULL) {
-                    puVar2 = (u8 *)gfxlib_sub_2370dc(ar4_00);
+                    puVar2 = (u8 *)ta_set_list_addr(ar4_00);
                 }
             }
             iVar13 = uVar1 - 1;
@@ -17220,7 +17220,7 @@ int gfxlib_sub_219ad0(u16 *a0, u16 *a1, u16 *a2, u32 unused_a3, int ain0) {
                     }
                 }
                 if (iVar2 != 0) {
-                    ain0 = gfxlib_sub_2370dc(iVar2);
+                    ain0 = ta_set_list_addr(iVar2);
                 }
             }
             iVar2 = uVar1 - 1;
@@ -24443,7 +24443,7 @@ u32 gfxlib_sub_21daf2(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
                         }
                     }
                     a3 = puVar8 + -0x24;
-                    gfxlib_sub_221300(iVar5, ar5_00, a2, a3);
+                    keyframe_pair(iVar5, ar5_00, a2, a3);
                     in_fr5 = SUB84(dVar10, 0);
                     *(u32 *)(puVar8 + -0x58) = *(u32 *)(puVar8 + -0x24);
                     *(u32 *)(puVar8 + -0x48) = *(u32 *)(puVar8 + -0x20);
@@ -25050,7 +25050,7 @@ u32 gfxlib_sub_21e4f8(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
                     }
                 }
                 a3 = &iStack_34;
-                gfxlib_sub_221300(iVar5, puVar6, a2, a3);
+                keyframe_pair(iVar5, puVar6, a2, a3);
                 in_fr5 = SUB84(dVar11, 0);
                 iStack_6c = iStack_34;
                 puStack_74 = (u32 *)iStack_30;
@@ -25104,7 +25104,7 @@ u32 gfxlib_sub_21e4f8(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
                     }
                 }
                 a3 = &iStack_3c;
-                gfxlib_sub_221300(iVar5, puVar6, a2, a3);
+                keyframe_pair(iVar5, puVar6, a2, a3);
                 in_fr5 = SUB84(dVar11, 0);
                 iStack_5c = iStack_3c;
                 puStack_68 = (u32 *)iStack_38;
@@ -25663,7 +25663,7 @@ u32 gfxlib_sub_21ee94(u32 *a0, u32 *a1, u32 *a2, u32 **a3, u32 ain0) {
                     }
                 }
                 a3 = &puStack_30;
-                gfxlib_sub_221300(iVar5, a1, a2, a3);
+                keyframe_pair(iVar5, a1, a2, a3);
                 in_fr5 = SUB84(dVar10, 0);
                 if (cVar15 == '\0') {
                     dVar11 = (double)CONCAT44((int)((u64)dVar11 >> 0x20), extraout_fr0);
@@ -25721,7 +25721,7 @@ u32 gfxlib_sub_21ee94(u32 *a0, u32 *a1, u32 *a2, u32 **a3, u32 ain0) {
                     }
                 }
                 a3 = &puStack_38;
-                gfxlib_sub_221300(iVar5, a1, a2, a3);
+                keyframe_pair(iVar5, a1, a2, a3);
                 puStack_5c = puStack_38;
                 iStack_50 = iStack_34;
                 iStack_58 = iStack_58 + 2;
@@ -26015,7 +26015,7 @@ u32 *gfxlib_sub_21f2ae(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0
                     }
                 }
                 a3 = &iStack_4c;
-                gfxlib_sub_221300(iVar5, uVar6, uVar7, a3);
+                keyframe_pair(iVar5, uVar6, uVar7, a3);
                 in_fr5 = SUB84(dVar13, 0);
                 uStack_78 = iStack_4c;
                 iStack_68 = iStack_48;
@@ -26515,7 +26515,7 @@ u32 *gfxlib_sub_21fca8(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0
                     }
                 }
                 a3 = &iStack_34;
-                gfxlib_sub_221300(iVar5, uVar6, uVar7, a3);
+                keyframe_pair(iVar5, uVar6, uVar7, a3);
                 uStack_6c = iStack_34;
                 iStack_64 = iStack_30;
                 puStack_50 = (u32 *)0x1;
@@ -26567,7 +26567,7 @@ u32 *gfxlib_sub_21fca8(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0
                     }
                 }
                 a3 = &iStack_3c;
-                gfxlib_sub_221300(iVar5, uVar6, uVar7, a3);
+                keyframe_pair(iVar5, uVar6, uVar7, a3);
                 in_fr5 = SUB84(dVar12, 0);
                 uStack_60 = iStack_3c;
                 iStack_54 = iStack_38;

@@ -85,7 +85,7 @@ int get_field_a546_s16(int a0) {
 u32 game_sub_1001e0(int a0) {
     int iVar1;
 
-    iVar1 = input_sub_01ef68(*(u32 *)(0xcc + a0));
+    iVar1 = input_test_400_mode1(*(u32 *)(0xcc + a0));
     if ((iVar1 == 0) && (iVar1 = input_sub_01ecb0(*(u32 *)(0xcc + a0)), iVar1 == 0)) {
         return 0;
     }
@@ -141,7 +141,7 @@ u32 game_sub_1002a8(int a0) {
 /*
  * game_sub_10031c  0x8c10031c
  * area name: game code; nothing names its area yet
- * called by: game_sub_0e1f90, game_sub_0e25c0, game_sub_0e5238, game_sub_0e8280
+ * called by: game_sub_0e1f90, game_sub_0e5238, game_sub_0e8280, input_sub_0e25c0
  */
 u32 game_sub_10031c(int a0) {
     int iVar1;
@@ -662,7 +662,7 @@ u32 game_sub_100a58(int a0) {
     u32 uVar2;
 
     if (((-0.4 <= *(float *)(a0 + 0x140)) || (iVar1 = input_sub_01ee54(*(u32 *)(a0 + 0xcc)), iVar1 == 0)) ||
-        (iVar1 = input_sub_01ef68(*(u32 *)(a0 + 0xcc)), iVar1 == 0)) {
+        (iVar1 = input_test_400_mode1(*(u32 *)(a0 + 0xcc)), iVar1 == 0)) {
         uVar2 = 0;
     } else {
         uVar2 = 1;
@@ -680,7 +680,7 @@ u32 game_sub_100abc(int a0) {
     u32 uVar2;
 
     if (((*(float *)(a0 + 0x140) <= 0.4) || (iVar1 = input_sub_01ee54(*(u32 *)(a0 + 0xcc)), iVar1 == 0)) ||
-        (iVar1 = input_sub_01ef68(*(u32 *)(a0 + 0xcc)), iVar1 == 0)) {
+        (iVar1 = input_test_400_mode1(*(u32 *)(a0 + 0xcc)), iVar1 == 0)) {
         uVar2 = 0;
     } else {
         uVar2 = 1;
@@ -698,7 +698,7 @@ u32 game_sub_100b20(int a0) {
     u32 uVar2;
 
     if (((-0.3 <= *(float *)(a0 + 0x140)) || (iVar1 = input_sub_01ee98(*(u32 *)(a0 + 0xcc)), iVar1 == 0)) ||
-        (iVar1 = input_sub_01ef68(*(u32 *)(a0 + 0xcc)), iVar1 == 0)) {
+        (iVar1 = input_test_400_mode1(*(u32 *)(a0 + 0xcc)), iVar1 == 0)) {
         uVar2 = 0;
     } else {
         uVar2 = 1;
@@ -716,7 +716,7 @@ u32 game_sub_100b84(int a0) {
     u32 uVar2;
 
     if (((*(float *)(a0 + 0x140) <= 0.3) || (iVar1 = input_sub_01ee98(*(u32 *)(a0 + 0xcc)), iVar1 == 0)) ||
-        (iVar1 = input_sub_01ef68(*(u32 *)(a0 + 0xcc)), iVar1 == 0)) {
+        (iVar1 = input_test_400_mode1(*(u32 *)(a0 + 0xcc)), iVar1 == 0)) {
         uVar2 = 0;
     } else {
         uVar2 = 1;
@@ -733,7 +733,7 @@ u32 game_sub_100be8(int a0) {
     int iVar1;
     u32 uVar2;
 
-    if ((*(float *)(a0 + 0x13c) <= 0.3) || (iVar1 = input_sub_01ef68(*(u32 *)(a0 + 0xcc)), iVar1 == 0)) {
+    if ((*(float *)(a0 + 0x13c) <= 0.3) || (iVar1 = input_test_400_mode1(*(u32 *)(a0 + 0xcc)), iVar1 == 0)) {
         uVar2 = 0;
     } else {
         uVar2 = 1;
@@ -750,7 +750,7 @@ u32 game_sub_100c34(int a0) {
     int iVar1;
     u32 uVar2;
 
-    if ((-0.3 <= *(float *)(a0 + 0x13c)) || (iVar1 = input_sub_01ef68(*(u32 *)(a0 + 0xcc)), iVar1 == 0)) {
+    if ((-0.3 <= *(float *)(a0 + 0x13c)) || (iVar1 = input_test_400_mode1(*(u32 *)(a0 + 0xcc)), iVar1 == 0)) {
         uVar2 = 0;
     } else {
         uVar2 = 1;
@@ -773,7 +773,7 @@ u32 game_sub_100c80(int a0) {
 /*
  * game_sub_100cb4  0x8c100cb4
  * area name: game code; nothing names its area yet
- * called by: game_sub_0dc61c, game_sub_0e25c0, game_sub_0e727c
+ * called by: game_sub_0dc61c, game_sub_0e727c, input_sub_0e25c0
  */
 u32 game_sub_100cb4(int a0) {
     int iVar1;
@@ -785,7 +785,7 @@ u32 game_sub_100cb4(int a0) {
 /*
  * game_sub_100ce8  0x8c100ce8
  * area name: game code; nothing names its area yet
- * called by: game_sub_0e1f90, game_sub_0e25c0, game_sub_0e7190, game_sub_0e727c
+ * called by: game_sub_0e1f90, game_sub_0e7190, game_sub_0e727c, input_sub_0e25c0
  */
 u32 game_sub_100ce8(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -834,7 +834,7 @@ u32 game_sub_100d5c(int a0) {
 /*
  * game_sub_100e4c  0x8c100e4c
  * area name: game code; nothing names its area yet
- * called by: game_sub_0e1f90, game_sub_0e25c0, game_sub_0e7190, game_sub_0e727c
+ * called by: game_sub_0e1f90, game_sub_0e7190, game_sub_0e727c, input_sub_0e25c0
  */
 u32 game_sub_100e4c(int a0, u64 *a1) {
     int iVar1;
@@ -934,7 +934,7 @@ int game_sub_101004(int a0, u32 a1, u32 a2, u32 a3) {
     }
     iVar2 = input_sub_01ecf8(*(u32 *)(0xcc + a0));
     if (iVar2 == 1) {
-        iVar2 = input_sub_01ef68(*(u32 *)(0xcc + a0));
+        iVar2 = input_test_400_mode1(*(u32 *)(0xcc + a0));
         if (iVar2 == 1) {
             game_sub_1017f4(a0, a1, a2, a3);
             *(u8 *)(0xb8 + a0) = 1;
@@ -1301,7 +1301,7 @@ u32 game_sub_101510(int a0, u32 a1) {
 
 /*
  * clear_field_59c  0x8c10168c
- * called by: clear_field_59c_wrap, game_sub_0c51c4, game_sub_101250
+ * called by: clear_field_59c_wrap, game_sub_101250, set_timeout_120_mode6
  */
 int clear_field_59c(int a0) {
     int iVar1;
@@ -1343,7 +1343,7 @@ u32 game_sub_1016f0(int a0) {
     *puVar2 = (char)uVar1;
     uVar1 = input_get_word_a53c(0x8c3dd7dc);
     puVar2[1] = (char)uVar1;
-    uVar1 = input_sub_01efb0(0x8c3dd7dc);
+    uVar1 = input_test_400_mode2(0x8c3dd7dc);
     puVar2[2] = (char)uVar1;
     uVar1 = input_is_mask_set_10000_01ec68(0x8c3dd7dc);
     puVar2[3] = (char)uVar1;
@@ -1886,7 +1886,7 @@ u32 game_sub_102634(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * clear_2_words  0x8c1026ec
  * a0[0..1] = 0
- * called by: Class_12b334_sub_0bf478, game_sub_0c84f4, game_sub_0c9588, game_sub_0c9ee0, game_sub_0ca88c,
+ * called by: Class_12b334_sub_0bf478, Vec3_sub_0c84f4, game_sub_0c9588, game_sub_0c9ee0, game_sub_0ca88c,
  * game_sub_0cb9c8, game_sub_0d99e8
  */
 u32 *clear_2_words(u32 *a0) {
@@ -1897,7 +1897,7 @@ u32 *clear_2_words(u32 *a0) {
 
 /*
  * free_if_nonnull_wrap_10270c  0x8c10270c
- * called by: Class_12bce0_dtor, game_sub_0c0148, game_sub_0c84f4, game_sub_0c9588, game_sub_0c9ee0, game_sub_0ca88c,
+ * called by: Class_12bce0_dtor, Vec3_sub_0c84f4, game_sub_0c0148, game_sub_0c9588, game_sub_0c9ee0, game_sub_0ca88c,
  * game_sub_0cb9c8
  */
 int free_if_nonnull_wrap_10270c(int a0, u32 a1, u32 a2, u32 a3) {
@@ -1923,8 +1923,8 @@ u16 *set_fields_0_2(u16 *a0, u32 a1, u32 a2) {
 /*
  * clear_3_words_102748  0x8c102748
  * a0[0..2] = 0
- * called by: CAnimal_sub_030e10, Class_12b088_sub_0aa70c, game_sub_03c94c, game_sub_046684, game_sub_054f7c,
- * game_sub_078fd0, game_sub_08fd38, game_sub_0967d8 (+7 more)
+ * called by: CAnimal_sub_030e10, Class_12b088_sub_0aa70c, Vec3_sub_0c84f4, game_sub_03c94c, game_sub_046684,
+ * game_sub_054f7c, game_sub_078fd0, game_sub_08fd38 (+7 more)
  */
 u32 *clear_3_words_102748(u32 *a0) {
     a0[2] = 0;
@@ -2732,9 +2732,9 @@ u32 Class_12c3c4_sub_103100(int *a0, code *a1, code *a2, u32 a3) {
                     g_8c1eee30 = 0x1d;
                     uVar1 = 0;
                     counter_set_clamped(*(int *)(a2 + 4) + 0x90, 0, pcVar10);
-                    game_sub_0fa6c8(0x8c35468c, uVar1, pcVar10, pcVar4);
+                    speech_sub_0fa6c8(0x8c35468c, uVar1, pcVar10, pcVar4);
                 }
-                Class_12a078_sub_02cbbc(*(int *)(a2 + 4) + 0x90, 0);
+                counter_set_clamped_4(*(int *)(a2 + 4) + 0x90, 0);
                 pcVar10 = (code *)(*(int *)(a2 + 4) + 0x18);
                 set_field_14_1041e4(pcVar10, 0);
                 pcVar2 = NULL;
@@ -3034,7 +3034,7 @@ u32 Class_12c3c4_m2_104264(int *a0, int a1, int *a2, u32 a3) {
         }
     }
     if (a0[0xe1] != -1) {
-        iVar5 = game_sub_0fa2b8(0x8c35468c, a1);
+        iVar5 = speech_is_playing(0x8c35468c, a1);
         if (iVar5 == 0) {
             a0[0x25] = 0;
             set_field_770(a0 + 0x27, 3, piVar2, uVar1);
@@ -3108,7 +3108,7 @@ int game_sub_10469c(int a0, int a1, int a2, char *a3) {
         iVar1 = *(int *)(a0 + 900);
         if (iVar1 != -1) {
             *(u32 *)(a0 + 0x94) = *(u32 *)(a0 + 0x154);
-            iVar1 = game_sub_0fa2b8(0x8c35468c, uVar2);
+            iVar1 = speech_is_playing(0x8c35468c, uVar2);
             if (iVar1 == 0) {
                 *(u32 *)(a0 + 0x94) = 0;
                 set_field_770(a0 + 0x9c, 3, a2, a3);
@@ -3592,7 +3592,7 @@ u8 *game_sub_1063a8(int a0, int *a1, int *a2, char *a3) {
             iVar1 = get_field_140_025f70(a2[1], piVar4);
             if (iVar1 == 0) {
                 *(u8 *)(a0 + 0x98) = 10;
-                game_sub_0fa688(0x8c35468c, piVar4, piVar6, a3);
+                speech_sub_0fa688(0x8c35468c, piVar4, piVar6, a3);
                 a3 = "GRATIFIC_COPULATION_DONE";
                 talk_start_line(a0 + 0x9c, 9, 0, "GRATIFIC_COPULATION_DONE");
                 piVar6 = (int *)0x1b;
@@ -3614,7 +3614,7 @@ u8 *game_sub_1063a8(int a0, int *a1, int *a2, char *a3) {
             uVar3 = get_field_13c_028d9c(a2[1], piVar4, piVar6);
             uVar5 = 0x19;
             recent5_push_unique(a2[6], 0x19, uVar3);
-            game_sub_0fa688(0x8c35468c, uVar5, uVar3, a3);
+            speech_sub_0fa688(0x8c35468c, uVar5, uVar3, a3);
             ar7_00 = "GRATIFIC_GROAN_DONE";
             uVar3 = 0;
             iVar1 = a0 + 0x9c;
@@ -3622,7 +3622,7 @@ u8 *game_sub_1063a8(int a0, int *a1, int *a2, char *a3) {
             puVar2 = (u8 *)CAnimal_sub_0c4e2c(iVar1, CAnimal_sub_0c4e2c, uVar3, ar7_00);
             break;
         case 0x18:
-            game_sub_0fa688(0x8c35468c, piVar4, piVar6, a3);
+            speech_sub_0fa688(0x8c35468c, piVar4, piVar6, a3);
             uVar3 = get_field_39_s8(a2[3]);
             uVar5 = CONCAT13((char)uVar3, (s32)in_stack_ffffff6c);
             if ('\x03' < (char)uVar3) {
@@ -3632,7 +3632,7 @@ u8 *game_sub_1063a8(int a0, int *a1, int *a2, char *a3) {
                 a3 = "EVENT_AFTER_ROCK_PUSH";
                 piVar6 = NULL;
                 talk_start_line(a0 + 0x9c, 0x26, 0, "EVENT_AFTER_ROCK_PUSH");
-                Class_12a078_sub_02cbbc(a2[1] + 0x90, 1);
+                counter_set_clamped_4(a2[1] + 0x90, 1);
                 set_field_0_u8(a2[1], 0);
                 set_field_0_u8(a2[1] + 0x18, 0);
                 set_field_0_u8(a2[1] + 0x60, 0);
@@ -4598,7 +4598,7 @@ u32 game_sub_1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
         if (iVar3 == 2) {
             *(u32 *)(a0 + 0x14c) = 0;
         }
-        iVar3 = game_sub_0fa2b8(0x8c35468c, a1);
+        iVar3 = speech_is_playing(0x8c35468c, a1);
         if (iVar3 == 0) {
             *(u32 *)(a0 + 0x94) = 0;
             uVar4 = 3;
@@ -4612,7 +4612,7 @@ u32 game_sub_1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
             uVar2 = game_sub_02bef8(a2[1], uVar4, ar6_00);
             if ((short)uVar2 == 0) {
                 uVar4 = 0;
-                iVar3 = game_sub_0fa388(0x8c35468c, 0, ar6_00, a3);
+                iVar3 = speech_sub_0fa388(0x8c35468c, 0, ar6_00, a3);
                 if (iVar3 == 1) {
                     ar6_00 = (u32 *)0x1b;
                     uVar4 = 0xb;
@@ -4678,7 +4678,7 @@ u32 game_sub_1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
                 *(u32 *)(a0 + 0x848) = 0x22;
                 g_8c1eee38 = 0x22;
                 *(u32 *)(a0 + 0x10c) = 0;
-                game_sub_0fa6c8(0x8c35468c, a1, ar6_00, a3);
+                speech_sub_0fa6c8(0x8c35468c, a1, ar6_00, a3);
             }
             talk_set_status_format(a0 + 0x9c, a1, ar6_00, a3);
             *(u8 *)(a0 + 0x80) = 1;
@@ -4686,7 +4686,7 @@ u32 game_sub_1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
             *(u32 *)(a0 + 0xfc) = 0;
         }
     }
-    iVar3 = game_sub_0fa2b8(0x8c35468c, a1);
+    iVar3 = speech_is_playing(0x8c35468c, a1);
     if ((iVar3 == 0) && ((*(int *)(a0 + 0x40) == 10 || (*(int *)(a0 + 0x40) == 0xb)))) {
         set_field_770(a0 + 0x9c, 3, ar6_00, a3);
         *(u32 *)(a0 + 4) = 0;
@@ -5220,7 +5220,7 @@ u32 game_sub_109b98(int a0, int *a1, u32 a2) {
 u32 Class_12c3c4_m6_109d98(void) {
     int iVar1;
 
-    iVar1 = game_sub_0fa2d8(0x8c35468c);
+    iVar1 = speech_sub_0fa2d8(0x8c35468c);
     return (u32)(iVar1 == 0);
 }
 
@@ -5273,7 +5273,7 @@ int Class_12c3c4_sub_109e40(int a0, int a1, u32 a2, u32 a3) {
         if (0x5e < iVar1) {
             uVar2 = get_field_4_02d1e0(*(int *)(a1 + 4) + 0x90);
             iVar1 = libgcc_divide_helper_0101e4(uVar2, 10);
-            Class_12a078_sub_02cbbc(*(int *)(a1 + 4) + 0x90, iVar1 * 9);
+            counter_set_clamped_4(*(int *)(a1 + 4) + 0x90, iVar1 * 9);
         }
         iVar1 = 0x874;
         *(u32 *)(a0 + 0x874) = 1;
@@ -6194,9 +6194,9 @@ u32 asr_sub_10ad00(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 in_FPSCR_PR;
     u8 in_FPSCR_SZ;
 
-    puVar2 = (&asr_sub_120550);
+    puVar2 = (&asr_state_has_event);
     a4 = *a0;
-    asr_sub_120550(a0, 9, a2);
+    asr_state_has_event(a0, 9, a2);
     uVar8 =
         ((u32)in_FPSCR_CAUSE << 0xc | (u32)in_FPSCR_DN << 0x12 | (u32)in_FPSCR_PR << 0x13 | (u32)in_FPSCR_SZ << 0x14) &
         0xffe7ffff;
@@ -7881,7 +7881,7 @@ u32 asr_sub_10c48c(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     float extraout_fr0;
 
     iVar3 = *unaff_r14;
-    asr_sub_120550(a0, 2, a2);
+    asr_state_has_event(a0, 2, a2);
     *(short *)((int)unaff_r14 + 0x2e) = (short)(int)extraout_fr0;
     *(short *)(unaff_r14 + 0xc) = *(short *)((int)unaff_r14 + 0x2e) * 3 + 3;
     *(short *)(*(int *)unaff_r14[4] + 0xc) = ((short)unaff_r14[0xc] + -1) * 4;
@@ -8519,15 +8519,15 @@ u32 asr_sub_10cccc(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     char cVar15;
 
     fVar9 = (float)((u64)in_dr0 >> 0x20);
-    asr_sub_120550(a0, 2, a2);
+    asr_state_has_event(a0, 2, a2);
     uVar12 = (u32)fVar9;
     uVar4 = uVar12 & 0xffff;
     a0[10] = uVar4;
-    asr_sub_120550(a0, 3, a2);
+    asr_state_has_event(a0, 3, a2);
     iVar13 = (int)fVar9;
-    asr_sub_120550(a0, 4, a2);
+    asr_state_has_event(a0, 4, a2);
     a0[0xc] = (int)fVar9 & 0xffff;
-    asr_sub_120550(a0, 1, a2);
+    asr_state_has_event(a0, 1, a2);
     uVar2 = ((int)fVar9 & 0xffffU) - a0[0xc];
     a0[0xb] = uVar2;
     *(short *)(*(int *)a0[4] + 0xc) = ((short)uVar12 + 1) * 4;
@@ -8734,7 +8734,7 @@ u32 asr_sub_10d016(int *a0, int *a1, u32 a2, u32 a3, int s0) {
         }
         return 0;
     }
-    uVar2 = asr_sub_1204c4(a0, 2);
+    uVar2 = asr_fsm_set_result(a0, 2);
     return uVar2;
 }
 
@@ -9511,14 +9511,14 @@ u32 asr_sub_10df48(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     iVar3 = *a0;
     *(u16 *)((int)a0 + 0x92) = 0xffff;
     uVar16 = in_dr14 & 0xffffffff;
-    asr_sub_120550(a0, 0x1e, a2);
+    asr_state_has_event(a0, 0x1e, a2);
     *(short *)(a0 + 0x25) = (short)(int)fVar9;
-    asr_sub_120550(a0, 0x1f, a2);
+    asr_state_has_event(a0, 0x1f, a2);
     *(short *)((int)a0 + 0x96) = (short)(int)fVar9;
     a0[0x17] = a0[3] + 8;
     a0[0x18] = a0[3] + 0x10;
     a0[0x19] = *(int *)a0[4];
-    asr_sub_120550(a0, 0x13, a2);
+    asr_state_has_event(a0, 0x13, a2);
     a5 = 0x400;
     bVar17 = 0;
     bVar18 = 0;
@@ -9596,7 +9596,7 @@ u32 asr_sub_10df48(int *a0, u32 unused_a1, u32 a2, u32 a3) {
         }
     } while (uVar4 < 0x100);
     cVar20 = '\0';
-    asr_sub_120550(a0, 0x12, a2);
+    asr_state_has_event(a0, 0x12, a2);
     if (cVar20 == '\0') {
         a0[0x4b] = (int)((u64)dVar12 >> 0x20);
     } else {
@@ -9766,7 +9766,7 @@ u32 asr_sub_10df48(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     } while (iVar1 + 1U <= (u32)a0[0x4c]);
     a0[0x45] = 0;
     a0[0x46] = 0;
-    asr_sub_120550(a0, 0x14, a2);
+    asr_state_has_event(a0, 0x14, a2);
     *(char *)(a0 + 0x47) = (char)(int)fVar13;
     *(u8 *)((int)a0 + 0x11d) = 1;
     return 0;
@@ -10775,9 +10775,9 @@ u32 asr_sub_10f41e(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     float fStack_1c;
 
     iVar4 = *a0;
-    asr_sub_120550(a0, 3, a2);
+    asr_state_has_event(a0, 3, a2);
     fStack_1c = (float)(int)(short)(int)(float)((u64)in_dr0 >> 0x20);
-    asr_sub_120550(a0, 4, a2);
+    asr_state_has_event(a0, 4, a2);
     uVar5 = (int)(float)((u64)in_dr0 >> 0x20) & 0xffff;
     a0[0xb] = uVar5;
     uVar1 = (u32)(*(u16 *)(*(int *)a0[3] + 0xc) >> 2);
@@ -10795,7 +10795,7 @@ u32 asr_sub_10f41e(int *a0, u32 unused_a1, u32 a2, u32 a3) {
         *(short *)(*(int *)(a0[4] + 4) + 0xc) = ((short)(uVar5 >> 1) + 1) * 4;
         uVar2 = 1;
         cVar12 = '\0';
-        asr_sub_120550(a0, 1, a2);
+        asr_state_has_event(a0, 1, a2);
         fVar8 = (float)((u64)in_dr0 >> 0x20);
         fStack_20 = fVar8;
         if (cVar12 != '\0') {
@@ -10831,7 +10831,7 @@ u32 asr_sub_10f41e(int *a0, u32 unused_a1, u32 a2, u32 a3) {
         a0[0xc] = uVar1;
         uVar2 = 2;
         cVar12 = '\0';
-        asr_sub_120550(a0, 2, a2);
+        asr_state_has_event(a0, 2, a2);
         if (cVar12 == '\0') {
             fStack_24 = fVar10;
         }
@@ -10869,7 +10869,7 @@ u32 asr_sub_10f41e(int *a0, u32 unused_a1, u32 a2, u32 a3) {
         }
         a0[0xd] = uVar5;
         cVar12 = '\0';
-        asr_sub_120550(a0, 5, a2);
+        asr_state_has_event(a0, 5, a2);
         if (cVar12 == '\0') {
             a0[0xe] = (int)((u64)lVar7 >> 0x20);
         } else {
@@ -10978,7 +10978,7 @@ u32 asr_sub_10f736(int a0, int a1) {
     uVar3 = (**(code **)(0xbc + a1))(uVar3);
     *(u32 *)(a0 + 0x68) = uVar3;
     if ((u32) * (u8 *)(a0 + 0x58) != *(int *)(a0 + 0x70) - *(int *)(a0 + 0x74)) {
-        uVar3 = asr_sub_1204c4(a0, 0x66);
+        uVar3 = asr_fsm_set_result(a0, 0x66);
         return uVar3;
     }
     *(int *)(0x90 + a0) = a1;
@@ -11014,7 +11014,7 @@ u32 asr_sub_10f742(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     uVar1 = (**(code **)(0xbc + unaff_r13))(uVar1, a1, a2, a3);
     *(u32 *)(unaff_r14 + 0x68) = uVar1;
     if ((u32) * (u8 *)(unaff_r14 + 0x58) != *(int *)(unaff_r14 + 0x70) - *(int *)(unaff_r14 + 0x74)) {
-        uVar1 = asr_sub_1204c4(0x66);
+        uVar1 = asr_fsm_set_result(0x66);
         return uVar1;
     }
     *(int *)(0x90 + unaff_r14) = unaff_r13;
@@ -11721,17 +11721,17 @@ u32 asr_sub_10fece(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3, int *ain1) {
 
     a4 = *unaff_r14;
     *ain1 = *(u8 *)(unaff_r14 + 2) - 1;
-    asr_sub_120550(unaff_r14, 5, a2);
+    asr_state_has_event(unaff_r14, 5, a2);
     unaff_r14[0x1d] = (int)extraout_fr0 & 0xffff;
-    asr_sub_120550(unaff_r14, 6, a2);
+    asr_state_has_event(unaff_r14, 6, a2);
     unaff_r14[0x1c] = (int)extraout_fr0_00 & 0xffff;
-    asr_sub_120550(unaff_r14, 1, a2);
+    asr_state_has_event(unaff_r14, 1, a2);
     unaff_r14[0x1f] = (int)extraout_fr0_01 & 0xffff;
-    asr_sub_120550(unaff_r14, 2, a2);
+    asr_state_has_event(unaff_r14, 2, a2);
     unaff_r14[0x21] = (int)(short)(int)extraout_fr0_02;
-    asr_sub_120550(unaff_r14, 3, a2);
+    asr_state_has_event(unaff_r14, 3, a2);
     unaff_r14[0x22] = (int)(short)(int)extraout_fr0_03;
-    asr_sub_120550(unaff_r14, 4, a2);
+    asr_state_has_event(unaff_r14, 4, a2);
     uVar2 = 4;
     unaff_r14[0x23] = (int)(short)(int)extraout_fr0_04;
     unaff_r14[0x20] = unaff_r14[0x1e] * unaff_r14[0x1c];

@@ -181,7 +181,7 @@ int game_sub_070d7c(code *a0, u32 *a1, u32 unused_a2, code *a3) {
         break;
     case 0x14:
         if (*(int *)(a0 + 0x21c) == 1) {
-            timer_sub_031b68(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, pcVar4, a3);
+            copy6_to_fields(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, pcVar4, a3);
             pcVar4 = a0 + 0x38;
             if (cVar13 == '\0') {
                 dVar9 = (double)CONCAT44(0x3f000000, *(u32 *)pcVar4);
@@ -209,7 +209,7 @@ int game_sub_070d7c(code *a0, u32 *a1, u32 unused_a2, code *a3) {
             pcVar4 = *(code **)a1[1];
             timer_sub_031c74(a0, auStack_2c, pcVar4, a3);
             if (*(int *)(a0 + 0x40) == 0) {
-                timer_sub_031b68(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, pcVar4, a3);
+                copy6_to_fields(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, pcVar4, a3);
                 *(u32 *)(a0 + 300) = 0;
                 *(u32 *)(a0 + 0x2a0) = 2;
                 iVar6 = 0;
@@ -744,7 +744,7 @@ LAB_8c071c68:
                 pcVar7 = NULL;
             } else {
                 *(u32 *)((int)pdVar11 + -0x2f0) = *(u32 *)(a0 + 0x128);
-                timer_sub_031b68(
+                copy6_to_fields(
                     a0, (*(int *)((int)pdVar11 + -0x2f0) * 2 + *(int *)((int)pdVar11 + -0x2f0)) * 8 + 0x8c280eb4,
                     *(int *)((int)pdVar11 + -0x1d4), pcVar10);
                 *(int *)((int)pdVar11 + -0x2f4) = a0;
@@ -1009,7 +1009,7 @@ LAB_8c071c68:
                 ar7_01 = *(code **)((int)pdVar11 + -0x224);
             } else if (*(int *)(a0 + 0x21c) == 1) {
                 *(u32 *)((int)pdVar11 + -0x2d0) = *(u32 *)(a0 + 0x128);
-                timer_sub_031b68(
+                copy6_to_fields(
                     a0, (*(int *)((int)pdVar11 + -0x2d0) * 2 + *(int *)((int)pdVar11 + -0x2d0)) * 8 + 0x8c280eb4,
                     (*(int *)((int)pdVar11 + -0x2d0) * 2 + *(int *)((int)pdVar11 + -0x2d0)) * 8, pcVar10);
                 *(int *)((int)pdVar11 + -0x2d4) = a0;
@@ -1035,7 +1035,7 @@ LAB_8c071c68:
                 } else if (*(int *)(a0 + 0x40) == 0) {
                     *(u32 *)((int)pdVar11 + -0x2d8) = *(u32 *)(a0 + 0x128);
                     pcVar7 = (code *)0x8c280eb4;
-                    timer_sub_031b68(
+                    copy6_to_fields(
                         a0, (*(int *)((int)pdVar11 + -0x2d8) * 2 + *(int *)((int)pdVar11 + -0x2d8)) * 8 + 0x8c280eb4,
                         0x8c280eb4, pcVar10);
                     *(u32 *)(a0 + 300) = 0;
@@ -2338,7 +2338,7 @@ u32 game_sub_073cac(int a0, code *a1, u32 a2, u32 a3) {
         if (iVar5 == 0) {
             CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, CAnimBody_AdvanceFrame_wrapper, a1, ar7_00);
             pcVar8 = *(code **)(a0 + 0x128);
-            timer_sub_031b68(a0, (int)pcVar8 * 0x18 + 0x8c280eb4, pcVar8, ar7_00);
+            copy6_to_fields(a0, (int)pcVar8 * 0x18 + 0x8c280eb4, pcVar8, ar7_00);
         } else {
             CAnimBody_PlayToEnd(a0 + 0xb0, 0, a1, ar7_00);
             pcVar8 = a1;
@@ -4854,7 +4854,7 @@ u32 game_sub_07a68c(double *a0, double *a1, double *a2, code *a3) {
         ar7_00 = 0;
         uVar2 = 0xffffffff;
         CAnimBody_SetAnimation(a0 + 0x16, 8, 0xffffffff, 0);
-        timer_sub_031b68(a0, (int)*(float *)(a0 + 0x25) * 0x18 + 0x8c280eb4, uVar2, ar7_00);
+        copy6_to_fields(a0, (int)*(float *)(a0 + 0x25) * 0x18 + 0x8c280eb4, uVar2, ar7_00);
         pdVar4 = a0 + 0x14;
         if (cVar10 == '\0') {
             in_dr0 = (double)CONCAT44(0x43160000, *(float *)pdVar4);
@@ -5005,7 +5005,7 @@ u32 game_sub_07a68c(double *a0, double *a1, double *a2, code *a3) {
                     uVar2 = 0xffffffff;
                     Vec3_dtor(auStack_74, 0xffffffff, ar6_00, a3);
                     (**(code **)((int)*(float *)a0 + 0x2c))(a0, uVar2, ar6_00, a3);
-                    timer_sub_031b68(a0, (int)*(float *)(a0 + 0x25) * 0x18 + 0x8c280eb4, ar6_00, a3);
+                    copy6_to_fields(a0, (int)*(float *)(a0 + 0x25) * 0x18 + 0x8c280eb4, ar6_00, a3);
                     pdVar4 = a1;
                     (**(code **)(*in_stack_00000000 + 0x128))(in_stack_00000000, a1, ar6_00, a3);
                     if (cVar10 == '\0') {
@@ -5048,7 +5048,7 @@ u32 game_sub_07a68c(double *a0, double *a1, double *a2, code *a3) {
                 } else {
                     a0[5] = in_xd0;
                 }
-                timer_sub_031b68(a0, (int)*(float *)(a0 + 0x25) * 0x18 + 0x8c280eb4, ar6_00, a3);
+                copy6_to_fields(a0, (int)*(float *)(a0 + 0x25) * 0x18 + 0x8c280eb4, ar6_00, a3);
                 *(float *)((int)a0 + 0x44) = 1.4013e-45;
                 *(float *)(a0 + 8) = 7.00649e-45;
                 *(int *)(a0 + 0xd) = (int)*(float *)(a0 + 0xd) + 1;
@@ -5092,7 +5092,7 @@ u32 game_sub_07a68c(double *a0, double *a1, double *a2, code *a3) {
                         *(float *)(a0 + 0xd) = 0.0;
                         (**(code **)((int)*(float *)a0 + 0x2c))(a0, pdVar4, ar6_00, a3);
                         iVar1 = (int)*(float *)(a0 + 0x25) * 0x18 + 0x8c280eb4;
-                        timer_sub_031b68(a0, iVar1, ar6_00, a3);
+                        copy6_to_fields(a0, iVar1, ar6_00, a3);
                         flags6_set_all((float *)((int)a0 + 0x1fc), iVar1, ar6_00);
                     }
                 } else {
@@ -5166,7 +5166,7 @@ u32 game_sub_07a68c(double *a0, double *a1, double *a2, code *a3) {
             *(float *)(a0 + 0xd) = 0.0;
             (**(code **)((int)*(float *)a0 + 0x2c))(a0, 1, ar6_00, a3);
             iVar1 = (int)*(float *)(a0 + 0x25) * 0x18 + 0x8c280eb4;
-            timer_sub_031b68(a0, iVar1, ar6_00, a3);
+            copy6_to_fields(a0, iVar1, ar6_00, a3);
             flags6_set_all((float *)((int)a0 + 0x1fc), iVar1, ar6_00);
             a3 = NULL;
             ar6_00 = (double *)0xffffffff;
@@ -5279,7 +5279,7 @@ u32 game_sub_07af10(int a0, int a1, int a2, int *a3) {
             }
             if (cVar10 != '\0' || (float)((u64)in_dr0 >> 0x20) <= SUB84(in_dr0, 0)) {
                 timer_stop_94(a0, iVar1, ar6_00, ar7_00);
-                timer_sub_031b68(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, ar6_00, ar7_00);
+                copy6_to_fields(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, ar6_00, ar7_00);
                 *(u32 *)(a0 + 0x294) = 0;
                 *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
             }
@@ -5335,7 +5335,7 @@ u32 game_sub_07af10(int a0, int a1, int a2, int *a3) {
             if (cVar10 != '\0' || (float)((u64)uVar7 >> 0x20) <= (float)uVar7) {
                 Class_12b2ac_sub_031700(a0, iVar1, ar6_00, ar7_00);
                 timer_stop_94(a0, iVar1, ar6_00, ar7_00);
-                timer_sub_031b68(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, ar6_00, ar7_00);
+                copy6_to_fields(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, ar6_00, ar7_00);
                 *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
                 uVar3 = 0;
             }
@@ -5687,7 +5687,7 @@ u32 game_sub_07b7d0(int a0, u32 a1, int a2, u32 a3, u32 s0) {
             if (iVar1 != 1) {
                 return 1;
             }
-            timer_sub_031b68(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, a1, a3);
+            copy6_to_fields(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, a1, a3);
             *(u32 *)(a0 + 300) = 0;
             return 0;
         }
@@ -5728,7 +5728,7 @@ u32 game_sub_07baa0(int a0, u32 a1, u32 a2, u32 a3) {
     }
     if (*(int *)(a0 + 0x1d4) == 1) {
         Vec3_assign(a0 + 0x270, a2, ar6_00, ar7_00);
-        timer_sub_031b68(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, ar6_00, ar7_00);
+        copy6_to_fields(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, ar6_00, ar7_00);
         *(u32 *)(a0 + 0x134) = 0;
         *(u32 *)(a0 + 0x2a0) = 2;
         return 0;
@@ -5787,7 +5787,7 @@ u32 game_sub_07baa0(int a0, u32 a1, u32 a2, u32 a3) {
             *(u32 *)(a0 + 0x134) = 0;
             *(u32 *)(a0 + 0x40) = 5;
             Vec3_assign(a0 + 0x270, a2, uVar2, in_stack_00000000);
-            timer_sub_031b68(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, uVar2, in_stack_00000000);
+            copy6_to_fields(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, uVar2, in_stack_00000000);
             *(u32 *)(a0 + 0x2a0) = 2;
             return 0;
         }
@@ -5796,7 +5796,7 @@ u32 game_sub_07baa0(int a0, u32 a1, u32 a2, u32 a3) {
     iVar1 = pure_virtual_stub();
     if ((iVar1 == 0) && (*(int *)(a0 + 0x40) == 0)) {
         Vec3_assign(a0 + 0x270, a2, uVar2, ar7_00);
-        timer_sub_031b68(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, uVar2, ar7_00);
+        copy6_to_fields(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, uVar2, ar7_00);
         *(u32 *)(a0 + 0x134) = 0;
         *(u32 *)(a0 + 0x2a0) = 2;
         uVar3 = 0;
@@ -5925,7 +5925,7 @@ u32 game_sub_07c0b8(int a0, u32 a1, u32 a2, u32 a3) {
                 return 1;
             }
             iVar2 = *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4;
-            timer_sub_031b68(a0, iVar2, ar6_00, a3);
+            copy6_to_fields(a0, iVar2, ar6_00, a3);
             se_sub_033530(a0, iVar2, ar6_00, a3);
             Vec3_assign(a0 + 0x54, (int)&uStack_64 + 4, ar6_00, a3);
             Vec3_dtor((int)&uStack_64 + 4, 0xffffffff, ar6_00, a3);
@@ -6361,7 +6361,7 @@ u32 game_sub_07c5f8(int a0, int a1, u32 a2, u8 *a3) {
                 CAnimBody_SetAnimation(a0 + 0xb0, 0x13, 0xffffffff, 0);
                 uVar5 = (u32)in_dr0;
                 CAnimBody_SetFrame(a0 + 0xb0, uVar4, ar6_00, ar7_00);
-                timer_sub_031b68(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, ar6_00, ar7_00);
+                copy6_to_fields(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, ar6_00, ar7_00);
                 uVar6 = (u64)uVar5;
                 if (cVar8 == '\0') {
                     *(u32 *)(a0 + 0x28) = 0;
@@ -6752,7 +6752,7 @@ u32 game_sub_07d048(int a0, u32 a1, u32 a2, int *a3) {
             iVar2 = game_sub_032d48(a0, a1, ar6_00, ar7_00);
             Vec3_dtor(auStack_e0, 0xffffffff, ar6_00, ar7_00);
             if (iVar2 == 0) {
-                timer_sub_031b68(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, ar6_00, ar7_00);
+                copy6_to_fields(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, ar6_00, ar7_00);
                 *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
             }
             ar5_00 = (u8 *)(a0 + 0x14);

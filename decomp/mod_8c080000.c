@@ -167,7 +167,7 @@ u32 game_sub_080e80(int a0, u32 a1, int *a2, u32 a3) {
         if (iVar2 == 1) {
             *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
             *(u32 *)(a0 + 0x294) = 1;
-            timer_sub_031b68(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, ar6_00, a3);
+            copy6_to_fields(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, ar6_00, a3);
             *(u32 *)(a0 + 0x40) = 5;
         }
     } else if (iVar2 == 1) {
@@ -195,7 +195,7 @@ u32 game_sub_080e80(int a0, u32 a1, int *a2, u32 a3) {
         iVar2 = pure_virtual_stub();
         if (iVar2 == 0) {
             *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
-            timer_sub_031b68(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, ar6_00, a3);
+            copy6_to_fields(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, ar6_00, a3);
             *(u32 *)(a0 + 0x40) = 5;
             if (*(int *)(a0 + 0x128) == 7) {
                 if (cVar8 == '\0') {
@@ -302,7 +302,7 @@ u32 game_sub_080e80(int a0, u32 a1, int *a2, u32 a3) {
                 *(u32 *)(a0 + 300) = 0;
                 uVar3 = 0;
                 timer_start_94(a0, uVar1, ar6_00);
-                timer_sub_031b68(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, ar6_00, a3);
+                copy6_to_fields(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, ar6_00, a3);
             }
         }
     }
@@ -4405,7 +4405,7 @@ u32 CAnimal_sub_088288(int a0, u32 a1, u32 a2) {
     cVar4 = '\0';
     obj_set_texlist(*(int *)(a0 + 0x328) + 0x78, a1, a2);
     matrix_push(0, a1, a2, r7, in_stack_fffffff4);
-    ninja_sub_25b5d0(0, a1, a2, r7, in_stack_fffffff4);
+    touch_fields_30_3c(0, a1, a2, r7, in_stack_fffffff4);
     if (cVar5 == '\0') {
         dVar3 = (double)CONCAT44(0x47800000, *(u32 *)(a0 + 0x58));
     } else {
@@ -5759,10 +5759,10 @@ u32 game_sub_08b020(int a0, u32 a1, u32 a2, u32 a3) {
     sVar1 = (short)uVar3;
     uVar3 = CONCAT22(uVar13, sVar1);
     iVar7 = *(int *)(a0 + 0x328) + sVar1 * 0x124;
-    gfxlib_sub_233dac(a0 + 0x438);
+    gfx_set_color4_4aa52c(a0 + 0x438);
     obj_set_texlist(*(u32 *)(a0 + 0x42c), a1, a2);
     matrix_push(0, a1, a2, a3, uVar3);
-    ninja_sub_25b5d0(0, a1, a2, a3, uVar3);
+    touch_fields_30_3c(0, a1, a2, a3, uVar3);
     if (cVar12 == '\0') {
         dVar9 = (double)CONCAT44(0x47800000, *(u32 *)(a0 + 0x58));
     } else {
@@ -5862,12 +5862,12 @@ u32 game_sub_08b020(int a0, u32 a1, u32 a2, u32 a3) {
     matrix_pop_n(1);
     if (sVar1 == 2) {
         if (iVar2 == 3) {
-            gfxlib_sub_233dac(&g_8c139e5c);
+            gfx_set_color4_4aa52c(&g_8c139e5c);
         }
         ret_const_2fc(a0 + 0x538, ar5_00, iStack_34, ar7_00);
         njSetTexture(*(u32 *)(a0 + 0x844));
         matrix_push(0, ar5_00, iStack_34, ar7_00, uVar3);
-        ninja_sub_25b5d0(0, ar5_00, iStack_34, ar7_00, uVar3);
+        touch_fields_30_3c(0, ar5_00, iStack_34, ar7_00, uVar3);
         if (cVar12 == '\0') {
             dVar9 = (double)CONCAT44(0x47800000, *(u32 *)(a0 + 0x58));
         } else {
@@ -5938,7 +5938,7 @@ u32 game_sub_08b020(int a0, u32 a1, u32 a2, u32 a3) {
         ret_const_2fc(a0 + 0x538, ar5_00, iStack_34, ar7_00);
         njSetTexture(*(u32 *)(a0 + 0x844));
         matrix_push(0, ar5_00, iStack_34, ar7_00, uVar3);
-        ninja_sub_25b5d0(0, ar5_00, iStack_34, ar7_00, uVar3);
+        touch_fields_30_3c(0, ar5_00, iStack_34, ar7_00, uVar3);
         if (cVar12 == '\0') {
             dVar9 = (double)CONCAT44(0x47800000, *(u32 *)(a0 + 0x918));
         } else {
@@ -6006,7 +6006,7 @@ u32 game_sub_08b020(int a0, u32 a1, u32 a2, u32 a3) {
         gfxlib_sub_21bbb0(*(u32 *)(a0 + 0x840), ar5_00, iStack_34, ar7_00, uVar3);
         matrix_pop_n(1);
     }
-    uVar3 = gfxlib_sub_233dac(&g_8c139e5c);
+    uVar3 = gfx_set_color4_4aa52c(&g_8c139e5c);
     return uVar3;
 }
 
@@ -7339,7 +7339,7 @@ u64 *Class_12a76c_sub_08de3c(int a0, u32 a1, u32 a2, u32 a3) {
     iVar1 = *(int *)(a0 + 0x128);
     if ((iVar1 == 0) || (iVar1 == 1)) {
         uVar3 = *(u32 *)(a0 + 0xa0);
-        timer_sub_031b68(a0, 0x8c2846d0, a2, a3);
+        copy6_to_fields(a0, 0x8c2846d0, a2, a3);
         puVar2 = (u64 *)0xa0;
         if (cVar4 == '\0') {
             *(u32 *)(a0 + 0xa0) = uVar3;
@@ -7356,7 +7356,7 @@ u64 *Class_12a76c_sub_08de3c(int a0, u32 a1, u32 a2, u32 a3) {
         } else if (iVar1 != 3) {
             return (u64 *)iVar1;
         }
-        timer_sub_031b68(a0, 0x8c2846e8, a2, a3);
+        copy6_to_fields(a0, 0x8c2846e8, a2, a3);
         puVar2 = &g_8c08dee8;
         if (cVar4 == '\0') {
             *(u32 *)(a0 + 0x24) = 0x41200000;
@@ -7524,7 +7524,7 @@ u32 game_sub_08e9fc(int a0, u32 a1, u32 a2, u32 a3) {
         Vec3_make(a0 + 0x14, uVar2, ar6_00, a3, auStack_30);
         Vec3_assign(a0 + 0x14, auStack_30, ar6_00, a3);
         Vec3_dtor(auStack_30, 0xffffffff, ar6_00, a3);
-        timer_sub_031b68(a0, 0x8c2846d0, ar6_00, a3);
+        copy6_to_fields(a0, 0x8c2846d0, ar6_00, a3);
         in_dr0 = CONCAT44(0x3f800000, uVar3);
         if (cVar7 == '\0') {
             *(u32 *)(a0 + 0x48) = 0x3f800000;

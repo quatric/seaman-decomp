@@ -1457,12 +1457,12 @@ u32 reset_fields_2c_6c(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * timer_sub_031b68  0x8c031b68
- * area name: sits between timer functions (same compilation unit)
+ * copy6_to_fields  0x8c031b68
+ * copies six words from a1 to +0xa0, +0x34, +0x38, +0x48, +0x4c, +0x50
  * called by: CMushroomerBody_AwayFrom, Class_12a03c_m6_03a65c, Class_12a25c_m6_06e69c, Class_12a25c_sub_06f93c,
  * Class_12a76c_sub_08de3c, Class_12b2ac_m6_0afcc0, game_sub_048f8c, game_sub_049b68 (+34 more)
  */
-u32 *timer_sub_031b68(int a0, u32 *a1, u32 a2, u32 a3) {
+u32 *copy6_to_fields(int a0, u32 *a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 0xa0) = *a1;
     *(u32 *)(a0 + 0x34) = a1[1];
     *(u32 *)(a0 + 0x38) = a1[2];
@@ -6540,7 +6540,7 @@ u32 game_sub_0355cc(int a0, u32 a1, u32 a2, u32 a3) {
          (iVar1 = get_field_178_035734(*(u32 *)(a0 + 0xc), a1, a2), iVar1 == 0)) &&
         (iVar1 = get_field_140_025f70(*(u32 *)(a0 + 8), a1), iVar1 == 1)) {
         a1 = 7;
-        iVar1 = game_sub_0fa388(0x8c35468c, 7, a2, a3);
+        iVar1 = speech_sub_0fa388(0x8c35468c, 7, a2, a3);
         if (((iVar1 == 1) &&
              (uVar2 = (*(code *)(&get_field_a0_035724))(*(u32 *)(a0 + 0x20), a1, a2, a3), (char)uVar2 == '\x02')) &&
             (iVar1 = (**(code **)(**(int **)(a0 + 0x10) + 0x44))(*(int **)(a0 + 0x10), a1, a2, a3), iVar1 == 0)) {
@@ -8998,7 +8998,7 @@ u32 game_sub_038b04(int a0, u32 a1, u32 a2) {
     cVar4 = '\0';
     obj_set_texlist(*(int *)(a0 + 0x328) + 0x78, a1, a2);
     matrix_push(0, a1, a2, r7, in_stack_fffffff4);
-    ninja_sub_25b5d0(0, a1, a2, r7, in_stack_fffffff4);
+    touch_fields_30_3c(0, a1, a2, r7, in_stack_fffffff4);
     if (cVar5 == '\0') {
         dVar3 = (double)CONCAT44(0x47800000, *(u32 *)(a0 + 0x58));
     } else {
@@ -9806,7 +9806,7 @@ u64 *Class_12a03c_m6_03a65c(int a0, int a1) {
     uStack_3c = g_8c1364e0;
     *(int *)(a0 + 0x128) = a1;
     iVar5 = a1 * 0x18 + 0x8c2803f4;
-    timer_sub_031b68(a0, iVar5, &g_8c1364e0, ar7_00);
+    copy6_to_fields(a0, iVar5, &g_8c1364e0, ar7_00);
     Class_12a03c_sub_03c100(a0, iVar5, puVar7, ar7_00);
     iVar5 = (int)g_8c280470;
     if (g_8c280470 == '\0') {

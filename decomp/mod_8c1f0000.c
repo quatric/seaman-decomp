@@ -11329,7 +11329,7 @@ u32 shinobi_sub_1f814c(u32 a0) {
  * rtc_get_date  0x8c1f8176
  * fills a {year, month, day, hour, minute, second, weekday} struct from the real-time clock
  * called by: CProlog_sub_0b96e4, game_sub_01bebc, game_sub_01bfd0, game_sub_0ba6bc, game_sub_0bf804, game_sub_0f9774,
- * game_sub_0fa83c, game_sub_0fc40c (+9 more)
+ * game_sub_0fc40c, game_sub_0fc94c (+9 more)
  */
 u32 rtc_get_date(short *a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 *puVar1;
@@ -12887,7 +12887,7 @@ u32 shinobi_sub_1f9bde(u32 a0, u32 a1) {
 /*
  * shinobi_sub_1f9e32  0x8c1f9e32
  * area name: in the shinobi library code range
- * called by: ninja_sub_25a838, ninja_sub_25a8c0, shinobi_sub_1f9194, tex_sub_25a770
+ * called by: shinobi_sub_1f9194, tex_sub_25a770, tex_sub_25a838, tex_sub_25a8c0
  * decompiler: Switch with 1 destination removed at 0x8c1f9e44
  * decompiler: Switch with 1 destination removed at 0x8c1f9e54
  * decompiler: Switch with 1 destination removed at 0x8c1f9e8a
@@ -14933,7 +14933,7 @@ u32 shinobi_sub_1fc04e(u32 a0) {
     if (iVar1 != 0) {
         return 0xffffffff;
     }
-    uVar2 = shinobi_sub_1fdd1a(a0);
+    uVar2 = vmu_drive_reset(a0);
     return uVar2;
 }
 
@@ -16863,12 +16863,12 @@ u32 shinobi_sub_1fdc80(int a0) {
 }
 
 /*
- * shinobi_sub_1fdd1a  0x8c1fdd1a
- * area name: in the shinobi library code range
+ * vmu_drive_reset  0x8c1fdd1a
+ * clears a mounted drive's state; -255 when the drive is not mounted
  * called by: shinobi_sub_1fc04e, shinobi_sub_1fdd44, shinobi_sub_1fe236, shinobi_sub_1fe350, shinobi_sub_1fe466,
  * shinobi_sub_1fe534, shinobi_sub_1fe646, shinobi_sub_1fe7aa (+23 more)
  */
-int shinobi_sub_1fdd1a(int a0) {
+int vmu_drive_reset(int a0) {
     int iVar1;
 
     iVar1 = a0 * 0x148 + 0x8c4783e0;
@@ -16909,7 +16909,7 @@ int shinobi_sub_1fdd44(int a0, u32 a1, int *a2, u32 a3) {
         ar5_00 = a1;
         iVar2 = shinobi_sub_1fd510(a0, a1);
         if (iVar2 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar2 = shinobi_sub_1fd550(a0, ar5_00);
             if ((iVar2 != 0) && (*(char *)(a0 * iVar3 + 0x8c4783e0 + 8) != '\0')) {
@@ -17038,17 +17038,17 @@ u32 shinobi_sub_1fde30(int a0, u8 *a1, u32 a2, u32 a3, int s0) {
                             iVar4 = *(int *)(*(int *)(&g_8c4783fc + iVar9) + 0x18) << 9;
                             memset(*(u32 *)(&g_8c478408 + iVar9), 0, iVar4);
                             shinobi_sub_200226(a0, uVar7, iVar4, a7);
-                            shinobi_sub_20099e(a0, *(u32 *)(*(int *)(&g_8c4783fc + iVar9) + 8), 0xfffa);
+                            vmu_drive_write_like(a0, *(u32 *)(*(int *)(&g_8c4783fc + iVar9) + 8), 0xfffa);
                             for (iVar4 = 0; iVar4 < *(int *)(*(int *)(&g_8c4783fc + iVar9) + 0x10); iVar4 = iVar4 + 1) {
-                                shinobi_sub_20099e(a0, *(int *)(*(int *)(&g_8c4783fc + iVar9) + 0xc) + iVar4, 0xfffa);
+                                vmu_drive_write_like(a0, *(int *)(*(int *)(&g_8c4783fc + iVar9) + 0xc) + iVar4, 0xfffa);
                             }
                             uVar7 = 0xfffa;
                             iVar4 = *(int *)(*(int *)(&g_8c4783fc + iVar9) + 8);
-                            shinobi_sub_20099e(a0, iVar4, 0xfffa);
+                            vmu_drive_write_like(a0, iVar4, 0xfffa);
                             for (iVar8 = 0; iVar8 < *(int *)(*(int *)(&g_8c4783fc + iVar9) + 0x10); iVar8 = iVar8 + 1) {
                                 uVar7 = 0xfffa;
                                 iVar4 = *(int *)(*(int *)(&g_8c4783fc + iVar9) + 0xc) + iVar8;
-                                shinobi_sub_20099e(a0, iVar4, 0xfffa);
+                                vmu_drive_write_like(a0, iVar4, 0xfffa);
                             }
                             shinobi_sub_2007f0(a0, iVar4, uVar7);
                             uVar7 = 0x55;
@@ -17076,7 +17076,7 @@ u32 shinobi_sub_1fde30(int a0, u8 *a1, u32 a2, u32 a3, int s0) {
                         } else {
                             uVar7 = 0xfffc;
                         }
-                        shinobi_sub_20099e(a0, iVar4, uVar7);
+                        vmu_drive_write_like(a0, iVar4, uVar7);
                         iVar4 = iVar4 + 1;
                     }
                 }
@@ -17160,7 +17160,7 @@ int shinobi_sub_1fe236(int a0, int a1) {
         ar5_00 = a1;
         iVar2 = shinobi_sub_1fd510(a0, a1);
         if (iVar2 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar2 = shinobi_sub_1fd550(a0, ar5_00);
             if ((iVar2 != 0) && (*(char *)(a0 * iVar6 + 0x8c4783e0 + 8) != '\0')) {
@@ -17213,7 +17213,7 @@ u32 shinobi_sub_1fe350(int a0, int a1) {
         iVar2 = a1;
         iVar1 = shinobi_sub_1fd510(a0, a1);
         if (iVar1 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar1 = shinobi_sub_1fd550(a0, iVar2);
             if ((iVar1 != 0) && ((&g_8c4783e8)[iVar5] != '\0')) {
@@ -17228,7 +17228,7 @@ u32 shinobi_sub_1fe350(int a0, int a1) {
                         if (*(int *)(*(int *)(&g_8c4783fc + iVar5) + 0x38) <= iVar2) {
                             return iVar2;
                         }
-                        uVar3 = shinobi_sub_2009d0(a0, iVar2);
+                        uVar3 = vmu_drive_read_like(a0, iVar2);
                         if ((uVar3 & 0xffff) != 0xfffc)
                             break;
                         iVar2 = iVar2 + 1;
@@ -17237,7 +17237,7 @@ u32 shinobi_sub_1fe350(int a0, int a1) {
                 }
                 if (g_8c26d208 != 0) {
                     for (iVar1 = 0; iVar1 < *(int *)(*(int *)(&g_8c4783fc + iVar5) + 0x30); iVar1 = iVar1 + 1) {
-                        uVar3 = shinobi_sub_2009d0(a0, iVar1);
+                        uVar3 = vmu_drive_read_like(a0, iVar1);
                         if (((uVar3 & 0xffff) == 0xfffc) && (iVar4 = shinobi_sub_20093a(a0, iVar1), -1 < iVar4)) {
                             iVar2 = iVar2 + 1;
                         }
@@ -17246,7 +17246,7 @@ u32 shinobi_sub_1fe350(int a0, int a1) {
                 }
                 iVar1 = 0;
                 while (iVar1 < *(int *)(*(int *)(&g_8c4783fc + iVar5) + 0x30)) {
-                    uVar3 = shinobi_sub_2009d0(a0, iVar1);
+                    uVar3 = vmu_drive_read_like(a0, iVar1);
                     iVar1 = iVar1 + 1;
                     if ((uVar3 & 0xffff) == 0xfffc) {
                         iVar2 = iVar2 + 1;
@@ -17276,7 +17276,7 @@ int shinobi_sub_1fe466(int a0, u32 a1) {
     if (*(char *)(iVar6 + 2) != '\0') {
         iVar2 = shinobi_sub_1fd510(a0, a1);
         if (iVar2 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar2 = shinobi_sub_1fd550(a0, a1);
             if ((iVar2 != 0) && (*(char *)(a0 * iVar5 + 0x8c4783e0 + 8) != '\0')) {
@@ -17289,7 +17289,7 @@ int shinobi_sub_1fe466(int a0, u32 a1) {
                 iVar2 = 0;
                 while (iVar4 = *(int *)(iVar6 + 0x1c), iVar4 = *(int *)(iVar4 + 0x10) * (*(int *)(iVar4 + 0x2c) + 1),
                        iVar2 < (int)(iVar4 + (u32)(iVar4 < 0)) >> 1) {
-                    uVar3 = shinobi_sub_2009d0(a0, iVar2);
+                    uVar3 = vmu_drive_read_like(a0, iVar2);
                     iVar2 = iVar2 + 1;
                     if ((uVar3 & 0xffff) == uVar1) {
                         iVar5 = iVar5 + 1;
@@ -17324,7 +17324,7 @@ int shinobi_sub_1fe534(int a0, u32 a1, int *a2) {
         uVar3 = a1;
         iVar1 = shinobi_sub_1fd510(a0, a1);
         if (iVar1 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar1 = shinobi_sub_1fd550(a0, uVar3);
             if ((iVar1 != 0) && (*(char *)(0x8c4783e8 + a0 * 0x148) != '\0')) {
@@ -17392,7 +17392,7 @@ int shinobi_sub_1fe646(int a0, char *a1, u32 a2, int *a3) {
         ar7_00 = a3;
         iVar2 = shinobi_sub_1fd510(a0, a1);
         if (iVar2 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar2 = shinobi_sub_1fd550(a0, pcVar6);
             if ((iVar2 != 0) && (*(char *)(a0 * iVar4 + 0x8c4783e0 + 8) != '\0')) {
@@ -17411,10 +17411,10 @@ int shinobi_sub_1fe646(int a0, char *a1, u32 a2, int *a3) {
                         return (int)(int)0xffffff09;
                     }
                     uVar7 = 0;
-                    uVar3 = shinobi_sub_2009d0(a0, 0);
+                    uVar3 = vmu_drive_read_like(a0, 0);
                     if (((uVar3 & 0xffff) == 0xfffc) && (iVar4 = shinobi_sub_200614(a0), -1 < iVar4)) {
                         iVar5 = iVar4;
-                        shinobi_sub_200a84(a0, iVar4);
+                        vmu_dir_entry(a0, iVar4);
                         iVar5 = shinobi_sub_200ab6();
                         uVar7 = 0xffff;
                         if (iVar5 == 0) {
@@ -17469,7 +17469,7 @@ int shinobi_sub_1fe7aa(int a0, char *a1, u32 a2, int *a3) {
         ar7_00 = a3;
         iVar2 = shinobi_sub_1fd510(a0, a1);
         if (iVar2 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar2 = shinobi_sub_1fd550(a0, pcVar4);
             if ((iVar2 != 0) && (*(char *)(0x8c4783e8 + a0 * 0x148) != '\0')) {
@@ -17488,7 +17488,7 @@ int shinobi_sub_1fe7aa(int a0, char *a1, u32 a2, int *a3) {
                     iVar2 = shinobi_sub_200614(a0);
                     if (-1 < iVar2) {
                         iVar3 = iVar2;
-                        shinobi_sub_200a84(a0, iVar2);
+                        vmu_dir_entry(a0, iVar2);
                         iVar3 = shinobi_sub_200ab6();
                         uVar5 = 0xffff;
                         if (iVar3 == 0) {
@@ -17539,7 +17539,7 @@ int shinobi_sub_1fe8f2(int a0, u32 a1, u32 a2) {
     if (*(char *)(0x8c4783e2 + *(int *)(a0 + 0x28) * (int)0x148) != '\0') {
         iVar2 = shinobi_sub_1fd510(*(u32 *)(a0 + 0x28), a1);
         if (iVar2 == 0) {
-            shinobi_sub_1fdd1a(*(u32 *)(a0 + 0x28));
+            vmu_drive_reset(*(u32 *)(a0 + 0x28));
         } else {
             iVar2 = shinobi_sub_1fd550(*(u32 *)(a0 + 0x28), a1);
             if ((iVar2 != 0) && (*(char *)(0x8c4783e8 + *(int *)(a0 + 0x28) * (int)0x148) != '\0')) {
@@ -17582,7 +17582,7 @@ int shinobi_sub_1fe9ae(int a0, int a1, u8 *a2, u32 a3) {
         ((&g_8c4783e8)[*(int *)(a0 + 0x28) * 0x148] != '\0')) {
         iVar1 = shinobi_sub_1fd510(*(u32 *)(a0 + 0x28), iVar7);
         if (iVar1 == 0) {
-            shinobi_sub_1fdd1a(*(u32 *)(a0 + 0x28));
+            vmu_drive_reset(*(u32 *)(a0 + 0x28));
         } else {
             iVar1 = thunk_FUN_8c1ffcc2(*(u32 *)(a0 + 0x28), iVar7, a2, a3);
             if (-1 < iVar1) {
@@ -17593,7 +17593,7 @@ int shinobi_sub_1fe9ae(int a0, int a1, u8 *a2, u32 a3) {
                         *(u32 *)(iVar7 + 0x8c478410) = 1;
                         *(u32 *)(iVar7 + 0x8c478414) = *(u32 *)(&g_8c273a84 + *(int *)(iVar7 + 0x8c4783e4) * 0x50);
                     }
-                    a4 = (u8 *)shinobi_sub_200a84(iVar1, *(u32 *)(a0 + 0x2c));
+                    a4 = (u8 *)vmu_dir_entry(iVar1, *(u32 *)(a0 + 0x2c));
                     if (*(int *)(a0 + 8) == 1) {
                         uVar2 = 0xcc;
                     } else {
@@ -17619,7 +17619,7 @@ int shinobi_sub_1fe9ae(int a0, int a1, u8 *a2, u32 a3) {
                         *puVar5 = uVar2;
                     }
                     iVar7 = *(int *)(a0 + 0x2c);
-                    shinobi_sub_200a9c(iVar1, iVar7);
+                    vmu_fat_mark(iVar1, iVar7);
                     iVar6 = shinobi_sub_200346(iVar1, iVar7, a2, a3);
                     if (iVar6 < 0)
                         goto LAB_8c1feafe;
@@ -17736,7 +17736,7 @@ int shinobi_sub_1febd6(int a0, u32 a1) {
     uVar5 = a1;
     iVar3 = shinobi_sub_1fd510(*(u32 *)(a0 + 0x28), 0);
     if (iVar3 == 0) {
-        shinobi_sub_1fdd1a(*(u32 *)(a0 + 0x28));
+        vmu_drive_reset(*(u32 *)(a0 + 0x28));
     } else {
         iVar3 = shinobi_sub_1fd550(*(u32 *)(a0 + 0x28));
         if ((iVar3 != 0) && (*(char *)(0x8c4783e8 + *(int *)(a0 + 0x28) * (int)0x148) != '\0')) {
@@ -17755,18 +17755,18 @@ int shinobi_sub_1febd6(int a0, u32 a1) {
                         return iVar4;
                     }
                     do {
-                        shinobi_sub_20099e(uVar5, iVar3, iVar2);
+                        vmu_drive_write_like(uVar5, iVar3, iVar2);
                         iVar3 = shinobi_sub_200890(uVar5, 0xfffc);
                         if (iVar3 < 0)
                             goto LAB_8c1fec70;
                         iVar4 = (*(code *)puVar1)(uVar5, iVar3, a1);
                     } while (iVar4 != 0);
                 }
-                shinobi_sub_20099e(uVar5, iVar3, 0xfffa);
+                vmu_drive_write_like(uVar5, iVar3, 0xfffa);
                 if (*(int *)(a0 + 0x38) == iVar2) {
                     *(int *)(a0 + 0x38) = (int)(short)iVar3;
                 } else {
-                    shinobi_sub_20099e(uVar5, *(u32 *)(a0 + 0x3c), iVar3);
+                    vmu_drive_write_like(uVar5, *(u32 *)(a0 + 0x3c), iVar3);
                 }
                 *(int *)(a0 + 0x3c) = (int)(short)iVar3;
                 *(int *)(a0 + 0x30) = *(int *)(a0 + 0x30) + 1;
@@ -17794,7 +17794,7 @@ int shinobi_sub_1febe6(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
     iVar2 = shinobi_sub_1fd510(*(u32 *)(unaff_r13 + 0x28), a1);
     if (iVar2 == 0) {
-        shinobi_sub_1fdd1a(*(u32 *)(unaff_r13 + 0x28));
+        vmu_drive_reset(*(u32 *)(unaff_r13 + 0x28));
     } else {
         iVar2 = shinobi_sub_1fd550(*(u32 *)(unaff_r13 + 0x28), a1);
         if ((iVar2 != 0) && (*(char *)(0x8c4783e8 + *(int *)(unaff_r13 + 0x28) * (int)0x148) != '\0')) {
@@ -17814,18 +17814,18 @@ int shinobi_sub_1febe6(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     }
                     do {
                         iVar3 = ar6_00;
-                        shinobi_sub_20099e(ar4_00, iVar2, ar6_00);
+                        vmu_drive_write_like(ar4_00, iVar2, ar6_00);
                         iVar2 = shinobi_sub_200890(ar4_00, 0xfffc, iVar3, a3);
                         if (iVar2 < 0)
                             goto LAB_8c1fec70;
                         iVar3 = (*(code *)puVar1)(ar4_00, iVar2, unaff_r9, a3);
                     } while (iVar3 != 0);
                 }
-                shinobi_sub_20099e(ar4_00, iVar2, 0xfffa);
+                vmu_drive_write_like(ar4_00, iVar2, 0xfffa);
                 if (*(int *)(unaff_r13 + 0x38) == ar6_00) {
                     *(int *)(unaff_r13 + 0x38) = (int)(short)iVar2;
                 } else {
-                    shinobi_sub_20099e(ar4_00, *(u32 *)(unaff_r13 + 0x3c), iVar2);
+                    vmu_drive_write_like(ar4_00, *(u32 *)(unaff_r13 + 0x3c), iVar2);
                 }
                 *(int *)(unaff_r13 + 0x3c) = (int)(short)iVar2;
                 *(int *)(unaff_r13 + 0x30) = *(int *)(unaff_r13 + 0x30) + 1;
@@ -17854,7 +17854,7 @@ int shinobi_sub_1fecf2(int a0, u32 a1, u32 unused_a2, u32 a3) {
     uVar4 = a1;
     iVar1 = shinobi_sub_1fd510(*(int *)(a0 + 0x28), a1);
     if (iVar1 == 0) {
-        shinobi_sub_1fdd1a(*(u32 *)(a0 + 0x28));
+        vmu_drive_reset(*(u32 *)(a0 + 0x28));
     } else {
         iVar1 = shinobi_sub_1fd550(*(u32 *)(a0 + 0x28), uVar4);
         if ((iVar1 != 0) && (*(char *)(0x8c4783e8 + *(int *)(a0 + 0x28) * (int)0x148) != '\0')) {
@@ -17864,17 +17864,17 @@ int shinobi_sub_1fecf2(int a0, u32 a1, u32 unused_a2, u32 a3) {
             }
             ar5_00 = *(u32 *)(a0 + 0x30);
             uVar4 = *(u32 *)(a0 + 0x28);
-            uVar2 = shinobi_sub_2009d0(uVar4, ar5_00);
+            uVar2 = vmu_drive_read_like(uVar4, ar5_00);
             if (((uVar2 & 0xffff) == 0xfffc) && (*(int *)(a0 + 0x30) < *(int *)(*(int *)(iVar3 + 0x1c) + 0x38))) {
                 iVar1 = shinobi_sub_1fbc44(uVar4, ar5_00, a1, a3);
                 if (iVar1 < 0) {
                     return iVar1;
                 }
-                shinobi_sub_20099e(uVar4, ar5_00, 0xfffa);
+                vmu_drive_write_like(uVar4, ar5_00, 0xfffa);
                 if (*(int *)(a0 + 0x38) == 0xffff) {
                     *(int *)(a0 + 0x38) = (int)(short)ar5_00;
                 } else {
-                    shinobi_sub_20099e(uVar4, *(u32 *)(a0 + 0x3c), ar5_00);
+                    vmu_drive_write_like(uVar4, *(u32 *)(a0 + 0x3c), ar5_00);
                 }
                 *(int *)(a0 + 0x3c) = (int)(short)ar5_00;
                 *(int *)(a0 + 0x30) = *(int *)(a0 + 0x30) + 1;
@@ -17979,7 +17979,7 @@ int shinobi_sub_1fee6c(int a0, u32 a1) {
     uVar3 = a1;
     iVar1 = shinobi_sub_1fd510(*(u32 *)(a0 + 0x28), a1);
     if (iVar1 == 0) {
-        shinobi_sub_1fdd1a(*(u32 *)(a0 + 0x28));
+        vmu_drive_reset(*(u32 *)(a0 + 0x28));
     } else {
         iVar1 = shinobi_sub_1fd550(*(u32 *)(a0 + 0x28), uVar3);
         if ((iVar1 != 0) && (*(char *)(0x8c4783e8 + *(int *)(a0 + 0x28) * (int)0x148) != '\0')) {
@@ -17999,7 +17999,7 @@ int shinobi_sub_1fee6c(int a0, u32 a1) {
                     if (iVar1 < 0) {
                         return iVar1;
                     }
-                    uVar2 = shinobi_sub_2009d0(uVar3, ar5_00);
+                    uVar2 = vmu_drive_read_like(uVar3, ar5_00);
                     *(u32 *)(a0 + 0x40) = uVar2 & 0xffff;
                     iVar1 = *(int *)(a0 + 0x34) + -1;
                     *(int *)(a0 + 0x34) = iVar1;
@@ -18027,7 +18027,7 @@ int shinobi_sub_1fef5a(int a0, u32 a1) {
         ar5_00 = a1;
         iVar1 = shinobi_sub_1fd510(a0, a1);
         if (iVar1 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar1 = shinobi_sub_1fd550(a0, ar5_00);
             if ((iVar1 != 0) && (*(char *)(0x8c4783e8 + a0 * 0x148) != '\0')) {
@@ -18067,12 +18067,12 @@ int shinobi_sub_1ff018(int a0, u8 *a1, u32 a2, u32 a3) {
         pbVar5 = a1;
         iVar4 = shinobi_sub_1fd510(a0, a1);
         if (iVar4 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar4 = shinobi_sub_1fd550(a0, pbVar5);
             if ((iVar4 != 0) && (*(char *)(a0 * iVar7 + 0x8c4783e0 + 8) != '\0')) {
                 iVar7 = thunk_FUN_8c1ffcc2();
-                puVar3 = (&shinobi_sub_200a84);
+                puVar3 = (&vmu_dir_entry);
                 if (iVar7 < 0) {
                     return (int)(int)0xffffff03;
                 }
@@ -18131,7 +18131,7 @@ int shinobi_sub_1ff110(int a0, u8 *a1) {
         pbVar4 = a1;
         iVar3 = shinobi_sub_1fd510(a0, a1);
         if (iVar3 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar3 = shinobi_sub_1fd550(a0, pbVar4);
             if ((iVar3 != 0) && (*(char *)(a0 * iVar5 + 0x8c4783e0 + 8) != '\0')) {
@@ -18139,7 +18139,7 @@ int shinobi_sub_1ff110(int a0, u8 *a1) {
                 if (iVar5 < 0) {
                     return (int)(int)0xffffff03;
                 }
-                pbVar4 = (u8 *)shinobi_sub_200a84(a0, *(u32 *)(iVar6 + 0x18));
+                pbVar4 = (u8 *)vmu_dir_entry(a0, *(u32 *)(iVar6 + 0x18));
                 iVar5 = *(int *)(iVar6 + 0x18);
                 bVar2 = false;
                 do {
@@ -18201,12 +18201,12 @@ int shinobi_sub_1ff1f8(int a0, u8 *a1, int *a2, u32 a3) {
         ar6_00 = a2;
         iVar3 = shinobi_sub_1fd510(a0, a1);
         if (iVar3 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar3 = shinobi_sub_1fd550(a0, pbVar4);
             if ((iVar3 != 0) && (*(char *)(a0 * iVar6 + 0x8c4783e0 + 8) != '\0')) {
                 iVar6 = thunk_FUN_8c1ffcc2();
-                puVar2 = (&shinobi_sub_200a84);
+                puVar2 = (&vmu_dir_entry);
                 if (iVar6 < 0) {
                     return (int)(int)0xffffff03;
                 }
@@ -18283,7 +18283,7 @@ int shinobi_sub_1ff336(int a0, u8 *a1, int *a2, int a3) {
         pbVar5 = a1;
         iVar4 = shinobi_sub_1fd510(a0, a1);
         if (iVar4 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar4 = shinobi_sub_1fd550(a0, pbVar5);
             if ((iVar4 != 0) && (*(char *)(a0 * iVar7 + 0x8c4783e0 + 8) != '\0')) {
@@ -18291,7 +18291,7 @@ int shinobi_sub_1ff336(int a0, u8 *a1, int *a2, int a3) {
                 if (iVar7 < 0) {
                     return (int)(int)0xffffff03;
                 }
-                pbVar5 = (u8 *)shinobi_sub_200a84(a0, *(u32 *)(iVar8 + 0x18));
+                pbVar5 = (u8 *)vmu_dir_entry(a0, *(u32 *)(iVar8 + 0x18));
                 iVar7 = *(int *)(iVar8 + 0x18);
                 bVar2 = false;
                 do {
@@ -18359,21 +18359,21 @@ int shinobi_sub_1ff478(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     if (iVar1 < 0) {
         iVar1 = (int)(int)0xffffff05;
     } else {
-        ar4_00 = shinobi_sub_200a84(a0, iVar1);
+        ar4_00 = vmu_dir_entry(a0, iVar1);
         iVar2 = shinobi_sub_200b10(a0, a1);
         ar6_00 = 0xfffc;
         if (iVar2 == 0) {
             ar5_00 = uStack_3c;
             for (iVar2 = 0; iVar2 < iStack_20; iVar2 = iVar2 + 1) {
-                uVar3 = shinobi_sub_2009d0(a0, ar5_00);
+                uVar3 = vmu_drive_read_like(a0, ar5_00);
                 ar6_01 = ar6_00;
-                shinobi_sub_20099e(a0, ar5_00, ar6_00);
+                vmu_drive_write_like(a0, ar5_00, ar6_00);
                 ar5_00 = uVar3 & 0xffff;
             }
         }
         ar6_02 = 0x20;
         memset(ar4_00, 0, 0x20);
-        shinobi_sub_200a9c(a0, iVar1);
+        vmu_fat_mark(a0, iVar1);
         iVar1 = 0;
     }
     return iVar1;
@@ -18395,7 +18395,7 @@ u32 shinobi_sub_1ff530(int a0, u32 a1, u32 a2, u32 a3) {
         uVar2 = a1;
         iVar1 = shinobi_sub_1fd510(a0, a1);
         if (iVar1 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar1 = shinobi_sub_1fd550(a0, uVar2);
             if ((iVar1 != 0) && ((&g_8c4783e8)[iVar3] != '\0')) {
@@ -18443,7 +18443,7 @@ u32 shinobi_sub_1ff610(int a0, u32 *a1, int a2, u32 a3) {
         ar6_00 = a2;
         iVar2 = shinobi_sub_1fd510(a0, a1);
         if (iVar2 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar2 = shinobi_sub_1fd550(a0, ar5_00);
             if ((iVar2 != 0) && ((&g_8c4783e8)[iVar4] != '\0')) {
@@ -18516,7 +18516,7 @@ u32 shinobi_sub_1ff72e(int a0, u32 a1, u8 *a2) {
         puVar4 = a2;
         iVar2 = shinobi_sub_1fd510(a0, a1);
         if (iVar2 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar2 = shinobi_sub_1fd550(a0, uVar3);
             if ((iVar2 != 0) && ((&g_8c4783e8)[iVar5] != '\0')) {
@@ -18537,14 +18537,14 @@ u32 shinobi_sub_1ff72e(int a0, u32 a1, u8 *a2) {
                 if (-1 < iVar2) {
                     return 0xffffff06;
                 }
-                iVar2 = shinobi_sub_200a84(a0, iVar5);
+                iVar2 = vmu_dir_entry(a0, iVar5);
                 ar6_00 = (u8 *)(iVar2 + 0x10);
                 for (puVar4 = (u8 *)(iVar2 + 4); puVar4 < ar6_00; puVar4 = puVar4 + 1) {
                     uVar1 = *a2;
                     a2 = a2 + 1;
                     *puVar4 = uVar1;
                 }
-                shinobi_sub_200a9c(a0, iVar5);
+                vmu_fat_mark(a0, iVar5);
                 uVar3 = shinobi_sub_200346(a0, iVar5, ar6_00, a2);
                 return uVar3;
             }
@@ -18575,7 +18575,7 @@ u32 shinobi_sub_1ff844(int a0, u32 a1, u32 a2, u32 a3) {
         uVar3 = a1;
         iVar2 = shinobi_sub_1fd510(a0, a1);
         if (iVar2 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar2 = shinobi_sub_1fd550(a0, uVar3);
             if ((iVar2 != 0) && ((&g_8c4783e8)[iVar6] != '\0')) {
@@ -18592,7 +18592,7 @@ u32 shinobi_sub_1ff844(int a0, u32 a1, u32 a2, u32 a3) {
                 if (iVar6 < 0) {
                     return 0xffffff05;
                 }
-                iVar2 = shinobi_sub_200a84(a0, iVar6);
+                iVar2 = vmu_dir_entry(a0, iVar6);
                 shinobi_sub_200bfc(auStack_18, a2, puVar4);
                 puVar5 = auStack_18;
                 ar6_01 = (u8 *)(iVar2 + 0x18);
@@ -18601,7 +18601,7 @@ u32 shinobi_sub_1ff844(int a0, u32 a1, u32 a2, u32 a3) {
                     puVar5 = puVar5 + 1;
                     *puVar4 = uVar1;
                 }
-                shinobi_sub_200a9c(a0, iVar6);
+                vmu_fat_mark(a0, iVar6);
                 uVar3 = shinobi_sub_200346(a0, iVar6, ar6_01, a3);
                 return uVar3;
             }
@@ -18627,7 +18627,7 @@ int shinobi_sub_1ff95a(int a0, u32 a1, u32 a2) {
         ar5_00 = a1;
         iVar2 = shinobi_sub_1fd510(a0, a1);
         if (iVar2 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar2 = shinobi_sub_1fd550(a0, ar5_00);
             if ((iVar2 != 0) && (*(char *)(0x8c4783e8 + a0 * 0x148) != '\0')) {
@@ -18644,7 +18644,7 @@ int shinobi_sub_1ff95a(int a0, u32 a1, u32 a2) {
                 if (iVar2 < 0) {
                     return (int)(int)0xffffff05;
                 }
-                iVar2 = shinobi_sub_200a84(a0, iVar2);
+                iVar2 = vmu_dir_entry(a0, iVar2);
                 ar6_01 = (u8 *)(iVar2 + 0x10);
                 for (puVar3 = auStack_3c; puVar3 < auStack_34; puVar3 = puVar3 + 1) {
                     uVar1 = *ar6_01;
@@ -18681,7 +18681,7 @@ u32 shinobi_sub_1ffa54(int a0, u32 a1, u32 a2, u32 a3) {
         uVar4 = a1;
         iVar3 = shinobi_sub_1fd510(a0, a1);
         if (iVar3 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar3 = shinobi_sub_1fd550(a0, uVar4);
             if ((iVar3 != 0) && ((&g_8c4783e8)[iVar5] != '\0')) {
@@ -18698,13 +18698,13 @@ u32 shinobi_sub_1ffa54(int a0, u32 a1, u32 a2, u32 a3) {
                 if (iVar5 < 0) {
                     return 0xffffff05;
                 }
-                iVar3 = shinobi_sub_200a84(a0, iVar5);
+                iVar3 = vmu_dir_entry(a0, iVar5);
                 if (g_8c26d20c != 0) {
                     a6 = (u8 *)(int)sVar2;
                     (**(code **)(g_8c4783dc + 0x10))(iVar3, 0x1a, a6, a3);
                 }
                 *(u8 *)(iVar3 + 1) = uVar1;
-                shinobi_sub_200a9c(a0, iVar5);
+                vmu_fat_mark(a0, iVar5);
                 uVar4 = shinobi_sub_200346(a0, iVar5, a6, a3);
                 return uVar4;
             }
@@ -18728,7 +18728,7 @@ int shinobi_sub_1ffb70(int a0, u32 a1, u32 unused_a2, u32 a3) {
         ar5_00 = a1;
         iVar1 = shinobi_sub_1fd510(a0, a1);
         if (iVar1 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar1 = shinobi_sub_1fd550(a0, ar5_00);
             if ((iVar1 != 0) && (*(char *)(0x8c4783e8 + a0 * 0x148) != '\0')) {
@@ -18766,7 +18766,7 @@ int shinobi_sub_1ffc0a(int a0, int a1) {
         iVar2 = a1;
         iVar1 = shinobi_sub_1fd510(a0, a1);
         if (iVar1 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar1 = shinobi_sub_1fd550(a0, iVar2);
             if ((iVar1 != 0) && (*(char *)(0x8c4783e8 + a0 * 0x148) != '\0')) {
@@ -18805,7 +18805,7 @@ int shinobi_sub_1ffcc2(int a0, u32 a1) {
     if (*(char *)(iVar4 + 2) != '\0') {
         iVar1 = shinobi_sub_1fd510(a0, a1);
         if (iVar1 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar1 = shinobi_sub_1fd550(a0, a1);
             if ((iVar1 != 0) && (*(char *)(a0 * iVar3 + 0x8c4783e0 + 8) != '\0')) {
@@ -18849,7 +18849,7 @@ int shinobi_sub_1ffd6c(int a0, u8 *a1) {
         puVar5 = a1;
         iVar2 = shinobi_sub_1fd510(a0, a1);
         if (iVar2 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar2 = shinobi_sub_1fd550(a0, puVar5);
             if ((iVar2 != 0) && (*(char *)(a0 * iVar3 + 0x8c4783e0 + 8) != '\0')) {
@@ -18892,7 +18892,7 @@ int shinobi_sub_1ffdfa(int a0, u8 *a1) {
         puVar4 = a1;
         iVar2 = shinobi_sub_1fd510(a0, a1);
         if (iVar2 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
             sVar1 = (int)0xffffff01;
         } else {
             iVar2 = shinobi_sub_1fd550(a0, puVar4);
@@ -19072,7 +19072,7 @@ u32 shinobi_sub_1fffca(int a0) {
         if (**(int **)(iVar3 + 0x1c) + 1 <= ar5_00) {
             return 0;
         }
-        uVar1 = shinobi_sub_2009d0(a0, ar5_00);
+        uVar1 = vmu_drive_read_like(a0, ar5_00);
         uVar1 = uVar1 & 0xffff;
         if (((uVar1 != 0xfffc) && (uVar1 != 0xffff)) && (uVar1 != 0xfffa)) {
             if (ar5_00 < *(int *)(*(int *)(iVar3 + 0x1c) + 0x30)) {
@@ -19107,7 +19107,7 @@ u32 shinobi_sub_1fffd8(void) {
         if (**(int **)(iVar3 + 0x1c) + 1 <= a5) {
             return 0;
         }
-        uVar1 = shinobi_sub_2009d0(unaff_r12, a5);
+        uVar1 = vmu_drive_read_like(unaff_r12, a5);
         uVar1 = uVar1 & 0xffff;
         if (((uVar1 != 0xfffc) && (uVar1 != 0xffff)) && (uVar1 != 0xfffa)) {
             if (a5 < *(int *)(*(int *)(iVar3 + 0x1c) + 0x30)) {

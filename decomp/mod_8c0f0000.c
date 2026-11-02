@@ -1772,7 +1772,7 @@ u32 Class_12c058_sub_0f577c(int a0, u32 a1, u32 a2, u32 a3) {
 
     uVar1 = 0;
     matrix_push(0, a1, a2, a3, in_PR);
-    game_sub_019058();
+    touch_fields_30_3c_wrap();
     game_sub_019088();
     game_sub_015adc(a0 + 0x178, a1, a2, a3);
     uVar1 = matrix_pop_n(1);
@@ -1790,7 +1790,7 @@ u32 Class_12c058_sub_0f57f0(int a0, u32 a1, u32 a2, u32 a3) {
     obj_set_texlist(a0 + 0x170, a1, a2);
     uVar1 = 0;
     matrix_push(0, a1, a2, a3, in_PR);
-    game_sub_019058();
+    touch_fields_30_3c_wrap();
     game_sub_019088();
     game_sub_015adc(a0 + 0x178, a1, a2, a3);
     uVar1 = matrix_pop_n(1);
@@ -2098,7 +2098,7 @@ u32 Class_12bec0_sub_0f5e0c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     game_sub_0191c8((u8 *)((int)register0x0000003c + -0x48));
     matrix_push(0, unused_a1, a2, a3, (u32)uStack_4c);
     uVar1 = 0;
-    ninja_sub_25b5d0(0, unused_a1, a2, a3, (u32)uStack_4c);
+    touch_fields_30_3c(0, unused_a1, a2, a3, (u32)uStack_4c);
     libc_sub_013b3c();
     if (cVar6 == '\0') {
         uVar1 = (u32)((u64)in_dr0 >> 0x20);
@@ -3654,9 +3654,9 @@ u32 game_sub_0f7118(int a0, u32 a1, u32 a2) {
     cVar4 = '\0';
     uVar1 = a2;
     ain0 = a1;
-    gfxlib_sub_233dac(a0 + 0x54);
+    gfx_set_color4_4aa52c(a0 + 0x54);
     matrix_push(0, a1, uVar1, r7, ain0);
-    ninja_sub_25b5d0(0, a1, uVar1, r7, ain0);
+    touch_fields_30_3c(0, a1, uVar1, r7, ain0);
     if (cVar5 == '\0') {
         dVar3 = (double)CONCAT44(0x47800000, *(u32 *)(a0 + 0x18));
     } else {
@@ -3722,7 +3722,7 @@ u32 game_sub_0f7118(int a0, u32 a1, u32 a2) {
     obj_set_texlist(a2, ar5_00, ar6_00);
     game_sub_015adc(ain0, ar5_00, ar6_00, ar7_00);
     matrix_pop_n(1);
-    uVar1 = gfxlib_sub_233dac(&g_8c140174);
+    uVar1 = gfx_set_color4_4aa52c(&g_8c140174);
     return uVar1;
 }
 
@@ -4180,7 +4180,7 @@ u32 game_init(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     gfxlib_sub_233d9c(0x820);
     uVar3 = 0x800;
     gfxlib_sub_233da2(0xffffffff, 0x800);
-    gfxlib_sub_233dac(&uStack_28);
+    gfx_set_color4_4aa52c(&uStack_28);
     ta_sub_259358(3);
     uVar2 = 1;
     ta_sub_2593ac(1);
@@ -4283,7 +4283,7 @@ u32 game_sub_0f7ec0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
  */
 int game_sub_0f7f78(int a0, u32 unused_a1, u32 a2, u32 a3) {
     game_sub_0fdc20(a0, unused_a1, a2, a3);
-    game_sub_0fa804(a0 + 0x1054);
+    speech_sub_0fa804(a0 + 0x1054);
     return a0;
 }
 
@@ -4319,7 +4319,7 @@ u32 game_sub_0f7ff0(int a0, u32 a1, u32 a2, u32 a3) {
     *(u32 *)(0x8913c + a0) = 0;
     *(u32 *)(0x89140 + a0) = 0;
     *(u32 *)(0x1034 + a0) = 0;
-    uVar1 = game_sub_0fa83c(a0 + 0x1054, a1, a2, a3);
+    uVar1 = speech_sub_0fa83c(a0 + 0x1054, a1, a2, a3);
     return uVar1;
 }
 
@@ -4370,7 +4370,7 @@ u32 get_field_c4_0f8128(int a0) {
 int game_sub_0f8134(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
-    game_sub_0fa688(a0, a1, a2, a3);
+    speech_sub_0fa688(a0, a1, a2, a3);
     game_sub_0fa910(a0 + 0x1054, a1, a2, a3);
     iVar1 = 0x1014;
     *(u32 *)(0x1014 + a0) = 0;
@@ -4420,7 +4420,7 @@ int speech_stop(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
     game_sub_0fa9fc(a0 + 0x1054, a1, a2, a3);
-    game_sub_0fa70c(a0, a1, a2, a3);
+    speech_sub_0fa70c(a0, a1, a2, a3);
     iVar1 = 0x89134;
     *(u32 *)(0x89134 + a0) = 0;
     return iVar1;
@@ -4459,7 +4459,7 @@ u32 speech_restart(int a0, u32 a1, u32 a2, u32 a3) {
         ar6_00 = a2;
         speech_stop(a0, a1, a2, a3);
         if (*(int *)(0x8913c + a0) == 1) {
-            game_sub_0fa6c8(a0, uVar1, ar6_00, a3);
+            speech_sub_0fa6c8(a0, uVar1, ar6_00, a3);
         }
     }
     *(u32 *)(0x89138 + a0) = 2;
@@ -4572,7 +4572,7 @@ u32 speech_start(int a0, int a1, int a2, u32 a3) {
                         } else {
                             iVar1 = strcmp(a2, "HIGYOLINE7");
                             if (iVar1 == 0) {
-                                iVar1 = game_sub_0fa658(a0, 0);
+                                iVar1 = speech_get_index_plus1(a0, 0);
                                 if (iVar1 == 5) {
                                     *(u32 *)(a0 + 0x1048) = 5;
                                     *(u32 *)(*(int *)(a0 + 0x104c) + 8) = *(u32 *)(a0 + 0x102c);
@@ -4601,7 +4601,7 @@ u32 speech_start(int a0, int a1, int a2, u32 a3) {
                                                 pcVar3 = "FROGMANLINE4";
                                                 iVar1 = strcmp(a2, "FROGMANLINE4");
                                                 if (iVar1 == 0) {
-                                                    iVar1 = game_sub_0fa658(a0, pcVar3);
+                                                    iVar1 = speech_get_index_plus1(a0, pcVar3);
                                                     if ((iVar1 < 0x13) && (0xc < iVar1)) {
                                                         switch (iVar1) {
                                                         default:
@@ -4728,7 +4728,7 @@ u32 speech_start(int a0, int a1, int a2, u32 a3) {
             case 7:
                 pcVar3 = "NORMAL";
                 strcat(auStack_54, "NORMAL");
-                iVar1 = game_sub_0fa658(a0, pcVar3);
+                iVar1 = speech_get_index_plus1(a0, pcVar3);
                 if ((1 < iVar1) && (*(u32 *)(a0 + 0x1040) = 0, *(int *)(a0 + 0xc) == 0)) {
                     strcpy(auStack_34, "CALENDAR");
                     strcpy(auStack_54, &g_8c140a98);
@@ -4879,7 +4879,7 @@ u32 game_sub_0f9774(int a0, u32 unused_a1, code *a2, u32 a3) {
                 *(u32 *)(*(int *)(a0 + 0x1050) + 0x70) = 0;
             }
             uVar4 = (u32)bVar6;
-            pcVar2 = (code *)game_sub_0fa658(a0, pcVar3);
+            pcVar2 = (code *)speech_get_index_plus1(a0, pcVar3);
             ar5_00 = (code *)pcVar3;
             if ((((int)pcVar2 < 0x13) && (ar5_00 = (code *)0x1, *(int *)(*(int *)(a0 + 0x1050) + 0x78) != 1)) &&
                 (ar5_00 = *(code **)(a0 + 0x1048), (int)pcVar2 <= (int)*(code **)(a0 + 0x1048))) {
@@ -4987,7 +4987,7 @@ u32 game_sub_0f9774(int a0, u32 unused_a1, code *a2, u32 a3) {
     if (((*(int *)(*(int *)(a0 + 0x1050) + 0x7c) != 7) && (0 < *(int *)(*(int *)(a0 + 0x1050) + 0x60))) ||
         (*(int *)(*(int *)(a0 + 0x1050) + 0x68) < 2))
         goto LAB_8c0fa1a8;
-    iVar1 = game_sub_0fa658(a0, ar5_00);
+    iVar1 = speech_get_index_plus1(a0, ar5_00);
     if ((*(int *)(a0 + 0xc) == 0) && (1 < iVar1)) {
         iVar1 = strcmp(uVar5, "CALENDAR");
         if (iVar1 == 0) {
@@ -5086,7 +5086,7 @@ u32 game_sub_0f9774(int a0, u32 unused_a1, code *a2, u32 a3) {
             *(u32 *)(*(int *)(a0 + 0x1050) + 0x70) = 0;
             ar5_00 = (code *)0x1048;
             if (0 < *(int *)(a0 + 0x1048)) {
-                ar5_00 = (code *)game_sub_0fa658(a0, game_sub_0fa658);
+                ar5_00 = (code *)speech_get_index_plus1(a0, speech_get_index_plus1);
                 if (*(int *)(a0 + 0x1048) < (int)ar5_00) {
                     ar5_00 = *(code **)(a0 + 0x1048);
                 }
@@ -5129,9 +5129,9 @@ u32 game_sub_0f9774(int a0, u32 unused_a1, code *a2, u32 a3) {
     switchD_8c0f9e5a_caseD_b:
         ar5_00 = *(code **)(a0 + 0x1048);
         if (0 < (int)ar5_00) {
-            ar5_00 = game_sub_0fa658;
+            ar5_00 = speech_get_index_plus1;
             iVar1 = a0;
-            pcVar2 = (code *)game_sub_0fa658(a0, game_sub_0fa658);
+            pcVar2 = (code *)speech_get_index_plus1(a0, speech_get_index_plus1);
             if ((int)pcVar2 <= *(int *)(a0 + 0x1048)) {
                 if (*(int *)(*(int *)(a0 + 0x1050) + 0x74) == 1) {
                     uVar5 = rand();
@@ -5168,7 +5168,7 @@ LAB_8c0fa1a8:
     if (uVar4 == 1) {
         speech_sub_0f824c(a0, ar5_00, a2, a3);
     } else {
-        game_sub_0fa70c(a0, ar5_00, a2, a3);
+        speech_sub_0fa70c(a0, ar5_00, a2, a3);
     }
     return uVar4;
 }
@@ -5192,12 +5192,12 @@ u32 game_sub_0fa204(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0fa2b8  0x8c0fa2b8
- * area name: game code; nothing names its area yet
+ * speech_is_playing  0x8c0fa2b8
+ * the player's active flag (+0x89134) while speech is set up (+0x1014)
  * called by: CSeamanDomain_Init, Class_12a078_m2_05eee0, Class_12c3c4_m2_104264, game_sub_05f4a0, game_sub_0656d4,
  * game_sub_0bad68, game_sub_0bcedc, game_sub_0bf22c (+3 more)
  */
-u32 game_sub_0fa2b8(int a0, u32 a1) {
+u32 speech_is_playing(int a0, u32 a1) {
     if (*(int *)(0x1014 + a0) == 0) {
         return 0;
     }
@@ -5205,11 +5205,11 @@ u32 game_sub_0fa2b8(int a0, u32 a1) {
 }
 
 /*
- * game_sub_0fa2d8  0x8c0fa2d8
- * area name: game code; nothing names its area yet
+ * speech_sub_0fa2d8  0x8c0fa2d8
+ * area name: sits between speech functions (same compilation unit)
  * called by: Class_12a078_m6_0670f0, Class_12c3c4_m6_109d98
  */
-u32 game_sub_0fa2d8(int a0) {
+u32 speech_sub_0fa2d8(int a0) {
     if (*(int *)(0x1014 + a0) == 0) {
         return 0;
     }
@@ -5217,11 +5217,11 @@ u32 game_sub_0fa2d8(int a0) {
 }
 
 /*
- * game_sub_0fa2f0  0x8c0fa2f0
- * area name: game code; nothing names its area yet
+ * speech_sub_0fa2f0  0x8c0fa2f0
+ * area name: sits between speech functions (same compilation unit)
  * called by: game_sub_0c67f4
  */
-u32 game_sub_0fa2f0(u32 a0, u32 a1) {
+u32 speech_sub_0fa2f0(u32 a0, u32 a1) {
     u32 uVar1;
 
     uVar1 = memmove_wrap_0fa310(a0, a1);
@@ -5231,7 +5231,7 @@ u32 game_sub_0fa2f0(u32 a0, u32 a1) {
 /*
  * memmove_wrap_0fa310  0x8c0fa310
  * only calls memmove
- * called by: CGame_GetUserGameInfo, game_sub_0fa2f0
+ * called by: CGame_GetUserGameInfo, speech_sub_0fa2f0
  */
 u32 memmove_wrap_0fa310(u32 a0, u32 a1) {
     u32 uVar1;
@@ -5241,11 +5241,11 @@ u32 memmove_wrap_0fa310(u32 a0, u32 a1) {
 }
 
 /*
- * game_sub_0fa334  0x8c0fa334
- * area name: game code; nothing names its area yet
+ * speech_sub_0fa334  0x8c0fa334
+ * area name: sits between speech functions (same compilation unit)
  * called by: CGame_sub_0cc784, CProlog_sub_0cd3c8
  */
-int game_sub_0fa334(int a0, u32 a1) {
+int speech_sub_0fa334(int a0, u32 a1) {
     int iVar1;
     int iVar2;
     u32 ar6_00;
@@ -5255,7 +5255,7 @@ int game_sub_0fa334(int a0, u32 a1) {
     *(u32 *)(a0 + 0xc) = 1;
     iVar1 = *(int *)(0x1040 + a0);
     if (iVar1 == 1) {
-        iVar2 = game_sub_0fa658(a0, a1);
+        iVar2 = speech_get_index_plus1(a0, a1);
         iVar1 = 1;
         if (1 < iVar2) {
             iVar1 = 0;
@@ -5266,89 +5266,89 @@ int game_sub_0fa334(int a0, u32 a1) {
 }
 
 /*
- * game_sub_0fa388  0x8c0fa388
- * area name: game code; nothing names its area yet
+ * speech_sub_0fa388  0x8c0fa388
+ * area name: sits between speech functions (same compilation unit)
  * called by: game_sub_027270, game_sub_0274bc, game_sub_0355cc, game_sub_1089e4
  */
-u32 game_sub_0fa388(u32 a0, int a1, u32 a2, u32 a3) {
+u32 speech_sub_0fa388(u32 a0, int a1, u32 a2, u32 a3) {
     int iVar1;
 
     if ((a1 < 0xd) && (-1 < a1)) {
         switch (a1) {
         case 0:
-            iVar1 = game_sub_0fa538(a0, a1, a2, a3);
+            iVar1 = speech_sub_0fa538(a0, a1, a2, a3);
             if (0 < iVar1) {
                 return 1;
             }
             break;
         case 1:
-            iVar1 = game_sub_0fa538(a0, a1, a2, a3);
+            iVar1 = speech_sub_0fa538(a0, a1, a2, a3);
             if (1 < iVar1) {
                 return 1;
             }
             break;
         case 2:
-            iVar1 = game_sub_0fa538(a0, a1, a2, a3);
+            iVar1 = speech_sub_0fa538(a0, a1, a2, a3);
             if (2 < iVar1) {
                 return 1;
             }
             break;
         case 3:
-            iVar1 = game_sub_0fa658(a0, a1);
+            iVar1 = speech_get_index_plus1(a0, a1);
             if (1 < iVar1) {
                 return 1;
             }
             break;
         case 4:
-            iVar1 = game_sub_0fa658(a0, a1);
+            iVar1 = speech_get_index_plus1(a0, a1);
             if (2 < iVar1) {
                 return 1;
             }
             break;
         case 5:
-            iVar1 = game_sub_0fa658(a0, a1);
+            iVar1 = speech_get_index_plus1(a0, a1);
             if (3 < iVar1) {
                 return 1;
             }
             break;
         case 6:
-            iVar1 = game_sub_0fa658(a0, a1);
+            iVar1 = speech_get_index_plus1(a0, a1);
             if (4 < iVar1) {
                 return 1;
             }
             break;
         case 7:
-            iVar1 = game_sub_0fa658(a0, a1);
+            iVar1 = speech_get_index_plus1(a0, a1);
             if (6 < iVar1) {
                 return 1;
             }
             break;
         case 8:
-            iVar1 = game_sub_0fa658(a0, a1);
+            iVar1 = speech_get_index_plus1(a0, a1);
             if (7 < iVar1) {
                 return 1;
             }
             break;
         case 9:
-            iVar1 = game_sub_0fa658(a0, a1);
+            iVar1 = speech_get_index_plus1(a0, a1);
             if (8 < iVar1) {
                 return 1;
             }
             break;
         case 10:
-            iVar1 = game_sub_0fa658(a0, a1);
+            iVar1 = speech_get_index_plus1(a0, a1);
             if (10 < iVar1) {
                 return 1;
             }
             break;
         case 0xb:
-            iVar1 = game_sub_0fa658(a0, a1);
+            iVar1 = speech_get_index_plus1(a0, a1);
             if (0xc < iVar1) {
                 return 1;
             }
             break;
         case 0xc:
-            iVar1 = game_sub_0fa658(a0, a1);
+            iVar1 = speech_get_index_plus1(a0, a1);
             if (0x12 < iVar1) {
                 return 1;
             }
@@ -5358,11 +5358,11 @@ u32 game_sub_0fa388(u32 a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0fa538  0x8c0fa538
- * area name: game code; nothing names its area yet
- * called by: game_sub_0fa388
+ * speech_sub_0fa538  0x8c0fa538
+ * area name: sits between speech functions (same compilation unit)
+ * called by: speech_sub_0fa388
  */
-int game_sub_0fa538(int a0, u8 *unused_a1, u32 a2, u32 a3) {
+int speech_sub_0fa538(int a0, u8 *unused_a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     int ain0;
@@ -5415,11 +5415,11 @@ u32 format_int_at_14(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0fa624  0x8c0fa624
- * area name: game code; nothing names its area yet
+ * speech_sub_0fa624  0x8c0fa624
+ * area name: sits between speech functions (same compilation unit)
  * called by: game_sub_0bcedc
  */
-u32 game_sub_0fa624(int a0, u32 a1, u32 a2, u32 a3) {
+u32 speech_sub_0fa624(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (*(code *)(&sprintf))(a0 + 0x18, a1, a2, a3, "%d");
@@ -5427,11 +5427,11 @@ u32 game_sub_0fa624(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0fa658  0x8c0fa658
- * area name: game code; nothing names its area yet
- * called by: game_sub_0f9774, game_sub_0fa334, game_sub_0fa388, speech_start
+ * speech_get_index_plus1  0x8c0fa658
+ * atoi of the player's number string at +0x4ac, plus 1
+ * called by: game_sub_0f9774, speech_start, speech_sub_0fa334, speech_sub_0fa388
  */
-int game_sub_0fa658(int a0, u32 a1) {
+int speech_get_index_plus1(int a0, u32 a1) {
     int iVar1;
 
     iVar1 = atoi(a0 + 0x4ac);
@@ -5439,11 +5439,11 @@ int game_sub_0fa658(int a0, u32 a1) {
 }
 
 /*
- * game_sub_0fa688  0x8c0fa688
- * area name: game code; nothing names its area yet
+ * speech_sub_0fa688  0x8c0fa688
+ * area name: sits between speech functions (same compilation unit)
  * called by: game_sub_0611cc, game_sub_0f8134, game_sub_1063a8
  */
-int game_sub_0fa688(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int speech_sub_0fa688(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 ar4_00;
     int iVar1;
 
@@ -5455,11 +5455,11 @@ int game_sub_0fa688(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0fa6c8  0x8c0fa6c8
- * area name: game code; nothing names its area yet
+ * speech_sub_0fa6c8  0x8c0fa6c8
+ * area name: sits between speech functions (same compilation unit)
  * called by: Class_12c3c4_sub_103100, Vec3_sub_063838, game_sub_1089e4, speech_restart
  */
-int game_sub_0fa6c8(int a0, u32 a1, u32 unused_a2, u32 a3) {
+int speech_sub_0fa6c8(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 ar4_00;
     int iVar1;
 
@@ -5471,11 +5471,11 @@ int game_sub_0fa6c8(int a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_0fa70c  0x8c0fa70c
- * area name: game code; nothing names its area yet
+ * speech_sub_0fa70c  0x8c0fa70c
+ * area name: sits between speech functions (same compilation unit)
  * called by: game_sub_0f9774, speech_stop
  */
-int game_sub_0fa70c(int a0, u32 a1, u32 a2, u32 a3) {
+int speech_sub_0fa70c(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
     iVar1 = *(int *)(0x1018 + a0);
@@ -5497,10 +5497,10 @@ u32 get_field_89130_0fa740(int a0) {
 }
 
 /*
- * game_sub_0fa74c  0x8c0fa74c
- * area name: game code; nothing names its area yet
+ * speech_sub_0fa74c  0x8c0fa74c
+ * area name: sits between speech functions (same compilation unit)
  */
-u32 game_sub_0fa74c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 speech_sub_0fa74c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -5531,11 +5531,11 @@ u32 game_sub_0fa74c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0fa804  0x8c0fa804
- * area name: game code; nothing names its area yet
+ * speech_sub_0fa804  0x8c0fa804
+ * area name: sits between speech functions (same compilation unit)
  * called by: game_sub_0f7f78
  */
-u32 game_sub_0fa804(u32 a0) {
+u32 speech_sub_0fa804(u32 a0) {
     return a0;
 }
 
@@ -5553,11 +5553,11 @@ int free_if_nonnull_wrap_0fa80c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0fa83c  0x8c0fa83c
- * area name: game code; nothing names its area yet
+ * speech_sub_0fa83c  0x8c0fa83c
+ * area name: sits between speech functions (same compilation unit)
  * called by: game_sub_0f7ff0
  */
-u32 game_sub_0fa83c(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 speech_sub_0fa83c(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int ar5_00;
     u8 auStack_14[16];
@@ -7514,7 +7514,7 @@ u32 game_sub_0fda5c(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * memset_on_field_d0  0x8c0fda80
  * calls memset on the member at +0xd0
- * called by: game_sub_0fa83c, speech_start
+ * called by: speech_start, speech_sub_0fa83c
  */
 u32 memset_on_field_d0(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -9032,21 +9032,21 @@ u32 game_sub_0ff928(int a0, u64 *a1, u64 *a2, u32 a3) {
     gfxlib_sub_21907e();
     game_sub_0f4b44(*(u32 *)(a0 + 4));
     matrix_push(0, uVar4, a6, uVar3, in_stack_ffffff50);
-    ninja_sub_25b5d0(0, uVar4, a6, uVar3, in_stack_ffffff50);
+    touch_fields_30_3c(0, uVar4, a6, uVar3, in_stack_ffffff50);
     iVar1 = get_field_24_05c284(*(u32 *)(a0 + 4), uVar4);
     if (iVar1 == 0xd) {
-        ninja_sub_25b5d0(0, uVar4, a6, uVar3, in_stack_ffffff50);
+        touch_fields_30_3c(0, uVar4, a6, uVar3, in_stack_ffffff50);
     }
     uVar7 = (u16)((u32)in_stack_ffffff50 >> 0x10);
     if (iVar1 == 10) {
         uVar2 = (**(code **)(*(int *)(*(int *)(a0 + 4) + 8) + 0x148))(*(int *)(a0 + 4), uVar4, a6, uVar3);
         if ((short)uVar2 != 3) {
-            ninja_sub_25b5d0(0, uVar4, a6, uVar3, CONCAT22(uVar7, (short)uVar2));
+            touch_fields_30_3c(0, uVar4, a6, uVar3, CONCAT22(uVar7, (short)uVar2));
         }
     }
     (**(code **)(*(int *)(*(int *)(a0 + 4) + 8) + 0x38))(*(int *)(a0 + 4), uVar4, a6, uVar3);
     matrix_pop_n(1);
-    Class_129808_sub_016340(a0 + 0xc, uVar4, a6, uVar3);
+    Class_129808_draw(a0 + 0xc, uVar4, a6, uVar3);
     if (cVar6 != '\0') {
         auStack_90[0] = 0xff000000;
     }
@@ -9134,7 +9134,7 @@ u32 game_sub_0ffcb4(int a0, u32 a1) {
 
     ar7_00 = 2;
     uVar2 = 0x8c4413f4;
-    ta_sub_239170(0x8c4413d4, 0x8c4413dc, 0x8c4413f4, 2);
+    ptr_list_build_1c(0x8c4413d4, 0x8c4413dc, 0x8c4413f4, 2);
     set_field_1c(a0 + 0x15c, 0x8c4413d4);
     set_field_20(a0 + 0x15c, u____8c1421cc);
     game_sub_014a0c(a0 + 0x15c);
@@ -9277,7 +9277,7 @@ u32 game_sub_0fff28(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * game_sub_0fff54  0x8c0fff54
  * area name: game code; nothing names its area yet
- * called by: game_sub_0c84f4, game_sub_0c9588, game_sub_0c9ee0, game_sub_0ca88c, game_sub_0cb9c8
+ * called by: Vec3_sub_0c84f4, game_sub_0c9588, game_sub_0c9ee0, game_sub_0ca88c, game_sub_0cb9c8
  */
 u32 game_sub_0fff54(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9289,7 +9289,7 @@ u32 game_sub_0fff54(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_0fff84  0x8c0fff84
  * area name: game code; nothing names its area yet
- * called by: game_sub_0c84f4, game_sub_0c9588, game_sub_0ca88c, game_sub_0cb9c8
+ * called by: Vec3_sub_0c84f4, game_sub_0c9588, game_sub_0ca88c, game_sub_0cb9c8
  */
 u32 game_sub_0fff84(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 ar5_00;

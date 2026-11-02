@@ -1377,7 +1377,7 @@ u32 game_sub_048f8c(u64 *a0, u32 a1, int a2, u64 *a3) {
             CMushroomerBody_sub_031bb4(a0, a1, a2, a3);
             uVar4 = 0x8c2803f4;
             iVar2 = (int)a0[0x25] * 0x18 + 0x8c2803f4;
-            timer_sub_031b68(a0, iVar2, iVar1, 0x8c2803f4);
+            copy6_to_fields(a0, iVar2, iVar1, 0x8c2803f4);
             timer_start_94(a0, iVar2, iVar1);
             if (cVar14 == '\0') {
                 fVar7 = *(float *)((int)a0 + 0x24);
@@ -2080,7 +2080,7 @@ u32 game_sub_049b68(int a0, u64 *a1, code *a2, code *a3) {
         uVar12 = SUB84(dVar14, 0);
         *(u32 *)((int)pdVar11 + -0x220) = *(u32 *)(a0 + 0x128);
         iVar4 = (*(int *)((int)pdVar11 + -0x220) * 2 + *(int *)((int)pdVar11 + -0x220)) * 8 + 0x8c2803f4;
-        timer_sub_031b68(a0, iVar4, pcVar9, a3);
+        copy6_to_fields(a0, iVar4, pcVar9, a3);
         timer_start_94(a0, iVar4, pcVar9);
         puVar8 = (u8 *)((int)pdVar11 + -0x40);
         puVar6 = a1;
@@ -2913,8 +2913,8 @@ u32 game_sub_04b168(int a0, u64 *a1, code *a2, code *a3) {
         *(u32 *)(a0 + 0xa0) = 0;
 
         *(u32 *)((int)pdVar10 + -0x1fc) = *(u32 *)(a0 + 0x128);
-        timer_sub_031b68(a0, (*(int *)((int)pdVar10 + -0x1fc) * 2 + *(int *)((int)pdVar10 + -0x1fc)) * 8 + 0x8c2803f4,
-                         pcVar7, a3);
+        copy6_to_fields(a0, (*(int *)((int)pdVar10 + -0x1fc) * 2 + *(int *)((int)pdVar10 + -0x1fc)) * 8 + 0x8c2803f4,
+                        pcVar7, a3);
         uVar11 = (u32)uVar14;
         puVar6 = (u8 *)((int)pdVar10 + -0x38);
         puVar3 = a1;
@@ -4417,7 +4417,7 @@ u32 game_sub_04d62c(int a0, int a1, int *a2, u32 a3) {
                 }
                 timer_stop_94(a0, iVar1, a2, a3);
                 uVar5 = (u32)uVar9;
-                timer_sub_031b68(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c2803f4, a2, a3);
+                copy6_to_fields(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c2803f4, a2, a3);
                 *(u32 *)(a0 + 0x280) = 0;
                 if (cVar13 == '\0') {
                     *(u32 *)(a0 + 0xa0) = 0;

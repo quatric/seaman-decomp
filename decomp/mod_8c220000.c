@@ -214,7 +214,7 @@ u32 gfxlib_sub_220658(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
                         }
                     }
                     a3 = (u8 *)((int)puVar7 + -0x24);
-                    gfxlib_sub_221300(iVar4, a1, a2, a3);
+                    keyframe_pair(iVar4, a1, a2, a3);
                     *(u32 *)((int)puVar7 + -0x4c) = *(u32 *)((int)puVar7 + -0x24);
                     *(u32 *)((int)puVar7 + -0x44) = *(u32 *)((int)puVar7 + -0x20);
                     *(int *)((int)puVar7 + -0x3c) = *(int *)((int)puVar7 + -0x3c) + 2;
@@ -593,7 +593,7 @@ u32 gfxlib_sub_220c88(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
                     }
                 }
                 a3 = &iStack_30;
-                gfxlib_sub_221300(iVar7, a1, a2, a3);
+                keyframe_pair(iVar7, a1, a2, a3);
                 in_fr5 = SUB84(dVar13, 0);
                 if (cVar18 == '\0') {
                     dVar14 = (double)CONCAT44((int)((u64)dVar14 >> 0x20), extraout_fr0);
@@ -653,7 +653,7 @@ u32 gfxlib_sub_220c88(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
                     }
                 }
                 a3 = &iStack_38;
-                gfxlib_sub_221300(iVar7, a1, a2, a3);
+                keyframe_pair(iVar7, a1, a2, a3);
                 iStack_60 = iStack_38;
                 iStack_54 = iStack_34;
                 iStack_50 = iStack_50 + 2;
@@ -903,12 +903,12 @@ int gfxlib_sub_22123c(int a0, int a1, int a2, u32 *a3) {
 }
 
 /*
- * gfxlib_sub_221300  0x8c221300
- * area name: in the gfxlib library code range
+ * keyframe_pair  0x8c221300
+ * the keys a1 and (a1 + 1) mod a2 of an 8-byte key table; 4 when the second is later
  * called by: gfxlib_sub_21daf2, gfxlib_sub_21e4f8, gfxlib_sub_21ee94, gfxlib_sub_21f2ae, gfxlib_sub_21fca8,
  * gfxlib_sub_220658, gfxlib_sub_220c88
  */
-int gfxlib_sub_221300(int a0, int a1, u32 a2, int *a3) {
+int keyframe_pair(int a0, int a1, u32 a2, int *a3) {
     int iVar1;
     int *piVar2;
     int iVar3;
@@ -1200,12 +1200,12 @@ int ta_sub_2218f4(int a0) {
 }
 
 /*
- * ta_sub_221916  0x8c221916
- * area name: sits between ta functions (same compilation unit)
+ * flags_4c0ed0_set  0x8c221916
+ * sets or clears (a1) flag a0 of the bit set at 0x8c4c0ed0
  * called by: Class_12ab2c_sub_09dde4, Class_12ab2c_sub_09de7c, Class_12ab2c_sub_09ea78, Class_12ab2c_sub_09edf0,
  * Class_12ab2c_sub_09efb4, game_sub_0c0444
  */
-u32 ta_sub_221916(int a0, int a1) {
+u32 flags_4c0ed0_set(int a0, int a1) {
     u32 auStack_20[8];
 
     switch_jump_r0(0x1c, auStack_20, &g_8c26d804);
@@ -1234,11 +1234,11 @@ u32 ta_sub_22194e(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u3
 }
 
 /*
- * ta_sub_22195c  0x8c22195c
- * area name: sits between ta functions (same compilation unit)
+ * light_set_vec_4c0ef4  0x8c22195c
+ * stores fr4..fr6 in light slot a0 (1-based, 0x20 bytes each at 0x8c4c0ef4)
  * called by: Class_12ab2c_sub_09ea78, Class_12ab2c_sub_09edf0, Vec3_sub_0e3f24, game_sub_0da88c, game_sub_0df8d0
  */
-u32 ta_sub_22195c(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 light_set_vec_4c0ef4(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int iVar1;
     u32 in_fr5;
     u32 in_fr4;

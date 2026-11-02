@@ -133,7 +133,7 @@ u8 **game_sub_0611cc(u8 **a0, int *a1, code *a2, char *a3) {
                 ((a0[0x220] == NULL && (uVar3 = get_field_a0_035724(*(int *)(a2 + 0x18), 1), (char)uVar3 == '\x02')))) {
                 pcVar11 = (code *)0x880;
                 a0[0x220] = (u8 *)0x1;
-                game_sub_0fa688(0x8c35468c, puVar6, 0x880, a3);
+                speech_sub_0fa688(0x8c35468c, puVar6, 0x880, a3);
             }
             uVar5 = get_field_a0_035724(*(int *)(a2 + 0x18), puVar6);
             ppuVar4 = (u8 **)(uVar5 & 0xff);
@@ -300,7 +300,7 @@ u8 **game_sub_0611cc(u8 **a0, int *a1, code *a2, char *a3) {
             break;
         case (u8 **)0x17:
             counter_set_clamped(*(int *)(a2 + 4) + 0x90, 1, pcVar11);
-            Class_12a078_sub_02cbbc(*(int *)(a2 + 4) + 0x90, 1);
+            counter_set_clamped_4(*(int *)(a2 + 4) + 0x90, 1);
             set_field_0_u8(*(int *)(a2 + 4) + 0x60, 0);
             if (a0[0x21f] == (u8 *)0x1) {
                 *(u8 *)(a0 + 0x26) = 9;
@@ -1226,8 +1226,8 @@ int get_field_44_s8(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * get_field_4_on_field_d8  0x8c0637d0
  * calls get_field_4_0637f8 on the member at +0xd8
- * called by: Vec3_sub_063838, game_sub_062b0c, game_sub_0c4e58, game_sub_0c6e74, game_sub_0c76d0, game_sub_0c8134,
- * game_sub_0c84f4, game_sub_0c91f4 (+9 more)
+ * called by: Vec3_sub_063838, Vec3_sub_0c84f4, game_sub_062b0c, game_sub_0c4e58, game_sub_0c6e74, game_sub_0c76d0,
+ * game_sub_0c8134, game_sub_0c91f4 (+9 more)
  */
 u32 get_field_4_on_field_d8(int a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
@@ -1238,7 +1238,7 @@ u32 get_field_4_on_field_d8(int a0, u32 unused_a1, u32 a2) {
 
 /*
  * get_field_4_0637f8  0x8c0637f8
- * called by: game_sub_0e2554, game_sub_100154, game_sub_10031c, game_sub_1003b0, get_field_4_on_field_d8
+ * called by: game_sub_100154, game_sub_10031c, game_sub_1003b0, get_field_4_on_field_d8, input_sub_0e2554
  */
 u32 get_field_4_0637f8(int a0) {
     return *(u32 *)(a0 + 4);
@@ -1713,7 +1713,7 @@ LAB_8c063f66:
             g_8c13690c = 0x2c;
             *(u32 *)(a0 + 0x848) = 0x36;
             g_8c136910 = 0x36;
-            game_sub_0fa6c8(0x8c35468c, 0x2c, pcVar6, ar7_01);
+            speech_sub_0fa6c8(0x8c35468c, 0x2c, pcVar6, ar7_01);
         }
         ppuVar3 = (u8 **)0x10c;
         *(u32 *)(a0 + 0x10c) = 0;
@@ -2234,7 +2234,7 @@ u32 game_sub_0656d4(int a0, int *a1, u32 *a2, u32 a3) {
     if (iVar1 == 2) {
         *(u32 *)(a0 + 0x14c) = 0;
     }
-    iVar1 = game_sub_0fa2b8(0x8c35468c, ar5_00);
+    iVar1 = speech_is_playing(0x8c35468c, ar5_00);
     if (iVar1 != 0)
         goto LAB_8c065be6;
     *(u32 *)(a0 + 0x94) = 0;
@@ -2318,7 +2318,7 @@ u32 game_sub_0656d4(int a0, int *a1, u32 *a2, u32 a3) {
     *(u32 *)(a0 + 900) = 0xffffffff;
     *(u32 *)(a0 + 0xfc) = 0;
 LAB_8c065be6:
-    iVar1 = game_sub_0fa2b8(0x8c35468c, ar5_00);
+    iVar1 = speech_is_playing(0x8c35468c, ar5_00);
     if ((iVar1 == 0) && ((*(int *)(a0 + 0x40) == 0xc || (*(int *)(a0 + 0x40) == 0xb)))) {
         set_field_770(a0 + 0x9c, 3, ar6_00, a3);
         *(u32 *)(a0 + 4) = 0;
@@ -3088,7 +3088,7 @@ u32 game_sub_066834(int a0, int *a1, u32 *a2, u32 a3) {
 u32 Class_12a078_m6_0670f0(void) {
     int iVar1;
 
-    iVar1 = game_sub_0fa2d8(0x8c35468c);
+    iVar1 = speech_sub_0fa2d8(0x8c35468c);
     return (u32)(iVar1 == 0);
 }
 
@@ -3807,7 +3807,7 @@ u32 Class_12a0c4_sub_0679cc(u8 **a0, u8 **a1, u8 **a2, u8 *a3) {
                         ppuVar9 = a0;
                     } else {
                         game_sub_068890(auStack_fd0, a1);
-                        uVar5 = game_sub_06afb0(a0, auStack_fd0);
+                        uVar5 = elapsed_ticks_since(a0, auStack_fd0);
                         dtor_delete_with_ac(auStack_fd0, 0xffffffff, ppuVar9, a3);
                         if (0x383f < (u16)uVar5) {
                             if (-1 < (int)a0[0x87]) {
@@ -3826,7 +3826,7 @@ u32 Class_12a0c4_sub_0679cc(u8 **a0, u8 **a1, u8 **a2, u8 *a3) {
                     ppuVar9 = a0;
                 } else {
                     game_sub_068890(auStack_179c, a1);
-                    uVar5 = game_sub_06afb0(a0, auStack_179c);
+                    uVar5 = elapsed_ticks_since(a0, auStack_179c);
                     dtor_delete_with_ac(auStack_179c, 0xffffffff, ppuVar9, a3);
                     if (0x383f < (u16)uVar5) {
                         if (-1 < (int)a0[0x87]) {
@@ -3852,7 +3852,7 @@ u32 Class_12a0c4_sub_0679cc(u8 **a0, u8 **a1, u8 **a2, u8 *a3) {
                 *(u8 ***)((int)a0[0x87] * 8 + 0x8c280a00) = a0;
             } else {
                 game_sub_068890(auStack_1f68, a1);
-                uVar5 = game_sub_06afb0(a0, auStack_1f68);
+                uVar5 = elapsed_ticks_since(a0, auStack_1f68);
                 dtor_delete_with_ac(auStack_1f68, 0xffffffff, ppuVar9, a3);
                 if (0x383f < (u16)uVar5) {
                     if (-1 < (int)a0[0x87]) {
@@ -3865,7 +3865,7 @@ u32 Class_12a0c4_sub_0679cc(u8 **a0, u8 **a1, u8 **a2, u8 *a3) {
             break;
         case (u8 *)0x3:
             game_sub_068890(auStack_2734, a1, &switchD_8c067a30::switchdataD_8c067a50, a3);
-            uVar3 = game_sub_06afb0(a0, auStack_2734);
+            uVar3 = elapsed_ticks_since(a0, auStack_2734);
             fVar11 = (float)(uVar3 & 0xffff);
             if (cVar16 == '\0') {
                 fVar14 = 600.0;
@@ -4255,7 +4255,7 @@ u32 Class_12a0c4_sub_068a4c(int a0, u32 a1, int *a2, u32 a3) {
     if (iVar1 == 0) {
         game_sub_068890(auStack_800, a1);
         uVar3 = SUB84(in_dr0, 0);
-        uVar2 = game_sub_06afb0(a0, auStack_800);
+        uVar2 = elapsed_ticks_since(a0, auStack_800);
         if (cVar11 == '\0') {
             in_dr14 = (double)CONCAT44((int)((u64)in_dr14 >> 0x20), *(u32 *)(a0 + 0x240));
             dVar5 = (double)CONCAT44(0x44610000, uVar3);
@@ -4444,7 +4444,7 @@ u32 Class_12a0c4_sub_068a4c(int a0, u32 a1, int *a2, u32 a3) {
     }
     uVar3 = SUB84(in_dr0, 0);
     game_sub_068890(auStack_fcc, a1);
-    uVar2 = game_sub_06afb0(a0, auStack_fcc);
+    uVar2 = elapsed_ticks_since(a0, auStack_fcc);
     if (cVar11 == '\0') {
         in_dr14 = (double)CONCAT44((int)((u64)in_dr14 >> 0x20), *(u32 *)(a0 + 0x240));
         dVar5 = (double)CONCAT44(0x44e10000, uVar3);
@@ -4490,7 +4490,7 @@ u32 Class_12a0c4_sub_068a4c(int a0, u32 a1, int *a2, u32 a3) {
 LAB_8c068bfc:
     uVar3 = SUB84(in_dr0, 0);
     game_sub_068890(auStack_1798, a1);
-    uVar2 = game_sub_06afb0(a0, auStack_1798);
+    uVar2 = elapsed_ticks_since(a0, auStack_1798);
     if (cVar11 == '\0') {
         in_dr14 = (double)CONCAT44((int)((u64)in_dr14 >> 0x20), *(u32 *)(a0 + 0x240));
         dVar5 = (double)CONCAT44(0x45610000, uVar3);
@@ -4613,7 +4613,7 @@ u32 Class_12a0c4_sub_068e64(int *a0, u32 a1, int *a2, u32 a3) {
     case 0:
         game_sub_068890(auStack_810, a1);
         uVar2 = SUB84(in_dr0, 0);
-        uVar1 = game_sub_06afb0(a0, auStack_810);
+        uVar1 = elapsed_ticks_since(a0, auStack_810);
         if (cVar13 == '\0') {
             in_dr14 = (double)CONCAT44((int)((u64)in_dr14 >> 0x20), a0[0x90]);
             dVar8 = (double)CONCAT44(0x44610000, uVar2);
@@ -4660,7 +4660,7 @@ u32 Class_12a0c4_sub_068e64(int *a0, u32 a1, int *a2, u32 a3) {
     case 1:
         uVar2 = SUB84(in_dr0, 0);
         game_sub_068890(auStack_fdc, a1);
-        uVar1 = game_sub_06afb0(a0, auStack_fdc);
+        uVar1 = elapsed_ticks_since(a0, auStack_fdc);
         if (cVar13 == '\0') {
             in_dr14 = (double)CONCAT44((int)((u64)in_dr14 >> 0x20), a0[0x90]);
             dVar8 = (double)CONCAT44(0x44e10000, uVar2);
@@ -4706,7 +4706,7 @@ u32 Class_12a0c4_sub_068e64(int *a0, u32 a1, int *a2, u32 a3) {
     case 2:
         uVar2 = SUB84(in_dr0, 0);
         game_sub_068890(auStack_17a8, a1);
-        uVar1 = game_sub_06afb0(a0, auStack_17a8);
+        uVar1 = elapsed_ticks_since(a0, auStack_17a8);
         if (cVar13 == '\0') {
             in_dr14 = (double)CONCAT44((int)((u64)in_dr14 >> 0x20), a0[0x90]);
             dVar8 = (double)CONCAT44(0x45610000, uVar2);
@@ -4753,7 +4753,7 @@ u32 Class_12a0c4_sub_068e64(int *a0, u32 a1, int *a2, u32 a3) {
         break;
     case 3:
         game_sub_068890(auStack_2740, a1);
-        uVar2 = game_sub_06afb0(a0, auStack_2740);
+        uVar2 = elapsed_ticks_since(a0, auStack_2740);
         bVar11 = 0x707f < (u16)uVar2;
         dtor_delete_with_ac(auStack_2740, 0xffffffff, piVar5, a3);
         a5 = NULL;
@@ -6716,11 +6716,11 @@ int game_sub_06af5c(int a0, u32 a1) {
 }
 
 /*
- * game_sub_06afb0  0x8c06afb0
- * area name: game code; nothing names its area yet
+ * elapsed_ticks_since  0x8c06afb0
+ * ticks from the time stored at +0x264 (day) / +0x266 (tick) to a1's, 0x3840 ticks a day
  * called by: Class_12a0c4_sub_0679cc, Class_12a0c4_sub_068a4c, Class_12a0c4_sub_068e64
  */
-int game_sub_06afb0(int a0, u32 a1) {
+int elapsed_ticks_since(int a0, u32 a1) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -7022,9 +7022,9 @@ u32 game_sub_06b460(int a0) {
 
     cVar11 = '\0';
     cVar10 = '\0';
-    gfxlib_sub_233dac(a0 + 0x254);
+    gfx_set_color4_4aa52c(a0 + 0x254);
     matrix_push(0, r5, r6, r7, in_stack_fffffef4);
-    ninja_sub_25b5d0(0, r5, r6, r7, in_stack_fffffef4);
+    touch_fields_30_3c(0, r5, r6, r7, in_stack_fffffef4);
     if (cVar11 == '\0') {
         dVar7 = (double)CONCAT44(0x47800000, *(u32 *)(a0 + 0x58));
     } else {
@@ -7530,7 +7530,7 @@ u32 game_sub_06b460(int a0) {
         gfxlib_sub_21bbb0(ar4_00, iVar9, ar6_00, ar6_00, in_stack_fffffef4);
     }
     matrix_pop_n(1);
-    uVar4 = gfxlib_sub_233dac(&g_8c136f2c);
+    uVar4 = gfx_set_color4_4aa52c(&g_8c136f2c);
     return uVar4;
 }
 
@@ -8138,7 +8138,7 @@ u8 *CHerb_SetPVMTexture(u32 unused_a0, u8 *a1, u32 a2, u32 a3) {
         (*(code *)(&sprintf))(auStack_10c, ar5_00, a2, a3, "CHerb::SetPVMTexture():%s");
         (*(code *)(&report_error_message))("PVM Texcount is 0..", auStack_10c, 0, 2);
     }
-    (*(code *)(&ta_sub_239170))(a1 + 8, *(u32 *)(a1 + 0x10), 0x8c4312a8, *(u32 *)(a1 + 4));
+    (*(code *)(&ptr_list_build_1c))(a1 + 8, *(u32 *)(a1 + 0x10), 0x8c4312a8, *(u32 *)(a1 + 4));
     return a1 + 8;
 }
 
@@ -8847,7 +8847,7 @@ u32 *Class_12a25c_m6_06e69c(int a0, u32 a1, u32 a2) {
 
     *(u32 *)(a0 + 0x128) = a1;
     iVar12 = *(int *)(a0 + 0x128);
-    timer_sub_031b68(a0, iVar12 * 0x18 + 0x8c280eb4, a2, iVar12);
+    copy6_to_fields(a0, iVar12 * 0x18 + 0x8c280eb4, a2, iVar12);
     uVar2 = g_8c13797c;
     uVar1 = g_8c137964;
     ar6_00 = g_8c137960;
@@ -9771,7 +9771,7 @@ code *Class_12a25c_sub_06f93c(int a0, u32 *a1, u32 unused_a2, code *a3) {
     case 0x14:
         if (*(int *)(a0 + 0x21c) == 1) {
             iVar2 = *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4;
-            timer_sub_031b68(a0, iVar2, puVar5, 0x21c);
+            copy6_to_fields(a0, iVar2, puVar5, 0x21c);
             if (cVar14 == '\0') {
                 dVar9 = (double)CONCAT44(0x3f000000, *(u32 *)(a0 + 0x38));
             } else {
@@ -9798,7 +9798,7 @@ code *Class_12a25c_sub_06f93c(int a0, u32 *a1, u32 unused_a2, code *a3) {
             timer_sub_031c74(a0, auStack_30, uVar1, a3);
             if (*(int *)(a0 + 0x40) == 0) {
                 a3 = (code *)0x8c280eb4;
-                timer_sub_031b68(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, uVar1, 0x8c280eb4);
+                copy6_to_fields(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, uVar1, 0x8c280eb4);
                 *(u32 *)(a0 + 300) = 0;
                 *(u32 *)(a0 + 0x2a0) = 2;
                 pcVar7 = NULL;

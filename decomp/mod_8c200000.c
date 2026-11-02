@@ -22,7 +22,7 @@ int shinobi_sub_200038(int a0, u32 a1, u32 unused_a2, u32 a3) {
         uVar3 = a1;
         iVar1 = shinobi_sub_1fd510(a0, a1);
         if (iVar1 == 0) {
-            shinobi_sub_1fdd1a(a0);
+            vmu_drive_reset(a0);
         } else {
             iVar1 = shinobi_sub_1fd550(a0, uVar3);
             if ((iVar1 != 0) && (*(char *)(a0 * iVar4 + 0x8c4783e0 + 8) != '\0')) {
@@ -64,12 +64,12 @@ int shinobi_sub_200038(int a0, u32 a1, u32 unused_a2, u32 a3) {
                                 uVar3 = shinobi_sub_1fff5e(a0, puVar2, uVar3, a3);
                                 (**(code **)(g_8c4783dc + 0x10))(uVar3, 2, iVar4, a3);
                             } else {
-                                shinobi_sub_20099e(a0, a5, iVar4);
+                                vmu_drive_write_like(a0, a5, iVar4);
                             }
-                            uVar3 = shinobi_sub_2009d0(a0, puVar2);
-                            shinobi_sub_20099e(a0, iVar4, uVar3);
+                            uVar3 = vmu_drive_read_like(a0, puVar2);
+                            vmu_drive_write_like(a0, iVar4, uVar3);
                             unused_a2 = 0xfffc;
-                            shinobi_sub_20099e(a0, puVar2, 0xfffc);
+                            vmu_drive_write_like(a0, puVar2, 0xfffc);
                         }
                         return iVar1;
                     }
@@ -113,7 +113,7 @@ u32 shinobi_sub_2001b8(int a0) {
             if (iVar2 < 0) {
                 return iVar2;
             }
-            uVar8 = shinobi_sub_2009d0(a0, uVar8 & 0xffff);
+            uVar8 = vmu_drive_read_like(a0, uVar8 & 0xffff);
             if ((uVar8 & 0xffff) == uVar1) {
                 return 0;
             }
@@ -151,7 +151,7 @@ u32 shinobi_sub_2001d0(int a0) {
             if (iVar2 < 0) {
                 return iVar2;
             }
-            uVar6 = shinobi_sub_2009d0(unaff_r12, uVar6 & 0xffff);
+            uVar6 = vmu_drive_read_like(unaff_r12, uVar6 & 0xffff);
             if ((uVar6 & 0xffff) == uVar1) {
                 return 0;
             }
@@ -189,9 +189,9 @@ u32 shinobi_sub_200226(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     if (0 < iVar5) {
         do {
             uVar3 = uVar1 & 0xffff;
-            uVar1 = shinobi_sub_2009d0(a0, uVar3);
+            uVar1 = vmu_drive_read_like(a0, uVar3);
             unused_a2 = a6_00;
-            shinobi_sub_20099e(a0, uVar3, a6_00);
+            vmu_drive_write_like(a0, uVar3, a6_00);
             if (((uVar1 & 0xffff) == a6) || ((uVar1 & 0xffff) == a6_00))
                 break;
             iVar7 = iVar7 + 1;
@@ -216,17 +216,17 @@ u32 shinobi_sub_200226(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
                 return iVar2;
             }
             uVar4 = 0xffff;
-            shinobi_sub_20099e(a0, uVar1 & 0xffff, 0xffff);
+            vmu_drive_write_like(a0, uVar1 & 0xffff, 0xffff);
             uVar1 = shinobi_sub_1fe15a(a0, a6_00);
         }
         if (iVar7 == 0) {
             uStack_2c = (u16)uVar1;
         }
         uVar3 = a6;
-        shinobi_sub_20099e(a0, uVar1 & 0xffff, a6);
+        vmu_drive_write_like(a0, uVar1 & 0xffff, a6);
         if (iVar7 != iVar5 + -1) {
             uVar4 = shinobi_sub_1fe15a(a0, a6_00);
-            shinobi_sub_20099e(a0, uVar1 & 0xffff, uVar4);
+            vmu_drive_write_like(a0, uVar1 & 0xffff, uVar4);
             uVar1 = (u32)(short)uVar4;
         }
         iVar7 = iVar7 + 1;
@@ -268,7 +268,7 @@ int shinobi_sub_200346(int a0, u32 unused_a1, int a2, u32 a3) {
         }
         if (*(char *)(iVar6 + 0x48 + iVar7) == '\0') {
             uVar5 = a5;
-            uVar4 = shinobi_sub_2009d0(a0, a5);
+            uVar4 = vmu_drive_read_like(a0, a5);
         } else {
             while (true) {
                 a2 = *(int *)(iVar6 + 0x28) + iVar7 * 0x200;
@@ -279,26 +279,26 @@ int shinobi_sub_200346(int a0, u32 unused_a1, int a2, u32 a3) {
                     return iVar2;
                 }
                 bVar1 = true;
-                uVar4 = shinobi_sub_2009d0(a0, a5);
+                uVar4 = vmu_drive_read_like(a0, a5);
                 ar6_00 = 0xffff;
-                shinobi_sub_20099e(a0, a5, 0xffff);
+                vmu_drive_write_like(a0, a5, 0xffff);
                 uVar5 = shinobi_sub_1fe15a(a0, 0xfffc);
                 if ((int)uVar5 < 0) {
                     return (int)(int)0xffffff04;
                 }
-                shinobi_sub_20099e(a0, uVar5, uVar4 & 0xffff);
+                vmu_drive_write_like(a0, uVar5, uVar4 & 0xffff);
                 if (iVar7 == 0) {
                     (**(code **)(g_8c4783dc + 0x10))(*(u32 *)(iVar6 + 0x20), 0x4a, uVar5, a3);
                     unaff_r8 = a5;
                     a5 = uVar5;
                 } else {
-                    shinobi_sub_20099e(a0, unaff_r8, uVar5);
+                    vmu_drive_write_like(a0, unaff_r8, uVar5);
                     unaff_r8 = a5;
                     a5 = uVar5;
                 }
             }
             uVar5 = a5;
-            uVar4 = shinobi_sub_2009d0(a0, a5);
+            uVar4 = vmu_drive_read_like(a0, a5);
             *(u8 *)(iVar6 + 0x48 + iVar7) = 0;
         }
         iVar7 = iVar7 + 1;
@@ -663,10 +663,10 @@ u32 shinobi_sub_2006dc(int a0) {
             iVar1 = (*(code *)(&shinobi_sub_1fbc44))(a0, *(int *)(*(int *)(iVar3 + 0x1c) + 0xc) + iVar4,
                                                      iVar4 * 0x200 + *(int *)(iVar3 + 0x24));
             if (iVar1 < 0) {
-                shinobi_sub_20099e(a0, *(int *)(*(int *)(iVar3 + 0x1c) + 0xc) + iVar4, ar6_01);
+                vmu_drive_write_like(a0, *(int *)(*(int *)(iVar3 + 0x1c) + 0xc) + iVar4, ar6_01);
                 return iVar1;
             }
-            shinobi_sub_20099e(a0, *(int *)(*(int *)(iVar3 + 0x1c) + 0xc) + iVar4, ar6_00);
+            vmu_drive_write_like(a0, *(int *)(*(int *)(iVar3 + 0x1c) + 0xc) + iVar4, ar6_00);
             iVar4 = iVar4 + 1;
         } while (iVar4 < iVar2);
     }
@@ -691,10 +691,10 @@ u32 shinobi_sub_2006fa(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
             iVar1 = (*(code *)(&shinobi_sub_1fbc44))(unaff_r12, *(int *)(*(int *)(unaff_r13 + 0x1c) + 0xc) + unaff_r14,
                                                      unaff_r14 * 0x200 + *(int *)(unaff_r13 + 0x24), a3);
             if (iVar1 < 0) {
-                shinobi_sub_20099e(unaff_r12, *(int *)(*(int *)(unaff_r13 + 0x1c) + 0xc) + unaff_r14, unaff_r8 + 5);
+                vmu_drive_write_like(unaff_r12, *(int *)(*(int *)(unaff_r13 + 0x1c) + 0xc) + unaff_r14, unaff_r8 + 5);
                 return iVar1;
             }
-            shinobi_sub_20099e(unaff_r12, *(int *)(*(int *)(unaff_r13 + 0x1c) + 0xc) + unaff_r14, unaff_r8);
+            vmu_drive_write_like(unaff_r12, *(int *)(*(int *)(unaff_r13 + 0x1c) + 0xc) + unaff_r14, unaff_r8);
             unaff_r14 = unaff_r14 + 1;
         } while (unaff_r14 < iVar2);
     }
@@ -728,7 +728,7 @@ int shinobi_sub_20075a(int a0) {
         iVar7 = 0;
         if (0 < iVar6) {
             do {
-                uVar3 = shinobi_sub_2009d0(a0, iVar2 - iVar7);
+                uVar3 = vmu_drive_read_like(a0, iVar2 - iVar7);
                 if ((uVar3 & 0xffff) != uVar1) {
                     iVar4 = (iVar2 - iVar7) + -1;
                     break;
@@ -770,7 +770,7 @@ int shinobi_sub_200772(u32 unused_a0, int a1) {
         iVar5 = 0;
         if (0 < iVar4) {
             do {
-                uVar2 = shinobi_sub_2009d0(unaff_r10, iVar1 - iVar5);
+                uVar2 = vmu_drive_read_like(unaff_r10, iVar1 - iVar5);
                 if ((uVar2 & 0xffff) != ar5_00) {
                     iVar3 = (iVar1 - iVar5) + -1;
                     break;
@@ -820,7 +820,7 @@ int shinobi_sub_2007f0(int a0, int a1, int a2) {
         for (iVar3 = 0; bVar1 = true, iVar3 < *(int *)(*(int *)(iVar4 + 0x1c) + 0x10); iVar3 = iVar3 + 1) {
             a1 = *(int *)(*(int *)(iVar4 + 0x1c) + 0xc) + iVar3;
             a2 = ar6_00;
-            shinobi_sub_20099e(a0, a1, ar6_00);
+            vmu_drive_write_like(a0, a1, ar6_00);
         }
     }
     if (bVar1) {
@@ -866,7 +866,7 @@ int shinobi_sub_20080e(u32 unused_a0, int a1, int a2, u32 a3) {
              iVar2 = iVar2 + 1) {
             a1 = *(int *)(*(int *)(iVar3 + 0x1c) + 0xc) + iVar2;
             a2 = a6;
-            shinobi_sub_20099e(unaff_r12, a1, a6);
+            vmu_drive_write_like(unaff_r12, a1, a6);
         }
     }
     if (unaff_r13 != 0) {
@@ -921,7 +921,7 @@ u32 shinobi_sub_2008f4(u32 a0, u32 unused_a1, int a2, u32 a3) {
         if (-1 < iVar1)
             break;
         a2 = ar6_00;
-        shinobi_sub_20099e(a0, ar5_01, ar6_00);
+        vmu_drive_write_like(a0, ar5_01, ar6_00);
     }
     return ar5_01;
 }
@@ -945,7 +945,7 @@ u32 shinobi_sub_200900(u32 unused_a0, u32 unused_a1, int a2, u32 a3) {
         if (-1 < iVar1)
             break;
         a2 = unaff_r11 + -2;
-        shinobi_sub_20099e(unaff_r13, a5, unaff_r11 + -2);
+        vmu_drive_write_like(unaff_r13, a5, unaff_r11 + -2);
     }
     return a5;
 }
@@ -971,7 +971,7 @@ u32 shinobi_sub_20093a(int a0, u32 a1) {
         if (*(int *)(*(int *)(iVar4 + 0x1c) + 0x30) <= ar5_00) {
             return a1 & 0xffff;
         }
-        pbVar2 = (u8 *)shinobi_sub_200a84(a0, ar5_00);
+        pbVar2 = (u8 *)vmu_dir_entry(a0, ar5_00);
         if (((*pbVar2 == 0x33) || (*pbVar2 == 0xcc)) &&
             (uVar3 = (**(code **)(*piVar1 + 0xc))(2, uVar5), (a1 & 0xffff) == (uVar3 & 0xffff)))
             break;
@@ -998,7 +998,7 @@ u32 shinobi_sub_20094e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
         if (*(int *)(*(int *)(in_MACL + in_r3 + 0x1c) + 0x30) <= unaff_r14) {
             return a1 & 0xffff;
         }
-        a4 = (u8 *)shinobi_sub_200a84(unaff_r12, unaff_r14);
+        a4 = (u8 *)vmu_dir_entry(unaff_r12, unaff_r14);
         if (((*a4 == 0x33) || (*a4 == 0xcc)) &&
             (uVar2 = (**(code **)(*piVar1 + 0xc))(a4, 2, a2, a3), (a1 & 0xffff) == (uVar2 & 0xffff)))
             break;
@@ -1008,12 +1008,12 @@ u32 shinobi_sub_20094e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_20099e  0x8c20099e
- * area name: in the shinobi library code range
+ * vmu_drive_write_like  0x8c20099e
+ * calls the drive's operation +0x10 for block a1 when it is within the card (probably a block write)
  * called by: shinobi_sub_1fde30, shinobi_sub_1febd6, shinobi_sub_1febe6, shinobi_sub_1fecf2, shinobi_sub_1ff478,
  * shinobi_sub_200038, shinobi_sub_200226, shinobi_sub_200346 (+6 more)
  */
-int shinobi_sub_20099e(int a0, int a1, u32 a2) {
+int vmu_drive_write_like(int a0, int a1, u32 a2) {
     u32 uVar1;
     int iVar2;
 
@@ -1028,12 +1028,12 @@ int shinobi_sub_20099e(int a0, int a1, u32 a2) {
 }
 
 /*
- * shinobi_sub_2009d0  0x8c2009d0
- * area name: in the shinobi library code range
+ * vmu_drive_read_like  0x8c2009d0
+ * calls the drive's operation +0xc for block a1 (probably a block read)
  * called by: shinobi_sub_1fe350, shinobi_sub_1fe466, shinobi_sub_1fe646, shinobi_sub_1fecf2, shinobi_sub_1fee6c,
  * shinobi_sub_1ff478, shinobi_sub_1fffca, shinobi_sub_1fffd8 (+11 more)
  */
-u32 shinobi_sub_2009d0(int a0, int a1) {
+u32 vmu_drive_read_like(int a0, int a1) {
     u32 uVar1;
 
     /* WARNING: Could not recover jumptable at 0x8c2009ec. Too many branches */
@@ -1074,21 +1074,21 @@ int shinobi_sub_200a00(int a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_200a84  0x8c200a84
- * area name: in the shinobi library code range
+ * vmu_dir_entry  0x8c200a84
+ * address of 32-byte directory entry a1 of memory-card drive a0 (drives are 0x148 bytes at 0x8c4783e0)
  * called by: shinobi_sub_1fe646, shinobi_sub_1fe7aa, shinobi_sub_1fe9ae, shinobi_sub_1ff110, shinobi_sub_1ff336,
  * shinobi_sub_1ff478, shinobi_sub_1ff72e, shinobi_sub_1ff844 (+6 more)
  */
-int shinobi_sub_200a84(int a0, int a1) {
+int vmu_dir_entry(int a0, int a1) {
     return a1 * 0x20 + *(int *)(a0 * 0x148 + 0x8c4783e0 + 0x28);
 }
 
 /*
- * shinobi_sub_200a9c  0x8c200a9c
- * area name: in the shinobi library code range
+ * vmu_fat_mark  0x8c200a9c
+ * marks block a1 in drive a0's map at +0x48
  * called by: shinobi_sub_1fe9ae, shinobi_sub_1ff478, shinobi_sub_1ff72e, shinobi_sub_1ff844, shinobi_sub_1ffa54
  */
-int shinobi_sub_200a9c(int a0, int a1) {
+int vmu_fat_mark(int a0, int a1) {
     int iVar1;
 
     iVar1 = a0 * 0x148 + 0x8c4783e0 + 0x48;
@@ -1161,11 +1161,11 @@ int shinobi_sub_200b10(int a0, u32 a1) {
     if (iVar1 < 0) {
         iVar1 = (int)(int)0xffffff05;
     } else {
-        shinobi_sub_200a84(a0, iVar1);
+        vmu_dir_entry(a0, iVar1);
         if ((int)uStack_34 < *(int *)(*(int *)(iVar3 + 0x1c) + 0x30)) {
             a5 = uStack_34;
             for (iVar1 = 0; iVar1 < iStack_18; iVar1 = iVar1 + 1) {
-                uVar2 = shinobi_sub_2009d0(a0, a5);
+                uVar2 = vmu_drive_read_like(a0, a5);
                 uVar2 = uVar2 & 0xffff;
                 if (iVar1 == iStack_18 + -1) {
                     if (uVar2 != 0xfffa)
@@ -1788,7 +1788,7 @@ u32 shinobi_sub_20135c(int a0, u32 a1, u32 a2) {
             if (*(int *)(a0 + 0x34) == 0) {
                 return 0xffff0000;
             }
-            uVar1 = shinobi_sub_2009d0(ar4_00, *(u32 *)(a0 + 0x40));
+            uVar1 = vmu_drive_read_like(ar4_00, *(u32 *)(a0 + 0x40));
             uVar2 = uVar2 + 1;
             *(u32 *)(a0 + 0x40) = uVar1 & 0xffff;
             *(int *)(a0 + 0x34) = *(int *)(a0 + 0x34) + -1;
@@ -1820,7 +1820,7 @@ u32 shinobi_sub_20136c(void) {
         if (*(int *)(unaff_r14 + 0x34) == 0) {
             return 0xffff0000;
         }
-        uVar1 = shinobi_sub_2009d0(a4, *(u32 *)(unaff_r14 + 0x40));
+        uVar1 = vmu_drive_read_like(a4, *(u32 *)(unaff_r14 + 0x40));
         unaff_r13 = unaff_r13 + 1;
         *(u32 *)(unaff_r14 + 0x40) = uVar1 & 0xffff;
         *(int *)(unaff_r14 + 0x34) = *(int *)(unaff_r14 + 0x34) + -1;
@@ -1900,10 +1900,10 @@ int shinobi_sub_20147c(u32 a0, u32 a1, u16 *a2) {
     if (a5 < 0) {
         a5 = (int)(int)0xffffff05;
     } else {
-        shinobi_sub_200a84(a0, a5);
+        vmu_dir_entry(a0, a5);
         *a2 = (short)uStack_34;
         for (iVar2 = 0; a2 = a2 + 1, iVar2 < iStack_18; iVar2 = iVar2 + 1) {
-            uVar1 = shinobi_sub_2009d0(a0, uStack_34);
+            uVar1 = vmu_drive_read_like(a0, uStack_34);
             uStack_34 = uVar1 & 0xffff;
             *a2 = (short)uVar1;
         }
@@ -4633,22 +4633,22 @@ u32 shinobi_sub_203400(void) {
     iVar3 = g_8c275408;
     while (iVar2 = g_8c275400, iVar3 != 0) {
         iVar2 = *(int *)(iVar3 + 8);
-        in_r0 = shinobi_sub_204e6c(iVar3);
+        in_r0 = pool47eba8_free(iVar3);
         iVar3 = iVar2;
     }
     while (iVar3 = g_8c27541c, iVar2 != 0) {
         iVar3 = *(int *)(iVar2 + 8);
-        in_r0 = shinobi_sub_204e6c(iVar2);
+        in_r0 = pool47eba8_free(iVar2);
         iVar2 = iVar3;
     }
     while (iVar2 = g_8c275414, iVar3 != 0) {
         iVar2 = *(int *)(iVar3 + 8);
-        in_r0 = shinobi_sub_204e6c(iVar3);
+        in_r0 = pool47eba8_free(iVar3);
         iVar3 = iVar2;
     }
     while (iVar2 != 0) {
         iVar3 = *(int *)(iVar2 + 8);
-        in_r0 = shinobi_sub_204e6c(iVar2);
+        in_r0 = pool47eba8_free(iVar2);
         iVar2 = iVar3;
     }
     ar6_00 = &g_8c47eba8;
@@ -4693,25 +4693,25 @@ u32 shinobi_sub_203406(void) {
     iVar1 = unaff_r13[2];
     while (iVar1 != 0) {
         iVar3 = *(int *)(iVar1 + 8);
-        shinobi_sub_204e6c(iVar1);
+        pool47eba8_free(iVar1);
         iVar1 = iVar3;
     }
     iVar1 = *unaff_r13;
     while (iVar1 != 0) {
         iVar3 = *(int *)(iVar1 + 8);
-        shinobi_sub_204e6c(iVar1);
+        pool47eba8_free(iVar1);
         iVar1 = iVar3;
     }
     iVar1 = unaff_r13[7];
     while (iVar1 != 0) {
         iVar3 = *(int *)(iVar1 + 8);
-        shinobi_sub_204e6c(iVar1);
+        pool47eba8_free(iVar1);
         iVar1 = iVar3;
     }
     iVar1 = unaff_r13[5];
     while (iVar1 != 0) {
         iVar3 = *(int *)(iVar1 + 8);
-        shinobi_sub_204e6c(iVar1);
+        pool47eba8_free(iVar1);
         iVar1 = iVar3;
     }
     ar6_00 = &g_8c47eba8;
@@ -5812,7 +5812,7 @@ u32 shinobi_sub_2043d4(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
         return 3;
     }
     if (*(u32 *)(ar6_00 + 8) == a2) {
-        shinobi_sub_204ed2(&g_8c275408 + iVar2 * 5, &g_8c27540c + iVar2 * 5, ar6_00, 0);
+        dlist_unlink(&g_8c275408 + iVar2 * 5, &g_8c27540c + iVar2 * 5, ar6_00, 0);
         shinobi_sub_204e92(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, ar6_00);
         *(u32 *)(a3 + 0x1c) = *(u32 *)(ar6_00 + 6);
         *(int *)(ar6_00 + 10) = a3;
@@ -5861,7 +5861,7 @@ u32 shinobi_sub_2043d4(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
                 }
                 ain0 = pool47eba8_alloc(puVar3, iVar4, iVar5, a7);
                 if (ain0 == 0) {
-                    shinobi_sub_204e6c(ar6_01);
+                    pool47eba8_free(ar6_01);
                     return 3;
                 }
                 iVar5 = *(int *)(ar6_00 + 8);
@@ -5958,7 +5958,7 @@ u32 shinobi_sub_2046d2(u32 a0, u32 a1, u32 *a2, u32 a3) {
     } else {
         sVar6 = (short)a3;
         if (*(u32 *)(ar6_00 + 8) == a1) {
-            shinobi_sub_204ed2(&g_8c275408 + iVar7 * 5, &g_8c27540c + iVar7 * 5, ar6_00, a3);
+            dlist_unlink(&g_8c275408 + iVar7 * 5, &g_8c27540c + iVar7 * 5, ar6_00, a3);
             shinobi_sub_204e92(&g_8c275400 + iVar7 * 5, &g_8c275404 + iVar7 * 5, ar6_00);
             *ar6_00 = 1;
             if (sVar6 == 8) {
@@ -6042,7 +6042,7 @@ u32 shinobi_sub_2048aa(u32 a0, u32 a1, int a2, u32 a3) {
         uVar5 = 3;
     } else {
         if (*(u32 *)(ar6_00 + 8) == a1) {
-            shinobi_sub_204ed2(&g_8c275408 + iVar7 * 5, &g_8c27540c + iVar7 * 5, ar6_00, a3);
+            dlist_unlink(&g_8c275408 + iVar7 * 5, &g_8c27540c + iVar7 * 5, ar6_00, a3);
             shinobi_sub_204e92(&g_8c275400 + iVar7 * 5, &g_8c275404 + iVar7 * 5, ar6_00);
             *(u32 *)(a2 + 0x1c) = *(u32 *)(ar6_00 + 6);
             *(int *)(ar6_00 + 10) = a2;
@@ -6158,7 +6158,7 @@ u32 shinobi_sub_2049ec(u32 a0, u32 a1, int a2, int a3) {
             return uVar4;
         }
         if (*(u32 *)(ar6_00 + 8) == a6) {
-            shinobi_sub_204ed2(&g_8c275408 + iVar2 * 5, &g_8c27540c + iVar2 * 5, ar6_00, a3);
+            dlist_unlink(&g_8c275408 + iVar2 * 5, &g_8c27540c + iVar2 * 5, ar6_00, a3);
             shinobi_sub_204e92(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, ar6_00);
             *(u32 *)(a2 + 8) = *(u32 *)(ar6_00 + 6);
             *(int *)(ar6_00 + 10) = a2;
@@ -6279,7 +6279,7 @@ u32 shinobi_sub_204cfc(u32 a0, u16 *a1, u32 unused_a2, u32 a3) {
     *a1 = *a1 & 0xfffb;
     ar5_00 = &g_8c275404 + iVar4 * 5;
     ar6_00 = a1;
-    shinobi_sub_204ed2(&g_8c275400 + iVar4 * 5, ar5_00, a1, a3);
+    dlist_unlink(&g_8c275400 + iVar4 * 5, ar5_00, a1, a3);
     (&g_8c275410)[iVar4 * 5] = (&g_8c275410)[iVar4 * 5] + *(int *)(a1 + 8);
     puVar5 = (u16 *)(&g_8c275408)[iVar4 * 5];
     puVar2 = NULL;
@@ -6306,10 +6306,10 @@ u32 shinobi_sub_204cfc(u32 a0, u16 *a1, u32 unused_a2, u32 a3) {
             } else {
                 *(int *)(a1 + 8) = *(int *)(a1 + 8) + *(int *)(puVar5 + 8);
             }
-            shinobi_sub_204e6c(puVar5);
+            pool47eba8_free(puVar5);
             ar5_00 = &g_8c27540c + iVar4 * 5;
             ar6_00 = a1;
-            shinobi_sub_204ed2(&g_8c275408 + iVar4 * 5, ar5_00, a1, a3);
+            dlist_unlink(&g_8c275408 + iVar4 * 5, ar5_00, a1, a3);
             puVar5 = (u16 *)(&g_8c275408)[iVar4 * 5];
             puVar2 = NULL;
             while (puVar1 = puVar5, puVar1 != NULL) {
@@ -6357,12 +6357,12 @@ u16 *pool47eba8_alloc(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_204e6c  0x8c204e6c
- * area name: in the shinobi library code range
+ * pool47eba8_free  0x8c204e6c
+ * frees entry a0 of the pool at 0x8c47eba8 (pairs with pool47eba8_alloc)
  * called by: shinobi_sub_203400, shinobi_sub_203406, shinobi_sub_2043d4, shinobi_sub_204cfc, ta_fifo_2050cc,
  * ta_fifo_2050de, ta_fifo_2052f2
  */
-u32 shinobi_sub_204e6c(u16 *a0) {
+u32 pool47eba8_free(u16 *a0) {
     u32 uVar1;
     u32 in_r0;
     u16 *puVar2;
@@ -6432,12 +6432,12 @@ u32 shinobi_sub_204eb6(int *a0, int a1, int a2) {
 }
 
 /*
- * shinobi_sub_204ed2  0x8c204ed2
- * area name: in the shinobi library code range
+ * dlist_unlink  0x8c204ed2
+ * unlinks node a2 (prev +4, next +8) from the list with head *a0 and tail *a1
  * called by: shinobi_sub_2043d4, shinobi_sub_2046d2, shinobi_sub_2048aa, shinobi_sub_2049ec, shinobi_sub_204cfc,
  * shinobi_sub_205020, ta_fifo_2050cc, ta_fifo_2050de (+1 more)
  */
-u32 shinobi_sub_204ed2(u32 *a0, u32 *a1, int a2, u32 a3) {
+u32 dlist_unlink(u32 *a0, u32 *a1, int a2, u32 a3) {
     u32 in_r0;
     int iVar1;
 
@@ -6530,7 +6530,7 @@ u32 shinobi_sub_205020(int *a0, int *a1, u32 unused_a2, u32 a3, u32 ain0) {
         } while (iVar1 != 0);
         if (1 < iVar3) {
             if (*a1 != iVar5) {
-                shinobi_sub_204ed2(a0, a1, iVar5, a3);
+                dlist_unlink(a0, a1, iVar5, a3);
                 ain0 = shinobi_sub_204eb6(a1, iVar5, *a1);
             }
             iVar4 = iVar4 + -1;
@@ -6551,7 +6551,7 @@ u32 shinobi_sub_205020(int *a0, int *a1, u32 unused_a2, u32 a3, u32 ain0) {
                         } while (iVar2 < iVar3);
                     }
                     if (ar6_00 != iVar1) {
-                        shinobi_sub_204ed2(a0, a1, iVar1, a3);
+                        dlist_unlink(a0, a1, iVar1, a3);
                         ain0 = shinobi_sub_204eb6(a1, iVar1, ar6_00);
                     }
                     iVar3 = iVar3 + -1;
@@ -6677,8 +6677,8 @@ u32 ta_fifo_2050cc(int *a0, int a1, u32 *a2, int a3) {
                     *(int *)(iVar8 + 0x10) = *(int *)(iVar8 + 0x10) + ar6_00[4];
                     iVar3 = a1;
                     a2 = ar6_00;
-                    shinobi_sub_204ed2(a0, a1, ar6_00, a3);
-                    shinobi_sub_204e6c(ar6_00);
+                    dlist_unlink(a0, a1, ar6_00, a3);
+                    pool47eba8_free(ar6_00);
                 }
             }
             if ((puVar9 != NULL) && (*(int *)(puVar9 + 6) < *(int *)(iVar8 + 0xc))) {
@@ -6809,8 +6809,8 @@ u32 ta_fifo_2050de(u32 unused_a0, int a1, u32 *a2, int a3) {
                     *(int *)(iVar6 + 0x10) = *(int *)(iVar6 + 0x10) + ar6_00[4];
                     a1 = unaff_r9;
                     a2 = ar6_00;
-                    shinobi_sub_204ed2(unaff_r8, unaff_r9, ar6_00, a3);
-                    shinobi_sub_204e6c(ar6_00);
+                    dlist_unlink(unaff_r8, unaff_r9, ar6_00, a3);
+                    pool47eba8_free(ar6_00);
                 }
             }
             if ((puVar7 != NULL) && (*(int *)(puVar7 + 6) < *(int *)(iVar6 + 0xc))) {
@@ -6873,7 +6873,7 @@ u32 ta_fifo_2052f2(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
         return 3;
     }
     if (*(u32 *)(ar6_00 + 8) == a2) {
-        shinobi_sub_204ed2(&g_8c275408 + iVar2 * 5, &g_8c27540c + iVar2 * 5, ar6_00, 0);
+        dlist_unlink(&g_8c275408 + iVar2 * 5, &g_8c27540c + iVar2 * 5, ar6_00, 0);
         shinobi_sub_204e92(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, ar6_00);
         *(u32 *)(a3 + 8) = *(u32 *)(ar6_00 + 6);
         *(int *)(ar6_00 + 10) = a3;
@@ -6922,7 +6922,7 @@ u32 ta_fifo_2052f2(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
                 }
                 ain0 = pool47eba8_alloc(puVar3, iVar4, iVar5, a7);
                 if (ain0 == 0) {
-                    shinobi_sub_204e6c(ar6_01);
+                    pool47eba8_free(ar6_01);
                     return 3;
                 }
                 iVar5 = *(int *)(ar6_00 + 8);
@@ -9268,12 +9268,12 @@ u32 ta_fifo_2081e0(u32 a0, int a1, int a2) {
 }
 
 /*
- * ta_sub_20820a  0x8c20820a
- * area name: sits between ta functions (same compilation unit)
+ * ta_param_word_count  0x8c20820a
+ * number of colour words a polygon header with flags a0 needs
  * called by: shinobi_sub_208484, shinobi_sub_208680, shinobi_sub_2087e4, shinobi_sub_208980, shinobi_sub_208b00,
  * shinobi_sub_208e00, shinobi_sub_2090e0, shinobi_sub_209380 (+7 more)
  */
-int ta_sub_20820a(u32 a0, u32 a1, u32 a2) {
+int ta_param_word_count(u32 a0, u32 a1, u32 a2) {
     int iVar1;
 
     iVar1 = 1;
@@ -9307,11 +9307,11 @@ int ta_param_push1_if(u32 a0, int a1, u32 a2) {
 }
 
 /*
- * ta_sub_20823c  0x8c20823c
- * area name: sits between ta functions (same compilation unit)
+ * ta_param_push_color_if  0x8c20823c
+ * appends the packed colour a2 to the polygon parameter buffer when a0 has bit 25
  * called by: shinobi_sub_208980, shinobi_sub_208e00, shinobi_sub_209380, shinobi_sub_209a40, shinobi_sub_209e80
  */
-int ta_sub_20823c(u32 a0, int a1, u32 a2) {
+int ta_param_push_color_if(u32 a0, int a1, u32 a2) {
     int iVar1;
     int iVar2;
 
@@ -9419,7 +9419,7 @@ u32 ta_sub_208380(int *a0) {
     g_8c4a9c84 = *(u32 *)(aiStack_10[0] + 0xc);
     g_8c4a9c88 = *(u32 *)(aiStack_10[0] + 0x18);
     g_8c4a9d48 = 0x3c;
-    ar4_00 = ta_sub_20820a(g_8c4a9d4c, 0x3c, &iStack_14);
+    ar4_00 = ta_param_word_count(g_8c4a9d4c, 0x3c, &iStack_14);
     ta_fifo_2081e0(ar4_00, 0, 0);
     g_8c4a9d5c = *(u32 *)(iVar1 + 0xc);
     return 0;
@@ -9459,7 +9459,7 @@ u32 shinobi_sub_208484(int *a0) {
                  (int)(*(float *)(aiStack_10[0] + 0x14) * 255.0) << 0x10 |
                  (int)(*(float *)(aiStack_10[0] + 0x18) * 255.0) << 8 | (int)(*(float *)(aiStack_10[0] + 0x1c) * 255.0);
     g_8c4a9d48 = 0x3c;
-    ar4_00 = ta_sub_20820a(g_8c4a9d4c, 0x3c, &iStack_14);
+    ar4_00 = ta_param_word_count(g_8c4a9d4c, 0x3c, &iStack_14);
     ta_fifo_2081e0(ar4_00, 0, 0);
     g_8c4a9d5c = *(u32 *)(iVar1 + 0xc);
     return 0;
@@ -9499,7 +9499,7 @@ u32 shinobi_sub_208680(int *a0) {
     g_8c4a9c88 = (u32)(*(float *)(aiStack_10[0] + 0x18) * 255.0);
     g_8c4a9c88 = g_8c4a9c88 << 0x18 | g_8c4a9c88 << 0x10 | g_8c4a9c88 << 8 | g_8c4a9c88;
     g_8c4a9d48 = 0x3c;
-    ar4_00 = ta_sub_20820a(g_8c4a9d4c, 0x3c, aiStack_10);
+    ar4_00 = ta_param_word_count(g_8c4a9d4c, 0x3c, aiStack_10);
     ta_fifo_2081e0(ar4_00, 0, 0);
     g_8c4a9d5c = *(u32 *)(iVar1 + 0xc);
     return 0;
@@ -9551,7 +9551,7 @@ u32 shinobi_sub_2087e4(int *a0) {
     uVar6 = *(u32 *)(iVar5 + 0x1c);
     g_8c4a9d48 = ta_param_push1_if(uVar2, a5, uVar6);
     g_8c4a9d48 = g_8c4a9d48 << 2;
-    uVar2 = ta_sub_20820a(uVar2, a5, uVar6);
+    uVar2 = ta_param_word_count(uVar2, a5, uVar6);
     ta_fifo_2081e0(uVar2, 0, 0);
     g_8c4a9d5c = *(u32 *)(iVar4 + 0xc);
     return 0;
@@ -9579,25 +9579,25 @@ u32 shinobi_sub_208980(int *a0) {
     g_8c4a9c5c = *(u32 *)(ain0 + 4);
     g_8c4a9c60 = *(u32 *)(ain0 + 8);
     g_8c4a9c64 = *(u32 *)(ain0 + 0xc);
-    iVar1 = ta_sub_20823c(g_8c4a9d4c, 6, *(u32 *)(ain0 + 0x10));
+    iVar1 = ta_param_push_color_if(g_8c4a9d4c, 6, *(u32 *)(ain0 + 0x10));
     *(u32 *)(&g_8c4a9c50 + iVar1 * 4) = *(u32 *)(ain0 + 0x18);
     iVar1 = ta_param_push1_if(uVar2, iVar1 + 1, *(u32 *)(ain0 + 0x1c));
     *(u32 *)(&g_8c4a9c50 + iVar1 * 4) = *(u32 *)(iVar3 + 4);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 1) * 4) = *(u32 *)(iVar3 + 8);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 2) * 4) = *(u32 *)(iVar3 + 0xc);
-    iVar1 = ta_sub_20823c(uVar2, iVar1 + 3, *(u32 *)(iVar3 + 0x10));
+    iVar1 = ta_param_push_color_if(uVar2, iVar1 + 3, *(u32 *)(iVar3 + 0x10));
     *(u32 *)(&g_8c4a9c50 + iVar1 * 4) = *(u32 *)(iVar3 + 0x18);
     iVar1 = ta_param_push1_if(uVar2, iVar1 + 1, *(u32 *)(ain0 + 0x1c));
     *(u32 *)(&g_8c4a9c50 + iVar1 * 4) = *(u32 *)(iVar4 + 4);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 1) * 4) = *(u32 *)(iVar4 + 8);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 2) * 4) = *(u32 *)(iVar4 + 0xc);
-    iVar1 = ta_sub_20823c(uVar2, iVar1 + 3, *(u32 *)(iVar4 + 0x10));
+    iVar1 = ta_param_push_color_if(uVar2, iVar1 + 3, *(u32 *)(iVar4 + 0x10));
     iVar3 = iVar1 + 1;
     *(u32 *)(&g_8c4a9c50 + iVar1 * 4) = *(u32 *)(iVar4 + 0x18);
     a6 = *(u32 *)(ain0 + 0x1c);
     g_8c4a9d48 = ta_param_push1_if(uVar2, iVar3, a6);
     g_8c4a9d48 = g_8c4a9d48 << 2;
-    uVar2 = ta_sub_20820a(uVar2, iVar3, a6);
+    uVar2 = ta_param_word_count(uVar2, iVar3, a6);
     ta_fifo_2081e0(uVar2, 0, 0);
     g_8c4a9d5c = *(u32 *)(ain0 + 0xc);
     return 0;
@@ -9943,7 +9943,7 @@ u32 shinobi_sub_208b00(int *a0) {
     uVar11 = iVar3 << 0x18 | iVar9 << 0x10 | iVar10 << 8 | uVar11;
     g_8c4a9d48 = ta_param_push1_if(uVar2, iVar8, uVar11);
     g_8c4a9d48 = g_8c4a9d48 << 2;
-    uVar2 = ta_sub_20820a(uVar2, iVar8, uVar11);
+    uVar2 = ta_param_word_count(uVar2, iVar8, uVar11);
     ta_fifo_2081e0(uVar2, 0, 0);
     g_8c4a9d5c = *(u32 *)(iVar4 + 0xc);
     return 0;
@@ -9982,7 +9982,7 @@ u32 shinobi_sub_208e00(int *a0) {
     g_8c4a9c5c = *(u32 *)(ain0 + 4);
     g_8c4a9c60 = *(u32 *)(ain0 + 8);
     g_8c4a9c64 = *(u32 *)(ain0 + 0xc);
-    iVar1 = ta_sub_20823c(g_8c4a9d4c, 6, *(u32 *)(ain0 + 0x10));
+    iVar1 = ta_param_push_color_if(g_8c4a9d4c, 6, *(u32 *)(ain0 + 0x10));
     if (cVar11 == '\0') {
         in_fr15 = 255.0;
         in_dr2 = (double)CONCAT44((int)((u64)in_dr2 >> 0x20), *(u32 *)(ain0 + 0x20));
@@ -10083,7 +10083,7 @@ u32 shinobi_sub_208e00(int *a0) {
     *(u32 *)(&g_8c4a9c50 + iVar1 * 4) = *(u32 *)(iVar3 + 4);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 1) * 4) = *(u32 *)(iVar3 + 8);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 2) * 4) = *(u32 *)(iVar3 + 0xc);
-    iVar1 = ta_sub_20823c(uVar2, iVar1 + 3, *(u32 *)(ain0 + 0x10));
+    iVar1 = ta_param_push_color_if(uVar2, iVar1 + 3, *(u32 *)(ain0 + 0x10));
     if (cVar11 == '\0') {
         in_dr2 = (double)CONCAT44((int)((u64)in_dr2 >> 0x20), *(u32 *)(iVar3 + 0x20));
     }
@@ -10183,7 +10183,7 @@ u32 shinobi_sub_208e00(int *a0) {
     *(u32 *)(&g_8c4a9c50 + iVar1 * 4) = *(u32 *)(iVar4 + 4);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 1) * 4) = *(u32 *)(iVar4 + 8);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 2) * 4) = *(u32 *)(iVar4 + 0xc);
-    iVar1 = ta_sub_20823c(uVar2, iVar1 + 3, *(u32 *)(ain0 + 0x10));
+    iVar1 = ta_param_push_color_if(uVar2, iVar1 + 3, *(u32 *)(ain0 + 0x10));
     if (cVar11 == '\0') {
         in_dr2 = (double)CONCAT44((int)((u64)in_dr2 >> 0x20), *(u32 *)(iVar4 + 0x20));
     }
@@ -10283,7 +10283,7 @@ u32 shinobi_sub_208e00(int *a0) {
     uVar9 = iVar1 << 0x18 | iVar6 << 0x10 | iVar7 << 8 | uVar9;
     g_8c4a9d48 = ta_param_push1_if(uVar2, iVar3, uVar9);
     g_8c4a9d48 = g_8c4a9d48 << 2;
-    uVar2 = ta_sub_20820a(uVar2, iVar3, uVar9);
+    uVar2 = ta_param_word_count(uVar2, iVar3, uVar9);
     ta_fifo_2081e0(uVar2, 0, 0);
     g_8c4a9d5c = *(u32 *)(ain0 + 0xc);
     return 0;
@@ -10419,7 +10419,7 @@ u32 shinobi_sub_2090e0(int *a0) {
     uVar8 = uVar8 << 0x18 | uVar8 << 0x10 | uVar8 << 8 | uVar8;
     g_8c4a9d48 = ta_param_push1_if(uVar2, ar5_00, uVar8);
     g_8c4a9d48 = g_8c4a9d48 << 2;
-    uVar2 = ta_sub_20820a(uVar2, ar5_00, uVar8);
+    uVar2 = ta_param_word_count(uVar2, ar5_00, uVar8);
     ta_fifo_2081e0(uVar2, 0, 0);
     g_8c4a9d5c = *(u32 *)(iVar4 + 0xc);
     return 0;
@@ -10455,7 +10455,7 @@ u32 shinobi_sub_209380(int *a0) {
     g_8c4a9c5c = *(u32 *)(ain0 + 4);
     g_8c4a9c60 = *(u32 *)(ain0 + 8);
     g_8c4a9c64 = *(u32 *)(ain0 + 0xc);
-    iVar1 = ta_sub_20823c(g_8c4a9d4c, 6, *(u32 *)(ain0 + 0x10));
+    iVar1 = ta_param_push_color_if(g_8c4a9d4c, 6, *(u32 *)(ain0 + 0x10));
     if (cVar8 == '\0') {
         in_dr2 = (double)CONCAT44((int)((u64)in_dr2 >> 0x20), *(u32 *)(ain0 + 0x18));
         in_fr15 = 255.0;
@@ -10484,7 +10484,7 @@ u32 shinobi_sub_209380(int *a0) {
     *(u32 *)(&g_8c4a9c50 + iVar1 * 4) = *(u32 *)(iVar3 + 4);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 1) * 4) = *(u32 *)(iVar3 + 8);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 2) * 4) = *(u32 *)(iVar3 + 0xc);
-    iVar1 = ta_sub_20823c(uVar2, iVar1 + 3, *(u32 *)(ain0 + 0x10));
+    iVar1 = ta_param_push_color_if(uVar2, iVar1 + 3, *(u32 *)(ain0 + 0x10));
     if (cVar8 == '\0') {
         in_dr2 = (double)CONCAT44((int)((u64)in_dr2 >> 0x20), *(u32 *)(iVar3 + 0x18));
     }
@@ -10512,7 +10512,7 @@ u32 shinobi_sub_209380(int *a0) {
     *(u32 *)(&g_8c4a9c50 + iVar1 * 4) = *(u32 *)(iVar4 + 4);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 1) * 4) = *(u32 *)(iVar4 + 8);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 2) * 4) = *(u32 *)(iVar4 + 0xc);
-    iVar1 = ta_sub_20823c(uVar2, iVar1 + 3, *(u32 *)(ain0 + 0x10));
+    iVar1 = ta_param_push_color_if(uVar2, iVar1 + 3, *(u32 *)(ain0 + 0x10));
     if (cVar8 == '\0') {
         in_dr2 = (double)CONCAT44((int)((u64)in_dr2 >> 0x20), *(u32 *)(iVar4 + 0x18));
     }
@@ -10537,7 +10537,7 @@ u32 shinobi_sub_209380(int *a0) {
     uVar6 = uVar6 << 0x18 | uVar6 << 0x10 | uVar6 << 8 | uVar6;
     g_8c4a9d48 = ta_param_push1_if(uVar2, iVar3, uVar6);
     g_8c4a9d48 = g_8c4a9d48 << 2;
-    uVar2 = ta_sub_20820a(uVar2, iVar3, uVar6);
+    uVar2 = ta_param_word_count(uVar2, iVar3, uVar6);
     ta_fifo_2081e0(uVar2, 0, 0);
     g_8c4a9d5c = *(u32 *)(ain0 + 0xc);
     return 0;
@@ -10572,7 +10572,7 @@ u32 shinobi_sub_209600(int *a0) {
     g_8c4a9c84 = *(u32 *)(aiStack_10[0] + 0xc);
     g_8c4a9c88 = *(u32 *)(aiStack_10[0] + 0x10);
     g_8c4a9d48 = 0x3c;
-    ar4_00 = ta_sub_20820a(g_8c4a9d4c, 0x3c, &iStack_14);
+    ar4_00 = ta_param_word_count(g_8c4a9d4c, 0x3c, &iStack_14);
     ta_fifo_2081e0(ar4_00, 0, 0);
     g_8c4a9d5c = *(u32 *)(iVar1 + 0xc);
     return 0;
@@ -10612,7 +10612,7 @@ u32 shinobi_sub_209708(int *a0) {
     g_8c4a9c88 = (u32)(*(float *)(aiStack_10[0] + 0x10) * 255.0);
     g_8c4a9c88 = g_8c4a9c88 << 0x18 | g_8c4a9c88 << 0x10 | g_8c4a9c88 << 8 | g_8c4a9c88;
     g_8c4a9d48 = 0x3c;
-    ar4_00 = ta_sub_20820a(g_8c4a9d4c, 0x3c, aiStack_10);
+    ar4_00 = ta_param_word_count(g_8c4a9d4c, 0x3c, aiStack_10);
     ta_fifo_2081e0(ar4_00, 0, 0);
     g_8c4a9d5c = *(u32 *)(iVar1 + 0xc);
     return 0;
@@ -10664,7 +10664,7 @@ u32 shinobi_sub_2098c0(int *a0) {
     uVar6 = *(u32 *)(iVar5 + 0x1c);
     g_8c4a9d48 = ta_param_push1_if(uVar2, ar5_00, uVar6);
     g_8c4a9d48 = g_8c4a9d48 << 2;
-    uVar2 = ta_sub_20820a(uVar2, ar5_00, uVar6);
+    uVar2 = ta_param_word_count(uVar2, ar5_00, uVar6);
     ta_fifo_2081e0(uVar2, 0, 0);
     g_8c4a9d5c = *(u32 *)(iVar4 + 0xc);
     return 0;
@@ -10692,25 +10692,25 @@ u32 shinobi_sub_209a40(int *a0) {
     g_8c4a9c5c = *(u32 *)(ain0 + 4);
     g_8c4a9c60 = *(u32 *)(ain0 + 8);
     g_8c4a9c64 = *(u32 *)(ain0 + 0xc);
-    iVar1 = ta_sub_20823c(g_8c4a9d4c, 6, *(u32 *)(ain0 + 0x10));
+    iVar1 = ta_param_push_color_if(g_8c4a9d4c, 6, *(u32 *)(ain0 + 0x10));
     *(u32 *)(&g_8c4a9c50 + iVar1 * 4) = *(u32 *)(ain0 + 0x18);
     iVar1 = ta_param_push1_if(uVar2, iVar1 + 1, *(u32 *)(ain0 + 0x1c));
     *(u32 *)(&g_8c4a9c50 + iVar1 * 4) = *(u32 *)(iVar3 + 4);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 1) * 4) = *(u32 *)(iVar3 + 8);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 2) * 4) = *(u32 *)(iVar3 + 0xc);
-    iVar1 = ta_sub_20823c(uVar2, iVar1 + 3, *(u32 *)(ain0 + 0x10));
+    iVar1 = ta_param_push_color_if(uVar2, iVar1 + 3, *(u32 *)(ain0 + 0x10));
     *(u32 *)(&g_8c4a9c50 + iVar1 * 4) = *(u32 *)(iVar3 + 0x18);
     iVar1 = ta_param_push1_if(uVar2, iVar1 + 1, *(u32 *)(iVar3 + 0x1c));
     *(u32 *)(&g_8c4a9c50 + iVar1 * 4) = *(u32 *)(iVar4 + 4);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 1) * 4) = *(u32 *)(iVar4 + 8);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 2) * 4) = *(u32 *)(iVar4 + 0xc);
-    iVar1 = ta_sub_20823c(uVar2, iVar1 + 3, *(u32 *)(iVar4 + 0x10));
+    iVar1 = ta_param_push_color_if(uVar2, iVar1 + 3, *(u32 *)(iVar4 + 0x10));
     iVar3 = iVar1 + 1;
     *(u32 *)(&g_8c4a9c50 + iVar1 * 4) = *(u32 *)(iVar4 + 0x18);
     ar6_00 = *(u32 *)(iVar4 + 0x1c);
     g_8c4a9d48 = ta_param_push1_if(uVar2, iVar3, ar6_00);
     g_8c4a9d48 = g_8c4a9d48 << 2;
-    uVar2 = ta_sub_20820a(uVar2, iVar3, ar6_00);
+    uVar2 = ta_param_word_count(uVar2, iVar3, ar6_00);
     ta_fifo_2081e0(uVar2, 0, 0);
     g_8c4a9d5c = *(u32 *)(ain0 + 0xc);
     return 0;
@@ -10834,7 +10834,7 @@ u32 shinobi_sub_209c00(int *a0) {
     uVar8 = uVar8 << 0x18 | uVar8 << 0x10 | uVar8 << 8 | uVar8;
     g_8c4a9d48 = ta_param_push1_if(uVar2, ar5_00, uVar8);
     g_8c4a9d48 = g_8c4a9d48 << 2;
-    uVar2 = ta_sub_20820a(uVar2, ar5_00, uVar8);
+    uVar2 = ta_param_word_count(uVar2, ar5_00, uVar8);
     ta_fifo_2081e0(uVar2, 0, 0);
     g_8c4a9d5c = *(u32 *)(iVar4 + 0xc);
     return 0;
@@ -10870,7 +10870,7 @@ u32 shinobi_sub_209e80(int *a0) {
     g_8c4a9c5c = *(u32 *)(ain0 + 4);
     g_8c4a9c60 = *(u32 *)(ain0 + 8);
     g_8c4a9c64 = *(u32 *)(ain0 + 0xc);
-    iVar1 = ta_sub_20823c(g_8c4a9d4c, 6, *(u32 *)(ain0 + 0x10));
+    iVar1 = ta_param_push_color_if(g_8c4a9d4c, 6, *(u32 *)(ain0 + 0x10));
     if (cVar8 == '\0') {
         in_dr2 = (double)CONCAT44((int)((u64)in_dr2 >> 0x20), *(u32 *)(ain0 + 0x18));
         in_fr15 = 255.0;
@@ -10899,7 +10899,7 @@ u32 shinobi_sub_209e80(int *a0) {
     *(u32 *)(&g_8c4a9c50 + iVar1 * 4) = *(u32 *)(iVar3 + 4);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 1) * 4) = *(u32 *)(iVar3 + 8);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 2) * 4) = *(u32 *)(iVar3 + 0xc);
-    iVar1 = ta_sub_20823c(uVar2, iVar1 + 3, *(u32 *)(iVar3 + 0x10));
+    iVar1 = ta_param_push_color_if(uVar2, iVar1 + 3, *(u32 *)(iVar3 + 0x10));
     if (cVar8 == '\0') {
         in_dr2 = (double)CONCAT44((int)((u64)in_dr2 >> 0x20), *(u32 *)(iVar3 + 0x18));
     }
@@ -10927,7 +10927,7 @@ u32 shinobi_sub_209e80(int *a0) {
     *(u32 *)(&g_8c4a9c50 + iVar1 * 4) = *(u32 *)(iVar4 + 4);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 1) * 4) = *(u32 *)(iVar4 + 8);
     *(u32 *)(&g_8c4a9c50 + (iVar1 + 2) * 4) = *(u32 *)(iVar4 + 0xc);
-    iVar1 = ta_sub_20823c(uVar2, iVar1 + 3, *(u32 *)(iVar4 + 0x10));
+    iVar1 = ta_param_push_color_if(uVar2, iVar1 + 3, *(u32 *)(iVar4 + 0x10));
     if (cVar8 == '\0') {
         in_dr2 = (double)CONCAT44((int)((u64)in_dr2 >> 0x20), *(u32 *)(iVar4 + 0x18));
     }
@@ -10952,7 +10952,7 @@ u32 shinobi_sub_209e80(int *a0) {
     uVar6 = uVar6 << 0x18 | uVar6 << 0x10 | uVar6 << 8 | uVar6;
     g_8c4a9d48 = ta_param_push1_if(uVar2, iVar3, uVar6);
     g_8c4a9d48 = g_8c4a9d48 << 2;
-    uVar2 = ta_sub_20820a(uVar2, iVar3, uVar6);
+    uVar2 = ta_param_word_count(uVar2, iVar3, uVar6);
     ta_fifo_2081e0(uVar2, 0, 0);
     g_8c4a9d5c = *(u32 *)(ain0 + 0xc);
     return 0;

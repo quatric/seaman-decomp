@@ -6962,7 +6962,7 @@ u32 gfxlib_sub_2336e8(double *a0, double *a1) {
             }
             uVar25 = SUB84(dVar16, 0);
             pdVar4 = a0;
-            ninja_sub_258030(piVar6, pdVar7, a0, pdVar9, pdVar5);
+            noop_fr4_test(piVar6, pdVar7, a0, pdVar9, pdVar5);
             in_dr4 = dVar29;
             if (cVar33 == '\0') {
                 in_dr4 = (double)CONCAT44((int)((u64)dVar29 >> 0x20), uVar25);
@@ -7249,7 +7249,7 @@ u32 gfxlib_sub_2336e8(double *a0, double *a1) {
             if (cVar33 == '\0') {
                 dVar22 = (double)(u64)(u32)fVar14;
             }
-            ninja_sub_258030(pdVar10, pdVar7, pdVar4, pdVar9);
+            noop_fr4_test(pdVar10, pdVar7, pdVar4, pdVar9);
             pdStack_1d4 = (double *)piStack_1b4;
             dVar12 = dVar16;
             dVar23 = dVar16;
@@ -7562,7 +7562,7 @@ u32 gfxlib_sub_2336e8(double *a0, double *a1) {
                 uVar25 = SUB84(dVar22, 0);
                 pdVar4 = a0;
                 pdVar9 = a0;
-                ninja_sub_258030(pdVar10, pdVar7, a0, a0, ain0);
+                noop_fr4_test(pdVar10, pdVar7, a0, a0, ain0);
                 dVar22 = dVar29;
                 if (cVar33 == '\0') {
                     dVar22 = (double)CONCAT44((int)((u64)dVar29 >> 0x20), uVar25);
@@ -7879,7 +7879,7 @@ u32 gfxlib_sub_2336e8(double *a0, double *a1) {
                 dVar16 = (double)((u64)dVar22 & 0xffffffff);
             }
             uVar25 = SUB84(dVar16, 0);
-            ninja_sub_258030(pdVar10, pdVar7, pdVar4, pdVar9);
+            noop_fr4_test(pdVar10, pdVar7, pdVar4, pdVar9);
             in_dr4 = dVar29;
             if (cVar33 == '\0') {
                 in_dr4 = (double)CONCAT44((int)((u64)dVar29 >> 0x20), uVar25);
@@ -8018,7 +8018,7 @@ u32 gfxlib_sub_233d14(int a0, int a1) {
     cVar5 = '\0';
     cVar4 = '\0';
     dVar1 = (double)CONCAT44(*(float *)(a0 + 8) - *(float *)(a1 + 8), in_fr1);
-    ninja_sub_258030(a0, a1, r6, r7, 8);
+    noop_fr4_test(a0, a1, r6, r7, 8);
     if (cVar5 == '\0') {
         dVar1 = (double)CONCAT44((int)((u64)dVar1 >> 0x20), in_fr5);
         dVar2 = (double)CONCAT44(*(u32 *)(a0 + 0xc), *(u32 *)(a1 + 0xc));
@@ -8082,7 +8082,7 @@ u32 gfxlib_sub_233d20(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int a
     in_xd12 = (double)CONCAT44(fVar5, SUB84(dVar2, 0));
     uVar4 = in_fr5;
 
-    ninja_sub_258030(a0, unused_a1, unused_a2, unused_a3, *(u32 *)((int)puVar1 + -4));
+    noop_fr4_test(a0, unused_a1, unused_a2, unused_a3, *(u32 *)((int)puVar1 + -4));
 
     in_xd12 = (double)CONCAT44((int)((u64)in_xd12 >> 0x20), uVar4);
     dVar2 = (double)CONCAT44(unaff_r14[3], *(u32 *)((int)unaff_r13 + 0xc));
@@ -8138,12 +8138,12 @@ u32 gfxlib_sub_233da2(u32 a0, u32 a1) {
 }
 
 /*
- * gfxlib_sub_233dac  0x8c233dac
- * area name: in the gfxlib library code range
+ * gfx_set_color4_4aa52c  0x8c233dac
+ * copies four words (a colour) to 0x8c4aa52c
  * called by: CAnimal_sub_026968, Class_12ab2c_sub_09dec8, Class_12aeec_sub_0a481c, Vec3_sub_0d5d28, game_init,
  * game_sub_029dec, game_sub_06b460, game_sub_08b020 (+6 more)
  */
-u32 gfxlib_sub_233dac(u32 *a0) {
+u32 gfx_set_color4_4aa52c(u32 *a0) {
     g_8c4aa52c = *a0;
     g_8c4aa530 = a0[1];
     g_8c4aa534 = a0[2];
@@ -9168,7 +9168,7 @@ u32 gfxlib_sub_234b10(u32 *a0, int a1, int a2, u32 a3) {
     *(u32 *)(iVar1 + -0x18) = uVar3;
     *(u32 *)(iVar1 + -0x1c) = 0xf0000000;
     iVar1 = iVar1 + 4;
-    gfxlib_sub_2370dc(iVar1);
+    ta_set_list_addr(iVar1);
     uVar3 = draw_state_restore(iVar1);
     return uVar3;
 }
@@ -9231,7 +9231,7 @@ u32 gfxlib_sub_234bc0(u32 *a0, int a1, u32 a2, int a3) {
     *(u32 *)(iVar1 + -0x18) = uVar3;
     *(u32 *)(iVar1 + -0x1c) = 0xf0000000;
     iVar1 = iVar1 + 4;
-    gfxlib_sub_2370dc(iVar1);
+    ta_set_list_addr(iVar1);
     uVar3 = draw_state_restore(iVar1);
     return uVar3;
 }
@@ -9293,7 +9293,7 @@ u32 gfxlib_sub_234c94(u32 *a0, int a1, u32 a2, int a3) {
     *(u32 *)(iVar1 + -0x18) = uVar3;
     *(u32 *)(iVar1 + -0x1c) = 0xf0000000;
     iVar1 = iVar1 + 4;
-    gfxlib_sub_2370dc(iVar1);
+    ta_set_list_addr(iVar1);
     uVar3 = draw_state_restore(iVar1);
     return uVar3;
 }
@@ -9445,7 +9445,7 @@ u32 gfxlib_sub_234d68(u32 a0, int a1, u8 *a2, u8 *a3) {
             } while (iStack_70 < a1);
         }
     }
-    gfxlib_sub_2370dc(ar4_00);
+    ta_set_list_addr(ar4_00);
     uVar3 = draw_state_restore(ar4_00);
     return uVar3;
 }
@@ -9703,7 +9703,7 @@ u32 gfxlib_sub_234fd0(u32 a0, int a1, u32 a2, u32 *a3) {
             } while (iVar6 < a1);
         }
     }
-    gfxlib_sub_2370dc(pdVar2);
+    ta_set_list_addr(pdVar2);
     uVar4 = draw_state_restore(pdVar2);
     return uVar4;
 }
@@ -10355,7 +10355,7 @@ u32 gfxlib_sub_235b6c(u32 a0, u32 a1, u32 a2, u32 a3) {
     (*(code *)(&PTR_FUN_8c277aa0)[uVar2])((u32)((a2 & 0x40) != 0), uVar1, ar6_00, a3);
     (*(code *)(&PTR_FUN_8c277aa8)[uVar2 + (u32)((a2 & 0x20) != 0) * 2])(a0, a1, ar6_00, a3);
     uVar1 = g_8c4aa3e4;
-    gfxlib_sub_2370dc(g_8c4aa3e4);
+    ta_set_list_addr(g_8c4aa3e4);
     uVar1 = draw_state_restore(uVar1);
     return uVar1;
 }
@@ -10428,7 +10428,7 @@ u32 gfxlib_sub_235bfc(u32 a0, u32 a1, u32 a2, u32 a3) {
             uVar2 = ninja_sub_25bc88(auStack_32c, a1, uVar1, ar7_00);
         }
     }
-    gfxlib_sub_2370dc(uVar2);
+    ta_set_list_addr(uVar2);
     uVar1 = draw_state_restore(uVar2);
     return uVar1;
 }
@@ -11059,7 +11059,7 @@ u32 gfxlib_sub_236250(u16 *a0, u32 a1) {
 /*
  * gfxlib_sub_236278  0x8c236278
  * area name: in the gfxlib library code range
- * called by: ninja_sub_25a838, ninja_sub_25a8c0
+ * called by: tex_sub_25a838, tex_sub_25a8c0
  */
 u32 gfxlib_sub_236278(int a0) {
     u16 uVar1;
@@ -11653,12 +11653,12 @@ u32 *gfxlib_sub_236dd8(u32 *a0, u32 *a1) {
 }
 
 /*
- * gfxlib_sub_2370dc  0x8c2370dc
- * area name: in the gfxlib library code range
+ * ta_set_list_addr  0x8c2370dc
+ * writes the TA list address a0 (26 bits) with the flags in 0x8c4ab25c
  * called by: gfxlib_sub_217f12, gfxlib_sub_21908e, gfxlib_sub_219ad0, gfxlib_sub_234b10, gfxlib_sub_234bc0,
  * gfxlib_sub_234c94, gfxlib_sub_234d68, gfxlib_sub_234fd0 (+7 more)
  */
-u32 gfxlib_sub_2370dc(u32 a0) {
+u32 ta_set_list_addr(u32 a0) {
     u32 uVar1;
 
     uVar1 = g_8c4ab25c;
@@ -11729,16 +11729,16 @@ u32 ta_sub_23728c(int a0) {
 
     bVar1 = false;
     if (a0 == g_8c277b10) {
-        iVar2 = tex_sub_25a536(g_8c277b08, g_8c277b0c, a0);
+        iVar2 = tex_entry_find(g_8c277b08, g_8c277b0c, a0);
         if (g_8c277b14 != *(int *)(iVar2 * 0x44 + g_8c277b08 + 4)) {
             bVar1 = true;
         }
     } else {
         bVar1 = true;
-        tex_sub_25a536(g_8c277b08, g_8c277b0c, a0);
+        tex_entry_find(g_8c277b08, g_8c277b0c, a0);
     }
     if (bVar1) {
-        iVar2 = tex_sub_25a536(g_8c277b08, g_8c277b0c, a0);
+        iVar2 = tex_entry_find(g_8c277b08, g_8c277b0c, a0);
         iVar2 = iVar2 * 0x44 + g_8c277b08;
         g_8c277b14 = *(int *)(iVar2 + 4);
         g_8c4ab240 = g_8c4ab240 & 0xffffffc0 | *(u32 *)(iVar2 + 8) & 0x3f;
@@ -11760,16 +11760,16 @@ u32 ta_sub_23729c(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, in
     int unaff_r14;
 
     if (unaff_r11 == *ain1) {
-        iVar1 = tex_sub_25a536(g_8c277b08, *in_r3, unaff_r11);
+        iVar1 = tex_entry_find(g_8c277b08, *in_r3, unaff_r11);
         if (g_8c277b14 != *(int *)(iVar1 * 0x44 + g_8c277b08 + 4)) {
             unaff_r14 = 1;
         }
     } else {
         unaff_r14 = 1;
-        tex_sub_25a536(g_8c277b08, *in_r3, unaff_r11);
+        tex_entry_find(g_8c277b08, *in_r3, unaff_r11);
     }
     if (unaff_r14 != 0) {
-        iVar1 = tex_sub_25a536(g_8c277b08, g_8c277b0c, unaff_r11);
+        iVar1 = tex_entry_find(g_8c277b08, g_8c277b0c, unaff_r11);
         iVar1 = iVar1 * 0x44 + g_8c277b08;
         g_8c277b14 = *(int *)(iVar1 + 4);
         g_8c4ab240 = g_8c4ab240 & 0xffffffc0 | *(u32 *)(iVar1 + 8) & 0x3f;
@@ -12197,7 +12197,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
         if (((piVar3[1] & 0x10000U) != 0) && (a1 != 0)) {
             iVar1 = *a0;
             uStack_134 = (u32)piVar3[2] >> 0x1a;
-            iStack_124 = tex_sub_25a536(g_8c277b08, g_8c277b0c, piStack_130);
+            iStack_124 = tex_entry_find(g_8c277b08, g_8c277b0c, piStack_130);
             if ((*(u32 *)(iStack_124 * 0x44 + g_8c277b08 + 0x10) & 1) == 0) {
                 uVar8 = 2;
             } else {
@@ -12230,13 +12230,13 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     puVar5 = auStack_16c;
                     tex_entry_alloc(piVar7, puVar5, piStack_130, 0, 0xffffffff);
                     g_8c4aa6b4 = -iStack_12c;
-                    ninja_sub_259c40();
+                    ninja_close_file();
                     return 0xffffffff;
                 }
                 ar4_00 = (int *)g_8c277b08;
                 piVar6 = g_8c277b0c;
                 ar6_00 = piStack_130;
-                iStack_124 = tex_sub_25a536(g_8c277b08, g_8c277b0c, piStack_130);
+                iStack_124 = tex_entry_find(g_8c277b08, g_8c277b0c, piStack_130);
                 if (iStack_12c == 1) {
                     uVar9 = (u32)piVar3[2] >> 0x1a;
                     uStack_134 = uVar9;
@@ -12246,7 +12246,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                         ar4_00 = (int *)g_8c277b08;
                         piVar6 = g_8c277b0c;
                         ar6_00 = piStack_130;
-                        iStack_128 = tex_sub_25a5c0(g_8c277b08, g_8c277b0c, piStack_130, uVar9);
+                        iStack_128 = tex_entry_find_pair(g_8c277b08, g_8c277b0c, piStack_130, uVar9);
                         a3 = uVar9;
                         if (iStack_128 < 0) {
                             iStack_138 = 0;
@@ -12263,14 +12263,14 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                 ar6_00 = (int *)(piVar3[2] & 0x3ffffff);
                 uStack_134 = (u32)piVar3[2] >> 0x1a;
                 piStack_130 = ar6_00;
-                iStack_124 = tex_sub_25a536(g_8c277b08, g_8c277b0c, ar6_00);
+                iStack_124 = tex_entry_find(g_8c277b08, g_8c277b0c, ar6_00);
                 if (iStack_124 < 0) {
                     iStack_138 = 2;
                 } else {
                     piVar6 = g_8c277b0c;
                     ar6_00 = piStack_130;
                     a3 = uStack_134;
-                    iStack_128 = tex_sub_25a5c0(g_8c277b08, g_8c277b0c, piStack_130, uStack_134);
+                    iStack_128 = tex_entry_find_pair(g_8c277b08, g_8c277b0c, piStack_130, uStack_134);
                     if (iStack_128 < 0) {
                         iStack_138 = 0;
                     } else {
@@ -12291,7 +12291,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
         } else {
             ar6_00 = *(int **)(a1 * 0xc + *a0 + 8);
             piStack_130 = ar6_00;
-            iStack_124 = tex_sub_25a536(g_8c277b08, g_8c277b0c, ar6_00);
+            iStack_124 = tex_entry_find(g_8c277b08, g_8c277b0c, ar6_00);
             if (iStack_124 < 0) {
                 iStack_138 = 2;
             } else {
@@ -12322,7 +12322,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                         *(short *)(*piVar7 + 0x42) = -(short)iStack_20;
                         g_8c4aa6b0 = piStack_130;
                         g_8c4aa6ac = a1;
-                        ninja_sub_259c40();
+                        ninja_close_file();
                         return 0xffffffff;
                     }
                     a3 = 1;
@@ -12351,10 +12351,10 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     *(u16 *)(*piVar7 + 0x40) = *(u16 *)(iVar1 + 0x40);
                     *(u16 *)(*piVar7 + 0x42) = 0;
                     ar4_00 = piStack_130;
-                    tex_sub_25a6ea(piStack_130, piVar6, ar6_00, a3, 0x40);
+                    tex_entry_addref(piStack_130, piVar6, ar6_00, a3, 0x40);
                 } else if (uVar9 == 0x80000000) {
                     if ((*(u32 *)(iVar1 + 0x10) & 1) == 0) {
-                        iStack_20 = ninja_sub_25a838(piVar3, iVar1 + 0x14, ar6_00, a3);
+                        iStack_20 = tex_sub_25a838(piVar3, iVar1 + 0x14, ar6_00, a3);
                         if (iStack_20 < 0) {
                             uVar8 = 2;
                             iVar4 = iVar1 + 0x14;
@@ -12365,7 +12365,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                             *(short *)(*piVar7 + 0x42) = -(short)iStack_20;
                             g_8c4aa6b0 = piStack_130;
                             g_8c4aa6ac = a1;
-                            ninja_sub_259c40();
+                            ninja_close_file();
                             return 0xffffffff;
                         }
                         a3 = 2;
@@ -12387,7 +12387,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     }
                 } else if (uVar9 == 0x20000000) {
                     if ((*(u32 *)(iVar1 + 0x10) & 1) == 0) {
-                        iStack_20 = ninja_sub_25a838(piVar3, iVar1 + 0x14, ar6_00, a3);
+                        iStack_20 = tex_sub_25a838(piVar3, iVar1 + 0x14, ar6_00, a3);
                         if (iStack_20 < 0) {
                             uVar8 = 2;
                             iVar4 = iVar1 + 0x14;
@@ -12398,7 +12398,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                             *(short *)(*piVar7 + 0x42) = -(short)iStack_20;
                             g_8c4aa6b0 = piStack_130;
                             g_8c4aa6ac = a1;
-                            ninja_sub_259c40();
+                            ninja_close_file();
                             return 0xffffffff;
                         }
                         a3 = 2;
@@ -12417,11 +12417,11 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                         *(u16 *)(*piVar7 + 0x40) = *(u16 *)(iVar1 + 0x40);
                         *(u16 *)(*piVar7 + 0x42) = 0;
                         ar4_00 = piStack_130;
-                        tex_sub_25a6ea(piStack_130, piVar6, ar6_00, a3, 0x40);
+                        tex_entry_addref(piStack_130, piVar6, ar6_00, a3, 0x40);
                     }
                 }
             }
-            ninja_sub_259c40();
+            ninja_close_file();
             return 1;
         }
         if (iStack_138 != 1) {
@@ -12442,7 +12442,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     *(u16 *)(*piVar7 + 0x40) = 0;
                     g_8c4aa6b0 = piStack_130;
                     g_8c4aa6ac = a1;
-                    ninja_sub_259c40();
+                    ninja_close_file();
                     return 0xffffffff;
                 }
                 a3 = 2;
@@ -12455,7 +12455,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     *(u32 *)(*piVar7 + 0x10) = *(u32 *)(*piVar7 + 0x10) | 8;
                 }
             } else if (uVar9 == 0x80000000) {
-                iStack_20 = ninja_sub_25a838(piVar3, ar5_00, ar6_00, a3);
+                iStack_20 = tex_sub_25a838(piVar3, ar5_00, ar6_00, a3);
                 if (iStack_20 < 0) {
                     uVar8 = 0;
                     piVar3 = piVar7;
@@ -12464,7 +12464,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     *(short *)(*piVar7 + 0x42) = -(short)iStack_20;
                     g_8c4aa6b0 = piStack_130;
                     g_8c4aa6ac = a1;
-                    ninja_sub_259c40();
+                    ninja_close_file();
                     return 0xffffffff;
                 }
                 a3 = 1;
@@ -12474,7 +12474,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                 *(u16 *)(*piVar7 + 0x42) = 0;
                 piVar6 = ar5_00;
             } else if (uVar9 == 0x20000000) {
-                iStack_20 = ninja_sub_25a838(piVar3, ar5_00, ar6_00, a3);
+                iStack_20 = tex_sub_25a838(piVar3, ar5_00, ar6_00, a3);
                 if (iStack_20 < 0) {
                     uVar8 = 0;
                     puVar5 = auStack_16c;
@@ -12485,7 +12485,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     *(u16 *)(*piVar7 + 0x40) = 0;
                     g_8c4aa6b0 = piStack_130;
                     g_8c4aa6ac = a1;
-                    ninja_sub_259c40();
+                    ninja_close_file();
                     return 0xffffffff;
                 }
                 iStack_20 = ninja_sub_25a914(piVar3, ar5_00, ar6_00, a3);
@@ -12497,7 +12497,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     *(short *)(*piVar7 + 0x42) = -(short)iStack_20;
                     g_8c4aa6b0 = piStack_130;
                     g_8c4aa6ac = a1;
-                    ninja_sub_259c40();
+                    ninja_close_file();
                     return 0xffffffff;
                 }
                 a3 = 3;
@@ -12523,7 +12523,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     *(short *)((int)piVar7 + 0x42) = -(short)iStack_20;
                     g_8c4aa6b0 = piStack_130;
                     g_8c4aa6ac = a1;
-                    ninja_sub_259c40();
+                    ninja_close_file();
                     return 0xffffffff;
                 }
                 *(u16 *)((int)piVar7 + 0x42) = 0;
@@ -12547,18 +12547,18 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
             }
         LAB_8c238436:
             ar4_00 = piStack_130;
-            tex_sub_25a6ea(piStack_130, piVar6, ar6_00, a3, 0x40);
+            tex_entry_addref(piStack_130, piVar6, ar6_00, a3, 0x40);
         } else {
             if (uVar9 == 0x80000000) {
                 if ((piVar7[4] & 1U) != 0)
                     goto LAB_8c23878e;
                 piVar6 = piVar7 + 5;
-                iStack_20 = ninja_sub_25a838(piVar3, piVar6, ar6_00, a3);
+                iStack_20 = tex_sub_25a838(piVar3, piVar6, ar6_00, a3);
                 if (iStack_20 < 0) {
                     *(short *)((int)piVar7 + 0x42) = -(short)iStack_20;
                     g_8c4aa6b0 = piStack_130;
                     g_8c4aa6ac = a1;
-                    ninja_sub_259c40();
+                    ninja_close_file();
                     return 0xffffffff;
                 }
                 *(u16 *)((int)piVar7 + 0x42) = 0;
@@ -12579,7 +12579,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                         *(short *)((int)piVar7 + 0x42) = -(short)iStack_20;
                         g_8c4aa6b0 = piStack_130;
                         g_8c4aa6ac = a1;
-                        ninja_sub_259c40();
+                        ninja_close_file();
                         return 0xffffffff;
                     }
                     *(u16 *)((int)piVar7 + 0x42) = 0;
@@ -12605,12 +12605,12 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     goto LAB_8c238436;
                 }
                 piVar6 = piVar7 + 5;
-                iStack_20 = ninja_sub_25a838(piVar3, piVar6, ar6_00, a3);
+                iStack_20 = tex_sub_25a838(piVar3, piVar6, ar6_00, a3);
                 if (iStack_20 < 0) {
                     *(short *)((int)piVar7 + 0x42) = -(short)iStack_20;
                     g_8c4aa6b0 = piStack_130;
                     g_8c4aa6ac = a1;
-                    ninja_sub_259c40();
+                    ninja_close_file();
                     return 0xffffffff;
                 }
                 *(u16 *)((int)piVar7 + 0x42) = 0;
@@ -12627,7 +12627,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
             tex_entry_set_flags(piStack_130, piVar6, ar6_00, a3, 0x40);
         }
     LAB_8c23878e:
-        ninja_sub_259c40();
+        ninja_close_file();
         return 1;
     }
     ar5_01 = &piStack_3c;
@@ -12638,7 +12638,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
     if (((ar4_01[1] & 0x10000) != 0) && (a1 != 0)) {
         iVar4 = *a0;
         uVar9 = ar4_01[2];
-        iVar1 = tex_sub_25a536(g_8c277b08, g_8c277b0c, piStack_3c);
+        iVar1 = tex_entry_find(g_8c277b08, g_8c277b0c, piStack_3c);
         if ((*(u32 *)(iVar1 * 0x44 + g_8c277b08 + 0x10) & 1) == 0) {
             uVar8 = 2;
         } else {
@@ -12654,7 +12654,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
         if ((*(u32 *)(a1 * 0xc + *a0 + 4) & 0x1000000) != 0) {
             piStack_3c = (int *)(ar4_01[2] & 0x3ffffff);
             uVar9 = (u32)ar4_01[2] >> 0x1a;
-            iStack_38 = tex_sub_25a536(g_8c277b08, g_8c277b0c, piStack_3c);
+            iStack_38 = tex_entry_find(g_8c277b08, g_8c277b0c, piStack_3c);
             ar5_04 = (u32 *)*ar4_01;
             piVar7 = (int *)*ar5_04;
             uVar2 = ninja_sub_25abf0(&uStack_28, auStack_30, piVar7, a3);
@@ -12669,7 +12669,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
             } else {
                 piVar7 = piStack_3c;
                 a3 = uVar9;
-                iVar1 = tex_sub_25a5c0(g_8c277b08, g_8c277b0c, piStack_3c, uVar9);
+                iVar1 = tex_entry_find_pair(g_8c277b08, g_8c277b0c, piStack_3c, uVar9);
                 if (iVar1 < 0) {
                     iVar1 = 0;
                 } else {
@@ -12690,7 +12690,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
         }
         if (piStack_3c == (int *)0xffffffff) {
             while (piVar6 = g_8c277b0c, piVar7 = (int *)g_8c277b18,
-                   iStack_38 = tex_sub_25a536(g_8c277b08, g_8c277b0c, g_8c277b18), iStack_38 != -1) {
+                   iStack_38 = tex_entry_find(g_8c277b08, g_8c277b0c, g_8c277b18), iStack_38 != -1) {
                 g_8c277b18 = g_8c277b18 - 1;
             }
             piStack_3c = (int *)g_8c277b18;
@@ -12704,14 +12704,14 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
         }
         iVar4 = tex_is_palettized(uStack_28 & 0xff00);
         piVar7 = piStack_3c;
-        iStack_38 = tex_sub_25a536(g_8c277b08, g_8c277b0c, piStack_3c);
+        iStack_38 = tex_entry_find(g_8c277b08, g_8c277b0c, piStack_3c);
         if (iVar4 == 1) {
             uVar9 = (u32)ar4_01[2] >> 0x1a;
             if (iStack_38 < 0)
                 goto LAB_8c238a2e;
             piVar7 = piStack_3c;
             a3 = uVar9;
-            iVar1 = tex_sub_25a5c0(g_8c277b08, g_8c277b0c, piStack_3c, uVar9);
+            iVar1 = tex_entry_find_pair(g_8c277b08, g_8c277b0c, piStack_3c, uVar9);
             if (-1 < iVar1)
                 goto LAB_8c238a32;
             iVar1 = 0;
@@ -12741,7 +12741,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
             ar5_04[1] = uStack_28 << 0x10;
         }
         piVar7 = piStack_3c;
-        iStack_38 = tex_sub_25a536(g_8c277b08, g_8c277b0c, piStack_3c);
+        iStack_38 = tex_entry_find(g_8c277b08, g_8c277b0c, piStack_3c);
         if (iStack_38 < 0) {
             iVar1 = 2;
         } else {
@@ -12786,7 +12786,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                 uVar9 = 0x42;
                 *(u16 *)(*piVar3 + 0x42) = 0;
             LAB_8c238cee:
-                tex_sub_25a6ea(piStack_3c, iVar1, piVar7, a3, uVar9);
+                tex_entry_addref(piStack_3c, iVar1, piVar7, a3, uVar9);
             } else {
                 if (uVar2 == 0x80000000) {
                     if ((*(u32 *)(ar5_02 + 0x10) & 1) != 0) {
@@ -12794,7 +12794,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                         *(u16 *)(*piVar3 + 0x40) = *(u16 *)(ar5_02 + 0x40);
                         goto LAB_8c238dc6;
                     }
-                    iStack_38 = ninja_sub_25a8c0(ar4_01, ar5_02 + 0x14);
+                    iStack_38 = tex_sub_25a8c0(ar4_01, ar5_02 + 0x14);
                     if (-1 < iStack_38) {
                         a3 = 2;
                         tex_entry_alloc(piVar3, ar5_02 + 0x14, piStack_3c, 2, uVar9);
@@ -12820,7 +12820,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                         a3 = 3;
                         goto LAB_8c238b9e;
                     }
-                    iStack_2c = ninja_sub_25a8c0(ar4_01, ar5_02 + 0x14);
+                    iStack_2c = tex_sub_25a8c0(ar4_01, ar5_02 + 0x14);
                     if (iStack_2c < 0) {
                         tex_entry_alloc(piVar3, ar5_02 + 0x14, piStack_3c, 2, uVar9);
                         *(u16 *)(*piVar3 + 0x40) = *(u16 *)(ar5_02 + 0x40);
@@ -12867,7 +12867,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                 *(short *)(ar5_02 + 0x40) = *(short *)(ar5_02 + 0x40) + 1;
             } else if (uVar9 == 0x80000000) {
                 if ((*(u32 *)(ar5_02 + 0x10) & 1) == 0) {
-                    iVar1 = ninja_sub_25a8c0(ar4_01, ar5_02 + 0x14);
+                    iVar1 = tex_sub_25a8c0(ar4_01, ar5_02 + 0x14);
                     if (iVar1 < 0)
                         goto LAB_8c238d08;
                     *(u16 *)(ar5_02 + 0x42) = 0;
@@ -12889,7 +12889,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     uVar9 = *(u32 *)(ar5_02 + 0x10);
                     if ((uVar9 & 1) != 0)
                         goto joined_r0x8c238c46;
-                    iVar1 = ninja_sub_25a8c0(ar4_01, ar5_02 + 0x14);
+                    iVar1 = tex_sub_25a8c0(ar4_01, ar5_02 + 0x14);
                     if (-1 < iVar1) {
                         *(u16 *)(ar5_02 + 0x42) = 0;
                         if (iVar4 != 0)
@@ -12919,7 +12919,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     goto LAB_8c238e44;
                 }
             } else if (uVar2 == 0x80000000) {
-                iStack_2c = ninja_sub_25a8c0(ar4_01, iStack_38);
+                iStack_2c = tex_sub_25a8c0(ar4_01, iStack_38);
                 if (-1 < iStack_2c) {
                     tex_entry_alloc(piVar3, iStack_38, piStack_3c, 1, uVar9);
                     goto LAB_8c238dc6;
@@ -12927,7 +12927,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
             } else {
                 if (uVar2 != 0x20000000)
                     goto LAB_8c238e44;
-                iStack_2c = ninja_sub_25a8c0(ar4_01, iStack_38);
+                iStack_2c = tex_sub_25a8c0(ar4_01, iStack_38);
                 if (-1 < iStack_2c) {
                     iStack_2c = ninja_sub_25a914(ar4_01, iStack_38, uVar8, a3);
                     if (iStack_2c < 0) {
@@ -12990,7 +12990,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
         iStack_1c = (a1 + -1) * 0xc + *a0;
         piStack_14 = (int *)(iStack_1c + 8);
         uStack_134 = (u32)piStack_18[2] >> 0x1a;
-        iStack_124 = tex_sub_25a536(g_8c277b08, g_8c277b0c, piStack_130);
+        iStack_124 = tex_entry_find(g_8c277b08, g_8c277b0c, piStack_130);
         if ((g_8c277b08[iStack_124 * 0x11 + 4] & 1U) == 0) {
             uVar7 = 2;
         } else {
@@ -13024,13 +13024,13 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                 piVar6 = piStack_10;
                 tex_entry_alloc(piStack_10, puVar5, piStack_130, 0, 0xffffffff);
                 g_8c4aa6b4 = -iStack_12c;
-                ninja_sub_259c40();
+                ninja_close_file();
                 return 0xffffffff;
             }
             piVar3 = g_8c277b08;
             piVar6 = g_8c277b0c;
             piVar2 = piStack_130;
-            iStack_124 = tex_sub_25a536(g_8c277b08, g_8c277b0c, piStack_130);
+            iStack_124 = tex_entry_find(g_8c277b08, g_8c277b0c, piStack_130);
             if (iStack_12c == 1) {
                 uVar1 = (u32)piStack_18[2] >> 0x1a;
                 uStack_134 = uVar1;
@@ -13040,7 +13040,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                     piVar3 = g_8c277b08;
                     piVar6 = g_8c277b0c;
                     piVar2 = piStack_130;
-                    iStack_128 = tex_sub_25a5c0(g_8c277b08, g_8c277b0c, piStack_130, uVar1);
+                    iStack_128 = tex_entry_find_pair(g_8c277b08, g_8c277b0c, piStack_130, uVar1);
                     a3 = uVar1;
                     if (iStack_128 < 0) {
                         iStack_138 = 0;
@@ -13057,14 +13057,14 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
             piVar2 = (int *)(piStack_18[2] & 0x3ffffff);
             uStack_134 = (u32)piStack_18[2] >> 0x1a;
             piStack_130 = piVar2;
-            iStack_124 = tex_sub_25a536(g_8c277b08, g_8c277b0c, piVar2);
+            iStack_124 = tex_entry_find(g_8c277b08, g_8c277b0c, piVar2);
             if (iStack_124 < 0) {
                 iStack_138 = 2;
             } else {
                 piVar6 = g_8c277b0c;
                 piVar2 = piStack_130;
                 a3 = uStack_134;
-                iStack_128 = tex_sub_25a5c0(g_8c277b08, g_8c277b0c, piStack_130, uStack_134);
+                iStack_128 = tex_entry_find_pair(g_8c277b08, g_8c277b0c, piStack_130, uStack_134);
                 if (iStack_128 < 0) {
                     iStack_138 = 0;
                 } else {
@@ -13085,7 +13085,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
     } else {
         piVar2 = *(int **)(iStack_c * 0xc + *piStack_8 + 8);
         piStack_130 = piVar2;
-        iStack_124 = tex_sub_25a536(g_8c277b08, g_8c277b0c, piVar2);
+        iStack_124 = tex_entry_find(g_8c277b08, g_8c277b0c, piVar2);
         if (iStack_124 < 0) {
             iStack_138 = 2;
         } else {
@@ -13116,7 +13116,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                     *(short *)(*piStack_10 + 0x42) = -(short)iStack_20;
                     g_8c4aa6ac = iStack_c;
                     g_8c4aa6b0 = piStack_130;
-                    ninja_sub_259c40();
+                    ninja_close_file();
                     return 0xffffffff;
                 }
                 a3 = 1;
@@ -13145,10 +13145,10 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                 *(short *)(*piStack_10 + 0x40) = (short)piStack_14[0x10];
                 *(u16 *)(*piStack_10 + 0x42) = 0;
                 piVar3 = piStack_130;
-                tex_sub_25a6ea(piStack_130, piVar6, piVar2, a3, in_stack_fffffe90);
+                tex_entry_addref(piStack_130, piVar6, piVar2, a3, in_stack_fffffe90);
             } else if (uVar1 == 0x80000000) {
                 if ((piStack_14[4] & 1U) == 0) {
-                    iStack_20 = ninja_sub_25a838(piStack_18, piStack_14 + 5, piVar2, a3);
+                    iStack_20 = tex_sub_25a838(piStack_18, piStack_14 + 5, piVar2, a3);
                     if (iStack_20 < 0) {
                         uVar7 = 2;
                         piVar3 = piStack_14 + 5;
@@ -13159,7 +13159,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                         *(short *)(*piStack_10 + 0x42) = -(short)iStack_20;
                         g_8c4aa6ac = iStack_c;
                         g_8c4aa6b0 = piStack_130;
-                        ninja_sub_259c40();
+                        ninja_close_file();
                         return 0xffffffff;
                     }
                     a3 = 2;
@@ -13181,7 +13181,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                 }
             } else if (uVar1 == 0x20000000) {
                 if ((piStack_14[4] & 1U) == 0) {
-                    iStack_20 = ninja_sub_25a838(piStack_18, piStack_14 + 5, piVar2, a3);
+                    iStack_20 = tex_sub_25a838(piStack_18, piStack_14 + 5, piVar2, a3);
                     if (iStack_20 < 0) {
                         uVar7 = 2;
                         piVar3 = piStack_14 + 5;
@@ -13192,7 +13192,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                         *(short *)(*piStack_10 + 0x42) = -(short)iStack_20;
                         g_8c4aa6ac = iStack_c;
                         g_8c4aa6b0 = piStack_130;
-                        ninja_sub_259c40();
+                        ninja_close_file();
                         return 0xffffffff;
                     }
                     a3 = 2;
@@ -13211,11 +13211,11 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                     *(short *)(*piStack_10 + 0x40) = (short)piStack_14[0x10];
                     *(u16 *)(*piStack_10 + 0x42) = 0;
                     piVar3 = piStack_130;
-                    tex_sub_25a6ea(piStack_130, piVar6, piVar2, a3, in_stack_fffffe90);
+                    tex_entry_addref(piStack_130, piVar6, piVar2, a3, in_stack_fffffe90);
                 }
             }
         }
-        ninja_sub_259c40();
+        ninja_close_file();
         return 1;
     }
     if (iStack_138 != 1) {
@@ -13237,7 +13237,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                 *(u16 *)(*piStack_10 + 0x40) = 0;
                 g_8c4aa6ac = iStack_c;
                 g_8c4aa6b0 = piStack_130;
-                ninja_sub_259c40();
+                ninja_close_file();
                 return 0xffffffff;
             }
             a3 = 2;
@@ -13250,7 +13250,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
             }
         } else if (uVar1 == 0x80000000) {
             piVar6 = ar5_00;
-            iStack_20 = ninja_sub_25a838(piStack_18, ar5_00, piVar2, a3);
+            iStack_20 = tex_sub_25a838(piStack_18, ar5_00, piVar2, a3);
             if (iStack_20 < 0) {
                 uVar7 = 0;
                 piVar2 = piStack_10;
@@ -13259,7 +13259,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                 *(short *)(*piStack_10 + 0x42) = -(short)iStack_20;
                 g_8c4aa6ac = iStack_c;
                 g_8c4aa6b0 = piStack_130;
-                ninja_sub_259c40();
+                ninja_close_file();
                 return 0xffffffff;
             }
             a3 = 1;
@@ -13268,7 +13268,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
             tex_entry_alloc(piStack_10, piVar6, piStack_130, 1, uStack_134);
             *(u16 *)(*piStack_10 + 0x42) = 0;
         } else if (uVar1 == 0x20000000) {
-            iStack_20 = ninja_sub_25a838(piStack_18, ar5_00, piVar2, a3);
+            iStack_20 = tex_sub_25a838(piStack_18, ar5_00, piVar2, a3);
             if (iStack_20 < 0) {
                 uVar7 = 0;
                 puVar5 = auStack_16c;
@@ -13279,7 +13279,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                 *(u16 *)(*piStack_10 + 0x40) = 0;
                 g_8c4aa6ac = iStack_c;
                 g_8c4aa6b0 = piStack_130;
-                ninja_sub_259c40();
+                ninja_close_file();
                 return 0xffffffff;
             }
             piVar6 = ar5_00;
@@ -13292,7 +13292,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                 *(short *)(*piStack_10 + 0x42) = -(short)iStack_20;
                 g_8c4aa6ac = iStack_c;
                 g_8c4aa6b0 = piStack_130;
-                ninja_sub_259c40();
+                ninja_close_file();
                 return 0xffffffff;
             }
             a3 = 3;
@@ -13318,7 +13318,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                 *(short *)((int)piStack_14 + 0x42) = -(short)iStack_20;
                 g_8c4aa6ac = iStack_c;
                 g_8c4aa6b0 = piStack_130;
-                ninja_sub_259c40();
+                ninja_close_file();
                 return 0xffffffff;
             }
             *(u16 *)((int)piStack_14 + 0x42) = 0;
@@ -13342,19 +13342,19 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
         }
     LAB_8c238436:
         piVar3 = piStack_130;
-        tex_sub_25a6ea(piStack_130, piVar6, piVar2, a3, in_stack_fffffe90);
+        tex_entry_addref(piStack_130, piVar6, piVar2, a3, in_stack_fffffe90);
     } else {
         if (uVar1 == 0x80000000) {
             if ((piStack_14[4] & 1U) != 0)
                 goto LAB_8c23878e;
             piVar6 = piStack_14 + 5;
             piVar3 = piStack_18;
-            iStack_20 = ninja_sub_25a838(piStack_18, piVar6, piVar2, a3);
+            iStack_20 = tex_sub_25a838(piStack_18, piVar6, piVar2, a3);
             if (iStack_20 < 0) {
                 *(short *)((int)piStack_14 + 0x42) = -(short)iStack_20;
                 g_8c4aa6ac = iStack_c;
                 g_8c4aa6b0 = piStack_130;
-                ninja_sub_259c40();
+                ninja_close_file();
                 return 0xffffffff;
             }
             *(u16 *)((int)piStack_14 + 0x42) = 0;
@@ -13375,7 +13375,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                     *(short *)((int)piStack_14 + 0x42) = -(short)iStack_20;
                     g_8c4aa6ac = iStack_c;
                     g_8c4aa6b0 = piStack_130;
-                    ninja_sub_259c40();
+                    ninja_close_file();
                     return 0xffffffff;
                 }
                 *(u16 *)((int)piStack_14 + 0x42) = 0;
@@ -13402,12 +13402,12 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
             }
             piVar6 = piStack_14 + 5;
             piVar3 = piStack_18;
-            iStack_20 = ninja_sub_25a838(piStack_18, piVar6, piVar2, a3);
+            iStack_20 = tex_sub_25a838(piStack_18, piVar6, piVar2, a3);
             if (iStack_20 < 0) {
                 *(short *)((int)piStack_14 + 0x42) = -(short)iStack_20;
                 g_8c4aa6ac = iStack_c;
                 g_8c4aa6b0 = piStack_130;
-                ninja_sub_259c40();
+                ninja_close_file();
                 return 0xffffffff;
             }
             *(u16 *)((int)piStack_14 + 0x42) = 0;
@@ -13423,7 +13423,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
         tex_entry_set_flags(piStack_130, piVar6, piVar2, a3, in_stack_fffffe90);
     }
 LAB_8c23878e:
-    ninja_sub_259c40();
+    ninja_close_file();
     return 1;
 }
 
@@ -13458,7 +13458,7 @@ u32 gfxlib_sub_2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
     a4 = ar4_00 + 2;
     if (((ar4_00[1] & 0x10000) != 0) && (a1 != 0)) {
         iVar5 = *a0;
-        iVar1 = tex_sub_25a536(g_8c277b08, g_8c277b0c, in_stack_ffffffc4);
+        iVar1 = tex_entry_find(g_8c277b08, g_8c277b0c, in_stack_ffffffc4);
         if ((*(u32 *)(iVar1 * 0x44 + g_8c277b08 + 0x10) & 1) == 0) {
             uVar7 = 2;
         } else {
@@ -13474,7 +13474,7 @@ u32 gfxlib_sub_2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
         if ((*(u32 *)(a1 * 0xc + *a0 + 4) & 0x1000000) != 0) {
             uVar4 = ar4_00[2] & 0x3ffffff;
             uVar2 = (u32)ar4_00[2] >> 0x1a;
-            iStack_38 = tex_sub_25a536(g_8c277b08, g_8c277b0c, uVar4);
+            iStack_38 = tex_entry_find(g_8c277b08, g_8c277b0c, uVar4);
             a5 = (u32 *)*ar4_00;
             in_stack_ffffffc4 = *a5;
             uVar3 = ninja_sub_25abf0(&uStack_28, auStack_30, in_stack_ffffffc4, a3);
@@ -13489,7 +13489,7 @@ u32 gfxlib_sub_2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
                 iVar1 = 2;
                 uVar2 = a3;
             } else {
-                iVar1 = tex_sub_25a5c0(g_8c277b08, g_8c277b0c, uVar4, uVar2);
+                iVar1 = tex_entry_find_pair(g_8c277b08, g_8c277b0c, uVar4, uVar2);
                 in_stack_ffffffc4 = uVar4;
                 if (iVar1 < 0) {
                     iVar1 = 0;
@@ -13512,7 +13512,7 @@ u32 gfxlib_sub_2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
         }
         if (in_stack_ffffffc4 == 0xffffffff) {
             while (uVar7 = g_8c277b0c, in_stack_ffffffc4 = g_8c277b18,
-                   iVar1 = tex_sub_25a536(g_8c277b08, g_8c277b0c, g_8c277b18), iVar1 != -1) {
+                   iVar1 = tex_entry_find(g_8c277b08, g_8c277b0c, g_8c277b18), iVar1 != -1) {
                 g_8c277b18 = g_8c277b18 - 1;
             }
             uVar3 = g_8c277b18;
@@ -13524,13 +13524,13 @@ u32 gfxlib_sub_2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
         }
         iVar5 = tex_is_palettized(uStack_28 & 0xff00);
         uVar2 = in_stack_ffffffc4;
-        iStack_38 = tex_sub_25a536(g_8c277b08, g_8c277b0c, in_stack_ffffffc4);
+        iStack_38 = tex_entry_find(g_8c277b08, g_8c277b0c, in_stack_ffffffc4);
         uVar3 = uVar2;
         if (iVar5 == 1) {
             uVar4 = (u32)ar4_00[2] >> 0x1a;
             if (iStack_38 < 0)
                 goto LAB_8c238a2e;
-            iVar1 = tex_sub_25a5c0(g_8c277b08, g_8c277b0c, uVar2, uVar4);
+            iVar1 = tex_entry_find_pair(g_8c277b08, g_8c277b0c, uVar2, uVar4);
             in_stack_ffffffc4 = uVar2;
             a3 = uVar4;
             if (-1 < iVar1)
@@ -13562,7 +13562,7 @@ u32 gfxlib_sub_2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
             a5[1] = uStack_28 << 0x10;
         }
         uVar3 = in_stack_ffffffc4;
-        iStack_38 = tex_sub_25a536(g_8c277b08, g_8c277b0c, in_stack_ffffffc4);
+        iStack_38 = tex_entry_find(g_8c277b08, g_8c277b0c, in_stack_ffffffc4);
         if (iStack_38 < 0) {
             iVar1 = 2;
         } else {
@@ -13607,7 +13607,7 @@ u32 gfxlib_sub_2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
                 *(u16 *)(*a4 + 0x42) = 0;
                 in_stack_ffffffc4 = uVar3;
             LAB_8c238cee:
-                tex_sub_25a6ea(uVar2, iVar1, in_stack_ffffffc4, a3, uVar2);
+                tex_entry_addref(uVar2, iVar1, in_stack_ffffffc4, a3, uVar2);
             } else {
                 if (uVar4 == 0x80000000) {
                     if ((*(u32 *)(ar5_01 + 0x10) & 1) != 0) {
@@ -13615,7 +13615,7 @@ u32 gfxlib_sub_2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
                         *(u16 *)(*a4 + 0x40) = *(u16 *)(ar5_01 + 0x40);
                         goto LAB_8c238dc6;
                     }
-                    iVar1 = ninja_sub_25a8c0(ar4_00, ar5_01 + 0x14);
+                    iVar1 = tex_sub_25a8c0(ar4_00, ar5_01 + 0x14);
                     if (iVar1 < 0) {
                         tex_entry_alloc(a4, ar5_01 + 0x14, uVar3, 2);
                         g_8c4aa6b0 = uVar3;
@@ -13640,7 +13640,7 @@ u32 gfxlib_sub_2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
                         a3 = 3;
                         goto LAB_8c238b9e;
                     }
-                    iStack_2c = ninja_sub_25a8c0(ar4_00, ar5_01 + 0x14);
+                    iStack_2c = tex_sub_25a8c0(ar4_00, ar5_01 + 0x14);
                     if (iStack_2c < 0) {
                         tex_entry_alloc(a4, ar5_01 + 0x14, uVar3, 2);
                         *(u16 *)(*a4 + 0x40) = *(u16 *)(ar5_01 + 0x40);
@@ -13686,7 +13686,7 @@ u32 gfxlib_sub_2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
                 *(short *)(ar5_01 + 0x40) = *(short *)(ar5_01 + 0x40) + 1;
             } else if (uVar4 == 0x80000000) {
                 if ((*(u32 *)(ar5_01 + 0x10) & 1) == 0) {
-                    iVar1 = ninja_sub_25a8c0(ar4_00, ar5_01 + 0x14);
+                    iVar1 = tex_sub_25a8c0(ar4_00, ar5_01 + 0x14);
                     if (iVar1 < 0)
                         goto LAB_8c238d08;
                     *(u16 *)(ar5_01 + 0x42) = 0;
@@ -13707,7 +13707,7 @@ u32 gfxlib_sub_2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
                 } else {
                     if ((*(u32 *)(ar5_01 + 0x10) & 1) != 0)
                         goto joined_r0x8c238cec;
-                    iVar1 = ninja_sub_25a8c0(ar4_00, ar5_01 + 0x14);
+                    iVar1 = tex_sub_25a8c0(ar4_00, ar5_01 + 0x14);
                     if (-1 < iVar1) {
                         *(u16 *)(ar5_01 + 0x42) = 0;
                         if (iVar5 != 0)
@@ -13739,7 +13739,7 @@ u32 gfxlib_sub_2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
                     goto LAB_8c238e44;
                 }
             } else if (uVar2 == 0x80000000) {
-                iStack_2c = ninja_sub_25a8c0(ar4_00, uVar7);
+                iStack_2c = tex_sub_25a8c0(ar4_00, uVar7);
                 if (-1 < iStack_2c) {
                     tex_entry_alloc(a4, uVar7, uVar3, 1);
                     goto LAB_8c238dc6;
@@ -13747,7 +13747,7 @@ u32 gfxlib_sub_2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
             } else {
                 if (uVar2 != 0x20000000)
                     goto LAB_8c238e44;
-                iStack_2c = ninja_sub_25a8c0(ar4_00, uVar7);
+                iStack_2c = tex_sub_25a8c0(ar4_00, uVar7);
                 if (-1 < iStack_2c) {
                     iStack_2c = ninja_sub_25a914(ar4_00, uVar7, uVar6, a3);
                     if (iStack_2c < 0) {
@@ -13786,11 +13786,11 @@ u32 gfxlib_sub_238e8c(u32 a0) {
 }
 
 /*
- * gfxlib_sub_238e98  0x8c238e98
- * area name: in the gfxlib library code range
+ * gfx_stream_read  0x8c238e98
+ * copies a1 bytes from the read pointer at 0x8c4ab274 to a0 and advances it
  * called by: gfxlib_sub_239f84, gfxlib_sub_23a29c, ta_fifo_23a078, ta_sub_23a1b0, ta_sub_23a21c
  */
-u32 gfxlib_sub_238e98(u32 a0, int a1) {
+u32 gfx_stream_read(u32 a0, int a1) {
     int *piVar1;
     u32 uVar2;
 
@@ -13936,7 +13936,7 @@ u32 ta_fifo_239012(u32 unused_a0, u32 unused_a1, int a2, u32 a3, u32 s0) {
     u32 uVar7;
     u16 auStack_14[2];
 
-    puVar1 = (&ninja_sub_25a122);
+    puVar1 = (&nj_seek);
     iVar3 = (int)(int)0xffffefe0;
     do {
         puVar2 = (&ninja_sub_259c48);
@@ -14016,12 +14016,12 @@ int ta_sub_239150(int *a0, u32 a1) {
 }
 
 /*
- * ta_sub_239170  0x8c239170
- * area name: sits between ta functions (same compilation unit)
+ * ptr_list_build_1c  0x8c239170
+ * fills a1 with a3 pointers 0x1c bytes apart starting at a2 (stride 12) and stores a1 in *a0
  * called by: CGame_Init, CIncubater_Create, CProlog_Ready, CSoilTank_Create, CSquid_Init, CSysMessage_LoadMessage,
  * CWaterTank_CreateStage, WEATHRE_UNIT_CreateGraphics (+6 more)
  */
-int *ta_sub_239170(int *a0, int *a1, int a2, int a3) {
+int *ptr_list_build_1c(int *a0, int *a1, int a2, int a3) {
     int *piVar1;
     int iVar2;
 
@@ -14055,7 +14055,7 @@ u32 ta_sub_2391a8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         (iVar1 = ninja_sub_259c48(auStack_10, 0xc, unused_a2, a3), iVar1 < 0)) {
         return 0xfffffffc;
     }
-    ninja_sub_25a122(0xfffffff0, 1);
+    nj_seek(0xfffffff0, 1);
     uStack_c = 0xff00 & uStack_c;
     if (((uStack_c != (int)0x500) && (uStack_c != (int)0x600)) &&
         ((uStack_c != (int)0x700 && (uStack_c != (int)0x800)))) {
@@ -14114,33 +14114,33 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
         piVar4 = &iStack_110;
         iVar1 = ninja_sub_259c48(piVar4, 4, ar6_00, a3);
         if (iVar1 < 0) {
-            ninja_sub_259c40();
+            ninja_close_file();
         } else if (iStack_110 == 0x484d5650) {
             uVar6 = 8;
             piVar4 = &iStack_11c;
             iVar1 = ninja_sub_259c48(piVar4, 8, ar6_00, a3);
             if (iVar1 < 0) {
-                ninja_sub_259c40();
+                ninja_close_file();
             } else {
                 sStack_112 = sStack_116;
                 piStack_c[1] = (int)sStack_116;
                 uStack_148 = gfxlib_sub_238f02((int)sStack_118);
                 piVar3 = &iStack_11c;
                 gfxlib_sub_238f2a(piStack_c, uStack_148, piVar3, a3);
-                ninja_sub_25a122(0, 0);
+                nj_seek(0, 0);
                 piVar7 = (int *)0x1;
                 piVar4 = (int *)(iStack_11c + 8);
-                ninja_sub_25a122(piVar4, 1);
+                nj_seek(piVar4, 1);
                 iVar1 = ta_fifo_239012(piVar4, piVar7, piVar3, a3);
                 if (iVar1 < 0) {
-                    ninja_sub_259c40();
+                    ninja_close_file();
                 } else {
                     piStack_c[1] = (int)sStack_112;
                     iVar1 = 0;
                     while (true) {
                         iStack_140 = iVar1;
                         if (sStack_112 <= iVar1) {
-                            ninja_sub_259c40();
+                            ninja_close_file();
                             return 1;
                         }
                         piVar4 = piStack_c;
@@ -14153,7 +14153,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                             piVar4 = g_8c277b08;
                             piVar7 = g_8c277b0c;
                             piStack_138 = piVar3;
-                            iStack_130 = tex_sub_25a536(g_8c277b08, g_8c277b0c, piVar3);
+                            iStack_130 = tex_entry_find(g_8c277b08, g_8c277b0c, piVar3);
                             if (iStack_130 < 0) {
                                 iStack_158 = 2;
                             } else {
@@ -14161,7 +14161,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                 piVar7 = g_8c277b0c;
                                 piVar3 = piStack_138;
                                 a3 = uStack_150;
-                                iStack_134 = tex_sub_25a5c0(g_8c277b08, g_8c277b0c, piStack_138, uStack_150);
+                                iStack_134 = tex_entry_find_pair(g_8c277b08, g_8c277b0c, piStack_138, uStack_150);
                                 if (iStack_134 < 0) {
                                     iStack_158 = 0;
                                 } else {
@@ -14180,7 +14180,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                             piVar3 = (int *)(piStack_128[2] & 0x3ffffff);
                             uStack_150 = (u32)piStack_128[2] >> 0x1a;
                             piStack_138 = piVar3;
-                            iStack_130 = tex_sub_25a536(g_8c277b08, g_8c277b0c, piVar3);
+                            iStack_130 = tex_entry_find(g_8c277b08, g_8c277b0c, piVar3);
                             if (iStack_130 < 0) {
                             LAB_8c239438:
                                 iStack_158 = 2;
@@ -14189,7 +14189,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                 piVar7 = g_8c277b0c;
                                 piVar3 = piStack_138;
                                 a3 = uStack_150;
-                                iStack_134 = tex_sub_25a5c0(g_8c277b08, g_8c277b0c, piStack_138, uStack_150);
+                                iStack_134 = tex_entry_find_pair(g_8c277b08, g_8c277b0c, piStack_138, uStack_150);
                                 if (iStack_134 < 0) {
                                     iStack_158 = 0;
                                 } else {
@@ -14199,7 +14199,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                         } else {
                             piVar3 = (int *)piStack_128[2];
                             piStack_138 = piVar3;
-                            iStack_130 = tex_sub_25a536(g_8c277b08, g_8c277b0c, piVar3);
+                            iStack_130 = tex_entry_find(g_8c277b08, g_8c277b0c, piVar3);
                             if (iStack_130 < 0)
                                 goto LAB_8c239438;
                             iStack_158 = 1;
@@ -14207,7 +14207,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                     LAB_8c2394ac:
                         if (iStack_158 == 0) {
                             piStack_124 = g_8c277b08 + iStack_130 * 0x11;
-                            ninja_sub_25a122(4, 1);
+                            nj_seek(4, 1);
                             iVar1 = ninja_sub_259c48(&piStack_14c, 4, piVar3, a3);
                             if (iVar1 < 0) {
                                 uVar6 = 0;
@@ -14218,12 +14218,12 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                 *(short *)(*piStack_120 + 0x42) = -(short)iStack_13c;
                                 g_8c4aa6ac = iStack_144;
                                 g_8c4aa6b0 = piStack_138;
-                                ninja_sub_259c40();
+                                ninja_close_file();
                                 return 0xffffffff;
                             }
                             piVar7 = (int *)0x1;
                             piVar4 = piStack_14c;
-                            ninja_sub_25a122(piStack_14c, 1);
+                            nj_seek(piStack_14c, 1);
                             if ((piStack_124[4] & 2U) == 0) {
                                 uVar2 = piStack_128[1] & 0xa0000000;
                                 if ((uVar2 == 0) || (uVar2 == 0x20000000)) {
@@ -14237,7 +14237,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                         *(short *)(*piStack_120 + 0x42) = -(short)iStack_13c;
                                         g_8c4aa6ac = iStack_144;
                                         g_8c4aa6b0 = piStack_138;
-                                        ninja_sub_259c40();
+                                        ninja_close_file();
                                         return 0xffffffff;
                                     }
                                     a3 = 1;
@@ -14267,10 +14267,10 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                     *(u16 *)(*piStack_120 + 0x42) = 0;
                                 LAB_8c239986:
                                     piVar4 = piStack_138;
-                                    tex_sub_25a6ea(piStack_138, piVar7, piVar3, a3, in_stack_fffffe78);
+                                    tex_entry_addref(piStack_138, piVar7, piVar3, a3, in_stack_fffffe78);
                                 } else if (uVar2 == 0x80000000) {
                                     if ((piStack_124[4] & 1U) == 0) {
-                                        iStack_13c = ninja_sub_25a838(piStack_128, piStack_124 + 5, piVar3, a3);
+                                        iStack_13c = tex_sub_25a838(piStack_128, piStack_124 + 5, piVar3, a3);
                                         if (iStack_13c < 0) {
                                             uVar6 = 2;
                                             piVar3 = piStack_124 + 5;
@@ -14281,7 +14281,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                             *(short *)(*piStack_120 + 0x42) = -(short)iStack_13c;
                                             g_8c4aa6ac = iStack_144;
                                             g_8c4aa6b0 = piStack_138;
-                                            ninja_sub_259c40();
+                                            ninja_close_file();
                                             return 0xffffffff;
                                         }
                                         a3 = 2;
@@ -14303,7 +14303,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                     }
                                 } else if (uVar2 == 0x20000000) {
                                     if ((piStack_124[4] & 1U) == 0) {
-                                        iStack_13c = ninja_sub_25a838(piStack_128, piStack_124 + 5, piVar3, a3);
+                                        iStack_13c = tex_sub_25a838(piStack_128, piStack_124 + 5, piVar3, a3);
                                         if (iStack_13c < 0) {
                                             uVar6 = 2;
                                             piVar3 = piStack_124 + 5;
@@ -14314,7 +14314,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                             *(short *)(*piStack_120 + 0x42) = -(short)iStack_13c;
                                             g_8c4aa6ac = iStack_144;
                                             g_8c4aa6b0 = piStack_138;
-                                            ninja_sub_259c40();
+                                            ninja_close_file();
                                             return 0xffffffff;
                                         }
                                         a3 = 2;
@@ -14333,7 +14333,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                         *(short *)(*piStack_120 + 0x40) = (short)piStack_124[0x10];
                                         *(u16 *)(*piStack_120 + 0x42) = 0;
                                         piVar4 = piStack_138;
-                                        tex_sub_25a6ea(piStack_138, piVar7, piVar3, a3, in_stack_fffffe78);
+                                        tex_entry_addref(piStack_138, piVar7, piVar3, a3, in_stack_fffffe78);
                                     }
                                 }
                             }
@@ -14342,19 +14342,19 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                             piStack_128[2] = (int)piStack_124;
                             uVar2 = piStack_128[1] & 0xa0000000;
                             if (uVar2 == 0) {
-                                ninja_sub_25a122(4, 1);
+                                nj_seek(4, 1);
                                 uVar6 = 4;
                                 ppiVar5 = &piStack_14c;
                                 iVar1 = ninja_sub_259c48(ppiVar5, 4, piVar3, a3);
                                 if (iVar1 < 0) {
                                     g_8c4aa6ac = iStack_144;
                                     g_8c4aa6b0 = piStack_138;
-                                    ninja_sub_259c40();
+                                    ninja_close_file();
                                     return 0xffffffff;
                                 }
                                 piVar7 = (int *)0x1;
                                 piVar4 = piStack_14c;
-                                ninja_sub_25a122(piStack_14c, 1);
+                                nj_seek(piStack_14c, 1);
                                 if ((piStack_124[4] & 2U) == 0) {
                                     piVar7 = piStack_124 + 5;
                                     piVar4 = piStack_128;
@@ -14363,7 +14363,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                         *(short *)((int)piStack_124 + 0x42) = -(short)iStack_13c;
                                         g_8c4aa6ac = iStack_144;
                                         g_8c4aa6b0 = piStack_138;
-                                        ninja_sub_259c40();
+                                        ninja_close_file();
                                         return 0xffffffff;
                                     }
                                     *(u16 *)((int)piStack_124 + 0x42) = 0;
@@ -14388,12 +14388,12 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                 if ((piStack_124[4] & 1U) == 0) {
                                     piVar7 = piStack_124 + 5;
                                     piVar4 = piStack_128;
-                                    iStack_13c = ninja_sub_25a838(piStack_128, piVar7, piVar3, a3);
+                                    iStack_13c = tex_sub_25a838(piStack_128, piVar7, piVar3, a3);
                                     if (iStack_13c < 0) {
                                         *(short *)((int)piStack_124 + 0x42) = -(short)iStack_13c;
                                         g_8c4aa6ac = iStack_144;
                                         g_8c4aa6b0 = piStack_138;
-                                        ninja_sub_259c40();
+                                        ninja_close_file();
                                         return 0xffffffff;
                                     }
                                     *(u16 *)((int)piStack_124 + 0x42) = 0;
@@ -14406,33 +14406,33 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                         tex_entry_set_flags(piStack_138, 1, piVar3, a3, in_stack_fffffe78);
                                     }
                                 } else {
-                                    ninja_sub_25a122(4, 1);
+                                    nj_seek(4, 1);
                                     uVar6 = 4;
                                     ppiVar5 = &piStack_14c;
                                     iVar1 = ninja_sub_259c48(ppiVar5, 4, piVar3, a3);
                                     if (iVar1 < 0) {
                                         g_8c4aa6ac = iStack_144;
                                         g_8c4aa6b0 = piStack_138;
-                                        ninja_sub_259c40();
+                                        ninja_close_file();
                                         return 0xffffffff;
                                     }
                                     piVar7 = (int *)0x1;
                                     piVar4 = piStack_14c;
-                                    ninja_sub_25a122(piStack_14c, 1);
+                                    nj_seek(piStack_14c, 1);
                                 }
                             } else if (uVar2 == 0x20000000) {
                                 if ((piStack_124[4] & 2U) == 0) {
-                                    ninja_sub_25a122(4, 1);
+                                    nj_seek(4, 1);
                                     uVar6 = 4;
                                     ppiVar5 = &piStack_14c;
                                     iVar1 = ninja_sub_259c48(ppiVar5, 4, piVar3, a3);
                                     if (iVar1 < 0) {
                                         g_8c4aa6ac = iStack_144;
                                         g_8c4aa6b0 = piStack_138;
-                                        ninja_sub_259c40();
+                                        ninja_close_file();
                                         return 0xffffffff;
                                     }
-                                    ninja_sub_25a122(piStack_14c, 1);
+                                    nj_seek(piStack_14c, 1);
                                     piVar7 = piStack_124 + 5;
                                     piVar4 = piStack_128;
                                     iStack_13c = ninja_sub_25a914(piStack_128, piVar7, piVar3, a3);
@@ -14440,7 +14440,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                         *(short *)((int)piStack_124 + 0x42) = -(short)iStack_13c;
                                         g_8c4aa6ac = iStack_144;
                                         g_8c4aa6b0 = piStack_138;
-                                        ninja_sub_259c40();
+                                        ninja_close_file();
                                         return 0xffffffff;
                                     }
                                     *(u16 *)((int)piStack_124 + 0x42) = 0;
@@ -14459,12 +14459,12 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                 } else if ((piStack_124[4] & 1U) == 0) {
                                     piVar7 = piStack_124 + 5;
                                     piVar4 = piStack_128;
-                                    iStack_13c = ninja_sub_25a838(piStack_128, piVar7, piVar3, a3);
+                                    iStack_13c = tex_sub_25a838(piStack_128, piVar7, piVar3, a3);
                                     if (iStack_13c < 0) {
                                         *(short *)((int)piStack_124 + 0x42) = -(short)iStack_13c;
                                         g_8c4aa6ac = iStack_144;
                                         g_8c4aa6b0 = piStack_138;
-                                        ninja_sub_259c40();
+                                        ninja_close_file();
                                         return 0xffffffff;
                                     }
                                     *(u16 *)((int)piStack_124 + 0x42) = 0;
@@ -14481,21 +14481,21 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                     if (iStack_154 == 0) {
                                         *(short *)(piStack_124 + 0x10) = (short)piStack_124[0x10] + 1;
                                     } else {
-                                        tex_sub_25a6ea(piStack_138, piVar7, piVar3, a3, in_stack_fffffe78);
+                                        tex_entry_addref(piStack_138, piVar7, piVar3, a3, in_stack_fffffe78);
                                     }
-                                    ninja_sub_25a122(4, 1);
+                                    nj_seek(4, 1);
                                     uVar6 = 4;
                                     ppiVar5 = &piStack_14c;
                                     iVar1 = ninja_sub_259c48(ppiVar5, 4, piVar3, a3);
                                     if (iVar1 < 0) {
                                         g_8c4aa6ac = iStack_144;
                                         g_8c4aa6b0 = piStack_138;
-                                        ninja_sub_259c40();
+                                        ninja_close_file();
                                         return 0xffffffff;
                                     }
                                     piVar7 = (int *)0x1;
                                     piVar4 = piStack_14c;
-                                    ninja_sub_25a122(piStack_14c, 1);
+                                    nj_seek(piStack_14c, 1);
                                 }
                             }
                         } else if (iStack_158 == 2) {
@@ -14513,7 +14513,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                     *(short *)(*piStack_120 + 0x42) = -(short)iStack_13c;
                                     g_8c4aa6ac = iStack_144;
                                     g_8c4aa6b0 = piStack_138;
-                                    ninja_sub_259c40();
+                                    ninja_close_file();
                                     return 0xffffffff;
                                 }
                                 a3 = 2;
@@ -14527,7 +14527,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                 }
                             } else if (uVar2 == 0x80000000) {
                                 piVar7 = in_stack_fffffe78;
-                                iStack_13c = ninja_sub_25a838(piStack_128, in_stack_fffffe78, piVar3, a3);
+                                iStack_13c = tex_sub_25a838(piStack_128, in_stack_fffffe78, piVar3, a3);
                                 if (iStack_13c < 0) {
                                     uVar6 = 0;
                                     piVar4 = piStack_120;
@@ -14536,7 +14536,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                     *(short *)(*piStack_120 + 0x42) = -(short)iStack_13c;
                                     g_8c4aa6ac = iStack_144;
                                     g_8c4aa6b0 = piStack_138;
-                                    ninja_sub_259c40();
+                                    ninja_close_file();
                                     return 0xffffffff;
                                 }
                                 a3 = 1;
@@ -14546,7 +14546,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                 tex_entry_alloc(piStack_120, piVar7, piStack_138, 1, uStack_150);
                                 *(u16 *)(*piStack_120 + 0x42) = 0;
                             } else if (uVar2 == 0x20000000) {
-                                iStack_13c = ninja_sub_25a838(piStack_128, in_stack_fffffe78, piVar3, a3);
+                                iStack_13c = tex_sub_25a838(piStack_128, in_stack_fffffe78, piVar3, a3);
                                 if (iStack_13c < 0) {
                                     uVar6 = 0;
                                     piVar4 = piStack_120;
@@ -14555,7 +14555,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                     *(short *)(*piStack_120 + 0x42) = -(short)iStack_13c;
                                     g_8c4aa6ac = iStack_144;
                                     g_8c4aa6b0 = piStack_138;
-                                    ninja_sub_259c40();
+                                    ninja_close_file();
                                     return 0xffffffff;
                                 }
                                 piVar7 = in_stack_fffffe78;
@@ -14568,7 +14568,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                     *(short *)(*piStack_120 + 0x42) = -(short)iStack_13c;
                                     g_8c4aa6ac = iStack_144;
                                     g_8c4aa6b0 = piStack_138;
-                                    ninja_sub_259c40();
+                                    ninja_close_file();
                                     return 0xffffffff;
                                 }
                                 a3 = 3;
@@ -14585,12 +14585,12 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                         iVar1 = iStack_140 + 1;
                     }
                     g_8c4aa6ac = iStack_144;
-                    ninja_sub_259c40();
+                    ninja_close_file();
                 }
             }
         } else {
             g_8c4aa6b4 = 4;
-            ninja_sub_259c40();
+            ninja_close_file();
         }
     }
     return 0xffffffff;
@@ -14619,7 +14619,7 @@ u32 gfxlib_sub_239f84(u32 *a0, u32 a1, int a2) {
     puVar6 = (u32 *)*a0;
     if (0 < iVar5) {
         do {
-            gfxlib_sub_238e98(auStack_48, a1);
+            gfx_stream_read(auStack_48, a1);
             puVar4 = auStack_48;
             uVar2 = gfxlib_sub_238ede(&stack0xffffffa8, auStack_48);
             puVar6[1] = puVar6[1] & 0xffff0000 | in_stack_ffffffa8 & 0xffff;
@@ -14665,17 +14665,17 @@ u32 ta_fifo_23a078(u32 unused_a0, u32 unused_a1, u8 *a2, u32 a3) {
 
     iVar1 = (int)(int)0xffffefec;
     do {
-        gfxlib_sub_238e98(&stack0xfffffff8 + iVar1, 4);
+        gfx_stream_read(&stack0xfffffff8 + iVar1, 4);
         iVar2 = *(int *)(&stack0xfffffff8 + iVar1);
         if ((((iVar2 == 0x4e4c444d) || (iVar2 == 0x564e4f43)) || (iVar2 == 0x494d5650)) ||
             ((iVar2 == 0x43474d49 || (iVar2 == 0x4d4d4f43)))) {
-            gfxlib_sub_238e98((int)auStack_c + iVar1, 4);
+            gfx_stream_read((int)auStack_c + iVar1, 4);
         LAB_8c23a190:
             uVar3 = gfxlib_sub_238eba(*(u32 *)((int)auStack_c + iVar1), 1);
             ar4_00 = a2;
         } else if (iVar2 == 0x4c505650) {
             uVar3 = 0xc;
-            gfxlib_sub_238e98((int)auStack_c + 0x1008 + iVar1, 0xc);
+            gfx_stream_read((int)auStack_c + 0x1008 + iVar1, 0xc);
             (*(code *)(&ninja_sub_255f88))((u32) * (u16 *)((int)auStack_c + 0x100c + iVar1), uVar3, a2, a3);
             if (*(short *)((int)auStack_c + 0x100e + iVar1) == 6) {
                 iVar2 = 4;
@@ -14683,7 +14683,7 @@ u32 ta_fifo_23a078(u32 unused_a0, u32 unused_a1, u8 *a2, u32 a3) {
                 iVar2 = 2;
             }
             ar4_00 = &stack0xfffffffc + iVar1;
-            (*(code *)(&gfxlib_sub_238e98))(ar4_00, *(short *)((int)auStack_c + 0x1012 + iVar1) * iVar2, a2, a3);
+            (*(code *)(&gfx_stream_read))(ar4_00, *(short *)((int)auStack_c + 0x1012 + iVar1) * iVar2, a2, a3);
             uVar3 = 1;
             iVar2 =
                 (*(int *)((int)auStack_c + 0x1008 + iVar1) - *(short *)((int)auStack_c + 0x1012 + iVar1) * iVar2) + -8;
@@ -14695,7 +14695,7 @@ u32 ta_fifo_23a078(u32 unused_a0, u32 unused_a1, u8 *a2, u32 a3) {
                                                    (int)*(short *)((int)auStack_c + 0x1012 + iVar1), ar4_00, a3);
         } else {
             if (iVar2 != 0x54525650) {
-                gfxlib_sub_238e98((int)auStack_c + iVar1, 4);
+                gfx_stream_read((int)auStack_c + iVar1, 4);
                 goto LAB_8c23a190;
             }
             uVar3 = gfxlib_sub_238eba(0xfffffffc, 1);
@@ -14726,14 +14726,14 @@ u32 ta_sub_23a1b0(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
 
     iVar2 = 0x54525650;
     do {
-        gfxlib_sub_238e98(&iStack_20, 4);
+        gfx_stream_read(&iStack_20, 4);
         if (iStack_20 == 0x54525650) {
-            gfxlib_sub_238e98(&iStack_18, 0xc);
+            gfx_stream_read(&iStack_18, 0xc);
             a0[4] = (u32)uStack_10;
             a0[5] = (u32)uStack_e;
             a0[1] = iStack_14 << 0x10;
         } else {
-            gfxlib_sub_238e98(&uStack_1c, 4);
+            gfx_stream_read(&uStack_1c, 4);
             gfxlib_sub_238eba(uStack_1c, 1);
         }
         puVar1 = (&gfxlib_sub_238eba);
@@ -14753,11 +14753,11 @@ u32 ta_sub_23a21c(u32 unused_a0, u32 a1) {
     u8 auStack_10[4];
     u32 uStack_c;
 
-    gfxlib_sub_238e98(&iStack_14, 4);
+    gfx_stream_read(&iStack_14, 4);
     if (iStack_14 != 0x54525650) {
         return 0xfffffffc;
     }
-    gfxlib_sub_238e98(auStack_10, 0xc);
+    gfx_stream_read(auStack_10, 0xc);
     gfxlib_sub_238eba(0xfffffff0, 1);
     uStack_c = 0xff00 & uStack_c;
     if ((((uStack_c != (int)0x500) && (uStack_c != (int)0x600)) && (uStack_c != (int)0x700)) &&
@@ -14797,10 +14797,10 @@ u32 gfxlib_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
     piVar6 = a1;
     ninja_sub_25b5b4();
     gfxlib_sub_238e8c(a0);
-    gfxlib_sub_238e98(&iStack_58, 4);
+    gfx_stream_read(&iStack_58, 4);
     if (iStack_58 == 0x484d5650) {
         uVar5 = 8;
-        gfxlib_sub_238e98(&iStack_28, 8);
+        gfx_stream_read(&iStack_28, 8);
         iVar1 = (int)sStack_22;
         a1[1] = iVar1;
         uVar5 = gfxlib_sub_238f02((int)sStack_24);
@@ -14826,7 +14826,7 @@ u32 gfxlib_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                         ar6_00 = (int *)(*(u32 *)(ar4_00 + 8) & 0x3ffffff);
                         ar7_00 = *(u32 *)(ar4_00 + 8) >> 0x1a;
                         piVar6 = ar6_00;
-                        iStack_68 = tex_sub_25a536(g_8c277b08, g_8c277b0c, ar6_00);
+                        iStack_68 = tex_entry_find(g_8c277b08, g_8c277b0c, ar6_00);
                         if (iStack_68 < 0) {
                         LAB_8c23a3b6:
                             iVar2 = 2;
@@ -14834,7 +14834,7 @@ u32 gfxlib_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                             iVar4 = g_8c277b0c;
                             piVar6 = ar6_00;
                             a3 = ar7_00;
-                            iVar2 = tex_sub_25a5c0(g_8c277b08, g_8c277b0c, ar6_00, ar7_00);
+                            iVar2 = tex_entry_find_pair(g_8c277b08, g_8c277b0c, ar6_00, ar7_00);
                             if (-1 < iVar2)
                                 goto LAB_8c23a3ba;
                             iVar2 = 0;
@@ -14842,7 +14842,7 @@ u32 gfxlib_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                     } else {
                         ar6_00 = *(int **)(ar4_00 + 8);
                         piVar6 = ar6_00;
-                        iStack_68 = tex_sub_25a536(g_8c277b08, g_8c277b0c, ar6_00);
+                        iStack_68 = tex_entry_find(g_8c277b08, g_8c277b0c, ar6_00);
                         if (iStack_68 < 0)
                             goto LAB_8c23a3b6;
                     LAB_8c23a3ba:
@@ -14853,14 +14853,14 @@ u32 gfxlib_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                     ar7_00 = *(u32 *)(ar4_00 + 8) >> 0x1a;
                     iVar4 = g_8c277b0c;
                     piVar6 = ar6_00;
-                    iStack_68 = tex_sub_25a536(g_8c277b08, g_8c277b0c, ar6_00);
+                    iStack_68 = tex_entry_find(g_8c277b08, g_8c277b0c, ar6_00);
                     if (iStack_68 < 0) {
                         iVar2 = 2;
                     } else {
                         iVar4 = g_8c277b0c;
                         piVar6 = ar6_00;
                         a3 = ar7_00;
-                        iVar2 = tex_sub_25a5c0(g_8c277b08, g_8c277b0c, ar6_00, ar7_00);
+                        iVar2 = tex_entry_find_pair(g_8c277b08, g_8c277b0c, ar6_00, ar7_00);
                         if (iVar2 < 0) {
                             iVar2 = 0;
                         } else {
@@ -14908,7 +14908,7 @@ u32 gfxlib_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                         *(u16 *)(*ar4_01 + 0x40) = *(u16 *)(iVar2 + 0x40);
                         *(u16 *)(*ar4_01 + 0x42) = 0;
                     LAB_8c23a6c4:
-                        tex_sub_25a6ea(ar6_00, iVar4, piVar6, a3, ain0);
+                        tex_entry_addref(ar6_00, iVar4, piVar6, a3, ain0);
                     } else {
                         if (uVar3 == 0x80000000) {
                             if ((*(u32 *)(iVar2 + 0x10) & 1) != 0) {
@@ -14918,7 +14918,7 @@ u32 gfxlib_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                 piVar6 = ar6_00;
                                 goto LAB_8c23a7c0;
                             }
-                            iStack_68 = ninja_sub_25a8c0(ar4_00, iVar2 + 0x14);
+                            iStack_68 = tex_sub_25a8c0(ar4_00, iVar2 + 0x14);
                             if (iStack_68 < 0) {
                             LAB_8c23a52a:
                                 tex_entry_alloc(ar4_01, iVar2 + 0x14, ar6_00, 2, ar7_00);
@@ -14942,7 +14942,7 @@ u32 gfxlib_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                 tex_entry_alloc(ar4_01, iVar4, ar6_00, 3, ar7_00);
                                 goto LAB_8c23a578;
                             }
-                            iStack_68 = ninja_sub_25a8c0(ar4_00, iVar2 + 0x14);
+                            iStack_68 = tex_sub_25a8c0(ar4_00, iVar2 + 0x14);
                             if (iStack_68 < 0)
                                 goto LAB_8c23a52a;
                             a3 = 2;
@@ -14986,7 +14986,7 @@ u32 gfxlib_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                         *(short *)(iVar2 + 0x40) = *(short *)(iVar2 + 0x40) + 1;
                     } else if (uVar3 == 0x80000000) {
                         if ((*(u32 *)(iVar2 + 0x10) & 1) == 0) {
-                            iVar4 = ninja_sub_25a8c0(ar4_00, iVar2 + 0x14);
+                            iVar4 = tex_sub_25a8c0(ar4_00, iVar2 + 0x14);
                             if (iVar4 < 0)
                                 goto LAB_8c23a6de;
                             *(u16 *)(iVar2 + 0x42) = 0;
@@ -15007,7 +15007,7 @@ u32 gfxlib_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                         } else {
                             if ((*(u32 *)(iVar2 + 0x10) & 1) != 0)
                                 goto joined_r0x8c23a628;
-                            iVar4 = ninja_sub_25a8c0(ar4_00, iVar2 + 0x14);
+                            iVar4 = tex_sub_25a8c0(ar4_00, iVar2 + 0x14);
                             if (-1 < iVar4) {
                                 *(u16 *)(iVar2 + 0x42) = 0;
                                 if (ain0 != 0)
@@ -15042,7 +15042,7 @@ u32 gfxlib_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                             goto LAB_8c23a852;
                         }
                     } else if (uVar3 == 0x80000000) {
-                        iStack_68 = ninja_sub_25a8c0(ar4_00, uVar5);
+                        iStack_68 = tex_sub_25a8c0(ar4_00, uVar5);
                         if (-1 < iStack_68) {
                             a3 = 1;
                             tex_entry_alloc(ar4_01, uVar5, ar6_00, 1, ar7_00);
@@ -15054,7 +15054,7 @@ u32 gfxlib_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                             goto LAB_8c23a852;
                         iStack_68 = ninja_sub_25a914(ar4_00, uVar5, piVar6, a3);
                         if (-1 < iStack_68) {
-                            iStack_68 = ninja_sub_25a8c0(ar4_00, uVar5);
+                            iStack_68 = tex_sub_25a8c0(ar4_00, uVar5);
                             if (iStack_68 < 0) {
                                 tex_entry_alloc(ar4_01, uVar5, ar6_00, 2, ar7_00);
                                 goto LAB_8c23a816;
@@ -17527,7 +17527,7 @@ LAB_8c23c4a0:
             dVar4 = (double)((u64)in_dr4 & 0xffffffff);
         }
         uVar6 = SUB84(dVar4, 0);
-        ninja_sub_258030(0x8c4c11e0, r5, r6, r7, 0x6c);
+        noop_fr4_test(0x8c4c11e0, r5, r6, r7, 0x6c);
         dVar4 = in_xd14;
         if (cVar16 == '\0') {
             dVar4 = (double)CONCAT44(SUB84(dVar13, 0), uVar6);
@@ -17678,7 +17678,7 @@ code_r0x8c23c2f0:
             dVar4 = (double)CONCAT44(fVar11, 0x3f800000);
         }
         uVar6 = SUB84(dVar7, 0);
-        ninja_sub_258030(0x8c4c11e0, r5, r6, r7, 0x98);
+        noop_fr4_test(0x8c4c11e0, r5, r6, r7, 0x98);
         dVar12 = in_xd14;
         if (cVar16 == '\0') {
             dVar12 = (double)CONCAT44(SUB84(dVar4, 0), uVar6);
@@ -18009,7 +18009,7 @@ LAB_8c23c4a0:
         dVar6 = (double)((u64)in_dr4 & 0xffffffff);
 
         uVar8 = SUB84(dVar6, 0);
-        ninja_sub_258030(0x8c4c11e0, r5, r6, r7);
+        noop_fr4_test(0x8c4c11e0, r5, r6, r7);
         dVar6 = in_xd14;
 
         dVar6 = (double)CONCAT44(SUB84(dVar15, 0), uVar8);
@@ -18106,7 +18106,7 @@ code_r0x8c23c2f0:
         dVar6 = (double)CONCAT44(fVar13, 0x3f800000);
 
         uVar8 = SUB84(dVar9, 0);
-        ninja_sub_258030(0x8c4c11e0, r5, r6, r7);
+        noop_fr4_test(0x8c4c11e0, r5, r6, r7);
         dVar14 = in_xd14;
 
         dVar14 = (double)CONCAT44(SUB84(dVar6, 0), uVar8);
@@ -18591,8 +18591,8 @@ u32 gfxlib_sub_23c7f4(u32 *a0, u32 *a1, int a2) {
 /*
  * memcpy_bytes  0x8c23c814
  * copies a2 bytes (a2 > 0)
- * called by: draw_state_copy_in, draw_state_copy_out, draw_sub_259a70, game_sub_024968, gfxlib_sub_23793c,
- * gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_238e98 (+8 more)
+ * called by: draw_state_copy_in, draw_state_copy_out, draw_sub_259a70, game_sub_024968, gfx_stream_read,
+ * gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0 (+8 more)
  */
 int memcpy_bytes(char *a0, char *a1, int a2) {
     char cVar1;

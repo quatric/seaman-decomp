@@ -1183,8 +1183,8 @@ u32 pack_close_and_flush(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * game_sub_021720  0x8c021720
  * area name: game code; nothing names its area yet
- * called by: game_sub_0c4e58, game_sub_0c97bc, game_sub_0caac0, game_sub_0daea8, game_sub_0e1f90, game_sub_0e25c0,
- * game_sub_0e4298, game_sub_0e5238
+ * called by: game_sub_0c4e58, game_sub_0c97bc, game_sub_0caac0, game_sub_0daea8, game_sub_0e1f90, game_sub_0e4298,
+ * game_sub_0e5238, input_sub_0e25c0
  */
 u32 game_sub_021720(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -2615,7 +2615,7 @@ u32 ret_const_8c022e74(void) {
 u32 Vec3_length_sq(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
 
-    ninja_sub_258030(a0, a1, a2, a3, in_stack_fffffff4);
+    noop_fr4_test(a0, a1, a2, a3, in_stack_fffffff4);
     return 0;
 }
 
@@ -2838,11 +2838,11 @@ u32 Vec3_make(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
 }
 
 /*
- * Vec3_sub_023138  0x8c023138
- * area name: sits between Vec3 functions (same compilation unit)
+ * Vec3_return_xyz  0x8c023138
+ * builds a Vec3 from a1..a3 into the return slot s0
  * called by: game_sub_0a8f94, game_sub_0aa11c, game_sub_0ab0d8
  */
-u32 Vec3_sub_023138(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
+u32 Vec3_return_xyz(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     u8 auStack_18[20];
 
     Vec3_ctor_xyz(auStack_18, a1, a2, a3);
@@ -6077,7 +6077,7 @@ int CAnimal_sub_026968(int a0, u32 a1, u32 a2, u32 a3) {
     uVar15 = (u16)((u32)in_stack_ffffff24 >> 0x10);
     cVar14 = '\0';
     cVar13 = '\0';
-    gfxlib_sub_233dac(a0 + 0x438);
+    gfx_set_color4_4aa52c(a0 + 0x438);
     uVar1 = game_sub_02bef8(a0 + 0x174, a1, a2);
     uVar6 = CONCAT22(uVar15, (short)uVar1);
     iVar7 = *(int *)(a0 + 0x328) + (short)uVar1 * 0x124;
@@ -6088,7 +6088,7 @@ int CAnimal_sub_026968(int a0, u32 a1, u32 a2, u32 a3) {
     iVar4 = g_8c27d1ec * 0x40 + 0x8c27c1ec;
     memmove_bytes((g_8c27d1ec + 1) * 0x40 + 0x8c27c1ec, iVar4, 0x40);
     g_8c27d1ec = g_8c27d1ec + 1;
-    ninja_sub_25b5d0(auStack_8c, iVar4, uVar1, a3, uVar6);
+    touch_fields_30_3c(auStack_8c, iVar4, uVar1, a3, uVar6);
     puVar5 = auStack_8c;
     ninja_sub_255d6c(auStack_4c, puVar5, uVar1, a3, uVar6);
     njGetMatrix(auStack_8c, puVar5, uVar1, a3, uVar6);
@@ -6165,7 +6165,7 @@ int CAnimal_sub_026968(int a0, u32 a1, u32 a2, u32 a3) {
     ninja_sub_255d6c(auStack_4c, puVar5, iVar11, iVar4, uVar6);
     memmove_bytes_wrap_024378(auStack_4c);
     matrix_push(0, puVar5, iVar11, iVar4, uVar6);
-    ninja_sub_25b5d0(0, puVar5, iVar11, iVar4, uVar6);
+    touch_fields_30_3c(0, puVar5, iVar11, iVar4, uVar6);
     if (cVar14 == '\0') {
         dVar9 = (double)CONCAT44(0x47800000, *(u32 *)(a0 + 0x58));
     } else {
@@ -6265,7 +6265,7 @@ int CAnimal_sub_026968(int a0, u32 a1, u32 a2, u32 a3) {
     }
     matrix_pop_n(1);
     g_8c27d1ec = g_8c27d1ec + -1;
-    gfxlib_sub_233dac(&g_8c12fd7c);
+    gfx_set_color4_4aa52c(&g_8c12fd7c);
     iVar7 = *(int *)(a0 + 0x474);
     if (iVar7 == 1) {
         iVar7 = game_sub_02b058(a0, uVar1, uVar6, iVar4);
@@ -6563,7 +6563,7 @@ u32 game_sub_027270(int a0, u32 unused_a1, u32 a2, u32 a3) {
     uVar2 = game_sub_02bef8(a0 + 0x174, uVar2, a2);
     ar6_00 = (int)(short)uVar2;
     uVar1 = game_sub_02775c(a0, uVar1, ar6_00);
-    uVar1 = game_sub_0fa388(0x8c35468c, uVar1, ar6_00, a3);
+    uVar1 = speech_sub_0fa388(0x8c35468c, uVar1, ar6_00, a3);
     set_field_44(a0 + 0x21c, uVar1);
     uVar1 = get_field_99_s8(*(u32 *)(0x308 + a0));
     set_field_40_u8(a0 + 0x21c, uVar1);
@@ -6807,7 +6807,7 @@ u32 game_sub_0274bc(int a0, u16 *a1, int a2, u32 a3) {
     uVar3 = game_sub_02bef8(a0 + 0x174, ar5_00, a2);
     a2 = (int)(short)uVar3;
     uVar2 = game_sub_02775c(a0, uVar2, a2);
-    uVar2 = game_sub_0fa388(0x8c35468c, uVar2, a2, a3);
+    uVar2 = speech_sub_0fa388(0x8c35468c, uVar2, a2, a3);
     set_field_44(a0 + 0x21c, uVar2);
     ar5_00 = (u16 *)get_field_99_s8(*(u32 *)(0x308 + a0));
     set_field_40_u8(a0 + 0x21c, ar5_00);
@@ -7766,7 +7766,7 @@ u32 set_field_8(int a0, u32 a1) {
 /*
  * get_field_a2_s16  0x8c028ee4
  * called by: CAnimal_m2_0386d0, CAnimal_sub_028e20, CGame_GetUserGameInfo, Class_12a7f4_m2_09a060,
- * Class_12a7f4_m3_09a558, Class_12a990_m2_09bc2c, Class_12ad50_m2_0a4fdc, game_sub_06af5c (+2 more)
+ * Class_12a7f4_m3_09a558, Class_12a990_m2_09bc2c, Class_12ad50_m2_0a4fdc, elapsed_ticks_since (+2 more)
  */
 int get_field_a2_s16(int a0, u32 a1) {
     return (int)*(short *)(0xa2 + a0);
@@ -8004,17 +8004,17 @@ u8 *CAnimal_SetPVMTexture(u32 unused_a0, u8 *a1, u32 a2, u32 a3) {
         (*(code *)(&sprintf))(auStack_10c, ar5_00, a2, a3, "CAnimal::SetPVMTexture():%s");
         (*(code *)(&report_error_message))("PVM Texcount is 0..", auStack_10c, 0, 2);
     }
-    (*(code *)(&ta_sub_239170))(a1 + 8, *(u32 *)(a1 + 0x10), 0x8c4312a8, *(u32 *)(a1 + 4));
+    (*(code *)(&ptr_list_build_1c))(a1 + 8, *(u32 *)(a1 + 0x10), 0x8c4312a8, *(u32 *)(a1 + 4));
     return a1 + 8;
 }
 
 /*
- * CAnimal_sub_0294c0  0x8c0294c0
- * area name: sits between CAnimal functions (same compilation unit)
+ * CAnimal_set_state_flag_40  0x8c0294c0
+ * clears bits 4, 5 and sets bit 6 of the state flags at +0x74
  * called by: Class_12a7f4_m4_09aa8c, Class_12a7f4_m5_09aa48, Class_12a7f4_m6_09aa28, Class_12a990_m4_09c77c,
  * Class_12a990_m6_09c6a4, Class_12ad50_m4_0a536c, Class_12ad50_m5_0a5328, Class_12ad50_m6_0a5308
  */
-u32 CAnimal_sub_0294c0(int a0) {
+u32 CAnimal_set_state_flag_40(int a0) {
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) & 0xffffffbf;
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) & 0xffffffef;
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) & 0xffffffdf;
@@ -8326,7 +8326,7 @@ u32 game_sub_029af0(int a0, int a1, int a2) {
         ninja_sub_254780(&uStack_28, a2);
         ar5_00 = a2;
     }
-    ninja_sub_25b5d0(0, ar5_00, iVar2, r7, in_stack_ffffff88);
+    touch_fields_30_3c(0, ar5_00, iVar2, r7, in_stack_ffffff88);
     uVar1 = uStack_34;
     uVar3 = uStack_30;
     uVar4 = uStack_2c;
@@ -8336,7 +8336,7 @@ u32 game_sub_029af0(int a0, int a1, int a2) {
     ninja_sub_25484c();
     *(int *)(a0 + 0x434) = *(int *)(a0 + 0x434) + 0x18;
     njGetMatrix(auStack_74, uVar1, uVar3, uVar4, a0);
-    ninja_sub_25b5d0(auStack_74, uVar1, uVar3, uVar4, a0);
+    touch_fields_30_3c(auStack_74, uVar1, uVar3, uVar4, a0);
     game_sub_02430c(auStack_74, uVar1, uVar3, uVar4);
     njGetMatrix(auStack_74, uVar1, uVar3, uVar4, a0);
     uVar1 = uStack_34;
@@ -8679,7 +8679,7 @@ LAB_8c029f42:
             *(u64 *)(a0 + 0x450) = *(u64 *)(a0 + 0x440);
             *(u64 *)(a0 + 0x454) = *(u64 *)(a0 + 0x444);
         }
-        gfxlib_sub_233dac(a0 + 0x448);
+        gfx_set_color4_4aa52c(a0 + 0x448);
         uVar6 = *(u32 *)(*piVar2 + 8);
         *(u32 *)(*piVar2 + 8) = *(u32 *)(*piVar2 + 0x44);
         *(u32 *)(*piVar2 + 0x44) = uVar6;
@@ -8696,7 +8696,7 @@ LAB_8c029f42:
         } else {
             *(u64 *)(a0 + 0x448) = *(u64 *)(a0 + 0x438);
         }
-        gfxlib_sub_233dac(a0 + 0x448);
+        gfx_set_color4_4aa52c(a0 + 0x448);
     }
     obj_set_texlist(*(u32 *)(a0 + 0x42c), uVar1, ar6_00);
     uVar1 = CAnimal_sub_0f5308();
@@ -10860,7 +10860,7 @@ u32 game_sub_02c758(int a0, int a1, u32 a2, u32 a3) {
     if (iVar1 != 0x13) {
         set_field_10_02cbd4(a0 + 0xa8, 0);
         iVar3 = 0;
-        Class_12a078_sub_02cbbc(a0 + 0x90, 0);
+        counter_set_clamped_4(a0 + 0x90, 0);
     }
     uVar5 = (u16)((u32)in_stack_ffffffe4 >> 0x10);
     *(u8 *)(a0 + 0x144) = 0;
@@ -11048,12 +11048,12 @@ u32 set_field_c_02cbb4(int a0, u32 a1) {
 }
 
 /*
- * Class_12a078_sub_02cbbc  0x8c02cbbc
- * area name: only called from Class_12a078 methods
+ * counter_set_clamped_4  0x8c02cbbc
+ * +4 = min(a1, +0xc); returns how far a1 was below the limit
  * called by: Class_12a078_m2_05eee0, Class_12a078_sub_05d860, Class_12c3c4_sub_103100, Class_12c3c4_sub_109e40,
  * game_sub_02c758, game_sub_02cbe4, game_sub_0611cc, game_sub_1063a8
  */
-u32 Class_12a078_sub_02cbbc(int a0, int a1) {
+u32 counter_set_clamped_4(int a0, int a1) {
     int iVar1;
 
     iVar1 = *(int *)(a0 + 0xc) - a1;
@@ -11098,7 +11098,7 @@ u32 game_sub_02cbe4(int a0, u32 *a1, u32 a2, u32 a3) {
     set_field_138(a0, a1[1]);
     set_field_13c(a0, a1[2]);
     set_field_140(a0, a1[3]);
-    Class_12a078_sub_02cbbc(a0 + 0x90, a1[4]);
+    counter_set_clamped_4(a0 + 0x90, a1[4]);
     counter_set_clamped(a0 + 0x90, a1[5], a2);
     set_field_0_u8_02cb7c(a0 + 0xa8, (int)*(char *)(a1 + 6), a2, a3);
     set_field_1_s8(a0 + 0xa8, (int)*(char *)((int)a1 + 0x19));
