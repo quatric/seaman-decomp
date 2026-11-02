@@ -535,7 +535,7 @@ int FUN_8c26054c(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 u32 FUN_8c260636(u32 a0, u32 a1) {
     int iVar1;
 
-    iVar1 = FUN_8c013ec0(a0, &g_8c272048, 4);
+    iVar1 = memcmp(a0, &g_8c272048, 4);
     return (u32)(iVar1 == 0);
 }
 
@@ -561,7 +561,7 @@ u32 FUN_8c260658(int a0, u32 a1, short *a2, u8 *a3, char *s0, char *s4, char *s8
     uVar10 = 0;
     if (0 < (int)a1) {
         do {
-            iVar5 = FUN_8c013ec0(uVar10 + a0, PTR_DAT_8c277fa0, 4);
+            iVar5 = memcmp(uVar10 + a0, PTR_DAT_8c277fa0, 4);
             if (iVar5 == 0)
                 break;
             uVar10 = uVar10 + 1;
@@ -577,7 +577,7 @@ u32 FUN_8c260658(int a0, u32 a1, short *a2, u8 *a3, char *s0, char *s4, char *s8
             uVar10 = 0;
             if (0 < (int)a1) {
                 do {
-                    iVar5 = FUN_8c013ec0(uVar10 + a0, PTR_DAT_8c277fa8, 4);
+                    iVar5 = memcmp(uVar10 + a0, PTR_DAT_8c277fa8, 4);
                     if (iVar5 == 0)
                         break;
                     uVar10 = uVar10 + 1;
@@ -1108,8 +1108,8 @@ int FUN_8c260b08(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 u32 FUN_8c260c2c(int a0) {
     int iVar1;
 
-    iVar1 = FUN_8c013ec0(a0, &g_8c272050, 4);
-    if ((iVar1 == 0) && (iVar1 = FUN_8c013ec0(a0 + 8, &g_8c272060, 4), iVar1 == 0)) {
+    iVar1 = memcmp(a0, &g_8c272050, 4);
+    if ((iVar1 == 0) && (iVar1 = memcmp(a0 + 8, &g_8c272060, 4), iVar1 == 0)) {
         return 1;
     }
     return 0;
@@ -1147,8 +1147,8 @@ u32 FUN_8c260c98(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32
 
 /*
  * FUN_8c260ca0  0x8c260ca0
- * called by: FUN_8c2613aa, FUN_8c26145e, FUN_8c26201c, FUN_8c2620c8, FUN_8c262168, FUN_8c26216c, FUN_8c262208,
- * FUN_8c2622e4 (+17 more)
+ * called by: ADXF_Stop, ADXT_StartAfs, ADXT_StartFname, ADXT_StartMem, ADXT_StartMemIdx, FUN_8c2613aa, FUN_8c26145e,
+ * FUN_8c26201c (+17 more)
  */
 u32 FUN_8c260ca0(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u8 in_MD;
@@ -1170,11 +1170,12 @@ u32 FUN_8c260ca0(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) 
 }
 
 /*
- * FUN_8c260cc8  0x8c260cc8
- * called by: FUN_8c2613aa, FUN_8c26145e, FUN_8c26201c, FUN_8c2620c8, FUN_8c262168, FUN_8c26216c, FUN_8c262208,
- * FUN_8c2622e4 (+17 more)
+ * irq_restore_nested  0x8c260cc8
+ * drops the interrupt-disable nesting count and restores SR.IMASK when it reaches 0
+ * called by: ADXF_Stop, ADXT_StartAfs, ADXT_StartFname, ADXT_StartMem, ADXT_StartMemIdx, FUN_8c2613aa, FUN_8c26145e,
+ * FUN_8c26201c (+17 more)
  */
-u32 FUN_8c260cc8(u32 unused_a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 irq_restore_nested(u32 unused_a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u8 in_MD;
     u8 in_RB;
     u8 in_BL;
@@ -1585,7 +1586,7 @@ u8 *FUN_8c2613aa(int a0, int a1, int a2) {
             *(u64 *)(iVar2 + 0x8c4b39c8) = 0x8c260cc83dcccccd;
         }
         *puVar1 = 1;
-        FUN_8c260cc8(ar4_00, ar5_00, ar6_00, r7, a1);
+        irq_restore_nested(ar4_00, ar5_00, ar6_00, r7, a1);
     }
     return puVar1;
 }
@@ -1604,7 +1605,7 @@ u32 FUN_8c26145e(int a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
         ar5_00 = 0;
         ar6_00 = 0x30;
         uVar1 = memset(a0, 0, 0x30);
-        uVar1 = FUN_8c260cc8(a0, ar5_00, ar6_00, a3, uVar1);
+        uVar1 = irq_restore_nested(a0, ar5_00, ar6_00, a3, uVar1);
         return uVar1;
     }
 }
@@ -1732,10 +1733,10 @@ int FUN_8c26165c(char *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c261680  0x8c261680
+ * set_field_20_261680  0x8c261680
  * called by: FUN_8c2647f4
  */
-u32 FUN_8c261680(int a0, u32 a1) {
+u32 set_field_20_261680(int a0, u32 a1) {
     u32 in_r0;
 
     *(u32 *)(a0 + 0x20) = a1;
@@ -1870,8 +1871,8 @@ u32 ta_fifo_2619f8(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 
 /*
  * FUN_8c261a4c  0x8c261a4c
- * called by: FUN_8c26201c, FUN_8c2620c8, FUN_8c262168, FUN_8c26216c, FUN_8c262312, FUN_8c262406, FUN_8c262554,
- * FUN_8c262560
+ * called by: ADXF_Seek, ADXF_Seek_262560, ADXF_Stop, FUN_8c26201c, FUN_8c2620c8, FUN_8c262168, FUN_8c26216c,
+ * FUN_8c262312
  */
 int FUN_8c261a4c(int a0, int a1, u32 a2, u32 a3, u32 s0) {
     u32 *puVar1;
@@ -1922,7 +1923,7 @@ u32 FUN_8c261aa8(void) {
 /*
  * FUN_8c261ab2  0x8c261ab2
  * name hint from a string it uses: E9040801 ptid is range outsi
- * called by: FUN_8c261b96, FUN_8c261d46
+ * called by: ADXF_LoadPartition, FUN_8c261d46
  * strings: "E9040801:'ptid' is range outside.(adxf_ChkPrmPt)\n"; "E9040802:'ptinfo' is NULL.(adxf_ChkPrmPt)\n"
  */
 u32 FUN_8c261ab2(int a0, int a1, u32 a2) {
@@ -1938,13 +1939,13 @@ u32 FUN_8c261ab2(int a0, int a1, u32 a2) {
         }
         s0 = "E9040802:'ptinfo' is NULL.(adxf_ChkPrmPt)\n";
     }
-    FUN_8c25ece6(a0, a1, a2, r7, s0, in_PR);
+    lib_error_printf(a0, a1, a2, r7, s0, in_PR);
     return 0xfffffffd;
 }
 
 /*
  * FUN_8c261ae2  0x8c261ae2
- * called by: FUN_8c261b96, FUN_8c261d46
+ * called by: ADXF_LoadPartition, FUN_8c261d46
  */
 u32 FUN_8c261ae2(int a0, u32 a1, u32 a2, u32 a3) {
     int a4;
@@ -1976,24 +1977,24 @@ u32 FUN_8c261ae2(int a0, u32 a1, u32 a2, u32 a3) {
         FUN_8c26371e(a4, a5, uVar2, a3);
         FUN_8c262524(a4, a5, uVar2, a3);
         a4 = a0;
-        iVar1 = FUN_8c2626b4(a0, a5, uVar2);
+        iVar1 = ADXF_GetStat(a0, a5, uVar2);
         if (iVar1 == 3)
             break;
         FUN_8c261aa8();
         iVar3 = iVar3 + 1;
     } while (iVar3 < 10000);
-    uVar2 = FUN_8c262696(a0, a5, uVar2);
+    uVar2 = ADXF_GetNumReadSct(a0, a5, uVar2);
     return uVar2;
 }
 
 /*
- * FUN_8c261b96  0x8c261b96
- * name hint from a string it uses: E9040804 can t open s ADXF L
+ * ADXF_LoadPartition  0x8c261b96
+ * named from the library error message it prints (ADXF_LoadPartition)
  * called by: FUN_8c0221c8
  * strings: "E9040803:can't get FAD of '%s'.(ADXF_LoadPartition)\n"; "E9040805:read error'%s'.(ADXF_LoadPartition)\n";
  * "E9040806:'%s' is broken.(ADXF_LoadPartition)\n"; "E9040804:can't open '%s'.(ADXF_LoadPartition)\n"
  */
-int FUN_8c261b96(int a0, u32 a1, u32 *a2, int a3) {
+int ADXF_LoadPartition(int a0, u32 a1, u32 *a2, int a3) {
     u16 uVar1;
     int iVar2;
     int iVar3;
@@ -2050,14 +2051,14 @@ int FUN_8c261b96(int a0, u32 a1, u32 *a2, int a3) {
                     if (2 < iVar2) {
                         puVar6 = puVar5;
                         if (iVar2 == 3) {
-                            FUN_8c25ece6(puVar5, ar5_00, uVar7, a3, "E9040805:read error'%s'.(ADXF_LoadPartition)\n",
-                                         a1);
+                            lib_error_printf(puVar5, ar5_00, uVar7, a3,
+                                             "E9040805:read error'%s'.(ADXF_LoadPartition)\n", a1);
                             puVar6 = puVar5;
                         }
                     LAB_8c261d1a:
                         if (iVar8 == -4) {
-                            FUN_8c25ece6(puVar6, ar5_00, uVar7, a3, "E9040806:'%s' is broken.(ADXF_LoadPartition)\n",
-                                         a1);
+                            lib_error_printf(puVar6, ar5_00, uVar7, a3,
+                                             "E9040806:'%s' is broken.(ADXF_LoadPartition)\n", a1);
                         }
                         FUN_8c262168(puStack_34);
                         return iVar8;
@@ -2113,7 +2114,7 @@ int FUN_8c261b96(int a0, u32 a1, u32 *a2, int a3) {
             s0 = "E9040804:can't open '%s'.(ADXF_LoadPartition)\n";
             puStack_34 = NULL;
         }
-        FUN_8c25ece6(uVar7, puVar6, puVar5, a3, s0, a1);
+        lib_error_printf(uVar7, puVar6, puVar5, a3, s0, a1);
         iVar2 = -1;
     }
     return iVar2;
@@ -2173,12 +2174,13 @@ int FUN_8c261d46(int a0, u32 a1, int *a2, int a3) {
                     ar4_00 = 3;
                     if (2 < iVar1) {
                         if (iVar1 == 3) {
-                            FUN_8c25ece6(3, ar5_00, ar6_00, a3, "E9040809:read error'%s'.(ADXF_LoadPartition)\n", a1);
+                            lib_error_printf(3, ar5_00, ar6_00, a3, "E9040809:read error'%s'.(ADXF_LoadPartition)\n",
+                                             a1);
                         }
                     LAB_8c261ed6:
                         if (iVar6 == -4) {
-                            FUN_8c25ece6(ar4_00, ar5_00, ar6_00, a3, "E9040810:'%s' is broken.(ADXF_LoadPartition)\n",
-                                         a1);
+                            lib_error_printf(ar4_00, ar5_00, ar6_00, a3,
+                                             "E9040810:'%s' is broken.(ADXF_LoadPartition)\n", a1);
                         }
                         *(u16 *)(a2 + 4) = (u16)iStack_2c;
                         a2[1] = (u32) * (u16 *)(a2 + 4) * 8 + *(int *)(*a2 + 4) + 0x14;
@@ -2239,7 +2241,7 @@ int FUN_8c261d46(int a0, u32 a1, int *a2, int a3) {
             s0 = "E9040808:cannot open '%s'.(ADXF_AddPartition)\n";
             iStack_34 = 0;
         }
-        FUN_8c25ece6(uVar3, ar5_00, ar6_00, a3, s0, a1);
+        lib_error_printf(uVar3, ar5_00, ar6_00, a3, s0, a1);
         iVar1 = -1;
     }
     return iVar1;
@@ -2303,7 +2305,7 @@ int FUN_8c261f7a(int a0, u32 a1, u32 a2, u32 a3) {
     ar5_00 = auStack_18;
     a4 = a1;
     iVar2 = FUN_8c2637ca(a1, ar5_00, a2, a3);
-    puVar1 = (&FUN_8c25ece6);
+    puVar1 = (&lib_error_printf);
     if (-1 < iVar2) {
         ar5_00 = &uStack_1c;
         a4 = a1;
@@ -2326,7 +2328,7 @@ int FUN_8c261f7a(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c26201c  0x8c26201c
- * called by: FUN_8c0202c0, FUN_8c02041c, FUN_8c261b96, FUN_8c261d46
+ * called by: ADXF_LoadPartition, FUN_8c0202c0, FUN_8c02041c, FUN_8c261d46
  */
 int FUN_8c26201c(u32 a0, u32 a1) {
     int a4;
@@ -2349,7 +2351,7 @@ int FUN_8c26201c(u32 a0, u32 a1) {
         iVar1 = 0;
         ar4_00 = a4;
     }
-    FUN_8c260cc8(ar4_00, ar5_00, ar6_00, a1, ain0);
+    irq_restore_nested(ar4_00, ar5_00, ar6_00, a1, ain0);
     FUN_8c261a4c(1, 1, a0, ain0);
     return iVar1;
 }
@@ -2400,14 +2402,14 @@ int FUN_8c2620c8(void) {
         iVar1 = 0;
         ar4_00 = a4;
     }
-    FUN_8c260cc8(ar4_00, ar5_00, ar6_00, ar7_00, in_PR);
+    irq_restore_nested(ar4_00, ar5_00, ar6_00, ar7_00, in_PR);
     FUN_8c261a4c(2, 1, unaff_r12, unaff_r13);
     return iVar1;
 }
 
 /*
  * FUN_8c26211c  0x8c26211c
- * called by: FUN_8c262406, FUN_8c2624a0
+ * called by: ADXF_Stop, FUN_8c2624a0
  */
 int FUN_8c26211c(int a0, u32 a1, u32 a2, u32 a3, int ain0) {
 
@@ -2428,7 +2430,7 @@ int FUN_8c26211c(int a0, u32 a1, u32 a2, u32 a3, int ain0) {
 
 /*
  * FUN_8c262168  0x8c262168
- * called by: FUN_8c01f8a4, FUN_8c01fab4, FUN_8c02049c, FUN_8c261b96, FUN_8c261d46, FUN_8c26201c, FUN_8c2620c8,
+ * called by: ADXF_LoadPartition, FUN_8c01f8a4, FUN_8c01fab4, FUN_8c02049c, FUN_8c261d46, FUN_8c26201c, FUN_8c2620c8,
  * FUN_8c2621e2
  */
 u32 FUN_8c262168(int a0) {
@@ -2442,10 +2444,10 @@ u32 FUN_8c262168(int a0) {
     if (a0 != 0) {
         FUN_8c260ca0();
         if (*(char *)(a0 + 1) == '\x02') {
-            FUN_8c262406(a0);
+            ADXF_Stop(a0);
         }
         memset(a0, 0, 0x30);
-        FUN_8c260cc8();
+        irq_restore_nested();
         uVar1 = FUN_8c261a4c(3, 1, a0, 0xffffffff, 0xffffffff);
     }
     return uVar1;
@@ -2469,13 +2471,13 @@ u32 FUN_8c26216c(int a0) {
     if (a0 != 0) {
         FUN_8c260ca0(uVar2, ar5_00, iVar3, in_r3, in_PR);
         if (*(char *)(a0 + 1) == '\x02') {
-            FUN_8c262406(a0);
+            ADXF_Stop(a0);
         }
         uVar1 = 0;
         uVar2 = 0x30;
         iVar3 = a0;
         memset(a0, 0, 0x30);
-        FUN_8c260cc8(iVar3, uVar1, uVar2, in_r3, in_PR);
+        irq_restore_nested(iVar3, uVar1, uVar2, in_r3, in_PR);
         uVar1 = FUN_8c261a4c(3, 1, a0, 0xffffffff);
     }
     return uVar1;
@@ -2518,14 +2520,14 @@ u32 FUN_8c262208(int a0, int a1, int a2, u32 a3) {
     u32 uVar3;
 
     if ((a0 == 0) || (a1 < 0)) {
-        FUN_8c25ece6(a0, a1, a2, a3);
+        lib_error_printf(a0, a1, a2, a3);
     } else {
         if (a2 != 0) {
             if (*(char *)(a0 + 1) == '\x02') {
                 return 0;
             }
             if (*(int *)(a0 + 4) != 0) {
-                FUN_8c25ece6(a0, a1, a2, a3);
+                lib_error_printf(a0, a1, a2, a3);
                 return 0xffffffff;
             }
             FUN_8c260ca0(a0, a1, a2, a3, a2);
@@ -2538,7 +2540,7 @@ u32 FUN_8c262208(int a0, int a1, int a2, u32 a3) {
             *(u32 *)(a0 + 0x24) = 0;
             ar5_00 = *(u32 *)(a0 + 0x20);
             iVar2 = a2;
-            iVar1 = FUN_8c263388(*(u32 *)(a0 + 0x1c), ar5_00, a2, a3);
+            iVar1 = ADXSTM_OpenRange(*(u32 *)(a0 + 0x1c), ar5_00, a2, a3);
             if (iVar1 == 0) {
                 uVar3 = 0xffffffff;
                 ar4_00 = 0;
@@ -2549,10 +2551,10 @@ u32 FUN_8c262208(int a0, int a1, int a2, u32 a3) {
                 FUN_8c26346e(ar4_00);
                 uVar3 = *(u32 *)(a0 + 0x20);
             }
-            FUN_8c260cc8(ar4_00, ar5_00, a2, a3, iVar2);
+            irq_restore_nested(ar4_00, ar5_00, a2, a3, iVar2);
             return uVar3;
         }
-        FUN_8c25ece6(a0, a1, 0, a3);
+        lib_error_printf(a0, a1, 0, a3);
     }
     return 0xfffffffd;
 }
@@ -2568,7 +2570,7 @@ u32 FUN_8c2622e4(int a0, u32 a1, u32 a2, u32 a3) {
     ar4_00 = a0;
     ain0 = FUN_8c262208(a0, a1, a2, a3);
     *(u8 *)(a0 + 2) = 1;
-    FUN_8c260cc8(ar4_00, a1, a2, a3, ain0);
+    irq_restore_nested(ar4_00, a1, a2, a3, ain0);
     return ain0;
 }
 
@@ -2594,16 +2596,16 @@ u32 FUN_8c262312(int *a0, int a1, u32 a2) {
     ar7_00 = a1;
     FUN_8c261a4c(4, 0, a0, a1);
     if ((a0 == NULL) || (a1 < 0)) {
-        FUN_8c25ece6(uVar2, a5, piVar1, ar7_00);
+        lib_error_printf(uVar2, a5, piVar1, ar7_00);
     } else if (a2 == 0) {
-        FUN_8c25ece6(uVar2, a5, piVar1, ar7_00);
+        lib_error_printf(uVar2, a5, piVar1, ar7_00);
     } else {
         if ((a2 & 0x1f) == 0) {
             if (*(char *)((int)a0 + 1) == '\x02') {
                 return 0;
             }
             if (a0[2] != 0) {
-                FUN_8c25ece6(a2, a5, piVar1, ar7_00);
+                lib_error_printf(a2, a5, piVar1, ar7_00);
                 return 0xffffffff;
             }
             iVar3 = a1 << 0xb;
@@ -2633,22 +2635,22 @@ u32 FUN_8c262312(int *a0, int a1, u32 a2) {
                 a0[2] = (int)piVar1;
             }
             *(u8 *)((int)a0 + 2) = 0;
-            FUN_8c260cc8(ar4_01, iVar4, a6, ar7_00, iVar3);
+            irq_restore_nested(ar4_01, iVar4, a6, ar7_00, iVar3);
             FUN_8c261a4c(4, 1, a0, a1);
             return iVar3;
         }
-        FUN_8c25ece6(a2, a5, piVar1, ar7_00);
+        lib_error_printf(a2, a5, piVar1, ar7_00);
     }
     return 0xfffffffd;
 }
 
 /*
- * FUN_8c262406  0x8c262406
- * name hint from a string it uses: E9040822 adxf is NULL ADXF S
- * called by: FUN_8c262168, FUN_8c26216c, FUN_8c262554, FUN_8c262560
+ * ADXF_Stop  0x8c262406
+ * named from the library error message it prints (ADXF_Stop)
+ * called by: ADXF_Seek, ADXF_Seek_262560, FUN_8c262168, FUN_8c26216c
  * strings: "E9040822:\'adxf\' is NULL.(ADXF_Stop)\n"; "E9040823:\'adxf->stm\' is NULL.(ADXF_Stop)\n"
  */
-u32 FUN_8c262406(int a0) {
+u32 ADXF_Stop(int a0) {
     u32 ar4_00;
     int ar4_01;
     u32 ar5_00;
@@ -2664,7 +2666,7 @@ u32 FUN_8c262406(int a0) {
     ar6_00 = a0;
     FUN_8c261a4c(5, 0, a0, 0xffffffff);
     if (a0 == 0) {
-        FUN_8c25ece6(ar4_00, ar5_00, ar6_00, ar7_00, "E9040822:\'adxf\' is NULL.(ADXF_Stop)\n", in_stack_fffffff4);
+        lib_error_printf(ar4_00, ar5_00, ar6_00, ar7_00, "E9040822:\'adxf\' is NULL.(ADXF_Stop)\n", in_stack_fffffff4);
         return 0xfffffffd;
     }
     if (*(char *)(a0 + 1) != '\x01') {
@@ -2672,8 +2674,8 @@ u32 FUN_8c262406(int a0) {
             *(u8 *)(a0 + 1) = 1;
         } else {
             if (*(int *)(a0 + 4) == 0) {
-                FUN_8c25ece6(ar4_00, ar5_00, ar6_00, ar7_00, "E9040823:\'adxf->stm\' is NULL.(ADXF_Stop)\n",
-                             in_stack_fffffff4);
+                lib_error_printf(ar4_00, ar5_00, ar6_00, ar7_00, "E9040823:\'adxf->stm\' is NULL.(ADXF_Stop)\n",
+                                 in_stack_fffffff4);
                 return 0xffffffff;
             }
             FUN_8c260ca0(ar4_00, ar5_00, ar6_00, ar7_00, in_stack_fffffff4);
@@ -2683,7 +2685,7 @@ u32 FUN_8c262406(int a0) {
             ar4_01 = a0;
             FUN_8c26211c(a0, ar5_01, ar6_00, ar7_00, in_stack_fffffff4);
             *(u8 *)(a0 + 1) = 1;
-            FUN_8c260cc8(ar4_01, ar5_01, ar6_00, ar7_00, in_stack_fffffff4);
+            irq_restore_nested(ar4_01, ar5_01, ar6_00, ar7_00, in_stack_fffffff4);
             FUN_8c261a4c(5, 1, a0, 0xffffffff);
         }
     }
@@ -2703,7 +2705,7 @@ int FUN_8c2624a0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     ar5_00 = &stack0xfffffff4;
     iVar1 = (int)*(char *)(a0 + 1);
     if (iVar1 == 2) {
-        uVar2 = FUN_8c263746(*(u32 *)(a0 + 4));
+        uVar2 = get_field_1_s8_263746(*(u32 *)(a0 + 4));
         *(char *)(a0 + 1) = (char)uVar2;
         FUN_8c263768(*(u32 *)(a0 + 4), &stack0xfffffff4);
         *(u32 *)(a0 + 0x24) = in_stack_fffffff4;
@@ -2737,16 +2739,17 @@ u32 FUN_8c262524(u32 a0, u32 a1, u32 a2, u32 a3) {
         }
         a4 = a4 + 0x30;
     } while (a4 < (char *)0x8c4b3e20);
-    uVar1 = FUN_8c260cc8(ar4_00, a1, a2, a3, ain0);
+    uVar1 = irq_restore_nested(ar4_00, a1, a2, a3, ain0);
     return uVar1;
 }
 
 /*
- * FUN_8c262554  0x8c262554
+ * ADXF_Seek  0x8c262554
+ * named from the library error message it prints (ADXF_Seek)
  * called by: FUN_8c0202c0
  * strings: "E9040825:'adxf' is NULL.(ADXF_Seek)\n"; "E9040826:'type' is illigal.(ADXF_Seek)\n"
  */
-u32 FUN_8c262554(int a0, int a1, int a2) {
+u32 ADXF_Seek(int a0, int a1, int a2) {
     int ar4_00;
     u32 uVar1;
     int ar6_00;
@@ -2759,13 +2762,13 @@ u32 FUN_8c262554(int a0, int a1, int a2) {
     ar7_00 = a1;
     FUN_8c261a4c(6, 0, a0, a1, a2);
     if (a0 == 0) {
-        FUN_8c25ece6(ar4_00, uVar1, ar6_00, ar7_00, "E9040825:'adxf' is NULL.(ADXF_Seek)\n", in_PR);
+        lib_error_printf(ar4_00, uVar1, ar6_00, ar7_00, "E9040825:'adxf' is NULL.(ADXF_Seek)\n", in_PR);
     LAB_8c2625b4:
         uVar1 = 0xfffffffd;
     } else {
         if (*(char *)(a0 + 1) == '\x02') {
             ar4_00 = a0;
-            FUN_8c262406(a0);
+            ADXF_Stop(a0);
         }
         if (a2 == 0) {
             *(int *)(a0 + 0x18) = a1;
@@ -2773,7 +2776,7 @@ u32 FUN_8c262554(int a0, int a1, int a2) {
             *(int *)(a0 + 0x18) = *(int *)(a0 + 0x18) + a1;
         } else {
             if (a2 != 2) {
-                FUN_8c25ece6(ar4_00, uVar1, ar6_00, ar7_00, "E9040826:'type' is illigal.(ADXF_Seek)\n", in_PR);
+                lib_error_printf(ar4_00, uVar1, ar6_00, ar7_00, "E9040826:'type' is illigal.(ADXF_Seek)\n", in_PR);
                 goto LAB_8c2625b4;
             }
             *(int *)(a0 + 0x18) = *(int *)(a0 + 0x10) + a1;
@@ -2790,11 +2793,11 @@ u32 FUN_8c262554(int a0, int a1, int a2) {
 }
 
 /*
- * FUN_8c262560  0x8c262560
- * name hint from a string it uses: E9040825 adxf is NULL ADXF S
+ * ADXF_Seek_262560  0x8c262560
+ * named from the library error message it prints (ADXF_Seek)
  * strings: "E9040825:'adxf' is NULL.(ADXF_Seek)\n"; "E9040826:'type' is illigal.(ADXF_Seek)\n"
  */
-u32 FUN_8c262560(void) {
+u32 ADXF_Seek_262560(void) {
     int ar4_00;
     u32 uVar1;
     int a6;
@@ -2810,13 +2813,13 @@ u32 FUN_8c262560(void) {
     a7 = unaff_r12;
     FUN_8c261a4c(6, 0, unaff_r14, unaff_r12);
     if (unaff_r14 == 0) {
-        FUN_8c25ece6(ar4_00, uVar1, a6, a7, "E9040825:'adxf' is NULL.(ADXF_Seek)\n", in_PR);
+        lib_error_printf(ar4_00, uVar1, a6, a7, "E9040825:'adxf' is NULL.(ADXF_Seek)\n", in_PR);
     LAB_8c2625b4:
         uVar1 = 0xfffffffd;
     } else {
         if (*(char *)(unaff_r14 + 1) == '\x02') {
             ar4_00 = unaff_r14;
-            FUN_8c262406(unaff_r14);
+            ADXF_Stop(unaff_r14);
         }
         if (unaff_r13 == 0) {
             *(int *)(unaff_r14 + 0x18) = unaff_r12;
@@ -2824,7 +2827,7 @@ u32 FUN_8c262560(void) {
             *(int *)(unaff_r14 + 0x18) = *(int *)(unaff_r14 + 0x18) + unaff_r12;
         } else {
             if (unaff_r13 != 2) {
-                FUN_8c25ece6(ar4_00, uVar1, a6, a7, "E9040826:'type' is illigal.(ADXF_Seek)\n", in_PR);
+                lib_error_printf(ar4_00, uVar1, a6, a7, "E9040826:'type' is illigal.(ADXF_Seek)\n", in_PR);
                 goto LAB_8c2625b4;
             }
             *(int *)(unaff_r14 + 0x18) = *(int *)(unaff_r14 + 0x10) + unaff_r12;
@@ -2841,63 +2844,63 @@ u32 FUN_8c262560(void) {
 }
 
 /*
- * FUN_8c2625ec  0x8c2625ec
- * name hint from a string it uses: E9040827 adxf is NULL ADXF T
+ * ADXF_Tell  0x8c2625ec
+ * named from the library error message it prints (ADXF_Tell)
  * strings: "E9040827:'adxf' is NULL.(ADXF_Tell)\n"
  */
-u32 FUN_8c2625ec(int a0, u32 unused_a1, u32 a2) {
+u32 ADXF_Tell(int a0, u32 unused_a1, u32 a2) {
     u32 r7;
     u32 in_PR;
 
     if (a0 == 0) {
-        FUN_8c25ece6(0, unused_a1, a2, r7, "E9040827:'adxf' is NULL.(ADXF_Tell)\n", in_PR);
+        lib_error_printf(0, unused_a1, a2, r7, "E9040827:'adxf' is NULL.(ADXF_Tell)\n", in_PR);
         return 0xfffffffd;
     }
     return *(u32 *)(a0 + 0x18);
 }
 
 /*
- * FUN_8c262628  0x8c262628
- * name hint from a string it uses: E9040828 adxf is NULL ADXF G
+ * ADXF_GetFsizeSct  0x8c262628
+ * named from the library error message it prints (ADXF_GetFsizeSct)
  * strings: "E9040828:'adxf' is NULL.(ADXF_GetFsizeSct)\n"
  */
-u32 FUN_8c262628(int a0, u32 unused_a1, u32 a2) {
+u32 ADXF_GetFsizeSct(int a0, u32 unused_a1, u32 a2) {
     u32 r7;
     u32 in_PR;
 
     if (a0 == 0) {
-        FUN_8c25ece6(0, unused_a1, a2, r7, "E9040828:'adxf' is NULL.(ADXF_GetFsizeSct)\n", in_PR);
+        lib_error_printf(0, unused_a1, a2, r7, "E9040828:'adxf' is NULL.(ADXF_GetFsizeSct)\n", in_PR);
         return 0xfffffffd;
     }
     return *(u32 *)(a0 + 0x10);
 }
 
 /*
- * FUN_8c262646  0x8c262646
- * name hint from a string it uses: E9040829 adxf is NULL ADXF G
+ * ADXF_GetFsizeByte  0x8c262646
+ * named from the library error message it prints (ADXF_GetFsizeByte)
  * called by: FUN_8c0202c0, FUN_8c02041c
  * strings: "E9040829:'adxf' is NULL.(ADXF_GetFsizeByte)\n"
  */
-u32 FUN_8c262646(int a0, u32 unused_a1, u32 a2) {
+u32 ADXF_GetFsizeByte(int a0, u32 unused_a1, u32 a2) {
     u32 r7;
     u32 in_PR;
 
     if (a0 == 0) {
-        FUN_8c25ece6(0, unused_a1, a2, r7, "E9040829:'adxf' is NULL.(ADXF_GetFsizeByte)\n", in_PR);
+        lib_error_printf(0, unused_a1, a2, r7, "E9040829:'adxf' is NULL.(ADXF_GetFsizeByte)\n", in_PR);
         return 0xfffffffd;
     }
     return *(u32 *)(a0 + 0x14);
 }
 
 /*
- * FUN_8c262664  0x8c262664
- * name hint from a string it uses: E9040830 adxf is NULL ADXF G
+ * ADXF_GetNumReqSct  0x8c262664
+ * named from the library error message it prints (ADXF_GetNumReqSct)
  * strings: "E9040830:'adxf' is NULL.(ADXF_GetNumReqSct)\n"
  */
-u32 FUN_8c262664(int a0, u32 *a1, u32 a2) {
+u32 ADXF_GetNumReqSct(int a0, u32 *a1, u32 a2) {
     u32 r7;
     if (a0 == 0) {
-        FUN_8c25ece6(0, a1, a2, r7, "E9040830:'adxf' is NULL.(ADXF_GetNumReqSct)\n", a1);
+        lib_error_printf(0, a1, a2, r7, "E9040830:'adxf' is NULL.(ADXF_GetNumReqSct)\n", a1);
         *a1 = 0;
         return 0xfffffffd;
     }
@@ -2906,47 +2909,47 @@ u32 FUN_8c262664(int a0, u32 *a1, u32 a2) {
 }
 
 /*
- * FUN_8c262696  0x8c262696
- * name hint from a string it uses: E9040831 adxf is NULL ADXF G
+ * ADXF_GetNumReadSct  0x8c262696
+ * named from the library error message it prints (ADXF_GetNumReadSct)
  * called by: FUN_8c261ae2
  * strings: "E9040831:'adxf' is NULL.(ADXF_GetNumReadSct)\n"
  */
-u32 FUN_8c262696(int a0, u32 unused_a1, u32 a2) {
+u32 ADXF_GetNumReadSct(int a0, u32 unused_a1, u32 a2) {
     u32 r7;
     u32 in_PR;
 
     if (a0 == 0) {
-        FUN_8c25ece6(0, unused_a1, a2, r7, "E9040831:'adxf' is NULL.(ADXF_GetNumReadSct)\n", in_PR);
+        lib_error_printf(0, unused_a1, a2, r7, "E9040831:'adxf' is NULL.(ADXF_GetNumReadSct)\n", in_PR);
         return 0xfffffffd;
     }
     return *(u32 *)(a0 + 0x24);
 }
 
 /*
- * FUN_8c2626b4  0x8c2626b4
- * name hint from a string it uses: E9040832 adxf is NULL ADXF G
+ * ADXF_GetStat  0x8c2626b4
+ * named from the library error message it prints (ADXF_GetStat)
  * called by: FUN_8c01f8a4, FUN_8c01fab4, FUN_8c261ae2
  * strings: "E9040832:'adxf' is NULL.(ADXF_GetStat)\n"
  */
-u32 FUN_8c2626b4(int a0, u32 unused_a1, u32 a2) {
+u32 ADXF_GetStat(int a0, u32 unused_a1, u32 a2) {
     u32 r7;
     u32 in_PR;
 
     if (a0 == 0) {
-        FUN_8c25ece6(0, unused_a1, a2, r7, "E9040832:'adxf' is NULL.(ADXF_GetStat)\n", in_PR);
+        lib_error_printf(0, unused_a1, a2, r7, "E9040832:'adxf' is NULL.(ADXF_GetStat)\n", in_PR);
         return 0xfffffffd;
     }
     return (int)*(char *)(a0 + 1);
 }
 
 /*
- * FUN_8c2626d2  0x8c2626d2
- * name hint from a string it uses: E9040828 ptid is range outsi
+ * ADXF_GetFileRange  0x8c2626d2
+ * named from the library error message it prints (ADXF_GetFileRange)
  * called by: FUN_8c26270c
  * strings: "E9040828:'ptid' is range outside.(ADXF_GetFileRange)\n"; "E9040828:'flid' is range
  * outside.(ADXF_GetFileRange)\n"
  */
-u32 FUN_8c2626d2(int a0, int a1, u32 a2) {
+u32 ADXF_GetFileRange(int a0, int a1, u32 a2) {
     u32 r7;
     char *s0;
     u32 in_PR;
@@ -2960,13 +2963,13 @@ u32 FUN_8c2626d2(int a0, int a1, u32 a2) {
         }
         s0 = "E9040828:'flid' is range outside.(ADXF_GetFileRange)\n";
     }
-    FUN_8c25ece6(a0, a1, a2, r7, s0, in_PR);
+    lib_error_printf(a0, a1, a2, r7, s0, in_PR);
     return 0xfffffffd;
 }
 
 /*
  * FUN_8c26270c  0x8c26270c
- * called by: FUN_8c262078, FUN_8c264408
+ * called by: ADXT_StartAfs, FUN_8c262078
  */
 int FUN_8c26270c(int a0, u32 a1, int *a2, u32 *a3) {
     u16 uVar1;
@@ -2976,7 +2979,7 @@ int FUN_8c26270c(int a0, u32 a1, int *a2, u32 *a3) {
     int iVar5;
     u32 uVar6;
 
-    iVar2 = FUN_8c2626d2(a0, a1, a2);
+    iVar2 = ADXF_GetFileRange(a0, a1, a2);
     if (iVar2 < 0) {
         *a2 = -1;
         *a3 = 0xffffffff;
@@ -3009,13 +3012,14 @@ int FUN_8c26270c(int a0, u32 a1, int *a2, u32 *a3) {
 }
 
 /*
- * FUN_8c2627f6  0x8c2627f6
+ * lib_error_printf_wrap  0x8c2627f6
+ * only calls lib_error_printf
  */
-u32 FUN_8c2627f6(u32 a0, u32 a1, u32 a2) {
+u32 lib_error_printf_wrap(u32 a0, u32 a1, u32 a2) {
     u32 r7;
     u32 uVar1;
 
-    uVar1 = FUN_8c25ece6(a0, a1, a2, r7, &g_8c2726e8, a1);
+    uVar1 = lib_error_printf(a0, a1, a2, r7, &g_8c2726e8, a1);
     return uVar1;
 }
 
@@ -3036,11 +3040,11 @@ u32 FUN_8c262810(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
         uVar1 = FUN_8c26b526();
         FUN_8c26b212();
         FUN_8c25eca8(a0, unused_a1, unused_a2, a3);
-        FUN_8c263244(a0, unused_a1, unused_a2, a3);
+        memset_wrap_263244(a0, unused_a1, unused_a2, a3);
         FUN_8c262ac4();
         ta_fifo_2619b4(a0, unused_a1, unused_a2, a3);
         thunk_FUN_8c2689c8();
-        thunk_FUN_8c26a130(FUN_8c2627f6, 0);
+        thunk_FUN_8c26a130(lib_error_printf_wrap, 0);
         ar4_00 = &g_8c277fd0;
         uVar1 = 0x4a0;
         ar5_00 = NULL;
@@ -3054,7 +3058,7 @@ u32 FUN_8c262810(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
             ain0_00 = FUN_8c1fa244(0x900, adx_server, 0x70, 0);
             g_8c278470 = ain0_00;
         }
-        ain0 = FUN_8c260cc8(ar4_00, ar5_00, uVar1, a3, ain0_00);
+        ain0 = irq_restore_nested(ar4_00, ar5_00, uVar1, a3, ain0_00);
     }
     g_8c278478 = g_8c278478 + 1;
     return ain0;
@@ -3077,11 +3081,11 @@ u32 FUN_8c262814(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
         FUN_8c26b526();
         FUN_8c26b212();
         FUN_8c25eca8(a0, unused_a1, unused_a2, a3);
-        FUN_8c263244(a0, unused_a1, unused_a2, a3);
+        memset_wrap_263244(a0, unused_a1, unused_a2, a3);
         FUN_8c262ac4();
         ta_fifo_2619b4(a0, unused_a1, unused_a2, a3);
         thunk_FUN_8c2689c8();
-        thunk_FUN_8c26a130(FUN_8c2627f6, 0);
+        thunk_FUN_8c26a130(lib_error_printf_wrap, 0);
         ar4_00 = &g_8c277fd0;
         ar6_00 = 0x4a0;
         ar5_00 = NULL;
@@ -3093,7 +3097,7 @@ u32 FUN_8c262814(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
             ar6_00 = 0x70;
             g_8c278470 = FUN_8c1fa244(0x900, adx_server, 0x70, 0);
         }
-        ain0 = FUN_8c260cc8(ar4_00, ar5_00, ar6_00, a3, in_PR);
+        ain0 = irq_restore_nested(ar4_00, ar5_00, ar6_00, a3, in_PR);
     }
     *unaff_r14 = *unaff_r14 + 1;
     return ain0;
@@ -3116,17 +3120,17 @@ u32 FUN_8c2628fa(int *a0, u32 a1, u32 unused_a2, u32 a3, u32 ain0) {
             FUN_8c1fa54c(g_8c278470);
             g_8c278470 = 0;
         }
-        FUN_8c260cc8(iVar2, a1, unused_a2, a3, in_PR);
+        irq_restore_nested(iVar2, a1, unused_a2, a3, in_PR);
         thunk_FUN_8c268a24();
         FUN_8c260ca0(iVar2, a1, unused_a2, a3, in_PR);
         ta_fifo_2619ee();
-        FUN_8c262ad8();
+        memset_wrap_262ad8();
         noop_26325a();
         FUN_8c25ecc2(iVar2, a1, unused_a2, a3);
         FUN_8c26b234();
         FUN_8c26b548();
         uVar1 = FUN_8c26b9b4();
-        uVar1 = FUN_8c260cc8(iVar2, a1, unused_a2, a3, uVar1);
+        uVar1 = irq_restore_nested(iVar2, a1, unused_a2, a3, uVar1);
         return uVar1;
     }
 }
@@ -3247,14 +3251,14 @@ u32 thunk_FUN_8c2695e4(void) {
 }
 
 /*
- * FUN_8c269ae8  0x8c262a00
- * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c2647f4, FUN_8c268b70, FUN_8c269ae8
+ * mwRnaSetNumChan  0x8c262a00
+ * only calls mwRnaSetNumChan
+ * called by: FUN_8c2647f4, FUN_8c268b70, mwRnaSetNumChan
  */
-u32 FUN_8c269ae8(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 mwRnaSetNumChan(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = FUN_8c269ae8();
+    uVar1 = mwRnaSetNumChan();
     return uVar1;
 }
 
@@ -3295,14 +3299,14 @@ u32 FUN_8c269b8e(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c269808  0x8c262a36
- * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c2641ee, FUN_8c269808
+ * mwRnaDiscardData  0x8c262a36
+ * only calls mwRnaDiscardData
+ * called by: FUN_8c2641ee, mwRnaDiscardData
  */
-u32 FUN_8c269808(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 mwRnaDiscardData(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = FUN_8c269808();
+    uVar1 = mwRnaDiscardData();
     return uVar1;
 }
 
@@ -3340,10 +3344,11 @@ u32 FUN_8c262ac4(void) {
 }
 
 /*
- * FUN_8c262ad8  0x8c262ad8
+ * memset_wrap_262ad8  0x8c262ad8
+ * only calls memset
  * called by: FUN_8c2628fa
  */
-u32 FUN_8c262ad8(void) {
+u32 memset_wrap_262ad8(void) {
     u32 uVar1;
 
     uVar1 = memset(0x8c4b9348, 0, (int)0x4e0);
@@ -3447,7 +3452,7 @@ u32 ta_fifo_262c04(int a0) {
         }
         FUN_8c260ca0();
         memset(a0, 0, (int)0x9c);
-        uVar1 = FUN_8c260cc8();
+        uVar1 = irq_restore_nested();
         return uVar1;
     }
     return in_r0;
@@ -3472,24 +3477,24 @@ u32 ta_fifo_262c08(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
         ar5_00 = 0;
         ar6_00 = 0x9c;
         uVar1 = memset(unaff_r14, 0, 0x9c);
-        uVar1 = FUN_8c260cc8(unaff_r14, ar5_00, ar6_00, a3, uVar1);
+        uVar1 = irq_restore_nested(unaff_r14, ar5_00, ar6_00, a3, uVar1);
         return uVar1;
     }
 }
 
 /*
- * FUN_8c262c38  0x8c262c38
+ * get_field_1_s8_262c38  0x8c262c38
  * called by: FUN_8c2647f4, FUN_8c264a42, FUN_8c264b14, FUN_8c264b1a, FUN_8c264c92, FUN_8c264e84, FUN_8c264e88
  */
-int FUN_8c262c38(int a0, u32 a1) {
+int get_field_1_s8_262c38(int a0, u32 a1) {
     return (int)*(char *)(a0 + 1);
 }
 
 /*
- * FUN_8c262c3c  0x8c262c3c
+ * set_field_8_262c3c  0x8c262c3c
  * called by: FUN_8c263b34, FUN_8c263bfe
  */
-u32 FUN_8c262c3c(int a0, u32 a1) {
+u32 set_field_8_262c3c(int a0, u32 a1) {
     u32 in_r0;
 
     *(u32 *)(a0 + 8) = a1;
@@ -3497,10 +3502,10 @@ u32 FUN_8c262c3c(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c262c4c  0x8c262c4c
+ * set_field_38_262c4c  0x8c262c4c
  * called by: FUN_8c2647f4
  */
-u32 FUN_8c262c4c(int a0, u32 a1) {
+u32 set_field_38_262c4c(int a0, u32 a1) {
     u32 in_r0;
 
     *(u32 *)(a0 + 0x38) = a1;
@@ -3551,7 +3556,7 @@ u32 FUN_8c262c80(int a0) {
     (**(code **)(*a4 + 0x18))(a4, 1, (int)0x1000, a7);
     if (((iStack_18 < 0x10) ||
          (ar5_01 = uStack_1c, iVar3 = iStack_18, ar5_00 = FUN_8c25fdb2(uVar4, uStack_1c, iStack_18),
-          puVar1 = (&FUN_8c25fec0), ar5_00 == 0)) ||
+          puVar1 = (&get_field_a8_s16), ar5_00 == 0)) ||
         (iStack_18 < ar5_00)) {
         uVar4 = (**(code **)(*a4 + 0x1c))(a4, 1, &uStack_1c, a7);
     } else {
@@ -3560,7 +3565,7 @@ u32 FUN_8c262c80(int a0) {
         if (iVar2 == 4) {
             *(u8 *)(a0 + 3) = 1;
         }
-        iVar3 = FUN_8c25fec0(uVar4);
+        iVar3 = get_field_a8_s16(uVar4);
         if (iVar3 == 2) {
             if (0x3f < iStack_18) {
                 iStack_18 = 0x40;
@@ -3594,7 +3599,7 @@ u32 FUN_8c262d6c(int a0, u32 *a1, u32 *a2, int *a3) {
     int *a4;
     int iVar5;
 
-    puVar1 = (&FUN_8c25feca);
+    puVar1 = (&get_field_e_s8);
     a6_00 = (u32 *)(int)0x4000;
     ar4_00 = *(u32 *)(a0 + 0xc);
     a5 = a1;
@@ -3646,11 +3651,11 @@ u32 FUN_8c262e10(int a0, u32 unused_a1, u32 a2, u32 a3) {
     a7 = a0 + 0x14;
     ar6_00 = 0x7fffffff;
     (**(code **)(*a4 + 0x18))(a4, 1, 0x7fffffff, a7);
-    iVar1 = FUN_8c25fec0(uVar3);
+    iVar1 = get_field_a8_s16(uVar3);
     if ((((iVar1 == 0) && (1 < *(int *)(a0 + 0x18))) &&
          (((int)**(short **)(a0 + 0x14) >> 8 & 0xffU | (int)**(short **)(a0 + 0x14) << 8 & 0xff00 & 0xffff) ==
           0x8001)) ||
-        (iVar1 = FUN_8c263186(a0), iVar1 <= *(int *)(a0 + 0x34))) {
+        (iVar1 = get_field_18_wrap(a0), iVar1 <= *(int *)(a0 + 0x34))) {
         *(u8 *)(a0 + 1) = 3;
     } else {
         iVar1 = FUN_8c26316e(a0);
@@ -3702,7 +3707,7 @@ u32 FUN_8c262f02(int a0) {
     ar5_01 = 1;
     a6 = auStack_30;
     (**(code **)(*piVar6 + 0x1c))(piVar6, 1, a6, ar7_00);
-    for (iVar3 = 0; iVar4 = FUN_8c25feca(*(u32 *)(a0 + 4)), iVar3 < iVar4; iVar3 = iVar3 + 1) {
+    for (iVar3 = 0; iVar4 = get_field_e_s8(*(u32 *)(a0 + 4)), iVar3 < iVar4; iVar3 = iVar3 + 1) {
         ar7_00 = auStack_30;
         (*(code *)puVar1)(iVar3 * 8 + a0 + 0x1c, iVar2 << 1, &uStack_28, ar7_00);
         if (*(int *)(a0 + 0x50) != 0) {
@@ -3832,10 +3837,10 @@ u32 get_field_2c_2630fe(int a0) {
 }
 
 /*
- * FUN_8c263102  0x8c263102
+ * set_field_34_263102  0x8c263102
  * called by: FUN_8c264614
  */
-u32 FUN_8c263102(int a0, u32 a1) {
+u32 set_field_34_263102(int a0, u32 a1) {
     u32 in_r0;
 
     *(u32 *)(a0 + 0x34) = a1;
@@ -3853,10 +3858,10 @@ u32 FUN_8c263114(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * FUN_8c26311e  0x8c26311e
+ * set_field_3c_26311e  0x8c26311e
  * called by: FUN_8c264614, FUN_8c2646fe, FUN_8c2647f4
  */
-u32 FUN_8c26311e(int a0, u32 a1) {
+u32 set_field_3c_26311e(int a0, u32 a1) {
     u32 in_r0;
 
     *(u32 *)(a0 + 0x3c) = a1;
@@ -3864,31 +3869,32 @@ u32 FUN_8c26311e(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c263126  0x8c263126
+ * set_field_40_263126  0x8c263126
  * called by: FUN_8c264614, FUN_8c2647f4
  */
-u32 FUN_8c263126(int a0, u32 a1) {
+u32 set_field_40_263126(int a0, u32 a1) {
     *(u32 *)(a0 + 0x40) = a1;
     return 0x40;
 }
 
 /*
- * FUN_8c263132  0x8c263132
+ * set_field_44_263132  0x8c263132
  * called by: FUN_8c264614, FUN_8c2647f4
  */
-u32 FUN_8c263132(int a0, u32 a1) {
+u32 set_field_44_263132(int a0, u32 a1) {
     *(u32 *)(a0 + 0x44) = a1;
     return 0x44;
 }
 
 /*
- * FUN_8c26313e  0x8c26313e
+ * get_field_a8_s16_wrap  0x8c26313e
+ * only calls get_field_a8_s16
  * called by: FUN_8c2647f4
  */
-u32 FUN_8c26313e(int a0) {
+u32 get_field_a8_s16_wrap(int a0) {
     u32 uVar1;
 
-    uVar1 = FUN_8c25fec0(*(u32 *)(a0 + 4));
+    uVar1 = get_field_a8_s16(*(u32 *)(a0 + 4));
     return uVar1;
 }
 
@@ -3902,13 +3908,14 @@ u32 FUN_8c26314a(int a0) {
 }
 
 /*
- * FUN_8c263156  0x8c263156
+ * get_field_e_s8_wrap  0x8c263156
+ * only calls get_field_e_s8
  * called by: FUN_8c263df6, FUN_8c264784, FUN_8c264788, FUN_8c2647f4, FUN_8c264b14, FUN_8c264b1a
  */
-u32 FUN_8c263156(int a0) {
+u32 get_field_e_s8_wrap(int a0) {
     u32 uVar1;
 
-    uVar1 = FUN_8c25feca(*(u32 *)(a0 + 4));
+    uVar1 = get_field_e_s8(*(u32 *)(a0 + 4));
     return uVar1;
 }
 
@@ -3933,10 +3940,11 @@ u32 FUN_8c26316e(int a0) {
 }
 
 /*
- * FUN_8c263186  0x8c263186
+ * get_field_18_wrap  0x8c263186
+ * only calls get_field_18_25ff16
  * called by: FUN_8c262e10, FUN_8c263cd8, FUN_8c263ce4, FUN_8c2647f4
  */
-u32 FUN_8c263186(int a0) {
+u32 get_field_18_wrap(int a0) {
     u32 uVar1;
 
     uVar1 = get_field_18_25ff16(*(u32 *)(a0 + 4));
@@ -3944,13 +3952,14 @@ u32 FUN_8c263186(int a0) {
 }
 
 /*
- * FUN_8c26319e  0x8c26319e
+ * get_field_24_s16_wrap  0x8c26319e
+ * only calls get_field_24_s16
  * called by: FUN_8c2647f4
  */
-u32 FUN_8c26319e(int a0) {
+u32 get_field_24_s16_wrap(int a0) {
     u32 uVar1;
 
-    uVar1 = FUN_8c25ff22(*(u32 *)(a0 + 4));
+    uVar1 = get_field_24_s16(*(u32 *)(a0 + 4));
     return uVar1;
 }
 
@@ -3991,18 +4000,20 @@ u32 FUN_8c2631da(int a0) {
 }
 
 /*
- * FUN_8c2631f8  0x8c2631f8
+ * field_ptr_58  0x8c2631f8
+ * returns the address of the member at +0x58
  * called by: FUN_8c2647f4
  */
-int FUN_8c2631f8(int a0) {
+int field_ptr_58(int a0) {
     return a0 + 0x58;
 }
 
 /*
- * FUN_8c263244  0x8c263244
+ * memset_wrap_263244  0x8c263244
+ * only calls memset
  * called by: FUN_8c262810, FUN_8c262814
  */
-u32 FUN_8c263244(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 memset_wrap_263244(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     memset(0x8c4b9828, 0, (int)0xc80);
     return 1;
 }
@@ -4019,7 +4030,7 @@ u32 noop_26325a(void) {
 
 /*
  * FUN_8c26325e  0x8c26325e
- * called by: FUN_8c2632ea, FUN_8c263388, FUN_8c2633e6
+ * called by: ADXSTM_OpenFname, ADXSTM_OpenFnameRange, ADXSTM_OpenRange
  */
 u8 *FUN_8c26325e(u32 a0, u32 a1, u32 a2, int *a3) {
     u8 *puVar1;
@@ -4103,10 +4114,11 @@ u8 *FUN_8c26326e(u32 a0, u32 a1, u32 a2) {
 }
 
 /*
- * FUN_8c2632e2  0x8c2632e2
+ * memset_wrap_2632e2  0x8c2632e2
+ * only calls memset
  * called by: FUN_8c263446, FUN_8c26344a
  */
-u32 FUN_8c2632e2(void) {
+u32 memset_wrap_2632e2(void) {
     u32 uVar1;
 
     uVar1 = memset(0, 100);
@@ -4114,12 +4126,12 @@ u32 FUN_8c2632e2(void) {
 }
 
 /*
- * FUN_8c2632ea  0x8c2632ea
- * name hint from a string it uses: E8101210 can t open s ADXSTM
- * called by: FUN_8c26446c
+ * ADXSTM_OpenFname  0x8c2632ea
+ * named from the library error message it prints (ADXSTM_OpenFname)
+ * called by: ADXT_StartFname
  * strings: "E8101210: can\'t open \'%s\' (ADXSTM_OpenFname)"; "E8101211: can\'t GetFileSize (ADXSTM_OpenFname)"
  */
-u32 FUN_8c2632ea(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 ADXSTM_OpenFname(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     u32 ar4_00;
@@ -4133,7 +4145,7 @@ u32 FUN_8c2632ea(u32 a0, u32 a1, u32 a2, u32 a3) {
     ar4_00 = a0;
     iVar1 = FUN_8c1f397e(a0, 0, a2, a3);
     if (iVar1 == 0) {
-        FUN_8c25ece6(ar4_00, ar5_00, a2, a3, "E8101210: can\'t open \'%s\' (ADXSTM_OpenFname)", a0);
+        lib_error_printf(ar4_00, ar5_00, a2, a3, "E8101210: can\'t open \'%s\' (ADXSTM_OpenFname)", a0);
     } else {
         ar4_01 = iVar1;
         iVar2 = FUN_8c1f30d4(iVar1, &stack0xffffffec);
@@ -4145,19 +4157,19 @@ u32 FUN_8c2632ea(u32 a0, u32 a1, u32 a2, u32 a3) {
             FUN_8c0143c0(iVar1 + 0x40, a0, 0x20);
             return iVar1;
         }
-        FUN_8c25ece6(ar4_01, ar5_01, a2, a3, "E8101211: can\'t GetFileSize (ADXSTM_OpenFname)", in_stack_ffffffec);
+        lib_error_printf(ar4_01, ar5_01, a2, a3, "E8101211: can\'t GetFileSize (ADXSTM_OpenFname)", in_stack_ffffffec);
         FUN_8c1f309c(iVar1, ar5_01, a2, a3);
     }
     return 0;
 }
 
 /*
- * FUN_8c263388  0x8c263388
- * name hint from a string it uses: E8101212 can t open fad d ns
+ * ADXSTM_OpenRange  0x8c263388
+ * named from the library error message it prints (ADXSTM_OpenRange)
  * called by: FUN_8c262208
  * strings: "E8101212: can't open fad=%d, nsct=%d (ADXSTM_OpenRange)"; "OpenRange"
  */
-u32 FUN_8c263388(u32 a0, int a1, u32 a2, u32 a3) {
+u32 ADXSTM_OpenRange(u32 a0, int a1, u32 a2, u32 a3) {
     int a4;
     int iVar1;
     u32 ar6_00;
@@ -4166,7 +4178,7 @@ u32 FUN_8c263388(u32 a0, int a1, u32 a2, u32 a3) {
     ar6_00 = a2;
     a4 = FUN_8c1f39ac(a0, a1, a2, a3);
     if (a4 == 0) {
-        FUN_8c25ece6(0, iVar1, ar6_00, a3, "E8101212: can't open fad=%d, nsct=%d (ADXSTM_OpenRange)", a0);
+        lib_error_printf(0, iVar1, ar6_00, a3, "E8101212: can't open fad=%d, nsct=%d (ADXSTM_OpenRange)", a0);
         return 0;
     }
     iVar1 = FUN_8c26325e(a4, 0, a1 << 0xb, a2);
@@ -4177,11 +4189,11 @@ u32 FUN_8c263388(u32 a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c2633e6  0x8c2633e6
- * name hint from a string it uses: E8101213 can t open s ADXSTM
+ * ADXSTM_OpenFnameRange  0x8c2633e6
+ * named from the library error message it prints (ADXSTM_OpenFnameRange)
  * strings: "E8101213: can't open '%s'(ADXSTM_OpenFnameRange)"
  */
-int FUN_8c2633e6(u32 a0, u32 a1, int a2, u32 a3) {
+int ADXSTM_OpenFnameRange(u32 a0, u32 a1, int a2, u32 a3) {
     int a4;
     int iVar1;
     u32 ar5_00;
@@ -4192,7 +4204,7 @@ int FUN_8c2633e6(u32 a0, u32 a1, int a2, u32 a3) {
     uVar2 = a3;
     a4 = FUN_8c1f397e(a0, 0, a2, a3);
     if (a4 == 0) {
-        FUN_8c25ece6(0, ar5_00, iVar1, uVar2, "E8101213: can't open '%s'(ADXSTM_OpenFnameRange)", a0);
+        lib_error_printf(0, ar5_00, iVar1, uVar2, "E8101213: can't open '%s'(ADXSTM_OpenFnameRange)", a0);
         iVar1 = 0;
     } else {
         iVar1 = FUN_8c26325e(a4, a1, a2 << 0xb, a3);
@@ -4218,7 +4230,7 @@ u32 FUN_8c263446(int a0, u32 a1, u32 a2, u32 a3) {
         if (*(int *)(a0 + 8) != 0) {
             FUN_8c1f309c(*(u32 *)(a0 + 8));
         }
-        uVar1 = FUN_8c2632e2();
+        uVar1 = memset_wrap_2632e2();
         return uVar1;
     }
     return in_r0;
@@ -4236,7 +4248,7 @@ u32 FUN_8c26344a(u32 a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
         if (*(int *)(unaff_r14 + 8) != 0) {
             FUN_8c1f309c(*(u32 *)(unaff_r14 + 8), a1, a2, a3);
         }
-        uVar1 = FUN_8c2632e2();
+        uVar1 = memset_wrap_2632e2();
         return uVar1;
     }
 }
@@ -4283,7 +4295,7 @@ u32 FUN_8c263472(u32 a0) {
 
 /*
  * FUN_8c263498  0x8c263498
- * called by: FUN_8c262406, FUN_8c263446, FUN_8c26344a, FUN_8c263c64, FUN_8c264ba0
+ * called by: ADXF_Stop, FUN_8c263446, FUN_8c26344a, FUN_8c263c64, FUN_8c264ba0
  */
 u32 FUN_8c263498(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -4294,7 +4306,7 @@ u32 FUN_8c263498(int a0, u32 a1, u32 a2, u32 a3) {
         uVar2 = *(u32 *)(a0 + 8);
         FUN_8c1f367a(uVar2, a1, a2, a3);
         uVar2 = sh4_tmu_1f88e6(uVar2);
-        uVar1 = FUN_8c1f88f0(uVar1, uVar2);
+        uVar1 = int_diff(uVar1, uVar2);
         *(u32 *)(&DATA_8c278480) = uVar1;
         *(u8 *)(a0 + 2) = 0;
     }
@@ -4332,7 +4344,7 @@ int FUN_8c2634e0(void) {
 
 /*
  * FUN_8c263534  0x8c263534
- * called by: FUN_8c2633e6, FUN_8c2646fe, FUN_8c264ba0
+ * called by: ADXSTM_OpenFnameRange, FUN_8c2646fe, FUN_8c264ba0
  */
 u32 FUN_8c263534(int a0, int a1) {
     int iVar1;
@@ -4445,7 +4457,7 @@ int FUN_8c2635a4(int a0, int a1, u8 *a2, u8 *a3) {
                 *(u8 *)(a0 + 1) = 3;
             }
         } else if (iVar1 == 5) {
-            FUN_8c25ece6(5, a1, a2, a3, "E8101214: GDFS error (adxstmf_stat_exec)\n", in_stack_ffffffdc);
+            lib_error_printf(5, a1, a2, a3, "E8101214: GDFS error (adxstmf_stat_exec)\n", in_stack_ffffffdc);
             *(u8 *)(a0 + 1) = 4;
             *(u8 *)(a0 + 2) = 0;
         }
@@ -4506,7 +4518,7 @@ u32 FUN_8c263702(int a0, u32 a1, u32 a2, u32 a3) {
         ain0 = FUN_8c2635a4(a4, a1, a2, a3);
         a0 = a4;
     }
-    uVar1 = FUN_8c260cc8(a0, a1, a2, a3, ain0);
+    uVar1 = irq_restore_nested(a0, a1, a2, a3, ain0);
     return uVar1;
 }
 
@@ -4551,16 +4563,16 @@ int FUN_8c263726(char *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c263746  0x8c263746
+ * get_field_1_s8_263746  0x8c263746
  * called by: FUN_8c2624a0, FUN_8c264c92, FUN_8c264e84, FUN_8c264e88
  */
-int FUN_8c263746(int a0) {
+int get_field_1_s8_263746(int a0) {
     return (int)*(char *)(a0 + 1);
 }
 
 /*
  * FUN_8c263768  0x8c263768
- * called by: FUN_8c262406, FUN_8c2624a0
+ * called by: ADXF_Stop, FUN_8c2624a0
  */
 u32 FUN_8c263768(int a0, int *a1) {
     int iVar1;
@@ -4593,7 +4605,7 @@ u32 FUN_8c2637ae(int a0, u32 *a1) {
 
 /*
  * FUN_8c2637ca  0x8c2637ca
- * called by: FUN_8c261b96, FUN_8c261d46, FUN_8c261f7a
+ * called by: ADXF_LoadPartition, FUN_8c261d46, FUN_8c261f7a
  */
 u32 FUN_8c2637ca(u32 a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -4811,7 +4823,7 @@ u32 FUN_8c2639fa(u8 *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
         puVar2 = a0;
         uVar1 = memset(a0, 0, 0x94);
         *a0 = 0;
-        uVar1 = FUN_8c260cc8(puVar2, ar5_00, ar6_00, a3, uVar1);
+        uVar1 = irq_restore_nested(puVar2, ar5_00, ar6_00, a3, uVar1);
         return uVar1;
     }
 }
@@ -4838,7 +4850,7 @@ int FUN_8c263b0c(char *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c263b34  0x8c263b34
- * called by: FUN_8c263bc0, FUN_8c263bc8, FUN_8c2644b8, FUN_8c264504, FUN_8c264ba0
+ * called by: ADXT_StartMem, ADXT_StartMemIdx, FUN_8c263bc0, FUN_8c263bc8, FUN_8c264ba0
  */
 u32 FUN_8c263b34(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
@@ -4852,7 +4864,7 @@ u32 FUN_8c263b34(int a0, u32 a1, u32 a2, u32 a3) {
         (**(code **)(*a4 + 0x14))(a4, a1, a2, a3);
     }
     uVar2 = ar5_00;
-    FUN_8c262c3c(*(u32 *)(a0 + 4), ar5_00);
+    set_field_8_262c3c(*(u32 *)(a0 + 4), ar5_00);
     *(u32 *)(a0 + 0x14) = uVar2;
     FUN_8c262c50(*(u32 *)(a0 + 4));
     *(u8 *)(a0 + 1) = 1;
@@ -4865,7 +4877,7 @@ u32 FUN_8c263b34(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c263bc0  0x8c263bc0
- * called by: FUN_8c264408, FUN_8c26446c
+ * called by: ADXT_StartAfs, ADXT_StartFname
  */
 u32 FUN_8c263bc0(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 ain0;
@@ -4919,20 +4931,20 @@ u32 FUN_8c263bfe(int a0, u32 a1, u32 a2, u32 a3) {
         (**(code **)(*a4 + 0x14))(a4, a1, a2, a3);
     }
     uVar2 = uVar1;
-    FUN_8c262c3c(*(u32 *)(a0 + 4), uVar1);
+    set_field_8_262c3c(*(u32 *)(a0 + 4), uVar1);
     *(u32 *)(a0 + 0x14) = uVar2;
     uVar2 = *(u32 *)(a0 + 4);
     FUN_8c262c50(uVar2);
     *(u8 *)(a0 + 1) = 1;
     *(u8 *)(a0 + 2) = 3;
     *(u32 *)(a0 + 0x4c) = 0;
-    uVar1 = FUN_8c260cc8(uVar2, uVar1, a2, a3, 0x4c);
+    uVar1 = irq_restore_nested(uVar2, uVar1, a2, a3, 0x4c);
     return uVar1;
 }
 
 /*
  * FUN_8c263c64  0x8c263c64
- * called by: FUN_8c0229c8, FUN_8c2639fa, FUN_8c263bfe, FUN_8c264408, FUN_8c26446c, FUN_8c2644b8, FUN_8c264504,
+ * called by: ADXT_StartAfs, ADXT_StartFname, ADXT_StartMem, ADXT_StartMemIdx, FUN_8c0229c8, FUN_8c2639fa, FUN_8c263bfe,
  * FUN_8c2647f4 (+3 more)
  */
 u32 FUN_8c263c64(int a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -4959,15 +4971,15 @@ u32 FUN_8c263c64(int a0, u32 unused_a1, u32 a2, u32 a3) {
     }
     *(u32 *)(a0 + 0x14) = 0;
     *(u8 *)(a0 + 1) = 0;
-    uVar1 = FUN_8c260cc8(ar4_00, uVar1, a2, a3, 0);
+    uVar1 = irq_restore_nested(ar4_00, uVar1, a2, a3, 0);
     return uVar1;
 }
 
 /*
- * FUN_8c263cd4  0x8c263cd4
+ * get_field_1_s8_263cd4  0x8c263cd4
  * called by: FUN_8c263f54, FUN_8c264104, adx_stall_watchdog
  */
-int FUN_8c263cd4(int a0) {
+int get_field_1_s8_263cd4(int a0) {
     return (int)*(char *)(a0 + 1);
 }
 
@@ -4982,7 +4994,7 @@ u32 FUN_8c263cd8(int a0, int *a1, u32 *a2, u32 a3) {
     if ((*(char *)(a0 + 1) == '\x03') || (*(char *)(a0 + 1) == '\x04')) {
         FUN_8c2699d0(*(u32 *)(a0 + 0xc), a1, a2, a3);
     } else if (*(char *)(a0 + 1) == '\x05') {
-        iVar1 = FUN_8c263186(*(u32 *)(a0 + 4));
+        iVar1 = get_field_18_wrap(*(u32 *)(a0 + 4));
         *a1 = iVar1;
         uVar2 = FUN_8c26314a(*(u32 *)(a0 + 4));
         *a2 = uVar2;
@@ -5010,7 +5022,7 @@ u32 FUN_8c263ce4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     if ((*(char *)(unaff_r14 + 1) == '\x03') || (*(char *)(unaff_r14 + 1) == '\x04')) {
         FUN_8c2699d0(*(u32 *)(unaff_r14 + 0xc), unaff_r13, unaff_r12, a3);
     } else if (*(char *)(unaff_r14 + 1) == '\x05') {
-        iVar1 = FUN_8c263186(*(u32 *)(unaff_r14 + 4));
+        iVar1 = get_field_18_wrap(*(u32 *)(unaff_r14 + 4));
         *unaff_r13 = iVar1;
         uVar2 = FUN_8c26314a(*(u32 *)(unaff_r14 + 4));
         *unaff_r12 = uVar2;
@@ -5080,18 +5092,19 @@ u32 FUN_8c263df6(int a0) {
     u32 uVar1;
 
     if ('\x01' < *(char *)(a0 + 1)) {
-        uVar1 = FUN_8c263156(*(u32 *)(a0 + 4));
+        uVar1 = get_field_e_s8_wrap(*(u32 *)(a0 + 4));
         return uVar1;
     }
     return 0;
 }
 
 /*
- * FUN_8c263e50  0x8c263e50
+ * ADXT_SetOutPan  0x8c263e50
+ * named from the library error message it prints (ADXT_SetOutPan)
  * called by: FUN_8c022b68
  * strings: "E8101208: parameter error (ADXT_SetOutPan)"
  */
-u32 FUN_8c263e50(int a0, int a1, u32 a2) {
+u32 ADXT_SetOutPan(int a0, int a1, u32 a2) {
     u32 r7;
     u32 uVar1;
     u32 in_PR;
@@ -5101,16 +5114,16 @@ u32 FUN_8c263e50(int a0, int a1, u32 a2) {
         uVar1 = (*(code *)&SUB_8c262a12)(*(u32 *)(a0 + 0xc));
         return uVar1;
     }
-    uVar1 = FUN_8c25ece6(a0, a1, a2, r7, "E8101208: parameter error (ADXT_SetOutPan)", in_PR);
+    uVar1 = lib_error_printf(a0, a1, a2, r7, "E8101208: parameter error (ADXT_SetOutPan)", in_PR);
     return uVar1;
 }
 
 /*
- * FUN_8c263e5c  0x8c263e5c
- * name hint from a string it uses: E8101208 parameter error ADX
+ * ADXT_SetOutPan_263e5c  0x8c263e5c
+ * named from the library error message it prints (ADXT_SetOutPan)
  * strings: "E8101208: parameter error (ADXT_SetOutPan)"
  */
-u32 FUN_8c263e5c(u32 a0, int a1, u32 a2) {
+u32 ADXT_SetOutPan_263e5c(u32 a0, int a1, u32 a2) {
     u32 r7;
     u32 uVar1;
     int in_r2;
@@ -5123,7 +5136,7 @@ u32 FUN_8c263e5c(u32 a0, int a1, u32 a2) {
         uVar1 = (*(code *)&SUB_8c262a12)(*(u32 *)(unaff_r14 + 0xc));
         return uVar1;
     }
-    uVar1 = FUN_8c25ece6(a0, a1, a2, r7, "E8101208: parameter error (ADXT_SetOutPan)", in_PR);
+    uVar1 = lib_error_printf(a0, a1, a2, r7, "E8101208: parameter error (ADXT_SetOutPan)", in_PR);
     return uVar1;
 }
 
@@ -5171,7 +5184,7 @@ int FUN_8c263f54(int a0, u32 unused_a1, u32 a2, u32 a3) {
     puVar3 = auStack_8;
 
     *(u32 *)(puVar3 + -4) = in_PR;
-    iVar1 = FUN_8c263cd4(a0);
+    iVar1 = get_field_1_s8_263cd4(a0);
     if ((1 < iVar1) && (*(int *)(a0 + 0x14) != 0)) {
         a4 = *(int **)(a0 + 0x14);
         a5 = 1;
@@ -5203,10 +5216,10 @@ u32 FUN_8c263fba(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c263ffa  0x8c263ffa
+ * set_field_6d_u8  0x8c263ffa
  * called by: FUN_8c0221c8
  */
-u32 FUN_8c263ffa(int a0, u32 a1) {
+u32 set_field_6d_u8(int a0, u32 a1) {
     *(u8 *)(a0 + 0x6d) = (u8)a1;
     return 0x6d;
 }
@@ -5229,19 +5242,19 @@ u32 adx_server(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     uVar1 = sh4_tmu_1f88e6(a0);
     uVar3 = ar4_00;
     uVar2 = uVar1;
-    g_8c27848c = FUN_8c1f88f0(ar4_00, uVar1);
+    g_8c27848c = int_diff(ar4_00, uVar1);
     thunk_FUN_8c2695e4();
     uVar2 = sh4_tmu_1f88e6(uVar3);
     uVar3 = uVar2;
-    g_8c278490 = FUN_8c1f88f0(uVar1, uVar2);
+    g_8c278490 = int_diff(uVar1, uVar2);
     FUN_8c262524(uVar1, uVar3, a2, a3);
     uVar1 = sh4_tmu_1f88e6(uVar1);
     uVar3 = uVar1;
-    g_8c278494 = FUN_8c1f88f0(uVar2, uVar1);
+    g_8c278494 = int_diff(uVar2, uVar1);
     FUN_8c26371e(uVar2, uVar3, a2, a3);
     uVar2 = sh4_tmu_1f88e6(uVar2);
     uVar3 = uVar2;
-    g_8c278498 = FUN_8c1f88f0(uVar1, uVar2);
+    g_8c278498 = int_diff(uVar1, uVar2);
     a4 = &g_8c277fd0;
     do {
         ar4_01 = a4;
@@ -5251,8 +5264,8 @@ u32 adx_server(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
         a4 = a4 + 0x94;
     } while (a4 < &g_8c278470);
     uVar3 = sh4_tmu_1f88e6(ar4_01);
-    g_8c27849c = FUN_8c1f88f0(uVar2, uVar3);
-    g_8c278488 = FUN_8c1f88f0(ar4_00, uVar3);
+    g_8c27849c = int_diff(uVar2, uVar3);
+    g_8c278488 = int_diff(ar4_00, uVar3);
     return g_8c278488;
 }
 
@@ -5263,7 +5276,7 @@ u32 FUN_8c264104(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
 
-    iVar1 = FUN_8c263cd4(a0);
+    iVar1 = get_field_1_s8_263cd4(a0);
     *(char *)(a0 + 0x72) = (char)a1;
     if ((iVar1 != 3) && (iVar1 != 4)) {
         return iVar1;
@@ -5303,7 +5316,7 @@ u32 FUN_8c2641ee(int a0, u32 a1, u32 a2, u32 a3) {
         return 0;
     }
     ar4_00 = *(u32 *)(a0 + 0xc);
-    uVar1 = FUN_8c269808(ar4_00, a1, a2, a3);
+    uVar1 = mwRnaDiscardData(ar4_00, a1, a2, a3);
     adx_server(ar4_00, a1, a2, a3);
     return uVar1;
 }
@@ -5377,12 +5390,12 @@ int FUN_8c264308(int a0, int a1, int a2) {
 }
 
 /*
- * FUN_8c264408  0x8c264408
- * name hint from a string it uses: E8101202 can t open d d ADXT
+ * ADXT_StartAfs  0x8c264408
+ * named from the library error message it prints (ADXT_StartAfs)
  * called by: FUN_8c022918
  * strings: "E8101202: can't open %d, %d (ADXT_StartAfs)\n"
  */
-u32 FUN_8c264408(int a0, u32 a1, u32 a2, u32 a3) {
+u32 ADXT_StartAfs(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 *ar7_00;
@@ -5399,26 +5412,26 @@ u32 FUN_8c264408(int a0, u32 a1, u32 a2, u32 a3) {
     ar7_00 = &uStack_14;
     FUN_8c26270c(uStack_10, uStack_c, &iStack_18, ar7_00);
     uVar2 = *(u32 *)(a0 + 0x10);
-    iVar1 = (*(code *)(&FUN_8c263388))(iStack_18, uStack_14, uVar2, ar7_00);
+    iVar1 = (*(code *)(&ADXSTM_OpenRange))(iStack_18, uStack_14, uVar2, ar7_00);
     *(int *)(a0 + 8) = iVar1;
     if (iVar1 == 0) {
-        FUN_8c260cc8(iStack_18, uStack_14, uVar2, ar7_00);
-        (*(code *)(&FUN_8c25ece6))(iStack_18, uStack_14, uVar2, ar7_00, "E8101202: can't open %d, %d (ADXT_StartAfs)\n",
-                                   uStack_10);
+        irq_restore_nested(iStack_18, uStack_14, uVar2, ar7_00);
+        (*(code *)(&lib_error_printf))(iStack_18, uStack_14, uVar2, ar7_00,
+                                       "E8101202: can't open %d, %d (ADXT_StartAfs)\n", uStack_10);
     } else {
         FUN_8c263bc0(a0, uStack_14, uVar2, ar7_00);
         iStack_18 = a0;
     }
-    uVar2 = FUN_8c260cc8(iStack_18, uStack_14, uVar2, ar7_00);
+    uVar2 = irq_restore_nested(iStack_18, uStack_14, uVar2, ar7_00);
     return uVar2;
 }
 
 /*
- * FUN_8c26446c  0x8c26446c
- * name hint from a string it uses: E8101205 can t open s ADXT S
+ * ADXT_StartFname  0x8c26446c
+ * named from the library error message it prints (ADXT_StartFname)
  * strings: "E8101205: can\'t open \'%s\' (ADXT_StartFname)"
  */
-u32 FUN_8c26446c(int a0, int a1, u32 a2, u32 a3) {
+u32 ADXT_StartFname(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ain0;
     int iVar2;
@@ -5431,25 +5444,25 @@ u32 FUN_8c26446c(int a0, int a1, u32 a2, u32 a3) {
     FUN_8c260ca0(iVar2, a1, a2, a3, ain0_00);
     uVar3 = *(u32 *)(a0 + 0x10);
     iVar2 = ain0_00;
-    iVar1 = FUN_8c2632ea(ain0_00, uVar3, a2, a3);
+    iVar1 = ADXSTM_OpenFname(ain0_00, uVar3, a2, a3);
     *(int *)(a0 + 8) = iVar1;
     if (iVar1 == 0) {
-        FUN_8c260cc8(ain0_00, uVar3, a2, a3, iVar2);
-        ain0 = FUN_8c25ece6(ain0_00, uVar3, a2, a3, "E8101205: can\'t open \'%s\' (ADXT_StartFname)", iVar2);
+        irq_restore_nested(ain0_00, uVar3, a2, a3, iVar2);
+        ain0 = lib_error_printf(ain0_00, uVar3, a2, a3, "E8101205: can\'t open \'%s\' (ADXT_StartFname)", iVar2);
         a0 = ain0_00;
     } else {
         ain0 = FUN_8c263bc0(a0, uVar3, a2, a3);
     }
-    uVar3 = FUN_8c260cc8(a0, uVar3, a2, a3, ain0);
+    uVar3 = irq_restore_nested(a0, uVar3, a2, a3, ain0);
     return uVar3;
 }
 
 /*
- * FUN_8c2644b8  0x8c2644b8
- * name hint from a string it uses: E8101207 can t create sj ADX
+ * ADXT_StartMem  0x8c2644b8
+ * named from the library error message it prints (ADXT_StartMem)
  * strings: "E8101207: can\'t create sj (ADXT_StartMem)\n"
  */
-u32 FUN_8c2644b8(int a0, int a1, u32 a2, u32 a3) {
+u32 ADXT_StartMem(int a0, int a1, u32 a2, u32 a3) {
     int ar5_00;
     u32 ain0;
     u32 uVar1;
@@ -5464,24 +5477,24 @@ u32 FUN_8c2644b8(int a0, int a1, u32 a2, u32 a3) {
     iVar2 = ain0_00;
     ar5_00 = FUN_8c26b250(ain0_00, a2);
     if (ar5_00 == 0) {
-        FUN_8c260cc8(ain0_00, 0, uVar1, a3, iVar2);
-        ain0 = FUN_8c25ece6(ain0_00, ar5_00, uVar1, a3, "E8101207: can\'t create sj (ADXT_StartMem)\n", iVar2);
+        irq_restore_nested(ain0_00, 0, uVar1, a3, iVar2);
+        ain0 = lib_error_printf(ain0_00, ar5_00, uVar1, a3, "E8101207: can\'t create sj (ADXT_StartMem)\n", iVar2);
     } else {
         ain0_00 = a0;
         FUN_8c263b34(a0, ar5_00, uVar1, a3);
         ain0 = 2;
         *(u8 *)(a0 + 2) = 2;
     }
-    uVar1 = FUN_8c260cc8(ain0_00, ar5_00, uVar1, a3, ain0);
+    uVar1 = irq_restore_nested(ain0_00, ar5_00, uVar1, a3, ain0);
     return uVar1;
 }
 
 /*
- * FUN_8c264504  0x8c264504
- * name hint from a string it uses: E8101207 can t create sj ADX
+ * ADXT_StartMemIdx  0x8c264504
+ * named from the library error message it prints (ADXT_StartMemIdx)
  * strings: "E8101207: can\'t create sj (ADXT_StartMemIdx)"
  */
-u32 FUN_8c264504(int a0, int a1, int a2, u32 a3) {
+u32 ADXT_StartMemIdx(int a0, int a1, int a2, u32 a3) {
     int ar5_00;
     u32 uVar1;
     u32 uVar2;
@@ -5500,15 +5513,15 @@ u32 FUN_8c264504(int a0, int a1, int a2, u32 a3) {
         iVar3 = (uVar2 >> 0x18 | (int)uVar2 >> 8 & 0xff00U | (uVar2 & 0xff00) << 8 | uVar2 << 0x18) + ain0;
         ar5_00 = FUN_8c26b250(iVar3, 0x40000000);
         if (ar5_00 == 0) {
-            FUN_8c260cc8(iVar3, 0, ar6_00, a3, ain0);
-            uVar1 = FUN_8c25ece6(iVar3, ar5_00, ar6_00, a3, "E8101207: can\'t create sj (ADXT_StartMemIdx)", ain0);
+            irq_restore_nested(iVar3, 0, ar6_00, a3, ain0);
+            uVar1 = lib_error_printf(iVar3, ar5_00, ar6_00, a3, "E8101207: can\'t create sj (ADXT_StartMemIdx)", ain0);
         } else {
             iVar3 = a0;
             FUN_8c263b34(a0, ar5_00, ar6_00, a3);
             uVar1 = 2;
             *(u8 *)(a0 + 2) = 2;
         }
-        uVar1 = FUN_8c260cc8(iVar3, ar5_00, ar6_00, a3, uVar1);
+        uVar1 = irq_restore_nested(iVar3, ar5_00, ar6_00, a3, uVar1);
         return uVar1;
     }
     return 0xff00;
@@ -5540,7 +5553,7 @@ u32 FUN_8c264614(int a0) {
     s4 = FUN_8c2631ce(ar4_01);
     FUN_8c2631da(ar4_01);
     if ((*(int *)(a0 + 8) == 0) && (*(char *)(a0 + 0x6c) == '\0')) {
-        uVar1 = FUN_8c26311e(*(u32 *)(a0 + 4), 0xffffffff);
+        uVar1 = set_field_3c_26311e(*(u32 *)(a0 + 4), 0xffffffff);
     } else {
         a6 = *(u32 *)(a0 + 0x50);
         ar5_01 = 1;
@@ -5548,15 +5561,15 @@ u32 FUN_8c264614(int a0) {
         ar4_00 = a4;
         (**(code **)(*a4 + 0x18))(a4, 1, a6, puVar2);
         if (iStack_1c < *(int *)(a0 + 0x50)) {
-            FUN_8c25ece6(ar4_00, ar5_01, a6, puVar2, "E8101201: not enough data (adxt_trap_entry)\n", s4);
+            lib_error_printf(ar4_00, ar5_01, a6, puVar2, "E8101201: not enough data (adxt_trap_entry)\n", s4);
         }
         a6_00 = auStack_20;
         (**(code **)(*a4 + 0x20))(a4, 0, a6_00, puVar2);
-        FUN_8c263126(ar4_01, 0);
+        set_field_40_263126(ar4_01, 0);
         *(int *)(a0 + 0x90) = s4 - ar5_00;
-        FUN_8c26311e(ar4_01, s4 - ar5_00);
-        FUN_8c263132(ar4_01, uVar1);
-        FUN_8c263102(ar4_01, ar5_00);
+        set_field_3c_26311e(ar4_01, s4 - ar5_00);
+        set_field_44_263132(ar4_01, uVar1);
+        set_field_34_263102(ar4_01, ar5_00);
         if (*(char *)(a0 + 2) == '\x02') {
             (**(code **)(*a4 + 0x14))(a4, ar5_00, a6_00, puVar2);
             puVar2 = auStack_20;
@@ -5585,7 +5598,7 @@ u32 FUN_8c2646fe(int a0) {
         uVar1 = FUN_8c263534(uVar1, ain0 >> 0xb);
         return uVar1;
     }
-    uVar1 = FUN_8c26311e(*(u32 *)(a0 + 4), 0xffffffff);
+    uVar1 = set_field_3c_26311e(*(u32 *)(a0 + 4), 0xffffffff);
     uVar1 = FUN_8c26357a(*(u32 *)(a0 + 8), 0x7fffffff);
     return uVar1;
 }
@@ -5599,7 +5612,7 @@ u32 FUN_8c264784(int a0) {
     int iVar2;
     u32 uVar3;
 
-    iVar2 = FUN_8c263156(*(u32 *)(a0 + 4));
+    iVar2 = get_field_e_s8_wrap(*(u32 *)(a0 + 4));
     puVar1 = (&DATA_8c262a12);
     if (iVar2 == 1) {
         if (*(short *)(a0 + 0x42) == -0x80) {
@@ -5634,7 +5647,7 @@ u32 FUN_8c264788(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar3;
     int unaff_r14;
 
-    iVar2 = FUN_8c263156(*(u32 *)(unaff_r14 + 4));
+    iVar2 = get_field_e_s8_wrap(*(u32 *)(unaff_r14 + 4));
     puVar1 = (&DATA_8c262a12);
     if (iVar2 == 1) {
         if (*(short *)(unaff_r14 + 0x42) == -0x80) {
@@ -5678,16 +5691,17 @@ int FUN_8c2647f4(int a0, u32 a1, int a2, u32 a3) {
     u32 uVar5;
 
     uVar5 = *(u32 *)(a0 + 4);
-    iVar1 = FUN_8c262c38(uVar5, a1);
+    iVar1 = get_field_1_s8_262c38(uVar5, a1);
     if (iVar1 == 2) {
-        iVar1 = FUN_8c263156(uVar5);
+        iVar1 = get_field_e_s8_wrap(uVar5);
         if (*(char *)(a0 + 3) < iVar1) {
-            FUN_8c25ece6(iVar1, a1, a2, a3, "E9081001: can't play %d ch data (maxch=%d) [adxt_stat_decinfo]\n", iVar1);
+            lib_error_printf(iVar1, a1, a2, a3, "E9081001: can't play %d ch data (maxch=%d) [adxt_stat_decinfo]\n",
+                             iVar1);
             uVar5 = FUN_8c263c64(a0, a1, a2, a3);
             return uVar5;
         }
         uVar2 = FUN_8c26314a(uVar5);
-        iVar1 = FUN_8c26319e(uVar5);
+        iVar1 = get_field_24_s16_wrap(uVar5);
         if (iVar1 < 1) {
             iVar3 = libgcc_divide_helper_010468(uVar2, *(u32 *)(a0 + 0x38));
             iVar3 = (int)(iVar3 * 3 + (u32)(iVar3 * 3 < 0)) >> 1;
@@ -5701,7 +5715,7 @@ int FUN_8c2647f4(int a0, u32 a1, int a2, u32 a3) {
         iVar4 = libgcc_divide_helper_010468(*(int *)(a0 + 0x48) + iVar3, iVar3);
         *(int *)(a0 + 0x48) = iVar4 * iVar3;
         ar5_02 = *(code **)(a0 + 0x48);
-        FUN_8c262c4c(uVar5, ar5_02);
+        set_field_38_262c4c(uVar5, ar5_02);
         if (iVar1 < 1) {
             if (*(int *)(a0 + 8) != 0) {
                 ar5_02 = (code *)0x7fffffff;
@@ -5725,31 +5739,31 @@ int FUN_8c2647f4(int a0, u32 a1, int a2, u32 a3) {
             }
             uVar2 = FUN_8c2631ce(uVar5);
             *(u32 *)(a0 + 0x90) = uVar2;
-            FUN_8c26311e(uVar5, uVar2);
-            FUN_8c263132(uVar5, 0);
-            FUN_8c263126(uVar5, 0);
+            set_field_3c_26311e(uVar5, uVar2);
+            set_field_44_263132(uVar5, 0);
+            set_field_40_263126(uVar5, 0);
             ar5_02 = FUN_8c264614;
             a2 = a0;
             FUN_8c263114(uVar5, FUN_8c264614, a0);
         }
         iVar3 = FUN_8c26314a(uVar5);
-        uVar2 = FUN_8c263156(uVar5);
-        ar5_00 = FUN_8c263186(uVar5);
+        uVar2 = get_field_e_s8_wrap(uVar5);
+        ar5_00 = get_field_18_wrap(uVar5);
         ar5_01 = FUN_8c263162(uVar5);
         FUN_8c269b8e(*(u32 *)(a0 + 0xc), ar5_01, a2, a3);
         FUN_8c269c04(*(u32 *)(a0 + 0xc), iVar3, a2, a3);
-        FUN_8c269ae8(*(u32 *)(a0 + 0xc), uVar2, a2, a3);
+        mwRnaSetNumChan(*(u32 *)(a0 + 0xc), uVar2, a2, a3);
         noop_262a44(*(u32 *)(a0 + 0xc), ar5_00, a2, a3, ar5_00);
         iVar1 = (int)*(short *)(a0 + 0x40);
         FUN_8c269c3e(*(u32 *)(a0 + 0xc), iVar1, a2, a3);
         FUN_8c264784(a0);
         if (*(int *)(a0 + 0x74) != 0) {
-            FUN_8c261680(*(u32 *)(a0 + 0x74), iVar3);
+            set_field_20_261680(*(u32 *)(a0 + 0x74), iVar3);
             iVar1 = iVar3;
         }
-        iVar3 = FUN_8c26313e(uVar5);
+        iVar3 = get_field_a8_s16_wrap(uVar5);
         if (iVar3 == 2) {
-            uVar5 = FUN_8c2631f8(uVar5);
+            uVar5 = field_ptr_58(uVar5);
             FUN_8c262a4c(*(u32 *)(a0 + 0xc), uVar5);
         }
         FUN_8c2690d8(*(u32 *)(a0 + 0xc), 1, a2, a3);
@@ -5782,7 +5796,7 @@ int FUN_8c264a42(int a0, u32 a1, u32 a2, u32 a3) {
     iVar2 = FUN_8c269aa8(ar4_01);
     iVar3 = ret_const_7fffffff_2629e8();
     if (((*(int *)(a0 + 0x48) <= iVar2) || (iVar2 = FUN_8c26316e(ar4_00), iVar3 <= iVar2)) ||
-        (iVar2 = FUN_8c262c38(*(u32 *)(a0 + 4), a1), iVar2 == 3)) {
+        (iVar2 = get_field_1_s8_262c38(*(u32 *)(a0 + 4), a1), iVar2 == 3)) {
         if (*(char *)(a0 + 0x70) == '\0') {
             if (*(char *)(a0 + 0x72) == '\0') {
                 a1 = 1;
@@ -5792,7 +5806,7 @@ int FUN_8c264a42(int a0, u32 a1, u32 a2, u32 a3) {
         }
         *(u8 *)(a0 + 0x71) = 1;
     }
-    iVar2 = FUN_8c262c38(*(u32 *)(a0 + 4), a1);
+    iVar2 = get_field_1_s8_262c38(*(u32 *)(a0 + 4), a1);
     if (iVar2 == 3) {
         iVar3 = FUN_8c263df6(a0);
         puVar1 = (&memset);
@@ -5825,9 +5839,9 @@ int FUN_8c264b14(int a0) {
     int *piVar3;
     int iVar4;
 
-    iVar1 = FUN_8c262c38(*(u32 *)(a0 + 4), &g_8c278064);
+    iVar1 = get_field_1_s8_262c38(*(u32 *)(a0 + 4), &g_8c278064);
     if (iVar1 == 3) {
-        iVar2 = FUN_8c263156(*(u32 *)(a0 + 4));
+        iVar2 = get_field_e_s8_wrap(*(u32 *)(a0 + 4));
         iVar4 = 0;
         iVar1 = iVar2;
         if (0 < iVar2) {
@@ -5858,9 +5872,9 @@ int FUN_8c264b1a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int unaff_r13;
     int iVar3;
 
-    iVar1 = FUN_8c262c38(*(u32 *)(unaff_r13 + 4), a1);
+    iVar1 = get_field_1_s8_262c38(*(u32 *)(unaff_r13 + 4), a1);
     if (iVar1 == 3) {
-        iVar2 = FUN_8c263156(*(u32 *)(unaff_r13 + 4));
+        iVar2 = get_field_e_s8_wrap(*(u32 *)(unaff_r13 + 4));
         iVar3 = 0;
         iVar1 = iVar2;
         if (0 < iVar2) {
@@ -5954,7 +5968,7 @@ u32 FUN_8c264ba0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     }
     ar5_00 = *(u32 *)(a0 + 0x14);
     uVar1 = FUN_8c263b34(a0, ar5_00, a2, a3);
-    uVar1 = FUN_8c260cc8(a0, ar5_00, a2, a3, uVar1);
+    uVar1 = irq_restore_nested(a0, ar5_00, a2, a3, uVar1);
     return uVar1;
 }
 
@@ -5972,7 +5986,7 @@ int FUN_8c264c92(int a0, u32 unused_a1, u32 a2, u32 a3) {
     cVar1 = *(char *)(a0 + 1);
     ar5_00 = sh4_tmu_1f88e6(a0);
     ar5_01 = ar5_00;
-    ar4_00 = FUN_8c1f88f0(g_8c2784a0, ar5_00);
+    ar4_00 = int_diff(g_8c2784a0, ar5_00);
     iVar2 = FUN_8c1f88f6(ar4_00);
     iVar3 = libgcc_divide_helper_010468(1000000, *(u32 *)(a0 + 0x38));
     iVar3 = libgcc_divide_helper_010468(iVar3 << 3, 10);
@@ -5981,7 +5995,7 @@ int FUN_8c264c92(int a0, u32 unused_a1, u32 a2, u32 a3) {
     }
     g_8c2784a0 = ar5_00;
     if (((cVar1 == '\x03') && (*(char *)(a0 + 0x72) == '\0')) &&
-        (iVar2 = FUN_8c262c38(*(u32 *)(a0 + 4), ar5_01), iVar2 != 3)) {
+        (iVar2 = get_field_1_s8_262c38(*(u32 *)(a0 + 4), ar5_01), iVar2 != 3)) {
         iVar2 = get_field_2c_2630fe(*(u32 *)(a0 + 4));
         if (*(int *)(a0 + 100) == iVar2) {
             *(short *)(a0 + 0x68) = *(short *)(a0 + 0x68) + 1;
@@ -6006,7 +6020,7 @@ int FUN_8c264c92(int a0, u32 unused_a1, u32 a2, u32 a3) {
         *(u16 *)(a0 + 0x68) = 0;
     }
     if ((('\0' < cVar1) && (cVar1 < '\x04')) &&
-        ((*(char *)(a0 + 0x72) == '\0' && (iVar2 = FUN_8c262c38(*(u32 *)(a0 + 4), ar5_01), iVar2 != 3)))) {
+        ((*(char *)(a0 + 0x72) == '\0' && (iVar2 = get_field_1_s8_262c38(*(u32 *)(a0 + 4), ar5_01), iVar2 != 3)))) {
         if (*(int *)(a0 + 0x14) == 0) {
             iVar2 = 0;
         } else {
@@ -6039,7 +6053,7 @@ int FUN_8c264c92(int a0, u32 unused_a1, u32 a2, u32 a3) {
     iVar2 = 0x6a;
     *(u16 *)(a0 + 0x6a) = 0;
 LAB_8c264e04:
-    if ((*(int *)(a0 + 8) != 0) && (iVar2 = FUN_8c263746(*(u32 *)(a0 + 8)), iVar2 == 4)) {
+    if ((*(int *)(a0 + 8) != 0) && (iVar2 = get_field_1_s8_263746(*(u32 *)(a0 + 8)), iVar2 == 4)) {
         if (*(char *)(a0 + 0x6d) == '\x01') {
             FUN_8c263c64(a0, ar5_01, a2, a3);
         } else if (*(char *)(a0 + 0x6d) == '\x02') {
@@ -6082,7 +6096,7 @@ int FUN_8c264e84(int a0, u32 a1, u32 a2, u32 a3) {
     cVar1 = *(char *)(a0 + 1);
     ar5_00 = sh4_tmu_1f88e6(a0);
     ar5_01 = ar5_00;
-    ar4_00 = FUN_8c1f88f0(g_8c2784a0, ar5_00);
+    ar4_00 = int_diff(g_8c2784a0, ar5_00);
     iVar2 = FUN_8c1f88f6(ar4_00);
     iVar3 = libgcc_divide_helper_010468(1000000, *(u32 *)(a0 + 0x38));
     iVar3 = libgcc_divide_helper_010468(iVar3 << 3, 10);
@@ -6091,7 +6105,7 @@ int FUN_8c264e84(int a0, u32 a1, u32 a2, u32 a3) {
     }
     g_8c2784a0 = ar5_00;
     if (((cVar1 == '\x03') && (*(char *)(a0 + 0x72) == '\0')) &&
-        (iVar2 = FUN_8c262c38(*(u32 *)(a0 + 4), ar5_01), iVar2 != 3)) {
+        (iVar2 = get_field_1_s8_262c38(*(u32 *)(a0 + 4), ar5_01), iVar2 != 3)) {
         iVar2 = get_field_2c_2630fe(*(u32 *)(a0 + 4));
         if (*(int *)(a0 + 100) == iVar2) {
             *(short *)(a0 + 0x68) = *(short *)(a0 + 0x68) + 1;
@@ -6116,7 +6130,7 @@ int FUN_8c264e84(int a0, u32 a1, u32 a2, u32 a3) {
         *(u16 *)(a0 + 0x68) = 0;
     }
     if ((('\0' < cVar1) && (cVar1 < '\x04')) &&
-        ((*(char *)(a0 + 0x72) == '\0' && (iVar2 = FUN_8c262c38(*(u32 *)(a0 + 4), ar5_01), iVar2 != 3)))) {
+        ((*(char *)(a0 + 0x72) == '\0' && (iVar2 = get_field_1_s8_262c38(*(u32 *)(a0 + 4), ar5_01), iVar2 != 3)))) {
         if (*(int *)(a0 + 0x14) == 0) {
             iVar2 = 0;
         } else {
@@ -6150,7 +6164,7 @@ int FUN_8c264e84(int a0, u32 a1, u32 a2, u32 a3) {
     iVar2 = 0x6a;
     *(u16 *)(a0 + 0x6a) = 0;
 LAB_8c264e04:
-    if ((*(int *)(a0 + 8) != 0) && (iVar2 = FUN_8c263746(*(u32 *)(a0 + 8)), iVar2 == 4)) {
+    if ((*(int *)(a0 + 8) != 0) && (iVar2 = get_field_1_s8_263746(*(u32 *)(a0 + 8)), iVar2 == 4)) {
         if (*(char *)(a0 + 0x6d) == '\x01') {
             FUN_8c263c64(a0, ar5_01, a2, a3);
         } else if (*(char *)(a0 + 0x6d) == '\x02') {
@@ -6193,7 +6207,7 @@ int FUN_8c264e88(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     cVar1 = *(char *)(unaff_r14 + 1);
     ar5_00 = sh4_tmu_1f88e6(unaff_r14);
     ar5_01 = ar5_00;
-    ar4_00 = FUN_8c1f88f0(g_8c2784a0, ar5_00);
+    ar4_00 = int_diff(g_8c2784a0, ar5_00);
     iVar2 = FUN_8c1f88f6(ar4_00);
     iVar3 = libgcc_divide_helper_010468(1000000, *(u32 *)(unaff_r14 + 0x38));
     iVar3 = libgcc_divide_helper_010468(iVar3 << 3, 10);
@@ -6202,7 +6216,7 @@ int FUN_8c264e88(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     }
     g_8c2784a0 = ar5_00;
     if (((cVar1 == '\x03') && (*(char *)(unaff_r14 + 0x72) == '\0')) &&
-        (iVar2 = FUN_8c262c38(*(u32 *)(unaff_r14 + 4), ar5_01), iVar2 != 3)) {
+        (iVar2 = get_field_1_s8_262c38(*(u32 *)(unaff_r14 + 4), ar5_01), iVar2 != 3)) {
         iVar2 = get_field_2c_2630fe(*(u32 *)(unaff_r14 + 4));
         if (*(int *)(unaff_r14 + 100) == iVar2) {
             *(short *)(unaff_r14 + 0x68) = *(short *)(unaff_r14 + 0x68) + 1;
@@ -6228,7 +6242,7 @@ int FUN_8c264e88(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     }
     if ((('\0' < cVar1) && (cVar1 < '\x04')) &&
         ((*(char *)(unaff_r14 + 0x72) == '\0' &&
-          (iVar2 = FUN_8c262c38(*(u32 *)(unaff_r14 + 4), ar5_01), iVar2 != 3)))) {
+          (iVar2 = get_field_1_s8_262c38(*(u32 *)(unaff_r14 + 4), ar5_01), iVar2 != 3)))) {
         if (*(int *)(unaff_r14 + 0x14) == 0) {
             iVar2 = 0;
         } else {
@@ -6262,7 +6276,7 @@ int FUN_8c264e88(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     iVar2 = 0x6a;
     *(u16 *)(unaff_r14 + 0x6a) = 0;
 LAB_8c264e04:
-    if ((*(int *)(unaff_r14 + 8) != 0) && (iVar2 = FUN_8c263746(*(u32 *)(unaff_r14 + 8)), iVar2 == 4)) {
+    if ((*(int *)(unaff_r14 + 8) != 0) && (iVar2 = get_field_1_s8_263746(*(u32 *)(unaff_r14 + 8)), iVar2 == 4)) {
         if (*(char *)(unaff_r14 + 0x6d) == '\x01') {
             FUN_8c263c64(unaff_r14, ar5_01, a2, a3);
         } else if (*(char *)(unaff_r14 + 0x6d) == '\x02') {
@@ -6279,10 +6293,11 @@ LAB_8c264e04:
 }
 
 /*
- * FUN_8c264ed0  0x8c264ed0
+ * memset_wrap_264ed0  0x8c264ed0
+ * only calls memset
  * called by: FUN_8c25fb8c
  */
-u32 FUN_8c264ed0(void) {
+u32 memset_wrap_264ed0(void) {
     u32 uVar1;
 
     uVar1 = memset(0x8c4ba4a8, 0, (int)0x1a0);
@@ -6590,7 +6605,7 @@ int sd_flush_host_commands(u32 unused_a0, u32 unused_a1, u32 a2) {
     }
 LAB_8c26522c:
     if (ar5_01 != 0) {
-        FUN_8c2688a0(sd_flush_host_commands, ar5_01, a2);
+        sd_set_last_error(sd_flush_host_commands, ar5_01, a2);
     }
     return ar5_01;
 }
@@ -6663,7 +6678,7 @@ int FUN_8c265374(u32 a0, u32 a1, u32 a2) {
         }
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c265374, ar5_00, ar6_00);
+        sd_set_last_error(FUN_8c265374, ar5_00, ar6_00);
     }
     return ar5_00;
 }
@@ -6709,7 +6724,7 @@ int FUN_8c2653e0(u32 a0) {
         iVar3 = 0;
     }
     if (iVar3 != 0) {
-        FUN_8c2688a0((&FUN_8c2653e0), iVar3);
+        sd_set_last_error((&FUN_8c2653e0), iVar3);
     }
     return iVar3;
 }
@@ -6747,7 +6762,7 @@ int FUN_8c2653e8(u32 unused_a0, u32 unused_a1, u32 a2) {
         aica_ram_268618(iVar2 + 0xd4, *unaff_r14 + 0x1c8);
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2653e0, ar5_00, a2);
+        sd_set_last_error(FUN_8c2653e0, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -6783,7 +6798,7 @@ int FUN_8c2654f4(int a0, u32 a1, u32 a2, u32 a3) {
         FUN_8c265784(*(u32 *)(&DATA_8c2784b8));
     }
     if (iVar2 != 0) {
-        FUN_8c2688a0((&FUN_8c2654f4), iVar2);
+        sd_set_last_error((&FUN_8c2654f4), iVar2);
     }
     return iVar2;
 }
@@ -6829,7 +6844,7 @@ int FUN_8c2654fc(u32 unused_a0, u32 unused_a1, int a2, u32 a3) {
         }
     }
     if (ar5_01 != 0) {
-        FUN_8c2688a0(FUN_8c2654f4, ar5_01, a2);
+        sd_set_last_error(FUN_8c2654f4, ar5_01, a2);
     }
     return ar5_01;
 }
@@ -6843,7 +6858,7 @@ int FUN_8c2655f4(u32 a0, u32 a1, u32 a2, u32 a3) {
 
     ar5_00 = FUN_8c2650ec(0, a1, a2, a3);
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2655f4, ar5_00, a2);
+        sd_set_last_error(FUN_8c2655f4, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -6861,12 +6876,12 @@ int sd_dma_kick(int a0, u32 a1, u32 a2, code *a3) {
     } else if (a0 == 0) {
         ar5_00 = 0x7000103;
     } else {
-        FUN_8c265a2c(a0, &stack0xffffffe0, a2, a3);
+        sdMemBlkGetStat(a0, &stack0xffffffe0, a2, a3);
         if (in_stack_ffffffe0 == 2) {
             ar5_00 = 0x6000001;
         } else {
             *(u32 *)(a0 + 0x18) = 0;
-            ar5_00 = FUN_8c265f74(a0, 2);
+            ar5_00 = set_field_4_265f74(a0, 2);
             if (ar5_00 == 0) {
                 a3 = sd_dma_end;
                 *(int *)(g_8c2784c0 + 400) = a0;
@@ -6877,7 +6892,7 @@ int sd_dma_kick(int a0, u32 a1, u32 a2, code *a3) {
         }
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(sd_dma_kick, ar5_00, a2);
+        sd_set_last_error(sd_dma_kick, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -6905,7 +6920,7 @@ int FUN_8c265704(u32 *a0) {
         ar6_00 = 0;
         do {
             if (*dst != 1) {
-                FUN_8c010794(0x20, dst, &g_8c2784d0);
+                switch_jump(0x20, dst, &g_8c2784d0);
                 ain0 = 0x184;
                 *a0 = dst;
                 *(int *)(g_8c2784c0 + 0x184) = *(int *)(g_8c2784c0 + 0x184) + 1;
@@ -6920,7 +6935,7 @@ int FUN_8c265704(u32 *a0) {
     }
 LAB_8c26574e:
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c265704, ar5_00, ar6_00);
+        sd_set_last_error(FUN_8c265704, ar5_00, ar6_00);
     }
     return ar5_00;
 }
@@ -6943,7 +6958,7 @@ int FUN_8c26570c(int *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int ain1)
         ar6_00 = ain1;
         do {
             if (*dst != 1) {
-                FUN_8c010794(0x20, dst, &g_8c2784d0);
+                switch_jump(0x20, dst, &g_8c2784d0);
                 *a0 = (int)dst;
                 *(int *)(g_8c2784c0 + 0x184) = *(int *)(g_8c2784c0 + 0x184) + 1;
                 goto LAB_8c26574e;
@@ -6956,7 +6971,7 @@ int FUN_8c26570c(int *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int ain1)
     }
 LAB_8c26574e:
     if (unaff_r14 != 0) {
-        FUN_8c2688a0(FUN_8c265704, unaff_r14, ar6_00);
+        sd_set_last_error(FUN_8c265704, unaff_r14, ar6_00);
     }
     return unaff_r14;
 }
@@ -6978,7 +6993,7 @@ int FUN_8c265784(int *a0) {
         iVar2 = 0;
     }
     if (iVar2 != 0) {
-        FUN_8c2688a0((&FUN_8c265784), iVar2);
+        sd_set_last_error((&FUN_8c265784), iVar2);
     }
     return iVar2;
 }
@@ -7005,7 +7020,7 @@ int FUN_8c26578c(int *a0, u32 unused_a1, int a2) {
         }
     }
     if (unaff_r14 != 0) {
-        FUN_8c2688a0(FUN_8c265784, unaff_r14, a2);
+        sd_set_last_error(FUN_8c265784, unaff_r14, a2);
     }
     return unaff_r14;
 }
@@ -7025,7 +7040,7 @@ int aica_ram_2657ec(int a0, int a1, u32 a2, u32 a3) {
     } else if (a0 == 0) {
         iVar2 = 0x7000103;
     } else {
-        FUN_8c265a2c(a0, &stack0xffffffdc, a2, a3);
+        sdMemBlkGetStat(a0, &stack0xffffffdc, a2, a3);
         if (in_stack_ffffffdc == 2) {
             iVar2 = 0x6000001;
         } else {
@@ -7039,7 +7054,7 @@ int aica_ram_2657ec(int a0, int a1, u32 a2, u32 a3) {
             if (g_8c4bd404 != 0) {
                 FUN_8c2658e2();
             }
-            iVar2 = FUN_8c265f74(a0, 2);
+            iVar2 = set_field_4_265f74(a0, 2);
             if (iVar2 == 0) {
                 ar5_00 = 0;
                 *(int *)(g_8c2784c0 + 400) = a0;
@@ -7053,7 +7068,7 @@ int aica_ram_2657ec(int a0, int a1, u32 a2, u32 a3) {
         }
     }
     if (iVar2 != 0) {
-        FUN_8c2688a0(aica_ram_2657ec, iVar2, a2);
+        sd_set_last_error(aica_ram_2657ec, iVar2, a2);
     }
     return iVar2;
 }
@@ -7189,7 +7204,7 @@ int FUN_8c2659dc(int a0) {
         }
     }
     if (iVar2 != 0) {
-        FUN_8c2688a0((&FUN_8c2659dc), iVar2);
+        sd_set_last_error((&FUN_8c2659dc), iVar2);
     }
     return iVar2;
 }
@@ -7213,16 +7228,17 @@ int FUN_8c2659e4(int a0, u32 a1, u32 a2, u32 a3) {
         unaff_r13 = 0x7000103;
     }
     if (unaff_r13 != 0) {
-        FUN_8c2688a0(FUN_8c2659dc, unaff_r13, a2);
+        sd_set_last_error(FUN_8c2659dc, unaff_r13, a2);
     }
     return unaff_r13;
 }
 
 /*
- * FUN_8c265a2c  0x8c265a2c
- * called by: aica_ram_2657ec, mwSnd_GetTrnsStat, sd_dma_kick, sd_dma_setup, sd_dma_start
+ * sdMemBlkGetStat  0x8c265a2c
+ * named from the library error message "E1244:sdMemBlkGetStat return error in mwSndGetTrnsStat"
+ * called by: aica_ram_2657ec, mwSndGetTrnsStat, sd_dma_kick, sd_dma_setup, sd_dma_start
  */
-int FUN_8c265a2c(int a0, u32 *a1, u32 a2, u32 a3) {
+int sdMemBlkGetStat(int a0, u32 *a1, u32 a2, u32 a3) {
     int ar5_00;
 
     ar5_00 = 0;
@@ -7235,7 +7251,7 @@ int FUN_8c265a2c(int a0, u32 *a1, u32 a2, u32 a3) {
         *a1 = *(u32 *)(a0 + 4);
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c265a2c, ar5_00, a2);
+        sd_set_last_error(sdMemBlkGetStat, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -7281,14 +7297,14 @@ int FUN_8c265ac8(u32 a0, int a1) {
         iVar1 = 0;
         if (0 < a1) {
             do {
-                in_r0 = FUN_8c010794(0x20, *(int *)(*ar6_00 + 0x17c) + iVar1, &g_8c2784f8);
+                in_r0 = switch_jump(0x20, *(int *)(*ar6_00 + 0x17c) + iVar1, &g_8c2784f8);
                 iVar2 = iVar2 + 1;
                 iVar1 = iVar1 + 0x20;
             } while (iVar2 < a1);
         }
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c265ac8, ar5_00, ar6_00);
+        sd_set_last_error(FUN_8c265ac8, ar5_00, ar6_00);
     }
     return ar5_00;
 }
@@ -7313,14 +7329,14 @@ int FUN_8c265ace(u32 a0, int a1, int *a2, int a3) {
         iVar3 = a3;
         if (0 < a1) {
             do {
-                FUN_8c010794(0x20, *(int *)(*a2 + 0x17c) + iVar1, &g_8c2784f8);
+                switch_jump(0x20, *(int *)(*a2 + 0x17c) + iVar1, &g_8c2784f8);
                 iVar3 = iVar3 + 1;
                 iVar1 = iVar1 + 0x20;
             } while (iVar3 < a1);
         }
     }
     if (a3 != 0) {
-        FUN_8c2688a0(FUN_8c265ac8, a3, a2);
+        sd_set_last_error(FUN_8c265ac8, a3, a2);
     }
     return a3;
 }
@@ -7341,7 +7357,7 @@ int FUN_8c265b68(u32 *a0, u32 unused_a1, u32 a2) {
         *a0 = *(u32 *)(g_8c2784c0 + 0x1a4);
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c265b68, ar5_00, a2);
+        sd_set_last_error(FUN_8c265b68, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -7360,7 +7376,7 @@ int FUN_8c265b6a(u32 *a0, u32 unused_a1, u32 a2) {
         *a0 = *(u32 *)(*in_r3 + 0x1a4);
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c265b68, ar5_00, a2);
+        sd_set_last_error(FUN_8c265b68, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -7396,14 +7412,14 @@ int FUN_8c265ba8(u32 a0, int a1) {
         g_8c4bd414 = a1;
         if (0 < a1) {
             do {
-                in_r0 = FUN_8c010794(8, *(int *)(*ar6_00 + 0x194) + iVar1, &g_8c278518);
+                in_r0 = switch_jump(8, *(int *)(*ar6_00 + 0x194) + iVar1, &g_8c278518);
                 iVar2 = iVar2 + 1;
                 iVar1 = iVar1 + 8;
             } while (iVar2 < a1);
         }
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c265ba8, ar5_00, ar6_00);
+        sd_set_last_error(FUN_8c265ba8, ar5_00, ar6_00);
     }
     return ar5_00;
 }
@@ -7429,14 +7445,14 @@ int FUN_8c265bae(u32 a0, int a1, int *a2, int a3) {
         g_8c4bd414 = a1;
         if (0 < a1) {
             do {
-                FUN_8c010794(8, *(int *)(*a2 + 0x194) + iVar1, &g_8c278518);
+                switch_jump(8, *(int *)(*a2 + 0x194) + iVar1, &g_8c278518);
                 iVar3 = iVar3 + 1;
                 iVar1 = iVar1 + 8;
             } while (iVar3 < a1);
         }
     }
     if (a3 != 0) {
-        FUN_8c2688a0(FUN_8c265ba8, a3, a2);
+        sd_set_last_error(FUN_8c265ba8, a3, a2);
     }
     return a3;
 }
@@ -7468,8 +7484,8 @@ int sd_dma_queue_pop(u32 *a0, u32 *a1) {
         *(int *)(g_8c2784c0 + 0x1a4) = *(int *)(g_8c2784c0 + 0x1a4) + -1;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(sd_dma_queue_pop, ar5_00, &g_8c2784c0, ar7_00,
-                     (((u32)in_T | (u32)in_S << 1 | (u32)in_IMASK << 4) & 0xf0) >> 4);
+        sd_set_last_error(sd_dma_queue_pop, ar5_00, &g_8c2784c0, ar7_00,
+                          (((u32)in_T | (u32)in_S << 1 | (u32)in_IMASK << 4) & 0xf0) >> 4);
     }
     return ar5_00;
 }
@@ -7501,8 +7517,8 @@ int sd_dma_queue_push(u32 a0, u32 a1) {
         ar5_00 = 0x5000101;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(sd_dma_queue_push, ar5_00, &g_8c2784c0, ar7_00,
-                     (((u32)in_T | (u32)in_S << 1 | (u32)in_IMASK << 4) & 0xf0) >> 4);
+        sd_set_last_error(sd_dma_queue_push, ar5_00, &g_8c2784c0, ar7_00,
+                          (((u32)in_T | (u32)in_S << 1 | (u32)in_IMASK << 4) & 0xf0) >> 4);
     }
     return ar5_00;
 }
@@ -7510,7 +7526,7 @@ int sd_dma_queue_push(u32 a0, u32 a1) {
 /*
  * sd_dma_poll  0x8c265e08
  * polls the G2 DMA when interrupts are masked
- * called by: FUN_8c265a2c, FUN_8c2688e2, mwSnd_GetTrnsStat, sdSysServer
+ * called by: FUN_8c2688e2, mwSndGetTrnsStat, sdMemBlkGetStat, sdSysServer
  */
 u32 sd_dma_poll(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int *ar5_00;
@@ -7530,10 +7546,10 @@ u32 sd_dma_poll(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c265e80  0x8c265e80
+ * set_field_8_265e80  0x8c265e80
  * called by: sd_dma_setup
  */
-u32 FUN_8c265e80(int a0, u32 a1) {
+u32 set_field_8_265e80(int a0, u32 a1) {
     *(u32 *)(a0 + 8) = a1;
     return 0;
 }
@@ -7556,8 +7572,8 @@ u32 FUN_8c265e88(int a0, u32 a1, u32 a2) {
 
 /*
  * sd_dma_setup  0x8c265ea0
- * called by: FUN_8c022504, FUN_8c2654f4, FUN_8c2654fc, FUN_8c2669f4, FUN_8c26abf0, FUN_8c26aca8, aica_driver_upload,
- * sd_send_host_commands
+ * called by: FUN_8c022504, FUN_8c2654f4, FUN_8c2654fc, FUN_8c2669f4, aica_driver_upload, mwSndTrns_26abf0,
+ * mwSndTrns_26aca8, sd_send_host_commands
  */
 int sd_dma_setup(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;
@@ -7571,38 +7587,38 @@ int sd_dma_setup(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     } else if (a0 == 0) {
         ar5_00 = 0x7000103;
     } else {
-        FUN_8c265a2c(a0, &stack0xffffffe0, a2, a3);
+        sdMemBlkGetStat(a0, &stack0xffffffe0, a2, a3);
         if (in_stack_ffffffe0 == 2) {
             ar5_00 = 0x6000001;
         } else {
-            FUN_8c265f74(a0, 0);
-            FUN_8c265e80(a0, a1);
-            FUN_8c265f7c(a0, a2);
+            set_field_4_265f74(a0, 0);
+            set_field_8_265e80(a0, a1);
+            set_field_c_265f7c(a0, a2);
             FUN_8c265e88(a0, a3, s0);
-            FUN_8c265f74(a0, 0);
+            set_field_4_265f74(a0, 0);
             uVar1 = s0;
         }
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(sd_dma_setup, ar5_00, uVar1);
+        sd_set_last_error(sd_dma_setup, ar5_00, uVar1);
     }
     return ar5_00;
 }
 
 /*
- * FUN_8c265f74  0x8c265f74
+ * set_field_4_265f74  0x8c265f74
  * called by: aica_ram_2657ec, sd_dma_kick, sd_dma_setup
  */
-u32 FUN_8c265f74(int a0, u32 a1) {
+u32 set_field_4_265f74(int a0, u32 a1) {
     *(u32 *)(a0 + 4) = a1;
     return 0;
 }
 
 /*
- * FUN_8c265f7c  0x8c265f7c
+ * set_field_c_265f7c  0x8c265f7c
  * called by: sd_dma_setup
  */
-u32 FUN_8c265f7c(int a0, u32 a1) {
+u32 set_field_c_265f7c(int a0, u32 a1) {
     *(u32 *)(a0 + 0xc) = a1;
     return 0;
 }
@@ -7630,7 +7646,8 @@ u32 FUN_8c265f84(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * sd_dma_start  0x8c265ff4
- * called by: FUN_8c265374, FUN_8c2654f4, FUN_8c2654fc, FUN_8c26abf0, FUN_8c26aca8, sd_dma_end, sd_send_host_commands
+ * called by: FUN_8c265374, FUN_8c2654f4, FUN_8c2654fc, mwSndTrns_26abf0, mwSndTrns_26aca8, sd_dma_end,
+ * sd_send_host_commands
  */
 int sd_dma_start(int a0, u32 a1, u32 a2, u32 a3) {
     u32 a5;
@@ -7654,7 +7671,7 @@ int sd_dma_start(int a0, u32 a1, u32 a2, u32 a3) {
     } else if (a0 == 0) {
         ar5_00 = 0x7000103;
     } else {
-        FUN_8c265a2c(a0, &iStack_24, a2, a3);
+        sdMemBlkGetStat(a0, &iStack_24, a2, a3);
         uVar1 = in_stack_ffffffd4;
         if (iStack_24 == 2) {
             ar5_00 = 0x6000001;
@@ -7683,7 +7700,7 @@ int sd_dma_start(int a0, u32 a1, u32 a2, u32 a3) {
         }
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(sd_dma_start, ar5_00, a2);
+        sd_set_last_error(sd_dma_start, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -7706,7 +7723,7 @@ int FUN_8c266134(int a0, u32 *a1, u32 a2) {
         *a1 = in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c266134, ar5_00, a2);
+        sd_set_last_error(FUN_8c266134, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -7729,7 +7746,7 @@ int FUN_8c2661a4(int a0, u8 *a1, u32 a2) {
         *a1 = (char)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(&LAB_8c2664c4, ar5_00, a2);
+        sd_set_last_error(&LAB_8c2664c4, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -7752,7 +7769,7 @@ int FUN_8c266214(int a0, u32 *a1, u32 a2) {
         *a1 = in_stack_fffffff0 & 0xffff;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c266214, ar5_00, a2);
+        sd_set_last_error(FUN_8c266214, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -7775,7 +7792,7 @@ int FUN_8c266288(int a0, u32 *a1, u32 a2) {
         *a1 = in_stack_fffffff0 & 0xff;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c266288, ar5_00, a2);
+        sd_set_last_error(FUN_8c266288, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -7798,7 +7815,7 @@ int FUN_8c2662f8(int a0, u8 *a1, u32 a2) {
         *a1 = (char)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2662f8, ar5_00, a2);
+        sd_set_last_error(FUN_8c2662f8, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -7821,7 +7838,7 @@ int FUN_8c266368(int a0, u8 *a1, u32 a2) {
         *a1 = (char)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c266368, ar5_00, a2);
+        sd_set_last_error(FUN_8c266368, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -7844,7 +7861,7 @@ u32 FUN_8c2663d8(int a0, u16 *a1, u32 a2) {
         *a1 = (short)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2663d8, ar5_00, a2);
+        sd_set_last_error(FUN_8c2663d8, ar5_00, a2);
     }
     return 0;
 }
@@ -7872,7 +7889,7 @@ int FUN_8c266448(int a0, u16 *a1, u32 a2) {
         *a1 = (short)(iVar1 >> 2);
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c266448, ar5_00, a2);
+        sd_set_last_error(FUN_8c266448, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -7904,7 +7921,7 @@ int FUN_8c2664c4(int a0, u8 *a1, u32 a2) {
         in_r0 = FUN_8c2665b0(a0, a1 + 0xc, a2);
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2664c4, ar5_00, a2);
+        sd_set_last_error(FUN_8c2664c4, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -7937,7 +7954,7 @@ int FUN_8c2664d4(u32 unused_a0, u32 unused_a1, u32 a2) {
         FUN_8c2665b0(unaff_r13, unaff_r14 + 0xc, a2);
     }
     if (unaff_r11 != 0) {
-        FUN_8c2688a0(&LAB_8c2664c4, unaff_r11, a2);
+        sd_set_last_error(&LAB_8c2664c4, unaff_r11, a2);
     }
     return unaff_r11;
 }
@@ -7960,7 +7977,7 @@ int FUN_8c2665b0(int a0, u32 *a1, u32 a2) {
         *a1 = in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2665b0, ar5_00, a2);
+        sd_set_last_error(FUN_8c2665b0, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -7983,7 +8000,7 @@ int FUN_8c266620(int a0, u8 *a1, u32 a2) {
         *a1 = (char)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c266620, ar5_00, a2);
+        sd_set_last_error(FUN_8c266620, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -8000,7 +8017,7 @@ int FUN_8c266690(int a0) {
         iVar1 = 0x7000102;
     }
     if (iVar1 != 0) {
-        FUN_8c2688a0((&FUN_8c266690), iVar1);
+        sd_set_last_error((&FUN_8c266690), iVar1);
     }
     return iVar1;
 }
@@ -8021,7 +8038,7 @@ int FUN_8c266694(int a0, u32 unused_a1, u32 a2) {
         ar5_00 = 0x7000103;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c266690, ar5_00, a2);
+        sd_set_last_error(FUN_8c266690, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -8037,7 +8054,7 @@ int FUN_8c2666cc(int a0, u32 unused_a1, u32 a2) {
     if (ar5_00 == 0) {
         *(u32 *)(a0 + 4) = 0;
     } else {
-        FUN_8c2688a0(FUN_8c2666cc, ar5_00, a2);
+        sd_set_last_error(FUN_8c2666cc, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -8103,7 +8120,7 @@ int FUN_8c266708(int *a0, int a1) {
     }
 LAB_8c2667a0:
     if (iVar2 != 0) {
-        FUN_8c2688a0((&FUN_8c266708), iVar2);
+        sd_set_last_error((&FUN_8c266708), iVar2);
     }
     return iVar2;
 }
@@ -8170,7 +8187,7 @@ int FUN_8c266710(int *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int ain0)
     }
 LAB_8c2667a0:
     if (iVar1 != 0) {
-        FUN_8c2688a0(FUN_8c266708, iVar1, ar6_00);
+        sd_set_last_error(FUN_8c266708, iVar1, ar6_00);
     }
     return iVar1;
 }
@@ -8233,7 +8250,7 @@ int FUN_8c26686a(u32 unused_a0, u32 a1, u32 a2) {
         ar5_00 = 0x3000001;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c26686a, ar5_00, a2);
+        sd_set_last_error(FUN_8c26686a, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -8249,7 +8266,7 @@ int FUN_8c26686e(int a0, u32 unused_a1, u32 a2) {
         ar5_00 = 0x3000001;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(&LAB_8c26686a, ar5_00, a2);
+        sd_set_last_error(&LAB_8c26686a, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -8273,7 +8290,7 @@ int FUN_8c266892(int a0, u32 a1, u32 a2) {
         *(char *)(a0 + 2) = cVar1;
     }
     if (iVar2 != 0) {
-        FUN_8c2688a0(FUN_8c266892, iVar2, a2);
+        sd_set_last_error(FUN_8c266892, iVar2, a2);
     }
     return iVar2;
 }
@@ -8301,7 +8318,7 @@ int aica_ram_2668fc(int a0, u32 a1, u32 a2, int a3) {
         ar6_00 = a2;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(aica_ram_2668fc, ar5_00, ar6_00);
+        sd_set_last_error(aica_ram_2668fc, ar5_00, ar6_00);
     }
     return ar5_00;
 }
@@ -8335,7 +8352,7 @@ int sd_g2_transfer(u32 a0, int a1, u32 a2, code *a3, u32 s0) {
         ar7_00 = a3;
     }
     if (ar5_01 != 0) {
-        FUN_8c2688a0(sd_g2_transfer, ar5_01, uVar1);
+        sd_set_last_error(sd_g2_transfer, ar5_01, uVar1);
     }
     return ar5_01;
 }
@@ -8406,7 +8423,7 @@ int FUN_8c2669f4(int a0, int a1, int a2, int a3) {
         FUN_8c265784(ar4_00);
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2669f4, ar5_00, a2);
+        sd_set_last_error(FUN_8c2669f4, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -8501,7 +8518,7 @@ int FUN_8c266bd4(u32 a0) {
         iVar4 = FUN_8c265704(*(int *)puVar1 + (int)0x178);
     }
     if (iVar4 != 0) {
-        FUN_8c2688a0((&FUN_8c266bd4), iVar4);
+        sd_set_last_error((&FUN_8c266bd4), iVar4);
     }
     return iVar4;
 }
@@ -8526,7 +8543,7 @@ int FUN_8c266bda(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
         ar5_01 = FUN_8c265704(*unaff_r13 + 0x178);
     }
     if (ar5_01 != 0) {
-        FUN_8c2688a0(FUN_8c266bd4, ar5_01, a2);
+        sd_set_last_error(FUN_8c266bd4, ar5_01, a2);
     }
     return ar5_01;
 }
@@ -8559,7 +8576,7 @@ int FUN_8c266c48(u32 *a0) {
         iVar4 = 0;
     }
     if (iVar4 != 0) {
-        FUN_8c2688a0((&FUN_8c266c48), iVar4);
+        sd_set_last_error((&FUN_8c266c48), iVar4);
     }
     return iVar4;
 }
@@ -8591,7 +8608,7 @@ int FUN_8c266c54(u32 unused_a0, u32 unused_a1, u32 a2, u32 unused_a3, int ain0) 
         ar5_00 = 0xa000001;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c266c48, ar5_00, a2);
+        sd_set_last_error(FUN_8c266c48, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -8613,7 +8630,7 @@ int FUN_8c266ccc(int a0, u32 unused_a1, u32 a2) {
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c266ccc, ar5_00, a2);
+        sd_set_last_error(FUN_8c266ccc, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -8633,7 +8650,7 @@ int FUN_8c266cce(int a0, u32 unused_a1, u32 a2) {
         ar5_00 = FUN_8c2666cc(a0, unused_a1, a2);
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c266ccc, ar5_00, a2);
+        sd_set_last_error(FUN_8c266ccc, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -8686,14 +8703,14 @@ int FUN_8c266d28(int a0, u32 a1, int *a2, u8 *a3) {
         *a2 = in_stack_ffffffd8;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c266d28, ar5_00, piVar2);
+        sd_set_last_error(FUN_8c266d28, ar5_00, piVar2);
     }
     return ar5_00;
 }
 
 /*
  * thunk_FUN_8c266d28  0x8c266e20
- * called by: mwSnd_GetPlayPos
+ * called by: mwSndGetPlayPos
  */
 u32 thunk_FUN_8c266d28(void) {
     u32 uVar1;
@@ -8748,14 +8765,14 @@ int FUN_8c266ea8(int a0, u32 a1, u32 *a2) {
         *a2 = in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c266ea8, ar5_00, iVar1);
+        sd_set_last_error(FUN_8c266ea8, ar5_00, iVar1);
     }
     return ar5_00;
 }
 
 /*
  * FUN_8c266f38  0x8c266f38
- * called by: FUN_8c267250, FUN_8c267264, mwSnd_GetPlayPos
+ * called by: FUN_8c267250, FUN_8c267264, mwSndGetPlayPos
  */
 int FUN_8c266f38(int a0, u32 a1, u32 *a2) {
     int iVar1;
@@ -8776,7 +8793,7 @@ int FUN_8c266f38(int a0, u32 a1, u32 *a2) {
         *a2 = in_stack_fffffff0 & 0xff;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c266f38, ar5_00, iVar1);
+        sd_set_last_error(FUN_8c266f38, ar5_00, iVar1);
     }
     return ar5_00;
 }
@@ -8804,7 +8821,7 @@ int FUN_8c266fc8(int a0, u32 a1, u8 *a2) {
         *a2 = (char)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c266fc8, ar5_00, iVar1);
+        sd_set_last_error(FUN_8c266fc8, ar5_00, iVar1);
     }
     return ar5_00;
 }
@@ -8849,7 +8866,7 @@ int FUN_8c267058(int a0, u32 a1, char *a2) {
         *a2 = cVar3;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c267058, ar5_00, pcVar4);
+        sd_set_last_error(FUN_8c267058, ar5_00, pcVar4);
     }
     return ar5_00;
 }
@@ -8877,7 +8894,7 @@ int FUN_8c267130(int a0, u32 a1, u16 *a2) {
         *a2 = (short)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c267130, ar5_00, iVar1);
+        sd_set_last_error(FUN_8c267130, ar5_00, iVar1);
     }
     return ar5_00;
 }
@@ -8905,7 +8922,7 @@ int FUN_8c2671c0(int a0, u32 a1, u16 *a2) {
         *a2 = (short)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2671c0, ar5_00, iVar1);
+        sd_set_last_error(FUN_8c2671c0, ar5_00, iVar1);
     }
     return ar5_00;
 }
@@ -8936,7 +8953,7 @@ int FUN_8c267250(int a0, u32 a1, u8 *a2) {
         iVar2 = 0;
     }
     if (iVar2 != 0) {
-        FUN_8c2688a0((&FUN_8c2664c4), iVar2);
+        sd_set_last_error((&FUN_8c2664c4), iVar2);
     }
     return iVar2;
 }
@@ -8971,14 +8988,14 @@ int FUN_8c267264(u32 unused_a0, u32 unused_a1, u8 *a2, u32 a3) {
         FUN_8c267360(unaff_r13, unaff_r12, a2);
     }
     if (unaff_r10 != 0) {
-        FUN_8c2688a0(&LAB_8c2664c4, unaff_r10, a2);
+        sd_set_last_error(&LAB_8c2664c4, unaff_r10, a2);
     }
     return unaff_r10;
 }
 
 /*
  * thunk_FUN_8c267250  0x8c267354
- * called by: mwSnd_GetOutPan, mwSnd_GetOutVol
+ * called by: mwSndGetPan, mwSndGetVol
  */
 u32 thunk_FUN_8c267250(u32 unused_a0, u32 a1) {
     u32 uVar1;
@@ -9010,7 +9027,7 @@ int FUN_8c267360(int a0, u32 a1, u32 *a2) {
         *a2 = in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c267360, ar5_00, iVar1);
+        sd_set_last_error(FUN_8c267360, ar5_00, iVar1);
     }
     return ar5_00;
 }
@@ -9036,7 +9053,7 @@ int FUN_8c2673f0(int a0, u32 a1, u8 *a2) {
         *a2 = (char)in_stack_fffffff0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2673f0, ar5_00, iVar1);
+        sd_set_last_error(FUN_8c2673f0, ar5_00, iVar1);
     }
     return ar5_00;
 }
@@ -9102,7 +9119,7 @@ int FUN_8c267470(int *a0, u32 unused_a1, int a2, int a3, u32 s0, u32 s4) {
         }
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c267470, ar5_00, a2);
+        sd_set_last_error(FUN_8c267470, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -9169,14 +9186,14 @@ int FUN_8c2675d8(int *a0, u32 unused_a1, int a2, int a3, u32 s0, u32 s4) {
         }
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c267470, ar5_00, a2);
+        sd_set_last_error(FUN_8c267470, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
  * FUN_8c267740  0x8c267740
- * called by: FUN_8c26784c
+ * called by: sdPstmPlay
  */
 int FUN_8c267740(int a0, int a1, u32 a2, u32 a3) {
     u8 bVar1;
@@ -9236,7 +9253,7 @@ int FUN_8c267740(int a0, int a1, u32 a2, u32 a3) {
     }
 LAB_8c267802:
     if (iVar7 != 0) {
-        FUN_8c2688a0((&FUN_8c267740), iVar7);
+        sd_set_last_error((&FUN_8c267740), iVar7);
     }
     return iVar7;
 }
@@ -9304,16 +9321,17 @@ int FUN_8c267744(int a0, int a1, u8 *a2, u32 a3) {
     }
 LAB_8c267802:
     if (iVar6 != 0) {
-        FUN_8c2688a0(FUN_8c267740, iVar6, a2);
+        sd_set_last_error(FUN_8c267740, iVar6, a2);
     }
     return iVar6;
 }
 
 /*
- * FUN_8c26784c  0x8c26784c
- * called by: mwSnd_Play
+ * sdPstmPlay  0x8c26784c
+ * named from the library error message "E1233:sdPstmPlay return error in mwSndPlay"
+ * called by: mwSndPlay
  */
-int FUN_8c26784c(u32 a0, u32 a1, u32 a2, u32 a3) {
+int sdPstmPlay(u32 a0, u32 a1, u32 a2, u32 a3) {
     int ar5_00;
     u32 *puVar1;
 
@@ -9323,7 +9341,7 @@ int FUN_8c26784c(u32 a0, u32 a1, u32 a2, u32 a3) {
             ar5_00 = 0x3000001;
         LAB_8c267878:
             if (ar5_00 != 0) {
-                FUN_8c2688a0(FUN_8c26784c, ar5_00, a2);
+                sd_set_last_error(sdPstmPlay, ar5_00, a2);
             }
             return ar5_00;
         }
@@ -9355,7 +9373,7 @@ int FUN_8c2678a4(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2678a4, ar5_00, a2);
+        sd_set_last_error(FUN_8c2678a4, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -9377,7 +9395,7 @@ int FUN_8c2678a6(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = FUN_8c267fe8(&g_8c4bd440, a1, a2, a3);
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2678a4, ar5_00, a2);
+        sd_set_last_error(FUN_8c2678a4, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -9432,7 +9450,7 @@ int FUN_8c267924(int a0, int a1) {
         *(char *)((short)*(char *)(a0 + 1) * 0x2c + g_8c2784c0 + 0xae) = (char)in_r0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c267924, ar5_00, ar6_00);
+        sd_set_last_error(FUN_8c267924, ar5_00, ar6_00);
     }
     return ar5_00;
 }
@@ -9466,7 +9484,7 @@ int FUN_8c267926(int a0, u32 a1) {
         *(char *)((short)*(char *)(a0 + 1) * 0x2c + ar6_00 + 0xae) = cVar1;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c267924, ar5_00, ar6_00);
+        sd_set_last_error(FUN_8c267924, ar5_00, ar6_00);
     }
     return ar5_00;
 }
@@ -9491,7 +9509,7 @@ int FUN_8c2679a0(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2679a0, ar5_00, a2);
+        sd_set_last_error(FUN_8c2679a0, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -9514,7 +9532,7 @@ int FUN_8c2679a2(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = FUN_8c267fe8(&g_8c4bd458, (char)a1 + 0x80, a2, a3);
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2679a0, ar5_00, a2);
+        sd_set_last_error(FUN_8c2679a0, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -9551,7 +9569,7 @@ int FUN_8c267a20(int a0, u32 a1, int a2, u32 a3) {
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c267a20, ar5_00, a2);
+        sd_set_last_error(FUN_8c267a20, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -9576,7 +9594,7 @@ int FUN_8c267a22(int a0, u32 a1, int a2, u32 a3) {
         ar5_00 = FUN_8c267fe8(&g_8c4bd470, a1, a2, a3);
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c267a20, ar5_00, a2);
+        sd_set_last_error(FUN_8c267a20, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -9611,7 +9629,7 @@ int FUN_8c267ab0(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c267ab0, ar5_00, a2);
+        sd_set_last_error(FUN_8c267ab0, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -9634,7 +9652,7 @@ int FUN_8c267ab2(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = FUN_8c267fe8(&g_8c4bd488, (char)a1 + 0x80, a2, a3);
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c267ab0, ar5_00, a2);
+        sd_set_last_error(FUN_8c267ab0, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -9713,14 +9731,14 @@ int FUN_8c267b30(int a0, u32 a1, u32 a2, u32 a3) {
         iVar5 = FUN_8c267fe8(&g_8c4bd4a0, &g_8c4bd4a5, 0, a3);
     }
     if (iVar5 != 0) {
-        FUN_8c2688a0(FUN_8c267b30, iVar5, a2);
+        sd_set_last_error(FUN_8c267b30, iVar5, a2);
     }
     return iVar5;
 }
 
 /*
  * thunk_FUN_8c267b30  0x8c267cc0
- * called by: mwSnd_SetOutPan
+ * called by: mwSndSetPan
  */
 u32 thunk_FUN_8c267b30(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -9761,7 +9779,7 @@ int FUN_8c267ccc(int a0, u32 a1, int a2, u32 a3) {
         }
     }
     if (iVar2 != 0) {
-        FUN_8c2688a0(FUN_8c267ccc, iVar2, iVar1);
+        sd_set_last_error(FUN_8c267ccc, iVar2, iVar1);
     }
     return iVar2;
 }
@@ -9796,7 +9814,7 @@ int FUN_8c267cce(int a0, u32 a1, int a2, u32 a3) {
         }
     }
     if (iVar2 != 0) {
-        FUN_8c2688a0(FUN_8c267ccc, iVar2, iVar1);
+        sd_set_last_error(FUN_8c267ccc, iVar2, iVar1);
     }
     return iVar2;
 }
@@ -9840,7 +9858,7 @@ int FUN_8c267d88(int a0, u32 a1) {
         }
     }
     if (iVar4 != 0) {
-        FUN_8c2688a0((&FUN_8c267d88), iVar4);
+        sd_set_last_error((&FUN_8c267d88), iVar4);
     }
     return iVar4;
 }
@@ -9884,14 +9902,14 @@ int FUN_8c267d98(u32 unused_a0, u32 a1, int a2, int a3) {
     }
 LAB_8c267e0a:
     if (a3 != 0) {
-        FUN_8c2688a0(FUN_8c267d88, a3, a2);
+        sd_set_last_error(FUN_8c267d88, a3, a2);
     }
     return a3;
 }
 
 /*
  * thunk_FUN_8c267d88  0x8c267e48
- * called by: FUN_8c26a786
+ * called by: mwSndSetNumChan
  */
 u32 thunk_FUN_8c267d88(void) {
     u32 uVar1;
@@ -9934,7 +9952,7 @@ int FUN_8c267e54(int a0, u32 a1, int a2, u32 a3) {
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c267e54, ar5_00, a2);
+        sd_set_last_error(FUN_8c267e54, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -9971,14 +9989,14 @@ int FUN_8c267e56(int a0, u32 a1, int a2, u32 a3) {
         ar5_00 = FUN_8c267fe8(&g_8c4bd4d0, a3, a2, a3);
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c267e54, ar5_00, a2);
+        sd_set_last_error(FUN_8c267e54, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
  * thunk_FUN_8c267e54  0x8c267f20
- * called by: FUN_8c26a870, mwSnd_SetOutVol
+ * called by: FUN_8c26a870, mwSndSetVol
  */
 u32 thunk_FUN_8c267e54(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -10020,14 +10038,14 @@ int FUN_8c267f2c(int a0, u32 unused_a1, int a2, int a3) {
         iVar2 = FUN_8c267fe8(&g_8c4bd4e8, 0, a2, a3);
     }
     if (iVar2 != 0) {
-        FUN_8c2688a0(FUN_8c267f2c, iVar2, a2);
+        sd_set_last_error(FUN_8c267f2c, iVar2, a2);
     }
     return iVar2;
 }
 
 /*
  * thunk_FUN_8c267f2c  0x8c267fdc
- * called by: FUN_8c26a750
+ * called by: mwSndStop
  */
 u32 thunk_FUN_8c267f2c(void) {
     u32 uVar1;
@@ -10075,7 +10093,7 @@ int FUN_8c267fe8(u32 a0, u32 a1, int a2, int a3) {
         }
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c267fe8, ar5_00, a2);
+        sd_set_last_error(FUN_8c267fe8, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10097,7 +10115,7 @@ int FUN_8c26809c(int a0, u32 unused_a1, u32 a2) {
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c26809c, ar5_00, a2);
+        sd_set_last_error(FUN_8c26809c, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10117,7 +10135,7 @@ int FUN_8c26809e(int a0, u32 unused_a1, u32 a2) {
         ar5_00 = FUN_8c2666cc(a0, unused_a1, a2);
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c26809c, ar5_00, a2);
+        sd_set_last_error(FUN_8c26809c, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10139,7 +10157,7 @@ int FUN_8c2680ec(int a0, u32 unused_a1, u32 a2) {
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2680ec, ar5_00, a2);
+        sd_set_last_error(FUN_8c2680ec, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10159,7 +10177,7 @@ int FUN_8c2680ee(int a0, u32 unused_a1, u32 a2) {
         ar5_00 = FUN_8c266708(a0, 2);
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2680ec, ar5_00, a2);
+        sd_set_last_error(FUN_8c2680ec, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10191,7 +10209,7 @@ int FUN_8c26813c(int a0, u32 a1, u32 a2, u32 a3) {
         }
     }
     if (iVar1 != 0) {
-        FUN_8c2688a0(FUN_8c26813c, iVar1, a2);
+        sd_set_last_error(FUN_8c26813c, iVar1, a2);
     }
     return iVar1;
 }
@@ -10221,7 +10239,7 @@ int FUN_8c26813e(int a0, u32 a1, u32 a2, u32 a3) {
         }
     }
     if (iVar1 != 0) {
-        FUN_8c2688a0(FUN_8c26813c, iVar1, a2);
+        sd_set_last_error(FUN_8c26813c, iVar1, a2);
     }
     return iVar1;
 }
@@ -10251,7 +10269,7 @@ int FUN_8c2681d0(int a0, u32 a1, int a2, u32 a3) {
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2681d0, ar5_00, iVar1);
+        sd_set_last_error(FUN_8c2681d0, ar5_00, iVar1);
     }
     return ar5_00;
 }
@@ -10279,7 +10297,7 @@ int FUN_8c2681d2(int a0, u32 a1, int a2, u32 a3) {
         ar5_00 = FUN_8c267fe8(&g_8c4bd518, (char)a1 + 0x80, iVar1, a3);
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2681d0, ar5_00, iVar1);
+        sd_set_last_error(FUN_8c2681d0, ar5_00, iVar1);
     }
     return ar5_00;
 }
@@ -10313,7 +10331,7 @@ int FUN_8c268250(int a0, u32 a1, u32 a2) {
         iVar7 = (*(code *)puVar6)(puVar3);
     }
     if (iVar7 != 0) {
-        FUN_8c2688a0((&FUN_8c268250), iVar7);
+        sd_set_last_error((&FUN_8c268250), iVar7);
     }
     return iVar7;
 }
@@ -10339,7 +10357,7 @@ int FUN_8c268254(int a0, u32 a1, int a2, u32 a3) {
         ar6_00 = a2;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c268250, ar5_00, ar6_00);
+        sd_set_last_error(FUN_8c268250, ar5_00, ar6_00);
     }
     return ar5_00;
 }
@@ -10363,7 +10381,7 @@ int FUN_8c2682bc(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = in_r0;
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2682bc, ar5_00, a2);
+        sd_set_last_error(FUN_8c2682bc, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10385,7 +10403,7 @@ int FUN_8c2682be(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = FUN_8c267fe8(&g_8c4bd548, a1, a2, a3);
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c2682bc, ar5_00, a2);
+        sd_set_last_error(FUN_8c2682bc, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10704,7 +10722,7 @@ int FUN_8c268818(int a0, u32 unused_a1, u32 a2, u32 a3) {
     }
 LAB_8c268860:
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c268818, ar5_00, a2);
+        sd_set_last_error(FUN_8c268818, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10733,17 +10751,18 @@ int FUN_8c26881a(int a0, u32 unused_a1, u32 a2, u32 a3) {
     }
 LAB_8c268860:
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c268818, ar5_00, a2);
+        sd_set_last_error(FUN_8c268818, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * FUN_8c2688a0  0x8c2688a0
+ * sd_set_last_error  0x8c2688a0
+ * records an sd library error code and detail
  * called by: FUN_8c265374, FUN_8c2653e0, FUN_8c2653e8, FUN_8c2654f4, FUN_8c2654fc, FUN_8c2655f4, FUN_8c265704,
  * FUN_8c26570c (+99 more)
  */
-u32 FUN_8c2688a0(u32 a0, u32 a1, u32 a2) {
+u32 sd_set_last_error(u32 a0, u32 a1, u32 a2) {
     u8 *puVar1;
     u32 in_r0;
 
@@ -10762,7 +10781,7 @@ int sdSysFlushHostCmd(u32 unused_a0, u32 unused_a1, u32 a2) {
 
     ar5_00 = sd_flush_host_commands(unused_a0, unused_a1, a2);
     if (ar5_00 != 0) {
-        FUN_8c2688a0(sdSysFlushHostCmd, ar5_00, a2);
+        sd_set_last_error(sdSysFlushHostCmd, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10830,7 +10849,7 @@ int FUN_8c268920(u32 a0, u32 a1, u8 *a2, u32 a3) {
         }
     }
     if (ar5_00 != 0) {
-        FUN_8c2688a0(FUN_8c268920, ar5_00, a2);
+        sd_set_last_error(FUN_8c268920, ar5_00, a2);
     }
     return ar5_00;
 }
@@ -10866,7 +10885,7 @@ u32 FUN_8c26892c(u32 a0, u32 unused_a1, u8 *a2, u32 a3) {
         }
     }
     if (unaff_r13 != 0) {
-        FUN_8c2688a0(FUN_8c268920, unaff_r13, a2);
+        sd_set_last_error(FUN_8c268920, unaff_r13, a2);
     }
     return unaff_r13;
 }
@@ -11124,7 +11143,7 @@ u32 FUN_8c268b70(int *a0, u32 a1, u32 a2, u32 a3) {
                     FUN_8c269b8e(a4, 0x10, a2, a3);
                     FUN_8c269c04(a4, 0xac44, a2, a3);
                     ar5_00 = (u32)(u8)a4[3];
-                    FUN_8c269ae8(a4, ar5_00, a2, a3);
+                    mwRnaSetNumChan(a4, ar5_00, a2, a3);
                     piStack_1c = *(int **)(a4 + 0x38);
                     uVar2 = (**(code **)(*piStack_1c + 0x18))(piStack_1c, ar5_00, a2, a3);
                     *(u32 *)(a4 + 0x28) = uVar2;
@@ -11272,7 +11291,7 @@ u32 FUN_8c268ddc(int a0, u32 a1, u32 a2, u32 a3, int s0) {
 
 /*
  * FUN_8c268e1a  0x8c268e1a
- * called by: FUN_8c269086, FUN_8c2694a4
+ * called by: FUN_8c2694a4, mwRnaPause
  */
 int FUN_8c268e1a(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -11346,7 +11365,7 @@ u32 FUN_8c268ea8(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * FUN_8c268f3e  0x8c268f3e
  * name hint from a string it uses: E1213 mwlRnaAddWrPos rna sj
- * called by: FUN_8c2690d8, FUN_8c2694a4, FUN_8c269738, FUN_8c269808
+ * called by: FUN_8c2690d8, FUN_8c2694a4, FUN_8c269738, mwRnaDiscardData
  */
 u32 FUN_8c268f3e(int a0, u32 unused_a1, u8 *a2, u8 *a3) {
     u32 uVar1;
@@ -11391,7 +11410,7 @@ u32 FUN_8c268f3e(int a0, u32 unused_a1, u8 *a2, u8 *a3) {
 
 /*
  * FUN_8c269056  0x8c269056
- * called by: FUN_8c2690d8, FUN_8c2694a4, FUN_8c269738, FUN_8c269808
+ * called by: FUN_8c2690d8, FUN_8c2694a4, FUN_8c269738, mwRnaDiscardData
  */
 u32 FUN_8c269056(int a0) {
     u32 uVar1;
@@ -11418,12 +11437,12 @@ u32 FUN_8c26905a(int a0) {
 }
 
 /*
- * FUN_8c269086  0x8c269086
- * name hint from a string it uses: E1209 mwRnaPause Time out of
- * called by: FUN_8c2690d8, FUN_8c26962c, FUN_8c269808
+ * mwRnaPause  0x8c269086
+ * named from the library error message it prints (mwRnaPause)
+ * called by: FUN_8c2690d8, FUN_8c26962c, mwRnaDiscardData
  * strings: "E1209:mwRnaPause Time out of wait for DMA finish"
  */
-int FUN_8c269086(u32 a0, u32 unused_a1, u32 a2, u32 a3, int ain0) {
+int mwRnaPause(u32 a0, u32 unused_a1, u32 a2, u32 a3, int ain0) {
     int iVar1;
     u32 ar4_00;
     int iVar2;
@@ -11466,7 +11485,7 @@ u32 FUN_8c2690d8(int a0, int a1, u32 a2, u32 a3) {
         *(u32 *)(a0 + 0x8c) = 1;
         a5 = a1;
         if (*(char *)(a0 + 5) == '\x01') {
-            FUN_8c269086(a0, a1, a2, a3, in_stack_ffffffec);
+            mwRnaPause(a0, a1, a2, a3, in_stack_ffffffec);
             iVar2 = FUN_8c269a30(a0);
             if (iVar2 == 1) {
                 FUN_8c268f3e(a0, a5, a2, a3);
@@ -11791,7 +11810,7 @@ u32 FUN_8c26962c(int a0, u32 a1, u32 a2, u32 a3) {
             if (*(char *)(a0 + 5) == '\x01') {
                 *(u32 *)(a0 + 0x8c) = 1;
                 FUN_8c26a118(&stack0xfffffff0);
-                FUN_8c269086(a0, a1, a2, a3, in_stack_fffffff0);
+                mwRnaPause(a0, a1, a2, a3, in_stack_fffffff0);
                 FUN_8c26a100(&stack0xfffffff0);
                 *(u32 *)(a0 + 0x8c) = 0;
             }
@@ -11895,12 +11914,12 @@ u32 FUN_8c269738(int a0, int a1, u8 *a2, u32 a3) {
 }
 
 /*
- * FUN_8c269808  0x8c269808
- * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c2641ee, FUN_8c269808
+ * mwRnaDiscardData  0x8c269808
+ * named from the library error message it prints (mwRnaDiscardData)
+ * called by: FUN_8c2641ee, mwRnaDiscardData
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"; "E1210:mwRnaDiscardData Play Switch is ON"
  */
-u32 FUN_8c269808(int a0, int a1, u8 *a2, u8 *a3) {
+u32 mwRnaDiscardData(int a0, int a1, u8 *a2, u8 *a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -11931,7 +11950,7 @@ u32 FUN_8c269808(int a0, int a1, u8 *a2, u8 *a3) {
             }
             *(u32 *)(a0 + 0x8c) = 1;
             if (*(char *)(a0 + 5) == '\x01') {
-                FUN_8c269086(a0, a1, a2, a3, iVar3);
+                mwRnaPause(a0, a1, a2, a3, iVar3);
                 iVar2 = FUN_8c269a30(a0);
                 if (iVar2 == 1) {
                     FUN_8c268f3e(a0, a1, a2, a3);
@@ -12037,7 +12056,7 @@ u32 FUN_8c269a10(int a0) {
 /*
  * FUN_8c269a30  0x8c269a30
  * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c268ea8, FUN_8c2690d8, FUN_8c2694a4, FUN_8c26962c, FUN_8c269738, FUN_8c269808
+ * called by: FUN_8c268ea8, FUN_8c2690d8, FUN_8c2694a4, FUN_8c26962c, FUN_8c269738, mwRnaDiscardData
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 FUN_8c269a30(int a0) {
@@ -12056,7 +12075,7 @@ u32 FUN_8c269a30(int a0) {
 /*
  * FUN_8c269a56  0x8c269a56
  * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c2691b8, FUN_8c2694a4, FUN_8c26962c, FUN_8c269808
+ * called by: FUN_8c2691b8, FUN_8c2694a4, FUN_8c26962c, mwRnaDiscardData
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 FUN_8c269a56(int a0) {
@@ -12128,12 +12147,12 @@ u32 FUN_8c269ac6(int a0) {
 }
 
 /*
- * FUN_8c269ae8  0x8c269ae8
- * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c2647f4, FUN_8c268b70, FUN_8c269ae8
+ * mwRnaSetNumChan  0x8c269ae8
+ * named from the library error message it prints (mwRnaSetNumChan)
+ * called by: FUN_8c2647f4, FUN_8c268b70, mwRnaSetNumChan
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"; "E1211:mwRnaSetNumChan Illigal parameter(NCH>MAXNCH)"
  */
-u32 FUN_8c269ae8(int a0, int a1, u32 a2, u32 a3) {
+u32 mwRnaSetNumChan(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
     char *s0;
     u32 in_stack_fffffff0;
@@ -12254,7 +12273,7 @@ u32 FUN_8c269c3e(int a0, int a1, u32 a2, u32 a3) {
 /*
  * FUN_8c269c88  0x8c269c88
  * name hint from a string it uses: E1205 Illigal parameter MWRN
- * called by: FUN_8c269ae8
+ * called by: mwRnaSetNumChan
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 FUN_8c269c88(int a0, int a1, int a2, u32 a3) {
@@ -12275,11 +12294,11 @@ u32 FUN_8c269c88(int a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * FUN_8c269cec  0x8c269cec
- * name hint from a string it uses: E1205 Illigal parameter MWRN
+ * mwRnaSetFx  0x8c269cec
+ * named from the library error message it prints (mwRnaSetFx)
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"; "E1207:mwRnaSetFx Illigal parameter (FXCH)"
  */
-u32 FUN_8c269cec(int a0, int a1, int a2) {
+u32 mwRnaSetFx(int a0, int a1, int a2) {
     u32 r7;
     u32 uVar1;
     char *s0;
@@ -12676,8 +12695,8 @@ u32 FUN_8c26a130(int a0, u32 a1) {
 
 /*
  * debug_printf  0x8c26a14e
- * called by: FUN_8c268b70, FUN_8c268c7e, FUN_8c268cee, FUN_8c268d64, FUN_8c268db4, FUN_8c268f3e, FUN_8c269086,
- * FUN_8c2690d8 (+47 more)
+ * called by: FUN_8c268b70, FUN_8c268c7e, FUN_8c268cee, FUN_8c268d64, FUN_8c268db4, FUN_8c268f3e, FUN_8c2690d8,
+ * FUN_8c2691b8 (+47 more)
  */
 u32 debug_printf(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s4) {
     u32 uVar1;
@@ -12754,10 +12773,10 @@ u32 FUN_8c26a1ca(void) {
 }
 
 /*
- * FUN_8c26a1f2  0x8c26a1f2
+ * clear_field_0_26a1f2  0x8c26a1f2
  * called by: FUN_8c26a5de
  */
-u32 FUN_8c26a1f2(u32 *a0) {
+u32 clear_field_0_26a1f2(u32 *a0) {
     u32 in_r0;
 
     *a0 = 0;
@@ -12831,7 +12850,7 @@ u32 FUN_8c26a246(int a0, int a1, int a2, int a3) {
         (*(code *)puVar1)(iVar6, a1, a2, a3);
     } else {
         *puVar5 = (&DATA_8c278600);
-        for (iVar10 = 0; puVar2 = (&FUN_8c26a1f2), iVar10 < a0; iVar10 = iVar10 + 1) {
+        for (iVar10 = 0; puVar2 = (&clear_field_0_26a1f2), iVar10 < a0; iVar10 = iVar10 + 1) {
             puVar8 = puVar5 + iVar10 + 6;
             uVar9 = FUN_8c26a1ca();
             *puVar8 = uVar9;
@@ -13017,7 +13036,7 @@ u32 FUN_8c26a5de(u32 unused_a0, int unused_a1, u32 unused_a2, u32 a3, u32 ain0) 
 
     if (in_T != '\x01') {
         for (iVar2 = 0; iVar2 < *(int *)(unaff_r14 + 8); iVar2 = iVar2 + 1) {
-            FUN_8c26a1f2(*(u32 *)(unaff_r14 + 0x18 + iVar2 * 4));
+            clear_field_0_26a1f2(*(u32 *)(unaff_r14 + 0x18 + iVar2 * 4));
             iVar1 = FUN_8c265784(*(u32 *)(unaff_r14 + 0x20 + iVar2 * 4));
             if (iVar1 != 0) {
                 debug_printf(iVar1, unused_a1, unused_a2, a3);
@@ -13051,7 +13070,7 @@ u32 FUN_8c26a5de(u32 unused_a0, int unused_a1, u32 unused_a2, u32 a3, u32 ain0) 
 /*
  * FUN_8c26a6d8  0x8c26a6d8
  * name hint from a string it uses: E1241 sdSysFlushHostCmd retu
- * called by: FUN_8c26a750, mwSnd_Play
+ * called by: mwSndPlay, mwSndStop
  * strings: "E1241:sdSysFlushHostCmd return error mwSndPlay or mwSndStop"
  */
 int FUN_8c26a6d8(u32 unused_a0, u32 a1, u32 a2) {
@@ -13067,10 +13086,10 @@ int FUN_8c26a6d8(u32 unused_a0, u32 a1, u32 a2) {
 }
 
 /*
- * mwSnd_Play  0x8c26a6fc
+ * mwSndPlay  0x8c26a6fc
  * strings: "E1233:sdPstmPlay return error in mwSndPlay"
  */
-u32 mwSnd_Play(int a0, u32 a1) {
+u32 mwSndPlay(int a0, u32 a1) {
     u32 uVar1;
     int iVar2;
     u32 ar7_00;
@@ -13088,7 +13107,7 @@ u32 mwSnd_Play(int a0, u32 a1) {
     ar7_00 = 0;
     *(int *)(a0 + 0x10) = iVar2;
     s4 = uVar1;
-    iVar2 = FUN_8c26784c(*(u32 *)(a0 + 0x30), a1, uVar1, 0);
+    iVar2 = sdPstmPlay(*(u32 *)(a0 + 0x30), a1, uVar1, 0);
     if (iVar2 != 0) {
         debug_printf(iVar2, a1, uVar1, ar7_00, "E1233:sdPstmPlay return error in mwSndPlay", s4);
     }
@@ -13097,11 +13116,11 @@ u32 mwSnd_Play(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c26a750  0x8c26a750
- * name hint from a string it uses: E1234 sdPstmStop return erro
+ * mwSndStop  0x8c26a750
+ * named from the library error message it prints (mwSndStop)
  * strings: "E1234:sdPstmStop return error in mwSndStop"
  */
-u32 FUN_8c26a750(u32 unused_a0, u32 unused_a1, u32 a2) {
+u32 mwSndStop(u32 unused_a0, u32 unused_a1, u32 a2) {
     u32 r7;
     int ar4_00;
     u32 uVar1;
@@ -13138,11 +13157,11 @@ int FUN_8c26a776(void) {
 }
 
 /*
- * FUN_8c26a786  0x8c26a786
- * name hint from a string it uses: E1240 sdPstmSetUseCh return
+ * mwSndSetNumChan  0x8c26a786
+ * named from the library error message it prints (mwSndSetNumChan)
  * strings: "E1240:sdPstmSetUseCh return error in mwSndSetNumChan"
  */
-u32 FUN_8c26a786(int a0, u32 a1) {
+u32 mwSndSetNumChan(int a0, u32 a1) {
     u32 r6;
     u32 r7;
     int ar4_00;
@@ -13160,10 +13179,10 @@ u32 FUN_8c26a786(int a0, u32 a1) {
 }
 
 /*
- * mwSnd_GetPlayPos  0x8c26a7b4
+ * mwSndGetPlayPos  0x8c26a7b4
  * strings: "E1236:sdPstmGetCurAdr return error in mwSndGetPlayPos"
  */
-int mwSnd_GetPlayPos(int a0, u32 a1) {
+int mwSndGetPlayPos(int a0, u32 a1) {
     u32 r7;
     int iVar1;
     u32 ar5_00;
@@ -13191,9 +13210,9 @@ int mwSnd_GetPlayPos(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c26a80a  0x8c26a80a
+ * set_field_14_26a80a  0x8c26a80a
  */
-u32 FUN_8c26a80a(int a0, u32 a1) {
+u32 set_field_14_26a80a(int a0, u32 a1) {
     u32 in_r0;
 
     *(u32 *)(a0 + 0x14) = a1;
@@ -13201,9 +13220,9 @@ u32 FUN_8c26a80a(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c26a812  0x8c26a812
+ * set_field_10_26a812  0x8c26a812
  */
-u32 FUN_8c26a812(int a0, u32 a1) {
+u32 set_field_10_26a812(int a0, u32 a1) {
     u32 in_r0;
 
     *(u32 *)(a0 + 0x10) = a1;
@@ -13211,10 +13230,10 @@ u32 FUN_8c26a812(int a0, u32 a1) {
 }
 
 /*
- * mwSnd_SetOutVol  0x8c26a860
+ * mwSndSetVol  0x8c26a860
  * strings: "E1237:sdPstmSetVol return error in mwSndSetVol"
  */
-int mwSnd_SetOutVol(int a0, int a1) {
+int mwSndSetVol(int a0, int a1) {
     int in_r0;
     int iVar1;
     int ar4_00;
@@ -13302,9 +13321,9 @@ LAB_8c26a8aa:
 }
 
 /*
- * mwSnd_GetOutVol  0x8c26a8e4
+ * mwSndGetVol  0x8c26a8e4
  */
-u32 mwSnd_GetOutVol(int a0) {
+u32 mwSndGetVol(int a0) {
     u32 uVar1;
     u8 auStack_20[2];
     char cStack_1e;
@@ -13315,10 +13334,10 @@ u32 mwSnd_GetOutVol(int a0) {
 }
 
 /*
- * mwSnd_SetOutPan  0x8c26a914
+ * mwSndSetPan  0x8c26a914
  * strings: "E1238:sdPstmSetPan return error in mwSndSetPan"
  */
-u32 mwSnd_SetOutPan(int a0, u32 a1, int a2) {
+u32 mwSndSetPan(int a0, u32 a1, int a2) {
     u32 ar6_00;
     int ar4_00;
     u32 uVar1;
@@ -13337,9 +13356,9 @@ u32 mwSnd_SetOutPan(int a0, u32 a1, int a2) {
 }
 
 /*
- * mwSnd_GetOutPan  0x8c26a956
+ * mwSndGetPan  0x8c26a956
  */
-u32 mwSnd_GetOutPan(int a0, u32 a1) {
+u32 mwSndGetPan(int a0, u32 a1) {
     u32 uVar1;
     u8 auStack_20[3];
     char cStack_1d;
@@ -13539,12 +13558,12 @@ u32 FUN_8c26ab86(u32 a0, int a1, u32 unused_a2, u32 *a3) {
 }
 
 /*
- * FUN_8c26abf0  0x8c26abf0
- * name hint from a string it uses: E1242 sdMemBlkSetPrm return
- * called by: FUN_8c26ae54, FUN_8c26af7a, mwSnd_Trns
+ * mwSndTrns_26abf0  0x8c26abf0
+ * named from the library error message it prints (mwSndTrns)
+ * called by: FUN_8c26ae54, FUN_8c26af7a, mwSndTrns
  * strings: "E1243:sdMemBlkTransfer return error in mwSndTrns"; "E1242:sdMemBlkSetPrm return error in mwSndTrns"
  */
-u32 FUN_8c26abf0(int a0, int a1, int a2, u32 a3, int s0) {
+u32 mwSndTrns_26abf0(int a0, int a1, int a2, u32 a3, int s0) {
     int iVar1;
     int ar5_00;
     int iVar2;
@@ -13583,12 +13602,12 @@ u32 FUN_8c26abf0(int a0, int a1, int a2, u32 a3, int s0) {
 }
 
 /*
- * FUN_8c26aca8  0x8c26aca8
- * name hint from a string it uses: E1242 sdMemBlkSetPrm return
- * called by: mwSnd_Trns
+ * mwSndTrns_26aca8  0x8c26aca8
+ * named from the library error message it prints (mwSndTrns)
+ * called by: mwSndTrns
  * strings: "E1242:sdMemBlkSetPrm return error in mwSndTrns"; "E1243:sdMemBlkTransfer return error in mwSndTrns"
  */
-u32 FUN_8c26aca8(int a0, int a1, int a2, u32 a3) {
+u32 mwSndTrns_26aca8(int a0, int a1, int a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int s4;
@@ -13618,33 +13637,33 @@ u32 FUN_8c26aca8(int a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * mwSnd_Trns  0x8c26ad32
+ * mwSndTrns  0x8c26ad32
  */
-u32 mwSnd_Trns(int a0, u32 a1, int a2, u32 a3) {
+u32 mwSndTrns(int a0, u32 a1, int a2, u32 a3) {
     u32 uVar1;
     int iVar2;
 
-    uVar1 = FUN_8c26abf0(a0, a1, a2, a3);
+    uVar1 = mwSndTrns_26abf0(a0, a1, a2, a3);
     if (a2 == 0) {
         iVar2 = libgcc_divide_helper_010468(*(u32 *)(a0 + 0x40), *(u32 *)(a0 + 0x10));
-        uVar1 = FUN_8c26aca8(a0, a1, iVar2 * 8, a3);
+        uVar1 = mwSndTrns_26aca8(a0, a1, iVar2 * 8, a3);
         return uVar1;
     }
     return uVar1;
 }
 
 /*
- * mwSnd_GetTrnsStat  0x8c26ada4
+ * mwSndGetTrnsStat  0x8c26ada4
  * strings: "E1244:sdMemBlkGetStat return error in mwSndGetTrnsStat"
  */
-u32 mwSnd_GetTrnsStat(int a0, int a1, u32 a2, u32 a3) {
+u32 mwSndGetTrnsStat(int a0, int a1, u32 a2, u32 a3) {
     int ar4_00;
     u8 *ar5_00;
     u32 in_stack_ffffffec;
 
     ar5_00 = &stack0xffffffec;
     sd_dma_poll(a0, a1, a2, a3);
-    ar4_00 = FUN_8c265a2c(*(u32 *)(a1 * 4 + a0 + 0x20), &stack0xffffffec, a2, a3);
+    ar4_00 = sdMemBlkGetStat(*(u32 *)(a1 * 4 + a0 + 0x20), &stack0xffffffec, a2, a3);
     if (ar4_00 != 0) {
         debug_printf(ar4_00, ar5_00, a2, a3, "E1244:sdMemBlkGetStat return error in mwSndGetTrnsStat",
                      in_stack_ffffffec);
@@ -13706,12 +13725,12 @@ int FUN_8c26ae54(int a0, u32 a1) {
                 iVar3 = iVar2;
             }
             FUN_8c26ae04(a0, a1, iVar1 + 0x8c4bee28, a7);
-            FUN_8c26abf0(a0, a1, a6, iVar1 + 0x8c4bee28);
+            mwSndTrns_26abf0(a0, a1, a6, iVar1 + 0x8c4bee28);
             a6 = a6 + iVar3;
             iStack_34 = iStack_34 + 1;
             a7 = a7 + iVar3;
         } while (iStack_34 < 0x40);
-        a7 = FUN_8c26abf0(a0, a1, a6, 0x8c4bee28);
+        a7 = mwSndTrns_26abf0(a0, a1, a6, 0x8c4bee28);
     }
     return a7;
 }
@@ -13781,7 +13800,7 @@ int FUN_8c26af7a(int a0, u32 a1, u32 a2, int a3) {
                 }
                 iVar3 = uStack_28 * iVar1 * 8;
                 FUN_8c26ae04(a0, a1, uStack_2c, iVar3);
-                iVar3 = FUN_8c26abf0(a0, a1, iVar3, uStack_30);
+                iVar3 = mwSndTrns_26abf0(a0, a1, iVar3, uStack_30);
                 uStack_30 = uStack_2c;
                 uStack_2c = iVar5;
                 uStack_48 = uStack_48 + 1;
@@ -13961,7 +13980,7 @@ u32 FUN_8c26b234(void) {
 
 /*
  * FUN_8c26b250  0x8c26b250
- * called by: FUN_8c2644b8, FUN_8c264504
+ * called by: ADXT_StartMem, ADXT_StartMemIdx
  */
 u32 FUN_8c26b250(u32 a0, u32 a1) {
     int iVar1;
@@ -14831,9 +14850,9 @@ u32 FUN_8c26bb16(int a0, int a1, u8 *a2, u32 *a3, u32 ain0) {
     iVar2 = a1 * 4;
     puVar3 = *(u32 **)(a0 + 0x18 + iVar2);
     if (puVar3 != NULL) {
-        FUN_8c010794(8, auStack_1c, puVar3 + 2);
+        switch_jump(8, auStack_1c, puVar3 + 2);
         if (iStack_18 <= (int)a2) {
-            FUN_8c010794(8, a3, auStack_1c);
+            switch_jump(8, a3, auStack_1c);
             *(u32 *)(iVar2 + a0 + 0x18) = *puVar3;
             *puVar3 = *(u32 *)(a0 + 0x14);
             *(u32 **)(a0 + 0x14) = puVar3;
@@ -14843,8 +14862,8 @@ u32 FUN_8c26bb16(int a0, int a1, u8 *a2, u32 *a3, u32 ain0) {
             ar7_00 = auStack_24;
             ar6_00 = auStack_1c;
             FUN_8c26be30(auStack_1c, a2, ar6_00, ar7_00);
-            FUN_8c010794(8, a3, auStack_1c);
-            FUN_8c010794(8, puVar3 + 2, auStack_24);
+            switch_jump(8, a3, auStack_1c);
+            switch_jump(8, puVar3 + 2, auStack_24);
             goto LAB_8c26bbce;
         }
     }
@@ -14895,7 +14914,7 @@ u32 FUN_8c26bbe2(int a0, int a1, int *a2, u32 unused_a3, u32 ain0) {
             } else {
                 *(u32 *)(a0 + 0x14) = *puVar4;
                 *puVar4 = 0;
-                FUN_8c010794(8, puVar4 + 2, a2);
+                switch_jump(8, puVar4 + 2, a2);
                 *piVar2 = (int)puVar4;
             }
         }
@@ -14938,7 +14957,7 @@ u32 FUN_8c26bcaa(int a0, int a1, int *a2, u32 a3, u32 ain0) {
             } else {
                 *(u32 *)(a0 + 0x14) = *puVar4;
                 *puVar4 = 0;
-                FUN_8c010794(8, puVar4 + 2, a2);
+                switch_jump(8, puVar4 + 2, a2);
                 *puVar4 = *(u32 *)(a0 + 0x18 + iVar2);
                 *(u32 **)(a0 + 0x18 + iVar2) = puVar4;
             }
@@ -14965,7 +14984,7 @@ u32 FUN_8c26bd86(int a0, int a1, int a2, u32 *a3) {
     } else {
         iVar1 = *(int *)(a1 * 4 + a0 + 0x18);
         if (iVar1 != 0) {
-            FUN_8c010794(8, auStack_10, iVar1 + 8);
+            switch_jump(8, auStack_10, iVar1 + 8);
             *a3 = *(u32 *)(puVar2 + 4);
             if (*(char *)(a0 + 5) == '\x01') {
                 if (a2 <= *(int *)(puVar2 + 4)) {
@@ -14981,14 +15000,14 @@ u32 FUN_8c26bd86(int a0, int a1, int a2, u32 *a3) {
 
 /*
  * FUN_8c26be30  0x8c26be30
- * called by: FUN_8c262c80, FUN_8c262f02, FUN_8c2635a4, FUN_8c264308, FUN_8c268f3e, FUN_8c269808, FUN_8c26bb16
+ * called by: FUN_8c262c80, FUN_8c262f02, FUN_8c2635a4, FUN_8c264308, FUN_8c268f3e, FUN_8c26bb16, mwRnaDiscardData
  */
 u32 FUN_8c26be30(u32 a0, int a1, int *a2, int *a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
 
-    uVar1 = FUN_8c010794(8, a2, a0);
+    uVar1 = switch_jump(8, a2, a0);
     a3[1] = a2[1];
     if (a1 < a2[1]) {
         a2[1] = a1;

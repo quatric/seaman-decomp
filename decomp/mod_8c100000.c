@@ -56,7 +56,7 @@ u32 FUN_8c100154(int a0) {
     iVar1 = get_field_4_0637f8(a0 + 0xd8);
     if (iVar1 == 0) {
         iVar1 = FUN_8c01ec20(*(u32 *)(0xcc + a0));
-        if ((iVar1 == 1) && (uVar2 = FUN_8c1001d4(*(u32 *)(0xcc + a0)), (u16)uVar2 < 0x1e)) {
+        if ((iVar1 == 1) && (uVar2 = get_field_a546_s16(*(u32 *)(0xcc + a0)), (u16)uVar2 < 0x1e)) {
             return 1;
         }
         uVar2 = 0;
@@ -67,10 +67,10 @@ u32 FUN_8c100154(int a0) {
 }
 
 /*
- * FUN_8c1001d4  0x8c1001d4
+ * get_field_a546_s16  0x8c1001d4
  * called by: FUN_8c100154
  */
-int FUN_8c1001d4(int a0) {
+int get_field_a546_s16(int a0) {
     return (int)*(short *)(0xa546 + a0);
 }
 
@@ -124,7 +124,7 @@ u32 FUN_8c1002a8(int a0) {
     if (iVar1 == 1) {
         iVar1 = input_is_mask_set_10000_01ec68(*(u32 *)(a0 + 0xcc));
         if (iVar1 == 0) {
-            FUN_8c015cd4(a0 + 0x15c, u____8c1421cc);
+            set_field_20(a0 + 0x15c, u____8c1421cc);
             FUN_8c0c51a0(a0, 2);
             uVar2 = 1;
         }
@@ -145,7 +145,7 @@ u32 FUN_8c10031c(int a0) {
     if (iVar1 == 0) {
         iVar1 = input_is_mask_set_10000_01ec68(*(u32 *)(a0 + 0xcc));
         if ((iVar1 == 1) && (*(int *)(a0 + 0x188) == 2)) {
-            FUN_8c015cd4(a0 + 0x15c, u____8c1421cc);
+            set_field_20(a0 + 0x15c, u____8c1421cc);
             FUN_8c0c51a0(a0, 3);
             uVar2 = 1;
         }
@@ -385,13 +385,14 @@ u32 *FUN_8c10061c(int a0) {
 }
 
 /*
- * FUN_8c100694  0x8c100694
+ * set_field_20_on_field_15c  0x8c100694
+ * calls set_field_20 on the member at +0x15c
  * called by: FUN_8c0c4e58
  */
-u32 FUN_8c100694(int a0) {
+u32 set_field_20_on_field_15c(int a0) {
     u32 uVar1;
 
-    uVar1 = FUN_8c015cd4(a0 + 0x15c, u____8c1421cc);
+    uVar1 = set_field_20(a0 + 0x15c, u____8c1421cc);
     return uVar1;
 }
 
@@ -1020,7 +1021,7 @@ u32 FUN_8c101250(int a0, u32 unused_a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 0x14c) = 0;
     *(u32 *)(a0 + 0x188) = 0;
     uVar1 = *(u32 *)(a0 + 0x188);
-    FUN_8c0fffec(a0 + 0x15c, uVar1);
+    set_field_24_0fffec(a0 + 0x15c, uVar1);
     *(u16 *)(a0 + 0x18c) = 0x78;
     *(u32 *)(a0 + 0xd4) = 0;
     *(u32 *)(a0 + 0x128) = 0xffffffff;
@@ -1538,7 +1539,7 @@ u32 FUN_8c101de0(u32 unused_a0, u32 a1, u32 a2) {
     u32 uVar1;
 
     uVar1 = a2;
-    ar4_00 = FUN_8c1f88f0(a1, a2);
+    ar4_00 = int_diff(a1, a2);
     uVar1 = FUN_8c1f88f6(ar4_00);
     return uVar1;
 }
@@ -1829,7 +1830,7 @@ u32 *FUN_8c1026ec(u32 *a0) {
 
 /*
  * free_if_nonnull_wrap_10270c  0x8c10270c
- * called by: Class_12bce0_m0_0d9a98, FUN_8c0c0148, FUN_8c0c84f4, FUN_8c0c9588, FUN_8c0c9ee0, FUN_8c0ca88c, FUN_8c0cb9c8
+ * called by: Class_12bce0_dtor, FUN_8c0c0148, FUN_8c0c84f4, FUN_8c0c9588, FUN_8c0c9ee0, FUN_8c0ca88c, FUN_8c0cb9c8
  */
 int free_if_nonnull_wrap_10270c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -1864,8 +1865,8 @@ u32 *FUN_8c102748(u32 *a0) {
 
 /*
  * FUN_8c10277c  0x8c10277c
- * called by: CAnimal_m2_02573c, CAnimal_m3_026078, FUN_8c0337d0, FUN_8c03c94c, FUN_8c03f4a4, FUN_8c046684,
- * FUN_8c048868, FUN_8c055750 (+4 more)
+ * called by: CAnimal_m2_02573c, CAnimal_m3_026078, Class_12bb08_ctor, FUN_8c0337d0, FUN_8c03c94c, FUN_8c03f4a4,
+ * FUN_8c046684, FUN_8c048868 (+4 more)
  */
 u32 *FUN_8c10277c(u32 *a0) {
     u32 in_fr5;
@@ -1880,8 +1881,8 @@ u32 *FUN_8c10277c(u32 *a0) {
 
 /*
  * free_if_nonnull_wrap_102790  0x8c102790
- * called by: CAnimal_m2_02573c, CAnimal_m3_026078, Class_12ad14_m1_0a09e8, Class_12bb08_m0_0da208,
- * Class_12bce0_m0_0d9a98, FUN_8c026038, FUN_8c03c94c, FUN_8c03f4a4 (+25 more)
+ * called by: CAnimal_m2_02573c, CAnimal_m3_026078, Class_12ad14_m1_0a09e8, Class_12bb08_dtor, Class_12bce0_dtor,
+ * FUN_8c026038, FUN_8c03c94c, FUN_8c03f4a4 (+25 more)
  */
 int free_if_nonnull_wrap_102790(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -1921,7 +1922,7 @@ u32 *FUN_8c102800(u32 *a0) {
 /*
  * noop_102824  0x8c102824
  * called by: CItemList_DeleteItem, CItemList_TakeOutItem, CNodePtrList_DeleteItem, CNodePtrList_TakeOutItem,
- * FUN_8c015f18, FUN_8c019974, FUN_8c0bf440, FUN_8c0f5004
+ * FUN_8c015f18, FUN_8c019974, FUN_8c0f5004, noop_0bf440
  */
 u32 noop_102824(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 in_r0;
@@ -1947,10 +1948,11 @@ u32 report_error_message(u32 a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * FUN_8c10287c  0x8c10287c
+ * malloc_thunk_wrap_10287c  0x8c10287c
+ * only calls malloc_thunk
  * called by: FUN_8c0b95a0
  */
-u32 FUN_8c10287c(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 malloc_thunk_wrap_10287c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = malloc_thunk(a0, a1, a2, a3);
@@ -2111,16 +2113,17 @@ u32 FUN_8c102ba4(int a0) {
 }
 
 /*
- * FUN_8c102bb4  0x8c102bb4
+ * field_ptr_8  0x8c102bb4
+ * returns the address of the member at +0x8
  */
-int FUN_8c102bb4(int a0) {
+int field_ptr_8(int a0) {
     return a0 + 8;
 }
 
 /*
- * FUN_8c102bc8  0x8c102bc8
+ * clear_field_4_102bc8  0x8c102bc8
  */
-u32 FUN_8c102bc8(int a0) {
+u32 clear_field_4_102bc8(int a0) {
     *(u32 *)(a0 + 4) = 0;
     return 0;
 }
@@ -2251,14 +2254,14 @@ u32 FUN_8c102e44(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c102eec  0x8c102eec
- * name hint from a string it uses: HIGYOLINE
+ * Class_12c3c4_ctor  0x8c102eec
+ * stores the vtable 0x8c12c3c4
  * called by: FUN_8c0851f4
  * strings: "HIGYOLINE"; "HIGYOLINE1"; "STATUS_FORMAT"
  */
-u32 *FUN_8c102eec(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 *Class_12c3c4_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 
-    FUN_8c02f064(a0, a1, a2);
+    Class_129c70_ctor(a0, a1, a2);
     *a0 = &g_8c12c3c4;
     FUN_8c0300a4(a0 + 0x27);
     FUN_8c02eac0(a0 + 0x207, a1);
@@ -2297,10 +2300,11 @@ u32 *FUN_8c102eec(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12c3c4_m0_1030a4  0x8c1030a4
+ * Class_12c3c4_dtor  0x8c1030a4
+ * stores the vtable 0x8c12c3c4
  * called by: CAnimal_m0_08516c
  */
-u32 *Class_12c3c4_m0_1030a4(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 *Class_12c3c4_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
     u32 in_stack_fffffff4;
     u32 ain0;
@@ -2310,7 +2314,7 @@ u32 *Class_12c3c4_m0_1030a4(u32 *a0, u32 a1, u32 a2, u32 a3) {
         *a0 = &g_8c12c3c4;
         free_if_nonnull_wrap_02eaec(a0 + 0x207, 0xffffffff, a2, a3);
         ar5_00 = 0;
-        Class_129c70_m0_02f1b8(a0, 0, a2, a3);
+        Class_129c70_dtor(a0, 0, a2, a3);
         if (0 < (short)ain0) {
             free_if_nonnull(a0);
         }
@@ -2353,7 +2357,7 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
         ar5_00 = ar5_00 + -1;
     } while (ar5_00 != NULL);
     pcVar2 = a2;
-    uVar1 = FUN_8c02602c(*(int *)(a2 + 0x18), 0);
+    uVar1 = get_field_a4_s16(*(int *)(a2 + 0x18), 0);
     if ((short)uVar1 == 3) {
         uVar1 = FUN_8c02bef8(*(int *)(a2 + 4), ar5_00, pcVar2);
         pcVar2 = (code *)(int)(short)uVar1;
@@ -2415,7 +2419,7 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
         if ((iVar3 != 2) && (a0[1] == 0)) {
             iVar3 = get_field_24_05eed0(*(int *)(a2 + 4) + 0xf8, pcVar2);
             if (iVar3 == 1) {
-                uVar5 = FUN_8c02602c(*(int *)(a2 + 0x18), pcVar2);
+                uVar5 = get_field_a4_s16(*(int *)(a2 + 0x18), pcVar2);
                 pcVar2 = (code *)0x7;
                 iVar3 = libgcc_divide_helper_01031c(uVar5 & 0xffff, 7, pcVar10);
                 if ((iVar3 == 1) && (a0[0xe1] == -1)) {
@@ -2425,9 +2429,9 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
                     FUN_8c0306d4(a0 + 0x27, 0, 0, "REQUEST_SLEEP");
                 }
             }
-            uVar1 = FUN_8c05eec4(*(int *)(a2 + 0xc), pcVar2, pcVar10, ar7_00);
+            uVar1 = get_field_bc_s8(*(int *)(a2 + 0xc), pcVar2, pcVar10, ar7_00);
             if ((char)uVar1 == '\0') {
-                uVar5 = FUN_8c02602c(*(int *)(a2 + 0x18), pcVar2);
+                uVar5 = get_field_a4_s16(*(int *)(a2 + 0x18), pcVar2);
                 pcVar2 = (code *)0x7;
                 iVar3 = libgcc_divide_helper_01031c(uVar5 & 0xffff, 7, pcVar10);
                 if ((iVar3 == 1) && (a0[0xe1] == -1)) {
@@ -2444,21 +2448,21 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
                     a0[0x223] = 0;
                 }
             }
-            uVar1 = FUN_8c05eec4(*(int *)(a2 + 0xc), pcVar2, pcVar10, ar7_00);
+            uVar1 = get_field_bc_s8(*(int *)(a2 + 0xc), pcVar2, pcVar10, ar7_00);
             if (*(char *)((int)a0 + 0x9a) != (char)uVar1) {
                 iVar3 = get_field_124_027930(*(int *)(a2 + 8), pcVar2, pcVar10, ar7_00);
                 if (iVar3 != 2) {
-                    uVar5 = FUN_8c02602c(*(int *)(a2 + 0x18), pcVar2);
+                    uVar5 = get_field_a4_s16(*(int *)(a2 + 0x18), pcVar2);
                     pcVar2 = (code *)(uVar5 & 0xffff);
                     if ((code *)0x3 < pcVar2) {
-                        uVar1 = FUN_8c05eec4(*(int *)(a2 + 0xc), pcVar2, pcVar10, ar7_00);
+                        uVar1 = get_field_bc_s8(*(int *)(a2 + 0xc), pcVar2, pcVar10, ar7_00);
                         if ((char)uVar1 == '\0') {
                             ar7_00 = "STATUS_LIGHT_OFF";
                             pcVar10 = NULL;
                             pcVar2 = (code *)0xa;
                             FUN_8c0306d4(a0 + 0x27, 10, 0, "STATUS_LIGHT_OFF");
                         } else {
-                            uVar1 = FUN_8c05eec4(*(int *)(a2 + 0xc), pcVar2, pcVar10, ar7_00);
+                            uVar1 = get_field_bc_s8(*(int *)(a2 + 0xc), pcVar2, pcVar10, ar7_00);
                             if (*(char *)((int)a0 + 0x9a) < (char)uVar1) {
                                 ar7_00 = "STATUS_LIGHT";
                                 pcVar10 = NULL;
@@ -2468,7 +2472,7 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
                         }
                     }
                 }
-                uVar1 = FUN_8c05eec4(*(int *)(a2 + 0xc), pcVar2, pcVar10, ar7_00);
+                uVar1 = get_field_bc_s8(*(int *)(a2 + 0xc), pcVar2, pcVar10, ar7_00);
                 *(char *)((int)a0 + 0x9a) = (char)uVar1;
             }
         }
@@ -2503,14 +2507,14 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
         }
         iVar3 = get_field_124_027930(*(int *)(a2 + 8), pcVar2, pcVar10, ar7_00);
         if (((iVar3 != 2) || (pcVar2 = (code *)(a0 + 0x10), *(int *)pcVar2 != 2)) &&
-            (uVar1 = FUN_8c05eeb0(*(int *)(a2 + 4) + 0xa8), (char)uVar1 == '\x01')) {
+            (uVar1 = get_field_4_s8(*(int *)(a2 + 4) + 0xa8), (char)uVar1 == '\x01')) {
             pcVar10 = get_field_140_025f70;
             pcVar2 = (code *)get_field_140_025f70(*(int *)(a2 + 4), pcVar2);
             if (pcVar2 == NULL) {
                 *(u8 *)(a0 + 0x26) = 10;
                 pcVar10 = (code *)0x1b;
                 pcVar2 = (code *)0x14;
-                FUN_8c0b9ed4(*(int *)(a2 + 0x18), 0x14, 0x1b);
+                recent5_push_unique(*(int *)(a2 + 0x18), 0x14, 0x1b);
             }
         }
     }
@@ -2549,9 +2553,9 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
             a0[0x210] = 0x1c;
             a0[0x10] = 0x1c;
             g_8c1eee30 = 0x1c;
-            uVar5 = FUN_8c02602c(*(int *)(a2 + 0x18), 0x840);
+            uVar5 = get_field_a4_s16(*(int *)(a2 + 0x18), 0x840);
             if (a0[0x217] != (uVar5 & 0xffff)) {
-                uVar5 = FUN_8c02602c(*(int *)(a2 + 0x18), uVar1);
+                uVar5 = get_field_a4_s16(*(int *)(a2 + 0x18), uVar1);
                 a0[0x217] = uVar5 & 0xffff;
                 a0[0x214] = a0[0x214] + 1;
                 if (a0[0x214] == 600) {
@@ -2580,7 +2584,7 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
             }
             break;
         case 3:
-            uVar1 = FUN_8c05eea8(*(int *)(a2 + 0xc));
+            uVar1 = get_field_0_s8_05eea8(*(int *)(a2 + 0xc));
             *(char *)((int)a0 + 0x99) = (char)uVar1;
             break;
         case 4:
@@ -2602,7 +2606,7 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
                 }
             }
             if ((a0[1] != 7) && (a0[0xe1] != -1)) {
-                uVar1 = FUN_8c1041ec(a0 + 0x27);
+                uVar1 = field_ptr_730(a0 + 0x27);
                 pcVar2 = (code *)FUN_8c1041fc(uVar1, &g_8c1eef1a, pcVar10, pcVar4);
                 if (pcVar2 == NULL) {
                     FUN_8c0f8214(0x8c35468c, 0, pcVar10, pcVar4);
@@ -2612,18 +2616,18 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
             break;
         default:
             pcVar2 = NULL;
-            pcVar4 = FUN_8c02cb7c;
-            FUN_8c02cb7c(*(int *)(a2 + 4) + 0xa8, 0, pcVar10, FUN_8c02cb7c);
+            pcVar4 = set_field_0_u8_02cb7c;
+            set_field_0_u8_02cb7c(*(int *)(a2 + 4) + 0xa8, 0, pcVar10, set_field_0_u8_02cb7c);
             break;
         case 7:
             pcVar4 = NULL;
             pcVar10 = *(code **)(a2 + 4);
-            FUN_8c02cb7c(pcVar10 + 0xa8, 0, pcVar10, 0);
+            set_field_0_u8_02cb7c(pcVar10 + 0xa8, 0, pcVar10, 0);
             pcVar2 = (code *)0x1;
-            FUN_8c02cb74(*(int *)(a2 + 4) + 0xa8, 1);
+            set_field_1_s8(*(int *)(a2 + 4) + 0xa8, 1);
             break;
         case 8:
-            uVar1 = FUN_8c02d3e0(*(int *)(a2 + 4) + 0x90);
+            uVar1 = get_field_0_s8_02d3e0(*(int *)(a2 + 4) + 0x90);
             uVar11 = CONCAT13((char)uVar1, (s32)in_stack_fffffef8);
             pcVar4 = (code *)(int)(char)uVar1;
             if (pcVar4 == (code *)0x1) {
@@ -2644,9 +2648,9 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
                 }
                 FUN_8c02cbbc(*(int *)(a2 + 4) + 0x90, 0);
                 pcVar10 = (code *)(*(int *)(a2 + 4) + 0x18);
-                FUN_8c1041e4(pcVar10, 0);
+                set_field_14_1041e4(pcVar10, 0);
                 pcVar2 = NULL;
-                FUN_8c1041e4(*(int *)(a2 + 4), 0);
+                set_field_14_1041e4(*(int *)(a2 + 4), 0);
             }
             break;
         case 9:
@@ -2658,9 +2662,9 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
             g_8c1eee30 = 0x13;
             pcVar10 = NULL;
             FUN_8c02ce10(*(int *)(a2 + 4) + 0x90, 0, 0);
-            FUN_8c1041e4(*(int *)(a2 + 4) + 0x18, 0);
+            set_field_14_1041e4(*(int *)(a2 + 4) + 0x18, 0);
             pcVar2 = NULL;
-            FUN_8c1041e4(*(int *)(a2 + 4), 0);
+            set_field_14_1041e4(*(int *)(a2 + 4), 0);
             break;
         case 10:
             if ((a0[0x10] != 2) || (a0[1] != 1)) {
@@ -2687,10 +2691,10 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
     if (iVar3 != 2) {
         pcVar10 = a2;
         FUN_8c109b18(a0, a2, pcVar2);
-        FUN_8c05ee90(*(int *)(a2 + 8));
+        set_field_130(*(int *)(a2 + 8));
         iVar3 = get_field_4_05eed8(a0);
         uVar1 = *(u32 *)(&g_8c1eed94 + a0[3] * 4 + iVar3 * 0xc);
-        FUN_8c05f488(a0, uVar1);
+        set_field_40(a0, uVar1);
         if ((a0[1] == 2) &&
             (pcVar4 = (code *)get_field_a0_035724(*(int *)(a2 + 0x18), uVar1), (char)pcVar4 != '\x02')) {
             iVar3 = FUN_8c02c518(*(int *)(a2 + 4), uVar1, pcVar2);
@@ -2711,7 +2715,7 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
                 if (a0[0xe1] == -1) {
                     a0[0x10] = 0;
                 }
-                uVar11 = FUN_8c02c5ac(*(int *)(a2 + 4) + 0x60, 900);
+                uVar11 = get_field_8_s8(*(int *)(a2 + 4) + 0x60, 900);
                 if ((char)uVar11 < '\x04') {
                     a0[0x10] = 0;
                 }
@@ -2732,9 +2736,9 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
         pcVar10 = NULL;
         FUN_8c1041d8(*(int *)(a2 + 0xc), 0, 0);
     }
-    uVar5 = FUN_8c02602c(*(int *)(a2 + 0x18), pcVar10);
+    uVar5 = get_field_a4_s16(*(int *)(a2 + 0x18), pcVar10);
     if (a0[0x217] != (uVar5 & 0xffff)) {
-        uVar5 = FUN_8c02602c(*(int *)(a2 + 0x18), pcVar10);
+        uVar5 = get_field_a4_s16(*(int *)(a2 + 0x18), pcVar10);
         a0[0x217] = uVar5 & 0xffff;
         iVar3 = FUN_8c02c340(*(int *)(a2 + 4) + 0x90, pcVar10, pcVar2, pcVar4);
         if (iVar3 < 0x31) {
@@ -2747,8 +2751,8 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
         iVar3 = get_field_cc_1041cc(iVar9);
         if (iVar3 == 0) {
             pcVar10 = NULL;
-            pcVar4 = FUN_8c05ee64;
-            FUN_8c05ee64(*(int *)(a2 + 4) + 0xf8, 0);
+            pcVar4 = set_field_18_05ee64;
+            set_field_18_05ee64(*(int *)(a2 + 4) + 0xf8, 0);
         }
         pcVar2 = (code *)0x878;
         if (0 < a0[0x21e]) {
@@ -2777,7 +2781,7 @@ u32 FUN_8c103100(int *a0, code *a1, code *a2, u32 a3) {
     *(u8 *)(a0 + 0x21) = 0;
     *(u8 *)((int)a0 + 0x85) = 0;
     *(u8 *)((int)a0 + 0x87) = 0;
-    uVar1 = FUN_8c05eec4(*(int *)(a2 + 0xc), *(int *)(a2 + 0xc), 0, 0x87);
+    uVar1 = get_field_bc_s8(*(int *)(a2 + 0xc), *(int *)(a2 + 0xc), 0, 0x87);
     *(char *)((int)a0 + 0x9a) = (char)uVar1;
     return 0x9a;
 }
@@ -2803,10 +2807,10 @@ int FUN_8c1041d8(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * FUN_8c1041e4  0x8c1041e4
+ * set_field_14_1041e4  0x8c1041e4
  * called by: FUN_8c103100
  */
-u32 FUN_8c1041e4(int a0, u32 a1) {
+u32 set_field_14_1041e4(int a0, u32 a1) {
     u32 in_r0;
 
     *(u32 *)(a0 + 0x14) = a1;
@@ -2814,10 +2818,11 @@ u32 FUN_8c1041e4(int a0, u32 a1) {
 }
 
 /*
- * FUN_8c1041ec  0x8c1041ec
+ * field_ptr_730  0x8c1041ec
+ * returns the address of the member at +0x730
  * called by: FUN_8c103100
  */
-int FUN_8c1041ec(int a0) {
+int field_ptr_730(int a0) {
     return a0 + 0x730;
 }
 
@@ -2855,7 +2860,7 @@ u32 Class_12c3c4_m2_104264(int *a0, int a1, int *a2, u32 a3) {
     g_8c1eee38 = a0[0x212];
     iVar5 = a1;
     piVar2 = a2;
-    uVar1 = FUN_8c02602c(a2[6], a1);
+    uVar1 = get_field_a4_s16(a2[6], a1);
     if ((short)uVar1 == 3) {
         uVar1 = FUN_8c02bef8(a2[1], iVar5, piVar2);
         piVar2 = (int *)(int)(short)uVar1;
@@ -2876,7 +2881,7 @@ u32 Class_12c3c4_m2_104264(int *a0, int a1, int *a2, u32 a3) {
             a0[3] = 0;
             a0[2] = 99;
             FUN_8c02f298(a0, 199);
-            FUN_8c05febc(a2[3], 0);
+            set_field_38_u8(a2[3], 0);
         } else {
             a0[0xe] = 2;
             a0[1] = 0xb;
@@ -2907,7 +2912,7 @@ u32 Class_12c3c4_m2_104264(int *a0, int a1, int *a2, u32 a3) {
             g_8c1eee30 = 9;
             break;
         case 3:
-            uVar4 = FUN_8c05eea8(a2[3]);
+            uVar4 = get_field_0_s8_05eea8(a2[3]);
             *(char *)((int)a0 + 0x99) = (char)uVar4;
             break;
         case 8:
@@ -2961,7 +2966,7 @@ u32 Class_12c3c4_m2_104264(int *a0, int a1, int *a2, u32 a3) {
     }
     piVar6 = a2;
     FUN_8c109b18(a0, a2, piVar2);
-    FUN_8c05ee90(a2[2]);
+    set_field_130(a2[2]);
     if (*(char *)((int)a0 + 0x91) != '\x01') {
         iVar5 = get_field_124_027930(a2[2], piVar6, piVar2, uVar1);
         iVar3 = get_field_40_05eea0(a0);
@@ -3063,7 +3068,7 @@ u32 FUN_8c104854(int a0, u32 a1, int *a2, char *a3) {
         *(u32 *)(a0 + 0x40) = *(u32 *)(&g_8c1eed94 + *(int *)(a0 + 0xc) * 4 + (int)a3 * 0xc);
         FUN_8c105094(a0, a1, a2, a3);
         uVar3 = 1;
-        FUN_8c02f404(a0, 1);
+        set_field_38_02f404(a0, 1);
     } else {
         uVar3 = *(u32 *)(&g_8c1eed94 + *(int *)(a0 + 0xc) * 4 + (int)a3 * 0xc);
         *(u32 *)(a0 + 0x40) = uVar3;
@@ -3072,11 +3077,11 @@ u32 FUN_8c104854(int a0, u32 a1, int *a2, char *a3) {
     if ((iVar2 < 0x22) && (-1 < iVar2)) {
         switch (iVar2) {
         case 0:
-            FUN_8c02f404(a0, 3);
+            set_field_38_02f404(a0, 3);
             break;
         case 1:
             uVar3 = 3;
-            FUN_8c02f404(a0, 3);
+            set_field_38_02f404(a0, 3);
             iVar2 = FUN_8c02f414(a0, uVar3, piVar4, a3);
             if (iVar2 == 1) {
                 FUN_8c109b98(a0, a1, piVar4);
@@ -3091,7 +3096,7 @@ u32 FUN_8c104854(int a0, u32 a1, int *a2, char *a3) {
             iVar2 = (**(code **)(a5 + 0xb4))(*a2, a5, piVar4, a3);
             if (iVar2 == 1) {
                 iVar2 = *a2;
-                FUN_8c027954(iVar2);
+                mask_74_fffffffe(iVar2);
                 FUN_8c0c4e2c(iVar2, a5, piVar4, FUN_8c0c4e2c);
             }
             break;
@@ -3107,18 +3112,18 @@ u32 FUN_8c104854(int a0, u32 a1, int *a2, char *a3) {
             }
             break;
         case 6:
-            pcVar5 = FUN_8c02602c;
-            uVar1 = FUN_8c02602c(a2[6], uVar3);
+            pcVar5 = get_field_a4_s16;
+            uVar1 = get_field_a4_s16(a2[6], uVar3);
             iVar2 = libgcc_divide_helper_01031c(uVar1 & 0xffff, 0x25, piVar4);
             if (iVar2 == 0xe) {
                 pcVar6 = "STATUS_SNORE";
                 uVar3 = 0;
                 FUN_8c0306d4(a0 + 0x9c, 0x11, 0, "STATUS_SNORE");
-                FUN_8c02f404(a0, 3);
+                set_field_38_02f404(a0, 3);
             }
             break;
         case 7:
-            FUN_8c02f404(a0, 3);
+            set_field_38_02f404(a0, 3);
             break;
         case 10:
         case 0x14:
@@ -3141,11 +3146,11 @@ u32 FUN_8c104854(int a0, u32 a1, int *a2, char *a3) {
                 FUN_8c109b98(a0, a1, piVar4);
             } else {
                 *(u32 *)(a0 + 0x38) = 2;
-                FUN_8c05febc(a2[3], 0);
+                set_field_38_u8(a2[3], 0);
             }
             break;
         case 0x11:
-            uVar1 = FUN_8c02602c(a2[6], uVar3);
+            uVar1 = get_field_a4_s16(a2[6], uVar3);
             uVar3 = 10;
             iVar2 = libgcc_divide_helper_01031c(uVar1 & 0xffff, 10, piVar4);
             if (((iVar2 == 5) && (*(char *)(a0 + 0x855) == '\0')) &&
@@ -3162,32 +3167,32 @@ u32 FUN_8c104854(int a0, u32 a1, int *a2, char *a3) {
             break;
         case 0x18:
             if (*(int *)(a0 + 0x8c) == 1) {
-                FUN_8c104f44(a2[3]);
+                inc_field_39_s8(a2[3]);
                 ar5_00 = 0;
-                FUN_8c0637c0(a2[3], 0);
+                set_field_44_u8(a2[3], 0);
                 *(char *)(a0 + 0x87c) = *(char *)(a0 + 0x87c) + '\x01';
                 *(u32 *)(a0 + 0x878) = 0xb4;
-                uVar3 = FUN_8c0e98f0(a2[3]);
+                uVar3 = get_field_39_s8(a2[3]);
                 ain0 =
                     CONCAT13((char)((u32)in_stack_ffffff84 >> 0x18), CONCAT12((char)uVar3, (short)in_stack_ffffff84));
                 if ((char)uVar3 < '\x04') {
-                    uVar3 = FUN_8c0e98f0(a2[3]);
+                    uVar3 = get_field_39_s8(a2[3]);
                     ain0 = CONCAT22((short)((u32)ain0 >> 0x10), CONCAT11((char)uVar3, (char)ain0));
                     if ((char)uVar3 == '\x01') {
-                        FUN_8c02cb84(a2[1] + 0xa8, 0);
+                        set_field_18(a2[1] + 0xa8, 0);
                     }
                     piVar4 = (int *)0x1b;
                     ar5_00 = 0x17;
                     iVar2 = a2[6];
-                    FUN_8c0b9ed4(iVar2, 0x17, 0x1b);
+                    recent5_push_unique(iVar2, 0x17, 0x1b);
                     FUN_8c0c4e2c(iVar2, ar5_00, piVar4, a3);
                 }
-                uVar3 = FUN_8c0e98f0(a2[3]);
+                uVar3 = get_field_39_s8(a2[3]);
                 if ((char)uVar3 == '\x04') {
                     *(u8 *)(a0 + 0x98) = 7;
-                    FUN_8c02cb84(a2[1] + 0xa8, 1, piVar4, a3, CONCAT31((s32)((u32)ain0 >> 8), (char)uVar3));
+                    set_field_18(a2[1] + 0xa8, 1, piVar4, a3, CONCAT31((s32)((u32)ain0 >> 8), (char)uVar3));
                     FUN_8c064ba0(a2[6], 2);
-                    FUN_8c0b9ed4(a2[6], 0x18, 0x1b);
+                    recent5_push_unique(a2[6], 0x18, 0x1b);
                 }
                 FUN_8c0306d4(a0 + 0x9c, 0x1f, 0, "EVENT_ROCK_PUSH");
                 *(u32 *)(a0 + 0x8c) = 0;
@@ -3206,7 +3211,7 @@ u32 FUN_8c104854(int a0, u32 a1, int *a2, char *a3) {
                 FUN_8c0306d4(a0 + 0x9c, 0x2a, 0, "EVENT_LANDING");
                 *(u32 *)(a0 + 0x8c) = 0;
             }
-            FUN_8c02f670(*a2, *a2, piVar4, a3, auStack_38);
+            Vec3_ctor_copy_wrap_02f670(*a2, *a2, piVar4, a3, auStack_38);
             if (cVar8 == '\0') {
                 pcVar5 = (code *)0x432a0000;
             } else {
@@ -3237,10 +3242,10 @@ u32 FUN_8c104854(int a0, u32 a1, int *a2, char *a3) {
 }
 
 /*
- * FUN_8c104f44  0x8c104f44
+ * inc_field_39_s8  0x8c104f44
  * called by: FUN_8c104854
  */
-u32 FUN_8c104f44(int a0) {
+u32 inc_field_39_s8(int a0) {
     *(char *)(a0 + 0x39) = *(char *)(a0 + 0x39) + '\x01';
     return 0x39;
 }
@@ -3277,7 +3282,7 @@ int FUN_8c104f5c(int a0, u32 a1, int a2, u32 a3) {
                 }
                 *(u32 *)(a0 + 0xc) = 0;
                 a1 = 0;
-                FUN_8c02f404(a0, 0);
+                set_field_38_02f404(a0, 0);
                 a2 = iVar1;
             }
         } else {
@@ -3286,7 +3291,7 @@ int FUN_8c104f5c(int a0, u32 a1, int a2, u32 a3) {
     }
     if (*(int *)(a0 + 0x3c) == 2) {
         a1 = 2;
-        FUN_8c02f404(a0, 2);
+        set_field_38_02f404(a0, 2);
     }
     iVar1 = *(int *)(a0 + 0x38);
     if (iVar1 == 2) {
@@ -3450,20 +3455,20 @@ u8 *FUN_8c1063a8(int a0, int *a1, int *a2, char *a3) {
                     }
                     if (iVar7 == 2) {
                         piVar6 = (int *)0x1b;
-                        FUN_8c0b9ed4(a2[6], 0xf, 0x1b);
+                        recent5_push_unique(a2[6], 0xf, 0x1b);
                         uVar3 = 1;
                         ar4_00 = (int *)a2[3];
-                        FUN_8c061180(ar4_00, 1);
+                        set_field_0_u8_061180(ar4_00, 1);
                     }
                     FUN_8c0c4e2c(ar4_00, uVar3, piVar6, a3);
                 }
             }
-            puVar2 = (u8 *)FUN_8c05febc(a2[3], 0);
+            puVar2 = (u8 *)set_field_38_u8(a2[3], 0);
             break;
         case 0xe:
             FUN_8c02ce10(a2[1] + 0x90, 0, piVar6);
             uVar3 = get_field_13c_028d9c(a2[1], a2[1], piVar6);
-            puVar2 = (u8 *)FUN_8c0b9ed4(a2[6], 0x11, uVar3);
+            puVar2 = (u8 *)recent5_push_unique(a2[6], 0x11, uVar3);
             break;
         case 0x10:
             (**(code **)(*(int *)(*a2 + 8) + 0xbc))(*a2, piVar4, piVar6, a3);
@@ -3490,7 +3495,7 @@ u8 *FUN_8c1063a8(int a0, int *a1, int *a2, char *a3) {
                 *(u8 *)(a0 + 0x98) = 5;
                 (**(code **)(*(int *)(*a2 + 8) + 0xc0))(*a2, piVar4, piVar6, a3);
                 piVar4 = (int *)0x1;
-                FUN_8c02cb74(a2[1] + 0xa8, 1);
+                set_field_1_s8(a2[1] + 0xa8, 1);
                 g_8c13bcc4 = 1;
             }
             iVar1 = get_field_140_025f70(a2[1], piVar4);
@@ -3500,16 +3505,16 @@ u8 *FUN_8c1063a8(int a0, int *a1, int *a2, char *a3) {
                 a3 = "GRATIFIC_COPULATION_DONE";
                 FUN_8c0306d4(a0 + 0x9c, 9, 0, "GRATIFIC_COPULATION_DONE");
                 piVar6 = (int *)0x1b;
-                FUN_8c0b9ed4(a2[6], 0x14, 0x1b);
+                recent5_push_unique(a2[6], 0x14, 0x1b);
             }
             *(u32 *)(a0 + 4) = 0;
             *(u32 *)(a0 + 0x40) = 0;
             *(u32 *)(a0 + 8) = 0;
             *(u32 *)(a0 + 0xc) = 0;
-            FUN_8c02cb84(a2[1] + 0xa8, 0);
+            set_field_18(a2[1] + 0xa8, 0);
             uVar3 = 1;
             iVar1 = a2[1] + 0xa8;
-            FUN_8c06209c(iVar1, 1);
+            set_field_4_s8(iVar1, 1);
             puVar2 = (u8 *)FUN_8c0c4e2c(iVar1, uVar3, piVar6, a3);
             break;
         case 0x13:
@@ -3517,7 +3522,7 @@ u8 *FUN_8c1063a8(int a0, int *a1, int *a2, char *a3) {
             g_8c13bcc4 = 1;
             uVar3 = get_field_13c_028d9c(a2[1], piVar4, piVar6);
             uVar5 = 0x19;
-            FUN_8c0b9ed4(a2[6], 0x19, uVar3);
+            recent5_push_unique(a2[6], 0x19, uVar3);
             FUN_8c0fa688(0x8c35468c, uVar5, uVar3, a3);
             ar7_00 = "GRATIFIC_GROAN_DONE";
             uVar3 = 0;
@@ -3527,31 +3532,31 @@ u8 *FUN_8c1063a8(int a0, int *a1, int *a2, char *a3) {
             break;
         case 0x18:
             FUN_8c0fa688(0x8c35468c, piVar4, piVar6, a3);
-            uVar3 = FUN_8c0e98f0(a2[3]);
+            uVar3 = get_field_39_s8(a2[3]);
             uVar5 = CONCAT13((char)uVar3, (s32)in_stack_ffffff6c);
             if ('\x03' < (char)uVar3) {
-                uVar3 = FUN_8c0e98f0(a2[3]);
+                uVar3 = get_field_39_s8(a2[3]);
                 uVar5 = CONCAT13((char)((u32)uVar5 >> 0x18), CONCAT12((char)uVar3, (short)uVar5));
                 FUN_8c0fa5bc(0x8c35468c, (int)(char)uVar3, piVar6, a3);
                 a3 = "EVENT_AFTER_ROCK_PUSH";
                 piVar6 = NULL;
                 FUN_8c0306d4(a0 + 0x9c, 0x26, 0, "EVENT_AFTER_ROCK_PUSH");
                 FUN_8c02cbbc(a2[1] + 0x90, 1);
-                FUN_8c02c330(a2[1], 0);
-                FUN_8c02c330(a2[1] + 0x18, 0);
-                FUN_8c02c330(a2[1] + 0x60, 0);
-                FUN_8c02c330(a2[1] + 0x30, 0);
+                set_field_0_u8(a2[1], 0);
+                set_field_0_u8(a2[1] + 0x18, 0);
+                set_field_0_u8(a2[1] + 0x60, 0);
+                set_field_0_u8(a2[1] + 0x30, 0);
                 piVar4 = (int *)0x1;
-                FUN_8c02cb84(a2[1] + 0xa8, 1);
+                set_field_18(a2[1] + 0xa8, 1);
                 *(u32 *)(a0 + 0x870) = 1;
             }
-            uVar3 = FUN_8c0e98f0(a2[3]);
+            uVar3 = get_field_39_s8(a2[3]);
             puVar2 = (u8 *)(int)(char)uVar3;
             if ((char)uVar3 < '\x04') {
-                ar7_01 = FUN_8c0b9ed4;
-                FUN_8c0b9ed4(a2[6], 0x17, 0x1b);
+                ar7_01 = recent5_push_unique;
+                recent5_push_unique(a2[6], 0x17, 0x1b);
                 iVar1 = a2[3];
-                uVar3 = FUN_8c0e98f0(iVar1);
+                uVar3 = get_field_39_s8(iVar1);
                 FUN_8c0fa5bc(0x8c35468c, (int)(char)uVar3, iVar1, ar7_01);
                 if (*(char *)(a0 + 0x87c) < '\x03') {
                     FUN_8c0fa5f0(0x8c35468c, 0, iVar1, ar7_01);
@@ -3617,7 +3622,7 @@ u32 *FUN_8c106c84(int a0, int *a1, int a2, char *a3) {
                     in_dr0 = 0x8c02602c416e6666;
                 }
                 if ((cVar7 != '\0' || (float)in_dr0 <= (float)(in_dr0 >> 0x20)) &&
-                    (uVar2 = FUN_8c02602c(*(u32 *)(a2 + 0x18), uVar4), 2 < (u16)uVar2)) {
+                    (uVar2 = get_field_a4_s16(*(u32 *)(a2 + 0x18), uVar4), 2 < (u16)uVar2)) {
                     a3 = "REACTION_TEMP_LACK";
                     a6 = 0;
                     FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "REACTION_TEMP_LACK");
@@ -3640,7 +3645,7 @@ u32 *FUN_8c106c84(int a0, int *a1, int a2, char *a3) {
                     in_dr0 = 0x88841c8cccd;
                 }
                 if ((cVar7 != '\0' || (float)(in_dr0 >> 0x20) <= (float)in_dr0) &&
-                    (uVar2 = FUN_8c02602c(*(u32 *)(a2 + 0x18), uVar2), 2 < (u16)uVar2)) {
+                    (uVar2 = get_field_a4_s16(*(u32 *)(a2 + 0x18), uVar2), 2 < (u16)uVar2)) {
                     a3 = "REACTION_SWITCH_OFF";
                     a6 = 0;
                     FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "REACTION_SWITCH_OFF");
@@ -3654,7 +3659,7 @@ u32 *FUN_8c106c84(int a0, int *a1, int a2, char *a3) {
                     in_dr0 = 0x2dc41a0cccd;
                 }
                 if ((cVar7 != '\0' || (float)(in_dr0 >> 0x20) <= (float)in_dr0) &&
-                    (uVar2 = FUN_8c02602c(*(u32 *)(a2 + 0x18), uVar2), 2 < (u16)uVar2)) {
+                    (uVar2 = get_field_a4_s16(*(u32 *)(a2 + 0x18), uVar2), 2 < (u16)uVar2)) {
                     a3 = "REACTION_SWITCH_OFF";
                     a6 = 0;
                     FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "REACTION_SWITCH_OFF");
@@ -3696,7 +3701,7 @@ u32 *FUN_8c106c84(int a0, int *a1, int a2, char *a3) {
                     fVar6 = 1.05378e-42;
                 }
                 if (cVar7 != '\0' || fVar5 <= fVar6) {
-                    uVar2 = FUN_8c02602c(*(u32 *)(a2 + 0x18), uVar4);
+                    uVar2 = get_field_a4_s16(*(u32 *)(a2 + 0x18), uVar4);
                     puVar3 = (u32 *)0x3;
                     if (2 < (u16)uVar2) {
                         FUN_8c0306d4(a0 + 0x9c, 0x2c, 0, "REACTION_OXYGEN_LACK");
@@ -3736,7 +3741,7 @@ u32 FUN_8c106f58(int a0, u32 a1, int a2, u32 a3) {
         if (iVar2 == 0) {
             iVar2 = get_field_13c_028d9c(*(u32 *)(a2 + 4), a1, iVar3);
             if (iVar2 == 2) {
-                uVar1 = FUN_8c02602c(*(u32 *)(a2 + 0x18), a1);
+                uVar1 = get_field_a4_s16(*(u32 *)(a2 + 0x18), a1);
                 *(u32 *)(a0 + 4) = 0xd;
                 *(u32 *)(a0 + 8) = 0x5f;
                 *(u32 *)(a0 + 0xc) = 0;
@@ -3809,7 +3814,7 @@ u32 FUN_8c106f58(int a0, u32 a1, int a2, u32 a3) {
         } else {
             iVar2 = get_field_124_027930(*(u32 *)(a2 + 8), a1, iVar3, a3);
             if (iVar2 == 6) {
-                FUN_8c063810(*(int *)(a2 + 4) + 0xf8, 1, iVar3, a3);
+                set_field_2c(*(int *)(a2 + 4) + 0xf8, 1, iVar3, a3);
                 FUN_8c0306d4(a0 + 0x9c, 0x22, 0, "REACTION_WAKED_TAP");
             }
         }
@@ -3857,7 +3862,7 @@ u32 FUN_8c106f58(int a0, u32 a1, int a2, u32 a3) {
         } else {
             iVar2 = get_field_124_027930(*(u32 *)(a2 + 8), get_field_124_027930, iVar3, a3);
             if (iVar2 == 6) {
-                FUN_8c063810(*(int *)(a2 + 4) + 0xf8, 2, iVar3, a3);
+                set_field_2c(*(int *)(a2 + 4) + 0xf8, 2, iVar3, a3);
                 FUN_8c0306d4(a0 + 0x9c, 0x23, 0, "REACTION_WAKED_TAP");
             }
         }
@@ -3894,24 +3899,24 @@ int FUN_8c107590(code *a0, code *a1, code *a2, char *a3) {
     uVar1 = FUN_8c02bef8(*(int *)(a2 + 4), a1, a2);
     if (((6 < (short)uVar1) && (iVar3 = FUN_8c02c340(*(int *)(a2 + 4) + 0x90, a1, pcVar6, a3), iVar3 < 0x30)) &&
         (iVar3 = FUN_8c02c518(*(int *)(a2 + 4), a1, pcVar6), iVar3 == -1)) {
-        uVar1 = FUN_8c05eec4(*(int *)(a2 + 0xc), a1, pcVar6, a3);
+        uVar1 = get_field_bc_s8(*(int *)(a2 + 0xc), a1, pcVar6, a3);
         pcVar6 = (code *)(int)(char)uVar1;
         if ((((char)uVar1 == '\x02') &&
              (iVar3 = (**(code **)(*(int *)pcVar4 + 0x1d0))(pcVar4, a1, 2, a3), iVar3 == 1)) &&
             ((iVar3 = get_field_178_035734(*(int *)(a2 + 8), a1, pcVar6), iVar3 == 0 && (a0[0x98] == (code)0x5)))) {
-            uVar1 = FUN_8c0e98f0(*(int *)(a2 + 0xc));
+            uVar1 = get_field_39_s8(*(int *)(a2 + 0xc));
             if ((((char)uVar1 < '\x03') && (iVar3 = FUN_8c02c518(*(int *)(a2 + 4), a1, pcVar6), iVar3 == -1)) &&
                 ((a1 = a2, iVar3 = FUN_8c02fcc4(a0, a2, pcVar6, a3),
-                  iVar3 == 1 && ((iVar3 = FUN_8c0637d0(*(u32 *)(*(int *)(a2 + 0x18) + 0x7cc), a1, pcVar6),
+                  iVar3 == 1 && ((iVar3 = get_field_4_on_field_d8(*(u32 *)(*(int *)(a2 + 0x18) + 0x7cc), a1, pcVar6),
                                   iVar3 == 0 && (iVar3 = *(int *)(a0 + 0x878), iVar3 == 0)))))) {
-                a1 = FUN_8c0637c8;
-                uVar1 = FUN_8c0637c8(*(int *)(a2 + 0xc), FUN_8c0637c8, pcVar6, 0);
+                a1 = get_field_44_s8;
+                uVar1 = get_field_44_s8(*(int *)(a2 + 0xc), get_field_44_s8, pcVar6, 0);
                 if ((char)uVar1 == '\0') {
                     if (*(int *)(a0 + 0x40) == 0x14) {
                         a3 = (char *)0x18;
                         *(int *)(a0 + 0x40) = 0x18;
                     } else {
-                        uVar1 = FUN_8c0e98f0(*(int *)(a2 + 0xc));
+                        uVar1 = get_field_39_s8(*(int *)(a2 + 0xc));
                         FUN_8c0fa5bc(0x8c35468c, (int)(char)uVar1, pcVar6, iVar3);
                         a3 = "EVENT_QUIZ";
                         pcVar6 = NULL;
@@ -3944,21 +3949,22 @@ int FUN_8c107590(code *a0, code *a1, code *a2, char *a3) {
                     goto LAB_8c107c10;
                 }
             }
-            ar7_00 = FUN_8c0e98f0;
-            uVar1 = FUN_8c0e98f0(*(int *)(a2 + 0xc));
+            ar7_00 = get_field_39_s8;
+            uVar1 = get_field_39_s8(*(int *)(a2 + 0xc));
             a3 = (char *)ar7_00;
             if (((char)uVar1 == '\x03') &&
                 (iVar3 = FUN_8c02c518(*(int *)(a2 + 4), a1, pcVar6), a3 = (char *)ar7_00, iVar3 == -1)) {
-                pcVar6 = FUN_8c035000;
-                a1 = (code *)FUN_8c035000(*(int *)(a2 + 4));
+                pcVar6 = get_field_18_on_field_a8;
+                a1 = (code *)get_field_18_on_field_a8(*(int *)(a2 + 4));
                 a3 = (char *)ar7_00;
-                if ((0 < (int)a1) && ((((iVar3 = FUN_8c0637d0(*(u32 *)(*(int *)(a2 + 0x18) + 0x7cc), a1, pcVar6),
-                                         a3 = (char *)ar7_00, iVar3 == 0 && ((char)a0[0x87c] < '\x03')) &&
-                                        (a1 = (code *)0x878, *(int *)(a0 + 0x878) == 0)) &&
-                                       (uVar1 = FUN_8c0637c8(*(int *)(a2 + 0xc), 0x878, pcVar6, ar7_00),
-                                        a3 = (char *)ar7_00, (char)uVar1 == '\0')))) {
+                if ((0 < (int)a1) &&
+                    ((((iVar3 = get_field_4_on_field_d8(*(u32 *)(*(int *)(a2 + 0x18) + 0x7cc), a1, pcVar6),
+                        a3 = (char *)ar7_00, iVar3 == 0 && ((char)a0[0x87c] < '\x03')) &&
+                       (a1 = (code *)0x878, *(int *)(a0 + 0x878) == 0)) &&
+                      (uVar1 = get_field_44_s8(*(int *)(a2 + 0xc), 0x878, pcVar6, ar7_00), a3 = (char *)ar7_00,
+                       (char)uVar1 == '\0')))) {
                     if (*(int *)(a0 + 0x40) != 0x14) {
-                        uVar1 = FUN_8c0e98f0(*(int *)(a2 + 0xc));
+                        uVar1 = get_field_39_s8(*(int *)(a2 + 0xc));
                         FUN_8c0fa5bc(0x8c35468c, (int)(char)uVar1, pcVar6, ar7_00);
                         pcVar5 = "EVENT_QUIZ";
                         uVar1 = 0;
@@ -3993,7 +3999,7 @@ int FUN_8c107590(code *a0, code *a1, code *a2, char *a3) {
                     goto LAB_8c107c10;
                 }
             }
-            uVar2 = FUN_8c02602c(*(int *)(a2 + 0x18), a1);
+            uVar2 = get_field_a4_s16(*(int *)(a2 + 0x18), a1);
             a1 = (code *)0xa;
             iVar3 = libgcc_divide_helper_01031c(uVar2 & 0xffff, 10, pcVar6);
             if (iVar3 == 1) {
@@ -4010,8 +4016,8 @@ int FUN_8c107590(code *a0, code *a1, code *a2, char *a3) {
                     a1 = (code *)0x3;
                     FUN_8c0306d4(a0 + 0x9c, 3, 0, "EVENT_ROCK_PUSH_INTERVAL");
                 }
-                uVar1 = FUN_8c0e98f0(*(int *)(a2 + 0xc));
-                if (((char)uVar1 == '\x03') && (iVar3 = FUN_8c035000(*(int *)(a2 + 4)), iVar3 == 0)) {
+                uVar1 = get_field_39_s8(*(int *)(a2 + 0xc));
+                if (((char)uVar1 == '\x03') && (iVar3 = get_field_18_on_field_a8(*(int *)(a2 + 4)), iVar3 == 0)) {
                     libgcc_divide_helper_0101e4(*(int *)(a0 + 0x878), 3);
                     iVar3 = libgcc_divide_helper_0101e4(*(int *)(a0 + 0x878), 0x3c);
                     if (2 < iVar3) {
@@ -4029,19 +4035,19 @@ int FUN_8c107590(code *a0, code *a1, code *a2, char *a3) {
 LAB_8c107c10:
     uVar1 = FUN_8c02bef8(*(int *)(a2 + 4), a1, pcVar6);
     if ((short)uVar1 == 3) {
-        a1 = FUN_8c0637c8;
-        uVar1 = FUN_8c0637c8(*(int *)(a2 + 0xc), FUN_8c0637c8, pcVar6, a3);
+        a1 = get_field_44_s8;
+        uVar1 = get_field_44_s8(*(int *)(a2 + 0xc), get_field_44_s8, pcVar6, a3);
         if ((char)uVar1 == '\0') {
             uVar2 = get_field_a0_035724(*(int *)(a2 + 0x18), a1);
             pcVar6 = (code *)(uVar2 & 0xff);
             a3 = (char *)pcVar6;
             if (pcVar6 == NULL) {
-                uVar1 = FUN_8c05eec4(*(int *)(a2 + 0xc), *(int *)(a2 + 0xc), 0, 0);
+                uVar1 = get_field_bc_s8(*(int *)(a2 + 0xc), *(int *)(a2 + 0xc), 0, 0);
                 a1 = (code *)(int)(char)uVar1;
                 if (((a1 == (code *)0x2) && (iVar3 = FUN_8c02c518(*(int *)(a2 + 4), 2, pcVar6), iVar3 == -1)) &&
                     (iVar3 = get_field_4_062878(*(int *)(a2 + 0xc)), iVar3 == 1)) {
                     a1 = NULL;
-                    FUN_8c063800(*(int *)(a2 + 0xc), 0);
+                    set_field_4_063800(*(int *)(a2 + 0xc), 0);
                     *(int *)(a0 + 0x850) = -10;
                     *(int *)(a0 + 0x858) = 0;
                 }
@@ -4052,7 +4058,7 @@ LAB_8c107c10:
     if ((short)uVar1 != 3) {
         return (int)(short)uVar1;
     }
-    iVar3 = FUN_8c0637d0(*(u32 *)(*(int *)(a2 + 0x18) + 0x7cc), a1, pcVar6);
+    iVar3 = get_field_4_on_field_d8(*(u32 *)(*(int *)(a2 + 0x18) + 0x7cc), a1, pcVar6);
     if (iVar3 != 0) {
         return iVar3;
     }
@@ -4063,7 +4069,7 @@ LAB_8c107c10:
     if (*(int *)(a0 + 0x850) != -10) {
         return *(int *)(a0 + 0x850);
     }
-    pcVar4 = (code *)FUN_8c0637c8(*(int *)(a2 + 0xc), *(int *)(a2 + 0xc), pcVar6, a3);
+    pcVar4 = (code *)get_field_44_s8(*(int *)(a2 + 0xc), *(int *)(a2 + 0xc), pcVar6, a3);
     if ((char)pcVar4 == '\0') {
         iVar3 = FUN_8c02fcc4(a0, a2, pcVar6, a3);
         pcVar4 = (code *)0x1;
@@ -4084,13 +4090,13 @@ LAB_8c107c10:
             goto LAB_8c107eb4;
         }
     }
-    uVar1 = FUN_8c0637c8(*(int *)(a2 + 0xc), pcVar4, pcVar6, a3);
+    uVar1 = get_field_44_s8(*(int *)(a2 + 0xc), pcVar4, pcVar6, a3);
     if (((char)uVar1 == '\0') && (pcVar4 = (code *)FUN_8c02fcc4(a0, a2, pcVar6, a3), pcVar4 == (code *)0x1)) {
         pcVar4 = (code *)0x1;
-        FUN_8c0637c0(*(int *)(a2 + 0xc), 1);
+        set_field_44_u8(*(int *)(a2 + 0xc), 1);
     }
 LAB_8c107eb4:
-    uVar1 = FUN_8c0637c8(*(int *)(a2 + 0xc), pcVar4, pcVar6, FUN_8c0637c8);
+    uVar1 = get_field_44_s8(*(int *)(a2 + 0xc), pcVar4, pcVar6, get_field_44_s8);
     pcVar5 = (char *)(int)(char)uVar1;
     pcVar6 = (code *)(int)(char)uVar1;
     if ((pcVar6 == (code *)0x1) && (pcVar4 = a2, iVar3 = FUN_8c02fcc4(a0, a2, 1, pcVar5), iVar3 == 1)) {
@@ -4133,7 +4139,7 @@ LAB_8c107eb4:
     }
     iVar3 = 0x858;
     if (300 < *(int *)(a0 + 0x858)) {
-        uVar1 = FUN_8c0637c8(*(int *)(a2 + 0xc), pcVar4, pcVar6, pcVar5);
+        uVar1 = get_field_44_s8(*(int *)(a2 + 0xc), pcVar4, pcVar6, pcVar5);
         iVar3 = (int)(char)uVar1;
         if ((char)uVar1 == '\0') {
             *(int *)(a0 + 0x850) = 0;
@@ -4311,29 +4317,29 @@ int FUN_8c10862c(int a0, u32 a1, int a2, u32 a3) {
         switch (iVar1) {
         case 0:
             *(u32 *)(a0 + 0x118) = 0;
-            uVar3 = FUN_8c02c5ac(*(u32 *)(a2 + 4), a1);
+            uVar3 = get_field_8_s8(*(u32 *)(a2 + 4), a1);
             *(int *)(a0 + 0xfc) = (int)(char)uVar3;
             break;
         case 1:
             *(u32 *)(a0 + 0x118) = 1;
-            uVar3 = FUN_8c02c5ac(*(int *)(a2 + 4) + 0x18, a1);
+            uVar3 = get_field_8_s8(*(int *)(a2 + 4) + 0x18, a1);
             *(int *)(a0 + 0xfc) = (int)(char)uVar3;
             break;
         case 2:
             *(u32 *)(a0 + 0x118) = 2;
-            uVar3 = FUN_8c02c5ac(*(int *)(a2 + 4) + 0x30, a1);
+            uVar3 = get_field_8_s8(*(int *)(a2 + 4) + 0x30, a1);
             *(int *)(a0 + 0xfc) = (int)(char)uVar3;
             break;
         case 3:
             goto switchD_8c108664_caseD_3;
         case 4:
             *(u32 *)(a0 + 0x118) = 4;
-            uVar3 = FUN_8c02c5ac(*(int *)(a2 + 4) + 0x60, a1);
+            uVar3 = get_field_8_s8(*(int *)(a2 + 4) + 0x60, a1);
             *(int *)(a0 + 0xfc) = (int)(char)uVar3;
             break;
         case 5:
             *(u32 *)(a0 + 0x118) = 5;
-            uVar3 = FUN_8c02c5ac(*(int *)(a2 + 4) + 0x78, a1);
+            uVar3 = get_field_8_s8(*(int *)(a2 + 4) + 0x78, a1);
             *(int *)(a0 + 0xfc) = (int)(char)uVar3;
         }
     } else {
@@ -4355,14 +4361,14 @@ int FUN_8c10862c(int a0, u32 a1, int a2, u32 a3) {
             iVar1 = FUN_8c0309c8(a0 + 0x9c, 0, ar6_00, a3);
             if (iVar1 != 0) {
                 for (iVar1 = 0; iVar1 < 6; iVar1 = iVar1 + 1) {
-                    uVar2 = FUN_8c025f68(iVar1 * 0x18 + *(int *)(a2 + 4));
+                    uVar2 = get_field_0_s8(iVar1 * 0x18 + *(int *)(a2 + 4));
                     if ((char)uVar2 == '\x01') {
                         *(u32 *)(a0 + iVar1 * 4 + 0x11c) = 1;
                     } else {
                         *(u32 *)(a0 + iVar1 * 4 + 0x11c) = 0;
                     }
                 }
-                uVar3 = FUN_8c02d1c8(*(int *)(a2 + 4) + 0xa8);
+                uVar3 = get_field_1_s8(*(int *)(a2 + 4) + 0xa8);
                 if ((char)uVar3 == '\x01') {
                     *(u32 *)(a0 + 0x148) = 1;
                 }
@@ -4458,7 +4464,7 @@ u32 FUN_8c1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
         Vec3_assign_wrap_05f640(a0, auStack_3c, ar6_00, a3);
         uVar4 = 0xffffffff;
         Vec3_dtor(auStack_3c, 0xffffffff, ar6_00, a3);
-        FUN_8c02f670(*a2, uVar4, ar6_00, a3, auStack_4c);
+        Vec3_ctor_copy_wrap_02f670(*a2, uVar4, ar6_00, a3, auStack_4c);
         Vec3_sub(auStack_4c, a2[5] + 0x10, ar6_00, a3, auStack_5c);
         Vec3_assign(&uStack_1c, auStack_5c, ar6_00, a3);
         Vec3_dtor(auStack_5c, 0xffffffff, ar6_00, a3);
@@ -4516,7 +4522,7 @@ u32 FUN_8c1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
                 if (iVar3 == 1) {
                     ar6_00 = (u32 *)0x1b;
                     uVar4 = 0xb;
-                    FUN_8c0b9ed4(a2[6], 0xb, 0x1b);
+                    recent5_push_unique(a2[6], 0xb, 0x1b);
                 }
             }
             uVar2 = FUN_8c02bef8(a2[1], uVar4, ar6_00);
@@ -4525,17 +4531,17 @@ u32 FUN_8c1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
                 uVar2 = get_field_a0_035724(a2[6], uVar4);
                 uVar8 = CONCAT21(sVar1, (char)uVar2);
                 if ((char)uVar2 == '\0') {
-                    uVar2 = FUN_8c0637c8(a2[3], uVar4, ar6_00, a3);
+                    uVar2 = get_field_44_s8(a2[3], uVar4, ar6_00, a3);
                     ain0 = CONCAT31(uVar8, (char)uVar2);
                     if (((char)uVar2 == '\x01') && (*(int *)(a0 + 0x10c) == 1)) {
                         ar6_00 = (u32 *)0x1b;
-                        FUN_8c0b9ed4(a2[6], 0xc, 0x1b);
-                        FUN_8c0637c0(a2[3], 0);
-                        FUN_8c0e9888(a2[3], 1);
+                        recent5_push_unique(a2[6], 0xc, 0x1b);
+                        set_field_44_u8(a2[3], 0);
+                        set_field_3c_u8(a2[3], 1);
                         FUN_8c064ba0(a2[6], 1);
                         *(u32 *)(a0 + 0x10c) = 0;
                         uVar4 = 2;
-                        FUN_8c061180(a2[3], 2);
+                        set_field_0_u8_061180(a2[3], 2);
                         *(u32 *)(a0 + 0x850) = 0;
                     }
                 }
@@ -4548,7 +4554,7 @@ u32 FUN_8c1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
                 FUN_8c02af68(*a2, 1);
                 ar6_00 = (u32 *)0x1b;
                 a1 = 0xd;
-                FUN_8c0b9ed4(a2[6], 0xd, 0x1b);
+                recent5_push_unique(a2[6], 0xd, 0x1b);
             }
             if (*(int *)(a0 + 0x10c) == 0xf) {
                 *(u32 *)(a0 + 4) = 5;
@@ -4566,7 +4572,7 @@ u32 FUN_8c1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
             if (*(int *)(a0 + 0x10c) == 0x10) {
                 FUN_8c02ce10(a2[1] + 0x90, 0, ar6_00);
                 a1 = 1;
-                FUN_8c0637c0(a2[3], 1);
+                set_field_44_u8(a2[3], 1);
                 *(u32 *)(a0 + 4) = 0xd;
                 *(u32 *)(a0 + 8) = 99;
                 *(u32 *)(a0 + 0xc) = 0;
@@ -4633,7 +4639,7 @@ int FUN_8c108f3c(int a0, u32 a1, int a2) {
                         if (iVar3 == 0) {
                             iVar3 = a2;
                             iVar1 = FUN_8c02c518(*(u32 *)(a2 + 4), a1, a2);
-                            uVar2 = FUN_8c02c5ac(iVar1 * 0x18 + *(int *)(a2 + 4), a1);
+                            uVar2 = get_field_8_s8(iVar1 * 0x18 + *(int *)(a2 + 4), a1);
                             if ('\0' < (char)uVar2) {
                                 iVar3 = FUN_8c02c518(*(u32 *)(a2 + 4), a1, iVar3);
                                 if (iVar3 == 0) {
@@ -4783,7 +4789,7 @@ int FUN_8c1093a4(int a0, int *a1, int *a2, char *a3) {
         iVar1 = get_field_6c_02f46c(*a2);
         if ((iVar1 == 0) && (iVar1 = get_field_70_05f490(*a2), iVar1 == 0)) {
             ar6_00 = (int *)0x1b;
-            FUN_8c0b9ed4(a2[6], 0xe, 0x1b);
+            recent5_push_unique(a2[6], 0xe, 0x1b);
             *(u32 *)(a0 + 0x38) = 2;
             *(u32 *)(a0 + 4) = 1;
             *(u32 *)(a0 + 0xc) = 0;
@@ -4825,7 +4831,7 @@ int FUN_8c1093a4(int a0, int *a1, int *a2, char *a3) {
             *(u8 *)(a0 + 0x864) = 1;
             FUN_8c02f298(a0, 0x2b9);
             ar5_00 = NULL;
-            FUN_8c109798(a2[3], 0);
+            set_field_8_109798(a2[3], 0);
             *(u32 *)(a0 + 8) = 0x5f;
             *(u32 *)(a0 + 0xc) = 0;
             *(u32 *)(a0 + 4) = 6;
@@ -4851,7 +4857,7 @@ int FUN_8c1093a4(int a0, int *a1, int *a2, char *a3) {
                 if (iVar1 == 0)
                     goto LAB_8c1096ec;
             }
-            uVar2 = FUN_8c03584c(a2[3]);
+            uVar2 = get_field_be_s8(a2[3]);
             if (((char)uVar2 == '\x02') && (*(char *)(a0 + 0x98) < '\b')) {
                 a3 = "REACTION_FEED_FULL";
                 ar6_00 = NULL;
@@ -4892,10 +4898,10 @@ LAB_8c1096ec:
 }
 
 /*
- * FUN_8c109798  0x8c109798
+ * set_field_8_109798  0x8c109798
  * called by: FUN_8c1093a4
  */
-u32 FUN_8c109798(int a0, u32 a1) {
+u32 set_field_8_109798(int a0, u32 a1) {
     u32 in_r0;
 
     *(u32 *)(a0 + 8) = a1;
@@ -4929,7 +4935,7 @@ int FUN_8c1097a8(int a0, int *a1, int *a2, u8 *a3) {
     piVar5 = a2;
     iVar1 = get_field_124_027930(a2[2], a1, a2, a3);
     if ((iVar1 != 2) && (piVar3 = a2, iVar1 = FUN_8c02fcc4(a0, a2, piVar5, a3), iVar1 == 1)) {
-        uVar2 = FUN_8c02602c(a2[6], piVar3);
+        uVar2 = get_field_a4_s16(a2[6], piVar3);
         piVar3 = (int *)0x3c;
         iVar1 = libgcc_divide_helper_0101e4(uVar2 & 0xffff, 0x3c);
         if (1 < iVar1) {
@@ -4962,7 +4968,7 @@ int FUN_8c1097a8(int a0, int *a1, int *a2, u8 *a3) {
                 }
                 piVar3 = (int *)((int)piVar3 + 1);
             }
-            uVar2 = FUN_8c02602c(a2[6], uVar4);
+            uVar2 = get_field_a4_s16(a2[6], uVar4);
             piVar3 = (int *)0x3c;
             iVar1 = libgcc_divide_helper_0101e4(uVar2 & 0xffff, 0x3c);
             if ((((0 < iVar1) && (uVar4 = FUN_8c02bef8(a2[1], piVar3, piVar5), 6 < (short)uVar4)) &&
@@ -4973,13 +4979,13 @@ int FUN_8c1097a8(int a0, int *a1, int *a2, u8 *a3) {
                 piVar5 = NULL;
                 (*(code *)(&FUN_8c030568))(a0 + 0x9c, 0x16, 0, a3, (&DATA_8c1eee90) + 0x33);
                 piVar3 = NULL;
-                FUN_8c109b10(a2[1] + 0xa8, 0);
+                set_field_1c_u8(a2[1] + 0xa8, 0);
             }
         }
     }
     iVar1 = get_field_13c_028d9c(a2[1], piVar3, piVar5);
     if ((iVar1 == 3) || (iVar1 = get_field_13c_028d9c(a2[1], piVar3, piVar5), iVar1 == 4)) {
-        uVar2 = FUN_8c02602c(a2[6], piVar3);
+        uVar2 = get_field_a4_s16(a2[6], piVar3);
         iVar1 = libgcc_divide_helper_01031c(uVar2 & 0xffff, 0x45, piVar5);
         if (iVar1 == 0x14) {
             *(u8 *)(0x854 + a0) = 0;
@@ -4989,9 +4995,10 @@ int FUN_8c1097a8(int a0, int *a1, int *a2, u8 *a3) {
               (iVar1 = 3, *(char *)(0x98 + a0) < '\x04')) &&
              ((piVar3 = a2, iVar1 = FUN_8c02fcc4(a0, a2, piVar5, a3),
                iVar1 == 1 &&
-                   (iVar1 = (*(code *)(&FUN_8c0637d0))(*(u32 *)(0x7cc + a2[6]), piVar3, piVar5, a3), iVar1 == 0)))) &&
+                   (iVar1 = (*(code *)(&get_field_4_on_field_d8))(*(u32 *)(0x7cc + a2[6]), piVar3, piVar5, a3),
+                    iVar1 == 0)))) &&
             (iVar1 = (int)*(char *)(0x854 + a0), iVar1 == 0)) {
-            uVar2 = FUN_8c02602c(a2[6], piVar3);
+            uVar2 = get_field_a4_s16(a2[6], piVar3);
             iVar6 = libgcc_divide_helper_0101e4(uVar2 & 0xffff, 0x3c);
             iVar1 = 2;
             if (2 < iVar6) {
@@ -5004,10 +5011,10 @@ int FUN_8c1097a8(int a0, int *a1, int *a2, u8 *a3) {
 }
 
 /*
- * FUN_8c109b10  0x8c109b10
+ * set_field_1c_u8  0x8c109b10
  * called by: FUN_8c1097a8
  */
-u32 FUN_8c109b10(int a0, u32 a1) {
+u32 set_field_1c_u8(int a0, u32 a1) {
     *(u8 *)(a0 + 0x1c) = (u8)a1;
     return 0x1c;
 }
@@ -5063,7 +5070,7 @@ u32 FUN_8c109b98(int a0, int *a1, u32 a2) {
     uVar1 = get_field_4_05eed8(a0);
     switch (uVar1) {
     case 6:
-        FUN_8c02f670(*(u32 *)(a0 + 0x6c), a5, a6, a7, auStack_38);
+        Vec3_ctor_copy_wrap_02f670(*(u32 *)(a0 + 0x6c), a5, a6, a7, auStack_38);
         uVar1 = Vec3_assign(&uStack_18, auStack_38, a6, a7);
         uVar1 = Vec3_assign(a0 + 0x70, uVar1, a6, a7);
         Vec3_assign(a0 + 0x28, uVar1, a6, a7);
@@ -5086,7 +5093,7 @@ u32 FUN_8c109b98(int a0, int *a1, u32 a2) {
         break;
     case 0xd:
         if (*(int *)(a0 + 0x6c) != 0) {
-            FUN_8c02f670(*(u32 *)(a0 + 0x6c), a5, a6, a7, auStack_28);
+            Vec3_ctor_copy_wrap_02f670(*(u32 *)(a0 + 0x6c), a5, a6, a7, auStack_28);
             Vec3_assign(&uStack_18, auStack_28, a6, a7);
             Vec3_dtor(auStack_28, 0xffffffff, a6, a7);
             if (cVar2 == '\0') {
@@ -5132,7 +5139,7 @@ u32 FUN_8c109dc4(int a0, int a1) {
         ar5_00 = 1;
         uVar1 = FUN_8c109e34(*(u32 *)(a1 + 0x10), 1);
         if ((((char)uVar1 == '\x05') && (*(int *)(0x874 + a0) == 0)) &&
-            (uVar1 = FUN_8c02d1d0(*(int *)(a1 + 4) + 0xa8), (char)uVar1 == '\x01')) {
+            (uVar1 = get_field_0_s8_02d1d0(*(int *)(a1 + 4) + 0xa8), (char)uVar1 == '\x01')) {
             return 1;
         }
     }
@@ -5158,8 +5165,8 @@ int FUN_8c109e40(int a0, int a1, u32 a2, u32 a3) {
     iVar1 = *(int *)(a0 + 0x874);
     if (iVar1 == 0) {
         *(u8 *)(a0 + 0x98) = 3;
-        FUN_8c02cb7c(*(int *)(a1 + 4) + 0xa8, 0, a2, a3);
-        FUN_8c02cb74(*(int *)(a1 + 4) + 0xa8, 0);
+        set_field_0_u8_02cb7c(*(int *)(a1 + 4) + 0xa8, 0, a2, a3);
+        set_field_1_s8(*(int *)(a1 + 4) + 0xa8, 0);
         uVar2 = 1;
         FUN_8c035718(*(u32 *)(a1 + 0x10), 1);
         iVar1 = FUN_8c02c340(*(int *)(a1 + 4) + 0x90, uVar2, a2, a3);
@@ -5309,16 +5316,16 @@ u8 *Class_12c3c4_m4_10a16c(u32 unused_a0, u32 a1, u32 a2) {
         puVar1 = (&switchD_8c10a18c::switchdataD_8c10a190)[iVar2];
         switch (iVar2) {
         case 0:
-            puVar1 = (u8 *)FUN_8c0b9ed4(a1, 10, 0x1b);
+            puVar1 = (u8 *)recent5_push_unique(a1, 10, 0x1b);
             break;
         case 3:
-            puVar1 = (u8 *)FUN_8c0b9ed4(a1, 0x10, 0x1b);
+            puVar1 = (u8 *)recent5_push_unique(a1, 0x10, 0x1b);
             break;
         case 6:
-            puVar1 = (u8 *)FUN_8c0b9ed4(a1, 0x12, 0x1b);
+            puVar1 = (u8 *)recent5_push_unique(a1, 0x12, 0x1b);
             break;
         case 7:
-            puVar1 = (u8 *)FUN_8c0b9ed4(a1, 0x13, 0x1b);
+            puVar1 = (u8 *)recent5_push_unique(a1, 0x13, 0x1b);
         }
     }
     return puVar1;
@@ -8105,10 +8112,11 @@ int FUN_8c10ca10(int *a0) {
 }
 
 /*
- * FUN_8c10ca2e  0x8c10ca2e
+ * memmove_wrap_10ca2e  0x8c10ca2e
+ * only calls memmove
  * called by: FUN_8c11d6f0, FUN_8c11ea3c
  */
-u32 FUN_8c10ca2e(void) {
+u32 memmove_wrap_10ca2e(void) {
     u32 uVar1;
 
     uVar1 = memmove((&DATA_8c1274a8), 0x4c);
@@ -11094,7 +11102,7 @@ u32 FUN_8c10fab2(int a0, int a1) {
                     } while (iVar5 < (int)(u32) * (u8 *)(a0 + 0x5a));
                 }
                 ain0 = (float *)(*(int *)(a0 + 0x44) + uVar6 * 4);
-                FUN_8c11fbb6();
+                noop_11fbb6();
                 fVar11 = fVar11 * (float)((u64)lVar15 >> 0x20) - *(float *)(*(int *)(a0 + 0x44) + uVar6 * 4);
                 in_dr0 = (u64)(u32)fVar11 << 0x20;
                 fVar11 = fVar11 * (float)uVar14 + *ain0;
@@ -11283,7 +11291,7 @@ u32 FUN_8c10fabc(u32 unused_a0, double *a1, u32 unused_a2, u32 unused_a3, int ai
                     } while (iVar5 < (int)(u32) * (u8 *)(unaff_r14 + 0x5a));
                 }
                 *(u32 *)(puVar8 + -8) = *(int *)(unaff_r14 + 0x44) + uVar6 * 4;
-                FUN_8c11fbb6(ar4_00, a1, ar6_00, iVar5, *(u32 *)(puVar8 + -8));
+                noop_11fbb6(ar4_00, a1, ar6_00, iVar5, *(u32 *)(puVar8 + -8));
                 fVar11 = fVar11 * (float)((u64)lVar16 >> 0x20) - *(float *)(*(int *)(unaff_r14 + 0x44) + uVar6 * 4);
                 in_dr0 = (u64)(u32)fVar11 << 0x20;
                 fVar11 = fVar11 * (float)uVar15 + **(float **)(puVar8 + -8);

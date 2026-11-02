@@ -351,7 +351,7 @@ u32 FUN_8c220658(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
                             *(int *)((int)puVar7 + -0x58) = *(int *)((int)puVar7 + -0x5c);
                             a1 = *(int *)((int)puVar7 + -0x44) + iVar4;
                             a2 = unaff_r11;
-                            FUN_8c2215b4(*(int *)((int)puVar7 + -0x4c) + iVar4, a1, unaff_r11);
+                            Vec3_lerp_normalize(*(int *)((int)puVar7 + -0x4c) + iVar4, a1, unaff_r11);
                             iVar4 = *(int *)((int)puVar7 + -0x54);
                             iVar2 = iVar2 + g_8c4aa374 * 4;
                             *(int *)((int)puVar7 + -0x54) = iVar4 + 1;
@@ -380,7 +380,7 @@ u32 FUN_8c220658(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
                             *(int *)((int)puVar7 + -0x48) = *(int *)((int)puVar7 + -0x58);
                             a1 = *(int *)((int)puVar7 + -0x44) + iVar4;
                             a2 = unaff_r11;
-                            FUN_8c2215b4(*(int *)((int)puVar7 + -0x4c) + iVar4, a1, unaff_r11);
+                            Vec3_lerp_normalize(*(int *)((int)puVar7 + -0x4c) + iVar4, a1, unaff_r11);
                             unaff_r11 = (u64 *)((int)unaff_r11 + g_8c4aa374 * 4);
                             **(u32 **)((int)puVar7 + -0x54) = *(u32 *)(*(int *)((int)puVar7 + -0x5c) + g_8c4aa380 * 4);
                             iVar4 = g_8c4aa374 * 4;
@@ -411,7 +411,7 @@ u32 FUN_8c220658(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
                             unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                             a1 = *(int *)((int)puVar7 + -0x44) + iVar4 * 4;
                             a2 = unaff_r11;
-                            FUN_8c2215b4(*(int *)((int)puVar7 + -0x4c) + iVar4 * 4, a1, unaff_r11);
+                            Vec3_lerp_normalize(*(int *)((int)puVar7 + -0x4c) + iVar4 * 4, a1, unaff_r11);
                             iVar2 = iVar2 + 1;
                             unaff_r11 = (u64 *)((int)unaff_r11 + g_8c4aa374 * 4);
                             iVar4 = iVar4 + 3;
@@ -432,7 +432,8 @@ u32 FUN_8c220658(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
                             unaff_r13 = (u64 *)((int)unaff_r13 + g_8c4aa374 * 4);
                             a1 = iVar4 * 4 + *(int *)((int)puVar7 + -0x44);
                             a2 = unaff_r11;
-                            FUN_8c2215b4(*(int *)((int)puVar7 + -0x3c) + *(int *)((int)puVar7 + -0x4c), a1, unaff_r11);
+                            Vec3_lerp_normalize(*(int *)((int)puVar7 + -0x3c) + *(int *)((int)puVar7 + -0x4c), a1,
+                                                unaff_r11);
                             iVar2 = iVar2 + 1;
                             unaff_r11 = (u64 *)((int)unaff_r11 + g_8c4aa374 * 4);
                             **(u32 **)((int)puVar7 + -0x54) = *(u32 *)(*(int *)((int)puVar7 + -0x5c) + g_8c4aa380 * 4);
@@ -781,7 +782,7 @@ u32 FUN_8c220c88(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
                         unaff_r13 = (double *)((int)unaff_r13 + g_8c4aa374 * 4);
                         a1 = (double *)(iVar7 * 4 + iStack_54);
                         a2 = unaff_r11;
-                        FUN_8c2215b4(iVar7 * 4 + iStack_60, a1, unaff_r11);
+                        Vec3_lerp_normalize(iVar7 * 4 + iStack_60, a1, unaff_r11);
                         puStack_68 = (u32 *)((int)puStack_68 + 1);
                         unaff_r11 = (double *)((int)unaff_r11 + g_8c4aa374 * 4);
                         puVar9 = puVar9 + g_8c4aa374;
@@ -806,7 +807,7 @@ u32 FUN_8c220c88(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
                         unaff_r13 = (double *)((int)unaff_r13 + g_8c4aa374 * 4);
                         a1 = (double *)(iVar7 * 4 + iStack_54);
                         a2 = unaff_r11;
-                        FUN_8c2215b4(iVar7 * 4 + iStack_60, a1, unaff_r11);
+                        Vec3_lerp_normalize(iVar7 * 4 + iStack_60, a1, unaff_r11);
                         unaff_r11 = (double *)((int)unaff_r11 + g_8c4aa374 * 4);
                         *puStack_5c = puStack_68[(int)g_8c4aa380];
                         puStack_5c = puStack_5c + g_8c4aa374;
@@ -829,7 +830,7 @@ u32 FUN_8c220c88(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
                         unaff_r13 = (double *)((int)unaff_r13 + g_8c4aa374 * 4);
                         a1 = (double *)(iVar10 * 4 + iStack_54);
                         a2 = unaff_r11;
-                        FUN_8c2215b4(iVar10 * 4 + iStack_60, a1, unaff_r11);
+                        Vec3_lerp_normalize(iVar10 * 4 + iStack_60, a1, unaff_r11);
                         iVar7 = iVar7 + 1;
                         unaff_r11 = (double *)((int)unaff_r11 + g_8c4aa374 * 4);
                         iVar10 = iVar10 + 3;
@@ -844,7 +845,7 @@ u32 FUN_8c220c88(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
                         unaff_r13 = (double *)((int)unaff_r13 + g_8c4aa374 * 4);
                         a1 = (double *)(iVar10 * 4 + iStack_54);
                         a2 = unaff_r11;
-                        FUN_8c2215b4(iVar10 * 4 + iStack_60, a1, unaff_r11);
+                        Vec3_lerp_normalize(iVar10 * 4 + iStack_60, a1, unaff_r11);
                         iVar7 = iVar7 + 1;
                         unaff_r11 = (double *)((int)unaff_r11 + g_8c4aa374 * 4);
                         *puStack_5c = puStack_68[(int)g_8c4aa380];
@@ -877,7 +878,7 @@ int FUN_8c22123c(int a0, int a1, int a2, u32 *a3) {
     int *piVar6;
     u8 auStack_18[12];
 
-    FUN_8c010794(8, auStack_18, &g_8c26d7b0);
+    switch_jump(8, auStack_18, &g_8c26d7b0);
     iVar1 = libgcc_divide_helper_0106dc(a1 + a2 + -1, a2);
     iVar1 = iVar1 * 8 + a0;
     piVar5 = (int *)(a1 * 8 + a0);
@@ -904,7 +905,7 @@ int FUN_8c221300(int a0, int a1, u32 a2, int *a3) {
     int *piVar4;
     u8 auStack_14[12];
 
-    FUN_8c010794(8, auStack_14, &g_8c26d7b8);
+    switch_jump(8, auStack_14, &g_8c26d7b8);
     piVar4 = (int *)(a1 * 8 + a0);
     iVar1 = libgcc_divide_helper_0106dc(a1 + 1, a2);
     piVar2 = (int *)(a0 + iVar1 * 8);
@@ -926,7 +927,7 @@ int FUN_8c22138a(int a0, int a1, u32 a2, int *a3) {
     int *piVar4;
     u8 auStack_14[12];
 
-    FUN_8c010794(8, auStack_14, &g_8c26d7c0);
+    switch_jump(8, auStack_14, &g_8c26d7c0);
     piVar4 = (int *)(a1 * 8 + a0);
     iVar1 = libgcc_divide_helper_0106dc(a1 + 1, a2);
     piVar2 = (int *)(a0 + iVar1 * 8);
@@ -999,10 +1000,11 @@ u32 FUN_8c22158a(float *a0, float *a1, float *a2) {
 }
 
 /*
- * FUN_8c2215b4  0x8c2215b4
+ * Vec3_lerp_normalize  0x8c2215b4
+ * a2 = normalize(lerp(a0, a1, fr4)); (0, 0, 1) when degenerate
  * called by: FUN_8c21daf2, FUN_8c21e4f8, FUN_8c21ee94, FUN_8c21f2ae, FUN_8c21fca8, FUN_8c220658, FUN_8c220c88
  */
-u32 *FUN_8c2215b4(float *a0, float *a1, float *a2) {
+u32 *Vec3_lerp_normalize(float *a0, float *a1, float *a2) {
     float *pfVar1;
     float *pfVar2;
     float fVar3;
@@ -24312,7 +24314,7 @@ double *FUN_8c22b7a8(short *a0, int a1, u32 a2, double *a3) {
 
     *(int *)(puVar15 + -8) = (int)uVar23;
 
-    FUN_8c25ce48(pdVar5, ar5_00, ar6_00, ar7_00, *(u32 *)(puVar15 + -0xc0));
+    njUnitVector(pdVar5, ar5_00, ar6_00, ar7_00, *(u32 *)(puVar15 + -0xc0));
     *(u32 *)(puVar15 + -0xc0) = 0xff000000;
     uVar3 = ta_fifo_221778(pdVar5);
     *(u32 *)(puVar15 + -0xbc) = uVar3;
@@ -24802,7 +24804,7 @@ double *FUN_8c22bb70(u32 a0, u32 a1, u32 a2, double *a3) {
 
     *(int *)((int)pdVar15 + -8) = (int)uVar26;
 
-    FUN_8c25ce48(pdVar5, ar5_00, ar6_00, ar7_00, *(u32 *)((int)pdVar15 + -0xdc));
+    njUnitVector(pdVar5, ar5_00, ar6_00, ar7_00, *(u32 *)((int)pdVar15 + -0xdc));
     g_8c4aa38c = 0xff000000;
     g_8c4aa388 = ta_fifo_221778(pdVar5);
     uVar4 = *(u32 *)((int)pdVar15 + -200);

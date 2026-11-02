@@ -32,19 +32,72 @@
 8c1f9610	syG2CpuCopy	CPU copy over G2 with FIFO waits
 8c1f9284	syG2FifoWait
 8c264010	adx_server	ADX file/stream server (V-blank job)
-8c26a5d6	mwSnd_Destroy
-8c26a6fc	mwSnd_Play
-8c26a74c	mwSnd_Stop
-8c26a7b4	mwSnd_GetPlayPos
-8c26a860	mwSnd_SetOutVol
-8c26a8e4	mwSnd_GetOutVol
-8c26a914	mwSnd_SetOutPan
-8c26a956	mwSnd_GetOutPan
-8c26ad32	mwSnd_Trns
-8c26ada4	mwSnd_GetTrnsStat
+8c26a5d6	mwSndClosePort
+8c26a6fc	mwSndPlay
+8c26a74c	mwSndStop
+8c26a7b4	mwSndGetPlayPos
+8c26a860	mwSndSetVol
+8c26a8e4	mwSndGetVol
+8c26a914	mwSndSetPan
+8c26a956	mwSndGetPan
+8c26ad32	mwSndTrns
+8c26ada4	mwSndGetTrnsStat
 8c022404	aica_driver_upload	copies MANATEE.DRV to sound RAM and releases the ARM
 8c0101d4	-		2
 8c013ef4	-		3
 8c013ff8	-		3
 8c014010	-		1
 8c014200	-		0
+# helpers named by reading them (most-called first)
+8c0d7668	set_5_floats	stores fr4..fr8 into five consecutive floats
+8c0f3df8	copy_5_words	copies five 32-bit words
+8c0230f0	Vec3_make	builds a Vec3 from x, y, z into the caller's return slot
+8c03c0f0	array_at_field_14	address of element a1 of the 32-bit array the object keeps at +0x14
+8c022d04	Vec3_assign_f	stores fr4..fr6 as x, y, z
+8c032ab0	rand_float	rand() scaled to a float (result in fr0)
+8c2688a0	sd_set_last_error	records an sd library error code and detail
+8c010120	vec_new_array	constructs count elements of size bytes with ctor; on failure destroys the built ones with dtor (pairs with vec_delete_array)
+8c022fc0	Vec3_distance_sq	squared distance between two points
+8c010794	switch_jump	compiler switch helper: jumps through the table at 0x8c0107f4
+8c256328	matrix_push	pushes the current 4x4 matrix onto the matrix stack
+8c256210	matrix_pop_n	pops a0 matrices off the matrix stack
+8c0f970c	strcmp		2
+8c023aa0	Vec3_add_assign	a0 += a1
+8c256fec	matrix_scale	scales the matrix rows by fr4, fr5, fr6
+8c1f4570	debug_log_printf	formats into a buffer and hands it to the log hook when logging is enabled
+8c25ece6	lib_error_printf	formats a library error and hands it to the registered error callback
+8c0314f8	get_motion_data	motion data entry a1 of the object's table; reports "Check This Motion Data" when it is missing
+8c033474	se_play_at_object	plays a 3D sound effect at an object's position
+8c013ec0	memcmp		3
+8c013fb4	memmove_bytes	byte-wise copy that handles overlapping buffers	3
+8c01437c	strcat		2
+8c023b4c	Vec3_sub_assign	a0 -= a1
+8c023d04	Vec3_not_equal	1 unless all three components match
+8c023dac	Vec3_set_one	sets x, y, z to 1.0
+8c1f88f0	int_diff	returns a1 - a0	2
+8c0205e8	list_push_front	links node a2 in front of the list head *a1
+8c021a60	se_status	sound-effect port status (se_slot_status) when the port is open
+8c021a8c	se_close_port_handle	closes the port handle *a1 and sets it to -1
+8c010e38	float_check_errno	sets errno 0x44c (inf) or 0x44d (NaN) for a non-finite fr4
+8c014334	sprintf
+8c010e84	format_output	printf core used by sprintf (mode, stream, buffer, format)
+8c25b3ec	njSetTexture	makes a0 the current texture list (0x8c277b04); -1 for NULL
+8c25b434	njSetTextureNum	selects texture a0 of the current list and loads its parameters when it changes
+8c01538c	obj_set_texlist	njSetTexture on the texture list the object keeps at +4
+8c014a94	obj_set_texture_num	njSetTextureNum(a1)
+8c20fe00	ta_load_texture_params	copies a texture/material block (+0x70..+0xa0) into the TA polygon globals
+8c25a380	tex_entry_alloc	takes a free 0x44-byte entry in the texture table (0x8c277b08) and fills it from a1
+8c25cddc	njGetMatrix	copies the current matrix into a0
+8c25ce48	njUnitVector	normalises the Vec3 at a0 in place
+8c023bf4	Vec3_scale_assign	a0 *= *a1
+8c2215b4	Vec3_lerp_normalize	a2 = normalize(lerp(a0, a1, fr4)); (0, 0, 1) when degenerate
+8c022dac	Vec3_cos_angle	dot(a0, a1) / (|a0| |a1|)
+8c236454	draw_state_save	saves the TA polygon state (0x8c4aabbc +0x90..) into 0x8c4ab238
+8c2364b2	draw_state_restore	restores the TA polygon state saved by draw_state_save
+8c260cc8	irq_restore_nested	drops the interrupt-disable nesting count and restores SR.IMASK when it reaches 0
+8c0b9ed4	recent5_push_unique	pushes a1 onto the five-entry recent list at +0x30 unless it is already there
+8c034148	CAnimBody_PlayToEnd	starts animation a1 and steps it each call; 1 when it finishes, 2 when it cannot start
+8c036988	set_vec3_field_30	stores fr4..fr6 at +0x30
+8c03c314	timer_start_94	+0x94 = fr4, +0xa4 = 1
+8c031748	timer_stop_94	clears +0x94 and +0xa4
+8c034a70	record18_take	returns record a3 of the 0x18-byte table *a1 in a2 and clears it

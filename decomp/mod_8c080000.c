@@ -68,9 +68,9 @@ u32 FUN_8c080890(int a0, u32 a1, int *a2, u32 a3) {
             ar5_00 = 3;
             uVar1 = rand_range(a0, 3, 5);
             *(u32 *)(a0 + 0x294) = uVar1;
-            FUN_8c032ab0(a0, ar5_00, a2);
-            FUN_8c032ab0(a0, ar5_00, a2);
-            FUN_8c032ab0(a0, ar5_00, a2);
+            rand_float(a0, ar5_00, a2);
+            rand_float(a0, ar5_00, a2);
+            rand_float(a0, ar5_00, a2);
             Vec3_ctor_xyz(auStack_c0, ar5_00, a2, a3);
             Vec3_add(auStack_30, auStack_c0, a2, a3, auStack_d0);
             Vec3_assign(a0 + 0x54, auStack_d0, a2, a3);
@@ -83,9 +83,9 @@ u32 FUN_8c080890(int a0, u32 a1, int *a2, u32 a3) {
         if (iVar2 == 0) {
             *(u32 *)(a0 + 0x40) = 5;
             *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
-            FUN_8c032ab0(a0, a1, a2);
-            FUN_8c032ab0(a0, a1, a2);
-            FUN_8c032ab0(a0, a1, a2);
+            rand_float(a0, a1, a2);
+            rand_float(a0, a1, a2);
+            rand_float(a0, a1, a2);
             Vec3_ctor_xyz(auStack_e0, a1, a2, a3);
             Vec3_add(auStack_40, auStack_e0, a2, a3, auStack_f0);
             Vec3_assign(a0 + 0x54, auStack_f0, a2, a3);
@@ -98,9 +98,9 @@ u32 FUN_8c080890(int a0, u32 a1, int *a2, u32 a3) {
         if (iVar2 == 0) {
             *(u32 *)(a0 + 0x40) = 5;
             *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
-            FUN_8c032ab0(a0, a1, a2);
-            FUN_8c032ab0(a0, a1, a2);
-            FUN_8c032ab0(a0, a1, a2);
+            rand_float(a0, a1, a2);
+            rand_float(a0, a1, a2);
+            rand_float(a0, a1, a2);
             Vec3_ctor_xyz(auStack_100, a1, a2, a3);
             Vec3_add(auStack_50, auStack_100, a2, a3, auStack_110);
             Vec3_assign(a0 + 0x54, auStack_110, a2, a3);
@@ -158,7 +158,7 @@ u32 FUN_8c080e80(int a0, u32 a1, int *a2, u32 a3) {
         uStack_44 = -8.332610471145132e-251;
     }
     iStack_24 = 0x444d0000;
-    FUN_8c031748(a0, uVar1, ar6_00, a3);
+    timer_stop_94(a0, uVar1, ar6_00, a3);
     iVar2 = *(int *)(a0 + 300);
     if (iVar2 == 0) {
         iVar2 = CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, uVar1, ar6_00, a3);
@@ -239,7 +239,7 @@ u32 FUN_8c080e80(int a0, u32 a1, int *a2, u32 a3) {
             *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
             uVar1 = (**(code **)(*a2 + 0x10c))(a2, a1, ar6_00, a3);
             FUN_8c0d9898(uVar1);
-            FUN_8c032ab0(a0, a1, ar6_00);
+            rand_float(a0, a1, ar6_00);
             if (cVar8 == '\0') {
                 uStack_44 = (double)CONCAT44(uVar1, (int)((u64)uStack_44 >> 0x20));
                 dVar6 = (double)CONCAT44(0x3ccccccd, *(u32 *)(a0 + 0x48));
@@ -299,7 +299,7 @@ u32 FUN_8c080e80(int a0, u32 a1, int *a2, u32 a3) {
             if (iVar2 < 1) {
                 *(u32 *)(a0 + 300) = 0;
                 uVar3 = 0;
-                FUN_8c03c314(a0, uVar1, ar6_00);
+                timer_start_94(a0, uVar1, ar6_00);
                 FUN_8c031b68(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, ar6_00, a3);
             }
         }
@@ -391,7 +391,7 @@ u32 FUN_8c0811b4(int a0, u32 a1, int a2) {
     } else {
         *(u64 *)(a0 + 0x28) = in_xd0;
     }
-    FUN_8c0230f0(a0 + 0x14, pcVar4, a2, pcVar8, auStack_5c);
+    Vec3_make(a0 + 0x14, pcVar4, a2, pcVar8, auStack_5c);
     pcVar5 = FUN_8c082378;
     FUN_8c082378(a0, auStack_5c, FUN_8c082378, pcVar8);
     pcVar4 = (code *)0xffffffff;
@@ -404,8 +404,8 @@ u32 FUN_8c0811b4(int a0, u32 a1, int a2) {
         }
     } else {
         if (iVar3 == 1) {
-            FUN_8c0230f0(a0 + 0x14, pcVar4, pcVar5, pcVar8, auStack_6c);
-            FUN_8c022dac(auStack_6c, a1, pcVar5, pcVar8);
+            Vec3_make(a0 + 0x14, pcVar4, pcVar5, pcVar8, auStack_6c);
+            Vec3_cos_angle(auStack_6c, a1, pcVar5, pcVar8);
             dVar15 = dVar14;
             if (cVar19 == '\0') {
                 in_dr14 = (double)CONCAT44((int)((u64)in_dr14 >> 0x20), (int)((u64)dVar14 >> 0x20));
@@ -521,8 +521,8 @@ u32 FUN_8c0811b4(int a0, u32 a1, int a2) {
                     *(u32 *)(a0 + 0x260) = 0;
                 }
             }
-            FUN_8c0230f0(a0 + 0x14, a1, pcVar5, pcVar8, auStack_d4);
-            FUN_8c022dac(auStack_d4, auStack_4c, pcVar5, pcVar8);
+            Vec3_make(a0 + 0x14, a1, pcVar5, pcVar8, auStack_d4);
+            Vec3_cos_angle(auStack_d4, auStack_4c, pcVar5, pcVar8);
             dVar16 = dVar14;
             if (cVar19 == '\0') {
                 in_dr14 = (double)CONCAT44((int)((u64)in_dr14 >> 0x20), (int)((u64)dVar14 >> 0x20));
@@ -555,8 +555,8 @@ u32 FUN_8c0811b4(int a0, u32 a1, int a2) {
                         uVar7 = 9;
                         CAnimBody_SetAnimation(a0 + 0xb0, 9, 0xffffffff, 0);
                         uVar6 = SUB84(dVar14, 0);
-                        uVar7 = FUN_8c026db0(a0, uVar7, pcVar8);
-                        uVar10 = FUN_8c03c0f0(a0 + 0xb0, uVar7, pcVar8, uVar10);
+                        uVar7 = get_field_1c_on_field_b0(a0, uVar7, pcVar8);
+                        uVar10 = array_at_field_14(a0 + 0xb0, uVar7, pcVar8, uVar10);
                         pcVar5 = deref_u32;
                         puVar1 = (u32 *)deref_u32(uVar10);
                         uVar7 = puVar1[1];
@@ -570,8 +570,8 @@ u32 FUN_8c0811b4(int a0, u32 a1, int a2) {
                         uVar7 = 10;
                         CAnimBody_SetAnimation(a0 + 0xb0, 10, 0xffffffff, 0);
                         uVar6 = SUB84(dVar14, 0);
-                        uVar7 = FUN_8c026db0(a0, uVar7, pcVar8);
-                        uVar10 = FUN_8c03c0f0(a0 + 0xb0, uVar7, pcVar8, uVar9);
+                        uVar7 = get_field_1c_on_field_b0(a0, uVar7, pcVar8);
+                        uVar10 = array_at_field_14(a0 + 0xb0, uVar7, pcVar8, uVar9);
                         puVar1 = (u32 *)deref_u32(uVar10);
                         pcVar5 = (code *)(a0 + 0xb4);
                         uVar7 = puVar1[1];
@@ -587,8 +587,8 @@ u32 FUN_8c0811b4(int a0, u32 a1, int a2) {
                         uVar7 = 9;
                         CAnimBody_SetAnimation(a0 + 0xb0, 9, 0xffffffff, 0);
                         uVar6 = SUB84(dVar14, 0);
-                        uVar7 = FUN_8c026db0(a0, uVar7, pcVar8);
-                        uVar7 = FUN_8c03c0f0(a0 + 0xb0, uVar7, pcVar8, pcVar5);
+                        uVar7 = get_field_1c_on_field_b0(a0, uVar7, pcVar8);
+                        uVar7 = array_at_field_14(a0 + 0xb0, uVar7, pcVar8, pcVar5);
                         puVar1 = (u32 *)deref_u32(uVar7);
                         uVar7 = puVar1[1];
                         *(u32 *)(a0 + 0xb4) = *puVar1;
@@ -601,8 +601,8 @@ u32 FUN_8c0811b4(int a0, u32 a1, int a2) {
                         uVar7 = 10;
                         CAnimBody_SetAnimation(a0 + 0xb0, 10, 0xffffffff, 0);
                         uVar6 = SUB84(dVar14, 0);
-                        uVar7 = FUN_8c026db0(a0, uVar7, uVar10);
-                        uVar7 = FUN_8c03c0f0(a0 + 0xb0, uVar7, uVar10, uVar9);
+                        uVar7 = get_field_1c_on_field_b0(a0, uVar7, uVar10);
+                        uVar7 = array_at_field_14(a0 + 0xb0, uVar7, uVar10, uVar9);
                         puVar1 = (u32 *)deref_u32(uVar7);
                         uVar7 = puVar1[1];
                         *(u32 *)(a0 + 0xb4) = *puVar1;
@@ -617,8 +617,8 @@ u32 FUN_8c0811b4(int a0, u32 a1, int a2) {
                     uVar10 = 0xffffffff;
                     CAnimBody_SetAnimation(a0 + 0xb0, 9, 0xffffffff, 0);
                     uVar6 = SUB84(dVar14, 0);
-                    uVar7 = FUN_8c026db0(a0, FUN_8c026db0, uVar10);
-                    uVar7 = FUN_8c03c0f0(a0 + 0xb0, uVar7, uVar10, uVar9);
+                    uVar7 = get_field_1c_on_field_b0(a0, get_field_1c_on_field_b0, uVar10);
+                    uVar7 = array_at_field_14(a0 + 0xb0, uVar7, uVar10, uVar9);
                     puVar1 = (u32 *)deref_u32(uVar7);
                     uVar7 = puVar1[1];
                     *(u32 *)(a0 + 0xb4) = *puVar1;
@@ -633,9 +633,9 @@ u32 FUN_8c0811b4(int a0, u32 a1, int a2) {
                     uVar7 = 10;
                     CAnimBody_SetAnimation(a0 + 0xb0, 10, 0xffffffff, 0);
                     uVar6 = SUB84(dVar14, 0);
-                    uVar7 = FUN_8c026db0(a0, uVar7, uVar10);
+                    uVar7 = get_field_1c_on_field_b0(a0, uVar7, uVar10);
                     uVar9 = 0xb0;
-                    uVar10 = FUN_8c03c0f0(a0 + 0xb0, uVar7, 0xb0, uVar7);
+                    uVar10 = array_at_field_14(a0 + 0xb0, uVar7, 0xb0, uVar7);
                     pcVar5 = deref_u32;
                     pcVar8 = (code *)deref_u32(uVar10);
                     uVar7 = *(u32 *)(pcVar8 + 4);
@@ -672,8 +672,8 @@ u32 FUN_8c0811b4(int a0, u32 a1, int a2) {
                         uVar7 = 2;
                         CAnimBody_SetAnimation(a0 + 0xb0, 2, 0xffffffff, 0);
                         uVar9 = SUB84(dVar14, 0);
-                        uVar7 = FUN_8c026db0(a0, uVar7, pcVar8);
-                        uVar7 = FUN_8c03c0f0(a0 + 0xb0, uVar7, pcVar8, pcVar5);
+                        uVar7 = get_field_1c_on_field_b0(a0, uVar7, pcVar8);
+                        uVar7 = array_at_field_14(a0 + 0xb0, uVar7, pcVar8, pcVar5);
                         puVar1 = (u32 *)deref_u32(uVar7);
                         uVar7 = puVar1[1];
                         *(u32 *)(a0 + 0xb4) = *puVar1;
@@ -686,8 +686,8 @@ u32 FUN_8c0811b4(int a0, u32 a1, int a2) {
                         uVar7 = 3;
                         CAnimBody_SetAnimation(a0 + 0xb0, 3, 0xffffffff, 0);
                         uVar9 = SUB84(dVar14, 0);
-                        uVar7 = FUN_8c026db0(a0, uVar7, pcVar8);
-                        uVar10 = FUN_8c03c0f0(a0 + 0xb0, uVar7, pcVar8, pcVar5);
+                        uVar7 = get_field_1c_on_field_b0(a0, uVar7, pcVar8);
+                        uVar10 = array_at_field_14(a0 + 0xb0, uVar7, pcVar8, pcVar5);
                         puVar1 = (u32 *)deref_u32(uVar10);
                         uVar7 = puVar1[1];
                         *(u32 *)(a0 + 0xb4) = *puVar1;
@@ -702,10 +702,10 @@ u32 FUN_8c0811b4(int a0, u32 a1, int a2) {
                         uVar7 = 2;
                         CAnimBody_SetAnimation(a0 + 0xb0, 2, 0xffffffff, 0);
                         uVar9 = SUB84(dVar14, 0);
-                        uVar7 = FUN_8c026db0(a0, uVar7, uVar10);
+                        uVar7 = get_field_1c_on_field_b0(a0, uVar7, uVar10);
                         pcVar5 = (code *)(a0 + 0xb0);
-                        pcVar8 = FUN_8c03c0f0;
-                        uVar7 = FUN_8c03c0f0(pcVar5, uVar7, FUN_8c03c0f0, pcVar5);
+                        pcVar8 = array_at_field_14;
+                        uVar7 = array_at_field_14(pcVar5, uVar7, array_at_field_14, pcVar5);
                         puVar1 = (u32 *)deref_u32(uVar7);
                         uVar7 = puVar1[1];
                         *(u32 *)(a0 + 0xb4) = *puVar1;
@@ -718,10 +718,10 @@ u32 FUN_8c0811b4(int a0, u32 a1, int a2) {
                         uVar7 = 3;
                         CAnimBody_SetAnimation(a0 + 0xb0, 3, 0xffffffff, 0);
                         uVar9 = SUB84(dVar14, 0);
-                        uVar7 = FUN_8c026db0(a0, uVar7, uVar10);
+                        uVar7 = get_field_1c_on_field_b0(a0, uVar7, uVar10);
                         pcVar5 = (code *)(a0 + 0xb0);
-                        pcVar8 = FUN_8c03c0f0;
-                        uVar7 = FUN_8c03c0f0(pcVar5, uVar7, FUN_8c03c0f0, pcVar5);
+                        pcVar8 = array_at_field_14;
+                        uVar7 = array_at_field_14(pcVar5, uVar7, array_at_field_14, pcVar5);
                         puVar1 = (u32 *)deref_u32(uVar7);
                         uVar7 = puVar1[1];
                         *(u32 *)(a0 + 0xb4) = *puVar1;
@@ -735,8 +735,8 @@ u32 FUN_8c0811b4(int a0, u32 a1, int a2) {
                     uVar7 = 2;
                     CAnimBody_SetAnimation(a0 + 0xb0, 2, 0xffffffff, 0);
                     uVar9 = SUB84(dVar14, 0);
-                    uVar7 = FUN_8c026db0(a0, uVar7, uVar10);
-                    pcVar8 = (code *)FUN_8c03c0f0(a0 + 0xb0, uVar7, uVar10, pcVar5);
+                    uVar7 = get_field_1c_on_field_b0(a0, uVar7, uVar10);
+                    pcVar8 = (code *)array_at_field_14(a0 + 0xb0, uVar7, uVar10, pcVar5);
                     puVar1 = (u32 *)deref_u32(pcVar8);
                     uVar7 = puVar1[1];
                     *(u32 *)(a0 + 0xb4) = *puVar1;
@@ -749,8 +749,8 @@ u32 FUN_8c0811b4(int a0, u32 a1, int a2) {
                     uVar7 = 3;
                     CAnimBody_SetAnimation(a0 + 0xb0, 3, 0xffffffff, 0);
                     uVar9 = SUB84(dVar14, 0);
-                    uVar7 = FUN_8c026db0(a0, uVar7, uVar6);
-                    uVar10 = FUN_8c03c0f0(a0 + 0xb0, uVar7, uVar6, ar7_00);
+                    uVar7 = get_field_1c_on_field_b0(a0, uVar7, uVar6);
+                    uVar10 = array_at_field_14(a0 + 0xb0, uVar7, uVar6, ar7_00);
                     puVar1 = (u32 *)deref_u32(uVar10);
                     uVar7 = puVar1[1];
                     *(u32 *)(a0 + 0xb4) = *puVar1;
@@ -966,7 +966,7 @@ u32 FUN_8c082378(int a0, u32 a1, u32 a2, u32 a3) {
     }
     uStack_4c = uVar1;
     Vec3_scale(auStack_18, &uStack_4c, a2, a3, auStack_38);
-    FUN_8c023aa0(a0 + 0x14, auStack_38);
+    Vec3_add_assign(a0 + 0x14, auStack_38);
     uVar3 = 0xffffffff;
     Vec3_dtor(auStack_38, 0xffffffff, a2, a3);
     Vec3_normalize(a0 + 0x14, uVar3, a2, a3);
@@ -1147,7 +1147,7 @@ u32 FUN_8c08248c(int a0, int a1, u32 *a2, int *a3) {
                     } else {
                         *(double *)(a0 + 0x28) = dVar8;
                     }
-                    FUN_8c0230f0(a0 + 0x14, pcVar4, a2, ar7_00, auStack_64);
+                    Vec3_make(a0 + 0x14, pcVar4, a2, ar7_00, auStack_64);
                     FUN_8c082378(a0, auStack_64, a2, ar7_00);
                     uVar5 = 0xffffffff;
                     Vec3_dtor(auStack_64, 0xffffffff, a2, ar7_00);
@@ -1238,8 +1238,8 @@ u32 FUN_8c08248c(int a0, int a1, u32 *a2, int *a3) {
                         a2 = (u32 *)0xffffffff;
                         uVar5 = 0x32;
                         CAnimBody_SetAnimation(a0 + 0xb0, 0x32, 0xffffffff, 0);
-                        uVar5 = FUN_8c026db0(a0, uVar5, a2);
-                        uVar1 = FUN_8c03c0f0(a0 + 0xb0, uVar5, a2, ar7_00);
+                        uVar5 = get_field_1c_on_field_b0(a0, uVar5, a2);
+                        uVar1 = array_at_field_14(a0 + 0xb0, uVar5, a2, ar7_00);
                         puVar2 = (u32 *)deref_u32(uVar1);
                         uVar1 = puVar2[1];
                         *(u32 *)(a0 + 0xb4) = *puVar2;
@@ -1257,7 +1257,7 @@ u32 FUN_8c08248c(int a0, int a1, u32 *a2, int *a3) {
                     }
                     break;
                 case 4:
-                    FUN_8c031748(a0, pcVar4, a2, ar7_00);
+                    timer_stop_94(a0, pcVar4, a2, ar7_00);
                     *(u32 *)(a0 + 0x178) = 1;
                     *(u32 *)(a0 + 0x2cc) = 1;
                     CAnimBody_GetCurFrame(a0 + 0xb0, pcVar4, a2, ar7_00);
@@ -1270,7 +1270,7 @@ u32 FUN_8c08248c(int a0, int a1, u32 *a2, int *a3) {
                     ar5_00 = auStack_34;
                     Vec3_assign(a0 + 0x244, ar5_00, a2, ar7_00);
                     Vec3_ctor_xyz(auStack_a4, ar5_00, a2, ar7_00);
-                    iVar3 = FUN_8c023d04(auStack_44, auStack_a4);
+                    iVar3 = Vec3_not_equal(auStack_44, auStack_a4);
                     Vec3_dtor(auStack_a4, 0xffffffff, a2, ar7_00);
                     if (iVar3 != 0) {
                         vec3_copy_8c02b5fc(auStack_b0, puVar2, a2);
@@ -1292,7 +1292,7 @@ u32 FUN_8c08248c(int a0, int a1, u32 *a2, int *a3) {
                         a2 = (u32 *)0xffffffff;
                         CAnimBody_SetAnimation(a0 + 0xb0, 0, 0xffffffff, 0);
                         CAnimBody_SetFrame(a0 + 0xb0, 0xb0, a2, ar7_00);
-                        FUN_8c03c314(a0, FUN_8c03c314, a2);
+                        timer_start_94(a0, timer_start_94, a2);
                         *(u32 *)(a0 + 0x218) = 0xffffffff;
                     }
                 }
@@ -1357,7 +1357,7 @@ u32 FUN_8c082c50(int a0, int a1, u32 unused_a2, u32 a3) {
         } else if (*(int *)(a0 + 0x128) < 3) {
             uVar4 = 0;
         } else {
-            FUN_8c031748(a0, ar5_00, uVar3, a3);
+            timer_stop_94(a0, ar5_00, uVar3, a3);
             Vec3_ctor_copy(auStack_40, &g_8c125e68, uVar3, a3);
             uVar3 = 1;
             iVar1 = FUN_8c0811b4(a0, auStack_40, 1);
@@ -1398,7 +1398,7 @@ u32 FUN_8c082c50(int a0, int a1, u32 unused_a2, u32 a3) {
             if (iVar1 != 3) {
                 return 1;
             }
-            FUN_8c0230f0(a0 + 0x14, ar5_00, uVar3, a3, auStack_cc);
+            Vec3_make(a0 + 0x14, ar5_00, uVar3, a3, auStack_cc);
             FUN_8c082378(a0, auStack_cc, uVar3, a3);
             uVar4 = 0xffffffff;
             Vec3_dtor(auStack_cc, 0xffffffff, uVar3, a3);
@@ -1415,7 +1415,7 @@ u32 FUN_8c082c50(int a0, int a1, u32 unused_a2, u32 a3) {
             *(u32 *)(a0 + 0x2b4) = 0;
             return 0;
         }
-        FUN_8c0230f0(a0 + 0x14, ar5_00, uVar3, a3, auStack_50);
+        Vec3_make(a0 + 0x14, ar5_00, uVar3, a3, auStack_50);
         FUN_8c082378(a0, auStack_50, uVar3, a3);
         uVar2 = 0xffffffff;
         Vec3_dtor(auStack_50, 0xffffffff, uVar3, a3);
@@ -1445,7 +1445,7 @@ u32 FUN_8c082c50(int a0, int a1, u32 unused_a2, u32 a3) {
         if (iVar1 == 0x25) {
             a3 = *(u32 *)(a1 + 0x18);
             uVar3 = **(u32 **)(a1 + 4);
-            FUN_8c033474(a0, 0x1b, uVar3, a3);
+            se_play_at_object(a0, 0x1b, uVar3, a3);
             if (cVar7 == '\0') {
                 dVar5 = (double)CONCAT44(0x44bb8000, *(u32 *)(**(int **)(a1 + 4) + 8));
             } else {
@@ -1524,7 +1524,7 @@ u32 FUN_8c0831c8(int a0, u32 a1, u32 a2, u32 a3) {
         if ((iVar1 < 5) && (-1 < iVar1)) {
             switch (iVar1) {
             case 0:
-                FUN_8c0230f0(a0 + 0x14, a1, a2, a3, auStack_24);
+                Vec3_make(a0 + 0x14, a1, a2, a3, auStack_24);
                 Vec3_assign(a0 + 0x54, auStack_24, a2, a3);
                 a1 = 0xffffffff;
                 Vec3_dtor(auStack_24, 0xffffffff, a2, a3);
@@ -1553,7 +1553,7 @@ u32 FUN_8c0831c8(int a0, u32 a1, u32 a2, u32 a3) {
                 }
                 *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
             case 1:
-                FUN_8c031748(a0, a1, a2, a3);
+                timer_stop_94(a0, a1, a2, a3);
                 Vec3_ctor_copy(auStack_34, a0 + 0x54, a2, a3);
                 uVar3 = 0;
                 iVar1 = FUN_8c0811b4(a0, auStack_34, 0);
@@ -1570,7 +1570,7 @@ u32 FUN_8c0831c8(int a0, u32 a1, u32 a2, u32 a3) {
                 break;
             case 2:
                 uVar3 = a2;
-                FUN_8c031748(a0, a1, a2, a3);
+                timer_stop_94(a0, a1, a2, a3);
                 if (cVar10 == '\0') {
                     dVar8 = (double)CONCAT44(0x3f7ae148, *(u32 *)(a0 + 0x28));
                 } else {
@@ -1622,12 +1622,12 @@ u32 FUN_8c0831c8(int a0, u32 a1, u32 a2, u32 a3) {
                     }
                     if (iVar1 == 1) {
                         *(int *)(a0 + 300) = *(int *)(a0 + 300) + 2;
-                        FUN_8c032ab0(a0, ar5_00, uVar2);
-                        FUN_8c032204(a0 + 0xb0, ar5_00, uVar2, uVar4, uVar3);
+                        rand_float(a0, ar5_00, uVar2);
+                        set_field_68(a0 + 0xb0, ar5_00, uVar2, uVar4, uVar3);
                     } else {
                         *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
-                        FUN_8c032ab0(a0, ar5_00, uVar2);
-                        FUN_8c032204(a0 + 0xb0, ar5_00, uVar2, uVar4, uVar3);
+                        rand_float(a0, ar5_00, uVar2);
+                        set_field_68(a0 + 0xb0, ar5_00, uVar2, uVar4, uVar3);
                     }
                     CAnimBody_SetFrame(a0 + 0xb0, ar5_00, uVar2, uVar4);
                     *(int *)(a0 + 0x218) = iVar1 + 0xb;
@@ -1635,26 +1635,26 @@ u32 FUN_8c0831c8(int a0, u32 a1, u32 a2, u32 a3) {
                 break;
             case 3:
                 uVar3 = a2;
-                FUN_8c031748(a0, a1, a2, a3);
+                timer_stop_94(a0, a1, a2, a3);
                 Vec3_ctor_copy(auStack_54, a0 + 0x54, a2, a3);
                 FUN_8c082378(a0, auStack_54, a2, a3);
                 uVar2 = 0xffffffff;
                 Vec3_dtor(auStack_54, 0xffffffff, a2, a3);
-                iVar1 = FUN_8c03f3ac(a0 + 0xb0, uVar2, a2, a3);
+                iVar1 = CAnimBody_AdvanceFrame_wrap(a0 + 0xb0, uVar2, a2, a3);
                 if (iVar1 == 7) {
-                    FUN_8c032ab0(a0, uVar2, a2);
-                    FUN_8c032204(a0 + 0xb0, uVar2, a2, a3, uVar3);
+                    rand_float(a0, uVar2, a2);
+                    set_field_68(a0 + 0xb0, uVar2, a2, a3, uVar3);
                     iVar1 = *(int *)(a0 + 0x294) + -1;
                     *(int *)(a0 + 0x294) = iVar1;
                     if (iVar1 < 1) {
                         *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
-                        FUN_8c032204(a0 + 0xb0, uVar2, a2, a3, uVar3);
+                        set_field_68(a0 + 0xb0, uVar2, a2, a3, uVar3);
                     }
                 }
                 break;
             case 4:
                 uVar3 = a2;
-                FUN_8c031748(a0, a1, a2, a3);
+                timer_stop_94(a0, a1, a2, a3);
                 Vec3_ctor_copy(auStack_64, a0 + 0x54, a2, a3);
                 FUN_8c082378(a0, auStack_64, a2, a3);
                 uVar2 = 0xffffffff;
@@ -1671,8 +1671,8 @@ u32 FUN_8c0831c8(int a0, u32 a1, u32 a2, u32 a3) {
                     CAnimBody_SetAnimation(a0 + 0xb0, 0, 0xffffffff, 0);
                     CAnimBody_SetFrame(a0 + 0xb0, uVar2, uVar4, uVar5);
                     *(u32 *)(a0 + 0x218) = 0xffffffff;
-                    FUN_8c03c314(a0, uVar2, uVar4);
-                    FUN_8c032204(a0 + 0xb0, uVar2, uVar4, uVar5, uVar3);
+                    timer_start_94(a0, uVar2, uVar4);
+                    set_field_68(a0 + 0xb0, uVar2, uVar4, uVar5, uVar3);
                 }
             }
         }
@@ -1818,7 +1818,7 @@ u32 FUN_8c0839c0(int a0, int a1, int a2, u32 a3) {
             Vec3_dtor(auStack_50, 0xffffffff, uVar3, ar7_00);
             Vec3_dtor(auStack_40, 0xffffffff, uVar3, ar7_00);
             object_dtor_delete(auStack_30, 0xffffffff, uVar3, ar7_00);
-            FUN_8c022fc0(a0 + 0x54, auStack_24, uVar3, ar7_00);
+            Vec3_distance_sq(a0 + 0x54, auStack_24, uVar3, ar7_00);
             if (cVar11 == '\0') {
                 uVar5 = CONCAT44(*(u32 *)(a0 + 0x48), uVar7);
             } else {
@@ -1878,7 +1878,7 @@ u32 FUN_8c0839c0(int a0, int a1, int a2, u32 a3) {
                 *(u32 *)(a0 + 0x2b0) = 0;
             }
             uVar4 = (u32)bVar9;
-            FUN_8c022fc0(a0 + 0x54, auStack_24, a2, a3);
+            Vec3_distance_sq(a0 + 0x54, auStack_24, a2, a3);
             if (cVar11 == '\0') {
                 uVar5 = CONCAT44(*(u32 *)(a0 + 0x48), uVar3);
             } else {
@@ -2054,7 +2054,7 @@ u32 FUN_8c083d8c(int a0, int a1, int a2, u32 a3) {
         FUN_8c082378(a0, auStack_98, a2, a3);
         uVar3 = 0xffffffff;
         Vec3_dtor(auStack_98, 0xffffffff, a2, a3);
-        FUN_8c031748(a0, uVar3, a2, a3);
+        timer_stop_94(a0, uVar3, a2, a3);
         a2 = **(int **)(a1 + 4);
         uVar3 = **(u32 **)(a1 + 4);
         FUN_8c031c74(a0, uVar3, a2, a3);
@@ -2124,14 +2124,14 @@ u32 FUN_8c083d8c(int a0, int a1, int a2, u32 a3) {
                 *(u32 *)(a0 + 0x294) = uVar2;
             }
         } else {
-            iVar1 = FUN_8c03f3ac(a0 + 0xb0, uVar3, a2, a3);
+            iVar1 = CAnimBody_AdvanceFrame_wrap(a0 + 0xb0, uVar3, a2, a3);
             if (iVar1 == 7) {
-                FUN_8c032ab0(a0, uVar3, a2);
-                FUN_8c032204(a0 + 0xb0, uVar3, a2, a3, in_stack_fffffec4);
+                rand_float(a0, uVar3, a2);
+                set_field_68(a0 + 0xb0, uVar3, a2, a3, in_stack_fffffec4);
                 *(int *)(a0 + 0x294) = *(int *)(a0 + 0x294) + -1;
             }
         }
-        FUN_8c031748(a0, uVar3, a2, a3);
+        timer_stop_94(a0, uVar3, a2, a3);
         if (cVar12 == '\0') {
             dVar6 = (double)CONCAT44(0x3c23d70a, *(u32 *)(a0 + 0x28));
         } else {
@@ -2235,7 +2235,7 @@ u32 FUN_8c083d8c(int a0, int a1, int a2, u32 a3) {
         }
         Vec3_scale(a0 + 0x14, a0 + 0x28, a2, a3, auStack_c8);
         Vec3_add(**(u32 **)(a1 + 4), auStack_c8, a2, a3, auStack_d8);
-        FUN_8c022fc0(auStack_d8, a0 + 0x280, a2, a3);
+        Vec3_distance_sq(auStack_d8, a0 + 0x280, a2, a3);
         if (cVar12 == '\0') {
             dVar6 = (double)CONCAT44((int)((u64)dVar6 >> 0x20), in_fr3);
             dVar7 = (double)CONCAT44(0x3f99999a, *(u32 *)(a0 + 0x48));
@@ -2263,7 +2263,7 @@ u32 FUN_8c083d8c(int a0, int a1, int a2, u32 a3) {
         }
         break;
     case 4:
-        FUN_8c031748(a0, FUN_8c031748, a2, a3);
+        timer_stop_94(a0, timer_stop_94, a2, a3);
         a2 = **(int **)(a1 + 4);
         uVar3 = **(u32 **)(a1 + 4);
         FUN_8c031c74(a0, uVar3, a2, a3);
@@ -2272,14 +2272,14 @@ u32 FUN_8c083d8c(int a0, int a1, int a2, u32 a3) {
             uVar4 = 0;
             *(u32 *)(a0 + 0x134) = 0;
             *(u32 *)(a0 + 0x294) = 0;
-            FUN_8c03c314(a0, 0, a2);
+            timer_start_94(a0, 0, a2);
             *(u32 *)(a0 + 0x178) = 0;
             *(u32 *)(a0 + 0x2b4) = 0;
             a3 = 0;
             a2 = -1;
             CAnimBody_SetAnimation(a0 + 0xb0, 0, 0xffffffff, 0);
             CAnimBody_SetFrame(a0 + 0xb0, a0 + 0xb0, a2, a3);
-            FUN_8c032204(a0 + 0xb0, a0 + 0xb0, a2, a3, in_stack_fffffec4);
+            set_field_68(a0 + 0xb0, a0 + 0xb0, a2, a3, in_stack_fffffec4);
         }
     }
 switchD_8c083dce_default:
@@ -2421,7 +2421,7 @@ u32 FUN_8c0845f4(int a0, int a1, u32 a2, u32 a3) {
             FUN_8c082378(a0, auStack_94, a2, a3);
             uVar3 = 0xffffffff;
             Vec3_dtor(auStack_94, 0xffffffff, a2, a3);
-            FUN_8c03f3ac(a0 + 0xb0, uVar3, a2, a3);
+            CAnimBody_AdvanceFrame_wrap(a0 + 0xb0, uVar3, a2, a3);
             CAnimBody_GetCurFrame(a0 + 0xb0, uVar3, a2, a3);
             if (cVar11 == '\0') {
                 uStack_b8 = CONCAT44(uStack_b8._4_4_, (int)((u64)in_dr0 >> 0x20));
@@ -2452,7 +2452,7 @@ u32 FUN_8c0845f4(int a0, int a1, u32 a2, u32 a3) {
             }
             Vec3_scale(a0 + 0x14, a0 + 0x28, a2, a3, auStack_a4);
             Vec3_add(**(u32 **)(a1 + 4), auStack_a4, a2, a3, (int)&uStack_b8 + 4);
-            FUN_8c022fc0((int)&uStack_b8 + 4, a0 + 0x280, a2, a3);
+            Vec3_distance_sq((int)&uStack_b8 + 4, a0 + 0x280, a2, a3);
             if (cVar11 == '\0') {
                 dVar6 = (double)CONCAT44((int)((u64)dVar6 >> 0x20), in_fr3);
                 dVar7 = (double)CONCAT44(0x3f99999a, *(u32 *)(a0 + 0x48));
@@ -2491,7 +2491,7 @@ u32 FUN_8c0845f4(int a0, int a1, u32 a2, u32 a3) {
                 uVar3 = 0;
                 CAnimBody_SetAnimation(a0 + 0xb0, 0, 0xffffffff, 0);
                 CAnimBody_SetFrame(a0 + 0xb0, uVar3, a2, a3);
-                FUN_8c032204(a0 + 0xb0, uVar3, a2, a3, in_stack_ffffff08);
+                set_field_68(a0 + 0xb0, uVar3, a2, a3, in_stack_ffffff08);
                 *(u32 *)(a0 + 0x178) = 0;
                 *(u32 *)(a0 + 0x218) = 0xffffffff;
             }
@@ -2636,9 +2636,9 @@ int CAnimal_m0_08516c(int a0, u32 a1, u32 a2, u32 a3) {
     ain0 = CONCAT22((short)((u32)in_stack_fffffff4 >> 0x10), (u16)a1);
     if (a0 != 0) {
         *(u8 **)(a0 + 8) = &g_8c12a434;
-        Class_129938_m0_017084(a0 + 0x1014, 0xffffffff, a2, a3);
-        Class_12a25c_m0_06f3c4(a0 + 0xd20, 0xffffffff, a2, a3);
-        Class_12c3c4_m0_1030a4(a0 + 0x490, 0xffffffff, a2, a3);
+        Class_129938_dtor(a0 + 0x1014, 0xffffffff, a2, a3);
+        Class_12a25c_dtor(a0 + 0xd20, 0xffffffff, a2, a3);
+        Class_12c3c4_dtor(a0 + 0x490, 0xffffffff, a2, a3);
         ar5_00 = 0;
         CAnimal_m0_025688(a0, 0, a2, a3);
         if (0 < (short)ain0) {
@@ -2665,10 +2665,10 @@ int FUN_8c0851f4(int a0, u32 a1, u32 a2) {
     ar7_00 = a2;
     (*(code *)(&FUN_8c0254d0))(a0, 3, 1, a2, 0, a1, 0x8c280fb4, 0x8c2818e0, *(u32 *)(&DATA_8c137b2c));
     *(u8 **)(a0 + 8) = (&DATA_8c12a434);
-    FUN_8c102eec(a0 + 0x490, uVar1, ar6_00, ar7_00);
+    Class_12c3c4_ctor(a0 + 0x490, uVar1, ar6_00, ar7_00);
     FUN_8c06e4ec(a0 + 0xd20, uVar1, ar6_00, ar7_00);
     FUN_8c016fcc(a0 + 0x1014, uVar1, ar6_00);
-    (*(code *)(&FUN_8c014334))(a0 + 0xc, uVar1, ar6_00, ar7_00, "HigyoLine");
+    (*(code *)(&sprintf))(a0 + 0xc, uVar1, ar6_00, ar7_00, "HigyoLine");
     *(int *)(0x308 + a0) = a0 + 0x490;
     uVar1 = FUN_8c034d38(a0 + 0x2dc, a2);
     FUN_8c028ec8(*(u32 *)(0x308 + a0), uVar1);
@@ -2700,7 +2700,7 @@ u32 CAnimal_m2_085390(int a0, u32 a1, u32 a2, u32 a3) {
     CAnimal_m2_02573c(a0, a1, a2, a3);
     FUN_8c02a788(a0, ar5_00, a2, ar7_00);
     FUN_8c02aabc(a0, ar5_00, a2, ar7_00);
-    uVar1 = FUN_8c035ab4(a0 + 0x490);
+    uVar1 = get_field_90_s8(a0 + 0x490);
     if (((((char)uVar1 == '\x01') && (*(int *)(0x10c0 + a0) == 0)) && (*(int *)(0x10c4 + a0) == 0)) &&
         (((*(int *)(0x10c8 + a0) == 0 && (*(int *)(0x10cc + a0) == 0)) &&
           ((*(int *)(0x10d0 + a0) == 0 && (*(int *)(0x10d4 + a0) == 0)))))) {
@@ -2713,7 +2713,7 @@ u32 CAnimal_m2_085390(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = a1;
         FUN_8c0859c8(a0, a1);
     }
-    uVar1 = FUN_8c035ab4(a0 + 0x490);
+    uVar1 = get_field_90_s8(a0 + 0x490);
     if ((char)uVar1 == '\x02') {
         iVar2 = get_field_290_085544(a0 + 0xd20);
         if (iVar2 != -1) {
@@ -2726,7 +2726,7 @@ u32 CAnimal_m2_085390(int a0, u32 a1, u32 a2, u32 a3) {
             a2 = a1;
         }
     }
-    uVar1 = FUN_8c035ab4(a0 + 0x490);
+    uVar1 = get_field_90_s8(a0 + 0x490);
     if ((char)uVar1 == '\x02') {
         iVar2 = get_field_290_085544(a0 + 0xd20);
         iVar3 = (**(code **)(**(int **)(0x308 + a0) + 0x44))(*(int **)(0x308 + a0), ar5_00, a2, ar7_00);
@@ -2760,7 +2760,7 @@ u32 CAnimal_m3_085550(int a0, u32 a1, u32 a2, u32 a3) {
     CAnimal_m3_026078(a0, a1, a2, a3);
     FUN_8c02a788(a0, ar5_00, a2, ar7_00);
     FUN_8c02aabc(a0, ar5_00, a2, ar7_00);
-    uVar1 = FUN_8c035ab4(a0 + 0x490);
+    uVar1 = get_field_90_s8(a0 + 0x490);
     if (((((char)uVar1 == '\x01') && (*(int *)(0x10c0 + a0) == 0)) && (*(int *)(0x10c4 + a0) == 0)) &&
         (((*(int *)(0x10c8 + a0) == 0 && (*(int *)(0x10cc + a0) == 0)) &&
           ((*(int *)(0x10d0 + a0) == 0 && (*(int *)(0x10d4 + a0) == 0)))))) {
@@ -2773,7 +2773,7 @@ u32 CAnimal_m3_085550(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = a1;
         FUN_8c0859c8(a0, a1);
     }
-    uVar1 = FUN_8c035ab4(a0 + 0x490);
+    uVar1 = get_field_90_s8(a0 + 0x490);
     if ((char)uVar1 == '\x02') {
         iVar2 = get_field_290_085544(a0 + 0xd20);
         if (iVar2 != -1) {
@@ -2786,7 +2786,7 @@ u32 CAnimal_m3_085550(int a0, u32 a1, u32 a2, u32 a3) {
             a2 = a1;
         }
     }
-    uVar1 = FUN_8c035ab4(a0 + 0x490);
+    uVar1 = get_field_90_s8(a0 + 0x490);
     if ((char)uVar1 == '\x02') {
         iVar2 = get_field_290_085544(a0 + 0xd20);
         iVar3 = (**(code **)(**(int **)(0x308 + a0) + 0x44))(*(int **)(0x308 + a0), ar5_00, a2, ar7_00);
@@ -2813,12 +2813,12 @@ int FUN_8c085704(int a0, u32 a1, u32 a2, u32 a3) {
     FUN_8c02702c(a0, a1, a2);
     uVar1 = FUN_8c02bef8(a0 + 0x174, a1, a2);
     piVar4 = (int *)(*(int *)(a0 + 0x328) + (short)uVar1 * 0x124);
-    iVar2 = FUN_8c015bb8(piVar4 + 0x1c);
+    iVar2 = noop_015bb8(piVar4 + 0x1c);
     *(u32 *)(a0 + 0x344) = *(u32 *)(*(int *)(*(int *)(*(int *)(iVar2 + 0x2c) + 0x2c) + 0x2c) + 0x2c);
     *(u32 *)(a0 + 0x348) = *(u32 *)(*(int *)(a0 + 0x344) + 0x2c);
     *(u32 *)(a0 + 0x34c) = *(u32 *)(*(int *)(*(int *)(a0 + 0x344) + 0x2c) + 0x30);
     *(u32 *)(a0 + 0x350) = *(u32 *)(*(int *)(*(int *)(*(int *)(a0 + 0x344) + 0x2c) + 0x30) + 0x30);
-    uVar1 = FUN_8c015510(*piVar4 + 0x1e8);
+    uVar1 = noop_015510(*piVar4 + 0x1e8);
     *(u32 *)(*(int *)(a0 + 0x348) + 4) = uVar1;
     *(u32 *)(*(int *)(a0 + 0x34c) + 4) = uVar1;
     if (cVar6 == '\0') {
@@ -2955,7 +2955,7 @@ int FUN_8c0859c8(int a0, int a1) {
          (iVar3 = *(int *)(0x10c8 + a0), iVar3 == 0)) &&
         (((iVar3 = *(int *)(0x10cc + a0), iVar3 == 0 && (iVar3 = *(int *)(0x10d0 + a0), iVar3 == 0)) &&
           (iVar3 = *(int *)(0x10d4 + a0), iVar3 == 0)))) {
-        uVar2 = FUN_8c035ab4(a0 + 0x490);
+        uVar2 = get_field_90_s8(a0 + 0x490);
         iVar3 = (int)(char)uVar2;
         if (iVar3 == 1) {
             iVar3 = FUN_8c035f4c(a0 + 0x490, 2);
@@ -2982,7 +2982,7 @@ int FUN_8c085b14(int a0, int *a1, u32 a2, u32 a3) {
     } else {
         iVar2 = *(int *)(0x10a8 + a0 + iVar1 * 4);
         (**(code **)(0x10c + *(int *)(iVar2 + 8)))(iVar2, a2, a6, a3);
-        FUN_8c036988(*(u32 *)(0x10a8 + a0 + iVar1 * 4), a2, a6);
+        set_vec3_field_30(*(u32 *)(0x10a8 + a0 + iVar1 * 4), a2, a6);
         iVar2 = *(int *)(0x10a8 + a0 + iVar1 * 4);
         (**(code **)(*(int *)(iVar2 + 8) + 0x5c))(iVar2, a2, a6, a3);
         (**(code **)(*a1 + 0x4c))(a1, *(u32 *)(0x10a8 + a0 + iVar1 * 4), a6, a3);
@@ -3121,7 +3121,7 @@ int FUN_8c085c3c(int a0, u32 unused_a1, u32 a2, u32 a3) {
         }
         fStack_28 = fVar5;
         uStack_2c = (int)((u64)in_dr6 >> 0x20);
-        FUN_8c02ace4(*(u32 *)(a0 + 0x30c), puVar2, ar6_00, a3, auStack_70);
+        Vec3_ctor_copy_wrap_02ace4(*(u32 *)(a0 + 0x30c), puVar2, ar6_00, a3, auStack_70);
         Vec3_set_xyz(auStack_7c, puVar2, ar6_00, a3);
         puVar2 = auStack_70;
         ar6_01 = &fStack_34;
@@ -4193,14 +4193,14 @@ int FUN_8c087ed0(int a0, u32 a1) {
     FUN_8c016fcc(a0 + 0x490, uVar1, ar6_00);
     FUN_8c02ff6c(a0 + 0x528, uVar1, ar6_00);
     FUN_8c030fa0(a0 + 0x5c4, uVar1, ar6_00, ar7_00);
-    FUN_8c014334(a0 + 0xc, uVar1, ar6_00, ar7_00, "HigyoEgg");
+    sprintf(a0 + 0xc, uVar1, ar6_00, ar7_00, "HigyoEgg");
     *(int *)(a0 + 0x308) = a0 + 0x528;
     *(int *)(a0 + 0x30c) = a0 + 0x5c4;
     *(u8 *)(a0 + 0x524) = 0xff;
     ar6_01 = a0 + 0x490;
     uVar1 = *(u32 *)(*(int *)(a0 + 0x328) + 0xb4);
     FUN_8c0f532c(a0, uVar1, ar6_01, ar7_00);
-    FUN_8c027224(a0 + 0x5c4, uVar1, ar6_01, ar7_00, a1);
+    noop_027224(a0 + 0x5c4, uVar1, ar6_01, ar7_00, a1);
     (**(code **)(*(int *)(a0 + 0xa8) + 0x28))((int *)(a0 + 0xa8), a0 + 0x30, ar6_01, ar7_00);
     *(u32 *)(a0 + 0x330) = 0;
     return a0;
@@ -4217,9 +4217,9 @@ int CAnimal_m0_08800c(int a0, u32 a1, u32 a2, u32 a3) {
     ain0 = CONCAT22((short)((u32)in_stack_fffffff4 >> 0x10), (u16)a1);
     if (a0 != 0) {
         *(u8 **)(a0 + 8) = &g_8c12a298;
-        Class_129cbc_m0_0312f4(a0 + 0x5c4, 0xffffffff, a2, a3);
-        Class_129c24_m0_02ff90(a0 + 0x528, 0xffffffff, a2, a3);
-        Class_129938_m0_017084(a0 + 0x490, 0xffffffff, a2, a3);
+        Class_129cbc_dtor(a0 + 0x5c4, 0xffffffff, a2, a3);
+        Class_129c24_dtor(a0 + 0x528, 0xffffffff, a2, a3);
+        Class_129938_dtor(a0 + 0x490, 0xffffffff, a2, a3);
         ar5_00 = 0;
         CAnimal_m0_025688(a0, 0, a2, a3);
         if (0 < (short)ain0) {
@@ -4252,17 +4252,17 @@ u32 CAnimal_m2_088094(int a0, u32 a1, u32 a2, int *a3) {
     } else if (cVar1 != '\0') {
         if (cVar1 == '\x01') {
             uVar5 = 0x1b;
-            FUN_8c0b9ed4(a1, 0x16, 0x1b);
+            recent5_push_unique(a1, 0x16, 0x1b);
             (**(code **)(0x110 + *(int *)(*(int *)(0x330 + a0) + 8)))(*(int *)(0x330 + a0), 0, uVar5, piVar6);
             uVar4 = *(u32 *)(0x330 + a0);
             (**(code **)(*a3 + 0x4c))(a3, uVar4, uVar5, piVar6);
             *(u32 *)(0x330 + a0) = 0;
-            FUN_8c0f4d84(a0);
+            mask_74_7fffffff(a0);
             *(u8 *)(0x524 + a0) = 2;
         }
         goto LAB_8c0881ac;
     }
-    uVar2 = FUN_8c02602c(a1, uVar4);
+    uVar2 = get_field_a4_s16(a1, uVar4);
     iVar3 = get_field_c_02d1b8(a0 + 0x21c);
     uVar4 = 0x3c;
     iVar3 = (*(code *)(&libgcc_divide_helper_0101e4))((uVar2 & 0xffff) - iVar3, 0x3c, uVar5, piVar6);
@@ -4272,7 +4272,7 @@ u32 CAnimal_m2_088094(int a0, u32 a1, u32 a2, int *a3) {
     if (*(int *)(0x330 + a0) != 0) {
         (**(code **)(0x110 + *(int *)(*(int *)(0x330 + a0) + 8)))(*(int *)(0x330 + a0), 1, uVar5, piVar6);
         (**(code **)(*(int *)(*(int *)(0x330 + a0) + 8) + 0x10))(*(int *)(0x330 + a0), a1, a2, a3);
-        FUN_8c036988(*(u32 *)(0x330 + a0), a1, a2);
+        set_vec3_field_30(*(u32 *)(0x330 + a0), a1, a2);
         uVar4 = a1;
         uVar5 = a2;
         piVar6 = a3;
@@ -4384,8 +4384,8 @@ u32 FUN_8c088288(int a0, u32 a1, u32 a2) {
 
     cVar5 = '\0';
     cVar4 = '\0';
-    FUN_8c01538c(*(int *)(a0 + 0x328) + 0x78, a1, a2);
-    FUN_8c256328(0, a1, a2, r7, in_stack_fffffff4);
+    obj_set_texlist(*(int *)(a0 + 0x328) + 0x78, a1, a2);
+    matrix_push(0, a1, a2, r7, in_stack_fffffff4);
     FUN_8c25b5d0(0, a1, a2, r7, in_stack_fffffff4);
     if (cVar5 == '\0') {
         dVar3 = (double)CONCAT44(0x47800000, *(u32 *)(a0 + 0x58));
@@ -4448,10 +4448,10 @@ u32 FUN_8c088288(int a0, u32 a1, u32 a2) {
         ar5_00 = (int)(dVar3 / dVar3);
     }
     FUN_8c256b0c(0, ar5_00, ar6_00, ar7_00, in_stack_fffffff4);
-    FUN_8c256fec(0, ar5_00, ar6_00, ar7_00, in_stack_fffffff4);
-    uVar1 = FUN_8c015bb8(*(int *)(a0 + 0x328) + 0x70);
+    matrix_scale(0, ar5_00, ar6_00, ar7_00, in_stack_fffffff4);
+    uVar1 = noop_015bb8(*(int *)(a0 + 0x328) + 0x70);
     FUN_8c219a9a(uVar1, ar5_00, ar6_00, ar7_00);
-    FUN_8c256210(1);
+    matrix_pop_n(1);
     uVar1 = 0;
     if (*(int *)(a0 + 0x330) != 0) {
         FUN_8c0f4b44(*(u32 *)(a0 + 0x330));
@@ -4684,58 +4684,58 @@ u32 FUN_8c08894c(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
         g_8c125f90 = 0xffffffff00800000;
     }
     uVar1 = 0x124;
-    FUN_8c010120(0x8c280fb4, FUN_8c02452c, FUN_8c03a4ac, 0x124, 8);
-    global_list_push(0, FUN_8c08a154, 0x8c280fa8, uVar1);
+    vec_new_array(0x8c280fb4, FUN_8c02452c, FUN_8c03a4ac, 0x124, 8);
+    global_list_push(0, destroy_array_8c280fb4, 0x8c280fa8, uVar1);
     uVar1 = 0x10;
-    FUN_8c010120(&g_8c2818e0, FUN_8c024824, free_if_nonnull_wrap_03a454, 0x10, 3);
-    global_list_push(0, FUN_8c08a130, 0x8c2818d4, uVar1);
+    vec_new_array(&g_8c2818e0, FUN_8c024824, free_if_nonnull_wrap_03a454, 0x10, 3);
+    global_list_push(0, destroy_array_8c2818e0, 0x8c2818d4, uVar1);
     uVar1 = 4;
-    FUN_8c010120(0x8c28191c, FUN_8c015b94, free_if_nonnull_wrap_0247b0, 4, 0x12);
-    global_list_push(0, FUN_8c08a10c, 0x8c281910, uVar1);
-    FUN_8c010120(0x8c281970, FUN_8c015bc8, free_if_nonnull_wrap_03a3dc, 4, 0x12);
-    global_list_push(0, FUN_8c08a0e8, 0x8c281964, 0);
+    vec_new_array(0x8c28191c, clear_field_0_wrap_015b94, free_if_nonnull_wrap_0247b0, 4, 0x12);
+    global_list_push(0, destroy_array_8c28191c, 0x8c281910, uVar1);
+    vec_new_array(0x8c281970, clear_field_0_wrap_015bc8, free_if_nonnull_wrap_03a3dc, 4, 0x12);
+    global_list_push(0, destroy_array_8c281970, 0x8c281964, 0);
     uVar1 = 4;
-    FUN_8c010120(0x8c2819c4, FUN_8c015b94, free_if_nonnull_wrap_0247b0, 4, 0x14);
-    global_list_push(0, FUN_8c08a0c4, 0x8c2819b8, uVar1);
+    vec_new_array(0x8c2819c4, clear_field_0_wrap_015b94, free_if_nonnull_wrap_0247b0, 4, 0x14);
+    global_list_push(0, destroy_array_8c2819c4, 0x8c2819b8, uVar1);
     uVar1 = 4;
-    FUN_8c010120(0x8c281a20, FUN_8c015bc8, free_if_nonnull_wrap_03a3dc, 4, 0x14);
-    global_list_push(0, FUN_8c08a0a0, 0x8c281a14, uVar1);
+    vec_new_array(0x8c281a20, clear_field_0_wrap_015bc8, free_if_nonnull_wrap_03a3dc, 4, 0x14);
+    global_list_push(0, destroy_array_8c281a20, 0x8c281a14, uVar1);
     uVar1 = 4;
-    FUN_8c010120(0x8c281a7c, FUN_8c015b94, free_if_nonnull_wrap_0247b0, 4, 0x1b);
-    global_list_push(0, FUN_8c08a07c, 0x8c281a70, uVar1);
+    vec_new_array(0x8c281a7c, clear_field_0_wrap_015b94, free_if_nonnull_wrap_0247b0, 4, 0x1b);
+    global_list_push(0, destroy_array_8c281a7c, 0x8c281a70, uVar1);
     uVar1 = 4;
-    FUN_8c010120(0x8c281af4, FUN_8c015bc8, free_if_nonnull_wrap_03a3dc, 4, 0x1b);
-    global_list_push(0, FUN_8c08a058, 0x8c281ae8, uVar1);
+    vec_new_array(0x8c281af4, clear_field_0_wrap_015bc8, free_if_nonnull_wrap_03a3dc, 4, 0x1b);
+    global_list_push(0, destroy_array_8c281af4, 0x8c281ae8, uVar1);
     uVar1 = 4;
-    FUN_8c010120(0x8c281b6c, FUN_8c015b94, free_if_nonnull_wrap_0247b0, 4, 0x1c);
-    global_list_push(0, FUN_8c08a034, 0x8c281b60, uVar1);
+    vec_new_array(0x8c281b6c, clear_field_0_wrap_015b94, free_if_nonnull_wrap_0247b0, 4, 0x1c);
+    global_list_push(0, destroy_array_8c281b6c, 0x8c281b60, uVar1);
     uVar1 = 4;
-    FUN_8c010120(0x8c281be8, FUN_8c015bc8, free_if_nonnull_wrap_03a3dc, 4, 0x1c);
-    global_list_push(0, FUN_8c08a010, 0x8c281bdc, uVar1);
+    vec_new_array(0x8c281be8, clear_field_0_wrap_015bc8, free_if_nonnull_wrap_03a3dc, 4, 0x1c);
+    global_list_push(0, destroy_array_8c281be8, 0x8c281bdc, uVar1);
     uVar1 = 4;
-    FUN_8c010120(0x8c281c64, FUN_8c015b94, free_if_nonnull_wrap_0247b0, 4, 0x1c);
-    global_list_push(0, FUN_8c089fec, 0x8c281c58, uVar1);
+    vec_new_array(0x8c281c64, clear_field_0_wrap_015b94, free_if_nonnull_wrap_0247b0, 4, 0x1c);
+    global_list_push(0, destroy_array_8c281c64, 0x8c281c58, uVar1);
     uVar1 = 4;
-    FUN_8c010120(0x8c281ce0, FUN_8c015bc8, free_if_nonnull_wrap_03a3dc, 4, 0x1c);
-    global_list_push(0, FUN_8c089fc8, 0x8c281cd4, uVar1);
+    vec_new_array(0x8c281ce0, clear_field_0_wrap_015bc8, free_if_nonnull_wrap_03a3dc, 4, 0x1c);
+    global_list_push(0, destroy_array_8c281ce0, 0x8c281cd4, uVar1);
     uVar1 = 4;
-    FUN_8c010120(0x8c281d5c, FUN_8c015b94, free_if_nonnull_wrap_0247b0, 4, 0x1c);
-    global_list_push(0, FUN_8c089fa4, 0x8c281d50, uVar1);
+    vec_new_array(0x8c281d5c, clear_field_0_wrap_015b94, free_if_nonnull_wrap_0247b0, 4, 0x1c);
+    global_list_push(0, destroy_array_8c281d5c, 0x8c281d50, uVar1);
     uVar1 = 4;
-    FUN_8c010120(0x8c281dd8, FUN_8c015bc8, free_if_nonnull_wrap_03a3dc, 4, 0x1c);
-    global_list_push(0, FUN_8c089f80, 0x8c281dcc, uVar1);
+    vec_new_array(0x8c281dd8, clear_field_0_wrap_015bc8, free_if_nonnull_wrap_03a3dc, 4, 0x1c);
+    global_list_push(0, destroy_array_8c281dd8, 0x8c281dcc, uVar1);
     uVar1 = 4;
-    FUN_8c010120(0x8c281e54, FUN_8c015b94, free_if_nonnull_wrap_0247b0, 4, 0x29);
-    global_list_push(0, FUN_8c089f5c, 0x8c281e48, uVar1);
+    vec_new_array(0x8c281e54, clear_field_0_wrap_015b94, free_if_nonnull_wrap_0247b0, 4, 0x29);
+    global_list_push(0, destroy_array_8c281e54, 0x8c281e48, uVar1);
     uVar1 = 4;
-    FUN_8c010120(0x8c281f04, FUN_8c015bc8, free_if_nonnull_wrap_03a3dc, 4, 0x29);
-    global_list_push(0, FUN_8c089f38, 0x8c281ef8, uVar1);
+    vec_new_array(0x8c281f04, clear_field_0_wrap_015bc8, free_if_nonnull_wrap_03a3dc, 4, 0x29);
+    global_list_push(0, destroy_array_8c281f04, 0x8c281ef8, uVar1);
     uVar1 = 4;
-    FUN_8c010120(0x8c281fb4, FUN_8c015b94, free_if_nonnull_wrap_0247b0, 4, 0x34);
-    global_list_push(0, FUN_8c089f14, 0x8c281fa8, uVar1);
+    vec_new_array(0x8c281fb4, clear_field_0_wrap_015b94, free_if_nonnull_wrap_0247b0, 4, 0x34);
+    global_list_push(0, destroy_array_8c281fb4, 0x8c281fa8, uVar1);
     uVar4 = 4;
-    FUN_8c010120(0x8c282090, FUN_8c015bc8, free_if_nonnull_wrap_03a3dc, 4, 0x34);
-    global_list_push(0, FUN_8c089ef0, 0x8c282084, uVar4);
+    vec_new_array(0x8c282090, clear_field_0_wrap_015bc8, free_if_nonnull_wrap_03a3dc, 4, 0x34);
+    global_list_push(0, destroy_array_8c282090, 0x8c282084, uVar4);
     uVar1 = Vec3_ctor_xyz(0x8c282f04, Vec3_ctor_xyz, 0x8c282f04, uVar4);
     global_list_push(uVar1, Vec3_dtor, 0x8c282ef8, uVar4);
     uVar1 = Vec3_ctor_xyz(0x8c282f20, Vec3_ctor_xyz, 0x8c282f20, uVar4);
@@ -4912,25 +4912,25 @@ u32 FUN_8c08894c(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     uVar3 = 0x8c282f3c;
     uVar1 = FUN_8c017010(0x8c283444, 0x8c282f04, 0x8c282f20, 0x8c282f3c, 0x8c282f58, 0x8c282f74, 0x8c282f90, 0x8c282fac,
                          0x8c282fc8);
-    global_list_push(uVar1, Class_129938_m0_017084, 0x8c283438, uVar3);
+    global_list_push(uVar1, Class_129938_dtor, 0x8c283438, uVar3);
     uVar1 = FUN_8c017010(0x8c2834e4, 0x8c282fe4, 0x8c283000, 0x8c28301c, 0x8c283038, 0x8c283054, 0x8c283070, 0x8c28308c,
                          0x8c2830a8);
-    global_list_push(uVar1, Class_129938_m0_017084, 0x8c2834d8, uVar1);
+    global_list_push(uVar1, Class_129938_dtor, 0x8c2834d8, uVar1);
     uVar3 = 0x8c2830fc;
     uVar1 = FUN_8c017010(0x8c283584, 0x8c2830c4, 0x8c2830e0, 0x8c2830fc, 0x8c283118, 0x8c283134, 0x8c283150, 0x8c28316c,
                          0x8c283188);
-    global_list_push(uVar1, Class_129938_m0_017084, 0x8c283578, uVar3);
+    global_list_push(uVar1, Class_129938_dtor, 0x8c283578, uVar3);
     uVar1 = FUN_8c017010(0x8c283624, 0x8c2831a4, 0x8c2831c0, 0x8c2831dc, 0x8c2831f8, 0x8c283214, 0x8c283230, 0x8c28324c,
                          0x8c283268);
-    global_list_push(uVar1, Class_129938_m0_017084, 0x8c283618, uVar1);
+    global_list_push(uVar1, Class_129938_dtor, 0x8c283618, uVar1);
     uVar3 = 0x8c2832bc;
     uVar1 = FUN_8c017010(0x8c2836c4, 0x8c283284, 0x8c2832a0, 0x8c2832bc, 0x8c2832d8, 0x8c2832f4, 0x8c283310, 0x8c28332c,
                          0x8c283348);
-    global_list_push(uVar1, Class_129938_m0_017084, 0x8c2836b8, uVar3);
+    global_list_push(uVar1, Class_129938_dtor, 0x8c2836b8, uVar3);
     uVar1 = FUN_8c017010(0x8c283764, 0x8c283364, 0x8c283380, 0x8c28339c, 0x8c2833b8, 0x8c2833d4, 0x8c2833f0, 0x8c28340c,
                          0x8c283428);
     uVar3 = 0x8c283758;
-    global_list_push(uVar1, Class_129938_m0_017084, 0x8c283758, uVar1);
+    global_list_push(uVar1, Class_129938_dtor, 0x8c283758, uVar1);
     uVar3 = FUN_8c02452c(0x8c283804, 0x8c283804);
     uVar4 = 0x8c2837f8;
     pcVar2 = FUN_8c03a4ac;
@@ -4939,12 +4939,12 @@ u32 FUN_8c08894c(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     uVar1 = FUN_8c024824(0x8c283934);
     uVar3 = 0x8c283928;
     global_list_push(uVar1, free_if_nonnull_wrap_03a454, 0x8c283928, pcVar5);
-    uVar1 = FUN_8c015b94(0x8c283950, 0x8c283950);
+    uVar1 = clear_field_0_wrap_015b94(0x8c283950, 0x8c283950);
     uVar3 = 0x8c283944;
     pcVar5 = free_if_nonnull_wrap_0247b0;
     pcVar2 = free_if_nonnull_wrap_0247b0;
     global_list_push(uVar1, free_if_nonnull_wrap_0247b0, 0x8c283944, free_if_nonnull_wrap_0247b0);
-    uVar1 = FUN_8c015bc8(0x8c283960);
+    uVar1 = clear_field_0_wrap_015bc8(0x8c283960);
     pcVar2 = free_if_nonnull_wrap_03a3dc;
     global_list_push(uVar1, free_if_nonnull_wrap_03a3dc, 0x8c283954, pcVar5);
     uVar4 = 0x8c283970;
@@ -4976,14 +4976,15 @@ u32 FUN_8c08894c(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     uVar3 = 0x8c2839a8;
     uVar1 = FUN_8c017010(0x8c283a50, 0x8c283970, 0x8c28398c, 0x8c2839a8, 0x8c2839c4, 0x8c2839e0, 0x8c2839fc, 0x8c283a18,
                          0x8c283a34);
-    uVar1 = global_list_push(uVar1, Class_129938_m0_017084, 0x8c283a44, uVar3);
+    uVar1 = global_list_push(uVar1, Class_129938_dtor, 0x8c283a44, uVar3);
     return uVar1;
 }
 
 /*
- * FUN_8c089ef0  0x8c089ef0
+ * destroy_array_8c282090  0x8c089ef0
+ * destroys the global array at 0x8c282090
  */
-u32 FUN_8c089ef0(void) {
+u32 destroy_array_8c282090(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c282090, free_if_nonnull_wrap_03a3dc, 4, 0x34);
@@ -4991,9 +4992,10 @@ u32 FUN_8c089ef0(void) {
 }
 
 /*
- * FUN_8c089f14  0x8c089f14
+ * destroy_array_8c281fb4  0x8c089f14
+ * destroys the global array at 0x8c281fb4
  */
-u32 FUN_8c089f14(void) {
+u32 destroy_array_8c281fb4(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c281fb4, free_if_nonnull_wrap_0247b0, 4, 0x34);
@@ -5001,9 +5003,10 @@ u32 FUN_8c089f14(void) {
 }
 
 /*
- * FUN_8c089f38  0x8c089f38
+ * destroy_array_8c281f04  0x8c089f38
+ * destroys the global array at 0x8c281f04
  */
-u32 FUN_8c089f38(void) {
+u32 destroy_array_8c281f04(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c281f04, free_if_nonnull_wrap_03a3dc, 4, 0x29);
@@ -5011,9 +5014,10 @@ u32 FUN_8c089f38(void) {
 }
 
 /*
- * FUN_8c089f5c  0x8c089f5c
+ * destroy_array_8c281e54  0x8c089f5c
+ * destroys the global array at 0x8c281e54
  */
-u32 FUN_8c089f5c(void) {
+u32 destroy_array_8c281e54(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c281e54, free_if_nonnull_wrap_0247b0, 4, 0x29);
@@ -5021,9 +5025,10 @@ u32 FUN_8c089f5c(void) {
 }
 
 /*
- * FUN_8c089f80  0x8c089f80
+ * destroy_array_8c281dd8  0x8c089f80
+ * destroys the global array at 0x8c281dd8
  */
-u32 FUN_8c089f80(void) {
+u32 destroy_array_8c281dd8(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c281dd8, free_if_nonnull_wrap_03a3dc, 4, 0x1c);
@@ -5031,9 +5036,10 @@ u32 FUN_8c089f80(void) {
 }
 
 /*
- * FUN_8c089fa4  0x8c089fa4
+ * destroy_array_8c281d5c  0x8c089fa4
+ * destroys the global array at 0x8c281d5c
  */
-u32 FUN_8c089fa4(void) {
+u32 destroy_array_8c281d5c(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c281d5c, free_if_nonnull_wrap_0247b0, 4, 0x1c);
@@ -5041,9 +5047,10 @@ u32 FUN_8c089fa4(void) {
 }
 
 /*
- * FUN_8c089fc8  0x8c089fc8
+ * destroy_array_8c281ce0  0x8c089fc8
+ * destroys the global array at 0x8c281ce0
  */
-u32 FUN_8c089fc8(void) {
+u32 destroy_array_8c281ce0(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c281ce0, free_if_nonnull_wrap_03a3dc, 4, 0x1c);
@@ -5051,9 +5058,10 @@ u32 FUN_8c089fc8(void) {
 }
 
 /*
- * FUN_8c089fec  0x8c089fec
+ * destroy_array_8c281c64  0x8c089fec
+ * destroys the global array at 0x8c281c64
  */
-u32 FUN_8c089fec(void) {
+u32 destroy_array_8c281c64(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c281c64, free_if_nonnull_wrap_0247b0, 4, 0x1c);
@@ -5061,9 +5069,10 @@ u32 FUN_8c089fec(void) {
 }
 
 /*
- * FUN_8c08a010  0x8c08a010
+ * destroy_array_8c281be8  0x8c08a010
+ * destroys the global array at 0x8c281be8
  */
-u32 FUN_8c08a010(void) {
+u32 destroy_array_8c281be8(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c281be8, free_if_nonnull_wrap_03a3dc, 4, 0x1c);
@@ -5071,9 +5080,10 @@ u32 FUN_8c08a010(void) {
 }
 
 /*
- * FUN_8c08a034  0x8c08a034
+ * destroy_array_8c281b6c  0x8c08a034
+ * destroys the global array at 0x8c281b6c
  */
-u32 FUN_8c08a034(void) {
+u32 destroy_array_8c281b6c(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c281b6c, free_if_nonnull_wrap_0247b0, 4, 0x1c);
@@ -5081,9 +5091,10 @@ u32 FUN_8c08a034(void) {
 }
 
 /*
- * FUN_8c08a058  0x8c08a058
+ * destroy_array_8c281af4  0x8c08a058
+ * destroys the global array at 0x8c281af4
  */
-u32 FUN_8c08a058(void) {
+u32 destroy_array_8c281af4(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c281af4, free_if_nonnull_wrap_03a3dc, 4, 0x1b);
@@ -5091,9 +5102,10 @@ u32 FUN_8c08a058(void) {
 }
 
 /*
- * FUN_8c08a07c  0x8c08a07c
+ * destroy_array_8c281a7c  0x8c08a07c
+ * destroys the global array at 0x8c281a7c
  */
-u32 FUN_8c08a07c(void) {
+u32 destroy_array_8c281a7c(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c281a7c, free_if_nonnull_wrap_0247b0, 4, 0x1b);
@@ -5101,9 +5113,10 @@ u32 FUN_8c08a07c(void) {
 }
 
 /*
- * FUN_8c08a0a0  0x8c08a0a0
+ * destroy_array_8c281a20  0x8c08a0a0
+ * destroys the global array at 0x8c281a20
  */
-u32 FUN_8c08a0a0(void) {
+u32 destroy_array_8c281a20(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c281a20, free_if_nonnull_wrap_03a3dc, 4, 0x14);
@@ -5111,9 +5124,10 @@ u32 FUN_8c08a0a0(void) {
 }
 
 /*
- * FUN_8c08a0c4  0x8c08a0c4
+ * destroy_array_8c2819c4  0x8c08a0c4
+ * destroys the global array at 0x8c2819c4
  */
-u32 FUN_8c08a0c4(void) {
+u32 destroy_array_8c2819c4(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c2819c4, free_if_nonnull_wrap_0247b0, 4, 0x14);
@@ -5121,9 +5135,10 @@ u32 FUN_8c08a0c4(void) {
 }
 
 /*
- * FUN_8c08a0e8  0x8c08a0e8
+ * destroy_array_8c281970  0x8c08a0e8
+ * destroys the global array at 0x8c281970
  */
-u32 FUN_8c08a0e8(void) {
+u32 destroy_array_8c281970(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c281970, free_if_nonnull_wrap_03a3dc, 4, 0x12);
@@ -5131,9 +5146,10 @@ u32 FUN_8c08a0e8(void) {
 }
 
 /*
- * FUN_8c08a10c  0x8c08a10c
+ * destroy_array_8c28191c  0x8c08a10c
+ * destroys the global array at 0x8c28191c
  */
-u32 FUN_8c08a10c(void) {
+u32 destroy_array_8c28191c(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c28191c, free_if_nonnull_wrap_0247b0, 4, 0x12);
@@ -5141,9 +5157,10 @@ u32 FUN_8c08a10c(void) {
 }
 
 /*
- * FUN_8c08a130  0x8c08a130
+ * destroy_array_8c2818e0  0x8c08a130
+ * destroys the global array at 0x8c2818e0
  */
-u32 FUN_8c08a130(void) {
+u32 destroy_array_8c2818e0(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(&g_8c2818e0, free_if_nonnull_wrap_03a454, 0x10, 3);
@@ -5151,9 +5168,10 @@ u32 FUN_8c08a130(void) {
 }
 
 /*
- * FUN_8c08a154  0x8c08a154
+ * destroy_array_8c280fb4  0x8c08a154
+ * destroys the global array at 0x8c280fb4
  */
-u32 FUN_8c08a154(void) {
+u32 destroy_array_8c280fb4(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c280fb4, FUN_8c03a4ac, 0x124, 8);
@@ -5179,13 +5197,13 @@ int FUN_8c08a17c(int a0, u32 a1, u32 a2) {
     *(u8 **)(a0 + 8) = (&DATA_8c12a5d0);
     FUN_8c098ca8(a0 + 0x490, uVar1, ar6_00);
     FUN_8c08dad4(a0 + 0x538, uVar1, ar6_00, ar7_00);
-    FUN_8c015b94(a0 + 0x850, uVar1);
-    FUN_8c015bc8(a0 + 0x854);
+    clear_field_0_wrap_015b94(a0 + 0x850, uVar1);
+    clear_field_0_wrap_015bc8(a0 + 0x854);
     FUN_8c016fcc(a0 + 0x858, uVar1, ar6_00);
     Vec3_ctor_zero(a0 + 0x900, uVar1, ar6_00);
     Vec3_set_zero(a0 + 0x910);
-    FUN_8c023dac(a0 + 0x91c);
-    (*(code *)(&FUN_8c014334))(a0 + 0xc, uVar1, ar6_00, ar7_00, "MothLine");
+    Vec3_set_one(a0 + 0x91c);
+    (*(code *)(&sprintf))(a0 + 0xc, uVar1, ar6_00, ar7_00, "MothLine");
     *(int *)(0x308 + a0) = a0 + 0x490;
     uVar1 = FUN_8c034d38(a0 + 0x2dc, a2);
     FUN_8c028ec8(*(u32 *)(0x308 + a0), uVar1);
@@ -5221,11 +5239,11 @@ int Class_12a5d0_m0_08a3a4(int a0, u32 a1, u32 a2, u32 a3) {
         free_if_nonnull_wrap_016ac4(a0 + 0x91c, 0xffffffff, a2, a3);
         object_dtor_delete(a0 + 0x910, 0xffffffff, a2, a3);
         Vec3_dtor(a0 + 0x900, 0xffffffff, a2, a3);
-        Class_129938_m0_017084(a0 + 0x858, 0xffffffff, a2, a3);
+        Class_129938_dtor(a0 + 0x858, 0xffffffff, a2, a3);
         free_if_nonnull_wrap_03a3dc(a0 + 0x854, 0xffffffff, a2, a3);
         free_if_nonnull_wrap_0247b0(a0 + 0x850, 0xffffffff, a2, a3);
-        Class_12a76c_m0_08dca8(a0 + 0x538, 0xffffffff, a2, a3);
-        Class_12a7a8_m0_098ccc(a0 + 0x490, 0xffffffff, a2, a3);
+        Class_12a76c_dtor(a0 + 0x538, 0xffffffff, a2, a3);
+        Class_12a7a8_dtor(a0 + 0x490, 0xffffffff, a2, a3);
         ar5_00 = 0;
         CAnimal_m0_025688(a0, 0, a2, a3);
         if (0 < (short)ain0) {
@@ -5259,7 +5277,7 @@ u32 Class_12a5d0_m2_08a49c(int a0, u32 a1, u32 a2, u32 a3) {
     ar5_00 = a1;
     ar7_00 = a3;
     CAnimal_m2_02573c(a0, a1, a2, a3);
-    uVar1 = FUN_8c035ab4(a0 + 0x490);
+    uVar1 = get_field_90_s8(a0 + 0x490);
     if ((((char)uVar1 == '\x01') && (*(int *)(a0 + 0x8f8) == 0)) && (*(int *)(a0 + 0x8f4) == 0)) {
         ar5_00 = a3;
         a2 = a1;
@@ -5269,13 +5287,13 @@ u32 Class_12a5d0_m2_08a49c(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = a1;
         FUN_8c08ac38(a0, a1);
     }
-    uVar1 = FUN_8c035ab4(a0 + 0x490);
+    uVar1 = get_field_90_s8(a0 + 0x490);
     if (((char)uVar1 == '\x02') && (iVar2 = get_field_25c_08a6f8(a0 + 0x538), iVar2 != -1)) {
         FUN_8c08ad50(a0, a3, a1, ar7_00);
         ar5_00 = a3;
         a2 = a1;
     }
-    uVar1 = FUN_8c035ab4(a0 + 0x490);
+    uVar1 = get_field_90_s8(a0 + 0x490);
     if ((((char)uVar1 == '\x02') && (*(int *)(a0 + 0x8ec) == 0)) && (*(int *)(a0 + 0x8f0) == 0)) {
         ar5_00 = 0;
         FUN_8c035f4c(a0 + 0x490, 0);
@@ -5283,7 +5301,7 @@ u32 Class_12a5d0_m2_08a49c(int a0, u32 a1, u32 a2, u32 a3) {
     iVar2 = get_field_124_027930(a0 + 0x538, ar5_00, a2, ar7_00);
     uVar1 = FUN_8c02bef8(a0 + 0x174, ar5_00, a2);
     if ((iVar2 == 3) && ((short)uVar1 == 2)) {
-        FUN_8c08a6e8(a0 + 0x538, ar5_00, a2, ar7_00);
+        ret_const_2fc(a0 + 0x538, ar5_00, a2, ar7_00);
         if (cVar6 == '\0') {
             dVar4 = (double)CONCAT44(0xc5e10000, (int)(in_dr0 >> 0x20));
             in_dr0 = in_xd0;
@@ -5333,10 +5351,10 @@ u32 Class_12a5d0_m2_08a49c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c08a6e8  0x8c08a6e8
+ * ret_const_2fc  0x8c08a6e8
  * called by: Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704, FUN_8c08b020
  */
-u32 FUN_8c08a6e8(void) {
+u32 ret_const_2fc(void) {
     return 0x2fc;
 }
 
@@ -5371,7 +5389,7 @@ u32 Class_12a5d0_m3_08a704(int a0, u32 a1, u32 a2, u32 a3) {
     ar5_00 = a1;
     ar7_00 = a3;
     CAnimal_m3_026078(a0, a1, a2, a3);
-    uVar1 = FUN_8c035ab4(a0 + 0x490);
+    uVar1 = get_field_90_s8(a0 + 0x490);
     if ((((char)uVar1 == '\x01') && (*(int *)(a0 + 0x8f8) == 0)) && (*(int *)(a0 + 0x8f4) == 0)) {
         ar5_00 = a3;
         a2 = a1;
@@ -5381,13 +5399,13 @@ u32 Class_12a5d0_m3_08a704(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = a1;
         FUN_8c08ac38(a0, a1);
     }
-    uVar1 = FUN_8c035ab4(a0 + 0x490);
+    uVar1 = get_field_90_s8(a0 + 0x490);
     if (((char)uVar1 == '\x02') && (iVar2 = get_field_25c_08a6f8(a0 + 0x538), iVar2 != -1)) {
         FUN_8c08ad50(a0, a3, a1, ar7_00);
         ar5_00 = a3;
         a2 = a1;
     }
-    uVar1 = FUN_8c035ab4(a0 + 0x490);
+    uVar1 = get_field_90_s8(a0 + 0x490);
     if ((((char)uVar1 == '\x02') && (*(int *)(a0 + 0x8ec) == 0)) && (*(int *)(a0 + 0x8f0) == 0)) {
         ar5_00 = 0;
         FUN_8c035f4c(a0 + 0x490, 0);
@@ -5395,7 +5413,7 @@ u32 Class_12a5d0_m3_08a704(int a0, u32 a1, u32 a2, u32 a3) {
     iVar2 = get_field_124_027930(a0 + 0x538, ar5_00, a2, ar7_00);
     uVar1 = FUN_8c02bef8(a0 + 0x174, ar5_00, a2);
     if ((iVar2 == 3) && ((short)uVar1 == 2)) {
-        FUN_8c08a6e8(a0 + 0x538, ar5_00, a2, ar7_00);
+        ret_const_2fc(a0 + 0x538, ar5_00, a2, ar7_00);
         if (cVar6 == '\0') {
             dVar4 = (double)CONCAT44(0xc5e10000, (int)(in_dr0 >> 0x20));
             in_dr0 = in_xd0;
@@ -5602,7 +5620,7 @@ int FUN_8c08ac38(int a0, int a1) {
     }
     iVar3 = *(int *)(0x8f4 + a0);
     if ((iVar3 == 0) && (iVar3 = *(int *)(0x8f8 + a0), iVar3 == 0)) {
-        uVar2 = FUN_8c035ab4(a0 + 0x490);
+        uVar2 = get_field_90_s8(a0 + 0x490);
         iVar3 = (int)(char)uVar2;
         if (iVar3 == 1) {
             iVar3 = FUN_8c035f4c(a0 + 0x490, 2);
@@ -5644,7 +5662,7 @@ u32 FUN_8c08ad50(int a0, int *a1, u32 a2, u32 a3) {
         (**(code **)(0x10c + *(int *)(iVar3 + 8)))(iVar3, uStack_c0, a2, a3);
         if (iVar1 == 0) {
             (**(code **)(0x140 + *(int *)(a0 + 8)))(a0, uVar2, a2, a3);
-            (*(code *)(&FUN_8c0230f0))(&stack0xffffff38 + 0x9c, uVar2, a2, a3, (int)&piStack_c4 + 0x88);
+            (*(code *)(&Vec3_make))(&stack0xffffff38 + 0x9c, uVar2, a2, a3, (int)&piStack_c4 + 0x88);
             Vec3_normalize(&stack0xffffff38 + 0x8c, uVar2, a2, a3);
             Vec3_scale(auStack_4c, (&DATA_8c139fc4), a2, a3, auStack_5c);
             Vec3_assign((int)&piStack_c4 + 0xa8, auStack_5c, a2, a3);
@@ -5655,7 +5673,7 @@ u32 FUN_8c08ad50(int a0, int *a1, u32 a2, u32 a3) {
             Vec3_dtor((int)&piStack_c4 + 0x98, 0xffffffff, a2, a3);
         } else {
             (**(code **)(0x140 + *(int *)(a0 + 8)))(a0, uVar2, a2, a3);
-            FUN_8c0230f0(auStack_6c, uVar2, a2, a3, auStack_7c);
+            Vec3_make(auStack_6c, uVar2, a2, a3, auStack_7c);
             Vec3_normalize(auStack_7c, uVar2, a2, a3);
             Vec3_scale(auStack_8c, (&DATA_8c139fc8), a2, a3, auStack_9c);
             Vec3_assign((int)&piStack_c4 + 0xa8, auStack_9c, a2, a3);
@@ -5665,12 +5683,12 @@ u32 FUN_8c08ad50(int a0, int *a1, u32 a2, u32 a3) {
             uVar2 = 0xffffffff;
             Vec3_dtor(auStack_6c, 0xffffffff, a2, a3);
         }
-        FUN_8c036988(*(u32 *)(0x8ec + a0 + iVar1 * 4), uVar2, a2);
+        set_vec3_field_30(*(u32 *)(0x8ec + a0 + iVar1 * 4), uVar2, a2);
         iVar3 = *(int *)(0x8ec + a0 + iVar1 * 4);
         (**(code **)(*(int *)(iVar3 + 8) + 0x5c))(iVar3, uVar2, a2, a3);
         uVar2 = *(u32 *)(0x8ec + a0 + iVar1 * 4);
         (**(code **)(*piStack_c4 + 0x4c))(piStack_c4, uVar2, a2, a3);
-        FUN_8c036988(*(u32 *)(0x8ec + a0 + iVar1 * 4), uVar2, a2);
+        set_vec3_field_30(*(u32 *)(0x8ec + a0 + iVar1 * 4), uVar2, a2);
         *(u32 *)(0x8ec + a0 + iVar1 * 4) = 0;
     }
     uVar2 = Vec3_dtor((int)&piStack_c4 + 0xa8, 0xffffffff, a2, a3);
@@ -5709,8 +5727,8 @@ u32 FUN_8c08b020(int a0, u32 a1, u32 a2, u32 a3) {
     uVar3 = CONCAT22(uVar13, sVar1);
     iVar7 = *(int *)(a0 + 0x328) + sVar1 * 0x124;
     FUN_8c233dac(a0 + 0x438);
-    FUN_8c01538c(*(u32 *)(a0 + 0x42c), a1, a2);
-    FUN_8c256328(0, a1, a2, a3, uVar3);
+    obj_set_texlist(*(u32 *)(a0 + 0x42c), a1, a2);
+    matrix_push(0, a1, a2, a3, uVar3);
     FUN_8c25b5d0(0, a1, a2, a3, uVar3);
     if (cVar12 == '\0') {
         dVar9 = (double)CONCAT44(0x47800000, *(u32 *)(a0 + 0x58));
@@ -5778,14 +5796,14 @@ u32 FUN_8c08b020(int a0, u32 a1, u32 a2, u32 a3) {
     }
     iStack_4c = (int)((u64)dVar9 >> 0x20);
     FUN_8c256b0c(0, ar5_00, iStack_34, ar7_00, uVar3);
-    FUN_8c256fec(0, ar5_00, iStack_34, ar7_00, uVar3);
+    matrix_scale(0, ar5_00, iStack_34, ar7_00, uVar3);
     if (sVar1 == 3) {
-        uVar4 = FUN_8c015bb8(iVar7 + 0x70);
-        iVar5 = FUN_8c026db0(*(u32 *)(a0 + 0x30c), ar5_00, iStack_34);
+        uVar4 = noop_015bb8(iVar7 + 0x70);
+        iVar5 = get_field_1c_on_field_b0(*(u32 *)(a0 + 0x30c), ar5_00, iStack_34);
         iVar5 = deref_u32(*(int *)(iVar7 + 0xa0) + iVar5 * 4);
-        iVar6 = FUN_8c026db0(*(u32 *)(a0 + 0x30c), ar5_00, iStack_34);
-        iVar7 = FUN_8c026d74(*(int *)(iVar7 + 0xa8) + iVar6 * 4);
-        FUN_8c026d7c(*(u32 *)(a0 + 0x30c), ar5_00, iStack_34, ar7_00);
+        iVar6 = get_field_1c_on_field_b0(*(u32 *)(a0 + 0x30c), ar5_00, iStack_34);
+        iVar7 = noop_026d74(*(int *)(iVar7 + 0xa8) + iVar6 * 4);
+        CAnimBody_GetCurFrame_on_field_b0(*(u32 *)(a0 + 0x30c), ar5_00, iStack_34, ar7_00);
         iStack_34 = iStack_4c;
         if (cVar12 == '\0') {
             iStack_34 = iVar7;
@@ -5795,12 +5813,12 @@ u32 FUN_8c08b020(int a0, u32 a1, u32 a2, u32 a3) {
     } else if (*(int *)(a0 + 0x6c) < 0x32) {
         FUN_8c219a9a(*(u32 *)(a0 + 0x848), ar5_00, iStack_34, ar7_00);
     } else {
-        uVar4 = FUN_8c015bb8(iVar7 + 0x70);
-        iVar5 = FUN_8c026db0(*(u32 *)(a0 + 0x30c), ar5_00, iStack_34);
+        uVar4 = noop_015bb8(iVar7 + 0x70);
+        iVar5 = get_field_1c_on_field_b0(*(u32 *)(a0 + 0x30c), ar5_00, iStack_34);
         iVar5 = deref_u32(*(int *)(iVar7 + 0xa0) + iVar5 * 4);
-        iVar6 = FUN_8c026db0(*(u32 *)(a0 + 0x30c), ar5_00, iStack_34);
-        iVar7 = FUN_8c026d74(*(int *)(iVar7 + 0xa8) + iVar6 * 4);
-        FUN_8c026d7c(*(u32 *)(a0 + 0x30c), ar5_00, iStack_34, ar7_00);
+        iVar6 = get_field_1c_on_field_b0(*(u32 *)(a0 + 0x30c), ar5_00, iStack_34);
+        iVar7 = noop_026d74(*(int *)(iVar7 + 0xa8) + iVar6 * 4);
+        CAnimBody_GetCurFrame_on_field_b0(*(u32 *)(a0 + 0x30c), ar5_00, iStack_34, ar7_00);
         if (cVar12 == '\0') {
             iStack_4c = iVar7;
         }
@@ -5808,14 +5826,14 @@ u32 FUN_8c08b020(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = iVar5;
         iStack_34 = iStack_4c;
     }
-    FUN_8c256210(1);
+    matrix_pop_n(1);
     if (sVar1 == 2) {
         if (iVar2 == 3) {
             FUN_8c233dac(&g_8c139e5c);
         }
-        FUN_8c08a6e8(a0 + 0x538, ar5_00, iStack_34, ar7_00);
-        FUN_8c25b3ec(*(u32 *)(a0 + 0x844));
-        FUN_8c256328(0, ar5_00, iStack_34, ar7_00, uVar3);
+        ret_const_2fc(a0 + 0x538, ar5_00, iStack_34, ar7_00);
+        njSetTexture(*(u32 *)(a0 + 0x844));
+        matrix_push(0, ar5_00, iStack_34, ar7_00, uVar3);
         FUN_8c25b5d0(0, ar5_00, iStack_34, ar7_00, uVar3);
         if (cVar12 == '\0') {
             dVar9 = (double)CONCAT44(0x47800000, *(u32 *)(a0 + 0x58));
@@ -5878,15 +5896,15 @@ u32 FUN_8c08b020(int a0, u32 a1, u32 a2, u32 a3) {
             iVar7 = (int)(dVar9 / dVar9);
         }
         FUN_8c256b0c(0, iVar7, iVar2, ar7_00, uVar3);
-        FUN_8c256fec(0, iVar7, iVar2, ar7_00, uVar3);
+        matrix_scale(0, iVar7, iVar2, ar7_00, uVar3);
         ar5_00 = deref_u32(a0 + 0x850);
-        iStack_34 = FUN_8c026d74(a0 + 0x854);
+        iStack_34 = noop_026d74(a0 + 0x854);
         FUN_8c21bbb0(*(u32 *)(a0 + 0x840), ar5_00, iStack_34, ar7_00, uVar3);
-        FUN_8c256210(1);
+        matrix_pop_n(1);
     } else if ((sVar1 == 3) && (*(int *)(a0 + 0x8fc) != 0)) {
-        FUN_8c08a6e8(a0 + 0x538, ar5_00, iStack_34, ar7_00);
-        FUN_8c25b3ec(*(u32 *)(a0 + 0x844));
-        FUN_8c256328(0, ar5_00, iStack_34, ar7_00, uVar3);
+        ret_const_2fc(a0 + 0x538, ar5_00, iStack_34, ar7_00);
+        njSetTexture(*(u32 *)(a0 + 0x844));
+        matrix_push(0, ar5_00, iStack_34, ar7_00, uVar3);
         FUN_8c25b5d0(0, ar5_00, iStack_34, ar7_00, uVar3);
         if (cVar12 == '\0') {
             dVar9 = (double)CONCAT44(0x47800000, *(u32 *)(a0 + 0x918));
@@ -5949,11 +5967,11 @@ u32 FUN_8c08b020(int a0, u32 a1, u32 a2, u32 a3) {
             iVar7 = (int)(dVar9 / dVar9);
         }
         FUN_8c256b0c(0, iVar7, iVar2, ar7_00, uVar3);
-        FUN_8c256fec(0, iVar7, iVar2, ar7_00, uVar3);
+        matrix_scale(0, iVar7, iVar2, ar7_00, uVar3);
         ar5_00 = deref_u32(a0 + 0x850);
-        iStack_34 = FUN_8c026d74(a0 + 0x854);
+        iStack_34 = noop_026d74(a0 + 0x854);
         FUN_8c21bbb0(*(u32 *)(a0 + 0x840), ar5_00, iStack_34, ar7_00, uVar3);
-        FUN_8c256210(1);
+        matrix_pop_n(1);
     }
     uVar3 = FUN_8c233dac(&g_8c139e5c);
     return uVar3;
@@ -5980,13 +5998,13 @@ u32 FUN_8c08b5a8(int a0, u32 a1, u32 a2, u32 a3) {
     uVar1 = FUN_8c02bef8(a0 + 0x174, a1, a2);
     ain0 = CONCAT22(uVar6, (short)uVar1);
     iVar4 = *(int *)(a0 + 0x328) + (short)uVar1 * 0x124;
-    FUN_8c01538c(*(u32 *)(a0 + 0x42c), a1, a2);
-    uVar1 = FUN_8c015bb8(iVar4 + 0x70);
-    iVar2 = FUN_8c026db0(*(u32 *)(a0 + 0x30c), a1, a2);
+    obj_set_texlist(*(u32 *)(a0 + 0x42c), a1, a2);
+    uVar1 = noop_015bb8(iVar4 + 0x70);
+    iVar2 = get_field_1c_on_field_b0(*(u32 *)(a0 + 0x30c), a1, a2);
     ar5_00 = deref_u32(*(int *)(iVar4 + 0xa0) + iVar2 * 4);
-    iVar2 = FUN_8c026db0(*(u32 *)(a0 + 0x30c), a1, a2);
-    uVar3 = FUN_8c026d74(*(int *)(iVar4 + 0xa8) + iVar2 * 4);
-    FUN_8c026d7c(*(u32 *)(a0 + 0x30c), a1, a2, a3);
+    iVar2 = get_field_1c_on_field_b0(*(u32 *)(a0 + 0x30c), a1, a2);
+    uVar3 = noop_026d74(*(int *)(iVar4 + 0xa8) + iVar2 * 4);
+    CAnimBody_GetCurFrame_on_field_b0(*(u32 *)(a0 + 0x30c), a1, a2, a3);
     uStack_20 = extraout_fr0;
     if (cVar5 == '\0') {
         uStack_20 = uVar3;
@@ -6091,8 +6109,8 @@ int CMothLine_FreeGraphicResource(int a0, u32 a1, int a2) {
         if (a2 == -1) {
             *(u32 *)((int)aiStack_18 + iVar1) = *(u32 *)**(u32 **)(0x844 + a0);
             *(u8 **)((int)&uStack_1c + iVar1) = "Failed to release texture..:%s";
-            (*(code *)(&FUN_8c014334))((int)&uStack_1c + 0x110 + iVar1, uVar3, uVar4, ar7_00,
-                                       *(u32 *)((int)&uStack_1c + iVar1));
+            (*(code *)(&sprintf))((int)&uStack_1c + 0x110 + iVar1, uVar3, uVar4, ar7_00,
+                                  *(u32 *)((int)&uStack_1c + iVar1));
             *(u32 *)((int)aiStack_18 + iVar1) = 5;
             a2 = (*(code *)(&report_error_message))((int)aiStack_18 + 0x10c + iVar1,
                                                     "CMothLine::FreeGraphicResource(2)", 1, 2);
@@ -6113,8 +6131,7 @@ int CMothLine_FreeGraphicResource(int a0, u32 a1, int a2) {
         if (a2 == -1) {
             *(u32 *)((int)aiStack_18 + iVar1) = *(u32 *)**(u32 **)(0x844 + a0);
             *(u8 **)((int)&uStack_1c + iVar1) = "Failed to release texture..:%s";
-            (*(code *)(&FUN_8c014334))(&stack0xfffffff4 + iVar1, uVar3, uVar4, ar7_00,
-                                       *(u32 *)((int)&uStack_1c + iVar1));
+            (*(code *)(&sprintf))(&stack0xfffffff4 + iVar1, uVar3, uVar4, ar7_00, *(u32 *)((int)&uStack_1c + iVar1));
             *(u32 *)((int)aiStack_18 + iVar1) = 5;
             a2 =
                 (*(code *)(&report_error_message))(&stack0xfffffff4 + iVar1, "CMothLine::FreeGraphicResource(3)", 1, 2);
@@ -6758,7 +6775,7 @@ u32 FUN_8c08c9dc(int a0, u32 a1, int a2) {
                 uVar3 = *(u32 *)(a0 + 0x410);
                 iVar2 = FUN_8c020ba0(a1, *(u32 *)(iVar1 + 0x1c), uVar3, puVar4);
                 if (iVar2 == 1) {
-                    FUN_8c015bb0(iVar1 + 0xb0, uStack_2c);
+                    set_field_0_015bb0(iVar1 + 0xb0, uStack_2c);
                     *(u32 *)(a0 + 0x418) = 4;
                 } else if (iVar2 == 0) {
                     report_error_message(*(u32 *)(iVar1 + 0x18), "Failed to load Pack:CAnimal::LoadGRReq()", 0, 2);
@@ -6783,7 +6800,7 @@ u32 FUN_8c08c9dc(int a0, u32 a1, int a2) {
             uVar3 = *(u32 *)(a0 + 0x410);
             iVar2 = FUN_8c0209b0(a1, *(u32 *)(iVar1 + 0xc), uVar3, puVar4);
             if (iVar2 == 1) {
-                FUN_8c015ad4(iVar1 + 0x70, auStack_24[0], uVar3);
+                set_field_0_015ad4(iVar1 + 0x70, auStack_24[0], uVar3);
                 *(u32 *)(a0 + 0x418) = 6;
             } else if (iVar2 == 0) {
                 report_error_message(*(u32 *)(iVar1 + 0xc), "Read NJCM Failed..", 0, 2);
@@ -6937,31 +6954,31 @@ u32 FUN_8c08d380(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     uVar1 = Vec3_ctor_xyz(&g_8c125fdc, pcVar2, uVar3, a3);
     global_list_push(uVar1, Vec3_dtor, 0x8c283b18, a3);
     uVar1 = 0x124;
-    FUN_8c010120(0x8c283b30, FUN_8c02452c, FUN_8c03a4ac, 0x124, 4);
-    global_list_push(0, FUN_8c08daac, 0x8c283b24, uVar1);
+    vec_new_array(0x8c283b30, FUN_8c02452c, FUN_8c03a4ac, 0x124, 4);
+    global_list_push(0, destroy_array_8c283b30, 0x8c283b24, uVar1);
     uVar1 = 0x10;
-    FUN_8c010120(&g_8c283fcc, FUN_8c024824, free_if_nonnull_wrap_03a454, 0x10, 3);
-    global_list_push(0, FUN_8c08da88, 0x8c283fc0, uVar1);
+    vec_new_array(&g_8c283fcc, FUN_8c024824, free_if_nonnull_wrap_03a454, 0x10, 3);
+    global_list_push(0, destroy_array_8c283fcc, 0x8c283fc0, uVar1);
     uVar1 = 4;
-    FUN_8c010120(0x8c284008, FUN_8c015b94, free_if_nonnull_wrap_0247b0, 4, 0x14);
-    global_list_push(0, FUN_8c08da64, 0x8c283ffc, uVar1);
+    vec_new_array(0x8c284008, clear_field_0_wrap_015b94, free_if_nonnull_wrap_0247b0, 4, 0x14);
+    global_list_push(0, destroy_array_8c284008, 0x8c283ffc, uVar1);
     uVar1 = 4;
-    FUN_8c010120(0x8c284064, FUN_8c015bc8, free_if_nonnull_wrap_03a3dc, 4, 0x14);
-    global_list_push(0, FUN_8c08da40, 0x8c284058, uVar1);
+    vec_new_array(0x8c284064, clear_field_0_wrap_015bc8, free_if_nonnull_wrap_03a3dc, 4, 0x14);
+    global_list_push(0, destroy_array_8c284064, 0x8c284058, uVar1);
     uVar1 = 4;
-    FUN_8c010120(0x8c2840c0, FUN_8c015b94, free_if_nonnull_wrap_0247b0, 4, 2);
-    global_list_push(0, FUN_8c08da1c, 0x8c2840b4, uVar1);
+    vec_new_array(0x8c2840c0, clear_field_0_wrap_015b94, free_if_nonnull_wrap_0247b0, 4, 2);
+    global_list_push(0, destroy_array_8c2840c0, 0x8c2840b4, uVar1);
     uVar1 = 4;
-    FUN_8c010120(0x8c2840d4, FUN_8c015bc8, free_if_nonnull_wrap_03a3dc, 4, 2);
-    global_list_push(0, FUN_8c08d9f8, 0x8c2840c8, uVar1);
+    vec_new_array(0x8c2840d4, clear_field_0_wrap_015bc8, free_if_nonnull_wrap_03a3dc, 4, 2);
+    global_list_push(0, destroy_array_8c2840d4, 0x8c2840c8, uVar1);
     uVar1 = 4;
-    FUN_8c010120(0x8c2840e8, FUN_8c015b94, free_if_nonnull_wrap_0247b0, 4, 7);
-    global_list_push(0, FUN_8c08d9d4, 0x8c2840dc, uVar1);
+    vec_new_array(0x8c2840e8, clear_field_0_wrap_015b94, free_if_nonnull_wrap_0247b0, 4, 7);
+    global_list_push(0, destroy_array_8c2840e8, 0x8c2840dc, uVar1);
     uVar4 = 4;
-    FUN_8c010120(0x8c284110, FUN_8c015bc8, free_if_nonnull_wrap_03a3dc, 4, 7);
+    vec_new_array(0x8c284110, clear_field_0_wrap_015bc8, free_if_nonnull_wrap_03a3dc, 4, 7);
     uVar1 = 0x8c284104;
-    pcVar2 = FUN_8c08d9b0;
-    global_list_push(0, FUN_8c08d9b0, 0x8c284104, uVar4);
+    pcVar2 = destroy_array_8c284110;
+    global_list_push(0, destroy_array_8c284110, 0x8c284104, uVar4);
     uVar1 = Vec3_ctor_xyz(0x8c2843a8, pcVar2, uVar1, uVar4);
     uVar3 = 0x8c28439c;
     pcVar2 = Vec3_dtor;
@@ -6996,8 +7013,8 @@ u32 FUN_8c08d380(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     uVar1 = FUN_8c017010(0x8c284488, 0x8c2843a8, 0x8c2843c4, 0x8c2843e0, 0x8c2843fc, 0x8c284418, 0x8c284434, 0x8c284450,
                          0x8c28446c);
     uVar3 = 0x8c28447c;
-    pcVar2 = Class_129938_m0_017084;
-    global_list_push(uVar1, Class_129938_m0_017084, 0x8c28447c, uVar4);
+    pcVar2 = Class_129938_dtor;
+    global_list_push(uVar1, Class_129938_dtor, 0x8c28447c, uVar4);
     uVar1 = Vec3_ctor_xyz(0x8c284528, pcVar2, uVar3, uVar4);
     uVar3 = 0x8c28451c;
     pcVar2 = Vec3_dtor;
@@ -7031,14 +7048,15 @@ u32 FUN_8c08d380(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     uVar3 = 0x8c284560;
     uVar1 = FUN_8c017010(0x8c284608, 0x8c284528, 0x8c284544, 0x8c284560, 0x8c28457c, 0x8c284598, 0x8c2845b4, 0x8c2845d0,
                          0x8c2845ec);
-    uVar1 = global_list_push(uVar1, Class_129938_m0_017084, 0x8c2845fc, uVar3);
+    uVar1 = global_list_push(uVar1, Class_129938_dtor, 0x8c2845fc, uVar3);
     return uVar1;
 }
 
 /*
- * FUN_8c08d9b0  0x8c08d9b0
+ * destroy_array_8c284110  0x8c08d9b0
+ * destroys the global array at 0x8c284110
  */
-u32 FUN_8c08d9b0(void) {
+u32 destroy_array_8c284110(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c284110, free_if_nonnull_wrap_03a3dc, 4, 7);
@@ -7046,9 +7064,10 @@ u32 FUN_8c08d9b0(void) {
 }
 
 /*
- * FUN_8c08d9d4  0x8c08d9d4
+ * destroy_array_8c2840e8  0x8c08d9d4
+ * destroys the global array at 0x8c2840e8
  */
-u32 FUN_8c08d9d4(void) {
+u32 destroy_array_8c2840e8(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c2840e8, free_if_nonnull_wrap_0247b0, 4, 7);
@@ -7056,9 +7075,10 @@ u32 FUN_8c08d9d4(void) {
 }
 
 /*
- * FUN_8c08d9f8  0x8c08d9f8
+ * destroy_array_8c2840d4  0x8c08d9f8
+ * destroys the global array at 0x8c2840d4
  */
-u32 FUN_8c08d9f8(void) {
+u32 destroy_array_8c2840d4(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c2840d4, free_if_nonnull_wrap_03a3dc, 4, 2);
@@ -7066,9 +7086,10 @@ u32 FUN_8c08d9f8(void) {
 }
 
 /*
- * FUN_8c08da1c  0x8c08da1c
+ * destroy_array_8c2840c0  0x8c08da1c
+ * destroys the global array at 0x8c2840c0
  */
-u32 FUN_8c08da1c(void) {
+u32 destroy_array_8c2840c0(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c2840c0, free_if_nonnull_wrap_0247b0, 4, 2);
@@ -7076,9 +7097,10 @@ u32 FUN_8c08da1c(void) {
 }
 
 /*
- * FUN_8c08da40  0x8c08da40
+ * destroy_array_8c284064  0x8c08da40
+ * destroys the global array at 0x8c284064
  */
-u32 FUN_8c08da40(void) {
+u32 destroy_array_8c284064(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c284064, free_if_nonnull_wrap_03a3dc, 4, 0x14);
@@ -7086,9 +7108,10 @@ u32 FUN_8c08da40(void) {
 }
 
 /*
- * FUN_8c08da64  0x8c08da64
+ * destroy_array_8c284008  0x8c08da64
+ * destroys the global array at 0x8c284008
  */
-u32 FUN_8c08da64(void) {
+u32 destroy_array_8c284008(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c284008, free_if_nonnull_wrap_0247b0, 4, 0x14);
@@ -7096,9 +7119,10 @@ u32 FUN_8c08da64(void) {
 }
 
 /*
- * FUN_8c08da88  0x8c08da88
+ * destroy_array_8c283fcc  0x8c08da88
+ * destroys the global array at 0x8c283fcc
  */
-u32 FUN_8c08da88(void) {
+u32 destroy_array_8c283fcc(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(&g_8c283fcc, free_if_nonnull_wrap_03a454, 0x10, 3);
@@ -7106,9 +7130,10 @@ u32 FUN_8c08da88(void) {
 }
 
 /*
- * FUN_8c08daac  0x8c08daac
+ * destroy_array_8c283b30  0x8c08daac
+ * destroys the global array at 0x8c283b30
  */
-u32 FUN_8c08daac(void) {
+u32 destroy_array_8c283b30(void) {
     u32 uVar1;
 
     uVar1 = vec_delete_array(0x8c283b30, FUN_8c03a4ac, 0x124, 4);
@@ -7159,7 +7184,7 @@ u32 FUN_8c08db9c(int a0, u32 a1, u32 a2, u32 a3) {
         *(u64 *)(a0 + 0xa0) = 0xa4bdcccccd;
     }
     *(u32 *)(a0 + 0xa4) = 1;
-    FUN_8c03c314(a0, a1, a2);
+    timer_start_94(a0, a1, a2);
     if (cVar2 == '\0') {
         *(u32 *)(a0 + 0x220) = 0;
     } else {
@@ -7192,10 +7217,11 @@ u32 FUN_8c08db9c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12a76c_m0_08dca8  0x8c08dca8
+ * Class_12a76c_dtor  0x8c08dca8
+ * stores the vtable 0x8c12a76c
  * called by: Class_12a5d0_m0_08a3a4
  */
-u32 *Class_12a76c_m0_08dca8(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 *Class_12a76c_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
     u32 in_stack_fffffff4;
     u32 ain0;
@@ -7213,7 +7239,7 @@ u32 *Class_12a76c_m0_08dca8(u32 *a0, u32 a1, u32 a2, u32 a3) {
         Vec3_dtor(a0 + 0x93, 0xffffffff, a2, a3);
         Vec3_dtor(a0 + 0x8c, 0xffffffff, a2, a3);
         ar5_00 = 0;
-        Class_129cbc_m0_0312f4(a0, 0, a2, a3);
+        Class_129cbc_dtor(a0, 0, a2, a3);
         if (0 < (short)ain0) {
             free_if_nonnull(a0);
         }
@@ -7318,7 +7344,7 @@ int FUN_8c08e6e8(int a0, u32 a1, int *a2, u32 a3) {
 
     cVar5 = '\0';
     iVar4 = 1;
-    FUN_8c03f480(in_stack_00000000, a1, a2, a3, auStack_88);
+    Vec3_ctor_copy_wrap_03f480(in_stack_00000000, a1, a2, a3, auStack_88);
     Vec3_ctor_copy(&iStack_1c, auStack_88, a2, a3);
     uVar3 = 0xffffffff;
     Vec3_dtor(auStack_88, 0xffffffff, a2, a3);
@@ -7441,13 +7467,13 @@ u32 FUN_8c08e9fc(int a0, u32 a1, u32 a2, u32 a3) {
     if (iVar1 == 0) {
     LAB_8c08ea30:
         uVar2 = 0;
-        iVar1 = FUN_8c034148(a0 + 0xb0, 0, ar6_00, a3);
+        iVar1 = CAnimBody_PlayToEnd(a0 + 0xb0, 0, ar6_00, a3);
         uVar3 = (u32)in_dr0;
         if ((iVar1 != 1) && (iVar1 != 2)) {
             object_dtor_delete(auStack_20, 0xffffffff, ar6_00, a3);
             return 1;
         }
-        FUN_8c0230f0(a0 + 0x14, uVar2, ar6_00, a3, auStack_30);
+        Vec3_make(a0 + 0x14, uVar2, ar6_00, a3, auStack_30);
         Vec3_assign(a0 + 0x14, auStack_30, ar6_00, a3);
         Vec3_dtor(auStack_30, 0xffffffff, ar6_00, a3);
         FUN_8c031b68(a0, 0x8c2846d0, ar6_00, a3);
@@ -7467,10 +7493,10 @@ u32 FUN_8c08e9fc(int a0, u32 a1, u32 a2, u32 a3) {
         goto LAB_8c08ea30;
     }
     fVar4 = (float)((u64)in_dr0 >> 0x20);
-    FUN_8c03f3ac(a0 + 0xb0, uVar2, ar6_00, a3);
+    CAnimBody_AdvanceFrame_wrap(a0 + 0xb0, uVar2, ar6_00, a3);
     ar6_00 = a1;
     uVar3 = FUN_8c097ba4(a0, a2, a1, a3);
-    FUN_8c022fc0(a1, a2, ar6_00, a3);
+    Vec3_distance_sq(a1, a2, ar6_00, a3);
     if (cVar7 == '\0') {
         fVar5 = 100.0;
     } else {
@@ -7535,9 +7561,9 @@ u32 FUN_8c08eb8c(int a0, u32 a1, u32 a2, u32 a3) {
         iVar1 = 9;
     }
     ar5_00 = iVar1;
-    iVar2 = FUN_8c034148(a0 + 0xb0, iVar1, a2, a3);
+    iVar2 = CAnimBody_PlayToEnd(a0 + 0xb0, iVar1, a2, a3);
     if ((iVar2 == 1) || (iVar2 == 2)) {
-        FUN_8c03f3ac(a0 + 0xb0, ar5_00, a2, a3);
+        CAnimBody_AdvanceFrame_wrap(a0 + 0xb0, ar5_00, a2, a3);
         Vec3_ctor_xyz(auStack_54, ar5_00, a2, a3);
         if (cVar6 == '\0') {
             uVar4 = CONCAT44(*(u32 *)(a0 + 700), in_fr1);
@@ -7546,7 +7572,7 @@ u32 FUN_8c08eb8c(int a0, u32 a1, u32 a2, u32 a3) {
         }
         Vec3_set_xyz(auStack_60, ar5_00, a2, a3);
         FUN_8c023484(auStack_54, auStack_60, a2, a3, auStack_70);
-        FUN_8c022dac(a0 + 0x14, auStack_70, a2, a3);
+        Vec3_cos_angle(a0 + 0x14, auStack_70, a2, a3);
         if (cVar6 == '\0') {
             uVar4 = uVar4 >> 0x20;
         }
@@ -7623,7 +7649,7 @@ u32 FUN_8c08eef4(int a0, int a1, u32 a2, u32 a3) {
     Vec3_set_zero(auStack_38);
     ar5_02 = a1 + 0xb;
     uVar2 = 10;
-    iVar1 = FUN_8c034148(a0 + 0xb0, 10, a2, a3);
+    iVar1 = CAnimBody_PlayToEnd(a0 + 0xb0, 10, a2, a3);
     if ((iVar1 == 1) || (iVar1 == 2)) {
         CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, uVar2, a2, a3);
         if (cVar7 == '\0') {
@@ -7642,7 +7668,7 @@ u32 FUN_8c08eef4(int a0, int a1, u32 a2, u32 a3) {
             *(u64 *)(a0 + 0x2cc) = in_xd0;
         }
         iVar1 = ar5_02;
-        uVar2 = FUN_8c03c0f0(a0 + 0xb0, ar5_02, a2, a3);
+        uVar2 = array_at_field_14(a0 + 0xb0, ar5_02, a2, a3);
         uVar2 = deref_u32(uVar2);
         ar5_00 = FUN_8c0342ac(a0 + 0xb0, uVar2, 0);
         ar6_00 = 0;
@@ -7695,8 +7721,8 @@ u32 FUN_8c08eef4(int a0, int a1, u32 a2, u32 a3) {
         FUN_8c034384(a0 + 0xb0, ar5_00, ar6_00, a3);
         Vec3_assign(a0 + 0x2d0, auStack_48, ar6_00, a3);
         Vec3_dtor(auStack_48, 0xffffffff, ar6_00, a3);
-        FUN_8c023b4c(a0 + 0x2d0, a0 + 0x2e0);
-        FUN_8c023bf4(a0 + 0x2d0, a0 + 0x2c4);
+        Vec3_sub_assign(a0 + 0x2d0, a0 + 0x2e0);
+        Vec3_scale_assign(a0 + 0x2d0, a0 + 0x2c4);
         FUN_8c034384(a0 + 0xb0, ar5_00, ar6_00, a3);
         Vec3_assign(a0 + 0x2e0, auStack_58, ar6_00, a3);
         uVar2 = 0xffffffff;
@@ -7790,7 +7816,7 @@ u32 FUN_8c08f354(int a0, int a1, int a2, int a3) {
             iVar3 = a0;
         }
         fVar5 = (float)((u64)uVar6 >> 0x20);
-        iVar4 = FUN_8c03f3ac(a0 + 0xb0, ar5_02, iVar3, a3);
+        iVar4 = CAnimBody_AdvanceFrame_wrap(a0 + 0xb0, ar5_02, iVar3, a3);
         if (iVar4 == 7) {
             *(int *)(a0 + 0x284) = *(int *)(a0 + 0x284) + -1;
             if (*(int *)(a0 + 0x284) == 0) {
@@ -7813,21 +7839,21 @@ u32 FUN_8c08f354(int a0, int a1, int a2, int a3) {
         if (fVar5 == (float)pcVar8) {
             iVar2 = libgcc_divide_helper_01031c(iVar2, 3, iVar3);
             if (iVar2 == 0) {
-                FUN_8c033474(a0, 0x22, a2, in_stack_00000000);
+                se_play_at_object(a0, 0x22, a2, in_stack_00000000);
                 iVar3 = a2;
                 a3 = in_stack_00000000;
             } else if (iVar2 == 1) {
-                FUN_8c033474(a0, 0x23, a2, in_stack_00000000);
+                se_play_at_object(a0, 0x23, a2, in_stack_00000000);
                 iVar3 = a2;
                 a3 = in_stack_00000000;
             } else if (iVar2 == 2) {
-                FUN_8c033474(a0, 0x25, a2, in_stack_00000000);
+                se_play_at_object(a0, 0x25, a2, in_stack_00000000);
                 iVar3 = a2;
                 a3 = in_stack_00000000;
             }
         }
     } else {
-        FUN_8c03f3ac(a0 + 0xb0, ar5_02, iVar3, a3);
+        CAnimBody_AdvanceFrame_wrap(a0 + 0xb0, ar5_02, iVar3, a3);
         fVar5 = (float)uVar6;
         if (cVar11 == '\0') {
             fVar5 = *(float *)(a0 + 0x2cc);
@@ -7845,7 +7871,7 @@ u32 FUN_8c08f354(int a0, int a1, int a2, int a3) {
             *(u64 *)(a0 + 0x2cc) = in_xd0;
         }
         iVar2 = iVar4;
-        uVar1 = FUN_8c03c0f0(a0 + 0xb0, iVar4, iVar3, a3);
+        uVar1 = array_at_field_14(a0 + 0xb0, iVar4, iVar3, a3);
         uVar1 = deref_u32(uVar1);
         ar5_00 = FUN_8c0342ac(a0 + 0xb0, uVar1, 0);
         ar6_00 = 0;
@@ -7934,8 +7960,8 @@ u32 FUN_8c08f354(int a0, int a1, int a2, int a3) {
         FUN_8c034384(a0 + 0xb0, ar5_00, ar6_00, a3);
         Vec3_assign(a0 + 0x2d0, auStack_4c, ar6_00, a3);
         Vec3_dtor(auStack_4c, 0xffffffff, ar6_00, a3);
-        FUN_8c023b4c(a0 + 0x2d0, a0 + 0x2e0);
-        FUN_8c023bf4(a0 + 0x2d0, a0 + 0x2c4);
+        Vec3_sub_assign(a0 + 0x2d0, a0 + 0x2e0);
+        Vec3_scale_assign(a0 + 0x2d0, a0 + 0x2c4);
         FUN_8c034384(a0 + 0xb0, ar5_00, ar6_00, a3);
         Vec3_assign(a0 + 0x2e0, auStack_5c, ar6_00, a3);
         uVar1 = 0xffffffff;
@@ -8016,7 +8042,7 @@ u32 FUN_8c08f9e8(int a0, int a1, u32 a2, u32 a3) {
     } else {
         *(u64 *)(a0 + 0x2cc) = in_xd0;
     }
-    uVar1 = FUN_8c03c0f0(a0 + 0xb0, ar5_01, a2, a3);
+    uVar1 = array_at_field_14(a0 + 0xb0, ar5_01, a2, a3);
     uVar1 = deref_u32(uVar1);
     uVar2 = FUN_8c0342ac(a0 + 0xb0, uVar1, 0);
     ar6_00 = 0;
@@ -8045,8 +8071,8 @@ LAB_8c08faa8:
     FUN_8c034384(a0 + 0xb0, uVar2, ar6_00, a3);
     Vec3_assign(a0 + 0x2d0, auStack_48, ar6_00, a3);
     Vec3_dtor(auStack_48, 0xffffffff, ar6_00, a3);
-    FUN_8c023b4c(a0 + 0x2d0, a0 + 0x2e0);
-    FUN_8c023bf4(a0 + 0x2d0, a0 + 0x2c4);
+    Vec3_sub_assign(a0 + 0x2d0, a0 + 0x2e0);
+    Vec3_scale_assign(a0 + 0x2d0, a0 + 0x2c4);
     FUN_8c034384(a0 + 0xb0, uVar2, ar6_00, a3);
     Vec3_assign(a0 + 0x2e0, auStack_58, ar6_00, a3);
     uVar2 = 0xffffffff;
@@ -8214,7 +8240,7 @@ int FUN_8c08fd38(code *a0, code *a1, code *a2, code *a3) {
                     uVar3 = 0;
                     CAnimBody_SetAnimation(a0 + 0xb0, 6, 0, 0);
                     iVar2 = rand_range(a0, 0, 2);
-                    FUN_8c033474(a0, iVar2 + 0x1f, a1, in_stack_00000000);
+                    se_play_at_object(a0, iVar2 + 0x1f, a1, in_stack_00000000);
                     pcVar6 = in_stack_00000000;
                 }
                 *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
@@ -8430,7 +8456,7 @@ int FUN_8c08fd38(code *a0, code *a1, code *a2, code *a3) {
         }
     } else {
         if (*(int *)(a0 + 300) == 0) {
-            FUN_8c0230f0(a0 + 0x80, a0 + 0x80, pcVar4, pcVar6, auStack_22c);
+            Vec3_make(a0 + 0x80, a0 + 0x80, pcVar4, pcVar6, auStack_22c);
             uVar5 = (u32)in_dr0;
             Vec3_normalize(auStack_22c, auStack_22c, pcVar4, pcVar6);
             FUN_8c03263c(a0, auStack_23c, pcVar4, pcVar6);

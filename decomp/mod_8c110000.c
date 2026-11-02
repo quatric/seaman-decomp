@@ -181,10 +181,11 @@ u32 FUN_8c1104d2(int *a0, int *a1) {
 }
 
 /*
- * FUN_8c11066a  0x8c11066a
+ * memmove_wrap_11066a  0x8c11066a
+ * only calls memmove
  * called by: FUN_8c11e534
  */
-u32 FUN_8c11066a(void) {
+u32 memmove_wrap_11066a(void) {
     u32 uVar1;
 
     uVar1 = memmove((&DATA_8c127b20), (int)0xd4);
@@ -2315,7 +2316,7 @@ u32 FUN_8c112734(float *a0, float *a1, int a2) {
             if (fVar10 <= fVar11) {
                 fVar13 = -fVar15 / fVar13;
                 fVar11 = fVar13;
-                FUN_8c11fbb6();
+                noop_11fbb6();
                 cVar1 = (char)((((u32)bVar16 << 0x12 | (u32)bVar17 << 0x13 | (u32)bVar18 << 0x14) & 0x100000) >> 0x14);
                 if (cVar1 == '\0') {
                     fVar15 = 1.0;
@@ -2331,7 +2332,7 @@ u32 FUN_8c112734(float *a0, float *a1, int a2) {
             } else {
                 fVar15 = -fVar13 / fVar15;
                 fVar13 = fVar15;
-                FUN_8c11fbb6();
+                noop_11fbb6();
                 cVar1 = (char)((((u32)bVar16 << 0x12 | (u32)bVar17 << 0x13 | (u32)bVar18 << 0x14) & 0x100000) >> 0x14);
                 if (cVar1 == '\0') {
                     fVar11 = 1.0;
@@ -12070,7 +12071,7 @@ u32 FUN_8c11d6f0(int a0, u32 *a1, u32 a2, u32 a3) {
         override_prt_8c11d780_7a4d7f16:
             uVar3 = (*(code *)puVar1)(a0 + 0x48, a5, uVar3, a3);
         } else {
-            FUN_8c10ca2e();
+            memmove_wrap_10ca2e();
             auStack_64[0] = **(u32 **)(0x104 + a0);
             iVar2 = (*pcStack_5c)(auStack_64, puVar5, uVar3, a3);
             iVar4 = (*pcStack_58)(auStack_64, puVar5, uVar3, a3);
@@ -12906,7 +12907,7 @@ u32 FUN_8c11e534(int *a0, int *a1, int a2, u8 *a3) {
             piStack_28 = *(int **)((int)0x100 + (int)a0);
             if (piStack_28 != NULL) {
                 a2 = (int)0x80;
-                iVar7 = FUN_8c013ec0(iVar3, *piStack_28 + 8, a2);
+                iVar7 = memcmp(iVar3, *piStack_28 + 8, a2);
                 if (iVar7 == 0) {
                     iVar3 = iVar3 + 0x80;
                     goto LAB_8c11e7c4;
@@ -12926,7 +12927,7 @@ u32 FUN_8c11e534(int *a0, int *a1, int a2, u8 *a3) {
             if (*(int *)((int)0x108 + (int)a0) == 0) {
                 return 1;
             }
-            FUN_8c11066a(*(u32 *)((int)0x108 + (int)a0), iVar3, a2, a3);
+            memmove_wrap_11066a(*(u32 *)((int)0x108 + (int)a0), iVar3, a2, a3);
         } else {
             iVar3 = *(int *)((int)0x100 + (int)a0);
             *(int *)(iVar3 + 4) = *(int *)(iVar3 + 4) + -1;
@@ -13111,7 +13112,7 @@ u32 FUN_8c11ea3c(int a0, int *a1, int a2, u32 a3) {
         if (a1 != NULL) {
             a2 = (int)0x80;
             ar5_01 = (int *)(**(int **)(0x100 + a0) + 8);
-            iVar2 = FUN_8c013ec0(*a1 + 8, ar5_01, a2);
+            iVar2 = memcmp(*a1 + 8, ar5_01, a2);
             if (iVar2 != 0) {
                 ar5_00 = 0xc;
                 uVar4 = *(u32 *)(0xfc + a0);
@@ -13130,7 +13131,7 @@ u32 FUN_8c11ea3c(int a0, int *a1, int a2, u32 a3) {
         }
         iVar2 = FUN_8c11cb54(a1, ar5_01, a2, a3);
         if (iVar2 == 0) {
-            FUN_8c10ca2e();
+            memmove_wrap_10ca2e();
             aiStack_5c[0] = *a1;
             uVar3 = FUN_8c120348(a0 + 0x48, 0x24, aiStack_5c, 0);
             if ((uVar3 & 0xff) == 0) {
@@ -14072,10 +14073,11 @@ u32 thunk_FUN_8c014064(void) {
 }
 
 /*
- * FUN_8c11fbb6  0x8c11fbb6
+ * noop_11fbb6  0x8c11fbb6
+ * does nothing
  * called by: FUN_8c10fab2, FUN_8c10fabc, FUN_8c112734
  */
-u32 FUN_8c11fbb6(void) {
+u32 noop_11fbb6(void) {
     u32 in_r0;
 
     return in_r0;

@@ -297,7 +297,7 @@ u32 FUN_8c1f0444(u32 a0, u32 a1, int a2, u32 a3) {
     bVar1 = **(u8 **)(&DATA_8c1f5a28);
     **(u8 **)(&DATA_8c1f5a28) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
         return 0xfffffffe;
     }
     a5 = a1;
@@ -332,7 +332,7 @@ u32 FUN_8c1f04a0(u32 a0, u32 a1, int a2, u32 a3) {
     bVar1 = **(u8 **)(&DATA_8c1f5a28);
     **(u8 **)(&DATA_8c1f5a28) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
         return 0xfffffffe;
     }
     a5 = a1;
@@ -367,7 +367,7 @@ u32 FUN_8c1f04fc(u32 a0, u32 a1, int a2, u32 a3) {
     bVar1 = **(u8 **)(&DATA_8c1f5a28);
     **(u8 **)(&DATA_8c1f5a28) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
         return 0xfffffffe;
     }
     a5 = a1;
@@ -402,7 +402,7 @@ u32 FUN_8c1f057a(u32 a0, u32 a1, int a2, u32 a3) {
     bVar1 = **(u8 **)(&DATA_8c1f5a28);
     **(u8 **)(&DATA_8c1f5a28) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
         return 0xfffffffe;
     }
     a5 = a1;
@@ -437,7 +437,7 @@ u32 FUN_8c1f05d6(u32 a0, int a1, int a2, u32 a3) {
     bVar1 = **(u8 **)(&DATA_8c1f5a28);
     **(u8 **)(&DATA_8c1f5a28) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
         return 0xfffffffe;
     }
     a6_00 = a2;
@@ -472,7 +472,7 @@ u32 FUN_8c1f0650(u32 a0, u32 a1, int a2, u32 a3) {
     bVar1 = **(u8 **)(&DATA_8c1f5a28);
     **(u8 **)(&DATA_8c1f5a28) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
         return 0xfffffffe;
     }
     a7 = a3;
@@ -507,7 +507,7 @@ u32 FUN_8c1f06ac(u32 a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4) {
     bVar1 = **(u8 **)(&DATA_8c1f5a28);
     **(u8 **)(&DATA_8c1f5a28) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
         return 0xfffffffe;
     }
     a4 = a0;
@@ -541,7 +541,7 @@ u32 FUN_8c1f070c(u32 a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12
     bVar1 = **(u8 **)(&DATA_8c1f5a28);
     **(u8 **)(&DATA_8c1f5a28) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
         return 0xfffffffe;
     }
     a4 = a0;
@@ -574,7 +574,7 @@ u32 FUN_8c1f0790(u32 a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4) {
     bVar1 = **(u8 **)(&DATA_8c1f5a28);
     **(u8 **)(&DATA_8c1f5a28) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
         return 0xfffffffe;
     }
     a4 = a0;
@@ -608,7 +608,7 @@ u32 FUN_8c1f07f0(u32 a0, int a1, int a2, u32 a3) {
     bVar1 = **(u8 **)(&DATA_8c1f5a28);
     **(u8 **)(&DATA_8c1f5a28) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
         return 0xfffffffe;
     }
     a6_00 = a2;
@@ -643,7 +643,7 @@ u32 FUN_8c1f086c(u32 a0, int a1, int a2, u32 a3) {
     bVar1 = **(u8 **)(&DATA_8c1f5a28);
     **(u8 **)(&DATA_8c1f5a28) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
         return 0xfffffffe;
     }
     a6_00 = a2;
@@ -677,7 +677,7 @@ u32 FUN_8c1f08c8(u32 a0, u32 a1, int a2, u32 a3, u32 s0) {
     bVar1 = **(u8 **)(&DATA_8c1f5a28);
     **(u8 **)(&DATA_8c1f5a28) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", a0);
         return 0xfffffffe;
     }
     a4 = a0;
@@ -1489,8 +1489,8 @@ u32 FUN_8c1f109c(int a0, u8 *a1) {
 
 /*
  * syscall_1f10d8  0x8c1f10d8
- * called by: FUN_8c1f11ea, FUN_8c1f126a, FUN_8c1f139e, FUN_8c1f13bc, FUN_8c1f141a, FUN_8c1f143c, FUN_8c1f145e,
- * FUN_8c1f146e (+4 more)
+ * called by: FUN_8c1f11ea, FUN_8c1f126a, FUN_8c1f139e, FUN_8c1f141a, FUN_8c1f143c, FUN_8c1f146e, FUN_8c1f148c,
+ * FUN_8c1f14a8 (+4 more)
  */
 u32 syscall_1f10d8(u32 a0, u32 a1) {
     u32 uVar1;
@@ -1516,7 +1516,7 @@ u32 syscall_1f10ec(u32 unused_a0, u32 a1) {
 
 /*
  * syscall_1f1100  0x8c1f1100
- * called by: FUN_8c1f14ca
+ * called by: syscall_wrap_1f14ca
  */
 u32 syscall_1f1100(void) {
     u32 uVar1;
@@ -1529,7 +1529,7 @@ u32 syscall_1f1100(void) {
 
 /*
  * syscall_1f1114  0x8c1f1114
- * called by: FUN_8c1f11dc
+ * called by: syscall_wrap
  */
 u32 syscall_1f1114(void) {
     u32 uVar1;
@@ -1568,7 +1568,7 @@ u32 syscall_1f1150(u32 unused_a0, u32 a1) {
 
 /*
  * syscall_1f1164  0x8c1f1164
- * called by: FUN_8c1f140c
+ * called by: syscall_wrap_1f140c
  */
 u32 syscall_1f1164(void) {
     u32 uVar1;
@@ -1580,9 +1580,10 @@ u32 syscall_1f1164(void) {
 }
 
 /*
- * FUN_8c1f11dc  0x8c1f11dc
+ * syscall_wrap  0x8c1f11dc
+ * only calls syscall_1f1114
  */
-u32 FUN_8c1f11dc(void) {
+u32 syscall_wrap(void) {
     syscall_1f1114();
     return 1;
 }
@@ -1744,9 +1745,10 @@ u32 FUN_8c1f139e(u32 a0) {
 }
 
 /*
- * FUN_8c1f13bc  0x8c1f13bc
+ * syscall_wrap_1f13bc  0x8c1f13bc
+ * only calls syscall_1f10d8
  */
-u32 FUN_8c1f13bc(void) {
+u32 syscall_wrap_1f13bc(void) {
     u32 uVar1;
 
     uVar1 = syscall_1f10d8(0x18, 0);
@@ -1767,9 +1769,10 @@ u32 FUN_8c1f13f0(void) {
 }
 
 /*
- * FUN_8c1f140c  0x8c1f140c
+ * syscall_wrap_1f140c  0x8c1f140c
+ * only calls syscall_1f1164
  */
-u32 FUN_8c1f140c(void) {
+u32 syscall_wrap_1f140c(void) {
     u32 uVar1;
 
     uVar1 = syscall_1f1164();
@@ -1805,9 +1808,10 @@ u32 FUN_8c1f143c(u32 a0, u32 a1, u32 a2) {
 }
 
 /*
- * FUN_8c1f145e  0x8c1f145e
+ * syscall_wrap_1f145e  0x8c1f145e
+ * only calls syscall_1f10d8
  */
-u32 FUN_8c1f145e(void) {
+u32 syscall_wrap_1f145e(void) {
     u32 uVar1;
 
     uVar1 = syscall_1f10d8(0x16, 0);
@@ -1855,9 +1859,10 @@ u32 FUN_8c1f14a8(u32 a0, u32 a1, u32 a2) {
 }
 
 /*
- * FUN_8c1f14ca  0x8c1f14ca
+ * syscall_wrap_1f14ca  0x8c1f14ca
+ * only calls syscall_1f1100
  */
-u32 FUN_8c1f14ca(void) {
+u32 syscall_wrap_1f14ca(void) {
     syscall_1f1100();
     return 1;
 }
@@ -4178,7 +4183,7 @@ u32 FUN_8c1f2f98(int *a0, u32 a1, u32 a2, u32 a3) {
     iVar7 = a0[6];
     uVar4 = sh4_tmu_1f88e6(FUN_8c1f302a);
     uVar3 = 0xee6b28;
-    puVar2 = (&FUN_8c1f88f0);
+    puVar2 = (&int_diff);
     do {
         (**(code **)(*(int *)(*a0 + 0x3c) + 0x48))();
         iVar5 = FUN_8c1f364c(a0);
@@ -4220,7 +4225,7 @@ u32 FUN_8c1f2f9c(u32 a0, u32 a1, u32 a2, u32 a3) {
     iVar4 = unaff_r14[6];
     a4 = sh4_tmu_1f88e6(a0);
     uVar3 = 0xee6b28;
-    puVar2 = (&FUN_8c1f88f0);
+    puVar2 = (&int_diff);
     do {
         (**(code **)(*(int *)(*unaff_r14 + 0x3c) + 0x48))(a0, a1, a2, a3);
         a4_00 = FUN_8c1f364c(unaff_r14);
@@ -4289,7 +4294,7 @@ u32 *FUN_8c1f3078(u32 *a0, u32 a1) {
 
 /*
  * FUN_8c1f309c  0x8c1f309c
- * called by: FUN_8c1f1eaa, FUN_8c1f1f98, FUN_8c1f1fa0, FUN_8c212440, FUN_8c2632ea, FUN_8c263446, FUN_8c26344a
+ * called by: ADXSTM_OpenFname, FUN_8c1f1eaa, FUN_8c1f1f98, FUN_8c1f1fa0, FUN_8c212440, FUN_8c263446, FUN_8c26344a
  */
 u32 FUN_8c1f309c(int a0, u32 a1, u32 a2, u32 a3) {
     short sVar1;
@@ -4327,7 +4332,7 @@ u32 FUN_8c1f30a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c1f30d4  0x8c1f30d4
- * called by: FUN_8c259be8, FUN_8c2632ea
+ * called by: ADXSTM_OpenFname, FUN_8c259be8
  */
 u32 FUN_8c1f30d4(int a0, u32 *a1) {
     if ((a0 != 0) && (*(short *)(a0 + 0x4c) != 0)) {
@@ -4707,7 +4712,7 @@ u32 FUN_8c1f367a(int *a0, u32 a1, u32 a2, u32 a3) {
     } else if (((short)a0[0x14] == 2) || ((short)a0[0x14] == 4)) {
         if (*(int **)(*a0 + 0x1c) == a0) {
             uVar3 = sh4_tmu_1f88e6(0);
-            while (puVar2 = (&FUN_8c1f88f0), a0[0x10] != 1) {
+            while (puVar2 = (&int_diff), a0[0x10] != 1) {
                 if (((short)a0[0x14] != 2) && ((short)a0[0x14] != 4))
                     goto LAB_8c1f36d4;
                 uVar4 = (*(code *)puVar1)(uVar7);
@@ -4769,7 +4774,7 @@ u32 FUN_8c1f3682(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
         if ((ar4_00 == 2) || (ar4_00 == 4)) {
             if (*(int **)(*unaff_r14 + 0x1c) == unaff_r14) {
                 uVar3 = sh4_tmu_1f88e6(ar4_00);
-                while (puVar2 = (&FUN_8c1f88f0), unaff_r14[0x10] != 1) {
+                while (puVar2 = (&int_diff), unaff_r14[0x10] != 1) {
                     a4 = (int)(short)unaff_r14[0x14];
                     if ((a4 != 2) && (a4 != 4))
                         goto LAB_8c1f36d4;
@@ -4923,7 +4928,7 @@ u32 FUN_8c1f3968(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c1f397e  0x8c1f397e
- * called by: FUN_8c212440, FUN_8c259be8, FUN_8c2632ea, FUN_8c2633e6
+ * called by: ADXSTM_OpenFname, ADXSTM_OpenFnameRange, FUN_8c212440, FUN_8c259be8
  */
 u32 FUN_8c1f397e(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -4939,7 +4944,7 @@ u32 FUN_8c1f397e(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * FUN_8c1f39ac  0x8c1f39ac
- * called by: FUN_8c263388
+ * called by: ADXSTM_OpenRange
  */
 u32 FUN_8c1f39ac(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5597,7 +5602,7 @@ u32 FUN_8c1f4202(void) {
                 uVar2 = 0;
                 *(&DATA_8c1f5a2c) = 0;
             } else {
-                FUN_8c1f4570(r4, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+                debug_log_printf(r4, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
                 uVar2 = 0xfffffffe;
             }
         } else {
@@ -5672,7 +5677,7 @@ u32 FUN_8c1f420e(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int
                 uVar2 = 0;
                 *(&DATA_8c1f5a2c) = 0;
             } else {
-                FUN_8c1f4570(unused_a0, unused_a1, unused_a2, unused_a3);
+                debug_log_printf(unused_a0, unused_a1, unused_a2, unused_a3);
                 uVar2 = 0xfffffffe;
             }
         } else {
@@ -5707,7 +5712,7 @@ u32 FUN_8c1f43d2(void) {
     bVar1 = *(&DATA_8c1f5a2c);
     *(&DATA_8c1f5a2c) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(ar4_00, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(ar4_00, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     return 0;
@@ -5736,7 +5741,7 @@ u32 FUN_8c1f43d6(void) {
     bVar1 = **(u8 **)(&DATA_8c1f5a28);
     **(u8 **)(&DATA_8c1f5a28) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a4, r5, r6, r7);
+        debug_log_printf(a4, r5, r6, r7);
         return 0xfffffffe;
     }
     return 0;
@@ -5827,7 +5832,7 @@ u32 FUN_8c1f44cc(u32 a0, u32 a1, u32 a2, u32 a3) {
     puVar1 = (&sh4_tmu_1f88e6);
     uVar4 = sh4_tmu_1f88e6(a0);
     piVar3 = 0x8c4727b4;
-    puVar2 = (&FUN_8c1f88f0);
+    puVar2 = (&int_diff);
     iVar5 = 0x186a0;
     do {
         if ((*(u32 *)(*(int *)((int)0x10f4 + *piVar3) + 0x18) & 1) == 0)
@@ -5858,11 +5863,12 @@ u32 FUN_8c1f44cc(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * FUN_8c1f4570  0x8c1f4570
+ * debug_log_printf  0x8c1f4570
+ * formats into a buffer and hands it to the log hook when logging is enabled
  * called by: FUN_8c1f0444, FUN_8c1f04a0, FUN_8c1f04fc, FUN_8c1f057a, FUN_8c1f05d6, FUN_8c1f0650, FUN_8c1f06ac,
  * FUN_8c1f070c (+35 more)
  */
-u32 FUN_8c1f4570(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s4) {
+u32 debug_log_printf(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s4) {
     u32 uVar1;
 
     uVar1 = 0x10c8;
@@ -6937,7 +6943,7 @@ u32 FUN_8c1f5556(u32 a0, u32 a1) {
     bVar1 = *(&DATA_8c1f5a2c);
     *(&DATA_8c1f5a2c) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, a1, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f5582(a0, a1);
@@ -6961,7 +6967,7 @@ u32 FUN_8c1f5558(u32 a0, u32 a1) {
     bVar1 = *(u8 *)*in_r3;
     *(u8 *)*in_r3 = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, a1, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f5582(a0, a1);
@@ -6998,7 +7004,7 @@ u32 FUN_8c1f55b8(u32 a0) {
     bVar1 = *(&DATA_8c1f5a2c);
     *(&DATA_8c1f5a2c) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f55e4(a0);
@@ -7023,7 +7029,7 @@ u32 FUN_8c1f55ba(u32 a0) {
     bVar1 = *(u8 *)*in_r3;
     *(u8 *)*in_r3 = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f55e4(a0);
@@ -7058,7 +7064,7 @@ u32 FUN_8c1f55fc(u32 a0) {
     bVar1 = *(&DATA_8c1f5a2c);
     *(&DATA_8c1f5a2c) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f5628(a0);
@@ -7083,7 +7089,7 @@ u32 FUN_8c1f55fe(u32 a0) {
     bVar1 = *(u8 *)*in_r3;
     *(u8 *)*in_r3 = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f5628(a0);
@@ -7118,7 +7124,7 @@ u32 FUN_8c1f5640(u32 a0) {
     bVar1 = *(&DATA_8c1f5a2c);
     *(&DATA_8c1f5a2c) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f566c(a0);
@@ -7143,7 +7149,7 @@ u32 FUN_8c1f5642(u32 a0) {
     bVar1 = *(u8 *)*in_r3;
     *(u8 *)*in_r3 = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f566c(a0);
@@ -7178,7 +7184,7 @@ u32 FUN_8c1f5684(u32 a0) {
     bVar1 = *(&DATA_8c1f5a2c);
     *(&DATA_8c1f5a2c) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f56b0(a0);
@@ -7203,7 +7209,7 @@ u32 FUN_8c1f5686(u32 a0) {
     bVar1 = *(u8 *)*in_r3;
     *(u8 *)*in_r3 = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f56b0(a0);
@@ -7236,7 +7242,7 @@ u32 FUN_8c1f56c8(u32 a0, u32 a1, u32 a2) {
     bVar1 = *(&DATA_8c1f5a2c);
     *(&DATA_8c1f5a2c) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, a1, a2, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f56f4(a0, a1, a2);
@@ -7259,7 +7265,7 @@ u32 FUN_8c1f56ca(u32 a0, u32 a1, u32 a2) {
     bVar1 = *(u8 *)*in_r3;
     *(u8 *)*in_r3 = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, a1, a2, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f56f4(a0, a1, a2);
@@ -7296,7 +7302,7 @@ u32 FUN_8c1f571a(u32 a0, u32 a1, u32 a2, u32 a3) {
     bVar1 = *(&DATA_8c1f5a2c);
     *(&DATA_8c1f5a2c) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f574c(a0, a1, a2, a3, in_stack_00000000);
@@ -7318,7 +7324,7 @@ u32 FUN_8c1f571c(u32 a0, u32 a1, u32 a2, u32 a3) {
     bVar1 = *(u8 *)*in_r3;
     *(u8 *)*in_r3 = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f574c(a0, a1, a2, a3);
@@ -7355,7 +7361,7 @@ u32 FUN_8c1f577a(u32 a0, u32 a1, u32 a2, u32 a3) {
     bVar1 = *(&DATA_8c1f5a2c);
     *(&DATA_8c1f5a2c) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f57b4(a0, a1, a2, a3, in_stack_00000000);
@@ -7377,7 +7383,7 @@ u32 FUN_8c1f577c(u32 a0, u32 a1, u32 a2, u32 a3) {
     bVar1 = *(u8 *)*in_r3;
     *(u8 *)*in_r3 = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f57b4(a0, a1, a2, a3);
@@ -7414,7 +7420,7 @@ u32 FUN_8c1f57e4(u32 a0, u32 a1, u32 a2, u32 a3) {
     bVar1 = *(&DATA_8c1f5a2c);
     *(&DATA_8c1f5a2c) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f5816(a0, a1, a2, a3, in_stack_00000000);
@@ -7436,7 +7442,7 @@ u32 FUN_8c1f57e6(u32 a0, u32 a1, u32 a2, u32 a3) {
     bVar1 = *(u8 *)*in_r3;
     *(u8 *)*in_r3 = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f5816(a0, a1, a2, a3);
@@ -7475,7 +7481,7 @@ u32 FUN_8c1f5850(u32 a0) {
     bVar1 = *(&DATA_8c1f5a2c);
     *(&DATA_8c1f5a2c) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f587c(a0);
@@ -7500,7 +7506,7 @@ u32 FUN_8c1f5852(u32 a0) {
     bVar1 = *(u8 *)*in_r3;
     *(u8 *)*in_r3 = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f587c(a0);
@@ -7534,7 +7540,7 @@ u32 FUN_8c1f5894(u32 a0, u32 a1) {
     bVar1 = *(&DATA_8c1f5a2c);
     *(&DATA_8c1f5a2c) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, a1, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f58c0(a0, a1);
@@ -7558,7 +7564,7 @@ u32 FUN_8c1f5896(u32 a0, u32 a1) {
     bVar1 = *(u8 *)*in_r3;
     *(u8 *)*in_r3 = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, a1, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f58c0(a0, a1);
@@ -7594,7 +7600,7 @@ u32 FUN_8c1f58e4(u32 a0, u32 a1) {
     bVar1 = *(&DATA_8c1f5a2c);
     *(&DATA_8c1f5a2c) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, a1, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f5910(a0, a1);
@@ -7618,7 +7624,7 @@ u32 FUN_8c1f58e6(u32 a0, u32 a1) {
     bVar1 = *(u8 *)*in_r3;
     *(u8 *)*in_r3 = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, a1, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f5910(a0, a1);
@@ -7652,7 +7658,7 @@ u32 FUN_8c1f5934(u32 a0, u32 a1, u32 a2, u32 a3) {
     bVar1 = *(&DATA_8c1f5a2c);
     *(&DATA_8c1f5a2c) = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f5970(a0, a1, a2, a3);
@@ -7674,7 +7680,7 @@ u32 FUN_8c1f5936(u32 a0, u32 a1, u32 a2, u32 a3) {
     bVar1 = *(u8 *)*in_r3;
     *(u8 *)*in_r3 = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f5970(a0, a1, a2, a3);
@@ -7724,7 +7730,7 @@ u32 FUN_8c1f599e(void) {
     bVar1 = *(u8 *)*in_r3;
     *(u8 *)*in_r3 = bVar1 | 0x80;
     if (bVar1 != 0) {
-        FUN_8c1f4570(r4, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
+        debug_log_printf(r4, r5, r6, r7, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
     uVar2 = FUN_8c1f59c8();
@@ -7872,7 +7878,7 @@ u32 FUN_8c1f5ac6(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u8 auStack_18[8];
 
     piVar2 = (int *)FUN_8c1f5a5e(auStack_18);
-    puVar1 = (&FUN_8c013ec0);
+    puVar1 = (&memcmp);
     iVar4 = 0;
     while (true) {
         if (*piVar2 <= iVar4) {
@@ -8025,16 +8031,15 @@ u32 FUN_8c1f5c9e(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     char *ar5_00;
     int ar4_00;
 
-    iVar1 = FUN_8c013ec0(a0 + 0x30, "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n", 0x10);
+    iVar1 = memcmp(a0 + 0x30, "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n", 0x10);
     if (iVar1 == 0) {
         iVar1 = 1;
         while (true) {
             ar5_00 = "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n" + 0x10;
             ar4_00 = iVar1 * 0x20 + a0 + 0x20;
             uVar2 = 0x10;
-            iVar3 =
-                FUN_8c013ec0(ar4_00 + 0x10,
-                             "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n" + 0x10, 0x10);
+            iVar3 = memcmp(ar4_00 + 0x10,
+                           "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n" + 0x10, 0x10);
             if (iVar3 == 0)
                 break;
             FUN_8c1f5bb4(ar4_00, ar5_00, uVar2, a3);
@@ -8061,15 +8066,15 @@ u32 FUN_8c1f5cac(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int unaff_r10;
     int a4;
 
-    iVar1 = FUN_8c013ec0(a0 + 0x30, "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n", a2);
+    iVar1 = memcmp(a0 + 0x30, "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n", a2);
     if (iVar1 == 0) {
         iVar1 = 1;
         while (true) {
             a5 = "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n" + 0x10;
             a4 = iVar1 * 0x20 + unaff_r10 + 0x20;
             uVar2 = 0x10;
-            iVar3 = FUN_8c013ec0(
-                a4 + 0x10, "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n" + 0x10, 0x10);
+            iVar3 = memcmp(a4 + 0x10,
+                           "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n" + 0x10, 0x10);
             if (iVar3 == 0)
                 break;
             FUN_8c1f5bb4(a4, a5, uVar2, a3);
@@ -8095,16 +8100,15 @@ u32 FUN_8c1f5cf6(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     char *ar5_00;
     int ar4_00;
 
-    iVar1 = FUN_8c013ec0(a0 + 0x30, "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n", 0x10);
+    iVar1 = memcmp(a0 + 0x30, "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n", 0x10);
     if (iVar1 == 0) {
         iVar1 = 1;
         while (true) {
             ar5_00 = "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n" + 0x10;
             ar4_00 = iVar1 * 0x20 + a0 + 0x20;
             uVar2 = 0x10;
-            iVar3 =
-                FUN_8c013ec0(ar4_00 + 0x10,
-                             "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n" + 0x10, 0x10);
+            iVar3 = memcmp(ar4_00 + 0x10,
+                           "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n" + 0x10, 0x10);
             if (iVar3 == 0)
                 break;
             FUN_8c1f5c04(ar4_00, ar5_00, uVar2, a3);
@@ -8131,15 +8135,15 @@ u32 FUN_8c1f5d04(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int unaff_r10;
     int a4;
 
-    iVar1 = FUN_8c013ec0(a0 + 0x30, "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n", a2);
+    iVar1 = memcmp(a0 + 0x30, "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n", a2);
     if (iVar1 == 0) {
         iVar1 = 1;
         while (true) {
             a5 = "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n" + 0x10;
             a4 = iVar1 * 0x20 + unaff_r10 + 0x20;
             uVar2 = 0x10;
-            iVar3 = FUN_8c013ec0(
-                a4 + 0x10, "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n" + 0x10, 0x10);
+            iVar3 = memcmp(a4 + 0x10,
+                           "Lib Handle StartLib Handle End  \nov Ver.1.00Build:Apr 23 1999 22:13:01\n" + 0x10, 0x10);
             if (iVar3 == 0)
                 break;
             FUN_8c1f5c04(a4, a5, uVar2, a3);
@@ -9455,7 +9459,7 @@ int FUN_8c1f6d3e(int a0, int a1, int a2, u32 a3) {
             if (iVar2 != 0) {
                 return 0xffffffff;
             }
-            iVar2 = FUN_8c013ec0(a3, a2, 0x3c);
+            iVar2 = memcmp(a3, a2, 0x3c);
             iVar4 = iVar4 + 1;
             if (iVar2 != 0) {
                 iVar3 = iVar3 + 1;
@@ -9487,7 +9491,7 @@ int FUN_8c1f6d56(int a0, int a1, u32 a2, u32 a3) {
                 return 0xffffffff;
             }
             a2 = 0x3c;
-            iVar2 = FUN_8c013ec0(unaff_r10, unaff_r13, 0x3c);
+            iVar2 = memcmp(unaff_r10, unaff_r13, 0x3c);
             iVar3 = iVar3 + 1;
             if (iVar2 != 0) {
                 a1 = a1 + 1;
@@ -9694,7 +9698,7 @@ u32 FUN_8c1f6fc8(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
             iVar1 = FUN_8c1f6e0c(iVar3 * 4 + 0x18, 0, a2, a3);
             if (iVar1 == 1) {
                 a2 = 10;
-                iVar1 = FUN_8c013ec0(g_8c4748b0 + 2, a0, 10);
+                iVar1 = memcmp(g_8c4748b0 + 2, a0, 10);
                 if (iVar1 == 0) {
                     a2 = 0x3c;
                     memmove(auStack_98, g_8c4748b0, 0x3c);
@@ -11043,7 +11047,7 @@ u32 FUN_8c1f826c(u16 *a0, int *a1, u32 a2) {
     u32 uVar3;
     int aiStack_34[13];
 
-    FUN_8c010794(0x30, aiStack_34, &g_8c26c964);
+    switch_jump(0x30, aiStack_34, &g_8c26c964);
     uVar3 = *a0 - 0x79c;
     iVar2 = (uVar3 >> 2) + (*a0 - 0x79e) * 0x16d;
     if (((uVar3 & 3) == 0) && ((u8)a0[1] < 3)) {
@@ -11075,7 +11079,7 @@ u32 FUN_8c1f8300(u32 a0, u16 *a1) {
     u8 auStack_38[52];
 
     puVar6 = auStack_38;
-    FUN_8c010794(0x30, auStack_38, &g_8c26c994);
+    switch_jump(0x30, auStack_38, &g_8c26c994);
     uVar7 = 0x3c;
     uVar1 = libgcc_divide_helper_0106dc(a0, 0x3c);
     *(char *)(a1 + 3) = (char)uVar1;
@@ -11424,7 +11428,7 @@ u32 FUN_8c1f884c(u32 a0, u32 a1, u32 a2, u32 a3) {
     iVar2 = FUN_8c1f881c(a0, auStack_48, a2, a3);
     if (iVar2 == 0) {
         ar6_00 = 0x3c;
-        iVar2 = FUN_8c013ec0(auStack_48, a1, 0x3c);
+        iVar2 = memcmp(auStack_48, a1, 0x3c);
         if (iVar2 == 0) {
             return 3;
         }
@@ -11472,10 +11476,11 @@ int sh4_tmu_1f88e6(u32 a0) {
 }
 
 /*
- * FUN_8c1f88f0  0x8c1f88f0
+ * int_diff  0x8c1f88f0
+ * returns a1 - a0
  * called by: FUN_8c101de0, FUN_8c258e70, FUN_8c263498, FUN_8c264c92, FUN_8c264e84, FUN_8c264e88, adx_server, game_frame
  */
-int FUN_8c1f88f0(int a0, int a1) {
+int int_diff(int a0, int a1) {
     return a1 - a0;
 }
 
@@ -11505,7 +11510,7 @@ int FUN_8c1f892a(u32 a0) {
 
 /*
  * sh4_tmu_1f8a64  0x8c1f8a64
- * called by: FUN_8c0b9230
+ * called by: sh4_tmu_wrap
  */
 u32 sh4_tmu_1f8a64(void) {
     char cVar1;
@@ -13854,7 +13859,7 @@ u32 *FUN_8c1fb664(int a0, int a1, u32 a2, u32 a3) {
                     puVar1 = puVar3 + uVar7 * 8 + 8;
                     while (puVar9 < puVar1) {
                         puVar5 = puVar1 + -8;
-                        FUN_8c010794(0x20, puVar1, unaff_r14);
+                        switch_jump(0x20, puVar1, unaff_r14);
                         puVar1 = puVar5;
                         unaff_r14 = unaff_r14 + -8;
                     }
@@ -13863,7 +13868,7 @@ u32 *FUN_8c1fb664(int a0, int a1, u32 a2, u32 a3) {
                     puVar1 = puVar9;
                     while (puVar1 < puVar5) {
                         puVar6 = puVar1 + 8;
-                        FUN_8c010794(0x20, puVar1, unaff_r14);
+                        switch_jump(0x20, puVar1, unaff_r14);
                         puVar1 = puVar6;
                         unaff_r14 = unaff_r14 + 8;
                     }
@@ -14251,7 +14256,7 @@ u32 FUN_8c1fbdfc(u32 unused_a0, u32 a1, u32 a2, u32 a3, code *ain1) {
     *in_r3 = in_r2;
     uVar1 = 0x14;
     (*ain1)(0x14, a1, a2, a3, in_PR);
-    FUN_8c1fcadc(uVar1, a1, a2, a3);
+    memset_wrap(uVar1, a1, a2, a3);
     uVar1 = FUN_8c1fda04(uVar1, a1, a2, a3);
     return uVar1;
 }
@@ -14278,7 +14283,7 @@ u32 FUN_8c1fbe12(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     g_8c273a44 = 0;
     uVar1 = g_8c26d1e0;
     FUN_8c1f03a6(g_8c26d1e0, 0);
-    FUN_8c1fcadc(uVar1, ar5_00, unused_a2, a3);
+    memset_wrap(uVar1, ar5_00, unused_a2, a3);
     uVar1 = FUN_8c1fda04(uVar1, ar5_00, unused_a2, a3);
     return uVar1;
 }
@@ -14304,7 +14309,7 @@ u32 FUN_8c1fbe1a(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     g_8c273a44 = 0;
     uVar1 = g_8c26d1e0;
     FUN_8c1f03a6(g_8c26d1e0, 0);
-    FUN_8c1fcadc(uVar1, ar5_00, unused_a2, a3);
+    memset_wrap(uVar1, ar5_00, unused_a2, a3);
     uVar1 = FUN_8c1fda04(uVar1, ar5_00, unused_a2, a3);
     return uVar1;
 }
@@ -14500,7 +14505,7 @@ u32 FUN_8c1fc07c(u32 a0, u32 a1, u32 a2, u32 a3) {
     uVar2 = a1;
     FUN_8c1fcea8(a0, a0, a1, a2, a3, in_stack_00000000, 0);
     FUN_8c1fcecc(a0, uVar2);
-    FUN_8c1fcf6e(a0);
+    memmove_wrap_1fcf6e(a0);
     return 0;
 }
 
@@ -14972,7 +14977,7 @@ u32 FUN_8c1fc740(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0) {
         FUN_8c1fce98(a0, 0xc);
         FUN_8c1fcea8(a0, a0, a1, ain0, a3, s0, in_stack_00000004);
         FUN_8c1fcef8(a0, a1, a1);
-        FUN_8c1fcf6e(a0);
+        memmove_wrap_1fcf6e(a0);
         uVar2 = 0;
     } else {
         uVar2 = 0xffffffff;
@@ -14996,7 +15001,7 @@ u32 FUN_8c1fc79e(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0) {
         FUN_8c1fce98(a0, 0xd);
         FUN_8c1fcea8(a0, a0, a1, ain0, a3, s0, in_stack_00000004);
         FUN_8c1fcef8(a0, a1, a1);
-        FUN_8c1fcf6e(a0);
+        memmove_wrap_1fcf6e(a0);
         uVar2 = 0;
     } else {
         uVar2 = 0xffffffff;
@@ -15255,10 +15260,11 @@ u32 FUN_8c1fc9c0(u32 *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * FUN_8c1fcadc  0x8c1fcadc
+ * memset_wrap  0x8c1fcadc
+ * only calls memset
  * called by: FUN_8c1fbdfc, FUN_8c1fbe12, FUN_8c1fbe1a
  */
-u32 FUN_8c1fcadc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 memset_wrap(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     memset(0x8c475fc0, 0, (int)0x400);
     return 0;
 }
@@ -15453,10 +15459,11 @@ u32 FUN_8c1fcef8(int a0, char *a1, char *a2) {
 }
 
 /*
- * FUN_8c1fcf6e  0x8c1fcf6e
+ * memmove_wrap_1fcf6e  0x8c1fcf6e
+ * only calls memmove
  * called by: FUN_8c1fc07c, FUN_8c1fc740, FUN_8c1fc79e
  */
-u32 FUN_8c1fcf6e(int a0) {
+u32 memmove_wrap_1fcf6e(int a0) {
     u32 uVar1;
 
     uVar1 = memmove(a0 * 0x80 + 0x8c475fc0 + 0x6c, 8);

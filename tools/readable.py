@@ -448,6 +448,118 @@ def header(f, newname, callers, hint, strings, curated_note):
     return '/*\n' + ''.join(' * %s\n' % l.replace('*/', '* /') for l in lines) + ' */\n'
 
 
+# ---------------------------------------------------------------- names from a function's shape
+NUM = r'(?:0x[0-9a-f]+|\d+)'
+FIELD_T = {'char': '_s8', 'undefined1': '_u8', 'undefined': '_u8', 'byte': '_u8', 'uchar': '_u8', 'short': '_s16',
+           'undefined2': '_u16', 'ushort': '_u16', 'float': '_f32'}
+DECL = re.compile(r'[A-Za-z_][\w ]*?[\s*]+[A-Za-z_]\w*(?:\s*\[\d+\])?;')
+
+
+def statements(body):
+    """the body's statements, one per line, without declarations; None if it has any control flow"""
+    st = []
+    for l in re.sub(r'/\*.*?\*/', '', body[1:-1], flags=re.S).split('\n'):
+        l = l.strip()
+        if not l or DECL.fullmatch(l): continue
+        if '{' in l or '}' in l or re.match(r'(if|for|while|do|switch|goto)\b', l) or re.match(r'\w+:$', l): return None
+        st.append(l)
+    return st
+
+
+def hexoff(n):
+    return '%x' % int(n, 0)
+
+
+def field(e, f):
+    """'*(T *)(ar4 + N)', '*ar4', 'ar4[N]' -> (offset hex, type suffix), else None"""
+    m = re.fullmatch(r'\*\((\w[\w ]*?) \*\)\((?:ar4 \+ (%s)|(%s) \+ ar4)\)' % (NUM, NUM), e)
+    if m: return hexoff(m.group(2) or m.group(3)), FIELD_T.get(m.group(1), '')
+    p0 = f.params[0] if f.params else ''
+    base = p0.rsplit('*', 1)[0].strip() if '*' in p0 else None
+    size = {'char': 1, 'undefined1': 1, 'byte': 1, 'short': 2, 'undefined2': 2, 'ushort': 2}.get(base, 4)
+    if base is None: return None
+    if e == '*ar4': return '0', FIELD_T.get(base, '')
+    m = re.fullmatch(r'ar4\[(%s)\]' % NUM, e)
+    if m: return '%x' % (int(m.group(1), 0) * size), FIELD_T.get(base, '')
+    return None
+
+
+def shape_name(f, cur):
+    """a descriptive name for a function whose whole body is one recognisable idiom (accessor, constant, forwarder, ...);
+    cur maps old names to current names. Returns (name, hint) or None."""
+    st = statements(f.body)
+    if st is None or len(st) > 4: return None
+    ret = st[-1] if st and st[-1].startswith('return') else None
+    rv = ret[6:].strip(' ;') if ret else ''
+    body = st[:-1] if ret else st
+    # a 'return' of a scratch register or of a temporary set to a constant is housekeeping
+    if body and re.fullmatch(r'(\w+) = %s;' % NUM, body[0]) and rv == body[0].split()[0]: body, rv = body[1:], 'in_r0'
+    junk = rv in ('', 'in_r0') or re.fullmatch(r'\(?\w*\)?' + NUM, rv) or rv in ('ar4', 'ar5')
+    if not body:
+        if rv in ('', 'in_r0'): return 'noop', 'does nothing'
+        if re.fullmatch(r'(?:\(\w+\))?' + NUM, rv): return 'ret_const_%s' % hexoff(re.sub(r'^\(\w+\)', '', rv)), None
+        m = re.fullmatch(r'(?:\(\w+ \*\))?\(?(?:ar4|\(int\)ar4) \+ (%s)\)?' % NUM, rv)
+        if m: return 'field_ptr_%s' % hexoff(m.group(1)), 'returns the address of the member at +0x%s' % hexoff(m.group(1))
+        m = re.fullmatch(r'(?:\(\w+\))?(.+)', rv)
+        fl = field(m.group(1), f) if m else None
+        if fl: return 'get_field_%s%s' % fl, None
+        m = re.fullmatch(r'(?:\(\w+\))?_?DAT_(8c[0-9a-f]{6})', rv)
+        if m: return 'get_g_%s' % m.group(1), 'returns the global at 0x%s' % m.group(1)
+        m = re.fullmatch(r'(?:\(\w+ \*?\))?&?_?DATA?_(8c[0-9a-f]{6})', rv)
+        if m: return 'get_ptr_%s' % m.group(1), 'returns the address 0x%s' % m.group(1)
+        m = re.fullmatch(r'\(\*\*\(code \*\*\)\(\*(?:\(int \*\))?\(?ar4(?: \+ (%s))?\)?\s*\+\s*(%s)\)\)\(.*\)' % (NUM, NUM), rv)
+        if m:
+            k = int(m.group(2), 0) // 4
+            return ('vcall_field_%s_slot%d' % (hexoff(m.group(1)), k) if m.group(1) else 'vcall_slot%d' % k), \
+                'calls virtual slot %d of the object %s' % (k, 'at +0x%s' % hexoff(m.group(1)) if m.group(1) else 'passed in')
+    if len(body) == 1 and junk:
+        s = body[0]
+        m = re.fullmatch(r'(.+?) = (?:\(\w+\))?(ar5|%s|in_fr4);' % NUM, s)
+        fl = field(m.group(1), f) if m else None
+        if fl:
+            v = m.group(2)
+            if v in ('ar5', 'in_fr4'): return 'set_field_%s%s' % fl, None
+            return ('clear_field_%s%s' % fl if int(v, 0) == 0 else 'set_field_%s%s_to_%s' % (fl + (hexoff(v),))), None
+        m = re.fullmatch(r'(.+?) = (.+?) ([+|&-]) (?:\(\w+\))?(?:\'\\x)?([0-9a-fx]+)\'?;', s)
+        if m and m.group(1) == m.group(2) and field(m.group(1), f):
+            o, t = field(m.group(1), f)
+            op = {'+': 'inc', '-': 'dec', '|': 'set_bits', '&': 'mask'}[m.group(3)]
+            return ('%s_field_%s%s' % (op, o, t) if op in ('inc', 'dec') else '%s_%s%s_%s' % (op, o, t, m.group(4).replace('0x', ''))), None
+        m = re.fullmatch(r'_?DAT_(8c[0-9a-f]{6}) = (?:\(\w+\))?ar4;', s)
+        if m: return 'set_g_%s' % m.group(1), 'stores its argument in the global at 0x%s' % m.group(1)
+    # forwarders: the whole body is one call to a named function
+    call = None
+    if not body and rv: call, res = rv, None
+    elif len(body) == 1 and (junk or re.fullmatch(r'\w+', rv)): call, res = body[0].rstrip(';'), rv
+    if call:
+        m = re.fullmatch(r'(?:(\w+) = )?(?:\(\w+\))?(\w+)\((.*)\)', call)
+        if m and (m.group(1) is None or m.group(1) == res or junk):
+            callee = cur.get(m.group(2), m.group(2))
+            first = split_args(m.group(3))[0].strip() if m.group(3).strip() else ''
+            if callee == 'vec_delete_array':
+                a = re.search(r'8c[0-9a-f]{6}', first)
+                if a: return 'destroy_array_%s' % a.group(0), 'destroys the global array at 0x%s' % a.group(0)
+            if callee.startswith(('FUN_', 'halt_', 'thunk_FUN_')) or not IDENT.fullmatch(callee): return None
+            stem = re.sub(r'_(?:8c)?[0-9a-f]{6}$', '', callee)
+            if stem == 'noop': return 'noop', 'only calls %s, which does nothing' % callee
+            fm = re.fullmatch(r'\(?(?:ar4|\(int\)ar4) \+ (%s)\)?' % NUM, first)
+            if fm: return '%s_on_field_%s' % (stem, hexoff(fm.group(1))), 'calls %s on the member at +0x%s' % (callee, hexoff(fm.group(1)))
+            if stem.endswith('_wrap'): return None
+            return stem + '_wrap', 'only calls %s' % callee
+    return None
+
+
+def vtable_names(f, vt):
+    """constructor / destructor of a class with a vtable: the body stores a known vtable into the object's first word"""
+    stores = [m.group(1) for m in re.finditer(r'\*ar4 = (?:\(\w+ \*?\))?(?:&DAT_|&DATA_|0x)(8c[0-9a-f]{6})[;,)]', f.body)]
+    stores = [s for s in stores if s in vt]
+    if not stores: return None
+    # g++ 2.x destructors take (this, in_chrg), test this for NULL and free this when in_chrg says so
+    dtor = re.search(r'\(ar5 & 1\)|\bfree_if_nonnull\(ar4\b|ar4 != \(\w+ \*\)0x0', f.body) is not None
+    cls = vt[stores[0] if dtor else stores[-1]]
+    return ('%s_dtor' % cls if dtor else '%s_ctor' % cls), 'stores the vtable 0x%s' % (stores[0] if dtor else stores[-1])
+
+
 def main():
     mods = sorted(x for x in os.listdir(SRC) if x.startswith('mod_') and x.endswith('.c'))
     raw = [(m,) + parse_module(os.path.join(SRC, m)) for m in mods]
@@ -463,6 +575,32 @@ def main():
     mods = [m for m, _, _ in parsed]
     allf = [f for _, _, fs in parsed for f in fs]
     names, hints, curated = load_names(allf)
+    # library error messages name functions: CRI "...(ADXF_Seek)" and mwRna "E1201:mwRnaCreate ..." name the function that
+    # prints them; mwSnd "sdPstmPlay return error in mwSndPlay" names that function and the callee whose result it checked
+    taken = collections.Counter(names.values())
+    def give(a, new, why):
+        if not names[a].startswith('FUN_') or a in curated: return
+        if taken[new]: new = '%s_%06x' % (new, a & 0xffffff)
+        taken[new] += 1; names[a] = new; hints[a] = 'named from the library error message ' + why
+    by_old_name = {f.name: f for f in allf}
+    for f in allf:
+        if f.body is None: continue
+        body = strings_and_addresses(f.body)
+        own = set()
+        for lit in re.finditer(r'"((?:[^"\\]|\\.)*)"', body):
+            t = lit.group(1)
+            m = re.search(r'\(((?:ADX|SJ|mw)[A-Za-z0-9]*_[A-Za-z0-9]+)\)\s*(?:\\n)?$', t)
+            if m: own.add(m.group(1))
+            m = re.match(r'E\d+:\s*(mw(?:Rna|Snd)[A-Z]\w+)\b(?! return)', t)
+            if m: own.add(m.group(1))
+            m = re.match(r'E\d+:(\w+) return error(?: in (\w+))?', t)
+            if m:
+                if m.group(2): own.add(m.group(2))
+                calls = [c for c in re.finditer(r'\b(\w+) = (\w+)\(', body[:lit.start()])]
+                if calls and calls[-1].group(2) in by_old_name:
+                    give(by_old_name[calls[-1].group(2)].addr, m.group(1), '"%s"' % t[:60])
+        if len(own) == 1:
+            o = own.pop(); give(f.addr, o, 'it prints (%s)' % o)
     # a function that passes exactly one "Class::Method(...)" string (the error reporter's `where` argument) is that method
     taken = collections.Counter(names.values())
     for f in allf:
@@ -472,6 +610,25 @@ def main():
             c, m = sigs.pop(); new = '%s_%s' % (c, m.replace('~', 'dtor_'))
             if taken[new]: new = '%s_%06x' % (new, f.addr & 0xffffff)
             taken[new] += 1; names[f.addr] = new; hints.pop(f.addr, None)
+    # constructors and destructors from vtable stores, then whole-body idioms (accessors, constants, forwarders); forwarders to a
+    # function named in an earlier round get named in the next
+    vt = {}
+    for l in open(os.path.join(NOTES, 'vtables.tsv')):
+        a = l.rstrip('\n').split('\t')
+        if len(a) >= 4: vt[a[0]] = a[3]
+    for rnd in range(3):
+        cur = {f.name: names[f.addr] for f in allf}
+        for f in allf:
+            if f.body is None or f.addr in curated: continue
+            # slot-0 methods and the free_if_nonnull wrappers that store a vtable are destructors
+            if rnd == 0 and re.match(r'(C\w+_m0_|free_if_nonnull_wrap_)', names[f.addr]): got = vtable_names(f, vt)
+            elif not names[f.addr].startswith('FUN_'): continue
+            else: got = (vtable_names(f, vt) if rnd == 0 else None) or shape_name(f, cur)
+            if not got: continue
+            new, why = got
+            if taken[new]: new = '%s_%06x' % (new, f.addr & 0xffffff)
+            taken[new] += 1; names[f.addr] = new
+            if why: hints[f.addr] = why
     by_old = {}
     for f in allf: by_old[f.name] = f
     known = set(by_old)

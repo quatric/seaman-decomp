@@ -11,7 +11,12 @@ port is built from its own pipeline (`tools/wii_xform.py` -> `port/wii/exec/`), 
 
 - **Names.** Named functions come from the game's own strings (error messages pass `"Class::Method()"`, which names the
   function that passes it), from the tables in `notes/` and from [`tools/readable_names.tsv`](../tools/readable_names.tsv)
-  (worked out while porting: sound, DMA, ADX). `Class_12xxxx_mN` is method N of the vtable at 0x8c12xxxx. Everything else is
+  (worked out while porting: sound, DMA, ADX, Ninja texture and matrix calls, vector math). CRI and Middleware library
+  functions are named from their error strings (`E…:X return error in Y` names the callee X). `Class_12xxxx_mN` is method N
+  of the vtable at 0x8c12xxxx; a function that stores a vtable into `*a0` is that class's `_ctor` (or `_dtor` when it is slot
+  0 and frees). Small functions are named by shape: `get_field_<off>`/`set_field_<off>` (one member read or written),
+  `field_ptr_<off>`, `get_g_<addr>`/`set_g_<addr>` (one global), `ret_const_<value>`, `noop`, and `<callee>_wrap` for a
+  function that only calls a named one. These describe what the code does, not what it is for. Everything else is
   `FUN_<address>`.
 - **Parameters.** SH-4 passes the first four arguments in r4-r7, so they are `a0`..`a3`; further ones come from the stack
   (`s0`, `s4`, ...). Ghidra did not know how many each function takes. The real count is inferred: a parameter is kept if the
