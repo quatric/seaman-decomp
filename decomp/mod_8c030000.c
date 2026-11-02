@@ -148,7 +148,7 @@ u32 talk_queue_mode1(int a0, u32 a1, int a2, u32 a3, u32 s0) {
     uVar3 = a3;
     if (0 < a2) {
         iVar4 = 0;
-        talk_sub_030550(a0, a1, 0);
+        set_word_array_674(a0, a1, 0);
     }
     if ((((*(int *)(a0 + 0x2e8) == -1) && (iVar1 = talk_sub_030538(a0, a1), iVar1 == 0)) &&
          (*(int *)(a0 + 0x770) == 0)) &&
@@ -182,11 +182,11 @@ u32 talk_sub_030538(int a0, int a1) {
 }
 
 /*
- * talk_sub_030550  0x8c030550
- * area name: sits between talk functions (same compilation unit)
+ * set_word_array_674  0x8c030550
+ * +0x674[a1] = a2
  * called by: talk_queue_mode1, talk_start_line
  */
-int talk_sub_030550(int a0, int a1, u32 a2) {
+int set_word_array_674(int a0, int a1, u32 a2) {
     int iVar1;
 
     iVar1 = 0x674;
@@ -283,7 +283,7 @@ u32 talk_start_line(int a0, u32 a1, u32 a2, u32 a3) {
         if (*(int *)(0x2e8 + a0) == -1) {
             if (*(int *)(0x2e8 + a0) == -1) {
                 set_field_770(a0, 0, uVar2, ar7_00);
-                talk_sub_030550(a0, a1, 0);
+                set_word_array_674(a0, a1, 0);
                 uVar7 = talk_sub_03087c(a0, a1, a2, a3, in_stack_00000000);
                 *(u32 *)(0xb0 + a0) = 0;
                 *(u32 *)(a0 + 0x60) = a2;
@@ -298,7 +298,7 @@ u32 talk_start_line(int a0, u32 a1, u32 a2, u32 a3) {
         } else {
             *(u32 *)(0x2e8 + a0) = 0xffffffff;
             uVar7 = 0;
-            talk_sub_030550(a0, a1, 0);
+            set_word_array_674(a0, a1, 0);
             set_field_770(a0, 0, uVar7, ar7_00);
             uVar2 = a2;
             uVar7 = talk_sub_03087c(a0, a1, a2, a3, in_stack_00000000);
@@ -9058,7 +9058,7 @@ u32 game_sub_038b04(int a0, u32 a1, u32 a2) {
     } else {
         ar5_00 = (int)(dVar3 / dVar3);
     }
-    matrix_sub_256b0c(0, ar5_00, ar6_00, ar7_00, in_stack_fffffff4);
+    njRotateXYZ(0, ar5_00, ar6_00, ar7_00, in_stack_fffffff4);
     matrix_scale(0, ar5_00, ar6_00, ar7_00, in_stack_fffffff4);
     matrix_scale(0, ar5_00, ar6_00, ar7_00, in_stack_fffffff4);
     uVar1 = get_field_0_015bb8(*(int *)(a0 + 0x328) + 0x70);

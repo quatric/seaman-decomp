@@ -11404,7 +11404,7 @@ u32 rtc_sub_1f823a(u32 a0, u32 a1, u32 a2) {
  * date_to_rtc_seconds  0x8c1f826c
  * seconds since 1950-01-01 (the Dreamcast RTC epoch) for a {year, month, day, hour, minute, second} struct
  * called by: CGame_sub_0cc784, CProlog_sub_0b96e4, CProlog_sub_0cd3c8, CSeamanDomain_sub_1028c0, aica_sub_1f8650,
- * game_sub_0b77a0, game_sub_0b7804, game_sub_0bcedc (+12 more)
+ * game_sub_0b7804, game_sub_0bcedc, game_sub_0f9774 (+12 more)
  */
 u32 date_to_rtc_seconds(u16 *a0, int *a1, u32 a2) {
     u16 uVar1;
@@ -14796,7 +14796,7 @@ u32 shinobi_sub_1fbe84(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
         uVar4 = 1;
         g_8c475f8c = g_8c475f8c & g_8c475f9c;
         do {
-            iVar1 = shinobi_sub_1fc5c4(iVar6);
+            iVar1 = slot80_busy_error(iVar6);
             uVar5 = uVar4;
             if (iVar1 != 0) {
                 uVar5 = 0;
@@ -15337,11 +15337,11 @@ u32 shinobi_sub_1fc592(u32 a0, u32 a1, u32 a2) {
 }
 
 /*
- * shinobi_sub_1fc5c4  0x8c1fc5c4
- * area name: in the shinobi library code range
+ * slot80_busy_error  0x8c1fc5c4
+ * -1 while slot80_get_active(a0), else 0
  * called by: game_sub_01a900, game_sub_01b144, shinobi_sub_1fbe84
  */
-u32 shinobi_sub_1fc5c4(u32 a0) {
+u32 slot80_busy_error(u32 a0) {
     int iVar1;
 
     iVar1 = slot80_get_active(a0);

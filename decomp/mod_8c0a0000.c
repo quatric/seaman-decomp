@@ -3720,7 +3720,7 @@ u32 Class_12aeec_sub_0a481c(int a0) {
     } else {
         iVar6 = (int)(dVar4 / dVar4);
     }
-    matrix_sub_256b0c(0, iVar6, ar6_00, ar7_00, in_stack_ffffffcc);
+    njRotateXYZ(0, iVar6, ar6_00, ar7_00, in_stack_ffffffcc);
     vec3_copy_wrap_0a4a34(a0 + 0x53c, iVar6, ar6_00, ar7_00, &stack0xffffffe0);
     vec3_copy_8c02b5fc(&stack0xffffffec, &stack0xffffffe0, ar6_00);
     object_dtor_delete(&stack0xffffffe0, 0xffffffff, ar6_00, ar7_00);
@@ -3765,7 +3765,7 @@ u32 Class_12aeec_sub_0a481c(int a0) {
     } else {
         iVar6 = (int)(dVar4 / dVar4);
     }
-    matrix_sub_256a78(0, iVar6, ar6_00, ar7_00, in_stack_ffffffcc);
+    ninja_sub_256a78(0, iVar6, ar6_00, ar7_00, in_stack_ffffffcc);
     if (cVar8 == '\0') {
         dVar4 = (double)CONCAT44(0x47800000, uStack_c);
     } else {
@@ -4243,7 +4243,7 @@ u32 Class_12ad50_sub_0a53b0(int a0, u32 a1, u32 a2) {
     } else {
         ar5_01 = (int)(dVar3 / dVar3);
     }
-    matrix_sub_256b0c(0, ar5_01, ar6_01, ar7_00, in_stack_ffffffec);
+    njRotateXYZ(0, ar5_01, ar6_01, ar7_00, in_stack_ffffffec);
     matrix_scale(0, ar5_01, ar6_01, ar7_00, in_stack_ffffffec);
     uVar1 = get_field_0_015bb8(*(int *)(a0 + 0x328) + 0x70);
     ar5_00 = deref_u32(*(u32 *)(*(int *)(a0 + 0x328) + 0xa0));
@@ -10264,7 +10264,7 @@ int CSquid_Init(int a0, u32 a1) {
         CSquid_sub_0164c8(iVar3 * 0x44 + a0 + 0x9c4, 0x8c286868, 4);
         set_flag_14_20(iVar3 * 0x44 + a0 + 0x9c4);
         set_flags_14_60(iVar3 * 0x44 + a0 + 0x9c4);
-        CSquid_sub_014a64(iVar3 * 0x44 + a0 + 0x9c4);
+        set_flag_14_bit31_and_20(iVar3 * 0x44 + a0 + 0x9c4);
     }
     return a0;
 }
@@ -10652,7 +10652,7 @@ int game_sub_0ad354(int a0) {
         iVar10 = (int)dVar7;
     }
     iVar5 = (int)((u64)dVar7 >> 0x20);
-    matrix_sub_256b0c(0, iVar10, iStack_7c, ar7_00, in_stack_ffffff48);
+    njRotateXYZ(0, iVar10, iStack_7c, ar7_00, in_stack_ffffff48);
     matrix_scale(0, iVar10, iStack_7c, ar7_00, in_stack_ffffff48);
     obj_set_texlist(*(int *)(a0 + 0x328) + 0x78, iVar10, iStack_7c);
     iVar1 = get_field_124_027930(a0 + 0x53c, iVar10, iStack_7c, ar7_00);
@@ -10735,7 +10735,7 @@ int game_sub_0ad354(int a0) {
         } else {
             iVar3 = (int)(dVar7 / dVar7);
         }
-        matrix_sub_256b0c(0, iVar3, iStack_7c, ar7_00, in_stack_ffffff48);
+        njRotateXYZ(0, iVar3, iStack_7c, ar7_00, in_stack_ffffff48);
         njSetTexture(*(u32 *)(a0 + 0x890));
         gfxlib_sub_21a80e(*(u32 *)(a0 + 0x88c), iVar3, iStack_7c, ar7_00);
         matrix_pop_n(1);
@@ -10803,7 +10803,7 @@ int game_sub_0ad354(int a0) {
                 } else {
                     iVar10 = (int)(dVar7 - dVar7);
                 }
-                matrix_sub_256a78(0, iVar10, ar6_00, ar7_00, in_stack_ffffff48);
+                ninja_sub_256a78(0, iVar10, ar6_00, ar7_00, in_stack_ffffff48);
                 matrix_scale(0, iVar10, ar6_00, ar7_00, in_stack_ffffff48);
                 obj_set_texlist(a0 + 0x9bc, iVar10, ar6_00);
                 uVar2 = *(u32 *)(iVar5 * 0x4c + 0x8c2859bc);
@@ -10912,7 +10912,7 @@ int game_sub_0ad7ec(int a0) {
         iVar9 = (int)dVar7;
     }
     iVar5 = (int)((u64)dVar7 >> 0x20);
-    matrix_sub_256b0c(0, iVar9, iStack_3c, ar7_00, in_stack_ffffff8c);
+    njRotateXYZ(0, iVar9, iStack_3c, ar7_00, in_stack_ffffff8c);
     matrix_scale(0, iVar9, iStack_3c, ar7_00, in_stack_ffffff8c);
     obj_set_texlist(*(int *)(a0 + 0x328) + 0x78, iVar9, iStack_3c);
     iVar1 = get_field_124_027930(a0 + 0x53c, iVar9, iStack_3c, ar7_00);
@@ -10995,7 +10995,7 @@ int game_sub_0ad7ec(int a0) {
         } else {
             iVar9 = (int)(dVar7 / dVar7);
         }
-        matrix_sub_256b0c(0, iVar9, iStack_3c, ar7_00, in_stack_ffffff8c);
+        njRotateXYZ(0, iVar9, iStack_3c, ar7_00, in_stack_ffffff8c);
         njSetTexture(*(u32 *)(a0 + 0x890));
         gfxlib_sub_219a9a(*(u32 *)(a0 + 0x88c), iVar9, iStack_3c, ar7_00);
         matrix_pop_n(1);
@@ -11179,7 +11179,7 @@ u32 game_sub_0add00(int a0, u32 a1, u32 a2) {
         ar5_01 = (int)dVar6;
     }
     uStack_20 = (u32)((u64)dVar6 >> 0x20);
-    matrix_sub_256b0c(0, ar5_01, ar6_00, ar7_00, in_stack_ffffffd4);
+    njRotateXYZ(0, ar5_01, ar6_00, ar7_00, in_stack_ffffffd4);
     uVar1 = get_field_0_015bb8(iVar4 + 0x70);
     iVar2 = get_field_1c_on_field_b0(*(u32 *)(a0 + 0x30c), ar5_01, ar6_00);
     ar5_00 = deref_u32(*(int *)(iVar4 + 0xa0) + iVar2 * 4);

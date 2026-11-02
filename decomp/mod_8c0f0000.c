@@ -1773,7 +1773,7 @@ u32 Class_12c058_sub_0f577c(int a0, u32 a1, u32 a2, u32 a3) {
     uVar1 = 0;
     matrix_push(0, a1, a2, a3, in_PR);
     touch_fields_30_3c_wrap();
-    game_sub_019088();
+    rotate_xyz_degrees();
     game_sub_015adc(a0 + 0x178, a1, a2, a3);
     uVar1 = matrix_pop_n(1);
     return uVar1;
@@ -1791,7 +1791,7 @@ u32 Class_12c058_sub_0f57f0(int a0, u32 a1, u32 a2, u32 a3) {
     uVar1 = 0;
     matrix_push(0, a1, a2, a3, in_PR);
     touch_fields_30_3c_wrap();
-    game_sub_019088();
+    rotate_xyz_degrees();
     game_sub_015adc(a0 + 0x178, a1, a2, a3);
     uVar1 = matrix_pop_n(1);
     return uVar1;
@@ -1979,7 +1979,7 @@ int Class_12bec0_sub_0f5b10(int a0, u32 a1) {
     }
     set_flag_14_20(a0 + 0x170);
     set_flags_14_60(a0 + 0x170);
-    CSquid_sub_014a64(a0 + 0x170);
+    set_flag_14_bit31_and_20(a0 + 0x170);
     ar5_02 = &PTR_PTR_8c1401d0;
     (**(code **)(*(int *)(a0 + 0x1b4) + 8))((int *)(a0 + 0x1b4), &PTR_PTR_8c1401d0, ar6_01, ar7_00);
     iVar1 = get_field_4_0253e4(a0 + 0x1b4, ar5_02, ar6_01, ar7_00);
@@ -2133,7 +2133,7 @@ u32 Class_12bec0_sub_0f5e0c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     } else {
         iVar4 = (int)(dVar3 - dVar3);
     }
-    matrix_sub_256a78(0, iVar4, a2, a3, (u32)uStack_4c);
+    ninja_sub_256a78(0, iVar4, a2, a3, (u32)uStack_4c);
     matrix_scale(0, iVar4, a2, a3, (u32)uStack_4c);
     obj_set_texlist(a0 + 0x1b4, iVar4, a2);
     uVar1 = 0;
@@ -3717,7 +3717,7 @@ u32 game_sub_0f7118(int a0, u32 a1, u32 a2) {
     } else {
         ar5_00 = (int)(dVar3 / dVar3);
     }
-    matrix_sub_256b0c(0, ar5_00, ar6_00, ar7_00, ain0);
+    njRotateXYZ(0, ar5_00, ar6_00, ar7_00, ain0);
     matrix_scale(0, ar5_00, ar6_00, ar7_00, ain0);
     obj_set_texlist(a2, ar5_00, ar6_00);
     game_sub_015adc(ain0, ar5_00, ar6_00, ar7_00);
@@ -4398,7 +4398,7 @@ int game_sub_0f816c(int a0, u32 a1, u32 a2, u32 a3) {
             uVar3 = get_field_a2_s16(*(u32 *)(0x89140 + a0), a1);
             *(u32 *)(0x102c + a0) = uVar3 & 0xffff;
             *(u32 *)(0x1034 + a0) = 0;
-            uVar2 = (*(code *)(&game_sub_1011b0))(*(u32 *)(0x7cc + *(int *)(0x89140 + a0)), a1, a2, a3);
+            uVar2 = (*(code *)(&get_field_18e_div30))(*(u32 *)(0x7cc + *(int *)(0x89140 + a0)), a1, a2, a3);
             iVar1 = 0x1034;
             iVar4 = 0x3c;
             if ((u16)uVar2 < 0x3d) {

@@ -2567,11 +2567,11 @@ u32 switch_jump_wrap(int a0) {
 }
 
 /*
- * shinobi_sub_201c28  0x8c201c28
- * area name: in the shinobi library code range
+ * set_field_18_mark_dirty  0x8c201c28
+ * +0x18 = a1 and +0x28 = 4 when it changes
  * called by: malloc_sub_01e1e8
  */
-u32 shinobi_sub_201c28(int a0, int a1) {
+u32 set_field_18_mark_dirty(int a0, int a1) {
     if (*(int *)(a0 + 0x18) != a1) {
         *(int *)(a0 + 0x18) = a1;
         *(u32 *)(a0 + 0x28) = 4;
@@ -13062,7 +13062,7 @@ u32 kamui_sub_20cefe(u32 *a0, u32 a1) {
 /*
  * kamui_sub_20cf88  0x8c20cf88
  * area name: in the kamui library code range
- * called by: matrix_sub_2567f8, matrix_sub_2567fe, ninja_sub_2566c8, tex_sub_25a770, tex_sub_25a914, tex_sub_25a918
+ * called by: ninja_sub_2566c8, ninja_sub_2567f8, ninja_sub_2567fe, tex_sub_25a770, tex_sub_25a914, tex_sub_25a918
  */
 u32 kamui_sub_20cf88(u32 *a0) {
     u32 uVar1;

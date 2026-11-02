@@ -4466,7 +4466,7 @@ u32 CAnimal_sub_088288(int a0, u32 a1, u32 a2) {
     } else {
         ar5_00 = (int)(dVar3 / dVar3);
     }
-    matrix_sub_256b0c(0, ar5_00, ar6_00, ar7_00, in_stack_fffffff4);
+    njRotateXYZ(0, ar5_00, ar6_00, ar7_00, in_stack_fffffff4);
     matrix_scale(0, ar5_00, ar6_00, ar7_00, in_stack_fffffff4);
     uVar1 = get_field_0_015bb8(*(int *)(a0 + 0x328) + 0x70);
     gfxlib_sub_219a9a(uVar1, ar5_00, ar6_00, ar7_00);
@@ -5828,7 +5828,7 @@ u32 game_sub_08b020(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = (int)dVar9;
     }
     iStack_4c = (int)((u64)dVar9 >> 0x20);
-    matrix_sub_256b0c(0, ar5_00, iStack_34, ar7_00, uVar3);
+    njRotateXYZ(0, ar5_00, iStack_34, ar7_00, uVar3);
     matrix_scale(0, ar5_00, iStack_34, ar7_00, uVar3);
     if (sVar1 == 3) {
         uVar4 = get_field_0_015bb8(iVar7 + 0x70);
@@ -5928,7 +5928,7 @@ u32 game_sub_08b020(int a0, u32 a1, u32 a2, u32 a3) {
         } else {
             iVar7 = (int)(dVar9 / dVar9);
         }
-        matrix_sub_256b0c(0, iVar7, iVar2, ar7_00, uVar3);
+        njRotateXYZ(0, iVar7, iVar2, ar7_00, uVar3);
         matrix_scale(0, iVar7, iVar2, ar7_00, uVar3);
         ar5_00 = deref_u32(a0 + 0x850);
         iStack_34 = get_field_0_026d74(a0 + 0x854);
@@ -5999,7 +5999,7 @@ u32 game_sub_08b020(int a0, u32 a1, u32 a2, u32 a3) {
         } else {
             iVar7 = (int)(dVar9 / dVar9);
         }
-        matrix_sub_256b0c(0, iVar7, iVar2, ar7_00, uVar3);
+        njRotateXYZ(0, iVar7, iVar2, ar7_00, uVar3);
         matrix_scale(0, iVar7, iVar2, ar7_00, uVar3);
         ar5_00 = deref_u32(a0 + 0x850);
         iStack_34 = get_field_0_026d74(a0 + 0x854);
@@ -6786,7 +6786,7 @@ u32 game_sub_08c9dc(int a0, u32 a1, int a2) {
             if (*(int *)(iVar1 + 0x18) == 0) {
                 *(u32 *)(a0 + 0x418) = 2;
             } else {
-                iVar2 = CDCGD_sub_020d90(a1, *(u32 *)(iVar1 + 0x18), *(u32 *)(a0 + 0x410), s0);
+                iVar2 = CDCGD_request_type_b(a1, *(u32 *)(iVar1 + 0x18), *(u32 *)(a0 + 0x410), s0);
                 if (iVar2 == 1) {
                     *(u32 *)(a0 + 0x418) = 2;
                 } else if (iVar2 == 0) {

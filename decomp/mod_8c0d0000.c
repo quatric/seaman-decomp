@@ -3076,7 +3076,7 @@ int Class_12b930_sub_0d2fd8(int a0, u32 a1) {
     pcVar3 = game_sub_0d3304;
     pcVar1 = game_sub_0d25b4;
     vec_new_array(a0 + 0x62c, game_sub_0d25b4, game_sub_0d3304, 0x88, 0x226);
-    Class_12b3b8_sub_0153b8(a0 + 0x12a5c, pcVar1);
+    Class_129908_ctor(a0 + 0x12a5c, pcVar1);
     *(u32 *)(a0 + 0x2c) = 0;
     *(u32 *)(a0 + 0x14) = 0;
     if (cVar6 == '\0') {
@@ -3147,7 +3147,7 @@ int Class_12b930_sub_0d2fd8(int a0, u32 a1) {
     CSquid_sub_0164c8(a0 + 0x110, iVar2, 4);
     set_flag_14_20(a0 + 0x110);
     set_flags_14_60(a0 + 0x110);
-    CSquid_sub_014a64(a0 + 0x110);
+    set_flag_14_bit31_and_20(a0 + 0x110);
     Class_12b580_sub_0d56dc(a0, iVar2, uVar4, ar7_00);
     for (iVar2 = 0; iVar2 < 0x226; iVar2 = iVar2 + 1) {
         game_sub_0d261c(iVar2 * 0x88 + a0 + 0x62c, a0 + 0x12a5c, &g_8c13f344, ar7_00);
@@ -7837,7 +7837,7 @@ u32 *Class_12b580_sub_0d7f18(u32 *a0, u32 a1, u32 a2) {
     ar6_00 = free_if_nonnull_wrap_0cffc8;
     ar5_00 = game_sub_02145c;
     vec_new_array(a0 + 0x1b88, game_sub_02145c, free_if_nonnull_wrap_0cffc8, 0x18, 2);
-    Class_12b3b8_sub_0153b8(a0 + 0x1b94, ar5_00);
+    Class_129908_ctor(a0 + 0x1b94, ar5_00);
     game_sub_0d92b0(a0);
     if (cVar3 == '\0') {
         a0[6] = 0x3f800000;
@@ -8762,7 +8762,7 @@ int game_sub_0d8aa0(int a0, int a1) {
         ar5_00 = (int)dVar3;
     }
     uVar7 = SUB84(dVar3, 0);
-    matrix_sub_256b0c(auStack_58, ar5_00, ar6_00, ar7_00, iVar1);
+    njRotateXYZ(auStack_58, ar5_00, ar6_00, ar7_00, iVar1);
     kamui_sub_21279c(auStack_58, &uStack_64, &uStack_70, ar7_00, iVar1);
     if (cVar10 == '\0') {
         *(u32 *)(a0 + 0x18) = uStack_70;
@@ -11562,7 +11562,7 @@ u32 game_sub_0dbe24(int a0, u32 a1, u64 *a2, int a3) {
     uVar4 = 0;
     Vec3_ctor_zero(&uStack_34, uVar3, ar6_00);
     uVar6 = 0;
-    Class_12b3b8_sub_0191e4(auStack_b4);
+    Class_129a50_ctor(auStack_b4);
     if (iVar2 == 0) {
         Class_129a50_dtor(auStack_b4, 0xffffffff, ar6_00, a3);
         Vec3_dtor(&uStack_34, 0xffffffff, ar6_00, a3);
@@ -13042,7 +13042,7 @@ int Class_12b930_sub_0ddd74(int a0, u32 a1, u32 a2, u32 a3) {
 
     ain0 = CONCAT22((short)((u32)in_stack_fffffff4 >> 0x10), (u16)a1);
     if (a0 != 0) {
-        Class_12b3b8_sub_015428(a0 + 0x12a5c, 0xffffffff, a2, a3);
+        Class_129908_dtor(a0 + 0x12a5c, 0xffffffff, a2, a3);
         vec_delete_array(a0 + 0x62c, game_sub_0d3304, 0x88, 0x226);
         vec_delete_array(a0 + 0x5fc, free_if_nonnull_wrap_0cffc8, 0x18, 2);
         uVar2 = 5;
@@ -14253,7 +14253,7 @@ u32 game_sub_0dfa84(int a0, u32 *a1, u8 *a2, u8 *a3) {
     cVar8 = '\0';
     cVar7 = '\0';
     ar5_00 = a1;
-    Class_12b3b8_sub_0191e4(auStack_a0);
+    Class_129a50_ctor(auStack_a0);
     Vec3_ctor_zero(auStack_b0, ar5_00, a2);
     if (cVar8 == '\0') {
         in_dr14 = (double)CONCAT44((int)((u64)in_dr14 >> 0x20), 0x7f7fffff);

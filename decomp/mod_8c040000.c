@@ -5758,8 +5758,8 @@ LAB_8c04f31c:
             goto switchD_8c04f3ac_default;
         }
         pcVar9 = (code *)auStack_78;
-        pcVar6 = Vec3_sub_023df4;
-        Vec3_sub_023df4(pcVar9);
+        pcVar6 = Vec3_set_fr4_6;
+        Vec3_set_fr4_6(pcVar9);
         iVar1 = get_field_6c_028cc4(a1, pcVar6);
         iVar1 = (**(code **)(*(int *)(iVar1 + 8) + 0x114))(iVar1, pcVar6, pcVar9, pcVar5);
         uVar7 = (u32)in_dr14;

@@ -4852,12 +4852,12 @@ u32 game_sub_0b76d8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_0b77a0  0x8c0b77a0
- * area name: game code; nothing names its area yet
+ * save_file_date_matches  0x8c0b77a0
+ * reads SM2000US.USR and compares its saved date with a0
  * called by: game_sub_0bad68, game_sub_0c6d70, game_sub_0c6e74
  * strings: "SM2000US.USR"
  */
-u32 game_sub_0b77a0(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 save_file_date_matches(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 ar6_00;
     int iStack_c;
     int aiStack_8[2];
@@ -6243,11 +6243,11 @@ u32 game_sub_0ba870(int a0) {
 }
 
 /*
- * Class_12b350_sub_0ba898  0x8c0ba898
- * area name: only called from Class_12b350 methods
+ * Class_12b36c_ctor  0x8c0ba898
+ * vtable 0x8c12b36c, +4 = 0
  * called by: Class_12b350_ctor, game_sub_0bf338, game_sub_0c5340
  */
-u32 *Class_12b350_sub_0ba898(u32 *a0) {
+u32 *Class_12b36c_ctor(u32 *a0) {
     *a0 = (&DATA_8c12b36c);
     a0[1] = 0;
     return a0;
@@ -6278,7 +6278,7 @@ u32 *Class_12b350_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     char cVar2;
 
     cVar2 = '\0';
-    Class_12b350_sub_0ba898(a0);
+    Class_12b36c_ctor(a0);
     *a0 = &g_8c12b350;
     Class_129920_ctor(a0 + 0x12, a1);
     clear_5_words(a0 + 0x14, a1, a2, a3);
@@ -6555,7 +6555,7 @@ u32 game_sub_0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
                     (*(int *)(a0 + 0x30) == 2)) {
                     ar5_00 = auStack_4c;
                     game_sub_0bb158(a1, ar5_00);
-                    iVar2 = game_sub_0b77a0(auStack_4c, ar5_00, a2, a3);
+                    iVar2 = save_file_date_matches(auStack_4c, ar5_00, a2, a3);
                     if (iVar2 == 0) {
                         g_8c43660d = '\x01';
                     } else {
@@ -9270,7 +9270,7 @@ u32 *game_sub_0bf338(u32 *a0) {
     u8 *puVar1;
     u32 uVar2;
 
-    Class_12b350_sub_0ba898(a0);
+    Class_12b36c_ctor(a0);
     *a0 = (&DATA_8c12b334);
     a0[2] = 0;
     puVar1 = (&DATA_8c13be20);

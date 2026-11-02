@@ -15503,7 +15503,7 @@ u32 vram64_2186f8(u32 *a0, u32 a1) {
                 unaff_r13 = uVar3 & 0x20;
                 a0 = puVar2 + 5;
                 a1 = unaff_r13;
-                uVar1 = matrix_sub_2569e0(a0, unaff_r13, r6, r7, uVar1);
+                uVar1 = ninja_sub_2569e0(a0, unaff_r13, r6, r7, uVar1);
             }
             if ((uVar3 & 4) == 0) {
                 a0 = puVar2 + 8;
@@ -15561,7 +15561,7 @@ u32 vram64_21870e(u32 *a0, u32 a1) {
                 unaff_r13 = uVar2 & 0x20;
                 a0 = unaff_r12 + 5;
                 a1 = unaff_r13;
-                matrix_sub_2569e0(a0, unaff_r13, r6, r7, in_PR);
+                ninja_sub_2569e0(a0, unaff_r13, r6, r7, in_PR);
             }
             if ((uVar2 & unaff_r8) == 0) {
                 a0 = unaff_r12 + 8;
@@ -15957,7 +15957,7 @@ u32 gfxlib_sub_218e8a(u32 *a0, u32 a1) {
                 unaff_r13 = uVar3 & 0x20;
                 a0 = puVar2 + 5;
                 a1 = unaff_r13;
-                uVar1 = matrix_sub_2569e0(a0, unaff_r13, r6, r7, uVar1);
+                uVar1 = ninja_sub_2569e0(a0, unaff_r13, r6, r7, uVar1);
             }
             if ((uVar3 & 4) == 0) {
                 a0 = puVar2 + 8;
@@ -16016,7 +16016,7 @@ u32 gfxlib_sub_218ea0(u32 *a0, u32 a1) {
                 unaff_r13 = uVar2 & 0x20;
                 a0 = unaff_r12 + 5;
                 a1 = unaff_r13;
-                matrix_sub_2569e0(a0, unaff_r13, r6, r7, in_PR);
+                ninja_sub_2569e0(a0, unaff_r13, r6, r7, in_PR);
             }
             if ((uVar2 & unaff_r8) == 0) {
                 a0 = unaff_r12 + 8;
@@ -16839,7 +16839,7 @@ u32 gfxlib_sub_2199aa(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
             if ((uVar3 & 2) == 0) {
                 unaff_r13 = uVar3 & 0x20;
                 unused_a1 = unaff_r13;
-                matrix_sub_2569e0(a0 + 5);
+                ninja_sub_2569e0(a0 + 5);
             }
             if ((uVar3 & 4) == 0) {
                 noop_257098(a0 + 8);
@@ -16893,7 +16893,7 @@ u32 gfxlib_sub_2199c0(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
                 unaff_r13 = uVar2 & 0x20;
                 a0 = unaff_r12 + 5;
                 unused_a1 = unaff_r13;
-                matrix_sub_2569e0(a0, unaff_r13, a2, a3, in_PR);
+                ninja_sub_2569e0(a0, unaff_r13, a2, a3, in_PR);
             }
             if ((uVar2 & unaff_r8) == 0) {
                 a0 = unaff_r12 + 8;
@@ -17398,7 +17398,7 @@ u32 gfxlib_sub_21a702(u32 *a0, u32 a1) {
                 unaff_r13 = uVar3 & 0x20;
                 a0 = puVar2 + 5;
                 a1 = unaff_r13;
-                uVar1 = matrix_sub_2569e0(a0, unaff_r13, r6, r7, uVar1);
+                uVar1 = ninja_sub_2569e0(a0, unaff_r13, r6, r7, uVar1);
             }
             if ((uVar3 & 4) == 0) {
                 a0 = puVar2 + 8;
@@ -17457,7 +17457,7 @@ u32 gfxlib_sub_21a718(u32 *a0, u32 a1) {
                 unaff_r13 = uVar2 & 0x20;
                 a0 = unaff_r12 + 5;
                 a1 = unaff_r13;
-                matrix_sub_2569e0(a0, unaff_r13, r6, r7, in_PR);
+                ninja_sub_2569e0(a0, unaff_r13, r6, r7, in_PR);
             }
             if ((uVar2 & unaff_r8) == 0) {
                 a0 = unaff_r12 + 8;
@@ -17627,7 +17627,7 @@ u32 gfxlib_sub_21a8b0(u32 *a0) {
     u32 uVar5;
 
     puVar3 = (&matrix_push_regs);
-    puVar2 = (&matrix_sub_2569e0);
+    puVar2 = (&ninja_sub_2569e0);
     puVar1 = (&noop_257098);
     uVar5 = 0x20;
     do {
@@ -17674,7 +17674,7 @@ u32 gfxlib_sub_21a8be(u32 *a0, u32 a1, u32 a2, u32 a3) {
         } else {
             noop_25b638(unaff_r14 + 2, a1, a2, a3, in_PR);
             a1 = *unaff_r14 & unaff_r12;
-            matrix_sub_2569e0(unaff_r14 + 5, a1, a2, a3);
+            ninja_sub_2569e0(unaff_r14 + 5, a1, a2, a3);
             a0 = unaff_r14 + 8;
             noop_257098();
         }
@@ -17711,7 +17711,7 @@ u32 gfxlib_sub_21a942(u32 *a0) {
     u8 *puVar5;
 
     puVar2 = (&matrix_push_regs);
-    puVar1 = (&matrix_sub_2569e0);
+    puVar1 = (&ninja_sub_2569e0);
     puVar5 = &g_8c4aad80;
     uVar4 = (u32)0x80;
     do {
@@ -17760,7 +17760,7 @@ u32 gfxlib_sub_21a952(u32 *a0, u32 a1, u32 a2, u32 a3) {
         } else {
             noop_25b638(unaff_r14 + 2, a1, a2, a3, in_PR);
             a1 = *unaff_r14 & unaff_r11;
-            matrix_sub_2569e0(unaff_r14 + 5, a1, a2, a3);
+            ninja_sub_2569e0(unaff_r14 + 5, a1, a2, a3);
             a0 = unaff_r14 + 8;
             noop_257098();
         }
@@ -18639,7 +18639,7 @@ u32 gfxlib_sub_21b908(u32 *a0) {
     u8 *puVar5;
 
     puVar3 = (&matrix_push_regs);
-    puVar2 = (&matrix_sub_2569e0);
+    puVar2 = (&ninja_sub_2569e0);
     puVar1 = (&noop_257098);
     puVar5 = &g_8c4aad80;
     do {
@@ -18686,7 +18686,7 @@ u32 gfxlib_sub_21b916(u32 *a0, u32 a1, u32 a2, u32 a3) {
         } else {
             noop_25b638(unaff_r14 + 2, a1, a2, a3, in_PR);
             a1 = *unaff_r14 & unaff_r12;
-            matrix_sub_2569e0(unaff_r14 + 5, a1, a2, a3);
+            ninja_sub_2569e0(unaff_r14 + 5, a1, a2, a3);
             a0 = unaff_r14 + 8;
             noop_257098();
         }
@@ -18722,7 +18722,7 @@ u32 gfxlib_sub_21b998(u32 *a0) {
     u32 uVar5;
 
     puVar2 = (&matrix_push_regs);
-    puVar1 = (&matrix_sub_2569e0);
+    puVar1 = (&ninja_sub_2569e0);
     uVar5 = 0x80;
     uVar4 = (u32)0x80;
     do {
@@ -18771,7 +18771,7 @@ u32 gfxlib_sub_21b9a8(u32 *a0, u32 a1, u32 a2, u32 a3) {
         } else {
             noop_25b638(unaff_r14 + 2, a1, a2, a3, in_PR);
             a1 = *unaff_r14 & unaff_r11;
-            matrix_sub_2569e0(unaff_r14 + 5, a1, a2, a3);
+            ninja_sub_2569e0(unaff_r14 + 5, a1, a2, a3);
             a0 = unaff_r14 + 8;
             noop_257098();
         }
@@ -22588,7 +22588,7 @@ u32 gfxlib_sub_21cf22(int a0) {
 
     a4 = *(int *)(g_8c4aad4c + g_8c4aad5c * 4);
     if (a4 == 0) {
-        uVar1 = matrix_sub_2569e0(a0 + 0x14, 0, r6, r7, a0);
+        uVar1 = ninja_sub_2569e0(a0 + 0x14, 0, r6, r7, a0);
     } else {
         a6 = *(u32 *)(g_8c4aad50 + g_8c4aad5c * 4);
         fVar4 = g_8c4aad54;
@@ -22606,7 +22606,7 @@ u32 gfxlib_sub_21cf22(int a0) {
         }
         a7 = auStack_18;
         (*g_8c4ab0b8)(a4, a5, a6, a7);
-        uVar1 = matrix_sub_2569e0(auStack_18, 0, a6, a7, a0);
+        uVar1 = ninja_sub_2569e0(auStack_18, 0, a6, a7, a0);
     }
     g_8c4aad5c = g_8c4aad5c + 1;
     return uVar1;
@@ -22631,7 +22631,7 @@ u32 gfxlib_sub_21cfd8(int a0) {
 
     a4 = *(int *)(g_8c4aad4c + g_8c4aad5c * 4);
     if (a4 == 0) {
-        uVar1 = matrix_sub_2569e0(a0 + 0x14, 1, r6, r7, a0);
+        uVar1 = ninja_sub_2569e0(a0 + 0x14, 1, r6, r7, a0);
     } else {
         a6 = *(u32 *)(g_8c4aad50 + g_8c4aad5c * 4);
         fVar4 = g_8c4aad54;
@@ -22649,7 +22649,7 @@ u32 gfxlib_sub_21cfd8(int a0) {
         }
         a7 = auStack_18;
         (*g_8c4ab0b8)(a4, a5, a6, a7);
-        uVar1 = matrix_sub_2569e0(auStack_18, 1, a6, a7, a0);
+        uVar1 = ninja_sub_2569e0(auStack_18, 1, a6, a7, a0);
     }
     g_8c4aad5c = g_8c4aad5c + 1;
     return uVar1;
@@ -22674,7 +22674,7 @@ u32 gfxlib_sub_21d06c(u32 *a0) {
 
     a4 = *(int *)(g_8c4aad4c + g_8c4aad5c * 4);
     if (a4 == 0) {
-        uVar2 = matrix_sub_2569e0(a0 + 5, *a0 & 0x20, r6, r7, a0);
+        uVar2 = ninja_sub_2569e0(a0 + 5, *a0 & 0x20, r6, r7, a0);
     } else {
         a6 = *(u32 *)(g_8c4aad50 + g_8c4aad5c * 4);
         fVar4 = g_8c4aad54;
@@ -22723,7 +22723,7 @@ u32 gfxlib_sub_21d112(int a0) {
     u32 in_r0;
     u32 uVar1;
 
-    uVar1 = matrix_sub_2569e0(a0 + 0x14, 0, r6, r7, in_r0);
+    uVar1 = ninja_sub_2569e0(a0 + 0x14, 0, r6, r7, in_r0);
     return uVar1;
 }
 
@@ -22737,7 +22737,7 @@ u32 gfxlib_sub_21d11e(int a0) {
     u32 in_r0;
     u32 uVar1;
 
-    uVar1 = matrix_sub_2569e0(a0 + 0x14, 1, r6, r7, in_r0);
+    uVar1 = ninja_sub_2569e0(a0 + 0x14, 1, r6, r7, in_r0);
     return uVar1;
 }
 

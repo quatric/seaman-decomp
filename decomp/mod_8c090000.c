@@ -6411,7 +6411,7 @@ u32 Class_12a7f4_sub_09aad0(int a0, u32 a1, u32 a2) {
     } else {
         ar5_01 = (int)(dVar3 / dVar3);
     }
-    matrix_sub_256b0c(0, ar5_01, ar6_01, ar7_00, in_stack_ffffffec);
+    njRotateXYZ(0, ar5_01, ar6_01, ar7_00, in_stack_ffffffec);
     matrix_scale(0, ar5_01, ar6_01, ar7_00, in_stack_ffffffec);
     uVar1 = get_field_0_015bb8(*(int *)(a0 + 0x328) + 0x70);
     ar5_00 = deref_u32(*(u32 *)(*(int *)(a0 + 0x328) + 0xa0));
@@ -8095,7 +8095,7 @@ u32 Class_12a990_sub_09c930(int a0, u32 a1, u32 a2) {
     } else {
         ar5_00 = (int)(dVar3 / dVar3);
     }
-    matrix_sub_256b0c(0, ar5_00, ar6_00, ar7_00, in_stack_ffffffe4);
+    njRotateXYZ(0, ar5_00, ar6_00, ar7_00, in_stack_ffffffe4);
     matrix_scale(0, ar5_00, ar6_00, ar7_00, in_stack_ffffffe4);
     ar4_00 = get_field_0_015bb8(*(int *)(a0 + 0x328) + 0x70);
     gfxlib_sub_21a80e(ar4_00, ar5_00, ar6_00, ar7_00);
@@ -9008,7 +9008,7 @@ int Class_12ab2c_sub_09dec8(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = (int)dVar8;
     }
     uStack_4c = (u32)((u64)dVar8 >> 0x20);
-    matrix_sub_256b0c(0, ar5_00, iVar10, iVar1, in_stack_ffffff8c);
+    njRotateXYZ(0, ar5_00, iVar10, iVar1, in_stack_ffffff8c);
     matrix_scale(0, ar5_00, iVar10, iVar1, in_stack_ffffff8c);
     iVar3 = (**(code **)(*(int *)(a0 + 8) + 0xb4))(a0, ar5_00, iVar10, iVar1);
     if (iVar3 == 0) {
@@ -9138,7 +9138,7 @@ u32 game_sub_09e204(int a0) {
     } else {
         ar5_00 = (int)(dVar4 / dVar4);
     }
-    matrix_sub_256b0c(0, ar5_00, ar6_00, iVar2, in_stack_ffffffec);
+    njRotateXYZ(0, ar5_00, ar6_00, iVar2, in_stack_ffffffec);
     matrix_scale(0, ar5_00, ar6_00, iVar2, in_stack_ffffffec);
     (**(code **)(*(int *)(a0 + 8) + 0x3c))(a0, ar5_00, ar6_00, iVar2);
     matrix_pop_n(1);
@@ -9243,7 +9243,7 @@ int game_sub_09e2e8(int a0, u32 a1, u32 a2, u32 a3) {
         ar5_01 = (int)dVar6;
     }
     uStack_2c = (u32)((u64)dVar6 >> 0x20);
-    matrix_sub_256b0c(0, ar5_01, ar6_00, iVar8, in_stack_ffffffb8);
+    njRotateXYZ(0, ar5_01, ar6_00, iVar8, in_stack_ffffffb8);
     matrix_scale(0, ar5_01, ar6_00, iVar8, in_stack_ffffffb8);
     uVar4 = get_field_0_015bb8(*(int *)(a0 + 0x328) + 0x70);
     iVar2 = get_field_1c_on_field_b0(*(u32 *)(a0 + 0x30c), ar5_01, ar6_00);
@@ -9906,7 +9906,7 @@ u32 Class_12acc8_m1_09f470(int *a0, int *a1, code *a2, u32 a3) {
     g_8c13ae98 = a0[0x20a];
     g_8c13ae9c = a0[0x20b];
     g_8c13aea0 = a0[0x20c];
-    uVar1 = game_sub_1011b0(*(u32 *)(*(int *)(a2 + 0x18) + 0x7cc), 0xa0, pcVar11, a3);
+    uVar1 = get_field_18e_div30(*(u32 *)(*(int *)(a2 + 0x18) + 0x7cc), 0xa0, pcVar11, a3);
     uVar3 = CONCAT22(uVar19, (u16)uVar1);
     if (0x78 < (u16)uVar1) {
         a0[0x27] = 0;

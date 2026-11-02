@@ -1013,11 +1013,11 @@ int game_sub_101188(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_1011b0  0x8c1011b0
- * area name: game code; nothing names its area yet
+ * get_field_18e_div30  0x8c1011b0
+ * the u16 at +0x18e divided by 30 (frames to seconds)
  * called by: CAnimal_m2_02573c, Class_12acc8_m1_09f470, Class_12b2e8_sub_02fcc4
  */
-u32 game_sub_1011b0(int a0, u32 a1, u32 a2, u32 a3) {
+u32 get_field_18e_div30(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (*(code *)(&libgcc_divide_helper_0101e4))((u32) * (u16 *)(0x18e + a0), 0x1e, a2, a3);
@@ -3568,7 +3568,7 @@ u8 *game_sub_1063a8(int a0, int *a1, int *a2, char *a3) {
             ar6_00 = get_field_140_025f70(a2[1], piVar4);
             a7 = 1;
             iVar1 = (int)(short)uVar5;
-            game_sub_0620bc(uVar3, iVar1, ar6_00, 1);
+            set_byte_grid_75(uVar3, iVar1, ar6_00, 1);
             uVar3 = (**(code **)(*a1 + 0x148))(a1, iVar1, ar6_00, a7);
             uVar5 = table13019c_find_row(a2[1]);
             iVar1 = get_field_140_025f70(a2[1], iVar1);

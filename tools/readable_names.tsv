@@ -408,3 +408,43 @@
 8c22138a	keyframe_pair_b	another copy of keyframe_pair
 8c238eea	copy_4_bytes	a0[0..3] = a1[0..3]
 8c2475f2	argb_to_float4	unpacks the ARGB colour a0 into four floats 0..1 at a1 (a, r, g, b)
+8c2699d0	mwRnaGetTime	*a1 = samples played (+0x4c - +0x34), *a2 = sampling rate (+0xc); matches the CRI mwRna API shape
+8c269a10	mwRna_get_status	the status byte +1 of an mwRna handle (bit 0 playing, bit 1 output on)
+8c269a7e	mwRna_status_bit2	bit 2 of +1 of an mwRna handle; -1 for NULL
+8c269aa8	mwRna_get_read_pos	+0x34 of an mwRna handle
+8c269ac6	mwRna_get_buffered	+0x28 - +0x34 of an mwRna handle
+8c269b6e	mwRna_set_field_44	+0x44 of an mwRna handle = a1
+8c269b8e	mwRnaSetBitPerSmpl	sets bits per sample (+8), rescaling the buffer length +0x28; output vtable slot 0x2c
+8c269c04	mwRnaSetSfreq	sets the sampling rate (+0xc); output vtable slot 0x24
+8c269c3e	mwRnaSetOutVol	output volume clamped to -999..0 (+0x60); output vtable slot 0x34
+8c269c88	mwRnaSetOutPan	pan of channel a1 clamped to -15..15 (+0x64[a1]); output vtable slot 0x3c
+8c269d58	mwRna_set_fx1	effect send 1 (stores the values read back at +0x74/+0x78)
+8c269db8	mwRna_set_fx2_level	effect send 2 level clamped to -45..0 (+0x84)
+8c269e18	mwRnaGetBitPerSmpl	+8 of an mwRna handle
+8c269e36	mwRnaGetSfreq	+0xc of an mwRna handle
+8c269e54	mwRnaGetOutVol	+0x60 of an mwRna handle
+8c269e74	mwRnaGetOutPan	+0x64[a1] of an mwRna handle
+8c269e9a	mwRnaGetFx	*a1, *a2 = effect channel and level (+0x6c, +0x70)
+8c269eda	mwRna_get_fx1	*a1, *a2 = +0x74, +0x78
+8c269f1a	mwRna_get_fx2_level	+0x84 of an mwRna handle
+8c26b1e0	sr_get_imask	the SR interrupt mask (IMASK)
+8c26b1f8	sr_with_imask	SR with IMASK replaced by a1
+8c26b4f4	sr_get_imask_b	another copy of sr_get_imask
+8c26b50c	sr_with_imask_b	another copy of sr_with_imask
+8c014a64	set_flag_14_bit31_and_20	sets bit 31 of +0x14, then set_flag_14_20
+8c0153b8	Class_129908_ctor	Class_129920 base, vtable 0x8c129908, +4 points at the inline buffer at +8
+8c015428	Class_129908_dtor	
+8c016a7c	Class_1299b0_ctor	vtable 0x8c1299b0; position, rotation zero, scale one, +0x2c = 2
+8c0191e4	Class_129a50_ctor	vtable 0x8c129a50
+8c0ba898	Class_12b36c_ctor	vtable 0x8c12b36c, +4 = 0
+8c256b0c	njRotateXYZ	rotates matrix a0 (NULL: current) by Ninja angles a1, a2, a3
+8c019088	rotate_xyz_degrees	njRotateXYZ(current matrix) with angles fr4..fr6 in degrees
+8c1fc5c4	slot80_busy_error	-1 while slot80_get_active(a0), else 0
+8c201c28	set_field_18_mark_dirty	+0x18 = a1 and +0x28 = 4 when it changes
+8c020258	CDCGD_strcmp	the CDCGD library's copy of strcmp
+8c020d90	CDCGD_request_type_b	disc request type 0xb (handle at +0x28, results at +0xc and +8)
+8c023df4	Vec3_set_fr4_6	a0 = (fr4, fr5, fr6)
+8c1011b0	get_field_18e_div30	the u16 at +0x18e divided by 30 (frames to seconds)
+8c030550	set_word_array_674	+0x674[a1] = a2
+8c0620bc	set_byte_grid_75	+0x75[a1*2 + a2] = a3
+8c0b77a0	save_file_date_matches	reads SM2000US.USR and compares its saved date with a0

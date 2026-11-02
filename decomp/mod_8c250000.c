@@ -7917,7 +7917,7 @@ u32 ninja_sub_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                 a1 = a0[5];
                 a3 = a0[7];
                 a2 = a0[6];
-                matrix_sub_256b0c(0, a1, a2, a3, uVar2);
+                njRotateXYZ(0, a1, a2, a3, uVar2);
             } else {
                 a1 = a0[5];
                 a2 = a0[6];
@@ -7940,7 +7940,7 @@ u32 ninja_sub_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                     a1 = a0[5];
                     a3 = a0[7];
                     a2 = a0[6];
-                    matrix_sub_256b0c(0, a1, a2, a3, uVar2);
+                    njRotateXYZ(0, a1, a2, a3, uVar2);
                 } else {
                     a1 = a0[5];
                     a2 = a0[6];
@@ -7986,7 +7986,7 @@ u32 ninja_sub_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                     a1 = a0[5];
                     a3 = a0[7];
                     a2 = a0[6];
-                    matrix_sub_256b0c(0, a1, a2, a3, uVar2);
+                    njRotateXYZ(0, a1, a2, a3, uVar2);
                 } else {
                     a1 = a0[5];
                     a2 = a0[6];
@@ -8007,7 +8007,7 @@ u32 ninja_sub_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                     a1 = a0[5];
                     a3 = a0[7];
                     a2 = a0[6];
-                    matrix_sub_256b0c(0, a1, a2, a3, uVar2);
+                    njRotateXYZ(0, a1, a2, a3, uVar2);
                 } else {
                     a1 = a0[5];
                     a2 = a0[6];
@@ -8068,7 +8068,7 @@ u32 ninja_sub_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                 a1 = unaff_r14[5];
                 a3 = unaff_r14[7];
                 a2 = unaff_r14[6];
-                matrix_sub_256b0c(0, a1, a2, a3, in_PR);
+                njRotateXYZ(0, a1, a2, a3, in_PR);
             } else {
                 a1 = unaff_r14[5];
                 a2 = unaff_r14[6];
@@ -8091,7 +8091,7 @@ u32 ninja_sub_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     a1 = unaff_r14[5];
                     a3 = unaff_r14[7];
                     a2 = unaff_r14[6];
-                    matrix_sub_256b0c(0, a1, a2, a3, in_PR);
+                    njRotateXYZ(0, a1, a2, a3, in_PR);
                 } else {
                     a1 = unaff_r14[5];
                     a2 = unaff_r14[6];
@@ -8137,7 +8137,7 @@ u32 ninja_sub_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     a1 = unaff_r14[5];
                     a3 = unaff_r14[7];
                     a2 = unaff_r14[6];
-                    matrix_sub_256b0c(0, a1, a2, a3, in_PR);
+                    njRotateXYZ(0, a1, a2, a3, in_PR);
                 } else {
                     a1 = unaff_r14[5];
                     a2 = unaff_r14[6];
@@ -8158,7 +8158,7 @@ u32 ninja_sub_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     a1 = unaff_r14[5];
                     a3 = unaff_r14[7];
                     a2 = unaff_r14[6];
-                    matrix_sub_256b0c(0, a1, a2, a3, in_PR);
+                    njRotateXYZ(0, a1, a2, a3, in_PR);
                 } else {
                     a1 = unaff_r14[5];
                     a2 = unaff_r14[6];
@@ -9622,7 +9622,7 @@ u32 ninja_sub_254e80(int a0) {
 
     a4 = *(int *)(g_8c4aad4c + g_8c4aad5c * 4);
     if (a4 == 0) {
-        uVar1 = matrix_sub_256b0c(g_8c4aad60, *(u32 *)(a0 + 0x14), *(u32 *)(a0 + 0x18), *(u32 *)(a0 + 0x1c), a0);
+        uVar1 = njRotateXYZ(g_8c4aad60, *(u32 *)(a0 + 0x14), *(u32 *)(a0 + 0x18), *(u32 *)(a0 + 0x1c), a0);
     } else {
         a6 = *(u32 *)(g_8c4aad50 + g_8c4aad5c * 4);
         fVar4 = g_8c4aad54;
@@ -9639,7 +9639,7 @@ u32 ninja_sub_254e80(int a0) {
             }
         }
         (*g_8c4ab0b8)(a4, a5, a6, &uStack_18);
-        uVar1 = matrix_sub_256b0c(g_8c4aad60, uStack_18, uStack_14, uStack_10, a0);
+        uVar1 = njRotateXYZ(g_8c4aad60, uStack_18, uStack_14, uStack_10, a0);
     }
     g_8c4aad5c = g_8c4aad5c + 1;
     return uVar1;
@@ -11593,7 +11593,7 @@ u32 ninja_sub_256670(int *a0) {
     u32 uVar4;
     u32 uVar5;
 
-    puVar2 = (&matrix_sub_2567f8);
+    puVar2 = (&ninja_sub_2567f8);
     puVar1 = 0x8c4aa6ac;
     uVar4 = 1;
     for (uVar5 = 0; uVar5 < (u32)a0[1]; uVar5 = uVar5 + 1) {
@@ -11619,7 +11619,7 @@ u32 ninja_sub_25667e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int *unaff_r13;
     u32 uVar4;
 
-    puVar2 = (&matrix_sub_2567f8);
+    puVar2 = (&ninja_sub_2567f8);
     puVar1 = 0x8c4aa6ac;
     for (uVar4 = 0; uVar4 < (u32)unaff_r13[1]; uVar4 = uVar4 + 1) {
         iVar3 = (*(code *)puVar2)(*(u32 *)(uVar4 * 0xc + *unaff_r13 + 8), a1, a2, a3);
@@ -11698,11 +11698,11 @@ u32 ninja_sub_2566c8(u32 unused_a0, int a1, u32 a2, u32 unused_a3, u32 ain0) {
 }
 
 /*
- * matrix_sub_2567f8  0x8c2567f8
- * area name: sits between matrix functions (same compilation unit)
- * called by: matrix_sub_256944
+ * ninja_sub_2567f8  0x8c2567f8
+ * area name: in the ninja library code range
+ * called by: ninja_sub_256944
  */
-u32 matrix_sub_2567f8(int *a0) {
+u32 ninja_sub_2567f8(int *a0) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -11778,10 +11778,10 @@ u32 matrix_sub_2567f8(int *a0) {
 }
 
 /*
- * matrix_sub_2567fe  0x8c2567fe
- * area name: sits between matrix functions (same compilation unit)
+ * ninja_sub_2567fe  0x8c2567fe
+ * area name: in the ninja library code range
  */
-u32 matrix_sub_2567fe(void) {
+u32 ninja_sub_2567fe(void) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -11858,13 +11858,13 @@ u32 matrix_sub_2567fe(void) {
 }
 
 /*
- * matrix_sub_256944  0x8c256944
- * area name: sits between matrix functions (same compilation unit)
+ * ninja_sub_256944  0x8c256944
+ * area name: in the ninja library code range
  */
-int matrix_sub_256944(int a0) {
+int ninja_sub_256944(int a0) {
     int iVar1;
 
-    iVar1 = matrix_sub_2567f8(*(u32 *)(*g_8c277b04 + a0 * 0xc + 8));
+    iVar1 = ninja_sub_2567f8(*(u32 *)(*g_8c277b04 + a0 * 0xc + 8));
     if (iVar1 < 0) {
         g_8c4aa6ac = a0;
     }
@@ -11872,11 +11872,11 @@ int matrix_sub_256944(int a0) {
 }
 
 /*
- * matrix_sub_25699c  0x8c25699c
- * area name: sits between matrix functions (same compilation unit)
+ * ninja_sub_25699c  0x8c25699c
+ * area name: in the ninja library code range
  * called by: game_sub_01a180
  */
-u32 matrix_sub_25699c(int a0) {
+u32 ninja_sub_25699c(int a0) {
     if (a0 == 0) {
         a0 = g_8c4c0cc0;
     }
@@ -11891,12 +11891,12 @@ u32 matrix_sub_25699c(int a0) {
 }
 
 /*
- * matrix_sub_2569e0  0x8c2569e0
- * area name: sits between matrix functions (same compilation unit)
+ * ninja_sub_2569e0  0x8c2569e0
+ * area name: in the ninja library code range
  * called by: gfxlib_sub_218e8a, gfxlib_sub_218ea0, gfxlib_sub_2199aa, gfxlib_sub_2199c0, gfxlib_sub_21a702,
  * gfxlib_sub_21a718, gfxlib_sub_21a8be, gfxlib_sub_21a952 (+9 more)
  */
-u32 matrix_sub_2569e0(u32 *a0, int a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ninja_sub_2569e0(u32 *a0, int a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
 
     if (0 < a1)
@@ -11926,12 +11926,12 @@ u32 matrix_sub_2569e0(u32 *a0, int a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 }
 
 /*
- * matrix_sub_256a78  0x8c256a78
- * area name: sits between matrix functions (same compilation unit)
+ * ninja_sub_256a78  0x8c256a78
+ * area name: in the ninja library code range
  * called by: Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12aeec_sub_0a481c, Class_12bec0_sub_0f5e0c,
  * Vec3_sub_02374c, game_sub_0190f0, game_sub_023ebc, game_sub_0ad354
  */
-u32 matrix_sub_256a78(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ninja_sub_256a78(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -11994,13 +11994,13 @@ u32 matrix_sub_256a78(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 }
 
 /*
- * matrix_sub_256b0c  0x8c256b0c
- * area name: sits between matrix functions (same compilation unit)
+ * njRotateXYZ  0x8c256b0c
+ * rotates matrix a0 (NULL: current) by Ninja angles a1, a2, a3
  * called by: CAnimal_sub_023f70, CAnimal_sub_026968, CAnimal_sub_088288, Class_1298b8_m11_0159ec,
  * Class_1298b8_m3_0155e8, Class_1298b8_m5_015720, Class_1298b8_m6_0157f8, Class_1298b8_m7_015890 (+28 more) decompiler:
  * Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256c66
  */
-u32 matrix_sub_256b0c(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
+u32 njRotateXYZ(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     float fVar1;
     float fVar3;
     u64 uVar2;
@@ -12147,7 +12147,7 @@ u32 matrix_sub_256b0c(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 
 /*
  * ninja_sub_256ce0  0x8c256ce0
- * area name: in the ninja library code range
+ * area name: sits between ninja functions (same compilation unit)
  * called by: Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12aeec_sub_0a481c, Vec3_sub_0238b4, game_sub_019128,
  * game_sub_023ef8
  */
@@ -17120,8 +17120,8 @@ u32 ninja_sub_25a174(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * tex_is_palettized  0x8c25a1ee
  * 1 for the palettised texture formats 0x500..0x800 (4- and 8-bit, with and without mipmaps)
- * called by: gfxlib_sub_237830, gfxlib_sub_23793c, gfxlib_sub_2387a0, matrix_sub_2567f8, matrix_sub_2567fe,
- * ninja_sub_2565c4, ninja_sub_2565d8, ninja_sub_2566c8
+ * called by: gfxlib_sub_237830, gfxlib_sub_23793c, gfxlib_sub_2387a0, ninja_sub_2565c4, ninja_sub_2565d8,
+ * ninja_sub_2566c8, ninja_sub_2567f8, ninja_sub_2567fe
  */
 u32 tex_is_palettized(int a0) {
     if ((((a0 != 0x500) && (a0 != 0x600)) && (a0 != 0x700)) && (a0 != 0x800)) {
@@ -17316,7 +17316,7 @@ u32 tex_sub_25a394(int *a0, u32 *a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32
 /*
  * tex_sub_25a49e  0x8c25a49e
  * area name: sits between tex functions (same compilation unit)
- * called by: matrix_sub_2567f8, matrix_sub_2567fe, ninja_sub_2565c4, ninja_sub_2565d8, ninja_sub_2566c8, tex_sub_25a674
+ * called by: ninja_sub_2565c4, ninja_sub_2565d8, ninja_sub_2566c8, ninja_sub_2567f8, ninja_sub_2567fe, tex_sub_25a674
  */
 int tex_sub_25a49e(u32 *a0) {
     int iVar1;

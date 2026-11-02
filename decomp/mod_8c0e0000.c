@@ -4307,7 +4307,7 @@ int Class_12b580_sub_0e6114(int a0, u32 a1, u32 a2, u32 a3) {
 
     ain0 = CONCAT22((short)((u32)in_stack_fffffff4 >> 0x10), (u16)a1);
     if (a0 != 0) {
-        Class_12b3b8_sub_015428(a0 + 0x6e50, 0xffffffff, a2, a3);
+        Class_129908_dtor(a0 + 0x6e50, 0xffffffff, a2, a3);
         vec_delete_array(a0 + 0x6e20, free_if_nonnull_wrap_0cffc8, 0x18, 2);
         ar7_00 = 500;
         ar6_00 = 0x38;
@@ -5090,12 +5090,12 @@ u32 *Class_12b3b8_ctor(u32 *a0) {
     ar6_00 = game_sub_0d6f68;
     vec_new_array(a0 + 0x29, game_sub_0d6f28, game_sub_0d6f68, 0x20, 0xc);
     set_fields_0_2_wrap(a0 + 0x89);
-    Class_12b3b8_sub_0191e4(a0 + 0x8a);
+    Class_129a50_ctor(a0 + 0x8a);
     Class_12b3b8_sub_01a0cc(a0 + 0xaa);
     uVar1 = 0;
     Class_12b3b8_sub_015c58(a0 + 0x105, 0);
     Class_12b3b8_sub_016410(a0 + 0x111);
-    Class_12b3b8_sub_0153b8(a0 + 0x122, uVar1);
+    Class_129908_ctor(a0 + 0x122, uVar1);
     Class_12b3b8_sub_0e89a0(a0, uVar1, ar6_00, uVar2);
     Class_12b3b8_sub_019384(a0 + 0x8a);
     if (cVar8 != '\0') {
@@ -5238,7 +5238,7 @@ u32 *Class_12b3b8_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     ain0 = CONCAT22((short)((u32)in_stack_fffffff4 >> 0x10), (u16)a1);
     if (a0 != NULL) {
         *a0 = &g_8c12b3b8;
-        Class_12b3b8_sub_015428(a0 + 0x122, 0xffffffff, a2, a3);
+        Class_129908_dtor(a0 + 0x122, 0xffffffff, a2, a3);
         Class_12988c_dtor(a0 + 0x105, 0xffffffff, a2, a3);
         Class_1299ec_dtor(a0 + 0xaa, 0xffffffff, a2, a3);
         Class_129a50_dtor(a0 + 0x8a, 0xffffffff, a2, a3);

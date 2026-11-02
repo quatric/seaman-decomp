@@ -12186,8 +12186,8 @@ u32 set_flags_14_60(int a0) {
 /*
  * set_flag_14_20  0x8c014790
  * sets bit 5 of the flags at +0x14
- * called by: CSquid_Init, CSquid_sub_014a64, Class_12b3b8_ctor, Class_12b930_sub_0d2fd8, Class_12bec0_sub_0f5b10,
- * set_flags_14_60
+ * called by: CSquid_Init, Class_12b3b8_ctor, Class_12b930_sub_0d2fd8, Class_12bec0_sub_0f5b10,
+ * set_flag_14_bit31_and_20, set_flags_14_60
  */
 u32 set_flag_14_20(int a0) {
     u32 uVar1;
@@ -12519,11 +12519,11 @@ int object_dtor_delete(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CSquid_sub_014a64  0x8c014a64
- * area name: only called from CSquid methods
+ * set_flag_14_bit31_and_20  0x8c014a64
+ * sets bit 31 of +0x14, then set_flag_14_20
  * called by: CSquid_Init, Class_12b930_sub_0d2fd8, Class_12bec0_sub_0f5b10
  */
-u32 CSquid_sub_014a64(int a0) {
+u32 set_flag_14_bit31_and_20(int a0) {
     u32 uVar1;
 
     *(u32 *)(a0 + 0x14) = *(u32 *)(a0 + 0x14) | 0x80000000;
@@ -13099,7 +13099,7 @@ u32 game_sub_0151fc(u32 a0) {
 
 /*
  * Class_129920_ctor  0x8c015224
- * called by: CSquid_Init, Class_12b350_ctor, Class_12b3b8_sub_0153b8, Class_12b580_ctor, Class_12b758_ctor,
+ * called by: CSquid_Init, Class_129908_ctor, Class_12b350_ctor, Class_12b580_ctor, Class_12b758_ctor,
  * Class_12b758_sub_0d5e9c, Class_12b930_ctor, Class_12b930_sub_0cff78 (+17 more)
  */
 u32 *Class_129920_ctor(u32 *a0, u32 a1) {
@@ -13192,11 +13192,11 @@ u32 clear_field_4(int a0) {
 }
 
 /*
- * Class_12b3b8_sub_0153b8  0x8c0153b8
- * area name: only called from Class_12b3b8 methods
+ * Class_129908_ctor  0x8c0153b8
+ * Class_129920 base, vtable 0x8c129908, +4 points at the inline buffer at +8
  * called by: Class_12b3b8_ctor, Class_12b580_sub_0d7f18, Class_12b930_sub_0d2fd8
  */
-u32 *Class_12b3b8_sub_0153b8(u32 *a0, u32 a1) {
+u32 *Class_129908_ctor(u32 *a0, u32 a1) {
     Class_129920_ctor(a0, a1);
     *a0 = (&DATA_8c129908);
     a0[1] = a0 + 2;
@@ -13206,8 +13206,8 @@ u32 *Class_12b3b8_sub_0153b8(u32 *a0, u32 a1) {
 /*
  * Class_129920_dtor  0x8c0153e4
  * stores the vtable 0x8c129920
- * called by: CAnimal_m0_0aca4c, Class_12984c_sub_0c4b84, Class_12a0c4_m0_0674c8, Class_12b350_dtor, Class_12b388_dtor,
- * Class_12b3b8_sub_015428, Class_12b580_dtor, Class_12b758_dtor (+15 more)
+ * called by: CAnimal_m0_0aca4c, Class_12984c_sub_0c4b84, Class_129908_dtor, Class_12a0c4_m0_0674c8, Class_12b350_dtor,
+ * Class_12b388_dtor, Class_12b580_dtor, Class_12b758_dtor (+15 more)
  */
 u32 *Class_129920_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -13232,11 +13232,10 @@ int game_sub_01541c(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * Class_12b3b8_sub_015428  0x8c015428
- * area name: only called from Class_12b3b8 methods
+ * Class_129908_dtor  0x8c015428
  * called by: Class_12b3b8_dtor, Class_12b580_sub_0e6114, Class_12b930_sub_0ddd74
  */
-u32 *Class_12b3b8_sub_015428(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 *Class_129908_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
     u32 in_stack_fffffff4;
     u32 ain0;
@@ -13446,7 +13445,7 @@ u32 Class_1298b8_m3_0155e8(int a0, u32 unused_a1, u32 *a2) {
     } else {
         ar5_00 = (int)(dVar3 / dVar3);
     }
-    matrix_sub_256b0c(0, ar5_00, ar6_01, ar7_00, in_PR);
+    njRotateXYZ(0, ar5_00, ar6_01, ar7_00, in_PR);
     ninja_sub_254042(*(u32 *)(a0 + 4), ar5_00, ar6_01, ar7_00);
     uVar1 = matrix_pop_n(1);
     return uVar1;
@@ -13550,7 +13549,7 @@ u32 Class_1298b8_m5_015720(int a0, u32 unused_a1, u32 *a2) {
     } else {
         ar5_00 = (int)(dVar3 / dVar3);
     }
-    matrix_sub_256b0c(0, ar5_00, ar6_01, ar7_00, in_PR);
+    njRotateXYZ(0, ar5_00, ar6_01, ar7_00, in_PR);
     matrix_scale(0, ar5_00, ar6_01, ar7_00, in_PR);
     ninja_sub_254042(*(u32 *)(a0 + 4), ar5_00, ar6_01, ar7_00);
     uVar1 = matrix_pop_n(1);
@@ -13639,7 +13638,7 @@ u32 Class_1298b8_m6_0157f8(int a0, u32 *a1) {
     } else {
         ar5_01 = (int)(dVar3 / dVar3);
     }
-    matrix_sub_256b0c(0, ar5_01, ar6_00, ar7_00, in_PR);
+    njRotateXYZ(0, ar5_01, ar6_00, ar7_00, in_PR);
     ninja_sub_254042(*(u32 *)(a0 + 4), ar5_01, ar6_00, ar7_00);
     uVar1 = matrix_pop_n(1);
     return uVar1;
@@ -13727,7 +13726,7 @@ u32 Class_1298b8_m7_015890(int a0, u32 *a1) {
     } else {
         ar5_01 = (int)(dVar3 / dVar3);
     }
-    matrix_sub_256b0c(0, ar5_01, ar6_00, ar7_00, in_PR);
+    njRotateXYZ(0, ar5_01, ar6_00, ar7_00, in_PR);
     matrix_scale(0, ar5_01, ar6_00, ar7_00, in_PR);
     ninja_sub_254042(*(u32 *)(a0 + 4), ar5_01, ar6_00, ar7_00);
     uVar1 = matrix_pop_n(1);
@@ -13850,7 +13849,7 @@ u32 Class_1298b8_m11_0159ec(int a0, u32 unused_a1, u32 *a2) {
     } else {
         ar5_00 = (int)(dVar3 / dVar3);
     }
-    matrix_sub_256b0c(0, ar5_00, ar6_01, ar7_00, a0);
+    njRotateXYZ(0, ar5_00, ar6_01, ar7_00, a0);
     matrix_scale(0, ar5_00, ar6_01, ar7_00, a0);
     ninja_sub_254042(*(u32 *)(a0 + 4), ar5_00, ar6_01, ar7_00);
     uVar1 = matrix_pop_n(1);
@@ -14901,11 +14900,11 @@ int game_sub_016a20(int a0) {
 }
 
 /*
- * Class_129938_sub_016a7c  0x8c016a7c
- * area name: most of its named callers are Class_129938
+ * Class_1299b0_ctor  0x8c016a7c
+ * vtable 0x8c1299b0; position, rotation zero, scale one, +0x2c = 2
  * called by: Class_129938_ctor, Class_129938_ctor_init, Class_129974_ctor
  */
-u32 *Class_129938_sub_016a7c(u32 *a0, u32 a1, u32 a2) {
+u32 *Class_1299b0_ctor(u32 *a0, u32 a1, u32 a2) {
     *a0 = (&DATA_8c1299b0);
     Vec3_ctor_zero(a0 + 1, a1, a2);
     Vec3_set_zero(a0 + 5);
@@ -14982,7 +14981,7 @@ u32 *Class_129974_ctor(u32 *a0, u32 a1, u32 a2) {
     char cVar1;
 
     cVar1 = '\0';
-    Class_129938_sub_016a7c(a0, a1, a2);
+    Class_1299b0_ctor(a0, a1, a2);
     *a0 = &g_8c129974;
     clear_field_0_wrap_015ab8(a0 + 0x10);
     if (cVar1 == '\0') {
@@ -15256,7 +15255,7 @@ u32 Class_129974_sub_016fa4(int a0, u32 unused_a1, u32 a2) {
  * game_sub_08a17c, game_sub_099e74 (+7 more)
  */
 u32 *Class_129938_ctor(u32 *a0, u32 a1, u32 a2) {
-    Class_129938_sub_016a7c(a0, a1, a2);
+    Class_1299b0_ctor(a0, a1, a2);
     *a0 = (&DATA_8c129938);
     clear_field_0_wrap_015ab8((int)a0 + 0x90);
     Class_129938_sub_017804(a0, a1, a2);
@@ -15270,7 +15269,7 @@ u32 *Class_129938_ctor(u32 *a0, u32 a1, u32 a2) {
  * Class_12ad50_sub_0a5c90, game_sub_06d8e4, game_sub_08d380, game_sub_09b210 (+1 more)
  */
 int *Class_129938_ctor_init(int *a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16) {
-    Class_129938_sub_016a7c(a0, a1, a2);
+    Class_1299b0_ctor(a0, a1, a2);
     *a0 = (int)(&DATA_8c129938);
     clear_field_0_wrap_015ab8((int)a0 + 0x90);
     (**(code **)(*a0 + 0x2c))(a0, a1, a2, a3, s0, s4, s8, s12, s16);
@@ -15385,7 +15384,7 @@ u32 Class_129938_m1_0170e0(int a0, u32 a1, u32 a2, int *a3) {
     } else {
         ar5_00 = (int)(dVar2 / dVar2);
     }
-    matrix_sub_256b0c(auStack_ac, ar5_00, iVar3, ar7_00, a1);
+    njRotateXYZ(auStack_ac, ar5_00, iVar3, ar7_00, a1);
     for (iVar3 = 0; iVar3 < 8; iVar3 = iVar3 + 1) {
         point_transform_or_copy(auStack_ac, auStack_6c + iVar3 * 0xc, iVar3 * 0xc + a0 + 0x30, ar7_00, a1);
     }
@@ -15479,7 +15478,7 @@ u32 Class_129938_m2_0171f4(int a0, u32 a1, u32 a2, u32 a3) {
     } else {
         ar5_00 = (int)(dVar2 / dVar2);
     }
-    matrix_sub_256b0c(auStack_ac, ar5_00, iVar3, ar7_01, a1);
+    njRotateXYZ(auStack_ac, ar5_00, iVar3, ar7_01, a1);
     matrix_scale(auStack_ac, ar5_00, iVar3, ar7_01, a1);
     for (iVar3 = 0; iVar3 < 8; iVar3 = iVar3 + 1) {
         point_transform_or_copy(auStack_ac, auStack_6c + iVar3 * 0xc, iVar3 * 0xc + a0 + 0x30, ar7_01, a1);
@@ -17518,18 +17517,18 @@ u32 touch_fields_30_3c_wrap(void) {
 }
 
 /*
- * game_sub_019088  0x8c019088
- * area name: game code; nothing names its area yet
+ * rotate_xyz_degrees  0x8c019088
+ * njRotateXYZ(current matrix) with angles fr4..fr6 in degrees
  * called by: Class_12c058_sub_0f577c, Class_12c058_sub_0f57f0, game_sub_029ca8
  */
-u32 game_sub_019088(void) {
+u32 rotate_xyz_degrees(void) {
     u32 uVar1;
     float in_fr5;
     float in_fr4;
     float in_fr6;
 
-    uVar1 = matrix_sub_256b0c(0, (int)((in_fr4 * 65536.0) / 360.0), (int)((in_fr5 * 65536.0) / 360.0),
-                              (int)((in_fr6 * 65536.0) / 360.0), in_fr4);
+    uVar1 = njRotateXYZ(0, (int)((in_fr4 * 65536.0) / 360.0), (int)((in_fr5 * 65536.0) / 360.0),
+                        (int)((in_fr6 * 65536.0) / 360.0), in_fr4);
     return uVar1;
 }
 
@@ -17544,7 +17543,7 @@ u32 game_sub_0190f0(void) {
     u32 uVar1;
     float in_fr4;
 
-    uVar1 = matrix_sub_256a78(0, (int)((in_fr4 * 65536.0) / 360.0), r6, r7, in_fr4);
+    uVar1 = ninja_sub_256a78(0, (int)((in_fr4 * 65536.0) / 360.0), r6, r7, in_fr4);
     return uVar1;
 }
 
@@ -17611,11 +17610,11 @@ u32 game_sub_0191c8(u32 a0) {
 }
 
 /*
- * Class_12b3b8_sub_0191e4  0x8c0191e4
- * area name: only called from Class_12b3b8 methods
+ * Class_129a50_ctor  0x8c0191e4
+ * vtable 0x8c129a50
  * called by: Class_12b3b8_ctor, game_sub_0dbe24, game_sub_0dfa84
  */
-u32 *Class_12b3b8_sub_0191e4(u32 *a0) {
+u32 *Class_129a50_ctor(u32 *a0) {
     *a0 = (&DATA_8c129a50);
     Class_129a50_sub_0192a8(a0);
     return a0;
@@ -17649,8 +17648,8 @@ u32 *Class_129a50_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * Class_129a50_sub_0192a8  0x8c0192a8
- * area name: sits between Class_129a50 functions (same compilation unit)
- * called by: Class_12b3b8_sub_0191e4
+ * area name: only called from Class_129a50 methods
+ * called by: Class_129a50_ctor
  */
 u8 *Class_129a50_sub_0192a8(int a0) {
     *(u32 *)(a0 + 0x60) = 0;
@@ -18017,7 +18016,7 @@ u32 Class_1299f8_m4_019588(int a0, u32 a1, u32 a2, u32 a3) {
         dVar4 = dVar4 / dVar7;
         iVar11 = (int)dVar4;
     }
-    matrix_sub_256a78(auStack_138, iVar11, a2, a3, fVar2);
+    ninja_sub_256a78(auStack_138, iVar11, a2, a3, fVar2);
     ninja_sub_255d6c(auStack_f8, auStack_138, a2, a3, fVar2);
     ar6_00 = auStack_150;
     puVar1 = &uStack_144;
@@ -18398,7 +18397,7 @@ u32 Class_129a24_m1_019b68(int a0, u32 unused_a1, u32 a2, u32 a3) {
     } else {
         iVar6 = (int)(dVar5 / dVar5);
     }
-    matrix_sub_256a78(auStack_88, iVar6, puVar3, a3, in_stack_ffffff28);
+    ninja_sub_256a78(auStack_88, iVar6, puVar3, a3, in_stack_ffffff28);
     puVar2 = auStack_88;
     ninja_sub_255d6c(auStack_48, puVar2, puVar3, a3, in_stack_ffffff28);
     njGetMatrix(auStack_88, puVar2, puVar3, a3, in_stack_ffffff28);
@@ -18787,7 +18786,7 @@ u32 Class_1299f8_m2_01a164(u32 a0) {
 u32 game_sub_01a180(int a0) {
     u32 uVar1;
 
-    uVar1 = matrix_sub_25699c(a0 + 4);
+    uVar1 = ninja_sub_25699c(a0 + 4);
     return uVar1;
 }
 
@@ -19197,7 +19196,7 @@ int game_sub_01a900(int *a0) {
     int iVar1;
     int iVar2;
 
-    iVar1 = shinobi_sub_1fc5c4(g_8c2791b4);
+    iVar1 = slot80_busy_error(g_8c2791b4);
     if (iVar1 == -1) {
         iVar1 = game_sub_01c92c(a0);
     } else {
@@ -19585,7 +19584,7 @@ u32 game_sub_01b144(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 
             return 0;
         }
         do {
-            uVar2 = shinobi_sub_1fc5c4(g_8c2791b4);
+            uVar2 = slot80_busy_error(g_8c2791b4);
             *(u32 *)(&stack0xfffffffc + iVar1) = uVar2;
         } while (*(int *)(&stack0xfffffffc + iVar1) == -1);
         uVar2 = shinobi_sub_1fc5de(g_8c2791b4);
@@ -21881,7 +21880,7 @@ u32 malloc_sub_01e1e8(int *a0, char *a1, u32 a2, u32 a3) {
     if ((a0 != NULL) && (g_8c27924c != 0)) {
         if (g_8c2791c0 == 2) {
             g_8c279274 = 0;
-            shinobi_sub_201c28(g_8c27926c, 0);
+            set_field_18_mark_dirty(g_8c27926c, 0);
             g_8c2791bc = 2;
             strcpy(&g_8c2791c8, &g_8c12fbb3);
         } else if (g_8c2791c0 == 3) {
@@ -21889,12 +21888,12 @@ u32 malloc_sub_01e1e8(int *a0, char *a1, u32 a2, u32 a3) {
             if (0x10 < g_8c279274) {
                 g_8c279274 = 0x10;
             }
-            shinobi_sub_201c28(g_8c27926c, g_8c279274);
+            set_field_18_mark_dirty(g_8c27926c, g_8c279274);
             g_8c2791bc = 3;
             strcpy(&g_8c2791c8, &g_8c12fbb7);
         } else if (*a0 == 0) {
             g_8c279274 = 0x10;
-            shinobi_sub_201c28(g_8c27926c, 0x10);
+            set_field_18_mark_dirty(g_8c27926c, 0x10);
         } else if (*(int *)(a0[1] + 4) < 1000) {
             g_8c2791bc = 1;
             strcpy(&g_8c2791c8, &g_8c12fbb7);

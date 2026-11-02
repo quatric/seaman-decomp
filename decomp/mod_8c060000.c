@@ -187,7 +187,7 @@ u8 **game_sub_0611cc(u8 **a0, int *a1, code *a2, char *a3) {
             uVar9 = get_field_140_025f70(*(int *)(a2 + 4), puVar6);
             uVar10 = 1;
             iVar1 = (int)(short)uVar8;
-            game_sub_0620bc(uVar3, iVar1, uVar9, 1);
+            set_byte_grid_75(uVar3, iVar1, uVar9, 1);
             uVar3 = (**(code **)(*a1 + 0x148))(a1, iVar1, uVar9, uVar10);
             uVar8 = table13019c_find_row(*(int *)(a2 + 4));
             iVar1 = get_field_140_025f70(*(int *)(a2 + 4), get_field_140_025f70);
@@ -215,7 +215,7 @@ u8 **game_sub_0611cc(u8 **a0, int *a1, code *a2, char *a3) {
                     uVar8 = table13019c_find_row(*(int *)(a2 + 4));
                     uVar9 = get_field_140_025f70(*(int *)(a2 + 4), pcVar11);
                     uVar10 = 0;
-                    game_sub_0620bc(uVar3, (int)(short)uVar8, uVar9, 0);
+                    set_byte_grid_75(uVar3, (int)(short)uVar8, uVar9, 0);
                     a0[0x10] = NULL;
                     a0[1] = NULL;
                     a0[2] = (u8 *)0x5;
@@ -520,11 +520,11 @@ int game_sub_0620a4(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * game_sub_0620bc  0x8c0620bc
- * area name: game code; nothing names its area yet
+ * set_byte_grid_75  0x8c0620bc
+ * +0x75[a1*2 + a2] = a3
  * called by: game_sub_0611cc, game_sub_1063a8
  */
-u32 game_sub_0620bc(int a0, u32 a1, u32 a2, u32 a3) {
+u32 set_byte_grid_75(int a0, u32 a1, u32 a2, u32 a3) {
     *(u8 *)(a0 + (short)a1 * 2 + (int)(short)a2 + 0x75) = (u8)a3;
     return 0x75;
 }
@@ -7085,7 +7085,7 @@ u32 game_sub_06b460(int a0) {
     } else {
         iVar9 = (int)(dVar7 / dVar7);
     }
-    matrix_sub_256b0c(0, iVar9, ar6_00, iVar8, in_stack_fffffef4);
+    njRotateXYZ(0, iVar9, ar6_00, iVar8, in_stack_fffffef4);
     if (*(int *)(a0 + 0x220) < 1) {
         iVar9 = a0 + 100;
         matrix_scale(0, iVar9, ar6_00, iVar8, in_stack_fffffef4);

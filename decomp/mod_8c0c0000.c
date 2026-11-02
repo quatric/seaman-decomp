@@ -3345,7 +3345,7 @@ u32 *game_sub_0c5340(u32 *a0, u32 a1) {
     u32 uVar2;
     u32 *puVar3;
 
-    Class_12b350_sub_0ba898(a0);
+    Class_12b36c_ctor(a0);
     *a0 = (&DATA_8c12b388);
     Class_12b930_ctor(a0 + 6);
     Class_12b758_ctor((int)a0 + 0x232a0);
@@ -4328,7 +4328,7 @@ u32 game_sub_0c6d70(int a0, int a1, u32 unused_a2, u32 a3) {
         uVar2 = game_sub_0b76d8(ar4_00, ar5_00, unused_a2, a3);
         *(u32 *)(0x2d16c + a0) = uVar2;
         if (*(int *)(0x2d16c + a0) == 0) {
-            uVar2 = game_sub_0b77a0(a1 + 0x96, ar5_00, unused_a2, a3);
+            uVar2 = save_file_date_matches(a1 + 0x96, ar5_00, unused_a2, a3);
             *(u32 *)(0x2d168 + a0) = uVar2;
         }
         game_sub_0d1c14((u32) * (u8 *)(0xa0 + a1), ar5_00);
@@ -4394,7 +4394,7 @@ u32 game_sub_0c6e74(int a0, int a1, u32 a2, char *a3) {
             *(u32 *)(a0 + 0x2d16c) = uVar4;
             if (*(int *)(a0 + 0x2d16c) == 0) {
                 piVar3 = (int *)(a1 + 0x96);
-                uVar4 = game_sub_0b77a0(piVar3, ar5_00, a2, a3);
+                uVar4 = save_file_date_matches(piVar3, ar5_00, a2, a3);
                 *(u32 *)(a0 + 0x2d168) = uVar4;
             }
         }
@@ -7988,7 +7988,7 @@ u32 game_sub_0cc524(int a0, int a1, u32 a2, u32 a3) {
     } else {
         iVar1 = (int)(dVar5 / dVar5);
     }
-    matrix_sub_256b0c(0, iVar1, iVar6, 0, in_stack_ffffff50);
+    njRotateXYZ(0, iVar1, iVar6, 0, in_stack_ffffff50);
     game_sub_015b54(0x8c43690c, ar5_01);
     ar4_00 = 1;
     matrix_pop_n(1);
