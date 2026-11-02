@@ -9146,7 +9146,7 @@ u32 noop_0bf0f0(int a0) {
 /*
  * noop_0bf11c  0x8c0bf11c
  * does nothing
- * called by: Class_12b930_sub_0de07c, game_sub_0de6d0, game_sub_0deb60, game_sub_0def78, noop_0bf0f0
+ * called by: game_sub_0de07c, game_sub_0de6d0, game_sub_0deb60, game_sub_0def78, noop_0bf0f0
  */
 u32 noop_0bf11c(void) {
     u32 in_r0;

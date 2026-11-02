@@ -3316,7 +3316,7 @@ LAB_8c2023fc:
     bVar2 = true;
 LAB_8c2023fe:
     if (bVar2) {
-        iVar3 = shinobi_sub_1eff32(*(u32 *)(a0 + 0x24), &uStack_14, a2, a3);
+        iVar3 = maple_cmd15_func10_hooked(*(u32 *)(a0 + 0x24), &uStack_14, a2, a3);
         *(int *)(a0 + 0x1c) = iVar3;
         a0[0x20] = '\x01';
         a0[0x21] = '\0';
@@ -3347,7 +3347,7 @@ u32 shinobi_sub_202424(char *a0, u32 a1, u32 a2, u32 a3) {
     puVar1 = (&maple_port_info);
     if (iVar2 == 1) {
         if (*(int *)(a0 + 0x30) == 0) {
-            uVar3 = shinobi_sub_1efdc8(*(u32 *)(a0 + 0x24), a1, a2, a3);
+            uVar3 = maple_device_reset_hooked(*(u32 *)(a0 + 0x24), a1, a2, a3);
             *(u32 *)(a0 + 0x1c) = uVar3;
             a0[0x30] = '\x01';
             a0[0x31] = '\0';
@@ -3357,11 +3357,11 @@ u32 shinobi_sub_202424(char *a0, u32 a1, u32 a2, u32 a3) {
             if (*(int *)(a0 + 0x30) == 1) {
                 iVar2 = maple_port_info(*(u32 *)(a0 + 0x24), a1);
                 if (*(char *)(iVar2 + 4) != '\a') {
-                    uVar3 = shinobi_sub_1efdc8(*(u32 *)(a0 + 0x24), a1, a2, a3);
+                    uVar3 = maple_device_reset_hooked(*(u32 *)(a0 + 0x24), a1, a2, a3);
                     *(u32 *)(a0 + 0x1c) = uVar3;
                     return uVar3;
                 }
-                uVar3 = shinobi_sub_1efd7c(*(u32 *)(a0 + 0x24), a1, a2, a3);
+                uVar3 = maple_device_request_hooked(*(u32 *)(a0 + 0x24), a1, a2, a3);
                 *(u32 *)(a0 + 0x1c) = uVar3;
                 uVar4 = 2;
             } else {
@@ -3409,7 +3409,7 @@ u32 shinobi_sub_202424(char *a0, u32 a1, u32 a2, u32 a3) {
                 }
                 iVar2 = maple_port_info(*(u32 *)(a0 + 0x24), a1);
                 if (*(char *)(iVar2 + 4) != '\x05') {
-                    uVar3 = shinobi_sub_1efd7c(*(u32 *)(a0 + 0x24), a1, a2, a3);
+                    uVar3 = maple_device_request_hooked(*(u32 *)(a0 + 0x24), a1, a2, a3);
                     *(u32 *)(a0 + 0x1c) = uVar3;
                     return uVar3;
                 }
@@ -3766,7 +3766,7 @@ int shinobi_sub_202782(char *a0) {
     u32 uStack_c;
 
     if (*(int *)(a0 + 0x28) == 100) {
-        uVar4 = shinobi_sub_1efdc8(*(u32 *)(a0 + 0x24));
+        uVar4 = maple_device_reset_hooked(*(u32 *)(a0 + 0x24));
     LAB_8c2027a6:
         *(u32 *)(a0 + 0x1c) = uVar4;
         a0[0x20] = '\x01';
@@ -3777,7 +3777,7 @@ int shinobi_sub_202782(char *a0) {
         return uVar4;
     }
     if (*(int *)(a0 + 0x28) == 0x65) {
-        uVar4 = shinobi_sub_1efd7c(*(u32 *)(a0 + 0x24));
+        uVar4 = maple_device_request_hooked(*(u32 *)(a0 + 0x24));
         goto LAB_8c2027a6;
     }
     uStack_c = 1;
@@ -3827,7 +3827,7 @@ LAB_8c2023fc:
     bVar2 = true;
 LAB_8c2023fe:
     if (bVar2) {
-        iVar3 = shinobi_sub_1eff32(*(u32 *)(a0 + 0x24), &uStack_14);
+        iVar3 = maple_cmd15_func10_hooked(*(u32 *)(a0 + 0x24), &uStack_14);
         *(int *)(a0 + 0x1c) = iVar3;
         a0[0x20] = '\x01';
         a0[0x21] = '\0';
@@ -3859,7 +3859,7 @@ int shinobi_sub_202786(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 uStack_d;
 
     if (*(int *)(unaff_r14 + 0x28) == 100) {
-        uVar4 = shinobi_sub_1efdc8(*(u32 *)(unaff_r14 + 0x24), unused_a1, a2, a3);
+        uVar4 = maple_device_reset_hooked(*(u32 *)(unaff_r14 + 0x24), unused_a1, a2, a3);
     LAB_8c2027a6:
         *(u32 *)(unaff_r14 + 0x1c) = uVar4;
         unaff_r14[0x20] = '\x01';
@@ -3870,7 +3870,7 @@ int shinobi_sub_202786(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
         return uVar4;
     }
     if (*(int *)(unaff_r14 + 0x28) == 0x65) {
-        uVar4 = shinobi_sub_1efd7c(*(u32 *)(unaff_r14 + 0x24), unused_a1, a2, a3);
+        uVar4 = maple_device_request_hooked(*(u32 *)(unaff_r14 + 0x24), unused_a1, a2, a3);
         goto LAB_8c2027a6;
     }
     cVar1 = *unaff_r14;
@@ -3919,7 +3919,7 @@ LAB_8c2023fc:
     bVar2 = true;
 LAB_8c2023fe:
     if (bVar2) {
-        iVar3 = shinobi_sub_1eff32(*(u32 *)(unaff_r14 + 0x24), &uStack_10);
+        iVar3 = maple_cmd15_func10_hooked(*(u32 *)(unaff_r14 + 0x24), &uStack_10);
         *(int *)(unaff_r14 + 0x1c) = iVar3;
         unaff_r14[0x20] = '\x01';
         unaff_r14[0x21] = '\0';

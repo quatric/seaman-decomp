@@ -56,10 +56,10 @@ u32 input_sub_0e00ec(int *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0e0124  0x8c0e0124
- * area name: game code; nothing names its area yet
+ * sprinkler_close_sound  0x8c0e0124
+ * closes the sprinkler's SE port and clears its +0xeb44 flag
  */
-u32 game_sub_0e0124(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 sprinkler_close_sound(int a0, u32 unused_a1, u32 a2, u32 a3) {
     se_close_port_eb4c(a0 + 0x13b8c, unused_a1, a2, a3);
     set_field_eb44(a0 + 0x13b8c, 0);
     return 0;
@@ -67,7 +67,7 @@ u32 game_sub_0e0124(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * set_field_eb44  0x8c0e015c
- * called by: CWaterTank_sub_0e1398, game_sub_0e0124, game_sub_0e021c, input_sub_0e3210
+ * called by: CWaterTank_sub_0e1398, game_sub_0e021c, input_sub_0e3210, sprinkler_close_sound
  */
 int set_field_eb44(int a0, u32 a1) {
     int iVar1;
@@ -1168,7 +1168,7 @@ u32 game_sub_0e15fc(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * CWaterTank_CreateStage  0x8c0e1698
- * called by: Class_12b930_sub_0de07c, Class_12b930_sub_0de18c
+ * called by: CWaterTank_create_all, game_sub_0de07c
  * strings: "suisou.nj"; "GRAPHICS\\ENV"; "suisou.nj"; "Failed NJCM:CWaterTank::CreateStage()" ...
  */
 u32 CWaterTank_CreateStage(int a0, u32 a1, u32 a2) {
@@ -3675,10 +3675,10 @@ u32 game_sub_0e50f4(int *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0e518c  0x8c0e518c
- * area name: game code; nothing names its area yet
+ * first_time_15c8  0x8c0e518c
+ * 1 (and sets +0x15c8) the first time, 0 afterwards
  */
-u32 game_sub_0e518c(int a0) {
+u32 first_time_15c8(int a0) {
     if (*(int *)(0x15c8 + a0) == 0) {
         *(u32 *)(0x15c8 + a0) = 1;
         return 1;
@@ -4082,10 +4082,10 @@ u32 *input_sub_0e5aa8(int a0) {
 }
 
 /*
- * input_sub_0e5ae0  0x8c0e5ae0
- * area name: sits between input functions (same compilation unit)
+ * textures_load_3  0x8c0e5ae0
+ * loads the textures at +0x15bc, +0x10dc and the object texture list at +0x28
  */
-u32 input_sub_0e5ae0(int a0, u32 a1, u32 a2, u32 a3) {
+u32 textures_load_3(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 ar5_00;
 
@@ -4097,10 +4097,10 @@ u32 input_sub_0e5ae0(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * input_sub_0e5b30  0x8c0e5b30
- * area name: sits between input functions (same compilation unit)
+ * textures_release_3  0x8c0e5b30
+ * releases the textures at +0x15bc, +0x10dc and the object texture list at +0x28
  */
-u32 input_sub_0e5b30(int a0, u32 a1, u32 a2, u32 a3) {
+u32 textures_release_3(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 ar5_00;
 
@@ -6292,10 +6292,10 @@ int field_ptr_c0c(int a0) {
 }
 
 /*
- * game_sub_0e8c64  0x8c0e8c64
- * area name: game code; nothing names its area yet
+ * set_float_106c_nonneg  0x8c0e8c64
+ * stores fr4 (negative values as 0) at +0x106c
  */
-u32 game_sub_0e8c64(int a0) {
+u32 set_float_106c_nonneg(int a0) {
     float in_fr4;
 
     if (in_fr4 < 0.0) {
@@ -6459,10 +6459,10 @@ u32 get_field_226f4_0e8dc0(int a0) {
 }
 
 /*
- * game_sub_0e8dcc  0x8c0e8dcc
- * area name: game code; nothing names its area yet
+ * entry_22d48  0x8c0e8dcc
+ * address of the 0x16c-byte entry a1 at +0x22d48
  */
-int game_sub_0e8dcc(int a0, int a1) {
+int entry_22d48(int a0, int a1) {
     return a0 + a1 * 0x16c + 0x22d48;
 }
 

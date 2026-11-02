@@ -1131,3 +1131,38 @@
 8c0b6bf4	vblank_hook_check_lid	the event-0x900 hook installed at start-up: gd_check_lid_open
 8c09de7c	lights_2_to_4_off	clears light flags 2..4 in both light tables (8c4c0ed0, 8c4c0db0)
 8c09a528	dec_counter_4d	decrements the byte counter at +0x4d
+8c0de18c	CWaterTank_create_all	CWaterTank_CreateStage, WATER_ELEMETNT_Create on +0x10ac and CSprinkler_LoadTexture on +0x13b8c
+8c0e0124	sprinkler_close_sound	closes the sprinkler's SE port and clears its +0xeb44 flag
+8c0e518c	first_time_15c8	1 (and sets +0x15c8) the first time, 0 afterwards
+8c0e8c64	set_float_106c_nonneg	stores fr4 (negative values as 0) at +0x106c
+8c0e8dcc	entry_22d48	address of the 0x16c-byte entry a1 at +0x22d48
+8c0f4c5c	post_inc_70	returns the counter at +0x70 and increments it
+8c0f4cf0	Vec3_add_to_50	adds the vector a1 to the vector at +0x50
+8c0f56e8	sink_until_minus100	lowers +0x34 by 0.1 per call; at -100 clears the active bit 31 of +0x74
+8c0f5d98	set_state_flag_40_only	clears state bits 0x10, 0x20, 0x40 of +0x74, then sets 0x40
+8c06797c	set_state_flag_40_only	clears state bits 0x10, 0x20, 0x40 of +0x74, then sets 0x40
+8c0e5ae0	textures_load_3	loads the textures at +0x15bc, +0x10dc and the object texture list at +0x28
+8c0e5b30	textures_release_3	releases the textures at +0x15bc, +0x10dc and the object texture list at +0x28
+8c10af3c	asr_module_def_10af3c	registers an ASR processing module (inputs: 5, outputs: 1, state size 0xb4) through 8c120580
+8c10c8e2	asr_module_def_10c8e2	registers an ASR processing module (inputs: 1, outputs: 1, state size 0x5c) through 8c120580
+8c10cefa	asr_module_def_10cefa	registers an ASR processing module (inputs: 1, outputs: 1, state size 0x3c) through 8c120580
+8c10f632	asr_module_def_10f632	registers an ASR processing module (inputs: 1, outputs: 2, state size 0x4c) through 8c120580
+8c110158	asr_module_def_110158	registers an ASR processing module (inputs: 4, outputs: 1, state size 0x94) through 8c120580
+8c1108b0	asr_module_def_1108b0	registers an ASR processing module (inputs: 1, outputs: 1, state size 0x4c) through 8c120580
+8c110a5c	asr_module_def_110a5c	registers an ASR processing module (inputs: 3, outputs: 1, state size 0x2c) through 8c120580
+8c1111a0	asr_module_def_1111a0	registers an ASR processing module (inputs: 1, outputs: 1, state size 0x3c) through 8c120580
+8c11c412	asr_module_def_11c412	registers an ASR processing module (inputs: 2, outputs: 3, state size 0x70) through 8c120580
+8c11fb64	asr_module_def_11fb64	registers an ASR processing module (inputs: 2, outputs: 1, state size 0x48) through 8c120580
+8c121c50	asr_module_def_121c50	registers an ASR processing module (inputs: 2, outputs: 0, state size 0x68) through 8c120580
+8c124faa	asr_module_def_124faa	registers an ASR processing module (inputs: 1, outputs: 1, state size 0x40) through 8c120580
+8c12538e	asr_module_def_12538e	registers an ASR processing module (inputs: 1, outputs: 1, state size 0x48) through 8c120580
+8c1efd7c	maple_device_request_hooked	maple_device_request_locked, then the PVR hook when +0x10e8 is set
+8c1efda2	maple_all_status_request_hooked	maple_all_status_request_locked, then the PVR hook when +0x10e8 is set
+8c1efdc8	maple_device_reset_hooked	maple_device_reset_locked, then the PVR hook when +0x10e8 is set
+8c1efdee	maple_device_kill_hooked	maple_device_kill_locked, then the PVR hook when +0x10e8 is set
+8c1efe14	maple_get_condition_hooked	maple_get_condition_locked, then the PVR hook when +0x10e8 is set
+8c1efeac	maple_block_write_hooked	maple_block_write_locked, then the PVR hook when +0x10e8 is set
+8c1eff0c	maple_cmd16_func20_hooked	maple_cmd16_func20_locked, then the PVR hook when +0x10e8 is set
+8c1eff32	maple_cmd15_func10_hooked	maple_cmd15_func10_locked, then the PVR hook when +0x10e8 is set
+8c1eff9c	maple_queue_frame_wrap_hooked	maple_queue_frame_wrap_locked, then the PVR hook when +0x10e8 is set
+8c1f00f8	maple_mic_info	*a0 = the microphone function definition word of device a1; -1 if it has none

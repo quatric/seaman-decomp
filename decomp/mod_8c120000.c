@@ -5,7 +5,7 @@
 
 /*
  * asr_sub_120078  0x8c120078
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_1201e6, asr_sub_1201ea
  */
 u32 asr_sub_120078(u16 *a0) {
@@ -42,7 +42,7 @@ u32 asr_sub_120078(u16 *a0) {
 
 /*
  * asr_sub_12007c  0x8c12007c
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_12007c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -1614,7 +1614,7 @@ u32 asr_sub_1213d0(int a0, int a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_121690  0x8c121690
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_122358
  */
 u32 asr_sub_121690(int a0, u32 a1, u32 a2, u32 a3) {
@@ -1640,7 +1640,7 @@ u32 asr_sub_121690(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_12169e  0x8c12169e
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_12169e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
@@ -1666,7 +1666,7 @@ u32 asr_sub_12169e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_121710  0x8c121710
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_1219f4
  */
 u32 asr_sub_121710(int a0) {
@@ -1684,7 +1684,7 @@ u32 asr_sub_121710(int a0) {
 
 /*
  * asr_sub_12172e  0x8c12172e
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_121896
  */
 u32 asr_sub_12172e(int a0) {
@@ -1745,7 +1745,7 @@ u32 asr_sub_12172e(int a0) {
 
 /*
  * asr_sub_121736  0x8c121736
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_121736(void) {
     char cVar1;
@@ -1875,7 +1875,7 @@ u32 asr_sub_121736(void) {
 
 /*
  * asr_sub_12182e  0x8c12182e
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_121896
  */
 u32 asr_sub_12182e(int a0) {
@@ -1910,7 +1910,7 @@ u32 asr_sub_12182e(int a0) {
 
 /*
  * asr_sub_121896  0x8c121896
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_121896(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -2076,10 +2076,10 @@ u32 asr_sub_121b40(u32 a0, u32 unused_a1, u32 a2, u32 unused_a3, float *ain0) {
 }
 
 /*
- * asr_sub_121c50  0x8c121c50
- * area name: in the asr library code range
+ * asr_module_def_121c50  0x8c121c50
+ * registers an ASR processing module (inputs: 2, outputs: 0, state size 0x68) through 8c120580
  */
-u32 asr_sub_121c50(u32 a0, u32 a1) {
+u32 asr_module_def_121c50(u32 a0, u32 a1) {
     u32 uVar1;
 
     uVar1 = (*(code *)(&asr_sub_120580))(a0, a1, 2, 0, (&asr_sub_121896), (&DATA_8c121b38), (&DATA_8c1219f2), 0x68);
@@ -2088,7 +2088,7 @@ u32 asr_sub_121c50(u32 a0, u32 a1) {
 
 /*
  * asr_sub_121cc0  0x8c121cc0
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_11f5d2
  */
 u32 asr_sub_121cc0(int a0, int a1, u32 a2, u32 a3) {
@@ -2118,7 +2118,7 @@ u32 asr_sub_121cc0(int a0, int a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_121d36  0x8c121d36
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_11f66a
  */
 u32 asr_sub_121d36(int a0, u32 a1, u32 a2, u32 a3) {
@@ -2138,7 +2138,7 @@ u32 asr_sub_121d36(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_121d3c  0x8c121d3c
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_121d3c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
@@ -2157,7 +2157,7 @@ u32 asr_sub_121d3c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_121d8a  0x8c121d8a
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_121d8a(int a0, u32 a1) {
     int in_r0;
@@ -2173,7 +2173,7 @@ u32 asr_sub_121d8a(int a0, u32 a1) {
 
 /*
  * asr_sub_121dc8  0x8c121dc8
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_121dc8(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -2195,7 +2195,7 @@ u32 asr_sub_121dc8(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_121e40  0x8c121e40
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_121f38
  */
 u32 asr_sub_121e40(int a0, u32 unused_a1, u32 a2, int *a3, int s0) {
@@ -6240,10 +6240,10 @@ u32 asr_sub_124f5a(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_124faa  0x8c124faa
- * area name: in the asr library code range
+ * asr_module_def_124faa  0x8c124faa
+ * registers an ASR processing module (inputs: 1, outputs: 1, state size 0x40) through 8c120580
  */
-u32 asr_sub_124faa(u32 a0, u32 a1) {
+u32 asr_module_def_124faa(u32 a0, u32 a1) {
     u32 uVar1;
 
     uVar1 = (*(code *)(&asr_sub_120580))(a0, a1, 1, 1, (&DATA_8c124e24), (&DATA_8c124b9c), (&asr_sub_124edc), 0x40);
@@ -6252,7 +6252,7 @@ u32 asr_sub_124faa(u32 a0, u32 a1) {
 
 /*
  * asr_sub_124fe8  0x8c124fe8
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_124fe8(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u16 uVar1;
@@ -6382,7 +6382,7 @@ u32 asr_sub_124fe8(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
 /*
  * asr_sub_12516c  0x8c12516c
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_12516c(int *a0, u32 a1, u32 a2, u32 a3) {
     int a5;
@@ -6404,7 +6404,7 @@ u32 asr_sub_12516c(int *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_1251e4  0x8c1251e4
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_1251e4(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -6477,10 +6477,10 @@ u32 asr_sub_1251e4(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_12538e  0x8c12538e
- * area name: in the asr library code range
+ * asr_module_def_12538e  0x8c12538e
+ * registers an ASR processing module (inputs: 1, outputs: 1, state size 0x48) through 8c120580
  */
-u32 asr_sub_12538e(u32 a0, u32 a1) {
+u32 asr_module_def_12538e(u32 a0, u32 a1) {
     u32 uVar1;
 
     uVar1 = (*(code *)(&asr_sub_120580))(a0, a1, 1, 1, (&asr_sub_124fe8), (&DATA_8c1251dc), (&asr_sub_12516c), 0x48);

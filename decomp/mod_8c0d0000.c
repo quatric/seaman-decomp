@@ -682,7 +682,7 @@ int Class_12b930_sub_0d0b58(int a0, u32 a1) {
 /*
  * CSprinkler_LoadTexture  0x8c0d0bcc
  * loads the SPRINKLER texture list from GRAPHICS\ENV
- * called by: Class_12b930_sub_0de18c, game_sub_0e016c
+ * called by: CWaterTank_create_all, game_sub_0e016c
  * strings: "GRAPHICS\\ENV"; "SPRINKLER"; "SPRINKLER"; "GRAPHICS\\ENV" ...
  */
 u32 CSprinkler_LoadTexture(int *a0, u32 a1, u32 a2, u32 a3) {
@@ -1210,7 +1210,7 @@ int clear_field_eb60(int a0) {
 /*
  * se_close_port_eb4c  0x8c0d1468
  * stops and closes the SE port handle at +0xeb4c
- * called by: game_sub_0e0124
+ * called by: sprinkler_close_sound
  */
 int se_close_port_eb4c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -3214,7 +3214,7 @@ u32 game_sub_0d33bc(u32 a0, u32 unused_a1, u32 a2) {
 /*
  * WATER_ELEMENT_CreateStage0  0x8c0d33e8
  * loads suisou_WaterFace.nj from GRAPHICS\ENV (from its error string)
- * called by: Class_12b930_sub_0de07c
+ * called by: game_sub_0de07c
  * strings: "suisou_WaterFace.nj"; "GRAPHICS\\ENV"; "suisou_WaterFace.nj"; "Failed NJCM:WATER_ELEMENT::CreateStage0()"
  * ...
  */
@@ -3395,7 +3395,7 @@ u32 WATER_ELEMENT_CreateStage0(double *a0, u32 a1, u32 a2) {
 
 /*
  * WATER_ELEMETNT_Create  0x8c0d3770
- * called by: Class_12b930_sub_0de18c
+ * called by: CWaterTank_create_all
  * strings: "suisou_WaterFace_small.nj"; "GRAPHICS\\ENV"; "suisou_WaterFace_small.nj"; "Failed
  * NJCM:WATER_ELEMENT::CreateStage2()" ...
  */
@@ -4622,7 +4622,7 @@ u32 set_field_40_to_1(int a0) {
 /*
  * game_sub_0d4e88  0x8c0d4e88
  * area name: game code; nothing names its area yet
- * called by: Class_12b930_sub_0de07c, game_sub_0de6d0, game_sub_0deb60, game_sub_0def78
+ * called by: game_sub_0de07c, game_sub_0de6d0, game_sub_0deb60, game_sub_0def78
  */
 u8 *game_sub_0d4e88(u32 unused_a0, int a1) {
     float fVar1;
@@ -4746,7 +4746,7 @@ u8 *game_sub_0d4e88(u32 unused_a0, int a1) {
 /*
  * game_sub_0d4f3c  0x8c0d4f3c
  * area name: game code; nothing names its area yet
- * called by: Class_12b930_sub_0de07c, input_sub_0e2a14
+ * called by: game_sub_0de07c, input_sub_0e2a14
  */
 u32 game_sub_0d4f3c(void) {
     u32 uVar1;
@@ -4762,7 +4762,7 @@ u32 game_sub_0d4f3c(void) {
 /*
  * game_sub_0d4f70  0x8c0d4f70
  * area name: game code; nothing names its area yet
- * called by: Class_12b930_sub_0de07c, input_sub_0e2a14
+ * called by: game_sub_0de07c, input_sub_0e2a14
  */
 u32 game_sub_0d4f70(void) {
     u32 uVar1;
@@ -5475,7 +5475,7 @@ int Vec3_sub_0d5de0(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * Vec3_sub_0d5e2c  0x8c0d5e2c
  * area name: sits between Vec3 functions (same compilation unit)
- * called by: Class_12b930_sub_0de07c, game_sub_0d1c3c
+ * called by: game_sub_0d1c3c, game_sub_0de07c
  */
 u32 Vec3_sub_0d5e2c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5551,7 +5551,7 @@ int SoilTank_Createt(int *a0, u32 a1) {
 /*
  * CTexture_LoadFromCache_wrap_0d6058  0x8c0d6058
  * only calls CTexture_LoadFromCache
- * called by: input_sub_0e5ae0
+ * called by: textures_load_3
  */
 u32 CTexture_LoadFromCache_wrap_0d6058(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5563,7 +5563,7 @@ u32 CTexture_LoadFromCache_wrap_0d6058(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CTexture_ReleaseFromVRAM_wrap_0d6074  0x8c0d6074
  * only calls CTexture_ReleaseFromVRAM
- * called by: input_sub_0e5b30
+ * called by: textures_release_3
  */
 u32 CTexture_ReleaseFromVRAM_wrap_0d6074(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9849,7 +9849,7 @@ u32 game_sub_0d9b34(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * obj_load_texlist_28  0x8c0d9b60
  * loads the texture list at +0x28 through the cache and attaches it
- * called by: game_sub_0e0320, game_sub_0e6c8c, input_sub_0e5ae0
+ * called by: game_sub_0e0320, game_sub_0e6c8c, textures_load_3
  */
 u32 obj_load_texlist_28(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9862,7 +9862,7 @@ u32 obj_load_texlist_28(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CTexture_ReleaseFromVRAM_on_field_28  0x8c0d9b8c
  * calls CTexture_ReleaseFromVRAM on the member at +0x28
- * called by: game_sub_0e03d4, game_sub_0e6cd8, input_sub_0e5b30
+ * called by: game_sub_0e03d4, game_sub_0e6cd8, textures_release_3
  */
 u32 CTexture_ReleaseFromVRAM_on_field_28(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -13113,10 +13113,10 @@ u32 *Class_12b930_dtor(u32 *a0, u32 a1) {
 }
 
 /*
- * Class_12b930_sub_0de07c  0x8c0de07c
- * area name: sits between Class_12b930 functions (same compilation unit)
+ * game_sub_0de07c  0x8c0de07c
+ * area name: game code; nothing names its area yet
  */
-u32 Class_12b930_sub_0de07c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_sub_0de07c(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     int ar6_00;
@@ -13165,10 +13165,10 @@ u32 vcall_slot7(int *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12b930_sub_0de18c  0x8c0de18c
- * area name: sits between Class_12b930 functions (same compilation unit)
+ * CWaterTank_create_all  0x8c0de18c
+ * CWaterTank_CreateStage, WATER_ELEMETNT_Create on +0x10ac and CSprinkler_LoadTexture on +0x13b8c
  */
-u32 Class_12b930_sub_0de18c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CWaterTank_create_all(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     CWaterTank_CreateStage(a0, a1, a2);

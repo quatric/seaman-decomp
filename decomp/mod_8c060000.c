@@ -3572,10 +3572,10 @@ u32 vcall_field_8_slot7(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12a0c4_sub_06797c  0x8c06797c
- * area name: sits between Class_12a0c4 functions (same compilation unit)
+ * set_state_flag_40_only_06797c  0x8c06797c
+ * clears state bits 0x10, 0x20, 0x40 of +0x74, then sets 0x40
  */
-u32 Class_12a0c4_sub_06797c(int a0) {
+u32 set_state_flag_40_only_06797c(int a0) {
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) & 0xffffffbf;
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) & 0xffffffef;
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) & 0xffffffdf;

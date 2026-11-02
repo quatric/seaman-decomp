@@ -40,10 +40,10 @@ u32 maple_storage_info(short *a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_1f00f8  0x8c1f00f8
- * area name: in the shinobi library code range
+ * maple_mic_info  0x8c1f00f8
+ * *a0 = the microphone function definition word of device a1; -1 if it has none
  */
-u32 shinobi_sub_1f00f8(u32 *a0, u32 a1) {
+u32 maple_mic_info(u32 *a0, u32 a1) {
     u8 *pbVar1;
 
     pbVar1 = (u8 *)bitmask_table_find(a1, 0x10);
@@ -5219,7 +5219,7 @@ u32 bios_sub_1f3c78(int a0, u32 a1, u32 a2) {
         uVar2 = 0xfffffffe;
     } else {
         shinobi_sub_1f3d9c((u32)(u8)(&g_8c26c684)[a0] * 0xc0 + 0x8c470fb8, a1, a2);
-        iVar1 = shinobi_sub_1efeac(a0, 4, 0, 0);
+        iVar1 = maple_block_write_hooked(a0, 4, 0, 0);
         if (iVar1 < 0) {
             uVar2 = 0xffffffff;
         } else {
@@ -5240,7 +5240,7 @@ u32 bios_sub_1f3cde(u32 a0) {
     if (iVar1 == 0) {
         return 0xfffffffe;
     }
-    iVar1 = shinobi_sub_1efeac(a0, 4, 0, 0);
+    iVar1 = maple_block_write_hooked(a0, 4, 0, 0);
     if (iVar1 < 0) {
         return 0xffffffff;
     }
@@ -7145,7 +7145,7 @@ u32 shinobi_sub_1f550a(int a0, u32 unused_a1, u32 a2) {
 /*
  * maple_get_condition_locked  0x8c1f5556
  * maple_get_condition under the lock byte at 0x8c1f5a2c; -2 if it is held
- * called by: shinobi_sub_1efe14
+ * called by: maple_get_condition_hooked
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
 u32 maple_get_condition_locked(u32 a0, u32 a1) {
@@ -7208,7 +7208,7 @@ u32 maple_get_condition(u32 a0, u32 a1) {
 /*
  * maple_device_request_locked  0x8c1f55b8
  * maple_device_request under the lock byte at 0x8c1f5a2c; -2 if it is held
- * called by: shinobi_sub_1efd7c
+ * called by: maple_device_request_hooked
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
 u32 maple_device_request_locked(u32 a0) {
@@ -7271,7 +7271,7 @@ u32 maple_device_request(u32 a0) {
 /*
  * maple_device_kill_locked  0x8c1f55fc
  * maple_device_kill under the lock byte at 0x8c1f5a2c; -2 if it is held
- * called by: shinobi_sub_1efdee
+ * called by: maple_device_kill_hooked
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
 u32 maple_device_kill_locked(u32 a0) {
@@ -7334,7 +7334,7 @@ u32 maple_device_kill(u32 a0) {
 /*
  * maple_device_reset_locked  0x8c1f5640
  * maple_device_reset under the lock byte at 0x8c1f5a2c; -2 if it is held
- * called by: shinobi_sub_1efdc8
+ * called by: maple_device_reset_hooked
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
 u32 maple_device_reset_locked(u32 a0) {
@@ -7397,7 +7397,7 @@ u32 maple_device_reset(u32 a0) {
 /*
  * maple_all_status_request_locked  0x8c1f5684
  * maple_all_status_request under the lock byte at 0x8c1f5a2c; -2 if it is held
- * called by: shinobi_sub_1efda2
+ * called by: maple_all_status_request_hooked
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
 u32 maple_all_status_request_locked(u32 a0) {
@@ -7583,7 +7583,7 @@ u32 maple_block_read(u32 a0, u32 a1, int a2, int a3, u32 s0) {
 /*
  * maple_block_write_locked  0x8c1f577a
  * maple_block_write under the lock byte at 0x8c1f5a2c; -2 if it is held
- * called by: shinobi_sub_1efeac
+ * called by: maple_block_write_hooked
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
 u32 maple_block_write_locked(u32 a0, u32 a1, u32 a2, u32 a3) {
@@ -7705,7 +7705,7 @@ u32 maple_block_complete(u32 a0, u32 a1, int a2, int a3, u32 s0) {
 /*
  * maple_queue_frame_wrap_locked  0x8c1f5850
  * maple_queue_frame_wrap under the lock byte at 0x8c1f5a2c; -2 if it is held
- * called by: shinobi_sub_1eff9c
+ * called by: maple_queue_frame_wrap_hooked
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
 u32 maple_queue_frame_wrap_locked(u32 a0) {
@@ -7767,7 +7767,7 @@ u32 maple_queue_frame_wrap(u32 a0) {
 /*
  * maple_cmd16_func20_locked  0x8c1f5894
  * maple_cmd16_func20 under the lock byte at 0x8c1f5a2c; -2 if it is held
- * called by: shinobi_sub_1eff0c
+ * called by: maple_cmd16_func20_hooked
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
 u32 maple_cmd16_func20_locked(u32 a0, u32 a1) {
@@ -7829,7 +7829,7 @@ u32 maple_cmd16_func20(u32 a0, u32 a1) {
 /*
  * maple_cmd15_func10_locked  0x8c1f58e4
  * maple_cmd15_func10 under the lock byte at 0x8c1f5a2c; -2 if it is held
- * called by: shinobi_sub_1eff32
+ * called by: maple_cmd15_func10_hooked
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
 u32 maple_cmd15_func10_locked(u32 a0, u32 a1) {
@@ -16261,7 +16261,7 @@ u32 shinobi_sub_1fd312(int a0, int a1, char *a2, u32 *a3) {
                     a2 = NULL;
                     uVar4 = ar4_00;
                     a3 = ar7_00;
-                    iVar2 = shinobi_sub_1efeac(ar4_00, 2, 0, ar7_00);
+                    iVar2 = maple_block_write_hooked(ar4_00, 2, 0, ar7_00);
                     if (-1 < iVar2)
                         break;
                     thunk_FUN_8c1f6a30();

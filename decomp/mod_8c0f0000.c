@@ -1036,10 +1036,10 @@ u32 set_state_flag_40_74(int a0) {
 }
 
 /*
- * game_sub_0f4c5c  0x8c0f4c5c
- * area name: game code; nothing names its area yet
+ * post_inc_70  0x8c0f4c5c
+ * returns the counter at +0x70 and increments it
  */
-int game_sub_0f4c5c(int a0) {
+int post_inc_70(int a0) {
     int iVar1;
 
     iVar1 = *(int *)(a0 + 0x70);
@@ -1072,10 +1072,10 @@ u32 Vec3_add_assign_on_field_30(int a0, u32 a1) {
 }
 
 /*
- * Vec3_sub_0f4cf0  0x8c0f4cf0
- * area name: sits between Vec3 functions (same compilation unit)
+ * Vec3_add_to_50  0x8c0f4cf0
+ * adds the vector a1 to the vector at +0x50
  */
-float *Vec3_sub_0f4cf0(int a0, float *a1) {
+float *Vec3_add_to_50(int a0, float *a1) {
     *(float *)(a0 + 0x50) = *(float *)(a0 + 0x50) + *a1;
     *(float *)(a0 + 0x54) = *(float *)(a0 + 0x54) + a1[1];
     *(float *)(a0 + 0x58) = *(float *)(a0 + 0x58) + a1[2];
@@ -1731,10 +1731,10 @@ u32 Class_12c058_m1_0f5660(int a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * Class_12c058_sub_0f56e8  0x8c0f56e8
- * area name: sits between Class_12c058 functions (same compilation unit)
+ * sink_until_minus100  0x8c0f56e8
+ * lowers +0x34 by 0.1 per call; at -100 clears the active bit 31 of +0x74
  */
-u32 Class_12c058_sub_0f56e8(int a0) {
+u32 sink_until_minus100(int a0) {
     *(float *)(a0 + 0x34) = *(float *)(a0 + 0x34) - 0.1;
     if (*(float *)(a0 + 0x34) <= -100.0) {
         *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) & 0x7fffffff;
@@ -2056,10 +2056,10 @@ u32 vcall_field_8_slot7_0f5d80(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12bec0_sub_0f5d98  0x8c0f5d98
- * area name: sits between Class_12bec0 functions (same compilation unit)
+ * set_state_flag_40_only  0x8c0f5d98
+ * clears state bits 0x10, 0x20, 0x40 of +0x74, then sets 0x40
  */
-u32 Class_12bec0_sub_0f5d98(int a0) {
+u32 set_state_flag_40_only(int a0) {
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) & 0xffffffbf;
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) & 0xffffffef;
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) & 0xffffffdf;

@@ -12530,7 +12530,7 @@ u32 ninja_sub_257120(u32 a0) {
 
 /*
  * thunk_FUN_8c20a1d0  0x8c25713c
- * called by: Class_12b930_sub_0de07c, WEATHRE_UNIT_CreateGraphics, game_sub_0d1c3c, game_sub_0d8400
+ * called by: WEATHRE_UNIT_CreateGraphics, game_sub_0d1c3c, game_sub_0d8400, game_sub_0de07c
  */
 u32 thunk_FUN_8c20a1d0(u32 a0) {
     u32 uVar1;
