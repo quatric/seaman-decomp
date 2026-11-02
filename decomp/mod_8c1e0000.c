@@ -881,8 +881,8 @@ u32 thunk_FUN_8c1f4646(void) {
 /*
  * bitmask_table_find  0x8c1efffa
  * entry a1 of a table whose first word flags which of 32 entries follow; NULL if absent
- * called by: maple_clock_info, maple_controller_caps, maple_lcd_info, maple_mic_info, maple_storage_info,
- * shinobi_sub_1f01e8, shinobi_sub_1f0232
+ * called by: maple_argun_info, maple_clock_info, maple_controller_caps, maple_lcd_info, maple_mic_info,
+ * maple_storage_info, maple_vibration_info
  */
 u32 *bitmask_table_find(u32 *a0, u32 a1) {
     int iVar1;

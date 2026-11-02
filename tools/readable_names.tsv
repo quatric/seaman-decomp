@@ -1189,3 +1189,17 @@
 8c122604	asr_call_11f5d2_err	calls 8c11f5d2 on the handle; the library error code when it fails, else 0
 8c122630	asr_call_11f66a_err	calls 8c11f66a on the handle; the library error code when it fails, else 0
 8c122638	asr_call_11f66a_err	calls 8c11f66a on the handle; the library error code when it fails, else 0
+8c1f148c	gd_cmd_gettoc2_like	queues GD-ROM command 0x13 (GETTOC2 in the usual numbering) with parameter a0
+8c1f141a	gd_cmd_play_like	queues GD-ROM command 0x14 (PLAY) with parameters from a0
+8c1f143c	gd_cmd_play_sectors_like	queues GD-ROM command 0x15 (PLAY2: play a sector range) with parameters from a0
+8c1f146e	gd_cmd_release_like	queues GD-ROM command 0x17 (RELEASE) with parameter a0
+8c1f139e	gd_cmd_seek_like	queues GD-ROM command 0x1b (SEEK) with parameter a0
+8c1f126a	gd_cmd_dmaread_stream_like	queues GD-ROM command 0x1c (DMA stream read) with parameter a0
+8c1f14a8	gd_cmd_getscd_like	queues GD-ROM command 0x22 (GETSCD: subcode data) with parameters from a0
+8c1f14de	gd_cmd_req_stat_like	queues GD-ROM command 0x24 (REQ_STAT) with parameters from a0
+8c1f14fe	gd_cmd_get_version_like	queues GD-ROM command 0x28 (GET_VERS) with parameter a0
+8c1f13f0	gd_drive_not_ready	0 when bios_gdrom_check_drive reports 1, else 1
+8c1f097e	copy_bytes	copies a2 bytes from a0 to a1
+8c1f01e8	maple_argun_info	*a0 = the function definition word for function 0x20 (AR gun) of device a1; -1 if it has none
+8c1f0232	maple_vibration_info	decodes device a1's vibration (function 0x100) definition bytes into a0[0], a0[1]
+8c1f38c0	gdfs_install_driver	sets the GD driver to the table at 8c26c4a4 and initialises it

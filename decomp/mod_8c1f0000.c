@@ -94,10 +94,10 @@ u32 maple_clock_info(u8 *a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_1f01e8  0x8c1f01e8
- * area name: in the shinobi library code range
+ * maple_argun_info  0x8c1f01e8
+ * *a0 = the function definition word for function 0x20 (AR gun) of device a1; -1 if it has none
  */
-u32 shinobi_sub_1f01e8(u32 *a0, u32 a1) {
+u32 maple_argun_info(u32 *a0, u32 a1) {
     u8 *pbVar1;
 
     pbVar1 = (u8 *)bitmask_table_find(a1, 0x20);
@@ -109,10 +109,10 @@ u32 shinobi_sub_1f01e8(u32 *a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_1f0232  0x8c1f0232
- * area name: in the shinobi library code range
+ * maple_vibration_info  0x8c1f0232
+ * decodes device a1's vibration (function 0x100) definition bytes into a0[0], a0[1]
  */
-u32 shinobi_sub_1f0232(u32 *a0, u32 a1) {
+u32 maple_vibration_info(u32 *a0, u32 a1) {
     u8 *pbVar1;
 
     pbVar1 = (u8 *)bitmask_table_find(a1, (int)0x100);
@@ -758,10 +758,10 @@ u32 copy_words(u32 *a0, u32 *a1, int a2) {
 }
 
 /*
- * shinobi_sub_1f097e  0x8c1f097e
- * area name: in the shinobi library code range
+ * copy_bytes  0x8c1f097e
+ * copies a2 bytes from a0 to a1
  */
-u32 shinobi_sub_1f097e(u8 *a0, u8 *a1, int a2) {
+u32 copy_bytes(u8 *a0, u8 *a1, int a2) {
     u8 uVar1;
     u32 in_r0;
     bool bVar2;
@@ -1528,8 +1528,8 @@ u32 crc16_ccitt(int a0, u8 *a1) {
 /*
  * bios_gdrom_send_cmd  0x8c1f10d8
  * BIOS GD-ROM call 0 (vector 0x8c0000bc): queues a drive command
- * called by: bios_gdrom_send_cmd_wrap, bios_gdrom_send_cmd_wrap_1f145e, bios_sub_1f11ea, bios_sub_1f126a,
- * bios_sub_1f139e, bios_sub_1f141a, bios_sub_1f143c, bios_sub_1f146e (+4 more)
+ * called by: bios_gdrom_send_cmd_wrap, bios_gdrom_send_cmd_wrap_1f145e, bios_sub_1f11ea, gd_cmd_dmaread_stream_like,
+ * gd_cmd_get_version_like, gd_cmd_getscd_like, gd_cmd_gettoc2_like, gd_cmd_play_like (+4 more)
  */
 u32 bios_gdrom_send_cmd(u32 a0, u32 a1) {
     u32 uVar1;
@@ -1585,7 +1585,7 @@ u32 bios_gdrom_init(void) {
 /*
  * bios_gdrom_check_drive  0x8c1f1128
  * BIOS GD-ROM call 4: drive status and disc type
- * called by: bios_sub_1f13f0
+ * called by: gd_drive_not_ready
  */
 u32 bios_gdrom_check_drive(void) {
     u32 uVar1;
@@ -1668,10 +1668,10 @@ int bios_sub_1f11ea(u32 a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * bios_sub_1f126a  0x8c1f126a
- * area name: sits between bios functions (same compilation unit)
+ * gd_cmd_dmaread_stream_like  0x8c1f126a
+ * queues GD-ROM command 0x1c (DMA stream read) with parameter a0
  */
-u32 bios_sub_1f126a(u32 a0, u32 a1) {
+u32 gd_cmd_dmaread_stream_like(u32 a0, u32 a1) {
     u32 uVar1;
     u32 uStack_10;
 
@@ -1780,10 +1780,10 @@ u32 bios_sub_1f12de(u32 unused_a0, u32 *a1) {
 }
 
 /*
- * bios_sub_1f139e  0x8c1f139e
- * area name: sits between bios functions (same compilation unit)
+ * gd_cmd_seek_like  0x8c1f139e
+ * queues GD-ROM command 0x1b (SEEK) with parameter a0
  */
-u32 bios_sub_1f139e(u32 a0) {
+u32 gd_cmd_seek_like(u32 a0) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -1806,10 +1806,10 @@ u32 bios_gdrom_send_cmd_wrap(void) {
 }
 
 /*
- * bios_sub_1f13f0  0x8c1f13f0
- * area name: sits between bios functions (same compilation unit)
+ * gd_drive_not_ready  0x8c1f13f0
+ * 0 when bios_gdrom_check_drive reports 1, else 1
  */
-u32 bios_sub_1f13f0(void) {
+u32 gd_drive_not_ready(void) {
     int iVar1;
 
     iVar1 = bios_gdrom_check_drive();
@@ -1831,10 +1831,10 @@ u32 bios_gdrom_call7_like_wrap(void) {
 }
 
 /*
- * bios_sub_1f141a  0x8c1f141a
- * area name: sits between bios functions (same compilation unit)
+ * gd_cmd_play_like  0x8c1f141a
+ * queues GD-ROM command 0x14 (PLAY) with parameters from a0
  */
-u32 bios_sub_1f141a(u32 a0, u32 a1, u32 a2) {
+u32 gd_cmd_play_like(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
     u32 uStack_18;
     u32 uStack_c;
@@ -1846,10 +1846,10 @@ u32 bios_sub_1f141a(u32 a0, u32 a1, u32 a2) {
 }
 
 /*
- * bios_sub_1f143c  0x8c1f143c
- * area name: sits between bios functions (same compilation unit)
+ * gd_cmd_play_sectors_like  0x8c1f143c
+ * queues GD-ROM command 0x15 (PLAY2: play a sector range) with parameters from a0
  */
-u32 bios_sub_1f143c(u32 a0, u32 a1, u32 a2) {
+u32 gd_cmd_play_sectors_like(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
     u32 uStack_18;
     u32 uStack_c;
@@ -1872,10 +1872,10 @@ u32 bios_gdrom_send_cmd_wrap_1f145e(void) {
 }
 
 /*
- * bios_sub_1f146e  0x8c1f146e
- * area name: sits between bios functions (same compilation unit)
+ * gd_cmd_release_like  0x8c1f146e
+ * queues GD-ROM command 0x17 (RELEASE) with parameter a0
  */
-u32 bios_sub_1f146e(u32 a0) {
+u32 gd_cmd_release_like(u32 a0) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -1887,10 +1887,10 @@ u32 bios_sub_1f146e(u32 a0) {
 }
 
 /*
- * bios_sub_1f148c  0x8c1f148c
- * area name: sits between bios functions (same compilation unit)
+ * gd_cmd_gettoc2_like  0x8c1f148c
+ * queues GD-ROM command 0x13 (GETTOC2 in the usual numbering) with parameter a0
  */
-u32 bios_sub_1f148c(u32 a0, u32 a1) {
+u32 gd_cmd_gettoc2_like(u32 a0, u32 a1) {
     u32 uVar1;
     u32 uStack_10;
 
@@ -1900,10 +1900,10 @@ u32 bios_sub_1f148c(u32 a0, u32 a1) {
 }
 
 /*
- * bios_sub_1f14a8  0x8c1f14a8
- * area name: sits between bios functions (same compilation unit)
+ * gd_cmd_getscd_like  0x8c1f14a8
+ * queues GD-ROM command 0x22 (GETSCD: subcode data) with parameters from a0
  */
-u32 bios_sub_1f14a8(u32 a0, u32 a1, u32 a2) {
+u32 gd_cmd_getscd_like(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
     u32 uStack_18;
     u32 uStack_c;
@@ -1924,10 +1924,10 @@ u32 bios_gdrom_mainloop_wrap(void) {
 }
 
 /*
- * bios_sub_1f14de  0x8c1f14de
- * area name: sits between bios functions (same compilation unit)
+ * gd_cmd_req_stat_like  0x8c1f14de
+ * queues GD-ROM command 0x24 (REQ_STAT) with parameters from a0
  */
-u32 bios_sub_1f14de(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 gd_cmd_req_stat_like(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uStack_18;
 
@@ -1937,10 +1937,10 @@ u32 bios_sub_1f14de(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * bios_sub_1f14fe  0x8c1f14fe
- * area name: sits between bios functions (same compilation unit)
+ * gd_cmd_get_version_like  0x8c1f14fe
+ * queues GD-ROM command 0x28 (GET_VERS) with parameter a0
  */
-u32 bios_sub_1f14fe(u32 a0) {
+u32 gd_cmd_get_version_like(u32 a0) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -2527,7 +2527,7 @@ u32 thunk_FUN_8c1f38c0(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gdfs_sub_1f1d8c  0x8c1f1d8c
  * area name: sits between gdfs functions (same compilation unit)
- * called by: gdfs_sub_1f38c0
+ * called by: gdfs_install_driver
  */
 u32 gdfs_sub_1f1d8c(int a0, int *a1, u32 a2, u32 a3, int s0) {
     char cVar1;
@@ -4969,10 +4969,10 @@ u32 gdfs_get_err_like(int a0) {
 }
 
 /*
- * gdfs_sub_1f38c0  0x8c1f38c0
- * area name: sits between gdfs functions (same compilation unit)
+ * gdfs_install_driver  0x8c1f38c0
+ * sets the GD driver to the table at 8c26c4a4 and initialises it
  */
-u32 gdfs_sub_1f38c0(void) {
+u32 gdfs_install_driver(void) {
     u32 uVar1;
 
     g_8c2739f0 = &g_8c26c4a4;
