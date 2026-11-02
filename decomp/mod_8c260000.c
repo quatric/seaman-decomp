@@ -3188,7 +3188,7 @@ u32 cri_lib_finish(int *a0, u32 a1, u32 unused_a2, u32 a3, u32 ain0) {
         irq_disable_nested(a0, a1, unused_a2, a3, in_PR);
         iVar2 = g_8c278470;
         if (g_8c278470 != 0) {
-            shinobi_uses_ret_const_1_1fa54c(g_8c278470);
+            shinobi_draw_1fa54c(g_8c278470);
             g_8c278470 = 0;
         }
         irq_restore_nested(iVar2, a1, unused_a2, a3, in_PR);

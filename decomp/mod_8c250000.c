@@ -14465,12 +14465,12 @@ u32 set_g_8c4aa558(u32 a0) {
 }
 
 /*
- * ninja_uses_ret_const_1_2580c6  0x8c2580c6
- * area name: in the ninja library code range; behaviour name: its callees mostly do: uses_ret_const_1
+ * ninja_draw_2580c6  0x8c2580c6
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
  */
-u32 ninja_uses_ret_const_1_2580c6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ninja_draw_2580c6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     if (g_8c4aa6dc != 0) {
-        ain0 = shinobi_uses_ret_const_1_1fa54c(g_8c4ab334);
+        ain0 = shinobi_draw_1fa54c(g_8c4ab334);
     }
     g_8c277c68 = g_8c277c68 + 1;
     return ain0;
@@ -14758,7 +14758,7 @@ u32 pvr_25825a(u32 a0, int a1, u32 a2, u32 a3) {
     if ((a0 & 0x40) != 0) {
         uVar4 = a0 & 0xe0000;
         g_8c4aa6e0 = (int)(short)((int)uVar4 >> 0x11);
-        shinobi_calls_update_fields_2078d8(ninja_update_fields_258252, 0);
+        pvr_event_handler_set_wrap_2078d8(ninja_update_fields_258252, 0);
         if (g_8c4aa50c == 0xf0) {
             if (uVar4 == 0) {
                 g_8c4aa50c = 0xf8;
@@ -14811,10 +14811,10 @@ u32 pvr_25825a(u32 a0, int a1, u32 a2, u32 a3) {
     g_8c4aacec = g_8c4aacf8;
     g_8c4aacf0 = g_8c4aacf8;
     g_8c4aacf4 = g_8c4aacf8;
-    pvr_calls_update_fields_20757e(ninja_calc_258096, 0);
+    pvr_event_handler_set_wrap(ninja_calc_258096, 0);
     ar5_00 = 0;
-    shinobi_calls_update_fields_20786a(ninja_calc_2580b8, 0);
-    shinobi_calls_update_fields_2078be(set_g_8c4aa558);
+    pvr_event_handler_set_wrap_20786a(ninja_calc_2580b8, 0);
+    pvr_event_handler_set_wrap_2078be(set_g_8c4aa558);
     uVar2 = g_8c4aa4ec;
     pvr_test_20a786(g_8c4aa4ec);
     uVar2 = ninja_draw_2588f8();
@@ -14964,7 +14964,7 @@ u32 ninja_uses_aica_reg_258604(u32 a0, u32 a1, u32 a2) {
         goto LAB_8c258846;
     uVar6 = 0xe0000 & a0;
     g_8c4aa6e0 = (int)(short)((int)uVar6 >> 0x11);
-    shinobi_calls_update_fields_2078d8((&ninja_update_fields_258252), 0);
+    pvr_event_handler_set_wrap_2078d8((&ninja_update_fields_258252), 0);
     if (*piVar3 == (int)0xf0) {
         sVar1 = 0xf8;
         if (uVar6 != 0) {
@@ -15017,11 +15017,11 @@ LAB_8c258846:
     g_8c4aa6d4 = 0;
     g_8c4aa6d8 = 1;
     g_8c4aa558 = 0;
-    pvr_calls_update_fields_20757e((&ninja_calc_258096), 0);
+    pvr_event_handler_set_wrap((&ninja_calc_258096), 0);
     uVar5 = 0;
-    shinobi_calls_update_fields_20786a((&ninja_calc_2580b8), 0);
+    pvr_event_handler_set_wrap_20786a((&ninja_calc_2580b8), 0);
     a4 = (&set_g_8c4aa558);
-    shinobi_calls_update_fields_2078be((&set_g_8c4aa558));
+    pvr_event_handler_set_wrap_2078be((&set_g_8c4aa558));
     screen_reset_view();
     uVar8 = pvr_test_20aed8(0);
     return uVar8;
@@ -15622,7 +15622,7 @@ int ninja_set_event900_callback(int a0) {
 
     piVar1 = 0x8c4ab330;
     if (g_8c4ab330 != 0) {
-        in_r0 = shinobi_uses_ret_const_1_1fa54c(g_8c4ab330);
+        in_r0 = shinobi_draw_1fa54c(g_8c4ab330);
         *piVar1 = 0;
     }
     if (a0 != 0) {
@@ -24010,7 +24010,7 @@ u32 pvr_pack_display_regs(void) {
 /*
  * pvr_uses_libgcc_divide_helper_25dc60  0x8c25dc60
  * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is
- * libgcc_divide_helper_010468 called by: kamui_set_display_mode_cfg, shinobi_draw_207da0
+ * libgcc_divide_helper_010468 called by: kamui_set_display_mode_cfg, pvr_display_mode_restart
  */
 u32 pvr_uses_libgcc_divide_helper_25dc60(int a0, u32 a1, int a2, int a3) {
     int iVar1;
@@ -24590,7 +24590,7 @@ u32 ninja_draw_25eb60(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 
 /*
  * ret_const_1_25eca0  0x8c25eca0
- * called by: pvr_uses_ret_const_1_20759a
+ * called by: pvr_draw_20759a
  */
 u32 ret_const_1_25eca0(u32 a0) {
     return 1;
@@ -24598,7 +24598,7 @@ u32 ret_const_1_25eca0(u32 a0) {
 
 /*
  * ret_const_1_25eca4  0x8c25eca4
- * called by: pvr_uses_ret_const_1_2075bc
+ * called by: pvr_draw_2075bc
  */
 u32 ret_const_1_25eca4(void) {
     return 1;

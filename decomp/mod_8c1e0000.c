@@ -593,8 +593,8 @@ u32 pvr_uses_maple_reset_dma_1efcae(u32 a0, u32 a1, u32 a2, u32 a3) {
     bVar3 = ((bVar3 | (u8)(((u32)in_MD << 0x1e) >> 0x18)) & 0x40) >> 6;
     *0xa05f6920 = *0xa05f6920 & (int)(int)0xffffcfff;
     iVar2 = 0x8c470910;
-    puVar1 = (&shinobi_uses_ret_const_1_1fa54c);
-    shinobi_uses_ret_const_1_1fa54c(*(u32 *)(0x8c470910 + 0xc));
+    puVar1 = (&shinobi_draw_1fa54c);
+    shinobi_draw_1fa54c(*(u32 *)(0x8c470910 + 0xc));
     (*(code *)puVar1)(*(u32 *)(iVar2 + 0x10), a1, a2, a3);
     (*(code *)puVar1)(*(u32 *)(iVar2 + 8), a1, a2, a3);
     ar4_00 = *(u32 *)(iVar2 + 4);

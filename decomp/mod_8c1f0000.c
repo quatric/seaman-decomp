@@ -2916,10 +2916,10 @@ u32 gdfs_shutdown(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     int iVar1;
 
     if (g_8c2739e4 != 0) {
-        ain0 = shinobi_uses_ret_const_1_1fa54c(g_8c2739e4);
+        ain0 = shinobi_draw_1fa54c(g_8c2739e4);
     }
     if (g_8c2739e8 != 0) {
-        ain0 = shinobi_uses_ret_const_1_1fa54c(g_8c2739e8);
+        ain0 = shinobi_draw_1fa54c(g_8c2739e8);
     }
     g_8c2739e4 = 0;
     g_8c2739e8 = 0;
@@ -2941,10 +2941,10 @@ u32 gdfs_shutdown_alt(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 ain0, int *ain1
     int iVar1;
 
     if (*ain1 != 0) {
-        ain0 = shinobi_uses_ret_const_1_1fa54c(*ain1);
+        ain0 = shinobi_draw_1fa54c(*ain1);
     }
     if (g_8c2739e8 != 0) {
-        ain0 = shinobi_uses_ret_const_1_1fa54c(g_8c2739e8);
+        ain0 = shinobi_draw_1fa54c(g_8c2739e8);
     }
     g_8c2739e4 = 0;
     g_8c2739e8 = 0;
@@ -11352,7 +11352,7 @@ u32 shinobi_remove_event900(void) {
     u32 uVar1;
 
     g_8c474a10 = 0;
-    uVar1 = shinobi_uses_ret_const_1_1fa54c(g_8c474a18);
+    uVar1 = shinobi_draw_1fa54c(g_8c474a18);
     return uVar1;
 }
 
@@ -13137,9 +13137,9 @@ u32 irq_add_handler(u32 a0, u32 a1, u32 a2, u32 a3) {
             if (iVar3 < 0x900) {
                 *(u8 **)((int)0x200 + in_VBR + ((int)0xfffffe00 + iVar3 >> 3)) = (&int_call_handlers);
             } else if (iVar3 == 0x900) {
-                pvr_uses_ret_const_1_20759a((&DATA_8c1fa416), 0, ar6_00, 0x80000000);
+                pvr_draw_20759a((&DATA_8c1fa416), 0, ar6_00, 0x80000000);
             } else if (iVar3 == 0x920) {
-                pvr_uses_ret_const_1_2075bc((&DATA_8c1fa460), 0, ar6_00, 0x80000000);
+                pvr_draw_2075bc((&DATA_8c1fa460), 0, ar6_00, 0x80000000);
             } else {
                 *(u8 **)(0x22c + in_VBR) = (&DATA_8c1fa486);
             }
@@ -13315,12 +13315,12 @@ u32 *holly_irq_dispatch(void) {
 }
 
 /*
- * shinobi_uses_ret_const_1_1fa54c  0x8c1fa54c
- * area name: in the shinobi library code range; behaviour name: its callees mostly do: uses_ret_const_1
- * called by: cri_lib_finish, gdfs_shutdown, gdfs_shutdown_alt, ninja_set_event900_callback,
- * ninja_uses_ret_const_1_2580c6, pvr_uses_maple_reset_dma_1efcae, shinobi_remove_event900, ta_copy_2019e0
+ * shinobi_draw_1fa54c  0x8c1fa54c
+ * area name: in the shinobi library code range; behaviour name: mostly calls draw functions
+ * called by: cri_lib_finish, gdfs_shutdown, gdfs_shutdown_alt, ninja_draw_2580c6, ninja_set_event900_callback,
+ * pvr_uses_maple_reset_dma_1efcae, shinobi_remove_event900, ta_copy_2019e0
  */
-u32 shinobi_uses_ret_const_1_1fa54c(int a0) {
+u32 shinobi_draw_1fa54c(int a0) {
     u32 *puVar1;
     u32 *puVar2;
     short sVar3;
@@ -13394,12 +13394,12 @@ u32 shinobi_uses_ret_const_1_1fa54c(int a0) {
                 *(u32 *)(iVar5 + 0xc) = 0;
                 if (*ar6_00 == 0) {
                     if (uVar9 == uVar4) {
-                        pvr_uses_ret_const_1_20759a(0, 0, ar6_00, uVar4);
+                        pvr_draw_20759a(0, 0, ar6_00, uVar4);
                         bVar14 = extraout_M;
                         bVar15 = extraout_Q;
                         bVar17 = extraout_S;
                     } else if (uVar9 == (int)0x92) {
-                        pvr_uses_ret_const_1_2075bc(0, 0, ar6_00, uVar4);
+                        pvr_draw_2075bc(0, 0, ar6_00, uVar4);
                         bVar14 = extraout_M_00;
                         bVar15 = extraout_Q_00;
                         bVar17 = extraout_S_00;

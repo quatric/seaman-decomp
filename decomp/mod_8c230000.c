@@ -8336,15 +8336,15 @@ u32 gfxlib_uses_ta_fifo_233f98(int a0, u32 a1, u32 a2) {
     g_8c4aa390 = 0xffbfbfbf;
     g_8c4aa394 = 0x41000000;
     if (a0 == 0) {
-        pvr_uses_ta_fifo_20c90c(0x8c4aa398, 0x80, 0x80, 0x300);
+        kamui_uses_ta_fifo_20c90c(0x8c4aa398, 0x80, 0x80, 0x300);
         ar7_00 = 0;
         ar6_00 = 0;
-        kamui_uses_vram64_20cb5a(0x8c4aa398, &g_8c273be8, 0, 0);
+        tex_uses_vram64_20cb5a(0x8c4aa398, &g_8c273be8, 0, 0);
     } else {
-        pvr_uses_ta_fifo_20c90c(0x8c4aa398, a1, a1, a2);
+        kamui_uses_ta_fifo_20c90c(0x8c4aa398, a1, a1, a2);
         ar7_00 = 0;
         ar6_00 = 0;
-        kamui_uses_vram64_20cb5a(0x8c4aa398, a0, 0, 0);
+        tex_uses_vram64_20cb5a(0x8c4aa398, a0, 0, 0);
     }
     g_8c4aaa3c = 0xf00608;
     g_8c4aaa40 = 2;

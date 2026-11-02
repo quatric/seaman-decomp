@@ -158,7 +158,7 @@ int kamui_uses_ta_fifo_21092e(u32 *a0, int a1, int a2, int a3, int s0) {
 /*
  * kamui_fill_loop_210cc0  0x8c210cc0
  * area name: in the kamui library code range; behaviour name: a loop that writes memory
- * called by: kamui_draw_20bdc0, kamui_draw_20c416, kamui_draw_20c7e0, ta_copy_20b7a0, ta_draw_20b5a0
+ * called by: kamui_draw_20bdc0, kamui_draw_20c416, kamui_draw_20c7e0, pvr_start_render, ta_copy_20b7a0
  */
 u32 kamui_fill_loop_210cc0(u32 a0) {
     int *piVar1;
@@ -1156,8 +1156,8 @@ u32 get_g_8c2758e8(void) {
 /*
  * kamui_fill_loop_21214e  0x8c21214e
  * area name: sits between kamui functions (same compilation unit); behaviour name: a loop that writes memory
- * called by: alt_entry_207f84, kamui_set_display_mode_cfg, kamui_uses_kamui_cfg_texture_memory_211120, pvr_draw_20a6f2,
- * shinobi_draw_207da0, shinobi_draw_207f80
+ * called by: alt_entry_207f84, kamui_set_display_mode_cfg, kamui_uses_kamui_cfg_texture_memory_211120,
+ * pvr_display_mode_restart, pvr_draw_207f80, pvr_draw_20a6f2
  */
 int *kamui_fill_loop_21214e(void) {
     u32 *puVar1;

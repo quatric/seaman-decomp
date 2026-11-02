@@ -2177,3 +2177,21 @@
 8c204cfc	vram_block_free_merge	moves block a1 of pool a0 from the used to the free list, merging it with adjacent free blocks
 8c204f2a	vram64_copy_chunked	copies a2 bytes of VRAM from a1 to a0 through a 2 KB stack buffer, writing back the cache for each chunk
 8c205020	dlist_sort_desc_c	selection-sorts the doubly linked list (head a0, tail a1) by the +0xc field, largest first
+8c2073f8	pvr_event_handler_reset	puts the default handler back into PVR event slot a1 (0..8) of table a0
+8c207502	pvr_event_handler_set	sets PVR event slot a1 to handler a2 with argument a3, or back to the default when a2 is 0
+8c2076f6	pvr_get_display_line	reads the current scanline (SPG_STATUS when enabled), converts it to a display line for the video mode and stores it in *a0
+8c207da0	pvr_display_mode_restart	waits for a frame, reprograms the display size, sync and video registers for the current mode and redraws the border
+8c2087e4	ta_send_triangle_tex_a	copies three textured vertices (position, optional UV and colour words) into the parameter buffer and sends the triangle
+8c2098c0	ta_send_triangle_tex_b	a second copy of ta_send_triangle_tex_a: three textured vertices with optional UV and colour words, sent to the TA
+8c208980	ta_send_triangle_tex_color_a	copies three textured vertices with optional packed colours (the offset colour taken from the first vertex) and sends the triangle
+8c209a40	ta_send_triangle_tex_color_b	copies three textured vertices with optional packed colours (the second vertex's colour taken from the first) and sends the triangle
+8c20a52c	pvr_set_top_margin	sets the display's top margin (0, or 8/16 lines by mode), shifts the frame buffer addresses to match and rewrites FB_R_SIZE
+8c20b5a0	pvr_start_render	sets the render's region array, object list, ISP base and frame buffer registers, waits out a pending render and starts the next one
+8c20c980	tex_alloc_double	validates texture a0, copies its header to a1 and gives both a VRAM area (small or normal), releasing the first when the second fails
+8c20ca32	tex_alloc_array	validates texture a0, copies its header into a1 entries and places all of them in one VRAM block; 3 when out of memory
+8c20cd92	tex_load_yuv_dma	programs the YUV converter (0x148/0x14c) for a2 x a3 macroblocks in format s0 (YUV420 or 422) and DMAs a1 into it
+8c20d400	tex_dim_to_index	returns the size index of the smaller of a0 and a1 (1 -> 0 ... 0x400 -> 10, 3 otherwise)
+8c20d5b2	tex_pal_size_units	returns palettised texture a0's size including mipmaps, halved for 4-bit texels
+8c20d9ce	tex_write_mip_level_8	writes mipmap level a2 of texture a0 from a1; levels below 3 are merged into the first 8 bytes in VRAM
+8c20daa0	tex_write_mip_level_16	writes mipmap level a2 of texture a0 from a1; levels below 3 are merged into the first 16 bytes in VRAM
+8c20db80	tex_vq_write_mip_level	writes VQ mipmap level a2 of texture a0 from a1 after the 0x800-byte codebook, merging unaligned edges through 16-byte reads
