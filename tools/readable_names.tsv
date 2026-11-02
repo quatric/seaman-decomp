@@ -2145,3 +2145,21 @@
 8c1fd8fc	vmu_drive_set_buffer	gives the VMU on port a0 the work buffer a1 (sized by drive type) and lays out its root, FAT and directory areas with marker fills
 8c1fdab0	vmu_drive_mount	reads and validates the root block of the VMU on port a0 and loads its FAT and directory; returns 0xffffff83 on a bad root block
 8c1fdbaa	vmu_drive_mount_cached	reads and validates the root block of the VMU on port a0 and reads the FAT into the shared cache; returns a size code by drive type
+8c1fe236	vmu_get_drive_info	fills a1 with the VMU on port a0's info: volume label, format date, block counts, free user and extra blocks, icon shape
+8c1fe466	vmu_count_free_blocks	counts the free (0xfffc) FAT entries in the user area of the VMU on port a0
+8c1fe7aa	vmu_file_create	deletes any file named a1 on port a0, takes an empty directory entry and a handle, and fills in the name and date a2; stores the handle in *a3
+8c1ff018	vmu_find_first_file	restarts the directory scan of port a0 and copies the first game or data file's name into a1
+8c1ff110	vmu_find_next_file	continues the directory scan of port a0 and copies the next game or data file's name into a1
+8c1ff336	vmu_find_next_file_info	continues the directory scan of port a0, copying the next file's name into a1 and its size, type, header offset and date into a2
+8c1ff530	vmu_file_delete_and_flush	deletes file a1 from the VMU on port a0 and writes the FAT and directory back
+8c1ff610	vmu_files_delete_and_flush	deletes the a2 files named in a1 from the VMU on port a0 and writes the FAT and directory back
+8c1ff72e	vmu_file_rename	renames file a1 on port a0 to the 12-character name a2 (error when a2 exists) and writes the directory back
+8c1ff844	vmu_file_set_date	sets file a1's directory date on port a0 to a2 (as BCD) and writes the directory back
+8c1ff95a	vmu_file_get_date	reads file a1's directory date on port a0 into a2
+8c1ffa54	vmu_file_set_attrs	sets file a1's header offset (a2, when enabled) and copy flag (a3) on port a0 and writes the directory back
+8c1ffcc2	vmu_check_format_sig	returns 0 when the VMU on port a0's root block starts with the 16-byte 0x55 format signature, else 0xffffff03
+8c1ffdfa	vmu_set_volume_label	copies the 32-byte label a1 into the root block of the VMU on port a0 and writes it back
+8c200226	vmu_write_block_chain	writes the buffered blocks of the chain that starts at the root-block field +0x14, moving to new blocks on write errors and relinking the chain
+8c200346	vmu_flush_dir_blocks	writes each dirty directory block, moving a failing block to a free one and relinking, then flushes the FAT and root when anything moved
+8c2007f0	vmu_flush_fat_relocate	writes the FAT, moving it to a fresh run of free blocks when its blocks fail, then writes the root block
+8c200f2c	vmu_file_save	checks for space, creates file a1 on port a0, writes a3 blocks from a2 and closes it (s4 bit 31 picks the alternative writer)
