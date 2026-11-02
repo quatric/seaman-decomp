@@ -1087,7 +1087,7 @@ float *Vec3_add_to_50(int a0, float *a1) {
 /*
  * flag_74_bit31  0x8c0f4d34
  * 1 when bit 31 of the flags at +0x74 is set
- * called by: Class_12bb08_uses_get_field_24_0dbbe8
+ * called by: item_list_remove_inactive
  */
 u32 flag_74_bit31(int a0) {
     if ((*(u32 *)(a0 + 0x74) & 0x80000000) == 0x80000000) {
@@ -1779,7 +1779,7 @@ u32 Class_12c058_draw_0f577c(int a0, u32 a1, u32 a2, u32 a3) {
     matrix_push(0, a1, a2, a3, in_PR);
     touch_fields_30_3c_wrap();
     rotate_xyz_degrees();
-    Class_12c058_draw_015adc(a0 + 0x178, a1, a2, a3);
+    game_draw_015adc(a0 + 0x178, a1, a2, a3);
     uVar1 = matrix_pop_n(1);
     return uVar1;
 }
@@ -1797,7 +1797,7 @@ u32 Class_12c058_draw(int a0, u32 a1, u32 a2, u32 a3) {
     matrix_push(0, a1, a2, a3, in_PR);
     touch_fields_30_3c_wrap();
     rotate_xyz_degrees();
-    Class_12c058_draw_015adc(a0 + 0x178, a1, a2, a3);
+    game_draw_015adc(a0 + 0x178, a1, a2, a3);
     uVar1 = matrix_pop_n(1);
     return uVar1;
 }
@@ -1977,11 +1977,11 @@ int Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10(int a0, u32 a1) {
     if ((((iVar1 == 0) || (iVar1 == 1)) || (iVar1 == 2)) || (iVar1 == 3)) {
         ar6_01 = 4;
         ar5_01 = &g_8c43b338 + iVar1 * 0x10;
-        CSquid_update_fields_0164c8(a0 + 0x170, ar5_01, 4);
+        Class_129808_update_fields_0164c8(a0 + 0x170, ar5_01, 4);
     } else {
         ar6_01 = 4;
         ar5_01 = &g_8c43b368;
-        CSquid_update_fields_0164c8(a0 + 0x170, &g_8c43b368, 4);
+        Class_129808_update_fields_0164c8(a0 + 0x170, &g_8c43b368, 4);
     }
     set_flag_14_20(a0 + 0x170);
     set_flags_14_60(a0 + 0x170);
@@ -2145,7 +2145,7 @@ u32 Class_12bec0_draw_0f5e0c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     obj_set_texlist(a0 + 0x1b4, iVar4, a2);
     uVar1 = 0;
     obj_set_texture_num(a0 + 0x1b4, 0);
-    Class_129808_calc_016524(a0 + 0x170, uVar1, a2, a3);
+    Class_12bea8_calc_016524(a0 + 0x170, uVar1, a2, a3);
     uVar1 = matrix_pop_n(1);
     return uVar1;
 }
@@ -2160,7 +2160,7 @@ u32 Class_12bec0_draw_0f5f08(int a0, u32 a1, u32 a2, u32 a3) {
     obj_set_texlist(a0 + 0x1b4, a1, a2);
     uVar1 = 0;
     obj_set_texture_num(a0 + 0x1b4, 0);
-    uVar1 = Class_129808_calc_016524(a0 + 0x170, uVar1, a2, a3);
+    uVar1 = Class_12bea8_calc_016524(a0 + 0x170, uVar1, a2, a3);
     return uVar1;
 }
 
@@ -3727,7 +3727,7 @@ u32 game_draw_0f7118(int a0, u32 a1, u32 a2) {
     njRotateXYZ(0, ar5_00, ar6_00, ar7_00, ain0);
     matrix_scale(0, ar5_00, ar6_00, ar7_00, ain0);
     obj_set_texlist(a2, ar5_00, ar6_00);
-    Class_12c058_draw_015adc(ain0, ar5_00, ar6_00, ar7_00);
+    game_draw_015adc(ain0, ar5_00, ar6_00, ar7_00);
     matrix_pop_n(1);
     uVar1 = gfx_set_color4_4aa52c(&g_8c140174);
     return uVar1;
@@ -7992,11 +7992,11 @@ int named_list_ctor_58(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * game_release_0fe59c  0x8c0fe59c
- * area name: game code; nothing names its area yet; behaviour name: mostly calls release functions
- * called by: Class_12b930_release_0ddd74
+ * Class_12b930_release_0fe59c  0x8c0fe59c
+ * area name: only called from Class_12b930 methods; behaviour name: mostly calls release functions
+ * called by: Class_12b930_destroy
  */
-int game_release_0fe59c(int a0, u32 a1, u32 a2, u32 a3) {
+int Class_12b930_release_0fe59c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
     u32 in_stack_fffffff4;
     u32 ain0;
@@ -8244,7 +8244,7 @@ u32 CEnv_take_free_slot(int a0) {
 /*
  * game_update_fields_0feb88  0x8c0feb88
  * area name: game code; nothing names its area yet; behaviour name: conditionally writes members
- * called by: CEnv_take_out_item, Class_12bb08_uses_get_field_24_0dbbe8, game_clear_node_and_item_lists
+ * called by: CEnv_take_out_item, game_clear_node_and_item_lists, item_list_remove_inactive
  */
 u32 game_update_fields_0feb88(u32 unused_a0, int *a1) {
     *(u32 *)(*a1 + 0xc) = 0;
@@ -8448,8 +8448,7 @@ u32 get_field_48_0feea8(int a0) {
 /*
  * CItemGLoader_list_0feeb0  0x8c0feeb0
  * area name: sits between CItemGLoader functions (same compilation unit); behaviour name: mostly calls list functions
- * called by: CAnimal_uses_CItemGLoader_is_done_0859c8, CAnimal_uses_CItemGLoader_is_done_0ad0e0,
- * Class_12a5d0_uses_CItemGLoader_is_done_08ac38
+ * called by: CAnimal_poll_eight_part_loads, CAnimal_poll_part_loads, Class_12a5d0_poll_part_loads
  */
 u32 CItemGLoader_list_0feeb0(int a0, int *a1) {
     u32 uVar1;
@@ -8466,8 +8465,7 @@ u32 CItemGLoader_list_0feeb0(int a0, int *a1) {
 /*
  * CItemGLoader_is_done  0x8c0feef8
  * 1 when the load request a1 has finished (+0x10 == 2)
- * called by: CAnimal_uses_CItemGLoader_is_done_0859c8, CAnimal_uses_CItemGLoader_is_done_0ad0e0,
- * Class_12a5d0_uses_CItemGLoader_is_done_08ac38
+ * called by: CAnimal_poll_eight_part_loads, CAnimal_poll_part_loads, Class_12a5d0_poll_part_loads
  */
 u32 CItemGLoader_is_done(u32 unused_a0, int a1) {
     return (u32)(*(int *)(a1 + 0x10) == 2);

@@ -10881,9 +10881,9 @@ u32 ninja_uses_ninja_close_file_256164(u32 a0, int *a1, u32 a2, u32 a3) {
 /*
  * matrix_pop_n  0x8c256210
  * pops a0 matrices off the matrix stack
- * called by: CAnimal_draw_029510, CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968, CEnv_draw_0d2264,
- * CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8 (+50
- * more)
+ * called by: CAnimal_draw_029510, CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968,
+ * CEnv_draw_with_three_parts_swapped, CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec,
+ * Class_1298b8_m2_015588, Class_1298b8_m3_0155e8 (+50 more)
  */
 u32 matrix_pop_n(int a0) {
     if (g_8c4aa5a0 - a0 != 0) {
@@ -11034,9 +11034,9 @@ u32 matrix_float_calc_256294(int a0, double *a1, double *a2) {
 /*
  * matrix_push  0x8c256328
  * pushes the current 4x4 matrix onto the matrix stack
- * called by: CAnimal_draw_029510, CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968, CEnv_draw_0d2264,
- * CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8 (+50
- * more)
+ * called by: CAnimal_draw_029510, CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968,
+ * CEnv_draw_with_three_parts_swapped, CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec,
+ * Class_1298b8_m2_015588, Class_1298b8_m3_0155e8 (+50 more)
  */
 u32 matrix_push(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 *puVar1;

@@ -1330,7 +1330,7 @@ int se_play_3d(int *a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * se_open_bank1  0x8c02190c
  * opens an SE port on bank 1 of a sound manager
- * called by: Class_129974_sound_0db32c, Class_12b930_sound_0d3d6c, game_sound_0d4c74, game_sound_0d7508,
+ * called by: Class_129974_sound_0db32c, Class_12b930_sound_0d3d6c, chance_play_se_12_start, draw_sound_0d4c74,
  * game_uses_get_field_24_0e5238, game_uses_stick_x_right_half_0e1f90, input_uses_edge_detect_update_0e2a14,
  * input_uses_edge_detect_update_0e3210 (+2 more)
  */
@@ -1374,8 +1374,8 @@ int se_open(int *a0, u32 a1) {
 /*
  * se_play  0x8c021994
  * plays request a2 on port a1 of manager a0
- * called by: Class_129974_sound_0db32c, Class_12b930_sound_0d3d6c, game_sound_0d4c74, game_sound_0d55d0,
- * game_sound_0d7508, game_uses_get_field_24_0e5238, game_uses_stick_x_right_half_0e1f90,
+ * called by: Class_129974_sound_0db32c, Class_12b930_sound_0d3d6c, chance_play_se_12_start, draw_sound_0d4c74,
+ * game_sound_0d55d0, game_uses_get_field_24_0e5238, game_uses_stick_x_right_half_0e1f90,
  * input_uses_edge_detect_update_0e2a14 (+5 more)
  */
 u32 se_play(u32 a0, u32 a1, u32 a2) {
@@ -1456,7 +1456,7 @@ u32 se_status(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * se_close_port_handle  0x8c021a8c
  * closes the port handle *a1 and sets it to -1
- * called by: Class_129974_sound_0db32c, Class_12b930_sound_0d3d6c, game_sound_0d4c74, game_sound_0d7508,
+ * called by: Class_129974_sound_0db32c, Class_12b930_sound_0d3d6c, chance_play_se_12_start, draw_sound_0d4c74,
  * game_uses_get_field_24_0e5238, game_uses_stick_x_right_half_0e1f90, input_uses_edge_detect_update_0e2a14,
  * input_uses_edge_detect_update_0e3210 (+6 more)
  */
@@ -4022,7 +4022,7 @@ u32 Vec3_equal(float *a0, float *a1) {
  * Vec3_not_equal  0x8c023d04
  * 1 unless all three components match
  * called by: game_state_switch_071a38, game_vec_05af78, game_vec_05c9fc, game_vec_07b2d4, game_vec_07c5f8,
- * game_vec_07f268, game_vec_08248c, game_vec_0b0ad4 (+2 more)
+ * game_vec_08248c, game_vec_0b0ad4, game_vec_0b0eec (+2 more)
  */
 u32 Vec3_not_equal(float *a0, float *a1) {
     if (((*a0 == *a1) && (a0[1] == a1[1])) && (a0[2] == a1[2])) {
@@ -4033,8 +4033,8 @@ u32 Vec3_not_equal(float *a0, float *a1) {
 
 /*
  * Vec3_set_zero  0x8c023d34
- * called by: CAnimal_ctor, CAnimal_vec_024848, CMothLine_ctor, COutside_Create, CSoilTank_Create,
- * CWaterTank_CreateStage, Class_1299b0_ctor, Class_1299ec_ctor (+60 more)
+ * called by: CAnimal_ctor, CAnimal_vec_024848, CHerb_vec_06d838, CMothLine_ctor, COutside_Create, CSoilTank_Create,
+ * CWaterTank_CreateStage, Class_1299b0_ctor (+60 more)
  */
 u32 *Vec3_set_zero(u32 *a0) {
     a0[2] = 0;
@@ -5126,7 +5126,7 @@ int common_load_eye_scsi(u32 a0) {
 /*
  * get_field_4_0253e4  0x8c0253e4
  * called by: CAnimal_ChangeBodyTexture, CAnimal_LoadGRReq, CAnimal_LoadGRReq_b, CAnimal_LoadGResourceWait,
- * CEnv_LoadDevicePanelTexture, CEnv_draw_0d2264, CGame_Init, CGame_Initial (+36 more)
+ * CEnv_LoadDevicePanelTexture, CEnv_draw_with_three_parts_swapped, CGame_Init, CGame_Initial (+36 more)
  */
 u32 get_field_4_0253e4(int a0, u32 a1, u32 a2, u32 a3) {
     return *(u32 *)(a0 + 4);
@@ -9933,9 +9933,9 @@ u32 vec3_copy_wrap(int a0, u32 unused_a1, u32 a2, u32 unused_a3, u32 s0) {
 
 /*
  * vec3_copy_8c02b5fc  0x8c02b5fc
- * called by: CSquidLine_vec_085c3c, Class_129cbc_m1_031598, Class_12a25c_vec_06f93c, Class_12a7a8_vec_099b0c,
- * Class_12acc8_uses_rand_0a0278, Class_12aeec_uses_gfx_set_color4_0a481c, Class_12b0c4_vec_0ac1f0,
- * Class_12b2ac_m1_0aff3c (+41 more)
+ * called by: CHerb_vec_06d838, CSquidLine_vec_085c3c, Class_129cbc_m1_031598, Class_12a25c_vec_06f93c,
+ * Class_12a7a8_vec_099b0c, Class_12acc8_uses_rand_0a0278, Class_12aeec_uses_gfx_set_color4_0a481c,
+ * Class_12b0c4_vec_0ac1f0 (+41 more)
  */
 u32 *vec3_copy_8c02b5fc(u32 *a0, u32 *a1, u32 a2) {
     *a0 = *a1;

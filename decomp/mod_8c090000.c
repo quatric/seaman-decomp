@@ -81,8 +81,8 @@ u32 game_vec_090bc4(int a0, u8 *a1, u8 *a2, u8 *a3) {
             ar5_00 = (u8 *)get_field_24_026024(in_stack_00000000, ar5_00, ar6_00, a3);
             ar6_00 = (u8 *)0x1;
             iVar2 = game_uses_rand_069c24(auStack_70, ar5_00, 1, a3);
-            if ((iVar2 == 0) ||
-                (ar5_00 = in_stack_00000000, iVar2 = game_vec_091854(a0, in_stack_00000000, ar6_00, a3), iVar2 == 1))
+            if ((iVar2 == 0) || (ar5_00 = in_stack_00000000,
+                                 iVar2 = kind10_state2_above_110(a0, in_stack_00000000, ar6_00, a3), iVar2 == 1))
                 goto LAB_8c090c8a;
             Vec3_assign(a0 + 0x28c, auStack_60, ar6_00, a3);
             Vec3_scale(auStack_50, &uStack_28, ar6_00, a3, auStack_90);
@@ -197,7 +197,7 @@ u32 game_vec_090bc4(int a0, u8 *a1, u8 *a2, u8 *a3) {
     }
     if (((-1 < *(int *)(a0 + 0x2f4)) && (-1 < *(int *)(a0 + 0x2f8))) &&
         ((iVar2 = game_uses_ret_const_244_06b054(*(u32 *)(a0 + 0x2f4)),
-          iVar2 == 0 || (iVar2 = game_vec_091854(a0, in_stack_00000000, ar6_00, a3), iVar2 == 1)))) {
+          iVar2 == 0 || (iVar2 = kind10_state2_above_110(a0, in_stack_00000000, ar6_00, a3), iVar2 == 1)))) {
         game_copy_06b1d8(*(u32 *)(a0 + 0x2f4), *(u32 *)(a0 + 0x2f8), ar6_00, a3);
         uVar3 = 0;
         *(u32 *)(a0 + 0x240) = 0;
@@ -485,11 +485,11 @@ u32 game_vec_091570(int a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * game_vec_091854  0x8c091854
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * kind10_state2_above_110  0x8c091854
+ * returns 1 when any kind-10 object in state 2 has a height of at least 110
  * called by: game_vec_090bc4
  */
-int game_vec_091854(u32 unused_a0, int *a1, float *a2, u8 *a3) {
+int kind10_state2_above_110(u32 unused_a0, int *a1, float *a2, u8 *a3) {
     int iVar1;
     int ar4_00;
     u32 uVar2;
@@ -8591,7 +8591,7 @@ u32 MushroomerEgg_asset_table_init(void) {
 /*
  * Class_12a990_uses_clear_3_words_09d644  0x8c09d644
  * area name: sits between Class_12a990 functions (same compilation unit); behaviour name: its main named callee is
- * clear_3_words called by: game_uses_rand_0c6a4c
+ * clear_3_words called by: records_reset_random_variant
  */
 u32 Class_12a990_uses_clear_3_words_09d644(u32 *a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;

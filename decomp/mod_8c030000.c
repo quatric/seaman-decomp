@@ -1467,7 +1467,7 @@ u32 reset_fields_2c_6c(int a0, u32 a1, u32 a2) {
  * copy6_to_fields  0x8c031b68
  * copies six words from a1 to +0xa0, +0x34, +0x38, +0x48, +0x4c, +0x50
  * called by: CMushroomerBody_AwayFrom, Class_12a03c_m6_03a65c, Class_12a25c_m6_06e69c, Class_12a25c_vec_06f93c,
- * Class_12a76c_copy_08de3c, Class_12ad14_init_begin_iya, Class_12b2ac_m6_0afcc0, game_state_switch_049b68 (+34 more)
+ * Class_12a76c_set_mode, Class_12ad14_init_begin_iya, Class_12b2ac_m6_0afcc0, game_state_switch_049b68 (+34 more)
  */
 u32 *copy6_to_fields(int a0, u32 *a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 0xa0) = *a1;
@@ -3738,7 +3738,7 @@ u32 Class_129cf8_reset(int a0) {
 /*
  * CAnimBody_SetAnimation  0x8c033a8c
  * called by: CAnimBody_PlayToEnd, CMushroomerBody_AwayFrom, Class_12a25c_m6_06e69c, Class_12a25c_vec_06f93c,
- * Class_12a76c_copy_08de3c, Class_12ad14_m3_0a427c, Class_12ad14_m4_0a43d4, Class_12ad14_uses_rand_float_0a37c8 (+105
+ * Class_12a76c_set_mode, Class_12ad14_m3_0a427c, Class_12ad14_m4_0a43d4, Class_12ad14_uses_rand_float_0a37c8 (+105
  * more) strings: "Invalid AnimationID.."; "CAnimBody::SetAnimation()"
  */
 u32 CAnimBody_SetAnimation(int a0, int a1, int a2, u32 a3) {
@@ -4185,7 +4185,7 @@ u32 CAnimBody_AdvanceFrame_033d88(int a0, char *a1, u32 a2, u32 a3) {
 
 /*
  * CAnimBody_SetFrame  0x8c033e68
- * called by: CMushroomerBody_AwayFrom, Class_129cbc_m5_031440, Class_12a25c_vec_06f93c, Class_12a76c_copy_08de3c,
+ * called by: CMushroomerBody_AwayFrom, Class_129cbc_m5_031440, Class_12a25c_vec_06f93c, Class_12a76c_set_mode,
  * Class_12ad14_uses_rand_float_0a37c8, Class_12b088_state_switch_0a99c4, Class_12b088_vec_0a6628,
  * Class_12b088_vec_0aa70c (+98 more) strings: "Motion is NO SET!"; "CAnimBody::SetFrame()"
  */
@@ -6753,7 +6753,7 @@ u32 game_uses_get_field_1_s8_035a3c(int a0, u32 a1, u32 a2) {
 /*
  * get_field_90_s8  0x8c035ab4
  * called by: CAnimal_m2_03640c, CAnimal_m2_085390, CAnimal_m2_0acaec, CAnimal_m3_036568, CAnimal_m3_085550,
- * CAnimal_m3_0acd74, CAnimal_uses_CItemGLoader_is_done_0859c8, CAnimal_uses_CItemGLoader_is_done_0ad0e0 (+6 more)
+ * CAnimal_m3_0acd74, CAnimal_poll_eight_part_loads, CAnimal_poll_part_loads (+6 more)
  */
 int get_field_90_s8(int a0) {
     return (int)*(char *)(0x90 + a0);
@@ -7121,9 +7121,8 @@ u32 game_uses_get_field_90_s8_035f14(int a0) {
 
 /*
  * set_field_90_u8  0x8c035f4c
- * called by: CAnimal_uses_CItemGLoader_is_done_0859c8, CAnimal_uses_CItemGLoader_is_done_0ad0e0,
- * CAnimal_uses_set_field_90_u8_03679c, Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704,
- * Class_12a5d0_uses_CItemGLoader_is_done_08ac38, game_uses_get_field_90_s8_035f14
+ * called by: CAnimal_poll_eight_part_loads, CAnimal_poll_part_loads, CAnimal_uses_set_field_90_u8_03679c,
+ * Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704, Class_12a5d0_poll_part_loads, game_uses_get_field_90_s8_035f14
  */
 int set_field_90_u8(int a0, u32 a1) {
     int iVar1;

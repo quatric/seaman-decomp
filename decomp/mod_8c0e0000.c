@@ -1140,13 +1140,13 @@ u32 game_draw_0e157c(int a0, u32 a1, u32 a2, u32 a3) {
 
     pvr_draw_235ee4();
     obj_set_texlist(a0 + 0x106c, a1, a2);
-    Class_12c058_draw_015adc(a0 + 0x1074, a1, a2, a3);
+    game_draw_015adc(a0 + 0x1074, a1, a2, a3);
     ar4_00 = a0 + 0x107c;
-    Class_12c058_draw_015adc(ar4_00, a1, a2, a3);
+    game_draw_015adc(ar4_00, a1, a2, a3);
     pvr_draw_235f14();
-    Class_12c058_draw_015adc(a0 + 0x1078, a1, a2, a3);
+    game_draw_015adc(a0 + 0x1078, a1, a2, a3);
     obj_set_texlist(a0 + 0x28, a1, a2);
-    uVar1 = Class_12c058_draw_015adc(a0 + 0x30, a1, a2, a3);
+    uVar1 = game_draw_015adc(a0 + 0x30, a1, a2, a3);
     return uVar1;
 }
 
@@ -1160,15 +1160,15 @@ u32 game_draw_0e15fc(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_PR;
 
     obj_set_texlist(a0 + 0x106c, a1, a2);
-    Class_12c058_draw_015adc(a0 + 0x107c, a1, a2, a3);
+    game_draw_015adc(a0 + 0x107c, a1, a2, a3);
     uVar1 = 0;
     matrix_push(0, a1, a2, a3, in_PR);
     touch_fields_30_3c_wrap();
-    Class_12c058_draw_015adc(a0 + 0x1074, a1, a2, a3);
-    Class_12c058_draw_015adc(a0 + 0x1078, a1, a2, a3);
+    game_draw_015adc(a0 + 0x1074, a1, a2, a3);
+    game_draw_015adc(a0 + 0x1078, a1, a2, a3);
     matrix_pop_n(1);
     obj_set_texlist(a0 + 0x28, a1, a2);
-    uVar1 = Class_12c058_draw_015adc(a0 + 0x30, a1, a2, a3);
+    uVar1 = game_draw_015adc(a0 + 0x30, a1, a2, a3);
     return uVar1;
 }
 
@@ -2259,7 +2259,7 @@ int input_uses_edge_detect_update_0e2a14(int *a0, u32 a1, u32 a2, u32 a3) {
                 uVar5 = 0x80;
                 uVar4 = 0xff;
                 if (bVar7) {
-                    game_sound_0d7508(a0 + 0x8bad, uVar3, a2);
+                    chance_play_se_12_start(a0 + 0x8bad, uVar3, a2);
                 }
             } else {
                 (**(code **)(*a0 + 0x15c))(a0, uVar3, a2, a3);
@@ -2597,7 +2597,7 @@ int input_uses_edge_detect_update_0e3210(int a0, u32 a1, u32 a2, u32 a3) {
                 uVar4 = 0x80;
                 uVar3 = 0xff;
                 if (bVar6) {
-                    game_sound_0d7508(a0 + 0x22eb4, uVar2, a2);
+                    chance_play_se_12_start(a0 + 0x22eb4, uVar2, a2);
                 }
             } else {
                 set_field_eb44(a0 + 0x13b8c, 0);
@@ -2769,7 +2769,7 @@ u32 static_init_vec3s_438274(int a0, code *a1, u32 a2, int a3) {
                                 a2 = 4;
                                 ar5_00 = (code *)auStack_2c;
                                 a3 = ar4_00;
-                                game_sound_0d4c74(a1, ar5_00, 4, ar4_00);
+                                draw_sound_0d4c74(a1, ar5_00, 4, ar4_00);
                                 goto LAB_8c0e3d7e;
                             }
                         }
@@ -2778,7 +2778,7 @@ u32 static_init_vec3s_438274(int a0, code *a1, u32 a2, int a3) {
                             a2 = 3;
                             ar5_00 = (code *)auStack_2c;
                             a3 = ar4_00;
-                            game_sound_0d4c74(a1, ar5_00, 3, ar4_00);
+                            draw_sound_0d4c74(a1, ar5_00, 3, ar4_00);
                         } else {
                             (**(code **)(*(int *)(ar4_00 + 8) + 0x118))(ar4_00, ar5_00, a2, a3);
                             if (cVar12 == '\0') {
@@ -2802,7 +2802,7 @@ u32 static_init_vec3s_438274(int a0, code *a1, u32 a2, int a3) {
                                     a2 = 3;
                                     ar5_00 = (code *)auStack_2c;
                                     a3 = ar4_00;
-                                    game_sound_0d4c74(a1, ar5_00, 3, ar4_00);
+                                    draw_sound_0d4c74(a1, ar5_00, 3, ar4_00);
                                     goto LAB_8c0e3d7e;
                                 }
                             }
@@ -2827,7 +2827,7 @@ u32 static_init_vec3s_438274(int a0, code *a1, u32 a2, int a3) {
                                     a2 = 2;
                                     ar5_00 = (code *)auStack_2c;
                                     a3 = ar4_00;
-                                    game_sound_0d4c74(a1, ar5_00, 2, ar4_00);
+                                    draw_sound_0d4c74(a1, ar5_00, 2, ar4_00);
                                     goto LAB_8c0e3d7e;
                                 }
                             }
@@ -2835,7 +2835,7 @@ u32 static_init_vec3s_438274(int a0, code *a1, u32 a2, int a3) {
                             a2 = 0;
                             ar5_00 = (code *)auStack_2c;
                             a3 = ar4_00;
-                            game_sound_0d4c74(a1, ar5_00, 0, ar4_00);
+                            draw_sound_0d4c74(a1, ar5_00, 0, ar4_00);
                         }
                     }
                 }
@@ -2859,7 +2859,7 @@ u32 static_init_vec3s_438274(int a0, code *a1, u32 a2, int a3) {
                         a2 = 1;
                         ar5_00 = (code *)auStack_3c;
                         a3 = ar4_00;
-                        game_sound_0d4c74(a1, ar5_00, 1, ar4_00);
+                        draw_sound_0d4c74(a1, ar5_00, 1, ar4_00);
                     }
                     goto LAB_8c0e3e34;
                 }
@@ -2887,7 +2887,7 @@ u32 static_init_vec3s_438274(int a0, code *a1, u32 a2, int a3) {
                     a2 = 0;
                     ar5_00 = (code *)auStack_2c;
                     a3 = ar4_00;
-                    game_sound_0d4c74(a1, ar5_00, 0, ar4_00);
+                    draw_sound_0d4c74(a1, ar5_00, 0, ar4_00);
                 }
             }
         }
@@ -3565,7 +3565,7 @@ u32 update_3_active_1070(int a0, u32 a1) {
 
     for (iVar1 = 0; iVar1 < 3; iVar1 = iVar1 + 1) {
         if (*(int *)(0x1090 + iVar1 * 0x24 + a0) == 1) {
-            CTexture_uses_libgcc_divide_helper_0d6164(iVar1 * 0x24 + a0 + 0x1070, a1);
+            rising_fade_sprite_tick(iVar1 * 0x24 + a0 + 0x1070, a1);
         }
     }
     return 3;
@@ -3626,12 +3626,12 @@ u32 Class_12b758_draw_0e4dd0(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
             touch_fields_30_3c_wrap();
             in_stack_ffffffbc = iVar2;
             matrix_scale_wrap(uVar1, ar5_00);
-            Class_12c058_draw_015adc(a0 + 0x10e4, ar5_00, ar6_00, a3);
+            game_draw_015adc(a0 + 0x10e4, ar5_00, ar6_00, a3);
             matrix_pop_n(1);
         }
     }
     obj_set_texlist(a0 + 0x28, ar5_00, ar6_00);
-    Class_12c058_draw_015adc(a0 + 0x30, ar5_00, ar6_00, a3);
+    game_draw_015adc(a0 + 0x30, ar5_00, ar6_00, a3);
     if (*(int *)(a0 + 0x15c8) == 1) {
         CTexture_draw_0d6090(a0 + 0x15bc, ar5_00, ar6_00, a3);
     }
@@ -3648,7 +3648,7 @@ u32 game_draw_0e505c(int a0, u32 a1, u32 a2, u32 a3) {
 
     rotate_degrees_7c_on_field_9e8(a0);
     obj_set_texlist(a0 + 0x28, a1, a2);
-    Class_12c058_draw_015adc(a0 + 0x30, a1, a2, a3);
+    game_draw_015adc(a0 + 0x30, a1, a2, a3);
     uVar1 = game_uses_list_node_next_wrap_0da754(a0);
     return uVar1;
 }
@@ -4304,7 +4304,7 @@ u32 *Class_12b580_ctor(u32 *a0) {
     a0[0x2104] = 0;
     a0[0x20fe] = (&PTR_s_62_JUNGLE_DAYTIME1_8c13f2fc)[a0[0x2104]];
     a0[0x2100] = 500;
-    Class_12b580_init_fields_0d76e8(a0 + 0x427, ar5_01, ar6_00, uVar1);
+    uv_quadrant_table_init(a0 + 0x427, ar5_01, ar6_00, uVar1);
     return a0;
 }
 
@@ -4495,7 +4495,7 @@ u32 Class_12b580_draw_0e660c(int a0, int a1, int a2, u32 a3) {
     }
     game_uses_get_field_10_0d89d8(a0 + 0x10dc, a1);
     obj_set_texlist(a0 + 0x28, a1, a2);
-    Class_12c058_draw_015adc(a0 + 0x30, a1, a2, a3);
+    game_draw_015adc(a0 + 0x30, a1, a2, a3);
     for (iVar2 = 0; iVar2 < 8; iVar2 = iVar2 + 1) {
         iVar1 = has_field_2c(a0 + iVar2 * 0x68 + 0xc0c);
         if (iVar1 == 1) {
@@ -5384,7 +5384,7 @@ u32 Class_12b3b8_uses_object_dtor_delete_0e7a78(int a0, u32 a1, u32 a2, u32 a3) 
             uVar2 = 0;
             matrix_push(0, a1, a2, a3, in_stack_ffffff50);
             touch_fields_30_3c_wrap();
-            Class_129808_calc_016524(a0 + 0x444, a1, a2, a3);
+            Class_12bea8_calc_016524(a0 + 0x444, a1, a2, a3);
             matrix_pop_n(1);
             if (*piVar4 != 0) {
                 a3 = 4;

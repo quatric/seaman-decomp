@@ -11969,7 +11969,7 @@ u32 sh4_tmu_1f8b34(u32 a0) {
 
 /*
  * sh4_tmu_1f8b6e  0x8c1f8b6e
- * called by: sh4_uses_sh4_tmu_0b9244
+ * called by: creature_age_clock_tick
  */
 u32 sh4_tmu_1f8b6e(int a0) {
     char cVar1;
@@ -11988,7 +11988,7 @@ u32 sh4_tmu_1f8b6e(int a0) {
 
 /*
  * sh4_tmu_1f8b88  0x8c1f8b88
- * called by: sh4_uses_sh4_tmu_0b9244
+ * called by: creature_age_clock_tick
  */
 int sh4_tmu_1f8b88(void) {
     return -1 - *0xffd80024;
@@ -11997,7 +11997,7 @@ int sh4_tmu_1f8b88(void) {
 /*
  * shinobi_uses_libgcc_divide_helper_1f8b92  0x8c1f8b92
  * area name: in the shinobi library code range; behaviour name: its main named callee is libgcc_divide_helper_01051c
- * called by: sh4_uses_sh4_tmu_0b9244
+ * called by: creature_age_clock_tick
  */
 int shinobi_uses_libgcc_divide_helper_1f8b92(u32 a0, u32 a1) {
     int iVar1;

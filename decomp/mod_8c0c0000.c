@@ -703,7 +703,7 @@ u32 static_init_4367d4(int a0, int *a1, u32 unused_a2, code *a3) {
                 (iVar6 = memcard_free_bytes_wait(uVar1, &g_8c436838, puVar8, a3), iVar6 < 0x8000)) {
                 g_8c4367bc = 0x1b;
             } else {
-                g_8c4367bc = game_state_switch_0c236c(a0, g_8c4367c4);
+                g_8c4367bc = state_id_remap(a0, g_8c4367c4);
                 a3 = (code *)&g_8c4367bc;
             }
             break;
@@ -957,7 +957,7 @@ u32 save_menu_update(int a0, int a1, u32 a2, int a3, u32 s0) {
         } else if (0x14 < g_8c436846) {
             uVar3 = 0x8c431a68;
             game_copy_0c67f4(a0 + 0x17c, a1, 0x8c431a68, 2);
-            game_uses_rand_0c6a4c(a0 + 0x17c, 0x8c435c7c, uVar3, a3);
+            records_reset_random_variant(a0 + 0x17c, 0x8c435c7c, uVar3, a3);
             iVar2 = (*(code *)(&game_uses_identity_0b726c))("SM2000US.USR", 0x8c431a68, 0x4208, "Seaman User Data",
                                                             "SEAMAN", 0);
             if (((iVar2 == 0) && (iVar2 = (*(code *)(&game_uses_identity_0b726c))(
@@ -1133,11 +1133,11 @@ u32 save_set_names_seamandc(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_state_switch_0c236c  0x8c0c236c
- * area name: game code; nothing names its area yet; behaviour name: dispatches on a state or mode value (switch)
+ * state_id_remap  0x8c0c236c
+ * maps state ids 2, 4, 5 and 0xc to 4, 8, 10 and 0xd, ids 3, 7, 9, 0xb, 0x18 and 0x1a to 0xb, and leaves the rest
  * called by: static_init_4367d4
  */
-u32 game_state_switch_0c236c(u32 unused_a0, int a1) {
+u32 state_id_remap(u32 unused_a0, int a1) {
     if (a1 < 0x19) {
         if (a1 < 0x18) {
             if (0xe < a1) {
@@ -2831,7 +2831,7 @@ int game_release_0c4a90(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_release_0c4ad0  0x8c0c4ad0
  * area name: game code; nothing names its area yet; behaviour name: mostly calls release functions
- * called by: game_release_0c4a90, game_release_0fe59c
+ * called by: Class_12b930_release_0fe59c, game_release_0c4a90
  */
 int game_release_0c4ad0(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
@@ -3029,7 +3029,7 @@ int game_uses_dec_counter_4e_0c4dd0(int a0, u32 a1, u32 a2, u32 a3) {
  * area name: only called from CAnimal methods; behaviour name: its callees mostly do: test
  * called by: CAnimal_m2_0acaec, Class_12a7a8_state_switch_0999ac, Class_12a7a8_uses_mask_74_fffffffe_099914,
  * Class_12a7a8_uses_set_field_38_099714, Class_12acc8_uses_set_field_38_09ff1c, Class_12b0c4_uses_set_field_38_0abe84,
- * Class_12b2e8_state_switch_0b6440, Class_12bb08_uses_get_field_24_0dbbe8 (+13 more)
+ * Class_12b2e8_state_switch_0b6440, FrogMan_choose_status_event (+13 more)
  */
 u32 CAnimal_calls_test_0c4e2c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -4182,11 +4182,11 @@ u32 ret_const_1_0c6a44(void) {
 }
 
 /*
- * game_uses_rand_0c6a4c  0x8c0c6a4c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is rand
+ * records_reset_random_variant  0x8c0c6a4c
+ * resets record 0 and sets records 1-11 to state 0xf with a random variant byte 0-3
  * called by: save_menu_update
  */
-u32 game_uses_rand_0c6a4c(u32 unused_a0, int a1, u32 a2, u32 a3) {
+u32 records_reset_random_variant(u32 unused_a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     int ar4_00;
     int iVar2;
@@ -5014,7 +5014,7 @@ u32 static_init_437218(int a0, code *a1, int a2, u32 a3) {
     iVar3 = get_field_d4_0c7424(*(u32 *)(a1 + 0x7cc), puVar6);
     if (iVar3 == 0) {
         iVar4 = a0 + 8;
-        iVar3 = sh4_uses_sh4_tmu_0b9244(a1, iVar4, a6, a7);
+        iVar3 = creature_age_clock_tick(a1, iVar4, a6, a7);
         if (iVar3 == 1) {
             (**(code **)(**(int **)(a0 + 8) + 0xac))(*(int **)(a0 + 8), iVar4, a6, a7);
         }
@@ -5713,7 +5713,7 @@ u32 static_init_43724c(int a0, code *a1, int a2, u32 a3) {
     iVar3 = get_field_d4_0c7424(*(u32 *)(a1 + 0x7cc), puVar6);
     if (iVar3 == 0) {
         iVar4 = a0 + 8;
-        iVar3 = sh4_uses_sh4_tmu_0b9244(a1, iVar4, a6, a7);
+        iVar3 = creature_age_clock_tick(a1, iVar4, a6, a7);
         if (iVar3 == 1) {
             (**(code **)(**(int **)(a0 + 8) + 0xac))(*(int **)(a0 + 8), iVar4, a6, a7);
             (**(code **)(**(int **)(a0 + 0xc) + 0xac))(*(int **)(a0 + 0xc), iVar4, a6, a7);
@@ -6317,7 +6317,7 @@ u32 game_uses_clear_3_words_0c9ee0(int a0, u8 *a1, u8 *a2, u8 *a3) {
         touch_fields_30_3c_wrap();
         rotate_y_degrees();
         matrix_scale_wrap(ar4_00, a5);
-        Class_12c058_draw_015adc(0x8c437030, a5, a2, a3);
+        game_draw_015adc(0x8c437030, a5, a2, a3);
         matrix_pop_n(1);
         ar5_00 = (u8 *)0x800;
         gfxlib_calc_233da2(0xffffffff, 0x800);
@@ -6577,7 +6577,7 @@ u32 static_init_4372a8(int a0, code *a1, int a2, u32 a3) {
     iVar3 = get_field_d4_0c7424(*(u32 *)(a1 + 0x7cc), puVar6);
     if (iVar3 == 0) {
         iVar4 = a0 + 8;
-        iVar3 = sh4_uses_sh4_tmu_0b9244(a1, iVar4, a6, a7);
+        iVar3 = creature_age_clock_tick(a1, iVar4, a6, a7);
         if (iVar3 == 1) {
             (**(code **)(**(int **)(a0 + 8) + 0xac))(*(int **)(a0 + 8), iVar4, a6, a7);
             (**(code **)(**(int **)(a0 + 0xc) + 0xac))(*(int **)(a0 + 0xc), iVar4, a6, a7);
@@ -7219,7 +7219,7 @@ u32 static_init_4372f4(int a0, code *a1, u32 a2, u32 a3) {
     menu_pick_option_3(a0, ar5_00, ar6_00, a3);
     iVar2 = get_field_d0_0c51fc(*(u32 *)(a1 + 0x7cc), ar5_00, ar6_00);
     ar5_01 = a0 + 8;
-    iVar3 = sh4_uses_sh4_tmu_0b9244(a1, ar5_01, ar6_00, a3);
+    iVar3 = creature_age_clock_tick(a1, ar5_01, ar6_00, a3);
     if (iVar3 == 1) {
         (**(code **)(**(int **)(a0 + 0x10) + 0xac))(*(int **)(a0 + 0x10), ar5_01, ar6_00, a3);
         (**(code **)(**(int **)(a0 + 0xc) + 0xac))(*(int **)(a0 + 0xc), ar5_01, ar6_00, a3);
@@ -9577,13 +9577,13 @@ int game_calc_0cf63c(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     iVar1 = 1;
     if (*a0 != 1) {
         if (*(int *)(0x14c + (int)a0) == 1) {
-            iVar1 = (*(code *)(&game_draw_0cf6bc))(a0, a0 + *(short *)(0x148 + (int)a0) * 5 + 1,
-                                                   (int)*(short *)(0x148 + (int)a0), a3);
+            iVar1 = (*(code *)(&draw_sprite_frame_by_parity))(a0, a0 + *(short *)(0x148 + (int)a0) * 5 + 1,
+                                                              (int)*(short *)(0x148 + (int)a0), a3);
         } else {
             iVar1 = *(int *)(0x14c + (int)a0);
             if (iVar1 == 3) {
-                iVar1 = (*(code *)(&game_draw_0cf7a4))(a0, a0 + *(short *)(0x148 + (int)a0) * 5 + 1,
-                                                       (int)*(short *)(0x148 + (int)a0), a3);
+                iVar1 = (*(code *)(&draw_draw_helper_0cf7a4))(a0, a0 + *(short *)(0x148 + (int)a0) * 5 + 1,
+                                                              (int)*(short *)(0x148 + (int)a0), a3);
             }
         }
     }
@@ -9591,10 +9591,10 @@ int game_calc_0cf63c(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_draw_0cf6bc  0x8c0cf6bc
- * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
+ * draw_sprite_frame_by_parity  0x8c0cf6bc
+ * draws texture frame a2 of the sprite at (384, 280) for even frames or (0, 280) for odd ones
  */
-u32 game_draw_0cf6bc(int a0, u64 *a1, u32 a2, u32 a3) {
+u32 draw_sprite_frame_by_parity(int a0, u64 *a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     short sVar3;
@@ -9638,10 +9638,10 @@ u32 game_draw_0cf6bc(int a0, u64 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_draw_0cf7a4  0x8c0cf7a4
- * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
+ * draw_draw_helper_0cf7a4  0x8c0cf7a4
+ * area name: sits between draw functions (same compilation unit); behaviour name: mostly calls draw functions
  */
-u32 game_draw_0cf7a4(int a0, int a1, int a2, u32 a3) {
+u32 draw_draw_helper_0cf7a4(int a0, int a1, int a2, u32 a3) {
     short sVar1;
     short sVar2;
     u64 *puVar3;

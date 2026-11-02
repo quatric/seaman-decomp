@@ -4783,7 +4783,7 @@ u32 Class_12a0c4_state_switch_068e64(int *a0, u32 a1, int *a2, u32 a3) {
         in_xd0 = dVar8;
         fVar6 = SUB84(in_dr0, 0);
         if ((cVar12 == '\0' && 0.0 < fVar6) ||
-            (ar4_00 = a0, a5 = a2, iVar3 = CHerb_vec_06d714(a0, a2, piVar5, a3), iVar3 != 0)) {
+            (ar4_00 = a0, a5 = a2, iVar3 = CHerb_kind10_state2_above_110(a0, a2, piVar5, a3), iVar3 != 0)) {
             uVar2 = rand();
             iVar3 = libgcc_divide_helper_01031c(uVar2, 5, piVar5);
             if (cVar13 == '\0') {
@@ -8204,11 +8204,11 @@ u32 CHerb_test_06d6ec(int a0) {
 }
 
 /*
- * CHerb_vec_06d714  0x8c06d714
- * area name: sits between CHerb functions (same compilation unit); behaviour name: mostly calls vec functions
+ * CHerb_kind10_state2_above_110  0x8c06d714
+ * returns 1 when any kind-10 object in state 2 has a height of at least 110 (the herb copy)
  * called by: Class_12a0c4_state_switch_068e64
  */
-int CHerb_vec_06d714(u32 unused_a0, int *a1, float *a2, u8 *a3) {
+int CHerb_kind10_state2_above_110(u32 unused_a0, int *a1, float *a2, u8 *a3) {
     int iVar1;
     int ar4_00;
     u32 uVar2;
@@ -8395,10 +8395,10 @@ u32 ret_const_0_06d830(void) {
 }
 
 /*
- * game_vec_06d838  0x8c06d838
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * CHerb_vec_06d838  0x8c06d838
+ * area name: sits between CHerb functions (same compilation unit); behaviour name: mostly calls vec functions
  */
-u32 game_vec_06d838(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
+u32 CHerb_vec_06d838(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
     u8 auStack_10[16];
 
     Vec3_set_zero(auStack_10);
@@ -8432,10 +8432,10 @@ u32 ret_const_0_06d884(void) {
 }
 
 /*
- * game_calc_06d88c  0x8c06d88c
- * area name: game code; nothing names its area yet; behaviour name: integer arithmetic on its arguments
+ * CHerb_calc_06d88c  0x8c06d88c
+ * area name: sits between CHerb functions (same compilation unit); behaviour name: integer arithmetic on its arguments
  */
-u32 game_calc_06d88c(u32 unused_a0, u32 *a1) {
+u32 CHerb_calc_06d88c(u32 unused_a0, u32 *a1) {
     *a1 = 0x43480000;
     return 0x8c06d8a0;
 }

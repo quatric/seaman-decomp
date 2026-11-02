@@ -6813,7 +6813,7 @@ u32 game_vec_07d048(int a0, u32 a1, u32 a2, int *a3) {
                 *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
             } else {
                 vec3_copy_8c02b5fc(auStack_10c, in_stack_00000000, ar6_00);
-                game_vec_07f268(a0, auStack_10c, ar6_00, ar7_00);
+                obj_update_root_motion(a0, auStack_10c, ar6_00, ar7_00);
                 ar5_00 = (u8 *)0xffffffff;
                 object_dtor_delete(auStack_10c, 0xffffffff, ar6_00, ar7_00);
             }
@@ -6834,7 +6834,7 @@ u32 game_vec_07d048(int a0, u32 a1, u32 a2, int *a3) {
                 uVar6 = 0;
             } else {
                 vec3_copy_8c02b5fc(auStack_118, in_stack_00000000, ar6_00);
-                game_vec_07f268(a0, auStack_118, ar6_00, ar7_00);
+                obj_update_root_motion(a0, auStack_118, ar6_00, ar7_00);
                 object_dtor_delete(auStack_118, 0xffffffff, ar6_00, ar7_00);
                 ar5_00 = (u8 *)(a0 + 0x80);
                 game_vec_07f418(a0, ar5_00, ar6_00, ar7_00);
@@ -7810,11 +7810,11 @@ u32 game_uses_array_at_field_14_07f1e4(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_07f268  0x8c07f268
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
- * called by: game_vec_07d048
+ * obj_update_root_motion  0x8c07f268
+ * gets the current root position, stores its squared movement since last frame at +0x28 and, when it moved, the heading
+ * at +0x14 called by: game_vec_07d048
  */
-u32 game_vec_07f268(int a0, u32 a1, u32 a2, u32 a3) {
+u32 obj_update_root_motion(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u8 *puVar3;

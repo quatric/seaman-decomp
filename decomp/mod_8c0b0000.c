@@ -155,7 +155,7 @@ int Class_12b2ac_vec_0b0784(int a0, u32 a1, int *a2, int *a3) {
             break;
         case 6:
             *(u32 *)(a0 + 0x214) = 0;
-            iVar5 = game_uses_CAnimBody_AdvanceFrame_wrapp_0b4ba0(a0, uVar2, piVar3, piVar4);
+            iVar5 = obj_play_anim_17_then_idle(a0, uVar2, piVar3, piVar4);
             break;
         case 7:
             *(u32 *)(a0 + 0x214) = 0;
@@ -2697,11 +2697,11 @@ override_jmp_8c0b3676_case_2:
 }
 
 /*
- * game_uses_CAnimBody_AdvanceFrame_wrapp_0b4ba0  0x8c0b4ba0
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is
- * CAnimBody_AdvanceFrame_wrapper called by: Class_12b2ac_vec_0b0784
+ * obj_play_anim_17_then_idle  0x8c0b4ba0
+ * plays animation 0x17 to its end, runs it out at half speed and then returns to animation 0
+ * called by: Class_12b2ac_vec_0b0784
  */
-u32 game_uses_CAnimBody_AdvanceFrame_wrapp_0b4ba0(int a0, u32 a1, u32 a2, u32 a3) {
+u32 obj_play_anim_17_then_idle(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 ar7_00;
@@ -5203,11 +5203,11 @@ u32 sh4_tmu_wrap(void) {
 }
 
 /*
- * sh4_uses_sh4_tmu_0b9244  0x8c0b9244
- * area name: sits between sh4 functions (same compilation unit); behaviour name: its main named callee is
- * sh4_tmu_1f8b88 called by: static_init_437218, static_init_43724c, static_init_4372a8, static_init_4372f4
+ * creature_age_clock_tick  0x8c0b9244
+ * adds each elapsed second from the timer to the clock and, every 14,400 seconds (4 hours), raises the age counter at
+ * +0xa2 (capped at 0xfffa) called by: static_init_437218, static_init_43724c, static_init_4372a8, static_init_4372f4
  */
-u32 sh4_uses_sh4_tmu_0b9244(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 creature_age_clock_tick(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u32 ar5_00;
@@ -5289,8 +5289,8 @@ int CProlog_uses_abs_0b93c0(int a0, u32 a1, u32 a2, u32 a3) {
                 iVar4 = iVar3;
             }
         }
-        iVar6 = (*(code *)(&game_test_0b9afc))(a0, a1, a2, a3, *(u32 *)(a0 + 0x16), *(u32 *)(a0 + 0x1a));
-        iVar1 = (*(code *)(&game_test_0b9afc))(a0, a1, a2, a3, *(u32 *)(a0 + 0x20), *(u32 *)(a0 + 0x24));
+        iVar6 = (*(code *)(&hour_to_day_period))(a0, a1, a2, a3, *(u32 *)(a0 + 0x16), *(u32 *)(a0 + 0x1a));
+        iVar1 = (*(code *)(&hour_to_day_period))(a0, a1, a2, a3, *(u32 *)(a0 + 0x20), *(u32 *)(a0 + 0x24));
         iVar3 = iVar6;
         if (((iVar6 != iVar1) &&
              (((iVar3 = iVar4, iVar6 != iVar4 || (iVar1 != iVar4)) && (iVar2 = 3, *(int *)(0xbc + a0) != iVar6)))) &&
@@ -5580,11 +5580,11 @@ int CProlog_uses_free_sys_0b96e4(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_test_0b9afc  0x8c0b9afc
- * area name: game code; nothing names its area yet; behaviour name: returns the result of a comparison
+ * hour_to_day_period  0x8c0b9afc
+ * maps the hour in s4 (0-23) to a time-of-day period index
  * called by: game_select_intro_or_ending
  */
-u32 game_test_0b9afc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s4) {
+u32 hour_to_day_period(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s4) {
     if (0x17 < (u8)s4) {
         return 8;
     }
@@ -5620,11 +5620,11 @@ u32 game_test_0b9afc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 }
 
 /*
- * CProlog_uses_rtc_get_date_wrap_0b9bb0  0x8c0b9bb0
- * area name: only called from CProlog methods; behaviour name: its main named callee is rtc_get_date_wrap
- * called by: CProlog_Ready
+ * CProlog_record_visit_date  0x8c0b9bb0
+ * shifts the last two RTC dates back, reads the new one, counts the visit in its time-of-day period and tracks visits
+ * on the same day called by: CProlog_Ready
  */
-u32 CProlog_uses_rtc_get_date_wrap_0b9bb0(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 CProlog_record_visit_date(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -5644,11 +5644,11 @@ u32 CProlog_uses_rtc_get_date_wrap_0b9bb0(int a0, u32 unused_a1, u32 a2, u32 a3)
     *(u16 *)(a0 + 0x1e) = *(u16 *)(a0 + 0x14);
     iVar3 = a0 + 0xc;
     rtc_get_date_wrap(a0, iVar3, a2, a3);
-    uVar1 = (*(code *)(&game_test_0b9afc))(a0, iVar3, a2, a3, *(u32 *)(a0 + 0xc), *(u32 *)(a0 + 0x10));
+    uVar1 = (*(code *)(&hour_to_day_period))(a0, iVar3, a2, a3, *(u32 *)(a0 + 0xc), *(u32 *)(a0 + 0x10));
     *(u32 *)(0xbc + a0) = uVar1;
     iVar3 = a0 + *(int *)(0xbc + a0);
     *(char *)(iVar3 + 4) = *(char *)(iVar3 + 4) + '\x01';
-    uVar1 = rtc_uses_libgcc_divide_helper_0b9d30(a0, auStack_1c, 0x8c431a68 + 0x14);
+    uVar1 = CProlog_uses_libgcc_divide_helper_0b9d30(a0, auStack_1c, 0x8c431a68 + 0x14);
     *(u32 *)(0xc8 + a0) = uVar1;
     iVar3 = 0;
     for (iVar4 = 0; iVar4 < 8; iVar4 = iVar4 + 1) {
@@ -5671,8 +5671,8 @@ u32 CProlog_uses_rtc_get_date_wrap_0b9bb0(int a0, u32 unused_a1, u32 a2, u32 a3)
 /*
  * rtc_get_date_wrap  0x8c0b9d14
  * only calls rtc_get_date
- * called by: CGame_GetUserGameInfo, CGame_uses_libgcc_divide_helper_0cc784, CProlog_uses_libgcc_divide_helper_0cd3c8,
- * CProlog_uses_rtc_get_date_wrap_0b9bb0, ambient_sound_update, game_copy_0c67f4, game_select_intro_or_ending,
+ * called by: CGame_GetUserGameInfo, CGame_uses_libgcc_divide_helper_0cc784, CProlog_record_visit_date,
+ * CProlog_uses_libgcc_divide_helper_0cd3c8, ambient_sound_update, game_copy_0c67f4, game_select_intro_or_ending,
  * game_uses_rand_0d8890 (+1 more)
  */
 u32 rtc_get_date_wrap(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
@@ -5683,11 +5683,11 @@ u32 rtc_get_date_wrap(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * rtc_uses_libgcc_divide_helper_0b9d30  0x8c0b9d30
- * area name: sits between rtc functions (same compilation unit); behaviour name: its main named callee is
- * libgcc_divide_helper_01031c called by: CProlog_uses_rtc_get_date_wrap_0b9bb0
+ * CProlog_uses_libgcc_divide_helper_0b9d30  0x8c0b9d30
+ * area name: only called from CProlog methods; behaviour name: its main named callee is libgcc_divide_helper_01031c
+ * called by: CProlog_record_visit_date
  */
-int rtc_uses_libgcc_divide_helper_0b9d30(u32 unused_a0, u16 *a1, u16 *a2) {
+int CProlog_uses_libgcc_divide_helper_0b9d30(u32 unused_a0, u16 *a1, u16 *a2) {
     u8 bVar1;
     int iVar2;
     u16 *ar6_00;
@@ -6436,7 +6436,7 @@ u32 CProlog_Ready(int a0, u32 *a1) {
     }
     uVar3 = 0x8c431ab8;
     copy_record_56(a1 + 0xb, 0x8c431ab8);
-    CProlog_uses_rtc_get_date_wrap_0b9bb0(a1, uVar3, uVar4, uVar2);
+    CProlog_record_visit_date(a1, uVar3, uVar4, uVar2);
     uVar3 = CProlog_uses_abs_0b93c0(a1, 0, uVar4, uVar2);
     a1[0x30] = uVar3;
     uVar4 = CProlog_uses_free_sys_0b96e4(a1, &g_8c431a7c, uVar4, uVar2);
@@ -8306,8 +8306,8 @@ u32 game_select_intro_or_ending(int a0, int a1, u32 unused_a2, char *a3) {
         *(u16 *)(puVar7 + -0x1d8) = g_8c436718;
         *(u16 *)(puVar7 + -0x1d6) = g_8c43671a;
         *(u16 *)(puVar7 + -0x1d4) = g_8c43671c;
-        uVar1 =
-            game_test_0b9afc(a1, game_test_0b9afc, puVar4, a3, *(u32 *)(puVar7 + -0x1dc), *(u32 *)(puVar7 + -0x1d8));
+        uVar1 = hour_to_day_period(a1, hour_to_day_period, puVar4, a3, *(u32 *)(puVar7 + -0x1dc),
+                                   *(u32 *)(puVar7 + -0x1d8));
         *(u32 *)(puVar7 + -0x34) = uVar1;
         g_8c43672c = *(u32 *)(puVar7 + -0x34);
         g_8c4366f0 = (int *)(a1 + 0x30);
@@ -9187,7 +9187,7 @@ u32 get_field_300_on_field_a4(int a0) {
  * get_field_300_0bf154  0x8c0bf154
  * called by: CEnv_item_cursor_next, CWaterTank_uses_get_field_300_0e0f48, Class_129974_vec_0db3bc,
  * Class_12b580_uses_get_field_300_0e6718, Class_12b930_m3_0de4b0, Class_12bb08_m1_0da338, Class_12bb08_m2_0da5a8,
- * Class_12bb08_uses_get_field_24_0dbbe8 (+20 more)
+ * call_all_list_64 (+20 more)
  */
 u32 get_field_300_0bf154(int a0) {
     return *(u32 *)(0x300 + a0);

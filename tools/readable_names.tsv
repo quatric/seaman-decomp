@@ -1948,3 +1948,25 @@
 8c035110	talk_rules_pick_best	among ready rules (state 2) whose condition passes, picks the one with the highest priority, marks it running (state 3) and returns its id, or -1
 8c035470	level_minutes_threshold_reached	returns 1 when the level is 8+, or 7/6/5/4 with at least 10/12/15/20 minutes on the a0 + 0x20 clock
 8c06c89c	obj_state_save_full	saves the object state plus its two vectors, five state bytes, timers and four floats into record a1 (unless idle in state 7)
+8c07f268	obj_update_root_motion	gets the current root position, stores its squared movement since last frame at +0x28 and, when it moved, the heading at +0x14
+8c0859c8	CAnimal_poll_part_loads	collects each finished CD load of the six part requests and moves the load state from 1 to 2 once none remain
+8c08ac38	Class_12a5d0_poll_part_loads	collects each finished CD load of the two part requests and moves the load state from 1 to 2 once none remain
+8c08de3c	Class_12a76c_set_mode	sets mode a1 and loads its parameter set (modes 0-1 keep +0xa0; mode 2 also starts animation 1; modes 2-3 set +0x24 to 10.0)
+8c091854	kind10_state2_above_110	returns 1 when any kind-10 object in state 2 has a height of at least 110
+8c06d714	CHerb_kind10_state2_above_110	returns 1 when any kind-10 object in state 2 has a height of at least 110 (the herb copy)
+8c0ad0e0	CAnimal_poll_eight_part_loads	collects each finished CD load of the eight part requests and moves the load state from 1 to 2 once none remain
+8c0b4ba0	obj_play_anim_17_then_idle	plays animation 0x17 to its end, runs it out at half speed and then returns to animation 0
+8c0b9244	creature_age_clock_tick	adds each elapsed second from the timer to the clock and, every 14,400 seconds (4 hours), raises the age counter at +0xa2 (capped at 0xfffa)
+8c0b9afc	hour_to_day_period	maps the hour in s4 (0-23) to a time-of-day period index
+8c0b9bb0	CProlog_record_visit_date	shifts the last two RTC dates back, reads the new one, counts the visit in its time-of-day period and tracks visits on the same day
+8c0c236c	state_id_remap	maps state ids 2, 4, 5 and 0xc to 4, 8, 10 and 0xd, ids 3, 7, 9, 0xb, 0x18 and 0x1a to 0xb, and leaves the rest
+8c0c6a4c	records_reset_random_variant	resets record 0 and sets records 1-11 to state 0xf with a random variant byte 0-3
+8c0cf6bc	draw_sprite_frame_by_parity	draws texture frame a2 of the sprite at (384, 280) for even frames or (0, 280) for odd ones
+8c0d2264	CEnv_draw_with_three_parts_swapped	draws model a1 with the three mesh entries chosen by +0x24 swapped into slots 0, 20 and 40, then restores them
+8c0d4a90	draw_part_objects_x5	draws each of the five active records at +0x470 (skipping state-1 ones past 1200), with three or one mesh parts swapped by kind
+8c0d6164	rising_fade_sprite_tick	moves the sprite up and grows it, fading it in to full alpha, holding it for 45 frames and then fading it out
+8c0d7508	chance_play_se_12_start	while idle, with a 10% chance plays sound effect 0x12, switches to state 2 and sets +0x2c to 3.0
+8c0d76e8	uv_quadrant_table_init	fills the UV table at 8c4377fc with the corners of the four texture quadrants (0, 0x7f/0x80, 0xff)
+8c0d7900	Class_12bea8_draw_ground_quad	draws a 24 x 24 flat quad around the object's position using texture a2 and UV quadrant +0x34 (state 1)
+8c0dbbe8	item_list_remove_inactive	removes every item without the active flag from the item list and its node list, clearing any references to it
+8c0ddd74	Class_12b930_destroy	destroys the members and arrays of the object and frees it when a1 > 0

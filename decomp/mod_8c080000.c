@@ -2725,7 +2725,7 @@ u32 CAnimal_m2_085390(int a0, u32 a1, u32 a2, u32 a3) {
         ((*(int *)(0x10c8 + a0) != 0 ||
           (((*(int *)(0x10cc + a0) != 0 || (*(int *)(0x10d0 + a0) != 0)) || (*(int *)(0x10d4 + a0) != 0)))))) {
         ar5_00 = a1;
-        CAnimal_uses_CItemGLoader_is_done_0859c8(a0, a1);
+        CAnimal_poll_part_loads(a0, a1);
     }
     uVar1 = get_field_90_s8(a0 + 0x490);
     if ((char)uVar1 == '\x02') {
@@ -2785,7 +2785,7 @@ u32 CAnimal_m3_085550(int a0, u32 a1, u32 a2, u32 a3) {
         ((*(int *)(0x10c8 + a0) != 0 ||
           (((*(int *)(0x10cc + a0) != 0 || (*(int *)(0x10d0 + a0) != 0)) || (*(int *)(0x10d4 + a0) != 0)))))) {
         ar5_00 = a1;
-        CAnimal_uses_CItemGLoader_is_done_0859c8(a0, a1);
+        CAnimal_poll_part_loads(a0, a1);
     }
     uVar1 = get_field_90_s8(a0 + 0x490);
     if ((char)uVar1 == '\x02') {
@@ -2938,11 +2938,11 @@ u32 register_six_item_loads(int a0, int a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * CAnimal_uses_CItemGLoader_is_done_0859c8  0x8c0859c8
- * area name: only called from CAnimal methods; behaviour name: its main named callee is CItemGLoader_is_done
+ * CAnimal_poll_part_loads  0x8c0859c8
+ * collects each finished CD load of the six part requests and moves the load state from 1 to 2 once none remain
  * called by: CAnimal_m2_085390, CAnimal_m3_085550
  */
-int CAnimal_uses_CItemGLoader_is_done_0859c8(int a0, int a1) {
+int CAnimal_poll_part_loads(int a0, int a1) {
     int iVar1;
     u32 uVar2;
     int ar5_00;
@@ -5319,7 +5319,7 @@ u32 Class_12a5d0_m2_08a49c(int a0, u32 a1, u32 a2, u32 a3) {
     }
     if ((*(int *)(a0 + 0x8f4) != 0) || (*(int *)(a0 + 0x8f8) != 0)) {
         ar5_00 = a1;
-        Class_12a5d0_uses_CItemGLoader_is_done_08ac38(a0, a1);
+        Class_12a5d0_poll_part_loads(a0, a1);
     }
     uVar1 = get_field_90_s8(a0 + 0x490);
     if (((char)uVar1 == '\x02') && (iVar2 = get_field_25c_08a6f8(a0 + 0x538), iVar2 != -1)) {
@@ -5431,7 +5431,7 @@ u32 Class_12a5d0_m3_08a704(int a0, u32 a1, u32 a2, u32 a3) {
     }
     if ((*(int *)(a0 + 0x8f4) != 0) || (*(int *)(a0 + 0x8f8) != 0)) {
         ar5_00 = a1;
-        Class_12a5d0_uses_CItemGLoader_is_done_08ac38(a0, a1);
+        Class_12a5d0_poll_part_loads(a0, a1);
     }
     uVar1 = get_field_90_s8(a0 + 0x490);
     if (((char)uVar1 == '\x02') && (iVar2 = get_field_25c_08a6f8(a0 + 0x538), iVar2 != -1)) {
@@ -5625,11 +5625,11 @@ u32 register_two_item_loads(int a0, u32 unused_a1, int a2, u32 a3) {
 }
 
 /*
- * Class_12a5d0_uses_CItemGLoader_is_done_08ac38  0x8c08ac38
- * area name: only called from Class_12a5d0 methods; behaviour name: its main named callee is CItemGLoader_is_done
+ * Class_12a5d0_poll_part_loads  0x8c08ac38
+ * collects each finished CD load of the two part requests and moves the load state from 1 to 2 once none remain
  * called by: Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704
  */
-int Class_12a5d0_uses_CItemGLoader_is_done_08ac38(int a0, int a1) {
+int Class_12a5d0_poll_part_loads(int a0, int a1) {
     int iVar1;
     u32 uVar2;
     int ar5_00;
@@ -7334,10 +7334,11 @@ u64 *Class_12a76c_uses_flags6_set_all_08dd98(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12a76c_copy_08de3c  0x8c08de3c
- * area name: sits between Class_12a76c functions (same compilation unit); behaviour name: mostly calls copy functions
+ * Class_12a76c_set_mode  0x8c08de3c
+ * sets mode a1 and loads its parameter set (modes 0-1 keep +0xa0; mode 2 also starts animation 1; modes 2-3 set +0x24
+ * to 10.0)
  */
-u64 *Class_12a76c_copy_08de3c(int a0, u32 a1, u32 a2, u32 a3) {
+u64 *Class_12a76c_set_mode(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u64 *puVar2;
     u32 uVar3;

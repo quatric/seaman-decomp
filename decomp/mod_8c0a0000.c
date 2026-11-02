@@ -10266,7 +10266,7 @@ int CSquid_Init(int a0, u32 a1) {
         Class_129808_set_params_by_mode(iVar3 * 0x44 + a0 + 0x9c4, (&DATA_8c13b474), 0x8c286858, 4);
         uVar1 = 4;
         ar5_01 = 0x8c286868;
-        CSquid_update_fields_0164c8(iVar3 * 0x44 + a0 + 0x9c4, 0x8c286868, 4);
+        Class_129808_update_fields_0164c8(iVar3 * 0x44 + a0 + 0x9c4, 0x8c286868, 4);
         set_flag_14_20(iVar3 * 0x44 + a0 + 0x9c4);
         set_flags_14_60(iVar3 * 0x44 + a0 + 0x9c4);
         set_flag_14_bit31_and_20(iVar3 * 0x44 + a0 + 0x9c4);
@@ -10324,7 +10324,7 @@ u32 CAnimal_m2_0acaec(int a0, int *a1, int *a2, int *a3) {
         (((*(int *)(0x954 + a0) != 0 || (*(int *)(0x958 + a0) != 0)) ||
           ((*(int *)(0x95c + a0) != 0 || ((*(int *)(0x960 + a0) != 0 || (*(int *)(0x964 + a0) != 0)))))))) {
         ar5_00 = a1;
-        CAnimal_uses_CItemGLoader_is_done_0ad0e0(a0, a1);
+        CAnimal_poll_eight_part_loads(a0, a1);
     }
     uVar1 = get_field_90_s8(a0 + 0x490);
     if ((char)uVar1 == '\x02') {
@@ -10410,7 +10410,7 @@ u32 CAnimal_m3_0acd74(int a0, int *a1, int *a2, int *a3) {
         (((*(int *)(0x954 + a0) != 0 || (*(int *)(0x958 + a0) != 0)) ||
           ((*(int *)(0x95c + a0) != 0 || ((*(int *)(0x960 + a0) != 0 || (*(int *)(0x964 + a0) != 0)))))))) {
         ar5_00 = a1;
-        CAnimal_uses_CItemGLoader_is_done_0ad0e0(a0, a1);
+        CAnimal_poll_eight_part_loads(a0, a1);
     }
     uVar1 = get_field_90_s8(a0 + 0x490);
     if ((char)uVar1 == '\x02') {
@@ -10485,11 +10485,11 @@ u32 CSquidLine_load_8(int a0, int a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * CAnimal_uses_CItemGLoader_is_done_0ad0e0  0x8c0ad0e0
- * area name: only called from CAnimal methods; behaviour name: its main named callee is CItemGLoader_is_done
+ * CAnimal_poll_eight_part_loads  0x8c0ad0e0
+ * collects each finished CD load of the eight part requests and moves the load state from 1 to 2 once none remain
  * called by: CAnimal_m2_0acaec, CAnimal_m3_0acd74
  */
-int CAnimal_uses_CItemGLoader_is_done_0ad0e0(int a0, int a1) {
+int CAnimal_poll_eight_part_loads(int a0, int a1) {
     int iVar1;
     u32 uVar2;
     int ar5_00;
@@ -10815,7 +10815,7 @@ int CSquidLine_uses_matrix_push_0ad354(int a0) {
                 uVar2 = *(u32 *)(iVar5 * 0x4c + 0x8c2859bc);
                 obj_set_texture_num(a0 + 0x9bc, uVar2);
                 in_stack_ffffff48 = iVar5;
-                Class_129808_calc_016524(iVar5 * 0x44 + a0 + 0x9c4, uVar2, ar6_00, ar7_00);
+                Class_12bea8_calc_016524(iVar5 * 0x44 + a0 + 0x9c4, uVar2, ar6_00, ar7_00);
                 matrix_pop_n(1);
             }
         }
@@ -11039,7 +11039,7 @@ int game_draw_0ad7ec(int a0) {
                 uVar2 = *(u32 *)(iVar5 * 0x4c + 0x8c2859bc);
                 obj_set_texture_num(a0 + 0x9bc, uVar2);
                 in_stack_ffffff8c = iVar5;
-                Class_129808_calc_016524(iVar5 * 0x44 + a0 + 0x9c4, uVar2, ar6_00, ar7_00);
+                Class_12bea8_calc_016524(iVar5 * 0x44 + a0 + 0x9c4, uVar2, ar6_00, ar7_00);
                 matrix_pop_n(1);
             }
         }
