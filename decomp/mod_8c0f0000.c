@@ -1985,7 +1985,7 @@ int Class_12bec0_sub_0f5b10(int a0, u32 a1) {
     iVar1 = get_field_4_0253e4(a0 + 0x1b4, ar5_02, ar6_01, ar7_00);
     for (uVar2 = 0; uVar2 < *(u32 *)(iVar1 + 4); uVar2 = uVar2 + 1) {
     }
-    iVar1 = game_sub_020ef0(a1, &g_8c14026d, "@@GRAPHICS\\COMMON" + 2, iVar1);
+    iVar1 = retry_until_done_020e80(a1, &g_8c14026d, "@@GRAPHICS\\COMMON" + 2, iVar1);
     if (iVar1 == -1) {
         iVar1 = report_error_message("Failed to load textuer.. FOOD!", &g_8c140291, 0, 2);
     }
@@ -9139,7 +9139,7 @@ u32 game_sub_0ffcb4(int a0, u32 a1) {
     set_field_20(a0 + 0x15c, u____8c1421cc);
     game_sub_014a0c(a0 + 0x15c);
     uVar2 = get_field_1c_0ffd74(a0 + 0x15c);
-    iVar1 = game_sub_02100c(a1, "UsrPointer.pvm", "GRAPHICS", uVar2);
+    iVar1 = retry_until_done_020f90(a1, "UsrPointer.pvm", "GRAPHICS", uVar2);
     if (iVar1 == -1) {
         report_error_message("Failed to load user pointer textuer..", &g_8c142292, 1, 2);
     }

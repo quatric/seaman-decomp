@@ -5861,7 +5861,7 @@ int game_sub_099e74(int a0, u32 a1) {
     *(u8 **)(a0 + 8) = &g_8c12a7f4;
     Class_129938_ctor(a0 + 0x490, uVar1, ar6_00);
     game_sub_02ff6c(a0 + 0x530, uVar1, ar6_00);
-    game_sub_030fa0(a0 + 0x5cc, uVar1, ar6_00, ar7_00);
+    Class_129cbc_ctor(a0 + 0x5cc, uVar1, ar6_00, ar7_00);
     sprintf(a0 + 0xc, uVar1, ar6_00, ar7_00, "MothEgg");
     *(int *)(a0 + 0x308) = a0 + 0x530;
     *(int *)(a0 + 0x30c) = a0 + 0x5cc;
@@ -7298,7 +7298,7 @@ int game_sub_09b8e4(int a0, u32 a1) {
     ar5_00 = Vec3_ctor_zero;
     vec_new_array(a0 + 0x644, Vec3_ctor_zero, Vec3_dtor, 0x10, 8);
     game_sub_02ff6c(a0 + 0x6e4, ar5_00, ar6_00);
-    game_sub_030fa0(a0 + 0x780, ar5_00, ar6_00, uVar2);
+    Class_129cbc_ctor(a0 + 0x780, ar5_00, ar6_00, uVar2);
     game_sub_09b508(a0 + 0x9a4);
     sprintf(a0 + 0xc, ar5_00, ar6_00, uVar2, "MushroomerEgg");
     *(u8 *)(a0 + 0x6e0) = 0xff;

@@ -1200,13 +1200,13 @@ u32 CWaterTank_CreateStage(int a0, u32 a1, u32 a2) {
     aiStack_38[1] = 0;
     aiStack_38[0] = 0;
     uStack_3c = 0;
-    iVar1 = game_sub_0209fc(a1, "suisou.nj", "GRAPHICS\\ENV", aiStack_38);
+    iVar1 = retry_until_done_0209b0(a1, "suisou.nj", "GRAPHICS\\ENV", aiStack_38);
     if (iVar1 == 0) {
         report_error_message("suisou.nj", "Failed NJCM:CWaterTank::CreateStage()", 0, 2);
     }
     puVar4 = &uStack_3c;
     pcVar2 = "GRAPHICS\\ENV";
-    iVar1 = game_sub_020af4(a1, "suisou.nj", "GRAPHICS\\ENV", puVar4);
+    iVar1 = retry_until_done_020aa8(a1, "suisou.nj", "GRAPHICS\\ENV", puVar4);
     if (iVar1 == 0) {
         puVar4 = (u32 *)0x2;
         pcVar2 = NULL;
@@ -1223,41 +1223,41 @@ u32 CWaterTank_CreateStage(int a0, u32 a1, u32 a2) {
     ar5_00 = 0x8c437554;
     (**(code **)(*(int *)(a0 + 0x28) + 8))((int *)(a0 + 0x28), 0x8c437554, uVar3, uVar5);
     uVar3 = get_field_4_0253e4(a0 + 0x28, ar5_00, uVar3, uVar5);
-    iVar1 = game_sub_02100c(a1, "suisou.pvm", "GRAPHICS\\ENV", uVar3);
+    iVar1 = retry_until_done_020f90(a1, "suisou.pvm", "GRAPHICS\\ENV", uVar3);
     if (iVar1 == 0) {
         report_error_message("Failed to load water tank textuer..", "CWaterTank::CreateStage()", 0, 2);
     }
-    iVar1 = game_sub_0209fc(a1, "suisou_parts_S_GlassB_Up.nj", "GRAPHICS\\ENV", aiStack_38);
+    iVar1 = retry_until_done_0209b0(a1, "suisou_parts_S_GlassB_Up.nj", "GRAPHICS\\ENV", aiStack_38);
     if (iVar1 == 0) {
         report_error_message("suisou_parts_S_GlassB_Up.nj", "Failed NJCM:CWaterTank::CreateStage()", 0, 2);
     }
     puVar4 = &uStack_3c;
     pcVar2 = "GRAPHICS\\ENV";
-    iVar1 = game_sub_020af4(a1, "suisou_parts_S_GlassB_Up.nj", "GRAPHICS\\ENV", puVar4);
+    iVar1 = retry_until_done_020aa8(a1, "suisou_parts_S_GlassB_Up.nj", "GRAPHICS\\ENV", puVar4);
     if (iVar1 == 0) {
         puVar4 = (u32 *)0x2;
         pcVar2 = NULL;
         report_error_message("suisou_parts_S_GlassB_Up.nj", "Failed NJTL:CWaterTank::CreateStage()", 0, 2);
     }
     set_field_0_015ad4(a0 + 0x1074, aiStack_38[0], pcVar2);
-    iVar1 = game_sub_0209fc(a1, "suisou_parts_S_GlassB_Dn.nj", "GRAPHICS\\ENV", aiStack_38);
+    iVar1 = retry_until_done_0209b0(a1, "suisou_parts_S_GlassB_Dn.nj", "GRAPHICS\\ENV", aiStack_38);
     if (iVar1 == 0) {
         report_error_message("suisou_parts_S_GlassB_Dn.nj", "Failed NJCM:CWaterTank::CreateStage()", 0, 2);
     }
     puVar4 = &uStack_3c;
-    iVar1 = game_sub_020af4(a1, "suisou_parts_S_GlassB_Dn.nj", "GRAPHICS\\ENV", puVar4);
+    iVar1 = retry_until_done_020aa8(a1, "suisou_parts_S_GlassB_Dn.nj", "GRAPHICS\\ENV", puVar4);
     if (iVar1 == 0) {
         puVar4 = (u32 *)0x2;
         report_error_message("suisou_parts_S_GlassB_Dn.nj", "Failed NJTL:CWaterTank::CreateStage()", 0, 2);
     }
     set_field_0_015ad4(a0 + 0x1078, aiStack_38[0], 0x1078);
-    iVar1 = game_sub_0209fc(a1, "suisou_parts_S_GlassS_Up.nj", "GRAPHICS\\ENV", aiStack_38);
+    iVar1 = retry_until_done_0209b0(a1, "suisou_parts_S_GlassS_Up.nj", "GRAPHICS\\ENV", aiStack_38);
     if (iVar1 == 0) {
         report_error_message("suisou_parts_S_GlassS_Up.nj", "Failed NJCM:CWaterTank::CreateStage()", 0, 2);
     }
     puVar4 = &uStack_3c;
     pcVar2 = "GRAPHICS\\ENV";
-    iVar1 = game_sub_020af4(a1, "suisou_parts_S_GlassS_Up.nj", "GRAPHICS\\ENV", puVar4);
+    iVar1 = retry_until_done_020aa8(a1, "suisou_parts_S_GlassS_Up.nj", "GRAPHICS\\ENV", puVar4);
     if (iVar1 == 0) {
         puVar4 = (u32 *)0x2;
         pcVar2 = NULL;
@@ -1275,16 +1275,16 @@ u32 CWaterTank_CreateStage(int a0, u32 a1, u32 a2) {
     iVar1 = a0 + 0x1080;
     (**(code **)(*(int *)(a0 + 0x106c) + 8))((int *)(a0 + 0x106c), iVar1, 3, a7);
     uVar3 = get_field_4_0253e4(a0 + 0x106c, iVar1, get_field_4_0253e4, a0 + 0x106c);
-    iVar1 = game_sub_02100c(a1, "SuisouParts.pvm", "GRAPHICS\\ENV", uVar3);
+    iVar1 = retry_until_done_020f90(a1, "SuisouParts.pvm", "GRAPHICS\\ENV", uVar3);
     if (iVar1 == 0) {
         report_error_message("Failed to load water tank upper textuer..", "CWaterTank::CreateStage()", 0, 2);
     }
-    iVar1 = game_sub_0209fc(a1, "suisou_TempMeter.nj", "GRAPHICS\\ENV", aiStack_38);
+    iVar1 = retry_until_done_0209b0(a1, "suisou_TempMeter.nj", "GRAPHICS\\ENV", aiStack_38);
     if (iVar1 == 0) {
         report_error_message("suisou_TempMeter.nj", "Failed NJCM:CWaterTank::CreateStage()", 0, 2);
     }
     pcVar2 = "GRAPHICS\\ENV";
-    iVar1 = game_sub_020af4(a1, "suisou_TempMeter.nj", "GRAPHICS\\ENV", &uStack_3c);
+    iVar1 = retry_until_done_020aa8(a1, "suisou_TempMeter.nj", "GRAPHICS\\ENV", &uStack_3c);
     if (iVar1 == 0) {
         pcVar2 = NULL;
         report_error_message("suisou_TempMeter.nj", "Failed NJTL:CWaterTank::CreateStage()", 0, 2);
@@ -1296,19 +1296,19 @@ u32 CWaterTank_CreateStage(int a0, u32 a1, u32 a2) {
     (**(code **)(*(int *)(a0 + 0x226fc) + 8))((int *)(a0 + 0x226fc), uStack_3c, uStack_3c, pcVar6);
     uVar3 = get_field_4_0253e4(a0 + 0x226fc, uVar3, uVar5, pcVar6);
     pcVar2 = "THERMOMETER";
-    iVar1 = game_sub_020ef0(a1, "THERMOMETER", "GRAPHICS\\ENV", uVar3);
+    iVar1 = retry_until_done_020e80(a1, "THERMOMETER", "GRAPHICS\\ENV", uVar3);
     if (iVar1 == 0) {
         uVar3 = 2;
         pcVar2 = "CWaterTank::CreateStage()";
         report_error_message("Failed to load thermometer textuer..", "CWaterTank::CreateStage()", 0, 2);
     }
     uVar3 = get_field_4_0253e4(a0 + 0x22d40, pcVar2, get_field_4_0253e4, uVar3);
-    iVar1 = game_sub_020ef0(a1, "WATER_ROCK", "GRAPHICS\\ENV", uVar3);
+    iVar1 = retry_until_done_020e80(a1, "WATER_ROCK", "GRAPHICS\\ENV", uVar3);
     if (iVar1 == 0) {
         report_error_message("Failed to load rock textuer..", "CWaterTank::CreateStage()", 0, 2);
     }
     piVar7 = aiStack_38;
-    iVar1 = game_sub_0209fc(a1, "suisou_Collision.nj", "GRAPHICS\\ENV", piVar7);
+    iVar1 = retry_until_done_0209b0(a1, "suisou_Collision.nj", "GRAPHICS\\ENV", piVar7);
     if (iVar1 == 0) {
         piVar7 = (int *)0x2;
         report_error_message("suisou_Collision.nj", "Failed NJCM:CWaterTank::CreateStage()", 0, 2);
@@ -3347,13 +3347,13 @@ u32 CSoilTank_Create(int a0, u32 a1, u32 a2) {
     Vec3_set_zero(&uStack_3c);
     uStack_40 = 0;
     uStack_44 = 0;
-    iVar1 = game_sub_0209fc(a1, "musikago.nj", "GRAPHICS\\ENV", &uStack_40);
+    iVar1 = retry_until_done_0209b0(a1, "musikago.nj", "GRAPHICS\\ENV", &uStack_40);
     if (iVar1 == 0) {
         report_error_message("musikago.nj", "Failed to load:CSoilTank::Create()", 0, 2);
     }
     puVar4 = &uStack_44;
     pcVar2 = "GRAPHICS\\ENV";
-    iVar1 = game_sub_020af4(a1, "musikago.nj", "GRAPHICS\\ENV", puVar4);
+    iVar1 = retry_until_done_020aa8(a1, "musikago.nj", "GRAPHICS\\ENV", puVar4);
     if (iVar1 == 0) {
         puVar4 = (u32 *)0x2;
         pcVar2 = NULL;
@@ -3371,7 +3371,7 @@ u32 CSoilTank_Create(int a0, u32 a1, u32 a2) {
     get_field_4_0253e4(a0 + 0x28, ar5_00, uVar3, a7);
     uVar3 = get_field_4_0253e4(a0 + 0x28, ar5_00, uVar3, a7);
     pcVar2 = "GRAPHICS\\ENV";
-    iVar1 = game_sub_02100c(a1, "musikago.pvm", "GRAPHICS\\ENV", uVar3);
+    iVar1 = retry_until_done_020f90(a1, "musikago.pvm", "GRAPHICS\\ENV", uVar3);
     if (iVar1 == 0) {
         uVar3 = 2;
         pcVar2 = NULL;
@@ -3387,7 +3387,7 @@ u32 CSoilTank_Create(int a0, u32 a1, u32 a2) {
         uVar5 = uVar6 + 1;
     }
     pcVar2 = "GRAPHICS\\ENV";
-    iVar1 = game_sub_020ef0(a1, "SPRAY_MIST", "GRAPHICS\\ENV", ar7_00);
+    iVar1 = retry_until_done_020e80(a1, "SPRAY_MIST", "GRAPHICS\\ENV", ar7_00);
     if (iVar1 == 0) {
         ar7_00 = (int *)0x2;
         pcVar2 = NULL;
@@ -4641,13 +4641,13 @@ u32 game_sub_0e69c0(int a0, u32 a1, u32 a2) {
     Vec3_set_zero(&uStack_30);
     uStack_34 = 0;
     uStack_38 = 0;
-    iVar1 = game_sub_0209fc(a1, "amazon.nj", "GRAPHICS\\ENV", &uStack_34);
+    iVar1 = retry_until_done_0209b0(a1, "amazon.nj", "GRAPHICS\\ENV", &uStack_34);
     if (iVar1 == 0) {
         report_error_message("amazon.nj", "Failed to load:COutside::Create()", 0, 2);
     }
     puVar4 = &uStack_38;
     pcVar2 = "GRAPHICS\\ENV";
-    iVar1 = game_sub_020af4(a1, "amazon.nj", "GRAPHICS\\ENV", puVar4);
+    iVar1 = retry_until_done_020aa8(a1, "amazon.nj", "GRAPHICS\\ENV", puVar4);
     if (iVar1 == 0) {
         puVar4 = (u32 *)0x2;
         pcVar2 = NULL;
@@ -4665,7 +4665,7 @@ u32 game_sub_0e69c0(int a0, u32 a1, u32 a2) {
     get_field_4_0253e4(a0 + 0x28, ar5_00, uVar3, a7);
     uVar3 = get_field_4_0253e4(a0 + 0x28, ar5_00, uVar3, a7);
     pcVar2 = "GRAPHICS\\ENV";
-    iVar1 = game_sub_02100c(a1, "amazon.pvm", "GRAPHICS\\ENV", uVar3);
+    iVar1 = retry_until_done_020f90(a1, "amazon.pvm", "GRAPHICS\\ENV", uVar3);
     if (iVar1 == 0) {
         uVar3 = 2;
         pcVar2 = NULL;
@@ -5279,7 +5279,7 @@ u32 CIncubater_Create(int a0, u32 a1, u32 a2, u32 a3) {
     uVar1 = get_field_4_0253e4(a0 + 0x488, iVar2, uVar3, ar7_00);
     ar6_00 = "GRAPHICS\\ENV";
     ar5_00 = "Incubater.pvm";
-    iVar2 = game_sub_02100c(a1, "Incubater.pvm", "GRAPHICS\\ENV", uVar1);
+    iVar2 = retry_until_done_020f90(a1, "Incubater.pvm", "GRAPHICS\\ENV", uVar1);
     if (iVar2 == 0) {
         uVar1 = 2;
         ar6_00 = NULL;
@@ -5424,7 +5424,7 @@ u32 Class_12b3b8_sub_0e7a78(int a0, u32 a1, u32 a2, u32 a3) {
                     uStack_54 = 0xff;
                     uStack_52 = 0x5f;
                 }
-                Class_129808_sub_01636c(auStack_74, a1, a2, a3);
+                Class_129808_draw_offset(auStack_74, a1, a2, a3);
             }
         }
         for (iVar1 = 0; iVar1 < 3; iVar1 = iVar1 + 1) {

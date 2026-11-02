@@ -331,7 +331,7 @@ int shinobi_sub_200472(char *a0) {
 /*
  * shinobi_sub_2004a0  0x8c2004a0
  * area name: in the shinobi library code range
- * called by: shinobi_sub_200566
+ * called by: vmu_dir_find_file
  */
 u32 shinobi_sub_2004a0(char *a0, char *a1) {
     int iVar1;
@@ -358,7 +358,7 @@ u32 shinobi_sub_2004a0(char *a0, char *a1) {
 /*
  * shinobi_sub_2004ea  0x8c2004ea
  * area name: in the shinobi library code range
- * called by: shinobi_sub_200566, shinobi_sub_2005d6, shinobi_sub_2005dc
+ * called by: shinobi_sub_2005d6, shinobi_sub_2005dc, vmu_dir_find_file
  */
 u32 shinobi_sub_2004ea(u8 *a0, int a1) {
     u8 bVar1;
@@ -444,12 +444,12 @@ u32 shinobi_sub_2004f6(u32 unused_a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_200566  0x8c200566
- * area name: in the shinobi library code range
+ * vmu_dir_find_file  0x8c200566
+ * finds the data (0x33) or game (0xcc) directory entry named a1 on drive a0 and copies it to a2
  * called by: shinobi_sub_1fdd44, shinobi_sub_1fe534, shinobi_sub_1fe646, shinobi_sub_1fe7aa, shinobi_sub_1fef5a,
  * shinobi_sub_1ff478, shinobi_sub_1ff72e, shinobi_sub_1ff844 (+5 more)
  */
-u32 shinobi_sub_200566(int a0, u32 a1, u32 a2) {
+u32 vmu_dir_find_file(int a0, u32 a1, u32 a2) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -1157,7 +1157,7 @@ int shinobi_sub_200b10(int a0, u32 a1) {
     u32 uStack_34;
     int iStack_18;
     iVar3 = a0 * 0x148 + 0x8c4783e0;
-    iVar1 = shinobi_sub_200566(a0, a1, auStack_40);
+    iVar1 = vmu_dir_find_file(a0, a1, auStack_40);
     if (iVar1 < 0) {
         iVar1 = (int)(int)0xffffff05;
     } else {
@@ -1896,7 +1896,7 @@ int shinobi_sub_20147c(u32 a0, u32 a1, u16 *a2) {
     int iStack_18;
 
     a6 = auStack_40;
-    a5 = shinobi_sub_200566(a0, a1, a6);
+    a5 = vmu_dir_find_file(a0, a1, a6);
     if (a5 < 0) {
         a5 = (int)(int)0xffffff05;
     } else {
@@ -5813,7 +5813,7 @@ u32 shinobi_sub_2043d4(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
     }
     if (*(u32 *)(ar6_00 + 8) == a2) {
         dlist_unlink(&g_8c275408 + iVar2 * 5, &g_8c27540c + iVar2 * 5, ar6_00, 0);
-        shinobi_sub_204e92(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, ar6_00);
+        dlist_push_front(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, ar6_00);
         *(u32 *)(a3 + 0x1c) = *(u32 *)(ar6_00 + 6);
         *(int *)(ar6_00 + 10) = a3;
         *ar6_00 = 1;
@@ -5839,8 +5839,7 @@ u32 shinobi_sub_2043d4(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
                 *(u32 *)(ar6_00 + 8) = *(int *)(ar6_00 + 8) - a2;
                 *(int *)(ar6_01 + 6) = a1;
                 *(u32 *)(ar6_01 + 8) = a2;
-                shinobi_sub_204e92(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, ar6_01, a7,
-                                   &g_8c275400 + iVar2 * 5);
+                dlist_push_front(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, ar6_01, a7, &g_8c275400 + iVar2 * 5);
                 *(u32 *)(a3 + 0x1c) = *(u32 *)(ar6_01 + 6);
                 *(int *)(ar6_01 + 10) = a3;
                 if ((short)a0 == 0) {
@@ -5869,7 +5868,7 @@ u32 shinobi_sub_2043d4(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
                 *(int *)(ar6_00 + 8) = a1 - iVar4;
                 *(int *)(ar6_01 + 6) = a1;
                 *(u32 *)(ar6_01 + 8) = a2;
-                shinobi_sub_204e92(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, ar6_01);
+                dlist_push_front(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, ar6_01);
                 *(u32 *)(ain0 + 0xc) = a1 + a2;
                 *(u32 *)(ain0 + 0x10) = (iVar5 - a2) - (a1 - iVar4);
                 shinobi_sub_204eb6(&g_8c27540c + iVar2 * 5, ain0, (&g_8c27540c)[iVar2 * 5]);
@@ -5898,7 +5897,7 @@ u32 shinobi_sub_2043d4(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
         *(u32 *)(puVar3 + 8) = a2;
         *(u32 *)(ar6_00 + 8) = *(int *)(ar6_00 + 8) - a2;
         *(u32 *)(ar6_00 + 6) = *(int *)(ar6_00 + 6) + a2;
-        shinobi_sub_204e92(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, puVar3, a7, &g_8c275400 + iVar2 * 5);
+        dlist_push_front(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, puVar3, a7, &g_8c275400 + iVar2 * 5);
         *(u32 *)(a3 + 0x1c) = *(u32 *)(puVar3 + 6);
         *(int *)(puVar3 + 10) = a3;
         if ((short)a0 == 0) {
@@ -5959,7 +5958,7 @@ u32 shinobi_sub_2046d2(u32 a0, u32 a1, u32 *a2, u32 a3) {
         sVar6 = (short)a3;
         if (*(u32 *)(ar6_00 + 8) == a1) {
             dlist_unlink(&g_8c275408 + iVar7 * 5, &g_8c27540c + iVar7 * 5, ar6_00, a3);
-            shinobi_sub_204e92(&g_8c275400 + iVar7 * 5, &g_8c275404 + iVar7 * 5, ar6_00);
+            dlist_push_front(&g_8c275400 + iVar7 * 5, &g_8c275404 + iVar7 * 5, ar6_00);
             *ar6_00 = 1;
             if (sVar6 == 8) {
                 a2[7] = *(u32 *)(ar6_00 + 6);
@@ -5982,7 +5981,7 @@ u32 shinobi_sub_2046d2(u32 a0, u32 a1, u32 *a2, u32 a3) {
             *(u32 *)(puVar3 + 8) = a1;
             *(u32 *)(ar6_00 + 8) = *(int *)(ar6_00 + 8) - a1;
             *(u32 *)(ar6_00 + 6) = a1 + *(int *)(ar6_00 + 6);
-            shinobi_sub_204e92(&g_8c275400 + iVar7 * 5, &g_8c275404 + iVar7 * 5, puVar3, a3, &g_8c275400 + iVar7 * 5);
+            dlist_push_front(&g_8c275400 + iVar7 * 5, &g_8c275404 + iVar7 * 5, puVar3, a3, &g_8c275400 + iVar7 * 5);
             if (sVar6 == 8) {
                 a2[7] = *(u32 *)(puVar3 + 6);
                 *(u32 **)(puVar3 + 10) = a2;
@@ -6043,7 +6042,7 @@ u32 shinobi_sub_2048aa(u32 a0, u32 a1, int a2, u32 a3) {
     } else {
         if (*(u32 *)(ar6_00 + 8) == a1) {
             dlist_unlink(&g_8c275408 + iVar7 * 5, &g_8c27540c + iVar7 * 5, ar6_00, a3);
-            shinobi_sub_204e92(&g_8c275400 + iVar7 * 5, &g_8c275404 + iVar7 * 5, ar6_00);
+            dlist_push_front(&g_8c275400 + iVar7 * 5, &g_8c275404 + iVar7 * 5, ar6_00);
             *(u32 *)(a2 + 0x1c) = *(u32 *)(ar6_00 + 6);
             *(int *)(ar6_00 + 10) = a2;
             *ar6_00 = 1;
@@ -6063,7 +6062,7 @@ u32 shinobi_sub_2048aa(u32 a0, u32 a1, int a2, u32 a3) {
             *(u32 *)(puVar4 + 8) = a1;
             *(u32 *)(ar6_00 + 8) = *(int *)(ar6_00 + 8) - a1;
             *(u32 *)(ar6_00 + 6) = *(int *)(ar6_00 + 6) + a1;
-            shinobi_sub_204e92(&g_8c275400 + iVar7 * 5, &g_8c275404 + iVar7 * 5, puVar4, a3, &g_8c275400 + iVar7 * 5);
+            dlist_push_front(&g_8c275400 + iVar7 * 5, &g_8c275404 + iVar7 * 5, puVar4, a3, &g_8c275400 + iVar7 * 5);
             *(u32 *)(a2 + 0x1c) = *(u32 *)(puVar4 + 6);
             *(int *)(puVar4 + 10) = a2;
             if ((short)a0 == 0) {
@@ -6159,7 +6158,7 @@ u32 shinobi_sub_2049ec(u32 a0, u32 a1, int a2, int a3) {
         }
         if (*(u32 *)(ar6_00 + 8) == a6) {
             dlist_unlink(&g_8c275408 + iVar2 * 5, &g_8c27540c + iVar2 * 5, ar6_00, a3);
-            shinobi_sub_204e92(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, ar6_00);
+            dlist_push_front(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, ar6_00);
             *(u32 *)(a2 + 8) = *(u32 *)(ar6_00 + 6);
             *(int *)(ar6_00 + 10) = a2;
             *ar6_00 = 1;
@@ -6178,7 +6177,7 @@ u32 shinobi_sub_2049ec(u32 a0, u32 a1, int a2, int a3) {
             *(u32 *)(puVar8 + 8) = a6;
             *(u32 *)(ar6_00 + 8) = *(int *)(ar6_00 + 8) - a6;
             *(u32 *)(ar6_00 + 6) = *(int *)(ar6_00 + 6) + a6;
-            shinobi_sub_204e92(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, puVar8, a3, &g_8c275400 + iVar2 * 5);
+            dlist_push_front(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, puVar8, a3, &g_8c275400 + iVar2 * 5);
             *(u32 *)(a2 + 8) = *(u32 *)(puVar8 + 6);
             *(int *)(puVar8 + 10) = a2;
             if ((short)a0 == 0) {
@@ -6327,7 +6326,7 @@ u32 shinobi_sub_204cfc(u32 a0, u16 *a1, u32 unused_a2, u32 a3) {
         } while (puVar2 != NULL);
         puVar3 = &g_8c275400 + (short)a0 * 5;
     }
-    shinobi_sub_204e92(puVar3 + 2, puVar3 + 3, a1);
+    dlist_push_front(puVar3 + 2, puVar3 + 3, a1);
     return 0;
 }
 
@@ -6384,12 +6383,12 @@ u32 pool47eba8_free(u16 *a0) {
 }
 
 /*
- * shinobi_sub_204e92  0x8c204e92
- * area name: in the shinobi library code range
+ * dlist_push_front  0x8c204e92
+ * links node a2 in front of the list with head *a0 and tail *a1 (prev +4, next +8)
  * called by: shinobi_sub_2043d4, shinobi_sub_2046d2, shinobi_sub_2048aa, shinobi_sub_2049ec, shinobi_sub_204cfc,
  * ta_fifo_2050cc, ta_fifo_2050de, ta_fifo_2052f2
  */
-u32 shinobi_sub_204e92(int *a0, int *a1, int a2) {
+u32 dlist_push_front(int *a0, int *a1, int a2) {
     u32 in_r0;
     int iVar1;
 
@@ -6643,7 +6642,7 @@ u32 ta_fifo_2050cc(int *a0, int a1, u32 *a2, int a3) {
                     *(int *)(iVar3 + 0x10) = iVar4;
                     *(int *)(iVar8 + 0x10) = *(int *)(iVar8 + 0x10) - iVar4;
                     if (*(int *)(iVar8 + 4) == 0) {
-                        shinobi_sub_204e92(a0, a1, iVar3);
+                        dlist_push_front(a0, a1, iVar3);
                     } else {
                         shinobi_sub_204eb6(a1, iVar3, *(int *)(iVar8 + 4));
                     }
@@ -6775,7 +6774,7 @@ u32 ta_fifo_2050de(u32 unused_a0, int a1, u32 *a2, int a3) {
                     *(int *)(iVar3 + 0x10) = iVar4;
                     *(int *)(iVar6 + 0x10) = *(int *)(iVar6 + 0x10) - iVar4;
                     if (*(int *)(iVar6 + 4) == 0) {
-                        shinobi_sub_204e92(unaff_r8, unaff_r9, iVar3);
+                        dlist_push_front(unaff_r8, unaff_r9, iVar3);
                     } else {
                         shinobi_sub_204eb6(unaff_r9, iVar3, *(int *)(iVar6 + 4));
                     }
@@ -6874,7 +6873,7 @@ u32 ta_fifo_2052f2(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
     }
     if (*(u32 *)(ar6_00 + 8) == a2) {
         dlist_unlink(&g_8c275408 + iVar2 * 5, &g_8c27540c + iVar2 * 5, ar6_00, 0);
-        shinobi_sub_204e92(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, ar6_00);
+        dlist_push_front(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, ar6_00);
         *(u32 *)(a3 + 8) = *(u32 *)(ar6_00 + 6);
         *(int *)(ar6_00 + 10) = a3;
         *ar6_00 = 1;
@@ -6900,8 +6899,7 @@ u32 ta_fifo_2052f2(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
                 *(u32 *)(ar6_00 + 8) = *(int *)(ar6_00 + 8) - a2;
                 *(int *)(ar6_01 + 6) = a1;
                 *(u32 *)(ar6_01 + 8) = a2;
-                shinobi_sub_204e92(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, ar6_01, a7,
-                                   &g_8c275400 + iVar2 * 5);
+                dlist_push_front(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, ar6_01, a7, &g_8c275400 + iVar2 * 5);
                 *(u32 *)(a3 + 8) = *(u32 *)(ar6_01 + 6);
                 *(int *)(ar6_01 + 10) = a3;
                 if ((short)a0 == 0) {
@@ -6930,7 +6928,7 @@ u32 ta_fifo_2052f2(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
                 *(int *)(ar6_00 + 8) = a1 - iVar4;
                 *(int *)(ar6_01 + 6) = a1;
                 *(u32 *)(ar6_01 + 8) = a2;
-                shinobi_sub_204e92(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, ar6_01);
+                dlist_push_front(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, ar6_01);
                 *(u32 *)(ain0 + 0xc) = a1 + a2;
                 *(u32 *)(ain0 + 0x10) = (iVar5 - a2) - (a1 - iVar4);
                 shinobi_sub_204eb6(&g_8c27540c + iVar2 * 5, ain0, (&g_8c27540c)[iVar2 * 5]);
@@ -6959,7 +6957,7 @@ u32 ta_fifo_2052f2(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
         *(u32 *)(puVar3 + 8) = a2;
         *(u32 *)(ar6_00 + 8) = *(int *)(ar6_00 + 8) - a2;
         *(u32 *)(ar6_00 + 6) = *(int *)(ar6_00 + 6) + a2;
-        shinobi_sub_204e92(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, puVar3, a7, &g_8c275400 + iVar2 * 5);
+        dlist_push_front(&g_8c275400 + iVar2 * 5, &g_8c275404 + iVar2 * 5, puVar3, a7, &g_8c275400 + iVar2 * 5);
         *(u32 *)(a3 + 8) = *(u32 *)(puVar3 + 6);
         *(int *)(puVar3 + 10) = a3;
         if ((short)a0 == 0) {
@@ -13064,7 +13062,7 @@ u32 kamui_sub_20cefe(u32 *a0, u32 a1) {
 /*
  * kamui_sub_20cf88  0x8c20cf88
  * area name: in the kamui library code range
- * called by: matrix_sub_2567f8, matrix_sub_2567fe, ninja_sub_2566c8, ninja_sub_25a914, ninja_sub_25a918, tex_sub_25a770
+ * called by: matrix_sub_2567f8, matrix_sub_2567fe, ninja_sub_2566c8, tex_sub_25a770, tex_sub_25a914, tex_sub_25a918
  */
 u32 kamui_sub_20cf88(u32 *a0) {
     u32 uVar1;
@@ -14019,7 +14017,7 @@ u32 ta_sub_20df7a(int a0, u32 a1, int a2, u32 *a3) {
             uVar2 = 0;
             if (*a3 != 0) {
                 do {
-                    libc_sub_010838(uVar2, a1, ar6_00, ar7_00);
+                    libgcc_movstr_i4(uVar2, a1, ar6_00, ar7_00);
                     uVar2 = uVar2 + 1;
                 } while (uVar2 < *a3);
             }

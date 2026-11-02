@@ -7685,12 +7685,12 @@ u32 noop(void) {
 }
 
 /*
- * libc_sub_010838  0x8c010838
- * area name: in the libc library code range
+ * libgcc_movstr_i4  0x8c010838
+ * compiler block-copy helper: copies r0 bytes from r2 to r1 in 32-bit words
  * called by: gfxlib_sub_23340c, gfxlib_sub_2336e8, ninja_sub_2588f8, ninja_sub_25dc60, ninja_sub_25e540,
  * ninja_sub_25e884, ninja_sub_25eb60, ta_sub_20df7a decompiler: Exceeded maximum restarts with more pending
  */
-u32 libc_sub_010838(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 libgcc_movstr_i4(u32 a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
     u32 uVar1;
     u32 *in_r1;
@@ -13861,8 +13861,8 @@ u32 Class_1298b8_m11_0159ec(int a0, u32 unused_a1, u32 *a2) {
 /*
  * clear_field_0_wrap_015ab8  0x8c015ab8
  * only calls clear_field_0_015b8c
- * called by: Class_129938_ctor, Class_129938_ctor_init, Class_129974_ctor, Class_12b580_ctor, Class_12b758_ctor,
- * Class_12b758_sub_0d5e9c, Class_12b930_ctor, Class_12b930_sub_0cff78 (+13 more)
+ * called by: Class_129938_ctor, Class_129938_ctor_init, Class_129974_ctor, Class_129cbc_ctor, Class_12b580_ctor,
+ * Class_12b758_ctor, Class_12b758_sub_0d5e9c, Class_12b930_ctor (+13 more)
  */
 u32 clear_field_0_wrap_015ab8(u32 a0) {
     clear_field_0_015b8c(a0);
@@ -14443,12 +14443,12 @@ u32 Class_129808_draw(int a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * Class_129808_sub_01636c  0x8c01636c
- * area name: sits between Class_129808 functions (same compilation unit)
+ * Class_129808_draw_offset  0x8c01636c
+ * draws the object's quad moved by the x/y offset in dr4
  * called by: CSeamanDomain_sub_0c3530, Class_12b3b8_sub_0e7a78, game_sub_0ba5e0, game_sub_0bf804, game_sub_0bfa78,
  * game_sub_0c2efc, game_sub_0c3a48, game_sub_0c3aac (+4 more)
  */
-u32 Class_129808_sub_01636c(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 Class_129808_draw_offset(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     u64 in_dr4;
@@ -23167,7 +23167,7 @@ u32 game_sub_01f794(int a0, u32 a1, u32 a2, u32 a3) {
  * game_sub_01f810  0x8c01f810
  * area name: game code; nothing names its area yet
  * called by: CAnimal_sub_020bec, CAnimal_sub_020ce4, CAnimal_sub_020ddc, file_load_into_object_buffer,
- * file_load_to_buffer, game_sub_0209fc, game_sub_020af4, game_sub_020ef0 (+2 more)
+ * file_load_to_buffer, game_sub_0213bc, retry_until_done_0209b0, retry_until_done_020aa8 (+2 more)
  */
 u32 game_sub_01f810(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;

@@ -5377,7 +5377,7 @@ u32 game_sub_0b95a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
             uVar5 = 0;
             iVar4 = iStack_11c;
             ain0 = puVar2;
-            iVar3 = shinobi_sub_1f6f20(iStack_11c, puVar2, 0, 0);
+            iVar3 = flashrom_sub_1f6f20(iStack_11c, puVar2, 0, 0);
             if (iVar3 != 0) {
                 memset(auStack_10c, 0, 0xf0);
                 uVar5 = 10;
@@ -5458,7 +5458,7 @@ int CProlog_sub_0b96e4(int a0, u32 a1, u32 a2, u32 a3) {
                     ar6_00 = 0;
                     ar4_01 = g_8c4365f0;
                     ar5_01 = g_8c4365f4;
-                    iVar2 = shinobi_sub_1f6f20(g_8c4365f0, g_8c4365f4, 0, 0);
+                    iVar2 = flashrom_sub_1f6f20(g_8c4365f0, g_8c4365f4, 0, 0);
                     if (iVar2 != 0) {
                         for (iVar2 = 0; iVar2 < 10; iVar2 = iVar2 + 1) {
                             acStack_30[iVar2] = ' ';
@@ -6167,7 +6167,7 @@ u32 game_sub_0ba5e0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     Class_129808_set_model(auStack_3c, &g_8c43655c, ar6_00);
     uVar1 = 0x80000060;
     set_field_10(auStack_3c, 0x80000060);
-    Class_129808_sub_01636c(auStack_3c, uVar1, ar6_00, ar7_00);
+    Class_129808_draw_offset(auStack_3c, uVar1, ar6_00, ar7_00);
     uVar1 = free_if_nonnull_wrap_0151a0(auStack_3c, 0xffffffff, ar6_00, ar7_00);
     return uVar1;
 }
@@ -6401,7 +6401,7 @@ u32 CProlog_Ready(int a0, u32 *a1) {
     iVar5 = a0 + 0x13c;
     (**(code **)(*(int *)(a0 + 0x48) + 8))((int *)(a0 + 0x48), iVar5, uVar2, uVar4);
     uVar2 = get_field_4_0253e4(a0 + 0x48, iVar5, uVar2, uVar4);
-    iVar5 = game_sub_02100c(0x8c3eb334, "TITLE.pvm", "GRAPHICS", uVar2);
+    iVar5 = retry_until_done_020f90(0x8c3eb334, "TITLE.pvm", "GRAPHICS", uVar2);
     if (iVar5 == 0) {
         uVar2 = 2;
         report_error_message("Failed to load Title pvm..", "CProlog::Ready", 0, 2);
@@ -9577,13 +9577,13 @@ u32 game_sub_0bf804(int a0, u32 a1, u32 unused_a2, u32 a3) {
     obj_set_texlist(a1, uVar2, uVar3);
     uVar2 = *(u32 *)(a0 + 8);
     obj_set_texture_num(a1, uVar2);
-    Class_129808_sub_01636c(auStack_60, uVar2, uVar3, uVar4);
+    Class_129808_draw_offset(auStack_60, uVar2, uVar3, uVar4);
     uVar4 = 4;
     uVar3 = 0x8c43654c;
     set_fields_0_4_c(auStack_60, &uStack_4c, 0x8c43654c, 4);
     uVar2 = 1;
     obj_set_texture_num(a1, 1);
-    Class_129808_sub_01636c(auStack_60, uVar2, uVar3, uVar4);
+    Class_129808_draw_offset(auStack_60, uVar2, uVar3, uVar4);
     iVar1 = *(int *)(a0 + 8);
     if (iVar1 == 3) {
         if (cVar7 == '\0') {
@@ -9715,7 +9715,7 @@ u32 game_sub_0bfa78(int a0, u32 a1, u32 unused_a2, u32 a3) {
     obj_set_texlist(a1, uVar1, puVar3);
     uVar1 = 0xc;
     obj_set_texture_num(a1, 0xc);
-    Class_129808_sub_01636c(&stack0xffffff60, uVar1, puVar3, uVar4);
+    Class_129808_draw_offset(&stack0xffffff60, uVar1, puVar3, uVar4);
     if (*(int *)(a0 + 0xc) == 0) {
         obj_set_texture_num(a1, 0xc);
         if (*(int *)(a0 + 0x24) == 1) {
@@ -9838,7 +9838,7 @@ u32 game_sub_0bfa78(int a0, u32 a1, u32 unused_a2, u32 a3) {
             set_fields_0_4_c(&stack0xffffff60, &fStack_4c, puVar3, 4);
             puVar2 = &uStack_7c;
             Class_129808_set_model(&stack0xffffff60, puVar2, puVar3);
-            Class_129808_sub_01636c(&stack0xffffff60, puVar2, puVar3, uVar1);
+            Class_129808_draw_offset(&stack0xffffff60, puVar2, puVar3, uVar1);
             uStack_7c = 0x80;
             uStack_7a = 0x7f;
             uStack_78 = 0x80;
@@ -9852,7 +9852,7 @@ u32 game_sub_0bfa78(int a0, u32 a1, u32 unused_a2, u32 a3) {
             set_fields_0_4_c(&stack0xffffff60, &fStack_6c, 0x8c43654c, 4);
             puVar2 = &uStack_7c;
             Class_129808_set_model(&stack0xffffff60, puVar2, puVar3);
-            Class_129808_sub_01636c(&stack0xffffff60, puVar2, puVar3, uVar4);
+            Class_129808_draw_offset(&stack0xffffff60, puVar2, puVar3, uVar4);
         } else {
             uStack_7c = 0;
             uStack_7a = 0x7f;
@@ -9867,7 +9867,7 @@ u32 game_sub_0bfa78(int a0, u32 a1, u32 unused_a2, u32 a3) {
             set_fields_0_4_c(&stack0xffffff60, &fStack_4c, 0x8c43654c, 4);
             puVar2 = &uStack_7c;
             Class_129808_set_model(&stack0xffffff60, puVar2, uVar1);
-            Class_129808_sub_01636c(&stack0xffffff60, puVar2, uVar1, uVar4);
+            Class_129808_draw_offset(&stack0xffffff60, puVar2, uVar1, uVar4);
             if (cVar7 == '\0') {
                 dVar5 = (double)CONCAT44(0x41200000, fStack_6c);
             } else {
@@ -9987,7 +9987,7 @@ u32 game_sub_0bfa78(int a0, u32 a1, u32 unused_a2, u32 a3) {
             set_fields_0_4_c(&stack0xffffff60, &fStack_6c, puVar3, 4);
             puVar2 = &uStack_7c;
             Class_129808_set_model(&stack0xffffff60, puVar2, puVar3);
-            Class_129808_sub_01636c(&stack0xffffff60, puVar2, puVar3, uVar4);
+            Class_129808_draw_offset(&stack0xffffff60, puVar2, puVar3, uVar4);
         }
     } else if (*(int *)(a0 + 0xc) == 1) {
         obj_set_texture_num(a1, 0xb);
@@ -10001,7 +10001,7 @@ u32 game_sub_0bfa78(int a0, u32 a1, u32 unused_a2, u32 a3) {
         uStack_6e = 0xff;
         puVar2 = &uStack_7c;
         Class_129808_set_model(&stack0xffffff60, puVar2, puVar3);
-        Class_129808_sub_01636c(&stack0xffffff60, puVar2, puVar3, uVar4);
+        Class_129808_draw_offset(&stack0xffffff60, puVar2, puVar3, uVar4);
     }
     uVar1 = free_if_nonnull_wrap_0151a0(&stack0xffffff60, 0xffffffff, puVar3, uVar4);
     return uVar1;

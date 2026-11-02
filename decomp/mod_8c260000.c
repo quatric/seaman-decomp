@@ -3260,13 +3260,13 @@ u32 cri_sub_2629d0(void) {
 }
 
 /*
- * cri_sub_2629d6  0x8c2629d6
- * area name: in the cri library code range
+ * mwRna_set_play_sw_wrap  0x8c2629d6
+ * only calls mwRna_set_play_sw
  */
-u32 cri_sub_2629d6(void) {
+u32 mwRna_set_play_sw_wrap(void) {
     u32 uVar1;
 
-    uVar1 = mwRna_sub_2691b8();
+    uVar1 = mwRna_set_play_sw();
     return uVar1;
 }
 
@@ -5066,7 +5066,7 @@ u32 cri_sub_263c64(int a0, u32 unused_a1, u32 a2, u32 a3) {
     irq_disable_nested(a0, unused_a1, a2, a3, in_stack_fffffff0);
     mwRna_sub_2690d8(*(u32 *)(a0 + 0xc), 0, a2, a3);
     uVar1 = 0;
-    mwRna_sub_2691b8(*(u32 *)(a0 + 0xc), 0, a2, a3);
+    mwRna_set_play_sw(*(u32 *)(a0 + 0xc), 0, a2, a3);
     ar4_00 = *(int **)(a0 + 4);
     ta_sub_262c66(ar4_00);
     if (*(int *)(a0 + 8) != 0) {
@@ -5403,7 +5403,7 @@ u32 ADX_sub_264104(int a0, int a1, u32 a2, u32 a3) {
         return iVar1;
     }
     if (a1 == 1) {
-        (*(code *)(&mwRna_sub_2691b8))(*(u32 *)(a0 + 0xc), 0, a2, a3);
+        (*(code *)(&mwRna_set_play_sw))(*(u32 *)(a0 + 0xc), 0, a2, a3);
         iVar1 = 0x7a120;
         do {
             iVar1 = iVar1 + -1;
@@ -5411,7 +5411,7 @@ u32 ADX_sub_264104(int a0, int a1, u32 a2, u32 a3) {
         uVar2 = (*(code *)(&mwRna_sub_269738))(*(u32 *)(a0 + 0xc));
         return uVar2;
     }
-    uVar2 = (*(code *)(&mwRna_sub_2691b8))(*(u32 *)(a0 + 0xc), 1);
+    uVar2 = (*(code *)(&mwRna_set_play_sw))(*(u32 *)(a0 + 0xc), 1);
     return uVar2;
 }
 
@@ -5928,7 +5928,7 @@ int cri_sub_264a42(int a0, u32 a1, u32 a2, u32 a3) {
         if (*(char *)(a0 + 0x70) == '\0') {
             if (*(char *)(a0 + 0x72) == '\0') {
                 a1 = 1;
-                mwRna_sub_2691b8(ar4_01, 1, a2, a3);
+                mwRna_set_play_sw(ar4_01, 1, a2, a3);
             }
             *(u8 *)(a0 + 1) = 3;
         }
@@ -6035,7 +6035,7 @@ int cri_sub_264b7a(int a0) {
 
     iVar1 = mwRna_sub_269aa8(*(u32 *)(a0 + 0xc));
     if (iVar1 < 1) {
-        mwRna_sub_2691b8(*(u32 *)(a0 + 0xc), 0);
+        mwRna_set_play_sw(*(u32 *)(a0 + 0xc), 0);
         iVar1 = 5;
         *(u8 *)(a0 + 1) = 5;
     }
@@ -6052,7 +6052,7 @@ int cri_sub_264b7e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
     iVar1 = (*(code *)(&mwRna_sub_269aa8))(*(u32 *)(unaff_r14 + 0xc), a1, a2, a3);
     if (iVar1 < 1) {
-        (*(code *)(&mwRna_sub_2691b8))(*(u32 *)(unaff_r14 + 0xc), 0, a2, a3);
+        (*(code *)(&mwRna_set_play_sw))(*(u32 *)(unaff_r14 + 0xc), 0, a2, a3);
         iVar1 = 5;
         *(u8 *)(unaff_r14 + 1) = 5;
     }
@@ -6084,7 +6084,7 @@ u32 cri_sub_264ba0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     irq_disable_nested(a0, unused_a1, a2, a3, in_stack_ffffffec);
     mwRna_sub_2690d8(*(u32 *)(a0 + 0xc), 0, a2, a3);
     uVar1 = 0;
-    mwRna_sub_2691b8(*(u32 *)(a0 + 0xc), 0, a2, a3);
+    mwRna_set_play_sw(*(u32 *)(a0 + 0xc), 0, a2, a3);
     ta_sub_262c66(*(u32 *)(a0 + 4));
     if (*(int *)(a0 + 8) != 0) {
         ADXSTM_sub_263498(*(u32 *)(a0 + 8), uVar1, a2, a3);
@@ -11511,7 +11511,7 @@ u32 sd_sub_268d64(int a0, u32 unused_a1, u32 a2, u32 a3) {
     uVar1 = 0;
     if (*(char *)(a0 + 1) != '\0') {
         sd_irq_disable(&stack0xfffffff4);
-        mwRna_sub_2691b8(a0, 0, a2, a3);
+        mwRna_set_play_sw(a0, 0, a2, a3);
         uVar1 = 0;
         mwRna_sub_2690d8(a0, 0, a2, a3);
         noop_268d60();
@@ -11797,12 +11797,12 @@ u32 mwRna_sub_2690d8(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * mwRna_sub_2691b8  0x8c2691b8
- * name hint from a string it uses: E1205 Illigal parameter MWRN; area name: sits between mwRna functions (same
- * compilation unit) called by: cri_sub_2629d6, cri_sub_263c64, cri_sub_264a42, cri_sub_264b7a, cri_sub_264ba0,
- * mwRna_sub_2694a4, mwRna_sub_26962c, mwRna_sub_2696aa (+1 more) strings: "E1205:Illigal parameter (MWRNA=NULL)"
+ * mwRna_set_play_sw  0x8c2691b8
+ * a1 = 1 starts (vtable +0x10, sets bit 1), 0 stops (vtable +0x14) an mwRna handle's output
+ * called by: cri_sub_263c64, cri_sub_264a42, cri_sub_264b7a, cri_sub_264ba0, mwRna_set_play_sw_wrap, mwRna_sub_2694a4,
+ * mwRna_sub_26962c, mwRna_sub_2696aa (+1 more) strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
-u32 mwRna_sub_2691b8(int a0, int a1, u32 a2, u32 a3) {
+u32 mwRna_set_play_sw(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     u8 auStack_c[8];
@@ -12017,12 +12017,12 @@ u32 mwRna_sub_2694a4(int a0, u32 unused_a1, u32 a2, u32 a3) {
 LAB_8c26958c:
     if (((*(char *)(a0 + 1) == '\x05') && (*(int *)(a0 + 0x40) <= *(int *)(a0 + 0x34))) &&
         (*(char *)(a0 + 7) == '\0')) {
-        mwRna_sub_2691b8(a0, 1, a2, a3);
+        mwRna_set_play_sw(a0, 1, a2, a3);
         *(u32 *)(a0 + 0x40) = 0x7fffffff;
     }
     if ((*(u8 *)(a0 + 1) == 6) && (*(int *)(a0 + 0x34) == 0)) {
         uVar3 = 0;
-        mwRna_sub_2691b8(a0, 0, a2, a3);
+        mwRna_set_play_sw(a0, 0, a2, a3);
         uVar3 = noop_268d60();
         return uVar3;
     }
@@ -12081,7 +12081,7 @@ u32 mwRna_sub_26962c(int a0, u32 a1, u32 a2, u32 a3) {
             *(u32 *)(a0 + 0x88) = iVar2 << 1 | uVar3;
             sd_sub_268ea8(a0, a1, a2, a3);
             a1 = 0;
-            mwRna_sub_2691b8(a0, 0, a2, a3);
+            mwRna_set_play_sw(a0, 0, a2, a3);
             *(u8 *)(a0 + 7) = 1;
             if (*(char *)(a0 + 5) == '\x01') {
                 *(u32 *)(a0 + 0x8c) = 1;
@@ -12114,7 +12114,7 @@ u32 mwRna_sub_2696aa(int a0, u32 unused_a1, u32 a2, u32 a3) {
     if (*(char *)(a0 + 7) == '\x01') {
         if ((*(int *)(a0 + 0x88) != 0) && (*(int *)(a0 + 0x88) != 1)) {
             unused_a1 = 1;
-            mwRna_sub_2691b8(a0, 1, a2, a3);
+            mwRna_set_play_sw(a0, 1, a2, a3);
         }
         *(u8 *)(a0 + 7) = 0;
     }
@@ -12350,7 +12350,7 @@ u32 mwRna_is_playing(int a0) {
 /*
  * mwRna_sub_269a56  0x8c269a56
  * name hint from a string it uses: E1205 Illigal parameter MWRN; area name: sits between mwRna functions (same
- * compilation unit) called by: mwRnaDiscardData, mwRna_sub_2691b8, mwRna_sub_2694a4, mwRna_sub_26962c strings:
+ * compilation unit) called by: mwRnaDiscardData, mwRna_set_play_sw, mwRna_sub_2694a4, mwRna_sub_26962c strings:
  * "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRna_sub_269a56(int a0) {
@@ -12903,7 +12903,7 @@ u32 noop_26a0f8(void) {
 /*
  * sd_irq_disable  0x8c26a100
  * saves SR.IMASK in *a0 and returns SR with IMASK 15
- * called by: mwRnaDiscardData, mwRna_sub_2690d8, mwRna_sub_2691b8, mwRna_sub_2695e4, mwRna_sub_26962c,
+ * called by: mwRnaDiscardData, mwRna_set_play_sw, mwRna_sub_2690d8, mwRna_sub_2695e4, mwRna_sub_26962c,
  * mwRna_sub_2696aa, mwRna_sub_269738, sd_sub_268b70 (+5 more)
  */
 u32 sd_irq_disable(u32 *a0) {
@@ -12929,7 +12929,7 @@ u32 sd_irq_disable(u32 *a0) {
 /*
  * sd_irq_restore  0x8c26a118
  * SR with IMASK from *a0
- * called by: mwRnaDiscardData, mwRna_sub_2690d8, mwRna_sub_2691b8, mwRna_sub_2695e4, mwRna_sub_26962c,
+ * called by: mwRnaDiscardData, mwRna_set_play_sw, mwRna_sub_2690d8, mwRna_sub_2695e4, mwRna_sub_26962c,
  * mwRna_sub_2696aa, mwRna_sub_269738, sd_sub_268b70 (+5 more)
  */
 u32 sd_irq_restore(u32 *a0) {
@@ -12971,8 +12971,8 @@ u32 sd_sub_26a130(int a0, u32 a1) {
 
 /*
  * debug_printf  0x8c26a14e
- * called by: mwRnaDiscardData, mwRnaPause, mwRnaSetFx, mwRnaSetNumChan, mwRna_is_playing, mwRna_sub_2690d8,
- * mwRna_sub_2691b8, mwRna_sub_269244 (+47 more)
+ * called by: mwRnaDiscardData, mwRnaPause, mwRnaSetFx, mwRnaSetNumChan, mwRna_is_playing, mwRna_set_play_sw,
+ * mwRna_sub_2690d8, mwRna_sub_269244 (+47 more)
  */
 u32 debug_printf(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s4) {
     u32 uVar1;

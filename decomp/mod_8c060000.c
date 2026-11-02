@@ -7970,7 +7970,7 @@ u32 game_sub_06ce04(int a0, u32 a1) {
         }
         ar7_00 = &puStack_28;
         puVar6 = PTR_s_GRAPHICS_HERBLINE_8c136f4c;
-        iVar2 = game_sub_0209fc(a1, *(u32 *)(iVar4 + 0xc), PTR_s_GRAPHICS_HERBLINE_8c136f4c, ar7_00);
+        iVar2 = retry_until_done_0209b0(a1, *(u32 *)(iVar4 + 0xc), PTR_s_GRAPHICS_HERBLINE_8c136f4c, ar7_00);
         if (iVar2 == 0) {
             ar7_00 = (u32 **)0x2;
             puVar6 = NULL;
@@ -7982,7 +7982,7 @@ u32 game_sub_06ce04(int a0, u32 a1) {
             if (*(int *)(iVar4 + 0x20) == 0) {
                 puVar7 = &uStack_2c;
                 puVar6 = PTR_s_GRAPHICS_HERBLINE_8c136f4c;
-                iVar2 = game_sub_020af4(a1, *(u32 *)(iVar4 + 0xc), PTR_s_GRAPHICS_HERBLINE_8c136f4c, puVar7);
+                iVar2 = retry_until_done_020aa8(a1, *(u32 *)(iVar4 + 0xc), PTR_s_GRAPHICS_HERBLINE_8c136f4c, puVar7);
                 if (iVar2 == 0) {
                     puVar7 = (u32 *)0x2;
                     puVar6 = NULL;
@@ -8000,7 +8000,7 @@ u32 game_sub_06ce04(int a0, u32 a1) {
                 uVar1 = get_field_4_0253e4(iVar4 + 0x78, iVar2, uVar1, ar7_00);
                 pcVar5 = *(char **)(iVar4 + 0x20);
                 puVar6 = PTR_s_GRAPHICS_HERBLINE_8c136f4c;
-                iVar2 = game_sub_02100c(a1, pcVar5, PTR_s_GRAPHICS_HERBLINE_8c136f4c, uVar1);
+                iVar2 = retry_until_done_020f90(a1, pcVar5, PTR_s_GRAPHICS_HERBLINE_8c136f4c, uVar1);
                 if (iVar2 == 0) {
                     uVar1 = 2;
                     puVar6 = NULL;
@@ -8011,7 +8011,7 @@ u32 game_sub_06ce04(int a0, u32 a1) {
                 (**(code **)(*(int *)(a0 + 0x208) + 8))((int *)(a0 + 0x208), a5, puVar6, uVar1);
             }
         } else if (*(int *)(iVar4 + 0x34) == 0) {
-            iVar2 = game_sub_020af4(a1, *(u32 *)(iVar4 + 0xc), PTR_s_GRAPHICS_HERBLINE_8c136f4c, &uStack_2c);
+            iVar2 = retry_until_done_020aa8(a1, *(u32 *)(iVar4 + 0xc), PTR_s_GRAPHICS_HERBLINE_8c136f4c, &uStack_2c);
             if (iVar2 == 0) {
                 report_error_message(*(u32 *)(iVar4 + 0xc), "Read NJTL Failed..:CHerb::LoadGRWait()", 0, 2);
             }
@@ -8028,7 +8028,7 @@ u32 game_sub_06ce04(int a0, u32 a1) {
             uVar1 = get_field_4_0253e4(iVar4 + 0x80, iVar2, uVar1, ar7_00);
             pcVar5 = *(char **)(iVar4 + 0x34);
             puVar6 = PTR_s_GRAPHICS_HERBLINE_8c136f4c;
-            iVar2 = game_sub_02100c(a1, pcVar5, PTR_s_GRAPHICS_HERBLINE_8c136f4c, uVar1);
+            iVar2 = retry_until_done_020f90(a1, pcVar5, PTR_s_GRAPHICS_HERBLINE_8c136f4c, uVar1);
             if (iVar2 == 0) {
                 uVar1 = 2;
                 puVar6 = NULL;
@@ -8057,7 +8057,7 @@ int game_sub_06d3ec(int a0, u32 a1, int a2, u32 a3) {
 
     iVar2 = *(int *)(0x224 + a0) + a2 * 0x124;
     ar7_00 = get_field_4_0253e4(iVar2 + 0x78, a1, a2, a3);
-    iVar1 = (*(code *)(&game_sub_020ef0))(a1, *(u32 *)(iVar2 + 0x14), *(u32 *)(&DATA_8c136f4c), ar7_00);
+    iVar1 = (*(code *)(&retry_until_done_020e80))(a1, *(u32 *)(iVar2 + 0x14), *(u32 *)(&DATA_8c136f4c), ar7_00);
     if (iVar1 == 0) {
         iVar1 =
             (*(code *)(&report_error_message))(*(u32 *)(iVar2 + 0x14), "Failed to load tex:CHerb::LoadTRWait()", 0, 2);
@@ -8782,7 +8782,7 @@ u32 destroy_array_8c2804f0(void) {
  * called by: CAnimal_sub_0851f4
  */
 u32 *game_sub_06e4ec(u32 *a0, u32 a1, u32 a2, u32 a3) {
-    game_sub_030fa0(a0, a1, a2, a3);
+    Class_129cbc_ctor(a0, a1, a2, a3);
     *a0 = (&DATA_8c12a25c);
     Vec3_set_zero((int)a0 + 0x224);
     Vec3_ctor_zero((int)a0 + 0x230, a1, a2);

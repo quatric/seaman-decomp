@@ -636,7 +636,7 @@ u32 *CAnimal_sub_030e5c(u32 *a0) {
 /*
  * flags6_set_all_wrap  0x8c030e9c
  * only calls flags6_set_all
- * called by: game_sub_030fa0
+ * called by: Class_129cbc_ctor
  */
 u32 flags6_set_all_wrap(u32 a0, u32 a1, u32 a2) {
     flags6_set_all(a0, a1, a2);
@@ -682,12 +682,12 @@ u32 flags6_clear_all(u8 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_030fa0  0x8c030fa0
- * area name: game code; nothing names its area yet
+ * Class_129cbc_ctor  0x8c030fa0
+ * stores the vtable 0x8c129cbc and constructs the object's Vec3 members
  * called by: CSquid_sub_0afa50, game_sub_0384f8, game_sub_03a5a4, game_sub_06e4ec, game_sub_087ed0, game_sub_08dad4,
  * game_sub_099e74, game_sub_09b8e4 (+3 more)
  */
-u32 *game_sub_030fa0(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 *Class_129cbc_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     *a0 = (&DATA_8c129cbc);
     Vec3_ctor_zero(a0 + 1, a1, a2);
     Vec3_ctor_zero(a0 + 5, a1, a2);
@@ -695,7 +695,7 @@ u32 *game_sub_030fa0(u32 *a0, u32 a1, u32 a2, u32 a3) {
     Vec3_ctor_zero(a0 + 0x1b, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x80, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x90, a1, a2);
-    game_sub_033954((int)a0 + 0xb0);
+    Class_129cbc_sub_033954((int)a0 + 0xb0);
     Vec3_ctor_zero((int)a0 + 0x13c, a1, a2);
     Vec3_set_zero((int)a0 + 0x14c);
     Vec3_set_zero((int)a0 + 0x158);
@@ -705,16 +705,16 @@ u32 *game_sub_030fa0(u32 *a0, u32 a1, u32 a2, u32 a3) {
     Vec3_set_zero((int)a0 + 0x1ec);
     flags6_set_all_wrap((int)a0 + 0x1fc, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x200, a1, a2);
-    game_sub_0310c0(a0, a1, a2, a3);
+    Class_129cbc_sub_0310c0(a0, a1, a2, a3);
     return a0;
 }
 
 /*
- * game_sub_0310c0  0x8c0310c0
- * area name: game code; nothing names its area yet
- * called by: game_sub_030fa0
+ * Class_129cbc_sub_0310c0  0x8c0310c0
+ * area name: only called from Class_129cbc methods
+ * called by: Class_129cbc_ctor
  */
-u32 game_sub_0310c0(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_129cbc_sub_0310c0(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_fr1;
     char cVar1;
 
@@ -3661,11 +3661,11 @@ u32 game_sub_0337d0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_033954  0x8c033954
- * area name: game code; nothing names its area yet
- * called by: CSquid_sub_0afa50, game_sub_030fa0
+ * Class_129cbc_sub_033954  0x8c033954
+ * area name: only called from Class_129cbc methods
+ * called by: CSquid_sub_0afa50, Class_129cbc_ctor
  */
-u32 *game_sub_033954(u32 *a0) {
+u32 *Class_129cbc_sub_033954(u32 *a0) {
     *a0 = (&DATA_8c129cf8);
     game_sub_0339b0(a0);
     return a0;
@@ -3688,7 +3688,7 @@ u32 *Class_129cf8_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_0339b0  0x8c0339b0
  * area name: game code; nothing names its area yet
- * called by: game_sub_033954
+ * called by: Class_129cbc_sub_033954
  */
 u32 game_sub_0339b0(int a0) {
     *(u32 *)(a0 + 0x14) = 0;
@@ -8750,7 +8750,7 @@ int game_sub_0384f8(int a0, u32 a1) {
     *(u8 **)(a0 + 8) = &g_8c129d04;
     Class_129938_ctor(a0 + 0x490, uVar1, ar6_00);
     game_sub_02ff6c(a0 + 0x528, uVar1, ar6_00);
-    game_sub_030fa0(a0 + 0x5c4, uVar1, ar6_00, ar7_00);
+    Class_129cbc_ctor(a0 + 0x5c4, uVar1, ar6_00, ar7_00);
     sprintf(a0 + 0xc, uVar1, ar6_00, ar7_00, "FrogManEgg");
     *(u8 *)(a0 + 0x524) = 0xff;
     ar6_01 = a0 + 0x490;
@@ -9759,7 +9759,7 @@ int game_sub_03a4ac(int a0, u32 a1, u32 a2, u32 a3) {
  * called by: CAnimal_sub_036260
  */
 u32 *game_sub_03a5a4(u32 *a0, u32 a1, u32 a2, u32 a3) {
-    game_sub_030fa0(a0, a1, a2, a3);
+    Class_129cbc_ctor(a0, a1, a2, a3);
     *a0 = (&DATA_8c12a03c);
     Vec3_ctor_zero((int)a0 + 0x248, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x258, a1, a2);

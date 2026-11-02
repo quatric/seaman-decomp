@@ -458,7 +458,7 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
         switch (g_8c4367bc) {
         case 0:
             uVar1 = get_field_4_0253e4(a0 + 0x2e64c, 0x2e64c, puVar8, a3);
-            iVar6 = game_sub_02100c(0x8c3eb334, "BeforeStartMessage.pvm", "GRAPHICS\\MESSAGE", uVar1);
+            iVar6 = retry_until_done_020f90(0x8c3eb334, "BeforeStartMessage.pvm", "GRAPHICS\\MESSAGE", uVar1);
             if (iVar6 == 0) {
                 report_error_message("Failed to load sys message pvm..", "CSeamanDomain::Init", 1, 2);
             }
@@ -1583,7 +1583,7 @@ u32 CSysMessage_LoadMessage(int a0, u32 a1) {
     uVar1 = get_field_4_0253e4(a0 + 4, iVar5, uVar1, uVar4);
     puVar3 = "GRAPHICS\\MESSAGE";
     puVar2 = "SysMessage.pvm";
-    iVar5 = game_sub_02100c(a1, puVar2, puVar3, uVar1);
+    iVar5 = retry_until_done_020f90(a1, puVar2, puVar3, uVar1);
     if (iVar5 == -1) {
         uVar1 = 2;
         puVar3 = (u8 *)0x1;
@@ -1593,7 +1593,7 @@ u32 CSysMessage_LoadMessage(int a0, u32 a1) {
     uVar1 = get_field_4_0253e4(a0 + 0x194, puVar2, puVar3, uVar1);
     puVar3 = "GRAPHICS\\MESSAGE";
     puVar2 = "VMS_ICON";
-    iVar5 = game_sub_020ef0(a1, puVar2, puVar3, uVar1);
+    iVar5 = retry_until_done_020e80(a1, puVar2, puVar3, uVar1);
     if (iVar5 == 0) {
         uVar1 = 2;
         puVar3 = (u8 *)0x1;
@@ -1603,7 +1603,7 @@ u32 CSysMessage_LoadMessage(int a0, u32 a1) {
     uVar1 = get_field_4_0253e4(a0 + 0x19c, puVar2, puVar3, uVar1);
     puVar3 = "GRAPHICS\\MESSAGE";
     puVar2 = "PAD_ICON";
-    iVar5 = game_sub_020ef0(a1, puVar2, puVar3, uVar1);
+    iVar5 = retry_until_done_020e80(a1, puVar2, puVar3, uVar1);
     if (iVar5 == 0) {
         uVar1 = 2;
         puVar3 = (u8 *)0x1;
@@ -1611,7 +1611,7 @@ u32 CSysMessage_LoadMessage(int a0, u32 a1) {
         (*(code *)(&report_error_message))("Failed to load pad icon textuer..", puVar2, 1, 2);
     }
     uVar1 = get_field_4_0253e4(a0 + 0x1a4, puVar2, puVar3, uVar1);
-    iVar5 = (*(code *)(&game_sub_020ef0))(a1, "MIC_ICON", "GRAPHICS\\MESSAGE", uVar1);
+    iVar5 = (*(code *)(&retry_until_done_020e80))(a1, "MIC_ICON", "GRAPHICS\\MESSAGE", uVar1);
     if (iVar5 == 0) {
         (*(code *)(&report_error_message))("Failed to load mic icon textuer..", "CSysMessage::LoadMessage()", 1, 2);
     }
@@ -1624,7 +1624,7 @@ u32 CSysMessage_LoadMessage(int a0, u32 a1) {
     iVar5 = a0 + 0x328;
     (**(code **)(*(int *)(a0 + 0x2bc) + 8))((int *)(a0 + 0x2bc), iVar5, uVar1, uVar4);
     uVar1 = get_field_4_0253e4(a0 + 0x2bc, iVar5, uVar1, uVar4);
-    iVar5 = (*(code *)(&game_sub_02100c))(a1, "Loading.pvm", "GRAPHICS\\MESSAGE", uVar1);
+    iVar5 = (*(code *)(&retry_until_done_020f90))(a1, "Loading.pvm", "GRAPHICS\\MESSAGE", uVar1);
     if (iVar5 == -1) {
         (*(code *)(&report_error_message))("Failed to load 'Loading' message pvm..", "CSysMessage::LoadMessage()", 1,
                                            2);
@@ -1710,7 +1710,7 @@ u32 game_sub_0c2efc(int a0, char *a1, u32 a2, u32 a3) {
         obj_set_texlist(a0 + 4, iVar4, ar6_00);
         ar5_00 = a1;
         obj_set_texture_num(a0 + 4, a1);
-        Class_129808_sub_01636c(a0 + 0xc, ar5_00, ar6_00, uVar2);
+        Class_129808_draw_offset(a0 + 0xc, ar5_00, ar6_00, uVar2);
         uVar8 = SUB84(in_dr0, 0);
         switch (a1) {
         case (char *)0x1:
@@ -1906,7 +1906,7 @@ u32 CSeamanDomain_sub_0c3530(int a0, int a1, u32 a2, u32 a3) {
     obj_set_texlist(a0 + 4, iVar3, ar6_00);
     iVar3 = a1;
     obj_set_texture_num(a0 + 4, a1);
-    Class_129808_sub_01636c(a0 + 0xc, iVar3, ar6_00, uVar4);
+    Class_129808_draw_offset(a0 + 0xc, iVar3, ar6_00, uVar4);
     if (a1 < 7) {
         uVar5 = SUB84(in_dr0, 0);
         switch (a1) {
@@ -2107,7 +2107,7 @@ u32 game_sub_0c3a48(int a0, u32 a1, u32 a2, u32 a3) {
     obj_set_texlist(a0 + 0x194, a1, a2);
     uVar1 = 0;
     obj_set_texture_num(a0 + 0x194, 0);
-    uVar1 = Class_129808_sub_01636c(a0 + 0x1ac, uVar1, a2, a3);
+    uVar1 = Class_129808_draw_offset(a0 + 0x1ac, uVar1, a2, a3);
     return uVar1;
 }
 
@@ -2122,7 +2122,7 @@ u32 game_sub_0c3aac(int a0, u32 a1, u32 a2, u32 a3) {
     obj_set_texlist(a0 + 0x19c, a1, a2);
     uVar1 = 0;
     obj_set_texture_num(a0 + 0x19c, 0);
-    uVar1 = Class_129808_sub_01636c(a0 + 0x1ac, uVar1, a2, a3);
+    uVar1 = Class_129808_draw_offset(a0 + 0x1ac, uVar1, a2, a3);
     return uVar1;
 }
 
@@ -2137,7 +2137,7 @@ u32 game_sub_0c3b10(int a0, u32 a1, u32 a2, u32 a3) {
     obj_set_texlist(a0 + 0x1a4, a1, a2);
     uVar1 = 0;
     obj_set_texture_num(a0 + 0x1a4, 0);
-    uVar1 = Class_129808_sub_01636c(a0 + 0x1ac, uVar1, a2, a3);
+    uVar1 = Class_129808_draw_offset(a0 + 0x1ac, uVar1, a2, a3);
     return uVar1;
 }
 
@@ -2404,7 +2404,7 @@ int game_sub_0c42b0(int a0) {
         obj_set_texlist(a0 + 4, iVar1, ar6_00);
         ar5_00 = 8;
         obj_set_texture_num(a0 + 4, 8);
-        Class_129808_sub_01636c(a0 + 0xc, ar5_00, ar6_00, ar7_00);
+        Class_129808_draw_offset(a0 + 0xc, ar5_00, ar6_00, ar7_00);
         *(short *)(a0 + 0x380) = *(short *)(a0 + 0x380) + -1;
         iVar1 = (int)*(short *)(a0 + 0x380);
         if (iVar1 < 0) {
@@ -2591,7 +2591,7 @@ u32 game_sub_0c453c(int a0, u32 a1, u32 unused_a2, u32 a3) {
     obj_set_texlist(a0 + 4, uVar1, ar6_00);
     uVar1 = 9;
     obj_set_texture_num(a0 + 4, 9);
-    Class_129808_sub_01636c(auStack_3c, uVar1, ar6_00, ar7_00);
+    Class_129808_draw_offset(auStack_3c, uVar1, ar6_00, ar7_00);
     uVar1 = free_if_nonnull_wrap_0151a0(auStack_3c, 0xffffffff, ar6_00, ar7_00);
     return uVar1;
 }
@@ -3739,7 +3739,7 @@ int CGame_Init(int a0, u32 a1) {
     iVar2 = a0 + 0x2d3ec;
     (**(code **)(*(int *)(a0 + 0x2d3f4) + 8))((int *)(a0 + 0x2d3f4), iVar2, uVar1, a7);
     uVar1 = get_field_4_0253e4(a0 + 0x2d3f4, iVar2, uVar1, a7);
-    iVar2 = game_sub_02100c(a1, "exit.pvm", "GRAPHICS\\MESSAGE", uVar1);
+    iVar2 = retry_until_done_020f90(a1, "exit.pvm", "GRAPHICS\\MESSAGE", uVar1);
     if (iVar2 == -1) {
         iVar2 = report_error_message("Failed to load ExitMenu message pvm..", "CGame::Init()", 0, 2);
     }
@@ -4253,7 +4253,7 @@ u32 CGame_Initial(int a0, int *a1, u32 unused_a2, u32 a3) {
             Class_129920_m0_015248(0x8c43691c, &PTR_PTR_8c146440, uVar5, a3);
             uVar4 = get_field_4_0253e4(0x8c43691c, ar5_00, uVar5, a3);
             ar6_00 = "GRAPHICS\\COMMON";
-            iVar3 = game_sub_020ef0(0x8c3eb334, "MUNZU_HAND", "GRAPHICS\\COMMON", uVar4);
+            iVar3 = retry_until_done_020e80(0x8c3eb334, "MUNZU_HAND", "GRAPHICS\\COMMON", uVar4);
             if (iVar3 == 0) {
                 uVar4 = 2;
                 ar6_00 = NULL;
@@ -9285,7 +9285,7 @@ int game_sub_0cef18(int a0, u32 a1) {
     iVar2 = a0 + 0x3e0;
     (**(code **)(*(int *)(a0 + 0x158) + 8))((int *)(a0 + 0x158), iVar2, uVar1, a7);
     uVar1 = get_field_4_0253e4(a0 + 0x158, iVar2, uVar1, a7);
-    iVar2 = (*(code *)(&game_sub_02100c))(a1, "credit.PVM", "GRAPHICS\\MESSAGE", uVar1);
+    iVar2 = (*(code *)(&retry_until_done_020f90))(a1, "credit.PVM", "GRAPHICS\\MESSAGE", uVar1);
     if (iVar2 == -1) {
         iVar2 = (*(code *)(&report_error_message))("Failed to load staff pvm..", "STAFF_CREDIT::LoadData", 0, 2);
     }
@@ -9612,7 +9612,7 @@ u32 game_sub_0cf6bc(int a0, u64 *a1, u32 a2, u32 a3) {
     obj_set_texlist(a0 + 0x158, uVar2, a2);
     iVar1 = (int)sVar3;
     obj_set_texture_num(a0 + 0x158, iVar1);
-    uVar2 = Class_129808_sub_01636c(a0 + 0x160, iVar1, a2, a3);
+    uVar2 = Class_129808_draw_offset(a0 + 0x160, iVar1, a2, a3);
     return uVar2;
 }
 
@@ -9995,13 +9995,13 @@ int CWaterTank_sub_0cfff8(int *a0, u32 a1) {
 
     auStack_24[0] = 0;
     uStack_28 = 0;
-    iVar1 = game_sub_0209fc(a1, "suisou_Heater.nj", "GRAPHICS\\ENV", auStack_24);
+    iVar1 = retry_until_done_0209b0(a1, "suisou_Heater.nj", "GRAPHICS\\ENV", auStack_24);
     if (iVar1 == 0) {
         report_error_message("suisou_Heater.nj", "Failed NJCM:CHeater::CreateModel()", 1, 2);
     }
     ar7_01 = &uStack_28;
     ar6_00 = "GRAPHICS\\ENV";
-    iVar1 = game_sub_020af4(a1, "suisou_Heater.nj", "GRAPHICS\\ENV", ar7_01);
+    iVar1 = retry_until_done_020aa8(a1, "suisou_Heater.nj", "GRAPHICS\\ENV", ar7_01);
     if (iVar1 == 0) {
         ar7_01 = (u32 *)0x2;
         ar6_00 = (char *)0x1;
@@ -10018,7 +10018,7 @@ int CWaterTank_sub_0cfff8(int *a0, u32 a1) {
         iVar1 = uVar2 * 0xc + *ar7_00;
         *(u32 *)(iVar1 + 4) = *(u32 *)(iVar1 + 4) | 0x80000000;
     }
-    iVar1 = game_sub_020ef0(a1, "HEATER", "GRAPHICS\\ENV", ar7_00);
+    iVar1 = retry_until_done_020e80(a1, "HEATER", "GRAPHICS\\ENV", ar7_00);
     if (iVar1 == -1) {
         iVar1 = report_error_message("Failed to load water tank textuer..", &g_8c13d4fb, 1, 2);
     }

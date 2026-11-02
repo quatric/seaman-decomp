@@ -273,3 +273,20 @@
 8c01edcc	input_test_4_mode2	input_mask_test(4, 2); 2 while the demo input is active
 8c0294c0	CAnimal_set_state_flag_40	clears bits 4, 5 and sets bit 6 of the state flags at +0x74
 8c0c51c4	set_timeout_120_mode6	clears +0x59c and starts a 120-frame countdown with value 6
+8c0209fc	retry_until_done_0209b0	calls 8c0209b0 until it returns 0 or 1, asking 8c01f810 whether to retry in between
+8c020af4	retry_until_done_020aa8	calls 8c020aa8 until it returns 0 or 1, asking 8c01f810 whether to retry in between
+8c020ef0	retry_until_done_020e80	calls 8c020e80 until it returns 0 or 1, asking 8c01f810 whether to retry in between
+8c02100c	retry_until_done_020f90	calls 8c020f90 until it returns 0 or 1, asking 8c01f810 whether to retry in between
+8c204e92	dlist_push_front	links node a2 in front of the list with head *a0 and tail *a1 (prev +4, next +8)
+8c1f302a	gdfs_handle_init_like	sets up a file handle for a2/a3 (size a3, (a3 + 2047) / 2048 sectors); NULL if it is already in use
+8c200566	vmu_dir_find_file	finds the data (0x33) or game (0xcc) directory entry named a1 on drive a0 and copies it to a2
+8c23666c	ta_sq_write_header4	writes the saved polygon header (0x8c4ab238) to the TA through store queue 0 (list word 4)
+8c236718	ta_sq_write_header5	same as ta_sq_write_header4 for list word 5
+8c2563ac	matrix_push_regs	pushes a matrix held in the FPU registers onto the matrix stack
+8c030fa0	Class_129cbc_ctor	stores the vtable 0x8c129cbc and constructs the object's Vec3 members
+8c010838	libgcc_movstr_i4	compiler block-copy helper: copies r0 bytes from r2 to r1 in 32-bit words
+8c1f6dcc	flashrom_select_partition	opens flash partition |a0| (1..4) unless it is the one already open
+8c1f6e0c	flashrom_get_block	reads flash block a0 of the open partition into a1 (0x3c bytes)
+8c2691b8	mwRna_set_play_sw	a1 = 1 starts (vtable +0x10, sets bit 1), 0 stops (vtable +0x14) an mwRna handle's output
+8c25a8c0	tex_copy_to_alloc	copies a texture's data into newly allocated texture memory and writes the cache back; -7 when out of memory
+8c01636c	Class_129808_draw_offset	draws the object's quad moved by the x/y offset in dr4

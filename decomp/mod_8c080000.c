@@ -4210,7 +4210,7 @@ int game_sub_087ed0(int a0, u32 a1) {
     *(u8 **)(a0 + 8) = &g_8c12a298;
     Class_129938_ctor(a0 + 0x490, uVar1, ar6_00);
     game_sub_02ff6c(a0 + 0x528, uVar1, ar6_00);
-    game_sub_030fa0(a0 + 0x5c4, uVar1, ar6_00, ar7_00);
+    Class_129cbc_ctor(a0 + 0x5c4, uVar1, ar6_00, ar7_00);
     sprintf(a0 + 0xc, uVar1, ar6_00, ar7_00, "HigyoEgg");
     *(int *)(a0 + 0x308) = a0 + 0x528;
     *(int *)(a0 + 0x30c) = a0 + 0x5c4;
@@ -7186,7 +7186,7 @@ u32 destroy_array_8c283b30(void) {
  * called by: game_sub_08a17c
  */
 u32 *game_sub_08dad4(u32 *a0, u32 a1, u32 a2, u32 a3) {
-    game_sub_030fa0(a0, a1, a2, a3);
+    Class_129cbc_ctor(a0, a1, a2, a3);
     *a0 = (&DATA_8c12a76c);
     Vec3_ctor_zero((int)a0 + 0x230, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x24c, a1, a2);

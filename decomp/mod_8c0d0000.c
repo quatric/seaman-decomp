@@ -411,7 +411,7 @@ int CWaterTank_sub_0d07ec(int *a0, u32 a1, u32 a2, u32 a3) {
         iVar1 = uVar2 * 0xc + *ar7_00;
         *(u32 *)(iVar1 + 4) = *(u32 *)(iVar1 + 4) | 0x80000000;
     }
-    iVar1 = game_sub_020ef0(a1, "O2SUPPLY", "GRAPHICS\\ENV", ar7_00);
+    iVar1 = retry_until_done_020e80(a1, "O2SUPPLY", "GRAPHICS\\ENV", ar7_00);
     if (iVar1 == -1) {
         iVar1 = report_error_message("Failed to load o2 supply textuer..", &g_8c13d4fb, 1, 2);
     }
@@ -703,7 +703,7 @@ u32 Class_1297f4_sub_0d0bcc(int *a0, u32 a1, u32 a2, u32 a3) {
     }
     ar6_00 = "GRAPHICS\\ENV";
     ar5_01 = "SPRINKLER";
-    iVar1 = game_sub_020ef0(a1, "SPRINKLER", "GRAPHICS\\ENV", ar7_00);
+    iVar1 = retry_until_done_020e80(a1, "SPRINKLER", "GRAPHICS\\ENV", ar7_00);
     if (iVar1 == -1) {
         ar7_00 = (int *)0x2;
         ar6_00 = (char *)0x1;
@@ -1896,7 +1896,7 @@ int CEnv_LoadDevicePanelTexture(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     ar5_00 = &PTR_PTR_8c13f33c;
     Class_129920_m0_015248(0x8c4377f4, &PTR_PTR_8c13f33c, a2, a3);
     ar7_00 = get_field_4_0253e4(0x8c4377f4, ar5_00, a2, a3);
-    iVar1 = game_sub_020ef0(a0, "DEVICE_PANEL", "GRAPHICS\\ENV", ar7_00);
+    iVar1 = retry_until_done_020e80(a0, "DEVICE_PANEL", "GRAPHICS\\ENV", ar7_00);
     if (iVar1 == 0) {
         iVar1 = report_error_message("Failed to load device panel textuer..", "CEnv::LoadDevicePanelTexture()", 0, 2);
     }
@@ -3242,26 +3242,26 @@ u32 game_sub_0d33e8(double *a0, u32 a1, u32 a2) {
     auStack_20[0] = 0;
     uStack_24 = 0;
     *(u32 *)a0 = 0x44610000;
-    iVar1 = game_sub_0209fc(a1, "suisou_WaterFace.nj", "GRAPHICS\\ENV", auStack_20);
+    iVar1 = retry_until_done_0209b0(a1, "suisou_WaterFace.nj", "GRAPHICS\\ENV", auStack_20);
     if (iVar1 == 0) {
         report_error_message("suisou_WaterFace.nj", "Failed NJCM:WATER_ELEMENT::CreateStage0()", 0, 2);
     }
     puVar6 = &uStack_24;
     pcVar4 = "GRAPHICS\\ENV";
-    iVar1 = game_sub_020af4(a1, "suisou_WaterFace.nj", "GRAPHICS\\ENV", puVar6);
+    iVar1 = retry_until_done_020aa8(a1, "suisou_WaterFace.nj", "GRAPHICS\\ENV", puVar6);
     if (iVar1 == 0) {
         puVar6 = (u32 *)0x2;
         pcVar4 = NULL;
         report_error_message("suisou_WaterFace.nj", "Failed NJTL:WATER_ELEMENT::CreateStage0()", 0, 2);
     }
     set_field_0_015ad4(a0 + 2, auStack_20[0], pcVar4);
-    iVar1 = game_sub_0209fc(a1, "suisou_Effect.nj", "GRAPHICS\\ENV", auStack_20);
+    iVar1 = retry_until_done_0209b0(a1, "suisou_Effect.nj", "GRAPHICS\\ENV", auStack_20);
     if (iVar1 == 0) {
         report_error_message("suisou_Effect.nj", "Failed NJCM:WATER_ELEMENT::CreateStage0()", 0, 2);
     }
     puVar6 = &uStack_24;
     pcVar4 = "GRAPHICS\\ENV";
-    iVar1 = game_sub_020af4(a1, "suisou_Effect.nj", "GRAPHICS\\ENV", puVar6);
+    iVar1 = retry_until_done_020aa8(a1, "suisou_Effect.nj", "GRAPHICS\\ENV", puVar6);
     if (iVar1 == 0) {
         puVar6 = (u32 *)0x2;
         pcVar4 = NULL;
@@ -3280,7 +3280,7 @@ u32 game_sub_0d33e8(double *a0, u32 a1, u32 a2) {
     uVar2 = get_field_4_0253e4((u32 *)((int)a0 + 0x12a5c), puVar6, uVar5, uVar7);
     ar6_00 = "GRAPHICS\\ENV";
     pcVar4 = "WBubble.pvm";
-    iVar1 = game_sub_02100c(a1, "WBubble.pvm", "GRAPHICS\\ENV", uVar2);
+    iVar1 = retry_until_done_020f90(a1, "WBubble.pvm", "GRAPHICS\\ENV", uVar2);
     if (iVar1 == 0) {
         uVar2 = 2;
         ar6_00 = NULL;
@@ -3422,26 +3422,26 @@ u32 WATER_ELEMETNT_Create(double *a0, u32 a1) {
     aiStack_1c[0] = 0;
     uStack_20 = 0;
     *(u32 *)a0 = 0x43200000;
-    iVar1 = game_sub_0209fc(a1, "suisou_WaterFace_small.nj", "GRAPHICS\\ENV", aiStack_1c);
+    iVar1 = retry_until_done_0209b0(a1, "suisou_WaterFace_small.nj", "GRAPHICS\\ENV", aiStack_1c);
     if (iVar1 == 0) {
         report_error_message("suisou_WaterFace_small.nj", "Failed NJCM:WATER_ELEMENT::CreateStage2()", 0, 2);
     }
     puVar4 = &uStack_20;
     pcVar3 = "GRAPHICS\\ENV";
-    iVar1 = game_sub_020af4(a1, "suisou_WaterFace_small.nj", "GRAPHICS\\ENV", puVar4);
+    iVar1 = retry_until_done_020aa8(a1, "suisou_WaterFace_small.nj", "GRAPHICS\\ENV", puVar4);
     if (iVar1 == 0) {
         puVar4 = (u32 *)0x2;
         pcVar3 = NULL;
         report_error_message("suisou_WaterFace_small.nj", "Failed NJTL:WATER_ELEMENT::CreateStage2()", 0, 2);
     }
     set_field_0_015ad4(a0 + 2, aiStack_1c[0], pcVar3);
-    iVar1 = game_sub_0209fc(a1, "suisou_Effect_small.nj", "GRAPHICS\\ENV", aiStack_1c);
+    iVar1 = retry_until_done_0209b0(a1, "suisou_Effect_small.nj", "GRAPHICS\\ENV", aiStack_1c);
     if (iVar1 == 0) {
         report_error_message("suisou_Effect_small.nj", "Failed NJCM:WATER_ELEMENT::CreateStage2()", 0, 2);
     }
     puVar4 = &uStack_20;
     pcVar3 = "GRAPHICS\\ENV";
-    iVar1 = game_sub_020af4(a1, "suisou_Effect_small.nj", "GRAPHICS\\ENV", puVar4);
+    iVar1 = retry_until_done_020aa8(a1, "suisou_Effect_small.nj", "GRAPHICS\\ENV", puVar4);
     if (iVar1 == 0) {
         puVar4 = (u32 *)0x2;
         pcVar3 = NULL;
@@ -3590,7 +3590,7 @@ u32 WE_CreateStageC(int a0, u32 a1, u32 a2) {
     uVar1 = 0x8c4376a4;
     (**(code **)(*(int *)(a0 + 8) + 8))((int *)(a0 + 8), 0x8c4376a4, uVar2, a7);
     uVar1 = get_field_4_0253e4(a0 + 8, uVar1, uVar2, a7);
-    iVar3 = game_sub_02100c(a1, a2, "GRAPHICS\\ENV", uVar1);
+    iVar3 = retry_until_done_020f90(a1, a2, "GRAPHICS\\ENV", uVar1);
     if (iVar3 == 0) {
         report_error_message("Failed to load water face textuer..", "WE::CreateStageC()", 0, 2);
     }
@@ -3604,7 +3604,7 @@ u32 WE_CreateStageC(int a0, u32 a1, u32 a2) {
     (**(code **)(*(int *)(a0 + 0x108) + 8))((int *)(a0 + 0x108), iVar3, uVar1, uVar2);
     uVar1 = get_field_4_0253e4(a0 + 0x108, iVar3, uVar1, uVar2);
     ar6_00 = "GRAPHICS\\ENV";
-    iVar3 = game_sub_02100c(a1, "hamon.pvm", "GRAPHICS\\ENV", uVar1);
+    iVar3 = retry_until_done_020f90(a1, "hamon.pvm", "GRAPHICS\\ENV", uVar1);
     if (iVar3 == 0) {
         uVar1 = 2;
         ar6_00 = NULL;
@@ -4937,14 +4937,14 @@ u32 game_sub_0d5218(double *a0, u32 a1) {
     pcVar4 = "GRAPHICS\\ENV";
     game_sub_020b68(a1, "suisou_Effect.nj", "GRAPHICS\\ENV", a0);
     set_field_0_015ad4((int)a0 + 0x1c, 0, pcVar4);
-    iVar1 = game_sub_0209fc(a1, "suisou_WaterFace_small.nj", "GRAPHICS\\ENV", &ppuStack_1c);
+    iVar1 = retry_until_done_0209b0(a1, "suisou_WaterFace_small.nj", "GRAPHICS\\ENV", &ppuStack_1c);
     if (iVar1 == 0) {
         report_error_message("suisou_WaterFace_small.nj", "Failed NJCM:WATER_ELEMENT::PrepareForExitStage1Event()", 0,
                              2);
     }
     puVar6 = &uStack_20;
     pcVar4 = "GRAPHICS\\ENV";
-    iVar1 = game_sub_020af4(a1, "suisou_WaterFace_small.nj", "GRAPHICS\\ENV", puVar6);
+    iVar1 = retry_until_done_020aa8(a1, "suisou_WaterFace_small.nj", "GRAPHICS\\ENV", puVar6);
     if (iVar1 == 0) {
         puVar6 = (u32 *)0x2;
         pcVar4 = NULL;
@@ -4952,13 +4952,13 @@ u32 game_sub_0d5218(double *a0, u32 a1) {
                              2);
     }
     set_field_0_015ad4(a0 + 2, ppuStack_1c, pcVar4);
-    iVar1 = game_sub_0209fc(a1, "suisou_Effect_small.nj", "GRAPHICS\\ENV", &ppuStack_1c);
+    iVar1 = retry_until_done_0209b0(a1, "suisou_Effect_small.nj", "GRAPHICS\\ENV", &ppuStack_1c);
     if (iVar1 == 0) {
         report_error_message("suisou_Effect_small.nj", "Failed NJCM:WATER_ELEMENT::PrepareForExitStage1Event()", 0, 2);
     }
     puVar6 = &uStack_20;
     pcVar4 = "GRAPHICS\\ENV";
-    iVar1 = game_sub_020af4(a1, "suisou_Effect_small.nj", "GRAPHICS\\ENV", puVar6);
+    iVar1 = retry_until_done_020aa8(a1, "suisou_Effect_small.nj", "GRAPHICS\\ENV", puVar6);
     if (iVar1 == 0) {
         puVar6 = (u32 *)0x2;
         pcVar4 = NULL;
@@ -5520,13 +5520,13 @@ int SoilTank_Createt(int *a0, u32 a1) {
 
     auStack_14[0] = 0;
     piStack_18 = NULL;
-    iVar2 = game_sub_0209fc(a1, "kumonosu.nj", "GRAPHICS\\ENV", auStack_14);
+    iVar2 = retry_until_done_0209b0(a1, "kumonosu.nj", "GRAPHICS\\ENV", auStack_14);
     if (iVar2 == 0) {
         report_error_message("kumonosu.nj", "Read NJCM Failed..:SPIDER_WEB::Create()", 0, 2);
     }
     ar7_01 = &piStack_18;
     ar6_00 = "GRAPHICS\\ENV";
-    iVar2 = game_sub_020af4(a1, "kumonosu.nj", "GRAPHICS\\ENV", ar7_01);
+    iVar2 = retry_until_done_020aa8(a1, "kumonosu.nj", "GRAPHICS\\ENV", ar7_01);
     if (iVar2 == 0) {
         ar7_01 = (int **)0x2;
         ar6_00 = NULL;
@@ -5541,7 +5541,7 @@ int SoilTank_Createt(int *a0, u32 a1) {
     ar5_00 = piStack_18;
     (**(code **)(*a0 + 8))(a0, piStack_18, ar6_00, ar7_01);
     ar7_00 = get_field_4_0253e4(a0, ar5_00, ar6_00, ar7_01);
-    iVar2 = game_sub_020ef0(a1, "SPIDER WEB", "GRAPHICS\\ENV", ar7_00);
+    iVar2 = retry_until_done_020e80(a1, "SPIDER WEB", "GRAPHICS\\ENV", ar7_00);
     if (iVar2 == 0) {
         iVar2 = report_error_message("Failed to load web tex", "SoilTank::Createt()", 0, 2);
     }
@@ -8002,7 +8002,7 @@ u32 WEATHRE_UNIT_CreateGraphics(int a0, u32 a1, u32 a2, u32 a3) {
     uVar1 = get_field_4_0253e4(a0 + 0x6e50, iVar2, uVar1, ar7_00);
     ar6_00 = "GRAPHICS\\ENV";
     ar5_00 = "WeatherUnit.pvm";
-    iVar2 = game_sub_02100c(a1, ar5_00, ar6_00, uVar1);
+    iVar2 = retry_until_done_020f90(a1, ar5_00, ar6_00, uVar1);
     if (iVar2 == 0) {
         uVar1 = 2;
         ar6_00 = NULL;
@@ -9435,7 +9435,7 @@ u32 CWaterTank_sub_0d93a8(int a0, u32 a1, u32 a2) {
     uStack_20 = 0;
     puVar3 = auStack_18;
     pcVar2 = "GRAPHICS\\ENV";
-    iVar1 = game_sub_0209fc(a1, "Ring_Home.nj", "GRAPHICS\\ENV", puVar3);
+    iVar1 = retry_until_done_0209b0(a1, "Ring_Home.nj", "GRAPHICS\\ENV", puVar3);
     if (iVar1 == 0) {
         report_error_message("Ring_Home.nj", "Read NJCM Failed..RING_UNIT::CreateModel()", 0, 2);
     } else {
@@ -9443,7 +9443,7 @@ u32 CWaterTank_sub_0d93a8(int a0, u32 a1, u32 a2) {
     }
     ar7_01 = &piStack_1c;
     pcVar2 = "GRAPHICS\\ENV";
-    iVar1 = game_sub_020af4(a1, "Ring_Home.nj", "GRAPHICS\\ENV", ar7_01);
+    iVar1 = retry_until_done_020aa8(a1, "Ring_Home.nj", "GRAPHICS\\ENV", ar7_01);
     if (iVar1 == 0) {
         ar7_01 = (int **)0x2;
         pcVar2 = NULL;
@@ -9459,7 +9459,7 @@ u32 CWaterTank_sub_0d93a8(int a0, u32 a1, u32 a2) {
         *(u32 *)(iVar1 + 4) = *(u32 *)(iVar1 + 4) | 0x80000000;
     }
     ar7_00 = get_field_4_0253e4(a0 + 0x20, ar5_00, pcVar2, ar7_01);
-    iVar1 = game_sub_020ef0(a1, &g_8c13fcd7, "GRAPHICS\\ENV", ar7_00);
+    iVar1 = retry_until_done_020e80(a1, &g_8c13fcd7, "GRAPHICS\\ENV", ar7_00);
     if (iVar1 == 0) {
         report_error_message("Failed to load ring textuer..", "RING_UNIT::CreateModel", 0, 2);
     }
@@ -11430,7 +11430,7 @@ int CWaterTank_sub_0dbb14(int a0, u32 a1, u32 a2, u32 a3) {
         iVar1 = uVar2 * 0xc + *ar7_00;
         *(u32 *)(iVar1 + 4) = *(u32 *)(iVar1 + 4) | 0x80000000;
     }
-    iVar1 = game_sub_020ef0(a1, &g_8c13fd91, "GRAPHICS\\COMMON", ar7_00);
+    iVar1 = retry_until_done_020e80(a1, &g_8c13fd91, "GRAPHICS\\COMMON", ar7_00);
     if (iVar1 == -1) {
         iVar1 = report_error_message("Failed to load textuer.. SHIT!", &g_8c13f91d, 0, 2);
     }

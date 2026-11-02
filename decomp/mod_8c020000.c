@@ -488,7 +488,7 @@ u32 game_sub_0208ec(u32 unused_a0, int a1, u32 *a2, u32 a3, u32 s0, u32 s4) {
 /*
  * game_sub_0209b0  0x8c0209b0
  * area name: game code; nothing names its area yet
- * called by: Vec3_sub_027a78, game_sub_0209fc, game_sub_08c9dc, game_sub_0ca2cc
+ * called by: Vec3_sub_027a78, game_sub_08c9dc, game_sub_0ca2cc, retry_until_done_0209b0
  */
 u32 game_sub_0209b0(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -499,12 +499,12 @@ u32 game_sub_0209b0(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0209fc  0x8c0209fc
- * area name: game code; nothing names its area yet
+ * retry_until_done_0209b0  0x8c0209fc
+ * calls 8c0209b0 until it returns 0 or 1, asking 8c01f810 whether to retry in between
  * called by: CAnimal_LoadGRWait, CSoilTank_Create, CWaterTank_CreateStage, CWaterTank_sub_0cfff8,
  * CWaterTank_sub_0d93a8, SoilTank_Createt, WATER_ELEMETNT_Create, game_sub_06ce04 (+3 more)
  */
-u32 game_sub_0209fc(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 retry_until_done_0209b0(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     u32 ar6_00;
@@ -543,7 +543,7 @@ u32 game_sub_020a70(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_020aa8  0x8c020aa8
  * area name: game code; nothing names its area yet
- * called by: Vec3_sub_027a78, game_sub_020af4, game_sub_08c9dc, game_sub_0ca2cc
+ * called by: Vec3_sub_027a78, game_sub_08c9dc, game_sub_0ca2cc, retry_until_done_020aa8
  */
 u32 game_sub_020aa8(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -554,12 +554,12 @@ u32 game_sub_020aa8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_020af4  0x8c020af4
- * area name: game code; nothing names its area yet
+ * retry_until_done_020aa8  0x8c020af4
+ * calls 8c020aa8 until it returns 0 or 1, asking 8c01f810 whether to retry in between
  * called by: CAnimal_LoadGResourceWait, CSoilTank_Create, CWaterTank_CreateStage, CWaterTank_sub_0cfff8,
  * CWaterTank_sub_0d93a8, SoilTank_Createt, WATER_ELEMETNT_Create, game_sub_06ce04 (+3 more)
  */
-u32 game_sub_020af4(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 retry_until_done_020aa8(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     u32 ar6_00;
@@ -759,7 +759,7 @@ u32 CMothLine_sub_020e48(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * game_sub_020e80  0x8c020e80
  * area name: game code; nothing names its area yet
- * called by: Vec3_sub_027a78, game_sub_020ef0, game_sub_08c9dc, game_sub_0ca2cc
+ * called by: Vec3_sub_027a78, game_sub_08c9dc, game_sub_0ca2cc, retry_until_done_020e80
  */
 int game_sub_020e80(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -773,12 +773,12 @@ int game_sub_020e80(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_020ef0  0x8c020ef0
- * area name: game code; nothing names its area yet
+ * retry_until_done_020e80  0x8c020ef0
+ * calls 8c020e80 until it returns 0 or 1, asking 8c01f810 whether to retry in between
  * called by: CAnimal_LoadGResourceWait, CEnv_LoadDevicePanelTexture, CGame_Initial, CSoilTank_Create,
  * CSysMessage_LoadMessage, CWaterTank_CreateStage, CWaterTank_sub_0cfff8, CWaterTank_sub_0d07ec (+6 more)
  */
-u32 game_sub_020ef0(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 retry_until_done_020e80(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     u32 ar6_00;
@@ -818,7 +818,7 @@ u32 game_sub_020f5c(int a0, u32 a1) {
 /*
  * game_sub_020f90  0x8c020f90
  * area name: game code; nothing names its area yet
- * called by: game_sub_02100c
+ * called by: retry_until_done_020f90
  */
 int game_sub_020f90(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -833,12 +833,12 @@ int game_sub_020f90(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_02100c  0x8c02100c
- * area name: game code; nothing names its area yet
+ * retry_until_done_020f90  0x8c02100c
+ * calls 8c020f90 until it returns 0 or 1, asking 8c01f810 whether to retry in between
  * called by: CAnimal_LoadGResourceWait, CGame_Init, CIncubater_Create, CProlog_Ready, CSeamanDomain_Init,
  * CSoilTank_Create, CSysMessage_LoadMessage, CWaterTank_CreateStage (+6 more)
  */
-u32 game_sub_02100c(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 retry_until_done_020f90(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     u32 ar6_00;
@@ -2495,8 +2495,8 @@ u32 *Vec3_ctor_xyz(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_assign_f  0x8c022d04
  * stores fr4..fr6 as x, y, z
- * called by: Class_1299f8_m4_019588, Class_129a24_m2_01a1d8, Class_12a03c_sub_03c100, Class_12b088_sub_0a99c4,
- * Class_12b088_sub_0aa70c, Class_12b2ac_sub_0b5344, Class_12bec0_sub_0f5fdc, Vec3_sub_03f4a4 (+33 more)
+ * called by: Class_1299f8_m4_019588, Class_129a24_m2_01a1d8, Class_129cbc_sub_0310c0, Class_12a03c_sub_03c100,
+ * Class_12b088_sub_0a99c4, Class_12b088_sub_0aa70c, Class_12b2ac_sub_0b5344, Class_12bec0_sub_0f5fdc (+33 more)
  */
 u32 *Vec3_assign_f(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_fr5;
@@ -3674,7 +3674,7 @@ u32 Vec3_sub_0238b4(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_assign  0x8c023a14
  * called by: CMushroomerBody_AwayFrom, Class_129938_m1_0170e0, Class_129938_m2_0171f4, Class_129938_sub_017900,
- * Class_1299f8_m3_019f00, Class_1299f8_m4_019588, Class_129cbc_m1_031598, Class_12a03c_m1_03c43c (+195 more)
+ * Class_1299f8_m3_019f00, Class_1299f8_m4_019588, Class_129cbc_m1_031598, Class_129cbc_sub_0310c0 (+195 more)
  */
 u32 *Vec3_assign(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     *a0 = *a1;
@@ -4011,8 +4011,8 @@ u32 Vec3_not_equal(float *a0, float *a1) {
 
 /*
  * Vec3_set_zero  0x8c023d34
- * called by: CSoilTank_Create, CSquid_sub_0afa50, CWaterTank_CreateStage, Class_129938_sub_016a7c,
- * Class_12a0c4_sub_0679cc, Class_12a25c_sub_06f93c, Class_12b3b8_sub_01a0cc, Class_12b3b8_sub_0e7a78 (+60 more)
+ * called by: CSoilTank_Create, CSquid_sub_0afa50, CWaterTank_CreateStage, Class_129938_sub_016a7c, Class_129cbc_ctor,
+ * Class_12a0c4_sub_0679cc, Class_12a25c_sub_06f93c, Class_12b3b8_sub_01a0cc (+60 more)
  */
 u32 *Vec3_set_zero(u32 *a0) {
     a0[2] = 0;
@@ -5085,14 +5085,14 @@ int game_sub_024968(u32 a0) {
     Class_129920_m0_015248(0x8c27d3f4, &PTR_PTR_8c1444b0, uVar4, ar7_00);
     uVar4 = get_field_4_0253e4(0x8c27d3ec, ar5_00, uVar4, ar7_00);
     ar6_00 = "GRAPHICS\\COMMON";
-    iVar2 = game_sub_020ef0(a0, "COMMON_EYE", "GRAPHICS\\COMMON", uVar4);
+    iVar2 = retry_until_done_020e80(a0, "COMMON_EYE", "GRAPHICS\\COMMON", uVar4);
     if (iVar2 == 0) {
         uVar4 = 2;
         ar6_00 = NULL;
         report_error_message("Failed to load eye textuer..", &g_8c12fde4, 0, 2);
     }
     uVar4 = get_field_4_0253e4(0x8c27d3f4, 0x8c27d3f4, ar6_00, uVar4);
-    iVar2 = game_sub_020ef0(a0, "COMMON_SCSI", "GRAPHICS\\COMMON", uVar4);
+    iVar2 = retry_until_done_020e80(a0, "COMMON_SCSI", "GRAPHICS\\COMMON", uVar4);
     if (iVar2 == 0) {
         iVar2 = report_error_message("Failed to load scsi textuer..", &g_8c12fde4, 0, 2);
     }
@@ -7457,7 +7457,7 @@ u32 CAnimal_LoadGRWait(int a0, u32 a1, int a2, u32 *a3) {
     }
     ar7_00 = &uStack_24;
     uVar4 = *(u32 *)(a0 + 0x410);
-    iVar3 = game_sub_0209fc(a1, *(u32 *)(iVar5 + 0xc), uVar4, ar7_00);
+    iVar3 = retry_until_done_0209b0(a1, *(u32 *)(iVar5 + 0xc), uVar4, ar7_00);
     if (iVar3 == 0) {
         ar7_00 = (u32 *)0x2;
         uVar4 = 0;
@@ -7493,7 +7493,7 @@ int CAnimal_LoadGResourceWait(int a0, u32 a1, int a2, u32 a3) {
         auStack_18[0] = 0;
         ar7_00 = auStack_18;
         uVar4 = *(u32 *)(0x410 + a0);
-        iVar3 = game_sub_020af4(a1, *(u32 *)(iVar1 + 0xc), uVar4, ar7_00);
+        iVar3 = retry_until_done_020aa8(a1, *(u32 *)(iVar1 + 0xc), uVar4, ar7_00);
         if (iVar3 == 0) {
             ar7_00 = (u32 *)0x2;
             uVar4 = 0;
@@ -7505,7 +7505,7 @@ int CAnimal_LoadGResourceWait(int a0, u32 a1, int a2, u32 a3) {
         uVar4 = get_field_4_0253e4(iVar1 + a2 * 8 + 0x78, uVar5, uVar4, ar7_00);
         uVar5 = *(u32 *)(0x410 + a0);
         ar5_00 = *(u8 **)(iVar1 + 0x14);
-        iVar3 = game_sub_020ef0(a1, ar5_00, uVar5, uVar4);
+        iVar3 = retry_until_done_020e80(a1, ar5_00, uVar5, uVar4);
         if (iVar3 == 0) {
             uVar4 = 2;
             uVar5 = 0;
@@ -7521,7 +7521,7 @@ int CAnimal_LoadGResourceWait(int a0, u32 a1, int a2, u32 a3) {
         uVar4 = get_field_4_0253e4(iVar1 + a2 * 8 + 0x78, iVar3, uVar4, a3);
         uVar5 = *(u32 *)(0x410 + a0);
         ar5_00 = *(u8 **)(a2 * 0x14 + iVar1 + 0x20);
-        iVar3 = game_sub_02100c(a1, ar5_00, uVar5, uVar4);
+        iVar3 = retry_until_done_020f90(a1, ar5_00, uVar5, uVar4);
         if (iVar3 == 0) {
             uVar4 = 2;
             uVar5 = 0;
@@ -7533,7 +7533,7 @@ int CAnimal_LoadGResourceWait(int a0, u32 a1, int a2, u32 a3) {
         iVar3 = 0;
     } else if (*(int *)(a2 * 0x14 + iVar1 + 0x48) == 0) {
         uVar4 = (*(code *)(&get_field_4_0253e4))(iVar1 + a2 * 8 + 0x88, ar5_00, uVar5, uVar4);
-        iVar3 = (*(code *)(&game_sub_020ef0))(a1, *(u32 *)(iVar1 + 0x10), *(u32 *)(0x410 + a0), uVar4);
+        iVar3 = (*(code *)(&retry_until_done_020e80))(a1, *(u32 *)(iVar1 + 0x10), *(u32 *)(0x410 + a0), uVar4);
         if (iVar3 == 0) {
             iVar3 = (*(code *)(&report_error_message))(*(u32 *)(iVar1 + 0x10),
                                                        "Failed to load facce tex:CAnimal::LoadGRWait()", 0, 2);
@@ -7545,7 +7545,8 @@ int CAnimal_LoadGResourceWait(int a0, u32 a1, int a2, u32 a3) {
         piVar2 = (int *)(iVar1 + a2 * 8 + 0x88);
         (**(code **)(*piVar2 + 8))(piVar2, iVar3, uVar5, uVar4);
         uVar4 = (*(code *)(&get_field_4_0253e4))(iVar1 + a2 * 8 + 0x88, iVar3, uVar5, uVar4);
-        iVar3 = (*(code *)(&game_sub_02100c))(a1, *(u32 *)(a2 * 0x14 + iVar1 + 0x48), *(u32 *)(0x410 + a0), uVar4);
+        iVar3 =
+            (*(code *)(&retry_until_done_020f90))(a1, *(u32 *)(a2 * 0x14 + iVar1 + 0x48), *(u32 *)(0x410 + a0), uVar4);
         if (iVar3 == 0) {
             iVar3 = (*(code *)(&report_error_message))("Failed to load face pvm textuer..",
                                                        "CAnimal::LoadGResourceWait()", 0, 2);

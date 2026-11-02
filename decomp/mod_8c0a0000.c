@@ -512,7 +512,7 @@ u32 game_sub_0a0730(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
  * called by: game_sub_09d9c0
  */
 u32 *game_sub_0a0818(u32 *a0, u32 a1, u32 a2, u32 a3) {
-    game_sub_030fa0(a0, a1, a2, a3);
+    Class_129cbc_ctor(a0, a1, a2, a3);
     *a0 = (&DATA_8c12ad14);
     Vec3_ctor_zero((int)a0 + 0x224, a1, a2);
     Vec3_set_zero((int)a0 + 0x238);
@@ -3912,7 +3912,7 @@ int game_sub_0a4de8(int a0, u32 a1) {
     *(u8 **)(a0 + 8) = &g_8c12ad50;
     Class_129938_ctor(a0 + 0x490, uVar1, ar6_00);
     game_sub_02ff6c(a0 + 0x530, uVar1, ar6_00);
-    game_sub_030fa0(a0 + 0x5cc, uVar1, ar6_00, ar7_00);
+    Class_129cbc_ctor(a0 + 0x5cc, uVar1, ar6_00, ar7_00);
     sprintf(a0 + 0xc, uVar1, ar6_00, ar7_00, "SpiderEgg");
     *(int *)(a0 + 0x308) = a0 + 0x530;
     *(int *)(a0 + 0x30c) = a0 + 0x5cc;
@@ -4878,7 +4878,7 @@ u32 *game_sub_0a6164(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u8 *ar6_00;
     u32 ar7_00;
 
-    game_sub_030fa0(a0, a1, a2, a3);
+    Class_129cbc_ctor(a0, a1, a2, a3);
     *a0 = (&DATA_8c12b088);
     ar7_00 = 0x10;
     ar5_00 = (&Vec3_ctor_zero);
@@ -10236,7 +10236,7 @@ int CSquid_Init(int a0, u32 a1) {
     iVar3 = a0 + 0x9b4;
     (**(code **)(*(int *)(a0 + 0x9bc) + 8))((int *)(a0 + 0x9bc), iVar3, uVar1, uVar2);
     uVar1 = get_field_4_0253e4(a0 + 0x9bc, iVar3, uVar1, uVar2);
-    iVar3 = (*(code *)(&game_sub_02100c))(0x8c3eb334, "sumi_blood.pvm", "GRAPHICS\\SQUIDLINE", uVar1);
+    iVar3 = (*(code *)(&retry_until_done_020f90))(0x8c3eb334, "sumi_blood.pvm", "GRAPHICS\\SQUIDLINE", uVar1);
     if (iVar3 == -1) {
         (*(code *)(&report_error_message))("Failed to load Ink pvm..", "CSquid::Init()", 0, 2);
     }
@@ -11804,15 +11804,15 @@ u32 game_sub_0ae2fc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 int game_sub_0ae544(u32 a0, u32 unused_a1, u32 a2, u32 *a3) {
     int iVar1;
 
-    iVar1 = (*(code *)(&game_sub_0209fc))(a0, *(u32 *)(&DATA_8c13b5d8), *(u32 *)(&DATA_8c13b4d4), a2);
+    iVar1 = (*(code *)(&retry_until_done_0209b0))(a0, *(u32 *)(&DATA_8c13b5d8), *(u32 *)(&DATA_8c13b4d4), a2);
     if (iVar1 == 0) {
         (*(code *)(&report_error_message))("Failed to load Nt_Shell Model..", (&DATA_8c13b5ec) + 0x297, 1, 2);
     }
-    iVar1 = (*(code *)(&game_sub_020af4))(a0, *(u32 *)(&DATA_8c13b5d8), *(u32 *)(&DATA_8c13b4d4), a3);
+    iVar1 = (*(code *)(&retry_until_done_020aa8))(a0, *(u32 *)(&DATA_8c13b5d8), *(u32 *)(&DATA_8c13b4d4), a3);
     if (iVar1 == 0) {
         (*(code *)(&report_error_message))("Failed to load Nt_Shell Texlist..", (&DATA_8c13b5ec) + 0x297, 1, 2);
     }
-    iVar1 = (*(code *)(&game_sub_020ef0))(a0, "NT_BODY", *(u32 *)(&DATA_8c13b4d4), *a3);
+    iVar1 = (*(code *)(&retry_until_done_020e80))(a0, "NT_BODY", *(u32 *)(&DATA_8c13b4d4), *a3);
     if (iVar1 == 0) {
         iVar1 =
             (*(code *)(&report_error_message))("Failed to load Nt_Shell textuerr..", (&DATA_8c13b5ec) + 0x297, 1, 2);
@@ -12506,11 +12506,11 @@ u32 destroy_array_8c285974(void) {
  * called by: CSquid_Init
  */
 u32 *CSquid_sub_0afa50(u32 *a0, u32 a1, u32 a2, u32 a3) {
-    game_sub_030fa0(a0, a1, a2, a3);
+    Class_129cbc_ctor(a0, a1, a2, a3);
     *a0 = (&DATA_8c12b2ac);
     Vec3_ctor_zero((int)a0 + 0x224, a1, a2);
     Vec3_set_zero((int)a0 + 0x234);
-    game_sub_033954((int)a0 + 0x248);
+    Class_129cbc_sub_033954((int)a0 + 0x248);
     Vec3_ctor_zero((int)a0 + 0x2bc, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x2d4, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x2e4, a1, a2);
