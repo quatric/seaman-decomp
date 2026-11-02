@@ -959,3 +959,18 @@
 8c12011a	asr_table_lookup_b	entry (a1 - first) of the table at a0+8 (count, first, entries), else 0
 8c1211ac	asr_sum_table_strided	sum of 8c1293e4[byte] over a1 bytes at a0, stride a2
 8c10abf4	asr_free_model	frees the buffers at +0x28 and +0x58 and the model parts at +0xb0
+8c1f153c	crc16_table	table-driven CRC-16 of a2 bytes at a1, starting from a0
+8c1f1576	check_crc_10	0 when the CRC-16 of the 10 bytes at a0 equals ~a1, else -1
+8c1f15be	bcd_msf_to_frames	BCD minutes/seconds/frames at a0 as a frame count ((m*60 + s)*75 + f)
+8c1efe3a	maple_get_mem_info_hooked	maple_get_mem_info_locked, then the PVR hook when +0x10e8 is set
+8c1efe80	maple_block_read_hooked	maple_block_read_locked, then the PVR hook when +0x10e8 is set
+8c1efee0	maple_block_complete_hooked	maple_block_complete_locked, then the PVR hook when +0x10e8 is set
+8c1eff58	maple_set_condition_hooked	maple_set_condition_locked, then the PVR hook when +0x10e8 is set
+8c1f002a	maple_controller_caps	*a0 = the controller function definition word of device a1; -1 if it has none
+8c1f0074	maple_storage_info	decodes device a1's memory-card function definition (partitions, block size, read/write counts, removable)
+8c1f0142	maple_lcd_info	decodes device a1's LCD function definition (size, gradation, orientation flags)
+8c1f01ae	maple_clock_info	copies device a1's clock function definition bytes to a0
+8c1f7158	inc_u16_saturating	increments the u16 at a0, stopping at 0xfffe
+8c1f7ffa	sysinfo_get_byte_b	*a0 = byte +0xb of the system information block; -1 when it is unavailable
+8c1fa758	intc_reset_and_init_regs	clears the interrupt priority registers and writes the register/value table at 8c26cb34
+8c1fad0a	scif_getchar_like	waits for and returns a byte from the serial port (mode 0); CR when a break is seen (mode 1)

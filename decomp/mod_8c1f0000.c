@@ -4,11 +4,11 @@
 #include "globals.h"
 
 /*
- * shinobi_sub_1f002a  0x8c1f002a
- * area name: in the shinobi library code range
+ * maple_controller_caps  0x8c1f002a
+ * *a0 = the controller function definition word of device a1; -1 if it has none
  * called by: shinobi_sub_1f6142
  */
-u32 shinobi_sub_1f002a(u32 *a0, u32 a1) {
+u32 maple_controller_caps(u32 *a0, u32 a1) {
     u8 *pbVar1;
 
     pbVar1 = (u8 *)bitmask_table_find(a1, 1);
@@ -20,11 +20,11 @@ u32 shinobi_sub_1f002a(u32 *a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_1f0074  0x8c1f0074
- * area name: in the shinobi library code range
+ * maple_storage_info  0x8c1f0074
+ * decodes device a1's memory-card function definition (partitions, block size, read/write counts, removable)
  * called by: shinobi_sub_1fd008
  */
-u32 shinobi_sub_1f0074(short *a0, u32 a1) {
+u32 maple_storage_info(short *a0, u32 a1) {
     u8 *pbVar1;
 
     pbVar1 = (u8 *)bitmask_table_find(a1, 2);
@@ -55,11 +55,11 @@ u32 shinobi_sub_1f00f8(u32 *a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_1f0142  0x8c1f0142
- * area name: in the shinobi library code range
+ * maple_lcd_info  0x8c1f0142
+ * decodes device a1's LCD function definition (size, gradation, orientation flags)
  * called by: bios_sub_1f3d28
  */
-u32 shinobi_sub_1f0142(short *a0, u32 a1) {
+u32 maple_lcd_info(short *a0, u32 a1) {
     u8 *pbVar1;
 
     pbVar1 = (u8 *)bitmask_table_find(a1, 4);
@@ -75,11 +75,11 @@ u32 shinobi_sub_1f0142(short *a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_1f01ae  0x8c1f01ae
- * area name: in the shinobi library code range
+ * maple_clock_info  0x8c1f01ae
+ * copies device a1's clock function definition bytes to a0
  * called by: shinobi_sub_1f6494
  */
-u32 shinobi_sub_1f01ae(u8 *a0, u32 a1) {
+u32 maple_clock_info(u8 *a0, u32 a1) {
     u8 *puVar1;
 
     puVar1 = (u8 *)bitmask_table_find(a1, 8);
@@ -1961,11 +1961,11 @@ u8 **bios_sub_1f151c(void) {
 }
 
 /*
- * bios_sub_1f153c  0x8c1f153c
- * area name: sits between bios functions (same compilation unit)
- * called by: bios_sub_1f1576
+ * crc16_table  0x8c1f153c
+ * table-driven CRC-16 of a2 bytes at a1, starting from a0
+ * called by: check_crc_10
  */
-u32 bios_sub_1f153c(u32 a0, u8 *a1, int a2) {
+u32 crc16_table(u32 a0, u8 *a1, int a2) {
     u8 bVar1;
     bool bVar2;
 
@@ -1978,14 +1978,14 @@ u32 bios_sub_1f153c(u32 a0, u8 *a1, int a2) {
 }
 
 /*
- * bios_sub_1f1576  0x8c1f1576
- * area name: sits between bios functions (same compilation unit)
+ * check_crc_10  0x8c1f1576
+ * 0 when the CRC-16 of the 10 bytes at a0 equals ~a1, else -1
  * called by: bios_sub_1f15f4
  */
-u32 bios_sub_1f1576(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 check_crc_10(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = bios_sub_1f153c(0, a0, 10);
+    uVar1 = crc16_table(0, a0, 10);
     if ((u32)(u16)a1 != (~uVar1 & 0xffff)) {
         return 0xffffffff;
     }
@@ -1995,18 +1995,18 @@ u32 bios_sub_1f1576(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * bcd_to_int_s8  0x8c1f15a4
  * two packed BCD digits (signed char) to an integer
- * called by: bios_sub_1f15be, bios_sub_1f15f4
+ * called by: bcd_msf_to_frames, bios_sub_1f15f4
  */
 int bcd_to_int_s8(u32 a0) {
     return (((int)0xf0 & (int)(char)a0) >> 4) * 10 + ((int)(char)a0 & 0xfU);
 }
 
 /*
- * bios_sub_1f15be  0x8c1f15be
- * area name: sits between bios functions (same compilation unit)
+ * bcd_msf_to_frames  0x8c1f15be
+ * BCD minutes/seconds/frames at a0 as a frame count ((m*60 + s)*75 + f)
  * called by: bios_sub_1f15f4
  */
-int bios_sub_1f15be(char *a0) {
+int bcd_msf_to_frames(char *a0) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -2065,7 +2065,7 @@ u32 bios_sub_1f15f4(char *a0, u32 *a1) {
                 }
             }
             uVar7 = (u32)CONCAT11(abStack_38[0x16], abStack_38[0x17]);
-            iVar6 = bios_sub_1f1576(abStack_38 + 0xc, uVar7, 0x40, 0);
+            iVar6 = check_crc_10(abStack_38 + 0xc, uVar7, 0x40, 0);
             if (iVar6 == 0) {
                 uVar2 = bcd_to_int_s8((int)(char)abStack_38[0xd]);
                 *a1 = uVar2;
@@ -2075,7 +2075,7 @@ u32 bios_sub_1f15f4(char *a0, u32 *a1) {
                 a1[2] = uVar2;
                 uVar2 = bcd_to_int_s8((int)(char)abStack_38[0x11]);
                 a1[3] = uVar2;
-                uVar3 = bios_sub_1f15be(abStack_38 + 0x13);
+                uVar3 = bcd_msf_to_frames(abStack_38 + 0x13);
                 a1[4] = uVar3 | (int)(char)abStack_38[0xc] << 0x18;
                 uVar1 = bcd_to_int_s8((int)(char)abStack_38[0xe]);
                 a1[5] = uVar1;
@@ -5262,7 +5262,7 @@ u32 bios_sub_1f3d28(u32 a0) {
     char cStack_9;
 
     ar5_00 = (int *)maple_port_status(a0);
-    iVar1 = shinobi_sub_1f0142(&sStack_10, ar5_00);
+    iVar1 = maple_lcd_info(&sStack_10, ar5_00);
     if ((((-1 < iVar1) && (*ar5_00 == 0xe)) && (sStack_10 == 1)) &&
         ((((u32)uStack_e == (int)0xc0 && (sStack_c == 1)) && ((cStack_a == '\0' && (cStack_9 == '\0')))))) {
         return 1;
@@ -7460,7 +7460,7 @@ u32 maple_all_status_request(u32 a0) {
 /*
  * maple_get_mem_info_locked  0x8c1f56c8
  * maple_get_mem_info under the lock byte at 0x8c1f5a2c; -2 if it is held
- * called by: shinobi_sub_1efe3a
+ * called by: maple_get_mem_info_hooked
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
 u32 maple_get_mem_info_locked(u32 a0, u32 a1, u32 a2) {
@@ -7522,7 +7522,7 @@ u32 maple_get_mem_info(u32 a0, u32 a1, int a2) {
 /*
  * maple_block_read_locked  0x8c1f571a
  * maple_block_read under the lock byte at 0x8c1f5a2c; -2 if it is held
- * called by: shinobi_sub_1efe80
+ * called by: maple_block_read_hooked
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
 u32 maple_block_read_locked(u32 a0, u32 a1, u32 a2, u32 a3) {
@@ -7644,7 +7644,7 @@ u32 maple_block_write(u32 a0, u32 a1, int a2, int a3, u32 s0) {
 /*
  * maple_block_complete_locked  0x8c1f57e4
  * maple_block_complete under the lock byte at 0x8c1f5a2c; -2 if it is held
- * called by: shinobi_sub_1efee0
+ * called by: maple_block_complete_hooked
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
 u32 maple_block_complete_locked(u32 a0, u32 a1, u32 a2, u32 a3) {
@@ -7891,7 +7891,7 @@ u32 maple_cmd15_func10(u32 a0, u32 a1) {
 /*
  * maple_set_condition_locked  0x8c1f5934
  * maple_set_condition under the lock byte at 0x8c1f5a2c; -2 if it is held
- * called by: shinobi_sub_1eff58
+ * called by: maple_set_condition_hooked
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
 u32 maple_set_condition_locked(u32 a0, u32 a1, u32 a2, u32 a3) {
@@ -8440,7 +8440,7 @@ u32 shinobi_sub_1f5d6c(u32 a0, u8 *a1) {
     uStack_f = a1[1];
     uStack_e = a1[2];
     uStack_d = a1[3];
-    iVar1 = shinobi_sub_1eff58(uStack_c, 8, &uStack_10, 1);
+    iVar1 = maple_set_condition_hooked(uStack_c, 8, &uStack_10, 1);
     if (iVar1 < 0) {
         return 0xffffffff;
     }
@@ -8710,7 +8710,7 @@ u32 shinobi_sub_1f6120(u32 a0) {
 int shinobi_sub_1f6142(u32 *a0, u32 *a1) {
     int iVar1;
     u32 auStack_10[2];
-    if (((*a1 & 1) == 0) || (iVar1 = shinobi_sub_1f002a(auStack_10, a1), -1 < iVar1)) {
+    if (((*a1 & 1) == 0) || (iVar1 = maple_controller_caps(auStack_10, a1), -1 < iVar1)) {
         iVar1 = shinobi_sub_1f0312(5);
         if (iVar1 == 1) {
             iVar1 = shinobi_sub_1f6120(auStack_10[0]);
@@ -9054,7 +9054,7 @@ u32 shinobi_sub_1f6494(u32 a0) {
     u8 auStack_8[8];
 
     ar5_00 = maple_port_status(a0);
-    iVar1 = shinobi_sub_1f01ae(auStack_8, ar5_00);
+    iVar1 = maple_clock_info(auStack_8, ar5_00);
     return (u32)(-1 < iVar1);
 }
 
@@ -10097,11 +10097,11 @@ u32 u16_add_saturate(u16 *a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_1f7158  0x8c1f7158
- * area name: in the shinobi library code range
+ * inc_u16_saturating  0x8c1f7158
+ * increments the u16 at a0, stopping at 0xfffe
  * called by: shinobi_sub_1f7264
  */
-u32 shinobi_sub_1f7158(u16 *a0) {
+u32 inc_u16_saturating(u16 *a0) {
     u32 in_r0;
 
     if (*a0 < 0xfffe) {
@@ -10200,7 +10200,7 @@ u32 shinobi_sub_1f7264(int a0, u32 a1, u32 a2, u32 a3) {
     if (g_8c474984 == -1) {
         g_8c474984 = 1;
     } else {
-        shinobi_sub_1f7158(&g_8c474984);
+        inc_u16_saturating(&g_8c474984);
     }
     if (1 < g_8c4748c0) {
         uVar1 = flashrom_sub_1f6e5e(a0 + 3, &g_8c474978, a2, a3);
@@ -11136,7 +11136,7 @@ u32 shinobi_sub_1f7f9c(int *a0, u32 unused_a1, u32 a2, u32 a3) {
         if ((g_8c273a18 != 0) && (iVar1 = shinobi_sub_1f97b4(0, g_8c273a18, a2, a3), iVar1 != -1)) {
             iVar1 = (int)g_8c00007d;
             if (g_8c00007d == -1) {
-                shinobi_sub_1f7ffa(aiStack_c);
+                sysinfo_get_byte_b(aiStack_c);
                 if (aiStack_c[0] == -1) {
                     *a0 = 1;
                 } else {
@@ -11153,11 +11153,11 @@ u32 shinobi_sub_1f7f9c(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1f7ffa  0x8c1f7ffa
- * area name: in the shinobi library code range
+ * sysinfo_get_byte_b  0x8c1f7ffa
+ * *a0 = byte +0xb of the system information block; -1 when it is unavailable
  * called by: shinobi_sub_1f7f9c
  */
-u32 shinobi_sub_1f7ffa(int *a0) {
+u32 sysinfo_get_byte_b(int *a0) {
     int iVar1;
 
     if (a0 != NULL) {
@@ -11239,7 +11239,7 @@ u32 shinobi_sub_1f804e(int a0) {
 /*
  * sysinfo_get_id  0x8c1f8094
  * initialises system info and returns the console ID pointer; 0 on failure
- * called by: shinobi_sub_1f7f70, shinobi_sub_1f7ffa, shinobi_sub_1f7ffe, shinobi_sub_1f8028
+ * called by: shinobi_sub_1f7f70, shinobi_sub_1f7ffe, shinobi_sub_1f8028, sysinfo_get_byte_b
  */
 u32 sysinfo_get_id(void) {
     int iVar1;
@@ -13387,7 +13387,7 @@ u32 shinobi_sub_1fa6b8(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 ar5_00;
     u32 in_PR;
 
-    shinobi_sub_1fa758(unused_a0, unused_a1, a2, a3, in_PR);
+    intc_reset_and_init_regs(unused_a0, unused_a1, a2, a3, in_PR);
     ar5_00 = 0;
     uVar1 = 0;
     scif_sub_1fae2c(0, 0);
@@ -13489,11 +13489,11 @@ u32 shinobi_sub_1fa73e(void) {
 }
 
 /*
- * shinobi_sub_1fa758  0x8c1fa758
- * area name: in the shinobi library code range
+ * intc_reset_and_init_regs  0x8c1fa758
+ * clears the interrupt priority registers and writes the register/value table at 8c26cb34
  * called by: shinobi_sub_1fa6b8
  */
-u32 shinobi_sub_1fa758(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 intc_reset_and_init_regs(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int *piVar1;
 
     _DAT_ffd00000 = 0;
@@ -13588,7 +13588,7 @@ u32 shinobi_sub_1fa7d0(u32 a0, u32 *a1) {
     }
     scif_puts(a4);
     do {
-        uVar4 = scif_sub_1fad0a(a4, uVar5);
+        uVar4 = scif_getchar_like(a4, uVar5);
     } while ((char)uVar4 != '\r');
     _DAT_ff000024 = ain0 & 0xffff;
     uVar5 = scif_sub_1fad44();
@@ -13709,11 +13709,11 @@ u32 scif_putc(u32 a0) {
 }
 
 /*
- * scif_sub_1fad0a  0x8c1fad0a
- * area name: sits between scif functions (same compilation unit)
+ * scif_getchar_like  0x8c1fad0a
+ * waits for and returns a byte from the serial port (mode 0); CR when a break is seen (mode 1)
  * called by: shinobi_sub_1fa7d0
  */
-int scif_sub_1fad0a(u32 unused_a0, int a1) {
+int scif_getchar_like(u32 unused_a0, int a1) {
     if (g_8c475ed8 == 0) {
         do {
         } while ((char)*(u16 *)(g_8c475ed4 + 0x1c) == '\0');
@@ -16083,7 +16083,7 @@ u32 shinobi_sub_1fd008(int a0, u32 *a1, u32 a2, u32 a3) {
                 ar5_00 = (u32 *)0x2;
                 a2 = 0;
                 uVar6 = uVar7;
-                puVar2 = (u32 *)shinobi_sub_1efe3a(uVar7, 2, 0, a3);
+                puVar2 = (u32 *)maple_get_mem_info_hooked(uVar7, 2, 0, a3);
                 if (-1 < (int)puVar2)
                     break;
                 thunk_FUN_8c1f6a30();
@@ -16128,7 +16128,7 @@ u32 shinobi_sub_1fd008(int a0, u32 *a1, u32 a2, u32 a3) {
                 a1[0xb] = 0x1ff;
                 ar5_00 = (u32 *)maple_port_status(uVar7);
                 puVar2 = &uStack_2c;
-                iVar3 = shinobi_sub_1f0074(puVar2, ar5_00);
+                iVar3 = maple_storage_info(puVar2, ar5_00);
                 if (-1 < iVar3) {
                     uVar7 = 0x200;
                     a1[0xf] = (u32)uStack_26;
@@ -16187,7 +16187,7 @@ u32 shinobi_sub_1fd1e2(int a0, int a1, int a2) {
                 a2 = 0;
                 a1 = 2;
                 uVar5 = ar4_01;
-                iVar3 = shinobi_sub_1efe80(ar4_01, 2, 0, iVar2);
+                iVar3 = maple_block_read_hooked(ar4_01, 2, 0, iVar2);
                 if (-1 < iVar3)
                     break;
                 thunk_FUN_8c1f6a30();
@@ -16292,7 +16292,7 @@ u32 shinobi_sub_1fd312(int a0, int a1, char *a2, u32 *a3) {
                 ar5_00 = 2;
                 uVar3 = ar4_00;
                 a3 = ar7_00;
-                iVar2 = shinobi_sub_1efee0(ar4_00, 2, 0, ar7_00);
+                iVar2 = maple_block_complete_hooked(ar4_00, 2, 0, ar7_00);
                 if (-1 < iVar2)
                     break;
                 thunk_FUN_8c1f6a30();

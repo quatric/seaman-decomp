@@ -479,8 +479,9 @@ u32 pvr_sub_1efa2a(u32 unused_a0, u32 a1) {
 
 /*
  * pvr_1efaf4  0x8c1efaf4
- * called by: maple_all_status_request_sync, maple_block_complete_sync, maple_block_read_sync, maple_block_write_sync,
- * maple_cmd15_func10_sync, maple_cmd16_func20_sync, maple_device_kill_sync, maple_device_request_sync (+20 more)
+ * called by: maple_all_status_request_sync, maple_block_complete_hooked, maple_block_complete_sync,
+ * maple_block_read_hooked, maple_block_read_sync, maple_block_write_sync, maple_cmd15_func10_sync,
+ * maple_cmd16_func20_sync (+20 more)
  */
 int pvr_1efaf4(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     int *piVar1;
@@ -724,11 +725,11 @@ u32 shinobi_sub_1efe14(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1efe3a  0x8c1efe3a
- * area name: in the shinobi library code range
+ * maple_get_mem_info_hooked  0x8c1efe3a
+ * maple_get_mem_info_locked, then the PVR hook when +0x10e8 is set
  * called by: shinobi_sub_1fd008
  */
-u32 shinobi_sub_1efe3a(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 maple_get_mem_info_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = maple_get_mem_info_locked(a0, a1, a2);
@@ -739,11 +740,11 @@ u32 shinobi_sub_1efe3a(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1efe80  0x8c1efe80
- * area name: in the shinobi library code range
+ * maple_block_read_hooked  0x8c1efe80
+ * maple_block_read_locked, then the PVR hook when +0x10e8 is set
  * called by: shinobi_sub_1fd1e2
  */
-u32 shinobi_sub_1efe80(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 maple_block_read_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = maple_block_read_locked(a0, a1, a2, a3);
@@ -769,11 +770,11 @@ u32 shinobi_sub_1efeac(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1efee0  0x8c1efee0
- * area name: in the shinobi library code range
+ * maple_block_complete_hooked  0x8c1efee0
+ * maple_block_complete_locked, then the PVR hook when +0x10e8 is set
  * called by: shinobi_sub_1fd312
  */
-u32 shinobi_sub_1efee0(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 maple_block_complete_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = maple_block_complete_locked(a0, a1, a2, a3);
@@ -813,11 +814,11 @@ u32 shinobi_sub_1eff32(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1eff58  0x8c1eff58
- * area name: in the shinobi library code range
+ * maple_set_condition_hooked  0x8c1eff58
+ * maple_set_condition_locked, then the PVR hook when +0x10e8 is set
  * called by: shinobi_sub_1f5d6c
  */
-u32 shinobi_sub_1eff58(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 maple_set_condition_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = maple_set_condition_locked(a0, a1, a2, a3);
@@ -880,7 +881,7 @@ u32 thunk_FUN_8c1f4646(void) {
 /*
  * bitmask_table_find  0x8c1efffa
  * entry a1 of a table whose first word flags which of 32 entries follow; NULL if absent
- * called by: shinobi_sub_1f002a, shinobi_sub_1f0074, shinobi_sub_1f00f8, shinobi_sub_1f0142, shinobi_sub_1f01ae,
+ * called by: maple_clock_info, maple_controller_caps, maple_lcd_info, maple_storage_info, shinobi_sub_1f00f8,
  * shinobi_sub_1f01e8, shinobi_sub_1f0232
  */
 u32 *bitmask_table_find(u32 *a0, u32 a1) {
