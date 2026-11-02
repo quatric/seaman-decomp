@@ -13258,7 +13258,7 @@ u32 *Class_129908_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 u32 game_sub_015470(int a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4) {
     u32 uVar1;
 
-    matrix_sub_257188(a0 + 0x10, a1, a2 | 0x900, a3, s0);
+    ninja_sub_257188(a0 + 0x10, a1, a2 | 0x900, a3, s0);
     uVar1 = set_fields_0_4_8_257196(a0 + 0x3c, a0 + 0x10, s4, 0x40800000);
     return uVar1;
 }
@@ -14118,7 +14118,7 @@ u32 C2DSprite_Load(int a0, u32 a1, u32 a2, u32 a3) {
         if (*(u32 *)(*(int *)(a0 + 0x1c) + 4) <= uVar2) {
             return 1;
         }
-        iVar1 = ninja_sub_25b3a2(*(u32 *)(a0 + 0x1c), a1, a2, a3);
+        iVar1 = njLoadTexture(*(u32 *)(a0 + 0x1c), a1, a2, a3);
         if (iVar1 == -1)
             break;
         uVar2 = uVar2 + 1;
@@ -14264,12 +14264,12 @@ u32 game_sub_015f18(int a0, u32 a1, u32 a2, u32 a3) {
     sVar1 = **(short **)(a0 + 0x20);
     sVar2 = *(short *)(*(int *)(a0 + 0x20) + 2);
     uVar3 = malloc_thunk(0x2000, a1, a2, a3);
-    matrix_sub_257188(a0 + 0x2c, uVar3, 0xb01, (int)sVar1, (int)sVar2);
+    ninja_sub_257188(a0 + 0x2c, uVar3, 0xb01, (int)sVar1, (int)sVar2);
     ar7_00 = 0x40800000;
     ar6_00 = 10000;
     ar5_00 = a0 + 0x2c;
     set_fields_0_4_8_257196(**(u32 **)(a0 + 0x1c), ar5_00, 10000, 0x40800000);
-    iVar4 = ninja_sub_25b3a2(*(u32 *)(a0 + 0x1c), ar5_00, ar6_00, ar7_00);
+    iVar4 = njLoadTexture(*(u32 *)(a0 + 0x1c), ar5_00, ar6_00, ar7_00);
     if (iVar4 == -1) {
         ar7_00 = 0xd;
         ar6_00 = 0;
@@ -14357,11 +14357,11 @@ u32 C3DRenderPly_SetMem(int a0, int a1, int a2, short *a3, u32 s0, int s4) {
     if (ar5_00 == 0) {
         report_error_message("Lack of memory!", "C3DRenderPly::SetMem()", 1, 2);
     }
-    matrix_sub_257188(a0 + 0xa0, ar5_00, 0xb01, (int)*a3, (int)a3[1]);
+    ninja_sub_257188(a0 + 0xa0, ar5_00, 0xb01, (int)*a3, (int)a3[1]);
     ar7_00 = 0x40800000;
     ar5_01 = a0 + 0xa0;
     set_fields_0_4_8_257196(*(u32 *)(a0 + 0x8c), ar5_01, s0, 0x40800000);
-    ninja_sub_25b3a2(a0 + 0x8c, ar5_01, s0, ar7_00);
+    njLoadTexture(a0 + 0x8c, ar5_01, s0, ar7_00);
     ninja_sub_25b100();
     malloc_sub_1fb586(ar5_00, ar5_01, s0, ar7_00);
     *(u32 *)(a0 + 0xcc) = *(u32 *)(a0 + 0xcc) | 0x80000000;
@@ -17716,7 +17716,7 @@ u32 rotate_degrees_7c(int a0) {
     u32 in_fr4;
 
     *(u32 *)(a0 + 0x7c) = in_fr4;
-    uVar1 = matrix_sub_257148((int)((*(float *)(a0 + 0x7c) * 65536.0) / 360.0));
+    uVar1 = ninja_sub_257148((int)((*(float *)(a0 + 0x7c) * 65536.0) / 360.0));
     return uVar1;
 }
 
@@ -23170,8 +23170,8 @@ u32 game_sub_01f794(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_01f810  0x8c01f810
  * area name: game code; nothing names its area yet
- * called by: CAnimal_sub_020bec, CAnimal_sub_020ce4, CAnimal_sub_020ddc, CDCGD_sub_0213bc,
- * file_load_into_object_buffer, file_load_to_buffer, retry_until_done_0209b0, retry_until_done_020aa8 (+2 more)
+ * called by: CAnimal_sub_020ce4, CAnimal_sub_020ddc, CDCGD_sub_0213bc, file_load_into_object_buffer,
+ * file_load_to_buffer, retry_until_done_0209b0, retry_until_done_020aa8, retry_until_done_020ba0 (+2 more)
  */
 u32 game_sub_01f810(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -23266,7 +23266,7 @@ u32 game_sub_01f9c4(int a0, u32 unused_a1, u32 a2, int a3) {
 
     iVar1 = **(int **)(a0 + 4);
     if (iVar1 == 0xc) {
-        iVar1 = ninja_sub_25b3a2(*(u32 *)(*(int *)(a0 + 4) + 8), unused_a1, a2, a3);
+        iVar1 = njLoadTexture(*(u32 *)(*(int *)(a0 + 4) + 8), unused_a1, a2, a3);
         if (iVar1 == 1) {
             unaff_r13 = 1;
         } else {
@@ -23548,7 +23548,7 @@ u32 CDCGD_new_request(int a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8) {
     ar6_00 = CDCGD_new_request_c(a0, a1, a2, a3, s0, s4);
     if (ar6_00 != 0) {
         list_push_front(a0, a0 + 0x20, ar6_00);
-        CDCGD_sub_0206b8(a0, ar6_00, s8);
+        CDCGD_slot_add(a0, ar6_00, s8);
     }
     return (u32)(ar6_00 != 0);
 }

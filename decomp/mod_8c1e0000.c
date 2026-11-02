@@ -150,11 +150,11 @@ u32 ta_fifo_1ef558(void) {
 }
 
 /*
- * ta_sub_1ef640  0x8c1ef640
- * area name: sits between ta functions (same compilation unit)
+ * maple_port_info_refresh  0x8c1ef640
+ * copies the 24 0x2c-byte port records at (0x8c4727b4)+0x28 into the 0x18-byte records at 0x8c4709a0
  * called by: pvr_1ef84c, pvr_1efaf4, shinobi_sub_1ef78c, shinobi_sub_1ef7e6
  */
-int ta_sub_1ef640(void) {
+int maple_port_info_refresh(void) {
     char cVar1;
     u8 *puVar2;
     u8 *puVar3;
@@ -306,7 +306,7 @@ u32 shinobi_sub_1ef78c(u32 a0, u32 a1) {
     a5 = 0xc000;
     a7 = 0xc000;
     uVar1 = shinobi_sub_1f3dd8(a1, 0xc000, a0, 0xc000);
-    ta_sub_1ef640();
+    maple_port_info_refresh();
     g_8c470e60 = 1;
     return uVar1;
 }
@@ -324,7 +324,7 @@ u32 shinobi_sub_1ef7e6(u32 a0, u32 a1, u32 a2, u32 a3) {
     *(u32 *)(&DATA_8c1f5a28) = *(u32 *)(&DATA_8c1f5a28) | 0xa0000000;
     shinobi_sub_1ef682();
     uVar1 = shinobi_sub_1f3ef4(a0, a1, a2, a3);
-    ta_sub_1ef640();
+    maple_port_info_refresh();
     g_8c470e60 = 1;
     return uVar1;
 }
@@ -384,7 +384,7 @@ int pvr_1ef84c(u32 unused_a0, u32 *unused_a1, u32 unused_a2, u32 a3) {
                 g_8c470e90 = 0;
                 *(u16 *)((int)piVar5 + *a4 * 2 + 0x34) = 0;
                 *(u16 *)((int)piVar5 + *a4 * 2 + 0x2c) = (u16) * 0xa05f810c & uVar1;
-                ta_sub_1ef640();
+                maple_port_info_refresh();
                 *piVar5 = *piVar5 + 1;
             }
         } else {
@@ -424,7 +424,7 @@ int pvr_1ef84c(u32 unused_a0, u32 *unused_a1, u32 unused_a2, u32 a3) {
                     (*(code *)*piVar4)(1, 0xfffffffa, piVar5[2], a7);
                 }
             } else {
-                ta_sub_1ef640();
+                maple_port_info_refresh();
             }
         }
     }
@@ -511,7 +511,7 @@ int pvr_1efaf4(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
         iVar7 = g_8c470e64 * 2;
         *(u16 *)(iVar2 + 0x30 + iVar7) =
             ((u16) * 0xa05f810c & 0x3ff) + *(short *)(iVar2 + 0x34 + iVar7) * ((u16) * 0xa05f80dc & 0x3ff);
-        ta_sub_1ef640();
+        maple_port_info_refresh();
         shinobi_sub_1f4414();
         iVar5 = shinobi_sub_1f4734();
         if (iVar5 != 0) {

@@ -5481,7 +5481,7 @@ u32 Vec3_sub_0d5e2c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     if (g_8c43783c == 1) {
-        (*(code *)(&matrix_sub_257120))(
+        (*(code *)(&ninja_sub_257120))(
             (u32)0x8c437840 [2] << 0x10 | 0xff000000 | (u32)0x8c437840 [1] << 8 | (u32) * 0x8c437840, a1, a2, a3);
         g_8c43783c = 0;
     }
@@ -7990,7 +7990,7 @@ u32 WEATHRE_UNIT_CreateGraphics(int a0, u32 a1, u32 a2, u32 a3) {
     uVar1 = 0;
     game_sub_0d82f0(a0, 0);
     thunk_FUN_8c20a1d0(0x8c43786c);
-    matrix_sub_257120(0xfffafafa);
+    ninja_sub_257120(0xfffafafa);
     for (iVar2 = 0; iVar2 < 1; iVar2 = iVar2 + 1) {
         *(u32 *)(0x6e64 + iVar2 * 0xc + a0) = 0;
     }
@@ -8134,7 +8134,7 @@ u32 game_sub_0d8400(void) {
     uVar1 = 0;
     game_sub_0d82f0(r4, 0);
     thunk_FUN_8c20a1d0(0x8c43786c);
-    uVar1 = matrix_sub_257120(0xfffafafa);
+    uVar1 = ninja_sub_257120(0xfffafafa);
     return uVar1;
 }
 
@@ -9470,7 +9470,7 @@ u32 RING_UNIT_CreateModel(int a0, u32 a1, u32 a2) {
     for (uVar4 = 0; uVar4 < 7; uVar4 = uVar4 + 1) {
         puVar3 = &uStack_20;
         pcVar2 = "GRAPHICS\\ENV";
-        iVar1 = CAnimal_sub_020bec(a1, (&PTR_s_Ring_Idle1_njm_8c13f394)[uVar4], "GRAPHICS\\ENV", puVar3);
+        iVar1 = retry_until_done_020ba0(a1, (&PTR_s_Ring_Idle1_njm_8c13f394)[uVar4], "GRAPHICS\\ENV", puVar3);
         if (iVar1 == 0) {
             report_error_message((&PTR_s_Ring_Idle1_njm_8c13f394)[uVar4], "Read NMDM Failed..", 0, 2);
         } else {

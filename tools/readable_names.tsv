@@ -604,3 +604,17 @@
 8c1f5934	maple_set_condition_locked	maple_set_condition under the lock byte at 0x8c1f5a2c; -2 if it is held
 8c1f5936	maple_set_condition_locked_alt	maple_set_condition under the lock byte at 0x8c1f5a2c; -2 if it is held (entry 2 bytes in)
 8c1f599e	maple_mark_last_frame_locked	maple_mark_last_frame under the lock byte at 0x8c1f5a2c; -2 if it is held
+8c1ef640	maple_port_info_refresh	copies the 24 0x2c-byte port records at (0x8c4727b4)+0x28 into the 0x18-byte records at 0x8c4709a0
+8c268d64	mwRnaStop	stops an mwRna output: play switch off, buffers reset, status cleared (interrupts masked)
+8c25b3a2	njLoadTexture	loads every texture of the list a0 (count at +4); 1 on success, -1 on error
+8c26201c	ADXF_Open_like	allocates an ADXF handle and opens file a0 on it; NULL on failure
+8c020bec	retry_until_done_020ba0	CDCGD_request_type5, retried through 8c01f810 until done; 1 done, 0 failed
+8c1f5506	maple_devinfo_clear	clears a device-info record and sets its product name to "(none)" padded with spaces
+8c1f9e32	dcache_writeback_range	writes back the operand-cache lines covering a1 bytes at a0 (whole cache for 64 KB or more)
+8c1fe1e4	vmu_fat_find_rev	searches FAT entries a3 down to a2 of drive a0 for the value a1; -1 if none
+8c204cc0	mem_pool_find_block	finds the block starting at a0 in its pool's list (pool 0 below 0x8c2753f8's limit, else 1)
+8c2571a8	tex_size_to_index	texture size 8..1024 to 0..7
+8c26346e	ADXSTM_rewind	resets the stream read state (status 2, or 3 when there is no file)
+8c26ae04	mwSnd_move_to_work_mem	copies a sound from sound memory into the work area; prints E1227 on error
+8c0206b8	CDCGD_slot_add	adds a2 to the 32-entry set at +0x58 unless it is already there
+8c020588	CDCGD_request_matches	1 when request a2 has type a1, directory a3 and file name s0

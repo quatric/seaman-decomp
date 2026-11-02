@@ -721,7 +721,7 @@ int shinobi_sub_20075a(int a0) {
     iVar6 = *(int *)(iVar4 + 0x10);
     iVar4 = *(int *)(iVar4 + 0x20) + iVar5 + -1;
     do {
-        iVar2 = shinobi_sub_1fe1e4(a0, uVar1);
+        iVar2 = vmu_fat_find_rev(a0, uVar1);
         if (iVar2 < 0) {
             return 0xffffffff;
         }
@@ -763,7 +763,7 @@ int shinobi_sub_200772(u32 unused_a0, int a1) {
     iVar4 = *(int *)(iVar3 + 0x10);
     iVar3 = *(int *)(iVar3 + 0x20) + ar6_00 + -1;
     do {
-        iVar1 = shinobi_sub_1fe1e4(unaff_r10, ar5_00, ar6_00, iVar3);
+        iVar1 = vmu_fat_find_rev(unaff_r10, ar5_00, ar6_00, iVar3);
         if (iVar1 < 0) {
             return 0xffffffff;
         }
@@ -5304,7 +5304,7 @@ u32 shinobi_sub_203bda(int a0, u32 a1, u32 a2, u32 a3) {
     short asStack_14[2];
     short asStack_10[4];
 
-    ar5_00 = (u16 *)shinobi_sub_204cc0(a0, asStack_14);
+    ar5_00 = (u16 *)mem_pool_find_block(a0, asStack_14);
     if (ar5_00 == NULL) {
         uVar2 = 7;
     } else if ((*ar5_00 & 2) == 0) {
@@ -5314,7 +5314,7 @@ u32 shinobi_sub_203bda(int a0, u32 a1, u32 a2, u32 a3) {
         if (asStack_14[0] != 0) {
             iVar1 = -g_8c2753f4;
         }
-        ar5_01 = (u16 *)shinobi_sub_204cc0(iVar1 + a0, asStack_10);
+        ar5_01 = (u16 *)mem_pool_find_block(iVar1 + a0, asStack_10);
         if (ar5_01 == NULL) {
             shinobi_sub_204cfc((int)asStack_14[0], ar5_00, a2, a3);
             uVar2 = 0;
@@ -6222,7 +6222,7 @@ u16 *shinobi_sub_204c00(u32 a0, int a1, int a2) {
             } else {
                 iVar2 = *(int *)(puVar5 + 6) - g_8c2753f4;
             }
-            iVar2 = shinobi_sub_204cc0(iVar2, auStack_28);
+            iVar2 = mem_pool_find_block(iVar2, auStack_28);
             if ((iVar2 != 0) && (*(int *)(*(int *)(iVar2 + 0x14) + 0x18) == *(int *)(iStack_20 + 0x18))) {
                 iVar4 = *(int *)(puVar5 + 8);
                 puVar3 = puVar5;
@@ -6233,11 +6233,11 @@ u16 *shinobi_sub_204c00(u32 a0, int a1, int a2) {
 }
 
 /*
- * shinobi_sub_204cc0  0x8c204cc0
- * area name: in the shinobi library code range
+ * mem_pool_find_block  0x8c204cc0
+ * finds the block starting at a0 in its pool's list (pool 0 below 0x8c2753f8's limit, else 1)
  * called by: shinobi_sub_203bda, shinobi_sub_204c00, shinobi_sub_205860
  */
-int shinobi_sub_204cc0(int a0, short *a1) {
+int mem_pool_find_block(int a0, short *a1) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -7247,7 +7247,7 @@ u16 *shinobi_sub_205860(u32 a0, int a1, u16 *a2) {
             } else {
                 iVar2 = *(int *)(puVar5 + 6) - g_8c2753f4;
             }
-            iVar2 = shinobi_sub_204cc0(iVar2, auStack_2c);
+            iVar2 = mem_pool_find_block(iVar2, auStack_2c);
             if ((iVar2 != 0) && ((**(u16 **)(iVar2 + 0x14) & 0xf000) == (*puStack_24 & 0xf000))) {
                 iVar4 = *(int *)(puVar5 + 8);
                 puVar3 = puVar5;
@@ -11003,7 +11003,7 @@ u32 pvr_sub_20a156(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u
 /*
  * pvr_wrap_20a16e  0x8c20a16e
  * only calls pvr_20a844
- * called by: matrix_sub_257104, matrix_sub_257120
+ * called by: ninja_sub_257104, ninja_sub_257120
  */
 u32 pvr_wrap_20a16e(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0) {
     pvr_20a844((int)0xb0, s0);

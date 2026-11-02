@@ -6414,7 +6414,7 @@ u32 g2dma_1f4794(u32 a0, u32 a1, u32 a2) {
     memset_words(g_8c4727b4 + 10, 0, 0x108);
     uVar9 = 0;
     do {
-        shinobi_sub_1f5506((int)g_8c4727b4 + uVar9 + 0x44c);
+        maple_devinfo_clear((int)g_8c4727b4 + uVar9 + 0x44c);
         uVar9 = uVar9 + 0x78;
     } while (uVar9 < 0xb40);
     iVar5 = 0;
@@ -6896,7 +6896,7 @@ u32 shinobi_sub_1f51ec(u32 unused_a0, int a1, u32 *a2, u32 *a3) {
         shinobi_sub_1f53c2(a1, a2, a3);
     }
     if (*(u8 *)((int)a2 + 3) != 0) {
-        shinobi_sub_1f5506(a1);
+        maple_devinfo_clear(a1);
     }
     return 0;
 }
@@ -6938,7 +6938,7 @@ u32 shinobi_sub_1f51f8(u32 unused_a0, u32 unused_a1, u32 *a2, u32 a3) {
         a2 = unaff_r13;
     }
     if (*(u8 *)((int)unaff_r14 + 3) != 0) {
-        shinobi_sub_1f5506(unaff_r12);
+        maple_devinfo_clear(unaff_r12);
     }
     return 0;
 }
@@ -7028,7 +7028,7 @@ LAB_8c1f535e:
     }
     if (a3[3] != '\0') {
         *(u8 *)(a2 + 0x10) = 0;
-        shinobi_sub_1f5506(a2);
+        maple_devinfo_clear(a2);
     }
     return 0;
 }
@@ -7098,11 +7098,11 @@ u32 shinobi_sub_1f53c2(u32 *a0, u32 unused_a1, int a2) {
 }
 
 /*
- * shinobi_sub_1f5506  0x8c1f5506
- * area name: in the shinobi library code range
+ * maple_devinfo_clear  0x8c1f5506
+ * clears a device-info record and sets its product name to "(none)" padded with spaces
  * called by: g2dma_1f4794, shinobi_sub_1f51ec, shinobi_sub_1f51f8, shinobi_sub_1f5290
  */
-u32 shinobi_sub_1f5506(int a0) {
+u32 maple_devinfo_clear(int a0) {
     u8 *puVar1;
 
     memset_words(a0, 0, 0x1e);
@@ -7999,7 +7999,7 @@ u32 maple_mark_last_frame(void) {
 /*
  * memset_words  0x8c1f59dc
  * stores a1 in a2 consecutive words at a0
- * called by: g2dma_1f4794, shinobi_sub_1f5506, shinobi_sub_1f550a
+ * called by: g2dma_1f4794, maple_devinfo_clear, shinobi_sub_1f550a
  */
 int memset_words(u32 *a0, u32 a1, int a2) {
     int iVar1;
@@ -12309,7 +12309,7 @@ u32 shinobi_sub_1f9194(int *a0, int a1) {
     if (in_stack_ffffffe4 == 1) {
         uVar2 = 0x90180;
     } else {
-        shinobi_sub_1f9e32(a0[2] & 0x1fffffffU | 0xa0000000, a0[3] & 0x7fffffe0);
+        dcache_writeback_range(a0[2] & 0x1fffffffU | 0xa0000000, a0[3] & 0x7fffffe0);
         piVar3[5] = 0;
         *piVar3 = a0[1];
         piVar3[1] = a0[2];
@@ -12890,14 +12890,14 @@ u32 shinobi_sub_1f9bde(u32 a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_1f9e32  0x8c1f9e32
- * area name: in the shinobi library code range
+ * dcache_writeback_range  0x8c1f9e32
+ * writes back the operand-cache lines covering a1 bytes at a0 (whole cache for 64 KB or more)
  * called by: shinobi_sub_1f9194, tex_copy_to_alloc, tex_sub_25a770, tex_sub_25a838
  * decompiler: Switch with 1 destination removed at 0x8c1f9e44
  * decompiler: Switch with 1 destination removed at 0x8c1f9e54
  * decompiler: Switch with 1 destination removed at 0x8c1f9e8a
  */
-u32 shinobi_sub_1f9e32(u32 a0, u32 a1) {
+u32 dcache_writeback_range(u32 a0, u32 a1) {
     u32 in_r0;
     u32 uVar1;
     u32 uVar2;
@@ -17104,21 +17104,21 @@ int shinobi_sub_1fe15a(int a0, u32 a1) {
     iVar3 = a0 * 0x148 + 0x8c4783e0;
     iVar1 = *(int *)(iVar3 + 0x1c);
     iVar2 = *(int *)(iVar1 + 8) - *(int *)(iVar1 + 0x10);
-    iVar1 = shinobi_sub_1fe1e4(a0, (int)(short)a1, iVar2 - *(int *)(iVar1 + 0x18), iVar2 + -1);
+    iVar1 = vmu_fat_find_rev(a0, (int)(short)a1, iVar2 - *(int *)(iVar1 + 0x18), iVar2 + -1);
     if ((iVar1 < 1) &&
         (iVar2 = *(int *)(iVar3 + 0x1c), iVar1 = *(int *)(iVar2 + 0x1c),
-         iVar1 = shinobi_sub_1fe1e4(a0, (int)(short)a1, iVar1, iVar1 + *(int *)(iVar2 + 0x20) + -1), iVar1 < 1)) {
+         iVar1 = vmu_fat_find_rev(a0, (int)(short)a1, iVar1, iVar1 + *(int *)(iVar2 + 0x20) + -1), iVar1 < 1)) {
         iVar1 = -1;
     }
     return iVar1;
 }
 
 /*
- * shinobi_sub_1fe1e4  0x8c1fe1e4
- * area name: in the shinobi library code range
+ * vmu_fat_find_rev  0x8c1fe1e4
+ * searches FAT entries a3 down to a2 of drive a0 for the value a1; -1 if none
  * called by: shinobi_sub_1fe15a, shinobi_sub_20075a, shinobi_sub_200772
  */
-u32 shinobi_sub_1fe1e4(int a0, u32 a1, int a2, int a3) {
+u32 vmu_fat_find_rev(int a0, u32 a1, int a2, int a3) {
     int *piVar1;
     u32 uVar2;
     int a6;

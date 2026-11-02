@@ -12485,11 +12485,11 @@ u32 noop_2570d8(u32 a0) {
 }
 
 /*
- * matrix_sub_2570ec  0x8c2570ec
- * area name: sits between matrix functions (same compilation unit)
+ * ninja_sub_2570ec  0x8c2570ec
+ * area name: in the ninja library code range
  * called by: game_init
  */
-u32 matrix_sub_2570ec(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ninja_sub_2570ec(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 in_fr5;
     u32 in_fr4;
 
@@ -12499,11 +12499,11 @@ u32 matrix_sub_2570ec(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3
 }
 
 /*
- * matrix_sub_257104  0x8c257104
- * area name: sits between matrix functions (same compilation unit)
+ * ninja_sub_257104  0x8c257104
+ * area name: in the ninja library code range
  * called by: CProlog_Ready
  */
-u32 matrix_sub_257104(u32 a0) {
+u32 ninja_sub_257104(u32 a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -12514,11 +12514,11 @@ u32 matrix_sub_257104(u32 a0) {
 }
 
 /*
- * matrix_sub_257120  0x8c257120
- * area name: sits between matrix functions (same compilation unit)
+ * ninja_sub_257120  0x8c257120
+ * area name: in the ninja library code range
  * called by: WEATHRE_UNIT_CreateGraphics, game_sub_0d8400
  */
-u32 matrix_sub_257120(u32 a0) {
+u32 ninja_sub_257120(u32 a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -12540,11 +12540,11 @@ u32 thunk_FUN_8c20a1d0(u32 a0) {
 }
 
 /*
- * matrix_sub_257148  0x8c257148
- * area name: sits between matrix functions (same compilation unit)
+ * ninja_sub_257148  0x8c257148
+ * area name: in the ninja library code range
  * called by: game_sub_0ff928, rotate_degrees_7c
  */
-u32 matrix_sub_257148(int a0) {
+u32 ninja_sub_257148(int a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -12581,11 +12581,11 @@ u32 matrix_sub_257148(int a0) {
 }
 
 /*
- * matrix_sub_257170  0x8c257170
- * area name: sits between matrix functions (same compilation unit)
+ * ninja_sub_257170  0x8c257170
+ * area name: in the ninja library code range
  * called by: game_sub_0ff928
  */
-u32 matrix_sub_257170(u32 *a0) {
+u32 ninja_sub_257170(u32 *a0) {
     g_8c4aa4a8 = *a0;
     g_8c4aa4b4 = a0[3];
     g_8c4aa4b8 = a0[4];
@@ -12593,11 +12593,11 @@ u32 matrix_sub_257170(u32 *a0) {
 }
 
 /*
- * matrix_sub_257188  0x8c257188
- * area name: sits between matrix functions (same compilation unit)
+ * ninja_sub_257188  0x8c257188
+ * area name: in the ninja library code range
  * called by: C3DRenderPly_SetMem, game_sub_015470, game_sub_015f18
  */
-u32 matrix_sub_257188(u32 *a0, u32 a1, int a2, u32 a3, u32 s0) {
+u32 ninja_sub_257188(u32 *a0, u32 a1, int a2, u32 a3, u32 s0) {
     u32 in_r0;
 
     *a0 = a1;
@@ -12622,11 +12622,11 @@ u32 set_fields_0_4_8_257196(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * matrix_sub_2571a8  0x8c2571a8
- * area name: sits between matrix functions (same compilation unit)
- * called by: ninja_sub_2571fe, ninja_sub_257208
+ * tex_size_to_index  0x8c2571a8
+ * texture size 8..1024 to 0..7
+ * called by: tex_sub_2571fe, tex_sub_257208
  */
-int matrix_sub_2571a8(int a0) {
+int tex_size_to_index(int a0) {
     if (a0 == 8) {
         a0 = 0;
     } else if (a0 == 0x10) {
@@ -12648,19 +12648,19 @@ int matrix_sub_2571a8(int a0) {
 }
 
 /*
- * ninja_sub_2571fe  0x8c2571fe
- * area name: in the ninja library code range
+ * tex_sub_2571fe  0x8c2571fe
+ * area name: sits between tex functions (same compilation unit)
  * called by: gfxlib_sub_237830, gfxlib_sub_23793c, gfxlib_sub_237964, gfxlib_sub_2387a0, gfxlib_sub_239212,
  * gfxlib_sub_23a29c, ninja_sub_25b4ea, tex_entry_alloc (+2 more)
  */
-u32 ninja_sub_2571fe(int a0) {
+u32 tex_sub_2571fe(int a0) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
     u32 uVar4;
 
-    iVar1 = matrix_sub_2571a8(*(u32 *)(a0 + 0x24));
-    uVar2 = matrix_sub_2571a8(*(u32 *)(a0 + 0x28));
+    iVar1 = tex_size_to_index(*(u32 *)(a0 + 0x24));
+    uVar2 = tex_size_to_index(*(u32 *)(a0 + 0x28));
     uVar3 = 0xbfffffff;
     *(u32 *)(a0 + 8) = iVar1 << 3 | uVar2;
     uVar4 = *(u32 *)(a0 + 0x30);
@@ -12687,18 +12687,18 @@ LAB_8c2572b6:
 }
 
 /*
- * ninja_sub_257208  0x8c257208
- * area name: in the ninja library code range
+ * tex_sub_257208  0x8c257208
+ * area name: sits between tex functions (same compilation unit)
  */
-u32 ninja_sub_257208(int a0) {
+u32 tex_sub_257208(int a0) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
     u32 uVar4;
     int unaff_r13;
 
-    iVar1 = matrix_sub_2571a8(*(u32 *)(unaff_r13 + 0xc));
-    uVar2 = matrix_sub_2571a8(*(u32 *)(unaff_r13 + 0x10));
+    iVar1 = tex_size_to_index(*(u32 *)(unaff_r13 + 0xc));
+    uVar2 = tex_size_to_index(*(u32 *)(unaff_r13 + 0x10));
     uVar3 = 0xbfffffff;
     *(u32 *)(a0 + 8) = iVar1 << 3 | uVar2;
     uVar4 = *(u32 *)(unaff_r13 + 0x18);
@@ -16809,7 +16809,7 @@ int draw_sub_259a70(u32 *a0) {
 /*
  * ninja_sub_259bd8  0x8c259bd8
  * area name: in the ninja library code range
- * called by: matrix_sub_257148
+ * called by: ninja_sub_257148
  */
 u32 ninja_sub_259bd8(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -17252,7 +17252,7 @@ u32 tex_entry_alloc(int *a0, u32 *a1, u32 a2, u32 a3, u32 s0) {
         *(u16 *)(g_8c277b08 + iVar3 + 0x40) = 0;
     } else {
         *(u16 *)(g_8c277b08 + iVar3 + 0x40) = 1;
-        uVar1 = ninja_sub_2571fe(g_8c277b08 + iVar3);
+        uVar1 = tex_sub_2571fe(g_8c277b08 + iVar3);
     }
     if (g_8c4aa5a4 <= uVar2) {
         g_8c4aa5a4 = g_8c4aa5a4 + 1;
@@ -17305,7 +17305,7 @@ u32 tex_sub_25a394(int *a0, u32 *a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32
         *(short *)(*unaff_r14 + iVar4 + 0x40) = (short)unaff_r8;
     } else {
         *(u16 *)(*unaff_r14 + iVar4 + 0x40) = 1;
-        uVar1 = ninja_sub_2571fe(*unaff_r14 + iVar4);
+        uVar1 = tex_sub_2571fe(*unaff_r14 + iVar4);
     }
     if (g_8c4aa5a4 <= uVar2) {
         g_8c4aa5a4 = g_8c4aa5a4 + 1;
@@ -17469,7 +17469,7 @@ u32 tex_entry_set_flags(int a0, u32 a1, int a2, u32 unused_a3, u32 ain0) {
             a4[5] = a2;
             if ((a1 & 2) != 0) {
                 *(short *)(a4 + 0x10) = (short)a4[0x10] + 1;
-                ain0 = ninja_sub_2571fe(a4);
+                ain0 = tex_sub_2571fe(a4);
             }
         }
         iVar2 = iVar2 + 0x44;
@@ -17588,7 +17588,7 @@ int tex_sub_25a770(int a0, int a1, u32 unused_a2, u32 a3) {
                     kamui_sub_20cf88(a1 + 4);
                     return 0xffffffff;
                 }
-                shinobi_sub_1f9e32(g_8c4aa6cc, uVar5);
+                dcache_writeback_range(g_8c4aa6cc, uVar5);
                 ar6_00 = (u8 *)ar6_01;
                 a3 = uVar5;
                 ninja_sub_25ab02(a1 + 4, g_8c4aa6cc, ar6_01, uVar5);
@@ -17644,7 +17644,7 @@ int tex_sub_25a838(int a0, int *a1, u32 unused_a2, u32 a3) {
             if (iVar1 < 0) {
                 iVar1 = -5;
             } else {
-                shinobi_sub_1f9e32(ar4_00, in_stack_ffffffd8);
+                dcache_writeback_range(ar4_00, in_stack_ffffffd8);
                 if (0 < ain0) {
                     nj_seek(ain0, 1);
                 }
@@ -17673,7 +17673,7 @@ int tex_copy_to_alloc(u32 unused_a0, int *a1) {
             iVar1 = -7;
         } else {
             memcpy_bytes(ar4_00, *a1, iVar1);
-            shinobi_sub_1f9e32(ar4_00, iVar1);
+            dcache_writeback_range(ar4_00, iVar1);
             iVar1 = 1;
             *a1 = ar4_00;
         }
@@ -18494,11 +18494,11 @@ u32 ninja_sub_25b37c(u32 unused_a0, u32 a1, u32 a2) {
 }
 
 /*
- * ninja_sub_25b3a2  0x8c25b3a2
- * area name: in the ninja library code range
+ * njLoadTexture  0x8c25b3a2
+ * loads every texture of the list a0 (count at +4); 1 on success, -1 on error
  * called by: C2DSprite_Load, C3DRenderPly_SetMem, game_sub_015f18, game_sub_01f9c4
  */
-u32 ninja_sub_25b3a2(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 njLoadTexture(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 ar5_00;
@@ -18647,7 +18647,7 @@ u32 ninja_sub_25b4ea(u32 *a0, u32 *a1, u32 *a2, u32 a3) {
                     } while (a2 < a1);
                 }
             }
-            uVar1 = ninja_sub_2571fe(ar4_00);
+            uVar1 = tex_sub_2571fe(ar4_00);
         }
         puVar4 = puVar4 + 0x11;
         puVar5 = puVar5 + 0x11;
@@ -18660,7 +18660,7 @@ u32 ninja_sub_25b4ea(u32 *a0, u32 *a1, u32 *a2, u32 a3) {
  * tex_error_reset  0x8c25b5b4
  * clears the texture loader's error state (0x8c4aa6ac)
  * called by: gfxlib_sub_2378a6, gfxlib_sub_2378ba, gfxlib_sub_239212, gfxlib_sub_23a29c, ninja_sub_256164,
- * ninja_sub_25b3a2
+ * njLoadTexture
  */
 u32 tex_error_reset(void) {
     u32 *puVar1;

@@ -7941,8 +7941,8 @@ u32 game_sub_06ce04(int a0, u32 a1) {
             } else {
                 puVar7 = auStack_24;
                 puVar6 = PTR_s_GRAPHICS_HERBLINE_8c136f4c;
-                iVar3 = CAnimal_sub_020bec(a1, *(u32 *)(iVar2 * 4 + *(int *)(iVar4 + 4)),
-                                           PTR_s_GRAPHICS_HERBLINE_8c136f4c, puVar7);
+                iVar3 = retry_until_done_020ba0(a1, *(u32 *)(iVar2 * 4 + *(int *)(iVar4 + 4)),
+                                                PTR_s_GRAPHICS_HERBLINE_8c136f4c, puVar7);
                 if (iVar3 == 0) {
                     puVar7 = (u32 *)0x2;
                     puVar6 = NULL;

@@ -6385,7 +6385,7 @@ u32 CProlog_Ready(int a0, u32 *a1) {
     *a1 = 0;
     *(u32 *)(a0 + 0x30) = 0;
     uVar2 = 0;
-    matrix_sub_257104(0);
+    ninja_sub_257104(0);
     gfxlib_sub_235eb4();
     if (cVar6 == '\0') {
         *(u32 *)(a0 + 0x34) = 0x3f800000;

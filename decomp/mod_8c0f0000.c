@@ -4162,7 +4162,7 @@ u32 game_init(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     uVar3 = 0;
     uVar2 = 0;
     gfxlib_sub_233f98(0, 0, 0);
-    matrix_sub_2570ec(uVar2, uVar3, uVar4, ar7_00, in_stack_ffffffc0);
+    ninja_sub_2570ec(uVar2, uVar3, uVar4, ar7_00, in_stack_ffffffc0);
     g_8c43b570 = malloc_thunk(0x1000, uVar3, uVar4, ar7_00);
     uVar4 = 0;
     uVar2 = 0x40;
@@ -9021,10 +9021,10 @@ u32 game_sub_0ff928(int a0, u64 *a1, u64 *a2, u32 a3) {
     }
     uStack_48 = uVar5;
     uStack_a4 = uVar4;
-    matrix_sub_257170(&uStack_a4);
+    ninja_sub_257170(&uStack_a4);
     uVar4 = a3;
     ta_fifo_2595aa(2, a3, a6, uVar3);
-    matrix_sub_257148(0x2e38);
+    ninja_sub_257148(0x2e38);
     ar4_00 = auStack_90;
     ninja_sub_2572ec(ar4_00);
     gfxlib_sub_219038();
@@ -9055,7 +9055,7 @@ u32 game_sub_0ff928(int a0, u64 *a1, u64 *a2, u32 a3) {
     uStack_9c = 0x43f00000;
     uStack_a0 = 0x44200000;
     uStack_a4 = 0x43fa0000;
-    matrix_sub_257170(&uStack_a4);
+    ninja_sub_257170(&uStack_a4);
     ta_fifo_2595aa(0, a3, a6, uVar3);
     uVar3 = ninja_sub_259046(0xff000000, 0xff000000, 0xff000000);
     return uVar3;

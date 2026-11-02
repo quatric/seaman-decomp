@@ -12039,7 +12039,7 @@ u32 gfxlib_sub_23782c(u32 *a0) {
         }
         *(u16 *)((int)a0 + 0x42) = 0;
         iVar2 = (*(code *)puVar1)((u32)a0[6] >> 0x10 & 0xff00);
-        puVar1 = (&ninja_sub_2571fe);
+        puVar1 = (&tex_sub_2571fe);
         if (iVar2 == 0) {
             *(short *)(a0 + 0x10) = *(short *)(a0 + 0x10) + 1;
             a0[4] = a0[4] | 2;
@@ -12076,7 +12076,7 @@ u32 gfxlib_sub_237830(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
         if (iVar1 == 0) {
             *(short *)(unaff_r14 + 0x10) = *(short *)(unaff_r14 + 0x10) + 1;
             unaff_r14[4] = unaff_r14[4] | 2;
-            ninja_sub_2571fe(unaff_r14);
+            tex_sub_2571fe(unaff_r14);
         } else {
             tex_entry_set_flags(*unaff_r14, 2, unaff_r14[5], a3, in_PR);
             unaff_r14[4] = unaff_r14[4] | 8;
@@ -12146,7 +12146,7 @@ int gfxlib_sub_2378ba(void) {
 /*
  * gfxlib_sub_23793c  0x8c23793c
  * area name: in the gfxlib library code range
- * called by: ninja_sub_25b3a2
+ * called by: njLoadTexture
  */
 u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
     int *ar5_00;
@@ -12206,7 +12206,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
             iVar1 = (a1 + -1) * 0xc + iVar1 + 0x1c;
             tex_entry_alloc(piVar7, iVar1, piStack_130, uVar8, uStack_134);
             *(u16 *)(*piVar7 + 0x42) = 0;
-            ninja_sub_2571fe(*piVar7);
+            tex_sub_2571fe(*piVar7);
             return 1;
         }
         ar6_01 = &g_8c26d960;
@@ -12529,7 +12529,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                 *(u16 *)((int)piVar7 + 0x42) = 0;
                 if (iStack_12c == 0) {
                     ar4_00 = piVar7;
-                    ninja_sub_2571fe(piVar7);
+                    tex_sub_2571fe(piVar7);
                     piVar7[4] = piVar7[4] | 2;
                     *(short *)(piVar7 + 0x10) = (short)piVar7[0x10] + 1;
                 } else {
@@ -12585,7 +12585,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                     *(u16 *)((int)piVar7 + 0x42) = 0;
                     if (iStack_12c == 0) {
                         ar4_00 = piVar7;
-                        ninja_sub_2571fe(piVar7);
+                        tex_sub_2571fe(piVar7);
                         piVar7[4] = piVar7[4] | 2;
                         *(u16 *)(piVar7 + 0x10) = 1;
                     } else {
@@ -12647,7 +12647,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
         iVar1 = iVar4 + (a1 + -1) * 0xc + 0x1c;
         tex_entry_alloc(piVar3, iVar1, piStack_3c, uVar8, uVar9 >> 0x1a);
         *(u16 *)(*piVar3 + 0x42) = 0;
-        ninja_sub_2571fe(*piVar3);
+        tex_sub_2571fe(*piVar3);
         goto LAB_8c238e44;
     }
     if ((ar4_01[1] & 0x800000) == 0) {
@@ -12855,7 +12855,7 @@ u32 gfxlib_sub_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
                         goto LAB_8c238e44;
                     }
                 LAB_8c238d2a:
-                    ninja_sub_2571fe(ar5_02);
+                    tex_sub_2571fe(ar5_02);
                     *(u32 *)(ar5_02 + 0x10) = *(u32 *)(ar5_02 + 0x10) | 2;
                 } else {
                 joined_r0x8c238c46:
@@ -12999,7 +12999,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
         iVar4 = (int)piStack_14 + 0x14;
         tex_entry_alloc(piStack_10, iVar4, piStack_130, uVar7, uStack_134);
         *(u16 *)(*piStack_10 + 0x42) = 0;
-        ninja_sub_2571fe(*piStack_10);
+        tex_sub_2571fe(*piStack_10);
         return 1;
     }
     ar6_00 = &g_8c26d960;
@@ -13324,7 +13324,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
             *(u16 *)((int)piStack_14 + 0x42) = 0;
             if (iStack_12c == 0) {
                 piVar3 = piStack_14;
-                ninja_sub_2571fe(piStack_14);
+                tex_sub_2571fe(piStack_14);
                 piStack_14[4] = piStack_14[4] | 2;
                 *(short *)(piStack_14 + 0x10) = (short)piStack_14[0x10] + 1;
             } else {
@@ -13381,7 +13381,7 @@ u32 gfxlib_sub_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
                 *(u16 *)((int)piStack_14 + 0x42) = 0;
                 if (iStack_12c == 0) {
                     piVar3 = piStack_14;
-                    ninja_sub_2571fe(piStack_14);
+                    tex_sub_2571fe(piStack_14);
                     piStack_14[4] = piStack_14[4] | 2;
                     *(u16 *)(piStack_14 + 0x10) = 1;
                 } else {
@@ -13467,7 +13467,7 @@ u32 gfxlib_sub_2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
         iVar1 = iVar5 + (a1 + -1) * 0xc + 0x1c;
         tex_entry_alloc(a4, iVar1, in_stack_ffffffc4, uVar7);
         *(u16 *)(*a4 + 0x42) = 0;
-        ninja_sub_2571fe(*a4);
+        tex_sub_2571fe(*a4);
         goto LAB_8c238e44;
     }
     if ((ar4_00[1] & 0x800000) == 0) {
@@ -13674,7 +13674,7 @@ u32 gfxlib_sub_2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
                         goto LAB_8c238e44;
                     }
                 LAB_8c238d2a:
-                    ninja_sub_2571fe(ar5_01);
+                    tex_sub_2571fe(ar5_01);
                     *(u32 *)(ar5_01 + 0x10) = *(u32 *)(ar5_01 + 0x10) | 2;
                 } else {
                 joined_r0x8c238cec:
@@ -14369,7 +14369,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                     *(u16 *)((int)piStack_124 + 0x42) = 0;
                                     if (iStack_154 == 0) {
                                         piVar4 = piStack_124;
-                                        ninja_sub_2571fe(piStack_124);
+                                        tex_sub_2571fe(piStack_124);
                                         piStack_124[4] = piStack_124[4] | 2;
                                         *(short *)(piStack_124 + 0x10) = (short)piStack_124[0x10] + 1;
                                     } else {
@@ -14446,7 +14446,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                     *(u16 *)((int)piStack_124 + 0x42) = 0;
                                     if (iStack_154 == 0) {
                                         piVar4 = piStack_124;
-                                        ninja_sub_2571fe(piStack_124);
+                                        tex_sub_2571fe(piStack_124);
                                         piStack_124[4] = piStack_124[4] | 2;
                                         *(u16 *)(piStack_124 + 0x10) = 1;
                                     } else {
@@ -14975,7 +14975,7 @@ u32 gfxlib_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                                 goto LAB_8c23a852;
                             }
                         LAB_8c23a728:
-                            ninja_sub_2571fe(iVar2);
+                            tex_sub_2571fe(iVar2);
                             *(u32 *)(iVar2 + 0x10) = *(u32 *)(iVar2 + 0x10) | 2;
                         } else {
                         joined_r0x8c23a628:

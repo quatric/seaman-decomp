@@ -110,7 +110,7 @@ u32 CDCGD_sub_020148(int a0, char *a1, u32 a2, u32 a3) {
 /*
  * CDCGD_strcmp  0x8c020258
  * the CDCGD library's copy of strcmp
- * called by: CDCGD_sub_020148, CDCGD_sub_020588
+ * called by: CDCGD_request_matches, CDCGD_sub_020148
  */
 u32 CDCGD_strcmp(u8 *a0, u8 *a1) {
     u8 bVar1;
@@ -142,7 +142,7 @@ u32 CDCGD_sub_0202c0(int *a0, int *a1, u32 a2, u32 a3) {
     *a0 = 0;
     strcpy(auStack_30, a1 + 4);
     iVar3 = 0;
-    iVar1 = ADXF_sub_26201c(auStack_30, 0);
+    iVar1 = ADXF_Open_like(auStack_30, 0);
     *a0 = iVar1;
     if (*a0 == 0) {
         CDCGD_sub_02049c(a0, a1, a2, a3);
@@ -195,7 +195,7 @@ u32 CDCGD_sub_02041c(int *a0, int a1, u32 a2, u32 a3) {
     iVar2 = a1;
     for (iVar3 = 0; iVar3 < 2; iVar3 = iVar3 + 1) {
         iVar2 = 0;
-        iVar1 = ADXF_sub_26201c(a1 + 0x10, 0);
+        iVar1 = ADXF_Open_like(a1 + 0x10, 0);
         *a0 = iVar1;
         if (*a0 != 0)
             break;
@@ -258,18 +258,18 @@ int CDCGD_find_request(u32 unused_a0, u32 a1, int a2, u32 a3) {
                 return 0;
             }
             a2 = *(int *)(ar6_00 + 4);
-            iVar1 = CDCGD_sub_020588(unused_a0, a1, ar6_00, a3, in_stack_00000000);
+            iVar1 = CDCGD_request_matches(unused_a0, a1, ar6_00, a3, in_stack_00000000);
         } while (iVar1 != 1);
     }
     return ar6_00;
 }
 
 /*
- * CDCGD_sub_020588  0x8c020588
- * area name: only called from CDCGD methods
+ * CDCGD_request_matches  0x8c020588
+ * 1 when request a2 has type a1, directory a3 and file name s0
  * called by: CDCGD_find_request, CDCGD_sub_020600
  */
-u32 CDCGD_sub_020588(u32 unused_a0, int a1, int *a2, u32 a3, u32 s0) {
+u32 CDCGD_request_matches(u32 unused_a0, int a1, int *a2, u32 a3, u32 s0) {
     u32 uVar1;
     int iVar2;
 
@@ -326,7 +326,7 @@ int CDCGD_sub_020600(u32 unused_a0, u32 a1, int *a2, u32 a3) {
     if (ar6_00 == 0) {
         ar6_00 = 0;
     } else {
-        iVar1 = CDCGD_sub_020588(unused_a0, a1, ar6_00, a3, in_stack_00000000);
+        iVar1 = CDCGD_request_matches(unused_a0, a1, ar6_00, a3, in_stack_00000000);
         if (iVar1 == 1) {
             *a2 = *(int *)(ar6_00 + 4);
         } else if (*(int *)(ar6_00 + 4) == 0) {
@@ -335,7 +335,7 @@ int CDCGD_sub_020600(u32 unused_a0, u32 a1, int *a2, u32 a3) {
             iVar3 = *(int *)(*(int *)(ar6_00 + 4) + 4);
             iVar1 = ar6_00;
             ar6_00 = *(int *)(ar6_00 + 4);
-            while (iVar2 = CDCGD_sub_020588(unused_a0, a1, ar6_00, a3, in_stack_00000000), iVar2 != 1) {
+            while (iVar2 = CDCGD_request_matches(unused_a0, a1, ar6_00, a3, in_stack_00000000), iVar2 != 1) {
                 if (iVar3 == 0) {
                     return 0;
                 }
@@ -350,11 +350,11 @@ int CDCGD_sub_020600(u32 unused_a0, u32 a1, int *a2, u32 a3) {
 }
 
 /*
- * CDCGD_sub_0206b8  0x8c0206b8
- * area name: only called from CDCGD methods
+ * CDCGD_slot_add  0x8c0206b8
+ * adds a2 to the 32-entry set at +0x58 unless it is already there
  * called by: CDCGD_new_request, CDCGD_request
  */
-u32 CDCGD_sub_0206b8(u32 unused_a0, int a1, int a2) {
+u32 CDCGD_slot_add(u32 unused_a0, int a1, int a2) {
     int iVar1;
     int iVar2;
 
@@ -440,7 +440,7 @@ u32 CDCGD_request(int a0, int a1, u32 a2, u32 a3, u32 s0, u32 *s4, u32 *s8, u32 
                 }
                 uVar2 = 2;
             } else {
-                CDCGD_sub_0206b8(a0, iVar1, s20);
+                CDCGD_slot_add(a0, iVar1, s20);
                 *s4 = *(u32 *)(iVar1 + 8);
                 *s8 = *(u32 *)(iVar1 + 0xc);
                 uVar2 = 1;
@@ -450,7 +450,7 @@ u32 CDCGD_request(int a0, int a1, u32 a2, u32 a3, u32 s0, u32 *s4, u32 *s8, u32 
             uVar2 = 0;
         }
     } else {
-        CDCGD_sub_0206b8(a0, iVar1, s20);
+        CDCGD_slot_add(a0, iVar1, s20);
         uVar2 = 2;
     }
     return uVar2;
@@ -600,7 +600,7 @@ u32 CDCGD_release_type2(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CDCGD_request_type5  0x8c020ba0
  * disc request type 5 (list at +0x28)
- * called by: CAnimal_LoadMFile_step, CAnimal_sub_020bec, Vec3_sub_027a78, game_sub_08c9dc
+ * called by: CAnimal_LoadMFile_step, Vec3_sub_027a78, game_sub_08c9dc, retry_until_done_020ba0
  */
 u32 CDCGD_request_type5(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -611,11 +611,11 @@ u32 CDCGD_request_type5(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CAnimal_sub_020bec  0x8c020bec
- * area name: only called from CAnimal methods
+ * retry_until_done_020ba0  0x8c020bec
+ * CDCGD_request_type5, retried through 8c01f810 until done; 1 done, 0 failed
  * called by: CAnimal_LoadGRWait, RING_UNIT_CreateModel, game_sub_06ce04
  */
-u32 CAnimal_sub_020bec(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 retry_until_done_020ba0(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     u32 ar6_00;
@@ -7420,7 +7420,7 @@ u32 CAnimal_LoadGRWait(int a0, u32 a1, int a2, u32 *a3) {
         } else {
             a3 = auStack_20;
             iVar3 = *(int *)(a0 + 0x410);
-            iVar2 = CAnimal_sub_020bec(a1, *(u32 *)(iVar1 * 4 + *(int *)(iVar5 + 4)), iVar3, a3);
+            iVar2 = retry_until_done_020ba0(a1, *(u32 *)(iVar1 * 4 + *(int *)(iVar5 + 4)), iVar3, a3);
             if (iVar2 == 0) {
                 a3 = (u32 *)0x2;
                 iVar3 = 0;
@@ -7432,7 +7432,7 @@ u32 CAnimal_LoadGRWait(int a0, u32 a1, int a2, u32 *a3) {
     if (*(int *)(iVar5 + 0x1c) != 0) {
         a3 = auStack_20;
         iVar3 = *(int *)(a0 + 0x410);
-        iVar1 = CAnimal_sub_020bec(a1, *(u32 *)(iVar5 + 0x1c), iVar3, a3);
+        iVar1 = retry_until_done_020ba0(a1, *(u32 *)(iVar5 + 0x1c), iVar3, a3);
         if (iVar1 == 1) {
             set_field_0_015bb0(iVar5 + 0xb0, auStack_20[0]);
         } else {
