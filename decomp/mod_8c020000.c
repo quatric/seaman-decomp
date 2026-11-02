@@ -1780,7 +1780,7 @@ u32 pack_find_by_name_buffered(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Class_12b580_clear_request  0x8c0220bc
  * clears the request (+0x9ec94 = -1) and the ready flag
- * called by: Class_12b580_m1_0e634c, event_out_water_cat, game_uses_Class_12b580_clear_request_0e6dc4,
+ * called by: Class_12b580_m1_0e634c, event_out_water_cat, game_uses_game_clear_node_and_item_lis_0e6dc4,
  * pack_sound_0e0764, se_close_two_ports, se_sound_0d50b4
  */
 int Class_12b580_clear_request(int a0) {
@@ -4046,8 +4046,8 @@ u32 *Vec3_set_zero(u32 *a0) {
 /*
  * Vec3_set_xyz  0x8c023d68
  * called by: CSquidLine_vec_085c3c, CWaterTank_uses_get_field_300_0e0f48, Class_12a0c4_state_switch_0679cc,
- * Class_12a0c4_state_switch_068e64, Class_12a7a8_vec_099b0c, Class_12acc8_uses_rand_0a0278, Class_12ad14_vec_0a0890,
- * Class_12b088_reset (+57 more)
+ * Class_12a0c4_state_switch_068e64, Class_12a7a8_vec_099b0c, Class_12acc8_uses_rand_0a0278,
+ * Class_12ad14_init_begin_iya, Class_12b088_reset (+57 more)
  */
 u32 *Vec3_set_xyz(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_fr5;
@@ -4080,7 +4080,8 @@ u32 *Vec3_assign_f_023d7c(u32 *a0, u32 a1) {
 /*
  * vec3_copy_8c023d8c  0x8c023d8c
  * called by: CSquidLine_vec_085c3c, Class_129938_m1_0170e0, Class_129938_m2_0171f4, Class_12a0c4_state_switch_0679cc,
- * Class_12a0c4_state_switch_068e64, Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704, Class_12ad14_vec_0a0890 (+38 more)
+ * Class_12a0c4_state_switch_068e64, Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704, Class_12ad14_init_begin_iya (+38
+ * more)
  */
 u32 *vec3_copy_8c023d8c(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     *a0 = *a1;
@@ -8753,8 +8754,9 @@ LAB_8c029f42:
 /*
  * clear_3_words  0x8c02a1fc
  * a0[0..2] = 0
- * called by: Class_129cbc_m1_031598, Class_12a990_uses_clear_3_words_09d644, Class_12b2ac_m1_0aff3c, game_copy_0d7314,
- * game_draw_029dec, game_state_switch_049b68, game_state_switch_04b168, game_state_switch_04c314 (+14 more)
+ * called by: Class_129cbc_m1_031598, Class_12a990_uses_clear_3_words_09d644, Class_12b2ac_m1_0aff3c,
+ * Class_12b930_copy_0d7314, game_draw_029dec, game_state_switch_049b68, game_state_switch_04b168,
+ * game_state_switch_04c314 (+14 more)
  */
 u32 clear_3_words(u32 *a0, u32 a1, u32 unused_a2, u32 a3) {
     a0[2] = 0;

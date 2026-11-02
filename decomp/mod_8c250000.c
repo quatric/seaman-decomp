@@ -16206,8 +16206,7 @@ LAB_8c259594:
 
 /*
  * ta_fifo_2595aa  0x8c2595aa
- * called by: game_uses_Vec3_ctor_zero_0ff7d4, game_uses_show_date_time_message_0ba494,
- * game_uses_touch_fields_30_3c_0ff928
+ * called by: date_time_message_draw, game_uses_Vec3_ctor_zero_0ff7d4, game_uses_touch_fields_30_3c_0ff928
  */
 u32 ta_fifo_2595aa(int a0, u64 *a1, int a2, int a3) {
     u32 uVar1;

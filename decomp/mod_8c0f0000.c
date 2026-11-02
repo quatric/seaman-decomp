@@ -7955,7 +7955,7 @@ u32 CNodePtrList_DeleteItem(int a0, int a1) {
 /*
  * game_uses_set_field_0_0fe4c4  0x8c0fe4c4
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_field_0_0fdf10
- * called by: game_uses_get_field_300_0db8d4
+ * called by: game_clear_node_and_item_lists
  */
 u32 game_uses_set_field_0_0fe4c4(int a0) {
 
@@ -8242,11 +8242,11 @@ u32 CEnv_take_free_slot(int a0) {
 }
 
 /*
- * CEnv_update_fields_0feb88  0x8c0feb88
- * area name: only called from CEnv methods; behaviour name: conditionally writes members
- * called by: CEnv_take_out_item, Class_12bb08_uses_get_field_24_0dbbe8, game_uses_get_field_300_0db8d4
+ * game_update_fields_0feb88  0x8c0feb88
+ * area name: game code; nothing names its area yet; behaviour name: conditionally writes members
+ * called by: CEnv_take_out_item, Class_12bb08_uses_get_field_24_0dbbe8, game_clear_node_and_item_lists
  */
-u32 CEnv_update_fields_0feb88(u32 unused_a0, int *a1) {
+u32 game_update_fields_0feb88(u32 unused_a0, int *a1) {
     *(u32 *)(*a1 + 0xc) = 0;
     *a1 = 0;
     return 0;

@@ -521,7 +521,7 @@ u32 static_init_4367d4(int a0, int *a1, u32 unused_a2, code *a3) {
             strcpy(0x8c4367f8, "SEAMANDC._VM");
             uVar1 = 0;
             set_2_words(&g_8c436838, 1, 0);
-            iVar6 = game_uses_menu_next_pressed_0bf588(a0 + 0x2e710, a1[499], uVar1, a3);
+            iVar6 = menu_yes_no_select(a0 + 0x2e710, a1[499], uVar1, a3);
             if (iVar6 == 0) {
                 g_8c4367c4 = g_8c4367bc;
                 g_8c4367bc = 0x12;
@@ -548,7 +548,7 @@ u32 static_init_4367d4(int a0, int *a1, u32 unused_a2, code *a3) {
             strcpy(0x8c4367f8, "SM2000US._VM");
             uVar1 = 1;
             set_2_words(&g_8c436838, 0, 1);
-            a3 = (code *)game_uses_menu_next_pressed_0bf588(a0 + 0x2e710, a1[499], uVar1, a3);
+            a3 = (code *)menu_yes_no_select(a0 + 0x2e710, a1[499], uVar1, a3);
             if (a3 == NULL) {
                 g_8c4367c4 = g_8c4367bc;
                 g_8c4367bc = 0x12;
@@ -570,7 +570,7 @@ u32 static_init_4367d4(int a0, int *a1, u32 unused_a2, code *a3) {
             strcpy(0x8c4367f8, "SM2000US._VM");
             uVar1 = 1;
             set_2_words(&g_8c436838, 1, 1);
-            iVar6 = game_uses_menu_next_pressed_0bf588(a0 + 0x2e710, a1[499], uVar1, a3);
+            iVar6 = menu_yes_no_select(a0 + 0x2e710, a1[499], uVar1, a3);
             if (iVar6 == 0) {
                 g_8c4367c4 = g_8c4367bc;
                 g_8c4367bc = 0x12;
@@ -745,7 +745,7 @@ u32 static_init_4367d4(int a0, int *a1, u32 unused_a2, code *a3) {
         case 0x18:
             strcpy(a0 + 0x2e740, "DESTRUCTION");
             set_2_words(&g_8c436838, 1, 0);
-            iVar6 = game_uses_menu_next_pressed_0bf588(a0 + 0x2e710, a1[499], a1[499], a3);
+            iVar6 = menu_yes_no_select(a0 + 0x2e710, a1[499], a1[499], a3);
             if (iVar6 == 0) {
                 g_8c4367c4 = g_8c4367bc;
                 g_8c4367bc = 0x12;
@@ -779,7 +779,7 @@ u32 static_init_4367d4(int a0, int *a1, u32 unused_a2, code *a3) {
                     break;
                 }
             }
-            iVar6 = game_uses_menu_next_pressed_0bf588(a0 + 0x2e710, a1[499], pcVar7, a3);
+            iVar6 = menu_yes_no_select(a0 + 0x2e710, a1[499], pcVar7, a3);
             if (iVar6 == 0) {
                 set_2_words(&g_8c436838, 0, 0);
                 g_8c4367c4 = g_8c4367bc;
@@ -1639,9 +1639,9 @@ u32 CSysMessage_LoadMessage(int a0, u32 a1) {
 /*
  * startup_warning_check  0x8c0c2efc
  * shows WARNING_NOPAD, NOMIC, NOVMS or NOTFOUND for a missing controller, microphone or save
- * called by: CGame_uses_startup_warning_check_0b7920, game_uses_get_field_d0_0c6e74,
- * game_uses_speech_is_playing_0bad68, save_check_files, save_files_check, save_show_file_message, save_user_file_check,
- * save_write_step strings: "WARNING_NOPAD"; "WARNING_NOPAD"; "WARNING_NOVMS"; "WARNING_NOVMS" ...
+ * called by: game_uses_get_field_d0_0c6e74, game_uses_speech_is_playing_0bad68, save_check_files, save_files_check,
+ * save_show_file_message, save_user_file_check, save_write_step, startup_warning_show_for_state strings:
+ * "WARNING_NOPAD"; "WARNING_NOPAD"; "WARNING_NOVMS"; "WARNING_NOVMS" ...
  */
 u32 startup_warning_check(int a0, char *a1, u32 a2, u32 a3) {
     short sVar1;
@@ -4162,7 +4162,7 @@ u32 game_copy_0c67f4(u32 unused_a0, u32 unused_a1, int a2, u32 a3) {
     for (iVar3 = 0; iVar3 < 10; iVar3 = iVar3 + 1) {
         *(u32 *)(0x27ac + iVar3 * 0xf0 + a2) = 0xffffffff;
     }
-    game_copy_0d1d54(a2, iVar2, ar6_00, a3);
+    nautilus_group_reset(a2, iVar2, ar6_00, a3);
     clear_5_bytes_b(a2 + 0x14ac);
     game_copy_0d1eb8(a2);
     clear_5_bytes_b(a2 + 0x2784);
@@ -4277,7 +4277,7 @@ u32 CGame_Initial(int a0, int *a1, u32 unused_a2, u32 a3) {
             break;
         case 1:
             uVar1 = get_field_a510_01f538(0x8c3dd7dc);
-            iVar3 = CGame_uses_startup_warning_check_0b7920(uVar1, uVar4, uVar5);
+            iVar3 = startup_warning_show_for_state(uVar1, uVar4, uVar5);
             if (iVar3 == 1) {
                 uVar1 = save_files_presence(uVar1, uVar4, uVar5, a3);
                 iVar3 = save_show_file_message(uVar1);
@@ -4400,7 +4400,7 @@ u32 game_uses_get_field_d0_0c6e74(int a0, int a1, u32 a2, char *a3) {
     if (*(int *)(a1 + 0x84) == 0) {
         if ((*(int *)(a1 + 0x88) != 0) && (*(int *)(a1 + 0x88) != 1)) {
             piVar3 = *(int **)(a1 + 0x84);
-            CGame_uses_startup_warning_check_0b7920(piVar3, ar5_00, a2);
+            startup_warning_show_for_state(piVar3, ar5_00, a2);
             uVar4 = save_files_presence(piVar3, ar5_00, a2, a3);
             *(u32 *)(a0 + 0x2d16c) = uVar4;
             if (*(int *)(a0 + 0x2d16c) == 0) {
@@ -4472,7 +4472,7 @@ u32 game_uses_get_field_d0_0c6e74(int a0, int a1, u32 a2, char *a3) {
         uVar4 = 0x8c35468c;
         speech_stop(0x8c35468c, ar5_00, a2, a3);
         game_uses_clear_5_words_0b79f0(uVar4, ar5_00, a2, a3);
-        CGame_uses_startup_warning_check_0b7920(*(u32 *)(a1 + 0x84), ar5_00, a2);
+        startup_warning_show_for_state(*(u32 *)(a1 + 0x84), ar5_00, a2);
     }
     uVar4 = 2;
     game_draw_0c412c(&g_8c2b5628, 2, a2);

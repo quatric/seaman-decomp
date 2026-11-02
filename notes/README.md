@@ -452,7 +452,7 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
 - Hand names in `tools/readable_names.tsv` for the most-called helpers: libc (strcmp, memcmp, strcat, sprintf, the printf
   core), Vec3 math, the matrix stack, and the Ninja texture calls (njSetTexture 8c25b3ec selects the list at 0x8c277b04,
   njSetTextureNum 8c25b434 loads one texture's TA parameters through 8c20fe00).
-- `decomp/`: every function named: 3,506 precise names (was 1,026), 2,841 behaviour names and 0 area names, all unique. About 700 of those are shape names. Also named: strtol/atoi, spline and lerp math, interrupt nesting (8c260ca0/8c260cc8), the RTC date conversion (8c1f826c, epoch 1950).
+- `decomp/`: every function named: 3,517 precise names (was 1,026), 2,830 behaviour names and 0 area names, all unique. About 700 of those are shape names. Also named: strtol/atoi, spline and lerp math, interrupt nesting (8c260ca0/8c260cc8), the RTC date conversion (8c1f826c, epoch 1950).
 - Also named: the speech player at 0x8c35468c (speech_start 8c0f8368 plays a named line such as "HIGYOLINE0"; speech_request,
   speech_restart, speech_stop), the serial debug output (scif_putc 8c1fac58, used by the crash dump), Ninja's outer product,
   sin/cos and polygon-state copies.

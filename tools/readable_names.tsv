@@ -1906,3 +1906,14 @@
 8c0301f8	talk_history_tick	forgets keywords heard longer ago than 1000 / (level + 1) frames, finishes a completed talk event and advances the frame counter
 8c031fc4	float_approach_target	moves the value at +0x28 toward the target at +0x24 (rising by target / +0x34, falling by target / +0x38) and clears the busy flag on arrival
 8c06d474	CHerb_release_requests	releases the CD load requests of both model parts and the herb's texture files, then calls method 0xf0
+8c0a0890	Class_12ad14_init_begin_iya	sets the state name to "Begin_iya" (0xf), places the object at (a1, a2, a3) and clears its timers
+8c0b7920	startup_warning_show_for_state	remembers state a0 (unless 2) and shows the matching startup warning page (0xb, 1, 4 or 2)
+8c0ba494	date_time_message_draw	draws the date/time message and clears its five words in the order set by +0x10 and +0x14, between two TA FIFO calls
+8c0bf588	menu_yes_no_select	moves the yes/no cursor with next/prev and returns 1 for yes, 0 for no or 2 while nothing is chosen
+8c0d49cc	list_draw_node_points	draws a point (draw call 0x40) at the position of every node in the list at a0 + 0x34
+8c0d7154	Class_12b930_slide_tick	fades +0x2c down by 1.5 in state 2 and slides +0x15c by 0.05 toward 0 (state 0 to 2) or -1 (state 1 to 3)
+8c0d7294	Class_12b930_update_slide_state	starts the slide out (state 1) when the test turns true and back in (state 0) when it turns false
+8c0d97ec	random_wait_reset_on_period	when the a1 counter is a multiple of +0x1c, picks the mode, a random 1-3 value and a new random period below 500
+8c0db8d4	game_clear_node_and_item_lists	empties the 17 node lists at +0x3a8 (releasing each node) and the item list at +0xa4, then clears three counters
+8c0d1d54	nautilus_group_reset	clears the group state, sets its three spawn positions and copies the template into the 20 nautilus descriptors at +0x1ec
+8c0d2478	obj_draw_with_part_swapped	draws model a1 with mesh entry +0x24 temporarily swapped into slot 0 (scaled, texture 0), then restores it

@@ -1509,7 +1509,7 @@ u32 game_uses_stick_x_right_half_0e1f90(int a0, u32 *a1, u8 *a2, u32 a3) {
         matrix_float_calc_256294(0, puVar6, a2);
         set_fields_12c_130(a1);
     }
-    game_uses_set_field_164_0d723c(a0 + 0x22d48);
+    Class_12b930_uses_set_field_164_0d723c(a0 + 0x22d48);
     if ((*(int *)(a0 + 0x9d8) == 0) || (*(int *)(a0 + 0x9d8) == a0 + 0x22d48)) {
         if (*(int *)(a0 + 0x9d8) == a0 + 0x22d48) {
             iVar1 = stick_x_right_half(a1);
@@ -3701,15 +3701,16 @@ u32 first_time_15c8(int a0) {
 }
 
 /*
- * game_uses_get_field_300_0e51ac  0x8c0e51ac
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: uses_get_field_300
+ * game_uses_game_clear_node_and_item_lis_0e51ac  0x8c0e51ac
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is
+ * game_clear_node_and_item_lists
  */
-u32 game_uses_get_field_300_0e51ac(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_uses_game_clear_node_and_item_lis_0e51ac(int a0, u32 a1, u32 a2, u32 a3) {
     u32 extraout_fr1;
     char cVar1;
 
     cVar1 = '\0';
-    game_uses_get_field_300_0db8d4(a0, a1, a2, a3);
+    game_clear_node_and_item_lists(a0, a1, a2, a3);
     game_fill_loop_0e96b8(a0 + 0xf4c);
     game_vec_0d6920(a0 + 0xa68, a1, a2, a3);
     (**(code **)(*(int *)(a0 + 0x9e8) + 0x10))((int *)(a0 + 0x9e8), a1, a2, a3);
@@ -4815,11 +4816,12 @@ u32 game_sound_0e6d80(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_Class_12b580_clear_request_0e6dc4  0x8c0e6dc4
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is Class_12b580_clear_request
+ * game_uses_game_clear_node_and_item_lis_0e6dc4  0x8c0e6dc4
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is
+ * game_clear_node_and_item_lists
  */
-u32 game_uses_Class_12b580_clear_request_0e6dc4(int a0, u32 a1, u32 a2, u32 a3) {
-    game_uses_get_field_300_0db8d4(a0, a1, a2, a3);
+u32 game_uses_game_clear_node_and_item_lis_0e6dc4(int a0, u32 a1, u32 a2, u32 a3) {
+    game_clear_node_and_item_lists(a0, a1, a2, a3);
     game_fill_loop_0e96b8(a0 + 0xf4c);
     game_vec_0d6920(a0 + 0xa68, a1, a2, a3);
     (**(code **)(*(int *)(a0 + 0x9e8) + 0x10))((int *)(a0 + 0x9e8), a1, a2, a3);
@@ -6870,8 +6872,8 @@ int dec_counter_be(int a0) {
 /*
  * game_fill_loop_0e96b8  0x8c0e96b8
  * area name: game code; nothing names its area yet; behaviour name: a loop that writes memory
- * called by: Class_12bb08_calls_fill_loop_0e91b8, game_uses_Class_12b580_clear_request_0e6dc4,
- * game_uses_get_field_300_0e51ac, game_uses_get_field_38_0dfbdc
+ * called by: Class_12bb08_calls_fill_loop_0e91b8, game_uses_game_clear_node_and_item_lis_0e51ac,
+ * game_uses_game_clear_node_and_item_lis_0e6dc4, game_uses_get_field_38_0dfbdc
  */
 u32 game_fill_loop_0e96b8(int a0) {
     int iVar1;

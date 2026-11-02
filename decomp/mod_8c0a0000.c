@@ -518,16 +518,16 @@ u32 *Class_12ad14_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     Vec3_set_zero((int)a0 + 0x238);
     Vec3_ctor_zero((int)a0 + 0x250, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x260, a1, a2);
-    Class_12ad14_vec_0a0890(a0, a1, a2, a3);
+    Class_12ad14_init_begin_iya(a0, a1, a2, a3);
     return a0;
 }
 
 /*
- * Class_12ad14_vec_0a0890  0x8c0a0890
- * area name: only called from Class_12ad14 methods; behaviour name: mostly calls vec functions
+ * Class_12ad14_init_begin_iya  0x8c0a0890
+ * sets the state name to "Begin_iya" (0xf), places the object at (a1, a2, a3) and clears its timers
  * called by: Class_12ad14_ctor
  */
-u32 Class_12ad14_vec_0a0890(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12ad14_init_begin_iya(int a0, u32 a1, u32 a2, u32 a3) {
     u32 extraout_fr1;
     u32 extraout_fr1_00;
     char cVar1;
@@ -11850,7 +11850,7 @@ u32 game_release_0ae640(u32 a0, u32 a1, int a2) {
 /*
  * nautilus_desc_init  0x8c0ae6a0
  * fills the "Nautilus" object description (size, offsets, flags)
- * called by: game_copy_0d1d54
+ * called by: nautilus_group_reset
  * strings: "Nautilus"; "Nautilus"
  */
 u32 nautilus_desc_init(int a0, u32 unused_a1, u32 a2, u32 a3) {

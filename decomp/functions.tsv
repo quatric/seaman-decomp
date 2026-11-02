@@ -1877,7 +1877,7 @@ address	name	file	params
 8c0a06f8	game_uses_Class_12c3c4_save_record_0a06f8	mod_8c0a0000.c	2
 8c0a0730	static_init_vec3s_285140	mod_8c0a0000.c	4
 8c0a0818	Class_12ad14_ctor	mod_8c0a0000.c	4
-8c0a0890	Class_12ad14_vec_0a0890	mod_8c0a0000.c	4
+8c0a0890	Class_12ad14_init_begin_iya	mod_8c0a0000.c	4
 8c0a0950	Class_12ad14_dtor	mod_8c0a0000.c	4
 8c0a09e8	Class_12ad14_m1_0a09e8	mod_8c0a0000.c	4
 8c0a0c4c	game_uses_reset_fields_2c_6c_0a0c4c	mod_8c0a0000.c	4
@@ -2066,7 +2066,7 @@ address	name	file	params
 8c0b77a0	save_file_date_matches	mod_8c0b0000.c	4
 8c0b7804	save_usr_date_matches	mod_8c0b0000.c	4
 8c0b787c	save_show_file_message	mod_8c0b0000.c	1
-8c0b7920	CGame_uses_startup_warning_check_0b7920	mod_8c0b0000.c	3
+8c0b7920	startup_warning_show_for_state	mod_8c0b0000.c	3
 8c0b79f0	game_uses_clear_5_words_0b79f0	mod_8c0b0000.c	4
 8c0b7a54	game_copy_0b7a54	mod_8c0b0000.c	1
 8c0b7ad0	disc_product_id_index	mod_8c0b0000.c	4
@@ -2096,7 +2096,7 @@ address	name	file	params
 8c0ba37c	CProlog_calls_init_fields_0ba37c	mod_8c0b0000.c	1
 8c0ba3b8	set_4_colors_154	mod_8c0b0000.c	5
 8c0ba3e0	game_uses_libgcc_divide_helper_0ba3e0	mod_8c0b0000.c	2
-8c0ba494	game_uses_show_date_time_message_0ba494	mod_8c0b0000.c	4
+8c0ba494	date_time_message_draw	mod_8c0b0000.c	4
 8c0ba5bc	game_init_fields_0ba5bc	mod_8c0b0000.c	1
 8c0ba5e0	game_uses_clear_5_words_0ba5e0	mod_8c0b0000.c	4
 8c0ba6bc	show_date_time_message	mod_8c0b0000.c	4
@@ -2136,7 +2136,7 @@ address	name	file	params
 8c0bf4a4	slide_offset_step_660	mod_8c0b0000.c	1
 8c0bf548	clear_field_0_0bf548	mod_8c0b0000.c	1
 8c0bf550	game_uses_set_fields_0_4_c_0bf550	mod_8c0b0000.c	4
-8c0bf588	game_uses_menu_next_pressed_0bf588	mod_8c0b0000.c	4
+8c0bf588	menu_yes_no_select	mod_8c0b0000.c	4
 8c0bf618	input_a_or_start_pressed	mod_8c0b0000.c	4
 8c0bf690	menu_prev_pressed	mod_8c0b0000.c	4
 8c0bf708	menu_next_pressed	mod_8c0b0000.c	4
@@ -2440,7 +2440,7 @@ address	name	file	params
 8c0d1c20	game_calc_0d1c20	mod_8c0d0000.c	3
 8c0d1c3c	game_draw_0d1c3c	mod_8c0d0000.c	4
 8c0d1c84	game_draw_0d1c84	mod_8c0d0000.c	4
-8c0d1d54	game_copy_0d1d54	mod_8c0d0000.c	4
+8c0d1d54	nautilus_group_reset	mod_8c0d0000.c	4
 8c0d1eb8	game_copy_0d1eb8	mod_8c0d0000.c	1
 8c0d1f38	game_copy_0d1f38	mod_8c0d0000.c	1
 8c0d1fa0	CEnv_LoadDevicePanelTexture	mod_8c0d0000.c	4
@@ -2450,7 +2450,7 @@ address	name	file	params
 8c0d20f0	CEnv_set_scale_and_type	mod_8c0d0000.c	3
 8c0d21a0	CEnv_vec_0d21a0	mod_8c0d0000.c	2
 8c0d2264	CEnv_draw_0d2264	mod_8c0d0000.c	4
-8c0d2478	game_draw_0d2478	mod_8c0d0000.c	4
+8c0d2478	obj_draw_with_part_swapped	mod_8c0d0000.c	4
 8c0d25a0	CEnv_update_fields_0d25a0	mod_8c0d0000.c	1
 8c0d25b4	game_vec_0d25b4	mod_8c0d0000.c	4
 8c0d261c	game_uses_get_field_4_0d261c	mod_8c0d0000.c	4
@@ -2485,7 +2485,7 @@ address	name	file	params
 8c0d4428	game_draw_0d4428	mod_8c0d0000.c	4
 8c0d46cc	game_draw_0d46cc	mod_8c0d0000.c	4
 8c0d4900	game_draw_0d4900	mod_8c0d0000.c	4
-8c0d49cc	game_list_0d49cc	mod_8c0d0000.c	4
+8c0d49cc	list_draw_node_points	mod_8c0d0000.c	4
 8c0d4a90	game_draw_0d4a90	mod_8c0d0000.c	4
 8c0d4bd4	get_field_3c_0d4bd4	mod_8c0d0000.c	1
 8c0d4bdc	game_uses_njCalcVector_like_0d4bdc	mod_8c0d0000.c	2
@@ -2554,16 +2554,16 @@ address	name	file	params
 8c0d7060	game_uses_Vec3_ctor_zero_0d7060	mod_8c0d0000.c	4
 8c0d70e4	CWaterTank_copy_0d70e4	mod_8c0d0000.c	4
 8c0d7100	Class_12b930_uses_Vec3_set_zero_0d7100	mod_8c0d0000.c	1
-8c0d7154	Class_12b930_float_calc_0d7154	mod_8c0d0000.c	1
-8c0d723c	game_uses_set_field_164_0d723c	mod_8c0d0000.c	1
+8c0d7154	Class_12b930_slide_tick	mod_8c0d0000.c	1
+8c0d723c	Class_12b930_uses_set_field_164_0d723c	mod_8c0d0000.c	1
 8c0d7288	set_field_164	mod_8c0d0000.c	2
-8c0d7294	Class_12b930_calls_test_0d7294	mod_8c0d0000.c	4
-8c0d7314	game_copy_0d7314	mod_8c0d0000.c	4
-8c0d7354	game_draw_0d7354	mod_8c0d0000.c	4
-8c0d7410	game_draw_0d7410	mod_8c0d0000.c	4
+8c0d7294	Class_12b930_update_slide_state	mod_8c0d0000.c	4
+8c0d7314	Class_12b930_copy_0d7314	mod_8c0d0000.c	4
+8c0d7354	Class_12b930_draw_0d7354	mod_8c0d0000.c	4
+8c0d7410	Class_12b930_draw_0d7410	mod_8c0d0000.c	4
 8c0d74cc	game_uses_set_field_164_0d74cc	mod_8c0d0000.c	1
 8c0d7508	game_sound_0d7508	mod_8c0d0000.c	3
-8c0d75a0	game_test_0d75a0	mod_8c0d0000.c	4
+8c0d75a0	Class_12b930_test_0d75a0	mod_8c0d0000.c	4
 8c0d761c	game_init_fields_0d761c	mod_8c0d0000.c	1
 8c0d7668	set_5_floats	mod_8c0d0000.c	1
 8c0d7688	game_calls_init_fields_0d7688	mod_8c0d0000.c	1
@@ -2617,7 +2617,7 @@ address	name	file	params
 8c0d9720	game_draw_0d9720	mod_8c0d0000.c	4
 8c0d97b4	CTexture_LoadFromCache_on_field_20	mod_8c0d0000.c	4
 8c0d97d0	CTexture_ReleaseFromVRAM_on_field_20	mod_8c0d0000.c	4
-8c0d97ec	game_uses_rand_0d97ec	mod_8c0d0000.c	3
+8c0d97ec	random_wait_reset_on_period	mod_8c0d0000.c	3
 8c0d9898	game_float_calc_0d9898	mod_8c0d0000.c	1
 8c0d98d4	set_fields_10_14_0d98d4	mod_8c0d0000.c	1
 8c0d98e4	set_fields_10_14_0d98e4	mod_8c0d0000.c	1
@@ -2695,7 +2695,7 @@ address	name	file	params
 8c0db810	list_a4_position	mod_8c0d0000.c	2
 8c0db864	list_a4_count_after	mod_8c0d0000.c	2
 8c0db8a8	get_vec3_field_a68	mod_8c0d0000.c	4
-8c0db8d4	game_uses_get_field_300_0db8d4	mod_8c0d0000.c	4
+8c0db8d4	game_clear_node_and_item_lists	mod_8c0d0000.c	4
 8c0dba50	start_free_entry_0c0c	mod_8c0d0000.c	4
 8c0dbb14	common_texlist_load	mod_8c0d0000.c	4
 8c0dbbe8	Class_12bb08_uses_get_field_24_0dbbe8	mod_8c0d0000.c	4
@@ -2847,7 +2847,7 @@ address	name	file	params
 8c0e50a0	game_uses_get_field_300_0e50a0	mod_8c0e0000.c	4
 8c0e50f4	game_vec_0e50f4	mod_8c0e0000.c	4
 8c0e518c	first_time_15c8	mod_8c0e0000.c	1
-8c0e51ac	game_uses_get_field_300_0e51ac	mod_8c0e0000.c	4
+8c0e51ac	game_uses_game_clear_node_and_item_lis_0e51ac	mod_8c0e0000.c	4
 8c0e5230	noop_0e5230	mod_8c0e0000.c	0
 8c0e5234	noop_0e5234	mod_8c0e0000.c	0
 8c0e5238	game_uses_get_field_24_0e5238	mod_8c0e0000.c	4
@@ -2894,7 +2894,7 @@ address	name	file	params
 8c0e6cd8	scene_release_textures_like	mod_8c0e0000.c	4
 8c0e6d24	game_uses_call_all_list_a8_0e6d24	mod_8c0e0000.c	4
 8c0e6d80	game_sound_0e6d80	mod_8c0e0000.c	4
-8c0e6dc4	game_uses_Class_12b580_clear_request_0e6dc4	mod_8c0e0000.c	4
+8c0e6dc4	game_uses_game_clear_node_and_item_lis_0e6dc4	mod_8c0e0000.c	4
 8c0e6e74	amazon_release_model	mod_8c0e0000.c	2
 8c0e6ec8	game_calc_0e6ec8	mod_8c0e0000.c	4
 8c0e6ef0	Class_12b580_uses_linear_map_set_0e6ef0	mod_8c0e0000.c	4
@@ -3230,7 +3230,7 @@ address	name	file	params
 8c0feaec	game_uses_set_fields_4_0_0feaec	mod_8c0f0000.c	1
 8c0feb0c	vec_new_array_wrap_0feb0c	mod_8c0f0000.c	1
 8c0feb3c	CEnv_take_free_slot	mod_8c0f0000.c	1
-8c0feb88	CEnv_update_fields_0feb88	mod_8c0f0000.c	2
+8c0feb88	game_update_fields_0feb88	mod_8c0f0000.c	2
 8c0feb98	game_vec_0feb98	mod_8c0f0000.c	3
 8c0febbc	vec_new_array_wrap_0febbc	mod_8c0f0000.c	1
 8c0febf0	pool_5c_alloc	mod_8c0f0000.c	1

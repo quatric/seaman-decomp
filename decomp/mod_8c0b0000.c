@@ -4928,11 +4928,11 @@ u32 save_show_file_message(u32 a0) {
 }
 
 /*
- * CGame_uses_startup_warning_check_0b7920  0x8c0b7920
- * area name: only called from CGame methods; behaviour name: its main named callee is startup_warning_check
+ * startup_warning_show_for_state  0x8c0b7920
+ * remembers state a0 (unless 2) and shows the matching startup warning page (0xb, 1, 4 or 2)
  * called by: CGame_Initial, game_uses_get_field_d0_0c6e74, game_uses_speech_is_playing_0bad68
  */
-u32 CGame_uses_startup_warning_check_0b7920(int a0, u32 unused_a1, u32 a2) {
+u32 startup_warning_show_for_state(int a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
 
     if (a0 != 2) {
@@ -6094,11 +6094,11 @@ u32 *game_uses_libgcc_divide_helper_0ba3e0(int a0, u32 *a1) {
 }
 
 /*
- * game_uses_show_date_time_message_0ba494  0x8c0ba494
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is show_date_time_message
+ * date_time_message_draw  0x8c0ba494
+ * draws the date/time message and clears its five words in the order set by +0x10 and +0x14, between two TA FIFO calls
  * called by: ambient_sound_update
  */
-u32 game_uses_show_date_time_message_0ba494(int a0, u32 a1, u32 a2, u32 a3) {
+u32 date_time_message_draw(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uStack_2c;
     u32 uStack_28;
@@ -6151,7 +6151,7 @@ u32 game_init_fields_0ba5bc(u32 *a0) {
 /*
  * game_uses_clear_5_words_0ba5e0  0x8c0ba5e0
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is clear_5_words
- * called by: game_uses_show_date_time_message_0ba494
+ * called by: date_time_message_draw
  */
 u32 game_uses_clear_5_words_0ba5e0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6182,7 +6182,7 @@ u32 game_uses_clear_5_words_0ba5e0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * show_date_time_message  0x8c0ba6bc
  * formats the RTC date as "<month>.dd,hh:mm AM/PM" and shows it as a message
- * called by: game_uses_show_date_time_message_0ba494
+ * called by: date_time_message_draw
  * strings: "%s.%2d,%2d:%02d AM"; "%s.%2d,%2d:%02d PM"
  */
 u32 show_date_time_message(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
@@ -6542,7 +6542,7 @@ u32 game_uses_speech_is_playing_0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
         }
     }
     if (*(int *)(a0 + 0x30) == 2) {
-        iVar2 = CGame_uses_startup_warning_check_0b7920(ar4_00, ar5_00, a2);
+        iVar2 = startup_warning_show_for_state(ar4_00, ar5_00, a2);
         iVar3 = save_files_presence(ar4_00, ar5_00, a2, a3);
         ar4_02 = ar4_00;
     }
@@ -8175,7 +8175,7 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
     if ((iVar2 < 5) && (-1 < iVar2)) {
         switch (iVar2) {
         default:
-            game_uses_show_date_time_message_0ba494(a0 + 0x158, a0 + 0x48, puVar10, uVar1);
+            date_time_message_draw(a0 + 0x158, a0 + 0x48, puVar10, uVar1);
             break;
         case 2:
         case 3:
@@ -9416,11 +9416,11 @@ u32 game_uses_set_fields_0_4_c_0bf550(int *a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_uses_menu_next_pressed_0bf588  0x8c0bf588
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is menu_next_pressed
+ * menu_yes_no_select  0x8c0bf588
+ * moves the yes/no cursor with next/prev and returns 1 for yes, 0 for no or 2 while nothing is chosen
  * called by: static_init_4367d4
  */
-u32 game_uses_menu_next_pressed_0bf588(int a0, u32 a1, u32 a2, u32 a3) {
+u32 menu_yes_no_select(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     u32 uVar2;
@@ -9454,7 +9454,7 @@ u32 game_uses_menu_next_pressed_0bf588(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * input_a_or_start_pressed  0x8c0bf618
  * 1 when A or Start was just pressed on the pad at +0xcc and the pad is connected
- * called by: game_uses_menu_next_pressed_0bf588, save_menu_update
+ * called by: menu_yes_no_select, save_menu_update
  */
 u32 input_a_or_start_pressed(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -9473,7 +9473,7 @@ u32 input_a_or_start_pressed(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * menu_prev_pressed  0x8c0bf690
  * Left or L pressed on the controller at +0xcc (ignored during demo input)
- * called by: confirm_exit_save, game_uses_menu_next_pressed_0bf588, save_menu_update
+ * called by: confirm_exit_save, menu_yes_no_select, save_menu_update
  */
 u32 menu_prev_pressed(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -9492,7 +9492,7 @@ u32 menu_prev_pressed(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * menu_next_pressed  0x8c0bf708
  * Right or R pressed on the controller at +0xcc (ignored during demo input)
- * called by: confirm_exit_save, game_uses_menu_next_pressed_0bf588, save_menu_update
+ * called by: confirm_exit_save, menu_yes_no_select, save_menu_update
  */
 u32 menu_next_pressed(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;

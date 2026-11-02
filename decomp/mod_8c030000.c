@@ -1467,7 +1467,7 @@ u32 reset_fields_2c_6c(int a0, u32 a1, u32 a2) {
  * copy6_to_fields  0x8c031b68
  * copies six words from a1 to +0xa0, +0x34, +0x38, +0x48, +0x4c, +0x50
  * called by: CMushroomerBody_AwayFrom, Class_12a03c_m6_03a65c, Class_12a25c_m6_06e69c, Class_12a25c_vec_06f93c,
- * Class_12a76c_copy_08de3c, Class_12ad14_vec_0a0890, Class_12b2ac_m6_0afcc0, game_state_switch_049b68 (+34 more)
+ * Class_12a76c_copy_08de3c, Class_12ad14_init_begin_iya, Class_12b2ac_m6_0afcc0, game_state_switch_049b68 (+34 more)
  */
 u32 *copy6_to_fields(int a0, u32 *a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 0xa0) = *a1;

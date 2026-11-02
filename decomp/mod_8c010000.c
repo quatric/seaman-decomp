@@ -11490,8 +11490,8 @@ u32 *memmove(u32 *a0, u32 *a1, u32 a2) {
 /*
  * memmove_bytes  0x8c013fb4
  * byte-wise copy that handles overlapping buffers
- * called by: CAnimal_draw_029510, CAnimal_uses_njGetMatrix_026968, game_copy_0d1d54, game_copy_0d1eb8,
- * game_copy_0d1f38, game_draw_0297b8, memmove_bytes_wrap, memmove_bytes_wrap_024378 (+1 more)
+ * called by: CAnimal_draw_029510, CAnimal_uses_njGetMatrix_026968, game_copy_0d1eb8, game_copy_0d1f38,
+ * game_draw_0297b8, memmove_bytes_wrap, memmove_bytes_wrap_024378, nautilus_group_reset (+1 more)
  */
 u8 *memmove_bytes(u8 *a0, u8 *a1, u32 a2) {
     u8 uVar1;
@@ -13918,8 +13918,8 @@ u32 Class_12c058_draw_015adc(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Class_129938_draw_015af8  0x8c015af8
  * area name: only called from Class_129938 methods; behaviour name: mostly calls draw functions
- * called by: Class_129938_m6_01733c, game_draw_016da8, game_draw_0d092c, game_draw_0d0990, game_draw_0d4124,
- * game_draw_0d4428, game_draw_0d46cc, game_draw_0d4900 (+3 more)
+ * called by: Class_129938_m6_01733c, Class_12b930_draw_0d7410, game_draw_016da8, game_draw_0d092c, game_draw_0d0990,
+ * game_draw_0d4124, game_draw_0d4428, game_draw_0d46cc (+3 more)
  */
 u32 Class_129938_draw_015af8(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -13943,7 +13943,7 @@ u32 game_draw_015b14(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_draw_015b30  0x8c015b30
  * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
- * called by: game_draw_0d4124, game_draw_0d7354
+ * called by: Class_12b930_draw_0d7354, game_draw_0d4124
  */
 u32 game_draw_015b30(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -14529,7 +14529,8 @@ u32 Class_129808_copy_01642c(u32 a0, u32 a1, u32 a2, u32 a3) {
  * Class_129808_update_fields_016464  0x8c016464
  * area name: sits between Class_129808 functions (same compilation unit); behaviour name: conditionally writes members
  * called by: CSquid_Init, Class_129808_copy_01642c, Class_129808_m2_0148d8, Class_12b3b8_ctor,
- * Class_12b930_uses_vec_new_array_0d2fd8, Class_12bec0_uses_rand_0f5b10, game_draw_0d2478, game_uses_rand_0ae84c
+ * Class_12b930_uses_vec_new_array_0d2fd8, Class_12bec0_uses_rand_0f5b10, game_uses_rand_0ae84c,
+ * obj_draw_with_part_swapped
  */
 u32 Class_129808_update_fields_016464(int *a0, u32 *a1, u32 *a2, int a3) {
     u32 uVar1;
@@ -14617,7 +14618,7 @@ u32 Class_129808_calc_016504(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
  * area name: sits between Class_129808 functions (same compilation unit); behaviour name: integer arithmetic on its
  * arguments called by: CSquidLine_uses_matrix_push_0ad354, Class_12b3b8_uses_object_dtor_delete_0e7a78,
  * Class_12bea8_uses_Class_129808_m2_0d7900, Class_12bec0_draw_0f5e0c, Class_12bec0_draw_0f5f08, game_draw_0ad7ec,
- * game_draw_0d2478, game_uses_obj_set_texlist_0d1168
+ * game_uses_obj_set_texlist_0d1168, obj_draw_with_part_swapped
  */
 u32 Class_129808_calc_016524(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -17533,7 +17534,8 @@ u32 static_init_vec3s_279110(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
  * touch_fields_30_3c_wrap  0x8c019058
  * only calls touch_fields_30_3c
  * called by: CEnv_draw_0d2264, Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b758_draw_0e4dd0,
- * Class_12c058_draw, Class_12c058_draw_0f577c, game_draw_0cb220, game_draw_0d0564, game_draw_0d05d0 (+14 more)
+ * Class_12b930_draw_0d7354, Class_12b930_draw_0d7410, Class_12c058_draw, Class_12c058_draw_0f577c, game_draw_0cb220
+ * (+14 more)
  */
 u32 touch_fields_30_3c_wrap(void) {
     u32 r5;
@@ -17595,8 +17597,8 @@ u32 rotate_y_degrees(void) {
 /*
  * rotate_degrees  0x8c019160
  * rotates the current matrix by fr4 degrees (converted to a Ninja angle)
- * called by: Class_12b3b8_uses_object_dtor_delete_0e7a78, game_draw_0d4124, game_draw_0d4428, game_draw_0d46cc,
- * game_draw_0d7354, game_draw_0d7410
+ * called by: Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b930_draw_0d7354, Class_12b930_draw_0d7410,
+ * game_draw_0d4124, game_draw_0d4428, game_draw_0d46cc
  */
 u32 rotate_degrees(void) {
     u32 r6;
@@ -17612,7 +17614,7 @@ u32 rotate_degrees(void) {
  * matrix_scale_wrap  0x8c019198
  * only calls matrix_scale
  * called by: CEnv_draw_0d2264, Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b758_draw_0e4dd0,
- * draw_model_with_items, game_draw_029ca8, game_draw_0d2478, game_uses_clear_3_words_0c9ee0
+ * draw_model_with_items, game_draw_029ca8, game_uses_clear_3_words_0c9ee0, obj_draw_with_part_swapped
  */
 u32 matrix_scale_wrap(u32 unused_a0, u32 a1) {
     u32 r6;
@@ -23004,8 +23006,8 @@ LAB_8c01f4ea:
 
 /*
  * get_field_a524_01f514  0x8c01f514
- * called by: CGame_draw_0c3e78, CGame_uses_startup_warning_check_0b7920, save_check_files, save_files_check,
- * save_write_step, static_init_4367d4
+ * called by: CGame_draw_0c3e78, save_check_files, save_files_check, save_write_step, startup_warning_show_for_state,
+ * static_init_4367d4
  */
 u32 get_field_a524_01f514(int a0, u32 unused_a1, u32 a2) {
     return *(u32 *)(0xa524 + a0);

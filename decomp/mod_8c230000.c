@@ -8141,8 +8141,8 @@ u32 gfxlib_calc_233da2(u32 a0, u32 a1) {
  * gfx_set_color4_4aa52c  0x8c233dac
  * copies four words (a colour) to 0x8c4aa52c
  * called by: CAnimal_uses_njGetMatrix_026968, CSquidLine_uses_matrix_push_0ad354,
- * Class_12ab2c_uses_get_field_1c_on_field_b0_09dec8, Class_12aeec_uses_gfx_set_color4_0a481c, Vec3_draw_0d5d28,
- * game_draw_029dec, game_draw_0ad7ec, game_draw_0d46cc (+6 more)
+ * Class_12ab2c_uses_get_field_1c_on_field_b0_09dec8, Class_12aeec_uses_gfx_set_color4_0a481c, Class_12b930_draw_0d7354,
+ * Class_12b930_draw_0d7410, Vec3_draw_0d5d28, game_draw_029dec (+6 more)
  */
 u32 gfx_set_color4_4aa52c(u32 *a0) {
     g_8c4aa52c = *a0;
@@ -9455,7 +9455,7 @@ u32 gfxlib_draw_234d68(u32 a0, int a1, u8 *a2, u8 *a3) {
 /*
  * gfxlib_draw_234fd0  0x8c234fd0
  * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: game_draw_015054, game_draw_0d2c84, game_list_0a98cc, game_list_0d49cc, static_init_27def0
+ * called by: game_draw_015054, game_draw_0d2c84, game_list_0a98cc, list_draw_node_points, static_init_27def0
  */
 u32 gfxlib_draw_234fd0(u32 a0, int a1, u32 a2, u32 *a3) {
     u32 uVar1;
