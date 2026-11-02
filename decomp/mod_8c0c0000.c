@@ -5136,9 +5136,9 @@ u32 Vec3_sub_0c84f4(int a0, u8 *a1, u8 *a2, u8 *a3) {
     if (iVar2 == 0) {
         iVar2 = get_field_4_on_field_d8(*(u32 *)(a1 + 0x7cc), ar5_00, a2);
         if (iVar2 != 0) {
-            game_sub_0c86d4(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_20);
-            Vec3_sub_0c86c0(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_38);
-            Vec3_sub_0c8698(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_30);
+            get_vec3_field_80_out(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_20);
+            get_2_words_8c(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_38);
+            get_4_words_94(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_30);
             a3 = auStack_30;
             a2 = auStack_38;
             ar5_00 = auStack_20;
@@ -5180,11 +5180,11 @@ u32 ret_const_1_0c8690(void) {
 }
 
 /*
- * Vec3_sub_0c8698  0x8c0c8698
- * area name: sits between Vec3 functions (same compilation unit)
+ * get_4_words_94  0x8c0c8698
+ * copies the four words at +0x94 to a1
  * called by: Vec3_sub_0c84f4, game_sub_0c9588, game_sub_0c9ee0, game_sub_0ca88c, game_sub_0cb9c8
  */
-u32 Vec3_sub_0c8698(int a0, u32 *a1) {
+u32 get_4_words_94(int a0, u32 *a1) {
     u32 uVar1;
 
     uVar1 = ((u32 *)(a0 + 0x94))[1];
@@ -5197,11 +5197,11 @@ u32 Vec3_sub_0c8698(int a0, u32 *a1) {
 }
 
 /*
- * Vec3_sub_0c86c0  0x8c0c86c0
- * area name: sits between Vec3 functions (same compilation unit)
+ * get_2_words_8c  0x8c0c86c0
+ * copies the two words at +0x8c to a1
  * called by: Vec3_sub_0c84f4, game_sub_0c9588, game_sub_0c9ee0, game_sub_0ca88c, game_sub_0cb9c8
  */
-u32 Vec3_sub_0c86c0(int a0, u32 *a1) {
+u32 get_2_words_8c(int a0, u32 *a1) {
     u32 uVar1;
 
     uVar1 = ((u32 *)(a0 + 0x8c))[1];
@@ -5211,11 +5211,11 @@ u32 Vec3_sub_0c86c0(int a0, u32 *a1) {
 }
 
 /*
- * game_sub_0c86d4  0x8c0c86d4
- * area name: game code; nothing names its area yet
+ * get_vec3_field_80_out  0x8c0c86d4
+ * copies the three words at +0x80 to a1
  * called by: Vec3_sub_0c84f4, game_sub_0c9588, game_sub_0c9ee0, game_sub_0ca88c, game_sub_0cb9c8
  */
-u32 game_sub_0c86d4(int a0, u32 *a1) {
+u32 get_vec3_field_80_out(int a0, u32 *a1) {
     u32 uVar1;
     u32 *puVar2;
 
@@ -5771,9 +5771,9 @@ u32 game_sub_0c9588(int a0, u8 *a1, u8 *a2, u8 *a3) {
     if (iVar2 == 0) {
         iVar2 = get_field_4_on_field_d8(*(u32 *)(a1 + 0x7cc), ar5_00, a2);
         if (iVar2 != 0) {
-            game_sub_0c86d4(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_20);
-            Vec3_sub_0c86c0(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_38);
-            Vec3_sub_0c8698(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_30);
+            get_vec3_field_80_out(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_20);
+            get_2_words_8c(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_38);
+            get_4_words_94(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_30);
             a3 = auStack_30;
             a2 = auStack_38;
             ar5_00 = auStack_20;
@@ -6275,9 +6275,9 @@ u32 game_sub_0c9ee0(int a0, u8 *a1, u8 *a2, u8 *a3) {
     clear_2_words(auStack_54);
     iVar1 = get_field_4_on_field_d8(*(u32 *)(a1 + 0x7cc), ar5_00, a2);
     if (iVar1 != 0) {
-        game_sub_0c86d4(*(u32 *)(a0 + 8), auStack_1c);
-        Vec3_sub_0c86c0(*(u32 *)(a0 + 8), auStack_54);
-        Vec3_sub_0c8698(*(u32 *)(a0 + 8), auStack_2c);
+        get_vec3_field_80_out(*(u32 *)(a0 + 8), auStack_1c);
+        get_2_words_8c(*(u32 *)(a0 + 8), auStack_54);
+        get_4_words_94(*(u32 *)(a0 + 8), auStack_2c);
         a3 = auStack_2c;
         a2 = auStack_54;
         ar5_00 = auStack_1c;
@@ -6634,9 +6634,9 @@ u32 game_sub_0ca88c(int a0, u8 *a1, u8 *a2, u8 *a3) {
     if (iVar2 == 0) {
         iVar2 = get_field_4_on_field_d8(*(u32 *)(a1 + 0x7cc), ar5_00, a2);
         if (iVar2 != 0) {
-            game_sub_0c86d4(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_20);
-            Vec3_sub_0c86c0(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_38);
-            Vec3_sub_0c8698(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_30);
+            get_vec3_field_80_out(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_20);
+            get_2_words_8c(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_38);
+            get_4_words_94(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_30);
             a3 = auStack_30;
             a2 = auStack_38;
             ar5_00 = auStack_20;
@@ -7291,9 +7291,9 @@ u32 game_sub_0cb9c8(int a0, u8 *a1, u8 *a2, u8 *a3) {
     clear_2_words(auStack_38);
     iVar2 = get_field_4_on_field_d8(*(u32 *)(a1 + 0x7cc), ar5_00, a2);
     if (iVar2 != 0) {
-        game_sub_0c86d4(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_20);
-        Vec3_sub_0c86c0(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_38);
-        Vec3_sub_0c8698(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_30);
+        get_vec3_field_80_out(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_20);
+        get_2_words_8c(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_38);
+        get_4_words_94(*(u32 *)(a0 + iVar1 * 4 + 8), auStack_30);
         a3 = auStack_30;
         a2 = auStack_38;
         ar5_00 = auStack_20;

@@ -1980,11 +1980,11 @@ u16 *game_sub_1027c0(u16 *a0) {
 }
 
 /*
- * game_sub_102800  0x8c102800
- * area name: game code; nothing names its area yet
+ * color_set_white  0x8c102800
+ * a0[0..3] = 1.0
  * called by: Class_12b580_sub_0d7f18, game_sub_0f3ebc, game_sub_0f4040
  */
-u32 *game_sub_102800(u32 *a0) {
+u32 *color_set_white(u32 *a0) {
     *a0 = 0x3f800000;
     a0[1] = 0x3f800000;
     a0[2] = 0x3f800000;
@@ -2033,11 +2033,11 @@ u32 malloc_thunk_wrap_10287c(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_10289c  0x8c10289c
- * area name: game code; nothing names its area yet
+ * free_ptr_and_clear  0x8c10289c
+ * frees *a0 if set and clears it
  * called by: game_sub_0b95a0
  */
-u32 game_sub_10289c(int *a0, u32 a1, u32 a2, u32 a3) {
+u32 free_ptr_and_clear(int *a0, u32 a1, u32 a2, u32 a3) {
     if (*a0 != 0) {
         malloc_sub_1fb57c(*a0, a1, a2, a3);
         *a0 = 0;
@@ -2081,7 +2081,7 @@ u32 game_sub_102914(int a0, u32 a1) {
 /*
  * game_sub_10291c  0x8c10291c
  * area name: game code; nothing names its area yet
- * called by: game_sub_0d63f8, game_sub_0e8f54
+ * called by: Class_12c394_sub_0d63f8, game_sub_0e8f54
  */
 u32 *game_sub_10291c(u32 *a0) {
     *a0 = (&DATA_8c12c3a4);
@@ -2126,12 +2126,12 @@ int Class_12c3a4_m0_1029d0(int a0) {
 }
 
 /*
- * game_sub_102a08  0x8c102a08
- * area name: game code; nothing names its area yet
- * called by: Class_12c394_sub_0d646c, game_sub_0e8f54
+ * Class_12c394_ctor_b  0x8c102a08
+ * constructs the base (8c0d63f8), stores the vtable 0x8c12c394 and resets the linear map
+ * called by: Class_12c394_ctor_b_wrap, game_sub_0e8f54
  */
-u32 *game_sub_102a08(u32 *a0) {
-    game_sub_0d63f8(a0);
+u32 *Class_12c394_ctor_b(u32 *a0) {
+    Class_12c394_sub_0d63f8(a0);
     *a0 = (&DATA_8c12c394);
     linear_map_set(a0);
     return a0;
@@ -2141,7 +2141,7 @@ u32 *game_sub_102a08(u32 *a0) {
  * linear_map_set  0x8c102a7c
  * sets the slope (+0x18) and intercept (+0x14) of the line through two points passed in dr6/dr8
  * called by: Class_12b580_sub_0e6ef0, Class_12b758_sub_0e5c4c, Class_12b930_sub_0e0da4, Class_12bb08_sub_0d6264,
- * game_sub_0d69a8, game_sub_102a08
+ * Class_12c394_ctor_b, game_sub_0d69a8
  */
 u32 linear_map_set(int a0) {
     u32 uVar1;

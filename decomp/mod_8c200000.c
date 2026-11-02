@@ -20,11 +20,11 @@ int shinobi_sub_200038(int a0, u32 a1, u32 unused_a2, u32 a3) {
     iVar5 = a0 * iVar4 + 0x8c4783e0;
     if (*(char *)(iVar5 + 2) != '\0') {
         uVar3 = a1;
-        iVar1 = shinobi_sub_1fd510(a0, a1);
+        iVar1 = maple_device_ready(a0, a1);
         if (iVar1 == 0) {
             vmu_drive_reset(a0);
         } else {
-            iVar1 = shinobi_sub_1fd550(a0, uVar3);
+            iVar1 = maple_device_ready_idle(a0, uVar3);
             if ((iVar1 != 0) && (*(char *)(a0 * iVar4 + 0x8c4783e0 + 8) != '\0')) {
                 iVar4 = thunk_FUN_8c1ffcc2();
                 if (iVar4 < 0) {
@@ -2849,8 +2849,8 @@ u32 shinobi_sub_201f58(u32 a0, u32 a1) {
     char *pcVar1;
     u32 *puVar2;
 
-    pcVar1 = (char *)shinobi_sub_1efd14(a0, a1);
-    if ((*pcVar1 != '\0') && (puVar2 = (u32 *)shinobi_sub_1efd26(a0), (*puVar2 & 0x10) != 0)) {
+    pcVar1 = (char *)maple_port_info(a0, a1);
+    if ((*pcVar1 != '\0') && (puVar2 = (u32 *)maple_port_status(a0), (*puVar2 & 0x10) != 0)) {
         return 1;
     }
     return 0;
@@ -2967,7 +2967,7 @@ u32 shinobi_sub_2020b6(int a0) {
     int iVar1;
     u32 uVar2;
 
-    iVar1 = shinobi_sub_1efd14(*(u32 *)(a0 + 0x24));
+    iVar1 = maple_port_info(*(u32 *)(a0 + 0x24));
     uVar2 = (u32) * (u8 *)(iVar1 + 4);
     if ((uVar2 == 8) && (uVar2 = *(u8 *)(*(int *)(iVar1 + 8) + 8) >> 6 & 1, uVar2 == 1)) {
         *(u32 *)(a0 + 0x38) = 1;
@@ -2986,7 +2986,7 @@ u32 shinobi_sub_2020ba(u32 unused_a0, u32 a1) {
     u32 uVar2;
     int unaff_r14;
 
-    iVar1 = shinobi_sub_1efd14(*(u32 *)(unaff_r14 + 0x24), a1);
+    iVar1 = maple_port_info(*(u32 *)(unaff_r14 + 0x24), a1);
     uVar2 = (u32) * (u8 *)(iVar1 + 4);
     if ((uVar2 == 8) && (uVar2 = *(u8 *)(*(int *)(iVar1 + 8) + 8) >> 6 & 1, uVar2 == 1)) {
         *(u32 *)(unaff_r14 + 0x38) = 1;
@@ -3129,7 +3129,7 @@ u32 shinobi_sub_20227c(char *a0) {
     int ar4_00;
 
     if (((*a0 != '\0') && (*a0 != '\x03')) &&
-        (ar4_00 = shinobi_sub_1efd14(*(u32 *)(a0 + 0x24)), *(char *)(ar4_00 + 4) == '\b')) {
+        (ar4_00 = maple_port_info(*(u32 *)(a0 + 0x24)), *(char *)(ar4_00 + 4) == '\b')) {
         shinobi_sub_20213e(ar4_00, a0);
     }
     return 0;
@@ -3144,7 +3144,7 @@ u32 shinobi_sub_202280(u32 unused_a0, u32 a1) {
     char *unaff_r14;
 
     if (((*unaff_r14 != '\0') && (*unaff_r14 != '\x03')) &&
-        (a4 = shinobi_sub_1efd14(*(u32 *)(unaff_r14 + 0x24), a1), *(char *)(a4 + 4) == '\b')) {
+        (a4 = maple_port_info(*(u32 *)(unaff_r14 + 0x24), a1), *(char *)(a4 + 4) == '\b')) {
         shinobi_sub_20213e(a4, unaff_r14);
     }
     return 0;
@@ -3344,7 +3344,7 @@ u32 shinobi_sub_202424(char *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar4;
 
     iVar2 = shinobi_sub_201f58(*(u32 *)(a0 + 0x24), a1);
-    puVar1 = (&shinobi_sub_1efd14);
+    puVar1 = (&maple_port_info);
     if (iVar2 == 1) {
         if (*(int *)(a0 + 0x30) == 0) {
             uVar3 = shinobi_sub_1efdc8(*(u32 *)(a0 + 0x24), a1, a2, a3);
@@ -3355,7 +3355,7 @@ u32 shinobi_sub_202424(char *a0, u32 a1, u32 a2, u32 a3) {
             a0[0x33] = '\0';
         } else {
             if (*(int *)(a0 + 0x30) == 1) {
-                iVar2 = shinobi_sub_1efd14(*(u32 *)(a0 + 0x24), a1);
+                iVar2 = maple_port_info(*(u32 *)(a0 + 0x24), a1);
                 if (*(char *)(iVar2 + 4) != '\a') {
                     uVar3 = shinobi_sub_1efdc8(*(u32 *)(a0 + 0x24), a1, a2, a3);
                     *(u32 *)(a0 + 0x1c) = uVar3;
@@ -3367,7 +3367,7 @@ u32 shinobi_sub_202424(char *a0, u32 a1, u32 a2, u32 a3) {
             } else {
                 if (*(int *)(a0 + 0x30) != 2) {
                     if (*(int *)(a0 + 0x30) == 3) {
-                        iVar2 = shinobi_sub_1efd14(*(u32 *)(a0 + 0x24), a1);
+                        iVar2 = maple_port_info(*(u32 *)(a0 + 0x24), a1);
                         if (*(char *)(iVar2 + 4) == '\a') {
                             a0[0x30] = '\x04';
                             a0[0x31] = '\0';
@@ -3407,7 +3407,7 @@ u32 shinobi_sub_202424(char *a0, u32 a1, u32 a2, u32 a3) {
                     uVar3 = shinobi_sub_202782(a0);
                     return uVar3;
                 }
-                iVar2 = shinobi_sub_1efd14(*(u32 *)(a0 + 0x24), a1);
+                iVar2 = maple_port_info(*(u32 *)(a0 + 0x24), a1);
                 if (*(char *)(iVar2 + 4) != '\x05') {
                     uVar3 = shinobi_sub_1efd7c(*(u32 *)(a0 + 0x24), a1, a2, a3);
                     *(u32 *)(a0 + 0x1c) = uVar3;
@@ -3486,7 +3486,7 @@ u32 shinobi_sub_20254c(u8 *a0, u32 a1) {
             if (iVar2 == 2)
                 goto LAB_8c20262e;
             if ((*a0 == 2) && (*(int *)(a0 + 0x2c) == 3)) {
-                ar5_00 = shinobi_sub_1efd14(*(u32 *)(a0 + 0x24));
+                ar5_00 = maple_port_info(*(u32 *)(a0 + 0x24));
                 iVar2 = shinobi_sub_20200c(a0, ar5_00);
                 if (iVar2 == 0) {
                     return 0;
@@ -3584,7 +3584,7 @@ u32 shinobi_sub_202550(u32 unused_a0, u32 a1) {
             if (iVar2 == 2)
                 goto LAB_8c20262e;
             if ((*unaff_r14 == 2) && (*(int *)(unaff_r14 + 0x2c) == 3)) {
-                a5 = shinobi_sub_1efd14(*(u32 *)(unaff_r14 + 0x24), 0);
+                a5 = maple_port_info(*(u32 *)(unaff_r14 + 0x24), 0);
                 iVar2 = shinobi_sub_20200c(unaff_r14, a5);
                 if (iVar2 == 0) {
                     return 0;
@@ -4141,7 +4141,7 @@ int shinobi_sub_2029fc(void) {
     int iVar5;
     int iVar6;
 
-    puVar2 = (&shinobi_sub_1efd14);
+    puVar2 = (&maple_port_info);
     iVar1 = 0x8c47e928;
     iVar5 = 0;
     do {
@@ -4167,7 +4167,7 @@ int shinobi_sub_202a04(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int unaff_r14;
     int iVar5;
 
-    puVar2 = (&shinobi_sub_1efd14);
+    puVar2 = (&maple_port_info);
     iVar1 = 0x8c47e928;
     do {
         pbVar3 = (u8 *)(*(code *)puVar2)(unaff_r14, a1, a2, a3);

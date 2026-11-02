@@ -3911,7 +3911,7 @@ int game_sub_0a4de8(int a0, u32 a1) {
     game_sub_0254d0(a0, 0xc, 1, 0x19, 1, a1, 0x8c28563c, 0x8c28576c, PTR_s_GRAPHICS_MOTHLINE_8c13b0ec);
     *(u8 **)(a0 + 8) = &g_8c12ad50;
     Class_129938_ctor(a0 + 0x490, uVar1, ar6_00);
-    game_sub_02ff6c(a0 + 0x530, uVar1, ar6_00);
+    Class_129c24_ctor(a0 + 0x530, uVar1, ar6_00);
     Class_129cbc_ctor(a0 + 0x5cc, uVar1, ar6_00, ar7_00);
     sprintf(a0 + 0xc, uVar1, ar6_00, ar7_00, "SpiderEgg");
     *(int *)(a0 + 0x308) = a0 + 0x530;
@@ -4132,13 +4132,13 @@ u32 Class_12ad50_m4_0a536c(u32 a0) {
 }
 
 /*
- * Class_12ad50_sub_0a538c  0x8c0a538c
- * area name: sits between Class_12ad50 functions (same compilation unit)
+ * set_state_flag_40_74_wrap_0a538c  0x8c0a538c
+ * only calls set_state_flag_40_74
  */
-u32 Class_12ad50_sub_0a538c(u32 a0) {
+u32 set_state_flag_40_74_wrap_0a538c(u32 a0) {
     u32 uVar1;
 
-    uVar1 = game_sub_0f4c0c(a0);
+    uVar1 = set_state_flag_40_74(a0);
     return uVar1;
 }
 
@@ -4358,8 +4358,8 @@ u32 game_sub_0a5614(int a0, int a1, u32 a2, u32 a3) {
 u32 game_sub_0a5674(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    Vec3_sub_0f4ebc(a0, a1, a2, a3);
-    game_sub_02ce58(a0 + 0x174, a1 + 0x24);
+    obj_pose_load(a0, a1, a2, a3);
+    status_load_record(a0 + 0x174, a1 + 0x24);
     uVar1 = copy15_in_normalize(a0 + 0x2dc, a1 + 0x58);
     return uVar1;
 }
@@ -4384,7 +4384,7 @@ u32 game_sub_0a56cc(int a0, int a1, u32 a2, u32 a3) {
 u32 game_sub_0a572c(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    game_sub_0f4fa4(a0, a1, a2, a3);
+    obj_pose_save(a0, a1, a2, a3);
     game_sub_02d1f4(a0 + 0x174, a1 + 0x24, a2);
     uVar1 = copy15_out(a0 + 0x2dc, a1 + 0x58);
     return uVar1;

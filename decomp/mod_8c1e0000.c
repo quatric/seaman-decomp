@@ -461,8 +461,8 @@ u32 pvr_sub_1efa2a(u32 unused_a0, u32 a1) {
         }
         if ((uVar6 & bVar1) != 0) {
             pbVar7 = (&DATA_8c26bfac) + uVar8;
-            iVar4 = shinobi_sub_1efd14((u32)*pbVar7, a1);
-            puVar5 = (u32 *)shinobi_sub_1efd26((u32)*pbVar7);
+            iVar4 = maple_port_info((u32)*pbVar7, a1);
+            puVar5 = (u32 *)maple_port_status((u32)*pbVar7);
             *(u8 *)(uVar8 + iVar3) = *(u8 *)(uVar8 + iVar2);
             if ((((*puVar5 & 0x80) != 0) && (*(char *)(iVar4 + 2) == '\0')) && (*(char *)(iVar4 + 4) == '\b')) {
                 uVar6 = (int)*(char *)(*(int *)(iVar4 + 8) + 8) & 4;
@@ -539,8 +539,8 @@ int pvr_1efaf4(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
                 if (iVar7 != 0) {
                     pcVar6 = (code *)puVar8[2];
                     puVar8[2] = 0;
-                    a7_00 = shinobi_sub_1efd26(*puVar8);
-                    a2 = shinobi_sub_1efd14(*puVar8, a5_00);
+                    a7_00 = maple_port_status(*puVar8);
+                    a2 = maple_port_info(*puVar8, a5_00);
                     (*pcVar6)(*puVar8, puVar8[1], a2, a7_00);
                 }
             }
@@ -606,22 +606,22 @@ u32 pvr_sub_1efcae(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1efd14  0x8c1efd14
- * area name: in the shinobi library code range
- * called by: pvr_1efaf4, pvr_sub_1efa2a, shinobi_sub_1f61c6, shinobi_sub_1f620e, shinobi_sub_1fd008,
- * shinobi_sub_1fd1e2, shinobi_sub_1fd312, shinobi_sub_1fd510 (+9 more)
+ * maple_port_info  0x8c1efd14
+ * the 0x18-byte device record of port a0 (0x8c4709a0)
+ * called by: maple_device_ready, maple_device_ready_idle, pvr_1efaf4, pvr_sub_1efa2a, shinobi_sub_1f61c6,
+ * shinobi_sub_1f620e, shinobi_sub_1fd008, shinobi_sub_1fd1e2 (+9 more)
  */
-int shinobi_sub_1efd14(int a0, u32 a1) {
+int maple_port_info(int a0, u32 a1) {
     return a0 * 0x18 + 0x8c4709a0;
 }
 
 /*
- * shinobi_sub_1efd26  0x8c1efd26
- * area name: in the shinobi library code range
- * called by: bios_sub_1f3b5c, bios_sub_1f3d28, pvr_1efaf4, pvr_sub_1efa2a, shinobi_sub_1f5dd0, shinobi_sub_1f5ea8,
- * shinobi_sub_1f61c6, shinobi_sub_1f620e (+6 more)
+ * maple_port_status  0x8c1efd26
+ * status flags of port a0
+ * called by: bios_sub_1f3b5c, bios_sub_1f3d28, maple_device_ready, maple_device_ready_idle, maple_port_status_wrap,
+ * pvr_1efaf4, pvr_sub_1efa2a, shinobi_sub_1f5dd0 (+6 more)
  */
-u32 shinobi_sub_1efd26(u32 a0) {
+u32 maple_port_status(u32 a0) {
     u32 uVar1;
 
     uVar1 = shinobi_sub_1f45c8(a0);
@@ -857,7 +857,7 @@ u32 shinobi_sub_1effc2(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * thunk_FUN_8c1f4636  0x8c1effee
- * called by: shinobi_sub_1fd008, shinobi_sub_1fd1e2, shinobi_sub_1fd312, shinobi_sub_1fd550
+ * called by: maple_device_ready_idle, shinobi_sub_1fd008, shinobi_sub_1fd1e2, shinobi_sub_1fd312
  */
 u32 thunk_FUN_8c1f4636(void) {
     u32 uVar1;

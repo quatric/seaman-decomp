@@ -440,25 +440,25 @@ u32 talk_event_priority(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
 
-    iVar1 = talk_sub_030c9c(a1, "EVENT_ROCK_PUSH");
-    if (((((((iVar1 == 0) || (iVar1 = talk_sub_030c9c(a1, "EVENT_GET_WORMBOX"), iVar1 == 0)) ||
-            (iVar1 = talk_sub_030c9c(a1, "EVENT_GET_SPRINKLER"), iVar1 == 0)) ||
-           ((iVar1 = talk_sub_030c9c(a1, "EVENT_JUNGLE_JUMP"),
-             iVar1 == 0 || (iVar1 = talk_sub_030c9c(a1, "EVENT_LAST_TALK"), iVar1 == 0)))) ||
-          ((iVar1 = (*(code *)(&talk_sub_030c9c))(a1, "EVENT_JUMP_HALF_SUCCESS", a2, a3),
-            iVar1 == 0 || ((iVar1 = (*(code *)(&talk_sub_030c9c))(a1, "EVENT_JUMP_FAIL", a2, a3),
-                            iVar1 == 0 || (iVar1 = (*(code *)(&talk_sub_030c9c))(a1, "EVENT_USER_ROCK_PUSH", a2, a3),
+    iVar1 = strcmp_030c9c(a1, "EVENT_ROCK_PUSH");
+    if (((((((iVar1 == 0) || (iVar1 = strcmp_030c9c(a1, "EVENT_GET_WORMBOX"), iVar1 == 0)) ||
+            (iVar1 = strcmp_030c9c(a1, "EVENT_GET_SPRINKLER"), iVar1 == 0)) ||
+           ((iVar1 = strcmp_030c9c(a1, "EVENT_JUNGLE_JUMP"),
+             iVar1 == 0 || (iVar1 = strcmp_030c9c(a1, "EVENT_LAST_TALK"), iVar1 == 0)))) ||
+          ((iVar1 = (*(code *)(&strcmp_030c9c))(a1, "EVENT_JUMP_HALF_SUCCESS", a2, a3),
+            iVar1 == 0 || ((iVar1 = (*(code *)(&strcmp_030c9c))(a1, "EVENT_JUMP_FAIL", a2, a3),
+                            iVar1 == 0 || (iVar1 = (*(code *)(&strcmp_030c9c))(a1, "EVENT_USER_ROCK_PUSH", a2, a3),
                                            iVar1 == 0)))))) ||
-         (iVar1 = (*(code *)(&talk_sub_030c9c))(a1, "EVENT_WANT_LAND", a2, a3), iVar1 == 0)) ||
-        ((((iVar1 = (*(code *)(&talk_sub_030c9c))(a1, "EVENT_AFTER_ROCK_PUSH", a2, a3),
-            iVar1 == 0 || (iVar1 = (*(code *)(&talk_sub_030c9c))(a1, "EVENT_LANDING", a2, a3), iVar1 == 0)) ||
-           (iVar1 = (*(code *)(&talk_sub_030c9c))(a1, "EVENT_JUMP3", a2, a3), iVar1 == 0)) ||
-          (((iVar1 = (*(code *)(&talk_sub_030c9c))(a1, "EVENT_JUMP1", a2, a3),
-             iVar1 == 0 || (iVar1 = (*(code *)(&talk_sub_030c9c))(a1, "EVENT_JUMP2", a2, a3), iVar1 == 0)) ||
-            ((iVar1 = (*(code *)(&talk_sub_030c9c))(a1, "EVENT_ENDING", a2, a3),
+         (iVar1 = (*(code *)(&strcmp_030c9c))(a1, "EVENT_WANT_LAND", a2, a3), iVar1 == 0)) ||
+        ((((iVar1 = (*(code *)(&strcmp_030c9c))(a1, "EVENT_AFTER_ROCK_PUSH", a2, a3),
+            iVar1 == 0 || (iVar1 = (*(code *)(&strcmp_030c9c))(a1, "EVENT_LANDING", a2, a3), iVar1 == 0)) ||
+           (iVar1 = (*(code *)(&strcmp_030c9c))(a1, "EVENT_JUMP3", a2, a3), iVar1 == 0)) ||
+          (((iVar1 = (*(code *)(&strcmp_030c9c))(a1, "EVENT_JUMP1", a2, a3),
+             iVar1 == 0 || (iVar1 = (*(code *)(&strcmp_030c9c))(a1, "EVENT_JUMP2", a2, a3), iVar1 == 0)) ||
+            ((iVar1 = (*(code *)(&strcmp_030c9c))(a1, "EVENT_ENDING", a2, a3),
               iVar1 == 0 ||
-                  ((iVar1 = (*(code *)(&talk_sub_030c9c))(a1, "EVENT_QUIZ", a2, a3),
-                    iVar1 == 0 || (iVar1 = (*(code *)(&talk_sub_030c9c))(a1, "EVENT_ROCK_PUSH_INTERVAL", a2, a3),
+                  ((iVar1 = (*(code *)(&strcmp_030c9c))(a1, "EVENT_QUIZ", a2, a3),
+                    iVar1 == 0 || (iVar1 = (*(code *)(&strcmp_030c9c))(a1, "EVENT_ROCK_PUSH_INTERVAL", a2, a3),
                                    iVar1 == 0)))))))))) {
         uVar2 = 5;
     } else {
@@ -468,11 +468,10 @@ u32 talk_event_priority(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * talk_sub_030c9c  0x8c030c9c
- * area name: sits between talk functions (same compilation unit)
+ * strcmp_030c9c  0x8c030c9c
  * called by: talk_event_priority
  */
-u32 talk_sub_030c9c(u8 *a0, u8 *a1) {
+u32 strcmp_030c9c(u8 *a0, u8 *a1) {
     u8 bVar1;
 
     do {
@@ -8749,7 +8748,7 @@ int game_sub_0384f8(int a0, u32 a1) {
     game_sub_0254d0(a0, 6, 1, 5, 0, a1, 0x8c280050, 0x8c280180, PTR_s_GRAPHICS_FROGMANLINE_8c1340e0);
     *(u8 **)(a0 + 8) = &g_8c129d04;
     Class_129938_ctor(a0 + 0x490, uVar1, ar6_00);
-    game_sub_02ff6c(a0 + 0x528, uVar1, ar6_00);
+    Class_129c24_ctor(a0 + 0x528, uVar1, ar6_00);
     Class_129cbc_ctor(a0 + 0x5c4, uVar1, ar6_00, ar7_00);
     sprintf(a0 + 0xc, uVar1, ar6_00, ar7_00, "FrogManEgg");
     *(u8 *)(a0 + 0x524) = 0xff;

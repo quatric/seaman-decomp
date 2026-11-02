@@ -4209,7 +4209,7 @@ int game_sub_087ed0(int a0, u32 a1) {
     game_sub_0254d0(a0, 4, 1, 0x15, 0, a1, 0x8c283804, 0x8c283934, PTR_s_GRAPHICS_HIGYOLINE_8c138578);
     *(u8 **)(a0 + 8) = &g_8c12a298;
     Class_129938_ctor(a0 + 0x490, uVar1, ar6_00);
-    game_sub_02ff6c(a0 + 0x528, uVar1, ar6_00);
+    Class_129c24_ctor(a0 + 0x528, uVar1, ar6_00);
     Class_129cbc_ctor(a0 + 0x5c4, uVar1, ar6_00, ar7_00);
     sprintf(a0 + 0xc, uVar1, ar6_00, ar7_00, "HigyoEgg");
     *(int *)(a0 + 0x308) = a0 + 0x528;
@@ -6070,8 +6070,8 @@ int game_sub_08b694(int a0, int a1, u32 a2, u32 a3) {
 int game_sub_08b720(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
 
-    Vec3_sub_0f4ebc(a0, a1, a2, a3);
-    game_sub_02ce58(a0 + 0x174, a1 + 0x24);
+    obj_pose_load(a0, a1, a2, a3);
+    status_load_record(a0 + 0x174, a1 + 0x24);
     copy15_in_normalize(a0 + 0x2dc, a1 + 0x58);
     (**(code **)(**(int **)(0x308 + a0) + 0x24))(*(int **)(0x308 + a0), a1 + 0x48, a2, a3);
     iVar1 = 0x460;

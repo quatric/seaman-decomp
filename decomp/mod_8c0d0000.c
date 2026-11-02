@@ -5697,11 +5697,11 @@ int Class_12bb08_sub_0d6264(int a0, u32 a1, u32 a2) {
     Vec3_ctor_zero(a0 + 0x40, a1, a2);
     ar7_00 = 0x20;
     ar6_00 = Class_12c394_dtor;
-    ar5_00 = Class_12c394_sub_0d646c;
-    vec_new_array(a0 + 0x68, Class_12c394_sub_0d646c, Class_12c394_dtor, 0x20, 4);
-    Class_12c394_sub_0d646c(a0 + 0xe8);
-    game_sub_0d63f8(a0 + 0x108);
-    Class_12c394_sub_0d646c(a0 + 0x11c);
+    ar5_00 = Class_12c394_ctor_b_wrap;
+    vec_new_array(a0 + 0x68, Class_12c394_ctor_b_wrap, Class_12c394_dtor, 0x20, 4);
+    Class_12c394_ctor_b_wrap(a0 + 0xe8);
+    Class_12c394_sub_0d63f8(a0 + 0x108);
+    Class_12c394_ctor_b_wrap(a0 + 0x11c);
     if (cVar2 == '\0') {
         *(u32 *)(a0 + 0x54) = 0x459c4000;
         uVar1 = CONCAT44(0x44bb8000, in_fr1);
@@ -5739,11 +5739,11 @@ u32 *Class_12c3a4_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0d63f8  0x8c0d63f8
- * area name: game code; nothing names its area yet
- * called by: Class_12bb08_sub_0d6264, Class_12bea8_sub_0d7af8, game_sub_102a08
+ * Class_12c394_sub_0d63f8  0x8c0d63f8
+ * area name: only called from Class_12c394 methods
+ * called by: Class_12bb08_sub_0d6264, Class_12bea8_sub_0d7af8, Class_12c394_ctor_b
  */
-u32 game_sub_0d63f8(u32 a0) {
+u32 Class_12c394_sub_0d63f8(u32 a0) {
     u32 uVar1;
 
     uVar1 = game_sub_10291c(a0);
@@ -5773,14 +5773,14 @@ u32 *Class_12c394_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12c394_sub_0d646c  0x8c0d646c
- * area name: sits between Class_12c394 functions (same compilation unit)
+ * Class_12c394_ctor_b_wrap  0x8c0d646c
+ * only calls Class_12c394_ctor_b
  * called by: Class_12bb08_sub_0d6264
  */
-u32 Class_12c394_sub_0d646c(u32 a0) {
+u32 Class_12c394_ctor_b_wrap(u32 a0) {
     u32 uVar1;
 
-    uVar1 = game_sub_102a08(a0);
+    uVar1 = Class_12c394_ctor_b(a0);
     return uVar1;
 }
 
@@ -7462,8 +7462,8 @@ u32 Class_12bea8_m3_0d7ac0(int a0) {
 int Class_12bea8_sub_0d7af8(int a0, u32 a1, u32 a2) {
     u32 ar5_00;
     ar5_00 = a1;
-    game_sub_0d63f8(a0 + 0x1c);
-    game_sub_0d63f8(a0 + 0x30);
+    Class_12c394_sub_0d63f8(a0 + 0x1c);
+    Class_12c394_sub_0d63f8(a0 + 0x30);
     set_fields_c_10(a0, ar5_00, a2);
     Class_12bea8_sub_0d7dcc(a0);
     return a0;
@@ -7829,7 +7829,7 @@ u32 *Class_12b580_sub_0d7f18(u32 *a0, u32 a1, u32 a2) {
     Vec3_ctor_zero(a0 + 2, a1, a2);
     Vec3_ctor_zero(a0 + 6, a1, a2);
     Vec3_set_zero(a0 + 10);
-    game_sub_102800(a0 + 0xd);
+    color_set_white(a0 + 0xd);
     game_sub_0d7688(a0 + 0x14);
     Class_12bea8_sub_0d7af8(a0 + 0x1e, a0 + 0x2f, 500);
     vec_new_array(a0 + 0x2f, game_sub_0d77d8, Class_12bea8_dtor, 0x38, 500);
@@ -9771,11 +9771,11 @@ u32 game_sub_0d990c(u32 a0, u32 a1) {
 }
 
 /*
- * game_sub_0d99b8  0x8c0d99b8
- * area name: game code; nothing names its area yet
+ * color_set_white_a0  0x8c0d99b8
+ * r, g, b = 1.0 and the fourth word 0
  * called by: game_sub_0de6d0, game_sub_0deb60, game_sub_0def78, game_sub_0df250, game_sub_0df668
  */
-u32 *game_sub_0d99b8(u32 *a0) {
+u32 *color_set_white_a0(u32 *a0) {
     *a0 = 0x3f800000;
     a0[2] = 0x3f800000;
     a0[1] = 0x3f800000;
@@ -13407,7 +13407,7 @@ u32 game_sub_0de6d0(int a0, u32 a1, u32 a2, u32 a3) {
         g_8c437e20 = '\x01';
     }
     puVar5 = &uStack_20;
-    game_sub_0d99b8(puVar5);
+    color_set_white_a0(puVar5);
     if (*(int *)(a0 + 0x1024) != 0) {
         CEnv_set_texlist(puVar5, a1, a2);
         Class_129808_draw(a0 + 0x1028, a1, a2, a3);
@@ -13613,7 +13613,7 @@ u32 game_sub_0deb60(int a0, u32 a1, u32 a2, u32 a3) {
     cVar10 = '\0';
     cVar9 = '\0';
     puVar5 = &uStack_20;
-    game_sub_0d99b8(puVar5);
+    color_set_white_a0(puVar5);
     if (*(int *)(a0 + 0x1024) != 0) {
         CEnv_set_texlist(puVar5, a1, a2);
         Class_129808_draw(a0 + 0x1028, a1, a2, a3);
@@ -13800,7 +13800,7 @@ u32 game_sub_0def78(int a0, u32 a1, u32 a2, u32 a3) {
 
     cVar7 = '\0';
     puVar4 = &uStack_1c;
-    game_sub_0d99b8(puVar4);
+    color_set_white_a0(puVar4);
     if (*(int *)(a0 + 0x1024) != 0) {
         CEnv_set_texlist(puVar4, a1, a2);
         Class_129808_draw(a0 + 0x1028, a1, a2, a3);
@@ -13905,7 +13905,7 @@ u32 game_sub_0df250(int a0, u32 a1, u32 a2, u32 a3) {
 
     cVar11 = '\0';
     cVar10 = '\0';
-    game_sub_0d99b8(&uStack_20);
+    color_set_white_a0(&uStack_20);
     Vec3_ctor_zero(&uStack_30, a1, a2);
     if (cVar11 == '\0') {
         uStack_30 = *(u32 *)(a0 + 0x22d4c);
@@ -14097,7 +14097,7 @@ u32 game_sub_0df668(int a0, u32 a1, u32 a2, u32 a3) {
     int iStack_10;
 
     cVar8 = '\0';
-    game_sub_0d99b8(&uStack_1c);
+    color_set_white_a0(&uStack_1c);
     Vec3_ctor_zero(&uStack_2c, a1, a2);
     if (cVar8 == '\0') {
         uStack_2c = *(u32 *)(a0 + 0x22d4c);

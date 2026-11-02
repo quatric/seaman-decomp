@@ -4353,7 +4353,7 @@ u32 ADXSTM_sub_26346e(int a0) {
     } else {
         *(u8 *)(a0 + 1) = 2;
         *(u32 *)(a0 + 0x34) = 0;
-        uVar1 = ADXSTM_sub_2634dc(a0, 0);
+        uVar1 = ADXSTM_get_read_pos(a0, 0);
         *(u32 *)(a0 + 0xc) = uVar1;
     }
     return 1;
@@ -4374,7 +4374,7 @@ u32 ADXSTM_sub_263472(u32 a0) {
     } else {
         *(u8 *)(unaff_r14 + 1) = 2;
         *(u32 *)(unaff_r14 + 0x34) = 0;
-        uVar1 = ADXSTM_sub_2634dc(a0, 0);
+        uVar1 = ADXSTM_get_read_pos(a0, 0);
         *(u32 *)(unaff_r14 + 0xc) = uVar1;
     }
     return 1;
@@ -4403,11 +4403,11 @@ u32 ADXSTM_sub_263498(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ADXSTM_sub_2634dc  0x8c2634dc
- * area name: sits between ADXSTM functions (same compilation unit)
+ * ADXSTM_get_read_pos  0x8c2634dc
+ * read position of the stream's file (+8) relative to its start (+0x10); 0 without a file
  * called by: ADXSTM_sub_26346e, ADXSTM_sub_263472, ADXSTM_sub_263534, ADXSTM_sub_2635a4, cri_sub_263768
  */
-int ADXSTM_sub_2634dc(int a0, u32 a1) {
+int ADXSTM_get_read_pos(int a0, u32 a1) {
     int iVar1;
 
     if (*(int *)(a0 + 8) != 0) {
@@ -4452,7 +4452,7 @@ u32 ADXSTM_sub_263534(int a0, int a1) {
     uVar2 = 0;
     iVar1 = *(int *)(a0 + 0x10) + iVar1;
     gdfs_sub_1f3122(*(u32 *)(a0 + 8), iVar1, 0);
-    uVar2 = ADXSTM_sub_2634dc(a0, iVar1);
+    uVar2 = ADXSTM_get_read_pos(a0, iVar1);
     return uVar2;
 }
 
@@ -4534,13 +4534,13 @@ int ADXSTM_sub_2635a4(int a0, int a1, u8 *a2, u8 *a3) {
             uVar5 = 0;
             a2 = auStack_20;
             (**(code **)(*a4 + 0x1c))(a4, 0, a2, a3);
-            iVar1 = ADXSTM_sub_2634dc(a0, uVar5);
+            iVar1 = ADXSTM_get_read_pos(a0, uVar5);
             if ((iVar1 == *(int *)(a0 + 0x30)) && (*(int *)(a0 + 0x38) != 0)) {
                 (**(code **)(a0 + 0x38))(*(u32 *)(a0 + 0x3c), uVar5, a2, a3);
             }
             *(int *)(a0 + 0x34) = *(int *)(a0 + 0x34) + iVar6;
             *(u8 *)(a0 + 2) = 0;
-            iVar1 = ADXSTM_sub_2634dc(a0, uVar5);
+            iVar1 = ADXSTM_get_read_pos(a0, uVar5);
             iVar6 = *(int *)(a0 + 0x14) + 0x7ff;
             if (iVar6 < 0) {
                 iVar6 = *(int *)(a0 + 0x14) + 0xffe;
@@ -4571,7 +4571,7 @@ int ADXSTM_sub_2635a4(int a0, int a1, u8 *a2, u8 *a3) {
                     iVar6 = iVar6 + 0x7ff;
                 }
                 iVar3 = *(int *)(a0 + 0x30);
-                iVar2 = ADXSTM_sub_2634dc(a0, uVar5);
+                iVar2 = ADXSTM_get_read_pos(a0, uVar5);
                 iVar4 = iVar3 - iVar2;
                 if (iVar6 >> 0xb < iVar3 - iVar2) {
                     iVar4 = iVar6 >> 0xb;
@@ -4674,7 +4674,7 @@ int get_field_1_s8_263746(int a0) {
 u32 cri_sub_263768(int a0, int *a1) {
     int iVar1;
 
-    iVar1 = ADXSTM_sub_2634dc(a0, a1);
+    iVar1 = ADXSTM_get_read_pos(a0, a1);
     *a1 = iVar1 - *(int *)(a0 + 0xc);
     return 1;
 }
@@ -11814,12 +11814,12 @@ u32 mwRna_set_play_sw(int a0, int a1, u32 a2, u32 a3) {
     iVar2 = a1;
     sd_irq_disable(auStack_c);
     if (iVar2 == 0) {
-        iVar2 = mwRna_sub_269a56(a0);
+        iVar2 = mwRna_is_output_on(a0);
         if (iVar2 != 0) {
             (**(code **)(**(int **)(a0 + 0x38) + 0x14))(*(int **)(a0 + 0x38), a1, a2, a3);
             *(u8 *)(a0 + 1) = *(u8 *)(a0 + 1) & 5;
         }
-    } else if ((iVar2 == 1) && (iVar2 = mwRna_sub_269a56(a0), iVar2 != 1)) {
+    } else if ((iVar2 == 1) && (iVar2 = mwRna_is_output_on(a0), iVar2 != 1)) {
         (**(code **)(**(int **)(a0 + 0x38) + 0x10))(*(int **)(a0 + 0x38), a1, a2, a3);
         *(u8 *)(a0 + 1) = *(u8 *)(a0 + 1) | 2;
     }
@@ -11990,7 +11990,7 @@ u32 mwRna_sub_2694a4(int a0, u32 unused_a1, u32 a2, u32 a3) {
             *(u8 *)(a0 + 6) = 0;
         }
     }
-    iVar2 = mwRna_sub_269a56(a0);
+    iVar2 = mwRna_is_output_on(a0);
     if (iVar2 == 1) {
         sd_sub_268ea8(a0, unused_a1, a2, a3);
     }
@@ -12000,7 +12000,7 @@ u32 mwRna_sub_2694a4(int a0, u32 unused_a1, u32 a2, u32 a3) {
             goto LAB_8c26958c;
         iVar2 = mwRna_sub_269244(a0, unused_a1, a2, a3);
     } else {
-        iVar2 = mwRna_sub_269a56(a0);
+        iVar2 = mwRna_is_output_on(a0);
         if ((iVar2 != 1) || (*(int *)(a0 + 0x28) <= *(int *)(a0 + 0x54)))
             goto LAB_8c26958c;
         if ((*(char *)(a0 + 5) == '\x01') && (iVar2 = sd_sub_268e1a(a0, unused_a1, a2, a3), iVar2 == 1)) {
@@ -12076,7 +12076,7 @@ u32 mwRna_sub_26962c(int a0, u32 a1, u32 a2, u32 a3) {
     } else {
         sd_irq_disable(&stack0xfffffff0);
         if (*(char *)(a0 + 7) == '\0') {
-            iVar2 = mwRna_sub_269a56(a0);
+            iVar2 = mwRna_is_output_on(a0);
             uVar3 = mwRna_is_playing(a0);
             *(u32 *)(a0 + 0x88) = iVar2 << 1 | uVar3;
             sd_sub_268ea8(a0, a1, a2, a3);
@@ -12218,7 +12218,7 @@ u32 mwRnaDiscardData(int a0, int a1, u8 *a2, u8 *a3) {
     if (a0 == 0) {
         s0 = "E1205:Illigal parameter (MWRNA=NULL)";
     } else {
-        iVar1 = mwRna_sub_269a56(a0);
+        iVar1 = mwRna_is_output_on(a0);
         if (iVar1 != 1) {
             if (iVar3 < 1) {
                 return 0;
@@ -12348,12 +12348,12 @@ u32 mwRna_is_playing(int a0) {
 }
 
 /*
- * mwRna_sub_269a56  0x8c269a56
- * name hint from a string it uses: E1205 Illigal parameter MWRN; area name: sits between mwRna functions (same
- * compilation unit) called by: mwRnaDiscardData, mwRna_set_play_sw, mwRna_sub_2694a4, mwRna_sub_26962c strings:
- * "E1205:Illigal parameter (MWRNA=NULL)"
+ * mwRna_is_output_on  0x8c269a56
+ * bit 1 of +1 of an mwRna handle; -1 for NULL
+ * called by: mwRnaDiscardData, mwRna_set_play_sw, mwRna_sub_2694a4, mwRna_sub_26962c
+ * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
-u32 mwRna_sub_269a56(int a0) {
+u32 mwRna_is_output_on(int a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -12971,8 +12971,8 @@ u32 sd_sub_26a130(int a0, u32 a1) {
 
 /*
  * debug_printf  0x8c26a14e
- * called by: mwRnaDiscardData, mwRnaPause, mwRnaSetFx, mwRnaSetNumChan, mwRna_is_playing, mwRna_set_play_sw,
- * mwRna_sub_2690d8, mwRna_sub_269244 (+47 more)
+ * called by: mwRnaDiscardData, mwRnaPause, mwRnaSetFx, mwRnaSetNumChan, mwRna_is_output_on, mwRna_is_playing,
+ * mwRna_set_play_sw, mwRna_sub_2690d8 (+47 more)
  */
 u32 debug_printf(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s4) {
     u32 uVar1;

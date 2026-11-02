@@ -60,8 +60,8 @@ int game_sub_0f3ebc(int a0, u32 a1, u32 a2) {
     Vec3_ctor_zero(a0 + 0x40, a1, a2);
     Vec3_set_zero(a0 + 0x50);
     Vec3_set_one(a0 + 0x5c);
-    game_sub_102800(a0 + 0x80);
-    game_sub_102800(a0 + 0x90);
+    color_set_white(a0 + 0x80);
+    color_set_white(a0 + 0x90);
     game_sub_0f78d8(a0 + 0xa0, a1, a2);
     game_sub_0f50b4(a0);
     return a0;
@@ -140,8 +140,8 @@ int game_sub_0f4040(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     Vec3_ctor_zero(a0 + 0x40, ar5_00, ar6_00);
     Vec3_set_zero(a0 + 0x50);
     Vec3_set_one(a0 + 0x5c);
-    game_sub_102800(a0 + 0x80);
-    game_sub_102800(a0 + 0x90);
+    color_set_white(a0 + 0x80);
+    color_set_white(a0 + 0x90);
     game_sub_0f78d8(a0 + 0xa0, ar5_00, ar6_00);
     game_sub_0f50b4(a0);
     *(u32 *)(a0 + 0x24) = a1;
@@ -1022,12 +1022,12 @@ u32 vcall_field_8_slot13(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0f4c0c  0x8c0f4c0c
- * area name: game code; nothing names its area yet
- * called by: Class_12a7f4_sub_09aaac, Class_12a990_sub_09c79c, Class_12ad50_sub_0a538c, Class_12bec0_sub_0f5de8,
- * game_sub_027394
+ * set_state_flag_40_74  0x8c0f4c0c
+ * clears bits 4, 5 and sets bit 6 of the flags at +0x74
+ * called by: Class_12bec0_sub_0f5de8, game_sub_027394, set_state_flag_40_74_wrap, set_state_flag_40_74_wrap_09c79c,
+ * set_state_flag_40_74_wrap_0a538c
  */
-u32 game_sub_0f4c0c(int a0) {
+u32 set_state_flag_40_74(int a0) {
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) & 0xffffffbf;
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) & 0xffffffef;
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) & 0xffffffdf;
@@ -1226,11 +1226,11 @@ u32 obj_state_load(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * Vec3_sub_0f4ebc  0x8c0f4ebc
- * area name: sits between Vec3 functions (same compilation unit)
+ * obj_pose_load  0x8c0f4ebc
+ * loads a pose record (a word, two Vec3s, flags) from a1 into a0
  * called by: CAnimal_sub_028da8, Class_12a990_sub_09c820, game_sub_08b720, game_sub_09ad94, game_sub_0a5674
  */
-u32 Vec3_sub_0f4ebc(int a0, u32 *a1, u32 a2, u32 a3) {
+u32 obj_pose_load(int a0, u32 *a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 0x24) = *a1;
     vec3_copy_8c023d8c(a0 + 0x50, a1 + 1, a2, a3);
     Vec3_assign_copy(a0 + 0x5c, a1 + 4);
@@ -1258,11 +1258,11 @@ u32 obj_state_save(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0f4fa4  0x8c0f4fa4
- * area name: game code; nothing names its area yet
- * called by: Class_12a990_sub_09c8d8, game_sub_02903c, game_sub_09ae4c, game_sub_0a572c, game_sub_0f5fbc
+ * obj_pose_save  0x8c0f4fa4
+ * saves a0's pose into the record a1 (inverse of obj_pose_load)
+ * called by: Class_12a990_sub_09c8d8, game_sub_02903c, game_sub_09ae4c, game_sub_0a572c, obj_pose_save_wrap
  */
-u32 game_sub_0f4fa4(int a0, u32 *a1, u32 a2, u32 a3) {
+u32 obj_pose_save(int a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     *a1 = *(u32 *)(a0 + 0x24);
@@ -2072,7 +2072,7 @@ u32 Class_12bec0_sub_0f5d98(int a0) {
 int Class_12bec0_sub_0f5de8(int a0) {
     int iVar1;
 
-    game_sub_0f4c0c(a0);
+    set_state_flag_40_74(a0);
     iVar1 = 0x1cc;
     *(u32 *)(0x1cc + a0) = 0;
     return iVar1;
@@ -2221,13 +2221,13 @@ u32 noop_0f5fb8(void) {
 }
 
 /*
- * game_sub_0f5fbc  0x8c0f5fbc
- * area name: game code; nothing names its area yet
+ * obj_pose_save_wrap  0x8c0f5fbc
+ * only calls obj_pose_save
  */
-u32 game_sub_0f5fbc(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 obj_pose_save_wrap(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = game_sub_0f4fa4(a0, a1, a2, a3);
+    uVar1 = obj_pose_save(a0, a1, a2, a3);
     return uVar1;
 }
 
@@ -4884,7 +4884,7 @@ u32 game_sub_0f9774(int a0, u32 unused_a1, code *a2, u32 a3) {
             if ((((int)pcVar2 < 0x13) && (ar5_00 = (code *)0x1, *(int *)(*(int *)(a0 + 0x1050) + 0x78) != 1)) &&
                 (ar5_00 = *(code **)(a0 + 0x1048), (int)pcVar2 <= (int)*(code **)(a0 + 0x1048))) {
                 a2 = (code *)&g_8c140ba6;
-                game_sub_0fa204(a0, pcVar2, &g_8c140ba6, a3);
+                speech_start_chapter(a0, pcVar2, &g_8c140ba6, a3);
                 uVar4 = 1;
                 ar5_00 = pcVar2;
             }
@@ -5091,7 +5091,7 @@ u32 game_sub_0f9774(int a0, u32 unused_a1, code *a2, u32 a3) {
                     ar5_00 = *(code **)(a0 + 0x1048);
                 }
                 a2 = (code *)&g_8c140ba6;
-                game_sub_0fa204(a0, ar5_00, &g_8c140ba6, a3);
+                speech_start_chapter(a0, ar5_00, &g_8c140ba6, a3);
                 uVar4 = 1;
             }
             break;
@@ -5139,7 +5139,7 @@ u32 game_sub_0f9774(int a0, u32 unused_a1, code *a2, u32 a3) {
                     iVar1 = libgcc_divide_helper_01031c(uVar5, 4, a2);
                     if (iVar1 == 0) {
                         a2 = (code *)&g_8c140bb9;
-                        game_sub_0fa204(a0, pcVar2, &g_8c140bb9, a3);
+                        speech_start_chapter(a0, pcVar2, &g_8c140bb9, a3);
                         uVar4 = 1;
                         ar5_00 = pcVar2;
                     }
@@ -5151,10 +5151,10 @@ u32 game_sub_0f9774(int a0, u32 unused_a1, code *a2, u32 a3) {
                     if (600 < uStack_2c) {
                         if (*(int *)(a0 + 0x1034) == 1) {
                             a2 = (code *)&g_8c140bb9;
-                            game_sub_0fa204(a0, pcVar2, &g_8c140bb9, a3);
+                            speech_start_chapter(a0, pcVar2, &g_8c140bb9, a3);
                         } else {
                             a2 = (code *)&g_8c140a98;
-                            game_sub_0fa204(a0, pcVar2, &g_8c140a98, a3);
+                            speech_start_chapter(a0, pcVar2, &g_8c140a98, a3);
                         }
                         ar5_00 = game_sub_0fc40c;
                         game_sub_0fc40c(a0 + 0x1054, game_sub_0fc40c, a2, a3);
@@ -5174,12 +5174,12 @@ LAB_8c0fa1a8:
 }
 
 /*
- * game_sub_0fa204  0x8c0fa204
- * name hint from a string it uses: CHAPTER 02d; area name: game code; nothing names its area yet
+ * speech_start_chapter  0x8c0fa204
+ * sets up the speech player for "CHAPTER%02d" (a1) with the line a2
  * called by: game_sub_0f9774
  * strings: "CHAPTER%02d"
  */
-u32 game_sub_0fa204(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 speech_start_chapter(int a0, u32 unused_a1, u32 a2, u32 a3) {
     sprintf(*(u32 *)(a0 + 0x1050), unused_a1, a2, a3, "CHAPTER%02d");
     strcpy(*(int *)(a0 + 0x1050) + 0x20, *(u32 *)(a0 + 0x1050));
     strcat(*(int *)(a0 + 0x1050) + 0x20, &g_8c140bc9);
@@ -7490,7 +7490,7 @@ int game_sub_0fd8d0(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * game_sub_0fda28  0x8c0fda28
  * area name: game code; nothing names its area yet
- * called by: game_sub_0fa204, game_sub_0fc94c
+ * called by: game_sub_0fc94c, speech_start_chapter
  */
 u32 game_sub_0fda28(int a0, int a1) {
     for (; a1 < 0x10; a1 = a1 + 1) {

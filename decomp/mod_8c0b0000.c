@@ -5369,7 +5369,7 @@ u32 game_sub_0b95a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
         puVar2 = (u8 *)malloc_thunk_wrap_10287c(0x3c, uVar5, a2, a3);
         puStack_120 = puVar2;
         if (puVar2 == NULL) {
-            game_sub_10289c(&iStack_11c, uVar5, a2, a3);
+            free_ptr_and_clear(&iStack_11c, uVar5, a2, a3);
             uVar1 = 0;
         } else {
             uVar1 = 0;
@@ -5389,8 +5389,8 @@ u32 game_sub_0b95a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                 iVar4 = memcmp(puVar2, ar5_00, 10);
                 if (iVar4 != 0) {
                     shinobi_sub_1f710c(puVar2, ar5_00, uVar5, ar7_00, ain0);
-                    game_sub_10289c(&iStack_11c, ar5_00, uVar5, ar7_00);
-                    game_sub_10289c(&puStack_120, ar5_00, uVar5, ar7_00);
+                    free_ptr_and_clear(&iStack_11c, ar5_00, uVar5, ar7_00);
+                    free_ptr_and_clear(&puStack_120, ar5_00, uVar5, ar7_00);
                     return 0;
                 }
                 puVar2 = auStack_118;
@@ -5399,8 +5399,8 @@ u32 game_sub_0b95a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                 iVar4 = iStack_a0;
             }
             shinobi_sub_1f710c(iVar4, puVar2, uVar5, ar7_00, ain0);
-            game_sub_10289c(&iStack_11c, puVar2, uVar5, ar7_00);
-            game_sub_10289c(&puStack_120, puVar2, uVar5, ar7_00);
+            free_ptr_and_clear(&iStack_11c, puVar2, uVar5, ar7_00);
+            free_ptr_and_clear(&puStack_120, puVar2, uVar5, ar7_00);
         }
     }
     return uVar1;

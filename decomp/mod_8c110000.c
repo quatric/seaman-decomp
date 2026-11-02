@@ -10993,14 +10993,14 @@ u32 asr_sub_11c47c(u32 a0, u32 unused_a1, u32 a2) {
     if (unaff_r12 == 0) {
     LAB_8c11c4a6:
         if ((u8)a2 != 0) {
-            uVar1 = asr_sub_11c972(a0, (u32)(u8)a2, 4);
+            uVar1 = asr_calloc_wrap(a0, (u32)(u8)a2, 4);
             *(u32 *)(unaff_r14 + 0x5c) = uVar1;
             if (*(int *)(unaff_r14 + 0x5c) == 0)
                 goto LAB_8c11c4ca;
         }
         uVar1 = 0;
     } else {
-        uVar1 = asr_sub_11c972(a0, (u32)unaff_r12, 8);
+        uVar1 = asr_calloc_wrap(a0, (u32)unaff_r12, 8);
         *(u32 *)(unaff_r14 + 0x54) = uVar1;
         if (*(int *)(unaff_r14 + 0x54) != 0)
             goto LAB_8c11c4a6;
@@ -11208,11 +11208,11 @@ int asr_sub_11c86c(int a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 s0) {
 }
 
 /*
- * asr_sub_11c914  0x8c11c914
- * area name: in the asr library code range
- * called by: asr_sub_11c972, asr_sub_11ce8e, asr_sub_120f04, asr_sub_1213d0
+ * asr_calloc  0x8c11c914
+ * allocates a1 * a2 bytes through the object's allocator (+0x14) and clears them
+ * called by: asr_calloc_wrap, asr_sub_11ce8e, asr_sub_120f04, asr_sub_1213d0
  */
-int asr_sub_11c914(int a0, int a1, int a2, u32 a3) {
+int asr_calloc(int a0, int a1, int a2, u32 a3) {
     int ar4_00;
 
     ar4_00 = (**(code **)(a0 + 0x14))(a1 * a2, a3, a2, a3);
@@ -11223,20 +11223,20 @@ int asr_sub_11c914(int a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * asr_sub_11c972  0x8c11c972
- * area name: in the asr library code range
+ * asr_calloc_wrap  0x8c11c972
+ * only calls asr_calloc
  * called by: asr_sub_11c47c
  */
-u32 asr_sub_11c972(int a0, u32 a1, u32 a2) {
+u32 asr_calloc_wrap(int a0, u32 a1, u32 a2) {
     u32 uVar1;
 
-    uVar1 = asr_sub_11c914(*(u32 *)(0xfc + a0), a1, a2, 0xf4 + a0);
+    uVar1 = asr_calloc(*(u32 *)(0xfc + a0), a1, a2, 0xf4 + a0);
     return uVar1;
 }
 
 /*
  * asr_sub_11c99a  0x8c11c99a
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_11e534, asr_sub_11ec7c
  */
 u32 asr_sub_11c99a(int a0, u32 a1) {
@@ -11254,7 +11254,7 @@ u32 asr_sub_11c99a(int a0, u32 a1) {
 
 /*
  * asr_sub_11c9a0  0x8c11c9a0
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_11c9a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
@@ -11272,12 +11272,12 @@ u32 asr_sub_11c9a0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_11c9d2  0x8c11c9d2
- * area name: in the asr library code range
+ * asr_check_object  0x8c11c9d2
+ * 6 for NULL, 0x12 when the magic (+0x38) is not 0x1b9813f5, records error 2 when the checksum (+4) no longer matches
  * called by: asr_sub_11ca28, asr_sub_11cd4e, asr_sub_11ce44, asr_sub_11ce8e, asr_sub_11e2de, asr_sub_11e8d6,
  * lib11c_check_handle, lib11c_take_error
  */
-u32 asr_sub_11c9d2(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 asr_check_object(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
 
@@ -11297,7 +11297,7 @@ u32 asr_sub_11c9d2(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_11c9d6  0x8c11c9d6
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_11c9d6(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -11333,7 +11333,7 @@ u32 lib11c_check_handle(int a0, u32 unused_a1, u32 a2, u32 a3) {
         return 6;
     }
     if (*(int *)(0xf0 + a0) == 0x218df4f5) {
-        iVar1 = asr_sub_11c9d2(*(u32 *)(0xfc + a0), unused_a1, a2, a3);
+        iVar1 = asr_check_object(*(u32 *)(0xfc + a0), unused_a1, a2, a3);
         if (iVar1 != 0) {
             return 1;
         }
@@ -11366,7 +11366,7 @@ u32 asr_sub_11ca28(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
         return 6;
     }
     if (*(int *)(0xf0 + unaff_r14) == 0x218df4f5) {
-        iVar1 = asr_sub_11c9d2(*(u32 *)(0xfc + unaff_r14), a1, a2, a3);
+        iVar1 = asr_check_object(*(u32 *)(0xfc + unaff_r14), a1, a2, a3);
         if (iVar1 != 0) {
             return 1;
         }
@@ -11564,7 +11564,7 @@ u32 asr_sub_11cc2c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * lib11c_set_error  0x8c11cd02
  * records error a1 if none is set, under the handle's lock callbacks
- * called by: asr_sub_11c9d2, asr_sub_11c9d6, asr_sub_11ca28, asr_sub_11cad4, asr_sub_11cada, asr_sub_11cb54,
+ * called by: asr_check_object, asr_sub_11c9d6, asr_sub_11ca28, asr_sub_11cad4, asr_sub_11cada, asr_sub_11cb54,
  * asr_sub_11cb5a, asr_sub_11ce8e (+14 more)
  */
 u32 lib11c_set_error(int *a0, int a1, u32 a2, u32 a3) {
@@ -11590,7 +11590,7 @@ u32 lib11c_take_error(u32 *a0, int a1, u32 a2, u32 a3) {
     uVar3 = 0x80000000;
     iVar2 = a1;
     if ((a1 == 0) || (iVar1 = lib11c_check_handle(a1, a1, a2, a3), iVar1 != 0)) {
-        iVar2 = asr_sub_11c9d2(a0, iVar2, a2, a3);
+        iVar2 = asr_check_object(a0, iVar2, a2, a3);
         if (iVar2 == 0) {
             uVar3 = 0x12;
         } else {
@@ -11617,7 +11617,7 @@ u32 asr_sub_11cd4e(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     int unaff_r13;
 
     if ((unaff_r12 == 0) || (iVar1 = lib11c_check_handle(unaff_r12, unused_a1, a2, a3), iVar1 != 0)) {
-        iVar1 = asr_sub_11c9d2(a0, unused_a1, a2, a3);
+        iVar1 = asr_check_object(a0, unused_a1, a2, a3);
         if (iVar1 == 0) {
             uVar2 = 0x12;
         } else {
@@ -11682,7 +11682,7 @@ u32 asr_sub_11cdb6(u32 *a0, u32 a1, u32 a2, u32 a3) {
 u32 asr_sub_11ce44(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
-    iVar1 = asr_sub_11c9d2(a0, a1, a2, a3);
+    iVar1 = asr_check_object(a0, a1, a2, a3);
     if (iVar1 != 0) {
         return 1;
     }
@@ -11750,7 +11750,7 @@ u32 asr_sub_11ce8e(int a0, u32 *a1, u32 a2, u32 a3) {
     uStack_30 = *(u32 *)((&DATA_8c127c40) + 4);
     uStack_2c = *(u32 *)((&DATA_8c127c40) + 8);
     uVar4 = a2;
-    iVar2 = asr_sub_11c9d2(a0, a1, a2, a3);
+    iVar2 = asr_check_object(a0, a1, a2, a3);
     if (iVar2 == 0) {
         if (a1 == NULL) {
             lib11c_set_error(a0, 0x13, uVar4, a3);
@@ -11762,7 +11762,7 @@ u32 asr_sub_11ce8e(int a0, u32 *a1, u32 a2, u32 a3) {
             bVar13 = (u8)((((u32)in_FPSCR_DN << 0x12 | (u32)in_FPSCR_PR << 0x13 | (u32)in_FPSCR_SZ << 0x14) &
                            0xffe7ffff & 0x100000) >>
                           0x14);
-            iVar2 = asr_sub_11c914(a0, 1, iVar7, iVar8);
+            iVar2 = asr_calloc(a0, 1, iVar7, iVar8);
             if (iVar2 == 0) {
                 lib11c_set_error(a0, 2, iVar7, iVar8);
             } else {
@@ -12949,7 +12949,7 @@ u32 asr_sub_11e2de(int a0, int a1, int a2, u32 a3) {
     int iVar5;
 
     iVar5 = a2;
-    iVar1 = asr_sub_11c9d2(a0, a1, a2, a3);
+    iVar1 = asr_check_object(a0, a1, a2, a3);
     if (iVar1 == 0) {
         if (a1 == 0) {
             lib11c_set_error(a0, 0x13, iVar5, a3);
@@ -13257,7 +13257,7 @@ u32 asr_sub_11e8d6(int a0, int *a1, int a2, u32 a3) {
     int a6;
 
     a6 = a2;
-    iVar1 = asr_sub_11c9d2(a0, a1, a2, a3);
+    iVar1 = asr_check_object(a0, a1, a2, a3);
     if (iVar1 == 0) {
         if (a1 == NULL) {
             lib11c_set_error(a0, 0x13, a6, a3);

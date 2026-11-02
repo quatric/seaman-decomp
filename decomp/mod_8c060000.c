@@ -3750,7 +3750,7 @@ u32 Class_12a0c4_sub_0679cc(u8 **a0, u8 **a1, u8 **a2, u8 *a3) {
             if (((u32)a0[0x1d] & 0x20) == 0x20) {
                 a0[0x8c] = a0[0x8c] + 1;
                 game_sub_068890(auStack_804, a1);
-                game_sub_06af5c(a0, auStack_804);
+                time_mark_set(a0, auStack_804);
                 dtor_delete_with_ac(auStack_804, 0xffffffff, ppuVar9, a3);
                 if (g_8c2804e0 == (u8 *)0x1) {
                     a3 = (u8 *)0xe;
@@ -3877,7 +3877,7 @@ u32 Class_12a0c4_sub_0679cc(u8 **a0, u8 **a1, u8 **a2, u8 *a3) {
             dtor_delete_with_ac(auStack_2734, 0xffffffff, ppuVar9, a3);
             if (bVar1 || fVar14 <= fVar11) {
                 game_sub_068890(auStack_2f00, a1);
-                game_sub_06af5c(a0, auStack_2f00);
+                time_mark_set(a0, auStack_2f00);
                 a3 = auStack_2f00;
                 pcVar8 = dtor_delete_with_ac;
                 dtor_delete_with_ac(a3, 0xffffffff, dtor_delete_with_ac, a3);
@@ -4004,7 +4004,7 @@ u32 Class_12a0c4_sub_0679cc(u8 **a0, u8 **a1, u8 **a2, u8 *a3) {
             if (((u32)a0[0x1d] & 0x20) == 0x20) {
                 a0[0x8c] = a0[0x8c] + 1;
                 game_sub_068890(auStack_3724, a1, &switchD_8c067a30::switchdataD_8c067a50, a3);
-                game_sub_06af5c(a0, auStack_3724);
+                time_mark_set(a0, auStack_3724);
                 dtor_delete_with_ac(auStack_3724, 0xffffffff, ppuVar9, a3);
                 a3 = g_8c2804e0;
                 if (g_8c2804e0 == (u8 *)0x1) {
@@ -4742,7 +4742,7 @@ u32 Class_12a0c4_sub_068e64(int *a0, u32 a1, int *a2, u32 a3) {
             }
             a0[0x8c] = a0[0x8c] + 1;
             game_sub_068890(auStack_1f74, a1);
-            game_sub_06af5c(a0, auStack_1f74);
+            time_mark_set(a0, auStack_1f74);
             dtor_delete_with_ac(auStack_1f74, 0xffffffff, piVar5, a3);
         }
         if (cVar13 == '\0') {
@@ -5176,7 +5176,7 @@ u32 Class_12a0c4_sub_068e64(int *a0, u32 a1, int *a2, u32 a3) {
             }
             a0[0xa4] = 0;
             game_sub_068890(auStack_3048, a1);
-            game_sub_06af5c(a0, auStack_3048);
+            time_mark_set(a0, auStack_3048);
             dtor_delete_with_ac(auStack_3048, 0xffffffff, ar6_00, a3);
             piVar5 = (int *)(a0[0x8c] + 1);
             a0[0x8c] = (int)piVar5;
@@ -6697,11 +6697,11 @@ u32 game_sub_06af1c(int a0) {
 }
 
 /*
- * game_sub_06af5c  0x8c06af5c
- * area name: game code; nothing names its area yet
+ * time_mark_set  0x8c06af5c
+ * stores a1's day (+0xa2) and tick (+0xa4) at +0x264 / +0x266 (read back by elapsed_ticks_since)
  * called by: Class_12a0c4_sub_0679cc, Class_12a0c4_sub_068e64
  */
-int game_sub_06af5c(int a0, u32 a1) {
+int time_mark_set(int a0, u32 a1) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;

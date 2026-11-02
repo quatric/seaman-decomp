@@ -11516,8 +11516,8 @@ u8 *memmove_bytes(u8 *a0, u8 *a1, u32 a2) {
 
 /*
  * memset  0x8c013ff8
- * called by: ADXF_Close_like, ADXF_LoadPartition, ADXF_sub_26216c, asr_sub_10a308, asr_sub_10f22a, asr_sub_10fece,
- * asr_sub_11346c, asr_sub_11372e (+95 more)
+ * called by: ADXF_Close_like, ADXF_LoadPartition, ADXF_sub_26216c, asr_calloc, asr_sub_10a308, asr_sub_10f22a,
+ * asr_sub_10fece, asr_sub_11346c (+95 more)
  */
 u8 *memset(u8 *a0, u32 a1, u32 a2) {
     u8 *puVar1;
@@ -11869,8 +11869,8 @@ u32 libc_sub_014370(u32 a0) {
 
 /*
  * strcat  0x8c01437c
- * called by: game_sub_01da90, game_sub_01dea4, game_sub_0fa204, game_sub_0fae24, game_sub_0fbf28, malloc_sub_01e1e8,
- * ninja_sub_25a174, pack_find_entry_by_name (+6 more)
+ * called by: game_sub_01da90, game_sub_01dea4, game_sub_0fae24, game_sub_0fbf28, malloc_sub_01e1e8, ninja_sub_25a174,
+ * pack_find_entry_by_name, speech_start (+6 more)
  */
 char *strcat(char *a0, char *a1) {
     char cVar1;
@@ -20860,7 +20860,7 @@ u32 game_sub_01cbc8(u32 *a0, int a1, u32 a2, u32 a3) {
             a0[2] = 2;
         }
     }
-    puVar1 = (u32 *)shinobi_sub_1f6342();
+    puVar1 = (u32 *)maple_port_status_wrap();
     bVar2 = (*puVar1 & 0x10) != 0;
     if (!bVar2) {
         asr_sub_01d440(a0, a1, a2, a3);

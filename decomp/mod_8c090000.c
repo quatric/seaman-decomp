@@ -5860,7 +5860,7 @@ int game_sub_099e74(int a0, u32 a1) {
     game_sub_0254d0(a0, 0xb, 1, 0x17, 1, a1, 0x8c28476c, 0x8c28489c, PTR_s_GRAPHICS_MOTHLINE_8c13a9bc);
     *(u8 **)(a0 + 8) = &g_8c12a7f4;
     Class_129938_ctor(a0 + 0x490, uVar1, ar6_00);
-    game_sub_02ff6c(a0 + 0x530, uVar1, ar6_00);
+    Class_129c24_ctor(a0 + 0x530, uVar1, ar6_00);
     Class_129cbc_ctor(a0 + 0x5cc, uVar1, ar6_00, ar7_00);
     sprintf(a0 + 0xc, uVar1, ar6_00, ar7_00, "MothEgg");
     *(int *)(a0 + 0x308) = a0 + 0x530;
@@ -6300,13 +6300,13 @@ u32 Class_12a7f4_m4_09aa8c(u32 a0) {
 }
 
 /*
- * Class_12a7f4_sub_09aaac  0x8c09aaac
- * area name: sits between Class_12a7f4 functions (same compilation unit)
+ * set_state_flag_40_74_wrap  0x8c09aaac
+ * only calls set_state_flag_40_74
  */
-u32 Class_12a7f4_sub_09aaac(u32 a0) {
+u32 set_state_flag_40_74_wrap(u32 a0) {
     u32 uVar1;
 
-    uVar1 = game_sub_0f4c0c(a0);
+    uVar1 = set_state_flag_40_74(a0);
     return uVar1;
 }
 
@@ -6526,8 +6526,8 @@ u32 game_sub_09ad34(int a0, int a1, u32 a2, u32 a3) {
 u32 game_sub_09ad94(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    Vec3_sub_0f4ebc(a0, a1, a2, a3);
-    game_sub_02ce58(a0 + 0x174, a1 + 0x24);
+    obj_pose_load(a0, a1, a2, a3);
+    status_load_record(a0 + 0x174, a1 + 0x24);
     uVar1 = copy15_in_normalize(a0 + 0x2dc, a1 + 0x58);
     return uVar1;
 }
@@ -6552,7 +6552,7 @@ u32 game_sub_09adec(int a0, int a1, u32 a2, u32 a3) {
 u32 game_sub_09ae4c(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    game_sub_0f4fa4(a0, a1, a2, a3);
+    obj_pose_save(a0, a1, a2, a3);
     game_sub_02d1f4(a0 + 0x174, a1 + 0x24, a2);
     uVar1 = copy15_out(a0 + 0x2dc, a1 + 0x58);
     return uVar1;
@@ -7297,7 +7297,7 @@ int game_sub_09b8e4(int a0, u32 a1) {
     ar6_00 = Vec3_dtor;
     ar5_00 = Vec3_ctor_zero;
     vec_new_array(a0 + 0x644, Vec3_ctor_zero, Vec3_dtor, 0x10, 8);
-    game_sub_02ff6c(a0 + 0x6e4, ar5_00, ar6_00);
+    Class_129c24_ctor(a0 + 0x6e4, ar5_00, ar6_00);
     Class_129cbc_ctor(a0 + 0x780, ar5_00, ar6_00, uVar2);
     game_sub_09b508(a0 + 0x9a4);
     sprintf(a0 + 0xc, ar5_00, ar6_00, uVar2, "MushroomerEgg");
@@ -7932,13 +7932,13 @@ u32 Class_12a990_m4_09c77c(u32 a0) {
 }
 
 /*
- * Class_12a990_sub_09c79c  0x8c09c79c
- * area name: sits between Class_12a990 functions (same compilation unit)
+ * set_state_flag_40_74_wrap_09c79c  0x8c09c79c
+ * only calls set_state_flag_40_74
  */
-u32 Class_12a990_sub_09c79c(u32 a0) {
+u32 set_state_flag_40_74_wrap_09c79c(u32 a0) {
     u32 uVar1;
 
-    uVar1 = game_sub_0f4c0c(a0);
+    uVar1 = set_state_flag_40_74(a0);
     return uVar1;
 }
 
@@ -7980,8 +7980,8 @@ u32 Class_12a990_sub_09c7c0(int a0, int a1, u32 a2, u32 a3) {
 u32 Class_12a990_sub_09c820(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    Vec3_sub_0f4ebc(a0, a1, a2, a3);
-    game_sub_02ce58(a0 + 0x174, a1 + 0x24);
+    obj_pose_load(a0, a1, a2, a3);
+    status_load_record(a0 + 0x174, a1 + 0x24);
     uVar1 = copy15_in_normalize(a0 + 0x2dc, a1 + 0x58);
     return uVar1;
 }
@@ -8006,7 +8006,7 @@ u32 Class_12a990_sub_09c878(int a0, int a1, u32 a2, u32 a3) {
 u32 Class_12a990_sub_09c8d8(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    game_sub_0f4fa4(a0, a1, a2, a3);
+    obj_pose_save(a0, a1, a2, a3);
     game_sub_02d1f4(a0 + 0x174, a1 + 0x24, a2);
     uVar1 = copy15_out(a0 + 0x2dc, a1 + 0x58);
     return uVar1;

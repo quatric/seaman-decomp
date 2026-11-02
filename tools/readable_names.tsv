@@ -341,3 +341,35 @@
 8c02077c	CDCGD_request	looks request type a1 up in the pending (+0x20), failed (+0x24) and finished lists; queues it when new. 2 queued, 1 done (buffer and size returned in *s4, *s8), 0 failed
 8c02000c	CDCGD_new_request_c	creates a request of type 0xc..0xe and puts it on the pending list
 8c01ffa0	CDCGD_new_request	creates a request of another type
+8c11c9d2	asr_check_object	6 for NULL, 0x12 when the magic (+0x38) is not 0x1b9813f5, records error 2 when the checksum (+4) no longer matches
+8c11c914	asr_calloc	allocates a1 * a2 bytes through the object's allocator (+0x14) and clears them
+8c2634dc	ADXSTM_get_read_pos	read position of the stream's file (+8) relative to its start (+0x10); 0 without a file
+8c269a56	mwRna_is_output_on	bit 1 of +1 of an mwRna handle; -1 for NULL
+8c0f4c0c	set_state_flag_40_74	clears bits 4, 5 and sets bit 6 of the flags at +0x74
+8c0f4ebc	obj_pose_load	loads a pose record (a word, two Vec3s, flags) from a1 into a0
+8c0f4fa4	obj_pose_save	saves a0's pose into the record a1 (inverse of obj_pose_load)
+8c02ce58	status_load_record	sets the status fields (+0x134..+0x140 and the block at +0xa8) from the record a1
+8c02ea98	clear_fields_4_c_10_14	clears +4, +0xc, +0x10, +0x14
+8c02eaac	clear_fields_8_18_1c_20	clears +8, +0x18, +0x1c, +0x20
+8c02ff6c	Class_129c24_ctor	constructs the Class_129c70 base, then stores the vtable 0x8c129c24
+8c030c9c	strcmp		2
+8c06af5c	time_mark_set	stores a1's day (+0xa2) and tick (+0xa4) at +0x264 / +0x266 (read back by elapsed_ticks_since)
+8c10289c	free_ptr_and_clear	frees *a0 if set and clears it
+8c0c86d4	get_vec3_field_80_out	copies the three words at +0x80 to a1
+8c0c86c0	get_2_words_8c	copies the two words at +0x8c to a1
+8c0c8698	get_4_words_94	copies the four words at +0x94 to a1
+8c102a08	Class_12c394_ctor_b	constructs the base (8c0d63f8), stores the vtable 0x8c12c394 and resets the linear map
+8c102800	color_set_white	a0[0..3] = 1.0
+8c0d99b8	color_set_white_a0	r, g, b = 1.0 and the fourth word 0
+8c0fa204	speech_start_chapter	sets up the speech player for "CHAPTER%02d" (a1) with the line a2
+8c1f4a44	maple_queue_frame	adds a Maple bus frame to the DMA list: command a1 to the device on port a0 with a3 data words from a2
+8c1f55e4	maple_device_request	queues Maple command 1 (device info request) for port a0
+8c1f56b0	maple_all_status_request	queues Maple command 2 (all status request) for port a0
+8c1f566c	maple_device_reset	queues Maple command 3 (device reset) for port a0
+8c1f5628	maple_device_kill	queues Maple command 4 (device kill) for port a0
+8c1f5582	maple_get_condition	queues Maple command 9 (get condition) for function a1 of port a0
+8c1f59c8	maple_mark_last_frame	sets the end-of-list bit on the last frame descriptor
+8c1efd14	maple_port_info	the 0x18-byte device record of port a0 (0x8c4709a0)
+8c1efd26	maple_port_status	status flags of port a0
+8c1fd510	maple_device_ready	1 when a device is on logical port a0 and its status has bit 1
+8c1fd550	maple_device_ready_idle	maple_device_ready and the bus is not busy

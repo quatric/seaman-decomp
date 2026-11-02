@@ -1207,7 +1207,7 @@ u32 asr_sub_120f04(int a0, u32 a1, u32 a2, int a3) {
             piVar4[2] = 0;
             *piStack_30 = (int)piVar4;
             iVar8 = uVar3 * *(u16 *)(a0 + 0x288);
-            iVar5 = asr_sub_11c914(a4, iVar8 * 2, 1, a0 + 0xf4);
+            iVar5 = asr_calloc(a4, iVar8 * 2, 1, a0 + 0xf4);
             *piVar4 = iVar5;
             if (iVar5 == 0)
                 goto LAB_8c121104;
@@ -1215,7 +1215,7 @@ u32 asr_sub_120f04(int a0, u32 a1, u32 a2, int a3) {
             piVar4[1] = iVar8;
             a3 = a0 + 0xf4;
             cVar9 = '\0';
-            iVar5 = asr_sub_11c914(a4, (u32) * (u16 *)(a0 + 0x288) << 1, 1, a3);
+            iVar5 = asr_calloc(a4, (u32) * (u16 *)(a0 + 0x288) << 1, 1, a3);
             uVar2 = (u32)in_dr14;
             piVar4[2] = iVar5;
             if (iVar5 == 0)
@@ -1264,7 +1264,7 @@ u32 asr_sub_120f04(int a0, u32 a1, u32 a2, int a3) {
     }
     uVar2 = (**(code **)(a4 + 0x14))((u32) * (u16 *)(a0 + 0x2ac) << 2, a0 + 0xf4, a2, a3);
     *(u32 *)(a0 + 0x2a8) = uVar2;
-    uVar2 = asr_sub_11c914(a4, (u32) * (u16 *)(a0 + 0x2ac), 4, a0 + 0xf4);
+    uVar2 = asr_calloc(a4, (u32) * (u16 *)(a0 + 0x2ac), 4, a0 + 0xf4);
     *(u32 *)(a0 + 0x29c) = uVar2;
     if ((*(int *)(a0 + 0x2a8) == 0) || (*(int *)(a0 + 0x29c) == 0)) {
     LAB_8c121104:
@@ -1546,7 +1546,7 @@ u32 asr_sub_1213d0(int a0, int a1, u32 a2, u32 a3) {
     uVar5 = (**(code **)(a4 + 0x50))(a4, iVar6, a2, a3);
     iVar6 = (**(code **)(a4 + 0x94))(a4, iVar6, a2, a3);
     ar7_00 = (u32 *)(a0 + 0xf4);
-    ar4_00 = (u32 *)asr_sub_11c914(ar4_01, ain0 << 1, 4, ar7_00);
+    ar4_00 = (u32 *)asr_calloc(ar4_01, ain0 << 1, 4, ar7_00);
     puVar13 = (u32 *)(ain0 * 4);
     ar4_02 = (u32 *)((int)puVar13 + (int)ar4_00);
     memset(ar4_02, 0xff, puVar13);
