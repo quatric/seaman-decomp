@@ -5191,11 +5191,11 @@ u32 ta_fifo_213f28(float *a0) {
 }
 
 /*
- * ta_uses_switch_jump_r0_2140a4  0x8c2140a4
- * area name: sits between ta functions (same compilation unit); behaviour name: its main named callee is switch_jump_r0
+ * kamui_uses_switch_jump_r0_2140a4  0x8c2140a4
+ * area name: in the kamui library code range; behaviour name: its main named callee is switch_jump_r0
  * called by: game_init_sound_and_messages
  */
-int ta_uses_switch_jump_r0_2140a4(int a0) {
+int kamui_uses_switch_jump_r0_2140a4(int a0) {
     u8 *puVar1;
     u8 auStack_20[32];
 
@@ -5318,11 +5318,11 @@ u32 kamui_float_calc_21418e(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 }
 
 /*
- * kamui_scan_loop_2141a6  0x8c2141a6
- * area name: in the kamui library code range; behaviour name: a loop that only reads
- * called by: Vec3_uses_set_vec_0e3f24
+ * kamui_lights_transform_0d60  0x8c2141a6
+ * transforms each light of the table at 8c4c0d60 (flags +0x50: 3 bits per light) as a direction or a point into
+ * 8c4c0dc0 called by: Vec3_uses_set_vec_0e3f24
  */
-u32 kamui_scan_loop_2141a6(void) {
+u32 kamui_lights_transform_0d60(void) {
     u8 *puVar1;
     u8 *puVar2;
     u32 in_r0;
@@ -5388,7 +5388,7 @@ u32 alt_entry_2141ba(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
 /*
  * kamui_fill_loop_21423c  0x8c21423c
- * area name: in the kamui library code range; behaviour name: a loop that writes memory
+ * area name: sits between kamui functions (same compilation unit); behaviour name: a loop that writes memory
  * called by: vram_draw_218804
  */
 u32 *kamui_fill_loop_21423c(short *a0, int a1, u32 a2, u32 *a3) {
@@ -5467,7 +5467,7 @@ u32 *kamui_fill_loop_21423c(short *a0, int a1, u32 a2, u32 *a3) {
 
 /*
  * kamui_calls_fill_loop_214358  0x8c214358
- * area name: in the kamui library code range; behaviour name: its callees mostly do: fill_loop
+ * area name: sits between kamui functions (same compilation unit); behaviour name: its callees mostly do: fill_loop
  * called by: vram_draw_218804
  */
 double *kamui_calls_fill_loop_214358(short *a0, int a1, u32 a2, double *a3) {

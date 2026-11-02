@@ -1314,11 +1314,11 @@ u32 gfxlib_float_calc_2219de(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3
 }
 
 /*
- * gfxlib_scan_loop_2219f6  0x8c2219f6
- * area name: in the gfxlib library code range; behaviour name: a loop that only reads
- * called by: Vec3_uses_set_vec_0e3f24
+ * gfx_lights_transform_0e80  0x8c2219f6
+ * transforms each light of the table at 8c4c0e80 (flags +0x50: 3 bits per light) as a direction or a point into
+ * 8c4c0ee0 called by: Vec3_uses_set_vec_0e3f24
  */
-u32 gfxlib_scan_loop_2219f6(void) {
+u32 gfx_lights_transform_0e80(void) {
     u8 *puVar1;
     u8 *puVar2;
     u32 in_r0;

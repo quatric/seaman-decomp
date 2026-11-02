@@ -1600,3 +1600,128 @@
 8c0daad0	CEnv_take_out_item	removes item a1 from its per-kind node list (+0x3a8) and the item list (+0xa4), frees its slot and calls its method 100
 8c0e0320	env_load_textures_0e0320	loads all of the environment's textures (texlist, water, effects and the per-mode set at +0x13b70 or +0x13b8c)
 8c0e03d4	env_release_textures_0e03d4	releases all of the environment's textures from VRAM (the counterpart of env_load_textures_0e0320)
+8c0858e4	register_six_item_loads	creates six items (type 6/5 or 4/0x15 by a1's per-item kind) into +0x10a8 and registers each with the item loader (+0x10c0)
+8c08ab58	register_two_item_loads	creates two items (0xc/0x19 the first time, else 0xb/0x17) into +0x8ec and registers each with the item loader (+0x8f4)
+8c0abfb0	Class_12b0c4_sequence_step	at the end of a step advances the three-step sequence from the table at 8c13b2ec (row +4); step value 6 or the third step ends it
+8c0b6328	Class_12b2e8_sequence_step	at the end of a step advances the three-step sequence from the table at 8c13bb4c (row +4); step value 9 or the third step ends it
+8c0d1060	particle_pool_update_350	ramps the level at +0xeb40 up (0.05) or down (1/3600) between 0 and 100, then updates each of the 350 active 0xac-byte particles
+8c0dc990	input_stick_with_x_dispatch	runs the up/down and right/left handlers for stick moves made while X is held
+8c0f78d8	Class_12c1f0_ctor_like	builds the base (+8), the two three-entry arrays (+0x4c, +0x6c) and the three vectors (+0x8c, +0xa0, +0xb0) and clears the state
+8c0f3f58	Class_12c1f0_dtor_like	destroys what Class_12c1f0_ctor_like built, in reverse order, and frees a0 when asked
+8c101250	cursor_reset_center	puts the cursor at (320, 240), clears its motion and state and sets the 120-frame timeout value
+8c10fd82	asr_find_min_active_score	1-based index of the smallest score at +0x44 among active entries (+0x6c flags), count +0x78
+8c110b58	asr_free_table_b	frees the pointer array at [0xb] (count [0xa]) and the buffers at [0xc] and [0xd] through the allocator
+8c112ec6	asr_free_ptr_array_84	frees every pointer of the array at +0x84 (count +0x88) and then the array, through the allocator
+8c113124	asr_free_ptr_array_10c	frees every pointer of the array at +0x10c (count +0x110) and then the array, through the allocator
+8c11cad4	asr_check_handle_2d79b6f5	checks the handle's magic (0x2d79b6f5) and that its two saved values still match the owner; errors 6, 0xe, 0xf
+8c11cb54	asr_check_handle_2783d5f5	checks the handle's magic (0x2783d5f5) and that its two saved values still match the owner; errors 6, 0x10, 0x11
+8c1f0f24	req2739d8_start_mode1	starts request mode 1 (arg a1) for index a0 on the request block at g_8c2739d8; -11 not set up, -9 busy, -5 bad index
+8c1f0f60	req2739d8_start_mode2	starts request mode 2 (arg a1) for index a0 on the request block at g_8c2739d8; -11 not set up, -9 busy, -5 bad index
+8c1f6d3e	flashrom_count_mismatching_blocks	reads a1 flash blocks from a0 and counts those whose 60 bytes differ from the data at a2; -1 on a read error
+8c200bfc	date_to_bcd8	packs a date (u16 year, month, day, hour, minute, second, weekday) into 8 BCD bytes: century, year, month, day, hour, minute, second, weekday code
+8c200c82	date_from_bcd8	unpacks 8 BCD date bytes (century, year, ... weekday) into the u16-year date record
+8c2059e0	vram_addr_64_to_32	converts an offset in the 64-bit VRAM view to the matching 32-bit view address (interleaved banks)
+8c20f340	tex_size_code	texture side 8..1024 to the PVR size code 0..7
+8c23728c	ta_select_texture_cached	makes texture entry a0 current, refreshing the TSP/texture words only when the entry or its address changed; returns its height field
+8c25513c	vec3_lerp_normalize	a2 = normalize(lerp(a0, a1, t)), falling back to (0, 0, 1) for a near-zero result
+8c2663d8	sd_slot_get_field_08	reads the 16-bit value at +8 of this slot's AICA record
+8c266448	sd_slot_get_field_04	reads the word at +4 of this slot's AICA record, divided by 4
+8c266620	sd_slot_get_field_01	reads byte 1 of this slot's AICA record
+8c2665b0	sd_slot_get_field_14	reads the word at +0x14 of this slot's AICA record
+8c266e2c	sd_slot_ch_get_field_11	reads byte +0x11 of channel a1's 32-byte record in this slot's AICA block
+8c266ea8	sd_slot_ch_get_field_1c	reads the word at +0x1c of channel a1's record in this slot's AICA block
+8c266fc8	sd_slot_ch_get_field_10	reads byte +0x10 of channel a1's record in this slot's AICA block
+8c267130	sd_slot_ch_get_field_08	reads the 16-bit value at +8 of channel a1's record in this slot's AICA block
+8c2671c0	sd_slot_ch_get_field_04	reads the 16-bit value at +4 of channel a1's record in this slot's AICA block
+8c267360	sd_slot_ch_get_field_14	reads the word at +0x14 of channel a1's record in this slot's AICA block
+8c26af42	mwSnd_pow2_factor	largest power of two (up to 64) dividing a1, stored in *a2
+8c0100b0	run_static_ctors	calls each function of the static constructor table at 8c12c410 until a null entry
+8c012d5c	bytes_shr1	shifts an a1-byte big-endian number right by one bit; returns the bit shifted out
+8c012f24	memcmp_libc	compares a2 bytes of a0 and a1
+8c012a40	store_u16_be	stores the u16 at a1 as two big-endian bytes at a0
+8c013aec	libm_errno_wrap_013aec	calls libc_uses_busy_wait_5_011850 and sets errno (8c2787a8) to 0x44c for an infinite or 0x44d for a NaN result
+8c013be8	libm_errno_wrap_013be8	calls libc_float_calc_011b9c and sets errno to 0x44c for an infinite or 0x44d for a NaN result
+8c013c38	libm_errno_wrap_013c38	calls libc_uses_delay_loop_6_011e10 and sets errno to 0x44c for an infinite or 0x44d for a NaN result
+8c014294	libm_errno_wrap_014294	calls libc_uses_delay_loop_6_012328 and sets errno to 0x44c for an infinite or 0x44d for a NaN result
+8c013d78	frexpf_exponent	stores the binary exponent of fr4 (as frexp counts it) in *a0; 0 for zero, errno for inf/NaN
+8c23617c	fpu_save_fr0_fr15	stores fr0..fr15 to a0[0..15]
+8c23a8a4	camera_set_direction_to	sets the camera's (a0, or the current one) unit direction (+0x4c..+0x54) toward the point in dr4/dr6 from its position (+0x40)
+8c01a308	memcard_manager_init	marks all 128 file records unused, resets the drive and state fields and the count limit (10)
+8c01a900	memcard_poll_slot_busy	polls the memory-card slot: when idle runs the next step, else records the slot's busy result in the current record
+8c01bebc	memcard_queue_1fc740_with_date	queues request 1fc740 for the current file record with today's date; record state 3 on success, 0 on failure
+8c01bfd0	memcard_queue_1fc79e_with_date	queues request 1fc79e for the current file record with today's date; record state 3 on success, 0 on failure
+8c01c0e4	memcard_queue_1fc852_op11	queues request 1fc852 (op 0x11) for the current file record; record state 3 on success, 0 on failure
+8c1fbe12	vmu_system_shutdown	fails (-1) while any of the eight slots is active; otherwise removes the slot handler and clears the drive tables
+8c201c3e	slot16_alloc	takes the first free one of 16 16-byte records at 8c47e820 for a0; 0 when full
+8c01d440	asr_session_end	tears down the speech-recognition session for its current state (2, 3 or 4) and sets the state to 0
+8c01cc74	asr_session_open_like	opens the speech-recognition session once (state 2), keeping its two handles in 8c27926c/8c279270
+8c01ddfc	string_table_index_build	(re)allocates an array of pointers to each of the count (+4) consecutive NUL-terminated strings of the block at +0x5b3c
+8c02041c	CDCGD_open_file_retry	opens the file named at a1+0x10 with ADXF (two tries) and records its size; closes the reader on failure
+8c022918	adxt_start_afs_queued	starts the queued ADXT AFS entry (state 1 or 3 -> 2) and stores its parameters
+8c028ccc	CAnimal_state_load	loads the creature's saved state: base object state, talk state, growth values and animation (+0x308), then the +0x460/+0x468 values
+8c028f60	CAnimal_state_save	saves the creature's state: the counterpart of CAnimal_state_load
+8c032cb8	draw_line_ray	draws one line from point a1 to a1 + a2 in colour a3
+8c03a5a4	Class_12a03c_ctor	Class_129cbc base constructor, Class_12a03c vtable, eight vectors, then the state reset
+8c06e4ec	Class_12a25c_ctor	Class_129cbc base constructor, Class_12a25c vtable, eight vectors, then the state reset
+8c08dad4	Class_12a76c_ctor	Class_129cbc base constructor, Class_12a76c vtable, nine vectors, then the state reset
+8c0a6164	Class_12b088_ctor	Class_129cbc base constructor, Class_12b088 vtable, a 500-entry vector array (+0x234) and three vectors, then the state reset
+8c0afa50	Class_12b2ac_ctor	Class_129cbc base constructor, Class_12b2ac vtable, its vectors and sub-object (+0x248), then the state reset
+8c0bf338	Class_12b334_ctor	Class_12b36c base constructor, Class_12b334 vtable, and two vectors copied from the constants at 8c13be20/8c13be2c
+8c06740c	Class_12a0c4_ctor	CAnimal base constructor (kind 0xe), Class_12a0c4 vtable at +8, its members, then the state reset
+8c0a61f8	Class_12b088_reset	sets the action table (Moveto, 6 entries) and clears the motion state
+8c0afb1c	Class_12b2ac_reset	stops the timer, clears the motion state and sets the action table (9 entries at 8c13ba24)
+8c06a524	clear_globals_280998	zeroes the counters at 8c280998..8c2809a8 and the three pair tables at 8c2809b8, 8c2809fc and 8c280a38
+8c1028c0	date_compare	compares two dates as RTC seconds: 1 when a0 is later, 2 when a1 is later, 0 when equal
+8c0a0040	Class_12acc8_sequence_step	at the end of a step advances the three-step sequence from the table at 8c13adfc (row +4); step value 0xf or the third step ends it
+8c0fef10	CItemGLoader_clear_requests	takes every request out of the load request list, then resets the loader
+8c0fedf4	CItemGLoader_poll_requests	calls the load method (0xdc) of each item whose request is not done and marks it done (2) when it returns 1
+8c0cbbcc	menu_pick_option_0	on confirm selects option 0, then calls the current page's method 0x6c with option 0
+8c0cbc3c	menu_pick_option_1	on confirm selects option 1, then calls the current page's method 0x6c with option 1
+8c0cbca4	menu_pick_option_2	on confirm selects option 2, then calls the current page's method 0x6c with option 2
+8c0cbd0c	menu_pick_option_3	on confirm selects option 3, then calls the current page's method 0x6c with option 3
+8c0d56dc	sound_env_reset_ports	sets the three volumes to 0.8, stops and closes the two sound ports at +0x600 and resets the mixer bytes 8c437840..43
+8c2219f6	gfx_lights_transform_0e80	transforms each light of the table at 8c4c0e80 (flags +0x50: 3 bits per light) as a direction or a point into 8c4c0ee0
+8c2141a6	kamui_lights_transform_0d60	transforms each light of the table at 8c4c0d60 (flags +0x50: 3 bits per light) as a direction or a point into 8c4c0dc0
+8c0e8ae0	item_grid_find_free	(column, row) of the first empty cell of the 3x4 item grid at +0xa4, or (-1, -1), stored at s0
+8c236250	gfx_heap_init	sets up the 0xa5-tagged free-block heap at 8c4ab210 with one free block a0 of a1 bytes
+8c0ff730	fullscreen_quad_init	sets a 640x480 quad's corners and four opaque black colours, then builds its vertex data
+8c1fb3e0	sys_heap_init	sets up the system heap over a0 (32-byte aligned) of a1 bytes and its handler table
+8c1f62f0	device_info_table_reset	clears the 24 0x34-byte device records at 8c4727c4 and their flags
+8c11e9b4	asr_handle_destroy_2783d5f5	checks and frees a 0x2783d5f5 handle and its buffer; error 5 while it is still in use
+8c11e82c	asr_handle_destroy_2d79b6f5	checks and frees a 0x2d79b6f5 handle and its buffer; error 9 while it is still in use
+8c11e214	asr_get_first_result	checks the recogniser handle (0x218df4f5) and returns the first u16 of its result list (+0x22c)
+8c11e190	asr_get_status_3e	checks the recogniser handle (0x218df4f5) and returns its status word (+0x3e)
+8c10f69c	asr_scores_export	copies the result header (+0x28, +0x30), every score (+0x44, count +0x78) and the four trailing words into a1
+8c10f6f0	asr_scores_import	the counterpart of asr_scores_export: loads the header, the scores and the four trailing words from a1
+8c110a90	asr_sparse_matvec_plus10	for each row: a2[row] = 10.0 + the dot product of its sparse coefficients (+0x2c, lengths +0x34, start columns +0x30) with a1
+8c112482	asr_mat_alloc	sets up an a1 x a2 word matrix whose data comes from allocator a3; frees the header and returns NULL on failure
+8c1124de	asr_mat_clone	allocates a matrix of a1's shape from allocator a2 and copies a1's data into it; NULL on failure
+8c112658	asr_array_max_float	scans a0's float array (+0xc, count +8) for its largest value
+8c1132cc	asr_free_ptr_array_118	frees every pointer of the array at +0x118 (u16 count +0x11c) and then the array, and clears the fields
+8c11bb54	asr_fill_ones_34_38	sets every float of the arrays at +0x38 and +0x34 (count +0x54) to 1.0 and clears +0x28
+8c113c46	asr_free_model_buffers	frees the model's buffers through its allocator, including the ones that belong to its scoring method (+0x130)
+8c120890	asr_u16_list_dup	copies a zero-terminated list of 2-byte entries into a new block (count, 0, entries) from allocator a1
+8c1ef440	crt_init_sections	start-up: zeroes the two BSS ranges and copies the two initialised-data ranges from their load addresses
+8c1f5c9e	lib_handles_add_all	walks the 32-byte library handle records between the "Lib Handle Start" and "Lib Handle End" markers and adds each to the handler list; -1 without the start marker
+8c1f5cf6	lib_handles_remove_all_like	walks the library handle records between the start and end markers and passes each to irq_uses_irq_disable_save_1f5c04; -1 without the start marker
+8c1f099c	bitmap_find_first_set	index of the first set bit (MSB first) in a1 * 64 bytes at a0, or the bit count when none is set
+8c1f2ae2	stricmp_equal	1 when a0 and a1 are equal ignoring case, else 0
+8c1fda44	maple_ready_port_mask	bit mask of the maple ports (0..7) whose device is ready
+8c1ffebe	vmu_fat_find_first_used	index of the drive's first FAT entry that is neither free (0xfffc) nor unused (0xffff); -1 if none
+8c1fff0c	vmu_fat_find_free_from_end	searches the FAT downward from the top for a free (0xfffc) block not below a1; -1 if none
+8c1fff5e	vmu_dir_find_by_start_block	the drive's used directory entry whose first block (+2) is a1; 0 if none
+8c1fffca	vmu_fat_check_links	-1 when a FAT link points past the drive's block range, else 0
+8c2004a0	filename12_equal	1 when the two names (at most 12 characters) are equal
+8c200672	vmu_load_fat_like	reads the drive's FAT blocks into its buffer, stopping at the first error
+8c205768	rec4c_alloc_496ba8	marks and returns the first free 0x4c-byte record of the table at 8c496ba8; NULL when full
+8c2057f8	slist_remove	unlinks node a1 from the singly linked list whose head is *a0 (next at +4)
+8c205d80	pvr_fog_init_default	sets FOG_DENSITY, both fog colours (0x7f7f7f) and the 128-entry fog table to its default ramp
+8c23a21c	pvrt_gfx_stream_is_palettized	reads a PVRT header from the graphics stream; 1 for palettized pixel formats (5..8), -4 on a bad header
+8c255f96	tex_set_palette_bank	for palettized textures puts palette bank a1 into the TSP word's palette bits and records it
+8c25a33c	tex_table_init	records the texture table (a0, a1 entries of 0x44 bytes) and marks every entry empty
+8c25cebc	pvr_ta_list_init	programs the TA object-list and ISP base/limit registers for buffer a2, the tile clip (a0 x a1 tiles) and list allocation sizes, then starts TA_LIST_INIT
+8c2695e4	mwRna_server_all	with sound interrupts masked, services every active 0x90-byte mwRna handle
+8c2630cc	cri_handles_server_all_like	services every active 0x9c-byte handle of the table at 8c4b9348
+8c266c48	sd_cmd_queue_push	appends a 16-byte command (type byte and 14 data bytes) to the sound driver's queue of 32; error 0xa000001 when full
+8c265b68	sd_get_field_1a4	returns the sound driver's word at +0x1a4; error 0xd000001 when the driver is not set up
+8c2673f0	sd_slot_ch_get_field_01	reads byte 1 of channel a1's record in this slot's AICA block

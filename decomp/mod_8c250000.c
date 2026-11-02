@@ -7728,7 +7728,7 @@ u32 ninja_uses_ta_fifo_2536a8(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
                     g_8c4c11ac = g_8c4c11bc;
                     gfxlib_state_switch_23c4ba(&g_8c4aa52c);
                     uStack_24 = g_8c4ab308 & 0x3600000;
-                    gfxlib_update_fields_237370(g_8c4ab308);
+                    ta_update_fields_237370(g_8c4ab308);
                     a3 = 0x1000000;
                     a2 = 0x2000000;
                     a1 = (u8 *)0x80000;
@@ -9719,7 +9719,7 @@ int ninja_uses_libgcc_divide_helper_254fbc(int a0, int a1, int a2, u32 *a3) {
 /*
  * keyframe_pair_nj  0x8c255080
  * the Ninja library's copy of keyframe_pair
- * called by: ninja_uses_keyframe_pair_nj_2556c8
+ * called by: ninja_vec_2556c8
  */
 int keyframe_pair_nj(int a0, int a1, u32 a2, int *a3) {
     int iVar1;
@@ -9740,11 +9740,11 @@ int keyframe_pair_nj(int a0, int a1, u32 a2, int *a3) {
 }
 
 /*
- * ninja_float_calc_25513c  0x8c25513c
- * area name: in the ninja library code range; behaviour name: floating-point arithmetic
- * called by: ninja_uses_keyframe_pair_nj_2556c8
+ * vec3_lerp_normalize  0x8c25513c
+ * a2 = normalize(lerp(a0, a1, t)), falling back to (0, 0, 1) for a near-zero result
+ * called by: ninja_vec_2556c8
  */
-u32 *ninja_float_calc_25513c(float *a0, float *a1, float *a2) {
+u32 *vec3_lerp_normalize(float *a0, float *a1, float *a2) {
     float *pfVar1;
     float *pfVar2;
     float fVar3;
@@ -9776,7 +9776,7 @@ u32 *ninja_float_calc_25513c(float *a0, float *a1, float *a2) {
 /*
  * Vec3_lerp_nj  0x8c2551aa
  * a2 = lerp(a0, a1, fr4) (the Ninja library's copy)
- * called by: ninja_uses_keyframe_pair_nj_2556c8
+ * called by: ninja_vec_2556c8
  */
 u32 Vec3_lerp_nj(float *a0, float *a1, float *a2) {
     float fVar1;
@@ -10089,10 +10089,10 @@ LAB_8c25569a:
 }
 
 /*
- * ninja_uses_keyframe_pair_nj_2556c8  0x8c2556c8
- * area name: in the ninja library code range; behaviour name: its main named callee is keyframe_pair_nj
+ * ninja_vec_2556c8  0x8c2556c8
+ * area name: in the ninja library code range; behaviour name: mostly calls vec functions
  */
-u32 ninja_uses_keyframe_pair_nj_2556c8(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ninja_vec_2556c8(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -10275,7 +10275,7 @@ u32 ninja_uses_keyframe_pair_nj_2556c8(u32 *a0, u32 unused_a1, u32 unused_a2, u3
                 do {
                     a5 = (int *)(iVar11 + iStack_38);
                     a6 = (int *)(iVar11 + iVar5);
-                    ninja_float_calc_25513c(iStack_3c + iVar11, a5, a6);
+                    vec3_lerp_normalize(iStack_3c + iVar11, a5, a6);
                     iVar9 = iVar9 + 1;
                     iVar11 = iVar11 + 0xc;
                 } while (iVar9 < iVar12);
@@ -10291,7 +10291,7 @@ u32 ninja_uses_keyframe_pair_nj_2556c8(u32 *a0, u32 unused_a1, u32 unused_a2, u3
                     Vec3_lerp_nj(iStack_34 + iVar13, iStack_30 + iVar13, iVar13 + iVar5);
                     a5 = (int *)(iStack_38 + iVar13);
                     a6 = (int *)(iVar13 + iVar11);
-                    ninja_float_calc_25513c(iStack_3c + iVar13, a5, a6);
+                    vec3_lerp_normalize(iStack_3c + iVar13, a5, a6);
                     iVar9 = iVar9 + 1;
                     iVar13 = iVar13 + 0xc;
                 } while (iVar9 < iVar12);
@@ -10714,7 +10714,7 @@ u32 njOuterProduct(float *a0, float *a1, float *a2) {
 
 /*
  * ninja_draw_255f88  0x8c255f88
- * area name: sits between ninja functions (same compilation unit); behaviour name: mostly calls draw functions
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
  * called by: ninja_uses_ninja_close_file_256164
  */
 u32 ninja_draw_255f88(u32 a0) {
@@ -10728,11 +10728,11 @@ u32 ninja_draw_255f88(u32 a0) {
 }
 
 /*
- * ninja_update_fields_255f96  0x8c255f96
- * area name: sits between ninja functions (same compilation unit); behaviour name: conditionally writes members
- * called by: ninja_uses_tex_entry_find_255ff8
+ * tex_set_palette_bank  0x8c255f96
+ * for palettized textures puts palette bank a1 into the TSP word's palette bits and records it
+ * called by: tex_uses_tex_entry_find_255ff8
  */
-u32 ninja_update_fields_255f96(int a0, u32 a1) {
+u32 tex_set_palette_bank(int a0, u32 a1) {
     u32 uVar1;
     u32 uVar2;
 
@@ -10752,17 +10752,17 @@ u32 ninja_update_fields_255f96(int a0, u32 a1) {
 }
 
 /*
- * ninja_uses_tex_entry_find_255ff8  0x8c255ff8
- * area name: sits between ninja functions (same compilation unit); behaviour name: its main named callee is
+ * tex_uses_tex_entry_find_255ff8  0x8c255ff8
+ * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is
  * tex_entry_find
  */
-u32 ninja_uses_tex_entry_find_255ff8(u32 a0, u32 a1) {
+u32 tex_uses_tex_entry_find_255ff8(u32 a0, u32 a1) {
     int iVar1;
     u32 uVar2;
 
     iVar1 = tex_entry_find(g_8c277b08, g_8c277b0c, a0);
     if (-1 < iVar1) {
-        uVar2 = ninja_update_fields_255f96(iVar1 * 0x44 + g_8c277b08, a1);
+        uVar2 = tex_set_palette_bank(iVar1 * 0x44 + g_8c277b08, a1);
         return uVar2;
     }
     return iVar1;
@@ -17204,11 +17204,11 @@ u32 tex_uses_nj_seek_25a216(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * tex_fill_loop_25a33c  0x8c25a33c
- * area name: sits between tex functions (same compilation unit); behaviour name: a loop that writes memory
- * called by: ninja_calls_fill_loop_25b34a
+ * tex_table_init  0x8c25a33c
+ * records the texture table (a0, a1 entries of 0x44 bytes) and marks every entry empty
+ * called by: ninja_uses_tex_table_init_25b34a
  */
-u32 tex_fill_loop_25a33c(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 tex_table_init(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -17414,7 +17414,7 @@ int alt_entry_25a4a6(u32 *a0, u32 a1, u32 a2, int *a3, int ain0) {
  * index of the texture-table entry (0x44 bytes each, a1 of them at a0) whose id is a2; -1 if none
  * called by: alt_entry_23729c, gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
  * gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0, ninja_draw_25b08a,
- * ninja_uses_tex_entry_find_255ff8, pvr_uses_tex_entry_alloc_23a29c (+2 more)
+ * pvr_uses_tex_entry_alloc_23a29c, ta_select_texture_cached (+2 more)
  */
 u32 tex_entry_find(int a0, u32 a1, int a2) {
     u32 uVar1;
@@ -18478,16 +18478,16 @@ u32 ninja_calc_25b334(u32 a0, u32 a1) {
 }
 
 /*
- * ninja_calls_fill_loop_25b34a  0x8c25b34a
- * area name: in the ninja library code range; behaviour name: its callees mostly do: fill_loop
+ * ninja_uses_tex_table_init_25b34a  0x8c25b34a
+ * area name: in the ninja library code range; behaviour name: its main named callee is tex_table_init
  * called by: game_init
  */
-u32 *ninja_calls_fill_loop_25b34a(u32 a0, u32 a1) {
+u32 *ninja_uses_tex_table_init_25b34a(u32 a0, u32 a1) {
     u32 r6;
     u32 r7;
     u32 in_PR;
 
-    tex_fill_loop_25a33c(a0, a1, r6, r7, in_PR);
+    tex_table_init(a0, a1, r6, r7, in_PR);
     g_8c4aa5a8 = 0;
     g_8c277b24 = 2;
     g_8c277b28 = 0;
@@ -23541,11 +23541,11 @@ int ninja_calc_25ce80(int a0, u32 a1) {
 }
 
 /*
- * ninja_calc_25cebc  0x8c25cebc
- * area name: in the ninja library code range; behaviour name: integer arithmetic on its arguments
- * called by: ta_fifo_25d0a0
+ * pvr_ta_list_init  0x8c25cebc
+ * programs the TA object-list and ISP base/limit registers for buffer a2, the tile clip (a0 x a1 tiles) and list
+ * allocation sizes, then starts TA_LIST_INIT called by: ta_fifo_25d0a0
  */
-u32 ninja_calc_25cebc(int a0, int a1, int a2, u32 a3) {
+u32 pvr_ta_list_init(int a0, int a1, int a2, u32 a3) {
     u8 *puVar1;
     u32 uVar2;
     u32 uVar3;
@@ -23681,7 +23681,7 @@ int ta_fifo_25d0a0(int a0, int a1, u32 a2, u32 a3) {
     uVar18 = a2;
     if (g_8c4a9db8 == 0) {
         uVar18 = in_stack_00000000;
-        ninja_calc_25cebc(a0, a1, in_stack_00000000, a3);
+        pvr_ta_list_init(a0, a1, in_stack_00000000, a3);
     }
     uVar21 = a0 * a1;
     iVar19 = in_stack_00000000 * 0x20;
@@ -25983,8 +25983,8 @@ int cri_sound_25fca4(int a0, u32 a1, u32 a2) {
     if ((iVar2 < 0) || (iVar2 = adx_get_highpass_freq(a1, a2, a0 + 0x1c), iVar2 < 0)) {
         iVar2 = 0;
     } else {
-        (*(code *)(&vram_uses_delay_loop_6_264f52))(*(u32 *)(a0 + 8), *(u32 *)(a0 + 0x14), (int)*(short *)(a0 + 0x1c),
-                                                    ar7_00);
+        (*(code *)(&vram_uses_libm_errno_wrap_264f52))(*(u32 *)(a0 + 8), *(u32 *)(a0 + 0x14),
+                                                       (int)*(short *)(a0 + 0x1c), ar7_00);
         iVar2 = a0 + 0x24;
         (*(code *)(&ADX_test_260f02))(a1, a2, a0 + 0x20, iVar2, a0 + 0x26, a0 + 0x28, a0 + 0x2c, a0 + 0x30, a0 + 0x34);
         *(int *)(a0 + 0x58) = (int)*(char *)(a0 + 0xe);

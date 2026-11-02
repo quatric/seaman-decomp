@@ -732,7 +732,7 @@ LAB_8c071c68:
             *(u32 *)((int)pdVar11 + -0x2ec) = a1[2];
             Vec3_ctor_copy((u8 *)((int)pdVar11 + -0xfc), &g_8c125f30 + *(int *)((int)pdVar11 + -0x2ec) * 0x10, puVar8,
                            ar7_00);
-            uVar1 = game_vec_032d48(a0, *(u32 *)a1[1], (u8 *)((int)pdVar11 + -0xec), (u8 *)((int)pdVar11 + -0xfc));
+            uVar1 = draw_vec_032d48(a0, *(u32 *)a1[1], (u8 *)((int)pdVar11 + -0xec), (u8 *)((int)pdVar11 + -0xfc));
             *(u32 *)((int)pdVar11 + -0x26c) = uVar1;
             pcVar10 = *(code **)((int)pdVar11 + -0x26c);
             ar6_00 = (u32)(pcVar10 == NULL);
@@ -6323,7 +6323,7 @@ u32 game_vec_07c5f8(int a0, int a1, u32 a2, u8 *a3) {
         case 2:
             Vec3_ctor_copy(auStack_98, a3, ar6_00, ar7_00);
             ar7_00 = auStack_98;
-            iVar1 = game_vec_032d48(a0, a1, a2, ar7_00);
+            iVar1 = draw_vec_032d48(a0, a1, a2, ar7_00);
             uVar2 = 0xffffffff;
             Vec3_dtor(auStack_98, 0xffffffff, a2, ar7_00);
             ar6_00 = a2;
@@ -6752,7 +6752,7 @@ u32 game_vec_07d048(int a0, u32 a1, u32 a2, int *a3) {
             Vec3_ctor_xyz(auStack_e0, uVar4, ar6_00, ar7_00);
             ar7_00 = auStack_e0;
             ar6_00 = auStack_30;
-            iVar2 = game_vec_032d48(a0, a1, ar6_00, ar7_00);
+            iVar2 = draw_vec_032d48(a0, a1, ar6_00, ar7_00);
             Vec3_dtor(auStack_e0, 0xffffffff, ar6_00, ar7_00);
             if (iVar2 == 0) {
                 copy6_to_fields(a0, *(int *)(a0 + 0x128) * 0x18 + 0x8c280eb4, ar6_00, ar7_00);

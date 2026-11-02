@@ -375,8 +375,8 @@ int asr_update_fields_12050a(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * asr_state_has_event  0x8c120550
  * 4 when the current state's event table (+0x34) holds code a1
- * called by: alt_entry_112a28, alt_entry_123e54, asr_talk_10c48c, asr_talk_10cccc, asr_talk_10df48, asr_talk_10f41e,
- * asr_talk_10fece, asr_talk_110818 (+16 more)
+ * called by: alt_entry_112a28, alt_entry_123e54, asr_talk_10ad00, asr_talk_10c48c, asr_talk_10cccc, asr_talk_10df48,
+ * asr_talk_10f41e, asr_talk_10fece (+16 more)
  */
 int asr_state_has_event(int *a0, u32 a1, u32 a2) {
     int iVar1;
@@ -443,7 +443,7 @@ u32 asr_talk_120580(int a0, u32 a1, u32 a2, u32 a3, int s0, int s4, int s8, u32 
  * asr_calc_120668  0x8c120668
  * area name: sits between asr functions (same compilation unit); behaviour name: integer arithmetic on its arguments
  * called by: asr_calls_calc_10c838, asr_calls_calc_10cc6e, asr_calls_calc_10f39a, asr_calls_calc_1107b0,
- * asr_calls_calc_1109d2, asr_calls_calc_11fa1e, asr_calls_calc_12516c, asr_calls_fill_loop_10f8e6 (+5 more)
+ * asr_calls_calc_1109d2, asr_calls_calc_11fa1e, asr_calls_calc_12516c, asr_calls_scan_loop_1219f4 (+5 more)
  */
 u32 asr_calc_120668(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -704,11 +704,11 @@ u32 alt_entry_1207f0(int a0) {
 }
 
 /*
- * asr_copy_120890  0x8c120890
- * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls copy functions
+ * asr_u16_list_dup  0x8c120890
+ * copies a zero-terminated list of 2-byte entries into a new block (count, 0, entries) from allocator a1
  * called by: asr_talk_1208fc
  */
-u32 *asr_copy_120890(int a0, int a1, u32 a2, u32 a3) {
+u32 *asr_u16_list_dup(int a0, int a1, u32 a2, u32 a3) {
     char cVar1;
     int iVar2;
     u32 *puVar3;
@@ -742,7 +742,7 @@ u32 asr_talk_1208fc(u32 a0, u32 a1, int a2, u32 a3) {
     int a6;
     u32 a7;
 
-    a4 = asr_copy_120890(a0, a2, a2, a3);
+    a4 = asr_u16_list_dup(a0, a2, a2, a3);
     a7 = 0;
     a6 = a2;
     uVar1 = asr_talk_1209ec(a4, a1, a2, 0);

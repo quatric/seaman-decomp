@@ -8163,7 +8163,7 @@ int gfxlib_uses_ta_fifo_233e10(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     iVar1 = ta_fifo_2137c0(a0, a1, a2, a3);
     if (iVar1 == 0) {
         if ((*a0 & 0xffff) == 3) {
-            iVar1 = shinobi_uses_list_push_front_203a92(a0, a1, a2, a3);
+            iVar1 = shinobi_uses_rec4c_alloc_203a92(a0, a1, a2, a3);
         } else {
             iVar1 = shinobi_list_2038c0(a0[5], a0, a2, a3);
             a1 = a0;
@@ -9194,14 +9194,14 @@ u32 gfxlib_draw_234bc0(u32 *a0, int a1, u32 a2, int a3) {
         uVar3 = a2;
         draw_state_save(a0, a1, a2, 0);
         ta_fifo_237124(0x8000a, iVar1, a2, a3);
-        ta_uses_tex_entry_find_23728c(uVar3);
+        ta_select_texture_cached(uVar3);
         iVar1 = ta_sq_write_header4();
     } else {
         iVar1 = a1;
         uVar3 = a2;
         draw_state_save(a0, a1, a2, a3);
         ta_fifo_237124(0x210000a, iVar1, a2, a3);
-        ta_uses_tex_entry_find_23728c(uVar3);
+        ta_select_texture_cached(uVar3);
         iVar1 = ta_sq_write_header5();
     }
     iVar1 = iVar1 + 0x1c;
@@ -9256,14 +9256,14 @@ u32 gfxlib_draw_234c94(u32 *a0, int a1, u32 a2, int a3) {
         uVar3 = a2;
         draw_state_save(a0, a1, a2, 0);
         ta_fifo_237124(0x8000a, iVar1, a2, a3);
-        gfxlib_calc_23732a(uVar3);
+        ta_calc_23732a(uVar3);
         iVar1 = ta_sq_write_header4();
     } else {
         iVar1 = a1;
         uVar3 = a2;
         draw_state_save(a0, a1, a2, a3);
         ta_fifo_237124(0x210000a, iVar1, a2, a3);
-        gfxlib_calc_23732a(uVar3);
+        ta_calc_23732a(uVar3);
         iVar1 = ta_sq_write_header5();
     }
     iVar1 = iVar1 + 0x1c;
@@ -9303,7 +9303,7 @@ u32 gfxlib_draw_234c94(u32 *a0, int a1, u32 a2, int a3) {
 /*
  * gfxlib_draw_234d68  0x8c234d68
  * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: Class_12b088_uses_vec_new_array_03220c, game_draw_015098, game_draw_032cb8, ninja_uses_ta_fifo_2536a8
+ * called by: Class_12b088_uses_vec_new_array_03220c, draw_line_ray, game_draw_015098, ninja_uses_ta_fifo_2536a8
  * decompiler: Heritage AFTER dead removal. Example location: s0xffffff98 : 0x8c234e76
  */
 u32 gfxlib_draw_234d68(u32 a0, int a1, u8 *a2, u8 *a3) {
@@ -10768,7 +10768,7 @@ u8 *pvr_draw_235f84(double *a0) {
     iVar6 = 0;
     dVar15 = (double)CONCAT44(-(float)in_dr4, (float)in_dr4);
     if (-65535.0 <= fVar8) {
-        libc_float_calc_013d78(&stack0xffffffd8, r5, r6, r7, in_stack_ffffffd8);
+        frexpf_exponent(&stack0xffffffd8, r5, r6, r7, in_stack_ffffffd8);
         dVar12 = in_dr0;
         if (cVar20 == '\0') {
             dVar12 = (double)CONCAT44((int)((u64)in_dr0 >> 0x20), 0x47800000);
@@ -10965,11 +10965,11 @@ u32 gfxlib_fill_loop_2360b0(float *a0, float *a1, float *a2) {
 }
 
 /*
- * gfxlib_float_calc_23617c  0x8c23617c
- * area name: in the gfxlib library code range; behaviour name: floating-point arithmetic
- * called by: game_calls_float_calc_0191c8
+ * fpu_save_fr0_fr15  0x8c23617c
+ * stores fr0..fr15 to a0[0..15]
+ * called by: fpu_save_fr0_fr15_wrap
  */
-u32 gfxlib_float_calc_23617c(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 fpu_save_fr0_fr15(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 in_fr1;
     u32 in_fr0;
     u32 in_fr3;
@@ -11035,11 +11035,11 @@ u32 sphere_to_aabb(float *a0, float *a1, float *a2) {
 }
 
 /*
- * gfxlib_init_fields_236250  0x8c236250
- * area name: in the gfxlib library code range; behaviour name: writes 8 members
+ * gfx_heap_init  0x8c236250
+ * sets up the 0xa5-tagged free-block heap at 8c4ab210 with one free block a0 of a1 bytes
  * called by: game_init
  */
-u32 gfxlib_init_fields_236250(u16 *a0, u32 a1) {
+u32 gfx_heap_init(u16 *a0, u32 a1) {
     u16 uVar1;
     u16 *puVar2;
     u32 *puVar3;
@@ -11724,11 +11724,11 @@ u32 ta_calc_2371be(int a0) {
 }
 
 /*
- * ta_uses_tex_entry_find_23728c  0x8c23728c
- * area name: sits between ta functions (same compilation unit); behaviour name: its main named callee is tex_entry_find
- * called by: gfxlib_draw_234bc0
+ * ta_select_texture_cached  0x8c23728c
+ * makes texture entry a0 current, refreshing the TSP/texture words only when the entry or its address changed; returns
+ * its height field called by: gfxlib_draw_234bc0
  */
-u32 ta_uses_tex_entry_find_23728c(int a0) {
+u32 ta_select_texture_cached(int a0) {
     bool bVar1;
     int iVar2;
 
@@ -11786,11 +11786,11 @@ u32 alt_entry_23729c(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 }
 
 /*
- * gfxlib_calc_23732a  0x8c23732a
- * area name: in the gfxlib library code range; behaviour name: integer arithmetic on its arguments
+ * ta_calc_23732a  0x8c23732a
+ * area name: sits between ta functions (same compilation unit); behaviour name: integer arithmetic on its arguments
  * called by: gfxlib_draw_234c94
  */
-u32 gfxlib_calc_23732a(int a0) {
+u32 ta_calc_23732a(int a0) {
     u32 *puVar1;
     int iVar2;
 
@@ -11805,11 +11805,11 @@ u32 gfxlib_calc_23732a(int a0) {
 }
 
 /*
- * gfxlib_update_fields_237370  0x8c237370
- * area name: in the gfxlib library code range; behaviour name: conditionally writes members
+ * ta_update_fields_237370  0x8c237370
+ * area name: sits between ta functions (same compilation unit); behaviour name: conditionally writes members
  * called by: ninja_uses_ta_fifo_2536a8
  */
-u32 gfxlib_update_fields_237370(u32 a0) {
+u32 ta_update_fields_237370(u32 a0) {
     u32 in_r0;
 
     *(u32 *)(0x8c4ab238 + 8) = *(u32 *)(0x8c4ab238 + 8) & 0x3f800ff | a0 & 0xfc07ff00;
@@ -13793,7 +13793,8 @@ u32 gfxlib_calc_238e8c(u32 a0) {
 /*
  * gfx_stream_read  0x8c238e98
  * copies a1 bytes from the read pointer at 0x8c4ab274 to a0 and advances it
- * called by: gfxlib_copy_239f84, pvr_draw_23a21c, pvr_stream_find_pvrt, pvr_uses_tex_entry_alloc_23a29c, ta_fifo_23a078
+ * called by: gfxlib_copy_239f84, pvr_stream_find_pvrt, pvr_uses_tex_entry_alloc_23a29c, pvrt_gfx_stream_is_palettized,
+ * ta_fifo_23a078
  */
 u32 gfx_stream_read(u32 a0, int a1) {
     int *piVar1;
@@ -13808,7 +13809,7 @@ u32 gfx_stream_read(u32 a0, int a1) {
 /*
  * gfx_stream_seek  0x8c238eba
  * a1 = 0 sets the read pointer (0x8c4ab274) to base + a0, 1 moves it by a0
- * called by: pvr_draw_23a21c, pvr_stream_find_pvrt, pvr_uses_tex_entry_alloc_23a29c, ta_fifo_23a078
+ * called by: pvr_stream_find_pvrt, pvr_uses_tex_entry_alloc_23a29c, pvrt_gfx_stream_is_palettized, ta_fifo_23a078
  */
 int gfx_stream_seek(int a0, int a1) {
     if (a1 == 1) {
@@ -14756,11 +14757,11 @@ u32 pvr_stream_find_pvrt(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * pvr_draw_23a21c  0x8c23a21c
- * area name: sits between pvr functions (same compilation unit); behaviour name: mostly calls draw functions
+ * pvrt_gfx_stream_is_palettized  0x8c23a21c
+ * reads a PVRT header from the graphics stream; 1 for palettized pixel formats (5..8), -4 on a bad header
  * called by: pvr_uses_tex_entry_alloc_23a29c
  */
-u32 pvr_draw_23a21c(u32 unused_a0, u32 a1) {
+u32 pvrt_gfx_stream_is_palettized(u32 unused_a0, u32 a1) {
     int iStack_14;
     u8 auStack_10[4];
     u32 uStack_c;
@@ -14832,7 +14833,7 @@ u32 pvr_uses_tex_entry_alloc_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                 ar4_00 = *a1 + iVar4;
                 ar4_01 = (int *)(ar4_00 + 8);
                 if ((*(u32 *)(ar4_00 + 4) & 0x1000000) == 0) {
-                    ain0 = pvr_draw_23a21c(iVar4, 0x1000000);
+                    ain0 = pvrt_gfx_stream_is_palettized(iVar4, 0x1000000);
                     iVar4 = g_8c277b0c;
                     if (ain0 == 1) {
                         ar6_00 = (int *)(*(u32 *)(ar4_00 + 8) & 0x3ffffff);
@@ -15095,11 +15096,11 @@ u32 pvr_uses_tex_entry_alloc_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * gfxlib_float_calc_23a8a4  0x8c23a8a4
- * area name: in the gfxlib library code range; behaviour name: floating-point arithmetic
- * called by: Class_129a24_m3_01a230
+ * camera_set_direction_to  0x8c23a8a4
+ * sets the camera's (a0, or the current one) unit direction (+0x4c..+0x54) toward the point in dr4/dr6 from its
+ * position (+0x40) called by: Class_129a24_m3_01a230
  */
-u32 gfxlib_float_calc_23a8a4(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 camera_set_direction_to(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
     u64 in_dr4;
     float fVar2;

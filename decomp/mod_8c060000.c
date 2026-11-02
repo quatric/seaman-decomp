@@ -3275,11 +3275,11 @@ int free_if_nonnull_wrap_0673dc(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_06740c  0x8c06740c
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * Class_12a0c4_ctor  0x8c06740c
+ * CAnimal base constructor (kind 0xe), Class_12a0c4 vtable at +8, its members, then the state reset
  * called by: CItemGLoader_state_switch_0fef94
  */
-int game_vec_06740c(int a0, u32 a1) {
+int Class_12a0c4_ctor(int a0, u32 a1) {
     u32 ar5_00;
     u32 ar6_00;
     u32 ar7_00;
@@ -3287,7 +3287,7 @@ int game_vec_06740c(int a0, u32 a1) {
     ar7_00 = 0;
     ar6_00 = 0;
     ar5_00 = 0xe;
-    CAnimal_vec_0f4040(a0, 0xe, 0, 0, a1);
+    Class_12c1f0_uses_Vec3_ctor_zero_0f4040(a0, 0xe, 0, 0, a1);
     *(u8 **)(a0 + 8) = (&DATA_8c12a0c4);
     Class_129938_ctor(a0 + 0x170, ar5_00, ar6_00);
     clear_field_0_wrap_015ab8(a0 + 0x204);
@@ -3327,8 +3327,8 @@ int Class_12a0c4_m0_0674c8(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * Class_12a0c4_uses_libgcc_divide_helper_067594  0x8c067594
- * name hint from a string it uses: herb3 pvm; area name: sits between Class_12a0c4 functions (same compilation unit);
- * behaviour name: its main named callee is libgcc_divide_helper_01031c called by: game_vec_06740c
+ * name hint from a string it uses: herb3 pvm; area name: only called from Class_12a0c4 methods; behaviour name: its
+ * main named callee is libgcc_divide_helper_01031c called by: Class_12a0c4_ctor
  */
 u32 Class_12a0c4_uses_libgcc_divide_helper_067594(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5562,11 +5562,11 @@ u32 game_uses_rand_069c24(int *a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * CGame_fill_loop_06a524  0x8c06a524
- * area name: only called from CGame methods; behaviour name: a loop that writes memory
+ * clear_globals_280998  0x8c06a524
+ * zeroes the counters at 8c280998..8c2809a8 and the three pair tables at 8c2809b8, 8c2809fc and 8c280a38
  * called by: CGame_Initial
  */
-u32 CGame_fill_loop_06a524(void) {
+u32 clear_globals_280998(void) {
     int iVar1;
 
     g_8c280998 = 0;
@@ -8793,11 +8793,11 @@ u32 destroy_array_8c2804f0(void) {
 }
 
 /*
- * CHigyoLine_vec_06e4ec  0x8c06e4ec
- * area name: only called from CHigyoLine methods; behaviour name: mostly calls vec functions
+ * Class_12a25c_ctor  0x8c06e4ec
+ * Class_129cbc base constructor, Class_12a25c vtable, eight vectors, then the state reset
  * called by: CHigyoLine_ctor
  */
-u32 *CHigyoLine_vec_06e4ec(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 *Class_12a25c_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     Class_129cbc_ctor(a0, a1, a2, a3);
     *a0 = (&DATA_8c12a25c);
     Vec3_set_zero((int)a0 + 0x224);
@@ -8808,16 +8808,16 @@ u32 *CHigyoLine_vec_06e4ec(u32 *a0, u32 a1, u32 a2, u32 a3) {
     Vec3_ctor_zero((int)a0 + 0x270, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x280, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x2bc, a1, a2);
-    game_vec_06e5a4(a0, a1, a2, a3);
+    Class_12a25c_vec_06e5a4(a0, a1, a2, a3);
     return a0;
 }
 
 /*
- * game_vec_06e5a4  0x8c06e5a4
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
- * called by: CHigyoLine_vec_06e4ec
+ * Class_12a25c_vec_06e5a4  0x8c06e5a4
+ * area name: only called from Class_12a25c methods; behaviour name: mostly calls vec functions
+ * called by: Class_12a25c_ctor
  */
-u32 game_vec_06e5a4(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12a25c_vec_06e5a4(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     *(u32 *)(a0 + 0x260) = 0;

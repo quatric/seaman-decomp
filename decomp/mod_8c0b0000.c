@@ -3444,7 +3444,7 @@ u32 get_field_314_0b58d0(int a0) {
 
 /*
  * set_field_314  0x8c0b58dc
- * called by: game_uses_set_field_314_0ae2b8
+ * called by: game_load_0ae2b8
  */
 int set_field_314(int a0, u32 a1) {
     int iVar1;
@@ -3573,7 +3573,7 @@ u32 Class_12b2e8_m1_0b5ad0(int a0, int *a1, int *a2, u32 a3) {
     iVar7 = 0;
     piVar9 = a1;
     piVar10 = a2;
-    Class_12b2e8_uses_set_field_38_0b6328(a0, a1, a2, a3);
+    Class_12b2e8_sequence_step(a0, a1, a2, a3);
     uVar11 = (u16)((u32)in_stack_ffffff6c >> 0x10);
     if (*(int *)(a0 + 0x40) != 2) {
         uVar1 = get_field_a4_s16(a2[6], piVar9);
@@ -3770,7 +3770,7 @@ u32 Class_12b2e8_m2_0b6028(int a0, u32 a1, int a2, u32 a3) {
     uVar1 = get_field_a4_s16(*(u32 *)(a2 + 0x18), uVar2);
     *(u32 *)(a0 + 0xa8) = uVar1 & 0xffff;
     iVar3 = a2;
-    Class_12b2e8_uses_set_field_38_0b6328(a0, a1, a2, a3);
+    Class_12b2e8_sequence_step(a0, a1, a2, a3);
     iVar7 = a2;
     Class_129c70_uses_get_field_4_02f20c(a0, a2, iVar3, a3);
     uVar2 = get_field_4_05eed8(a0);
@@ -3826,7 +3826,7 @@ u32 Class_12b2e8_uses_set_field_38_0b61bc(int a0, u32 a1, int *a2, int a3) {
     if (*(int *)(a0 + 0x38) == 2) {
         *(u32 *)(a0 + 0xc) = 0;
         *(u32 *)(a0 + 0x40) = *(u32 *)(&g_8c13bb4c + *(int *)(a0 + 0xc) * 4 + a3 * 0xc);
-        game_uses_set_field_38_0b63e0(a0, a1, a2);
+        Class_12b2e8_uses_set_field_38_0b63e0(a0, a1, a2);
         uVar3 = 1;
         set_field_38_02f404(a0, 1);
     }
@@ -3865,18 +3865,18 @@ u32 Class_12b2e8_uses_set_field_38_0b61bc(int a0, u32 a1, int *a2, int a3) {
 }
 
 /*
- * Class_12b2e8_uses_set_field_38_0b6328  0x8c0b6328
- * area name: only called from Class_12b2e8 methods; behaviour name: its main named callee is set_field_38_02f404
- * called by: Class_12b2e8_m1_0b5ad0, Class_12b2e8_m2_0b6028
+ * Class_12b2e8_sequence_step  0x8c0b6328
+ * at the end of a step advances the three-step sequence from the table at 8c13bb4c (row +4); step value 9 or the third
+ * step ends it called by: Class_12b2e8_m1_0b5ad0, Class_12b2e8_m2_0b6028
  */
-int Class_12b2e8_uses_set_field_38_0b6328(int a0, u32 a1, u32 a2, u32 a3) {
+int Class_12b2e8_sequence_step(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar6_00;
     int in_stack_ffffffe4;
 
     if (*(int *)(a0 + 0x3c) == 0) {
         ar6_00 = a2;
-        game_state_switch_0b6440(a0, a1, a2, a3);
+        Class_12b2e8_state_switch_0b6440(a0, a1, a2, a3);
         *(int *)(a0 + 0xc) = *(int *)(a0 + 0xc) + 1;
         in_stack_ffffffe4 = *(int *)(a0 + 0xc);
         *(u32 *)(a0 + 0x40) = *(u32 *)(&g_8c13bb4c + in_stack_ffffffe4 * 4 + *(int *)(a0 + 4) * 0xc);
@@ -3886,7 +3886,7 @@ int Class_12b2e8_uses_set_field_38_0b6328(int a0, u32 a1, u32 a2, u32 a3) {
             a2 = ar6_00;
         } else {
             set_field_38_02f404(a0, 3);
-            game_uses_set_field_38_0b63e0(a0, a1, a2);
+            Class_12b2e8_uses_set_field_38_0b63e0(a0, a1, a2);
         }
     }
     iVar1 = *(int *)(a0 + 0x3c);
@@ -3897,11 +3897,11 @@ int Class_12b2e8_uses_set_field_38_0b6328(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_set_field_38_0b63e0  0x8c0b63e0
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_field_38_02f404
- * called by: Class_12b2e8_uses_set_field_38_0b61bc, Class_12b2e8_uses_set_field_38_0b6328
+ * Class_12b2e8_uses_set_field_38_0b63e0  0x8c0b63e0
+ * area name: only called from Class_12b2e8 methods; behaviour name: its main named callee is set_field_38_02f404
+ * called by: Class_12b2e8_sequence_step, Class_12b2e8_uses_set_field_38_0b61bc
  */
-int game_uses_set_field_38_0b63e0(int a0, u32 a1, u32 a2) {
+int Class_12b2e8_uses_set_field_38_0b63e0(int a0, u32 a1, u32 a2) {
     int iVar1;
 
     iVar1 = *(int *)(a0 + 0x40);
@@ -3915,11 +3915,11 @@ int game_uses_set_field_38_0b63e0(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * game_state_switch_0b6440  0x8c0b6440
- * area name: game code; nothing names its area yet; behaviour name: dispatches on a state or mode value (switch)
- * called by: Class_12b2e8_uses_set_field_38_0b6328
+ * Class_12b2e8_state_switch_0b6440  0x8c0b6440
+ * area name: only called from Class_12b2e8 methods; behaviour name: dispatches on a state or mode value (switch)
+ * called by: Class_12b2e8_sequence_step
  */
-u8 *game_state_switch_0b6440(int a0, u32 a1, int a2, u32 a3) {
+u8 *Class_12b2e8_state_switch_0b6440(int a0, u32 a1, int a2, u32 a3) {
     u8 *puVar1;
     int iVar2;
     u32 uVar3;
@@ -3998,7 +3998,7 @@ u32 *Class_12b2e8_uses_get_field_8_0b65b0(int a0) {
 /*
  * game_uses_rand_0b6604  0x8c0b6604
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is rand
- * called by: game_uses_set_field_38_0b63e0
+ * called by: Class_12b2e8_uses_set_field_38_0b63e0
  */
 u32 game_uses_rand_0b6604(int a0, int *a1, u32 a2) {
     int iVar1;
@@ -5794,8 +5794,7 @@ int rtc_uses_libgcc_divide_helper_0b9d30(u32 unused_a0, u16 *a1, u16 *a2) {
  * recent5_push_unique  0x8c0b9ed4
  * pushes a1 onto the five-entry recent list at +0x30 unless it is already there
  * called by: CAnimal_m2_0386d0, CAnimal_m2_088094, Class_12a078_m2_05eee0, Class_12a078_m4_067284,
- * Class_12a7a8_m1_098d14, Class_12a990_m2_09bc2c, Class_12b2e8_m1_0b5ad0, Class_12b2e8_uses_set_field_38_0b61bc (+12
- * more)
+ * Class_12a7a8_m1_098d14, Class_12a990_m2_09bc2c, Class_12b2e8_m1_0b5ad0, Class_12b2e8_state_switch_0b6440 (+12 more)
  */
 u32 recent5_push_unique(int a0, int a1, u32 a2) {
     u32 uVar1;
@@ -6253,7 +6252,7 @@ u32 game_update_fields_0ba870(int a0) {
 /*
  * Class_12b36c_ctor  0x8c0ba898
  * vtable 0x8c12b36c, +4 = 0
- * called by: Class_12b350_ctor, game_uses_Class_12b36c_ctor_0bf338, game_uses_Class_12b36c_ctor_0c5340
+ * called by: Class_12b334_ctor, Class_12b350_ctor, game_uses_Class_12b36c_ctor_0c5340
  */
 u32 *Class_12b36c_ctor(u32 *a0) {
     *a0 = (&DATA_8c12b36c);
@@ -8032,7 +8031,7 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
         iVar20 = a0 + 0x48;
         iVar2 = iVar20;
         obj_set_texlist(iVar20, iVar20, iVar21);
-        libc_uses_delay_loop_6_014294(iVar20, iVar2, iVar21, uVar1);
+        libm_errno_wrap_014294(iVar20, iVar2, iVar21, uVar1);
         if (cVar24 == '\0') {
             dVar16 = (double)CONCAT44(0x3ff33333, puVar10);
         } else {
@@ -9275,11 +9274,11 @@ u32 game_uses_get_word_8_0bf22c(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_Class_12b36c_ctor_0bf338  0x8c0bf338
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is Class_12b36c_ctor
+ * Class_12b334_ctor  0x8c0bf338
+ * Class_12b36c base constructor, Class_12b334 vtable, and two vectors copied from the constants at 8c13be20/8c13be2c
  * called by: game_uses_Class_12b350_ctor_0bff8c
  */
-u32 *game_uses_Class_12b36c_ctor_0bf338(u32 *a0) {
+u32 *Class_12b334_ctor(u32 *a0) {
     u8 *puVar1;
     u32 uVar2;
 
@@ -10032,7 +10031,7 @@ int *game_uses_Class_12b350_ctor_0bff8c(int *a0, u32 a1, u32 a2, u32 a3) {
 
     Class_12b350_ctor(a0 + 3, a1, a2, a3);
     game_uses_Class_12b36c_ctor_0c5340((int)a0 + 0x17c, a1);
-    game_uses_Class_12b36c_ctor_0bf338((int)a0 + 0x2d578);
+    Class_12b334_ctor((int)a0 + 0x2d578);
     game_copy_0ba2cc((int)a0 + 0x2d59c);
     Class_12b3b8_copy_016410((int)a0 + 0x2ddc4);
     game_vec_0ffb98((int)a0 + 0x2de08, a1, a2, a3);

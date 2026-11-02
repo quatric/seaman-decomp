@@ -903,25 +903,25 @@ u32 Class_12b930_uses_rand_0d0d1c(int a0, code *a1, u32 a2, u32 a3) {
             iVar3 = iVar5;
         }
     }
-    game_uses_get_field_100_0d1060(a0, a1, a2, a3);
+    particle_pool_update_350(a0, a1, a2, a3);
     uVar2 = Vec3_dtor(auStack_20, 0xffffffff, a2, a3);
     return uVar2;
 }
 
 /*
  * get_field_100_0d1058  0x8c0d1058
- * called by: Class_12b930_uses_rand_0d0d1c, game_uses_get_field_100_0d1060, game_uses_obj_set_texlist_0d1168
+ * called by: Class_12b930_uses_rand_0d0d1c, game_uses_obj_set_texlist_0d1168, particle_pool_update_350
  */
 u32 get_field_100_0d1058(int a0) {
     return *(u32 *)(a0 + 100);
 }
 
 /*
- * game_uses_get_field_100_0d1060  0x8c0d1060
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_100_0d1058
- * called by: Class_12b930_uses_rand_0d0d1c, game_uses_get_field_100_0e14d8
+ * particle_pool_update_350  0x8c0d1060
+ * ramps the level at +0xeb40 up (0.05) or down (1/3600) between 0 and 100, then updates each of the 350 active
+ * 0xac-byte particles called by: Class_12b930_uses_rand_0d0d1c, particle_pool_update_350_on_field_13b8c
  */
-u32 game_uses_get_field_100_0d1060(int a0, u32 a1, u32 a2, u32 a3) {
+u32 particle_pool_update_350(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int *a4;
     int iVar2;
@@ -3150,7 +3150,7 @@ int Class_12b930_uses_vec_new_array_0d2fd8(int a0, u32 a1) {
     set_flag_14_20(a0 + 0x110);
     set_flags_14_60(a0 + 0x110);
     set_flag_14_bit31_and_20(a0 + 0x110);
-    Class_12b580_sound_0d56dc(a0, iVar2, uVar4, ar7_00);
+    sound_env_reset_ports(a0, iVar2, uVar4, ar7_00);
     for (iVar2 = 0; iVar2 < 0x226; iVar2 = iVar2 + 1) {
         game_uses_get_field_4_0d261c(iVar2 * 0x88 + a0 + 0x62c, a0 + 0x12a5c, &g_8c13f344, ar7_00);
     }
@@ -3837,7 +3837,7 @@ u32 Class_12b930_sound_0d3d6c(u64 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * list_node_next  0x8c0d3f48
  * called by: CAnimal_uses_list_node_next_0f4258, CItemGLoadRequestList_GetPtr, CItemGLoadRequestList_TakeOu,
- * CItemGLoader_list_0fedf4, CItemList_DeleteItem, CItemList_TakeOutItem, CNodePtrList_DeleteItem,
+ * CItemGLoader_poll_requests, CItemList_DeleteItem, CItemList_TakeOutItem, CNodePtrList_DeleteItem,
  * CNodePtrList_TakeOutItem (+37 more)
  */
 u32 list_node_next(u32 *a0) {
@@ -5163,11 +5163,11 @@ u32 Class_12b580_set_request_wrap(int a0) {
 }
 
 /*
- * Class_12b580_sound_0d56b4  0x8c0d56b4
- * area name: sits between Class_12b580 functions (same compilation unit); behaviour name: mostly calls sound functions
+ * game_sound_0d56b4  0x8c0d56b4
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls sound functions
  * called by: CWaterTank_uses_get_field_300_0e0f48
  */
-u32 Class_12b580_sound_0d56b4(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 game_sound_0d56b4(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = Class_12b580_sound_022104(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
@@ -5175,11 +5175,11 @@ u32 Class_12b580_sound_0d56b4(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12b580_sound_0d56dc  0x8c0d56dc
- * area name: sits between Class_12b580 functions (same compilation unit); behaviour name: mostly calls sound functions
+ * sound_env_reset_ports  0x8c0d56dc
+ * sets the three volumes to 0.8, stops and closes the two sound ports at +0x600 and resets the mixer bytes 8c437840..43
  * called by: Class_12b930_uses_vec_new_array_0d2fd8
  */
-u32 Class_12b580_sound_0d56dc(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 sound_env_reset_ports(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
 
     *(u32 *)(a0 + 0x5c4) = 0x3f4ccccd;
@@ -11015,7 +11015,7 @@ u32 game_uses_Class_129974_dtor_0db224(int a0, u8 *a1, u32 a2, u32 a3) {
 /*
  * Class_129974_ctor_wrap  0x8c0db304
  * only calls Class_129974_ctor
- * called by: game_uses_Class_129974_dtor_0db224, game_uses_Class_129974_dtor_0e0614, game_vec_0f78d8
+ * called by: Class_12c1f0_ctor_like, game_uses_Class_129974_dtor_0db224, game_uses_Class_129974_dtor_0e0614
  */
 u32 Class_129974_ctor_wrap(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -11134,7 +11134,7 @@ int Class_129974_vec_0db3bc(int a0, u32 a1, u32 a2, u32 a3) {
  * list_node_next_wrap_0db580  0x8c0db580
  * only calls list_node_next
  * called by: CWaterTank_uses_Vec3_distance_sq_to_xyz_0e1398, Class_129974_vec_0db3bc, Class_12b580_m1_0e634c,
- * game_list_0dc8fc, game_uses_get_field_38_0dfbdc
+ * game_uses_get_field_38_0dfbdc, input_list_0dc8fc
  */
 u32 list_node_next_wrap_0db580(u32 a0) {
     u32 uVar1;
@@ -11146,7 +11146,7 @@ u32 list_node_next_wrap_0db580(u32 a0) {
 /*
  * get_field_38_0db5a0  0x8c0db5a0
  * called by: CWaterTank_uses_Vec3_distance_sq_to_xyz_0e1398, Class_129974_vec_0db3bc, Class_12b580_m1_0e634c,
- * game_list_0dc8fc, game_uses_get_field_38_0dfbdc, get_field_38_wrap
+ * game_uses_get_field_38_0dfbdc, get_field_38_wrap, input_list_0dc8fc
  */
 u32 get_field_38_0db5a0(int a0) {
     return *(u32 *)(a0 + 0x38);
@@ -11841,7 +11841,7 @@ u32 game_uses_ret_const_140_0dbf90(int *a0, int *a1, u32 a2, u32 a3) {
         }
     }
     piVar2 = a1;
-    game_input_0dc990(a0, a1);
+    input_stick_with_x_dispatch(a0, a1);
     if (((a0[9] != 2) && (a0[0x275] != 0)) && (iVar1 = input_y_pressed_wrap(a1), iVar1 == 1)) {
         piVar2 = (int *)a0[0x275];
         game_uses_linear_map_set_0d69a8(a0 + 0x29a, piVar2, a2, a3);
@@ -11997,7 +11997,7 @@ u32 input_uses_input_y_pressed_wrap_0dc28c(int *a0, int *a1, u32 a2, u32 a3) {
                 }
             }
             piVar3 = a1;
-            game_input_0dc990(a0, a1);
+            input_stick_with_x_dispatch(a0, a1);
             iVar1 = input_r_only_start_timeout(a1, piVar3, a2, a3);
             if (iVar1 == 1) {
                 piVar3 = a0 + 0x29a;
@@ -12177,12 +12177,12 @@ int input_uses_get_field_24_0dc7e8(int a0, u32 *a1, u32 *a2, u32 a3) {
 }
 
 /*
- * game_list_0dc8fc  0x8c0dc8fc
- * area name: game code; nothing names its area yet; behaviour name: mostly calls list functions
+ * input_list_0dc8fc  0x8c0dc8fc
+ * area name: sits between input functions (same compilation unit); behaviour name: mostly calls list functions
  * called by: game_calls_input_helper_0e7190, game_uses_get_field_24_0e727c, game_uses_stick_x_right_half_0e1f90,
  * input_uses_get_field_24_0e25c0
  */
-int game_list_0dc8fc(int a0, u32 a1, u32 a2, u32 a3) {
+int input_list_0dc8fc(int a0, u32 a1, u32 a2, u32 a3) {
     int ar4_00;
     int iVar1;
     u32 ar5_00;
@@ -12203,11 +12203,11 @@ int game_list_0dc8fc(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_input_0dc990  0x8c0dc990
- * area name: game code; nothing names its area yet; behaviour name: mostly calls input functions
+ * input_stick_with_x_dispatch  0x8c0dc990
+ * runs the up/down and right/left handlers for stick moves made while X is held
  * called by: game_uses_ret_const_140_0dbf90, input_uses_input_y_pressed_wrap_0dc28c
  */
-int game_input_0dc990(u32 unused_a0, u32 a1) {
+int input_stick_with_x_dispatch(u32 unused_a0, u32 a1) {
     int iVar1;
     iVar1 = stick_up_with_x(a1);
     if (iVar1 == 1) {

@@ -228,7 +228,7 @@ u32 game_init_sound_and_messages(int a0, u32 a1, u32 a2, u32 a3) {
     game_uses_rtc_get_date_0f7ff0(0x8c35468c, ar5_00, ar6_00, ar7_00);
     game_input_01e5b4(0x8c3dd7dc, 0, ar6_00, ar7_00);
     CSysMessage_LoadMessage(&g_8c2b5628, 0x8c3eb334);
-    game_uses_set_fields_0_4_c_0ffd7c(*(u32 *)(a0 + 0x2dd68), 0x8c3dd7dc);
+    game_uses_fullscreen_quad_init_0ffd7c(*(u32 *)(a0 + 0x2dd68), 0x8c3dd7dc);
     uVar2 = 0x8c3eb334;
     UsrPointer_LoadTexture(*(u32 *)(a0 + 0x2dd68), 0x8c3eb334);
     uVar1 = 0x8c3eb334;
@@ -336,7 +336,7 @@ u32 game_init_sound_and_messages(int a0, u32 a1, u32 a2, u32 a3) {
     flags_4c0ed0_set(3, 0);
     uVar1 = 0;
     flags_4c0ed0_set(4, 0);
-    ta_uses_switch_jump_r0_2140a4(4);
+    kamui_uses_switch_jump_r0_2140a4(4);
     flags_4c0db0_set(1, 1);
     flags_4c0db0_set(2, 0);
     flags_4c0db0_set(3, 0);
@@ -367,7 +367,7 @@ u32 game_poll_exit(int a0, u32 a1, u32 a2, u32 a3) {
 
     uVar1 = input_poll_device_state(0x8c3dd7dc, a1, a2, a3);
     *(u32 *)(0x2d620 + a0) = uVar1;
-    iVar2 = game_uses_CDCGD_strcmp_01f794(0x8c3eb334, a1, a2, a3);
+    iVar2 = game_uses_CDCGD_open_file_retry_01f794(0x8c3eb334, a1, a2, a3);
     pack_close_and_flush(0x8c2b59d0, a1, a2, a3);
     game_talk_0f816c(0x8c35468c, a1, a2, a3);
     pack_release_entry_384_if_done(0x8c2b5628, a1, a2, a3);
@@ -639,7 +639,7 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
             break;
         case 0xf:
             rtc_get_date_wrap(a1, auStack_28, puVar8, a3);
-            iVar6 = CSeamanDomain_uses_date_to_rtc_seconds_1028c0(auStack_28, &g_8c431a7c, puVar8);
+            iVar6 = date_compare(auStack_28, &g_8c431a7c, puVar8);
             if (iVar6 == 2) {
                 g_8c4367bc = 0x1c;
             } else {
@@ -2690,7 +2690,7 @@ u32 game_list_0c4644(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     uVar3 = 0x8c354680;
     pcVar2 = game_release_0f7fa8;
     global_list_push(uVar1, game_release_0f7fa8, 0x8c354680, ar7_00);
-    uVar1 = game_uses_set_fields_24_20_wrap_01e504(0x8c3dd7dc);
+    uVar1 = game_save_01e504(0x8c3dd7dc);
     uVar3 = 0x8c3dd7d0;
     pcVar2 = game_release_01e560;
     global_list_push(uVar1, game_release_01e560, 0x8c3dd7d0, ar7_00);
@@ -3026,8 +3026,8 @@ int game_uses_dec_counter_4e_0c4dd0(int a0, u32 a1, u32 a2, u32 a3) {
  * CAnimal_calls_test_0c4e2c  0x8c0c4e2c
  * area name: only called from CAnimal methods; behaviour name: its callees mostly do: test
  * called by: CAnimal_m2_0acaec, Class_12a7a8_uses_set_field_38_099714, Class_12acc8_uses_set_field_38_09ff1c,
- * Class_12b0c4_uses_set_field_38_0abe84, Class_12bb08_uses_get_field_24_0dbbe8, FrogMan_choose_status_event,
- * FrogMan_ending_event, FrogMan_gratification_events (+13 more)
+ * Class_12b0c4_uses_set_field_38_0abe84, Class_12b2e8_state_switch_0b6440, Class_12bb08_uses_get_field_24_0dbbe8,
+ * FrogMan_choose_status_event, FrogMan_ending_event (+13 more)
  */
 u32 CAnimal_calls_test_0c4e2c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -3051,8 +3051,7 @@ u32 game_test_0c4e48(void) {
 /*
  * game_uses_set_field_d0_0c4e58  0x8c0c4e58
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_field_d0_0c51b8
- * called by: game_uses_get_field_d0_0cbbcc, game_uses_get_field_d0_0cbc3c, game_uses_get_field_d0_0cbca4,
- * game_uses_get_field_d0_0cbd0c
+ * called by: menu_pick_option_0, menu_pick_option_1, menu_pick_option_2, menu_pick_option_3
  */
 u32 game_uses_set_field_d0_0c4e58(u32 a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -3236,8 +3235,8 @@ u32 ret_const_0_0c51f4(void) {
 /*
  * get_field_d0_0c51fc  0x8c0c51fc
  * called by: CGame_GetUserGameInfo, bugbox_4_screen, game_uses_Vec3_ctor_zero_0c91f4, game_uses_Vec3_ctor_zero_0ca4e8,
- * game_uses_Vec3_ctor_zero_0cb668, game_uses_get_field_d0_0c6e74, game_uses_get_field_d0_0cbbcc,
- * game_uses_get_field_d0_0cbc3c (+6 more)
+ * game_uses_Vec3_ctor_zero_0cb668, game_uses_get_field_d0_0c6e74, game_uses_get_field_d0_0cbd74,
+ * game_uses_set_field_d0_0c4e58 (+6 more)
  */
 u32 get_field_d0_0c51fc(int a0, u32 unused_a1, u32 a2) {
     return *(u32 *)(0xd0 + a0);
@@ -3800,7 +3799,7 @@ u32 Class_12b388_uses_Class_129808_draw_0c5cb4(u32 a0, int a1, u32 a2, u32 a3) {
     game_release_0f8134(0x8c35468c, ar5_00, a2, a3);
     ninja_uses_tex_is_palettized_2565c4(uVar1, ar5_00, a2, a3, in_stack_ffffffe8);
     set_g_8c277ae8(0, ar5_00, a2, a3, in_stack_ffffffe8);
-    CItemGLoader_uses_get_field_48_0fef10(*(u32 *)(a1 + 2000), ar5_00, a2, a3);
+    CItemGLoader_clear_requests(*(u32 *)(a1 + 2000), ar5_00, a2, a3);
     aiStack_10[0] = take_field_4_on_field_d8(*(u32 *)(a1 + 0x7cc));
     if (aiStack_10[0] != 0) {
         ar5_00 = 1;
@@ -4252,7 +4251,7 @@ u32 CGame_Initial(int a0, int *a1, u32 unused_a2, u32 a3) {
         switch (iVar3) {
         case 0:
             iVar3 = a1[499];
-            CGame_copy_1011e0(iVar3, uVar4, uVar5, a3);
+            CGame_uses_cursor_reset_center_1011e0(iVar3, uVar4, uVar5, a3);
             save_current_matrix_27c1ec();
             g_8c431a54 = 0;
             g_8c13bcc4 = 1;
@@ -4272,7 +4271,7 @@ u32 CGame_Initial(int a0, int *a1, u32 unused_a2, u32 a3) {
             uVar5 = 0;
             ar4_00 = &g_8c2b5628;
             set_field_380_u16(&g_8c2b5628, 0);
-            CGame_fill_loop_06a524();
+            clear_globals_280998();
             *(u32 *)(a0 + 0x2d3a0) = 1;
             break;
         case 1:
@@ -4482,7 +4481,7 @@ LAB_8c0c7340:
     iVar1 = a1;
     pure_virtual_stub();
     game_draw_0d1c84(iVar2, iVar1, a2, a3);
-    CItemGLoader_list_0fedf4(*(u32 *)(a1 + 2000), 0x8c3eb334, a2, a3);
+    CItemGLoader_poll_requests(*(u32 *)(a1 + 2000), 0x8c3eb334, a2, a3);
     if (*(u8 *)(a1 + 0xa0) < *(u8 *)(a1 + 0xa1)) {
         *(u32 *)(a0 + 0x2d160) = 1;
         *(u32 *)(a0 + 0x2d15c) = 1;
@@ -4987,7 +4986,7 @@ u32 input_uses_Vec3_ctor_zero_0c8134(int a0, code *a1, int a2, u32 a3) {
     if (iVar2 == 0) {
         a2 = a0 + 8;
         ar5_00 = *(code **)(a1 + 0x7cc);
-        game_uses_get_field_d0_0cbbcc(a0, ar5_00, a2, a3);
+        menu_pick_option_0(a0, ar5_00, a2, a3);
     }
     iVar2 = get_field_d0_0c51fc(*(u32 *)(a1 + 0x7cc), ar5_00, a2);
     game_input_0ffdb0(*(u32 *)(a1 + 0x7cc));
@@ -5688,7 +5687,7 @@ u32 game_uses_Vec3_ctor_zero_0c91f4(int a0, code *a1, int a2, u32 a3) {
     if (iVar2 == 0) {
         a2 = a0 + 8;
         ar5_00 = *(code **)(a1 + 0x7cc);
-        game_uses_get_field_d0_0cbc3c(a0, ar5_00, a2, a3);
+        menu_pick_option_1(a0, ar5_00, a2, a3);
     }
     iVar2 = get_field_d0_0c51fc(*(u32 *)(a1 + 0x7cc), ar5_00, a2);
     game_input_0ffdb0(*(u32 *)(a1 + 0x7cc));
@@ -6551,7 +6550,7 @@ u32 game_uses_Vec3_ctor_zero_0ca4e8(int a0, code *a1, int a2, u32 a3) {
     if (iVar2 == 0) {
         a2 = a0 + 8;
         ar5_00 = *(code **)(a1 + 0x7cc);
-        game_uses_get_field_d0_0cbca4(a0, ar5_00, a2, a3);
+        menu_pick_option_2(a0, ar5_00, a2, a3);
     }
     iVar2 = get_field_d0_0c51fc(*(u32 *)(a1 + 0x7cc), ar5_00, a2);
     game_input_0ffdb0(*(u32 *)(a1 + 0x7cc));
@@ -7219,7 +7218,7 @@ u32 game_uses_Vec3_ctor_zero_0cb668(int a0, code *a1, u32 a2, u32 a3) {
     uVar1 = 0;
     ar6_00 = a0 + 8;
     ar5_00 = *(u32 *)(a1 + 0x7cc);
-    game_uses_get_field_d0_0cbd0c(a0, ar5_00, ar6_00, a3);
+    menu_pick_option_3(a0, ar5_00, ar6_00, a3);
     iVar2 = get_field_d0_0c51fc(*(u32 *)(a1 + 0x7cc), ar5_00, ar6_00);
     ar5_01 = a0 + 8;
     iVar3 = sh4_uses_sh4_tmu_0b9244(a1, ar5_01, ar6_00, a3);
@@ -7357,11 +7356,11 @@ u32 game_release_0cbb2c(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_get_field_d0_0cbbcc  0x8c0cbbcc
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_d0_0c51fc
+ * menu_pick_option_0  0x8c0cbbcc
+ * on confirm selects option 0, then calls the current page's method 0x6c with option 0
  * called by: input_uses_Vec3_ctor_zero_0c8134
  */
-u32 game_uses_get_field_d0_0cbbcc(u32 unused_a0, int a1, int a2, u32 a3) {
+u32 menu_pick_option_0(u32 unused_a0, int a1, int a2, u32 a3) {
     int iVar1;
     int iVar2;
     int *a4;
@@ -7389,11 +7388,11 @@ u32 ret_const_1_0cbc34(void) {
 }
 
 /*
- * game_uses_get_field_d0_0cbc3c  0x8c0cbc3c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_d0_0c51fc
+ * menu_pick_option_1  0x8c0cbc3c
+ * on confirm selects option 1, then calls the current page's method 0x6c with option 1
  * called by: game_uses_Vec3_ctor_zero_0c91f4
  */
-u32 game_uses_get_field_d0_0cbc3c(u32 unused_a0, int a1, int a2, u32 a3) {
+u32 menu_pick_option_1(u32 unused_a0, int a1, int a2, u32 a3) {
     int iVar1;
     int iVar2;
     int *a4;
@@ -7414,11 +7413,11 @@ u32 game_uses_get_field_d0_0cbc3c(u32 unused_a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * game_uses_get_field_d0_0cbca4  0x8c0cbca4
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_d0_0c51fc
+ * menu_pick_option_2  0x8c0cbca4
+ * on confirm selects option 2, then calls the current page's method 0x6c with option 2
  * called by: game_uses_Vec3_ctor_zero_0ca4e8
  */
-u32 game_uses_get_field_d0_0cbca4(u32 unused_a0, int a1, int a2, u32 a3) {
+u32 menu_pick_option_2(u32 unused_a0, int a1, int a2, u32 a3) {
     int iVar1;
     int iVar2;
     int *a4;
@@ -7439,11 +7438,11 @@ u32 game_uses_get_field_d0_0cbca4(u32 unused_a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * game_uses_get_field_d0_0cbd0c  0x8c0cbd0c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_d0_0c51fc
+ * menu_pick_option_3  0x8c0cbd0c
+ * on confirm selects option 3, then calls the current page's method 0x6c with option 3
  * called by: game_uses_Vec3_ctor_zero_0cb668
  */
-u32 game_uses_get_field_d0_0cbd0c(u32 unused_a0, int a1, int a2, u32 a3) {
+u32 menu_pick_option_3(u32 unused_a0, int a1, int a2, u32 a3) {
     int iVar1;
     int iVar2;
     int *a4;

@@ -5564,7 +5564,7 @@ u32 Class_12a7a8_uses_set_field_38_099714(int a0, u32 a1, int *a2, int a3) {
 
 /*
  * set_field_45_u8  0x8c099850
- * called by: Class_12a7a8_uses_set_field_38_099714, game_uses_set_field_45_u8_0ac124
+ * called by: Class_12a7a8_uses_set_field_38_099714, Class_12b0c4_uses_set_field_45_u8_0ac124
  */
 u32 set_field_45_u8(int a0, u32 a1) {
     *(u8 *)(a0 + 0x45) = (u8)a1;
@@ -6514,7 +6514,7 @@ u32 load_state_record_09ad34(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_load(a0, a1, a2, a3);
-    game_uses_set_field_8_s8_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
+    CAnimal_uses_set_field_8_s8_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
     uVar1 = copy15_in_normalize(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
 }
@@ -6540,7 +6540,7 @@ u32 save_state_record_09adec(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_save(a0, a1, a2, a3);
-    game_uses_get_field_134_02cf20(a0 + 0x174, a1 + 0x4c, a2);
+    CAnimal_uses_get_field_134_02cf20(a0 + 0x174, a1 + 0x4c, a2);
     uVar1 = copy15_out(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
 }
@@ -7969,7 +7969,7 @@ u32 load_state_record_09c7c0(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_load(a0, a1, a2, a3);
-    game_uses_set_field_8_s8_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
+    CAnimal_uses_set_field_8_s8_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
     uVar1 = copy15_in_normalize(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
 }
@@ -7995,7 +7995,7 @@ u32 save_state_record_09c878(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_save(a0, a1, a2, a3);
-    game_uses_get_field_134_02cf20(a0 + 0x174, a1 + 0x4c, a2);
+    CAnimal_uses_get_field_134_02cf20(a0 + 0x174, a1 + 0x4c, a2);
     uVar1 = copy15_out(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
 }
@@ -9953,7 +9953,7 @@ u32 Class_12acc8_m1_09f470(int *a0, int *a1, code *a2, u32 a3) {
         set_field_10_02cbd4(*(int *)(a2 + 4) + 0xa8, 999);
     }
     pcVar11 = a2;
-    Class_12acc8_uses_set_field_38_0a0040(a0, a1, a2, a3);
+    Class_12acc8_sequence_step(a0, a1, a2, a3);
     iVar4 = (int)*(char *)((int)a0 + 0x82);
     dVar14 = dVar16;
     if ((*(char *)((int)a0 + 0x82) == '\x01') && (a0[1] != 1)) {
@@ -10398,7 +10398,7 @@ u32 Class_12acc8_uses_set_field_38_09ff1c(int a0, u32 a1, int *a2, int a3) {
     if (*(int *)(a0 + 0x38) == 2) {
         *(u32 *)(a0 + 0xc) = 0;
         *(u32 *)(a0 + 0x40) = *(u32 *)(&g_8c13adfc + *(int *)(a0 + 0xc) * 4 + a3 * 0xc);
-        game_uses_rand_0a00f8(a0, a1, a2, a3);
+        Class_12acc8_uses_rand_0a00f8(a0, a1, a2, a3);
         a5 = 1;
         set_field_38_02f404(a0, 1);
     }

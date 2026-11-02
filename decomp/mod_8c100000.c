@@ -50,8 +50,7 @@ u32 input_start_only_pressed(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * input_input_helper_100154  0x8c100154
  * area name: sits between input functions (same compilation unit); behaviour name: mostly calls input functions
- * called by: game_uses_get_field_d0_0cbbcc, game_uses_get_field_d0_0cbc3c, game_uses_get_field_d0_0cbca4,
- * game_uses_get_field_d0_0cbd0c
+ * called by: menu_pick_option_0, menu_pick_option_1, menu_pick_option_2, menu_pick_option_3
  */
 u32 input_input_helper_100154(int a0) {
     int iVar1;
@@ -205,8 +204,8 @@ int input_uses_set_timeout_120_1003b0(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * input_uses_set_timeout_120_1004b4  0x8c1004b4
  * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * set_timeout_120 called by: game_input_0dc990, game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90,
- * input_uses_input_y_pressed_wrap_0dc28c
+ * set_timeout_120 called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90,
+ * input_stick_with_x_dispatch, input_uses_input_y_pressed_wrap_0dc28c
  */
 u32 *input_uses_set_timeout_120_1004b4(int a0) {
     float fVar1;
@@ -255,8 +254,8 @@ u32 *input_uses_set_timeout_120_1004b4(int a0) {
 /*
  * input_uses_set_timeout_120_10052c  0x8c10052c
  * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * set_timeout_120 called by: game_input_0dc990, game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90,
- * input_uses_input_y_pressed_wrap_0dc28c
+ * set_timeout_120 called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90,
+ * input_stick_with_x_dispatch, input_uses_input_y_pressed_wrap_0dc28c
  */
 u32 *input_uses_set_timeout_120_10052c(int a0) {
     float fVar1;
@@ -305,8 +304,8 @@ u32 *input_uses_set_timeout_120_10052c(int a0) {
 /*
  * input_uses_set_timeout_120_1005a4  0x8c1005a4
  * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * set_timeout_120 called by: game_input_0dc990, game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90,
- * input_uses_input_y_pressed_wrap_0dc28c
+ * set_timeout_120 called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90,
+ * input_stick_with_x_dispatch, input_uses_input_y_pressed_wrap_0dc28c
  */
 u32 *input_uses_set_timeout_120_1005a4(int a0) {
     float fVar1;
@@ -355,8 +354,8 @@ u32 *input_uses_set_timeout_120_1005a4(int a0) {
 /*
  * input_uses_set_timeout_120_10061c  0x8c10061c
  * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * set_timeout_120 called by: game_input_0dc990, game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90,
- * input_uses_input_y_pressed_wrap_0dc28c
+ * set_timeout_120 called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90,
+ * input_stick_with_x_dispatch, input_uses_input_y_pressed_wrap_0dc28c
  */
 u32 *input_uses_set_timeout_120_10061c(int a0) {
     float fVar1;
@@ -430,7 +429,7 @@ u32 clear_field_59c_wrap(u32 a0) {
 /*
  * stick_up_with_x  0x8c1006d8
  * 1 when X is held and the stick Y is below -0.3
- * called by: game_input_0dc990
+ * called by: input_stick_with_x_dispatch
  */
 u32 stick_up_with_x(int a0) {
     int iVar1;
@@ -447,7 +446,7 @@ u32 stick_up_with_x(int a0) {
 /*
  * stick_down_with_x  0x8c100724
  * 1 when X is held and the stick Y is above 0.3
- * called by: game_input_0dc990
+ * called by: input_stick_with_x_dispatch
  */
 u32 stick_down_with_x(int a0) {
     int iVar1;
@@ -464,7 +463,7 @@ u32 stick_down_with_x(int a0) {
 /*
  * stick_right_with_x  0x8c100770
  * 1 when X is held and the stick X (+0x13c) is above 0.3
- * called by: game_input_0dc990
+ * called by: input_stick_with_x_dispatch
  */
 u32 stick_right_with_x(int a0) {
     int iVar1;
@@ -481,7 +480,7 @@ u32 stick_right_with_x(int a0) {
 /*
  * stick_left_with_x  0x8c1007bc
  * 1 when X is held and the stick X (+0x13c) is below -0.3
- * called by: game_input_0dc990
+ * called by: input_stick_with_x_dispatch
  */
 u32 stick_left_with_x(int a0) {
     int iVar1;
@@ -968,7 +967,7 @@ LAB_8c1010c2:
 
 /*
  * get_field_b0_10113c  0x8c10113c
- * called by: game_list_0dc8fc
+ * called by: input_list_0dc8fc
  */
 u32 get_field_b0_10113c(int a0) {
     return *(u32 *)(0xb0 + a0);
@@ -1034,12 +1033,12 @@ u32 get_field_18e_div30(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CGame_copy_1011e0  0x8c1011e0
- * area name: only called from CGame methods; behaviour name: mostly calls copy functions
+ * CGame_uses_cursor_reset_center_1011e0  0x8c1011e0
+ * area name: only called from CGame methods; behaviour name: its main named callee is cursor_reset_center
  * called by: CGame_Initial
  */
-u32 CGame_copy_1011e0(int a0, u32 unused_a1, u32 a2, u32 a3) {
-    input_copy_101250(a0, unused_a1, a2, a3);
+u32 CGame_uses_cursor_reset_center_1011e0(int a0, u32 unused_a1, u32 a2, u32 a3) {
+    cursor_reset_center(a0, unused_a1, a2, a3);
     ret_const_1_0ffb90(a0 + 0xd8, unused_a1, a2, a3);
     return 1;
 }
@@ -1063,11 +1062,11 @@ u32 *Class_12acc8_calc_101210(int a0, u32 *a1, u32 *a2) {
 }
 
 /*
- * input_copy_101250  0x8c101250
- * area name: sits between input functions (same compilation unit); behaviour name: mostly calls copy functions
- * called by: CGame_copy_1011e0, game_vec_0ffb98
+ * cursor_reset_center  0x8c101250
+ * puts the cursor at (320, 240), clears its motion and state and sets the 120-frame timeout value
+ * called by: CGame_uses_cursor_reset_center_1011e0, game_vec_0ffb98
  */
-u32 input_copy_101250(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 cursor_reset_center(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     *(u32 *)(a0 + 0xd0) = 0;
@@ -1311,7 +1310,7 @@ u32 game_calls_test_101510(int a0, u32 a1) {
 
 /*
  * clear_field_59c  0x8c10168c
- * called by: clear_field_59c_wrap, input_copy_101250, set_timeout_120_mode6
+ * called by: clear_field_59c_wrap, cursor_reset_center, set_timeout_120_mode6
  */
 int clear_field_59c(int a0) {
     int iVar1;
@@ -1324,7 +1323,7 @@ int clear_field_59c(int a0) {
 /*
  * game_copy_10169c  0x8c10169c
  * area name: game code; nothing names its area yet; behaviour name: mostly calls copy functions
- * called by: input_copy_101250
+ * called by: cursor_reset_center
  */
 int game_copy_10169c(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -1363,7 +1362,7 @@ u32 input_history_push(int a0) {
 /*
  * input_copy_101784  0x8c101784
  * area name: sits between input functions (same compilation unit); behaviour name: mostly calls copy functions
- * called by: input_copy_101250
+ * called by: cursor_reset_center
  */
 u32 input_copy_101784(int a0, u32 unused_a1, u32 a2, u32 a3) {
     bool bVar1;
@@ -1923,7 +1922,7 @@ int free_if_nonnull_wrap_10270c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * set_fields_0_2  0x8c10273c
  * stores +0x0, +0x2
- * called by: game_uses_copy_2_u16_0e89c4, game_uses_set_fields_0_2_0e8ae0, set_fields_0_2_wrap
+ * called by: game_uses_copy_2_u16_0e89c4, item_grid_find_free, set_fields_0_2_wrap
  */
 u16 *set_fields_0_2(u16 *a0, u32 a1, u32 a2) {
     *a0 = (u16)a1;
@@ -1995,7 +1994,8 @@ u16 *clear_record_10(u16 *a0) {
 /*
  * color_set_white  0x8c102800
  * a0[0..3] = 1.0
- * called by: CAnimal_vec_0f4040, Class_12b580_uses_Vec3_ctor_zero_0d7f18, game_vec_0f3ebc
+ * called by: Class_12b580_uses_Vec3_ctor_zero_0d7f18, Class_12c1f0_uses_Vec3_ctor_zero_0f4040,
+ * game_uses_Vec3_ctor_zero_0f3ebc
  */
 u32 *color_set_white(u32 *a0) {
     *a0 = 0x3f800000;
@@ -2059,11 +2059,11 @@ u32 free_ptr_and_clear(int *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CSeamanDomain_uses_date_to_rtc_seconds_1028c0  0x8c1028c0
- * area name: only called from CSeamanDomain methods; behaviour name: its main named callee is date_to_rtc_seconds
+ * date_compare  0x8c1028c0
+ * compares two dates as RTC seconds: 1 when a0 is later, 2 when a1 is later, 0 when equal
  * called by: CSeamanDomain_Init
  */
-u32 CSeamanDomain_uses_date_to_rtc_seconds_1028c0(u32 a0, u32 a1, u32 a2) {
+u32 date_compare(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
     u32 uStack_c;
     u32 auStack_8[2];
@@ -2244,7 +2244,7 @@ u32 Class_12c394_uses_imask_to_sr_bits_102bd0(u32 a0, u32 a1, u32 a2, u32 a3) {
     uVar4 = a2;
     imask_to_sr_bits(0xf);
     shinobi_uses_intc_reset_and_init_regs_1fa6b8(uVar2, uVar3, uVar4, a3);
-    shinobi_uses_set_handler_table_1fb3e0(0x8c4c3ea0, 0xb3b160, uVar4, a3);
+    sys_heap_init(0x8c4c3ea0, 0xb3b160, uVar4, a3);
     uVar4 = a0;
     pvr_25825a(a0, a1, a2, a3);
     shinobi_draw_1fa6e2();
@@ -2271,7 +2271,7 @@ u32 Class_12c394_uses_imask_to_sr_bits_102bd0(u32 a0, u32 a1, u32 a2, u32 a3) {
         system_init_libs(uVar2, uVar3, ar6_00, a3);
         game_shutdown_b();
     }
-    uVar3 = libc_scan_loop_0100b0(uVar2, uVar3, ar6_00, a3);
+    uVar3 = run_static_ctors(uVar2, uVar3, ar6_00, a3);
     return uVar3;
 }
 
@@ -2296,7 +2296,7 @@ u32 system_init_libs(u32 a0, u32 a1, u32 a2, u32 a3) {
     run_atexit_list(a0, a1, a2, a3);
     gdfs_drv_close(a0, a1, a2, a3, in_PR);
     shinobi_remove_event900();
-    shinobi_uses_memset_1f62f0();
+    device_info_table_reset();
     ninja_release_2590bc(a0, a1, a2, a3);
     noop_1fb43a();
     shinobi_uses_utlb_invalidate_saved_entrie_1fa6f2(a0, a1, a2, a3);
@@ -5514,7 +5514,7 @@ u32 asr_calls_2_10a2cc(void) {
 /*
  * asr_copy_10a308  0x8c10a308
  * area name: in the asr library code range; behaviour name: mostly calls copy functions
- * called by: asr_copy_10ac3c, asr_uses_asr_state_has_event_10ad00
+ * called by: asr_copy_10ac3c, asr_talk_10ad00
  */
 u32 asr_copy_10a308(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5533,7 +5533,7 @@ u32 asr_copy_10a308(int a0, u32 unused_a1, u32 a2, u32 a3) {
         memmove(*(u32 *)(a0 + 0x58), *(u32 *)(a0 + 0xa8), *(int *)(a0 + 0x7c) << 2);
         ar6_00 = *(int *)(a0 + 0x7c) << 2;
         memmove(*(u32 *)(a0 + 0x54), *(u32 *)(a0 + 0xa8), ar6_00);
-        uVar1 = asr_uses_asr_array_copy_from_11b93c(*(u32 *)(a0 + 0xb0), *(u32 *)(a0 + 0x54));
+        uVar1 = asr_talk_11b93c(*(u32 *)(a0 + 0xb0), *(u32 *)(a0 + 0x54));
         if ((uVar1 & 0xff) != 0) {
             return 1;
         }
@@ -5611,8 +5611,7 @@ u32 alt_entry_10a312(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         in_FPSCR_PR = 0;
         in_FPSCR_SZ =
             (u8)((((u32)bVar3 << 0x12 | (u32)bVar4 << 0x13 | (u32)bVar5 << 0x14) & 0xffe7ffff & 0x100000) >> 0x14);
-        uVar1 = (*(code *)(&asr_uses_asr_array_copy_from_11b93c))(*(u32 *)(unaff_r14 + 0xb0),
-                                                                  *(u32 *)(unaff_r14 + 0x54), ar6_00, a3);
+        uVar1 = (*(code *)(&asr_talk_11b93c))(*(u32 *)(unaff_r14 + 0xb0), *(u32 *)(unaff_r14 + 0x54), ar6_00, a3);
         if ((uVar1 & 0xff) != 0) {
             return 1;
         }
@@ -5794,7 +5793,7 @@ u32 asr_copy_10a564(int a0, u32 a1) {
         *(u32 *)(a0 + 0x70) = 0;
         memmove(*(u32 *)(a0 + 0x54), *(u32 *)(a0 + 0x58), a6);
         a1 = *(u32 *)(a0 + 0x54);
-        uVar1 = asr_uses_asr_array_copy_from_11b93c(*(u32 *)(a0 + 0xb0), a1);
+        uVar1 = asr_talk_11b93c(*(u32 *)(a0 + 0xb0), a1);
         if ((uVar1 & 0xff) != 0) {
             return 0;
         }
@@ -6183,11 +6182,10 @@ u32 asr_copy_10ac3c(u32 unused_a0, u32 unused_a1, int a2, int *a3) {
 }
 
 /*
- * asr_uses_asr_state_has_event_10ad00  0x8c10ad00
- * area name: sits between asr functions (same compilation unit); behaviour name: its main named callee is
- * asr_state_has_event
+ * asr_talk_10ad00  0x8c10ad00
+ * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls talk functions
  */
-u32 asr_uses_asr_state_has_event_10ad00(int *a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 asr_talk_10ad00(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     char cVar1;
     u8 *puVar2;
     u8 *puVar3;
@@ -6401,7 +6399,7 @@ u32 asr_uses_asr_state_has_event_10ad00(int *a0, u32 unused_a1, u32 a2, u32 a3) 
     *(u8 **)(iVar5 + 0xc + (int)a0) = puVar3;
     (*(code *)puVar2)(a0, 8, uVar7, a3);
     ar6_00 = *(u32 *)((int)0xac + (int)a0);
-    uVar7 = asr_uses_asr_array2d_init_11b6b8(a4, uVar8, ar6_00, a3);
+    uVar7 = asr_talk_11b6b8(a4, uVar8, ar6_00, a3);
     *(u32 *)((int)0xb0 + (int)a0) = uVar7;
     uVar8 = asr_copy_10a308(a0, uVar8, ar6_00, a3);
     return (u32)((uVar8 & 0xff) != 0);
@@ -6414,8 +6412,8 @@ u32 asr_uses_asr_state_has_event_10ad00(int *a0, u32 unused_a1, u32 a2, u32 a3) 
 u32 asr_module_def_10af3c(u32 a0, u32 a1) {
     u32 uVar1;
 
-    uVar1 = (*(code *)(&asr_talk_120580))(a0, a1, 5, 1, (&asr_copy_10a80c), (&asr_uses_asr_state_has_event_10ad00),
-                                          (&DATA_8c10ac30), (int)0xb4);
+    uVar1 = (*(code *)(&asr_talk_120580))(a0, a1, 5, 1, (&asr_copy_10a80c), (&asr_talk_10ad00), (&DATA_8c10ac30),
+                                          (int)0xb4);
     return uVar1;
 }
 
@@ -7009,7 +7007,7 @@ int asr_uses_lib11c_take_error_10b6cc(u32 *a0, u32 *a1, u32 a2, u32 a3) {
 
 /*
  * asr_lib_bind_recognizer_model  0x8c10b840
- * called by: asr_uses_asr_lib_bind_recognizer_mode_01d008
+ * called by: asr_talk_01d008
  */
 int asr_lib_bind_recognizer_model(u32 *a0, u32 *a1) {
     int iVar1;
@@ -7089,7 +7087,7 @@ int alt_entry_10b852(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * asr_call_11ce44_err  0x8c10b8c6
  * calls 8c11ce44 on the handle; the library error code when it fails, else 0
- * called by: asr_uses_asr_lib_bind_recognizer_mode_01d008
+ * called by: asr_talk_01d008
  */
 u32 asr_call_11ce44_err(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -7170,7 +7168,7 @@ u32 asr_lib_create_engine(int *a0, int a1, int *a2, u32 a3) {
 /*
  * asr_uses_lib11c_take_error_10ba20  0x8c10ba20
  * area name: sits between asr functions (same compilation unit); behaviour name: its main named callee is
- * lib11c_take_error called by: asr_uses_asr_lib_bind_recognizer_mode_01d008
+ * lib11c_take_error called by: asr_talk_01d008
  */
 u32 asr_uses_lib11c_take_error_10ba20(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -7192,11 +7190,11 @@ u32 asr_uses_lib11c_take_error_10ba20(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_uses_lib11c_take_error_10ba7c  0x8c10ba7c
- * area name: sits between asr functions (same compilation unit); behaviour name: its main named callee is
- * lib11c_take_error called by: asr_uses_asr_lib_bind_recognizer_mode_01d008
+ * asr_talk_10ba7c  0x8c10ba7c
+ * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls talk functions
+ * called by: asr_talk_01d008
  */
-int asr_uses_lib11c_take_error_10ba7c(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
+int asr_talk_10ba7c(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     u32 uStack_14;
@@ -7205,7 +7203,7 @@ int asr_uses_lib11c_take_error_10ba7c(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     uStack_14 = *(u32 *)(a0[1] + 4);
     iVar2 = 0;
     uStack_10 = 0;
-    iVar1 = asr_uses_lib11c_set_error_11e9b4(*a0, 0, a2, a3);
+    iVar1 = asr_handle_destroy_2783d5f5(*a0, 0, a2, a3);
     if (iVar1 != 0) {
         iVar2 = lib11c_take_error(*(u32 *)a0[1], 0, a2, a3);
     }
@@ -7216,11 +7214,11 @@ int asr_uses_lib11c_take_error_10ba7c(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_uses_lib11c_take_error_10bad4  0x8c10bad4
- * area name: sits between asr functions (same compilation unit); behaviour name: its main named callee is
- * lib11c_take_error called by: asr_uses_asr_lib_bind_recognizer_mode_01d008
+ * asr_talk_10bad4  0x8c10bad4
+ * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls talk functions
+ * called by: asr_talk_01d008
  */
-int asr_uses_lib11c_take_error_10bad4(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
+int asr_talk_10bad4(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     u32 uStack_14;
@@ -7229,7 +7227,7 @@ int asr_uses_lib11c_take_error_10bad4(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     iVar2 = 0;
     uStack_14 = *(u32 *)(a0[2] + 4);
     uStack_10 = 0;
-    iVar1 = asr_uses_lib11c_set_error_11e82c(*a0, unused_a1, a2, a3);
+    iVar1 = asr_handle_destroy_2d79b6f5(*a0, unused_a1, a2, a3);
     if (iVar1 != 0) {
         iVar2 = lib11c_take_error(*(u32 *)a0[2], 0, a2, a3);
     }
@@ -7446,7 +7444,7 @@ u32 asr_call_11e214_err(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 *unaff_r13;
     u32 unaff_r14;
 
-    iVar1 = asr_talk_11e214(*unaff_r13, a1);
+    iVar1 = asr_get_first_result(*unaff_r13, a1);
     if (iVar1 != 0) {
         unaff_r14 = lib11c_take_error(*(u32 *)unaff_r13[1], *unaff_r13, a2, a3);
     }
@@ -7490,7 +7488,7 @@ u32 asr_call_11e190_err(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 *unaff_r13;
     u32 unaff_r14;
 
-    iVar1 = asr_talk_11e190(*unaff_r13, a1);
+    iVar1 = asr_get_status_3e(*unaff_r13, a1);
     if (iVar1 != 0) {
         unaff_r14 = lib11c_take_error(*(u32 *)unaff_r13[1], *unaff_r13, a2, a3);
     }
@@ -7834,7 +7832,7 @@ u32 asr_call_11d5d4_err_10c35e(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * asr_test_10c3a0  0x8c10c3a0
  * area name: sits between asr functions (same compilation unit); behaviour name: returns the result of a comparison
- * called by: asr_uses_asr_lib_bind_recognizer_mode_01d008
+ * called by: asr_talk_01d008
  */
 u32 asr_test_10c3a0(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -10920,11 +10918,11 @@ u32 asr_module_def_10f632(u32 a0, u32 a1) {
 }
 
 /*
- * asr_fill_loop_10f69c  0x8c10f69c
- * area name: sits between asr functions (same compilation unit); behaviour name: a loop that writes memory
- * called by: asr_calls_fill_loop_10f8e6
+ * asr_scores_export  0x8c10f69c
+ * copies the result header (+0x28, +0x30), every score (+0x44, count +0x78) and the four trailing words into a1
+ * called by: asr_uses_asr_scores_import_10f8e6
  */
-u32 asr_fill_loop_10f69c(int a0, u32 *a1) {
+u32 asr_scores_export(int a0, u32 *a1) {
     int iVar1;
     u32 *puVar2;
     u32 uVar3;
@@ -10949,11 +10947,11 @@ u32 asr_fill_loop_10f69c(int a0, u32 *a1) {
 }
 
 /*
- * asr_fill_loop_10f6f0  0x8c10f6f0
- * area name: sits between asr functions (same compilation unit); behaviour name: a loop that writes memory
- * called by: asr_calls_fill_loop_10f8e6
+ * asr_scores_import  0x8c10f6f0
+ * the counterpart of asr_scores_export: loads the header, the scores and the four trailing words from a1
+ * called by: asr_uses_asr_scores_import_10f8e6
  */
-u32 asr_fill_loop_10f6f0(int a0, u32 *a1) {
+u32 asr_scores_import(int a0, u32 *a1) {
     u32 *puVar1;
     u32 uVar2;
     u32 uVar3;
@@ -10980,7 +10978,7 @@ u32 asr_fill_loop_10f6f0(int a0, u32 *a1) {
 /*
  * asr_talk_10f736  0x8c10f736
  * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls talk functions
- * called by: asr_calls_fill_loop_10f8e6
+ * called by: asr_uses_asr_scores_import_10f8e6
  */
 u32 asr_talk_10f736(int a0, int a1) {
     u8 uVar1;
@@ -11051,8 +11049,8 @@ u32 alt_entry_10f742(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * asr_calls_fill_loop_10f850  0x8c10f850
- * area name: in the asr library code range; behaviour name: its callees mostly do: fill_loop
- * called by: asr_calls_fill_loop_10f8e6
+ * area name: sits between asr functions (same compilation unit); behaviour name: its callees mostly do: fill_loop
+ * called by: asr_uses_asr_scores_import_10f8e6
  */
 u32 asr_calls_fill_loop_10f850(int a0, u32 a1, u32 a2, u32 a3) {
     int a7;
@@ -11090,10 +11088,11 @@ u32 asr_calls_fill_loop_10f850(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_calls_fill_loop_10f8e6  0x8c10f8e6
- * area name: in the asr library code range; behaviour name: its callees mostly do: fill_loop
+ * asr_uses_asr_scores_import_10f8e6  0x8c10f8e6
+ * area name: sits between asr functions (same compilation unit); behaviour name: its main named callee is
+ * asr_scores_import
  */
-u32 asr_calls_fill_loop_10f8e6(int *a0, u32 a1, int *a2, int *a3) {
+u32 asr_uses_asr_scores_import_10f8e6(int *a0, u32 a1, int *a2, int *a3) {
     u32 uVar1;
     u32 ar5_00;
     int a5;
@@ -11126,7 +11125,7 @@ u32 asr_calls_fill_loop_10f8e6(int *a0, u32 a1, int *a2, int *a3) {
             if (uVar1 != 5) {
                 if (uVar1 == 6) {
                     if (a2 != NULL) {
-                        asr_fill_loop_10f6f0(a0, *a3 + (int)a2);
+                        asr_scores_import(a0, *a3 + (int)a2);
                         *a3 = *a3 + (a0[0x1e] + 6) * 4;
                         return 1;
                     }
@@ -11135,7 +11134,7 @@ u32 asr_calls_fill_loop_10f8e6(int *a0, u32 a1, int *a2, int *a3) {
                 }
                 if (uVar1 == 7) {
                     if (a2 != NULL) {
-                        asr_fill_loop_10f69c(a0, *a3 + (int)a2);
+                        asr_scores_export(a0, *a3 + (int)a2);
                     }
                     iVar2 = *a3 + (a0[0x1e] + 6) * 4;
                 } else {
@@ -11175,7 +11174,7 @@ u32 asr_calls_fill_loop_10f8e6(int *a0, u32 a1, int *a2, int *a3) {
 /*
  * asr_fill_loop_10fa6c  0x8c10fa6c
  * area name: sits between asr functions (same compilation unit); behaviour name: a loop that writes memory
- * called by: asr_calls_fill_loop_10f850, asr_calls_fill_loop_10f8e6, asr_talk_10fece
+ * called by: asr_calls_fill_loop_10f850, asr_talk_10fece, asr_uses_asr_scores_import_10f8e6
  */
 u32 asr_fill_loop_10fa6c(int a0, u32 unused_a1, u32 a2) {
     int iVar1;
@@ -11615,11 +11614,11 @@ u32 asr_uses_mring_read_advance_10fc96(int a0, u32 unused_a1, int a2, u32 a3) {
 }
 
 /*
- * asr_fill_loop_10fd82  0x8c10fd82
- * area name: sits between asr functions (same compilation unit); behaviour name: a loop that writes memory
+ * asr_find_min_active_score  0x8c10fd82
+ * 1-based index of the smallest score at +0x44 among active entries (+0x6c flags), count +0x78
  * called by: alt_entry_10fe0a, asr_uses_mring_write_advance_10fe04
  */
-int asr_fill_loop_10fd82(int a0) {
+int asr_find_min_active_score(int a0) {
     u32 uVar1;
     u32 uVar2;
     float fVar3;
@@ -11654,7 +11653,7 @@ u32 asr_uses_mring_write_advance_10fe04(int a0) {
     if ((*(int *)(a0 + 0x48) != 0) && (iVar2 = mring_write_advance(**(u32 **)(a0 + 0x10)), uVar1 = 0, iVar2 != 0)) {
         if ((*(char *)(a0 + 0x32) == '\0') &&
             ((*(int *)(a0 + 0x28) == 0 || ((float)*(int *)(a0 + 0x88) < *(float *)(a0 + 0x54))))) {
-            uVar1 = asr_fill_loop_10fd82(a0);
+            uVar1 = asr_find_min_active_score(a0);
             *(short *)(a0 + 0x30) = (short)uVar1;
         }
         memmove(iVar2, (*(u16 *)(a0 + 0x30) - 1) * *(int *)(a0 + 0x70) * 4 + *(int *)(a0 + 0x3c),
@@ -11715,7 +11714,7 @@ u32 alt_entry_10fe0a(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
             if ((char)((uVar3 & 0x80000) >> 0x13) != '\0' || fVar4 <= (float)*(int *)(0x88 + unaff_r14))
                 goto LAB_8c10fe62;
         }
-        uVar2 = asr_fill_loop_10fd82(unaff_r14);
+        uVar2 = asr_find_min_active_score(unaff_r14);
         *(short *)(unaff_r14 + 0x30) = (short)uVar2;
     }
 LAB_8c10fe62:
@@ -11733,7 +11732,7 @@ LAB_8c10fe62:
 
 /*
  * asr_talk_10fece  0x8c10fece
- * area name: in the asr library code range; behaviour name: mostly calls talk functions
+ * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls talk functions
  */
 u32 asr_talk_10fece(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3, int *ain1) {
     int iVar1;

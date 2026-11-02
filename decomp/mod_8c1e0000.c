@@ -18,43 +18,43 @@ u32 crt0_start(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         *a4 = uVar1;
         a4 = a4 + 1;
     } while (a4 < a5);
-    shinobi_scan_loop_1ef440();
-    shinobi_uses_memcmp_1ef430();
+    crt_init_sections();
+    lib_handles_add_all_wrap();
     main(a4, a5, uVar1, a3);
-    uVar1 = shinobi_uses_memcmp_1ef438();
+    uVar1 = lib_handles_remove_all_like_wrap();
     return uVar1;
 }
 
 /*
- * shinobi_uses_memcmp_1ef430  0x8c1ef430
- * area name: in the shinobi library code range; behaviour name: its callees mostly do: uses_memcmp
+ * lib_handles_add_all_wrap  0x8c1ef430
+ * only calls lib_handles_add_all
  * called by: crt0_start
  */
-u32 shinobi_uses_memcmp_1ef430(void) {
+u32 lib_handles_add_all_wrap(void) {
     u32 uVar1;
 
-    uVar1 = irq_uses_memcmp_1f5c9e(*(u32 *)(&DATA_8c26be70));
+    uVar1 = lib_handles_add_all(*(u32 *)(&DATA_8c26be70));
     return uVar1;
 }
 
 /*
- * shinobi_uses_memcmp_1ef438  0x8c1ef438
- * area name: in the shinobi library code range; behaviour name: its callees mostly do: uses_memcmp
+ * lib_handles_remove_all_like_wrap  0x8c1ef438
+ * only calls lib_handles_remove_all_like
  * called by: crt0_start
  */
-u32 shinobi_uses_memcmp_1ef438(void) {
+u32 lib_handles_remove_all_like_wrap(void) {
     u32 uVar1;
 
-    uVar1 = irq_uses_memcmp_1f5cf6(*(u32 *)(&DATA_8c26be70));
+    uVar1 = lib_handles_remove_all_like(*(u32 *)(&DATA_8c26be70));
     return uVar1;
 }
 
 /*
- * shinobi_scan_loop_1ef440  0x8c1ef440
- * area name: in the shinobi library code range; behaviour name: a loop that only reads
+ * crt_init_sections  0x8c1ef440
+ * start-up: zeroes the two BSS ranges and copies the two initialised-data ranges from their load addresses
  * called by: crt0_start
  */
-u32 shinobi_scan_loop_1ef440(void) {
+u32 crt_init_sections(void) {
     u8 uVar1;
     u8 *puVar2;
     u8 *puVar3;
@@ -559,7 +559,7 @@ int pvr_1efaf4(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * pvr_uses_memset_1efcae  0x8c1efcae
  * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is memset
- * called by: shinobi_uses_memset_1f62f0, shinobi_uses_memset_1f62f6
+ * called by: device_info_table_reset, shinobi_uses_memset_1f62f6
  */
 u32 pvr_uses_memset_1efcae(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;

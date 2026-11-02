@@ -9540,8 +9540,9 @@ u32 game_calls_update_fields_05fec4(int a0) {
 /*
  * take_from_field_6c  0x8c05feec
  * takes up to a1 from the amount at +0x6c and flags +0x74 bit 1; returns what was taken
- * called by: Class_12b0c4_uses_set_field_38_0abe84, Class_12b2e8_uses_set_field_38_0b61bc, FrogMan_choose_status_event,
- * FrogMan_gratification_events, Higyo_choose_status_event, Higyo_gratification_events, game_state_switch_0b6440
+ * called by: Class_12b0c4_uses_set_field_38_0abe84, Class_12b2e8_state_switch_0b6440,
+ * Class_12b2e8_uses_set_field_38_0b61bc, FrogMan_choose_status_event, FrogMan_gratification_events,
+ * Higyo_choose_status_event, Higyo_gratification_events
  */
 int take_from_field_6c(int a0, int a1, u32 unused_a2, u32 a3) {
     int iStack_8;

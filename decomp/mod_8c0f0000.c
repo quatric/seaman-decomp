@@ -49,11 +49,11 @@ u32 *game_vec_0f3e84(u32 *a0) {
 }
 
 /*
- * game_vec_0f3ebc  0x8c0f3ebc
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * game_uses_Vec3_ctor_zero_0f3ebc  0x8c0f3ebc
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is Vec3_ctor_zero
  * called by: named_list_ctor_170
  */
-int game_vec_0f3ebc(int a0, u32 a1, u32 a2) {
+int game_uses_Vec3_ctor_zero_0f3ebc(int a0, u32 a1, u32 a2) {
     set_fields_4_0(a0);
     *(u8 **)(a0 + 8) = (&DATA_8c12c1f0);
     Vec3_ctor_zero(a0 + 0x30, a1, a2);
@@ -62,17 +62,17 @@ int game_vec_0f3ebc(int a0, u32 a1, u32 a2) {
     Vec3_set_one(a0 + 0x5c);
     color_set_white(a0 + 0x80);
     color_set_white(a0 + 0x90);
-    game_vec_0f78d8(a0 + 0xa0, a1, a2);
+    Class_12c1f0_ctor_like(a0 + 0xa0, a1, a2);
     game_init_fields_0f50b4(a0);
     return a0;
 }
 
 /*
- * Class_12c1f0_release_0f3f58  0x8c0f3f58
- * area name: only called from Class_12c1f0 methods; behaviour name: mostly calls release functions
+ * Class_12c1f0_dtor_like  0x8c0f3f58
+ * destroys what Class_12c1f0_ctor_like built, in reverse order, and frees a0 when asked
  * called by: Class_12c1f0_m0_0f4108
  */
-int Class_12c1f0_release_0f3f58(int a0, u32 a1, u32 a2, u32 a3) {
+int Class_12c1f0_dtor_like(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
     u32 ar6_00;
     u32 ar7_00;
@@ -112,8 +112,8 @@ int free_if_nonnull_wrap_0f3ffc(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * set_fields_4_0  0x8c0f402c
  * stores +0x4, +0x0
- * called by: CAnimal_vec_0f4040, game_uses_set_fields_4_0_0fddc4, game_uses_set_fields_4_0_0fde34, game_vec_0f3ebc,
- * game_vec_0fdde4
+ * called by: Class_12c1f0_uses_Vec3_ctor_zero_0f4040, game_uses_Vec3_ctor_zero_0f3ebc, game_uses_set_fields_4_0_0fddc4,
+ * game_uses_set_fields_4_0_0fde34, game_vec_0fdde4
  */
 u32 *set_fields_4_0(u32 *a0) {
     a0[1] = 0;
@@ -122,11 +122,12 @@ u32 *set_fields_4_0(u32 *a0) {
 }
 
 /*
- * CAnimal_vec_0f4040  0x8c0f4040
- * area name: only called from CAnimal methods; behaviour name: mostly calls vec functions
- * called by: CAnimal_ctor, game_uses_Class_129920_ctor_0f54ec, game_uses_Class_129920_ctor_0f58a4, game_vec_06740c
+ * Class_12c1f0_uses_Vec3_ctor_zero_0f4040  0x8c0f4040
+ * area name: sits between Class_12c1f0 functions (same compilation unit); behaviour name: its main named callee is
+ * Vec3_ctor_zero called by: CAnimal_ctor, Class_12a0c4_ctor, game_uses_Class_129920_ctor_0f54ec,
+ * game_uses_Class_129920_ctor_0f58a4
  */
-int CAnimal_vec_0f4040(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
+int Class_12c1f0_uses_Vec3_ctor_zero_0f4040(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     u32 ar5_00;
     u32 ar6_00;
     u32 extraout_fr1;
@@ -143,7 +144,7 @@ int CAnimal_vec_0f4040(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     Vec3_set_one(a0 + 0x5c);
     color_set_white(a0 + 0x80);
     color_set_white(a0 + 0x90);
-    game_vec_0f78d8(a0 + 0xa0, ar5_00, ar6_00);
+    Class_12c1f0_ctor_like(a0 + 0xa0, ar5_00, ar6_00);
     game_init_fields_0f50b4(a0);
     *(u32 *)(a0 + 0x24) = a1;
     *(u32 *)(a0 + 0x28) = a2;
@@ -172,7 +173,7 @@ int Class_12c1f0_m0_0f4108(int a0, u32 a1, u32 a2, u32 a3) {
     ain0 = CONCAT22((short)((u32)in_stack_fffffff4 >> 0x10), (u16)a1);
     if (a0 != 0) {
         *(u8 **)(a0 + 8) = &g_8c12c1f0;
-        Class_12c1f0_release_0f3f58(a0 + 0xa0, 0xffffffff, a2, a3);
+        Class_12c1f0_dtor_like(a0 + 0xa0, 0xffffffff, a2, a3);
         free_if_nonnull_wrap_0d8168(a0 + 0x90, 0xffffffff, a2, a3);
         free_if_nonnull_wrap_0d8168(a0 + 0x80, 0xffffffff, a2, a3);
         free_if_nonnull_wrap_016ac4(a0 + 0x5c, 0xffffffff, a2, a3);
@@ -1213,9 +1214,8 @@ int set_field_128_0f4e28(int a0, u32 a1) {
 /*
  * obj_state_load  0x8c0f4e34
  * loads a saved object record (name, two words, three Vec3s, flags) from a1 into a0
- * called by: CAnimal_uses_obj_state_load_028ccc, egg_load_record, egg_load_record_b,
- * game_uses_libgcc_divide_helper_06c148, load_state_record_08b694, load_state_record_09ad34, load_state_record_09c7c0,
- * load_state_record_0a5614
+ * called by: CAnimal_state_load, egg_load_record, egg_load_record_b, game_uses_libgcc_divide_helper_06c148,
+ * load_state_record_08b694, load_state_record_09ad34, load_state_record_09c7c0, load_state_record_0a5614
  */
 u32 obj_state_load(int a0, int a1, u32 a2, u32 a3) {
     (*(code *)(&sprintf))(a0 + 0xc, a1, a2, a3, "%s");
@@ -1247,8 +1247,8 @@ u32 obj_pose_load(int a0, u32 *a1, u32 a2, u32 a3) {
 /*
  * obj_state_save  0x8c0f4f0c
  * saves the object a0 into the record a1 (inverse of obj_state_load)
- * called by: CAnimal_uses_get_field_13c_028f60, egg_save_record, egg_save_record_b, game_vec_06c89c,
- * save_state_record_09adec, save_state_record_09c878, save_state_record_0a56cc
+ * called by: CAnimal_state_save, egg_save_record, egg_save_record_b, game_vec_06c89c, save_state_record_09adec,
+ * save_state_record_09c878, save_state_record_0a56cc
  */
 u32 obj_state_save(int a0, int a1, u32 a2, u32 a3) {
     sprintf(a1, a1, a2, a3, "%s");
@@ -1323,7 +1323,7 @@ u32 debug_print_object(int a0, u32 a1, u32 a2) {
 /*
  * game_init_fields_0f50b4  0x8c0f50b4
  * area name: game code; nothing names its area yet; behaviour name: writes 12 members
- * called by: CAnimal_vec_0f4040, game_vec_0f3ebc
+ * called by: Class_12c1f0_uses_Vec3_ctor_zero_0f4040, game_uses_Vec3_ctor_zero_0f3ebc
  */
 u32 game_init_fields_0f50b4(int a0) {
     *(u8 *)(a0 + 0xc) = 0;
@@ -1679,7 +1679,7 @@ int game_uses_Class_129920_ctor_0f54ec(int a0, u32 a1, int a2, u32 unused_a3, u3
     ar7_00 = 0xffffffff;
     ar6_00 = 2;
     ar5_00 = a2;
-    CAnimal_vec_0f4040(a0, a2, 2, 0xffffffff, 0);
+    Class_12c1f0_uses_Vec3_ctor_zero_0f4040(a0, a2, 2, 0xffffffff, 0);
     *(u8 **)(a0 + 8) = &g_8c12c058;
     Class_129920_ctor(a0 + 0x170, ar5_00);
     clear_field_0_wrap_015ab8(a0 + 0x178);
@@ -1847,7 +1847,7 @@ int game_uses_Class_129920_ctor_0f58a4(int a0, u32 a1, u32 a2) {
 
     ar6_00 = 3;
     ar5_00 = 0xf;
-    CAnimal_vec_0f4040(a0, 0xf, 3, a1, a2);
+    Class_12c1f0_uses_Vec3_ctor_zero_0f4040(a0, 0xf, 3, a1, a2);
     *(u8 **)(a0 + 8) = (&DATA_8c12bec0);
     Class_12b3b8_copy_016410(a0 + 0x170);
     Class_129920_ctor(a0 + 0x1b4, ar5_00);
@@ -2103,7 +2103,7 @@ u32 Class_12bec0_draw_0f5e0c(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
     cVar6 = '\0';
     cVar5 = '\0';
-    game_calls_float_calc_0191c8((u8 *)((int)register0x0000003c + -0x48));
+    fpu_save_fr0_fr15_wrap((u8 *)((int)register0x0000003c + -0x48));
     matrix_push(0, unused_a1, a2, a3, (u32)uStack_4c);
     uVar1 = 0;
     touch_fields_30_3c(0, unused_a1, a2, a3, (u32)uStack_4c);
@@ -4030,11 +4030,11 @@ u32 set_fields_0_4_0f78cc(u32 *a0) {
 }
 
 /*
- * game_vec_0f78d8  0x8c0f78d8
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
- * called by: CAnimal_vec_0f4040, game_vec_0f3ebc
+ * Class_12c1f0_ctor_like  0x8c0f78d8
+ * builds the base (+8), the two three-entry arrays (+0x4c, +0x6c) and the three vectors (+0x8c, +0xa0, +0xb0) and
+ * clears the state called by: Class_12c1f0_uses_Vec3_ctor_zero_0f4040, game_uses_Vec3_ctor_zero_0f3ebc
  */
-u32 *game_vec_0f78d8(u32 *a0, u32 a1, u32 a2) {
+u32 *Class_12c1f0_ctor_like(u32 *a0, u32 a1, u32 a2) {
     u8 *ar5_00;
     u8 *ar6_00;
     u32 ar7_00;
@@ -4165,7 +4165,7 @@ u32 game_init(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     uVar2 = 0x2b000;
     ninja_calc_25b334(g_8c43b578, 0x2b000);
     g_8c43b57c = malloc_thunk(0x1db000, uVar2, uVar3, a3);
-    gfxlib_init_fields_236250(g_8c43b57c, 0x1db000);
+    gfx_heap_init(g_8c43b57c, 0x1db000);
     ar7_00 = 0;
     draw_uses_free_sys_258b26(0xfffaf6f0, 0, 0x4b320, 0);
     uVar4 = 0;
@@ -4182,7 +4182,7 @@ u32 game_init(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     gfxlib_calc_233d6c(g_8c43b574, 11000);
     uVar3 = 0x15e;
     uVar2 = 0x8c43b584;
-    ninja_calls_fill_loop_25b34a(0x8c43b584, 0x15e);
+    ninja_uses_tex_table_init_25b34a(0x8c43b584, 0x15e);
     ta_float_calc_213ee4();
     uVar4 = 0xff000000;
     uVar2 = 0xff000000;
@@ -7703,8 +7703,8 @@ int named_list_ctor_170(int a0, u32 a1, u32 a2) {
     int ar5_01;
 
     ar5_00 = a1;
-    game_vec_0f3ebc(a0, a1, a2);
-    game_vec_0f3ebc(a0 + 0x170, ar5_00, a2);
+    game_uses_Vec3_ctor_zero_0f3ebc(a0, a1, a2);
+    game_uses_Vec3_ctor_zero_0f3ebc(a0 + 0x170, ar5_00, a2);
     set_field_0_0fdf10(a0, a0 + 0x170);
     ar5_01 = a0;
     set_field_4_0fdf08(a0 + 0x170, a0);
@@ -7720,8 +7720,9 @@ int named_list_ctor_170(int a0, u32 a1, u32 a2) {
 
 /*
  * set_field_4_0fdf08  0x8c0fdf08
- * called by: CItemGLoadRequestList_TakeOu, CItemList_TakeOutItem, CNodePtrList_TakeOutItem, CWaterSnowList_TakeOut,
- * game_uses_set_field_0_0fe4c4, game_uses_set_field_0_0fe7f4, game_uses_set_field_0_0feab8, list_append_58 (+7 more)
+ * called by: CItemGLoadRequestList_TakeOu, CItemGLoader_uses_set_field_0_0feab8, CItemList_TakeOutItem,
+ * CNodePtrList_TakeOutItem, CWaterSnowList_TakeOut, game_uses_set_field_0_0fe4c4, game_uses_set_field_0_0fe7f4,
+ * list_append_58 (+7 more)
  */
 u32 set_field_4_0fdf08(int a0, u32 a1) {
     u32 in_r0;
@@ -7732,8 +7733,9 @@ u32 set_field_4_0fdf08(int a0, u32 a1) {
 
 /*
  * set_field_0_0fdf10  0x8c0fdf10
- * called by: CItemGLoadRequestList_TakeOu, CItemList_TakeOutItem, CNodePtrList_TakeOutItem, CWaterSnowList_TakeOut,
- * game_uses_set_field_0_0fe4c4, game_uses_set_field_0_0fe7f4, game_uses_set_field_0_0feab8, list_append_58 (+7 more)
+ * called by: CItemGLoadRequestList_TakeOu, CItemGLoader_uses_set_field_0_0feab8, CItemList_TakeOutItem,
+ * CNodePtrList_TakeOutItem, CWaterSnowList_TakeOut, game_uses_set_field_0_0fe4c4, game_uses_set_field_0_0fe7f4,
+ * list_append_58 (+7 more)
  */
 u32 set_field_0_0fdf10(u32 *a0, u32 a1) {
     u32 in_r0;
@@ -8140,7 +8142,7 @@ int list_append_at_14(int a0, u32 a1) {
 
 /*
  * CItemGLoadRequestList_TakeOu  0x8c0fe95c
- * called by: CItemGLoader_list_0feeb0, CItemGLoader_uses_get_field_48_0fef10
+ * called by: CItemGLoader_clear_requests, CItemGLoader_list_0feeb0
  * strings: "GLoad_Unit pointer is NULL.."; "CItemGLoadRequestList::TakeOut()"
  */
 int CItemGLoadRequestList_TakeOu(int a0, int a1) {
@@ -8185,11 +8187,11 @@ u32 CItemGLoadRequestList_GetPtr(int a0, int a1) {
 }
 
 /*
- * game_uses_set_field_0_0feab8  0x8c0feab8
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_field_0_0fdf10
- * called by: CItemGLoader_uses_get_field_48_0fef10
+ * CItemGLoader_uses_set_field_0_0feab8  0x8c0feab8
+ * area name: only called from CItemGLoader methods; behaviour name: its main named callee is set_field_0_0fdf10
+ * called by: CItemGLoader_clear_requests
  */
-u32 game_uses_set_field_0_0feab8(int a0) {
+u32 CItemGLoader_uses_set_field_0_0feab8(int a0) {
 
     set_field_0_0fdf10(a0, a0 + 0x14);
     set_field_4_0fdf08(a0 + 0x14, a0);
@@ -8345,7 +8347,7 @@ u32 CItemGLoader_take_free_slot(int a0) {
 /*
  * clear_link_14  0x8c0fed08
  * clears field +0x14 of *a1, then *a1
- * called by: CItemGLoader_list_0feeb0, CItemGLoader_uses_get_field_48_0fef10
+ * called by: CItemGLoader_clear_requests, CItemGLoader_list_0feeb0
  */
 u32 clear_link_14(u32 unused_a0, int *a1) {
     *(u32 *)(*a1 + 0x14) = 0;
@@ -8395,11 +8397,11 @@ int CItemGLoader_RegistToLoad(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * CItemGLoader_list_0fedf4  0x8c0fedf4
- * area name: sits between CItemGLoader functions (same compilation unit); behaviour name: mostly calls list functions
+ * CItemGLoader_poll_requests  0x8c0fedf4
+ * calls the load method (0xdc) of each item whose request is not done and marks it done (2) when it returns 1
  * called by: game_uses_get_field_d0_0c6e74
  */
-int CItemGLoader_list_0fedf4(u32 a0, u32 a1, u32 a2, u32 a3) {
+int CItemGLoader_poll_requests(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int ar4_00;
     int iVar2;
@@ -8425,7 +8427,7 @@ int CItemGLoader_list_0fedf4(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * list_node_next_wrap_0fee88  0x8c0fee88
  * only calls list_node_next
- * called by: CItemGLoader_list_0fedf4
+ * called by: CItemGLoader_poll_requests
  */
 u32 list_node_next_wrap_0fee88(u32 a0) {
     u32 uVar1;
@@ -8436,7 +8438,7 @@ u32 list_node_next_wrap_0fee88(u32 a0) {
 
 /*
  * get_field_48_0feea8  0x8c0feea8
- * called by: CItemGLoader_list_0fedf4, CItemGLoader_uses_get_field_48_0fef10
+ * called by: CItemGLoader_clear_requests, CItemGLoader_poll_requests
  */
 u32 get_field_48_0feea8(int a0) {
     return *(u32 *)(a0 + 0x48);
@@ -8471,11 +8473,11 @@ u32 CItemGLoader_is_done(u32 unused_a0, int a1) {
 }
 
 /*
- * CItemGLoader_uses_get_field_48_0fef10  0x8c0fef10
- * area name: sits between CItemGLoader functions (same compilation unit); behaviour name: its main named callee is
- * get_field_48_0feea8 called by: Class_12b388_uses_Class_129808_draw_0c5cb4
+ * CItemGLoader_clear_requests  0x8c0fef10
+ * takes every request out of the load request list, then resets the loader
+ * called by: Class_12b388_uses_Class_129808_draw_0c5cb4
  */
-u32 CItemGLoader_uses_get_field_48_0fef10(int a0, u32 *a1, u32 a2, u32 a3) {
+u32 CItemGLoader_clear_requests(int a0, u32 *a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 auStack_c[2];
@@ -8491,7 +8493,7 @@ u32 CItemGLoader_uses_get_field_48_0fef10(int a0, u32 *a1, u32 a2, u32 a3) {
         a1 = auStack_c;
         clear_link_14(a0 + 0x4c, a1);
     }
-    uVar2 = game_uses_set_field_0_0feab8(a0);
+    uVar2 = CItemGLoader_uses_set_field_0_0feab8(a0);
     return uVar2;
 }
 
@@ -8508,9 +8510,9 @@ u32 CItemGLoader_calc_0fef8c(u32 a0) {
  * CItemGLoader_state_switch_0fef94  0x8c0fef94
  * name hint from a string it uses: Shell; area name: sits between CItemGLoader functions (same compilation unit);
  * behaviour name: dispatches on a state or mode value (switch) called by: CAnimal_state_switch_0366f0,
- * CAnimal_state_switch_0858e4, CFrogManEgg_NewChild, CGame_uses_libgcc_divide_helper_0cc784,
- * CProlog_uses_libgcc_divide_helper_0cd3c8, CSquidLine_load_8, Class_12a5d0_state_switch_08ab58, bugbox_3_screen (+8
- * more) strings: "Shell"; "Shell"; "Invalid item no"; "CHeapForItem::NewMemory()" ...
+ * CFrogManEgg_NewChild, CGame_uses_libgcc_divide_helper_0cc784, CProlog_uses_libgcc_divide_helper_0cd3c8,
+ * CSquidLine_load_8, bugbox_3_screen, draw_state_switch_09cbb8, game_state_switch_0884a0 (+8 more) strings: "Shell";
+ * "Shell"; "Invalid item no"; "CHeapForItem::NewMemory()" ...
  */
 int CItemGLoader_state_switch_0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
     char *a5;
@@ -8664,7 +8666,7 @@ int CItemGLoader_state_switch_0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
             piVar3 = (int *)auStack_c4;
             iStack_38 = a4;
             if (a4 != 0) {
-                game_vec_06740c(a4, 0);
+                Class_12a0c4_ctor(a4, 0);
                 a4 = iStack_38;
                 piVar3 = (int *)auStack_c4;
             }
@@ -8834,11 +8836,11 @@ int game_release_0ff6f0(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_set_fields_0_4_c_0ff730  0x8c0ff730
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_fields_0_4_c
- * called by: game_uses_set_fields_0_4_c_0ffd7c
+ * fullscreen_quad_init  0x8c0ff730
+ * sets a 640x480 quad's corners and four opaque black colours, then builds its vertex data
+ * called by: game_uses_fullscreen_quad_init_0ffd7c
  */
-u32 game_uses_set_fields_0_4_c_0ff730(int a0) {
+u32 fullscreen_quad_init(int a0) {
     int ar6_00;
     u32 uVar1;
 
@@ -9089,7 +9091,7 @@ u32 set_fields_4_0_0ffb84(u32 *a0, u32 a1) {
 
 /*
  * ret_const_1_0ffb90  0x8c0ffb90
- * called by: CGame_copy_1011e0, game_copy_0ff6c4
+ * called by: CGame_uses_cursor_reset_center_1011e0, game_copy_0ff6c4
  */
 u32 ret_const_1_0ffb90(void) {
     return 1;
@@ -9106,7 +9108,7 @@ int game_vec_0ffb98(int a0, u32 a1, u32 a2, u32 a3) {
     Vec3_ctor_zero(a0 + 0x13c, a1, a2);
     Vec3_ctor_zero(a0 + 0x14c, a1, a2);
     Class_12988c_ctor(a0 + 0x15c);
-    input_copy_101250(a0, a1, a2, a3);
+    cursor_reset_center(a0, a1, a2, a3);
     *(u32 *)(0xcc + a0) = 0;
     return a0;
 }
@@ -9170,15 +9172,15 @@ u32 get_field_1c_0ffd74(int a0) {
 }
 
 /*
- * game_uses_set_fields_0_4_c_0ffd7c  0x8c0ffd7c
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: uses_set_fields_0_4_c
+ * game_uses_fullscreen_quad_init_0ffd7c  0x8c0ffd7c
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is fullscreen_quad_init
  * called by: game_init_sound_and_messages
  */
-u32 game_uses_set_fields_0_4_c_0ffd7c(int a0, u32 a1) {
+u32 game_uses_fullscreen_quad_init_0ffd7c(int a0, u32 a1) {
     u32 uVar1;
 
     *(u32 *)(0xcc + a0) = a1;
-    uVar1 = game_uses_set_fields_0_4_c_0ff730(a0 + 0xd8);
+    uVar1 = fullscreen_quad_init(a0 + 0xd8);
     return uVar1;
 }
 
@@ -9322,7 +9324,7 @@ u32 game_uses_set_field_24_0fff84(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * set_field_24_0fffec  0x8c0fffec
- * called by: game_uses_set_field_24_0fff84, input_copy_101250
+ * called by: cursor_reset_center, game_uses_set_field_24_0fff84
  */
 u32 set_field_24_0fffec(int a0, u32 a1) {
     u32 in_r0;

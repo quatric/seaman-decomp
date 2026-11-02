@@ -2679,7 +2679,7 @@ int CHigyoLine_ctor(int a0, u32 a1, u32 a2) {
     (*(code *)(&CAnimal_ctor))(a0, 3, 1, a2, 0, a1, 0x8c280fb4, 0x8c2818e0, *(u32 *)(&DATA_8c137b2c));
     *(u8 **)(a0 + 8) = (&DATA_8c12a434);
     Class_12c3c4_ctor(a0 + 0x490, uVar1, ar6_00, ar7_00);
-    CHigyoLine_vec_06e4ec(a0 + 0xd20, uVar1, ar6_00, ar7_00);
+    Class_12a25c_ctor(a0 + 0xd20, uVar1, ar6_00, ar7_00);
     Class_129938_ctor(a0 + 0x1014, uVar1, ar6_00);
     (*(code *)(&sprintf))(a0 + 0xc, uVar1, ar6_00, ar7_00, "HigyoLine");
     *(int *)(0x308 + a0) = a0 + 0x490;
@@ -2718,7 +2718,7 @@ u32 CAnimal_m2_085390(int a0, u32 a1, u32 a2, u32 a3) {
         (((*(int *)(0x10c8 + a0) == 0 && (*(int *)(0x10cc + a0) == 0)) &&
           ((*(int *)(0x10d0 + a0) == 0 && (*(int *)(0x10d4 + a0) == 0)))))) {
         ar5_00 = a1;
-        CAnimal_state_switch_0858e4(a0, a1, a2, ar7_00);
+        register_six_item_loads(a0, a1, a2, ar7_00);
     }
     if (((*(int *)(0x10c0 + a0) != 0) || (*(int *)(0x10c4 + a0) != 0)) ||
         ((*(int *)(0x10c8 + a0) != 0 ||
@@ -2778,7 +2778,7 @@ u32 CAnimal_m3_085550(int a0, u32 a1, u32 a2, u32 a3) {
         (((*(int *)(0x10c8 + a0) == 0 && (*(int *)(0x10cc + a0) == 0)) &&
           ((*(int *)(0x10d0 + a0) == 0 && (*(int *)(0x10d4 + a0) == 0)))))) {
         ar5_00 = a1;
-        CAnimal_state_switch_0858e4(a0, a1, a2, ar7_00);
+        register_six_item_loads(a0, a1, a2, ar7_00);
     }
     if (((*(int *)(0x10c0 + a0) != 0) || (*(int *)(0x10c4 + a0) != 0)) ||
         ((*(int *)(0x10c8 + a0) != 0 ||
@@ -2904,11 +2904,11 @@ u32 set_field_83_u8_wrap_0858bc(int a0, u32 a1) {
 }
 
 /*
- * CAnimal_state_switch_0858e4  0x8c0858e4
- * area name: only called from CAnimal methods; behaviour name: mostly calls state_switch functions
- * called by: CAnimal_m2_085390, CAnimal_m3_085550
+ * register_six_item_loads  0x8c0858e4
+ * creates six items (type 6/5 or 4/0x15 by a1's per-item kind) into +0x10a8 and registers each with the item loader
+ * (+0x10c0) called by: CAnimal_m2_085390, CAnimal_m3_085550
  */
-u32 CAnimal_state_switch_0858e4(int a0, int a1, u32 unused_a2, u32 a3) {
+u32 register_six_item_loads(int a0, int a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     u32 a6;
@@ -4507,7 +4507,7 @@ u32 egg_load_record_b(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_load(a0, a1, a2, a3);
-    game_uses_set_field_8_s8_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
+    CAnimal_uses_set_field_8_s8_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
     uVar1 = copy15_in_normalize(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
 }
@@ -4520,7 +4520,7 @@ u32 egg_save_record_b(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     obj_state_save(a0, a1, a2, a3);
-    game_uses_get_field_134_02cf20(a0 + 0x174, a1 + 0x4c, a2);
+    CAnimal_uses_get_field_134_02cf20(a0 + 0x174, a1 + 0x4c, a2);
     uVar1 = copy15_out(a0 + 0x2dc, a1 + 0xd8);
     return uVar1;
 }
@@ -5229,7 +5229,7 @@ int CMothLine_ctor(int a0, u32 a1, u32 a2) {
     (*(code *)(&CAnimal_ctor))(a0, 10, 1, a2, 0, a1, 0x8c283b30, 0x8c283fcc, *(u32 *)(&DATA_8c139e80));
     *(u8 **)(a0 + 8) = (&DATA_8c12a5d0);
     Class_12a7a8_ctor(a0 + 0x490, uVar1, ar6_00);
-    CMothLine_vec_08dad4(a0 + 0x538, uVar1, ar6_00, ar7_00);
+    Class_12a76c_ctor(a0 + 0x538, uVar1, ar6_00, ar7_00);
     clear_field_0_wrap_015b94(a0 + 0x850, uVar1);
     clear_field_0_wrap_015bc8(a0 + 0x854);
     Class_129938_ctor(a0 + 0x858, uVar1, ar6_00);
@@ -5314,7 +5314,7 @@ u32 Class_12a5d0_m2_08a49c(int a0, u32 a1, u32 a2, u32 a3) {
     if ((((char)uVar1 == '\x01') && (*(int *)(a0 + 0x8f8) == 0)) && (*(int *)(a0 + 0x8f4) == 0)) {
         ar5_00 = a3;
         a2 = a1;
-        Class_12a5d0_state_switch_08ab58(a0, a3, a1, ar7_00);
+        register_two_item_loads(a0, a3, a1, ar7_00);
     }
     if ((*(int *)(a0 + 0x8f4) != 0) || (*(int *)(a0 + 0x8f8) != 0)) {
         ar5_00 = a1;
@@ -5426,7 +5426,7 @@ u32 Class_12a5d0_m3_08a704(int a0, u32 a1, u32 a2, u32 a3) {
     if ((((char)uVar1 == '\x01') && (*(int *)(a0 + 0x8f8) == 0)) && (*(int *)(a0 + 0x8f4) == 0)) {
         ar5_00 = a3;
         a2 = a1;
-        Class_12a5d0_state_switch_08ab58(a0, a3, a1, ar7_00);
+        register_two_item_loads(a0, a3, a1, ar7_00);
     }
     if ((*(int *)(a0 + 0x8f4) != 0) || (*(int *)(a0 + 0x8f8) != 0)) {
         ar5_00 = a1;
@@ -5594,11 +5594,11 @@ u32 Class_12a5d0_m6_08aad8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12a5d0_state_switch_08ab58  0x8c08ab58
- * area name: only called from Class_12a5d0 methods; behaviour name: mostly calls state_switch functions
- * called by: Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704
+ * register_two_item_loads  0x8c08ab58
+ * creates two items (0xc/0x19 the first time, else 0xb/0x17) into +0x8ec and registers each with the item loader
+ * (+0x8f4) called by: Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704
  */
-u32 Class_12a5d0_state_switch_08ab58(int a0, u32 unused_a1, int a2, u32 a3) {
+u32 register_two_item_loads(int a0, u32 unused_a1, int a2, u32 a3) {
     u32 uVar1;
     int a4;
     u32 a6;
@@ -6060,7 +6060,7 @@ int load_state_record_08b694(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
 
     obj_state_load(a0, a1, a2, a3);
-    game_uses_set_field_8_s8_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
+    CAnimal_uses_set_field_8_s8_02cbe4(a0 + 0x174, a1 + 0x4c, a2, a3);
     copy15_in_normalize(a0 + 0x2dc, a1 + 0xd8);
     (**(code **)(**(int **)(0x308 + a0) + 0x24))(*(int **)(0x308 + a0), a1 + 0xc8, a2, a3);
     iVar1 = 0x460;
@@ -7189,11 +7189,11 @@ u32 destroy_array_8c283b30(void) {
 }
 
 /*
- * CMothLine_vec_08dad4  0x8c08dad4
- * area name: only called from CMothLine methods; behaviour name: mostly calls vec functions
+ * Class_12a76c_ctor  0x8c08dad4
+ * Class_129cbc base constructor, Class_12a76c vtable, nine vectors, then the state reset
  * called by: CMothLine_ctor
  */
-u32 *CMothLine_vec_08dad4(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 *Class_12a76c_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     Class_129cbc_ctor(a0, a1, a2, a3);
     *a0 = (&DATA_8c12a76c);
     Vec3_ctor_zero((int)a0 + 0x230, a1, a2);
@@ -7205,16 +7205,16 @@ u32 *CMothLine_vec_08dad4(u32 *a0, u32 a1, u32 a2, u32 a3) {
     Vec3_set_zero((int)a0 + 0x2b8);
     Vec3_ctor_zero((int)a0 + 0x2d0, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x2e0, a1, a2);
-    game_vec_08db9c(a0, a1, a2, a3);
+    Class_12a76c_vec_08db9c(a0, a1, a2, a3);
     return a0;
 }
 
 /*
- * game_vec_08db9c  0x8c08db9c
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
- * called by: CMothLine_vec_08dad4
+ * Class_12a76c_vec_08db9c  0x8c08db9c
+ * area name: only called from Class_12a76c methods; behaviour name: mostly calls vec functions
+ * called by: Class_12a76c_ctor
  */
-u32 game_vec_08db9c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12a76c_vec_08db9c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_fr1;
     u64 uVar1;
     char cVar2;
