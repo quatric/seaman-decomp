@@ -791,7 +791,7 @@ u32 input_input_helper_100cb4(int a0) {
 /*
  * input_calls_scan_loop_100ce8  0x8c100ce8
  * area name: sits between input functions (same compilation unit); behaviour name: its callees mostly do: scan_loop
- * called by: game_calls_input_helper_0e7190, game_uses_get_field_24_0e727c, game_uses_stick_x_right_half_0e1f90,
+ * called by: env_handle_input, game_uses_get_field_24_0e727c, game_uses_stick_x_right_half_0e1f90,
  * input_uses_get_field_24_0e25c0
  */
 u32 input_calls_scan_loop_100ce8(int a0, u32 a1, u32 a2, u32 a3) {
@@ -841,7 +841,7 @@ u32 input_calls_test_100d5c(int a0) {
 /*
  * input_input_helper_100e4c  0x8c100e4c
  * area name: sits between input functions (same compilation unit); behaviour name: mostly calls input functions
- * called by: game_calls_input_helper_0e7190, game_uses_get_field_24_0e727c, game_uses_stick_x_right_half_0e1f90,
+ * called by: env_handle_input, game_uses_get_field_24_0e727c, game_uses_stick_x_right_half_0e1f90,
  * input_uses_get_field_24_0e25c0
  */
 u32 input_input_helper_100e4c(int a0, u64 *a1) {

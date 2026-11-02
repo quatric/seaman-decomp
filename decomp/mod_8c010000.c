@@ -183,7 +183,7 @@ u32 pure_virtual_stub(void) {
 /*
  * strcpy  0x8c0101d4
  * called by: CDCGD_new_request_c, CDCGD_uses_strcpy_0202c0, CSeamanDomain_warning_message, Class_12a078_ctor,
- * Class_12c3c4_ctor, asr_copy_01d4c4, asr_copy_01d684, asr_switch_vocab (+41 more)
+ * Class_12c3c4_ctor, asr_switch_vocab, asr_uses_strcpy_0fbf28, file_slot_open (+41 more)
  */
 u32 strcpy(char *a0, char *a1) {
     char cVar1;
@@ -3691,8 +3691,9 @@ u32 libgcc_divide_helper_0103d0(u32 a0, int a1) {
 
 /*
  * libgcc_divide_helper_010468  0x8c010468
- * called by: ADXF_AddPartition, ADXF_LoadPartition, ADXT_GetTime_like, ADXT_uses_libgcc_divide_helper_2647f4,
- * ADXT_uses_libgcc_divide_helper_264c92, alt_entry_010b08, alt_entry_10fabc, alt_entry_1f420e (+58 more)
+ * called by: ADXF_AddPartition, ADXF_LoadPartition, ADXT_GetTime_like, ADXT_uses_ADXT_Stop_like_264c92,
+ * ADXT_uses_libgcc_divide_helper_264308, ADXT_uses_libgcc_divide_helper_2647f4, alt_entry_010b08, alt_entry_10fabc (+58
+ * more)
  */
 int libgcc_divide_helper_010468(u32 a0, u32 a1) {
     u32 uVar1;
@@ -8416,7 +8417,7 @@ u32 format_output(int a0, u8 *a1, int *a2, u8 *a3) {
             }
             a1 = pbStack_f0 + -(int)a3;
             a2 = &iStack_30;
-            libc_copy_0117ce(a3, a1, &iStack_30);
+            printf_emit_chars(a3, a1, &iStack_30);
             a3 = pbStack_f0;
         }
         abStack_5c[0] = 0;
@@ -8693,42 +8694,42 @@ u32 format_output(int a0, u8 *a1, int *a2, u8 *a3) {
         if ((*pbVar9 != 0x6e) && ((abStack_5c[0] & 1) == 0)) {
             if (((abStack_5c[0] & 2) == 0) && (0 < iStack_34)) {
                 for (; 0 < iStack_34; iStack_34 = iStack_34 + -1) {
-                    libc_copy_0117ce(abStack_5c + 1, 1, &iStack_30);
+                    printf_emit_chars(abStack_5c + 1, 1, &iStack_30);
                 }
             }
             if (((iStack_40 == 0) && (iStack_3c == 0)) && (iStack_38 == 0)) {
                 a1 = pbStack_e4;
                 a2 = &iStack_30;
-                libc_copy_0117ce(pbStack_ec, pbStack_e4, &iStack_30);
+                printf_emit_chars(pbStack_ec, pbStack_e4, &iStack_30);
             } else {
                 iVar2 = (int)pbStack_4c - (int)pbStack_ec;
                 if (0 < iVar2) {
-                    libc_copy_0117ce(pbStack_ec, iVar2, &iStack_30);
+                    printf_emit_chars(pbStack_ec, iVar2, &iStack_30);
                 }
                 for (; 0 < iStack_40; iStack_40 = iStack_40 + -1) {
-                    libc_copy_0117ce(auStack_e8, 1, &iStack_30);
+                    printf_emit_chars(auStack_e8, 1, &iStack_30);
                 }
                 iVar6 = (int)pbStack_48 - (int)pbStack_4c;
                 if (0 < iVar6) {
-                    libc_copy_0117ce(pbStack_4c, iVar6, &iStack_30);
+                    printf_emit_chars(pbStack_4c, iVar6, &iStack_30);
                 }
                 for (; 0 < iStack_3c; iStack_3c = iStack_3c + -1) {
-                    libc_copy_0117ce(auStack_e8, 1, &iStack_30);
+                    printf_emit_chars(auStack_e8, 1, &iStack_30);
                 }
                 a1 = pbStack_e4 + -(iVar2 + iVar6);
                 a2 = &iStack_30;
-                libc_copy_0117ce(pbStack_48, a1, &iStack_30);
+                printf_emit_chars(pbStack_48, a1, &iStack_30);
                 for (; 0 < iStack_38; iStack_38 = iStack_38 + -1) {
                     a1 = (u8 *)0x1;
                     a2 = &iStack_30;
-                    libc_copy_0117ce(auStack_e8, 1, &iStack_30);
+                    printf_emit_chars(auStack_e8, 1, &iStack_30);
                 }
             }
             if (((abStack_5c[0] & 2) != 0) && (0 < iStack_34)) {
                 for (; 0 < iStack_34; iStack_34 = iStack_34 + -1) {
                     a1 = (u8 *)0x1;
                     a2 = &iStack_30;
-                    libc_copy_0117ce(abStack_5c + 1, 1, &iStack_30);
+                    printf_emit_chars(abStack_5c + 1, 1, &iStack_30);
                 }
             }
         }
@@ -8877,11 +8878,11 @@ joined_r0x8c0117a8:
 }
 
 /*
- * libc_copy_0117ce  0x8c0117ce
- * area name: in the libc library code range; behaviour name: mostly calls copy functions
- * called by: format_output
+ * printf_emit_chars  0x8c0117ce
+ * writes a1 characters to the printf target: copied into the string buffer (mode 1) or sent one by one through its
+ * put-char callback called by: format_output
  */
-int libc_copy_0117ce(char *a0, int a1, int *a2) {
+int printf_emit_chars(char *a0, int a1, int *a2) {
     char cVar1;
     int iVar2;
     int iVar3;
@@ -11530,8 +11531,9 @@ u8 *memmove_bytes(u8 *a0, u8 *a1, u32 a2) {
 
 /*
  * memset  0x8c013ff8
- * called by: ADXF_Close_like, ADXF_LoadPartition, ADXSTM_uses_memset_263840, ADXSTM_uses_mwRna_stop_and_destroy_2639fa,
- * alt_entry_123eae, alt_entry_1f68f6, alt_entry_1f7c50, alt_entry_1fc9c0 (+95 more)
+ * called by: ADXF_Close_like, ADXF_LoadPartition, ADXSTM_uses_ADXT_Stop_like_2639fa,
+ * ADXSTM_uses_SJRBF_Create_like_263840, ADXT_uses_libgcc_divide_helper_264308, alt_entry_123eae, alt_entry_1f68f6,
+ * alt_entry_1f7c50 (+95 more)
  */
 u8 *memset(u8 *a0, u32 a1, u32 a2) {
     u8 *puVar1;
@@ -21275,7 +21277,7 @@ u32 asr_session_end(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
             goto LAB_8c01d472;
         asr_talk_01d008(unused_a0, unused_a1, a2, a3);
     }
-    asr_uses_get_field_0_u8_01d490();
+    game_uses_get_field_0_u8_01d490();
     asr_copy_01cfc8();
 LAB_8c01d472:
     g_8c2791b8 = 0;
@@ -21283,11 +21285,11 @@ LAB_8c01d472:
 }
 
 /*
- * asr_uses_get_field_0_u8_01d490  0x8c01d490
- * area name: sits between asr functions (same compilation unit); behaviour name: its main named callee is
- * get_field_0_u8 called by: asr_session_end
+ * game_uses_get_field_0_u8_01d490  0x8c01d490
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_0_u8
+ * called by: asr_session_end
  */
-int asr_uses_get_field_0_u8_01d490(void) {
+int game_uses_get_field_0_u8_01d490(void) {
     int iVar1;
 
     iVar1 = get_field_0_u8(g_8c27926c);
@@ -21298,11 +21300,11 @@ int asr_uses_get_field_0_u8_01d490(void) {
 }
 
 /*
- * asr_copy_01d4c4  0x8c01d4c4
- * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls copy functions
- * called by: asr_copy_01d658, asr_register_strings
+ * speech_request_queue_add  0x8c01d4c4
+ * takes a free one of 16 0x50-byte request records, links it at the end of the queue and stores the two names and a1
+ * called by: asr_register_strings, speech_request_queue_add_wrap
  */
-u32 asr_copy_01d4c4(int a0, u32 a1, u32 a2, u32 a3) {
+u32 speech_request_queue_add(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
 
@@ -21340,7 +21342,7 @@ u32 asr_register_strings(u32 a0, u32 a1, u32 a2) {
     int iVar1;
     u32 uVar2;
 
-    iVar1 = asr_copy_01d4c4(a0, 0, a1, a2);
+    iVar1 = speech_request_queue_add(a0, 0, a1, a2);
     if (iVar1 < 0) {
         uVar2 = 0;
     } else {
@@ -21350,23 +21352,23 @@ u32 asr_register_strings(u32 a0, u32 a1, u32 a2) {
 }
 
 /*
- * asr_copy_01d658  0x8c01d658
- * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls copy functions
+ * speech_request_queue_add_wrap  0x8c01d658
+ * only calls speech_request_queue_add
  * called by: asr_switch_vocab
  */
-u32 asr_copy_01d658(u32 a0, u32 a1, u32 a2) {
+u32 speech_request_queue_add_wrap(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
 
-    uVar1 = asr_copy_01d4c4(a0, 1, a1, a2);
+    uVar1 = speech_request_queue_add(a0, 1, a1, a2);
     return uVar1;
 }
 
 /*
- * asr_copy_01d684  0x8c01d684
- * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls copy functions
+ * game_copy_01d684  0x8c01d684
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls copy functions
  * called by: asr_uses_strcpy_0fbf28, game_uses_set_fields_24_20_0fd8d0
  */
-u32 asr_copy_01d684(u32 unused_a0, u32 *a1, u32 a2, u32 a3) {
+u32 game_copy_01d684(u32 unused_a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     if (g_8c2791b8 == 4) {
@@ -21422,7 +21424,7 @@ u32 asr_calc_01d71c(u32 a0) {
     int iVar1;
     u32 uVar2;
 
-    iVar1 = (*(code *)(&asr_copy_01d4c4))(a0, 2, (&DATA_8c12fb7c) + 0x1c, (&DATA_8c12fb7c) + 0x1c);
+    iVar1 = (*(code *)(&speech_request_queue_add))(a0, 2, (&DATA_8c12fb7c) + 0x1c, (&DATA_8c12fb7c) + 0x1c);
     if (iVar1 < 0) {
         uVar2 = 0;
     } else {
@@ -21440,7 +21442,7 @@ u32 game_calc_01d754(u32 a0) {
     int iVar1;
     u32 uVar2;
 
-    iVar1 = (*(code *)(&asr_copy_01d4c4))(a0, 4, (&DATA_8c12fb7c) + 0x1c, (&DATA_8c12fb7c) + 0x1c);
+    iVar1 = (*(code *)(&speech_request_queue_add))(a0, 4, (&DATA_8c12fb7c) + 0x1c, (&DATA_8c12fb7c) + 0x1c);
     if (iVar1 < 0) {
         uVar2 = 0;
     } else {
@@ -21499,7 +21501,7 @@ u32 game_calc_01d868(u32 a0) {
     int iVar1;
     u32 uVar2;
 
-    iVar1 = (*(code *)(&asr_copy_01d4c4))(a0, 3, (&DATA_8c12fb7c) + 0x1c, (&DATA_8c12fb7c) + 0x1c);
+    iVar1 = (*(code *)(&speech_request_queue_add))(a0, 3, (&DATA_8c12fb7c) + 0x1c, (&DATA_8c12fb7c) + 0x1c);
     if (iVar1 < 0) {
         uVar2 = 0;
     } else {
@@ -21517,7 +21519,7 @@ u32 game_calc_01d8a0(u32 a0) {
     int iVar1;
     u32 uVar2;
 
-    iVar1 = (*(code *)(&asr_copy_01d4c4))(a0, 5, (&DATA_8c12fb7c) + 0x1c, (&DATA_8c12fb7c) + 0x1c);
+    iVar1 = (*(code *)(&speech_request_queue_add))(a0, 5, (&DATA_8c12fb7c) + 0x1c, (&DATA_8c12fb7c) + 0x1c);
     if (iVar1 < 0) {
         uVar2 = 0;
     } else {

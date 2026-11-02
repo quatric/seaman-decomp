@@ -1854,3 +1854,23 @@
 8c0d0d1c	static_init_4374c8	static initialiser: constructs 1 global object (8c4374c8..8c4374c8) and registers Vec3_dtor for exit
 8c0d8bf0	static_init_437ca8	static initialiser: constructs 2 global objects (8c437ca8..8c437ccc) and registers free_if_nonnull_wrap_0d76b8 for exit
 8c266f38	sd_slot_ch_get_field_00	reads byte 0 of channel a1's record in this slot's AICA block
+8c0e7190	env_handle_input	routes this frame's pad input to the environment: the selected item's handlers, the list and grid actions and the two stick gestures
+8c2621e2	ADXF_close_all	closes every open 0x30-byte ADXF handle of the table
+8c2637ae	ADXSTM_get_stat	stores (and returns) the GDFS status of the stream's file
+8c263d90	ADXT_get_progress_percent	playback time as a percentage of the total (0..100)
+8c264104	ADXT_set_pause_like	records the pause flag (+0x72); while playing, 1 switches the output off and waits, 0 switches it back on
+8c264f86	vram_job_start_1	when idle (+0xc == 0) sets a mode-1 job with three parameters
+8c264fa4	vram_job_start_2	when idle (+0xc == 0) sets a mode-2 job with four parameters
+8c26b564	SJRBF_Create_like	takes one of 64 0x30-byte stream-joint objects (vtable 8c27869c) for a ring buffer (a0 buffer, a1 size, a2 extra size); 0 when none is free
+8c26b568	SJRBF_Create_like_alt	second entry into SJRBF_Create_like with the table size from the caller
+8c26b9d4	SJUNI_Create_like	takes one of 64 0x30-byte stream-joint objects (vtable 8c2786d0) for a chunk list (mode a0, a1 work area of a2 bytes in 16-byte nodes); 0 when none is free
+8c26b250	SJMEM_Create_like	takes one of 32 0x24-byte stream-joint objects (vtable 8c278660) over the memory block a0 of a1 bytes; 0 when none is free
+8c26bad4	SJUNI_GetNumData_like	total size of the chunks queued in lane a1 (0..3); calls the error callback for a bad lane
+8c263c64	ADXT_Stop_like	with interrupts masked stops playback, stops and destroys the stream, releases its stream joint and marks the player stopped
+8c261a4c	cri_api_trace	records (call id a0, phase a1, a2, a3, s0) in the 256-entry trace ring at 8c4b4224, counting entries per call id
+8c0117ce	printf_emit_chars	writes a1 characters to the printf target: copied into the string buffer (mode 1) or sent one by one through its put-char callback
+8c1f21bc	gdfs_file_handle_init	fills an unused file handle with the file's position, size and sector count ((size + 2047) / 2048); 0 if it is in use
+8c01d4c4	speech_request_queue_add	takes a free one of 16 0x50-byte request records, links it at the end of the queue and stores the two names and a1
+8c113b54	asr_model_state_save	copies the model's fifteen working values into its save area (+0xfc)
+8c113bcc	asr_model_state_restore	reloads the fifteen working values from the save area (+0xfc) and recomputes the derived pointer
+8c11c7b8	asr_free_tree	frees every leaf array of each branch of the tree a1, then the branches and the tree, through the allocator

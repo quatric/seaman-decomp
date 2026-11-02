@@ -6469,7 +6469,7 @@ u32 asr_switch_vocab(u32 *a0, u32 unused_a1, char *a2, u32 a3) {
     if (iVar1 != 0) {
         if (*(char *)(a0 + 0x24) != '\0') {
             a2 = "SPEECH";
-            asr_copy_01d658(a0[2], a0 + 0x24, "SPEECH");
+            speech_request_queue_add_wrap(a0[2], a0 + 0x24, "SPEECH");
         }
         strcpy(a0 + 0x24, ar5_01 + 0x2c);
     }
@@ -6558,7 +6558,7 @@ u32 asr_uses_strcpy_0fbf28(u32 *a0, u32 unused_a1, char *a2, u8 *a3) {
             strcpy(acStack_90, &g_8c141e1c);
             aiStack_9c[0] = 1;
         } else {
-            asr_copy_01d684(a0[2], aiStack_9c, a2, a3);
+            game_copy_01d684(a0[2], aiStack_9c, a2, a3);
             if (aiStack_9c[0] != 0) {
                 *(int *)(*(int *)(a0[4] + 0x3c) + 4) = *(int *)(*(int *)(a0[4] + 0x3c) + 4) + 1;
             }
@@ -7467,7 +7467,7 @@ int game_uses_set_fields_24_20_0fd8d0(int a0, u32 unused_a1, u32 a2, u32 a3) {
         iVar1 = 2;
         *(u32 *)(a0 + 4) = 2;
     } else if (iVar1 == 2) {
-        asr_copy_01d684(*(u32 *)(a0 + 8), auStack_94, a2, a3);
+        game_copy_01d684(*(u32 *)(a0 + 8), auStack_94, a2, a3);
         if (iStack_8c != 0) {
             if (iStack_8c == 2) {
                 *(u32 *)(0xc0 + a0) = 3;

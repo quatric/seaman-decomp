@@ -4966,10 +4966,11 @@ u32 Class_12b580_uses_njSinCos_0e705c(int a0, int a1, u32 a2) {
 }
 
 /*
- * game_calls_input_helper_0e7190  0x8c0e7190
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: input_helper
+ * env_handle_input  0x8c0e7190
+ * routes this frame's pad input to the environment: the selected item's handlers, the list and grid actions and the two
+ * stick gestures
  */
-u32 game_calls_input_helper_0e7190(int a0, u32 a1, u32 a2, u32 a3) {
+u32 env_handle_input(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 a5;
     u32 *puVar2;

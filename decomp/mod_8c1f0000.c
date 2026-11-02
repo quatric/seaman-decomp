@@ -2135,7 +2135,8 @@ u32 iso9660_is_cd001(char *a0) {
 /*
  * shinobi_update_fields_1f175c  0x8c1f175c
  * area name: in the shinobi library code range; behaviour name: conditionally writes members
- * called by: alt_entry_1f2236, alt_entry_1f22b2, gdfs_calls_update_fields_1f222c, gdfs_calls_update_fields_1f22a8
+ * called by: alt_entry_1f2236, alt_entry_1f22b2, gdfs_uses_gdfs_file_handle_init_1f222c,
+ * gdfs_uses_gdfs_file_handle_init_1f22a8
  */
 u32 shinobi_update_fields_1f175c(u32 a0, u32 a1) {
     *(u32 *)(g_8c2739e0 + 0x30) = a0;
@@ -2597,7 +2598,7 @@ u32 gdfs_uses_read_u32_le_1f1d8c(int a0, int *a1, u32 a2, u32 a3, int s0) {
     }
     g_8c2739e0[5] = (int)(g_8c2739e0 + 0x420);
     g_8c2739e0[6] = (int)(g_8c2739e0 + 0x435);
-    gdfs_update_fields_1f21bc(g_8c2739e0[5], 0, 0, 0);
+    gdfs_file_handle_init(g_8c2739e0[5], 0, 0, 0);
     uVar2 = (((u32)extraout_T_00 | (u32)extraout_S_00 << 1 | (u32)bVar11 << 4) & 0xf0) >> 4;
     if (g_8c2739e4 == 0) {
         g_8c2739e4 = ta_uses_ret_const_1_1fa244(0x900, &LAB_8c1f1a44, 0x50, g_8c2739e0);
@@ -2778,7 +2779,7 @@ u32 gdfs_uses_read_u32_le_1f1eaa(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     }
     g_8c2739e0[5] = (int)(g_8c2739e0 + 0x420);
     g_8c2739e0[6] = (int)(g_8c2739e0 + 0x435);
-    gdfs_update_fields_1f21bc(g_8c2739e0[5], 0, 0, 0);
+    gdfs_file_handle_init(g_8c2739e0[5], 0, 0, 0);
     uVar2 = (((u32)extraout_T | (u32)extraout_S_00 << 1 | (u32)bVar10 << 4) & 0xf0) >> 4;
     if (g_8c2739e4 == 0) {
         g_8c2739e4 = ta_uses_ret_const_1_1fa244(0x900, &LAB_8c1f1a44, 0x50, g_8c2739e0);
@@ -3180,12 +3181,12 @@ u32 alt_entry_1f217a(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * gdfs_update_fields_1f21bc  0x8c1f21bc
- * area name: sits between gdfs functions (same compilation unit); behaviour name: conditionally writes members
- * called by: alt_entry_1f2236, alt_entry_1f22b2, gdfs_calls_update_fields_1f222c, gdfs_calls_update_fields_1f22a8,
- * gdfs_uses_read_u32_le_1f1d8c, gdfs_uses_read_u32_le_1f1eaa
+ * gdfs_file_handle_init  0x8c1f21bc
+ * fills an unused file handle with the file's position, size and sector count ((size + 2047) / 2048); 0 if it is in use
+ * called by: alt_entry_1f2236, alt_entry_1f22b2, gdfs_uses_gdfs_file_handle_init_1f222c,
+ * gdfs_uses_gdfs_file_handle_init_1f22a8, gdfs_uses_read_u32_le_1f1d8c, gdfs_uses_read_u32_le_1f1eaa
  */
-u32 gdfs_update_fields_1f21bc(int a0, u32 a1, u32 a2, int a3) {
+u32 gdfs_file_handle_init(int a0, u32 a1, u32 a2, int a3) {
     if (*(short *)(a0 + 0x4c) == 0) {
         *(u32 *)(a0 + 4) = a1;
         *(u32 *)(a0 + 8) = a2;
@@ -3213,10 +3214,11 @@ u32 gdfs_update_fields_1f21bc(int a0, u32 a1, u32 a2, int a3) {
 }
 
 /*
- * gdfs_calls_update_fields_1f222c  0x8c1f222c
- * area name: sits between gdfs functions (same compilation unit); behaviour name: its callees mostly do: update_fields
+ * gdfs_uses_gdfs_file_handle_init_1f222c  0x8c1f222c
+ * area name: sits between gdfs functions (same compilation unit); behaviour name: its main named callee is
+ * gdfs_file_handle_init
  */
-u32 gdfs_calls_update_fields_1f222c(u32 a0, int a1, u32 unused_a2, u32 a3) {
+u32 gdfs_uses_gdfs_file_handle_init_1f222c(u32 a0, int a1, u32 unused_a2, u32 a3) {
     int ar5_00;
     int iVar1;
     u32 ar6_00;
@@ -3239,7 +3241,7 @@ u32 gdfs_calls_update_fields_1f222c(u32 a0, int a1, u32 unused_a2, u32 a3) {
                 piVar2 = (int *)(a1 + 0x10 + iVar3);
                 iVar3 = piVar2[1];
                 iVar1 = *piVar2 + 0x96;
-                gdfs_update_fields_1f21bc(ar4_00, ar5_00, iVar1, iVar3);
+                gdfs_file_handle_init(ar4_00, ar5_00, iVar1, iVar3);
                 shinobi_update_fields_1f175c(0, ar5_00);
                 return ar4_00;
             }
@@ -3279,7 +3281,7 @@ u32 alt_entry_1f2236(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
                 piVar2 = (int *)(unaff_r13 + 0x10 + iVar3);
                 iVar3 = piVar2[1];
                 iVar1 = *piVar2 + 0x96;
-                gdfs_update_fields_1f21bc(a4, a5, iVar1, iVar3);
+                gdfs_file_handle_init(a4, a5, iVar1, iVar3);
                 shinobi_update_fields_1f175c(0, a5);
                 return a4;
             }
@@ -3291,10 +3293,11 @@ u32 alt_entry_1f2236(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * gdfs_calls_update_fields_1f22a8  0x8c1f22a8
- * area name: sits between gdfs functions (same compilation unit); behaviour name: its callees mostly do: update_fields
+ * gdfs_uses_gdfs_file_handle_init_1f22a8  0x8c1f22a8
+ * area name: sits between gdfs functions (same compilation unit); behaviour name: its main named callee is
+ * gdfs_file_handle_init
  */
-u32 gdfs_calls_update_fields_1f22a8(int a0, int a1) {
+u32 gdfs_uses_gdfs_file_handle_init_1f22a8(int a0, int a1) {
     int iVar1;
     u32 ar5_00;
     int ar7_00;
@@ -3308,7 +3311,7 @@ u32 gdfs_calls_update_fields_1f22a8(int a0, int a1) {
         for (iVar1 = 0; iVar1 < *g_8c2739e0; iVar1 = iVar1 + 1) {
             if (*(short *)(ar4_00 + 0x4c) == 0) {
                 ar5_00 = 0;
-                gdfs_update_fields_1f21bc(ar4_00, 0, a0, ar7_00);
+                gdfs_file_handle_init(ar4_00, 0, a0, ar7_00);
                 shinobi_update_fields_1f175c(0, ar5_00);
                 return ar4_00;
             }
@@ -3339,7 +3342,7 @@ u32 alt_entry_1f22b2(u32 unused_a0, int a1) {
         for (iVar1 = 0; iVar1 < *g_8c2739e0; iVar1 = iVar1 + 1) {
             if (*(short *)(a4 + 0x4c) == 0) {
                 a5 = 0;
-                gdfs_update_fields_1f21bc(a4, 0, unaff_r13, a7);
+                gdfs_file_handle_init(a4, 0, unaff_r13, a7);
                 shinobi_update_fields_1f175c(0, a5);
                 return a4;
             }
@@ -3687,10 +3690,11 @@ LAB_8c1f2948:
 }
 
 /*
- * shinobi_uses_gdfs_handle_init_like_1f2972  0x8c1f2972
- * area name: in the shinobi library code range; behaviour name: its main named callee is gdfs_handle_init_like
+ * gdfs_uses_gdfs_handle_init_like_1f2972  0x8c1f2972
+ * area name: sits between gdfs functions (same compilation unit); behaviour name: its main named callee is
+ * gdfs_handle_init_like
  */
-u32 shinobi_uses_gdfs_handle_init_like_1f2972(int a0) {
+u32 gdfs_uses_gdfs_handle_init_like_1f2972(int a0) {
     int *piVar1;
     int iVar2;
     u32 a4;
@@ -4101,8 +4105,8 @@ u32 shinobi_uses_gdfs_read_sectors_like_1f2bfe(char *a0, int a1, int *a2, int a3
 /*
  * shinobi_uses_name_hash_upper_1f2cce  0x8c1f2cce
  * area name: in the shinobi library code range; behaviour name: its main named callee is name_hash_upper
- * called by: alt_entry_1f2008, alt_entry_1f217a, alt_entry_1f2236, gdfs_calls_update_fields_1f222c, gdfs_lookup_file,
- * gdfs_uses_bcopy_1f1ffa
+ * called by: alt_entry_1f2008, alt_entry_1f217a, alt_entry_1f2236, gdfs_lookup_file, gdfs_uses_bcopy_1f1ffa,
+ * gdfs_uses_gdfs_file_handle_init_1f222c
  */
 u32 shinobi_uses_name_hash_upper_1f2cce(u32 a0, int *a1, int a2, u32 a3) {
     u32 uVar1;
@@ -4393,8 +4397,8 @@ u32 alt_entry_1f2f9c(u32 a0, u32 a1, u32 a2, u32 a3) {
  * gdfs_handle_init_like  0x8c1f302a
  * sets up a file handle for a2/a3 (size a3, (a3 + 2047) / 2048 sectors); NULL if it is already in use
  * called by: gdfs_read_sectors_like, gdfs_uses_gdfs_handle_init_like_1f2356, gdfs_uses_gdfs_handle_init_like_1f2852,
- * gdfs_uses_read_u32_le_1f1a7c, gdfs_uses_read_u32_le_1f1d8c, gdfs_uses_read_u32_le_1f1eaa,
- * shinobi_uses_gdfs_handle_init_like_1f2418, shinobi_uses_gdfs_handle_init_like_1f24e8 (+4 more)
+ * gdfs_uses_gdfs_handle_init_like_1f2972, gdfs_uses_read_u32_le_1f1a7c, gdfs_uses_read_u32_le_1f1d8c,
+ * gdfs_uses_read_u32_le_1f1eaa, shinobi_uses_gdfs_handle_init_like_1f2418 (+4 more)
  */
 u32 gdfs_handle_init_like(int *a0, int a1, int a2, int a3) {
     int iVar1;
@@ -4840,8 +4844,8 @@ u32 gdfs_uses_sh4_tmu_1f35ba(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gdfs_get_stat_like  0x8c1f364c
  * status (+0x50) of an open file handle, -10 when it is not open (probably gdFsGetStat)
- * called by: ADXSTM_uses_gdfs_get_stat_like_2637ae, adxstmf_stat_exec, alt_entry_1f2f9c,
- * ninja_uses_memcpy_bytes_259c48, ninja_uses_memcpy_bytes_259e80, shinobi_uses_sh4_tmu_1f2f98
+ * called by: ADXSTM_get_stat, adxstmf_stat_exec, alt_entry_1f2f9c, ninja_uses_memcpy_bytes_259c48,
+ * ninja_uses_memcpy_bytes_259e80, shinobi_uses_sh4_tmu_1f2f98
  */
 u32 gdfs_get_stat_like(int a0) {
     if ((a0 != 0) && (*(short *)(a0 + 0x4c) != 0)) {
@@ -11882,8 +11886,8 @@ u32 sh4_tmu_1f88c0(void) {
 
 /*
  * sh4_tmu_1f88e6  0x8c1f88e6
- * called by: ADXSTM_stop_read, ADXT_uses_libgcc_divide_helper_264c92, adx_server, alt_entry_1f2f9c, alt_entry_1f3682,
- * alt_entry_258e70, alt_entry_264e88, cri_uses_libgcc_divide_helper_264e84 (+10 more)
+ * called by: ADXSTM_stop_read, ADXT_uses_ADXT_Stop_like_264c92, adx_server, alt_entry_1f2f9c, alt_entry_1f3682,
+ * alt_entry_258e70, alt_entry_264e88, cri_uses_ADXT_Stop_like_264e84 (+10 more)
  */
 int sh4_tmu_1f88e6(u32 a0) {
     return -1 - *0xffd8000c;
@@ -11892,8 +11896,8 @@ int sh4_tmu_1f88e6(u32 a0) {
 /*
  * int_diff  0x8c1f88f0
  * returns a1 - a0
- * called by: ADXSTM_stop_read, ADXT_uses_libgcc_divide_helper_264c92, adx_server, alt_entry_258e70, alt_entry_264e88,
- * cri_uses_libgcc_divide_helper_264e84, game_frame, game_uses_int_diff_101de0
+ * called by: ADXSTM_stop_read, ADXT_uses_ADXT_Stop_like_264c92, adx_server, alt_entry_258e70, alt_entry_264e88,
+ * cri_uses_ADXT_Stop_like_264e84, game_frame, game_uses_int_diff_101de0
  */
 int int_diff(int a0, int a1) {
     return a1 - a0;
@@ -11902,8 +11906,8 @@ int int_diff(int a0, int a1) {
 /*
  * sh4_uses_libgcc_divide_helper_1f88f6  0x8c1f88f6
  * area name: sits between sh4 functions (same compilation unit); behaviour name: its main named callee is
- * libgcc_divide_helper_01051c called by: ADXT_uses_libgcc_divide_helper_264c92, alt_entry_264e88,
- * cri_uses_libgcc_divide_helper_264e84, game_uses_int_diff_101de0
+ * libgcc_divide_helper_01051c called by: ADXT_uses_ADXT_Stop_like_264c92, alt_entry_264e88,
+ * cri_uses_ADXT_Stop_like_264e84, game_uses_int_diff_101de0
  */
 int sh4_uses_libgcc_divide_helper_1f88f6(u32 a0) {
     int iVar1;

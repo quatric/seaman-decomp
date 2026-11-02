@@ -1907,12 +1907,13 @@ u32 game_sound_0221c8(int a0, u32 a1, u32 a2) {
             }
             sd_wait_idle_set_1a8(1, a1, ar6_00, uVar1);
             uVar3 = 0x2d0c4;
-            uVar2 = ADXSTM_uses_memset_263840(2, a0 + 0x8c, 0x2d0c4, uVar1);
+            uVar2 = ADXSTM_uses_SJRBF_Create_like_263840(2, a0 + 0x8c, 0x2d0c4, uVar1);
             *(u32 *)(a0 + 0x74) = uVar2;
             set_field_6d_u8(*(u32 *)(a0 + 0x74), 2);
             for (iVar4 = 0; iVar4 < 3; iVar4 = iVar4 + 1) {
                 uVar3 = 0x208c4;
-                uVar2 = (*(code *)(&ADXSTM_uses_memset_263840))(2, a0 + iVar4 * 0x208e0 + 0x2d16c, 0x208c4, uVar1);
+                uVar2 = (*(code *)(&ADXSTM_uses_SJRBF_Create_like_263840))(2, a0 + iVar4 * 0x208e0 + 0x2d16c, 0x208c4,
+                                                                           uVar1);
                 *(u32 *)(0x2d154 + a0 + iVar4 * 0x208e0) = uVar2;
                 (*(code *)(&set_field_6d_u8))(*(u32 *)(0x2d154 + a0 + iVar4 * 0x208e0), 1, uVar3, uVar1);
             }
@@ -2298,7 +2299,7 @@ int game_sound_0229c8(u32 unused_a0, int *a1, u32 a2, u32 a3) {
 
     iVar1 = *a1;
     if (iVar1 == 2) {
-        cri_sound_263c64(a1[1], a1, a2, a3);
+        ADXT_Stop_like(a1[1], a1, a2, a3);
         iVar1 = 3;
         *a1 = 3;
     }

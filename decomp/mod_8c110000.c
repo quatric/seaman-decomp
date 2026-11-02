@@ -3769,7 +3769,7 @@ u32 asr_talk_11372e(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * asr_scan_loop_113ac8  0x8c113ac8
  * area name: sits between asr functions (same compilation unit); behaviour name: a loop that only reads
- * called by: asr_calls_calc_11adde, asr_talk_114e80, asr_uses_mring_read_advance_11b13e
+ * called by: asr_talk_114e80, asr_uses_asr_model_state_restore_11adde, asr_uses_mring_read_advance_11b13e
  */
 int asr_scan_loop_113ac8(int a0, u32 a1, u32 a2) {
     int iVar1;
@@ -3833,11 +3833,11 @@ code_r0x8c113b16:
 }
 
 /*
- * asr_init_fields_113b54  0x8c113b54
- * area name: in the asr library code range; behaviour name: writes 14 members
+ * asr_model_state_save  0x8c113b54
+ * copies the model's fifteen working values into its save area (+0xfc)
  * called by: asr_talk_114e80
  */
-int asr_init_fields_113b54(int a0) {
+int asr_model_state_save(int a0) {
     int iVar1;
     int iVar2;
     u32 *puVar3;
@@ -3867,11 +3867,11 @@ int asr_init_fields_113b54(int a0) {
 }
 
 /*
- * asr_init_fields_113bcc  0x8c113bcc
- * area name: in the asr library code range; behaviour name: writes 16 members
- * called by: asr_calls_calc_11adde, asr_talk_11ace2
+ * asr_model_state_restore  0x8c113bcc
+ * reloads the fifteen working values from the save area (+0xfc) and recomputes the derived pointer
+ * called by: asr_talk_11ace2, asr_uses_asr_model_state_restore_11adde
  */
-int asr_init_fields_113bcc(int a0) {
+int asr_model_state_restore(int a0) {
     int iVar1;
     u32 *puVar2;
 
@@ -4505,7 +4505,7 @@ u32 asr_copy_114774(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * asr_calc_1148c4  0x8c1148c4
  * area name: in the asr library code range; behaviour name: integer arithmetic on its arguments
- * called by: asr_calls_calc_11adde
+ * called by: asr_uses_asr_model_state_restore_11adde
  */
 int asr_calc_1148c4(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5104,12 +5104,12 @@ LAB_8c115274:
                     } else {
                         a0[0x69] = (int)asr_uses_libgcc_divide_helper_11ac4c;
                         *(u8 *)(a0 + 0x76) = 0;
-                        asr_init_fields_113b54(a0);
+                        asr_model_state_save(a0);
                     }
                 } else {
                     a0[0x69] = (int)asr_uses_libgcc_divide_helper_11ad68;
                     *(u8 *)(a0 + 0x76) = 1;
-                    asr_init_fields_113b54(a0);
+                    asr_model_state_save(a0);
                 }
                 return 0;
             }
@@ -9241,7 +9241,7 @@ int asr_scan_loop_11a588(int a0, int *a1, int a2) {
 /*
  * asr_uses_libgcc_divide_helper_11a634  0x8c11a634
  * area name: in the asr library code range; behaviour name: its callees mostly do: uses_libgcc_divide_helper
- * called by: asr_calls_calc_11adde, asr_talk_11919e, asr_uses_libgcc_divide_helper_11a88c
+ * called by: asr_talk_11919e, asr_uses_asr_model_state_restore_11adde, asr_uses_libgcc_divide_helper_11a88c
  */
 int asr_uses_libgcc_divide_helper_11a634(int *a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9619,7 +9619,7 @@ u32 asr_talk_11ace2(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
         return 1;
     }
     asr_free_model_buffers(unaff_r14);
-    asr_init_fields_113bcc(unaff_r14);
+    asr_model_state_restore(unaff_r14);
     *(u8 *)(unaff_r14 + 0x7c) = 0;
     *(u8 *)(0x1d8 + unaff_r14) = 0;
     return 0;
@@ -9643,7 +9643,7 @@ u32 asr_uses_libgcc_divide_helper_11ad68(int a0, u32 unused_a1, u32 a2, u32 a3) 
         uVar1 = asr_copy_114774(a0, uVar3, a2, a3);
         if ((uVar1 & 0xff) == 0) {
             iVar2 = (int)0x1a4;
-            *(u8 **)(iVar2 + a0) = (&asr_calls_calc_11adde);
+            *(u8 **)(iVar2 + a0) = (&asr_uses_asr_model_state_restore_11adde);
             *(u8 *)(iVar2 + 0x34 + a0) = 0;
             uVar3 = asr_talk_120348(a0, 0xe, *(u32 *)(0x80 + a0), 0);
             return uVar3;
@@ -9653,10 +9653,10 @@ u32 asr_uses_libgcc_divide_helper_11ad68(int a0, u32 unused_a1, u32 a2, u32 a3) 
 }
 
 /*
- * asr_calls_calc_11adde  0x8c11adde
- * area name: in the asr library code range; behaviour name: its callees mostly do: calc
+ * asr_uses_asr_model_state_restore_11adde  0x8c11adde
+ * area name: in the asr library code range; behaviour name: its main named callee is asr_model_state_restore
  */
-u32 asr_calls_calc_11adde(int a0, u32 *a1, u32 *a2, u32 a3) {
+u32 asr_uses_asr_model_state_restore_11adde(int a0, u32 *a1, u32 *a2, u32 a3) {
     u32 uVar1;
     u32 uStack_14;
     u32 *puStack_10;
@@ -9666,7 +9666,7 @@ u32 asr_calls_calc_11adde(int a0, u32 *a1, u32 *a2, u32 a3) {
     puStack_c = a2;
     if (a1 == NULL) {
         asr_calc_1148c4(a0, 0, a2, a3);
-        asr_init_fields_113bcc(a0);
+        asr_model_state_restore(a0);
         asr_scan_loop_113ac8(a0, a1, a2);
         *(u8 **)(0x1a4 + a0) = (&asr_uses_libgcc_divide_helper_11ad68);
     } else {
@@ -11064,7 +11064,7 @@ u32 asr_talk_11c47c(u32 a0, u32 unused_a1, u32 a2) {
 /*
  * asr_fill_loop_11c5e4  0x8c11c5e4
  * area name: sits between asr functions (same compilation unit); behaviour name: a loop that writes memory
- * called by: asr_calls_fill_loop_11c86c, asr_talk_11ec7c
+ * called by: asr_release_11c86c, asr_talk_11ec7c
  */
 u32 *asr_fill_loop_11c5e4(int a0, u32 *a1, int a2, int a3, u32 s0) {
     int *piVar1;
@@ -11162,11 +11162,11 @@ u32 *asr_fill_loop_11c5e4(int a0, u32 *a1, int a2, int a3, u32 s0) {
 }
 
 /*
- * asr_scan_loop_11c7b8  0x8c11c7b8
- * area name: sits between asr functions (same compilation unit); behaviour name: a loop that only reads
- * called by: asr_calls_fill_loop_11c86c, asr_talk_11ec7c
+ * asr_free_tree  0x8c11c7b8
+ * frees every leaf array of each branch of the tree a1, then the branches and the tree, through the allocator
+ * called by: asr_release_11c86c, asr_talk_11ec7c
  */
-u32 asr_scan_loop_11c7b8(int a0, int *a1) {
+u32 asr_free_tree(int a0, int *a1) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -11242,10 +11242,10 @@ u32 alt_entry_11c7cc(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_calls_fill_loop_11c86c  0x8c11c86c
- * area name: sits between asr functions (same compilation unit); behaviour name: its callees mostly do: fill_loop
+ * asr_release_11c86c  0x8c11c86c
+ * area name: sits between asr functions (same compilation unit); behaviour name: mostly calls release functions
  */
-int asr_calls_fill_loop_11c86c(int a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 s0) {
+int asr_release_11c86c(int a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 s0) {
     u32 uVar1;
     u32 uStack_10;
     u32 uStack_c;
@@ -11254,7 +11254,7 @@ int asr_calls_fill_loop_11c86c(int a0, u32 unused_a1, u32 unused_a2, u32 a3, u32
     asr_fill_loop_11c5e4(a0, &uStack_10, a3, s0);
     uVar1 = (**(code **)(0xc4 + a0))(uStack_10, 0xf4 + a0, a3, s0);
     uStack_c = CONCAT31(uStack_c._1_3_, (char)uVar1);
-    asr_scan_loop_11c7b8(a0, uStack_10);
+    asr_free_tree(a0, uStack_10);
     return (int)(char)uStack_c;
 }
 
@@ -13660,7 +13660,7 @@ u32 asr_talk_11ec7c(int a0, u32 unused_a1, u32 a2, u32 a3) {
                     uVar3 = asr_talk_120348(a0 + 0x48, 0x20, 0, 0);
                     if (((uVar3 & 0xff) == 0) && (uVar3 = asr_calls_fill_loop_11d432(a0, 1), (uVar3 & 0xff) == 0)) {
                         uVar3 = (**(code **)(a0 + 0xc4))(iStack_48, a0 + 0xf4, uVar5, ar7_01);
-                        asr_scan_loop_11c7b8(a0, iStack_48);
+                        asr_free_tree(a0, iStack_48);
                         if ((uVar3 & 0xff) != 0) {
                             return uVar3;
                         }

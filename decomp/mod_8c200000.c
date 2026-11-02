@@ -2511,7 +2511,7 @@ u32 set_field_28_to_1(int a0) {
 
 /*
  * set_field_28_to_2  0x8c201b9a
- * called by: asr_uses_get_field_0_u8_01d490
+ * called by: game_uses_get_field_0_u8_01d490
  */
 u32 set_field_28_to_2(int a0) {
     *(u32 *)(a0 + 0x28) = 2;
@@ -2520,7 +2520,7 @@ u32 set_field_28_to_2(int a0) {
 
 /*
  * get_field_0_u8  0x8c201ba2
- * called by: asr_state_switch_01d15c, asr_uses_get_field_0_u8_01d490
+ * called by: asr_state_switch_01d15c, game_uses_get_field_0_u8_01d490
  */
 u32 get_field_0_u8(u8 *a0) {
     return (u32)*a0;

@@ -12065,7 +12065,7 @@ u32 input_not_l_and_r(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * input_uses_get_field_300_0dc61c  0x8c0dc61c
  * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * get_field_300_0bf154 called by: game_calls_input_helper_0e7190, game_uses_stick_x_right_half_0e1f90
+ * get_field_300_0bf154 called by: env_handle_input, game_uses_stick_x_right_half_0e1f90
  */
 int input_uses_get_field_300_0dc61c(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -12141,8 +12141,8 @@ u32 input_a_held_wrap(int a0) {
 /*
  * input_uses_get_field_24_0dc7e8  0x8c0dc7e8
  * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * get_field_24_05c284 called by: game_calls_input_helper_0e7190, game_uses_get_field_24_0e727c,
- * game_uses_stick_x_right_half_0e1f90, input_uses_get_field_24_0e25c0
+ * get_field_24_05c284 called by: env_handle_input, game_uses_get_field_24_0e727c, game_uses_stick_x_right_half_0e1f90,
+ * input_uses_get_field_24_0e25c0
  */
 int input_uses_get_field_24_0dc7e8(int a0, u32 *a1, u32 *a2, u32 a3) {
     int iVar1;
@@ -12179,7 +12179,7 @@ int input_uses_get_field_24_0dc7e8(int a0, u32 *a1, u32 *a2, u32 a3) {
 /*
  * input_list_0dc8fc  0x8c0dc8fc
  * area name: sits between input functions (same compilation unit); behaviour name: mostly calls list functions
- * called by: game_calls_input_helper_0e7190, game_uses_get_field_24_0e727c, game_uses_stick_x_right_half_0e1f90,
+ * called by: env_handle_input, game_uses_get_field_24_0e727c, game_uses_stick_x_right_half_0e1f90,
  * input_uses_get_field_24_0e25c0
  */
 int input_list_0dc8fc(int a0, u32 a1, u32 a2, u32 a3) {
