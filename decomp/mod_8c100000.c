@@ -32,7 +32,7 @@ u32 input_no_buttons_held(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * input_start_only_pressed  0x8c1000c8
  * 1 when Start was just pressed on the pad at +0xcc with A, B, X and Y all up
- * called by: game_sub_0c6e74, game_sub_0c76d0
+ * called by: confirm_exit_save, game_sub_0c6e74
  */
 u32 input_start_only_pressed(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -966,7 +966,7 @@ u32 get_field_b0_10113c(int a0) {
 
 /*
  * set_field_b4  0x8c101148
- * called by: game_sub_0611cc
+ * called by: FrogMan_gratification_events
  */
 int set_field_b4(int a0, u32 a1) {
     int iVar1;
@@ -990,7 +990,7 @@ u32 Class_12b580_sub_101154(int a0) {
 
 /*
  * get_field_b8_101178  0x8c101178
- * called by: CWaterTank_sub_0e1398, game_sub_064bb4
+ * called by: CWaterTank_sub_0e1398, FrogMan_react_touch
  */
 u32 get_field_b8_101178(int a0) {
     return (u32) * (u8 *)(0xb8 + a0);
@@ -2410,11 +2410,11 @@ u32 *Class_12c3c4_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12c3c4_sub_103100  0x8c103100
- * name hint from a string it uses: REQUEST SLEEP; area name: sits between Class_12c3c4 functions (same compilation
- * unit) strings: "REQUEST_SLEEP"; "REQUEST_SLEEP"; "REQUEST_WAKE_UP"; "REQUEST_WAKE_UP" ...
+ * Higyo_update_sleep_light  0x8c103100
+ * Higyo line: sleep, wake-up and light requests (REQUEST_SLEEP/WAKE_UP/WANT_LIGHT, STATUS_LIGHT/LIGHT_OFF)
+ * strings: "REQUEST_SLEEP"; "REQUEST_SLEEP"; "REQUEST_WAKE_UP"; "REQUEST_WAKE_UP" ...
  */
-u32 Class_12c3c4_sub_103100(int *a0, code *a1, code *a2, u32 a3) {
+u32 Higyo_update_sleep_light(int *a0, code *a1, code *a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     int iVar3;
@@ -2471,11 +2471,11 @@ u32 Class_12c3c4_sub_103100(int *a0, code *a1, code *a2, u32 a3) {
     uVar1 = talk_sub_02bef8(*(int *)(a2 + 4), iVar9, uVar11);
     set_field_728_u8(a0 + 0x27, (int)(short)uVar1);
     Class_12c3c4_sub_104f5c(a0, a1, a2, a3);
-    game_sub_1093a4(a0, a1, a2, a3);
-    game_sub_1097a8(a0, a1, a2, a3);
+    Higyo_react_feed_full(a0, a1, a2, a3);
+    Higyo_life_status(a0, a1, a2, a3);
     pcVar2 = a1;
     pcVar10 = a2;
-    game_sub_1091cc(a0, a1, a2, a3);
+    Higyo_pick_idle_action(a0, a1, a2, a3);
     iVar3 = get_field_124_027930(*(int *)(a2 + 8), pcVar2, pcVar10, a3);
     if (iVar3 != 2) {
         pcVar2 = a2;
@@ -2484,21 +2484,21 @@ u32 Class_12c3c4_sub_103100(int *a0, code *a1, code *a2, u32 a3) {
     ar7_00 = (char *)get_field_4_05eed8(a0);
     pcVar2 = a1;
     pcVar10 = a2;
-    Class_12c3c4_sub_104854(a0, a1, a2, ar7_00);
+    Higyo_choose_status_event(a0, a1, a2, ar7_00);
     iVar3 = get_field_124_027930(*(int *)(a2 + 8), pcVar2, pcVar10, ar7_00);
     if ((iVar3 != 2) && (iVar3 = get_field_178_035734(*(int *)(a2 + 8), pcVar2, pcVar10), iVar3 == 0)) {
         pcVar2 = a1;
         pcVar10 = a2;
-        game_sub_1080dc(a0, a1, a2, ar7_00);
+        Higyo_react_touch(a0, a1, a2, ar7_00);
     }
     iVar3 = get_field_124_027930(*(int *)(a2 + 8), pcVar2, pcVar10, ar7_00);
     if (iVar3 != 2) {
         game_sub_02e8e0(a0 + 0x207, 1);
-        game_sub_106f58(a0, a1, a2, ar7_00);
+        Higyo_react_tap(a0, a1, a2, ar7_00);
         talk_complain_tank_env_b(a0, a1, a2);
         pcVar2 = a1;
         pcVar10 = a2;
-        game_sub_106c84(a0, a1, a2, ar7_00);
+        Higyo_react_environment(a0, a1, a2, ar7_00);
     }
     iVar3 = get_field_124_027930(*(int *)(a2 + 8), pcVar2, pcVar10, ar7_00);
     if (iVar3 == 0) {
@@ -2567,7 +2567,7 @@ u32 Class_12c3c4_sub_103100(int *a0, code *a1, code *a2, u32 a3) {
         if (iVar3 != 2) {
             pcVar2 = a1;
             pcVar10 = a2;
-            game_sub_107590(a0, a1, a2, ar7_00);
+            Higyo_attention_events(a0, a1, a2, ar7_00);
         }
         if ((a0[0x10] != 2) && (iVar3 = get_field_770_05eeb8(a0 + 0x27), iVar3 == 1)) {
             if (a0[0xe1] == -1) {
@@ -2875,7 +2875,7 @@ u32 Class_12c3c4_sub_103100(int *a0, code *a1, code *a2, u32 a3) {
 
 /*
  * get_field_cc_1041cc  0x8c1041cc
- * called by: Class_12c3c4_sub_103100
+ * called by: Higyo_update_sleep_light
  */
 u32 get_field_cc_1041cc(int a0) {
     return *(u32 *)(0xcc + a0);
@@ -2883,7 +2883,7 @@ u32 get_field_cc_1041cc(int a0) {
 
 /*
  * set_field_cc  0x8c1041d8
- * called by: Class_12c3c4_sub_103100
+ * called by: Higyo_update_sleep_light
  */
 int set_field_cc(int a0, u32 a1, u32 a2) {
     int iVar1;
@@ -2895,7 +2895,7 @@ int set_field_cc(int a0, u32 a1, u32 a2) {
 
 /*
  * set_field_14_1041e4  0x8c1041e4
- * called by: Class_12c3c4_sub_103100
+ * called by: Higyo_update_sleep_light
  */
 u32 set_field_14_1041e4(int a0, u32 a1) {
     u32 in_r0;
@@ -2907,7 +2907,7 @@ u32 set_field_14_1041e4(int a0, u32 a1) {
 /*
  * field_ptr_730  0x8c1041ec
  * returns the address of the member at +0x730
- * called by: Class_12c3c4_sub_103100
+ * called by: Higyo_update_sleep_light
  */
 int field_ptr_730(int a0) {
     return a0 + 0x730;
@@ -2915,7 +2915,7 @@ int field_ptr_730(int a0) {
 
 /*
  * strcmp_1041fc  0x8c1041fc
- * called by: Class_12c3c4_sub_103100
+ * called by: Higyo_update_sleep_light
  */
 u32 strcmp_1041fc(u8 *a0, u8 *a1) {
     u8 bVar1;
@@ -2986,7 +2986,7 @@ u32 Class_12c3c4_m2_104264(int *a0, int a1, int *a2, u32 a3) {
     Class_129c70_sub_02f20c(a0, a2, piVar2, a3);
     uVar1 = get_field_4_05eed8(a0);
     piVar2 = a2;
-    Class_12c3c4_sub_104854(a0, a1, a2, uVar1);
+    Higyo_choose_status_event(a0, a1, a2, uVar1);
     iVar5 = get_field_124_027930(a2[2], a1, piVar2, uVar1);
     if (((iVar5 != 2) && (iVar5 = (int)(char)a0[0x26], iVar5 < 0xb)) && (-1 < iVar5)) {
         switch (iVar5) {
@@ -3125,12 +3125,12 @@ int react_catch_object_b(int a0, int a1, int a2, char *a3) {
 }
 
 /*
- * Class_12c3c4_sub_104854  0x8c104854
- * name hint from a string it uses: STATUS SNORE; area name: only called from Class_12c3c4 methods
- * called by: Class_12c3c4_m2_104264, Class_12c3c4_sub_103100
+ * Higyo_choose_status_event  0x8c104854
+ * Higyo line: picks a status or event (landing, rock push, spinning, in spider, coupling, groan, snore)
+ * called by: Class_12c3c4_m2_104264, Higyo_update_sleep_light
  * strings: "STATUS_SNORE"; "STATUS_SNORE"; "STATUS_UNCONSIDERED"; "STATUS_COUPLING" ...
  */
-u32 Class_12c3c4_sub_104854(int a0, u32 a1, int *a2, char *a3) {
+u32 Higyo_choose_status_event(int a0, u32 a1, int *a2, char *a3) {
     u32 uVar1;
     int iVar2;
     u32 uVar3;
@@ -3330,7 +3330,7 @@ u32 Class_12c3c4_sub_104854(int a0, u32 a1, int *a2, char *a3) {
 
 /*
  * inc_field_39_s8  0x8c104f44
- * called by: Class_12c3c4_sub_104854
+ * called by: Higyo_choose_status_event
  */
 u32 inc_field_39_s8(int a0) {
     *(char *)(a0 + 0x39) = *(char *)(a0 + 0x39) + '\x01';
@@ -3340,7 +3340,7 @@ u32 inc_field_39_s8(int a0) {
 /*
  * Class_12c3c4_sub_104f5c  0x8c104f5c
  * area name: only called from Class_12c3c4 methods
- * called by: Class_12c3c4_m2_104264, Class_12c3c4_sub_103100
+ * called by: Class_12c3c4_m2_104264, Higyo_update_sleep_light
  */
 int Class_12c3c4_sub_104f5c(int a0, u32 a1, int a2, u32 a3) {
     int iVar1;
@@ -3352,7 +3352,7 @@ int Class_12c3c4_sub_104f5c(int a0, u32 a1, int a2, u32 a3) {
         get_field_124_027930(*(u32 *)(a2 + 8), a1, a2, a3);
         uVar2 = a1;
         iVar1 = a2;
-        game_sub_1063a8(a0, a1, a2, a3);
+        Higyo_gratification_events(a0, a1, a2, a3);
         *(int *)(a0 + 0xc) = *(int *)(a0 + 0xc) + 1;
         *(u32 *)(a0 + 0x40) = *(u32 *)(&g_8c1eed94 + *(int *)(a0 + 0xc) * 4 + *(int *)(a0 + 4) * 0xc);
         if ((*(int *)(a0 + 0x40) == 0x22) || (*(int *)(a0 + 0xc) == 3)) {
@@ -3400,7 +3400,7 @@ int Class_12c3c4_sub_104f5c(int a0, u32 a1, int a2, u32 a3) {
 /*
  * game_sub_105094  0x8c105094
  * area name: game code; nothing names its area yet
- * called by: Class_12c3c4_sub_104854, Class_12c3c4_sub_104f5c
+ * called by: Class_12c3c4_sub_104f5c, Higyo_choose_status_event
  */
 u32 game_sub_105094(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -3424,12 +3424,12 @@ u32 game_sub_105094(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_1063a8  0x8c1063a8
- * name hint from a string it uses: GRATIFIC EAT; area name: game code; nothing names its area yet
+ * Higyo_gratification_events  0x8c1063a8
+ * Higyo line: after eating, copulation, groaning and rock pushing
  * called by: Class_12c3c4_sub_104f5c
  * strings: "GRATIFIC_EAT"; "GRATIFIC_COPULATION_DONE"; "GRATIFIC_COPULATION_DONE"; "GRATIFIC_GROAN_DONE" ...
  */
-u8 *game_sub_1063a8(int a0, int *a1, int *a2, char *a3) {
+u8 *Higyo_gratification_events(int a0, int *a1, int *a2, char *a3) {
     int iVar1;
     u8 *puVar2;
     u32 ar6_00;
@@ -3671,12 +3671,12 @@ u8 *game_sub_1063a8(int a0, int *a1, int *a2, char *a3) {
 }
 
 /*
- * game_sub_106c84  0x8c106c84
- * name hint from a string it uses: REACTION TEMP LACK; area name: game code; nothing names its area yet
- * called by: Class_12c3c4_sub_103100
+ * Higyo_react_environment  0x8c106c84
+ * Higyo line: reactions to oxygen lack, low temperature and the switch being turned off
+ * called by: Higyo_update_sleep_light
  * strings: "REACTION_TEMP_LACK"; "REACTION_TEMP_LACK"; "REACTION_SWITCH_OFF"; "REACTION_SWITCH_OFF" ...
  */
-u32 *game_sub_106c84(int a0, int *a1, int a2, char *a3) {
+u32 *Higyo_react_environment(int a0, int *a1, int a2, char *a3) {
     int iVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -3805,12 +3805,12 @@ u32 *game_sub_106c84(int a0, int *a1, int a2, char *a3) {
 }
 
 /*
- * game_sub_106f58  0x8c106f58
- * name hint from a string it uses: GRAPHICS COMMON; area name: game code; nothing names its area yet
- * called by: Class_12c3c4_sub_103100
+ * Higyo_react_tap  0x8c106f58
+ * Higyo line: tap responses and being woken by a tap
+ * called by: Higyo_update_sleep_light
  * strings: "REACTION_TAP_RESPONSE"; "REACTION_WAKED_TAP"; "REACTION_WAKED_TAP"
  */
-u32 game_sub_106f58(int a0, u32 a1, int a2, u32 a3) {
+u32 Higyo_react_tap(int a0, u32 a1, int a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -3961,12 +3961,12 @@ u32 game_sub_106f58(int a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * game_sub_107590  0x8c107590
- * name hint from a string it uses: EVENT QUIZ; area name: game code; nothing names its area yet
- * called by: Class_12c3c4_sub_103100
+ * Higyo_attention_events  0x8c107590
+ * Higyo line: attention requests, the quiz, the worm box and rock-push intervals
+ * called by: Higyo_update_sleep_light
  * strings: "EVENT_QUIZ"; "EVENT_QUIZ"; "EVENT_QUIZ"; "EVENT_QUIZ" ...
  */
-int game_sub_107590(code *a0, code *a1, code *a2, char *a3) {
+int Higyo_attention_events(code *a0, code *a1, code *a2, char *a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -4240,12 +4240,12 @@ LAB_8c107eb4:
 }
 
 /*
- * game_sub_1080dc  0x8c1080dc
- * name hint from a string it uses: REACTION TITILLATE; area name: game code; nothing names its area yet
- * called by: Class_12c3c4_sub_103100
+ * Higyo_react_touch  0x8c1080dc
+ * Higyo line: reactions to a flick (DEKOPIN) or tickle (TITILLATE)
+ * called by: Higyo_update_sleep_light
  * strings: "REACTION_TITILLATE"; "REACTION_DEKOPIN"
  */
-int game_sub_1080dc(int a0, int *a1, int a2, u8 *a3) {
+int Higyo_react_touch(int a0, int *a1, int a2, u8 *a3) {
     u32 uVar1;
     int iVar2;
     u32 a6;
@@ -4361,7 +4361,7 @@ int game_sub_1080dc(int a0, int *a1, int a2, u8 *a3) {
 /*
  * talk_complain_tank_env_b  0x8c108560
  * queues the GRATIFIC_RID_HOT / _COLD / _OXYGEN line for the tank condition
- * called by: Class_12c3c4_sub_103100
+ * called by: Higyo_update_sleep_light
  * strings: "GRATIFIC_RID_HOT"; "GRATIFIC_RID_COLD"; "GRATIFIC_RID_OXYGEN"
  */
 int talk_complain_tank_env_b(int a0, u32 unused_a1, int a2) {
@@ -4389,7 +4389,7 @@ int talk_complain_tank_env_b(int a0, u32 unused_a1, int a2) {
 /*
  * talk_sub_10862c  0x8c10862c
  * area name: sits between talk functions (same compilation unit)
- * called by: Class_12c3c4_sub_103100
+ * called by: Higyo_update_sleep_light
  */
 int talk_sub_10862c(int a0, u32 a1, int a2, u32 a3) {
     int iVar1;
@@ -4502,7 +4502,7 @@ int talk_sub_10862c(int a0, u32 a1, int a2, u32 a3) {
 /*
  * game_sub_1089e4  0x8c1089e4
  * area name: game code; nothing names its area yet
- * called by: Class_12c3c4_sub_103100
+ * called by: Higyo_update_sleep_light
  */
 u32 game_sub_1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
     short sVar1;
@@ -4700,7 +4700,7 @@ u32 game_sub_1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
 /*
  * game_sub_108f3c  0x8c108f3c
  * area name: game code; nothing names its area yet
- * called by: Class_12c3c4_sub_103100
+ * called by: Higyo_update_sleep_light
  */
 int game_sub_108f3c(int a0, u32 a1, int a2) {
     int iVar1;
@@ -4792,12 +4792,12 @@ int game_sub_108f3c(int a0, u32 a1, int a2) {
 }
 
 /*
- * game_sub_1091cc  0x8c1091cc
- * name hint from a string it uses: IDLEACTION TREMOR; area name: game code; nothing names its area yet
- * called by: Class_12c3c4_sub_103100
+ * Higyo_pick_idle_action  0x8c1091cc
+ * Higyo line: picks an idle action (jump, bite, head damage, paw, reverse/stand swim, tremor, want land)
+ * called by: Higyo_update_sleep_light
  * strings: "IDLEACTION_PAW"; "IDLEACTION_PAW"; "IDLEACTION_TREMOR"; "IDLEACTION_TREMOR" ...
  */
-int game_sub_1091cc(int a0, u32 a1, int a2, char *a3) {
+int Higyo_pick_idle_action(int a0, u32 a1, int a2, char *a3) {
     int iVar1;
     int iVar2;
 
@@ -4861,12 +4861,12 @@ int game_sub_1091cc(int a0, u32 a1, int a2, char *a3) {
 }
 
 /*
- * game_sub_1093a4  0x8c1093a4
- * name hint from a string it uses: STATUS SUCKED; area name: game code; nothing names its area yet
- * called by: Class_12c3c4_sub_103100
+ * Higyo_react_feed_full  0x8c1093a4
+ * Higyo line: refusing food when full, being sucked
+ * called by: Higyo_update_sleep_light
  * strings: "STATUS_SUCKED"; "STATUS_SUCKED"; "REACTION_FEED_FULL"; "REACTION_FEED_FULL" ...
  */
-int game_sub_1093a4(int a0, int *a1, int *a2, char *a3) {
+int Higyo_react_feed_full(int a0, int *a1, int *a2, char *a3) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -4991,7 +4991,7 @@ LAB_8c1096ec:
 
 /*
  * set_field_8_109798  0x8c109798
- * called by: game_sub_1093a4
+ * called by: Higyo_react_feed_full
  */
 u32 set_field_8_109798(int a0, u32 a1) {
     u32 in_r0;
@@ -5002,19 +5002,19 @@ u32 set_field_8_109798(int a0, u32 a1) {
 
 /*
  * get_field_8_1097a0  0x8c1097a0
- * called by: game_sub_1093a4
+ * called by: Higyo_react_feed_full
  */
 u32 get_field_8_1097a0(int a0) {
     return *(u32 *)(a0 + 8);
 }
 
 /*
- * game_sub_1097a8  0x8c1097a8
- * name hint from a string it uses: STATUS LIFE; area name: game code; nothing names its area yet
- * called by: Class_12c3c4_sub_103100
+ * Higyo_life_status  0x8c1097a8
+ * Higyo line: STATUS_LIFE / STATUS_LASTONE
+ * called by: Higyo_update_sleep_light
  * strings: "STATUS_LIFE"; "STATUS_LASTONE"
  */
-int game_sub_1097a8(int a0, int *a1, int *a2, u8 *a3) {
+int Higyo_life_status(int a0, int *a1, int *a2, u8 *a3) {
     int iVar1;
     u32 uVar2;
     int *piVar3;
@@ -5104,7 +5104,7 @@ int game_sub_1097a8(int a0, int *a1, int *a2, u8 *a3) {
 
 /*
  * set_field_1c_u8  0x8c109b10
- * called by: game_sub_1097a8
+ * called by: Higyo_life_status
  */
 u32 set_field_1c_u8(int a0, u32 a1) {
     *(u8 *)(a0 + 0x1c) = (u8)a1;
@@ -5114,7 +5114,7 @@ u32 set_field_1c_u8(int a0, u32 a1) {
 /*
  * Class_12c3c4_sub_109b18  0x8c109b18
  * area name: only called from Class_12c3c4 methods
- * called by: Class_12c3c4_m2_104264, Class_12c3c4_sub_103100
+ * called by: Class_12c3c4_m2_104264, Higyo_update_sleep_light
  */
 u32 *Class_12c3c4_sub_109b18(int a0, int a1, u32 a2) {
     int iVar1;
@@ -5137,7 +5137,7 @@ u32 *Class_12c3c4_sub_109b18(int a0, int a1, u32 a2) {
 /*
  * game_sub_109b98  0x8c109b98
  * area name: game code; nothing names its area yet
- * called by: Class_12c3c4_sub_104854
+ * called by: Higyo_choose_status_event
  */
 u32 game_sub_109b98(int a0, int *a1, u32 a2) {
     u32 uVar1;
@@ -5253,7 +5253,7 @@ int get_byte_c_s8(int a0, u32 a1) {
 /*
  * Class_12c3c4_sub_109e40  0x8c109e40
  * area name: sits between Class_12c3c4 functions (same compilation unit)
- * called by: Class_12c3c4_sub_103100, Class_12c3c4_sub_109f08
+ * called by: Class_12c3c4_sub_109f08, Higyo_update_sleep_light
  */
 int Class_12c3c4_sub_109e40(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;

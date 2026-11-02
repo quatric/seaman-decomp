@@ -6809,7 +6809,7 @@ int Class_12bb08_sub_0e9220(int a0, u32 a1, int a2, int *a3) {
 /*
  * inc_counter_be_max2  0x8c0e9668
  * increments the byte at +0xbe up to 2
- * called by: Class_12a078_sub_05d860, Class_12c3c4_sub_103100
+ * called by: FrogMan_update_sleep_light, Higyo_update_sleep_light
  */
 int inc_counter_be_max2(int a0) {
     int iVar1;
@@ -6827,7 +6827,7 @@ int inc_counter_be_max2(int a0) {
 /*
  * dec_counter_be  0x8c0e9690
  * decrements the byte at +0xbe down to 0
- * called by: Class_12a078_sub_05d860, Class_12c3c4_sub_103100
+ * called by: FrogMan_update_sleep_light, Higyo_update_sleep_light
  */
 int dec_counter_be(int a0) {
     int iVar1;
@@ -6956,7 +6956,7 @@ int get_field_3c_s8(int a0) {
 
 /*
  * get_field_39_s8  0x8c0e98f0
- * called by: CGame_get_5_fields, Class_12c3c4_sub_104854, game_sub_1063a8, game_sub_107590
+ * called by: CGame_get_5_fields, Higyo_attention_events, Higyo_choose_status_event, Higyo_gratification_events
  */
 int get_field_39_s8(int a0) {
     return (int)*(char *)(a0 + 0x39);

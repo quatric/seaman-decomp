@@ -1031,3 +1031,31 @@
 8c269718	mwRna_is_suspended	the suspend flag at +7
 8c269f50	mwRna_set_param3	stores a1, a2 at +0x7c/+0x80 and passes them to the output (command 3)
 8c269fa0	mwRna_get_param3	*a1, *a2 = the values at +0x7c/+0x80
+8c05d860	FrogMan_update_sleep_light	FrogMan line: sleep, wake-up and light requests (REQUEST_SLEEP/WAKE_UP/WANT_LIGHT, STATUS_LIGHT/LIGHT_OFF/SICK)
+8c05f660	FrogMan_choose_status_event	FrogMan line: picks a request or status (cold, hot, humidity, hungry, fight, binta, coupling, sniffing, sick)
+8c0611cc	FrogMan_gratification_events	FrogMan line: after eating, copulation, jumps and the ending (GRATIFIC_*, EVENT_JUMP_*, EVENT_ENDING)
+8c0628a4	FrogMan_react_environment	FrogMan line: reactions to oxygen lack, low temperature and the switch being turned off
+8c062b0c	FrogMan_react_tap	FrogMan line: woken by a tap, attention request, getting the sprinkler
+8c063838	FrogMan_jump_events	FrogMan line: the three jump events and attention requests
+8c064bb4	FrogMan_react_touch	FrogMan line: reactions to a flick (DEKOPIN) or tickle (TITILLATE), after a dance
+8c0656d4	FrogMan_ending_event	FrogMan line: starts EVENT_ENDING
+8c065e6c	FrogMan_pick_idle_action	FrogMan line: picks an idle action (jump, bite, paw, shiver, sneeze, tail swing, want free, what, yawn)
+8c0660d4	FrogMan_react_feed_full	FrogMan line: refusing food when full, being sucked
+8c103100	Higyo_update_sleep_light	Higyo line: sleep, wake-up and light requests (REQUEST_SLEEP/WAKE_UP/WANT_LIGHT, STATUS_LIGHT/LIGHT_OFF)
+8c104854	Higyo_choose_status_event	Higyo line: picks a status or event (landing, rock push, spinning, in spider, coupling, groan, snore)
+8c1063a8	Higyo_gratification_events	Higyo line: after eating, copulation, groaning and rock pushing
+8c106c84	Higyo_react_environment	Higyo line: reactions to oxygen lack, low temperature and the switch being turned off
+8c106f58	Higyo_react_tap	Higyo line: tap responses and being woken by a tap
+8c107590	Higyo_attention_events	Higyo line: attention requests, the quiz, the worm box and rock-push intervals
+8c1080dc	Higyo_react_touch	Higyo line: reactions to a flick (DEKOPIN) or tickle (TITILLATE)
+8c1091cc	Higyo_pick_idle_action	Higyo line: picks an idle action (jump, bite, head damage, paw, reverse/stand swim, tremor, want land)
+8c1093a4	Higyo_react_feed_full	Higyo line: refusing food when full, being sucked
+8c1097a8	Higyo_life_status	Higyo line: STATUS_LIFE / STATUS_LASTONE
+8c0c2efc	startup_warning_check	shows WARNING_NOPAD, NOMIC, NOVMS or NOTFOUND for a missing controller, microphone or save
+8c0c38d4	CSeamanDomain_warning_message	message key for warning a1 (NOPAD, NOMIC, NOVMS, NOTFOUND)
+8c0c76d0	confirm_exit_save	WARNING_EXIT dialog, then saves SM2000US.USR ("Seaman User Data")
+8c0f9774	talk_pick_request_keyword	picks the talk keyword for the current need (ESCAPE, REQUEST_*, STATUS_SICK/SNORE)
+8c0bcedc	game_select_intro_or_ending	chooses INTRO_FIRST, INTRO_NORMAL, ENDING or an event sequence
+8c0bb1e4	ambient_sound_update	plays and switches the forest and rain ambience (AMB_FOREST, AMB_RAIN)
+8c0c8758	bugbox_3_screen	the BUGBOX_3 message screen
+8c0c8c28	bugbox_4_screen	the BUGBOX_4 message screen

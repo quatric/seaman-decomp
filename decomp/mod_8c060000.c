@@ -6,7 +6,7 @@
 /*
  * game_sub_060044  0x8c060044
  * area name: game code; nothing names its area yet
- * called by: Class_12a078_sub_05f660, Class_12a078_sub_05ff40
+ * called by: Class_12a078_sub_05ff40, FrogMan_choose_status_event
  */
 u32 game_sub_060044(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -39,7 +39,7 @@ u32 game_sub_06115c(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * get_field_c8_061174  0x8c061174
- * called by: game_sub_0660d4
+ * called by: FrogMan_react_feed_full
  */
 u32 get_field_c8_061174(int a0) {
     return *(u32 *)(0xc8 + a0);
@@ -47,7 +47,7 @@ u32 get_field_c8_061174(int a0) {
 
 /*
  * set_field_0_u8_061180  0x8c061180
- * called by: game_sub_0611cc, game_sub_0656d4, game_sub_1063a8, game_sub_1089e4
+ * called by: FrogMan_ending_event, FrogMan_gratification_events, Higyo_gratification_events, game_sub_1089e4
  */
 u32 set_field_0_u8_061180(u8 *a0, u32 a1) {
     u32 in_r0;
@@ -96,12 +96,12 @@ u32 set_field_4_on_field_f8_0611a8(int a0) {
 }
 
 /*
- * game_sub_0611cc  0x8c0611cc
- * name hint from a string it uses: GRATIFIC EAT; area name: game code; nothing names its area yet
+ * FrogMan_gratification_events  0x8c0611cc
+ * FrogMan line: after eating, copulation, jumps and the ending (GRATIFIC_*, EVENT_JUMP_*, EVENT_ENDING)
  * called by: Class_12a078_sub_05ff40
  * strings: "REACTION_SPIDER_AFTER_EAT"; "REACTION_SPIDER_AFTER_EAT"; "GRATIFIC_EAT"; "GRATIFIC_EAT" ...
  */
-u8 **game_sub_0611cc(u8 **a0, int *a1, code *a2, char *a3) {
+u8 **FrogMan_gratification_events(u8 **a0, int *a1, code *a2, char *a3) {
     int iVar1;
     u8 **ppuVar2;
     u32 uVar3;
@@ -456,7 +456,7 @@ u8 **game_sub_0611cc(u8 **a0, int *a1, code *a2, char *a3) {
 
 /*
  * set_field_ac  0x8c062048
- * called by: game_sub_0611cc, game_sub_0620d4
+ * called by: FrogMan_gratification_events, game_sub_0620d4
  */
 int set_field_ac(int a0, u32 a1) {
     int iVar1;
@@ -469,7 +469,7 @@ int set_field_ac(int a0, u32 a1) {
 /*
  * set_word_array_a4  0x8c062054
  * +0xa4[a1] = a2
- * called by: game_sub_0611cc, game_sub_0620d4
+ * called by: FrogMan_gratification_events, game_sub_0620d4
  */
 int set_word_array_a4(int a0, int a1, u32 a2) {
     int iVar1;
@@ -482,7 +482,7 @@ int set_word_array_a4(int a0, int a1, u32 a2) {
 /*
  * get_word_9c  0x8c06206c
  * word a1 of the array at +0x9c
- * called by: game_sub_0611cc
+ * called by: FrogMan_gratification_events
  */
 u32 get_word_9c(int a0, int a1) {
     return *(u32 *)(0x9c + a0 + a1 * 4);
@@ -491,7 +491,7 @@ u32 get_word_9c(int a0, int a1) {
 /*
  * set_word_array_9c  0x8c062084
  * +0x9c[a1] = a2
- * called by: game_sub_0611cc
+ * called by: FrogMan_gratification_events
  */
 int set_word_array_9c(int a0, int a1, u32 a2) {
     int iVar1;
@@ -503,7 +503,7 @@ int set_word_array_9c(int a0, int a1, u32 a2) {
 
 /*
  * set_field_4_s8  0x8c06209c
- * called by: game_sub_0611cc, game_sub_1063a8
+ * called by: FrogMan_gratification_events, Higyo_gratification_events
  */
 u32 set_field_4_s8(int a0, u32 a1) {
     *(char *)(a0 + 4) = (char)a1;
@@ -513,7 +513,7 @@ u32 set_field_4_s8(int a0, u32 a1) {
 /*
  * get_byte_75_2col  0x8c0620a4
  * signed byte at a0[0x75 + a1*2 + a2]
- * called by: game_sub_0611cc, game_sub_1063a8
+ * called by: FrogMan_gratification_events, Higyo_gratification_events
  */
 int get_byte_75_2col(int a0, u32 a1, u32 a2) {
     return (int)*(char *)(a0 + (short)a1 * 2 + (int)(short)a2 + 0x75);
@@ -522,7 +522,7 @@ int get_byte_75_2col(int a0, u32 a1, u32 a2) {
 /*
  * set_byte_grid_75  0x8c0620bc
  * +0x75[a1*2 + a2] = a3
- * called by: game_sub_0611cc, game_sub_1063a8
+ * called by: FrogMan_gratification_events, Higyo_gratification_events
  */
 u32 set_byte_grid_75(int a0, u32 a1, u32 a2, u32 a3) {
     *(u8 *)(a0 + (short)a1 * 2 + (int)(short)a2 + 0x75) = (u8)a3;
@@ -532,7 +532,7 @@ u32 set_byte_grid_75(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_0620d4  0x8c0620d4
  * area name: game code; nothing names its area yet
- * called by: Class_12a078_sub_05d860
+ * called by: FrogMan_update_sleep_light
  */
 int game_sub_0620d4(int a0, int *a1, int a2, u32 a3) {
     u32 uVar1;
@@ -728,7 +728,7 @@ int game_sub_0620d4(int a0, int *a1, int a2, u32 a3) {
 
 /*
  * get_field_4_062878  0x8c062878
- * called by: Vec3_sub_063838, game_sub_0620d4, game_sub_062b0c, game_sub_107590
+ * called by: FrogMan_jump_events, FrogMan_react_tap, Higyo_attention_events, game_sub_0620d4
  */
 u32 get_field_4_062878(int a0) {
     return *(u32 *)(a0 + 4);
@@ -736,7 +736,7 @@ u32 get_field_4_062878(int a0) {
 
 /*
  * get_field_ac_062880  0x8c062880
- * called by: Vec3_sub_063838, game_sub_0620d4
+ * called by: FrogMan_jump_events, game_sub_0620d4
  */
 u32 get_field_ac_062880(int a0) {
     return *(u32 *)(0xac + a0);
@@ -752,12 +752,12 @@ u32 get_word_array_a4(int a0, int a1) {
 }
 
 /*
- * game_sub_0628a4  0x8c0628a4
- * name hint from a string it uses: REACTION TEMP LACK; area name: game code; nothing names its area yet
- * called by: Class_12a078_sub_05d860
+ * FrogMan_react_environment  0x8c0628a4
+ * FrogMan line: reactions to oxygen lack, low temperature and the switch being turned off
+ * called by: FrogMan_update_sleep_light
  * strings: "REACTION_TEMP_LACK"; "REACTION_TEMP_LACK"; "REACTION_SWITCH_OFF"; "REACTION_SWITCH_OFF" ...
  */
-u32 *game_sub_0628a4(int a0, int *a1, int a2, char *a3) {
+u32 *FrogMan_react_environment(int a0, int *a1, int a2, char *a3) {
     int iVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -875,12 +875,12 @@ u32 ret_const_0_062b04(void) {
 }
 
 /*
- * game_sub_062b0c  0x8c062b0c
- * name hint from a string it uses: REACTION WAKED TAP; area name: game code; nothing names its area yet
- * called by: Class_12a078_sub_05d860
+ * FrogMan_react_tap  0x8c062b0c
+ * FrogMan line: woken by a tap, attention request, getting the sprinkler
+ * called by: FrogMan_update_sleep_light
  * strings: "REACTION_WAKED_TAP"; "REACTION_WAKED_TAP"; "REACTION_WAKED_TAP"; "REACTION_WAKED_TAP" ...
  */
-int game_sub_062b0c(int a0, code *a1, code *a2, char *a3) {
+int FrogMan_react_tap(int a0, code *a1, code *a2, char *a3) {
     u32 uVar1;
     int iVar2;
     u32 uVar3;
@@ -1207,8 +1207,8 @@ int game_sub_062b0c(int a0, code *a1, code *a2, char *a3) {
 
 /*
  * set_field_44_u8  0x8c0637c0
- * called by: Class_12c3c4_sub_104854, Vec3_sub_063838, game_sub_062b0c, game_sub_0656d4, game_sub_107590,
- * game_sub_1089e4
+ * called by: FrogMan_ending_event, FrogMan_jump_events, FrogMan_react_tap, Higyo_attention_events,
+ * Higyo_choose_status_event, game_sub_1089e4
  */
 u32 set_field_44_u8(int a0, u32 a1) {
     *(u8 *)(a0 + 0x44) = (u8)a1;
@@ -1217,7 +1217,7 @@ u32 set_field_44_u8(int a0, u32 a1) {
 
 /*
  * get_field_44_s8  0x8c0637c8
- * called by: Vec3_sub_063838, game_sub_062b0c, game_sub_0656d4, game_sub_107590, game_sub_1089e4
+ * called by: FrogMan_ending_event, FrogMan_jump_events, FrogMan_react_tap, Higyo_attention_events, game_sub_1089e4
  */
 int get_field_44_s8(int a0, u32 a1, u32 a2, u32 a3) {
     return (int)*(char *)(a0 + 0x44);
@@ -1226,8 +1226,8 @@ int get_field_44_s8(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * get_field_4_on_field_d8  0x8c0637d0
  * calls get_field_4_0637f8 on the member at +0xd8
- * called by: Vec3_sub_063838, Vec3_sub_0c84f4, game_sub_062b0c, game_sub_0c4e58, game_sub_0c6e74, game_sub_0c76d0,
- * game_sub_0c91f4, game_sub_0c9588 (+9 more)
+ * called by: FrogMan_jump_events, FrogMan_react_tap, Higyo_attention_events, Vec3_sub_0c84f4, confirm_exit_save,
+ * game_sub_0c4e58, game_sub_0c6e74, game_sub_0c91f4 (+9 more)
  */
 u32 get_field_4_on_field_d8(int a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
@@ -1246,7 +1246,7 @@ u32 get_field_4_0637f8(int a0) {
 
 /*
  * set_field_4_063800  0x8c063800
- * called by: Vec3_sub_063838, game_sub_062b0c, game_sub_107590
+ * called by: FrogMan_jump_events, FrogMan_react_tap, Higyo_attention_events
  */
 u32 set_field_4_063800(int a0, u32 a1) {
     u32 in_r0;
@@ -1264,7 +1264,7 @@ u32 ret_const_0_063808(void) {
 
 /*
  * set_field_2c  0x8c063810
- * called by: game_sub_062b0c, game_sub_106f58
+ * called by: FrogMan_react_tap, Higyo_react_tap
  */
 u32 set_field_2c(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 in_r0;
@@ -1275,8 +1275,8 @@ u32 set_field_2c(int a0, u32 a1, u32 unused_a2, u32 a3) {
 
 /*
  * Vec3_assign_wrap_063818  0x8c063818
- * called by: Class_12acc8_m1_09f470, Vec3_sub_063838, game_sub_062b0c, game_sub_064bb4, game_sub_0656d4,
- * game_sub_106f58, game_sub_107590, game_sub_1089e4 (+2 more)
+ * called by: Class_12acc8_m1_09f470, FrogMan_ending_event, FrogMan_jump_events, FrogMan_react_tap, FrogMan_react_touch,
+ * Higyo_attention_events, Higyo_react_tap, game_sub_1089e4 (+2 more)
  */
 u32 Vec3_assign_wrap_063818(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1286,12 +1286,12 @@ u32 Vec3_assign_wrap_063818(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Vec3_sub_063838  0x8c063838
- * name hint from a string it uses: REQUEST ATTENTION; area name: sits between Vec3 functions (same compilation unit)
- * called by: Class_12a078_sub_05d860
+ * FrogMan_jump_events  0x8c063838
+ * FrogMan line: the three jump events and attention requests
+ * called by: FrogMan_update_sleep_light
  * strings: "REQUEST_ATTENTION"; "REQUEST_ATTENTION"; "EVENT_JUMP1"; "EVENT_JUMP1" ...
  */
-u8 **Vec3_sub_063838(code *a0, int *a1, code *a2, u32 a3) {
+u8 **FrogMan_jump_events(code *a0, int *a1, code *a2, u32 a3) {
     u32 uVar1;
     code *ar7_00;
     int iVar2;
@@ -1789,7 +1789,7 @@ u32 ret_const_0_064b7c(void) {
 
 /*
  * inc_field_3b_s8  0x8c064b84
- * called by: Vec3_sub_063838
+ * called by: FrogMan_jump_events
  */
 u32 inc_field_3b_s8(int a0) {
     *(char *)(a0 + 0x3b) = *(char *)(a0 + 0x3b) + '\x01';
@@ -1807,7 +1807,7 @@ u32 noop_064b9c(void) {
 
 /*
  * set_field_a1_u8  0x8c064ba0
- * called by: Class_12c3c4_sub_104854, Vec3_sub_063838, game_sub_1089e4
+ * called by: FrogMan_jump_events, Higyo_choose_status_event, game_sub_1089e4
  */
 int set_field_a1_u8(int a0, u32 a1) {
     int iVar1;
@@ -1819,19 +1819,19 @@ int set_field_a1_u8(int a0, u32 a1) {
 
 /*
  * get_field_3b_s8  0x8c064bac
- * called by: Vec3_sub_063838
+ * called by: FrogMan_jump_events
  */
 int get_field_3b_s8(int a0) {
     return (int)*(char *)(a0 + 0x3b);
 }
 
 /*
- * game_sub_064bb4  0x8c064bb4
- * name hint from a string it uses: REACTION TITILLATE; area name: game code; nothing names its area yet
- * called by: Class_12a078_sub_05d860
+ * FrogMan_react_touch  0x8c064bb4
+ * FrogMan line: reactions to a flick (DEKOPIN) or tickle (TITILLATE), after a dance
+ * called by: FrogMan_update_sleep_light
  * strings: "REACTION_TITILLATE"; "REACTION_TITILLATE"; "REACTION_DEKOPIN"; "REACTION_DEKOPIN" ...
  */
-u32 game_sub_064bb4(int a0, u32 unused_a1, int a2, char *a3) {
+u32 FrogMan_react_touch(int a0, u32 unused_a1, int a2, char *a3) {
     u32 uVar1;
     int iVar2;
     u8 *puVar3;
@@ -2002,7 +2002,7 @@ u32 game_sub_064bb4(int a0, u32 unused_a1, int a2, char *a3) {
 /*
  * talk_complain_tank_env  0x8c065228
  * queues the GRATIFIC_RID_HOT / _COLD / _HUMIDITY line for the tank condition
- * called by: Class_12a078_sub_05d860
+ * called by: FrogMan_update_sleep_light
  * strings: "GRATIFIC_RID_HOT"; "GRATIFIC_RID_COLD"; "GRATIFIC_RID_HUMIDITY"
  */
 int talk_complain_tank_env(int a0, u32 unused_a1, int a2) {
@@ -2030,7 +2030,7 @@ int talk_complain_tank_env(int a0, u32 unused_a1, int a2) {
 /*
  * talk_sub_0652f4  0x8c0652f4
  * area name: sits between talk functions (same compilation unit)
- * called by: Class_12a078_sub_05d860
+ * called by: FrogMan_update_sleep_light
  */
 int talk_sub_0652f4(int a0, u32 a1, int a2, u32 a3) {
     int iVar1;
@@ -2138,12 +2138,12 @@ int talk_sub_0652f4(int a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * game_sub_0656d4  0x8c0656d4
- * name hint from a string it uses: EVENT ENDING; area name: game code; nothing names its area yet
- * called by: Class_12a078_sub_05d860
+ * FrogMan_ending_event  0x8c0656d4
+ * FrogMan line: starts EVENT_ENDING
+ * called by: FrogMan_update_sleep_light
  * strings: "EVENT_ENDING"; "EVENT_ENDING"
  */
-u32 game_sub_0656d4(int a0, int *a1, u32 *a2, u32 a3) {
+u32 FrogMan_ending_event(int a0, int *a1, u32 *a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     code *ar5_00;
@@ -2333,7 +2333,7 @@ LAB_8c065be6:
 
 /*
  * set_field_b0  0x8c065c80
- * called by: game_sub_0656d4, game_sub_1089e4
+ * called by: FrogMan_ending_event, game_sub_1089e4
  */
 int set_field_b0(int a0, u32 a1) {
     int iVar1;
@@ -2345,7 +2345,7 @@ int set_field_b0(int a0, u32 a1) {
 
 /*
  * get_field_b0_065c8c  0x8c065c8c
- * called by: game_sub_0656d4, game_sub_1089e4
+ * called by: FrogMan_ending_event, game_sub_1089e4
  */
 u32 get_field_b0_065c8c(int a0) {
     return *(u32 *)(0xb0 + a0);
@@ -2362,7 +2362,7 @@ u32 noop_065c98(void) {
 
 /*
  * set_field_3d_u8  0x8c065c9c
- * called by: game_sub_0656d4
+ * called by: FrogMan_ending_event
  */
 u32 set_field_3d_u8(int a0, u32 a1) {
     *(u8 *)(a0 + 0x3d) = (u8)a1;
@@ -2371,7 +2371,7 @@ u32 set_field_3d_u8(int a0, u32 a1) {
 
 /*
  * set_field_c8  0x8c065ca4
- * called by: game_sub_0656d4, game_sub_1089e4
+ * called by: FrogMan_ending_event, game_sub_1089e4
  */
 int set_field_c8(int a0, u32 a1) {
     int iVar1;
@@ -2384,7 +2384,7 @@ int set_field_c8(int a0, u32 a1) {
 /*
  * game_sub_065cb0  0x8c065cb0
  * area name: game code; nothing names its area yet
- * called by: Class_12a078_sub_05d860
+ * called by: FrogMan_update_sleep_light
  */
 int game_sub_065cb0(int a0, u32 a1, int a2) {
     u32 uVar1;
@@ -2475,12 +2475,12 @@ LAB_8c065e2a:
 }
 
 /*
- * game_sub_065e6c  0x8c065e6c
- * name hint from a string it uses: IDLEACTION SNEEZE; area name: game code; nothing names its area yet
- * called by: Class_12a078_sub_05d860
+ * FrogMan_pick_idle_action  0x8c065e6c
+ * FrogMan line: picks an idle action (jump, bite, paw, shiver, sneeze, tail swing, want free, what, yawn)
+ * called by: FrogMan_update_sleep_light
  * strings: "IDLEACTION_SNEEZE"; "IDLEACTION_SNEEZE"; "IDLEACTION_YAWN"; "IDLEACTION_PURUPURU" ...
  */
-u8 *game_sub_065e6c(int a0, u32 a1, int a2, char *a3) {
+u8 *FrogMan_pick_idle_action(int a0, u32 a1, int a2, char *a3) {
     int iVar1;
     u8 *puVar2;
     int iVar3;
@@ -2536,12 +2536,12 @@ u8 *game_sub_065e6c(int a0, u32 a1, int a2, char *a3) {
 }
 
 /*
- * game_sub_0660d4  0x8c0660d4
- * name hint from a string it uses: STATUS SUCKED; area name: game code; nothing names its area yet
- * called by: Class_12a078_sub_05d860
+ * FrogMan_react_feed_full  0x8c0660d4
+ * FrogMan line: refusing food when full, being sucked
+ * called by: FrogMan_update_sleep_light
  * strings: "STATUS_SUCKED"; "STATUS_SUCKED"; "REACTION_FEED_FULL"
  */
-int game_sub_0660d4(int a0, int *a1, int *a2, char *a3) {
+int FrogMan_react_feed_full(int a0, int *a1, int *a2, char *a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -2663,7 +2663,7 @@ LAB_8c0662e6:
 
 /*
  * set_field_c4  0x8c06643c
- * called by: game_sub_0660d4, game_sub_1093a4
+ * called by: FrogMan_react_feed_full, Higyo_react_feed_full
  */
 int set_field_c4(int a0, u32 a1) {
     int iVar1;
@@ -2675,7 +2675,7 @@ int set_field_c4(int a0, u32 a1) {
 
 /*
  * get_field_c4_066448  0x8c066448
- * called by: game_sub_0660d4, game_sub_1093a4
+ * called by: FrogMan_react_feed_full, Higyo_react_feed_full
  */
 u32 get_field_c4_066448(int a0) {
     return *(u32 *)(0xc4 + a0);
@@ -2683,7 +2683,7 @@ u32 get_field_c4_066448(int a0) {
 
 /*
  * set_field_c_066454  0x8c066454
- * called by: game_sub_0660d4
+ * called by: FrogMan_react_feed_full
  */
 u32 set_field_c_066454(int a0, u32 a1) {
     u32 in_r0;
@@ -2694,7 +2694,7 @@ u32 set_field_c_066454(int a0, u32 a1) {
 
 /*
  * get_field_c_06645c  0x8c06645c
- * called by: game_sub_0660d4
+ * called by: FrogMan_react_feed_full
  */
 u32 get_field_c_06645c(int a0) {
     return *(u32 *)(a0 + 0xc);
@@ -2703,7 +2703,7 @@ u32 get_field_c_06645c(int a0) {
 /*
  * talk_check_status_lastone  0x8c066464
  * queues the STATUS_LASTONE line once, when only one creature is left
- * called by: Class_12a078_sub_05d860
+ * called by: FrogMan_update_sleep_light
  * strings: "STATUS_LASTONE"
  */
 int talk_check_status_lastone(int a0, int *a1, int a2, u32 a3) {
@@ -2751,7 +2751,7 @@ int talk_check_status_lastone(int a0, int *a1, int a2, u32 a3) {
 /*
  * Class_12a078_sub_0665a0  0x8c0665a0
  * area name: only called from Class_12a078 methods
- * called by: Class_12a078_m2_05eee0, Class_12a078_sub_05d860
+ * called by: Class_12a078_m2_05eee0, FrogMan_update_sleep_light
  */
 u32 *Class_12a078_sub_0665a0(int a0, int a1, u32 a2) {
     int iVar1;
@@ -2783,7 +2783,7 @@ u32 get_field_8_066620(int a0) {
 /*
  * talk_sub_066628  0x8c066628
  * area name: sits between talk functions (same compilation unit)
- * called by: Class_12a078_sub_05f660
+ * called by: FrogMan_choose_status_event
  */
 u32 talk_sub_066628(int a0, int *a1, u32 a2) {
     u32 uVar1;
@@ -2862,7 +2862,7 @@ u32 talk_sub_066628(int a0, int *a1, u32 a2) {
 /*
  * game_sub_066834  0x8c066834
  * area name: game code; nothing names its area yet
- * called by: game_sub_0660d4
+ * called by: FrogMan_react_feed_full
  */
 u32 game_sub_066834(int a0, int *a1, u32 *a2, u32 a3) {
     int iVar1;

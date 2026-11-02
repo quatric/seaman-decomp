@@ -684,13 +684,13 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
                 g_8c4367d0 = iVar6;
             }
             if (g_8c4367d0 == 1) {
-                CSeamanDomain_sub_0c38d4(&g_8c2b5628, 1, CSeamanDomain_sub_0c38d4, a3);
+                CSeamanDomain_warning_message(&g_8c2b5628, 1, CSeamanDomain_warning_message, a3);
                 g_8c4367bc = 0x15;
             } else if ((g_8c4367d0 == 3) || (g_8c4367d0 == 5)) {
-                CSeamanDomain_sub_0c38d4(&g_8c2b5628, 6, puVar8, a3);
+                CSeamanDomain_warning_message(&g_8c2b5628, 6, puVar8, a3);
                 g_8c4367bc = 0x16;
             } else if (g_8c4367d0 == 4) {
-                CSeamanDomain_sub_0c38d4(&g_8c2b5628, 4, puVar8, a3);
+                CSeamanDomain_warning_message(&g_8c2b5628, 4, puVar8, a3);
                 g_8c4367bc = 0x17;
             } else if ((g_8c4367d0 == 0) && (iVar6 == 0)) {
                 g_8c4367bc = 0x14;
@@ -1633,13 +1633,13 @@ u32 CSysMessage_LoadMessage(int a0, u32 a1) {
 }
 
 /*
- * game_sub_0c2efc  0x8c0c2efc
- * name hint from a string it uses: WARNING NOPAD; area name: game code; nothing names its area yet
+ * startup_warning_check  0x8c0c2efc
+ * shows WARNING_NOPAD, NOMIC, NOVMS or NOTFOUND for a missing controller, microphone or save
  * called by: CGame_sub_0b7920, game_sub_0b6e6c, game_sub_0bad68, game_sub_0c6e74, game_sub_0c7438, save_files_check,
  * save_show_file_message, save_write_step strings: "WARNING_NOPAD"; "WARNING_NOPAD"; "WARNING_NOVMS"; "WARNING_NOVMS"
  * ...
  */
-u32 game_sub_0c2efc(int a0, char *a1, u32 a2, u32 a3) {
+u32 startup_warning_check(int a0, char *a1, u32 a2, u32 a3) {
     short sVar1;
     u32 uVar2;
     float *pfVar3;
@@ -1842,7 +1842,7 @@ u32 game_sub_0c2efc(int a0, char *a1, u32 a2, u32 a3) {
         }
         game_sub_0c453c(a0, ar5_00, ar6_00, uVar2);
         if (g_8c436880 == a1) {
-            uVar2 = pack_sub_021d90(0x8c2b59d0, g_8c436890, 0, 0);
+            uVar2 = CSeamanDomain_sub_021d90(0x8c2b59d0, g_8c436890, 0, 0);
         } else {
             iVar4 = speech_is_playing(0x8c35468c, ar5_00);
             if (iVar4 == 1) {
@@ -1858,7 +1858,7 @@ u32 game_sub_0c2efc(int a0, char *a1, u32 a2, u32 a3) {
             pack_sub_021d4c(0x8c2b59d0, uVar8, ar6_00, uVar2);
             g_8c436880 = a1;
             g_8c436890 = pack_acquire_entry_handle(0x8c2b59d0, auStack_30, ar6_00, uVar2);
-            uVar2 = pack_sub_021d90(0x8c2b59d0, g_8c436890, 0, 0);
+            uVar2 = CSeamanDomain_sub_021d90(0x8c2b59d0, g_8c436890, 0, 0);
         }
     }
     return uVar2;
@@ -2030,12 +2030,12 @@ u32 CSeamanDomain_sub_0c3530(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * CSeamanDomain_sub_0c38d4  0x8c0c38d4
- * name hint from a string it uses: WARNING NOPAD; area name: only called from CSeamanDomain methods
+ * CSeamanDomain_warning_message  0x8c0c38d4
+ * message key for warning a1 (NOPAD, NOMIC, NOVMS, NOTFOUND)
  * called by: CSeamanDomain_Init
  * strings: "WARNING_NOPAD"; "WARNING_NOPAD"; "WARNING_NOVMS"; "WARNING_NOVMS" ...
  */
-int CSeamanDomain_sub_0c38d4(int a0, char *a1, u32 a2, u32 a3) {
+int CSeamanDomain_warning_message(int a0, char *a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     char *ar5_00;
@@ -2075,7 +2075,7 @@ int CSeamanDomain_sub_0c38d4(int a0, char *a1, u32 a2, u32 a3) {
     if ((iVar1 == -1) && (iVar1 = (int)*(char *)(a0 + 0x388), iVar1 != 0x30)) {
         uVar2 = pack_acquire_entry_handle(0x8c2b59d0, a0 + 0x388, a2, a3);
         *(u32 *)(a0 + 900) = uVar2;
-        iVar1 = pack_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 900), 0, 0);
+        iVar1 = CSeamanDomain_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 900), 0, 0);
     }
     return iVar1;
 }
@@ -2083,7 +2083,7 @@ int CSeamanDomain_sub_0c38d4(int a0, char *a1, u32 a2, u32 a3) {
 /*
  * pack_release_entry_384  0x8c0c3a14
  * releases the pack entry handle at +0x384 and sets it to -1
- * called by: CSeamanDomain_sub_0c38d4, pack_release_entry_384_if_done
+ * called by: CSeamanDomain_warning_message, pack_release_entry_384_if_done
  */
 int pack_release_entry_384(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -2100,7 +2100,7 @@ int pack_release_entry_384(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * pack_sub_0c3a48  0x8c0c3a48
  * area name: sits between pack functions (same compilation unit)
- * called by: CSeamanDomain_sub_0c3530, game_sub_0c2efc
+ * called by: CSeamanDomain_sub_0c3530, startup_warning_check
  */
 u32 pack_sub_0c3a48(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -2115,7 +2115,7 @@ u32 pack_sub_0c3a48(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * set_texlist_19c_draw  0x8c0c3aac
  * sets texture list a1 (texture 0) on the object at +0x19c and draws the object at +0x1ac
- * called by: CSeamanDomain_sub_0c3530, game_sub_0c2efc
+ * called by: CSeamanDomain_sub_0c3530, startup_warning_check
  */
 u32 set_texlist_19c_draw(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -2130,7 +2130,7 @@ u32 set_texlist_19c_draw(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * set_texlist_1a4_draw  0x8c0c3b10
  * sets texture list a1 (texture 0) on the object at +0x1a4 and draws the object at +0x1ac
- * called by: CSeamanDomain_sub_0c3530, game_sub_0c2efc
+ * called by: CSeamanDomain_sub_0c3530, startup_warning_check
  */
 u32 set_texlist_1a4_draw(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -2211,7 +2211,7 @@ u32 pack_sub_0c3b74(int a0, u32 unused_a1, u32 a2) {
 /*
  * CGame_sub_0c3e78  0x8c0c3e78
  * area name: only called from CGame methods
- * called by: CGame_Initial, game_sub_0bf22c, input_sub_0bb1e4
+ * called by: CGame_Initial, ambient_sound_update, game_sub_0bf22c
  */
 int CGame_sub_0c3e78(int a0, u32 a1, int a2) {
     short sVar1;
@@ -2569,7 +2569,7 @@ u32 game_sub_0c4370(int a0, int a1, int a2, int a3) {
 /*
  * game_sub_0c453c  0x8c0c453c
  * area name: game code; nothing names its area yet
- * called by: CSeamanDomain_sub_0c3530, game_sub_0c2efc, game_sub_0c76d0, input_sub_0bf804
+ * called by: CSeamanDomain_sub_0c3530, confirm_exit_save, input_sub_0bf804, startup_warning_check
  */
 u32 game_sub_0c453c(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -3022,8 +3022,8 @@ int game_sub_0c4dd0(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CAnimal_sub_0c4e2c  0x8c0c4e2c
  * area name: only called from CAnimal methods
- * called by: CAnimal_m2_0acaec, Class_12a078_sub_05d860, Class_12a078_sub_05f660, Class_12a7a8_sub_099714,
- * Class_12acc8_sub_09ff1c, Class_12b0c4_sub_0abe84, Class_12bb08_sub_0dbbe8, Class_12c3c4_sub_104854 (+13 more)
+ * called by: CAnimal_m2_0acaec, Class_12a7a8_sub_099714, Class_12acc8_sub_09ff1c, Class_12b0c4_sub_0abe84,
+ * Class_12bb08_sub_0dbbe8, FrogMan_choose_status_event, FrogMan_ending_event, FrogMan_gratification_events (+13 more)
  */
 u32 CAnimal_sub_0c4e2c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -3191,7 +3191,7 @@ int set_timeout_120(int a0, u32 a1) {
 
 /*
  * set_field_d0_0c51b8  0x8c0c51b8
- * called by: event1_begin, game_sub_0c4e58, game_sub_0c8758, game_sub_0c8c28, game_sub_0caac0, game_sub_0cb29c,
+ * called by: bugbox_3_screen, bugbox_4_screen, event1_begin, game_sub_0c4e58, game_sub_0caac0, game_sub_0cb29c,
  * game_sub_0cb5c8
  */
 int set_field_d0_0c51b8(int a0, u32 a1) {
@@ -3205,7 +3205,7 @@ int set_field_d0_0c51b8(int a0, u32 a1) {
 /*
  * set_timeout_120_mode6  0x8c0c51c4
  * clears +0x59c and starts a 120-frame countdown with value 6
- * called by: event1_begin, game_sub_0c4e58, game_sub_0c8758, game_sub_0caac0, game_sub_0cb29c, game_sub_0cb5c8,
+ * called by: bugbox_3_screen, event1_begin, game_sub_0c4e58, game_sub_0caac0, game_sub_0cb29c, game_sub_0cb5c8,
  * game_sub_0dbf90, game_sub_0dca2c (+4 more)
  */
 int set_timeout_120_mode6(int a0) {
@@ -3227,7 +3227,7 @@ u32 ret_const_0_0c51f4(void) {
 
 /*
  * get_field_d0_0c51fc  0x8c0c51fc
- * called by: CGame_GetUserGameInfo, game_sub_0c4e58, game_sub_0c6e74, game_sub_0c8c28, game_sub_0c91f4,
+ * called by: CGame_GetUserGameInfo, bugbox_4_screen, game_sub_0c4e58, game_sub_0c6e74, game_sub_0c91f4,
  * game_sub_0ca4e8, game_sub_0cb668, game_sub_0cbbcc (+6 more)
  */
 u32 get_field_d0_0c51fc(int a0, u32 unused_a1, u32 a2) {
@@ -3835,7 +3835,7 @@ u32 take_field_4(int a0) {
 
 /*
  * CGame_GetUserGameInfo  0x8c0c5de8
- * called by: game_sub_0c6e74, game_sub_0c76d0
+ * called by: confirm_exit_save, game_sub_0c6e74
  * strings: "wtNumberOfItems is over..CGame::GetUserGameInfo"; "stNumberOfItems is over..CGame::GetUserGameInfo"
  */
 u32 CGame_GetUserGameInfo(int a0, int a1, int a2, u8 *a3) {
@@ -4409,7 +4409,7 @@ u32 game_sub_0c6e74(int a0, int a1, u32 a2, char *a3) {
             game_sub_0b79f0(piVar3, ar5_00, a2, a3);
             a3 = &g_8c13d092;
             a2 = 0;
-            game_sub_0c2efc(&g_8c2b5628, 5, 0, &g_8c13d092);
+            startup_warning_check(&g_8c2b5628, 5, 0, &g_8c13d092);
             goto LAB_8c0c7340;
         }
         if (*(int *)(a0 + 0x2d16c) != 0) {
@@ -4426,7 +4426,7 @@ u32 game_sub_0c6e74(int a0, int a1, u32 a2, char *a3) {
         }
         if (*(int *)(a0 + 0x2d164) == 1) {
             iVar2 = a1;
-            iVar1 = game_sub_0c76d0(a0, a1);
+            iVar1 = confirm_exit_save(a0, a1);
             if (iVar1 == 1) {
                 iVar2 = get_field_d0_0c51fc(*(u32 *)(a1 + 0x7cc), iVar2, a2);
                 piVar3 = *(int **)(a0 + iVar2 * 4 + 8);
@@ -4485,7 +4485,7 @@ LAB_8c0c7340:
 
 /*
  * get_field_d4_0c7424  0x8c0c7424
- * called by: game_sub_0c6e74, game_sub_0c76d0, game_sub_0c91f4, game_sub_0ca4e8, input_sub_0c8134
+ * called by: confirm_exit_save, game_sub_0c6e74, game_sub_0c91f4, game_sub_0ca4e8, input_sub_0c8134
  */
 u32 get_field_d4_0c7424(int a0, u32 a1) {
     return *(u32 *)(0xd4 + a0);
@@ -4539,7 +4539,7 @@ u32 game_sub_0c7438(int a0, int a1, u8 *a2, u32 a3) {
                     game_sub_0b79f0(ar4_01, puVar3, a2, a3);
                     puVar3 = (&DATA_8c13d004) + 0x8e;
                     uVar1 = 0;
-                    game_sub_0c2efc(0x8c2b5628, 5, 0, puVar3);
+                    startup_warning_check(0x8c2b5628, 5, 0, puVar3);
                     pure_virtual_stub();
                     return 1;
                 }
@@ -4549,7 +4549,7 @@ u32 game_sub_0c7438(int a0, int a1, u8 *a2, u32 a3) {
         game_sub_0b79f0(ar4_00, puVar3, a2, a3);
         puVar3 = (&DATA_8c13d004) + 0x8e;
         uVar1 = 0;
-        game_sub_0c2efc(0x8c2b5628, 5, 0, puVar3);
+        startup_warning_check(0x8c2b5628, 5, 0, puVar3);
         pure_virtual_stub();
     } else {
     LAB_8c0c755a:
@@ -4582,12 +4582,12 @@ u32 game_sub_0c75f4(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0c76d0  0x8c0c76d0
- * name hint from a string it uses: WARNING EXIT; area name: game code; nothing names its area yet
+ * confirm_exit_save  0x8c0c76d0
+ * WARNING_EXIT dialog, then saves SM2000US.USR ("Seaman User Data")
  * called by: game_sub_0c6e74
  * strings: "WARNING_EXIT"; "Seaman User Data"; "SM2000US.USR"; "SEAMAN" ...
  */
-u32 game_sub_0c76d0(int a0, int a1) {
+u32 confirm_exit_save(int a0, int a1) {
     u8 *r6;
     u32 uVar1;
     int iVar2;
@@ -4711,13 +4711,13 @@ u32 game_sub_0c76d0(int a0, int a1) {
         if (5 < (int)g_8c4371e0) {
             g_8c437140 =
                 (code *)pack_acquire_entry_handle(0x8c2b59d0, "WARNING_EXIT", puVar4, pack_acquire_entry_handle);
-            pack_sub_021d90(0x8c2b59d0, g_8c437140, 0, 0);
+            CSeamanDomain_sub_021d90(0x8c2b59d0, g_8c437140, 0, 0);
             g_8c437138 = 2;
         }
     case 2:
         uVar6 = 0;
         uVar1 = 0;
-        pack_sub_021d90(0x8c2b59d0, g_8c437140, 0, 0);
+        CSeamanDomain_sub_021d90(0x8c2b59d0, g_8c437140, 0, 0);
         obj_set_texlist(a0 + 0x2d3f4, obj_set_texlist, uVar1);
         obj_set_texture_num(a0 + 0x2d3f4, 0);
         uVar6 = 4;
@@ -4860,7 +4860,7 @@ LAB_8c0c7fc4:
 /*
  * input_b_pressed_pad  0x8c0c8024
  * 1 when B was just pressed on the pad at +0xcc
- * called by: game_sub_0c76d0
+ * called by: confirm_exit_save
  */
 u32 input_b_pressed_pad(int a0) {
     int iVar1;
@@ -4872,7 +4872,7 @@ u32 input_b_pressed_pad(int a0) {
 /*
  * input_a_pressed_pad  0x8c0c8058
  * 1 when A was just pressed on the pad at +0xcc and the pad is connected
- * called by: game_sub_0c76d0
+ * called by: confirm_exit_save
  */
 u32 input_a_pressed_pad(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -5084,7 +5084,7 @@ u32 noop_0c847c(void) {
 /*
  * Vec3_pair_dtor  0x8c0c8480
  * destroys the two Vec3 of a Vec3 pair and frees it when the delete flag is set
- * called by: game_sub_0c8758, game_sub_0c8c28, game_sub_0c8fc4, game_sub_0c91f4, game_sub_0c991c, game_sub_0ca4e8,
+ * called by: bugbox_3_screen, bugbox_4_screen, game_sub_0c8fc4, game_sub_0c91f4, game_sub_0c991c, game_sub_0ca4e8,
  * game_sub_0cac08, game_sub_0cb668 (+2 more)
  */
 int Vec3_pair_dtor(int a0, u32 a1, u32 a2, u32 a3) {
@@ -5107,7 +5107,7 @@ int Vec3_pair_dtor(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_pair_ctor  0x8c0c84cc
  * constructs two Vec3 at +0 and +0x10
- * called by: game_sub_0c8758, game_sub_0c8c28, game_sub_0c8fc4, game_sub_0c91f4, game_sub_0c991c, game_sub_0ca4e8,
+ * called by: bugbox_3_screen, bugbox_4_screen, game_sub_0c8fc4, game_sub_0c91f4, game_sub_0c991c, game_sub_0ca4e8,
  * game_sub_0cac08, game_sub_0cb668 (+2 more)
  */
 int Vec3_pair_ctor(int a0, u32 a1, u32 a2) {
@@ -5252,11 +5252,11 @@ u32 noop_0c8754(void) {
 }
 
 /*
- * game_sub_0c8758  0x8c0c8758
- * name hint from a string it uses: BUGBOX 3; area name: game code; nothing names its area yet
+ * bugbox_3_screen  0x8c0c8758
+ * the BUGBOX_3 message screen
  * strings: "BUGBOX_3"
  */
-u32 game_sub_0c8758(int a0, int a1, u32 a2, u32 a3) {
+u32 bugbox_3_screen(int a0, int a1, u32 a2, u32 a3) {
     short sVar1;
     int iVar2;
     int iVar3;
@@ -5298,7 +5298,7 @@ u32 game_sub_0c8758(int a0, int a1, u32 a2, u32 a3) {
             a3 = 0;
             puVar5 = NULL;
             g_8c13cbf4 = iVar2;
-            pack_sub_021d90(0x8c2b59d0, iVar2, 0, 0);
+            CSeamanDomain_sub_021d90(0x8c2b59d0, iVar2, 0, 0);
             *(u16 *)(a0 + 0x2d1ac) = 2;
         }
     } else if (sVar1 == 2) {
@@ -5371,11 +5371,11 @@ u32 game_sub_0c8758(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0c8c28  0x8c0c8c28
- * name hint from a string it uses: BUGBOX 4; area name: game code; nothing names its area yet
+ * bugbox_4_screen  0x8c0c8c28
+ * the BUGBOX_4 message screen
  * strings: "BUGBOX_4"
  */
-u32 game_sub_0c8c28(int a0, int a1, u32 a2, u32 a3) {
+u32 bugbox_4_screen(int a0, int a1, u32 a2, u32 a3) {
     short sVar1;
     int iVar2;
     int *piVar3;
@@ -5407,7 +5407,7 @@ u32 game_sub_0c8c28(int a0, int a1, u32 a2, u32 a3) {
             a3 = 0;
             a2 = 0;
             g_8c13cbf4 = iVar4;
-            pack_sub_021d90(0x8c2b59d0, iVar4, 0, 0);
+            CSeamanDomain_sub_021d90(0x8c2b59d0, iVar4, 0, 0);
             *(u16 *)(a0 + 0x2d1ac) = 4;
         }
     } else if (sVar1 == 4) {

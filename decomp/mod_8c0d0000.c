@@ -1751,7 +1751,7 @@ u8 *set_g_8c437864(u32 a0, u32 a1) {
 /*
  * game_sub_0d1c20  0x8c0d1c20
  * area name: game code; nothing names its area yet
- * called by: game_sub_0c8c28
+ * called by: bugbox_4_screen
  */
 u8 *game_sub_0d1c20(u32 a0, u32 a1, u32 a2) {
     u8 *puVar1;
@@ -8301,7 +8301,7 @@ u32 Class_12b580_sub_0d84e8(u32 *a0, u32 a1, u32 a2, u32 a3) {
         if (a0[0x1b89] != -1) {
             a3 = a0[0x1b8a];
             a2 = 0;
-            pack_sub_021d90(0x8c2b59d0, a0[0x1b89], 0, a3);
+            CSeamanDomain_sub_021d90(0x8c2b59d0, a0[0x1b89], 0, a3);
         }
     }
     uVar3 = *a0;

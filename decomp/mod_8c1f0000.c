@@ -11330,8 +11330,8 @@ u32 shinobi_sub_1f814c(u32 a0) {
 /*
  * rtc_get_date  0x8c1f8176
  * fills a {year, month, day, hour, minute, second, weekday} struct from the real-time clock
- * called by: CProlog_sub_0b96e4, game_sub_01bebc, game_sub_01bfd0, game_sub_0f9774, game_sub_0fc94c, game_sub_0fcd2c,
- * input_sub_0bf804, rtc_get_date_wrap (+9 more)
+ * called by: CProlog_sub_0b96e4, game_sub_01bebc, game_sub_01bfd0, game_sub_0fc94c, game_sub_0fcd2c, input_sub_0bf804,
+ * rtc_get_date_wrap, shinobi_sub_1f71b6 (+9 more)
  */
 u32 rtc_get_date(short *a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 *puVar1;
@@ -11406,8 +11406,8 @@ u32 rtc_date_compare(u32 a0, u32 a1, u32 a2) {
 /*
  * date_to_rtc_seconds  0x8c1f826c
  * seconds since 1950-01-01 (the Dreamcast RTC epoch) for a {year, month, day, hour, minute, second} struct
- * called by: CGame_sub_0cc784, CProlog_sub_0b96e4, CProlog_sub_0cd3c8, CSeamanDomain_sub_1028c0, game_sub_0bcedc,
- * game_sub_0f9774, game_sub_0fcd2c, rtc_date_compare (+12 more)
+ * called by: CGame_sub_0cc784, CProlog_sub_0b96e4, CProlog_sub_0cd3c8, CSeamanDomain_sub_1028c0,
+ * game_select_intro_or_ending, game_sub_0fcd2c, rtc_date_compare, rtc_sub_1f81dc (+12 more)
  */
 u32 date_to_rtc_seconds(u16 *a0, int *a1, u32 a2) {
     u16 uVar1;

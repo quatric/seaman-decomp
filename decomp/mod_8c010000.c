@@ -183,7 +183,7 @@ u32 pure_virtual_stub(void) {
 /*
  * strcpy  0x8c0101d4
  * called by: CDCGD_new_request_c, CDCGD_sub_0202c0, CSeamanDomain_Init, CSeamanDomain_sub_0c23fc,
- * CSeamanDomain_sub_0c38d4, Class_12a078_ctor, Class_12c3c4_ctor, asr_sub_01d4c4 (+41 more)
+ * CSeamanDomain_warning_message, Class_12a078_ctor, Class_12c3c4_ctor, asr_sub_01d4c4 (+41 more)
  */
 u32 strcpy(char *a0, char *a1) {
     char cVar1;
@@ -1179,7 +1179,7 @@ int libgcc_divide_helper_0101e4(u32 a0, u32 a1) {
 /*
  * libgcc_divide_helper_010284  0x8c010284
  * called by: CAnimal_sub_034d48, CGame_sub_0c3e78, CGame_sub_0cc784, CProlog_sub_0cd3c8, CSeamanDomain_sub_0c3530,
- * game_sub_062b0c, game_sub_0bcedc, game_sub_0c2efc (+1 more)
+ * FrogMan_react_tap, Higyo_react_tap, game_select_intro_or_ending (+1 more)
  */
 u32 libgcc_divide_helper_010284(u32 a0, int a1, u32 a2) {
     u32 uVar1;
@@ -11789,7 +11789,7 @@ u32 libc_sub_01422c(int a0, u32 a1, u32 a2, u32 a3, u32 ain0, u32 ain1) {
 /*
  * libc_sub_014294  0x8c014294
  * area name: in the libc library code range
- * called by: input_sub_0bb1e4
+ * called by: ambient_sound_update
  */
 u32 libc_sub_014294(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -13030,7 +13030,7 @@ u32 game_sub_0150e0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * set_field_10  0x8c015198
  * called by: CGame_Init, CSeamanDomain_Init, CSeamanDomain_sub_0c2068, Class_129808_m6_0166b4, Class_12b3b8_sub_0e7a78,
- * Class_12bb08_ctor, game_init_sound_and_messages, game_sub_0b6e6c (+11 more)
+ * Class_12bb08_ctor, ambient_sound_update, bugbox_3_screen (+11 more)
  */
 u32 set_field_10(int a0, u32 a1) {
     u32 in_r0;
@@ -13042,7 +13042,7 @@ u32 set_field_10(int a0, u32 a1) {
 /*
  * free_if_nonnull_wrap_0151a0  0x8c0151a0
  * called by: CSeamanDomain_sub_0c2068, Class_129808_m6_0166b4, Class_12984c_sub_0c4b84, Class_12b350_dtor_0baa08,
- * Class_12b3b8_sub_0e7a78, Class_12bb08_dtor, game_sub_0b6e6c, game_sub_0b79f0 (+10 more)
+ * Class_12b3b8_sub_0e7a78, Class_12bb08_dtor, ambient_sound_update, confirm_exit_save (+10 more)
  */
 int free_if_nonnull_wrap_0151a0(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -14384,7 +14384,7 @@ u32 Class_129808_m10_0162bc(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
  * clear_5_words  0x8c0162f8
  * a0[0..4] = 0
  * called by: CSeamanDomain_Init, CSeamanDomain_sub_0c2068, Class_129808_m6_0166b4, Class_12b350_ctor,
- * Class_12b3b8_sub_0e7a78, Class_12bb08_ctor, game_sub_0b6e6c, game_sub_0b79f0 (+13 more)
+ * Class_12b3b8_sub_0e7a78, Class_12bb08_ctor, ambient_sound_update, confirm_exit_save (+13 more)
  */
 u32 *clear_5_words(u32 *a0, u32 a1, u32 unused_a2, u32 a3) {
     a0[4] = 0;
@@ -14415,7 +14415,7 @@ u32 set_fields_0_4_c(u32 *a0, u32 a1, u32 a2, u32 a3) {
  * Class_129808_set_model  0x8c016324
  * +8 = a1 and sets flags 0x80000020 at +0x10
  * called by: CGame_sub_0c3e78, CSeamanDomain_Init, CSeamanDomain_sub_0c2068, CSeamanDomain_sub_0c3530,
- * Class_129808_m6_0166b4, Class_12b3b8_sub_0e7a78, Class_12bb08_ctor, game_sub_0ba5e0 (+12 more)
+ * Class_129808_m6_0166b4, Class_12b3b8_sub_0e7a78, Class_12bb08_ctor, ambient_sound_update (+12 more)
  */
 u32 Class_129808_set_model(int a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -14442,8 +14442,8 @@ u32 Class_129808_draw(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * Class_129808_draw_offset  0x8c01636c
  * draws the object's quad moved by the x/y offset in dr4
- * called by: CSeamanDomain_sub_0c3530, Class_12b3b8_sub_0e7a78, game_sub_0ba5e0, game_sub_0bfa78, game_sub_0c2efc,
- * game_sub_0c42b0, game_sub_0c453c, game_sub_0cf6bc (+4 more)
+ * called by: CSeamanDomain_sub_0c3530, Class_12b3b8_sub_0e7a78, game_sub_0ba5e0, game_sub_0bfa78, game_sub_0c42b0,
+ * game_sub_0c453c, game_sub_0cf6bc, input_sub_0bf804 (+4 more)
  */
 u32 Class_129808_draw_offset(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -19259,7 +19259,7 @@ u32 game_sub_01aa94(int *a0) {
 /*
  * memcard_flush_and_close  0x8c01ab2c
  * runs the memory-card queue until it is empty, then shuts the card layer down (state 0)
- * called by: game_sub_0c76d0, memcard_flush_and_close_8c3dd7dc
+ * called by: confirm_exit_save, memcard_flush_and_close_8c3dd7dc
  */
 u32 memcard_flush_and_close(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -19355,7 +19355,7 @@ u32 wait_state_rtc_10s(int a0, int a1, u32 a2, u32 a3) {
 /*
  * Class_12b388_sub_01ad88  0x8c01ad88
  * area name: only called from Class_12b388 methods
- * called by: Class_12b388_m1_0c5c08, game_sub_0c76d0
+ * called by: Class_12b388_m1_0c5c08, confirm_exit_save
  */
 u32 Class_12b388_sub_01ad88(int *a0) {
     if (*a0 < 0) {
@@ -22973,7 +22973,7 @@ u32 get_field_a524_01f514(int a0, u32 unused_a1, u32 a2) {
  * identity  0x8c01f520
  * returns its first argument
  * called by: CSeamanDomain_Init, CSeamanDomain_sub_0c1d98, CSeamanDomain_sub_0c2324, Class_12b388_m1_0c5c08,
- * game_sub_0b6e6c, game_sub_0b726c, game_sub_0c7438, game_sub_0c76d0 (+10 more)
+ * confirm_exit_save, game_sub_0b6e6c, game_sub_0b726c, game_sub_0c7438 (+10 more)
  */
 u32 identity(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     return a0;
@@ -22991,7 +22991,7 @@ int field_ptr_384c(int a0) {
 
 /*
  * get_field_a510_01f538  0x8c01f538
- * called by: CGame_Initial, game_sub_0b6e6c, game_sub_0bad68, game_sub_0fc4c4, input_sub_0bb1e4, save_files_check,
+ * called by: CGame_Initial, ambient_sound_update, game_sub_0b6e6c, game_sub_0bad68, game_sub_0fc4c4, save_files_check,
  * save_write_step
  */
 u32 get_field_a510_01f538(int a0) {

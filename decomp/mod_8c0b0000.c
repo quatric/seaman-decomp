@@ -4456,7 +4456,7 @@ u32 save_write_step(u32 a0, u8 *a1, u8 *a2, u8 *a3) {
             a3 = &g_8c13c025;
             ar6_00 = NULL;
             uVar2 = 0xb;
-            game_sub_0c2efc(&g_8c2b5628, 0xb, 0, &g_8c13c025);
+            startup_warning_check(&g_8c2b5628, 0xb, 0, &g_8c13c025);
             uVar2 = identity(0x8c3dd7dc, uVar2, ar6_00, a3);
             iVar1 = strcmp_0b6e04(a0, "SM2000US.USR");
             if (iVar1 == 0) {
@@ -4476,17 +4476,17 @@ u32 save_write_step(u32 a0, u8 *a1, u8 *a2, u8 *a3) {
         case 1:
             a3 = &g_8c13c025;
             ar6_00 = NULL;
-            game_sub_0c2efc(&g_8c2b5628, 1, 0, &g_8c13c025);
+            startup_warning_check(&g_8c2b5628, 1, 0, &g_8c13c025);
             break;
         case 3:
             ar6_00 = (u8 *)get_field_a524_01f514(0x8c3dd7dc, ar5_00, ar6_00);
             a3 = &g_8c13c025;
-            game_sub_0c2efc(&g_8c2b5628, 2, ar6_00, &g_8c13c025);
+            startup_warning_check(&g_8c2b5628, 2, ar6_00, &g_8c13c025);
             break;
         case 4:
             ar6_00 = (u8 *)get_field_a524_01f514(0x8c3dd7dc, ar5_00, ar6_00);
             a3 = &g_8c13c025;
-            game_sub_0c2efc(&g_8c2b5628, 4, ar6_00, &g_8c13c025);
+            startup_warning_check(&g_8c2b5628, 4, ar6_00, &g_8c13c025);
         }
     }
     game_sub_0c412c(&g_8c2b5628, 1, ar6_00);
@@ -4543,7 +4543,7 @@ u32 game_sub_0b6e6c(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
             ar7_00 = &g_8c13c025;
             ar6_00 = NULL;
             uVar2 = 0xb;
-            game_sub_0c2efc(&g_8c2b5628, 0xb, 0, &g_8c13c025);
+            startup_warning_check(&g_8c2b5628, 0xb, 0, &g_8c13c025);
             uVar2 = identity(0x8c3dd7dc, uVar2, ar6_00, ar7_00);
             if (in_stack_00000004 == 1) {
                 iVar1 = strcmp_0b6e04(a0, "SM2000US._VM");
@@ -4591,7 +4591,7 @@ u32 game_sub_0b6e6c(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
                         set_field_10(auStack_34, 0x60);
                         Class_129808_draw(auStack_34, uVar2, ar6_01, ar7_01);
                         ar6_00 = NULL;
-                        game_sub_0c2efc(&g_8c2b5628, 3, 0, a0);
+                        startup_warning_check(&g_8c2b5628, 3, 0, a0);
                         ar7_00 = a0;
                     }
                 }
@@ -4630,17 +4630,17 @@ u32 game_sub_0b6e6c(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
         case 1:
             ar7_00 = &g_8c13c025;
             ar6_00 = NULL;
-            game_sub_0c2efc(&g_8c2b5628, 1, 0, &g_8c13c025);
+            startup_warning_check(&g_8c2b5628, 1, 0, &g_8c13c025);
             break;
         case 3:
             ar6_00 = (u8 *)get_field_a524_01f514(0x8c3dd7dc, ar5_00, ar6_00);
             ar7_00 = &g_8c13c025;
-            game_sub_0c2efc(&g_8c2b5628, 2, ar6_00, &g_8c13c025);
+            startup_warning_check(&g_8c2b5628, 2, ar6_00, &g_8c13c025);
             break;
         case 4:
             ar6_00 = (u8 *)get_field_a524_01f514(0x8c3dd7dc, ar5_00, ar6_00);
             ar7_00 = &g_8c13c025;
-            game_sub_0c2efc(&g_8c2b5628, 4, ar6_00, &g_8c13c025);
+            startup_warning_check(&g_8c2b5628, 4, ar6_00, &g_8c13c025);
         }
     }
     free_if_nonnull_wrap_0151a0(auStack_34, 0xffffffff, ar6_00, ar7_00);
@@ -4744,7 +4744,7 @@ u32 save_files_check(u32 a0, u32 a1, u32 a2) {
             ar7_00 = &g_8c13c025;
             uVar3 = 0;
             uVar2 = 0xb;
-            game_sub_0c2efc(&g_8c2b5628, 0xb, 0, &g_8c13c025);
+            startup_warning_check(&g_8c2b5628, 0xb, 0, &g_8c13c025);
             uVar2 = identity(0x8c3dd7dc, uVar2, uVar3, ar7_00);
             iVar1 = memcard_check_file_wait(uVar2, a0, uVar3, ar7_00);
             if (iVar1 == 1) {
@@ -4761,20 +4761,20 @@ u32 save_files_check(u32 a0, u32 a1, u32 a2) {
                         uVar4 = 0;
                     }
                 } else {
-                    game_sub_0c2efc(&g_8c2b5628, 3, 0, a0);
+                    startup_warning_check(&g_8c2b5628, 3, 0, a0);
                 }
             }
             break;
         case 1:
-            game_sub_0c2efc(&g_8c2b5628, 1, 0, &g_8c13c025);
+            startup_warning_check(&g_8c2b5628, 1, 0, &g_8c13c025);
             break;
         case 3:
             uVar2 = get_field_a524_01f514(0x8c3dd7dc, uVar2, uVar3);
-            game_sub_0c2efc(&g_8c2b5628, 2, uVar2, &g_8c13c025);
+            startup_warning_check(&g_8c2b5628, 2, uVar2, &g_8c13c025);
             break;
         case 4:
             uVar2 = get_field_a524_01f514(0x8c3dd7dc, uVar2, uVar3);
-            game_sub_0c2efc(&g_8c2b5628, 4, uVar2, &g_8c13c025);
+            startup_warning_check(&g_8c2b5628, 4, uVar2, &g_8c13c025);
         }
     }
     return uVar4;
@@ -4910,15 +4910,15 @@ u32 save_usr_date_matches(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
  */
 u32 save_show_file_message(u32 a0) {
     if ((a0 & 1) == 1) {
-        game_sub_0c2efc(&g_8c2b5628, 3, 0, "SM2000US.USR");
+        startup_warning_check(&g_8c2b5628, 3, 0, "SM2000US.USR");
     } else if ((a0 & 2) == 2) {
-        game_sub_0c2efc(&g_8c2b5628, 3, 0, "SM2000US.INC");
+        startup_warning_check(&g_8c2b5628, 3, 0, "SM2000US.INC");
     } else {
         if ((a0 & 4) != 4) {
-            game_sub_0c2efc(&g_8c2b5628, 0xb, 0, &g_8c13c025);
+            startup_warning_check(&g_8c2b5628, 0xb, 0, &g_8c13c025);
             return 1;
         }
-        game_sub_0c2efc(&g_8c2b5628, 3, 0, "SM2000US.INC");
+        startup_warning_check(&g_8c2b5628, 3, 0, "SM2000US.INC");
     }
     return 0;
 }
@@ -4935,17 +4935,17 @@ u32 CGame_sub_0b7920(int a0, u32 unused_a1, u32 a2) {
         g_8c4365ec = a0;
     }
     if (a0 == 0) {
-        game_sub_0c2efc(&g_8c2b5628, 0xb, 0, &g_8c13c025);
+        startup_warning_check(&g_8c2b5628, 0xb, 0, &g_8c13c025);
         return 1;
     }
     if (g_8c4365ec == 1) {
-        game_sub_0c2efc(&g_8c2b5628, 1, 0, &g_8c13c025);
+        startup_warning_check(&g_8c2b5628, 1, 0, &g_8c13c025);
         return 0;
     }
     if (g_8c4365ec != 3) {
         if (g_8c4365ec == 4) {
             uVar1 = get_field_a524_01f514(0x8c3dd7dc, unused_a1, a2);
-            game_sub_0c2efc(&g_8c2b5628, 4, uVar1, &g_8c13c025);
+            startup_warning_check(&g_8c2b5628, 4, uVar1, &g_8c13c025);
             return 0;
         }
         if (g_8c4365ec != 5) {
@@ -4953,7 +4953,7 @@ u32 CGame_sub_0b7920(int a0, u32 unused_a1, u32 a2) {
         }
     }
     uVar1 = get_field_a524_01f514(0x8c3dd7dc, unused_a1, a2);
-    game_sub_0c2efc(&g_8c2b5628, 2, uVar1, &g_8c13c025);
+    startup_warning_check(&g_8c2b5628, 2, uVar1, &g_8c13c025);
     return 0;
 }
 
@@ -5577,7 +5577,7 @@ int CProlog_sub_0b96e4(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_0b9afc  0x8c0b9afc
  * area name: game code; nothing names its area yet
- * called by: game_sub_0bcedc
+ * called by: game_select_intro_or_ending
  */
 u32 game_sub_0b9afc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s4) {
     if (0x17 < (u8)s4) {
@@ -5667,7 +5667,7 @@ u32 CProlog_sub_0b9bb0(int a0, u32 unused_a1, u32 a2, u32 a3) {
  * rtc_get_date_wrap  0x8c0b9d14
  * only calls rtc_get_date
  * called by: CGame_GetUserGameInfo, CGame_sub_0cc784, CProlog_sub_0b9bb0, CProlog_sub_0cd3c8, CSeamanDomain_Init,
- * game_sub_0bcedc, game_sub_0c67f4, game_sub_0d8890 (+1 more)
+ * ambient_sound_update, game_select_intro_or_ending, game_sub_0c67f4 (+1 more)
  */
 u32 rtc_get_date_wrap(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -6090,7 +6090,7 @@ u32 *game_sub_0ba3e0(int a0, u32 *a1) {
 /*
  * game_sub_0ba494  0x8c0ba494
  * area name: game code; nothing names its area yet
- * called by: input_sub_0bb1e4
+ * called by: ambient_sound_update
  */
 u32 game_sub_0ba494(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6545,7 +6545,7 @@ u32 game_sub_0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
             if (iVar3 == 0) {
                 if (*(int *)(a0 + 0x30) != 1) {
                     ar5_00 = a1;
-                    game_sub_0bcedc(a0, a1, a2, a3);
+                    game_select_intro_or_ending(a0, a1, a2, a3);
                 }
                 if ((*(int *)(a0 + 0x14c) == 0) || (*(int *)(a0 + 0x14c) == 1)) {
                     ar5_00 = a1;
@@ -6580,7 +6580,7 @@ u32 game_sub_0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
             a3 = &g_8c13c025;
             a2 = 0;
             ar5_00 = (u8 *)0x5;
-            game_sub_0c2efc(&g_8c2b5628, 5, 0, &g_8c13c025);
+            startup_warning_check(&g_8c2b5628, 5, 0, &g_8c13c025);
         }
     } else {
         game_sub_0b79f0(ar4_02, ar5_00, a2, a3);
@@ -6599,7 +6599,7 @@ u32 game_sub_0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
             *(u32 *)(a0 + 8) = 2;
         }
     }
-    input_sub_0bb1e4(a0, a1, a2, a3);
+    ambient_sound_update(a0, a1, a2, a3);
     free_if_nonnull_wrap_0151a0(auStack_40, 0xffffffff, a2, a3);
     return 1;
 }
@@ -6637,12 +6637,12 @@ u32 input_start_pressed_wrap(int a0) {
 }
 
 /*
- * input_sub_0bb1e4  0x8c0bb1e4
- * name hint from a string it uses: AMB FOREST; area name: sits between input functions (same compilation unit)
+ * ambient_sound_update  0x8c0bb1e4
+ * plays and switches the forest and rain ambience (AMB_FOREST, AMB_RAIN)
  * called by: game_sub_0bad68
  * strings: "AMB_FOREST"; "AMB_FOREST"; "AMB_FOREST"; "AMB_FOREST" ...
  */
-u32 input_sub_0bb1e4(int a0, int a1, u8 *a2, u8 *a3) {
+u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
     u32 uVar1;
     int iVar2;
     u8 *ar4_00;
@@ -6945,7 +6945,7 @@ u32 input_sub_0bb1e4(int a0, int a1, u8 *a2, u8 *a3) {
     if (cVar23 == '\0' && fVar11 < fVar14) {
         puVar10 = (u8 *)0x898;
         ar6_00 = NULL;
-        pack_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x144), 0, 0x898);
+        CSeamanDomain_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x144), 0, 0x898);
     }
     iVar2 = pack_sub_021f18(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_00);
     if (iVar2 == 2) {
@@ -7016,7 +7016,7 @@ u32 input_sub_0bb1e4(int a0, int a1, u8 *a2, u8 *a3) {
                 puVar10 = (u8 *)(int)(dVar16 + dVar16);
             }
             ar6_00 = NULL;
-            pack_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x144), 0, puVar10);
+            CSeamanDomain_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x144), 0, puVar10);
             iVar2 = pack_sub_021f18(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_00);
             if (iVar2 == 2) {
                 puVar10 = (u8 *)0x8ea;
@@ -7051,7 +7051,7 @@ u32 input_sub_0bb1e4(int a0, int a1, u8 *a2, u8 *a3) {
         if (cVar23 != '\0' || fVar14 <= fVar11) {
             fVar11 = 2.38221e-42;
             iVar2 = 0;
-            pack_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x148), 0, 0x6a4);
+            CSeamanDomain_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x148), 0, 0x6a4);
         } else {
             if (cVar24 == '\0') {
                 dVar16 = (double)CONCAT44(g_8c4366b8, 0x42960000);
@@ -7095,12 +7095,12 @@ u32 input_sub_0bb1e4(int a0, int a1, u8 *a2, u8 *a3) {
                 fVar11 = (float)(int)(dVar16 + dVar16);
             }
             iVar2 = 0;
-            pack_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x148), 0, fVar11);
+            CSeamanDomain_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x148), 0, fVar11);
         }
     } else {
         fVar11 = 9.80909e-42;
         iVar2 = 0;
-        pack_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x148), 0, 7000);
+        CSeamanDomain_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x148), 0, 7000);
     }
     g_8c4366c8 = g_8c4366c8 + 1;
     if (2 < g_8c4366c8) {
@@ -7956,7 +7956,7 @@ u32 input_sub_0bb1e4(int a0, int a1, u8 *a2, u8 *a3) {
         if (cVar23 == '\0' && fVar14 < fVar11) {
             pcVar9 = (code *)0x258;
             ar6_01 = g_8c4366e4;
-            pack_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x144), g_8c4366e4, 600);
+            CSeamanDomain_sub_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x144), g_8c4366e4, 600);
         }
     }
     iVar2 = pack_sub_021f18(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_01);
@@ -8199,19 +8199,19 @@ u32 input_sub_0bb1e4(int a0, int a1, u8 *a2, u8 *a3) {
 
 /*
  * get_field_c8_0bced0  0x8c0bced0
- * called by: game_sub_0bcedc, input_sub_0bb1e4
+ * called by: ambient_sound_update, game_select_intro_or_ending
  */
 u32 get_field_c8_0bced0(int a0) {
     return *(u32 *)(0xc8 + a0);
 }
 
 /*
- * game_sub_0bcedc  0x8c0bcedc
- * area name: game code; nothing names its area yet
+ * game_select_intro_or_ending  0x8c0bcedc
+ * chooses INTRO_FIRST, INTRO_NORMAL, ENDING or an event sequence
  * called by: game_sub_0bad68
  * strings: "INTRO_FIRST"; "ENDING"; "NOACTION"; "INTRO_NORMAL" ...
  */
-u32 game_sub_0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
+u32 game_select_intro_or_ending(int a0, int a1, u32 unused_a2, char *a3) {
     u32 uVar1;
     int iVar2;
     u32 ar4_00;
@@ -9156,7 +9156,7 @@ u32 noop_0bf11c(void) {
 
 /*
  * get_field_28_0bf124  0x8c0bf124
- * called by: game_sub_0bcedc
+ * called by: game_select_intro_or_ending
  */
 u32 get_field_28_0bf124(int a0, u32 a1) {
     return *(u32 *)(a0 + 0x28);
@@ -9185,7 +9185,7 @@ u32 get_field_300_0bf154(int a0) {
 /*
  * get_word_8  0x8c0bf160
  * word a1 of the array at +8
- * called by: game_sub_0bcedc, game_sub_0bf22c
+ * called by: game_select_intro_or_ending, game_sub_0bf22c
  */
 u32 get_word_8(int a0, int a1) {
     return *(u32 *)(a0 + a1 * 4 + 8);
@@ -9194,7 +9194,7 @@ u32 get_word_8(int a0, int a1) {
 /*
  * speech_request_pair  0x8c0bf170
  * copies two names to 0x8c4362a0/0x8c4362c0 and requests speech mode 6 with them
- * called by: game_sub_0bcedc
+ * called by: game_select_intro_or_ending
  */
 u32 speech_request_pair(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
@@ -9462,7 +9462,7 @@ u32 input_a_or_start_pressed(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * menu_prev_pressed  0x8c0bf690
  * Left or L pressed on the controller at +0xcc (ignored during demo input)
- * called by: CSeamanDomain_sub_0bf588, CSeamanDomain_sub_0c1d98, game_sub_0c76d0
+ * called by: CSeamanDomain_sub_0bf588, CSeamanDomain_sub_0c1d98, confirm_exit_save
  */
 u32 menu_prev_pressed(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -9481,7 +9481,7 @@ u32 menu_prev_pressed(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * menu_next_pressed  0x8c0bf708
  * Right or R pressed on the controller at +0xcc (ignored during demo input)
- * called by: CSeamanDomain_sub_0bf588, CSeamanDomain_sub_0c1d98, game_sub_0c76d0
+ * called by: CSeamanDomain_sub_0bf588, CSeamanDomain_sub_0c1d98, confirm_exit_save
  */
 u32 menu_next_pressed(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;

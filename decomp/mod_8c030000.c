@@ -45,7 +45,7 @@ int Class_129c24_sub_0300a4(int a0) {
 /*
  * game_sub_0301f8  0x8c0301f8
  * area name: game code; nothing names its area yet
- * called by: Class_12a078_sub_05d860, Class_12c3c4_sub_103100
+ * called by: FrogMan_update_sleep_light, Higyo_update_sleep_light
  */
 int game_sub_0301f8(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -82,8 +82,8 @@ int game_sub_0301f8(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * talk_set_status_format  0x8c030304
  * sets the talker's line to STATUS_FORMAT
- * called by: Class_12a078_m2_05eee0, Class_12a078_m5_0671f4, Class_12a078_sub_05d860, Class_12c3c4_m5_10a0dc,
- * game_sub_0656d4, game_sub_1089e4 strings: "STATUS_FORMAT"
+ * called by: Class_12a078_m2_05eee0, Class_12a078_m5_0671f4, Class_12c3c4_m5_10a0dc, FrogMan_ending_event,
+ * FrogMan_update_sleep_light, game_sub_1089e4 strings: "STATUS_FORMAT"
  */
 u32 talk_set_status_format(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -118,8 +118,8 @@ u32 talk_set_status_format(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * talk_queue_mode1  0x8c0303b8
  * queues a talk line (name built from +0x2c8 and a letter) with priority a2, cancelling a pending one; sets +0x770 = 1
- * called by: Class_12a078_sub_05d860, Class_12a078_sub_05f660, Vec3_sub_063838, game_sub_0611cc, game_sub_062b0c,
- * game_sub_064bb4, game_sub_1063a8, game_sub_106f58 (+1 more)
+ * called by: FrogMan_choose_status_event, FrogMan_gratification_events, FrogMan_jump_events, FrogMan_react_tap,
+ * FrogMan_react_touch, FrogMan_update_sleep_light, Higyo_attention_events, Higyo_gratification_events (+1 more)
  */
 u32 talk_queue_mode1(int a0, u32 a1, int a2, u32 a3, u32 s0) {
     int iVar1;
@@ -197,8 +197,8 @@ int set_word_array_674(int a0, int a1, u32 a2) {
 /*
  * talk_queue_mode2  0x8c030568
  * same as talk_queue_mode1 without the cancel; sets +0x770 = 2
- * called by: Class_12c3c4_sub_104854, game_sub_0611cc, game_sub_065e6c, game_sub_1091cc, react_catch_object,
- * react_catch_object_b
+ * called by: FrogMan_gratification_events, FrogMan_pick_idle_action, Higyo_choose_status_event, Higyo_pick_idle_action,
+ * react_catch_object, react_catch_object_b
  */
 u32 talk_queue_mode2(int a0, u32 a1, int a2, u32 a3, u32 s0) {
     int iVar1;
@@ -248,8 +248,9 @@ u32 talk_queue_mode2(int a0, u32 a1, int a2, u32 a3, u32 s0) {
 /*
  * talk_start_line  0x8c0306d4
  * starts the talk line through speech_restart when the talker is idle (+0x774, +0x778 clear)
- * called by: Class_12a078_sub_05d860, Class_12a078_sub_05f660, Class_12c3c4_sub_103100, Class_12c3c4_sub_104854,
- * game_sub_0611cc, game_sub_0628a4, game_sub_062b0c, game_sub_064bb4 (+9 more)
+ * called by: FrogMan_choose_status_event, FrogMan_gratification_events, FrogMan_pick_idle_action,
+ * FrogMan_react_environment, FrogMan_react_feed_full, FrogMan_react_tap, FrogMan_react_touch,
+ * FrogMan_update_sleep_light (+9 more)
  */
 u32 talk_start_line(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -317,8 +318,8 @@ u32 talk_start_line(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * set_field_770  0x8c030870
- * called by: Class_12a078_m2_05eee0, Class_12a078_m5_0671f4, Class_12a078_sub_05d860, Class_12c3c4_m2_104264,
- * Class_12c3c4_m5_10a0dc, Class_12c3c4_sub_103100, Vec3_sub_063838, game_sub_0611cc (+12 more)
+ * called by: Class_12a078_m2_05eee0, Class_12a078_m5_0671f4, Class_12c3c4_m2_104264, Class_12c3c4_m5_10a0dc,
+ * FrogMan_ending_event, FrogMan_gratification_events, FrogMan_jump_events, FrogMan_react_tap (+12 more)
  */
 int set_field_770(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -487,7 +488,7 @@ u32 strcmp_030c9c(u8 *a0, u8 *a1) {
 
 /*
  * set_field_728_u8  0x8c030d04
- * called by: Class_12a078_sub_05d860, Class_12c3c4_sub_103100
+ * called by: FrogMan_update_sleep_light, Higyo_update_sleep_light
  */
 int set_field_728_u8(int a0, u32 a1) {
     int iVar1;
@@ -1422,8 +1423,8 @@ u32 timer_sub_031ab4(int a0, u64 *a1, u32 a2, u32 a3) {
 /*
  * timer_sub_031b08  0x8c031b08
  * area name: sits between timer functions (same compilation unit)
- * called by: Class_12a078_m2_05eee0, Class_12a078_sub_05d860, Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704,
- * Class_12a7a8_m1_098d14, Class_12acc8_m1_09f470, Class_12b0c4_m1_0ab7f4, Class_12b0c4_m2_0abc38 (+4 more)
+ * called by: Class_12a078_m2_05eee0, Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704, Class_12a7a8_m1_098d14,
+ * Class_12acc8_m1_09f470, Class_12b0c4_m1_0ab7f4, Class_12b0c4_m2_0abc38, Class_12b2e8_m1_0b5ad0 (+4 more)
  */
 int timer_sub_031b08(int *a0, u32 a1, int a2, u32 a3) {
     int iVar1;
@@ -6253,7 +6254,7 @@ int game_sub_034f48(int a0, int a1, u32 a2) {
 /*
  * get_field_18_on_field_a8  0x8c035000
  * calls get_field_18_02d1a0 on the member at +0xa8
- * called by: game_sub_034f48, game_sub_0353bc, game_sub_0bcedc, game_sub_107590
+ * called by: Higyo_attention_events, game_select_intro_or_ending, game_sub_034f48, game_sub_0353bc
  */
 u32 get_field_18_on_field_a8(int a0) {
     u32 uVar1;
@@ -6571,8 +6572,8 @@ u32 set_flag_byte(int a0, u32 a1) {
 
 /*
  * get_field_a0_035724  0x8c035724
- * called by: CAnimal_m2_03640c, CAnimal_m3_036568, CAnimal_sub_0858e4, CTexture_sub_0d97ec, Class_12a078_sub_05d860,
- * Class_12b0c4_m1_0ab7f4, Class_12b930_m1_0de1dc, Class_12b930_m2_0de3d4 (+9 more)
+ * called by: CAnimal_m2_03640c, CAnimal_m3_036568, CAnimal_sub_0858e4, CTexture_sub_0d97ec, Class_12b0c4_m1_0ab7f4,
+ * Class_12b930_m1_0de1dc, Class_12b930_m2_0de3d4, FrogMan_gratification_events (+9 more)
  */
 u32 get_field_a0_035724(int a0, u32 a1) {
     return (u32) * (u8 *)(0xa0 + a0);
@@ -6580,8 +6581,8 @@ u32 get_field_a0_035724(int a0, u32 a1) {
 
 /*
  * get_field_178_035734  0x8c035734
- * called by: Class_12a078_sub_05d860, Class_12c3c4_sub_103100, Vec3_sub_063838, game_sub_0355cc, game_sub_035740,
- * game_sub_035858, game_sub_035994, game_sub_035a3c (+4 more)
+ * called by: FrogMan_jump_events, FrogMan_update_sleep_light, Higyo_attention_events, Higyo_update_sleep_light,
+ * game_sub_0355cc, game_sub_035740, game_sub_035858, game_sub_035994 (+4 more)
  */
 u32 get_field_178_035734(int a0, u32 unused_a1, u32 a2) {
     return *(u32 *)(0x178 + a0);
@@ -6630,7 +6631,7 @@ u32 game_sub_035740(u32 *a0, u32 unused_a1, int a2, u32 a3) {
 
 /*
  * get_field_be_s8  0x8c03584c
- * called by: game_sub_035740, game_sub_035858, game_sub_0660d4, game_sub_1093a4
+ * called by: FrogMan_react_feed_full, Higyo_react_feed_full, game_sub_035740, game_sub_035858
  */
 int get_field_be_s8(int a0) {
     return (int)*(char *)(0xbe + a0);
@@ -6681,8 +6682,8 @@ u32 game_sub_035858(u32 *a0, u32 unused_a1, int a2, u32 a3) {
 
 /*
  * get_field_40_03598c  0x8c03598c
- * called by: Class_12a078_m2_05eee0, Class_12a078_sub_05d860, Vec3_sub_063838, game_sub_035858, game_sub_035e94,
- * game_sub_0620d4, game_sub_065e6c, talk_sub_0652f4
+ * called by: Class_12a078_m2_05eee0, FrogMan_jump_events, FrogMan_pick_idle_action, FrogMan_update_sleep_light,
+ * game_sub_035858, game_sub_035e94, game_sub_0620d4, talk_sub_0652f4
  */
 u32 get_field_40_03598c(int a0, u32 a1) {
     return *(u32 *)(a0 + 0x40);
@@ -7037,7 +7038,7 @@ u32 set_field_0_u8_wrap(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * set_field_3a_u8  0x8c035e84
- * called by: Vec3_sub_063838, game_sub_035e94
+ * called by: FrogMan_jump_events, game_sub_035e94
  */
 u32 set_field_3a_u8(int a0, u32 a1) {
     *(u8 *)(a0 + 0x3a) = (u8)a1;
@@ -7046,7 +7047,7 @@ u32 set_field_3a_u8(int a0, u32 a1) {
 
 /*
  * get_field_3a_s8  0x8c035e8c
- * called by: Vec3_sub_063838, game_sub_035e94
+ * called by: FrogMan_jump_events, game_sub_035e94
  */
 int get_field_3a_s8(int a0) {
     return (int)*(char *)(a0 + 0x3a);

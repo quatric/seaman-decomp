@@ -4326,7 +4326,7 @@ u32 game_sub_0f7ff0(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_0f803c  0x8c0f803c
  * area name: game code; nothing names its area yet
- * called by: game_sub_0bcedc
+ * called by: game_select_intro_or_ending
  */
 u32 game_sub_0f803c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -4391,7 +4391,7 @@ int game_sub_0f816c(int a0, u32 a1, u32 a2, u32 a3) {
     game_sub_0faa94(a0 + 0x1054, a1, a2, a3);
     iVar4 = 0;
     if (*(int *)(0x89134 + a0) != 0) {
-        uVar2 = game_sub_0f9774(a0, a1, a2, a3);
+        uVar2 = talk_pick_request_keyword(a0, a1, a2, a3);
         *(u32 *)(0x89134 + a0) = uVar2;
         iVar4 = 0;
         if (*(int *)(0x89140 + a0) != 0) {
@@ -4413,8 +4413,8 @@ int game_sub_0f816c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * speech_stop  0x8c0f8214
  * stops the current speech and clears its active flag (+0x89134)
- * called by: CSeamanDomain_Init, Class_12a078_m2_05eee0, Class_12a078_m5_0671f4, Class_12a078_sub_05d860,
- * Class_12c3c4_m2_104264, Class_12c3c4_m5_10a0dc, Class_12c3c4_sub_103100, game_sub_0bad68 (+4 more)
+ * called by: CSeamanDomain_Init, Class_12a078_m2_05eee0, Class_12a078_m5_0671f4, Class_12c3c4_m2_104264,
+ * Class_12c3c4_m5_10a0dc, FrogMan_update_sleep_light, Higyo_update_sleep_light, game_sub_0bad68 (+4 more)
  */
 int speech_stop(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -4429,7 +4429,7 @@ int speech_stop(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * speech_sub_0f824c  0x8c0f824c
  * area name: sits between speech functions (same compilation unit)
- * called by: game_sub_0f9774, speech_start
+ * called by: speech_start, talk_pick_request_keyword
  */
 u32 speech_sub_0f824c(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -4470,8 +4470,8 @@ u32 speech_restart(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * speech_request  0x8c0f8320
  * speech_start when the player is idle (+0x1014 == 0); 0 otherwise
- * called by: CSeamanDomain_Init, Class_12a078_sub_05d860, Class_12c3c4_sub_103100, Vec3_sub_063838, game_sub_0611cc,
- * game_sub_062b0c, game_sub_064bb4, game_sub_0bad68 (+6 more)
+ * called by: CSeamanDomain_Init, FrogMan_gratification_events, FrogMan_jump_events, FrogMan_react_tap,
+ * FrogMan_react_touch, FrogMan_update_sleep_light, Higyo_attention_events, Higyo_update_sleep_light (+6 more)
  */
 u32 speech_request(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -4824,7 +4824,7 @@ u32 speech_start(int a0, int a1, int a2, u32 a3) {
 
 /*
  * strcmp  0x8c0f970c
- * called by: game_sub_0f9774, speech_start
+ * called by: speech_start, talk_pick_request_keyword
  */
 u32 strcmp(u8 *a0, u8 *a1) {
     u8 bVar1;
@@ -4841,12 +4841,12 @@ u32 strcmp(u8 *a0, u8 *a1) {
 }
 
 /*
- * game_sub_0f9774  0x8c0f9774
- * name hint from a string it uses: REQUEST HOT; area name: game code; nothing names its area yet
+ * talk_pick_request_keyword  0x8c0f9774
+ * picks the talk keyword for the current need (ESCAPE, REQUEST_*, STATUS_SICK/SNORE)
  * called by: game_sub_0f816c
  * strings: "ESCAPE"; "ESCAPE"; "REQUEST_HOT"; "REQUEST_HOT" ...
  */
-u32 game_sub_0f9774(int a0, u32 unused_a1, code *a2, u32 a3) {
+u32 talk_pick_request_keyword(int a0, u32 unused_a1, code *a2, u32 a3) {
     int iVar1;
     code *pcVar2;
     code *ar5_00;
@@ -5176,7 +5176,7 @@ LAB_8c0fa1a8:
 /*
  * speech_start_chapter  0x8c0fa204
  * sets up the speech player for "CHAPTER%02d" (a1) with the line a2
- * called by: game_sub_0f9774
+ * called by: talk_pick_request_keyword
  * strings: "CHAPTER%02d"
  */
 u32 speech_start_chapter(int a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -5194,8 +5194,8 @@ u32 speech_start_chapter(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * speech_is_playing  0x8c0fa2b8
  * the player's active flag (+0x89134) while speech is set up (+0x1014)
- * called by: CSeamanDomain_Init, Class_12a078_m2_05eee0, Class_12c3c4_m2_104264, game_sub_0656d4, game_sub_0bad68,
- * game_sub_0bcedc, game_sub_0bf22c, game_sub_0c2efc (+3 more)
+ * called by: CSeamanDomain_Init, Class_12a078_m2_05eee0, Class_12c3c4_m2_104264, FrogMan_ending_event,
+ * game_select_intro_or_ending, game_sub_0bad68, game_sub_0bf22c, game_sub_1089e4 (+3 more)
  */
 u32 speech_is_playing(int a0, u32 a1) {
     if (*(int *)(0x1014 + a0) == 0) {
@@ -5392,8 +5392,8 @@ u32 get_field_0_0fa5b4(u32 *a0) {
 /*
  * format_int_at_10  0x8c0fa5bc
  * sprintf(a0 + 0x10, "%d", a1)
- * called by: Class_12a078_sub_05d860, Class_12a078_sub_05f660, Class_12c3c4_sub_104854, game_sub_0bcedc,
- * game_sub_1063a8, game_sub_107590
+ * called by: FrogMan_choose_status_event, FrogMan_update_sleep_light, Higyo_attention_events,
+ * Higyo_choose_status_event, Higyo_gratification_events, game_select_intro_or_ending
  */
 u32 format_int_at_10(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5405,7 +5405,7 @@ u32 format_int_at_10(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * format_int_at_14  0x8c0fa5f0
  * sprintf(a0 + 0x14, "%d", a1)
- * called by: game_sub_0bcedc, game_sub_1063a8
+ * called by: Higyo_gratification_events, game_select_intro_or_ending
  */
 u32 format_int_at_14(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5417,7 +5417,7 @@ u32 format_int_at_14(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * format_int_18  0x8c0fa624
  * sprintf "%d" of a1 into +0x18
- * called by: game_sub_0bcedc
+ * called by: game_select_intro_or_ending
  */
 u32 format_int_18(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5429,7 +5429,7 @@ u32 format_int_18(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * speech_get_index_plus1  0x8c0fa658
  * atoi of the player's number string at +0x4ac, plus 1
- * called by: game_sub_0f9774, speech_start, speech_sub_0fa334, speech_sub_0fa388
+ * called by: speech_start, speech_sub_0fa334, speech_sub_0fa388, talk_pick_request_keyword
  */
 int speech_get_index_plus1(int a0, u32 a1) {
     int iVar1;
@@ -5441,7 +5441,7 @@ int speech_get_index_plus1(int a0, u32 a1) {
 /*
  * speech_sub_0fa688  0x8c0fa688
  * area name: sits between speech functions (same compilation unit)
- * called by: game_sub_0611cc, game_sub_0f8134, game_sub_1063a8
+ * called by: FrogMan_gratification_events, Higyo_gratification_events, game_sub_0f8134
  */
 int speech_sub_0fa688(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 ar4_00;
@@ -5457,7 +5457,7 @@ int speech_sub_0fa688(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * speech_sub_0fa6c8  0x8c0fa6c8
  * area name: sits between speech functions (same compilation unit)
- * called by: Class_12c3c4_sub_103100, Vec3_sub_063838, game_sub_1089e4, speech_restart
+ * called by: FrogMan_jump_events, Higyo_update_sleep_light, game_sub_1089e4, speech_restart
  */
 int speech_sub_0fa6c8(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 ar4_00;
@@ -5473,7 +5473,7 @@ int speech_sub_0fa6c8(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * speech_sub_0fa70c  0x8c0fa70c
  * area name: sits between speech functions (same compilation unit)
- * called by: game_sub_0f9774, speech_stop
+ * called by: speech_stop, talk_pick_request_keyword
  */
 int speech_sub_0fa70c(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -5490,7 +5490,7 @@ int speech_sub_0fa70c(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * get_field_89130_0fa740  0x8c0fa740
- * called by: game_sub_0656d4, game_sub_1089e4
+ * called by: FrogMan_ending_event, game_sub_1089e4
  */
 u32 get_field_89130_0fa740(int a0) {
     return *(u32 *)(0x89130 + a0);
@@ -6086,7 +6086,7 @@ u32 game_sub_0fb268(u32 *a0, u32 a1, u32 a2, u32 a3) {
         return uVar1;
     }
 LAB_8c0fb436:
-    pack_sub_021d90(0x8c2b59d0, a0[0x2d], *(u32 *)(*(int *)(a0[4] + 0x40) + 0xc0), 0);
+    CSeamanDomain_sub_021d90(0x8c2b59d0, a0[0x2d], *(u32 *)(*(int *)(a0[4] + 0x40) + 0xc0), 0);
     *a0 = 7;
     return 7;
 }
@@ -6202,7 +6202,7 @@ u8 *game_sub_0fb494(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
                 }
                 ar7_01 = 0;
                 ar6_01 = *(u32 *)(*(int *)(a0[4] + 0x40) + 0xc0);
-                pack_sub_021d90(0x8c2b59d0, a0[0x2d], ar6_01, 0);
+                CSeamanDomain_sub_021d90(0x8c2b59d0, a0[0x2d], ar6_01, 0);
                 puVar1 = (u8 *)game_sub_0fb780(a0, ar5_00, ar6_01, ar7_01);
             }
         }
@@ -6644,7 +6644,7 @@ u32 save_mark_time(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * store_rtc_now_c8  0x8c0fc40c
  * stores the current RTC date as seconds at +0xc8
- * called by: game_sub_0f9774, save_mark_time
+ * called by: save_mark_time, talk_pick_request_keyword
  */
 u32 store_rtc_now_c8(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6657,7 +6657,7 @@ u32 store_rtc_now_c8(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * get_field_c8_0fc440  0x8c0fc440
- * called by: game_sub_0f9774
+ * called by: talk_pick_request_keyword
  */
 u32 get_field_c8_0fc440(int a0) {
     return *(u32 *)(0xc8 + a0);
@@ -7606,7 +7606,7 @@ u8 *game_sub_0fdc98(u8 *a0) {
 /*
  * set_field_68_clamp_0_4_wrap  0x8c0fdd68
  * only calls set_field_68_clamp_0_4
- * called by: asr_sub_0fbf28, game_sub_064bb4, game_sub_1080dc
+ * called by: FrogMan_react_touch, Higyo_react_touch, asr_sub_0fbf28
  */
 u32 set_field_68_clamp_0_4_wrap(int a0, int a1) {
     u32 uVar1;
@@ -8494,7 +8494,7 @@ u32 CItemGLoader_sub_0fef8c(u32 a0) {
  * CItemGLoader_sub_0fef94  0x8c0fef94
  * name hint from a string it uses: Shell; area name: sits between CItemGLoader functions (same compilation unit)
  * called by: CAnimal_sub_0366f0, CAnimal_sub_0858e4, CFrogManEgg_NewChild, CGame_sub_0cc784, CProlog_sub_0cd3c8,
- * CSquidLine_load_8, Class_12a5d0_sub_08ab58, game_sub_0884a0 (+8 more) strings: "Shell"; "Shell"; "Invalid item no";
+ * CSquidLine_load_8, Class_12a5d0_sub_08ab58, bugbox_3_screen (+8 more) strings: "Shell"; "Shell"; "Invalid item no";
  * "CHeapForItem::NewMemory()" ...
  */
 int CItemGLoader_sub_0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
