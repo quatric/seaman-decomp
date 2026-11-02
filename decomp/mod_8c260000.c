@@ -5217,7 +5217,7 @@ u32 ADXT_sub_263df6(int a0) {
 /*
  * ADXT_SetOutPan  0x8c263e50
  * named from the library error message it prints (ADXT_SetOutPan)
- * called by: game_sub_022b68
+ * called by: bgm_set_pan_center
  * strings: "E8101208: parameter error (ADXT_SetOutPan)"
  */
 u32 ADXT_SetOutPan(int a0, int a1, u32 a2) {

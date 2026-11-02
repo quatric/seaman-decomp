@@ -5306,11 +5306,11 @@ u32 game_sub_098b6c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CMothLine_sub_098ca8  0x8c098ca8
- * area name: only called from CMothLine methods
+ * Class_12a7a8_ctor  0x8c098ca8
+ * Class_129c70_ctor with vtable 8c12a7a8 (MothLine state)
  * called by: CMothLine_ctor
  */
-u32 *CMothLine_sub_098ca8(u32 *a0, u32 a1, u32 a2) {
+u32 *Class_12a7a8_ctor(u32 *a0, u32 a1, u32 a2) {
     Class_129c70_ctor(a0, a1, a2);
     *a0 = (&DATA_8c12a7a8);
     return a0;
@@ -5472,11 +5472,11 @@ int Class_12a7a8_m1_098d14(int a0, int *a1, int *a2, u32 a3) {
 }
 
 /*
- * game_sub_0996c4  0x8c0996c4
- * area name: game code; nothing names its area yet
+ * dec_counter_50  0x8c0996c4
+ * decrements the byte counter at +0x50
  * called by: game_sub_0c4dd0
  */
-u32 game_sub_0996c4(int a0) {
+u32 dec_counter_50(int a0) {
     *(char *)(a0 + 0x50) = *(char *)(a0 + 0x50) + -1;
     return 0x50;
 }
@@ -7683,7 +7683,7 @@ u32 Class_12a990_m2_09bc2c(int a0, float *a1, code *a2, code *a3) {
         talk_sub_02c030(a0 + 0x174, pfVar3, a3, pcVar9);
         pfVar7 = pfVar3;
     }
-    iVar5 = Class_12a990_sub_027988(a0);
+    iVar5 = flag_74_bit40(a0);
     if (iVar5 == 1) {
         pfVar7 = (float *)(a0 + 0x34);
         if (cVar18 == '\0') {
@@ -8735,8 +8735,8 @@ int CMushroomerLine_ctor(int a0, u32 a1) {
     ar5_00 = 1;
     (*(code *)(&CAnimal_ctor))(a0, 1, 1, 1, 0, a1, 0x8c284d90, 0x8c284ec0, *(u32 *)(&DATA_8c13aafc));
     *(u8 **)(a0 + 8) = (&DATA_8c12ab2c);
-    CMushroomerLine_sub_09f3b4(a0 + 0x490, ar5_00, ar6_00);
-    CMushroomerLine_sub_0a0818(a0 + 0xcc4, ar5_00, ar6_00, ar7_00);
+    Class_12acc8_ctor(a0 + 0x490, ar5_00, ar6_00);
+    Class_12ad14_ctor(a0 + 0xcc4, ar5_00, ar6_00, ar7_00);
     Class_129938_ctor(a0 + 0xf3c, ar5_00, ar6_00);
     (*(code *)(&sprintf))(a0 + 0xc, ar5_00, ar6_00, ar7_00, "MushroomerLine");
     *(int *)(0x308 + a0) = a0 + 0x490;
@@ -9786,11 +9786,11 @@ u32 destroy_array_8c284f30(void) {
 }
 
 /*
- * CMushroomerLine_sub_09f3b4  0x8c09f3b4
- * area name: only called from CMushroomerLine methods
+ * Class_12acc8_ctor  0x8c09f3b4
+ * Class_129c70_ctor with vtable 8c12acc8 (MushroomerLine state)
  * called by: CMushroomerLine_ctor
  */
-u32 *CMushroomerLine_sub_09f3b4(u32 *a0, u32 a1, u32 a2) {
+u32 *Class_12acc8_ctor(u32 *a0, u32 a1, u32 a2) {
     Class_129c70_ctor(a0, a1, a2);
     *a0 = (&DATA_8c12acc8);
     Class_129c24_sub_0300a4((int)a0 + 0xa8);

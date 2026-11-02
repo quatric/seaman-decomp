@@ -1111,12 +1111,12 @@ u32 game_sub_0e14fc(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int ar4_00;
 
-    gfxlib_sub_235ee4();
+    pvr_sub_235ee4();
     obj_set_texlist(a0 + 0x106c, a1, a2);
     game_sub_015b14(a0 + 0x1074, a1, a2, a3);
     ar4_00 = a0 + 0x107c;
     game_sub_015b14(ar4_00, a1, a2, a3);
-    gfxlib_sub_235f14();
+    pvr_sub_235f14();
     game_sub_015b14(a0 + 0x1078, a1, a2, a3);
     obj_set_texlist(a0 + 0x28, a1, a2);
     uVar1 = game_sub_015b14(a0 + 0x30, a1, a2, a3);
@@ -1132,12 +1132,12 @@ u32 game_sub_0e157c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int ar4_00;
 
-    gfxlib_sub_235ee4();
+    pvr_sub_235ee4();
     obj_set_texlist(a0 + 0x106c, a1, a2);
     game_sub_015adc(a0 + 0x1074, a1, a2, a3);
     ar4_00 = a0 + 0x107c;
     game_sub_015adc(ar4_00, a1, a2, a3);
-    gfxlib_sub_235f14();
+    pvr_sub_235f14();
     game_sub_015adc(a0 + 0x1078, a1, a2, a3);
     obj_set_texlist(a0 + 0x28, a1, a2);
     uVar1 = game_sub_015adc(a0 + 0x30, a1, a2, a3);
@@ -3989,7 +3989,7 @@ u32 input_sub_0e59e8(int *a0, u32 a1, u32 a2, u32 a3) {
 u32 input_sub_0e5a08(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    gfxlib_sub_235ee4();
+    pvr_sub_235ee4();
     game_sub_0daf80(a0, a1, a2, a3);
     game_sub_0d6954(a0 + 0xa68, a1, a2, a3);
     rotate_degrees_7c_on_field_9e8(a0);
@@ -5680,7 +5680,7 @@ u32 game_sub_0e84d8(int *a0, u32 a1, u32 a2, u32 a3) {
 int game_sub_0e84f8(int a0) {
     int iVar1;
 
-    gfxlib_sub_235ee4();
+    pvr_sub_235ee4();
     rotate_degrees_7c(a0 + 0x228);
     iVar1 = 0x440;
     *(u32 *)(0x440 + a0) = 0;

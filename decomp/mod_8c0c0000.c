@@ -189,7 +189,7 @@ int game_sub_0c0368(int a0, u32 a1, u32 a2, u32 a3) {
         Class_12b334_dtor(a0 + 0x2d578, 0xffffffff, a2, a3);
         Class_12b388_dtor(a0 + 0x17c, 0xffffffff, a2, a3);
         ar5_00 = 0xffffffff;
-        Class_12b350_dtor(a0 + 0xc, 0xffffffff, a2, a3);
+        Class_12b350_dtor_0baa08(a0 + 0xc, 0xffffffff, a2, a3);
         if (0 < (short)ain0) {
             free_if_nonnull(a0);
         }
@@ -217,7 +217,7 @@ u32 game_sub_0c0444(int a0, u32 a1, u32 a2, u32 a3) {
     char cVar5;
 
     cVar5 = '\0';
-    ninja_sub_258fd8(game_sub_0b6bf4);
+    ninja_set_event900_callback(game_sub_0b6bf4);
     *(u32 *)(a0 + 0x2d59c) = 0;
     game_sub_0b7ad0(a0 + 0x2d59c, a1, a2, a3);
     input_sub_01f608(0x8c3eb334, a1, a2, a3);
@@ -767,7 +767,7 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
             pcVar7 = set_field_c_0c1cdc;
             set_field_c_0c1cdc(a0 + 0x2e710, 0);
             uVar2 = 0x8c43680c;
-            CSeamanDomain_sub_0bf7d0(a0 + 0x2e710, 0x8c43680c, pcVar7, a3);
+            set_name_10(a0 + 0x2e710, 0x8c43680c, pcVar7, a3);
             *(u32 *)(a0 + 0x2e75c) = 1;
             if ((iVar6 == 0) || (iVar6 == 4)) {
                 iVar6 = memcard_free_bytes_wait(uVar1, uVar2, pcVar7, a3);
@@ -2700,7 +2700,7 @@ u32 game_sub_0c4644(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     uVar3 = 0x8c3eb318;
     pcVar2 = free_if_nonnull_wrap_0c4a14;
     global_list_push(uVar1, free_if_nonnull_wrap_0c4a14, 0x8c3eb318, ar7_00);
-    uVar1 = input_sub_01f5d0(0x8c3eb334);
+    uVar1 = identity_01f5d0(0x8c3eb334);
     uVar3 = 0x8c3eb328;
     pcVar2 = free_if_nonnull_wrap_01f5d8;
     global_list_push(uVar1, free_if_nonnull_wrap_01f5d8, 0x8c3eb328, ar7_00);
@@ -3014,7 +3014,7 @@ int game_sub_0c4dd0(int a0, u32 a1, u32 a2, u32 a3) {
     if ((iVar2 == 0) || (iVar2 == 1)) {
         iVar2 = dec_counter_4e(a1);
     } else if (iVar2 == 3) {
-        iVar2 = game_sub_0996c4(a1);
+        iVar2 = dec_counter_50(a1);
     }
     return iVar2;
 }
@@ -4244,7 +4244,7 @@ u32 CGame_Initial(int a0, int *a1, u32 unused_a2, u32 a3) {
         case 0:
             iVar3 = a1[499];
             CGame_sub_1011e0(iVar3, uVar4, uVar5, a3);
-            CGame_sub_0242e8();
+            save_current_matrix_27c1ec();
             g_8c431a54 = 0;
             g_8c13bcc4 = 1;
             g_8c436924 = 0;
@@ -6459,8 +6459,8 @@ u32 CGame_sub_0ca458(int a0, int a1, u32 a2, u32 a3) {
     a5 = (u32) * (u8 *)(0xa0 + a1);
     a4 = *(int **)(a0 + 8);
     (**(code **)(0x98 + *a4))(a4, a5, a2, a3);
-    gfxlib_sub_235ee4();
-    gfxlib_sub_235ee4();
+    pvr_sub_235ee4();
+    pvr_sub_235ee4();
     (**(code **)(**(int **)(a0 + 8) + 0x70))(*(int **)(a0 + 8), 2, a2, a3);
     return 0;
 }
@@ -6721,7 +6721,7 @@ u32 game_sub_0caac0(int a0, int a1, u32 a2, u32 a3) {
     a5 = (u32) * (u8 *)(0xa0 + a1);
     piVar3 = *(int **)(a0 + 0x10);
     (**(code **)(0x98 + *piVar3))(piVar3, a5, a2, a3);
-    gfxlib_sub_235ee4();
+    pvr_sub_235ee4();
     return 0;
 }
 
@@ -7562,7 +7562,7 @@ u32 game_sub_0cbd74(int a0, u8 *a1, int a2, int a3) {
         puVar3 = (u8 *)(u32) * (u8 *)(0xa0 + a3);
         piVar2 = *(int **)(a0 + iStack_8c * 4 + 8);
         (**(code **)(*piVar2 + 0x78))(piVar2, puVar3, iVar4, ar7_00);
-        gfxlib_sub_235ee4();
+        pvr_sub_235ee4();
     } else if (iVar1 == 1) {
 
         dVar9 = (double)CONCAT44(g_8c0cc070, *(u32 *)(a0 + 0x2d3a4));

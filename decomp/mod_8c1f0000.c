@@ -13042,8 +13042,8 @@ u32 ta_fifo_1fa1f4(void) {
 /*
  * ta_sub_1fa244  0x8c1fa244
  * area name: sits between ta functions (same compilation unit)
- * called by: cri_sub_262810, cri_sub_262814, gdfs_sub_1f1a7c, gdfs_sub_1f1d8c, gdfs_sub_1f1eaa, ninja_sub_258fd8,
- * shinobi_sub_1f8114, shinobi_sub_1f9408 (+1 more)
+ * called by: cri_sub_262810, cri_sub_262814, gdfs_sub_1f1a7c, gdfs_sub_1f1d8c, gdfs_sub_1f1eaa,
+ * ninja_set_event900_callback, shinobi_sub_1f8114, shinobi_sub_1f9408 (+1 more)
  */
 u32 ta_sub_1fa244(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -13262,8 +13262,8 @@ u32 *shinobi_sub_1fa496(void) {
 /*
  * shinobi_sub_1fa54c  0x8c1fa54c
  * area name: in the shinobi library code range
- * called by: cri_sub_2628fa, gdfs_sub_1f1f98, gdfs_sub_1f1fa0, ninja_sub_2580c6, ninja_sub_258fd8, pvr_sub_1efcae,
- * shinobi_sub_1f813e, ta_sub_2019e0
+ * called by: cri_sub_2628fa, gdfs_sub_1f1f98, gdfs_sub_1f1fa0, ninja_set_event900_callback, ninja_sub_2580c6,
+ * pvr_sub_1efcae, shinobi_sub_1f813e, ta_sub_2019e0
  */
 u32 shinobi_sub_1fa54c(int a0) {
     u32 *puVar1;

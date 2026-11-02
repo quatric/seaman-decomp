@@ -10583,11 +10583,11 @@ u32 gfxlib_sub_235e1c(int *a0, int a1, u32 *a2) {
 }
 
 /*
- * gfxlib_sub_235e84  0x8c235e84
- * area name: in the gfxlib library code range
+ * pvr_fill_fog_table_like  0x8c235e84
+ * fills a 128-entry table with fr4 and loads it through pvr_sub_20a1d0
  * called by: game_sub_0bad68
  */
-u32 gfxlib_sub_235e84(void) {
+u32 pvr_fill_fog_table_like(void) {
     u32 uVar1;
     u32 *puVar2;
     u32 in_fr4;
@@ -10604,11 +10604,11 @@ u32 gfxlib_sub_235e84(void) {
 }
 
 /*
- * gfxlib_sub_235eb4  0x8c235eb4
- * area name: in the gfxlib library code range
+ * pvr_sub_235eb4  0x8c235eb4
+ * area name: sits between pvr functions (same compilation unit)
  * called by: CProlog_Ready
  */
-u32 gfxlib_sub_235eb4(void) {
+u32 pvr_sub_235eb4(void) {
     int *piVar1;
     u32 uVar2;
 
@@ -10621,10 +10621,10 @@ u32 gfxlib_sub_235eb4(void) {
 }
 
 /*
- * gfxlib_sub_235eba  0x8c235eba
- * area name: in the gfxlib library code range
+ * pvr_sub_235eba  0x8c235eba
+ * area name: sits between pvr functions (same compilation unit)
  */
-u32 gfxlib_sub_235eba(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 pvr_sub_235eba(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 in_r2;
     int *unaff_r14;
@@ -10637,12 +10637,12 @@ u32 gfxlib_sub_235eba(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_sub_235ee4  0x8c235ee4
- * area name: in the gfxlib library code range
+ * pvr_sub_235ee4  0x8c235ee4
+ * area name: sits between pvr functions (same compilation unit)
  * called by: CGame_sub_0ca458, Class_12b580_sub_0d84e8, game_sub_0caac0, game_sub_0cbd74, game_sub_0d8444,
  * game_sub_0e14fc, game_sub_0e157c, game_sub_0e84f8 (+3 more)
  */
-u32 gfxlib_sub_235ee4(void) {
+u32 pvr_sub_235ee4(void) {
     int *piVar1;
     u32 uVar2;
 
@@ -10655,10 +10655,10 @@ u32 gfxlib_sub_235ee4(void) {
 }
 
 /*
- * gfxlib_sub_235eea  0x8c235eea
- * area name: in the gfxlib library code range
+ * pvr_sub_235eea  0x8c235eea
+ * area name: sits between pvr functions (same compilation unit)
  */
-u32 gfxlib_sub_235eea(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 pvr_sub_235eea(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 in_r2;
     int *unaff_r14;
@@ -10671,11 +10671,11 @@ u32 gfxlib_sub_235eea(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_sub_235f14  0x8c235f14
- * area name: in the gfxlib library code range
+ * pvr_sub_235f14  0x8c235f14
+ * area name: sits between pvr functions (same compilation unit)
  * called by: Class_12b580_sub_0d84e8, game_sub_0e14fc, game_sub_0e157c, se_play_bubble_mono
  */
-u32 gfxlib_sub_235f14(void) {
+u32 pvr_sub_235f14(void) {
     int *piVar1;
     u32 uVar2;
 
@@ -10688,10 +10688,10 @@ u32 gfxlib_sub_235f14(void) {
 }
 
 /*
- * gfxlib_sub_235f1a  0x8c235f1a
- * area name: in the gfxlib library code range
+ * pvr_sub_235f1a  0x8c235f1a
+ * area name: sits between pvr functions (same compilation unit)
  */
-u32 gfxlib_sub_235f1a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 pvr_sub_235f1a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 in_r2;
     int *unaff_r14;
@@ -10721,11 +10721,11 @@ u32 move_pos_along_dir(int a0) {
 }
 
 /*
- * gfxlib_sub_235f84  0x8c235f84
- * area name: in the gfxlib library code range
+ * pvr_sub_235f84  0x8c235f84
+ * area name: sits between pvr functions (same compilation unit)
  * called by: Vec3_sub_0d5e2c, game_sub_0d82f0
  */
-u8 *gfxlib_sub_235f84(double *a0) {
+u8 *pvr_sub_235f84(double *a0) {
     u32 r5;
     u32 r6;
     u32 r7;

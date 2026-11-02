@@ -1358,12 +1358,12 @@ u32 CTexture_sub_0d167c(u32 a0, u32 a1, u32 a2, u32 a3) {
     njGetMatrix_wrap(auStack_48);
     njGetMatrix_wrap(auStack_88);
     njRotateY_wrap(auStack_48);
-    ninja_sub_023ebc(auStack_88);
+    matrix_rotate_deg_m(auStack_88);
     ar5_00 = auStack_88;
-    ninja_sub_023e98(auStack_48, ar5_00, a2, a3);
+    game_sub_023e98(auStack_48, ar5_00, a2, a3);
     njGetMatrix_wrap(auStack_88);
     njRotateZ_wrap(auStack_88);
-    ninja_sub_023e98(auStack_48, auStack_88, a2, a3);
+    game_sub_023e98(auStack_48, auStack_88, a2, a3);
     calc_vector_copy(auStack_48, a1, a0);
     free_if_nonnull_wrap_023e4c(auStack_88, 0xffffffff, a0, a3);
     uVar1 = free_if_nonnull_wrap_023e4c(auStack_48, 0xffffffff, a0, a3);
@@ -1544,7 +1544,7 @@ u32 game_sub_0d1858(double *a0) {
             r5 = 0xffcccccc;
             r6 = 0xffec1111;
             r7 = 0xffec1111;
-            (*(code *)(&game_sub_0ba3b8))(0x8c2b5628, 0xffcccccc, 0xffec1111, 0xffec1111, *(u32 *)(puVar2 + -0x2c));
+            (*(code *)(&set_4_colors_154))(0x8c2b5628, 0xffcccccc, 0xffec1111, 0xffec1111, *(u32 *)(puVar2 + -0x2c));
             goto LAB_8c0d1936;
         }
     }
@@ -1564,7 +1564,7 @@ u32 game_sub_0d1858(double *a0) {
             r5 = 0xffcccccc;
             r6 = 0xffc8c800;
             r7 = 0xffc8c800;
-            (*(code *)(&game_sub_0ba3b8))(0x8c2b5628, 0xffcccccc, 0xffc8c800, 0xffc8c800, *(u32 *)(puVar2 + -0x2c));
+            (*(code *)(&set_4_colors_154))(0x8c2b5628, 0xffcccccc, 0xffc8c800, 0xffc8c800, *(u32 *)(puVar2 + -0x2c));
             goto LAB_8c0d1936;
         }
     }
@@ -1584,7 +1584,7 @@ u32 game_sub_0d1858(double *a0) {
             r5 = 0xffcccccc;
             r6 = 0xff00c1de;
             r7 = 0xff00c1de;
-            (*(code *)(&game_sub_0ba3b8))(0x8c2b5628, 0xffcccccc, 0xff00c1de, 0xff00c1de, *(u32 *)(puVar2 + -0x2c));
+            (*(code *)(&set_4_colors_154))(0x8c2b5628, 0xffcccccc, 0xff00c1de, 0xff00c1de, *(u32 *)(puVar2 + -0x2c));
             goto LAB_8c0d1936;
         }
     }
@@ -1604,7 +1604,7 @@ u32 game_sub_0d1858(double *a0) {
             r5 = 0xffcccccc;
             r6 = 0xffc8c800;
             r7 = 0xffc8c800;
-            (*(code *)(&game_sub_0ba3b8))(0x8c2b5628, 0xffcccccc, 0xffc8c800, 0xffc8c800, *(u32 *)(puVar2 + -0x2c));
+            (*(code *)(&set_4_colors_154))(0x8c2b5628, 0xffcccccc, 0xffc8c800, 0xffc8c800, *(u32 *)(puVar2 + -0x2c));
             goto LAB_8c0d1936;
         }
     }
@@ -1624,7 +1624,7 @@ u32 game_sub_0d1858(double *a0) {
             r5 = 0xffcccccc;
             r6 = 0xffec1111;
             r7 = 0xffec1111;
-            (*(code *)(&game_sub_0ba3b8))(0x8c2b5628, 0xffcccccc, 0xffec1111, 0xffec1111, *(u32 *)(puVar2 + -0x2c));
+            (*(code *)(&set_4_colors_154))(0x8c2b5628, 0xffcccccc, 0xffec1111, 0xffec1111, *(u32 *)(puVar2 + -0x2c));
         }
     }
 LAB_8c0d1936:
@@ -1648,7 +1648,7 @@ LAB_8c0d1936:
     *puVar3 = 0x1c;
     game_sub_0c4370(0x8c2b5628, puVar3 + 1, 0, 0xe);
     *puVar3 = 0xffffffff;
-    uVar1 = game_sub_0ba3b8(0x8c2b5628, 0xffffffff, 0xffffffff, 0xffffffff, *puVar3);
+    uVar1 = set_4_colors_154(0x8c2b5628, 0xffffffff, 0xffffffff, 0xffffffff, *puVar3);
     return uVar1;
 }
 
@@ -4800,7 +4800,7 @@ u32 game_sub_0d4fa8(u32 a0, u32 a1, u32 a2, u32 a3) {
 u32 se_play_bubble_mono(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    gfxlib_sub_235f14();
+    pvr_sub_235f14();
     uVar1 = (*(code *)(&pack_find_by_name_buffered))(0x8c2b59d0, "40_BUBBLE_MONO", a2, a3);
     *(u32 *)(0x5e4 + a0) = uVar1;
     uVar1 = Class_12b580_set_request(0x8c2b59d0, *(u32 *)(0x5e4 + a0));
@@ -4831,7 +4831,7 @@ u32 se_play_ike1(int a0, u32 unused_a1, u32 a2, u32 a3) {
 u32 se_sub_0d50a0(void) {
     u32 uVar1;
 
-    uVar1 = gfxlib_sub_235ee4();
+    uVar1 = pvr_sub_235ee4();
     return uVar1;
 }
 
@@ -4928,7 +4928,7 @@ u32 se_sub_0d5218(double *a0, u32 a1) {
     appuStack_18[0] = NULL;
     ppuStack_1c = NULL;
     uStack_20 = 0;
-    gfxlib_sub_235ee4();
+    pvr_sub_235ee4();
     CDCGD_release_type0(a1, "suisou_WaterFace.nj", "GRAPHICS\\ENV", a0);
     pcVar4 = "GRAPHICS\\ENV";
     CDCGD_release_type2(a1, "suisou_WaterFace.nj", "GRAPHICS\\ENV", a0);
@@ -5485,7 +5485,7 @@ u32 Vec3_sub_0d5e2c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
             (u32)0x8c437840 [2] << 0x10 | 0xff000000 | (u32)0x8c437840 [1] << 8 | (u32) * 0x8c437840, a1, a2, a3);
         g_8c43783c = 0;
     }
-    uVar1 = gfxlib_sub_235f84(0x8c43786c);
+    uVar1 = pvr_sub_235f84(0x8c43786c);
     return uVar1;
 }
 
@@ -8118,7 +8118,7 @@ u32 game_sub_0d82f0(u32 unused_a0, u32 a1) {
             g_8c437c94 = (float)((u64)in_xd0 >> 0x20);
         }
     }
-    uVar1 = gfxlib_sub_235f84(0x8c43786c);
+    uVar1 = pvr_sub_235f84(0x8c43786c);
     return uVar1;
 }
 
@@ -8146,7 +8146,7 @@ u32 game_sub_0d8400(void) {
 u32 game_sub_0d8444(void) {
     u32 uVar1;
 
-    uVar1 = gfxlib_sub_235ee4();
+    uVar1 = pvr_sub_235ee4();
     return uVar1;
 }
 
@@ -8315,9 +8315,9 @@ u32 Class_12b580_sub_0d84e8(u32 *a0, u32 a1, u32 a2, u32 a3) {
         bVar5 = (double)CONCAT44(in_fr14, fVar4) < (double)CONCAT44(0x3f800000, (int)in_dr0);
     }
     if (bVar5) {
-        uVar3 = gfxlib_sub_235f14();
+        uVar3 = pvr_sub_235f14();
     } else {
-        uVar3 = gfxlib_sub_235ee4();
+        uVar3 = pvr_sub_235ee4();
     }
     return uVar3;
 }

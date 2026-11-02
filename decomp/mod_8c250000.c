@@ -10629,7 +10629,7 @@ int ninja_sub_255bf6(int a0, int a1, u32 a2, int *a3) {
  * ninja_sub_255d6c  0x8c255d6c
  * area name: in the ninja library code range
  * called by: CAnimal_sub_026968, Class_1299f8_m4_019588, Class_1299f8_sub_02430c, Class_129a24_m1_019b68,
- * gfxlib_sub_2163d4, gfxlib_sub_2166e8, gfxlib_sub_22b7a8, gfxlib_sub_22bb70 (+8 more) decompiler: Heritage AFTER dead
+ * game_sub_023e98, gfxlib_sub_2163d4, gfxlib_sub_2166e8, gfxlib_sub_22b7a8 (+8 more) decompiler: Heritage AFTER dead
  * removal. Example location: s0xffffffe0 : 0x8c255f08
  */
 u32 ninja_sub_255d6c(u32 *a0, int a1, u32 a2, u32 a3, u32 ain0) {
@@ -11929,7 +11929,7 @@ u32 ninja_sub_2569e0(u32 *a0, int a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
  * ninja_sub_256a78  0x8c256a78
  * area name: in the ninja library code range
  * called by: CSquidLine_sub_0ad354, Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12aeec_sub_0a481c,
- * Class_12bec0_sub_0f5e0c, Vec3_sub_02374c, matrix_rotate_deg, ninja_sub_023ebc
+ * Class_12bec0_sub_0f5e0c, Vec3_sub_02374c, matrix_rotate_deg, matrix_rotate_deg_m
  */
 u32 ninja_sub_256a78(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -11996,9 +11996,9 @@ u32 ninja_sub_256a78(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 /*
  * njRotateXYZ  0x8c256b0c
  * rotates matrix a0 (NULL: current) by Ninja angles a1, a2, a3
- * called by: CAnimal_sub_023f70, CAnimal_sub_026968, CAnimal_sub_088288, CSquidLine_sub_0ad354,
- * Class_1298b8_m11_0159ec, Class_1298b8_m3_0155e8, Class_1298b8_m5_015720, Class_1298b8_m6_0157f8 (+28 more)
- * decompiler: Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256c66
+ * called by: CAnimal_sub_026968, CAnimal_sub_088288, CSquidLine_sub_0ad354, Class_1298b8_m11_0159ec,
+ * Class_1298b8_m3_0155e8, Class_1298b8_m5_015720, Class_1298b8_m6_0157f8, Class_1298b8_m7_015890 (+28 more) decompiler:
+ * Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256c66
  */
 u32 njRotateXYZ(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     float fVar1;
@@ -15598,11 +15598,11 @@ u32 *ninja_sub_258f3a(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_sub_258fd8  0x8c258fd8
- * area name: in the ninja library code range
+ * ninja_set_event900_callback  0x8c258fd8
+ * removes the previous handler and, when a0 is set, installs a0 for interrupt event 0x900
  * called by: game_sub_0c0444
  */
-int ninja_sub_258fd8(int a0) {
+int ninja_set_event900_callback(int a0) {
     int *piVar1;
     int in_r0;
 
@@ -23420,8 +23420,8 @@ int ninja_sub_25c9d8(u32 *a0, u32 *a1, int a2) {
 /*
  * njGetMatrix  0x8c25cddc
  * copies the current matrix into a0
- * called by: CAnimal_sub_026968, CGame_sub_0242e8, Class_129938_m1_0170e0, Class_129938_m2_0171f4,
- * Class_1299f8_m4_019588, Class_129a24_m1_019b68, Vec3_sub_023484, Vec3_sub_023570 (+6 more)
+ * called by: CAnimal_sub_026968, Class_129938_m1_0170e0, Class_129938_m2_0171f4, Class_1299f8_m4_019588,
+ * Class_129a24_m1_019b68, Vec3_sub_023484, Vec3_sub_023570, Vec3_sub_023668 (+6 more)
  */
 u32 njGetMatrix(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;

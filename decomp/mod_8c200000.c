@@ -11022,7 +11022,7 @@ u32 pvr_wrap_20a1c0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, 
 /*
  * pvr_sub_20a1d0  0x8c20a1d0
  * area name: sits between pvr functions (same compilation unit)
- * called by: gfxlib_sub_235e84
+ * called by: pvr_fill_fog_table_like
  */
 u32 pvr_sub_20a1d0(int a0, u32 a1) {
     u32 uVar1;
@@ -11118,7 +11118,7 @@ u32 pvr_sub_20a1e4(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * pvr_wrap_20a238  0x8c20a238
  * only calls pvr_20a844
- * called by: gfxlib_sub_235f84
+ * called by: pvr_sub_235f84
  */
 u32 pvr_wrap_20a238(u32 a0) {
     pvr_20a844((int)0xb8, a0);
@@ -14959,8 +14959,8 @@ int ta_sub_20f340(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * ta_fifo_20f640  0x8c20f640
- * called by: draw_sub_2599ca, gfxlib_sub_233f98, gfxlib_sub_235eb4, gfxlib_sub_235eba, gfxlib_sub_235ee4,
- * gfxlib_sub_235eea, gfxlib_sub_235f14, gfxlib_sub_235f1a (+19 more)
+ * called by: draw_sub_2599ca, gfxlib_sub_233f98, ninja_sub_2588f8, ninja_sub_258d82, ninja_sub_2591f8,
+ * ninja_sub_25922e, pvr_sub_235eb4, pvr_sub_235eba (+19 more)
  */
 u32 ta_fifo_20f640(u32 *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -15252,8 +15252,8 @@ LAB_8c20f8ea:
 /*
  * ta_load_texture_params  0x8c20fe00
  * copies a texture/material block (+0x70..+0xa0) into the TA polygon globals
- * called by: draw_state_copy_in, draw_state_select, draw_sub_2599ca, gfxlib_sub_235eb4, gfxlib_sub_235eba,
- * gfxlib_sub_235ee4, gfxlib_sub_235eea, gfxlib_sub_235f14 (+22 more)
+ * called by: draw_state_copy_in, draw_state_select, draw_sub_2599ca, ninja_sub_255f88, ninja_sub_259138,
+ * ninja_sub_2591f8, ninja_sub_25922e, ninja_sub_25b440 (+22 more)
  */
 u32 ta_load_texture_params(int a0) {
     u32 *puVar1;

@@ -12,11 +12,11 @@ u32 input_get_held_bits(int a0) {
 }
 
 /*
- * input_sub_10003c  0x8c10003c
- * area name: sits between input functions (same compilation unit)
+ * input_no_buttons_held  0x8c10003c
+ * 1 when A, B, X, Y and Start are all up on the pad at +0xcc
  * called by: game_sub_0bad68
  */
-u32 input_sub_10003c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 input_no_buttons_held(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
     iVar1 = input_a_held(*(u32 *)(0xcc + a0));
@@ -1964,11 +1964,11 @@ int free_if_nonnull_wrap_102790(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_1027c0  0x8c1027c0
- * area name: game code; nothing names its area yet
+ * clear_record_10  0x8c1027c0
+ * zeroes a 10-byte record: four shorts and two bytes
  * called by: game_sub_0b7a54
  */
-u16 *game_sub_1027c0(u16 *a0) {
+u16 *clear_record_10(u16 *a0) {
     a0[3] = 0;
     a0[2] = 0;
     a0[1] = 0;

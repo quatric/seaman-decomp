@@ -3501,11 +3501,11 @@ u32 game_sub_0b590c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CSquid_sub_0b5a30  0x8c0b5a30
- * area name: only called from CSquid methods
+ * Class_12b2e8_ctor  0x8c0b5a30
+ * Class_129c70_ctor with vtable 8c12b2e8 (Squid state)
  * called by: CSquid_Init
  */
-u32 *CSquid_sub_0b5a30(u32 *a0, u32 a1, u32 a2) {
+u32 *Class_12b2e8_ctor(u32 *a0, u32 a1, u32 a2) {
     Class_129c70_ctor(a0, a1, a2);
     *a0 = (&DATA_8c12b2e8);
     *(u8 *)(0x9c + (int)a0) = 0;
@@ -4984,7 +4984,7 @@ u32 game_sub_0b79f0(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
  * called by: Class_12a7f4_m5_09aa48, Class_12a990_m5_09c738, Class_12ad50_m5_0a5328, game_sub_0ba2cc
  */
 int game_sub_0b7a54(int a0) {
-    game_sub_1027c0(a0 + 0xac);
+    clear_record_10(a0 + 0xac);
     *(u8 *)(0xa0 + a0) = g_8c436548;
     *(u16 *)(0xa2 + a0) = 0;
     *(u16 *)(0xac + a0) = 0;
@@ -6035,16 +6035,16 @@ u32 CProlog_sub_0ba37c(u32 a0) {
     u32 uVar1;
 
     game_sub_0ba5bc(a0);
-    uVar1 = (*(code *)(&game_sub_0ba3b8))(0x8c2b5628, 0xff000000, 0xff000000, 0xff000000, 0xff000000);
+    uVar1 = (*(code *)(&set_4_colors_154))(0x8c2b5628, 0xff000000, 0xff000000, 0xff000000, 0xff000000);
     return uVar1;
 }
 
 /*
- * game_sub_0ba3b8  0x8c0ba3b8
- * area name: game code; nothing names its area yet
+ * set_4_colors_154  0x8c0ba3b8
+ * stores colours a1, a2, a3, s0 at +0x154..+0x160
  * called by: game_sub_0d1858
  */
-int game_sub_0ba3b8(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
+int set_4_colors_154(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     int iVar1;
 
     *(u32 *)(0x154 + a0) = a1;
@@ -6257,7 +6257,7 @@ u32 *Class_12b36c_ctor(u32 *a0) {
 /*
  * Class_12b36c_dtor  0x8c0ba8ac
  * stores the vtable 0x8c12b36c
- * called by: Class_12b334_dtor, Class_12b350_dtor, Class_12b388_dtor
+ * called by: Class_12b334_dtor, Class_12b350_dtor_0baa08, Class_12b388_dtor
  */
 u32 *Class_12b36c_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -6314,11 +6314,11 @@ u32 *Class_12b350_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12b350_sub_0ba9c8  0x8c0ba9c8
- * area name: only called from Class_12b350 methods
- * called by: Class_12b350_dtor
+ * Class_12b350_dtor  0x8c0ba9c8
+ * destroys the vector and frees the object when a1 > 0
+ * called by: Class_12b350_dtor_0baa08
  */
-int Class_12b350_sub_0ba9c8(int a0, u32 a1, u32 a2, u32 a3) {
+int Class_12b350_dtor(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
     u32 in_stack_fffffff4;
     u32 ain0;
@@ -6335,11 +6335,11 @@ int Class_12b350_sub_0ba9c8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12b350_dtor  0x8c0baa08
+ * Class_12b350_dtor_0baa08  0x8c0baa08
  * stores the vtable 0x8c12b350
  * called by: game_sub_0c0368
  */
-u32 *Class_12b350_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 *Class_12b350_dtor_0baa08(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
     u32 in_stack_fffffff4;
     u32 ain0;
@@ -6347,7 +6347,7 @@ u32 *Class_12b350_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     ain0 = CONCAT22((short)((u32)in_stack_fffffff4 >> 0x10), (u16)a1);
     if (a0 != NULL) {
         *a0 = &g_8c12b350;
-        Class_12b350_sub_0ba9c8(a0 + 0x56, 0xffffffff, a2, a3);
+        Class_12b350_dtor(a0 + 0x56, 0xffffffff, a2, a3);
         free_if_nonnull_wrap_0151a0(a0 + 0x14, 0xffffffff, a2, a3);
         Class_129920_dtor(a0 + 0x12, 0xffffffff, a2, a3);
         ar5_00 = 0;
@@ -6387,7 +6387,7 @@ u32 CProlog_Ready(int a0, u32 *a1) {
     *(u32 *)(a0 + 0x30) = 0;
     uVar2 = 0;
     ninja_sub_257104(0);
-    gfxlib_sub_235eb4();
+    pvr_sub_235eb4();
     if (cVar6 == '\0') {
         *(u32 *)(a0 + 0x34) = 0x3f800000;
     } else {
@@ -6502,7 +6502,7 @@ u32 game_sub_0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
         } else {
             *(u64 *)(a0 + 0x34) = in_xd0;
         }
-        gfxlib_sub_235e84();
+        pvr_fill_fog_table_like();
         if (cVar8 == '\0') {
             fVar4 = *(float *)(a0 + 0x34);
             fVar6 = 0.2;
@@ -6515,7 +6515,7 @@ u32 game_sub_0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
         }
     }
     ar4_02 = *(u32 *)(a1 + 0x7cc);
-    iVar1 = input_sub_10003c(ar4_02, ar5_00, a2, a3);
+    iVar1 = input_no_buttons_held(ar4_02, ar5_00, a2, a3);
     if (iVar1 == 1) {
         *(u32 *)(a0 + 0x40) = 1;
     }
@@ -8693,7 +8693,7 @@ u32 game_sub_0bcedc(int a0, int a1, u32 unused_a2, char *a3) {
                 override_jmp_8c0bcf7a_case_4:
                     format_int_at_10(0x8c35468c, g_8c436720, puVar4, a3);
                     format_int_at_14(0x8c35468c, g_8c436710, puVar4, a3);
-                    speech_sub_0fa624(0x8c35468c, g_8c43672c, 0x8c35468c, a3);
+                    format_int_18(0x8c35468c, g_8c43672c, 0x8c35468c, a3);
                     speech_request_pair(a0, "INTRO_NORMAL", &g_8c13c025, a3);
                     *(u32 *)(a0 + 0x44) = 5;
                 }
@@ -9534,11 +9534,11 @@ u32 set_field_0_to_1(u32 *a0) {
 }
 
 /*
- * CSeamanDomain_sub_0bf7d0  0x8c0bf7d0
- * area name: only called from CSeamanDomain methods
+ * set_name_10  0x8c0bf7d0
+ * copies string a1 into +0x10 (sprintf "%s")
  * called by: CSeamanDomain_Init
  */
-u32 CSeamanDomain_sub_0bf7d0(int a0, u32 a1, u32 a2, u32 a3) {
+u32 set_name_10(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (*(code *)(&sprintf))(a0 + 0x10, a1, a2, a3, "%s");

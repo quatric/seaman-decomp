@@ -6,7 +6,7 @@
 /*
  * Class_129c24_sub_0300a4  0x8c0300a4
  * area name: sits between Class_129c24 functions (same compilation unit)
- * called by: CMushroomerLine_sub_09f3b4, Class_12a078_ctor, Class_12c3c4_ctor
+ * called by: Class_12a078_ctor, Class_12acc8_ctor, Class_12c3c4_ctor
  */
 int Class_129c24_sub_0300a4(int a0) {
     int iVar1;
@@ -683,7 +683,7 @@ u32 flags6_clear_all(u8 *a0, u32 a1, u32 a2, u32 a3) {
  * Class_129cbc_ctor  0x8c030fa0
  * stores the vtable 0x8c129cbc and constructs the object's Vec3 members
  * called by: CFrogManEgg_ctor, CFrogManLine_sub_03a5a4, CHigyoEgg_ctor, CHigyoLine_sub_06e4ec, CMothEgg_ctor,
- * CMothLine_sub_08dad4, CMushroomerLine_sub_0a0818, CSpiderEgg_ctor (+3 more)
+ * CMothLine_sub_08dad4, CSpiderEgg_ctor, CSpiderLine_sub_0a6164 (+3 more)
  */
 u32 *Class_129cbc_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     *a0 = (&DATA_8c129cbc);
@@ -1458,7 +1458,7 @@ u32 reset_fields_2c_6c(int a0, u32 a1, u32 a2) {
  * copy6_to_fields  0x8c031b68
  * copies six words from a1 to +0xa0, +0x34, +0x38, +0x48, +0x4c, +0x50
  * called by: CMushroomerBody_AwayFrom, Class_12a03c_m6_03a65c, Class_12a25c_m6_06e69c, Class_12a25c_sub_06f93c,
- * Class_12a76c_sub_08de3c, Class_12b2ac_m6_0afcc0, game_sub_048f8c, game_sub_049b68 (+34 more)
+ * Class_12a76c_sub_08de3c, Class_12ad14_sub_0a0890, Class_12b2ac_m6_0afcc0, game_sub_048f8c (+34 more)
  */
 u32 *copy6_to_fields(int a0, u32 *a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 0xa0) = *a1;
@@ -5646,11 +5646,11 @@ u32 game_sub_034650(u32 unused_a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_034880  0x8c034880
- * area name: game code; nothing names its area yet
+ * array18_get_field8  0x8c034880
+ * field +8 of entry a2 in the 0x18-byte array *a1
  * called by: record18_take
  */
-int game_sub_034880(u32 unused_a0, int *a1, int a2) {
+int array18_get_field8(u32 unused_a0, int *a1, int a2) {
     int iVar1;
     int iVar2;
 
@@ -6053,7 +6053,7 @@ u32 record18_take(u32 unused_a0, int *a1, u32 *a2, int a3) {
     u32 uVar3;
     uVar1 = motion_entry_get_0(unused_a0, a1, a3);
     uVar2 = motion_entry_get_4(unused_a0, a1, a3);
-    uVar3 = game_sub_034880(unused_a0, a1, a3);
+    uVar3 = array18_get_field8(unused_a0, a1, a3);
     *a2 = uVar1;
     a2[1] = uVar2;
     a2[2] = uVar3;
@@ -6874,7 +6874,7 @@ u32 game_sub_035c00(u32 *a0, u32 a1, u32 a2, u32 a3) {
         }
         if (cVar4 == '\0' && (float)pcVar3 < fVar2) {
             inc_field_50_s8(a0[5]);
-            game_sub_035c70(a0[5]);
+            dec_counter_4f(a0[5]);
             return 1;
         }
     }
@@ -6882,11 +6882,11 @@ u32 game_sub_035c00(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_035c70  0x8c035c70
- * area name: game code; nothing names its area yet
+ * dec_counter_4f  0x8c035c70
+ * decrements the byte counter at +0x4f
  * called by: game_sub_035c00
  */
-u32 game_sub_035c70(int a0) {
+u32 dec_counter_4f(int a0) {
     *(char *)(a0 + 0x4f) = *(char *)(a0 + 0x4f) + -1;
     return 0x4f;
 }

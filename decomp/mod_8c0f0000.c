@@ -5415,11 +5415,11 @@ u32 format_int_at_14(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * speech_sub_0fa624  0x8c0fa624
- * area name: sits between speech functions (same compilation unit)
+ * format_int_18  0x8c0fa624
+ * sprintf "%d" of a1 into +0x18
  * called by: game_sub_0bcedc
  */
-u32 speech_sub_0fa624(int a0, u32 a1, u32 a2, u32 a3) {
+u32 format_int_18(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (*(code *)(&sprintf))(a0 + 0x18, a1, a2, a3, "%d");

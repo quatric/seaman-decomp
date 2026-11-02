@@ -507,27 +507,27 @@ u32 game_sub_0a0730(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CMushroomerLine_sub_0a0818  0x8c0a0818
- * area name: only called from CMushroomerLine methods
+ * Class_12ad14_ctor  0x8c0a0818
+ * Class_129cbc_ctor with vtable 8c12ad14 and four vectors (MushroomerLine)
  * called by: CMushroomerLine_ctor
  */
-u32 *CMushroomerLine_sub_0a0818(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 *Class_12ad14_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     Class_129cbc_ctor(a0, a1, a2, a3);
     *a0 = (&DATA_8c12ad14);
     Vec3_ctor_zero((int)a0 + 0x224, a1, a2);
     Vec3_set_zero((int)a0 + 0x238);
     Vec3_ctor_zero((int)a0 + 0x250, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x260, a1, a2);
-    game_sub_0a0890(a0, a1, a2, a3);
+    Class_12ad14_sub_0a0890(a0, a1, a2, a3);
     return a0;
 }
 
 /*
- * game_sub_0a0890  0x8c0a0890
- * area name: game code; nothing names its area yet
- * called by: CMushroomerLine_sub_0a0818
+ * Class_12ad14_sub_0a0890  0x8c0a0890
+ * area name: only called from Class_12ad14 methods
+ * called by: Class_12ad14_ctor
  */
-u32 game_sub_0a0890(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12ad14_sub_0a0890(int a0, u32 a1, u32 a2, u32 a3) {
     u32 extraout_fr1;
     u32 extraout_fr1_00;
     char cVar1;
@@ -3542,7 +3542,7 @@ int CSpiderLine_ctor(int a0, u32 a1) {
     ar5_00 = 0xd;
     (*(code *)(&CAnimal_ctor))(a0, 0xd, 1, 0x18, 1, a1, 0x8c285370, 0x8c2854a0, *(u32 *)(&DATA_8c13b08c));
     *(u8 **)(a0 + 8) = (&DATA_8c12aeec);
-    CSpiderLine_sub_0ab760(a0 + 0x490, ar5_00, ar6_00);
+    Class_12b0c4_ctor(a0 + 0x490, ar5_00, ar6_00);
     CSpiderLine_sub_0a6164(a0 + 0x53c, ar5_00, ar6_00, ar7_00);
     Class_129938_ctor(a0 + 0x26fc, ar5_00, ar6_00);
     (*(code *)(&sprintf))(a0 + 0xc, ar5_00, ar6_00, ar7_00, "SpiderLine");
@@ -4692,7 +4692,7 @@ u32 Class_12aeec_m7_0a5af4(int a0, int *a1, u32 a2, u32 a3) {
 u32 game_sub_0a5c2c(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
-    iVar1 = game_sub_02fc8c(*(u32 *)(0x308 + a0), a1, a2, a3);
+    iVar1 = release_child_6c(*(u32 *)(0x308 + a0), a1, a2, a3);
     return (u32)(iVar1 == 1);
 }
 
@@ -9442,11 +9442,11 @@ u32 destroy_array_8c28587c(void) {
 }
 
 /*
- * CSpiderLine_sub_0ab760  0x8c0ab760
- * area name: only called from CSpiderLine methods
+ * Class_12b0c4_ctor  0x8c0ab760
+ * Class_129c70_ctor with vtable 8c12b0c4 (SpiderLine state)
  * called by: CSpiderLine_ctor
  */
-u32 *CSpiderLine_sub_0ab760(u32 *a0, u32 a1, u32 a2) {
+u32 *Class_12b0c4_ctor(u32 *a0, u32 a1, u32 a2) {
     Class_129c70_ctor(a0, a1, a2);
     *a0 = (&DATA_8c12b0c4);
     *(u32 *)(0x9c + (int)a0) = 0;
@@ -10203,7 +10203,7 @@ int CSquid_Init(int a0, u32 a1) {
     uVar1 = 2;
     (*(code *)(&CAnimal_ctor))(a0, 2, 1, 0xc, 0, a1, 0x8c2868d8, 0x8c286a08, *(u32 *)(&DATA_8c13b4d4));
     *(u8 **)(a0 + 8) = (&DATA_8c12b110);
-    CSquid_sub_0b5a30(a0 + 0x490, uVar1, uVar2);
+    Class_12b2e8_ctor(a0 + 0x490, uVar1, uVar2);
     CSquid_sub_0afa50(a0 + 0x53c, uVar1, uVar2, ar7_00);
     Class_129938_ctor(a0 + 0x894, uVar1, uVar2);
     Class_129920_ctor(a0 + 0x9bc, uVar1);

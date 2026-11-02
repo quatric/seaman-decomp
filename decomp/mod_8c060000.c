@@ -4176,7 +4176,7 @@ u32 *game_sub_068890(u32 *a0, u32 *a1) {
     *(u16 *)(0xa2 + (int)a0) = *(u16 *)(0xa2 + (int)a1);
     *(u16 *)(0xa4 + (int)a0) = *(u16 *)(0xa4 + (int)a1);
     *(u32 *)(0xa8 + (int)a0) = *(u32 *)(0xa8 + (int)a1);
-    game_sub_068a2c((int)a0 + 0xac, (int)a1 + 0xac);
+    copy_record_10((int)a0 + 0xac, (int)a1 + 0xac);
     *(u32 *)(0xb8 + (int)a0) = *(u32 *)(0xb8 + (int)a1);
     *(u32 *)(0xbc + (int)a0) = *(u32 *)(0xbc + (int)a1);
     *(u32 *)(0xc0 + (int)a0) = *(u32 *)(0xc0 + (int)a1);
@@ -4197,11 +4197,11 @@ u32 *game_sub_068890(u32 *a0, u32 *a1) {
 }
 
 /*
- * game_sub_068a2c  0x8c068a2c
- * area name: game code; nothing names its area yet
+ * copy_record_10  0x8c068a2c
+ * copies a 10-byte record: four shorts and two bytes
  * called by: game_sub_068890
  */
-u16 *game_sub_068a2c(u16 *a0, u16 *a1) {
+u16 *copy_record_10(u16 *a0, u16 *a1) {
     *a0 = *a1;
     a0[1] = a1[1];
     a0[2] = a1[2];
@@ -6806,19 +6806,19 @@ u32 game_sub_06b054(int a0) {
 }
 
 /*
- * game_sub_06b154  0x8c06b154
- * area name: game code; nothing names its area yet
+ * inc_table_counter_248  0x8c06b154
+ * inc_counter_248_max2 on entry a0 of the three tables at 8c2809b8, 8c2809fc and 8c280a38
  * called by: game_sub_08f354
  */
-u32 game_sub_06b154(int a0, u32 a1, u32 a2, u32 a3) {
+u32 inc_table_counter_248(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     if (a0 < 7) {
-        uVar1 = game_sub_06b430(*(u32 *)(a0 * 8 + 0x8c2809b8 + 4), a1);
+        uVar1 = inc_counter_248_max2(*(u32 *)(a0 * 8 + 0x8c2809b8 + 4), a1);
     } else if (a0 < 0xd) {
-        uVar1 = (*(code *)(&game_sub_06b430))(*(u32 *)((a0 + -7) * 8 + 0x8c2809fc + 4), a1, a2, a3);
+        uVar1 = (*(code *)(&inc_counter_248_max2))(*(u32 *)((a0 + -7) * 8 + 0x8c2809fc + 4), a1, a2, a3);
     } else {
-        uVar1 = (*(code *)(&game_sub_06b430))(*(u32 *)((a0 + -1) * 8 + 0x8c280a38 + 4), a1, a2, a3);
+        uVar1 = (*(code *)(&inc_counter_248_max2))(*(u32 *)((a0 + -1) * 8 + 0x8c280a38 + 4), a1, a2, a3);
     }
     return uVar1;
 }
@@ -6832,11 +6832,11 @@ u32 game_sub_06b1d8(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     if (a0 < 7) {
-        uVar1 = game_sub_06b278(*(u32 *)(a0 * 8 + 0x8c2809b8 + 4), a1);
+        uVar1 = clear_flags_214_bit(*(u32 *)(a0 * 8 + 0x8c2809b8 + 4), a1);
     } else if (a0 < 0xd) {
-        uVar1 = (*(code *)(&game_sub_06b278))(*(u32 *)((a0 + -7) * 8 + 0x8c2809fc + 4), a1, a2, a3);
+        uVar1 = (*(code *)(&clear_flags_214_bit))(*(u32 *)((a0 + -7) * 8 + 0x8c2809fc + 4), a1, a2, a3);
     } else {
-        uVar1 = (*(code *)(&game_sub_06b278))(*(u32 *)((a0 + -1) * 8 + 0x8c280a38 + 4), a1, a2, a3);
+        uVar1 = (*(code *)(&clear_flags_214_bit))(*(u32 *)((a0 + -1) * 8 + 0x8c280a38 + 4), a1, a2, a3);
     }
     return uVar1;
 }
@@ -6855,11 +6855,11 @@ int set_flags_214(int a0, u32 a1) {
 }
 
 /*
- * game_sub_06b278  0x8c06b278
- * area name: game code; nothing names its area yet
+ * clear_flags_214_bit  0x8c06b278
+ * clears bit a1 of the flag word at +0x214
  * called by: game_sub_06b1d8
  */
-int game_sub_06b278(int a0, u32 a1) {
+int clear_flags_214_bit(int a0, u32 a1) {
     u32 uVar1;
     int iVar2;
 
@@ -6978,11 +6978,11 @@ int field_ptr_204(int a0) {
 }
 
 /*
- * game_sub_06b430  0x8c06b430
- * area name: game code; nothing names its area yet
- * called by: game_sub_06b154
+ * inc_counter_248_max2  0x8c06b430
+ * increments byte a1 of the counters at +0x248 up to 2
+ * called by: inc_table_counter_248
  */
-int game_sub_06b430(int a0, int a1) {
+int inc_counter_248_max2(int a0, int a1) {
     int iVar1;
     int iVar2;
 

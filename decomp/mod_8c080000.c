@@ -5224,7 +5224,7 @@ int CMothLine_ctor(int a0, u32 a1, u32 a2) {
     ar7_00 = a2;
     (*(code *)(&CAnimal_ctor))(a0, 10, 1, a2, 0, a1, 0x8c283b30, 0x8c283fcc, *(u32 *)(&DATA_8c139e80));
     *(u8 **)(a0 + 8) = (&DATA_8c12a5d0);
-    CMothLine_sub_098ca8(a0 + 0x490, uVar1, ar6_00);
+    Class_12a7a8_ctor(a0 + 0x490, uVar1, ar6_00);
     CMothLine_sub_08dad4(a0 + 0x538, uVar1, ar6_00, ar7_00);
     clear_field_0_wrap_015b94(a0 + 0x850, uVar1);
     clear_field_0_wrap_015bc8(a0 + 0x854);
@@ -7881,7 +7881,7 @@ u32 game_sub_08f354(int a0, int a1, int a2, int a3) {
                 CAnimBody_SetAnimation(a0 + 0xb0, 0, 0xffffffff, 0);
             } else if (*(int *)(a0 + 0x284) == 10) {
                 ar5_02 = *(int *)(a0 + 0x2f8);
-                game_sub_06b154(*(u32 *)(a0 + 0x2f4), ar5_02, iVar3, a3);
+                inc_table_counter_248(*(u32 *)(a0 + 0x2f4), ar5_02, iVar3, a3);
             }
         }
         CAnimBody_GetCurFrame(a0 + 0xb0, ar5_02, iVar3, a3);

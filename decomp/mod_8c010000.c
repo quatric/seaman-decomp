@@ -11286,7 +11286,7 @@ u32 libc_sub_013d28(void) {
 /*
  * libc_sub_013d78  0x8c013d78
  * area name: in the libc library code range
- * called by: gfxlib_sub_235f84
+ * called by: pvr_sub_235f84
  */
 u32 libc_sub_013d78(int *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float in_fr4;
@@ -12835,7 +12835,7 @@ u32 Class_1297f4_sub_014d90(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * vec3_clear  0x8c014e20
- * called by: CMushroomerBody_AwayFrom, Class_1297f4_sub_014d90, Class_1299f8_sub_0241c4, Class_1299f8_sub_02421c,
+ * called by: CMushroomerBody_AwayFrom, Class_1297f4_sub_014d90, Class_1299f8_clear, Class_1299f8_clear_b,
  * Class_129a24_m1_019b68, Class_12a03c_m1_03c43c, Class_12a25c_m1_06f530, Class_12a25c_sub_06f4c8 (+39 more)
  */
 u32 *vec3_clear(u32 *a0, u32 a1, u32 a2, u32 a3) {
@@ -13041,7 +13041,7 @@ u32 set_field_10(int a0, u32 a1) {
 
 /*
  * free_if_nonnull_wrap_0151a0  0x8c0151a0
- * called by: CSeamanDomain_sub_0c2068, Class_129808_m6_0166b4, Class_12984c_sub_0c4b84, Class_12b350_dtor,
+ * called by: CSeamanDomain_sub_0c2068, Class_129808_m6_0166b4, Class_12984c_sub_0c4b84, Class_12b350_dtor_0baa08,
  * Class_12b3b8_sub_0e7a78, Class_12bb08_dtor, game_sub_0b6e6c, game_sub_0b79f0 (+10 more)
  */
 int free_if_nonnull_wrap_0151a0(int a0, u32 a1, u32 a2, u32 a3) {
@@ -13205,8 +13205,8 @@ u32 *Class_129908_ctor(u32 *a0, u32 a1) {
 /*
  * Class_129920_dtor  0x8c0153e4
  * stores the vtable 0x8c129920
- * called by: CAnimal_m0_0aca4c, Class_12984c_sub_0c4b84, Class_129908_dtor, Class_12a0c4_m0_0674c8, Class_12b350_dtor,
- * Class_12b388_dtor, Class_12b580_dtor, Class_12b758_dtor (+15 more)
+ * called by: CAnimal_m0_0aca4c, Class_12984c_sub_0c4b84, Class_129908_dtor, Class_12a0c4_m0_0674c8,
+ * Class_12b350_dtor_0baa08, Class_12b388_dtor, Class_12b580_dtor, Class_12b758_dtor (+15 more)
  */
 u32 *Class_129920_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -22203,7 +22203,7 @@ u32 input_poll_device_state(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * input_start_held  0x8c01eb50
  * Start button (0x8) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
- * called by: input_sub_10003c
+ * called by: input_no_buttons_held
  */
 u32 input_start_held(int a0) {
     u32 uVar1;
@@ -22379,7 +22379,7 @@ u32 input_r_released(int a0) {
 /*
  * input_a_held  0x8c01ed88
  * A button (0x4) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
- * called by: input_a_held_wrap, input_start_only_pressed, input_sub_10003c
+ * called by: input_a_held_wrap, input_no_buttons_held, input_start_only_pressed
  */
 u32 input_a_held(int a0) {
     u32 uVar1;
@@ -22445,7 +22445,7 @@ u32 input_a_released(int a0) {
 /*
  * input_b_held  0x8c01ee54
  * B button (0x2) is down this frame (PDS_PERIPHERAL on bits); 2 while the demo input is active
- * called by: game_sub_100a58, game_sub_100abc, input_b_held_wrap, input_start_only_pressed, input_sub_10003c
+ * called by: game_sub_100a58, game_sub_100abc, input_b_held_wrap, input_no_buttons_held, input_start_only_pressed
  */
 u32 input_b_held(int a0) {
     u32 uVar1;
@@ -23044,11 +23044,11 @@ u32 input_sub_01f594(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * input_sub_01f5d0  0x8c01f5d0
- * area name: sits between input functions (same compilation unit)
+ * identity_01f5d0  0x8c01f5d0
+ * returns a0
  * called by: game_sub_0c4644
  */
-u32 input_sub_01f5d0(u32 a0) {
+u32 identity_01f5d0(u32 a0) {
     return a0;
 }
 
