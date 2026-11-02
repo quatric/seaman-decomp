@@ -6620,11 +6620,11 @@ u32 CMothEgg_sub_09afb8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CMothEgg_sub_09b008  0x8c09b008
- * name hint from a string it uses: Cpe Home nj; area name: sits between CMothEgg functions (same compilation unit)
+ * MothEgg_asset_table_init  0x8c09b008
+ * fills the moth egg asset table (Cpe_Home.nj, Cpe_BeCatapillar, MOTH_EGG)
  * called by: game_init_sound_and_messages
  */
-u32 CMothEgg_sub_09b008(void) {
+u32 MothEgg_asset_table_init(void) {
     int iVar1;
 
     for (iVar1 = 0; iVar1 < 1; iVar1 = iVar1 + 1) {
@@ -8555,11 +8555,11 @@ u32 get_field_74_09d474(int a0) {
 }
 
 /*
- * Class_12a990_sub_09d47c  0x8c09d47c
- * name hint from a string it uses: MrEgg Home nj; area name: sits between Class_12a990 functions (same compilation
- * unit) called by: game_init_sound_and_messages
+ * MushroomerEgg_asset_table_init  0x8c09d47c
+ * fills the Mushroomer egg asset table (MrEgg_Home.nj, MUSHROOMER_EGG)
+ * called by: game_init_sound_and_messages
  */
-u32 Class_12a990_sub_09d47c(void) {
+u32 MushroomerEgg_asset_table_init(void) {
     int iVar1;
 
     for (iVar1 = 0; iVar1 < 1; iVar1 = iVar1 + 1) {
@@ -9293,11 +9293,11 @@ u32 game_sub_09e4fc(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_09e5c0  0x8c09e5c0
- * name hint from a string it uses: Mr3 Home njd; area name: game code; nothing names its area yet
+ * MushroomerLine_asset_tables_init  0x8c09e5c0
+ * fills the Mushroomer line asset tables (Mr3, MUSHROOMER_LINE_BODY)
  * called by: game_init_sound_and_messages
  */
-u32 game_sub_09e5c0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 MushroomerLine_asset_tables_init(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u64 *puVar1;
     float *pfVar2;
     u32 uVar3;

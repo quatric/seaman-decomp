@@ -3200,11 +3200,11 @@ u32 game_sub_085e9c(int a0) {
 }
 
 /*
- * game_sub_085f4c  0x8c085f4c
- * name hint from a string it uses: gm1 Home njd; area name: game code; nothing names its area yet
+ * GillMan_asset_tables_init  0x8c085f4c
+ * fills the GillMan line's asset tables (GM1, GILLMAN, BABYGILLMAN)
  * called by: game_init_sound_and_messages
  */
-u32 game_sub_085f4c(void) {
+u32 GillMan_asset_tables_init(void) {
     u64 uVar1;
     u32 uVar2;
     code *pcVar3;
@@ -4625,11 +4625,11 @@ u32 CHigyoEgg_sub_08864c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CHigyoEgg_sub_08869c  0x8c08869c
- * name hint from a string it uses: gme Home nj; area name: sits between CHigyoEgg functions (same compilation unit)
+ * HigyoEgg_asset_table_init  0x8c08869c
+ * fills the Higyo egg asset table (gme_Home.nj, gme_Birth, HIGYO_EGG)
  * called by: game_init_sound_and_messages
  */
-u32 CHigyoEgg_sub_08869c(void) {
+u32 HigyoEgg_asset_table_init(void) {
     int iVar1;
 
     for (iVar1 = 0; iVar1 < 1; iVar1 = iVar1 + 1) {
@@ -6180,11 +6180,11 @@ int CMothLine_FreeGraphicResource(int a0, u32 a1, int a2) {
 }
 
 /*
- * game_sub_08bf2c  0x8c08bf2c
- * name hint from a string it uses: Cp Home njd; area name: game code; nothing names its area yet
+ * MothLine_asset_tables_init  0x8c08bf2c
+ * fills the caterpillar/cocoon asset tables (Cp, Cc, CAT_BODY, CC_BODY)
  * called by: game_init_sound_and_messages
  */
-u8 *game_sub_08bf2c(void) {
+u8 *MothLine_asset_tables_init(void) {
     int iVar1;
 
     for (iVar1 = 0; iVar1 < 4; iVar1 = iVar1 + 1) {

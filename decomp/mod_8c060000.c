@@ -7846,11 +7846,11 @@ int game_sub_06ca7c(int a0) {
 }
 
 /*
- * game_sub_06cb08  0x8c06cb08
- * name hint from a string it uses: herb seed nj; area name: game code; nothing names its area yet
+ * Herb_asset_table_init  0x8c06cb08
+ * fills the herb asset table (HERB_1, SEED_1, herb_3Leaves_*)
  * called by: game_init_sound_and_messages
  */
-u32 game_sub_06cb08(void) {
+u32 Herb_asset_table_init(void) {
     int iVar1;
 
     for (iVar1 = 0; iVar1 < 2; iVar1 = iVar1 + 1) {

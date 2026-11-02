@@ -8215,11 +8215,11 @@ float *game_sub_037034(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0372a0  0x8c0372a0
- * name hint from a string it uses: Tm1 Home njd; area name: game code; nothing names its area yet
+ * FrogMan_asset_tables_init  0x8c0372a0
+ * fills the FrogMan line's model/motion/texture name tables (Tm1, FM1, FM2) at 8c27dfd4
  * called by: game_init_sound_and_messages
  */
-u32 game_sub_0372a0(void) {
+u32 FrogMan_asset_tables_init(void) {
     u32 uVar1;
     u8 **ar5_00;
     u8 *ar6_00;
@@ -9228,11 +9228,11 @@ u32 noop_038ec8(void) {
 }
 
 /*
- * CFrogManEgg_sub_038ecc  0x8c038ecc
- * name hint from a string it uses: FROG EGG; area name: sits between CFrogManEgg functions (same compilation unit)
+ * FrogManEgg_asset_table_init  0x8c038ecc
+ * fills the FrogMan egg asset table (Tm_Egg.nj, Tme_Birth, FROG_EGG) at 8c280050
  * called by: game_init_sound_and_messages
  */
-u32 CFrogManEgg_sub_038ecc(void) {
+u32 FrogManEgg_asset_table_init(void) {
     int iVar1;
 
     for (iVar1 = 0; iVar1 < 1; iVar1 = iVar1 + 1) {

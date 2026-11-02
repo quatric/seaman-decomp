@@ -12142,7 +12142,7 @@ u32 shinobi_sub_1f8d98(u32 *a0, int a1) {
 /*
  * shinobi_sub_1f8eb0  0x8c1f8eb0
  * area name: in the shinobi library code range
- * called by: shinobi_sub_1f9408
+ * called by: syG2_init
  */
 u32 shinobi_sub_1f8eb0(int *a0) {
     g_8c273a28[*a0 * 0xd + 1] = *a0;
@@ -12240,7 +12240,7 @@ u32 shinobi_sub_1f900c(int a0, u32 a1, u32 a2, u32 a3, u32 s0, int s4, int s8, u
 /*
  * shinobi_sub_1f90a4  0x8c1f90a4
  * area name: in the shinobi library code range
- * called by: shinobi_sub_1f9408
+ * called by: syG2_init
  */
 u32 shinobi_sub_1f90a4(u32 a0, u32 a1) {
     _DAT_a05f78bc = ((a0 & 0x7f00000) >> 0x14) << 8 | (a1 & 0x7f00000) >> 0x14 | 0x46590000;
@@ -12437,11 +12437,11 @@ u32 shinobi_sub_1f92c0(u32 *a0, u32 *a1, u32 *a2, int a3, int s0, int s4) {
 }
 
 /*
- * shinobi_sub_1f9408  0x8c1f9408
- * name hint from a string it uses: nsyG2 Ver 1 01 12 Build Dec ; area name: in the shinobi library code range
+ * syG2_init  0x8c1f9408
+ * logs "syG2 Ver 1.01.12" and initialises the G2 bus DMA channel table at 8c474a80
  * called by: shinobi_sub_1fa6e2
  */
-u32 shinobi_sub_1f9408(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 syG2_init(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar1;
     u32 uVar2;
     u32 a6;
@@ -13043,7 +13043,7 @@ u32 ta_fifo_1fa1f4(void) {
  * ta_sub_1fa244  0x8c1fa244
  * area name: sits between ta functions (same compilation unit)
  * called by: cri_sub_262810, cri_sub_262814, gdfs_sub_1f1a7c, gdfs_sub_1f1d8c, gdfs_sub_1f1eaa,
- * ninja_set_event900_callback, shinobi_install_event900, shinobi_sub_1f9408 (+1 more)
+ * ninja_set_event900_callback, shinobi_install_event900, syG2_init (+1 more)
  */
 u32 ta_sub_1fa244(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -13407,7 +13407,7 @@ u32 shinobi_sub_1fa6e2(void) {
     u32 uVar1;
 
     ta_fifo_1fa1f4();
-    uVar1 = shinobi_sub_1f9408(0);
+    uVar1 = syG2_init(0);
     return uVar1;
 }
 

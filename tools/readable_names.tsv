@@ -1071,3 +1071,16 @@
 8c0faa94	speech_update	per-frame speech recognition and reply logic (SPEECH)
 8c0fb268	talk_pick_grunt	picks a random grunt reply (GU_02..GU_09) when nothing matched (@NONE)
 8c1fa7d0	exception_dump_registers	prints PC, SR, GBR, VBR, DBR, PR, MACH/MACL, FPUL and FPSCR over the serial port
+8c0372a0	FrogMan_asset_tables_init	fills the FrogMan line's model/motion/texture name tables (Tm1, FM1, FM2) at 8c27dfd4
+8c038ecc	FrogManEgg_asset_table_init	fills the FrogMan egg asset table (Tm_Egg.nj, Tme_Birth, FROG_EGG) at 8c280050
+8c06cb08	Herb_asset_table_init	fills the herb asset table (HERB_1, SEED_1, herb_3Leaves_*)
+8c085f4c	GillMan_asset_tables_init	fills the GillMan line's asset tables (GM1, GILLMAN, BABYGILLMAN)
+8c08869c	HigyoEgg_asset_table_init	fills the Higyo egg asset table (gme_Home.nj, gme_Birth, HIGYO_EGG)
+8c08bf2c	MothLine_asset_tables_init	fills the caterpillar/cocoon asset tables (Cp, Cc, CAT_BODY, CC_BODY)
+8c09b008	MothEgg_asset_table_init	fills the moth egg asset table (Cpe_Home.nj, Cpe_BeCatapillar, MOTH_EGG)
+8c0a58f4	SpiderEgg_asset_table_init	fills the spider egg asset table (uses the moth egg assets)
+8c09d47c	MushroomerEgg_asset_table_init	fills the Mushroomer egg asset table (MrEgg_Home.nj, MUSHROOMER_EGG)
+8c09e5c0	MushroomerLine_asset_tables_init	fills the Mushroomer line asset tables (Mr3, MUSHROOMER_LINE_BODY)
+8c0a4af0	Spider_asset_table_init	fills the spider asset table (Sp_Home, Sp_Creep, SPIDER_BODY, SP_PVM)
+8c0ae2fc	Squid_asset_table_init	fills the squid asset table (Sq_Bone_Home, Sq_KeyMotionPack, SQUID_BODY)
+8c1f9408	syG2_init	logs "syG2 Ver 1.01.12" and initialises the G2 bus DMA channel table at 8c474a80

@@ -13110,8 +13110,8 @@ u32 *Class_129920_ctor(u32 *a0, u32 a1) {
 
 /*
  * Class_129920_m0_015248  0x8c015248
- * called by: CEnv_LoadDevicePanelTexture, CGame_Initial, CGame_LoadForEvent1Models, common_load_eye_scsi,
- * game_sub_0372a0, game_sub_085f4c
+ * called by: CEnv_LoadDevicePanelTexture, CGame_Initial, CGame_LoadForEvent1Models, FrogMan_asset_tables_init,
+ * GillMan_asset_tables_init, common_load_eye_scsi
  */
 u32 Class_129920_m0_015248(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_r0;

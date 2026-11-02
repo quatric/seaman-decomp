@@ -1249,7 +1249,7 @@ address	name	file	params
 8c036f5c	CAnimal_sub_036f5c	mod_8c030000.c	4
 8c036f84	game_sub_036f84	mod_8c030000.c	1
 8c037034	game_sub_037034	mod_8c030000.c	4
-8c0372a0	game_sub_0372a0	mod_8c030000.c	0
+8c0372a0	FrogMan_asset_tables_init	mod_8c030000.c	0
 8c0384f8	CFrogManEgg_ctor	mod_8c030000.c	2
 8c038648	CAnimal_m0_038648	mod_8c030000.c	4
 8c0386d0	CAnimal_m2_0386d0	mod_8c030000.c	4
@@ -1273,7 +1273,7 @@ address	name	file	params
 8c038e74	noop_038e74	mod_8c030000.c	0
 8c038e78	CFrogManEgg_sub_038e78	mod_8c030000.c	4
 8c038ec8	noop_038ec8	mod_8c030000.c	0
-8c038ecc	CFrogManEgg_sub_038ecc	mod_8c030000.c	0
+8c038ecc	FrogManEgg_asset_table_init	mod_8c030000.c	0
 8c0390f4	CAnimal_m3_0390f4	mod_8c030000.c	4
 8c03911c	ret_const_1_03911c	mod_8c030000.c	0
 8c039124	CAnimal_sub_039124	mod_8c030000.c	4
@@ -1515,7 +1515,7 @@ address	name	file	params
 8c06c9c8	game_sub_06c9c8	mod_8c060000.c	4
 8c06ca34	game_sub_06ca34	mod_8c060000.c	4
 8c06ca7c	game_sub_06ca7c	mod_8c060000.c	1
-8c06cb08	game_sub_06cb08	mod_8c060000.c	0
+8c06cb08	Herb_asset_table_init	mod_8c060000.c	0
 8c06ce04	CHerb_LoadGRWait	mod_8c060000.c	2
 8c06d3ec	CHerb_LoadTRWait	mod_8c060000.c	4
 8c06d474	CHerb_sub_06d474	mod_8c060000.c	4
@@ -1642,7 +1642,7 @@ address	name	file	params
 8c085e80	get_field_2a4_085e80	mod_8c080000.c	1
 8c085e8c	set_field_2a8_to_1	mod_8c080000.c	1
 8c085e9c	game_sub_085e9c	mod_8c080000.c	1
-8c085f4c	game_sub_085f4c	mod_8c080000.c	0
+8c085f4c	GillMan_asset_tables_init	mod_8c080000.c	0
 8c087ed0	CHigyoEgg_ctor	mod_8c080000.c	2
 8c08800c	CAnimal_m0_08800c	mod_8c080000.c	4
 8c088094	CAnimal_m2_088094	mod_8c080000.c	4
@@ -1659,7 +1659,7 @@ address	name	file	params
 8c08852c	CHigyoEgg_LoadGRReq	mod_8c080000.c	4
 8c0885fc	CHigyoEgg_sub_0885fc	mod_8c080000.c	4
 8c08864c	CHigyoEgg_sub_08864c	mod_8c080000.c	4
-8c08869c	CHigyoEgg_sub_08869c	mod_8c080000.c	0
+8c08869c	HigyoEgg_asset_table_init	mod_8c080000.c	0
 8c08891c	CAnimal_m3_08891c	mod_8c080000.c	4
 8c088944	ret_const_1_088944	mod_8c080000.c	0
 8c08894c	CAnimal_sub_08894c	mod_8c080000.c	4
@@ -1701,7 +1701,7 @@ address	name	file	params
 8c08b720	game_sub_08b720	mod_8c080000.c	4
 8c08b798	game_sub_08b798	mod_8c080000.c	3
 8c08bd20	CMothLine_FreeGraphicResource	mod_8c080000.c	3
-8c08bf2c	game_sub_08bf2c	mod_8c080000.c	0
+8c08bf2c	MothLine_asset_tables_init	mod_8c080000.c	0
 8c08c688	set_field_280_u8_on_field_538	mod_8c080000.c	1
 8c08c6ac	Class_12a5d0_m7_08c6ac	mod_8c080000.c	4
 8c08c818	get_field_288_08c818	mod_8c080000.c	1
@@ -1798,7 +1798,7 @@ address	name	file	params
 8c09aea4	CMothEgg_LoadGRReq	mod_8c090000.c	4
 8c09af68	CMothEgg_sub_09af68	mod_8c090000.c	4
 8c09afb8	CMothEgg_sub_09afb8	mod_8c090000.c	4
-8c09b008	CMothEgg_sub_09b008	mod_8c090000.c	0
+8c09b008	MothEgg_asset_table_init	mod_8c090000.c	0
 8c09b208	ret_const_1_09b208	mod_8c090000.c	0
 8c09b210	game_sub_09b210	mod_8c090000.c	4
 8c09b508	CMushroomerEgg_sub_09b508	mod_8c090000.c	1
@@ -1834,7 +1834,7 @@ address	name	file	params
 8c09d3f8	Class_12a990_m8_09d3f8	mod_8c090000.c	4
 8c09d46c	set_field_74	mod_8c090000.c	2
 8c09d474	get_field_74_09d474	mod_8c090000.c	1
-8c09d47c	Class_12a990_sub_09d47c	mod_8c090000.c	0
+8c09d47c	MushroomerEgg_asset_table_init	mod_8c090000.c	0
 8c09d644	Class_12a990_sub_09d644	mod_8c090000.c	4
 8c09d6b8	Class_12a990_sub_09d6b8	mod_8c090000.c	1
 8c09d6e8	Class_12a990_m3_09d6e8	mod_8c090000.c	4
@@ -1854,7 +1854,7 @@ address	name	file	params
 8c09e204	game_sub_09e204	mod_8c090000.c	1
 8c09e2e8	game_sub_09e2e8	mod_8c090000.c	4
 8c09e4fc	game_sub_09e4fc	mod_8c090000.c	4
-8c09e5c0	game_sub_09e5c0	mod_8c090000.c	4
+8c09e5c0	MushroomerLine_asset_tables_init	mod_8c090000.c	4
 8c09ea78	Class_12ab2c_sub_09ea78	mod_8c090000.c	4
 8c09edf0	Class_12ab2c_sub_09edf0	mod_8c090000.c	1
 8c09efb4	Class_12ab2c_sub_09efb4	mod_8c090000.c	1
@@ -1907,7 +1907,7 @@ address	name	file	params
 8c0a481c	Class_12aeec_sub_0a481c	mod_8c0a0000.c	1
 8c0a4a34	vec3_copy_wrap_0a4a34	mod_8c0a0000.c	5
 8c0a4a5c	Vec3_sub_0a4a5c	mod_8c0a0000.c	4
-8c0a4af0	Vec3_sub_0a4af0	mod_8c0a0000.c	0
+8c0a4af0	Spider_asset_table_init	mod_8c0a0000.c	0
 8c0a4de8	CSpiderEgg_ctor	mod_8c0a0000.c	2
 8c0a4f54	Class_12ad50_m0_0a4f54	mod_8c0a0000.c	4
 8c0a4fdc	Class_12ad50_m2_0a4fdc	mod_8c0a0000.c	4
@@ -1931,7 +1931,7 @@ address	name	file	params
 8c0a5784	CSpiderEgg_LoadGRReq	mod_8c0a0000.c	4
 8c0a5854	CSpiderEgg_sub_0a5854	mod_8c0a0000.c	4
 8c0a58a4	CSpiderEgg_sub_0a58a4	mod_8c0a0000.c	4
-8c0a58f4	CSpiderEgg_sub_0a58f4	mod_8c0a0000.c	0
+8c0a58f4	SpiderEgg_asset_table_init	mod_8c0a0000.c	0
 8c0a5af4	Class_12aeec_m7_0a5af4	mod_8c0a0000.c	4
 8c0a5c2c	game_sub_0a5c2c	mod_8c0a0000.c	4
 8c0a5c60	Class_12ad50_m3_0a5c60	mod_8c0a0000.c	4
@@ -2002,7 +2002,7 @@ address	name	file	params
 8c0ae1bc	Squid_FreeGraphicResource	mod_8c0a0000.c	4
 8c0ae270	game_sub_0ae270	mod_8c0a0000.c	4
 8c0ae2b8	game_sub_0ae2b8	mod_8c0a0000.c	4
-8c0ae2fc	game_sub_0ae2fc	mod_8c0a0000.c	4
+8c0ae2fc	Squid_asset_table_init	mod_8c0a0000.c	4
 8c0ae544	nautilus_load_shell	mod_8c0a0000.c	4
 8c0ae640	game_sub_0ae640	mod_8c0a0000.c	3
 8c0ae6a0	nautilus_desc_init	mod_8c0a0000.c	4
@@ -4436,7 +4436,7 @@ address	name	file	params
 8c1f9270	g2dma_1f9270	mod_8c1f0000.c	1
 8c1f9284	syG2FifoWait	mod_8c1f0000.c	0
 8c1f92c0	shinobi_sub_1f92c0	mod_8c1f0000.c	6
-8c1f9408	shinobi_sub_1f9408	mod_8c1f0000.c	4
+8c1f9408	syG2_init	mod_8c1f0000.c	4
 8c1f9610	syG2CpuCopy	mod_8c1f0000.c	6
 8c1f97b4	shinobi_sub_1f97b4	mod_8c1f0000.c	4
 8c1f98b0	bios_flashrom_info	mod_8c1f0000.c	2
