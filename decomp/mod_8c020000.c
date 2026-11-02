@@ -1367,8 +1367,8 @@ int se_open(int *a0, u32 a1) {
 /*
  * se_play  0x8c021994
  * plays request a2 on port a1 of manager a0
- * called by: CTexture_sub_0d1518, Class_129974_sub_0db32c, Class_12b930_sub_0d0d1c, Class_12b930_sub_0d3d6c,
- * game_sub_0d06ec, game_sub_0d4c74, game_sub_0d55d0, game_sub_0d7508 (+5 more)
+ * called by: Class_129974_sub_0db32c, Class_12b930_sub_0d0d1c, Class_12b930_sub_0d3d6c, game_sub_0d4c74,
+ * game_sub_0d55d0, game_sub_0d7508, game_sub_0e1f90, game_sub_0e5238 (+5 more)
  */
 u32 se_play(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -1432,8 +1432,8 @@ u32 se_sub_021a30(int *a0, u32 a1, u32 a2) {
 /*
  * se_status  0x8c021a60
  * sound-effect port status (se_slot_status) when the port is open
- * called by: CTexture_sub_0d14e8, Class_12b580_sub_0d56dc, Class_12b930_sub_0d0d1c, Class_12b930_sub_0d3d6c,
- * game_sub_0d064c, game_sub_0d06c4, game_sub_0d1468, tank_device_sound_update
+ * called by: Class_12b580_sub_0d56dc, Class_12b930_sub_0d0d1c, Class_12b930_sub_0d3d6c, se_close_port_34,
+ * se_close_port_eb4c, se_status_34, se_status_eb4c, tank_device_sound_update
  */
 u32 se_status(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1449,7 +1449,7 @@ u32 se_status(int *a0, u32 a1, u32 a2, u32 a3) {
  * se_close_port_handle  0x8c021a8c
  * closes the port handle *a1 and sets it to -1
  * called by: Class_129974_sub_0db32c, Class_12b580_sub_0d56dc, Class_12b930_sub_0d0d1c, Class_12b930_sub_0d3d6c,
- * game_sub_0d064c, game_sub_0d1468, game_sub_0d4c74, game_sub_0d7508 (+6 more)
+ * game_sub_0d4c74, game_sub_0d7508, game_sub_0e1f90, game_sub_0e5238 (+6 more)
  */
 u32 se_close_port_handle(u32 a0, u32 *a1) {
     game_sub_021ad4(a0, *a1);
@@ -1680,7 +1680,8 @@ int pack_sub_021ec8(u32 unused_a0, u32 a1) {
 /*
  * pack_sub_021f18  0x8c021f18
  * area name: sits between pack functions (same compilation unit)
- * called by: game_sub_0c2c0c, game_sub_0c2efc, game_sub_0c76d0, game_sub_0c8c28, game_sub_101004, input_sub_0bb1e4
+ * called by: game_sub_0c2efc, game_sub_0c76d0, game_sub_0c8c28, game_sub_101004, input_sub_0bb1e4,
+ * pack_release_entry_384_if_done
  */
 u32 pack_sub_021f18(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -2479,7 +2480,7 @@ int Vec3_dtor(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_ctor_xyz  0x8c022ce8
  * called by: CAnimBody_sub_0342d8, CAnimal_sub_039124, CAnimal_sub_08894c, CGame_sub_0e992c, CGame_sub_0e99e4,
- * CTexture_sub_0d15c4, Class_1299f8_m3_019f00, Class_1299f8_m4_019588 (+123 more)
+ * Class_1299f8_m3_019f00, Class_1299f8_m4_019588, Class_1299f8_sub_024240 (+123 more)
  */
 u32 *Vec3_ctor_xyz(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_fr5;
@@ -4140,7 +4141,7 @@ u32 *Vec3_assign_copy_023e24(u32 *a0, u32 *a1) {
 /*
  * identity_023e44  0x8c023e44
  * returns its first argument
- * called by: CAnimal_m2_02573c, CTexture_sub_0d167c, Class_1299f8_m4_019588
+ * called by: CAnimal_m2_02573c, Class_1299f8_m4_019588, se_sub_0d167c
  */
 u32 identity_023e44(u32 a0) {
     return a0;
@@ -4148,7 +4149,7 @@ u32 identity_023e44(u32 a0) {
 
 /*
  * free_if_nonnull_wrap_023e4c  0x8c023e4c
- * called by: CAnimal_m2_02573c, CTexture_sub_0d167c, Class_1299f8_m4_019588
+ * called by: CAnimal_m2_02573c, Class_1299f8_m4_019588, se_sub_0d167c
  */
 int free_if_nonnull_wrap_023e4c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -4162,7 +4163,7 @@ int free_if_nonnull_wrap_023e4c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * njGetMatrix_wrap  0x8c023e7c
  * only calls njGetMatrix
- * called by: CAnimal_m2_02573c, CTexture_sub_0d167c, Class_1299f8_m4_019588
+ * called by: CAnimal_m2_02573c, Class_1299f8_m4_019588, se_sub_0d167c
  */
 u32 njGetMatrix_wrap(u32 a0) {
     u32 r5;
@@ -4177,7 +4178,7 @@ u32 njGetMatrix_wrap(u32 a0) {
 /*
  * game_sub_023e98  0x8c023e98
  * area name: game code; nothing names its area yet
- * called by: CTexture_sub_0d167c
+ * called by: se_sub_0d167c
  */
 u32 game_sub_023e98(u32 a0, u32 a1, u32 a2, u32 a3) {
     ninja_sub_255d6c(a0, a1, a2, a3, a1);
@@ -4187,7 +4188,7 @@ u32 game_sub_023e98(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * matrix_rotate_deg_m  0x8c023ebc
  * rotates matrix a0 by fr4 degrees (ninja_sub_256a78)
- * called by: CTexture_sub_0d167c
+ * called by: se_sub_0d167c
  */
 u32 matrix_rotate_deg_m(u32 a0) {
     u32 r6;
@@ -4202,7 +4203,7 @@ u32 matrix_rotate_deg_m(u32 a0) {
 /*
  * njRotateY_wrap  0x8c023ef8
  * only calls njRotateY
- * called by: CTexture_sub_0d167c
+ * called by: se_sub_0d167c
  */
 u32 njRotateY_wrap(u32 a0) {
     u32 r6;
@@ -4217,7 +4218,7 @@ u32 njRotateY_wrap(u32 a0) {
 /*
  * njRotateZ_wrap  0x8c023f34
  * only calls njRotateZ
- * called by: CTexture_sub_0d167c
+ * called by: se_sub_0d167c
  */
 u32 njRotateZ_wrap(u32 a0) {
     u32 r6;
@@ -4262,7 +4263,7 @@ u32 matrix_scale_wrap_023fdc(u32 a0, u32 a1) {
 /*
  * calc_vector_copy  0x8c024010
  * copies the vector a2 and stores njCalcVector_like(a0) of it in a1
- * called by: CAnimal_m2_02573c, CTexture_sub_0d167c
+ * called by: CAnimal_m2_02573c, se_sub_0d167c
  */
 void calc_vector_copy(u32 param_1, u64 *param_2, u64 *param_3) {
     u32 uStack_24;

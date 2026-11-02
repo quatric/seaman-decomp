@@ -156,7 +156,7 @@ u32 libc_sub_01012c(int a0, code *a1, code *a2, u32 a3, u32 s0, u32 s4, u32 s8, 
 /*
  * global_list_push  0x8c0101a0
  * called by: CAnimal_sub_039124, CAnimal_sub_08894c, CGame_sub_0e992c, CGame_sub_0e99e4, CSeamanDomain_Init,
- * CTexture_sub_0d15c4, Class_1299f8_sub_024240, Class_129a24_sub_01a260 (+55 more)
+ * Class_1299f8_sub_024240, Class_129a24_sub_01a260, Class_129c24_sub_02ffec (+55 more)
  */
 u32 global_list_push(u32 a0, u32 a1, u32 *a2, u32 a3) {
     u32 *puVar1;
@@ -13124,7 +13124,7 @@ u32 Class_129920_m0_015248(int a0, u32 a1, u32 a2, u32 a3) {
  * CTexture_LoadFromCache  0x8c015250
  * called by: CTexture_LoadFromCache_on_field_20, CTexture_LoadFromCache_on_field_488, CTexture_LoadFromCache_wrap,
  * CTexture_LoadFromCache_wrap_0d09fc, CTexture_LoadFromCache_wrap_0d14b0, CTexture_LoadFromCache_wrap_0d6058,
- * game_sub_0d5578, game_sub_0e0320 (+3 more) strings: "Failed to set texture..:%s"; "CTexture::LoadFromCache()";
+ * game_sub_0e0320, game_sub_0e6c8c (+3 more) strings: "Failed to set texture..:%s"; "CTexture::LoadFromCache()";
  * "Failed to load from cache..:%s"; "CTexture::LoadFromCache()"
  */
 u32 CTexture_LoadFromCache(int a0, u32 a1, u32 a2, u32 a3) {
@@ -22401,7 +22401,7 @@ u32 input_a_held(int a0) {
 /*
  * input_a_pressed  0x8c01edcc
  * A button (0x4) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
- * called by: game_sub_0c8058, input_a_or_start_pressed, input_a_pressed_wrap
+ * called by: input_a_or_start_pressed, input_a_pressed_pad, input_a_pressed_wrap
  */
 u32 input_a_pressed(int a0) {
     u32 uVar1;
@@ -22489,7 +22489,7 @@ u32 input_b_off(int a0) {
 /*
  * input_b_pressed  0x8c01eedc
  * B button (0x2) went down this frame (PDS_PERIPHERAL press bits); 2 while the demo input is active
- * called by: game_sub_0c8024
+ * called by: input_b_pressed_pad
  */
 u32 input_b_pressed(int a0) {
     u32 uVar1;

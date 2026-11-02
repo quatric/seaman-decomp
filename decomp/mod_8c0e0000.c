@@ -31,7 +31,7 @@ u32 input_sub_0e004c(int *a0, u32 a1, u32 a2, u32 a3) {
     game_sub_0db008(a0, a1, a2, a3);
     ar5_00 = 0;
     edge_detect_update(a0 + 0x4ec9, 0);
-    game_sub_0d064c(a0 + 0x4ec9, ar5_00, a2, a3);
+    se_close_port_34(a0 + 0x4ec9, ar5_00, a2, a3);
     noop_0d98f4(a0 + 0x89c1, ar5_00, a2, a3, in_PR);
     a5 = a1;
     se_sub_0d50ec(a0 + 0x42b, a1, a2, a3);
@@ -60,7 +60,7 @@ u32 input_sub_0e00ec(int *a0, u32 a1, u32 a2, u32 a3) {
  * area name: game code; nothing names its area yet
  */
 u32 game_sub_0e0124(int a0, u32 unused_a1, u32 a2, u32 a3) {
-    game_sub_0d1468(a0 + 0x13b8c, unused_a1, a2, a3);
+    se_close_port_eb4c(a0 + 0x13b8c, unused_a1, a2, a3);
     set_field_eb44(a0 + 0x13b8c, 0);
     return 0;
 }
@@ -181,7 +181,7 @@ u32 game_sub_0e0320(int a0, u32 a1, u32 a2, u32 a3) {
     CTexture_LoadFromCache(a0 + 0x106c, uVar2, a2, a3);
     CTexture_LoadFromCache_wrap(a0 + 0x13b24, uVar2, a2, a3);
     uVar2 = a1;
-    game_sub_0d5578(a0 + 0x10ac, a1, a2, a3);
+    textures_load_2(a0 + 0x10ac, a1, a2, a3);
     CTexture_LoadFromCache_on_field_20(a0 + 0x22704, uVar2, a2, a3);
     if ((a1 & 0xff) < 2) {
         CTexture_LoadFromCache_wrap_0d09fc(a0 + 0x13b70, uVar2, a2, a3);
@@ -205,7 +205,7 @@ u32 game_sub_0e03d4(int a0, u32 a1, u32 a2, u32 a3) {
     CTexture_ReleaseFromVRAM(a0 + 0x106c, uVar2, a2, a3);
     CTexture_ReleaseFromVRAM_wrap(a0 + 0x13b24, uVar2, a2, a3);
     uVar2 = a1;
-    game_sub_0d55a4(a0 + 0x10ac, a1, a2, a3);
+    textures_release_2(a0 + 0x10ac, a1, a2, a3);
     CTexture_ReleaseFromVRAM_on_field_20(a0 + 0x22704, uVar2, a2, a3);
     if ((a1 & 0xff) < 2) {
         CTexture_ReleaseFromVRAM_wrap_0d0a18(a0 + 0x13b70, uVar2, a2, a3);
@@ -228,11 +228,11 @@ u32 game_sub_0e0488(int a0, u32 a1, u32 a2, u32 a3) {
     call_all_list_a8(a0, a1, a2, a3);
     ar5_00 = a1;
     game_sub_0d5614(a0 + 0x10ac, a1, a2, a3);
-    game_sub_0d06c4(a0 + 0x13b24, ar5_00, a2, a3);
+    se_status_34(a0 + 0x13b24, ar5_00, a2, a3);
     if ((a1 & 0xff) < 2) {
         uVar1 = noop_0d0a34(a0 + 0x13b70, ar5_00, a2, a3, in_PR);
     } else {
-        uVar1 = CTexture_sub_0d14e8(a0 + 0x13b8c, ar5_00, a2, a3);
+        uVar1 = se_status_eb4c(a0 + 0x13b8c, ar5_00, a2, a3);
     }
     return uVar1;
 }
@@ -250,11 +250,11 @@ u32 game_sub_0e0508(int a0, u32 a1) {
 
     ar5_00 = a1;
     game_sub_0d55d0(a0 + 0x10ac);
-    game_sub_0d06ec(a0 + 0x13b24);
+    se_play_34(a0 + 0x13b24);
     if ((a1 & 0xff) < 2) {
         uVar1 = noop_0d0a38(a0 + 0x13b70, ar5_00, r6, r7, in_PR);
     } else {
-        uVar1 = CTexture_sub_0d1518(a0 + 0x13b8c);
+        uVar1 = se_play_eb4c(a0 + 0x13b8c);
     }
     return uVar1;
 }
@@ -1339,7 +1339,7 @@ u32 CWaterTank_CreateStage(int a0, u32 a1, u32 a2) {
         uStack_28 = uVar3;
     }
     aiStack_38[3] = uStack_28;
-    CTexture_sub_0d167c(&uStack_24, a0 + 0x227d0, aiStack_38 + 2, pcVar6);
+    se_sub_0d167c(&uStack_24, a0 + 0x227d0, aiStack_38 + 2, pcVar6);
     if (cVar9 != '\0') {
         uVar3 = 0x423c0000;
     }
@@ -1352,7 +1352,7 @@ u32 CWaterTank_CreateStage(int a0, u32 a1, u32 a2) {
     }
     puVar4 = &uStack_24;
     aiStack_38[3] = uStack_28;
-    CTexture_sub_0d167c(puVar4, a0 + 0x227e0, aiStack_38 + 2, puVar4);
+    se_sub_0d167c(puVar4, a0 + 0x227e0, aiStack_38 + 2, puVar4);
     if (cVar9 == '\0') {
         uStack_20 = 0;
         uVar5 = uVar3;
@@ -1371,7 +1371,7 @@ u32 CWaterTank_CreateStage(int a0, u32 a1, u32 a2) {
         uStack_28 = uVar5;
     }
     aiStack_38[3] = uStack_28;
-    CTexture_sub_0d167c(&uStack_24, a0 + 0x227f0, aiStack_38 + 2, puVar4);
+    se_sub_0d167c(&uStack_24, a0 + 0x227f0, aiStack_38 + 2, puVar4);
     uStack_28 = uVar5;
     if (cVar9 != '\0') {
         uStack_28 = 0x423c0000;
@@ -1382,9 +1382,9 @@ u32 CWaterTank_CreateStage(int a0, u32 a1, u32 a2) {
     } else {
         uStack_24 = 0;
     }
-    ar7_00 = CTexture_sub_0d167c;
+    ar7_00 = se_sub_0d167c;
     aiStack_38[3] = uStack_28;
-    CTexture_sub_0d167c(&uStack_24, a0 + 0x22800, aiStack_38 + 2, CTexture_sub_0d167c);
+    se_sub_0d167c(&uStack_24, a0 + 0x22800, aiStack_38 + 2, se_sub_0d167c);
     pcVar6 = NULL;
     while (pcVar6 < (code *)0x3) {
         CWaterTank_sub_0d70e4(a0 + (int)pcVar6 * 0x16c + 0x22d48, (int)pcVar6 * 0x16c, 3, ar7_00);
@@ -3414,7 +3414,7 @@ u32 CSoilTank_Create(int a0, u32 a1, u32 a2) {
         uStack_30 = 0;
         uStack_34 = uVar3;
     }
-    CTexture_sub_0d167c(&uStack_30, a0 + 0x10fc, &uStack_3c, ar7_00);
+    se_sub_0d167c(&uStack_30, a0 + 0x10fc, &uStack_3c, ar7_00);
     if (cVar7 == '\0') {
         uStack_2c = 0;
         uStack_34 = uVar3;
@@ -3432,7 +3432,7 @@ u32 CSoilTank_Create(int a0, u32 a1, u32 a2) {
         uStack_30 = 0;
     }
     puVar4 = &uStack_3c;
-    CTexture_sub_0d167c(&uStack_30, a0 + 0x10ec, puVar4, ar7_00);
+    se_sub_0d167c(&uStack_30, a0 + 0x10ec, puVar4, ar7_00);
     object_dtor_delete(&uStack_3c, 0xffffffff, puVar4, ar7_00);
     uVar3 = Vec3_dtor(&uStack_30, 0xffffffff, puVar4, ar7_00);
     return uVar3;
@@ -4688,7 +4688,7 @@ u32 game_sub_0e69c0(int a0, u32 a1, u32 a2) {
         uStack_24 = 0;
     }
     puVar4 = &uStack_30;
-    CTexture_sub_0d167c(&uStack_24, a0 + 0x10cc, puVar4, uVar3);
+    se_sub_0d167c(&uStack_24, a0 + 0x10cc, puVar4, uVar3);
     object_dtor_delete(&uStack_30, 0xffffffff, puVar4, uVar3);
     uVar3 = Vec3_dtor(&uStack_24, 0xffffffff, puVar4, uVar3);
     return uVar3;

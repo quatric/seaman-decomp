@@ -9170,7 +9170,7 @@ u32 game_sub_0ffd7c(int a0, u32 a1) {
 /*
  * game_sub_0ffdb0  0x8c0ffdb0
  * area name: game code; nothing names its area yet
- * called by: game_sub_0c8134, game_sub_0c91f4, game_sub_0ca4e8, game_sub_0cb668
+ * called by: game_sub_0c91f4, game_sub_0ca4e8, game_sub_0cb668, input_sub_0c8134
  */
 u32 game_sub_0ffdb0(int a0) {
     int iVar1;
@@ -9264,7 +9264,7 @@ u32 game_sub_0ffdb0(int a0) {
 /*
  * game_sub_0fff28  0x8c0fff28
  * area name: game code; nothing names its area yet
- * called by: game_sub_0c8134, game_sub_0c91f4, game_sub_0ca4e8, game_sub_0cb668
+ * called by: game_sub_0c91f4, game_sub_0ca4e8, game_sub_0cb668, input_sub_0c8134
  */
 u32 game_sub_0fff28(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;

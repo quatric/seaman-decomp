@@ -604,11 +604,11 @@ u32 game_sub_10097c(int a0) {
 }
 
 /*
- * game_sub_1009c8  0x8c1009c8
- * area name: game code; nothing names its area yet
+ * field_150_below_neg03  0x8c1009c8
+ * 1 when the float at +0x150 is at most -0.3
  * called by: game_sub_0cbd74
  */
-u32 game_sub_1009c8(int a0) {
+u32 field_150_below_neg03(int a0) {
     if (*(float *)(a0 + 0x150) <= -0.3) {
         return 1;
     }
@@ -616,11 +616,11 @@ u32 game_sub_1009c8(int a0) {
 }
 
 /*
- * game_sub_1009ec  0x8c1009ec
- * area name: game code; nothing names its area yet
+ * field_150_above_03  0x8c1009ec
+ * 1 when the float at +0x150 is at least 0.3
  * called by: game_sub_0cbd74
  */
-u32 game_sub_1009ec(int a0) {
+u32 field_150_above_03(int a0) {
     if (0.3 <= *(float *)(a0 + 0x150)) {
         return 1;
     }
@@ -628,11 +628,11 @@ u32 game_sub_1009ec(int a0) {
 }
 
 /*
- * game_sub_100a10  0x8c100a10
- * area name: game code; nothing names its area yet
+ * field_14c_above_03  0x8c100a10
+ * 1 when the float at +0x14c is at least 0.3
  * called by: game_sub_0cbd74
  */
-u32 game_sub_100a10(int a0) {
+u32 field_14c_above_03(int a0) {
     if (0.3 <= *(float *)(a0 + 0x14c)) {
         return 1;
     }
@@ -640,11 +640,11 @@ u32 game_sub_100a10(int a0) {
 }
 
 /*
- * game_sub_100a34  0x8c100a34
- * area name: game code; nothing names its area yet
+ * field_14c_below_neg03  0x8c100a34
+ * 1 when the float at +0x14c is at most -0.3
  * called by: game_sub_0cbd74
  */
-u32 game_sub_100a34(int a0) {
+u32 field_14c_below_neg03(int a0) {
     if (*(float *)(a0 + 0x14c) <= -0.3) {
         return 1;
     }
@@ -1037,8 +1037,8 @@ u32 CGame_sub_1011e0(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * Class_12acc8_sub_101210  0x8c101210
  * area name: only called from Class_12acc8 methods
- * called by: Class_12acc8_m1_09f470, game_sub_0c8134, game_sub_0c91f4, game_sub_0ca4e8, game_sub_0cb668,
- * game_sub_0e8280, input_sub_0dc7e8
+ * called by: Class_12acc8_m1_09f470, game_sub_0c91f4, game_sub_0ca4e8, game_sub_0cb668, game_sub_0e8280,
+ * input_sub_0c8134, input_sub_0dc7e8
  */
 u32 *Class_12acc8_sub_101210(int a0, u32 *a1, u32 *a2) {
     if (*(int *)(a0 + 0x188) == 6) {

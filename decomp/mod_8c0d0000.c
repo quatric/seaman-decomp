@@ -268,11 +268,11 @@ u32 set_fields_28_48(int a0) {
 }
 
 /*
- * game_sub_0d064c  0x8c0d064c
- * area name: game code; nothing names its area yet
+ * se_close_port_34  0x8c0d064c
+ * stops and closes the SE port handle at +0x34 and clears +0x48
  * called by: input_sub_0e004c
  */
-u32 game_sub_0d064c(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 se_close_port_34(int a0, u32 unused_a1, u32 a2, u32 a3) {
     if (*(int *)(a0 + 0x34) != -1) {
         se_status(0x8c2b59d0, *(u32 *)(a0 + 0x34), a2, a3);
         se_close_port_handle(0x8c2b59d0, a0 + 0x34);
@@ -307,11 +307,11 @@ u32 CTexture_ReleaseFromVRAM_wrap(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0d06c4  0x8c0d06c4
- * area name: game code; nothing names its area yet
+ * se_status_34  0x8c0d06c4
+ * se_status of the SE port handle at +0x34
  * called by: game_sub_0e0488
  */
-int game_sub_0d06c4(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int se_status_34(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
 
     iVar1 = *(int *)(a0 + 0x34);
@@ -322,11 +322,11 @@ int game_sub_0d06c4(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0d06ec  0x8c0d06ec
- * area name: game code; nothing names its area yet
+ * se_play_34  0x8c0d06ec
+ * plays sound 10 on the SE port handle at +0x34
  * called by: game_sub_0e0508
  */
-int game_sub_0d06ec(int a0) {
+int se_play_34(int a0) {
     int iVar1;
 
     iVar1 = *(int *)(a0 + 0x34);
@@ -675,7 +675,7 @@ int Class_12b930_sub_0d0b58(int a0, u32 a1) {
     ar7_00 = 0xac;
     vec_new_array(a0 + 0xc, (&Class_1297f4_ctor), (&Class_1297f4_dtor), 0xac, 0x15e);
     game_sub_02145c(a0 + 0xeb48);
-    CTexture_sub_0d1564(a0);
+    se_sub_0d1564(a0);
     return a0;
 }
 
@@ -1208,11 +1208,11 @@ int clear_field_eb60(int a0) {
 }
 
 /*
- * game_sub_0d1468  0x8c0d1468
- * area name: game code; nothing names its area yet
+ * se_close_port_eb4c  0x8c0d1468
+ * stops and closes the SE port handle at +0xeb4c
  * called by: game_sub_0e0124
  */
-int game_sub_0d1468(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int se_close_port_eb4c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
 
     iVar1 = *(int *)(0xeb4c + a0);
@@ -1250,11 +1250,11 @@ u32 CTexture_ReleaseFromVRAM_wrap_0d14cc(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CTexture_sub_0d14e8  0x8c0d14e8
- * area name: sits between CTexture functions (same compilation unit)
+ * se_status_eb4c  0x8c0d14e8
+ * se_status of the SE port handle at +0xeb4c
  * called by: game_sub_0e0488
  */
-int CTexture_sub_0d14e8(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int se_status_eb4c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
 
     iVar1 = *(int *)(0xeb4c + a0);
@@ -1265,11 +1265,11 @@ int CTexture_sub_0d14e8(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * CTexture_sub_0d1518  0x8c0d1518
- * area name: sits between CTexture functions (same compilation unit)
+ * se_play_eb4c  0x8c0d1518
+ * plays sound 5 on the SE port handle at +0xeb4c
  * called by: game_sub_0e0508
  */
-int CTexture_sub_0d1518(int a0) {
+int se_play_eb4c(int a0) {
     int iVar1;
 
     iVar1 = *(int *)(0xeb4c + a0);
@@ -1280,23 +1280,23 @@ int CTexture_sub_0d1518(int a0) {
 }
 
 /*
- * CTexture_sub_0d1548  0x8c0d1548
- * area name: sits between CTexture functions (same compilation unit)
+ * se_sub_0d1548  0x8c0d1548
+ * area name: sits between se functions (same compilation unit)
  * called by: game_sub_0dfbdc
  */
-u32 CTexture_sub_0d1548(u32 a0) {
+u32 se_sub_0d1548(u32 a0) {
     u32 uVar1;
 
-    uVar1 = CTexture_sub_0d1564(a0);
+    uVar1 = se_sub_0d1564(a0);
     return uVar1;
 }
 
 /*
- * CTexture_sub_0d1564  0x8c0d1564
- * area name: sits between CTexture functions (same compilation unit)
- * called by: CTexture_sub_0d1548, Class_12b930_sub_0d0b58
+ * se_sub_0d1564  0x8c0d1564
+ * area name: sits between se functions (same compilation unit)
+ * called by: Class_12b930_sub_0d0b58, se_sub_0d1548
  */
-u32 CTexture_sub_0d1564(int a0) {
+u32 se_sub_0d1564(int a0) {
     *(u32 *)(a0 + 0xeb40) = 0;
     *(u32 *)(a0 + 0xeb44) = 0;
     *(u32 *)(a0 + 0xeb34) = 0x40a00000;
@@ -1308,10 +1308,10 @@ u32 CTexture_sub_0d1564(int a0) {
 }
 
 /*
- * CTexture_sub_0d15c4  0x8c0d15c4
- * area name: sits between CTexture functions (same compilation unit)
+ * se_sub_0d15c4  0x8c0d15c4
+ * area name: sits between se functions (same compilation unit)
  */
-u32 CTexture_sub_0d15c4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 se_sub_0d15c4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -1342,11 +1342,11 @@ u32 CTexture_sub_0d15c4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CTexture_sub_0d167c  0x8c0d167c
- * area name: sits between CTexture functions (same compilation unit)
+ * se_sub_0d167c  0x8c0d167c
+ * area name: sits between se functions (same compilation unit)
  * called by: CSoilTank_Create, CWaterTank_CreateStage, game_sub_0e69c0
  */
-u32 CTexture_sub_0d167c(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 se_sub_0d167c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 *ar5_00;
     u8 auStack_88[64];
@@ -2196,16 +2196,16 @@ u32 game_sub_0d261c(int a0, u32 a1, u32 a2, u32 a3) {
     ar5_00 = get_field_4_0253e4(ar4_00, a1, uVar1, a3);
     set_field_1c(a0 + 0x48, ar5_00);
     set_field_20(a0 + 0x48, a2);
-    uVar1 = game_sub_0d267c(a0 + 0x48);
+    uVar1 = set_flag_2_28(a0 + 0x48);
     return uVar1;
 }
 
 /*
- * game_sub_0d267c  0x8c0d267c
- * area name: game code; nothing names its area yet
+ * set_flag_2_28  0x8c0d267c
+ * ORs 2 into the flags at +0x28
  * called by: game_sub_0d261c
  */
-u32 game_sub_0d267c(int a0) {
+u32 set_flag_2_28(int a0) {
     u32 uVar1;
 
     uVar1 = *(u32 *)(a0 + 0x28) | 2;
@@ -2956,7 +2956,7 @@ u32 game_sub_0d2c84(float *a0, u32 a1, u32 a2, u32 a3) {
             obj_set_texture_num(a1, 0);
             uVar1 = gfxlib_sub_235bfc(&pfStack_8c, 4, 0x80000060, a3);
         } else {
-            game_sub_0d2f04(a0 + 0x12);
+            set_pair_10_fr4_5(a0 + 0x12);
             uVar1 = (**(code **)((int)a0[0x12] + 0x1c))(a0 + 0x12, a0[0x20], a2, a3);
         }
     }
@@ -2964,11 +2964,11 @@ u32 game_sub_0d2c84(float *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0d2f04  0x8c0d2f04
- * area name: game code; nothing names its area yet
+ * set_pair_10_fr4_5  0x8c0d2f04
+ * stores fr4 and fr5 at +0x10 and +0x14
  * called by: game_sub_0d2c84
  */
-u32 *game_sub_0d2f04(int a0) {
+u32 *set_pair_10_fr4_5(int a0) {
     u32 in_fr5;
     u32 in_fr4;
 
@@ -4776,11 +4776,11 @@ u32 game_sub_0d4f70(void) {
 }
 
 /*
- * game_sub_0d4fa8  0x8c0d4fa8
- * area name: game code; nothing names its area yet
+ * se_play_bubble_or_ike  0x8c0d4fa8
+ * se_play_bubble_mono for a1 < 2, else se_play_ike1
  * called by: input_sub_0dff1c
  */
-u32 game_sub_0d4fa8(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 se_play_bubble_or_ike(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     if ((u8)a1 < 2) {
@@ -4794,7 +4794,7 @@ u32 game_sub_0d4fa8(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * se_play_bubble_mono  0x8c0d4fe8
  * plays the 40_BUBBLE_MONO pack sound
- * called by: game_sub_0d4fa8
+ * called by: se_play_bubble_or_ike
  * strings: "40_BUBBLE_MONO"
  */
 u32 se_play_bubble_mono(int a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -4810,7 +4810,7 @@ u32 se_play_bubble_mono(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * se_play_ike1  0x8c0d5040
  * plays the 75_IKE1 pack sound
- * called by: game_sub_0d4fa8, se_sub_0d5218
+ * called by: se_play_bubble_or_ike, se_sub_0d5218
  * strings: "75_IKE1"
  */
 u32 se_play_ike1(int a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -5085,11 +5085,11 @@ u32 se_sub_0d5218(double *a0, u32 a1) {
 }
 
 /*
- * game_sub_0d5578  0x8c0d5578
- * area name: game code; nothing names its area yet
+ * textures_load_2  0x8c0d5578
+ * CTexture_LoadFromCache on the textures at +8 and +0x108
  * called by: game_sub_0e0320
  */
-u32 game_sub_0d5578(int a0, u32 a1, u32 a2, u32 a3) {
+u32 textures_load_2(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     CTexture_LoadFromCache(a0 + 8, a1, a2, a3);
@@ -5098,11 +5098,11 @@ u32 game_sub_0d5578(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0d55a4  0x8c0d55a4
- * area name: game code; nothing names its area yet
+ * textures_release_2  0x8c0d55a4
+ * CTexture_ReleaseFromVRAM on the textures at +8 and +0x108
  * called by: game_sub_0e03d4
  */
-u32 game_sub_0d55a4(int a0, u32 a1, u32 a2, u32 a3) {
+u32 textures_release_2(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     CTexture_ReleaseFromVRAM(a0 + 8, a1, a2, a3);
@@ -14351,7 +14351,7 @@ u32 game_sub_0dfbdc(int a0, u32 a1, u32 a2, u32 a3) {
     (**(code **)(*(int *)(a0 + 0x9e8) + 0x10))((int *)(a0 + 0x9e8), a1, a2, a3);
     game_sub_0d0720(a0 + 0x13b24);
     game_sub_0d0a84(a0 + 0x13b70);
-    CTexture_sub_0d1548(a0 + 0x13b8c);
+    se_sub_0d1548(a0 + 0x13b8c);
     set_fields_18_10_14(a0 + 0x22704);
     uVar2 = extraout_fr1;
     for (iVar1 = 0; iVar1 < 3; iVar1 = iVar1 + 1) {
@@ -14467,7 +14467,7 @@ u32 input_sub_0dff1c(int *a0, u32 a1, u32 a2, u32 a3) {
     *(u32 *)(0x1020 + (int)a0) = 0;
     Vec3_sub_0e3f24(a0);
     uVar2 = a1;
-    game_sub_0d4fa8((int)a0 + 0x10ac, a1, a2, a3);
+    se_play_bubble_or_ike((int)a0 + 0x10ac, a1, a2, a3);
     if ((a1 & 0xff) < 2) {
         uVar1 = (**(code **)(0x1c0 + *a0))(a0, uVar2, a2, a3);
     } else {

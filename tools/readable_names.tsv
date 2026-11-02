@@ -901,3 +901,25 @@
 8c0ba9c8	Class_12b350_dtor	destroys the vector and frees the object when a1 > 0
 8c258fd8	ninja_set_event900_callback	removes the previous handler and, when a0 is set, installs a0 for interrupt event 0x900
 8c235e84	pvr_fill_fog_table_like	fills a 128-entry table with fr4 and loads it through pvr_sub_20a1d0
+8c0c2c0c	pack_release_entry_384_if_done	releases the pack entry handle at +0x384 once its load has finished
+8c0c2c54	pack_entry_384_reset	sets the pack entry handle at +0x384 to -1 and byte +0x388 to '0'
+8c0c5dd8	take_field_4	returns the word at +4 and clears it
+8c0c5294	fall_step_to_670	adds 0.3 to the speed at +0x10 and moves +4 by it; at 670 it stops and clears the speed
+8c0c8058	input_a_pressed_pad	1 when A was just pressed on the pad at +0xcc and the pad is connected
+8c0c8024	input_b_pressed_pad	1 when B was just pressed on the pad at +0xcc
+8c1009c8	field_150_below_neg03	1 when the float at +0x150 is at most -0.3
+8c1009ec	field_150_above_03	1 when the float at +0x150 is at least 0.3
+8c100a10	field_14c_above_03	1 when the float at +0x14c is at least 0.3
+8c100a34	field_14c_below_neg03	1 when the float at +0x14c is at most -0.3
+8c0d064c	se_close_port_34	stops and closes the SE port handle at +0x34 and clears +0x48
+8c0d06c4	se_status_34	se_status of the SE port handle at +0x34
+8c0d06ec	se_play_34	plays sound 10 on the SE port handle at +0x34
+8c0d1468	se_close_port_eb4c	stops and closes the SE port handle at +0xeb4c
+8c0d14e8	se_status_eb4c	se_status of the SE port handle at +0xeb4c
+8c0d1518	se_play_eb4c	plays sound 5 on the SE port handle at +0xeb4c
+8c0d5578	textures_load_2	CTexture_LoadFromCache on the textures at +8 and +0x108
+8c0d55a4	textures_release_2	CTexture_ReleaseFromVRAM on the textures at +8 and +0x108
+8c0cf1bc	texture_release_158	releases the texture at +0x158 and clears +0
+8c0d4fa8	se_play_bubble_or_ike	se_play_bubble_mono for a1 < 2, else se_play_ike1
+8c0d2f04	set_pair_10_fr4_5	stores fr4 and fr5 at +0x10 and +0x14
+8c0d267c	set_flag_2_28	ORs 2 into the flags at +0x28

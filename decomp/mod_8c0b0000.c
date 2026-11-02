@@ -4435,7 +4435,7 @@ u32 game_sub_0b6c10(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * save_write_step  0x8c0b6c3c
  * one state of the save sequence: starts writing SM2000US.USR or SM2000US.INC (as SM2000US._VM)
- * called by: game_sub_0c6e74, game_sub_0c8134, game_sub_0c91f4, game_sub_0ca4e8, game_sub_0cb668
+ * called by: game_sub_0c6e74, game_sub_0c91f4, game_sub_0ca4e8, game_sub_0cb668, input_sub_0c8134
  * strings: "SM2000US.USR"; "SM2000US.INC"; "SM2000US._VM"
  */
 u32 save_write_step(u32 a0, u8 *a1, u8 *a2, u8 *a3) {
@@ -5201,7 +5201,7 @@ u32 sh4_tmu_wrap(void) {
 /*
  * sh4_sub_0b9244  0x8c0b9244
  * area name: sits between sh4 functions (same compilation unit)
- * called by: game_sub_0c8134, game_sub_0c91f4, game_sub_0ca4e8, game_sub_0cb668
+ * called by: game_sub_0c91f4, game_sub_0ca4e8, game_sub_0cb668, input_sub_0c8134
  */
 u32 sh4_sub_0b9244(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;

@@ -1227,7 +1227,7 @@ int get_field_44_s8(int a0, u32 a1, u32 a2, u32 a3) {
  * get_field_4_on_field_d8  0x8c0637d0
  * calls get_field_4_0637f8 on the member at +0xd8
  * called by: Vec3_sub_063838, Vec3_sub_0c84f4, game_sub_062b0c, game_sub_0c4e58, game_sub_0c6e74, game_sub_0c76d0,
- * game_sub_0c8134, game_sub_0c91f4 (+9 more)
+ * game_sub_0c91f4, game_sub_0c9588 (+9 more)
  */
 u32 get_field_4_on_field_d8(int a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
