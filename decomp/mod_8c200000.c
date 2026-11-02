@@ -32,7 +32,7 @@ int shinobi_sub_200038(int a0, u32 a1, u32 unused_a2, u32 a3) {
                 }
                 if (*(int *)(*(int *)(iVar5 + 0x1c) + 0x38) != 0) {
                     puVar2 = auStack_2c;
-                    iVar4 = shinobi_sub_1ffc0a(a0, puVar2);
+                    iVar4 = bu_get_game_file_name_now(a0, puVar2);
                     if ((iVar4 != 0) && (iVar4 = shinobi_sub_1fffca(a0), -1 < iVar4)) {
                         while (true) {
                             puVar2 = (u8 *)shinobi_sub_1ffebe(a0);
@@ -446,8 +446,8 @@ u32 shinobi_sub_2004f6(u32 unused_a0, int a1, u32 a2, u32 a3) {
 /*
  * vmu_dir_find_file  0x8c200566
  * finds the data (0x33) or game (0xcc) directory entry named a1 on drive a0 and copies it to a2
- * called by: shinobi_sub_1fdd44, shinobi_sub_1fe534, shinobi_sub_1fe646, shinobi_sub_1fe7aa, shinobi_sub_1fef5a,
- * shinobi_sub_1ff478, shinobi_sub_1ff72e, shinobi_sub_1ff844 (+5 more)
+ * called by: bu_get_file_size_now, bu_is_exist_file_now, shinobi_sub_1fdd44, shinobi_sub_1fe534, shinobi_sub_1fe646,
+ * shinobi_sub_1fe7aa, shinobi_sub_1ff478, shinobi_sub_1ff72e (+5 more)
  */
 u32 vmu_dir_find_file(int a0, u32 a1, u32 a2) {
     int iVar1;
@@ -474,7 +474,7 @@ u32 vmu_dir_find_file(int a0, u32 a1, u32 a2) {
 /*
  * shinobi_sub_2005d6  0x8c2005d6
  * area name: in the shinobi library code range
- * called by: shinobi_sub_1fe646, shinobi_sub_1ffc0a
+ * called by: bu_get_game_file_name_now, shinobi_sub_1fe646
  */
 u32 shinobi_sub_2005d6(int a0, u32 a1) {
     int ar6_00;
@@ -953,7 +953,7 @@ u32 shinobi_sub_200900(u32 unused_a0, u32 unused_a1, int a2, u32 a3) {
 /*
  * shinobi_sub_20093a  0x8c20093a
  * area name: in the shinobi library code range
- * called by: shinobi_sub_1fe350, shinobi_sub_2008f4, shinobi_sub_200900
+ * called by: bu_get_free_blocks_now, shinobi_sub_2008f4, shinobi_sub_200900
  */
 u32 shinobi_sub_20093a(int a0, u32 a1) {
     int *piVar1;
@@ -1030,7 +1030,7 @@ int vmu_drive_write_like(int a0, int a1, u32 a2) {
 /*
  * vmu_drive_read_like  0x8c2009d0
  * calls the drive's operation +0xc for block a1 (probably a block read)
- * called by: shinobi_sub_1fe350, shinobi_sub_1fe466, shinobi_sub_1fe646, shinobi_sub_1fecf2, shinobi_sub_1fee6c,
+ * called by: bu_get_free_blocks_now, shinobi_sub_1fe466, shinobi_sub_1fe646, shinobi_sub_1fecf2, shinobi_sub_1fee6c,
  * shinobi_sub_1ff478, shinobi_sub_1fffca, shinobi_sub_1fffd8 (+11 more)
  */
 u32 vmu_drive_read_like(int a0, int a1) {
@@ -1136,8 +1136,8 @@ u32 shinobi_sub_200ae4(void) {
 
 /*
  * ret_const_0_200aec  0x8c200aec
- * called by: shinobi_sub_1fe534, shinobi_sub_1fe646, shinobi_sub_1fe7aa, shinobi_sub_1ff530, shinobi_sub_1ff610,
- * shinobi_sub_1ff72e, shinobi_sub_1ff844, shinobi_sub_1ff95a (+2 more)
+ * called by: bu_get_file_size_now, shinobi_sub_1fe534, shinobi_sub_1fe646, shinobi_sub_1fe7aa, shinobi_sub_1ff530,
+ * shinobi_sub_1ff610, shinobi_sub_1ff72e, shinobi_sub_1ff844 (+2 more)
  */
 u32 ret_const_0_200aec(void) {
     return 0;
@@ -1503,7 +1503,7 @@ u32 shinobi_sub_200e8a(int a0, u32 a1, int a2, u32 a3) {
     uVar5 = a3;
     uStack_20 = a1;
     iStack_1c = a2;
-    if (((a3 != 0) || (uVar1 = shinobi_sub_1ffb70(a0, a1, a2, 0), uVar5 = uVar1, -1 < (int)uVar1)) &&
+    if (((a3 != 0) || (uVar1 = bu_get_file_size_now(a0, a1, a2, 0), uVar5 = uVar1, -1 < (int)uVar1)) &&
         (uVar1 = shinobi_sub_1fe534(a0, uStack_20, &uStack_24), -1 < (int)uVar1)) {
         uVar4 = 0;
         iVar2 = a0 * 0x148 + 0x8c4783e0;
@@ -1542,8 +1542,8 @@ u32 shinobi_sub_200f2c(int a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4) {
     ar7_00 = &iStack_20;
     uVar3 = a3;
     iStack_1c = a2;
-    uVar1 = shinobi_sub_1fe350(a0, 0);
-    iVar2 = shinobi_sub_1ffb70(a0, a1, a2, uVar3);
+    uVar1 = bu_get_free_blocks_now(a0, 0);
+    iVar2 = bu_get_file_size_now(a0, a1, a2, uVar3);
     if (0 < iVar2) {
         uVar1 = uVar1 + iVar2;
     }
@@ -1663,7 +1663,7 @@ u32 shinobi_sub_20112c(int a0, u32 a1, int a2, u32 a3, u32 s0, u32 s4) {
     ar7_00 = &iStack_24;
     iStack_20 = a2;
     uStack_1c = a1;
-    uVar1 = shinobi_sub_1fe350(a0, 1);
+    uVar1 = bu_get_free_blocks_now(a0, 1);
     if (-1 < (int)uVar1) {
         if (uVar1 < a3) {
             uVar1 = 0xffffff04;
@@ -1850,7 +1850,7 @@ int shinobi_sub_2013c2(int a0, u32 a1, int a2, int a3, u32 s0) {
     uStack_20 = a1;
     iStack_1c = a2;
     if (s0 == 0) {
-        iVar1 = shinobi_sub_1ffb70(a0, a1, a2, a3);
+        iVar1 = bu_get_file_size_now(a0, a1, a2, a3);
         if (iVar1 < 0) {
             return iVar1;
         }
@@ -1969,7 +1969,7 @@ int shinobi_sub_2014e6(int a0, u32 a1, int a2, u32 a3, u32 s0) {
 /*
  * shinobi_sub_2015b0  0x8c2015b0
  * area name: in the shinobi library code range
- * called by: game_sub_01af14
+ * called by: memcard_queue_save
  */
 int shinobi_sub_2015b0(char *a0, char *a1, u32 unused_a2, u32 a3) {
     char cVar1;
@@ -2082,11 +2082,11 @@ int shinobi_sub_2015b0(char *a0, char *a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_2017a8  0x8c2017a8
- * area name: in the shinobi library code range
- * called by: game_sub_01af14
+ * buCalcBackupFileSize_like  0x8c2017a8
+ * blocks for a VMU file with a0 icons (1..3), eyecatch type a1 (0..3) and a2 data bytes; -256 when out of range
+ * called by: memcard_queue_save
  */
-u32 shinobi_sub_2017a8(u32 a0, u32 a1, int a2) {
+u32 buCalcBackupFileSize_like(u32 a0, u32 a1, int a2) {
     u32 uVar1;
 
     if (((a0 != 0) && (a0 < 4)) && (a1 < 4)) {

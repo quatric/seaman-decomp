@@ -698,7 +698,7 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
             break;
         case 0x13:
             if ((g_8c436838 == 1) &&
-                (iVar6 = CSeamanDomain_sub_01b9e4(uVar1, &g_8c436838, puVar8, a3), iVar6 < 0x8000)) {
+                (iVar6 = memcard_free_bytes_wait(uVar1, &g_8c436838, puVar8, a3), iVar6 < 0x8000)) {
                 g_8c4367bc = 0x1b;
             } else {
                 g_8c4367bc = CSeamanDomain_sub_0c236c(a0, g_8c4367c4);
@@ -770,8 +770,8 @@ u32 CSeamanDomain_Init(int a0, int *a1, u32 unused_a2, code *a3) {
             CSeamanDomain_sub_0bf7d0(a0 + 0x2e710, 0x8c43680c, pcVar7, a3);
             *(u32 *)(a0 + 0x2e75c) = 1;
             if ((iVar6 == 0) || (iVar6 == 4)) {
-                iVar6 = CSeamanDomain_sub_01b9e4(uVar1, uVar2, pcVar7, a3);
-                iVar3 = CSeamanDomain_sub_01b920(uVar1, 0x8c4367f8, pcVar7, a3);
+                iVar6 = memcard_free_bytes_wait(uVar1, uVar2, pcVar7, a3);
+                iVar3 = memcard_file_data_size_wait(uVar1, 0x8c4367f8, pcVar7, a3);
                 if (iVar6 + iVar3 < 0x8000) {
                     g_8c4367bc = 0x1b;
                     break;

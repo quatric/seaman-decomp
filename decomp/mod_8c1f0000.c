@@ -8421,7 +8421,7 @@ u32 shinobi_sub_1f5d04(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * shinobi_sub_1f5d6c  0x8c1f5d6c
  * area name: in the shinobi library code range
- * called by: game_sub_01c6f4, game_sub_01c774
+ * called by: memcard_op_condition_a, memcard_op_condition_b
  */
 u32 shinobi_sub_1f5d6c(u32 a0, u8 *a1) {
     int iVar1;
@@ -14117,7 +14117,7 @@ u32 noop_1fb43a(void) {
 /*
  * malloc_thunk  0x8c1fb4ae
  * called by: CDCGD_new_request_c, CDCGD_sub_0202c0, CProlog_sub_0b96e4, draw_sub_258b26, game_init, game_sub_015f18,
- * game_sub_01af14, game_sub_01b4f0 (+11 more)
+ * game_sub_01ddfc, game_sub_01e0a4 (+11 more)
  */
 u32 malloc_thunk(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -14182,7 +14182,7 @@ u32 *malloc_sub_1fb4c2(int a0) {
  * malloc_sub_1fb57c  0x8c1fb57c
  * area name: sits between malloc functions (same compilation unit)
  * called by: CDCGD_release_request, CDCGD_sub_02049c, CProlog_sub_0b96e4, draw_sub_258b26, free_ptr_and_clear,
- * game_shutdown_a, game_sub_015f18, game_sub_01af14 (+9 more)
+ * game_shutdown_a, game_sub_015f18, game_sub_01d7cc (+9 more)
  */
 u32 malloc_sub_1fb57c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -14942,8 +14942,8 @@ u32 shinobi_sub_1fc04e(u32 a0) {
 
 /*
  * thunk_FUN_8c1ffcc2  0x8c1fc076
- * called by: Class_129a24_sub_01a3e4, shinobi_sub_1fdd44, shinobi_sub_1fe236, shinobi_sub_1fe350, shinobi_sub_1fe466,
- * shinobi_sub_1fe534, shinobi_sub_1fe646, shinobi_sub_1fe7aa (+21 more)
+ * called by: Class_129a24_sub_01a3e4, bu_get_file_size_now, bu_get_free_blocks_now, bu_get_game_file_name_now,
+ * bu_is_exist_file_now, shinobi_sub_1fdd44, shinobi_sub_1fe236, shinobi_sub_1fe466 (+21 more)
  */
 u32 thunk_FUN_8c1ffcc2(void) {
     u32 uVar1;
@@ -14991,11 +14991,11 @@ u32 shinobi_sub_1fc13c(u32 a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_1fc16a  0x8c1fc16a
- * area name: in the shinobi library code range
- * called by: game_sub_01b144, game_sub_01c3c4
+ * buGetFreeBlocks_like  0x8c1fc16a
+ * free blocks on drive a0 (mode a1); -1 while busy
+ * called by: game_sub_01b144, memcard_op_free_blocks
  */
-u32 shinobi_sub_1fc16a(u32 a0, u32 a1) {
+u32 buGetFreeBlocks_like(u32 a0, u32 a1) {
     int iVar1;
     u32 uVar2;
 
@@ -15003,7 +15003,7 @@ u32 shinobi_sub_1fc16a(u32 a0, u32 a1) {
     if (iVar1 != 0) {
         return 0xffffffff;
     }
-    uVar2 = shinobi_sub_1fe350(a0, a1);
+    uVar2 = bu_get_free_blocks_now(a0, a1);
     return uVar2;
 }
 
@@ -15072,11 +15072,11 @@ u32 shinobi_sub_1fc226(u32 a0, u32 a1, u32 a2) {
 }
 
 /*
- * shinobi_sub_1fc258  0x8c1fc258
- * area name: in the shinobi library code range
- * called by: game_sub_01b144, game_sub_01c560
+ * bu_get_game_file_name  0x8c1fc258
+ * copies the 12-character name of the drive's game file into a1; -1 while busy
+ * called by: game_sub_01b144, memcard_op_game_name_check
  */
-u32 shinobi_sub_1fc258(u32 a0, u32 a1) {
+u32 bu_get_game_file_name(u32 a0, u32 a1) {
     int iVar1;
     u32 uVar2;
 
@@ -15084,7 +15084,7 @@ u32 shinobi_sub_1fc258(u32 a0, u32 a1) {
     if (iVar1 != 0) {
         return 0xffffffff;
     }
-    uVar2 = shinobi_sub_1ffc0a(a0, a1);
+    uVar2 = bu_get_game_file_name_now(a0, a1);
     return uVar2;
 }
 
@@ -15217,11 +15217,11 @@ u32 shinobi_sub_1fc428(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * shinobi_sub_1fc472  0x8c1fc472
- * area name: in the shinobi library code range
- * called by: game_sub_01c450
+ * buDeleteFile_like  0x8c1fc472
+ * starts deleting file a1 of drive a0; -1 while the drive is busy
+ * called by: memcard_op_delete
  */
-u32 shinobi_sub_1fc472(u32 a0, u32 a1) {
+u32 buDeleteFile_like(u32 a0, u32 a1) {
     int iVar1;
     u32 uVar2;
     u32 ar7_00;
@@ -15308,11 +15308,11 @@ u32 shinobi_sub_1fc504(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1fc564  0x8c1fc564
- * area name: in the shinobi library code range
- * called by: game_sub_01c4d8
+ * buIsExistFile_like  0x8c1fc564
+ * 0 when file a1 exists on drive a0, -0xfb when not; -1 while busy
+ * called by: memcard_op_exist
  */
-u32 shinobi_sub_1fc564(u32 a0, u32 a1) {
+u32 buIsExistFile_like(u32 a0, u32 a1) {
     int iVar1;
     u32 uVar2;
 
@@ -15320,7 +15320,7 @@ u32 shinobi_sub_1fc564(u32 a0, u32 a1) {
     if (iVar1 != 0) {
         return 0xffffffff;
     }
-    uVar2 = shinobi_sub_1fef5a(a0, a1);
+    uVar2 = bu_is_exist_file_now(a0, a1);
     return uVar2;
 }
 
@@ -15393,11 +15393,11 @@ u32 shinobi_sub_1fc604(u32 a0, u32 a1, u32 a2) {
 }
 
 /*
- * shinobi_sub_1fc654  0x8c1fc654
- * area name: in the shinobi library code range
- * called by: game_sub_01c320
+ * buGetFileSize_like  0x8c1fc654
+ * size in blocks of file a1 on drive a0; -1 while busy
+ * called by: memcard_op_file_size
  */
-u32 shinobi_sub_1fc654(u32 a0, u32 a1) {
+u32 buGetFileSize_like(u32 a0, u32 a1) {
     int iVar1;
     u32 uVar2;
 
@@ -15405,7 +15405,7 @@ u32 shinobi_sub_1fc654(u32 a0, u32 a1) {
     if (iVar1 != 0) {
         return 0xffffffff;
     }
-    uVar2 = shinobi_sub_1ffb70(a0, a1);
+    uVar2 = bu_get_file_size_now(a0, a1);
     return uVar2;
 }
 
@@ -15430,10 +15430,10 @@ u32 shinobi_sub_1fc682(u32 a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_1fc6e8  0x8c1fc6e8
- * area name: in the shinobi library code range
+ * buLoadFile_like  0x8c1fc6e8
+ * starts reading file a1 of drive a0 into a2 (a3 blocks); -1 while the drive is busy
  */
-u32 shinobi_sub_1fc6e8(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 buLoadFile_like(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 ain0;
@@ -15503,10 +15503,10 @@ u32 shinobi_sub_1fc79e(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0) {
 }
 
 /*
- * shinobi_sub_1fc7fc  0x8c1fc7fc
- * area name: in the shinobi library code range
+ * buLoadFileEx_like  0x8c1fc7fc
+ * starts a drive-operation-0xe read of file a1 into a2; -1 while the drive is busy
  */
-u32 shinobi_sub_1fc7fc(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 buLoadFileEx_like(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 in_stack_00000000;
@@ -15862,8 +15862,8 @@ u32 shinobi_sub_1fce50(u32 a0) {
 /*
  * slot80_get_active  0x8c1fce88
  * +4 of entry a0 in the 0x80-byte table at 0x8c475fc0
- * called by: shinobi_sub_1fbe12, shinobi_sub_1fbe1a, shinobi_sub_1fbfd2, shinobi_sub_1fc00e, shinobi_sub_1fc04e,
- * shinobi_sub_1fc07c, shinobi_sub_1fc13c, shinobi_sub_1fc16a (+30 more)
+ * called by: buDeleteFile_like, buGetFileSize_like, buGetFreeBlocks_like, buIsExistFile_like, buLoadFileEx_like,
+ * buLoadFile_like, bu_get_game_file_name, shinobi_sub_1fbe12 (+30 more)
  */
 u32 slot80_get_active(int a0) {
     return *(u32 *)(a0 * 0x80 + 0x8c475fc0 + 4);
@@ -15872,8 +15872,8 @@ u32 slot80_get_active(int a0) {
 /*
  * slot80_set_8  0x8c1fce98
  * +8 of entry a0 in the 0x80-byte table at 0x8c475fc0 = a1
- * called by: shinobi_sub_1fbfd2, shinobi_sub_1fc00e, shinobi_sub_1fc07c, shinobi_sub_1fc360, shinobi_sub_1fc3a6,
- * shinobi_sub_1fc428, shinobi_sub_1fc472, shinobi_sub_1fc476 (+11 more)
+ * called by: buDeleteFile_like, buLoadFileEx_like, buLoadFile_like, shinobi_sub_1fbfd2, shinobi_sub_1fc00e,
+ * shinobi_sub_1fc07c, shinobi_sub_1fc360, shinobi_sub_1fc3a6 (+11 more)
  */
 u32 slot80_set_8(int a0, u32 a1) {
     u32 in_r0;
@@ -15885,8 +15885,8 @@ u32 slot80_set_8(int a0, u32 a1) {
 /*
  * slot80_set_params  0x8c1fcea8
  * stores six parameters in entry a0 of the table at 0x8c475fc0 and marks it active
- * called by: shinobi_sub_1fbfd2, shinobi_sub_1fc00e, shinobi_sub_1fc07c, shinobi_sub_1fc360, shinobi_sub_1fc3a6,
- * shinobi_sub_1fc428, shinobi_sub_1fc472, shinobi_sub_1fc476 (+11 more)
+ * called by: buDeleteFile_like, buLoadFileEx_like, buLoadFile_like, shinobi_sub_1fbfd2, shinobi_sub_1fc00e,
+ * shinobi_sub_1fc07c, shinobi_sub_1fc360, shinobi_sub_1fc3a6 (+11 more)
  */
 u32 slot80_set_params(int a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8) {
     u32 in_r0;
@@ -15928,8 +15928,8 @@ u32 shinobi_sub_1fcecc(int a0, u8 *a1) {
 /*
  * shinobi_sub_1fcef8  0x8c1fcef8
  * area name: in the shinobi library code range
- * called by: shinobi_sub_1fc472, shinobi_sub_1fc476, shinobi_sub_1fc504, shinobi_sub_1fc604, shinobi_sub_1fc6e8,
- * shinobi_sub_1fc740, shinobi_sub_1fc79e, shinobi_sub_1fc7fc (+1 more)
+ * called by: buDeleteFile_like, buLoadFileEx_like, buLoadFile_like, shinobi_sub_1fc476, shinobi_sub_1fc504,
+ * shinobi_sub_1fc604, shinobi_sub_1fc740, shinobi_sub_1fc79e (+1 more)
  */
 u32 shinobi_sub_1fcef8(int a0, char *a1, char *a2) {
     char cVar1;
@@ -16353,8 +16353,8 @@ u32 cmp_512_bytes(char *a0, char *a1) {
 /*
  * maple_device_ready  0x8c1fd510
  * 1 when a device is on logical port a0 and its status has bit 1
- * called by: shinobi_sub_1fdd44, shinobi_sub_1fe236, shinobi_sub_1fe350, shinobi_sub_1fe466, shinobi_sub_1fe534,
- * shinobi_sub_1fe646, shinobi_sub_1fe7aa, shinobi_sub_1fe8f2 (+22 more)
+ * called by: bu_get_file_size_now, bu_get_free_blocks_now, bu_get_game_file_name_now, bu_is_exist_file_now,
+ * shinobi_sub_1fdd44, shinobi_sub_1fe236, shinobi_sub_1fe466, shinobi_sub_1fe534 (+22 more)
  */
 u32 maple_device_ready(int a0, u32 a1) {
     char *pcVar1;
@@ -16373,8 +16373,8 @@ u32 maple_device_ready(int a0, u32 a1) {
 /*
  * maple_device_ready_idle  0x8c1fd550
  * maple_device_ready and the bus is not busy
- * called by: shinobi_sub_1fd1e2, shinobi_sub_1fd312, shinobi_sub_1fda7e, shinobi_sub_1fdd44, shinobi_sub_1fde30,
- * shinobi_sub_1fe236, shinobi_sub_1fe350, shinobi_sub_1fe466 (+26 more)
+ * called by: bu_get_file_size_now, bu_get_free_blocks_now, bu_get_game_file_name_now, bu_is_exist_file_now,
+ * shinobi_sub_1fd1e2, shinobi_sub_1fd312, shinobi_sub_1fda7e, shinobi_sub_1fdd44 (+26 more)
  */
 u32 maple_device_ready_idle(int a0, u32 a1) {
     char *pcVar1;
@@ -16868,8 +16868,8 @@ u32 shinobi_sub_1fdc80(int a0) {
 /*
  * vmu_drive_reset  0x8c1fdd1a
  * clears a mounted drive's state; -255 when the drive is not mounted
- * called by: shinobi_sub_1fc04e, shinobi_sub_1fdd44, shinobi_sub_1fe236, shinobi_sub_1fe350, shinobi_sub_1fe466,
- * shinobi_sub_1fe534, shinobi_sub_1fe646, shinobi_sub_1fe7aa (+23 more)
+ * called by: bu_get_file_size_now, bu_get_free_blocks_now, bu_get_game_file_name_now, bu_is_exist_file_now,
+ * shinobi_sub_1fc04e, shinobi_sub_1fdd44, shinobi_sub_1fe236, shinobi_sub_1fe466 (+23 more)
  */
 int vmu_drive_reset(int a0) {
     int iVar1;
@@ -17184,11 +17184,11 @@ int shinobi_sub_1fe236(int a0, int a1) {
                 shinobi_sub_200c82(a1 + 0x30, auStack_1c);
                 *(short *)(a1 + 0x20) = (short)**(u32 **)(iVar7 + 0x1c) + 1;
                 *(short *)(a1 + 0x22) = (short)*(u32 *)(*(int *)(iVar7 + 0x1c) + 0x30);
-                uVar3 = shinobi_sub_1fe350(a0, 0);
+                uVar3 = bu_get_free_blocks_now(a0, 0);
                 *(short *)(a1 + 0x26) = (short)uVar3;
                 *(u16 *)(a1 + 0x24) = *(u16 *)(a1 + 0x26);
                 *(short *)(a1 + 0x28) = (short)*(u32 *)(*(int *)(iVar7 + 0x1c) + 0x38);
-                uVar3 = shinobi_sub_1fe350(a0, 1);
+                uVar3 = bu_get_free_blocks_now(a0, 1);
                 *(short *)(a1 + 0x2a) = (short)uVar3;
                 *(short *)(a1 + 0x2c) = (short)*(u32 *)(*(int *)(iVar7 + 0x1c) + 0x2c) + 1;
                 *(u16 *)(a1 + 0x2e) = (u16) * (u8 *)(*(int *)(iVar7 + 0x20) + 0x4e);
@@ -17200,11 +17200,11 @@ int shinobi_sub_1fe236(int a0, int a1) {
 }
 
 /*
- * shinobi_sub_1fe350  0x8c1fe350
- * area name: in the shinobi library code range
- * called by: shinobi_sub_1fc16a, shinobi_sub_1fe236, shinobi_sub_200f2c, shinobi_sub_20112c
+ * bu_get_free_blocks_now  0x8c1fe350
+ * counts the free (0xfffc) FAT blocks of drive a0, else a negative bu error
+ * called by: buGetFreeBlocks_like, shinobi_sub_1fe236, shinobi_sub_200f2c, shinobi_sub_20112c
  */
-u32 shinobi_sub_1fe350(int a0, int a1) {
+u32 bu_get_free_blocks_now(int a0, int a1) {
     int iVar1;
     int iVar2;
     u32 uVar3;
@@ -18017,11 +18017,11 @@ int shinobi_sub_1fee6c(int a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_1fef5a  0x8c1fef5a
- * area name: in the shinobi library code range
- * called by: shinobi_sub_1fc564
+ * bu_is_exist_file_now  0x8c1fef5a
+ * 0 when file a1 is in the directory of drive a0, else a negative bu error
+ * called by: buIsExistFile_like
  */
-int shinobi_sub_1fef5a(int a0, u32 a1) {
+int bu_is_exist_file_now(int a0, u32 a1) {
     int iVar1;
     u32 ar5_00;
     u8 auStack_34[48];
@@ -18717,11 +18717,11 @@ u32 shinobi_sub_1ffa54(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1ffb70  0x8c1ffb70
- * area name: in the shinobi library code range
- * called by: shinobi_sub_1fc654, shinobi_sub_200e8a, shinobi_sub_200f2c, shinobi_sub_2013c2
+ * bu_get_file_size_now  0x8c1ffb70
+ * size in blocks of file a1 from the directory of drive a0, else a negative bu error
+ * called by: buGetFileSize_like, shinobi_sub_200e8a, shinobi_sub_200f2c, shinobi_sub_2013c2
  */
-int shinobi_sub_1ffb70(int a0, u32 a1, u32 unused_a2, u32 a3) {
+int bu_get_file_size_now(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     u8 auStack_34[40];
@@ -18755,11 +18755,11 @@ int shinobi_sub_1ffb70(int a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1ffc0a  0x8c1ffc0a
- * area name: in the shinobi library code range
- * called by: shinobi_sub_1fc258, shinobi_sub_200038
+ * bu_get_game_file_name_now  0x8c1ffc0a
+ * copies the 12-character name of drive a0's game file into a1, else a negative bu error
+ * called by: bu_get_game_file_name, shinobi_sub_200038
  */
-int shinobi_sub_1ffc0a(int a0, int a1) {
+int bu_get_game_file_name_now(int a0, int a1) {
     int iVar1;
     int iVar2;
     u8 auStack_38[16];

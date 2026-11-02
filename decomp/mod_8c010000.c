@@ -19133,10 +19133,10 @@ u32 memcard_run_request(int *a0, u32 a1, u32 a2, u32 a3) {
     if ((iVar2 < 0xe) && (-1 < iVar2)) {
         switch (iVar2) {
         case 0:
-            uVar1 = game_sub_01c1a4(a0);
+            uVar1 = memcard_op_load(a0);
             break;
         case 1:
-            uVar1 = game_sub_01c260(a0);
+            uVar1 = memcard_op_load_raw(a0);
             break;
         case 2:
             iVar2 = game_sub_01aa94(a0);
@@ -19156,31 +19156,31 @@ u32 memcard_run_request(int *a0, u32 a1, u32 a2, u32 a3) {
             uVar1 = game_sub_01c0e4(a0);
             break;
         case 5:
-            uVar1 = game_sub_01c450(a0);
+            uVar1 = memcard_op_delete(a0);
             break;
         case 6:
-            uVar1 = game_sub_01c4d8(a0);
+            uVar1 = memcard_op_exist(a0);
             break;
         case 7:
-            uVar1 = game_sub_01c560(a0, a1, a2, a3);
+            uVar1 = memcard_op_game_name_check(a0, a1, a2, a3);
             break;
         case 8:
-            uVar1 = game_sub_01c320(a0);
+            uVar1 = memcard_op_file_size(a0);
             break;
         case 9:
-            uVar1 = game_sub_01c3c4(a0);
+            uVar1 = memcard_op_free_blocks(a0);
             break;
         case 10:
-            uVar1 = game_sub_01c6f4(a0);
+            uVar1 = memcard_op_condition_a(a0);
             break;
         case 0xb:
-            uVar1 = game_sub_01c774(a0);
+            uVar1 = memcard_op_condition_b(a0);
             break;
         case 0xc:
-            uVar1 = game_sub_01c7f4(a0, a1, a2, a3);
+            uVar1 = memcard_op_lcd_a(a0, a1, a2, a3);
             break;
         case 0xd:
-            uVar1 = game_sub_01c860(a0, a1, a2, a3);
+            uVar1 = memcard_op_lcd_b(a0, a1, a2, a3);
         }
     }
     return uVar1;
@@ -19281,8 +19281,8 @@ u32 memcard_flush_and_close(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * memcard_queue_request  0x8c01ab78
  * appends a request (op a1, file name a2) to the 128-entry memory-card queue; returns its id or -1
- * called by: game_sub_01af14, game_sub_01b4f0, game_sub_01b70c, game_sub_01b87c, game_sub_01b9b0, game_sub_01ba68,
- * game_sub_01bb6c, game_sub_01bbf8 (+5 more)
+ * called by: memcard_queue_condition_a, memcard_queue_condition_b, memcard_queue_delete, memcard_queue_exist,
+ * memcard_queue_file_size, memcard_queue_free_blocks, memcard_queue_game_name_check, memcard_queue_lcd_b (+5 more)
  */
 u32 memcard_queue_request(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -19321,8 +19321,8 @@ u32 memcard_queue_request(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * wait_state_rtc_10s  0x8c01acd0
  * runs the sound server while slot a1's state (+0x2450) is 2 or 3, for at most 10 RTC seconds
- * called by: CSeamanDomain_sub_01b920, CSeamanDomain_sub_01b9e4, game_sub_01ae98, game_sub_01b144, game_sub_01bb00,
- * memcard_check_file_wait, memcard_load_raw_wait, memcard_load_wait (+2 more)
+ * called by: game_sub_01ae98, game_sub_01b144, game_sub_01bb00, memcard_check_file_wait, memcard_file_data_size_wait,
+ * memcard_free_bytes_wait, memcard_load_raw_wait, memcard_load_wait (+2 more)
  */
 u32 wait_state_rtc_10s(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -19412,7 +19412,7 @@ u32 memcard_save_start(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar2;
 
     if (g_8c2791b0 == 3) {
-        iVar2 = game_sub_01af14(a0, a1, a2, a3);
+        iVar2 = memcard_queue_save(a0, a1, a2, a3);
         if (iVar2 < 0) {
             uVar1 = 0xffffffff;
         } else {
@@ -19448,11 +19448,11 @@ u32 game_sub_01ae98(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_01af14  0x8c01af14
- * area name: game code; nothing names its area yet
+ * memcard_queue_save  0x8c01af14
+ * queues a save of a3 bytes from a2 as file a1 with a VMS header (op 2); request id or -1
  * called by: memcard_save_start
  */
-int game_sub_01af14(int a0, u32 a1, u32 a2, u32 a3) {
+int memcard_queue_save(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int ar4_00;
     u32 ar5_00;
@@ -19494,7 +19494,7 @@ int game_sub_01af14(int a0, u32 a1, u32 a2, u32 a3) {
             uStack_24 = 0x5380;
             uVar4 = 0x5380;
             ar5_00 = (u32)uStack_2c;
-            iVar2 = shinobi_sub_2017a8(1, ar5_00, 0x5380);
+            iVar2 = buCalcBackupFileSize_like(1, ar5_00, 0x5380);
             iVar2 = malloc_thunk(iVar2 << 9, ar5_00, uVar4, ar7_00);
             if (iVar2 == 0) {
                 iVar1 = -1;
@@ -19554,7 +19554,7 @@ u32 game_sub_01b144(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 
     iVar1 = -0x22c;
     *(u32 *)((int)aiStack_20 + iVar1 + 8) = a2;
     ar7_00 = a3;
-    uVar2 = shinobi_sub_1fc258(g_8c2791b4, a1);
+    uVar2 = bu_get_game_file_name(g_8c2791b4, a1);
     *(u32 *)((int)&s16 + iVar1) = uVar2;
     if (0xffffff05 != *(int *)((int)&s16 + iVar1)) {
         if (*(int *)((int)&s16 + iVar1) != 0) {
@@ -19567,11 +19567,11 @@ u32 game_sub_01b144(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 
         }
     }
     uVar3 = 1;
-    uVar2 = shinobi_sub_1fc16a(g_8c2791b4, 1);
+    uVar2 = buGetFreeBlocks_like(g_8c2791b4, 1);
     *(u32 *)((int)&s8 + iVar1) = uVar2;
     *(u32 *)(&stack0xffffffec + iVar1) = *(u32 *)((int)&s8 + iVar1);
     if ((int)((*(int *)(&stack0xffffffec + iVar1) * 0x200 - 0x280) - a3) < 0) {
-        uVar2 = CSeamanDomain_sub_01b9e4(a0, uVar3, a2, ar7_00);
+        uVar2 = memcard_free_bytes_wait(a0, uVar3, a2, ar7_00);
         *(u32 *)((int)&s4 + iVar1) = uVar2;
         if (*(u32 *)((int)&s4 + iVar1) < a3) {
             return 0;
@@ -19664,7 +19664,7 @@ u32 memcard_save_vm_start(int a0, u32 a1, u32 a2, u32 a3) {
         if (0x600 < a3) {
             uVar1 = 0xffffffff;
         } else {
-            iVar2 = game_sub_01b4f0(a0, a1, a2, a3);
+            iVar2 = memcard_queue_save_raw(a0, a1, a2, a3);
             if (iVar2 < 0) {
                 uVar1 = 0xffffffff;
             } else {
@@ -19701,11 +19701,11 @@ u32 memcard_save_vm_wait(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_01b4f0  0x8c01b4f0
- * area name: game code; nothing names its area yet
+ * memcard_queue_save_raw  0x8c01b4f0
+ * queues a save of a3 bytes from a2 as file a1 without a header (op 4); request id or -1
  * called by: memcard_save_vm_start
  */
-int game_sub_01b4f0(int a0, u32 a1, u32 a2, u32 a3) {
+int memcard_queue_save_raw(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     int ar4_00;
@@ -19734,7 +19734,7 @@ int game_sub_01b4f0(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * bytes_to_512_blocks_wrap  0x8c01b5ac
  * only calls bytes_to_512_blocks
- * called by: game_sub_01b70c
+ * called by: memcard_queue_load
  */
 u32 bytes_to_512_blocks_wrap(u32 unused_a0, int a1) {
     u32 uVar1;
@@ -19746,7 +19746,7 @@ u32 bytes_to_512_blocks_wrap(u32 unused_a0, int a1) {
 /*
  * bytes_to_512_blocks  0x8c01b5dc
  * a1 rounded up to 512-byte blocks
- * called by: bytes_to_512_blocks_wrap, game_sub_01b4f0, game_sub_01b87c, vmu_file_add_with_icon
+ * called by: bytes_to_512_blocks_wrap, memcard_queue_load_raw, memcard_queue_save_raw, vmu_file_add_with_icon
  */
 u32 bytes_to_512_blocks(u32 unused_a0, u32 a1) {
     u32 uVar1;
@@ -19778,7 +19778,7 @@ u32 memcard_load_wait(int a0, u32 a1, u32 a2, u32 a3) {
     if (g_8c2791b0 == 3) {
         ar6_00 = 0x5600;
         ar7_00 = a3;
-        ar5_00 = game_sub_01b70c(a0, a1, 0x5600, a3);
+        ar5_00 = memcard_queue_load(a0, a1, 0x5600, a3);
         if (ar5_00 < 0) {
             uVar1 = 0;
         } else {
@@ -19808,11 +19808,11 @@ u32 memcard_load_wait(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_01b70c  0x8c01b70c
- * area name: game code; nothing names its area yet
+ * memcard_queue_load  0x8c01b70c
+ * queues a load of file a1 (op 0) with a buffer for a2 bytes; request id or -1
  * called by: memcard_load_wait
  */
-int game_sub_01b70c(int a0, u32 a1, u32 a2, u32 a3) {
+int memcard_queue_load(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -19848,7 +19848,7 @@ u32 memcard_load_raw_wait(int a0, u32 a1, u32 a2, u32 a3) {
     if (g_8c2791b0 == 3) {
         uVar1 = a3;
         ar7_00 = a3;
-        ar5_00 = game_sub_01b87c(a0, a1, a3, a3);
+        ar5_00 = memcard_queue_load_raw(a0, a1, a3, a3);
         if (ar5_00 < 0) {
             uVar1 = 0;
         } else {
@@ -19871,11 +19871,11 @@ u32 memcard_load_raw_wait(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_01b87c  0x8c01b87c
- * area name: game code; nothing names its area yet
+ * memcard_queue_load_raw  0x8c01b87c
+ * queues a raw load of file a1 (op 1) with a buffer for a2 bytes; request id or -1
  * called by: memcard_load_raw_wait
  */
-int game_sub_01b87c(int a0, u32 a1, u32 a2, u32 a3) {
+int memcard_queue_load_raw(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -19897,16 +19897,16 @@ int game_sub_01b87c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CSeamanDomain_sub_01b920  0x8c01b920
- * area name: only called from CSeamanDomain methods
+ * memcard_file_data_size_wait  0x8c01b920
+ * data bytes of file a1 (blocks*512 minus the 0x280 header), waiting up to 10 s; -1 on failure
  * called by: CSeamanDomain_Init
  */
-int CSeamanDomain_sub_01b920(int a0, u32 a1, u32 a2, u32 a3) {
+int memcard_file_data_size_wait(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
 
     if (g_8c2791b0 == 3) {
-        iVar1 = game_sub_01b9b0(a0, a1, a2, a3);
+        iVar1 = memcard_queue_file_size(a0, a1, a2, a3);
         if (iVar1 < 0) {
             iVar1 = -1;
         } else {
@@ -19924,11 +19924,11 @@ int CSeamanDomain_sub_01b920(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_01b9b0  0x8c01b9b0
- * area name: game code; nothing names its area yet
- * called by: CSeamanDomain_sub_01b920
+ * memcard_queue_file_size  0x8c01b9b0
+ * queues reading the size of file a1 (op 8)
+ * called by: memcard_file_data_size_wait
  */
-int game_sub_01b9b0(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
+int memcard_queue_file_size(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
 
     iVar1 = memcard_queue_request(a0, 8, a1, a3);
@@ -19939,16 +19939,16 @@ int game_sub_01b9b0(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * CSeamanDomain_sub_01b9e4  0x8c01b9e4
- * area name: only called from CSeamanDomain methods
+ * memcard_free_bytes_wait  0x8c01b9e4
+ * free bytes on the card, waiting up to 10 s; -1 on failure
  * called by: CSeamanDomain_Init, game_sub_01b144
  */
-int CSeamanDomain_sub_01b9e4(int a0, u32 a1, u32 a2, u32 a3) {
+int memcard_free_bytes_wait(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
 
     if (g_8c2791b0 == 3) {
-        iVar1 = game_sub_01ba68(a0, a1, a2, a3);
+        iVar1 = memcard_queue_free_blocks(a0, a1, a2, a3);
         if (iVar1 < 0) {
             iVar1 = -1;
         } else {
@@ -19966,11 +19966,11 @@ int CSeamanDomain_sub_01b9e4(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_01ba68  0x8c01ba68
- * area name: game code; nothing names its area yet
- * called by: CSeamanDomain_sub_01b9e4
+ * memcard_queue_free_blocks  0x8c01ba68
+ * queues reading the free block count (op 9)
+ * called by: memcard_free_bytes_wait
  */
-int game_sub_01ba68(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int memcard_queue_free_blocks(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
 
     iVar1 = memcard_queue_request(a0, 9, (&DATA_8c12fb18) + 0x11, a3);
@@ -19981,16 +19981,16 @@ int game_sub_01ba68(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_01baa0  0x8c01baa0
- * area name: game code; nothing names its area yet
+ * memcard_delete_start  0x8c01baa0
+ * starts deleting file a1 when the card is ready; request id or -1
  * called by: game_sub_01bb00
  */
-u32 game_sub_01baa0(int a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 memcard_delete_start(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     int iVar2;
 
     if (g_8c2791b0 == 3) {
-        iVar2 = game_sub_01bb6c(a0, a1, unused_a2, a3);
+        iVar2 = memcard_queue_delete(a0, a1, unused_a2, a3);
         if (iVar2 < 0) {
             uVar1 = 0xffffffff;
         } else {
@@ -20012,7 +20012,7 @@ u32 game_sub_01bb00(u32 a0, u32 a1, u32 a2, u32 a3) {
     int ar5_00;
 
     if (g_8c2791b0 == 3) {
-        ar5_00 = game_sub_01baa0(a0, a1, a2, a3);
+        ar5_00 = memcard_delete_start(a0, a1, a2, a3);
         if (ar5_00 < 0) {
             uVar1 = 0;
         } else {
@@ -20026,11 +20026,11 @@ u32 game_sub_01bb00(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_01bb6c  0x8c01bb6c
- * area name: game code; nothing names its area yet
- * called by: game_sub_01baa0
+ * memcard_queue_delete  0x8c01bb6c
+ * queues deleting file a1 (op 5)
+ * called by: memcard_delete_start
  */
-int game_sub_01bb6c(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
+int memcard_queue_delete(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
 
     iVar1 = memcard_queue_request(a0, 5, a1, a3);
@@ -20050,7 +20050,7 @@ u32 memcard_check_file_wait(u32 a0, u32 a1, u32 a2, u32 a3) {
     int ar5_00;
 
     if (g_8c2791b0 == 3) {
-        ar5_00 = game_sub_01bbf8(a0, a1, a2, a3);
+        ar5_00 = memcard_queue_exist(a0, a1, a2, a3);
         if (ar5_00 < 0) {
             uVar1 = 0;
         } else {
@@ -20063,11 +20063,11 @@ u32 memcard_check_file_wait(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_01bbf8  0x8c01bbf8
- * area name: game code; nothing names its area yet
+ * memcard_queue_exist  0x8c01bbf8
+ * queues an existence check of file a1 (op 6)
  * called by: memcard_check_file_wait
  */
-int game_sub_01bbf8(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
+int memcard_queue_exist(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
 
     iVar1 = memcard_queue_request(a0, 6, a1, a3);
@@ -20089,7 +20089,7 @@ int memcard_stat_file_wait(int a0, u32 a1, u8 *a2, u32 a3) {
 
     if (g_8c2791b0 == 3) {
         ar6_00 = a2;
-        ar5_00 = game_sub_01bcc0(a0, a1, a2, a3);
+        ar5_00 = memcard_queue_game_name_check(a0, a1, a2, a3);
         if (ar5_00 < 0) {
             iVar1 = 0;
         } else {
@@ -20106,11 +20106,11 @@ int memcard_stat_file_wait(int a0, u32 a1, u8 *a2, u32 a3) {
 }
 
 /*
- * game_sub_01bcc0  0x8c01bcc0
- * area name: game code; nothing names its area yet
+ * memcard_queue_game_name_check  0x8c01bcc0
+ * queues comparing the drive's game file name with a1 (op 7)
  * called by: memcard_stat_file_wait
  */
-int game_sub_01bcc0(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
+int memcard_queue_game_name_check(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
 
     iVar1 = memcard_queue_request(a0, 7, a1, a3);
@@ -20130,7 +20130,7 @@ u32 game_sub_01bcf4(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar2;
 
     if (g_8c2791b0 == 3) {
-        iVar2 = game_sub_01bd50(a0, unused_a1, unused_a2, a3);
+        iVar2 = memcard_queue_condition_a(a0, unused_a1, unused_a2, a3);
         if (iVar2 < 0) {
             uVar1 = 0xffffffff;
         } else {
@@ -20143,11 +20143,11 @@ u32 game_sub_01bcf4(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_01bd50  0x8c01bd50
- * area name: game code; nothing names its area yet
+ * memcard_queue_condition_a  0x8c01bd50
+ * queues a Maple set-condition with the bytes at 8c12fb10 (op 10)
  * called by: game_sub_01bcf4
  */
-int game_sub_01bd50(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int memcard_queue_condition_a(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
 
     iVar1 = memcard_queue_request(a0, 10, (&DATA_8c12fb18) + 0x11, a3);
@@ -20167,7 +20167,7 @@ u32 game_sub_01bd88(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar2;
 
     if (g_8c2791b0 == 3) {
-        iVar2 = game_sub_01bde4(a0, unused_a1, unused_a2, a3);
+        iVar2 = memcard_queue_condition_b(a0, unused_a1, unused_a2, a3);
         if (iVar2 < 0) {
             uVar1 = 0xffffffff;
         } else {
@@ -20180,11 +20180,11 @@ u32 game_sub_01bd88(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_01bde4  0x8c01bde4
- * area name: game code; nothing names its area yet
+ * memcard_queue_condition_b  0x8c01bde4
+ * queues a Maple set-condition with the bytes at 8c12fb14 (op 11)
  * called by: game_sub_01bd88
  */
-int game_sub_01bde4(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int memcard_queue_condition_b(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
 
     iVar1 = memcard_queue_request(a0, 0xb, (&DATA_8c12fb18) + 0x11, a3);
@@ -20205,7 +20205,7 @@ u32 game_sub_01be1c(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
     if (g_8c2791b0 == 3) {
         if (*(int *)(a0 + 0x18) < 1) {
-            iVar2 = game_sub_01be84(a0, unused_a1, unused_a2, a3);
+            iVar2 = memcard_queue_lcd_b(a0, unused_a1, unused_a2, a3);
             if (iVar2 < 0) {
                 uVar1 = 0xffffffff;
             } else {
@@ -20221,11 +20221,11 @@ u32 game_sub_01be1c(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_01be84  0x8c01be84
- * area name: game code; nothing names its area yet
+ * memcard_queue_lcd_b  0x8c01be84
+ * queues an LCD-style block write from the buffer at +0x24 (op 13)
  * called by: game_sub_01be1c
  */
-int game_sub_01be84(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int memcard_queue_lcd_b(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
 
     iVar1 = memcard_queue_request(a0, 0xd, (&DATA_8c12fb18) + 0x11, a3);
@@ -20330,17 +20330,17 @@ int game_sub_01c0e4(int *a0) {
 }
 
 /*
- * game_sub_01c1a4  0x8c01c1a4
- * area name: game code; nothing names its area yet
+ * memcard_op_load  0x8c01c1a4
+ * queue op 0: buLoadFile_like
  * called by: memcard_run_request
  */
-int game_sub_01c1a4(int *a0) {
+int memcard_op_load(int *a0) {
     int iVar1;
     int iVar2;
 
-    iVar2 = (*(code *)(&shinobi_sub_1fc6e8))(g_8c2791b4, (int)a0 + 0x245c + *a0 * 0x28,
-                                             *(u32 *)((int)a0 + 0x2470 + *a0 * 0x28),
-                                             *(u32 *)((int)a0 + 0x246c + *a0 * 0x28));
+    iVar2 =
+        (*(code *)(&buLoadFile_like))(g_8c2791b4, (int)a0 + 0x245c + *a0 * 0x28,
+                                      *(u32 *)((int)a0 + 0x2470 + *a0 * 0x28), *(u32 *)((int)a0 + 0x246c + *a0 * 0x28));
     iVar1 = 0x2450;
     if (iVar2 != -1) {
         if (iVar2 == 0) {
@@ -20355,16 +20355,16 @@ int game_sub_01c1a4(int *a0) {
 }
 
 /*
- * game_sub_01c260  0x8c01c260
- * area name: game code; nothing names its area yet
+ * memcard_op_load_raw  0x8c01c260
+ * queue op 1: buLoadFileEx_like
  * called by: memcard_run_request
  */
-int game_sub_01c260(int *a0) {
+int memcard_op_load_raw(int *a0) {
     int iVar1;
     int iVar2;
 
-    iVar2 = (*(code *)(&shinobi_sub_1fc7fc))(g_8c2791b4, (int)a0 + 0x245c + *a0 * 0x28,
-                                             *(u32 *)((int)a0 + 0x2470 + *a0 * 0x28), 0x11);
+    iVar2 = (*(code *)(&buLoadFileEx_like))(g_8c2791b4, (int)a0 + 0x245c + *a0 * 0x28,
+                                            *(u32 *)((int)a0 + 0x2470 + *a0 * 0x28), 0x11);
     iVar1 = 0x2450;
     if (iVar2 != -1) {
         if (iVar2 == 0) {
@@ -20379,16 +20379,16 @@ int game_sub_01c260(int *a0) {
 }
 
 /*
- * game_sub_01c320  0x8c01c320
- * area name: game code; nothing names its area yet
+ * memcard_op_file_size  0x8c01c320
+ * queue op 8: buGetFileSize_like, result at +0x246c
  * called by: memcard_run_request
  */
-int game_sub_01c320(int *a0) {
+int memcard_op_file_size(int *a0) {
     int iVar1;
     int iVar2;
     int iVar3;
 
-    iVar2 = shinobi_sub_1fc654(g_8c2791b4, (int)a0 + 0x245c + *a0 * 0x28);
+    iVar2 = buGetFileSize_like(g_8c2791b4, (int)a0 + 0x245c + *a0 * 0x28);
     iVar1 = 0x2450;
     if (iVar2 < 0) {
         iVar3 = iVar2;
@@ -20405,16 +20405,16 @@ int game_sub_01c320(int *a0) {
 }
 
 /*
- * game_sub_01c3c4  0x8c01c3c4
- * area name: game code; nothing names its area yet
+ * memcard_op_free_blocks  0x8c01c3c4
+ * queue op 9: buGetFreeBlocks_like, result at +0x246c
  * called by: memcard_run_request
  */
-int game_sub_01c3c4(int *a0) {
+int memcard_op_free_blocks(int *a0) {
     int iVar1;
     int iVar2;
     int iVar3;
 
-    iVar2 = shinobi_sub_1fc16a(g_8c2791b4, 0);
+    iVar2 = buGetFreeBlocks_like(g_8c2791b4, 0);
     iVar1 = 0x2450;
     if (iVar2 < 0) {
         iVar3 = iVar2;
@@ -20431,15 +20431,15 @@ int game_sub_01c3c4(int *a0) {
 }
 
 /*
- * game_sub_01c450  0x8c01c450
- * area name: game code; nothing names its area yet
+ * memcard_op_delete  0x8c01c450
+ * queue op 5: buDeleteFile_like
  * called by: memcard_run_request
  */
-int game_sub_01c450(int *a0) {
+int memcard_op_delete(int *a0) {
     int iVar1;
     int iVar2;
 
-    iVar2 = shinobi_sub_1fc472(g_8c2791b4, (int)a0 + 0x245c + *a0 * 0x28);
+    iVar2 = buDeleteFile_like(g_8c2791b4, (int)a0 + 0x245c + *a0 * 0x28);
     iVar1 = 0x2450;
     if (iVar2 != -1) {
         if (iVar2 == 0) {
@@ -20454,15 +20454,15 @@ int game_sub_01c450(int *a0) {
 }
 
 /*
- * game_sub_01c4d8  0x8c01c4d8
- * area name: game code; nothing names its area yet
+ * memcard_op_exist  0x8c01c4d8
+ * queue op 6: buIsExistFile_like
  * called by: memcard_run_request
  */
-int game_sub_01c4d8(int *a0) {
+int memcard_op_exist(int *a0) {
     int iVar1;
     int iVar2;
 
-    iVar2 = shinobi_sub_1fc564(g_8c2791b4, (int)a0 + 0x245c + *a0 * 0x28);
+    iVar2 = buIsExistFile_like(g_8c2791b4, (int)a0 + 0x245c + *a0 * 0x28);
     iVar1 = 0x2450;
     if (iVar2 != -1) {
         if (iVar2 == 0) {
@@ -20477,15 +20477,15 @@ int game_sub_01c4d8(int *a0) {
 }
 
 /*
- * game_sub_01c560  0x8c01c560
- * area name: game code; nothing names its area yet
+ * memcard_op_game_name_check  0x8c01c560
+ * queue op 7: compares the game file name with the request's
  * called by: memcard_run_request
  */
-int game_sub_01c560(int *a0, u32 unused_a1, u32 a2, u32 a3) {
+int memcard_op_game_name_check(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     char acStack_28[36];
 
-    iVar1 = shinobi_sub_1fc258(g_8c2791b4, acStack_28);
+    iVar1 = bu_get_game_file_name(g_8c2791b4, acStack_28);
     if (iVar1 == -0xfb) {
         iVar1 = 0x2450;
         a0[*a0 * 10 + 0x914] = 4;
@@ -20514,7 +20514,7 @@ int game_sub_01c560(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * strcmp_01c68c  0x8c01c68c
- * called by: game_sub_01c560
+ * called by: memcard_op_game_name_check
  */
 u32 strcmp_01c68c(u8 *a0, u8 *a1) {
     u8 bVar1;
@@ -20531,11 +20531,11 @@ u32 strcmp_01c68c(u8 *a0, u8 *a1) {
 }
 
 /*
- * game_sub_01c6f4  0x8c01c6f4
- * area name: game code; nothing names its area yet
+ * memcard_op_condition_a  0x8c01c6f4
+ * queue op 10: Maple set-condition with the bytes at 8c12fb10
  * called by: memcard_run_request
  */
-int game_sub_01c6f4(int *a0) {
+int memcard_op_condition_a(int *a0) {
     int iVar1;
     int iVar2;
     u8 uStack_18;
@@ -20562,11 +20562,11 @@ int game_sub_01c6f4(int *a0) {
 }
 
 /*
- * game_sub_01c774  0x8c01c774
- * area name: game code; nothing names its area yet
+ * memcard_op_condition_b  0x8c01c774
+ * queue op 11: Maple set-condition with the bytes at 8c12fb14
  * called by: memcard_run_request
  */
-int game_sub_01c774(int *a0) {
+int memcard_op_condition_b(int *a0) {
     int iVar1;
     int iVar2;
     u8 uStack_18;
@@ -20593,11 +20593,11 @@ int game_sub_01c774(int *a0) {
 }
 
 /*
- * game_sub_01c7f4  0x8c01c7f4
- * area name: game code; nothing names its area yet
+ * memcard_op_lcd_a  0x8c01c7f4
+ * queue op 12: block write of the embedded buffer at +0x2c
  * called by: memcard_run_request
  */
-int game_sub_01c7f4(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int memcard_op_lcd_a(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int iVar2;
 
@@ -20614,11 +20614,11 @@ int game_sub_01c7f4(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_01c860  0x8c01c860
- * area name: game code; nothing names its area yet
+ * memcard_op_lcd_b  0x8c01c860
+ * queue op 13: block write of the buffer at +0x24
  * called by: memcard_run_request
  */
-int game_sub_01c860(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int memcard_op_lcd_b(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int iVar2;
 
@@ -20637,7 +20637,7 @@ int game_sub_01c860(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * game_sub_01c8c8  0x8c01c8c8
  * area name: game code; nothing names its area yet
- * called by: game_sub_01a630, game_sub_01c7f4, game_sub_01c860
+ * called by: game_sub_01a630, memcard_op_lcd_a, memcard_op_lcd_b
  */
 u32 game_sub_01c8c8(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
