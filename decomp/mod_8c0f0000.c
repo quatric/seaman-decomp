@@ -7658,7 +7658,7 @@ int game_sub_0fdde4(int a0, u32 a1, u32 a2) {
     set_fields_4_0(a0);
     Vec3_ctor_zero(a0 + 8, a1, a2);
     Vec3_ctor_zero(a0 + 0x18, a1, a2);
-    game_sub_015ff0(a0 + 0x2c);
+    Class_12984c_ctor(a0 + 0x2c);
     if (cVar1 == '\0') {
         *(u32 *)(a0 + 0x28) = 0x40400000;
     } else {
@@ -9090,7 +9090,7 @@ int game_sub_0ffb98(int a0, u32 a1, u32 a2, u32 a3) {
     Vec3_ctor_zero(a0 + 0x12c, a1, a2);
     Vec3_ctor_zero(a0 + 0x13c, a1, a2);
     Vec3_ctor_zero(a0 + 0x14c, a1, a2);
-    game_sub_015c2c(a0 + 0x15c);
+    Class_12988c_ctor(a0 + 0x15c);
     game_sub_101250(a0, a1, a2, a3);
     *(u32 *)(0xcc + a0) = 0;
     return a0;
@@ -9137,7 +9137,7 @@ u32 game_sub_0ffcb4(int a0, u32 a1) {
     ptr_list_build_1c(0x8c4413d4, 0x8c4413dc, 0x8c4413f4, 2);
     set_field_1c(a0 + 0x15c, 0x8c4413d4);
     set_field_20(a0 + 0x15c, u____8c1421cc);
-    game_sub_014a0c(a0 + 0x15c);
+    set_flag_28_20(a0 + 0x15c);
     uVar2 = get_field_1c_0ffd74(a0 + 0x15c);
     iVar1 = retry_until_done_020f90(a1, "UsrPointer.pvm", "GRAPHICS", uVar2);
     if (iVar1 == -1) {

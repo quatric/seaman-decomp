@@ -3660,7 +3660,7 @@ u32 Vec3_sub_0238b4(u32 a0, u32 a1, u32 a2, u32 a3) {
     } else {
         iVar5 = (int)(dVar2 / dVar2);
     }
-    ninja_sub_256ce0(auStack_54, iVar5, ar6_01, ar7_00, in_fr4);
+    njRotateY(auStack_54, iVar5, ar6_01, ar7_00, in_fr4);
     ar6_00 = auStack_6c;
     ar5_00 = &uStack_60;
     kamui_sub_21279c(auStack_54, ar5_00, ar6_00, ar7_00, in_fr4);
@@ -4176,21 +4176,21 @@ u32 njGetMatrix_wrap(u32 a0) {
 }
 
 /*
- * game_sub_023e98  0x8c023e98
- * area name: game code; nothing names its area yet
+ * ninja_sub_023e98  0x8c023e98
+ * area name: sits between ninja functions (same compilation unit)
  * called by: CTexture_sub_0d167c
  */
-u32 game_sub_023e98(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_sub_023e98(u32 a0, u32 a1, u32 a2, u32 a3) {
     ninja_sub_255d6c(a0, a1, a2, a3, a1);
     return a0;
 }
 
 /*
- * game_sub_023ebc  0x8c023ebc
- * area name: game code; nothing names its area yet
+ * ninja_sub_023ebc  0x8c023ebc
+ * area name: sits between ninja functions (same compilation unit)
  * called by: CTexture_sub_0d167c
  */
-u32 game_sub_023ebc(u32 a0) {
+u32 ninja_sub_023ebc(u32 a0) {
     u32 r6;
     u32 r7;
     u32 uVar1;
@@ -4201,32 +4201,32 @@ u32 game_sub_023ebc(u32 a0) {
 }
 
 /*
- * game_sub_023ef8  0x8c023ef8
- * area name: game code; nothing names its area yet
+ * njRotateY_wrap  0x8c023ef8
+ * only calls njRotateY
  * called by: CTexture_sub_0d167c
  */
-u32 game_sub_023ef8(u32 a0) {
+u32 njRotateY_wrap(u32 a0) {
     u32 r6;
     u32 r7;
     u32 uVar1;
     float in_fr4;
 
-    uVar1 = ninja_sub_256ce0(a0, (int)((in_fr4 * 65536.0) / 360.0), r6, r7, a0);
+    uVar1 = njRotateY(a0, (int)((in_fr4 * 65536.0) / 360.0), r6, r7, a0);
     return uVar1;
 }
 
 /*
- * game_sub_023f34  0x8c023f34
- * area name: game code; nothing names its area yet
+ * njRotateZ_wrap  0x8c023f34
+ * only calls njRotateZ
  * called by: CTexture_sub_0d167c
  */
-u32 game_sub_023f34(u32 a0) {
+u32 njRotateZ_wrap(u32 a0) {
     u32 r6;
     u32 r7;
     u32 uVar1;
     float in_fr4;
 
-    uVar1 = ninja_sub_256d7c(a0, (int)((in_fr4 * 65536.0) / 360.0), r6, r7, a0);
+    uVar1 = njRotateZ(a0, (int)((in_fr4 * 65536.0) / 360.0), r6, r7, a0);
     return uVar1;
 }
 

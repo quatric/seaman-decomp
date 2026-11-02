@@ -6296,7 +6296,7 @@ u32 game_sub_0c9ee0(int a0, u8 *a1, u8 *a2, u8 *a3) {
         ar4_00 = 0;
         matrix_push(0, a5, a2, a3, in_stack_ffffffa0);
         touch_fields_30_3c_wrap();
-        game_sub_019128();
+        rotate_y_degrees();
         matrix_scale_wrap(ar4_00, a5);
         game_sub_015adc(0x8c437030, a5, a2, a3);
         matrix_pop_n(1);

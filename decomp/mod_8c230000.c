@@ -9176,7 +9176,7 @@ u32 gfxlib_sub_234b10(u32 *a0, int a1, int a2, u32 a3) {
 /*
  * gfxlib_sub_234bc0  0x8c234bc0
  * area name: in the gfxlib library code range
- * called by: Class_12988c_sub_015e40
+ * called by: game_sub_015e40
  */
 u32 gfxlib_sub_234bc0(u32 *a0, int a1, u32 a2, int a3) {
     int iVar1;

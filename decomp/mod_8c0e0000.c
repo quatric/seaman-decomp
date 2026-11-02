@@ -292,7 +292,7 @@ u32 game_sub_0e0614(int a0, u32 a1, u32 a2, u32 a3) {
     uVar3 = a1;
     iVar1 = get_field_bb4_0e06e4(a0);
     Class_129974_ctor_wrap(auStack_5c, uVar3, a2);
-    game_sub_018f80(auStack_5c, a1);
+    set_vec3_and_w_30(auStack_5c, a1);
     iVar4 = 0;
     while (true) {
         if (iVar1 <= iVar4) {
@@ -2156,7 +2156,7 @@ int input_sub_0e2a14(int *a0, u32 a1, u32 a2, u32 a3) {
         uVar3 = a1;
         if (iVar1 == 1) {
             in_dr0 = (double)CONCAT44(0x43c58000, a0[0x412]);
-            if (((float)a0[0x412] == 395.0) && (iVar1 = input_sub_0e30f0(a1), iVar1 == 1)) {
+            if (((float)a0[0x412] == 395.0) && (iVar1 = input_up_left_right_off(a1), iVar1 == 1)) {
                 a0[0x409] = 2;
             }
         } else if (iVar1 == 2) {
@@ -2339,11 +2339,11 @@ u32 input_down_pressed_wrap(int a0) {
 }
 
 /*
- * input_sub_0e30f0  0x8c0e30f0
- * area name: sits between input functions (same compilation unit)
+ * input_up_left_right_off  0x8c0e30f0
+ * 1 when Up, Right and Left are all up on the controller at +0xcc
  * called by: game_sub_0e5238, input_sub_0e2a14, input_sub_0e3210
  */
-u32 input_sub_0e30f0(int a0) {
+u32 input_up_left_right_off(int a0) {
     int iVar1;
 
     iVar1 = input_up_off(*(u32 *)(0xcc + a0));
@@ -2491,7 +2491,7 @@ int input_sub_0e3210(int a0, u32 a1, u32 a2, u32 a3) {
         uVar2 = a1;
         if (iVar1 == 1) {
             in_dr0 = (double)CONCAT44(0x43c58000, *(float *)(a0 + 0x1048));
-            if ((*(float *)(a0 + 0x1048) == 395.0) && (iVar1 = input_sub_0e30f0(a1), iVar1 == 1)) {
+            if ((*(float *)(a0 + 0x1048) == 395.0) && (iVar1 = input_up_left_right_off(a1), iVar1 == 1)) {
                 *(u32 *)(a0 + 0x1024) = 2;
             }
         } else if (iVar1 == 2) {
@@ -3846,9 +3846,9 @@ u32 game_sub_0e5238(int *a0, u32 *a1, u32 a2, u32 a3) {
             pcVar10 = (code *)0x43c58000;
         } else {
             fVar8 = 395.0;
-            pcVar10 = input_sub_0e30f0;
+            pcVar10 = input_up_left_right_off;
         }
-        if ((fVar8 == (float)pcVar10) && (iVar2 = input_sub_0e30f0(a1), iVar2 == 1)) {
+        if ((fVar8 == (float)pcVar10) && (iVar2 = input_up_left_right_off(a1), iVar2 == 1)) {
             a0[0x409] = 2;
         }
     } else if ((iVar2 == 2) && (iVar2 = input_up_pressed_wrap_0e5998(a1), iVar2 == 1)) {
@@ -5443,7 +5443,7 @@ u32 Class_12b3b8_sub_0e7a78(int a0, u32 a1, u32 a2, u32 a3) {
                     uVar2 = 0;
                     matrix_push(0, a1, a2, a3, ain0);
                     touch_fields_30_3c_wrap();
-                    game_sub_019128();
+                    rotate_y_degrees();
                     game_sub_0190f0();
                     rotate_degrees();
                     matrix_scale_wrap(uVar2, a1);

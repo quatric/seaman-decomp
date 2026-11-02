@@ -3423,7 +3423,7 @@ u32 asr_sub_1235fc(int a0, u32 unused_a1, u32 a2, u32 a3) {
             }
         }
         if (*(short *)(a0 + 0x4c0) == 0) {
-            iVar4 = libc_sub_013dec(uVar1 - uVar5);
+            iVar4 = labs(uVar1 - uVar5);
             if ((int)(fVar6 * 0.01) < iVar4) {
                 *(u16 *)(a0 + 0x4b4) = 0;
             }
@@ -3630,7 +3630,7 @@ u32 asr_sub_123602(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     bVar21 = 0;
     bVar22 = (u8)((uVar16 & 0x80000) >> 0x13);
     bVar23 = (u8)((uVar16 & 0x100000) >> 0x14);
-    iVar3 = libc_sub_013dec(uVar18 - uVar7);
+    iVar3 = labs(uVar18 - uVar7);
     uVar16 = ((u32)bVar20 << 0xc | (u32)bVar21 << 0x12 | (u32)bVar22 << 0x13 | (u32)bVar23 << 0x14) & 0xffe7ffff;
     dVar11 = (double)CONCAT44(uVar12, 0x3c23d70a);
     uVar6 = (uVar16 & 0x80000) >> 0x13;

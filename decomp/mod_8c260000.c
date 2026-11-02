@@ -115,11 +115,11 @@ u32 cri_sub_260062(int a0) {
 }
 
 /*
- * cri_sub_26011e  0x8c26011e
- * area name: in the cri library code range
- * called by: cri_sub_26014c, cri_sub_260180
+ * memcpy_u16  0x8c26011e
+ * copies a2 16-bit values from a1 to a0
+ * called by: cri_sub_26014c, memcpy_u16_wrap
  */
-u32 cri_sub_26011e(u16 *a0, u16 *a1, int a2) {
+u32 memcpy_u16(u16 *a0, u16 *a1, int a2) {
     u16 uVar1;
     u32 in_r0;
 
@@ -142,20 +142,20 @@ u32 cri_sub_26014c(int a0, int a1, int a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = a3;
-    ain0 = cri_sub_26011e(a0, a1 * 2 + a0, a3);
-    uVar1 = cri_sub_26011e(a2 * 2 + a0, (a1 + a2) * 2 + a0, a3);
+    ain0 = memcpy_u16(a0, a1 * 2 + a0, a3);
+    uVar1 = memcpy_u16(a2 * 2 + a0, (a1 + a2) * 2 + a0, a3);
     return uVar1;
 }
 
 /*
- * cri_sub_260180  0x8c260180
- * area name: in the cri library code range
+ * memcpy_u16_wrap  0x8c260180
+ * only calls memcpy_u16
  * called by: cri_sub_260198
  */
-u32 cri_sub_260180(int a0, int a1, u32 unused_a2, u32 a3) {
+u32 memcpy_u16_wrap(int a0, int a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = cri_sub_26011e(a0, a1 * 2 + a0, a3);
+    uVar1 = memcpy_u16(a0, a1 * 2 + a0, a3);
     return uVar1;
 }
 
@@ -199,7 +199,7 @@ u32 cri_sub_260198(int a0) {
             uVar6 = cri_sub_26014c(ar4_00, ar5_00, uVar6, iVar7);
             return uVar6;
         }
-        uVar6 = cri_sub_260180(ar4_00, ar5_00, uVar6, iVar7);
+        uVar6 = memcpy_u16_wrap(ar4_00, ar5_00, uVar6, iVar7);
         return uVar6;
     }
     return 0xa4;
@@ -6720,7 +6720,7 @@ int sd_flush_host_commands(u32 unused_a0, u32 unused_a1, u32 a2) {
     } else {
         if (*(int *)(g_8c2784c0 + 0x160) != 1) {
             iVar2 = *(int *)(g_8c2784c0 + 0x1bc);
-            aica_sub_26870c(iVar2, &stack0xffffffdc);
+            aica_ram_read_byte(iVar2, &stack0xffffffdc);
             if ((char)in_stack_ffffffdc == '\0') {
                 iVar4 = 0;
                 iVar5 = *(int *)(g_8c2784c0 + 0x168);
@@ -7961,7 +7961,7 @@ int sd_sub_266288(int a0, u32 *a1, u32 a2) {
     } else if (a0 == 0) {
         ar5_00 = 0x7000103;
     } else {
-        aica_sub_26870c(*(char *)(a0 + 1) * 0x20 + *(int *)(g_8c2784c0 + 0x1b8), &stack0xfffffff0);
+        aica_ram_read_byte(*(char *)(a0 + 1) * 0x20 + *(int *)(g_8c2784c0 + 0x1b8), &stack0xfffffff0);
         *a1 = in_stack_fffffff0 & 0xff;
     }
     if (ar5_00 != 0) {
@@ -8991,8 +8991,8 @@ int sd_sub_266f38(int a0, u32 a1, u32 *a2) {
     } else if (a2 == NULL) {
         ar5_00 = 0x7000203;
     } else {
-        aica_sub_26870c(*(char *)(a0 + 1) * 0x40 + *(int *)(g_8c2784c0 + 0x1b8) + 0x400 + (char)a1 * 0x20,
-                        &stack0xfffffff0);
+        aica_ram_read_byte(*(char *)(a0 + 1) * 0x40 + *(int *)(g_8c2784c0 + 0x1b8) + 0x400 + (char)a1 * 0x20,
+                           &stack0xfffffff0);
         *a2 = in_stack_fffffff0 & 0xff;
     }
     if (ar5_00 != 0) {
@@ -10884,7 +10884,7 @@ u32 aica_sub_26868c(u32 a0, u16 *a1) {
 
 /*
  * aica_ram_2686d4  0x8c2686d4
- * called by: aica_ram_read_u8, aica_sub_26868c, aica_sub_26870c, sd_sub_2665b0, sd_sub_266ea8, sd_sub_267360,
+ * called by: aica_ram_read_byte, aica_ram_read_u8, aica_sub_26868c, sd_sub_2665b0, sd_sub_266ea8, sd_sub_267360,
  * sd_sub_2687c8
  */
 u32 aica_ram_2686d4(int a0, u32 a1) {
@@ -10895,11 +10895,11 @@ u32 aica_ram_2686d4(int a0, u32 a1) {
 }
 
 /*
- * aica_sub_26870c  0x8c26870c
- * area name: sits between aica functions (same compilation unit)
+ * aica_ram_read_byte  0x8c26870c
+ * reads the byte at a0 of sound RAM (below 2 MB) into *a1
  * called by: sd_flush_host_commands, sd_sub_266288, sd_sub_266f38
  */
-u32 aica_sub_26870c(u32 a0, u8 *a1) {
+u32 aica_ram_read_byte(u32 a0, u8 *a1) {
     u8 auStack_8[8];
 
     if ((int)a0 < 0x200000) {
@@ -14972,11 +14972,11 @@ u32 get_field_24_26b956(int a0) {
 }
 
 /*
- * game_sub_26b960  0x8c26b960
- * area name: game code; nothing names its area yet
+ * sr_get_imask_c  0x8c26b960
+ * another copy of sr_get_imask
  * called by: game_sub_26bb16, game_sub_26bbe2, game_sub_26bcaa
  */
-u32 game_sub_26b960(void) {
+u32 sr_get_imask_c(void) {
     u8 in_IMASK;
     u8 in_S;
     u8 in_T;
@@ -14985,11 +14985,11 @@ u32 game_sub_26b960(void) {
 }
 
 /*
- * game_sub_26b978  0x8c26b978
- * area name: game code; nothing names its area yet
+ * sr_with_imask_c  0x8c26b978
+ * another copy of sr_with_imask
  * called by: game_sub_26bb16, game_sub_26bbe2, game_sub_26bcaa
  */
-u32 game_sub_26b978(u32 unused_a0, u32 a1) {
+u32 sr_with_imask_c(u32 unused_a0, u32 a1) {
     u8 in_MD;
     u8 in_RB;
     u8 in_BL;
@@ -15183,7 +15183,7 @@ u32 game_sub_26bb16(int a0, int a1, u8 *a2, u32 *a3, u32 ain0) {
     }
     ar6_00 = a2;
     ar7_00 = a3;
-    uVar1 = game_sub_26b960();
+    uVar1 = sr_get_imask_c();
     iVar2 = a1 * 4;
     puVar3 = *(u32 **)(a0 + 0x18 + iVar2);
     if (puVar3 != NULL) {
@@ -15207,7 +15207,7 @@ u32 game_sub_26bb16(int a0, int a1, u8 *a2, u32 *a3, u32 ain0) {
     *a3 = 0;
     a3[1] = 0;
 LAB_8c26bbce:
-    uVar1 = game_sub_26b978(a0, uVar1);
+    uVar1 = sr_with_imask_c(a0, uVar1);
     return uVar1;
 }
 
@@ -15232,7 +15232,7 @@ u32 game_sub_26bbe2(int a0, int a1, int *a2, u32 unused_a3, u32 ain0) {
         }
     } else if ((0 < a2[1]) && (*a2 != 0)) {
         a6 = a2;
-        uVar1 = game_sub_26b960();
+        uVar1 = sr_get_imask_c();
         ar7_00 = 0;
         piVar2 = (int *)(a1 * 4 + a0 + 0x18);
         piVar3 = NULL;
@@ -15256,7 +15256,7 @@ u32 game_sub_26bbe2(int a0, int a1, int *a2, u32 unused_a3, u32 ain0) {
                 *piVar2 = (int)puVar4;
             }
         }
-        uVar1 = game_sub_26b978(a0, uVar1);
+        uVar1 = sr_with_imask_c(a0, uVar1);
         return uVar1;
     }
     return ain0;
@@ -15282,7 +15282,7 @@ u32 game_sub_26bcaa(int a0, int a1, int *a2, u32 a3, u32 ain0) {
         }
     } else if ((0 < a2[1]) && (*a2 != 0)) {
         a6 = a2;
-        uVar1 = game_sub_26b960();
+        uVar1 = sr_get_imask_c();
         iVar2 = a1 * 4;
         iVar3 = *(int *)(iVar2 + a0 + 0x18);
         if (((*(char *)(a0 + 5) == '\x01') && (iVar3 != 0)) && (*a2 + a2[1] == *(int *)(iVar3 + 8))) {
@@ -15302,7 +15302,7 @@ u32 game_sub_26bcaa(int a0, int a1, int *a2, u32 a3, u32 ain0) {
                 *(u32 **)(a0 + 0x18 + iVar2) = puVar4;
             }
         }
-        uVar1 = game_sub_26b978(a0, uVar1);
+        uVar1 = sr_with_imask_c(a0, uVar1);
         return uVar1;
     }
     return ain0;

@@ -10628,8 +10628,8 @@ int ninja_sub_255bf6(int a0, int a1, u32 a2, int *a3) {
 /*
  * ninja_sub_255d6c  0x8c255d6c
  * area name: in the ninja library code range
- * called by: CAnimal_sub_026968, Class_1299f8_m4_019588, Class_129a24_m1_019b68, game_sub_023e98, game_sub_02430c,
- * gfxlib_sub_2163d4, gfxlib_sub_2166e8, gfxlib_sub_22b7a8 (+8 more) decompiler: Heritage AFTER dead removal. Example
+ * called by: CAnimal_sub_026968, Class_1299f8_m4_019588, Class_129a24_m1_019b68, game_sub_02430c, gfxlib_sub_2163d4,
+ * gfxlib_sub_2166e8, gfxlib_sub_22b7a8, gfxlib_sub_22bb70 (+8 more) decompiler: Heritage AFTER dead removal. Example
  * location: s0xffffffe0 : 0x8c255f08
  */
 u32 ninja_sub_255d6c(u32 *a0, int a1, u32 a2, u32 a3, u32 ain0) {
@@ -11929,7 +11929,7 @@ u32 ninja_sub_2569e0(u32 *a0, int a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
  * ninja_sub_256a78  0x8c256a78
  * area name: in the ninja library code range
  * called by: Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12aeec_sub_0a481c, Class_12bec0_sub_0f5e0c,
- * Vec3_sub_02374c, game_sub_0190f0, game_sub_023ebc, game_sub_0ad354
+ * Vec3_sub_02374c, game_sub_0190f0, game_sub_0ad354, ninja_sub_023ebc
  */
 u32 ninja_sub_256a78(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -12146,12 +12146,12 @@ u32 njRotateXYZ(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 }
 
 /*
- * ninja_sub_256ce0  0x8c256ce0
- * area name: sits between ninja functions (same compilation unit)
- * called by: Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12aeec_sub_0a481c, Vec3_sub_0238b4, game_sub_019128,
- * game_sub_023ef8
+ * njRotateY  0x8c256ce0
+ * rotates matrix a0 (NULL: current) about Y by Ninja angle a1
+ * called by: Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12aeec_sub_0a481c, Vec3_sub_0238b4, njRotateY_wrap,
+ * rotate_y_degrees
  */
-u32 ninja_sub_256ce0(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 njRotateY(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -12217,11 +12217,11 @@ u32 ninja_sub_256ce0(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) 
 }
 
 /*
- * ninja_sub_256d7c  0x8c256d7c
- * area name: in the ninja library code range
- * called by: Class_129a24_m1_019b68, Class_12aeec_sub_0a481c, game_sub_023f34, rotate_degrees
+ * njRotateZ  0x8c256d7c
+ * rotates matrix a0 (NULL: current) about Z by Ninja angle a1
+ * called by: Class_129a24_m1_019b68, Class_12aeec_sub_0a481c, njRotateZ_wrap, rotate_degrees
  */
-u32 ninja_sub_256d7c(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 njRotateZ(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -12844,7 +12844,7 @@ u32 ninja_sub_25748c(int a0, int a1, u32 a2, u32 a3) {
 /*
  * ninja_sub_25754c  0x8c25754c
  * area name: sits between ninja functions (same compilation unit)
- * called by: game_sub_016014, game_sub_016068
+ * called by: Class_12984c_sub_016014, Class_12984c_sub_016068
  */
 u32 ninja_sub_25754c(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -18230,7 +18230,7 @@ int ninja_sub_25afc0(int a0, u32 a1, u32 a2) {
 /*
  * ninja_sub_25b044  0x8c25b044
  * area name: in the ninja library code range
- * called by: Class_12988c_sub_015e18, game_sub_0154c4
+ * called by: game_sub_0154c4, game_sub_015e18
  */
 u32 ninja_sub_25b044(int a0) {
     u32 uVar1;
@@ -18320,11 +18320,11 @@ u32 write_u32_le(u32 a0, u8 *a1) {
 }
 
 /*
- * ninja_sub_25b124  0x8c25b124
- * area name: in the ninja library code range
+ * put_u16_le  0x8c25b124
+ * stores a0 as a little-endian u16 at a1
  * called by: ninja_sub_25b12e
  */
-u32 ninja_sub_25b124(u32 a0, u8 *a1) {
+u32 put_u16_le(u32 a0, u8 *a1) {
     *a1 = (char)a0;
     a1[1] = (char)(a0 >> 8);
     return a0 >> 8;
@@ -18359,15 +18359,15 @@ u32 ninja_sub_25b12e(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s
     *(int *)((int)aiStack_24 + 0xd0 + iVar1 + 4) = a4_00 * a4 * 3;
     uVar2 = kamui_sub_20d082(ar4_00, iVar3);
     if (a0 != 0) {
-        ninja_sub_25b124((int)0x4d42, a0);
+        put_u16_le((int)0x4d42, a0);
         write_u32_le(*(u32 *)((int)aiStack_24 + 0xd0 + iVar1 + 4), a0 + 2);
         write_u32_le(0, a0 + 6);
         write_u32_le(0x36, a0 + 10);
         write_u32_le(0x28, a0 + 0xe);
         write_u32_le(a4_00, a0 + 0x12);
         write_u32_le(a4, a0 + 0x16);
-        ninja_sub_25b124(1, a0 + 0x1a);
-        ninja_sub_25b124(0x18, a0 + 0x1c);
+        put_u16_le(1, a0 + 0x1a);
+        put_u16_le(0x18, a0 + 0x1c);
         write_u32_le(0, a0 + 0x1e);
         write_u32_le(0, a0 + 0x22);
         write_u32_le(0, a0 + 0x26);
@@ -18524,8 +18524,8 @@ u32 ninja_sub_25b3a2(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * njSetTexture  0x8c25b3ec
  * makes a0 the current texture list (0x8c277b04); -1 for NULL
- * called by: CTexture_LoadFromCache, Class_129808_m10_0162bc, Class_129808_sub_016544, Class_12988c_sub_015e18,
- * Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0, Class_1298b8_m5_015720 (+13 more)
+ * called by: CTexture_LoadFromCache, Class_129808_m10_0162bc, Class_129808_sub_016544, Class_1298b8_m2_015588,
+ * Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0, Class_1298b8_m5_015720, Class_1298b8_m6_0157f8 (+13 more)
  */
 u32 njSetTexture(int a0) {
     if (a0 == 0) {

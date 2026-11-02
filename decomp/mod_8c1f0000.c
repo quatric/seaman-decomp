@@ -695,7 +695,7 @@ u32 shinobi_sub_1f08c8(u32 a0, u32 a1, int a2, u32 a3, u32 s0) {
         return 0xfffffffe;
     }
     a4 = a0;
-    a6 = shinobi_sub_1f5970(a0, a1, a2, a3);
+    a6 = maple_set_condition(a0, a1, a2, a3);
     if (0 < a6) {
         a2 = a6;
         shinobi_sub_1f0420(a4, s0, a6);
@@ -776,11 +776,11 @@ u32 shinobi_sub_1f097e(u8 *a0, u8 *a1, int a2) {
 }
 
 /*
- * shinobi_sub_1f0988  0x8c1f0988
- * area name: in the shinobi library code range
+ * memset_ff  0x8c1f0988
+ * fills a1 bytes at a0 with 0xff
  * called by: flashrom_open_partition, flashrom_sub_1f0e98, flashrom_sub_1f0e9c
  */
-u32 shinobi_sub_1f0988(u8 *a0, int a1) {
+u32 memset_ff(u8 *a0, int a1) {
     u32 in_r0;
 
     for (; 0 < a1; a1 = a1 + -1) {
@@ -1237,7 +1237,7 @@ u32 flashrom_open_partition(int a0, u32 a1, u32 unused_a2, u32 a3) {
                 g_8c2739d8[1] = (short)*(char *)((int)psVar1 + 0x45);
                 if ((g_8c2739d8[1] == 0) || (g_8c2739d8[1] == 1)) {
                     ar5_00 = *(u32 *)(g_8c2739d8 + 4);
-                    shinobi_sub_1f0988(*(u32 *)(g_8c2739d8 + 6), ar5_00);
+                    memset_ff(*(u32 *)(g_8c2739d8 + 6), ar5_00);
                     iVar3 = shinobi_sub_1f0a72(g_8c2739d8);
                     if (iVar3 != 0) {
                         return iVar3;
@@ -1283,7 +1283,7 @@ int flashrom_sub_1f0e98(int a0) {
             iVar2 = bios_flashrom_write(*(u32 *)(g_8c2739d8 + 4), ar5_01, 0x12);
             if (iVar2 == 0x12) {
                 ar5_00 = *(u32 *)(g_8c2739d8 + 8);
-                shinobi_sub_1f0988(*(u32 *)(g_8c2739d8 + 0xc), ar5_00);
+                memset_ff(*(u32 *)(g_8c2739d8 + 0xc), ar5_00);
                 iVar2 = shinobi_sub_1f0a72(g_8c2739d8);
                 if (iVar2 == 0) {
                     iVar2 = 0;
@@ -1325,7 +1325,7 @@ int flashrom_sub_1f0e9c(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
             iVar1 = bios_flashrom_write(*(u32 *)(*unaff_r14 + 4), iVar1 + 0x34, 0x12);
             if (iVar1 == 0x12) {
                 ar5_00 = *(u32 *)(*unaff_r14 + 8);
-                shinobi_sub_1f0988(*(u32 *)(*unaff_r14 + 0xc), ar5_00);
+                memset_ff(*(u32 *)(*unaff_r14 + 0xc), ar5_00);
                 iVar1 = shinobi_sub_1f0a72(*unaff_r14);
                 if (iVar1 == 0) {
                     iVar1 = 0;
@@ -3728,7 +3728,7 @@ u32 shinobi_sub_1f2a0a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * toupper  0x8c1f2a48
- * called by: shinobi_sub_1f2a74, shinobi_sub_1f2a80, shinobi_sub_1f2ae2, shinobi_sub_1f2ae6, shinobi_sub_1f2b42
+ * called by: name_hash_upper, shinobi_sub_1f2a74, shinobi_sub_1f2a80, shinobi_sub_1f2ae2, shinobi_sub_1f2ae6
  */
 int toupper(int a0) {
     if (('`' < (char)a0) && ((char)a0 < '{')) {
@@ -3932,11 +3932,11 @@ int shinobi_sub_1f2b1c(char *a0, char *a1) {
 }
 
 /*
- * shinobi_sub_1f2b42  0x8c1f2b42
- * area name: in the shinobi library code range
+ * name_hash_upper  0x8c1f2b42
+ * (0xda + the sum of the upper-cased characters of a0) >> 2, as a byte
  * called by: shinobi_sub_1f2b68, shinobi_sub_1f2b70, shinobi_sub_1f2cce
  */
-u32 shinobi_sub_1f2b42(char *a0) {
+u32 name_hash_upper(char *a0) {
     u32 uVar1;
     u32 uVar2;
 
@@ -3981,7 +3981,7 @@ u32 shinobi_sub_1f2b68(u8 *a0, int a1) {
                 *(u8 *)(a1 + 0xc) = 0;
             }
         }
-        uVar2 = shinobi_sub_1f2b42(a1 + 10);
+        uVar2 = name_hash_upper(a1 + 10);
         *(char *)(a1 + 9) = (char)uVar2;
         uVar1 = (u32)*a0;
     }
@@ -4022,7 +4022,7 @@ u32 shinobi_sub_1f2b70(u32 unused_a0, int a1) {
                 *(u8 *)(a1 + 0xc) = 0;
             }
         }
-        uVar2 = shinobi_sub_1f2b42(a1 + 10);
+        uVar2 = name_hash_upper(a1 + 10);
         *(char *)(a1 + 9) = (char)uVar2;
         uVar1 = (u32)*unaff_r13;
     }
@@ -4101,7 +4101,7 @@ u32 shinobi_sub_1f2cce(u32 a0, int *a1, int a2, u32 a3) {
     piVar5 = a1 + 4;
     iVar3 = *a1;
     a6 = a2;
-    uVar1 = shinobi_sub_1f2b42(a0);
+    uVar1 = name_hash_upper(a0);
     iVar4 = 0;
     if (0 < iVar3) {
         do {
@@ -6358,11 +6358,11 @@ u32 shinobi_sub_1f476e(void) {
 }
 
 /*
- * shinobi_sub_1f4780  0x8c1f4780
- * area name: in the shinobi library code range
+ * bswap32_array  0x8c1f4780
+ * byte-swaps a1 32-bit words in place at a0
  * called by: shinobi_sub_1f51ec, shinobi_sub_1f51f8, shinobi_sub_1f5290
  */
-u32 shinobi_sub_1f4780(u32 *a0, int a1) {
+u32 bswap32_array(u32 *a0, int a1) {
     u32 uVar1;
 
     do {
@@ -6881,7 +6881,7 @@ u32 shinobi_sub_1f51ec(u32 unused_a0, int a1, u32 *a2, u32 *a3) {
     *(u8 *)((int)a2 + 3) = (*(u8 *)((int)a2 + 1) ^ (u8)*a2) & ~(u8)*a2;
     if (((*(int *)(*piVar1 + iVar3) == 1) && ((u8)a2[2] != 0xff)) && ((u8)a2[2] != 0)) {
         ar5_00 = (u32 *)((*a3 & 0xff) + 1);
-        shinobi_sub_1f4780(a3, uVar4);
+        bswap32_array(a3, uVar4);
     }
     if ((u8)*a2 == 0) {
         bVar2 = 1;
@@ -6922,7 +6922,7 @@ u32 shinobi_sub_1f51f8(u32 unused_a0, u32 unused_a1, u32 *a2, u32 a3) {
     *(u8 *)((int)unaff_r14 + 3) = (*(u8 *)((int)unaff_r14 + 1) ^ (u8)*unaff_r14) & ~(u8)*unaff_r14;
     if (((*(int *)(*piVar1 + iVar3) == 1) && ((u8)unaff_r14[2] != 0xff)) && ((u8)unaff_r14[2] != 0)) {
         ar5_00 = (u32 *)((*unaff_r13 & 0xff) + 1);
-        shinobi_sub_1f4780(unaff_r13, ar5_00);
+        bswap32_array(unaff_r13, ar5_00);
     }
     if ((u8)*unaff_r14 == 0) {
         bVar2 = 1;
@@ -7017,7 +7017,7 @@ LAB_8c1f535e:
     if ((((*a3 != '\0') && (a3[7] != '\0')) && (*(int *)(g_8c4727b4 + (int)0x10c4) == 1)) &&
         ((*s0 != 0xffffffff && (*s0 != (int)(int)0xffffff00)))) {
         ar5_00 = (char *)((*s0 & 0xff) + 1);
-        shinobi_sub_1f4780(s0, ar5_00);
+        bswap32_array(s0, ar5_00);
     }
     if (a3[2] != '\0') {
         *(u8 *)(a2 + 0x10) = 0;
@@ -7902,7 +7902,7 @@ u32 shinobi_sub_1f5934(u32 a0, u32 a1, u32 a2, u32 a3) {
         debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
-    uVar2 = shinobi_sub_1f5970(a0, a1, a2, a3);
+    uVar2 = maple_set_condition(a0, a1, a2, a3);
     *(&DATA_8c1f5a2c) = 0;
     return uVar2;
 }
@@ -7924,17 +7924,17 @@ u32 shinobi_sub_1f5936(u32 a0, u32 a1, u32 a2, u32 a3) {
         debug_log_printf(a0, a1, a2, a3, "***FATAL ERROR:Cannot get semaphore!\n", in_PR);
         return 0xfffffffe;
     }
-    uVar2 = shinobi_sub_1f5970(a0, a1, a2, a3);
+    uVar2 = maple_set_condition(a0, a1, a2, a3);
     *(&DATA_8c1f5a2c) = 0;
     return uVar2;
 }
 
 /*
- * shinobi_sub_1f5970  0x8c1f5970
- * area name: in the shinobi library code range
+ * maple_set_condition  0x8c1f5970
+ * queues Maple command 14 (set condition) for function a1 of port a0
  * called by: shinobi_sub_1f08c8, shinobi_sub_1f5934, shinobi_sub_1f5936
  */
-u32 shinobi_sub_1f5970(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 maple_set_condition(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uStack_10;
 
@@ -14711,7 +14711,7 @@ u32 shinobi_sub_1fbdfc(u32 unused_a0, u32 a1, u32 a2, u32 a3, code *ain1) {
     uVar1 = 0x14;
     (*ain1)(0x14, a1, a2, a3, in_PR);
     memset_wrap(uVar1, a1, a2, a3);
-    uVar1 = shinobi_sub_1fda04(uVar1, a1, a2, a3);
+    uVar1 = vmu_drives_clear(uVar1, a1, a2, a3);
     return uVar1;
 }
 
@@ -14739,7 +14739,7 @@ u32 shinobi_sub_1fbe12(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     uVar1 = g_8c26d1e0;
     set_handler_slot32(g_8c26d1e0, 0);
     memset_wrap(uVar1, ar5_00, unused_a2, a3);
-    uVar1 = shinobi_sub_1fda04(uVar1, ar5_00, unused_a2, a3);
+    uVar1 = vmu_drives_clear(uVar1, ar5_00, unused_a2, a3);
     return uVar1;
 }
 
@@ -14766,7 +14766,7 @@ u32 shinobi_sub_1fbe1a(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     uVar1 = g_8c26d1e0;
     set_handler_slot32(g_8c26d1e0, 0);
     memset_wrap(uVar1, ar5_00, unused_a2, a3);
-    uVar1 = shinobi_sub_1fda04(uVar1, ar5_00, unused_a2, a3);
+    uVar1 = vmu_drives_clear(uVar1, ar5_00, unused_a2, a3);
     return uVar1;
 }
 
@@ -16037,7 +16037,7 @@ u32 shinobi_sub_1fcffc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a
 
 /*
  * noop_1fd004  0x8c1fd004
- * called by: shinobi_sub_1fda04
+ * called by: vmu_drives_clear
  */
 u32 noop_1fd004(void) {
     u32 in_r0;
@@ -16650,11 +16650,11 @@ u32 shinobi_sub_1fd8fc(int a0, int a1, int a2) {
 }
 
 /*
- * shinobi_sub_1fda04  0x8c1fda04
- * area name: in the shinobi library code range
+ * vmu_drives_clear  0x8c1fda04
+ * zeroes the eight 0x148-byte VMU drive records at 0x8c4783e0
  * called by: shinobi_sub_1fbdfc, shinobi_sub_1fbe12, shinobi_sub_1fbe1a
  */
-u32 shinobi_sub_1fda04(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 vmu_drives_clear(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u8 *ar4_00;
     u32 ar5_00;
     u32 ar6_00;

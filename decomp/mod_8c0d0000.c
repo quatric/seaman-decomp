@@ -648,7 +648,7 @@ u32 *Class_1297f4_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 u32 Class_1297f4_sub_0d0b04(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    Vec3_sub_014f74(a0);
+    particle_step(a0);
     if (0x3aaaaaa < *(u32 *)(a0 + 0x40)) {
         uVar1 = 0x40;
         *(int *)(a0 + 0x40) = *(int *)(a0 + 0x40) - 0x1000000;
@@ -1357,13 +1357,13 @@ u32 CTexture_sub_0d167c(u32 a0, u32 a1, u32 a2, u32 a3) {
     identity_023e44(auStack_88);
     njGetMatrix_wrap(auStack_48);
     njGetMatrix_wrap(auStack_88);
-    game_sub_023ef8(auStack_48);
-    game_sub_023ebc(auStack_88);
+    njRotateY_wrap(auStack_48);
+    ninja_sub_023ebc(auStack_88);
     ar5_00 = auStack_88;
-    game_sub_023e98(auStack_48, ar5_00, a2, a3);
+    ninja_sub_023e98(auStack_48, ar5_00, a2, a3);
     njGetMatrix_wrap(auStack_88);
-    game_sub_023f34(auStack_88);
-    game_sub_023e98(auStack_48, auStack_88, a2, a3);
+    njRotateZ_wrap(auStack_88);
+    ninja_sub_023e98(auStack_48, auStack_88, a2, a3);
     CAnimal_sub_024010(auStack_48, a1, a0);
     free_if_nonnull_wrap_023e4c(auStack_88, 0xffffffff, a0, a3);
     uVar1 = free_if_nonnull_wrap_023e4c(auStack_48, 0xffffffff, a0, a3);
@@ -2173,9 +2173,9 @@ int game_sub_0d25b4(int a0, u32 a1, u32 a2, u32 a3) {
     Vec3_ctor_zero(a0, a1, a2);
     Vec3_ctor_zero(a0 + 0x18, a1, a2);
     Vec3_ctor_zero(a0 + 0x28, a1, a2);
-    game_sub_015ff0(a0 + 0x48);
+    Class_12984c_ctor(a0 + 0x48);
     game_sub_0d2f14(a0, a1, a2, a3);
-    game_sub_014a0c(a0 + 0x48);
+    set_flag_28_20(a0 + 0x48);
     game_sub_014a20(a0 + 0x48);
     return a0;
 }
@@ -10976,7 +10976,7 @@ u32 game_sub_0db224(int a0, u8 *a1, u32 a2, u32 a3) {
     iVar1 = get_field_300_0bf154(a0 + 0xa4);
     ar4_00 = list_node_next_wrap_0da588(a0 + 0xa4);
     Class_129974_ctor_wrap(auStack_58, ar5_00, a2);
-    game_sub_018f80(auStack_58, a1);
+    set_vec3_and_w_30(auStack_58, a1);
     iVar3 = 0;
     while (true) {
         if (iVar1 <= iVar3) {

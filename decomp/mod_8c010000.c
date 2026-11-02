@@ -8282,11 +8282,11 @@ u32 libc_sub_010c60(short *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * libc_sub_010df4  0x8c010df4
- * area name: in the libc library code range
+ * double_inf_or_nan  0x8c010df4
+ * 2 for an infinite double fr4:fr5, 1 for NaN, else 0
  * called by: libc_sub_0125b6, libc_sub_012734
  */
-u32 libc_sub_010df4(void) {
+u32 double_inf_or_nan(void) {
     int in_fr5;
     u32 in_fr4;
 
@@ -9610,7 +9610,7 @@ u32 libc_sub_0125b6(int *a0) {
     uStack_22 = (u16)((u32)in_fr4 >> 0x10);
     uStack_28 = in_fr5;
     uStack_20 = in_PR;
-    iVar1 = libc_sub_010df4();
+    iVar1 = double_inf_or_nan();
     if (iVar1 == 0) {
         if (cVar4 == '\0') {
             dVar3 = 0.0;
@@ -9669,7 +9669,7 @@ u32 libc_sub_012734(u32 *a0) {
     uStack_10 = (u16)in_fr4;
     uStack_e = (u8)(in_fr4 >> 0x10);
     uStack_d = (u8)(in_fr4 >> 0x18);
-    iVar1 = libc_sub_010df4();
+    iVar1 = double_inf_or_nan();
     if (iVar1 == 0) {
         if ((int)((in_fr4 >> 0x14 & 0x7ff) - 0x3ff) < 0) {
             if (cVar3 == '\0') {
@@ -11309,11 +11309,11 @@ u32 libc_sub_013d78(int *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ai
 }
 
 /*
- * libc_sub_013dec  0x8c013dec
- * area name: in the libc library code range
+ * labs  0x8c013dec
+ * |a0|
  * called by: asr_sub_1235fc, asr_sub_123602
  */
-int libc_sub_013dec(int a0) {
+int labs(int a0) {
     if (0 < a0) {
         return a0;
     }
@@ -12479,11 +12479,11 @@ u32 game_sub_0149dc(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * game_sub_014a0c  0x8c014a0c
- * area name: game code; nothing names its area yet
+ * set_flag_28_20  0x8c014a0c
+ * +0x28 |= 0x20
  * called by: game_sub_0d25b4, game_sub_0ffcb4
  */
-u32 game_sub_014a0c(int a0) {
+u32 set_flag_28_20(int a0) {
     u32 uVar1;
 
     uVar1 = *(u32 *)(a0 + 0x28) | 0x20;
@@ -12565,7 +12565,7 @@ u32 *Class_1297f4_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     Vec3_ctor_zero(a0 + 0x15, a1, a2);
     a0[0x1f] = 0;
     a0[0x20] = 0xffffffff;
-    a0[0x21] = Vec3_sub_014f74;
+    a0[0x21] = particle_step;
     a0[0x22] = 0;
     a0[0x23] = 0xffffffff;
     a0[0x24] = Vec3_sub_014fd0;
@@ -12912,11 +12912,11 @@ u32 Class_1297f4_sub_014ef8(int a0, u32 a1) {
 }
 
 /*
- * Vec3_sub_014f74  0x8c014f74
- * area name: sits between Vec3 functions (same compilation unit)
+ * particle_step  0x8c014f74
+ * position (+4) += velocity (+0x54); then velocity y -= gravity (+0x70)
  * called by: Class_1297f4_sub_0d0b04, Vec3_sub_014fd0
  */
-float *Vec3_sub_014f74(int a0) {
+float *particle_step(int a0) {
     *(float *)(a0 + 4) = *(float *)(a0 + 4) + *(float *)(a0 + 0x54);
     *(float *)(a0 + 8) = *(float *)(a0 + 8) + *(float *)(a0 + 0x58);
     *(float *)(a0 + 0xc) = *(float *)(a0 + 0xc) + *(float *)(a0 + 0x5c);
@@ -12947,7 +12947,7 @@ u32 Vec3_sub_014fd0(int a0, u32 unused_a1, u32 a2, u32 a3) {
             *(u32 *)(iVar4 + 0xc) = *(u32 *)(iVar3 + 0xc);
         }
     }
-    uVar2 = Vec3_sub_014f74(a0);
+    uVar2 = particle_step(a0);
     return uVar2;
 }
 
@@ -14047,11 +14047,11 @@ u32 *Class_1298ac_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_015c2c  0x8c015c2c
- * area name: game code; nothing names its area yet
- * called by: game_sub_015ff0, game_sub_0ffb98
+ * Class_12988c_ctor  0x8c015c2c
+ * vtable 0x8c12988c
+ * called by: Class_12984c_ctor, game_sub_0ffb98
  */
-u32 *game_sub_015c2c(u32 *a0) {
+u32 *Class_12988c_ctor(u32 *a0) {
     *a0 = (&DATA_8c12988c);
     Class_12988c_sub_015dc0(a0, 0);
     return a0;
@@ -14145,8 +14145,8 @@ u32 Class_12988c_sub_015d74(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
 /*
  * Class_12988c_sub_015dc0  0x8c015dc0
- * area name: sits between Class_12988c functions (same compilation unit)
- * called by: Class_12b3b8_sub_015c58, game_sub_015c2c
+ * area name: only called from Class_12988c methods
+ * called by: Class_12988c_ctor, Class_12b3b8_sub_015c58
  */
 u32 Class_12988c_sub_015dc0(int a0, u32 a1) {
     u32 in_fr5;
@@ -14166,10 +14166,10 @@ u32 Class_12988c_sub_015dc0(int a0, u32 a1) {
 }
 
 /*
- * Class_12988c_sub_015dfc  0x8c015dfc
- * name hint from a string it uses: Err wrap; area name: sits between Class_12988c functions (same compilation unit)
+ * game_sub_015dfc  0x8c015dfc
+ * name hint from a string it uses: Err wrap; area name: game code; nothing names its area yet
  */
-u32 Class_12988c_sub_015dfc(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 game_sub_015dfc(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = game_sub_015f18(a0, a1, a2, a3);
@@ -14177,10 +14177,10 @@ u32 Class_12988c_sub_015dfc(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12988c_sub_015e18  0x8c015e18
- * area name: sits between Class_12988c functions (same compilation unit)
+ * game_sub_015e18  0x8c015e18
+ * area name: game code; nothing names its area yet
  */
-u32 Class_12988c_sub_015e18(int a0) {
+u32 game_sub_015e18(int a0) {
     u32 uVar1;
 
     njSetTexture(*(u32 *)(a0 + 0x1c));
@@ -14189,10 +14189,10 @@ u32 Class_12988c_sub_015e18(int a0) {
 }
 
 /*
- * Class_12988c_sub_015e40  0x8c015e40
- * area name: sits between Class_12988c functions (same compilation unit)
+ * game_sub_015e40  0x8c015e40
+ * area name: game code; nothing names its area yet
  */
-u32 Class_12988c_sub_015e40(void) {
+u32 game_sub_015e40(void) {
     u32 uVar1;
     u32 uStack_64;
     u32 uStack_60;
@@ -14250,7 +14250,7 @@ u32 Class_12988c_sub_015e40(void) {
 /*
  * game_sub_015f18  0x8c015f18
  * name hint from a string it uses: Error; area name: game code; nothing names its area yet
- * called by: Class_12988c_sub_015dfc
+ * called by: game_sub_015dfc
  * strings: "Error"
  */
 u32 game_sub_015f18(int a0, u32 a1, u32 a2, u32 a3) {
@@ -14283,21 +14283,21 @@ u32 game_sub_015f18(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_015ff0  0x8c015ff0
- * area name: game code; nothing names its area yet
+ * Class_12984c_ctor  0x8c015ff0
+ * Class_12988c base, vtable 0x8c12984c
  * called by: game_sub_0d25b4, game_sub_0fdde4
  */
-u32 *game_sub_015ff0(u32 *a0) {
-    game_sub_015c2c(a0);
+u32 *Class_12984c_ctor(u32 *a0) {
+    Class_12988c_ctor(a0);
     *a0 = (&DATA_8c12984c);
     return a0;
 }
 
 /*
- * game_sub_016014  0x8c016014
- * area name: game code; nothing names its area yet
+ * Class_12984c_sub_016014  0x8c016014
+ * area name: sits between Class_12984c functions (same compilation unit)
  */
-u32 game_sub_016014(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 Class_12984c_sub_016014(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     u32 in_fr5;
     u32 in_fr4;
@@ -14311,10 +14311,10 @@ u32 game_sub_016014(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_016068  0x8c016068
- * area name: game code; nothing names its area yet
+ * Class_12984c_sub_016068  0x8c016068
+ * area name: sits between Class_12984c functions (same compilation unit)
  */
-u32 game_sub_016068(int a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 Class_12984c_sub_016068(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     u32 in_fr5;
     u32 in_fr4;
@@ -17441,11 +17441,11 @@ u32 noop_018f7c(void) {
 }
 
 /*
- * game_sub_018f80  0x8c018f80
- * area name: game code; nothing names its area yet
+ * set_vec3_and_w_30  0x8c018f80
+ * +0x30 = vector a1, +0x3c = fr4
  * called by: game_sub_0db224, game_sub_0e0614
  */
-u32 *game_sub_018f80(int a0, u32 *a1) {
+u32 *set_vec3_and_w_30(int a0, u32 *a1) {
     u32 in_fr4;
 
     *(u32 *)(a0 + 0x30) = *a1;
@@ -17548,17 +17548,17 @@ u32 game_sub_0190f0(void) {
 }
 
 /*
- * game_sub_019128  0x8c019128
- * area name: game code; nothing names its area yet
+ * rotate_y_degrees  0x8c019128
+ * njRotateY(current matrix) by fr4 degrees
  * called by: Class_12b3b8_sub_0e7a78, game_sub_0c9ee0
  */
-u32 game_sub_019128(void) {
+u32 rotate_y_degrees(void) {
     u32 r6;
     u32 r7;
     u32 uVar1;
     float in_fr4;
 
-    uVar1 = ninja_sub_256ce0(0, (int)((in_fr4 * 65536.0) / 360.0), r6, r7, in_fr4);
+    uVar1 = njRotateY(0, (int)((in_fr4 * 65536.0) / 360.0), r6, r7, in_fr4);
     return uVar1;
 }
 
@@ -17574,7 +17574,7 @@ u32 rotate_degrees(void) {
     u32 uVar1;
     float in_fr4;
 
-    uVar1 = ninja_sub_256d7c(0, (int)((in_fr4 * 65536.0) / 360.0), r6, r7, in_fr4);
+    uVar1 = njRotateZ(0, (int)((in_fr4 * 65536.0) / 360.0), r6, r7, in_fr4);
     return uVar1;
 }
 
@@ -17987,7 +17987,7 @@ u32 Class_1299f8_m4_019588(int a0, u32 a1, u32 a2, u32 a3) {
     } else {
         iVar11 = (int)(dVar6 / dVar7);
     }
-    ninja_sub_256ce0(auStack_f8, iVar11, a2, a3, fVar2);
+    njRotateY(auStack_f8, iVar11, a2, a3, fVar2);
     if (cVar12 == '\0') {
         dVar4 = (double)CONCAT44(-(float)((u64)dVar4 >> 0x20), SUB84(dVar4, 0));
     } else {
@@ -18320,7 +18320,7 @@ u32 Class_129a24_m1_019b68(int a0, u32 unused_a1, u32 a2, u32 a3) {
     } else {
         iVar6 = (int)(dVar5 / dVar5);
     }
-    ninja_sub_256ce0(auStack_88, iVar6, a2, a3, in_stack_ffffff28);
+    njRotateY(auStack_88, iVar6, a2, a3, in_stack_ffffff28);
     ninja_sub_255d6c(auStack_48, auStack_88, a2, a3, in_stack_ffffff28);
     puVar3 = &uStack_ac;
     puVar2 = &uStack_94;
@@ -18422,7 +18422,7 @@ u32 Class_129a24_m1_019b68(int a0, u32 unused_a1, u32 a2, u32 a3) {
     } else {
         iVar6 = (int)(dVar5 / dVar5);
     }
-    ninja_sub_256d7c(auStack_88, iVar6, puVar3, a3, in_stack_ffffff28);
+    njRotateZ(auStack_88, iVar6, puVar3, a3, in_stack_ffffff28);
     ninja_sub_255d6c(auStack_48, auStack_88, puVar3, a3, in_stack_ffffff28);
     if (cVar8 == '\0') {
         uStack_94 = *(u32 *)(a0 + 0x6c);
@@ -22646,7 +22646,7 @@ u32 input_right_held(int a0) {
 /*
  * input_right_off  0x8c01f0d0
  * Right button (0x80) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
- * called by: input_sub_0e30f0
+ * called by: input_up_left_right_off
  */
 u32 input_right_off(int a0) {
     u32 uVar1;
@@ -22712,7 +22712,7 @@ u32 input_left_held(int a0) {
 /*
  * input_left_off  0x8c01f1a4
  * Left button (0x40) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
- * called by: input_sub_0e30f0
+ * called by: input_up_left_right_off
  */
 u32 input_left_off(int a0) {
     u32 uVar1;
@@ -22822,7 +22822,7 @@ u32 input_up_held(int a0) {
 /*
  * input_up_off  0x8c01f2f8
  * Up button (0x10) is up this frame (PDS_PERIPHERAL off bits); 2 while the demo input is active
- * called by: input_sub_0e30f0, input_sub_0e3150, input_sub_0e319c
+ * called by: input_sub_0e3150, input_sub_0e319c, input_up_left_right_off
  */
 u32 input_up_off(int a0) {
     u32 uVar1;

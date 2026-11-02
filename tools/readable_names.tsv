@@ -485,3 +485,24 @@
 8c0fc44c	history_push_string	shifts the 16 0x20-byte strings at (+0x10)->+0x40 + 200 down and copies a1 into the first
 8c102d20	imask_to_sr_bits	(a0 & 15) << 4, the SR IMASK field
 8c100030	input_get_held_bits	the PDS_PERIPHERAL on bits (+0xa528) of the controller state a0
+8c0e30f0	input_up_left_right_off	1 when Up, Right and Left are all up on the controller at +0xcc
+8c1f5970	maple_set_condition	queues Maple command 14 (set condition) for function a1 of port a0
+8c1f0988	memset_ff	fills a1 bytes at a0 with 0xff
+8c1f2b42	name_hash_upper	(0xda + the sum of the upper-cased characters of a0) >> 2, as a byte
+8c1f4780	bswap32_array	byte-swaps a1 32-bit words in place at a0
+8c1fda04	vmu_drives_clear	zeroes the eight 0x148-byte VMU drive records at 0x8c4783e0
+8c25b124	put_u16_le	stores a0 as a little-endian u16 at a1
+8c26011e	memcpy_u16	copies a2 16-bit values from a1 to a0
+8c26870c	aica_ram_read_byte	reads the byte at a0 of sound RAM (below 2 MB) into *a1
+8c26b960	sr_get_imask_c	another copy of sr_get_imask
+8c26b978	sr_with_imask_c	another copy of sr_with_imask
+8c010df4	double_inf_or_nan	2 for an infinite double fr4:fr5, 1 for NaN, else 0
+8c013dec	labs	|a0|
+8c014a0c	set_flag_28_20	+0x28 |= 0x20
+8c014f74	particle_step	position (+4) += velocity (+0x54); then velocity y -= gravity (+0x70)
+8c018f80	set_vec3_and_w_30	+0x30 = vector a1, +0x3c = fr4
+8c256ce0	njRotateY	rotates matrix a0 (NULL: current) about Y by Ninja angle a1
+8c256d7c	njRotateZ	rotates matrix a0 (NULL: current) about Z by Ninja angle a1
+8c019128	rotate_y_degrees	njRotateY(current matrix) by fr4 degrees
+8c015c2c	Class_12988c_ctor	vtable 0x8c12988c
+8c015ff0	Class_12984c_ctor	Class_12988c base, vtable 0x8c12984c

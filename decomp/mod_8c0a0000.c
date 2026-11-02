@@ -3744,7 +3744,7 @@ u32 Class_12aeec_sub_0a481c(int a0) {
     } else {
         iVar6 = (int)(dVar4 / dVar4);
     }
-    ninja_sub_256ce0(0, iVar6, ar6_00, ar7_00, in_stack_ffffffcc);
+    njRotateY(0, iVar6, ar6_00, ar7_00, in_stack_ffffffcc);
     if (cVar8 == '\0') {
         dVar4 = (double)CONCAT44(0x47800000, in_stack_ffffffec);
     } else {
@@ -3790,7 +3790,7 @@ u32 Class_12aeec_sub_0a481c(int a0) {
         dVar4 = dVar4 / dVar4;
         iVar6 = (int)dVar4;
     }
-    ninja_sub_256d7c(0, iVar6, ar6_00, ar7_00, in_stack_ffffffcc);
+    njRotateZ(0, iVar6, ar6_00, ar7_00, in_stack_ffffffcc);
     matrix_scale(0, iVar6, ar6_00, ar7_00, in_stack_ffffffcc);
     obj_set_texlist(*(int *)(a0 + 0x328) + 0x78, iVar6, ar6_00);
     uVar1 = get_field_0_015bb8(*(int *)(a0 + 0x328) + 0x70);
