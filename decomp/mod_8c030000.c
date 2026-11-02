@@ -197,8 +197,8 @@ int set_word_array_674(int a0, int a1, u32 a2) {
 /*
  * talk_queue_mode2  0x8c030568
  * same as talk_queue_mode1 without the cancel; sets +0x770 = 2
- * called by: Class_12c3c4_sub_104854, game_sub_0611cc, game_sub_065e6c, game_sub_10469c, game_sub_1091cc,
- * react_catch_object
+ * called by: Class_12c3c4_sub_104854, game_sub_0611cc, game_sub_065e6c, game_sub_1091cc, react_catch_object,
+ * react_catch_object_b
  */
 u32 talk_queue_mode2(int a0, u32 a1, int a2, u32 a3, u32 s0) {
     int iVar1;
@@ -387,7 +387,7 @@ u32 talk_sub_03087c(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
 /*
  * talk_set_start_scene  0x8c0309c8
  * sets the talk scene name (JUNGLE, or the stage name plus the stage number) with entry "start"
- * called by: game_sub_10862c, talk_sub_0652f4
+ * called by: talk_sub_0652f4, talk_sub_10862c
  * strings: "JUNGLE"; "start"
  */
 u32 talk_set_start_scene(int a0, u32 a1, u32 a2, u32 a3) {

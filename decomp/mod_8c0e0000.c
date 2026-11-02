@@ -34,7 +34,7 @@ u32 input_sub_0e004c(int *a0, u32 a1, u32 a2, u32 a3) {
     game_sub_0d064c(a0 + 0x4ec9, ar5_00, a2, a3);
     noop_0d98f4(a0 + 0x89c1, ar5_00, a2, a3, in_PR);
     a5 = a1;
-    game_sub_0d50ec(a0 + 0x42b, a1, a2, a3);
+    se_sub_0d50ec(a0 + 0x42b, a1, a2, a3);
     if ((a1 & 0xff) < 2) {
         (**(code **)(*a0 + 0x1c4))(a0, a5, a2, a3);
     } else {
@@ -67,7 +67,7 @@ u32 game_sub_0e0124(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * set_field_eb44  0x8c0e015c
- * called by: game_sub_0e0124, game_sub_0e021c, game_sub_0e1398, input_sub_0e3210
+ * called by: CWaterTank_sub_0e1398, game_sub_0e0124, game_sub_0e021c, input_sub_0e3210
  */
 int set_field_eb44(int a0, u32 a1) {
     int iVar1;
@@ -93,8 +93,8 @@ u32 noop_0e0168(void) {
 u32 game_sub_0e016c(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    game_sub_0d50a0((int)a0 + 0x10ac, a1, a2, a3);
-    Class_1297f4_sub_0d0bcc((int)a0 + 0x13b8c, a1, a2, a3);
+    se_sub_0d50a0((int)a0 + 0x10ac, a1, a2, a3);
+    CSprinkler_LoadTexture((int)a0 + 0x13b8c, a1, a2, a3);
     CTexture_LoadFromCache_wrap_0d14b0((int)a0 + 0x13b8c, a1, a2, a3);
     *(u32 *)(0x1024 + (int)a0) = 3;
     uVar1 = 0;
@@ -113,7 +113,7 @@ u32 game_sub_0e016c(int *a0, u32 a1, u32 a2, u32 a3) {
 u32 game_sub_0e021c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    game_sub_0d50b4(a0 + 0x10ac, unused_a1, a2, a3);
+    se_sub_0d50b4(a0 + 0x10ac, unused_a1, a2, a3);
     uVar1 = 0;
     edge_detect_update(a0 + 0x13b24, 0);
     clear_field_48(a0 + 0x13b24);
@@ -142,7 +142,7 @@ u32 game_sub_0e02b0(int a0, u32 a1) {
     u32 uVar1;
 
     *(u32 *)(0x1020 + a0) = 0;
-    uVar1 = game_sub_0d5218(a0 + 0x10ac, a1);
+    uVar1 = se_sub_0d5218(a0 + 0x10ac, a1);
     return uVar1;
 }
 
@@ -228,7 +228,7 @@ u32 game_sub_0e0488(int a0, u32 a1, u32 a2, u32 a3) {
     game_sub_0db090(a0, a1, a2, a3);
     ar5_00 = a1;
     game_sub_0d5614(a0 + 0x10ac, a1, a2, a3);
-    CTexture_sub_0d06c4(a0 + 0x13b24, ar5_00, a2, a3);
+    game_sub_0d06c4(a0 + 0x13b24, ar5_00, a2, a3);
     if ((a1 & 0xff) < 2) {
         uVar1 = noop_0d0a34(a0 + 0x13b70, ar5_00, a2, a3, in_PR);
     } else {
@@ -250,7 +250,7 @@ u32 game_sub_0e0508(int a0, u32 a1) {
 
     ar5_00 = a1;
     game_sub_0d55d0(a0 + 0x10ac);
-    CTexture_sub_0d06ec(a0 + 0x13b24);
+    game_sub_0d06ec(a0 + 0x13b24);
     if ((a1 & 0xff) < 2) {
         uVar1 = noop_0d0a38(a0 + 0x13b70, ar5_00, r6, r7, in_PR);
     } else {
@@ -616,11 +616,11 @@ u32 game_sub_0e0bd0(int a0, u32 a1) {
 }
 
 /*
- * game_sub_0e0be8  0x8c0e0be8
- * name hint from a string it uses: GRAPHICS ENV; area name: game code; nothing names its area yet
+ * CWaterTank_ReleaseModels  0x8c0e0be8
+ * releases suisou.nj and the glass, temperature-meter and collision models
  * strings: "suisou.nj"; "GRAPHICS\\ENV"; "suisou.nj"; "GRAPHICS\\ENV" ...
  */
-u32 game_sub_0e0be8(int a0, u32 a1, u32 a2) {
+u32 CWaterTank_ReleaseModels(int a0, u32 a1, u32 a2) {
     u32 ar6_00;
     u32 uVar1;
 
@@ -636,9 +636,9 @@ u32 game_sub_0e0be8(int a0, u32 a1, u32 a2) {
     (*(code *)(&CDCGD_release_type2))(a1, "suisou_TempMeter.nj", "GRAPHICS\\ENV", a0);
     (*(code *)(&CDCGD_release_type0))(a1, "suisou_Collision.nj", "GRAPHICS\\ENV", a0);
     ar6_00 = (u32)(u8)a2;
-    Class_12b580_sub_0d57e8(a0 + 0x10ac, a1, ar6_00);
-    CTexture_sub_0d0768(a0 + 0x13b24, a1);
-    uVar1 = game_sub_0d990c(a0 + 0x22704, a1);
+    CWaterTank_sub_0d57e8(a0 + 0x10ac, a1, ar6_00);
+    CHeater_ReleaseModel(a0 + 0x13b24, a1);
+    uVar1 = RING_UNIT_ReleaseModel(a0 + 0x22704, a1);
     return uVar1;
 }
 
@@ -651,10 +651,10 @@ int field_ptr_22704(int a0) {
 }
 
 /*
- * game_sub_0e0d7c  0x8c0e0d7c
- * area name: game code; nothing names its area yet
+ * CWaterTank_sub_0e0d7c  0x8c0e0d7c
+ * area name: sits between CWaterTank functions (same compilation unit)
  */
-u32 game_sub_0e0d7c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CWaterTank_sub_0e0d7c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (**(code **)(*(int *)(a0 + 0x9e8) + 0x28))((int *)(a0 + 0x9e8), a1, a2, a3);
@@ -683,10 +683,10 @@ u32 Class_12b930_sub_0e0da4(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0e0f48  0x8c0e0f48
- * area name: game code; nothing names its area yet
+ * CWaterTank_sub_0e0f48  0x8c0e0f48
+ * area name: sits between CWaterTank functions (same compilation unit)
  */
-u32 game_sub_0e0f48(int *a0, u32 a1, float *a2, float *a3) {
+u32 CWaterTank_sub_0e0f48(int *a0, u32 a1, float *a2, float *a3) {
     int ar4_00;
     int iVar1;
     int iVar2;
@@ -753,7 +753,7 @@ u32 game_sub_0e0f48(int *a0, u32 a1, float *a2, float *a3) {
         set_field_18_to_1(a0 + 0x4edc);
         Class_12b580_set_request_wrap(a0 + 0x42b);
     }
-    CTexture_sub_0d08c0(a0 + 0x4edc);
+    game_sub_0d08c0(a0 + 0x4edc);
     iVar1 = get_field_14_0e1318(a0 + 0x4edc);
     if (iVar1 == 1) {
         iVar1 = get_field_300_0bf154(a0 + 0x29);
@@ -1003,7 +1003,7 @@ u32 game_sub_0e0f48(int *a0, u32 a1, float *a2, float *a3) {
 /*
  * get_ptr_8c0e1314  0x8c0e130c
  * returns the address 0x8c0e1314
- * called by: game_sub_0e0f48
+ * called by: CWaterTank_sub_0e0f48
  */
 u32 *get_ptr_8c0e1314(void) {
     return &g_8c0e1314;
@@ -1011,7 +1011,7 @@ u32 *get_ptr_8c0e1314(void) {
 
 /*
  * get_field_14_0e1318  0x8c0e1318
- * called by: game_sub_0e0f48
+ * called by: CWaterTank_sub_0e0f48
  */
 u32 get_field_14_0e1318(int a0) {
     return *(u32 *)(a0 + 0x14);
@@ -1020,7 +1020,7 @@ u32 get_field_14_0e1318(int a0) {
 /*
  * set_fields_14_18  0x8c0e1320
  * stores +0x14, +0x18
- * called by: game_sub_0e0f48
+ * called by: CWaterTank_sub_0e0f48
  */
 u32 set_fields_14_18(int a0) {
     *(u32 *)(a0 + 0x14) = 0;
@@ -1029,13 +1029,13 @@ u32 set_fields_14_18(int a0) {
 }
 
 /*
- * game_sub_0e132c  0x8c0e132c
- * area name: game code; nothing names its area yet
+ * CWaterTank_sub_0e132c  0x8c0e132c
+ * area name: sits between CWaterTank functions (same compilation unit)
  */
-u32 game_sub_0e132c(int a0) {
+u32 CWaterTank_sub_0e132c(int a0) {
     u32 uVar1;
 
-    CTexture_sub_0d0910(a0 + 0x13b70);
+    game_sub_0d0910(a0 + 0x13b70);
     get_field_38_wrap(a0, 1);
     uVar1 = 3;
     get_field_38_wrap(a0, 3);
@@ -1044,10 +1044,10 @@ u32 game_sub_0e132c(int a0) {
 }
 
 /*
- * game_sub_0e1398  0x8c0e1398
- * area name: game code; nothing names its area yet
+ * CWaterTank_sub_0e1398  0x8c0e1398
+ * area name: sits between CWaterTank functions (same compilation unit)
  */
-int game_sub_0e1398(int a0, int a1, u32 a2, u32 a3) {
+int CWaterTank_sub_0e1398(int a0, int a1, u32 a2, u32 a3) {
     int ar4_00;
     int iVar1;
     u32 uVar2;
@@ -1315,12 +1315,12 @@ u32 CWaterTank_CreateStage(int a0, u32 a1, u32 a2) {
     }
     uVar3 = 0x2274c;
     CWaterTank_sub_0178b4(a0 + 0x2274c, *(u32 *)(aiStack_38[0] + 4), 0x2274c);
-    CWaterTank_sub_0cfff8(a0 + 0x13b24, a1);
-    pcVar6 = CWaterTank_sub_0d07ec;
-    CWaterTank_sub_0d07ec(a0 + 0x13b70, a1, uVar3, CWaterTank_sub_0d07ec);
+    CHeater_CreateModel(a0 + 0x13b24, a1);
+    pcVar6 = CO2Supply_LoadTexture;
+    CO2Supply_LoadTexture(a0 + 0x13b70, a1, uVar3, CO2Supply_LoadTexture);
     uVar3 = 0x22704;
-    CWaterTank_sub_0d93a8(a0 + 0x22704, a1, 0x22704);
-    CWaterTank_sub_0dbb14(a0, a1, uVar3, pcVar6);
+    RING_UNIT_CreateModel(a0 + 0x22704, a1, 0x22704);
+    common_texlist_load(a0, a1, uVar3, pcVar6);
     if (cVar9 == '\0') {
         uStack_20 = 0;
         uVar3 = in_fr1;
@@ -4131,18 +4131,18 @@ u32 get_field_15c8_0e5ba8(int a0) {
 }
 
 /*
- * game_sub_0e5bb4  0x8c0e5bb4
- * name hint from a string it uses: GRAPHICS ENV; area name: game code; nothing names its area yet
+ * musikago_release_model  0x8c0e5bb4
+ * releases musikago.nj (the insect cage) and the spider web
  * strings: "musikago.nj"; "GRAPHICS\\ENV"; "GRAPHICS\\ENV"; "musikago.nj"
  */
-u32 game_sub_0e5bb4(int a0, u32 a1) {
+u32 musikago_release_model(int a0, u32 a1) {
     u32 uVar1;
     u8 *ar6_00;
 
     (*(code *)(&CDCGD_release_type0))(a1, "musikago.nj", "GRAPHICS\\ENV", a0);
     ar6_00 = "GRAPHICS\\ENV";
     CDCGD_release_type2(a1, "musikago.nj", ar6_00, a0);
-    uVar1 = CTexture_sub_0d60c8(a0 + 0x15bc, a1);
+    uVar1 = kumonosu_release_model(a0 + 0x15bc, a1);
     return uVar1;
 }
 
@@ -4670,7 +4670,7 @@ u32 game_sub_0e69c0(int a0, u32 a1, u32 a2) {
         pcVar2 = NULL;
         report_error_message("Failed to load outside pvm textuer..", &g_8c13f91d, 0, 2);
     }
-    CWaterTank_sub_0dbb14(a0, a1, pcVar2, uVar3);
+    common_texlist_load(a0, a1, pcVar2, uVar3);
     if (cVar6 == '\0') {
         uStack_20 = 0;
         uStack_28 = in_fr1;
@@ -4814,11 +4814,11 @@ u32 game_sub_0e6dc4(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0e6e74  0x8c0e6e74
- * name hint from a string it uses: GRAPHICS ENV; area name: game code; nothing names its area yet
+ * amazon_release_model  0x8c0e6e74
+ * releases amazon.nj
  * strings: "amazon.nj"; "GRAPHICS\\ENV"; "amazon.nj"; "GRAPHICS\\ENV"
  */
-u32 game_sub_0e6e74(u32 a0, u32 a1) {
+u32 amazon_release_model(u32 a0, u32 a1) {
     u32 uVar1;
 
     (*(code *)(&CDCGD_release_type0))(a1, "amazon.nj", "GRAPHICS\\ENV", a0);
@@ -6979,7 +6979,7 @@ u32 game_sub_0e98f8(u8 *a0) {
 /*
  * game_sub_0e9910  0x8c0e9910
  * area name: game code; nothing names its area yet
- * called by: game_sub_0b9fb4
+ * called by: SaveData_ctor
  */
 u8 *game_sub_0e9910(u8 *a0) {
     *a0 = 0;

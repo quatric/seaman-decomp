@@ -5831,12 +5831,12 @@ u8 *game_sub_0b9f5c(u8 *a0, u8 *a1) {
 }
 
 /*
- * game_sub_0b9fb4  0x8c0b9fb4
- * area name: game code; nothing names its area yet
+ * SaveData_ctor  0x8c0b9fb4
+ * the save-data block: tables of 0xf0-byte entries and the "SM2000US.USR" name
  * called by: game_sub_0c4644
  * strings: "SM2000US.USR"
  */
-int game_sub_0b9fb4(int a0, u32 a1, u32 a2) {
+int SaveData_ctor(int a0, u32 a1, u32 a2) {
     code *pcVar1;
     code *pcVar2;
     u32 uVar3;
@@ -6114,15 +6114,15 @@ u32 game_sub_0ba494(int a0, u32 a1, u32 a2, u32 a3) {
     if (*(int *)(a0 + 0x10) == 0) {
         if (*(int *)(a0 + 0x14) == 1) {
             game_sub_0ba5e0(a0, a1, a2, a3);
-            game_sub_0ba6bc(a0, a1, a2, a3);
+            show_date_time_message(a0, a1, a2, a3);
         } else {
-            game_sub_0ba6bc(a0, a1, a2, a3);
+            show_date_time_message(a0, a1, a2, a3);
             game_sub_0ba5e0(a0, a1, a2, a3);
         }
     } else if (*(int *)(a0 + 0x14) == 1) {
         game_sub_0ba5e0(a0, a1, a2, a3);
     } else {
-        game_sub_0ba6bc(a0, a1, a2, a3);
+        show_date_time_message(a0, a1, a2, a3);
     }
     uVar1 = ta_fifo_2595aa(0, &uStack_2c, a2, a3);
     return uVar1;
@@ -6173,12 +6173,12 @@ u32 game_sub_0ba5e0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0ba6bc  0x8c0ba6bc
- * area name: game code; nothing names its area yet
+ * show_date_time_message  0x8c0ba6bc
+ * formats the RTC date as "<month>.dd,hh:mm AM/PM" and shows it as a message
  * called by: game_sub_0ba494
  * strings: "%s.%2d,%2d:%02d AM"; "%s.%2d,%2d:%02d PM"
  */
-u32 game_sub_0ba6bc(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 show_date_time_message(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     char cVar2;
     u8 auStack_24[20];
@@ -9174,8 +9174,8 @@ u32 get_field_300_on_field_a4(int a0) {
 
 /*
  * get_field_300_0bf154  0x8c0bf154
- * called by: Class_129974_sub_0db3bc, Class_12b580_sub_0e6718, Class_12b930_m3_0de4b0, Class_12b930_sub_0e3994,
- * Class_12bb08_m1_0da338, Class_12bb08_m2_0da5a8, Class_12bb08_sub_0dbbe8, game_sub_0da754 (+20 more)
+ * called by: CWaterTank_sub_0e0f48, Class_129974_sub_0db3bc, Class_12b580_sub_0e6718, Class_12b930_m3_0de4b0,
+ * Class_12b930_sub_0e3994, Class_12bb08_m1_0da338, Class_12bb08_m2_0da5a8, Class_12bb08_sub_0dbbe8 (+20 more)
  */
 u32 get_field_300_0bf154(int a0) {
     return *(u32 *)(0x300 + a0);

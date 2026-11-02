@@ -1275,11 +1275,11 @@ u32 obj_pose_save(int a0, u32 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0f5004  0x8c0f5004
- * name hint from a string it uses: No 2ld kind d cat d food d r; area name: game code; nothing names its area yet
- * strings: "No:%2ld kind:%d cat:%d food:%d ref:%d"; " pos x:%lf y:%lf z:%lf"
+ * debug_print_object  0x8c0f5004
+ * prints an object's number, kind, category, food and reference count and its position (no-op print in the release
+ * build) strings: "No:%2ld kind:%d cat:%d food:%d ref:%d"; " pos x:%lf y:%lf z:%lf"
  */
-u32 game_sub_0f5004(int a0, u32 a1, u32 a2) {
+u32 debug_print_object(int a0, u32 a1, u32 a2) {
     u32 r7;
     u32 uVar1;
     u32 ar7_00;
@@ -5793,7 +5793,7 @@ u8 *game_sub_0faa94(int *a0, u32 a1, char *a2, int *a3) {
                     puVar1 = (u8 *)game_sub_0fb268(a0, a1, a2, a3);
                     break;
                 case 4:
-                    puVar1 = (u8 *)game_sub_0fbdfc(a0, a1, a2, a3);
+                    puVar1 = (u8 *)asr_switch_vocab(a0, a1, a2, a3);
                     break;
                 case 5:
                     puVar1 = (u8 *)game_sub_0fc5ac(a0, a1, a2, a3);
@@ -5817,7 +5817,7 @@ u8 *game_sub_0faa94(int *a0, u32 a1, char *a2, int *a3) {
         puVar1 = (u8 *)game_sub_0fb494(a0, a1, a2, a3);
         break;
     case 8:
-        puVar1 = (u8 *)game_sub_0fbf28(a0, a1, a2, a3);
+        puVar1 = (u8 *)asr_sub_0fbf28(a0, a1, a2, a3);
     }
     return puVar1;
 }
@@ -5860,7 +5860,7 @@ u32 game_sub_0fae24(u32 *a0, u32 unused_a1, char *a2, u32 a3) {
 
 /*
  * strcmp_0faf30  0x8c0faf30
- * called by: game_sub_0fae24, game_sub_0faf98, game_sub_0fb0d4, game_sub_0fb268, game_sub_0fbdfc, game_sub_0fbf28,
+ * called by: asr_sub_0fbf28, asr_switch_vocab, game_sub_0fae24, game_sub_0faf98, game_sub_0fb0d4, game_sub_0fb268,
  * game_sub_0fc4fc, game_sub_0fcd2c (+1 more)
  */
 u32 strcmp_0faf30(u8 *a0, u8 *a1) {
@@ -5922,7 +5922,7 @@ u32 game_sub_0faf98(int a0, char *a1, char *a2, u32 a3) {
 /*
  * game_sub_0fb0d4  0x8c0fb0d4
  * name hint from a string it uses: ERROR; area name: game code; nothing names its area yet
- * called by: game_sub_0faa94, game_sub_0fb1d4, game_sub_0fb268, game_sub_0fb494, game_sub_0fbf28, game_sub_0fc5ac,
+ * called by: asr_sub_0fbf28, game_sub_0faa94, game_sub_0fb1d4, game_sub_0fb268, game_sub_0fb494, game_sub_0fc5ac,
  * game_sub_0fc69c, game_sub_0fc7c4 strings: "@ERROR"
  */
 u32 game_sub_0fb0d4(u32 *a0, char *a1) {
@@ -6441,12 +6441,12 @@ u32 game_sub_0fb83c(int a0, int a1, int a2) {
 }
 
 /*
- * game_sub_0fbdfc  0x8c0fbdfc
- * name hint from a string it uses: SPEECH; area name: game code; nothing names its area yet
+ * asr_switch_vocab  0x8c0fbdfc
+ * unregisters the previous SPEECH vocabulary and registers the one named at (+0x88)->+0x2c
  * called by: game_sub_0faa94
  * strings: "SPEECH"; "SPEECH"; "SPEECH"
  */
-u32 game_sub_0fbdfc(u32 *a0, u32 unused_a1, char *a2, u32 a3) {
+u32 asr_switch_vocab(u32 *a0, u32 unused_a1, char *a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 *ar5_00;
@@ -6492,12 +6492,12 @@ u32 game_sub_0fbdfc(u32 *a0, u32 unused_a1, char *a2, u32 a3) {
 }
 
 /*
- * game_sub_0fbf28  0x8c0fbf28
- * name hint from a string it uses: SPEECH; area name: game code; nothing names its area yet
+ * asr_sub_0fbf28  0x8c0fbf28
+ * name hint from a string it uses: SPEECH; area name: sits between asr functions (same compilation unit)
  * called by: game_sub_0faa94
  * strings: "SPEECH"; "SPEECH"; "SPEECH"; "SPEECH" ...
  */
-u32 game_sub_0fbf28(u32 *a0, u32 unused_a1, char *a2, u8 *a3) {
+u32 asr_sub_0fbf28(u32 *a0, u32 unused_a1, char *a2, u8 *a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -6631,7 +6631,7 @@ u32 game_sub_0fbf28(u32 *a0, u32 unused_a1, char *a2, u8 *a3) {
 /*
  * game_sub_0fc3e4  0x8c0fc3e4
  * area name: game code; nothing names its area yet
- * called by: game_sub_0fbf28
+ * called by: asr_sub_0fbf28
  */
 u32 game_sub_0fc3e4(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6666,7 +6666,7 @@ u32 get_field_c8_0fc440(int a0) {
 /*
  * history_push_string  0x8c0fc44c
  * shifts the 16 0x20-byte strings at (+0x10)->+0x40 + 200 down and copies a1 into the first
- * called by: game_sub_0fbf28
+ * called by: asr_sub_0fbf28
  */
 u32 history_push_string(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6701,7 +6701,7 @@ u32 game_sub_0fc4c4(void) {
 /*
  * game_sub_0fc4fc  0x8c0fc4fc
  * area name: game code; nothing names its area yet
- * called by: game_sub_0fbdfc, game_sub_0fbf28
+ * called by: asr_sub_0fbf28, asr_switch_vocab
  * strings: "---"
  */
 u32 game_sub_0fc4fc(u32 unused_a0, int a1) {
@@ -6912,7 +6912,7 @@ u32 game_sub_0fc7c4(int a0, u32 unused_a1, u8 *a2, u32 a3) {
 /*
  * game_sub_0fc94c  0x8c0fc94c
  * area name: game code; nothing names its area yet
- * called by: game_sub_0fb494, game_sub_0fbf28, game_sub_0fc7c4
+ * called by: asr_sub_0fbf28, game_sub_0fb494, game_sub_0fc7c4
  */
 u32 game_sub_0fc94c(int a0, char *a1, char *a2, u32 a3) {
     int iVar1;
@@ -7526,7 +7526,7 @@ u32 memset_on_field_d0(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * game_sub_0fdaac  0x8c0fdaac
  * area name: game code; nothing names its area yet
- * called by: game_sub_0fbf28
+ * called by: asr_sub_0fbf28
  */
 u32 game_sub_0fdaac(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -7550,7 +7550,7 @@ u32 game_sub_0fdaac(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_0fdc20  0x8c0fdc20
  * area name: game code; nothing names its area yet
- * called by: game_sub_0b9fb4, game_sub_0f7f78
+ * called by: SaveData_ctor, game_sub_0f7f78
  */
 u32 *game_sub_0fdc20(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -7606,7 +7606,7 @@ u8 *game_sub_0fdc98(u8 *a0) {
 /*
  * game_sub_0fdd68  0x8c0fdd68
  * area name: game code; nothing names its area yet
- * called by: game_sub_064bb4, game_sub_0fbf28, game_sub_1080dc
+ * called by: asr_sub_0fbf28, game_sub_064bb4, game_sub_1080dc
  */
 u32 game_sub_0fdd68(int a0, int a1) {
     u32 uVar1;
@@ -8002,7 +8002,7 @@ int game_sub_0fe59c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_0fe5f0  0x8c0fe5f0
  * area name: game code; nothing names its area yet
- * called by: WATER_ELEMETNT_Create, game_sub_0d33e8, game_sub_0d5218
+ * called by: WATER_ELEMETNT_Create, game_sub_0d33e8, se_sub_0d5218
  */
 int game_sub_0fe5f0(int a0, u32 a1) {
     u32 uVar1;
@@ -8023,7 +8023,7 @@ int game_sub_0fe5f0(int a0, u32 a1) {
 
 /*
  * CWaterSnowList_TakeOut  0x8c0fe690
- * called by: Class_12b580_sub_0d57e8, game_sub_0d5218
+ * called by: CWaterTank_sub_0d57e8, se_sub_0d5218
  * strings: "POne pointer is NULL.."; "CWaterSnowList::TakeOut()"
  */
 int CWaterSnowList_TakeOut(int a0, int a1) {
@@ -8050,7 +8050,7 @@ int CWaterSnowList_TakeOut(int a0, int a1) {
 
 /*
  * CWaterSnowList_GetWaterSnowO  0x8c0fe764
- * called by: Class_12b580_sub_0d57e8, game_sub_0d5218
+ * called by: CWaterTank_sub_0d57e8, se_sub_0d5218
  * strings: "Invalid POne number"; "CWaterSnowList::GetWaterSnowOnePtr()"
  */
 u32 CWaterSnowList_GetWaterSnowO(int a0, int a1) {
@@ -8071,7 +8071,7 @@ u32 CWaterSnowList_GetWaterSnowO(int a0, int a1) {
 /*
  * game_sub_0fe7f4  0x8c0fe7f4
  * area name: game code; nothing names its area yet
- * called by: Class_12b580_sub_0d57e8, game_sub_0d5218
+ * called by: CWaterTank_sub_0d57e8, se_sub_0d5218
  */
 u32 game_sub_0fe7f4(int a0) {
 
@@ -8260,7 +8260,7 @@ u32 vec_new_array_wrap_0febbc(u32 a0) {
 /*
  * game_sub_0febf0  0x8c0febf0
  * area name: game code; nothing names its area yet
- * called by: WATER_ELEMETNT_Create, game_sub_0d33e8, game_sub_0d5218
+ * called by: WATER_ELEMETNT_Create, game_sub_0d33e8, se_sub_0d5218
  */
 u32 game_sub_0febf0(int a0) {
     int iVar1;
@@ -8281,7 +8281,7 @@ u32 game_sub_0febf0(int a0) {
 /*
  * game_sub_0fec4c  0x8c0fec4c
  * area name: game code; nothing names its area yet
- * called by: Class_12b580_sub_0d57e8, game_sub_0d5218
+ * called by: CWaterTank_sub_0d57e8, se_sub_0d5218
  */
 u32 game_sub_0fec4c(u32 a0, int *a1) {
     *(u32 *)(*a1 + 0x58) = 0;
@@ -9122,12 +9122,12 @@ int game_sub_0ffc1c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0ffcb4  0x8c0ffcb4
- * name hint from a string it uses: GRAPHICS; area name: game code; nothing names its area yet
+ * UsrPointer_LoadTexture  0x8c0ffcb4
+ * loads UsrPointer.pvm (the pointer cursor) from GRAPHICS
  * called by: game_sub_0c0444
  * strings: "UsrPointer.pvm"; "GRAPHICS"; "Failed to load user pointer textuer.."
  */
-u32 game_sub_0ffcb4(int a0, u32 a1) {
+u32 UsrPointer_LoadTexture(int a0, u32 a1) {
     int iVar1;
     u32 uVar2;
     u32 ar7_00;
@@ -9148,7 +9148,7 @@ u32 game_sub_0ffcb4(int a0, u32 a1) {
 
 /*
  * get_field_1c_0ffd74  0x8c0ffd74
- * called by: game_sub_0ffcb4
+ * called by: UsrPointer_LoadTexture
  */
 u32 get_field_1c_0ffd74(int a0) {
     return *(u32 *)(a0 + 0x1c);

@@ -230,7 +230,7 @@ u32 game_sub_0c0444(int a0, u32 a1, u32 a2, u32 a3) {
     CSysMessage_LoadMessage(&g_8c2b5628, 0x8c3eb334);
     game_sub_0ffd7c(*(u32 *)(a0 + 0x2dd68), 0x8c3dd7dc);
     uVar2 = 0x8c3eb334;
-    game_sub_0ffcb4(*(u32 *)(a0 + 0x2dd68), 0x8c3eb334);
+    UsrPointer_LoadTexture(*(u32 *)(a0 + 0x2dd68), 0x8c3eb334);
     uVar1 = 0x8c3eb334;
     game_sub_024968(0x8c3eb334);
     game_sub_0ae2fc(uVar1, uVar2, ar6_00, ar7_00);
@@ -2419,7 +2419,7 @@ int game_sub_0c42b0(int a0) {
 /*
  * game_sub_0c4370  0x8c0c4370
  * area name: game code; nothing names its area yet
- * called by: game_sub_0ba6bc, game_sub_0d1858, input_sub_0bf804
+ * called by: game_sub_0d1858, input_sub_0bf804, show_date_time_message
  */
 u32 game_sub_0c4370(int a0, int a1, int a2, int a3) {
     char cVar1;
@@ -2708,7 +2708,7 @@ u32 game_sub_0c4644(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     uVar3 = 0x8c431288;
     pcVar2 = free_if_nonnull_wrap_0151a0;
     global_list_push(uVar1, free_if_nonnull_wrap_0151a0, 0x8c431288, ar7_00);
-    uVar1 = game_sub_0b9fb4(0x8c431a68, pcVar2, uVar3);
+    uVar1 = SaveData_ctor(0x8c431a68, pcVar2, uVar3);
     uVar3 = 0x8c431a5c;
     pcVar2 = game_sub_0c4968;
     global_list_push(uVar1, game_sub_0c4968, 0x8c431a5c, ar7_00);
@@ -3036,7 +3036,7 @@ u32 CAnimal_sub_0c4e2c(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_0c4e48  0x8c0c4e48
  * area name: game code; nothing names its area yet
- * called by: CAnimal_sub_0c4e2c, game_sub_0c8fc4, game_sub_0ca0e0, game_sub_0cb29c, game_sub_0cdf50
+ * called by: CAnimal_sub_0c4e2c, event1_end, game_sub_0c8fc4, game_sub_0cb29c, game_sub_0cdf50
  */
 u32 game_sub_0c4e48(void) {
     g_8c436928 = 1;
@@ -3177,7 +3177,7 @@ u32 noop_0c519c(void) {
 /*
  * set_timeout_120  0x8c0c51a0
  * +0x188 = a1 and a 120-frame countdown at +0x18c
- * called by: game_sub_0c4e58, game_sub_0c8fc4, game_sub_0ca0e0, game_sub_0dbf90, game_sub_1002a8, game_sub_10031c,
+ * called by: event1_end, game_sub_0c4e58, game_sub_0c8fc4, game_sub_0dbf90, game_sub_1002a8, game_sub_10031c,
  * game_sub_1003b0, game_sub_1004b4 (+5 more)
  */
 int set_timeout_120(int a0, u32 a1) {
@@ -3191,7 +3191,7 @@ int set_timeout_120(int a0, u32 a1) {
 
 /*
  * set_field_d0_0c51b8  0x8c0c51b8
- * called by: game_sub_0c4e58, game_sub_0c8758, game_sub_0c8c28, game_sub_0c97bc, game_sub_0caac0, game_sub_0cb29c,
+ * called by: event1_begin, game_sub_0c4e58, game_sub_0c8758, game_sub_0c8c28, game_sub_0caac0, game_sub_0cb29c,
  * game_sub_0cb5c8
  */
 int set_field_d0_0c51b8(int a0, u32 a1) {
@@ -3205,7 +3205,7 @@ int set_field_d0_0c51b8(int a0, u32 a1) {
 /*
  * set_timeout_120_mode6  0x8c0c51c4
  * clears +0x59c and starts a 120-frame countdown with value 6
- * called by: game_sub_0c4e58, game_sub_0c8758, game_sub_0c97bc, game_sub_0caac0, game_sub_0cb29c, game_sub_0cb5c8,
+ * called by: event1_begin, game_sub_0c4e58, game_sub_0c8758, game_sub_0caac0, game_sub_0cb29c, game_sub_0cb5c8,
  * game_sub_0dbf90, game_sub_0dca2c (+4 more)
  */
 int set_timeout_120_mode6(int a0) {
@@ -3327,7 +3327,7 @@ u32 set_fields_0_4_8_wrap(u32 a0) {
 /*
  * set_fields_0_4_8_0c5330  0x8c0c5330
  * stores +0x0, +0x4, +0x8
- * called by: game_sub_0ca0e0, game_sub_0ce920, set_fields_0_4_8_wrap
+ * called by: event1_end, game_sub_0ce920, set_fields_0_4_8_wrap
  */
 u32 set_fields_0_4_8_0c5330(u32 *a0) {
     *a0 = 0;
@@ -5561,7 +5561,7 @@ u32 game_sub_0c8fc4(int a0, int a1, u32 a2, u32 a3) {
 /*
  * set_fields_12c_130  0x8c0c90d0
  * stores +0x12c, +0x130
- * called by: game_sub_0c8fc4, game_sub_0ca0e0, game_sub_0e1f90, game_sub_0e8280
+ * called by: event1_end, game_sub_0c8fc4, game_sub_0e1f90, game_sub_0e8280
  */
 u32 set_fields_12c_130(int a0) {
     u32 in_fr5;
@@ -5812,7 +5812,7 @@ u32 noop_0c972c(void) {
 /*
  * game_sub_0c9738  0x8c0c9738
  * area name: game code; nothing names its area yet
- * called by: game_sub_0ca22c
+ * called by: event1_release_models
  */
 u32 game_sub_0c9738(int a0, u32 unused_a1, u32 a2, u32 a3) {
     (**(code **)(0x1b0 + **(int **)(a0 + 8)))(*(int **)(a0 + 8), 1, a2, a3);
@@ -5825,11 +5825,11 @@ u32 game_sub_0c9738(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0c97bc  0x8c0c97bc
- * name hint from a string it uses: GRAPHICS ENV; area name: game code; nothing names its area yet
+ * event1_begin  0x8c0c97bc
+ * starts event 1: resets the creature state and requests uzu.nj from GRAPHICS\ENV
  * strings: "uzu.nj"; "GRAPHICS\\ENV"
  */
-u32 game_sub_0c97bc(int a0, int a1, u32 a2, u32 a3) {
+u32 event1_begin(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     int *piVar3;
@@ -6219,7 +6219,7 @@ u32 game_sub_0c991c(int a0, int *a1, u32 a2, u32 a3) {
     (**(code **)(**(int **)(a0 + 8) + 0xc))(*(int **)(a0 + 8), a1, a6, a7);
     (**(code **)(**(int **)(a0 + 8) + 0xd4))(*(int **)(a0 + 8), &g_8c43700c, a6, a7);
     if (*(int *)(a0 + 0x2d1b0) != 4) {
-        uVar1 = game_sub_0ca2cc(a0, a0 + 0x2d1b0, a6, a7);
+        uVar1 = CGame_LoadForEvent1Models(a0, a0 + 0x2d1b0, a6, a7);
         *(u32 *)(a0 + 0x2d1b0) = uVar1;
     }
     Vec3_pair_dtor(afStack_54 + 2, 0xffffffff, a6, a7);
@@ -6320,11 +6320,11 @@ u32 noop_0ca0dc(void) {
 }
 
 /*
- * game_sub_0ca0e0  0x8c0ca0e0
- * name hint from a string it uses: GRAPHICS ENV; area name: game code; nothing names its area yet
+ * event1_end  0x8c0ca0e0
+ * ends event 1: releases uzu.nj and its pack entry and restores the tank state
  * strings: "uzu.nj"; "GRAPHICS\\ENV"; "GRAPHICS\\ENV"; "uzu.nj"
  */
-u32 game_sub_0ca0e0(int a0, int a1, u32 a2, u32 a3) {
+u32 event1_end(int a0, int a1, u32 a2, u32 a3) {
     u32 ar4_00;
     int iVar1;
     u8 *ar5_00;
@@ -6369,11 +6369,11 @@ u32 noop_0ca228(void) {
 }
 
 /*
- * game_sub_0ca22c  0x8c0ca22c
- * name hint from a string it uses: GRAPHICS ENV; area name: game code; nothing names its area yet
+ * event1_release_models  0x8c0ca22c
+ * releases uzu.nj and its pack entry
  * strings: "uzu.nj"; "GRAPHICS\\ENV"; "GRAPHICS\\ENV"; "uzu.nj"
  */
-u32 game_sub_0ca22c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 event1_release_models(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
     u8 *ar6_00;
     int ar7_00;
@@ -6393,12 +6393,12 @@ u32 game_sub_0ca22c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0ca2cc  0x8c0ca2cc
- * name hint from a string it uses: GRAPHICS ENV; area name: game code; nothing names its area yet
+ * CGame_LoadForEvent1Models  0x8c0ca2cc
+ * loads uzu.nj (the whirlpool) and its textures for event 1
  * called by: game_sub_0c991c
  * strings: "GRAPHICS\\ENV"; "uzu.nj"; "GRAPHICS\\ENV"; "uzu.nj" ...
  */
-u32 game_sub_0ca2cc(u32 unused_a0, int a1, u32 a2, u32 a3) {
+u32 CGame_LoadForEvent1Models(u32 unused_a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar7_00;
     char *pcVar2;
@@ -6445,10 +6445,10 @@ u32 game_sub_0ca2cc(u32 unused_a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0ca458  0x8c0ca458
- * area name: game code; nothing names its area yet
+ * CGame_sub_0ca458  0x8c0ca458
+ * area name: sits between CGame functions (same compilation unit)
  */
-u32 game_sub_0ca458(int a0, int a1, u32 a2, u32 a3) {
+u32 CGame_sub_0ca458(int a0, int a1, u32 a2, u32 a3) {
     int *a4;
     u32 a5;
 
@@ -7074,7 +7074,7 @@ u32 game_sub_0cb29c(int a0, int a1, int a2, u32 a3) {
     (**(code **)(**(int **)(a0 + 0x10) + 0xb4))(*(int **)(a0 + 0x10), puVar2, ar6_01, ar7_00);
     uVar3 = 0x8c3eb334;
     puVar2 = &g_8c436a28;
-    game_sub_0cef18(&g_8c436a28, 0x8c3eb334);
+    STAFF_CREDIT_LoadData(&g_8c436a28, 0x8c3eb334);
     *(u8 *)(a1 + 0xa0) = 3;
     *(u32 *)(a0 + 0x2d160) = 0;
     *(u32 *)(a0 + 0x2d15c) = 2;
@@ -7135,7 +7135,7 @@ u32 game_sub_0cb5c8(int a0, int a1, u32 a2, u32 a3) {
     (**(code **)(**(int **)(a0 + 0x14) + 0x18))(*(int **)(a0 + 0x14), 0x8c3eb334, a2, a3);
     (**(code **)(0x98 + **(int **)(a0 + 0x10)))(*(int **)(a0 + 0x10), (u32) * (u8 *)(0xa0 + a1), a2, a3);
     (**(code **)(**(int **)(a0 + 0x10) + 0x70))(*(int **)(a0 + 0x10), 3, a2, a3);
-    game_sub_0cef18(0x8c436a28, 0x8c3eb334);
+    STAFF_CREDIT_LoadData(0x8c436a28, 0x8c3eb334);
     return 0;
 }
 
@@ -9267,12 +9267,12 @@ int game_sub_0ceed8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0cef18  0x8c0cef18
- * name hint from a string it uses: GRAPHICS MESSAGE; area name: game code; nothing names its area yet
+ * STAFF_CREDIT_LoadData  0x8c0cef18
+ * loads credit.PVM from GRAPHICS\MESSAGE for the staff roll
  * called by: game_sub_0cb29c, game_sub_0cb5c8
  * strings: "credit.PVM"; "GRAPHICS\\MESSAGE"; "Failed to load staff pvm.."; "STAFF_CREDIT::LoadData"
  */
-int game_sub_0cef18(int a0, u32 a1) {
+int STAFF_CREDIT_LoadData(int a0, u32 a1) {
     u32 uVar1;
     u32 a7;
     int iVar2;
@@ -9961,7 +9961,7 @@ int Class_12b930_sub_0cff78(int a0, u32 a1) {
     } else {
         *(u64 *)(a0 + 0x24) = (u64)extraout_fr1;
     }
-    CTexture_sub_0d0720(a0);
+    game_sub_0d0720(a0);
     return a0;
 }
 
@@ -9979,12 +9979,12 @@ int free_if_nonnull_wrap_0cffc8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CWaterTank_sub_0cfff8  0x8c0cfff8
- * name hint from a string it uses: GRAPHICS ENV; area name: only called from CWaterTank methods
+ * CHeater_CreateModel  0x8c0cfff8
+ * loads suisou_Heater.nj (model and texture list) from GRAPHICS\ENV
  * called by: CWaterTank_CreateStage
  * strings: "suisou_Heater.nj"; "GRAPHICS\\ENV"; "suisou_Heater.nj"; "Failed NJCM:CHeater::CreateModel()" ...
  */
-int CWaterTank_sub_0cfff8(int *a0, u32 a1) {
+int CHeater_CreateModel(int *a0, u32 a1) {
     int iVar1;
     int *ar7_00;
     u32 ar5_00;

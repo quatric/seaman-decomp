@@ -187,8 +187,8 @@ u32 game_sub_050300(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * get_vec3_field_30  0x8c0507a4
  * copies x, y, z at +0x30 to three out pointers
- * called by: CHerb_sub_06d714, Class_12a25c_sub_06f93c, game_sub_050300, game_sub_077a38, game_sub_091854,
- * game_sub_0aa11c, game_sub_0cac08, game_sub_0cbd74 (+3 more)
+ * called by: CHerb_sub_06d714, CWaterTank_sub_0e0f48, Class_12a25c_sub_06f93c, game_sub_050300, game_sub_077a38,
+ * game_sub_091854, game_sub_0aa11c, game_sub_0cac08 (+3 more)
  */
 u32 *get_vec3_field_30(int a0, u32 *a1, u32 *a2, u32 *a3) {
     *a1 = *(u32 *)(a0 + 0x30);
@@ -9021,8 +9021,8 @@ int get_field_4_s8(int a0) {
 
 /*
  * get_field_770_05eeb8  0x8c05eeb8
- * called by: Class_12a078_sub_05d860, Class_12c3c4_sub_103100, game_sub_0656d4, game_sub_10862c, game_sub_1089e4,
- * talk_sub_0652f4
+ * called by: Class_12a078_sub_05d860, Class_12c3c4_sub_103100, game_sub_0656d4, game_sub_1089e4, talk_sub_0652f4,
+ * talk_sub_10862c
  */
 u32 get_field_770_05eeb8(int a0) {
     return *(u32 *)(0x770 + a0);
@@ -9038,7 +9038,7 @@ int get_field_bc_s8(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * get_field_24_05eed0  0x8c05eed0
- * called by: Class_12a078_sub_05d860, Class_12c3c4_sub_103100, game_sub_10862c, talk_sub_0652f4
+ * called by: Class_12a078_sub_05d860, Class_12c3c4_sub_103100, talk_sub_0652f4, talk_sub_10862c
  */
 u32 get_field_24_05eed0(int a0, u32 a1) {
     return *(u32 *)(a0 + 0x24);

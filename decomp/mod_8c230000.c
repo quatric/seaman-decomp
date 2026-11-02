@@ -10639,8 +10639,8 @@ u32 gfxlib_sub_235eba(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gfxlib_sub_235ee4  0x8c235ee4
  * area name: in the gfxlib library code range
- * called by: Class_12b580_sub_0d84e8, game_sub_0ca458, game_sub_0caac0, game_sub_0cbd74, game_sub_0d50a0,
- * game_sub_0d5218, game_sub_0d8444, game_sub_0e14fc (+3 more)
+ * called by: CGame_sub_0ca458, Class_12b580_sub_0d84e8, game_sub_0caac0, game_sub_0cbd74, game_sub_0d8444,
+ * game_sub_0e14fc, game_sub_0e157c, game_sub_0e84f8 (+3 more)
  */
 u32 gfxlib_sub_235ee4(void) {
     int *piVar1;
@@ -10673,7 +10673,7 @@ u32 gfxlib_sub_235eea(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gfxlib_sub_235f14  0x8c235f14
  * area name: in the gfxlib library code range
- * called by: Class_12b580_sub_0d84e8, game_sub_0d4fe8, game_sub_0e14fc, game_sub_0e157c
+ * called by: Class_12b580_sub_0d84e8, game_sub_0e14fc, game_sub_0e157c, se_play_bubble_mono
  */
 u32 gfxlib_sub_235f14(void) {
     int *piVar1;
@@ -14019,7 +14019,7 @@ int ta_sub_239150(int *a0, u32 a1) {
  * ptr_list_build_1c  0x8c239170
  * fills a1 with a3 pointers 0x1c bytes apart starting at a2 (stride 12) and stores a1 in *a0
  * called by: CGame_Init, CIncubater_Create, CProlog_Ready, CSoilTank_Create, CSquid_Init, CSysMessage_LoadMessage,
- * CWaterTank_CreateStage, WEATHRE_UNIT_CreateGraphics (+6 more)
+ * CWaterTank_CreateStage, STAFF_CREDIT_LoadData (+6 more)
  */
 int *ptr_list_build_1c(int *a0, int *a1, int a2, int a3) {
     int *piVar1;

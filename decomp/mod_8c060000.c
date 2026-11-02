@@ -1276,7 +1276,7 @@ u32 set_field_2c(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * Vec3_assign_wrap_063818  0x8c063818
  * called by: Class_12acc8_m1_09f470, Vec3_sub_063838, game_sub_062b0c, game_sub_064bb4, game_sub_0656d4,
- * game_sub_106f58, game_sub_107590, game_sub_10862c (+2 more)
+ * game_sub_106f58, game_sub_107590, game_sub_1089e4 (+2 more)
  */
 u32 Vec3_assign_wrap_063818(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -2008,7 +2008,7 @@ u32 game_sub_064bb4(int a0, u32 unused_a1, int a2, char *a3) {
 int talk_complain_tank_env(int a0, u32 unused_a1, int a2) {
     int iVar1;
 
-    iVar1 = game_sub_02bebc(*(u32 *)(a2 + 4));
+    iVar1 = talk_sub_02bebc(*(u32 *)(a2 + 4));
     if (iVar1 != -1) {
         if (iVar1 == 0) {
             (*(code *)(&talk_queue_mode1))(a0 + 0x9c, 7, 0, "GRATIFIC_RID_HOT", (&DATA_8c136988) + 0x37);

@@ -307,11 +307,11 @@ u32 CTexture_ReleaseFromVRAM_wrap(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CTexture_sub_0d06c4  0x8c0d06c4
- * area name: sits between CTexture functions (same compilation unit)
+ * game_sub_0d06c4  0x8c0d06c4
+ * area name: game code; nothing names its area yet
  * called by: game_sub_0e0488
  */
-int CTexture_sub_0d06c4(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int game_sub_0d06c4(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
 
     iVar1 = *(int *)(a0 + 0x34);
@@ -322,11 +322,11 @@ int CTexture_sub_0d06c4(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * CTexture_sub_0d06ec  0x8c0d06ec
- * area name: sits between CTexture functions (same compilation unit)
+ * game_sub_0d06ec  0x8c0d06ec
+ * area name: game code; nothing names its area yet
  * called by: game_sub_0e0508
  */
-int CTexture_sub_0d06ec(int a0) {
+int game_sub_0d06ec(int a0) {
     int iVar1;
 
     iVar1 = *(int *)(a0 + 0x34);
@@ -346,11 +346,11 @@ u32 clear_field_48(int a0) {
 }
 
 /*
- * CTexture_sub_0d0720  0x8c0d0720
- * area name: sits between CTexture functions (same compilation unit)
+ * game_sub_0d0720  0x8c0d0720
+ * area name: game code; nothing names its area yet
  * called by: Class_12b930_sub_0cff78, game_sub_0dfbdc
  */
-u32 CTexture_sub_0d0720(int a0) {
+u32 game_sub_0d0720(int a0) {
     *(u32 *)(a0 + 0xc) = 0;
     *(u32 *)(a0 + 0x10) = 0;
     *(u32 *)(a0 + 0x14) = 0;
@@ -366,12 +366,12 @@ u32 CTexture_sub_0d0720(int a0) {
 }
 
 /*
- * CTexture_sub_0d0768  0x8c0d0768
- * name hint from a string it uses: GRAPHICS ENV; area name: sits between CTexture functions (same compilation unit)
- * called by: game_sub_0e0be8
+ * CHeater_ReleaseModel  0x8c0d0768
+ * releases suisou_Heater.nj
+ * called by: CWaterTank_ReleaseModels
  * strings: "suisou_Heater.nj"; "GRAPHICS\\ENV"; "suisou_Heater.nj"; "GRAPHICS\\ENV"
  */
-u32 CTexture_sub_0d0768(u32 a0, u32 a1) {
+u32 CHeater_ReleaseModel(u32 a0, u32 a1) {
     u32 uVar1;
 
     (*(code *)(&CDCGD_release_type0))(a1, "suisou_Heater.nj", "GRAPHICS\\ENV", a0);
@@ -392,12 +392,12 @@ int Class_12b930_sub_0d07b4(int a0, u32 a1) {
 }
 
 /*
- * CWaterTank_sub_0d07ec  0x8c0d07ec
- * name hint from a string it uses: GRAPHICS ENV; area name: only called from CWaterTank methods
+ * CO2Supply_LoadTexture  0x8c0d07ec
+ * loads the O2SUPPLY texture list from GRAPHICS\ENV
  * called by: CWaterTank_CreateStage
  * strings: "O2SUPPLY"; "GRAPHICS\\ENV"; "Failed to load o2 supply textuer.."
  */
-int CWaterTank_sub_0d07ec(int *a0, u32 a1, u32 a2, u32 a3) {
+int CO2Supply_LoadTexture(int *a0, u32 a1, u32 a2, u32 a3) {
     int *ar7_00;
     int iVar1;
     u8 **ar5_00;
@@ -419,11 +419,11 @@ int CWaterTank_sub_0d07ec(int *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CTexture_sub_0d08c0  0x8c0d08c0
- * area name: sits between CTexture functions (same compilation unit)
- * called by: CTexture_sub_0d0910, game_sub_0e0f48
+ * game_sub_0d08c0  0x8c0d08c0
+ * area name: game code; nothing names its area yet
+ * called by: CWaterTank_sub_0e0f48, game_sub_0d0910
  */
-u8 *CTexture_sub_0d08c0(int a0) {
+u8 *game_sub_0d08c0(int a0) {
     u8 *puVar1;
     float fVar2;
 
@@ -444,23 +444,23 @@ u8 *CTexture_sub_0d08c0(int a0) {
 }
 
 /*
- * CTexture_sub_0d0910  0x8c0d0910
- * area name: sits between CTexture functions (same compilation unit)
- * called by: game_sub_0e132c
+ * game_sub_0d0910  0x8c0d0910
+ * area name: game code; nothing names its area yet
+ * called by: CWaterTank_sub_0e132c
  */
-u32 CTexture_sub_0d0910(u32 a0) {
+u32 game_sub_0d0910(u32 a0) {
     u32 uVar1;
 
-    uVar1 = CTexture_sub_0d08c0(a0);
+    uVar1 = game_sub_0d08c0(a0);
     return uVar1;
 }
 
 /*
- * CTexture_sub_0d092c  0x8c0d092c
- * area name: sits between CTexture functions (same compilation unit)
+ * game_sub_0d092c  0x8c0d092c
+ * area name: game code; nothing names its area yet
  * called by: game_sub_0de6d0
  */
-u32 CTexture_sub_0d092c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_sub_0d092c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 in_PR;
 
@@ -474,11 +474,11 @@ u32 CTexture_sub_0d092c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CTexture_sub_0d0990  0x8c0d0990
- * area name: sits between CTexture functions (same compilation unit)
+ * game_sub_0d0990  0x8c0d0990
+ * area name: game code; nothing names its area yet
  * called by: game_sub_0deb60, game_sub_0def78
  */
-u32 CTexture_sub_0d0990(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_sub_0d0990(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 in_PR;
 
@@ -569,7 +569,7 @@ u32 set_field_14_0d0a3c(int a0, u32 a1) {
 /*
  * game_sub_0d0a44  0x8c0d0a44
  * area name: game code; nothing names its area yet
- * called by: game_sub_0e0f48, game_sub_0e132c
+ * called by: CWaterTank_sub_0e0f48, CWaterTank_sub_0e132c
  */
 int game_sub_0d0a44(int a0) {
     u64 in_dr4;
@@ -602,7 +602,7 @@ u32 game_sub_0d0a84(int a0) {
 
 /*
  * set_field_18_to_1  0x8c0d0aac
- * called by: game_sub_0d0a84, game_sub_0e0f48
+ * called by: CWaterTank_sub_0e0f48, game_sub_0d0a84
  */
 u32 set_field_18_to_1(int a0) {
     *(u32 *)(a0 + 0x18) = 1;
@@ -611,7 +611,7 @@ u32 set_field_18_to_1(int a0) {
 
 /*
  * set_field_70  0x8c0d0ab4
- * called by: Class_1297f4_sub_0d0bcc
+ * called by: CSprinkler_LoadTexture
  */
 u32 set_field_70(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 in_fr4;
@@ -642,10 +642,10 @@ u32 *Class_1297f4_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_1297f4_sub_0d0b04  0x8c0d0b04
- * area name: sits between Class_1297f4 functions (same compilation unit)
+ * game_sub_0d0b04  0x8c0d0b04
+ * area name: game code; nothing names its area yet
  */
-u32 Class_1297f4_sub_0d0b04(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_sub_0d0b04(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     particle_step(a0);
@@ -680,12 +680,12 @@ int Class_12b930_sub_0d0b58(int a0, u32 a1) {
 }
 
 /*
- * Class_1297f4_sub_0d0bcc  0x8c0d0bcc
- * name hint from a string it uses: GRAPHICS ENV; area name: sits between Class_1297f4 functions (same compilation unit)
+ * CSprinkler_LoadTexture  0x8c0d0bcc
+ * loads the SPRINKLER texture list from GRAPHICS\ENV
  * called by: Class_12b930_sub_0de18c, game_sub_0e016c
  * strings: "GRAPHICS\\ENV"; "SPRINKLER"; "SPRINKLER"; "GRAPHICS\\ENV" ...
  */
-u32 Class_1297f4_sub_0d0bcc(int *a0, u32 a1, u32 a2, u32 a3) {
+u32 CSprinkler_LoadTexture(int *a0, u32 a1, u32 a2, u32 a3) {
     int *ar7_00;
     int iVar1;
     u8 **ar5_00;
@@ -711,7 +711,7 @@ u32 Class_1297f4_sub_0d0bcc(int *a0, u32 a1, u32 a2, u32 a3) {
         report_error_message("Failed to load sprinkler textuer..", &g_8c13d4fb, 1, 2);
     }
     for (uVar2 = 0; uVar2 < 0x15e; uVar2 = uVar2 + 1) {
-        Class_1297f4_sub_014cd4(a0 + uVar2 * 0x2b + 3, ar5_01, ar6_00, ar7_00);
+        CSprinkler_sub_014cd4(a0 + uVar2 * 0x2b + 3, ar5_01, ar6_00, ar7_00);
         ar5_01 = (char *)0x1;
         set_fields_68_78(a0 + uVar2 * 0x2b + 3, 1);
         set_field_70(a0 + uVar2 * 0x2b + 3, ar5_01, ar6_00, ar7_00, a1);
@@ -722,7 +722,7 @@ u32 Class_1297f4_sub_0d0bcc(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * set_fields_68_78  0x8c0d0d0c
  * stores +0x68, +0x78
- * called by: Class_1297f4_sub_0d0bcc
+ * called by: CSprinkler_LoadTexture
  */
 u32 set_fields_68_78(int a0, u32 a1) {
     *(u32 *)(a0 + 0x68) = 1;
@@ -733,7 +733,7 @@ u32 set_fields_68_78(int a0, u32 a1) {
 /*
  * Class_12b930_sub_0d0d1c  0x8c0d0d1c
  * area name: only called from Class_12b930 methods
- * called by: Class_12b930_m3_0de4b0, game_sub_0e1398
+ * called by: CWaterTank_sub_0e1398, Class_12b930_m3_0de4b0
  */
 u32 Class_12b930_sub_0d0d1c(int a0, code *a1, u32 a2, u32 a3) {
     u64 uVar1;
@@ -3665,7 +3665,7 @@ u32 get_field_40_0d3d64(int a0) {
 /*
  * Class_12b930_sub_0d3d6c  0x8c0d3d6c
  * area name: only called from Class_12b930 methods
- * called by: Class_12b930_m3_0de4b0, game_sub_0e0f48, game_sub_0e1398
+ * called by: CWaterTank_sub_0e0f48, CWaterTank_sub_0e1398, Class_12b930_m3_0de4b0
  */
 u32 Class_12b930_sub_0d3d6c(u64 *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -3854,7 +3854,7 @@ u32 list_node_next_wrap(u32 a0) {
 
 /*
  * get_field_d0_0d3f70  0x8c0d3f70
- * called by: Class_12b580_sub_0d57e8, Class_12b930_sub_0d3d6c, game_sub_0d49cc, game_sub_0d5218
+ * called by: CWaterTank_sub_0d57e8, Class_12b930_sub_0d3d6c, game_sub_0d49cc, se_sub_0d5218
  */
 u32 get_field_d0_0d3f70(int a0) {
     return *(u32 *)(0xd0 + a0);
@@ -4784,20 +4784,20 @@ u32 game_sub_0d4fa8(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     if ((u8)a1 < 2) {
-        uVar1 = game_sub_0d4fe8(a0, a1, a2, a3);
+        uVar1 = se_play_bubble_mono(a0, a1, a2, a3);
     } else {
-        uVar1 = game_sub_0d5040(a0, a1, a2, a3);
+        uVar1 = se_play_ike1(a0, a1, a2, a3);
     }
     return uVar1;
 }
 
 /*
- * game_sub_0d4fe8  0x8c0d4fe8
- * name hint from a string it uses: 40 BUBBLE MONO; area name: game code; nothing names its area yet
+ * se_play_bubble_mono  0x8c0d4fe8
+ * plays the 40_BUBBLE_MONO pack sound
  * called by: game_sub_0d4fa8
  * strings: "40_BUBBLE_MONO"
  */
-u32 game_sub_0d4fe8(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 se_play_bubble_mono(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     gfxlib_sub_235f14();
@@ -4808,12 +4808,12 @@ u32 game_sub_0d4fe8(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0d5040  0x8c0d5040
- * area name: game code; nothing names its area yet
- * called by: game_sub_0d4fa8, game_sub_0d5218
+ * se_play_ike1  0x8c0d5040
+ * plays the 75_IKE1 pack sound
+ * called by: game_sub_0d4fa8, se_sub_0d5218
  * strings: "75_IKE1"
  */
-u32 game_sub_0d5040(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 se_play_ike1(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (*(code *)(&pack_find_by_name_buffered))(0x8c2b59d0, "75_IKE1", a2, a3);
@@ -4824,11 +4824,11 @@ u32 game_sub_0d5040(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0d50a0  0x8c0d50a0
- * area name: game code; nothing names its area yet
+ * se_sub_0d50a0  0x8c0d50a0
+ * area name: sits between se functions (same compilation unit)
  * called by: game_sub_0e016c
  */
-u32 game_sub_0d50a0(void) {
+u32 se_sub_0d50a0(void) {
     u32 uVar1;
 
     uVar1 = gfxlib_sub_235ee4();
@@ -4836,11 +4836,11 @@ u32 game_sub_0d50a0(void) {
 }
 
 /*
- * game_sub_0d50b4  0x8c0d50b4
- * area name: game code; nothing names its area yet
+ * se_sub_0d50b4  0x8c0d50b4
+ * area name: sits between se functions (same compilation unit)
  * called by: game_sub_0e021c
  */
-u32 game_sub_0d50b4(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 se_sub_0d50b4(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     Class_12b580_sub_022104(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
@@ -4849,27 +4849,27 @@ u32 game_sub_0d50b4(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0d50ec  0x8c0d50ec
- * area name: game code; nothing names its area yet
+ * se_sub_0d50ec  0x8c0d50ec
+ * area name: sits between se functions (same compilation unit)
  * called by: input_sub_0e004c
  */
-u32 game_sub_0d50ec(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 se_sub_0d50ec(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     if ((u8)a1 < 2) {
-        uVar1 = game_sub_0d512c(a0, a1, a2, a3);
+        uVar1 = se_sub_0d512c(a0, a1, a2, a3);
     } else {
-        uVar1 = game_sub_0d51ec(a0, a1, a2, a3);
+        uVar1 = se_sub_0d51ec(a0, a1, a2, a3);
     }
     return uVar1;
 }
 
 /*
- * game_sub_0d512c  0x8c0d512c
- * area name: game code; nothing names its area yet
- * called by: game_sub_0d50ec, game_sub_0d51ec
+ * se_sub_0d512c  0x8c0d512c
+ * area name: sits between se functions (same compilation unit)
+ * called by: se_sub_0d50ec, se_sub_0d51ec
  */
-u32 game_sub_0d512c(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 se_sub_0d512c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
 
     Class_12b580_sub_022104(0x8c2b59d0, *(u32 *)(0x5e4 + a0), a2, a3);
@@ -4885,26 +4885,26 @@ u32 game_sub_0d512c(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0d51ec  0x8c0d51ec
- * area name: game code; nothing names its area yet
- * called by: game_sub_0d50ec
+ * se_sub_0d51ec  0x8c0d51ec
+ * area name: sits between se functions (same compilation unit)
+ * called by: se_sub_0d50ec
  */
-u32 game_sub_0d51ec(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 se_sub_0d51ec(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = 0;
     Class_12b580_sub_022128(0x8c2b59d0, 0, a2, a3);
-    uVar1 = game_sub_0d512c(a0, uVar1, a2, a3);
+    uVar1 = se_sub_0d512c(a0, uVar1, a2, a3);
     return uVar1;
 }
 
 /*
- * game_sub_0d5218  0x8c0d5218
- * name hint from a string it uses: GRAPHICS ENV; area name: game code; nothing names its area yet
+ * se_sub_0d5218  0x8c0d5218
+ * name hint from a string it uses: GRAPHICS ENV; area name: sits between se functions (same compilation unit)
  * called by: game_sub_0e02b0
  * strings: "suisou_WaterFace.nj"; "GRAPHICS\\ENV"; "GRAPHICS\\ENV"; "suisou_WaterFace.nj" ...
  */
-u32 game_sub_0d5218(double *a0, u32 a1) {
+u32 se_sub_0d5218(double *a0, u32 a1) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -5080,7 +5080,7 @@ u32 game_sub_0d5218(double *a0, u32 a1) {
         ar5_00 = (u32 ***)appuStack_18[0];
         game_sub_0fe5f0((int)a0 + 0x34, appuStack_18[0]);
     }
-    uVar2 = game_sub_0d5040(a0, ar5_00, pcVar4, puVar6);
+    uVar2 = se_play_ike1(a0, ar5_00, pcVar4, puVar6);
     return uVar2;
 }
 
@@ -5146,7 +5146,7 @@ u32 game_sub_0d5614(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * Class_12b580_set_request_wrap  0x8c0d568c
  * only calls Class_12b580_set_request
- * called by: game_sub_0e0f48
+ * called by: CWaterTank_sub_0e0f48
  */
 u32 Class_12b580_set_request_wrap(int a0) {
     u32 uVar1;
@@ -5158,7 +5158,7 @@ u32 Class_12b580_set_request_wrap(int a0) {
 /*
  * Class_12b580_sub_0d56b4  0x8c0d56b4
  * area name: sits between Class_12b580 functions (same compilation unit)
- * called by: game_sub_0e0f48
+ * called by: CWaterTank_sub_0e0f48
  */
 u32 Class_12b580_sub_0d56b4(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5197,12 +5197,12 @@ u32 Class_12b580_sub_0d56dc(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12b580_sub_0d57e8  0x8c0d57e8
- * name hint from a string it uses: GRAPHICS ENV; area name: sits between Class_12b580 functions (same compilation unit)
- * called by: game_sub_0e0be8
+ * CWaterTank_sub_0d57e8  0x8c0d57e8
+ * name hint from a string it uses: GRAPHICS ENV; area name: only called from CWaterTank methods
+ * called by: CWaterTank_ReleaseModels
  * strings: "suisou_WaterFace_small.nj"; "GRAPHICS\\ENV"; "GRAPHICS\\ENV"; "suisou_WaterFace_small.nj" ...
  */
-u32 Class_12b580_sub_0d57e8(int a0, u32 *a1, u32 a2) {
+u32 CWaterTank_sub_0d57e8(int a0, u32 *a1, u32 a2) {
     int iVar1;
     u32 uVar2;
     u32 *ar5_00;
@@ -5461,7 +5461,7 @@ u32 Vec3_sub_0d5d28(int a0, int a1, u32 a2, u32 a3) {
 /*
  * Vec3_sub_0d5de0  0x8c0d5de0
  * area name: sits between Vec3 functions (same compilation unit)
- * called by: WE_CreateStageC, game_sub_0d5218
+ * called by: WE_CreateStageC, se_sub_0d5218
  */
 int Vec3_sub_0d5de0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -5597,12 +5597,12 @@ u32 set_fields_c_20(int a0) {
 }
 
 /*
- * CTexture_sub_0d60c8  0x8c0d60c8
- * name hint from a string it uses: GRAPHICS ENV; area name: sits between CTexture functions (same compilation unit)
- * called by: game_sub_0e5bb4
+ * kumonosu_release_model  0x8c0d60c8
+ * releases kumonosu.nj (the spider web)
+ * called by: musikago_release_model
  * strings: "kumonosu.nj"; "GRAPHICS\\ENV"; "kumonosu.nj"; "GRAPHICS\\ENV"
  */
-u32 CTexture_sub_0d60c8(u32 a0, u32 a1) {
+u32 kumonosu_release_model(u32 a0, u32 a1) {
     u32 uVar1;
 
     (*(code *)(&CDCGD_release_type0))(a1, "kumonosu.nj", "GRAPHICS\\ENV", a0);
@@ -9413,12 +9413,12 @@ u64 *Class_12b930_sub_0d931c(u64 *a0, u32 a1, u32 a2) {
 }
 
 /*
- * CWaterTank_sub_0d93a8  0x8c0d93a8
- * name hint from a string it uses: GRAPHICS ENV; area name: only called from CWaterTank methods
+ * RING_UNIT_CreateModel  0x8c0d93a8
+ * loads Ring_Home.nj, its textures and RingMotion.npd
  * called by: CWaterTank_CreateStage
  * strings: "GRAPHICS\\ENV"; "Ring_Home.nj"; "GRAPHICS\\ENV"; "Ring_Home.nj" ...
  */
-u32 CWaterTank_sub_0d93a8(int a0, u32 a1, u32 a2) {
+u32 RING_UNIT_CreateModel(int a0, u32 a1, u32 a2) {
     int iVar1;
     u32 ar7_00;
     char *ar5_00;
@@ -9753,12 +9753,12 @@ u32 set_fields_18_10_14(int a0) {
 }
 
 /*
- * game_sub_0d990c  0x8c0d990c
- * name hint from a string it uses: GRAPHICS ENV; area name: game code; nothing names its area yet
- * called by: game_sub_0e0be8
+ * RING_UNIT_ReleaseModel  0x8c0d990c
+ * releases Ring_Home.nj, RingMotion.npd and the seven ring textures
+ * called by: CWaterTank_ReleaseModels
  * strings: "Ring_Home.nj"; "GRAPHICS\\ENV"; "Ring_Home.nj"; "GRAPHICS\\ENV" ...
  */
-u32 game_sub_0d990c(u32 a0, u32 a1) {
+u32 RING_UNIT_ReleaseModel(u32 a0, u32 a1) {
     u32 uVar1;
 
     (*(code *)(&CDCGD_release_type0))(a1, "Ring_Home.nj", "GRAPHICS\\ENV", a0);
@@ -10357,8 +10357,8 @@ u32 Class_12bb08_sub_0da4f8(int a0) {
 /*
  * list_node_next_wrap_0da588  0x8c0da588
  * only calls list_node_next
- * called by: Class_129974_sub_0db3bc, Class_12b930_m3_0de4b0, Class_12b930_sub_0e3994, Class_12bb08_m1_0da338,
- * Class_12bb08_m2_0da5a8, Class_12bb08_sub_0dbbe8, game_sub_0da754, game_sub_0dab8c (+15 more)
+ * called by: CWaterTank_sub_0e0f48, Class_129974_sub_0db3bc, Class_12b930_m3_0de4b0, Class_12b930_sub_0e3994,
+ * Class_12bb08_m1_0da338, Class_12bb08_m2_0da5a8, Class_12bb08_sub_0dbbe8, game_sub_0da754 (+15 more)
  */
 u32 list_node_next_wrap_0da588(u32 a0) {
     u32 uVar1;
@@ -11116,7 +11116,7 @@ int Class_129974_sub_0db3bc(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * list_node_next_wrap_0db580  0x8c0db580
  * only calls list_node_next
- * called by: Class_129974_sub_0db3bc, Class_12b580_m1_0e634c, game_sub_0dc8fc, game_sub_0dfbdc, game_sub_0e1398
+ * called by: CWaterTank_sub_0e1398, Class_129974_sub_0db3bc, Class_12b580_m1_0e634c, game_sub_0dc8fc, game_sub_0dfbdc
  */
 u32 list_node_next_wrap_0db580(u32 a0) {
     u32 uVar1;
@@ -11127,7 +11127,7 @@ u32 list_node_next_wrap_0db580(u32 a0) {
 
 /*
  * get_field_38_0db5a0  0x8c0db5a0
- * called by: Class_129974_sub_0db3bc, Class_12b580_m1_0e634c, game_sub_0dc8fc, game_sub_0dfbdc, game_sub_0e1398,
+ * called by: CWaterTank_sub_0e1398, Class_129974_sub_0db3bc, Class_12b580_m1_0e634c, game_sub_0dc8fc, game_sub_0dfbdc,
  * get_field_38_wrap
  */
 u32 get_field_38_0db5a0(int a0) {
@@ -11287,7 +11287,7 @@ u32 game_sub_0db790(int a0, int a1, u32 a2, u32 a3) {
 /*
  * get_field_38_wrap  0x8c0db7d4
  * only calls get_field_38_0db5a0
- * called by: game_sub_0e0f48, game_sub_0e132c, game_sub_0e5238
+ * called by: CWaterTank_sub_0e0f48, CWaterTank_sub_0e132c, game_sub_0e5238
  */
 u32 get_field_38_wrap(int a0, int a1) {
     u32 uVar1;
@@ -11411,12 +11411,12 @@ u32 game_sub_0dba50(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CWaterTank_sub_0dbb14  0x8c0dbb14
- * name hint from a string it uses: GRAPHICS COMMON; area name: only called from CWaterTank methods
+ * common_texlist_load  0x8c0dbb14
+ * loads a texture list from GRAPHICS\COMMON
  * called by: CWaterTank_CreateStage, game_sub_0e69c0
  * strings: "GRAPHICS\\COMMON"; "Failed to load textuer.. SHIT!"
  */
-int CWaterTank_sub_0dbb14(int a0, u32 a1, u32 a2, u32 a3) {
+int common_texlist_load(int a0, u32 a1, u32 a2, u32 a3) {
     int *ar7_00;
     int iVar1;
     u8 **ar5_00;
@@ -13173,7 +13173,7 @@ u32 Class_12b930_sub_0de18c(int a0, u32 a1, u32 a2, u32 a3) {
 
     CWaterTank_CreateStage(a0, a1, a2);
     WATER_ELEMETNT_Create(a0 + 0x10ac, a1);
-    uVar1 = Class_1297f4_sub_0d0bcc(a0 + 0x13b8c, a1, a2, a3);
+    uVar1 = CSprinkler_LoadTexture(a0 + 0x13b8c, a1, a2, a3);
     return uVar1;
 }
 
@@ -13557,7 +13557,7 @@ u32 game_sub_0de6d0(int a0, u32 a1, u32 a2, u32 a3) {
         game_sub_0e4198(a0, iVar3, puVar5, a3);
     }
     game_sub_0d9720(a0 + 0x22704, iVar3, puVar5, a3);
-    CTexture_sub_0d092c(a0 + 0x13b70, iVar3, puVar5, a3);
+    game_sub_0d092c(a0 + 0x13b70, iVar3, puVar5, a3);
     for (iVar4 = 0; iVar4 < 8; iVar4 = iVar4 + 1) {
         iVar1 = has_field_2c(a0 + iVar4 * 0x68 + 0xc0c);
         if (iVar1 == 1) {
@@ -13763,7 +13763,7 @@ u32 game_sub_0deb60(int a0, u32 a1, u32 a2, u32 a3) {
         game_sub_0e4198(a0, iVar3, puVar5, a3);
     }
     game_sub_0d9720(a0 + 0x22704, iVar3, puVar5, a3);
-    CTexture_sub_0d0990(a0 + 0x13b70, iVar3, puVar5, a3);
+    game_sub_0d0990(a0 + 0x13b70, iVar3, puVar5, a3);
     for (iVar4 = 0; iVar4 < 8; iVar4 = iVar4 + 1) {
         iVar1 = has_field_2c(a0 + iVar4 * 0x68 + 0xc0c);
         if (iVar1 == 1) {
@@ -13855,7 +13855,7 @@ u32 game_sub_0def78(int a0, u32 a1, u32 a2, u32 a3) {
     game_sub_0d7410(a0 + 0x22d48, iVar3, puVar4, a3);
     game_sub_0d7410(a0 + 0x22eb4, iVar3, puVar4, a3);
     game_sub_0d7410(a0 + 0x23020, iVar3, puVar4, a3);
-    CTexture_sub_0d0990(a0 + 0x13b70, iVar3, puVar4, a3);
+    game_sub_0d0990(a0 + 0x13b70, iVar3, puVar4, a3);
     game_sub_0d05d0(a0 + 0x13b24, iVar3, puVar4, a3);
     iVar3 = a0 + 0x226f8;
     game_sub_0e4198(a0, iVar3, puVar4, a3);
@@ -14349,7 +14349,7 @@ u32 game_sub_0dfbdc(int a0, u32 a1, u32 a2, u32 a3) {
     game_sub_0e96b8(a0 + 0xf4c);
     game_sub_0d6920(a0 + 0xa68, a1, a2, a3);
     (**(code **)(*(int *)(a0 + 0x9e8) + 0x10))((int *)(a0 + 0x9e8), a1, a2, a3);
-    CTexture_sub_0d0720(a0 + 0x13b24);
+    game_sub_0d0720(a0 + 0x13b24);
     game_sub_0d0a84(a0 + 0x13b70);
     CTexture_sub_0d1548(a0 + 0x13b8c);
     set_fields_18_10_14(a0 + 0x22704);

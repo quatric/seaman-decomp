@@ -778,7 +778,7 @@ u32 shinobi_sub_1f097e(u8 *a0, u8 *a1, int a2) {
 /*
  * memset_ff  0x8c1f0988
  * fills a1 bytes at a0 with 0xff
- * called by: flashrom_open_partition, flashrom_sub_1f0e98, flashrom_sub_1f0e9c
+ * called by: flashrom_format_partition, flashrom_format_partition_b, flashrom_open_partition
  */
 u32 memset_ff(u8 *a0, int a1) {
     u32 in_r0;
@@ -933,7 +933,7 @@ u32 shinobi_sub_1f0a2a(int a0, int a1) {
 /*
  * shinobi_sub_1f0a72  0x8c1f0a72
  * area name: in the shinobi library code range
- * called by: flashrom_open_partition, flashrom_sub_1f0e98, flashrom_sub_1f0e9c
+ * called by: flashrom_format_partition, flashrom_format_partition_b, flashrom_open_partition
  */
 u32 shinobi_sub_1f0a72(int a0) {
     int iVar1;
@@ -1252,12 +1252,12 @@ u32 flashrom_open_partition(int a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * flashrom_sub_1f0e98  0x8c1f0e98
- * area name: sits between flashrom functions (same compilation unit)
+ * flashrom_format_partition  0x8c1f0e98
+ * deletes flash partition a0 (0 or 1) and writes the "KATANA_FLASH____" header block
  * called by: shinobi_sub_1f6b14, shinobi_sub_1f97b4
  * strings: "KATANA_FLASH____"
  */
-int flashrom_sub_1f0e98(int a0) {
+int flashrom_format_partition(int a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -1301,11 +1301,11 @@ int flashrom_sub_1f0e98(int a0) {
 }
 
 /*
- * flashrom_sub_1f0e9c  0x8c1f0e9c
- * name hint from a string it uses: KATANA FLASH; area name: sits between flashrom functions (same compilation unit)
+ * flashrom_format_partition_b  0x8c1f0e9c
+ * second entry into flashrom_format_partition
  * strings: "KATANA_FLASH____"
  */
-int flashrom_sub_1f0e9c(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int flashrom_format_partition_b(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     u32 ar6_00;
@@ -9645,7 +9645,7 @@ u32 shinobi_sub_1f6b14(u32 a0, u32 a1, int a2, u32 a3) {
                 uVar8 = a1;
                 iVar10 = shinobi_sub_1f6d3e(iVar5, iVar9, a3, a1);
                 iVar5 = shinobi_sub_1f1080();
-                if ((iVar10 + 3 <= iVar5) || (iVar4 = flashrom_sub_1f0e98(0), iVar4 == 0)) {
+                if ((iVar10 + 3 <= iVar5) || (iVar4 = flashrom_format_partition(0), iVar4 == 0)) {
                     shinobi_sub_1f6ce2(2, a1, uVar7, uVar8);
                     puVar1 = (&shinobi_sub_1f884c);
                     iVar10 = (int)0x6360;
@@ -9659,7 +9659,7 @@ u32 shinobi_sub_1f6b14(u32 a0, u32 a1, int a2, u32 a3) {
                     shinobi_sub_1f6ce2(1, a1, uVar7, uVar8);
                     uVar6 = a0;
                     iVar4 = flashrom_open_partition(3, a0, uVar7, uVar8);
-                    if ((iVar4 == 0) && (iVar4 = flashrom_sub_1f0e98(0), iVar4 == 0)) {
+                    if ((iVar4 == 0) && (iVar4 = flashrom_format_partition(0), iVar4 == 0)) {
                         iVar4 = 0;
                         do {
                             iVar10 = (*(code *)puVar1)(iVar4, iVar4 * 0x3c + a3, uVar7, uVar8);
@@ -9677,7 +9677,7 @@ u32 shinobi_sub_1f6b14(u32 a0, u32 a1, int a2, u32 a3) {
                             iVar10 = shinobi_sub_1f6d3e(0, iVar3, a2, a1);
                             iVar5 = shinobi_sub_1f1080();
                             if (iVar5 < iVar10 + 2) {
-                                iVar4 = flashrom_sub_1f0e98(0);
+                                iVar4 = flashrom_format_partition(0);
                                 if (iVar4 != 0)
                                     goto LAB_8c1f6cc2;
                                 shinobi_sub_1f6ce2(3, a1, iVar9, uVar8);
@@ -11327,8 +11327,8 @@ u32 shinobi_sub_1f814c(u32 a0) {
 /*
  * rtc_get_date  0x8c1f8176
  * fills a {year, month, day, hour, minute, second, weekday} struct from the real-time clock
- * called by: CProlog_sub_0b96e4, game_sub_01bebc, game_sub_01bfd0, game_sub_0ba6bc, game_sub_0f9774, game_sub_0fc40c,
- * game_sub_0fc94c, game_sub_0fcd2c (+9 more)
+ * called by: CProlog_sub_0b96e4, game_sub_01bebc, game_sub_01bfd0, game_sub_0f9774, game_sub_0fc40c, game_sub_0fc94c,
+ * game_sub_0fcd2c, input_sub_0bf804 (+9 more)
  */
 u32 rtc_get_date(short *a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 *puVar1;
@@ -12605,7 +12605,7 @@ u32 shinobi_sub_1f97b4(u32 a0, u32 a1, u32 a2, u32 a3) {
     a5 = auStack_50;
     iVar3 = flashrom_open_partition(2, a1, a2, a3);
     if (iVar3 == -8) {
-        iVar3 = flashrom_sub_1f0e98(0);
+        iVar3 = flashrom_format_partition(0);
     }
     if ((iVar3 == 0) && (iVar3 = shinobi_sub_1f0f24(5, auStack_50), puVar2 = (&shinobi_sub_1f0fa0), iVar3 == 0)) {
         iVar3 = 0;
@@ -12686,7 +12686,7 @@ u32 bios_flashrom_read(u32 unused_a0, u32 unused_a1, u32 a2) {
 /*
  * bios_flashrom_write  0x8c1f98d8
  * BIOS flash-ROM call 2: writes to the flash ROM
- * called by: flashrom_sub_1f0e98, flashrom_sub_1f0e9c, shinobi_sub_1f0b58, shinobi_sub_1f0c14
+ * called by: flashrom_format_partition, flashrom_format_partition_b, shinobi_sub_1f0b58, shinobi_sub_1f0c14
  */
 u32 bios_flashrom_write(u32 unused_a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
@@ -12700,7 +12700,8 @@ u32 bios_flashrom_write(u32 unused_a0, u32 unused_a1, u32 a2) {
 /*
  * bios_flashrom_delete  0x8c1f98ec
  * BIOS flash-ROM call 3: erases a flash-ROM partition
- * called by: flashrom_sub_1f0e98, flashrom_sub_1f0e9c, shinobi_sub_1f0d34, shinobi_sub_1f0d38, shinobi_sub_1f103e
+ * called by: flashrom_format_partition, flashrom_format_partition_b, shinobi_sub_1f0d34, shinobi_sub_1f0d38,
+ * shinobi_sub_1f103e
  */
 u32 bios_flashrom_delete(void) {
     u32 uVar1;

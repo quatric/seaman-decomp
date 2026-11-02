@@ -410,7 +410,7 @@ u32 set_field_20_on_field_15c(int a0) {
 /*
  * clear_field_59c_wrap  0x8c1006bc
  * only calls clear_field_59c
- * called by: game_sub_0c4e58, game_sub_0c97bc, game_sub_0caac0, game_sub_0e4298
+ * called by: event1_begin, game_sub_0c4e58, game_sub_0caac0, game_sub_0e4298
  */
 u32 clear_field_59c_wrap(u32 a0) {
     u32 uVar1;
@@ -979,7 +979,7 @@ int set_field_b4(int a0, u32 a1) {
 /*
  * Class_12b580_sub_101154  0x8c101154
  * area name: only called from Class_12b580 methods
- * called by: Class_12b580_m1_0e634c, game_sub_0cb668, game_sub_0e1398
+ * called by: CWaterTank_sub_0e1398, Class_12b580_m1_0e634c, game_sub_0cb668
  */
 u32 Class_12b580_sub_101154(int a0) {
     if ((*(int *)(0xb0 + a0) == 1) && (*(int *)(0xb4 + a0) == 1)) {
@@ -990,7 +990,7 @@ u32 Class_12b580_sub_101154(int a0) {
 
 /*
  * get_field_b8_101178  0x8c101178
- * called by: game_sub_064bb4, game_sub_0e1398
+ * called by: CWaterTank_sub_0e1398, game_sub_064bb4
  */
 u32 get_field_b8_101178(int a0) {
     return (u32) * (u8 *)(0xb8 + a0);
@@ -1994,7 +1994,7 @@ u32 *color_set_white(u32 *a0) {
 /*
  * noop_102824  0x8c102824
  * called by: CItemList_DeleteItem, CItemList_TakeOutItem, CNodePtrList_DeleteItem, CNodePtrList_TakeOutItem,
- * debug_print_vec3, game_sub_015f18, game_sub_0f5004, noop_0bf440
+ * debug_print_object, debug_print_vec3, game_sub_015f18, noop_0bf440
  */
 u32 noop_102824(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 in_r0;
@@ -2495,7 +2495,7 @@ u32 Class_12c3c4_sub_103100(int *a0, code *a1, code *a2, u32 a3) {
     if (iVar3 != 2) {
         game_sub_02e8e0(a0 + 0x207, 1);
         game_sub_106f58(a0, a1, a2, ar7_00);
-        game_sub_108560(a0, a1, a2);
+        talk_complain_tank_env_b(a0, a1, a2);
         pcVar2 = a1;
         pcVar10 = a2;
         game_sub_106c84(a0, a1, a2, ar7_00);
@@ -2611,7 +2611,7 @@ u32 Class_12c3c4_sub_103100(int *a0, code *a1, code *a2, u32 a3) {
         ((*(char *)((int)a0 + 0x83) == '\0' || (*(char *)((int)a0 + 0x83) == '\x01')))) {
         pcVar2 = a1;
         pcVar10 = a2;
-        game_sub_10862c(a0, a1, a2, ar7_00);
+        talk_sub_10862c(a0, a1, a2, ar7_00);
         pcVar4 = (code *)ar7_00;
     }
     iVar3 = get_field_124_027930(*(int *)(a2 + 8), pcVar2, pcVar10, pcVar4);
@@ -3068,11 +3068,11 @@ u32 Class_12c3c4_m2_104264(int *a0, int a1, int *a2, u32 a3) {
 }
 
 /*
- * game_sub_10469c  0x8c10469c
- * name hint from a string it uses: REACTION CATCH; area name: game code; nothing names its area yet
+ * react_catch_object_b  0x8c10469c
+ * another creature's version of react_catch_object
  * strings: "REACTION_CATCH"; "REACTION_CATCH"; "REACTION_CATCH"
  */
-int game_sub_10469c(int a0, int a1, int a2, char *a3) {
+int react_catch_object_b(int a0, int a1, int a2, char *a3) {
     int iVar1;
     u32 uVar2;
     u8 auStack_1c[20];
@@ -4360,15 +4360,15 @@ int game_sub_1080dc(int a0, int *a1, int a2, u8 *a3) {
 }
 
 /*
- * game_sub_108560  0x8c108560
- * name hint from a string it uses: GRATIFIC RID HOT; area name: game code; nothing names its area yet
+ * talk_complain_tank_env_b  0x8c108560
+ * queues the GRATIFIC_RID_HOT / _COLD / _OXYGEN line for the tank condition
  * called by: Class_12c3c4_sub_103100
  * strings: "GRATIFIC_RID_HOT"; "GRATIFIC_RID_COLD"; "GRATIFIC_RID_OXYGEN"
  */
-int game_sub_108560(int a0, u32 unused_a1, int a2) {
+int talk_complain_tank_env_b(int a0, u32 unused_a1, int a2) {
     int iVar1;
 
-    iVar1 = game_sub_02bebc(*(u32 *)(a2 + 4));
+    iVar1 = talk_sub_02bebc(*(u32 *)(a2 + 4));
     if (iVar1 != -1) {
         if (iVar1 == 0) {
             (*(code *)(&talk_queue_mode1))(a0 + 0x9c, 7, 0, "GRATIFIC_RID_HOT", (&DATA_8c1eee90) + 0x33);
@@ -4388,11 +4388,11 @@ int game_sub_108560(int a0, u32 unused_a1, int a2) {
 }
 
 /*
- * game_sub_10862c  0x8c10862c
- * area name: game code; nothing names its area yet
+ * talk_sub_10862c  0x8c10862c
+ * area name: sits between talk functions (same compilation unit)
  * called by: Class_12c3c4_sub_103100
  */
-int game_sub_10862c(int a0, u32 a1, int a2, u32 a3) {
+int talk_sub_10862c(int a0, u32 a1, int a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;

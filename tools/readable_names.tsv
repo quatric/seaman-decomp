@@ -538,3 +538,30 @@
 8c01b7b0	memcard_load_raw_wait	reads a3 bytes of a file into a2, waiting up to 10 s; 1 on success
 8c01bba0	memcard_check_file_wait	starts a file query and waits up to 10 s for the result
 8c01bc2c	memcard_stat_file_wait	queries a file and copies its description into a2 when found (result 5)
+8c0b9fb4	SaveData_ctor	the save-data block: tables of 0xf0-byte entries and the "SM2000US.USR" name
+8c0ba6bc	show_date_time_message	formats the RTC date as "<month>.dd,hh:mm AM/PM" and shows it as a message
+8c0ca2cc	CGame_LoadForEvent1Models	loads uzu.nj (the whirlpool) and its textures for event 1
+8c0c97bc	event1_begin	starts event 1: resets the creature state and requests uzu.nj from GRAPHICS\ENV
+8c0ca0e0	event1_end	ends event 1: releases uzu.nj and its pack entry and restores the tank state
+8c0ca22c	event1_release_models	releases uzu.nj and its pack entry
+8c0cef18	STAFF_CREDIT_LoadData	loads credit.PVM from GRAPHICS\MESSAGE for the staff roll
+8c0cfff8	CHeater_CreateModel	loads suisou_Heater.nj (model and texture list) from GRAPHICS\ENV
+8c0d0768	CHeater_ReleaseModel	releases suisou_Heater.nj
+8c0d07ec	CO2Supply_LoadTexture	loads the O2SUPPLY texture list from GRAPHICS\ENV
+8c0d0bcc	CSprinkler_LoadTexture	loads the SPRINKLER texture list from GRAPHICS\ENV
+8c0d4fe8	se_play_bubble_mono	plays the 40_BUBBLE_MONO pack sound
+8c0d5040	se_play_ike1	plays the 75_IKE1 pack sound
+8c0d60c8	kumonosu_release_model	releases kumonosu.nj (the spider web)
+8c0d93a8	RING_UNIT_CreateModel	loads Ring_Home.nj, its textures and RingMotion.npd
+8c0d990c	RING_UNIT_ReleaseModel	releases Ring_Home.nj, RingMotion.npd and the seven ring textures
+8c0dbb14	common_texlist_load	loads a texture list from GRAPHICS\COMMON
+8c0e0be8	CWaterTank_ReleaseModels	releases suisou.nj and the glass, temperature-meter and collision models
+8c0e5bb4	musikago_release_model	releases musikago.nj (the insect cage) and the spider web
+8c0e6e74	amazon_release_model	releases amazon.nj
+8c0f5004	debug_print_object	prints an object's number, kind, category, food and reference count and its position (no-op print in the release build)
+8c0fbdfc	asr_switch_vocab	unregisters the previous SPEECH vocabulary and registers the one named at (+0x88)->+0x2c
+8c0ffcb4	UsrPointer_LoadTexture	loads UsrPointer.pvm (the pointer cursor) from GRAPHICS
+8c10469c	react_catch_object_b	another creature's version of react_catch_object
+8c108560	talk_complain_tank_env_b	queues the GRATIFIC_RID_HOT / _COLD / _OXYGEN line for the tank condition
+8c1f0e98	flashrom_format_partition	deletes flash partition a0 (0 or 1) and writes the "KATANA_FLASH____" header block
+8c1f0e9c	flashrom_format_partition_b	second entry into flashrom_format_partition
