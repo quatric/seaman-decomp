@@ -1771,7 +1771,8 @@ u32 pack_find_by_name_buffered(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Class_12b580_clear_request  0x8c0220bc
  * clears the request (+0x9ec94 = -1) and the ready flag
- * called by: Class_12b580_m1_0e634c, game_sub_0c991c, game_sub_0e0764, game_sub_0e6dc4, se_sub_0d50b4, se_sub_0d512c
+ * called by: Class_12b580_m1_0e634c, game_sub_0c991c, game_sub_0e0764, game_sub_0e6dc4, se_close_two_ports,
+ * se_sub_0d50b4
  */
 int Class_12b580_clear_request(int a0) {
     int iVar1;
@@ -1801,9 +1802,9 @@ u32 Class_12b580_set_request(int *a0, u32 a1) {
 
 /*
  * Class_12b580_sub_022104  0x8c022104
- * area name: only called from Class_12b580 methods
+ * area name: sits between Class_12b580 functions (same compilation unit)
  * called by: Class_12b580_m1_0e634c, Class_12b580_sub_0d56b4, game_sub_0c991c, game_sub_0d5614, game_sub_0e0764,
- * game_sub_0e6d24, se_sub_0d50b4, se_sub_0d512c
+ * game_sub_0e6d24, se_close_two_ports, se_sub_0d50b4
  */
 u32 Class_12b580_sub_022104(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;

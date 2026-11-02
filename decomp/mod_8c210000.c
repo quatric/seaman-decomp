@@ -14888,11 +14888,11 @@ u32 gfxlib_sub_217ef4(void) {
 }
 
 /*
- * gfxlib_sub_217f02  0x8c217f02
- * area name: in the gfxlib library code range
+ * gfx_set_vec_278724  0x8c217f02
+ * stores fr4..fr6 at 8c278724
  * called by: Vec3_sub_0e3f24, game_sub_0e5dac
  */
-u32 gfxlib_sub_217f02(void) {
+u32 gfx_set_vec_278724(void) {
     u32 in_fr5;
     u32 in_fr4;
     u32 in_fr6;

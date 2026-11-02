@@ -77,11 +77,11 @@ u32 asr_sub_12007c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * asr_sub_1200f4  0x8c1200f4
- * area name: in the asr library code range
+ * asr_table_lookup  0x8c1200f4
+ * entry (a1 - first) of the table a0 (count, first, entries), else 0
  * called by: asr_sub_120148, asr_sub_120348
  */
-u32 asr_sub_1200f4(u16 *a0, u32 a1) {
+u32 asr_table_lookup(u16 *a0, u32 a1) {
     int iVar1;
 
     iVar1 = (a1 & 0xff) - (u32)a0[1];
@@ -93,7 +93,7 @@ u32 asr_sub_1200f4(u16 *a0, u32 a1) {
 
 /*
  * asr_sub_12011a  0x8c12011a
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_120148
  */
 u32 asr_sub_12011a(int a0, u32 a1) {
@@ -108,7 +108,7 @@ u32 asr_sub_12011a(int a0, u32 a1) {
 
 /*
  * asr_sub_120148  0x8c120148
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_120348
  */
 u32 asr_sub_120148(u32 a0, char *a1, u32 a2, u32 a3) {
@@ -116,7 +116,7 @@ u32 asr_sub_120148(u32 a0, char *a1, u32 a2, u32 a3) {
     u32 uVar2;
 
     uVar2 = 0;
-    iVar1 = asr_sub_1200f4(a0, (int)*a1);
+    iVar1 = asr_table_lookup(a0, (int)*a1);
     if (iVar1 == 0) {
         iVar1 = asr_sub_12011a(a0, (int)*a1);
         if (iVar1 != 0) {
@@ -133,7 +133,7 @@ u32 asr_sub_120148(u32 a0, char *a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_1201e6  0x8c1201e6
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_1201e6(int a0, u32 *a1, u32 *a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16, u32 s20) {
     u32 uVar1;
@@ -161,7 +161,7 @@ u32 asr_sub_1201e6(int a0, u32 *a1, u32 *a2, u32 a3, u32 s0, u32 s4, u32 s8, u32
 
 /*
  * asr_sub_1201ea  0x8c1201ea
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_1201ea(u32 unused_a0, u32 *a1, u32 *a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16, u32 s20,
                    u32 s24) {
@@ -191,7 +191,7 @@ u32 asr_sub_1201ea(u32 unused_a0, u32 *a1, u32 *a2, u32 a3, u32 s0, u32 s4, u32 
 
 /*
  * asr_sub_12025e  0x8c12025e
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_11d200, asr_sub_11d20e
  */
 u32 asr_sub_12025e(u32 a0) {
@@ -206,7 +206,7 @@ u32 asr_sub_12025e(u32 a0) {
 
 /*
  * asr_sub_120284  0x8c120284
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_11d5d4, asr_sub_11ec7c, asr_sub_1222b4
  */
 u32 asr_sub_120284(u16 *a0, u8 *a1, u32 a2, u32 a3) {
@@ -267,7 +267,7 @@ u32 asr_sub_120284(u16 *a0, u8 *a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_120348  0x8c120348
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_11919e, asr_sub_119218, asr_sub_119706, asr_sub_11abc6, asr_sub_11ac4c, asr_sub_11ad68,
  * asr_sub_11af7e, asr_sub_11cbbc (+27 more)
  */
@@ -321,7 +321,7 @@ u32 asr_sub_120348(int *a0, u32 a1, u32 a2, u32 a3) {
                     iVar5 = iVar5 + 2;
                 }
             } else {
-                uVar3 = asr_sub_1200f4(a4, (int)*(char *)(iVar6 + 1));
+                uVar3 = asr_table_lookup(a4, (int)*(char *)(iVar6 + 1));
                 iVar5 = asr_sub_1208fc(iVar6 + 8, uVar3, a4, a7);
                 uVar9 = (u32)(iVar5 == 0);
             }
@@ -755,7 +755,7 @@ u32 asr_sub_1208fc(u32 a0, u32 a1, int a2, u32 a3) {
 
 /*
  * asr_sub_120948  0x8c120948
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_1113d0
  */
 u32 asr_sub_120948(int *a0, int a1) {
@@ -785,7 +785,7 @@ u32 asr_sub_120948(int *a0, int a1) {
 
 /*
  * asr_sub_12095c  0x8c12095c
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_12095c(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -816,7 +816,7 @@ u32 asr_sub_12095c(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_1209be  0x8c1209be
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_1209ec
  */
 int asr_sub_1209be(int *a0, int a1) {
@@ -838,7 +838,7 @@ int asr_sub_1209be(int *a0, int a1) {
 
 /*
  * asr_sub_1209ec  0x8c1209ec
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_111208, asr_sub_1208fc
  */
 u32 asr_sub_1209ec(int *a0, int a1, int *a2, int *a3) {
@@ -901,7 +901,7 @@ u32 asr_sub_1209ec(int *a0, int a1, int *a2, int *a3) {
 
 /*
  * asr_sub_120b1a  0x8c120b1a
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_120b1a(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -912,7 +912,7 @@ u32 asr_sub_120b1a(u32 a0, u32 a1, u32 a2) {
 
 /*
  * asr_sub_120b48  0x8c120b48
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_121690, asr_sub_12169e
  */
 u32 asr_sub_120b48(int a0) {
@@ -1024,7 +1024,7 @@ u32 asr_sub_120b48(int a0) {
 
 /*
  * asr_sub_120c7c  0x8c120c7c
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_121690, asr_sub_12169e
  */
 u32 *asr_sub_120c7c(int a0) {
@@ -1276,11 +1276,11 @@ u32 asr_sub_120f04(int a0, u32 a1, u32 a2, int a3) {
 }
 
 /*
- * asr_sub_121124  0x8c121124
- * area name: in the asr library code range
+ * asr_free_node_list  0x8c121124
+ * frees every node of the list at +0x284 and the buffers at +0x2a8 and +0x29c
  * called by: asr_sub_121690, asr_sub_12169e
  */
-u32 asr_sub_121124(int a0) {
+u32 asr_free_node_list(int a0) {
     u32 *puVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -1304,7 +1304,7 @@ u32 asr_sub_121124(int a0) {
 
 /*
  * asr_sub_12112c  0x8c12112c
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_12112c(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 *a4;
@@ -1332,7 +1332,7 @@ u32 asr_sub_12112c(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_1211ac  0x8c1211ac
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_1213d0
  */
 int asr_sub_1211ac(u8 *a0, u32 a1, int a2) {
@@ -1353,7 +1353,7 @@ int asr_sub_1211ac(u8 *a0, u32 a1, int a2) {
 
 /*
  * asr_sub_1211f0  0x8c1211f0
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_1213d0
  */
 u8 *asr_sub_1211f0(int *a0, u8 *a1, int a2, u16 *a3, u32 s0, u32 s4) {
@@ -1396,7 +1396,7 @@ u8 *asr_sub_1211f0(int *a0, u8 *a1, int a2, u16 *a3, u32 s0, u32 s4) {
 
 /*
  * asr_sub_121260  0x8c121260
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_1213d0
  */
 int asr_sub_121260(u8 *a0, int a1, u32 a2, int a3) {
@@ -1430,7 +1430,7 @@ int asr_sub_121260(u8 *a0, int a1, u32 a2, int a3) {
 
 /*
  * asr_sub_1212d4  0x8c1212d4
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_1213d0
  */
 int asr_sub_1212d4(int *a0, u8 *a1, int a2, int a3, u16 *s0, u32 s4, u32 s8) {
@@ -1634,7 +1634,7 @@ u32 asr_sub_121690(int a0, u32 a1, u32 a2, u32 a3) {
     }
     asr_sub_120c7c(a0);
     asr_sub_1213d0(a0, a1, a2, a3);
-    uVar1 = asr_sub_121124(a0);
+    uVar1 = asr_free_node_list(a0);
     return uVar1;
 }
 
@@ -1660,7 +1660,7 @@ u32 asr_sub_12169e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     }
     asr_sub_120c7c(unaff_r14);
     asr_sub_1213d0(unaff_r14, a1, a2, a3);
-    uVar1 = asr_sub_121124(unaff_r14);
+    uVar1 = asr_free_node_list(unaff_r14);
     return uVar1;
 }
 

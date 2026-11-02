@@ -5156,8 +5156,8 @@ u32 game_sub_0f9774(int a0, u32 unused_a1, code *a2, u32 a3) {
                             a2 = (code *)&g_8c140a98;
                             speech_start_chapter(a0, pcVar2, &g_8c140a98, a3);
                         }
-                        ar5_00 = game_sub_0fc40c;
-                        game_sub_0fc40c(a0 + 0x1054, game_sub_0fc40c, a2, a3);
+                        ar5_00 = store_rtc_now_c8;
+                        store_rtc_now_c8(a0 + 0x1054, store_rtc_now_c8, a2, a3);
                         uVar4 = 1;
                     }
                 }
@@ -5186,7 +5186,7 @@ u32 speech_start_chapter(int a0, u32 unused_a1, u32 a2, u32 a3) {
     strcat(*(int *)(a0 + 0x1050) + 0x20, a2);
     strcpy(*(int *)(a0 + 0x1050) + 0x40, &g_8c1408e9);
     *(u32 *)(*(int *)(a0 + 0x1050) + 0x70) = 0;
-    game_sub_0fda28(a0 + 0x1054, 0);
+    save_clear_entries_from(a0 + 0x1054, 0);
     *(u32 *)(a0 + 0x89130) = 3;
     return 0x89130;
 }
@@ -6583,11 +6583,11 @@ u32 asr_sub_0fbf28(u32 *a0, u32 unused_a1, char *a2, u8 *a3) {
                     if (acStack_90[0] == '?') {
                         ar5_01 = &g_8c1417d0;
                         set_fields_28_1c(a0[3], &g_8c1417d0);
-                        game_sub_0fc3e4(a0, ar5_01, a2, a3);
+                        save_mark_time(a0, ar5_01, a2, a3);
                     } else {
                         ar5_02 = &g_8c1411d0;
                         set_fields_28_1c(a0[3], &g_8c1411d0);
-                        game_sub_0fc3e4(a0, ar5_02, a2, a3);
+                        save_mark_time(a0, ar5_02, a2, a3);
                         ar5_01 = ar5_03;
                         iVar3 = game_sub_0fc4fc(a0, ar5_03);
                         if (iVar3 == 1) {
@@ -6609,7 +6609,7 @@ u32 asr_sub_0fbf28(u32 *a0, u32 unused_a1, char *a2, u8 *a3) {
                         history_push_string(a0, ar5_03 + iVar2 * 0x68 + 0x90, a2, a3);
                     }
                     ar5_01 = *(char **)(ar5_03 + iVar2 * 0x68 + 0xd4);
-                    game_sub_0fdd68(*(u32 *)(a0[4] + 0x40), ar5_01);
+                    set_field_68_clamp_0_4_wrap(*(u32 *)(a0[4] + 0x40), ar5_01);
                 }
                 game_sub_01d868(a0[2]);
                 if (acStack_90[0] == '!') {
@@ -6629,24 +6629,24 @@ u32 asr_sub_0fbf28(u32 *a0, u32 unused_a1, char *a2, u8 *a3) {
 }
 
 /*
- * game_sub_0fc3e4  0x8c0fc3e4
- * area name: game code; nothing names its area yet
+ * save_mark_time  0x8c0fc3e4
+ * sets +0x74 of the save record and stores the current RTC time
  * called by: asr_sub_0fbf28
  */
-u32 game_sub_0fc3e4(int a0, u32 a1, u32 a2, u32 a3) {
+u32 save_mark_time(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     *(u32 *)(*(int *)(*(int *)(a0 + 0x10) + 0x40) + 0x74) = 1;
-    uVar1 = game_sub_0fc40c(a0, a1, a2, a3);
+    uVar1 = store_rtc_now_c8(a0, a1, a2, a3);
     return uVar1;
 }
 
 /*
- * game_sub_0fc40c  0x8c0fc40c
- * area name: game code; nothing names its area yet
- * called by: game_sub_0f9774, game_sub_0fc3e4
+ * store_rtc_now_c8  0x8c0fc40c
+ * stores the current RTC date as seconds at +0xc8
+ * called by: game_sub_0f9774, save_mark_time
  */
-u32 game_sub_0fc40c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 store_rtc_now_c8(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 auStack_10[16];
 
@@ -6970,13 +6970,13 @@ u32 game_sub_0fc94c(int a0, char *a1, char *a2, u32 a3) {
             switch (iVar4) {
             case 0x4b:
                 uVar3 = atoi(a2);
-                uVar3 = game_sub_0fdd98(*(u32 *)(*(int *)(a0 + 0x10) + 0x40), uVar3);
+                uVar3 = set_field_68_clamp_0_4(*(u32 *)(*(int *)(a0 + 0x10) + 0x40), uVar3);
                 return uVar3;
             case 0x50:
                 return (&switchD_8c0fc9ba::switchdataD_8c0fc9c0)[iVar4 + -0x4b];
             case 0x52:
                 uVar3 = atoi(a2);
-                uVar3 = game_sub_0fda28(a0, uVar3);
+                uVar3 = save_clear_entries_from(a0, uVar3);
                 return uVar3;
             case 0x55:
                 uVar3 = atoi(a2);
@@ -7488,11 +7488,11 @@ int game_sub_0fd8d0(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0fda28  0x8c0fda28
- * area name: game code; nothing names its area yet
+ * save_clear_entries_from  0x8c0fda28
+ * clears byte +0xc8 of save-record entries a1..15 (0x20 bytes each)
  * called by: game_sub_0fc94c, speech_start_chapter
  */
-u32 game_sub_0fda28(int a0, int a1) {
+u32 save_clear_entries_from(int a0, int a1) {
     for (; a1 < 0x10; a1 = a1 + 1) {
         *(u8 *)(0xc8 + *(int *)(*(int *)(a0 + 0x10) + 0x40) + a1 * 0x20) = 0;
     }
@@ -7604,23 +7604,23 @@ u8 *game_sub_0fdc98(u8 *a0) {
 }
 
 /*
- * game_sub_0fdd68  0x8c0fdd68
- * area name: game code; nothing names its area yet
+ * set_field_68_clamp_0_4_wrap  0x8c0fdd68
+ * only calls set_field_68_clamp_0_4
  * called by: asr_sub_0fbf28, game_sub_064bb4, game_sub_1080dc
  */
-u32 game_sub_0fdd68(int a0, int a1) {
+u32 set_field_68_clamp_0_4_wrap(int a0, int a1) {
     u32 uVar1;
 
-    uVar1 = game_sub_0fdd98(a0, *(int *)(a0 + 0x68) + a1);
+    uVar1 = set_field_68_clamp_0_4(a0, *(int *)(a0 + 0x68) + a1);
     return uVar1;
 }
 
 /*
- * game_sub_0fdd98  0x8c0fdd98
- * area name: game code; nothing names its area yet
- * called by: game_sub_0fc94c, game_sub_0fdd68
+ * set_field_68_clamp_0_4  0x8c0fdd98
+ * stores a1 at +0x68, clamped to 0..4
+ * called by: game_sub_0fc94c, set_field_68_clamp_0_4_wrap
  */
-u32 game_sub_0fdd98(int a0, u32 a1) {
+u32 set_field_68_clamp_0_4(int a0, u32 a1) {
     u32 uVar1;
 
     *(u32 *)(a0 + 0x68) = a1;
@@ -8279,11 +8279,11 @@ u32 pool_5c_alloc(int a0) {
 }
 
 /*
- * game_sub_0fec4c  0x8c0fec4c
- * area name: game code; nothing names its area yet
+ * clear_link_58  0x8c0fec4c
+ * clears field +0x58 of *a1, then *a1
  * called by: CWaterTank_sub_0d57e8, se_sub_0d5218
  */
-u32 game_sub_0fec4c(u32 a0, int *a1) {
+u32 clear_link_58(u32 a0, int *a1) {
     *(u32 *)(*a1 + 0x58) = 0;
     *a1 = 0;
     return 0;
@@ -8331,11 +8331,11 @@ u32 CItemGLoader_sub_0fecb0(int a0) {
 }
 
 /*
- * game_sub_0fed08  0x8c0fed08
- * area name: game code; nothing names its area yet
+ * clear_link_14  0x8c0fed08
+ * clears field +0x14 of *a1, then *a1
  * called by: CItemGLoader_sub_0feeb0, CItemGLoader_sub_0fef10
  */
-u32 game_sub_0fed08(u32 unused_a0, int *a1) {
+u32 clear_link_14(u32 unused_a0, int *a1) {
     *(u32 *)(*a1 + 0x14) = 0;
     *a1 = 0;
     return 0;
@@ -8443,7 +8443,7 @@ u32 CItemGLoader_sub_0feeb0(int a0, int *a1) {
     uVar1 = *(u32 *)(aiStack_14[0] + 8);
     *a1 = 0;
     CItemGLoadRequestList_TakeOu(a0, aiStack_14[0]);
-    game_sub_0fed08(a0 + 0x4c, aiStack_14);
+    clear_link_14(a0 + 0x4c, aiStack_14);
     return uVar1;
 }
 
@@ -8475,7 +8475,7 @@ u32 CItemGLoader_sub_0fef10(int a0, u32 *a1, u32 a2, u32 a3) {
         auStack_c[0] = (*(code *)(&CItemGLoadRequestList_GetPtr))(a0, iVar1 + -1, a2, a3);
         CItemGLoadRequestList_TakeOu(a0, auStack_c[0]);
         a1 = auStack_c;
-        game_sub_0fed08(a0 + 0x4c, a1);
+        clear_link_14(a0 + 0x4c, a1);
     }
     uVar2 = CItemGLoadRequestList_sub_0feab8(a0);
     return uVar2;

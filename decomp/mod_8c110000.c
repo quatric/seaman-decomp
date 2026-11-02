@@ -1938,11 +1938,11 @@ u32 asr_sub_112350(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * asr_sub_11237a  0x8c11237a
- * area name: sits between asr functions (same compilation unit)
- * called by: asr_sub_11b884, asr_sub_11b88c
+ * asr_free_obj  0x8c11237a
+ * frees the owned buffer at +0xc (when +0x14 is set), then the object, through allocator a1
+ * called by: asr_free_model_parts, asr_sub_11b88c
  */
-u32 asr_sub_11237a(int a0, int a1) {
+u32 asr_free_obj(int a0, int a1) {
     u32 uVar1;
 
     if ((*(char *)(a0 + 0x14) != '\0') && (*(int *)(a0 + 0xc) != 0)) {
@@ -1988,11 +1988,11 @@ u32 asr_sub_1123b0(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * asr_sub_1123da  0x8c1123da
- * area name: sits between asr functions (same compilation unit)
- * called by: asr_sub_11b884, asr_sub_11b88c
+ * asr_free_obj_b  0x8c1123da
+ * frees the owned buffer at +0xc (when +0x14 is set), then the object, through allocator a1
+ * called by: asr_free_model_parts, asr_sub_11b88c
  */
-u32 asr_sub_1123da(int a0, int a1) {
+u32 asr_free_obj_b(int a0, int a1) {
     u32 uVar1;
 
     if ((*(char *)(a0 + 0x14) != '\0') && (*(int *)(a0 + 0xc) != 0)) {
@@ -10082,21 +10082,21 @@ u32 asr_sub_11b6b8(int a0, int a1, u32 *a2, u32 a3) {
 }
 
 /*
- * asr_sub_11b884  0x8c11b884
- * area name: in the asr library code range
+ * asr_free_model_parts  0x8c11b884
+ * frees the seven parts of a0 and a0 itself through allocator a1
  * called by: asr_sub_10abf4, asr_sub_10abfa
  */
-u32 asr_sub_11b884(u32 *a0, int a1) {
+u32 asr_free_model_parts(u32 *a0, int a1) {
     u8 *puVar1;
     u32 uVar2;
 
-    puVar1 = (&asr_sub_11237a);
-    asr_sub_11237a(*a0);
+    puVar1 = (&asr_free_obj);
+    asr_free_obj(*a0);
     (*(code *)puVar1)(a0[1], a1);
     (*(code *)puVar1)(a0[3], a1);
     (*(code *)puVar1)(a0[4], a1);
     (*(code *)puVar1)(a0[5], a1);
-    asr_sub_1123da(a0[6], a1);
+    asr_free_obj_b(a0[6], a1);
     (*(code *)puVar1)(a0[2], a1);
     /* WARNING: Could not recover jumptable at 0x8c11b900. Too many branches */
     /* WARNING: Treating indirect jump as call */
@@ -10106,7 +10106,7 @@ u32 asr_sub_11b884(u32 *a0, int a1) {
 
 /*
  * asr_sub_11b88c  0x8c11b88c
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_11b88c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -10114,13 +10114,13 @@ u32 asr_sub_11b88c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 *unaff_r13;
     int unaff_r14;
 
-    puVar1 = (&asr_sub_11237a);
-    asr_sub_11237a(*unaff_r13, a1);
+    puVar1 = (&asr_free_obj);
+    asr_free_obj(*unaff_r13, a1);
     (*(code *)puVar1)(unaff_r13[1], unaff_r14, a2, a3);
     (*(code *)puVar1)(unaff_r13[3], unaff_r14, a2, a3);
     (*(code *)puVar1)(unaff_r13[4], unaff_r14, a2, a3);
     (*(code *)puVar1)(unaff_r13[5], unaff_r14, a2, a3);
-    asr_sub_1123da(unaff_r13[6], unaff_r14);
+    asr_free_obj_b(unaff_r13[6], unaff_r14);
     (*(code *)puVar1)(unaff_r13[2], unaff_r14, a2, a3);
     /* WARNING: Could not recover jumptable at 0x8c11b900. Too many branches */
     /* WARNING: Treating indirect jump as call */
@@ -10130,7 +10130,7 @@ u32 asr_sub_11b88c(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * asr_sub_11b93c  0x8c11b93c
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_10a308, asr_sub_10a564
  */
 u32 asr_sub_11b93c(u32 *a0, int a1) {
@@ -10283,8 +10283,8 @@ u32 asr_sub_11b93c(u32 *a0, int a1) {
 
 /*
  * asr_sub_11bb54  0x8c11bb54
- * area name: in the asr library code range
- * called by: asr_sub_11bb94
+ * area name: sits between asr functions (same compilation unit)
+ * called by: asr_reset_weights
  */
 u32 asr_sub_11bb54(int a0) {
     u32 *puVar1;
@@ -10310,11 +10310,11 @@ u32 asr_sub_11bb54(int a0) {
 }
 
 /*
- * asr_sub_11bb94  0x8c11bb94
- * area name: in the asr library code range
+ * asr_reset_weights  0x8c11bb94
+ * fills the weight array at +0x2c with 1.0 and resets +0x2a
  * called by: asr_sub_11c210, asr_sub_11c2b8
  */
-u32 asr_sub_11bb94(int a0, u32 unused_a1, u32 a2) {
+u32 asr_reset_weights(int a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
     u32 *ar5_00;
     int ar7_00;
@@ -10334,7 +10334,7 @@ u32 asr_sub_11bb94(int a0, u32 unused_a1, u32 a2) {
 
 /*
  * asr_sub_11bbd4  0x8c11bbd4
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_11c210
  */
 u32 asr_sub_11bbd4(int a0, u32 *a1) {
@@ -10389,7 +10389,7 @@ u32 asr_sub_11bbd4(int a0, u32 *a1) {
 
 /*
  * asr_sub_11bbec  0x8c11bbec
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_11bbec(u32 *a0, u32 a1, u32 unused_a2, u32 a3) {
     u8 *puVar1;
@@ -10493,7 +10493,7 @@ u32 asr_sub_11bbec(u32 *a0, u32 a1, u32 unused_a2, u32 a3) {
 
 /*
  * asr_sub_11bcb8  0x8c11bcb8
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_11c210
  */
 u32 asr_sub_11bcb8(int a0, u32 *a1) {
@@ -10530,7 +10530,7 @@ u32 asr_sub_11bcb8(int a0, u32 *a1) {
 
 /*
  * asr_sub_11bccc  0x8c11bccc
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_11bccc(u32 *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u8 *puVar1;
@@ -10570,7 +10570,7 @@ u32 asr_sub_11bccc(u32 *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
 /*
  * asr_sub_11bd6c  0x8c11bd6c
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  * called by: asr_sub_11c0e4
  */
 u32 asr_sub_11bd6c(int a0, u32 a1, float *a2, float *a3) {
@@ -10848,7 +10848,7 @@ u32 vcall_slot6(int *a0) {
 
 /*
  * asr_sub_11c210  0x8c11c210
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_11c210(u32 unused_a0, u32 unused_a1, int a2, int *a3) {
     int in_r0;
@@ -10862,7 +10862,7 @@ u32 asr_sub_11c210(u32 unused_a0, u32 unused_a1, int a2, int *a3) {
         *a3 = *a3 + ((*(u16 *)(unaff_r14 + 0x4c) + 4) * *(int *)(unaff_r14 + 0x54) + 4) * 4;
     } else if (in_r0 == 2) {
         if (a2 == 0) {
-            asr_sub_11bb94(unaff_r14, unused_a1, 0);
+            asr_reset_weights(unaff_r14, unused_a1, 0);
         } else {
             asr_sub_11bbd4(unaff_r14, *a3 + a2);
             *a3 = *a3 + ((*(u16 *)(unaff_r14 + 0x4c) + 4) * *(int *)(unaff_r14 + 0x54) + 4) * 4;
@@ -10879,7 +10879,7 @@ u32 asr_sub_11c210(u32 unused_a0, u32 unused_a1, int a2, int *a3) {
 
 /*
  * asr_sub_11c2b8  0x8c11c2b8
- * area name: in the asr library code range
+ * area name: sits between asr functions (same compilation unit)
  */
 u32 asr_sub_11c2b8(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u16 uVar1;
@@ -10959,7 +10959,7 @@ u32 asr_sub_11c2b8(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     unaff_r14[0xe] = iVar5;
     unaff_r14[0x14] = iVar3 + iVar5;
     if (unaff_r14[0xf] != 0) {
-        asr_sub_11bb94(unaff_r14, a5, uVar4);
+        asr_reset_weights(unaff_r14, a5, uVar4);
         return 0;
     }
     uVar4 = asr_fsm_set_result(unaff_r14, 0x66, uVar4, a3);
@@ -11235,11 +11235,11 @@ u32 asr_calloc_wrap(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * asr_sub_11c99a  0x8c11c99a
- * area name: sits between asr functions (same compilation unit)
+ * asr_set_state_notify  0x8c11c99a
+ * sets the state at +0x3e to a1 and calls the callback at +0xc8 when it changes
  * called by: asr_sub_11e534, asr_sub_11ec7c
  */
-u32 asr_sub_11c99a(int a0, u32 a1) {
+u32 asr_set_state_notify(int a0, u32 a1) {
     u32 uVar1;
 
     uVar1 = 0;
@@ -13113,7 +13113,7 @@ u32 asr_sub_11e534(int *a0, int *a1, int a2, u8 *a3) {
             if ((*(int *)(iVar3 + -4 + (int)a0) != 0) && (iVar3 = asr_sub_11ea3c(a0, 0, a2, a3), iVar3 != 0)) {
                 return 1;
             }
-            uVar4 = asr_sub_11c99a(a0, 0);
+            uVar4 = asr_set_state_notify(a0, 0);
             goto LAB_8c11e7fa;
         }
         iVar3 = asr_sub_11cad4(a1, ar5_00, a2, a3);
@@ -13356,7 +13356,7 @@ u32 asr_sub_11ea3c(int a0, int *a1, int a2, u32 a3) {
         if (*(int *)(iVar2 + a0) != 0) {
             *(int *)(*(int *)(iVar2 + a0) + 4) = *(int *)(*(int *)(iVar2 + a0) + 4) + -1;
         }
-        puVar1 = (&asr_sub_11c99a);
+        puVar1 = (&asr_set_state_notify);
         if (a1 == NULL) {
             *(u32 *)(iVar2 + a0) = 0;
             uVar3 = (*(code *)puVar1)(a0, 1, a2, a3);
@@ -13607,7 +13607,7 @@ u32 asr_sub_11ec7c(int a0, u32 unused_a1, u32 a2, u32 a3) {
                             return uVar3;
                         }
                         (**(code **)(iVar10 + 0x18))(a4, a0 + 0xf4, uVar5, ar7_01);
-                        uVar3 = asr_sub_11c99a(a0, 2);
+                        uVar3 = asr_set_state_notify(a0, 2);
                         if ((uVar3 & 0xff) == 0) {
                             uVar5 = 0;
                             uVar3 = asr_sub_120348(a0 + 0x48, 0x15, 0, 0);

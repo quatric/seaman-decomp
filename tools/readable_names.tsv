@@ -692,3 +692,78 @@
 8c0c3aac	set_texlist_19c_draw	sets texture list a1 (texture 0) on the object at +0x19c and draws the object at +0x1ac
 8c0c3b10	set_texlist_1a4_draw	sets texture list a1 (texture 0) on the object at +0x1a4 and draws the object at +0x1ac
 8c0e9898	CGame_get_5_fields	copies fields +0x39, +0x3c, +0x3d, +0 and +0x3b of a0 into five bytes at a1
+8c0d0a44	decay_float_c	subtracts fr5 (at most 1/6000) from the float at +0xc, stopping at 0
+8c0d2fc0	fill_colors_8c43784c	stores colour a0 in the four words at 8c43784c
+8c0d5c58	Vec3_set_fr4_6_b	a0 = (fr4, fr5, fr6)
+8c0de6c0	set_float_c_nonneg	stores fr4 (negative values as 0) at +0xc
+8c100850	field_13c_above_half	1 when the float at +0x13c is above 0.5
+8c100874	field_13c_below_neg_half	1 when the float at +0x13c is below -0.5
+8c0e2554	input_l_and_r_held	1 when L and R are both held on the pad at +0xcc (and field 4 of +0xd8 is 0)
+8c0e3078	input_up_held_pad	input_up_held on the pad at +0xcc
+8c0e3050	input_up_held_pad	input_up_held on the pad at +0xcc
+8c217f02	gfx_set_vec_278724	stores fr4..fr6 at 8c278724
+8c0fec4c	clear_link_58	clears field +0x58 of *a1, then *a1
+8c0d5ca8	update_active_entries_62c	updates every active one of the 0x226 0x88-byte entries at +0x62c; returns how many
+8c0db090	call_all_list_a8	calls vtable slot 0xa8 on each node of the list at +0xa4
+8c0d512c	se_close_two_ports	stops sound request +0x5e4 and closes the two SE port handles at +0x600
+8c0e4d64	update_3_active_1070	updates each active one of the three 0x24-byte entries at +0x1070
+8c0fc40c	store_rtc_now_c8	stores the current RTC date as seconds at +0xc8
+8c0fc3e4	save_mark_time	sets +0x74 of the save record and stores the current RTC time
+8c0fda28	save_clear_entries_from	clears byte +0xc8 of save-record entries a1..15 (0x20 bytes each)
+8c0fdd98	set_field_68_clamp_0_4	stores a1 at +0x68, clamped to 0..4
+8c0fed08	clear_link_14	clears field +0x14 of *a1, then *a1
+8c101da0	clear_5_pairs	zeroes five word pairs at a0 and sets byte +0x28 to 0xff
+8c11237a	asr_free_obj	frees the owned buffer at +0xc (when +0x14 is set), then the object, through allocator a1
+8c1123da	asr_free_obj_b	frees the owned buffer at +0xc (when +0x14 is set), then the object, through allocator a1
+8c11b884	asr_free_model_parts	frees the seven parts of a0 and a0 itself through allocator a1
+8c121124	asr_free_node_list	frees every node of the list at +0x284 and the buffers at +0x2a8 and +0x29c
+8c1200f4	asr_table_lookup	entry (a1 - first) of the table a0 (count, first, entries), else 0
+8c11c99a	asr_set_state_notify	sets the state at +0x3e to a1 and calls the callback at +0xc8 when it changes
+8c11bb94	asr_reset_weights	fills the weight array at +0x2c with 1.0 and resets +0x2a
+8c1b8a34	not_code_1b8a34	data decoded as code (no valid instruction stream)
+8c1b8ec2	not_code_1b8ec2	data decoded as code (no valid instruction stream)
+8c1b8f5c	not_code_1b8f5c	data decoded as code (no valid instruction stream)
+8c1b9044	not_code_1b9044	data decoded as code (no valid instruction stream)
+8c1b90e4	not_code_1b90e4	data decoded as code (no valid instruction stream)
+8c1b91a2	not_code_1b91a2	data decoded as code (no valid instruction stream)
+8c1b91d8	not_code_1b91d8	data decoded as code (no valid instruction stream)
+8c1b93be	not_code_1b93be	data decoded as code (no valid instruction stream)
+8c1b940a	not_code_1b940a	data decoded as code (no valid instruction stream)
+8c1b9422	not_code_1b9422	data decoded as code (no valid instruction stream)
+8c1b9444	not_code_1b9444	data decoded as code (no valid instruction stream)
+8c1b946e	not_code_1b946e	data decoded as code (no valid instruction stream)
+8c1b94ce	not_code_1b94ce	data decoded as code (no valid instruction stream)
+8c1b9552	not_code_1b9552	data decoded as code (no valid instruction stream)
+8c1b9556	not_code_1b9556	data decoded as code (no valid instruction stream)
+8c1b95f2	not_code_1b95f2	data decoded as code (no valid instruction stream)
+8c1b960a	not_code_1b960a	data decoded as code (no valid instruction stream)
+8c1b9664	not_code_1b9664	data decoded as code (no valid instruction stream)
+8c1b9702	not_code_1b9702	data decoded as code (no valid instruction stream)
+8c1b970a	not_code_1b970a	data decoded as code (no valid instruction stream)
+8c1b9750	not_code_1b9750	data decoded as code (no valid instruction stream)
+8c1b9756	not_code_1b9756	data decoded as code (no valid instruction stream)
+8c1b9794	not_code_1b9794	data decoded as code (no valid instruction stream)
+8c1b979e	not_code_1b979e	data decoded as code (no valid instruction stream)
+8c1b9802	not_code_1b9802	data decoded as code (no valid instruction stream)
+8c1b982c	not_code_1b982c	data decoded as code (no valid instruction stream)
+8c1b9834	not_code_1b9834	data decoded as code (no valid instruction stream)
+8c1b9902	not_code_1b9902	data decoded as code (no valid instruction stream)
+8c1b9966	not_code_1b9966	data decoded as code (no valid instruction stream)
+8c1b9994	not_code_1b9994	data decoded as code (no valid instruction stream)
+8c1b9996	not_code_1b9996	data decoded as code (no valid instruction stream)
+8c1b9a34	not_code_1b9a34	data decoded as code (no valid instruction stream)
+8c1b9a54	not_code_1b9a54	data decoded as code (no valid instruction stream)
+8c1b9a72	not_code_1b9a72	data decoded as code (no valid instruction stream)
+8c1b9aa8	not_code_1b9aa8	data decoded as code (no valid instruction stream)
+8c1b9b02	not_code_1b9b02	data decoded as code (no valid instruction stream)
+8c1b9b9e	not_code_1b9b9e	data decoded as code (no valid instruction stream)
+8c1b9c3a	not_code_1b9c3a	data decoded as code (no valid instruction stream)
+8c1b9c52	not_code_1b9c52	data decoded as code (no valid instruction stream)
+8c1b9c70	not_code_1b9c70	data decoded as code (no valid instruction stream)
+8c1b9e00	not_code_1b9e00	data decoded as code (no valid instruction stream)
+8c1ba1a4	not_code_1ba1a4	data decoded as code (no valid instruction stream)
+8c1ba396	not_code_1ba396	data decoded as code (no valid instruction stream)
+8c1ba442	not_code_1ba442	data decoded as code (no valid instruction stream)
+8c1ba44a	not_code_1ba44a	data decoded as code (no valid instruction stream)
+8c1ba52c	not_code_1ba52c	data decoded as code (no valid instruction stream)
+8c1bab30	not_code_1bab30	data decoded as code (no valid instruction stream)

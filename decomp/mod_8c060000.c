@@ -1238,7 +1238,7 @@ u32 get_field_4_on_field_d8(int a0, u32 unused_a1, u32 a2) {
 
 /*
  * get_field_4_0637f8  0x8c0637f8
- * called by: game_sub_10031c, game_sub_1003b0, get_field_4_on_field_d8, input_sub_0e2554, input_sub_100154
+ * called by: game_sub_10031c, game_sub_1003b0, get_field_4_on_field_d8, input_l_and_r_held, input_sub_100154
  */
 u32 get_field_4_0637f8(int a0) {
     return *(u32 *)(a0 + 4);
@@ -1883,7 +1883,7 @@ u32 game_sub_064bb4(int a0, u32 unused_a1, int a2, char *a3) {
             *(u32 *)(a0 + 0x848) = 0x36;
             g_8c136910 = 0x36;
             ar5_00 = (u8 *)0x1;
-            game_sub_0fdd68(a0 + 0x9c, 1);
+            set_field_68_clamp_0_4_wrap(a0 + 0x9c, 1);
         }
     } else if (*(int *)(a0 + 0x40) == 0x15) {
         *(u32 *)(a0 + 4) = 0;
@@ -1900,7 +1900,7 @@ u32 game_sub_064bb4(int a0, u32 unused_a1, int a2, char *a3) {
             }
         } else {
             ar5_00 = (u8 *)0x1;
-            game_sub_0fdd68(a0 + 0x9c, 1);
+            set_field_68_clamp_0_4_wrap(a0 + 0x9c, 1);
             *(u32 *)(a0 + 4) = 0xd;
             *(u32 *)(a0 + 8) = 0x4b;
             *(u32 *)(a0 + 0xc) = 0;
@@ -1929,7 +1929,7 @@ u32 game_sub_064bb4(int a0, u32 unused_a1, int a2, char *a3) {
             g_8c13690c = 0x36;
             *(u32 *)(a0 + 0x848) = 0x36;
             g_8c136910 = 0x36;
-            game_sub_0fdd68(a0 + 0x9c, 0xffffffff);
+            set_field_68_clamp_0_4_wrap(a0 + 0x9c, 0xffffffff);
             a3 = "REACTION_DEKOPIN";
             iVar2 = 0;
             ar5_00 = (u8 *)0x27;
@@ -1946,7 +1946,7 @@ u32 game_sub_064bb4(int a0, u32 unused_a1, int a2, char *a3) {
                     *(u32 *)(a0 + 0x844) = 0x2a;
                     g_8c13690c = 0x2a;
                     *(u8 *)(a0 + 0x91) = 1;
-                    game_sub_0fdd68(a0 + 0x9c, 1);
+                    set_field_68_clamp_0_4_wrap(a0 + 0x9c, 1);
                     *(int *)(a0 + 0x860) = *(int *)(a0 + 0x860) + 1;
                 }
                 uVar1 = get_field_b8_101178(*(u32 *)(*(int *)(a2 + 0x18) + 0x7cc));
