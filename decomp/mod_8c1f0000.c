@@ -4834,7 +4834,7 @@ u32 gdfs_get_stat_like(int a0) {
 /*
  * gdfs_sub_1f367a  0x8c1f367a
  * area name: sits between gdfs functions (same compilation unit)
- * called by: ADXSTM_sub_263498, gdfs_close_like, gdfs_sub_1f30a0
+ * called by: ADXSTM_stop_read, gdfs_close_like, gdfs_sub_1f30a0
  */
 u32 gdfs_sub_1f367a(int *a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -9493,7 +9493,7 @@ int shinobi_sub_1f69f2(int a0) {
     *(int *)(*(int *)((int)0xd78 + g_8c474898) + 0x14) = iVar4;
     iVar4 = (*(code *)puVar2)(*(int *)(iVar3 + *piVar1) + 0x18);
     if (iVar4 == 0) {
-        iVar4 = libc_sub_013e4c(*piVar1 + 4, 1);
+        iVar4 = srand(*piVar1 + 4, 1);
     }
     return iVar4;
 }
@@ -9517,7 +9517,7 @@ int shinobi_sub_1f69fa(int a0, u32 a1, u32 a2, u32 a3, int ain0) {
     *(int *)(*(int *)(ain0 + *unaff_r14) + 0x14) = iVar1;
     iVar1 = libc_sub_01422c(*(int *)(*unaff_r14 + 0xd78) + 0x18, a1, a2, a3, in_PR, in_stack_00000000);
     if (iVar1 == 0) {
-        iVar1 = libc_sub_013e4c(*unaff_r14 + 4, 1);
+        iVar1 = srand(*unaff_r14 + 4, 1);
     }
     return iVar1;
 }
@@ -9538,7 +9538,7 @@ int shinobi_sub_1f6a30(void) {
     *(int *)(*(int *)((int)0xd78 + g_8c474898) + 0x14) = *(int *)((int)0x204 + g_8c474898) + 1;
     iVar3 = (*(code *)puVar2)(*(int *)(iVar3 + *piVar1) + 0x18);
     if (iVar3 == 0) {
-        iVar3 = libc_sub_013e4c(*piVar1 + 4, 1);
+        iVar3 = srand(*piVar1 + 4, 1);
     }
     return iVar3;
 }
@@ -9575,7 +9575,7 @@ u32 shinobi_sub_1f6a34(int a0, u32 a1, u32 a2, u32 a3) {
                 shinobi_sub_1f689e(a0, a5, a2, a3);
             } else if (iVar1 == 1) {
                 if (*(u32 *)(a5 + 0x14) <= *(u32 *)(a0 + 0x204)) {
-                    libc_sub_013e4c(a5 + 0x18, 1);
+                    srand(a5 + 0x18, 1);
                 }
             } else if (iVar1 == 2) {
                 *(u32 *)(a5 + 0xc) = 3;
@@ -11328,8 +11328,8 @@ u32 shinobi_sub_1f814c(u32 a0) {
 /*
  * rtc_get_date  0x8c1f8176
  * fills a {year, month, day, hour, minute, second, weekday} struct from the real-time clock
- * called by: CProlog_sub_0b96e4, game_sub_01bebc, game_sub_01bfd0, game_sub_0ba6bc, game_sub_0bf804, game_sub_0f9774,
- * game_sub_0fc40c, game_sub_0fc94c (+9 more)
+ * called by: CProlog_sub_0b96e4, game_sub_01bebc, game_sub_01bfd0, game_sub_0ba6bc, game_sub_0f9774, game_sub_0fc40c,
+ * game_sub_0fc94c, game_sub_0fcd2c (+9 more)
  */
 u32 rtc_get_date(short *a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 *puVar1;
@@ -11845,8 +11845,8 @@ u32 sh4_tmu_1f88c0(void) {
 
 /*
  * sh4_tmu_1f88e6  0x8c1f88e6
- * called by: ADXSTM_sub_263498, adx_server, cri_sub_264c92, cri_sub_264e84, cri_sub_264e88, game_frame,
- * game_sub_1017f4, game_sub_1019f8 (+10 more)
+ * called by: ADXSTM_stop_read, adx_server, cri_sub_264c92, cri_sub_264e84, cri_sub_264e88, game_frame, game_sub_1017f4,
+ * game_sub_1019f8 (+10 more)
  */
 int sh4_tmu_1f88e6(u32 a0) {
     return -1 - *0xffd8000c;
@@ -11855,8 +11855,8 @@ int sh4_tmu_1f88e6(u32 a0) {
 /*
  * int_diff  0x8c1f88f0
  * returns a1 - a0
- * called by: ADXSTM_sub_263498, adx_server, cri_sub_264c92, cri_sub_264e84, cri_sub_264e88, game_frame,
- * game_sub_101de0, ninja_sub_258e70
+ * called by: ADXSTM_stop_read, adx_server, cri_sub_264c92, cri_sub_264e84, cri_sub_264e88, game_frame, game_sub_101de0,
+ * ninja_sub_258e70
  */
 int int_diff(int a0, int a1) {
     return a1 - a0;
@@ -17756,7 +17756,7 @@ int shinobi_sub_1febd6(int a0, u32 a1) {
                     }
                     do {
                         vmu_drive_write_like(uVar5, iVar3, iVar2);
-                        iVar3 = shinobi_sub_200890(uVar5, 0xfffc);
+                        iVar3 = vmu_fat_find(uVar5, 0xfffc);
                         if (iVar3 < 0)
                             goto LAB_8c1fec70;
                         iVar4 = (*(code *)puVar1)(uVar5, iVar3, a1);
@@ -17815,7 +17815,7 @@ int shinobi_sub_1febe6(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     do {
                         iVar3 = ar6_00;
                         vmu_drive_write_like(ar4_00, iVar2, ar6_00);
-                        iVar2 = shinobi_sub_200890(ar4_00, 0xfffc, iVar3, a3);
+                        iVar2 = vmu_fat_find(ar4_00, 0xfffc, iVar3, a3);
                         if (iVar2 < 0)
                             goto LAB_8c1fec70;
                         iVar3 = (*(code *)puVar1)(ar4_00, iVar2, unaff_r9, a3);

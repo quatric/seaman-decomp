@@ -58,7 +58,7 @@ int shinobi_sub_200038(int a0, u32 a1, u32 unused_a2, u32 a3) {
                             iVar1 = shinobi_sub_1fbc44(a0, iVar4, a1, a3);
                             if (iVar1 < 0)
                                 break;
-                            a5 = shinobi_sub_200890(a0, puVar2, uVar3, a3);
+                            a5 = vmu_fat_find(a0, puVar2, uVar3, a3);
                             iVar1 = iVar4;
                             if (a5 < 1) {
                                 uVar3 = shinobi_sub_1fff5e(a0, puVar2, uVar3, a3);
@@ -876,11 +876,11 @@ int shinobi_sub_20080e(u32 unused_a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_200890  0x8c200890
- * area name: in the shinobi library code range
+ * vmu_fat_find  0x8c200890
+ * last block of drive a0 whose map entry (drive operation +0xc) is a1; -1 if none
  * called by: shinobi_sub_1febd6, shinobi_sub_1febe6, shinobi_sub_200038, shinobi_sub_2008f4, shinobi_sub_200900
  */
-int shinobi_sub_200890(int a0, u32 a1, u32 a2, u32 a3) {
+int vmu_fat_find(int a0, u32 a1, u32 a2, u32 a3) {
     int *piVar1;
     u32 uVar2;
     int iVar3;
@@ -913,7 +913,7 @@ u32 shinobi_sub_2008f4(u32 a0, u32 unused_a1, int a2, u32 a3) {
     ar5_00 = 0xfffc;
     ar6_00 = 0xfffc + -2;
     while (true) {
-        ar5_01 = shinobi_sub_200890(a0, ar5_00, a2, a3);
+        ar5_01 = vmu_fat_find(a0, ar5_00, a2, a3);
         if (ar5_01 < 0) {
             return 0xffffffff;
         }
@@ -937,7 +937,7 @@ u32 shinobi_sub_200900(u32 unused_a0, u32 unused_a1, int a2, u32 a3) {
     u32 unaff_r13;
 
     while (true) {
-        a5 = shinobi_sub_200890(unaff_r13, unaff_r11, a2, a3);
+        a5 = vmu_fat_find(unaff_r13, unaff_r11, a2, a3);
         if (a5 < 0) {
             return 0xffffffff;
         }

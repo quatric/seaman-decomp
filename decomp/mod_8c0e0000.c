@@ -724,7 +724,7 @@ u32 game_sub_0e0f48(int *a0, u32 a1, float *a2, float *a3) {
     Vec3_ctor_zero(&fStack_30, a1, a2);
     Vec3_ctor_zero(&fStack_40, a1, a2);
     Vec3_set_xyz(afStack_4c, a1, a2, a3);
-    Vec3_sub_023040(a0 + 0x8bae, a1, a2, a3);
+    Vec3_distance_sq_to_xyz(a0 + 0x8bae, a1, a2, a3);
     if (cVar13 == '\0') {
         in_dr0 = (double)CONCAT44((int)((u64)in_dr0 >> 0x20), in_fr3);
         dVar7 = (double)CONCAT44(0x3f400000, a0[0x8c03]);
@@ -1063,7 +1063,7 @@ int game_sub_0e1398(int a0, int a1, u32 a2, u32 a3) {
     cVar6 = '\0';
     uVar2 = a0 + 0x22eb4;
     Class_12b930_sub_0d3d6c(a0 + 0x10ac, uVar2, a2, a3);
-    Vec3_sub_023040(a0 + 0x22eb8, uVar2, a2, a3);
+    Vec3_distance_sq_to_xyz(a0 + 0x22eb8, uVar2, a2, a3);
     if (cVar7 == '\0') {
         uVar4 = CONCAT44(*(u32 *)(a0 + 0x2300c), uVar5);
     } else {
@@ -2236,7 +2236,7 @@ int game_sub_0e2a14(int *a0, u32 a1, u32 a2, u32 a3) {
             iVar1 = game_sub_0e3050(a1, uVar3, a2, a3);
             if (iVar1 == 1) {
                 (**(code **)(*a0 + 0x158))(a0, uVar3, a2, a3);
-                Vec3_sub_023040(a0 + 0x8bae, uVar3, a2, a3);
+                Vec3_distance_sq_to_xyz(a0 + 0x8bae, uVar3, a2, a3);
                 if (cVar9 == '\0') {
                     in_dr0 = (double)CONCAT44((int)((u64)in_dr0 >> 0x20), in_fr3);
                     dVar6 = (double)CONCAT44(0x3f400000, a0[0x8c03]);
@@ -2573,7 +2573,7 @@ int game_sub_0e3210(int a0, u32 a1, u32 a2, u32 a3) {
             if (iVar1 == 1) {
                 uVar2 = 1;
                 set_field_eb44(a0 + 0x13b8c, 1);
-                Vec3_sub_023040(a0 + 0x22eb8, uVar2, a2, a3);
+                Vec3_distance_sq_to_xyz(a0 + 0x22eb8, uVar2, a2, a3);
                 if (cVar8 == '\0') {
                     in_dr0 = (double)CONCAT44((int)((u64)in_dr0 >> 0x20), in_fr3);
                     dVar5 = (double)CONCAT44(0x3f400000, *(u32 *)(a0 + 0x2300c));
@@ -3578,7 +3578,7 @@ u32 Class_12b758_sub_0e4dd0(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
     cVar3 = '\0';
     uStack_c = in_PR;
-    game_sub_0dbdf4(a0);
+    rotate_degrees_7c_on_field_9e8(a0);
     if (cVar3 == '\0') {
         uStack_18 = *(u32 *)(a0 + 0x10fc);
         uStack_14 = *(u32 *)(a0 + 0x1100);
@@ -3633,7 +3633,7 @@ u32 Class_12b758_sub_0e4dd0(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 u32 game_sub_0e505c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    game_sub_0dbdf4(a0);
+    rotate_degrees_7c_on_field_9e8(a0);
     obj_set_texlist(a0 + 0x28, a1, a2);
     game_sub_015adc(a0 + 0x30, a1, a2, a3);
     uVar1 = game_sub_0da754(a0);
@@ -3993,7 +3993,7 @@ u32 game_sub_0e5a08(int a0, u32 a1, u32 a2, u32 a3) {
     gfxlib_sub_235ee4();
     game_sub_0daf80(a0, a1, a2, a3);
     game_sub_0d6954(a0 + 0xa68, a1, a2, a3);
-    game_sub_0dbdf4(a0);
+    rotate_degrees_7c_on_field_9e8(a0);
     *(u32 *)(0x1020 + a0) = 5;
     uVar1 = game_sub_0e5dac();
     return uVar1;
@@ -4468,7 +4468,7 @@ u32 Class_12b580_sub_0e660c(int a0, int a1, int a2, u32 a3) {
     char cVar3;
 
     cVar3 = '\0';
-    game_sub_0dbdf4(a0);
+    rotate_degrees_7c_on_field_9e8(a0);
     game_sub_0d8808(a0 + 0x10dc);
     if (cVar3 == '\0') {
         *(u32 *)(a0 + 0x78) = *(u32 *)(a0 + 0x1120);
@@ -4585,7 +4585,7 @@ u32 game_sub_0e68f4(int *a0, u32 a1, u32 a2, u32 a3) {
 
     game_sub_0daf80(a0, a1, a2, a3);
     game_sub_0d6954((int)a0 + 0xa68, a1, a2, a3);
-    game_sub_0dbdf4(a0);
+    rotate_degrees_7c_on_field_9e8(a0);
     game_sub_0e743c();
     game_sub_0d8400((int)a0 + 0x10dc, a1, a2, a3);
     uVar1 = (**(code **)(0xa8 + *a0))(a0, 3, a2, a3);
@@ -5349,7 +5349,7 @@ u32 Class_12b3b8_sub_0e7a78(int a0, u32 a1, u32 a2, u32 a3) {
     uStack_50 = g_8c13f764;
     clear_5_words(auStack_74, a1, a2, a3);
     iVar1 = a0 + 0x228;
-    game_sub_0194c0(iVar1);
+    rotate_degrees_7c(iVar1);
     gfxlib_sub_219038();
     set_vec3_g_278744();
     (**(code **)(*(int *)(a0 + 0x414) + 0x14))((int *)(a0 + 0x414), a1, a2, a3);
@@ -5682,7 +5682,7 @@ int game_sub_0e84f8(int a0) {
     int iVar1;
 
     gfxlib_sub_235ee4();
-    game_sub_0194c0(a0 + 0x228);
+    rotate_degrees_7c(a0 + 0x228);
     iVar1 = 0x440;
     *(u32 *)(0x440 + a0) = 0;
     return iVar1;

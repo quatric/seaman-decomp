@@ -373,3 +373,23 @@
 8c1efd26	maple_port_status	status flags of port a0
 8c1fd510	maple_device_ready	1 when a device is on logical port a0 and its status has bit 1
 8c1fd550	maple_device_ready_idle	maple_device_ready and the bus is not busy
+8c200890	vmu_fat_find	last block of drive a0 whose map entry (drive operation +0xc) is a1; -1 if none
+8c263498	ADXSTM_stop_read	aborts the stream's file read (timing it into 0x8c278480) and marks the stream stopped
+8c26357a	ADXSTM_set_sector_count	+0x30 = a1, or the file size (+0x14) in 2 KB sectors when a1 is negative
+8c010ab4	delay_loop_6	a short busy-wait (six iterations)
+8c010ad4	delay_loop_6	a short busy-wait (six iterations)
+8c013e4c	srand	sets the rand() seed (0x8c2787b0)
+8c0194c0	rotate_degrees_7c	stores fr4 degrees at +0x7c and rotates the matrix by it
+8c019560	set_vec3_field_44	stores fr4..fr6 at +0x44
+8c023e44	identity	returns its first argument
+8c01ade8	file_slot_find	index of the 0x28-byte slot (128 of them at +0x244c) whose id is a1; -1 if none
+8c01b5dc	bytes_to_512_blocks	a1 rounded up to 512-byte blocks
+8c01eb94	input_test_8_mode2	input_mask_test(8, 2); 2 while the demo input is active
+8c01ecf8	input_test_10000_mode2	input_mask_test(0x10000, 2); 2 while the demo input is active
+8c020aa8	CDCGD_request_type2	disc request type 2 (list at +0x28)
+8c020ba0	CDCGD_request_type5	disc request type 5 (list at +0x28)
+8c023040	Vec3_distance_sq_to_xyz	squared distance from a0 to the point (a1, a2, a3)
+8c023180	Vec3_return_xyz	builds a Vec3 from a1..a3 into the return slot s0
+8c023e24	Vec3_assign_copy	a0 = a1
+8c030d10	Class_12c3c4_load_record	loads two bytes and a word from the record a1 into +0x64, +0x68, +0x6c
+8c030d2c	Class_12c3c4_save_record	saves +0x64 and +0x6c into the record a1 (second byte 3)

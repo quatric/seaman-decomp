@@ -452,7 +452,7 @@ u32 game_sub_0a06c0(int a0, u8 *a1) {
     u32 uVar1;
 
     *(u8 *)(0x98 + a0) = *a1;
-    uVar1 = Class_12c3c4_sub_030d10(a0 + 0xa8, a1 + 8);
+    uVar1 = Class_12c3c4_load_record(a0 + 0xa8, a1 + 8);
     return uVar1;
 }
 
@@ -464,7 +464,7 @@ u32 game_sub_0a06f8(int a0, u8 *a1) {
     u32 uVar1;
 
     *a1 = *(u8 *)(0x98 + a0);
-    uVar1 = Class_12c3c4_sub_030d2c(a0 + 0xa8, a1 + 8);
+    uVar1 = Class_12c3c4_save_record(a0 + 0xa8, a1 + 8);
     return uVar1;
 }
 
@@ -7522,9 +7522,9 @@ u32 game_sub_0a8f94(int a0, u32 a1, u8 *a2, u32 a3) {
         break;
     case 3:
     case 4:
-        Vec3_sub_023180(auStack_28, uVar4, ar6_00, a3, auStack_58);
+        Vec3_return_xyz_023180(auStack_28, uVar4, ar6_00, a3, auStack_58);
         uVar8 = (u32)((u64)in_dr0 >> 0x20);
-        Vec3_sub_023180(a0 + 0x14, uVar4, ar6_00, a3, auStack_68);
+        Vec3_return_xyz_023180(a0 + 0x14, uVar4, ar6_00, a3, auStack_68);
         Vec3_cos_angle(auStack_58, auStack_68, ar6_00, a3);
         if (cVar10 == '\0') {
             in_dr14 = (double)CONCAT44((int)((u64)in_dr14 >> 0x20), uVar8);
@@ -7532,8 +7532,8 @@ u32 game_sub_0a8f94(int a0, u32 a1, u8 *a2, u32 a3) {
         Vec3_dtor(auStack_68, 0xffffffff, ar6_00, a3);
         uVar4 = 0xffffffff;
         Vec3_dtor(auStack_58, 0xffffffff, ar6_00, a3);
-        Vec3_sub_023180(a0 + 0x14, uVar4, ar6_00, a3, auStack_78);
-        Vec3_sub_023180(auStack_28, uVar4, ar6_00, a3, auStack_88);
+        Vec3_return_xyz_023180(a0 + 0x14, uVar4, ar6_00, a3, auStack_78);
+        Vec3_return_xyz_023180(auStack_28, uVar4, ar6_00, a3, auStack_88);
         Vec3_set_xyz(auStack_94, uVar4, ar6_00, a3);
         Vec3_sub_023484(auStack_88, auStack_94, ar6_00, a3, auStack_a4);
         Vec3_cos_angle(auStack_78, auStack_a4, ar6_00, a3);

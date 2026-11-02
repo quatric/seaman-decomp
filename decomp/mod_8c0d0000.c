@@ -1353,8 +1353,8 @@ u32 CTexture_sub_0d167c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 auStack_48[68];
 
     uVar1 = a1;
-    game_sub_023e44(auStack_48);
-    game_sub_023e44(auStack_88);
+    identity_023e44(auStack_48);
+    identity_023e44(auStack_88);
     njGetMatrix_wrap(auStack_48);
     njGetMatrix_wrap(auStack_88);
     game_sub_023ef8(auStack_48);
@@ -10952,7 +10952,7 @@ u32 noop_0db184(void) {
  */
 u32 game_sub_0db188(int a0, u32 a1, u32 a2, u32 a3) {
     game_sub_0d66d8(a0 + 0xa68, a1, a2, a3);
-    game_sub_019560(a0 + 0x9e8);
+    set_vec3_field_44(a0 + 0x9e8);
     game_sub_019574(a0 + 0x9e8);
     (**(code **)(*(int *)(a0 + 0x9e8) + 0xc))((int *)(a0 + 0x9e8), a1, a2, a3);
     return 1;
@@ -11520,15 +11520,15 @@ u32 game_sub_0dbd80(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0dbdf4  0x8c0dbdf4
- * area name: game code; nothing names its area yet
+ * rotate_degrees_7c_on_field_9e8  0x8c0dbdf4
+ * calls rotate_degrees_7c on the member at +0x9e8
  * called by: Class_12b580_sub_0e660c, Class_12b758_sub_0e4dd0, game_sub_0de6d0, game_sub_0deb60, game_sub_0def78,
  * game_sub_0df250, game_sub_0df668, game_sub_0dff1c (+3 more)
  */
-u32 game_sub_0dbdf4(int a0) {
+u32 rotate_degrees_7c_on_field_9e8(int a0) {
     u32 uVar1;
 
-    uVar1 = game_sub_0194c0(a0 + 0x9e8);
+    uVar1 = rotate_degrees_7c(a0 + 0x9e8);
     return uVar1;
 }
 
@@ -13427,7 +13427,7 @@ u32 game_sub_0de6d0(int a0, u32 a1, u32 a2, u32 a3) {
         }
     }
     uVar2 = (u32)in_dr0;
-    game_sub_0dbdf4(a0);
+    rotate_degrees_7c_on_field_9e8(a0);
     iVar3 = a0 + 0xa68;
     Vec3_ctor_copy(auStack_30, iVar3, a2, a3);
     noop_0bf11c(a0 + 0x13b70, iVar3, a2, a3, in_stack_ffffff98);
@@ -13633,7 +13633,7 @@ u32 game_sub_0deb60(int a0, u32 a1, u32 a2, u32 a3) {
         }
     }
     uVar2 = (u32)in_dr0;
-    game_sub_0dbdf4(a0);
+    rotate_degrees_7c_on_field_9e8(a0);
     iVar3 = a0 + 0xa68;
     Vec3_ctor_copy(auStack_30, iVar3, a2, a3);
     noop_0bf11c(a0 + 0x13b70, iVar3, a2, a3, in_stack_ffffff98);
@@ -13820,7 +13820,7 @@ u32 game_sub_0def78(int a0, u32 a1, u32 a2, u32 a3) {
         }
     }
     uVar2 = (u32)in_dr0;
-    game_sub_0dbdf4(a0);
+    rotate_degrees_7c_on_field_9e8(a0);
     iVar3 = a0 + 0xa68;
     Vec3_ctor_copy(auStack_2c, iVar3, a2, a3);
     noop_0bf11c(a0 + 0x13b70, iVar3, a2, a3, in_stack_ffffffb8);
@@ -13920,7 +13920,7 @@ u32 game_sub_0df250(int a0, u32 a1, u32 a2, u32 a3) {
         uStack_24 = (u32)((u64)uVar7 >> 0x20);
     }
     iVar4 = a0;
-    game_sub_0dbdf4(a0);
+    rotate_degrees_7c_on_field_9e8(a0);
     if (*(int *)(a0 + 0x1024) != 0) {
         CEnv_set_texlist(iVar4, a1, a2);
         Class_129808_draw(a0 + 0x1028, a1, a2, a3);
@@ -14113,7 +14113,7 @@ u32 game_sub_0df668(int a0, u32 a1, u32 a2, u32 a3) {
     }
     uVar2 = (u32)uVar6;
     iVar4 = a0;
-    game_sub_0dbdf4(a0);
+    rotate_degrees_7c_on_field_9e8(a0);
     if (*(int *)(a0 + 0x1024) != 0) {
         CEnv_set_texlist(iVar4, a1, a2);
         Class_129808_draw(a0 + 0x1028, a1, a2, a3);
@@ -14464,7 +14464,7 @@ u32 game_sub_0dff1c(int *a0, u32 a1, u32 a2, u32 a3) {
     set_fields_28_48((int)a0 + 0x13b24);
     set_fields_10_14_0d98e4((int)a0 + 0x22704);
     game_sub_0d6954((int)a0 + 0xa68, uVar2, a2, a3);
-    game_sub_0dbdf4(a0);
+    rotate_degrees_7c_on_field_9e8(a0);
     *(u32 *)(0x1020 + (int)a0) = 0;
     Vec3_sub_0e3f24(a0);
     uVar2 = a1;

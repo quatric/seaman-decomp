@@ -542,11 +542,11 @@ u32 CDCGD_release_type0(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CDCGD_sub_020aa8  0x8c020aa8
- * area name: sits between CDCGD functions (same compilation unit)
+ * CDCGD_request_type2  0x8c020aa8
+ * disc request type 2 (list at +0x28)
  * called by: Vec3_sub_027a78, game_sub_08c9dc, game_sub_0ca2cc, retry_until_done_020aa8
  */
-u32 CDCGD_sub_020aa8(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CDCGD_request_type2(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 in_stack_00000000;
 
@@ -570,7 +570,7 @@ u32 retry_until_done_020aa8(u32 a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = a1;
         ar6_00 = a2;
         ar7_00 = a3;
-        iVar1 = CDCGD_sub_020aa8(a0, a1, a2, a3);
+        iVar1 = CDCGD_request_type2(a0, a1, a2, a3);
         if (iVar1 == 1) {
             return 1;
         }
@@ -598,11 +598,11 @@ u32 CDCGD_release_type2(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CDCGD_sub_020ba0  0x8c020ba0
- * area name: sits between CDCGD functions (same compilation unit)
+ * CDCGD_request_type5  0x8c020ba0
+ * disc request type 5 (list at +0x28)
  * called by: CAnimal_sub_020bec, Vec3_sub_027a78, game_sub_028390, game_sub_08c9dc
  */
-u32 CDCGD_sub_020ba0(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CDCGD_request_type5(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 in_stack_00000000;
 
@@ -625,7 +625,7 @@ u32 CAnimal_sub_020bec(u32 a0, u32 a1, u32 a2, u32 a3) {
         ar5_00 = a1;
         ar6_00 = a2;
         ar7_00 = a3;
-        iVar1 = CDCGD_sub_020ba0(a0, a1, a2, a3);
+        iVar1 = CDCGD_request_type5(a0, a1, a2, a3);
         if (iVar1 == 1) {
             return 1;
         }
@@ -1487,8 +1487,8 @@ u32 game_sub_021ad4(int *a0, u32 a1) {
 
 /*
  * pack_acquire_entry_handle  0x8c021b10
- * called by: CProlog_Ready, CSeamanDomain_sub_0c38d4, Class_12b580_sub_0d84e8, game_sub_0bb1e4, game_sub_0c2efc,
- * game_sub_0c76d0, game_sub_0c8758, game_sub_0c8c28 (+3 more)
+ * called by: CProlog_Ready, CSeamanDomain_sub_0c38d4, Class_12b580_sub_0d84e8, game_sub_0c2efc, game_sub_0c76d0,
+ * game_sub_0c8758, game_sub_0c8c28, game_sub_0c991c (+3 more)
  */
 int pack_acquire_entry_handle(int *a0, u32 a1, u32 a2, u32 a3) {
     int ar5_00;
@@ -1560,8 +1560,8 @@ u32 pack_sub_021c80(u8 *a0, u8 *a1) {
 
 /*
  * pack_release_entry_handle  0x8c021ce8
- * called by: Class_12b580_sub_0d84e8, game_sub_0bad68, game_sub_0bb1e4, game_sub_0bf22c, game_sub_0c2efc,
- * game_sub_0c76d0, game_sub_0c8c28, game_sub_0ca0e0 (+5 more)
+ * called by: Class_12b580_sub_0d84e8, game_sub_0bad68, game_sub_0bf22c, game_sub_0c2efc, game_sub_0c76d0,
+ * game_sub_0c8c28, game_sub_0ca0e0, game_sub_0ca22c (+5 more)
  */
 int pack_release_entry_handle(int *a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -1597,8 +1597,8 @@ u32 pack_sub_021d4c(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * pack_sub_021d90  0x8c021d90
  * area name: sits between pack functions (same compilation unit)
- * called by: CSeamanDomain_sub_0c38d4, Class_12b580_sub_0d84e8, game_sub_0bb1e4, game_sub_0c2efc, game_sub_0c76d0,
- * game_sub_0c8758, game_sub_0c8c28, game_sub_0fb268 (+1 more)
+ * called by: CSeamanDomain_sub_0c38d4, Class_12b580_sub_0d84e8, game_sub_0c2efc, game_sub_0c76d0, game_sub_0c8758,
+ * game_sub_0c8c28, game_sub_0fb268, game_sub_0fb494 (+1 more)
  */
 int pack_sub_021d90(int *a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -1681,7 +1681,7 @@ int pack_sub_021ec8(u32 unused_a0, u32 a1) {
 /*
  * pack_sub_021f18  0x8c021f18
  * area name: sits between pack functions (same compilation unit)
- * called by: game_sub_0bb1e4, game_sub_0c2c0c, game_sub_0c2efc, game_sub_0c76d0, game_sub_0c8c28, game_sub_101004
+ * called by: game_sub_0c2c0c, game_sub_0c2efc, game_sub_0c76d0, game_sub_0c8c28, game_sub_101004, input_sub_0bb1e4
  */
 u32 pack_sub_021f18(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -2612,7 +2612,7 @@ u32 ret_const_8c022e74(void) {
 /*
  * Vec3_length_sq  0x8c022e78
  * called by: Class_129974_sub_0db3bc, Class_12b088_sub_0aa70c, Class_12b2ac_sub_0b5344, Class_12b2e8_sub_0b67cc,
- * Class_12c394_sub_0d64a0, Vec3_cos_angle, Vec3_distance_sq, Vec3_length (+37 more)
+ * Class_12c394_sub_0d64a0, Vec3_cos_angle, Vec3_distance_sq, Vec3_distance_sq_to_xyz (+37 more)
  */
 u32 Vec3_length_sq(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -2795,11 +2795,11 @@ u32 Vec3_distance_sq(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Vec3_sub_023040  0x8c023040
- * area name: sits between Vec3 functions (same compilation unit)
+ * Vec3_distance_sq_to_xyz  0x8c023040
+ * squared distance from a0 to the point (a1, a2, a3)
  * called by: game_sub_0e0f48, game_sub_0e1398, game_sub_0e2a14, game_sub_0e3210
  */
-u32 Vec3_sub_023040(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 Vec3_distance_sq_to_xyz(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
     u64 in_dr0;
     u32 uVar1;
@@ -2854,11 +2854,11 @@ u32 Vec3_return_xyz(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
 }
 
 /*
- * Vec3_sub_023180  0x8c023180
- * area name: sits between Vec3 functions (same compilation unit)
+ * Vec3_return_xyz_023180  0x8c023180
+ * builds a Vec3 from a1..a3 into the return slot s0
  * called by: game_sub_0a8f94
  */
-u32 Vec3_sub_023180(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
+u32 Vec3_return_xyz_023180(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     u8 auStack_18[20];
 
     Vec3_ctor_xyz(auStack_18, a1, a2, a3);
@@ -3763,7 +3763,7 @@ float *Vec3_add_assign(float *a0, float *a1) {
 /*
  * Vec3_sub  0x8c023ae0
  * called by: CMushroomerBody_AwayFrom, CMushroomerBody_sub_031764, Class_1299f8_m3_019f00, Class_12b088_sub_0aa70c,
- * Class_12b2e8_sub_0b67cc, Class_12c394_sub_0d64a0, Vec3_distance_sq, Vec3_sub_023040 (+76 more)
+ * Class_12b2e8_sub_0b67cc, Class_12c394_sub_0d64a0, Vec3_distance_sq, Vec3_distance_sq_to_xyz (+76 more)
  */
 u32 Vec3_sub(u64 *a0, double *a1, u32 a2, u32 a3, u32 s0) {
     double dVar1;
@@ -4127,11 +4127,11 @@ u32 *Vec3_assign_copy(u32 *a0, u32 *a1) {
 }
 
 /*
- * game_sub_023e24  0x8c023e24
- * area name: game code; nothing names its area yet
+ * Vec3_assign_copy_023e24  0x8c023e24
+ * a0 = a1
  * called by: game_sub_0348ac, game_sub_09e204, game_sub_0f4b98
  */
-u32 *game_sub_023e24(u32 *a0, u32 *a1) {
+u32 *Vec3_assign_copy_023e24(u32 *a0, u32 *a1) {
     *a0 = *a1;
     a0[1] = a1[1];
     a0[2] = a1[2];
@@ -4139,11 +4139,11 @@ u32 *game_sub_023e24(u32 *a0, u32 *a1) {
 }
 
 /*
- * game_sub_023e44  0x8c023e44
- * area name: game code; nothing names its area yet
+ * identity_023e44  0x8c023e44
+ * returns its first argument
  * called by: CAnimal_m2_02573c, CTexture_sub_0d167c, Class_1299f8_m4_019588
  */
-u32 game_sub_023e44(u32 a0) {
+u32 identity_023e44(u32 a0) {
     return a0;
 }
 
@@ -5351,7 +5351,7 @@ u32 CAnimal_m2_02573c(int a0, u32 a1, int ****a2, int ****a3) {
     CAnimal_sub_030e5c(&uStack_ac);
     uVar2 = game_sub_02bef8(a0 + 0x174, uVar5, a2);
     a6_00 = (int ****)(int)(short)uVar2;
-    game_sub_023e44(auStack_ec);
+    identity_023e44(auStack_ec);
     uVar3 = get_field_a4_s16(a1, uVar5);
     ar5_00 = uVar3 & 0xffff;
     iVar4 = get_field_24_026024(a3, uVar5, a2, ar7_00);
@@ -7189,7 +7189,7 @@ u32 Vec3_sub_027a78(int a0, int a1, int a2) {
             } else {
                 puVar4 = &uStack_2c;
                 uVar3 = *(u32 *)(a0 + 0x410);
-                iVar2 = CDCGD_sub_020ba0(a1, *(u32 *)(iVar1 + 0x1c), uVar3, puVar4);
+                iVar2 = CDCGD_request_type5(a1, *(u32 *)(iVar1 + 0x1c), uVar3, puVar4);
                 if (iVar2 == 1) {
                     set_field_0_015bb0(iVar1 + 0xb0, uStack_2c);
                     *(u32 *)(a0 + 0x418) = 4;
@@ -7226,7 +7226,7 @@ u32 Vec3_sub_027a78(int a0, int a1, int a2) {
             if (*(int *)(iVar1 + 0x20) == 0) {
                 puVar4 = &uStack_28;
                 uVar3 = *(u32 *)(a0 + 0x410);
-                iVar2 = CDCGD_sub_020aa8(a1, *(u32 *)(iVar1 + 0xc), uVar3, puVar4);
+                iVar2 = CDCGD_request_type2(a1, *(u32 *)(iVar1 + 0xc), uVar3, puVar4);
                 if (iVar2 == 1) {
                     (**(code **)(*(int *)(iVar1 + 0x78) + 8))((int *)(iVar1 + 0x78), uStack_28, uVar3, puVar4);
                     *(u32 *)(a0 + 0x418) = 7;
@@ -7351,7 +7351,7 @@ u32 game_sub_028390(u32 unused_a0, char *a1, u32 a2, u32 *a3, short *s0, u32 s4,
     auStack_24[0] = 0;
     if (s16 == 0) {
         ar7_00 = auStack_24;
-        iVar2 = CDCGD_sub_020ba0(s8, a1, a2, ar7_00);
+        iVar2 = CDCGD_request_type5(s8, a1, a2, ar7_00);
     } else {
         ar7_00 = a3;
         if (s16 == 1) {

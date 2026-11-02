@@ -498,11 +498,11 @@ int set_field_728_u8(int a0, u32 a1) {
 }
 
 /*
- * Class_12c3c4_sub_030d10  0x8c030d10
- * area name: most of its named callers are Class_12c3c4
+ * Class_12c3c4_load_record  0x8c030d10
+ * loads two bytes and a word from the record a1 into +0x64, +0x68, +0x6c
  * called by: Class_12a078_m7_067158, Class_12c3c4_m7_109f70, Class_12c3c4_m9_10a00c, game_sub_0a06c0
  */
-u32 Class_12c3c4_sub_030d10(int a0, char *a1) {
+u32 Class_12c3c4_load_record(int a0, char *a1) {
     *(int *)(a0 + 100) = (int)*a1;
     *(int *)(a0 + 0x68) = (int)a1[1];
     *(u32 *)(a0 + 0x6c) = *(u32 *)(a1 + 4);
@@ -510,11 +510,11 @@ u32 Class_12c3c4_sub_030d10(int a0, char *a1) {
 }
 
 /*
- * Class_12c3c4_sub_030d2c  0x8c030d2c
- * area name: most of its named callers are Class_12c3c4
+ * Class_12c3c4_save_record  0x8c030d2c
+ * saves +0x64 and +0x6c into the record a1 (second byte 3)
  * called by: Class_12a078_m8_0671a8, Class_12c3c4_m10_10a074, Class_12c3c4_m8_109fc0, game_sub_0a06f8
  */
-u32 Class_12c3c4_sub_030d2c(int a0, u8 *a1) {
+u32 Class_12c3c4_save_record(int a0, u8 *a1) {
     u32 uVar1;
 
     *a1 = (char)*(u32 *)(a0 + 100);
@@ -537,10 +537,10 @@ u8 *set_fields_0_1_4(u8 *a0) {
 }
 
 /*
- * game_sub_030d58  0x8c030d58
- * area name: game code; nothing names its area yet
+ * Class_12c3c4_sub_030d58  0x8c030d58
+ * area name: sits between Class_12c3c4 functions (same compilation unit)
  */
-u32 game_sub_030d58(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12c3c4_sub_030d58(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     code *pcVar2;
     u32 uVar3;
@@ -5705,7 +5705,7 @@ u32 game_sub_0348ac(u32 unused_a0, int *a1, u32 a2, u32 a3) {
     uStack_14 = in_PR;
     set_fields_0_4_8(&fStack_20, a1);
     if (a1 == NULL) {
-        game_sub_023e24(in_stack_00000000, &fStack_20);
+        Vec3_assign_copy_023e24(in_stack_00000000, &fStack_20);
         free_if_nonnull_wrap_016ac4(&fStack_20, 0xffffffff, a2, a3);
     } else {
         if (cVar13 == '\0') {
@@ -6037,7 +6037,7 @@ u32 game_sub_0348ac(u32 unused_a0, int *a1, u32 a2, u32 a3) {
                 uStack_14 = (u32)((u64)in_xd14 >> 0x20);
             }
         }
-        game_sub_023e24(in_stack_00000000, &fStack_20);
+        Vec3_assign_copy_023e24(in_stack_00000000, &fStack_20);
         free_if_nonnull_wrap_016ac4(&fStack_20, 0xffffffff, a2, a3);
     }
     return 0;

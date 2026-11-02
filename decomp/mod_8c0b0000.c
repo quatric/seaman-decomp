@@ -5666,7 +5666,7 @@ u32 CProlog_sub_0b9bb0(int a0, u32 unused_a1, u32 a2, u32 a3) {
  * rtc_get_date_wrap  0x8c0b9d14
  * only calls rtc_get_date
  * called by: CGame_GetUserGameInfo, CGame_sub_0cc784, CProlog_sub_0b9bb0, CProlog_sub_0cd3c8, CSeamanDomain_Init,
- * game_sub_0bb1e4, game_sub_0bcedc, game_sub_0c67f4 (+1 more)
+ * game_sub_0bcedc, game_sub_0c67f4, game_sub_0d8890 (+1 more)
  */
 u32 rtc_get_date_wrap(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -6089,7 +6089,7 @@ u32 *game_sub_0ba3e0(int a0, u32 *a1) {
 /*
  * game_sub_0ba494  0x8c0ba494
  * area name: game code; nothing names its area yet
- * called by: game_sub_0bb1e4
+ * called by: input_sub_0bb1e4
  */
 u32 game_sub_0ba494(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6551,7 +6551,7 @@ u32 game_sub_0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
                     game_sub_0ba3e0(a0 + 0x158, a1);
                 }
                 if (((*(int *)(a0 + 0x14c) != 0) &&
-                     (iVar2 = Class_12b334_sub_0bb1bc(*(u32 *)(a1 + 0x7cc)), iVar2 == 1)) &&
+                     (iVar2 = input_test_8_mode2_wrap(*(u32 *)(a1 + 0x7cc)), iVar2 == 1)) &&
                     (*(int *)(a0 + 0x30) == 2)) {
                     ar5_00 = auStack_4c;
                     game_sub_0bb158(a1, ar5_00);
@@ -6598,7 +6598,7 @@ u32 game_sub_0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
             *(u32 *)(a0 + 8) = 2;
         }
     }
-    game_sub_0bb1e4(a0, a1, a2, a3);
+    input_sub_0bb1e4(a0, a1, a2, a3);
     free_if_nonnull_wrap_0151a0(auStack_40, 0xffffffff, a2, a3);
     return 1;
 }
@@ -6624,24 +6624,24 @@ u32 game_sub_0bb158(int a0, u16 *a1) {
 }
 
 /*
- * Class_12b334_sub_0bb1bc  0x8c0bb1bc
- * area name: only called from Class_12b334 methods
+ * input_test_8_mode2_wrap  0x8c0bb1bc
+ * only calls input_test_8_mode2
  * called by: Class_12b334_m1_0bf3d4, game_sub_0bad68
  */
-u32 Class_12b334_sub_0bb1bc(int a0) {
+u32 input_test_8_mode2_wrap(int a0) {
     u32 uVar1;
 
-    uVar1 = input_sub_01eb94(*(u32 *)(0xcc + a0));
+    uVar1 = input_test_8_mode2(*(u32 *)(0xcc + a0));
     return uVar1;
 }
 
 /*
- * game_sub_0bb1e4  0x8c0bb1e4
- * name hint from a string it uses: AMB FOREST; area name: game code; nothing names its area yet
+ * input_sub_0bb1e4  0x8c0bb1e4
+ * name hint from a string it uses: AMB FOREST; area name: sits between input functions (same compilation unit)
  * called by: game_sub_0bad68
  * strings: "AMB_FOREST"; "AMB_FOREST"; "AMB_FOREST"; "AMB_FOREST" ...
  */
-u32 game_sub_0bb1e4(int a0, int a1, u8 *a2, u8 *a3) {
+u32 input_sub_0bb1e4(int a0, int a1, u8 *a2, u8 *a3) {
     u32 uVar1;
     int iVar2;
     u8 *ar4_00;
@@ -8198,7 +8198,7 @@ u32 game_sub_0bb1e4(int a0, int a1, u8 *a2, u8 *a3) {
 
 /*
  * get_field_c8_0bced0  0x8c0bced0
- * called by: game_sub_0bb1e4, game_sub_0bcedc
+ * called by: game_sub_0bcedc, input_sub_0bb1e4
  */
 u32 get_field_c8_0bced0(int a0) {
     return *(u32 *)(0xc8 + a0);
@@ -9316,7 +9316,7 @@ int Class_12b334_m1_0bf3d4(int a0, int a1) {
 
     iVar1 = a1;
     pure_virtual_stub();
-    iVar1 = Class_12b334_sub_0bb1bc(*(u32 *)(0x7cc + a1));
+    iVar1 = input_test_8_mode2_wrap(*(u32 *)(0x7cc + a1));
     if (iVar1 == 1) {
         *(u32 *)(a0 + 8) = 0;
         iVar1 = 0x7dc;
@@ -9342,7 +9342,7 @@ u32 noop_0bf440(void) {
  */
 int Class_12b334_sub_0bf478(int a0) {
     clear_2_words(a0 + 0x28);
-    game_sub_0bf7a8(a0);
+    input_sub_0bf7a8(a0);
     return a0;
 }
 
@@ -9397,7 +9397,7 @@ u32 CSeamanDomain_sub_0bf550(int *a0, u32 a1, u32 unused_a2, u32 a3) {
 
     uVar1 = 0;
     if (*a0 != 0) {
-        game_sub_0bf804(a0, a1, unused_a2, a3);
+        input_sub_0bf804(a0, a1, unused_a2, a3);
         uVar1 = game_sub_0bfa78(a0, a1, unused_a2, a3);
     }
     return uVar1;
@@ -9452,7 +9452,7 @@ u32 game_sub_0bf618(int a0, u32 a1, u32 a2, u32 a3) {
         return 0;
     }
     iVar1 = input_test_4_mode2(*(u32 *)(0xcc + a0));
-    if ((iVar1 == 0) && (iVar1 = input_sub_01eb94(*(u32 *)(0xcc + a0)), iVar1 == 0)) {
+    if ((iVar1 == 0) && (iVar1 = input_test_8_mode2(*(u32 *)(0xcc + a0)), iVar1 == 0)) {
         return 0;
     }
     return 1;
@@ -9490,30 +9490,30 @@ u32 game_sub_0bf708(int a0, u32 a1, u32 a2, u32 a3) {
         return 0;
     }
     iVar1 = input_sub_01f118(*(u32 *)(0xcc + a0));
-    if ((iVar1 == 0) && (iVar1 = input_sub_01ecf8(*(u32 *)(0xcc + a0)), iVar1 == 0)) {
+    if ((iVar1 == 0) && (iVar1 = input_test_10000_mode2(*(u32 *)(0xcc + a0)), iVar1 == 0)) {
         return 0;
     }
     return 1;
 }
 
 /*
- * CSeamanDomain_sub_0bf780  0x8c0bf780
- * area name: only called from CSeamanDomain methods
+ * input_test_8_mode2_wrap_0bf780  0x8c0bf780
+ * only calls input_test_8_mode2
  * called by: CSeamanDomain_Init, CSeamanDomain_sub_0c1d98, CSeamanDomain_sub_0c23fc
  */
-u32 CSeamanDomain_sub_0bf780(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 input_test_8_mode2_wrap_0bf780(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = input_sub_01eb94(*(u32 *)(0xcc + a0));
+    uVar1 = input_test_8_mode2(*(u32 *)(0xcc + a0));
     return uVar1;
 }
 
 /*
- * game_sub_0bf7a8  0x8c0bf7a8
- * area name: game code; nothing names its area yet
+ * input_sub_0bf7a8  0x8c0bf7a8
+ * area name: sits between input functions (same compilation unit)
  * called by: Class_12b334_sub_0bf478
  */
-u32 game_sub_0bf7a8(u32 *a0) {
+u32 input_sub_0bf7a8(u32 *a0) {
     *a0 = 0;
     a0[1] = 0;
     a0[2] = 2;
@@ -9545,11 +9545,11 @@ u32 CSeamanDomain_sub_0bf7d0(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0bf804  0x8c0bf804
- * area name: game code; nothing names its area yet
+ * input_sub_0bf804  0x8c0bf804
+ * area name: sits between input functions (same compilation unit)
  * called by: CSeamanDomain_sub_0bf550
  */
-u32 game_sub_0bf804(int a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 input_sub_0bf804(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;

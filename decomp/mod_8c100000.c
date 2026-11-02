@@ -36,7 +36,7 @@ u32 game_sub_10003c(int a0, u32 a1, u32 a2, u32 a3) {
 u32 game_sub_1000c8(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
-    iVar1 = input_sub_01eb94(*(u32 *)(0xcc + a0));
+    iVar1 = input_test_8_mode2(*(u32 *)(0xcc + a0));
     if ((((iVar1 == 1) && (iVar1 = input_sub_01ed88(*(u32 *)(0xcc + a0)), iVar1 == 0)) &&
          (iVar1 = input_test_2_mode0(*(u32 *)(0xcc + a0)), iVar1 == 0)) &&
         ((iVar1 = (*(code *)(&input_is_mask_set_400_01ef20))(*(u32 *)(0xcc + a0), a1, a2, a3),
@@ -102,7 +102,7 @@ u32 game_sub_10022c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar2;
 
     uVar2 = 0;
-    iVar1 = input_sub_01ecf8(*(u32 *)(0xcc + a0));
+    iVar1 = input_test_10000_mode2(*(u32 *)(0xcc + a0));
     if (iVar1 == 1) {
         iVar1 = (*(code *)(&input_is_mask_set_20000_01ebd8))(*(u32 *)(0xcc + a0), a1, a2, a3);
         if (iVar1 == 0) {
@@ -882,7 +882,7 @@ u32 game_sub_100e4c(int a0, u64 *a1) {
                 uVar2 = 2;
             }
         } else {
-            iVar1 = input_sub_01ecf8(0x8c3dd7dc);
+            iVar1 = input_test_10000_mode2(0x8c3dd7dc);
             if ((iVar1 == 1) && (iVar1 = input_is_mask_set_400_01ef20(0x8c3dd7dc), iVar1 != 1)) {
                 *(u32 *)(a0 + 0x59c) = 1;
                 uVar2 = 0;
@@ -932,7 +932,7 @@ int game_sub_101004(int a0, u32 a1, u32 a2, u32 a3) {
         }
         bVar1 = true;
     }
-    iVar2 = input_sub_01ecf8(*(u32 *)(0xcc + a0));
+    iVar2 = input_test_10000_mode2(*(u32 *)(0xcc + a0));
     if (iVar2 == 1) {
         iVar2 = input_test_400_mode1(*(u32 *)(0xcc + a0));
         if (iVar2 == 1) {
@@ -5323,7 +5323,7 @@ int Class_12c3c4_m7_109f70(int a0, u8 *a1) {
 
     *(char *)(0x854 + a0) = (char)*(u32 *)(a1 + 4);
     *(u8 *)(0x98 + a0) = *a1;
-    Class_12c3c4_sub_030d10(a0 + 0x9c, a1 + 8);
+    Class_12c3c4_load_record(a0 + 0x9c, a1 + 8);
     iVar1 = 0x99;
     *(u8 *)(0x99 + a0) = a1[1];
     return iVar1;
@@ -5338,7 +5338,7 @@ u32 Class_12c3c4_m8_109fc0(int a0, u8 *a1) {
     *(int *)(a1 + 4) = (int)*(char *)(0x854 + a0);
     *a1 = *(u8 *)(0x98 + a0);
     a1[1] = *(u8 *)(0x99 + a0);
-    uVar1 = Class_12c3c4_sub_030d2c(a0 + 0x9c, a1 + 8);
+    uVar1 = Class_12c3c4_save_record(a0 + 0x9c, a1 + 8);
     return uVar1;
 }
 
@@ -5354,7 +5354,7 @@ int Class_12c3c4_m9_10a00c(int a0, u8 *a1, int a2) {
         *(char *)(0x854 + a0) = (char)*(u32 *)(a1 + 4);
     }
     *(u8 *)(0x98 + a0) = *a1;
-    Class_12c3c4_sub_030d10(a0 + 0x9c, a1 + 8);
+    Class_12c3c4_load_record(a0 + 0x9c, a1 + 8);
     iVar1 = 0x99;
     *(u8 *)(0x99 + a0) = a1[1];
     return iVar1;
@@ -5373,7 +5373,7 @@ u32 Class_12c3c4_m10_10a074(int a0, u8 *a1, int a2) {
     }
     *a1 = *(u8 *)(0x98 + a0);
     a1[1] = *(u8 *)(0x99 + a0);
-    uVar1 = Class_12c3c4_sub_030d2c(a0 + 0x9c, a1 + 8);
+    uVar1 = Class_12c3c4_save_record(a0 + 0x9c, a1 + 8);
     return uVar1;
 }
 

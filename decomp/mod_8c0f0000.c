@@ -993,7 +993,7 @@ u32 game_sub_0f4b98(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 auStack_14[16];
 
     ar5_00 = a0 + 0x5c;
-    game_sub_023e24(auStack_14, ar5_00);
+    Vec3_assign_copy_023e24(auStack_14, ar5_00);
     Vec3_set_one_08a9b8(a0 + 0x5c);
     (**(code **)(*(int *)(a0 + 8) + 0x34))(a0, ar5_00, a2, a3);
     Vec3_assign_copy(a0 + 0x5c, auStack_14);

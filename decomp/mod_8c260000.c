@@ -2012,7 +2012,7 @@ u32 cri_sub_261ae2(int a0, u32 a1, u32 a2, u32 a3) {
         if (0 < a4)
             break;
         shinobi_sub_1f39f0(a4, a5, uVar2, a3);
-        cri_sub_26371e(a4, a5, uVar2, a3);
+        ADXSTM_sub_26371e(a4, a5, uVar2, a3);
         ADXF_sub_262524(a4, a5, uVar2, a3);
         cri_sub_261aa8();
         iVar3 = iVar3 + 1;
@@ -2023,7 +2023,7 @@ u32 cri_sub_261ae2(int a0, u32 a1, u32 a2, u32 a3) {
     iVar3 = 0;
     do {
         shinobi_sub_1f39f0(a4, a5, uVar2, a3);
-        cri_sub_26371e(a4, a5, uVar2, a3);
+        ADXSTM_sub_26371e(a4, a5, uVar2, a3);
         ADXF_sub_262524(a4, a5, uVar2, a3);
         a4 = a0;
         iVar1 = ADXF_GetStat(a0, a5, uVar2);
@@ -2739,8 +2739,8 @@ u32 ADXF_Stop(int a0) {
                 return 0xffffffff;
             }
             irq_disable_nested(ar4_00, ar5_00, ar6_00, ar7_00, in_stack_fffffff4);
-            ADXSTM_sub_263498(*(u32 *)(a0 + 4), ar5_00, ar6_00, ar7_00);
-            cri_sub_263768(*(u32 *)(a0 + 4), &stack0xfffffff4);
+            ADXSTM_stop_read(*(u32 *)(a0 + 4), ar5_00, ar6_00, ar7_00);
+            ADXSTM_sub_263768(*(u32 *)(a0 + 4), &stack0xfffffff4);
             *(u32 *)(a0 + 0x24) = in_stack_fffffff4;
             ar4_01 = a0;
             ADXF_sub_26211c(a0, ar5_01, ar6_00, ar7_00, in_stack_fffffff4);
@@ -2768,7 +2768,7 @@ int ADXF_sub_2624a0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     if (iVar1 == 2) {
         uVar2 = get_field_1_s8_263746(*(u32 *)(a0 + 4));
         *(char *)(a0 + 1) = (char)uVar2;
-        cri_sub_263768(*(u32 *)(a0 + 4), &stack0xfffffff4);
+        ADXSTM_sub_263768(*(u32 *)(a0 + 4), &stack0xfffffff4);
         *(u32 *)(a0 + 0x24) = in_stack_fffffff4;
         iVar1 = (int)*(char *)(a0 + 1);
         if ((iVar1 == 3) || (iVar1 == 4)) {
@@ -4309,7 +4309,7 @@ u32 ADXSTM_sub_263446(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     if (a0 != 0) {
-        ADXSTM_sub_263498(a0, a1, a2, a3);
+        ADXSTM_stop_read(a0, a1, a2, a3);
         if (*(int *)(a0 + 8) != 0) {
             gdfs_close_like(*(u32 *)(a0 + 8));
         }
@@ -4328,7 +4328,7 @@ u32 ADXSTM_sub_26344a(u32 a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     int unaff_r14;
 
     if (unaff_r14 != 0) {
-        ADXSTM_sub_263498(a0, a1, a2, a3);
+        ADXSTM_stop_read(a0, a1, a2, a3);
         if (*(int *)(unaff_r14 + 8) != 0) {
             gdfs_close_like(*(u32 *)(unaff_r14 + 8), a1, a2, a3);
         }
@@ -4381,11 +4381,11 @@ u32 ADXSTM_sub_263472(u32 a0) {
 }
 
 /*
- * ADXSTM_sub_263498  0x8c263498
- * area name: sits between ADXSTM functions (same compilation unit)
+ * ADXSTM_stop_read  0x8c263498
+ * aborts the stream's file read (timing it into 0x8c278480) and marks the stream stopped
  * called by: ADXF_Stop, ADXSTM_sub_263446, ADXSTM_sub_26344a, cri_sub_263c64, cri_sub_264ba0
  */
-u32 ADXSTM_sub_263498(int a0, u32 a1, u32 a2, u32 a3) {
+u32 ADXSTM_stop_read(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
 
@@ -4405,7 +4405,7 @@ u32 ADXSTM_sub_263498(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ADXSTM_get_read_pos  0x8c2634dc
  * read position of the stream's file (+8) relative to its start (+0x10); 0 without a file
- * called by: ADXSTM_sub_26346e, ADXSTM_sub_263472, ADXSTM_sub_263534, ADXSTM_sub_2635a4, cri_sub_263768
+ * called by: ADXSTM_sub_26346e, ADXSTM_sub_263472, ADXSTM_sub_263534, ADXSTM_sub_2635a4, ADXSTM_sub_263768
  */
 int ADXSTM_get_read_pos(int a0, u32 a1) {
     int iVar1;
@@ -4470,11 +4470,11 @@ u32 set_fields_38_3c(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * ADXSTM_sub_26357a  0x8c26357a
- * area name: sits between ADXSTM functions (same compilation unit)
+ * ADXSTM_set_sector_count  0x8c26357a
+ * +0x30 = a1, or the file size (+0x14) in 2 KB sectors when a1 is negative
  * called by: ADXT_sub_2646fe, cri_sub_263bc0, cri_sub_263bc8, cri_sub_2647f4
  */
-u32 ADXSTM_sub_26357a(int a0, int a1) {
+u32 ADXSTM_set_sector_count(int a0, int a1) {
     u32 in_r0;
     int iVar1;
 
@@ -4505,7 +4505,7 @@ u32 ADXSTM_sub_26359a(void) {
 /*
  * ADXSTM_sub_2635a4  0x8c2635a4
  * name hint from a string it uses: E8101214 GDFS error adxstmf ; area name: sits between ADXSTM functions (same
- * compilation unit) called by: cri_sub_263702 strings: "E8101214: GDFS error (adxstmf_stat_exec)\n"
+ * compilation unit) called by: ADXSTM_sub_263702 strings: "E8101214: GDFS error (adxstmf_stat_exec)\n"
  */
 int ADXSTM_sub_2635a4(int a0, int a1, u8 *a2, u8 *a3) {
     int iVar1;
@@ -4596,11 +4596,11 @@ int ADXSTM_sub_2635a4(int a0, int a1, u8 *a2, u8 *a3) {
 }
 
 /*
- * cri_sub_263702  0x8c263702
- * area name: in the cri library code range
- * called by: cri_sub_26371e, cri_sub_263726
+ * ADXSTM_sub_263702  0x8c263702
+ * area name: sits between ADXSTM functions (same compilation unit)
+ * called by: ADXSTM_sub_26371e, ADXSTM_sub_263726
  */
-u32 cri_sub_263702(int a0, u32 a1, u32 a2, u32 a3) {
+u32 ADXSTM_sub_263702(int a0, u32 a1, u32 a2, u32 a3) {
     int ain0;
     u32 uVar1;
     int a4;
@@ -4617,11 +4617,11 @@ u32 cri_sub_263702(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * cri_sub_26371e  0x8c26371e
- * area name: in the cri library code range
+ * ADXSTM_sub_26371e  0x8c26371e
+ * area name: sits between ADXSTM functions (same compilation unit)
  * called by: adx_server, cri_sub_261ae2
  */
-int cri_sub_26371e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+int ADXSTM_sub_26371e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     char *pcVar2;
     char *ar4_00;
@@ -4631,7 +4631,7 @@ int cri_sub_26371e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     do {
         iVar1 = (int)*ar4_00;
         if (iVar1 == 1) {
-            iVar1 = cri_sub_263702(ar4_00, a1, a2, a3);
+            iVar1 = ADXSTM_sub_263702(ar4_00, a1, a2, a3);
         }
         ar4_00 = ar4_00 + 100;
     } while (ar4_00 < pcVar2);
@@ -4639,10 +4639,10 @@ int cri_sub_26371e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * cri_sub_263726  0x8c263726
- * area name: in the cri library code range
+ * ADXSTM_sub_263726  0x8c263726
+ * area name: sits between ADXSTM functions (same compilation unit)
  */
-int cri_sub_263726(char *a0, u32 a1, u32 a2, u32 a3) {
+int ADXSTM_sub_263726(char *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int unaff_r13;
     char *pcVar2;
@@ -4651,7 +4651,7 @@ int cri_sub_263726(char *a0, u32 a1, u32 a2, u32 a3) {
     do {
         iVar1 = (int)*a0;
         if (iVar1 == 1) {
-            iVar1 = cri_sub_263702(a0, a1, a2, a3);
+            iVar1 = ADXSTM_sub_263702(a0, a1, a2, a3);
         }
         a0 = a0 + 100;
     } while (a0 < pcVar2);
@@ -4667,11 +4667,11 @@ int get_field_1_s8_263746(int a0) {
 }
 
 /*
- * cri_sub_263768  0x8c263768
- * area name: in the cri library code range
+ * ADXSTM_sub_263768  0x8c263768
+ * area name: sits between ADXSTM functions (same compilation unit)
  * called by: ADXF_Stop, ADXF_sub_2624a0
  */
-u32 cri_sub_263768(int a0, int *a1) {
+u32 ADXSTM_sub_263768(int a0, int *a1) {
     int iVar1;
 
     iVar1 = ADXSTM_get_read_pos(a0, a1);
@@ -4995,7 +4995,7 @@ u32 cri_sub_263bc0(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     ar6_00 = (int)*(short *)(a0 + 0x3c) << 0xb;
     ain0 = set_fields_1c_18(*(u32 *)(a0 + 8), (int)*(short *)(a0 + 0x3e) << 0xb, ar6_00);
     ar5_00 = 0x19;
-    ADXSTM_sub_26357a(*(u32 *)(a0 + 8), 0x19);
+    ADXSTM_set_sector_count(*(u32 *)(a0 + 8), 0x19);
     ADXSTM_sub_26346e(*(u32 *)(a0 + 8));
     cri_sub_263b34(a0, *(u32 *)(a0 + 0x10), ar6_00, a3);
     *(u8 *)(a0 + 2) = 0;
@@ -5015,7 +5015,7 @@ u32 cri_sub_263bc8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, int ain0
     ar6_00 = (int)*(short *)(ain0 + unaff_r14) << 0xb;
     (*in_r3)(*(u32 *)(unaff_r14 + 8), (int)*(short *)(unaff_r14 + 0x3e) << 0xb, ar6_00, a3);
     ar5_00 = 0x19;
-    ADXSTM_sub_26357a(*(u32 *)(unaff_r14 + 8), 0x19);
+    ADXSTM_set_sector_count(*(u32 *)(unaff_r14 + 8), 0x19);
     ADXSTM_sub_26346e(*(u32 *)(unaff_r14 + 8));
     cri_sub_263b34(unaff_r14, *(u32 *)(unaff_r14 + 0x10), ar6_00, a3);
     *(u8 *)(unaff_r14 + 2) = 0;
@@ -5070,7 +5070,7 @@ u32 cri_sub_263c64(int a0, u32 unused_a1, u32 a2, u32 a3) {
     ar4_00 = *(int **)(a0 + 4);
     ta_sub_262c66(ar4_00);
     if (*(int *)(a0 + 8) != 0) {
-        ADXSTM_sub_263498(*(u32 *)(a0 + 8), uVar1, a2, a3);
+        ADXSTM_stop_read(*(u32 *)(a0 + 8), uVar1, a2, a3);
         ADXSTM_sub_263446(*(u32 *)(a0 + 8), uVar1, a2, a3);
         ar4_00 = *(int **)(a0 + 0x14);
         (**(code **)(*ar4_00 + 0x14))(ar4_00, uVar1, a2, a3);
@@ -5371,7 +5371,7 @@ u32 adx_server(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     uVar1 = sh4_tmu_1f88e6(uVar1);
     uVar3 = uVar1;
     g_8c278494 = int_diff(uVar2, uVar1);
-    cri_sub_26371e(uVar2, uVar3, a2, a3);
+    ADXSTM_sub_26371e(uVar2, uVar3, a2, a3);
     uVar2 = sh4_tmu_1f88e6(uVar2);
     uVar3 = uVar2;
     g_8c278498 = int_diff(uVar1, uVar2);
@@ -5724,7 +5724,7 @@ u32 ADXT_sub_2646fe(int a0) {
         return uVar1;
     }
     uVar1 = set_field_3c_26311e(*(u32 *)(a0 + 4), 0xffffffff);
-    uVar1 = ADXSTM_sub_26357a(*(u32 *)(a0 + 8), 0x7fffffff);
+    uVar1 = ADXSTM_set_sector_count(*(u32 *)(a0 + 8), 0x7fffffff);
     return uVar1;
 }
 
@@ -5846,7 +5846,7 @@ int cri_sub_2647f4(int a0, u32 a1, int a2, u32 a3) {
         if (iVar1 < 1) {
             if (*(int *)(a0 + 8) != 0) {
                 ar5_02 = (code *)0x7fffffff;
-                ADXSTM_sub_26357a(*(u32 *)(a0 + 8), 0x7fffffff);
+                ADXSTM_set_sector_count(*(u32 *)(a0 + 8), 0x7fffffff);
             }
         } else {
             if (*(char *)(a0 + 2) == '\x02') {
@@ -5859,7 +5859,7 @@ int cri_sub_2647f4(int a0, u32 a1, int a2, u32 a3) {
                 *extraout_r3 = uVar2;
                 uVar2 = libgcc_divide_helper_010468(iVar1 + 0x7ff, 0x800);
                 *(u32 *)(a0 + 0x8c) = uVar2;
-                ADXSTM_sub_26357a(*(u32 *)(a0 + 8), uVar2);
+                ADXSTM_set_sector_count(*(u32 *)(a0 + 8), uVar2);
                 ar5_02 = ADXT_sub_2646fe;
                 a2 = a0;
                 set_fields_38_3c(*(u32 *)(a0 + 8), ADXT_sub_2646fe, a0);
@@ -6087,7 +6087,7 @@ u32 cri_sub_264ba0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     mwRna_set_play_sw(*(u32 *)(a0 + 0xc), 0, a2, a3);
     ta_sub_262c66(*(u32 *)(a0 + 4));
     if (*(int *)(a0 + 8) != 0) {
-        ADXSTM_sub_263498(*(u32 *)(a0 + 8), uVar1, a2, a3);
+        ADXSTM_stop_read(*(u32 *)(a0 + 8), uVar1, a2, a3);
         (**(code **)(**(int **)(a0 + 0x14) + 0x14))(*(int **)(a0 + 0x14), uVar1, a2, a3);
     }
     for (iVar2 = 0; iVar2 < *(char *)(a0 + 3); iVar2 = iVar2 + 1) {

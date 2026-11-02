@@ -9075,7 +9075,7 @@ u32 game_sub_09e204(int a0) {
     cVar6 = '\0';
     cVar5 = '\0';
     iVar2 = a0 + 0x5c;
-    game_sub_023e24(&stack0xffffffec, iVar2);
+    Vec3_assign_copy_023e24(&stack0xffffffec, iVar2);
     Vec3_set_one_08a9b8(a0 + 0x5c);
     matrix_push(0, iVar2, r6, r7, in_stack_ffffffec);
     if (cVar6 == '\0') {

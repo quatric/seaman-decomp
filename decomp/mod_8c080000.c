@@ -6813,7 +6813,7 @@ u32 game_sub_08c9dc(int a0, u32 a1, int a2) {
             } else {
                 puVar4 = &uStack_2c;
                 uVar3 = *(u32 *)(a0 + 0x410);
-                iVar2 = CDCGD_sub_020ba0(a1, *(u32 *)(iVar1 + 0x1c), uVar3, puVar4);
+                iVar2 = CDCGD_request_type5(a1, *(u32 *)(iVar1 + 0x1c), uVar3, puVar4);
                 if (iVar2 == 1) {
                     set_field_0_015bb0(iVar1 + 0xb0, uStack_2c);
                     *(u32 *)(a0 + 0x418) = 4;
@@ -6850,7 +6850,7 @@ u32 game_sub_08c9dc(int a0, u32 a1, int a2) {
             if (*(int *)(iVar1 + 0x20) == 0) {
                 puVar4 = &uStack_28;
                 uVar3 = *(u32 *)(a0 + 0x410);
-                iVar2 = CDCGD_sub_020aa8(a1, *(u32 *)(iVar1 + 0xc), uVar3, puVar4);
+                iVar2 = CDCGD_request_type2(a1, *(u32 *)(iVar1 + 0xc), uVar3, puVar4);
                 if (iVar2 == 1) {
                     (**(code **)(*(int *)(iVar1 + 0x78) + 8))((int *)(iVar1 + 0x78), uStack_28, uVar3, puVar4);
                     *(u32 *)(a0 + 0x418) = 7;

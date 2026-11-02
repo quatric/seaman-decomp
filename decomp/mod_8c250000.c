@@ -12542,7 +12542,7 @@ u32 thunk_FUN_8c20a1d0(u32 a0) {
 /*
  * matrix_sub_257148  0x8c257148
  * area name: sits between matrix functions (same compilation unit)
- * called by: game_sub_0194c0, game_sub_0ff928
+ * called by: game_sub_0ff928, rotate_degrees_7c
  */
 u32 matrix_sub_257148(int a0) {
     u32 r5;

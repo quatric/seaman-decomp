@@ -3129,7 +3129,7 @@ int Class_12a078_m7_067158(int a0, u8 *a1) {
 
     *(u32 *)(0x868 + a0) = *(u32 *)(a1 + 4);
     *(u8 *)(0x98 + a0) = *a1;
-    Class_12c3c4_sub_030d10(a0 + 0x9c, a1 + 8);
+    Class_12c3c4_load_record(a0 + 0x9c, a1 + 8);
     iVar1 = 0x99;
     *(u8 *)(0x99 + a0) = a1[1];
     return iVar1;
@@ -3144,7 +3144,7 @@ u32 Class_12a078_m8_0671a8(int a0, u8 *a1) {
     *(u32 *)(a1 + 4) = *(u32 *)(0x868 + a0);
     *a1 = *(u8 *)(0x98 + a0);
     a1[1] = *(u8 *)(0x99 + a0);
-    uVar1 = Class_12c3c4_sub_030d2c(a0 + 0x9c, a1 + 8);
+    uVar1 = Class_12c3c4_save_record(a0 + 0x9c, a1 + 8);
     return uVar1;
 }
 
