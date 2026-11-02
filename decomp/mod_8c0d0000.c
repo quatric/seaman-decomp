@@ -286,7 +286,7 @@ u32 se_close_port_34(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * CTexture_LoadFromCache_wrap  0x8c0d068c
  * only calls CTexture_LoadFromCache
- * called by: game_load_0e0320
+ * called by: env_load_textures_0e0320
  */
 u32 CTexture_LoadFromCache_wrap(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -298,7 +298,7 @@ u32 CTexture_LoadFromCache_wrap(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CTexture_ReleaseFromVRAM_wrap  0x8c0d06a8
  * only calls CTexture_ReleaseFromVRAM
- * called by: game_release_0e03d4
+ * called by: env_release_textures_0e03d4
  */
 u32 CTexture_ReleaseFromVRAM_wrap(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -515,7 +515,7 @@ u32 noop_0d09f8(void) {
 /*
  * CTexture_LoadFromCache_wrap_0d09fc  0x8c0d09fc
  * only calls CTexture_LoadFromCache
- * called by: game_load_0e0320
+ * called by: env_load_textures_0e0320
  */
 u32 CTexture_LoadFromCache_wrap_0d09fc(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -527,7 +527,7 @@ u32 CTexture_LoadFromCache_wrap_0d09fc(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CTexture_ReleaseFromVRAM_wrap_0d0a18  0x8c0d0a18
  * only calls CTexture_ReleaseFromVRAM
- * called by: game_release_0e03d4
+ * called by: env_release_textures_0e03d4
  */
 u32 CTexture_ReleaseFromVRAM_wrap_0d0a18(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1229,7 +1229,7 @@ int se_close_port_eb4c(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * CTexture_LoadFromCache_wrap_0d14b0  0x8c0d14b0
  * only calls CTexture_LoadFromCache
- * called by: game_load_0e0320, game_uses_CSprinkler_LoadTexture_0e016c
+ * called by: env_load_textures_0e0320, game_uses_CSprinkler_LoadTexture_0e016c
  */
 u32 CTexture_LoadFromCache_wrap_0d14b0(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1241,7 +1241,7 @@ u32 CTexture_LoadFromCache_wrap_0d14b0(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CTexture_ReleaseFromVRAM_wrap_0d14cc  0x8c0d14cc
  * only calls CTexture_ReleaseFromVRAM
- * called by: game_release_0e03d4
+ * called by: env_release_textures_0e03d4
  */
 u32 CTexture_ReleaseFromVRAM_wrap_0d14cc(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1374,7 +1374,7 @@ u32 se_uses_njGetMatrix_wrap_0d167c(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_calls_float_calc_0d1754  0x8c0d1754
  * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: float_calc
- * called by: game_vec_0dac50
+ * called by: CEnv_vec_0dac50
  */
 u32 game_calls_float_calc_0d1754(float *a0, int a1) {
     u32 uVar1;
@@ -1740,7 +1740,7 @@ u32 game_uses_get_field_24_0d1b90(int *a0, int a1, int a2, u32 a3) {
 /*
  * set_g_8c437864  0x8c0d1c14
  * stores byte a0 in 8c437864
- * called by: game_uses_get_field_d0_0c6e74, game_uses_pure_virtual_stub_0c6d70
+ * called by: game_uses_get_field_d0_0c6e74, save_check_presence_and_date
  */
 u8 *set_g_8c437864(u32 a0, u32 a1) {
     u8 *puVar1;
@@ -1932,7 +1932,7 @@ int CEnv_vec_0d2050(int a0, u32 a1, u32 a2) {
         *(u32 *)(a0 + iVar1 * 4 + 0x2c) = 0xffffffff;
     }
     *(u32 *)(a0 + 0x3c) = 3;
-    game_update_fields_0d25a0(a0);
+    CEnv_update_fields_0d25a0(a0);
     CEnv_vec_0d20bc(a0);
     return a0;
 }
@@ -1960,11 +1960,11 @@ u32 CEnv_vec_0d20bc(int a0) {
 }
 
 /*
- * CEnv_calls_update_fields_0d20f0  0x8c0d20f0
- * area name: sits between CEnv functions (same compilation unit); behaviour name: its callees mostly do: update_fields
+ * CEnv_set_scale_and_type  0x8c0d20f0
+ * sets a uniform scale from fr4 (times 1.5 for type 4), stores a1 at +0x28 and the type a2 at +0x3c
  * called by: game_sound_0d4c74
  */
-u32 CEnv_calls_update_fields_0d20f0(int a0, u32 a1, int a2) {
+u32 CEnv_set_scale_and_type(int a0, u32 a1, int a2) {
     u32 in_fr4;
 
     *(u32 *)(a0 + 0x18) = in_fr4;
@@ -1975,7 +1975,7 @@ u32 CEnv_calls_update_fields_0d20f0(int a0, u32 a1, int a2) {
         *(float *)(a0 + 0x14) = *(float *)(a0 + 0x14) * 1.5;
         *(float *)(a0 + 0x18) = *(float *)(a0 + 0x18) * 1.5;
     }
-    game_update_fields_0d25a0(a0);
+    CEnv_update_fields_0d25a0(a0);
     *(u16 *)(a0 + 0x24) = 0;
     *(u32 *)(a0 + 0x28) = a1;
     *(int *)(a0 + 0x3c) = a2;
@@ -2076,11 +2076,11 @@ u64 *CEnv_vec_0d21a0(int a0, u32 a1) {
 }
 
 /*
- * game_draw_0d2264  0x8c0d2264
- * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
+ * CEnv_draw_0d2264  0x8c0d2264
+ * area name: sits between CEnv functions (same compilation unit); behaviour name: mostly calls draw functions
  * called by: game_draw_0d4a90
  */
-u32 game_draw_0d2264(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CEnv_draw_0d2264(int a0, u32 a1, u32 a2, u32 a3) {
     int *piVar1;
     u32 uVar2;
     u32 ar4_00;
@@ -2157,11 +2157,11 @@ u32 game_draw_0d2478(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_update_fields_0d25a0  0x8c0d25a0
- * area name: game code; nothing names its area yet; behaviour name: conditionally writes members
- * called by: CEnv_calls_update_fields_0d20f0, CEnv_vec_0d2050
+ * CEnv_update_fields_0d25a0  0x8c0d25a0
+ * area name: only called from CEnv methods; behaviour name: conditionally writes members
+ * called by: CEnv_set_scale_and_type, CEnv_vec_0d2050
  */
-u32 *game_update_fields_0d25a0(int a0) {
+u32 *CEnv_update_fields_0d25a0(int a0) {
     *(u32 *)(a0 + 0x1c) = 0x3f800000;
     *(u32 *)(a0 + 0x20) = 0;
     return (u32 *)(a0 + 0x1c);
@@ -3068,7 +3068,7 @@ int Class_12b930_uses_vec_new_array_0d2fd8(int a0, u32 a1) {
     pcVar3 = free_if_nonnull_wrap_016bfc;
     pcVar1 = clear_field_0_wrap_015ab8;
     vec_new_array(a0 + 0x20, clear_field_0_wrap_015ab8, free_if_nonnull_wrap_016bfc, 4, 3);
-    game_uses_set_field_0_0d33bc(a0 + 0x34, pcVar1, pcVar3);
+    named_list_ctor_58_wrap(a0 + 0x34, pcVar1, pcVar3);
     Class_129920_ctor(a0 + 0x108, pcVar1);
     Class_12b3b8_copy_016410(a0 + 0x110);
     clear_field_0_wrap_015ab8(a0 + 0x154);
@@ -3202,14 +3202,14 @@ int game_release_0d336c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_set_field_0_0d33bc  0x8c0d33bc
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: uses_set_field_0
+ * named_list_ctor_58_wrap  0x8c0d33bc
+ * only calls named_list_ctor_58
  * called by: Class_12b930_uses_vec_new_array_0d2fd8
  */
-u32 game_uses_set_field_0_0d33bc(u32 a0, u32 unused_a1, u32 a2) {
+u32 named_list_ctor_58_wrap(u32 a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
 
-    uVar1 = game_uses_set_field_0_0fe4f8(a0, (&DATA_8c13f7c0) + 0x15d, a2);
+    uVar1 = named_list_ctor_58(a0, (&DATA_8c13f7c0) + 0x15d, a2);
     return uVar1;
 }
 
@@ -4473,7 +4473,7 @@ u32 game_draw_0d4a90(int a0, int a1, int a2, int a3) {
             if ((iVar1 == 3) || (iVar1 == 4)) {
                 a2 = a0 + 0x154;
                 a1 = a0 + 0x108;
-                game_draw_0d2264(iVar2 * 0x44 + a0 + 0x470, a1, a2, a3);
+                CEnv_draw_0d2264(iVar2 * 0x44 + a0 + 0x470, a1, a2, a3);
             } else {
                 a3 = a0 + 0x110;
                 a2 = a0 + 0x430;
@@ -4604,7 +4604,7 @@ u32 game_sound_0d4c74(float *a0, u32 *a1, int a2, float a3) {
             } else {
                 *(u64 *)(a0 + iVar3 * 0x11 + 0x11d) = in_xd0;
             }
-            CEnv_calls_update_fields_0d20f0(a0 + iVar3 * 0x11 + 0x11c, a3, a2);
+            CEnv_set_scale_and_type(a0 + iVar3 * 0x11 + 0x11c, a3, a2);
             uVar2 = set_field_40_to_1(a0 + iVar3 * 0x11 + 0x11c);
             return uVar2;
         }
@@ -5094,7 +5094,7 @@ u32 WATER_ELEMENT_release(double *a0, u32 a1) {
 /*
  * textures_load_2  0x8c0d5578
  * CTexture_LoadFromCache on the textures at +8 and +0x108
- * called by: game_load_0e0320
+ * called by: env_load_textures_0e0320
  */
 u32 textures_load_2(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5107,7 +5107,7 @@ u32 textures_load_2(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * textures_release_2  0x8c0d55a4
  * CTexture_ReleaseFromVRAM on the textures at +8 and +0x108
- * called by: game_release_0e03d4
+ * called by: env_release_textures_0e03d4
  */
 u32 textures_release_2(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9635,7 +9635,7 @@ u32 game_draw_0d9720(int a0, int a1, u32 a2, u32 a3) {
 /*
  * CTexture_LoadFromCache_on_field_20  0x8c0d97b4
  * calls CTexture_LoadFromCache on the member at +0x20
- * called by: game_load_0e0320
+ * called by: env_load_textures_0e0320
  */
 u32 CTexture_LoadFromCache_on_field_20(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9647,7 +9647,7 @@ u32 CTexture_LoadFromCache_on_field_20(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CTexture_ReleaseFromVRAM_on_field_20  0x8c0d97d0
  * calls CTexture_ReleaseFromVRAM on the member at +0x20
- * called by: game_release_0e03d4
+ * called by: env_release_textures_0e03d4
  */
 u32 CTexture_ReleaseFromVRAM_on_field_20(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9860,7 +9860,7 @@ u32 game_draw_0d9b34(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * obj_load_texlist_28  0x8c0d9b60
  * loads the texture list at +0x28 through the cache and attaches it
- * called by: game_load_0e0320, scene_load_textures_like, textures_load_3
+ * called by: env_load_textures_0e0320, scene_load_textures_like, textures_load_3
  */
 u32 obj_load_texlist_28(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9873,7 +9873,7 @@ u32 obj_load_texlist_28(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CTexture_ReleaseFromVRAM_on_field_28  0x8c0d9b8c
  * calls CTexture_ReleaseFromVRAM on the member at +0x28
- * called by: game_release_0e03d4, scene_release_textures_like, textures_release_3
+ * called by: env_release_textures_0e03d4, scene_release_textures_like, textures_release_3
  */
 u32 CTexture_ReleaseFromVRAM_on_field_28(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -10035,11 +10035,11 @@ u32 *Class_12bb08_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     uVar3 = a3;
     game_copy_0d99e8(a0, a1, a2);
     *a0 = &g_8c12bb08;
-    Class_12bb08_uses_set_field_0_0da1dc(a0 + 0x29, a1, a2);
+    named_list_ctor_170_wrap(a0 + 0x29, a1, a2);
     uVar3 = 0x3c;
     pcVar2 = game_release_0fe250;
-    pcVar1 = Class_12bb08_uses_set_field_0_0da1b0;
-    vec_new_array(a0 + 0xea, Class_12bb08_uses_set_field_0_0da1b0, game_release_0fe250, 0x3c, 0x11);
+    pcVar1 = named_list_ctor_0c_wrap;
+    vec_new_array(a0 + 0xea, named_list_ctor_0c_wrap, game_release_0fe250, 0x3c, 0x11);
     vec_new_array_wrap_0feb0c(a0 + 0x1e9);
     Class_12bb08_calc_015520(a0 + 0x277, pcVar1, pcVar2, uVar3);
     Class_12bb08_draw_019208(a0 + 0x27a);
@@ -10222,26 +10222,25 @@ int Class_12bb08_release_0da170(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12bb08_uses_set_field_0_0da1b0  0x8c0da1b0
- * area name: sits between Class_12bb08 functions (same compilation unit); behaviour name: its callees mostly do:
- * uses_set_field_0
+ * named_list_ctor_0c_wrap  0x8c0da1b0
+ * only calls named_list_ctor_0c
  */
-u32 Class_12bb08_uses_set_field_0_0da1b0(u32 a0, u32 unused_a1, u32 a2) {
+u32 named_list_ctor_0c_wrap(u32 a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
 
-    uVar1 = game_uses_set_field_0_0fe1b8(a0, (&DATA_8c13f7c0) + 0x15d, a2);
+    uVar1 = named_list_ctor_0c(a0, (&DATA_8c13f7c0) + 0x15d, a2);
     return uVar1;
 }
 
 /*
- * Class_12bb08_uses_set_field_0_0da1dc  0x8c0da1dc
- * area name: only called from Class_12bb08 methods; behaviour name: its callees mostly do: uses_set_field_0
+ * named_list_ctor_170_wrap  0x8c0da1dc
+ * only calls named_list_ctor_170
  * called by: Class_12bb08_ctor
  */
-u32 Class_12bb08_uses_set_field_0_0da1dc(u32 a0, u32 unused_a1, u32 a2) {
+u32 named_list_ctor_170_wrap(u32 a0, u32 unused_a1, u32 a2) {
     u32 uVar1;
 
-    uVar1 = game_uses_set_field_0_0fde5c(a0, (&DATA_8c13f7c0) + 0x15d, a2);
+    uVar1 = named_list_ctor_170(a0, (&DATA_8c13f7c0) + 0x15d, a2);
     return uVar1;
 }
 
@@ -10370,9 +10369,9 @@ u32 Class_12bb08_test_0da4f8(int a0) {
 /*
  * list_node_next_wrap_0da588  0x8c0da588
  * only calls list_node_next
- * called by: CWaterTank_uses_get_field_300_0e0f48, Class_129974_vec_0db3bc, Class_12b930_m3_0de4b0,
- * Class_12b930_vec_0e3994, Class_12bb08_m1_0da338, Class_12bb08_m2_0da5a8, Class_12bb08_uses_get_field_24_0dbbe8,
- * call_all_list_64 (+15 more)
+ * called by: CEnv_item_cursor_next, CWaterTank_uses_get_field_300_0e0f48, Class_129974_vec_0db3bc,
+ * Class_12b930_m3_0de4b0, Class_12b930_vec_0e3994, Class_12bb08_m1_0da338, Class_12bb08_m2_0da5a8,
+ * Class_12bb08_uses_get_field_24_0dbbe8 (+15 more)
  */
 u32 list_node_next_wrap_0da588(u32 a0) {
     u32 uVar1;
@@ -10628,11 +10627,11 @@ u32 CEnv_update_fields_0daa88(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * CEnv_uses_get_field_160_0daad0  0x8c0daad0
- * area name: sits between CEnv functions (same compilation unit); behaviour name: its main named callee is
- * get_field_160_0dab80
+ * CEnv_take_out_item  0x8c0daad0
+ * removes item a1 from its per-kind node list (+0x3a8) and the item list (+0xa4), frees its slot and calls its method
+ * 100
  */
-int CEnv_uses_get_field_160_0daad0(int a0, int a1, u32 a2, u32 a3) {
+int CEnv_take_out_item(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     int iVar2;
@@ -10644,7 +10643,7 @@ int CEnv_uses_get_field_160_0daad0(int a0, int a1, u32 a2, u32 a3) {
     ar5_00 = get_field_160_0dab80(a1);
     (*(code *)(&CNodePtrList_TakeOutItem))(iVar1 * 0x3c + a0 + 0x3a8, ar5_00, a2, a3);
     auStack_14[0] = get_field_160_0dab80(a1);
-    game_update_fields_0feb88(a0 + 0x7a4, auStack_14);
+    CEnv_update_fields_0feb88(a0 + 0x7a4, auStack_14);
     iVar2 = a1;
     CItemList_TakeOutItem(a0 + 0xa4, a1);
     (**(code **)(*(int *)(a1 + 8) + 100))(a1, iVar2, a2, a3);
@@ -10653,17 +10652,18 @@ int CEnv_uses_get_field_160_0daad0(int a0, int a1, u32 a2, u32 a3) {
 
 /*
  * get_field_160_0dab80  0x8c0dab80
- * called by: CEnv_uses_get_field_160_0daad0, Class_12bb08_uses_get_field_24_0dbbe8
+ * called by: CEnv_take_out_item, Class_12bb08_uses_get_field_24_0dbbe8
  */
 u32 get_field_160_0dab80(int a0) {
     return *(u32 *)(0x160 + a0);
 }
 
 /*
- * game_uses_get_field_300_0dab8c  0x8c0dab8c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_300_0bf154
+ * CEnv_item_cursor_next  0x8c0dab8c
+ * advances the item cursor (+0x9d4) to the next item of the list at +0xa4, wrapping at the end; 0 when the list is
+ * empty
  */
-u32 game_uses_get_field_300_0dab8c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CEnv_item_cursor_next(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
 
@@ -10685,7 +10685,7 @@ u32 game_uses_get_field_300_0dab8c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * get_field_4_on_field_170  0x8c0dac20
  * calls get_field_4_0dac48 on the member at +0x170
- * called by: game_uses_get_field_300_0dab8c
+ * called by: CEnv_item_cursor_next
  */
 u32 get_field_4_on_field_170(int a0) {
     u32 uVar1;
@@ -10704,11 +10704,11 @@ u32 get_field_4_0dac48(int a0) {
 }
 
 /*
- * game_vec_0dac50  0x8c0dac50
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * CEnv_vec_0dac50  0x8c0dac50
+ * area name: sits between CEnv functions (same compilation unit); behaviour name: mostly calls vec functions
  * called by: game_vec_0dfa84
  */
-int game_vec_0dac50(int a0, float *a1, u32 a2, u32 a3) {
+int CEnv_vec_0dac50(int a0, float *a1, u32 a2, u32 a3) {
     int ar4_00;
     int iVar1;
     u32 uVar2;
@@ -11379,7 +11379,7 @@ u32 game_uses_get_field_300_0db8d4(int a0, u32 *a1, u32 a2, u32 a3) {
             auStack_14[0] = (*(code *)(&CNodePtrList_DeleteItem))(iVar2 * 0x3c + a0 + 0x3a8, iVar1 + -1, a2, a3);
             (*(code *)(&CNodePtrList_TakeOutItem))(iVar2 * 0x3c + a0 + 0x3a8, auStack_14[0], a2, a3);
             ar5_00 = auStack_14;
-            game_update_fields_0feb88(a0 + 0x7a4, ar5_00);
+            CEnv_update_fields_0feb88(a0 + 0x7a4, ar5_00);
         }
         game_uses_set_field_0_0fe4c4(iVar2 * 0x3c + a0 + 0x3a8);
     }
@@ -11497,7 +11497,7 @@ int Class_12bb08_uses_get_field_24_0dbbe8(int a0, u32 a1, u32 a2, u32 a3) {
             ar5_00 = get_field_160_0dab80(aiStack_1c[0]);
             (*(code *)(&CNodePtrList_TakeOutItem))(iVar3 * 0x3c + a0 + 0x3a8, ar5_00, a2, a3);
             uStack_20 = get_field_160_0dab80(aiStack_1c[0]);
-            game_update_fields_0feb88(a0 + 0x7a4, &uStack_20);
+            CEnv_update_fields_0feb88(a0 + 0x7a4, &uStack_20);
             (*(code *)(&CItemList_TakeOutItem))(a0 + 0xa4, aiStack_1c[0], a2, a3);
             a1 = 1;
             iVar3 = game_uses_get_field_24_0d1b90(aiStack_1c, 1, a2, a3);
@@ -11554,7 +11554,7 @@ u32 rotate_degrees_7c_on_field_9e8(int a0) {
 /*
  * game_uses_Vec3_dtor_0dbe24  0x8c0dbe24
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is Vec3_dtor
- * called by: game_vec_0dac50
+ * called by: CEnv_vec_0dac50
  */
 u32 game_uses_Vec3_dtor_0dbe24(int a0, u32 a1, u64 *a2, int a3) {
     u64 uVar1;
@@ -14283,7 +14283,7 @@ u32 game_vec_0dfa84(int a0, u32 *a1, u8 *a2, u8 *a3) {
     iVar3 = 0;
     iVar2 = 0;
     if (*(int *)(a0 + 0x9d8) == 0) {
-        iVar2 = game_vec_0dac50(a0, a1, a2, a3);
+        iVar2 = CEnv_vec_0dac50(a0, a1, a2, a3);
     }
     if (iVar2 == 0) {
         if (cVar8 == '\0') {

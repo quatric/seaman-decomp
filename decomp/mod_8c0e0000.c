@@ -171,10 +171,10 @@ u32 *game_init_fields_0e02e8(int a0) {
 }
 
 /*
- * game_load_0e0320  0x8c0e0320
- * area name: game code; nothing names its area yet; behaviour name: mostly calls load functions
+ * env_load_textures_0e0320  0x8c0e0320
+ * loads all of the environment's textures (texlist, water, effects and the per-mode set at +0x13b70 or +0x13b8c)
  */
-u32 game_load_0e0320(int a0, u32 a1, u32 a2, u32 a3) {
+u32 env_load_textures_0e0320(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
 
@@ -195,10 +195,10 @@ u32 game_load_0e0320(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_release_0e03d4  0x8c0e03d4
- * area name: game code; nothing names its area yet; behaviour name: mostly calls release functions
+ * env_release_textures_0e03d4  0x8c0e03d4
+ * releases all of the environment's textures from VRAM (the counterpart of env_load_textures_0e0320)
  */
-u32 game_release_0e03d4(int a0, u32 a1, u32 a2, u32 a3) {
+u32 env_release_textures_0e03d4(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
 

@@ -4,10 +4,10 @@
 #include "globals.h"
 
 /*
- * kamui_draw_21035c  0x8c21035c
- * area name: in the kamui library code range; behaviour name: mostly calls draw functions
+ * pvr_set_shadow_scale  0x8c21035c
+ * writes FPU_SHAD_SCALE (a05f8074): the low byte is the scale, bit 8 enables it for non-negative a0
  */
-u32 kamui_draw_21035c(u32 a0) {
+u32 pvr_set_shadow_scale(u32 a0) {
     u32 ar6_00;
 
     g_8c2757a0 = (u32)((int)a0 < 0);
@@ -17,10 +17,10 @@ u32 kamui_draw_21035c(u32 a0) {
 }
 
 /*
- * kamui_calls_scan_loop_2103c4  0x8c2103c4
- * area name: in the kamui library code range; behaviour name: its callees mostly do: scan_loop
+ * pvr_calls_scan_loop_2103c4  0x8c2103c4
+ * area name: sits between pvr functions (same compilation unit); behaviour name: its callees mostly do: scan_loop
  */
-int kamui_calls_scan_loop_2103c4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, int *ain0) {
+int pvr_calls_scan_loop_2103c4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, int *ain0) {
     int *in_r2;
     u32 *puVar1;
     int *unaff_r14;
@@ -16939,8 +16939,8 @@ u32 gfxlib_draw_219a86(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gfxlib_draw_219a9a  0x8c219a9a
  * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: CAnimal_draw_088288, Class_12a7f4_draw, Class_12ad50_draw, Class_12c058_draw_015adc, game_draw_038b04,
- * game_draw_06c04c, game_draw_06c0b8, game_draw_09ca80 (+5 more)
+ * called by: CAnimal_draw_088288, Class_12a7f4_draw, Class_12ad50_draw, Class_12c058_draw_015adc,
+ * draw_model_with_items, game_draw_038b04, game_draw_06c04c, game_draw_06c0b8 (+5 more)
  */
 u32 gfxlib_draw_219a9a(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -17539,7 +17539,7 @@ u32 gfxlib_draw_21a7ce(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gfxlib_draw_21a80e  0x8c21a80e
  * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: CSquidLine_uses_matrix_push_0ad354, Class_12a990_draw_09c930, game_draw_015b14
+ * called by: CSquidLine_uses_matrix_push_0ad354, game_draw_015b14, game_draw_09c930
  */
 u32 gfxlib_draw_21a80e(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;

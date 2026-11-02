@@ -1563,10 +1563,10 @@ int cri_fill_loop_261170(u16 *a0, int a1, u16 *a2, short *a3, u16 *s0, short *s4
 }
 
 /*
- * cri_copy_261370  0x8c261370
- * area name: in the cri library code range; behaviour name: mostly calls copy functions
+ * cri_init_refcounted_like  0x8c261370
+ * clears the 0x180-byte state at 8c4b39a0 on the first call and counts the calls
  */
-u32 cri_copy_261370(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 cri_init_refcounted_like(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 in_r0;
     int *unaff_r14;
 
@@ -1793,7 +1793,7 @@ u32 set_field_20_261680(int a0, u32 a1) {
 /*
  * cri_calc_2616a8  0x8c2616a8
  * area name: in the cri library code range; behaviour name: integer arithmetic on its arguments
- * called by: cri_calls_calc_26175c
+ * called by: cri_cache_invalidate_all
  */
 u32 cri_calc_2616a8(void) {
     u32 uVar1;
@@ -1809,10 +1809,10 @@ u32 cri_calc_2616a8(void) {
 }
 
 /*
- * cri_calls_calc_26175c  0x8c26175c
- * area name: in the cri library code range; behaviour name: its callees mostly do: calc
+ * cri_cache_invalidate_all  0x8c26175c
+ * sets CCR's ICI and OCI bits (ff00001c), invalidating the whole instruction and operand caches
  */
-u32 cri_calls_calc_26175c(u32 a0) {
+u32 cri_cache_invalidate_all(u32 a0) {
     u32 *puVar1;
     u32 uVar2;
 

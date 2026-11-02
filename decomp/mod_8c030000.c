@@ -1910,7 +1910,7 @@ u32 noop_032150(void) {
 
 /*
  * get_field_a4_032154  0x8c032154
- * called by: CAnimal_uses_list_node_next_0f4258, game_uses_Class_129974_dtor_0db224, game_vec_0dac50
+ * called by: CAnimal_uses_list_node_next_0f4258, CEnv_vec_0dac50, game_uses_Class_129974_dtor_0db224
  */
 u32 get_field_a4_032154(int a0) {
     return *(u32 *)(0xa4 + a0);
@@ -7236,10 +7236,10 @@ u32 game_vec_036078(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_036130  0x8c036130
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_27df68  0x8c036130
+ * static initialiser: builds four global Vec3 constants (8c27df68..8c27df8c) and registers their destructors
  */
-u32 game_vec_036130(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_27df68(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -8095,10 +8095,11 @@ u32 CAnimal_calc_036f5c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_float_calc_036f84  0x8c036f84
- * area name: game code; nothing names its area yet; behaviour name: floating-point arithmetic
+ * tint_ramp_1h_036f84  0x8c036f84
+ * scales the four colour constants at 8c13367c by frame/216000 (one hour) into +0x438..+0x444; at the end resets the
+ * frame count and clears bit 31 of +0x74
  */
-u32 game_float_calc_036f84(int a0) {
+u32 tint_ramp_1h_036f84(int a0) {
     int iVar1;
     u32 uVar2;
     float fVar3;
@@ -9117,7 +9118,7 @@ u32 child_330_tick_038c54(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * noop_038c8c  0x8c038c8c
  * called by: child_330_tick_038c54, child_330_tick_0883a8, child_330_tick_09ac70, child_330_tick_0a5550,
- * game_uses_noop_09cb58
+ * draw_uses_noop_09cb58
  */
 u32 noop_038c8c(void) {
     u32 in_r0;

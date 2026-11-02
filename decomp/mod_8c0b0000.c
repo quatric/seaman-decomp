@@ -4818,8 +4818,8 @@ u32 save_file_load(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * save_files_presence  0x8c0b76d8
  * bit flags for which save files exist: 1 USR, 2 and 4 _VM states, 8 SEAMANDC.USR, 0x10 SEAMANDC._VM
- * called by: CGame_Initial, CSeamanDomain_Init, game_uses_get_field_d0_0c6e74, game_uses_pure_virtual_stub_0c6d70,
- * game_uses_speech_is_playing_0bad68 strings: "SM2000US._VM"; "SEAMANDC.USR"; "SEAMANDC._VM"; "SM2000US.USR" ...
+ * called by: CGame_Initial, CSeamanDomain_Init, game_uses_get_field_d0_0c6e74, game_uses_speech_is_playing_0bad68,
+ * save_check_presence_and_date strings: "SM2000US._VM"; "SEAMANDC.USR"; "SEAMANDC._VM"; "SM2000US.USR" ...
  */
 u32 save_files_presence(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 ar4_00;
@@ -4858,7 +4858,7 @@ u32 save_files_presence(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * save_file_date_matches  0x8c0b77a0
  * reads SM2000US.USR and compares its saved date with a0
- * called by: game_uses_get_field_d0_0c6e74, game_uses_pure_virtual_stub_0c6d70, game_uses_speech_is_playing_0bad68
+ * called by: game_uses_get_field_d0_0c6e74, game_uses_speech_is_playing_0bad68, save_check_presence_and_date
  * strings: "SM2000US.USR"
  */
 u32 save_file_date_matches(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
@@ -9186,9 +9186,9 @@ u32 get_field_300_on_field_a4(int a0) {
 
 /*
  * get_field_300_0bf154  0x8c0bf154
- * called by: CWaterTank_uses_get_field_300_0e0f48, Class_129974_vec_0db3bc, Class_12b580_uses_get_field_300_0e6718,
- * Class_12b930_m3_0de4b0, Class_12b930_vec_0e3994, Class_12bb08_m1_0da338, Class_12bb08_m2_0da5a8,
- * Class_12bb08_uses_get_field_24_0dbbe8 (+20 more)
+ * called by: CEnv_item_cursor_next, CWaterTank_uses_get_field_300_0e0f48, Class_129974_vec_0db3bc,
+ * Class_12b580_uses_get_field_300_0e6718, Class_12b930_m3_0de4b0, Class_12b930_vec_0e3994, Class_12bb08_m1_0da338,
+ * Class_12bb08_m2_0da5a8 (+20 more)
  */
 u32 get_field_300_0bf154(int a0) {
     return *(u32 *)(0x300 + a0);

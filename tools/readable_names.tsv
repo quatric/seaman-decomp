@@ -1571,3 +1571,32 @@
 8c0e6cd8	scene_release_textures_like	releases the scene's texlist (+0x28) and texture (+4) from VRAM; above mode 2 also its extra set at +0x10dc
 8c0f57f0	Class_12c058_draw	binds the texlist at +0x170 and draws the model at +0x178 rotated by its XYZ angles, inside a matrix push/pop
 8c0f67ec	pos_add_random_offset	adds a random small offset vector (rand() % 3 based) to the position at +0x30
+8c25da4c	pvr_soft_reset	pulses the PVR SOFTRESET register (a05f8008): 1 then 0
+8c21035c	pvr_set_shadow_scale	writes FPU_SHAD_SCALE (a05f8074): the low byte is the scale, bit 8 enables it for non-negative a0
+8c20c8e0	pvr_set_texture_stride	puts the stride field ((a0 & 0x3e0) >> 5) into TEXT_CONTROL (a05f80e4), keeping its other bits
+8c26175c	cri_cache_invalidate_all	sets CCR's ICI and OCI bits (ff00001c), invalidating the whole instruction and operand caches
+8c261370	cri_init_refcounted_like	clears the 0x180-byte state at 8c4b39a0 on the first call and counts the calls
+8c253fe0	ninja_draw_with_saved_state	runs gfxlib_calls_fill_loop_247df4 between draw_state_save and draw_state_restore
+8c23a982	global_vec4_add_104	adds the four floats at a0+0x104 to the vector that g_8c4ab278 points at
+8c23a9d0	vec3_add_from_f8	adds the three floats at a0+0xf8 to the vector at a1+4
+8c0fe4f8	named_list_ctor_58	sets up two 0x58-apart list nodes as an empty circular list, copies up to 29 characters of the name a1 to +0xb0 and zeroes the count (+0xd0)
+8c0fe1b8	named_list_ctor_0c	sets up the head nodes at +0 and +0xc as an empty list, copies up to 29 characters of the name a1 to +0x18 and zeroes the count (+0x38)
+8c0fde5c	named_list_ctor_170	sets up the head nodes at +0 and +0x170 as an empty list, copies up to 29 characters of the name a1 to +0x2e0 and zeroes the count (+0x300)
+8c0fe82c	named_list_ctor_14	sets up the head nodes at +0 and +0x14 as an empty list, copies up to 29 characters of the name a1 to +0x28 and zeroes the count (+0x48)
+8c016978	static_init_vec3s_278838	static initialiser: builds four global Vec3 constants (8c278838..8c27885c) and registers their destructors
+8c018fb0	static_init_vec3s_279110	static initialiser: builds four global Vec3 constants (8c279110..8c279134) and registers their destructors
+8c01a260	static_init_vec3s_279140	static initialiser: builds four global Vec3 constants (8c279140..8c279164) and registers their destructors
+8c024240	static_init_vec3s_2792a8	static initialiser: builds four global Vec3 constants (8c2792a8..8c2792cc) and registers their destructors
+8c028c18	CAnimal_release_part_textures	releases from VRAM the up to four textures of model part a2 (0x124-byte records at +0x328)
+8c0d20f0	CEnv_set_scale_and_type	sets a uniform scale from fr4 (times 1.5 for type 4), stores a1 at +0x28 and the type a2 at +0x3c
+8c014fd0	particle_trail_step	every N frames (+0x6c mod +0x78) shifts the four trail positions back one slot, then steps the particle
+8c036130	static_init_vec3s_27df68	static initialiser: builds four global Vec3 constants (8c27df68..8c27df8c) and registers their destructors
+8c036f84	tint_ramp_1h_036f84	scales the four colour constants at 8c13367c by frame/216000 (one hour) into +0x438..+0x444; at the end resets the frame count and clears bit 31 of +0x74
+8c085e9c	tint_ramp_1h_085e9c	scales the four colour constants at 8c137b1c by frame/216000 (one hour) into +0x438..+0x444; at the end resets the frame count and clears bit 31 of +0x74
+8c0ae0b0	tint_ramp_30s_0ae0b0	scales the four colour constants at 8c13b4f4 by frame/1800 (30 seconds) into +0x438..+0x444; at the end resets the frame count and clears bit 31 of +0x74
+8c09ca80	draw_model_with_items	binds the texlist, draws the scaled model and then each of the eight held items at +0x524, inside a matrix push/pop
+8c0c6d70	save_check_presence_and_date	records whether save files are present (+0x2d16c) and, if so, whether the save date matches (+0x2d168), then moves to step 2
+8c0dab8c	CEnv_item_cursor_next	advances the item cursor (+0x9d4) to the next item of the list at +0xa4, wrapping at the end; 0 when the list is empty
+8c0daad0	CEnv_take_out_item	removes item a1 from its per-kind node list (+0x3a8) and the item list (+0xa4), frees its slot and calls its method 100
+8c0e0320	env_load_textures_0e0320	loads all of the environment's textures (texlist, water, effects and the per-mode set at +0x13b70 or +0x13b8c)
+8c0e03d4	env_release_textures_0e03d4	releases all of the environment's textures from VRAM (the counterpart of env_load_textures_0e0320)

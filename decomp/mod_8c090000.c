@@ -8014,10 +8014,10 @@ u32 save_pose_record_09c8d8(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12a990_draw_09c930  0x8c09c930
- * area name: sits between Class_12a990 functions (same compilation unit); behaviour name: mostly calls draw functions
+ * game_draw_09c930  0x8c09c930
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
  */
-u32 Class_12a990_draw_09c930(int a0, u32 a1, u32 a2) {
+u32 game_draw_09c930(int a0, u32 a1, u32 a2) {
     u32 r7;
     u32 ar4_00;
     int a4;
@@ -8112,10 +8112,10 @@ u32 Class_12a990_draw_09c930(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * game_draw_09ca80  0x8c09ca80
- * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
+ * draw_model_with_items  0x8c09ca80
+ * binds the texlist, draws the scaled model and then each of the eight held items at +0x524, inside a matrix push/pop
  */
-u32 game_draw_09ca80(int a0, u32 a1, u32 a2, u32 a3) {
+u32 draw_model_with_items(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int a4;
     int iVar2;
@@ -8149,10 +8149,10 @@ u32 vcall_field_8_slot15_09cb40(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_noop_09cb58  0x8c09cb58
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is noop_038c8c
+ * draw_uses_noop_09cb58  0x8c09cb58
+ * area name: sits between draw functions (same compilation unit); behaviour name: its main named callee is noop_038c8c
  */
-u32 game_uses_noop_09cb58(int a0, u32 a1, u32 a2, u32 a3) {
+u32 draw_uses_noop_09cb58(int a0, u32 a1, u32 a2, u32 a3) {
     int a4;
     int iVar1;
 
@@ -8167,10 +8167,10 @@ u32 game_uses_noop_09cb58(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_state_switch_09cbb8  0x8c09cbb8
- * area name: game code; nothing names its area yet; behaviour name: mostly calls state_switch functions
+ * draw_state_switch_09cbb8  0x8c09cbb8
+ * area name: sits between draw functions (same compilation unit); behaviour name: mostly calls state_switch functions
  */
-u32 game_state_switch_09cbb8(int a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 draw_state_switch_09cbb8(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int a6;
     int a5;
 
@@ -8178,17 +8178,17 @@ u32 game_state_switch_09cbb8(int a0, u32 a1, u32 unused_a2, u32 a3) {
         a6 = CItemGLoader_state_switch_0fef94(a1, 1, 1, a3);
         if (a6 != 0) {
             (**(code **)(0x100 + *(int *)(a0 + 8)))(a0, a5, a6, a3);
-            Class_12a990_uses_rand_09cca8(a0, a5, a6);
+            game_uses_rand_09cca8(a0, a5, a6);
         }
     }
     return 8;
 }
 
 /*
- * Class_12a990_update_fields_09cc34  0x8c09cc34
- * area name: sits between Class_12a990 functions (same compilation unit); behaviour name: conditionally writes members
+ * draw_update_fields_09cc34  0x8c09cc34
+ * area name: sits between draw functions (same compilation unit); behaviour name: conditionally writes members
  */
-int Class_12a990_update_fields_09cc34(int a0, int a1, u32 a2) {
+int draw_update_fields_09cc34(int a0, int a1, u32 a2) {
     int iVar1;
 
     iVar1 = 0x524;
@@ -8197,11 +8197,11 @@ int Class_12a990_update_fields_09cc34(int a0, int a1, u32 a2) {
 }
 
 /*
- * Class_12a990_uses_get_field_24_09cc4c  0x8c09cc4c
- * area name: sits between Class_12a990 functions (same compilation unit); behaviour name: its callees mostly do:
+ * draw_uses_get_field_24_09cc4c  0x8c09cc4c
+ * area name: sits between draw functions (same compilation unit); behaviour name: its callees mostly do:
  * uses_get_field_24
  */
-u32 Class_12a990_uses_get_field_24_09cc4c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 draw_uses_get_field_24_09cc4c(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
     for (iVar1 = 0; iVar1 < 8; iVar1 = iVar1 + 1) {
@@ -8213,11 +8213,11 @@ u32 Class_12a990_uses_get_field_24_09cc4c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12a990_uses_rand_09cca8  0x8c09cca8
- * area name: sits between Class_12a990 functions (same compilation unit); behaviour name: its main named callee is rand
- * called by: game_state_switch_09cbb8
+ * game_uses_rand_09cca8  0x8c09cca8
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is rand
+ * called by: draw_state_switch_09cbb8
  */
-u32 Class_12a990_uses_rand_09cca8(int a0, int a1, u32 a2) {
+u32 game_uses_rand_09cca8(int a0, int a1, u32 a2) {
     u32 uVar1;
     int iVar2;
     double *pdVar3;

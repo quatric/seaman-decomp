@@ -16314,7 +16314,7 @@ int gfxlib_fill_loop_247b20(int a0, u32 a1, u32 a2, u32 *a3) {
 /*
  * gfxlib_calls_fill_loop_247df4  0x8c247df4
  * area name: in the gfxlib library code range; behaviour name: its callees mostly do: calls_fill_loop
- * called by: ninja_draw_253fe0
+ * called by: ninja_draw_with_saved_state
  */
 u32 gfxlib_calls_fill_loop_247df4(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;

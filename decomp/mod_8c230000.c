@@ -8336,12 +8336,12 @@ u32 gfxlib_uses_ta_fifo_233f98(int a0, u32 a1, u32 a2) {
     g_8c4aa390 = 0xffbfbfbf;
     g_8c4aa394 = 0x41000000;
     if (a0 == 0) {
-        kamui_uses_ta_fifo_20c90c(0x8c4aa398, 0x80, 0x80, 0x300);
+        pvr_uses_ta_fifo_20c90c(0x8c4aa398, 0x80, 0x80, 0x300);
         ar7_00 = 0;
         ar6_00 = 0;
         kamui_uses_vram64_20cb5a(0x8c4aa398, &g_8c273be8, 0, 0);
     } else {
-        kamui_uses_ta_fifo_20c90c(0x8c4aa398, a1, a1, a2);
+        pvr_uses_ta_fifo_20c90c(0x8c4aa398, a1, a1, a2);
         ar7_00 = 0;
         ar6_00 = 0;
         kamui_uses_vram64_20cb5a(0x8c4aa398, a0, 0, 0);
@@ -15172,10 +15172,10 @@ int gfxlib_state_switch_23a8d8(u32 a0) {
 }
 
 /*
- * gfxlib_float_calc_23a982  0x8c23a982
- * area name: in the gfxlib library code range; behaviour name: floating-point arithmetic
+ * global_vec4_add_104  0x8c23a982
+ * adds the four floats at a0+0x104 to the vector that g_8c4ab278 points at
  */
-u32 gfxlib_float_calc_23a982(int a0) {
+u32 global_vec4_add_104(int a0) {
     *g_8c4ab278 = *g_8c4ab278 + *(float *)(a0 + 0x104);
     g_8c4ab278[1] = g_8c4ab278[1] + *(float *)(a0 + 0x108);
     g_8c4ab278[2] = g_8c4ab278[2] + *(float *)(a0 + 0x10c);
@@ -15184,10 +15184,10 @@ u32 gfxlib_float_calc_23a982(int a0) {
 }
 
 /*
- * gfxlib_float_calc_23a9d0  0x8c23a9d0
- * area name: in the gfxlib library code range; behaviour name: floating-point arithmetic
+ * vec3_add_from_f8  0x8c23a9d0
+ * adds the three floats at a0+0xf8 to the vector at a1+4
  */
-u32 gfxlib_float_calc_23a9d0(int a0, int a1) {
+u32 vec3_add_from_f8(int a0, int a1) {
     *(float *)(a1 + 4) = *(float *)(a1 + 4) + *(float *)(a0 + 0xf8);
     *(float *)(a1 + 8) = *(float *)(a1 + 8) + *(float *)(a0 + 0xfc);
     *(float *)(a1 + 0xc) = *(float *)(a1 + 0xc) + *(float *)(a0 + 0x100);

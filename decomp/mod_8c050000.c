@@ -7323,9 +7323,9 @@ u32 ret_const_3f800000_05c27c(void) {
 
 /*
  * get_field_24_05c284  0x8c05c284
- * called by: CEnv_AddItem, CEnv_uses_get_field_160_0daad0, CGame_GetUserGameInfo, CGame_uses_get_field_24_0c4c84,
- * Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b930_vec_0e3994, Class_12bb08_uses_get_field_24_0dbbe8,
- * Higyo_gratification_events (+19 more)
+ * called by: CEnv_AddItem, CEnv_take_out_item, CEnv_vec_0dac50, CGame_GetUserGameInfo, CGame_uses_get_field_24_0c4c84,
+ * Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b930_vec_0e3994, Class_12bb08_uses_get_field_24_0dbbe8 (+19
+ * more)
  */
 u32 get_field_24_05c284(int a0, u32 a1) {
     return *(u32 *)(a0 + 0x24);

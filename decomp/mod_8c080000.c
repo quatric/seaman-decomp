@@ -3178,10 +3178,11 @@ int set_field_2a8_to_1(int a0) {
 }
 
 /*
- * game_float_calc_085e9c  0x8c085e9c
- * area name: game code; nothing names its area yet; behaviour name: floating-point arithmetic
+ * tint_ramp_1h_085e9c  0x8c085e9c
+ * scales the four colour constants at 8c137b1c by frame/216000 (one hour) into +0x438..+0x444; at the end resets the
+ * frame count and clears bit 31 of +0x74
  */
-u32 game_float_calc_085e9c(int a0) {
+u32 tint_ramp_1h_085e9c(int a0) {
     int iVar1;
     u32 uVar2;
     float fVar3;

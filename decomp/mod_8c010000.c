@@ -157,7 +157,7 @@ u32 alt_entry_01012c(int a0, code *a1, code *a2, u32 a3, u32 s0, u32 s4, u32 s8,
 /*
  * global_list_push  0x8c0101a0
  * called by: CAnimal_list_039124, CAnimal_list_08894c, CGame_uses_global_list_push_0e99e4, CGame_vec_0e992c,
- * CSeamanDomain_Init, Class_1299f8_vec_024240, Class_129a24_vec_01a260, Class_129c24_vec_02ffec (+55 more)
+ * CSeamanDomain_Init, Class_129c24_vec_02ffec, Class_12a990_list_09d718, Class_12ab2c_list_09f060 (+55 more)
  */
 u32 global_list_push(u32 a0, u32 a1, u32 *a2, u32 a3) {
     u32 *puVar1;
@@ -11918,8 +11918,9 @@ u32 strcmp_01439c(u32 a0, u32 a1) {
 
 /*
  * log_message  0x8c0143b0
- * called by: format_output, game_uses_free_sys_01ddfc, game_uses_set_field_0_0fde5c, game_uses_set_field_0_0fe1b8,
- * game_uses_set_field_0_0fe4f8, game_uses_set_field_0_0fe82c, gfxlib_copy_238f2a, gfxlib_copy_239f84 (+7 more)
+ * called by: format_output, game_uses_free_sys_01ddfc, gfxlib_copy_238f2a, gfxlib_copy_239f84,
+ * gfxlib_uses_log_message_2341d6, gfxlib_uses_sprintf_234834, libc_uses_log_message_013374, msg_substitute_name (+7
+ * more)
  */
 int log_message(char *a0, u32 a1, u32 a2) {
     char cVar1;
@@ -11934,8 +11935,8 @@ int log_message(char *a0, u32 a1, u32 a2) {
 
 /*
  * strncpy  0x8c0143c0
- * called by: ADXSTM_OpenFname, ADXSTM_OpenFnameRange, ADXSTM_OpenRange, game_uses_set_field_0_0fde5c,
- * game_uses_set_field_0_0fe1b8, game_uses_set_field_0_0fe4f8, game_uses_set_field_0_0fe82c
+ * called by: ADXSTM_OpenFname, ADXSTM_OpenFnameRange, ADXSTM_OpenRange, named_list_ctor_0c, named_list_ctor_14,
+ * named_list_ctor_170, named_list_ctor_58
  */
 char *strncpy(char *a0, char *a1, u32 a2) {
     char cVar1;
@@ -12587,7 +12588,7 @@ u32 *Class_1297f4_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     a0[0x21] = particle_step;
     a0[0x22] = 0;
     a0[0x23] = 0xffffffff;
-    a0[0x24] = Vec3_uses_particle_step_014fd0;
+    a0[0x24] = particle_trail_step;
     a0[0x25] = 0;
     a0[0x26] = 0xffffffff;
     a0[0x27] = game_draw_015054;
@@ -12933,7 +12934,7 @@ u32 Class_1297f4_fill_loop_014ef8(int a0, u32 a1) {
 /*
  * particle_step  0x8c014f74
  * position (+4) += velocity (+0x54); then velocity y -= gravity (+0x70)
- * called by: Vec3_uses_particle_step_014fd0, game_vec_0d0b04
+ * called by: game_vec_0d0b04, particle_trail_step
  */
 float *particle_step(int a0) {
     *(float *)(a0 + 4) = *(float *)(a0 + 4) + *(float *)(a0 + 0x54);
@@ -12944,11 +12945,10 @@ float *particle_step(int a0) {
 }
 
 /*
- * Vec3_uses_particle_step_014fd0  0x8c014fd0
- * area name: sits between Vec3 functions (same compilation unit); behaviour name: its main named callee is
- * particle_step
+ * particle_trail_step  0x8c014fd0
+ * every N frames (+0x6c mod +0x78) shifts the four trail positions back one slot, then steps the particle
  */
-u32 Vec3_uses_particle_step_014fd0(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 particle_trail_step(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 ar5_00;
     int iVar1;
     u32 uVar2;
@@ -13145,8 +13145,8 @@ u32 Class_129920_m0_015248(int a0, u32 a1, u32 a2, u32 a3) {
  * CTexture_LoadFromCache  0x8c015250
  * called by: CTexture_LoadFromCache_on_field_20, CTexture_LoadFromCache_on_field_488, CTexture_LoadFromCache_wrap,
  * CTexture_LoadFromCache_wrap_0d09fc, CTexture_LoadFromCache_wrap_0d14b0, CTexture_LoadFromCache_wrap_0d6058,
- * game_load_0e0320, obj_load_texlist_28 (+3 more) strings: "Failed to set texture..:%s"; "CTexture::LoadFromCache()";
- * "Failed to load from cache..:%s"; "CTexture::LoadFromCache()"
+ * env_load_textures_0e0320, obj_load_texlist_28 (+3 more) strings: "Failed to set texture..:%s";
+ * "CTexture::LoadFromCache()"; "Failed to load from cache..:%s"; "CTexture::LoadFromCache()"
  */
 u32 CTexture_LoadFromCache(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -13173,9 +13173,10 @@ u32 CTexture_LoadFromCache(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * CTexture_ReleaseFromVRAM  0x8c015310
- * called by: CAnimal_release_028c18, CHerb_release_06d5e4, CSeamanDomain_Init, CTexture_ReleaseFromVRAM_on_field_20,
- * CTexture_ReleaseFromVRAM_on_field_28, CTexture_ReleaseFromVRAM_on_field_488, CTexture_ReleaseFromVRAM_wrap,
- * CTexture_ReleaseFromVRAM_wrap_0d0a18 (+12 more) strings: "Failed..:%s"; "CTexture::ReleaseFromVRAM()"
+ * called by: CAnimal_release_part_textures, CHerb_release_06d5e4, CSeamanDomain_Init,
+ * CTexture_ReleaseFromVRAM_on_field_20, CTexture_ReleaseFromVRAM_on_field_28, CTexture_ReleaseFromVRAM_on_field_488,
+ * CTexture_ReleaseFromVRAM_wrap, CTexture_ReleaseFromVRAM_wrap_0d0a18 (+12 more) strings: "Failed..:%s";
+ * "CTexture::ReleaseFromVRAM()"
  */
 u32 CTexture_ReleaseFromVRAM(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -13903,8 +13904,8 @@ u32 set_field_0_015ad4(u32 *a0, u32 a1, u32 a2) {
 /*
  * Class_12c058_draw_015adc  0x8c015adc
  * area name: only called from Class_12c058 methods; behaviour name: mostly calls draw functions
- * called by: CTexture_draw_0d6090, Class_12b580_draw_0e660c, Class_12b758_draw_0e4dd0, Class_12c058_draw,
- * Class_12c058_draw_0f577c, game_draw_0d0564, game_draw_0d05d0, game_draw_0d2264 (+8 more)
+ * called by: CEnv_draw_0d2264, CTexture_draw_0d6090, Class_12b580_draw_0e660c, Class_12b758_draw_0e4dd0,
+ * Class_12c058_draw, Class_12c058_draw_0f577c, game_draw_0d0564, game_draw_0d05d0 (+8 more)
  */
 u32 Class_12c058_draw_015adc(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -14892,10 +14893,10 @@ u32 noop_016974(void) {
 }
 
 /*
- * game_vec_016978  0x8c016978
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_278838  0x8c016978
+ * static initialiser: builds four global Vec3 constants (8c278838..8c27885c) and registers their destructors
  */
-u32 game_vec_016978(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_278838(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -17504,10 +17505,10 @@ u32 noop_018fac(void) {
 }
 
 /*
- * game_vec_018fb0  0x8c018fb0
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * static_init_vec3s_279110  0x8c018fb0
+ * static initialiser: builds four global Vec3 constants (8c279110..8c279134) and registers their destructors
  */
-u32 game_vec_018fb0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_279110(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -17532,8 +17533,8 @@ u32 game_vec_018fb0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * touch_fields_30_3c_wrap  0x8c019058
  * only calls touch_fields_30_3c
- * called by: Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b758_draw_0e4dd0, Class_12c058_draw,
- * Class_12c058_draw_0f577c, game_draw_0cb220, game_draw_0d0564, game_draw_0d05d0, game_draw_0d092c (+14 more)
+ * called by: CEnv_draw_0d2264, Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b758_draw_0e4dd0,
+ * Class_12c058_draw, Class_12c058_draw_0f577c, game_draw_0cb220, game_draw_0d0564, game_draw_0d05d0 (+14 more)
  */
 u32 touch_fields_30_3c_wrap(void) {
     u32 r5;
@@ -17611,8 +17612,8 @@ u32 rotate_degrees(void) {
 /*
  * matrix_scale_wrap  0x8c019198
  * only calls matrix_scale
- * called by: Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b758_draw_0e4dd0, game_draw_029ca8, game_draw_09ca80,
- * game_draw_0d2264, game_draw_0d2478, game_uses_clear_3_words_0c9ee0
+ * called by: CEnv_draw_0d2264, Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b758_draw_0e4dd0,
+ * draw_model_with_items, game_draw_029ca8, game_draw_0d2478, game_uses_clear_3_words_0c9ee0
  */
 u32 matrix_scale_wrap(u32 unused_a0, u32 a1) {
     u32 r6;
@@ -18903,10 +18904,10 @@ u32 Class_129a24_m3_01a230(int a0) {
 }
 
 /*
- * Class_129a24_vec_01a260  0x8c01a260
- * area name: sits between Class_129a24 functions (same compilation unit); behaviour name: mostly calls vec functions
+ * static_init_vec3s_279140  0x8c01a260
+ * static initialiser: builds four global Vec3 constants (8c279140..8c279164) and registers their destructors
  */
-u32 Class_129a24_vec_01a260(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_279140(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;

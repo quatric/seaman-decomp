@@ -2448,7 +2448,7 @@ int sound_set_out_vol(u32 unused_a0, int *a1, u32 a2) {
 /*
  * Vec3_ctor_zero  0x8c022c4c
  * called by: CAnimal_m7_036d7c, CAnimal_m7_0ade84, CAnimal_m7_0f49b8, CAnimal_vec_024848, CAnimal_vec_02b1dc,
- * CAnimal_vec_0f4040, CEnv_vec_0d2050, CFrogManLine_vec_03a5a4 (+211 more)
+ * CAnimal_vec_0f4040, CEnv_vec_0d2050, CEnv_vec_0dac50 (+211 more)
  */
 u32 *Vec3_ctor_zero(u32 *a0, u32 a1, u32 a2) {
     a0[3] = &g_8c129a7c;
@@ -2489,7 +2489,7 @@ int Vec3_dtor(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_ctor_xyz  0x8c022ce8
  * called by: CAnimBody_vec_0342d8, CAnimal_list_039124, CAnimal_list_08894c, CGame_uses_global_list_push_0e99e4,
- * CGame_vec_0e992c, Class_1299f8_m3_019f00, Class_1299f8_m4_019588, Class_1299f8_vec_024240 (+123 more)
+ * CGame_vec_0e992c, Class_1299f8_m3_019f00, Class_1299f8_m4_019588, Class_129c24_vec_02ffec (+123 more)
  */
 u32 *Vec3_ctor_xyz(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_fr5;
@@ -3691,8 +3691,8 @@ u32 Vec3_vec_0238b4(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * Vec3_assign  0x8c023a14
- * called by: CMothLine_place_current, CMushroomerBody_AwayFrom, Class_129938_m1_0170e0, Class_129938_m2_0171f4,
- * Class_129938_vec_017900, Class_1299f8_m3_019f00, Class_1299f8_m4_019588, Class_129cbc_m1_031598 (+195 more)
+ * called by: CEnv_vec_0dac50, CMothLine_place_current, CMushroomerBody_AwayFrom, Class_129938_m1_0170e0,
+ * Class_129938_m2_0171f4, Class_129938_vec_017900, Class_1299f8_m3_019f00, Class_1299f8_m4_019588 (+195 more)
  */
 u32 *Vec3_assign(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     *a0 = *a1;
@@ -4539,10 +4539,10 @@ u32 Class_1299f8_clear_b(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_1299f8_vec_024240  0x8c024240
- * area name: sits between Class_1299f8 functions (same compilation unit); behaviour name: mostly calls vec functions
+ * static_init_vec3s_2792a8  0x8c024240
+ * static initialiser: builds four global Vec3 constants (8c2792a8..8c2792cc) and registers their destructors
  */
-u32 Class_1299f8_vec_024240(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 static_init_vec3s_2792a8(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -5124,7 +5124,7 @@ int common_load_eye_scsi(u32 a0) {
 /*
  * get_field_4_0253e4  0x8c0253e4
  * called by: CAnimal_ChangeBodyTexture, CAnimal_LoadGRReq, CAnimal_LoadGRReq_b, CAnimal_LoadGResourceWait,
- * CEnv_LoadDevicePanelTexture, CGame_Init, CGame_Initial, CGame_LoadForEvent1Models (+36 more)
+ * CEnv_LoadDevicePanelTexture, CEnv_draw_0d2264, CGame_Init, CGame_Initial (+36 more)
  */
 u32 get_field_4_0253e4(int a0, u32 a1, u32 a2, u32 a3) {
     return *(u32 *)(a0 + 4);
@@ -7645,11 +7645,10 @@ u32 CMothLine_scan_loop_028afc(int a0, u32 a1, int a2) {
 }
 
 /*
- * CAnimal_release_028c18  0x8c028c18
- * name hint from a string it uses: Failed wrap; area name: sits between CAnimal functions (same compilation unit);
- * behaviour name: mostly calls release functions
+ * CAnimal_release_part_textures  0x8c028c18
+ * releases from VRAM the up to four textures of model part a2 (0x124-byte records at +0x328)
  */
-u32 CAnimal_release_028c18(int a0, u32 a1, int a2, u32 a3) {
+u32 CAnimal_release_part_textures(int a0, u32 a1, int a2, u32 a3) {
     u32 uVar1;
     int iVar2;
 
@@ -13373,8 +13372,8 @@ u32 game_vec_02f474(int a0, int *a1, u32 *a2, u32 a3) {
 /*
  * Vec3_ctor_copy_wrap_02f670  0x8c02f670
  * only calls Vec3_ctor_copy
- * called by: Class_12a7a8_vec_099b0c, Class_12acc8_m1_09f470, Class_12acc8_uses_rand_0a0278, Class_12b0c4_vec_0ac1f0,
- * Class_12b2e8_vec_0b67cc, Class_12b930_vec_0e3994, FrogMan_ending_event, Higyo_choose_status_event (+19 more)
+ * called by: CEnv_vec_0dac50, Class_12a7a8_vec_099b0c, Class_12acc8_m1_09f470, Class_12acc8_uses_rand_0a0278,
+ * Class_12b0c4_vec_0ac1f0, Class_12b2e8_vec_0b67cc, Class_12b930_vec_0e3994, FrogMan_ending_event (+19 more)
  */
 u32 Vec3_ctor_copy_wrap_02f670(int a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;

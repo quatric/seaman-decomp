@@ -11628,10 +11628,11 @@ u32 CAnimal_m7_0ade84(int a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_float_calc_0ae0b0  0x8c0ae0b0
- * area name: game code; nothing names its area yet; behaviour name: floating-point arithmetic
+ * tint_ramp_30s_0ae0b0  0x8c0ae0b0
+ * scales the four colour constants at 8c13b4f4 by frame/1800 (30 seconds) into +0x438..+0x444; at the end resets the
+ * frame count and clears bit 31 of +0x74
  */
-u32 game_float_calc_0ae0b0(int a0) {
+u32 tint_ramp_30s_0ae0b0(int a0) {
     int iVar1;
     u32 uVar2;
     float fVar3;

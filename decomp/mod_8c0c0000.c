@@ -4322,10 +4322,11 @@ u32 ret_const_1_0c6d68(void) {
 }
 
 /*
- * game_uses_pure_virtual_stub_0c6d70  0x8c0c6d70
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is pure_virtual_stub
+ * save_check_presence_and_date  0x8c0c6d70
+ * records whether save files are present (+0x2d16c) and, if so, whether the save date matches (+0x2d168), then moves to
+ * step 2
  */
-u32 game_uses_pure_virtual_stub_0c6d70(int a0, int a1, u32 unused_a2, u32 a3) {
+u32 save_check_presence_and_date(int a0, int a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int ar4_00;

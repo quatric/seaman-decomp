@@ -5122,8 +5122,8 @@ int shinobi_list_203820(u32 a0, int *a1, u32 *a2) {
 /*
  * shinobi_list_2038c0  0x8c2038c0
  * area name: in the shinobi library code range; behaviour name: mostly calls list functions
- * called by: gfxlib_uses_ta_fifo_233e10, kamui_uses_callback_table_call_20ca32, kamui_uses_ta_fifo_20c90c,
- * kamui_uses_ta_fifo_20c980
+ * called by: gfxlib_uses_ta_fifo_233e10, pvr_uses_callback_table_call_20ca32, pvr_uses_ta_fifo_20c90c,
+ * pvr_uses_ta_fifo_20c980
  */
 u32 shinobi_list_2038c0(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -5221,7 +5221,7 @@ int shinobi_uses_mem_pool_find_block_2039e0(u32 a0, int a1) {
 /*
  * shinobi_uses_list_push_front_203a92  0x8c203a92
  * area name: in the shinobi library code range; behaviour name: its main named callee is list_push_front_2057e6
- * called by: gfxlib_uses_ta_fifo_233e10, kamui_uses_ta_fifo_20c90c, kamui_uses_ta_fifo_20c980
+ * called by: gfxlib_uses_ta_fifo_233e10, pvr_uses_ta_fifo_20c90c, pvr_uses_ta_fifo_20c980
  */
 u32 shinobi_uses_list_push_front_203a92(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -5302,7 +5302,7 @@ u32 shinobi_uses_list_push_front_203a92(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * shinobi_list_203bda  0x8c203bda
  * area name: in the shinobi library code range; behaviour name: mostly calls list functions
- * called by: alt_entry_20cf8c, kamui_list_20cf88, kamui_uses_callback_table_call_20ca32, kamui_uses_ta_fifo_20c980,
+ * called by: alt_entry_20cf8c, kamui_list_20cf88, pvr_uses_callback_table_call_20ca32, pvr_uses_ta_fifo_20c980,
  * shinobi_list_203914, shinobi_list_203ca0, shinobi_uses_pool496ba8_free_203cd0
  */
 u32 shinobi_list_203bda(int a0, u32 a1, u32 a2, u32 a3) {
@@ -5362,7 +5362,7 @@ u32 shinobi_list_203ca0(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * shinobi_uses_pool496ba8_free_203cd0  0x8c203cd0
  * area name: in the shinobi library code range; behaviour name: its main named callee is pool496ba8_free
- * called by: alt_entry_20cf8c, kamui_list_20cf88, kamui_uses_ta_fifo_20c980
+ * called by: alt_entry_20cf8c, kamui_list_20cf88, pvr_uses_ta_fifo_20c980
  */
 u32 shinobi_uses_pool496ba8_free_203cd0(int a0) {
     bool bVar1;
@@ -8408,7 +8408,7 @@ u32 pvr_206ff0(u32 unused_a0, u32 a1, u32 *a2, u32 a3) {
 /*
  * callback_table_call  0x8c2072b2
  * calls entry a0 of the callback table at 0x8c4a9ddc with its stored argument
- * called by: gfxlib_uses_ta_fifo_233e10, kamui_uses_callback_table_call_20ca32, kamui_uses_ta_fifo_20c90c
+ * called by: gfxlib_uses_ta_fifo_233e10, pvr_uses_callback_table_call_20ca32, pvr_uses_ta_fifo_20c90c
  */
 u32 callback_table_call(int a0) {
     u32 uVar1;
@@ -8422,8 +8422,8 @@ u32 callback_table_call(int a0) {
 /*
  * pvr_scan_loop_207300  0x8c207300
  * area name: sits between pvr functions (same compilation unit); behaviour name: a loop that only reads
- * called by: alt_entry_20af22, kamui_calls_scan_loop_2103c4, kamui_calls_scan_loop_212220,
- * kamui_calls_scan_loop_212284, kamui_calls_scan_loop_2122ea, ta_calls_scan_loop_20af20
+ * called by: alt_entry_20af22, kamui_calls_scan_loop_212220, kamui_calls_scan_loop_212284,
+ * kamui_calls_scan_loop_2122ea, pvr_calls_scan_loop_2103c4, ta_calls_scan_loop_20af20
  */
 u32 pvr_scan_loop_207300(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -11447,8 +11447,8 @@ u32 alt_entry_20a85a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * pvr_20a876  0x8c20a876
- * called by: g2dma_205a62, kamui_draw_20bdc0, kamui_draw_20c416, kamui_draw_20c7e0, kamui_draw_20c8e0,
- * kamui_draw_211f40, pvr_draw_2076f6, pvr_draw_20a790 (+1 more)
+ * called by: g2dma_205a62, kamui_draw_20bdc0, kamui_draw_20c416, kamui_draw_20c7e0, kamui_draw_211f40, pvr_draw_2076f6,
+ * pvr_draw_20a790, pvr_set_texture_stride (+1 more)
  */
 u32 pvr_20a876(int a0) {
     return *(u32 *)(0xa05f8000 + a0);
@@ -12668,10 +12668,10 @@ u32 kamui_draw_20c7e0(void) {
 }
 
 /*
- * kamui_draw_20c8e0  0x8c20c8e0
- * area name: in the kamui library code range; behaviour name: mostly calls draw functions
+ * pvr_set_texture_stride  0x8c20c8e0
+ * puts the stride field ((a0 & 0x3e0) >> 5) into TEXT_CONTROL (a05f80e4), keeping its other bits
  */
-u32 kamui_draw_20c8e0(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 pvr_set_texture_stride(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
 
@@ -12682,11 +12682,11 @@ u32 kamui_draw_20c8e0(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * kamui_uses_ta_fifo_20c90c  0x8c20c90c
- * area name: in the kamui library code range; behaviour name: its main named callee is ta_fifo_20d128
- * called by: gfxlib_uses_ta_fifo_233f98
+ * pvr_uses_ta_fifo_20c90c  0x8c20c90c
+ * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is
+ * ta_fifo_20d128 called by: gfxlib_uses_ta_fifo_233f98
  */
-int kamui_uses_ta_fifo_20c90c(u32 *a0, u32 *a1, u32 a2, u32 a3) {
+int pvr_uses_ta_fifo_20c90c(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     int iVar1;
 
     iVar1 = ta_fifo_20d128(a0, a1, a2, a3);
@@ -12705,10 +12705,11 @@ int kamui_uses_ta_fifo_20c90c(u32 *a0, u32 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * kamui_uses_ta_fifo_20c980  0x8c20c980
- * area name: in the kamui library code range; behaviour name: its main named callee is ta_fifo_20d128
+ * pvr_uses_ta_fifo_20c980  0x8c20c980
+ * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is
+ * ta_fifo_20d128
  */
-int kamui_uses_ta_fifo_20c980(u32 *a0, u32 *a1, u32 *a2, u32 a3, u32 s0) {
+int pvr_uses_ta_fifo_20c980(u32 *a0, u32 *a1, u32 *a2, u32 a3, u32 s0) {
     u8 *puVar1;
     int iVar2;
 
@@ -12752,10 +12753,11 @@ int kamui_uses_ta_fifo_20c980(u32 *a0, u32 *a1, u32 *a2, u32 a3, u32 s0) {
 }
 
 /*
- * kamui_uses_callback_table_call_20ca32  0x8c20ca32
- * area name: in the kamui library code range; behaviour name: its main named callee is callback_table_call
+ * pvr_uses_callback_table_call_20ca32  0x8c20ca32
+ * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is
+ * callback_table_call
  */
-int kamui_uses_callback_table_call_20ca32(u32 *a0, int a1, u32 a2, u32 a3, u32 s0) {
+int pvr_uses_callback_table_call_20ca32(u32 *a0, int a1, u32 a2, u32 a3, u32 s0) {
     u8 *puVar1;
     u8 *puVar2;
     int iVar3;
@@ -13221,7 +13223,7 @@ u32 kamui_draw_20d114(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
 /*
  * ta_fifo_20d128  0x8c20d128
- * called by: kamui_uses_callback_table_call_20ca32, kamui_uses_ta_fifo_20c90c, kamui_uses_ta_fifo_20c980
+ * called by: pvr_uses_callback_table_call_20ca32, pvr_uses_ta_fifo_20c90c, pvr_uses_ta_fifo_20c980
  */
 u32 ta_fifo_20d128(u32 *a0, int a1, int a2, u32 a3) {
     u32 uVar1;

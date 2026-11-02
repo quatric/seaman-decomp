@@ -8202,10 +8202,10 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_draw_253fe0  0x8c253fe0
- * area name: in the ninja library code range; behaviour name: mostly calls draw functions
+ * ninja_draw_with_saved_state  0x8c253fe0
+ * runs gfxlib_calls_fill_loop_247df4 between draw_state_save and draw_state_restore
  */
-u32 ninja_draw_253fe0(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_draw_with_saved_state(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     draw_state_save(a0, a1, a2, a3);
@@ -10879,9 +10879,9 @@ u32 ninja_uses_ninja_close_file_256164(u32 a0, int *a1, u32 a2, u32 a3) {
 /*
  * matrix_pop_n  0x8c256210
  * pops a0 matrices off the matrix stack
- * called by: CAnimal_draw_029510, CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968,
- * CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8,
- * Class_1298b8_m4_0156a0 (+50 more)
+ * called by: CAnimal_draw_029510, CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968, CEnv_draw_0d2264,
+ * CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8 (+50
+ * more)
  */
 u32 matrix_pop_n(int a0) {
     if (g_8c4aa5a0 - a0 != 0) {
@@ -11032,9 +11032,9 @@ u32 matrix_float_calc_256294(int a0, double *a1, double *a2) {
 /*
  * matrix_push  0x8c256328
  * pushes the current 4x4 matrix onto the matrix stack
- * called by: CAnimal_draw_029510, CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968,
- * CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8,
- * Class_1298b8_m4_0156a0 (+50 more)
+ * called by: CAnimal_draw_029510, CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968, CEnv_draw_0d2264,
+ * CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8 (+50
+ * more)
  */
 u32 matrix_push(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 *puVar1;
@@ -23931,10 +23931,10 @@ u32 ninja_draw_25d7c6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3
 }
 
 /*
- * ninja_draw_25da4c  0x8c25da4c
- * area name: in the ninja library code range; behaviour name: mostly calls draw functions
+ * pvr_soft_reset  0x8c25da4c
+ * pulses the PVR SOFTRESET register (a05f8008): 1 then 0
  */
-u32 ninja_draw_25da4c(void) {
+u32 pvr_soft_reset(void) {
     u32 uVar1;
 
     pvr_20a844(8, 1);
@@ -23943,11 +23943,11 @@ u32 ninja_draw_25da4c(void) {
 }
 
 /*
- * ninja_update_fields_25dac0  0x8c25dac0
- * area name: in the ninja library code range; behaviour name: conditionally writes members
+ * pvr_update_fields_25dac0  0x8c25dac0
+ * area name: sits between pvr functions (same compilation unit); behaviour name: conditionally writes members
  * called by: ninja_uses_libgcc_divide_helper_25dc60
  */
-u32 ninja_update_fields_25dac0(void) {
+u32 pvr_update_fields_25dac0(void) {
     u32 *puVar1;
     u32 uVar2;
     u32 uVar3;
@@ -24274,7 +24274,7 @@ LAB_8c25dde8:
         uStack_38 = uVar4 - 1;
     }
     libgcc_movstr_i4(iVar6, a1, 0xf, ar7_00);
-    ninja_update_fields_25dac0();
+    pvr_update_fields_25dac0();
     g_8c4a9be8 = 0;
     g_8c4a9be4 = 0;
     return 0;
