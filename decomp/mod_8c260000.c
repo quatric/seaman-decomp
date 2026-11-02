@@ -1971,7 +1971,7 @@ u32 busy_wait_50000(void) {
 /*
  * adxf_ChkPrmPt  0x8c261ab2
  * checks the partition id (0..255) and info pointer; -3 with an error message when bad
- * called by: ADXF_LoadPartition, ADXF_sub_261d46
+ * called by: ADXF_AddPartition, ADXF_LoadPartition
  * strings: "E9040801:'ptid' is range outside.(adxf_ChkPrmPt)\n"; "E9040802:'ptinfo' is NULL.(adxf_ChkPrmPt)\n"
  */
 u32 adxf_ChkPrmPt(int a0, int a1, u32 a2) {
@@ -1994,7 +1994,7 @@ u32 adxf_ChkPrmPt(int a0, int a1, u32 a2) {
 /*
  * cri_sub_261ae2  0x8c261ae2
  * area name: in the cri library code range
- * called by: ADXF_LoadPartition, ADXF_sub_261d46
+ * called by: ADXF_AddPartition, ADXF_LoadPartition
  */
 u32 cri_sub_261ae2(int a0, u32 a1, u32 a2, u32 a3) {
     int a4;
@@ -2170,13 +2170,12 @@ int ADXF_LoadPartition(int a0, u32 a1, u32 *a2, int a3) {
 }
 
 /*
- * ADXF_sub_261d46  0x8c261d46
- * name hint from a string it uses: E9040807 can t find s ADXF A; area name: sits between ADXF functions (same
- * compilation unit) strings: "E9040807:can't find '%s'.(ADXF_AddPartition)\n"; "E9040809:read
- * error'%s'.(ADXF_LoadPartition)\n"; "E9040810:'%s' is broken.(ADXF_LoadPartition)\n"; "E9040808:cannot open
- * '%s'.(ADXF_AddPartition)\n"
+ * ADXF_AddPartition  0x8c261d46
+ * adds partition a0 from file a1 (from its error string)
+ * strings: "E9040807:can't find '%s'.(ADXF_AddPartition)\n"; "E9040809:read error'%s'.(ADXF_LoadPartition)\n";
+ * "E9040810:'%s' is broken.(ADXF_LoadPartition)\n"; "E9040808:cannot open '%s'.(ADXF_AddPartition)\n"
  */
-int ADXF_sub_261d46(int a0, u32 a1, int *a2, int a3) {
+int ADXF_AddPartition(int a0, u32 a1, int *a2, int a3) {
     int iVar1;
     int iVar2;
     u32 uVar3;
@@ -2381,7 +2380,7 @@ int ADXF_sub_261f7a(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ADXF_Open_like  0x8c26201c
  * allocates an ADXF handle and opens file a0 on it; NULL on failure
- * called by: ADXF_LoadPartition, ADXF_sub_261d46, CDCGD_sub_0202c0, CDCGD_sub_02041c
+ * called by: ADXF_AddPartition, ADXF_LoadPartition, CDCGD_sub_0202c0, CDCGD_sub_02041c
  */
 int ADXF_Open_like(u32 a0, u32 a1) {
     int a4;
@@ -2487,7 +2486,7 @@ int ADXF_sub_26211c(int a0, u32 a1, u32 a2, u32 a3, int ain0) {
 /*
  * ADXF_Close_like  0x8c262168
  * stops an ADXF handle that is reading and clears it (0x30 bytes)
- * called by: ADXF_LoadPartition, ADXF_Open_like, ADXF_sub_261d46, ADXF_sub_2620c8, ADXF_sub_2621e2, CDCGD_sub_02049c,
+ * called by: ADXF_AddPartition, ADXF_LoadPartition, ADXF_Open_like, ADXF_sub_2620c8, ADXF_sub_2621e2, CDCGD_sub_02049c,
  * game_sub_01f8a4, game_sub_01fab4
  */
 u32 ADXF_Close_like(int a0) {
@@ -3910,7 +3909,7 @@ u32 get_field_2c_2630fe(int a0) {
 
 /*
  * set_field_34_263102  0x8c263102
- * called by: ADXT_sub_264614
+ * called by: adxt_trap_entry
  */
 u32 set_field_34_263102(int a0, u32 a1) {
     u32 in_r0;
@@ -3932,7 +3931,7 @@ u32 set_fields_48_4c(int a0, u32 a1, u32 a2) {
 
 /*
  * set_field_3c_26311e  0x8c26311e
- * called by: ADXT_sub_264614, ADXT_sub_2646fe, ADXT_sub_2647f4
+ * called by: ADXT_sub_2646fe, ADXT_sub_2647f4, adxt_trap_entry
  */
 u32 set_field_3c_26311e(int a0, u32 a1) {
     u32 in_r0;
@@ -3943,7 +3942,7 @@ u32 set_field_3c_26311e(int a0, u32 a1) {
 
 /*
  * set_field_40_263126  0x8c263126
- * called by: ADXT_sub_264614, ADXT_sub_2647f4
+ * called by: ADXT_sub_2647f4, adxt_trap_entry
  */
 u32 set_field_40_263126(int a0, u32 a1) {
     *(u32 *)(a0 + 0x40) = a1;
@@ -3952,7 +3951,7 @@ u32 set_field_40_263126(int a0, u32 a1) {
 
 /*
  * set_field_44_263132  0x8c263132
- * called by: ADXT_sub_264614, ADXT_sub_2647f4
+ * called by: ADXT_sub_2647f4, adxt_trap_entry
  */
 u32 set_field_44_263132(int a0, u32 a1) {
     *(u32 *)(a0 + 0x44) = a1;
@@ -4042,7 +4041,7 @@ u32 get_field_24_s16_wrap(int a0) {
 /*
  * get_field_28_of_field_4  0x8c2631b6
  * returns +0x28 of the object at +0x4
- * called by: ADXT_sub_264614
+ * called by: adxt_trap_entry
  * decompiler: Switch with 1 destination removed at 0x8c2631be
  */
 u32 get_field_28_of_field_4(int a0) {
@@ -4052,7 +4051,7 @@ u32 get_field_28_of_field_4(int a0) {
 /*
  * get_field_2c_of_field_4  0x8c2631c2
  * returns +0x2c of the object at +0x4
- * called by: ADXT_sub_264614, ADXT_sub_2646fe
+ * called by: ADXT_sub_2646fe, adxt_trap_entry
  * decompiler: Switch with 1 destination removed at 0x8c2631ca
  */
 u32 get_field_2c_of_field_4(int a0) {
@@ -4062,7 +4061,7 @@ u32 get_field_2c_of_field_4(int a0) {
 /*
  * get_field_30_of_field_4  0x8c2631ce
  * returns +0x30 of the object at +0x4
- * called by: ADXT_sub_264614, ADXT_sub_2647f4
+ * called by: ADXT_sub_2647f4, adxt_trap_entry
  * decompiler: Switch with 1 destination removed at 0x8c2631d6
  */
 u32 get_field_30_of_field_4(int a0) {
@@ -4072,7 +4071,7 @@ u32 get_field_30_of_field_4(int a0) {
 /*
  * get_field_34_of_field_4  0x8c2631da
  * returns +0x34 of the object at +0x4
- * called by: ADXT_sub_264614, ADXT_sub_2647f4
+ * called by: ADXT_sub_2647f4, adxt_trap_entry
  * decompiler: Switch with 1 destination removed at 0x8c2631e2
  */
 u32 get_field_34_of_field_4(int a0) {
@@ -4405,7 +4404,7 @@ u32 ADXSTM_stop_read(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ADXSTM_get_read_pos  0x8c2634dc
  * read position of the stream's file (+8) relative to its start (+0x10); 0 without a file
- * called by: ADXSTM_Seek_like, ADXSTM_get_read_offset, ADXSTM_rewind, ADXSTM_sub_263472, ADXSTM_sub_2635a4
+ * called by: ADXSTM_Seek_like, ADXSTM_get_read_offset, ADXSTM_rewind, ADXSTM_sub_263472, adxstmf_stat_exec
  */
 int ADXSTM_get_read_pos(int a0, u32 a1) {
     int iVar1;
@@ -4493,7 +4492,7 @@ u32 ADXSTM_set_sector_count(int a0, int a1) {
 /*
  * ADXSTM_sub_26359a  0x8c26359a
  * area name: sits between ADXSTM functions (same compilation unit)
- * called by: ADXSTM_sub_2635a4
+ * called by: adxstmf_stat_exec
  */
 u32 ADXSTM_sub_26359a(void) {
     u32 in_r0;
@@ -4503,11 +4502,12 @@ u32 ADXSTM_sub_26359a(void) {
 }
 
 /*
- * ADXSTM_sub_2635a4  0x8c2635a4
- * name hint from a string it uses: E8101214 GDFS error adxstmf ; area name: sits between ADXSTM functions (same
- * compilation unit) called by: ADXSTM_sub_263702 strings: "E8101214: GDFS error (adxstmf_stat_exec)\n"
+ * adxstmf_stat_exec  0x8c2635a4
+ * ADX stream file state machine step (from its error string)
+ * called by: ADXSTM_sub_263702
+ * strings: "E8101214: GDFS error (adxstmf_stat_exec)\n"
  */
-int ADXSTM_sub_2635a4(int a0, int a1, u8 *a2, u8 *a3) {
+int adxstmf_stat_exec(int a0, int a1, u8 *a2, u8 *a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -4609,7 +4609,7 @@ u32 ADXSTM_sub_263702(int a0, u32 a1, u32 a2, u32 a3) {
     irq_disable_nested(a0, a1, a2, a3, a0);
     ain0 = (int)*(char *)(a4 + 1);
     if (ain0 == 2) {
-        ain0 = ADXSTM_sub_2635a4(a4, a1, a2, a3);
+        ain0 = adxstmf_stat_exec(a4, a1, a2, a3);
         a0 = a4;
     }
     uVar1 = irq_restore_nested(a0, a1, a2, a3, ain0);
@@ -4705,7 +4705,7 @@ u32 ADXSTM_sub_2637ae(int a0, u32 *a1) {
 /*
  * ADXSTM_sub_2637ca  0x8c2637ca
  * area name: sits between ADXSTM functions (same compilation unit)
- * called by: ADXF_LoadPartition, ADXF_sub_261d46, ADXF_sub_261f7a
+ * called by: ADXF_AddPartition, ADXF_LoadPartition, ADXF_sub_261f7a
  */
 u32 ADXSTM_sub_2637ca(u32 a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5652,11 +5652,11 @@ u32 ADXT_StartMemIdx(int a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * ADXT_sub_264614  0x8c264614
- * name hint from a string it uses: E8101201 not enough data adx; area name: sits between ADXT functions (same
- * compilation unit) strings: "E8101201: not enough data (adxt_trap_entry)\n"
+ * adxt_trap_entry  0x8c264614
+ * ADXT trap entry (from its error string)
+ * strings: "E8101201: not enough data (adxt_trap_entry)\n"
  */
-u32 ADXT_sub_264614(int a0) {
+u32 adxt_trap_entry(int a0) {
     int ar5_00;
     u32 uVar1;
     int s4;
@@ -5869,9 +5869,9 @@ int ADXT_sub_2647f4(int a0, u32 a1, int a2, u32 a3) {
             set_field_3c_26311e(uVar5, uVar2);
             set_field_44_263132(uVar5, 0);
             set_field_40_263126(uVar5, 0);
-            ar5_02 = ADXT_sub_264614;
+            ar5_02 = adxt_trap_entry;
             a2 = a0;
-            set_fields_48_4c(uVar5, ADXT_sub_264614, a0);
+            set_fields_48_4c(uVar5, adxt_trap_entry, a0);
         }
         iVar3 = get_field_14_of_field_4(uVar5);
         uVar2 = get_field_e_s8_wrap(uVar5);
@@ -11460,11 +11460,11 @@ u32 mwRnaDestroy(u8 *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * mwRna_sub_268cee  0x8c268cee
- * name hint from a string it uses: E1205 Illigal parameter MWRN; area name: sits between mwRna functions (same
- * compilation unit) strings: "E1205:Illigal parameter (MWRNA=NULL)"
+ * mwRnaStart_like  0x8c268cee
+ * stops the output if needed, rewinds it and starts playing (state 4)
+ * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
-u32 mwRna_sub_268cee(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 mwRnaStart_like(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 in_stack_fffffff4;
 
@@ -11497,7 +11497,7 @@ u32 noop_268d60(void) {
 /*
  * mwRnaStop  0x8c268d64
  * stops an mwRna output: play switch off, buffers reset, status cleared (interrupts masked)
- * called by: mwRnaDestroy, mwRna_stop_and_destroy, mwRna_sub_268cee, sd_sub_268a24, sd_sub_268a36
+ * called by: mwRnaDestroy, mwRnaStart_like, mwRna_stop_and_destroy, sd_sub_268a24, sd_sub_268a36
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRnaStop(int a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -11594,7 +11594,7 @@ int mwRna_all_channels_ready(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * mwRna_sub_268ea8  0x8c268ea8
  * area name: sits between mwRna functions (same compilation unit)
- * called by: mwRnaGetTime, mwRna_sub_2694a4, mwRna_sub_26962c
+ * called by: mwRnaGetTime, mwRna_sub_2694a4, mwRna_suspend
  */
 u32 mwRna_sub_268ea8(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -11712,7 +11712,7 @@ u32 mwRna_sub_26905a(int a0) {
 /*
  * mwRnaPause  0x8c269086
  * named from the library error message it prints (mwRnaPause)
- * called by: mwRnaDiscardData, mwRna_sub_2690d8, mwRna_sub_26962c
+ * called by: mwRnaDiscardData, mwRna_sub_2690d8, mwRna_suspend
  * strings: "E1209:mwRnaPause Time out of wait for DMA finish"
  */
 int mwRnaPause(u32 a0, u32 unused_a1, u32 a2, u32 a3, int ain0) {
@@ -11744,7 +11744,7 @@ int mwRnaPause(u32 a0, u32 unused_a1, u32 a2, u32 a3, int ain0) {
  * mwRna_sub_2690d8  0x8c2690d8
  * name hint from a string it uses: E1205 Illigal parameter MWRN; area name: sits between mwRna functions (same
  * compilation unit) called by: ADXT_sub_2647f4, ADXT_sub_264b14, ADXT_sub_264ba0, cri_sub_2629d0, cri_sub_263c64,
- * mwRnaStop, mwRna_sub_268cee, mwRna_sub_2694a4 strings: "E1205:Illigal parameter (MWRNA=NULL)"
+ * mwRnaStart_like, mwRnaStop, mwRna_sub_2694a4 strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRna_sub_2690d8(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -11799,8 +11799,8 @@ u32 mwRna_sub_2690d8(int a0, int a1, u32 a2, u32 a3) {
 /*
  * mwRna_set_play_sw  0x8c2691b8
  * a1 = 1 starts (vtable +0x10, sets bit 1), 0 stops (vtable +0x14) an mwRna handle's output
- * called by: ADXT_stop_when_drained, ADXT_sub_264a42, ADXT_sub_264ba0, cri_sub_263c64, mwRnaStop,
- * mwRna_set_play_sw_wrap, mwRna_sub_2694a4, mwRna_sub_26962c (+1 more) strings: "E1205:Illigal parameter (MWRNA=NULL)"
+ * called by: ADXT_stop_when_drained, ADXT_sub_264a42, ADXT_sub_264ba0, cri_sub_263c64, mwRnaStop, mwRna_resume,
+ * mwRna_set_play_sw_wrap, mwRna_sub_2694a4 (+1 more) strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRna_set_play_sw(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -12061,11 +12061,11 @@ u32 mwRna_sub_2695e4(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * mwRna_sub_26962c  0x8c26962c
- * name hint from a string it uses: E1205 Illigal parameter MWRN; area name: sits between mwRna functions (same
- * compilation unit) strings: "E1205:Illigal parameter (MWRNA=NULL)"
+ * mwRna_suspend  0x8c26962c
+ * remembers the play/output state and stops output (+7 = 1)
+ * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
-u32 mwRna_sub_26962c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 mwRna_suspend(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     u32 uVar3;
@@ -12098,11 +12098,11 @@ u32 mwRna_sub_26962c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * mwRna_sub_2696aa  0x8c2696aa
- * name hint from a string it uses: E1205 Illigal parameter MWRN; area name: sits between mwRna functions (same
- * compilation unit) strings: "E1205:Illigal parameter (MWRNA=NULL)"
+ * mwRna_resume  0x8c2696aa
+ * restarts output if it was on when suspended (+7 = 0)
+ * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
-u32 mwRna_sub_2696aa(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 mwRna_resume(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 in_stack_fffffff4;
 
@@ -12123,11 +12123,11 @@ u32 mwRna_sub_2696aa(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * mwRna_sub_269718  0x8c269718
- * name hint from a string it uses: E1205 Illigal parameter MWRN; area name: sits between mwRna functions (same
- * compilation unit) strings: "E1205:Illigal parameter (MWRNA=NULL)"
+ * mwRna_is_suspended  0x8c269718
+ * the suspend flag at +7
+ * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
-u32 mwRna_sub_269718(int a0) {
+u32 mwRna_is_suspended(int a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -12143,7 +12143,7 @@ u32 mwRna_sub_269718(int a0) {
 /*
  * mwRna_sub_269738  0x8c269738
  * name hint from a string it uses: E1205 Illigal parameter MWRN; area name: sits between mwRna functions (same
- * compilation unit) called by: mwRna_sub_26962c strings: "E1205:Illigal parameter (MWRNA=NULL)"
+ * compilation unit) called by: mwRna_suspend strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRna_sub_269738(int a0, int a1, u8 *a2, u32 a3) {
     u32 uVar1;
@@ -12331,7 +12331,7 @@ u32 mwRna_get_status(int a0) {
 /*
  * mwRna_is_playing  0x8c269a30
  * bit 0 of +1 of an mwRna handle; -1 for NULL
- * called by: mwRnaDiscardData, mwRna_sub_268ea8, mwRna_sub_2690d8, mwRna_sub_2694a4, mwRna_sub_26962c, mwRna_sub_269738
+ * called by: mwRnaDiscardData, mwRna_sub_268ea8, mwRna_sub_2690d8, mwRna_sub_2694a4, mwRna_sub_269738, mwRna_suspend
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRna_is_playing(int a0) {
@@ -12350,7 +12350,7 @@ u32 mwRna_is_playing(int a0) {
 /*
  * mwRna_is_output_on  0x8c269a56
  * bit 1 of +1 of an mwRna handle; -1 for NULL
- * called by: mwRnaDiscardData, mwRna_set_play_sw, mwRna_sub_2694a4, mwRna_sub_26962c
+ * called by: mwRnaDiscardData, mwRna_set_play_sw, mwRna_sub_2694a4, mwRna_suspend
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRna_is_output_on(int a0) {
@@ -12791,11 +12791,11 @@ u32 thunk_FUN_8c26a130(u32 unused_a0, u32 a1) {
 }
 
 /*
- * mwRna_sub_269f50  0x8c269f50
- * name hint from a string it uses: E1205 Illigal parameter MWRN; area name: sits between mwRna functions (same
- * compilation unit) strings: "E1205:Illigal parameter (MWRNA=NULL)"
+ * mwRna_set_param3  0x8c269f50
+ * stores a1, a2 at +0x7c/+0x80 and passes them to the output (command 3)
+ * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
-u32 mwRna_sub_269f50(int a0, u32 a1, u32 a2) {
+u32 mwRna_set_param3(int a0, u32 a1, u32 a2) {
     u32 r7;
     u32 uVar1;
 
@@ -12812,11 +12812,11 @@ u32 mwRna_sub_269f50(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * mwRna_sub_269fa0  0x8c269fa0
- * name hint from a string it uses: E1205 Illigal parameter MWRN; area name: sits between mwRna functions (same
- * compilation unit) strings: "E1205:Illigal parameter (MWRNA=NULL)"
+ * mwRna_get_param3  0x8c269fa0
+ * *a1, *a2 = the values at +0x7c/+0x80
+ * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
-u32 mwRna_sub_269fa0(int a0, u32 *a1, u32 *a2) {
+u32 mwRna_get_param3(int a0, u32 *a1, u32 *a2) {
     u32 r7;
     u32 uVar1;
     u32 in_PR;
@@ -12904,8 +12904,8 @@ u32 noop_26a0f8(void) {
 /*
  * sd_irq_disable  0x8c26a100
  * saves SR.IMASK in *a0 and returns SR with IMASK 15
- * called by: mwRnaDestroy, mwRnaDiscardData, mwRnaStop, mwRna_set_play_sw, mwRna_sub_268cee, mwRna_sub_268ea8,
- * mwRna_sub_268f3e, mwRna_sub_2690d8 (+5 more)
+ * called by: mwRnaDestroy, mwRnaDiscardData, mwRnaStart_like, mwRnaStop, mwRna_resume, mwRna_set_play_sw,
+ * mwRna_sub_268ea8, mwRna_sub_268f3e (+5 more)
  */
 u32 sd_irq_disable(u32 *a0) {
     u32 uVar1;
@@ -12930,8 +12930,8 @@ u32 sd_irq_disable(u32 *a0) {
 /*
  * sd_irq_restore  0x8c26a118
  * SR with IMASK from *a0
- * called by: mwRnaDestroy, mwRnaDiscardData, mwRnaStop, mwRna_set_play_sw, mwRna_sub_268cee, mwRna_sub_268ea8,
- * mwRna_sub_268f3e, mwRna_sub_2690d8 (+5 more)
+ * called by: mwRnaDestroy, mwRnaDiscardData, mwRnaStart_like, mwRnaStop, mwRna_resume, mwRna_set_play_sw,
+ * mwRna_sub_268ea8, mwRna_sub_268f3e (+5 more)
  */
 u32 sd_irq_restore(u32 *a0) {
     u8 in_MD;
@@ -15344,7 +15344,7 @@ u32 game_sub_26bd86(int a0, int a1, int a2, u32 *a3) {
 /*
  * span_take  0x8c26be30
  * takes at most a1 bytes from the span a2 (pointer, length) into a3 and advances it
- * called by: ADXSTM_sub_2635a4, cri_sub_262f02, cri_sub_264308, game_sub_26bb16, mwRnaDiscardData, mwRna_sub_268f3e,
+ * called by: adxstmf_stat_exec, cri_sub_262f02, cri_sub_264308, game_sub_26bb16, mwRnaDiscardData, mwRna_sub_268f3e,
  * ta_sub_262c80
  */
 u32 span_take(u32 a0, int a1, int *a2, int *a3) {

@@ -4237,7 +4237,7 @@ u32 shinobi_sub_202a80(u32 *a0, int a1, u32 a2, int a3, int s0) {
     }
     iVar1 = get_g_8c2758e8();
     if (iVar1 == -0x80000000) {
-        iVar1 = shinobi_sub_2036a0(g_8c4aa200, a0);
+        iVar1 = kamui_sub_2036a0(g_8c4aa200, a0);
         if (iVar1 != 0) {
             return iVar1;
         }
@@ -4554,7 +4554,7 @@ u32 sh4_dmac_203160(void) {
 /*
  * sh4_sub_203298  0x8c203298
  * area name: sits between sh4 functions (same compilation unit)
- * called by: pvr_sub_20a7e0, sh4_sub_203320, ta_sub_210dfc
+ * called by: pvr_sub_20a7e0, shinobi_sub_203320, ta_sub_210dfc
  */
 u32 sh4_sub_203298(int a0) {
     u32 uVar1;
@@ -4586,11 +4586,11 @@ u32 sh4_sub_203298(int a0) {
 }
 
 /*
- * sh4_sub_203320  0x8c203320
- * area name: sits between sh4 functions (same compilation unit)
+ * shinobi_sub_203320  0x8c203320
+ * area name: in the shinobi library code range
  * called by: kamui_sub_20cd92, vram64_20a8e0
  */
-u32 sh4_sub_203320(u32 a0, u32 a1) {
+u32 shinobi_sub_203320(u32 a0, u32 a1) {
     int iVar1;
 
     do {
@@ -4620,7 +4620,7 @@ u32 strupr(char *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * shinobi_sub_203400  0x8c203400
  * area name: in the shinobi library code range
- * called by: shinobi_sub_2034c0, shinobi_sub_2034cc
+ * called by: kamui_cfg_texture_memory, kamui_cfg_texture_memory_b
  */
 u32 shinobi_sub_203400(void) {
     u32 in_r0;
@@ -4742,12 +4742,12 @@ u32 shinobi_sub_203406(void) {
 }
 
 /*
- * shinobi_sub_2034c0  0x8c2034c0
- * area name: in the shinobi library code range
+ * kamui_cfg_texture_memory  0x8c2034c0
+ * reads HARDWARE/EnableTexture16MB and sets the texture memory to 16 MB or 8 MB
  * called by: kamui_sub_211120, shinobi_sub_206162
  * strings: "HARDWARE"; "EnableTexture16MB"; "HARDWARE"; "EnableTexture16MB"
  */
-u32 shinobi_sub_2034c0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 kamui_cfg_texture_memory(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -4756,7 +4756,7 @@ u32 shinobi_sub_2034c0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
     if (g_8c2753e8 == 1) {
         uVar5 = 0;
-        iVar1 = kamui_cfg_texture16mb("HARDWARE", "EnableTexture16MB", 0);
+        iVar1 = kamui_cfg_get("HARDWARE", "EnableTexture16MB", 0);
         if (iVar1 == 1) {
             g_8c4a9bc0 = 0x1000000;
             uVar2 = 0xe4;
@@ -4795,7 +4795,7 @@ u32 shinobi_sub_2034c0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         }
     } else {
         uVar5 = 0;
-        iVar1 = kamui_cfg_texture16mb("HARDWARE", "EnableTexture16MB", 0);
+        iVar1 = kamui_cfg_get("HARDWARE", "EnableTexture16MB", 0);
         if (iVar1 == 1) {
             g_8c4a9bc0 = 0x1000000;
             uVar2 = 0xe4;
@@ -4841,11 +4841,11 @@ u32 shinobi_sub_2034c0(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_2034cc  0x8c2034cc
- * name hint from a string it uses: HARDWARE; area name: in the shinobi library code range
+ * kamui_cfg_texture_memory_b  0x8c2034cc
+ * alternate entry of kamui_cfg_texture_memory
  * strings: "HARDWARE"; "EnableTexture16MB"; "HARDWARE"; "EnableTexture16MB"
  */
-u32 shinobi_sub_2034cc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 kamui_cfg_texture_memory_b(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int *in_r3;
     u32 uVar2;
@@ -4855,7 +4855,7 @@ u32 shinobi_sub_2034cc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
     if (*in_r3 == 1) {
         uVar5 = 0;
-        iVar1 = kamui_cfg_texture16mb("HARDWARE", "EnableTexture16MB", 0);
+        iVar1 = kamui_cfg_get("HARDWARE", "EnableTexture16MB", 0);
         if (iVar1 == 1) {
             g_8c4a9bc0 = 0x1000000;
             uVar2 = 0xe4;
@@ -4894,7 +4894,7 @@ u32 shinobi_sub_2034cc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         }
     } else {
         uVar5 = 0;
-        iVar1 = kamui_cfg_texture16mb("HARDWARE", "EnableTexture16MB", 0);
+        iVar1 = kamui_cfg_get("HARDWARE", "EnableTexture16MB", 0);
         if (iVar1 == 1) {
             g_8c4a9bc0 = 0x1000000;
             uVar2 = 0xe4;
@@ -4940,11 +4940,11 @@ u32 shinobi_sub_2034cc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_2036a0  0x8c2036a0
- * area name: in the shinobi library code range
+ * kamui_sub_2036a0  0x8c2036a0
+ * area name: sits between kamui functions (same compilation unit)
  * called by: shinobi_sub_202a80
  */
-int shinobi_sub_2036a0(u32 a0, int a1) {
+int kamui_sub_2036a0(u32 a0, int a1) {
     u32 uVar1;
     int iVar2;
     u32 uVar3;
@@ -4986,10 +4986,10 @@ int shinobi_sub_2036a0(u32 a0, int a1) {
 }
 
 /*
- * shinobi_sub_2036ac  0x8c2036ac
- * area name: in the shinobi library code range
+ * kamui_sub_2036ac  0x8c2036ac
+ * area name: sits between kamui functions (same compilation unit)
  */
-int shinobi_sub_2036ac(u32 unused_a0, int a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+int kamui_sub_2036ac(u32 unused_a0, int a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     int iVar2;
     u32 uVar3;
@@ -5920,7 +5920,7 @@ u32 shinobi_sub_2043d4(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
 /*
  * shinobi_sub_2046d2  0x8c2046d2
  * area name: in the shinobi library code range
- * called by: shinobi_sub_2036a0, shinobi_sub_2036ac, shinobi_sub_20374e, shinobi_sub_203820
+ * called by: kamui_sub_2036a0, kamui_sub_2036ac, shinobi_sub_20374e, shinobi_sub_203820
  */
 u32 shinobi_sub_2046d2(u32 a0, u32 a1, u32 *a2, u32 a3) {
     u16 *puVar1;
@@ -6333,8 +6333,8 @@ u32 shinobi_sub_204cfc(u32 a0, u16 *a1, u32 unused_a2, u32 a3) {
 /*
  * pool47eba8_alloc  0x8c204e40
  * marks and returns the first free 0x18-byte entry of the pool at 0x8c47eba8; NULL when full
- * called by: shinobi_sub_2034c0, shinobi_sub_2034cc, shinobi_sub_2043d4, shinobi_sub_2046d2, shinobi_sub_2048aa,
- * shinobi_sub_2049ec, ta_fifo_2050cc, ta_fifo_2050de (+1 more)
+ * called by: kamui_cfg_texture_memory, kamui_cfg_texture_memory_b, shinobi_sub_2043d4, shinobi_sub_2046d2,
+ * shinobi_sub_2048aa, shinobi_sub_2049ec, ta_fifo_2050cc, ta_fifo_2050de (+1 more)
  */
 u16 *pool47eba8_alloc(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     u16 *puVar1;
@@ -7300,7 +7300,7 @@ u32 shinobi_sub_205948(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 
 /*
  * vram64_to_vram32  0x8c2059be
  * converts a 64-bit-bus VRAM offset to the 32-bit (interleaved bank) view
- * called by: shinobi_sub_2036a0, shinobi_sub_2036ac, shinobi_sub_20374e, shinobi_sub_203820
+ * called by: kamui_sub_2036a0, kamui_sub_2036ac, shinobi_sub_20374e, shinobi_sub_203820
  */
 int vram64_to_vram32(u32 a0) {
     int iVar1;
@@ -7523,26 +7523,27 @@ u32 noop_205dd4(void) {
 }
 
 /*
- * kamui_cfg_texture16mb  0x8c205e00
- * reads the "HARDWARE" / "EnableTexture16MB" configuration option
- * called by: kamui_set_video_mode_like, kamui_sub_205e64, kamui_sub_207a9c, kamui_sub_211120, shinobi_sub_2034c0,
- * shinobi_sub_2034cc strings: "HARDWARE"; "EnableTexture16MB"
+ * kamui_cfg_get  0x8c205e00
+ * configuration lookup (section a0, key a1, default a2); this build answers 0 for HARDWARE/EnableTexture16MB and the
+ * default otherwise called by: kamui_cfg_texture_memory, kamui_cfg_texture_memory_b, kamui_init_defaults,
+ * kamui_set_display_mode_cfg, kamui_set_video_mode_like, kamui_sub_211120 strings: "HARDWARE"; "EnableTexture16MB"
  */
-u32 kamui_cfg_texture16mb(u32 a0, u32 a1, u32 a2) {
+u32 kamui_cfg_get(u32 a0, u32 a1, u32 a2) {
     int iVar1;
-    iVar1 = libc_sub_01439c(a0, "HARDWARE");
-    if ((iVar1 == 0) && (iVar1 = libc_sub_01439c(a1, "EnableTexture16MB"), a2 = a1, iVar1 == 0)) {
+    iVar1 = strcmp_01439c(a0, "HARDWARE");
+    if ((iVar1 == 0) && (iVar1 = strcmp_01439c(a1, "EnableTexture16MB"), a2 = a1, iVar1 == 0)) {
         a2 = 0;
     }
     return a2;
 }
 
 /*
- * kamui_sub_205e64  0x8c205e64
- * name hint from a string it uses: r nCOPYRIGHT C NEC Corporati; area name: sits between kamui functions (same
- * compilation unit) called by: kamui_set_video_mode_like strings: "RENDER"; "VSYNCCount"; "RENDER"; "RegionSize" ...
+ * kamui_init_defaults  0x8c205e64
+ * sets up the Kamui state block at 8c4a9ba8 with its default values
+ * called by: kamui_set_video_mode_like
+ * strings: "RENDER"; "VSYNCCount"; "RENDER"; "RegionSize" ...
  */
-u32 kamui_sub_205e64(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 kamui_init_defaults(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -7578,7 +7579,7 @@ u32 kamui_sub_205e64(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     g_8c4a9db4 = 0;
     g_8c4a9db8 = 0;
     uVar6 = 1;
-    g_8c4a9d8c = kamui_cfg_texture16mb("RENDER", "VSYNCCount", 1);
+    g_8c4a9d8c = kamui_cfg_get("RENDER", "VSYNCCount", 1);
     g_8c4a9d8c = g_8c4a9d8c + -1;
     g_8c4a9bbc = 0x10000;
     g_8c4a9bc0 = 0x800000;
@@ -7590,10 +7591,10 @@ u32 kamui_sub_205e64(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     g_8c4a9e54 = 1;
     g_8c4a9d90 = g_8c4a9d8c;
     ta_sub_20828c(0x800000);
-    uVar1 = kamui_cfg_texture16mb("RENDER", "RegionSize", 0x6000);
-    uVar2 = kamui_cfg_texture16mb("RENDER", "ObjListSize", 0x7a000);
-    uVar3 = kamui_cfg_texture16mb("RENDER", "ISPParamSize", 0x180000);
-    g_8c4a9c44 = kamui_cfg_texture16mb("RENDER", "TSPParamSize", 0x180000);
+    uVar1 = kamui_cfg_get("RENDER", "RegionSize", 0x6000);
+    uVar2 = kamui_cfg_get("RENDER", "ObjListSize", 0x7a000);
+    uVar3 = kamui_cfg_get("RENDER", "ISPParamSize", 0x180000);
+    g_8c4a9c44 = kamui_cfg_get("RENDER", "TSPParamSize", 0x180000);
     g_8c4a9c40 = uVar3 & 0xfffff800;
     g_8c4a9c44 = g_8c4a9c44 & 0xfffff800;
     a7 = (uVar1 & 0xfffff800) + (uVar2 & 0xfffff800);
@@ -7621,13 +7622,13 @@ u32 kamui_sub_205e64(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     g_8c4a9fd8 = 0;
     g_8c4a9fe0 = 0;
     g_8c4a9fdc = 1;
-    g_8c4a9fec = kamui_cfg_texture16mb("VertexBuffer", "BufferBase", 0xacc00000);
-    g_8c4a9ff0 = kamui_cfg_texture16mb("VertexBuffer", "BufferSize", 0x400000);
-    g_8c4a9c10 = kamui_cfg_texture16mb("RENDER", "PoolingTAStatus", 0);
-    g_8c4a9dd0 = kamui_cfg_texture16mb("RENDER", "RenderTimeOut", 10);
-    g_8c4a9dd4 = kamui_cfg_texture16mb("RENDER", "VertexTimeOut", 10);
+    g_8c4a9fec = kamui_cfg_get("VertexBuffer", "BufferBase", 0xacc00000);
+    g_8c4a9ff0 = kamui_cfg_get("VertexBuffer", "BufferSize", 0x400000);
+    g_8c4a9c10 = kamui_cfg_get("RENDER", "PoolingTAStatus", 0);
+    g_8c4a9dd0 = kamui_cfg_get("RENDER", "RenderTimeOut", 10);
+    g_8c4a9dd4 = kamui_cfg_get("RENDER", "VertexTimeOut", 10);
     uVar6 = 10;
-    g_8c4a9dd8 = kamui_cfg_texture16mb("RENDER", "VSYNCTimeOut", 10);
+    g_8c4a9dd8 = kamui_cfg_get("RENDER", "VSYNCTimeOut", 10);
     g_8c4a9d80 = 0;
     g_8c4a9d84 = 1;
     g_8c4a9c14 = 0xf;
@@ -7661,7 +7662,7 @@ u32 shinobi_sub_206162(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     noop_20a840();
     g2dma_205a62(unused_a0, unused_a1, a2, a3);
     ninja_sub_25d780();
-    shinobi_sub_2034c0(unused_a0, unused_a1, a2, a3);
+    kamui_cfg_texture_memory(unused_a0, unused_a1, a2, a3);
     shinobi_sub_206300();
     shinobi_sub_205d80(unused_a0, unused_a1, a2, a3);
     g_8c4aa004 = 0x100000;
@@ -8543,7 +8544,7 @@ u32 pvr_sub_207344(code *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * pvr_sub_2073a0  0x8c2073a0
  * area name: sits between pvr functions (same compilation unit)
- * called by: kamui_sub_205e64
+ * called by: kamui_init_defaults
  */
 u32 pvr_sub_2073a0(u32 a0) {
     u32 *puVar1;
@@ -8900,7 +8901,7 @@ u32 shinobi_sub_2078d8(u32 a0, u32 a1) {
 /*
  * pvr_write_saved_regs  0x8c2079a0
  * writes the saved PVR register values back to their registers
- * called by: kamui_sub_207a9c, shinobi_sub_207da0
+ * called by: kamui_set_display_mode_cfg, shinobi_sub_207da0
  */
 u32 pvr_write_saved_regs(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -8943,12 +8944,12 @@ u32 kamui_set_video_mode_like(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     char *ar5_00;
     u32 ar6_00;
 
-    kamui_sub_205e64(a0, a1, unused_a2, a3);
+    kamui_init_defaults(a0, a1, unused_a2, a3);
     if (((int)a0 < 3) && (-1 < (int)a0)) {
         ar4_00 = "KAMUI";
         ar5_00 = "VideoMode";
         ar6_00 = a0 & 3;
-        g_8c4a9bc8 = kamui_cfg_texture16mb("KAMUI", "VideoMode", ar6_00);
+        g_8c4a9bc8 = kamui_cfg_get("KAMUI", "VideoMode", ar6_00);
         shinobi_sub_206162(ar4_00, ar5_00, ar6_00, a3);
         return 0;
     }
@@ -8956,12 +8957,12 @@ u32 kamui_set_video_mode_like(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * kamui_sub_207a9c  0x8c207a9c
- * name hint from a string it uses: DisplayMode; area name: sits between kamui functions (same compilation unit)
+ * kamui_set_display_mode_cfg  0x8c207a9c
+ * reads KAMUI DisplayMode, AntiAlias and Dither and sets the display mode
  * called by: ninja_sub_258604, pvr_25825a
  * strings: "KAMUI"; "DisplayMode"; "KAMUI"; "AntiAlias" ...
  */
-int kamui_sub_207a9c(u32 a0, int a1, u32 a2, u32 a3) {
+int kamui_set_display_mode_cfg(u32 a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -8978,10 +8979,10 @@ int kamui_sub_207a9c(u32 a0, int a1, u32 a2, u32 a3) {
     iVar5 = 0;
     ar7_00 = a3;
     kamui_sub_21214e();
-    uVar1 = kamui_cfg_texture16mb("KAMUI", "DisplayMode", a0);
-    iVar2 = kamui_cfg_texture16mb("KAMUI", "AntiAlias", a3);
+    uVar1 = kamui_cfg_get("KAMUI", "DisplayMode", a0);
+    iVar2 = kamui_cfg_get("KAMUI", "AntiAlias", a3);
     a5 = "Dither";
-    iVar3 = kamui_cfg_texture16mb("KAMUI", "Dither", a2);
+    iVar3 = kamui_cfg_get("KAMUI", "Dither", a2);
     g_8c4a9bc8 = uVar1 & 3;
     if ((uVar1 & 0x42) == 0x42) {
         uStack_28 = uVar1;
@@ -9349,7 +9350,7 @@ int ta_param_push2_if(u32 a0, int a1, u32 a2, u32 a3) {
 /*
  * ta_sub_20828c  0x8c20828c
  * area name: sits between ta functions (same compilation unit)
- * called by: kamui_sub_205e64
+ * called by: kamui_init_defaults
  */
 u32 ta_sub_20828c(u32 a0) {
     u32 *puVar1;
@@ -11385,8 +11386,8 @@ u32 noop_20a840(void) {
 
 /*
  * pvr_20a844  0x8c20a844
- * called by: g2dma_205a62, kamui_sub_20bdc0, kamui_sub_20c416, kamui_sub_20c7e0, kamui_sub_21035c, kamui_sub_211f40,
- * ninja_sub_25d780, ninja_sub_25da4c (+28 more)
+ * called by: g2dma_205a62, kamui_cfg_texture_memory, kamui_cfg_texture_memory_b, kamui_sub_20bdc0, kamui_sub_20c416,
+ * kamui_sub_20c7e0, kamui_sub_21035c, kamui_sub_211f40 (+28 more)
  */
 u32 pvr_20a844(int a0, u32 a1) {
     *(u32 *)(a0 + 0xa05f8000) = a1;
@@ -11493,7 +11494,7 @@ u32 vram64_20a8e0(u32 a0, u32 a1, u32 a2) {
             memcpy_words(a0 + ar6_01 + -0x5c000000, ar5_00, ar6_00);
         }
         if (g_8c4a9fdc == 1) {
-            sh4_sub_203320(g_8c4a9fd8, ar5_00);
+            shinobi_sub_203320(g_8c4a9fd8, ar5_00);
         }
     } else {
         memcpy_words(a0 + 0xa4000000, a1, a2);
@@ -12052,7 +12053,7 @@ u32 ta_fifo_20b708(u32 a0) {
 
 /*
  * noop_20b77a  0x8c20b77a
- * called by: kamui_sub_205e64
+ * called by: kamui_init_defaults
  */
 u32 noop_20b77a(void) {
     u32 in_r0;
@@ -13022,7 +13023,7 @@ u32 kamui_sub_20cd92(int a0, u32 a1, u32 a2, u32 a3, int s0, int s4) {
             } while (iVar2 == iVar5);
             if (iVar2 == 0) {
                 if (s4 == 1) {
-                    sh4_sub_203320(*apuStack_1c[0], 0);
+                    shinobi_sub_203320(*apuStack_1c[0], 0);
                 }
                 return 0;
             }

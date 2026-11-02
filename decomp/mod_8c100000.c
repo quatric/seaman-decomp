@@ -2005,7 +2005,7 @@ u32 noop_102824(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * report_error_message  0x8c102828
  * called by: C3DRenderPly_SetMem, CAnimBody_AdvanceFrame_033b98, CAnimBody_AdvanceFrame_033d88, CAnimBody_SetFrame,
- * CAnimBody_SetInterpolate, CAnimal_LoadGRWait, CAnimal_LoadGResourceWait, CAnimal_LoadMFile_step (+37 more)
+ * CAnimBody_SetInterpolate, CAnimal_LoadGRReq, CAnimal_LoadGRReq_b, CAnimal_LoadGRWait (+37 more)
  */
 u32 report_error_message(u32 a0, u32 a1, int a2, u32 a3) {
     int ar6_00;
@@ -8322,7 +8322,7 @@ u32 asr_sub_10ca58(int *a0, u32 a1, int *a2, int *a3) {
     if (a0[1] != 0) {
         do {
             uVar3 = a1;
-            iVar2 = libc_sub_0109e8(iVar6, a1);
+            iVar2 = strcmp_word(iVar6, a1);
             if (iVar2 == 0) {
                 *a3 = *a3 + 1;
             }
@@ -8345,7 +8345,7 @@ u32 asr_sub_10ca58(int *a0, u32 a1, int *a2, int *a3) {
             if (a0[1] != 0) {
                 do {
                     uVar3 = a1;
-                    iVar6 = libc_sub_0109e8(iVar4, a1);
+                    iVar6 = strcmp_word(iVar4, a1);
                     if (iVar6 == 0) {
                         iVar6 = *a3;
                         *a3 = iVar6 + 1;

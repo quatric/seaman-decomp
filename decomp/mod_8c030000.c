@@ -683,7 +683,7 @@ u32 flags6_clear_all(u8 *a0, u32 a1, u32 a2, u32 a3) {
  * Class_129cbc_ctor  0x8c030fa0
  * stores the vtable 0x8c129cbc and constructs the object's Vec3 members
  * called by: CFrogManEgg_ctor, CFrogManLine_sub_03a5a4, CHigyoEgg_ctor, CHigyoLine_sub_06e4ec, CMothEgg_ctor,
- * CMothLine_sub_08dad4, CSpiderEgg_ctor, CSpiderLine_sub_0a6164 (+3 more)
+ * CMothLine_sub_08dad4, CMushroomerEgg_ctor, CSpiderEgg_ctor (+3 more)
  */
 u32 *Class_129cbc_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     *a0 = (&DATA_8c129cbc);
@@ -3171,7 +3171,7 @@ u32 game_sub_032d48(int a0, int a1, int a2, int a3) {
 /*
  * game_sub_0332b4  0x8c0332b4
  * area name: game code; nothing names its area yet
- * called by: CAnimal_sub_036adc, CSquidLine_sub_085c3c, game_sub_031eb0, game_sub_032d48
+ * called by: CSquidLine_sub_085c3c, game_sub_031eb0, game_sub_032d48, game_sub_036adc
  */
 u32 game_sub_0332b4(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0, float *s4) {
     u32 uVar1;
@@ -3509,7 +3509,7 @@ u32 se_sub_033530(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_0336e8  0x8c0336e8
  * area name: game code; nothing names its area yet
- * called by: Vec3_sub_0278bc
+ * called by: game_sub_0278bc
  */
 u32 game_sub_0336e8(int a0, u64 *a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -7338,7 +7338,7 @@ u32 CAnimal_m2_03640c(int a0, int a1, int a2, int a3) {
     if ((char)uVar1 == '\x02') {
         iVar2 = get_field_2f0_03655c(a0 + 0xd2c);
         if (iVar2 == 1) {
-            CAnimal_sub_03688c(a0, a3, a1, ar7_00);
+            CSquidLine_place_all(a0, a3, a1, ar7_00);
             ar5_00 = a3;
             a2 = a1;
         }
@@ -7388,7 +7388,7 @@ u32 CAnimal_m3_036568(int a0, int a1, int a2, int a3) {
     if ((char)uVar1 == '\x02') {
         iVar2 = get_field_2f0_03655c(a0 + 0xd2c);
         if (iVar2 == 1) {
-            CAnimal_sub_03688c(a0, a3, a1, ar7_00);
+            CSquidLine_place_all(a0, a3, a1, ar7_00);
             ar5_00 = a3;
             a2 = a1;
         }
@@ -7481,12 +7481,12 @@ int CAnimal_sub_03679c(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * CAnimal_sub_03688c  0x8c03688c
- * name hint from a string it uses: CSquidLine; area name: only called from CAnimal methods
+ * CSquidLine_place_all  0x8c03688c
+ * places the six squid lines at a2 and hands them to a1; error per empty slot
  * called by: CAnimal_m2_03640c, CAnimal_m3_036568
  * strings: "CSquidLine"; "Ryu-Zan"
  */
-u32 CAnimal_sub_03688c(int a0, int *a1, u32 a2, u32 a3) {
+u32 CSquidLine_place_all(int a0, int *a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     u32 a6;
@@ -7523,8 +7523,8 @@ u32 noop_036984(void) {
 /*
  * set_vec3_field_30  0x8c036988
  * stores fr4..fr6 at +0x30
- * called by: CAnimal_m2_0386d0, CAnimal_m2_088094, CAnimal_sub_03688c, CGame_sub_0cc784, CProlog_sub_0cd3c8,
- * CSquidLine_release_current_10a8, CSquidLine_release_current_928, CTexture_sub_0e81b4 (+24 more)
+ * called by: CAnimal_m2_0386d0, CAnimal_m2_088094, CGame_sub_0cc784, CMothLine_place_current, CProlog_sub_0cd3c8,
+ * CSquidLine_place_all, CSquidLine_release_current_10a8, CSquidLine_release_current_928 (+24 more)
  */
 u32 set_vec3_field_30(int a0, u32 unused_a1, u32 a2) {
     u32 in_fr5;
@@ -7547,10 +7547,10 @@ u32 noop_0369a0(void) {
 }
 
 /*
- * CAnimal_sub_0369a4  0x8c0369a4
- * area name: sits between CAnimal functions (same compilation unit)
+ * CSquidLine_sub_0369a4  0x8c0369a4
+ * area name: sits between CSquidLine functions (same compilation unit)
  */
-u32 CAnimal_sub_0369a4(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CSquidLine_sub_0369a4(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (**(code **)(*(int *)(a0 + 0x490) + 0x1c))((int *)(a0 + 0x490), a1, a2, a3);
@@ -7558,10 +7558,10 @@ u32 CAnimal_sub_0369a4(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CAnimal_sub_0369c4  0x8c0369c4
- * area name: sits between CAnimal functions (same compilation unit)
+ * CSquidLine_sub_0369c4  0x8c0369c4
+ * area name: sits between CSquidLine functions (same compilation unit)
  */
-double *CAnimal_sub_0369c4(int a0, int a1, u32 a2, u32 a3) {
+double *CSquidLine_sub_0369c4(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
     double *pdVar2;
     int iVar3;
@@ -7630,10 +7630,10 @@ double *CAnimal_sub_0369c4(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * CAnimal_sub_036adc  0x8c036adc
- * area name: sits between CAnimal functions (same compilation unit)
+ * game_sub_036adc  0x8c036adc
+ * area name: game code; nothing names its area yet
  */
-int CAnimal_sub_036adc(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int game_sub_036adc(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     u8 *puVar2;
@@ -7766,7 +7766,7 @@ int CAnimal_sub_036adc(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * get_field_2fc_036d20  0x8c036d20
- * called by: CAnimal_sub_036adc
+ * called by: game_sub_036adc
  */
 u32 get_field_2fc_036d20(int a0) {
     return *(u32 *)(0x2fc + a0);
@@ -7774,7 +7774,7 @@ u32 get_field_2fc_036d20(int a0) {
 
 /*
  * set_field_328_to_1  0x8c036d2c
- * called by: CAnimal_sub_036adc
+ * called by: game_sub_036adc
  */
 int set_field_328_to_1(int a0) {
     int iVar1;
@@ -7786,7 +7786,7 @@ int set_field_328_to_1(int a0) {
 
 /*
  * set_field_85_u8  0x8c036d3c
- * called by: CAnimal_sub_036adc, CSquidLine_sub_085c3c
+ * called by: CSquidLine_sub_085c3c, game_sub_036adc
  */
 int set_field_85_u8(int a0, u32 a1) {
     int iVar1;
@@ -8216,7 +8216,7 @@ float *game_sub_037034(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_0372a0  0x8c0372a0
  * name hint from a string it uses: Tm1 Home njd; area name: game code; nothing names its area yet
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  */
 u32 game_sub_0372a0(void) {
     u32 uVar1;
@@ -9150,7 +9150,7 @@ u32 CFrogManEgg_LoadGRReq(int a0, u32 a1, u32 a2, u32 a3) {
 
     uVar2 = 0;
     if (*(int *)(0x420 + a0) == 0) {
-        iVar1 = Vec3_sub_027a78(a0, a1, a2);
+        iVar1 = CAnimal_LoadGRReq(a0, a1, a2);
         if (iVar1 == 1) {
             *(u32 *)(0x420 + a0) = 1;
         }
@@ -9229,7 +9229,7 @@ u32 noop_038ec8(void) {
 /*
  * CFrogManEgg_sub_038ecc  0x8c038ecc
  * name hint from a string it uses: FROG EGG; area name: sits between CFrogManEgg functions (same compilation unit)
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  */
 u32 CFrogManEgg_sub_038ecc(void) {
     int iVar1;

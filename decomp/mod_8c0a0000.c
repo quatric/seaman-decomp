@@ -3852,7 +3852,7 @@ u32 Vec3_sub_0a4a5c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_sub_0a4af0  0x8c0a4af0
  * name hint from a string it uses: Sp Home njd; area name: sits between Vec3 functions (same compilation unit)
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  */
 u32 Vec3_sub_0a4af0(void) {
     int iVar1;
@@ -4400,7 +4400,7 @@ u32 CSpiderEgg_LoadGRReq(int a0, u32 a1, u32 a2, u32 a3) {
 
     uVar2 = 0;
     if (*(int *)(0x420 + a0) == 0) {
-        iVar1 = Vec3_sub_027a78(a0, a1, a2);
+        iVar1 = CAnimal_LoadGRReq(a0, a1, a2);
         if (iVar1 == 1) {
             *(u32 *)(0x420 + a0) = 1;
         }
@@ -4454,7 +4454,7 @@ u32 CSpiderEgg_sub_0a58a4(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CSpiderEgg_sub_0a58f4  0x8c0a58f4
  * name hint from a string it uses: Cpe Home nj; area name: sits between CSpiderEgg functions (same compilation unit)
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  */
 u32 CSpiderEgg_sub_0a58f4(void) {
     int iVar1;
@@ -11720,7 +11720,7 @@ int game_sub_0ae2b8(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_0ae2fc  0x8c0ae2fc
  * name hint from a string it uses: Sq Bone Home njd; area name: game code; nothing names its area yet
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  */
 u32 game_sub_0ae2fc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u64 uVar1;

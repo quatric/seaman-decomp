@@ -1520,8 +1520,8 @@ u32 CAnimal_sub_0f5308(void) {
 /*
  * game_sub_0f532c  0x8c0f532c
  * area name: game code; nothing names its area yet
- * called by: CFrogManEgg_ctor, CFrogManLine_ctor, CHigyoEgg_ctor, CMothEgg_ctor, CMothLine_ctor, CSpiderEgg_ctor,
- * Class_12a0c4_sub_067594, Class_12c058_m1_0f5660 (+2 more)
+ * called by: CFrogManEgg_ctor, CFrogManLine_ctor, CHigyoEgg_ctor, CMothEgg_ctor, CMothLine_ctor, CMushroomerEgg_ctor,
+ * CSpiderEgg_ctor, Class_12a0c4_sub_067594 (+2 more)
  */
 u32 game_sub_0f532c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -4190,7 +4190,7 @@ u32 game_init(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     libc_sub_014370(5);
     g_8c43b580 = malloc_thunk(0x4000, uVar3, uVar4, ar7_00);
     shinobi_sub_1f7ecc(g_8c43b580);
-    uVar2 = game_sub_0c0444(0x8c286ebc, uVar3, uVar4, ar7_00);
+    uVar2 = game_init_sound_and_messages(0x8c286ebc, uVar3, uVar4, ar7_00);
     return uVar2;
 }
 
@@ -4310,7 +4310,7 @@ int game_sub_0f7fa8(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_0f7ff0  0x8c0f7ff0
  * area name: sits between game functions (same compilation unit)
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  */
 u32 game_sub_0f7ff0(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -8002,7 +8002,7 @@ int game_sub_0fe59c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * list_append_58  0x8c0fe5f0
  * links node a1 at the tail of the ring list at +0x58 and counts it in +0xd0
- * called by: WATER_ELEMETNT_Create, game_sub_0d33e8, se_sub_0d5218
+ * called by: WATER_ELEMENT_CreateStage0, WATER_ELEMENT_release, WATER_ELEMETNT_Create
  */
 int list_append_58(int a0, u32 a1) {
     u32 uVar1;
@@ -8023,7 +8023,7 @@ int list_append_58(int a0, u32 a1) {
 
 /*
  * CWaterSnowList_TakeOut  0x8c0fe690
- * called by: CWaterTank_sub_0d57e8, se_sub_0d5218
+ * called by: CWaterTank_sub_0d57e8, WATER_ELEMENT_release
  * strings: "POne pointer is NULL.."; "CWaterSnowList::TakeOut()"
  */
 int CWaterSnowList_TakeOut(int a0, int a1) {
@@ -8050,7 +8050,7 @@ int CWaterSnowList_TakeOut(int a0, int a1) {
 
 /*
  * CWaterSnowList_GetWaterSnowO  0x8c0fe764
- * called by: CWaterTank_sub_0d57e8, se_sub_0d5218
+ * called by: CWaterTank_sub_0d57e8, WATER_ELEMENT_release
  * strings: "Invalid POne number"; "CWaterSnowList::GetWaterSnowOnePtr()"
  */
 u32 CWaterSnowList_GetWaterSnowO(int a0, int a1) {
@@ -8071,7 +8071,7 @@ u32 CWaterSnowList_GetWaterSnowO(int a0, int a1) {
 /*
  * game_sub_0fe7f4  0x8c0fe7f4
  * area name: game code; nothing names its area yet
- * called by: CWaterTank_sub_0d57e8, se_sub_0d5218
+ * called by: CWaterTank_sub_0d57e8, WATER_ELEMENT_release
  */
 u32 game_sub_0fe7f4(int a0) {
 
@@ -8260,7 +8260,7 @@ u32 vec_new_array_wrap_0febbc(u32 a0) {
 /*
  * pool_5c_alloc  0x8c0febf0
  * claims a free entry of the 150 0x5c-byte entries at a0 (flag at +0x58); 0 when full
- * called by: WATER_ELEMETNT_Create, game_sub_0d33e8, se_sub_0d5218
+ * called by: WATER_ELEMENT_CreateStage0, WATER_ELEMENT_release, WATER_ELEMETNT_Create
  */
 u32 pool_5c_alloc(int a0) {
     int iVar1;
@@ -8281,7 +8281,7 @@ u32 pool_5c_alloc(int a0) {
 /*
  * clear_link_58  0x8c0fec4c
  * clears field +0x58 of *a1, then *a1
- * called by: CWaterTank_sub_0d57e8, se_sub_0d5218
+ * called by: CWaterTank_sub_0d57e8, WATER_ELEMENT_release
  */
 u32 clear_link_58(u32 a0, int *a1) {
     *(u32 *)(*a1 + 0x58) = 0;
@@ -8536,7 +8536,7 @@ int CItemGLoader_sub_0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
             iStack_88 = operator_new(0x9d8, a1, a2, a3);
             iStack_18 = iStack_88;
             if (iStack_88 != 0) {
-                game_sub_09b8e4(iStack_88, 0);
+                CMushroomerEgg_ctor(iStack_88, 0);
             }
             a4 = iStack_18;
             (**(code **)(*(int *)(iStack_18 + 8) + 0x54))(iStack_18, a0, a2, a3);
@@ -9124,7 +9124,7 @@ int game_sub_0ffc1c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * UsrPointer_LoadTexture  0x8c0ffcb4
  * loads UsrPointer.pvm (the pointer cursor) from GRAPHICS
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  * strings: "UsrPointer.pvm"; "GRAPHICS"; "Failed to load user pointer textuer.."
  */
 u32 UsrPointer_LoadTexture(int a0, u32 a1) {
@@ -9157,7 +9157,7 @@ u32 get_field_1c_0ffd74(int a0) {
 /*
  * game_sub_0ffd7c  0x8c0ffd7c
  * area name: game code; nothing names its area yet
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  */
 u32 game_sub_0ffd7c(int a0, u32 a1) {
     u32 uVar1;

@@ -1344,7 +1344,7 @@ u32 se_sub_0d15c4(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * se_sub_0d167c  0x8c0d167c
  * area name: sits between se functions (same compilation unit)
- * called by: CSoilTank_Create, CWaterTank_CreateStage, game_sub_0e69c0
+ * called by: COutside_Create, CSoilTank_Create, CWaterTank_CreateStage
  */
 u32 se_sub_0d167c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1885,7 +1885,7 @@ u32 game_sub_0d1f38(int a0) {
 
 /*
  * CEnv_LoadDevicePanelTexture  0x8c0d1fa0
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  * strings: "DEVICE_PANEL"; "GRAPHICS\\ENV"; "Failed to load device panel textuer.."; "CEnv::LoadDevicePanelTexture()"
  */
 int CEnv_LoadDevicePanelTexture(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -2216,7 +2216,7 @@ u32 set_flag_2_28(int a0) {
 /*
  * game_sub_0d2690  0x8c0d2690
  * area name: game code; nothing names its area yet
- * called by: game_sub_0d33e8
+ * called by: WATER_ELEMENT_CreateStage0
  */
 u32 game_sub_0d2690(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -3212,13 +3212,13 @@ u32 game_sub_0d33bc(u32 a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * game_sub_0d33e8  0x8c0d33e8
- * name hint from a string it uses: GRAPHICS COMMON; area name: game code; nothing names its area yet
+ * WATER_ELEMENT_CreateStage0  0x8c0d33e8
+ * loads suisou_WaterFace.nj from GRAPHICS\ENV (from its error string)
  * called by: Class_12b930_sub_0de07c
  * strings: "suisou_WaterFace.nj"; "GRAPHICS\\ENV"; "suisou_WaterFace.nj"; "Failed NJCM:WATER_ELEMENT::CreateStage0()"
  * ...
  */
-u32 game_sub_0d33e8(double *a0, u32 a1, u32 a2) {
+u32 WATER_ELEMENT_CreateStage0(double *a0, u32 a1, u32 a2) {
     int iVar1;
     u32 uVar2;
     char *ar5_00;
@@ -3566,7 +3566,7 @@ u32 WATER_ELEMETNT_Create(double *a0, u32 a1) {
 
 /*
  * WE_CreateStageC  0x8c0d39e4
- * called by: WATER_ELEMETNT_Create, game_sub_0d33e8
+ * called by: WATER_ELEMENT_CreateStage0, WATER_ELEMETNT_Create
  * strings: "GRAPHICS\\ENV"; "Failed to load water face textuer.."; "WE::CreateStageC()"; "GRAPHICS\\ENV" ...
  */
 u32 WE_CreateStageC(int a0, u32 a1, u32 a2) {
@@ -3854,7 +3854,7 @@ u32 list_node_next_wrap(u32 a0) {
 
 /*
  * get_field_d0_0d3f70  0x8c0d3f70
- * called by: CWaterTank_sub_0d57e8, Class_12b930_sub_0d3d6c, game_sub_0d49cc, se_sub_0d5218
+ * called by: CWaterTank_sub_0d57e8, Class_12b930_sub_0d3d6c, WATER_ELEMENT_release, game_sub_0d49cc
  */
 u32 get_field_d0_0d3f70(int a0) {
     return *(u32 *)(0xd0 + a0);
@@ -4810,7 +4810,7 @@ u32 se_play_bubble_mono(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * se_play_ike1  0x8c0d5040
  * plays the 75_IKE1 pack sound
- * called by: se_play_bubble_or_ike, se_sub_0d5218
+ * called by: WATER_ELEMENT_release, se_play_bubble_or_ike
  * strings: "75_IKE1"
  */
 u32 se_play_ike1(int a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -4899,12 +4899,12 @@ u32 se_sub_0d51ec(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * se_sub_0d5218  0x8c0d5218
- * name hint from a string it uses: GRAPHICS ENV; area name: sits between se functions (same compilation unit)
+ * WATER_ELEMENT_release  0x8c0d5218
+ * releases the water-face and effect models (suisou_WaterFace.nj, suisou_Effect.nj)
  * called by: game_sub_0e02b0
  * strings: "suisou_WaterFace.nj"; "GRAPHICS\\ENV"; "GRAPHICS\\ENV"; "suisou_WaterFace.nj" ...
  */
-u32 se_sub_0d5218(double *a0, u32 a1) {
+u32 WATER_ELEMENT_release(double *a0, u32 a1) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -5256,7 +5256,7 @@ u32 CWaterTank_sub_0d57e8(int a0, u32 *a1, u32 a2) {
 /*
  * game_sub_0d59a4  0x8c0d59a4
  * area name: game code; nothing names its area yet
- * called by: Class_12b930_sub_0d3c08, game_sub_0d33e8
+ * called by: Class_12b930_sub_0d3c08, WATER_ELEMENT_CreateStage0
  */
 u32 game_sub_0d59a4(int a0, int a1, int a2, u32 a3) {
     bool bVar1;
@@ -5414,7 +5414,7 @@ u32 get_field_44_0d5ca0(int a0) {
 /*
  * update_active_entries_62c  0x8c0d5ca8
  * updates every active one of the 0x226 0x88-byte entries at +0x62c; returns how many
- * called by: Class_12b930_sub_0d3c08, game_sub_0d33e8
+ * called by: Class_12b930_sub_0d3c08, WATER_ELEMENT_CreateStage0
  */
 int update_active_entries_62c(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -5461,7 +5461,7 @@ u32 Vec3_sub_0d5d28(int a0, int a1, u32 a2, u32 a3) {
 /*
  * Vec3_sub_0d5de0  0x8c0d5de0
  * area name: sits between Vec3 functions (same compilation unit)
- * called by: WE_CreateStageC, se_sub_0d5218
+ * called by: WATER_ELEMENT_release, WE_CreateStageC
  */
 int Vec3_sub_0d5de0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -11413,7 +11413,7 @@ u32 start_free_entry_0c0c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * common_texlist_load  0x8c0dbb14
  * loads a texture list from GRAPHICS\COMMON
- * called by: CWaterTank_CreateStage, game_sub_0e69c0
+ * called by: COutside_Create, CWaterTank_CreateStage
  * strings: "GRAPHICS\\COMMON"; "Failed to load textuer.. SHIT!"
  */
 int common_texlist_load(int a0, u32 a1, u32 a2, u32 a3) {
@@ -13129,7 +13129,7 @@ u32 Class_12b930_sub_0de07c(int a0, u32 a1, u32 a2, u32 a3) {
     cVar2 = '\0';
     CWaterTank_CreateStage(a0, a1, a2);
     ar6_00 = a0 + 0x22eb4;
-    game_sub_0d33e8(a0 + 0x10ac, a1, ar6_00);
+    WATER_ELEMENT_CreateStage0(a0 + 0x10ac, a1, ar6_00);
     iVar1 = a0 + 0xa68;
     Vec3_ctor_copy((u8 *)((int)register0x0000003c + -0x1c), iVar1, ar6_00, a3);
     noop_0bf11c(a0 + 0x13b70, iVar1, ar6_00, a3, (u32)uStack_20);

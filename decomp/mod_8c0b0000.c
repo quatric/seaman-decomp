@@ -4999,7 +4999,7 @@ int game_sub_0b7a54(int a0) {
 /*
  * game_sub_0b7ad0  0x8c0b7ad0
  * area name: game code; nothing names its area yet
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  * strings: "6107055   "; "HDR-0001  "; "HDR0010   "; "T38801M   " ...
  */
 u32 game_sub_0b7ad0(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {

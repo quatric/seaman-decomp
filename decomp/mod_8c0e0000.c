@@ -142,7 +142,7 @@ u32 game_sub_0e02b0(int a0, u32 a1) {
     u32 uVar1;
 
     *(u32 *)(0x1020 + a0) = 0;
-    uVar1 = se_sub_0d5218(a0 + 0x10ac, a1);
+    uVar1 = WATER_ELEMENT_release(a0 + 0x10ac, a1);
     return uVar1;
 }
 
@@ -4611,11 +4611,11 @@ u32 game_sub_0e6988(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0e69c0  0x8c0e69c0
- * name hint from a string it uses: GRAPHICS ENV; area name: game code; nothing names its area yet
+ * COutside_Create  0x8c0e69c0
+ * loads amazon.nj from GRAPHICS\ENV (from its error string)
  * strings: "amazon.nj"; "GRAPHICS\\ENV"; "amazon.nj"; "Failed to load:COutside::Create()" ...
  */
-u32 game_sub_0e69c0(int a0, u32 a1, u32 a2) {
+u32 COutside_Create(int a0, u32 a1, u32 a2) {
     int iVar1;
     u32 ar5_00;
     char *pcVar2;

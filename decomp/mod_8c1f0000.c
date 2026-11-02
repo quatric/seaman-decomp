@@ -4651,7 +4651,7 @@ u32 gdfs_sub_1f3254(int *a0, int a1, u32 a2) {
 /*
  * gdfs_sub_1f332c  0x8c1f332c
  * area name: sits between gdfs functions (same compilation unit)
- * called by: ADXSTM_sub_2635a4, gdfs_sub_1f31c6, gdfs_sub_1f31da
+ * called by: adxstmf_stat_exec, gdfs_sub_1f31c6, gdfs_sub_1f31da
  */
 u32 gdfs_sub_1f332c(int *a0, int a1, u32 a2) {
     int iVar1;
@@ -4819,7 +4819,7 @@ u32 gdfs_sub_1f35ba(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gdfs_get_stat_like  0x8c1f364c
  * status (+0x50) of an open file handle, -10 when it is not open (probably gdFsGetStat)
- * called by: ADXSTM_sub_2635a4, ADXSTM_sub_2637ae, ninja_sub_259c48, ninja_sub_259e80, shinobi_sub_1f2f98,
+ * called by: ADXSTM_sub_2637ae, adxstmf_stat_exec, ninja_sub_259c48, ninja_sub_259e80, shinobi_sub_1f2f98,
  * shinobi_sub_1f2f9c
  */
 u32 gdfs_get_stat_like(int a0) {
@@ -5856,12 +5856,12 @@ u32 shinobi_sub_1f420e(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a
 }
 
 /*
- * shinobi_sub_1f43d2  0x8c1f43d2
- * area name: in the shinobi library code range
+ * maple_try_lock  0x8c1f43d2
+ * takes the Maple lock (bit 0x80 of 8c1f5a2c); -2 with a fatal message when it is already taken
  * called by: pvr_1efaf4
  * strings: "***FATAL ERROR:Cannot get semaphore!\n"
  */
-u32 shinobi_sub_1f43d2(void) {
+u32 maple_try_lock(void) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -9649,7 +9649,7 @@ u32 shinobi_sub_1f6b14(u32 a0, u32 a1, int a2, u32 a3) {
                 iVar10 = shinobi_sub_1f6d3e(iVar5, iVar9, a3, a1);
                 iVar5 = shinobi_sub_1f1080();
                 if ((iVar10 + 3 <= iVar5) || (iVar4 = flashrom_format_partition(0), iVar4 == 0)) {
-                    shinobi_sub_1f6ce2(2, a1, uVar7, uVar8);
+                    flash_header_signature(2, a1, uVar7, uVar8);
                     puVar1 = (&flashrom_write_if_changed);
                     iVar10 = (int)0x6360;
                     iVar4 = (int)0x254;
@@ -9659,7 +9659,7 @@ u32 shinobi_sub_1f6b14(u32 a0, u32 a1, int a2, u32 a3) {
                             goto LAB_8c1f6cc2;
                         iVar4 = iVar4 + 1;
                     }
-                    shinobi_sub_1f6ce2(1, a1, uVar7, uVar8);
+                    flash_header_signature(1, a1, uVar7, uVar8);
                     uVar6 = a0;
                     iVar4 = flashrom_open_partition(3, a0, uVar7, uVar8);
                     if ((iVar4 == 0) && (iVar4 = flashrom_format_partition(0), iVar4 == 0)) {
@@ -9672,7 +9672,7 @@ u32 shinobi_sub_1f6b14(u32 a0, u32 a1, int a2, u32 a3) {
                         } while (iVar4 < iVar9);
                         iVar4 = flashrom_open_partition(4, a0, uVar7, uVar8);
                         if (iVar4 == 0) {
-                            shinobi_sub_1f6ce2(3, a1, uVar7, uVar8);
+                            flash_header_signature(3, a1, uVar7, uVar8);
                             uVar6 = 0;
                             iVar4 = iVar3;
                             iVar9 = a2;
@@ -9683,7 +9683,7 @@ u32 shinobi_sub_1f6b14(u32 a0, u32 a1, int a2, u32 a3) {
                                 iVar4 = flashrom_format_partition(0);
                                 if (iVar4 != 0)
                                     goto LAB_8c1f6cc2;
-                                shinobi_sub_1f6ce2(3, a1, iVar9, uVar8);
+                                flash_header_signature(3, a1, iVar9, uVar8);
                             }
                             iVar4 = 0;
                             do {
@@ -9692,7 +9692,7 @@ u32 shinobi_sub_1f6b14(u32 a0, u32 a1, int a2, u32 a3) {
                                     goto LAB_8c1f6cc2;
                                 iVar4 = iVar4 + 1;
                             } while (iVar4 < iVar3);
-                            shinobi_sub_1f6ce2(0, a1, iVar9, uVar8);
+                            flash_header_signature(0, a1, iVar9, uVar8);
                             iVar4 = flashrom_open_partition(3, a0, iVar9, uVar8);
                             if (iVar4 == 0) {
                                 return 0;
@@ -9709,12 +9709,12 @@ LAB_8c1f6cc2:
 }
 
 /*
- * shinobi_sub_1f6ce2  0x8c1f6ce2
- * name hint from a string it uses: SEGA FH01 OK; area name: in the shinobi library code range
+ * flash_header_signature  0x8c1f6ce2
+ * fills the 0x3c bytes at a1 with the SEGA_FH01_* signature for state a0 (0..3)
  * called by: shinobi_sub_1f6b14
  * strings: "SEGA_FH01_OK"; "SEGA_FH01_EXIST"; "SEGA_FH01_PROCESS1"; "SEGA_FH01_PROCESS2"
  */
-u32 shinobi_sub_1f6ce2(int a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 flash_header_signature(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
     char *ar4_00;
     u32 ar5_00;
@@ -11796,7 +11796,7 @@ u32 flashrom_read_sync(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * flashrom_write_if_changed  0x8c1f884c
  * reads the block; returns 3 when the 0x3c bytes at a1 already match, else writes them and waits
- * called by: flashrom_sub_1f6e5e, shinobi_sub_1f6ce2
+ * called by: flash_header_signature, flashrom_sub_1f6e5e
  */
 u32 flashrom_write_if_changed(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;

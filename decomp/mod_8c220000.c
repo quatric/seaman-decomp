@@ -1187,7 +1187,7 @@ u32 ta_fifo_221778(float *a0) {
 /*
  * ta_sub_2218f4  0x8c2218f4
  * area name: sits between ta functions (same compilation unit)
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  */
 int ta_sub_2218f4(int a0) {
     u8 *puVar1;
@@ -1203,7 +1203,7 @@ int ta_sub_2218f4(int a0) {
  * flags_4c0ed0_set  0x8c221916
  * sets or clears (a1) flag a0 of the bit set at 0x8c4c0ed0
  * called by: Class_12ab2c_sub_09dde4, Class_12ab2c_sub_09de7c, Class_12ab2c_sub_09ea78, Class_12ab2c_sub_09edf0,
- * Class_12ab2c_sub_09efb4, game_sub_0c0444
+ * Class_12ab2c_sub_09efb4, game_init_sound_and_messages
  */
 u32 flags_4c0ed0_set(int a0, int a1) {
     u32 auStack_20[8];

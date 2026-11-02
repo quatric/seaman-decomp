@@ -6568,7 +6568,7 @@ u32 CMothEgg_LoadGRReq(int a0, u32 a1, u32 a2, u32 a3) {
 
     uVar2 = 0;
     if (*(int *)(0x420 + a0) == 0) {
-        iVar1 = Vec3_sub_027a78(a0, a1, a2);
+        iVar1 = CAnimal_LoadGRReq(a0, a1, a2);
         if (iVar1 == 1) {
             *(u32 *)(0x420 + a0) = 1;
         }
@@ -6622,7 +6622,7 @@ u32 CMothEgg_sub_09afb8(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CMothEgg_sub_09b008  0x8c09b008
  * name hint from a string it uses: Cpe Home nj; area name: sits between CMothEgg functions (same compilation unit)
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  */
 u32 CMothEgg_sub_09b008(void) {
     int iVar1;
@@ -6747,11 +6747,11 @@ u32 game_sub_09b210(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_09b508  0x8c09b508
- * area name: game code; nothing names its area yet
- * called by: game_sub_09b8e4
+ * CMushroomerEgg_sub_09b508  0x8c09b508
+ * area name: only called from CMushroomerEgg methods
+ * called by: CMushroomerEgg_ctor
  */
-int game_sub_09b508(int a0) {
+int CMushroomerEgg_sub_09b508(int a0) {
     Vec3_set_one(a0);
     Vec3_set_one(a0 + 0xc);
     Vec3_set_one(a0 + 0x18);
@@ -7232,7 +7232,7 @@ LAB_8c09b826:
 /*
  * game_sub_09b844  0x8c09b844
  * area name: game code; nothing names its area yet
- * called by: game_sub_09b508
+ * called by: CMushroomerEgg_sub_09b508
  */
 u32 game_sub_09b844(int a0) {
     Vec3_set_one_08a9b8(a0);
@@ -7268,12 +7268,12 @@ int Class_12a990_sub_09b88c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_09b8e4  0x8c09b8e4
- * name hint from a string it uses: GRAPHICS MUSHROOMERLINE; area name: game code; nothing names its area yet
+ * CMushroomerEgg_ctor  0x8c09b8e4
+ * "MushroomerEgg": CAnimal_ctor(kind 0) with GRAPHICS\MUSHROOMERLINE, vtable 0x8c12a990
  * called by: CItemGLoader_sub_0fef94
  * strings: "MushroomerEgg"
  */
-int game_sub_09b8e4(int a0, u32 a1) {
+int CMushroomerEgg_ctor(int a0, u32 a1) {
     u32 uVar1;
     code *ar5_00;
     u32 uVar2;
@@ -7299,7 +7299,7 @@ int game_sub_09b8e4(int a0, u32 a1) {
     vec_new_array(a0 + 0x644, Vec3_ctor_zero, Vec3_dtor, 0x10, 8);
     Class_129c24_ctor(a0 + 0x6e4, ar5_00, ar6_00);
     Class_129cbc_ctor(a0 + 0x780, ar5_00, ar6_00, uVar2);
-    game_sub_09b508(a0 + 0x9a4);
+    CMushroomerEgg_sub_09b508(a0 + 0x9a4);
     sprintf(a0 + 0xc, ar5_00, ar6_00, uVar2, "MushroomerEgg");
     *(u8 *)(a0 + 0x6e0) = 0xff;
     iVar3 = a0 + 0x490;
@@ -8557,7 +8557,7 @@ u32 get_field_74_09d474(int a0) {
 /*
  * Class_12a990_sub_09d47c  0x8c09d47c
  * name hint from a string it uses: MrEgg Home nj; area name: sits between Class_12a990 functions (same compilation
- * unit) called by: game_sub_0c0444
+ * unit) called by: game_init_sound_and_messages
  */
 u32 Class_12a990_sub_09d47c(void) {
     int iVar1;
@@ -9295,7 +9295,7 @@ u32 game_sub_09e4fc(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_09e5c0  0x8c09e5c0
  * name hint from a string it uses: Mr3 Home njd; area name: game code; nothing names its area yet
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  */
 u32 game_sub_09e5c0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u64 *puVar1;

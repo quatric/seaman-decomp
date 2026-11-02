@@ -489,7 +489,7 @@ u32 CDCGD_release_request(u32 unused_a0, int a1, u32 *a2, u32 a3, u32 s0, u32 s4
 /*
  * CDCGD_request_type0  0x8c0209b0
  * disc request type 0 (handle at +0x28) through CDCGD_sub_02077c
- * called by: CGame_LoadForEvent1Models, Vec3_sub_027a78, game_sub_08c9dc, retry_until_done_0209b0
+ * called by: CAnimal_LoadGRReq, CAnimal_LoadGRReq_b, CGame_LoadForEvent1Models, retry_until_done_0209b0
  */
 u32 CDCGD_request_type0(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -502,8 +502,8 @@ u32 CDCGD_request_type0(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * retry_until_done_0209b0  0x8c0209fc
  * calls 8c0209b0 until it returns 0 or 1, asking 8c01f810 whether to retry in between
- * called by: CAnimal_LoadGRWait, CHeater_CreateModel, CSoilTank_Create, CWaterTank_CreateStage, RING_UNIT_CreateModel,
- * SoilTank_Createt, WATER_ELEMETNT_Create, game_sub_06ce04 (+3 more)
+ * called by: CAnimal_LoadGRWait, CHeater_CreateModel, CHerb_LoadGRWait, COutside_Create, CSoilTank_Create,
+ * CWaterTank_CreateStage, RING_UNIT_CreateModel, SoilTank_Createt (+3 more)
  */
 u32 retry_until_done_0209b0(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -532,7 +532,7 @@ u32 retry_until_done_0209b0(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CDCGD_release_type0  0x8c020a70
  * CDCGD_release_request for type 0 (list at +0x28)
- * called by: CWaterTank_sub_0d57e8, se_sub_0d5218
+ * called by: CWaterTank_sub_0d57e8, WATER_ELEMENT_release
  */
 u32 CDCGD_release_type0(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -544,7 +544,7 @@ u32 CDCGD_release_type0(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CDCGD_request_type2  0x8c020aa8
  * disc request type 2 (list at +0x28)
- * called by: CGame_LoadForEvent1Models, Vec3_sub_027a78, game_sub_08c9dc, retry_until_done_020aa8
+ * called by: CAnimal_LoadGRReq, CAnimal_LoadGRReq_b, CGame_LoadForEvent1Models, retry_until_done_020aa8
  */
 u32 CDCGD_request_type2(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -557,8 +557,8 @@ u32 CDCGD_request_type2(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * retry_until_done_020aa8  0x8c020af4
  * calls 8c020aa8 until it returns 0 or 1, asking 8c01f810 whether to retry in between
- * called by: CAnimal_LoadGResourceWait, CHeater_CreateModel, CSoilTank_Create, CWaterTank_CreateStage,
- * RING_UNIT_CreateModel, SoilTank_Createt, WATER_ELEMETNT_Create, game_sub_06ce04 (+3 more)
+ * called by: CAnimal_LoadGResourceWait, CHeater_CreateModel, CHerb_LoadGRWait, COutside_Create, CSoilTank_Create,
+ * CWaterTank_CreateStage, RING_UNIT_CreateModel, SoilTank_Createt (+3 more)
  */
 u32 retry_until_done_020aa8(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -587,8 +587,8 @@ u32 retry_until_done_020aa8(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CDCGD_release_type2  0x8c020b68
  * CDCGD_release_request for type 2 (list at +0x28)
- * called by: CWaterTank_sub_0d57e8, event1_end, event1_release_models, game_sub_0ae640, musikago_release_model,
- * se_sub_0d5218
+ * called by: CWaterTank_sub_0d57e8, WATER_ELEMENT_release, event1_end, event1_release_models, game_sub_0ae640,
+ * musikago_release_model
  */
 u32 CDCGD_release_type2(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -600,7 +600,7 @@ u32 CDCGD_release_type2(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CDCGD_request_type5  0x8c020ba0
  * disc request type 5 (list at +0x28)
- * called by: CAnimal_LoadMFile_step, Vec3_sub_027a78, game_sub_08c9dc, retry_until_done_020ba0
+ * called by: CAnimal_LoadGRReq, CAnimal_LoadGRReq_b, CAnimal_LoadMFile_step, retry_until_done_020ba0
  */
 u32 CDCGD_request_type5(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -613,7 +613,7 @@ u32 CDCGD_request_type5(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * retry_until_done_020ba0  0x8c020bec
  * CDCGD_request_type5, retried through 8c01f810 until done; 1 done, 0 failed
- * called by: CAnimal_LoadGRWait, RING_UNIT_CreateModel, game_sub_06ce04
+ * called by: CAnimal_LoadGRWait, CHerb_LoadGRWait, RING_UNIT_CreateModel
  */
 u32 retry_until_done_020ba0(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -667,7 +667,7 @@ u32 CDCGD_request_type8(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * retry_until_done_020c98  0x8c020ce4
  * CDCGD_request_type8, retried through 8c01f810 until done; 1 done, 0 failed
- * called by: CAnimal_LoadGRWait, game_sub_06ce04
+ * called by: CAnimal_LoadGRWait, CHerb_LoadGRWait
  */
 u32 retry_until_done_020c98(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -708,7 +708,7 @@ u32 CDCGD_release_request_wrap_020d58(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * CDCGD_request_type_b  0x8c020d90
  * disc request type 0xb (handle at +0x28, results at +0xc and +8)
- * called by: Vec3_sub_027a78, game_sub_08c9dc, retry_until_done_020d90
+ * called by: CAnimal_LoadGRReq, CAnimal_LoadGRReq_b, retry_until_done_020d90
  */
 u32 CDCGD_request_type_b(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -720,7 +720,7 @@ u32 CDCGD_request_type_b(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * retry_until_done_020d90  0x8c020ddc
  * CDCGD_request_type_b, retried through 8c01f810 until done; 1 done, 0 failed
- * called by: CAnimal_LoadGRWait, RING_UNIT_CreateModel, game_sub_06ce04
+ * called by: CAnimal_LoadGRWait, CHerb_LoadGRWait, RING_UNIT_CreateModel
  */
 u32 retry_until_done_020d90(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -761,7 +761,7 @@ u32 CDCGD_release_request_wrap_020e48(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * CDCGD_request_type_c  0x8c020e80
  * disc request type 0xc (handle at +0x2c); on success finishes it with 8c020f5c
- * called by: CGame_LoadForEvent1Models, Vec3_sub_027a78, game_sub_08c9dc, retry_until_done_020e80
+ * called by: CAnimal_LoadGRReq, CAnimal_LoadGRReq_b, CGame_LoadForEvent1Models, retry_until_done_020e80
  */
 int CDCGD_request_type_c(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -837,8 +837,8 @@ int CDCGD_request_typeE(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * retry_until_done_020f90  0x8c02100c
  * calls 8c020f90 until it returns 0 or 1, asking 8c01f810 whether to retry in between
- * called by: CAnimal_LoadGResourceWait, CGame_Init, CIncubater_Create, CProlog_Ready, CSeamanDomain_Init,
- * CSoilTank_Create, CSysMessage_LoadMessage, CWaterTank_CreateStage (+6 more)
+ * called by: CAnimal_LoadGResourceWait, CGame_Init, CHerb_LoadGRWait, CIncubater_Create, COutside_Create,
+ * CProlog_Ready, CSeamanDomain_Init, CSoilTank_Create (+6 more)
  */
 u32 retry_until_done_020f90(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -866,7 +866,7 @@ u32 retry_until_done_020f90(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * CDCGD_ReadPVMFileReq  0x8c021078
- * called by: Vec3_sub_027a78, game_sub_08c9dc
+ * called by: CAnimal_LoadGRReq, CAnimal_LoadGRReq_b
  * strings: "Failed to load pvm.."; "CDCGD::ReadPVMFileReq()"
  */
 int CDCGD_ReadPVMFileReq(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
@@ -1121,7 +1121,7 @@ int pack_sub_0214e0(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * pack_open  0x8c021520
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  */
 u32 pack_open(u32 *a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     int iVar1;
@@ -2440,7 +2440,7 @@ int sound_set_out_vol(u32 unused_a0, int *a1, u32 a2) {
 /*
  * Vec3_ctor_zero  0x8c022c4c
  * called by: CAnimal_m7_036d7c, CAnimal_m7_0ade84, CAnimal_m7_0f49b8, CAnimal_sub_024848, CAnimal_sub_02b1dc,
- * CAnimal_sub_036adc, CAnimal_sub_0f4040, CEnv_sub_0d2050 (+211 more)
+ * CAnimal_sub_0f4040, CEnv_sub_0d2050, CFrogManLine_sub_03a5a4 (+211 more)
  */
 u32 *Vec3_ctor_zero(u32 *a0, u32 a1, u32 a2) {
     a0[3] = &g_8c129a7c;
@@ -2452,8 +2452,8 @@ u32 *Vec3_ctor_zero(u32 *a0, u32 a1, u32 a2) {
 
 /*
  * Vec3_ctor_copy  0x8c022c88
- * called by: CAnimBody_sub_0342d8, CAnimal_sub_036adc, CMushroomerBody_sub_031764, CMushroomerBody_sub_032518,
- * CSquidLine_sub_085c3c, CSquidLine_sub_0ad354, Class_1299f8_m4_019588, Class_1299f8_sub_023c30 (+130 more)
+ * called by: CAnimBody_sub_0342d8, CMushroomerBody_sub_031764, CMushroomerBody_sub_032518, CSquidLine_sub_085c3c,
+ * CSquidLine_sub_0ad354, Class_1299f8_m4_019588, Class_1299f8_sub_023c30, Class_1299f8_sub_0240bc (+130 more)
  */
 u32 *Vec3_ctor_copy(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     a0[3] = &g_8c129a7c;
@@ -2623,7 +2623,7 @@ u32 Vec3_length_sq(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * Vec3_normalize  0x8c022ec0
- * called by: Class_12a5d0_sub_08ad50, Class_12ad14_sub_0a37c8, Vec3_normalize_on_field_4, Vec3_sub_03f4a4,
+ * called by: CMothLine_place_current, Class_12ad14_sub_0a37c8, Vec3_normalize_on_field_4, Vec3_sub_03f4a4,
  * game_sub_046684, game_sub_048868, game_sub_048f8c, game_sub_049b68 (+39 more)
  */
 u32 Vec3_normalize(double *a0, u32 a1, u32 a2, u32 a3) {
@@ -2827,7 +2827,7 @@ u32 Vec3_distance_sq_to_xyz(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_make  0x8c0230f0
  * builds a Vec3 from x, y, z into the caller's return slot
- * called by: CMushroomerBody_AwayFrom, CMushroomerBody_sub_031764, Class_12a5d0_sub_08ad50, Class_12b088_sub_0aa70c,
+ * called by: CMothLine_place_current, CMushroomerBody_AwayFrom, CMushroomerBody_sub_031764, Class_12b088_sub_0aa70c,
  * Vec3_sub_0231c8, Vec3_sub_02327c, Vec3_sub_023334, Vec3_sub_03f4a4 (+71 more)
  */
 u32 Vec3_make(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
@@ -3047,8 +3047,8 @@ u32 Vec3_sub_023334(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_sub_023484  0x8c023484
  * area name: sits between Vec3 functions (same compilation unit)
- * called by: CAnimal_sub_036adc, CSquidLine_sub_085c3c, Class_129cbc_m1_031598, Class_12a0c4_sub_0679cc,
- * Class_12a0c4_sub_068e64, Class_12a25c_sub_06f93c, Class_12a7a8_sub_099b0c, Class_12acc8_sub_0a0278 (+64 more)
+ * called by: CSquidLine_sub_085c3c, Class_129cbc_m1_031598, Class_12a0c4_sub_0679cc, Class_12a0c4_sub_068e64,
+ * Class_12a25c_sub_06f93c, Class_12a7a8_sub_099b0c, Class_12acc8_sub_0a0278, Class_12b088_sub_0a99c4 (+64 more)
  */
 u32 Vec3_sub_023484(u64 *a0, u32 *a1, u32 a2, u32 a3, u32 s0) {
     u32 *ar5_00;
@@ -3675,8 +3675,8 @@ u32 Vec3_sub_0238b4(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * Vec3_assign  0x8c023a14
- * called by: CMushroomerBody_AwayFrom, Class_129938_m1_0170e0, Class_129938_m2_0171f4, Class_129938_sub_017900,
- * Class_1299f8_m3_019f00, Class_1299f8_m4_019588, Class_129cbc_m1_031598, Class_129cbc_sub_0310c0 (+195 more)
+ * called by: CMothLine_place_current, CMushroomerBody_AwayFrom, Class_129938_m1_0170e0, Class_129938_m2_0171f4,
+ * Class_129938_sub_017900, Class_1299f8_m3_019f00, Class_1299f8_m4_019588, Class_129cbc_m1_031598 (+195 more)
  */
 u32 *Vec3_assign(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     *a0 = *a1;
@@ -3687,8 +3687,8 @@ u32 *Vec3_assign(u32 *a0, u32 *a1, u32 a2, u32 a3) {
 
 /*
  * Vec3_add  0x8c023a34
- * called by: CAnimal_sub_036adc, CMushroomerBody_sub_032518, CSquidLine_sub_085c3c, Class_12a03c_m1_03c43c,
- * Class_12a0c4_sub_0679cc, Class_12a0c4_sub_068e64, Class_12a25c_m1_06f530, Class_12a25c_sub_06f93c (+66 more)
+ * called by: CMushroomerBody_sub_032518, CSquidLine_sub_085c3c, Class_12a03c_m1_03c43c, Class_12a0c4_sub_0679cc,
+ * Class_12a0c4_sub_068e64, Class_12a25c_m1_06f530, Class_12a25c_sub_06f93c, Class_12a7a8_sub_099b0c (+66 more)
  */
 u32 Vec3_add(u64 *a0, double *a1, u32 a2, u32 a3, u32 s0) {
     double dVar1;
@@ -3837,8 +3837,8 @@ float *Vec3_sub_assign(float *a0, float *a1) {
 
 /*
  * Vec3_scale  0x8c023b8c
- * called by: CMushroomerBody_AwayFrom, CMushroomerBody_sub_031764, Class_12a03c_m1_03c43c, Class_12a0c4_sub_0679cc,
- * Class_12a0c4_sub_068e64, Class_12a25c_m1_06f530, Class_12a25c_sub_06f93c, Class_12a5d0_sub_08ad50 (+69 more)
+ * called by: CMothLine_place_current, CMushroomerBody_AwayFrom, CMushroomerBody_sub_031764, Class_12a03c_m1_03c43c,
+ * Class_12a0c4_sub_0679cc, Class_12a0c4_sub_068e64, Class_12a25c_m1_06f530, Class_12a25c_sub_06f93c (+69 more)
  */
 u32 Vec3_scale(u64 *a0, double *a1, u32 a2, u32 a3, u32 s0) {
     double dVar1;
@@ -4014,7 +4014,7 @@ u32 Vec3_not_equal(float *a0, float *a1) {
 /*
  * Vec3_set_zero  0x8c023d34
  * called by: CAnimal_ctor, CAnimal_sub_024848, CAnimal_sub_0f4040, CFrogManLine_sub_03a5a4, CHigyoLine_sub_06e4ec,
- * CMothLine_ctor, CMothLine_sub_08dad4, CSoilTank_Create (+60 more)
+ * CMothLine_ctor, CMothLine_sub_08dad4, COutside_Create (+60 more)
  */
 u32 *Vec3_set_zero(u32 *a0) {
     a0[2] = 0;
@@ -4025,8 +4025,8 @@ u32 *Vec3_set_zero(u32 *a0) {
 
 /*
  * Vec3_set_xyz  0x8c023d68
- * called by: CAnimal_sub_036adc, CSquidLine_sub_085c3c, CWaterTank_sub_0e0f48, Class_12a0c4_sub_0679cc,
- * Class_12a0c4_sub_068e64, Class_12a7a8_sub_099b0c, Class_12acc8_sub_0a0278, Class_12ad14_sub_0a0890 (+57 more)
+ * called by: CSquidLine_sub_085c3c, CWaterTank_sub_0e0f48, Class_12a0c4_sub_0679cc, Class_12a0c4_sub_068e64,
+ * Class_12a7a8_sub_099b0c, Class_12acc8_sub_0a0278, Class_12ad14_sub_0a0890, Class_12b088_sub_0a99c4 (+57 more)
  */
 u32 *Vec3_set_xyz(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_fr5;
@@ -4058,8 +4058,8 @@ u32 *Vec3_assign_f_023d7c(u32 *a0, u32 a1) {
 
 /*
  * vec3_copy_8c023d8c  0x8c023d8c
- * called by: CAnimal_sub_036adc, CSquidLine_sub_085c3c, Class_129938_m1_0170e0, Class_129938_m2_0171f4,
- * Class_12a0c4_sub_0679cc, Class_12a0c4_sub_068e64, Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704 (+38 more)
+ * called by: CSquidLine_sub_085c3c, Class_129938_m1_0170e0, Class_129938_m2_0171f4, Class_12a0c4_sub_0679cc,
+ * Class_12a0c4_sub_068e64, Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704, Class_12ad14_sub_0a0890 (+38 more)
  */
 u32 *vec3_copy_8c023d8c(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     *a0 = *a1;
@@ -4071,8 +4071,8 @@ u32 *vec3_copy_8c023d8c(u32 *a0, u32 *a1, u32 a2, u32 a3) {
 /*
  * Vec3_set_one  0x8c023dac
  * sets x, y, z to 1.0
- * called by: CAnimal_ctor, CAnimal_sub_0f4040, CEnv_sub_0d2050, CMothLine_ctor, Class_1299b0_ctor, game_sub_04f034,
- * game_sub_06740c, game_sub_077a38 (+6 more)
+ * called by: CAnimal_ctor, CAnimal_sub_0f4040, CEnv_sub_0d2050, CMothLine_ctor, CMushroomerEgg_sub_09b508,
+ * Class_1299b0_ctor, game_sub_04f034, game_sub_06740c (+6 more)
  */
 u32 *Vec3_set_one(u32 *a0) {
     a0[2] = 0x3f800000;
@@ -4897,7 +4897,7 @@ u32 *CAnimal_sub_024848(u32 *a0, u32 a1, u32 a2) {
 /*
  * game_sub_024968  0x8c024968
  * name hint from a string it uses: GRAPHICS COMMON; area name: game code; nothing names its area yet
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  * strings: "GRAPHICS\\COMMON"; "COMMON_EYE"; "GRAPHICS\\COMMON"; "Failed to load eye textuer.." ...
  */
 int game_sub_024968(u32 a0) {
@@ -5103,8 +5103,8 @@ int game_sub_024968(u32 a0) {
 
 /*
  * get_field_4_0253e4  0x8c0253e4
- * called by: CAnimal_ChangeBodyTexture, CAnimal_LoadGResourceWait, CEnv_LoadDevicePanelTexture, CGame_Init,
- * CGame_Initial, CGame_LoadForEvent1Models, CHeater_CreateModel, CHerb_LoadTRWait (+36 more)
+ * called by: CAnimal_ChangeBodyTexture, CAnimal_LoadGRReq, CAnimal_LoadGRReq_b, CAnimal_LoadGResourceWait,
+ * CEnv_LoadDevicePanelTexture, CGame_Init, CGame_Initial, CGame_LoadForEvent1Models (+36 more)
  */
 u32 get_field_4_0253e4(int a0, u32 a1, u32 a2, u32 a3) {
     return *(u32 *)(a0 + 4);
@@ -5162,7 +5162,7 @@ int CAnimal_sub_025490(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CAnimal_ctor  0x8c0254d0
  * base constructor of the creatures: vtable 0x8c129a88, body, motion and the species tables passed in s8, s12, s16
- * called by: CFrogManEgg_ctor, CFrogManLine_ctor, CHigyoEgg_ctor, CMothEgg_ctor, CSpiderEgg_ctor, game_sub_09b8e4
+ * called by: CFrogManEgg_ctor, CFrogManLine_ctor, CHigyoEgg_ctor, CMothEgg_ctor, CMushroomerEgg_ctor, CSpiderEgg_ctor
  */
 int CAnimal_ctor(int a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16) {
     u32 uVar1;
@@ -5669,7 +5669,7 @@ u32 set_field_14(int a0, u32 a1) {
 /*
  * get_field_24_026024  0x8c026024
  * called by: CAnimal_m2_02573c, CAnimal_m3_026078, CAnimal_sub_034d48, Class_12a03c_m1_03c43c, Class_12a0c4_sub_0679cc,
- * Class_12a0c4_sub_068a4c, Class_12a0c4_sub_068e64, Class_12a5d0_sub_08c824 (+16 more)
+ * Class_12a0c4_sub_068a4c, Class_12a0c4_sub_068e64, Class_12a7a8_m1_098d14 (+16 more)
  */
 u32 get_field_24_026024(int a0, u32 a1, u32 unused_a2, u32 a3) {
     return *(u32 *)(a0 + 0x24);
@@ -6506,8 +6506,8 @@ u32 game_sub_02702c(int a0, u32 a1, u32 a2) {
 /*
  * noop_027224  0x8c027224
  * does nothing
- * called by: CFrogManEgg_ctor, CHigyoEgg_ctor, CMothEgg_ctor, CSpiderEgg_ctor, Vec3_sub_02aba0, game_sub_02702c,
- * game_sub_09b8e4
+ * called by: CFrogManEgg_ctor, CHigyoEgg_ctor, CMothEgg_ctor, CMushroomerEgg_ctor, CSpiderEgg_ctor, Vec3_sub_02aba0,
+ * game_sub_02702c
  */
 u32 noop_027224(void) {
     u32 in_r0;
@@ -6968,10 +6968,10 @@ u32 vec3_copy_on_field_14c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Vec3_sub_0278bc  0x8c0278bc
- * area name: sits between Vec3 functions (same compilation unit)
+ * game_sub_0278bc  0x8c0278bc
+ * area name: game code; nothing names its area yet
  */
-u32 Vec3_sub_0278bc(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_sub_0278bc(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = game_sub_0336e8(*(u32 *)(0x30c + a0), a1, a2, a3);
@@ -6979,10 +6979,10 @@ u32 Vec3_sub_0278bc(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Vec3_sub_0278e4  0x8c0278e4
- * area name: sits between Vec3 functions (same compilation unit)
+ * game_sub_0278e4  0x8c0278e4
+ * area name: game code; nothing names its area yet
  */
-u32 Vec3_sub_0278e4(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_sub_0278e4(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (**(code **)(**(int **)(0x308 + a0) + 0x1c))(*(int **)(0x308 + a0), a1, a2, a3);
@@ -6999,10 +6999,10 @@ u32 noop_027904(void) {
 }
 
 /*
- * Vec3_sub_027908  0x8c027908
- * area name: sits between Vec3 functions (same compilation unit)
+ * game_sub_027908  0x8c027908
+ * area name: game code; nothing names its area yet
  */
-u32 Vec3_sub_027908(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_sub_027908(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (*(code *)(&get_field_124_027930))(*(u32 *)(0x30c + a0), a1, a2, a3);
@@ -7019,10 +7019,10 @@ u32 get_field_124_027930(int a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * Vec3_sub_02793c  0x8c02793c
- * area name: sits between Vec3 functions (same compilation unit)
+ * game_sub_02793c  0x8c02793c
+ * area name: game code; nothing names its area yet
  */
-u32 Vec3_sub_02793c(int a0) {
+u32 game_sub_02793c(int a0) {
     if ((*(u32 *)(a0 + 0x74) & 1) == 1) {
         return 1;
     }
@@ -7040,10 +7040,10 @@ u32 mask_74_fffffffe(int a0) {
 }
 
 /*
- * Vec3_sub_027970  0x8c027970
- * area name: sits between Vec3 functions (same compilation unit)
+ * game_sub_027970  0x8c027970
+ * area name: game code; nothing names its area yet
  */
-u32 Vec3_sub_027970(int a0) {
+u32 game_sub_027970(int a0) {
     if ((*(u32 *)(a0 + 0x74) & 2) == 2) {
         return 1;
     }
@@ -7063,10 +7063,10 @@ u32 flag_74_bit40(int a0) {
 }
 
 /*
- * Vec3_sub_0279a0  0x8c0279a0
- * area name: sits between Vec3 functions (same compilation unit)
+ * game_sub_0279a0  0x8c0279a0
+ * area name: game code; nothing names its area yet
  */
-u32 Vec3_sub_0279a0(int a0) {
+u32 game_sub_0279a0(int a0) {
     if ((*(u32 *)(a0 + 0x74) & 0x100) == 0x100) {
         return 1;
     }
@@ -7082,10 +7082,10 @@ u32 set_bits_74_100(int a0) {
 }
 
 /*
- * Vec3_sub_0279e0  0x8c0279e0
- * area name: sits between Vec3 functions (same compilation unit)
+ * game_sub_0279e0  0x8c0279e0
+ * area name: game code; nothing names its area yet
  */
-u32 Vec3_sub_0279e0(int a0) {
+u32 game_sub_0279e0(int a0) {
     if ((*(u32 *)(a0 + 0x74) & 0x80) == 0x80) {
         return 1;
     }
@@ -7093,10 +7093,10 @@ u32 Vec3_sub_0279e0(int a0) {
 }
 
 /*
- * Vec3_sub_027a00  0x8c027a00
- * area name: sits between Vec3 functions (same compilation unit)
+ * game_sub_027a00  0x8c027a00
+ * area name: game code; nothing names its area yet
  */
-u32 Vec3_sub_027a00(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_sub_027a00(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
     iVar1 = (**(code **)(**(int **)(0x308 + a0) + 0x20))(*(int **)(0x308 + a0), a1, a2, a3);
@@ -7122,13 +7122,13 @@ u32 set_bits_74_80(int a0) {
 }
 
 /*
- * Vec3_sub_027a78  0x8c027a78
- * name hint from a string it uses: Failed to load Pack CAnimal ; area name: sits between Vec3 functions (same
- * compilation unit) called by: CFrogManEgg_LoadGRReq, CHigyoEgg_LoadGRReq, CMothEgg_LoadGRReq, CSpiderEgg_LoadGRReq
+ * CAnimal_LoadGRReq  0x8c027a78
+ * requests the graphics pack of creature slot a2 for the current stage (+0x418)
+ * called by: CFrogManEgg_LoadGRReq, CHigyoEgg_LoadGRReq, CMothEgg_LoadGRReq, CSpiderEgg_LoadGRReq
  * strings: "Failed to load Pack:CAnimal::LoadGRReq()"; "Failed to load Pack:CAnimal::LoadGRReq()"; "Read NJCM
  * Failed.."; "Read NJTL Failed.." ...
  */
-u32 Vec3_sub_027a78(int a0, int a1, int a2) {
+u32 CAnimal_LoadGRReq(int a0, int a1, int a2) {
     int iVar1;
     int iVar2;
     int a5;
@@ -7339,7 +7339,7 @@ u32 Vec3_sub_027a78(int a0, int a1, int a2) {
 /*
  * CAnimal_LoadMFile_step  0x8c028390
  * one step of loading a motion file (by request type s16); counts finished files in *s0 and returns 1 when all s4 are
- * in called by: Vec3_sub_027a78, game_sub_08c9dc strings: "Failed to Read ..:CAnimal::LoadMFile()"
+ * in called by: CAnimal_LoadGRReq, CAnimal_LoadGRReq_b strings: "Failed to Read ..:CAnimal::LoadMFile()"
  */
 u32 CAnimal_LoadMFile_step(u32 unused_a0, char *a1, u32 a2, u32 *a3, short *s0, u32 s4, u32 s8, u32 s12, int s16) {
     u32 *ar7_00;
@@ -7989,7 +7989,7 @@ u32 set_field_4(int a0, u32 a1) {
 
 /*
  * CAnimal_SetPVMTexture  0x8c029400
- * called by: Vec3_sub_027a78, game_sub_08c9dc
+ * called by: CAnimal_LoadGRReq, CAnimal_LoadGRReq_b
  * strings: "CAnimal::SetPVMTexture():%s"; "PVM TexName Area is null.."; "CAnimal::SetPVMTexture():%s"; "PVM Texcount is
  * 0.."
  */
@@ -8749,7 +8749,7 @@ float *game_sub_02a230(int a0, int a1, u32 a2, u32 a3) {
 /*
  * game_sub_02a29c  0x8c02a29c
  * area name: game code; nothing names its area yet
- * called by: CAnimal_sub_029510, CAnimal_sub_0369c4, game_sub_0297b8, game_sub_029ca8, game_sub_029d64,
+ * called by: CAnimal_sub_029510, CSquidLine_sub_0369c4, game_sub_0297b8, game_sub_029ca8, game_sub_029d64,
  * game_sub_029dec, game_sub_02a230
  */
 u32 game_sub_02a29c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
@@ -9372,7 +9372,7 @@ u32 Vec3_sub_02aba0(int a0) {
 /*
  * Vec3_ctor_copy_wrap_02ace4  0x8c02ace4
  * only calls Vec3_ctor_copy
- * called by: CAnimal_sub_036adc, CSquidLine_sub_085c3c, Vec3_sub_02aba0, Vec3_sub_02ad5c, game_sub_0ae84c
+ * called by: CSquidLine_sub_085c3c, Vec3_sub_02aba0, Vec3_sub_02ad5c, game_sub_036adc, game_sub_0ae84c
  */
 u32 Vec3_ctor_copy_wrap_02ace4(int a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;
@@ -9885,8 +9885,8 @@ u32 vec3_copy_wrap(int a0, u32 unused_a1, u32 a2, u32 unused_a3, u32 s0) {
 
 /*
  * vec3_copy_8c02b5fc  0x8c02b5fc
- * called by: CAnimal_sub_036adc, CSquidLine_sub_085c3c, Class_129cbc_m1_031598, Class_12a25c_sub_06f93c,
- * Class_12a7a8_sub_099b0c, Class_12acc8_sub_0a0278, Class_12aeec_sub_0a481c, Class_12b0c4_sub_0ac1f0 (+41 more)
+ * called by: CSquidLine_sub_085c3c, Class_129cbc_m1_031598, Class_12a25c_sub_06f93c, Class_12a7a8_sub_099b0c,
+ * Class_12acc8_sub_0a0278, Class_12aeec_sub_0a481c, Class_12b0c4_sub_0ac1f0, Class_12b2ac_m1_0aff3c (+41 more)
  */
 u32 *vec3_copy_8c02b5fc(u32 *a0, u32 *a1, u32 a2) {
     *a0 = *a1;
@@ -13892,7 +13892,7 @@ u8 *game_sub_02ff40(u8 *a0) {
 /*
  * Class_129c24_ctor  0x8c02ff6c
  * constructs the Class_129c70 base, then stores the vtable 0x8c129c24
- * called by: CFrogManEgg_ctor, CHigyoEgg_ctor, CMothEgg_ctor, CSpiderEgg_ctor, game_sub_09b8e4
+ * called by: CFrogManEgg_ctor, CHigyoEgg_ctor, CMothEgg_ctor, CMushroomerEgg_ctor, CSpiderEgg_ctor
  */
 u32 *Class_129c24_ctor(u32 *a0, u32 a1, u32 a2) {
     Class_129c70_ctor(a0, a1, a2);

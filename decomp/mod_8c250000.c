@@ -10907,8 +10907,8 @@ u32 matrix_pop1(void) {
 /*
  * matrix_sub_256294  0x8c256294
  * area name: sits between matrix functions (same compilation unit)
- * called by: CAnimal_sub_036adc, CSquidLine_sub_085c3c, Class_12acc8_m1_09f470, game_sub_019508, game_sub_02fcc4,
- * game_sub_03525c, game_sub_0d1754, game_sub_0d43cc (+2 more)
+ * called by: CSquidLine_sub_085c3c, Class_12acc8_m1_09f470, game_sub_019508, game_sub_02fcc4, game_sub_03525c,
+ * game_sub_036adc, game_sub_0d1754, game_sub_0d43cc (+2 more)
  */
 u32 matrix_sub_256294(int a0, double *a1, double *a2) {
     double in_dr0;
@@ -12435,7 +12435,7 @@ u32 ninja_sub_256e18(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 /*
  * matrix_scale  0x8c256fec
  * scales the matrix rows by fr4, fr5, fr6
- * called by: CAnimal_sub_026968, CAnimal_sub_0369c4, CAnimal_sub_088288, CSquidLine_sub_0ad354,
+ * called by: CAnimal_sub_026968, CAnimal_sub_088288, CSquidLine_sub_0369c4, CSquidLine_sub_0ad354,
  * Class_1298b8_m11_0159ec, Class_1298b8_m4_0156a0, Class_1298b8_m5_015720, Class_1298b8_m7_015890 (+26 more)
  */
 u32 matrix_scale(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
@@ -14770,7 +14770,7 @@ u32 pvr_25825a(u32 a0, int a1, u32 a2, u32 a3) {
         }
     }
     uVar3 = 1;
-    kamui_sub_207a9c(a0 & 0xfff, ar5_01, 1, uVar5);
+    kamui_set_display_mode_cfg(a0 & 0xfff, ar5_01, 1, uVar5);
     g_8c4aacbc = 0x60;
     g_8c4aacc0 = 1;
     g_8c4aad1c = 0x8c4aa6e4;
@@ -14997,7 +14997,7 @@ u32 ninja_sub_258604(u32 a0, u32 a1, u32 a2) {
     *piVar3 = (int)sVar1;
 LAB_8c258846:
     ar6_00 = 1;
-    kamui_sub_207a9c(*(u32 *)(puVar7 + -0xc), ar5_00, 1, uVar8);
+    kamui_set_display_mode_cfg(*(u32 *)(puVar7 + -0xc), ar5_00, 1, uVar8);
     pvr_sub_20a786(g_8c4aa4ec);
     g_8c4aa6dc = 0;
     g_8c4aa6d4 = 0;
@@ -15600,7 +15600,7 @@ u32 *ninja_sub_258f3a(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ninja_set_event900_callback  0x8c258fd8
  * removes the previous handler and, when a0 is set, installs a0 for interrupt event 0x900
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  */
 int ninja_set_event900_callback(int a0) {
     int *piVar1;
@@ -17103,7 +17103,7 @@ u32 ninja_sub_25a174(u32 a0, u32 a1, u32 a2, u32 a3) {
     uVar1 = ain0;
     if ((char)in_stack_ffffffe8 == '.') {
         ar4_00 = &stack0xffffffe8;
-        iVar2 = libc_sub_0109e8(ar4_00, ain0);
+        iVar2 = strcmp_word(ar4_00, ain0);
         ar5_00 = ain0;
         if (iVar2 == 0) {
             libc_sub_010998();
@@ -23971,7 +23971,7 @@ u32 ninja_sub_25dac0(void) {
 /*
  * ninja_sub_25dc60  0x8c25dc60
  * area name: in the ninja library code range
- * called by: kamui_sub_207a9c, shinobi_sub_207da0
+ * called by: kamui_set_display_mode_cfg, shinobi_sub_207da0
  */
 u32 ninja_sub_25dc60(int a0, u32 a1, int a2, int a3) {
     int iVar1;
@@ -24344,7 +24344,7 @@ u32 ninja_sub_25e260(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * ninja_sub_25e540  0x8c25e540
  * area name: in the ninja library code range
- * called by: kamui_sub_207a9c
+ * called by: kamui_set_display_mode_cfg
  */
 u32 ninja_sub_25e540(u32 a0, u32 a1) {
     u32 uVar1;
@@ -24502,7 +24502,7 @@ u32 ninja_sub_25e540(u32 a0, u32 a1) {
 /*
  * ninja_sub_25e884  0x8c25e884
  * area name: in the ninja library code range
- * called by: kamui_sub_207a9c
+ * called by: kamui_set_display_mode_cfg
  */
 u32 ninja_sub_25e884(u32 a0, u32 a1) {
     u32 uVar1;
@@ -24531,7 +24531,7 @@ u32 ninja_sub_25e884(u32 a0, u32 a1) {
 /*
  * ninja_sub_25eb60  0x8c25eb60
  * area name: in the ninja library code range
- * called by: kamui_sub_207a9c
+ * called by: kamui_set_display_mode_cfg
  */
 u32 ninja_sub_25eb60(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -24606,8 +24606,8 @@ u32 cri_sub_25ecdc(u32 a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 /*
  * lib_error_printf  0x8c25ece6
  * formats a library error and hands it to the registered error callback
- * called by: ADXF_GetFileRange, ADXF_GetFsizeByte, ADXF_GetFsizeSct, ADXF_GetNumReadSct, ADXF_GetNumReqSct,
- * ADXF_GetStat, ADXF_LoadPartition, ADXF_Seek (+19 more)
+ * called by: ADXF_AddPartition, ADXF_GetFileRange, ADXF_GetFsizeByte, ADXF_GetFsizeSct, ADXF_GetNumReadSct,
+ * ADXF_GetNumReqSct, ADXF_GetStat, ADXF_LoadPartition (+19 more)
  */
 u32 lib_error_printf(u32 a0, u32 unused_a1, u32 a2, u32 unused_a3, u32 s0, u32 s4) {
     u32 uVar1;

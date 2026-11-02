@@ -10639,8 +10639,8 @@ u32 pvr_sub_235eba(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * pvr_sub_235ee4  0x8c235ee4
  * area name: sits between pvr functions (same compilation unit)
- * called by: CGame_sub_0ca458, Class_12b580_sub_0d84e8, game_sub_0caac0, game_sub_0cbd74, game_sub_0d8444,
- * game_sub_0e14fc, game_sub_0e157c, game_sub_0e84f8 (+3 more)
+ * called by: CGame_sub_0ca458, Class_12b580_sub_0d84e8, WATER_ELEMENT_release, game_sub_0caac0, game_sub_0cbd74,
+ * game_sub_0d8444, game_sub_0e14fc, game_sub_0e157c (+3 more)
  */
 u32 pvr_sub_235ee4(void) {
     int *piVar1;
@@ -14018,8 +14018,8 @@ int find_entry_by_id(int *a0, u32 a1) {
 /*
  * ptr_list_build_1c  0x8c239170
  * fills a1 with a3 pointers 0x1c bytes apart starting at a2 (stride 12) and stores a1 in *a0
- * called by: CGame_Init, CIncubater_Create, CProlog_Ready, CSoilTank_Create, CSquid_Init, CSysMessage_LoadMessage,
- * CWaterTank_CreateStage, STAFF_CREDIT_LoadData (+6 more)
+ * called by: CGame_Init, CIncubater_Create, COutside_Create, CProlog_Ready, CSoilTank_Create, CSquid_Init,
+ * CSysMessage_LoadMessage, CWaterTank_CreateStage (+6 more)
  */
 int *ptr_list_build_1c(int *a0, int *a1, int a2, int a3) {
     int *piVar1;

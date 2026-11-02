@@ -3202,7 +3202,7 @@ u32 game_sub_085e9c(int a0) {
 /*
  * game_sub_085f4c  0x8c085f4c
  * name hint from a string it uses: gm1 Home njd; area name: game code; nothing names its area yet
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  */
 u32 game_sub_085f4c(void) {
     u64 uVar1;
@@ -4573,7 +4573,7 @@ u32 CHigyoEgg_LoadGRReq(int a0, u32 a1, u32 a2, u32 a3) {
 
     uVar2 = 0;
     if (*(int *)(0x420 + a0) == 0) {
-        iVar1 = Vec3_sub_027a78(a0, a1, a2);
+        iVar1 = CAnimal_LoadGRReq(a0, a1, a2);
         if (iVar1 == 1) {
             *(u32 *)(0x420 + a0) = 1;
         }
@@ -4627,7 +4627,7 @@ u32 CHigyoEgg_sub_08864c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CHigyoEgg_sub_08869c  0x8c08869c
  * name hint from a string it uses: gme Home nj; area name: sits between CHigyoEgg functions (same compilation unit)
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  */
 u32 CHigyoEgg_sub_08869c(void) {
     int iVar1;
@@ -5318,7 +5318,7 @@ u32 Class_12a5d0_m2_08a49c(int a0, u32 a1, u32 a2, u32 a3) {
     }
     uVar1 = get_field_90_s8(a0 + 0x490);
     if (((char)uVar1 == '\x02') && (iVar2 = get_field_25c_08a6f8(a0 + 0x538), iVar2 != -1)) {
-        Class_12a5d0_sub_08ad50(a0, a3, a1, ar7_00);
+        CMothLine_place_current(a0, a3, a1, ar7_00);
         ar5_00 = a3;
         a2 = a1;
     }
@@ -5389,7 +5389,7 @@ u32 ret_const_2fc(void) {
 
 /*
  * get_field_25c_08a6f8  0x8c08a6f8
- * called by: Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704, Class_12a5d0_sub_08ad50
+ * called by: CMothLine_place_current, Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704
  */
 u32 get_field_25c_08a6f8(int a0) {
     return *(u32 *)(0x25c + a0);
@@ -5430,7 +5430,7 @@ u32 Class_12a5d0_m3_08a704(int a0, u32 a1, u32 a2, u32 a3) {
     }
     uVar1 = get_field_90_s8(a0 + 0x490);
     if (((char)uVar1 == '\x02') && (iVar2 = get_field_25c_08a6f8(a0 + 0x538), iVar2 != -1)) {
-        Class_12a5d0_sub_08ad50(a0, a3, a1, ar7_00);
+        CMothLine_place_current(a0, a3, a1, ar7_00);
         ar5_00 = a3;
         a2 = a1;
     }
@@ -5663,12 +5663,12 @@ int Class_12a5d0_sub_08ac38(int a0, int a1) {
 }
 
 /*
- * Class_12a5d0_sub_08ad50  0x8c08ad50
- * name hint from a string it uses: CMothLine; area name: only called from Class_12a5d0 methods
+ * CMothLine_place_current  0x8c08ad50
+ * places the current moth line at a2 and hands it to a1; error when empty
  * called by: Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704
  * strings: "CMothLine"; "Ryu-Zan"
  */
-u32 Class_12a5d0_sub_08ad50(int a0, int *a1, u32 a2, u32 a3) {
+u32 CMothLine_place_current(int a0, int *a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -6182,7 +6182,7 @@ int CMothLine_FreeGraphicResource(int a0, u32 a1, int a2) {
 /*
  * game_sub_08bf2c  0x8c08bf2c
  * name hint from a string it uses: Cp Home njd; area name: game code; nothing names its area yet
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  */
 u8 *game_sub_08bf2c(void) {
     int iVar1;
@@ -6538,10 +6538,10 @@ u32 get_field_288_08c818(int a0) {
 }
 
 /*
- * Class_12a5d0_sub_08c824  0x8c08c824
- * area name: sits between Class_12a5d0 functions (same compilation unit)
+ * game_sub_08c824  0x8c08c824
+ * area name: game code; nothing names its area yet
  */
-u32 Class_12a5d0_sub_08c824(int a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 game_sub_08c824(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 in_fr1;
@@ -6741,12 +6741,12 @@ u32 Class_12a5d0_sub_08c824(int a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_08c9dc  0x8c08c9dc
- * name hint from a string it uses: cp ESA FRONT HOME njd; area name: game code; nothing names its area yet
+ * CAnimal_LoadGRReq_b  0x8c08c9dc
+ * requests the graphics pack of creature slot a2 for the current stage (+0x418)
  * strings: "Read NJCM Failed.."; "Failed to load Pack:CAnimal::LoadGRReq()"; "Failed to load
  * Pack:CAnimal::LoadGRReq()"; "Read NJCM Failed.." ...
  */
-u32 game_sub_08c9dc(int a0, u32 a1, int a2) {
+u32 CAnimal_LoadGRReq_b(int a0, u32 a1, int a2) {
     int iVar1;
     int iVar2;
     u32 uVar3;

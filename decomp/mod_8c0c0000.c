@@ -198,12 +198,12 @@ int game_sub_0c0368(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0c0444  0x8c0c0444
- * name hint from a string it uses: Tmcpack idx; area name: game code; nothing names its area yet
+ * game_init_sound_and_messages  0x8c0c0444
+ * installs the vblank hook and opens SeamanSound.mlt, adxpack.afs and Tmcpack.dat/.idx, then loads messages
  * called by: game_init
  * strings: "Tmcpack.dat"; "adxpack.afs"; "SeamanSound.mlt"; "SeamanSound.mlt" ...
  */
-u32 game_sub_0c0444(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_init_sound_and_messages(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     char *ar5_00;
     u32 uVar2;
@@ -1562,7 +1562,7 @@ int pack_entry_384_reset(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * CSysMessage_LoadMessage  0x8c0c2c6c
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  * strings: "GRAPHICS\\MESSAGE"; "SysMessage.pvm"; "CSysMessage::LoadMessage()"; "Failed to load sys message pvm.." ...
  */
 u32 CSysMessage_LoadMessage(int a0, u32 a1) {
@@ -3677,7 +3677,7 @@ u32 *Class_12b388_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * CGame_Init  0x8c0c5a04
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  * strings: "exit.pvm"; "GRAPHICS\\MESSAGE"; "Failed to load ExitMenu message pvm.."; "CGame::Init()"
  */
 int CGame_Init(int a0, u32 a1) {

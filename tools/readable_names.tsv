@@ -132,7 +132,7 @@
 8c0f82a4	speech_restart	stops the current speech if one is running, then speech_start
 8c0f8214	speech_stop	stops the current speech and clears its active flag (+0x89134)
 8c0bf170	speech_request_pair	copies two names to 0x8c4362a0/0x8c4362c0 and requests speech mode 6 with them
-8c205e00	kamui_cfg_texture16mb	reads the "HARDWARE" / "EnableTexture16MB" configuration option
+8c205e00	kamui_cfg_get	configuration lookup (section a0, key a1, default a2); this build answers 0 for HARDWARE/EnableTexture16MB and the default otherwise
 8c023e04	Vec3_assign_copy	a0 = a1
 8c05d608	copy_6_words	a0[0..5] = a1[0..5]
 8c030e34	set_6_floats	a0[0..5] = fr4..fr9
@@ -1004,3 +1004,30 @@
 8c01e14c	free_01e14c	free_sys(a0)
 8c016ecc	copy_8_vec3_30	copies the eight vectors at +0x30 to a1
 8c016e6c	get_vec4_30	copies the four words at +0x30 to a1
+8c2635a4	adxstmf_stat_exec	ADX stream file state machine step (from its error string)
+8c264614	adxt_trap_entry	ADXT trap entry (from its error string)
+8c261d46	ADXF_AddPartition	adds partition a0 from file a1 (from its error string)
+8c0109e8	strcmp_word	strcmp that compares a word at a time when both strings are aligned
+8c01439c	strcmp_01439c	strcmp_word(a0, a1)
+8c027a78	CAnimal_LoadGRReq	requests the graphics pack of creature slot a2 for the current stage (+0x418)
+8c08c9dc	CAnimal_LoadGRReq_b	requests the graphics pack of creature slot a2 for the current stage (+0x418)
+8c06ce04	CHerb_LoadGRWait	loads the two herb-line graphics packs from GRAPHICS\HERBLINE
+8c03688c	CSquidLine_place_all	places the six squid lines at a2 and hands them to a1; error per empty slot
+8c08ad50	CMothLine_place_current	places the current moth line at a2 and hands it to a1; error when empty
+8c09b8e4	CMushroomerEgg_ctor	"MushroomerEgg": CAnimal_ctor(kind 0) with GRAPHICS\MUSHROOMERLINE, vtable 0x8c12a990
+8c0c0444	game_init_sound_and_messages	installs the vblank hook and opens SeamanSound.mlt, adxpack.afs and Tmcpack.dat/.idx, then loads messages
+8c0d33e8	WATER_ELEMENT_CreateStage0	loads suisou_WaterFace.nj from GRAPHICS\ENV (from its error string)
+8c0d5218	WATER_ELEMENT_release	releases the water-face and effect models (suisou_WaterFace.nj, suisou_Effect.nj)
+8c0e69c0	COutside_Create	loads amazon.nj from GRAPHICS\ENV (from its error string)
+8c1f43d2	maple_try_lock	takes the Maple lock (bit 0x80 of 8c1f5a2c); -2 with a fatal message when it is already taken
+8c1f6ce2	flash_header_signature	fills the 0x3c bytes at a1 with the SEGA_FH01_* signature for state a0 (0..3)
+8c2034c0	kamui_cfg_texture_memory	reads HARDWARE/EnableTexture16MB and sets the texture memory to 16 MB or 8 MB
+8c2034cc	kamui_cfg_texture_memory_b	alternate entry of kamui_cfg_texture_memory
+8c205e64	kamui_init_defaults	sets up the Kamui state block at 8c4a9ba8 with its default values
+8c207a9c	kamui_set_display_mode_cfg	reads KAMUI DisplayMode, AntiAlias and Dither and sets the display mode
+8c268cee	mwRnaStart_like	stops the output if needed, rewinds it and starts playing (state 4)
+8c26962c	mwRna_suspend	remembers the play/output state and stops output (+7 = 1)
+8c2696aa	mwRna_resume	restarts output if it was on when suspended (+7 = 0)
+8c269718	mwRna_is_suspended	the suspend flag at +7
+8c269f50	mwRna_set_param3	stores a1, a2 at +0x7c/+0x80 and passes them to the output (command 3)
+8c269fa0	mwRna_get_param3	*a1, *a2 = the values at +0x7c/+0x80

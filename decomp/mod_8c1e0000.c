@@ -499,7 +499,7 @@ int pvr_1efaf4(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 
     iVar2 = 0x8c470be0;
     piVar1 = 0x8c4727b4;
-    a7 = shinobi_sub_1f43d2();
+    a7 = maple_try_lock();
     if (a7 == -2) {
         *(u32 *)((int)0x10e8 + *piVar1) = 1;
     } else if (a7 < 0) {

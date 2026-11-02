@@ -103,8 +103,8 @@ u32 array_destruct_backwards(int a0, code *a1, u32 a2, u32 a3) {
 /*
  * vec_new_array  0x8c010120
  * constructs count elements of size bytes with ctor; on failure destroys the built ones with dtor (pairs with
- * vec_delete_array) called by: CAnimal_sub_02b9a8, CAnimal_sub_039124, CAnimal_sub_08894c, CSquid_Init,
- * Class_12ab2c_sub_09f060, Class_12ad50_sub_0a5c90, Class_12b088_sub_03220c, Class_12b3b8_ctor (+25 more)
+ * vec_delete_array) called by: CAnimal_sub_02b9a8, CAnimal_sub_039124, CAnimal_sub_08894c, CMushroomerEgg_ctor,
+ * CSquid_Init, Class_12ab2c_sub_09f060, Class_12ad50_sub_0a5c90, Class_12b088_sub_03220c (+25 more)
  */
 u32 vec_new_array(int a0, code *a1, code *a2, int a3, u32 s0) {
     int iVar1;
@@ -1997,7 +1997,7 @@ u32 libgcc_divide_helper_010284(u32 a0, int a1, u32 a2) {
 /*
  * libgcc_divide_helper_01031c  0x8c01031c
  * called by: CAnimBody_random_flags_delay, CAnimal_ctor, CAnimal_m2_02573c, CAnimal_m3_026078, CAnimal_sub_02911c,
- * CTexture_sub_0d97ec, Class_129808_sub_01679c, Class_129c70_sub_02f2c8 (+69 more)
+ * CHerb_LoadGRWait, CTexture_sub_0d97ec, Class_129808_sub_01679c (+69 more)
  */
 int libgcc_divide_helper_01031c(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -3686,8 +3686,8 @@ u32 libgcc_divide_helper_0103d0(u32 a0, int a1) {
 
 /*
  * libgcc_divide_helper_010468  0x8c010468
- * called by: ADXF_LoadPartition, ADXF_sub_261d46, ADXT_GetTime_like, ADXT_sub_263ce4, ADXT_sub_2647f4, ADXT_sub_264c92,
- * asr_sub_10fab2, asr_sub_10fabc (+58 more)
+ * called by: ADXF_AddPartition, ADXF_LoadPartition, ADXT_GetTime_like, ADXT_sub_263ce4, ADXT_sub_2647f4,
+ * ADXT_sub_264c92, asr_sub_10fab2, asr_sub_10fabc (+58 more)
  */
 int libgcc_divide_helper_010468(u32 a0, u32 a1) {
     u32 uVar1;
@@ -7889,7 +7889,7 @@ int libc_sub_010960(u32 unused_a0, u32 a1) {
 /*
  * libc_sub_010998  0x8c010998
  * area name: in the libc library code range
- * called by: ninja_sub_25a174, ninja_sub_25b4da, shinobi_sub_1f6ce2
+ * called by: flash_header_signature, ninja_sub_25a174, ninja_sub_25b4da
  */
 char *libc_sub_010998(void) {
     char cVar1;
@@ -7931,11 +7931,11 @@ char *libc_sub_010998(void) {
 }
 
 /*
- * libc_sub_0109e8  0x8c0109e8
- * area name: in the libc library code range
- * called by: asr_sub_10ca58, libc_sub_01439c, ninja_sub_25a174
+ * strcmp_word  0x8c0109e8
+ * strcmp that compares a word at a time when both strings are aligned
+ * called by: asr_sub_10ca58, ninja_sub_25a174, strcmp_01439c
  */
-int libc_sub_0109e8(u32 *a0, u32 *a1) {
+int strcmp_word(u32 *a0, u32 *a1) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -11845,8 +11845,8 @@ u32 libc_sub_0142e4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
 /*
  * sprintf  0x8c014334
- * called by: CAnimal_m1_0f41c8, CFrogManEgg_ctor, CFrogManLine_ctor, CHigyoEgg_ctor, CMothEgg_ctor, CSpiderEgg_ctor,
- * SaveData_ctor, debug_print_object (+16 more)
+ * called by: CAnimal_m1_0f41c8, CFrogManEgg_ctor, CFrogManLine_ctor, CHigyoEgg_ctor, CMothEgg_ctor,
+ * CMushroomerEgg_ctor, CSpiderEgg_ctor, SaveData_ctor (+16 more)
  */
 u32 sprintf(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0) {
     u32 uVar1;
@@ -11888,14 +11888,14 @@ char *strcat(char *a0, char *a1) {
 }
 
 /*
- * libc_sub_01439c  0x8c01439c
- * area name: in the libc library code range
- * called by: kamui_cfg_texture16mb
+ * strcmp_01439c  0x8c01439c
+ * strcmp_word(a0, a1)
+ * called by: kamui_cfg_get
  */
-u32 libc_sub_01439c(u32 a0, u32 a1) {
+u32 strcmp_01439c(u32 a0, u32 a1) {
     u32 uVar1;
 
-    uVar1 = libc_sub_0109e8(a0, a1);
+    uVar1 = strcmp_word(a0, a1);
     return uVar1;
 }
 
@@ -12506,7 +12506,7 @@ u32 set_flag_10_28(int a0) {
 
 /*
  * object_dtor_delete  0x8c014a34
- * called by: CAnimal_m0_025688, CAnimal_sub_0253ec, CAnimal_sub_036adc, CSoilTank_Create, CSquidLine_sub_085c3c,
+ * called by: CAnimal_m0_025688, CAnimal_sub_0253ec, COutside_Create, CSoilTank_Create, CSquidLine_sub_085c3c,
  * CWaterTank_CreateStage, CWaterTank_sub_0e0f48, Class_1299b0_dtor (+123 more)
  */
 int object_dtor_delete(int a0, u32 a1, u32 a2, u32 a3) {
@@ -13030,7 +13030,7 @@ u32 game_sub_0150e0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * set_field_10  0x8c015198
  * called by: CGame_Init, CSeamanDomain_Init, CSeamanDomain_sub_0c2068, Class_129808_m6_0166b4, Class_12b3b8_sub_0e7a78,
- * Class_12bb08_ctor, game_sub_0b6e6c, game_sub_0b79f0 (+11 more)
+ * Class_12bb08_ctor, game_init_sound_and_messages, game_sub_0b6e6c (+11 more)
  */
 u32 set_field_10(int a0, u32 a1) {
     u32 in_r0;
@@ -13088,7 +13088,7 @@ u32 find_byte_in_ff_list(short *a0, u32 a1) {
 /*
  * game_sub_0151fc  0x8c0151fc
  * area name: game code; nothing names its area yet
- * called by: WE_CreateStageC, se_sub_0d5218
+ * called by: WATER_ELEMENT_release, WE_CreateStageC
  */
 u32 game_sub_0151fc(u32 a0) {
     u32 uVar1;
@@ -13868,8 +13868,8 @@ u32 clear_field_0_wrap_015ab8(u32 a0) {
 
 /*
  * set_field_0_015ad4  0x8c015ad4
- * called by: CAnimal_LoadGRWait, CGame_Initial, CGame_LoadForEvent1Models, CHeater_CreateModel, CO2Supply_LoadTexture,
- * CSoilTank_Create, CSprinkler_LoadTexture, CWaterTank_CreateStage (+19 more)
+ * called by: CAnimal_LoadGRReq, CAnimal_LoadGRReq_b, CAnimal_LoadGRWait, CGame_Initial, CGame_LoadForEvent1Models,
+ * CHeater_CreateModel, CHerb_LoadGRWait, CO2Supply_LoadTexture (+19 more)
  */
 u32 set_field_0_015ad4(u32 *a0, u32 a1, u32 a2) {
     u32 in_r0;
@@ -13974,8 +13974,8 @@ u32 clear_field_0_wrap_015b94(u32 a0, u32 a1) {
 
 /*
  * set_field_0_015bb0  0x8c015bb0
- * called by: CAnimal_LoadGRWait, CAnimal_LoadMFile_step, RING_UNIT_CreateModel, Vec3_sub_027a78, game_sub_06ce04,
- * game_sub_08c9dc
+ * called by: CAnimal_LoadGRReq, CAnimal_LoadGRReq_b, CAnimal_LoadGRWait, CAnimal_LoadMFile_step, CHerb_LoadGRWait,
+ * RING_UNIT_CreateModel
  */
 u32 set_field_0_015bb0(u32 *a0, u32 a1) {
     u32 in_r0;
@@ -14014,7 +14014,7 @@ u32 clear_field_0_wrap_015bc8(u32 a0) {
 
 /*
  * set_field_0_015be4  0x8c015be4
- * called by: CAnimal_LoadGRWait, CAnimal_LoadMFile_step, game_sub_06ce04
+ * called by: CAnimal_LoadGRWait, CAnimal_LoadMFile_step, CHerb_LoadGRWait
  */
 u32 set_field_0_015be4(u32 *a0, u32 a1) {
     u32 in_r0;
@@ -15251,7 +15251,7 @@ u32 Class_129974_sub_016fa4(int a0, u32 unused_a1, u32 a2) {
 /*
  * Class_129938_ctor  0x8c016fcc
  * called by: CFrogManEgg_ctor, CFrogManLine_ctor, CHigyoEgg_ctor, CHigyoLine_ctor, CMothEgg_ctor, CMothLine_ctor,
- * CMushroomerLine_ctor, CSpiderEgg_ctor (+7 more)
+ * CMushroomerEgg_ctor, CMushroomerLine_ctor (+7 more)
  */
 u32 *Class_129938_ctor(u32 *a0, u32 a1, u32 a2) {
     Class_1299b0_ctor(a0, a1, a2);
@@ -21983,7 +21983,7 @@ int game_sub_01e560(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_01e5b4  0x8c01e5b4
  * area name: game code; nothing names its area yet
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  */
 u32 game_sub_01e5b4(int a0, u32 a1, u32 a2, u32 a3) {
     input_device_select_and_reset(a0, a1, a2, a3);
@@ -23068,7 +23068,7 @@ int free_if_nonnull_wrap_01f5d8(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * input_sub_01f608  0x8c01f608
  * name hint from a string it uses: SPEECH; area name: sits between input functions (same compilation unit)
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  * strings: ",0,a3);
   ar6_00 = 2;
   file_slot_open(a0,"; ",1,a3);

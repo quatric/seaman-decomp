@@ -456,7 +456,7 @@ int kamui_sub_211120(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     dVar14 = (double)(in_dr14 & 0xffffffff00000000);
     uStack_88 = 2;
     iVar4 = a0;
-    shinobi_sub_2034c0(a0, unused_a1, unused_a2, a3);
+    kamui_cfg_texture_memory(a0, unused_a1, unused_a2, a3);
     kamui_sub_21214e();
     g_8c4aa1f4 = 0;
     uStack_7c = (u32)((*(u32 *)(a0 + 4) & 1) != 0);
@@ -684,7 +684,7 @@ int kamui_sub_211120(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         g_8c4aa1fc = g_8c4aa1fc + 7 & 0xfffffff8;
     }
     g_8c4aa1f8 = g_8c4a9bc0 + g_8c4aa1fc * -4 + g_8c4aa200 * -2 >> 1;
-    iVar4 = kamui_cfg_texture16mb("HARDWARE", "EnableTexture16MB", 0);
+    iVar4 = kamui_cfg_get("HARDWARE", "EnableTexture16MB", 0);
     if (iVar4 == 1) {
         if (0x400000 < g_8c4aa1f8) {
             g_8c4aa1f8 = 0x400000;
@@ -1154,7 +1154,7 @@ u32 get_g_8c2758e8(void) {
 /*
  * kamui_sub_21214e  0x8c21214e
  * area name: sits between kamui functions (same compilation unit)
- * called by: kamui_sub_207a9c, kamui_sub_211120, pvr_sub_20a6f2, shinobi_sub_207da0, shinobi_sub_207f80,
+ * called by: kamui_set_display_mode_cfg, kamui_sub_211120, pvr_sub_20a6f2, shinobi_sub_207da0, shinobi_sub_207f80,
  * shinobi_sub_207f84
  */
 int *kamui_sub_21214e(void) {
@@ -5190,7 +5190,7 @@ u32 ta_fifo_213f28(float *a0) {
 /*
  * ta_sub_2140a4  0x8c2140a4
  * area name: sits between ta functions (same compilation unit)
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  */
 int ta_sub_2140a4(int a0) {
     u8 *puVar1;
@@ -5206,7 +5206,7 @@ int ta_sub_2140a4(int a0) {
  * flags_4c0db0_set  0x8c2140c6
  * sets or clears (a1) flag a0 of the bit set at 0x8c4c0db0
  * called by: Class_12ab2c_sub_09de7c, Class_12ab2c_sub_09ea78, Class_12ab2c_sub_09edf0, Class_12ab2c_sub_09efb4,
- * game_sub_0c0444
+ * game_init_sound_and_messages
  */
 u32 flags_4c0db0_set(int a0, int a1) {
     u32 auStack_20[8];

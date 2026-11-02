@@ -7848,7 +7848,7 @@ int game_sub_06ca7c(int a0) {
 /*
  * game_sub_06cb08  0x8c06cb08
  * name hint from a string it uses: herb seed nj; area name: game code; nothing names its area yet
- * called by: game_sub_0c0444
+ * called by: game_init_sound_and_messages
  */
 u32 game_sub_06cb08(void) {
     int iVar1;
@@ -7893,11 +7893,11 @@ u32 game_sub_06cb08(void) {
 }
 
 /*
- * game_sub_06ce04  0x8c06ce04
- * name hint from a string it uses: GRAPHICS HERBLINE; area name: game code; nothing names its area yet
+ * CHerb_LoadGRWait  0x8c06ce04
+ * loads the two herb-line graphics packs from GRAPHICS\HERBLINE
  * strings: "Failed to Load :CHerb::LoadGRWait"; "Attach NULL!!"; "CHerb::LoadGRWait()"; "Read NMDM Failed.." ...
  */
-u32 game_sub_06ce04(int a0, u32 a1) {
+u32 CHerb_LoadGRWait(int a0, u32 a1) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -8118,7 +8118,7 @@ u32 CHerb_sub_06d5e4(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * CHerb_SetPVMTexture  0x8c06d618
- * called by: game_sub_06ce04
+ * called by: CHerb_LoadGRWait
  * strings: "CHerb::SetPVMTexture():%s"; "PVM TexName Area is null.."; "CHerb::SetPVMTexture():%s"; "PVM Texcount is
  * 0.."
  */
