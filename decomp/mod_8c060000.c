@@ -1123,7 +1123,7 @@ int game_sub_062b0c(int a0, code *a1, code *a2, char *a3) {
             iVar2 = 0x7c;
             if ((iVar4 == 0) && (iVar2 = *(int *)(a0 + 0x854), iVar2 == -10)) {
                 uVar3 = get_field_44_s8(*(u32 *)(a2 + 0xc), ar5_00, pcVar6, a3);
-                if (((char)uVar3 == '\0') && (iVar2 = Class_12b2e8_sub_02fcc4(a0, a2, pcVar6, a3), iVar2 != 1)) {
+                if (((char)uVar3 == '\0') && (iVar2 = game_sub_02fcc4(a0, a2, pcVar6, a3), iVar2 != 1)) {
                     if (*(int *)(a0 + 900) == -1) {
                         set_field_770(a0 + 0x9c, 0, pcVar6, a3);
                         a3 = "REQUEST_ATTENTION";
@@ -1141,13 +1141,13 @@ int game_sub_062b0c(int a0, code *a1, code *a2, char *a3) {
                     pcVar5 = get_field_44_s8;
                     uVar3 = get_field_44_s8(*(u32 *)(a2 + 0xc), get_field_44_s8, pcVar6, a3);
                     if (((char)uVar3 == '\0') &&
-                        (pcVar5 = a2, iVar2 = Class_12b2e8_sub_02fcc4(a0, a2, pcVar6, a3), iVar2 == 1)) {
+                        (pcVar5 = a2, iVar2 = game_sub_02fcc4(a0, a2, pcVar6, a3), iVar2 == 1)) {
                         pcVar5 = (code *)0x1;
                         set_field_44_u8(*(u32 *)(a2 + 0xc), 1);
                     }
                 }
                 uVar3 = get_field_44_s8(*(u32 *)(a2 + 0xc), pcVar5, pcVar6, a3);
-                if (((char)uVar3 == '\x01') && (iVar2 = Class_12b2e8_sub_02fcc4(a0, a2, pcVar6, a3), iVar2 == 1)) {
+                if (((char)uVar3 == '\x01') && (iVar2 = game_sub_02fcc4(a0, a2, pcVar6, a3), iVar2 == 1)) {
                     if (*(int *)(a0 + 900) == -1) {
                         set_field_770(a0 + 0x9c, 0, pcVar6, a3);
                         ar7_00 = "EVENT_GET_SPRINKLER";
@@ -1275,8 +1275,8 @@ u32 set_field_2c(int a0, u32 a1, u32 unused_a2, u32 a3) {
 
 /*
  * Vec3_assign_wrap_063818  0x8c063818
- * called by: Class_12acc8_m1_09f470, Vec3_sub_063838, game_sub_062b0c, game_sub_064bb4, game_sub_0652f4,
- * game_sub_0656d4, game_sub_106f58, game_sub_107590 (+2 more)
+ * called by: Class_12acc8_m1_09f470, Vec3_sub_063838, game_sub_062b0c, game_sub_064bb4, game_sub_0656d4,
+ * game_sub_106f58, game_sub_107590, game_sub_10862c (+2 more)
  */
 u32 Vec3_assign_wrap_063818(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1508,7 +1508,7 @@ LAB_8c063f66:
             *(u32 *)(a0 + 0x86c) = 0;
         }
         ar5_01 = a2;
-        iVar4 = Class_12b2e8_sub_02fcc4(a0, a2, pcVar6, ar7_01);
+        iVar4 = game_sub_02fcc4(a0, a2, pcVar6, ar7_01);
         if (((iVar4 == 1) &&
              (uVar1 = get_field_44_s8(*(u32 *)(a2 + 0xc), ar5_01, pcVar6, ar7_01), (char)uVar1 == '\0')) &&
             (iVar4 = get_field_40_03598c(*(u32 *)(a2 + 0xc), ar5_01), iVar4 == 0)) {
@@ -1558,7 +1558,7 @@ LAB_8c063f66:
             if (*(int *)(a0 + 4) == 0xd) {
                 ppuVar3 = (u8 **)0xd;
             } else {
-                iVar4 = Class_12b2e8_sub_02fcc4(a0, a2, pcVar6, ar7_01);
+                iVar4 = game_sub_02fcc4(a0, a2, pcVar6, ar7_01);
                 if (iVar4 == 1) {
                     ppuVar3 = (u8 **)0x1;
                 } else {
@@ -2000,12 +2000,12 @@ u32 game_sub_064bb4(int a0, u32 unused_a1, int a2, char *a3) {
 }
 
 /*
- * game_sub_065228  0x8c065228
- * name hint from a string it uses: GRATIFIC RID HOT; area name: game code; nothing names its area yet
+ * talk_complain_tank_env  0x8c065228
+ * queues the GRATIFIC_RID_HOT / _COLD / _HUMIDITY line for the tank condition
  * called by: Class_12a078_sub_05d860
  * strings: "GRATIFIC_RID_HOT"; "GRATIFIC_RID_COLD"; "GRATIFIC_RID_HUMIDITY"
  */
-int game_sub_065228(int a0, u32 unused_a1, int a2) {
+int talk_complain_tank_env(int a0, u32 unused_a1, int a2) {
     int iVar1;
 
     iVar1 = game_sub_02bebc(*(u32 *)(a2 + 4));
@@ -2028,11 +2028,11 @@ int game_sub_065228(int a0, u32 unused_a1, int a2) {
 }
 
 /*
- * game_sub_0652f4  0x8c0652f4
- * area name: game code; nothing names its area yet
+ * talk_sub_0652f4  0x8c0652f4
+ * area name: sits between talk functions (same compilation unit)
  * called by: Class_12a078_sub_05d860
  */
-int game_sub_0652f4(int a0, u32 a1, int a2, u32 a3) {
+int talk_sub_0652f4(int a0, u32 a1, int a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 ar5_00;
@@ -2085,7 +2085,7 @@ int game_sub_0652f4(int a0, u32 a1, int a2, u32 a3) {
               (*(int *)(a0 + 900) == -1)))) {
             uVar2 = get_field_a0_035724(*(u32 *)(a2 + 0x18), a1);
             ar5_00 = (u32)((char)uVar2 == '\x03');
-            iVar1 = talk_sub_0309c8(a0 + 0x9c, ar5_00, ar6_00, a3);
+            iVar1 = talk_set_start_scene(a0 + 0x9c, ar5_00, ar6_00, a3);
             if (iVar1 != 0) {
                 for (iVar1 = 0; iVar1 < 6; iVar1 = iVar1 + 1) {
                     uVar2 = get_field_0_s8(iVar1 * 0x18 + *(int *)(a2 + 4));
@@ -2701,12 +2701,12 @@ u32 get_field_c_06645c(int a0) {
 }
 
 /*
- * game_sub_066464  0x8c066464
- * name hint from a string it uses: STATUS LASTONE; area name: game code; nothing names its area yet
+ * talk_check_status_lastone  0x8c066464
+ * queues the STATUS_LASTONE line once, when only one creature is left
  * called by: Class_12a078_sub_05d860
  * strings: "STATUS_LASTONE"
  */
-int game_sub_066464(int a0, int *a1, int a2, u32 a3) {
+int talk_check_status_lastone(int a0, int *a1, int a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -2719,7 +2719,7 @@ int game_sub_066464(int a0, int *a1, int a2, u32 a3) {
         iVar1 = (**(code **)(0x11c + *a1))(a1, 5, iVar3, a3);
         if (iVar1 == 1) {
             ar5_00 = a2;
-            iVar1 = Class_12b2e8_sub_02fcc4(a0, a2, iVar3, a3);
+            iVar1 = game_sub_02fcc4(a0, a2, iVar3, a3);
             if (iVar1 == 1) {
                 iVar1 = (*(code *)(&get_field_40_03598c))(*(u32 *)(a2 + 0xc), ar5_00, iVar3, a3);
                 if (iVar1 == 0) {
@@ -2781,11 +2781,11 @@ u32 get_field_8_066620(int a0) {
 }
 
 /*
- * game_sub_066628  0x8c066628
- * area name: game code; nothing names its area yet
+ * talk_sub_066628  0x8c066628
+ * area name: sits between talk functions (same compilation unit)
  * called by: Class_12a078_sub_05f660
  */
-u32 game_sub_066628(int a0, int *a1, u32 a2) {
+u32 talk_sub_066628(int a0, int *a1, u32 a2) {
     u32 uVar1;
     u8 *a5;
     u8 *a6;
@@ -3279,7 +3279,7 @@ int game_sub_06740c(int a0, u32 a1) {
     ar7_00 = 0;
     ar6_00 = 0;
     ar5_00 = 0xe;
-    game_sub_0f4040(a0, 0xe, 0, 0, a1);
+    CAnimal_sub_0f4040(a0, 0xe, 0, 0, a1);
     *(u8 **)(a0 + 8) = (&DATA_8c12a0c4);
     Class_129938_ctor(a0 + 0x170, ar5_00, ar6_00);
     clear_field_0_wrap_015ab8(a0 + 0x204);
@@ -3395,7 +3395,7 @@ u32 Class_12a0c4_sub_067594(int a0, u32 a1, u32 a2, u32 a3) {
     g_8c28064c = 0x16;
     g_8c280644 = 0x8c280738;
     g_8c280658 = 0x8c280810;
-    uVar1 = Class_12c058_sub_0f532c(a0, *(u32 *)(*(int *)(a0 + 0x224) + 0xb4), a0 + 0x170, a3);
+    uVar1 = game_sub_0f532c(a0, *(u32 *)(*(int *)(a0 + 0x224) + 0xb4), a0 + 0x170, a3);
     return uVar1;
 }
 
@@ -8046,11 +8046,11 @@ u32 game_sub_06ce04(int a0, u32 a1) {
 }
 
 /*
- * game_sub_06d3ec  0x8c06d3ec
- * name hint from a string it uses: GRAPHICS HERBLINE; area name: game code; nothing names its area yet
+ * CHerb_LoadTRWait  0x8c06d3ec
+ * loads the texture of herb entry a2 (0x124-byte entries at +0x224), retrying until done
  * strings: "Failed to load tex:CHerb::LoadTRWait()"
  */
-int game_sub_06d3ec(int a0, u32 a1, int a2, u32 a3) {
+int CHerb_LoadTRWait(int a0, u32 a1, int a2, u32 a3) {
     u32 ar7_00;
     int iVar1;
     int iVar2;
@@ -8066,10 +8066,10 @@ int game_sub_06d3ec(int a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * game_sub_06d474  0x8c06d474
- * name hint from a string it uses: GRAPHICS HERBLINE; area name: game code; nothing names its area yet
+ * CHerb_sub_06d474  0x8c06d474
+ * name hint from a string it uses: GRAPHICS HERBLINE; area name: sits between CHerb functions (same compilation unit)
  */
-u32 game_sub_06d474(int a0, u32 a1, u32 a2, int a3) {
+u32 CHerb_sub_06d474(int a0, u32 a1, u32 a2, int a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -8105,10 +8105,10 @@ u32 game_sub_06d474(int a0, u32 a1, u32 a2, int a3) {
 }
 
 /*
- * game_sub_06d5e4  0x8c06d5e4
- * area name: game code; nothing names its area yet
+ * CHerb_sub_06d5e4  0x8c06d5e4
+ * area name: sits between CHerb functions (same compilation unit)
  */
-u32 game_sub_06d5e4(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CHerb_sub_06d5e4(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     CTexture_ReleaseFromVRAM(*(int *)(0x224 + a0) + 0x78, a1, a2, a3);
@@ -8777,11 +8777,11 @@ u32 destroy_array_8c2804f0(void) {
 }
 
 /*
- * game_sub_06e4ec  0x8c06e4ec
- * area name: game code; nothing names its area yet
- * called by: CAnimal_sub_0851f4
+ * CHigyoLine_sub_06e4ec  0x8c06e4ec
+ * area name: only called from CHigyoLine methods
+ * called by: CHigyoLine_ctor
  */
-u32 *game_sub_06e4ec(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 *CHigyoLine_sub_06e4ec(u32 *a0, u32 a1, u32 a2, u32 a3) {
     Class_129cbc_ctor(a0, a1, a2, a3);
     *a0 = (&DATA_8c12a25c);
     Vec3_set_zero((int)a0 + 0x224);
@@ -8799,7 +8799,7 @@ u32 *game_sub_06e4ec(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_06e5a4  0x8c06e5a4
  * area name: game code; nothing names its area yet
- * called by: game_sub_06e4ec
+ * called by: CHigyoLine_sub_06e4ec
  */
 u32 game_sub_06e5a4(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;

@@ -6,7 +6,7 @@
 /*
  * Class_129c24_sub_0300a4  0x8c0300a4
  * area name: sits between Class_129c24 functions (same compilation unit)
- * called by: Class_12a078_ctor, Class_12c3c4_ctor, game_sub_09f3b4
+ * called by: CMushroomerLine_sub_09f3b4, Class_12a078_ctor, Class_12c3c4_ctor
  */
 int Class_129c24_sub_0300a4(int a0) {
     int iVar1;
@@ -197,8 +197,8 @@ int set_word_array_674(int a0, int a1, u32 a2) {
 /*
  * talk_queue_mode2  0x8c030568
  * same as talk_queue_mode1 without the cancel; sets +0x770 = 2
- * called by: Class_12c3c4_sub_104854, game_sub_05f4a0, game_sub_0611cc, game_sub_065e6c, game_sub_10469c,
- * game_sub_1091cc
+ * called by: Class_12c3c4_sub_104854, game_sub_0611cc, game_sub_065e6c, game_sub_10469c, game_sub_1091cc,
+ * react_catch_object
  */
 u32 talk_queue_mode2(int a0, u32 a1, int a2, u32 a3, u32 s0) {
     int iVar1;
@@ -318,7 +318,7 @@ u32 talk_start_line(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * set_field_770  0x8c030870
  * called by: Class_12a078_m2_05eee0, Class_12a078_m5_0671f4, Class_12a078_sub_05d860, Class_12c3c4_m2_104264,
- * Class_12c3c4_m5_10a0dc, Class_12c3c4_sub_103100, Vec3_sub_063838, game_sub_05f4a0 (+12 more)
+ * Class_12c3c4_m5_10a0dc, Class_12c3c4_sub_103100, Vec3_sub_063838, game_sub_0611cc (+12 more)
  */
 int set_field_770(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -385,12 +385,12 @@ u32 talk_sub_03087c(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
 }
 
 /*
- * talk_sub_0309c8  0x8c0309c8
- * name hint from a string it uses: JUNGLE; area name: sits between talk functions (same compilation unit)
- * called by: game_sub_0652f4, game_sub_10862c
+ * talk_set_start_scene  0x8c0309c8
+ * sets the talk scene name (JUNGLE, or the stage name plus the stage number) with entry "start"
+ * called by: game_sub_10862c, talk_sub_0652f4
  * strings: "JUNGLE"; "start"
  */
-u32 talk_sub_0309c8(int a0, u32 a1, u32 a2, u32 a3) {
+u32 talk_set_start_scene(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     u8 *puVar3;
@@ -592,8 +592,7 @@ int CAnimal_sub_030e10(int a0) {
 /*
  * set_6_floats  0x8c030e34
  * a0[0..5] = fr4..fr9
- * called by: Class_12ad14_sub_0a4448, game_sub_05d2bc, game_sub_084bcc, game_sub_098b6c, game_sub_0ab5c0,
- * game_sub_0b590c
+ * called by: game_sub_05d2bc, game_sub_084bcc, game_sub_098b6c, game_sub_0a4448, game_sub_0ab5c0, game_sub_0b590c
  */
 u32 *set_6_floats(u32 *a0) {
     u32 in_fr5;
@@ -683,8 +682,8 @@ u32 flags6_clear_all(u8 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Class_129cbc_ctor  0x8c030fa0
  * stores the vtable 0x8c129cbc and constructs the object's Vec3 members
- * called by: CSquid_sub_0afa50, game_sub_0384f8, game_sub_03a5a4, game_sub_06e4ec, game_sub_087ed0, game_sub_08dad4,
- * game_sub_099e74, game_sub_09b8e4 (+3 more)
+ * called by: CFrogManEgg_ctor, CFrogManLine_sub_03a5a4, CHigyoEgg_ctor, CHigyoLine_sub_06e4ec, CMothEgg_ctor,
+ * CMothLine_sub_08dad4, CMushroomerLine_sub_0a0818, CSpiderEgg_ctor (+3 more)
  */
 u32 *Class_129cbc_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     *a0 = (&DATA_8c129cbc);
@@ -6097,11 +6096,11 @@ u32 game_sub_034ba8(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_034c50  0x8c034c50
- * area name: game code; nothing names its area yet
- * called by: game_sub_0254d0
+ * CAnimal_sub_034c50  0x8c034c50
+ * area name: only called from CAnimal methods
+ * called by: CAnimal_ctor
  */
-u16 *game_sub_034c50(u16 *a0, int a1, int a2) {
+u16 *CAnimal_sub_034c50(u16 *a0, int a1, int a2) {
     int iVar1;
 
     *a0 = 0xffff;
@@ -6140,7 +6139,7 @@ int free_if_nonnull_wrap_034d08(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_034d38  0x8c034d38
  * area name: game code; nothing names its area yet
- * called by: CAnimal_sub_028e20, CAnimal_sub_036260, CAnimal_sub_0851f4, game_sub_08a17c
+ * called by: CAnimal_sub_028e20, CFrogManLine_ctor, CHigyoLine_ctor, CMothLine_ctor
  */
 int game_sub_034d38(u32 unused_a0, int a1) {
     return (int)*(char *)(0x8c132f56 + a1);
@@ -6683,7 +6682,7 @@ u32 game_sub_035858(u32 *a0, u32 unused_a1, int a2, u32 a3) {
 /*
  * get_field_40_03598c  0x8c03598c
  * called by: Class_12a078_m2_05eee0, Class_12a078_sub_05d860, Vec3_sub_063838, game_sub_035858, game_sub_035e94,
- * game_sub_0620d4, game_sub_0652f4, game_sub_065e6c
+ * game_sub_0620d4, game_sub_065e6c, talk_sub_0652f4
  */
 u32 get_field_40_03598c(int a0, u32 a1) {
     return *(u32 *)(a0 + 0x40);
@@ -7263,11 +7262,12 @@ int CAnimal_m0_0361d8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CAnimal_sub_036260  0x8c036260
- * name hint from a string it uses: GRAPHICS FROGMANLINE; area name: sits between CAnimal functions (same compilation
- * unit) called by: CFrogManEgg_sub_0fef94 strings: "FrogManLine"
+ * CFrogManLine_ctor  0x8c036260
+ * "FrogManLine": CAnimal_ctor(kind 5), vtable 0x8c129ea0
+ * called by: CFrogManEgg_sub_0fef94
+ * strings: "FrogManLine"
  */
-int CAnimal_sub_036260(int a0, u32 a1, u32 a2) {
+int CFrogManLine_ctor(int a0, u32 a1, u32 a2) {
     u32 uVar1;
     u32 ar6_00;
     u32 ar7_00;
@@ -7279,10 +7279,10 @@ int CAnimal_sub_036260(int a0, u32 a1, u32 a2) {
     ar6_00 = 1;
     uVar1 = 5;
     ar7_00 = a2;
-    game_sub_0254d0(a0, 5, 1, a2, 0, a1, 0x8c27dfd4, &g_8c27e594, PTR_s_GRAPHICS_FROGMANLINE_8c13368c);
+    CAnimal_ctor(a0, 5, 1, a2, 0, a1, 0x8c27dfd4, &g_8c27e594, PTR_s_GRAPHICS_FROGMANLINE_8c13368c);
     *(u8 **)(a0 + 8) = &g_8c129ea0;
     Class_12a078_ctor(a0 + 0x490, uVar1, ar6_00, ar7_00);
-    game_sub_03a5a4(a0 + 0xd2c, uVar1, ar6_00, ar7_00);
+    CFrogManLine_sub_03a5a4(a0 + 0xd2c, uVar1, ar6_00, ar7_00);
     Class_129938_ctor(a0 + 0x1088, uVar1, ar6_00);
     sprintf(a0 + 0xc, uVar1, ar6_00, ar7_00, "FrogManLine");
     *(int *)(a0 + 0x308) = a0 + 0x490;
@@ -7294,7 +7294,7 @@ int CAnimal_sub_036260(int a0, u32 a1, u32 a2) {
         *(u32 *)(a0 + iVar2 * 4 + 0x1134) = 0;
     }
     *(u8 *)(a0 + 0x114c) = 0;
-    Class_12c058_sub_0f532c(a0, *(u32 *)(*(int *)(a0 + 0x328) + 0xb4), a0 + 0x1088, ar7_00);
+    game_sub_0f532c(a0, *(u32 *)(*(int *)(a0 + 0x328) + 0xb4), a0 + 0x1088, ar7_00);
     *(u32 *)(a0 + 0x3d8) = *(u32 *)(**(int **)(a0 + 0x328) + 0x40);
     *(u32 *)(a0 + 0x3dc) = *(u32 *)(**(int **)(a0 + 0x328) + 0x40);
     if (cVar3 == '\0') {
@@ -8731,12 +8731,12 @@ u32 game_sub_0372a0(void) {
 }
 
 /*
- * game_sub_0384f8  0x8c0384f8
- * name hint from a string it uses: GRAPHICS FROGMANLINE; area name: game code; nothing names its area yet
+ * CFrogManEgg_ctor  0x8c0384f8
+ * "FrogManEgg": CAnimal_ctor(kind 6), vtable 0x8c129d04
  * called by: CFrogManEgg_sub_0fef94
  * strings: "FrogManEgg"
  */
-int game_sub_0384f8(int a0, u32 a1) {
+int CFrogManEgg_ctor(int a0, u32 a1) {
     u32 uVar1;
     u32 ar6_00;
     int ar6_01;
@@ -8745,7 +8745,7 @@ int game_sub_0384f8(int a0, u32 a1) {
     ar7_00 = 5;
     ar6_00 = 1;
     uVar1 = 6;
-    game_sub_0254d0(a0, 6, 1, 5, 0, a1, 0x8c280050, 0x8c280180, PTR_s_GRAPHICS_FROGMANLINE_8c1340e0);
+    CAnimal_ctor(a0, 6, 1, 5, 0, a1, 0x8c280050, 0x8c280180, PTR_s_GRAPHICS_FROGMANLINE_8c1340e0);
     *(u8 **)(a0 + 8) = &g_8c129d04;
     Class_129938_ctor(a0 + 0x490, uVar1, ar6_00);
     Class_129c24_ctor(a0 + 0x528, uVar1, ar6_00);
@@ -8754,7 +8754,7 @@ int game_sub_0384f8(int a0, u32 a1) {
     *(u8 *)(a0 + 0x524) = 0xff;
     ar6_01 = a0 + 0x490;
     uVar1 = *(u32 *)(*(int *)(a0 + 0x328) + 0xb4);
-    Class_12c058_sub_0f532c(a0, uVar1, ar6_01, ar7_00);
+    game_sub_0f532c(a0, uVar1, ar6_01, ar7_00);
     noop_027224(a0 + 0x5c4, uVar1, ar6_01, ar7_00, a1);
     (**(code **)(*(int *)(a0 + 0xa8) + 0x28))((int *)(a0 + 0xa8), a0 + 0x30, ar6_01, ar7_00);
     *(u32 *)(a0 + 0x330) = 0;
@@ -9753,11 +9753,11 @@ int game_sub_03a4ac(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_03a5a4  0x8c03a5a4
- * area name: game code; nothing names its area yet
- * called by: CAnimal_sub_036260
+ * CFrogManLine_sub_03a5a4  0x8c03a5a4
+ * area name: only called from CFrogManLine methods
+ * called by: CFrogManLine_ctor
  */
-u32 *game_sub_03a5a4(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 *CFrogManLine_sub_03a5a4(u32 *a0, u32 a1, u32 a2, u32 a3) {
     Class_129cbc_ctor(a0, a1, a2, a3);
     *a0 = (&DATA_8c12a03c);
     Vec3_ctor_zero((int)a0 + 0x248, a1, a2);
@@ -10346,7 +10346,7 @@ int array_at_field_14(int a0, int a1, u32 a2, u32 a3) {
 /*
  * Class_12a03c_sub_03c100  0x8c03c100
  * area name: only called from Class_12a03c methods
- * called by: Class_12a03c_m6_03a65c, game_sub_03a5a4
+ * called by: CFrogManLine_sub_03a5a4, Class_12a03c_m6_03a65c
  */
 u32 Class_12a03c_sub_03c100(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;

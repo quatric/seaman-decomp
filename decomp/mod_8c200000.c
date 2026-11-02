@@ -2098,7 +2098,7 @@ u32 shinobi_sub_2017a8(u32 a0, u32 a1, int a2) {
 
 /*
  * ta_fifo_2017fc  0x8c2017fc
- * called by: game_sub_01b5f8
+ * called by: memcard_load_wait
  */
 u32 ta_fifo_2017fc(u8 *a0, u8 *a1) {
     u8 uVar1;

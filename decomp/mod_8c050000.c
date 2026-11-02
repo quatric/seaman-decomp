@@ -8277,8 +8277,7 @@ u32 game_sub_05d2bc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * copy_6_words  0x8c05d608
  * a0[0..5] = a1[0..5]
- * called by: Class_12ad14_sub_0a4448, game_sub_05d2bc, game_sub_084bcc, game_sub_098b6c, game_sub_0ab5c0,
- * game_sub_0b590c
+ * called by: game_sub_05d2bc, game_sub_084bcc, game_sub_098b6c, game_sub_0a4448, game_sub_0ab5c0, game_sub_0b590c
  */
 u32 *copy_6_words(u32 *a0, u32 *a1) {
     u32 uVar1;
@@ -8296,7 +8295,7 @@ u32 *copy_6_words(u32 *a0, u32 *a1) {
 /*
  * Class_12a078_ctor  0x8c05d644
  * stores the vtable 0x8c12a078
- * called by: CAnimal_sub_036260
+ * called by: CFrogManLine_ctor
  * strings: "FROGMANLINE"; "FROGMANLINE1"; "STATUS_FORMAT"
  */
 u32 *Class_12a078_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
@@ -8436,7 +8435,7 @@ u32 Class_12a078_sub_05d860(int *a0, code *a1, code *a2) {
     Class_12a078_sub_05ff40(a0, a1, a2, pcVar14);
     game_sub_0660d4(a0, a1, a2, pcVar14);
     pcVar4 = a2;
-    game_sub_066464(a0, a1, a2, pcVar14);
+    talk_check_status_lastone(a0, a1, a2, pcVar14);
     pcVar11 = get_field_13c_028d9c;
     iVar9 = get_field_13c_028d9c(*(int *)(a2 + 4), get_field_13c_028d9c, pcVar4);
     if ((((iVar9 == 7) && (uVar3 = get_field_0_s8(*(int *)(a2 + 4) + 0x78), (char)uVar3 == '\x01')) &&
@@ -8488,7 +8487,7 @@ u32 Class_12a078_sub_05d860(int *a0, code *a1, code *a2) {
         }
         pcVar4 = (code *)get_field_40_03598c(*(int *)(a2 + 0xc), pcVar4);
         if ((pcVar4 == NULL) && (a0[1] != 0xd)) {
-            game_sub_065228(a0, a1, a2);
+            talk_complain_tank_env(a0, a1, a2);
             pcVar4 = a1;
             pcVar11 = a2;
             game_sub_0628a4(a0, a1, a2, pcVar14);
@@ -8595,7 +8594,7 @@ u32 Class_12a078_sub_05d860(int *a0, code *a1, code *a2) {
         if ((pcVar4 == NULL) || (pcVar4 == (code *)0x1)) {
             pcVar4 = a1;
             pcVar11 = a2;
-            game_sub_0652f4(a0, a1, a2, 0x83);
+            talk_sub_0652f4(a0, a1, a2, 0x83);
         }
     }
     if (((a0[1] != 1) && (iVar9 = (int)(char)a0[0x26], iVar9 < 10)) && (-1 < iVar9)) {
@@ -9022,8 +9021,8 @@ int get_field_4_s8(int a0) {
 
 /*
  * get_field_770_05eeb8  0x8c05eeb8
- * called by: Class_12a078_sub_05d860, Class_12c3c4_sub_103100, game_sub_0652f4, game_sub_0656d4, game_sub_10862c,
- * game_sub_1089e4
+ * called by: Class_12a078_sub_05d860, Class_12c3c4_sub_103100, game_sub_0656d4, game_sub_10862c, game_sub_1089e4,
+ * talk_sub_0652f4
  */
 u32 get_field_770_05eeb8(int a0) {
     return *(u32 *)(0x770 + a0);
@@ -9039,7 +9038,7 @@ int get_field_bc_s8(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * get_field_24_05eed0  0x8c05eed0
- * called by: Class_12a078_sub_05d860, Class_12c3c4_sub_103100, game_sub_0652f4, game_sub_10862c
+ * called by: Class_12a078_sub_05d860, Class_12c3c4_sub_103100, game_sub_10862c, talk_sub_0652f4
  */
 u32 get_field_24_05eed0(int a0, u32 a1) {
     return *(u32 *)(a0 + 0x24);
@@ -9251,11 +9250,11 @@ u32 set_field_40_05f498(int a0, u32 a1) {
 }
 
 /*
- * game_sub_05f4a0  0x8c05f4a0
- * name hint from a string it uses: REACTION CATCH; area name: game code; nothing names its area yet
+ * react_catch_object  0x8c05f4a0
+ * drops what +0x6c holds, moves to the caught object, waits for speech to end, then queues the REACTION_CATCH line
  * strings: "REACTION_CATCH"; "REACTION_CATCH"; "REACTION_CATCH"
  */
-int game_sub_05f4a0(int a0, int a1, u32 a2, u32 a3) {
+int react_catch_object(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     char *ar7_00;
@@ -9306,7 +9305,7 @@ int game_sub_05f4a0(int a0, int a1, u32 a2, u32 a3) {
 /*
  * Vec3_assign_wrap_05f640  0x8c05f640
  * called by: Class_12a078_sub_05f660, Class_12acc8_m1_09f470, Class_12c3c4_sub_104854, Vec3_sub_063838,
- * game_sub_05f4a0, game_sub_0611cc, game_sub_062b0c, game_sub_064bb4 (+7 more)
+ * game_sub_0611cc, game_sub_062b0c, game_sub_064bb4, game_sub_0656d4 (+7 more)
  */
 u32 Vec3_assign_wrap_05f640(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9356,7 +9355,7 @@ u32 Class_12a078_sub_05f660(int a0, u32 a1, int *a2, int a3) {
                 set_field_38_02f404(a0, 3);
                 iVar4 = game_sub_02f414(a0, game_sub_02f414, piVar3, a3);
                 if (iVar4 == 1) {
-                    game_sub_066628(a0, a1, piVar3);
+                    talk_sub_066628(a0, a1, piVar3);
                 } else {
                     *(u32 *)(a0 + 0x6c) = 0;
                     *(u32 *)(a0 + 0x38) = 2;
@@ -9397,7 +9396,7 @@ u32 Class_12a078_sub_05f660(int a0, u32 a1, int *a2, int a3) {
                             *(u32 *)(a0 + 0x6c) = 0;
                         }
                     }
-                    game_sub_066628(a0, a1, game_sub_066628);
+                    talk_sub_066628(a0, a1, talk_sub_066628);
                 } else {
                     *(u32 *)(a0 + 0x38) = 2;
                 }
@@ -9409,7 +9408,7 @@ u32 Class_12a078_sub_05f660(int a0, u32 a1, int *a2, int a3) {
                 if (((iVar4 == 5) && (*(char *)(a0 + 0x870) == '\0')) &&
                     (iVar4 = get_field_140_025f70(a2[1], uVar2), iVar4 == 0)) {
                     format_int_at_10(0x8c35468c, (int)*(char *)(a0 + 0x870), piVar3, a3);
-                    iVar4 = Class_12b2e8_sub_02fcc4(a0, a2, piVar3, a3);
+                    iVar4 = game_sub_02fcc4(a0, a2, piVar3, a3);
                     if (iVar4 == 0) {
                         talk_start_line(a0 + 0x9c, 10, 0, "STATUS_UNCONSIDERED");
                     } else {
@@ -9436,7 +9435,7 @@ u32 Class_12a078_sub_05f660(int a0, u32 a1, int *a2, int a3) {
                         take_from_field_6c(*(u32 *)(a0 + 0x6c), 1, piVar3, a3);
                         *(u32 *)(a0 + 0x88) = 0;
                     }
-                    game_sub_066628(a0, a1, piVar3);
+                    talk_sub_066628(a0, a1, piVar3);
                     game_sub_02fdd8(a0, a1);
                 } else {
                     *(u32 *)(a0 + 0x38) = 2;

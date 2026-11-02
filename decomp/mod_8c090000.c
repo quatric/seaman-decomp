@@ -5306,11 +5306,11 @@ u32 game_sub_098b6c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_098ca8  0x8c098ca8
- * area name: game code; nothing names its area yet
- * called by: game_sub_08a17c
+ * CMothLine_sub_098ca8  0x8c098ca8
+ * area name: only called from CMothLine methods
+ * called by: CMothLine_ctor
  */
-u32 *game_sub_098ca8(u32 *a0, u32 a1, u32 a2) {
+u32 *CMothLine_sub_098ca8(u32 *a0, u32 a1, u32 a2) {
     Class_129c70_ctor(a0, a1, a2);
     *a0 = (&DATA_8c12a7a8);
     return a0;
@@ -5840,12 +5840,12 @@ u32 game_sub_099dbc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_099e74  0x8c099e74
- * name hint from a string it uses: GRAPHICS MOTHLINE; area name: game code; nothing names its area yet
+ * CMothEgg_ctor  0x8c099e74
+ * "MothEgg": CAnimal_ctor(kind 11), vtable 0x8c12a7f4
  * called by: CFrogManEgg_sub_0fef94
  * strings: "MothEgg"
  */
-int game_sub_099e74(int a0, u32 a1) {
+int CMothEgg_ctor(int a0, u32 a1) {
     u32 uVar1;
     u32 ar6_00;
     int ar6_01;
@@ -5857,7 +5857,7 @@ int game_sub_099e74(int a0, u32 a1) {
     ar7_00 = 0x17;
     ar6_00 = 1;
     uVar1 = 0xb;
-    game_sub_0254d0(a0, 0xb, 1, 0x17, 1, a1, 0x8c28476c, 0x8c28489c, PTR_s_GRAPHICS_MOTHLINE_8c13a9bc);
+    CAnimal_ctor(a0, 0xb, 1, 0x17, 1, a1, 0x8c28476c, 0x8c28489c, PTR_s_GRAPHICS_MOTHLINE_8c13a9bc);
     *(u8 **)(a0 + 8) = &g_8c12a7f4;
     Class_129938_ctor(a0 + 0x490, uVar1, ar6_00);
     Class_129c24_ctor(a0 + 0x530, uVar1, ar6_00);
@@ -5868,7 +5868,7 @@ int game_sub_099e74(int a0, u32 a1) {
     *(u8 *)(a0 + 0x524) = 0xff;
     ar6_01 = a0 + 0x490;
     uVar1 = *(u32 *)(*(int *)(a0 + 0x328) + 0xb4);
-    Class_12c058_sub_0f532c(a0, uVar1, ar6_01, ar7_00);
+    game_sub_0f532c(a0, uVar1, ar6_01, ar7_00);
     noop_027224(a0 + 0x5cc, uVar1, ar6_01, ar7_00, a1);
     if (cVar2 != '\0') {
         in_fr1 = 0x40000000;
@@ -7288,7 +7288,7 @@ int game_sub_09b8e4(int a0, u32 a1) {
     ar7_00 = 0;
     uVar2 = 1;
     uVar1 = 0;
-    game_sub_0254d0(a0, 0, 1, 0, 0, a1, 0x8c284a8c, 0x8c284bbc, PTR_s_GRAPHICS_MUSHROOMERLINE_8c13aa6c);
+    CAnimal_ctor(a0, 0, 1, 0, 0, a1, 0x8c284a8c, 0x8c284bbc, PTR_s_GRAPHICS_MUSHROOMERLINE_8c13aa6c);
     *(u8 **)(a0 + 8) = &g_8c12a990;
     Class_129938_ctor(a0 + 0x490, uVar1, uVar2);
     vec_new_array(a0 + 0x544, Vec3_ctor_zero, Vec3_dtor, 0x10, 8);
@@ -7304,7 +7304,7 @@ int game_sub_09b8e4(int a0, u32 a1) {
     *(u8 *)(a0 + 0x6e0) = 0xff;
     iVar3 = a0 + 0x490;
     uVar1 = *(u32 *)(*(int *)(a0 + 0x328) + 0xb4);
-    Class_12c058_sub_0f532c(a0, uVar1, iVar3, uVar2);
+    game_sub_0f532c(a0, uVar1, iVar3, uVar2);
     noop_027224(a0 + 0x780, uVar1, iVar3, uVar2, a1);
     if (cVar5 != '\0') {
         in_fr1 = 0x40000000;
@@ -8720,12 +8720,12 @@ u32 Class_12a990_sub_09d718(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_09d9c0  0x8c09d9c0
- * name hint from a string it uses: GRAPHICS MUSHROOMERLINE; area name: game code; nothing names its area yet
+ * CMushroomerLine_ctor  0x8c09d9c0
+ * "MushroomerLine": CAnimal_ctor(kind 1), vtable 0x8c12ab2c
  * called by: CFrogManEgg_sub_0fef94
  * strings: "MushroomerLine"
  */
-int game_sub_09d9c0(int a0, u32 a1) {
+int CMushroomerLine_ctor(int a0, u32 a1) {
     u32 ar5_00;
     u32 ar6_00;
     u32 ar7_00;
@@ -8733,15 +8733,15 @@ int game_sub_09d9c0(int a0, u32 a1) {
     ar7_00 = 1;
     ar6_00 = 1;
     ar5_00 = 1;
-    (*(code *)(&game_sub_0254d0))(a0, 1, 1, 1, 0, a1, 0x8c284d90, 0x8c284ec0, *(u32 *)(&DATA_8c13aafc));
+    (*(code *)(&CAnimal_ctor))(a0, 1, 1, 1, 0, a1, 0x8c284d90, 0x8c284ec0, *(u32 *)(&DATA_8c13aafc));
     *(u8 **)(a0 + 8) = (&DATA_8c12ab2c);
-    game_sub_09f3b4(a0 + 0x490, ar5_00, ar6_00);
-    game_sub_0a0818(a0 + 0xcc4, ar5_00, ar6_00, ar7_00);
+    CMushroomerLine_sub_09f3b4(a0 + 0x490, ar5_00, ar6_00);
+    CMushroomerLine_sub_0a0818(a0 + 0xcc4, ar5_00, ar6_00, ar7_00);
     Class_129938_ctor(a0 + 0xf3c, ar5_00, ar6_00);
     (*(code *)(&sprintf))(a0 + 0xc, ar5_00, ar6_00, ar7_00, "MushroomerLine");
     *(int *)(0x308 + a0) = a0 + 0x490;
     *(int *)(0x30c + a0) = a0 + 0xcc4;
-    (*(code *)(&Class_12c058_sub_0f532c))(a0, *(u32 *)(0xb4 + *(int *)(0x328 + a0)), a0 + 0xf3c, ar7_00);
+    (*(code *)(&game_sub_0f532c))(a0, *(u32 *)(0xb4 + *(int *)(0x328 + a0)), a0 + 0xf3c, ar7_00);
     *(u32 *)(0xfd0 + a0) = 0;
     return a0;
 }
@@ -9786,11 +9786,11 @@ u32 destroy_array_8c284f30(void) {
 }
 
 /*
- * game_sub_09f3b4  0x8c09f3b4
- * area name: game code; nothing names its area yet
- * called by: game_sub_09d9c0
+ * CMushroomerLine_sub_09f3b4  0x8c09f3b4
+ * area name: only called from CMushroomerLine methods
+ * called by: CMushroomerLine_ctor
  */
-u32 *game_sub_09f3b4(u32 *a0, u32 a1, u32 a2) {
+u32 *CMushroomerLine_sub_09f3b4(u32 *a0, u32 a1, u32 a2) {
     Class_129c70_ctor(a0, a1, a2);
     *a0 = (&DATA_8c12acc8);
     Class_129c24_sub_0300a4((int)a0 + 0xa8);

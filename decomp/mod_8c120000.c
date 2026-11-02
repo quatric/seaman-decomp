@@ -2632,7 +2632,7 @@ u32 asr_sub_122358(int a0) {
 /*
  * asr_sub_1225fc  0x8c1225fc
  * area name: in the asr library code range
- * called by: asr_sub_01d15c, game_sub_01d9ac, game_sub_01d9e0
+ * called by: asr_sub_01d15c, speech_sub_01d9ac, speech_sub_01d9e0
  */
 u32 asr_sub_1225fc(u32 *a0, u32 a1) {
     int iVar1;
@@ -2665,7 +2665,7 @@ u32 asr_sub_122604(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * asr_sub_122630  0x8c122630
  * area name: in the asr library code range
- * called by: asr_sub_01d7cc
+ * called by: game_sub_01d7cc
  */
 u32 asr_sub_122630(u32 *a0, u32 a1, u32 a2) {
     int iVar1;

@@ -507,11 +507,11 @@ u32 game_sub_0a0730(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0a0818  0x8c0a0818
- * area name: game code; nothing names its area yet
- * called by: game_sub_09d9c0
+ * CMushroomerLine_sub_0a0818  0x8c0a0818
+ * area name: only called from CMushroomerLine methods
+ * called by: CMushroomerLine_ctor
  */
-u32 *game_sub_0a0818(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 *CMushroomerLine_sub_0a0818(u32 *a0, u32 a1, u32 a2, u32 a3) {
     Class_129cbc_ctor(a0, a1, a2, a3);
     *a0 = (&DATA_8c12ad14);
     Vec3_ctor_zero((int)a0 + 0x224, a1, a2);
@@ -525,7 +525,7 @@ u32 *game_sub_0a0818(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_0a0890  0x8c0a0890
  * area name: game code; nothing names its area yet
- * called by: game_sub_0a0818
+ * called by: CMushroomerLine_sub_0a0818
  */
 u32 game_sub_0a0890(int a0, u32 a1, u32 a2, u32 a3) {
     u32 extraout_fr1;
@@ -3491,10 +3491,10 @@ u32 Class_12ad14_m4_0a43d4(int a0) {
 }
 
 /*
- * Class_12ad14_sub_0a4448  0x8c0a4448
- * area name: sits between Class_12ad14 functions (same compilation unit)
+ * game_sub_0a4448  0x8c0a4448
+ * area name: game code; nothing names its area yet
  */
-u32 Class_12ad14_sub_0a4448(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 game_sub_0a4448(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -3527,12 +3527,12 @@ u32 Class_12ad14_sub_0a4448(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0a4590  0x8c0a4590
- * name hint from a string it uses: GRAPHICS SPIDERLINE; area name: game code; nothing names its area yet
+ * CSpiderLine_ctor  0x8c0a4590
+ * "SpiderLine": CAnimal_ctor(kind 13), vtable 0x8c12aeec
  * called by: CFrogManEgg_sub_0fef94
  * strings: "SpiderLine"
  */
-int game_sub_0a4590(int a0, u32 a1) {
+int CSpiderLine_ctor(int a0, u32 a1) {
     u32 ar5_00;
     u32 ar6_00;
     u32 ar7_00;
@@ -3540,16 +3540,16 @@ int game_sub_0a4590(int a0, u32 a1) {
     ar7_00 = 0x18;
     ar6_00 = 1;
     ar5_00 = 0xd;
-    (*(code *)(&game_sub_0254d0))(a0, 0xd, 1, 0x18, 1, a1, 0x8c285370, 0x8c2854a0, *(u32 *)(&DATA_8c13b08c));
+    (*(code *)(&CAnimal_ctor))(a0, 0xd, 1, 0x18, 1, a1, 0x8c285370, 0x8c2854a0, *(u32 *)(&DATA_8c13b08c));
     *(u8 **)(a0 + 8) = (&DATA_8c12aeec);
-    game_sub_0ab760(a0 + 0x490, ar5_00, ar6_00);
-    game_sub_0a6164(a0 + 0x53c, ar5_00, ar6_00, ar7_00);
+    CSpiderLine_sub_0ab760(a0 + 0x490, ar5_00, ar6_00);
+    CSpiderLine_sub_0a6164(a0 + 0x53c, ar5_00, ar6_00, ar7_00);
     Class_129938_ctor(a0 + 0x26fc, ar5_00, ar6_00);
     (*(code *)(&sprintf))(a0 + 0xc, ar5_00, ar6_00, ar7_00, "SpiderLine");
     *(int *)(0x308 + a0) = a0 + 0x490;
     *(int *)(0x30c + a0) = a0 + 0x53c;
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) | 0x40;
-    (*(code *)(&Class_12c058_sub_0f532c))(a0, *(u32 *)(0xb4 + *(int *)(0x328 + a0)), a0 + 0x26fc, ar7_00);
+    (*(code *)(&game_sub_0f532c))(a0, *(u32 *)(0xb4 + *(int *)(0x328 + a0)), a0 + 0x26fc, ar7_00);
     return a0;
 }
 
@@ -3891,12 +3891,12 @@ u32 Vec3_sub_0a4af0(void) {
 }
 
 /*
- * game_sub_0a4de8  0x8c0a4de8
- * name hint from a string it uses: GRAPHICS MOTHLINE; area name: game code; nothing names its area yet
+ * CSpiderEgg_ctor  0x8c0a4de8
+ * "SpiderEgg": CAnimal_ctor(kind 12), vtable 0x8c12ad50
  * called by: CFrogManEgg_sub_0fef94
  * strings: "SpiderEgg"
  */
-int game_sub_0a4de8(int a0, u32 a1) {
+int CSpiderEgg_ctor(int a0, u32 a1) {
     u32 uVar1;
     u32 ar6_00;
     int ar6_01;
@@ -3908,7 +3908,7 @@ int game_sub_0a4de8(int a0, u32 a1) {
     ar7_00 = 0x19;
     ar6_00 = 1;
     uVar1 = 0xc;
-    game_sub_0254d0(a0, 0xc, 1, 0x19, 1, a1, 0x8c28563c, 0x8c28576c, PTR_s_GRAPHICS_MOTHLINE_8c13b0ec);
+    CAnimal_ctor(a0, 0xc, 1, 0x19, 1, a1, 0x8c28563c, 0x8c28576c, PTR_s_GRAPHICS_MOTHLINE_8c13b0ec);
     *(u8 **)(a0 + 8) = &g_8c12ad50;
     Class_129938_ctor(a0 + 0x490, uVar1, ar6_00);
     Class_129c24_ctor(a0 + 0x530, uVar1, ar6_00);
@@ -3919,7 +3919,7 @@ int game_sub_0a4de8(int a0, u32 a1) {
     *(u8 *)(a0 + 0x524) = 0xff;
     ar6_01 = a0 + 0x490;
     uVar1 = *(u32 *)(*(int *)(a0 + 0x328) + 0xb4);
-    Class_12c058_sub_0f532c(a0, uVar1, ar6_01, ar7_00);
+    game_sub_0f532c(a0, uVar1, ar6_01, ar7_00);
     noop_027224(a0 + 0x5cc, uVar1, ar6_01, ar7_00, a1);
     if (cVar2 != '\0') {
         in_fr1 = 0x40000000;
@@ -4869,11 +4869,11 @@ u32 destroy_array_8c28525c(void) {
 }
 
 /*
- * game_sub_0a6164  0x8c0a6164
- * area name: game code; nothing names its area yet
- * called by: game_sub_0a4590
+ * CSpiderLine_sub_0a6164  0x8c0a6164
+ * area name: only called from CSpiderLine methods
+ * called by: CSpiderLine_ctor
  */
-u32 *game_sub_0a6164(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 *CSpiderLine_sub_0a6164(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u8 *ar5_00;
     u8 *ar6_00;
     u32 ar7_00;
@@ -4894,7 +4894,7 @@ u32 *game_sub_0a6164(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_0a61f8  0x8c0a61f8
  * area name: game code; nothing names its area yet
- * called by: game_sub_0a6164
+ * called by: CSpiderLine_sub_0a6164
  */
 u32 game_sub_0a61f8(int a0, u32 a1, u32 a2, u32 a3) {
     u8 auStack_14[16];
@@ -9442,11 +9442,11 @@ u32 destroy_array_8c28587c(void) {
 }
 
 /*
- * game_sub_0ab760  0x8c0ab760
- * area name: game code; nothing names its area yet
- * called by: game_sub_0a4590
+ * CSpiderLine_sub_0ab760  0x8c0ab760
+ * area name: only called from CSpiderLine methods
+ * called by: CSpiderLine_ctor
  */
-u32 *game_sub_0ab760(u32 *a0, u32 a1, u32 a2) {
+u32 *CSpiderLine_sub_0ab760(u32 *a0, u32 a1, u32 a2) {
     Class_129c70_ctor(a0, a1, a2);
     *a0 = (&DATA_8c12b0c4);
     *(u32 *)(0x9c + (int)a0) = 0;
@@ -10201,7 +10201,7 @@ int CSquid_Init(int a0, u32 a1) {
     ar7_00 = 0xc;
     uVar2 = 1;
     uVar1 = 2;
-    (*(code *)(&game_sub_0254d0))(a0, 2, 1, 0xc, 0, a1, 0x8c2868d8, 0x8c286a08, *(u32 *)(&DATA_8c13b4d4));
+    (*(code *)(&CAnimal_ctor))(a0, 2, 1, 0xc, 0, a1, 0x8c2868d8, 0x8c286a08, *(u32 *)(&DATA_8c13b4d4));
     *(u8 **)(a0 + 8) = (&DATA_8c12b110);
     CSquid_sub_0b5a30(a0 + 0x490, uVar1, uVar2);
     CSquid_sub_0afa50(a0 + 0x53c, uVar1, uVar2, ar7_00);
@@ -10226,7 +10226,7 @@ int CSquid_Init(int a0, u32 a1) {
     *(u32 *)(0x88c + a0) = 0;
     *(u32 *)(0x890 + a0) = 0;
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) | 0x10;
-    (*(code *)(&Class_12c058_sub_0f532c))(a0, *(u32 *)(0xb4 + *(int *)(0x328 + a0)), a0 + 0x894, uVar2);
+    (*(code *)(&game_sub_0f532c))(a0, *(u32 *)(0xb4 + *(int *)(0x328 + a0)), a0 + 0x894, uVar2);
     for (iVar3 = 0; iVar3 < 6; iVar3 = iVar3 + 1) {
         *(u32 *)(0x970 + iVar3 * 0xc + a0) = 0;
     }
@@ -11657,7 +11657,7 @@ int game_sub_0ae160(int a0, u32 a1, u32 a2, u32 a3) {
     CAnimal_LoadGRWait(a0, a1, a2, a3);
     iVar1 = *(int *)(0x460 + a0);
     if (iVar1 == 1) {
-        iVar1 = (*(code *)(&game_sub_0ae544))(a1, 0x2ee0, a0 + 0x88c, a0 + 0x890);
+        iVar1 = (*(code *)(&nautilus_load_shell))(a1, 0x2ee0, a0 + 0x88c, a0 + 0x890);
     }
     return iVar1;
 }
@@ -11796,12 +11796,12 @@ u32 game_sub_0ae2fc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0ae544  0x8c0ae544
- * name hint from a string it uses: GRAPHICS SQUIDLINE; area name: game code; nothing names its area yet
+ * nautilus_load_shell  0x8c0ae544
+ * loads the Nt_Shell model, texture list and the NT_BODY texture
  * strings: "Failed to load Nt_Shell Model.."; "Failed to load Nt_Shell Texlist.."; "NT_BODY"; "Failed to load Nt_Shell
  * textuerr.."
  */
-int game_sub_0ae544(u32 a0, u32 unused_a1, u32 a2, u32 *a3) {
+int nautilus_load_shell(u32 a0, u32 unused_a1, u32 a2, u32 *a3) {
     int iVar1;
 
     iVar1 = (*(code *)(&retry_until_done_0209b0))(a0, *(u32 *)(&DATA_8c13b5d8), *(u32 *)(&DATA_8c13b4d4), a2);
@@ -11841,12 +11841,12 @@ u32 game_sub_0ae640(u32 a0, u32 a1, int a2) {
 }
 
 /*
- * game_sub_0ae6a0  0x8c0ae6a0
- * name hint from a string it uses: Nautilus; area name: game code; nothing names its area yet
+ * nautilus_desc_init  0x8c0ae6a0
+ * fills the "Nautilus" object description (size, offsets, flags)
  * called by: game_sub_0d1d54
  * strings: "Nautilus"; "Nautilus"
  */
-u32 game_sub_0ae6a0(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 nautilus_desc_init(int a0, u32 unused_a1, u32 a2, u32 a3) {
     char *ar5_00;
     int iVar1;
     char cVar2;
@@ -11890,7 +11890,7 @@ u32 game_sub_0ae6a0(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * game_sub_0ae7a4  0x8c0ae7a4
  * area name: game code; nothing names its area yet
- * called by: game_sub_0ae6a0
+ * called by: nautilus_desc_init
  */
 u32 game_sub_0ae7a4(int a0) {
     int iVar1;

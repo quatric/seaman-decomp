@@ -1845,7 +1845,7 @@ u32 game_sub_0d1d54(int a0, u32 unused_a1, u32 a2, u32 a3) {
         unused_a1 = 0x8c437b48;
         memmove_bytes(iVar2 * 0xf0 + a0 + 0x1ec, 0x8c437b48, 0xf0);
     }
-    uVar1 = game_sub_0ae6a0(a0 + 0x1ec, unused_a1, a2, a3);
+    uVar1 = nautilus_desc_init(a0 + 0x1ec, unused_a1, a2, a3);
     return uVar1;
 }
 
@@ -14424,7 +14424,7 @@ u32 game_sub_0dfe2c(u32 unused_a0, u32 a1) {
     if (iVar1 == 1) {
         uVar2 = get_field_cc_0dfee8(a1);
         uVar2 = field_ptr_384c(uVar2);
-        game_sub_01da60();
+        speech_sub_01da60();
     }
     pure_virtual_stub();
     return 1;

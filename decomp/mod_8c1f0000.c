@@ -11404,7 +11404,7 @@ u32 rtc_sub_1f823a(u32 a0, u32 a1, u32 a2) {
  * date_to_rtc_seconds  0x8c1f826c
  * seconds since 1950-01-01 (the Dreamcast RTC epoch) for a {year, month, day, hour, minute, second} struct
  * called by: CGame_sub_0cc784, CProlog_sub_0b96e4, CProlog_sub_0cd3c8, CSeamanDomain_sub_1028c0, aica_sub_1f8650,
- * game_sub_0b7804, game_sub_0bcedc, game_sub_0f9774 (+12 more)
+ * game_sub_0bcedc, game_sub_0f9774, game_sub_0fc40c (+12 more)
  */
 u32 date_to_rtc_seconds(u16 *a0, int *a1, u32 a2) {
     u16 uVar1;
@@ -14113,7 +14113,7 @@ u32 noop_1fb43a(void) {
 /*
  * malloc_thunk  0x8c1fb4ae
  * called by: CDCGD_new_request_c, CDCGD_sub_0202c0, CProlog_sub_0b96e4, draw_sub_258b26, game_init, game_sub_015f18,
- * game_sub_01af14, game_sub_01b2a4 (+11 more)
+ * game_sub_01af14, game_sub_01b4f0 (+11 more)
  */
 u32 malloc_thunk(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -14177,8 +14177,8 @@ u32 *malloc_sub_1fb4c2(int a0) {
 /*
  * malloc_sub_1fb57c  0x8c1fb57c
  * area name: sits between malloc functions (same compilation unit)
- * called by: CDCGD_release_request, CDCGD_sub_02049c, CProlog_sub_0b96e4, asr_sub_01d7cc, draw_sub_258b26,
- * free_ptr_and_clear, game_shutdown_a, game_sub_015f18 (+9 more)
+ * called by: CDCGD_release_request, CDCGD_sub_02049c, CProlog_sub_0b96e4, draw_sub_258b26, free_ptr_and_clear,
+ * game_shutdown_a, game_sub_015f18, game_sub_01af14 (+9 more)
  */
 u32 malloc_sub_1fb57c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;

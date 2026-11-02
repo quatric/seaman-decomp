@@ -103,8 +103,8 @@ u32 libc_sub_0100ec(int a0, code *a1, u32 a2, u32 a3) {
 /*
  * vec_new_array  0x8c010120
  * constructs count elements of size bytes with ctor; on failure destroys the built ones with dtor (pairs with
- * vec_delete_array) called by: CAnimal_sub_039124, CAnimal_sub_08894c, CSquid_Init, Class_12ab2c_sub_09f060,
- * Class_12ad50_sub_0a5c90, Class_12b088_sub_03220c, Class_12b3b8_ctor, Class_12b580_ctor (+25 more)
+ * vec_delete_array) called by: CAnimal_sub_02b9a8, CAnimal_sub_039124, CAnimal_sub_08894c, CSquid_Init,
+ * Class_12ab2c_sub_09f060, Class_12ad50_sub_0a5c90, Class_12b088_sub_03220c, Class_12b3b8_ctor (+25 more)
  */
 u32 vec_new_array(int a0, code *a1, code *a2, int a3, u32 s0) {
     int iVar1;
@@ -182,8 +182,8 @@ u32 pure_virtual_stub(void) {
 
 /*
  * strcpy  0x8c0101d4
- * called by: CDCGD_new_request_c, CDCGD_sub_0202c0, CSeamanDomain_Init, CSeamanDomain_sub_01bc2c,
- * CSeamanDomain_sub_0c23fc, CSeamanDomain_sub_0c38d4, Class_12a078_ctor, Class_12c3c4_ctor (+41 more)
+ * called by: CDCGD_new_request_c, CDCGD_sub_0202c0, CSeamanDomain_Init, CSeamanDomain_sub_0c23fc,
+ * CSeamanDomain_sub_0c38d4, Class_12a078_ctor, Class_12c3c4_ctor, asr_sub_01d4c4 (+41 more)
  */
 u32 strcpy(char *a0, char *a1) {
     char cVar1;
@@ -1996,8 +1996,8 @@ u32 libgcc_divide_helper_010284(u32 a0, int a1, u32 a2) {
 
 /*
  * libgcc_divide_helper_01031c  0x8c01031c
- * called by: CAnimBody_sub_02b340, CAnimal_m2_02573c, CAnimal_m3_026078, CTexture_sub_0d97ec, Class_129808_sub_01679c,
- * Class_129c70_sub_02f2c8, Class_12a078_sub_05d860, Class_12a078_sub_05f660 (+69 more)
+ * called by: CAnimBody_sub_02b340, CAnimal_ctor, CAnimal_m2_02573c, CAnimal_m3_026078, CAnimal_sub_02911c,
+ * CTexture_sub_0d97ec, Class_129808_sub_01679c, Class_129c70_sub_02f2c8 (+69 more)
  */
 int libgcc_divide_helper_01031c(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -11689,8 +11689,8 @@ int libc_sub_0140cc(u32 a0, u32 a1, int *a2, int a3, int ain0) {
 
 /*
  * rand  0x8c014200
- * called by: CAnimBody_sub_02b340, CTexture_sub_0d97ec, Class_1297f4_sub_014be4, Class_129808_m0_0147a4,
- * Class_12a0c4_sub_067594, Class_12a0c4_sub_0679cc, Class_12a0c4_sub_068a4c, Class_12a0c4_sub_068e64 (+62 more)
+ * called by: CAnimBody_sub_02b340, CAnimal_ctor, CAnimal_sub_02911c, CTexture_sub_0d97ec, Class_1297f4_sub_014be4,
+ * Class_129808_m0_0147a4, Class_12a0c4_sub_067594, Class_12a0c4_sub_0679cc (+62 more)
  */
 u32 rand(void) {
     u32 uVar1;
@@ -11845,8 +11845,8 @@ u32 libc_sub_0142e4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 
 /*
  * sprintf  0x8c014334
- * called by: CAnimal_m1_0f41c8, CAnimal_sub_036260, game_sub_019974, game_sub_0384f8, game_sub_087ed0, game_sub_099e74,
- * game_sub_09b8e4, game_sub_0a4de8 (+16 more)
+ * called by: CAnimal_m1_0f41c8, CFrogManEgg_ctor, CFrogManLine_ctor, CHigyoEgg_ctor, CMothEgg_ctor, CSpiderEgg_ctor,
+ * debug_print_vec3, game_sub_09b8e4 (+16 more)
  */
 u32 sprintf(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0) {
     u32 uVar1;
@@ -11869,8 +11869,8 @@ u32 libc_sub_014370(u32 a0) {
 
 /*
  * strcat  0x8c01437c
- * called by: game_sub_01da90, game_sub_01dea4, game_sub_0fae24, game_sub_0fbf28, malloc_sub_01e1e8, ninja_sub_25a174,
- * pack_find_entry_by_name, speech_start (+6 more)
+ * called by: game_sub_01dea4, game_sub_0fae24, game_sub_0fbf28, malloc_sub_01e1e8, ninja_sub_25a174,
+ * pack_find_entry_by_name, speech_start, speech_start_chapter (+6 more)
  */
 char *strcat(char *a0, char *a1) {
     char cVar1;
@@ -13042,7 +13042,7 @@ u32 set_field_10(int a0, u32 a1) {
 /*
  * free_if_nonnull_wrap_0151a0  0x8c0151a0
  * called by: CSeamanDomain_sub_0c2068, Class_129808_m6_0166b4, Class_12984c_sub_0c4b84, Class_12b350_dtor,
- * Class_12b3b8_sub_0e7a78, Class_12bb08_dtor, game_sub_0b6c3c, game_sub_0b6e6c (+10 more)
+ * Class_12b3b8_sub_0e7a78, Class_12bb08_dtor, game_sub_0b6e6c, game_sub_0b79f0 (+10 more)
  */
 int free_if_nonnull_wrap_0151a0(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -13152,10 +13152,9 @@ u32 CTexture_LoadFromCache(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * CTexture_ReleaseFromVRAM  0x8c015310
- * called by: CAnimal_sub_028c18, CSeamanDomain_Init, CTexture_ReleaseFromVRAM_on_field_20,
+ * called by: CAnimal_sub_028c18, CHerb_sub_06d5e4, CSeamanDomain_Init, CTexture_ReleaseFromVRAM_on_field_20,
  * CTexture_ReleaseFromVRAM_on_field_28, CTexture_ReleaseFromVRAM_on_field_488, CTexture_ReleaseFromVRAM_wrap,
- * CTexture_ReleaseFromVRAM_wrap_0d0a18, CTexture_ReleaseFromVRAM_wrap_0d14cc (+12 more) strings: "Failed..:%s";
- * "CTexture::ReleaseFromVRAM()"
+ * CTexture_ReleaseFromVRAM_wrap_0d0a18 (+12 more) strings: "Failed..:%s"; "CTexture::ReleaseFromVRAM()"
  */
 u32 CTexture_ReleaseFromVRAM(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -13965,7 +13964,7 @@ u32 clear_field_0_015b8c(u32 *a0) {
 /*
  * clear_field_0_wrap_015b94  0x8c015b94
  * only calls clear_field_0_015bc0
- * called by: CAnimal_sub_039124, CAnimal_sub_08894c, Class_12ad50_sub_0a5c90, game_sub_02452c, game_sub_08a17c,
+ * called by: CAnimal_sub_039124, CAnimal_sub_08894c, CMothLine_ctor, Class_12ad50_sub_0a5c90, game_sub_02452c,
  * game_sub_09b210
  */
 u32 clear_field_0_wrap_015b94(u32 a0, u32 a1) {
@@ -13975,7 +13974,7 @@ u32 clear_field_0_wrap_015b94(u32 a0, u32 a1) {
 
 /*
  * set_field_0_015bb0  0x8c015bb0
- * called by: CAnimal_LoadGRWait, CWaterTank_sub_0d93a8, Vec3_sub_027a78, game_sub_028390, game_sub_06ce04,
+ * called by: CAnimal_LoadGRWait, CAnimal_LoadMFile_step, CWaterTank_sub_0d93a8, Vec3_sub_027a78, game_sub_06ce04,
  * game_sub_08c9dc
  */
 u32 set_field_0_015bb0(u32 *a0, u32 a1) {
@@ -14006,7 +14005,7 @@ u32 clear_field_0_015bc0(u32 *a0) {
 /*
  * clear_field_0_wrap_015bc8  0x8c015bc8
  * only calls clear_field_0_015bec
- * called by: CAnimal_sub_039124, CAnimal_sub_08894c, Class_12ad50_sub_0a5c90, game_sub_08a17c, game_sub_09b210
+ * called by: CAnimal_sub_039124, CAnimal_sub_08894c, CMothLine_ctor, Class_12ad50_sub_0a5c90, game_sub_09b210
  */
 u32 clear_field_0_wrap_015bc8(u32 a0) {
     clear_field_0_015bec(a0);
@@ -14015,7 +14014,7 @@ u32 clear_field_0_wrap_015bc8(u32 a0) {
 
 /*
  * set_field_0_015be4  0x8c015be4
- * called by: CAnimal_LoadGRWait, game_sub_028390, game_sub_06ce04
+ * called by: CAnimal_LoadGRWait, CAnimal_LoadMFile_step, game_sub_06ce04
  */
 u32 set_field_0_015be4(u32 *a0, u32 a1) {
     u32 in_r0;
@@ -14385,7 +14384,7 @@ u32 Class_129808_m10_0162bc(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
  * clear_5_words  0x8c0162f8
  * a0[0..4] = 0
  * called by: CSeamanDomain_Init, CSeamanDomain_sub_0c2068, Class_129808_m6_0166b4, Class_12b350_ctor,
- * Class_12b3b8_sub_0e7a78, Class_12bb08_ctor, game_sub_0b6c3c, game_sub_0b6e6c (+13 more)
+ * Class_12b3b8_sub_0e7a78, Class_12bb08_ctor, game_sub_0b6e6c, game_sub_0b79f0 (+13 more)
  */
 u32 *clear_5_words(u32 *a0, u32 a1, u32 unused_a2, u32 a3) {
     a0[4] = 0;
@@ -15251,8 +15250,8 @@ u32 Class_129974_sub_016fa4(int a0, u32 unused_a1, u32 a2) {
 
 /*
  * Class_129938_ctor  0x8c016fcc
- * called by: CAnimal_sub_036260, CAnimal_sub_0851f4, CSquid_Init, game_sub_0384f8, game_sub_06740c, game_sub_087ed0,
- * game_sub_08a17c, game_sub_099e74 (+7 more)
+ * called by: CFrogManEgg_ctor, CFrogManLine_ctor, CHigyoEgg_ctor, CHigyoLine_ctor, CMothEgg_ctor, CMothLine_ctor,
+ * CMushroomerLine_ctor, CSpiderEgg_ctor (+7 more)
  */
 u32 *Class_129938_ctor(u32 *a0, u32 a1, u32 a2) {
     Class_1299b0_ctor(a0, a1, a2);
@@ -18168,11 +18167,11 @@ int Class_1299f8_sub_019928(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_019974  0x8c019974
- * area name: game code; nothing names its area yet
+ * debug_print_vec3  0x8c019974
+ * formats "x: y: z:" into 0x8c279178 and prints it (the print is a no-op in the release build)
  * strings: "x:%4.1lf y:%4.1lf z:%4.1lf"
  */
-u32 game_sub_019974(u32 unused_a0, u32 a1, u32 a2) {
+u32 debug_print_vec3(u32 unused_a0, u32 a1, u32 a2) {
     u32 r7;
     u32 uVar1;
 
@@ -19282,8 +19281,8 @@ u32 game_sub_01ab2c(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * game_sub_01ab78  0x8c01ab78
  * area name: game code; nothing names its area yet
- * called by: game_sub_01af14, game_sub_01b2a4, game_sub_01b4f0, game_sub_01b70c, game_sub_01b87c, game_sub_01b9b0,
- * game_sub_01ba68, game_sub_01bb6c (+5 more)
+ * called by: game_sub_01af14, game_sub_01b4f0, game_sub_01b70c, game_sub_01b87c, game_sub_01b9b0, game_sub_01ba68,
+ * game_sub_01bb6c, game_sub_01bbf8 (+5 more)
  */
 u32 game_sub_01ab78(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -19322,8 +19321,8 @@ u32 game_sub_01ab78(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * wait_state_rtc_10s  0x8c01acd0
  * runs the sound server while slot a1's state (+0x2450) is 2 or 3, for at most 10 RTC seconds
- * called by: CSeamanDomain_sub_01b920, CSeamanDomain_sub_01b9e4, CSeamanDomain_sub_01bc2c, game_sub_01ae98,
- * game_sub_01b144, game_sub_01b47c, game_sub_01b5f8, game_sub_01b7b0 (+2 more)
+ * called by: CSeamanDomain_sub_01b920, CSeamanDomain_sub_01b9e4, game_sub_01ae98, game_sub_01b144, game_sub_01b47c,
+ * game_sub_01bb00, memcard_check_file_wait, memcard_load_raw_wait (+2 more)
  */
 u32 wait_state_rtc_10s(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -19404,11 +19403,11 @@ u32 file_slot_find(int a0, int a1) {
 }
 
 /*
- * game_sub_01ae28  0x8c01ae28
- * area name: game code; nothing names its area yet
- * called by: game_sub_01ae98, game_sub_0b6c3c
+ * memcard_save_start  0x8c01ae28
+ * starts writing a file when the card is ready (state 3); returns the request handle or -1
+ * called by: game_sub_01ae98, save_write_step
  */
-u32 game_sub_01ae28(int a0, u32 a1, u32 a2, u32 a3) {
+u32 memcard_save_start(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
 
@@ -19435,7 +19434,7 @@ u32 game_sub_01ae98(u32 a0, u32 a1, u32 a2, u32 a3) {
     int ar5_00;
 
     if (g_8c2791b0 == 3) {
-        ar5_00 = game_sub_01ae28(a0, a1, a2, a3);
+        ar5_00 = memcard_save_start(a0, a1, a2, a3);
         if (ar5_00 < 0) {
             uVar1 = 0;
         } else {
@@ -19451,7 +19450,7 @@ u32 game_sub_01ae98(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_01af14  0x8c01af14
  * area name: game code; nothing names its area yet
- * called by: game_sub_01ae28
+ * called by: memcard_save_start
  */
 int game_sub_01af14(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -19596,8 +19595,8 @@ u32 game_sub_01b144(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 
     *(u32 *)((int)aiStack_20 + iVar1 + 4) = *(u32 *)((int)aiStack_20 + 0x248 + iVar1 + 8);
     *(u32 *)((int)aiStack_20 + iVar1) = *(u32 *)((int)aiStack_20 + 0x248 + iVar1 + 4);
     uVar3 = *(u32 *)((int)aiStack_20 + iVar1 + 8);
-    uVar2 = (*(code *)(&game_sub_01b2a4))(a0, a1, uVar3, a3, *(u32 *)((int)aiStack_20 + iVar1),
-                                          *(u32 *)((int)aiStack_20 + iVar1 + 4));
+    uVar2 = (*(code *)(&vmu_file_add_with_icon))(a0, a1, uVar3, a3, *(u32 *)((int)aiStack_20 + iVar1),
+                                                 *(u32 *)((int)aiStack_20 + iVar1 + 4));
     *(u32 *)((int)&stack0xfffffff4 + iVar1) = uVar2;
     if (*(int *)((int)&stack0xfffffff4 + iVar1) < 0) {
         uVar2 = 0;
@@ -19610,11 +19609,11 @@ u32 game_sub_01b144(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u32 
 }
 
 /*
- * game_sub_01b2a4  0x8c01b2a4
- * name hint from a string it uses: VM App Icon VMI; area name: game code; nothing names its area yet
- * strings: "VM_App_Icon.VMI"; "VM_App_Icon.VMI"
+ * vmu_file_add_with_icon  0x8c01b2a4
+ * builds a VMU file image: data, a 0x280-byte header with the two descriptions and the VM_App_Icon.VMI icon; returns
+ * its slot strings: "VM_App_Icon.VMI"; "VM_App_Icon.VMI"
  */
-int game_sub_01b2a4(int a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4) {
+int vmu_file_add_with_icon(int a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4) {
     int iVar1;
     int iVar2;
     int ar4_00;
@@ -19653,11 +19652,11 @@ int game_sub_01b2a4(int a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4) {
 }
 
 /*
- * game_sub_01b400  0x8c01b400
- * area name: game code; nothing names its area yet
- * called by: game_sub_01b47c, game_sub_0b6c3c
+ * memcard_save_vm_start  0x8c01b400
+ * starts writing a file of at most 0x600 bytes; returns the request handle or -1
+ * called by: game_sub_01b47c, save_write_step
  */
-u32 game_sub_01b400(int a0, u32 a1, u32 a2, u32 a3) {
+u32 memcard_save_vm_start(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
 
@@ -19688,7 +19687,7 @@ u32 game_sub_01b47c(u32 a0, u32 a1, u32 a2, u32 a3) {
     int ar5_00;
 
     if (g_8c2791b0 == 3) {
-        ar5_00 = game_sub_01b400(a0, a1, a2, a3);
+        ar5_00 = memcard_save_vm_start(a0, a1, a2, a3);
         if (ar5_00 < 0) {
             uVar1 = 0;
         } else {
@@ -19704,7 +19703,7 @@ u32 game_sub_01b47c(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_01b4f0  0x8c01b4f0
  * area name: game code; nothing names its area yet
- * called by: game_sub_01b400
+ * called by: memcard_save_vm_start
  */
 int game_sub_01b4f0(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -19747,7 +19746,7 @@ u32 bytes_to_512_blocks_wrap(u32 unused_a0, int a1) {
 /*
  * bytes_to_512_blocks  0x8c01b5dc
  * a1 rounded up to 512-byte blocks
- * called by: bytes_to_512_blocks_wrap, game_sub_01b2a4, game_sub_01b4f0, game_sub_01b87c
+ * called by: bytes_to_512_blocks_wrap, game_sub_01b4f0, game_sub_01b87c, vmu_file_add_with_icon
  */
 u32 bytes_to_512_blocks(u32 unused_a0, u32 a1) {
     u32 uVar1;
@@ -19760,11 +19759,11 @@ u32 bytes_to_512_blocks(u32 unused_a0, u32 a1) {
 }
 
 /*
- * game_sub_01b5f8  0x8c01b5f8
- * area name: game code; nothing names its area yet
- * called by: game_sub_0b7628, save_files_check
+ * memcard_load_wait  0x8c01b5f8
+ * reads a file, waits up to 10 s, unpacks it and copies a3 bytes to a2; 1 on success
+ * called by: save_file_load, save_files_check
  */
-u32 game_sub_01b5f8(int a0, u32 a1, u32 a2, u32 a3) {
+u32 memcard_load_wait(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int ar5_00;
     int iVar2;
@@ -19811,7 +19810,7 @@ u32 game_sub_01b5f8(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_01b70c  0x8c01b70c
  * area name: game code; nothing names its area yet
- * called by: game_sub_01b5f8
+ * called by: memcard_load_wait
  */
 int game_sub_01b70c(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -19835,11 +19834,11 @@ int game_sub_01b70c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_01b7b0  0x8c01b7b0
- * area name: game code; nothing names its area yet
+ * memcard_load_raw_wait  0x8c01b7b0
+ * reads a3 bytes of a file into a2, waiting up to 10 s; 1 on success
  * called by: save_files_check
  */
-u32 game_sub_01b7b0(int a0, u32 a1, u32 a2, u32 a3) {
+u32 memcard_load_raw_wait(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int ar5_00;
     int iVar2;
@@ -19874,7 +19873,7 @@ u32 game_sub_01b7b0(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_01b87c  0x8c01b87c
  * area name: game code; nothing names its area yet
- * called by: game_sub_01b7b0
+ * called by: memcard_load_raw_wait
  */
 int game_sub_01b87c(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -20042,11 +20041,11 @@ int game_sub_01bb6c(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_01bba0  0x8c01bba0
- * area name: game code; nothing names its area yet
+ * memcard_check_file_wait  0x8c01bba0
+ * starts a file query and waits up to 10 s for the result
  * called by: game_sub_0b6e6c, game_sub_0c7438, save_files_check
  */
-u32 game_sub_01bba0(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 memcard_check_file_wait(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int ar5_00;
 
@@ -20066,7 +20065,7 @@ u32 game_sub_01bba0(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_sub_01bbf8  0x8c01bbf8
  * area name: game code; nothing names its area yet
- * called by: game_sub_01bba0
+ * called by: memcard_check_file_wait
  */
 int game_sub_01bbf8(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -20079,11 +20078,11 @@ int game_sub_01bbf8(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * CSeamanDomain_sub_01bc2c  0x8c01bc2c
- * area name: only called from CSeamanDomain methods
+ * memcard_stat_file_wait  0x8c01bc2c
+ * queries a file and copies its description into a2 when found (result 5)
  * called by: CSeamanDomain_Init, game_sub_0b6e6c, game_sub_0c7438, save_files_check
  */
-int CSeamanDomain_sub_01bc2c(int a0, u32 a1, u8 *a2, u32 a3) {
+int memcard_stat_file_wait(int a0, u32 a1, u8 *a2, u32 a3) {
     int iVar1;
     int ar5_00;
     u8 *ar6_00;
@@ -20109,7 +20108,7 @@ int CSeamanDomain_sub_01bc2c(int a0, u32 a1, u8 *a2, u32 a3) {
 /*
  * game_sub_01bcc0  0x8c01bcc0
  * area name: game code; nothing names its area yet
- * called by: CSeamanDomain_sub_01bc2c
+ * called by: memcard_stat_file_wait
  */
 int game_sub_01bcc0(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -21191,22 +21190,22 @@ u32 asr_sub_01d338(int a0, u32 a1, u32 a2, u32 a3) {
     if ((iVar2 < 6) && (-1 < iVar2)) {
         switch (iVar2) {
         case 0:
-            uVar1 = game_sub_01da90(a0, a1, a2, a3);
+            uVar1 = speech_sub_01da90(a0, a1, a2, a3);
             break;
         case 1:
             uVar1 = game_sub_01dea4(a0, a1, a2, a3);
             break;
         case 2:
-            uVar1 = asr_sub_01d78c(a0);
+            uVar1 = game_sub_01d78c(a0);
             break;
         case 3:
             uVar1 = game_sub_01d8d8(a0);
             break;
         case 4:
-            uVar1 = asr_sub_01d7cc(a0, a1, a2, a3);
+            uVar1 = game_sub_01d7cc(a0, a1, a2, a3);
             break;
         case 5:
-            uVar1 = game_sub_01d92c(a0, a1, a2, a3);
+            uVar1 = speech_register_idle_ctx(a0, a1, a2, a3);
         }
     }
     return uVar1;
@@ -21399,11 +21398,11 @@ u32 asr_sub_01d71c(u32 a0) {
 }
 
 /*
- * asr_sub_01d754  0x8c01d754
- * area name: sits between asr functions (same compilation unit)
+ * game_sub_01d754  0x8c01d754
+ * area name: game code; nothing names its area yet
  * called by: game_sub_0fd8d0
  */
-u32 asr_sub_01d754(u32 a0) {
+u32 game_sub_01d754(u32 a0) {
     int iVar1;
     u32 uVar2;
 
@@ -21417,11 +21416,11 @@ u32 asr_sub_01d754(u32 a0) {
 }
 
 /*
- * asr_sub_01d78c  0x8c01d78c
- * area name: sits between asr functions (same compilation unit)
+ * game_sub_01d78c  0x8c01d78c
+ * area name: game code; nothing names its area yet
  * called by: asr_sub_01d338
  */
-int asr_sub_01d78c(int a0) {
+int game_sub_01d78c(int a0) {
     int iVar1;
 
     *(u32 *)(0x5638 + *(int *)(0x5630 + a0) * 0x50 + a0) = 1;
@@ -21434,11 +21433,11 @@ int asr_sub_01d78c(int a0) {
 }
 
 /*
- * asr_sub_01d7cc  0x8c01d7cc
- * area name: sits between asr functions (same compilation unit)
+ * game_sub_01d7cc  0x8c01d7cc
+ * area name: game code; nothing names its area yet
  * called by: asr_sub_01d338
  */
-int asr_sub_01d7cc(int a0, u32 a1, u32 a2, u32 a3) {
+int game_sub_01d7cc(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
     *(u32 *)(0x5638 + *(int *)(0x5630 + a0) * 0x50 + a0) = 1;
@@ -21504,31 +21503,31 @@ u32 game_sub_01d8d8(int a0) {
     *(u32 *)(0x5638 + *(int *)(0x5630 + a0) * 0x50 + a0) = 1;
     g_8c27924c = 0;
     g_8c2791bc = 0;
-    uVar1 = game_sub_01d984();
+    uVar1 = speech_sub_01d984();
     return uVar1;
 }
 
 /*
- * game_sub_01d92c  0x8c01d92c
- * name hint from a string it uses: SPEECH; area name: game code; nothing names its area yet
+ * speech_register_idle_ctx  0x8c01d92c
+ * marks the current context entry and registers the "idle_ctx" SPEECH strings with the recogniser
  * called by: asr_sub_01d338
  * strings: "idle_ctx"; "SPEECH"
  */
-u32 game_sub_01d92c(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 speech_register_idle_ctx(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
     *(u32 *)(0x5638 + *(int *)(0x5630 + a0) * 0x50 + a0) = 1;
-    game_sub_01d9ac();
+    speech_sub_01d9ac();
     uVar1 = (*(code *)(&asr_register_strings))(a0, "idle_ctx", "SPEECH", a3);
     return uVar1;
 }
 
 /*
- * game_sub_01d984  0x8c01d984
- * area name: game code; nothing names its area yet
+ * speech_sub_01d984  0x8c01d984
+ * area name: sits between speech functions (same compilation unit)
  * called by: game_sub_01d8d8, game_sub_01dc80, game_sub_01dea4
  */
-int game_sub_01d984(void) {
+int speech_sub_01d984(void) {
     int iVar1;
 
     iVar1 = g_8c2791b8;
@@ -21539,11 +21538,11 @@ int game_sub_01d984(void) {
 }
 
 /*
- * game_sub_01d9ac  0x8c01d9ac
- * area name: game code; nothing names its area yet
- * called by: game_sub_01d92c
+ * speech_sub_01d9ac  0x8c01d9ac
+ * area name: sits between speech functions (same compilation unit)
+ * called by: speech_register_idle_ctx
  */
-int game_sub_01d9ac(void) {
+int speech_sub_01d9ac(void) {
     int iVar1;
 
     iVar1 = g_8c2791b8;
@@ -21554,11 +21553,11 @@ int game_sub_01d9ac(void) {
 }
 
 /*
- * game_sub_01d9e0  0x8c01d9e0
- * area name: game code; nothing names its area yet
+ * speech_sub_01d9e0  0x8c01d9e0
+ * area name: sits between speech functions (same compilation unit)
  * called by: game_sub_0e1f90, game_sub_0e6804, input_sub_0e25c0
  */
-int game_sub_01d9e0(void) {
+int speech_sub_01d9e0(void) {
     int iVar1;
 
     if (g_8c279248 == 2) {
@@ -21580,11 +21579,11 @@ int game_sub_01d9e0(void) {
 }
 
 /*
- * game_sub_01da60  0x8c01da60
- * area name: game code; nothing names its area yet
+ * speech_sub_01da60  0x8c01da60
+ * area name: sits between speech functions (same compilation unit)
  * called by: game_sub_0dfe2c, game_sub_0e6804
  */
-u32 game_sub_01da60(void) {
+u32 speech_sub_01da60(void) {
     if (g_8c2791b8 == 4) {
         asr_sub_10c356(g_8c27925c);
     }
@@ -21593,11 +21592,11 @@ u32 game_sub_01da60(void) {
 }
 
 /*
- * game_sub_01da90  0x8c01da90
- * area name: game code; nothing names its area yet
+ * speech_sub_01da90  0x8c01da90
+ * area name: sits between speech functions (same compilation unit)
  * called by: asr_sub_01d338
  */
-u32 game_sub_01da90(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 speech_sub_01da90(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     int *piStack_98;
     u8 auStack_94[132];
@@ -21630,7 +21629,7 @@ u32 game_sub_01da90(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * game_sub_01dc80  0x8c01dc80
  * area name: game code; nothing names its area yet
- * called by: game_sub_01da90
+ * called by: speech_sub_01da90
  */
 u32 game_sub_01dc80(int a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4) {
     int iVar1;
@@ -21643,7 +21642,7 @@ u32 game_sub_01dc80(int a0, u32 a1, u32 a2, u32 a3, u32 s0, u32 s4) {
     uVar2 = a2;
     ar7_00 = a3;
     ar5_00 = a1;
-    game_sub_01d984();
+    speech_sub_01d984();
     g_8c2791bc = 0;
     if (g_8c279264 != 0) {
         asr_sub_01d008(a0, a1, uVar2, ar7_00);
@@ -21733,7 +21732,7 @@ int game_sub_01dea4(int a0, u32 unused_a1, u32 a2, u32 a3) {
         ar5_00 = a0 + 0x5b65;
         iVar1 = game_sub_01dfc0(*(int *)(a0 + 0x5630) * 0x50 + a0 + 0x5664, ar5_00);
         if (iVar1 == 0) {
-            iVar1 = game_sub_01d984();
+            iVar1 = speech_sub_01d984();
         }
     }
     return iVar1;
@@ -22964,7 +22963,7 @@ LAB_8c01f4ea:
 
 /*
  * get_field_a524_01f514  0x8c01f514
- * called by: CGame_sub_0b7920, CGame_sub_0c3e78, CSeamanDomain_Init, game_sub_0b6c3c, game_sub_0b6e6c, save_files_check
+ * called by: CGame_sub_0b7920, CGame_sub_0c3e78, CSeamanDomain_Init, game_sub_0b6e6c, save_files_check, save_write_step
  */
 u32 get_field_a524_01f514(int a0, u32 unused_a1, u32 a2) {
     return *(u32 *)(0xa524 + a0);
@@ -22974,7 +22973,7 @@ u32 get_field_a524_01f514(int a0, u32 unused_a1, u32 a2) {
  * identity  0x8c01f520
  * returns its first argument
  * called by: CSeamanDomain_Init, CSeamanDomain_sub_0c1d98, CSeamanDomain_sub_0c2324, Class_12b388_m1_0c5c08,
- * game_sub_0b6c3c, game_sub_0b6e6c, game_sub_0b726c, game_sub_0b7628 (+10 more)
+ * game_sub_0b6e6c, game_sub_0b726c, game_sub_0c09a4, game_sub_0c7438 (+10 more)
  */
 u32 identity(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     return a0;
@@ -22992,8 +22991,8 @@ int field_ptr_384c(int a0) {
 
 /*
  * get_field_a510_01f538  0x8c01f538
- * called by: CGame_Initial, game_sub_0b6c3c, game_sub_0b6e6c, game_sub_0bad68, game_sub_0fc4c4, input_sub_0bb1e4,
- * save_files_check
+ * called by: CGame_Initial, game_sub_0b6e6c, game_sub_0bad68, game_sub_0fc4c4, input_sub_0bb1e4, save_files_check,
+ * save_write_step
  */
 u32 get_field_a510_01f538(int a0) {
     return *(u32 *)(0xa510 + a0);

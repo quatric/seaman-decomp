@@ -10907,7 +10907,7 @@ u32 matrix_pop1(void) {
 /*
  * matrix_sub_256294  0x8c256294
  * area name: sits between matrix functions (same compilation unit)
- * called by: CAnimal_sub_036adc, Class_12acc8_m1_09f470, Class_12b2e8_sub_02fcc4, game_sub_019508, game_sub_03525c,
+ * called by: CAnimal_sub_036adc, Class_12acc8_m1_09f470, game_sub_019508, game_sub_02fcc4, game_sub_03525c,
  * game_sub_085c3c, game_sub_0d1754, game_sub_0d43cc (+2 more)
  */
 u32 matrix_sub_256294(int a0, double *a1, double *a2) {

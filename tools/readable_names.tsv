@@ -506,3 +506,35 @@
 8c019128	rotate_y_degrees	njRotateY(current matrix) by fr4 degrees
 8c015c2c	Class_12988c_ctor	vtable 0x8c12988c
 8c015ff0	Class_12984c_ctor	Class_12988c base, vtable 0x8c12984c
+8c0254d0	CAnimal_ctor	base constructor of the creatures: vtable 0x8c129a88, body, motion and the species tables passed in s8, s12, s16
+8c036260	CFrogManLine_ctor	"FrogManLine": CAnimal_ctor(kind 5), vtable 0x8c129ea0
+8c0384f8	CFrogManEgg_ctor	"FrogManEgg": CAnimal_ctor(kind 6), vtable 0x8c129d04
+8c0851f4	CHigyoLine_ctor	"HigyoLine": CAnimal_ctor(kind 3), vtable 0x8c12a434
+8c087ed0	CHigyoEgg_ctor	"HigyoEgg": CAnimal_ctor(kind 4), vtable 0x8c12a298
+8c08a17c	CMothLine_ctor	"MothLine": CAnimal_ctor(kind 10), vtable 0x8c12a5d0
+8c099e74	CMothEgg_ctor	"MothEgg": CAnimal_ctor(kind 11), vtable 0x8c12a7f4
+8c09d9c0	CMushroomerLine_ctor	"MushroomerLine": CAnimal_ctor(kind 1), vtable 0x8c12ab2c
+8c0a4590	CSpiderLine_ctor	"SpiderLine": CAnimal_ctor(kind 13), vtable 0x8c12aeec
+8c0a4de8	CSpiderEgg_ctor	"SpiderEgg": CAnimal_ctor(kind 12), vtable 0x8c12ad50
+8c0ae6a0	nautilus_desc_init	fills the "Nautilus" object description (size, offsets, flags)
+8c0ae544	nautilus_load_shell	loads the Nt_Shell model, texture list and the NT_BODY texture
+8c019974	debug_print_vec3	formats "x: y: z:" into 0x8c279178 and prints it (the print is a no-op in the release build)
+8c01b2a4	vmu_file_add_with_icon	builds a VMU file image: data, a 0x280-byte header with the two descriptions and the VM_App_Icon.VMI icon; returns its slot
+8c01d92c	speech_register_idle_ctx	marks the current context entry and registers the "idle_ctx" SPEECH strings with the recogniser
+8c028390	CAnimal_LoadMFile_step	one step of loading a motion file (by request type s16); counts finished files in *s0 and returns 1 when all s4 are in
+8c0309c8	talk_set_start_scene	sets the talk scene name (JUNGLE, or the stage name plus the stage number) with entry "start"
+8c05f4a0	react_catch_object	drops what +0x6c holds, moves to the caught object, waits for speech to end, then queues the REACTION_CATCH line
+8c065228	talk_complain_tank_env	queues the GRATIFIC_RID_HOT / _COLD / _HUMIDITY line for the tank condition
+8c066464	talk_check_status_lastone	queues the STATUS_LASTONE line once, when only one creature is left
+8c06d3ec	CHerb_LoadTRWait	loads the texture of herb entry a2 (0x124-byte entries at +0x224), retrying until done
+8c0b6c3c	save_write_step	one state of the save sequence: starts writing SM2000US.USR or SM2000US.INC (as SM2000US._VM)
+8c0b7628	save_file_load	loads SM2000US.USR, or SM2000US.INC from SM2000US._VM, into a1; 0 on success
+8c0b76d8	save_files_presence	bit flags for which save files exist: 1 USR, 2 and 4 _VM states, 8 SEAMANDC.USR, 0x10 SEAMANDC._VM
+8c0b7804	save_usr_date_matches	loads SM2000US.USR and compares its saved date with a0
+8c0b787c	save_show_file_message	shows the message for the save file chosen by flags a0
+8c01ae28	memcard_save_start	starts writing a file when the card is ready (state 3); returns the request handle or -1
+8c01b400	memcard_save_vm_start	starts writing a file of at most 0x600 bytes; returns the request handle or -1
+8c01b5f8	memcard_load_wait	reads a file, waits up to 10 s, unpacks it and copies a3 bytes to a2; 1 on success
+8c01b7b0	memcard_load_raw_wait	reads a3 bytes of a file into a2, waiting up to 10 s; 1 on success
+8c01bba0	memcard_check_file_wait	starts a file query and waits up to 10 s for the result
+8c01bc2c	memcard_stat_file_wait	queries a file and copies its description into a2 when found (result 5)

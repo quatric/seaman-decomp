@@ -1787,7 +1787,7 @@ u32 game_sub_0e1f90(int a0, u32 *a1, u8 *a2, u32 a3) {
     if (iVar1 == 1) {
         uVar4 = get_field_cc_0dfee8(a1);
         uVar4 = field_ptr_384c(uVar4);
-        game_sub_01d9e0();
+        speech_sub_01d9e0();
     }
     return 1;
 }
@@ -1888,7 +1888,7 @@ u32 input_sub_0e25c0(int a0, u32 a1, u32 a2, u32 a3) {
         if (iVar1 == 1) {
             uVar2 = get_field_cc_0dfee8(a1);
             uVar2 = field_ptr_384c(uVar2);
-            game_sub_01d9e0();
+            speech_sub_01d9e0();
         }
     }
     return 1;
@@ -4553,13 +4553,13 @@ u32 game_sub_0e6804(u32 unused_a0, u32 a1, u32 a2) {
     if (iVar1 == 1) {
         uVar2 = get_field_cc_0dfee8(a1);
         uVar2 = field_ptr_384c(uVar2);
-        game_sub_01d9e0();
+        speech_sub_01d9e0();
     }
     iVar1 = input_a_released_wrap(a1);
     if (iVar1 == 1) {
         uVar2 = get_field_cc_0dfee8(a1);
         uVar2 = field_ptr_384c(uVar2);
-        game_sub_01da60();
+        speech_sub_01da60();
     }
     return 1;
 }

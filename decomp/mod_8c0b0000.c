@@ -3587,8 +3587,7 @@ u32 Class_12b2e8_m1_0b5ad0(int a0, int *a1, int *a2, u32 a3) {
             }
         }
         if ((((*(int *)(a0 + 0x6c) == 0) && (*(int *)(a0 + 0x40) == 0)) && (*(char *)(a0 + 0x98) == '\x03')) &&
-            ((piVar9 = a2, iVar3 = Class_12b2e8_sub_02fcc4(a0, a2, piVar10, a3),
-              iVar3 == 1 && (*(int *)(a0 + 0xa0) == 1)))) {
+            ((piVar9 = a2, iVar3 = game_sub_02fcc4(a0, a2, piVar10, a3), iVar3 == 1 && (*(int *)(a0 + 0xa0) == 1)))) {
             piVar9 = a1;
             piVar10 = a2;
             uVar2 = Class_12b2e8_sub_0b67cc(a0, a1, a2, a3);
@@ -3642,7 +3641,7 @@ u32 Class_12b2e8_m1_0b5ad0(int a0, int *a1, int *a2, u32 a3) {
             piVar10 = a2;
             iVar7 = Class_12b2e8_sub_0b67cc(a0, a1, a2, uVar2);
             piVar9 = a1;
-            if ((iVar7 == 0) || (piVar9 = a2, iVar7 = Class_12b2e8_sub_02fcc4(a0, a2, piVar10, uVar2), iVar7 != 1)) {
+            if ((iVar7 == 0) || (piVar9 = a2, iVar7 = game_sub_02fcc4(a0, a2, piVar10, uVar2), iVar7 != 1)) {
                 if (*(int *)(a0 + 0x40) != 5) {
                     *(u32 *)(a0 + 8) = 0x5f;
                     *(u32 *)(a0 + 0xc) = 0;
@@ -3671,7 +3670,7 @@ u32 Class_12b2e8_m1_0b5ad0(int a0, int *a1, int *a2, u32 a3) {
             piVar10 = a2;
             iVar7 = Class_12b2e8_sub_0b67cc(a0, a1, a2, uVar2);
             if (((iVar7 == 0) || (*(int *)(a0 + 0x40) == 6)) ||
-                (a1 = a2, iVar7 = Class_12b2e8_sub_02fcc4(a0, a2, piVar10, uVar2), iVar7 != 1)) {
+                (a1 = a2, iVar7 = game_sub_02fcc4(a0, a2, piVar10, uVar2), iVar7 != 1)) {
                 piVar9 = a1;
                 if (*(int *)(a0 + 0x40) != 6) {
                     *(u32 *)(a0 + 8) = 0x5f;
@@ -4434,12 +4433,12 @@ u32 game_sub_0b6c10(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0b6c3c  0x8c0b6c3c
- * area name: game code; nothing names its area yet
+ * save_write_step  0x8c0b6c3c
+ * one state of the save sequence: starts writing SM2000US.USR or SM2000US.INC (as SM2000US._VM)
  * called by: game_sub_0c6e74, game_sub_0c8134, game_sub_0c91f4, game_sub_0ca4e8, game_sub_0cb668
  * strings: "SM2000US.USR"; "SM2000US.INC"; "SM2000US._VM"
  */
-u32 game_sub_0b6c3c(u32 a0, u8 *a1, u8 *a2, u8 *a3) {
+u32 save_write_step(u32 a0, u8 *a1, u8 *a2, u8 *a3) {
     int iVar1;
     u8 *ar6_00;
     u8 *ar5_00;
@@ -4461,13 +4460,13 @@ u32 game_sub_0b6c3c(u32 a0, u8 *a1, u8 *a2, u8 *a3) {
             uVar2 = identity(0x8c3dd7dc, uVar2, ar6_00, a3);
             iVar1 = strcmp_0b6e04(a0, "SM2000US.USR");
             if (iVar1 == 0) {
-                g_8c431a58 = game_sub_01ae28(uVar2, a0, a1, a2);
+                g_8c431a58 = memcard_save_start(uVar2, a0, a1, a2);
                 ar6_00 = a1;
                 a3 = a2;
             } else {
                 iVar1 = strcmp_0b6e04(a0, "SM2000US.INC");
                 if (iVar1 == 0) {
-                    g_8c431a58 = game_sub_01b400(uVar2, "SM2000US._VM", a1, a2);
+                    g_8c431a58 = memcard_save_vm_start(uVar2, "SM2000US._VM", a1, a2);
                     ar6_00 = a1;
                     a3 = a2;
                 }
@@ -4497,7 +4496,7 @@ u32 game_sub_0b6c3c(u32 a0, u8 *a1, u8 *a2, u8 *a3) {
 
 /*
  * strcmp_0b6e04  0x8c0b6e04
- * called by: CSeamanDomain_Init, game_sub_0b6c3c, game_sub_0b6e6c, game_sub_0bad68, save_files_check
+ * called by: CSeamanDomain_Init, game_sub_0b6e6c, game_sub_0bad68, save_files_check, save_write_step
  */
 u32 strcmp_0b6e04(u8 *a0, u8 *a1) {
     u8 bVar1;
@@ -4550,7 +4549,7 @@ u32 game_sub_0b6e6c(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
                 iVar1 = strcmp_0b6e04(a0, "SM2000US._VM");
                 if (iVar1 == 0) {
                     ar6_00 = auStack_48;
-                    iVar1 = CSeamanDomain_sub_01bc2c(uVar2, "SM2000US._VM", ar6_00, ar7_00);
+                    iVar1 = memcard_stat_file_wait(uVar2, "SM2000US._VM", ar6_00, ar7_00);
                     if (iVar1 == 1) {
                         iVar1 = game_sub_01b0a8(uVar2, a0, a3, in_stack_00000000);
                         ar6_00 = a3;
@@ -4562,7 +4561,8 @@ u32 game_sub_0b6e6c(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
                     }
                 }
                 iVar1 = strcmp_0b6e04(a0, "SM2000US.USR");
-                if ((iVar1 == 0) && (iVar1 = game_sub_01bba0(uVar2, "SM2000US.USR", ar6_00, ar7_00), iVar1 == 1)) {
+                if ((iVar1 == 0) &&
+                    (iVar1 = memcard_check_file_wait(uVar2, "SM2000US.USR", ar6_00, ar7_00), iVar1 == 1)) {
                     iVar1 = game_sub_01ae98(uVar2, a0, a1, a2);
                     ar6_00 = a1;
                     ar7_00 = a2;
@@ -4574,7 +4574,7 @@ u32 game_sub_0b6e6c(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
                 } else {
                     iVar1 = strcmp_0b6e04(a0, "SM2000US.INC");
                     if ((iVar1 == 0) &&
-                        (iVar1 = CSeamanDomain_sub_01bc2c(uVar2, "SM2000US._VM", auStack_48, ar7_00), iVar1 == 1)) {
+                        (iVar1 = memcard_stat_file_wait(uVar2, "SM2000US._VM", auStack_48, ar7_00), iVar1 == 1)) {
                         iVar1 = game_sub_01b47c(uVar2, "SM2000US._VM", a1, a2);
                         ar6_00 = a1;
                         ar7_00 = a2;
@@ -4668,7 +4668,7 @@ u32 game_sub_0b726c(u32 a0, u32 a1, u8 *a2, u32 a3, u32 s0, int s4) {
         iVar1 = (*(code *)(&strcmp_0b6e04))(a0, "SM2000US._VM", ar6_00, ar7_00);
         if (iVar1 == 0) {
             ar6_00 = auStack_34;
-            iVar1 = (*(code *)(&CSeamanDomain_sub_01bc2c))(ar4_00, "SM2000US._VM", ar6_00, ar7_00);
+            iVar1 = (*(code *)(&memcard_stat_file_wait))(ar4_00, "SM2000US._VM", ar6_00, ar7_00);
             if (iVar1 == 1) {
                 iVar1 = game_sub_01b0a8(ar4_00, a0, a3, s0);
                 if (iVar1 != 1) {
@@ -4679,7 +4679,7 @@ u32 game_sub_0b726c(u32 a0, u32 a1, u8 *a2, u32 a3, u32 s0, int s4) {
         }
         iVar1 = (*(code *)(&strcmp_0b6e04))(a0, "SM2000US.USR", ar6_00, ar7_00);
         if ((iVar1 == 0) &&
-            (iVar1 = (*(code *)(&game_sub_01bba0))(ar4_00, "SM2000US.USR", ar6_00, ar7_00), iVar1 == 1)) {
+            (iVar1 = (*(code *)(&memcard_check_file_wait))(ar4_00, "SM2000US.USR", ar6_00, ar7_00), iVar1 == 1)) {
             iVar1 = game_sub_01ae98(ar4_00, a0, a1, a2);
             if (iVar1 == 1) {
                 uVar2 = 0;
@@ -4687,7 +4687,7 @@ u32 game_sub_0b726c(u32 a0, u32 a1, u8 *a2, u32 a3, u32 s0, int s4) {
         } else {
             iVar1 = (*(code *)(&strcmp_0b6e04))(a0, "SM2000US.INC", ar6_00, ar7_00);
             if ((iVar1 == 0) &&
-                ((iVar1 = (*(code *)(&CSeamanDomain_sub_01bc2c))(ar4_00, "SM2000US._VM", auStack_34, ar7_00),
+                ((iVar1 = (*(code *)(&memcard_stat_file_wait))(ar4_00, "SM2000US._VM", auStack_34, ar7_00),
                   iVar1 == 1 && (iVar1 = (*(code *)(&game_sub_01b47c))(ar4_00, "SM2000US._VM", a1, a2), iVar1 == 1)))) {
                 uVar2 = 0;
             }
@@ -4745,18 +4745,18 @@ u32 save_files_check(u32 a0, u32 a1, u32 a2) {
             uVar2 = 0xb;
             game_sub_0c2efc(&g_8c2b5628, 0xb, 0, &g_8c13c025);
             uVar2 = identity(0x8c3dd7dc, uVar2, uVar3, ar7_00);
-            iVar1 = game_sub_01bba0(uVar2, a0, uVar3, ar7_00);
+            iVar1 = memcard_check_file_wait(uVar2, a0, uVar3, ar7_00);
             if (iVar1 == 1) {
                 iVar1 = strcmp_0b6e04(a0, "SM2000US.USR");
-                if ((iVar1 == 0) && (iVar1 = game_sub_01b5f8(uVar2, a0, a1, a2), iVar1 == 1)) {
+                if ((iVar1 == 0) && (iVar1 = memcard_load_wait(uVar2, a0, a1, a2), iVar1 == 1)) {
                     uVar4 = 0;
                 }
             } else {
                 ar6_00 = auStack_30;
-                iVar1 = CSeamanDomain_sub_01bc2c(uVar2, "SM2000US._VM", ar6_00, ar7_00);
+                iVar1 = memcard_stat_file_wait(uVar2, "SM2000US._VM", ar6_00, ar7_00);
                 if (iVar1 == 1) {
                     iVar1 = strcmp_0b6e04(a0, "SM2000US.INC");
-                    if ((iVar1 == 0) && (iVar1 = game_sub_01b7b0(uVar2, "SM2000US._VM", a1, a2), iVar1 == 1)) {
+                    if ((iVar1 == 0) && (iVar1 = memcard_load_raw_wait(uVar2, "SM2000US._VM", a1, a2), iVar1 == 1)) {
                         uVar4 = 0;
                     }
                 } else {
@@ -4780,11 +4780,11 @@ u32 save_files_check(u32 a0, u32 a1, u32 a2) {
 }
 
 /*
- * game_sub_0b7628  0x8c0b7628
- * area name: game code; nothing names its area yet
+ * save_file_load  0x8c0b7628
+ * loads SM2000US.USR, or SM2000US.INC from SM2000US._VM, into a1; 0 on success
  * strings: "SM2000US.USR"; "SM2000US.INC"; "SM2000US._VM"
  */
-u32 game_sub_0b7628(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 save_file_load(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 ar4_00;
     int iVar1;
     u32 ar6_00;
@@ -4795,14 +4795,14 @@ u32 game_sub_0b7628(u32 a0, u32 a1, u32 a2, u32 a3) {
     ar4_00 = identity(0x8c3dd7dc, a1, a2, a3);
     iVar1 = (*(code *)(&strcmp_0b6e04))(a0, "SM2000US.USR", ar6_00, a3);
     if (iVar1 == 0) {
-        iVar1 = game_sub_01b5f8(ar4_00, a0, a1, a2);
+        iVar1 = memcard_load_wait(ar4_00, a0, a1, a2);
         if (iVar1 == 1) {
             uVar2 = 0;
         }
     } else {
         iVar1 = (*(code *)(&strcmp_0b6e04))(a0, "SM2000US.INC", ar6_00, a3);
         if (iVar1 == 0) {
-            iVar1 = (*(code *)(&game_sub_01b7b0))(ar4_00, "SM2000US._VM", a1, a2);
+            iVar1 = (*(code *)(&memcard_load_raw_wait))(ar4_00, "SM2000US._VM", a1, a2);
             if (iVar1 == 1) {
                 uVar2 = 0;
             }
@@ -4812,12 +4812,12 @@ u32 game_sub_0b7628(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_sub_0b76d8  0x8c0b76d8
- * name hint from a string it uses: SEAMANDC USR; area name: game code; nothing names its area yet
+ * save_files_presence  0x8c0b76d8
+ * bit flags for which save files exist: 1 USR, 2 and 4 _VM states, 8 SEAMANDC.USR, 0x10 SEAMANDC._VM
  * called by: CGame_Initial, CSeamanDomain_Init, game_sub_0bad68, game_sub_0c6d70, game_sub_0c6e74
  * strings: "SM2000US._VM"; "SEAMANDC.USR"; "SEAMANDC._VM"; "SM2000US.USR" ...
  */
-u32 game_sub_0b76d8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 save_files_presence(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 ar4_00;
     int iVar1;
     u8 *puVar2;
@@ -4827,24 +4827,24 @@ u32 game_sub_0b76d8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     ar4_00 = identity(0x8c3dd7dc, unused_a1, unused_a2, a3);
     uVar3 = 0;
     puVar2 = auStack_20;
-    iVar1 = (*(code *)(&CSeamanDomain_sub_01bc2c))(ar4_00, "SM2000US._VM", puVar2, a3);
+    iVar1 = (*(code *)(&memcard_stat_file_wait))(ar4_00, "SM2000US._VM", puVar2, a3);
     if (iVar1 == 5) {
         uVar3 = 4;
     }
-    iVar1 = (*(code *)(&game_sub_01bba0))(ar4_00, "SEAMANDC.USR", puVar2, a3);
+    iVar1 = (*(code *)(&memcard_check_file_wait))(ar4_00, "SEAMANDC.USR", puVar2, a3);
     if (iVar1 == 1) {
         uVar3 = uVar3 | 8;
     }
     puVar2 = auStack_20;
-    iVar1 = (*(code *)(&CSeamanDomain_sub_01bc2c))(ar4_00, "SEAMANDC._VM", puVar2, a3);
+    iVar1 = (*(code *)(&memcard_stat_file_wait))(ar4_00, "SEAMANDC._VM", puVar2, a3);
     if (iVar1 == 1) {
         uVar3 = uVar3 | 0x10;
     }
-    iVar1 = (*(code *)(&game_sub_01bba0))(ar4_00, "SM2000US.USR", puVar2, a3);
+    iVar1 = (*(code *)(&memcard_check_file_wait))(ar4_00, "SM2000US.USR", puVar2, a3);
     if (iVar1 == 0) {
         uVar3 = uVar3 | 1;
     }
-    iVar1 = (*(code *)(&CSeamanDomain_sub_01bc2c))(ar4_00, "SM2000US._VM", auStack_20, a3);
+    iVar1 = (*(code *)(&memcard_stat_file_wait))(ar4_00, "SM2000US._VM", auStack_20, a3);
     if (iVar1 == 4) {
         uVar3 = uVar3 | 2;
     }
@@ -4872,12 +4872,12 @@ u32 save_file_date_matches(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_sub_0b7804  0x8c0b7804
- * area name: game code; nothing names its area yet
+ * save_usr_date_matches  0x8c0b7804
+ * loads SM2000US.USR and compares its saved date with a0
  * called by: game_sub_0c7438
  * strings: "SM2000US.USR"
  */
-u32 game_sub_0b7804(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 save_usr_date_matches(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int iStack_10;
@@ -4886,7 +4886,7 @@ u32 game_sub_0b7804(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     aiStack_c[0] = 0;
     iStack_10 = 0;
     uVar2 = 0x4208;
-    iVar1 = (*(code *)(&game_sub_0b7628))("SM2000US.USR", 0x8c431a68, 0x4208, a3);
+    iVar1 = (*(code *)(&save_file_load))("SM2000US.USR", 0x8c431a68, 0x4208, a3);
     if (iVar1 == 1) {
         uVar2 = 0;
     } else {
@@ -4902,12 +4902,12 @@ u32 game_sub_0b7804(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * CGame_sub_0b787c  0x8c0b787c
- * area name: only called from CGame methods
+ * save_show_file_message  0x8c0b787c
+ * shows the message for the save file chosen by flags a0
  * called by: CGame_Initial, game_sub_0bad68, game_sub_0c6e74
  * strings: "SM2000US.USR"; "SM2000US.INC"; "SM2000US.INC"
  */
-u32 CGame_sub_0b787c(u32 a0) {
+u32 save_show_file_message(u32 a0) {
     if ((a0 & 1) == 1) {
         game_sub_0c2efc(&g_8c2b5628, 3, 0, "SM2000US.USR");
     } else if ((a0 & 2) == 2) {
@@ -6536,7 +6536,7 @@ u32 game_sub_0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
     }
     if (*(int *)(a0 + 0x30) == 2) {
         iVar2 = CGame_sub_0b7920(ar4_00, ar5_00, a2);
-        iVar3 = game_sub_0b76d8(ar4_00, ar5_00, a2, a3);
+        iVar3 = save_files_presence(ar4_00, ar5_00, a2, a3);
         ar4_02 = ar4_00;
     }
     if (iVar2 == 1) {
@@ -6571,7 +6571,7 @@ u32 game_sub_0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
                     }
                 }
             } else {
-                CGame_sub_0b787c(iVar3);
+                save_show_file_message(iVar3);
                 game_sub_0b79f0(iVar3, ar5_00, a2, a3);
             }
         } else {
