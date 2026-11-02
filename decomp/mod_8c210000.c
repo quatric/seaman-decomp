@@ -27,7 +27,7 @@ int kamui_sub_2103c4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, int *a
 
     puVar1 = (u32 *)(*in_r2 * 4 + *ain0);
     *unaff_r14 = (int)puVar1;
-    shinobi_sub_207300(*puVar1, &g_8c2757a8, g_8c2757a4 << 2, a3);
+    pvr_sub_207300(*puVar1, &g_8c2757a8, g_8c2757a4 << 2, a3);
     *(int *)*unaff_r14 = *(int *)*unaff_r14 + g_8c2757a4 * 4;
     return *unaff_r14;
 }
@@ -394,7 +394,7 @@ u32 kamui_sub_2110e8(int a0, u32 a1, int a2, u32 a3) {
     u32 *puVar3;
     u32 auStack_c[2];
 
-    puVar2 = (&shinobi_sub_207300);
+    puVar2 = (&pvr_sub_207300);
     piVar1 = 0x8c4aa220;
     puVar3 = (u32 *)(a0 * 4 + g_8c4aa21c);
     g_8c4aa220 = (int)puVar3;
@@ -1123,11 +1123,11 @@ int kamui_sub_211f40(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * kamui_sub_2120c0  0x8c2120c0
- * area name: in the kamui library code range
+ * kamui_set_flags_2758e8  0x8c2120c0
+ * ORs a0 into the flag word at 8c2758e8
  * called by: shinobi_sub_202a80, ta_sub_20af76
  */
-u32 kamui_sub_2120c0(u32 a0) {
+u32 kamui_set_flags_2758e8(u32 a0) {
     g_8c2758e8 = g_8c2758e8 | a0;
     return g_8c2758e8;
 }
@@ -1153,8 +1153,8 @@ u32 get_g_8c2758e8(void) {
 
 /*
  * kamui_sub_21214e  0x8c21214e
- * area name: in the kamui library code range
- * called by: kamui_sub_211120, pvr_sub_20a6f2, shinobi_sub_207a9c, shinobi_sub_207da0, shinobi_sub_207f80,
+ * area name: sits between kamui functions (same compilation unit)
+ * called by: kamui_sub_211120, pvr_sub_207a9c, pvr_sub_20a6f2, shinobi_sub_207da0, shinobi_sub_207f80,
  * shinobi_sub_207f84
  */
 int *kamui_sub_21214e(void) {
@@ -1195,7 +1195,7 @@ int *kamui_sub_21214e(void) {
 
 /*
  * kamui_sub_212152  0x8c212152
- * area name: in the kamui library code range
+ * area name: sits between kamui functions (same compilation unit)
  */
 u32 *kamui_sub_212152(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar1;
@@ -1235,7 +1235,7 @@ u32 *kamui_sub_212152(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * kamui_sub_212220  0x8c212220
- * area name: in the kamui library code range
+ * area name: sits between kamui functions (same compilation unit)
  */
 u32 kamui_sub_212220(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -1251,14 +1251,14 @@ u32 kamui_sub_212220(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     uVar3 = uVar2 >> 0x18;
     *0xff000038 = uVar3;
     *0xff00003c = uVar3;
-    shinobi_sub_207300(0x3ffffff & uVar2 | 0xe0000000, ar5_00, ar6_00, a3);
+    pvr_sub_207300(0x3ffffff & uVar2 | 0xe0000000, ar5_00, ar6_00, a3);
     *(u32 *)(*a0 + iVar1) = *(int *)(*a0 + iVar1) + (ar6_00 & 0xfffffffc);
     return 0;
 }
 
 /*
  * kamui_sub_212284  0x8c212284
- * area name: in the kamui library code range
+ * area name: sits between kamui functions (same compilation unit)
  */
 u32 kamui_sub_212284(int *a0, u32 a1, u32 a2, int a3) {
     u32 *puVar1;
@@ -1273,7 +1273,7 @@ u32 kamui_sub_212284(int *a0, u32 a1, u32 a2, int a3) {
     uVar4 = uVar3 >> 0x18;
     *puVar1 = uVar4;
     *0xff00003c = uVar4;
-    shinobi_sub_207300(0x3ffffff & uVar3 | 0xe0000000, a1, a3, a3);
+    pvr_sub_207300(0x3ffffff & uVar3 | 0xe0000000, a1, a3, a3);
     *(int *)(*a0 + iVar2) = *(int *)(*a0 + iVar2) + (a3 >> 2) * 4;
     return 0;
 }
@@ -1304,19 +1304,19 @@ u32 kamui_sub_2122ea(int *a0, u32 a1, u32 a2, u32 *a3) {
         g_8c2758f0 = *(u32 *)a0[1] & 0x830000 | uVar2;
         _DAT_ff000038 = *(u32 *)(*a0 + iVar3) >> 0x18;
         _DAT_ff00003c = _DAT_ff000038;
-        shinobi_sub_207300(*(u32 *)(*a0 + iVar3) & 0x3ffffff | 0xe0000000, &g_8c2758f0, 0x20, &g_8c2758f0);
+        pvr_sub_207300(*(u32 *)(*a0 + iVar3) & 0x3ffffff | 0xe0000000, &g_8c2758f0, 0x20, &g_8c2758f0);
         *(int *)(*a0 + iVar3) = *(int *)(*a0 + iVar3) + 0x20;
         for (iStack_4c = 2; iStack_4c != 0; iStack_4c = iStack_4c + -1) {
             _DAT_ff000038 = *(u32 *)(*a0 + iVar3) >> 0x18;
             _DAT_ff00003c = _DAT_ff000038;
-            shinobi_sub_207300(*(u32 *)(*a0 + iVar3) & 0x3ffffff | 0xe0000000, &g_8c275910, 0x40, ar7_00);
+            pvr_sub_207300(*(u32 *)(*a0 + iVar3) & 0x3ffffff | 0xe0000000, &g_8c275910, 0x40, ar7_00);
             *(int *)(*a0 + iVar3) = *(int *)(*a0 + iVar3) + 0x40;
         }
     }
     auStack_40[0] = 0x20000000;
     _DAT_ff000038 = *(u32 *)(*a0 + iVar3) >> 0x18;
     _DAT_ff00003c = _DAT_ff000038;
-    shinobi_sub_207300(*(u32 *)(*a0 + iVar3) & 0x3ffffff | 0xe0000000, auStack_40, 0x20, ar7_00);
+    pvr_sub_207300(*(u32 *)(*a0 + iVar3) & 0x3ffffff | 0xe0000000, auStack_40, 0x20, ar7_00);
     *(int *)(*a0 + iVar3) = *(int *)(*a0 + iVar3) + 0x20;
     return 0;
 }
@@ -1355,11 +1355,11 @@ u32 kamui_sub_212440(u32 a0, u32 unused_a1, int a2, u32 a3) {
 }
 
 /*
- * kamui_sub_2124aa  0x8c2124aa
- * area name: in the kamui library code range
+ * bswap32  0x8c2124aa
+ * byte-swaps a 32-bit word
  * called by: kamui_sub_2124d0
  */
-u32 kamui_sub_2124aa(u32 a0) {
+u32 bswap32(u32 a0) {
     return a0 << 0x18 | (0xff00 & a0) << 8 | (0xff0000 & a0) >> 8 | (0xff000000 & a0) >> 0x18;
 }
 
@@ -1392,7 +1392,7 @@ u32 kamui_sub_2124d0(int a0, int *a1, int *a2, u32 a3) {
     uVar4 = 4;
     (*(code *)puVar1)(&iStack_34, iVar7, 4, a3);
     *a1 = *a1 + 8;
-    iStack_30 = kamui_sub_2124aa(iStack_30);
+    iStack_30 = bswap32(iStack_30);
     if (iStack_30 == 0x4e4a494e) {
         *a2 = 0x4e4a494e;
         goto LAB_8c212588;
@@ -1442,7 +1442,7 @@ LAB_8c212588:
     iVar6 = iVar8;
     (*(code *)puVar1)(&iStack_30, iVar8, 4, a3);
     *a1 = *a1 + 4;
-    iStack_30 = kamui_sub_2124aa(iStack_30);
+    iStack_30 = bswap32(iStack_30);
     if (iStack_30 != 0x504f4630) {
         return iVar7;
     }

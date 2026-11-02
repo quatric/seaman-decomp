@@ -734,11 +734,11 @@ u32 shinobi_sub_1f094c(char *a0, char *a1, int a2) {
 }
 
 /*
- * shinobi_sub_1f0958  0x8c1f0958
- * area name: in the shinobi library code range
+ * copy_words  0x8c1f0958
+ * copies a2/4 words from a0 to a1
  * called by: shinobi_sub_1f0a72, shinobi_sub_1f0c14
  */
-u32 shinobi_sub_1f0958(u32 *a0, u32 *a1, int a2) {
+u32 copy_words(u32 *a0, u32 *a1, int a2) {
     u32 in_r0;
     u32 uVar1;
     int iVar2;
@@ -974,7 +974,7 @@ u32 shinobi_sub_1f0a72(int a0) {
                 }
                 uVar2 = crc16_ccitt(0x3e, a5);
                 if (((u32) * (u16 *)(a0 + 0x72) == (uVar2 & 0xffff)) && ((int)(u32)*a5 < *(int *)(a0 + 0x14))) {
-                    shinobi_sub_1f0958(a5, (*a5 + 1) * 0x40 + ar5_00, 0x40);
+                    copy_words(a5, (*a5 + 1) * 0x40 + ar5_00, 0x40);
                 }
                 iVar4 = iVar4 + -1;
             }
@@ -1052,7 +1052,7 @@ u32 shinobi_sub_1f0c14(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         uVar2 = crc16_ccitt(0x3e, ar5_00);
         *(short *)(a0 + 0x72) = (short)uVar2;
         iVar1 = (*(int *)(a0 + 0x28) + 1) * 0x40;
-        shinobi_sub_1f0958(ar5_00, *(int *)(a0 + 0xc) + iVar1, 0x40);
+        copy_words(ar5_00, *(int *)(a0 + 0xc) + iVar1, 0x40);
         if (*(int *)(a0 + 0x10) < *(int *)(a0 + 0x14)) {
             iVar1 = (*(int *)(a0 + 0x14) + 1) * 0x40;
             shinobi_sub_1f09d4(*(int *)(a0 + 0x10) + 1, *(int *)(a0 + 0xc) + iVar1, *(u32 *)(a0 + 0x18));
@@ -9945,7 +9945,7 @@ int flashrom_sub_1f6f20(u32 a0, u32 a1, u32 a2, u32 a3) {
     } else {
         ar4_00 = 0x8c4749bc;
         g_8c273a10 = '\x01';
-        shinobi_sub_1f7d04(0x8c4749bc, 1, a2, a3);
+        ipbin_get_disc_info_boot(0x8c4749bc, 1, a2, a3);
         g_8c4748bc = 0x8c4749c4;
         iVar1 = shinobi_sub_1f7558(ar4_00, uVar2, a2, a3);
         if (iVar1 == 0) {
@@ -9981,7 +9981,7 @@ int flashrom_sub_1f6f2a(u32 a0, u32 a1, u32 a2, u32 a3, u32 *ain0, u32 *ain1) {
     } else {
         ar4_00 = 0x8c4749bc;
         g_8c273a10 = 1;
-        shinobi_sub_1f7d04(0x8c4749bc, 1, a2, a3);
+        ipbin_get_disc_info_boot(0x8c4749bc, 1, a2, a3);
         g_8c4748bc = 0x8c4749c4;
         iVar1 = shinobi_sub_1f7558(ar4_00, uVar2, a2, a3);
         if (iVar1 == 0) {
@@ -10331,11 +10331,11 @@ u32 shinobi_sub_1f74b0(code *a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1f752a  0x8c1f752a
- * area name: in the shinobi library code range
+ * be_read_n  0x8c1f752a
+ * the a1-byte big-endian number at a0
  * called by: shinobi_sub_1f7558
  */
-u32 shinobi_sub_1f752a(u8 *a0, int a1) {
+u32 be_read_n(u8 *a0, int a1) {
     u8 bVar1;
     u32 uVar2;
 
@@ -10352,11 +10352,11 @@ u32 shinobi_sub_1f752a(u8 *a0, int a1) {
 }
 
 /*
- * shinobi_sub_1f7540  0x8c1f7540
- * area name: in the shinobi library code range
+ * be_write_n  0x8c1f7540
+ * writes a0 as an a1-byte big-endian number at a2
  * called by: shinobi_sub_1f7558
  */
-u32 shinobi_sub_1f7540(u32 a0, int a1, int a2) {
+u32 be_write_n(u32 a0, int a1, int a2) {
     u32 in_r0;
     u8 *puVar1;
 
@@ -10519,8 +10519,8 @@ u32 shinobi_sub_1f7558(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
             }
             piStack_160 = NULL;
             uVar13 = 0;
-            uVar6 = shinobi_sub_1f752a(0x8c474936, 3);
-            uVar7 = shinobi_sub_1f752a(0x8c474939, 3);
+            uVar6 = be_read_n(0x8c474936, 3);
+            uVar7 = be_read_n(0x8c474939, 3);
             for (iVar12 = 0; iVar12 < 0x18; iVar12 = iVar12 + 1) {
                 piVar10 = aiStack_120;
                 for (piVar9 = aiStack_120; piVar9 < aiStack_110; piVar9 = piVar9 + 1) {
@@ -10541,9 +10541,9 @@ u32 shinobi_sub_1f7558(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                 uVar13 = uVar13 << 1;
             }
             uVar7 = ~((int)uVar13 >> 1 | ~uVar7);
-            shinobi_sub_1f7540(~((int)piStack_160 >> 1 | ~uVar6), 3, 0x8c474936);
+            be_write_n(~((int)piStack_160 >> 1 | ~uVar6), 3, 0x8c474936);
             uVar11 = 0x8c474939;
-            shinobi_sub_1f7540(uVar7, 3, 0x8c474939);
+            be_write_n(uVar7, 3, 0x8c474939);
             flashrom_sub_1f6e5e(iVar4 * 4 + 0x19, 0x8c474900, uVar11, piVar9);
         }
         uVar11 = 1;
@@ -10868,34 +10868,34 @@ u32 shinobi_sub_1f7c50(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1f7d04  0x8c1f7d04
- * area name: in the shinobi library code range
+ * ipbin_get_disc_info_boot  0x8c1f7d04
+ * ipbin_get_disc_info on the bootstrap IP.BIN at 8c008000
  * called by: flashrom_sub_1f6f20, flashrom_sub_1f6f2a
  */
-u32 shinobi_sub_1f7d04(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 ipbin_get_disc_info_boot(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f7d30(0x8c008000, a0, unused_a2, a3);
+    uVar1 = ipbin_get_disc_info(0x8c008000, a0, unused_a2, a3);
     return uVar1;
 }
 
 /*
- * shinobi_sub_1f7d1a  0x8c1f7d1a
- * area name: in the shinobi library code range
+ * ipbin_get_disc_info_wrap  0x8c1f7d1a
+ * only calls ipbin_get_disc_info
  */
-u32 shinobi_sub_1f7d1a(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 ipbin_get_disc_info_wrap(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = shinobi_sub_1f7d30(0x8c008100, a0, unused_a2, a3);
+    uVar1 = ipbin_get_disc_info(0x8c008100, a0, unused_a2, a3);
     return uVar1;
 }
 
 /*
- * shinobi_sub_1f7d30  0x8c1f7d30
- * area name: in the shinobi library code range
- * called by: shinobi_sub_1f7d04, shinobi_sub_1f7d1a
+ * ipbin_get_disc_info  0x8c1f7d30
+ * parses the "n/m" disc number of the IP.BIN at a0 into a1 and copies its 10-byte product number
+ * called by: ipbin_get_disc_info_boot, ipbin_get_disc_info_wrap
  */
-u32 shinobi_sub_1f7d30(int a0, u32 *a1, u32 unused_a2, u32 a3) {
+u32 ipbin_get_disc_info(int a0, u32 *a1, u32 unused_a2, u32 a3) {
     u8 *puVar1;
     u32 uStack_18;
     u32 uStack_14;
@@ -10919,7 +10919,7 @@ u32 shinobi_sub_1f7d30(int a0, u32 *a1, u32 unused_a2, u32 a3) {
 /*
  * shinobi_sub_1f7d80  0x8c1f7d80
  * area name: in the shinobi library code range
- * called by: shinobi_sub_1f7d30
+ * called by: ipbin_get_disc_info
  */
 u32 shinobi_sub_1f7d80(int a0, int *a1, int *a2) {
     char *pcVar1;
@@ -11348,7 +11348,7 @@ u32 rtc_get_date(short *a0, u32 a1, u32 unused_a2, u32 a3) {
     }
     a6 = (int)*(char *)((int)a0 + 3);
     a5 = (int)(char)a0[1];
-    uVar2 = aica_sub_1f8614((int)*a0, a5, a6, a3);
+    uVar2 = day_of_week((int)*a0, a5, a6, a3);
     *(char *)((int)a0 + 7) = (char)uVar2;
     uVar2 = shinobi_sub_1f8650(a0, a5, a6);
     puVar1 = 0x8c474a14;
@@ -11499,7 +11499,7 @@ u32 rtc_sub_1f8300(u32 a0, u16 *a1) {
     }
     iVar3 = (int)*(char *)((int)a1 + 3);
     a5 = (int)(char)a1[1];
-    uVar2 = aica_sub_1f8614((int)(short)*a1, a5, iVar3, 0xc);
+    uVar2 = day_of_week((int)(short)*a1, a5, iVar3, 0xc);
     *(char *)((int)a1 + 7) = (char)uVar2;
     uVar1 = shinobi_sub_1f8650(a1, a5, iVar3);
     *(char *)(a1 + 4) = (char)uVar1;
@@ -11607,8 +11607,8 @@ u32 aica_reg_1f8544(u32 *a0) {
         return 0xffffffff;
     }
     *a0 = iStack_10 << 0x10 & 0xffff0000 | uStack_c & 0xffff;
-    shinobi_sub_1f86e4(iStack_10);
-    shinobi_sub_1f86e4(uStack_c);
+    trace_log_word(iStack_10);
+    trace_log_word(uStack_c);
     return 0;
 }
 
@@ -11649,11 +11649,11 @@ u32 aica_reg_1f85ee(u32 a0) {
 }
 
 /*
- * aica_sub_1f8614  0x8c1f8614
- * area name: sits between aica functions (same compilation unit)
+ * day_of_week  0x8c1f8614
+ * Zeller's congruence: weekday of year a0, month a1, day a2
  * called by: rtc_get_date, rtc_sub_1f8300
  */
-u32 aica_sub_1f8614(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 day_of_week(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
 
@@ -11690,11 +11690,11 @@ u32 shinobi_sub_1f8650(u32 a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * shinobi_sub_1f86e4  0x8c1f86e4
- * area name: in the shinobi library code range
+ * trace_log_word  0x8c1f86e4
+ * appends a0 to the trace buffer at 8c474a20 when trace flag 8 is set
  * called by: aica_reg_1f8544
  */
-u32 shinobi_sub_1f86e4(u32 a0) {
+u32 trace_log_word(u32 a0) {
     int *piVar1;
     u32 uVar2;
 
@@ -11882,11 +11882,11 @@ int sh4_sub_1f88f6(u32 a0) {
 }
 
 /*
- * sh4_sub_1f892a  0x8c1f892a
- * area name: sits between sh4 functions (same compilation unit)
+ * fix7_to_hundredths  0x8c1f892a
+ * converts a 7-bit fixed-point value to hundredths
  * called by: game_frame, ninja_sub_258e70
  */
-int sh4_sub_1f892a(u32 a0) {
+int fix7_to_hundredths(u32 a0) {
     return ((a0 & 0x7f) * 100 >> 7) + (a0 >> 7) * 100;
 }
 
@@ -13080,11 +13080,11 @@ u32 ta_sub_1fa244(u32 a0, u32 a1, u32 a2, u32 a3) {
     if (uVar10 < ar6_00) {
         if ((iVar6 == 0) && (iVar8 == 0)) {
             if (iVar3 < 0x900) {
-                *(u8 **)((int)0x200 + in_VBR + ((int)0xfffffe00 + iVar3 >> 3)) = (&ta_sub_1fa3f2);
+                *(u8 **)((int)0x200 + in_VBR + ((int)0xfffffe00 + iVar3 >> 3)) = (&int_call_handlers);
             } else if (iVar3 == 0x900) {
-                shinobi_sub_20759a((&DATA_8c1fa416), 0, ar6_00, 0x80000000);
+                pvr_sub_20759a((&DATA_8c1fa416), 0, ar6_00, 0x80000000);
             } else if (iVar3 == 0x920) {
-                shinobi_sub_2075bc((&DATA_8c1fa460), 0, ar6_00, 0x80000000);
+                pvr_sub_2075bc((&DATA_8c1fa460), 0, ar6_00, 0x80000000);
             } else {
                 *(u8 **)(0x22c + in_VBR) = (&DATA_8c1fa486);
             }
@@ -13120,11 +13120,11 @@ u32 ta_sub_1fa244(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ta_sub_1fa3f2  0x8c1fa3f2
- * area name: sits between ta functions (same compilation unit)
+ * int_call_handlers  0x8c1fa3f2
+ * calls every handler on the chain for interrupt event a0>>4
  * called by: shinobi_sub_1fa496
  */
-u8 *ta_sub_1fa3f2(u32 a0) {
+u8 *int_call_handlers(u32 a0) {
     u8 *puVar1;
     u32 *puVar2;
 
@@ -13227,7 +13227,7 @@ u32 *shinobi_sub_1fa496(void) {
                     uVar2 = 1 << (uVar3 & 0x1f);
                 }
                 if ((uVar2 & uVar7 & uVar6) != 0) {
-                    ta_sub_1fa3f2(uVar3 * 0x20 + iVar4);
+                    int_call_handlers(uVar3 * 0x20 + iVar4);
                 }
                 uVar3 = uVar3 + 1;
             }
@@ -13250,7 +13250,7 @@ u32 *shinobi_sub_1fa496(void) {
                     uVar3 = 1 << (uVar7 & 0x1f);
                 }
                 if ((uVar3 & uVar6) != 0) {
-                    in_r0 = (u32 *)ta_sub_1fa3f2(uVar7 * 0x20 + iVar4);
+                    in_r0 = (u32 *)int_call_handlers(uVar7 * 0x20 + iVar4);
                 }
                 uVar7 = uVar7 + 1;
             }
@@ -13339,12 +13339,12 @@ u32 shinobi_sub_1fa54c(int a0) {
                 *(u32 *)(iVar5 + 0xc) = 0;
                 if (*ar6_00 == 0) {
                     if (uVar9 == uVar4) {
-                        shinobi_sub_20759a(0, 0, ar6_00, uVar4);
+                        pvr_sub_20759a(0, 0, ar6_00, uVar4);
                         bVar14 = extraout_M;
                         bVar15 = extraout_Q;
                         bVar17 = extraout_S;
                     } else if (uVar9 == (int)0x92) {
-                        shinobi_sub_2075bc(0, 0, ar6_00, uVar4);
+                        pvr_sub_2075bc(0, 0, ar6_00, uVar4);
                         bVar14 = extraout_M_00;
                         bVar15 = extraout_Q_00;
                         bVar17 = extraout_S_00;
@@ -14053,7 +14053,7 @@ u32 shinobi_sub_1fb3e0(int a0, u32 a1, u32 a2, u32 a3) {
     *piVar4 = iVar3;
     *(int *)iVar3 = iVar3;
     *(u32 *)(iVar3 + 4) = 0;
-    shinobi_sub_1fb426(0, 0xffffffe0);
+    set_handler_table_475ee0(0, 0xffffffe0);
     uVar5 = g_8c475f08;
     *(u32 *)(uVar5 + 4) = a1 >> 5;
     uVar6 = malloc_sub_1fb586(uVar5 + 0x20, uVar6, a2, a3);
@@ -14081,7 +14081,7 @@ u32 shinobi_sub_1fb3f4(u32 a0, u32 a1, u32 a2, u32 a3) {
     *piVar1 = iVar3;
     *(int *)iVar3 = iVar3;
     *(u32 *)(iVar3 + 4) = 0;
-    shinobi_sub_1fb426(0, a1);
+    set_handler_table_475ee0(0, a1);
     iVar3 = g_8c475f08;
     *(u32 *)(iVar3 + 4) = unaff_r14 >> 5;
     uVar2 = malloc_sub_1fb586(iVar3 + 0x20, a1, a2, a3);
@@ -14089,11 +14089,11 @@ u32 shinobi_sub_1fb3f4(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_1fb426  0x8c1fb426
- * area name: in the shinobi library code range
+ * set_handler_table_475ee0  0x8c1fb426
+ * installs handler table a0 (the default when 0) and returns the previous one
  * called by: shinobi_sub_1fb3e0, shinobi_sub_1fb3f4
  */
-u32 shinobi_sub_1fb426(u8 **a0, u32 a1) {
+u32 set_handler_table_475ee0(u8 **a0, u32 a1) {
     u32 uVar1;
 
     uVar1 = g_8c475ee0;
@@ -16329,11 +16329,11 @@ u32 shinobi_sub_1fd312(int a0, int a1, char *a2, u32 *a3) {
 }
 
 /*
- * shinobi_sub_1fd4f0  0x8c1fd4f0
- * area name: in the shinobi library code range
+ * cmp_512_bytes  0x8c1fd4f0
+ * 0 when the 512 bytes at a0 and a1 match, else -1
  * called by: shinobi_sub_20103c, shinobi_sub_201240
  */
-u32 shinobi_sub_1fd4f0(char *a0, char *a1) {
+u32 cmp_512_bytes(char *a0, char *a1) {
     int iVar1;
     u32 uVar2;
 

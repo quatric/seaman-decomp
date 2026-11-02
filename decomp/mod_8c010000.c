@@ -3686,8 +3686,8 @@ u32 libgcc_divide_helper_0103d0(u32 a0, int a1) {
 
 /*
  * libgcc_divide_helper_010468  0x8c010468
- * called by: ADXF_LoadPartition, ADXF_sub_261d46, ADXT_GetTime_like, ADXT_sub_263ce4, aica_sub_1f8614, asr_sub_10fab2,
- * asr_sub_10fabc, asr_sub_1113d0 (+58 more)
+ * called by: ADXF_LoadPartition, ADXF_sub_261d46, ADXT_GetTime_like, ADXT_sub_263ce4, asr_sub_10fab2, asr_sub_10fabc,
+ * asr_sub_1113d0, asr_sub_1117e4 (+58 more)
  */
 int libgcc_divide_helper_010468(u32 a0, u32 a1) {
     u32 uVar1;
@@ -4667,8 +4667,8 @@ int libgcc_divide_helper_010468(u32 a0, u32 a1) {
 
 /*
  * libgcc_divide_helper_01051c  0x8c01051c
- * called by: asr_sub_1117e4, asr_sub_112d82, asr_sub_112f40, asr_sub_112f48, asr_sub_112fd8, asr_sub_11318e,
- * asr_sub_11319e, asr_sub_113354 (+29 more)
+ * called by: array44_index_of, asr_sub_1117e4, asr_sub_112d82, asr_sub_112f40, asr_sub_112f48, asr_sub_112fd8,
+ * asr_sub_11318e, asr_sub_11319e (+29 more)
  */
 u32 libgcc_divide_helper_01051c(u32 a0, u32 a1) {
     u32 uVar1;
@@ -5950,7 +5950,7 @@ int libc_sub_0105c4(void) {
 
 /*
  * libgcc_divide_helper_010614  0x8c010614
- * called by: aica_sub_1f8614, cri_sub_260062, cri_sub_260198, cri_sub_2647f4, game_sub_26b092, game_sub_26b132,
+ * called by: cri_sub_260062, cri_sub_260198, cri_sub_2647f4, day_of_week, game_sub_26b092, game_sub_26b132,
  * game_sub_26b64e, game_sub_26b7f4 (+14 more)
  */
 int libgcc_divide_helper_010614(u32 unused_a0, u32 a1) {
@@ -6905,8 +6905,8 @@ int libgcc_divide_helper_010614(u32 unused_a0, u32 a1) {
 
 /*
  * libgcc_divide_helper_0106dc  0x8c0106dc
- * called by: asr_sub_10e818, gfxlib_sub_21c1b0, gfxlib_sub_21c2ea, gfxlib_sub_21c398, gfxlib_sub_21c47c,
- * gfxlib_sub_21c5ca, gfxlib_sub_21c774, gfxlib_sub_21caa0 (+22 more)
+ * called by: array44_index_of, asr_sub_10e818, gfxlib_sub_21c1b0, gfxlib_sub_21c2ea, gfxlib_sub_21c398,
+ * gfxlib_sub_21c47c, gfxlib_sub_21c5ca, gfxlib_sub_21c774 (+22 more)
  */
 u32 libgcc_divide_helper_0106dc(u32 a0, u32 a1) {
     u32 uVar1;
@@ -11366,8 +11366,8 @@ int srand(u32 unused_a0, int a1) {
 
 /*
  * memcmp  0x8c013ec0
- * called by: CProlog_sub_0b96e4, asr_sub_11e534, asr_sub_11ea3c, cri_sub_25f01e, cri_sub_25f64c, cri_sub_260636,
- * cri_sub_260658, cri_sub_260c2c (+10 more)
+ * called by: CProlog_sub_0b96e4, asr_sub_11e534, asr_sub_11ea3c, cri_sub_260658, flashrom_sub_1f6fc8,
+ * flashrom_write_if_changed, game_sub_0b95a0, is_aiff_header (+10 more)
  */
 u32 memcmp(char *a0, char *a1, u32 a2) {
     char cVar1;

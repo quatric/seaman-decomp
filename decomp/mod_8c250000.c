@@ -9835,11 +9835,11 @@ u32 *ninja_sub_2551d4(float *a0, float *a1, float *a2, float *a3) {
 }
 
 /*
- * ninja_sub_2552b0  0x8c2552b0
- * area name: in the ninja library code range
+ * catmull_rom_vec3  0x8c2552b0
+ * *s0 = point at t (fr5) on the Catmull-Rom spline through a0, a1, a2, a3
  * called by: ninja_sub_255346
  */
-u32 ninja_sub_2552b0(float *a0, float *a1, float *a2, float *a3, float *s0) {
+u32 catmull_rom_vec3(float *a0, float *a1, float *a2, float *a3, float *s0) {
     float fVar1;
     u64 in_dr4;
     float fVar2;
@@ -10038,7 +10038,7 @@ u32 ninja_sub_255346(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 a
                 a7 = (int *)(aiStack_30[0] + iVar10);
                 a5 = (int *)(iStack_38 + iVar10);
                 a6 = (int *)(iStack_34 + iVar10);
-                ninja_sub_2552b0(iVar10 + iStack_3c, a5, a6, a7);
+                catmull_rom_vec3(iVar10 + iStack_3c, a5, a6, a7);
                 iVar9 = iVar9 + 1;
                 iVar10 = iVar10 + 0xc;
             } while (iVar9 < iVar11);
@@ -10066,7 +10066,7 @@ u32 ninja_sub_255346(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 a
             iVar12 = 0;
             if (0 < iVar11) {
                 do {
-                    ninja_sub_2552b0(iStack_3c + iVar12, iStack_38 + iVar12, iStack_34 + iVar12,
+                    catmull_rom_vec3(iStack_3c + iVar12, iStack_38 + iVar12, iStack_34 + iVar12,
                                      aiStack_30[0] + iVar12);
                     a5 = (int *)(iStack_48 + iVar12);
                     a7 = (int *)(iStack_40 + iVar12);
@@ -14740,7 +14740,7 @@ u32 pvr_25825a(u32 a0, int a1, u32 a2, u32 a3) {
     }
     _DAT_a05f80e8 = _DAT_a05f80e8 | 8;
     _DAT_a05f6900 = 8;
-    shinobi_sub_207a0c(a0 & 3, &DAT_a05f6900, a2, a3);
+    pvr_sub_207a0c(a0 & 3, &DAT_a05f6900, a2, a3);
     if ((a0 & 0x40) != 0) {
         uVar4 = a0 & 0xe0000;
         g_8c4aa6e0 = (int)(short)((int)uVar4 >> 0x11);
@@ -14770,7 +14770,7 @@ u32 pvr_25825a(u32 a0, int a1, u32 a2, u32 a3) {
         }
     }
     uVar3 = 1;
-    shinobi_sub_207a9c(a0 & 0xfff, ar5_01, 1, uVar5);
+    pvr_sub_207a9c(a0 & 0xfff, ar5_01, 1, uVar5);
     g_8c4aacbc = 0x60;
     g_8c4aacc0 = 1;
     g_8c4aad1c = 0x8c4aa6e4;
@@ -14797,7 +14797,7 @@ u32 pvr_25825a(u32 a0, int a1, u32 a2, u32 a3) {
     g_8c4aacec = g_8c4aacf8;
     g_8c4aacf0 = g_8c4aacf8;
     g_8c4aacf4 = g_8c4aacf8;
-    shinobi_sub_20757e(ninja_sub_258096, 0);
+    pvr_sub_20757e(ninja_sub_258096, 0);
     ar5_00 = 0;
     shinobi_sub_20786a(ninja_sub_2580b8, 0);
     shinobi_sub_2078be(set_g_8c4aa558);
@@ -14997,13 +14997,13 @@ u32 ninja_sub_258604(u32 a0, u32 a1, u32 a2) {
     *piVar3 = (int)sVar1;
 LAB_8c258846:
     ar6_00 = 1;
-    shinobi_sub_207a9c(*(u32 *)(puVar7 + -0xc), ar5_00, 1, uVar8);
+    pvr_sub_207a9c(*(u32 *)(puVar7 + -0xc), ar5_00, 1, uVar8);
     pvr_sub_20a786(g_8c4aa4ec);
     g_8c4aa6dc = 0;
     g_8c4aa6d4 = 0;
     g_8c4aa6d8 = 1;
     g_8c4aa558 = 0;
-    shinobi_sub_20757e((&ninja_sub_258096), 0);
+    pvr_sub_20757e((&ninja_sub_258096), 0);
     uVar5 = 0;
     shinobi_sub_20786a((&ninja_sub_2580b8), 0);
     a4 = (&set_g_8c4aa558);
@@ -15480,7 +15480,7 @@ u8 *game_frame(u32 a0, u32 a1, u32 a2, u32 a3) {
         while ((g_8c4aa6d4 != 0 && (uVar1 < 0x28870))) {
             a1 = sh4_tmu_1f88e6(a0);
             a0 = int_diff(g_8c4aad24, a1);
-            ain0 = sh4_sub_1f892a(a0);
+            ain0 = fix7_to_hundredths(a0);
             uVar1 = ain0;
         }
         if (uVar1 < 0x28870) {
@@ -15521,7 +15521,7 @@ u8 *ninja_sub_258e70(u32 a0, u32 a1, u32 a2, u32 a3) {
         while ((g_8c4aa6d4 != 0 && (uVar1 < 0x28870))) {
             a1 = sh4_tmu_1f88e6(a0);
             a0 = int_diff(g_8c4aad24, a1);
-            uVar1 = sh4_sub_1f892a(a0);
+            uVar1 = fix7_to_hundredths(a0);
         }
         if (uVar1 < 0x28870) {
             ninja_sub_258e50(a0, a1, a2, a3, in_PR);
@@ -17410,11 +17410,11 @@ u32 tex_entry_find(int a0, u32 a1, int a2) {
 }
 
 /*
- * tex_sub_25a566  0x8c25a566
- * area name: sits between tex functions (same compilation unit)
+ * array44_index_of  0x8c25a566
+ * index of entry a2 in the array a0 of a1 0x44-byte entries, else -1
  * called by: gfxlib_sub_2378a6, gfxlib_sub_2378ba
  */
-u32 tex_sub_25a566(int a0, u32 a1, int a2) {
+u32 array44_index_of(int a0, u32 a1, int a2) {
     int iVar1;
     u32 uVar2;
     int n;
@@ -23971,7 +23971,7 @@ u32 ninja_sub_25dac0(void) {
 /*
  * ninja_sub_25dc60  0x8c25dc60
  * area name: in the ninja library code range
- * called by: shinobi_sub_207a9c, shinobi_sub_207da0
+ * called by: pvr_sub_207a9c, shinobi_sub_207da0
  */
 u32 ninja_sub_25dc60(int a0, u32 a1, int a2, int a3) {
     int iVar1;
@@ -24344,7 +24344,7 @@ u32 ninja_sub_25e260(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * ninja_sub_25e540  0x8c25e540
  * area name: in the ninja library code range
- * called by: shinobi_sub_207a9c
+ * called by: pvr_sub_207a9c
  */
 u32 ninja_sub_25e540(u32 a0, u32 a1) {
     u32 uVar1;
@@ -24502,7 +24502,7 @@ u32 ninja_sub_25e540(u32 a0, u32 a1) {
 /*
  * ninja_sub_25e884  0x8c25e884
  * area name: in the ninja library code range
- * called by: shinobi_sub_207a9c
+ * called by: pvr_sub_207a9c
  */
 u32 ninja_sub_25e884(u32 a0, u32 a1) {
     u32 uVar1;
@@ -24531,7 +24531,7 @@ u32 ninja_sub_25e884(u32 a0, u32 a1) {
 /*
  * ninja_sub_25eb60  0x8c25eb60
  * area name: in the ninja library code range
- * called by: shinobi_sub_207a9c
+ * called by: pvr_sub_207a9c
  */
 u32 ninja_sub_25eb60(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -24551,7 +24551,7 @@ u32 ninja_sub_25eb60(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 
 /*
  * ret_const_1_25eca0  0x8c25eca0
- * called by: shinobi_sub_20759a
+ * called by: pvr_sub_20759a
  */
 u32 ret_const_1_25eca0(u32 a0) {
     return 1;
@@ -24559,18 +24559,18 @@ u32 ret_const_1_25eca0(u32 a0) {
 
 /*
  * ret_const_1_25eca4  0x8c25eca4
- * called by: shinobi_sub_2075bc
+ * called by: pvr_sub_2075bc
  */
 u32 ret_const_1_25eca4(void) {
     return 1;
 }
 
 /*
- * cri_sub_25eca8  0x8c25eca8
- * area name: in the cri library code range
+ * cri_clear_table_4b3340  0x8c25eca8
+ * clears the 0x100-byte table at 8c4b3340 and its two counters
  * called by: cri_sub_262810, cri_sub_262814
  */
-u32 cri_sub_25eca8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 cri_clear_table_4b3340(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = memset(0x8c4b3340, 0, 0x100);
@@ -24733,11 +24733,11 @@ u8 *cri_sub_25ed3c(u8 *a0, u32 *a1, u32 *a2, u32 *a3, u32 *s0) {
 }
 
 /*
- * cri_sub_25f01e  0x8c25f01e
- * area name: in the cri library code range
+ * is_aiff_header  0x8c25f01e
+ * 1 when a0 starts a "FORM"...."AIFF" header
  * called by: cri_sub_25fdb2, cri_sub_25fdbe
  */
-u32 cri_sub_25f01e(int a0) {
+u32 is_aiff_header(int a0) {
     int iVar1;
 
     iVar1 = memcmp(a0, &g_8c272028, 4);
@@ -25259,11 +25259,11 @@ LAB_8c25f636:
 }
 
 /*
- * cri_sub_25f64c  0x8c25f64c
- * area name: in the cri library code range
+ * is_au_header  0x8c25f64c
+ * 1 when a0 starts with ".snd" or ".sd"
  * called by: cri_sub_25fdb2, cri_sub_25fdbe
  */
-u32 cri_sub_25f64c(u32 a0) {
+u32 is_au_header(u32 a0) {
     int iVar1;
 
     iVar1 = memcmp(a0, &g_8c272038, 4);
@@ -25979,19 +25979,19 @@ u32 cri_sub_25fdb2(u32 a0, u16 *a1, u32 a2) {
         uVar1 = cri_sub_25fca4(a0, a1, a2);
         return uVar1;
     }
-    iVar2 = cri_sub_260636(a1, &g_8c4b9828);
+    iVar2 = is_spsd_header(a1, &g_8c4b9828);
     if (iVar2 != 0) {
         uVar1 = cri_sub_26045c(a0, a1, a2);
         return uVar1;
     }
-    iVar2 = cri_sub_260c2c(a1);
+    iVar2 = is_wav_header(a1);
     if (iVar2 != 0) {
         uVar1 = cri_sub_260810(a0, a1, a2);
         return uVar1;
     }
-    iVar2 = cri_sub_25f01e(a1);
+    iVar2 = is_aiff_header(a1);
     if (iVar2 == 0) {
-        iVar2 = cri_sub_25f64c(a1);
+        iVar2 = is_au_header(a1);
         if (iVar2 == 0) {
             return 0;
         }
@@ -26026,22 +26026,22 @@ u32 cri_sub_25fdbe(u32 unused_a0, u32 a1, u32 a2) {
         return uVar1;
     }
     uVar1 = a2;
-    iVar2 = cri_sub_260636(unaff_r14, a1);
+    iVar2 = is_spsd_header(unaff_r14, a1);
     if (iVar2 != 0) {
         uVar1 = cri_sub_26045c(a2);
         return uVar1;
     }
-    iVar2 = cri_sub_260c2c(unaff_r14);
+    iVar2 = is_wav_header(unaff_r14);
     if (iVar2 != 0) {
         uVar1 = cri_sub_260810(a2);
         return uVar1;
     }
-    iVar2 = cri_sub_25f01e(unaff_r14);
+    iVar2 = is_aiff_header(unaff_r14);
     if (iVar2 != 0) {
         uVar1 = cri_sub_25f0ea(a2);
         return uVar1;
     }
-    iVar2 = cri_sub_25f64c(unaff_r14);
+    iVar2 = is_au_header(unaff_r14);
     if (iVar2 != 0) {
         uVar1 = cri_sub_25f742(a2);
         return uVar1;

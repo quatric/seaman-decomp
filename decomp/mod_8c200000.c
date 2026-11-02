@@ -307,11 +307,11 @@ int shinobi_sub_200346(int a0, u32 unused_a1, int a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_200472  0x8c200472
- * area name: in the shinobi library code range
+ * strnlen_12  0x8c200472
+ * length of string a0, at most 12
  * called by: shinobi_sub_2004a0
  */
-int shinobi_sub_200472(char *a0) {
+int strnlen_12(char *a0) {
     int iVar1;
     int iVar2;
 
@@ -336,8 +336,8 @@ int shinobi_sub_200472(char *a0) {
 u32 shinobi_sub_2004a0(char *a0, char *a1) {
     int iVar1;
     int iVar2;
-    iVar1 = shinobi_sub_200472(a0);
-    iVar2 = shinobi_sub_200472(a1);
+    iVar1 = strnlen_12(a0);
+    iVar2 = strnlen_12(a1);
     if (iVar1 != iVar2) {
         return 0;
     }
@@ -1628,7 +1628,7 @@ int shinobi_sub_20103c(int a0, u32 a1, int a2, u32 a3, u8 *s0, u32 s4) {
                     s0 = (u8 *)ar6_00;
                     if (iVar1 < 0)
                         goto LAB_8c20110e;
-                    iVar1 = shinobi_sub_1fd4f0(ar5_00, iVar3);
+                    iVar1 = cmp_512_bytes(ar5_00, iVar3);
                     if (iVar1 != 0) {
                         iVar1 = -0xf0;
                         s0 = (u8 *)ar6_00;
@@ -1745,7 +1745,7 @@ int shinobi_sub_201240(int a0, u32 a1, int a2, u32 a3, u8 *s0, u32 s4) {
                     s0 = (u8 *)ar6_00;
                     if (iVar1 < 0)
                         goto LAB_8c201312;
-                    iVar1 = shinobi_sub_1fd4f0(ar5_00, iVar3);
+                    iVar1 = cmp_512_bytes(ar5_00, iVar3);
                     if (iVar1 != 0) {
                         iVar1 = -0xf0;
                         s0 = (u8 *)ar6_00;
@@ -4264,7 +4264,7 @@ u32 shinobi_sub_202a80(u32 *a0, int a1, u32 a2, int a3, int s0) {
             }
         }
     } else {
-        kamui_sub_2120c0(0x200);
+        kamui_set_flags_2758e8(0x200);
     }
     return 0;
 }
@@ -7525,8 +7525,8 @@ u32 noop_205dd4(void) {
 /*
  * kamui_cfg_texture16mb  0x8c205e00
  * reads the "HARDWARE" / "EnableTexture16MB" configuration option
- * called by: kamui_sub_205e64, kamui_sub_211120, shinobi_sub_2034c0, shinobi_sub_2034cc, shinobi_sub_207a0c,
- * shinobi_sub_207a9c strings: "HARDWARE"; "EnableTexture16MB"
+ * called by: kamui_sub_205e64, kamui_sub_211120, pvr_sub_207a0c, pvr_sub_207a9c, shinobi_sub_2034c0, shinobi_sub_2034cc
+ * strings: "HARDWARE"; "EnableTexture16MB"
  */
 u32 kamui_cfg_texture16mb(u32 a0, u32 a1, u32 a2) {
     int iVar1;
@@ -7540,7 +7540,7 @@ u32 kamui_cfg_texture16mb(u32 a0, u32 a1, u32 a2) {
 /*
  * kamui_sub_205e64  0x8c205e64
  * name hint from a string it uses: r nCOPYRIGHT C NEC Corporati; area name: sits between kamui functions (same
- * compilation unit) called by: shinobi_sub_207a0c strings: "RENDER"; "VSYNCCount"; "RENDER"; "RegionSize" ...
+ * compilation unit) called by: pvr_sub_207a0c strings: "RENDER"; "VSYNCCount"; "RENDER"; "RegionSize" ...
  */
 u32 kamui_sub_205e64(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -7574,7 +7574,7 @@ u32 kamui_sub_205e64(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     g_8c4aa08c = 0x210;
     g_8c4aa090 = 0x220;
     g_8c4aa094 = 0x230;
-    shinobi_sub_2073a0(&g_8c4aa09c);
+    pvr_sub_2073a0(&g_8c4aa09c);
     g_8c4a9db4 = 0;
     g_8c4a9db8 = 0;
     uVar6 = 1;
@@ -7653,7 +7653,7 @@ u32 shinobi_sub_206146(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a
 /*
  * shinobi_sub_206162  0x8c206162
  * area name: in the shinobi library code range
- * called by: shinobi_sub_207a0c
+ * called by: pvr_sub_207a0c
  */
 u32 shinobi_sub_206162(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -8378,7 +8378,7 @@ u32 pvr_206ff0(u32 unused_a0, u32 a1, u32 *a2, u32 a3) {
     if (((uVar11 & 2) != 0) && (iVar7 = pvr_sub_206fd2(), iVar7 != 0)) {
         (*(code *)puVar1)(iVar7, uVar9, a2, a3);
     }
-    puVar1 = (&shinobi_sub_207334);
+    puVar1 = (&pvr_sub_207334);
     for (uVar11 = 0; (int)uVar11 < 10; uVar11 = uVar11 + 1) {
         if ((int)uVar11 < 0) {
             uVar9 = 1 >> (~uVar11 & 0x1f) + 1;
@@ -8408,11 +8408,11 @@ u32 callback_table_call(int a0) {
 }
 
 /*
- * shinobi_sub_207300  0x8c207300
- * area name: in the shinobi library code range
+ * pvr_sub_207300  0x8c207300
+ * area name: sits between pvr functions (same compilation unit)
  * called by: kamui_sub_2103c4, kamui_sub_212220, kamui_sub_212284, kamui_sub_2122ea, ta_sub_20af20, ta_sub_20af22
  */
-u32 shinobi_sub_207300(u32 *a0, u32 *a1, u32 a2, u32 a3) {
+u32 pvr_sub_207300(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -8474,10 +8474,10 @@ u32 CacheBlockWriteBack_wrap(u32 a0) {
 }
 
 /*
- * shinobi_sub_207334  0x8c207334
- * area name: in the shinobi library code range
+ * pvr_sub_207334  0x8c207334
+ * area name: sits between pvr functions (same compilation unit)
  */
-u32 shinobi_sub_207334(code *a0, u32 a1) {
+u32 pvr_sub_207334(code *a0, u32 a1) {
     u8 *puVar1;
     u32 *puVar2;
     u64 in_dr0;
@@ -8516,10 +8516,10 @@ u32 shinobi_sub_207334(code *a0, u32 a1) {
 }
 
 /*
- * shinobi_sub_207344  0x8c207344
- * area name: in the shinobi library code range
+ * pvr_sub_207344  0x8c207344
+ * area name: sits between pvr functions (same compilation unit)
  */
-u32 shinobi_sub_207344(code *a0, u32 a1, u32 a2, u32 a3) {
+u32 pvr_sub_207344(code *a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
     u32 *puVar2;
     u64 in_dr0;
@@ -8541,11 +8541,11 @@ u32 shinobi_sub_207344(code *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_2073a0  0x8c2073a0
- * area name: in the shinobi library code range
+ * pvr_sub_2073a0  0x8c2073a0
+ * area name: sits between pvr functions (same compilation unit)
  * called by: kamui_sub_205e64
  */
-u32 shinobi_sub_2073a0(u32 a0) {
+u32 pvr_sub_2073a0(u32 a0) {
     u32 *puVar1;
     u32 *puVar2;
     u32 in_r0;
@@ -8577,11 +8577,11 @@ u32 shinobi_sub_2073a0(u32 a0) {
 }
 
 /*
- * shinobi_sub_2073f8  0x8c2073f8
- * area name: in the shinobi library code range
- * called by: shinobi_sub_207502
+ * pvr_sub_2073f8  0x8c2073f8
+ * area name: sits between pvr functions (same compilation unit)
+ * called by: pvr_sub_207502
  */
-int shinobi_sub_2073f8(int a0, int a1, u32 a2) {
+int pvr_sub_2073f8(int a0, int a1, u32 a2) {
     int iVar1;
     u8 *puVar2;
 
@@ -8637,12 +8637,12 @@ int shinobi_sub_2073f8(int a0, int a1, u32 a2) {
 }
 
 /*
- * shinobi_sub_207502  0x8c207502
- * area name: in the shinobi library code range
- * called by: shinobi_sub_20757e, shinobi_sub_20759a, shinobi_sub_2075bc, shinobi_sub_207832, shinobi_sub_20784e,
+ * pvr_sub_207502  0x8c207502
+ * area name: sits between pvr functions (same compilation unit)
+ * called by: pvr_sub_20757e, pvr_sub_20759a, pvr_sub_2075bc, shinobi_sub_207832, shinobi_sub_20784e,
  * shinobi_sub_20786a, shinobi_sub_207886, shinobi_sub_2078a2 (+2 more)
  */
-u32 shinobi_sub_207502(int a0, u32 a1, int a2, u32 a3) {
+u32 pvr_sub_207502(int a0, u32 a1, int a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -8686,7 +8686,7 @@ u32 shinobi_sub_207502(int a0, u32 a1, int a2, u32 a3) {
     bVar7 = (bVar6 & 0x20) >> 5;
     bVar6 = ((bVar6 | (u8)(((u32)in_MD << 0x1e) >> 0x18)) & 0x40) >> 6;
     if (a2 == 0) {
-        shinobi_sub_2073f8(a0, a1, 0);
+        pvr_sub_2073f8(a0, a1, 0);
         bVar10 = extraout_M;
         bVar11 = extraout_Q;
         bVar13 = extraout_S;
@@ -8704,42 +8704,42 @@ u32 shinobi_sub_207502(int a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_20757e  0x8c20757e
- * area name: in the shinobi library code range
+ * pvr_sub_20757e  0x8c20757e
+ * area name: sits between pvr functions (same compilation unit)
  * called by: ninja_sub_258604, pvr_25825a
  */
-u32 shinobi_sub_20757e(u32 a0, u32 a1) {
-    shinobi_sub_207502(g_8c2756b0, 0, a0, a1);
+u32 pvr_sub_20757e(u32 a0, u32 a1) {
+    pvr_sub_207502(g_8c2756b0, 0, a0, a1);
     return 0;
 }
 
 /*
- * shinobi_sub_20759a  0x8c20759a
- * area name: in the shinobi library code range
+ * pvr_sub_20759a  0x8c20759a
+ * area name: sits between pvr functions (same compilation unit)
  * called by: shinobi_sub_1fa54c, ta_sub_1fa244
  */
-u32 shinobi_sub_20759a(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 pvr_sub_20759a(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     ret_const_1_25eca0(1);
-    shinobi_sub_207502(g_8c2756b0, 1, a0, a1);
+    pvr_sub_207502(g_8c2756b0, 1, a0, a1);
     return 0;
 }
 
 /*
- * shinobi_sub_2075bc  0x8c2075bc
- * area name: in the shinobi library code range
+ * pvr_sub_2075bc  0x8c2075bc
+ * area name: sits between pvr functions (same compilation unit)
  * called by: shinobi_sub_1fa54c, ta_sub_1fa244
  */
-u32 shinobi_sub_2075bc(int a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 pvr_sub_2075bc(int a0, u32 a1, u32 unused_a2, u32 a3) {
     ret_const_1_25eca4(-((a0 == 0) - 1), a1, unused_a2, a3);
-    shinobi_sub_207502(g_8c2756b0, 2, a0, a1);
+    pvr_sub_207502(g_8c2756b0, 2, a0, a1);
     return 0;
 }
 
 /*
- * shinobi_sub_207620  0x8c207620
- * area name: in the shinobi library code range
+ * pvr_sub_207620  0x8c207620
+ * area name: sits between pvr functions (same compilation unit)
  */
-u32 shinobi_sub_207620(int a0) {
+u32 pvr_sub_207620(int a0) {
     u32 uVar1;
     u32 ar6_00;
     u32 ar7_00;
@@ -8770,10 +8770,10 @@ u32 shinobi_sub_207620(int a0) {
 }
 
 /*
- * shinobi_sub_2076f6  0x8c2076f6
- * area name: in the shinobi library code range
+ * pvr_sub_2076f6  0x8c2076f6
+ * area name: sits between pvr functions (same compilation unit)
  */
-u32 shinobi_sub_2076f6(int *a0) {
+u32 pvr_sub_2076f6(int *a0) {
     int *piVar1;
     u32 uVar2;
     int iVar3;
@@ -8836,7 +8836,7 @@ u32 shinobi_sub_2076f6(int *a0) {
  * area name: in the shinobi library code range
  */
 u32 shinobi_sub_207832(u32 a0, u32 a1) {
-    shinobi_sub_207502(g_8c2756b0, 3, a0, a1);
+    pvr_sub_207502(g_8c2756b0, 3, a0, a1);
     return 0;
 }
 
@@ -8845,7 +8845,7 @@ u32 shinobi_sub_207832(u32 a0, u32 a1) {
  * area name: in the shinobi library code range
  */
 u32 shinobi_sub_20784e(u32 a0, u32 a1) {
-    shinobi_sub_207502(g_8c2756b0, 4, a0, a1);
+    pvr_sub_207502(g_8c2756b0, 4, a0, a1);
     return 0;
 }
 
@@ -8855,7 +8855,7 @@ u32 shinobi_sub_20784e(u32 a0, u32 a1) {
  * called by: ninja_sub_258604, pvr_25825a
  */
 u32 shinobi_sub_20786a(u32 a0, u32 a1) {
-    shinobi_sub_207502(g_8c2756b0, 5, a0, a1);
+    pvr_sub_207502(g_8c2756b0, 5, a0, a1);
     return 0;
 }
 
@@ -8864,7 +8864,7 @@ u32 shinobi_sub_20786a(u32 a0, u32 a1) {
  * area name: in the shinobi library code range
  */
 u32 shinobi_sub_207886(u32 a0, u32 a1) {
-    shinobi_sub_207502(g_8c2756b0, 6, a0, a1);
+    pvr_sub_207502(g_8c2756b0, 6, a0, a1);
     return 0;
 }
 
@@ -8873,7 +8873,7 @@ u32 shinobi_sub_207886(u32 a0, u32 a1) {
  * area name: in the shinobi library code range
  */
 u32 shinobi_sub_2078a2(u32 a0, u32 a1) {
-    shinobi_sub_207502(g_8c2756b0, 7, a0, a1);
+    pvr_sub_207502(g_8c2756b0, 7, a0, a1);
     return 0;
 }
 
@@ -8883,7 +8883,7 @@ u32 shinobi_sub_2078a2(u32 a0, u32 a1) {
  * called by: ninja_sub_258604, pvr_25825a
  */
 u32 shinobi_sub_2078be(u32 a0) {
-    shinobi_sub_207502(g_8c2756b0, 8, a0, 0);
+    pvr_sub_207502(g_8c2756b0, 8, a0, 0);
     return 0;
 }
 
@@ -8893,16 +8893,16 @@ u32 shinobi_sub_2078be(u32 a0) {
  * called by: ninja_sub_258604, pvr_25825a
  */
 u32 shinobi_sub_2078d8(u32 a0, u32 a1) {
-    shinobi_sub_207502(g_8c2756b0, 9, a0, 0);
+    pvr_sub_207502(g_8c2756b0, 9, a0, 0);
     return 0;
 }
 
 /*
- * shinobi_sub_2079a0  0x8c2079a0
- * area name: in the shinobi library code range
- * called by: shinobi_sub_207a9c, shinobi_sub_207da0
+ * pvr_write_saved_regs  0x8c2079a0
+ * writes the saved PVR register values back to their registers
+ * called by: pvr_sub_207a9c, shinobi_sub_207da0
  */
-u32 shinobi_sub_2079a0(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 pvr_write_saved_regs(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
     u32 uVar2;
 
@@ -8920,11 +8920,11 @@ u32 shinobi_sub_2079a0(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_2079fc  0x8c2079fc
- * area name: in the shinobi library code range
+ * pvr_sub_2079fc  0x8c2079fc
+ * area name: sits between pvr functions (same compilation unit)
  * called by: ta_sub_20ade0
  */
-u32 shinobi_sub_2079fc(void) {
+u32 pvr_sub_2079fc(void) {
     u32 in_r0;
 
     do {
@@ -8933,12 +8933,12 @@ u32 shinobi_sub_2079fc(void) {
 }
 
 /*
- * shinobi_sub_207a0c  0x8c207a0c
- * name hint from a string it uses: KAMUI; area name: in the shinobi library code range
+ * pvr_sub_207a0c  0x8c207a0c
+ * name hint from a string it uses: KAMUI; area name: sits between pvr functions (same compilation unit)
  * called by: pvr_25825a
  * strings: "KAMUI"; "VideoMode"; "KAMUI"; "VideoMode"
  */
-u32 shinobi_sub_207a0c(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 pvr_sub_207a0c(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     char *ar4_00;
     char *ar5_00;
     u32 ar6_00;
@@ -8956,12 +8956,12 @@ u32 shinobi_sub_207a0c(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * shinobi_sub_207a9c  0x8c207a9c
- * name hint from a string it uses: DisplayMode; area name: in the shinobi library code range
+ * pvr_sub_207a9c  0x8c207a9c
+ * name hint from a string it uses: DisplayMode; area name: sits between pvr functions (same compilation unit)
  * called by: ninja_sub_258604, pvr_25825a
  * strings: "KAMUI"; "DisplayMode"; "KAMUI"; "AntiAlias" ...
  */
-int shinobi_sub_207a9c(u32 a0, int a1, u32 a2, u32 a3) {
+int pvr_sub_207a9c(u32 a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -9049,7 +9049,7 @@ int shinobi_sub_207a9c(u32 a0, int a1, u32 a2, u32 a3) {
             iVar5 = 1;
         }
         ninja_sub_25dc60(uStack_2c, iVar2, a1, uStack_30);
-        shinobi_sub_2079a0(uStack_2c, iVar2, a1, uStack_30);
+        pvr_write_saved_regs(uStack_2c, iVar2, a1, uStack_30);
     }
     return iVar5;
 }
@@ -9115,7 +9115,7 @@ u32 shinobi_sub_207da0(int a0, int a1) {
     } while (g_8c4a9f1c == g_8c4a9f1c);
     ar6_00 = g_8c4a9bd0;
     ninja_sub_25dc60(ar4_01, ar5_00, ar6_00, ar7_00);
-    shinobi_sub_2079a0(ar4_01, ar5_00, ar6_00, ar7_00);
+    pvr_write_saved_regs(ar4_01, ar5_00, ar6_00, ar7_00);
     puVar1 = (&pvr_20a844);
     pvr_20a844(0x44, g_8c4a9e74 & 0xfffffffe);
     (*(code *)puVar1)((int)0xe8, g_8c4a9eb0, ar6_00, ar7_00);
@@ -11394,11 +11394,11 @@ u32 pvr_20a844(int a0, u32 a1) {
 }
 
 /*
- * pvr_sub_20a84e  0x8c20a84e
- * area name: sits between pvr functions (same compilation unit)
+ * cache_writeback_range  0x8c20a84e
+ * writes back the cache blocks covering a1 bytes at a0
  * called by: vram64_20a8e0, vram64_20a9c2
  */
-u32 pvr_sub_20a84e(u32 a0, int a1) {
+u32 cache_writeback_range(u32 a0, int a1) {
     u8 *puVar1;
     u32 in_r0;
     u32 uVar2;
@@ -11433,7 +11433,7 @@ u32 pvr_sub_20a85a(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * pvr_20a876  0x8c20a876
  * called by: g2dma_205a62, kamui_sub_20bdc0, kamui_sub_20c416, kamui_sub_20c7e0, kamui_sub_20c8e0, kamui_sub_211f40,
- * pvr_sub_20a790, shinobi_sub_2076f6 (+1 more)
+ * pvr_sub_2076f6, pvr_sub_20a790 (+1 more)
  */
 u32 pvr_20a876(int a0) {
     return *(u32 *)(0xa05f8000 + a0);
@@ -11475,7 +11475,7 @@ u32 vram64_20a8e0(u32 a0, u32 a1, u32 a2) {
 
     if ((((a0 & 0x1f) == 0) && ((a1 & 0x1f) == 0)) && (((in_T | in_S << 1) & 0xf0) == 0 && (in_IMASK & 0xf) == 0)) {
         ar5_00 = a2;
-        pvr_sub_20a84e(a1, a2);
+        cache_writeback_range(a1, a2);
         ar6_01 = a2 & 0xffffffe0;
         if (ar6_01 == 0) {
             g_8c4a9fd8 = 0;
@@ -11508,7 +11508,7 @@ u32 vram64_20a8e0(u32 a0, u32 a1, u32 a2) {
  */
 u32 vram64_20a9c2(u32 a0, int a1, u32 a2) {
     memcpy_words(a0, a1 + -0x5c000000, a2);
-    pvr_sub_20a84e(a0, a2);
+    cache_writeback_range(a0, a2);
     return 1;
 }
 
@@ -11684,7 +11684,7 @@ u32 ta_sub_20ade0(int a0) {
     ain0 = g_8c4a9eac & 0xffff0000 | ar5_00;
     ar6_00 = (iVar1 + g_8c4a9c00) * 0x10000;
     ar7_00 = iVar2 + g_8c4a9c00 | ar6_00;
-    shinobi_sub_2079fc();
+    pvr_sub_2079fc();
     pvr_20a844(0x44, g_8c4a9e74 & 0xfffffffe);
     pvr_20a844(0xe8, g_8c4a9eb0 | 8);
     pvr_20a844(0xf0, ar7_00);
@@ -11720,7 +11720,7 @@ u32 ta_sub_20af20(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     uVar2 = *g_8c4aa21c & 0x3ffffff | 0xe0000000;
     _DAT_ff00003c = _DAT_ff000038;
     do {
-        shinobi_sub_207300(uVar2, ar5_00, 0x20, a3);
+        pvr_sub_207300(uVar2, ar5_00, 0x20, a3);
         iVar1 = iVar1 + -1;
         uVar2 = uVar2 + 0x20;
         ar5_00 = ar5_00 + 0x20;
@@ -11746,7 +11746,7 @@ int ta_sub_20af22(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     ar4_00 = *(u32 *)*in_r3 & 0x3ffffff | 0xe0000000;
     _DAT_ff00003c = _DAT_ff000038;
     do {
-        shinobi_sub_207300(ar4_00, ar5_00, 0x20, a3);
+        pvr_sub_207300(ar4_00, ar5_00, 0x20, a3);
         iVar1 = iVar1 + -1;
         ar4_00 = ar4_00 + 0x20;
         ar5_00 = ar5_00 + 0x20;
@@ -11824,7 +11824,7 @@ u32 ta_sub_20af76(int a0, int a1, int a2, u32 a3) {
                 uVar6 = 0xf;
             }
         } else {
-            iVar5 = kamui_sub_2120c0((int)0x800);
+            iVar5 = kamui_set_flags_2758e8((int)0x800);
             if (iVar5 == 0xb00) {
                 set_g_8c2758e8(0x80000000);
                 uVar6 = kamui_sub_211f40(*(u32 *)(iVar1 + 0x54), ar5_00, ar6_00, ar7_00);

@@ -545,11 +545,11 @@ int cri_sub_26054c(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * cri_sub_260636  0x8c260636
- * area name: in the cri library code range
+ * is_spsd_header  0x8c260636
+ * 1 when a0 starts with "SPSD"
  * called by: cri_sub_25fdb2, cri_sub_25fdbe
  */
-u32 cri_sub_260636(u32 a0, u32 a1) {
+u32 is_spsd_header(u32 a0, u32 a1) {
     int iVar1;
 
     iVar1 = memcmp(a0, &g_8c272048, 4);
@@ -1127,11 +1127,11 @@ int cri_sub_260b08(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * cri_sub_260c2c  0x8c260c2c
- * area name: in the cri library code range
+ * is_wav_header  0x8c260c2c
+ * 1 when a0 starts a "RIFF"...."WAVE" header
  * called by: cri_sub_25fdb2, cri_sub_25fdbe
  */
-u32 cri_sub_260c2c(int a0) {
+u32 is_wav_header(int a0) {
     int iVar1;
 
     iVar1 = memcmp(a0, &g_8c272050, 4);
@@ -1953,11 +1953,11 @@ int cri_sub_261a4c(int a0, int a1, u32 a2, u32 a3, u32 s0) {
 }
 
 /*
- * cri_sub_261aa8  0x8c261aa8
- * area name: in the cri library code range
+ * busy_wait_50000  0x8c261aa8
+ * spins 50,000 times
  * called by: cri_sub_261ae2
  */
-u32 cri_sub_261aa8(void) {
+u32 busy_wait_50000(void) {
     u32 in_r0;
     int iVar1;
 
@@ -1969,12 +1969,12 @@ u32 cri_sub_261aa8(void) {
 }
 
 /*
- * cri_sub_261ab2  0x8c261ab2
- * name hint from a string it uses: E9040801 ptid is range outsi; area name: in the cri library code range
+ * adxf_ChkPrmPt  0x8c261ab2
+ * checks the partition id (0..255) and info pointer; -3 with an error message when bad
  * called by: ADXF_LoadPartition, ADXF_sub_261d46
  * strings: "E9040801:'ptid' is range outside.(adxf_ChkPrmPt)\n"; "E9040802:'ptinfo' is NULL.(adxf_ChkPrmPt)\n"
  */
-u32 cri_sub_261ab2(int a0, int a1, u32 a2) {
+u32 adxf_ChkPrmPt(int a0, int a1, u32 a2) {
     u32 r7;
     u32 in_PR;
     char *s0;
@@ -2014,7 +2014,7 @@ u32 cri_sub_261ae2(int a0, u32 a1, u32 a2, u32 a3) {
         shinobi_sub_1f39f0(a4, a5, uVar2, a3);
         ADXSTM_ExecServer_like(a4, a5, uVar2, a3);
         ADXF_ExecServer_like(a4, a5, uVar2, a3);
-        cri_sub_261aa8();
+        busy_wait_50000();
         iVar3 = iVar3 + 1;
     } while (iVar3 < 10000);
     if (iVar3 == 10000) {
@@ -2029,7 +2029,7 @@ u32 cri_sub_261ae2(int a0, u32 a1, u32 a2, u32 a3) {
         iVar1 = ADXF_GetStat(a0, a5, uVar2);
         if (iVar1 == 3)
             break;
-        cri_sub_261aa8();
+        busy_wait_50000();
         iVar3 = iVar3 + 1;
     } while (iVar3 < 10000);
     uVar2 = ADXF_GetNumReadSct(a0, a5, uVar2);
@@ -2067,7 +2067,7 @@ int ADXF_LoadPartition(int a0, u32 a1, u32 *a2, int a3) {
 
     puVar5 = a2;
     iStack_30 = a3;
-    iVar2 = cri_sub_261ab2(a0, a2, a2);
+    iVar2 = adxf_ChkPrmPt(a0, a2, a2);
     if (-1 < iVar2) {
         puVar6 = &uStack_3c;
         uVar7 = a1;
@@ -2196,7 +2196,7 @@ int ADXF_sub_261d46(int a0, u32 a1, int *a2, int a3) {
 
     ar6_00 = a2;
     iStack_30 = a3;
-    iVar1 = cri_sub_261ab2(a0, a2, a2);
+    iVar1 = adxf_ChkPrmPt(a0, a2, a2);
     if (-1 < iVar1) {
         ar5_00 = &iStack_38;
         uVar3 = a1;
@@ -2740,7 +2740,7 @@ u32 ADXF_Stop(int a0) {
             }
             irq_disable_nested(ar4_00, ar5_00, ar6_00, ar7_00, in_stack_fffffff4);
             ADXSTM_stop_read(*(u32 *)(a0 + 4), ar5_00, ar6_00, ar7_00);
-            ADXSTM_sub_263768(*(u32 *)(a0 + 4), &stack0xfffffff4);
+            ADXSTM_get_read_offset(*(u32 *)(a0 + 4), &stack0xfffffff4);
             *(u32 *)(a0 + 0x24) = in_stack_fffffff4;
             ar4_01 = a0;
             ADXF_sub_26211c(a0, ar5_01, ar6_00, ar7_00, in_stack_fffffff4);
@@ -2768,7 +2768,7 @@ int ADXF_sub_2624a0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     if (iVar1 == 2) {
         uVar2 = get_field_1_s8_263746(*(u32 *)(a0 + 4));
         *(char *)(a0 + 1) = (char)uVar2;
-        ADXSTM_sub_263768(*(u32 *)(a0 + 4), &stack0xfffffff4);
+        ADXSTM_get_read_offset(*(u32 *)(a0 + 4), &stack0xfffffff4);
         *(u32 *)(a0 + 0x24) = in_stack_fffffff4;
         iVar1 = (int)*(char *)(a0 + 1);
         if ((iVar1 == 3) || (iVar1 == 4)) {
@@ -3103,7 +3103,7 @@ u32 cri_sub_262810(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
         uVar1 = game_sub_26b992();
         uVar1 = game_sub_26b526();
         game_sub_26b212();
-        cri_sub_25eca8(a0, unused_a1, unused_a2, a3);
+        cri_clear_table_4b3340(a0, unused_a1, unused_a2, a3);
         memset_wrap_263244(a0, unused_a1, unused_a2, a3);
         cri_sub_262ac4();
         ta_fifo_2619b4(a0, unused_a1, unused_a2, a3);
@@ -3145,7 +3145,7 @@ u32 cri_sub_262814(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
         game_sub_26b992();
         game_sub_26b526();
         game_sub_26b212();
-        cri_sub_25eca8(a0, unused_a1, unused_a2, a3);
+        cri_clear_table_4b3340(a0, unused_a1, unused_a2, a3);
         memset_wrap_263244(a0, unused_a1, unused_a2, a3);
         cri_sub_262ac4();
         ta_fifo_2619b4(a0, unused_a1, unused_a2, a3);
@@ -4405,7 +4405,7 @@ u32 ADXSTM_stop_read(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ADXSTM_get_read_pos  0x8c2634dc
  * read position of the stream's file (+8) relative to its start (+0x10); 0 without a file
- * called by: ADXSTM_Seek_like, ADXSTM_rewind, ADXSTM_sub_263472, ADXSTM_sub_2635a4, ADXSTM_sub_263768
+ * called by: ADXSTM_Seek_like, ADXSTM_get_read_offset, ADXSTM_rewind, ADXSTM_sub_263472, ADXSTM_sub_2635a4
  */
 int ADXSTM_get_read_pos(int a0, u32 a1) {
     int iVar1;
@@ -4667,11 +4667,11 @@ int get_field_1_s8_263746(int a0) {
 }
 
 /*
- * ADXSTM_sub_263768  0x8c263768
- * area name: sits between ADXSTM functions (same compilation unit)
+ * ADXSTM_get_read_offset  0x8c263768
+ * *a1 = read position relative to the stream start
  * called by: ADXF_Stop, ADXF_sub_2624a0
  */
-u32 ADXSTM_sub_263768(int a0, int *a1) {
+u32 ADXSTM_get_read_offset(int a0, int *a1) {
     int iVar1;
 
     iVar1 = ADXSTM_get_read_pos(a0, a1);

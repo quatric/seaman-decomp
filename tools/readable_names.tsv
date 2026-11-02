@@ -767,3 +767,31 @@
 8c1ba44a	not_code_1ba44a	data decoded as code (no valid instruction stream)
 8c1ba52c	not_code_1ba52c	data decoded as code (no valid instruction stream)
 8c1bab30	not_code_1bab30	data decoded as code (no valid instruction stream)
+8c1f0958	copy_words	copies a2/4 words from a0 to a1
+8c1f752a	be_read_n	the a1-byte big-endian number at a0
+8c1f7540	be_write_n	writes a0 as an a1-byte big-endian number at a2
+8c1f892a	fix7_to_hundredths	converts a 7-bit fixed-point value to hundredths
+8c1fd4f0	cmp_512_bytes	0 when the 512 bytes at a0 and a1 match, else -1
+8c1f8614	day_of_week	Zeller's congruence: weekday of year a0, month a1, day a2
+8c1f86e4	trace_log_word	appends a0 to the trace buffer at 8c474a20 when trace flag 8 is set
+8c1fa3f2	int_call_handlers	calls every handler on the chain for interrupt event a0>>4
+8c1fb426	set_handler_table_475ee0	installs handler table a0 (the default when 0) and returns the previous one
+8c1f7d30	ipbin_get_disc_info	parses the "n/m" disc number of the IP.BIN at a0 into a1 and copies its 10-byte product number
+8c1f7d04	ipbin_get_disc_info_boot	ipbin_get_disc_info on the bootstrap IP.BIN at 8c008000
+8c25f01e	is_aiff_header	1 when a0 starts a "FORM"...."AIFF" header
+8c25f64c	is_au_header	1 when a0 starts with ".snd" or ".sd"
+8c260636	is_spsd_header	1 when a0 starts with "SPSD"
+8c260c2c	is_wav_header	1 when a0 starts a "RIFF"...."WAVE" header
+8c261aa8	busy_wait_50000	spins 50,000 times
+8c261ab2	adxf_ChkPrmPt	checks the partition id (0..255) and info pointer; -3 with an error message when bad
+8c263768	ADXSTM_get_read_offset	*a1 = read position relative to the stream start
+8c25eca8	cri_clear_table_4b3340	clears the 0x100-byte table at 8c4b3340 and its two counters
+8c2124aa	bswap32	byte-swaps a 32-bit word
+8c2120c0	kamui_set_flags_2758e8	ORs a0 into the flag word at 8c2758e8
+8c2552b0	catmull_rom_vec3	*s0 = point at t (fr5) on the Catmull-Rom spline through a0, a1, a2, a3
+8c20a84e	cache_writeback_range	writes back the cache blocks covering a1 bytes at a0
+8c239150	find_entry_by_id	index of the 12-byte entry in *a0 whose low 16 bits at +4 equal a1
+8c200472	strnlen_12	length of string a0, at most 12
+8c238ede	copy_2_bytes	a0[0..1] = a1[0..1]
+8c25a566	array44_index_of	index of entry a2 in the array a0 of a1 0x44-byte entries, else -1
+8c2079a0	pvr_write_saved_regs	writes the saved PVR register values back to their registers

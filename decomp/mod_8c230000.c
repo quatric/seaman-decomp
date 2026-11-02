@@ -12099,7 +12099,7 @@ int gfxlib_sub_2378a6(int a0) {
 
     ar6_00 = *(u32 *)(*g_8c277b04 + a0 * 0xc + 8);
     iVar1 = g_8c277b08;
-    ain0 = tex_sub_25a566(g_8c277b08, g_8c277b0c, ar6_00);
+    ain0 = array44_index_of(g_8c277b08, g_8c277b0c, ar6_00);
     tex_error_reset();
     if (ain0 < 0) {
         g_8c4aa6b4 = 1;
@@ -12128,7 +12128,7 @@ int gfxlib_sub_2378ba(void) {
 
     ar6_00 = *(u32 *)(*(int *)*in_r3 + in_r2 + 8);
     iVar2 = g_8c277b08;
-    iVar1 = tex_sub_25a566(g_8c277b08, g_8c277b0c, ar6_00);
+    iVar1 = array44_index_of(g_8c277b08, g_8c277b0c, ar6_00);
     tex_error_reset();
     if (iVar1 < 0) {
         g_8c4aa6b4 = 1;
@@ -13815,11 +13815,11 @@ int gfx_stream_seek(int a0, int a1) {
 }
 
 /*
- * gfxlib_sub_238ede  0x8c238ede
- * area name: in the gfxlib library code range
+ * copy_2_bytes  0x8c238ede
+ * a0[0..1] = a1[0..1]
  * called by: gfxlib_sub_238f2a, gfxlib_sub_239f84
  */
-u32 gfxlib_sub_238ede(u8 *a0, u8 *a1) {
+u32 copy_2_bytes(u8 *a0, u8 *a1) {
     u32 in_r0;
 
     *a0 = *a1;
@@ -13892,7 +13892,7 @@ u32 gfxlib_sub_238f2a(u32 *a0, u32 a1, int a2, u32 a3) {
                 return 0xffffffff;
             }
             puVar4 = auStack_48;
-            gfxlib_sub_238ede(&stack0xffffffa4, auStack_48);
+            copy_2_bytes(&stack0xffffffa4, auStack_48);
             puVar6[1] = puVar6[1] & 0xffff0000 | in_stack_ffffffa4 & 0xffff;
             iVar3 = 2;
             if ((uVar1 & 1) != 0) {
@@ -13999,11 +13999,11 @@ u32 ta_fifo_239012(u32 unused_a0, u32 unused_a1, int a2, u32 a3, u32 s0) {
 }
 
 /*
- * ta_sub_239150  0x8c239150
- * area name: sits between ta functions (same compilation unit)
+ * find_entry_by_id  0x8c239150
+ * index of the 12-byte entry in *a0 whose low 16 bits at +4 equal a1
  * called by: gfxlib_sub_239212, pvr_sub_23a29c
  */
-int ta_sub_239150(int *a0, u32 a1) {
+int find_entry_by_id(int *a0, u32 a1) {
     int iVar1;
     int iVar2;
 
@@ -14144,7 +14144,7 @@ u32 gfxlib_sub_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
                             return 1;
                         }
                         piVar4 = piStack_c;
-                        iStack_144 = ta_sub_239150(piStack_c, iVar1);
+                        iStack_144 = find_entry_by_id(piStack_c, iVar1);
                         piStack_128 = (int *)(iStack_144 * 0xc + *piStack_c);
                         piStack_120 = piStack_128 + 2;
                         if ((piStack_128[1] & 0x1000000U) != 0) {
@@ -14621,7 +14621,7 @@ u32 gfxlib_sub_239f84(u32 *a0, u32 a1, int a2) {
         do {
             gfx_stream_read(auStack_48, a1);
             puVar4 = auStack_48;
-            uVar2 = gfxlib_sub_238ede(&stack0xffffffa8, auStack_48);
+            uVar2 = copy_2_bytes(&stack0xffffffa8, auStack_48);
             puVar6[1] = puVar6[1] & 0xffff0000 | in_stack_ffffffa8 & 0xffff;
             iVar3 = 2;
             if ((uVar1 & 1) != 0) {
@@ -14815,7 +14815,7 @@ u32 pvr_sub_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
         iStack_5c = 0;
         if (0 < sStack_22) {
             do {
-                iVar1 = ta_sub_239150(a1, iStack_5c);
+                iVar1 = find_entry_by_id(a1, iStack_5c);
                 iVar4 = iVar1 * 0xc;
                 ar4_00 = *a1 + iVar4;
                 ar4_01 = (int *)(ar4_00 + 8);
