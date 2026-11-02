@@ -5902,9 +5902,9 @@ address	name	file	params
 8c2628fa	cri_lib_finish	mod_8c260000.c	5
 8c2629a0	thunk_FUN_8c2689c8	mod_8c260000.c	0
 8c2629a6	thunk_FUN_8c268a24	mod_8c260000.c	0
-8c2629ac	cri_sound_2629ac	mod_8c260000.c	0
+8c2629ac	mwRnaCreate_like_wrap	mod_8c260000.c	0
 8c2629b2	mwRna_stop_and_destroy	mod_8c260000.c	4
-8c2629d0	cri_sound_2629d0	mod_8c260000.c	0
+8c2629d0	mwRna_sound_2629d0	mod_8c260000.c	0
 8c2629d6	mwRna_set_play_sw_wrap	mod_8c260000.c	0
 8c2629dc	mwRnaGetTime_wrap	mod_8c260000.c	0
 8c2629e2	mwRna_get_read_pos_wrap	mod_8c260000.c	0
@@ -6131,9 +6131,9 @@ address	name	file	params
 8c267354	thunk_FUN_8c267250	mod_8c260000.c	2
 8c267360	sd_slot_ch_get_field_14	mod_8c260000.c	3
 8c2673f0	sd_slot_ch_get_field_01	mod_8c260000.c	3
-8c267470	sd_sound_267470	mod_8c260000.c	6
-8c2675d8	sd_sound_2675d8	mod_8c260000.c	6
-8c267740	sd_sound_267740	mod_8c260000.c	4
+8c267470	sd_slot_open_type3_a	mod_8c260000.c	6
+8c2675d8	sd_slot_open_type3_b	mod_8c260000.c	6
+8c267740	sd_slot_cmd_21_start	mod_8c260000.c	4
 8c267744	alt_entry_267744	mod_8c260000.c	4
 8c26784c	sdPstmPlay	mod_8c260000.c	4
 8c2678a4	sd_sound_2678a4	mod_8c260000.c	4
@@ -6151,7 +6151,7 @@ address	name	file	params
 8c267ab0	sd_slot_send_cmd_2a	mod_8c260000.c	4
 8c267ab2	alt_entry_267ab2	mod_8c260000.c	4
 8c267b20	sd_slot_send_cmd_2a_wrap	mod_8c260000.c	3
-8c267b30	sd_sound_267b30	mod_8c260000.c	4
+8c267b30	sd_slot_cmd_26_levels	mod_8c260000.c	4
 8c267cc0	thunk_FUN_8c267b30	mod_8c260000.c	4
 8c267ccc	sd_slot_cmd_pitch	mod_8c260000.c	4
 8c267cce	alt_entry_267cce	mod_8c260000.c	4
@@ -6198,11 +6198,11 @@ address	name	file	params
 8c26892c	alt_entry_26892c	mod_8c260000.c	4
 8c2689c4	noop_2689c4	mod_8c260000.c	0
 8c2689c8	sd_clear_state	mod_8c260000.c	4
-8c268a24	sd_sound_268a24	mod_8c260000.c	4
+8c268a24	mwRna_reset_all	mod_8c260000.c	4
 8c268a36	alt_entry_268a36	mod_8c260000.c	4
 8c268afc	rna_handle_reset	mod_8c260000.c	1
 8c268b48	mwRna_find_free_handle	mod_8c260000.c	0
-8c268b70	sd_sound_268b70	mod_8c260000.c	4
+8c268b70	mwRnaCreate_like	mod_8c260000.c	4
 8c268c7e	mwRnaDestroy	mod_8c260000.c	4
 8c268cee	mwRnaStart_like	mod_8c260000.c	4
 8c268d60	noop_268d60	mod_8c260000.c	0
@@ -6218,7 +6218,7 @@ address	name	file	params
 8c2690d8	mwRna_sound_2690d8	mod_8c260000.c	4
 8c2691b8	mwRna_set_play_sw	mod_8c260000.c	4
 8c269244	mwRna_uses_libgcc_divide_helper_269244	mod_8c260000.c	4
-8c2693ce	mwRna_uses_libgcc_divide_helper_2693ce	mod_8c260000.c	1
+8c2693ce	mwRna_fill_transfer_like	mod_8c260000.c	1
 8c2694a4	mwRna_sound_2694a4	mod_8c260000.c	4
 8c2695e4	mwRna_server_all	mod_8c260000.c	4
 8c26962c	mwRna_suspend	mod_8c260000.c	4

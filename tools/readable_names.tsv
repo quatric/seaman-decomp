@@ -2297,3 +2297,10 @@
 8c2667cc	sd_slots_init	clears the sound slot table and numbers the type-1, type-2 and type-3 slots
 8c2669f4	sd_load_smlt	loads the "SMLT" multi-unit sound file of handle a0: sets up each unit and DMAs its data into AICA RAM
 8c267058	sd_slot_ch_get_field_02	reads byte +2 of channel a1 of slot a0 from AICA RAM into *a2, adjusted for the slot's stereo mode
+8c267470	sd_slot_open_type3_a	takes a type-3 slot for one or two channels whose numbers (0..15) follow as varargs, and records them in the slot state
+8c2675d8	sd_slot_open_type3_b	same body as sd_slot_open_type3_a (it even reports errors under that function)
+8c267740	sd_slot_cmd_21_start	sends driver command 0x21 for slot a0 with mode a1, value a2 and the slot's channel numbers
+8c267b30	sd_slot_cmd_26_levels	stores level a2 for side a1 of slot a0, splits it per channel for stereo slots, and sends driver command 0x26
+8c268a24	mwRna_reset_all	stops and destroys every live RNA handle of the eight, clears the handle table and transfer buffers, fills the silence buffer with 0x80
+8c268b70	mwRnaCreate_like	creates an RNA output handle for one or two AICA channels a0[], set to 16-bit 44100 Hz
+8c2693ce	mwRna_fill_transfer_like	works out how much of each channel can be sent this frame and copies it into the transfer buffer

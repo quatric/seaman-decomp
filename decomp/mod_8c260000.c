@@ -3229,13 +3229,13 @@ u32 thunk_FUN_8c268a24(void) {
 }
 
 /*
- * cri_sound_2629ac  0x8c2629ac
- * area name: in the cri library code range; behaviour name: mostly calls sound functions
+ * mwRnaCreate_like_wrap  0x8c2629ac
+ * only calls mwRnaCreate_like
  */
-u32 cri_sound_2629ac(void) {
+u32 mwRnaCreate_like_wrap(void) {
     u32 uVar1;
 
-    uVar1 = sd_sound_268b70();
+    uVar1 = mwRnaCreate_like();
     return uVar1;
 }
 
@@ -3253,10 +3253,10 @@ u32 mwRna_stop_and_destroy(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * cri_sound_2629d0  0x8c2629d0
- * area name: in the cri library code range; behaviour name: mostly calls sound functions
+ * mwRna_sound_2629d0  0x8c2629d0
+ * area name: sits between mwRna functions (same compilation unit); behaviour name: mostly calls sound functions
  */
-u32 cri_sound_2629d0(void) {
+u32 mwRna_sound_2629d0(void) {
     u32 uVar1;
 
     uVar1 = mwRna_sound_2690d8();
@@ -4828,7 +4828,7 @@ u32 cri_sound_263840(int a0, int a1, int a2, u32 a3) {
             *(int *)(iVar4 + 0x8c277fd4) = iVar1;
             if (iVar1 != 0) {
                 iVar6 = a0;
-                iVar1 = sd_sound_268b70(iVar4 + 0x8c277fe8, a0, a6, a3);
+                iVar1 = mwRnaCreate_like(iVar4 + 0x8c277fe8, a0, a6, a3);
                 *(int *)(iVar4 + 0x8c277fdc) = iVar1;
                 if (iVar1 != 0) {
                     *(u32 *)(iVar4 + 0x8c278008) = 0x3c;
@@ -8260,7 +8260,7 @@ int sd_sound_2666cc(int a0, u32 unused_a1, u32 a2) {
 /*
  * sd_slot_alloc  0x8c266708
  * takes a free sound slot of type a1 (eight of types 1 and 2, four of type 3) into *a0
- * called by: alt_entry_2680ee, sd_sound_267470, sd_sound_2675d8, sd_sound_2680ec
+ * called by: alt_entry_2680ee, sd_slot_open_type3_a, sd_slot_open_type3_b, sd_sound_2680ec
  */
 int sd_slot_alloc(int *a0, int a1) {
     int iVar1;
@@ -9284,10 +9284,11 @@ int sd_slot_ch_get_field_01(int a0, u32 a1, u8 *a2) {
 }
 
 /*
- * sd_sound_267470  0x8c267470
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_slot_open_type3_a  0x8c267470
+ * takes a type-3 slot for one or two channels whose numbers (0..15) follow as varargs, and records them in the slot
+ * state
  */
-int sd_sound_267470(int *a0, u32 unused_a1, int a2, int a3, u32 s0, u32 s4) {
+int sd_slot_open_type3_a(int *a0, u32 unused_a1, int a2, int a3, u32 s0, u32 s4) {
     u32 *puVar1;
     u8 *puVar2;
     int iVar3;
@@ -9345,17 +9346,17 @@ int sd_sound_267470(int *a0, u32 unused_a1, int a2, int a3, u32 s0, u32 s4) {
         }
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sound_267470, ar5_00, a2);
+        sd_set_last_error(sd_slot_open_type3_a, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sound_2675d8  0x8c2675d8
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_slot_open_type3_b  0x8c2675d8
+ * same body as sd_slot_open_type3_a (it even reports errors under that function)
  * called by: sd_sound_26a246
  */
-int sd_sound_2675d8(int *a0, u32 unused_a1, int a2, int a3, u32 s0, u32 s4) {
+int sd_slot_open_type3_b(int *a0, u32 unused_a1, int a2, int a3, u32 s0, u32 s4) {
     u32 *puVar1;
     u8 *puVar2;
     int iVar3;
@@ -9413,17 +9414,17 @@ int sd_sound_2675d8(int *a0, u32 unused_a1, int a2, int a3, u32 s0, u32 s4) {
         }
     }
     if (ar5_00 != 0) {
-        sd_set_last_error(sd_sound_267470, ar5_00, a2);
+        sd_set_last_error(sd_slot_open_type3_a, ar5_00, a2);
     }
     return ar5_00;
 }
 
 /*
- * sd_sound_267740  0x8c267740
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_slot_cmd_21_start  0x8c267740
+ * sends driver command 0x21 for slot a0 with mode a1, value a2 and the slot's channel numbers
  * called by: sdPstmPlay
  */
-int sd_sound_267740(int a0, int a1, u32 a2, u32 a3) {
+int sd_slot_cmd_21_start(int a0, int a1, u32 a2, u32 a3) {
     u8 bVar1;
     u32 *puVar2;
     u8 *puVar3;
@@ -9477,11 +9478,11 @@ int sd_sound_267740(int a0, int a1, u32 a2, u32 a3) {
             pbVar9 = pbVar9 + 1;
             0x8c4bd42c [iVar7] = bVar1;
         }
-        iVar7 = sd_cmd_ring_push(0x8c4bd428, sd_sound_267740);
+        iVar7 = sd_cmd_ring_push(0x8c4bd428, sd_slot_cmd_21_start);
     }
 LAB_8c267802:
     if (iVar7 != 0) {
-        sd_set_last_error((&sd_sound_267740), iVar7);
+        sd_set_last_error((&sd_slot_cmd_21_start), iVar7);
     }
     return iVar7;
 }
@@ -9550,7 +9551,7 @@ int alt_entry_267744(int a0, int a1, u8 *a2, u32 a3) {
     }
 LAB_8c267802:
     if (iVar6 != 0) {
-        sd_set_last_error(sd_sound_267740, iVar6, a2);
+        sd_set_last_error(sd_slot_cmd_21_start, iVar6, a2);
     }
     return iVar6;
 }
@@ -9576,7 +9577,7 @@ int sdPstmPlay(u32 a0, u32 a1, u32 a2, u32 a3) {
         }
         if ((a2 & 0xffff) == *puVar1) {
             a2 = (u32)(short)puVar1[1];
-            ar5_00 = sd_sound_267740(a0, a1, a2, a3);
+            ar5_00 = sd_slot_cmd_21_start(a0, a1, a2, a3);
             goto LAB_8c267878;
         }
         puVar1 = puVar1 + 2;
@@ -9656,7 +9657,7 @@ u32 sd_sound_267914(u32 unused_a0, u32 unused_a1, u32 a2) {
 /*
  * sd_sound_267924  0x8c267924
  * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls sound functions
- * called by: sd_sound_267470, sd_sound_2675d8, sd_sound_267914
+ * called by: sd_slot_open_type3_a, sd_slot_open_type3_b, sd_sound_267914
  */
 int sd_sound_267924(int a0, int a1) {
     int ar6_00;
@@ -9911,11 +9912,11 @@ u32 sd_slot_send_cmd_2a_wrap(u32 unused_a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * sd_sound_267b30  0x8c267b30
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_slot_cmd_26_levels  0x8c267b30
+ * stores level a2 for side a1 of slot a0, splits it per channel for stereo slots, and sends driver command 0x26
  * called by: alt_entry_267d98, thunk_FUN_8c267b30
  */
-int sd_sound_267b30(int a0, u32 a1, u32 a2, u32 a3) {
+int sd_slot_cmd_26_levels(int a0, u32 a1, u32 a2, u32 a3) {
     u8 bVar1;
     char cVar2;
     u32 uVar3;
@@ -9975,7 +9976,7 @@ int sd_sound_267b30(int a0, u32 a1, u32 a2, u32 a3) {
         iVar5 = sd_cmd_ring_push(&g_8c4bd4a0, &g_8c4bd4a5, 0, a3);
     }
     if (iVar5 != 0) {
-        sd_set_last_error(sd_sound_267b30, iVar5, a2);
+        sd_set_last_error(sd_slot_cmd_26_levels, iVar5, a2);
     }
     return iVar5;
 }
@@ -9987,7 +9988,7 @@ int sd_sound_267b30(int a0, u32 a1, u32 a2, u32 a3) {
 u32 thunk_FUN_8c267b30(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = sd_sound_267b30();
+    uVar1 = sd_slot_cmd_26_levels();
     return uVar1;
 }
 
@@ -10080,7 +10081,7 @@ u32 sd_slot_cmd_pitch_wrap(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * sd_sound_267d88  0x8c267d88
  * area name: in the sd library code range; behaviour name: mostly calls sound functions
- * called by: sd_sound_267470, sd_sound_2675d8, thunk_FUN_8c267d88
+ * called by: sd_slot_open_type3_a, sd_slot_open_type3_b, thunk_FUN_8c267d88
  */
 int sd_sound_267d88(int a0, u32 a1) {
     u8 *puVar1;
@@ -10095,7 +10096,7 @@ int sd_sound_267d88(int a0, u32 a1) {
         (((iVar3 < 3 && (iVar2 = (short)*(char *)(a0 + 1) * 0x2c + (int)0xa8 + *(int *)(&DATA_8c2784c0), -1 < iVar3)) &&
           (iVar3 <= *(char *)(iVar2 + 4))))) {
         *(char *)(iVar2 + 5) = (char)a1;
-        puVar1 = (&sd_sound_267b30);
+        puVar1 = (&sd_slot_cmd_26_levels);
         iVar5 = 0;
         iVar4 = 0;
         if (0 < iVar3) {
@@ -10140,7 +10141,7 @@ int alt_entry_267d98(u32 unused_a0, u32 a1, int a2, int a3) {
                     do {
                         a2 = *(int *)(ar5_00 * 4 + iVar2 + 0x1c);
                         iVar1 = 0;
-                        sd_sound_267b30(unaff_r10, ar5_00, a2, 0);
+                        sd_slot_cmd_26_levels(unaff_r10, ar5_00, a2, 0);
                         ar5_00 = ar5_00 + 1;
                     } while (ar5_00 < iVar3);
                 }
@@ -11211,11 +11212,11 @@ u32 sd_clear_state(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * sd_sound_268a24  0x8c268a24
- * area name: sits between sd functions (same compilation unit); behaviour name: mostly calls sound functions
- * decompiler: Switch with 1 destination removed at 0x8c268ab4
+ * mwRna_reset_all  0x8c268a24
+ * stops and destroys every live RNA handle of the eight, clears the handle table and transfer buffers, fills the
+ * silence buffer with 0x80 decompiler: Switch with 1 destination removed at 0x8c268ab4
  */
-u32 sd_sound_268a24(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 mwRna_reset_all(u32 a0, u32 a1, u32 a2, u32 a3) {
     char *pcVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -11318,7 +11319,7 @@ u32 alt_entry_268a36(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * rna_handle_reset  0x8c268afc
  * clears the RNA (raw PCM) playback handle a0's state fields
- * called by: sd_sound_268b70
+ * called by: mwRnaCreate_like
  */
 int rna_handle_reset(int a0) {
     int iVar1;
@@ -11351,7 +11352,7 @@ int rna_handle_reset(int a0) {
 /*
  * mwRna_find_free_handle  0x8c268b48
  * first free 0x90-byte mwRna handle of the eight at 8c4bd580, else 0
- * called by: sd_sound_268b70
+ * called by: mwRnaCreate_like
  */
 char *mwRna_find_free_handle(void) {
     char *pcVar1;
@@ -11367,11 +11368,11 @@ char *mwRna_find_free_handle(void) {
 }
 
 /*
- * sd_sound_268b70  0x8c268b70
- * name hint from a string it uses: E1201 mwRnaCreate Illigal pa; area name: in the sd library code range; behaviour
- * name: mostly calls sound functions called by: cri_sound_2629ac, cri_sound_263840
+ * mwRnaCreate_like  0x8c268b70
+ * creates an RNA output handle for one or two AICA channels a0[], set to 16-bit 44100 Hz
+ * called by: cri_sound_263840, mwRnaCreate_like_wrap
  */
-u32 sd_sound_268b70(int *a0, u32 a1, u32 a2, u32 a3) {
+u32 mwRnaCreate_like(int *a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
     u8 *a4;
     u32 uVar2;
@@ -11444,7 +11445,7 @@ u32 sd_sound_268b70(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * mwRnaDestroy  0x8c268c7e
  * stops an mwRna output if playing, releases its channels and clears the 0x90-byte handle
- * called by: alt_entry_268a36, mwRna_stop_and_destroy, sd_sound_268a24
+ * called by: alt_entry_268a36, mwRna_reset_all, mwRna_stop_and_destroy
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRnaDestroy(u8 *a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -11511,7 +11512,7 @@ u32 noop_268d60(void) {
 /*
  * mwRnaStop  0x8c268d64
  * stops an mwRna output: play switch off, buffers reset, status cleared (interrupts masked)
- * called by: alt_entry_268a36, mwRnaDestroy, mwRnaStart_like, mwRna_stop_and_destroy, sd_sound_268a24
+ * called by: alt_entry_268a36, mwRnaDestroy, mwRnaStart_like, mwRna_reset_all, mwRna_stop_and_destroy
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRnaStop(int a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -11562,7 +11563,7 @@ u32 mwRna_uses_debug_printf_268db4(int a0) {
 /*
  * mwRna_update_fields_268ddc  0x8c268ddc
  * area name: sits between mwRna functions (same compilation unit); behaviour name: conditionally writes members
- * called by: mwRna_uses_libgcc_divide_helper_269244, mwRna_uses_libgcc_divide_helper_2693ce
+ * called by: mwRna_fill_transfer_like, mwRna_uses_libgcc_divide_helper_269244
  */
 u32 mwRna_update_fields_268ddc(int a0, u32 a1, u32 a2, u32 a3, int s0) {
     if (s0 < 1) {
@@ -11760,8 +11761,8 @@ int mwRnaPause(u32 a0, u32 unused_a1, u32 a2, u32 a3, int ain0) {
  * mwRna_sound_2690d8  0x8c2690d8
  * name hint from a string it uses: E1205 Illigal parameter MWRN; area name: sits between mwRna functions (same
  * compilation unit); behaviour name: mostly calls sound functions called by: ADXT_Stop_like, ADXT_stop_internal_like,
- * ADXT_uses_get_field_1_s8_264b14, ADXT_uses_libgcc_divide_helper_2647f4, cri_sound_2629d0, mwRnaStart_like, mwRnaStop,
- * mwRna_sound_2694a4 strings: "E1205:Illigal parameter (MWRNA=NULL)"
+ * ADXT_uses_get_field_1_s8_264b14, ADXT_uses_libgcc_divide_helper_2647f4, mwRnaStart_like, mwRnaStop,
+ * mwRna_sound_2629d0, mwRna_sound_2694a4 strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRna_sound_2690d8(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -11929,11 +11930,11 @@ int *mwRna_uses_libgcc_divide_helper_269244(u8 *a0, u32 unused_a1, u8 *a2, u8 *a
 }
 
 /*
- * mwRna_uses_libgcc_divide_helper_2693ce  0x8c2693ce
- * area name: sits between mwRna functions (same compilation unit); behaviour name: its main named callee is
- * libgcc_divide_helper_010468 called by: mwRna_sound_2694a4
+ * mwRna_fill_transfer_like  0x8c2693ce
+ * works out how much of each channel can be sent this frame and copies it into the transfer buffer
+ * called by: mwRna_sound_2694a4
  */
-u8 *mwRna_uses_libgcc_divide_helper_2693ce(int a0) {
+u8 *mwRna_fill_transfer_like(int a0) {
     int iVar1;
     u8 *puVar2;
     int iVar3;
@@ -12026,7 +12027,7 @@ u32 mwRna_sound_2694a4(int a0, u32 unused_a1, u32 a2, u32 a3) {
         }
         if (*(char *)(a0 + 5) != '\0')
             goto LAB_8c26958c;
-        iVar2 = mwRna_uses_libgcc_divide_helper_2693ce(a0);
+        iVar2 = mwRna_fill_transfer_like(a0);
     }
     if (0 < iVar2) {
         *(u8 *)(a0 + 5) = 1;
@@ -12442,7 +12443,7 @@ u32 mwRna_get_buffered(int a0) {
 /*
  * mwRnaSetNumChan  0x8c269ae8
  * named from the library error message it prints (mwRnaSetNumChan)
- * called by: ADXT_uses_libgcc_divide_helper_2647f4, mwRnaSetNumChan_wrap, sd_sound_268b70
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4, mwRnaCreate_like, mwRnaSetNumChan_wrap
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"; "E1211:mwRnaSetNumChan Illigal parameter(NCH>MAXNCH)"
  */
 u32 mwRnaSetNumChan(int a0, int a1, u32 a2, u32 a3) {
@@ -12495,7 +12496,7 @@ u32 mwRna_set_field_44(int a0, u32 a1) {
 /*
  * mwRnaSetBitPerSmpl  0x8c269b8e
  * sets bits per sample (+8), rescaling the buffer length +0x28; output vtable slot 0x2c
- * called by: ADXT_uses_libgcc_divide_helper_2647f4, mwRnaSetBitPerSmpl_wrap, mwRna_sound_269fc8, sd_sound_268b70
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4, mwRnaCreate_like, mwRnaSetBitPerSmpl_wrap, mwRna_sound_269fc8
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRnaSetBitPerSmpl(int a0, u32 a1, u32 a2, u32 a3) {
@@ -12521,7 +12522,7 @@ u32 mwRnaSetBitPerSmpl(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * mwRnaSetSfreq  0x8c269c04
  * sets the sampling rate (+0xc); output vtable slot 0x24
- * called by: ADXT_uses_libgcc_divide_helper_2647f4, mwRnaSetSfreq_wrap, mwRna_sound_269fc8, sd_sound_268b70
+ * called by: ADXT_uses_libgcc_divide_helper_2647f4, mwRnaCreate_like, mwRnaSetSfreq_wrap, mwRna_sound_269fc8
  * strings: "E1205:Illigal parameter (MWRNA=NULL)"
  */
 u32 mwRnaSetSfreq(int a0, u32 a1, u32 a2, u32 a3) {
@@ -12923,8 +12924,8 @@ u32 noop_26a0f8(void) {
 /*
  * sd_irq_disable  0x8c26a100
  * saves SR.IMASK in *a0 and returns SR with IMASK 15
- * called by: mwRnaDestroy, mwRnaDiscardData, mwRnaStart_like, mwRnaStop, mwRna_resume, mwRna_server_all,
- * mwRna_set_play_sw, mwRna_sound_2690d8 (+5 more)
+ * called by: mwRnaCreate_like, mwRnaDestroy, mwRnaDiscardData, mwRnaStart_like, mwRnaStop, mwRna_resume,
+ * mwRna_server_all, mwRna_set_play_sw (+5 more)
  */
 u32 sd_irq_disable(u32 *a0) {
     u32 uVar1;
@@ -12949,8 +12950,8 @@ u32 sd_irq_disable(u32 *a0) {
 /*
  * sd_irq_restore  0x8c26a118
  * SR with IMASK from *a0
- * called by: mwRnaDestroy, mwRnaDiscardData, mwRnaStart_like, mwRnaStop, mwRna_resume, mwRna_server_all,
- * mwRna_set_play_sw, mwRna_sound_2690d8 (+5 more)
+ * called by: mwRnaCreate_like, mwRnaDestroy, mwRnaDiscardData, mwRnaStart_like, mwRnaStop, mwRna_resume,
+ * mwRna_server_all, mwRna_set_play_sw (+5 more)
  */
 u32 sd_irq_restore(u32 *a0) {
     u8 in_MD;
@@ -12991,8 +12992,8 @@ u32 sd_copy_26a130(int a0, u32 a1) {
 
 /*
  * debug_printf  0x8c26a14e
- * called by: alt_entry_26a870, alt_entry_26aa5c, mwRnaDestroy, mwRnaDiscardData, mwRnaGetBitPerSmpl, mwRnaGetFx,
- * mwRnaGetOutPan, mwRnaGetOutVol (+47 more)
+ * called by: alt_entry_26a870, alt_entry_26aa5c, mwRnaCreate_like, mwRnaDestroy, mwRnaDiscardData, mwRnaGetBitPerSmpl,
+ * mwRnaGetFx, mwRnaGetOutPan (+47 more)
  */
 u32 debug_printf(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s4) {
     u32 uVar1;
@@ -13276,10 +13277,10 @@ u32 sd_sound_26a246(int a0, int a1, int a2, int a3) {
         }
         if (a0 == 1) {
             puVar8 = &uStack_2c;
-            iVar6 = sd_sound_2675d8(puVar8, a1, a2, a3, 1, (int)(char)aiStack_28[0]);
+            iVar6 = sd_slot_open_type3_b(puVar8, a1, a2, a3, 1, (int)(char)aiStack_28[0]);
         } else {
             puVar8 = &uStack_2c;
-            iVar6 = sd_sound_2675d8(puVar8, a1, a2, a3, a0, (int)(char)aiStack_28[0]);
+            iVar6 = sd_slot_open_type3_b(puVar8, a1, a2, a3, a0, (int)(char)aiStack_28[0]);
         }
         puVar4 = (&thunk_FUN_8c2678a4);
         if (iVar6 == 0) {
