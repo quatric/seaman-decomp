@@ -2782,10 +2782,10 @@ u32 get_field_8_066620(int a0) {
 }
 
 /*
- * Class_12a078_steps_066628  0x8c066628
+ * Class_12a078_state_eat_and_move_to_and_suck_066628  0x8c066628
  * called by: FrogMan_choose_status_event
  */
-u32 Class_12a078_steps_066628(int a0, int *a1, u32 a2) {
+u32 Class_12a078_state_eat_and_move_to_and_suck_066628(int a0, int *a1, u32 a2) {
     u32 uVar1;
     u8 *a5;
     u8 *a6;
@@ -9376,9 +9376,9 @@ int Class_12a25c_m7_06f918(int a0) {
 }
 
 /*
- * Class_12a25c_anim_turn_move_06f93c  0x8c06f93c
+ * Class_12a25c_state_dispatch_06f93c  0x8c06f93c
  */
-code *Class_12a25c_anim_turn_move_06f93c(int a0, u32 *a1, u32 unused_a2, code *a3) {
+code *Class_12a25c_state_dispatch_06f93c(int a0, u32 *a1, u32 unused_a2, code *a3) {
     u32 uVar1;
     u32 ar7_00;
     int iVar2;
@@ -9481,7 +9481,7 @@ code *Class_12a25c_anim_turn_move_06f93c(int a0, u32 *a1, u32 unused_a2, code *a
     case 0xf:
         flags6_set_all(a0 + 0x1fc, 0x1fc, puVar5);
         a3 = (code *)a1[3];
-        pcVar7 = (code *)Class_12a25c_anim_turn_timer_078fd0(a0, *(u32 *)a1[1], *(u32 *)(a1[1] + 4), a3);
+        pcVar7 = (code *)Class_12a25c_state_feces_and_idle_and_loop_078fd0(a0, *(u32 *)a1[1], *(u32 *)(a1[1] + 4), a3);
         break;
     case 1:
         a3 = (code *)pure_virtual_stub();
@@ -9489,18 +9489,18 @@ code *Class_12a25c_anim_turn_move_06f93c(int a0, u32 *a1, u32 unused_a2, code *a
         break;
     case 2:
         a3 = (code *)a1[6];
-        pcVar7 = (code *)Class_12a25c_anim_timer_steps_07af10(a0, *(u32 *)a1[1], a1[4], a3);
+        pcVar7 = (code *)Class_12a25c_state_die_07af10(a0, *(u32 *)a1[1], a1[4], a3);
         timer_motion_update(a0, auStack_30, *(u32 *)a1[1], a3);
         break;
     case 3:
-        pcVar7 = (code *)Class_12a25c_turn_timer_07f76c(a0, *(u32 *)a1[1], a1[6], a3);
+        pcVar7 = (code *)Class_12a25c_state_suffer_07f76c(a0, *(u32 *)a1[1], a1[6], a3);
         break;
     case 4:
         a3 = (code *)*a1;
-        pcVar7 = (code *)Class_12a25c_anim_turn_move_077a38(a0, *(u32 *)a1[1], auStack_30, a3);
+        pcVar7 = (code *)Class_12a25c_state_eat_077a38(a0, *(u32 *)a1[1], auStack_30, a3);
         break;
     case 6:
-        pcVar7 = (code *)Class_12a25c_anim_turn_timer_07edac(a0, *(u32 *)a1[1], a1[6], a3);
+        pcVar7 = (code *)Class_12a25c_state_sleep_07edac(a0, *(u32 *)a1[1], a1[6], a3);
         break;
     case 7:
         reset_fields_2c_6c(a0 + 0xb0, 0xb0, puVar5);
@@ -9531,16 +9531,17 @@ code *Class_12a25c_anim_turn_move_06f93c(int a0, u32 *a1, u32 unused_a2, code *a
             }
         }
         Vec3_ctor_xyz(auStack_144, uVar1, uVar6, a3);
-        pcVar7 = (code *)Class_12a25c_anim_move_random_07b7d0(a0, *(u32 *)a1[1], auStack_144, a1[3], a1[6]);
+        pcVar7 =
+            (code *)Class_12a25c_state_away_and_birth_and_go_out_07b7d0(a0, *(u32 *)a1[1], auStack_144, a1[3], a1[6]);
         a3 = (code *)0xffffffff;
         Vec3_dtor(auStack_144, 0xffffffff, auStack_144, 0xffffffff);
         break;
     case 10:
         if (*(int *)(a0 + 0x128) < 3) {
-            pcVar7 = (code *)Class_12a25c_anim_turn_random_076750(a0, *a1, 0, a3);
+            pcVar7 = (code *)Class_12a25c_state_speak_076750(a0, *a1, 0, a3);
         } else {
             a5 = a1;
-            pcVar7 = (code *)Class_12a25c_anim_turn_random_076994(a0, a1, puVar5, a3);
+            pcVar7 = (code *)Class_12a25c_state_speak_076994(a0, a1, puVar5, a3);
             (**(code **)(*(int *)a1[6] + 0x184))((int *)a1[6], a5, puVar5, a3);
             if (cVar14 == '\0') {
                 dVar10 = (double)CONCAT44(*(u32 *)(a0 + 0x48), (int)((u64)dVar9 >> 0x20));
@@ -9584,11 +9585,11 @@ code *Class_12a25c_anim_turn_move_06f93c(int a0, u32 *a1, u32 unused_a2, code *a
         break;
     case 0xb:
         if (*(int *)(a0 + 0x128) < 2) {
-            pcVar7 = (code *)Class_12a25c_anim_turn_timer_075ef4(a0, *(int *)(a0 + 0x128), puVar5, a3);
+            pcVar7 = (code *)Class_12a25c_state_pre_speak_075ef4(a0, *(int *)(a0 + 0x128), puVar5, a3);
         } else {
             Vec3_ctor_copy(auStack_9c, &g_8c125e68, puVar5, a3);
             uVar1 = 0;
-            pcVar7 = (code *)Class_12a25c_anim_turn_move_0811b4(a0, auStack_9c, 0);
+            pcVar7 = (code *)Class_12a25c_state_pre_matting_and_pre_speak_0811b4(a0, auStack_9c, 0);
             Vec3_dtor(auStack_9c, 0xffffffff, uVar1, a3);
         }
         timer_motion_update(a0, auStack_30, *(u32 *)a1[1], a3);
@@ -9857,14 +9858,15 @@ code *Class_12a25c_anim_turn_move_06f93c(int a0, u32 *a1, u32 unused_a2, code *a
                 fStack_28 = fVar8;
             }
             a3 = (code *)a1[3];
-            pcVar7 = (code *)Class_12a25c_random_timer_07baa0(a0, *(u32 *)a1[1], auStack_30, a3);
+            pcVar7 =
+                (code *)Class_12a25c_state_come_near_and_hg_quiz_come_near_07baa0(a0, *(u32 *)a1[1], auStack_30, a3);
         }
         break;
     case 0x15:
         Vec3_ctor_xyz((int)&uStack_158 + 4, pcVar3, puVar5, a3);
         a3 = (code *)a1[3];
         iVar2 = (int)&uStack_158 + 4;
-        pcVar7 = (code *)Class_12a25c_anim_move_random_07b7d0(a0, *(u32 *)a1[1], iVar2, a3, a1[6]);
+        pcVar7 = (code *)Class_12a25c_state_away_and_birth_and_go_out_07b7d0(a0, *(u32 *)a1[1], iVar2, a3, a1[6]);
         Vec3_dtor((int)&uStack_158 + 4, 0xffffffff, iVar2, a3);
         break;
     case 0x16:
@@ -9943,7 +9945,7 @@ code *Class_12a25c_anim_turn_move_06f93c(int a0, u32 *a1, u32 unused_a2, code *a
     case 0x1b:
         uVar1 = *(u32 *)a1[1];
         timer_motion_update(a0, auStack_30, uVar1, a3);
-        pcVar7 = (code *)Class_12a25c_anim_turn_timer_07d904(a0, *a1, uVar1, a3);
+        pcVar7 = (code *)Class_12a25c_state_spin_07d904(a0, *a1, uVar1, a3);
         break;
     case 0x1c:
         pcVar7 = (code *)timer_play_anim_to_end(a0, 0x10, puVar5, a3);

@@ -70,7 +70,7 @@ u32 creature_state_eat_050300(int a0, u32 a1, u32 a2, u32 a3) {
                 CAnimBody_SetFrame(a0 + 0xb0, ar5_00, ar6_00, ar7_01);
                 *(u32 *)(a0 + 0x2b8) = 3;
             }
-            CAnimal_move_05ae54(a0, ar5_00, ar6_00, ar7_01);
+            CAnimal_shared_state_helper_05ae54(a0, ar5_00, ar6_00, ar7_01);
             if (cVar8 == '\0') {
                 dVar6 = (double)CONCAT44(0x3f666666, *(u32 *)(a0 + 0x28));
             } else {
@@ -121,7 +121,7 @@ u32 creature_state_eat_050300(int a0, u32 a1, u32 a2, u32 a3) {
                 }
             }
         } else if (iVar2 == 2) {
-            CAnimal_move_05ae54(a0, ar5_00, ar6_00, ar7_01);
+            CAnimal_shared_state_helper_05ae54(a0, ar5_00, ar6_00, ar7_01);
             *(u32 *)(a0 + 0x214) = 0;
             ar7_01 = auStack_3c;
             ar6_00 = &uStack_40;
@@ -186,7 +186,7 @@ u32 creature_state_eat_050300(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * get_vec3_field_30  0x8c0507a4
  * copies x, y, z at +0x30 to three out pointers
- * called by: CHerb_kind10_state2_above_110, Class_12a25c_anim_turn_move_06f93c, Class_12a25c_anim_turn_move_077a38,
+ * called by: CHerb_kind10_state2_above_110, Class_12a25c_state_dispatch_06f93c, Class_12a25c_state_eat_077a38,
  * Class_12b088_anim_turn_steps_0aa11c, Class_12b580_helper_0da754, Class_12b930_move_sound_0e0f48,
  * creature_state_eat_050300, creature_turn_0db5c4 (+3 more)
  */
@@ -1174,7 +1174,7 @@ u32 creature_move_051a68(int a0, u32 a1, u32 a2, u32 a3) {
                 }
             }
         } else if (iVar2 == 4) {
-            CAnimal_move_05ae54(a0, uVar5, uVar1, a3);
+            CAnimal_shared_state_helper_05ae54(a0, uVar5, uVar1, a3);
         }
         Vec3_dtor(auStack_2c, 0xffffffff, uVar1, a3);
         Vec3_dtor(auStack_1c, 0xffffffff, uVar1, a3);
@@ -1184,10 +1184,10 @@ u32 creature_move_051a68(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * creature_anim_turn_051c14  0x8c051c14
+ * creature_state_feces_and_pre_speak_051c14  0x8c051c14
  * called by: creature_state_dispatch_03c94c, creature_state_speak_0530e0
  */
-u32 creature_anim_turn_051c14(int a0, u32 a1, u8 *a2, code *a3) {
+u32 creature_state_feces_and_pre_speak_051c14(int a0, u32 a1, u8 *a2, code *a3) {
     int iVar1;
     u32 *puVar2;
     u8 *puVar3;
@@ -1415,7 +1415,7 @@ u32 creature_anim_turn_051c14(int a0, u32 a1, u8 *a2, code *a3) {
         } else if (iVar1 != 2)
             goto LAB_8c0525f2;
         uVar5 = SUB84(in_dr0, 0);
-        CAnimal_move_05ae54(a0, puVar3, ar6_00, a3);
+        CAnimal_shared_state_helper_05ae54(a0, puVar3, ar6_00, a3);
         if (*(int *)(a0 + 0x128) == 0) {
             Vec3_scale(a2, &g_8c1365a0, ar6_00, a3, auStack_b4);
             ar5_00 = auStack_b4;
@@ -1687,10 +1687,10 @@ LAB_8c0525f2:
 }
 
 /*
- * creature_anim_turn_random_0526a0  0x8c0526a0
+ * creature_state_pre_speak_0526a0  0x8c0526a0
  * called by: creature_state_dispatch_b_03f4a4
  */
-u32 creature_anim_turn_random_0526a0(code *a0, code *a1, code *a2, u32 a3) {
+u32 creature_state_pre_speak_0526a0(code *a0, code *a1, code *a2, u32 a3) {
     u64 uVar1;
     int iVar2;
     code *pcVar3;
@@ -1772,7 +1772,7 @@ u32 creature_anim_turn_random_0526a0(code *a0, code *a1, code *a2, u32 a3) {
                     ar6_00 = a0;
                 case (code *)0x1:
                     pcVar3 = ar6_00;
-                    iVar5 = CAnimal_anim_057164(a0, a1, pcVar3, ar7_00);
+                    iVar5 = CAnimal_shared_state_helper_057164(a0, a1, pcVar3, ar7_00);
                     if (iVar5 == 0) {
                         *(int *)(a0 + 0x28c) = *(int *)(a0 + 0x28c) + 1;
                     }
@@ -1836,7 +1836,7 @@ u32 creature_anim_turn_random_0526a0(code *a0, code *a1, code *a2, u32 a3) {
                         Vec3_ctor_xyz(auStack_c0, uVar4, ar6_00, ar7_00);
                         Vec3_add(a1, auStack_c0, ar6_00, ar7_00, auStack_d0);
                         ar6_00 = (code *)auStack_d0;
-                        creature_anim_turn_move_057b6c(a0, a1, ar6_00, ar7_00);
+                        creature_state_feces_and_spin_057b6c(a0, a1, ar6_00, ar7_00);
                         Vec3_dtor(auStack_d0, 0xffffffff, ar6_00, ar7_00);
                         uVar4 = 0xffffffff;
                         Vec3_dtor(auStack_c0, 0xffffffff, ar6_00, ar7_00);
@@ -1846,7 +1846,7 @@ u32 creature_anim_turn_random_0526a0(code *a0, code *a1, code *a2, u32 a3) {
                         Vec3_ctor_xyz(auStack_a0, uVar4, ar6_00, ar7_00);
                         Vec3_add(a1, auStack_a0, ar6_00, ar7_00, auStack_b0);
                         ar6_00 = (code *)auStack_b0;
-                        creature_anim_turn_move_057b6c(a0, a1, ar6_00, ar7_00);
+                        creature_state_feces_and_spin_057b6c(a0, a1, ar6_00, ar7_00);
                         Vec3_dtor(auStack_b0, 0xffffffff, ar6_00, ar7_00);
                         uVar4 = 0xffffffff;
                         Vec3_dtor(auStack_a0, 0xffffffff, ar6_00, ar7_00);
@@ -1854,7 +1854,7 @@ u32 creature_anim_turn_random_0526a0(code *a0, code *a1, code *a2, u32 a3) {
                     CAnimBody_SetFrame(a0 + 0xb0, uVar4, ar6_00, ar7_00);
                     *(int *)(a0 + 0x28c) = *(int *)(a0 + 0x28c) + 1;
                 case (code *)0x3:
-                    iVar5 = creature_anim_turn_057e58(a0, uVar4, ar6_00, ar7_00);
+                    iVar5 = creature_state_feces_057e58(a0, uVar4, ar6_00, ar7_00);
                     pcVar3 = ar6_00;
                     if (iVar5 == 0) {
                         *(u32 *)(a0 + 0x28c) = 1;
@@ -2002,7 +2002,7 @@ u32 creature_anim_turn_random_0526a0(code *a0, code *a1, code *a2, u32 a3) {
         }
         goto switchD_8c0527a4_default;
     }
-    CAnimal_move_05ae54(a0, iVar5, pcVar3, ar7_00);
+    CAnimal_shared_state_helper_05ae54(a0, iVar5, pcVar3, ar7_00);
     Vec3_ctor_xyz(auStack_140, iVar5, pcVar3, ar7_00);
     Vec3_scale(auStack_140, &g_8c1365a8, pcVar3, ar7_00, auStack_150);
     puVar6 = auStack_150;
@@ -2083,7 +2083,7 @@ u32 creature_state_speak_0530e0(int a0, int *a1, u8 *a2, u32 a3) {
     } else {
         *(u64 *)(a0 + 0x28) = in_xd0;
     }
-    CAnimal_move_05ae54(a0, ar5_01, ar6_00, a3);
+    CAnimal_shared_state_helper_05ae54(a0, ar5_01, ar6_00, a3);
     uVar2 = get_field_80_s8(a1);
     if ((char)uVar2 == '\0') {
         iVar3 = (**(code **)(*a1 + 0x34))(a1, ar5_01, ar6_00, a3);
@@ -2211,7 +2211,7 @@ u32 creature_state_speak_0530e0(int a0, int *a1, u8 *a2, u32 a3) {
                 goto LAB_8c0536da;
             Vec3_ctor_copy(auStack_84, a0 + 0x54, ar6_00, a3);
             ar6_00 = auStack_84;
-            iVar3 = creature_anim_turn_051c14(a0, a2, ar6_00, a3);
+            iVar3 = creature_state_feces_and_pre_speak_051c14(a0, a2, ar6_00, a3);
             Vec3_dtor(auStack_84, 0xffffffff, ar6_00, a3);
             if (iVar3 == 0) {
                 *(u32 *)(a0 + 300) = 0;
@@ -2244,18 +2244,18 @@ LAB_8c0536da:
 
 /*
  * get_field_80_s8  0x8c053724
- * called by: Class_12a25c_anim_turn_random_076750, Class_12a25c_anim_turn_random_076994,
- * creature_anim_turn_random_053730, creature_anim_turn_random_053f24, creature_state_speak_0530e0
+ * called by: Class_12a25c_state_speak_076750, Class_12a25c_state_speak_076994, creature_state_speak_0530e0,
+ * creature_state_speak_053730, creature_state_speak_053f24
  */
 int get_field_80_s8(int a0) {
     return (int)*(char *)(0x80 + a0);
 }
 
 /*
- * creature_anim_turn_random_053730  0x8c053730
+ * creature_state_speak_053730  0x8c053730
  * called by: creature_state_dispatch_b_03f4a4
  */
-u32 creature_anim_turn_random_053730(int a0, int *a1, u32 a2, u8 *a3) {
+u32 creature_state_speak_053730(int a0, int *a1, u32 a2, u8 *a3) {
     u64 uVar1;
     u32 uVar2;
     int iVar3;
@@ -2321,7 +2321,7 @@ u32 creature_anim_turn_random_053730(int a0, int *a1, u32 a2, u8 *a3) {
     } else {
         *(u64 *)(a0 + 0x28) = in_xd0;
     }
-    CAnimal_move_05ae54(a0, uVar4, puVar5, ar7_00);
+    CAnimal_shared_state_helper_05ae54(a0, uVar4, puVar5, ar7_00);
     uVar2 = get_field_80_s8(a1);
     ain0 = CONCAT31((s32)((u32)in_stack_fffffed4 >> 8), (char)uVar2);
     if ((char)uVar2 == '\0') {
@@ -2505,10 +2505,10 @@ LAB_8c053eda:
 }
 
 /*
- * creature_anim_turn_random_053f24  0x8c053f24
+ * creature_state_speak_053f24  0x8c053f24
  * called by: creature_state_dispatch_b_03f4a4
  */
-u32 creature_anim_turn_random_053f24(int a0, int *a1, u32 a2, u32 a3) {
+u32 creature_state_speak_053f24(int a0, int *a1, u32 a2, u32 a3) {
     u64 uVar1;
     u32 uVar2;
     int iVar3;
@@ -2779,7 +2779,7 @@ u32 creature_anim_turn_random_053f24(int a0, int *a1, u32 a2, u32 a3) {
                 }
                 if (bVar11) {
                     ar6_00 = (code *)(a0 + 0x54);
-                    creature_anim_turn_move_057b6c(a0, a3, ar6_00, ar7_00);
+                    creature_state_feces_and_spin_057b6c(a0, a3, ar6_00, ar7_00);
                     uVar6 = 300;
                     *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
                 } else {
@@ -2793,8 +2793,8 @@ u32 creature_anim_turn_random_053f24(int a0, int *a1, u32 a2, u32 a3) {
                 }
                 CAnimBody_SetFrame(a0 + 0xb0, uVar6, ar6_00, ar7_00);
             } else if (iVar5 == 2) {
-                ar6_00 = creature_anim_turn_057e58;
-                iVar5 = creature_anim_turn_057e58(a0, uVar6, creature_anim_turn_057e58, ar7_00);
+                ar6_00 = creature_state_feces_057e58;
+                iVar5 = creature_state_feces_057e58(a0, uVar6, creature_state_feces_057e58, ar7_00);
                 if (iVar5 == 0) {
                     ar6_00 = (code *)0x12c;
                     *(int *)(a0 + 300) = *(int *)(a0 + 300) + -1;
@@ -2882,10 +2882,10 @@ u32 creature_action_motion4e_step(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * creature_move_steps_054b74  0x8c054b74
+ * creature_state_pre_dance_054b74  0x8c054b74
  * called by: creature_state_dispatch_b_03f4a4
  */
-u32 creature_move_steps_054b74(int a0, u32 a1, u32 a2, int a3) {
+u32 creature_state_pre_dance_054b74(int a0, u32 a1, u32 a2, int a3) {
     int iVar1;
     u32 uVar2;
     u32 in_fr1;
@@ -2917,7 +2917,7 @@ u32 creature_move_steps_054b74(int a0, u32 a1, u32 a2, int a3) {
             }
             break;
         case 1:
-            iVar1 = CAnimal_anim_057164(a0, a1, a2, a3);
+            iVar1 = CAnimal_shared_state_helper_057164(a0, a1, a2, a3);
             if (iVar1 != 0) {
                 return 1;
             }
@@ -2925,7 +2925,7 @@ u32 creature_move_steps_054b74(int a0, u32 a1, u32 a2, int a3) {
             *(u32 *)(a0 + 0x40) = 5;
             return 1;
         case 2:
-            iVar1 = CAnimal_anim_turn_move_055c38(a0, a1, a0 + 0x34c, a3);
+            iVar1 = CAnimal_shared_state_helper_055c38(a0, a1, a0 + 0x34c, a3);
             if (iVar1 != 0) {
                 return 1;
             }
@@ -2935,7 +2935,7 @@ u32 creature_move_steps_054b74(int a0, u32 a1, u32 a2, int a3) {
             return 1;
         case 3:
             uVar2 = a2;
-            iVar1 = CAnimal_anim_turn_move_04c314(a0, a1, a2);
+            iVar1 = CAnimal_state_go_jangle_and_move_to_04c314(a0, a1, a2);
             if (iVar1 == 0) {
                 *(u32 *)(a0 + 300) = 4;
             } else {
@@ -2956,7 +2956,7 @@ u32 creature_move_steps_054b74(int a0, u32 a1, u32 a2, int a3) {
             return 1;
         case 4:
             uVar2 = a2;
-            iVar1 = CAnimal_anim_057164(a0, a1, a2, a3);
+            iVar1 = CAnimal_shared_state_helper_057164(a0, a1, a2, a3);
             if (iVar1 != 0) {
                 return 1;
             }
@@ -3020,7 +3020,7 @@ u32 creature_state_come_near_054d6c(int a0, u32 a1, int a2, int a3) {
         }
     } else if (iVar1 == 1) {
         ar6_00 = a0 + 0x34c;
-        iVar2 = creature_anim_turn_move_0564c4(a0, a1, ar6_00, a3);
+        iVar2 = creature_state_to_water_0564c4(a0, a1, ar6_00, a3);
         if (iVar2 == 0) {
             *(u32 *)(a0 + 0x178) = 0;
             *(u32 *)(a0 + 0x40) = 5;
@@ -3181,7 +3181,7 @@ u32 creature_state_birth_054f7c(int a0, u32 a1, int a2, u32 a3) {
         Vec3_assign(a0 + 0x2d4, a0 + 0x2a8, ar6_00, a3);
     } else {
         if (iVar1 == 2) {
-            CAnimal_move_05ae54(a0, uVar2, ar6_00, a3);
+            CAnimal_shared_state_helper_05ae54(a0, uVar2, ar6_00, a3);
             Vec3_length_sq(a0 + 0x2d4, uVar2, ar6_00, a3);
             if (cVar8 == '\0') {
                 *(int *)(a0 + 0x28) = (int)((u64)in_dr0 >> 0x20);
@@ -3333,9 +3333,9 @@ LAB_8c0556a8:
 }
 
 /*
- * creature_anim_turn_move_055750  0x8c055750
+ * creature_state_away_055750  0x8c055750
  */
-u32 creature_anim_turn_move_055750(int a0, u32 a1, int a2, int a3) {
+u32 creature_state_away_055750(int a0, u32 a1, int a2, int a3) {
     int iVar1;
     u32 uVar2;
     int ar6_00;
@@ -3374,7 +3374,7 @@ u32 creature_anim_turn_move_055750(int a0, u32 a1, int a2, int a3) {
     uVar4 = (u32)in_dr0;
     iVar1 = *(int *)(a0 + 300);
     if (iVar1 == 0) {
-        iVar1 = CAnimal_anim_057164(a0, a1, ar6_00, ar7_00);
+        iVar1 = CAnimal_shared_state_helper_057164(a0, a1, ar6_00, ar7_00);
         if (iVar1 == 0) {
             *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
         }
@@ -3457,7 +3457,7 @@ u32 creature_anim_turn_move_055750(int a0, u32 a1, int a2, int a3) {
             *(u64 *)(a0 + 0x58) = uVar6;
         }
         ar6_00 = a0 + 0x54;
-        iVar1 = CAnimal_anim_turn_move_04c314(a0, a1, ar6_00);
+        iVar1 = CAnimal_state_go_jangle_and_move_to_04c314(a0, a1, ar6_00);
         if (iVar1 == 0) {
             if (cVar9 == '\0') {
                 *(u32 *)(a0 + 0x278) = 0x3f800000;
@@ -3515,11 +3515,11 @@ u32 CAnimal_motion_reset_055b50(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CAnimal_anim_turn_move_055c38  0x8c055c38
- * called by: alt_entry_046684, creature_anim_turn_move_04f034, creature_anim_turn_move_058d60,
- * creature_move_steps_054b74, creature_state_dispatch_b_03f4a4, game_anim_random_steps_05c640
+ * CAnimal_shared_state_helper_055c38  0x8c055c38
+ * called by: alt_entry_046684, creature_state_dispatch_b_03f4a4, creature_state_eat_04f034,
+ * creature_state_pre_dance_054b74, creature_state_to_the_top_058d60, game_anim_random_steps_05c640
  */
-u32 CAnimal_anim_turn_move_055c38(int a0, int a1, float *a2, u8 *a3) {
+u32 CAnimal_shared_state_helper_055c38(int a0, int a1, float *a2, u8 *a3) {
     int iVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -3872,10 +3872,10 @@ LAB_8c0563fa:
 }
 
 /*
- * creature_anim_turn_move_0564c4  0x8c0564c4
+ * creature_state_to_water_0564c4  0x8c0564c4
  * called by: alt_entry_046684, creature_state_come_near_054d6c, creature_state_dispatch_b_03f4a4
  */
-u32 creature_anim_turn_move_0564c4(int a0, u32 a1, int a2, u8 *a3) {
+u32 creature_state_to_water_0564c4(int a0, u32 a1, int a2, u8 *a3) {
     int iVar1;
     u8 *puVar2;
     u32 uVar3;
@@ -3939,7 +3939,7 @@ u32 creature_anim_turn_move_0564c4(int a0, u32 a1, int a2, u8 *a3) {
                 *(int *)((int)puVar8 + -0x1fc) = a0;
                 *(int *)(*(int *)((int)puVar8 + -0x1fc) + 0x2a4) = *(int *)(*(int *)((int)puVar8 + -0x1fc) + 0x2a4) + 1;
             case 1:
-                uVar3 = CAnimal_anim_057164(a0, a1, a2, a3);
+                uVar3 = CAnimal_shared_state_helper_057164(a0, a1, a2, a3);
                 *(u32 *)((int)puVar8 + -0x1c8) = uVar3;
                 iVar1 = *(int *)((int)puVar8 + -0x1c8);
                 if (iVar1 == 0) {
@@ -4004,7 +4004,7 @@ u32 creature_anim_turn_move_0564c4(int a0, u32 a1, int a2, u8 *a3) {
                 Vec3_ctor_copy((u8 *)((int)puVar8 + -0xec), a0 + 0x54, a2, Vec3_ctor_copy);
                 a3 = (u8 *)((int)puVar8 + -0xec);
                 a2 = a0 + 0x268;
-                uVar3 = Vec3_turn_04e0e0(a0, a1, a2, a3);
+                uVar3 = creature_state_pre_turn_04e0e0(a0, a1, a2, a3);
                 *(u32 *)((int)puVar8 + -0x1d0) = uVar3;
                 *(u32 *)((int)puVar8 + -0x1b8) = (u32)(*(int *)((int)puVar8 + -0x1d0) == 0);
                 Vec3_dtor((u8 *)((int)puVar8 + -0xec), 0xffffffff, a2, a3);
@@ -4255,12 +4255,12 @@ u32 CAnimal_anim_start_or_advance(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CAnimal_anim_057164  0x8c057164
- * called by: alt_entry_046684, creature_anim_random_steps_04eb14, creature_anim_turn_move_055750,
- * creature_anim_turn_move_0564c4, creature_anim_turn_move_058d60, creature_anim_turn_random_0526a0,
- * creature_move_random_sound_059fc4, creature_move_steps_054b74 (+2 more)
+ * CAnimal_shared_state_helper_057164  0x8c057164
+ * called by: alt_entry_046684, creature_state_away_055750, creature_state_dispatch_b_03f4a4,
+ * creature_state_pre_dance_054b74, creature_state_pre_speak_0526a0, creature_state_suffer_04eb14,
+ * creature_state_to_the_top_058d60, creature_state_to_water_0564c4 (+2 more)
  */
-u32 CAnimal_anim_057164(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CAnimal_shared_state_helper_057164(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -4317,7 +4317,7 @@ u32 CAnimal_anim_057164(int a0, u32 a1, u32 a2, u32 a3) {
         }
         uVar3 = 0;
     } else {
-        CAnimal_anim_turn_move_04c314(a0, a1, a1);
+        CAnimal_state_go_jangle_and_move_to_04c314(a0, a1, a1);
     }
     return uVar3;
 }
@@ -4460,7 +4460,7 @@ u32 creature_state_deco_pin_057280(u8 **a0, u8 **a1, u8 **a2, code *a3) {
             Vec3_dtor(auStack_7c, 0xffffffff, ppuVar5, a3);
             uVar3 = 0xffffffff;
             Vec3_dtor(auStack_6c, 0xffffffff, ppuVar5, a3);
-            CAnimal_move_05ae54(a0, uVar3, ppuVar5, a3);
+            CAnimal_shared_state_helper_05ae54(a0, uVar3, ppuVar5, a3);
             timer_stop_94(a0, uVar3, ppuVar5, a3);
             a3 = (code *)a0[0x91];
             uVar3 = 0x1e;
@@ -4520,7 +4520,7 @@ u32 creature_state_deco_pin_057280(u8 **a0, u8 **a1, u8 **a2, code *a3) {
             Vec3_dtor(auStack_e4, 0xffffffff, a1, a3);
             uVar3 = 0xffffffff;
             Vec3_dtor(auStack_d4, 0xffffffff, a1, a3);
-            CAnimal_move_05ae54(a0, uVar3, a1, a3);
+            CAnimal_shared_state_helper_05ae54(a0, uVar3, a1, a3);
             iVar1 = CAnimBody_AdvanceFrame_033b98(a0 + 0x2c, a0 + 0x9e, a1, a3);
             ppuVar4 = a1;
             if (iVar1 == 1) {
@@ -4543,8 +4543,8 @@ u32 creature_state_deco_pin_057280(u8 **a0, u8 **a1, u8 **a2, code *a3) {
             uVar3 = 0xffffffff;
             a3 = Vec3_dtor;
             Vec3_dtor(auStack_f4, 0xffffffff, a1, Vec3_dtor);
-            pcVar6 = CAnimal_move_05ae54;
-            CAnimal_move_05ae54(a0, uVar3, CAnimal_move_05ae54, a3);
+            pcVar6 = CAnimal_shared_state_helper_05ae54;
+            CAnimal_shared_state_helper_05ae54(a0, uVar3, CAnimal_shared_state_helper_05ae54, a3);
             iVar1 = CAnimBody_AdvanceFrame_033b98(a0 + 0x2c, 0xb0, pcVar6, a3);
             ppuVar4 = (u8 **)pcVar6;
             if (iVar1 == 1) {
@@ -4558,12 +4558,12 @@ u32 creature_state_deco_pin_057280(u8 **a0, u8 **a1, u8 **a2, code *a3) {
 }
 
 /*
- * creature_anim_turn_move_057b6c  0x8c057b6c
- * called by: CAnimal_anim_turn_move_04c314, Vec3_turn_04e0e0, creature_anim_turn_move_058d60,
- * creature_anim_turn_random_0526a0, creature_anim_turn_random_053f24, creature_anim_turn_random_0593cc,
- * creature_state_dispatch_b_03f4a4
+ * creature_state_feces_and_spin_057b6c  0x8c057b6c
+ * called by: CAnimal_state_go_jangle_and_move_to_04c314, creature_state_dispatch_b_03f4a4,
+ * creature_state_over_the_top_end_0593cc, creature_state_pre_speak_0526a0, creature_state_pre_turn_04e0e0,
+ * creature_state_speak_053f24, creature_state_to_the_top_058d60
  */
-u32 creature_anim_turn_move_057b6c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 creature_state_feces_and_spin_057b6c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 *puVar2;
     u32 uVar3;
@@ -4726,11 +4726,12 @@ u32 creature_anim_turn_move_057b6c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * creature_anim_turn_057e58  0x8c057e58
- * called by: CAnimal_anim_turn_move_04c314, Vec3_turn_04e0e0, creature_anim_turn_move_058d60,
- * creature_anim_turn_random_0526a0, creature_anim_turn_random_053f24, creature_anim_turn_random_0593cc
+ * creature_state_feces_057e58  0x8c057e58
+ * called by: CAnimal_state_go_jangle_and_move_to_04c314, creature_state_over_the_top_end_0593cc,
+ * creature_state_pre_speak_0526a0, creature_state_pre_turn_04e0e0, creature_state_speak_053f24,
+ * creature_state_to_the_top_058d60
  */
-u32 creature_anim_turn_057e58(int a0, u32 a1, u32 a2, u32 a3) {
+u32 creature_state_feces_057e58(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     float fVar3;
@@ -4852,8 +4853,8 @@ u32 creature_anim_turn_057e58(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * creature_anim_turn_move_058024  0x8c058024
- * called by: creature_anim_random_steps_04eb14, creature_anim_turn_move_058d60, creature_anim_turn_random_0593cc,
- * creature_move_random_sound_059fc4
+ * called by: creature_state_over_the_top_end_0593cc, creature_state_suffer_04eb14, creature_state_to_the_top_058d60,
+ * creature_state_wall_hit_059fc4
  */
 u32 creature_anim_turn_move_058024(int a0, code *a1, u32 a2, code *a3) {
     u32 uVar1;
@@ -5370,10 +5371,10 @@ LAB_8c058cde:
 }
 
 /*
- * creature_anim_turn_move_058d60  0x8c058d60
+ * creature_state_to_the_top_058d60  0x8c058d60
  * called by: creature_state_dispatch_b_03f4a4
  */
-u32 creature_anim_turn_move_058d60(int a0, u32 a1, u8 *a2, u8 *a3) {
+u32 creature_state_to_the_top_058d60(int a0, u32 a1, u8 *a2, u8 *a3) {
     int iVar1;
     code *ar5_00;
     u8 *puVar2;
@@ -5421,7 +5422,7 @@ u32 creature_anim_turn_move_058d60(int a0, u32 a1, u8 *a2, u8 *a3) {
         case 0:
             *(u32 *)(a0 + 0x214) = 0;
             ar6_00 = (u8 *)(a0 + 0x34c);
-            iVar1 = CAnimal_anim_turn_move_055c38(a0, a1, ar6_00, a3);
+            iVar1 = CAnimal_shared_state_helper_055c38(a0, a1, ar6_00, a3);
             ar7_00 = a3;
             if (iVar1 == 0) {
                 *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
@@ -5430,7 +5431,7 @@ u32 creature_anim_turn_move_058d60(int a0, u32 a1, u8 *a2, u8 *a3) {
             break;
         case 1:
             uVar3 = a1;
-            iVar1 = CAnimal_anim_057164(a0, a1, ar6_00, ar7_00);
+            iVar1 = CAnimal_shared_state_helper_057164(a0, a1, ar6_00, ar7_00);
             if (iVar1 == 0) {
                 *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
                 *(u32 *)(a0 + 0x40) = 5;
@@ -5479,7 +5480,7 @@ u32 creature_anim_turn_move_058d60(int a0, u32 a1, u8 *a2, u8 *a3) {
             Vec3_ctor_copy(auStack_e0, a0 + 0x54, ar6_00, ar7_00);
             ar7_00 = auStack_e0;
             ar6_00 = (u8 *)(a0 + 0x248);
-            iVar1 = Vec3_turn_04e0e0(a0, a1, ar6_00, ar7_00);
+            iVar1 = creature_state_pre_turn_04e0e0(a0, a1, ar6_00, ar7_00);
             uVar3 = 0xffffffff;
             Vec3_dtor(auStack_e0, 0xffffffff, ar6_00, ar7_00);
             if (iVar1 == 0) {
@@ -5504,7 +5505,7 @@ u32 creature_anim_turn_move_058d60(int a0, u32 a1, u8 *a2, u8 *a3) {
             Vec3_ctor_xyz(auStack_f0, a2, ar6_00, ar7_00);
             Vec3_add(a1, auStack_f0, ar6_00, ar7_00, auStack_100);
             ar6_00 = auStack_100;
-            creature_anim_turn_move_057b6c(a0, a1, ar6_00, ar7_00);
+            creature_state_feces_and_spin_057b6c(a0, a1, ar6_00, ar7_00);
             Vec3_dtor(auStack_100, 0xffffffff, ar6_00, ar7_00);
             a2 = (u8 *)0xffffffff;
             Vec3_dtor(auStack_f0, 0xffffffff, ar6_00, ar7_00);
@@ -5518,7 +5519,7 @@ u32 creature_anim_turn_move_058d60(int a0, u32 a1, u8 *a2, u8 *a3) {
             *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
         case 5:
             fVar5 = (float)((u64)in_dr0 >> 0x20);
-            iVar1 = creature_anim_turn_057e58(a0, a2, ar6_00, ar7_00);
+            iVar1 = creature_state_feces_057e58(a0, a2, ar6_00, ar7_00);
             if (iVar1 == 0) {
                 ar7_00 = NULL;
                 ar6_00 = (u8 *)0xffffffff;
@@ -5555,10 +5556,10 @@ u32 creature_anim_turn_move_058d60(int a0, u32 a1, u8 *a2, u8 *a3) {
 }
 
 /*
- * creature_anim_turn_random_0593cc  0x8c0593cc
+ * creature_state_over_the_top_end_0593cc  0x8c0593cc
  * called by: creature_state_dispatch_b_03f4a4
  */
-u32 creature_anim_turn_random_0593cc(int a0, int *a1, u32 a2, u32 a3) {
+u32 creature_state_over_the_top_end_0593cc(int a0, int *a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -5612,7 +5613,7 @@ u32 creature_anim_turn_random_0593cc(int a0, int *a1, u32 a2, u32 a3) {
             Vec3_ctor_xyz(auStack_40, in_stack_00000000, uVar5, ar7_00);
             Vec3_add(a3, auStack_40, uVar5, ar7_00, auStack_50);
             puVar7 = auStack_50;
-            creature_anim_turn_move_057b6c(a0, a3, puVar7, ar7_00);
+            creature_state_feces_and_spin_057b6c(a0, a3, puVar7, ar7_00);
             Vec3_dtor(auStack_50, 0xffffffff, puVar7, ar7_00);
             uVar2 = 0xffffffff;
             Vec3_dtor(auStack_40, 0xffffffff, puVar7, ar7_00);
@@ -5670,7 +5671,7 @@ u32 creature_anim_turn_random_0593cc(int a0, int *a1, u32 a2, u32 a3) {
             }
         case 1:
             fVar9 = (float)((u64)in_dr0 >> 0x20);
-            iVar1 = creature_anim_turn_057e58(a0, in_stack_00000000, uVar5, ar7_00);
+            iVar1 = creature_state_feces_057e58(a0, in_stack_00000000, uVar5, ar7_00);
             if (iVar1 == 0) {
                 Vec3_make(a0 + 0x14, in_stack_00000000, uVar5, ar7_00, auStack_80);
                 Vec3_ctor_xyz(auStack_90, in_stack_00000000, uVar5, ar7_00);
@@ -5755,7 +5756,7 @@ u32 creature_anim_turn_random_0593cc(int a0, int *a1, u32 a2, u32 a3) {
                     Vec3_ctor_xyz(auStack_a0, uVar5, uVar2, uVar6);
                     Vec3_add(a3, auStack_a0, uVar2, uVar6, auStack_b0);
                     puVar7 = auStack_b0;
-                    creature_anim_turn_move_057b6c(a0, a3, puVar7, uVar6);
+                    creature_state_feces_and_spin_057b6c(a0, a3, puVar7, uVar6);
                     Vec3_dtor(auStack_b0, 0xffffffff, puVar7, uVar6);
                     uVar5 = 0xffffffff;
                     Vec3_dtor(auStack_a0, 0xffffffff, puVar7, uVar6);
@@ -5842,7 +5843,7 @@ u32 creature_anim_turn_random_0593cc(int a0, int *a1, u32 a2, u32 a3) {
             }
             break;
         case 6:
-            iVar1 = creature_anim_turn_057e58(a0, in_stack_00000000, 1, ar7_00);
+            iVar1 = creature_state_feces_057e58(a0, in_stack_00000000, 1, ar7_00);
             fVar9 = (float)((u64)in_dr0 >> 0x20);
             if (iVar1 == 0) {
                 pcVar4 = Vec3_make;
@@ -5864,7 +5865,7 @@ u32 creature_anim_turn_random_0593cc(int a0, int *a1, u32 a2, u32 a3) {
                     Vec3_ctor_xyz(puVar7, 0, puVar7, ar7_00);
                     Vec3_add(a3, auStack_e0, puVar7, ar7_00, auStack_f0);
                     puVar7 = auStack_f0;
-                    creature_anim_turn_move_057b6c(a0, a3, puVar7, ar7_00);
+                    creature_state_feces_and_spin_057b6c(a0, a3, puVar7, ar7_00);
                     Vec3_dtor(auStack_f0, 0xffffffff, puVar7, ar7_00);
                     Vec3_dtor(auStack_e0, 0xffffffff, puVar7, ar7_00);
                 } else {
@@ -5892,10 +5893,10 @@ u32 ret_const_0_059fbc(void) {
 }
 
 /*
- * creature_move_random_sound_059fc4  0x8c059fc4
- * called by: alt_entry_046684, creature_anim_random_steps_04eb14, creature_state_dispatch_b_03f4a4
+ * creature_state_wall_hit_059fc4  0x8c059fc4
+ * called by: alt_entry_046684, creature_state_dispatch_b_03f4a4, creature_state_suffer_04eb14
  */
-u32 creature_move_random_sound_059fc4(int a0, u32 *a1, int a2, u8 *a3) {
+u32 creature_state_wall_hit_059fc4(int a0, u32 *a1, int a2, u8 *a3) {
     int iVar1;
     u32 *puVar2;
     u32 uVar3;
@@ -5934,7 +5935,7 @@ u32 creature_move_random_sound_059fc4(int a0, u32 *a1, int a2, u8 *a3) {
     *(u32 *)(a0 + 0x300) = 0;
     iVar1 = *(int *)(a0 + 0x28c);
     if (iVar1 == 0) {
-        iVar1 = CAnimal_anim_057164(a0, a1, a2, ar7_00);
+        iVar1 = CAnimal_shared_state_helper_057164(a0, a1, a2, ar7_00);
         if (iVar1 == 0) {
             if (cVar11 == '\0') {
                 dVar6 = (double)CONCAT44(0x43330000, a1[1]);
@@ -6154,7 +6155,7 @@ u32 creature_move_random_sound_059fc4(int a0, u32 *a1, int a2, u8 *a3) {
         Vec3_ctor_copy(auStack_3c, a0 + 0x248, a2, ar7_00);
         ar7_00 = auStack_3c;
         a2 = a0 + 0x54;
-        iVar1 = Vec3_turn_04e0e0(a0, a1, a2, ar7_00);
+        iVar1 = creature_state_pre_turn_04e0e0(a0, a1, a2, ar7_00);
         uVar3 = 0xffffffff;
         Vec3_dtor(auStack_3c, 0xffffffff, a2, ar7_00);
         if (iVar1 == 0) {
@@ -6170,10 +6171,10 @@ LAB_8c05a4c4:
 }
 
 /*
- * game_anim_turn_random_05a54c  0x8c05a54c
+ * creature_state_dance_05a54c  0x8c05a54c
  * called by: creature_state_dispatch_b_03f4a4
  */
-u32 game_anim_turn_random_05a54c(int a0, u32 a1, int a2, int a3) {
+u32 creature_state_dance_05a54c(int a0, u32 a1, int a2, int a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -6541,12 +6542,12 @@ u32 game_anim_turn_random_05a54c(int a0, u32 a1, int a2, int a3) {
 }
 
 /*
- * CAnimal_move_05ae54  0x8c05ae54
- * called by: alt_entry_046684, creature_anim_turn_051c14, creature_anim_turn_move_05c9fc,
- * creature_anim_turn_random_0526a0, creature_anim_turn_random_053730, creature_move_051a68,
- * creature_state_birth_054f7c, creature_state_deco_pin_057280 (+7 more)
+ * CAnimal_shared_state_helper_05ae54  0x8c05ae54
+ * called by: alt_entry_046684, creature_anim_turn_move_05c9fc, creature_move_051a68, creature_state_birth_054f7c,
+ * creature_state_deco_pin_057280, creature_state_die_04d62c, creature_state_dispatch_03c94c,
+ * creature_state_dispatch_b_03f4a4 (+7 more)
  */
-u32 CAnimal_move_05ae54(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CAnimal_shared_state_helper_05ae54(int a0, u32 a1, u32 a2, u32 a3) {
     u64 uVar1;
     u32 uVar2;
     float in_fr1;
@@ -7302,8 +7303,8 @@ u32 ret_const_3f800000_05c27c(void) {
 /*
  * get_field_24_05c284  0x8c05c284
  * called by: CEnv_AddItem, CEnv_take_out_item, CEnv_vec_helper_0dac50, CGame_GetUserGameInfo,
- * CGame_state_is_finished_like, Class_12984c_sound_0c4e58, Class_12a25c_anim_turn_move_077a38,
- * Class_12b3b8_turn_draw_0e7a78 (+19 more)
+ * CGame_state_is_finished_like, Class_12984c_sound_0c4e58, Class_12a25c_state_eat_077a38, Class_12b3b8_turn_draw_0e7a78
+ * (+19 more)
  */
 u32 get_field_24_05c284(int a0, u32 a1) {
     return *(u32 *)(a0 + 0x24);
@@ -7311,8 +7312,8 @@ u32 get_field_24_05c284(int a0, u32 a1) {
 
 /*
  * creature_state_tickle_05c28c  0x8c05c28c
- * called by: alt_entry_046684, creature_anim_turn_move_05c9fc, creature_anim_turn_random_0526a0,
- * creature_state_dispatch_03c94c, creature_state_idle_048868, creature_type_a_update_048f8c,
+ * called by: alt_entry_046684, creature_anim_turn_move_05c9fc, creature_state_dispatch_03c94c,
+ * creature_state_idle_048868, creature_state_pre_speak_0526a0, creature_type_a_update_048f8c,
  * creature_type_b_update_049b68, creature_type_c_update_04b168 (+1 more)
  */
 u32 creature_state_tickle_05c28c(int a0, u32 a1, u32 a2, u32 a3) {
@@ -7765,7 +7766,7 @@ u32 game_anim_random_steps_05c640(int a0, u32 a1, int a2, u32 a3) {
                         }
                     }
                     if (a2 == 1) {
-                        iVar1 = CAnimal_anim_057164(a0, a1, iVar1, a3);
+                        iVar1 = CAnimal_shared_state_helper_057164(a0, a1, iVar1, a3);
                         if (iVar1 == 0) {
                             *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
                         }
@@ -7780,7 +7781,7 @@ u32 game_anim_random_steps_05c640(int a0, u32 a1, int a2, u32 a3) {
                     *(u32 *)(a0 + 0x214) = 0;
                     *(u32 *)(a0 + 0x178) = 1;
                     iVar3 = a0 + 0x34c;
-                    iVar1 = CAnimal_anim_turn_move_055c38(a0, a1, iVar3, a2);
+                    iVar1 = CAnimal_shared_state_helper_055c38(a0, a1, iVar3, a2);
                     if (iVar1 == 0) {
                         *(u32 *)(a0 + 0x178) = 0;
                         *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
@@ -7831,7 +7832,7 @@ u32 game_anim_random_steps_05c640(int a0, u32 a1, int a2, u32 a3) {
                     break;
                 case 2:
                     *(u32 *)(a0 + 700) = 0xffffffff;
-                    iVar1 = CAnimal_anim_turn_move_04c314(a0, a1, a0 + 0x248);
+                    iVar1 = CAnimal_state_go_jangle_and_move_to_04c314(a0, a1, a0 + 0x248);
                     if (iVar1 == 0) {
                         *(u32 *)(a0 + 700) = 0;
                         iVar1 = rand_range(a0, 0, 10);
@@ -8040,7 +8041,7 @@ u32 creature_anim_turn_move_05c9fc(int a0, u8 *a1, u8 *a2, code *a3) {
             CAnimBody_SetFrame(a0 + 0xb0, uVar5, a2, a3);
         }
     } else if (iVar1 == 2) {
-        CAnimal_move_05ae54(a0, puVar4, a2, a3);
+        CAnimal_shared_state_helper_05ae54(a0, puVar4, a2, a3);
         Vec3_scale(a0 + 0x14, &g_8c136618, a2, a3, auStack_c0);
         Vec3_add(a1, auStack_c0, a2, a3, auStack_d0);
         timer_motion_update(a0, auStack_d0, a1, a3);
@@ -9029,8 +9030,9 @@ u32 get_field_24_05eed0(int a0, u32 a1) {
 
 /*
  * get_field_4_05eed8  0x8c05eed8
- * called by: Class_12a078_m2_05eee0, Class_12a078_steps_066628, Class_12a7a8_m1_098d14, Class_12a7a8_turn_099b0c,
- * Class_12acc8_m1_09f470, Class_12acc8_turn_random_0a0278, Class_12b0c4_m1_0ab7f4, Class_12b0c4_m2_0abc38 (+8 more)
+ * called by: Class_12a078_m2_05eee0, Class_12a078_state_eat_and_move_to_and_suck_066628, Class_12a7a8_m1_098d14,
+ * Class_12a7a8_turn_099b0c, Class_12acc8_m1_09f470, Class_12acc8_turn_random_0a0278, Class_12b0c4_m1_0ab7f4,
+ * Class_12b0c4_m2_0abc38 (+8 more)
  */
 u32 get_field_4_05eed8(int a0) {
     return *(u32 *)(a0 + 4);
@@ -9338,7 +9340,7 @@ u32 FrogMan_choose_status_event(int a0, u32 a1, int *a2, int a3) {
                 set_field_38_02f404(a0, 3);
                 iVar4 = CAnimal_child_6c_ready(a0, CAnimal_child_6c_ready, piVar3, a3);
                 if (iVar4 == 1) {
-                    Class_12a078_steps_066628(a0, a1, piVar3);
+                    Class_12a078_state_eat_and_move_to_and_suck_066628(a0, a1, piVar3);
                 } else {
                     *(u32 *)(a0 + 0x6c) = 0;
                     *(u32 *)(a0 + 0x38) = 2;
@@ -9379,7 +9381,8 @@ u32 FrogMan_choose_status_event(int a0, u32 a1, int *a2, int a3) {
                             *(u32 *)(a0 + 0x6c) = 0;
                         }
                     }
-                    Class_12a078_steps_066628(a0, a1, Class_12a078_steps_066628);
+                    Class_12a078_state_eat_and_move_to_and_suck_066628(
+                        a0, a1, Class_12a078_state_eat_and_move_to_and_suck_066628);
                 } else {
                     *(u32 *)(a0 + 0x38) = 2;
                 }
@@ -9418,7 +9421,7 @@ u32 FrogMan_choose_status_event(int a0, u32 a1, int *a2, int a3) {
                         take_from_field_6c(*(u32 *)(a0 + 0x6c), 1, piVar3, a3);
                         *(u32 *)(a0 + 0x88) = 0;
                     }
-                    Class_12a078_steps_066628(a0, a1, piVar3);
+                    Class_12a078_state_eat_and_move_to_and_suck_066628(a0, a1, piVar3);
                     CAnimal_compute_bounds_like(a0, a1);
                 } else {
                     *(u32 *)(a0 + 0x38) = 2;

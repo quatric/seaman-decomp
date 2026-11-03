@@ -171,10 +171,10 @@ u32 global_list_push(u32 a0, u32 a1, u32 *a2, u32 a3) {
 
 /*
  * pure_virtual_stub  0x8c0101bc
- * called by: CAnimal_state_step_07f56c, Class_1297f4_m0_014cf0, Class_12a03c_m1_03c43c,
- * Class_12a25c_anim_turn_move_06f93c, Class_12a25c_anim_turn_move_077a38, Class_12a25c_anim_turn_timer_078fd0,
- * Class_12a25c_anim_turn_timer_07edac, Class_12a25c_m1_06f530 (+34 more) decompiler: Control flow encountered
- * unimplemented instructions
+ * called by: CAnimal_state_step_07f56c, Class_1297f4_m0_014cf0, Class_12a03c_m1_03c43c, Class_12a25c_m1_06f530,
+ * Class_12a25c_state_come_near_and_hg_quiz_come_near_07baa0, Class_12a25c_state_dispatch_06f93c,
+ * Class_12a25c_state_dispatch_b_070d7c, Class_12a25c_state_dispatch_c_071a38 (+34 more) decompiler: Control flow
+ * encountered unimplemented instructions
  */
 u32 pure_virtual_stub(void) {
     /* WARNING: Unimplemented instruction - Truncating control flow here */
@@ -1997,8 +1997,8 @@ u32 libgcc_divide_helper_010284(u32 a0, int a1, u32 a2) {
 
 /*
  * libgcc_divide_helper_01031c  0x8c01031c
- * called by: CAnimBody_random_flags_delay, CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_097fcc, CAnimal_ctor,
- * CAnimal_init_fields_like, CAnimal_m2_02573c, CAnimal_m3_026078, CHerb_LoadGRWait (+69 more)
+ * called by: CAnimBody_random_flags_delay, CAnimal_anim_turn_move_097fcc, CAnimal_ctor, CAnimal_init_fields_like,
+ * CAnimal_m2_02573c, CAnimal_m3_026078, CAnimal_state_go_jangle_and_move_to_04c314, CHerb_LoadGRWait (+69 more)
  */
 int libgcc_divide_helper_01031c(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -8306,8 +8306,8 @@ u32 double_inf_or_nan(void) {
  * float_check_errno  0x8c010e38
  * sets errno 0x44c (inf) or 0x44d (NaN) for a non-finite fr4
  * called by: CAnimal_anim_turn_move_04e2d0, Class_12a990_helper_09b6c4, Class_12b580_time_of_day_update_like,
- * creature_anim_turn_051c14, creature_anim_turn_move_0507c0, creature_anim_turn_move_07ff08,
- * creature_state_dispatch_03c94c, creature_state_dispatch_b_03f4a4 (+4 more)
+ * creature_anim_turn_move_0507c0, creature_anim_turn_move_07ff08, creature_state_dispatch_03c94c,
+ * creature_state_dispatch_b_03f4a4, creature_state_feces_and_pre_speak_051c14 (+4 more)
  */
 u32 float_check_errno(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 in_fr4;
@@ -11678,9 +11678,9 @@ int qsort_recurse(u32 a0, u32 a1, int *a2, int a3, int ain0) {
 
 /*
  * rand  0x8c014200
- * called by: CAnimBody_random_flags_delay, CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_097fcc, CAnimal_ctor,
- * CAnimal_init_fields_like, CSquidLine_random_0ae84c, Class_1297f4_randomize_particles, Class_129808_m0_0147a4 (+62
- * more)
+ * called by: CAnimBody_random_flags_delay, CAnimal_anim_turn_move_097fcc, CAnimal_ctor, CAnimal_init_fields_like,
+ * CAnimal_state_go_jangle_and_move_to_04c314, CSquidLine_random_0ae84c, Class_1297f4_randomize_particles,
+ * Class_129808_m0_0147a4 (+62 more)
  */
 u32 rand(void) {
     u32 uVar1;
@@ -12495,9 +12495,9 @@ u32 set_flag_10_28(int a0) {
 
 /*
  * object_dtor_delete  0x8c014a34
- * called by: CAnimal_anim_0a3aac, CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_04e2d0,
- * CAnimal_anim_turn_move_055c38, CAnimal_anim_turn_move_097fcc, CAnimal_anim_turn_random_091e60,
- * CAnimal_body_distance_check, CAnimal_body_scalar_dtor (+123 more)
+ * called by: CAnimal_anim_0a3aac, CAnimal_anim_turn_move_04e2d0, CAnimal_anim_turn_move_097fcc,
+ * CAnimal_anim_turn_random_091e60, CAnimal_body_distance_check, CAnimal_body_scalar_dtor,
+ * CAnimal_compute_part_positions, CAnimal_m0_025688 (+123 more)
  */
 int object_dtor_delete(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -12823,9 +12823,9 @@ u32 Class_1297f4_reset(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * vec3_clear  0x8c014e20
- * called by: CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_055c38, CAnimal_copy_key_and_set_frame,
- * CAnimal_state_step_0a3624, CMushroomerBody_AwayFrom, Class_1297f4_reset, Class_1299f8_clear, Class_1299f8_clear_b
- * (+39 more)
+ * called by: CAnimal_copy_key_and_set_frame, CAnimal_shared_state_helper_055c38,
+ * CAnimal_state_go_jangle_and_move_to_04c314, CAnimal_state_step_0a3624, CMushroomerBody_AwayFrom, Class_1297f4_reset,
+ * Class_1299f8_clear, Class_1299f8_clear_b (+39 more)
  */
 u32 *vec3_clear(u32 *a0, u32 a1, u32 a2, u32 a3) {
     *a0 = 0;
@@ -13916,8 +13916,8 @@ u32 gfx_object_draw_a_entry_wrap(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * deref_u32  0x8c015b4c
  * called by: CAnimBody_CheckThisMotionData, CAnimBody_SetInterpolate, CAnimBody_draw_key_model,
- * CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_055c38, CAnimal_copy_key_and_set_frame, CAnimal_draw_body,
- * CAnimal_draw_key_model_a (+45 more)
+ * CAnimal_copy_key_and_set_frame, CAnimal_draw_body, CAnimal_draw_key_model_a, CAnimal_draw_key_model_b,
+ * CAnimal_draw_key_model_c (+45 more)
  */
 u32 deref_u32(u32 *a0) {
     return *a0;
@@ -14889,8 +14889,8 @@ u32 *Class_1299b0_ctor(u32 *a0, u32 a1, u32 a2) {
 /*
  * free_if_nonnull_wrap_016ac4  0x8c016ac4
  * called by: CAnimal_m0_025688, CAnimal_part_scalar_dtor, CSquidLine_random_0ae84c, Class_1299b0_dtor,
- * Class_12a0c4_m0_0674c8, Class_12a25c_anim_turn_move_077a38, Class_12a5d0_m0_08a3a4, Class_12a990_lists_scalar_dtor
- * (+10 more)
+ * Class_12a0c4_m0_0674c8, Class_12a25c_state_eat_077a38, Class_12a5d0_m0_08a3a4, Class_12a990_lists_scalar_dtor (+10
+ * more)
  */
 int free_if_nonnull_wrap_016ac4(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;

@@ -5,7 +5,7 @@
 
 /*
  * creature_anim_random_080890  0x8c080890
- * called by: Class_12a25c_anim_turn_timer_078fd0
+ * called by: Class_12a25c_state_feces_and_idle_and_loop_078fd0
  */
 u32 creature_anim_random_080890(int a0, u32 a1, int *a2, u32 a3) {
     u32 uVar1;
@@ -127,7 +127,7 @@ u32 creature_anim_random_080890(int a0, u32 a1, int *a2, u32 a3) {
 
 /*
  * game_anim_random_timer_080e80  0x8c080e80
- * called by: Class_12a25c_anim_turn_timer_078fd0
+ * called by: Class_12a25c_state_feces_and_idle_and_loop_078fd0
  */
 u32 game_anim_random_timer_080e80(int a0, u32 a1, int *a2, u32 a3) {
     u32 uVar1;
@@ -309,12 +309,12 @@ u32 game_anim_random_timer_080e80(int a0, u32 a1, int *a2, u32 a3) {
 }
 
 /*
- * Class_12a25c_anim_turn_move_0811b4  0x8c0811b4
- * called by: Class_12a25c_anim_move_random_07a68c, Class_12a25c_anim_turn_move_06f93c,
- * Class_12a25c_anim_turn_random_076994, creature_anim_move_draw_07d048, creature_anim_random_sound_070d7c,
- * creature_anim_turn_083780, creature_anim_turn_move_07c5f8, creature_anim_turn_move_07f8e0 (+7 more)
+ * Class_12a25c_state_pre_matting_and_pre_speak_0811b4  0x8c0811b4
+ * called by: Class_12a25c_anim_move_random_07a68c, Class_12a25c_state_dispatch_06f93c,
+ * Class_12a25c_state_dispatch_b_070d7c, Class_12a25c_state_dispatch_c_071a38, Class_12a25c_state_speak_076994,
+ * creature_anim_turn_083780, creature_anim_turn_move_07f8e0, creature_anim_turn_move_07ff08 (+7 more)
  */
-u32 Class_12a25c_anim_turn_move_0811b4(int a0, u32 a1, int a2) {
+u32 Class_12a25c_state_pre_matting_and_pre_speak_0811b4(int a0, u32 a1, int a2) {
     u32 *puVar1;
     int iVar2;
     int iVar3;
@@ -914,8 +914,8 @@ LAB_8c0822ea:
 /*
  * creature_turn_toward_dir_step  0x8c082378
  * blends the heading (+0x14) toward direction a1 by a step that grows with the turn counter (+0x2b4), renormalises it
- * and copies it to +0x80 called by: Class_12a25c_anim_turn_move_077a38, Class_12a25c_anim_turn_move_0811b4,
- * Class_12a25c_anim_turn_random_076750, Class_12a25c_anim_turn_random_076994, Class_12a25c_anim_turn_timer_07edac,
+ * and copies it to +0x80 called by: Class_12a25c_state_eat_077a38, Class_12a25c_state_pre_matting_and_pre_speak_0811b4,
+ * Class_12a25c_state_sleep_07edac, Class_12a25c_state_speak_076750, Class_12a25c_state_speak_076994,
  * creature_anim_turn_move_07f8e0, creature_anim_turn_move_07ff08, creature_anim_turn_move_083d8c (+4 more)
  */
 u32 creature_turn_toward_dir_step(int a0, u32 a1, u32 a2, u32 a3) {
@@ -982,7 +982,7 @@ u32 creature_turn_toward_dir_step(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * creature_anim_turn_timer_08248c  0x8c08248c
- * called by: Class_12a25c_anim_turn_timer_078fd0
+ * called by: Class_12a25c_state_feces_and_idle_and_loop_078fd0
  */
 u32 creature_anim_turn_timer_08248c(int a0, int a1, u32 *a2, int *a3) {
     u32 uVar1;
@@ -1233,7 +1233,7 @@ u32 creature_anim_turn_timer_08248c(int a0, int a1, u32 *a2, int *a3) {
                     }
                     Vec3_ctor_copy(auStack_74, auStack_54, a2, ar7_00);
                     a2 = (u32 *)0x1;
-                    iVar3 = Class_12a25c_anim_turn_move_0811b4(a0, auStack_74, 1);
+                    iVar3 = Class_12a25c_state_pre_matting_and_pre_speak_0811b4(a0, auStack_74, 1);
                     Vec3_dtor(auStack_74, 0xffffffff, a2, ar7_00);
                     if (iVar3 == 0) {
                         *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
@@ -1316,10 +1316,10 @@ u32 creature_anim_turn_timer_08248c(int a0, int a1, u32 *a2, int *a3) {
 }
 
 /*
- * game_anim_turn_random_082c50  0x8c082c50
- * called by: creature_anim_random_sound_070d7c, creature_anim_turn_random_071a38
+ * creature_state_feces_082c50  0x8c082c50
+ * called by: Class_12a25c_state_dispatch_b_070d7c, Class_12a25c_state_dispatch_c_071a38
  */
-u32 game_anim_turn_random_082c50(int a0, int a1, u32 unused_a2, u32 a3) {
+u32 creature_state_feces_082c50(int a0, int a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u8 *ar5_00;
     u32 uVar2;
@@ -1363,7 +1363,7 @@ u32 game_anim_turn_random_082c50(int a0, int a1, u32 unused_a2, u32 a3) {
             timer_stop_94(a0, ar5_00, uVar3, a3);
             Vec3_ctor_copy(auStack_40, &g_8c125e68, uVar3, a3);
             uVar3 = 1;
-            iVar1 = Class_12a25c_anim_turn_move_0811b4(a0, auStack_40, 1);
+            iVar1 = Class_12a25c_state_pre_matting_and_pre_speak_0811b4(a0, auStack_40, 1);
             uStack_d4 = (double)(u64)CONCAT14(iVar1 == 0, (u32)uStack_d4);
             Vec3_dtor(auStack_40, 0xffffffff, uVar3, a3);
             if (uStack_d4._4_4_ != 0) {
@@ -1495,7 +1495,7 @@ u32 game_anim_turn_random_082c50(int a0, int a1, u32 unused_a2, u32 a3) {
 
 /*
  * game_anim_turn_random_0831c8  0x8c0831c8
- * called by: Class_12a25c_anim_turn_timer_078fd0
+ * called by: Class_12a25c_state_feces_and_idle_and_loop_078fd0
  */
 u32 game_anim_turn_random_0831c8(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -1559,7 +1559,7 @@ u32 game_anim_turn_random_0831c8(int a0, u32 a1, u32 a2, u32 a3) {
                 timer_stop_94(a0, a1, a2, a3);
                 Vec3_ctor_copy(auStack_34, a0 + 0x54, a2, a3);
                 uVar3 = 0;
-                iVar1 = Class_12a25c_anim_turn_move_0811b4(a0, auStack_34, 0);
+                iVar1 = Class_12a25c_state_pre_matting_and_pre_speak_0811b4(a0, auStack_34, 0);
                 Vec3_dtor(auStack_34, 0xffffffff, uVar3, a3);
                 if (iVar1 == 0) {
                     *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
@@ -1685,7 +1685,7 @@ u32 game_anim_turn_random_0831c8(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * creature_anim_turn_083780  0x8c083780
- * called by: Class_12a25c_anim_turn_random_076994
+ * called by: Class_12a25c_state_speak_076994
  */
 u32 creature_anim_turn_083780(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -1727,7 +1727,7 @@ u32 creature_anim_turn_083780(int a0, u32 a1, u32 a2, u32 a3) {
         }
         Vec3_ctor_copy(auStack_38, a0 + 0x280, a2, a3);
         ar6_00 = 1;
-        iVar1 = Class_12a25c_anim_turn_move_0811b4(a0, auStack_38, 1);
+        iVar1 = Class_12a25c_state_pre_matting_and_pre_speak_0811b4(a0, auStack_38, 1);
         uVar2 = 0xffffffff;
         Vec3_dtor(auStack_38, 0xffffffff, ar6_00, a3);
         if (iVar1 == 0) {
@@ -1746,7 +1746,7 @@ u32 creature_anim_turn_083780(int a0, u32 a1, u32 a2, u32 a3) {
         }
         Vec3_ctor_copy(auStack_64, a0 + 0x280, a2, a3);
         uVar2 = 1;
-        iVar1 = Class_12a25c_anim_turn_move_0811b4(a0, auStack_64, 1);
+        iVar1 = Class_12a25c_state_pre_matting_and_pre_speak_0811b4(a0, auStack_64, 1);
         Vec3_dtor(auStack_64, 0xffffffff, uVar2, a3);
         if (iVar1 == 0) {
             *(u32 *)(a0 + 0x2b0) = 0;
@@ -1759,7 +1759,7 @@ u32 creature_anim_turn_083780(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * creature_anim_turn_move_0839c0  0x8c0839c0
- * called by: Class_12a25c_anim_turn_random_076994
+ * called by: Class_12a25c_state_speak_076994
  */
 u32 creature_anim_turn_move_0839c0(int a0, int a1, int a2, u32 a3) {
     int iVar1;
@@ -1918,7 +1918,7 @@ u32 creature_anim_turn_move_0839c0(int a0, int a1, int a2, u32 a3) {
 
 /*
  * creature_anim_turn_move_083d8c  0x8c083d8c
- * called by: Class_12a25c_anim_turn_random_076994
+ * called by: Class_12a25c_state_speak_076994
  */
 u32 creature_anim_turn_move_083d8c(int a0, int a1, int a2, u32 a3) {
     int iVar1;
@@ -2030,7 +2030,7 @@ u32 creature_anim_turn_move_083d8c(int a0, int a1, int a2, u32 a3) {
     case 1:
         Vec3_ctor_copy(auStack_78, a0 + 0x54, a2, a3);
         a2 = 1;
-        iVar1 = Class_12a25c_anim_turn_move_0811b4(a0, auStack_78, 1);
+        iVar1 = Class_12a25c_state_pre_matting_and_pre_speak_0811b4(a0, auStack_78, 1);
         Vec3_dtor(auStack_78, 0xffffffff, a2, a3);
         if (iVar1 == 0) {
             if (*(int *)(a0 + 0x128) == 6) {
@@ -2293,7 +2293,7 @@ switchD_8c083dce_default:
 
 /*
  * creature_anim_turn_move_0845f4  0x8c0845f4
- * called by: Class_12a25c_anim_turn_random_076994
+ * called by: Class_12a25c_state_speak_076994
  */
 u32 creature_anim_turn_move_0845f4(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -2383,7 +2383,7 @@ u32 creature_anim_turn_move_0845f4(int a0, int a1, u32 a2, u32 a3) {
         case 1:
             Vec3_ctor_copy(auStack_74, a0 + 0x54, a2, a3);
             a2 = 1;
-            iVar1 = Class_12a25c_anim_turn_move_0811b4(a0, auStack_74, 1);
+            iVar1 = Class_12a25c_state_pre_matting_and_pre_speak_0811b4(a0, auStack_74, 1);
             Vec3_dtor(auStack_74, 0xffffffff, a2, a3);
             if (iVar1 == 0) {
                 if (*(int *)(a0 + 0x128) == 6) {

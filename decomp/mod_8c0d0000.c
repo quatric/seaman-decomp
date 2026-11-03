@@ -9605,7 +9605,7 @@ int item_set_mode_by_speed(int a0) {
 /*
  * set_fields_10_14_0d98d4  0x8c0d98d4
  * stores +0x10, +0x14
- * called by: creature_anim_turn_random_0593cc, set_fields_10_14_on_field_22704
+ * called by: creature_state_over_the_top_end_0593cc, set_fields_10_14_on_field_22704
  */
 u32 set_fields_10_14_0d98d4(int a0) {
     *(u32 *)(a0 + 0x10) = 6;
@@ -11256,7 +11256,7 @@ u32 game_clear_node_and_item_lists(int a0, u32 *a1, u32 a2, u32 a3) {
 /*
  * start_free_entry_0c0c  0x8c0dba50
  * starts the first free of eight 0x68-byte entries at +0xc0c from points a1 and a2; 0 when all are busy
- * called by: creature_state_dispatch_03c94c, game_anim_turn_random_082c50
+ * called by: creature_state_dispatch_03c94c, creature_state_feces_082c50
  */
 u32 start_free_entry_0c0c(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;

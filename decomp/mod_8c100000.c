@@ -1898,9 +1898,9 @@ u16 *set_fields_0_2(u16 *a0, u32 a1, u32 a2) {
 /*
  * clear_3_words_102748  0x8c102748
  * a0[0..2] = 0
- * called by: CAnimal_vec_and_float_ctor, Class_12a25c_anim_turn_timer_078fd0, Class_12b088_anim_turn_0aa70c,
- * Class_12b580_random_sound_0f6ac4, Class_12bce0_ctor, alt_entry_046684, creature_anim_turn_move_08fd38,
- * creature_anim_turn_move_0967d8 (+7 more)
+ * called by: CAnimal_vec_and_float_ctor, Class_12a25c_state_feces_and_idle_and_loop_078fd0,
+ * Class_12b088_anim_turn_0aa70c, Class_12b580_random_sound_0f6ac4, Class_12bce0_ctor, alt_entry_046684,
+ * creature_anim_turn_move_08fd38, creature_anim_turn_move_0967d8 (+7 more)
  */
 u32 *clear_3_words_102748(u32 *a0) {
     a0[2] = 0;
@@ -1912,9 +1912,9 @@ u32 *clear_3_words_102748(u32 *a0) {
 /*
  * Vec3_assign_f_10277c  0x8c10277c
  * stores fr4..fr6 as x, y, z
- * called by: CAnimal_m2_02573c, CAnimal_m3_026078, Class_12b088_anim_random_timer_0a6974,
- * Class_12b2ac_anim_turn_move_0b3604, Class_12bb08_ctor, alt_entry_046684, creature_anim_turn_move_055750,
- * creature_anim_turn_random_071a38 (+4 more)
+ * called by: CAnimal_m2_02573c, CAnimal_m3_026078, Class_12a25c_state_dispatch_c_071a38,
+ * Class_12b088_anim_random_timer_0a6974, Class_12b2ac_anim_turn_move_0b3604, Class_12bb08_ctor, alt_entry_046684,
+ * creature_state_away_055750 (+4 more)
  */
 u32 *Vec3_assign_f_10277c(u32 *a0) {
     u32 in_fr5;
@@ -1930,8 +1930,8 @@ u32 *Vec3_assign_f_10277c(u32 *a0) {
 /*
  * free_if_nonnull_wrap_102790  0x8c102790
  * called by: CAnimal_list_scalar_dtor, CAnimal_m2_02573c, CAnimal_m3_026078, CAnimal_move_to_target,
- * Class_12a25c_anim_turn_timer_078fd0, Class_12ad14_anim_move_random_0a37c8, Class_12ad14_anim_turn_random_0a14d8,
- * Class_12ad14_m1_0a09e8 (+25 more)
+ * Class_12a25c_state_dispatch_c_071a38, Class_12a25c_state_feces_and_idle_and_loop_078fd0,
+ * Class_12ad14_anim_move_random_0a37c8, Class_12ad14_anim_turn_random_0a14d8 (+25 more)
  */
 int free_if_nonnull_wrap_102790(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
