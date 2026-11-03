@@ -6,11 +6,21 @@ void sh4x_8c0105c4(Cpu &);
 void sh4x_8c010614(Cpu &);
 void sh4x_8c0106dc(Cpu &);
 void sh4x_8c010794(Cpu &);
+void sh4x_8c010a90(Cpu &);
+void sh4x_8c010e38(Cpu &);
+void sh4x_8c01186c(Cpu &);
 void sh4x_8c011960(Cpu &);
 void sh4x_8c011c5c(Cpu &);
+void sh4x_8c011d50(Cpu &);
+void sh4x_8c013aec(Cpu &);
+void sh4x_8c014d90(Cpu &);
+void sh4x_8c014e20(Cpu &);
+void sh4x_8c015b54(Cpu &);
 void sh4x_8c016068(Cpu &);
 void sh4x_8c016340(Cpu &);
 void sh4x_8c01636c(Cpu &);
+void sh4x_8c016cec(Cpu &);
+void sh4x_8c016e6c(Cpu &);
 void sh4x_8c016e98(Cpu &);
 void sh4x_8c016ecc(Cpu &);
 void sh4x_8c0170e0(Cpu &);
@@ -18,25 +28,57 @@ void sh4x_8c0171f4(Cpu &);
 void sh4x_8c019058(Cpu &);
 void sh4x_8c019128(Cpu &);
 void sh4x_8c019160(Cpu &);
+void sh4x_8c0192a8(Cpu &);
 void sh4x_8c0194c0(Cpu &);
+void sh4x_8c019560(Cpu &);
 void sh4x_8c019574(Cpu &);
 void sh4x_8c01a5cc(Cpu &);
+void sh4x_8c01a630(Cpu &);
 void sh4x_8c022c20(Cpu &);
 void sh4x_8c022c4c(Cpu &);
 void sh4x_8c022c88(Cpu &);
+void sh4x_8c022d04(Cpu &);
+void sh4x_8c022d14(Cpu &);
 void sh4x_8c022dac(Cpu &);
+void sh4x_8c022e5c(Cpu &);
 void sh4x_8c022e78(Cpu &);
+void sh4x_8c022ec0(Cpu &);
+void sh4x_8c022f54(Cpu &);
+void sh4x_8c022fc0(Cpu &);
+void sh4x_8c023040(Cpu &);
+void sh4x_8c0230f0(Cpu &);
+void sh4x_8c0231c8(Cpu &);
+void sh4x_8c02327c(Cpu &);
 void sh4x_8c023484(Cpu &);
 void sh4x_8c023570(Cpu &);
 void sh4x_8c023a14(Cpu &);
 void sh4x_8c023a34(Cpu &);
 void sh4x_8c023aa0(Cpu &);
 void sh4x_8c023ae0(Cpu &);
+void sh4x_8c023b4c(Cpu &);
+void sh4x_8c023b8c(Cpu &);
+void sh4x_8c023d34(Cpu &);
+void sh4x_8c023d7c(Cpu &);
+void sh4x_8c023d8c(Cpu &);
+void sh4x_8c023f70(Cpu &);
+void sh4x_8c023fdc(Cpu &);
+void sh4x_8c024010(Cpu &);
 void sh4x_8c02573c(Cpu &);
+void sh4x_8c02aba0(Cpu &);
 void sh4x_8c02dfa0(Cpu &);
+void sh4x_8c031ab4(Cpu &);
+void sh4x_8c03207c(Cpu &);
+void sh4x_8c033e68(Cpu &);
+void sh4x_8c036f0c(Cpu &);
 void sh4x_8c0507a4(Cpu &);
 void sh4x_8c0ad354(Cpu &);
+void sh4x_8c0ade84(Cpu &);
 void sh4x_8c0aff3c(Cpu &);
+void sh4x_8c0b0784(Cpu &);
+void sh4x_8c0b54f4(Cpu &);
+void sh4x_8c0b5ad0(Cpu &);
+void sh4x_8c0b67cc(Cpu &);
+void sh4x_8c0bf0bc(Cpu &);
 void sh4x_8c0bf0e8(Cpu &);
 void sh4x_8c0bf11c(Cpu &);
 void sh4x_8c0c412c(Cpu &);
@@ -44,11 +86,17 @@ void sh4x_8c0c42b0(Cpu &);
 void sh4x_8c0c453c(Cpu &);
 void sh4x_8c0c6e74(Cpu &);
 void sh4x_8c0c76d0(Cpu &);
+void sh4x_8c0c8134(Cpu &);
+void sh4x_8c0d02c8(Cpu &);
+void sh4x_8c0d0564(Cpu &);
 void sh4x_8c0d092c(Cpu &);
 void sh4x_8c0d1c84(Cpu &);
+void sh4x_8c0d26f0(Cpu &);
+void sh4x_8c0d276c(Cpu &);
 void sh4x_8c0d294c(Cpu &);
 void sh4x_8c0d2c84(Cpu &);
 void sh4x_8c0d2f04(Cpu &);
+void sh4x_8c0d2f14(Cpu &);
 void sh4x_8c0d3c08(Cpu &);
 void sh4x_8c0d3d6c(Cpu &);
 void sh4x_8c0d3f7c(Cpu &);
@@ -61,22 +109,39 @@ void sh4x_8c0d4bdc(Cpu &);
 void sh4x_8c0d4e88(Cpu &);
 void sh4x_8c0d59a4(Cpu &);
 void sh4x_8c0d5ca8(Cpu &);
+void sh4x_8c0d64a0(Cpu &);
 void sh4x_8c0d66d8(Cpu &);
 void sh4x_8c0d7314(Cpu &);
 void sh4x_8c0d7354(Cpu &);
+void sh4x_8c0d9600(Cpu &);
 void sh4x_8c0d9720(Cpu &);
+void sh4x_8c0d99b8(Cpu &);
+void sh4x_8c0da4f8(Cpu &);
 void sh4x_8c0da754(Cpu &);
 void sh4x_8c0db188(Cpu &);
 void sh4x_8c0db3bc(Cpu &);
+void sh4x_8c0db5a8(Cpu &);
 void sh4x_8c0dbdf4(Cpu &);
+void sh4x_8c0dbf90(Cpu &);
+void sh4x_8c0dc7e8(Cpu &);
+void sh4x_8c0de1dc(Cpu &);
 void sh4x_8c0de6d0(Cpu &);
+void sh4x_8c0dfa84(Cpu &);
 void sh4x_8c0e0988(Cpu &);
+void sh4x_8c0e0f48(Cpu &);
+void sh4x_8c0e1f90(Cpu &);
+void sh4x_8c0e2a14(Cpu &);
+void sh4x_8c0e3994(Cpu &);
 void sh4x_8c0e3ebc(Cpu &);
 void sh4x_8c0e3f24(Cpu &);
 void sh4x_8c0e4198(Cpu &);
 void sh4x_8c0e8df8(Cpu &);
 void sh4x_8c0f43bc(Cpu &);
 void sh4x_8c0f4b44(Cpu &);
+void sh4x_8c0f511c(Cpu &);
+void sh4x_8c0ffdb0(Cpu &);
+void sh4x_8c100b84(Cpu &);
+void sh4x_8c100e4c(Cpu &);
 void sh4x_8c102974(Cpu &);
 void sh4x_8c1029d0(Cpu &);
 void sh4x_8c102b04(Cpu &);
@@ -88,11 +153,14 @@ void sh4x_8c212808(Cpu &);
 void sh4x_8c213e2c(Cpu &);
 void sh4x_8c213e32(Cpu &);
 void sh4x_8c2140fe(Cpu &);
+void sh4x_8c21410c(Cpu &);
+void sh4x_8c214158(Cpu &);
 void sh4x_8c21496c(Cpu &);
 void sh4x_8c215250(Cpu &);
 void sh4x_8c215b74(Cpu &);
 void sh4x_8c2162bc(Cpu &);
 void sh4x_8c217924(Cpu &);
+void sh4x_8c217ebc(Cpu &);
 void sh4x_8c217ef4(Cpu &);
 void sh4x_8c217f02(Cpu &);
 void sh4x_8c217f12(Cpu &);
@@ -115,6 +183,7 @@ void sh4x_8c21a678(Cpu &);
 void sh4x_8c21a7ce(Cpu &);
 void sh4x_8c21a80e(Cpu &);
 void sh4x_8c21ba6a(Cpu &);
+void sh4x_8c21bbb0(Cpu &);
 void sh4x_8c21c398(Cpu &);
 void sh4x_8c21ce02(Cpu &);
 void sh4x_8c21ce92(Cpu &);
@@ -152,6 +221,7 @@ void sh4x_8c2331b8(Cpu &);
 void sh4x_8c23329c(Cpu &);
 void sh4x_8c233364(Cpu &);
 void sh4x_8c23340c(Cpu &);
+void sh4x_8c2336e8(Cpu &);
 void sh4x_8c233d6c(Cpu &);
 void sh4x_8c233dac(Cpu &);
 void sh4x_8c233e70(Cpu &);
@@ -167,6 +237,7 @@ void sh4x_8c235b6c(Cpu &);
 void sh4x_8c235bfc(Cpu &);
 void sh4x_8c235d8c(Cpu &);
 void sh4x_8c2360b0(Cpu &);
+void sh4x_8c2361a8(Cpu &);
 void sh4x_8c2364b2(Cpu &);
 void sh4x_8c236510(Cpu &);
 void sh4x_8c2365e2(Cpu &);
@@ -194,6 +265,7 @@ void sh4x_8c25747c(Cpu &);
 void sh4x_8c25754c(Cpu &);
 void sh4x_8c257610(Cpu &);
 void sh4x_8c258030(Cpu &);
+void sh4x_8c259bd8(Cpu &);
 void sh4x_8c25b5b4(Cpu &);
 void sh4x_8c25b5d0(Cpu &);
 void sh4x_8c25b638(Cpu &);
@@ -201,6 +273,17 @@ void sh4x_8c25bc88(Cpu &);
 void sh4x_8c25cddc(Cpu &);
 void sh4x_8c25fec0(Cpu &);
 void sh4x_8c25feca(Cpu &);
+void sh4x_8c25fed2(Cpu &);
+void sh4x_8c25ff16(Cpu &);
+void sh4x_8c25ff3c(Cpu &);
+void sh4x_8c25ff3e(Cpu &);
+void sh4x_8c25ff8e(Cpu &);
+void sh4x_8c25ffb6(Cpu &);
+void sh4x_8c25ffba(Cpu &);
+void sh4x_8c25fff0(Cpu &);
+void sh4x_8c25fff6(Cpu &);
+void sh4x_8c260000(Cpu &);
+void sh4x_8c260006(Cpu &);
 void sh4x_8c260062(Cpu &);
 void sh4x_8c260198(Cpu &);
 void sh4x_8c260284(Cpu &);
@@ -215,21 +298,33 @@ void sh4x_8c262d6c(Cpu &);
 void sh4x_8c262e10(Cpu &);
 void sh4x_8c262f02(Cpu &);
 void sh4x_8c263044(Cpu &);
+void sh4x_8c26304a(Cpu &);
 void sh4x_8c26307e(Cpu &);
 void sh4x_8c2630cc(Cpu &);
 void sh4x_8c2630d6(Cpu &);
 void sh4x_8c26316e(Cpu &);
 void sh4x_8c263186(Cpu &);
+void sh4x_8c26357a(Cpu &);
+void sh4x_8c2635a4(Cpu &);
 void sh4x_8c263702(Cpu &);
 void sh4x_8c26371e(Cpu &);
+void sh4x_8c263726(Cpu &);
 void sh4x_8c263ffa(Cpu &);
 void sh4x_8c264010(Cpu &);
+void sh4x_8c264a42(Cpu &);
 void sh4x_8c264b14(Cpu &);
+void sh4x_8c264b1a(Cpu &);
 void sh4x_8c264b9c(Cpu &);
 void sh4x_8c264c92(Cpu &);
 void sh4x_8c264e84(Cpu &);
 void sh4x_8c264e88(Cpu &);
+void sh4x_8c264f82(Cpu &);
+void sh4x_8c264fa4(Cpu &);
+void sh4x_8c264ff8(Cpu &);
+void sh4x_8c264ffc(Cpu &);
+void sh4x_8c26501c(Cpu &);
 void sh4x_8c265e08(Cpu &);
+void sh4x_8c2688b4(Cpu &);
 void sh4x_8c268ddc(Cpu &);
 void sh4x_8c268e1a(Cpu &);
 void sh4x_8c268ea8(Cpu &);
@@ -247,9 +342,11 @@ void sh4x_8c26a118(Cpu &);
 void sh4x_8c26b4f4(Cpu &);
 void sh4x_8c26b50c(Cpu &);
 void sh4x_8c26b5fc(Cpu &);
+void sh4x_8c26b600(Cpu &);
 void sh4x_8c26b64e(Cpu &);
 void sh4x_8c26b720(Cpu &);
 void sh4x_8c26b7f4(Cpu &);
+void sh4x_8c26b94e(Cpu &);
 void sh4x_8c26be30(Cpu &);
 }
 //@unit 8c2216b8
@@ -272,7 +369,7 @@ void sh4x_8c2216b8(Cpu &C)
   static const unsigned la_[] = { 0x8c2216b8u, 0x8c2216bau, 0x8c2216bcu, 0x8c2216beu, 0x8c2216c0u, 0x8c2216c2u, 0x8c2216c4u, 0x8c2216c6u, 0x8c2216c8u, 0x8c2216cau, 0x8c2216ccu, 0x8c2216ceu, 0x8c2216d0u, 0x8c2216d2u, 0x8c2216d4u };
   static void *const lp_[] = { &&L_8c2216b8, &&L_8c2216ba, &&L_8c2216bc, &&L_8c2216be, &&L_8c2216c0, &&L_8c2216c2, &&L_8c2216c4, &&L_8c2216c6, &&L_8c2216c8, &&L_8c2216ca, &&L_8c2216cc, &&L_8c2216ce, &&L_8c2216d0, &&L_8c2216d2, &&L_8c2216d4 };
 L_8c2216b8:
-  rr15 -= 4; wr32(rr15, rr14);
+  rr15 -= 4; wrs32(rr15, rr14);
 L_8c2216ba:
   rr14 = rr4;
 L_8c2216bc:
@@ -323,9 +420,9 @@ void sh4x_8c2216d6(Cpu &C)
   unsigned rr15;
   FILL_
 L_8c2216d6:
-  rr15 -= 4; wr32(rr15, rr14);
+  rr15 -= 4; wrs32(rr15, rr14);
   rr3 = 0x0u;
-  rr15 -= 4; wr32(rr15, rr13);
+  rr15 -= 4; wrs32(rr15, rr13);
   rr13 = 0x8c4aad64u;
   rr1 = 0x8c4aa370u;
   { SPILL_ exec(C, 0x8c2216e0u, ret0); return; }
@@ -350,9 +447,9 @@ void sh4x_8c221700(Cpu &C)
   unsigned rr15;
   FILL_
 L_8c221700:
-  rr15 -= 4; wr32(rr15, rr14);
+  rr15 -= 4; wrs32(rr15, rr14);
   rr3 = 0x0u;
-  rr15 -= 4; wr32(rr15, rr13);
+  rr15 -= 4; wrs32(rr15, rr13);
   rr13 = 0x8c4aad64u;
   rr1 = 0x8c4aa370u;
   { SPILL_ exec(C, 0x8c22170au, ret0); return; }
@@ -377,9 +474,9 @@ void sh4x_8c22172a(Cpu &C)
   unsigned rr15;
   FILL_
 L_8c22172a:
-  rr15 -= 4; wr32(rr15, rr14);
+  rr15 -= 4; wrs32(rr15, rr14);
   rr3 = 0x0u;
-  rr15 -= 4; wr32(rr15, rr13);
+  rr15 -= 4; wrs32(rr15, rr13);
   rr13 = 0x8c4aad64u;
   rr1 = 0x8c4aa370u;
   { SPILL_ exec(C, 0x8c221734u, ret0); return; }
@@ -574,26 +671,26 @@ void sh4x_8c221a8c(Cpu &C)
   FILL_
   if (FPSCR_ & (SZ | PRB)) { XGUARD(0x8c221a8cu); exec(C, 0x8c221a8cu, ret0); return; }
 L_8c221a8c:
-  rr15 -= 4; wr32(rr15, rr8);
-  rr15 -= 4; wr32(rr15, rr9);
-  rr15 -= 4; wr32(rr15, rr10);
-  rr15 -= 4; wr32(rr15, rr11);
-  rr15 -= 4; wr32(rr15, rr12);
-  rr15 -= 4; wr32(rr15, rr13);
-  rr15 -= 4; wr32(rr15, rr14);
-  rr15 -= 4; wr32(rr15, f2u(ff12));
-  rr15 -= 4; wr32(rr15, f2u(ff13));
-  rr15 -= 4; wr32(rr15, f2u(ff14));
-  rr15 -= 4; wr32(rr15, f2u(ff15));
-  rr15 -= 4; wr32(rr15, PR_);
+  rr15 -= 4; wrs32(rr15, rr8);
+  rr15 -= 4; wrs32(rr15, rr9);
+  rr15 -= 4; wrs32(rr15, rr10);
+  rr15 -= 4; wrs32(rr15, rr11);
+  rr15 -= 4; wrs32(rr15, rr12);
+  rr15 -= 4; wrs32(rr15, rr13);
+  rr15 -= 4; wrs32(rr15, rr14);
+  rr15 -= 4; wrs32(rr15, f2u(ff12));
+  rr15 -= 4; wrs32(rr15, f2u(ff13));
+  rr15 -= 4; wrs32(rr15, f2u(ff14));
+  rr15 -= 4; wrs32(rr15, f2u(ff15));
+  rr15 -= 4; wrs32(rr15, PR_);
   rr15 += 0xfffffffcu;
   rr0 = 0x8c4aa4f0u;
   rr0 = rd32(rr0);
-  wr32(rr15, rr0);
+  wrs32(rr15, rr0);
   rr0 = 0x3fffu;
   rr2 = rr4;
   rr2 += 0x6u;
-  sq_pref(rr2);
+  sq_pref_i(rr2);
   rr1 = rr6;
   rr1 &= rr0;
   rr2 = 0xfffffff2u;
@@ -619,7 +716,7 @@ L_8c221acc:
 L_8c221ade:
   rr9 += rr5;
   T_ = (int)rr8 >= 0;
-  sq_pref(rr9);
+  sq_pref_i(rr9);
   if (T_) goto L_8c221aea;
   rr8 = 0 - rr8;
   ff11 = -ff11;
@@ -631,7 +728,7 @@ L_8c221aea:
   rr10 = sx16(rd16(rr4)); rr4 += 2;
   { int s = (int)rr0; if (s >= 0) rr10 <<= (s & 31); else if ((s & 31) == 0) rr10 = 0; else rr10 >>= (-s & 31); }
   rr10 += rr5;
-  sq_pref(rr10);
+  sq_pref_i(rr10);
 L_8c221afa:
   rr11 = sx16(rd16(rr4)); rr4 += 2;
   FPSCR_ ^= SZ;
@@ -644,7 +741,7 @@ L_8c221afa:
   ff1 = u2f(rd32(rr10)); rr10 += 4;
   rr11 += rr5;
   ff3 = u2f(rd32(rr10)); rr10 += 4;
-  sq_pref(rr11);
+  sq_pref_i(rr11);
   rr9 += 0xfffffff4u;
   ff0 = ff0 - ff1;
   rr10 += 0xfffffff4u;
@@ -656,7 +753,7 @@ L_8c221afa:
   rr11 += 0xfffffff4u;
   ff12 = ff12 - ff1;
   ff13 = ff13 - ff3;
-  sq_pref(rr4);
+  sq_pref_i(rr4);
   ff13 = ff13 * ff0;
   ff12 = ff12 * ff2;
   ff0 = 0.0f;
@@ -691,7 +788,7 @@ L_8c221b40:
   rr7 -= 8; wr32(rr7, f2u(ff2)); wr32(rr7 + 4, f2u(ff3));
   rr7 -= 8; wr32(rr7, f2u(ff0)); wr32(rr7 + 4, f2u(ff1));
   wr32(rr7, rr13);
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   rr7 += 0x20u;
 L_8c221b70:
   rr10 += 0x10u;
@@ -715,7 +812,7 @@ L_8c221b70:
   rr7 -= 8; wr32(rr7, f2u(ff2)); wr32(rr7 + 4, f2u(ff3));
   rr7 -= 8; wr32(rr7, f2u(ff0)); wr32(rr7 + 4, f2u(ff1));
   wr32(rr7, rr13);
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   { rr7 += 0x20u; goto L_8c221bd4; }
   rr7 += 0x20u;
 L_8c221ba0:
@@ -743,7 +840,7 @@ L_8c221ba0:
   rr12 = 0x0u;
   rr7 -= 8; wr32(rr7, f2u(ff0)); wr32(rr7 + 4, f2u(ff1));
   wr32(rr7, rr14);
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   rr7 += 0x20u;
 L_8c221bd4:
   rr9 = rr10;
@@ -777,7 +874,7 @@ L_8c221bde:
   rr12 = 0x0u;
   rr7 -= 8; wr32(rr7, f2u(ff0)); wr32(rr7 + 4, f2u(ff1));
   wr32(rr7, rr14);
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   rr7 += 0x20u;
 L_8c221c14:
   rr1 -= 1; T_ = rr1 == 0;
@@ -877,19 +974,19 @@ void sh4x_8c223b34(Cpu &C)
   FILL_
   if (FPSCR_ & (SZ | PRB)) { XGUARD(0x8c223b34u); exec(C, 0x8c223b34u, ret0); return; }
 L_8c223b34:
-  rr15 -= 4; wr32(rr15, rr14);
-  rr15 -= 4; wr32(rr15, rr13);
-  rr15 -= 4; wr32(rr15, rr12);
-  rr15 -= 4; wr32(rr15, rr10);
-  rr15 -= 4; wr32(rr15, rr9);
-  rr15 -= 4; wr32(rr15, rr8);
-  rr15 -= 4; wr32(rr15, f2u(ff14));
-  rr15 -= 4; wr32(rr15, f2u(ff13));
-  rr15 -= 4; wr32(rr15, f2u(ff12));
+  rr15 -= 4; wrs32(rr15, rr14);
+  rr15 -= 4; wrs32(rr15, rr13);
+  rr15 -= 4; wrs32(rr15, rr12);
+  rr15 -= 4; wrs32(rr15, rr10);
+  rr15 -= 4; wrs32(rr15, rr9);
+  rr15 -= 4; wrs32(rr15, rr8);
+  rr15 -= 4; wrs32(rr15, f2u(ff14));
+  rr15 -= 4; wrs32(rr15, f2u(ff13));
+  rr15 -= 4; wrs32(rr15, f2u(ff12));
   rr15 += 0xffffffb0u;
   rr3 = rr4;
   rr3 += 0x6u;
-  sq_pref(rr3);
+  sq_pref_i(rr3);
   rr3 = 0xfffffff2u;
   rr0 = rr6;
   rr14 = 0x3u;
@@ -914,7 +1011,7 @@ L_8c223b70:
   wr32(rr0 + rr15, f2u(ff3));
 L_8c223b78:
   T_ = rr14 >> 31; rr14 <<= 1;
-  wr32(rr15 + 20, rr14);
+  wrs32(rr15 + 20, rr14);
 L_8c223b7c:
   rr12 = sx16(rd16(rr4)); rr4 += 2;
   rr14 = sx16(rd16(rr4)); rr4 += 2;
@@ -922,7 +1019,7 @@ L_8c223b7c:
   rr14 <<= 2;
   rr14 <<= 2;
   rr14 += rr5;
-  sq_pref(rr14);
+  sq_pref_i(rr14);
   rr0 = 0x40u;
   T_ = (int)rr12 >= 0;
   ff3 = u2f(rd32(rr0 + rr15));
@@ -955,13 +1052,13 @@ L_8c223ba2:
   rr13 += rr5;
   ff14 = ff3;
   ff14 = ff14 * ff4;
-  sq_pref(rr13);
+  sq_pref_i(rr13);
   rr3 = sx16(rd16(rr4)); rr4 += 2;
   rr0 = 0x4u;
   FPUL_ = rr3;
   ff3 = (float)(int)FPUL_;
   ff3 = ff3 * ff4;
-  wr32(rr15, f2u(ff3));
+  wrs32(rr15, f2u(ff3));
   rr3 = sx16(rd16(rr4)); rr4 += 2;
   FPUL_ = rr3;
   ff2 = (float)(int)FPUL_;
@@ -973,7 +1070,7 @@ L_8c223bde:
   rr1 <<= 2;
   rr1 <<= 2;
   rr1 += rr5;
-  sq_pref(rr13);
+  sq_pref_i(rr13);
   rr3 = sx16(rd16(rr4)); rr4 += 2;
   rr0 = 0x10u;
   FPUL_ = rr3;
@@ -1024,7 +1121,7 @@ L_8c223c38:
   ff12 = u2f(rd32(rr14)); rr14 += 4;
   rr3 = rr14;
   rr3 += 0x20u;
-  sq_pref(rr3);
+  sq_pref_i(rr3);
   rr7 += 0x18u;
   rr3 = 0xe0000000u;
   rr7 -= 4; wr32(rr7, f2u(ff14));
@@ -1035,7 +1132,7 @@ L_8c223c38:
   ff3 = u2f(rd32(rr0 + rr15));
   rr7 -= 4; wr32(rr7, f2u(ff3));
   rr7 -= 4; wr32(rr7, rr3);
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   ff3 = u2f(rd32(rr14)); rr14 += 4;
   rr0 = 0x30u;
   ff1 = ff5;
@@ -1073,7 +1170,7 @@ L_8c223c38:
   rr7 -= 4; wr32(rr7, f2u(ff3));
   ff3 = u2f(rd32(rr0 + rr15));
   rr7 -= 4; wr32(rr7, f2u(ff3));
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   rr8 += 0x1u;
   rr7 += 0x20u;
 L_8c223cb4:
@@ -1084,7 +1181,7 @@ L_8c223cb4:
   ff14 = u2f(rd32(rr14)); rr14 += 4;
   rr3 = rr14;
   rr3 += 0x20u;
-  sq_pref(rr3);
+  sq_pref_i(rr3);
   rr0 = 0x4u;
   ff3 = u2f(rd32(rr0 + rr15));
   rr7 += 0x18u;
@@ -1107,7 +1204,7 @@ L_8c223ce0:
   rr7 -= 4; wr32(rr7, f2u(ff13));
   rr7 -= 4; wr32(rr7, f2u(ff0));
   rr7 -= 4; wr32(rr7, rr3);
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   ff3 = u2f(rd32(rr14)); rr14 += 4;
   rr0 = 0x20u;
   ff14 = ff9;
@@ -1145,7 +1242,7 @@ L_8c223ce0:
   rr7 -= 4; wr32(rr7, f2u(ff14));
   ff3 = u2f(rd32(rr0 + rr15));
   rr7 -= 4; wr32(rr7, f2u(ff3));
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   rr7 += 0x20u;
   { rr8 += 0x1u; goto L_8c223dc2; }
   rr8 += 0x1u;
@@ -1159,7 +1256,7 @@ L_8c223d42:
   ff13 = u2f(rd32(rr14)); rr14 += 4;
   rr3 = rr14;
   rr3 += 0x20u;
-  sq_pref(rr3);
+  sq_pref_i(rr3);
   rr0 = 0x4u;
   rr3 = 0xf0000000u;
   ff3 = u2f(rd32(rr0 + rr15));
@@ -1171,7 +1268,7 @@ L_8c223d42:
   rr7 -= 4; wr32(rr7, f2u(ff0));
   rr7 -= 4; wr32(rr7, f2u(ff14));
   rr7 -= 4; wr32(rr7, rr3);
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   ff3 = u2f(rd32(rr14)); rr14 += 4;
   rr0 = 0x24u;
   ff12 = ff5;
@@ -1209,7 +1306,7 @@ L_8c223d42:
   ff3 = u2f(rd32(rr0 + rr15));
   rr7 -= 4; wr32(rr7, f2u(ff3));
   rr7 -= 4; wr32(rr7, f2u(ff12));
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   rr8 += 0x1u;
   rr9 += rr8;
   rr8 = 0x0u;
@@ -1219,7 +1316,7 @@ L_8c223dc2:
   rr4 += rr3;
   rr2 = rr4;
   rr2 += 0x6u;
-  sq_pref(rr2);
+  sq_pref_i(rr2);
   rr0 = 0x8u;
   rr14 = rr13;
   ff3 = u2f(rd32(rr0 + rr15));
@@ -1234,7 +1331,7 @@ L_8c223dc2:
   ff2 = u2f(rd32(rr0 + rr15));
   rr0 = 0xcu;
   ff13 = u2f(rd32(rr15));
-  wr32(rr15, f2u(ff2));
+  wrs32(rr15, f2u(ff2));
   ff2 = u2f(rd32(rr0 + rr15));
   rr0 = 0x4u;
   { int tk_ = T_; wr32(rr0 + rr15, f2u(ff2)); if (tk_) goto L_8c223df6; goto L_8c223df2; }
@@ -1252,7 +1349,7 @@ L_8c223df6:
   ff0 = u2f(rd32(rr14)); rr14 += 4;
   rr3 = rr14;
   rr3 += 0x20u;
-  sq_pref(rr3);
+  sq_pref_i(rr3);
   rr0 = 0xcu;
   rr3 = 0xf0000000u;
   ff3 = u2f(rd32(rr0 + rr15));
@@ -1265,7 +1362,7 @@ L_8c223df6:
   rr7 -= 4; wr32(rr7, f2u(ff14));
   rr7 -= 4; wr32(rr7, f2u(ff13));
   rr7 -= 4; wr32(rr7, rr3);
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   ff3 = u2f(rd32(rr14)); rr14 += 4;
   rr0 = 0x48u;
   ff14 = ff9;
@@ -1303,7 +1400,7 @@ L_8c223df6:
   rr7 -= 4; wr32(rr7, f2u(ff14));
   ff3 = u2f(rd32(rr0 + rr15));
   rr7 -= 4; wr32(rr7, f2u(ff3));
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   rr8 += 0x1u;
   rr9 += rr8;
   rr7 += 0x20u;
@@ -1335,9 +1432,9 @@ L_8c223e7e:
   rr14 = rd32(rr15); rr15 += 4;
   { SPILL_ exec(C, 0x8c223ea6u, ret0); return; }
 L_8c2246bc:
-  wr32(rr15, rr4);
-  wr32(rr15 + 32, rr5);
-  wr32(rr15 + 36, rr6);
+  wrs32(rr15, rr4);
+  wrs32(rr15 + 32, rr5);
+  wrs32(rr15 + 36, rr6);
   if (!(FPSCR_ & SZ)) { wr32(rr0 + rr15, f2u(ff4)); } else { { unsigned a = rr0 + rr15; wr32(a, f2u(ff4)); wr32(a + 4, f2u(ff5)); } }
   rr0 = 0x8u;
   if (!(FPSCR_ & SZ)) { wr32(rr0 + rr15, f2u(ff5)); } else { { unsigned a = rr0 + rr15; wr32(a, f2u(xx4)); wr32(a + 4, f2u(xx5)); } }
@@ -1353,7 +1450,7 @@ L_8c2246bc:
   if (!(FPSCR_ & SZ)) { wr32(rr0 + rr15, f2u(ff10)); } else { { unsigned a = rr0 + rr15; wr32(a, f2u(ff10)); wr32(a + 4, f2u(ff11)); } }
   rr3 = rd32(rr15);
   rr3 += 0x6u;
-  sq_pref(rr3);
+  sq_pref_i(rr3);
   rr0 = rd32(rr15 + 36);
   rr3 = 0xfffffff2u;
   rr2 = rd32(rr15 + 36);
@@ -1364,7 +1461,7 @@ L_8c2246bc:
   rr4 &= rr0;
   rr2 &= rr3;
   rr3 = 0x20000u;
-  wr32(rr15 + 36, rr2);
+  wrs32(rr15 + 36, rr2);
   rr5 = rd32(rr1);
   T_ = (rr3 & rr5) == 0;
   { int tk_ = T_; rr8 = rr7; if (tk_) goto L_8c224712; goto L_8c224700; }
@@ -1395,16 +1492,16 @@ L_8c224724:
   if (FPSCR_ & PRB) { setd2(ff12, ff13, -getd2(ff12, ff13)); } else { ff12 = -ff12; }
 L_8c224728:
   T_ = rr4 >> 31; rr4 <<= 1;
-  wr32(rr15 + 40, rr4);
+  wrs32(rr15 + 40, rr4);
 L_8c22472c:
   rr12 = rd32(rr15);
   rr12 += 0x2u;
-  wr32(rr15, rr12);
+  wrs32(rr15, rr12);
   rr12 += 0xfffffffeu;
   rr4 = rd32(rr15);
   rr12 = sx16(rd16(rr12));
   rr4 += 0x2u;
-  wr32(rr15, rr4);
+  wrs32(rr15, rr4);
   rr4 += 0xfffffffeu;
   rr4 = sx16(rd16(rr4));
   rr3 = rd32(rr15 + 32);
@@ -1412,7 +1509,7 @@ L_8c22472c:
   rr4 <<= 2;
   rr4 <<= 2;
   rr4 += rr3;
-  sq_pref(rr4);
+  sq_pref_i(rr4);
   T_ = (int)rr12 >= 0;
   { int tk_ = T_; if (!(FPSCR_ & SZ)) { ff15 = ff12; } else { xx14 = ff12; xx15 = ff13; } if (tk_) goto L_8c224756; goto L_8c224752; }
   if (!(FPSCR_ & SZ)) { ff15 = ff12; } else { xx14 = ff12; xx15 = ff13; }
@@ -1426,7 +1523,7 @@ L_8c224756:
   rr2 += 0x4u;
   rr14 = rr2;
   rr14 += 0x2u;
-  wr32(rr15, rr14);
+  wrs32(rr15, rr14);
   rr14 += 0xfffffffeu;
   rr14 = sx16(rd16(rr14));
   rr9 = 0x0u;
@@ -1435,14 +1532,14 @@ L_8c224756:
   rr14 <<= 2;
   rr14 <<= 2;
   rr14 += rr3;
-  sq_pref(rr14);
+  sq_pref_i(rr14);
   rr3 = rd32(rr15);
   rr3 += 0x4u;
-  wr32(rr15, rr3);
+  wrs32(rr15, rr3);
 L_8c22477c:
   rr13 = rd32(rr15);
   rr13 += 0x2u;
-  wr32(rr15, rr13);
+  wrs32(rr15, rr13);
   rr13 += 0xfffffffeu;
   rr13 = sx16(rd16(rr13));
   rr3 = rd32(rr15 + 32);
@@ -1450,11 +1547,11 @@ L_8c22477c:
   rr13 <<= 2;
   rr13 <<= 2;
   rr13 += rr3;
-  sq_pref(rr14);
+  sq_pref_i(rr14);
   ff3 = 1.0f;
   rr3 = rd32(rr15);
   rr3 += 0x4u;
-  wr32(rr15, rr3);
+  wrs32(rr15, rr3);
   if (!(FPSCR_ & SZ)) { ff2 = u2f(rd32(rr4)); } else { ff2 = u2f(rd32(rr4)); ff3 = u2f(rd32(rr4 + 4)); }
   if (FPSCR_ & PRB) { bad("odd double register", 0x8c22479cu, 0xf235); } else { T_ = ff2 > ff3; }
   { int tk_ = !T_; rr6 = 0x0u; if (tk_) goto L_8c2247b0; goto L_8c2247a2; }
@@ -1524,7 +1621,7 @@ L_8c224802:
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff7)); } else { rr8 -= 8; wr32(rr8, f2u(xx6)); wr32(rr8 + 4, f2u(xx7)); }
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff8)); } else { rr8 -= 8; wr32(rr8, f2u(ff8)); wr32(rr8 + 4, f2u(ff9)); }
   rr8 -= 4; wr32(rr8, rr3);
-  sq_pref(rr8);
+  sq_pref_i(rr8);
   rr0 = 0x4u;
   if (!(FPSCR_ & SZ)) { ff9 = u2f(rd32(rr0 + rr15)); } else { { unsigned a = rr0 + rr15; xx8 = u2f(rd32(a)); xx9 = u2f(rd32(a + 4)); } }
   rr5 += 0xffffffe4u;
@@ -1561,7 +1658,7 @@ L_8c224802:
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff7)); } else { rr8 -= 8; wr32(rr8, f2u(xx6)); wr32(rr8 + 4, f2u(xx7)); }
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff8)); } else { rr8 -= 8; wr32(rr8, f2u(ff8)); wr32(rr8 + 4, f2u(ff9)); }
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff9)); } else { rr8 -= 8; wr32(rr8, f2u(xx8)); wr32(rr8 + 4, f2u(xx9)); }
-  sq_pref(rr8);
+  sq_pref_i(rr8);
   rr9 += 0x1u;
   rr8 += 0x20u;
 L_8c224882:
@@ -1587,7 +1684,7 @@ L_8c224882:
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff5)); } else { rr8 -= 8; wr32(rr8, f2u(xx4)); wr32(rr8 + 4, f2u(xx5)); }
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff4)); } else { rr8 -= 8; wr32(rr8, f2u(ff4)); wr32(rr8 + 4, f2u(ff5)); }
   rr8 -= 4; wr32(rr8, rr3);
-  sq_pref(rr8);
+  sq_pref_i(rr8);
   rr0 = 0x4u;
   if (!(FPSCR_ & SZ)) { ff5 = u2f(rd32(rr0 + rr15)); } else { { unsigned a = rr0 + rr15; xx4 = u2f(rd32(a)); xx5 = u2f(rd32(a + 4)); } }
   rr5 += 0xffffffe4u;
@@ -1624,7 +1721,7 @@ L_8c224882:
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff9)); } else { rr8 -= 8; wr32(rr8, f2u(xx8)); wr32(rr8 + 4, f2u(xx9)); }
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff10)); } else { rr8 -= 8; wr32(rr8, f2u(ff10)); wr32(rr8 + 4, f2u(ff11)); }
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff5)); } else { rr8 -= 8; wr32(rr8, f2u(xx4)); wr32(rr8 + 4, f2u(xx5)); }
-  sq_pref(rr8);
+  sq_pref_i(rr8);
   rr8 += 0x20u;
   { rr9 += 0x1u; goto L_8c224984; }
   rr9 += 0x1u;
@@ -1653,7 +1750,7 @@ L_8c224900:
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff8)); } else { rr8 -= 8; wr32(rr8, f2u(ff8)); wr32(rr8 + 4, f2u(ff9)); }
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff4)); } else { rr8 -= 8; wr32(rr8, f2u(ff4)); wr32(rr8 + 4, f2u(ff5)); }
   rr8 -= 4; wr32(rr8, rr3);
-  sq_pref(rr8);
+  sq_pref_i(rr8);
   rr0 = 0x4u;
   if (!(FPSCR_ & SZ)) { ff5 = u2f(rd32(rr0 + rr15)); } else { { unsigned a = rr0 + rr15; xx4 = u2f(rd32(a)); xx5 = u2f(rd32(a + 4)); } }
   rr5 += 0xffffffe4u;
@@ -1690,7 +1787,7 @@ L_8c224900:
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff10)); } else { rr8 -= 8; wr32(rr8, f2u(ff10)); wr32(rr8 + 4, f2u(ff11)); }
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff6)); } else { rr8 -= 8; wr32(rr8, f2u(ff6)); wr32(rr8 + 4, f2u(ff7)); }
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff5)); } else { rr8 -= 8; wr32(rr8, f2u(xx4)); wr32(rr8 + 4, f2u(xx5)); }
-  sq_pref(rr8);
+  sq_pref_i(rr8);
   rr9 += 0x1u;
   rr10 += rr9;
   rr9 = 0x0u;
@@ -1771,9 +1868,9 @@ L_8c224a0e:
   rr2 = rd32(rr15);
   rr3 = rd32(rr15 + 40);
   rr2 += rr3;
-  wr32(rr15, rr2);
+  wrs32(rr15, rr2);
   rr2 += 0x6u;
-  sq_pref(rr2);
+  sq_pref_i(rr2);
   rr12 -= 1; T_ = rr12 == 0;
   rr4 = rr14;
   if (FPSCR_ & PRB) { setd2(ff14, ff15, -getd2(ff14, ff15)); } else { ff15 = -ff15; }
@@ -1807,7 +1904,7 @@ L_8c224a28:
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff4)); } else { rr8 -= 8; wr32(rr8, f2u(ff4)); wr32(rr8 + 4, f2u(ff5)); }
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff5)); } else { rr8 -= 8; wr32(rr8, f2u(xx4)); wr32(rr8 + 4, f2u(xx5)); }
   rr8 -= 4; wr32(rr8, rr3);
-  sq_pref(rr8);
+  sq_pref_i(rr8);
   rr0 = 0x4u;
   if (!(FPSCR_ & SZ)) { ff5 = u2f(rd32(rr0 + rr15)); } else { { unsigned a = rr0 + rr15; xx4 = u2f(rd32(a)); xx5 = u2f(rd32(a + 4)); } }
   rr4 += 0xffffffe4u;
@@ -1844,7 +1941,7 @@ L_8c224a28:
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff8)); } else { rr8 -= 8; wr32(rr8, f2u(ff8)); wr32(rr8 + 4, f2u(ff9)); }
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff9)); } else { rr8 -= 8; wr32(rr8, f2u(xx8)); wr32(rr8 + 4, f2u(xx9)); }
   if (!(FPSCR_ & SZ)) { rr8 -= 4; wr32(rr8, f2u(ff5)); } else { rr8 -= 8; wr32(rr8, f2u(xx4)); wr32(rr8 + 4, f2u(xx5)); }
-  sq_pref(rr8);
+  sq_pref_i(rr8);
   rr9 += 0x1u;
   rr10 += rr9;
   rr8 += 0x20u;
@@ -1852,8 +1949,8 @@ L_8c224aaa:
   rr3 = rd32(rr15 + 36);
   rr3 += 0xffffffffu;
   T_ = (rr3 & rr3) == 0;
-  { int tk_ = T_; wr32(rr15 + 36, rr3); if (tk_) goto L_8c224ab8; goto L_8c224ab4; }
-  wr32(rr15 + 36, rr3);
+  { int tk_ = T_; wrs32(rr15 + 36, rr3); if (tk_) goto L_8c224ab8; goto L_8c224ab4; }
+  wrs32(rr15 + 36, rr3);
 L_8c224ab4:
   {  goto L_8c22472c; }
   
@@ -1943,11 +2040,11 @@ void sh4x_8c226980(Cpu &C)
   FILL_
   if (FPSCR_ & (SZ | PRB)) { XGUARD(0x8c226980u); exec(C, 0x8c226980u, ret0); return; }
 L_8c226980:
-  rr15 -= 4; wr32(rr15, f2u(ff15));
-  rr15 -= 4; wr32(rr15, f2u(ff14));
-  rr15 -= 4; wr32(rr15, f2u(ff13));
-  rr15 -= 4; wr32(rr15, f2u(ff12));
-  rr15 -= 4; wr32(rr15, rr8);
+  rr15 -= 4; wrs32(rr15, f2u(ff15));
+  rr15 -= 4; wrs32(rr15, f2u(ff14));
+  rr15 -= 4; wrs32(rr15, f2u(ff13));
+  rr15 -= 4; wrs32(rr15, f2u(ff12));
+  rr15 -= 4; wrs32(rr15, rr8);
   rr3 = rd32(rr4); rr4 += 4;
   rr5 = rd32(rr4); rr4 += 4;
   rr6 = rd32(rr4); rr4 += 4;
@@ -1973,7 +2070,7 @@ L_8c226994:
 L_8c2269b4:
   T_ = rr2 & 1; rr2 = (rr2 >> 1) | ((unsigned)T_ << 31);
 L_8c2269b6:
-  sq_pref(rr1);
+  sq_pref_i(rr1);
   { int tk_ = T_; T_ = rr2 & 1; rr2 = (rr2 >> 1) | ((unsigned)T_ << 31); if (tk_) goto L_8c2269cc; goto L_8c2269bc; }
   T_ = rr2 & 1; rr2 = (rr2 >> 1) | ((unsigned)T_ << 31);
 L_8c2269bc:
@@ -2073,7 +2170,7 @@ L_8c226a50:
   ff15 = u2f(rd32(rr4)); rr4 += 4;
   rr0 = T_;
   ff7 = u2f(rd32(rr4)); rr4 += 4;
-  sq_pref(rr5);
+  sq_pref_i(rr5);
   rr4 += 0xfffffff0u;
   rr7 -= 4; wr32(rr7, f2u(ff3));
   ff5 = ff5 * ff13;
@@ -2092,7 +2189,7 @@ L_8c226a50:
   
   rr8 += rr0;
   ff3 = ff3 - ff11;
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   ff2 = ff2 - ff11;
   rr7 += 0x40u;
   ff11 = -ff11;
@@ -2104,7 +2201,7 @@ L_8c226a50:
   rr7 -= 8; wr32(rr7, f2u(ff12)); wr32(rr7 + 4, f2u(ff13));
   
   rr6 += 0x20u;
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   FPSCR_ ^= SZ;
   if (T_) goto L_8c226aae;
   { rr7 += 0x20u; goto L_8c226994; }
@@ -2171,26 +2268,26 @@ void sh4x_8c22b5b0(Cpu &C)
   FILL_
   if (FPSCR_ & (SZ | PRB)) { XGUARD(0x8c22b5b0u); exec(C, 0x8c22b5b0u, ret0); return; }
 L_8c22b5b0:
-  rr15 -= 4; wr32(rr15, rr8);
-  rr15 -= 4; wr32(rr15, rr9);
-  rr15 -= 4; wr32(rr15, rr10);
-  rr15 -= 4; wr32(rr15, rr11);
-  rr15 -= 4; wr32(rr15, rr12);
-  rr15 -= 4; wr32(rr15, rr13);
-  rr15 -= 4; wr32(rr15, rr14);
-  rr15 -= 4; wr32(rr15, f2u(ff12));
-  rr15 -= 4; wr32(rr15, f2u(ff13));
-  rr15 -= 4; wr32(rr15, f2u(ff14));
-  rr15 -= 4; wr32(rr15, f2u(ff15));
-  rr15 -= 4; wr32(rr15, PR_);
+  rr15 -= 4; wrs32(rr15, rr8);
+  rr15 -= 4; wrs32(rr15, rr9);
+  rr15 -= 4; wrs32(rr15, rr10);
+  rr15 -= 4; wrs32(rr15, rr11);
+  rr15 -= 4; wrs32(rr15, rr12);
+  rr15 -= 4; wrs32(rr15, rr13);
+  rr15 -= 4; wrs32(rr15, rr14);
+  rr15 -= 4; wrs32(rr15, f2u(ff12));
+  rr15 -= 4; wrs32(rr15, f2u(ff13));
+  rr15 -= 4; wrs32(rr15, f2u(ff14));
+  rr15 -= 4; wrs32(rr15, f2u(ff15));
+  rr15 -= 4; wrs32(rr15, PR_);
   rr15 += 0xfffffffcu;
   rr0 = 0x8c4aa4f0u;
   rr0 = rd32(rr0);
-  wr32(rr15, rr0);
+  wrs32(rr15, rr0);
   rr0 = 0x3fffu;
   rr2 = rr4;
   rr2 += 0x6u;
-  sq_pref(rr2);
+  sq_pref_i(rr2);
   rr1 = rr6;
   rr1 &= rr0;
   rr2 = 0xfffffff2u;
@@ -2217,7 +2314,7 @@ L_8c22b5f2:
 L_8c22b604:
   rr9 += rr5;
   T_ = (int)rr8 >= 0;
-  sq_pref(rr9);
+  sq_pref_i(rr9);
   if (T_) goto L_8c22b610;
   rr8 = 0 - rr8;
   ff9 = -ff9;
@@ -2237,7 +2334,7 @@ L_8c22b610:
   ff10 = ff10 * ff5;
   rr10 += rr5;
   ff11 = ff11 * ff5;
-  sq_pref(rr10);
+  sq_pref_i(rr10);
   rr0 = sx16(rd16(rr4)); rr4 += 2;
   FPUL_ = rr0;
   rr0 = sx16(rd16(rr4)); rr4 += 2;
@@ -2265,7 +2362,7 @@ L_8c22b640:
   rr11 += rr5;
   ff7 = u2f(rd32(rr10)); rr10 += 4;
   ff14 = ff14 * ff5;
-  sq_pref(rr11);
+  sq_pref_i(rr11);
   ff15 = ff15 * ff5;
   rr9 += 0xfffffff4u;
   ff0 = ff0 - ff1;
@@ -2278,7 +2375,7 @@ L_8c22b640:
   rr11 += 0xfffffff4u;
   ff2 = ff2 - ff1;
   ff8 = ff8 - ff7;
-  sq_pref(rr4);
+  sq_pref_i(rr4);
   ff8 = ff8 * ff0;
   ff6 = ff6 * ff2;
   ff7 = 0.0f;
@@ -2311,7 +2408,7 @@ L_8c22b6b4:
   wr32(rr7, rr13);
   rr7 += 0x18u;
   wr32(rr7, f2u(ff6)); wr32(rr7 + 4, f2u(ff7));
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   rr7 += 0x8u;
 L_8c22b6c0:
   ff0 = u2f(rd32(rr10)); ff1 = u2f(rd32(rr10 + 4)); rr10 += 8;
@@ -2333,7 +2430,7 @@ L_8c22b6dc:
   wr32(rr7, rr13);
   rr7 += 0x18u;
   wr32(rr7, f2u(ff6)); wr32(rr7 + 4, f2u(ff7));
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   { rr7 += 0x8u; goto L_8c22b718; }
   rr7 += 0x8u;
 L_8c22b6ea:
@@ -2359,7 +2456,7 @@ L_8c22b708:
   rr7 += 0x18u;
   rr12 = 0x0u;
   wr32(rr7, f2u(ff6)); wr32(rr7 + 4, f2u(ff7));
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   rr7 += 0x8u;
 L_8c22b718:
   rr9 = rr10;
@@ -2392,7 +2489,7 @@ L_8c22b746:
   FPSCR_ ^= SZ;
   rr7 += 0x18u;
   wr32(rr7, f2u(ff6)); wr32(rr7 + 4, f2u(ff7));
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   rr7 += 0x8u;
 L_8c22b754:
   rr1 -= 1; T_ = rr1 == 0;
@@ -2478,26 +2575,26 @@ void sh4x_8c22f3f0(Cpu &C)
   FILL_
   if (FPSCR_ & (SZ | PRB)) { XGUARD(0x8c22f3f0u); exec(C, 0x8c22f3f0u, ret0); return; }
 L_8c22f3f0:
-  rr15 -= 4; wr32(rr15, rr8);
-  rr15 -= 4; wr32(rr15, rr9);
-  rr15 -= 4; wr32(rr15, rr10);
-  rr15 -= 4; wr32(rr15, rr11);
-  rr15 -= 4; wr32(rr15, rr12);
-  rr15 -= 4; wr32(rr15, rr13);
-  rr15 -= 4; wr32(rr15, rr14);
-  rr15 -= 4; wr32(rr15, f2u(ff12));
-  rr15 -= 4; wr32(rr15, f2u(ff13));
-  rr15 -= 4; wr32(rr15, f2u(ff14));
-  rr15 -= 4; wr32(rr15, f2u(ff15));
-  rr15 -= 4; wr32(rr15, PR_);
+  rr15 -= 4; wrs32(rr15, rr8);
+  rr15 -= 4; wrs32(rr15, rr9);
+  rr15 -= 4; wrs32(rr15, rr10);
+  rr15 -= 4; wrs32(rr15, rr11);
+  rr15 -= 4; wrs32(rr15, rr12);
+  rr15 -= 4; wrs32(rr15, rr13);
+  rr15 -= 4; wrs32(rr15, rr14);
+  rr15 -= 4; wrs32(rr15, f2u(ff12));
+  rr15 -= 4; wrs32(rr15, f2u(ff13));
+  rr15 -= 4; wrs32(rr15, f2u(ff14));
+  rr15 -= 4; wrs32(rr15, f2u(ff15));
+  rr15 -= 4; wrs32(rr15, PR_);
   rr15 += 0xfffffffcu;
   rr0 = 0x8c4aa4f0u;
   rr0 = rd32(rr0);
-  wr32(rr15, rr0);
+  wrs32(rr15, rr0);
   rr0 = 0x3fffu;
   rr2 = rr4;
   rr2 += 0x6u;
-  sq_pref(rr2);
+  sq_pref_i(rr2);
   rr1 = rr6;
   rr1 &= rr0;
   rr2 = 0xfffffff2u;
@@ -2522,7 +2619,7 @@ L_8c22f42e:
 L_8c22f440:
   rr9 += rr5;
   T_ = (int)rr8 >= 0;
-  sq_pref(rr9);
+  sq_pref_i(rr9);
   if (T_) goto L_8c22f44c;
   rr8 = 0 - rr8;
   ff9 = -ff9;
@@ -2543,7 +2640,7 @@ L_8c22f44c:
   ff10 = ff10 * ff5;
   rr10 += rr5;
   ff11 = ff11 * ff5;
-  sq_pref(rr10);
+  sq_pref_i(rr10);
   rr0 = sx16(rd16(rr4)); rr4 += 2;
   FPUL_ = rr0;
   rr0 = sx16(rd16(rr4)); rr4 += 2;
@@ -2571,7 +2668,7 @@ L_8c22f47e:
   rr11 += rr5;
   ff7 = u2f(rd32(rr10)); rr10 += 4;
   ff14 = ff14 * ff5;
-  sq_pref(rr11);
+  sq_pref_i(rr11);
   ff15 = ff15 * ff5;
   rr9 += 0xfffffff4u;
   ff0 = ff0 - ff1;
@@ -2584,7 +2681,7 @@ L_8c22f47e:
   rr11 += 0xfffffff4u;
   ff2 = ff2 - ff1;
   ff8 = ff8 - ff7;
-  sq_pref(rr4);
+  sq_pref_i(rr4);
   ff8 = ff8 * ff0;
   ff6 = ff6 * ff2;
   ff7 = 0.0f;
@@ -2622,7 +2719,7 @@ L_8c22f4f4:
   rr7 += 0x18u;
   rr13 = 0x0u;
   wr32(rr7, f2u(ff6)); wr32(rr7 + 4, f2u(ff7));
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   rr7 += 0x8u;
 L_8c22f508:
   T_ = (rr12 & rr12) == 0;
@@ -2647,7 +2744,7 @@ L_8c22f528:
   wr32(rr7, rr14);
   rr7 += 0x18u;
   wr32(rr7, f2u(ff6)); wr32(rr7 + 4, f2u(ff7));
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   rr7 += 0x8u;
 L_8c22f536:
   ff0 = u2f(rd32(rr10)); ff1 = u2f(rd32(rr10 + 4)); rr10 += 8;
@@ -2670,7 +2767,7 @@ L_8c22f552:
   wr32(rr7, rr14);
   rr7 += 0x18u;
   wr32(rr7, f2u(ff6)); wr32(rr7 + 4, f2u(ff7));
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   { rr7 += 0x8u; goto L_8c22f5f4; }
   rr7 += 0x8u;
 L_8c22f562:
@@ -2698,7 +2795,7 @@ L_8c22f582:
   rr7 += 0x18u;
   rr12 = 0x0u;
   wr32(rr7, f2u(ff6)); wr32(rr7 + 4, f2u(ff7));
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   rr7 += 0x8u;
 L_8c22f594:
   T_ = (rr13 & rr13) == 0;
@@ -2725,7 +2822,7 @@ L_8c22f5b6:
   wr32(rr7, rr14);
   rr7 += 0x18u;
   wr32(rr7, f2u(ff6)); wr32(rr7 + 4, f2u(ff7));
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   rr7 += 0x8u;
 L_8c22f5c6:
   ff0 = u2f(rd32(rr10)); ff1 = u2f(rd32(rr10 + 4)); rr10 += 8;
@@ -2750,7 +2847,7 @@ L_8c22f5e4:
   wr32(rr7, rr14);
   rr7 += 0x18u;
   wr32(rr7, f2u(ff6)); wr32(rr7 + 4, f2u(ff7));
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   rr7 += 0x8u;
 L_8c22f5f4:
   rr4 += rr6;
@@ -2786,7 +2883,7 @@ L_8c22f624:
   FPSCR_ ^= SZ;
   rr7 += 0x18u;
   wr32(rr7, f2u(ff6)); wr32(rr7 + 4, f2u(ff7));
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   { rr7 += 0x8u; goto L_8c22f66a; }
   rr7 += 0x8u;
 L_8c22f636:
@@ -2815,7 +2912,7 @@ L_8c22f658:
   FPSCR_ ^= SZ;
   rr7 += 0x18u;
   wr32(rr7, f2u(ff6)); wr32(rr7 + 4, f2u(ff7));
-  sq_pref(rr7);
+  sq_pref_i(rr7);
   rr7 += 0x8u;
 L_8c22f66a:
   rr1 -= 1; T_ = rr1 == 0;

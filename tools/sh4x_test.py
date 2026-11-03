@@ -27,8 +27,9 @@ src = ['#define GM(T, a) (*(le<T> *)(test_mem + ((unsigned)(a) & 0xffffffu)))\n#
        '#define NO_SH4X 1\n#include "wii_sh4.cpp"\n',
        'unsigned char test_mem[0x1000010];\n'
        'extern "C" { const char *ring[256]; unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; unsigned long vsp; unsigned long xlat_exact(unsigned long) { return 0; }\n'
+       'unsigned char sq_buf[64]; unsigned sq_line, sq_stores, sqd_mask[2], sqd_line[2], sqd_sent[2]; int sq_dirty;   /* line state stays 0: every SQ store reaches the logged sq_direct */\n'
        'unsigned sq_log[64][3], sq_n; void sq_direct(unsigned ea, unsigned v, int size) { if (sq_n < 64) { sq_log[sq_n][0] = ea; sq_log[sq_n][1] = v; sq_log[sq_n][2] = size; } sq_n++; }\n'
-       'void sq_pref(unsigned ea) { if (sq_n < 64) { sq_log[sq_n][0] = ea; sq_log[sq_n][1] = 0xffffffff; sq_log[sq_n][2] = 0; } sq_n++; }\n'
+       'void sq_pref(unsigned ea) { if ((ea >> 26) != 0x38) return; if (sq_n < 64) { sq_log[sq_n][0] = ea; sq_log[sq_n][1] = 0xffffffff; sq_log[sq_n][2] = 0; } sq_n++; }\n'
        'void host_log(const char *f, ...) { } unsigned long xlat(unsigned long a) { return a; } }\n'
        'namespace sh4 {\n']
 for i, (op, pc) in enumerate(items):

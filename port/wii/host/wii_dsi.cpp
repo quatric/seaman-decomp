@@ -177,13 +177,14 @@ static void fp_store(unsigned n, int dbl, unsigned *hi, unsigned *lo)
    when it fills, when the next store goes to another line or backwards, and at the end of the frame. Words never written stay as the queue last held them. */
 extern "C" void ta_push_line(const unsigned *w);
 extern "C" { unsigned sq_stores, sq_lines, sq_ta, sq_qacr, sq_area[8], sq_odd; }
-static unsigned sq_line, sq_last; static int sq_dirty;
+extern "C" { unsigned sq_line; int sq_dirty; }   /* shared with the inline store path in sh4_core.h */
+static unsigned sq_last;
 /* texture memory seen through the 32-bit path (0x05/0xa5): the two 4 MB banks interleave every 32 bits in the 64-bit view the
    renderer reads, so 32-bit offset o lands at (o & 3) | (o & 0x3ffffc) << 1 | bank << 2 */
 static inline unsigned vram32to64(unsigned o) { o &= 0x7fffffu; return (o & 3) | ((o & 0x3ffffcu) << 1) | (((o >> 22) & 1) << 2); }
 static inline unsigned vram_ea(unsigned ea) { return (ea >> 24) == 0xa5 ? 0xa4000000u | vram32to64(ea) : ea; }
 /* the two 32-byte queues; address bit 5 selects one, the other address bits only matter for the destination at flush time */
-static unsigned char sq_buf[64] __attribute__((aligned(32)));
+extern "C" { unsigned char sq_buf[64] __attribute__((aligned(32))); }
 static inline void sq_put(unsigned ea, unsigned char b) { sq_buf[ea & 63] = b; }
 static void sq_flush(void)
 {
@@ -208,7 +209,7 @@ extern "C" void sq_end_frame(void) { sq_flush(); }
 /* store-queue writes from the SH-4 interpreter: buffered as on the hardware and sent by pref. An interpreted function can fill a line
    for a compiled caller whose pref the decompiler dropped (the 32-byte copy 8c207300 writing Kamui's padding lines), so a line whose
    32 bytes have all been written is sent at once, and the pref that follows for that same line is then skipped. */
-static unsigned sqd_mask[2], sqd_line[2], sqd_sent[2] = { ~0u, ~0u };
+extern "C" { unsigned sqd_mask[2], sqd_line[2], sqd_sent[2] = { ~0u, ~0u }; }
 #if defined(SH4_PROF) && defined(PROF_SQ)   /* timing every store-queue call costs about as much as the call */
 extern "C" int sh4_prof_mode(int m);
 #define PROF_IN(m) int pm_ = sh4_prof_mode(m)

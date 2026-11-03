@@ -46,7 +46,7 @@ def sem(op, pc, mode=None):
              0x28: 'C.mach = C.macl = 0;', 0x0a: '%s = C.mach;' % r(n), 0x1a: '%s = C.macl;' % r(n), 0x2a: '%s = C.pr;' % r(n),
              0x5a: '%s = F.fpul;' % r(n), 0x6a: '%s = F.fpscr;' % r(n), 0x12: '%s = C.gbr;' % r(n),
              0x02: '%s = 0x40000000u | (C.m << 9) | (C.q << 8) | (C.s << 1) | C.t;' % r(n), 0x29: '%s = C.t;' % r(n),
-             0x83: 'sq_pref(%s);' % r(n), 0x93: '', 0xa3: '', 0xb3: '', 0xc3: 'wr32(%s, C.r[0]);' % r(n), 0x1b: ''}
+             0x83: 'sq_pref_i(%s);' % r(n), 0x93: '', 0xa3: '', 0xb3: '', 0xc3: 'wr32(%s, C.r[0]);' % r(n), 0x1b: ''}
         if lo8 in (0x0b, 0x03, 0x23): return None
         if lo8 in T: return T[lo8]
         T2 = {4: 'wr8(C.r[0] + %s, %s);' % (r(n), r(m)), 5: 'wr16(C.r[0] + %s, %s);' % (r(n), r(m)), 6: 'wr32(C.r[0] + %s, %s);' % (r(n), r(m)),
@@ -267,9 +267,10 @@ LOC = [(re.compile(r'C\.r\[(\d+)\]'), r'rr\1'), (re.compile(r'C\.mach\b'), 'MACH
        (re.compile(r'getd\(F\.fr, (\d+)\)'), lambda m: 'getd2(ff%d, ff%d)' % (int(m.group(1)), int(m.group(1)) + 1)),
        (re.compile(r'setd\(F\.fr, (\d+), '), lambda m: 'setd2(ff%d, ff%d, ' % (int(m.group(1)), int(m.group(1)) + 1)),
        (re.compile(r'set_fpscr\('), 'SETFPSCR_('), (re.compile(r'F\.fr\[(\d+)\]'), r'ff\1'), (re.compile(r'F\.xf\[(\d+)\]'), r'xx\1')]
+STACK_ST = re.compile(r'\bwr(8|16|32)\(rr15\b')               # stores through the stack pointer cannot reach the store queues
 def loc(s):
     for rx, to in LOC: s = rx.sub(to, s)
-    return s
+    return STACK_ST.sub(r'wrs\1(rr15', s)
 CPU_LOC = [('rr%d' % i, 'unsigned', 'C.r[%d]' % i) for i in range(16)] + [('T_', 'int', 'C.t'), ('S_', 'int', 'C.s'), ('Q_', 'int', 'C.q'),
            ('M_', 'int', 'C.m'), ('MACH_', 'unsigned', 'C.mach'), ('MACL_', 'unsigned', 'C.macl'), ('PR_', 'unsigned', 'C.pr'),
            ('GBR_', 'unsigned', 'C.gbr'), ('FPUL_', 'unsigned', 'F.fpul'), ('FPSCR_', 'unsigned', 'F.fpscr')]

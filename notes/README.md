@@ -624,3 +624,21 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
 - Reference: nullDC4Wii (a Dreamcast emulator for the Wii, github.com/BenoitAdam/nullDC4Wii) keeps guest RAM as big-endian words
   with an address swizzle for sub-word access and maps the DC address space with the PowerPC MMU; its notes suggested the spare
   DBAT4-7 for zero-cost RAM mappings.
+
+### Speed, second pass (Wii, 2026-11-03, later)
+- Tank now 82-88 fps (was 63-71), title about 200 fps, same measurement (headless Dolphin, Null video, frames 20000-25000).
+  A 420 s Metal run with frame dumps matches the reference tank frame at 51-52 dB.
+- SQ store fast path inline (`sq_w32` and `sq_pref_i` in sh4_core.h, always_inline): a word store into the open line of a store
+  queue that no pending flush covers writes the buffer directly; everything else calls `sq_direct`. The SQ buffer and line state
+  are plain globals for this.
+- 348 translated functions (was 251): the next hot interpreted routines from `prof block`. Translated stores through r15
+  (`mov.l Rm,@-r15`, `@(disp,r15)`) use `wrs32/wrs16/wrs8`, which skip the store-queue check (the stack is always RAM).
+- `tools/wii_link.sh` builds wii_sh4, wii_gx and wii_pvr at -O2; the other host files stay at -Os.
+- Left in the tank (per 500 frames, about 5.9 s): translated SH-4 code about 3.6 s, mostly the vertex kernels. Their cost is
+  float loads and stores through little-endian RAM: Broadway has no byte-reversed FPU load, so each goes through a GPR and the
+  stack, and int-to-float needs the magic-number trick. Removing that would mean keeping guest RAM big-endian (as nullDC4Wii does),
+  a much larger change. GX lists about 1.1 s (state 0.22, vertices 0.24, sort 0.06; the rest parsing and colour conversion).
+- Late Metal frames that differ from the reference show the End/Continue menu ("Do you wish to end the session?"): the scripted
+  pad in wii_main.cpp presses Start every 400 frames until a real controller is used, and builds from earlier the same day open it
+  too (scene 18, field 14c = 4). When the test cap stops the
+  run, returning from main with the sound and watch threads alive ends in an exception in libogc's thread code (test builds only).

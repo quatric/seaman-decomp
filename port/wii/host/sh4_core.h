@@ -10,6 +10,7 @@ extern unsigned sh4_pc, sz_on_pc, sz_cur_entry;
 void sq_direct(unsigned ea, unsigned v, int size);
 void sq_pref(unsigned ea);
 unsigned long xlat_exact(unsigned long);
+extern unsigned char sq_buf[64]; extern unsigned sq_line, sq_stores, sqd_mask[2], sqd_line[2], sqd_sent[2]; extern int sq_dirty;
 }
 namespace sh4 {
 struct Cpu {
@@ -24,9 +25,30 @@ inline bool is_sq(unsigned a) { return (a >> 26) == 0x38; }
 inline unsigned rd32(unsigned a) { return GM(unsigned, norm(a)); }
 inline unsigned rd16(unsigned a) { return GM(unsigned short, norm(a)); }
 inline unsigned rd8(unsigned a) { return GM(unsigned char, norm(a)); }
-inline void wr32(unsigned a, unsigned v) { if (is_sq(a)) sq_direct(a, v, 4); else GM(unsigned, norm(a)) = v; }
+/* a 32-bit store-queue store into a line that is still filling: what sq_direct (wii_dsi.cpp) does then, without the call (vertex
+   code writes every word of its output this way); a store that completes the line, starts another one or needs a flush goes there */
+__attribute__((always_inline)) inline void sq_w32(unsigned a, unsigned v)
+{
+  unsigned q = (a >> 5) & 1, line = a & ~31u, m = sqd_mask[q] | 15u << (a & 28);
+  if (!(a & 3) && line == sqd_line[q] && m != ~0u && !(sq_dirty && ((a ^ sq_line) & 0x20) == 0 && line != sq_line)) {
+    *(le<unsigned> *)(sq_buf + (a & 60)) = v; sq_stores++; sqd_mask[q] = m; sqd_sent[q] = ~0u;
+  } else sq_direct(a, v, 4);
+}
+__attribute__((always_inline)) inline void wr32(unsigned a, unsigned v) { if (is_sq(a)) sq_w32(a, v); else GM(unsigned, norm(a)) = v; }
+/* pref: the line was sent when its last word was stored (sq_direct), so this pref only clears that note; anything else goes to sq_pref */
+__attribute__((always_inline)) inline void sq_pref_i(unsigned a)
+{
+  if ((a >> 26) != 0x38) return;
+  unsigned q = (a >> 5) & 1;
+  if (sqd_sent[q] == (a & ~31u)) { sqd_sent[q] = ~0u; return; }
+  sq_pref(a);
+}
 inline void wr16(unsigned a, unsigned v) { if (is_sq(a)) sq_direct(a, v, 2); else GM(unsigned short, norm(a)) = (unsigned short)v; }
 inline void wr8(unsigned a, unsigned v) { if (is_sq(a)) sq_direct(a, v, 1); else GM(unsigned char, norm(a)) = (unsigned char)v; }
+/* stores through r15 (the stack): always RAM, never the store queues (translated code only) */
+inline void wrs32(unsigned a, unsigned v) { GM(unsigned, norm(a)) = v; }
+inline void wrs16(unsigned a, unsigned v) { GM(unsigned short, norm(a)) = (unsigned short)v; }
+inline void wrs8(unsigned a, unsigned v) { GM(unsigned char, norm(a)) = (unsigned char)v; }
 inline float u2f(unsigned v) { union { unsigned u; float f; } x; x.u = v; return x.f; }
 inline unsigned f2u(float f) { union { unsigned u; float f; } x; x.f = f; return x.u; }
 inline int sx8(unsigned v) { return (signed char)v; }

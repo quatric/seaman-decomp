@@ -28,6 +28,7 @@ obj/mod_8c250000.o
 obj/mod_8c260000.o
 obj/sh4x_mod_8c010000.o
 obj/sh4x_mod_8c020000.o
+obj/sh4x_mod_8c030000.o
 obj/sh4x_mod_8c050000.o
 obj/sh4x_mod_8c0a0000.o
 obj/sh4x_mod_8c0b0000.o
