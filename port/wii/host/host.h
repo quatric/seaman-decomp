@@ -5,7 +5,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#ifndef GM
 #define GM(T, a) (*(le<T> *)(unsigned long)(unsigned)(a))
+#endif
 extern "C" {
 extern const char *ring[256];
 extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1;

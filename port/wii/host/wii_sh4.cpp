@@ -4,11 +4,9 @@
    A call (jsr/jmp/bsr/bra to a function start) into an integer-only function runs the host C version with r4..r7, r0/r1 (vin0/vin1)
    and the guest stack (vsp = r15); calls into FPU functions and the register-argument helpers stay in the interpreter.
    Full integer ISA, single and double precision FPU (SZ/PR/FR modes), store-queue writes flushed by pref. */
-#include "host.h"
-#include <math.h>
+#include "sh4_core.h"
 
 extern "C" {
-struct Sh4Fpu { float fr[16], xf[16]; unsigned fpul, fpscr; };
 Sh4Fpu sh4_fpu;
 unsigned long sh4_total, sh4_runs;
 unsigned sz_on_pc, sz_on_entry, sz_cur_entry, sz_hist[16], sz_hn;
@@ -16,35 +14,36 @@ unsigned sh4_pc;                      /* guest pc of the instruction being run, 
 void sq_direct(unsigned ea, unsigned v, int size);
 void sq_pref(unsigned ea);
 unsigned long xlat_exact(unsigned long);
+#ifdef SH4_PROF
+/* profile (test builds): interpreted instructions per 64-byte block of program code from 0x8c010000, and the time spent in the
+   interpreter (outermost run() calls) and in the native functions it calls; wii_main.cpp reports and resets them */
+unsigned sh4x_cur;
+unsigned sh4x_guards;
+void sh4x_guard(unsigned pc) { if (sh4x_guards++ < 20) host_log("sh4x: fpu mode %x at %08x, interpreting\n", sh4_fpu.fpscr, pc); }
+unsigned sh4_prof[0x9800]; unsigned long long sh4_prof_t[4], sh4_prof_last; int sh4_mode, sh4_depth;   /* time per mode: 0 native, 1 interpreter, 2 store queues and TA, 3 DSI */
+unsigned long long sh4_ticks(void);
+static inline void prof_mode(int m) { unsigned long long now = sh4_ticks(); sh4_prof_t[sh4_mode] += now - sh4_prof_last; sh4_prof_last = now; sh4_mode = m; }
+int sh4_prof_mode(int m) { int o = sh4_mode; prof_mode(m); return o; }
+#endif
 }
 static const unsigned interp_tab[] = {
 #include "interp_tab.inc"
 };
+namespace sh4 {
+[[noreturn]] void bad(const char *why, unsigned pc, unsigned op)
+{
+  host_log("sh4: %s at %08x op=%04x\n", why, pc, op);
+  for (int i = 12; i > 0; i--) host_log("  call %s\n", ring[(rp - i) & 255] ? ring[(rp - i) & 255] : "-");
+  for (;;) { }
+}
+#ifndef NO_SH4X
+#define X(a, f) void f(Cpu &);
+#include "../sh4x/sh4x_tab.inc"
+#undef X
+#endif
+}
 namespace {
-struct Cpu {
-  unsigned r[16], pr, mach, macl, gbr;
-  int t, s, q, m;
-};
-Sh4Fpu &F = sh4_fpu;
-enum { SZ = 1 << 20, PRB = 1 << 19, FRB = 1 << 21 };
-/* P1/P2 aliases of RAM are both mapped (BATs at 0x8c and 0xac); a U0 address of RAM (0x0c...) goes through P1 */
-inline unsigned norm(unsigned a) { return (a >> 24) == 0x0c ? a | 0x80000000u : a; }
-inline bool is_sq(unsigned a) { return (a >> 26) == 0x38; }
-inline unsigned rd32(unsigned a) { return GM(unsigned, norm(a)); }
-inline unsigned rd16(unsigned a) { return GM(unsigned short, norm(a)); }
-inline unsigned rd8(unsigned a) { return *(volatile unsigned char *)(unsigned long)norm(a); }
-inline void wr32(unsigned a, unsigned v) { if (is_sq(a)) sq_direct(a, v, 4); else GM(unsigned, norm(a)) = v; }
-inline void wr16(unsigned a, unsigned v) { if (is_sq(a)) sq_direct(a, v, 2); else GM(unsigned short, norm(a)) = (unsigned short)v; }
-inline void wr8(unsigned a, unsigned v) { if (is_sq(a)) sq_direct(a, v, 1); else *(volatile unsigned char *)(unsigned long)norm(a) = (unsigned char)v; }
-inline float u2f(unsigned v) { union { unsigned u; float f; } x; x.u = v; return x.f; }
-inline unsigned f2u(float f) { union { unsigned u; float f; } x; x.f = f; return x.u; }
-inline int sx8(unsigned v) { return (signed char)v; }
-inline int sx16(unsigned v) { return (short)v; }
-/* DRn = FRn (upper word) : FRn+1 */
-inline double getd(const float *b, unsigned n) { union { unsigned long long u; double d; } x; x.u = ((unsigned long long)f2u(b[n]) << 32) | f2u(b[n + 1]); return x.d; }
-inline void setd(float *b, unsigned n, double d) { union { unsigned long long u; double d; } x; x.d = d; b[n] = u2f((unsigned)(x.u >> 32)); b[n + 1] = u2f((unsigned)x.u); }
-inline void set_fpscr(unsigned v) { if ((v ^ F.fpscr) & (SZ | PRB)) { static int ns; if (ns++ < 20) host_log("sh4: lds fpscr %x -> %x at %08x\n", F.fpscr, v, sh4_pc); } if (0) { static int nl; if (nl++ < 12) host_log("sh4: fpscr %x -> %x at %08x\n", F.fpscr, v, sh4_pc); } if ((v ^ F.fpscr) & FRB) for (int i = 0; i < 16; i++) { float t = F.fr[i]; F.fr[i] = F.xf[i]; F.xf[i] = t; } F.fpscr = v; }
-
+using namespace sh4;
 bool interp_here(unsigned a)
 {
   unsigned lo = 0, hi = sizeof interp_tab / sizeof interp_tab[0];
@@ -55,13 +54,6 @@ bool interp_here(unsigned a)
 struct Island { unsigned pc; };
 Island islands[48];
 int nisl;
-
-[[noreturn]] void bad(const char *why, unsigned pc, unsigned op)
-{
-  host_log("sh4: %s at %08x op=%04x\n", why, pc, op);
-  for (int i = 12; i > 0; i--) host_log("  call %s\n", ring[(rp - i) & 255] ? ring[(rp - i) & 255] : "-");
-  for (;;) { }
-}
 
 void fpu(Cpu &C, unsigned op, unsigned pc)
 {
@@ -363,18 +355,97 @@ void step(Cpu &C, unsigned pc, unsigned op, unsigned &next)
   bad("unknown op", pc, op);
 }
 
-typedef unsigned long (*hfn)(unsigned long, unsigned long, unsigned long, unsigned long);
-
 /* a control transfer to `t`: if it is the start of an integer-only function, run the host version and return its r0 */
+inline void host_call_h(Cpu &C, hfn h)
+{
+  vsp = C.r[15]; vin0 = C.r[0]; vin1 = C.r[1];
+  vr4 = C.r[4]; vr5 = C.r[5]; vr6 = C.r[6]; vr7 = C.r[7];
+#ifdef SH4_PROF
+  prof_mode(0);
+#endif
+  C.r[0] = (unsigned)h(C.r[4], C.r[5], C.r[6], C.r[7]);
+#ifdef SH4_PROF
+  prof_mode(1);
+#endif
+}
 inline bool host_call(Cpu &C, unsigned t)
 {
   if (interp_here(t)) return false;
   unsigned long h = xlat_exact(t);
   if (!h) return false;
-  vsp = C.r[15]; vin0 = C.r[0]; vin1 = C.r[1];
-  vr4 = C.r[4]; vr5 = C.r[5]; vr6 = C.r[6]; vr7 = C.r[7];
-  C.r[0] = (unsigned)((hfn)h)(C.r[4], C.r[5], C.r[6], C.r[7]);
+  host_call_h(C, (hfn)h);
   return true;
+}
+
+/* statically translated functions (tools/sh4_translate.py, port/wii/sh4x): sorted by address */
+#ifndef NO_SH4X
+struct XEnt { unsigned a; xfn f; };
+const XEnt xtab_sh4[] = {
+#define X(a, f) { a, f },
+#include "../sh4x/sh4x_tab.inc"
+#undef X
+};
+const unsigned nxtab_sh4 = sizeof xtab_sh4 / sizeof xtab_sh4[0];
+#else
+struct XEnt { unsigned a; xfn f; };
+const XEnt xtab_sh4[1] = { { 0, 0 } };
+const unsigned nxtab_sh4 = 0;
+#endif
+inline xfn xfind_(unsigned a)
+{
+  unsigned lo = 0, hi = nxtab_sh4;
+  while (lo < hi) { unsigned m = (lo + hi) / 2; if (xtab_sh4[m].a < a) lo = m + 1; else hi = m; }
+  return lo < nxtab_sh4 && xtab_sh4[lo].a == a ? xtab_sh4[lo].f : 0;
+}
+
+unsigned long guard, guard_base;   /* instructions run; a runaway is counted from the outermost run() */
+/* run guest code from pc until control reaches `stop` (the return address of the outermost call) */
+void exec_(Cpu &C, unsigned pc, unsigned stop)
+{
+  XPROF(0);
+#ifdef SH4_STACKCHECK
+  unsigned sret[64], ssp[64], sent[64]; int sd = 0;
+#endif
+  for (; pc != stop; guard++) {
+    if (guard - guard_base > 400000000UL) { host_log("sh4: runs away: entry=%08x pc=%08x r0..r7=%08x %08x %08x %08x %08x %08x %08x %08x\n", sz_cur_entry, pc, C.r[0], C.r[1], C.r[2], C.r[3], C.r[4], C.r[5], C.r[6], C.r[7]); bad("runs away", pc, rd16(pc)); }
+    sh4_pc = pc;
+#ifdef SH4_PROF
+    { unsigned b = (pc - 0x8c010000u) >> 6; if (b < 0x9800) sh4_prof[b]++; }
+#endif
+    unsigned op = rd16(pc), next = pc + 2;
+    unsigned hi = op >> 12;
+    if ((op & 0xf0ff) == 0x400b) {                                       /* jsr @Rn */
+      unsigned t = C.r[(op >> 8) & 15];
+      if (!interp_here(t) && xlat_exact(t)) { slot(C, pc + 2); host_call(C, t); pc += 4; continue; }
+      if (xfn f = xfind_(t)) { slot(C, pc + 2); C.pr = pc + 4; f(C); pc += 4; continue; }
+    } else if ((op & 0xf0ff) == 0x402b) {                                /* jmp @Rn: a tail call when it lands on a function start */
+      unsigned t = C.r[(op >> 8) & 15];
+      if (!interp_here(t) && xlat_exact(t)) { slot(C, pc + 2); host_call(C, t); pc = C.pr; continue; }
+      if (xfn f = xfind_(t)) { slot(C, pc + 2); unsigned r = C.pr; f(C); pc = r; continue; }
+    } else if (hi == 0xb) {                                              /* bsr to an integer-only function (a bra stays here: its target can be a label the tables list as a function) */
+      int dd = (int)(op & 0xfff); if (dd & 0x800) dd -= 0x1000; unsigned t = pc + 4 + dd * 2;
+      if (!interp_here(t) && xlat_exact(t)) { slot(C, pc + 2); host_call(C, t); pc += 4; continue; }
+      if (xfn f = xfind_(t)) { slot(C, pc + 2); C.pr = pc + 4; f(C); pc += 4; continue; }
+    } else if (hi == 0xa || (op & 0xf0ff) == 0x0003) {                   /* bra / bsrf into a translated function */
+      unsigned t;
+      if (hi == 0xa) { int dd = (int)(op & 0xfff); if (dd & 0x800) dd -= 0x1000; t = pc + 4 + dd * 2; } else t = pc + 4 + C.r[(op >> 8) & 15];
+      if (xfn f = xfind_(t)) {
+        slot(C, pc + 2);
+        if (hi == 0xa) { unsigned r = C.pr; f(C); pc = r; } else { C.pr = pc + 4; f(C); pc += 4; }
+        continue;
+      }
+    }
+#ifdef SH4_STACKCHECK
+    if ((op & 0xf0ff) == 0x400b || hi == 0xb || (op & 0xf0ff) == 0x0003) { if (sd < 64) { sret[sd] = pc + 4; ssp[sd] = C.r[15]; sent[sd] = 0; sd++; } }
+    if (op == 0x000b && sd > 0 && C.pr == sret[sd - 1]) {
+      unsigned dummy = pc + 2; Cpu T = C; step(T, pc + 2, rd16(pc + 2), dummy);
+      if (T.r[15] != ssp[sd - 1]) { static int nb; if (nb++ < 20) host_log("sh4: unbalanced return at %08x to %08x: sp %x, at call %x (run entry %08x)\n", pc, C.pr, T.r[15], ssp[sd - 1], sz_cur_entry); }
+      sd--;
+    }
+#endif
+    step(C, pc, op, next);
+    pc = next;
+  }
 }
 
 unsigned long run(unsigned entry, unsigned long a, unsigned long b, unsigned long c, unsigned long d)
@@ -383,43 +454,21 @@ unsigned long run(unsigned entry, unsigned long a, unsigned long b, unsigned lon
   C.r[0] = vin0; C.r[1] = vin1;
   C.r[4] = (unsigned)a; C.r[5] = (unsigned)b; C.r[6] = (unsigned)c; C.r[7] = (unsigned)d; C.r[15] = (unsigned)vsp;
   const unsigned SENT = 0xfffffffeu; C.pr = SENT;
-  unsigned pc = entry; unsigned long guard = 0;
   unsigned long saved_vsp = vsp;
   unsigned fpscr0 = F.fpscr; unsigned prev_entry = sz_cur_entry; sz_cur_entry = entry;
-#ifdef SH4_STACKCHECK
-  unsigned sret[64], ssp[64], sent[64]; int sd = 0;
+  unsigned long g0 = guard, gb = guard_base; guard_base = guard;
+#ifdef SH4_PROF
+  int pmode = sh4_mode; prof_mode(1); sh4_depth++;
 #endif
-  for (; pc != SENT; guard++) {
-    if (guard > 400000000UL) { host_log("sh4: runs away: entry=%08x pc=%08x r0..r7=%08x %08x %08x %08x %08x %08x %08x %08x\n", entry, pc, C.r[0], C.r[1], C.r[2], C.r[3], C.r[4], C.r[5], C.r[6], C.r[7]); bad("runs away", pc, rd16(pc)); }
-    sh4_pc = pc;
-    unsigned op = rd16(pc), next = pc + 2;
-    unsigned hi = op >> 12;
-    if ((op & 0xf0ff) == 0x400b) {                                       /* jsr @Rn */
-      unsigned t = C.r[(op >> 8) & 15];
-      if (!interp_here(t) && xlat_exact(t)) { slot(C, pc + 2); host_call(C, t); pc += 4; continue; }
-    } else if ((op & 0xf0ff) == 0x402b) {                                /* jmp @Rn: a tail call when it lands on a function start */
-      unsigned t = C.r[(op >> 8) & 15];
-      if (!interp_here(t) && xlat_exact(t)) { slot(C, pc + 2); host_call(C, t); pc = C.pr; continue; }
-    } else if (hi == 0xb) {                                              /* bsr to an integer-only function (a bra stays here: its target can be a label the tables list as a function) */
-      int dd = (int)(op & 0xfff); if (dd & 0x800) dd -= 0x1000; unsigned t = pc + 4 + dd * 2;
-      if (!interp_here(t) && xlat_exact(t)) { slot(C, pc + 2); host_call(C, t); pc += 4; continue; }
-    }
-#ifdef SH4_STACKCHECK
-    if ((op & 0xf0ff) == 0x400b || hi == 0xb || (op & 0xf0ff) == 0x0003) { if (sd < 64) { sret[sd] = pc + 4; ssp[sd] = C.r[15]; sent[sd] = 0; sd++; } }
-    if (op == 0x000b && sd > 0 && C.pr == sret[sd - 1]) {
-      unsigned dummy = pc + 2; Cpu T = C; step(T, pc + 2, rd16(pc + 2), dummy);
-      if (T.r[15] != ssp[sd - 1]) { static int nb; if (nb++ < 20) host_log("sh4: unbalanced return at %08x to %08x: sp %x, at call %x (run entry %08x)\n", pc, C.pr, T.r[15], ssp[sd - 1], entry); }
-      sd--;
-    }
-#endif
-    step(C, pc, op, next);
-    pc = next;
-  }
+  if (xfn f = xfind_(entry)) f(C); else exec_(C, entry, SENT);
   vsp = saved_vsp;
   sz_cur_entry = prev_entry;
+#ifdef SH4_PROF
+  sh4_depth--; prof_mode(pmode);
+#endif
   if ((F.fpscr ^ fpscr0) & (SZ | FRB | PRB)) { static int nf; if (nf++ < 20) host_log("sh4: %08x changed fpscr %x -> %x\n", entry, fpscr0, F.fpscr); }
   vin1 = C.r[1];                                                         /* upper word of a 64-bit result */
-  sh4_total += guard; sh4_runs++;
+  sh4_total += guard - g0; sh4_runs++; guard_base = gb;
   return C.r[0];
 }
 
@@ -427,6 +476,23 @@ template <int I> unsigned long tramp(unsigned long a, unsigned long b, unsigned 
 template <int... Is> struct Tab { static constexpr hfn fns[sizeof...(Is)] = { tramp<Is>... }; };
 template <int N, int... Is> struct Gen : Gen<N - 1, N - 1, Is...> {};
 template <int... Is> struct Gen<0, Is...> { typedef Tab<Is...> type; };
+}
+
+namespace sh4 {
+#ifdef SH4_PROF
+/* profile builds: where translated code continues in the interpreter (guest pc, calls) */
+extern "C" { unsigned xe_a[1024], xe_n[1024]; extern unsigned prof_on; }
+void exec(Cpu &C, unsigned pc, unsigned stop)
+{
+  if (prof_on) { unsigned h = (pc * 2654435761u) >> 22; for (int k = 0; k < 1024 && xe_a[h] && xe_a[h] != pc; k++) h = (h + 1) & 1023; if (!xe_a[h]) xe_a[h] = pc; if (xe_a[h] == pc) xe_n[h]++; }
+  exec_(C, pc, stop);
+}
+#else
+void exec(Cpu &C, unsigned pc, unsigned stop) { exec_(C, pc, stop); }
+#endif
+bool native_call(Cpu &C, unsigned t) { return host_call(C, t); }
+xfn xfind(unsigned a) { return xfind_(a); }
+void call_ptr(Cpu &C, hfn h) { host_call_h(C, h); }
 }
 
 /* entry from the generated units: a function of notes/fpu_funcs.txt */

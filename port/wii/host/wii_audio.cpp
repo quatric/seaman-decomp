@@ -110,6 +110,7 @@ static void mix(int b)
 /* the DMA callback fires when the buffer queued last starts playing: note where each port is in it, queue the next buffer (mixed
    ahead by the sound thread) and wake the thread to mix the one after; the ARM7 and the AICA run in that thread */
 static lwpq_t snd_q;
+extern "C" { volatile int snd_busy; }   /* the sound thread is mixing (for the profiler) */
 static void dma_cb(void)
 {
   int b = (playbuf + 1) % NBUF;
@@ -123,7 +124,7 @@ static void *snd_thread(void *)
 {
   for (;;) {
     LWP_ThreadSleep(snd_q);
-    mix((playbuf + 2) % NBUF);
+    snd_busy = 1; mix((playbuf + 2) % NBUF); snd_busy = 0;
   }
   return 0;
 }

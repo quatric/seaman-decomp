@@ -5,6 +5,7 @@
    stage. Fog (look-up table, or per vertex from the offset alpha) is a factor in the second colour's alpha, blended towards the fog
    colour by the last TEV stage. Modifier volumes and bump maps are not drawn yet. */
 #include "host.h"
+#include <algorithm>
 #include <gccore.h>
 #include <malloc.h>
 #include <math.h>
@@ -30,6 +31,11 @@ struct Tex { unsigned tcw, tsp_size, epoch, w, h, used; void *data; unsigned byt
 const int NTEX = 96;
 Tex texs[NTEX];
 unsigned tex_bytes_total, tex_frame;
+#ifdef SH4_PROF
+#include <ogc/lwp_watchdog.h>
+#endif
+extern "C" { unsigned long long gx_t[5]; unsigned gx_n[3]; }   /* profile builds: time in the lists, waiting for the GPU, copying out */
+extern "C" { unsigned tex_decodes, tex_texels; }   /* textures (re)decoded, for the frame log */
 const unsigned TEX_BUDGET = 8u << 20;
 
 /* PVR twiddled order: texel bits interleaved, y in the even bits; non-square textures are runs of square blocks */
@@ -148,6 +154,7 @@ Tex *get_tex(unsigned tcw, unsigned tsp)
       refresh_i:
       {
         unsigned *argb = (unsigned *)malloc(w * h * 4);
+        tex_decodes++; tex_texels += w * h;
         if (argb) { decode(tcw, w, h, argb); to_gx(argb, w, h, (unsigned char *)texs[i].data); free(argb); DCFlushRange(texs[i].data, texs[i].bytes); GX_InvalidateTexAll(); }
         texs[i].used = tex_frame; return &texs[i];
       }
@@ -224,7 +231,22 @@ inline unsigned fog_table(float invw)
   return clamp8((int)(((w >> 8) & 0xff) * (1.0f - fr) + (w & 0xff) * fr));
 }
 
-void set_state(const Poly &p, int list)
+void set_state_(const Poly &p, int list);
+/* the GX state set_state_ made last: a run of polygons with the same words and list (most of a frame) sets it once.
+   Nothing else changes that state between set_state calls in a frame; gx_frame clears it at the start of each frame */
+struct StateKey { unsigned pcw, isp, tsp, tcw, clip; int list; bool valid; } state_last;
+inline void set_state(const Poly &p, int list)
+{
+  StateKey &k = state_last;
+  if (k.valid && k.pcw == p.pcw && k.isp == p.isp && k.tsp == p.tsp && k.tcw == p.tcw && k.clip == p.clip && k.list == list) return;
+#ifdef SH4_PROF
+  u64 t = gettime(); set_state_(p, list); gx_t[3] += gettime() - t; gx_n[0]++;
+#else
+  set_state_(p, list);
+#endif
+  k.pcw = p.pcw; k.isp = p.isp; k.tsp = p.tsp; k.tcw = p.tcw; k.clip = p.clip; k.list = list; k.valid = true;
+}
+void set_state_(const Poly &p, int list)
 {
   bool tex = (p.pcw >> 3) & 1;
   unsigned isp = p.isp, tsp = p.tsp;
@@ -310,23 +332,41 @@ void out_prim(const Poly &p, int list, bool quad, const V *v, int n)
     float z = 0; for (int k = 0; k < n; k++) { pverts[npv++] = v[k]; z += v[k].z; } q.key = z / n;
     return;
   }
+#ifdef SH4_PROF
+  u64 t = gettime(); gx_n[1] += n;
+#endif
   GX_Begin(quad ? GX_QUADS : GX_TRIANGLESTRIP, GX_VTXFMT0, n);
   for (int k = 0; k < n; k++) emit(v[k]);
   GX_End();
+#ifdef SH4_PROF
+  gx_t[4] += gettime() - t;
+#endif
 }
 void flush_sorted(void)
 {
+#ifdef SH4_PROF
+  u64 t = gettime(); gx_n[2] += nprim;
+#endif
   static int order[MAXPRIM];
-  for (int k = 0; k < nprim; k++) order[k] = k;
-  /* insertion sort: farthest (smallest 1/w) first, submission order kept for ties */
-  for (int k = 1; k < nprim; k++) { int o = order[k], j = k; while (j > 0 && prims[order[j - 1]].key > prims[o].key) { order[j] = order[j - 1]; j--; } order[j] = o; }
+  for (int k = 0; k < nprim; k++) { order[k] = k; if (prims[k].key != prims[k].key) prims[k].key = -__builtin_inff(); }
+  /* farthest (smallest 1/w) first, submission order kept for ties */
+  std::stable_sort(order, order + nprim, [](int a, int b) { return prims[a].key < prims[b].key; });
+#ifdef SH4_PROF
+  gx_t[1] += gettime() - t;
+#endif
   for (int k = 0; k < nprim; k++) {
     Prim &q = prims[order[k]];
     fog_mode = q.fog; set_state(q.p, 2);
     GX_SetZMode(GX_TRUE, ZCMP[(q.p.isp >> 29) & 7], GX_FALSE);
+#ifdef SH4_PROF
+    u64 tv = gettime(); gx_n[1] += q.n;
+#endif
     GX_Begin(q.quad ? GX_QUADS : GX_TRIANGLESTRIP, GX_VTXFMT0, q.n);
     for (int i = 0; i < q.n; i++) emit(pverts[q.first + i]);
     GX_End();
+#ifdef SH4_PROF
+    gx_t[4] += gettime() - tv;
+#endif
   }
   nprim = npv = 0;
 }
@@ -461,7 +501,11 @@ extern "C" void gx_init(void)
 extern "C" void gx_frame(const unsigned *ta, unsigned bytes)
 {
   if (!ready) return;
+#ifdef SH4_PROF
+  u64 t0 = gettime();
+#endif
   GX_InvVtxCache();
+  state_last.valid = false;
   fog_load();
   set_clip(NOCLIP);
   GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
@@ -473,7 +517,13 @@ extern "C" void gx_frame(const unsigned *ta, unsigned bytes)
   if (sorting) flush_sorted();
   sorting = false;
   set_clip(NOCLIP);
+#ifdef SH4_PROF
+  u64 t1 = gettime();
+#endif
   GX_DrawDone();
+#ifdef SH4_PROF
+  u64 t2 = gettime(); gx_t[0] += t1 - t0; (void)t2;
+#endif
   cur_fb ^= 1;
   GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
   GX_SetColorUpdate(GX_TRUE);
@@ -481,4 +531,7 @@ extern "C" void gx_frame(const unsigned *ta, unsigned bytes)
   GX_Flush();
   VIDEO_SetNextFramebuffer(xfb[cur_fb]);
   VIDEO_Flush();
+#ifdef SH4_PROF
+  gx_t[2] += gettime() - t2;
+#endif
 }

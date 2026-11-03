@@ -59,6 +59,9 @@ void pvr_end_frame(unsigned n)
     unsigned t[8] = {0};
     for (unsigned i = 0; i < ta_len / 4; i += 8) t[(ta_buf[i] >> 29) & 7]++;
     extern unsigned sq_area[8], sq_odd;
+#ifdef SH4_PROF
+    { extern unsigned tex_decodes, tex_texels, vram_epoch; host_log("tex: decodes %u texels %u epoch %u\n", tex_decodes, tex_texels, vram_epoch); }
+#endif
     host_log("frame %u: ta %u bytes (end=%u clip=%u poly=%u sprite=%u vtx=%u) dma %u (ta %u, last dst %x src %x len %x) sq areas ta=%u ram=%u vram=%u other=%u (%x)\n", n, ta_len, t[0], t[1], t[4], t[5], t[7], dma_n, dma_ta, dma_last, dma_src, dma_len, sq_area[4], sq_area[3], sq_area[1], sq_area[0] + sq_area[2] + sq_area[5] + sq_area[6] + sq_area[7], sq_odd);
   }
   { extern void gx_frame(const unsigned *, unsigned); gx_frame(ta_buf, ta_len); }

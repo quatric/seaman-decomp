@@ -3,9 +3,15 @@
 #pragma once
 template<int N> struct le_raw;
 template<> struct le_raw<1> { typedef unsigned char type; static type sw(type v) { return v; } };
+#if defined(__BYTE_ORDER__) && __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__   /* a little-endian host (the host-side tests): no swap */
+template<> struct le_raw<2> { typedef unsigned short type; static type sw(type v) { return v; } };
+template<> struct le_raw<4> { typedef unsigned int type;   static type sw(type v) { return v; } };
+template<> struct le_raw<8> { typedef unsigned long long type; static type sw(type v) { return v; } };
+#else
 template<> struct le_raw<2> { typedef unsigned short type; static type sw(type v) { return __builtin_bswap16(v); } };
 template<> struct le_raw<4> { typedef unsigned int type;   static type sw(type v) { return __builtin_bswap32(v); } };
 template<> struct le_raw<8> { typedef unsigned long long type; static type sw(type v) { return __builtin_bswap64(v); } };
+#endif
 template<> struct le_raw<16> { typedef unsigned long long type; static type sw(type v) { return v; } };
 template<class U> struct le_enable_int { };
 template<> struct le_enable_int<int> { typedef void type; };

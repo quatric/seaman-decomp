@@ -18,3 +18,4 @@ port/trace_x86
 port/obj/
 port/wii/obj/
 *.img
+port/wii/sh4x/test/

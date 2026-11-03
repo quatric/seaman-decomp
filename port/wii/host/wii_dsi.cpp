@@ -183,16 +183,18 @@ static unsigned sq_line, sq_last; static int sq_dirty;
 static inline unsigned vram32to64(unsigned o) { o &= 0x7fffffu; return (o & 3) | ((o & 0x3ffffcu) << 1) | (((o >> 22) & 1) << 2); }
 static inline unsigned vram_ea(unsigned ea) { return (ea >> 24) == 0xa5 ? 0xa4000000u | vram32to64(ea) : ea; }
 /* the two 32-byte queues; address bit 5 selects one, the other address bits only matter for the destination at flush time */
-static unsigned char sq_buf[64];
+static unsigned char sq_buf[64] __attribute__((aligned(32)));
 static inline void sq_put(unsigned ea, unsigned char b) { sq_buf[ea & 63] = b; }
 static void sq_flush(void)
 {
   if (!sq_dirty) return;
   sq_dirty = 0; sq_lines++;
-  unsigned qacr = hw_peek32((sq_line & 0x20) ? 0xff00003c : 0xff000038);
+  static unsigned char *qp;                    /* the page holding QACR0/1: pages never move once allocated */
+  if (!qp) qp = page(0xff000000u);
+  unsigned qacr = qp ? (unsigned)*(le<unsigned> *)(qp + ((sq_line & 0x20) ? 0x3c : 0x38)) : hw_peek32((sq_line & 0x20) ? 0xff00003c : 0xff000038);
   unsigned phys = (sq_line & 0x03ffffe0u) | ((qacr & 0x1c) << 24);
   unsigned w[8]; const unsigned char *b = sq_buf + (sq_line & 0x20);
-  for (int i = 0; i < 8; i++) w[i] = b[4 * i] | b[4 * i + 1] << 8 | b[4 * i + 2] << 16 | (unsigned)b[4 * i + 3] << 24;
+  for (int i = 0; i < 8; i++) w[i] = *(const le<unsigned> *)(b + 4 * i);
   sq_qacr = qacr;
   { static int nlog; if (sq_lines > 400000 && nlog < 16) { nlog++; SYS_Report("sqflush line=%08x qacr=%x phys=%08x w=%x %x %x %x\n", sq_line, qacr, phys, w[0], w[1], w[2], w[3]); } }
   sq_area[(phys >> 26) & 7]++; if ((phys >> 26) != 4 && (phys >> 26) != 3 && (phys >> 26) != 1) sq_odd = sq_line;
@@ -207,10 +209,21 @@ extern "C" void sq_end_frame(void) { sq_flush(); }
    for a compiled caller whose pref the decompiler dropped (the 32-byte copy 8c207300 writing Kamui's padding lines), so a line whose
    32 bytes have all been written is sent at once, and the pref that follows for that same line is then skipped. */
 static unsigned sqd_mask[2], sqd_line[2], sqd_sent[2] = { ~0u, ~0u };
-extern "C" void sq_direct(unsigned ea, unsigned v, int size)
+#if defined(SH4_PROF) && defined(PROF_SQ)   /* timing every store-queue call costs about as much as the call */
+extern "C" int sh4_prof_mode(int m);
+#define PROF_IN(m) int pm_ = sh4_prof_mode(m)
+#define PROF_OUT() sh4_prof_mode(pm_)
+#else
+#define PROF_IN(m)
+#define PROF_OUT()
+#endif
+static void sq_direct_(unsigned ea, unsigned v, int size);
+extern "C" void sq_direct(unsigned ea, unsigned v, int size) { PROF_IN(2); sq_direct_(ea, v, size); PROF_OUT(); }
+static void sq_direct_(unsigned ea, unsigned v, int size)
 {
   if (sq_dirty && ((ea ^ sq_line) & 0x20) == 0 && (ea & ~31u) != sq_line) sq_flush();
-  for (int i = 0; i < size; i++) sq_put(ea + i, (unsigned char)(v >> (8 * i)));
+  if (size == 4) *(le<unsigned> *)(sq_buf + (ea & 60)) = v;
+  else for (int i = 0; i < size; i++) sq_put(ea + i, (unsigned char)(v >> (8 * i)));
   sq_stores++;
   unsigned q = (ea >> 5) & 1, line = ea & ~31u;
   if (line != sqd_line[q]) { sqd_line[q] = line; sqd_mask[q] = 0; }
@@ -222,9 +235,10 @@ extern "C" void sq_direct(unsigned ea, unsigned v, int size)
     sqd_mask[q] = 0; sqd_sent[q] = line;
   }
 }
-extern "C" void sq_pref(unsigned ea)
+static void sq_pref_(unsigned ea);
+extern "C" void sq_pref(unsigned ea) { if ((ea >> 26) != 0x38) return; PROF_IN(2); sq_pref_(ea); PROF_OUT(); }
+static void sq_pref_(unsigned ea)
 {
-  if ((ea >> 26) != 0x38) return;
   unsigned q = (ea >> 5) & 1, line = ea & ~31u;
   if (sqd_sent[q] == line) { sqd_sent[q] = ~0u; return; }
   sqd_mask[q] = 0; sqd_sent[q] = ~0u;
@@ -241,7 +255,9 @@ static void sq_store(unsigned ea, int size)
   sq_line = line; sq_last = ea; sq_dirty = 1;
   if ((ea & 31) + size >= 32) sq_flush();
 }
-extern "C" int wii_dsi_emulate(unsigned *c)
+static int wii_dsi_emulate_(unsigned *c);
+extern "C" int wii_dsi_emulate(unsigned *c) { PROF_IN(3); int r = wii_dsi_emulate_(c); PROF_OUT(); return r; }
+static int wii_dsi_emulate_(unsigned *c)
 {
   unsigned dar; __asm__ volatile("mfspr %0,19" : "=r"(dar));
   if (!is_hw(dar)) { report_fault("not hw", c, dar, *(volatile unsigned *)c[36]); return 0; }
@@ -316,9 +332,35 @@ extern "C" int wii_dsi_emulate(unsigned *c)
   return 1;
 }
 
+/* U0 alias of guest RAM: a spare extended data BAT (DBAT4-7, HID4.SBE) maps EA 0x0c000000 onto the same 16 MB as 0x8c000000, so the
+   SH-4 memory helpers (sh4_core.h) use guest addresses as they are, with no compare for the 0x0c... form */
+#define SPR_R(n) ({ unsigned v_; __asm__ volatile("mfspr %0," #n : "=r"(v_)); v_; })
+#define SPR_W(n, v) __asm__ volatile("mtspr " #n ",%0" : : "r"(v))
+static int map_u0_ram(void)
+{
+  unsigned hid4 = SPR_R(1011), up[4] = { SPR_R(568), SPR_R(570), SPR_R(572), SPR_R(574) };
+  SYS_Report("bats: hid4 %08x dbat4-7 %08x %08x %08x %08x\n", hid4, up[0], up[1], up[2], up[3]);
+  if (!(hid4 & 0x02000000u)) return 0;                                    /* SBE: BATs 4-7 enabled */
+  int k = 0; while (k < 4 && (up[k] & 3)) k++;
+  if (k == 4) return 0;
+  unsigned u = 0x0c000000u | 0x1ff, l = RAM_PHYS | 2, msr; __asm__ volatile("mfmsr %0" : "=r"(msr));
+  __asm__ volatile("mtmsr %0\n isync" : : "r"(msr & ~0x8000u));            /* no interrupts while the BAT changes */
+  switch (k) {
+    case 0: SPR_W(568, 0); __asm__ volatile("isync"); SPR_W(569, l); SPR_W(568, u); break;
+    case 1: SPR_W(570, 0); __asm__ volatile("isync"); SPR_W(571, l); SPR_W(570, u); break;
+    case 2: SPR_W(572, 0); __asm__ volatile("isync"); SPR_W(573, l); SPR_W(572, u); break;
+    default: SPR_W(574, 0); __asm__ volatile("isync"); SPR_W(575, l); SPR_W(574, u); break;
+  }
+  __asm__ volatile("isync\n sync\n mtmsr %0\n isync" : : "r"(msr));
+  return k + 4;
+}
 extern "C" void wii_setup_memory(void)
 {
   wii_set_bats();
+  { int k = map_u0_ram(); volatile unsigned *a = (volatile unsigned *)0x8c00fff0u, *b = (volatile unsigned *)0x0c00fff0u; unsigned o = *a; *a = 0x5ea3a11u;
+    int ok = k && *b == 0x5ea3a11u; *a = o;
+    SYS_Report("bats: guest RAM at 0x0c000000 %s (DBAT%d)\n", ok ? "mapped" : "NOT MAPPED", k);
+    if (!ok) for (;;) ; }                                                 /* sh4_core.h relies on it */
   PPCExcptSetHandler(PPC_EXCPT_DSI, (PPCExcptHandlerFn)wii_dsi_entry);
   /* power-on values the game reads back: PVR core ID/revision, system bus revision */
   hw_poke32(0xa05f8000, 0x17fd11db);

@@ -585,3 +585,42 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
 - Tools changed: `port_build.py` (writes `port/fn`; `decls.h` now starts with `#pragma once`), `port_exec.py` (reads `port/fn`, writes `port/exec`), `wii_xform.py` (reads `port/exec`, writes `port/wii/src`), `wii_decls.py`, `wii_fixup.py` (repairs a region file; `failing.txt` lists region files), `wii_traps.py` (objdump of each region object; a `trap` is charged to the `*_def` function around it), `wii_cc.sh` / `wii_build.sh` (compile the regions largest first into `port/wii/obj/mod_*.o`), `wii_check.sh`, `fpu_funcs.py`, `stack_args.py`, `regin_list.py`, `port_abs.py`, `port_report.py` (charges each error line to its unit), `port_check.sh` (no per-file error limit) and `show.sh`. The x86 scripts compile `*.c` in their directory, so they now compile regions.
 - Verified: migrating the old trees and loading them back is byte-exact; `port_build.py` and `port_exec.py` then reproduce the region files byte for byte; `wii_xform.py` reproduces every old Wii unit except the 32 that `wii_fixup.py` had patched in place (fixup patches 12 regions again); the x86 check finds the same 151 failing units as the per-unit `.err` files. The full Wii build takes about 35 s with objects up to date. A blank-card run gives the same card operations and frame counters as before, and the USR header is right.
 - The old per-function trees (`port/fn`, `port/exec`, `port/wii/exec`, the x86 objects in `port/obj` and `port/trace_x86/exec`) are kept outside the repository.
+
+### Speed: static SH-4 translation and host fixes (Wii, 2026-11-03)
+- Starting point (headless Dolphin, Null video, emulated time): title about 38 fps, tank about 9 fps, with about 490K interpreted
+  SH-4 instructions per tank frame and the interpreter taking about 94% of the frame. Now: title about 130 fps, tank 63-71 fps.
+- `tools/sh4_translate.py` translates the functions in `port/wii/sh4x/sh4x_list.txt` (251) into C++ (`port/wii/sh4x/mod_8cXX0000.cpp`,
+  `sh4x_tab.inc`), compiled at -O2 by `tools/wii_link.sh`. Each instruction becomes the C the interpreter's step()/fpu() runs for it.
+  `void sh4x_<addr>(Cpu &C)` starts with C.pr as the return address and returns when guest control gets there; anything it cannot
+  follow continues in the interpreter (`sh4::exec`). The interpreter's jsr/jmp/bsr/bra and `run()` dispatch to translated functions.
+  - Extent: the indexed range plus code reachable from it (Ghidra cuts some functions short), stopping at other entries and after a
+    jump's delay slot (literal pools follow).
+  - The list can name unindexed entries: 20 hand-written vertex/lighting kernels reached only through the pointer table at
+    0x8c2759c0-0x8c275a84 (8c2327b4 ... 8c2331b8). 8c232a30 alone was 66% of the tank's interpreted instructions.
+  - Registers live in C++ locals inside a translated function (FILL_/SPILL_ around calls, fallbacks and returns); through the Cpu
+    and Sh4Fpu structs every guest store forced them back to memory.
+  - FPU mode: a dataflow over each function's branches finds SZ/PR at each instruction from the Katana default (0, 0) at entry
+    (fschg toggles SZ, lds to FPSCR makes it unknown, disagreeing paths make it unknown); known instructions get only that
+    variant. A guard at entry and after each call sends a different mode to the interpreter (`XGUARD`; none seen in the tank).
+  - `tools/sh4x_test.py` checks every non-branch opcode form (15,175) against step() in all four SZ/PR modes, with the run-time
+    and the mode-known C: 0 mismatches.
+- Guest RAM is also mapped at EA 0x0c000000 by a spare extended BAT (DBAT6, HID4.SBE; `map_u0_ram` in wii_dsi.cpp), so the SH-4
+  memory helpers no longer compare for the U0 form (about 8% in the tank; the boot stops if the mapping fails).
+- Store queues: the tank does about 38,000 SQ stores and 5,400 line flushes per frame, nearly all to system RAM (SQ as memcpy for
+  vertex buffers). `sq_direct` takes a 32-bit store in one byte-reversed store, and `sq_flush` reads QACR from a cached page
+  pointer instead of four hashed page lookups.
+- GX (`wii_gx.cpp`): the translucent list is ordered with std::stable_sort instead of an insertion sort (about 440 primitives a
+  frame), and `set_state` is skipped when the polygon words, list and clip match the last call (cleared each frame).
+- Profiling (test builds only, `HOST_DEFS="-DSH4_PROF -DPROF_FROM=<frame>"`): `prof frames` (time in SH-4 code and native code per
+  500 frames; `-DPROF_SQ` also times the SQ path and DSI, at a large cost), `prof gx` (lists, state, vertices, sort), `prof block`
+  (interpreted instructions per 64-byte block; `tools/sh4x_hot.py` charges them to functions), `prof guest` (1 ms samples of the
+  translated function or interpreter block running), `prof exec` (where translated code falls back to the interpreter), and the
+  sound thread's share. Pick PROF_FROM inside the tank: the tank starts at a different frame as speed changes.
+- Where tank time goes now (per 500 frames, about 7.5 s): translated SH-4 code about 4.5 s (the vertex, strip and lighting
+  routines: gfxlib_vlist_uv_setup_b, gfx_verts_light_s64_like, gfx_draw_3d_line_segments_like, the strip emitters), GX lists about
+  1.25 s, the sound thread about 6%, the rest native game code and the interpreter (about 4M instructions).
+- Test setup: never run two Dolphins on the same SD image at once (each caches the FAT; it corrupted the image and the game then
+  quit after the WARNING narration). `tools/wii_sdimage.py <root> <img> --full` rebuilds it.
+- Reference: nullDC4Wii (a Dreamcast emulator for the Wii, github.com/BenoitAdam/nullDC4Wii) keeps guest RAM as big-endian words
+  with an address swizzle for sub-word access and maps the DC address space with the PowerPC MMU; its notes suggested the spare
+  DBAT4-7 for zero-cost RAM mappings.

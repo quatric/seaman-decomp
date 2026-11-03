@@ -124,12 +124,44 @@ static void run(void)
         vsp = sp0; unsigned long r = ((fn)xlat(0x8c021994))(mgr, port, req, 0);
         host_log("se test: mgr %x port %d request %u -> %lu at frame %u\n", mgr, (int)port, req, r, n); req++; } }
 #endif
+    ring[rp++ & 255] = "host: pvr_end_frame";
     pvr_end_frame(n);
+    ring[rp++ & 255] = "host: frame loop";
+#ifdef SH4_PROF
+    { extern unsigned sh4_prof[0x9800]; extern unsigned long long sh4_prof_t[4]; extern unsigned long sh4_total; extern void prof_samples_dump(void); extern unsigned prof_on;
+      static u64 pt; static unsigned long pi; u64 now = gettime();
+      if (n % 500 == 0) { if (pt) { unsigned ms = (unsigned)ticks_to_millisecs(now - pt); host_log("prof frames %u-%u: %u ms (%u.%u fps), interpreter %u ms, native %u ms, sq/ta %u ms, dsi %u ms, %lu insns\n", n - 500, n, ms, ms ? 500000 / ms : 0, ms ? (5000000 / ms) % 10 : 0, (unsigned)ticks_to_millisecs(sh4_prof_t[1]), (unsigned)ticks_to_millisecs(sh4_prof_t[0]), (unsigned)ticks_to_millisecs(sh4_prof_t[2]), (unsigned)ticks_to_millisecs(sh4_prof_t[3]), sh4_total - pi); }
+        pt = now; pi = sh4_total; sh4_prof_t[0] = sh4_prof_t[1] = sh4_prof_t[2] = sh4_prof_t[3] = 0;
+        { extern unsigned long long gx_t[5]; extern unsigned gx_n[3]; host_log("prof gx: lists %u ms (state %u ms for %u, vertices %u ms for %u, sort %u ms for %u), copy %u ms\n", (unsigned)ticks_to_millisecs(gx_t[0]), (unsigned)ticks_to_millisecs(gx_t[3]), gx_n[0], (unsigned)ticks_to_millisecs(gx_t[4]), gx_n[1], (unsigned)ticks_to_millisecs(gx_t[1]), gx_n[2], (unsigned)ticks_to_millisecs(gx_t[2])); for (int i = 0; i < 5; i++) gx_t[i] = 0; gx_n[0] = gx_n[1] = gx_n[2] = 0; } }
+#ifdef PROF_FROM
+      if (n == PROF_FROM) { memset(sh4_prof, 0, sizeof sh4_prof); prof_on = 1; }
+      if (n == PROF_FROM + 500) { prof_on = 0; prof_samples_dump(); }
+      if (n == PROF_FROM + 500) { for (int k = 0; k < 400; k++) { unsigned bi = 0; for (unsigned i = 1; i < 0x9800; i++) if (sh4_prof[i] > sh4_prof[bi]) bi = i; if (!sh4_prof[bi]) break; host_log("prof block %08x %u\n", 0x8c010000u + bi * 64, sh4_prof[bi]); sh4_prof[bi] = 0; } }
+#endif
+    }
+#endif
     if (n < 5 || n % 500 == 0) host_log("frame %u sub=%d gframe=%d warn_state=%d poll_state=%d input=%d inobj=%d/%d a518=%d a51c=%d a520=%d pages=%u scene44=%d 14c=%d 30=%d msg1014=%d msg89134=%d msg1054=%d\n", n, (int)GM(int, 0x8c286ec8 + 8), (int)GM(int, 0x8c286ebc + 0x2d59c), (int)GM(int, 0x8c4367bc), (int)GM(int, 0x8c286ebc + 0x2dd84), (int)GM(int, 0x8c286ebc + 0x2d620), (int)GM(int, 0x8c3dd7dc + 0xa510), (int)GM(int, 0x8c3dd7dc + 0xa514), (int)GM(int, 0x8c3dd7dc + 0xa518), (int)GM(int, 0x8c3dd7dc + 0xa51c), (int)GM(int, 0x8c3dd7dc + 0xa520), hw_pages_used(), (int)GM(int, 0x8c286ec8 + 0x44), (int)GM(int, 0x8c286ec8 + 0x14c), (int)GM(int, 0x8c286ec8 + 0x30), (int)GM(int, 0x8c35468c + 0x1014), (int)GM(int, 0x8c35468c + 0x89134), (int)GM(int, 0x8c35468c + 0x1054));
     if (!pad_live && (n >= MAX_FRAMES || ticks_to_secs(gettime() - t0) >= MAX_SECONDS)) {   /* test-run cap; off once someone plays */ host_log("stopping after %u frames\n", n); break; }
   }
   host_log("main loop exited\n");
 }
+extern "C" unsigned long long sh4_ticks(void) { return gettime(); }
+#ifdef SH4_PROF
+/* sampler (test builds): every ms, the guest function entered last (its TRACE_ENTER name) and whether the interpreter is running */
+unsigned prof_on; static const char *ps_name[2048]; static unsigned ps_n[2048][2];
+/* guest code sampled in SH-4 mode: the translated function, or the interpreter's pc by 256-byte block (low bit set) */
+static unsigned pg_a[2048], pg_n[2048], snd_n;
+static void *prof_thread(void *) { extern int sh4_mode; extern unsigned sh4x_cur, sh4_pc; extern volatile int snd_busy; for (;;) { usleep(1000); if (!prof_on) continue;
+  if (snd_busy) { snd_n++; continue; }
+  if (sh4_mode == 1) { unsigned a = sh4x_cur ? sh4x_cur : (sh4_pc & ~0xffu) | 1, g = (a * 2654435761u) >> 21; for (int k = 0; k < 2048 && pg_a[g] && pg_a[g] != a; k++) g = (g + 1) & 2047; if (!pg_a[g]) pg_a[g] = a; if (pg_a[g] == a) pg_n[g]++; }
+  const char *p = ring[(rp - 1) & 255]; unsigned h = ((unsigned)(unsigned long)p >> 2) & 2047;
+  for (int k = 0; k < 2048 && ps_name[h] && ps_name[h] != p; k++) h = (h + 1) & 2047; if (!ps_name[h]) ps_name[h] = p; if (ps_name[h] == p) ps_n[h][sh4_mode & 1]++; } return 0; }
+void prof_samples_dump(void) { for (int k = 0; k < 50; k++) { int b = -1; for (int i = 0; i < 2048; i++) if (ps_name[i] && (b < 0 || ps_n[i][0] + ps_n[i][1] > ps_n[b][0] + ps_n[b][1])) b = i; if (b < 0 || !(ps_n[b][0] + ps_n[b][1])) break;
+  host_log("prof sample %s native %u interp %u\n", ps_name[b] ? ps_name[b] : "-", ps_n[b][0], ps_n[b][1]); ps_n[b][0] = ps_n[b][1] = 0; }
+  host_log("prof sample sound thread %u\n", snd_n);
+  { extern unsigned xe_a[1024], xe_n[1024]; for (int k = 0; k < 40; k++) { int b = 0; for (int i = 1; i < 1024; i++) if (xe_n[i] > xe_n[b]) b = i; if (!xe_n[b]) break; host_log("prof exec %08x %u\n", xe_a[b], xe_n[b]); xe_n[b] = 0; } }
+  for (int k = 0; k < 60; k++) { int b = 0; for (int i = 1; i < 2048; i++) if (pg_n[i] > pg_n[b]) b = i; if (!pg_n[b]) break; host_log("prof guest %08x %s %u\n", pg_a[b] & ~1u, (pg_a[b] & 1) ? "interp" : "xlat", pg_n[b]); pg_n[b] = 0; } }
+#endif
 static void *run_thread(void *) { run(); return 0; }
 /* watchdog: every 2 s report the guest call trace, so a hang shows where it spins */
 static void *watch_thread(void *)
@@ -199,6 +231,9 @@ int main(int argc, char **argv)
   size_t ssz = 1024 * 1024; void *stk = memalign(32, ssz);
   lwp_t th; LWP_CreateThread(&th, run_thread, 0, stk, ssz, 64);
   lwp_t wt; static char wstk[16384] __attribute__((aligned(32))); LWP_CreateThread(&wt, watch_thread, 0, wstk, sizeof wstk, 100);
+#ifdef SH4_PROF
+  lwp_t pth; static char pstk[8192] __attribute__((aligned(32))); LWP_CreateThread(&pth, prof_thread, 0, pstk, sizeof pstk, 110);
+#endif
   void *ret; LWP_JoinThread(th, &ret);
   host_log("done\n");
   if (logf) fclose(logf);
