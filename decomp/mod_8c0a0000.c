@@ -9757,7 +9757,7 @@ u32 Class_12b0c4_uses_set_field_38_0abe84(int a0, u32 a1, int *a2, int a3) {
     } else if ((iVar1 == 4) && (iVar2 = (**(code **)(*(int *)(*a2 + 8) + 0xb4))(*a2, ar5_00, ar6_00, a3), iVar2 == 1)) {
         iVar2 = *a2;
         mask_74_fffffffe(iVar2);
-        CAnimal_calls_test_0c4e2c(iVar2, ar5_00, ar6_00, a3);
+        game_calls_test_0c4e2c(iVar2, ar5_00, ar6_00, a3);
     }
     return 1;
 }
@@ -10351,7 +10351,7 @@ u32 CAnimal_m2_0acaec(int a0, int *a1, int *a2, int *a3) {
         if ((iVar3 + -1 <= iVar2) && (*(char *)(0x968 + a0) == '\x01')) {
             *(u32 *)(&DATA_8c13bcc4) = 1;
             *(u8 *)(0x968 + a0) = 0;
-            CAnimal_calls_test_0c4e2c(a4, ar5_00, a2, ar7_00);
+            game_calls_test_0c4e2c(a4, ar5_00, a2, ar7_00);
         }
     }
     if (*(int *)(0x77c + a0) == 1) {

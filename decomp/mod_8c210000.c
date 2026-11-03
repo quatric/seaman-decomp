@@ -1602,7 +1602,7 @@ u32 njCalcVector_like(int a0, float *a1, float *a2, u32 unused_a3, u32 ain0) {
 /*
  * aabb_overlap_minmax  0x8c212808
  * returns 1 when the boxes [a0, a1] and [a2, a3] overlap on all three axes
- * called by: gfxlib_uses_aabb_overlap_minmax_23340c, gfxlib_uses_noop_fr4_test_2336e8
+ * called by: gfxlib_uses_aabb_from_8_points_23340c, gfxlib_uses_noop_fr4_test_2336e8
  */
 u32 aabb_overlap_minmax(float *a0, float *a1, float *a2, float *a3) {
     float fVar1;
@@ -1839,7 +1839,7 @@ u32 ninja_uses_noop_fr4_test_212946(u32 a0, u32 a1) {
 /*
  * kamui_uses_noop_fr4_test_212a30  0x8c212a30
  * area name: in the kamui library code range; behaviour name: its main named callee is noop_fr4_test
- * called by: gfxlib_uses_aabb_overlap_minmax_23340c
+ * called by: gfxlib_uses_aabb_from_8_points_23340c
  */
 u32 kamui_uses_noop_fr4_test_212a30(double *a0, float *a1) {
     u32 uVar1;
@@ -4467,7 +4467,7 @@ u32 kamui_uses_noop_fr4_test_212a30(double *a0, float *a1) {
 /*
  * kamui_uses_noop_fr4_test_2136b0  0x8c2136b0
  * area name: in the kamui library code range; behaviour name: its callees mostly do: uses_noop_fr4_test
- * called by: gfxlib_uses_aabb_overlap_minmax_23340c
+ * called by: gfxlib_uses_aabb_from_8_points_23340c
  */
 u32 kamui_uses_noop_fr4_test_2136b0(int a0, int a1) {
     int iVar1;
@@ -5210,8 +5210,8 @@ int kamui_uses_switch_jump_r0_2140a4(int a0) {
 /*
  * flags_4c0db0_set  0x8c2140c6
  * sets or clears (a1) flag a0 of the bit set at 0x8c4c0db0
- * called by: Class_12ab2c_uses_flags_4c0ed0_set_09efb4, Class_12ab2c_uses_light_set_vec_09ea78,
- * Class_12ab2c_uses_light_set_vec_09edf0, game_init_sound_and_messages, lights_2_to_4_off
+ * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_uses_flags_4c0ed0_set_09efb4,
+ * Class_12ab2c_uses_light_set_vec_09ea78, game_init_sound_and_messages, lights_2_to_4_off
  */
 u32 flags_4c0db0_set(int a0, int a1) {
     u32 auStack_20[8];
@@ -5244,7 +5244,7 @@ u32 set_vec_4c0db4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u
 /*
  * light_set_vec_4c0dd4  0x8c21410c
  * stores fr4..fr6 in light slot a0 (1-based, 0x20 bytes each at 0x8c4c0dd4)
- * called by: Class_12ab2c_uses_light_set_vec_09ea78, Class_12ab2c_uses_light_set_vec_09edf0, Vec3_uses_set_vec_0e3f24
+ * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_uses_light_set_vec_09ea78, Vec3_uses_set_vec_0e3f24
  */
 u32 light_set_vec_4c0dd4(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int iVar1;
@@ -5279,7 +5279,7 @@ u32 kamui_float_calc_214158(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unu
 /*
  * light_set_vector_b  0x8c21415c
  * stores fr4..fr6 as the vector of light a0 (1-based) at 0x8c4c0d60 and marks it set in 8c4c0db0
- * called by: Class_12ab2c_uses_light_set_vec_09ea78, Class_12ab2c_uses_light_set_vec_09edf0
+ * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_uses_light_set_vec_09ea78
  */
 u32 light_set_vector_b(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int iVar1;
@@ -13747,7 +13747,7 @@ u64 *gfxlib_fill_loop_2170f4(double *a0, double *a1, double *a2, u64 *a3) {
 /*
  * gfx_project_points_2d  0x8c217618
  * projects the job's 2D points through the current matrix to screen x, y and 1/z, counting the points with z <= 1
- * called by: gfxlib_uses_gfx_project_points_2d_21849c
+ * called by: gfxlib_draw_21849c
  */
 int gfx_project_points_2d(int a0) {
     float fVar1;
@@ -13830,7 +13830,7 @@ int gfx_project_points_2d(int a0) {
 /*
  * gfx_project_points_2d_minz  0x8c21768c
  * projects the job's points through the current matrix to screen x, y and 1/z, keeping the larger of a running value
- * and the job's +0x10 in w called by: gfxlib_uses_gfx_project_points_2d_21849c
+ * and the job's +0x10 in w called by: gfxlib_draw_21849c
  */
 int gfx_project_points_2d_minz(int a0) {
     float fVar1;
@@ -13927,7 +13927,7 @@ int gfx_project_points_2d_minz(int a0) {
 /*
  * gfx_project_points_3d  0x8c217744
  * projects the job's 3D points through the current matrix to screen x, y and 1/z, counting the points with z <= 1
- * called by: gfxlib_uses_gfx_project_points_2d_21849c
+ * called by: gfxlib_draw_21849c
  */
 int gfx_project_points_3d(int a0) {
     float fVar1;
@@ -14000,11 +14000,11 @@ int gfx_project_points_3d(int a0) {
 }
 
 /*
- * gfxlib_fill_loop_2177b8  0x8c2177b8
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_uses_gfx_project_points_2d_21849c
+ * gfx_project_verts_s16_w1  0x8c2177b8
+ * projects a0->count 16-byte vertices to screen x, y, 1/z with w = 1, invalidating the output cache lines; counts near
+ * ones called by: gfxlib_draw_21849c
  */
-int gfxlib_fill_loop_2177b8(int a0) {
+int gfx_project_verts_s16_w1(int a0) {
     float fVar1;
     bool bVar2;
     int iVar3;
@@ -14075,11 +14075,11 @@ int gfxlib_fill_loop_2177b8(int a0) {
 }
 
 /*
- * gfxlib_fill_loop_21782c  0x8c21782c
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_uses_gfx_project_points_2d_21849c
+ * gfx_project_verts_s16_z  0x8c21782c
+ * projects 16-byte vertices to 1/z and screen depth only, into 0x18-byte records
+ * called by: gfxlib_draw_21849c
  */
-int gfxlib_fill_loop_21782c(int a0) {
+int gfx_project_verts_s16_z(int a0) {
     float fVar1;
     bool bVar2;
     int iVar3;
@@ -14142,11 +14142,11 @@ int gfxlib_fill_loop_21782c(int a0) {
 }
 
 /*
- * gfxlib_fill_loop_2178a0  0x8c2178a0
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_uses_gfx_project_points_2d_21849c
+ * gfx_project_verts_s16_wpacked  0x8c2178a0
+ * projects 16-byte vertices to screen x, y, 1/z with w taken from the packed s16 in the fourth word
+ * called by: gfxlib_draw_21849c
  */
-int gfxlib_fill_loop_2178a0(int a0) {
+int gfx_project_verts_s16_wpacked(int a0) {
     float fVar1;
     bool bVar2;
     int iVar3;
@@ -14218,11 +14218,11 @@ int gfxlib_fill_loop_2178a0(int a0) {
 }
 
 /*
- * gfxlib_fill_loop_217924  0x8c217924
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_uses_gfx_project_points_2d_21849c
+ * gfx_project_verts_s24_z  0x8c217924
+ * projects 24-byte vertices to 1/z and screen depth only
+ * called by: gfxlib_draw_21849c
  */
-int gfxlib_fill_loop_217924(int a0) {
+int gfx_project_verts_s24_z(int a0) {
     float fVar1;
     bool bVar2;
     int iVar3;
@@ -14285,11 +14285,11 @@ int gfxlib_fill_loop_217924(int a0) {
 }
 
 /*
- * gfxlib_fill_loop_2179e4  0x8c2179e4
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_uses_gfx_project_points_2d_21849c
+ * gfx_project_verts_s28_wmin  0x8c2179e4
+ * projects 28-byte vertices to screen x, y, 1/z with w = max(1, a0+0x10)
+ * called by: gfxlib_draw_21849c
  */
-int gfxlib_fill_loop_2179e4(int a0) {
+int gfx_project_verts_s28_wmin(int a0) {
     float fVar1;
     bool bVar2;
     int iVar3;
@@ -14366,11 +14366,11 @@ int gfxlib_fill_loop_2179e4(int a0) {
 }
 
 /*
- * gfxlib_fill_loop_217aa4  0x8c217aa4
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_uses_gfx_project_points_2d_21849c
+ * gfx_project_verts_s28_z  0x8c217aa4
+ * projects 28-byte vertices to 1/z and screen depth only
+ * called by: gfxlib_draw_21849c
  */
-int gfxlib_fill_loop_217aa4(int a0) {
+int gfx_project_verts_s28_z(int a0) {
     float fVar1;
     bool bVar2;
     int iVar3;
@@ -14433,11 +14433,11 @@ int gfxlib_fill_loop_217aa4(int a0) {
 }
 
 /*
- * gfxlib_fill_loop_217b18  0x8c217b18
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_uses_gfx_project_points_2d_21849c
+ * gfx_project_verts_weighted  0x8c217b18
+ * adds weighted transformed vertices into their target slots (set, add, or add-and-project by mode a1>>8)
+ * called by: gfxlib_draw_21849c
  */
-int gfxlib_fill_loop_217b18(int a0, u32 a1) {
+int gfx_project_verts_weighted(int a0, u32 a1) {
     float fVar1;
     float fVar2;
     u32 uVar3;
@@ -14521,11 +14521,11 @@ int gfxlib_fill_loop_217b18(int a0, u32 a1) {
 }
 
 /*
- * gfxlib_fill_loop_217c20  0x8c217c20
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_uses_gfx_project_points_2d_21849c
+ * gfx_project_verts_s16_wmin  0x8c217c20
+ * projects 16-byte vertices to screen x, y, 1/z with w = max(1, a0+0x10)
+ * called by: gfxlib_draw_21849c
  */
-int gfxlib_fill_loop_217c20(int a0) {
+int gfx_project_verts_s16_wmin(int a0) {
     float fVar1;
     bool bVar2;
     int iVar3;
@@ -14603,11 +14603,11 @@ int gfxlib_fill_loop_217c20(int a0) {
 }
 
 /*
- * gfxlib_fill_loop_217d1c  0x8c217d1c
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_uses_gfx_project_points_2d_21849c
+ * gfx_project_verts_s20_wmin  0x8c217d1c
+ * projects 20-byte vertices to screen x, y, 1/z with w = max(1, a0+0x10)
+ * called by: gfxlib_draw_21849c
  */
-int gfxlib_fill_loop_217d1c(int a0) {
+int gfx_project_verts_s20_wmin(int a0) {
     float fVar1;
     bool bVar2;
     int iVar3;
@@ -15313,11 +15313,11 @@ u8 *gfxlib_draw_217f12(u16 *a0, int a1, int a2, u32 *a3, u8 *ain0) {
 }
 
 /*
- * gfxlib_uses_gfx_project_points_2d_21849c  0x8c21849c
- * area name: in the gfxlib library code range; behaviour name: its main named callee is gfx_project_points_2d
+ * gfxlib_draw_21849c  0x8c21849c
+ * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
  * called by: vram64_21869c, vram64_2186a0
  */
-u32 gfxlib_uses_gfx_project_points_2d_21849c(short *a0, u32 a1) {
+u32 gfxlib_draw_21849c(short *a0, u32 a1) {
     u16 uVar1;
     short sVar2;
     int *piVar3;
@@ -15374,39 +15374,39 @@ u32 gfxlib_uses_gfx_project_points_2d_21849c(short *a0, u32 a1) {
             iVar11 = gfx_project_points_3d(0x8c4ab158);
             break;
         case 0x23:
-            iVar11 = gfxlib_fill_loop_21782c(0x8c4ab158);
+            iVar11 = gfx_project_verts_s16_z(0x8c4ab158);
             break;
         case 0x24:
         case 0x25:
         case 0x26:
         case 0x27:
-            iVar11 = gfxlib_fill_loop_2177b8(0x8c4ab158);
+            iVar11 = gfx_project_verts_s16_w1(0x8c4ab158);
             break;
         case 0x28:
-            iVar11 = gfxlib_fill_loop_2178a0(0x8c4ab158);
+            iVar11 = gfx_project_verts_s16_wpacked(0x8c4ab158);
             break;
         case 0x29:
-            iVar11 = gfxlib_fill_loop_217924(0x8c4ab158);
+            iVar11 = gfx_project_verts_s24_z(0x8c4ab158);
             break;
         case 0x2a:
-            iVar11 = gfxlib_fill_loop_217aa4(0x8c4ab158);
+            iVar11 = gfx_project_verts_s28_z(0x8c4ab158);
             unaff_r12 = 0x23;
             break;
         case 0x2b:
         case 0x2d:
         case 0x2e:
         case 0x2f:
-            iVar11 = gfxlib_fill_loop_2179e4(0x8c4ab158);
+            iVar11 = gfx_project_verts_s28_wmin(0x8c4ab158);
             break;
         case 0x2c:
-            iVar11 = gfxlib_fill_loop_217b18(0x8c4ab158, unaff_r12);
+            iVar11 = gfx_project_verts_weighted(0x8c4ab158, unaff_r12);
             break;
         case 0x30:
-            iVar11 = gfxlib_fill_loop_217c20(0x8c4ab158);
+            iVar11 = gfx_project_verts_s16_wmin(0x8c4ab158);
             break;
         case 0x31:
         case 0x32:
-            iVar11 = gfxlib_fill_loop_217d1c(0x8c4ab158);
+            iVar11 = gfx_project_verts_s20_wmin(0x8c4ab158);
             break;
         default:
             iVar11 = 0;
@@ -15434,7 +15434,7 @@ u32 vram64_21869c(int *a0, u32 a1) {
         (iVar1 = gfxlib_test_217e18(a0), in_r0 = 0, iVar1 == 0)) {
         uVar2 = g_8c4aa510;
         if (*a0 != 0) {
-            in_r0 = gfxlib_uses_gfx_project_points_2d_21849c(*a0, g_8c4aa510);
+            in_r0 = gfxlib_draw_21849c(*a0, g_8c4aa510);
             a1 = in_r0;
         }
         if (a0[1] != 0) {
@@ -15467,7 +15467,7 @@ u32 vram64_2186a0(int *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 *ain1) {
     }
     ar7_00 = g_8c4aa510;
     if (*a0 != 0) {
-        a1 = gfxlib_uses_gfx_project_points_2d_21849c(*a0, g_8c4aa510);
+        a1 = gfxlib_draw_21849c(*a0, g_8c4aa510);
     }
     if (a0[1] != 0) {
         g_8c4ab1d8 = a1;

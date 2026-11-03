@@ -16312,16 +16312,16 @@ int gfxlib_fill_loop_247b20(int a0, u32 a1, u32 a2, u32 *a3) {
 }
 
 /*
- * gfxlib_calls_fill_loop_247df4  0x8c247df4
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: calls_fill_loop
+ * gfxlib_uses_gfx_lights_reset_defaults_li_247df4  0x8c247df4
+ * area name: in the gfxlib library code range; behaviour name: its main named callee is gfx_lights_reset_defaults_like
  * called by: ninja_draw_with_saved_state
  */
-u32 gfxlib_calls_fill_loop_247df4(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 gfxlib_uses_gfx_lights_reset_defaults_li_247df4(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = a0;
     gfxlib_calls_fill_loop_23c70c();
-    gfxlib_fill_loop_237630();
+    gfx_lights_reset_defaults_like();
     gfxlib_uses_memcpy_words_n_2376c4();
     ninja_uses_ta_fifo_254026(a0, a1, a2, a3);
     uVar1 = gfxlib_calc_237760();

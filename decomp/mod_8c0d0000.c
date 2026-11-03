@@ -1821,7 +1821,7 @@ int game_draw_0d1c84(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * nautilus_group_reset  0x8c0d1d54
  * clears the group state, sets its three spawn positions and copies the template into the 20 nautilus descriptors at
- * +0x1ec called by: game_copy_0c67f4
+ * +0x1ec called by: game_save_state_init
  */
 u32 nautilus_group_reset(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1855,7 +1855,7 @@ u32 nautilus_group_reset(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * game_copy_0d1eb8  0x8c0d1eb8
  * area name: game code; nothing names its area yet; behaviour name: mostly calls copy functions
- * called by: game_copy_0c67f4
+ * called by: game_save_state_init
  */
 u32 game_copy_0d1eb8(int a0) {
     int iVar1;
@@ -1873,7 +1873,7 @@ u32 game_copy_0d1eb8(int a0) {
 /*
  * game_copy_0d1f38  0x8c0d1f38
  * area name: game code; nothing names its area yet; behaviour name: mostly calls copy functions
- * called by: game_copy_0c67f4
+ * called by: game_save_state_init
  */
 u32 game_copy_0d1f38(int a0) {
     int iVar1;
@@ -6691,7 +6691,7 @@ int game_release_0d6f68(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_uses_rand_0d6fb8  0x8c0d6fb8
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is rand
- * called by: CTexture_uses_set_field_2c_wrap_0e810c
+ * called by: game_uses_set_field_2c_wrap_0e810c
  */
 u32 *game_uses_rand_0d6fb8(int *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -7988,7 +7988,7 @@ int free_if_nonnull_wrap_0d8168(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * WEATHRE_UNIT_CreateGraphics  0x8c0d8198
- * called by: Class_12b580_uses_WEATHRE_UNIT_CreateGraphics_0e62cc, game_uses_Vec3_dtor_0cb29c
+ * called by: Class_12b580_uses_WEATHRE_UNIT_CreateGraphics_0e62cc, game_start_staff_credits_like
  * strings: "GRAPHICS\\ENV"; "WeatherUnit.pvm"; "WEATHRE_UNIT::CreateGraphics()"; "Failed to load tex.."
  */
 u32 WEATHRE_UNIT_CreateGraphics(int a0, u32 a1, u32 a2, u32 a3) {
@@ -8164,7 +8164,7 @@ u32 game_draw_0d8444(void) {
 
 /*
  * noop_0d8458  0x8c0d8458
- * called by: game_uses_Vec3_dtor_0cb29c, scene_load_textures_like
+ * called by: game_start_staff_credits_like, scene_load_textures_like
  */
 u32 noop_0d8458(void) {
     u32 in_r0;
@@ -11494,7 +11494,7 @@ int item_list_remove_inactive(int a0, u32 a1, u32 a2, u32 a3) {
             iVar2 = aiStack_1c[0];
             iVar3 = get_field_24_05c284(aiStack_1c[0], a1);
             if (iVar3 != 0xf) {
-                CAnimal_calls_test_0c4e2c(iVar2, a1, a2, a3);
+                game_calls_test_0c4e2c(iVar2, a1, a2, a3);
             }
             iVar2 = list_node_next(aiStack_1c[0]);
             iVar3 = get_field_24_05c284(aiStack_1c[0], a1);
@@ -12171,7 +12171,7 @@ int input_uses_get_field_24_0dc7e8(int a0, u32 *a1, u32 *a2, u32 a3) {
             if ((iVar1 == 3) || (iVar1 = get_field_24_05c284(ar4_00, ar5_00), iVar1 == 5)) {
                 a2 = &uStack_20;
                 ar5_00 = auStack_1c;
-                Class_12acc8_calc_101210(a1, ar5_00, a2);
+                input_calc_101210(a1, ar5_00, a2);
                 (**(code **)(*(int *)(ar4_00 + 8) + 0x8c))(ar4_00, ar5_00, a2, a3);
             }
             iVar1 = list_node_next(ar4_00);

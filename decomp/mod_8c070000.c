@@ -3414,7 +3414,7 @@ u32 game_uses_CAnimBody_AdvanceFrame_wrap_076750(int a0, u32 a1, int a2, u32 a3)
     uVar5 = 1;
     iVar2 = a2;
     Vec3_make(a0 + 0x14, a1, a2, a3, auStack_1c);
-    game_vec_082378(a0, auStack_1c, iVar2, a3);
+    creature_turn_toward_dir_step(a0, auStack_1c, iVar2, a3);
     uVar4 = 0xffffffff;
     Vec3_dtor(auStack_1c, 0xffffffff, iVar2, a3);
     uVar1 = get_field_80_s8(a1);
@@ -3596,7 +3596,7 @@ u32 game_state_switch_076994(int a0, u32 *a1, code *a2, u8 *a3) {
             switch (iVar3) {
             case 0:
                 Vec3_make(a0 + 0x14, (&switchD_8c076cd4::switchdataD_8c076ce0)[iVar3], a2, a3, auStack_90);
-                game_vec_082378(a0, auStack_90, a2, a3);
+                creature_turn_toward_dir_step(a0, auStack_90, a2, a3);
                 Vec3_dtor(auStack_90, 0xffffffff, a2, a3);
                 iVar3 = *(int *)(a0 + 300);
                 if ((iVar3 < 5) && (-1 < iVar3)) {
@@ -3741,7 +3741,7 @@ u32 game_state_switch_076994(int a0, u32 *a1, code *a2, u8 *a3) {
             case 3:
             case 4:
                 Vec3_make(a0 + 0x14, auStack_f8, a2, a3, auStack_f8);
-                game_vec_082378(a0, auStack_f8, a2, a3);
+                creature_turn_toward_dir_step(a0, auStack_f8, a2, a3);
                 uVar2 = 0xffffffff;
                 Vec3_dtor(auStack_f8, 0xffffffff, a2, a3);
                 if (*(int *)(a0 + 300) == 0) {
@@ -4074,7 +4074,7 @@ u32 game_vec_077a38(int a0, float *a1, float *a2, code *a3) {
         goto LAB_8c078ef6;
     *(u32 *)(a0 + 0x214) = 0;
     Vec3_ctor_copy(auStack_cc, a0 + 0x54, pfVar8, a3);
-    game_vec_082378(a0, auStack_cc, pfVar8, a3);
+    creature_turn_toward_dir_step(a0, auStack_cc, pfVar8, a3);
     Vec3_dtor(auStack_cc, 0xffffffff, pfVar8, a3);
     pcVar6 = CAnimBody_GetCurFrame;
     CAnimBody_GetCurFrame(a0 + 0xb0, CAnimBody_GetCurFrame, pfVar8, a3);
@@ -6838,7 +6838,7 @@ u32 game_vec_07d048(int a0, u32 a1, u32 a2, int *a3) {
                 obj_update_root_motion(a0, auStack_118, ar6_00, ar7_00);
                 object_dtor_delete(auStack_118, 0xffffffff, ar6_00, ar7_00);
                 ar5_00 = (u8 *)(a0 + 0x80);
-                game_vec_07f418(a0, ar5_00, ar6_00, ar7_00);
+                creature_apply_anim_root_delta(a0, ar5_00, ar6_00, ar7_00);
                 CAnimBody_GetCurFrame(a0 + 0xb0, ar5_00, ar6_00, ar7_00);
                 fVar7 = (float)((u64)in_dr0 >> 0x20);
                 if (cVar12 == '\0') {
@@ -7696,7 +7696,7 @@ u32 game_state_switch_07edac(int a0, int a1, int *a2, int *a3) {
                 }
             }
             Vec3_make(a0 + 0x14, iVar3, piVar2, a3, auStack_38);
-            game_vec_082378(a0, auStack_38, piVar2, a3);
+            creature_turn_toward_dir_step(a0, auStack_38, piVar2, a3);
             Vec3_dtor(auStack_38, 0xffffffff, piVar2, a3);
             goto switchD_8c07f028_default;
         }
@@ -7706,7 +7706,7 @@ u32 game_state_switch_07edac(int a0, int a1, int *a2, int *a3) {
     }
 LAB_8c07efc4:
     Vec3_make(a0 + 0x14, iVar3, piVar2, a3, auStack_48);
-    game_vec_082378(a0, auStack_48, piVar2, a3);
+    creature_turn_toward_dir_step(a0, auStack_48, piVar2, a3);
     ar5_00 = 0xffffffff;
     Vec3_dtor(auStack_48, 0xffffffff, piVar2, a3);
     *(u8 *)(a0 + 0x1fc) = *(u8 *)(a0 + 0x1fc) & 0xfe;
@@ -7866,11 +7866,11 @@ u32 obj_update_root_motion(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_07f418  0x8c07f418
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
- * called by: game_vec_07d048
+ * creature_apply_anim_root_delta  0x8c07f418
+ * takes the current animation frame's root position, subtracts the previous one (+0x254), stores the new one and adds
+ * the rotated delta to a1 called by: game_vec_07d048
  */
-u32 game_vec_07f418(int a0, u32 a1, u32 a2, u32 a3) {
+u32 creature_apply_anim_root_delta(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
     double dVar1;
     u64 in_xd0;
@@ -8225,7 +8225,7 @@ u32 game_vec_07f8e0(int a0, u32 a1, u32 a2, int *a3) {
                 *(u32 *)(a0 + 0x294) = uVar1;
             case 2:
                 Vec3_ctor_copy(auStack_7c, auStack_3c, ar6_00, a3);
-                game_vec_082378(a0, auStack_7c, ar6_00, a3);
+                creature_turn_toward_dir_step(a0, auStack_7c, ar6_00, a3);
                 Vec3_dtor(auStack_7c, 0xffffffff, ar6_00, a3);
                 *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
                 if (*(int *)(a0 + 0x128) == 6) {
@@ -8259,7 +8259,7 @@ u32 game_vec_07f8e0(int a0, u32 a1, u32 a2, int *a3) {
             case 4:
                 Vec3_ctor_copy(auStack_8c, auStack_3c, ar6_00, a3);
                 uVar7 = SUB84(dVar8, 0);
-                game_vec_082378(a0, auStack_8c, ar6_00, a3);
+                creature_turn_toward_dir_step(a0, auStack_8c, ar6_00, a3);
                 uVar1 = 0xffffffff;
                 Vec3_dtor(auStack_8c, 0xffffffff, ar6_00, a3);
                 iVar2 = CAnimBody_AdvanceFrame_wrap(a0 + 0xb0, uVar1, ar6_00, a3);
@@ -8481,7 +8481,7 @@ u32 game_state_switch_07ff08(int a0, float *a1, float *a2, int *a3) {
         break;
     case 2:
         Vec3_make(a0 + 0x14, uVar1, a2, a3, auStack_88);
-        game_vec_082378(a0, auStack_88, a2, a3);
+        creature_turn_toward_dir_step(a0, auStack_88, a2, a3);
         uVar1 = 0xffffffff;
         Vec3_dtor(auStack_88, 0xffffffff, a2, a3);
         ar4_00 = a0 + 0xb0;
@@ -8528,7 +8528,7 @@ u32 game_state_switch_07ff08(int a0, float *a1, float *a2, int *a3) {
     case 4:
         *(u32 *)(a0 + 0x178) = 1;
         Vec3_ctor_copy(auStack_a8, auStack_58, a2, a3);
-        game_vec_082378(a0, auStack_a8, a2, a3);
+        creature_turn_toward_dir_step(a0, auStack_a8, a2, a3);
         uVar1 = 0xffffffff;
         Vec3_dtor(auStack_a8, 0xffffffff, a2, a3);
         timer_stop_94(a0, uVar1, a2, a3);
@@ -8552,7 +8552,7 @@ u32 game_state_switch_07ff08(int a0, float *a1, float *a2, int *a3) {
         break;
     case 5:
         Vec3_ctor_copy(auStack_b8, auStack_58, a2, a3);
-        game_vec_082378(a0, auStack_b8, a2, a3);
+        creature_turn_toward_dir_step(a0, auStack_b8, a2, a3);
         uVar1 = 0xffffffff;
         Vec3_dtor(auStack_b8, 0xffffffff, a2, a3);
         *(u32 *)(a0 + 0x178) = 1;

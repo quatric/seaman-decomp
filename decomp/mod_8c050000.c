@@ -8638,7 +8638,7 @@ u32 FrogMan_update_sleep_light(int *a0, code *a1, code *a2) {
                 a0[0x212] = 0x36;
                 pcVar4 = (code *)0x36;
                 g_8c136910 = 0x36;
-                CAnimal_calls_test_0c4e2c(CAnimal_calls_test_0c4e2c, 0x36, pcVar11, pcVar14);
+                game_calls_test_0c4e2c(game_calls_test_0c4e2c, 0x36, pcVar11, pcVar14);
             }
             break;
         case 2:
@@ -9377,7 +9377,7 @@ u32 FrogMan_choose_status_event(int a0, u32 a1, int *a2, int a3) {
                 if (iVar4 == 1) {
                     iVar4 = *a2;
                     mask_74_fffffffe(iVar4);
-                    CAnimal_calls_test_0c4e2c(iVar4, a5, piVar3, a3);
+                    game_calls_test_0c4e2c(iVar4, a5, piVar3, a3);
                 }
                 break;
             case 3:

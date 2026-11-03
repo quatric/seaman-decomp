@@ -1202,8 +1202,8 @@ int ta_uses_switch_jump_r0_2218f4(int a0) {
 /*
  * flags_4c0ed0_set  0x8c221916
  * sets or clears (a1) flag a0 of the bit set at 0x8c4c0ed0
- * called by: Class_12ab2c_uses_flags_4c0ed0_set_09dde4, Class_12ab2c_uses_flags_4c0ed0_set_09efb4,
- * Class_12ab2c_uses_light_set_vec_09ea78, Class_12ab2c_uses_light_set_vec_09edf0, game_init_sound_and_messages,
+ * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_uses_flags_4c0ed0_set_09dde4,
+ * Class_12ab2c_uses_flags_4c0ed0_set_09efb4, Class_12ab2c_uses_light_set_vec_09ea78, game_init_sound_and_messages,
  * lights_2_to_4_off
  */
 u32 flags_4c0ed0_set(int a0, int a1) {
@@ -1237,7 +1237,7 @@ u32 set_vec_4c0ed4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u
 /*
  * light_set_vec_4c0ef4  0x8c22195c
  * stores fr4..fr6 in light slot a0 (1-based, 0x20 bytes each at 0x8c4c0ef4)
- * called by: Class_12ab2c_uses_light_set_vec_09ea78, Class_12ab2c_uses_light_set_vec_09edf0, Vec3_uses_set_vec_0e3f24,
+ * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_uses_light_set_vec_09ea78, Vec3_uses_set_vec_0e3f24,
  * game_uses_light_set_vec_0da88c, game_uses_light_set_vec_0df8d0
  */
 u32 light_set_vec_4c0ef4(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
@@ -1273,7 +1273,7 @@ u32 gfxlib_float_calc_2219a8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 un
 /*
  * light_set_vector  0x8c2219ac
  * stores fr4..fr6 as the vector of light a0 (1-based) at 0x8c4c0e80 and marks it set
- * called by: Class_12ab2c_uses_light_set_vec_09ea78, Class_12ab2c_uses_light_set_vec_09edf0
+ * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_uses_light_set_vec_09ea78
  */
 u32 light_set_vector(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int iVar1;

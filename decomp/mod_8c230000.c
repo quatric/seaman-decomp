@@ -6300,10 +6300,10 @@ u64 *gfxlib_fill_loop_23231c(double *a0, double *a1, double *a2, u64 *a3) {
 }
 
 /*
- * gfxlib_fill_loop_232748  0x8c232748
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_project_verts_s8_like  0x8c232748
+ * transforms 8-byte inputs and writes 32-byte projected records
  */
-int gfxlib_fill_loop_232748(int a0) {
+int gfx_project_verts_s8_like(int a0) {
     float fVar1;
     float fVar2;
     int iVar3;
@@ -6491,11 +6491,11 @@ int gfxlib_fill_loop_232cd0(int a0, u32 a1) {
 }
 
 /*
- * gfxlib_uses_aabb_overlap_minmax_23340c  0x8c23340c
- * area name: in the gfxlib library code range; behaviour name: its main named callee is aabb_overlap_minmax
+ * gfxlib_uses_aabb_from_8_points_23340c  0x8c23340c
+ * area name: in the gfxlib library code range; behaviour name: its main named callee is aabb_from_8_points
  * called by: Class_129938_m5_01745c
  */
-u32 gfxlib_uses_aabb_overlap_minmax_23340c(int a0, int a1) {
+u32 gfxlib_uses_aabb_from_8_points_23340c(int a0, int a1) {
     int iVar1;
     u32 uVar2;
     u64 *puVar3;
@@ -6530,8 +6530,8 @@ u32 gfxlib_uses_aabb_overlap_minmax_23340c(int a0, int a1) {
 
     cVar9 = '\0';
     uVar7 = 0;
-    gfxlib_fill_loop_2360b0(a0, auStack_2c, auStack_38);
-    gfxlib_fill_loop_2360b0(a1, auStack_44, auStack_50);
+    aabb_from_8_points(a0, auStack_2c, auStack_38);
+    aabb_from_8_points(a1, auStack_44, auStack_50);
     ar6_00 = auStack_44;
     ar5_00 = auStack_38;
     ar7_00 = auStack_50;
@@ -6733,7 +6733,7 @@ u32 gfxlib_uses_noop_fr4_test_2336e8(double *a0, double *a1) {
     uStack_28 = SUB84(in_dr12, 0);
     uStack_2c = (u32)((u64)in_dr12 >> 0x20);
     dVar29 = (double)CONCAT44(0x3f800000, uStack_20);
-    gfxlib_fill_loop_2360b0(a0, auStack_3c, auStack_48);
+    aabb_from_8_points(a0, auStack_3c, auStack_48);
     sphere_to_aabb(a1, &dStack_54, &dStack_60);
     pdVar4 = &dStack_54;
     ar5_00 = auStack_48;
@@ -8176,11 +8176,11 @@ int gfxlib_uses_ta_fifo_233e10(u32 *a0, u32 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_fill_loop_233e70  0x8c233e70
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_draw_234fd0
+ * gfx_project_verts_color_uv_clip  0x8c233e70
+ * projects vertices a1.. with colours and s16 UVs into 24-byte records; returns -1 past the far plane, 1 when any is
+ * near called by: gfxlib_draw_234fd0
  */
-u32 gfxlib_fill_loop_233e70(int *a0, int a1, int a2, u32 *a3) {
+u32 gfx_project_verts_color_uv_clip(int *a0, int a1, int a2, u32 *a3) {
     float fVar1;
     short sVar2;
     short sVar3;
@@ -8255,11 +8255,11 @@ u32 gfxlib_fill_loop_233e70(int *a0, int a1, int a2, u32 *a3) {
 }
 
 /*
- * gfxlib_fill_loop_233f1c  0x8c233f1c
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_project_verts_color_clip  0x8c233f1c
+ * projects vertices a1.. with colours into 16-byte records; returns -1 past the far plane, 1 when any is near
  * called by: gfxlib_draw_234fd0
  */
-u32 gfxlib_fill_loop_233f1c(int *a0, int a1, int a2, u32 *a3) {
+u32 gfx_project_verts_color_clip(int *a0, int a1, int a2, u32 *a3) {
     float fVar1;
     u32 uVar2;
     float *pfVar3;
@@ -9347,7 +9347,7 @@ u32 gfxlib_draw_234d68(u32 a0, int a1, u8 *a2, u8 *a3) {
             ta_fifo_237124(0x2100002, a5, a6, a3);
             ar4_00 = (u8 *)ta_sq_write_header5_short();
         }
-        pcVar7 = gfxlib_fill_loop_233f1c;
+        pcVar7 = gfx_project_verts_color_clip;
         iVar2 = 0x10;
         pcVar5 = ninja_calls_float_calc_25c3a4;
     } else {
@@ -9360,7 +9360,7 @@ u32 gfxlib_draw_234d68(u32 a0, int a1, u8 *a2, u8 *a3) {
             ta_fifo_237124(0x210000a, a5, a6, a3);
             ar4_00 = (u8 *)ta_sq_write_header5();
         }
-        pcVar7 = gfxlib_fill_loop_233e70;
+        pcVar7 = gfx_project_verts_color_uv_clip;
         pcVar5 = ninja_calls_float_calc_25c868;
         iVar2 = 0x18;
     }
@@ -9543,7 +9543,7 @@ u32 gfxlib_draw_234fd0(u32 a0, int a1, u32 a2, u32 *a3) {
                 in_xd4 = dVar12;
                 a5 = iVar6;
                 a3 = puVar7;
-                iVar3 = gfxlib_fill_loop_233f1c(a0, iVar6, 1, puVar7);
+                iVar3 = gfx_project_verts_color_clip(a0, iVar6, 1, puVar7);
                 iVar6 = iVar6 + 1;
                 in_xd6 = dVar9;
                 if (iVar3 == 0) {
@@ -9630,7 +9630,7 @@ u32 gfxlib_draw_234fd0(u32 a0, int a1, u32 a2, u32 *a3) {
                 in_xd4 = dVar9;
                 a5 = iVar6;
                 a3 = puVar7;
-                iVar3 = gfxlib_fill_loop_233e70(a0, iVar6, 1, puVar7);
+                iVar3 = gfx_project_verts_color_uv_clip(a0, iVar6, 1, puVar7);
                 iVar6 = iVar6 + 1;
                 dVar9 = in_xd8;
                 if (iVar3 == 0) {
@@ -10389,7 +10389,7 @@ u32 gfx_draw_polygon_flags(u32 a0, u32 a1, u32 a2, u32 a3) {
     ar6_01 = auStack_32c;
     if ((a2 & 0x80000000) == 0) {
         uVar1 = a1;
-        ar7_00 = gfxlib_fill_loop_235e1c(a0, a1, auStack_32c);
+        ar7_00 = gfx_project_verts_color_clip_b(a0, a1, auStack_32c);
         if (ar7_00 == -1) {
             return 0xffffffff;
         }
@@ -10410,7 +10410,7 @@ u32 gfx_draw_polygon_flags(u32 a0, u32 a1, u32 a2, u32 a3) {
         }
     } else {
         uVar1 = a1;
-        ar7_00 = gfxlib_fill_loop_235d8c(a0, a1, auStack_32c);
+        ar7_00 = gfx_project_verts_color_uv_clip_b(a0, a1, auStack_32c);
         if (ar7_00 == -1) {
             return 0xffffffff;
         }
@@ -10436,11 +10436,11 @@ u32 gfx_draw_polygon_flags(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_fill_loop_235d8c  0x8c235d8c
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_project_verts_color_uv_clip_b  0x8c235d8c
+ * same as gfx_project_verts_color_uv_clip, starting at the first vertex
  * called by: gfx_draw_polygon_flags
  */
-u32 gfxlib_fill_loop_235d8c(int *a0, int a1, u32 *a2) {
+u32 gfx_project_verts_color_uv_clip_b(int *a0, int a1, u32 *a2) {
     float fVar1;
     short sVar2;
     short sVar3;
@@ -10515,11 +10515,11 @@ u32 gfxlib_fill_loop_235d8c(int *a0, int a1, u32 *a2) {
 }
 
 /*
- * gfxlib_fill_loop_235e1c  0x8c235e1c
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_project_verts_color_clip_b  0x8c235e1c
+ * same as gfx_project_verts_color_clip, starting at the first vertex
  * called by: gfx_draw_polygon_flags
  */
-u32 gfxlib_fill_loop_235e1c(int *a0, int a1, u32 *a2) {
+u32 gfx_project_verts_color_clip_b(int *a0, int a1, u32 *a2) {
     float fVar1;
     u32 uVar2;
     float *pfVar3;
@@ -10917,11 +10917,11 @@ u8 *pvr_draw_235f84(double *a0) {
 }
 
 /*
- * gfxlib_fill_loop_2360b0  0x8c2360b0
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_uses_aabb_overlap_minmax_23340c, gfxlib_uses_noop_fr4_test_2336e8
+ * aabb_from_8_points  0x8c2360b0
+ * computes min (a1) and max (a2) of the eight points a0
+ * called by: gfxlib_uses_aabb_from_8_points_23340c, gfxlib_uses_noop_fr4_test_2336e8
  */
-u32 gfxlib_fill_loop_2360b0(float *a0, float *a1, float *a2) {
+u32 aabb_from_8_points(float *a0, float *a1, float *a2) {
     float *pfVar1;
     float *pfVar2;
     int iVar3;
@@ -11853,11 +11853,11 @@ u32 *gfxlib_calc_2375ae(int a0, u32 a1) {
 }
 
 /*
- * gfxlib_fill_loop_237630  0x8c237630
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_247df4, ninja_calls_fill_loop_253cfc
+ * gfx_lights_reset_defaults_like  0x8c237630
+ * resets the default light colours and recomputes the falloff of spot/point lights in the active list
+ * called by: gfxlib_uses_gfx_lights_reset_defaults_li_247df4, ninja_uses_gfx_lights_reset_defaults_li_253cfc
  */
-u32 gfxlib_fill_loop_237630(void) {
+u32 gfx_lights_reset_defaults_like(void) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -11899,7 +11899,7 @@ u32 gfxlib_fill_loop_237630(void) {
 /*
  * gfxlib_uses_memcpy_words_n_2376c4  0x8c2376c4
  * area name: in the gfxlib library code range; behaviour name: its main named callee is memcpy_words_n
- * called by: gfxlib_calls_fill_loop_247df4, ninja_calls_fill_loop_253cfc
+ * called by: gfxlib_uses_gfx_lights_reset_defaults_li_247df4, ninja_uses_gfx_lights_reset_defaults_li_253cfc
  */
 int gfxlib_uses_memcpy_words_n_2376c4(void) {
     u32 uVar1;
@@ -11961,7 +11961,7 @@ u32 alt_entry_2376d8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ai
 /*
  * gfxlib_calc_237760  0x8c237760
  * area name: in the gfxlib library code range; behaviour name: integer arithmetic on its arguments
- * called by: gfxlib_calls_fill_loop_247df4, ninja_calls_fill_loop_253cfc
+ * called by: gfxlib_uses_gfx_lights_reset_defaults_li_247df4, ninja_uses_gfx_lights_reset_defaults_li_253cfc
  */
 u32 gfxlib_calc_237760(void) {
     u32 in_r0;
@@ -18547,7 +18547,7 @@ int alt_entry_23c4cc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 /*
  * gfxlib_calls_fill_loop_23c70c  0x8c23c70c
  * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
- * called by: gfxlib_calls_fill_loop_247df4, ninja_calls_fill_loop_253cfc
+ * called by: gfxlib_uses_gfx_lights_reset_defaults_li_247df4, ninja_uses_gfx_lights_reset_defaults_li_253cfc
  */
 u32 gfxlib_calls_fill_loop_23c70c(void) {
     int ar7_00;
@@ -18619,7 +18619,7 @@ int memcpy_bytes(char *a0, char *a1, int a2) {
 /*
  * gfxlib_fill_loop_23c824  0x8c23c824
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_23d386
+ * called by: gfxlib_draw_23d386
  */
 u32 gfxlib_fill_loop_23c824(int *a0, u32 a1) {
     float fVar1;
@@ -18723,11 +18723,11 @@ u32 gfxlib_fill_loop_23c824(int *a0, u32 a1) {
 }
 
 /*
- * gfxlib_fill_loop_23c940  0x8c23c940
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_23d386
+ * gfx_project_verts_sq_normal_offset  0x8c23c940
+ * projects a0[0] vertices through the store queue, offsetting each along its normal by a global scale
+ * called by: gfxlib_draw_23d386
  */
-u32 gfxlib_fill_loop_23c940(int *a0, u32 a1) {
+u32 gfx_project_verts_sq_normal_offset(int *a0, u32 a1) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -18816,11 +18816,11 @@ u32 gfxlib_fill_loop_23c940(int *a0, u32 a1) {
 }
 
 /*
- * gfxlib_fill_loop_23ca50  0x8c23ca50
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_23d386
+ * gfx_project_verts_sq_normalized  0x8c23ca50
+ * projects vertices through the store queue with transformed, normalised normals
+ * called by: gfxlib_draw_23d386
  */
-u32 gfxlib_fill_loop_23ca50(int *a0, u32 a1) {
+u32 gfx_project_verts_sq_normalized(int *a0, u32 a1) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -18917,11 +18917,11 @@ u32 gfxlib_fill_loop_23ca50(int *a0, u32 a1) {
 }
 
 /*
- * gfxlib_fill_loop_23cb50  0x8c23cb50
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_23d386
+ * gfx_project_verts_sq_normal  0x8c23cb50
+ * projects vertices through the store queue with transformed normals
+ * called by: gfxlib_draw_23d386
  */
-u32 gfxlib_fill_loop_23cb50(int *a0, u32 a1) {
+u32 gfx_project_verts_sq_normal(int *a0, u32 a1) {
     float fVar1;
     float fVar2;
     float *pfVar3;
@@ -19005,11 +19005,11 @@ u32 gfxlib_fill_loop_23cb50(int *a0, u32 a1) {
 }
 
 /*
- * gfxlib_fill_loop_23cc40  0x8c23cc40
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_23d386
+ * gfx_project_verts_sq  0x8c23cc40
+ * projects a0[0] vertices through the store queue into 64-byte records
+ * called by: gfxlib_draw_23d386
  */
-u32 gfxlib_fill_loop_23cc40(int *a0, u32 a1) {
+u32 gfx_project_verts_sq(int *a0, u32 a1) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -19074,7 +19074,7 @@ u32 gfxlib_fill_loop_23cc40(int *a0, u32 a1) {
 /*
  * gfxlib_fill_loop_23cd0c  0x8c23cd0c
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_23d386
+ * called by: gfxlib_draw_23d386
  */
 u32 gfxlib_fill_loop_23cd0c(int *a0, u32 a1) {
     float fVar1;
@@ -19209,7 +19209,7 @@ u32 gfxlib_fill_loop_23cd0c(int *a0, u32 a1) {
 /*
  * gfxlib_fill_loop_23ce74  0x8c23ce74
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_23d386
+ * called by: gfxlib_draw_23d386
  */
 u32 gfxlib_fill_loop_23ce74(int *a0, u32 a1, u32 a2) {
     float fVar1;
@@ -19333,7 +19333,7 @@ u32 gfxlib_fill_loop_23ce74(int *a0, u32 a1, u32 a2) {
 /*
  * gfxlib_fill_loop_23cfd0  0x8c23cfd0
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_23d386
+ * called by: gfxlib_draw_23d386
  */
 u32 gfxlib_fill_loop_23cfd0(int *a0, u32 a1) {
     float fVar1;
@@ -19463,7 +19463,7 @@ u32 gfxlib_fill_loop_23cfd0(int *a0, u32 a1) {
 /*
  * gfxlib_fill_loop_23d118  0x8c23d118
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_23d386
+ * called by: gfxlib_draw_23d386
  */
 u32 gfxlib_fill_loop_23d118(int *a0, u32 a1, u32 a2) {
     float fVar1;
@@ -19579,11 +19579,11 @@ u32 gfxlib_fill_loop_23d118(int *a0, u32 a1, u32 a2) {
 }
 
 /*
- * gfxlib_fill_loop_23d254  0x8c23d254
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_23d386
+ * gfx_project_verts_sq_clipcodes  0x8c23d254
+ * projects vertices through the store queue and computes clip codes, ANDing and ORing them into a0[6], a0[7]
+ * called by: gfxlib_draw_23d386
  */
-u32 gfxlib_fill_loop_23d254(int *a0, u32 a1) {
+u32 gfx_project_verts_sq_clipcodes(int *a0, u32 a1) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -19674,11 +19674,11 @@ u32 gfxlib_fill_loop_23d254(int *a0, u32 a1) {
 }
 
 /*
- * gfxlib_calls_fill_loop_23d386  0x8c23d386
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
- * called by: ninja_calls_fill_loop_254006
+ * gfxlib_draw_23d386  0x8c23d386
+ * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * called by: ninja_draw_254006
  */
-u32 gfxlib_calls_fill_loop_23d386(u32 *a0) {
+u32 gfxlib_draw_23d386(u32 *a0) {
     double *pdVar1;
     double *pdVar2;
     u64 *puVar3;
@@ -19828,7 +19828,7 @@ u32 gfxlib_calls_fill_loop_23d386(u32 *a0) {
             *(u32 *)(puVar12 + -8) = *(u32 *)(*(int *)(puVar12 + -0x48) + 4);
 
             if (iVar11 == 0) {
-                gfxlib_fill_loop_23d254(puVar12 + -0x34, 0x8c4ab148);
+                gfx_project_verts_sq_clipcodes(puVar12 + -0x34, 0x8c4ab148);
             } else {
                 *(int *)(puVar12 + -0x28) = iVar11;
                 iVar11 = g_8c4ab148;
@@ -19875,17 +19875,17 @@ u32 gfxlib_calls_fill_loop_23d386(u32 *a0) {
                 *(float *)pdVar7 = fVar19;
             }
         } else if (iVar11 == 0) {
-            gfxlib_fill_loop_23cc40(puVar12 + -0x34, 0x8c4ab148);
+            gfx_project_verts_sq(puVar12 + -0x34, 0x8c4ab148);
         } else {
             *(int *)(puVar12 + -0x28) = iVar11;
             if ((uVar10 & *puVar6) == 0) {
                 if (g_8c4ab148 == 0) {
-                    gfxlib_fill_loop_23cb50(puVar12 + -0x34, 0x8c4ab148);
+                    gfx_project_verts_sq_normal(puVar12 + -0x34, 0x8c4ab148);
                 } else {
-                    gfxlib_fill_loop_23ca50(puVar12 + -0x34, 0x8c4ab148);
+                    gfx_project_verts_sq_normalized(puVar12 + -0x34, 0x8c4ab148);
                 }
             } else if (g_8c4ab148 == 0) {
-                gfxlib_fill_loop_23c940(puVar12 + -0x34, 0x8c4ab148);
+                gfx_project_verts_sq_normal_offset(puVar12 + -0x34, 0x8c4ab148);
             } else {
                 gfxlib_fill_loop_23c824(puVar12 + -0x34, 0x8c4ab148);
             }

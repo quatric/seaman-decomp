@@ -3120,7 +3120,7 @@ u32 game_uses_set_field_d4_0e4298(int *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * set_field_128_0e4330  0x8c0e4330
- * called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_get_field_24_0e5238, game_uses_set_field_d4_0e4298
+ * called by: game_slot_grid_cursor_tick, game_uses_get_field_24_0e5238, game_uses_set_field_d4_0e4298
  */
 int set_field_128_0e4330(int a0, u32 a1) {
     int iVar1;
@@ -3979,7 +3979,7 @@ u32 input_up_pressed_wrap_0e5998(int a0) {
 /*
  * set_fields_4_0_on_field_d8  0x8c0e59c0
  * calls set_fields_4_0_0ffb84 on the member at +0xd8
- * called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_get_field_24_0e5238
+ * called by: game_slot_grid_cursor_tick, game_uses_get_field_24_0e5238
  */
 u32 set_fields_4_0_on_field_d8(int a0, u32 a1) {
     set_fields_4_0_0ffb84(a0 + 0xd8, a1);
@@ -4384,7 +4384,7 @@ int Class_12b580_uses_WEATHRE_UNIT_CreateGraphics_0e62cc(int *a0, u32 a1, u32 a2
 
     (**(code **)(0x88 + *a0))(a0, a1, a2, a3);
     WEATHRE_UNIT_CreateGraphics((int)a0 + 0x10dc, a1, a2, a3);
-    (*(code *)(&Class_12b580_uses_njSinCos_0e705c))(a0, *(u32 *)(0x10dc + (int)a0), a2, a3);
+    (*(code *)(&Class_12b580_time_of_day_update_like))(a0, *(u32 *)(0x10dc + (int)a0), a2, a3);
     iVar1 = *(int *)(0x83fc + (int)a0);
     if (iVar1 == -1) {
         uVar2 = (*(code *)(&pack_find_by_name_buffered))(0x8c2b59d0, *(u32 *)(0x83f8 + (int)a0), a2, a3);
@@ -4408,7 +4408,7 @@ u32 Class_12b580_m1_0e634c(int a0, int a1, u32 a2, u32 a3) {
     iVar4 = a0 + 0xa68;
     Class_12b580_uses_pack_acquire_entry_handle_0d84e8(a0 + 0x10dc, a1, iVar4, a3);
     uVar3 = *(u32 *)(0x10dc + a0);
-    Class_12b580_uses_njSinCos_0e705c(a0, uVar3, iVar4);
+    Class_12b580_time_of_day_update_like(a0, uVar3, iVar4);
     if ((*(int *)(0x10dc + a0) == 0) || (*(int *)(0x10dc + a0) == 0x8ca0)) {
         if (*(int *)(0x83fc + a0) != -1) {
             game_sound_022104(0x8c2b59d0, *(u32 *)(0x83fc + a0), iVar4, a3);
@@ -4460,7 +4460,7 @@ u32 Class_12b580_m2_0e6548(int a0, int a1, u32 a2, u32 a3) {
 
     Class_12bb08_m2_0da5a8(a0, a1, a2);
     ar5_00 = *(u32 *)(0x10dc + a0);
-    Class_12b580_uses_njSinCos_0e705c(a0, ar5_00, a2);
+    Class_12b580_time_of_day_update_like(a0, ar5_00, a2);
     game_list_0dbd80(a0, ar5_00, a2, a3);
     ar6_00 = a0 + 0xa68;
     Class_12b580_uses_static_init_0d8710(a0 + 0x10dc, a1, ar6_00, a3);
@@ -4714,14 +4714,15 @@ u32 COutside_Create(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * game_uses_njSinCos_0e6c00  0x8c0e6c00
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: uses_njSinCos
+ * game_uses_Class_12b580_time_of_day_upd_0e6c00  0x8c0e6c00
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is
+ * Class_12b580_time_of_day_update_like
  */
-int game_uses_njSinCos_0e6c00(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int game_uses_Class_12b580_time_of_day_upd_0e6c00(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
 
-    Class_12b580_uses_njSinCos_0e705c(a0, *(u32 *)(0x10dc + a0), a2);
+    Class_12b580_time_of_day_update_like(a0, *(u32 *)(0x10dc + a0), a2);
     iVar1 = *(int *)(0x83fc + a0);
     if (iVar1 == -1) {
         uVar2 = (*(code *)(&pack_find_by_name_buffered))(0x8c2b59d0, *(u32 *)(0x83f8 + a0), a2, a3);
@@ -4887,12 +4888,11 @@ u32 Class_12b580_uses_linear_map_set_0e6ef0(int *a0, u32 unused_a1, u32 a2, u32 
 }
 
 /*
- * Class_12b580_uses_njSinCos_0e705c  0x8c0e705c
- * name hint from a string it uses: 64 JUNGLE NIGHT; area name: only called from Class_12b580 methods; behaviour name:
- * its main named callee is njSinCos called by: Class_12b580_m1_0e634c, Class_12b580_m2_0e6548,
- * game_uses_njSinCos_0e6c00
+ * Class_12b580_time_of_day_update_like  0x8c0e705c
+ * picks the jungle daytime scene for the clock value a1 and derives the light level at +0x8400
+ * called by: Class_12b580_m1_0e634c, Class_12b580_m2_0e6548, game_uses_Class_12b580_time_of_day_upd_0e6c00
  */
-u32 Class_12b580_uses_njSinCos_0e705c(int a0, int a1, u32 a2) {
+u32 Class_12b580_time_of_day_update_like(int a0, int a1, u32 a2) {
     u32 r7;
     u32 uVar1;
     u32 in_fr1;
@@ -5513,11 +5513,10 @@ u32 CTexture_ReleaseFromVRAM_on_field_488(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CTexture_uses_item_grid_find_free_0e8090  0x8c0e8090
- * area name: sits between CTexture functions (same compilation unit); behaviour name: its main named callee is
- * item_grid_find_free
+ * game_uses_item_grid_find_free_0e8090  0x8c0e8090
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is item_grid_find_free
  */
-u32 CTexture_uses_item_grid_find_free_0e8090(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_uses_item_grid_find_free_0e8090(int a0, u32 a1, u32 a2, u32 a3) {
     u16 *puVar1;
     u16 uStack_10;
     u16 uStack_e;
@@ -5528,18 +5527,18 @@ u32 CTexture_uses_item_grid_find_free_0e8090(int a0, u32 a1, u32 a2, u32 a3) {
     puVar1[1] = uStack_e;
     free_if_nonnull_wrap_016660(&uStack_10, 0xffffffff, a2, a3);
     if ((*(short *)(0x224 + a0) != -1) && (*(short *)(0x226 + a0) != -1)) {
-        CTexture_uses_set_field_2c_wrap_0e810c(a0, a1, a0 + 0x224, a3);
+        game_uses_set_field_2c_wrap_0e810c(a0, a1, a0 + 0x224, a3);
         a1 = 0;
     }
     return a1;
 }
 
 /*
- * CTexture_uses_set_field_2c_wrap_0e810c  0x8c0e810c
- * area name: sits between CTexture functions (same compilation unit); behaviour name: its main named callee is
- * set_field_2c_wrap called by: CTexture_uses_item_grid_find_free_0e8090
+ * game_uses_set_field_2c_wrap_0e810c  0x8c0e810c
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_field_2c_wrap
+ * called by: game_uses_item_grid_find_free_0e8090
  */
-u32 CTexture_uses_set_field_2c_wrap_0e810c(int a0, u32 a1, short *a2, u32 a3) {
+u32 game_uses_set_field_2c_wrap_0e810c(int a0, u32 a1, short *a2, u32 a3) {
     u32 ar5_00;
     short *ar6_00;
 
@@ -5555,11 +5554,10 @@ u32 CTexture_uses_set_field_2c_wrap_0e810c(int a0, u32 a1, short *a2, u32 a3) {
 }
 
 /*
- * CTexture_uses_set_vec3_field_30_0e81b4  0x8c0e81b4
- * area name: sits between CTexture functions (same compilation unit); behaviour name: its main named callee is
- * set_vec3_field_30
+ * game_uses_set_vec3_field_30_0e81b4  0x8c0e81b4
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_vec3_field_30
  */
-u32 CTexture_uses_set_vec3_field_30_0e81b4(int *a0, u32 a1, u32 a2, u32 a3) {
+u32 game_uses_set_vec3_field_30_0e81b4(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     set_vec3_field_30(a1, a1, a2);
@@ -5568,11 +5566,11 @@ u32 CTexture_uses_set_vec3_field_30_0e81b4(int *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CTexture_init_fields_0e81f0  0x8c0e81f0
- * area name: sits between CTexture functions (same compilation unit); behaviour name: writes 3 members
- * called by: game_uses_free_if_nonnull_wrap_0e8280
+ * game_init_fields_0e81f0  0x8c0e81f0
+ * area name: game code; nothing names its area yet; behaviour name: writes 3 members
+ * called by: game_slot_grid_cursor_tick
  */
-u32 CTexture_init_fields_0e81f0(int a0, short *a1) {
+u32 game_init_fields_0e81f0(int a0, short *a1) {
     u32 uVar1;
 
     uVar1 = *(u32 *)(0xa4 + a0 + *(short *)(0x226 + a0) * 0x80 + *(short *)(0x224 + a0) * 0x20);
@@ -5590,11 +5588,10 @@ u32 ret_const_1_0e8278(void) {
 }
 
 /*
- * game_uses_free_if_nonnull_wrap_0e8280  0x8c0e8280
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is
- * free_if_nonnull_wrap_016660
+ * game_slot_grid_cursor_tick  0x8c0e8280
+ * moves the cursor over the slot grid with the pad and, once the card is ready, opens the chosen slot
  */
-u32 game_uses_free_if_nonnull_wrap_0e8280(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_slot_grid_cursor_tick(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar4_00;
     u16 *puVar1;
     u32 uVar2;
@@ -5642,7 +5639,7 @@ u32 game_uses_free_if_nonnull_wrap_0e8280(int a0, u32 a1, u32 a2, u32 a3) {
         }
         input_input_helper_1002a8(a1);
         ar6_00 = auStack_1c;
-        Class_12acc8_calc_101210(a1, auStack_20, ar6_00);
+        input_calc_101210(a1, auStack_20, ar6_00);
         game_uses_copy_2_u16_0e89c4(a0, auStack_20, ar6_00, a3, &uStack_5c);
         puVar1 = (u16 *)(a0 + 0x224);
         *puVar1 = uStack_5c;
@@ -5658,7 +5655,7 @@ u32 game_uses_free_if_nonnull_wrap_0e8280(int a0, u32 a1, u32 a2, u32 a3) {
                     (iStack_4c = input_uses_get_field_4_10031c(a1), iStack_4c == 1)) {
                     set_timeout_120_mode6(a1);
                     copy_2_u16(auStack_60, a0 + 0x224);
-                    uStack_50 = CTexture_init_fields_0e81f0(a0, auStack_60);
+                    uStack_50 = game_init_fields_0e81f0(a0, auStack_60);
                     set_fields_4_0_on_field_d8(a1, uStack_50);
                     free_if_nonnull_wrap_016660(auStack_60, 0xffffffff, ar6_00, a3);
                     uVar2 = 3;
@@ -5680,7 +5677,7 @@ u32 game_uses_free_if_nonnull_wrap_0e8280(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * copy_2_u16  0x8c0e84c8
  * a0[0..1] = a1[0..1] (16-bit)
- * called by: game_uses_copy_2_u16_0e89c4, game_uses_free_if_nonnull_wrap_0e8280, item_grid_find_free
+ * called by: game_slot_grid_cursor_tick, game_uses_copy_2_u16_0e89c4, item_grid_find_free
  */
 u16 *copy_2_u16(u16 *a0, u16 *a1) {
     *a0 = *a1;
@@ -5690,7 +5687,7 @@ u16 *copy_2_u16(u16 *a0, u16 *a1) {
 
 /*
  * game_calc_0e84d8  0x8c0e84d8
- * area name: game code; nothing names its area yet; behaviour name: integer arithmetic on its arguments
+ * area name: sits between game functions (same compilation unit); behaviour name: integer arithmetic on its arguments
  */
 u32 game_calc_0e84d8(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5701,7 +5698,7 @@ u32 game_calc_0e84d8(int *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * game_draw_0e84f8  0x8c0e84f8
- * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
+ * area name: sits between game functions (same compilation unit); behaviour name: mostly calls draw functions
  */
 int game_draw_0e84f8(int a0) {
     int iVar1;
@@ -5715,7 +5712,7 @@ int game_draw_0e84f8(int a0) {
 
 /*
  * game_calc_0e8538  0x8c0e8538
- * area name: game code; nothing names its area yet; behaviour name: integer arithmetic on its arguments
+ * area name: sits between game functions (same compilation unit); behaviour name: integer arithmetic on its arguments
  */
 u32 game_calc_0e8538(int *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5726,7 +5723,7 @@ u32 game_calc_0e8538(int *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * game_test_0e855c  0x8c0e855c
- * area name: game code; nothing names its area yet; behaviour name: returns the result of a comparison
+ * area name: sits between game functions (same compilation unit); behaviour name: returns the result of a comparison
  */
 u32 game_test_0e855c(int a0) {
     if (*(int *)(0x440 + a0) == 1) {
@@ -5737,7 +5734,7 @@ u32 game_test_0e855c(int a0) {
 
 /*
  * game_test_0e8574  0x8c0e8574
- * area name: game code; nothing names its area yet; behaviour name: returns the result of a comparison
+ * area name: sits between game functions (same compilation unit); behaviour name: returns the result of a comparison
  */
 u32 game_test_0e8574(int a0, u32 a1, u32 a2, u32 a3) {
     (**(code **)(*(int *)(a0 + 0x228) + 0xc))((int *)(a0 + 0x228), a1, a2, a3);
@@ -5870,7 +5867,7 @@ u32 Class_12b3b8_calc_0e89a0(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * game_uses_copy_2_u16_0e89c4  0x8c0e89c4
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is copy_2_u16
- * called by: game_uses_free_if_nonnull_wrap_0e8280
+ * called by: game_slot_grid_cursor_tick
  */
 u32 game_uses_copy_2_u16_0e89c4(u32 unused_a0, double *a1, u32 unused_a2, u32 a3, u32 s0) {
     u32 ar6_00;
@@ -6044,7 +6041,7 @@ u32 game_uses_copy_2_u16_0e89c4(u32 unused_a0, double *a1, u32 unused_a2, u32 a3
 /*
  * item_grid_find_free  0x8c0e8ae0
  * (column, row) of the first empty cell of the 3x4 item grid at +0xa4, or (-1, -1), stored at s0
- * called by: CTexture_uses_item_grid_find_free_0e8090
+ * called by: game_uses_item_grid_find_free_0e8090
  */
 u32 item_grid_find_free(int a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 s0) {
     u32 ar6_00;
@@ -6993,7 +6990,7 @@ int get_field_39_s8(int a0) {
 /*
  * clear_5_bytes_b  0x8c0e98f8
  * zeroes the 5 bytes at a0; returns 0
- * called by: game_copy_0c67f4
+ * called by: game_save_state_init
  */
 u32 clear_5_bytes_b(u8 *a0) {
     *a0 = 0;

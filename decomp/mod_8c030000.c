@@ -5168,9 +5168,9 @@ u32 game_vec_034574(u32 unused_a0, int *a1, u32 a2, u32 a3) {
 /*
  * game_vec_034650  0x8c034650
  * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
- * called by: game_state_switch_049b68, game_state_switch_04b168, game_state_switch_0755e0,
- * game_uses_CAnimBody_SetAnimation_0811b4, game_uses_Vec3_dtor_08f354, game_vec_051c14, game_vec_057e58,
- * game_vec_077a38 (+5 more)
+ * called by: creature_apply_anim_root_delta, game_state_switch_049b68, game_state_switch_04b168,
+ * game_state_switch_0755e0, game_uses_CAnimBody_SetAnimation_0811b4, game_uses_Vec3_dtor_08f354, game_vec_051c14,
+ * game_vec_057e58 (+5 more)
  */
 u32 game_vec_034650(u32 unused_a0, int *a1, u32 a2, u32 a3) {
     int *piVar1;
@@ -10451,7 +10451,7 @@ u32 Class_12a03c_vec_03c100(int a0, u32 a1, u32 a2, u32 a3) {
  * timer_start_94  0x8c03c314
  * +0x94 = fr4, +0xa4 = 1
  * called by: Class_12a03c_m1_03c43c, Class_12a03c_vec_03c100, Class_12a25c_reset, Class_12a25c_vec_06f93c,
- * Class_12a76c_vec_08db9c, Class_12ad14_uses_rand_float_0a37c8, Class_12b088_state_switch_0a99c4,
+ * Class_12a76c_reset_state, Class_12ad14_uses_rand_float_0a37c8, Class_12b088_state_switch_0a99c4,
  * Class_12b2ac_uses_timer_stop_94_0b5344 (+34 more)
  */
 u32 timer_start_94(int a0, u32 a1, u32 a2) {

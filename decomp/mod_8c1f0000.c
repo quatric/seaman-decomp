@@ -9293,7 +9293,7 @@ int *shinobi_copy_1f672c(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         ar6_00 = 0x100;
         ar5_00 = 0;
         memset(piVar2 + 0x41, 0, 0x100);
-        libc_float_calc_01422c(piVar2 + 0x41, ar5_00, ar6_00, a3, ain0, in_PR);
+        setjmp_like(piVar2 + 0x41, ar5_00, ar6_00, a3, ain0, in_PR);
         *piVar2 = 1;
         g_8c4748a0 = g_8c4748a0 + 1;
     }
@@ -9333,7 +9333,7 @@ int shinobi_copy_1f67c2(int a0, int a1, int a2, u32 a3) {
         piVar2[4] = 0;
         piVar2[0x47] = 0;
         memmove(piVar2 + 6, ar5_00, 0x100);
-        libc_float_calc_01422c(auStack_b0, ar5_00, ar6_00, ar7_00, a2, a1);
+        setjmp_like(auStack_b0, ar5_00, ar6_00, ar7_00, a2, a1);
         memmove(piVar2 + 6, auStack_b0, 0x100);
         piVar2[6] = ((a3 >> 2) - 1) * 4 + a2;
         piVar2[8] = a1;
@@ -9344,7 +9344,7 @@ int shinobi_copy_1f67c2(int a0, int a1, int a2, u32 a3) {
 /*
  * shinobi_update_fields_1f689e  0x8c1f689e
  * area name: in the shinobi library code range; behaviour name: conditionally writes members
- * called by: alt_entry_1f68f6, shinobi_copy_1f68ec, shinobi_uses_srand_1f6a34
+ * called by: alt_entry_1f68f6, shinobi_copy_1f68ec, shinobi_uses_setjmp_like_1f6a34
  */
 int shinobi_update_fields_1f689e(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -9516,7 +9516,7 @@ int shinobi_uses_srand_1f69f2(int a0) {
     int iVar3;
     int iVar4;
 
-    puVar2 = (&libc_float_calc_01422c);
+    puVar2 = (&setjmp_like);
     piVar1 = 0x8c474898;
     iVar4 = 0x7fffffff;
     if (-1 < a0) {
@@ -9548,7 +9548,7 @@ int alt_entry_1f69fa(int a0, u32 a1, u32 a2, u32 a3, int ain0) {
         iVar1 = *(int *)(*unaff_r14 + 0x204) + a0;
     }
     *(int *)(*(int *)(ain0 + *unaff_r14) + 0x14) = iVar1;
-    iVar1 = libc_float_calc_01422c(*(int *)(*unaff_r14 + 0xd78) + 0x18, a1, a2, a3, in_PR, in_stack_00000000);
+    iVar1 = setjmp_like(*(int *)(*unaff_r14 + 0xd78) + 0x18, a1, a2, a3, in_PR, in_stack_00000000);
     if (iVar1 == 0) {
         iVar1 = srand(*unaff_r14 + 4, 1);
     }
@@ -9565,7 +9565,7 @@ int shinobi_uses_srand_1f6a30(void) {
     u8 *puVar2;
     int iVar3;
 
-    puVar2 = (&libc_float_calc_01422c);
+    puVar2 = (&setjmp_like);
     piVar1 = 0x8c474898;
     iVar3 = (int)0xd78;
     *(int *)(*(int *)((int)0xd78 + g_8c474898) + 0x14) = *(int *)((int)0x204 + g_8c474898) + 1;
@@ -9577,11 +9577,11 @@ int shinobi_uses_srand_1f6a30(void) {
 }
 
 /*
- * shinobi_uses_srand_1f6a34  0x8c1f6a34
- * area name: in the shinobi library code range; behaviour name: its main named callee is srand
- * called by: shinobi_uses_srand_1fcfbe
+ * shinobi_uses_setjmp_like_1f6a34  0x8c1f6a34
+ * area name: in the shinobi library code range; behaviour name: its main named callee is setjmp_like
+ * called by: shinobi_uses_setjmp_like_1fcfbe
  */
-u32 shinobi_uses_srand_1f6a34(int a0, u32 a1, u32 a2, u32 a3) {
+u32 shinobi_uses_setjmp_like_1f6a34(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     int a5;
@@ -9596,10 +9596,10 @@ u32 shinobi_uses_srand_1f6a34(int a0, u32 a1, u32 a2, u32 a3) {
     g_8c47489c = g_8c474898;
     a5 = a0 + 0x210;
     g_8c474898 = a0;
-    libc_float_calc_01422c(a0 + 4, a1, a2, a3,
-                           (u32)in_FPSCR_RM | (u32)in_FPSCR_FLAG << 2 | (u32)in_FPSCR_ENABLE << 7 |
-                               (u32)in_FPSCR_CAUSE << 0xc | (u32)in_FPSCR_DN << 0x12 | (u32)in_FPSCR_FR << 0x15,
-                           in_PR);
+    setjmp_like(a0 + 4, a1, a2, a3,
+                (u32)in_FPSCR_RM | (u32)in_FPSCR_FLAG << 2 | (u32)in_FPSCR_ENABLE << 7 | (u32)in_FPSCR_CAUSE << 0xc |
+                    (u32)in_FPSCR_DN << 0x12 | (u32)in_FPSCR_FR << 0x15,
+                in_PR);
     for (iVar2 = 0; iVar2 < *(int *)(a0 + 0x208); iVar2 = iVar2 + 1) {
         *(int *)(a0 + 0xd78) = a5;
         iVar1 = *(int *)(a5 + 0xc);
@@ -16069,13 +16069,13 @@ u32 shinobi_copy_1fcfa6(u32 a0, u32 a1, u32 a2) {
 }
 
 /*
- * shinobi_uses_srand_1fcfbe  0x8c1fcfbe
- * area name: in the shinobi library code range; behaviour name: its callees mostly do: uses_srand
+ * shinobi_uses_setjmp_like_1fcfbe  0x8c1fcfbe
+ * area name: in the shinobi library code range; behaviour name: its callees mostly do: uses_setjmp_like
  */
-u32 shinobi_uses_srand_1fcfbe(void) {
+u32 shinobi_uses_setjmp_like_1fcfbe(void) {
     u32 uVar1;
 
-    uVar1 = shinobi_uses_srand_1f6a34(g_8c4783c0);
+    uVar1 = shinobi_uses_setjmp_like_1f6a34(g_8c4783c0);
     return uVar1;
 }
 

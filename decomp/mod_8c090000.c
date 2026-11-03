@@ -5553,7 +5553,7 @@ u32 Class_12a7a8_uses_set_field_38_099714(int a0, u32 a1, int *a2, int a3) {
         if (iVar1 == 1) {
             iVar1 = *a2;
             mask_74_fffffffe(iVar1);
-            CAnimal_calls_test_0c4e2c(iVar1, a5, piVar2, a3);
+            game_calls_test_0c4e2c(iVar1, a5, piVar2, a3);
         }
     } else if ((iVar1 == 0xb) && (*(int *)(a0 + 0x8c) == 1)) {
         set_field_45_u8(a2[3], 1);
@@ -5626,7 +5626,7 @@ int Class_12a7a8_uses_mask_74_fffffffe_099914(int a0, u32 a1, int *a2, u32 a3) {
     } else if ((iVar1 == 8) && (iVar1 = (**(code **)(0xb4 + *(int *)(*a2 + 8)))(*a2, a5, ar6_00, a3), iVar1 == 1)) {
         iVar1 = *a2;
         mask_74_fffffffe(iVar1);
-        iVar1 = CAnimal_calls_test_0c4e2c(iVar1, a5, ar6_00, a3);
+        iVar1 = game_calls_test_0c4e2c(iVar1, a5, ar6_00, a3);
     }
     return iVar1;
 }
@@ -5650,7 +5650,7 @@ u8 *Class_12a7a8_state_switch_0999ac(int a0, u32 a1, int *a2, u32 a3) {
         switch (iVar2) {
         case 1:
             *(u8 *)(a0 + 0x98) = 2;
-            puVar1 = (u8 *)CAnimal_calls_test_0c4e2c(a0, a1, a2, a3);
+            puVar1 = (u8 *)game_calls_test_0c4e2c(a0, a1, a2, a3);
             break;
         case 3:
             puVar1 = (u8 *)get_field_13c_028d9c(a2[1], a1, a2);
@@ -5660,7 +5660,7 @@ u8 *Class_12a7a8_state_switch_0999ac(int a0, u32 a1, int *a2, u32 a3) {
                 iVar2 = a2[6];
                 recent5_push_unique(iVar2, 0x27, 0x1b);
                 *(u8 *)(a0 + 0x98) = 5;
-                puVar1 = (u8 *)CAnimal_calls_test_0c4e2c(iVar2, ar5_00, ar6_01, a3);
+                puVar1 = (u8 *)game_calls_test_0c4e2c(iVar2, ar5_00, ar6_01, a3);
             }
             break;
         case 4:
@@ -5672,15 +5672,15 @@ u8 *Class_12a7a8_state_switch_0999ac(int a0, u32 a1, int *a2, u32 a3) {
             if (puVar1 == (u8 *)0x1) {
                 iVar2 = *a2;
                 mask_74_fffffffe(iVar2);
-                puVar1 = (u8 *)CAnimal_calls_test_0c4e2c(iVar2, a1, ar6_00, a3);
+                puVar1 = (u8 *)game_calls_test_0c4e2c(iVar2, a1, ar6_00, a3);
             }
             break;
         case 9:
             *(u8 *)(a0 + 0x98) = 5;
-            puVar1 = (u8 *)CAnimal_calls_test_0c4e2c(a0, a1, a2, a3);
+            puVar1 = (u8 *)game_calls_test_0c4e2c(a0, a1, a2, a3);
             break;
         case 10:
-            CAnimal_calls_test_0c4e2c(a0, a1, a2, a3);
+            game_calls_test_0c4e2c(a0, a1, a2, a3);
             puVar1 = (u8 *)0x98;
             *(u8 *)(a0 + 0x98) = 5;
         }
@@ -7602,7 +7602,7 @@ u32 Class_12a990_m2_09bc2c(int a0, float *a1, code *a2, code *a3) {
                 }
                 *(int *)(a0 + 0x9d4) = *(int *)(a0 + 0x9d4) + 1;
                 for (iVar10 = 0; iVar10 < 8; iVar10 = iVar10 + 1) {
-                    Class_12a990_float_calc_09cdf4(a0, iVar10);
+                    Class_12a990_drift_axis_bounce(a0, iVar10);
                     set_vec3_field_30(*(u32 *)(a0 + iVar10 * 4 + 0x524), iVar10, a2);
                 }
                 pfVar7 = (float *)0x3c;
@@ -7872,7 +7872,7 @@ u32 Class_12a990_m2_09bc2c(int a0, float *a1, code *a2, code *a3) {
     }
     for (pfVar3 = NULL; (int)pfVar3 < 8; pfVar3 = (float *)((int)pfVar3 + 1)) {
         pfVar7 = pfVar3;
-        Class_12a990_float_calc_09cdf4(a0, pfVar3);
+        Class_12a990_drift_axis_bounce(a0, pfVar3);
         set_vec3_field_30(*(u32 *)(a0 + (int)pfVar3 * 4 + 0x524), pfVar7, a2);
     }
 LAB_8c09c65a:
@@ -8185,10 +8185,10 @@ u32 draw_state_switch_09cbb8(int a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * draw_update_fields_09cc34  0x8c09cc34
- * area name: sits between draw functions (same compilation unit); behaviour name: conditionally writes members
+ * game_update_fields_09cc34  0x8c09cc34
+ * area name: game code; nothing names its area yet; behaviour name: conditionally writes members
  */
-int draw_update_fields_09cc34(int a0, int a1, u32 a2) {
+int game_update_fields_09cc34(int a0, int a1, u32 a2) {
     int iVar1;
 
     iVar1 = 0x524;
@@ -8197,11 +8197,10 @@ int draw_update_fields_09cc34(int a0, int a1, u32 a2) {
 }
 
 /*
- * draw_uses_get_field_24_09cc4c  0x8c09cc4c
- * area name: sits between draw functions (same compilation unit); behaviour name: its callees mostly do:
- * uses_get_field_24
+ * game_uses_get_field_24_09cc4c  0x8c09cc4c
+ * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: uses_get_field_24
  */
-u32 draw_uses_get_field_24_09cc4c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_uses_get_field_24_09cc4c(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
 
     for (iVar1 = 0; iVar1 < 8; iVar1 = iVar1 + 1) {
@@ -8413,11 +8412,11 @@ u32 game_uses_rand_09cca8(int a0, int a1, u32 a2) {
 }
 
 /*
- * Class_12a990_float_calc_09cdf4  0x8c09cdf4
- * area name: only called from Class_12a990 methods; behaviour name: floating-point arithmetic
+ * Class_12a990_drift_axis_bounce  0x8c09cdf4
+ * eases velocity a1 toward its target, adds it to the offset and reverses the target past plus or minus range/3
  * called by: Class_12a990_m2_09bc2c
  */
-u32 *Class_12a990_float_calc_09cdf4(int a0, int a1) {
+u32 *Class_12a990_drift_axis_bounce(int a0, int a1) {
     int iVar1;
     u32 *puVar2;
     u64 in_dr4;
@@ -8470,10 +8469,10 @@ u32 *Class_12a990_float_calc_09cdf4(int a0, int a1) {
 }
 
 /*
- * game_update_fields_09d2b4  0x8c09d2b4
- * area name: game code; nothing names its area yet; behaviour name: conditionally writes members
+ * Class_12a990_update_fields_09d2b4  0x8c09d2b4
+ * area name: sits between Class_12a990 functions (same compilation unit); behaviour name: conditionally writes members
  */
-int game_update_fields_09d2b4(int a0) {
+int Class_12a990_update_fields_09d2b4(int a0) {
     int iVar1;
 
     iVar1 = 1;
@@ -8506,10 +8505,11 @@ u32 load_gr_wait_with_items(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_release_09d384  0x8c09d384
- * area name: game code; nothing names its area yet; behaviour name: mostly calls release functions
+ * Class_12a990_release_09d384  0x8c09d384
+ * area name: sits between Class_12a990 functions (same compilation unit); behaviour name: mostly calls release
+ * functions
  */
-u32 game_release_09d384(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12a990_release_09d384(int a0, u32 a1, u32 a2, u32 a3) {
     int a4;
     int iVar1;
 
@@ -8795,7 +8795,7 @@ u32 Class_12ab2c_m2_09db4c(int a0, u32 a1, u32 a2, int *a3) {
                 fVar2 = *(float *)(&g_8c13aae4 + (*(int *)(a0 + 0xfd0) + -1) * 4);
             }
             if (fVar2 != 0.0) {
-                Class_12ab2c_uses_light_set_vec_09edf0(a0);
+                Class_12ab2c_light_fade_out_step(a0);
             }
         }
     } else {
@@ -8808,7 +8808,7 @@ u32 Class_12ab2c_m2_09db4c(int a0, u32 a1, u32 a2, int *a3) {
                 fVar2 = *(float *)(&g_8c13aae4 + (*(int *)(a0 + 0xfd0) + -1) * 4);
             }
             if (fVar2 != 0.0) {
-                Class_12ab2c_uses_light_set_vec_09edf0(a0);
+                Class_12ab2c_light_fade_out_step(a0);
             }
         }
     }
@@ -9582,11 +9582,11 @@ u32 Class_12ab2c_uses_light_set_vec_09ea78(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12ab2c_uses_light_set_vec_09edf0  0x8c09edf0
- * area name: only called from Class_12ab2c methods; behaviour name: its main named callee is light_set_vec_4c0ef4
+ * Class_12ab2c_light_fade_out_step  0x8c09edf0
+ * refreshes the object's light and fades its intensity; below 0.1 turns the light off and frees its slot
  * called by: Class_12ab2c_m2_09db4c
  */
-u32 *Class_12ab2c_uses_light_set_vec_09edf0(int a0) {
+u32 *Class_12ab2c_light_fade_out_step(int a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -10057,7 +10057,7 @@ LAB_8c09f768:
                         matrix_apply_point_w1(0, puVar5, ar6_01);
                         Vec3_ctor_zero(auStack_70, puVar5, ar6_01);
                         pcVar11 = (code *)&uStack_b8;
-                        Class_12acc8_calc_101210(*(u32 *)(*(int *)(a2 + 0x18) + 0x7cc), &uStack_b4, pcVar11);
+                        input_calc_101210(*(u32 *)(*(int *)(a2 + 0x18) + 0x7cc), &uStack_b4, pcVar11);
                         if (cVar18 == '\0') {
                             dVar16 = (double)CONCAT44(uStack_c0, uStack_b4);
                         } else {
@@ -10417,7 +10417,7 @@ u32 Class_12acc8_uses_set_field_38_09ff1c(int a0, u32 a1, int *a2, int a3) {
         if (iVar2 == 1) {
             iVar2 = *a2;
             mask_74_fffffffe(iVar2);
-            CAnimal_calls_test_0c4e2c(iVar2, a5, ar6_00, a3);
+            game_calls_test_0c4e2c(iVar2, a5, ar6_00, a3);
         }
     } else if (((iVar1 == 10) && (iVar2 = talk_pick_highest_active(a2[1], a5, ar6_00), iVar2 != 0)) && (iVar2 == 1)) {
         *(u32 *)(a0 + 0x40) = 0xe;

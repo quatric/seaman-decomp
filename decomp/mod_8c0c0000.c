@@ -956,15 +956,15 @@ u32 save_menu_update(int a0, int a1, u32 a2, int a3, u32 s0) {
             game_uses_memcard_delete_start_01bb00(ar4_00, s0, a2, a3);
         } else if (0x14 < g_8c436846) {
             uVar3 = 0x8c431a68;
-            game_copy_0c67f4(a0 + 0x17c, a1, 0x8c431a68, 2);
+            game_save_state_init(a0 + 0x17c, a1, 0x8c431a68, 2);
             records_reset_random_variant(a0 + 0x17c, 0x8c435c7c, uVar3, a3);
-            iVar2 = (*(code *)(&game_uses_identity_0b726c))("SM2000US.USR", 0x8c431a68, 0x4208, "Seaman User Data",
-                                                            "SEAMAN", 0);
-            if (((iVar2 == 0) && (iVar2 = (*(code *)(&game_uses_identity_0b726c))(
+            iVar2 = (*(code *)(&memcard_process_save_file_name))("SM2000US.USR", 0x8c431a68, 0x4208, "Seaman User Data",
+                                                                 "SEAMAN", 0);
+            if (((iVar2 == 0) && (iVar2 = (*(code *)(&memcard_process_save_file_name))(
                                       "SM2000US._VM", 0, 0, "Seaman Storage Matrix", "SEAMAN SM", 0),
                                   iVar2 == 0)) &&
-                (iVar2 = (*(code *)(&game_uses_identity_0b726c))("SM2000US.INC", 0x8c435c7c, 0x600,
-                                                                 "Seaman Storage Matrix", "SEAMAN SM", 0),
+                (iVar2 = (*(code *)(&memcard_process_save_file_name))("SM2000US.INC", 0x8c435c7c, 0x600,
+                                                                      "Seaman Storage Matrix", "SEAMAN SM", 0),
                  iVar2 == 0)) {
                 uVar3 = 0;
                 g_8c436846 = 0;
@@ -2988,7 +2988,7 @@ u32 game_uses_set_field_2c_wrap_0c4d7c(u32 a0, u32 a1) {
 /*
  * set_field_2c_wrap  0x8c0c4da0
  * only calls set_field_2c_0c4dc8
- * called by: CEnv_AddItem, CTexture_uses_set_field_2c_wrap_0e810c, game_uses_set_field_2c_wrap_0c4d7c
+ * called by: CEnv_AddItem, game_uses_set_field_2c_wrap_0c4d7c, game_uses_set_field_2c_wrap_0e810c
  */
 u32 set_field_2c_wrap(int a0, u32 a1) {
     set_field_2c_0c4dc8(a1, *(u32 *)(a0 + 0x24));
@@ -3025,13 +3025,13 @@ int game_uses_dec_counter_4e_0c4dd0(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CAnimal_calls_test_0c4e2c  0x8c0c4e2c
- * area name: only called from CAnimal methods; behaviour name: its callees mostly do: test
+ * game_calls_test_0c4e2c  0x8c0c4e2c
+ * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: test
  * called by: CAnimal_m2_0acaec, Class_12a7a8_state_switch_0999ac, Class_12a7a8_uses_mask_74_fffffffe_099914,
  * Class_12a7a8_uses_set_field_38_099714, Class_12acc8_uses_set_field_38_09ff1c, Class_12b0c4_uses_set_field_38_0abe84,
  * Class_12b2e8_state_switch_0b6440, FrogMan_choose_status_event (+13 more)
  */
-u32 CAnimal_calls_test_0c4e2c(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 game_calls_test_0c4e2c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     g_8c436924 = 1;
@@ -3042,7 +3042,7 @@ u32 CAnimal_calls_test_0c4e2c(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_test_0c4e48  0x8c0c4e48
  * area name: game code; nothing names its area yet; behaviour name: returns the result of a comparison
- * called by: CAnimal_calls_test_0c4e2c, event1_end, game_uses_Vec3_dtor_0cb29c, game_uses_Vec3_pair_ctor_0c8fc4,
+ * called by: event1_end, game_calls_test_0c4e2c, game_start_staff_credits_like, game_uses_Vec3_pair_ctor_0c8fc4,
  * game_vec_0cdf50
  */
 u32 game_test_0c4e48(void) {
@@ -3198,8 +3198,8 @@ int set_timeout_120(int a0, u32 a1) {
 
 /*
  * set_field_d0_0c51b8  0x8c0c51b8
- * called by: bugbox_3_screen, bugbox_4_screen, event1_begin, game_uses_Vec3_dtor_0cb29c, game_uses_set_field_d0_0c4e58,
- * game_uses_set_timeout_120_mode6_0caac0, staff_credit_start_like
+ * called by: bugbox_3_screen, bugbox_4_screen, event1_begin, game_start_staff_credits_like,
+ * game_uses_set_field_d0_0c4e58, game_uses_set_timeout_120_mode6_0caac0, staff_credit_start_like
  */
 int set_field_d0_0c51b8(int a0, u32 a1) {
     int iVar1;
@@ -3212,7 +3212,7 @@ int set_field_d0_0c51b8(int a0, u32 a1) {
 /*
  * set_timeout_120_mode6  0x8c0c51c4
  * clears +0x59c and starts a 120-frame countdown with value 6
- * called by: bugbox_3_screen, event1_begin, game_uses_Vec3_dtor_0cb29c, game_uses_free_if_nonnull_wrap_0e8280,
+ * called by: bugbox_3_screen, event1_begin, game_slot_grid_cursor_tick, game_start_staff_credits_like,
  * game_uses_ret_const_140_0dbf90, game_uses_set_field_d0_0c4e58, game_uses_set_timeout_120_mode6_0caac0,
  * game_uses_set_timeout_120_mode6_0e4348 (+4 more)
  */
@@ -4116,11 +4116,11 @@ u32 ret_const_0_0c67ec(void) {
 }
 
 /*
- * game_copy_0c67f4  0x8c0c67f4
- * area name: game code; nothing names its area yet; behaviour name: mostly calls copy functions
- * called by: save_menu_update
+ * game_save_state_init  0x8c0c67f4
+ * fills save state a2 for a new game: both dates from the clock, counters and tables cleared, slot ids set to -1,
+ * groups reset called by: save_menu_update
  */
-u32 game_copy_0c67f4(u32 unused_a0, u32 unused_a1, int a2, u32 a3) {
+u32 game_save_state_init(u32 unused_a0, u32 unused_a1, int a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     int ar6_00;
@@ -5018,7 +5018,7 @@ u32 static_init_437218(int a0, code *a1, int a2, u32 a3) {
             (**(code **)(**(int **)(a0 + 8) + 0xac))(*(int **)(a0 + 8), iVar4, a6, a7);
         }
         puVar6 = (u32 *)0x8c43722c;
-        Class_12acc8_calc_101210(*(u32 *)(a1 + 0x7cc), 0x8c437228, 0x8c43722c);
+        input_calc_101210(*(u32 *)(a1 + 0x7cc), 0x8c437228, 0x8c43722c);
         uVar1 = 0x8c437228;
         piVar5 = *(int **)(a0 + iVar2 * 4 + 8);
         (**(code **)(*piVar5 + 100))(piVar5, 0x8c437228, puVar6, a7);
@@ -5567,7 +5567,7 @@ u32 game_uses_Vec3_pair_ctor_0c8fc4(int a0, int a1, u32 a2, u32 a3) {
     *(u8 *)(0xa0 + a1) = 1;
     *(u32 *)(0x2d160 + a0) = 0;
     *(u32 *)(0x2d15c + a0) = 2;
-    CAnimal_calls_test_0c4e2c(ar4_00, ar5_00, a6, a3);
+    game_calls_test_0c4e2c(ar4_00, ar5_00, a6, a3);
     game_test_0c4e48();
     Vec3_pair_dtor(auStack_2c, 0xffffffff, a6, a3);
     return 0;
@@ -5576,7 +5576,7 @@ u32 game_uses_Vec3_pair_ctor_0c8fc4(int a0, int a1, u32 a2, u32 a3) {
 /*
  * set_fields_12c_130  0x8c0c90d0
  * stores +0x12c, +0x130
- * called by: event1_end, game_uses_Vec3_pair_ctor_0c8fc4, game_uses_free_if_nonnull_wrap_0e8280,
+ * called by: event1_end, game_slot_grid_cursor_tick, game_uses_Vec3_pair_ctor_0c8fc4,
  * game_uses_input_track_r_hold_0e1f90
  */
 u32 set_fields_12c_130(int a0) {
@@ -5718,7 +5718,7 @@ u32 static_init_43724c(int a0, code *a1, int a2, u32 a3) {
             (**(code **)(**(int **)(a0 + 0xc) + 0xac))(*(int **)(a0 + 0xc), iVar4, a6, a7);
         }
         puVar6 = (u32 *)0x8c437260;
-        Class_12acc8_calc_101210(*(u32 *)(a1 + 0x7cc), 0x8c43725c, 0x8c437260);
+        input_calc_101210(*(u32 *)(a1 + 0x7cc), 0x8c43725c, 0x8c437260);
         uVar1 = 0x8c43725c;
         piVar5 = *(int **)(a0 + iVar2 * 4 + 8);
         (**(code **)(*piVar5 + 100))(piVar5, 0x8c43725c, puVar6, a7);
@@ -6371,7 +6371,7 @@ u32 event1_end(int a0, int a1, u32 a2, u32 a3) {
     *(u8 *)(0xa0 + a1) = 2;
     *(u32 *)(0x2d160 + a0) = 0;
     *(u32 *)(0x2d15c + a0) = 2;
-    CAnimal_calls_test_0c4e2c(ar4_00, ar5_01, ar6_00, iVar1);
+    game_calls_test_0c4e2c(ar4_00, ar5_01, ar6_00, iVar1);
     game_test_0c4e48();
     return 0;
 }
@@ -6582,7 +6582,7 @@ u32 static_init_4372a8(int a0, code *a1, int a2, u32 a3) {
             (**(code **)(**(int **)(a0 + 0xc) + 0xac))(*(int **)(a0 + 0xc), iVar4, a6, a7);
         }
         puVar6 = (u32 *)0x8c4372bc;
-        Class_12acc8_calc_101210(*(u32 *)(a1 + 0x7cc), 0x8c4372b8, 0x8c4372bc);
+        input_calc_101210(*(u32 *)(a1 + 0x7cc), 0x8c4372b8, 0x8c4372bc);
         uVar1 = 0x8c4372b8;
         piVar5 = *(int **)(a0 + iVar2 * 4 + 8);
         (**(code **)(*piVar5 + 100))(piVar5, 0x8c4372b8, puVar6, a7);
@@ -6948,7 +6948,7 @@ u32 noop_0cb1dc(void) {
 /*
  * get_vec3_field_44  0x8c0cb1e0
  * copies the three words at +0x44 to the pointers in a1..a3
- * called by: game_uses_Vec3_ctor_zero_0cac08, game_uses_Vec3_dtor_0cb29c
+ * called by: game_start_staff_credits_like, game_uses_Vec3_ctor_zero_0cac08
  */
 u32 *get_vec3_field_44(int a0, u32 *a1, u32 *a2, u32 *a3) {
     *a1 = *(u32 *)(a0 + 0x44);
@@ -7035,10 +7035,10 @@ u32 noop_0cb298(void) {
 }
 
 /*
- * game_uses_Vec3_dtor_0cb29c  0x8c0cb29c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is Vec3_dtor
+ * game_start_staff_credits_like  0x8c0cb29c
+ * clears the world's pending objects, sets the scene up and loads the staff credits (STAFF_CREDIT_LoadData)
  */
-u32 game_uses_Vec3_dtor_0cb29c(int a0, int a1, int a2, u32 a3) {
+u32 game_start_staff_credits_like(int a0, int a1, int a2, u32 a3) {
     int iVar1;
     u8 *puVar2;
     u32 uVar3;
@@ -7096,7 +7096,7 @@ u32 game_uses_Vec3_dtor_0cb29c(int a0, int a1, int a2, u32 a3) {
     *(u8 *)(a1 + 0xa0) = 3;
     *(u32 *)(a0 + 0x2d160) = 0;
     *(u32 *)(a0 + 0x2d15c) = 2;
-    CAnimal_calls_test_0c4e2c(puVar2, uVar3, ar6_01, ar7_00);
+    game_calls_test_0c4e2c(puVar2, uVar3, ar6_01, ar7_00);
     game_test_0c4e48();
     Vec3_dtor(auStack_38, 0xffffffff, ar6_01, ar7_00);
     Vec3_dtor(auStack_28, 0xffffffff, ar6_01, ar7_00);
@@ -7245,7 +7245,7 @@ u32 static_init_4372f4(int a0, code *a1, u32 a2, u32 a3) {
         uStack_48 = 0;
     }
     a6 = (u32 *)0x8c437308;
-    Class_12acc8_calc_101210(*(u32 *)(a1 + 0x7cc), 0x8c437304, 0x8c437308);
+    input_calc_101210(*(u32 *)(a1 + 0x7cc), 0x8c437304, 0x8c437308);
     pcVar5 = (code *)0x8c437304;
     piVar4 = *(int **)(a0 + iVar2 * 4 + 8);
     (**(code **)(*piVar4 + 100))(piVar4, 0x8c437304, a6, a7);
@@ -7275,7 +7275,7 @@ u32 static_init_4372f4(int a0, code *a1, u32 a2, u32 a3) {
         a6 = &uStack_54;
         (**(code **)(**(int **)(a0 + 0xc) + 0x10))(*(int **)(a0 + 0xc), a1, a6, a7);
     }
-    game_uses_game_grid5x5_fall_tick_0ceff8(&g_8c436a28, uVar1, a6, a7);
+    game_grid5x5_sequence_tick(&g_8c436a28, uVar1, a6, a7);
     if ((g_8c436928 == 1) && (g_8c13bcc4 == 1)) {
         (**(code **)(**(int **)(a0 + 0x14) + 0xf8))(*(int **)(a0 + 0x14), 0x8c435c7c, a6, a7);
         a7 = "Seaman Storage Matrix";
@@ -8902,7 +8902,7 @@ u32 game_vec_0cdf50(int a0, int a1, u32 a2, u32 a3) {
             piVar9 = ar4_00;
         }
     }
-    CAnimal_calls_test_0c4e2c(piVar9, a5, pcVar10, a7);
+    game_calls_test_0c4e2c(piVar9, a5, pcVar10, a7);
     game_test_0c4e48();
     pcVar3 = Vec3_dtor;
     Vec3_dtor(aiStack_40, 0xffffffff, Vec3_dtor, a7);
@@ -9288,7 +9288,7 @@ int game_release_0ceed8(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * STAFF_CREDIT_LoadData  0x8c0cef18
  * loads credit.PVM from GRAPHICS\MESSAGE for the staff roll
- * called by: game_uses_Vec3_dtor_0cb29c, staff_credit_start_like
+ * called by: game_start_staff_credits_like, staff_credit_start_like
  * strings: "credit.PVM"; "GRAPHICS\\MESSAGE"; "Failed to load staff pvm.."; "STAFF_CREDIT::LoadData"
  */
 int STAFF_CREDIT_LoadData(int a0, u32 a1) {
@@ -9313,11 +9313,11 @@ int STAFF_CREDIT_LoadData(int a0, u32 a1) {
 }
 
 /*
- * game_uses_game_grid5x5_fall_tick_0ceff8  0x8c0ceff8
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is game_grid5x5_fall_tick
+ * game_grid5x5_sequence_tick  0x8c0ceff8
+ * drives the 5x5 grid sequence: waits for input or a timeout, plays the 16 banner steps, then lets the cells fall
  * called by: static_init_4372f4
  */
-int game_uses_game_grid5x5_fall_tick_0ceff8(int *a0, int a1, u32 unused_a2, u32 a3) {
+int game_grid5x5_sequence_tick(int *a0, int a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int *ar5_00;
     int iVar2;
@@ -9345,8 +9345,8 @@ int game_uses_game_grid5x5_fall_tick_0ceff8(int *a0, int a1, u32 unused_a2, u32 
             }
         } else {
             if (iVar1 == 1) {
-                iVar1 = (*(code *)(&game_fill_loop_0cf1e4))(a0, a0 + *(short *)(0x148 + (int)a0) * 5 + 1,
-                                                            (int)*(short *)(0x148 + (int)a0), a3);
+                iVar1 = (*(code *)(&game_fade_in_hold_out_tick))(a0, a0 + *(short *)(0x148 + (int)a0) * 5 + 1,
+                                                                 (int)*(short *)(0x148 + (int)a0), a3);
                 if (iVar1 == 5) {
                     *(short *)(0x148 + (int)a0) = *(short *)(0x148 + (int)a0) + 1;
                     iVar2 = 0x14c;
@@ -9383,8 +9383,8 @@ int game_uses_game_grid5x5_fall_tick_0ceff8(int *a0, int a1, u32 unused_a2, u32 
 
 /*
  * game_fill_loop_0cf144  0x8c0cf144
- * area name: game code; nothing names its area yet; behaviour name: a loop that writes memory
- * called by: game_release_0cbb2c, game_uses_game_grid5x5_fall_tick_0ceff8, game_uses_vec_new_array_0cebf8
+ * area name: sits between game functions (same compilation unit); behaviour name: a loop that writes memory
+ * called by: game_grid5x5_sequence_tick, game_release_0cbb2c, game_uses_vec_new_array_0cebf8
  */
 u32 game_fill_loop_0cf144(int a0, u32 a1) {
     int iVar1;
@@ -9413,10 +9413,10 @@ u32 texture_release_158(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_fill_loop_0cf1e4  0x8c0cf1e4
- * area name: game code; nothing names its area yet; behaviour name: a loop that writes memory
+ * game_fade_in_hold_out_tick  0x8c0cf1e4
+ * fades four colours in, holds for the step's time, fades them out and waits; returns 5 when done
  */
-u32 game_fill_loop_0cf1e4(int a0, int a1) {
+u32 game_fade_in_hold_out_tick(int a0, int a1) {
     int iVar1;
     int iVar2;
 
@@ -9479,7 +9479,7 @@ u32 game_fill_loop_0cf1e4(int a0, int a1) {
 /*
  * game_grid5x5_fall_tick  0x8c0cf39c
  * runs the 5x5 grid of falling cells: starts them, steps the active ones and returns 2 when all have settled
- * called by: game_uses_game_grid5x5_fall_tick_0ceff8
+ * called by: game_grid5x5_sequence_tick
  */
 u32 game_grid5x5_fall_tick(int a0) {
     u32 r5;
@@ -9503,11 +9503,12 @@ u32 game_grid5x5_fall_tick(int a0) {
                 set_fields_10_14(iVar2 * 0x78 + a0 + iVar3 * 0x18 + 0x174);
             }
         }
-        g_8c437428 = game_list_0cf9b4(a0);
+        g_8c437428 = game_grid5x5_pick_random_cell(a0);
         set_field_14_to_1(g_8c437428);
         *(u32 *)(a0 + 0x154) = 1;
     } else if (*(int *)(a0 + 0x154) == 1) {
-        if ((2.0 <= *(float *)(g_8c437428 + 0x10)) && (g_8c437428 = game_list_0cf9b4(a0), g_8c437428 != 0)) {
+        if ((2.0 <= *(float *)(g_8c437428 + 0x10)) &&
+            (g_8c437428 = game_grid5x5_pick_random_cell(a0), g_8c437428 != 0)) {
             set_field_14_to_1(g_8c437428);
         }
         for (iVar3 = 0; iVar3 < 5; iVar3 = iVar3 + 1) {
@@ -9536,7 +9537,7 @@ u32 game_grid5x5_fall_tick(int a0) {
 
 /*
  * get_field_14_0cf620  0x8c0cf620
- * called by: game_grid5x5_fall_tick, game_list_0cf9b4
+ * called by: game_grid5x5_fall_tick, game_grid5x5_pick_random_cell
  */
 u32 get_field_14_0cf620(int a0) {
     return *(u32 *)(a0 + 0x14);
@@ -9734,11 +9735,11 @@ u32 draw_draw_helper_0cf7a4(int a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * game_list_0cf9b4  0x8c0cf9b4
- * area name: game code; nothing names its area yet; behaviour name: mostly calls list functions
+ * game_grid5x5_pick_random_cell  0x8c0cf9b4
+ * returns a random 5x5 grid cell that is neither falling nor at rest (670), or 0 when none
  * called by: game_grid5x5_fall_tick
  */
-int game_list_0cf9b4(int a0) {
+int game_grid5x5_pick_random_cell(int a0) {
     int iVar1;
     short *ar4_00;
     u32 ar7_00;

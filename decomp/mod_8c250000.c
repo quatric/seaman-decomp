@@ -7428,7 +7428,7 @@ u32 ninja_uses_ta_fifo_2536a8(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
             gfxlib_draw_234d68(&PTR_DAT_8c277c00, 3, 1, a3);
         }
         g_8c4aa554 = 0;
-        ain0 = ninja_calls_fill_loop_254006(a0);
+        ain0 = ninja_draw_254006(a0);
         if (ain0 == 0) {
             gfxlib_uses_noop_fr4_test_23c2a0(&g_8c4ab30c);
             iVar3 = 0;
@@ -7883,16 +7883,16 @@ u32 ninja_uses_ta_fifo_2536a8(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
 }
 
 /*
- * ninja_calls_fill_loop_253cfc  0x8c253cfc
- * area name: in the ninja library code range; behaviour name: its callees mostly do: calls_fill_loop
+ * ninja_uses_gfx_lights_reset_defaults_li_253cfc  0x8c253cfc
+ * area name: in the ninja library code range; behaviour name: its main named callee is gfx_lights_reset_defaults_like
  * called by: ninja_draw_254042
  */
-u32 ninja_calls_fill_loop_253cfc(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 ninja_uses_gfx_lights_reset_defaults_li_253cfc(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = a0;
     gfxlib_calls_fill_loop_23c70c();
-    gfxlib_fill_loop_237630();
+    gfx_lights_reset_defaults_like();
     gfxlib_uses_memcpy_words_n_2376c4();
     ninja_vec_254066(a0, a1, a2, a3);
     uVar1 = gfxlib_calc_237760();
@@ -8209,27 +8209,27 @@ u32 ninja_draw_with_saved_state(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     draw_state_save(a0, a1, a2, a3);
-    gfxlib_calls_fill_loop_247df4(a0, a1, a2, a3);
+    gfxlib_uses_gfx_lights_reset_defaults_li_247df4(a0, a1, a2, a3);
     uVar1 = draw_state_restore(&stack0xfffffff4);
     return uVar1;
 }
 
 /*
- * ninja_calls_fill_loop_254006  0x8c254006
- * area name: in the ninja library code range; behaviour name: its callees mostly do: calls_fill_loop
+ * ninja_draw_254006  0x8c254006
+ * area name: in the ninja library code range; behaviour name: mostly calls draw functions
  * called by: ninja_uses_ta_fifo_2536a8
  */
-u32 ninja_calls_fill_loop_254006(u32 a0) {
+u32 ninja_draw_254006(u32 a0) {
     u32 uVar1;
 
-    uVar1 = gfxlib_calls_fill_loop_23d386(a0);
+    uVar1 = gfxlib_draw_23d386(a0);
     return uVar1;
 }
 
 /*
  * ninja_uses_ta_fifo_254026  0x8c254026
  * area name: in the ninja library code range; behaviour name: its callees mostly do: uses_ta_fifo
- * called by: alt_entry_253d20, gfxlib_calls_fill_loop_247df4, ninja_uses_matrix_push_253d1c
+ * called by: alt_entry_253d20, gfxlib_uses_gfx_lights_reset_defaults_li_247df4, ninja_uses_matrix_push_253d1c
  */
 u32 ninja_uses_ta_fifo_254026(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -8249,7 +8249,7 @@ u32 ninja_draw_254042(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     draw_state_save(a0, a1, a2, a3);
-    ninja_calls_fill_loop_253cfc(a0, a1, a2, a3);
+    ninja_uses_gfx_lights_reset_defaults_li_253cfc(a0, a1, a2, a3);
     uVar1 = draw_state_restore(&stack0xfffffff4);
     return uVar1;
 }
@@ -8257,7 +8257,7 @@ u32 ninja_draw_254042(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ninja_vec_254066  0x8c254066
  * area name: in the ninja library code range; behaviour name: mostly calls vec functions
- * called by: alt_entry_253d20, ninja_calls_fill_loop_253cfc, ninja_uses_matrix_push_253d1c
+ * called by: alt_entry_253d20, ninja_uses_gfx_lights_reset_defaults_li_253cfc, ninja_uses_matrix_push_253d1c
  */
 u32 ninja_vec_254066(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -12797,7 +12797,7 @@ u32 nj_camera_view_matrix(float *a0) {
 /*
  * njSinCos  0x8c25747c
  * sine and cosine of a Ninja angle (0..65535 = one turn)
- * called by: Class_12a990_m2_09bc2c, Class_12b580_uses_njSinCos_0e705c, Class_12b930_sound_0d3d6c, game_draw_0d4124,
+ * called by: Class_12a990_m2_09bc2c, Class_12b580_time_of_day_update_like, Class_12b930_sound_0d3d6c, game_draw_0d4124,
  * game_vec_03207c, matrix_draw_0d4428
  */
 u32 njSinCos(u32 a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {

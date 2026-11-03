@@ -2318,3 +2318,46 @@
 8c26bb16	SJUNI_GetChunk_like	takes up to a2 bytes from the first chunk on line a1 (0..3) of a unified stream joint, splitting it when allowed
 8c26bbe2	SJUNI_PutChunk_like	appends chunk a2 to the tail of line a1 (0..3), merging it into the last chunk when contiguous
 8c26bcaa	SJUNI_UngetChunk_like	pushes chunk a2 onto the head of line a1 (0..3), merging it into the first chunk when contiguous
+8c012c70	bitstring_round_half_even	rounds the big-endian bit string a0 at bit a1 to nearest-even, propagating the carry; returns 1 on overflow
+8c012da8	bytes_shift_right_bits	shifts the a1-byte big-endian buffer a0 right by a2 bits; returns whether any bits fell off
+8c012e00	bitstring_set_sticky	sets bit a2 of the a1-byte bit string a0 when any later bit is set (sticky bit)
+8c012e04	bitstring_set_sticky_entry	second entry of bitstring_set_sticky
+8c0140cc	qsort_recurse	quicksort of elements a0..a1 (1-based) of the array described by a2 {base, size, compare}, recursing on the smaller side
+8c01422c	setjmp_like	saves the stack pointer, PR, general, MAC, GBR, FPSCR, FPUL and fr0..fr15 into buffer a0 and returns 0
+8c2177b8	gfx_project_verts_s16_w1	projects a0->count 16-byte vertices to screen x, y, 1/z with w = 1, invalidating the output cache lines; counts near ones
+8c21782c	gfx_project_verts_s16_z	projects 16-byte vertices to 1/z and screen depth only, into 0x18-byte records
+8c2178a0	gfx_project_verts_s16_wpacked	projects 16-byte vertices to screen x, y, 1/z with w taken from the packed s16 in the fourth word
+8c217924	gfx_project_verts_s24_z	projects 24-byte vertices to 1/z and screen depth only
+8c2179e4	gfx_project_verts_s28_wmin	projects 28-byte vertices to screen x, y, 1/z with w = max(1, a0+0x10)
+8c217aa4	gfx_project_verts_s28_z	projects 28-byte vertices to 1/z and screen depth only
+8c217b18	gfx_project_verts_weighted	adds weighted transformed vertices into their target slots (set, add, or add-and-project by mode a1>>8)
+8c217c20	gfx_project_verts_s16_wmin	projects 16-byte vertices to screen x, y, 1/z with w = max(1, a0+0x10)
+8c217d1c	gfx_project_verts_s20_wmin	projects 20-byte vertices to screen x, y, 1/z with w = max(1, a0+0x10)
+8c232748	gfx_project_verts_s8_like	transforms 8-byte inputs and writes 32-byte projected records
+8c233e70	gfx_project_verts_color_uv_clip	projects vertices a1.. with colours and s16 UVs into 24-byte records; returns -1 past the far plane, 1 when any is near
+8c233f1c	gfx_project_verts_color_clip	projects vertices a1.. with colours into 16-byte records; returns -1 past the far plane, 1 when any is near
+8c235d8c	gfx_project_verts_color_uv_clip_b	same as gfx_project_verts_color_uv_clip, starting at the first vertex
+8c235e1c	gfx_project_verts_color_clip_b	same as gfx_project_verts_color_clip, starting at the first vertex
+8c2360b0	aabb_from_8_points	computes min (a1) and max (a2) of the eight points a0
+8c237630	gfx_lights_reset_defaults_like	resets the default light colours and recomputes the falloff of spot/point lights in the active list
+8c23c940	gfx_project_verts_sq_normal_offset	projects a0[0] vertices through the store queue, offsetting each along its normal by a global scale
+8c23ca50	gfx_project_verts_sq_normalized	projects vertices through the store queue with transformed, normalised normals
+8c23cb50	gfx_project_verts_sq_normal	projects vertices through the store queue with transformed normals
+8c23cc40	gfx_project_verts_sq	projects a0[0] vertices through the store queue into 64-byte records
+8c23d254	gfx_project_verts_sq_clipcodes	projects vertices through the store queue and computes clip codes, ANDing and ORing them into a0[6], a0[7]
+8c07f418	creature_apply_anim_root_delta	takes the current animation frame's root position, subtracts the previous one (+0x254), stores the new one and adds the rotated delta to a1
+8c082378	creature_turn_toward_dir_step	blends the heading (+0x14) toward direction a1 by a step that grows with the turn counter (+0x2b4), renormalises it and copies it to +0x80
+8c08db9c	Class_12a76c_reset_state	resets the object's motion table pointer, timers, vectors and flags
+8c09cdf4	Class_12a990_drift_axis_bounce	eases velocity a1 toward its target, adds it to the offset and reverses the target past plus or minus range/3
+8c09edf0	Class_12ab2c_light_fade_out_step	refreshes the object's light and fades its intensity; below 0.1 turns the light off and frees its slot
+8c0b726c	memcard_process_save_file_name	handles one save file by name (SM2000US._VM, .USR or .INC): checks it and loads or saves the matching data; returns 0 on success
+8c0c67f4	game_save_state_init	fills save state a2 for a new game: both dates from the clock, counters and tables cleared, slot ids set to -1, groups reset
+8c0cb29c	game_start_staff_credits_like	clears the world's pending objects, sets the scene up and loads the staff credits (STAFF_CREDIT_LoadData)
+8c0ceff8	game_grid5x5_sequence_tick	drives the 5x5 grid sequence: waits for input or a timeout, plays the 16 banner steps, then lets the cells fall
+8c0cf1e4	game_fade_in_hold_out_tick	fades four colours in, holds for the step's time, fades them out and waits; returns 5 when done
+8c0cf9b4	game_grid5x5_pick_random_cell	returns a random 5x5 grid cell that is neither falling nor at rest (670), or 0 when none
+8c0e705c	Class_12b580_time_of_day_update_like	picks the jungle daytime scene for the clock value a1 and derives the light level at +0x8400
+8c0e8280	game_slot_grid_cursor_tick	moves the cursor over the slot grid with the pad and, once the card is ready, opens the chosen slot
+8c0f72ec	game_any_neighbor_within_range	returns 1 when another of the eight 0x68-byte objects is within 1.5 times its radius of a0
+8c0fc69c	script_cmd_if_compare	evaluates the command's comparisons (==, !=, <, <=, >, >=) and jumps to its then or else label
+8c0fc7c4	script_cmd_set_vars	evaluates each assignment of the command (plain, or divided or modulo) into its variable and jumps on

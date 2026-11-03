@@ -244,7 +244,7 @@ u8 **FrogMan_gratification_events(u8 **a0, int *a1, code *a2, char *a3) {
             uVar3 = 1;
             iVar1 = *(int *)(a2 + 4) + 0xa8;
             set_field_4_s8(iVar1, 1);
-            ppuVar4 = (u8 **)CAnimal_calls_test_0c4e2c(iVar1, uVar3, pcVar11, a3);
+            ppuVar4 = (u8 **)game_calls_test_0c4e2c(iVar1, uVar3, pcVar11, a3);
             break;
         case (u8 **)0xb:
             if (a0[0xe1] == (u8 *)0xffffffff) {
@@ -344,7 +344,7 @@ u8 **FrogMan_gratification_events(u8 **a0, int *a1, code *a2, char *a3) {
             break;
         case (u8 **)0x18:
             *(u8 *)(a0 + 0x26) = 2;
-            ppuVar4 = (u8 **)CAnimal_calls_test_0c4e2c(iVar1, 0x35, pcVar11, a3);
+            ppuVar4 = (u8 **)game_calls_test_0c4e2c(iVar1, 0x35, pcVar11, a3);
             break;
         case (u8 **)0x1b:
             ppuVar4 = (u8 **)set_field_40_05f498(*(int *)(a2 + 0xc), 3, *(int *)(a2 + 0xc), a3);
@@ -1229,7 +1229,7 @@ int get_field_44_s8(int a0, u32 a1, u32 a2, u32 a3) {
  * get_field_4_on_field_d8  0x8c0637d0
  * calls get_field_4_0637f8 on the member at +0xd8
  * called by: FrogMan_jump_events, FrogMan_react_tap, Higyo_attention_events, Vec3_uses_clear_3_words_0c84f4,
- * confirm_exit_save, game_uses_clear_3_words_0c9588, game_uses_clear_3_words_0c9ee0, game_uses_clear_3_words_0ca88c (+9
+ * confirm_exit_save, game_slot_grid_cursor_tick, game_uses_clear_3_words_0c9588, game_uses_clear_3_words_0c9ee0 (+9
  * more)
  */
 u32 get_field_4_on_field_d8(int a0, u32 unused_a1, u32 a2) {
@@ -1781,7 +1781,7 @@ LAB_8c063f66:
         g_8c13690c = 0x36;
         *(u32 *)(a0 + 0x848) = 0x36;
         g_8c136910 = 0x36;
-        ppuVar3 = (u8 **)CAnimal_calls_test_0c4e2c(0x36, 0xa0, &g_8c13686c, 0x36);
+        ppuVar3 = (u8 **)game_calls_test_0c4e2c(0x36, 0xa0, &g_8c13686c, 0x36);
     }
     return ppuVar3;
 }
@@ -2265,7 +2265,7 @@ u32 FrogMan_ending_event(int a0, int *a1, u32 *a2, u32 a3) {
         uVar2 = a2[3];
         set_field_0_u8_061180(uVar2, 4);
         *(u32 *)(a0 + 0x854) = 0;
-        CAnimal_calls_test_0c4e2c(uVar2, ar5_01, ar6_00, a3);
+        game_calls_test_0c4e2c(uVar2, ar5_01, ar6_00, a3);
     }
     uVar2 = talk_uses_table13019c_find_row_02bef8(a2[1], ar5_01, ar6_00);
     if (((3 < (short)uVar2) && (uVar2 = get_field_44_s8(a2[3], ar5_01, ar6_00, a3), (char)uVar2 == '\x01')) &&

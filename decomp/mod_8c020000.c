@@ -2633,8 +2633,8 @@ u32 Vec3_length_sq(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_normalize  0x8c022ec0
  * called by: CMothLine_place_current, Class_12ad14_uses_rand_float_0a37c8, Vec3_normalize_on_field_4,
- * Vec3_state_switch_03f4a4, alt_entry_046684, game_state_switch_049b68, game_state_switch_04b168,
- * game_state_switch_04c314 (+39 more)
+ * Vec3_state_switch_03f4a4, alt_entry_046684, creature_turn_toward_dir_step, game_state_switch_049b68,
+ * game_state_switch_04b168 (+39 more)
  */
 u32 Vec3_normalize(double *a0, u32 a1, u32 a2, u32 a3) {
     u64 in_dr0;
@@ -6322,8 +6322,8 @@ u32 CAnimBody_GetCurFrame_on_field_b0(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CAnimBody_GetCurFrame  0x8c026da8
  * called by: CAnimBody_GetCurFrame_on_field_b0, Class_12a25c_vec_06f93c, Class_12b088_vec_0a6628,
- * Vec3_state_switch_03f4a4, Vec3_uses_get_field_1c_05c28c, creature_action_motion4e_step, game_state_switch_049b68,
- * game_state_switch_04b168 (+56 more)
+ * Vec3_state_switch_03f4a4, Vec3_uses_get_field_1c_05c28c, creature_action_motion4e_step,
+ * creature_apply_anim_root_delta, game_state_switch_049b68 (+56 more)
  */
 u32 CAnimBody_GetCurFrame(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 in_r0;
@@ -7606,7 +7606,7 @@ int CAnimal_uses_table13019c_find_row_028ab8(int a0, u32 a1, u32 a2) {
  * CAnimal_release_part_requests  0x8c028afc
  * releases the CD load requests of model part a2 (its texture and motion files) and then calls method 0xf0
  * called by: CFrogManEgg_release_038e78, CHigyoEgg_release_08864c, CMothEgg_release_09afb8,
- * CMothLine_FreeGraphicResource, CSpiderEgg_release_0a58a4, Squid_FreeGraphicResource, game_release_09d384
+ * CMothLine_FreeGraphicResource, CSpiderEgg_release_0a58a4, Class_12a990_release_09d384, Squid_FreeGraphicResource
  */
 u32 CAnimal_release_part_requests(int a0, u32 a1, int a2) {
     u32 uVar1;

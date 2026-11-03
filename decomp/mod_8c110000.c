@@ -5875,7 +5875,7 @@ int alt_entry_115cf4(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * asr_fill_loop_115ed8  0x8c115ed8
  * area name: in the asr library code range; behaviour name: a loop that writes memory
- * called by: asr_calls_fill_loop_119320, asr_calls_fill_loop_1197d8, asr_uses_libgcc_divide_helper_11a634
+ * called by: asr_calls_fill_loop_119320, asr_calls_fill_loop_1197d8, asr_uses_qsort_recurse_wrap_11a634
  */
 int asr_fill_loop_115ed8(int a0, int *a1) {
     int *piVar1;
@@ -5902,7 +5902,7 @@ int asr_fill_loop_115ed8(int a0, int *a1) {
  * asr_uses_libgcc_divide_helper_115f18  0x8c115f18
  * area name: in the asr library code range; behaviour name: its callees mostly do: uses_libgcc_divide_helper
  * called by: asr_uses_libgcc_divide_helper_11617a, asr_uses_libgcc_divide_helper_11a0e8,
- * asr_uses_libgcc_divide_helper_11a634
+ * asr_uses_qsort_recurse_wrap_11a634
  */
 int asr_uses_libgcc_divide_helper_115f18(int a0, int a1, u32 a2, u32 a3) {
     int *piVar1;
@@ -7853,7 +7853,7 @@ u32 asr_talk_11919e(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uStack_10;
     int iStack_c;
 
-    uStack_14 = asr_uses_libgcc_divide_helper_11a634(a0, &uStack_1c, a2, a3);
+    uStack_14 = asr_uses_qsort_recurse_wrap_11a634(a0, &uStack_1c, a2, a3);
     uStack_18 = uStack_1c;
     uStack_10 = *(u32 *)(0x1ac + a0);
     iStack_c = *(int *)(0x12c + a0) + 1;
@@ -9210,7 +9210,7 @@ int *asr_uses_libgcc_divide_helper_11a0e8(int a0, int *a1, u32 a2, u32 a3) {
 /*
  * asr_scan_loop_11a588  0x8c11a588
  * area name: in the asr library code range; behaviour name: a loop that only reads
- * called by: asr_uses_libgcc_divide_helper_11a634
+ * called by: asr_uses_qsort_recurse_wrap_11a634
  */
 int asr_scan_loop_11a588(int a0, int *a1, int a2) {
     int iVar1;
@@ -9239,11 +9239,11 @@ int asr_scan_loop_11a588(int a0, int *a1, int a2) {
 }
 
 /*
- * asr_uses_libgcc_divide_helper_11a634  0x8c11a634
- * area name: in the asr library code range; behaviour name: its callees mostly do: uses_libgcc_divide_helper
+ * asr_uses_qsort_recurse_wrap_11a634  0x8c11a634
+ * area name: in the asr library code range; behaviour name: its main named callee is qsort_recurse_wrap
  * called by: asr_talk_11919e, asr_uses_asr_model_state_restore_11adde, asr_uses_libgcc_divide_helper_11a88c
  */
-int asr_uses_libgcc_divide_helper_11a634(int *a0, u32 *a1, u32 a2, u32 a3) {
+int asr_uses_qsort_recurse_wrap_11a634(int *a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -9337,7 +9337,7 @@ int asr_uses_libgcc_divide_helper_11a634(int *a0, u32 *a1, u32 a2, u32 a3) {
             }
         }
         a7 = (&DATA_8c11a5f6);
-        libc_calls_fill_loop_0140b4(*a1, ar5_00, 4, (&DATA_8c11a5f6));
+        qsort_recurse_wrap(*a1, ar5_00, 4, (&DATA_8c11a5f6));
         uVar1 = asr_scan_loop_11a588(a0, *a1, ar5_00);
         *(short *)((int)0x1da + (int)a0) = (short)uVar1;
     }
@@ -9372,7 +9372,7 @@ int asr_uses_libgcc_divide_helper_11a88c(int *a0, short *a1, short *a2, u32 a3) 
     int iStack_28;
     int iStack_24;
 
-    uVar4 = asr_uses_libgcc_divide_helper_11a634(a0, &piStack_38, a2, a3);
+    uVar4 = asr_uses_qsort_recurse_wrap_11a634(a0, &piStack_38, a2, a3);
     if (uVar4 == 0) {
         iVar6 = (int)0x80;
         *(u32 *)(iVar6 + (int)a0) = 0;
@@ -9670,7 +9670,7 @@ u32 asr_uses_asr_model_state_restore_11adde(int a0, u32 *a1, u32 *a2, u32 a3) {
         asr_scan_loop_113ac8(a0, a1, a2);
         *(u8 **)(0x1a4 + a0) = (&asr_uses_libgcc_divide_helper_11ad68);
     } else {
-        uVar1 = asr_uses_libgcc_divide_helper_11a634(a0, &uStack_14, a2, a3);
+        uVar1 = asr_uses_qsort_recurse_wrap_11a634(a0, &uStack_14, a2, a3);
         *puStack_10 = uStack_14;
         *puStack_c = uVar1;
     }

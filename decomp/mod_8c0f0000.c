@@ -3031,8 +3031,8 @@ int game_vec_0f69ec(int a0, u32 a1, u32 a2, u32 a3) {
  * has_field_2c  0x8c0f6ab0
  * 1 when +0x2c is non-zero
  * called by: Class_12b580_draw_with_children, Class_12b580_m1_0e634c, Class_12b580_m2_0e6548, Class_12bb08_m1_0da338,
- * Class_12bb08_m2_0da5a8, game_draw_0df668, game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0 (+4
- * more)
+ * Class_12bb08_m2_0da5a8, game_any_neighbor_within_range, game_draw_0df668, game_uses_matrix_apply_point_w1_wrap_0df250
+ * (+4 more)
  */
 u32 has_field_2c(int a0) {
     if (*(int *)(a0 + 0x2c) != 0) {
@@ -3120,7 +3120,7 @@ u32 game_vec_0f6ac4(u64 *a0, int *a1, u32 a2) {
         } else {
             ar4_00 = rand();
             iVar1 = libgcc_divide_helper_01031c(ar4_00, 10, a6);
-            if ((iVar1 == 0) || (iVar1 = game_vec_0f72ec(a0, a1, a6, a7), iVar1 != 0)) {
+            if ((iVar1 == 0) || (iVar1 = game_any_neighbor_within_range(a0, a1, a6, a7), iVar1 != 0)) {
                 if (cVar12 == '\0') {
                     *(u32 *)((int)a0 + 0x44) = 0;
                 } else {
@@ -3786,11 +3786,11 @@ float *fade_out_90s_step(int a0) {
 }
 
 /*
- * game_vec_0f72ec  0x8c0f72ec
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * game_any_neighbor_within_range  0x8c0f72ec
+ * returns 1 when another of the eight 0x68-byte objects is within 1.5 times its radius of a0
  * called by: game_vec_0f6ac4
  */
-u32 game_vec_0f72ec(int a0, int *a1, u32 a2, u32 a3) {
+u32 game_any_neighbor_within_range(int a0, int *a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -5232,7 +5232,7 @@ u32 speech_test_0fa2d8(int a0) {
 /*
  * speech_copy_0fa2f0  0x8c0fa2f0
  * area name: sits between speech functions (same compilation unit); behaviour name: mostly calls copy functions
- * called by: game_copy_0c67f4
+ * called by: game_save_state_init
  */
 u32 speech_copy_0fa2f0(u32 a0, u32 a1) {
     u32 uVar1;
@@ -5494,7 +5494,7 @@ int speech_calls_test_0fa70c(int a0, u32 a1, u32 a2, u32 a3) {
 
     iVar1 = *(int *)(0x1018 + a0);
     if (iVar1 == 1) {
-        CAnimal_calls_test_0c4e2c(a0, a1, a2, a3);
+        game_calls_test_0c4e2c(a0, a1, a2, a3);
         *(u32 *)(0x1018 + a0) = 0;
         iVar1 = 0x89130;
         *(u32 *)(0x89130 + a0) = 0;
@@ -5816,10 +5816,10 @@ u8 *speech_update(int *a0, u32 a1, char *a2, int *a3) {
                     puVar1 = (u8 *)game_state_switch_0fc608(a0, a1, a2, a3);
                     break;
                 case 7:
-                    puVar1 = (u8 *)game_uses_atoi_0fc69c(a0, a1, a2, a3);
+                    puVar1 = (u8 *)script_cmd_if_compare(a0, a1, a2, a3);
                     break;
                 case 8:
-                    puVar1 = (u8 *)game_uses_strcpy_0fc7c4(a0, a1, a2, a3);
+                    puVar1 = (u8 *)script_cmd_set_vars(a0, a1, a2, a3);
                 }
             } else {
                 puVar1 = (u8 *)0x2;
@@ -5934,9 +5934,8 @@ u32 game_copy_0faf98(int a0, char *a1, char *a2, u32 a3) {
 /*
  * game_uses_strcmp_0fb0d4  0x8c0fb0d4
  * name hint from a string it uses: ERROR; area name: game code; nothing names its area yet; behaviour name: its main
- * named callee is strcmp_0faf30 called by: asr_uses_strcpy_0fbf28, game_state_switch_0fb494, game_uses_atoi_0fc69c,
- * game_uses_rand_0fc5ac, game_uses_strcmp_0fb1d4, game_uses_strcpy_0fc7c4, speech_update, talk_pick_grunt strings:
- * "@ERROR"
+ * named callee is strcmp_0faf30 called by: asr_uses_strcpy_0fbf28, game_state_switch_0fb494, game_uses_rand_0fc5ac,
+ * game_uses_strcmp_0fb1d4, script_cmd_if_compare, script_cmd_set_vars, speech_update, talk_pick_grunt strings: "@ERROR"
  */
 u32 game_uses_strcmp_0fb0d4(u32 *a0, char *a1) {
     u32 uVar1;
@@ -6789,11 +6788,11 @@ u32 game_state_switch_0fc608(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_atoi_0fc69c  0x8c0fc69c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is atoi
+ * script_cmd_if_compare  0x8c0fc69c
+ * evaluates the command's comparisons (==, !=, <, <=, >, >=) and jumps to its then or else label
  * called by: speech_update
  */
-u32 game_uses_atoi_0fc69c(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 script_cmd_if_compare(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -6859,11 +6858,11 @@ u32 game_uses_atoi_0fc69c(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_strcpy_0fc7c4  0x8c0fc7c4
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is strcpy
+ * script_cmd_set_vars  0x8c0fc7c4
+ * evaluates each assignment of the command (plain, or divided or modulo) into its variable and jumps on
  * called by: speech_update
  */
-u32 game_uses_strcpy_0fc7c4(int a0, u32 unused_a1, u8 *a2, u32 a3) {
+u32 script_cmd_set_vars(int a0, u32 unused_a1, u8 *a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -6925,7 +6924,7 @@ u32 game_uses_strcpy_0fc7c4(int a0, u32 unused_a1, u8 *a2, u32 a3) {
 /*
  * game_state_switch_0fc94c  0x8c0fc94c
  * area name: game code; nothing names its area yet; behaviour name: dispatches on a state or mode value (switch)
- * called by: asr_uses_strcpy_0fbf28, game_state_switch_0fb494, game_uses_strcpy_0fc7c4
+ * called by: asr_uses_strcpy_0fbf28, game_state_switch_0fb494, script_cmd_set_vars
  */
 u32 game_state_switch_0fc94c(int a0, char *a1, char *a2, u32 a3) {
     int iVar1;
@@ -7049,8 +7048,7 @@ u32 game_state_switch_0fc94c(int a0, char *a1, char *a2, u32 a3) {
 /*
  * game_state_switch_0fcd2c  0x8c0fcd2c
  * area name: game code; nothing names its area yet; behaviour name: dispatches on a state or mode value (switch)
- * called by: game_copy_0fd764, game_state_switch_0fc608, game_uses_atoi_0fc69c, game_uses_strcpy_0fc7c4,
- * talk_pick_grunt
+ * called by: game_copy_0fd764, game_state_switch_0fc608, script_cmd_if_compare, script_cmd_set_vars, talk_pick_grunt
  */
 u32 game_state_switch_0fcd2c(int a0, char *a1, u32 a2, u32 a3) {
     char cVar1;
@@ -7407,7 +7405,7 @@ u32 game_state_switch_0fcd2c(int a0, char *a1, u32 a2, u32 a3) {
 /*
  * game_copy_0fd764  0x8c0fd764
  * area name: game code; nothing names its area yet; behaviour name: mostly calls copy functions
- * called by: game_uses_strcpy_0fc7c4
+ * called by: script_cmd_set_vars
  */
 u32 game_copy_0fd764(int a0, char *a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -8724,7 +8722,7 @@ int CItemGLoader_state_switch_0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
  * game_uses_get_field_24_0ff500  0x8c0ff500
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_24_05c284
  * called by: child_330_release_038d18, child_330_release_0884f8, child_330_release_09ad00, child_330_release_0a55e0,
- * draw_uses_get_field_24_09cc4c, game_uses_get_field_24_0d1b90
+ * game_uses_get_field_24_09cc4c, game_uses_get_field_24_0d1b90
  */
 u32 game_uses_get_field_24_0ff500(u32 a0, int *a1, u32 a2, u32 a3) {
     int iVar1;

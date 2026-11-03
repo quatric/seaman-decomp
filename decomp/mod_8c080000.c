@@ -395,8 +395,8 @@ u32 game_uses_CAnimBody_SetAnimation_0811b4(int a0, u32 a1, int a2) {
         *(u64 *)(a0 + 0x28) = in_xd0;
     }
     Vec3_make(a0 + 0x14, pcVar4, a2, pcVar8, auStack_5c);
-    pcVar5 = game_vec_082378;
-    game_vec_082378(a0, auStack_5c, game_vec_082378, pcVar8);
+    pcVar5 = creature_turn_toward_dir_step;
+    creature_turn_toward_dir_step(a0, auStack_5c, creature_turn_toward_dir_step, pcVar8);
     pcVar4 = (code *)0xffffffff;
     Vec3_dtor(auStack_5c, 0xffffffff, pcVar5, pcVar8);
     iVar3 = *(int *)(a0 + 0x2b0);
@@ -914,13 +914,13 @@ LAB_8c0822ea:
 }
 
 /*
- * game_vec_082378  0x8c082378
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
- * called by: game_state_switch_076994, game_state_switch_07edac, game_state_switch_07ff08, game_state_switch_083d8c,
- * game_uses_CAnimBody_AdvanceFrame_wrap_076750, game_uses_CAnimBody_SetAnimation_0811b4, game_uses_Vec3_dtor_0831c8,
- * game_vec_077a38 (+4 more)
+ * creature_turn_toward_dir_step  0x8c082378
+ * blends the heading (+0x14) toward direction a1 by a step that grows with the turn counter (+0x2b4), renormalises it
+ * and copies it to +0x80 called by: game_state_switch_076994, game_state_switch_07edac, game_state_switch_07ff08,
+ * game_state_switch_083d8c, game_uses_CAnimBody_AdvanceFrame_wrap_076750, game_uses_CAnimBody_SetAnimation_0811b4,
+ * game_uses_Vec3_dtor_0831c8, game_vec_077a38 (+4 more)
  */
-u32 game_vec_082378(int a0, u32 a1, u32 a2, u32 a3) {
+u32 creature_turn_toward_dir_step(int a0, u32 a1, u32 a2, u32 a3) {
     u64 uVar1;
     int iVar2;
     u32 uVar3;
@@ -1154,7 +1154,7 @@ u32 game_vec_08248c(int a0, int a1, u32 *a2, int *a3) {
                         *(double *)(a0 + 0x28) = dVar8;
                     }
                     Vec3_make(a0 + 0x14, pcVar4, a2, ar7_00, auStack_64);
-                    game_vec_082378(a0, auStack_64, a2, ar7_00);
+                    creature_turn_toward_dir_step(a0, auStack_64, a2, ar7_00);
                     uVar5 = 0xffffffff;
                     Vec3_dtor(auStack_64, 0xffffffff, a2, ar7_00);
                     vec3_clear(a0 + 700, uVar5, a2, ar7_00);
@@ -1406,7 +1406,7 @@ u32 game_vec_082c50(int a0, int a1, u32 unused_a2, u32 a3) {
                 return 1;
             }
             Vec3_make(a0 + 0x14, ar5_00, uVar3, a3, auStack_cc);
-            game_vec_082378(a0, auStack_cc, uVar3, a3);
+            creature_turn_toward_dir_step(a0, auStack_cc, uVar3, a3);
             uVar4 = 0xffffffff;
             Vec3_dtor(auStack_cc, 0xffffffff, uVar3, a3);
             iVar1 = CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, uVar4, uVar3, a3);
@@ -1423,7 +1423,7 @@ u32 game_vec_082c50(int a0, int a1, u32 unused_a2, u32 a3) {
             return 0;
         }
         Vec3_make(a0 + 0x14, ar5_00, uVar3, a3, auStack_50);
-        game_vec_082378(a0, auStack_50, uVar3, a3);
+        creature_turn_toward_dir_step(a0, auStack_50, uVar3, a3);
         uVar2 = 0xffffffff;
         Vec3_dtor(auStack_50, 0xffffffff, uVar3, a3);
         iVar1 = CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, uVar2, uVar3, a3);
@@ -1596,7 +1596,7 @@ u32 game_uses_Vec3_dtor_0831c8(int a0, u32 a1, u32 a2, u32 a3) {
                     *(u64 *)(a0 + 0x28) = in_xd0;
                 }
                 Vec3_ctor_copy(auStack_44, a0 + 0x54, a2, a3);
-                game_vec_082378(a0, auStack_44, a2, a3);
+                creature_turn_toward_dir_step(a0, auStack_44, a2, a3);
                 uVar2 = 0xffffffff;
                 Vec3_dtor(auStack_44, 0xffffffff, a2, a3);
                 iVar1 = CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, uVar2, a2, a3);
@@ -1645,7 +1645,7 @@ u32 game_uses_Vec3_dtor_0831c8(int a0, u32 a1, u32 a2, u32 a3) {
                 uVar3 = a2;
                 timer_stop_94(a0, a1, a2, a3);
                 Vec3_ctor_copy(auStack_54, a0 + 0x54, a2, a3);
-                game_vec_082378(a0, auStack_54, a2, a3);
+                creature_turn_toward_dir_step(a0, auStack_54, a2, a3);
                 uVar2 = 0xffffffff;
                 Vec3_dtor(auStack_54, 0xffffffff, a2, a3);
                 iVar1 = CAnimBody_AdvanceFrame_wrap(a0 + 0xb0, uVar2, a2, a3);
@@ -1664,7 +1664,7 @@ u32 game_uses_Vec3_dtor_0831c8(int a0, u32 a1, u32 a2, u32 a3) {
                 uVar3 = a2;
                 timer_stop_94(a0, a1, a2, a3);
                 Vec3_ctor_copy(auStack_64, a0 + 0x54, a2, a3);
-                game_vec_082378(a0, auStack_64, a2, a3);
+                creature_turn_toward_dir_step(a0, auStack_64, a2, a3);
                 uVar2 = 0xffffffff;
                 Vec3_dtor(auStack_64, 0xffffffff, a2, a3);
                 iVar1 = CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, uVar2, a2, a3);
@@ -2062,7 +2062,7 @@ u32 game_state_switch_083d8c(int a0, int a1, int a2, u32 a3) {
         Vec3_assign(auStack_28, auStack_88, a2, a3);
         Vec3_dtor(auStack_88, 0xffffffff, a2, a3);
         Vec3_ctor_copy(auStack_98, auStack_28, a2, a3);
-        game_vec_082378(a0, auStack_98, a2, a3);
+        creature_turn_toward_dir_step(a0, auStack_98, a2, a3);
         uVar3 = 0xffffffff;
         Vec3_dtor(auStack_98, 0xffffffff, a2, a3);
         timer_stop_94(a0, uVar3, a2, a3);
@@ -2089,7 +2089,7 @@ u32 game_state_switch_083d8c(int a0, int a1, int a2, u32 a3) {
         Vec3_assign(auStack_28, auStack_a8, a2, a3);
         Vec3_dtor(auStack_a8, 0xffffffff, a2, a3);
         Vec3_ctor_copy(auStack_b8, auStack_28, a2, a3);
-        game_vec_082378(a0, auStack_b8, a2, a3);
+        creature_turn_toward_dir_step(a0, auStack_b8, a2, a3);
         uVar3 = 0xffffffff;
         Vec3_dtor(auStack_b8, 0xffffffff, a2, a3);
         CAnimBody_GetCurFrame(a0 + 0xb0, uVar3, a2, a3);
@@ -2430,7 +2430,7 @@ u32 game_vec_0845f4(int a0, int a1, u32 a2, u32 a3) {
             Vec3_assign(auStack_24, auStack_84, a2, a3);
             Vec3_dtor(auStack_84, 0xffffffff, a2, a3);
             Vec3_ctor_copy(auStack_94, auStack_24, a2, a3);
-            game_vec_082378(a0, auStack_94, a2, a3);
+            creature_turn_toward_dir_step(a0, auStack_94, a2, a3);
             uVar3 = 0xffffffff;
             Vec3_dtor(auStack_94, 0xffffffff, a2, a3);
             CAnimBody_AdvanceFrame_wrap(a0 + 0xb0, uVar3, a2, a3);
@@ -7206,16 +7206,16 @@ u32 *Class_12a76c_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     Vec3_set_zero((int)a0 + 0x2b8);
     Vec3_ctor_zero((int)a0 + 0x2d0, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x2e0, a1, a2);
-    Class_12a76c_vec_08db9c(a0, a1, a2, a3);
+    Class_12a76c_reset_state(a0, a1, a2, a3);
     return a0;
 }
 
 /*
- * Class_12a76c_vec_08db9c  0x8c08db9c
- * area name: only called from Class_12a76c methods; behaviour name: mostly calls vec functions
+ * Class_12a76c_reset_state  0x8c08db9c
+ * resets the object's motion table pointer, timers, vectors and flags
  * called by: Class_12a76c_ctor
  */
-u32 Class_12a76c_vec_08db9c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12a76c_reset_state(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_fr1;
     u64 uVar1;
     char cVar2;

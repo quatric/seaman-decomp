@@ -119,8 +119,7 @@ u32 input_r_only_start_timeout(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * input_input_helper_1002a8  0x8c1002a8
  * area name: sits between input functions (same compilation unit); behaviour name: mostly calls input functions
- * called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90,
- * input_uses_input_y_pressed_wrap_0dc28c
+ * called by: game_slot_grid_cursor_tick, game_uses_ret_const_140_0dbf90, input_uses_input_y_pressed_wrap_0dc28c
  */
 u32 input_input_helper_1002a8(int a0) {
     int iVar1;
@@ -142,7 +141,7 @@ u32 input_input_helper_1002a8(int a0) {
 /*
  * input_uses_get_field_4_10031c  0x8c10031c
  * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * get_field_4_0637f8 called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_get_field_24_0e5238,
+ * get_field_4_0637f8 called by: game_slot_grid_cursor_tick, game_uses_get_field_24_0e5238,
  * game_uses_input_track_r_hold_0e1f90, input_uses_get_field_24_0e25c0
  */
 u32 input_uses_get_field_4_10031c(int a0) {
@@ -204,7 +203,7 @@ int input_track_r_hold(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * cursor_step_y_min_50  0x8c1004b4
  * resets the idle timer to 120, adds the y speed to the cursor y and clamps it to at least 50
- * called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90, input_stick_with_x_dispatch,
+ * called by: game_slot_grid_cursor_tick, game_uses_ret_const_140_0dbf90, input_stick_with_x_dispatch,
  * input_uses_input_y_pressed_wrap_0dc28c
  */
 u32 *cursor_step_y_min_50(int a0) {
@@ -254,7 +253,7 @@ u32 *cursor_step_y_min_50(int a0) {
 /*
  * cursor_step_y_max_430  0x8c10052c
  * resets the idle timer to 120, adds the y speed to the cursor y and clamps it to at most 430
- * called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90, input_stick_with_x_dispatch,
+ * called by: game_slot_grid_cursor_tick, game_uses_ret_const_140_0dbf90, input_stick_with_x_dispatch,
  * input_uses_input_y_pressed_wrap_0dc28c
  */
 u32 *cursor_step_y_max_430(int a0) {
@@ -304,7 +303,7 @@ u32 *cursor_step_y_max_430(int a0) {
 /*
  * cursor_step_x_max_615  0x8c1005a4
  * resets the idle timer to 120, adds the x speed to the cursor x and clamps it to at most 615
- * called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90, input_stick_with_x_dispatch,
+ * called by: game_slot_grid_cursor_tick, game_uses_ret_const_140_0dbf90, input_stick_with_x_dispatch,
  * input_uses_input_y_pressed_wrap_0dc28c
  */
 u32 *cursor_step_x_max_615(int a0) {
@@ -354,7 +353,7 @@ u32 *cursor_step_x_max_615(int a0) {
 /*
  * cursor_step_x_min_25  0x8c10061c
  * resets the idle timer to 120, adds the x speed to the cursor x and clamps it to at least 25
- * called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_ret_const_140_0dbf90, input_stick_with_x_dispatch,
+ * called by: game_slot_grid_cursor_tick, game_uses_ret_const_140_0dbf90, input_stick_with_x_dispatch,
  * input_uses_input_y_pressed_wrap_0dc28c
  */
 u32 *cursor_step_x_min_25(int a0) {
@@ -545,7 +544,7 @@ u32 stick_x_left_half(int a0) {
 /*
  * input_up_or_stick_up  0x8c100898
  * 1 when the stick Y (+0x140) is below -0.3 or Up is held
- * called by: game_uses_free_if_nonnull_wrap_0e8280
+ * called by: game_slot_grid_cursor_tick
  */
 u32 input_up_or_stick_up(int a0) {
     int iVar1;
@@ -562,7 +561,7 @@ u32 input_up_or_stick_up(int a0) {
 /*
  * input_down_or_stick_down  0x8c1008e4
  * 1 when the stick Y (+0x140) is above 0.3 or Down is held
- * called by: game_uses_free_if_nonnull_wrap_0e8280
+ * called by: game_slot_grid_cursor_tick
  */
 u32 input_down_or_stick_down(int a0) {
     int iVar1;
@@ -579,7 +578,7 @@ u32 input_down_or_stick_down(int a0) {
 /*
  * input_right_or_stick_right  0x8c100930
  * 1 when the stick X (+0x13c) is above 0.3 or Right is held
- * called by: game_uses_free_if_nonnull_wrap_0e8280
+ * called by: game_slot_grid_cursor_tick
  */
 u32 input_right_or_stick_right(int a0) {
     int iVar1;
@@ -596,7 +595,7 @@ u32 input_right_or_stick_right(int a0) {
 /*
  * input_left_or_stick_left  0x8c10097c
  * 1 when the stick X (+0x13c) is below -0.3 or Left is held
- * called by: game_uses_free_if_nonnull_wrap_0e8280
+ * called by: game_slot_grid_cursor_tick
  */
 u32 input_left_or_stick_left(int a0) {
     int iVar1;
@@ -1044,12 +1043,12 @@ u32 CGame_uses_cursor_reset_center_1011e0(int a0, u32 unused_a1, u32 a2, u32 a3)
 }
 
 /*
- * Class_12acc8_calc_101210  0x8c101210
- * area name: only called from Class_12acc8 methods; behaviour name: integer arithmetic on its arguments
- * called by: Class_12acc8_m1_09f470, game_uses_free_if_nonnull_wrap_0e8280, input_uses_get_field_24_0dc7e8,
- * static_init_437218, static_init_43724c, static_init_4372a8, static_init_4372f4
+ * input_calc_101210  0x8c101210
+ * area name: sits between input functions (same compilation unit); behaviour name: integer arithmetic on its arguments
+ * called by: Class_12acc8_m1_09f470, game_slot_grid_cursor_tick, input_uses_get_field_24_0dc7e8, static_init_437218,
+ * static_init_43724c, static_init_4372a8, static_init_4372f4
  */
-u32 *Class_12acc8_calc_101210(int a0, u32 *a1, u32 *a2) {
+u32 *input_calc_101210(int a0, u32 *a1, u32 *a2) {
     if (*(int *)(a0 + 0x188) == 6) {
         *a1 = g_8c1266e0;
         *a2 = g_8c1266e0;
@@ -3198,7 +3197,7 @@ u32 Higyo_choose_status_event(int a0, u32 a1, int *a2, char *a3) {
             if (iVar2 == 1) {
                 iVar2 = *a2;
                 mask_74_fffffffe(iVar2);
-                CAnimal_calls_test_0c4e2c(iVar2, a5, piVar4, CAnimal_calls_test_0c4e2c);
+                game_calls_test_0c4e2c(iVar2, a5, piVar4, game_calls_test_0c4e2c);
             }
             break;
         case 4:
@@ -3286,7 +3285,7 @@ u32 Higyo_choose_status_event(int a0, u32 a1, int *a2, char *a3) {
                     ar5_00 = 0x17;
                     iVar2 = a2[6];
                     recent5_push_unique(iVar2, 0x17, 0x1b);
-                    CAnimal_calls_test_0c4e2c(iVar2, ar5_00, piVar4, a3);
+                    game_calls_test_0c4e2c(iVar2, ar5_00, piVar4, a3);
                 }
                 uVar3 = get_field_39_s8(a2[3]);
                 if ((char)uVar3 == '\x04') {
@@ -3563,7 +3562,7 @@ u8 *Higyo_gratification_events(int a0, int *a1, int *a2, char *a3) {
                         ar4_00 = (int *)a2[3];
                         set_field_0_u8_061180(ar4_00, 1);
                     }
-                    CAnimal_calls_test_0c4e2c(ar4_00, uVar3, piVar6, a3);
+                    game_calls_test_0c4e2c(ar4_00, uVar3, piVar6, a3);
                 }
             }
             puVar2 = (u8 *)set_field_38_u8(a2[3], 0);
@@ -3618,7 +3617,7 @@ u8 *Higyo_gratification_events(int a0, int *a1, int *a2, char *a3) {
             uVar3 = 1;
             iVar1 = a2[1] + 0xa8;
             set_field_4_s8(iVar1, 1);
-            puVar2 = (u8 *)CAnimal_calls_test_0c4e2c(iVar1, uVar3, piVar6, a3);
+            puVar2 = (u8 *)game_calls_test_0c4e2c(iVar1, uVar3, piVar6, a3);
             break;
         case 0x13:
             *(u8 *)(a0 + 0x98) = 10;
@@ -3631,7 +3630,7 @@ u8 *Higyo_gratification_events(int a0, int *a1, int *a2, char *a3) {
             uVar3 = 0;
             iVar1 = a0 + 0x9c;
             talk_start_line(iVar1, 0x1f, 0, "GRATIFIC_GROAN_DONE");
-            puVar2 = (u8 *)CAnimal_calls_test_0c4e2c(iVar1, CAnimal_calls_test_0c4e2c, uVar3, ar7_00);
+            puVar2 = (u8 *)game_calls_test_0c4e2c(iVar1, game_calls_test_0c4e2c, uVar3, ar7_00);
             break;
         case 0x18:
             speech_uses_identity_0fa688(0x8c35468c, piVar4, piVar6, a3);

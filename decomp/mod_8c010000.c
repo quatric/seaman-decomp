@@ -7694,7 +7694,7 @@ u32 noop(void) {
 /*
  * libgcc_movstr_i4  0x8c010838
  * compiler block-copy helper: copies r0 bytes from r2 to r1 in 32-bit words
- * called by: gfxlib_uses_aabb_overlap_minmax_23340c, gfxlib_uses_noop_fr4_test_2336e8, ninja_draw_2588f8,
+ * called by: gfxlib_uses_aabb_from_8_points_23340c, gfxlib_uses_noop_fr4_test_2336e8, ninja_draw_2588f8,
  * ninja_draw_25e540, ninja_draw_25e884, ninja_draw_25eb60, pvr_uses_libgcc_divide_helper_25dc60,
  * ta_uses_libgcc_movstr_i4_20df7a decompiler: Exceeded maximum restarts with more pending
  */
@@ -8185,7 +8185,7 @@ u32 libc_uses_softfloat_scale_pow10_010b60(u32 a0, u32 a1, int a2, u32 a3) {
     }
     iVar9 = 0x3f - (short)in_stack_ffffffcc;
     iVar3 = libc_test_0105c4();
-    libc_uses_libgcc_divide_helper_012e00(auStack_20, 9, 0x42 - (short)iVar9);
+    bitstring_set_sticky(auStack_20, 9, 0x42 - (short)iVar9);
     iVar7 = (int)(short)iVar3;
     iVar2 = 8;
     if (iVar7 < 9) {
@@ -8204,8 +8204,8 @@ u32 libc_uses_softfloat_scale_pow10_010b60(u32 a0, u32 a1, int a2, u32 a3) {
         sVar1 = (short)iVar2;
     }
     iVar9 = iVar9 + iVar3 * -8;
-    libc_scan_loop_012da8(auStack_20, 9, iVar9);
-    libc_uses_libgcc_divide_helper_012c70(auStack_20, 0x40);
+    bytes_shift_right_bits(auStack_20, 9, iVar9);
+    bitstring_round_half_even(auStack_20, 0x40);
     uVar4 = memmove(a3, auStack_20, 8);
     return uVar4;
 }
@@ -8310,9 +8310,9 @@ u32 double_inf_or_nan(void) {
 /*
  * float_check_errno  0x8c010e38
  * sets errno 0x44c (inf) or 0x44d (NaN) for a non-finite fr4
- * called by: Class_12a990_uses_float_check_errno_09b6c4, Class_12b580_uses_njSinCos_0e705c, Vec3_state_switch_03f4a4,
- * game_draw_0d4124, game_state_switch_049b68, game_state_switch_04b168, game_state_switch_07ff08, game_vec_03c94c (+4
- * more)
+ * called by: Class_12a990_uses_float_check_errno_09b6c4, Class_12b580_time_of_day_update_like,
+ * Vec3_state_switch_03f4a4, game_draw_0d4124, game_state_switch_049b68, game_state_switch_04b168,
+ * game_state_switch_07ff08, game_vec_03c94c (+4 more)
  */
 u32 float_check_errno(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 in_fr4;
@@ -9550,7 +9550,7 @@ int double_to_digits(u32 a0, char *a1, int a2) {
             iVar4 = iVar4 >> 1;
             if (iVar4 == 0)
                 break;
-            iVar2 = libc_scan_loop_012da8(auStack_28 + iVar1, ar6_00, 1);
+            iVar2 = bytes_shift_right_bits(auStack_28 + iVar1, ar6_00, 1);
             ain0 = ain0 + 1;
         } while (ain0 < 4);
         cVar3 = (char)iStack_44 + '0';
@@ -9854,7 +9854,7 @@ u32 libc_uses_bytes_shl1_0129b4(short *a0, u32 a1, u32 a2, u32 a3) {
     } else {
         *a0 = *a0 + 1;
     }
-    libc_uses_libgcc_divide_helper_012e00(abStack_1c, 0x10, 0x42);
+    bitstring_set_sticky(abStack_1c, 0x10, 0x42);
     bStack_14 = bStack_14 & 0xe0;
     uVar2 = memmove(a1, abStack_1c, 9);
     return uVar2;
@@ -10008,7 +10008,7 @@ u32 softfloat_scale_pow10(int a0, short *a1, u8 *a2, u8 *a3) {
             iVar5 = (int)*psVar7;
             a3 = ar7_00;
             libc_uses_bytes_shl1_0129b4(asStack_48, abStack_2c, iVar5, ar7_00);
-            iVar5 = libc_uses_libgcc_divide_helper_012c70(abStack_2c, 0x40);
+            iVar5 = bitstring_round_half_even(abStack_2c, 0x40);
             if (iVar5 != 0) {
                 asStack_48[0] = asStack_48[0] + 1;
                 *pbStack_44 = *pbStack_44 | 0x80;
@@ -10024,7 +10024,7 @@ u32 softfloat_scale_pow10(int a0, short *a1, u8 *a2, u8 *a3) {
         iVar2 = (int)*psStack_40;
         a3 = puStack_3c;
         libc_uses_bytes_shl1_0129b4(asStack_48, abStack_2c, iVar2, puStack_3c);
-        iVar2 = libc_uses_libgcc_divide_helper_012c70(abStack_2c, 0x40);
+        iVar2 = bitstring_round_half_even(abStack_2c, 0x40);
         if (iVar2 == 1) {
             asStack_48[0] = asStack_48[0] + 1;
             *pbStack_44 = *pbStack_44 | 0x80;
@@ -10036,11 +10036,11 @@ u32 softfloat_scale_pow10(int a0, short *a1, u8 *a2, u8 *a3) {
 }
 
 /*
- * libc_uses_libgcc_divide_helper_012c70  0x8c012c70
- * area name: in the libc library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
+ * bitstring_round_half_even  0x8c012c70
+ * rounds the big-endian bit string a0 at bit a1 to nearest-even, propagating the carry; returns 1 on overflow
  * called by: libc_uses_softfloat_scale_pow10_010b60, softfloat_scale_pow10
  */
-u32 libc_uses_libgcc_divide_helper_012c70(u8 *a0, u32 a1) {
+u32 bitstring_round_half_even(u8 *a0, u32 a1) {
     u8 bVar1;
     bool bVar2;
     int iVar3;
@@ -10139,11 +10139,11 @@ u32 bytes_shr1(u8 *a0, int a1) {
 }
 
 /*
- * libc_scan_loop_012da8  0x8c012da8
- * area name: in the libc library code range; behaviour name: a loop that only reads
+ * bytes_shift_right_bits  0x8c012da8
+ * shifts the a1-byte big-endian buffer a0 right by a2 bits; returns whether any bits fell off
  * called by: double_to_digits, libc_uses_softfloat_scale_pow10_010b60
  */
-u32 libc_scan_loop_012da8(u8 *a0, int a1, u32 a2) {
+u32 bytes_shift_right_bits(u8 *a0, int a1, u32 a2) {
     u8 bVar1;
     u32 in_r0;
     u8 bVar2;
@@ -10194,11 +10194,11 @@ u32 libc_scan_loop_012da8(u8 *a0, int a1, u32 a2) {
 }
 
 /*
- * libc_uses_libgcc_divide_helper_012e00  0x8c012e00
- * area name: in the libc library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
+ * bitstring_set_sticky  0x8c012e00
+ * sets bit a2 of the a1-byte bit string a0 when any later bit is set (sticky bit)
  * called by: libc_uses_bytes_shl1_0129b4, libc_uses_softfloat_scale_pow10_010b60
  */
-u32 libc_uses_libgcc_divide_helper_012e00(int a0, int a1, u32 a2) {
+u32 bitstring_set_sticky(int a0, int a1, u32 a2) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -10242,10 +10242,10 @@ u32 libc_uses_libgcc_divide_helper_012e00(int a0, int a1, u32 a2) {
 }
 
 /*
- * libc_uses_libgcc_divide_helper_012e04  0x8c012e04
- * area name: in the libc library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
+ * bitstring_set_sticky_entry  0x8c012e04
+ * second entry of bitstring_set_sticky
  */
-u32 libc_uses_libgcc_divide_helper_012e04(int a0, int a1, u32 a2) {
+u32 bitstring_set_sticky_entry(int a0, int a1, u32 a2) {
     u32 in_r0;
     int iVar1;
     u32 uVar2;
@@ -11131,8 +11131,8 @@ u32 libm_errno_wrap_013b8c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * atoi  0x8c013bdc
  * strtol(a0, NULL, 10)
- * called by: game_copy_0fd764, game_state_switch_0fc94c, game_state_switch_0fcd2c, game_uses_atoi_0fc69c,
- * game_uses_strcpy_0fc7c4, speech_copy_0fa538, speech_get_index_plus1
+ * called by: game_copy_0fd764, game_state_switch_0fc94c, game_state_switch_0fcd2c, script_cmd_if_compare,
+ * script_cmd_set_vars, speech_copy_0fa538, speech_get_index_plus1
  */
 u32 atoi(u32 a0) {
     u32 uVar1;
@@ -11361,7 +11361,7 @@ u32 libm_errno_wrap_013dfc(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * srand  0x8c013e4c
  * sets the rand() seed (0x8c2787b0)
- * called by: alt_entry_1f69fa, shinobi_uses_srand_1f69f2, shinobi_uses_srand_1f6a30, shinobi_uses_srand_1f6a34
+ * called by: alt_entry_1f69fa, shinobi_uses_setjmp_like_1f6a34, shinobi_uses_srand_1f69f2, shinobi_uses_srand_1f6a30
  */
 int srand(u32 unused_a0, int a1) {
     int iVar1;
@@ -11615,23 +11615,23 @@ u32 libm_errno_wrap_014064(void) {
 }
 
 /*
- * libc_calls_fill_loop_0140b4  0x8c0140b4
- * area name: in the libc library code range; behaviour name: its callees mostly do: fill_loop
- * called by: asr_uses_libgcc_divide_helper_11a634
+ * qsort_recurse_wrap  0x8c0140b4
+ * only calls qsort_recurse
+ * called by: asr_uses_qsort_recurse_wrap_11a634
  */
-u32 libc_calls_fill_loop_0140b4(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 qsort_recurse_wrap(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = libc_fill_loop_0140cc(1, a1, &stack0xfffffff0, a3, a0);
+    uVar1 = qsort_recurse(1, a1, &stack0xfffffff0, a3, a0);
     return uVar1;
 }
 
 /*
- * libc_fill_loop_0140cc  0x8c0140cc
- * area name: in the libc library code range; behaviour name: a loop that writes memory
- * called by: libc_calls_fill_loop_0140b4, libc_fill_loop_0140cc
+ * qsort_recurse  0x8c0140cc
+ * quicksort of elements a0..a1 (1-based) of the array described by a2 {base, size, compare}, recursing on the smaller
+ * side called by: qsort_recurse, qsort_recurse_wrap
  */
-int libc_fill_loop_0140cc(u32 a0, u32 a1, int *a2, int a3, int ain0) {
+int qsort_recurse(u32 a0, u32 a1, int *a2, int a3, int ain0) {
     char cVar1;
     int iVar2;
     u32 uVar3;
@@ -11682,7 +11682,7 @@ int libc_fill_loop_0140cc(u32 a0, u32 a1, int *a2, int a3, int ain0) {
                 break;
             if (a0 < ar5_00) {
                 a6 = a2;
-                ain0 = libc_fill_loop_0140cc(a0, ar5_00, a2, a3, ain0_00);
+                ain0 = qsort_recurse(a0, ar5_00, a2, a3, ain0_00);
             }
             a0 = ar4_00;
             if (a1 <= ar4_00) {
@@ -11691,7 +11691,7 @@ int libc_fill_loop_0140cc(u32 a0, u32 a1, int *a2, int a3, int ain0) {
         }
         if (ar4_00 < a1) {
             a6 = a2;
-            ain0 = libc_fill_loop_0140cc(ar4_00, a1, a2, a3, ain0_00);
+            ain0 = qsort_recurse(ar4_00, a1, a2, a3, ain0_00);
         }
         a1 = ar5_00;
     } while (a0 < ar5_00);
@@ -11715,11 +11715,11 @@ u32 rand(void) {
 }
 
 /*
- * libc_float_calc_01422c  0x8c01422c
- * area name: in the libc library code range; behaviour name: floating-point arithmetic
- * called by: alt_entry_1f69fa, shinobi_copy_1f672c, shinobi_copy_1f67c2, shinobi_uses_srand_1f6a34
+ * setjmp_like  0x8c01422c
+ * saves the stack pointer, PR, general, MAC, GBR, FPSCR, FPUL and fr0..fr15 into buffer a0 and returns 0
+ * called by: alt_entry_1f69fa, shinobi_copy_1f672c, shinobi_copy_1f67c2, shinobi_uses_setjmp_like_1f6a34
  */
-u32 libc_float_calc_01422c(int a0, u32 a1, u32 a2, u32 a3, u32 ain0, u32 ain1) {
+u32 setjmp_like(int a0, u32 a1, u32 a2, u32 a3, u32 ain0, u32 ain1) {
     u32 in_r2;
     u32 in_r3;
     u32 unaff_r8;
@@ -14678,8 +14678,8 @@ u32 clear_field_14(int a0) {
 
 /*
  * free_if_nonnull_wrap_016660  0x8c016660
- * called by: CTexture_uses_item_grid_find_free_0e8090, Class_12b3b8_dtor, game_uses_copy_2_u16_0e89c4,
- * game_uses_free_if_nonnull_wrap_0e8280, item_grid_find_free
+ * called by: Class_12b3b8_dtor, game_slot_grid_cursor_tick, game_uses_copy_2_u16_0e89c4,
+ * game_uses_item_grid_find_free_0e8090, item_grid_find_free
  */
 int free_if_nonnull_wrap_016660(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -15586,7 +15586,7 @@ u32 Class_129938_m5_01745c(int a0, int *a1, u32 a2, u32 a3) {
     u8 auStack_64[100];
 
     (**(code **)(*a1 + 0x38))(a1, auStack_64, a2, a3);
-    uVar1 = gfxlib_uses_aabb_overlap_minmax_23340c(a0 + 0x30, auStack_64);
+    uVar1 = gfxlib_uses_aabb_from_8_points_23340c(a0 + 0x30, auStack_64);
     return uVar1;
 }
 
@@ -17783,7 +17783,7 @@ u64 *game_vec_019508(u32 unused_a0, u32 *a1, u64 *a2, u64 *a3) {
 /*
  * set_vec3_field_44  0x8c019560
  * stores fr4..fr6 at +0x44
- * called by: game_uses_Vec3_ctor_zero_0cac08, game_uses_Vec3_dtor_0cb29c, game_uses_set_vec3_field_44_0db188
+ * called by: game_start_staff_credits_like, game_uses_Vec3_ctor_zero_0cac08, game_uses_set_vec3_field_44_0db188
  */
 u32 *set_vec3_field_44(int a0) {
     u32 in_fr5;
@@ -18289,7 +18289,7 @@ u32 set_field_88(int a0) {
 
 /*
  * Class_129a24_m1_019b68  0x8c019b68
- * called by: game_uses_Vec3_ctor_zero_0cac08, game_uses_Vec3_dtor_0cb29c
+ * called by: game_start_staff_credits_like, game_uses_Vec3_ctor_zero_0cac08
  */
 u32 Class_129a24_m1_019b68(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -19401,7 +19401,7 @@ u32 Class_12b388_test_01ad88(int *a0) {
 /*
  * memcard_request_status  0x8c01ad9c
  * status of request a1 (4 when there is no such request)
- * called by: game_uses_free_if_nonnull_wrap_0e8280, game_uses_get_field_24_0e5238
+ * called by: game_slot_grid_cursor_tick, game_uses_get_field_24_0e5238
  */
 u32 memcard_request_status(int a0, u32 a1) {
     int iVar1;
@@ -19462,7 +19462,7 @@ u32 memcard_save_start(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_uses_memcard_save_start_01ae98  0x8c01ae98
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is memcard_save_start
- * called by: game_uses_identity_0b726c, save_check_files
+ * called by: memcard_process_save_file_name, save_check_files
  */
 u32 game_uses_memcard_save_start_01ae98(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -19548,7 +19548,7 @@ int memcard_queue_save(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_release_01b0a8  0x8c01b0a8
  * area name: game code; nothing names its area yet; behaviour name: mostly calls release functions
- * called by: game_uses_identity_0b726c, save_check_files
+ * called by: memcard_process_save_file_name, save_check_files
  */
 u32 game_release_01b0a8(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -21797,7 +21797,7 @@ u32 strcmp_01dfc0(u8 *a0, u8 *a1) {
 /*
  * buf256_clear  0x8c01e028
  * zeroes the length word and the 256 bytes after it at a1
- * called by: game_copy_0c67f4
+ * called by: game_save_state_init
  */
 int buf256_clear(u32 unused_a0, u32 *a1) {
     int iVar1;
@@ -23014,9 +23014,8 @@ u32 get_field_a524_01f514(int a0, u32 unused_a1, u32 a2) {
 /*
  * identity  0x8c01f520
  * returns its first argument
- * called by: Class_12b388_m1_0c5c08, confirm_exit_save, game_uses_free_if_nonnull_wrap_0e8280,
- * game_uses_get_field_24_0e5238, game_uses_identity_0b726c, memcard_flush_and_close_8c3dd7dc, save_check_files,
- * save_file_load (+10 more)
+ * called by: Class_12b388_m1_0c5c08, confirm_exit_save, game_slot_grid_cursor_tick, game_uses_get_field_24_0e5238,
+ * memcard_flush_and_close_8c3dd7dc, memcard_process_save_file_name, save_check_files, save_file_load (+10 more)
  */
 u32 identity(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     return a0;
@@ -23026,7 +23025,7 @@ u32 identity(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
  * field_ptr_384c  0x8c01f528
  * returns the address of the member at +0x384c
  * called by: CGame_GetUserGameInfo, CGame_uses_libgcc_divide_helper_0cc784, CProlog_uses_libgcc_divide_helper_0cd3c8,
- * a_button_mic_start_stop_like, game_copy_0c67f4, game_uses_input_track_r_hold_0e1f90,
+ * a_button_mic_start_stop_like, game_save_state_init, game_uses_input_track_r_hold_0e1f90,
  * game_uses_pure_virtual_stub_0dfe2c, input_uses_get_field_24_0e25c0 (+1 more)
  */
 int field_ptr_384c(int a0) {

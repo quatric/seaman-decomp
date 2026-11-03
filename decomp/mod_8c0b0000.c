@@ -3968,12 +3968,12 @@ u8 *Class_12b2e8_state_switch_0b6440(int a0, u32 a1, int a2, u32 a3) {
             puVar1 = (u8 *)0x2;
             if ('\x01' < *(char *)(a0 + 0x9d)) {
                 *(u8 *)(a0 + 0x98) = 3;
-                puVar1 = (u8 *)CAnimal_calls_test_0c4e2c(a0, a1, a2, a3);
+                puVar1 = (u8 *)game_calls_test_0c4e2c(a0, a1, a2, a3);
             }
             break;
         case 7:
             *(u8 *)(a0 + 0x98) = 6;
-            puVar1 = (u8 *)CAnimal_calls_test_0c4e2c(a0, a1, a2, a3);
+            puVar1 = (u8 *)game_calls_test_0c4e2c(a0, a1, a2, a3);
         }
     }
     return puVar1;
@@ -4652,11 +4652,11 @@ u32 save_check_files(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
 }
 
 /*
- * game_uses_identity_0b726c  0x8c0b726c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is identity
- * strings: "SM2000US._VM"; "SM2000US._VM"; "SM2000US.USR"; "SM2000US.USR" ...
+ * memcard_process_save_file_name  0x8c0b726c
+ * handles one save file by name (SM2000US._VM, .USR or .INC): checks it and loads or saves the matching data; returns 0
+ * on success strings: "SM2000US._VM"; "SM2000US._VM"; "SM2000US.USR"; "SM2000US.USR" ...
  */
-u32 game_uses_identity_0b726c(u32 a0, u32 a1, u8 *a2, u32 a3, u32 s0, int s4) {
+u32 memcard_process_save_file_name(u32 a0, u32 a1, u8 *a2, u32 a3, u32 s0, int s4) {
     u32 ar4_00;
     int iVar1;
     u8 *ar6_00;
@@ -5235,7 +5235,7 @@ u32 creature_age_clock_tick(int a0, u32 unused_a1, u32 a2, u32 a3) {
             *(short *)(0xa2 + a0) = (short)0xfffa;
         }
         *(u16 *)(0xa4 + a0) = 0;
-        CAnimal_calls_test_0c4e2c(a0, ar5_00, a2, a3);
+        game_calls_test_0c4e2c(a0, ar5_00, a2, a3);
         uVar1 = 1;
     }
     return uVar1;
@@ -5672,7 +5672,7 @@ u32 CProlog_record_visit_date(int a0, u32 unused_a1, u32 a2, u32 a3) {
  * rtc_get_date_wrap  0x8c0b9d14
  * only calls rtc_get_date
  * called by: CGame_GetUserGameInfo, CGame_uses_libgcc_divide_helper_0cc784, CProlog_record_visit_date,
- * CProlog_uses_libgcc_divide_helper_0cd3c8, ambient_sound_update, game_copy_0c67f4, game_select_intro_or_ending,
+ * CProlog_uses_libgcc_divide_helper_0cd3c8, ambient_sound_update, game_save_state_init, game_select_intro_or_ending,
  * game_uses_rand_0d8890 (+1 more)
  */
 u32 rtc_get_date_wrap(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
