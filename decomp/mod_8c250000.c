@@ -6207,7 +6207,7 @@ u32 gfxlib_fill_loop_2528e8(u16 *a0) {
         if ((g_8c4ab308 & 0x800000) == 0) {
             UNRECOVERED_JUMPTABLE = (code *)&LAB_8c242234;
         } else {
-            UNRECOVERED_JUMPTABLE = gfxlib_uses_noop_2420fe;
+            UNRECOVERED_JUMPTABLE = gfx_strips_reset_vertex_colors_like;
         }
         /* WARNING: Could not recover jumptable at 0x8c252e56. Too many branches */
         /* WARNING: Treating indirect jump as call */
@@ -10852,7 +10852,7 @@ u32 nj_palette_file_load(u32 a0, int *a1, u32 a2, u32 a3) {
     iVar1 = nj_file_open(a0, ar5_00, a2, a3);
     if (-1 < iVar1) {
         a5 = 4;
-        iVar1 = ninja_uses_memcpy_bytes_259c48(&stack0xffffffdc, 4, a2, a3);
+        iVar1 = nj_stream_read_buffered(&stack0xffffffdc, 4, a2, a3);
         if (-1 < iVar1) {
             if (in_stack_ffffffdc != 0x4c505650) {
                 ninja_close_file();
@@ -10860,12 +10860,12 @@ u32 nj_palette_file_load(u32 a0, int *a1, u32 a2, u32 a3) {
             }
             a5 = 0xc;
             a4 = &iStack_1c;
-            iVar1 = ninja_uses_memcpy_bytes_259c48(a4, 0xc, a2, a3);
+            iVar1 = nj_stream_read_buffered(a4, 0xc, a2, a3);
             if (-1 < iVar1) {
                 ninja_draw_255f88((int)sStack_16);
                 a5 = iStack_1c + -8;
                 a4 = (int *)*a1;
-                iVar1 = ninja_uses_memcpy_bytes_259c48(a4, a5, a2, a3);
+                iVar1 = nj_stream_read_buffered(a4, a5, a2, a3);
                 if (-1 < iVar1) {
                     *(short *)((int)a1 + 6) = sStack_16;
                     *(u16 *)(a1 + 2) = uStack_14;
@@ -11601,7 +11601,7 @@ u32 ninja_scan_loop_256670(int *a0) {
     u32 uVar4;
     u32 uVar5;
 
-    puVar2 = (&tex_uses_tex_entry_free_2567f8);
+    puVar2 = (&tex_release_entry_like);
     puVar1 = 0x8c4aa6ac;
     uVar4 = 1;
     for (uVar5 = 0; uVar5 < (u32)a0[1]; uVar5 = uVar5 + 1) {
@@ -11627,7 +11627,7 @@ u32 alt_entry_25667e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int *unaff_r13;
     u32 uVar4;
 
-    puVar2 = (&tex_uses_tex_entry_free_2567f8);
+    puVar2 = (&tex_release_entry_like);
     puVar1 = 0x8c4aa6ac;
     for (uVar4 = 0; uVar4 < (u32)unaff_r13[1]; uVar4 = uVar4 + 1) {
         iVar3 = (*(code *)puVar2)(*(u32 *)(uVar4 * 0xc + *unaff_r13 + 8), a1, a2, a3);
@@ -11706,11 +11706,11 @@ u32 tex_list_release_loaded(u32 unused_a0, int a1, u32 a2, u32 unused_a3, u32 ai
 }
 
 /*
- * tex_uses_tex_entry_free_2567f8  0x8c2567f8
- * area name: sits between tex functions (same compilation unit); behaviour name: its main named callee is
- * tex_entry_free called by: ninja_uses_tex_entry_free_256944
+ * tex_release_entry_like  0x8c2567f8
+ * releases texture entry a0: drops palette reference counts for palettised textures and frees its VRAM
+ * called by: ninja_release_256944
  */
-u32 tex_uses_tex_entry_free_2567f8(int *a0) {
+u32 tex_release_entry_like(int *a0) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -11866,13 +11866,13 @@ u32 alt_entry_2567fe(void) {
 }
 
 /*
- * ninja_uses_tex_entry_free_256944  0x8c256944
- * area name: in the ninja library code range; behaviour name: its callees mostly do: uses_tex_entry_free
+ * ninja_release_256944  0x8c256944
+ * area name: in the ninja library code range; behaviour name: mostly calls release functions
  */
-int ninja_uses_tex_entry_free_256944(int a0) {
+int ninja_release_256944(int a0) {
     int iVar1;
 
-    iVar1 = tex_uses_tex_entry_free_2567f8(*(u32 *)(*g_8c277b04 + a0 * 0xc + 8));
+    iVar1 = tex_release_entry_like(*(u32 *)(*g_8c277b04 + a0 * 0xc + 8));
     if (iVar1 < 0) {
         g_8c4aa6ac = a0;
     }
@@ -12809,7 +12809,7 @@ u32 njSinCos(u32 a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 
 /*
  * noop_257488  0x8c257488
- * called by: ninja_draw_2588f8
+ * called by: nj_init_view_defaults_like
  */
 u32 noop_257488(void) {
     u32 in_r0;
@@ -12847,7 +12847,7 @@ u32 ninja_draw_25748c(int a0, int a1, u32 a2, u32 a3) {
         a4 = &g_8c271de8;
     }
     (*pcVar2)(a4, ar5_01, ar6_00, a3);
-    ninja_float_calc_257e10(a0, a1, a2);
+    nj_sprite_uv_flip_like(a0, a1, a2);
     uVar1 = ar4_00;
     ta_set_list_addr(ar4_00);
     uVar1 = draw_state_restore(uVar1);
@@ -14246,11 +14246,11 @@ int ninja_fill_loop_257be8(u32 a0, int a1) {
 }
 
 /*
- * ninja_float_calc_257e10  0x8c257e10
- * area name: in the ninja library code range; behaviour name: floating-point arithmetic
+ * nj_sprite_uv_flip_like  0x8c257e10
+ * sets up a sprite's texture coordinates from entry a1 of its table, swapping U (flag 4) or V (flag 8)
  * called by: ninja_draw_25748c
  */
-u32 ninja_float_calc_257e10(float *a0, int a1, u32 a2) {
+u32 nj_sprite_uv_flip_like(float *a0, int a1, u32 a2) {
     u32 *in_r2;
     short *psVar1;
     float fVar2;
@@ -14817,7 +14817,7 @@ u32 pvr_25825a(u32 a0, int a1, u32 a2, u32 a3) {
     pvr_event_handler_set_wrap_2078be(set_g_8c4aa558);
     uVar2 = g_8c4aa4ec;
     pvr_test_20a786(g_8c4aa4ec);
-    uVar2 = ninja_draw_2588f8();
+    uVar2 = nj_init_view_defaults_like();
     if ((_DAT_a05f689c & 0xff) < 10) {
         draw_draw_helper_259a1c(0xffff6600);
         /* WARNING: Could not recover jumptable at 0x8c25857e. Too many branches */
@@ -15028,11 +15028,11 @@ LAB_8c258846:
 }
 
 /*
- * ninja_draw_2588f8  0x8c2588f8
- * area name: in the ninja library code range; behaviour name: mostly calls draw functions
+ * nj_init_view_defaults_like  0x8c2588f8
+ * resets the view globals (screen centre, near and far planes, light state) and the default polygon context
  * called by: pvr_25825a
  */
-u32 ninja_draw_2588f8(void) {
+u32 nj_init_view_defaults_like(void) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -15380,7 +15380,7 @@ LAB_8c258cae:
 /*
  * draw_state_select  0x8c258d4c
  * makes polygon-state block a0 (0xc0 bytes each at 0x8c4aa73c) current and loads it
- * called by: ninja_draw_2588f8
+ * called by: nj_init_view_defaults_like
  */
 u32 draw_state_select(int a0) {
     u32 uVar1;
@@ -15396,7 +15396,7 @@ u32 draw_state_select(int a0) {
 /*
  * ta_poly_context_default  0x8c258d82
  * fills polygon context a0 with the default list, culling, blending and colour values and builds its header words
- * called by: ninja_draw_2588f8
+ * called by: nj_init_view_defaults_like
  */
 u32 ta_poly_context_default(u32 *a0) {
     u32 uVar1;
@@ -16871,13 +16871,13 @@ u32 ninja_close_file(void) {
 }
 
 /*
- * ninja_uses_memcpy_bytes_259c48  0x8c259c48
- * area name: in the ninja library code range; behaviour name: its main named callee is memcpy_bytes
+ * nj_stream_read_buffered  0x8c259c48
+ * copies a1 bytes from the GD-ROM stream ring buffer into a0, refilling it with blocking reads as needed
  * called by: gfx_texlist_entries_from_mem, gfxlib_uses_ninja_close_file_239212, nj_palette_file_load,
  * pvr_file_read_dims, pvr_file_read_header, pvr_file_read_to_heap, pvr_file_stream_to_vram, pvrt_stream_is_palettized
  * (+1 more)
  */
-u32 ninja_uses_memcpy_bytes_259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 nj_stream_read_buffered(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -16974,10 +16974,10 @@ u32 ninja_uses_memcpy_bytes_259c48(int a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * ninja_uses_gdfs_read_blocking_259e80  0x8c259e80
- * area name: in the ninja library code range; behaviour name: its main named callee is gdfs_read_blocking
+ * nj_stream_read_buffered_b  0x8c259e80
+ * second copy of nj_stream_read_buffered
  */
-u32 ninja_uses_gdfs_read_blocking_259e80(int a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 nj_stream_read_buffered_b(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -17140,8 +17140,7 @@ u32 filename_add_ext_if_missing(u32 a0, u32 a1, u32 a2, u32 a3) {
  * tex_is_palettized  0x8c25a1ee
  * 1 for the palettised texture formats 0x500..0x800 (4- and 8-bit, with and without mipmaps)
  * called by: alt_entry_237830, alt_entry_2565d8, alt_entry_2567fe, gfxlib_uses_tex_entry_alloc_23793c,
- * gfxlib_uses_tex_entry_alloc_2387a0, ninja_uses_tex_entry_free_2565c4, tex_list_release_loaded,
- * tex_uses_tex_entry_free_2567f8
+ * gfxlib_uses_tex_entry_alloc_2387a0, ninja_uses_tex_entry_free_2565c4, tex_list_release_loaded, tex_release_entry_like
  */
 u32 tex_is_palettized(int a0) {
     if ((((a0 != 0x500) && (a0 != 0x600)) && (a0 != 0x700)) && (a0 != 0x800)) {
@@ -17169,19 +17168,19 @@ u32 pvr_file_read_header(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     nj_seek(0, 0);
     iStack_18 = -1;
     do {
-        iVar1 = ninja_uses_memcpy_bytes_259c48(&iStack_34, 4, unused_a2, a3);
+        iVar1 = nj_stream_read_buffered(&iStack_34, 4, unused_a2, a3);
         if (iVar1 < 0) {
             return 0xfffffffc;
         }
         if (iStack_34 == 0x58494247) {
             nj_seek(0xfffffffc, 1);
-            iVar1 = ninja_uses_memcpy_bytes_259c48(auStack_20, 0xc, unused_a2, a3);
+            iVar1 = nj_stream_read_buffered(auStack_20, 0xc, unused_a2, a3);
         joined_r0x8c25a25e:
             if (iVar1 < 0) {
                 return 0xfffffffc;
             }
         } else if (iStack_34 == 0x54525650) {
-            iVar1 = ninja_uses_memcpy_bytes_259c48(auStack_2c, 0xc, unused_a2, a3);
+            iVar1 = nj_stream_read_buffered(auStack_2c, 0xc, unused_a2, a3);
             goto joined_r0x8c25a25e;
         }
         if (iStack_34 == 0x54525650) {
@@ -17338,7 +17337,7 @@ u32 alt_entry_25a394(int *a0, u32 *a1, u32 a2, u32 a3, u32 s0, u32 s4, u32 s8, u
  * tex_entry_free  0x8c25a49e
  * clears texture entry a0, trims the in-use count past trailing free entries and records the first free entry
  * called by: alt_entry_2565d8, alt_entry_2567fe, ninja_uses_tex_entry_free_2565c4, tex_entry_clear_flags_by_id,
- * tex_list_release_loaded, tex_uses_tex_entry_free_2567f8
+ * tex_list_release_loaded, tex_release_entry_like
  */
 int tex_entry_free(u32 *a0) {
     int iVar1;
@@ -17611,7 +17610,7 @@ int pvr_file_stream_to_vram(int a0, int a1, u32 unused_a2, u32 a3) {
         if (0 < (int)uVar3) {
             do {
                 uVar4 = uVar5;
-                iVar2 = ninja_uses_memcpy_bytes_259c48(g_8c4aa6cc, uVar5, ar6_00, a3);
+                iVar2 = nj_stream_read_buffered(g_8c4aa6cc, uVar5, ar6_00, a3);
                 if (iVar2 < 0) {
                     kamui_release_20cf88(a1 + 4);
                     return 0xffffffff;
@@ -17669,7 +17668,7 @@ int pvr_file_read_to_heap(int a0, int *a1, u32 unused_a2, u32 a3) {
             g_8c4aa6b4 = 7;
             iVar1 = -7;
         } else {
-            iVar1 = ninja_uses_memcpy_bytes_259c48(ar4_00, in_stack_ffffffd8, ar6_00, a3);
+            iVar1 = nj_stream_read_buffered(ar4_00, in_stack_ffffffd8, ar6_00, a3);
             if (iVar1 < 0) {
                 iVar1 = -5;
             } else {
@@ -18162,8 +18161,8 @@ u32 pvr_file_read_dims(u32 *a0, u32 *a1, u32 *a2, u32 *a3) {
     puStack_1c = a2;
     puStack_18 = a3;
     do {
-        puVar1 = (&ninja_uses_memcpy_bytes_259c48);
-        iVar2 = ninja_uses_memcpy_bytes_259c48(&iStack_2c, 4, a2, a3);
+        puVar1 = (&nj_stream_read_buffered);
+        iVar2 = nj_stream_read_buffered(&iStack_2c, 4, a2, a3);
         if (iVar2 < 0) {
             return 0xffffffff;
         }
@@ -18341,7 +18340,7 @@ u32 ninja_calc_25b100(void) {
 /*
  * write_u32_le  0x8c25b10c
  * stores a0 little-endian at a1 (any alignment)
- * called by: ninja_uses_write_u32_le_25b12e
+ * called by: nj_screenshot_to_bmp
  */
 u32 write_u32_le(u32 a0, u8 *a1) {
     *a1 = (char)a0;
@@ -18354,7 +18353,7 @@ u32 write_u32_le(u32 a0, u8 *a1) {
 /*
  * put_u16_le  0x8c25b124
  * stores a0 as a little-endian u16 at a1
- * called by: ninja_uses_write_u32_le_25b12e
+ * called by: nj_screenshot_to_bmp
  */
 u32 put_u16_le(u32 a0, u8 *a1) {
     *a1 = (char)a0;
@@ -18363,11 +18362,11 @@ u32 put_u16_le(u32 a0, u8 *a1) {
 }
 
 /*
- * ninja_uses_write_u32_le_25b12e  0x8c25b12e
- * area name: in the ninja library code range; behaviour name: its main named callee is write_u32_le
+ * nj_screenshot_to_bmp  0x8c25b12e
+ * reads the frame buffer and writes it to a0 as a 24-bit BMP (header "BM", rows flipped)
  */
-u32 ninja_uses_write_u32_le_25b12e(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s4, u32 s8, u32 s12,
-                                   u32 s16, u32 s20) {
+u32 nj_screenshot_to_bmp(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 s0, u32 s4, u32 s8, u32 s12, u32 s16,
+                         u32 s20) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -24285,7 +24284,7 @@ LAB_8c25dde8:
 /*
  * pvr_set_video_timing  0x8c25e260
  * packs the stacked timing values into the sync, border, VO and display-window registers, waits for a frame edge and
- * writes them called by: ninja_draw_25e540, ninja_draw_25e884, ninja_draw_25eb60
+ * writes them called by: ninja_draw_25e884, ninja_draw_25eb60, nj_set_video_mode_timing_like
  */
 u32 pvr_set_video_timing(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int *piVar1;
@@ -24381,11 +24380,11 @@ u32 pvr_set_video_timing(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * ninja_draw_25e540  0x8c25e540
- * area name: in the ninja library code range; behaviour name: mostly calls draw functions
+ * nj_set_video_mode_timing_like  0x8c25e540
+ * builds the display timing table for the current video mode flags (NTSC/PAL, interlace, VGA) and applies it
  * called by: kamui_set_display_mode_cfg
  */
-u32 ninja_draw_25e540(u32 a0, u32 a1) {
+u32 nj_set_video_mode_timing_like(u32 a0, u32 a1) {
     u32 uVar1;
     int ar5_00;
     u32 ar6_00;
@@ -24679,11 +24678,11 @@ u32 cri_error_printf(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3, u32 s0, u32 s
 }
 
 /*
- * cri_calc_25ed3c  0x8c25ed3c
- * area name: in the cri library code range; behaviour name: integer arithmetic on its arguments
- * called by: cri_calls_calc_25f052
+ * aiff_parse_chunks  0x8c25ed3c
+ * checks the FORM/AIFF header of a0 and walks its chunks for the format and sound data
+ * called by: cri_uses_aiff_parse_chunks_25f052
  */
-u8 *cri_calc_25ed3c(u8 *a0, u32 *a1, u32 *a2, u32 *a3, u32 *s0) {
+u8 *aiff_parse_chunks(u8 *a0, u32 *a1, u32 *a2, u32 *a3, u32 *s0) {
     u8 bVar1;
     u8 bVar2;
     bool bVar3;
@@ -24787,11 +24786,12 @@ u32 is_aiff_header(int a0) {
 }
 
 /*
- * cri_calls_calc_25f052  0x8c25f052
- * area name: in the cri library code range; behaviour name: its callees mostly do: calc
+ * cri_uses_aiff_parse_chunks_25f052  0x8c25f052
+ * area name: in the cri library code range; behaviour name: its main named callee is aiff_parse_chunks
  * called by: aiff_handle_parse_header
  */
-u32 cri_calls_calc_25f052(u32 a0, int a1, short *a2, u8 *a3, char *s0, u8 *s4, char *s8, u32 *s12, u32 *s16, u32 *s20) {
+u32 cri_uses_aiff_parse_chunks_25f052(u32 a0, int a1, short *a2, u8 *a3, char *s0, u8 *s4, char *s8, u32 *s12, u32 *s16,
+                                      u32 *s20) {
     int iVar1;
     short sVar2;
     u32 uStack_20;
@@ -24808,7 +24808,7 @@ u32 cri_calls_calc_25f052(u32 a0, int a1, short *a2, u8 *a3, char *s0, u8 *s4, c
         uStack_10 = a0;
         psStack_c = a2;
         puStack_8 = a3;
-        iVar1 = cri_calc_25ed3c(a0, &uStack_20, acStack_1c, acStack_18);
+        iVar1 = aiff_parse_chunks(a0, &uStack_20, acStack_1c, acStack_18);
         if ((iVar1 != 0) && (sVar2 = (short)iVar1 - (short)uStack_10, *psStack_c = sVar2, 0 < sVar2)) {
             *s12 = uStack_20;
             *s8 = acStack_1c[0];
@@ -24839,7 +24839,7 @@ u32 aiff_handle_parse_header(int a0, u32 a1, u32 a2) {
 
     *(u16 *)(a0 + 2) = 1;
     a7 = a0 + 0xc;
-    iVar1 = cri_calls_calc_25f052(a1, a2, asStack_14, a7);
+    iVar1 = cri_uses_aiff_parse_chunks_25f052(a1, a2, asStack_14, a7);
     if (iVar1 < 0) {
         return 0;
     }
@@ -25943,7 +25943,7 @@ u32 cri_copy_25fc5c(u16 *a0) {
     u32 in_r0;
 
     if (a0 != NULL) {
-        vram_calc_264f6a(*(u32 *)(a0 + 4));
+        cri_calc_264f6a(*(u32 *)(a0 + 4));
         in_r0 = memset(a0, 0, (int)0xac);
         *a0 = 0;
     }
@@ -25958,7 +25958,7 @@ u32 alt_entry_25fc60(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ai
     u16 *unaff_r14;
 
     if (unaff_r14 != NULL) {
-        vram_calc_264f6a(*(u32 *)(unaff_r14 + 4));
+        cri_calc_264f6a(*(u32 *)(unaff_r14 + 4));
         ain0 = memset(unaff_r14, 0, 0xac);
         *unaff_r14 = 0;
     }
@@ -25985,8 +25985,8 @@ int adx_handle_parse_header(int a0, u32 a1, u32 a2) {
     if ((iVar2 < 0) || (iVar2 = adx_get_highpass_freq(a1, a2, a0 + 0x1c), iVar2 < 0)) {
         iVar2 = 0;
     } else {
-        (*(code *)(&vram_uses_libm_errno_wrap_264f52))(*(u32 *)(a0 + 8), *(u32 *)(a0 + 0x14),
-                                                       (int)*(short *)(a0 + 0x1c), ar7_00);
+        (*(code *)(&adx_calc_coefficients_wrap))(*(u32 *)(a0 + 8), *(u32 *)(a0 + 0x14), (int)*(short *)(a0 + 0x1c),
+                                                 ar7_00);
         iVar2 = a0 + 0x24;
         (*(code *)(&adx_get_loop_info))(a1, a2, a0 + 0x20, iVar2, a0 + 0x26, a0 + 0x28, a0 + 0x2c, a0 + 0x30,
                                         a0 + 0x34);

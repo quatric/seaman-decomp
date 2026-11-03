@@ -1603,7 +1603,7 @@ u32 njCalcVector_like(int a0, float *a1, float *a2, u32 unused_a3, u32 ain0) {
 /*
  * aabb_overlap_minmax  0x8c212808
  * returns 1 when the boxes [a0, a1] and [a2, a3] overlap on all three axes
- * called by: gfxlib_uses_aabb_from_8_points_23340c, gfxlib_uses_noop_fr4_test_2336e8
+ * called by: gfx_box_overlap_test_like, gfxlib_uses_noop_fr4_test_2336e8
  */
 u32 aabb_overlap_minmax(float *a0, float *a1, float *a2, float *a3) {
     float fVar1;
@@ -1840,7 +1840,7 @@ u32 ninja_uses_noop_fr4_test_212946(u32 a0, u32 a1) {
 /*
  * kamui_uses_noop_fr4_test_212a30  0x8c212a30
  * area name: in the kamui library code range; behaviour name: its main named callee is noop_fr4_test
- * called by: gfxlib_uses_aabb_from_8_points_23340c
+ * called by: gfx_box_overlap_test_like
  */
 u32 kamui_uses_noop_fr4_test_212a30(double *a0, float *a1) {
     u32 uVar1;
@@ -4468,7 +4468,7 @@ u32 kamui_uses_noop_fr4_test_212a30(double *a0, float *a1) {
 /*
  * kamui_uses_noop_fr4_test_2136b0  0x8c2136b0
  * area name: in the kamui library code range; behaviour name: its callees mostly do: uses_noop_fr4_test
- * called by: gfxlib_uses_aabb_from_8_points_23340c
+ * called by: gfx_box_overlap_test_like
  */
 u32 kamui_uses_noop_fr4_test_2136b0(int a0, int a1) {
     int iVar1;

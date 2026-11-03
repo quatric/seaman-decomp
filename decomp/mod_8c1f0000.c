@@ -4507,7 +4507,7 @@ u32 gdfs_test_1f30ee(int a0, u32 *a1) {
 /*
  * gdFsSeek  0x8c1f3122
  * moves the sector position (+0x14) of file a0 to a1 from the start (0), the current position (1) or the end (2)
- * called by: ADXSTM_Seek_like, ninja_uses_gdfs_read_blocking_259e80, ninja_uses_memcpy_bytes_259c48
+ * called by: ADXSTM_Seek_like, nj_stream_read_buffered, nj_stream_read_buffered_b
  */
 u32 gdFsSeek(int a0, int a1, int a2) {
     if ((a0 == 0) || (*(short *)(a0 + 0x4c) == 0)) {
@@ -4545,8 +4545,8 @@ u32 gdfs_test_1f316e(int a0) {
 /*
  * gdfs_read_blocking  0x8c1f31c6
  * reads a1 sectors of handle a0 into a2 (DMA when 32-byte aligned, else PIO), retrying while busy, then waits for
- * completion called by: gdfs_load_file_alloc, gdfs_read_sectors_like, ninja_uses_gdfs_read_blocking_259e80,
- * ninja_uses_memcpy_bytes_259c48
+ * completion called by: gdfs_load_file_alloc, gdfs_read_sectors_like, nj_stream_read_buffered,
+ * nj_stream_read_buffered_b
  */
 int gdfs_read_blocking(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -4845,8 +4845,8 @@ u32 gdfs_uses_gdfs_wait_handle_done_1f35ba(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gdfs_get_stat_like  0x8c1f364c
  * status (+0x50) of an open file handle, -10 when it is not open (probably gdFsGetStat)
- * called by: ADXSTM_get_stat, adxstmf_stat_exec, alt_entry_1f2f9c, gdfs_wait_handle_done,
- * ninja_uses_gdfs_read_blocking_259e80, ninja_uses_memcpy_bytes_259c48
+ * called by: ADXSTM_get_stat, adxstmf_stat_exec, alt_entry_1f2f9c, gdfs_wait_handle_done, nj_stream_read_buffered,
+ * nj_stream_read_buffered_b
  */
 u32 gdfs_get_stat_like(int a0) {
     if ((a0 != 0) && (*(short *)(a0 + 0x4c) != 0)) {
@@ -4985,7 +4985,7 @@ u32 alt_entry_1f3682(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gdfs_get_err_like  0x8c1f37a8
  * +0x52 of an open file handle, 0 when it is not open
- * called by: ninja_uses_gdfs_read_blocking_259e80, ninja_uses_memcpy_bytes_259c48
+ * called by: nj_stream_read_buffered, nj_stream_read_buffered_b
  */
 u32 gdfs_get_err_like(int a0) {
     if ((a0 != 0) && (*(short *)(a0 + 0x4c) != 0)) {
@@ -11900,8 +11900,8 @@ u32 sh4_tmu_1f88c0(void) {
 
 /*
  * sh4_tmu_1f88e6  0x8c1f88e6
- * called by: ADXSTM_stop_read, ADXT_uses_ADXT_Stop_like_264c92, adx_server, alt_entry_1f2f9c, alt_entry_1f3682,
- * alt_entry_258e70, alt_entry_264e88, cri_uses_ADXT_Stop_like_264e84 (+10 more)
+ * called by: ADXSTM_stop_read, ADXT_ExecHndl_like, adx_server, adxt_stall_watchdog_like, alt_entry_1f2f9c,
+ * alt_entry_1f3682, alt_entry_258e70, alt_entry_264e88 (+10 more)
  */
 int sh4_tmu_1f88e6(u32 a0) {
     return -1 - *0xffd8000c;
@@ -11910,8 +11910,8 @@ int sh4_tmu_1f88e6(u32 a0) {
 /*
  * int_diff  0x8c1f88f0
  * returns a1 - a0
- * called by: ADXSTM_stop_read, ADXT_uses_ADXT_Stop_like_264c92, adx_server, alt_entry_258e70, alt_entry_264e88,
- * cri_uses_ADXT_Stop_like_264e84, game_frame, game_uses_int_diff_101de0
+ * called by: ADXSTM_stop_read, ADXT_ExecHndl_like, adx_server, adxt_stall_watchdog_like, alt_entry_258e70,
+ * alt_entry_264e88, game_frame, game_uses_int_diff_101de0
  */
 int int_diff(int a0, int a1) {
     return a1 - a0;
@@ -11920,8 +11920,8 @@ int int_diff(int a0, int a1) {
 /*
  * sh4_uses_libgcc_divide_helper_1f88f6  0x8c1f88f6
  * area name: sits between sh4 functions (same compilation unit); behaviour name: its main named callee is
- * libgcc_divide_helper_01051c called by: ADXT_uses_ADXT_Stop_like_264c92, alt_entry_264e88,
- * cri_uses_ADXT_Stop_like_264e84, game_uses_int_diff_101de0
+ * libgcc_divide_helper_01051c called by: ADXT_ExecHndl_like, adxt_stall_watchdog_like, alt_entry_264e88,
+ * game_uses_int_diff_101de0
  */
 int sh4_uses_libgcc_divide_helper_1f88f6(u32 a0) {
     int iVar1;

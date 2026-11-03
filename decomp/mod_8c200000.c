@@ -9066,7 +9066,7 @@ int kamui_set_display_mode_cfg(u32 a0, int a1, u32 a2, u32 a3) {
             ninja_draw_25e884(0x280, 0x1e0);
         } else if (g_8c4a9bc8 == 2) {
             iVar5 = 0;
-            ninja_draw_25e540(0x280, 0x1e0);
+            nj_set_video_mode_timing_like(0x280, 0x1e0);
         } else {
             iVar5 = 1;
         }
@@ -11006,7 +11006,7 @@ u32 shinobi_draw_20a104(u32 a0) {
 /*
  * pvr_wrap  0x8c20a13a
  * only calls pvr_20a844
- * called by: ninja_draw_2588f8
+ * called by: nj_init_view_defaults_like
  */
 u32 pvr_wrap(void) {
     u32 in_fr4;
@@ -11241,7 +11241,7 @@ u32 pvr_wrap_20a356(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, 
 /*
  * colors_float_to_argb_70_80  0x8c20a366
  * packs the RGBA float colours at +0x70 and +0x80 into ARGB words and copies +0x94..+0x9c
- * called by: ninja_draw_2588f8
+ * called by: nj_init_view_defaults_like
  */
 u32 colors_float_to_argb_70_80(int a0) {
     g_8c4a9d64 = (int)(*(float *)(a0 + 0x70) * 255.0) << 0x18 | (int)(*(float *)(a0 + 0x74) * 255.0) << 0x10 |
@@ -11588,7 +11588,7 @@ u32 ta_fifo_20aa40(u32 a0) {
 /*
  * ta_fill_loop_20aacc  0x8c20aacc
  * area name: sits between ta functions (same compilation unit); behaviour name: a loop that writes memory
- * called by: draw_copy_259a70, ninja_uses_write_u32_le_25b12e
+ * called by: draw_copy_259a70, nj_screenshot_to_bmp
  */
 u32 ta_fill_loop_20aacc(int a0) {
     int iVar1;
@@ -13095,7 +13095,7 @@ u32 tex_uses_tex_dim_to_index_20cefe(u32 *a0, u32 a1) {
  * kamui_release_20cf88  0x8c20cf88
  * area name: in the kamui library code range; behaviour name: mostly calls release functions
  * called by: alt_entry_2567fe, alt_entry_25a918, pvr_file_stream_to_vram, tex_calls_test_25a914,
- * tex_list_release_loaded, tex_uses_tex_entry_free_2567f8
+ * tex_list_release_loaded, tex_release_entry_like
  */
 u32 kamui_release_20cf88(u32 *a0) {
     u32 uVar1;
@@ -13178,7 +13178,7 @@ u32 kamui_uses_tex_vq_write_mip_level_20d01a(u32 *a0, u32 a1, u32 a2) {
 /*
  * kamui_uses_vram_20d082  0x8c20d082
  * area name: in the kamui library code range; behaviour name: its main named callee is vram_20a892
- * called by: ninja_uses_write_u32_le_25b12e
+ * called by: nj_screenshot_to_bmp
  */
 u32 kamui_uses_vram_20d082(u32 a0, u32 *a1) {
     u32 uVar1;
@@ -13963,7 +13963,7 @@ u32 ta_fifo_20dd80(u32 a0, u32 a1, int a2, int a3, int s0, u32 s4) {
 /*
  * pixels16_to_bgr24_flip  0x8c20de80
  * converts an a2 x a3 image of 16-bit pixels at a1 (RGB565, or ARGB1555 for s0 1/3) into 24-bit BGR at a0, bottom row
- * first called by: ninja_uses_write_u32_le_25b12e
+ * first called by: nj_screenshot_to_bmp
  */
 u32 pixels16_to_bgr24_flip(u8 *a0, int a1, int a2, int a3, int s0) {
     u32 uVar1;

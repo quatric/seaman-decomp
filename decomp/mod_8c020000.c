@@ -1906,12 +1906,12 @@ u32 game_sound_init(int a0, u32 a1, u32 a2) {
             }
             sd_wait_idle_set_1a8(1, a1, ar6_00, uVar1);
             uVar3 = 0x2d0c4;
-            uVar2 = cri_sound_263840(2, a0 + 0x8c, 0x2d0c4, uVar1);
+            uVar2 = ADXT_Create_like(2, a0 + 0x8c, 0x2d0c4, uVar1);
             *(u32 *)(a0 + 0x74) = uVar2;
             set_field_6d_u8(*(u32 *)(a0 + 0x74), 2);
             for (iVar4 = 0; iVar4 < 3; iVar4 = iVar4 + 1) {
                 uVar3 = 0x208c4;
-                uVar2 = (*(code *)(&cri_sound_263840))(2, a0 + iVar4 * 0x208e0 + 0x2d16c, 0x208c4, uVar1);
+                uVar2 = (*(code *)(&ADXT_Create_like))(2, a0 + iVar4 * 0x208e0 + 0x2d16c, 0x208c4, uVar1);
                 *(u32 *)(0x2d154 + a0 + iVar4 * 0x208e0) = uVar2;
                 (*(code *)(&set_field_6d_u8))(*(u32 *)(0x2d154 + a0 + iVar4 * 0x208e0), 1, uVar3, uVar1);
             }

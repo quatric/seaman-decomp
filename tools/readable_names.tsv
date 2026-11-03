@@ -2439,3 +2439,28 @@
 8c22b5b0	gfx_strips_emit_s32_cull_d	fourth variant of gfx_strips_emit_s32_cull_a with another vertex layout
 8c22c678	gfx_strips_emit_s32_cull_e	fifth variant of gfx_strips_emit_s32_cull_a with another vertex layout
 8c22d770	gfx_strips_emit_s32_cull_f	sixth variant of gfx_strips_emit_s32_cull_a with another vertex layout
+8c23340c	gfx_box_overlap_test_like	tests two 8-corner boxes a0 and a1: rejects on bounding-box overlap first, then checks their faces in detail
+8c234348	dbg_font_print_int_like	prints integer a1 with the debug font at the cell packed in a0
+8c234834	dbg_font_print_float	prints float fr4 with a1 decimals ("%0.*f") with the debug font
+8c23541c	gfx_2d_thick_line_quad	emits a quad of fixed width (0.525 each side) along the 2D line from a0 to a1
+8c235a80	gfx_2d_polyline_uv_like	emits a textured 2D polyline as a strip of thick line quads
+8c23ab90	gfx_light_contrib_a	adds one light's contribution to colour a1 for a vertex at distance fr3/fr11 (range and cone tests)
+8c23ae70	gfx_light_contrib_b	second light contribution routine
+8c23affc	gfx_light_contrib_c	third light contribution routine
+8c23b508	gfx_light_contrib_d	fourth light contribution routine
+8c23b6dc	gfx_light_contrib_e	fifth light contribution routine
+8c2420fe	gfx_strips_reset_vertex_colors_like	walks the strips of a0 and resets each referenced vertex's colour fields to the current defaults
+8c2567f8	tex_release_entry_like	releases texture entry a0: drops palette reference counts for palettised textures and frees its VRAM
+8c257e10	nj_sprite_uv_flip_like	sets up a sprite's texture coordinates from entry a1 of its table, swapping U (flag 4) or V (flag 8)
+8c2588f8	nj_init_view_defaults_like	resets the view globals (screen centre, near and far planes, light state) and the default polygon context
+8c259c48	nj_stream_read_buffered	copies a1 bytes from the GD-ROM stream ring buffer into a0, refilling it with blocking reads as needed
+8c259e80	nj_stream_read_buffered_b	second copy of nj_stream_read_buffered
+8c25b12e	nj_screenshot_to_bmp	reads the frame buffer and writes it to a0 as a 24-bit BMP (header "BM", rows flipped)
+8c25e540	nj_set_video_mode_timing_like	builds the display timing table for the current video mode flags (NTSC/PAL, interlace, VGA) and applies it
+8c25ed3c	aiff_parse_chunks	checks the FORM/AIFF header of a0 and walks its chunks for the format and sound data
+8c260cf8	adx_calc_coefficients	computes the ADX prediction coefficients from cutoff a0 and sample rate a1 (2*pi, sqrt 2 formula)
+8c263840	ADXT_Create_like	takes a free ADXT handle of the eight, carves its work area a1 into ring buffers and creates its stream, player and RNA output
+8c2647f4	adxt_stat_decinfo	once the header is decoded, checks the channel count ("can't play %d ch data") and sizes the start-up buffering
+8c264c92	adxt_stall_watchdog_like	every few frames checks whether playback stopped advancing and flags the handle as stalled after a while
+8c264e84	ADXT_ExecHndl_like	runs the step for the handle's state (decinfo, prepare, play, drain) and then the stall watchdog
+8c2694a4	mwRna_exec_handle_like	updates RNA handle a0: stops it when all channels have drained and keeps its transfer and play position going

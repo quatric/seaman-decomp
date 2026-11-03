@@ -6491,11 +6491,11 @@ int gfx_project_verts_weighted_b(int a0, u32 a1) {
 }
 
 /*
- * gfxlib_uses_aabb_from_8_points_23340c  0x8c23340c
- * area name: in the gfxlib library code range; behaviour name: its main named callee is aabb_from_8_points
+ * gfx_box_overlap_test_like  0x8c23340c
+ * tests two 8-corner boxes a0 and a1: rejects on bounding-box overlap first, then checks their faces in detail
  * called by: Class_129938_m5_01745c
  */
-u32 gfxlib_uses_aabb_from_8_points_23340c(int a0, int a1) {
+u32 gfx_box_overlap_test_like(int a0, int a1) {
     int iVar1;
     u32 uVar2;
     u64 *puVar3;
@@ -8378,8 +8378,7 @@ u32 gfxlib_calc_23403e(void) {
 /*
  * dbg_font_quad_char  0x8c2340a0
  * writes a textured quad for debug-font character a2 at screen position (a0, a1) into the store queue
- * called by: dbg_font_print, dbg_font_print_binary, dbg_font_print_hex, gfxlib_uses_dbg_font_quad_char_234834,
- * gfxlib_uses_libgcc_divide_helper_234348
+ * called by: dbg_font_print, dbg_font_print_binary, dbg_font_print_float, dbg_font_print_hex, dbg_font_print_int_like
  */
 u32 *dbg_font_quad_char(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -8502,10 +8501,10 @@ u32 dbg_font_print(u32 a0, char *a1) {
 }
 
 /*
- * gfxlib_uses_libgcc_divide_helper_234348  0x8c234348
- * area name: in the gfxlib library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
+ * dbg_font_print_int_like  0x8c234348
+ * prints integer a1 with the debug font at the cell packed in a0
  */
-u32 gfxlib_uses_libgcc_divide_helper_234348(u32 a0, int a1, int a2) {
+u32 dbg_font_print_int_like(u32 a0, int a1, int a2) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -8776,11 +8775,11 @@ u32 dbg_font_print_hex(u32 a0, u32 a1, int a2) {
 }
 
 /*
- * gfxlib_uses_dbg_font_quad_char_234834  0x8c234834
- * area name: in the gfxlib library code range; behaviour name: its main named callee is dbg_font_quad_char
+ * dbg_font_print_float  0x8c234834
+ * prints float fr4 with a1 decimals ("%0.*f") with the debug font
  * strings: "%0.*f"
  */
-u32 gfxlib_uses_dbg_font_quad_char_234834(u32 a0, u32 a1) {
+u32 dbg_font_print_float(u32 a0, u32 a1) {
     u32 r7;
     char cVar1;
     int iVar2;
@@ -9880,11 +9879,11 @@ u32 gfx_2d_line_quad(int a0, int a1) {
 }
 
 /*
- * gfxlib_float_calc_23541c  0x8c23541c
- * area name: in the gfxlib library code range; behaviour name: floating-point arithmetic
- * called by: gfxlib_uses_switch_jump_235a80
+ * gfx_2d_thick_line_quad  0x8c23541c
+ * emits a quad of fixed width (0.525 each side) along the 2D line from a0 to a1
+ * called by: gfx_2d_polyline_uv_like
  */
-u32 gfxlib_float_calc_23541c(int a0, int a1) {
+u32 gfx_2d_thick_line_quad(int a0, int a1) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -10240,10 +10239,10 @@ u32 alt_entry_2359ae(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int a
 }
 
 /*
- * gfxlib_uses_switch_jump_235a80  0x8c235a80
- * area name: in the gfxlib library code range; behaviour name: its main named callee is switch_jump
+ * gfx_2d_polyline_uv_like  0x8c235a80
+ * emits a textured 2D polyline as a strip of thick line quads
  */
-u32 gfxlib_uses_switch_jump_235a80(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int ain0) {
+u32 gfx_2d_polyline_uv_like(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, int ain0) {
     u32 uVar1;
     u64 *puVar2;
     u32 *puVar3;
@@ -10332,11 +10331,11 @@ u32 gfxlib_uses_switch_jump_235a80(u32 *a0, u32 unused_a1, u32 unused_a2, u32 un
             }
             puVar3[6] = *(u32 *)(iVar4 + unaff_r14[1]);
             *puVar3 = 0xe0000000;
-            gfxlib_float_calc_23541c(unaff_r12, a0 + 8);
+            gfx_2d_thick_line_quad(unaff_r12, a0 + 8);
             uVar5 = uVar5 + 1;
         } while ((int)uVar5 < unaff_r8);
     }
-    uVar1 = gfxlib_float_calc_23541c(unaff_r11 * 0x20 + unaff_r12, unaff_r12 + 0x40);
+    uVar1 = gfx_2d_thick_line_quad(unaff_r11 * 0x20 + unaff_r12, unaff_r12 + 0x40);
     return uVar1;
 }
 
@@ -10919,7 +10918,7 @@ u8 *pvr_draw_235f84(double *a0) {
 /*
  * aabb_from_8_points  0x8c2360b0
  * computes min (a1) and max (a2) of the eight points a0
- * called by: gfxlib_uses_aabb_from_8_points_23340c, gfxlib_uses_noop_fr4_test_2336e8
+ * called by: gfx_box_overlap_test_like, gfxlib_uses_noop_fr4_test_2336e8
  */
 u32 aabb_from_8_points(float *a0, float *a1, float *a2) {
     float *pfVar1;
@@ -11973,7 +11972,7 @@ u32 gfxlib_calc_237760(void) {
 /*
  * gfx_light_globals_reset  0x8c237770
  * resets the global light colours and parameters and clears the 32-entry light index list
- * called by: ninja_draw_2588f8
+ * called by: nj_init_view_defaults_like
  */
 u32 gfx_light_globals_reset(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 *puVar1;
@@ -13893,7 +13892,7 @@ u32 gfx_texlist_entries_from_mem(u32 *a0, u32 a1, int a2, u32 a3) {
     puVar6 = (u32 *)*a0;
     if (0 < sVar2) {
         do {
-            iVar3 = ninja_uses_memcpy_bytes_259c48(auStack_48, a1, a2, a3);
+            iVar3 = nj_stream_read_buffered(auStack_48, a1, a2, a3);
             if (iVar3 < 0) {
                 return 0xffffffff;
             }
@@ -13945,8 +13944,8 @@ u32 ta_fifo_239012(u32 unused_a0, u32 unused_a1, int a2, u32 a3, u32 s0) {
     puVar1 = (&nj_seek);
     iVar3 = (int)(int)0xffffefe0;
     do {
-        puVar2 = (&ninja_uses_memcpy_bytes_259c48);
-        iVar4 = ninja_uses_memcpy_bytes_259c48(&stack0xfffffff0 + iVar3, 4, a2, a3);
+        puVar2 = (&nj_stream_read_buffered);
+        iVar4 = nj_stream_read_buffered(&stack0xfffffff0 + iVar3, 4, a2, a3);
         if (iVar4 < 0) {
             return 0xffffffff;
         }
@@ -14056,9 +14055,9 @@ u32 pvrt_stream_is_palettized(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a
     u8 auStack_10[4];
     u32 uStack_c;
 
-    iVar1 = ninja_uses_memcpy_bytes_259c48(&iStack_14, 4, unused_a2, a3);
+    iVar1 = nj_stream_read_buffered(&iStack_14, 4, unused_a2, a3);
     if (((iVar1 < 0) || (iStack_14 != 0x54525650)) ||
-        (iVar1 = ninja_uses_memcpy_bytes_259c48(auStack_10, 0xc, unused_a2, a3), iVar1 < 0)) {
+        (iVar1 = nj_stream_read_buffered(auStack_10, 0xc, unused_a2, a3), iVar1 < 0)) {
         return 0xfffffffc;
     }
     nj_seek(0xfffffff0, 1);
@@ -14118,13 +14117,13 @@ u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) 
     if (-1 < iStack_13c) {
         uVar6 = 4;
         piVar4 = &iStack_110;
-        iVar1 = ninja_uses_memcpy_bytes_259c48(piVar4, 4, ar6_00, a3);
+        iVar1 = nj_stream_read_buffered(piVar4, 4, ar6_00, a3);
         if (iVar1 < 0) {
             ninja_close_file();
         } else if (iStack_110 == 0x484d5650) {
             uVar6 = 8;
             piVar4 = &iStack_11c;
-            iVar1 = ninja_uses_memcpy_bytes_259c48(piVar4, 8, ar6_00, a3);
+            iVar1 = nj_stream_read_buffered(piVar4, 8, ar6_00, a3);
             if (iVar1 < 0) {
                 ninja_close_file();
             } else {
@@ -14214,7 +14213,7 @@ u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) 
                         if (iStack_158 == 0) {
                             piStack_124 = g_8c277b08 + iStack_130 * 0x11;
                             nj_seek(4, 1);
-                            iVar1 = ninja_uses_memcpy_bytes_259c48(&piStack_14c, 4, piVar3, a3);
+                            iVar1 = nj_stream_read_buffered(&piStack_14c, 4, piVar3, a3);
                             if (iVar1 < 0) {
                                 uVar6 = 0;
                                 piVar3 = piStack_124 + 5;
@@ -14351,7 +14350,7 @@ u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) 
                                 nj_seek(4, 1);
                                 uVar6 = 4;
                                 ppiVar5 = &piStack_14c;
-                                iVar1 = ninja_uses_memcpy_bytes_259c48(ppiVar5, 4, piVar3, a3);
+                                iVar1 = nj_stream_read_buffered(ppiVar5, 4, piVar3, a3);
                                 if (iVar1 < 0) {
                                     g_8c4aa6ac = iStack_144;
                                     g_8c4aa6b0 = piStack_138;
@@ -14415,7 +14414,7 @@ u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) 
                                     nj_seek(4, 1);
                                     uVar6 = 4;
                                     ppiVar5 = &piStack_14c;
-                                    iVar1 = ninja_uses_memcpy_bytes_259c48(ppiVar5, 4, piVar3, a3);
+                                    iVar1 = nj_stream_read_buffered(ppiVar5, 4, piVar3, a3);
                                     if (iVar1 < 0) {
                                         g_8c4aa6ac = iStack_144;
                                         g_8c4aa6b0 = piStack_138;
@@ -14431,7 +14430,7 @@ u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) 
                                     nj_seek(4, 1);
                                     uVar6 = 4;
                                     ppiVar5 = &piStack_14c;
-                                    iVar1 = ninja_uses_memcpy_bytes_259c48(ppiVar5, 4, piVar3, a3);
+                                    iVar1 = nj_stream_read_buffered(ppiVar5, 4, piVar3, a3);
                                     if (iVar1 < 0) {
                                         g_8c4aa6ac = iStack_144;
                                         g_8c4aa6b0 = piStack_138;
@@ -14492,7 +14491,7 @@ u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) 
                                     nj_seek(4, 1);
                                     uVar6 = 4;
                                     ppiVar5 = &piStack_14c;
-                                    iVar1 = ninja_uses_memcpy_bytes_259c48(ppiVar5, 4, piVar3, a3);
+                                    iVar1 = nj_stream_read_buffered(ppiVar5, 4, piVar3, a3);
                                     if (iVar1 < 0) {
                                         g_8c4aa6ac = iStack_144;
                                         g_8c4aa6b0 = piStack_138;
@@ -15119,8 +15118,8 @@ u32 camera_set_direction_to(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 /*
  * gfxlib_state_switch_23a8d8  0x8c23a8d8
  * area name: in the gfxlib library code range; behaviour name: dispatches on a state or mode value (switch)
- * called by: alt_entry_23c4cc, gfxlib_state_switch_23ab90, gfxlib_state_switch_23ae70, gfxlib_state_switch_23affc,
- * gfxlib_state_switch_23b508, gfxlib_state_switch_23b6dc, gfxlib_state_switch_23c4ba
+ * called by: alt_entry_23c4cc, gfx_light_contrib_a, gfx_light_contrib_b, gfx_light_contrib_c, gfx_light_contrib_d,
+ * gfx_light_contrib_e, gfxlib_state_switch_23c4ba
  */
 int gfxlib_state_switch_23a8d8(u32 a0) {
     int in_r0;
@@ -15282,11 +15281,11 @@ u32 gfxlib_float_calc_23ab30(int a0, int a1) {
 }
 
 /*
- * gfxlib_state_switch_23ab90  0x8c23ab90
- * area name: in the gfxlib library code range; behaviour name: mostly calls state_switch functions
+ * gfx_light_contrib_a  0x8c23ab90
+ * adds one light's contribution to colour a1 for a vertex at distance fr3/fr11 (range and cone tests)
  * decompiler: Heritage AFTER dead removal. Example location: s0xfffffff4 : 0x8c23ac22
  */
-u32 gfxlib_state_switch_23ab90(int a0, float *a1) {
+u32 gfx_light_contrib_a(int a0, float *a1) {
     u32 uVar1;
     float *pfVar2;
     float *pfVar3;
@@ -15542,10 +15541,10 @@ u32 gfxlib_calc_23ae48(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_state_switch_23ae70  0x8c23ae70
- * area name: in the gfxlib library code range; behaviour name: mostly calls state_switch functions
+ * gfx_light_contrib_b  0x8c23ae70
+ * second light contribution routine
  */
-u32 gfxlib_state_switch_23ae70(int a0, u64 *a1) {
+u32 gfx_light_contrib_b(int a0, u64 *a1) {
     u64 *puVar1;
     u64 *puVar2;
     float fVar3;
@@ -15743,10 +15742,10 @@ u32 gfxlib_float_calc_23af2c(int a0, float *a1) {
 }
 
 /*
- * gfxlib_state_switch_23affc  0x8c23affc
- * area name: in the gfxlib library code range; behaviour name: mostly calls state_switch functions
+ * gfx_light_contrib_c  0x8c23affc
+ * third light contribution routine
  */
-u32 gfxlib_state_switch_23affc(int a0, u64 *a1) {
+u32 gfx_light_contrib_c(int a0, u64 *a1) {
     u32 uVar1;
     u64 *puVar2;
     u64 *puVar3;
@@ -16115,10 +16114,10 @@ u32 gfxlib_float_calc_23b484(int a0, int a1) {
 }
 
 /*
- * gfxlib_state_switch_23b508  0x8c23b508
- * area name: in the gfxlib library code range; behaviour name: mostly calls state_switch functions
+ * gfx_light_contrib_d  0x8c23b508
+ * fourth light contribution routine
  */
-u32 gfxlib_state_switch_23b508(int a0, u64 *a1) {
+u32 gfx_light_contrib_d(int a0, u64 *a1) {
     u64 *puVar1;
     u64 *puVar2;
     float fVar3;
@@ -16322,10 +16321,10 @@ u32 gfxlib_float_calc_23b5e8(int a0, float *a1) {
 }
 
 /*
- * gfxlib_state_switch_23b6dc  0x8c23b6dc
- * area name: in the gfxlib library code range; behaviour name: mostly calls state_switch functions
+ * gfx_light_contrib_e  0x8c23b6dc
+ * fifth light contribution routine
  */
-u32 gfxlib_state_switch_23b6dc(int a0, u64 *a1) {
+u32 gfx_light_contrib_e(int a0, u64 *a1) {
     u32 uVar1;
     u64 *puVar2;
     u64 *puVar3;
@@ -20014,9 +20013,9 @@ u32 gfxlib_draw_23d386(u32 *a0) {
 
 /*
  * noop_23d694  0x8c23d694
- * called by: gfxlib_uses_float_to_color_u8_23f35a, gfxlib_uses_float_to_color_u8_23f5e2,
- * gfxlib_uses_float_to_color_u8_23fac8, gfxlib_uses_float_to_color_u8_23fd56, gfxlib_uses_float_to_color_u8_2407e2,
- * gfxlib_uses_float_to_color_u8_240a66, gfxlib_uses_float_to_color_u8_240f4c, gfxlib_uses_float_to_color_u8_241114 (+28
+ * called by: gfx_strips_reset_vertex_colors_like, gfxlib_uses_float_to_color_u8_23f35a,
+ * gfxlib_uses_float_to_color_u8_23f5e2, gfxlib_uses_float_to_color_u8_23fac8, gfxlib_uses_float_to_color_u8_23fd56,
+ * gfxlib_uses_float_to_color_u8_2407e2, gfxlib_uses_float_to_color_u8_240a66, gfxlib_uses_float_to_color_u8_240f4c (+28
  * more)
  */
 u32 noop_23d694(void) {

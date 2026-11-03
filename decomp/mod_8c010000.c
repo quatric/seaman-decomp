@@ -3690,9 +3690,8 @@ u32 libgcc_divide_helper_0103d0(u32 a0, int a1) {
 
 /*
  * libgcc_divide_helper_010468  0x8c010468
- * called by: ADXF_AddPartition, ADXF_LoadPartition, ADXT_GetTime_like, ADXT_buffered_samples_like,
- * ADXT_uses_ADXT_Stop_like_264c92, ADXT_uses_libgcc_divide_helper_264308, ADXT_uses_libgcc_divide_helper_2647f4,
- * adx_parse_header (+58 more)
+ * called by: ADXF_AddPartition, ADXF_LoadPartition, ADXT_ExecHndl_like, ADXT_GetTime_like, ADXT_buffered_samples_like,
+ * ADXT_uses_libgcc_divide_helper_264308, adx_parse_header, adxt_stall_watchdog_like (+58 more)
  */
 int libgcc_divide_helper_010468(u32 a0, u32 a1) {
     u32 uVar1;
@@ -5955,7 +5954,7 @@ int libc_test_0105c4(void) {
 
 /*
  * libgcc_divide_helper_010614  0x8c010614
- * called by: ADXT_uses_libgcc_divide_helper_2647f4, SJRBF_GetChunk_like, SJRBF_UngetChunk_like, alt_entry_200c08,
+ * called by: SJRBF_GetChunk_like, SJRBF_UngetChunk_like, adxt_stat_decinfo, alt_entry_200c08,
  * cri_uses_libgcc_divide_helper_260062, cri_uses_libgcc_divide_helper_260198, date_to_bcd8, day_of_week (+14 more)
  */
 int libgcc_divide_helper_010614(u32 unused_a0, u32 a1) {
@@ -7694,8 +7693,8 @@ u32 noop(void) {
 /*
  * libgcc_movstr_i4  0x8c010838
  * compiler block-copy helper: copies r0 bytes from r2 to r1 in 32-bit words
- * called by: gfxlib_uses_aabb_from_8_points_23340c, gfxlib_uses_noop_fr4_test_2336e8, ninja_draw_2588f8,
- * ninja_draw_25e540, ninja_draw_25e884, ninja_draw_25eb60, pvr_uses_libgcc_divide_helper_25dc60,
+ * called by: gfx_box_overlap_test_like, gfxlib_uses_noop_fr4_test_2336e8, ninja_draw_25e884, ninja_draw_25eb60,
+ * nj_init_view_defaults_like, nj_set_video_mode_timing_like, pvr_uses_libgcc_divide_helper_25dc60,
  * ta_uses_libgcc_movstr_i4_20df7a decompiler: Exceeded maximum restarts with more pending
  */
 u32 libgcc_movstr_i4(u32 a0, u32 a1, u32 a2, u32 a3) {
@@ -11178,7 +11177,7 @@ u32 libm_errno_wrap_013be8(void) {
 /*
  * libm_errno_wrap_013c38  0x8c013c38
  * calls libc_uses_delay_loop_6_011e10 and sets errno to 0x44c for an infinite or 0x44d for a NaN result
- * called by: cri_uses_libm_errno_wrap_260cf8
+ * called by: adx_calc_coefficients
  */
 u32 libm_errno_wrap_013c38(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -11527,8 +11526,8 @@ u8 *memmove_bytes(u8 *a0, u8 *a1, u32 a2) {
 
 /*
  * memset  0x8c013ff8
- * called by: ADXF_Close_like, ADXF_LoadPartition, ADXT_Destroy_like, ADXT_uses_libgcc_divide_helper_264308,
- * adx_lib_init, aiff_handle_parse_header, alt_entry_123eae, alt_entry_1f68f6 (+95 more)
+ * called by: ADXF_Close_like, ADXF_LoadPartition, ADXT_Create_like, ADXT_Destroy_like,
+ * ADXT_uses_libgcc_divide_helper_264308, adx_lib_init, aiff_handle_parse_header, alt_entry_123eae (+95 more)
  */
 u8 *memset(u8 *a0, u32 a1, u32 a2) {
     u8 *puVar1;
@@ -11913,9 +11912,9 @@ u32 strcmp_01439c(u32 a0, u32 a1) {
 
 /*
  * log_message  0x8c0143b0
- * called by: dbg_font_print, filename_add_ext_if_missing, format_output, gfx_texlist_entries_from_mem,
- * gfx_texlist_entries_from_stream, gfxlib_uses_dbg_font_quad_char_234834, libc_uses_log_message_013374,
- * msg_substitute_name (+7 more)
+ * called by: dbg_font_print, dbg_font_print_float, filename_add_ext_if_missing, format_output,
+ * gfx_texlist_entries_from_mem, gfx_texlist_entries_from_stream, libc_uses_log_message_013374, msg_substitute_name (+7
+ * more)
  */
 int log_message(char *a0, u32 a1, u32 a2) {
     char cVar1;
@@ -15586,7 +15585,7 @@ u32 Class_129938_m5_01745c(int a0, int *a1, u32 a2, u32 a3) {
     u8 auStack_64[100];
 
     (**(code **)(*a1 + 0x38))(a1, auStack_64, a2, a3);
-    uVar1 = gfxlib_uses_aabb_from_8_points_23340c(a0 + 0x30, auStack_64);
+    uVar1 = gfx_box_overlap_test_like(a0 + 0x30, auStack_64);
     return uVar1;
 }
 

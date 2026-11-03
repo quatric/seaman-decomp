@@ -4037,10 +4037,10 @@ u32 gfxlib_uses_float_to_color_u8_241d90(int a0, double *a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_uses_noop_2420fe  0x8c2420fe
- * area name: in the gfxlib library code range; behaviour name: its main named callee is noop_23d694
+ * gfx_strips_reset_vertex_colors_like  0x8c2420fe
+ * walks the strips of a0 and resets each referenced vertex's colour fields to the current defaults
  */
-int gfxlib_uses_noop_2420fe(int a0) {
+int gfx_strips_reset_vertex_colors_like(int a0) {
     u16 uVar1;
     int iVar2;
     u64 *unaff_r8;
