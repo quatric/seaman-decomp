@@ -388,7 +388,7 @@ u32 talk_start_event_named(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
 /*
  * talk_set_start_scene  0x8c0309c8
  * sets the talk scene name (JUNGLE, or the stage name plus the stage number) with entry "start"
- * called by: talk_state_switch_10862c, talk_uses_get_field_8_s8_0652f4
+ * called by: creature_pick_talk_topic_a, creature_pick_talk_topic_b
  * strings: "JUNGLE"; "start"
  */
 u32 talk_set_start_scene(int a0, u32 a1, u32 a2, u32 a3) {
@@ -6601,8 +6601,8 @@ u32 get_field_a0_035724(int a0, u32 a1) {
 /*
  * get_field_178_035734  0x8c035734
  * called by: FrogMan_jump_events, FrogMan_update_sleep_light, Higyo_attention_events, Higyo_update_sleep_light,
- * game_uses_get_field_178_035740, game_uses_get_field_178_035858, game_uses_get_field_1_s8_0355cc,
- * game_uses_get_field_1_s8_035994 (+4 more)
+ * creature_pick_talk_topic_a, creature_pick_talk_topic_b, game_uses_get_field_178_035740,
+ * game_uses_get_field_178_035858 (+4 more)
  */
 u32 get_field_178_035734(int a0, u32 unused_a1, u32 a2) {
     return *(u32 *)(0x178 + a0);
@@ -6704,8 +6704,8 @@ u32 game_uses_get_field_178_035858(u32 *a0, u32 unused_a1, int a2, u32 a3) {
 /*
  * get_field_40_03598c  0x8c03598c
  * called by: Class_12a078_m2_05eee0, FrogMan_jump_events, FrogMan_pick_idle_action, FrogMan_update_sleep_light,
- * game_uses_get_field_178_035858, game_uses_get_field_3a_s8_035e94, game_uses_get_word_array_a4_0620d4,
- * talk_uses_get_field_8_s8_0652f4
+ * creature_pick_talk_topic_a, game_uses_get_field_178_035858, game_uses_get_field_3a_s8_035e94,
+ * game_uses_get_word_array_a4_0620d4
  */
 u32 get_field_40_03598c(int a0, u32 a1) {
     return *(u32 *)(a0 + 0x40);

@@ -10884,8 +10884,9 @@ u32 nj_palette_file_load(u32 a0, int *a1, u32 a2, u32 a3) {
 /*
  * matrix_pop_n  0x8c256210
  * pops a0 matrices off the matrix stack
- * called by: CAnimal_draw_029ca8, CAnimal_draw_029dec, CAnimal_draw_088288, CAnimal_draw_model_a, CAnimal_draw_model_b,
- * CAnimal_uses_njGetMatrix_026968, CEnv_draw_with_three_parts_swapped, CSquidLine_uses_matrix_push_0ad354 (+50 more)
+ * called by: CAnimal_draw_029ca8, CAnimal_draw_029dec, CAnimal_draw_at_pose_a, CAnimal_draw_model_a,
+ * CAnimal_draw_model_b, CAnimal_uses_njGetMatrix_026968, CEnv_draw_with_three_parts_swapped,
+ * CSquidLine_uses_matrix_push_0ad354 (+50 more)
  */
 u32 matrix_pop_n(int a0) {
     if (g_8c4aa5a0 - a0 != 0) {
@@ -11036,8 +11037,9 @@ u32 matrix_apply_point_w1(int a0, double *a1, double *a2) {
 /*
  * matrix_push  0x8c256328
  * pushes the current 4x4 matrix onto the matrix stack
- * called by: CAnimal_draw_029ca8, CAnimal_draw_029dec, CAnimal_draw_088288, CAnimal_draw_model_a, CAnimal_draw_model_b,
- * CAnimal_uses_njGetMatrix_026968, CEnv_draw_with_three_parts_swapped, CSquidLine_uses_matrix_push_0ad354 (+50 more)
+ * called by: CAnimal_draw_029ca8, CAnimal_draw_029dec, CAnimal_draw_at_pose_a, CAnimal_draw_model_a,
+ * CAnimal_draw_model_b, CAnimal_uses_njGetMatrix_026968, CEnv_draw_with_three_parts_swapped,
+ * CSquidLine_uses_matrix_push_0ad354 (+50 more)
  */
 u32 matrix_push(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 *puVar1;
@@ -12005,7 +12007,7 @@ u32 njRotateX_like(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 /*
  * njRotateXYZ  0x8c256b0c
  * rotates matrix a0 (NULL: current) by Ninja angles a1, a2, a3
- * called by: CAnimal_draw_029dec, CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968,
+ * called by: CAnimal_draw_029dec, CAnimal_draw_at_pose_a, CAnimal_uses_njGetMatrix_026968,
  * CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec, Class_1298b8_m3_0155e8, Class_1298b8_m5_015720,
  * Class_1298b8_m6_0157f8 (+28 more) decompiler: Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256c66
  */
@@ -12445,7 +12447,7 @@ u32 ninja_float_calc_256e18(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 /*
  * matrix_scale  0x8c256fec
  * scales the matrix rows by fr4, fr5, fr6
- * called by: CAnimal_draw_029dec, CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968,
+ * called by: CAnimal_draw_029dec, CAnimal_draw_at_pose_a, CAnimal_uses_njGetMatrix_026968,
  * CAnimal_uses_njGetMatrix_029af0, CSquidLine_draw_grow_scaled, CSquidLine_uses_matrix_push_0ad354,
  * Class_1298b8_m11_0159ec, Class_1298b8_m4_0156a0 (+26 more)
  */
@@ -18707,7 +18709,7 @@ u32 tex_error_reset(void) {
 /*
  * touch_fields_30_3c  0x8c25b5d0
  * rewrites the four words at +0x30..+0x3c with themselves (no effect)
- * called by: CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968, CAnimal_uses_njGetMatrix_029af0,
+ * called by: CAnimal_draw_at_pose_a, CAnimal_uses_njGetMatrix_026968, CAnimal_uses_njGetMatrix_029af0,
  * CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8,
  * Class_1298b8_m4_0156a0 (+23 more)
  */

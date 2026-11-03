@@ -1992,7 +1992,7 @@ u16 *clear_record_10(u16 *a0) {
 /*
  * color_set_white  0x8c102800
  * a0[0..3] = 1.0
- * called by: Class_12b580_uses_Vec3_ctor_zero_0d7f18, Class_12c1f0_ctor, Class_12c1f0_ctor_kind
+ * called by: Class_12b580_members_ctor_like, Class_12c1f0_ctor, Class_12c1f0_ctor_kind
  */
 u32 *color_set_white(u32 *a0) {
     *a0 = 0x3f800000;
@@ -2103,8 +2103,7 @@ u32 *Class_12c3a4_ctor(u32 *a0) {
  * linear_map_set_range  0x8c102974
  * linear_map_set plus a range (+0xc, +0x10) from fr8, fr9
  * called by: Class_12b580_uses_linear_map_set_0e6ef0, Class_12b758_uses_linear_map_set_0e5c4c,
- * Class_12b930_uses_linear_map_set_0e0da4, Class_12bea8_uses_linear_map_set_range_0d7e80, Class_12c3a4_ctor,
- * linear_map_set
+ * Class_12b930_uses_linear_map_set_0e0da4, Class_12c3a4_ctor, game_uses_linear_map_set_range_0d7e80, linear_map_set
  */
 int linear_map_set_range(int a0) {
     u64 in_dr4;
@@ -2624,7 +2623,7 @@ u32 Higyo_update_sleep_light(int *a0, code *a1, code *a2, u32 a3) {
         ((*(char *)((int)a0 + 0x83) == '\0' || (*(char *)((int)a0 + 0x83) == '\x01')))) {
         pcVar2 = a1;
         pcVar10 = a2;
-        talk_state_switch_10862c(a0, a1, a2, ar7_00);
+        creature_pick_talk_topic_b(a0, a1, a2, ar7_00);
         pcVar4 = (code *)ar7_00;
     }
     iVar3 = get_field_124_027930(*(int *)(a2 + 8), pcVar2, pcVar10, pcVar4);
@@ -2785,7 +2784,7 @@ u32 Higyo_update_sleep_light(int *a0, code *a1, code *a2, u32 a3) {
     talk_history_tick(a0 + 0x27, pcVar2, pcVar10, pcVar4);
     game_uses_Vec3_dtor_1089e4(a0, a1, a2, pcVar4);
     pcVar2 = a2;
-    game_talk_108f3c(a0, a1, a2);
+    creature_set_talk_timeout_b(a0, a1, a2);
     pcVar10 = get_field_124_027930;
     iVar3 = get_field_124_027930(*(int *)(a2 + 8), get_field_124_027930, pcVar2, pcVar4);
     if (iVar3 != 2) {
@@ -4403,11 +4402,11 @@ int talk_complain_tank_env_b(int a0, u32 unused_a1, int a2) {
 }
 
 /*
- * talk_state_switch_10862c  0x8c10862c
- * area name: sits between talk functions (same compilation unit); behaviour name: dispatches on a state or mode value
- * (switch) called by: Higyo_update_sleep_light
+ * creature_pick_talk_topic_b  0x8c10862c
+ * second copy of creature_pick_talk_topic_a with six topics
+ * called by: Higyo_update_sleep_light
  */
-int talk_state_switch_10862c(int a0, u32 a1, int a2, u32 a3) {
+int creature_pick_talk_topic_b(int a0, u32 a1, int a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -4714,11 +4713,11 @@ u32 game_uses_Vec3_dtor_1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
 }
 
 /*
- * game_talk_108f3c  0x8c108f3c
- * area name: game code; nothing names its area yet; behaviour name: mostly calls talk functions
+ * creature_set_talk_timeout_b  0x8c108f3c
+ * second copy of creature_set_talk_timeout_a
  * called by: Higyo_update_sleep_light
  */
-int game_talk_108f3c(int a0, u32 a1, int a2) {
+int creature_set_talk_timeout_b(int a0, u32 a1, int a2) {
     int iVar1;
     u32 uVar2;
     int iVar3;

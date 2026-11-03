@@ -104,8 +104,7 @@ u32 array_destruct_backwards(int a0, code *a1, u32 a2, u32 a3) {
  * vec_new_array  0x8c010120
  * constructs count elements of size bytes with ctor; on failure destroys the built ones with dtor (pairs with
  * vec_delete_array) called by: CMushroomerEgg_ctor, CSquid_Init, Class_12b3b8_ctor, Class_12b580_ctor,
- * Class_12b580_uses_Vec3_ctor_zero_0d7f18, Class_12b758_ctor, Class_12b930_ctor,
- * Class_12b930_uses_Class_129920_ctor_0d0b58 (+25 more)
+ * Class_12b580_members_ctor_like, Class_12b758_ctor, Class_12b930_ctor, Class_12b930_members_ctor (+25 more)
  */
 u32 vec_new_array(int a0, code *a1, code *a2, int a3, u32 s0) {
     int iVar1;
@@ -1999,8 +1998,8 @@ u32 libgcc_divide_helper_010284(u32 a0, int a1, u32 a2) {
 /*
  * libgcc_divide_helper_01031c  0x8c01031c
  * called by: CAnimBody_random_flags_delay, CAnimal_ctor, CAnimal_init_fields_like, CAnimal_m2_02573c,
- * CAnimal_m3_026078, CHerb_LoadGRWait, CProlog_uses_libgcc_divide_helper_0b9d30,
- * Class_129808_uses_libgcc_divide_helper_01679c (+69 more)
+ * CAnimal_m3_026078, CHerb_LoadGRWait, Class_129808_uses_libgcc_divide_helper_01679c, Class_129c70_split_min_value (+69
+ * more)
  */
 int libgcc_divide_helper_01031c(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -11700,8 +11699,8 @@ int qsort_recurse(u32 a0, u32 a1, int *a2, int a3, int ain0) {
 /*
  * rand  0x8c014200
  * called by: CAnimBody_random_flags_delay, CAnimal_ctor, CAnimal_init_fields_like, Class_1297f4_uses_rand_014be4,
- * Class_129808_m0_0147a4, Class_12a0c4_state_switch_0679cc, Class_12a0c4_state_switch_068e64,
- * Class_12a0c4_uses_libgcc_divide_helper_067594 (+62 more)
+ * Class_129808_m0_0147a4, Class_12a0c4_reset_fields, Class_12a0c4_state_switch_0679cc, Class_12a0c4_state_switch_068e64
+ * (+62 more)
  */
 u32 rand(void) {
     u32 uVar1;
@@ -12184,8 +12183,8 @@ int *game_vec_0146f8(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * set_flags_14_60  0x8c014764
  * sets bits 5 and 6 of the flags at +0x14
- * called by: CSquid_Init, Class_12b930_uses_vec_new_array_0d2fd8,
- * Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10, game_uses_set_flags_14_60_0149dc, game_vec_0146f8
+ * called by: CSquid_Init, Class_12b930_members_ctor, Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10,
+ * game_uses_set_flags_14_60_0149dc, game_vec_0146f8
  */
 u32 set_flags_14_60(int a0) {
     u32 uVar1;
@@ -12198,7 +12197,7 @@ u32 set_flags_14_60(int a0) {
 /*
  * set_flag_14_20  0x8c014790
  * sets bit 5 of the flags at +0x14
- * called by: CSquid_Init, Class_12b3b8_ctor, Class_12b930_uses_vec_new_array_0d2fd8,
+ * called by: CSquid_Init, Class_12b3b8_ctor, Class_12b930_members_ctor,
  * Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10, set_flag_14_bit31_and_20, set_flags_14_60
  */
 u32 set_flag_14_20(int a0) {
@@ -12469,7 +12468,7 @@ u32 Class_129808_m3_014978(int a0) {
 
 /*
  * clear_field_2c  0x8c0149d4
- * called by: Class_129808_m3_014978, Class_12bea8_copy_0d7dcc
+ * called by: Class_129808_m3_014978, game_copy_0d7dcc
  */
 u32 clear_field_2c(int a0) {
     *(u32 *)(a0 + 0x2c) = 0;
@@ -12479,7 +12478,7 @@ u32 clear_field_2c(int a0) {
 /*
  * game_uses_set_flags_14_60_0149dc  0x8c0149dc
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_flags_14_60
- * called by: Class_12bea8_uses_set_flags_14_60_0d7e24
+ * called by: game_uses_set_flags_14_60_0d7e24
  */
 u32 game_uses_set_flags_14_60_0149dc(int a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -12533,7 +12532,7 @@ int object_dtor_delete(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * set_flag_14_bit31_and_20  0x8c014a64
  * sets bit 31 of +0x14, then set_flag_14_20
- * called by: CSquid_Init, Class_12b930_uses_vec_new_array_0d2fd8, Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10
+ * called by: CSquid_Init, Class_12b930_members_ctor, Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10
  */
 u32 set_flag_14_bit31_and_20(int a0) {
     u32 uVar1;
@@ -13187,7 +13186,7 @@ u32 CTexture_ReleaseFromVRAM(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * obj_set_texlist  0x8c01538c
  * njSetTexture on the texture list the object keeps at +4
- * called by: CAnimBody_uses_get_field_1c_on_field_b0_026de0, CAnimal_draw_029dec, CAnimal_draw_088288,
+ * called by: CAnimBody_uses_get_field_1c_on_field_b0_026de0, CAnimal_draw_029dec, CAnimal_draw_at_pose_a,
  * CAnimal_draw_model_a, CAnimal_draw_model_b, CAnimal_uses_njGetMatrix_026968, CEnv_set_texlist, CGame_draw_0c3e78 (+75
  * more)
  */
@@ -13210,7 +13209,7 @@ u32 clear_field_4(int a0) {
 /*
  * Class_129908_ctor  0x8c0153b8
  * Class_129920 base, vtable 0x8c129908, +4 points at the inline buffer at +8
- * called by: Class_12b3b8_ctor, Class_12b580_uses_Vec3_ctor_zero_0d7f18, Class_12b930_uses_vec_new_array_0d2fd8
+ * called by: Class_12b3b8_ctor, Class_12b580_members_ctor_like, Class_12b930_members_ctor
  */
 u32 *Class_129908_ctor(u32 *a0, u32 a1) {
     Class_129920_ctor(a0, a1);
@@ -13315,7 +13314,7 @@ u32 set_field_0(u32 *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * get_field_0  0x8c015510
- * called by: CAnimal_draw_029ca8, CAnimal_uses_CAnimal_apply_stage_row_085704, game_state_switch_037034
+ * called by: CAnimal_apply_stage_row_cache_nodes, CAnimal_draw_029ca8, game_state_switch_037034
  */
 u32 get_field_0(u32 *a0) {
     return *a0;
@@ -13898,7 +13897,7 @@ u32 set_field_0_015ad4(u32 *a0, u32 a1, u32 a2) {
 /*
  * game_draw_015adc  0x8c015adc
  * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
- * called by: CEnv_draw_with_three_parts_swapped, CTexture_draw_0d6090, Class_12b580_draw_0f7118,
+ * called by: CEnv_draw_with_three_parts_swapped, CTexture_draw_0d6090, Class_12b580_draw_at_pose,
  * Class_12b580_draw_with_children, Class_12b758_draw_0e4dd0, Class_12c058_draw, Class_12c058_draw_0f577c,
  * game_draw_0d0564 (+8 more)
  */
@@ -13910,12 +13909,12 @@ u32 game_draw_015adc(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_129938_draw_015af8  0x8c015af8
- * area name: only called from Class_129938 methods; behaviour name: mostly calls draw functions
+ * game_draw_015af8  0x8c015af8
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
  * called by: Class_129938_m6_01733c, Class_12b930_draw_0d7410, game_draw_016da8, game_draw_0d092c, game_draw_0d0990,
- * game_draw_0d4124, game_draw_0d46cc, game_draw_0d4900 (+3 more)
+ * game_draw_0d4124, game_draw_0d4900, game_draw_0e4198 (+3 more)
  */
-u32 Class_129938_draw_015af8(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 game_draw_015af8(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = vram_draw_2187ce(*a0, a1, a2, a3);
@@ -13950,7 +13949,7 @@ u32 gfx_object_draw_a_entry_wrap(u32 *a0, u32 a1, u32 a2, u32 a3) {
  * deref_u32  0x8c015b4c
  * called by: CAnimBody_CheckThisMotionData, CAnimBody_SetInterpolate, CAnimBody_uses_get_field_1c_on_field_b0_026de0,
  * CAnimal_uses_njGetMatrix_026968, CSquidLine_uses_matrix_push_0ad354, Class_12a03c_m6_03a65c, Class_12a25c_m6_06e69c,
- * Class_12a7f4_draw_09aad0 (+45 more)
+ * Class_12a7f4_draw_at_pose_motion (+45 more)
  */
 u32 deref_u32(u32 *a0) {
     return *a0;
@@ -14005,8 +14004,8 @@ u32 set_field_0_015bb0(u32 *a0, u32 a1) {
 
 /*
  * get_field_0_015bb8  0x8c015bb8
- * called by: CAnimBody_uses_get_field_1c_on_field_b0_026de0, CAnimal_draw_088288, CAnimal_draw_model_a,
- * CAnimal_draw_model_b, CAnimal_uses_CAnimal_apply_stage_row_085704, CAnimal_uses_njGetMatrix_026968,
+ * called by: CAnimBody_uses_get_field_1c_on_field_b0_026de0, CAnimal_apply_stage_row_cache_nodes,
+ * CAnimal_draw_at_pose_a, CAnimal_draw_model_a, CAnimal_draw_model_b, CAnimal_uses_njGetMatrix_026968,
  * CHeater_CreateModel, CSoilTank_Create (+26 more)
  */
 u32 get_field_0_015bb8(u32 *a0) {
@@ -14104,7 +14103,7 @@ u32 *Class_12988c_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * set_field_1c  0x8c015ccc
- * called by: CIncubater_Create, UsrPointer_LoadTexture, game_uses_get_field_4_0d261c
+ * called by: CIncubater_Create, Class_12b930_uses_get_field_4_0d261c, UsrPointer_LoadTexture
  */
 u32 set_field_1c(int a0, u32 a1) {
     u32 in_r0;
@@ -14115,8 +14114,8 @@ u32 set_field_1c(int a0, u32 a1) {
 
 /*
  * set_field_20  0x8c015cd4
- * called by: CIncubater_Create, UsrPointer_LoadTexture, game_uses_get_field_4_0d261c, input_input_helper_1002a8,
- * input_uses_get_field_4_10031c, set_field_20_on_field_15c
+ * called by: CIncubater_Create, Class_12b930_uses_get_field_4_0d261c, UsrPointer_LoadTexture,
+ * input_input_helper_1002a8, input_uses_get_field_4_10031c, set_field_20_on_field_15c
  */
 u32 set_field_20(int a0, u32 a1) {
     u32 in_r0;
@@ -14405,7 +14404,7 @@ u32 Class_129808_m10_0162bc(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
  * clear_5_words  0x8c0162f8
  * a0[0..4] = 0
  * called by: Class_129808_m6_0166b4, Class_12b350_ctor, Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12bb08_ctor,
- * ambient_sound_update, confirm_exit_save, game_copy_0ff6c4, game_uses_Class_129808_set_model_0bfa78 (+13 more)
+ * ambient_sound_update, confirm_exit_save, game_copy_0ff6c4, game_grid5x5_ctor_like (+13 more)
  */
 u32 *clear_5_words(u32 *a0, u32 a1, u32 unused_a2, u32 a3) {
     a0[4] = 0;
@@ -14436,7 +14435,7 @@ u32 set_fields_0_4_c(u32 *a0, u32 a1, u32 a2, u32 a3) {
  * Class_129808_set_model  0x8c016324
  * +8 = a1 and sets flags 0x80000020 at +0x10
  * called by: CGame_draw_0c3e78, Class_129808_m6_0166b4, Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12bb08_ctor,
- * ambient_sound_update, confirm_exit_save, draw_draw_helper_0cf7a4, game_draw_0c3530 (+12 more)
+ * ambient_sound_update, confirm_exit_save, game_draw_0c3530, game_draw_0c42b0 (+12 more)
  */
 u32 Class_129808_set_model(int a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -14451,8 +14450,7 @@ u32 Class_129808_set_model(int a0, u32 a1, u32 a2) {
  * Class_129808_draw  0x8c016340
  * draws the object's model (+0xc) with its flags (+0x10)
  * called by: CGame_draw_0c3e78, Class_129808_m6_0166b4, Class_12b388_uses_Class_129808_draw_0c5cb4,
- * Class_12b758_draw_0e4dd0, ambient_sound_update, bugbox_3_screen, confirm_exit_save, draw_draw_helper_0cf7a4 (+17
- * more)
+ * Class_12b758_draw_0e4dd0, ambient_sound_update, bugbox_3_screen, confirm_exit_save, game_draw_0c3530 (+17 more)
  */
 u32 Class_129808_draw(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -14501,7 +14499,7 @@ u32 Class_129808_draw_offset(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * Class_129808_copy_016410  0x8c016410
  * area name: sits between Class_129808 functions (same compilation unit); behaviour name: mostly calls copy functions
- * called by: Class_12b3b8_ctor, Class_12b930_copy_017830, Class_12b930_uses_vec_new_array_0d2fd8, Class_12bce0_ctor,
+ * called by: Class_12b3b8_ctor, Class_12b930_copy_017830, Class_12b930_members_ctor, Class_12bce0_ctor,
  * Class_12bec0_ctor, game_uses_Class_12b350_ctor_0bff8c, static_init_vec3s_2787b8
  */
 u32 Class_129808_copy_016410(u32 a0) {
@@ -14523,9 +14521,9 @@ u32 Class_12bea8_copy_01642c(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Class_129808_set_params_by_mode  0x8c016464
  * stores mode a3; mode 1 copies 3 + 1 words and mode 2 copies 6 + 2 words from a1/a2 into its buffers, otherwise it
- * keeps the pointers called by: CSquid_Init, Class_129808_m2_0148d8, Class_12b3b8_ctor,
- * Class_12b930_uses_vec_new_array_0d2fd8, Class_12bea8_copy_01642c,
- * Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10, game_uses_rand_0ae84c, obj_draw_with_part_swapped
+ * keeps the pointers called by: CSquid_Init, Class_129808_m2_0148d8, Class_12b3b8_ctor, Class_12b930_members_ctor,
+ * Class_12bea8_copy_01642c, Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10, game_uses_rand_0ae84c,
+ * obj_draw_with_part_swapped
  */
 u32 Class_129808_set_params_by_mode(int *a0, u32 *a1, u32 *a2, int a3) {
     u32 uVar1;
@@ -14567,7 +14565,7 @@ u32 Class_129808_set_params_by_mode(int *a0, u32 *a1, u32 *a2, int a3) {
 /*
  * Class_129808_update_fields_0164c8  0x8c0164c8
  * area name: sits between Class_129808 functions (same compilation unit); behaviour name: conditionally writes members
- * called by: CSquid_Init, Class_12b930_uses_vec_new_array_0d2fd8, Class_12bea8_draw_ground_quad,
+ * called by: CSquid_Init, Class_12b930_members_ctor, Class_12bea8_draw_ground_quad,
  * Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10, game_uses_obj_set_texlist_0d1168
  */
 int Class_129808_update_fields_0164c8(int a0, u16 *a1, int a2) {
@@ -15171,7 +15169,7 @@ u32 game_draw_016da8(int a0, u32 a1, u32 a2, u32 a3) {
     matrix_push(0, a1, a2, a3, in_PR);
     touch_fields_30_3c(0, a1, a2, a3, in_PR);
     matrix_scale(0, a1, a2, a3, in_PR);
-    Class_129938_draw_015af8(a0 + 0x40, a1, a2, a3);
+    game_draw_015af8(a0 + 0x40, a1, a2, a3);
     uVar1 = matrix_pop_n(1);
     return uVar1;
 }
@@ -15550,7 +15548,7 @@ u32 Class_129938_m6_01733c(int a0, u32 a1, u32 a2, u32 a3) {
             *puVar4 = *puVar3;
         }
     }
-    uVar2 = Class_129938_draw_015af8(a0 + 0x90, a1, a2, a3);
+    uVar2 = game_draw_015af8(a0 + 0x90, a1, a2, a3);
     return uVar2;
 }
 
@@ -17594,7 +17592,7 @@ u32 rotate_y_degrees(void) {
  * rotate_degrees  0x8c019160
  * rotates the current matrix by fr4 degrees (converted to a Ninja angle)
  * called by: Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b930_draw_0d7354, Class_12b930_draw_0d7410,
- * game_draw_0d4124, game_draw_0d46cc, matrix_draw_0d4428
+ * game_draw_0d4124, game_draw_with_texture_variant_b, matrix_draw_0d4428
  */
 u32 rotate_degrees(void) {
     u32 r6;

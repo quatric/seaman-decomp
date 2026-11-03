@@ -8604,7 +8604,7 @@ u32 FrogMan_update_sleep_light(int *a0, code *a1, code *a2) {
         if ((pcVar4 == NULL) || (pcVar4 == (code *)0x1)) {
             pcVar4 = a1;
             pcVar11 = a2;
-            talk_uses_get_field_8_s8_0652f4(a0, a1, a2, 0x83);
+            creature_pick_talk_topic_a(a0, a1, a2, 0x83);
         }
     }
     if (((a0[1] != 1) && (iVar9 = (int)(char)a0[0x26], iVar9 < 10)) && (-1 < iVar9)) {
@@ -8815,7 +8815,7 @@ u32 FrogMan_update_sleep_light(int *a0, code *a1, code *a2) {
     get_field_40_05eea0(a0);
     FrogMan_ending_event(a0, a1, a2, ar7_00);
     pcVar4 = a2;
-    game_uses_get_field_0_s8_065cb0(a0, a1, a2);
+    creature_set_talk_timeout_a(a0, a1, a2);
     iVar9 = get_field_124_027930(*(int *)(a2 + 8), a1, pcVar4, ar7_00);
     if (iVar9 != 2) {
         pcVar11 = a2;
@@ -9030,8 +9030,8 @@ int get_field_4_s8(int a0) {
 
 /*
  * get_field_770_05eeb8  0x8c05eeb8
- * called by: FrogMan_ending_event, FrogMan_update_sleep_light, Higyo_update_sleep_light, game_uses_Vec3_dtor_1089e4,
- * talk_state_switch_10862c, talk_uses_get_field_8_s8_0652f4
+ * called by: FrogMan_ending_event, FrogMan_update_sleep_light, Higyo_update_sleep_light, creature_pick_talk_topic_a,
+ * creature_pick_talk_topic_b, game_uses_Vec3_dtor_1089e4
  */
 u32 get_field_770_05eeb8(int a0) {
     return *(u32 *)(0x770 + a0);
@@ -9048,8 +9048,8 @@ int get_field_bc_s8(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * get_field_24_05eed0  0x8c05eed0
- * called by: FrogMan_update_sleep_light, Higyo_update_sleep_light, talk_state_switch_10862c,
- * talk_uses_get_field_8_s8_0652f4
+ * called by: FrogMan_update_sleep_light, Higyo_update_sleep_light, creature_pick_talk_topic_a,
+ * creature_pick_talk_topic_b
  */
 u32 get_field_24_05eed0(int a0, u32 a1) {
     return *(u32 *)(a0 + 0x24);

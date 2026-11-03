@@ -5648,7 +5648,7 @@ u32 CProlog_record_visit_date(int a0, u32 unused_a1, u32 a2, u32 a3) {
     *(u32 *)(0xbc + a0) = uVar1;
     iVar3 = a0 + *(int *)(0xbc + a0);
     *(char *)(iVar3 + 4) = *(char *)(iVar3 + 4) + '\x01';
-    uVar1 = CProlog_uses_libgcc_divide_helper_0b9d30(a0, auStack_1c, 0x8c431a68 + 0x14);
+    uVar1 = date_to_days_since_1950(a0, auStack_1c, 0x8c431a68 + 0x14);
     *(u32 *)(0xc8 + a0) = uVar1;
     iVar3 = 0;
     for (iVar4 = 0; iVar4 < 8; iVar4 = iVar4 + 1) {
@@ -5683,11 +5683,11 @@ u32 rtc_get_date_wrap(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * CProlog_uses_libgcc_divide_helper_0b9d30  0x8c0b9d30
- * area name: only called from CProlog methods; behaviour name: its main named callee is libgcc_divide_helper_01031c
+ * date_to_days_since_1950  0x8c0b9d30
+ * counts the days from 1 January 1950 to date a1 (year, month, day), with leap years
  * called by: CProlog_record_visit_date
  */
-int CProlog_uses_libgcc_divide_helper_0b9d30(u32 unused_a0, u16 *a1, u16 *a2) {
+int date_to_days_since_1950(u32 unused_a0, u16 *a1, u16 *a2) {
     u8 bVar1;
     int iVar2;
     u16 *ar6_00;
@@ -6214,7 +6214,7 @@ u32 show_date_time_message(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
         }
         sprintf(auStack_24, a1, unused_a2, a3, "%s.%2d,%2d:%02d PM");
     }
-    uVar1 = game_uses_obj_set_texlist_0c4370(&g_8c2b5628, auStack_24, 0, 0xe);
+    uVar1 = game_draw_sprite_text(&g_8c2b5628, auStack_24, 0, 0xe);
     return uVar1;
 }
 
@@ -9642,7 +9642,7 @@ u32 input_uses_set_fields_0_4_c_0bf804(int a0, u32 a1, u32 unused_a2, u32 a3) {
         g_8c436774 = 0x43aa0000;
         uVar4 = 0x10;
         uVar3 = 0;
-        game_uses_obj_set_texlist_0c4370(&g_8c2b5628, a0 + 0x10, 0, 0x10);
+        game_draw_sprite_text(&g_8c2b5628, a0 + 0x10, 0, 0x10);
     }
     uVar2 = free_if_nonnull_wrap_0151a0(auStack_60, 0xffffffff, uVar3, uVar4);
     return uVar2;

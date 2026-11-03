@@ -2421,11 +2421,11 @@ int game_draw_0c42b0(int a0) {
 }
 
 /*
- * game_uses_obj_set_texlist_0c4370  0x8c0c4370
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is obj_set_texlist
+ * game_draw_sprite_text  0x8c0c4370
+ * draws string a1 one character sprite at a time from texture list a2, stepping right by a3 times the character width
  * called by: game_uses_sprintf_0d1858, input_uses_set_fields_0_4_c_0bf804, show_date_time_message
  */
-u32 game_uses_obj_set_texlist_0c4370(int a0, int a1, int a2, int a3) {
+u32 game_draw_sprite_text(int a0, int a1, int a2, int a3) {
     char cVar1;
     short sVar2;
     float fVar3;
@@ -2572,8 +2572,9 @@ u32 game_uses_obj_set_texlist_0c4370(int a0, int a1, int a2, int a3) {
 
 /*
  * game_uses_clear_5_words_0c453c  0x8c0c453c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is clear_5_words
- * called by: confirm_exit_save, game_draw_0c3530, input_uses_set_fields_0_4_c_0bf804, startup_warning_check
+ * area name: sits between game functions (same compilation unit); behaviour name: its main named callee is
+ * clear_5_words called by: confirm_exit_save, game_draw_0c3530, input_uses_set_fields_0_4_c_0bf804,
+ * startup_warning_check
  */
 u32 game_uses_clear_5_words_0c453c(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -9131,11 +9132,11 @@ u32 ret_const_0_0cebf0(void) {
 }
 
 /*
- * game_uses_vec_new_array_0cebf8  0x8c0cebf8
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is vec_new_array
+ * game_grid5x5_ctor_like  0x8c0cebf8
+ * constructs the 5x5 grid minigame's cell arrays and sets its default colours and timers
  * called by: static_init_vec3s_4368d0
  */
-u32 *game_uses_vec_new_array_0cebf8(u32 *a0) {
+u32 *game_grid5x5_ctor_like(u32 *a0) {
     int iVar1;
     code *pcVar2;
     code *pcVar3;
@@ -9250,7 +9251,7 @@ u32 *game_uses_vec_new_array_0cebf8(u32 *a0) {
 
 /*
  * game_release_0cee98  0x8c0cee98
- * area name: game code; nothing names its area yet; behaviour name: mostly calls release functions
+ * area name: sits between game functions (same compilation unit); behaviour name: mostly calls release functions
  */
 int game_release_0cee98(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
@@ -9270,7 +9271,7 @@ int game_release_0cee98(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * game_release_0ceed8  0x8c0ceed8
- * area name: game code; nothing names its area yet; behaviour name: mostly calls release functions
+ * area name: sits between game functions (same compilation unit); behaviour name: mostly calls release functions
  */
 int game_release_0ceed8(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
@@ -9387,7 +9388,7 @@ int game_grid5x5_sequence_tick(int *a0, int a1, u32 unused_a2, u32 a3) {
 /*
  * game_fill_loop_0cf144  0x8c0cf144
  * area name: sits between game functions (same compilation unit); behaviour name: a loop that writes memory
- * called by: game_grid5x5_sequence_tick, game_release_0cbb2c, game_uses_vec_new_array_0cebf8
+ * called by: game_grid5x5_ctor_like, game_grid5x5_sequence_tick, game_release_0cbb2c
  */
 u32 game_fill_loop_0cf144(int a0, u32 a1) {
     int iVar1;
@@ -9585,8 +9586,8 @@ int game_calc_0cf63c(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         } else {
             iVar1 = *(int *)(0x14c + (int)a0);
             if (iVar1 == 3) {
-                iVar1 = (*(code *)(&draw_draw_helper_0cf7a4))(a0, a0 + *(short *)(0x148 + (int)a0) * 5 + 1,
-                                                              (int)*(short *)(0x148 + (int)a0), a3);
+                iVar1 = (*(code *)(&game_grid5x5_draw))(a0, a0 + *(short *)(0x148 + (int)a0) * 5 + 1,
+                                                        (int)*(short *)(0x148 + (int)a0), a3);
             }
         }
     }
@@ -9641,10 +9642,10 @@ u32 draw_sprite_frame_by_parity(int a0, u64 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * draw_draw_helper_0cf7a4  0x8c0cf7a4
- * area name: sits between draw functions (same compilation unit); behaviour name: mostly calls draw functions
+ * game_grid5x5_draw  0x8c0cf7a4
+ * draws each of the 25 grid cells as a 50-pixel textured quad at its current position
  */
-u32 draw_draw_helper_0cf7a4(int a0, int a1, int a2, u32 a3) {
+u32 game_grid5x5_draw(int a0, int a1, int a2, u32 a3) {
     short sVar1;
     short sVar2;
     u64 *puVar3;
@@ -9877,7 +9878,7 @@ u32 static_init_vec3s_4368d0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     uVar3 = 0x8c43696c;
     pcVar2 = free_if_nonnull_wrap_0151a0;
     global_list_push(uVar1, free_if_nonnull_wrap_0151a0, 0x8c43696c, a3);
-    uVar1 = game_uses_vec_new_array_0cebf8(&g_8c436a28);
+    uVar1 = game_grid5x5_ctor_like(&g_8c436a28);
     uVar3 = 0x8c436a1c;
     pcVar2 = game_release_0cfed8;
     global_list_push(uVar1, game_release_0cfed8, 0x8c436a1c, a3);

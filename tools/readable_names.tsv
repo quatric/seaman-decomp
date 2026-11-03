@@ -2520,3 +2520,29 @@
 8c0fb494	script_cmd_load_pack_wait	waits for the command's pack entry to finish loading, then releases it and jumps to the next label
 8c0d1754	game_box_screen_bounds_like	transforms the eight corners a1 by the current matrix and returns their screen-space bounds
 8c258b26	njInitVertexBuffer_like	splits the vertex buffer between the polygon lists by the given percentages, allocates it and sets the texture memory size
+8c0652f4	creature_pick_talk_topic_a	picks the most pressing active need as the talk topic (+0x118) with its level (+0xfc), falling back to idle topics 7..9
+8c10862c	creature_pick_talk_topic_b	second copy of creature_pick_talk_topic_a with six topics
+8c065cb0	creature_set_talk_timeout_a	sets the talk wait time (+0x94) from the creature's state and current topic
+8c108f3c	creature_set_talk_timeout_b	second copy of creature_set_talk_timeout_a
+8c067594	Class_12a0c4_reset_fields	picks a random variant 0..3 and resets the object's counters, flags and default vectors
+8c068890	state_record_copy_like	copies a 0xa0-byte state record field by field
+8c0b9d30	date_to_days_since_1950	counts the days from 1 January 1950 to date a1 (year, month, day), with leap years
+8c0c4370	game_draw_sprite_text	draws string a1 one character sprite at a time from texture list a2, stepping right by a3 times the character width
+8c0cebf8	game_grid5x5_ctor_like	constructs the 5x5 grid minigame's cell arrays and sets its default colours and timers
+8c0cf7a4	game_grid5x5_draw	draws each of the 25 grid cells as a 50-pixel textured quad at its current position
+8c0d2fd8	Class_12b930_members_ctor	constructs the object's member lists and arrays (0x226 records of 0x88 bytes among them) and sets its defaults
+8c0d59a4	Class_12b930_spawn_particles_like	starts up to a1 free particles from the pool of 0x226 (0x88 bytes each) at random offsets around the emitter a2
+8c0d7cb0	Class_12bea8_update_particles	runs the update virtual of each live particle (0x38-byte records) and advances the emitter's frame counter
+8c0d7f18	Class_12b580_members_ctor_like	constructs the object's vectors, colour, particle pool (500 records) and lists and sets its defaults
+8c088288	CAnimal_draw_at_pose_a	sets the creature's texture list, pushes a matrix, applies its position, rotation (+0x58, degrees) and scale and draws its model
+8c09aad0	Class_12a7f4_draw_at_pose_motion	draws the object at its position, rotation and scale with its current motion (gfx_draw_motion_link_alt_a)
+8c09c930	game_draw_at_pose_object_c	draws the object at its position, rotation and scale through gfx_object_draw_c_entry
+8c0a53b0	Class_12ad50_draw_at_pose_motion	draws the object at its position, rotation and scale with its current motion (gfx_draw_motion_link_alt_a)
+8c0add00	game_draw_at_pose_motion_frame	draws the object at its pose with the motion of its animation body at the current frame
+8c09dec8	Class_12ab2c_draw_with_texture_variant	swaps the selected texture variant (+0xcc4) into the first texture slot and draws the object at its pose
+8c09e2e8	game_draw_with_texture_variant	swaps the selected texture variant (+0xcc4) into the first texture slot and draws the object at its pose
+8c085704	CAnimal_apply_stage_row_cache_nodes	applies the stage row and caches the model's bone nodes (+0x344..+0x350), pointing two of them at the stage's texture
+8c0d46cc	game_draw_with_texture_variant_b	swaps texture variant +4 into the first texture slot, sets the colour and draws the object and its on-screen points
+8c0f7118	Class_12b580_draw_at_pose	sets the object's colour, pushes a matrix, applies its position, rotation (+0x18, degrees) and scale and draws it
+8c0f5398	game_random_point_in_zone_a	picks a random point a1 inside one of three preset ranges chosen by a2 (zero for 3)
+8c0f66ac	game_random_point_in_zone_b	second copy of game_random_point_in_zone_a with a different first range

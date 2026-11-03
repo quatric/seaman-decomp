@@ -2812,11 +2812,10 @@ u32 CAnimal_m3_085550(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CAnimal_uses_CAnimal_apply_stage_row_085704  0x8c085704
- * area name: sits between CAnimal functions (same compilation unit); behaviour name: its main named callee is
- * CAnimal_apply_stage_row
+ * CAnimal_apply_stage_row_cache_nodes  0x8c085704
+ * applies the stage row and caches the model's bone nodes (+0x344..+0x350), pointing two of them at the stage's texture
  */
-int CAnimal_uses_CAnimal_apply_stage_row_085704(int a0, u32 a1, u32 a2, u32 a3) {
+int CAnimal_apply_stage_row_cache_nodes(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -4392,10 +4391,11 @@ u32 noop_088284(void) {
 }
 
 /*
- * CAnimal_draw_088288  0x8c088288
- * area name: sits between CAnimal functions (same compilation unit); behaviour name: mostly calls draw functions
+ * CAnimal_draw_at_pose_a  0x8c088288
+ * sets the creature's texture list, pushes a matrix, applies its position, rotation (+0x58, degrees) and scale and
+ * draws its model
  */
-u32 CAnimal_draw_088288(int a0, u32 a1, u32 a2) {
+u32 CAnimal_draw_at_pose_a(int a0, u32 a1, u32 a2) {
     u32 r7;
     u32 uVar1;
     float fVar2;
@@ -5513,7 +5513,7 @@ u32 game_vec_08a948(int a0, float *a1, int a2, u32 a3) {
     cVar5 = '\0';
     cVar4 = '\0';
     ar6_00 = a2;
-    game_uses_rand_0f5398(a0, a1, a2);
+    game_random_point_in_zone_a(a0, a1, a2);
     Vec3_ctor_copy(auStack_20, a1, ar6_00, a3);
     if (a2 == 0) {
         Vec3_set_one_08a9b8(a0 + 0x5c);

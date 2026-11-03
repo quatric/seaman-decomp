@@ -962,9 +962,9 @@ u32 CAnimal_m7_0f49b8(int a0, int *a1, u32 a2, u32 a3) {
 /*
  * game_calls_calc_0f4b44  0x8c0f4b44
  * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: calc
- * called by: CAnimal_draw_088288, Class_12b3b8_uses_object_dtor_delete_0e7a78,
- * Class_12b580_uses_list_node_next_wrap_0da754, game_draw_038b04, game_draw_09c930, game_uses_light_set_vec_0da88c,
- * game_uses_light_set_vec_0df8d0, game_uses_matrix_push_0cc524 (+1 more)
+ * called by: CAnimal_draw_at_pose_a, Class_12b3b8_uses_object_dtor_delete_0e7a78,
+ * Class_12b580_uses_list_node_next_wrap_0da754, game_draw_038b04, game_draw_at_pose_object_c,
+ * game_uses_light_set_vec_0da88c, game_uses_light_set_vec_0df8d0, game_uses_matrix_push_0cc524 (+1 more)
  */
 u32 game_calls_calc_0f4b44(int a0) {
     u32 uVar1;
@@ -1526,7 +1526,7 @@ u32 CAnimal_calls_calc_0f5308(void) {
  * game_update_fields_0f532c  0x8c0f532c
  * area name: game code; nothing names its area yet; behaviour name: conditionally writes members
  * called by: CFrogManEgg_ctor, CFrogManLine_ctor, CHigyoEgg_ctor, CMothEgg_ctor, CMothLine_ctor, CMushroomerEgg_ctor,
- * CSpiderEgg_ctor, Class_12a0c4_uses_libgcc_divide_helper_067594 (+2 more)
+ * CSpiderEgg_ctor, Class_12a0c4_reset_fields (+2 more)
  */
 u32 game_update_fields_0f532c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1550,11 +1550,11 @@ u32 Class_12bec0_calc_0f5368(int a0) {
 }
 
 /*
- * game_uses_rand_0f5398  0x8c0f5398
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is rand
+ * game_random_point_in_zone_a  0x8c0f5398
+ * picks a random point a1 inside one of three preset ranges chosen by a2 (zero for 3)
  * called by: game_vec_08a948
  */
-u32 *game_uses_rand_0f5398(int a0, double *a1, int a2) {
+u32 *game_random_point_in_zone_a(int a0, double *a1, int a2) {
     u32 uVar1;
     int iVar2;
     u32 *puVar3;
@@ -2789,10 +2789,10 @@ LAB_8c0f6620:
 }
 
 /*
- * game_uses_rand_0f66ac  0x8c0f66ac
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is rand
+ * game_random_point_in_zone_b  0x8c0f66ac
+ * second copy of game_random_point_in_zone_a with a different first range
  */
-u32 *game_uses_rand_0f66ac(int a0, double *a1, int a2) {
+u32 *game_random_point_in_zone_b(int a0, double *a1, int a2) {
     u32 uVar1;
     int iVar2;
     u32 *puVar3;
@@ -2907,7 +2907,7 @@ u32 pos_add_random_offset(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * game_vec_0f6870  0x8c0f6870
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * area name: sits between game functions (same compilation unit); behaviour name: mostly calls vec functions
  */
 int game_vec_0f6870(int a0, u32 a1, u32 a2, u32 a3) {
     Vec3_ctor_zero(a0, a1, a2);
@@ -3641,12 +3641,12 @@ u32 game_vec_0f6ac4(u64 *a0, int *a1, u32 a2) {
 }
 
 /*
- * Class_12b580_draw_0f7118  0x8c0f7118
- * area name: only called from Class_12b580 methods; behaviour name: mostly calls draw functions
+ * Class_12b580_draw_at_pose  0x8c0f7118
+ * sets the object's colour, pushes a matrix, applies its position, rotation (+0x18, degrees) and scale and draws it
  * called by: Class_12b580_draw_with_children, game_draw_0df668, game_uses_matrix_apply_point_w1_wrap_0df250,
  * game_uses_noop_0de6d0, game_uses_noop_0deb60, game_uses_noop_0def78
  */
-u32 Class_12b580_draw_0f7118(int a0, u32 a1, u32 a2) {
+u32 Class_12b580_draw_at_pose(int a0, u32 a1, u32 a2) {
     u32 r7;
     u32 uVar1;
     float fVar2;
@@ -4482,8 +4482,7 @@ u32 speech_restart(int a0, u32 a1, u32 a2, u32 a3) {
  * speech_request  0x8c0f8320
  * speech_start when the player is idle (+0x1014 == 0); 0 otherwise
  * called by: FrogMan_gratification_events, FrogMan_jump_events, FrogMan_react_tap, FrogMan_react_touch,
- * FrogMan_update_sleep_light, Higyo_attention_events, Higyo_update_sleep_light, game_uses_speech_is_playing_0bad68 (+6
- * more)
+ * FrogMan_update_sleep_light, Higyo_attention_events, Higyo_update_sleep_light, creature_pick_talk_topic_a (+6 more)
  */
 u32 speech_request(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;

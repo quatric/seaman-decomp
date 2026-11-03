@@ -6329,10 +6329,10 @@ u32 noop_09aacc(void) {
 }
 
 /*
- * Class_12a7f4_draw_09aad0  0x8c09aad0
- * area name: sits between Class_12a7f4 functions (same compilation unit); behaviour name: mostly calls draw functions
+ * Class_12a7f4_draw_at_pose_motion  0x8c09aad0
+ * draws the object at its position, rotation and scale with its current motion (gfx_draw_motion_link_alt_a)
  */
-u32 Class_12a7f4_draw_09aad0(int a0, u32 a1, u32 a2) {
+u32 Class_12a7f4_draw_at_pose_motion(int a0, u32 a1, u32 a2) {
     u32 r7;
     u32 uVar1;
     u32 ar5_00;
@@ -8015,10 +8015,10 @@ u32 save_pose_record_09c8d8(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_draw_09c930  0x8c09c930
- * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
+ * game_draw_at_pose_object_c  0x8c09c930
+ * draws the object at its position, rotation and scale through gfx_object_draw_c_entry
  */
-u32 game_draw_09c930(int a0, u32 a1, u32 a2) {
+u32 game_draw_at_pose_object_c(int a0, u32 a1, u32 a2) {
     u32 r7;
     u32 ar4_00;
     int a4;
@@ -8913,11 +8913,10 @@ u32 lights_2_to_4_off(void) {
 }
 
 /*
- * Class_12ab2c_uses_get_field_1c_on_field_b0_09dec8  0x8c09dec8
- * area name: sits between Class_12ab2c functions (same compilation unit); behaviour name: its main named callee is
- * get_field_1c_on_field_b0
+ * Class_12ab2c_draw_with_texture_variant  0x8c09dec8
+ * swaps the selected texture variant (+0xcc4) into the first texture slot and draws the object at its pose
  */
-int Class_12ab2c_uses_get_field_1c_on_field_b0_09dec8(int a0, u32 a1, u32 a2, u32 a3) {
+int Class_12ab2c_draw_with_texture_variant(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int *piVar2;
     int iVar3;
@@ -9055,7 +9054,7 @@ int Class_12ab2c_uses_get_field_1c_on_field_b0_09dec8(int a0, u32 a1, u32 a2, u3
 
 /*
  * get_field_24c_09e1f8  0x8c09e1f8
- * called by: Class_12ab2c_uses_get_field_1c_on_field_b0_09dec8, game_uses_get_field_1c_on_field_b0_09e2e8
+ * called by: Class_12ab2c_draw_with_texture_variant, game_draw_with_texture_variant
  */
 u32 get_field_24c_09e1f8(int a0) {
     return *(u32 *)(0x24c + a0);
@@ -9154,10 +9153,10 @@ u32 game_vec_09e204(int a0) {
 }
 
 /*
- * game_uses_get_field_1c_on_field_b0_09e2e8  0x8c09e2e8
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_1c_on_field_b0
+ * game_draw_with_texture_variant  0x8c09e2e8
+ * swaps the selected texture variant (+0xcc4) into the first texture slot and draws the object at its pose
  */
-int game_uses_get_field_1c_on_field_b0_09e2e8(int a0, u32 a1, u32 a2, u32 a3) {
+int game_draw_with_texture_variant(int a0, u32 a1, u32 a2, u32 a3) {
     int *piVar1;
     int iVar2;
     u32 ar5_00;

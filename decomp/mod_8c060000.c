@@ -1280,7 +1280,7 @@ u32 set_field_2c(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * Vec3_assign_wrap_063818  0x8c063818
  * called by: Class_12acc8_m1_09f470, FrogMan_ending_event, FrogMan_jump_events, FrogMan_react_tap, FrogMan_react_touch,
- * Higyo_attention_events, Higyo_react_tap, game_uses_Vec3_dtor_1089e4 (+2 more)
+ * Higyo_attention_events, Higyo_react_tap, creature_pick_talk_topic_a (+2 more)
  */
 u32 Vec3_assign_wrap_063818(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -2034,11 +2034,11 @@ int talk_complain_tank_env(int a0, u32 unused_a1, int a2) {
 }
 
 /*
- * talk_uses_get_field_8_s8_0652f4  0x8c0652f4
- * area name: sits between talk functions (same compilation unit); behaviour name: its main named callee is
- * get_field_8_s8 called by: FrogMan_update_sleep_light
+ * creature_pick_talk_topic_a  0x8c0652f4
+ * picks the most pressing active need as the talk topic (+0x118) with its level (+0xfc), falling back to idle
+ * topics 7..9 called by: FrogMan_update_sleep_light
  */
-int talk_uses_get_field_8_s8_0652f4(int a0, u32 a1, int a2, u32 a3) {
+int creature_pick_talk_topic_a(int a0, u32 a1, int a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 ar5_00;
@@ -2388,11 +2388,11 @@ int set_field_c8(int a0, u32 a1) {
 }
 
 /*
- * game_uses_get_field_0_s8_065cb0  0x8c065cb0
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_0_s8
+ * creature_set_talk_timeout_a  0x8c065cb0
+ * sets the talk wait time (+0x94) from the creature's state and current topic
  * called by: FrogMan_update_sleep_light
  */
-int game_uses_get_field_0_s8_065cb0(int a0, u32 a1, int a2) {
+int creature_set_talk_timeout_a(int a0, u32 a1, int a2) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -3295,7 +3295,7 @@ int Class_12a0c4_ctor(int a0, u32 a1) {
     Vec3_ctor_zero(a0 + 0x268, ar5_00, ar6_00);
     Vec3_set_zero(a0 + 0x278);
     Vec3_set_one(a0 + 0x284);
-    Class_12a0c4_uses_libgcc_divide_helper_067594(a0, ar5_00, ar6_00, ar7_00);
+    Class_12a0c4_reset_fields(a0, ar5_00, ar6_00, ar7_00);
     return a0;
 }
 
@@ -3326,11 +3326,11 @@ int Class_12a0c4_m0_0674c8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12a0c4_uses_libgcc_divide_helper_067594  0x8c067594
- * name hint from a string it uses: herb3 pvm; area name: only called from Class_12a0c4 methods; behaviour name: its
- * main named callee is libgcc_divide_helper_01031c called by: Class_12a0c4_ctor
+ * Class_12a0c4_reset_fields  0x8c067594
+ * picks a random variant 0..3 and resets the object's counters, flags and default vectors
+ * called by: Class_12a0c4_ctor
  */
-u32 Class_12a0c4_uses_libgcc_divide_helper_067594(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12a0c4_reset_fields(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     u32 in_fr1;
@@ -3757,7 +3757,7 @@ u32 Class_12a0c4_state_switch_0679cc(u8 **a0, u8 **a1, u8 **a2, u8 *a3) {
         case (u8 *)0x1:
             if (((u32)a0[0x1d] & 0x20) == 0x20) {
                 a0[0x8c] = a0[0x8c] + 1;
-                game_copy_068890(auStack_804, a1);
+                state_record_copy_like(auStack_804, a1);
                 time_mark_set(a0, auStack_804);
                 dtor_delete_with_ac(auStack_804, 0xffffffff, ppuVar9, a3);
                 if (g_8c2804e0 == (u8 *)0x1) {
@@ -3814,7 +3814,7 @@ u32 Class_12a0c4_state_switch_0679cc(u8 **a0, u8 **a1, u8 **a2, u8 *a3) {
                         a0[0x8c] = a0[0x8c] + 1;
                         ppuVar9 = a0;
                     } else {
-                        game_copy_068890(auStack_fd0, a1);
+                        state_record_copy_like(auStack_fd0, a1);
                         uVar5 = elapsed_ticks_since(a0, auStack_fd0);
                         dtor_delete_with_ac(auStack_fd0, 0xffffffff, ppuVar9, a3);
                         if (0x383f < (u16)uVar5) {
@@ -3833,7 +3833,7 @@ u32 Class_12a0c4_state_switch_0679cc(u8 **a0, u8 **a1, u8 **a2, u8 *a3) {
                     a0[0x8c] = a0[0x8c] + 1;
                     ppuVar9 = a0;
                 } else {
-                    game_copy_068890(auStack_179c, a1);
+                    state_record_copy_like(auStack_179c, a1);
                     uVar5 = elapsed_ticks_since(a0, auStack_179c);
                     dtor_delete_with_ac(auStack_179c, 0xffffffff, ppuVar9, a3);
                     if (0x383f < (u16)uVar5) {
@@ -3859,7 +3859,7 @@ u32 Class_12a0c4_state_switch_0679cc(u8 **a0, u8 **a1, u8 **a2, u8 *a3) {
                 a0[0x8c] = a0[0x8c] + 1;
                 *(u8 ***)((int)a0[0x87] * 8 + 0x8c280a00) = a0;
             } else {
-                game_copy_068890(auStack_1f68, a1);
+                state_record_copy_like(auStack_1f68, a1);
                 uVar5 = elapsed_ticks_since(a0, auStack_1f68);
                 dtor_delete_with_ac(auStack_1f68, 0xffffffff, ppuVar9, a3);
                 if (0x383f < (u16)uVar5) {
@@ -3872,7 +3872,7 @@ u32 Class_12a0c4_state_switch_0679cc(u8 **a0, u8 **a1, u8 **a2, u8 *a3) {
             }
             break;
         case (u8 *)0x3:
-            game_copy_068890(auStack_2734, a1, &switchD_8c067a30::switchdataD_8c067a50, a3);
+            state_record_copy_like(auStack_2734, a1, &switchD_8c067a30::switchdataD_8c067a50, a3);
             uVar3 = elapsed_ticks_since(a0, auStack_2734);
             fVar11 = (float)(uVar3 & 0xffff);
             if (cVar16 == '\0') {
@@ -3884,7 +3884,7 @@ u32 Class_12a0c4_state_switch_0679cc(u8 **a0, u8 **a1, u8 **a2, u8 *a3) {
             bVar1 = cVar15 != '\0';
             dtor_delete_with_ac(auStack_2734, 0xffffffff, ppuVar9, a3);
             if (bVar1 || fVar14 <= fVar11) {
-                game_copy_068890(auStack_2f00, a1);
+                state_record_copy_like(auStack_2f00, a1);
                 time_mark_set(a0, auStack_2f00);
                 a3 = auStack_2f00;
                 pcVar8 = dtor_delete_with_ac;
@@ -4011,7 +4011,7 @@ u32 Class_12a0c4_state_switch_0679cc(u8 **a0, u8 **a1, u8 **a2, u8 *a3) {
         case (u8 *)0x5:
             if (((u32)a0[0x1d] & 0x20) == 0x20) {
                 a0[0x8c] = a0[0x8c] + 1;
-                game_copy_068890(auStack_3724, a1, &switchD_8c067a30::switchdataD_8c067a50, a3);
+                state_record_copy_like(auStack_3724, a1, &switchD_8c067a30::switchdataD_8c067a50, a3);
                 time_mark_set(a0, auStack_3724);
                 dtor_delete_with_ac(auStack_3724, 0xffffffff, ppuVar9, a3);
                 a3 = g_8c2804e0;
@@ -4122,12 +4122,12 @@ int free_if_nonnull_wrap_068860(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_copy_068890  0x8c068890
- * area name: game code; nothing names its area yet; behaviour name: mostly calls copy functions
+ * state_record_copy_like  0x8c068890
+ * copies a 0xa0-byte state record field by field
  * called by: Class_12a0c4_state_switch_0679cc, Class_12a0c4_state_switch_068e64,
  * Class_12a0c4_uses_libgcc_divide_helper_068a4c
  */
-u32 *game_copy_068890(u32 *a0, u32 *a1) {
+u32 *state_record_copy_like(u32 *a0, u32 *a1) {
     u32 uVar1;
     int iVar2;
     u16 *puVar3;
@@ -4209,7 +4209,7 @@ u32 *game_copy_068890(u32 *a0, u32 *a1) {
 /*
  * copy_record_10  0x8c068a2c
  * copies a 10-byte record: four shorts and two bytes
- * called by: game_copy_068890
+ * called by: state_record_copy_like
  */
 u16 *copy_record_10(u16 *a0, u16 *a1) {
     *a0 = *a1;
@@ -4263,7 +4263,7 @@ u32 Class_12a0c4_uses_libgcc_divide_helper_068a4c(int a0, u32 a1, int *a2, u32 a
     auStack_24[3] = g_8c1370fc;
     iVar1 = *(int *)(a0 + 0x230);
     if (iVar1 == 0) {
-        game_copy_068890(auStack_800, a1);
+        state_record_copy_like(auStack_800, a1);
         uVar3 = SUB84(in_dr0, 0);
         uVar2 = elapsed_ticks_since(a0, auStack_800);
         if (cVar11 == '\0') {
@@ -4453,7 +4453,7 @@ u32 Class_12a0c4_uses_libgcc_divide_helper_068a4c(int a0, u32 a1, int *a2, u32 a
         goto LAB_8c068bfc;
     }
     uVar3 = SUB84(in_dr0, 0);
-    game_copy_068890(auStack_fcc, a1);
+    state_record_copy_like(auStack_fcc, a1);
     uVar2 = elapsed_ticks_since(a0, auStack_fcc);
     if (cVar11 == '\0') {
         in_dr14 = (double)CONCAT44((int)((u64)in_dr14 >> 0x20), *(u32 *)(a0 + 0x240));
@@ -4499,7 +4499,7 @@ u32 Class_12a0c4_uses_libgcc_divide_helper_068a4c(int a0, u32 a1, int *a2, u32 a
     }
 LAB_8c068bfc:
     uVar3 = SUB84(in_dr0, 0);
-    game_copy_068890(auStack_1798, a1);
+    state_record_copy_like(auStack_1798, a1);
     uVar2 = elapsed_ticks_since(a0, auStack_1798);
     if (cVar11 == '\0') {
         in_dr14 = (double)CONCAT44((int)((u64)in_dr14 >> 0x20), *(u32 *)(a0 + 0x240));
@@ -4621,7 +4621,7 @@ u32 Class_12a0c4_state_switch_068e64(int *a0, u32 a1, int *a2, u32 a3) {
         goto switchD_8c068ec8_default;
     switch (iVar3) {
     case 0:
-        game_copy_068890(auStack_810, a1);
+        state_record_copy_like(auStack_810, a1);
         uVar2 = SUB84(in_dr0, 0);
         uVar1 = elapsed_ticks_since(a0, auStack_810);
         if (cVar13 == '\0') {
@@ -4669,7 +4669,7 @@ u32 Class_12a0c4_state_switch_068e64(int *a0, u32 a1, int *a2, u32 a3) {
         }
     case 1:
         uVar2 = SUB84(in_dr0, 0);
-        game_copy_068890(auStack_fdc, a1);
+        state_record_copy_like(auStack_fdc, a1);
         uVar1 = elapsed_ticks_since(a0, auStack_fdc);
         if (cVar13 == '\0') {
             in_dr14 = (double)CONCAT44((int)((u64)in_dr14 >> 0x20), a0[0x90]);
@@ -4715,7 +4715,7 @@ u32 Class_12a0c4_state_switch_068e64(int *a0, u32 a1, int *a2, u32 a3) {
         }
     case 2:
         uVar2 = SUB84(in_dr0, 0);
-        game_copy_068890(auStack_17a8, a1);
+        state_record_copy_like(auStack_17a8, a1);
         uVar1 = elapsed_ticks_since(a0, auStack_17a8);
         if (cVar13 == '\0') {
             in_dr14 = (double)CONCAT44((int)((u64)in_dr14 >> 0x20), a0[0x90]);
@@ -4751,7 +4751,7 @@ u32 Class_12a0c4_state_switch_068e64(int *a0, u32 a1, int *a2, u32 a3) {
                 in_xd14 = *(u64 *)(a0 + 0x90);
             }
             a0[0x8c] = a0[0x8c] + 1;
-            game_copy_068890(auStack_1f74, a1);
+            state_record_copy_like(auStack_1f74, a1);
             time_mark_set(a0, auStack_1f74);
             dtor_delete_with_ac(auStack_1f74, 0xffffffff, piVar5, a3);
         }
@@ -4762,7 +4762,7 @@ u32 Class_12a0c4_state_switch_068e64(int *a0, u32 a1, int *a2, u32 a3) {
         }
         break;
     case 3:
-        game_copy_068890(auStack_2740, a1);
+        state_record_copy_like(auStack_2740, a1);
         uVar2 = elapsed_ticks_since(a0, auStack_2740);
         bVar11 = 0x707f < (u16)uVar2;
         dtor_delete_with_ac(auStack_2740, 0xffffffff, piVar5, a3);
@@ -5185,7 +5185,7 @@ u32 Class_12a0c4_state_switch_068e64(int *a0, u32 a1, int *a2, u32 a3) {
                 *(u64 *)(a0[0xa4] + 100) = *(u64 *)(a0 + 0x90);
             }
             a0[0xa4] = 0;
-            game_copy_068890(auStack_3048, a1);
+            state_record_copy_like(auStack_3048, a1);
             time_mark_set(a0, auStack_3048);
             dtor_delete_with_ac(auStack_3048, 0xffffffff, ar6_00, a3);
             piVar5 = (int *)(a0[0x8c] + 1);

@@ -15607,7 +15607,7 @@ u32 vram_call_with_saved_draw_state(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * vram_draw_2187ce  0x8c2187ce
  * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls draw functions
- * called by: Class_129938_draw_015af8
+ * called by: game_draw_015af8
  */
 u32 vram_draw_2187ce(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -16946,7 +16946,7 @@ u32 gfxlib_draw_219a86(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gfxlib_draw_219a9a  0x8c219a9a
  * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: CAnimal_draw_088288, Class_12a7f4_draw, Class_12ad50_draw, draw_model_with_items, game_draw_015adc,
+ * called by: CAnimal_draw_at_pose_a, Class_12a7f4_draw, Class_12ad50_draw, draw_model_with_items, game_draw_015adc,
  * game_draw_038b04, game_draw_06c04c, game_draw_06c0b8 (+5 more)
  */
 u32 gfxlib_draw_219a9a(u32 a0, u32 a1, u32 a2, u32 a3) {
@@ -17548,7 +17548,8 @@ u32 gfx_model_draw_c_entry(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gfx_object_draw_c_entry  0x8c21a80e
  * saves the draw state, sets the projection scale parameters, draws object tree a0 with gfx_object_tree_eval_draw_c and
- * restores the state called by: CSquidLine_uses_matrix_push_0ad354, game_draw_09c930, gfx_object_draw_c_entry_wrap
+ * restores the state called by: CSquidLine_uses_matrix_push_0ad354, game_draw_at_pose_object_c,
+ * gfx_object_draw_c_entry_wrap
  */
 u32 gfx_object_draw_c_entry(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -18064,7 +18065,7 @@ u32 *gfx_draw_motion_frame_b(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a
 /*
  * gfx_draw_motion_link_b  0x8c21af26
  * variant of gfx_draw_motion_link_a with another node callback
- * called by: Class_12ab2c_uses_get_field_1c_on_field_b0_09dec8
+ * called by: Class_12ab2c_draw_with_texture_variant
  */
 u32 gfx_draw_motion_link_b(u32 *a0, u32 *a1, u32 *a2) {
     u32 ar5_00;
@@ -18974,9 +18975,9 @@ u32 alt_entry_21ba6a(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 a
 /*
  * gfx_draw_motion_link_alt_a  0x8c21bbb0
  * two-motion draw through the alternate hooked tree walker
- * called by: CSquidLine_uses_matrix_push_0ad354, Class_12a7f4_draw_09aad0,
- * Class_12ab2c_uses_get_field_1c_on_field_b0_09dec8, Class_12ad50_draw_0a53b0, game_draw_0ad7ec, game_draw_0add00,
- * game_uses_get_field_0_06b460, game_uses_get_field_1c_on_field_b0_08b020 (+4 more)
+ * called by: CSquidLine_uses_matrix_push_0ad354, Class_12a7f4_draw_at_pose_motion,
+ * Class_12ab2c_draw_with_texture_variant, Class_12ad50_draw_at_pose_motion, game_draw_0ad7ec,
+ * game_draw_at_pose_motion_frame, game_draw_with_texture_variant, game_uses_get_field_0_06b460 (+4 more)
  */
 u32 gfx_draw_motion_link_alt_a(u32 *a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;

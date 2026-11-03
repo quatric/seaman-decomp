@@ -4164,10 +4164,10 @@ u32 noop_0a53ac(void) {
 }
 
 /*
- * Class_12ad50_draw_0a53b0  0x8c0a53b0
- * area name: sits between Class_12ad50 functions (same compilation unit); behaviour name: mostly calls draw functions
+ * Class_12ad50_draw_at_pose_motion  0x8c0a53b0
+ * draws the object at its position, rotation and scale with its current motion (gfx_draw_motion_link_alt_a)
  */
-u32 Class_12ad50_draw_0a53b0(int a0, u32 a1, u32 a2) {
+u32 Class_12ad50_draw_at_pose_motion(int a0, u32 a1, u32 a2) {
     u32 r7;
     u32 uVar1;
     u32 ar5_00;
@@ -11085,10 +11085,10 @@ u32 game_uses_get_field_1c_on_field_b0_0adc0c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_draw_0add00  0x8c0add00
- * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
+ * game_draw_at_pose_motion_frame  0x8c0add00
+ * draws the object at its pose with the motion of its animation body at the current frame
  */
-u32 game_draw_0add00(int a0, u32 a1, u32 a2) {
+u32 game_draw_at_pose_motion_frame(int a0, u32 a1, u32 a2) {
     u32 r7;
     u32 uVar1;
     int iVar2;
