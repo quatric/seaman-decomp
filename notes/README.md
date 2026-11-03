@@ -634,10 +634,12 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
 - 348 translated functions (was 251): the next hot interpreted routines from `prof block`. Translated stores through r15
   (`mov.l Rm,@-r15`, `@(disp,r15)`) use `wrs32/wrs16/wrs8`, which skip the store-queue check (the stack is always RAM).
 - `tools/wii_link.sh` builds wii_sh4, wii_gx and wii_pvr at -O2; the other host files stay at -Os.
-- Left in the tank (per 500 frames, about 5.9 s): translated SH-4 code about 3.6 s, mostly the vertex kernels. Their cost is
-  float loads and stores through little-endian RAM: Broadway has no byte-reversed FPU load, so each goes through a GPR and the
-  stack, and int-to-float needs the magic-number trick. Removing that would mean keeping guest RAM big-endian (as nullDC4Wii does),
-  a much larger change. GX lists about 1.1 s (state 0.22, vertices 0.24, sort 0.06; the rest parsing and colour conversion).
+- Left in the tank (per 500 frames, about 5.9 s): translated SH-4 code about 3.6 s, mostly the vertex kernels. Big-endian guest
+  RAM (as nullDC4Wii keeps it) was considered and dropped: in the hottest kernel (8c223b34, 6,271 PPC instructions) byte swaps are
+  134 instructions and float loads/stores about 190; most of the code is stack spills (587 lwz), the inline store checks and
+  address constants. The native code also has about 7,700 raw byte-pointer casts plus strcpy/memset on guest memory that a
+  swizzled layout would all have to change. Register pressure and the store path are the better targets.
+- GX lists about 1.1 s (state 0.22, vertices 0.24, sort 0.06; the rest parsing and colour conversion).
 - Late Metal frames that differ from the reference show the End/Continue menu ("Do you wish to end the session?"): the scripted
   pad in wii_main.cpp presses Start every 400 frames until a real controller is used, and builds from earlier the same day open it
   too (scene 18, field 14c = 4). When the test cap stops the
