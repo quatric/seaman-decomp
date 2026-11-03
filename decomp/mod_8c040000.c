@@ -2453,7 +2453,7 @@ u32 game_state_switch_049b68(int a0, u64 *a1, code *a2, code *a3) {
                 *(int *)((int)pdVar11 + -0x1c0) = (int)((u64)dVar14 >> 0x20);
 
                 *(u8 **)((int)pdVar11 + -0x26c) = (u8 *)((int)pdVar11 + -0xac);
-                game_vec_034650(a0 + 0xb0, *(u32 *)(*(int *)(a0 + 0xb4) + 4), pcVar9, a3);
+                motion_track_sample_vec3_b_like(a0 + 0xb0, *(u32 *)(*(int *)(a0 + 0xb4) + 4), pcVar9, a3);
                 vec3_copy_8c023d8c((u8 *)((int)pdVar11 + -0x24), (u8 *)((int)pdVar11 + -0xac), pcVar9, a3);
                 uVar2 = 0xffffffff;
                 object_dtor_delete((u8 *)((int)pdVar11 + -0xac), 0xffffffff, pcVar9, a3);
@@ -3267,7 +3267,7 @@ u32 game_state_switch_04b168(int a0, u64 *a1, code *a2, code *a3) {
             *(int *)((int)pdVar10 + -0x1a8) = (int)((u64)dVar13 >> 0x20);
 
             *(u8 **)((int)pdVar10 + -0x22c) = (u8 *)((int)pdVar10 + -0xbc);
-            game_vec_034650(a0 + 0xb0, *(u32 *)(*(int *)(a0 + 0xb4) + 4), pcVar7, a3);
+            motion_track_sample_vec3_b_like(a0 + 0xb0, *(u32 *)(*(int *)(a0 + 0xb4) + 4), pcVar7, a3);
             vec3_copy_8c023d8c((u8 *)((int)pdVar10 + -100), (u8 *)((int)pdVar10 + -0xbc), pcVar7, a3);
             object_dtor_delete((u8 *)((int)pdVar10 + -0xbc), 0xffffffff, pcVar7, a3);
 
@@ -3953,7 +3953,7 @@ LAB_8c04c728:
 switchD_8c04c74a_caseD_1:
     *(u32 *)(a0 + 0x330) = 1;
     CAnimBody_GetCurFrame(a0 + 0xb0, pcVar9, ar6_00, pcVar10);
-    CAnimBody_vec_034384(a0 + 0xb0, **(u32 **)(a0 + 0xb4), ar6_00, pcVar10);
+    motion_track_sample_vec3_like(a0 + 0xb0, **(u32 **)(a0 + 0xb4), ar6_00, pcVar10);
     Vec3_assign(auStack_38, auStack_100, ar6_00, pcVar10);
     Vec3_dtor(auStack_100, 0xffffffff, ar6_00, pcVar10);
     dVar1 = dStack_30;
@@ -5479,36 +5479,36 @@ LAB_8c04f31c:
                 uVar8 = 0x5e;
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5e, pcVar9, pcVar5);
                 puVar3 = (u32 *)deref_u32(uVar7);
-                CAnimBody_vec_034384(a0 + 0xb0, *(u32 *)*puVar3, pcVar9, pcVar5);
+                motion_track_sample_vec3_like(a0 + 0xb0, *(u32 *)*puVar3, pcVar9, pcVar5);
                 Vec3_assign(auStack_3c, auStack_b4, pcVar9, pcVar5);
                 Vec3_dtor(auStack_b4, 0xffffffff, pcVar9, pcVar5);
                 uVar8 = 0x5e;
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5e, pcVar9, pcVar5);
                 piVar4 = (int *)deref_u32(uVar7);
-                game_uses_Vec3_assign_copy_0348ac(a0 + 0xb0, *(u32 *)(*piVar4 + 8), pcVar9, pcVar5);
+                motion_track_sample_angles_like(a0 + 0xb0, *(u32 *)(*piVar4 + 8), pcVar9, pcVar5);
                 Vec3_assign_copy(auStack_84, auStack_c0);
                 free_if_nonnull_wrap_016ac4(auStack_c0, 0xffffffff, pcVar9, pcVar5);
             } else if (iVar1 == 4) {
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5f, pcVar9, pcVar5);
                 puVar3 = (u32 *)deref_u32(uVar7);
-                CAnimBody_vec_034384(a0 + 0xb0, *(u32 *)*puVar3, pcVar9, pcVar5);
+                motion_track_sample_vec3_like(a0 + 0xb0, *(u32 *)*puVar3, pcVar9, pcVar5);
                 Vec3_assign(auStack_3c, auStack_d0, pcVar9, pcVar5);
                 Vec3_dtor(auStack_d0, 0xffffffff, pcVar9, pcVar5);
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5f, pcVar9, pcVar5);
                 piVar4 = (int *)deref_u32(uVar7);
-                game_uses_Vec3_assign_copy_0348ac(a0 + 0xb0, *(u32 *)(*piVar4 + 8), pcVar9, pcVar5);
+                motion_track_sample_angles_like(a0 + 0xb0, *(u32 *)(*piVar4 + 8), pcVar9, pcVar5);
                 Vec3_assign_copy(auStack_84, auStack_dc);
                 free_if_nonnull_wrap_016ac4(auStack_dc, 0xffffffff, pcVar9, pcVar5);
             } else if (iVar1 == 5) {
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5e, pcVar9, pcVar5);
                 puVar3 = (u32 *)deref_u32(uVar7);
-                CAnimBody_vec_034384(a0 + 0xb0, *(u32 *)*puVar3, pcVar9, pcVar5);
+                motion_track_sample_vec3_like(a0 + 0xb0, *(u32 *)*puVar3, pcVar9, pcVar5);
                 Vec3_assign(auStack_3c, auStack_ec, pcVar9, pcVar5);
                 Vec3_dtor(auStack_ec, 0xffffffff, pcVar9, pcVar5);
                 uVar8 = 0xb0;
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5e, 0xb0, pcVar5);
                 piVar4 = (int *)deref_u32(uVar7);
-                game_uses_Vec3_assign_copy_0348ac(a0 + 0xb0, *(u32 *)(*piVar4 + 8), uVar8, pcVar5);
+                motion_track_sample_angles_like(a0 + 0xb0, *(u32 *)(*piVar4 + 8), uVar8, pcVar5);
                 pcVar5 = Vec3_assign_copy;
                 Vec3_assign_copy(auStack_84, auStack_f8);
                 pcVar9 = (code *)0xffffffff;
@@ -5517,14 +5517,14 @@ LAB_8c04f31c:
                 uVar8 = 0x5f;
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5f, pcVar9, pcVar5);
                 puVar3 = (u32 *)deref_u32(uVar7);
-                CAnimBody_vec_034384(a0 + 0xb0, *(u32 *)*puVar3, pcVar9, pcVar5);
+                motion_track_sample_vec3_like(a0 + 0xb0, *(u32 *)*puVar3, pcVar9, pcVar5);
                 Vec3_assign(auStack_3c, auStack_108, pcVar9, pcVar5);
                 Vec3_dtor(auStack_108, 0xffffffff, pcVar9, pcVar5);
                 uVar8 = 0x5f;
                 uVar7 = array_at_field_14(a0 + 0xb0, 0x5f, pcVar9, pcVar5);
                 puVar3 = (u32 *)deref_u32(uVar7);
                 pcVar9 = (code *)*puVar3;
-                game_uses_Vec3_assign_copy_0348ac(a0 + 0xb0, *(u32 *)(pcVar9 + 8), pcVar9, pcVar5);
+                motion_track_sample_angles_like(a0 + 0xb0, *(u32 *)(pcVar9 + 8), pcVar9, pcVar5);
                 Vec3_assign_copy(auStack_84, auStack_114);
                 free_if_nonnull_wrap_016ac4(auStack_114, 0xffffffff, pcVar9, pcVar5);
             }

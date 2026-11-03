@@ -171,9 +171,9 @@ u32 global_list_push(u32 a0, u32 a1, u32 *a2, u32 a3) {
 
 /*
  * pure_virtual_stub  0x8c0101bc
- * called by: Class_1297f4_m0_014cf0, Class_12a03c_m1_03c43c, Class_12a25c_m1_06f530, Class_12a25c_vec_06f93c,
- * Class_12b334_m1_0bf3d4, Class_12b350_m1_0baa84, Class_12b388_m1_0c5c08, Class_12b930_m1_0de1dc (+34 more) decompiler:
- * Control flow encountered unimplemented instructions
+ * called by: Class_1297f4_m0_014cf0, Class_12a03c_m1_03c43c, Class_12a25c_m1_06f530,
+ * Class_12a25c_uses_Vec3_dtor_06f93c, Class_12b334_m1_0bf3d4, Class_12b350_m1_0baa84, Class_12b388_m1_0c5c08,
+ * Class_12b930_m1_0de1dc (+34 more) decompiler: Control flow encountered unimplemented instructions
  */
 u32 pure_virtual_stub(void) {
     /* WARNING: Unimplemented instruction - Truncating control flow here */
@@ -201,8 +201,8 @@ u32 strcpy(char *a0, char *a1) {
 /*
  * libgcc_divide_helper_0101e4  0x8c0101e4
  * called by: CAnimal_m2_0386d0, CGame_uses_libgcc_divide_helper_0cc784, CProlog_uses_libgcc_divide_helper_0cd3c8,
- * Class_129808_uses_libgcc_divide_helper_01679c, Class_129938_vec_017900, Class_129c70_split_min_value,
- * Class_12a7f4_m2_09a060, Class_12a7f4_m3_09a558 (+32 more)
+ * Class_129808_uses_libgcc_divide_helper_01679c, Class_129c70_split_min_value, Class_12a7f4_m2_09a060,
+ * Class_12a7f4_m3_09a558, Class_12a990_m2_09bc2c (+32 more)
  */
 int libgcc_divide_helper_0101e4(u32 a0, u32 a1) {
     u32 uVar1;
@@ -1998,7 +1998,7 @@ u32 libgcc_divide_helper_010284(u32 a0, int a1, u32 a2) {
 /*
  * libgcc_divide_helper_01031c  0x8c01031c
  * called by: CAnimBody_random_flags_delay, CAnimal_ctor, CAnimal_init_fields_like, CAnimal_m2_02573c,
- * CAnimal_m3_026078, CHerb_LoadGRWait, Class_129808_uses_libgcc_divide_helper_01679c, Class_129c70_split_min_value (+69
+ * CAnimal_m3_026078, CHerb_LoadGRWait, CSquidLine_uses_rand_0ae84c, Class_129808_uses_libgcc_divide_helper_01679c (+69
  * more)
  */
 int libgcc_divide_helper_01031c(u32 a0, u32 a1, u32 a2) {
@@ -11071,7 +11071,7 @@ u32 libm_errno_wrap_013aec(void) {
 /*
  * libm_errno_wrap_013b3c  0x8c013b3c
  * calls libc_uses_busy_wait_5_011850 and sets errno (8c2787a8) to 0x44c for an infinite or 0x44d for a NaN result
- * called by: CSquidLine_uses_matrix_push_0ad354, Class_12bec0_draw_0f5e0c
+ * called by: CSquidLine_draw_like, Class_12bec0_draw_0f5e0c
  */
 u32 libm_errno_wrap_013b3c(void) {
     u32 uVar1;
@@ -11698,8 +11698,8 @@ int qsort_recurse(u32 a0, u32 a1, int *a2, int a3, int ain0) {
 
 /*
  * rand  0x8c014200
- * called by: CAnimBody_random_flags_delay, CAnimal_ctor, CAnimal_init_fields_like, Class_1297f4_uses_rand_014be4,
- * Class_129808_m0_0147a4, Class_12a0c4_reset_fields, Class_12a0c4_state_switch_0679cc, Class_12a0c4_state_switch_068e64
+ * called by: CAnimBody_random_flags_delay, CAnimal_ctor, CAnimal_init_fields_like, CSquidLine_uses_rand_0ae84c,
+ * Class_1297f4_uses_rand_014be4, Class_129808_m0_0147a4, Class_12a0c4_reset_fields, Class_12a0c4_state_switch_0679cc
  * (+62 more)
  */
 u32 rand(void) {
@@ -12545,9 +12545,8 @@ u32 set_flag_14_bit31_and_20(int a0) {
 /*
  * obj_set_texture_num  0x8c014a94
  * njSetTextureNum(a1)
- * called by: CEnv_set_texlist, CGame_draw_0c3e78, CSquidLine_uses_matrix_push_0ad354,
- * Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12bea8_draw_ground_quad, Class_12bec0_draw_0f5e0c,
- * Class_12bec0_draw_0f5f08, ambient_sound_update (+23 more)
+ * called by: CEnv_set_texlist, CGame_draw_0c3e78, CSquidLine_draw_like, Class_12b3b8_uses_object_dtor_delete_0e7a78,
+ * Class_12bea8_draw_ground_quad, Class_12bec0_draw_0f5e0c, Class_12bec0_draw_0f5f08, ambient_sound_update (+23 more)
  */
 u32 obj_set_texture_num(u32 a0, u32 a1) {
     u32 uVar1;
@@ -13186,7 +13185,7 @@ u32 CTexture_ReleaseFromVRAM(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * obj_set_texlist  0x8c01538c
  * njSetTexture on the texture list the object keeps at +4
- * called by: CAnimBody_uses_get_field_1c_on_field_b0_026de0, CAnimal_draw_029dec, CAnimal_draw_at_pose_a,
+ * called by: CAnimBody_uses_get_field_1c_on_field_b0_026de0, CAnimal_draw_at_pose_a, CAnimal_draw_blended_shape_like,
  * CAnimal_draw_model_a, CAnimal_draw_model_b, CAnimal_uses_njGetMatrix_026968, CEnv_set_texlist, CGame_draw_0c3e78 (+75
  * more)
  */
@@ -13948,7 +13947,7 @@ u32 gfx_object_draw_a_entry_wrap(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * deref_u32  0x8c015b4c
  * called by: CAnimBody_CheckThisMotionData, CAnimBody_SetInterpolate, CAnimBody_uses_get_field_1c_on_field_b0_026de0,
- * CAnimal_uses_njGetMatrix_026968, CSquidLine_uses_matrix_push_0ad354, Class_12a03c_m6_03a65c, Class_12a25c_m6_06e69c,
+ * CAnimal_uses_njGetMatrix_026968, CSquidLine_draw_like, Class_12a03c_m6_03a65c, Class_12a25c_m6_06e69c,
  * Class_12a7f4_draw_at_pose_motion (+45 more)
  */
 u32 deref_u32(u32 *a0) {
@@ -14521,8 +14520,8 @@ u32 Class_12bea8_copy_01642c(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Class_129808_set_params_by_mode  0x8c016464
  * stores mode a3; mode 1 copies 3 + 1 words and mode 2 copies 6 + 2 words from a1/a2 into its buffers, otherwise it
- * keeps the pointers called by: CSquid_Init, Class_129808_m2_0148d8, Class_12b3b8_ctor, Class_12b930_members_ctor,
- * Class_12bea8_copy_01642c, Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10, game_uses_rand_0ae84c,
+ * keeps the pointers called by: CSquidLine_uses_rand_0ae84c, CSquid_Init, Class_129808_m2_0148d8, Class_12b3b8_ctor,
+ * Class_12b930_members_ctor, Class_12bea8_copy_01642c, Class_12bec0_uses_Class_129808_set_params_by_m_0f5b10,
  * obj_draw_with_part_swapped
  */
 u32 Class_129808_set_params_by_mode(int *a0, u32 *a1, u32 *a2, int a3) {
@@ -14607,13 +14606,13 @@ u32 Class_129808_calc_016504(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * Class_12bea8_calc_016524  0x8c016524
- * area name: only called from Class_12bea8 methods; behaviour name: integer arithmetic on its arguments
- * called by: CSquidLine_uses_matrix_push_0ad354, Class_12b3b8_uses_object_dtor_delete_0e7a78,
+ * Class_129808_calc_016524  0x8c016524
+ * area name: sits between Class_129808 functions (same compilation unit); behaviour name: integer arithmetic on its
+ * arguments called by: CSquidLine_draw_like, Class_12b3b8_uses_object_dtor_delete_0e7a78,
  * Class_12bea8_draw_ground_quad, Class_12bec0_draw_0f5e0c, Class_12bec0_draw_0f5f08, game_draw_0ad7ec,
  * game_uses_obj_set_texlist_0d1168, obj_draw_with_part_swapped
  */
-u32 Class_12bea8_calc_016524(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 Class_129808_calc_016524(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (*(code *)(&gfx_draw_polygon_flags))(a0, *(u32 *)(a0 + 0x10), *(u32 *)(a0 + 0x14), a3);
@@ -14939,8 +14938,8 @@ u32 *Class_1299b0_ctor(u32 *a0, u32 a1, u32 a2) {
 
 /*
  * free_if_nonnull_wrap_016ac4  0x8c016ac4
- * called by: CAnimal_m0_025688, Class_1299b0_dtor, Class_12a0c4_m0_0674c8, Class_12a5d0_m0_08a3a4,
- * Class_12a990_release_09b88c, Class_12c1f0_m0_0f4108, game_release_02441c, game_release_0af368 (+10 more)
+ * called by: CAnimal_m0_025688, CSquidLine_uses_rand_0ae84c, Class_1299b0_dtor, Class_12a0c4_m0_0674c8,
+ * Class_12a5d0_m0_08a3a4, Class_12a990_release_09b88c, Class_12c1f0_m0_0f4108, game_release_02441c (+10 more)
  */
 int free_if_nonnull_wrap_016ac4(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -15806,11 +15805,11 @@ int CWaterTank_fill_loop_0178b4(int *a0, int a1, u32 a2) {
 }
 
 /*
- * Class_129938_vec_017900  0x8c017900
- * area name: sits between Class_129938 functions (same compilation unit); behaviour name: mostly calls vec functions
- * called by: Class_12bb08_vec_0f43bc
+ * collision_mesh_push_out_a_like  0x8c017900
+ * tests sphere a1 (radius in a2) against the triangles of collision mesh a0 using closest points on their edges and
+ * pushes it out called by: Class_12bb08_vec_0f43bc
  */
-u32 Class_129938_vec_017900(int a0, double *a1, float *a2, float *a3) {
+u32 collision_mesh_push_out_a_like(int a0, double *a1, float *a2, float *a3) {
     short sVar1;
     short *psVar2;
     int iVar3;
@@ -16695,11 +16694,11 @@ u32 Class_129938_vec_017900(int a0, double *a1, float *a2, float *a3) {
 }
 
 /*
- * game_vec_0185a4  0x8c0185a4
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * collision_mesh_push_out_b_like  0x8c0185a4
+ * second variant of collision_mesh_push_out_a_like
  * called by: game_vec_0e0988
  */
-u32 game_vec_0185a4(int a0, double *a1, float *a2, float *a3) {
+u32 collision_mesh_push_out_b_like(int a0, double *a1, float *a2, float *a3) {
     u64 uVar1;
     short sVar2;
     short *psVar3;
@@ -17623,7 +17622,7 @@ u32 matrix_scale_wrap(u32 unused_a0, u32 a1) {
 /*
  * fpu_save_fr0_fr15_wrap  0x8c0191c8
  * only calls fpu_save_fr0_fr15
- * called by: CSquidLine_uses_matrix_push_0ad354, Class_12bec0_draw_0f5e0c
+ * called by: CSquidLine_draw_like, Class_12bec0_draw_0f5e0c
  */
 u32 fpu_save_fr0_fr15_wrap(u32 a0) {
     u32 r5;

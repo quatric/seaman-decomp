@@ -557,7 +557,7 @@ u32 game_vec_0e0988(int a0, u32 *a1, u32 a2, u32 a3) {
     } else {
         puVar2 = auStack_38;
         ar6_00 = auStack_28;
-        game_vec_0185a4(a0 + 0x2274c, a1, ar6_00, puVar2);
+        collision_mesh_push_out_b_like(a0 + 0x2274c, a1, ar6_00, puVar2);
         avoid_zero_float_4(auStack_28);
         Vec3_dtor(auStack_38, 0xffffffff, ar6_00, puVar2);
         Vec3_dtor(auStack_28, 0xffffffff, ar6_00, puVar2);
@@ -5385,7 +5385,7 @@ u32 Class_12b3b8_uses_object_dtor_delete_0e7a78(int a0, u32 a1, u32 a2, u32 a3) 
             uVar2 = 0;
             matrix_push(0, a1, a2, a3, in_stack_ffffff50);
             touch_fields_30_3c_wrap();
-            Class_12bea8_calc_016524(a0 + 0x444, a1, a2, a3);
+            Class_129808_calc_016524(a0 + 0x444, a1, a2, a3);
             matrix_pop_n(1);
             if (*piVar4 != 0) {
                 a3 = 4;

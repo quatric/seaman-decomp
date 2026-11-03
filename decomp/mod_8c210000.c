@@ -17548,8 +17548,7 @@ u32 gfx_model_draw_c_entry(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gfx_object_draw_c_entry  0x8c21a80e
  * saves the draw state, sets the projection scale parameters, draws object tree a0 with gfx_object_tree_eval_draw_c and
- * restores the state called by: CSquidLine_uses_matrix_push_0ad354, game_draw_at_pose_object_c,
- * gfx_object_draw_c_entry_wrap
+ * restores the state called by: CSquidLine_draw_like, game_draw_at_pose_object_c, gfx_object_draw_c_entry_wrap
  */
 u32 gfx_object_draw_c_entry(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -18819,8 +18818,8 @@ u32 alt_entry_21b9a8(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gfx_draw_motion  0x8c21ba62
  * draws object tree a0 posed by motion a1 at frame fr4: picks the position, rotation and scale key appliers from the
- * motion's flags (nothing when past the end) called by: Class_12aeec_uses_gfx_set_color4_0a481c,
- * Vec3_uses_obj_set_texlist_0a4a5c, game_draw_015b54
+ * motion's flags (nothing when past the end) called by: Class_12aeec_draw_like, Vec3_uses_obj_set_texlist_0a4a5c,
+ * game_draw_015b54
  */
 u32 gfx_draw_motion(u32 *a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
@@ -18975,9 +18974,9 @@ u32 alt_entry_21ba6a(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 a
 /*
  * gfx_draw_motion_link_alt_a  0x8c21bbb0
  * two-motion draw through the alternate hooked tree walker
- * called by: CSquidLine_uses_matrix_push_0ad354, Class_12a7f4_draw_at_pose_motion,
- * Class_12ab2c_draw_with_texture_variant, Class_12ad50_draw_at_pose_motion, game_draw_0ad7ec,
- * game_draw_at_pose_motion_frame, game_draw_with_texture_variant, game_uses_get_field_0_06b460 (+4 more)
+ * called by: CSquidLine_draw_like, Class_12a7f4_draw_at_pose_motion, Class_12ab2c_draw_with_texture_variant,
+ * Class_12ad50_draw_at_pose_motion, game_draw_0ad7ec, game_draw_at_pose_motion_frame, game_draw_with_texture_variant,
+ * game_uses_get_field_0_06b460 (+4 more)
  */
 u32 gfx_draw_motion_link_alt_a(u32 *a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;

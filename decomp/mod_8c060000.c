@@ -3975,7 +3975,7 @@ u32 Class_12a0c4_state_switch_0679cc(u8 **a0, u8 **a1, u8 **a2, u8 *a3) {
                 *(u64 *)(a0 + 0x8b) = in_xd0;
             }
             ppuVar7 = a0;
-            game_vec_06abb8(a0, a0 + 0x8b, a0, a3);
+            global_track_sample_b_like(a0, a0 + 0x8b, a0, a3);
             vec3_copy_8c023d8c(a0 + 0x14, auStack_2f0c, ppuVar7, a3);
             uVar5 = 0xffffffff;
             object_dtor_delete(auStack_2f0c, 0xffffffff, ppuVar7, a3);
@@ -3984,7 +3984,7 @@ u32 Class_12a0c4_state_switch_0679cc(u8 **a0, u8 **a1, u8 **a2, u8 *a3) {
             } else {
                 *(u64 *)(a0 + 0x15) = *(u64 *)(a0 + 0x9f);
             }
-            game_vec_06aa04(a0, uVar5, ppuVar7, a3);
+            global_track_sample_a_like(a0, uVar5, ppuVar7, a3);
             Vec3_scale(auStack_2f1c, a0 + 0x18, ppuVar7, a3, auStack_2f2c);
             Vec3_set_xyz(auStack_2f38, Vec3_set_xyz, ppuVar7, a3);
             Vec3_rotate_euler_deg(auStack_2f2c, auStack_2f38, ppuVar7, a3, auStack_2f48);
@@ -4954,7 +4954,7 @@ u32 Class_12a0c4_state_switch_068e64(int *a0, u32 a1, int *a2, u32 a3) {
             iVar3 = a0[0xa4];
             (**(code **)(*a2 + 0x4c))(a2, iVar3, piVar5, a3);
             fVar6 = (float)uVar9;
-            game_vec_06abb8(a0, iVar3, piVar5, a3);
+            global_track_sample_b_like(a0, iVar3, piVar5, a3);
             ar6_00 = vec3_copy_8c023d8c;
             vec3_copy_8c023d8c(a0[0xa4] + 0x50, auStack_274c, vec3_copy_8c023d8c, a3);
             object_dtor_delete(auStack_274c, 0xffffffff, ar6_00, a3);
@@ -4995,7 +4995,7 @@ u32 Class_12a0c4_state_switch_068e64(int *a0, u32 a1, int *a2, u32 a3) {
                 } else {
                     *pdVar4 = in_xd0;
                 }
-                game_vec_06aa04(a0, iVar3, ar6_00, a3);
+                global_track_sample_a_like(a0, iVar3, ar6_00, a3);
                 piVar5 = a0 + 0x90;
                 Vec3_scale(auStack_275c, piVar5, ar6_00, a3, auStack_276c);
                 if (cVar13 != '\0') {
@@ -5044,7 +5044,7 @@ u32 Class_12a0c4_state_switch_068e64(int *a0, u32 a1, int *a2, u32 a3) {
                 } else {
                     *pdVar4 = in_xd0;
                 }
-                game_vec_06aa04(a0, pdVar4, ar6_00, a3);
+                global_track_sample_a_like(a0, pdVar4, ar6_00, a3);
                 piVar5 = a0 + 0x90;
                 Vec3_scale(auStack_27a8, piVar5, ar6_00, a3, auStack_27b8);
                 if (cVar13 != '\0') {
@@ -5093,7 +5093,7 @@ u32 Class_12a0c4_state_switch_068e64(int *a0, u32 a1, int *a2, u32 a3) {
                 } else {
                     *(double *)(a0[0xa4] + 0x27c) = in_xd0;
                 }
-                game_vec_06aa04(a0, pdVar4, ar6_00, a3);
+                global_track_sample_a_like(a0, pdVar4, ar6_00, a3);
                 piVar5 = a0 + 0x90;
                 Vec3_scale(auStack_27f4, piVar5, ar6_00, a3, auStack_2804);
                 if (cVar13 != '\0') {
@@ -5142,7 +5142,7 @@ u32 Class_12a0c4_state_switch_068e64(int *a0, u32 a1, int *a2, u32 a3) {
                 } else {
                     *(double *)(a0[0xa4] + 0x27c) = in_xd0;
                 }
-                game_vec_06aa04(a0, uVar2, ar6_00, a3);
+                global_track_sample_a_like(a0, uVar2, ar6_00, a3);
                 piVar5 = a0 + 0x90;
                 Vec3_scale(auStack_2840, piVar5, ar6_00, a3, auStack_2850);
                 if (cVar13 != '\0') {
@@ -5775,11 +5775,11 @@ u32 *get_vec3_field_30_06a9e8(int a0, u32 *a1, u32 *a2, u32 *a3) {
 }
 
 /*
- * game_vec_06aa04  0x8c06aa04
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * global_track_sample_a_like  0x8c06aa04
+ * samples the first key track of the table at 0x8c280954 at frame fr4 into a Vec3
  * called by: Class_12a0c4_state_switch_0679cc, Class_12a0c4_state_switch_068e64
  */
-u32 game_vec_06aa04(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 global_track_sample_a_like(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar1;
     int *piVar2;
     int *piVar3;
@@ -6140,11 +6140,11 @@ u32 game_vec_06aa04(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_06abb8  0x8c06abb8
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * global_track_sample_b_like  0x8c06abb8
+ * samples the second key track of the table at 0x8c280954 at frame fr4
  * called by: Class_12a0c4_state_switch_0679cc, Class_12a0c4_state_switch_068e64
  */
-u32 game_vec_06abb8(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 global_track_sample_b_like(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     int *piVar1;
     int *piVar2;
     float fVar3;
@@ -7590,11 +7590,10 @@ u32 *get_ptr_8c06c144(void) {
 }
 
 /*
- * game_uses_libgcc_divide_helper_06c148  0x8c06c148
- * name hint from a string it uses: herb3 pvm; area name: game code; nothing names its area yet; behaviour name: its
- * main named callee is libgcc_divide_helper_01031c
+ * game_obj_load_state_record_like  0x8c06c148
+ * loads the object's state from record a1, then its position, scale and angle fields
  */
-u32 game_uses_libgcc_divide_helper_06c148(code *a0, int a1, u32 a2, u32 a3) {
+u32 game_obj_load_state_record_like(code *a0, int a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     code *ar6_00;
@@ -9411,10 +9410,11 @@ int Class_12a25c_m7_06f918(int a0) {
 }
 
 /*
- * Class_12a25c_vec_06f93c  0x8c06f93c
- * area name: sits between Class_12a25c functions (same compilation unit); behaviour name: mostly calls vec functions
+ * Class_12a25c_uses_Vec3_dtor_06f93c  0x8c06f93c
+ * area name: sits between Class_12a25c functions (same compilation unit); behaviour name: its main named callee is
+ * Vec3_dtor
  */
-code *Class_12a25c_vec_06f93c(int a0, u32 *a1, u32 unused_a2, code *a3) {
+code *Class_12a25c_uses_Vec3_dtor_06f93c(int a0, u32 *a1, u32 unused_a2, code *a3) {
     u32 uVar1;
     u32 ar7_00;
     int iVar2;
@@ -9533,7 +9533,7 @@ code *Class_12a25c_vec_06f93c(int a0, u32 *a1, u32 unused_a2, code *a3) {
         break;
     case 4:
         a3 = (code *)*a1;
-        pcVar7 = (code *)game_vec_077a38(a0, *(u32 *)a1[1], auStack_30, a3);
+        pcVar7 = (code *)game_uses_Vec3_dtor_077a38(a0, *(u32 *)a1[1], auStack_30, a3);
         break;
     case 6:
         pcVar7 = (code *)game_state_switch_07edac(a0, *(u32 *)a1[1], a1[6], a3);

@@ -8140,9 +8140,9 @@ u32 gfxlib_calc_233da2(u32 a0, u32 a1) {
 /*
  * gfx_set_color4_4aa52c  0x8c233dac
  * copies four words (a colour) to 0x8c4aa52c
- * called by: CAnimal_draw_029dec, CAnimal_uses_njGetMatrix_026968, CSquidLine_uses_matrix_push_0ad354,
- * Class_12ab2c_draw_with_texture_variant, Class_12aeec_uses_gfx_set_color4_0a481c, Class_12b580_draw_at_pose,
- * Class_12b930_draw_0d7354, Class_12b930_draw_0d7410 (+6 more)
+ * called by: CAnimal_draw_blended_shape_like, CAnimal_uses_njGetMatrix_026968, CSquidLine_draw_like,
+ * Class_12ab2c_draw_with_texture_variant, Class_12aeec_draw_like, Class_12b580_draw_at_pose, Class_12b930_draw_0d7354,
+ * Class_12b930_draw_0d7410 (+6 more)
  */
 u32 gfx_set_color4_4aa52c(u32 *a0) {
     g_8c4aa52c = *a0;
@@ -8953,7 +8953,7 @@ u32 gfxlib_uses_dbg_font_print_234a1c(u32 a0, u32 unused_a1, u32 unused_a2, u32 
 /*
  * line_closest_point  0x8c234a68
  * *a2 = the point on line a1 (origin, direction) closest to a0
- * called by: Class_129938_vec_017900, game_vec_0185a4
+ * called by: collision_mesh_push_out_a_like, collision_mesh_push_out_b_like
  */
 u32 line_closest_point(float *a0, float *a1, float *a2) {
     u32 r7;

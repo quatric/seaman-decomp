@@ -313,8 +313,9 @@ u32 game_uses_copy6_to_fields_080e80(int a0, u32 a1, int *a2, u32 a3) {
 /*
  * game_uses_CAnimBody_SetAnimation_0811b4  0x8c0811b4
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is CAnimBody_SetAnimation
- * called by: Class_12a25c_vec_06f93c, game_state_switch_070d7c, game_state_switch_071a38, game_state_switch_076994,
- * game_state_switch_07a68c, game_state_switch_07ff08, game_state_switch_083d8c, game_uses_Vec3_dtor_0831c8 (+7 more)
+ * called by: Class_12a25c_uses_Vec3_dtor_06f93c, game_state_switch_070d7c, game_state_switch_071a38,
+ * game_state_switch_076994, game_state_switch_07a68c, game_state_switch_07ff08, game_state_switch_083d8c,
+ * game_uses_Vec3_dtor_0831c8 (+7 more)
  */
 u32 game_uses_CAnimBody_SetAnimation_0811b4(int a0, u32 a1, int a2) {
     u32 *puVar1;
@@ -796,7 +797,7 @@ u32 game_uses_CAnimBody_SetAnimation_0811b4(int a0, u32 a1, int a2) {
         CAnimBody_GetCurFrame(a0 + 0xb0, pcVar4, pcVar5, pcVar8);
         uVar10 = *(u32 *)(*(int *)(a0 + 0xb4) + 4);
         uVar7 = 0xb0;
-        game_vec_034650(a0 + 0xb0, uVar10, 0xb0, uVar10);
+        motion_track_sample_vec3_b_like(a0 + 0xb0, uVar10, 0xb0, uVar10);
         vec3_copy_8c023d8c(&uStack_20, auStack_e0, uVar7, uVar10);
         object_dtor_delete(auStack_e0, 0xffffffff, object_dtor_delete, auStack_e0);
         if (cVar19 == '\0') {
@@ -918,7 +919,7 @@ LAB_8c0822ea:
  * blends the heading (+0x14) toward direction a1 by a step that grows with the turn counter (+0x2b4), renormalises it
  * and copies it to +0x80 called by: game_state_switch_076994, game_state_switch_07edac, game_state_switch_07ff08,
  * game_state_switch_083d8c, game_uses_CAnimBody_AdvanceFrame_wrap_076750, game_uses_CAnimBody_SetAnimation_0811b4,
- * game_uses_Vec3_dtor_0831c8, game_vec_077a38 (+4 more)
+ * game_uses_Vec3_dtor_077a38, game_uses_Vec3_dtor_0831c8 (+4 more)
  */
 u32 creature_turn_toward_dir_step(int a0, u32 a1, u32 a2, u32 a3) {
     u64 uVar1;
@@ -1267,7 +1268,7 @@ u32 game_vec_08248c(int a0, int a1, u32 *a2, int *a3) {
                     *(u32 *)(a0 + 0x178) = 1;
                     *(u32 *)(a0 + 0x2cc) = 1;
                     CAnimBody_GetCurFrame(a0 + 0xb0, pcVar4, a2, ar7_00);
-                    CAnimBody_vec_034384(a0 + 0xb0, **(u32 **)(a0 + 0xb4), a2, ar7_00);
+                    motion_track_sample_vec3_like(a0 + 0xb0, **(u32 **)(a0 + 0xb4), a2, ar7_00);
                     Vec3_assign(auStack_34, auStack_84, a2, ar7_00);
                     Vec3_dtor(auStack_84, 0xffffffff, a2, ar7_00);
                     Vec3_sub(auStack_34, a0 + 0x244, a2, ar7_00, auStack_94);
@@ -1856,7 +1857,7 @@ u32 game_vec_0839c0(int a0, int a1, int a2, u32 a3) {
             }
             a3 = *(u32 *)(a1 + 0x18);
             a2 = *(int *)(a1 + 0xc);
-            game_float_calc_032788(a0, a0 + 0x54, a2, a3);
+            point_push_into_box_margin(a0, a0 + 0x54, a2, a3);
             *(u32 *)(a0 + 0x40) = 5;
         }
     } else if (*(int *)(a0 + 0x2b0) == 1) {
@@ -1916,7 +1917,7 @@ u32 game_vec_0839c0(int a0, int a1, int a2, u32 a3) {
             }
             a3 = *(u32 *)(a1 + 0x18);
             a2 = *(int *)(a1 + 0xc);
-            game_float_calc_032788(a0, a0 + 0x54, a2, a3);
+            point_push_into_box_margin(a0, a0 + 0x54, a2, a3);
         }
     }
     Vec3_dtor(auStack_24, 0xffffffff, a2, a3);
@@ -7780,12 +7781,12 @@ u32 game_vec_08eef4(int a0, int a1, u32 a2, u32 a3) {
             }
             *(u8 *)(a0 + 0x1fc) = *(u8 *)(a0 + 0x1fc) & 0xfb | 4;
         }
-        CAnimBody_vec_034384(a0 + 0xb0, ar5_00, ar6_00, a3);
+        motion_track_sample_vec3_like(a0 + 0xb0, ar5_00, ar6_00, a3);
         Vec3_assign(a0 + 0x2d0, auStack_48, ar6_00, a3);
         Vec3_dtor(auStack_48, 0xffffffff, ar6_00, a3);
         Vec3_sub_assign(a0 + 0x2d0, a0 + 0x2e0);
         Vec3_scale_assign(a0 + 0x2d0, a0 + 0x2c4);
-        CAnimBody_vec_034384(a0 + 0xb0, ar5_00, ar6_00, a3);
+        motion_track_sample_vec3_like(a0 + 0xb0, ar5_00, ar6_00, a3);
         Vec3_assign(a0 + 0x2e0, auStack_58, ar6_00, a3);
         uVar2 = 0xffffffff;
         Vec3_dtor(auStack_58, 0xffffffff, ar6_00, a3);
@@ -7794,7 +7795,7 @@ u32 game_vec_08eef4(int a0, int a1, u32 a2, u32 a3) {
         Vec3_assign(a0 + 0x2d0, auStack_74, ar6_00, a3);
         Vec3_dtor(auStack_74, 0xffffffff, ar6_00, a3);
         object_dtor_delete(auStack_64, 0xffffffff, ar6_00, a3);
-        game_vec_034650(a0 + 0xb0, ar5_01, ar6_00, a3);
+        motion_track_sample_vec3_b_like(a0 + 0xb0, ar5_01, ar6_00, a3);
         vec3_copy_8c023d8c(auStack_38, auStack_80, ar6_00, a3);
         uVar2 = 0xffffffff;
         object_dtor_delete(auStack_80, 0xffffffff, ar6_00, a3);
@@ -8020,12 +8021,12 @@ u32 game_uses_Vec3_dtor_08f354(int a0, int a1, int a2, int a3) {
                 CAnimBody_SetAnimation(a0 + 0xb0, 10, 0xffffffff, 0);
             }
         }
-        CAnimBody_vec_034384(a0 + 0xb0, ar5_00, ar6_00, a3);
+        motion_track_sample_vec3_like(a0 + 0xb0, ar5_00, ar6_00, a3);
         Vec3_assign(a0 + 0x2d0, auStack_4c, ar6_00, a3);
         Vec3_dtor(auStack_4c, 0xffffffff, ar6_00, a3);
         Vec3_sub_assign(a0 + 0x2d0, a0 + 0x2e0);
         Vec3_scale_assign(a0 + 0x2d0, a0 + 0x2c4);
-        CAnimBody_vec_034384(a0 + 0xb0, ar5_00, ar6_00, a3);
+        motion_track_sample_vec3_like(a0 + 0xb0, ar5_00, ar6_00, a3);
         Vec3_assign(a0 + 0x2e0, auStack_5c, ar6_00, a3);
         uVar1 = 0xffffffff;
         Vec3_dtor(auStack_5c, 0xffffffff, ar6_00, a3);
@@ -8034,7 +8035,7 @@ u32 game_uses_Vec3_dtor_08f354(int a0, int a1, int a2, int a3) {
         Vec3_assign(a0 + 0x2d0, auStack_78, ar6_00, a3);
         Vec3_dtor(auStack_78, 0xffffffff, ar6_00, a3);
         object_dtor_delete(auStack_68, 0xffffffff, ar6_00, a3);
-        game_vec_034650(a0 + 0xb0, ar5_01, ar6_00, a3);
+        motion_track_sample_vec3_b_like(a0 + 0xb0, ar5_01, ar6_00, a3);
         vec3_copy_8c023d8c(auStack_3c, auStack_84, ar6_00, a3);
         uVar1 = 0xffffffff;
         object_dtor_delete(auStack_84, 0xffffffff, ar6_00, a3);
@@ -8132,12 +8133,12 @@ u32 game_vec_08f9e8(int a0, int a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 300) = 0;
     uVar3 = 0;
 LAB_8c08faa8:
-    CAnimBody_vec_034384(a0 + 0xb0, uVar2, ar6_00, a3);
+    motion_track_sample_vec3_like(a0 + 0xb0, uVar2, ar6_00, a3);
     Vec3_assign(a0 + 0x2d0, auStack_48, ar6_00, a3);
     Vec3_dtor(auStack_48, 0xffffffff, ar6_00, a3);
     Vec3_sub_assign(a0 + 0x2d0, a0 + 0x2e0);
     Vec3_scale_assign(a0 + 0x2d0, a0 + 0x2c4);
-    CAnimBody_vec_034384(a0 + 0xb0, uVar2, ar6_00, a3);
+    motion_track_sample_vec3_like(a0 + 0xb0, uVar2, ar6_00, a3);
     Vec3_assign(a0 + 0x2e0, auStack_58, ar6_00, a3);
     uVar2 = 0xffffffff;
     Vec3_dtor(auStack_58, 0xffffffff, ar6_00, a3);
@@ -8146,7 +8147,7 @@ LAB_8c08faa8:
     Vec3_assign(a0 + 0x2d0, auStack_74, ar6_00, a3);
     Vec3_dtor(auStack_74, 0xffffffff, ar6_00, a3);
     object_dtor_delete(auStack_64, 0xffffffff, ar6_00, a3);
-    game_vec_034650(a0 + 0xb0, uVar1, ar6_00, a3);
+    motion_track_sample_vec3_b_like(a0 + 0xb0, uVar1, ar6_00, a3);
     vec3_copy_8c023d8c(auStack_38, auStack_80, ar6_00, a3);
     uVar1 = 0xffffffff;
     object_dtor_delete(auStack_80, 0xffffffff, ar6_00, a3);
@@ -8552,14 +8553,14 @@ int game_vec_08fd38(code *a0, code *a1, code *a2, code *a3) {
                     uVar10 = 0x8c03278840000000;
                 }
                 a3 = (code *)&iStack_28;
-                game_float_calc_032788(a0, a0 + 0x54, a3, in_stack_00000000);
+                point_push_into_box_margin(a0, a0 + 0x54, a3, in_stack_00000000);
             } else {
                 if (cVar12 == '\0') {
                     uVar10 = CONCAT44(0x40000000, uVar5);
                 } else {
                     uVar10 = 0x8c03278840000000;
                 }
-                game_float_calc_032788(a0, a0 + 0x54, a3, in_stack_00000000);
+                point_push_into_box_margin(a0, a0 + 0x54, a3, in_stack_00000000);
             }
             (**(code **)(*(int *)in_stack_00000000 + 0x128))(in_stack_00000000, a0 + 0x54, a3, pcVar6);
             if (cVar12 == '\0') {

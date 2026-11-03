@@ -226,7 +226,7 @@ address	name	file	params
 8c016464	Class_129808_set_params_by_mode	mod_8c010000.c	4
 8c0164c8	Class_129808_update_fields_0164c8	mod_8c010000.c	3
 8c016504	Class_129808_calc_016504	mod_8c010000.c	4
-8c016524	Class_12bea8_calc_016524	mod_8c010000.c	4
+8c016524	Class_129808_calc_016524	mod_8c010000.c	4
 8c016544	Class_129808_draw_016544	mod_8c010000.c	4
 8c016584	Class_129808_copy_016584	mod_8c010000.c	1
 8c016658	clear_field_14	mod_8c010000.c	1
@@ -282,8 +282,8 @@ address	name	file	params
 8c017804	Class_129938_uses_set_field_0_017804	mod_8c010000.c	3
 8c017830	Class_12b930_copy_017830	mod_8c010000.c	1
 8c0178b4	CWaterTank_fill_loop_0178b4	mod_8c010000.c	3
-8c017900	Class_129938_vec_017900	mod_8c010000.c	4
-8c0185a4	game_vec_0185a4	mod_8c010000.c	4
+8c017900	collision_mesh_push_out_a_like	mod_8c010000.c	4
+8c0185a4	collision_mesh_push_out_b_like	mod_8c010000.c	4
 8c018f7c	noop_018f7c	mod_8c010000.c	0
 8c018f80	set_vec3_and_w_30	mod_8c010000.c	2
 8c018fa8	noop_018fa8	mod_8c010000.c	0
@@ -819,7 +819,7 @@ address	name	file	params
 8c029af0	CAnimal_uses_njGetMatrix_029af0	mod_8c020000.c	3
 8c029ca8	CAnimal_draw_029ca8	mod_8c020000.c	4
 8c029d64	draw_node_chain_scaled	mod_8c020000.c	4
-8c029dec	CAnimal_draw_029dec	mod_8c020000.c	4
+8c029dec	CAnimal_draw_blended_shape_like	mod_8c020000.c	4
 8c02a1fc	clear_3_words	mod_8c020000.c	4
 8c02a230	game_draw_02a230	mod_8c020000.c	4
 8c02a29c	game_draw_02a29c	mod_8c020000.c	4
@@ -1120,7 +1120,7 @@ address	name	file	params
 8c0324ac	game_float_calc_0324ac	mod_8c030000.c	1
 8c032518	CMushroomerBody_vec_032518	mod_8c030000.c	4
 8c03263c	game_vec_03263c	mod_8c030000.c	4
-8c032788	game_float_calc_032788	mod_8c030000.c	4
+8c032788	point_push_into_box_margin	mod_8c030000.c	4
 8c0329ac	point_inside_box_margin	mod_8c030000.c	4
 8c032a64	rand_range	mod_8c030000.c	3
 8c032ab0	rand_float	mod_8c030000.c	3
@@ -1150,12 +1150,12 @@ address	name	file	params
 8c034148	CAnimBody_PlayToEnd	mod_8c030000.c	4
 8c0342ac	motion_entry_get_0	mod_8c030000.c	3
 8c0342d8	CAnimBody_vec_key_at	mod_8c030000.c	4
-8c034384	CAnimBody_vec_034384	mod_8c030000.c	4
+8c034384	motion_track_sample_vec3_like	mod_8c030000.c	4
 8c034548	motion_entry_get_4	mod_8c030000.c	3
 8c034574	game_vec_034574	mod_8c030000.c	4
-8c034650	game_vec_034650	mod_8c030000.c	4
+8c034650	motion_track_sample_vec3_b_like	mod_8c030000.c	4
 8c034880	array18_get_field8	mod_8c030000.c	3
-8c0348ac	game_uses_Vec3_assign_copy_0348ac	mod_8c030000.c	4
+8c0348ac	motion_track_sample_angles_like	mod_8c030000.c	4
 8c034a70	record18_take	mod_8c030000.c	4
 8c034ba8	static_init_vec3s_27df08	mod_8c030000.c	4
 8c034c50	CAnimal_fill_loop_034c50	mod_8c030000.c	3
@@ -1487,8 +1487,8 @@ address	name	file	params
 8c06a524	clear_globals_280998	mod_8c060000.c	0
 8c06a5f0	game_uses_rand_06a5f0	mod_8c060000.c	4
 8c06a9e8	get_vec3_field_30_06a9e8	mod_8c060000.c	4
-8c06aa04	game_vec_06aa04	mod_8c060000.c	4
-8c06abb8	game_vec_06abb8	mod_8c060000.c	4
+8c06aa04	global_track_sample_a_like	mod_8c060000.c	4
+8c06abb8	global_track_sample_b_like	mod_8c060000.c	4
 8c06add8	game_float_calc_06add8	mod_8c060000.c	4
 8c06af1c	dec_counters_248	mod_8c060000.c	1
 8c06af5c	time_mark_set	mod_8c060000.c	2
@@ -1510,7 +1510,7 @@ address	name	file	params
 8c06c0b8	game_draw_06c0b8	mod_8c060000.c	4
 8c06c124	ret_const_d4	mod_8c060000.c	0
 8c06c13c	get_ptr_8c06c144	mod_8c060000.c	0
-8c06c148	game_uses_libgcc_divide_helper_06c148	mod_8c060000.c	4
+8c06c148	game_obj_load_state_record_like	mod_8c060000.c	4
 8c06c89c	obj_state_save_full	mod_8c060000.c	4
 8c06c9c8	game_vec_06c9c8	mod_8c060000.c	4
 8c06ca34	game_vec_06ca34	mod_8c060000.c	4
@@ -1571,7 +1571,7 @@ address	name	file	params
 8c06f4c8	Class_12a25c_vec_06f4c8	mod_8c060000.c	4
 8c06f530	Class_12a25c_m1_06f530	mod_8c060000.c	4
 8c06f918	Class_12a25c_m7_06f918	mod_8c060000.c	1
-8c06f93c	Class_12a25c_vec_06f93c	mod_8c060000.c	4
+8c06f93c	Class_12a25c_uses_Vec3_dtor_06f93c	mod_8c060000.c	4
 8c070d7c	game_state_switch_070d7c	mod_8c070000.c	4
 8c071a38	game_state_switch_071a38	mod_8c070000.c	4
 8c0737fc	game_vec_0737fc	mod_8c070000.c	4
@@ -1584,7 +1584,7 @@ address	name	file	params
 8c076198	game_vec_076198	mod_8c070000.c	4
 8c076750	game_uses_CAnimBody_AdvanceFrame_wrap_076750	mod_8c070000.c	4
 8c076994	game_state_switch_076994	mod_8c070000.c	4
-8c077a38	game_vec_077a38	mod_8c070000.c	4
+8c077a38	game_uses_Vec3_dtor_077a38	mod_8c070000.c	4
 8c078f84	set_fields_8_4_0	mod_8c070000.c	1
 8c078fb8	set_fields_50_54_58	mod_8c070000.c	1
 8c078fd0	game_vec_078fd0	mod_8c070000.c	4
@@ -1731,7 +1731,7 @@ address	name	file	params
 8c08f9e8	game_vec_08f9e8	mod_8c080000.c	4
 8c08fd38	game_vec_08fd38	mod_8c080000.c	4
 8c090bc4	game_vec_090bc4	mod_8c090000.c	4
-8c0911f0	game_vec_0911f0	mod_8c090000.c	4
+8c0911f0	game_uses_Vec3_dtor_0911f0	mod_8c090000.c	4
 8c091570	game_vec_091570	mod_8c090000.c	4
 8c091854	kind10_state2_above_110	mod_8c090000.c	4
 8c091924	game_state_switch_091924	mod_8c090000.c	4
@@ -1904,7 +1904,7 @@ address	name	file	params
 8c0a476c	Class_12aeec_m4_0a476c	mod_8c0a0000.c	4
 8c0a4784	Class_12aeec_m5_0a4784	mod_8c0a0000.c	4
 8c0a47f0	Class_12aeec_m6_0a47f0	mod_8c0a0000.c	4
-8c0a481c	Class_12aeec_uses_gfx_set_color4_0a481c	mod_8c0a0000.c	1
+8c0a481c	Class_12aeec_draw_like	mod_8c0a0000.c	1
 8c0a4a34	vec3_copy_wrap_0a4a34	mod_8c0a0000.c	5
 8c0a4a5c	Vec3_uses_obj_set_texlist_0a4a5c	mod_8c0a0000.c	4
 8c0a4af0	Spider_asset_table_init	mod_8c0a0000.c	0
@@ -1992,7 +1992,7 @@ address	name	file	params
 8c0ad050	CSquidLine_load_8	mod_8c0a0000.c	4
 8c0ad0e0	CAnimal_poll_eight_part_loads	mod_8c0a0000.c	2
 8c0ad240	CSquidLine_release_current_928	mod_8c0a0000.c	4
-8c0ad354	CSquidLine_uses_matrix_push_0ad354	mod_8c0a0000.c	1
+8c0ad354	CSquidLine_draw_like	mod_8c0a0000.c	1
 8c0ad7ec	game_draw_0ad7ec	mod_8c0a0000.c	1
 8c0adc0c	game_uses_get_field_1c_on_field_b0_0adc0c	mod_8c0a0000.c	4
 8c0add00	game_draw_at_pose_motion_frame	mod_8c0a0000.c	3
@@ -2007,7 +2007,7 @@ address	name	file	params
 8c0ae640	game_release_0ae640	mod_8c0a0000.c	3
 8c0ae6a0	nautilus_desc_init	mod_8c0a0000.c	4
 8c0ae7a4	game_fill_loop_0ae7a4	mod_8c0a0000.c	1
-8c0ae84c	game_uses_rand_0ae84c	mod_8c0a0000.c	4
+8c0ae84c	CSquidLine_uses_rand_0ae84c	mod_8c0a0000.c	4
 8c0af2b8	game_vec_0af2b8	mod_8c0a0000.c	4
 8c0af368	game_release_0af368	mod_8c0a0000.c	4
 8c0af3c4	static_init_vec3s_285938	mod_8c0a0000.c	4

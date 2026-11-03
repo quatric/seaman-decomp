@@ -647,7 +647,7 @@ u32 flags6_set_all_wrap(u32 a0, u32 a1, u32 a2) {
 /*
  * flags6_set_all  0x8c030eb8
  * sets bits 0..5 of *a0
- * called by: Class_12a25c_vec_06f93c, Class_12a76c_uses_flags6_set_all_08dd98, Vec3_state_switch_03f4a4,
+ * called by: Class_12a25c_uses_Vec3_dtor_06f93c, Class_12a76c_uses_flags6_set_all_08dd98, Vec3_state_switch_03f4a4,
  * creature_action_motion4e_step, flags6_set_all_wrap, game_state_switch_04f034, game_state_switch_0564c4,
  * game_state_switch_070d7c (+14 more)
  */
@@ -1059,7 +1059,7 @@ u32 Class_12b2ac_vec_031700(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * timer_stop_94  0x8c031748
  * clears +0x94 and +0xa4
- * called by: Class_12a03c_m1_03c43c, Class_12a25c_vec_06f93c, Class_12b2ac_reset,
+ * called by: Class_12a03c_m1_03c43c, Class_12a25c_uses_Vec3_dtor_06f93c, Class_12b2ac_reset,
  * Class_12b2ac_uses_timer_stop_94_0b5344, Vec3_state_switch_03f4a4, game_state_switch_04c314, game_state_switch_0564c4,
  * game_state_switch_057280 (+37 more)
  */
@@ -1072,7 +1072,7 @@ u32 timer_stop_94(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CMushroomerBody_vec_031764  0x8c031764
  * area name: only called from CMushroomerBody methods; behaviour name: mostly calls vec functions
- * called by: CMushroomerBody_AwayFrom, Class_12a25c_vec_06f93c, draw_vec_032d48, game_state_switch_073cac,
+ * called by: CMushroomerBody_AwayFrom, Class_12a25c_uses_Vec3_dtor_06f93c, draw_vec_032d48, game_state_switch_073cac,
  * game_state_switch_074d1c, game_state_switch_0755e0, game_state_switch_091924, game_state_switch_0a2bf4 (+11 more)
  */
 u32 CMushroomerBody_vec_031764(int a0, u32 a1, u32 a2, u32 a3) {
@@ -1454,8 +1454,9 @@ int timer_uses_reset_fields_2c_6c_031b08(int *a0, u32 a1, int a2, u32 a3) {
 /*
  * reset_fields_2c_6c  0x8c031b58
  * sets +0x2c and +0x6c to -1
- * called by: CAnimBody_SetAnimation, Class_12a25c_vec_06f93c, game_state_switch_070d7c, game_state_switch_071a38,
- * game_uses_reset_fields_2c_6c_032160, game_uses_reset_fields_2c_6c_097ef0, timer_uses_reset_fields_2c_6c_031b08
+ * called by: CAnimBody_SetAnimation, Class_12a25c_uses_Vec3_dtor_06f93c, game_state_switch_070d7c,
+ * game_state_switch_071a38, game_uses_reset_fields_2c_6c_032160, game_uses_reset_fields_2c_6c_097ef0,
+ * timer_uses_reset_fields_2c_6c_031b08
  */
 u32 reset_fields_2c_6c(int a0, u32 a1, u32 a2) {
     *(u32 *)(a0 + 0x2c) = 0xffffffff;
@@ -1466,8 +1467,9 @@ u32 reset_fields_2c_6c(int a0, u32 a1, u32 a2) {
 /*
  * copy6_to_fields  0x8c031b68
  * copies six words from a1 to +0xa0, +0x34, +0x38, +0x48, +0x4c, +0x50
- * called by: CMushroomerBody_AwayFrom, Class_12a03c_m6_03a65c, Class_12a25c_m6_06e69c, Class_12a25c_vec_06f93c,
- * Class_12a76c_set_mode, Class_12ad14_init_begin_iya, Class_12b2ac_m6_0afcc0, game_state_switch_049b68 (+34 more)
+ * called by: CMushroomerBody_AwayFrom, Class_12a03c_m6_03a65c, Class_12a25c_m6_06e69c,
+ * Class_12a25c_uses_Vec3_dtor_06f93c, Class_12a76c_set_mode, Class_12ad14_init_begin_iya, Class_12b2ac_m6_0afcc0,
+ * game_state_switch_049b68 (+34 more)
  */
 u32 *copy6_to_fields(int a0, u32 *a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 0xa0) = *a1;
@@ -1571,7 +1573,7 @@ u32 timer_start_24(int a0) {
 /*
  * timer_vec_031c74  0x8c031c74
  * area name: sits between timer functions (same compilation unit); behaviour name: mostly calls vec functions
- * called by: Class_12a25c_vec_06f93c, Class_12b2ac_vec_0b0784, Vec3_state_switch_03f4a4, alt_entry_046684,
+ * called by: Class_12a25c_uses_Vec3_dtor_06f93c, Class_12b2ac_vec_0b0784, Vec3_state_switch_03f4a4, alt_entry_046684,
  * game_state_switch_04e7e0, game_state_switch_0526a0, game_state_switch_057280, game_state_switch_070d7c (+19 more)
  */
 u32 timer_vec_031c74(int a0, u32 a1, u32 a2, u32 a3) {
@@ -1661,9 +1663,9 @@ u32 *get_ptr_8c031de4(void) {
 /*
  * timer_uses_CAnimBody_PlayToEnd_031de8  0x8c031de8
  * area name: sits between timer functions (same compilation unit); behaviour name: its main named callee is
- * CAnimBody_PlayToEnd called by: Class_12a25c_vec_06f93c, Class_12b088_vec_0a6628, Vec3_state_switch_03f4a4,
- * game_state_switch_071a38, game_state_switch_092a28, game_uses_Vec3_assign_07baa0, game_vec_0507c0, game_vec_077a38
- * (+6 more)
+ * CAnimBody_PlayToEnd called by: Class_12a25c_uses_Vec3_dtor_06f93c, Class_12b088_vec_0a6628, Vec3_state_switch_03f4a4,
+ * game_state_switch_071a38, game_state_switch_092a28, game_uses_Vec3_assign_07baa0, game_uses_Vec3_dtor_077a38,
+ * game_vec_0507c0 (+6 more)
  */
 u32 timer_uses_CAnimBody_PlayToEnd_031de8(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -2132,7 +2134,7 @@ u32 CMushroomerBody_vec_032518(int a0, u32 a1, u32 a2, u32 a3) {
     uVar3 = a3;
     iVar1 = point_inside_box_margin(a0, auStack_28, a2, a3);
     if (iVar1 == 0) {
-        uVar2 = game_float_calc_032788(a0, auStack_28, a2, a3);
+        uVar2 = point_push_into_box_margin(a0, auStack_28, a2, a3);
         Vec3_ctor_copy(in_stack_00000000, uVar2, a2, a3);
         Vec3_dtor(auStack_28, 0xffffffff, a2, a3);
     } else {
@@ -2244,12 +2246,12 @@ u32 game_vec_03263c(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_float_calc_032788  0x8c032788
- * area name: game code; nothing names its area yet; behaviour name: floating-point arithmetic
+ * point_push_into_box_margin  0x8c032788
+ * moves point a1 back inside box a2 shrunk by margin fr4 (the counterpart of point_inside_box_margin)
  * called by: CMushroomerBody_vec_032518, Class_12ad14_vec_0a0c88, Vec3_state_switch_03f4a4,
  * game_uses_Vec3_assign_07baa0, game_uses_Vec3_dtor_07b7d0, game_vec_055750, game_vec_078fd0, game_vec_07f56c (+9 more)
  */
-float *game_float_calc_032788(u32 unused_a0, float *a1, float *a2, int *a3) {
+float *point_push_into_box_margin(u32 unused_a0, float *a1, float *a2, int *a3) {
     float in_fr1;
     double dVar1;
     double dVar2;
@@ -2524,8 +2526,8 @@ float *game_float_calc_032788(u32 unused_a0, float *a1, float *a2, int *a3) {
 /*
  * point_inside_box_margin  0x8c0329ac
  * returns 1 when point a1 lies inside the box (corners from the stack and a2) shrunk by margin fr4, checking the height
- * through method 0x128 called by: CMushroomerBody_vec_032518, Class_12a25c_vec_06f93c, Class_12ad14_vec_0a0c88,
- * game_uses_Vec3_assign_07baa0
+ * through method 0x128 called by: CMushroomerBody_vec_032518, Class_12a25c_uses_Vec3_dtor_06f93c,
+ * Class_12ad14_vec_0a0c88, game_uses_Vec3_assign_07baa0
  */
 u32 point_inside_box_margin(u32 unused_a0, float *a1, float *a2, int *a3) {
     float fVar1;
@@ -2616,7 +2618,7 @@ int rand_range(u32 a0, int a1, int a2) {
 /*
  * rand_float  0x8c032ab0
  * rand() scaled to a float (result in fr0)
- * called by: CMushroomerBody_AwayFrom, CMushroomerBody_uses_rand_float_031bb4, Class_12a25c_vec_06f93c,
+ * called by: CMushroomerBody_AwayFrom, CMushroomerBody_uses_rand_float_031bb4, Class_12a25c_uses_Vec3_dtor_06f93c,
  * Class_12ad14_uses_rand_float_0a37c8, Class_12b2ac_m5_0afddc, Class_12b2ac_uses_timer_stop_94_0b5344,
  * Vec3_state_switch_03f4a4, alt_entry_046684 (+37 more)
  */
@@ -3373,7 +3375,7 @@ u32 game_vec_0332b4(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0, float *s4) {
 /*
  * se_play_at_object  0x8c033474
  * plays a 3D sound effect at an object's position
- * called by: CMushroomerBody_AwayFrom, Class_12a25c_vec_06f93c, Vec3_state_switch_03f4a4, alt_entry_046684,
+ * called by: CMushroomerBody_AwayFrom, Class_12a25c_uses_Vec3_dtor_06f93c, Vec3_state_switch_03f4a4, alt_entry_046684,
  * creature_action_motion4e_step, game_state_switch_04c314, game_state_switch_04f034, game_state_switch_057280 (+18
  * more)
  */
@@ -3739,7 +3741,7 @@ u32 Class_129cf8_reset(int a0) {
 
 /*
  * CAnimBody_SetAnimation  0x8c033a8c
- * called by: CAnimBody_PlayToEnd, CMushroomerBody_AwayFrom, Class_12a25c_m6_06e69c, Class_12a25c_vec_06f93c,
+ * called by: CAnimBody_PlayToEnd, CMushroomerBody_AwayFrom, Class_12a25c_m6_06e69c, Class_12a25c_uses_Vec3_dtor_06f93c,
  * Class_12a76c_set_mode, Class_12ad14_m3_0a427c, Class_12ad14_m4_0a43d4, Class_12ad14_uses_rand_float_0a37c8 (+105
  * more) strings: "Invalid AnimationID.."; "CAnimBody::SetAnimation()"
  */
@@ -3792,9 +3794,9 @@ u32 CAnimBody_SetAnimation(int a0, int a1, int a2, u32 a3) {
 
 /*
  * CAnimBody_AdvanceFrame_033b98  0x8c033b98
- * called by: CAnimBody_AdvanceFrame_wrapper, CAnimBody_PlayToEnd, Class_12a25c_vec_06f93c, Class_12b2ac_m5_0afddc,
- * Vec3_state_switch_03f4a4, alt_entry_046684, creature_action_motion49_step, game_state_switch_049b68 (+44 more)
- * strings: "Motion is NO SET!"; "CAnimBody::AdvanceFrame()"
+ * called by: CAnimBody_AdvanceFrame_wrapper, CAnimBody_PlayToEnd, Class_12a25c_uses_Vec3_dtor_06f93c,
+ * Class_12b2ac_m5_0afddc, Vec3_state_switch_03f4a4, alt_entry_046684, creature_action_motion49_step,
+ * game_state_switch_049b68 (+44 more) strings: "Motion is NO SET!"; "CAnimBody::AdvanceFrame()"
  */
 u32 CAnimBody_AdvanceFrame_033b98(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -4187,9 +4189,9 @@ u32 CAnimBody_AdvanceFrame_033d88(int a0, char *a1, u32 a2, u32 a3) {
 
 /*
  * CAnimBody_SetFrame  0x8c033e68
- * called by: CMushroomerBody_AwayFrom, Class_129cbc_m5_031440, Class_12a25c_vec_06f93c, Class_12a76c_set_mode,
- * Class_12ad14_uses_rand_float_0a37c8, Class_12b088_state_switch_0a99c4, Class_12b088_vec_0a6628,
- * Class_12b088_vec_0aa70c (+98 more) strings: "Motion is NO SET!"; "CAnimBody::SetFrame()"
+ * called by: CMushroomerBody_AwayFrom, Class_129cbc_m5_031440, Class_12a25c_uses_Vec3_dtor_06f93c,
+ * Class_12a76c_set_mode, Class_12ad14_uses_rand_float_0a37c8, Class_12b088_state_switch_0a99c4,
+ * Class_12b088_vec_0a6628, Class_12b088_vec_0aa70c (+98 more) strings: "Motion is NO SET!"; "CAnimBody::SetFrame()"
  */
 u32 CAnimBody_SetFrame(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -4546,7 +4548,7 @@ u32 CAnimBody_PlayToEnd(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * motion_entry_get_0  0x8c0342ac
  * word 0 of record a2 of the 0x18-byte motion table *a1
- * called by: game_uses_Vec3_dtor_08f354, game_vec_08eef4, game_vec_08f9e8, game_vec_0911f0, game_vec_091570,
+ * called by: game_uses_Vec3_dtor_08f354, game_uses_Vec3_dtor_0911f0, game_vec_08eef4, game_vec_08f9e8, game_vec_091570,
  * game_vec_0b0eec, record18_take
  */
 int motion_entry_get_0(u32 unused_a0, u32 *a1, int a2) {
@@ -4633,12 +4635,12 @@ u32 CAnimBody_vec_key_at(u32 unused_a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * CAnimBody_vec_034384  0x8c034384
- * area name: sits between CAnimBody functions (same compilation unit); behaviour name: mostly calls vec functions
+ * motion_track_sample_vec3_like  0x8c034384
+ * samples key track a1 at frame fr4 (clamped at 0), interpolating between the bracketing keys into a Vec3
  * called by: Vec3_state_switch_03f4a4, game_state_switch_04c314, game_state_switch_04f034, game_state_switch_0564c4,
- * game_state_switch_071a38, game_state_switch_0755e0, game_uses_Vec3_dtor_08f354, game_uses_Vec3_dtor_0b4d14 (+13 more)
+ * game_state_switch_071a38, game_state_switch_0755e0, game_uses_Vec3_dtor_077a38, game_uses_Vec3_dtor_08f354 (+13 more)
  */
-u32 CAnimBody_vec_034384(u32 unused_a0, int *a1, u32 a2, u32 a3) {
+u32 motion_track_sample_vec3_like(u32 unused_a0, int *a1, u32 a2, u32 a3) {
     int *piVar1;
     u32 in_fr1;
     float fVar2;
@@ -5013,7 +5015,7 @@ u32 CAnimBody_vec_034384(u32 unused_a0, int *a1, u32 a2, u32 a3) {
 /*
  * motion_entry_get_4  0x8c034548
  * word 1 of record a2 of the 0x18-byte motion table *a1
- * called by: game_uses_Vec3_dtor_08f354, game_vec_08eef4, game_vec_08f9e8, game_vec_0911f0, game_vec_091570,
+ * called by: game_uses_Vec3_dtor_08f354, game_uses_Vec3_dtor_0911f0, game_vec_08eef4, game_vec_08f9e8, game_vec_091570,
  * record18_take
  */
 int motion_entry_get_4(u32 unused_a0, int *a1, int a2) {
@@ -5166,13 +5168,13 @@ u32 game_vec_034574(u32 unused_a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_034650  0x8c034650
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * motion_track_sample_vec3_b_like  0x8c034650
+ * second key-track sampler returning a Vec3
  * called by: creature_apply_anim_root_delta, game_state_switch_049b68, game_state_switch_04b168,
- * game_state_switch_0755e0, game_uses_CAnimBody_SetAnimation_0811b4, game_uses_Vec3_dtor_08f354, game_vec_051c14,
- * game_vec_057e58 (+5 more)
+ * game_state_switch_0755e0, game_uses_CAnimBody_SetAnimation_0811b4, game_uses_Vec3_dtor_077a38,
+ * game_uses_Vec3_dtor_08f354, game_uses_Vec3_dtor_0911f0 (+5 more)
  */
-u32 game_vec_034650(u32 unused_a0, int *a1, u32 a2, u32 a3) {
+u32 motion_track_sample_vec3_b_like(u32 unused_a0, int *a1, u32 a2, u32 a3) {
     int *piVar1;
     u32 in_fr1;
     float fVar2;
@@ -5685,11 +5687,11 @@ int array18_get_field8(u32 unused_a0, int *a1, int a2) {
 }
 
 /*
- * game_uses_Vec3_assign_copy_0348ac  0x8c0348ac
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is Vec3_assign_copy_023e24
- * called by: game_state_switch_04f034, game_vec_077a38
+ * motion_track_sample_angles_like  0x8c0348ac
+ * samples key track a1 at frame fr4 into three integer angles
+ * called by: game_state_switch_04f034, game_uses_Vec3_dtor_077a38
  */
-u32 game_uses_Vec3_assign_copy_0348ac(u32 unused_a0, int *a1, u32 a2, u32 a3) {
+u32 motion_track_sample_angles_like(u32 unused_a0, int *a1, u32 a2, u32 a3) {
     int *piVar1;
     u32 in_fr1;
     float fVar2;
@@ -8926,7 +8928,7 @@ u32 CAnimal_m2_0386d0(int a0, u32 a1, int *a2, int *a3) {
  * set_fields_5c_60_64  0x8c038a10
  * stores +0x5c, +0x60, +0x64
  * called by: CAnimal_m2_0386d0, Class_12a7f4_m2_09a060, Class_12a7f4_m3_09a558, Class_12ad50_m2_0a4fdc,
- * game_state_switch_04f034, game_vec_077a38
+ * game_state_switch_04f034, game_uses_Vec3_dtor_077a38
  */
 u32 set_fields_5c_60_64(int a0) {
     u32 in_fr5;
@@ -10450,7 +10452,7 @@ u32 Class_12a03c_reset_state(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * timer_start_94  0x8c03c314
  * +0x94 = fr4, +0xa4 = 1
- * called by: Class_12a03c_m1_03c43c, Class_12a03c_reset_state, Class_12a25c_reset, Class_12a25c_vec_06f93c,
+ * called by: Class_12a03c_m1_03c43c, Class_12a03c_reset_state, Class_12a25c_reset, Class_12a25c_uses_Vec3_dtor_06f93c,
  * Class_12a76c_reset_state, Class_12ad14_uses_rand_float_0a37c8, Class_12b088_state_switch_0a99c4,
  * Class_12b2ac_uses_timer_stop_94_0b5344 (+34 more)
  */
@@ -12302,8 +12304,9 @@ int set_field_8c_to_1(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * CAnimBody_AdvanceFrame_wrap  0x8c03f3ac
  * only calls CAnimBody_AdvanceFrame_033d88
- * called by: Class_12a25c_vec_06f93c, Class_12ad14_m3_0a427c, Class_12b088_vec_0aa70c, game_state_switch_071a38,
- * game_state_switch_074d1c, game_state_switch_0755e0, game_state_switch_076994, game_state_switch_07edac (+25 more)
+ * called by: Class_12a25c_uses_Vec3_dtor_06f93c, Class_12ad14_m3_0a427c, Class_12b088_vec_0aa70c,
+ * game_state_switch_071a38, game_state_switch_074d1c, game_state_switch_0755e0, game_state_switch_076994,
+ * game_state_switch_07edac (+25 more)
  */
 u32 CAnimBody_AdvanceFrame_wrap(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -12314,8 +12317,8 @@ u32 CAnimBody_AdvanceFrame_wrap(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * set_field_88_to_1  0x8c03f3e8
- * called by: Class_12a25c_vec_06f93c, game_state_switch_04f034, game_uses_Vec3_dtor_0b4d14, game_vec_03c94c,
- * game_vec_050300, game_vec_077a38, game_vec_0aa11c
+ * called by: Class_12a25c_uses_Vec3_dtor_06f93c, game_state_switch_04f034, game_uses_Vec3_dtor_077a38,
+ * game_uses_Vec3_dtor_0b4d14, game_vec_03c94c, game_vec_050300, game_vec_0aa11c
  */
 int set_field_88_to_1(int a0, u32 unused_a1, u32 a2) {
     int iVar1;
@@ -12328,7 +12331,7 @@ int set_field_88_to_1(int a0, u32 unused_a1, u32 a2) {
 /*
  * get_vec3_field_5c  0x8c03f3f8
  * copies the three words at +0x5c to the pointers in a1..a3
- * called by: Class_12a25c_vec_06f93c, game_vec_03c94c, game_vec_077a38
+ * called by: Class_12a25c_uses_Vec3_dtor_06f93c, game_uses_Vec3_dtor_077a38, game_vec_03c94c
  */
 u32 *get_vec3_field_5c(int a0, u32 *a1, u32 *a2, u32 *a3) {
     *a1 = *(u32 *)(a0 + 0x5c);
@@ -12340,8 +12343,8 @@ u32 *get_vec3_field_5c(int a0, u32 *a1, u32 *a2, u32 *a3) {
 /*
  * get_vec3_field_50  0x8c03f414
  * copies x, y, z at +0x50 to three out pointers
- * called by: Class_12a25c_vec_06f93c, Class_12a7a8_vec_099b0c, Class_12acc8_uses_rand_0a0278, Class_12b0c4_vec_0ac1f0,
- * Class_12b2e8_vec_0b67cc, game_uses_rand_069c24, game_vec_03c94c, game_vec_066834
+ * called by: Class_12a25c_uses_Vec3_dtor_06f93c, Class_12a7a8_vec_099b0c, Class_12acc8_uses_rand_0a0278,
+ * Class_12b0c4_vec_0ac1f0, Class_12b2e8_vec_0b67cc, game_uses_rand_069c24, game_vec_03c94c, game_vec_066834
  */
 u32 *get_vec3_field_50(int a0, u32 *a1, u32 *a2, u32 *a3) {
     *a1 = *(u32 *)(a0 + 0x50);
@@ -12385,8 +12388,9 @@ u32 *Vec3_copy_assign(u32 *a0, u32 *a1) {
 /*
  * Vec3_ctor_copy_wrap_03f480  0x8c03f480
  * only calls Vec3_ctor_copy
- * called by: Class_12a25c_vec_06f93c, Class_12ad14_vec_0a0c88, Class_12b088_m1_0a6468, Class_12b088_vec_0a6628,
- * Class_12b2ac_vec_0b0784, Vec3_state_switch_03f4a4, game_state_switch_070d7c, game_state_switch_071a38 (+3 more)
+ * called by: Class_12a25c_uses_Vec3_dtor_06f93c, Class_12ad14_vec_0a0c88, Class_12b088_m1_0a6468,
+ * Class_12b088_vec_0a6628, Class_12b2ac_vec_0b0784, Vec3_state_switch_03f4a4, game_state_switch_070d7c,
+ * game_state_switch_071a38 (+3 more)
  */
 u32 Vec3_ctor_copy_wrap_03f480(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;
@@ -12913,7 +12917,7 @@ u32 Vec3_state_switch_03f4a4(int a0, int *a1, u32 a2, u32 a3) {
                     *(int *)((int)puVar17 + -0x76c) = (int)((u64)dVar19 >> 0x20);
 
                     *(u8 **)((int)puVar17 + -0xa74) = (u8 *)((int)puVar17 + -0x2a0);
-                    CAnimBody_vec_034384(a0 + 0xb0, **(u32 **)(a0 + 0xb4), iVar15, puVar3);
+                    motion_track_sample_vec3_like(a0 + 0xb0, **(u32 **)(a0 + 0xb4), iVar15, puVar3);
                     Vec3_assign((u8 *)((int)puVar17 + -0x7c), (u8 *)((int)puVar17 + -0x2a0), iVar15, puVar3);
                     uVar2 = 0xffffffff;
                     Vec3_dtor((u8 *)((int)puVar17 + -0x2a0), 0xffffffff, iVar15, puVar3);
@@ -13254,7 +13258,7 @@ u32 Vec3_state_switch_03f4a4(int a0, int *a1, u32 a2, u32 a3) {
 
                             *(int *)((int)puVar17 + -0xa6c) = a1[3];
                             pdVar6 = *(double **)((int)puVar17 + -0xa6c);
-                            game_float_calc_032788(a0, a0 + 0x248, pdVar6, pcVar10);
+                            point_push_into_box_margin(a0, a0 + 0x248, pdVar6, pcVar10);
 
                             dVar21 = (double)CONCAT44(0x43340000, uVar2);
                             *(u32 *)(a0 + 0x24c) = 0x43340000;
@@ -13366,7 +13370,7 @@ u32 Vec3_state_switch_03f4a4(int a0, int *a1, u32 a2, u32 a3) {
                                 uVar2 = SUB84(dVar21, 0);
 
                                 pdVar6 = (double *)a1[3];
-                                game_float_calc_032788(a0, a0 + 0x248, pdVar6, pcVar10);
+                                point_push_into_box_margin(a0, a0 + 0x248, pdVar6, pcVar10);
 
                                 dVar21 = (double)CONCAT44(0x43340000, uVar2);
                                 *(u32 *)(a0 + 0x24c) = 0x43340000;

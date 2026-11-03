@@ -2546,3 +2546,15 @@
 8c0f7118	Class_12b580_draw_at_pose	sets the object's colour, pushes a matrix, applies its position, rotation (+0x18, degrees) and scale and draws it
 8c0f5398	game_random_point_in_zone_a	picks a random point a1 inside one of three preset ranges chosen by a2 (zero for 3)
 8c0f66ac	game_random_point_in_zone_b	second copy of game_random_point_in_zone_a with a different first range
+8c017900	collision_mesh_push_out_a_like	tests sphere a1 (radius in a2) against the triangles of collision mesh a0 using closest points on their edges and pushes it out
+8c0185a4	collision_mesh_push_out_b_like	second variant of collision_mesh_push_out_a_like
+8c032788	point_push_into_box_margin	moves point a1 back inside box a2 shrunk by margin fr4 (the counterpart of point_inside_box_margin)
+8c029dec	CAnimal_draw_blended_shape_like	selects the creature's shape for its stage row, blending two shapes (lerp_float_arrays) while changing, and draws it
+8c034384	motion_track_sample_vec3_like	samples key track a1 at frame fr4 (clamped at 0), interpolating between the bracketing keys into a Vec3
+8c034650	motion_track_sample_vec3_b_like	second key-track sampler returning a Vec3
+8c0348ac	motion_track_sample_angles_like	samples key track a1 at frame fr4 into three integer angles
+8c06aa04	global_track_sample_a_like	samples the first key track of the table at 0x8c280954 at frame fr4 into a Vec3
+8c06abb8	global_track_sample_b_like	samples the second key track of the table at 0x8c280954 at frame fr4
+8c06c148	game_obj_load_state_record_like	loads the object's state from record a1, then its position, scale and angle fields
+8c0ad354	CSquidLine_draw_like	sets colour, pushes a matrix, applies the object's rotation and scale, then draws the squid-line model
+8c0a481c	Class_12aeec_draw_like	sets colour, pushes a matrix, applies rotation and scale, then draws the object's model

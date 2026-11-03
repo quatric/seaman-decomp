@@ -10884,9 +10884,9 @@ u32 nj_palette_file_load(u32 a0, int *a1, u32 a2, u32 a3) {
 /*
  * matrix_pop_n  0x8c256210
  * pops a0 matrices off the matrix stack
- * called by: CAnimal_draw_029ca8, CAnimal_draw_029dec, CAnimal_draw_at_pose_a, CAnimal_draw_model_a,
- * CAnimal_draw_model_b, CAnimal_uses_njGetMatrix_026968, CEnv_draw_with_three_parts_swapped,
- * CSquidLine_uses_matrix_push_0ad354 (+50 more)
+ * called by: CAnimal_draw_029ca8, CAnimal_draw_at_pose_a, CAnimal_draw_blended_shape_like, CAnimal_draw_model_a,
+ * CAnimal_draw_model_b, CAnimal_uses_njGetMatrix_026968, CEnv_draw_with_three_parts_swapped, CSquidLine_draw_like (+50
+ * more)
  */
 u32 matrix_pop_n(int a0) {
     if (g_8c4aa5a0 - a0 != 0) {
@@ -11037,9 +11037,9 @@ u32 matrix_apply_point_w1(int a0, double *a1, double *a2) {
 /*
  * matrix_push  0x8c256328
  * pushes the current 4x4 matrix onto the matrix stack
- * called by: CAnimal_draw_029ca8, CAnimal_draw_029dec, CAnimal_draw_at_pose_a, CAnimal_draw_model_a,
- * CAnimal_draw_model_b, CAnimal_uses_njGetMatrix_026968, CEnv_draw_with_three_parts_swapped,
- * CSquidLine_uses_matrix_push_0ad354 (+50 more)
+ * called by: CAnimal_draw_029ca8, CAnimal_draw_at_pose_a, CAnimal_draw_blended_shape_like, CAnimal_draw_model_a,
+ * CAnimal_draw_model_b, CAnimal_uses_njGetMatrix_026968, CEnv_draw_with_three_parts_swapped, CSquidLine_draw_like (+50
+ * more)
  */
 u32 matrix_push(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 *puVar1;
@@ -11938,9 +11938,8 @@ u32 ninja_scan_loop_2569e0(u32 *a0, int a1, u32 unused_a2, u32 unused_a3, u32 ai
 /*
  * njRotateX_like  0x8c256a78
  * rotates matrix a0 about the X axis by Ninja angle a1 (0x10000 = 360 degrees), updating its second and third rows
- * called by: CSquidLine_uses_matrix_push_0ad354, Class_1299f8_m4_019588, Class_129a24_m1_019b68,
- * Class_12aeec_uses_gfx_set_color4_0a481c, Class_12bec0_draw_0f5e0c, Vec3_vec_02374c, matrix_rotate_deg,
- * matrix_rotate_deg_m
+ * called by: CSquidLine_draw_like, Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12aeec_draw_like,
+ * Class_12bec0_draw_0f5e0c, Vec3_vec_02374c, matrix_rotate_deg, matrix_rotate_deg_m
  */
 u32 njRotateX_like(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -12007,9 +12006,9 @@ u32 njRotateX_like(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 /*
  * njRotateXYZ  0x8c256b0c
  * rotates matrix a0 (NULL: current) by Ninja angles a1, a2, a3
- * called by: CAnimal_draw_029dec, CAnimal_draw_at_pose_a, CAnimal_uses_njGetMatrix_026968,
- * CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec, Class_1298b8_m3_0155e8, Class_1298b8_m5_015720,
- * Class_1298b8_m6_0157f8 (+28 more) decompiler: Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256c66
+ * called by: CAnimal_draw_at_pose_a, CAnimal_draw_blended_shape_like, CAnimal_uses_njGetMatrix_026968,
+ * CSquidLine_draw_like, Class_1298b8_m11_0159ec, Class_1298b8_m3_0155e8, Class_1298b8_m5_015720, Class_1298b8_m6_0157f8
+ * (+28 more) decompiler: Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256c66
  */
 u32 njRotateXYZ(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     float fVar1;
@@ -12159,8 +12158,8 @@ u32 njRotateXYZ(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 /*
  * njRotateY  0x8c256ce0
  * rotates matrix a0 (NULL: current) about Y by Ninja angle a1
- * called by: Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12aeec_uses_gfx_set_color4_0a481c, Vec3_vec_0238b4,
- * njRotateY_wrap, rotate_y_degrees
+ * called by: Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12aeec_draw_like, Vec3_vec_0238b4, njRotateY_wrap,
+ * rotate_y_degrees
  */
 u32 njRotateY(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -12230,7 +12229,7 @@ u32 njRotateY(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 /*
  * njRotateZ  0x8c256d7c
  * rotates matrix a0 (NULL: current) about Z by Ninja angle a1
- * called by: Class_129a24_m1_019b68, Class_12aeec_uses_gfx_set_color4_0a481c, njRotateZ_wrap, rotate_degrees
+ * called by: Class_129a24_m1_019b68, Class_12aeec_draw_like, njRotateZ_wrap, rotate_degrees
  */
 u32 njRotateZ(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -12447,9 +12446,9 @@ u32 ninja_float_calc_256e18(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 /*
  * matrix_scale  0x8c256fec
  * scales the matrix rows by fr4, fr5, fr6
- * called by: CAnimal_draw_029dec, CAnimal_draw_at_pose_a, CAnimal_uses_njGetMatrix_026968,
- * CAnimal_uses_njGetMatrix_029af0, CSquidLine_draw_grow_scaled, CSquidLine_uses_matrix_push_0ad354,
- * Class_1298b8_m11_0159ec, Class_1298b8_m4_0156a0 (+26 more)
+ * called by: CAnimal_draw_at_pose_a, CAnimal_draw_blended_shape_like, CAnimal_uses_njGetMatrix_026968,
+ * CAnimal_uses_njGetMatrix_029af0, CSquidLine_draw_grow_scaled, CSquidLine_draw_like, Class_1298b8_m11_0159ec,
+ * Class_1298b8_m4_0156a0 (+26 more)
  */
 u32 matrix_scale(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float in_fr5;
@@ -18554,9 +18553,8 @@ u32 njLoadTexture(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * njSetTexture  0x8c25b3ec
  * makes a0 the current texture list (0x8c277b04); -1 for NULL
- * called by: CSquidLine_uses_matrix_push_0ad354, CTexture_LoadFromCache, Class_129808_draw_016544,
- * Class_129808_m10_0162bc, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0,
- * Class_1298b8_m5_015720 (+13 more)
+ * called by: CSquidLine_draw_like, CTexture_LoadFromCache, Class_129808_draw_016544, Class_129808_m10_0162bc,
+ * Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0, Class_1298b8_m5_015720 (+13 more)
  */
 u32 njSetTexture(int a0) {
     if (a0 == 0) {
@@ -18710,8 +18708,8 @@ u32 tex_error_reset(void) {
  * touch_fields_30_3c  0x8c25b5d0
  * rewrites the four words at +0x30..+0x3c with themselves (no effect)
  * called by: CAnimal_draw_at_pose_a, CAnimal_uses_njGetMatrix_026968, CAnimal_uses_njGetMatrix_029af0,
- * CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8,
- * Class_1298b8_m4_0156a0 (+23 more)
+ * CSquidLine_draw_like, Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0
+ * (+23 more)
  */
 u32 touch_fields_30_3c(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     if (a0 != 0) {

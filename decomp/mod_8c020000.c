@@ -2461,8 +2461,8 @@ u32 *Vec3_ctor_zero(u32 *a0, u32 a1, u32 a2) {
 
 /*
  * Vec3_ctor_copy  0x8c022c88
- * called by: CAnimBody_vec_034384, CAnimBody_vec_key_at, CMushroomerBody_vec_031764, CMushroomerBody_vec_032518,
- * CSquidLine_uses_matrix_push_0ad354, CSquidLine_vec_036adc, CSquidLine_vec_085c3c, Class_1299f8_m4_019588 (+130 more)
+ * called by: CAnimBody_vec_key_at, CMushroomerBody_vec_031764, CMushroomerBody_vec_032518, CSquidLine_draw_like,
+ * CSquidLine_vec_036adc, CSquidLine_vec_085c3c, Class_1299f8_m4_019588, Class_1299f8_vec_0240bc (+130 more)
  */
 u32 *Vec3_ctor_copy(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     a0[3] = &g_8c129a7c;
@@ -2474,8 +2474,8 @@ u32 *Vec3_ctor_copy(u32 *a0, u32 *a1, u32 a2, u32 a3) {
 
 /*
  * Vec3_dtor  0x8c022cb0
- * called by: CAnimBody_vec_034384, CAnimBody_vec_key_at, CAnimal_m2_02573c, CAnimal_m3_026078, CAnimal_m7_036d7c,
- * CAnimal_m7_0ade84, CAnimal_m7_0f49b8, CAnimal_release_0253ec (+334 more)
+ * called by: CAnimBody_vec_key_at, CAnimal_m2_02573c, CAnimal_m3_026078, CAnimal_m7_036d7c, CAnimal_m7_0ade84,
+ * CAnimal_m7_0f49b8, CAnimal_release_0253ec, CAnimal_release_025490 (+334 more)
  */
 int Vec3_dtor(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -2488,8 +2488,9 @@ int Vec3_dtor(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * Vec3_ctor_xyz  0x8c022ce8
- * called by: CAnimBody_vec_034384, CAnimBody_vec_key_at, Class_1299f8_m3_019f00, Class_1299f8_m4_019588,
- * Class_129a24_ctor, Class_12a25c_vec_06f93c, Class_12a7a8_vec_099b0c, Class_12ad14_uses_rand_float_0a37c8 (+123 more)
+ * called by: CAnimBody_vec_key_at, Class_1299f8_m3_019f00, Class_1299f8_m4_019588, Class_129a24_ctor,
+ * Class_12a25c_uses_Vec3_dtor_06f93c, Class_12a7a8_vec_099b0c, Class_12ad14_uses_rand_float_0a37c8,
+ * Class_12b088_vec_0a6370 (+123 more)
  */
 u32 *Vec3_ctor_xyz(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_fr5;
@@ -2532,7 +2533,7 @@ int Vec3_calc_022d14(u32 unused_a0, int a1) {
 /*
  * Vec3_ctor_xyz_wrap  0x8c022d3c
  * only calls Vec3_ctor_xyz
- * called by: Class_129938_vec_017900, game_vec_0185a4
+ * called by: collision_mesh_push_out_a_like, collision_mesh_push_out_b_like
  */
 u32 Vec3_ctor_xyz_wrap(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;
@@ -2712,9 +2713,9 @@ u32 Vec3_normalize(double *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * Vec3_length  0x8c022f54
- * called by: CMushroomerBody_AwayFrom, CMushroomerBody_vec_031764, CWaterTank_uses_get_field_300_0e0f48,
- * Class_129938_vec_017900, Class_1299f8_m4_019588, Class_12ad14_m1_0a09e8, Class_12b088_state_switch_0a99c4,
- * Class_12b088_vec_0aa70c (+59 more)
+ * called by: CMushroomerBody_AwayFrom, CMushroomerBody_vec_031764, CSquidLine_uses_rand_0ae84c,
+ * CWaterTank_uses_get_field_300_0e0f48, Class_1299f8_m4_019588, Class_12ad14_m1_0a09e8,
+ * Class_12b088_state_switch_0a99c4, Class_12b088_vec_0aa70c (+59 more)
  */
 double *Vec3_length(double *a0, u32 a1, u32 a2, u32 a3) {
     float fVar1;
@@ -2997,7 +2998,7 @@ u32 Vec3_vec_0232e8(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_angle_code_90  0x8c023334
  * normalises the two vectors' flattened forms and returns 4 when the angle between them is under 90 degrees, else 3
- * called by: Class_12a25c_vec_06f93c, Vec3_state_switch_03f4a4, alt_entry_046684, game_state_switch_049b68,
+ * called by: Class_12a25c_uses_Vec3_dtor_06f93c, Vec3_state_switch_03f4a4, alt_entry_046684, game_state_switch_049b68,
  * game_state_switch_04b168, game_state_switch_04c314, game_state_switch_0526a0, game_state_switch_0564c4 (+23 more)
  */
 u32 Vec3_angle_code_90(u32 a0, u32 a1, u32 a2, u32 a3) {
@@ -3062,8 +3063,8 @@ u32 Vec3_angle_code_90(u32 a0, u32 a1, u32 a2, u32 a3) {
  * Vec3_rotate_euler_deg  0x8c023484
  * rotates vector a0 by the angles (degrees) in a1 and returns the result
  * called by: CSquidLine_vec_036adc, CSquidLine_vec_085c3c, Class_129cbc_m1_031598, Class_12a0c4_state_switch_0679cc,
- * Class_12a0c4_state_switch_068e64, Class_12a25c_vec_06f93c, Class_12a7a8_vec_099b0c, Class_12acc8_uses_rand_0a0278
- * (+64 more)
+ * Class_12a0c4_state_switch_068e64, Class_12a25c_uses_Vec3_dtor_06f93c, Class_12a7a8_vec_099b0c,
+ * Class_12acc8_uses_rand_0a0278 (+64 more)
  */
 u32 Vec3_rotate_euler_deg(u64 *a0, u32 *a1, u32 a2, u32 a3, u32 s0) {
     u32 *ar5_00;
@@ -3691,7 +3692,7 @@ u32 Vec3_vec_0238b4(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_assign  0x8c023a14
  * called by: CAnimal_vec_02a2b8, CEnv_vec_0dac50, CMothLine_place_current, CMushroomerBody_AwayFrom,
- * Class_129938_m1_0170e0, Class_129938_m2_0171f4, Class_129938_vec_017900, Class_1299f8_m3_019f00 (+195 more)
+ * CSquidLine_uses_rand_0ae84c, Class_129938_m1_0170e0, Class_129938_m2_0171f4, Class_1299f8_m3_019f00 (+195 more)
  */
 u32 *Vec3_assign(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     *a0 = *a1;
@@ -3703,8 +3704,8 @@ u32 *Vec3_assign(u32 *a0, u32 *a1, u32 a2, u32 a3) {
 /*
  * Vec3_add  0x8c023a34
  * called by: CMushroomerBody_vec_032518, CSquidLine_vec_036adc, CSquidLine_vec_085c3c, Class_12a03c_m1_03c43c,
- * Class_12a0c4_state_switch_0679cc, Class_12a0c4_state_switch_068e64, Class_12a25c_m1_06f530, Class_12a25c_vec_06f93c
- * (+66 more)
+ * Class_12a0c4_state_switch_0679cc, Class_12a0c4_state_switch_068e64, Class_12a25c_m1_06f530,
+ * Class_12a25c_uses_Vec3_dtor_06f93c (+66 more)
  */
 u32 Vec3_add(u64 *a0, double *a1, u32 a2, u32 a3, u32 s0) {
     double dVar1;
@@ -3766,8 +3767,8 @@ u32 Vec3_add(u64 *a0, double *a1, u32 a2, u32 a3, u32 s0) {
 /*
  * Vec3_add_assign  0x8c023aa0
  * a0 += a1
- * called by: CAnimal_m2_02573c, CAnimal_m3_026078, CMushroomerBody_vec_031764, Class_129808_m1_014894,
- * Class_12a25c_vec_06f93c, Class_12b2ac_m1_0aff3c, Class_12bea8_m1_0d7860, Class_12bec0_uses_rand_0f5fdc (+30 more)
+ * called by: CAnimal_m2_02573c, CAnimal_m3_026078, CMushroomerBody_vec_031764, CSquidLine_uses_rand_0ae84c,
+ * Class_129808_m1_014894, Class_12a25c_uses_Vec3_dtor_06f93c, Class_12b2ac_m1_0aff3c, Class_12bea8_m1_0d7860 (+30 more)
  */
 float *Vec3_add_assign(float *a0, float *a1) {
     *a0 = *a0 + *a1;
@@ -3841,8 +3842,8 @@ u32 Vec3_sub(u64 *a0, double *a1, u32 a2, u32 a3, u32 s0) {
 /*
  * Vec3_sub_assign  0x8c023b4c
  * a0 -= a1
- * called by: Class_129974_vec_0db3bc, game_uses_Vec3_dtor_08f354, game_vec_08eef4, game_vec_08f9e8, game_vec_0911f0,
- * game_vec_091570, game_vec_0db5c4
+ * called by: Class_129974_vec_0db3bc, game_uses_Vec3_dtor_08f354, game_uses_Vec3_dtor_0911f0, game_vec_08eef4,
+ * game_vec_08f9e8, game_vec_091570, game_vec_0db5c4
  */
 float *Vec3_sub_assign(float *a0, float *a1) {
     *a0 = *a0 - *a1;
@@ -3853,9 +3854,9 @@ float *Vec3_sub_assign(float *a0, float *a1) {
 
 /*
  * Vec3_scale  0x8c023b8c
- * called by: CMothLine_place_current, CMushroomerBody_AwayFrom, CMushroomerBody_vec_031764, Class_12a03c_m1_03c43c,
- * Class_12a0c4_state_switch_0679cc, Class_12a0c4_state_switch_068e64, Class_12a25c_m1_06f530, Class_12a25c_vec_06f93c
- * (+69 more)
+ * called by: CMothLine_place_current, CMushroomerBody_AwayFrom, CMushroomerBody_vec_031764,
+ * CSquidLine_uses_rand_0ae84c, Class_12a03c_m1_03c43c, Class_12a0c4_state_switch_0679cc,
+ * Class_12a0c4_state_switch_068e64, Class_12a25c_m1_06f530 (+69 more)
  */
 u32 Vec3_scale(u64 *a0, double *a1, u32 a2, u32 a3, u32 s0) {
     double dVar1;
@@ -3918,7 +3919,8 @@ u32 Vec3_scale(u64 *a0, double *a1, u32 a2, u32 a3, u32 s0) {
  * Vec3_scale_assign  0x8c023bf4
  * a0 *= *a1
  * called by: CWaterTank_uses_get_field_300_0e0f48, Class_12b2ac_m1_0aff3c, Class_12bec0_uses_rand_0f5fdc,
- * game_state_switch_0564c4, game_uses_Vec3_dtor_08f354, game_vec_054f7c, game_vec_05af78, game_vec_07b2d4 (+11 more)
+ * game_state_switch_0564c4, game_uses_Vec3_dtor_08f354, game_uses_Vec3_dtor_0911f0, game_vec_054f7c, game_vec_05af78
+ * (+11 more)
  */
 float *Vec3_scale_assign(float *a0, float *a1) {
     *a0 = *a0 * *a1;
@@ -4103,7 +4105,7 @@ u32 *Vec3_set_one(u32 *a0) {
 /*
  * set_fields_0_4_8  0x8c023de0
  * stores +0x0, +0x4, +0x8
- * called by: game_uses_Vec3_assign_copy_0348ac, game_uses_rand_0ae84c, game_vec_0af2b8
+ * called by: CSquidLine_uses_rand_0ae84c, game_vec_0af2b8, motion_track_sample_angles_like
  */
 u32 *set_fields_0_4_8(u32 *a0, u32 a1) {
     u32 in_fr5;
@@ -4135,8 +4137,8 @@ u32 *Vec3_set_fr4_6(u32 *a0) {
 /*
  * Vec3_assign_copy  0x8c023e04
  * a0 = a1
- * called by: Class_129938_m2_0171f4, Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704, Vec3_assign_copy_wrap,
- * game_state_switch_04f034, game_uses_rand_0ae84c, game_vec_06c9c8, game_vec_06ca34 (+8 more)
+ * called by: CSquidLine_uses_rand_0ae84c, Class_129938_m2_0171f4, Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704,
+ * Vec3_assign_copy_wrap, game_state_switch_04f034, game_uses_Vec3_dtor_077a38, game_vec_06c9c8 (+8 more)
  */
 u32 *Vec3_assign_copy(u32 *a0, u32 *a1) {
     *a0 = *a1;
@@ -4148,7 +4150,7 @@ u32 *Vec3_assign_copy(u32 *a0, u32 *a1) {
 /*
  * Vec3_assign_copy_023e24  0x8c023e24
  * a0 = a1
- * called by: game_uses_Vec3_assign_copy_0348ac, game_vec_09e204, game_vec_0f4b98
+ * called by: game_vec_09e204, game_vec_0f4b98, motion_track_sample_angles_like
  */
 u32 *Vec3_assign_copy_023e24(u32 *a0, u32 *a1) {
     *a0 = *a1;
@@ -5123,7 +5125,8 @@ int common_load_eye_scsi(u32 a0) {
 /*
  * get_field_4_0253e4  0x8c0253e4
  * called by: CAnimal_ChangeBodyTexture, CAnimal_LoadGRReq, CAnimal_LoadGRReq_b, CAnimal_LoadGResourceWait,
- * CAnimal_draw_029dec, CEnv_LoadDevicePanelTexture, CEnv_draw_with_three_parts_swapped, CGame_Init (+36 more)
+ * CAnimal_draw_blended_shape_like, CEnv_LoadDevicePanelTexture, CEnv_draw_with_three_parts_swapped, CGame_Init (+36
+ * more)
  */
 u32 get_field_4_0253e4(int a0, u32 a1, u32 a2, u32 a3) {
     return *(u32 *)(a0 + 4);
@@ -6036,7 +6039,7 @@ u32 CAnimBody_AdvanceFrame_wrapper_wrap_026834(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CAnimBody_AdvanceFrame_wrapper  0x8c026858
  * called by: CAnimBody_AdvanceFrame_wrapper_wrap_026834, CAnimBody_AdvanceFrame_wrapper_wrap_03376c,
- * CAnimBody_AdvanceFrame_wrapper_wrap_033790, CMushroomerBody_AwayFrom, Class_12a25c_vec_06f93c,
+ * CAnimBody_AdvanceFrame_wrapper_wrap_033790, CMushroomerBody_AwayFrom, Class_12a25c_uses_Vec3_dtor_06f93c,
  * Class_12ad14_uses_rand_float_0a37c8, Class_12b088_state_switch_0a99c4, Class_12b088_vec_0aa70c (+83 more)
  */
 u32 CAnimBody_AdvanceFrame_wrapper(u32 a0, u32 a1, u32 a2, u32 a3) {
@@ -6300,7 +6303,7 @@ int CAnimal_uses_njGetMatrix_026968(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * get_field_0_026d74  0x8c026d74
  * called by: CAnimBody_SetInterpolate, CAnimBody_uses_get_field_1c_on_field_b0_026de0, CAnimal_uses_njGetMatrix_026968,
- * CSquidLine_uses_matrix_push_0ad354, Class_12a7f4_draw_at_pose_motion, Class_12ab2c_draw_with_texture_variant,
+ * CSquidLine_draw_like, Class_12a7f4_draw_at_pose_motion, Class_12ab2c_draw_with_texture_variant,
  * Class_12ad50_draw_at_pose_motion, game_draw_0ad7ec (+7 more)
  */
 u32 get_field_0_026d74(u32 *a0) {
@@ -6311,8 +6314,8 @@ u32 get_field_0_026d74(u32 *a0) {
  * CAnimBody_GetCurFrame_on_field_b0  0x8c026d7c
  * calls CAnimBody_GetCurFrame on the member at +0xb0
  * called by: CAnimBody_GetCurFrame_on_field_b0_wrap, CAnimBody_uses_get_field_1c_on_field_b0_026de0,
- * CAnimal_uses_njGetMatrix_026968, CSquidLine_uses_matrix_push_0ad354, Class_12ab2c_draw_with_texture_variant,
- * Class_12aeec_uses_gfx_set_color4_0a481c, Vec3_uses_obj_set_texlist_0a4a5c, game_draw_0ad7ec (+7 more)
+ * CAnimal_uses_njGetMatrix_026968, CSquidLine_draw_like, Class_12ab2c_draw_with_texture_variant,
+ * Class_12aeec_draw_like, Vec3_uses_obj_set_texlist_0a4a5c, game_draw_0ad7ec (+7 more)
  */
 u32 CAnimBody_GetCurFrame_on_field_b0(int a0, u32 a1, u32 a2, u32 a3) {
     CAnimBody_GetCurFrame(a0 + 0xb0, a1, a2, a3);
@@ -6321,7 +6324,7 @@ u32 CAnimBody_GetCurFrame_on_field_b0(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * CAnimBody_GetCurFrame  0x8c026da8
- * called by: CAnimBody_GetCurFrame_on_field_b0, Class_12a25c_vec_06f93c, Class_12b088_vec_0a6628,
+ * called by: CAnimBody_GetCurFrame_on_field_b0, Class_12a25c_uses_Vec3_dtor_06f93c, Class_12b088_vec_0a6628,
  * Vec3_state_switch_03f4a4, Vec3_uses_get_field_1c_05c28c, creature_action_motion4e_step,
  * creature_apply_anim_root_delta, game_state_switch_049b68 (+56 more)
  */
@@ -6334,9 +6337,9 @@ u32 CAnimBody_GetCurFrame(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * get_field_1c_on_field_b0  0x8c026db0
  * calls get_field_1c_026dd8 on the member at +0xb0
- * called by: CAnimBody_uses_get_field_1c_on_field_b0_026de0, CAnimal_uses_njGetMatrix_026968,
- * CSquidLine_uses_matrix_push_0ad354, Class_12ab2c_draw_with_texture_variant, Class_12aeec_uses_gfx_set_color4_0a481c,
- * Vec3_state_switch_03f4a4, Vec3_uses_obj_set_texlist_0a4a5c, game_draw_0ad7ec (+23 more)
+ * called by: CAnimBody_uses_get_field_1c_on_field_b0_026de0, CAnimal_uses_njGetMatrix_026968, CSquidLine_draw_like,
+ * Class_12ab2c_draw_with_texture_variant, Class_12aeec_draw_like, Vec3_state_switch_03f4a4,
+ * Vec3_uses_obj_set_texlist_0a4a5c, game_draw_0ad7ec (+23 more)
  */
 u32 get_field_1c_on_field_b0(int a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -7039,8 +7042,8 @@ u32 game_calc_027908(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * get_field_124_027930  0x8c027930
- * called by: CAnimal_m7_0ade84, CSquidLine_uses_matrix_push_0ad354, Class_12a078_m2_05eee0, Class_12a5d0_m2_08a49c,
- * Class_12a5d0_m3_08a704, Class_12a7a8_m1_098d14, Class_12ab2c_m2_09db4c, Class_12acc8_m1_09f470 (+17 more)
+ * called by: CAnimal_m7_0ade84, CSquidLine_draw_like, CSquidLine_uses_rand_0ae84c, Class_12a078_m2_05eee0,
+ * Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704, Class_12a7a8_m1_098d14, Class_12ab2c_m2_09db4c (+17 more)
  */
 u32 get_field_124_027930(int a0, u32 a1, u32 unused_a2, u32 a3) {
     return *(u32 *)(0x124 + a0);
@@ -7675,8 +7678,9 @@ u32 CAnimal_calc_028c9c(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * get_field_6c_028cc4  0x8c028cc4
- * called by: Class_12a25c_vec_06f93c, game_state_switch_04f034, game_state_switch_070d7c, game_state_switch_071a38,
- * game_uses_Vec3_dtor_0b4d14, game_vec_03c94c, game_vec_04ddd4, game_vec_050300 (+3 more)
+ * called by: Class_12a25c_uses_Vec3_dtor_06f93c, game_state_switch_04f034, game_state_switch_070d7c,
+ * game_state_switch_071a38, game_uses_Vec3_dtor_077a38, game_uses_Vec3_dtor_0b4d14, game_vec_03c94c, game_vec_04ddd4
+ * (+3 more)
  */
 u32 get_field_6c_028cc4(int a0, u32 a1) {
     return *(u32 *)(a0 + 0x6c);
@@ -8120,7 +8124,7 @@ u32 CAnimal_draw_model_a(int a0, int a1, int a2, int a3) {
         }
         if (*(int *)(a0 + 0x344) == a1) {
             iVar3 = a1;
-            CAnimal_draw_029dec(a0, a1, ar6_00, a3);
+            CAnimal_draw_blended_shape_like(a0, a1, ar6_00, a3);
         } else if (*(int *)(a0 + 0x348) == a1) {
             a3 = a0 + 900;
             ar6_00 = a0 + 0x374;
@@ -8243,7 +8247,7 @@ u32 CAnimal_draw_model_b(int a0, u32 *a1, int a2, int a3) {
         }
         if (*(u32 **)(a0 + 0x344) == a1) {
             ar5_00 = a1;
-            CAnimal_draw_029dec(a0, a1, iVar3, a3);
+            CAnimal_draw_blended_shape_like(a0, a1, iVar3, a3);
         } else if (*(u32 **)(a0 + 0x348) == a1) {
             CAnimal_calls_calc_0f52c8();
             a3 = a0 + 900;
@@ -8470,11 +8474,11 @@ u32 draw_node_chain_scaled(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * CAnimal_draw_029dec  0x8c029dec
- * area name: only called from CAnimal methods; behaviour name: mostly calls draw functions
+ * CAnimal_draw_blended_shape_like  0x8c029dec
+ * selects the creature's shape for its stage row, blending two shapes (lerp_float_arrays) while changing, and draws it
  * called by: CAnimal_draw_model_a, CAnimal_draw_model_b
  */
-u32 CAnimal_draw_029dec(int a0, int a1, int a2, u32 a3) {
+u32 CAnimal_draw_blended_shape_like(int a0, int a1, int a2, u32 a3) {
     u32 uVar1;
     int *piVar2;
     int iVar3;
@@ -8746,7 +8750,7 @@ LAB_8c029f42:
 /*
  * clear_3_words  0x8c02a1fc
  * a0[0..2] = 0
- * called by: CAnimal_draw_029dec, Class_129cbc_m1_031598, Class_12a990_uses_clear_3_words_09d644,
+ * called by: CAnimal_draw_blended_shape_like, Class_129cbc_m1_031598, Class_12a990_uses_clear_3_words_09d644,
  * Class_12b2ac_m1_0aff3c, Class_12b930_copy_0d7314, game_state_switch_049b68, game_state_switch_04b168,
  * game_state_switch_04c314 (+14 more)
  */
@@ -8785,7 +8789,7 @@ float *game_draw_02a230(int a0, int a1, u32 a2, u32 a3) {
 /*
  * game_draw_02a29c  0x8c02a29c
  * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
- * called by: CAnimal_draw_029ca8, CAnimal_draw_029dec, CAnimal_draw_model_a, CAnimal_draw_model_b,
+ * called by: CAnimal_draw_029ca8, CAnimal_draw_blended_shape_like, CAnimal_draw_model_a, CAnimal_draw_model_b,
  * CSquidLine_draw_grow_scaled, draw_node_chain_scaled, game_draw_02a230
  */
 u32 game_draw_02a29c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
@@ -9332,7 +9336,7 @@ int CAnimal_uses_table13019c_find_row_02aabc(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * lerp_float_arrays  0x8c02ab24
  * a1[i] = lerp(+0x3dc[i], +0x3d8[i], a2 / +0x3f8) for i = 2 .. 8c27c1e8-2
- * called by: CAnimal_draw_029dec
+ * called by: CAnimal_draw_blended_shape_like
  */
 u32 lerp_float_arrays(int a0, int a1, int a2) {
     u32 uVar1;
@@ -9410,7 +9414,8 @@ u32 Vec3_vec_02aba0(int a0) {
 /*
  * Vec3_ctor_copy_wrap_02ace4  0x8c02ace4
  * only calls Vec3_ctor_copy
- * called by: CSquidLine_vec_036adc, CSquidLine_vec_085c3c, Vec3_vec_02aba0, game_uses_rand_0ae84c, game_vec_02ad5c
+ * called by: CSquidLine_uses_rand_0ae84c, CSquidLine_vec_036adc, CSquidLine_vec_085c3c, Vec3_vec_02aba0,
+ * game_vec_02ad5c
  */
 u32 Vec3_ctor_copy_wrap_02ace4(int a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;
@@ -9925,8 +9930,8 @@ u32 vec3_copy_wrap(int a0, u32 unused_a1, u32 a2, u32 unused_a3, u32 s0) {
 /*
  * vec3_copy_8c02b5fc  0x8c02b5fc
  * called by: CHerb_vec_06d838, CSquidLine_vec_036adc, CSquidLine_vec_085c3c, Class_129cbc_m1_031598,
- * Class_12a25c_vec_06f93c, Class_12a7a8_vec_099b0c, Class_12acc8_uses_rand_0a0278,
- * Class_12aeec_uses_gfx_set_color4_0a481c (+41 more)
+ * Class_12a25c_uses_Vec3_dtor_06f93c, Class_12a7a8_vec_099b0c, Class_12acc8_uses_rand_0a0278, Class_12aeec_draw_like
+ * (+41 more)
  */
 u32 *vec3_copy_8c02b5fc(u32 *a0, u32 *a1, u32 a2) {
     *a0 = *a1;
@@ -10473,7 +10478,7 @@ u32 talk_find_slot_state2(int a0) {
  * talk_uses_table13019c_find_row_02bef8  0x8c02bef8
  * area name: sits between talk functions (same compilation unit); behaviour name: its main named callee is
  * table13019c_find_row called by: CAnimBody_uses_get_field_1c_on_field_b0_026de0, CAnimal_RunIncubator,
- * CAnimal_apply_stage_row, CAnimal_apply_stage_row_cache_nodes, CAnimal_draw_029ca8, CAnimal_draw_029dec,
+ * CAnimal_apply_stage_row, CAnimal_apply_stage_row_cache_nodes, CAnimal_draw_029ca8, CAnimal_draw_blended_shape_like,
  * CAnimal_draw_model_a, CAnimal_draw_model_b (+45 more)
  */
 int talk_uses_table13019c_find_row_02bef8(int a0, u32 a1, u32 a2) {

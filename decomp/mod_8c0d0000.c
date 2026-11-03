@@ -1176,7 +1176,7 @@ u32 game_uses_obj_set_texlist_0d1168(int a0, u32 a1, u32 a2) {
                         obj_set_texlist(a0, ar5_00, ar6_00);
                         ar5_00 = 1;
                         obj_set_texture_num(a0, 1);
-                        Class_12bea8_calc_016524(auStack_b0, ar5_00, ar6_00, ar7_00);
+                        Class_129808_calc_016524(auStack_b0, ar5_00, ar6_00, ar7_00);
                     }
                 }
             }
@@ -2149,7 +2149,7 @@ u32 obj_draw_with_part_swapped(int a0, u32 a1, u32 a2, u32 a3) {
     matrix_scale_wrap(uVar3, uVar5);
     uVar3 = 0;
     obj_set_texture_num(a1, 0);
-    Class_12bea8_calc_016524(a3, uVar3, ar6_00, uVar4);
+    Class_129808_calc_016524(a3, uVar3, ar6_00, uVar4);
     uVar5 = *(u32 *)(*(short *)(a0 + 0x24) * 0xc + *piVar1 + 8);
     *(u32 *)(*(short *)(a0 + 0x24) * 0xc + *piVar1 + 8) = *(u32 *)(*piVar1 + 8);
     *(u32 *)(*piVar1 + 8) = uVar5;
@@ -7448,7 +7448,7 @@ int Class_12bea8_draw_ground_quad(int a0, u32 a1, u32 a2) {
         Class_129808_update_fields_0164c8(auStack_90, &g_8c4377fc + *(int *)(a0 + 0x34) * 0x10, 4);
         ar5_01 = 0x80000060;
         set_field_14_0d1450(auStack_90, 0x80000060);
-        iVar1 = Class_12bea8_calc_016524(auStack_90, ar5_01, ar6_01, ar7_00);
+        iVar1 = Class_129808_calc_016524(auStack_90, ar5_01, ar6_01, ar7_00);
     }
     return iVar1;
 }

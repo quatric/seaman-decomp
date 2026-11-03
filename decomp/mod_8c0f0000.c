@@ -575,7 +575,7 @@ u32 Class_12bb08_vec_0f43bc(int a0, int *a1, u32 a2, int a3) {
             if (iVar3 == 2) {
                 a3 = a0 + 0x150;
                 a6 = (float *)(a0 + 0x140);
-                iVar3 = Class_129938_vec_017900(uVar1, &fStack_b0, a6, a3);
+                iVar3 = collision_mesh_push_out_a_like(uVar1, &fStack_b0, a6, a3);
                 if (iVar3 == 1) {
                     *(int *)(a0 + 0x13c) = iVar5;
                     goto LAB_8c0f4912;
@@ -1213,7 +1213,7 @@ int set_field_128_0f4e28(int a0, u32 a1) {
 /*
  * obj_state_load  0x8c0f4e34
  * loads a saved object record (name, two words, three Vec3s, flags) from a1 into a0
- * called by: CAnimal_state_load, egg_load_record, egg_load_record_b, game_uses_libgcc_divide_helper_06c148,
+ * called by: CAnimal_state_load, egg_load_record, egg_load_record_b, game_obj_load_state_record_like,
  * load_state_record_08b694, load_state_record_09ad34, load_state_record_09c7c0, load_state_record_0a5614
  */
 u32 obj_state_load(int a0, int a1, u32 a2, u32 a3) {
@@ -1501,7 +1501,7 @@ u32 CAnimal_float_calc_0f528c(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a
 /*
  * CAnimal_calls_calc_0f52c8  0x8c0f52c8
  * area name: only called from CAnimal methods; behaviour name: its callees mostly do: calc
- * called by: CAnimal_draw_029dec, CAnimal_draw_model_b
+ * called by: CAnimal_draw_blended_shape_like, CAnimal_draw_model_b
  */
 u32 CAnimal_calls_calc_0f52c8(void) {
     u32 uVar1;
@@ -1513,7 +1513,7 @@ u32 CAnimal_calls_calc_0f52c8(void) {
 /*
  * CAnimal_calls_calc_0f5308  0x8c0f5308
  * area name: only called from CAnimal methods; behaviour name: its callees mostly do: calc
- * called by: CAnimal_draw_029dec, CAnimal_draw_model_b
+ * called by: CAnimal_draw_blended_shape_like, CAnimal_draw_model_b
  */
 u32 CAnimal_calls_calc_0f5308(void) {
     u32 uVar1;
@@ -2145,7 +2145,7 @@ u32 Class_12bec0_draw_0f5e0c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     obj_set_texlist(a0 + 0x1b4, iVar4, a2);
     uVar1 = 0;
     obj_set_texture_num(a0 + 0x1b4, 0);
-    Class_12bea8_calc_016524(a0 + 0x170, uVar1, a2, a3);
+    Class_129808_calc_016524(a0 + 0x170, uVar1, a2, a3);
     uVar1 = matrix_pop_n(1);
     return uVar1;
 }
@@ -2160,7 +2160,7 @@ u32 Class_12bec0_draw_0f5f08(int a0, u32 a1, u32 a2, u32 a3) {
     obj_set_texlist(a0 + 0x1b4, a1, a2);
     uVar1 = 0;
     obj_set_texture_num(a0 + 0x1b4, 0);
-    uVar1 = Class_12bea8_calc_016524(a0 + 0x170, uVar1, a2, a3);
+    uVar1 = Class_129808_calc_016524(a0 + 0x170, uVar1, a2, a3);
     return uVar1;
 }
 

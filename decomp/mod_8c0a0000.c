@@ -774,7 +774,7 @@ int Class_12ad14_vec_0a0c88(int a0, u32 a1, u8 *a2, u8 *a3) {
             if (iVar4 == 0) {
                 puVar2 = a3;
                 puVar3 = a2;
-                game_float_calc_032788(a0, auStack_24, a3, a2);
+                point_push_into_box_margin(a0, auStack_24, a3, a2);
             }
             Vec3_copy_assign(auStack_50, a3);
             puVar3 = auStack_50;
@@ -900,7 +900,7 @@ LAB_8c0a165a:
             Vec3_dtor(auStack_68, 0xffffffff, uVar4, uVar5);
             Vec3_dtor(auStack_58, 0xffffffff, uVar4, uVar5);
             uVar4 = a2;
-            game_float_calc_032788(a0, a0 + 0x54, a2, a3);
+            point_push_into_box_margin(a0, a0 + 0x54, a2, a3);
             *(u32 *)(a0 + 0x40) = 5;
             uVar5 = a3;
         }
@@ -3629,11 +3629,10 @@ u32 Class_12aeec_m6_0a47f0(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12aeec_uses_gfx_set_color4_0a481c  0x8c0a481c
- * area name: sits between Class_12aeec functions (same compilation unit); behaviour name: its main named callee is
- * gfx_set_color4_4aa52c
+ * Class_12aeec_draw_like  0x8c0a481c
+ * sets colour, pushes a matrix, applies rotation and scale, then draws the object's model
  */
-u32 Class_12aeec_uses_gfx_set_color4_0a481c(int a0) {
+u32 Class_12aeec_draw_like(int a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -3816,7 +3815,7 @@ u32 Class_12aeec_uses_gfx_set_color4_0a481c(int a0) {
 /*
  * vec3_copy_wrap_0a4a34  0x8c0a4a34
  * only calls vec3_copy_8c02b5fc
- * called by: Class_12aeec_uses_gfx_set_color4_0a481c
+ * called by: Class_12aeec_draw_like
  */
 u32 vec3_copy_wrap_0a4a34(int a0, u32 unused_a1, u32 a2, u32 unused_a3, u32 s0) {
     u32 uVar1;
@@ -7856,7 +7855,7 @@ LAB_8c0a984a:
 /*
  * game_draw_point_list  0x8c0a98cc
  * draws each of the a0+0x230 points stored at a0+0x234 (16 bytes apart) through gfxlib_draw_234fd0
- * called by: Class_12aeec_uses_gfx_set_color4_0a481c
+ * called by: Class_12aeec_draw_like
  */
 u32 game_draw_point_list(int a0) {
     u64 *puVar1;
@@ -10561,11 +10560,10 @@ int CSquidLine_release_current_928(int a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * CSquidLine_uses_matrix_push_0ad354  0x8c0ad354
- * area name: sits between CSquidLine functions (same compilation unit); behaviour name: its main named callee is
- * matrix_push
+ * CSquidLine_draw_like  0x8c0ad354
+ * sets colour, pushes a matrix, applies the object's rotation and scale, then draws the squid-line model
  */
-int CSquidLine_uses_matrix_push_0ad354(int a0) {
+int CSquidLine_draw_like(int a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -10752,7 +10750,7 @@ int CSquidLine_uses_matrix_push_0ad354(int a0) {
         fpu_save_fr0_fr15_wrap(auStack_50);
         Vec3_ctor_copy(auStack_60, a0 + 0x30, iStack_7c, ar7_00);
         ar6_00 = 0x1e;
-        iVar10 = game_uses_rand_0ae84c(a0, auStack_60, 0x1e, ar7_00);
+        iVar10 = CSquidLine_uses_rand_0ae84c(a0, auStack_60, 0x1e, ar7_00);
         uVar2 = 0xffffffff;
         Vec3_dtor(auStack_60, 0xffffffff, ar6_00, ar7_00);
         if (iVar10 == 1) {
@@ -10816,7 +10814,7 @@ int CSquidLine_uses_matrix_push_0ad354(int a0) {
                 uVar2 = *(u32 *)(iVar5 * 0x4c + 0x8c2859bc);
                 obj_set_texture_num(a0 + 0x9bc, uVar2);
                 in_stack_ffffff48 = iVar5;
-                Class_12bea8_calc_016524(iVar5 * 0x44 + a0 + 0x9c4, uVar2, ar6_00, ar7_00);
+                Class_129808_calc_016524(iVar5 * 0x44 + a0 + 0x9c4, uVar2, ar6_00, ar7_00);
                 matrix_pop_n(1);
             }
         }
@@ -11011,7 +11009,7 @@ int game_draw_0ad7ec(int a0) {
     if (iVar9 == 1) {
         Vec3_ctor_copy(auStack_20, a0 + 0x30, iStack_3c, ar7_00);
         ar6_00 = 0x1e;
-        iVar9 = game_uses_rand_0ae84c(a0, auStack_20, 0x1e, ar7_00);
+        iVar9 = CSquidLine_uses_rand_0ae84c(a0, auStack_20, 0x1e, ar7_00);
         uVar2 = 0xffffffff;
         Vec3_dtor(auStack_20, 0xffffffff, ar6_00, ar7_00);
         if (iVar9 == 1) {
@@ -11040,7 +11038,7 @@ int game_draw_0ad7ec(int a0) {
                 uVar2 = *(u32 *)(iVar5 * 0x4c + 0x8c2859bc);
                 obj_set_texture_num(a0 + 0x9bc, uVar2);
                 in_stack_ffffff8c = iVar5;
-                Class_12bea8_calc_016524(iVar5 * 0x44 + a0 + 0x9c4, uVar2, ar6_00, ar7_00);
+                Class_129808_calc_016524(iVar5 * 0x44 + a0 + 0x9c4, uVar2, ar6_00, ar7_00);
                 matrix_pop_n(1);
             }
         }
@@ -11927,11 +11925,11 @@ u32 game_fill_loop_0ae7a4(int a0) {
 }
 
 /*
- * game_uses_rand_0ae84c  0x8c0ae84c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is rand
- * called by: CSquidLine_uses_matrix_push_0ad354, game_draw_0ad7ec
+ * CSquidLine_uses_rand_0ae84c  0x8c0ae84c
+ * area name: only called from CSquidLine methods; behaviour name: its main named callee is rand
+ * called by: CSquidLine_draw_like, game_draw_0ad7ec
  */
-u32 game_uses_rand_0ae84c(int a0, u64 *a1, code *a2, int a3) {
+u32 CSquidLine_uses_rand_0ae84c(int a0, u64 *a1, code *a2, int a3) {
     u64 *puVar1;
     double *pdVar2;
     float *pfVar3;
