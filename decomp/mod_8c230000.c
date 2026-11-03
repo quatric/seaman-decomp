@@ -9348,7 +9348,7 @@ u32 gfxlib_draw_234d68(u32 a0, int a1, u8 *a2, u8 *a3) {
         }
         pcVar7 = gfx_project_verts_color_clip;
         iVar2 = 0x10;
-        pcVar5 = ninja_calls_float_calc_25c3a4;
+        pcVar5 = nj_draw_polygon_clip_like;
     } else {
         if (((u32)a2 & 0x40) == 0) {
             uVar3 = 0x8000a;
@@ -9360,7 +9360,7 @@ u32 gfxlib_draw_234d68(u32 a0, int a1, u8 *a2, u8 *a3) {
             ar4_00 = (u8 *)ta_sq_write_header5();
         }
         pcVar7 = gfx_project_verts_color_uv_clip;
-        pcVar5 = ninja_calls_float_calc_25c868;
+        pcVar5 = nj_draw_polygon_clip_uv_like;
         iVar2 = 0x18;
     }
     if (((u32)a2 & 2) == 0) {
@@ -10403,9 +10403,9 @@ u32 gfx_draw_polygon_flags(u32 a0, u32 a1, u32 a2, u32 a3) {
             uVar1 = ta_sq_write_header5_short();
         }
         if ((a2 & 0x20) == 0) {
-            uVar2 = ninja_calls_float_calc_25c3a4(auStack_32c, a1, uVar1);
+            uVar2 = nj_draw_polygon_clip_like(auStack_32c, a1, uVar1);
         } else {
-            uVar2 = tex_calls_fill_loop_25b650(auStack_32c, a1, uVar1, ar7_00);
+            uVar2 = nj_draw_poly3d_like(auStack_32c, a1, uVar1, ar7_00);
         }
     } else {
         uVar1 = a1;
@@ -10424,9 +10424,9 @@ u32 gfx_draw_polygon_flags(u32 a0, u32 a1, u32 a2, u32 a3) {
             uVar1 = ta_sq_write_header5();
         }
         if ((a2 & 0x20) == 0) {
-            uVar2 = ninja_calls_float_calc_25c868(auStack_32c, a1, uVar1);
+            uVar2 = nj_draw_polygon_clip_uv_like(auStack_32c, a1, uVar1);
         } else {
-            uVar2 = ninja_calls_fill_loop_25bc88(auStack_32c, a1, uVar1, ar7_00);
+            uVar2 = nj_draw_tex_poly3d_like(auStack_32c, a1, uVar1, ar7_00);
         }
     }
     ta_set_list_addr(uVar2);

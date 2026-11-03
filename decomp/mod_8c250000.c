@@ -12887,9 +12887,9 @@ u32 ninja_draw_25754c(int a0, int a1, u32 a2, u32 a3) {
         a4 = &g_8c271de8;
     }
     (*pcVar4)(a4, pcVar3, ar6_00, a3);
-    pcVar3 = ninja_float_calc_257610;
+    pcVar3 = nj_draw_sprite_2d_like;
     if ((a2 & 0x10) == 0) {
-        pcVar3 = ninja_calls_fill_loop_2578ac;
+        pcVar3 = nj_draw_sprite_3d_like;
     }
     iVar1 = (*pcVar3)(a0, a1, a2, a3);
     if (iVar1 != 0) {
@@ -12901,10 +12901,10 @@ u32 ninja_draw_25754c(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_float_calc_257610  0x8c257610
- * area name: sits between ninja functions (same compilation unit); behaviour name: floating-point arithmetic
+ * nj_draw_sprite_2d_like  0x8c257610
+ * draws sprite entry a1 of sprite set a0 as a screen-space quad straight to the TA
  */
-u32 ninja_float_calc_257610(double *a0, int a1, u32 a2) {
+u32 nj_draw_sprite_2d_like(double *a0, int a1, u32 a2) {
     short sVar1;
     short sVar2;
     short sVar3;
@@ -13342,10 +13342,10 @@ u32 ninja_float_calc_257610(double *a0, int a1, u32 a2) {
 }
 
 /*
- * ninja_calls_fill_loop_2578ac  0x8c2578ac
- * area name: in the ninja library code range; behaviour name: its callees mostly do: fill_loop
+ * nj_draw_sprite_3d_like  0x8c2578ac
+ * draws sprite entry a1 of sprite set a0 as a transformed quad, clipping it when it crosses the near plane
  */
-u32 ninja_calls_fill_loop_2578ac(double *a0, int a1, u32 a2) {
+u32 nj_draw_sprite_3d_like(double *a0, int a1, u32 a2) {
     short sVar1;
     short sVar2;
     short sVar3;
@@ -13935,7 +13935,7 @@ u32 ninja_test_257bc0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ninja_fill_loop_257be8  0x8c257be8
  * area name: in the ninja library code range; behaviour name: a loop that writes memory
- * called by: ninja_calls_fill_loop_2578ac
+ * called by: nj_draw_sprite_3d_like
  */
 int ninja_fill_loop_257be8(u32 a0, int a1) {
     int iVar1;
@@ -18734,11 +18734,11 @@ u32 noop_25b638(void) {
 }
 
 /*
- * tex_calls_fill_loop_25b650  0x8c25b650
- * area name: sits between tex functions (same compilation unit); behaviour name: its callees mostly do: fill_loop
+ * nj_draw_poly3d_like  0x8c25b650
+ * draws a3 transformed points a0 as a polygon, through the near-plane clipper when needed
  * called by: gfx_draw_polygon_flags
  */
-u64 *tex_calls_fill_loop_25b650(u32 *a0, int a1, u64 *a2, int a3) {
+u64 *nj_draw_poly3d_like(u32 *a0, int a1, u64 *a2, int a3) {
     bool bVar1;
     bool bVar2;
     int iVar3;
@@ -19239,7 +19239,7 @@ u64 *tex_calls_fill_loop_25b6c6(u32 a0, u32 a1, u64 *a2) {
 /*
  * ninja_fill_loop_25b858  0x8c25b858
  * area name: in the ninja library code range; behaviour name: a loop that writes memory
- * called by: tex_calls_fill_loop_25b650, tex_calls_fill_loop_25b6c6
+ * called by: nj_draw_poly3d_like, tex_calls_fill_loop_25b6c6
  */
 u32 *ninja_fill_loop_25b858(u32 *a0, u32 *a1, u32 *a2, u64 *a3) {
     u32 *puVar1;
@@ -19806,11 +19806,11 @@ u32 *ninja_fill_loop_25b858(u32 *a0, u32 *a1, u32 *a2, u64 *a3) {
 }
 
 /*
- * ninja_calls_fill_loop_25bc88  0x8c25bc88
- * area name: in the ninja library code range; behaviour name: its callees mostly do: fill_loop
+ * nj_draw_tex_poly3d_like  0x8c25bc88
+ * draws a3 transformed textured points a0 as a polygon, through the near-plane clipper when needed
  * called by: gfx_draw_polygon_flags
  */
-u64 *ninja_calls_fill_loop_25bc88(u32 *a0, int a1, u64 *a2, int a3) {
+u64 *nj_draw_tex_poly3d_like(u32 *a0, int a1, u64 *a2, int a3) {
     bool bVar1;
     int iVar2;
     u32 *puVar3;
@@ -20337,7 +20337,7 @@ u64 *ninja_calls_fill_loop_25bd0a(u32 a0, u32 a1, u64 *a2) {
 /*
  * ninja_fill_loop_25bed8  0x8c25bed8
  * area name: in the ninja library code range; behaviour name: a loop that writes memory
- * called by: ninja_calls_fill_loop_25bc88, ninja_calls_fill_loop_25bd0a
+ * called by: ninja_calls_fill_loop_25bd0a, nj_draw_tex_poly3d_like
  */
 u32 *ninja_fill_loop_25bed8(u32 *a0, u32 *a1, u32 *a2, u64 *a3) {
     int iVar1;
@@ -20940,11 +20940,11 @@ u32 *ninja_fill_loop_25bed8(u32 *a0, u32 *a1, u32 *a2, u64 *a3) {
 }
 
 /*
- * ninja_calls_float_calc_25c3a4  0x8c25c3a4
- * area name: in the ninja library code range; behaviour name: its callees mostly do: float_calc
+ * nj_draw_polygon_clip_like  0x8c25c3a4
+ * draws the a1 screen points a0 as a polygon fan, clipping against the near plane
  * called by: gfx_draw_polygon_flags
  */
-int ninja_calls_float_calc_25c3a4(double *a0, int a1, int a2) {
+int nj_draw_polygon_clip_like(double *a0, int a1, int a2) {
     u64 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -21607,7 +21607,7 @@ int ninja_calls_float_calc_25c3d0(u32 unused_a0, u32 unused_a1, u32 *a2) {
 /*
  * ninja_float_calc_25c4d2  0x8c25c4d2
  * area name: in the ninja library code range; behaviour name: floating-point arithmetic
- * called by: ninja_calls_float_calc_25c3a4, ninja_calls_float_calc_25c3d0
+ * called by: ninja_calls_float_calc_25c3d0, nj_draw_polygon_clip_like
  */
 int ninja_float_calc_25c4d2(u32 *a0, u32 *a1, int a2) {
     u64 *puVar1;
@@ -22315,11 +22315,11 @@ LAB_8c25c5fc:
 }
 
 /*
- * ninja_calls_float_calc_25c868  0x8c25c868
- * area name: in the ninja library code range; behaviour name: its callees mostly do: float_calc
+ * nj_draw_polygon_clip_uv_like  0x8c25c868
+ * draws the a1 textured screen points a0 as a polygon fan, clipping against the near plane
  * called by: gfx_draw_polygon_flags
  */
-double *ninja_calls_float_calc_25c868(double *a0, int a1, double *a2) {
+double *nj_draw_polygon_clip_uv_like(double *a0, int a1, double *a2) {
     u64 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -22735,7 +22735,7 @@ double *ninja_calls_float_calc_25c868(double *a0, int a1, double *a2) {
 /*
  * ninja_float_calc_25c9d8  0x8c25c9d8
  * area name: in the ninja library code range; behaviour name: floating-point arithmetic
- * called by: ninja_calls_float_calc_25c868
+ * called by: nj_draw_polygon_clip_uv_like
  */
 int ninja_float_calc_25c9d8(u32 *a0, u32 *a1, int a2) {
     double *pdVar1;

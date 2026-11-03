@@ -12637,11 +12637,11 @@ int gfx_verts_light_s64_like(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * gfxlib_fill_loop_226ac0  0x8c226ac0
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_vchunk2a_s64  0x8c226ac0
+ * vertex chunk type 0x2a kernel of gfx_vertex_chunks_process_s64 (lighting mode off)
  * called by: gfx_vertex_chunks_process_s64
  */
-int gfxlib_fill_loop_226ac0(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int gfx_vchunk2a_s64(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -12804,11 +12804,11 @@ int gfxlib_fill_loop_226ac0(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * gfxlib_fill_loop_226c44  0x8c226c44
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_vchunk2a_s64_alt  0x8c226c44
+ * vertex chunk type 0x2a kernel of gfx_vertex_chunks_process_s64 (lighting mode on)
  * called by: gfx_vertex_chunks_process_s64
  */
-int gfxlib_fill_loop_226c44(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int gfx_vchunk2a_s64_alt(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     double *pdVar1;
     u32 uVar2;
     u32 uVar3;
@@ -13229,11 +13229,11 @@ int gfxlib_fill_loop_226c44(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * gfxlib_fill_loop_226dfc  0x8c226dfc
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_vchunk29_s64_alt  0x8c226dfc
+ * vertex chunk type 0x29 kernel of gfx_vertex_chunks_process_s64 (lighting mode on)
  * called by: gfx_vertex_chunks_process_s64
  */
-int gfxlib_fill_loop_226dfc(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int gfx_vchunk29_s64_alt(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     double *pdVar1;
     u32 uVar2;
     u32 uVar3;
@@ -13609,11 +13609,11 @@ int gfxlib_fill_loop_226dfc(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * gfxlib_fill_loop_226f70  0x8c226f70
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_vchunk2c_s64  0x8c226f70
+ * vertex chunk type 0x2c kernel of gfx_vertex_chunks_process_s64 (lighting mode off)
  * called by: gfx_vertex_chunks_process_s64
  */
-int gfxlib_fill_loop_226f70(int *a0, u32 a1, u32 unused_a2, u32 a3) {
+int gfx_vchunk2c_s64(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     float *pfVar1;
     float *pfVar2;
     float *pfVar3;
@@ -13797,11 +13797,11 @@ int gfxlib_fill_loop_226f70(int *a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * gfxlib_fill_loop_227144  0x8c227144
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_vchunk2c_s64_alt  0x8c227144
+ * vertex chunk type 0x2c kernel of gfx_vertex_chunks_process_s64 (lighting mode on)
  * called by: gfx_vertex_chunks_process_s64
  */
-int gfxlib_fill_loop_227144(int *a0, u32 a1, u32 unused_a2, u32 a3) {
+int gfx_vchunk2c_s64_alt(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     double *pdVar1;
     u32 uVar2;
     int iVar3;

@@ -7914,11 +7914,11 @@ double *kamui_fill_loop_214d6c(double *a0, double *a1, double *a2, double *a3) {
 }
 
 /*
- * gfxlib_fill_loop_215250  0x8c215250
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_vchunk29_s32  0x8c215250
+ * vertex chunk type 0x29 kernel of gfx_vertex_chunks_process_s32 (lighting mode off)
  * called by: gfx_vertex_chunks_process_s32
  */
-int gfxlib_fill_loop_215250(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int gfx_vchunk29_s32(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     float fVar1;
     float fVar2;
     float *pfVar3;
@@ -8232,11 +8232,11 @@ int gfx_verts_light_accumulate_like(int *a0, u32 unused_a1, u32 unused_a2, u32 a
 }
 
 /*
- * gfxlib_fill_loop_2154dc  0x8c2154dc
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_vchunk2a_s32_alt  0x8c2154dc
+ * vertex chunk type 0x2a kernel of gfx_vertex_chunks_process_s32 (lighting mode on)
  * called by: gfx_vertex_chunks_process_s32
  */
-int gfxlib_fill_loop_2154dc(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int gfx_vchunk2a_s32_alt(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     double *pdVar1;
     u32 uVar2;
     u32 uVar3;
@@ -8627,12 +8627,12 @@ int gfxlib_fill_loop_2154dc(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * gfxlib_fill_loop_215674  0x8c215674
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_vchunk29_s32_alt  0x8c215674
+ * vertex chunk type 0x29 kernel of gfx_vertex_chunks_process_s32 (lighting mode on)
  * called by: gfx_vertex_chunks_process_s32
  * decompiler: Instruction at (ram,0x8c2157a8) overlaps instruction at (ram,0x8c2157a6)
  */
-int gfxlib_fill_loop_215674(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int gfx_vchunk29_s32_alt(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     double *pdVar1;
     u32 uVar2;
     u32 uVar3;
@@ -8988,11 +8988,11 @@ int gfxlib_fill_loop_215674(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * gfxlib_fill_loop_2157c8  0x8c2157c8
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_vchunk2c_s32  0x8c2157c8
+ * vertex chunk type 0x2c kernel of gfx_vertex_chunks_process_s32 (lighting mode off)
  * called by: gfx_vertex_chunks_process_s32
  */
-int gfxlib_fill_loop_2157c8(int *a0, u32 a1, u32 unused_a2, u32 a3) {
+int gfx_vchunk2c_s32(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     float *pfVar1;
     float *pfVar2;
     float *pfVar3;
@@ -9190,11 +9190,11 @@ int gfxlib_fill_loop_2157c8(int *a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * gfxlib_fill_loop_215988  0x8c215988
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_vchunk2c_s32_alt  0x8c215988
+ * vertex chunk type 0x2c kernel of gfx_vertex_chunks_process_s32 (lighting mode on)
  * called by: gfx_vertex_chunks_process_s32
  */
-int gfxlib_fill_loop_215988(int *a0, u32 a1, u32 unused_a2, u32 a3) {
+int gfx_vchunk2c_s32_alt(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     double *pdVar1;
     u32 uVar2;
     int iVar3;
@@ -15850,9 +15850,9 @@ u32 gfx_vertex_chunks_process_s32(short *a0, int a1) {
         uVar8 = uVar11 & 0xff;
         if (g_8c4aa554 == 0) {
             if (uVar8 == 0x29) {
-                iVar6 = gfxlib_fill_loop_215250(0x8c4aa2b0, ar5_00, ar6_00, 0x1c);
+                iVar6 = gfx_vchunk29_s32(0x8c4aa2b0, ar5_00, ar6_00, 0x1c);
             } else if (uVar8 == 0x2c) {
-                iVar6 = gfxlib_fill_loop_2157c8(0x8c4aa2b0, uVar11, ar6_00, 0x1c);
+                iVar6 = gfx_vchunk2c_s32(0x8c4aa2b0, uVar11, ar6_00, 0x1c);
             } else {
                 if (uVar8 != 0x2a) {
                     return 0xffffffff;
@@ -15860,14 +15860,14 @@ u32 gfx_vertex_chunks_process_s32(short *a0, int a1) {
                 iVar6 = gfx_verts_light_accumulate_like(0x8c4aa2b0, ar5_00, ar6_00, 0x1c);
             }
         } else if (uVar8 == 0x29) {
-            iVar6 = gfxlib_fill_loop_215674(0x8c4aa2b0, ar5_00, ar6_00, 0x1c);
+            iVar6 = gfx_vchunk29_s32_alt(0x8c4aa2b0, ar5_00, ar6_00, 0x1c);
         } else if (uVar8 == 0x2c) {
-            iVar6 = gfxlib_fill_loop_215988(0x8c4aa2b0, uVar11, ar6_00, 0x1c);
+            iVar6 = gfx_vchunk2c_s32_alt(0x8c4aa2b0, uVar11, ar6_00, 0x1c);
         } else {
             if (uVar8 != 0x2a) {
                 return 0xffffffff;
             }
-            iVar6 = gfxlib_fill_loop_2154dc(0x8c4aa2b0, ar5_00, ar6_00, 0x1c);
+            iVar6 = gfx_vchunk2a_s32_alt(0x8c4aa2b0, ar5_00, ar6_00, 0x1c);
         }
         uVar9 = (u32)0x200;
         uVar11 = uVar11 & 0xff00;
@@ -17299,22 +17299,22 @@ u32 gfx_vertex_chunks_process_s64(short *a0, int a1) {
             if (uVar8 == 0x29) {
                 iVar6 = gfx_verts_light_s64_like(0x8c4aa2f8, ar5_00, ar6_00, 0x1c);
             } else if (uVar8 == 0x2c) {
-                iVar6 = gfxlib_fill_loop_226f70(0x8c4aa2f8, uVar11, ar6_00, 0x1c);
+                iVar6 = gfx_vchunk2c_s64(0x8c4aa2f8, uVar11, ar6_00, 0x1c);
             } else {
                 if (uVar8 != 0x2a) {
                     return 0xffffffff;
                 }
-                iVar6 = gfxlib_fill_loop_226ac0(0x8c4aa2f8, ar5_00, ar6_00, 0x1c);
+                iVar6 = gfx_vchunk2a_s64(0x8c4aa2f8, ar5_00, ar6_00, 0x1c);
             }
         } else if (uVar8 == 0x29) {
-            iVar6 = gfxlib_fill_loop_226dfc(0x8c4aa2f8, ar5_00, ar6_00, 0x1c);
+            iVar6 = gfx_vchunk29_s64_alt(0x8c4aa2f8, ar5_00, ar6_00, 0x1c);
         } else if (uVar8 == 0x2c) {
-            iVar6 = gfxlib_fill_loop_227144(0x8c4aa2f8, uVar11, ar6_00, 0x1c);
+            iVar6 = gfx_vchunk2c_s64_alt(0x8c4aa2f8, uVar11, ar6_00, 0x1c);
         } else {
             if (uVar8 != 0x2a) {
                 return 0xffffffff;
             }
-            iVar6 = gfxlib_fill_loop_226c44(0x8c4aa2f8, ar5_00, ar6_00, 0x1c);
+            iVar6 = gfx_vchunk2a_s64_alt(0x8c4aa2f8, ar5_00, ar6_00, 0x1c);
         }
         uVar9 = (u32)0x200;
         uVar11 = uVar11 & 0xff00;
