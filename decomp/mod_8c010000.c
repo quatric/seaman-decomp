@@ -11130,8 +11130,8 @@ u32 libm_errno_wrap_013b8c(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * atoi  0x8c013bdc
  * strtol(a0, NULL, 10)
- * called by: game_copy_0fd764, game_state_switch_0fc94c, game_state_switch_0fcd2c, script_cmd_if_compare,
- * script_cmd_set_vars, speech_copy_0fa538, speech_get_index_plus1
+ * called by: game_copy_0fd764, script_cmd_if_compare, script_cmd_set_vars, script_get_var_value, script_set_var_value,
+ * speech_copy_0fa538, speech_get_index_plus1
  */
 u32 atoi(u32 a0) {
     u32 uVar1;
@@ -11565,7 +11565,7 @@ u32 free_if_nonnull(int a0) {
 /*
  * operator_new  0x8c014028
  * calls the allocator (8c1fb4b8) and, while it returns NULL and a new-handler is set (0x8c12c4f0), calls the handler
- * and retries called by: CItemGLoader_state_switch_0fef94
+ * and retries called by: CItemGLoader_create_creature_by_kind
  */
 int operator_new(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;

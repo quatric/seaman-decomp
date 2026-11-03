@@ -10915,8 +10915,8 @@ u32 matrix_pop1(void) {
  * matrix_apply_point_w1  0x8c256294
  * transforms point a1 (w = 1) by matrix a0 (the current matrix when 0) into a2
  * called by: CSquidLine_vec_036adc, CSquidLine_vec_085c3c, Class_12acc8_m1_09f470,
- * Class_12b580_uses_list_node_next_wrap_0da754, game_target_in_view_box, game_uses_input_track_r_hold_0e1f90,
- * game_vec_019508, game_vec_0d1754 (+2 more)
+ * Class_12b580_uses_list_node_next_wrap_0da754, game_box_screen_bounds_like, game_target_in_view_box,
+ * game_uses_input_track_r_hold_0e1f90, game_vec_019508 (+2 more)
  */
 u32 matrix_apply_point_w1(int a0, double *a1, double *a2) {
     double in_dr0;
@@ -14478,7 +14478,7 @@ u32 ninja_uses_irq_remove_handler_like_2580c6(u32 unused_a0, u32 unused_a1, u32 
 
 /*
  * pvr_2580e4  0x8c2580e4
- * called by: draw_uses_free_sys_258b26, pvr_25825a
+ * called by: njInitVertexBuffer_like, pvr_25825a
  */
 u32 pvr_2580e4(void) {
     u32 in_r0;
@@ -15157,11 +15157,11 @@ u32 screen_reset_view(void) {
 }
 
 /*
- * draw_uses_free_sys_258b26  0x8c258b26
- * area name: sits between draw functions (same compilation unit); behaviour name: its main named callee is free_sys
- * called by: game_init
+ * njInitVertexBuffer_like  0x8c258b26
+ * splits the vertex buffer between the polygon lists by the given percentages, allocates it and sets the texture memory
+ * size called by: game_init
  */
-u32 draw_uses_free_sys_258b26(int a0, int a1, int a2, int a3) {
+u32 njInitVertexBuffer_like(int a0, int a1, int a2, int a3) {
     u32 uVar1;
     u32 ar5_00;
     u32 *ar6_00;
@@ -18607,7 +18607,7 @@ u32 alt_entry_25b440(int a0) {
 /*
  * ninja_uses_vram_get_usage_stats_25b49e  0x8c25b49e
  * area name: in the ninja library code range; behaviour name: its callees mostly do: uses_vram_get_usage_stats
- * called by: draw_uses_free_sys_258b26, ninja_uses_kamui_cfg_texture_memory_25806c
+ * called by: ninja_uses_kamui_cfg_texture_memory_25806c, njInitVertexBuffer_like
  */
 u32 ninja_uses_vram_get_usage_stats_25b49e(int a0) {
     u32 uStack_10;

@@ -5842,7 +5842,7 @@ u32 static_init_vec3s_284700(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CMothEgg_ctor  0x8c099e74
  * "MothEgg": CAnimal_ctor(kind 11), vtable 0x8c12a7f4
- * called by: CItemGLoader_state_switch_0fef94
+ * called by: CItemGLoader_create_creature_by_kind
  * strings: "MothEgg"
  */
 int CMothEgg_ctor(int a0, u32 a1) {
@@ -6465,14 +6465,15 @@ u32 child_330_tick_09ac70(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_state_switch_09aca8  0x8c09aca8
- * area name: game code; nothing names its area yet; behaviour name: mostly calls state_switch functions
+ * game_uses_CItemGLoader_create_creature_09aca8  0x8c09aca8
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is
+ * CItemGLoader_create_creature_by_kind
  */
-u32 game_state_switch_09aca8(int a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 game_uses_CItemGLoader_create_creature_09aca8(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int a6;
     u32 uVar1;
 
-    a6 = CItemGLoader_state_switch_0fef94(a1, 10, 0x11, a3);
+    a6 = CItemGLoader_create_creature_by_kind(a1, 10, 0x11, a3);
     uVar1 = 0;
     if (a6 != 0) {
         uVar1 = (**(code **)(0x100 + *(int *)(a0 + 8)))(a0, 0, a6, a3);
@@ -7270,7 +7271,7 @@ int Class_12a990_release_09b88c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CMushroomerEgg_ctor  0x8c09b8e4
  * "MushroomerEgg": CAnimal_ctor(kind 0) with GRAPHICS\MUSHROOMERLINE, vtable 0x8c12a990
- * called by: CItemGLoader_state_switch_0fef94
+ * called by: CItemGLoader_create_creature_by_kind
  * strings: "MushroomerEgg"
  */
 int CMushroomerEgg_ctor(int a0, u32 a1) {
@@ -8167,15 +8168,16 @@ u32 draw_uses_noop_09cb58(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * draw_state_switch_09cbb8  0x8c09cbb8
- * area name: sits between draw functions (same compilation unit); behaviour name: mostly calls state_switch functions
+ * draw_uses_CItemGLoader_create_creature_09cbb8  0x8c09cbb8
+ * area name: sits between draw functions (same compilation unit); behaviour name: its main named callee is
+ * CItemGLoader_create_creature_by_kind
  */
-u32 draw_state_switch_09cbb8(int a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 draw_uses_CItemGLoader_create_creature_09cbb8(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int a6;
     int a5;
 
     for (a5 = 0; a5 < 8; a5 = a5 + 1) {
-        a6 = CItemGLoader_state_switch_0fef94(a1, 1, 1, a3);
+        a6 = CItemGLoader_create_creature_by_kind(a1, 1, 1, a3);
         if (a6 != 0) {
             (**(code **)(0x100 + *(int *)(a0 + 8)))(a0, a5, a6, a3);
             game_uses_rand_09cca8(a0, a5, a6);
@@ -8214,7 +8216,7 @@ u32 game_uses_get_field_24_09cc4c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_uses_rand_09cca8  0x8c09cca8
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is rand
- * called by: draw_state_switch_09cbb8
+ * called by: draw_uses_CItemGLoader_create_creature_09cbb8
  */
 u32 game_uses_rand_09cca8(int a0, int a1, u32 a2) {
     u32 uVar1;
@@ -8724,7 +8726,7 @@ u32 static_init_vec3s_284a50(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CMushroomerLine_ctor  0x8c09d9c0
  * "MushroomerLine": CAnimal_ctor(kind 1), vtable 0x8c12ab2c
- * called by: CItemGLoader_state_switch_0fef94
+ * called by: CItemGLoader_create_creature_by_kind
  * strings: "MushroomerLine"
  */
 int CMushroomerLine_ctor(int a0, u32 a1) {

@@ -2665,7 +2665,7 @@ int CAnimal_m0_08516c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CHigyoLine_ctor  0x8c0851f4
  * "HigyoLine": CAnimal_ctor(kind 3), vtable 0x8c12a434
- * called by: CItemGLoader_state_switch_0fef94
+ * called by: CItemGLoader_create_creature_by_kind
  * strings: "HigyoLine"
  */
 int CHigyoLine_ctor(int a0, u32 a1, u32 a2) {
@@ -2920,11 +2920,11 @@ u32 register_six_item_loads(int a0, int a1, u32 unused_a2, u32 a3) {
         uVar1 = get_field_a0_035724(a1, iVar2);
         if ((char)uVar1 == '\x02') {
             a6 = 5;
-            uVar1 = CItemGLoader_state_switch_0fef94(0x8c3eb324, 6, 5, a3);
+            uVar1 = CItemGLoader_create_creature_by_kind(0x8c3eb324, 6, 5, a3);
             *(u32 *)(0x10a8 + a0 + iVar3 * 4) = uVar1;
         } else {
             a6 = 0x15;
-            uVar1 = CItemGLoader_state_switch_0fef94(0x8c3eb324, 4, 0x15, a3);
+            uVar1 = CItemGLoader_create_creature_by_kind(0x8c3eb324, 4, 0x15, a3);
             *(u32 *)(0x10a8 + a0 + iVar3 * 4) = uVar1;
         }
         iVar2 = *(int *)(0x10a8 + a0 + iVar3 * 4);
@@ -4200,7 +4200,7 @@ u32 GillMan_asset_tables_init(void) {
 /*
  * CHigyoEgg_ctor  0x8c087ed0
  * "HigyoEgg": CAnimal_ctor(kind 4), vtable 0x8c12a298
- * called by: CItemGLoader_state_switch_0fef94
+ * called by: CItemGLoader_create_creature_by_kind
  * strings: "HigyoEgg"
  */
 int CHigyoEgg_ctor(int a0, u32 a1) {
@@ -4527,14 +4527,15 @@ u32 egg_save_record_b(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_state_switch_0884a0  0x8c0884a0
- * area name: game code; nothing names its area yet; behaviour name: mostly calls state_switch functions
+ * game_uses_CItemGLoader_create_creature_0884a0  0x8c0884a0
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is
+ * CItemGLoader_create_creature_by_kind
  */
-u32 game_state_switch_0884a0(int a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 game_uses_CItemGLoader_create_creature_0884a0(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int a6;
     u32 uVar1;
 
-    a6 = CItemGLoader_state_switch_0fef94(a1, 3, 2, a3);
+    a6 = CItemGLoader_create_creature_by_kind(a1, 3, 2, a3);
     uVar1 = 0;
     if (a6 != 0) {
         uVar1 = (**(code **)(0x100 + *(int *)(a0 + 8)))(a0, 0, a6, a3);
@@ -5215,7 +5216,7 @@ u32 destroy_array_8c280fb4(void) {
 /*
  * CMothLine_ctor  0x8c08a17c
  * "MothLine": CAnimal_ctor(kind 10), vtable 0x8c12a5d0
- * called by: CItemGLoader_state_switch_0fef94
+ * called by: CItemGLoader_create_creature_by_kind
  * strings: "MothLine"
  */
 int CMothLine_ctor(int a0, u32 a1, u32 a2) {
@@ -5609,11 +5610,11 @@ u32 register_two_item_loads(int a0, u32 unused_a1, int a2, u32 a3) {
         if (g_8c431a54 == 0) {
             g_8c431a54 = 1;
             a6 = 0x19;
-            uVar1 = CItemGLoader_state_switch_0fef94(0x8c3eb324, 0xc, 0x19, a3);
+            uVar1 = CItemGLoader_create_creature_by_kind(0x8c3eb324, 0xc, 0x19, a3);
             *(u32 *)(0x8ec + a0 + iVar2 * 4) = uVar1;
         } else {
             a6 = 0x17;
-            uVar1 = CItemGLoader_state_switch_0fef94(0x8c3eb324, 0xb, 0x17, a3);
+            uVar1 = CItemGLoader_create_creature_by_kind(0x8c3eb324, 0xb, 0x17, a3);
             *(u32 *)(0x8ec + a0 + iVar2 * 4) = uVar1;
         }
         a4 = *(int *)(0x8ec + a0 + iVar2 * 4);

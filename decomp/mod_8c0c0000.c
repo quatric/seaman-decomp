@@ -5320,21 +5320,21 @@ u32 bugbox_3_screen(int a0, int a1, u32 a2, u32 a3) {
         (**(code **)(**(int **)(a0 + 8) + 0x78))(*(int **)(a0 + 8), 0, puVar5, a3);
         (**(code **)(**(int **)(a0 + 8) + 0x9c))(*(int **)(a0 + 8), 0, puVar5, a3);
         (**(code **)(**(int **)(a0 + 0xc) + 0x18))(*(int **)(a0 + 0xc), 0x8c3eb334, puVar5, a3);
-        iVar2 = CItemGLoader_state_switch_0fef94(0x8c3eb324, 0xe, 0x1b, a3);
+        iVar2 = CItemGLoader_create_creature_by_kind(0x8c3eb324, 0xe, 0x1b, a3);
         (**(code **)(*(int *)(iVar2 + 8) + 0xe0))(iVar2, 0x8c3eb334, 0, a3);
         uVar6 = 1;
         puVar5 = auStack_48;
         (**(code **)(*(int *)(iVar2 + 8) + 0x150))(iVar2, puVar5, 1, a3);
         set_vec3_field_30(iVar2, puVar5, uVar6);
         (**(code **)(**(int **)(a0 + 0xc) + 0x4c))(*(int **)(a0 + 0xc), iVar2, uVar6, a3);
-        iVar2 = CItemGLoader_state_switch_0fef94(0x8c3eb324, 0xe, 0x1b, a3);
+        iVar2 = CItemGLoader_create_creature_by_kind(0x8c3eb324, 0xe, 0x1b, a3);
         (**(code **)(*(int *)(iVar2 + 8) + 0xe0))(iVar2, 0x8c3eb334, 0, a3);
         uVar6 = 1;
         puVar5 = auStack_48;
         (**(code **)(*(int *)(iVar2 + 8) + 0x150))(iVar2, puVar5, 1, a3);
         set_vec3_field_30(iVar2, puVar5, uVar6);
         (**(code **)(**(int **)(a0 + 0xc) + 0x4c))(*(int **)(a0 + 0xc), iVar2, uVar6, a3);
-        iVar3 = CItemGLoader_state_switch_0fef94(0x8c3eb324, 0xb, 0x1b, a3);
+        iVar3 = CItemGLoader_create_creature_by_kind(0x8c3eb324, 0xb, 0x1b, a3);
         uVar4 = 0;
         uVar6 = 0x8c3eb334;
         (**(code **)(*(int *)(iVar3 + 8) + 0xe0))(iVar3, 0x8c3eb334, 0, a3);
@@ -5343,7 +5343,7 @@ u32 bugbox_3_screen(int a0, int a1, u32 a2, u32 a3) {
         (**(code **)(*(int *)(iVar3 + 8) + 0x10c))(iVar3, a1, uVar4, a3);
         set_vec3_field_30(iVar3, iVar2, uVar4);
         (**(code **)(**(int **)(a0 + 0xc) + 0x4c))(*(int **)(a0 + 0xc), iVar3, uVar4, a3);
-        iVar3 = CItemGLoader_state_switch_0fef94(0x8c3eb324, 0xb, 0x1b, a3);
+        iVar3 = CItemGLoader_create_creature_by_kind(0x8c3eb324, 0xb, 0x1b, a3);
         uVar4 = 0;
         uVar6 = 0x8c3eb334;
         (**(code **)(*(int *)(iVar3 + 8) + 0xe0))(iVar3, 0x8c3eb334, 0, a3);
@@ -5352,7 +5352,7 @@ u32 bugbox_3_screen(int a0, int a1, u32 a2, u32 a3) {
         (**(code **)(*(int *)(iVar3 + 8) + 0x10c))(iVar3, a1, uVar4, a3);
         set_vec3_field_30(iVar3, iVar2, uVar4);
         (**(code **)(**(int **)(a0 + 0xc) + 0x4c))(*(int **)(a0 + 0xc), iVar3, uVar4, a3);
-        iVar3 = CItemGLoader_state_switch_0fef94(0x8c3eb324, 0xb, 0x1b, a3);
+        iVar3 = CItemGLoader_create_creature_by_kind(0x8c3eb324, 0xb, 0x1b, a3);
         uVar4 = 0;
         uVar6 = 0x8c3eb334;
         (**(code **)(*(int *)(iVar3 + 8) + 0xe0))(iVar3, 0x8c3eb334, 0, a3);
@@ -5361,7 +5361,7 @@ u32 bugbox_3_screen(int a0, int a1, u32 a2, u32 a3) {
         (**(code **)(*(int *)(iVar3 + 8) + 0x10c))(iVar3, a1, uVar4, a3);
         set_vec3_field_30(iVar3, iVar2, uVar4);
         (**(code **)(**(int **)(a0 + 0xc) + 0x4c))(*(int **)(a0 + 0xc), iVar3, uVar4, a3);
-        iVar3 = CItemGLoader_state_switch_0fef94(0x8c3eb324, 0xb, 0x1b, a3);
+        iVar3 = CItemGLoader_create_creature_by_kind(0x8c3eb324, 0xb, 0x1b, a3);
         puVar5 = NULL;
         uVar6 = 0x8c3eb334;
         (**(code **)(*(int *)(iVar3 + 8) + 0xe0))(iVar3, 0x8c3eb334, 0, a3);
@@ -8160,7 +8160,7 @@ u32 CGame_uses_libgcc_divide_helper_0cc784(int a0, int a1, u32 a2, u32 a3) {
         for (iVar6 = 0; uVar5 = (u32) * (u8 *)(a2 + 0x1b4), iVar6 < (int)uVar5; iVar6 = iVar6 + 1) {
             if (*(int *)(iVar6 * 0xf0 + a2 + 0x204) != -1) {
                 ar6_00 = a1 + 0xac;
-                iVar8 = game_state_switch_0ce994(a0, iVar6 * 0xf0 + a2 + 0x1ec, ar6_00, a3);
+                iVar8 = game_uses_CItemGLoader_create_creature_0ce994(a0, iVar6 * 0xf0 + a2 + 0x1ec, ar6_00, a3);
                 (**(code **)(*(int *)(iVar8 + 8) + 0xa0))(iVar8, iVar6 * 0xf0 + a2 + 0x218, ar6_00, a3);
                 iVar3 = game_uses_get_field_24_0cea98(a0, iVar8, ar6_00, a3);
                 if (iVar3 == 1) {
@@ -8267,7 +8267,8 @@ u32 CGame_uses_libgcc_divide_helper_0cc784(int a0, int a1, u32 a2, u32 a3) {
             uVar5 = uVar4;
             if (*(int *)(uVar4 * 0xf0 + a2 + 0x27ac) != -1) {
                 uVar1 = *(u32 *)(uVar4 * 0xf0 + a2 + 0x27e8);
-                uVar5 = CItemGLoader_state_switch_0fef94(0x8c3eb324, *(u32 *)(uVar4 * 0xf0 + a2 + 0x27ac), uVar1, a3);
+                uVar5 =
+                    CItemGLoader_create_creature_by_kind(0x8c3eb324, *(u32 *)(uVar4 * 0xf0 + a2 + 0x27ac), uVar1, a3);
                 (**(code **)(*(int *)(uVar5 + 8) + 0x104))(uVar5, uVar4 * 0xf0 + a2 + 0x2794, uVar1, a3);
                 iVar6 = a1 + 0xac;
                 (**(code **)(*(int *)(uVar5 + 8) + 0x98))(uVar5, iVar6, uVar1, a3);
@@ -8292,7 +8293,7 @@ u32 CGame_uses_libgcc_divide_helper_0cc784(int a0, int a1, u32 a2, u32 a3) {
                 g_8c431a54 = 1;
             }
             ar6_00 = a1 + 0xac;
-            iVar6 = game_state_switch_0ce994(a0, iVar8 * 0xf0 + a2 + 0x14c4, ar6_00, a3);
+            iVar6 = game_uses_CItemGLoader_create_creature_0ce994(a0, iVar8 * 0xf0 + a2 + 0x14c4, ar6_00, a3);
             (**(code **)(*(int *)(iVar6 + 8) + 0xa0))(iVar6, iVar8 * 0xf0 + a2 + 0x14f0, ar6_00, a3);
             (**(code **)(**(int **)(a0 + 0xc) + 0x4c))(*(int **)(a0 + 0xc), iVar6, ar6_00, a3);
         }
@@ -8300,7 +8301,7 @@ u32 CGame_uses_libgcc_divide_helper_0cc784(int a0, int a1, u32 a2, u32 a3) {
     (**(code **)(**(int **)(a0 + 0xc) + 0x188))(*(int **)(a0 + 0xc), iVar6, ar6_00, a3);
     (**(code **)(**(int **)(a0 + 0xc) + 0x168))(*(int **)(a0 + 0xc), iVar6, ar6_00, a3);
     if (*(int *)(a2 + 200) != -1) {
-        iVar6 = game_state_switch_0ce994(a0, a2 + 0xb0, a1 + 0xac, a3);
+        iVar6 = game_uses_CItemGLoader_create_creature_0ce994(a0, a2 + 0xb0, a1 + 0xac, a3);
         a5 = auStack_44;
         ar6_00 = a6;
         (**(code **)(*(int *)(iVar6 + 8) + 0x150))(iVar6, a5, a6, a3);
@@ -8494,7 +8495,8 @@ u32 CProlog_uses_libgcc_divide_helper_0cd3c8(int a0, int a1, double *a2, u32 a3)
         for (iVar4 = 0; iVar4 < (int)(u32)(u8) * (code *)((int)a2 + 0x1b4); iVar4 = iVar4 + 1) {
             if (*(int *)((int)a2 + iVar4 * 0xf0 + 0x204) != -1) {
                 ar6_00 = (double *)(a1 + 0xac);
-                iVar5 = game_state_switch_0cea38(a0, (code *)((int)a2 + iVar4 * 0xf0 + 0x1ec), ar6_00, a3);
+                iVar5 = game_uses_CItemGLoader_create_creature_0cea38(a0, (code *)((int)a2 + iVar4 * 0xf0 + 0x1ec),
+                                                                      ar6_00, a3);
                 (**(code **)(*(int *)(iVar5 + 8) + 0xa0))(iVar5, a2 + iVar4 * 0x1e + 0x43, ar6_00, a3);
                 (**(code **)(**(int **)(a0 + 8) + 0x4c))(*(int **)(a0 + 8), iVar5, ar6_00, a3);
             }
@@ -8598,8 +8600,8 @@ u32 CProlog_uses_libgcc_divide_helper_0cd3c8(int a0, int a1, double *a2, u32 a3)
         for (iVar4 = 0; pcVar6 = (code *)(u32)(u8) * (code *)(a2 + 0x4f2), iVar4 < (int)pcVar6; iVar4 = iVar4 + 1) {
             if (*(int *)((int)a2 + iVar4 * 0xf0 + 0x27ac) != -1) {
                 uVar1 = *(u32 *)(a2 + iVar4 * 0x1e + 0x4fd);
-                iVar5 =
-                    CItemGLoader_state_switch_0fef94(0x8c3eb324, *(u32 *)((int)a2 + iVar4 * 0xf0 + 0x27ac), uVar1, a3);
+                iVar5 = CItemGLoader_create_creature_by_kind(0x8c3eb324, *(u32 *)((int)a2 + iVar4 * 0xf0 + 0x27ac),
+                                                             uVar1, a3);
                 (**(code **)(*(int *)(iVar5 + 8) + 0x104))(iVar5, (code *)((int)a2 + iVar4 * 0xf0 + 0x2794), uVar1, a3);
                 ar6_00 = *(double **)(*(int *)(iVar5 + 8) + 0xa0);
                 (*(code *)ar6_00)(iVar5, a2 + iVar4 * 0x1e + 0x4f8, ar6_00, a3);
@@ -8619,7 +8621,8 @@ u32 CProlog_uses_libgcc_divide_helper_0cd3c8(int a0, int a1, double *a2, u32 a3)
                 g_8c431a54 = 1;
             }
             ar6_00 = (double *)(a1 + 0xac);
-            pcVar6 = (code *)game_state_switch_0cea38(a0, (code *)((int)a2 + iVar4 * 0xf0 + 0x14c4), ar6_00, a3);
+            pcVar6 = (code *)game_uses_CItemGLoader_create_creature_0cea38(
+                a0, (code *)((int)a2 + iVar4 * 0xf0 + 0x14c4), ar6_00, a3);
             (**(code **)(*(int *)(pcVar6 + 8) + 0xa0))(pcVar6, a2 + iVar4 * 0x1e + 0x29e, ar6_00, a3);
             (**(code **)(**(int **)(a0 + 0xc) + 0x4c))(*(int **)(a0 + 0xc), pcVar6, ar6_00, a3);
         }
@@ -8627,7 +8630,7 @@ u32 CProlog_uses_libgcc_divide_helper_0cd3c8(int a0, int a1, double *a2, u32 a3)
     (**(code **)(**(int **)(a0 + 0xc) + 0x188))(*(int **)(a0 + 0xc), pcVar6, ar6_00, a3);
     (**(code **)(**(int **)(a0 + 0xc) + 0x168))(*(int **)(a0 + 0xc), pcVar6, ar6_00, a3);
     if (*(int *)(a2 + 0x19) != -1) {
-        iVar5 = game_state_switch_0cea38(a0, a2 + 0x16, a1 + 0xac, a3);
+        iVar5 = game_uses_CItemGLoader_create_creature_0cea38(a0, a2 + 0x16, a1 + 0xac, a3);
         a5 = auStack_44;
         iVar4 = a6;
         (**(code **)(*(int *)(iVar5 + 8) + 0x150))(iVar5, a5, a6, a3);
@@ -8939,17 +8942,17 @@ u32 Class_12b388_uses_set_fields_0_4_8_0ce920(int a0) {
 }
 
 /*
- * game_state_switch_0ce994  0x8c0ce994
- * area name: game code; nothing names its area yet; behaviour name: mostly calls state_switch functions
- * called by: CGame_uses_libgcc_divide_helper_0cc784
+ * game_uses_CItemGLoader_create_creature_0ce994  0x8c0ce994
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is
+ * CItemGLoader_create_creature_by_kind called by: CGame_uses_libgcc_divide_helper_0cc784
  */
-int game_state_switch_0ce994(u32 unused_a0, int a1, u32 a2, u32 a3) {
+int game_uses_CItemGLoader_create_creature_0ce994(u32 unused_a0, int a1, u32 a2, u32 a3) {
     int a4;
     u32 uVar1;
     int a6;
 
     uVar1 = *(u32 *)(a1 + 0x54);
-    a4 = CItemGLoader_state_switch_0fef94(0x8c3eb324, *(u32 *)(a1 + 0x18), uVar1, a3);
+    a4 = CItemGLoader_create_creature_by_kind(0x8c3eb324, *(u32 *)(a1 + 0x18), uVar1, a3);
     (**(code **)(0x104 + *(int *)(a4 + 8)))(a4, a1, uVar1, a3);
     (**(code **)(0x94 + *(int *)(a4 + 8)))(a4, a2, uVar1, a3);
     uVar1 = (**(code **)(0x148 + *(int *)(a4 + 8)))(a4, a2, uVar1, a3);
@@ -8970,16 +8973,16 @@ u32 noop_0cea34(void) {
 }
 
 /*
- * game_state_switch_0cea38  0x8c0cea38
- * area name: game code; nothing names its area yet; behaviour name: mostly calls state_switch functions
- * called by: CProlog_uses_libgcc_divide_helper_0cd3c8
+ * game_uses_CItemGLoader_create_creature_0cea38  0x8c0cea38
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is
+ * CItemGLoader_create_creature_by_kind called by: CProlog_uses_libgcc_divide_helper_0cd3c8
  */
-int game_state_switch_0cea38(u32 unused_a0, int a1, u32 a2, u32 a3) {
+int game_uses_CItemGLoader_create_creature_0cea38(u32 unused_a0, int a1, u32 a2, u32 a3) {
     int a4;
     u32 ar6_00;
 
     ar6_00 = *(u32 *)(a1 + 0x54);
-    a4 = CItemGLoader_state_switch_0fef94(0x8c3eb324, *(u32 *)(a1 + 0x18), ar6_00, a3);
+    a4 = CItemGLoader_create_creature_by_kind(0x8c3eb324, *(u32 *)(a1 + 0x18), ar6_00, a3);
     (**(code **)(0x104 + *(int *)(a4 + 8)))(a4, a1, ar6_00, a3);
     (**(code **)(0x94 + *(int *)(a4 + 8)))(a4, a2, ar6_00, a3);
     return a4;

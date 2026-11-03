@@ -1568,7 +1568,8 @@ u32 strcmp_021c80(u8 *a0, u8 *a1) {
 /*
  * pack_release_entry_handle  0x8c021ce8
  * called by: Class_12b580_uses_pack_acquire_entry_handle_0d84e8, ambient_sound_update, bugbox_4_screen,
- * confirm_exit_save, event1_end, event1_release_models, game_state_switch_0fb494, game_uses_get_word_8_0bf22c (+5 more)
+ * confirm_exit_save, event1_end, event1_release_models, game_uses_get_word_8_0bf22c, game_uses_speech_is_playing_0bad68
+ * (+5 more)
  */
 int pack_release_entry_handle(int *a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -1605,7 +1606,7 @@ u32 pack_sound_021d4c(int *a0, u32 unused_a1, u32 a2, u32 a3) {
  * pack_sound_021d90  0x8c021d90
  * area name: sits between pack functions (same compilation unit); behaviour name: mostly calls sound functions
  * called by: CSeamanDomain_warning_message, Class_12b580_uses_pack_acquire_entry_handle_0d84e8, ambient_sound_update,
- * bugbox_3_screen, bugbox_4_screen, confirm_exit_save, game_state_switch_0fb494, startup_warning_check (+1 more)
+ * bugbox_3_screen, bugbox_4_screen, confirm_exit_save, script_cmd_load_pack_wait, startup_warning_check (+1 more)
  */
 int pack_sound_021d90(int *a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -1704,7 +1705,7 @@ u32 pack_entry_poll_status_wrap(u32 a0, u32 a1, u32 a2) {
 /*
  * pack_entry_poll_status  0x8c021f4c
  * polls pack entry a1's stream and maps its status nibbles to a result code (1 done, 3 busy, 5..8 by state)
- * called by: game_state_switch_0fb494, pack_entry_poll_status_wrap
+ * called by: pack_entry_poll_status_wrap, script_cmd_load_pack_wait
  */
 u32 pack_entry_poll_status(int *a0, int a1, int *a2, int *a3, int *s0) {
     u32 uVar1;
@@ -4159,7 +4160,7 @@ u32 *Vec3_assign_copy_023e24(u32 *a0, u32 *a1) {
 /*
  * identity_023e44  0x8c023e44
  * returns its first argument
- * called by: CAnimal_m2_02573c, Class_1299f8_m4_019588, se_uses_njGetMatrix_wrap_0d167c
+ * called by: CAnimal_m2_02573c, Class_1299f8_m4_019588, game_uses_njGetMatrix_wrap_0d167c
  */
 u32 identity_023e44(u32 a0) {
     return a0;
@@ -4167,7 +4168,7 @@ u32 identity_023e44(u32 a0) {
 
 /*
  * free_if_nonnull_wrap_023e4c  0x8c023e4c
- * called by: CAnimal_m2_02573c, Class_1299f8_m4_019588, se_uses_njGetMatrix_wrap_0d167c
+ * called by: CAnimal_m2_02573c, Class_1299f8_m4_019588, game_uses_njGetMatrix_wrap_0d167c
  */
 int free_if_nonnull_wrap_023e4c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -4181,7 +4182,7 @@ int free_if_nonnull_wrap_023e4c(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * njGetMatrix_wrap  0x8c023e7c
  * only calls njGetMatrix
- * called by: CAnimal_m2_02573c, Class_1299f8_m4_019588, se_uses_njGetMatrix_wrap_0d167c
+ * called by: CAnimal_m2_02573c, Class_1299f8_m4_019588, game_uses_njGetMatrix_wrap_0d167c
  */
 u32 njGetMatrix_wrap(u32 a0) {
     u32 r5;
@@ -4196,7 +4197,7 @@ u32 njGetMatrix_wrap(u32 a0) {
 /*
  * game_calls_update_fields_023e98  0x8c023e98
  * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: update_fields
- * called by: se_uses_njGetMatrix_wrap_0d167c
+ * called by: game_uses_njGetMatrix_wrap_0d167c
  */
 u32 game_calls_update_fields_023e98(u32 a0, u32 a1, u32 a2, u32 a3) {
     ninja_update_fields_255d6c(a0, a1, a2, a3, a1);
@@ -4206,7 +4207,7 @@ u32 game_calls_update_fields_023e98(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * matrix_rotate_deg_m  0x8c023ebc
  * rotates matrix a0 by fr4 degrees (ninja_sub_256a78)
- * called by: se_uses_njGetMatrix_wrap_0d167c
+ * called by: game_uses_njGetMatrix_wrap_0d167c
  */
 u32 matrix_rotate_deg_m(u32 a0) {
     u32 r6;
@@ -4221,7 +4222,7 @@ u32 matrix_rotate_deg_m(u32 a0) {
 /*
  * njRotateY_wrap  0x8c023ef8
  * only calls njRotateY
- * called by: se_uses_njGetMatrix_wrap_0d167c
+ * called by: game_uses_njGetMatrix_wrap_0d167c
  */
 u32 njRotateY_wrap(u32 a0) {
     u32 r6;
@@ -4236,7 +4237,7 @@ u32 njRotateY_wrap(u32 a0) {
 /*
  * njRotateZ_wrap  0x8c023f34
  * only calls njRotateZ
- * called by: se_uses_njGetMatrix_wrap_0d167c
+ * called by: game_uses_njGetMatrix_wrap_0d167c
  */
 u32 njRotateZ_wrap(u32 a0) {
     u32 r6;
@@ -4281,7 +4282,7 @@ u32 matrix_scale_wrap_023fdc(u32 a0, u32 a1) {
 /*
  * calc_vector_copy  0x8c024010
  * copies the vector a2 and stores njCalcVector_like(a0) of it in a1
- * called by: CAnimal_m2_02573c, se_uses_njGetMatrix_wrap_0d167c
+ * called by: CAnimal_m2_02573c, game_uses_njGetMatrix_wrap_0d167c
  */
 void calc_vector_copy(u32 param_1, u64 *param_2, u64 *param_3) {
     u32 uStack_24;

@@ -2514,3 +2514,9 @@
 8c25bc88	nj_draw_tex_poly3d_like	draws a3 transformed textured points a0 as a polygon, through the near-plane clipper when needed
 8c25c3a4	nj_draw_polygon_clip_like	draws the a1 screen points a0 as a polygon fan, clipping against the near plane
 8c25c868	nj_draw_polygon_clip_uv_like	draws the a1 textured screen points a0 as a polygon fan, clipping against the near plane
+8c0fef94	CItemGLoader_create_creature_by_kind	creates the creature object for kind a1 (0..16: Mushroomer egg and line, Squid, Higyo, FrogMan, Moth, ...) and initialises it with a0
+8c0fcd2c	script_get_var_value	returns the value of the script variable named by the letter at a1 ('A'..'s'), some computed from the clock or game state
+8c0fc94c	script_set_var_value	stores string value a2 into the script variable named by the letter at a1, clamping or applying it to game state
+8c0fb494	script_cmd_load_pack_wait	waits for the command's pack entry to finish loading, then releases it and jumps to the next label
+8c0d1754	game_box_screen_bounds_like	transforms the eight corners a1 by the current matrix and returns their screen-space bounds
+8c258b26	njInitVertexBuffer_like	splits the vertex buffer between the polygon lists by the given percentages, allocates it and sets the texture memory size

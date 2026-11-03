@@ -7288,7 +7288,7 @@ int CAnimal_m0_0361d8(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CFrogManLine_ctor  0x8c036260
  * "FrogManLine": CAnimal_ctor(kind 5), vtable 0x8c129ea0
- * called by: CItemGLoader_state_switch_0fef94
+ * called by: CItemGLoader_create_creature_by_kind
  * strings: "FrogManLine"
  */
 int CFrogManLine_ctor(int a0, u32 a1, u32 a2) {
@@ -7352,7 +7352,7 @@ u32 CAnimal_m2_03640c(int a0, int a1, int a2, int a3) {
     uVar1 = get_field_90_s8(a0 + 0x490);
     if (((char)uVar1 == '\x01') && (*(int *)(0x1148 + a0) == 0)) {
         ar5_00 = a1;
-        CAnimal_state_switch_0366f0(a0, a1, a2, ar7_00);
+        CAnimal_uses_CItemGLoader_create_creature_0366f0(a0, a1, a2, ar7_00);
     }
     if (*(int *)(0x1134 + a0) != 0) {
         ar5_00 = a1;
@@ -7402,7 +7402,7 @@ u32 CAnimal_m3_036568(int a0, int a1, int a2, int a3) {
     uVar1 = get_field_90_s8(a0 + 0x490);
     if (((char)uVar1 == '\x01') && (*(int *)(0x1148 + a0) == 0)) {
         ar5_00 = a1;
-        CAnimal_state_switch_0366f0(a0, a1, a2, ar7_00);
+        CAnimal_uses_CItemGLoader_create_creature_0366f0(a0, a1, a2, ar7_00);
     }
     if (*(int *)(0x1134 + a0) != 0) {
         ar5_00 = a1;
@@ -7455,11 +7455,11 @@ int set_field_83_u8(int a0, u32 a1) {
 }
 
 /*
- * CAnimal_state_switch_0366f0  0x8c0366f0
- * area name: only called from CAnimal methods; behaviour name: mostly calls state_switch functions
- * called by: CAnimal_m2_03640c, CAnimal_m3_036568
+ * CAnimal_uses_CItemGLoader_create_creature_0366f0  0x8c0366f0
+ * area name: only called from CAnimal methods; behaviour name: its main named callee is
+ * CItemGLoader_create_creature_by_kind called by: CAnimal_m2_03640c, CAnimal_m3_036568
  */
-u32 CAnimal_state_switch_0366f0(int a0, int a1, u32 unused_a2, u32 a3) {
+u32 CAnimal_uses_CItemGLoader_create_creature_0366f0(int a0, int a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     int a4;
     u32 a6;
@@ -7467,7 +7467,7 @@ u32 CAnimal_state_switch_0366f0(int a0, int a1, u32 unused_a2, u32 a3) {
 
     for (iVar2 = 0; iVar2 < 6; iVar2 = iVar2 + 1) {
         a6 = 5;
-        uVar1 = CItemGLoader_state_switch_0fef94(0x8c3eb324, 6, 5, a3);
+        uVar1 = CItemGLoader_create_creature_by_kind(0x8c3eb324, 6, 5, a3);
         *(u32 *)(0x111c + a0 + iVar2 * 4) = uVar1;
         a4 = *(int *)(0x111c + a0 + iVar2 * 4);
         (**(code **)(*(int *)(a4 + 8) + 0x54))(a4, 0x8c3eb324, a6, a3);
@@ -8762,7 +8762,7 @@ u32 FrogMan_asset_tables_init(void) {
 /*
  * CFrogManEgg_ctor  0x8c0384f8
  * "FrogManEgg": CAnimal_ctor(kind 6), vtable 0x8c129d04
- * called by: CItemGLoader_state_switch_0fef94
+ * called by: CItemGLoader_create_creature_by_kind
  * strings: "FrogManEgg"
  */
 int CFrogManEgg_ctor(int a0, u32 a1) {
@@ -9135,7 +9135,7 @@ u32 CFrogManEgg_NewChild(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int a6;
     u32 uVar1;
 
-    a6 = CItemGLoader_state_switch_0fef94(a1, 5, 6, a3);
+    a6 = CItemGLoader_create_creature_by_kind(a1, 5, 6, a3);
     if (a6 == 0) {
         uVar1 = (*(code *)(&report_error_message))("Ryu-zan", "CFrogManEgg::NewChild()", 1, 2);
     } else {

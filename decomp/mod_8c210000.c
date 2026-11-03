@@ -407,7 +407,7 @@ u32 kamui_update_fields_2110e8(int a0, u32 a1, int a2, u32 a3) {
 /*
  * kamui_uses_kamui_cfg_texture_memory_211120  0x8c211120
  * name hint from a string it uses: HARDWARE; area name: in the kamui library code range; behaviour name: its main named
- * callee is kamui_cfg_texture_memory called by: draw_uses_free_sys_258b26, ninja_uses_kamui_cfg_texture_memory_25806c
+ * callee is kamui_cfg_texture_memory called by: ninja_uses_kamui_cfg_texture_memory_25806c, njInitVertexBuffer_like
  * strings: "HARDWARE"; "EnableTexture16MB"
  * decompiler: Heritage AFTER dead removal. Example location: s0xffffff98 : 0x8c2115d2
  */

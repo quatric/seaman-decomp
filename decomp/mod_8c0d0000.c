@@ -677,7 +677,7 @@ int Class_12b930_uses_Class_129920_ctor_0d0b58(int a0, u32 a1) {
     ar7_00 = 0xac;
     vec_new_array(a0 + 0xc, (&Class_1297f4_ctor), (&Class_1297f4_dtor), 0xac, 0x15e);
     game_init_fields_02145c(a0 + 0xeb48);
-    se_init_fields_0d1564(a0);
+    game_init_fields_0d1564(a0);
     return a0;
 }
 
@@ -1289,16 +1289,16 @@ int se_play_eb4c(int a0) {
 u32 se_calls_init_fields_0d1548(u32 a0) {
     u32 uVar1;
 
-    uVar1 = se_init_fields_0d1564(a0);
+    uVar1 = game_init_fields_0d1564(a0);
     return uVar1;
 }
 
 /*
- * se_init_fields_0d1564  0x8c0d1564
- * area name: sits between se functions (same compilation unit); behaviour name: writes 7 members
+ * game_init_fields_0d1564  0x8c0d1564
+ * area name: game code; nothing names its area yet; behaviour name: writes 7 members
  * called by: Class_12b930_uses_Class_129920_ctor_0d0b58, se_calls_init_fields_0d1548
  */
-u32 se_init_fields_0d1564(int a0) {
+u32 game_init_fields_0d1564(int a0) {
     *(u32 *)(a0 + 0xeb40) = 0;
     *(u32 *)(a0 + 0xeb44) = 0;
     *(u32 *)(a0 + 0xeb34) = 0x40a00000;
@@ -1344,11 +1344,11 @@ u32 static_init_vec3s_437478(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * se_uses_njGetMatrix_wrap_0d167c  0x8c0d167c
- * area name: sits between se functions (same compilation unit); behaviour name: its main named callee is
- * njGetMatrix_wrap called by: COutside_Create, CSoilTank_Create, CWaterTank_CreateStage
+ * game_uses_njGetMatrix_wrap_0d167c  0x8c0d167c
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is njGetMatrix_wrap
+ * called by: COutside_Create, CSoilTank_Create, CWaterTank_CreateStage
  */
-u32 se_uses_njGetMatrix_wrap_0d167c(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 game_uses_njGetMatrix_wrap_0d167c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 *ar5_00;
     u8 auStack_88[64];
@@ -1373,11 +1373,11 @@ u32 se_uses_njGetMatrix_wrap_0d167c(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_0d1754  0x8c0d1754
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * game_box_screen_bounds_like  0x8c0d1754
+ * transforms the eight corners a1 by the current matrix and returns their screen-space bounds
  * called by: CEnv_vec_0dac50
  */
-u32 game_vec_0d1754(float *a0, int a1) {
+u32 game_box_screen_bounds_like(float *a0, int a1) {
     u32 uVar1;
     int iVar2;
     float fVar3;
@@ -1499,7 +1499,7 @@ u32 game_vec_0d1754(float *a0, int a1) {
 
 /*
  * game_uses_sprintf_0d1858  0x8c0d1858
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is sprintf
+ * area name: sits between game functions (same compilation unit); behaviour name: its main named callee is sprintf
  * called by: Class_12b758_draw_0e4dd0, game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0,
  * game_uses_noop_0deb60, game_uses_noop_0def78 strings: "GRAPHICS\\COMMON"; "%08.4lf"
  */
@@ -1655,18 +1655,18 @@ LAB_8c0d1936:
 }
 
 /*
- * game_state_switch_0d19dc  0x8c0d19dc
- * area name: game code; nothing names its area yet; behaviour name: mostly calls state_switch functions
- * called by: Class_12a0c4_state_switch_068e64
+ * game_uses_CItemGLoader_create_creature_0d19dc  0x8c0d19dc
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is
+ * CItemGLoader_create_creature_by_kind called by: Class_12a0c4_state_switch_068e64
  */
-int game_state_switch_0d19dc(int a0, int a1, u32 unused_a2, u32 a3) {
+int game_uses_CItemGLoader_create_creature_0d19dc(int a0, int a1, u32 unused_a2, u32 a3) {
     int a4;
     int a5;
     int a6;
 
     a5 = a0;
     a6 = a1;
-    a4 = CItemGLoader_state_switch_0fef94(0x8c3eb324, a0, a1, a3);
+    a4 = CItemGLoader_create_creature_by_kind(0x8c3eb324, a0, a1, a3);
     if (a4 != 0) {
         if ((a0 < 0x10) && (-1 < a0)) {
             switch (a0) {
@@ -10799,7 +10799,7 @@ int CEnv_vec_0dac50(int a0, float *a1, u32 a2, u32 a3) {
                         }
                         a4 = (int *)get_field_a4_032154(ar4_00);
                         (**(code **)(*a4 + 0x38))(a4, auStack_74, ar6_00, a3);
-                        iVar1 = game_vec_0d1754(&fStack_a4, auStack_74);
+                        iVar1 = game_box_screen_bounds_like(&fStack_a4, auStack_74);
                         if (iVar1 == 0) {
                             ar4_00 = 0;
                         }
@@ -14225,7 +14225,7 @@ u32 game_uses_light_set_vec_0df8d0(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * env_add_item_if_room  0x8c0df998
  * CEnv_AddItem unless the list at +0xa4 already holds 25 items
- * called by: game_uses_set_vec3_field_30_0e057c
+ * called by: game_uses_CItemGLoader_create_creature_0e057c
  */
 u32 env_add_item_if_room(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;

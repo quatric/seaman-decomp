@@ -3277,7 +3277,7 @@ int free_if_nonnull_wrap_0673dc(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Class_12a0c4_ctor  0x8c06740c
  * CAnimal base constructor (kind 0xe), Class_12a0c4 vtable at +8, its members, then the state reset
- * called by: CItemGLoader_state_switch_0fef94
+ * called by: CItemGLoader_create_creature_by_kind
  */
 int Class_12a0c4_ctor(int a0, u32 a1) {
     u32 ar5_00;
@@ -4939,7 +4939,7 @@ u32 Class_12a0c4_state_switch_068e64(int *a0, u32 a1, int *a2, u32 a3) {
             }
         switchD_8c068ec8_caseD_4:
             uVar1 = SUB84(in_dr0, 0);
-            iVar3 = game_state_switch_0d19dc(0xe, 0x1b, piVar5, a3);
+            iVar3 = game_uses_CItemGLoader_create_creature_0d19dc(0xe, 0x1b, piVar5, a3);
             a0[0xa4] = iVar3;
             *(u32 *)(a0[0xa4] + 0x230) = 4;
             uVar2 = get_field_24_026024(a2, 0x230, piVar5, a3);

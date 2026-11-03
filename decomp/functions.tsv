@@ -1228,7 +1228,7 @@ address	name	file	params
 8c0366b8	noop_0366b8	mod_8c030000.c	0
 8c0366bc	set_field_83_u8_wrap	mod_8c030000.c	2
 8c0366e4	set_field_83_u8	mod_8c030000.c	2
-8c0366f0	CAnimal_state_switch_0366f0	mod_8c030000.c	4
+8c0366f0	CAnimal_uses_CItemGLoader_create_creature_0366f0	mod_8c030000.c	4
 8c03679c	CAnimal_uses_set_field_90_u8_03679c	mod_8c030000.c	4
 8c03688c	CSquidLine_place_all	mod_8c030000.c	4
 8c036984	noop_036984	mod_8c030000.c	0
@@ -1653,7 +1653,7 @@ address	name	file	params
 8c0883a8	child_330_tick_0883a8	mod_8c080000.c	4
 8c0883e0	egg_load_record_b	mod_8c080000.c	4
 8c088440	egg_save_record_b	mod_8c080000.c	4
-8c0884a0	game_state_switch_0884a0	mod_8c080000.c	4
+8c0884a0	game_uses_CItemGLoader_create_creature_0884a0	mod_8c080000.c	4
 8c0884ec	game_update_fields_0884ec	mod_8c080000.c	3
 8c0884f8	child_330_release_0884f8	mod_8c080000.c	4
 8c08852c	CHigyoEgg_LoadGRReq	mod_8c080000.c	4
@@ -1788,7 +1788,7 @@ address	name	file	params
 8c09abfc	Class_12a7f4_draw	mod_8c090000.c	4
 8c09ac58	vcall_field_8_slot15	mod_8c090000.c	4
 8c09ac70	child_330_tick_09ac70	mod_8c090000.c	4
-8c09aca8	game_state_switch_09aca8	mod_8c090000.c	4
+8c09aca8	game_uses_CItemGLoader_create_creature_09aca8	mod_8c090000.c	4
 8c09acf4	game_update_fields_09acf4	mod_8c090000.c	3
 8c09ad00	child_330_release_09ad00	mod_8c090000.c	4
 8c09ad34	load_state_record_09ad34	mod_8c090000.c	4
@@ -1823,7 +1823,7 @@ address	name	file	params
 8c09ca80	draw_model_with_items	mod_8c090000.c	4
 8c09cb40	vcall_field_8_slot15_09cb40	mod_8c090000.c	4
 8c09cb58	draw_uses_noop_09cb58	mod_8c090000.c	4
-8c09cbb8	draw_state_switch_09cbb8	mod_8c090000.c	4
+8c09cbb8	draw_uses_CItemGLoader_create_creature_09cbb8	mod_8c090000.c	4
 8c09cc34	game_update_fields_09cc34	mod_8c090000.c	3
 8c09cc4c	game_uses_get_field_24_09cc4c	mod_8c090000.c	4
 8c09cca8	game_uses_rand_09cca8	mod_8c090000.c	3
@@ -1921,7 +1921,7 @@ address	name	file	params
 8c0a54dc	Class_12ad50_draw	mod_8c0a0000.c	4
 8c0a5538	vcall_field_8_slot15_0a5538	mod_8c0a0000.c	4
 8c0a5550	child_330_tick_0a5550	mod_8c0a0000.c	4
-8c0a5588	game_state_switch_0a5588	mod_8c0a0000.c	4
+8c0a5588	game_uses_CItemGLoader_create_creature_0a5588	mod_8c0a0000.c	4
 8c0a55d4	game_update_fields_0a55d4	mod_8c0a0000.c	3
 8c0a55e0	child_330_release_0a55e0	mod_8c0a0000.c	4
 8c0a5614	load_state_record_0a5614	mod_8c0a0000.c	4
@@ -2350,9 +2350,9 @@ address	name	file	params
 8c0cdf50	game_vec_0cdf50	mod_8c0c0000.c	4
 8c0ce914	get_field_128_0ce914	mod_8c0c0000.c	1
 8c0ce920	Class_12b388_uses_set_fields_0_4_8_0ce920	mod_8c0c0000.c	1
-8c0ce994	game_state_switch_0ce994	mod_8c0c0000.c	4
+8c0ce994	game_uses_CItemGLoader_create_creature_0ce994	mod_8c0c0000.c	4
 8c0cea34	noop_0cea34	mod_8c0c0000.c	0
-8c0cea38	game_state_switch_0cea38	mod_8c0c0000.c	4
+8c0cea38	game_uses_CItemGLoader_create_creature_0cea38	mod_8c0c0000.c	4
 8c0cea98	game_uses_get_field_24_0cea98	mod_8c0c0000.c	4
 8c0ceb04	game_vec_0ceb04	mod_8c0c0000.c	4
 8c0cebec	noop_0cebec	mod_8c0c0000.c	0
@@ -2429,12 +2429,12 @@ address	name	file	params
 8c0d14e8	se_status_eb4c	mod_8c0d0000.c	4
 8c0d1518	se_play_eb4c	mod_8c0d0000.c	1
 8c0d1548	se_calls_init_fields_0d1548	mod_8c0d0000.c	1
-8c0d1564	se_init_fields_0d1564	mod_8c0d0000.c	1
+8c0d1564	game_init_fields_0d1564	mod_8c0d0000.c	1
 8c0d15c4	static_init_vec3s_437478	mod_8c0d0000.c	4
-8c0d167c	se_uses_njGetMatrix_wrap_0d167c	mod_8c0d0000.c	4
-8c0d1754	game_vec_0d1754	mod_8c0d0000.c	2
+8c0d167c	game_uses_njGetMatrix_wrap_0d167c	mod_8c0d0000.c	4
+8c0d1754	game_box_screen_bounds_like	mod_8c0d0000.c	2
 8c0d1858	game_uses_sprintf_0d1858	mod_8c0d0000.c	1
-8c0d19dc	game_state_switch_0d19dc	mod_8c0d0000.c	4
+8c0d19dc	game_uses_CItemGLoader_create_creature_0d19dc	mod_8c0d0000.c	4
 8c0d1b90	game_uses_get_field_24_0d1b90	mod_8c0d0000.c	4
 8c0d1c14	set_g_8c437864	mod_8c0d0000.c	2
 8c0d1c20	game_calc_0d1c20	mod_8c0d0000.c	3
@@ -2773,7 +2773,7 @@ address	name	file	params
 8c0e03d4	env_release_textures_0e03d4	mod_8c0e0000.c	4
 8c0e0488	game_sound_0e0488	mod_8c0e0000.c	4
 8c0e0508	game_sound_0e0508	mod_8c0e0000.c	2
-8c0e057c	game_uses_set_vec3_field_30_0e057c	mod_8c0e0000.c	4
+8c0e057c	game_uses_CItemGLoader_create_creature_0e057c	mod_8c0e0000.c	4
 8c0e0614	game_uses_Class_129974_dtor_0e0614	mod_8c0e0000.c	4
 8c0e06e4	get_field_bb4_0e06e4	mod_8c0e0000.c	1
 8c0e06f0	game_init_fields_0e06f0	mod_8c0e0000.c	2
@@ -3172,7 +3172,7 @@ address	name	file	params
 8c0fb1d4	game_uses_strcmp_0fb1d4	mod_8c0f0000.c	1
 8c0fb20c	game_copy_0fb20c	mod_8c0f0000.c	4
 8c0fb268	talk_pick_grunt	mod_8c0f0000.c	4
-8c0fb494	game_state_switch_0fb494	mod_8c0f0000.c	4
+8c0fb494	script_cmd_load_pack_wait	mod_8c0f0000.c	4
 8c0fb780	game_calc_0fb780	mod_8c0f0000.c	4
 8c0fb7d0	game_state_switch_0fb7d0	mod_8c0f0000.c	1
 8c0fb83c	game_update_fields_0fb83c	mod_8c0f0000.c	3
@@ -3185,11 +3185,11 @@ address	name	file	params
 8c0fc4c4	game_uses_get_field_a510_0fc4c4	mod_8c0f0000.c	0
 8c0fc4fc	game_uses_strcmp_0fc4fc	mod_8c0f0000.c	2
 8c0fc5ac	game_uses_rand_0fc5ac	mod_8c0f0000.c	4
-8c0fc608	game_state_switch_0fc608	mod_8c0f0000.c	4
+8c0fc608	game_uses_script_get_var_value_0fc608	mod_8c0f0000.c	4
 8c0fc69c	script_cmd_if_compare	mod_8c0f0000.c	4
 8c0fc7c4	script_cmd_set_vars	mod_8c0f0000.c	4
-8c0fc94c	game_state_switch_0fc94c	mod_8c0f0000.c	4
-8c0fcd2c	game_state_switch_0fcd2c	mod_8c0f0000.c	4
+8c0fc94c	script_set_var_value	mod_8c0f0000.c	4
+8c0fcd2c	script_get_var_value	mod_8c0f0000.c	4
 8c0fd764	game_copy_0fd764	mod_8c0f0000.c	4
 8c0fd8d0	game_uses_set_fields_24_20_0fd8d0	mod_8c0f0000.c	4
 8c0fda28	save_clear_entries_from	mod_8c0f0000.c	2
@@ -3249,7 +3249,7 @@ address	name	file	params
 8c0feef8	CItemGLoader_is_done	mod_8c0f0000.c	2
 8c0fef10	CItemGLoader_clear_requests	mod_8c0f0000.c	4
 8c0fef8c	CItemGLoader_calc_0fef8c	mod_8c0f0000.c	1
-8c0fef94	CItemGLoader_state_switch_0fef94	mod_8c0f0000.c	4
+8c0fef94	CItemGLoader_create_creature_by_kind	mod_8c0f0000.c	4
 8c0ff500	game_uses_get_field_24_0ff500	mod_8c0f0000.c	4
 8c0ff558	static_init_vec3s_4412b8	mod_8c0f0000.c	4
 8c0ff67c	destroy_array_8c441324	mod_8c0f0000.c	0
@@ -5635,7 +5635,7 @@ address	name	file	params
 8c258604	njInitSystem_like	mod_8c250000.c	3
 8c2588f8	nj_init_view_defaults_like	mod_8c250000.c	0
 8c258ac0	screen_reset_view	mod_8c250000.c	0
-8c258b26	draw_uses_free_sys_258b26	mod_8c250000.c	4
+8c258b26	njInitVertexBuffer_like	mod_8c250000.c	4
 8c258d4c	draw_state_select	mod_8c250000.c	1
 8c258d82	ta_poly_context_default	mod_8c250000.c	1
 8c258e0a	set_g_8c277ae8	mod_8c250000.c	5

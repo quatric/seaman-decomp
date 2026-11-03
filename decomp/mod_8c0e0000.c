@@ -262,15 +262,16 @@ u32 game_sound_0e0508(int a0, u32 a1) {
 }
 
 /*
- * game_uses_set_vec3_field_30_0e057c  0x8c0e057c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_vec3_field_30
+ * game_uses_CItemGLoader_create_creature_0e057c  0x8c0e057c
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is
+ * CItemGLoader_create_creature_by_kind
  */
-u32 game_uses_set_vec3_field_30_0e057c(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 game_uses_CItemGLoader_create_creature_0e057c(u32 a0, u32 a1, u32 a2, u32 a3) {
     int a4;
     u32 uVar1;
 
     uVar1 = 0x1b;
-    a4 = CItemGLoader_state_switch_0fef94(0x8c3eb324, 0x10, 0x1b, a3);
+    a4 = CItemGLoader_create_creature_by_kind(0x8c3eb324, 0x10, 0x1b, a3);
     (**(code **)(*(int *)(a4 + 8) + 0x30))(a4, a1, uVar1, a3);
     (**(code **)(*(int *)(a4 + 8) + 0x2c))(a4, a2, uVar1, a3);
     set_vec3_field_30(a4, a2, uVar1);
@@ -1345,7 +1346,7 @@ u32 CWaterTank_CreateStage(int a0, u32 a1, u32 a2) {
         uStack_28 = uVar3;
     }
     aiStack_38[3] = uStack_28;
-    se_uses_njGetMatrix_wrap_0d167c(&uStack_24, a0 + 0x227d0, aiStack_38 + 2, pcVar6);
+    game_uses_njGetMatrix_wrap_0d167c(&uStack_24, a0 + 0x227d0, aiStack_38 + 2, pcVar6);
     if (cVar9 != '\0') {
         uVar3 = 0x423c0000;
     }
@@ -1358,7 +1359,7 @@ u32 CWaterTank_CreateStage(int a0, u32 a1, u32 a2) {
     }
     puVar4 = &uStack_24;
     aiStack_38[3] = uStack_28;
-    se_uses_njGetMatrix_wrap_0d167c(puVar4, a0 + 0x227e0, aiStack_38 + 2, puVar4);
+    game_uses_njGetMatrix_wrap_0d167c(puVar4, a0 + 0x227e0, aiStack_38 + 2, puVar4);
     if (cVar9 == '\0') {
         uStack_20 = 0;
         uVar5 = uVar3;
@@ -1377,7 +1378,7 @@ u32 CWaterTank_CreateStage(int a0, u32 a1, u32 a2) {
         uStack_28 = uVar5;
     }
     aiStack_38[3] = uStack_28;
-    se_uses_njGetMatrix_wrap_0d167c(&uStack_24, a0 + 0x227f0, aiStack_38 + 2, puVar4);
+    game_uses_njGetMatrix_wrap_0d167c(&uStack_24, a0 + 0x227f0, aiStack_38 + 2, puVar4);
     uStack_28 = uVar5;
     if (cVar9 != '\0') {
         uStack_28 = 0x423c0000;
@@ -1388,9 +1389,9 @@ u32 CWaterTank_CreateStage(int a0, u32 a1, u32 a2) {
     } else {
         uStack_24 = 0;
     }
-    ar7_00 = se_uses_njGetMatrix_wrap_0d167c;
+    ar7_00 = game_uses_njGetMatrix_wrap_0d167c;
     aiStack_38[3] = uStack_28;
-    se_uses_njGetMatrix_wrap_0d167c(&uStack_24, a0 + 0x22800, aiStack_38 + 2, se_uses_njGetMatrix_wrap_0d167c);
+    game_uses_njGetMatrix_wrap_0d167c(&uStack_24, a0 + 0x22800, aiStack_38 + 2, game_uses_njGetMatrix_wrap_0d167c);
     pcVar6 = NULL;
     while (pcVar6 < (code *)0x3) {
         CWaterTank_copy_0d70e4(a0 + (int)pcVar6 * 0x16c + 0x22d48, (int)pcVar6 * 0x16c, 3, ar7_00);
@@ -3428,7 +3429,7 @@ u32 CSoilTank_Create(int a0, u32 a1, u32 a2) {
         uStack_30 = 0;
         uStack_34 = uVar3;
     }
-    se_uses_njGetMatrix_wrap_0d167c(&uStack_30, a0 + 0x10fc, &uStack_3c, ar7_00);
+    game_uses_njGetMatrix_wrap_0d167c(&uStack_30, a0 + 0x10fc, &uStack_3c, ar7_00);
     if (cVar7 == '\0') {
         uStack_2c = 0;
         uStack_34 = uVar3;
@@ -3446,7 +3447,7 @@ u32 CSoilTank_Create(int a0, u32 a1, u32 a2) {
         uStack_30 = 0;
     }
     puVar4 = &uStack_3c;
-    se_uses_njGetMatrix_wrap_0d167c(&uStack_30, a0 + 0x10ec, puVar4, ar7_00);
+    game_uses_njGetMatrix_wrap_0d167c(&uStack_30, a0 + 0x10ec, puVar4, ar7_00);
     object_dtor_delete(&uStack_3c, 0xffffffff, puVar4, ar7_00);
     uVar3 = Vec3_dtor(&uStack_30, 0xffffffff, puVar4, ar7_00);
     return uVar3;
@@ -4707,7 +4708,7 @@ u32 COutside_Create(int a0, u32 a1, u32 a2) {
         uStack_24 = 0;
     }
     puVar4 = &uStack_30;
-    se_uses_njGetMatrix_wrap_0d167c(&uStack_24, a0 + 0x10cc, puVar4, uVar3);
+    game_uses_njGetMatrix_wrap_0d167c(&uStack_24, a0 + 0x10cc, puVar4, uVar3);
     object_dtor_delete(&uStack_30, 0xffffffff, puVar4, uVar3);
     uVar3 = Vec3_dtor(&uStack_24, 0xffffffff, puVar4, uVar3);
     return uVar3;
@@ -5761,8 +5762,8 @@ u32 game_items_create_3x4(int a0, int a1, u32 unused_a2, u32 a3) {
         for (iVar7 = 0; iVar7 < 4; iVar7 = iVar7 + 1) {
             if (*(int *)(iVar5 * 0x80 + a1) != -1) {
                 ar6_00 = *(u32 *)(a1 + iVar5 * 0x80 + 0x2c);
-                uVar1 =
-                    (*(code *)(&CItemGLoader_state_switch_0fef94))(0x8c3eb324, *(u32 *)(iVar5 * 0x80 + a1), ar6_00, a3);
+                uVar1 = (*(code *)(&CItemGLoader_create_creature_by_kind))(0x8c3eb324, *(u32 *)(iVar5 * 0x80 + a1),
+                                                                           ar6_00, a3);
                 *(u32 *)(0xa4 + a0 + iVar6 * 0x80 + iVar7 * 0x20) = uVar1;
                 if (*(int *)(iVar5 * 0x80 + a1) == 0xf) {
                     iVar3 = a1 + iVar5 * 0x80;

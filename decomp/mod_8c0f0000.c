@@ -1663,7 +1663,7 @@ u32 *get_vec3_field_30_0f54d0(int a0, u32 *a1, u32 *a2, u32 *a3) {
 /*
  * Class_12c058_ctor  0x8c0f54ec
  * builds the Class_129920 base, stores the Class_12c058 vtable at +8 and initialises the object
- * called by: CItemGLoader_state_switch_0fef94
+ * called by: CItemGLoader_create_creature_by_kind
  */
 int Class_12c058_ctor(int a0, u32 a1, int a2, u32 unused_a3, u32 s0, u32 s4) {
     int ar5_00;
@@ -1838,7 +1838,7 @@ u32 noop_0f58a0(void) {
 /*
  * Class_12bec0_ctor  0x8c0f58a4
  * builds the Class_129920 base, stores the Class_12bec0 vtable at +8 and initialises the object
- * called by: CItemGLoader_state_switch_0fef94
+ * called by: CItemGLoader_create_creature_by_kind
  */
 int Class_12bec0_ctor(int a0, u32 a1, u32 a2) {
     u32 ar5_00;
@@ -4167,7 +4167,7 @@ u32 game_init(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     g_8c43b57c = malloc_thunk(0x1db000, uVar2, uVar3, a3);
     gfx_heap_init(g_8c43b57c, 0x1db000);
     ar7_00 = 0;
-    draw_uses_free_sys_258b26(0xfffaf6f0, 0, 0x4b320, 0);
+    njInitVertexBuffer_like(0xfffaf6f0, 0, 0x4b320, 0);
     uVar4 = 0;
     uVar3 = 0;
     uVar2 = 0;
@@ -5813,7 +5813,7 @@ u8 *speech_update(int *a0, u32 a1, char *a2, int *a3) {
                     puVar1 = (u8 *)game_uses_rand_0fc5ac(a0, a1, a2, a3);
                     break;
                 case 6:
-                    puVar1 = (u8 *)game_state_switch_0fc608(a0, a1, a2, a3);
+                    puVar1 = (u8 *)game_uses_script_get_var_value_0fc608(a0, a1, a2, a3);
                     break;
                 case 7:
                     puVar1 = (u8 *)script_cmd_if_compare(a0, a1, a2, a3);
@@ -5828,7 +5828,7 @@ u8 *speech_update(int *a0, u32 a1, char *a2, int *a3) {
         }
         break;
     case 7:
-        puVar1 = (u8 *)game_state_switch_0fb494(a0, a1, a2, a3);
+        puVar1 = (u8 *)script_cmd_load_pack_wait(a0, a1, a2, a3);
         break;
     case 8:
         puVar1 = (u8 *)asr_uses_strcpy_0fbf28(a0, a1, a2, a3);
@@ -5873,8 +5873,8 @@ u32 game_copy_0fae24(u32 *a0, u32 unused_a1, char *a2, u32 a3) {
 
 /*
  * strcmp_0faf30  0x8c0faf30
- * called by: asr_switch_vocab, asr_uses_strcpy_0fbf28, game_copy_0fae24, game_copy_0faf98, game_state_switch_0fcd2c,
- * game_uses_strcmp_0fb0d4, game_uses_strcmp_0fc4fc, save_slot_store_if_changed (+1 more)
+ * called by: asr_switch_vocab, asr_uses_strcpy_0fbf28, game_copy_0fae24, game_copy_0faf98, game_uses_strcmp_0fb0d4,
+ * game_uses_strcmp_0fc4fc, save_slot_store_if_changed, script_get_var_value (+1 more)
  */
 u32 strcmp_0faf30(u8 *a0, u8 *a1) {
     u8 bVar1;
@@ -5934,8 +5934,9 @@ u32 game_copy_0faf98(int a0, char *a1, char *a2, u32 a3) {
 /*
  * game_uses_strcmp_0fb0d4  0x8c0fb0d4
  * name hint from a string it uses: ERROR; area name: game code; nothing names its area yet; behaviour name: its main
- * named callee is strcmp_0faf30 called by: asr_uses_strcpy_0fbf28, game_state_switch_0fb494, game_uses_rand_0fc5ac,
- * game_uses_strcmp_0fb1d4, script_cmd_if_compare, script_cmd_set_vars, speech_update, talk_pick_grunt strings: "@ERROR"
+ * named callee is strcmp_0faf30 called by: asr_uses_strcpy_0fbf28, game_uses_rand_0fc5ac, game_uses_strcmp_0fb1d4,
+ * script_cmd_if_compare, script_cmd_load_pack_wait, script_cmd_set_vars, speech_update, talk_pick_grunt strings:
+ * "@ERROR"
  */
 u32 game_uses_strcmp_0fb0d4(u32 *a0, char *a1) {
     u32 uVar1;
@@ -6045,7 +6046,7 @@ u32 talk_pick_grunt(u32 *a0, u32 a1, u32 a2, u32 a3) {
         uVar1 = libgcc_divide_helper_01031c(uVar1, *(u32 *)(iVar3 + 0x4c), a2);
         a0[0x23] = uVar1;
     } else {
-        uVar1 = game_state_switch_0fcd2c(a0, iVar3 + 0x48, a2, a3);
+        uVar1 = script_get_var_value(a0, iVar3 + 0x48, a2, a3);
         a0[0x23] = uVar1;
         if ((int)a0[0x23] < 0) {
             a0[0x23] = 0;
@@ -6104,11 +6105,11 @@ LAB_8c0fb436:
 }
 
 /*
- * game_state_switch_0fb494  0x8c0fb494
- * area name: game code; nothing names its area yet; behaviour name: dispatches on a state or mode value (switch)
+ * script_cmd_load_pack_wait  0x8c0fb494
+ * waits for the command's pack entry to finish loading, then releases it and jumps to the next label
  * called by: speech_update
  */
-u8 *game_state_switch_0fb494(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
+u8 *script_cmd_load_pack_wait(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
     int ar5_00;
     u8 *ar5_01;
@@ -6205,12 +6206,12 @@ u8 *game_state_switch_0fb494(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
                 if (iStack_18 != 0) {
                     sprintf(auStack_50, ar5_01, ar6_00, ar7_00, &g_8c141e10);
                     ar5_01 = &g_8c141e13;
-                    game_state_switch_0fc94c(a0, &g_8c141e13, auStack_50, ar7_00);
+                    script_set_var_value(a0, &g_8c141e13, auStack_50, ar7_00);
                     ar6_00 = puVar2;
                 }
                 if (iStack_1c != 0) {
                     sprintf(auStack_50, ar5_01, ar6_00, ar7_00, &g_8c141e10);
-                    game_state_switch_0fc94c(a0, &g_8c141e15, auStack_50, ar7_00);
+                    script_set_var_value(a0, &g_8c141e15, auStack_50, ar7_00);
                 }
                 ar7_01 = 0;
                 ar6_01 = *(u32 *)(*(int *)(a0[4] + 0x40) + 0xc0);
@@ -6225,7 +6226,7 @@ u8 *game_state_switch_0fb494(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * game_calc_0fb780  0x8c0fb780
  * area name: game code; nothing names its area yet; behaviour name: integer arithmetic on its arguments
- * called by: game_state_switch_0fb494
+ * called by: script_cmd_load_pack_wait
  */
 u32 game_calc_0fb780(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -6612,11 +6613,11 @@ u32 asr_uses_strcpy_0fbf28(u32 *a0, u32 unused_a1, char *a2, u8 *a3) {
                         history_push_string(a0, ar5_03 + iVar2 * 0x68 + 0x70, a2, a3);
                     } else if (ar5_03[iVar2 * 0x68 + 0x90] == '\0') {
                         a2 = ar5_03 + iVar2 * 0x68 + 0x70;
-                        game_state_switch_0fc94c(a0, ar5_03 + iVar2 * 0x68 + 0xb0, a2, a3);
+                        script_set_var_value(a0, ar5_03 + iVar2 * 0x68 + 0xb0, a2, a3);
                         history_push_string(a0, ar5_03 + iVar2 * 0x68 + 0x70, a2, a3);
                     } else {
                         a2 = ar5_03 + iVar2 * 0x68 + 0x90;
-                        game_state_switch_0fc94c(a0, ar5_03 + iVar2 * 0x68 + 0xb0, a2, a3);
+                        script_set_var_value(a0, ar5_03 + iVar2 * 0x68 + 0xb0, a2, a3);
                         history_push_string(a0, ar5_03 + iVar2 * 0x68 + 0x90, a2, a3);
                     }
                     ar5_01 = *(char **)(ar5_03 + iVar2 * 0x68 + 0xd4);
@@ -6694,7 +6695,7 @@ u32 history_push_string(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_uses_get_field_a510_0fc4c4  0x8c0fc4c4
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_a510_01f538
- * called by: game_state_switch_0fcd2c
+ * called by: script_get_var_value
  */
 u32 game_uses_get_field_a510_0fc4c4(void) {
     int iVar1;
@@ -6757,25 +6758,25 @@ u32 game_uses_rand_0fc5ac(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_state_switch_0fc608  0x8c0fc608
- * area name: game code; nothing names its area yet; behaviour name: mostly calls state_switch functions
+ * game_uses_script_get_var_value_0fc608  0x8c0fc608
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is script_get_var_value
  * called by: speech_update
  */
-u32 game_state_switch_0fc608(int a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 game_uses_script_get_var_value_0fc608(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     u32 uVar3;
     int iVar4;
 
     iVar4 = *(int *)(0x88 + a0);
-    iVar1 = game_state_switch_0fcd2c(a0, iVar4 + 0x28, a2, a3);
+    iVar1 = script_get_var_value(a0, iVar4 + 0x28, a2, a3);
     if (iVar1 < 0) {
         iVar1 = 0;
     }
     if (*(int *)(iVar4 + 0x30) <= iVar1) {
         iVar1 = *(int *)(iVar4 + 0x30) + -1;
     }
-    iVar2 = game_state_switch_0fcd2c(a0, iVar4 + 0x2c, a2, a3);
+    iVar2 = script_get_var_value(a0, iVar4 + 0x2c, a2, a3);
     if (iVar2 < 0) {
         iVar2 = 0;
     }
@@ -6806,11 +6807,11 @@ u32 script_cmd_if_compare(int a0, u32 unused_a1, u32 a2, u32 a3) {
         unaff_r14 = 0;
         iVar6 = iVar4 + iVar5 * 0x2c;
         iVar3 = iVar6 + 0x70;
-        iVar1 = game_state_switch_0fcd2c(a0, iVar3, a2, a3);
+        iVar1 = script_get_var_value(a0, iVar3, a2, a3);
         if (*(char *)(iVar6 + 0x74) < '\x01') {
             iVar3 = atoi(iVar6 + 0x78);
         } else {
-            iVar3 = game_state_switch_0fcd2c(a0, iVar6 + 0x74, a2, a3);
+            iVar3 = script_get_var_value(a0, iVar6 + 0x74, a2, a3);
         }
         iVar6 = *(int *)(iVar6 + 0x6c);
         if ((iVar6 < 6) && (-1 < iVar6)) {
@@ -6883,10 +6884,10 @@ u32 script_cmd_set_vars(int a0, u32 unused_a1, u8 *a2, u32 a3) {
         }
         if (*(int *)(iVar5 + 0x50) == 0) {
             a2 = &stack0xffffffc8;
-            game_state_switch_0fc94c(a0, ar5_00, &stack0xffffffc8, a3);
+            script_set_var_value(a0, ar5_00, &stack0xffffffc8, a3);
         } else {
             ar5_01 = ar5_00;
-            uVar1 = game_state_switch_0fcd2c(a0, ar5_00, a2, a3);
+            uVar1 = script_get_var_value(a0, ar5_00, a2, a3);
             iVar2 = atoi(&stack0xffffffc8);
             iVar5 = *(int *)(iVar5 + 0x50);
             if ((iVar5 < 6) && (0 < iVar5)) {
@@ -6914,7 +6915,7 @@ u32 script_cmd_set_vars(int a0, u32 unused_a1, u8 *a2, u32 a3) {
             }
             sprintf(&stack0xffffffc8, ar5_01, a2, a3, &g_8c141e10);
             a2 = &stack0xffffffc8;
-            game_state_switch_0fc94c(a0, ar5_00, &stack0xffffffc8, a3);
+            script_set_var_value(a0, ar5_00, &stack0xffffffc8, a3);
         }
     }
     uVar1 = game_uses_strcmp_0fb0d4(a0, iVar3 + 0x28);
@@ -6922,11 +6923,11 @@ u32 script_cmd_set_vars(int a0, u32 unused_a1, u8 *a2, u32 a3) {
 }
 
 /*
- * game_state_switch_0fc94c  0x8c0fc94c
- * area name: game code; nothing names its area yet; behaviour name: dispatches on a state or mode value (switch)
- * called by: asr_uses_strcpy_0fbf28, game_state_switch_0fb494, script_cmd_set_vars
+ * script_set_var_value  0x8c0fc94c
+ * stores string value a2 into the script variable named by the letter at a1, clamping or applying it to game state
+ * called by: asr_uses_strcpy_0fbf28, script_cmd_load_pack_wait, script_cmd_set_vars
  */
-u32 game_state_switch_0fc94c(int a0, char *a1, char *a2, u32 a3) {
+u32 script_set_var_value(int a0, char *a1, char *a2, u32 a3) {
     int iVar1;
     int iVar2;
     u32 uVar3;
@@ -7046,11 +7047,12 @@ u32 game_state_switch_0fc94c(int a0, char *a1, char *a2, u32 a3) {
 }
 
 /*
- * game_state_switch_0fcd2c  0x8c0fcd2c
- * area name: game code; nothing names its area yet; behaviour name: dispatches on a state or mode value (switch)
- * called by: game_copy_0fd764, game_state_switch_0fc608, script_cmd_if_compare, script_cmd_set_vars, talk_pick_grunt
+ * script_get_var_value  0x8c0fcd2c
+ * returns the value of the script variable named by the letter at a1 ('A'..'s'), some computed from the clock or game
+ * state called by: game_copy_0fd764, game_uses_script_get_var_value_0fc608, script_cmd_if_compare, script_cmd_set_vars,
+ * talk_pick_grunt
  */
-u32 game_state_switch_0fcd2c(int a0, char *a1, u32 a2, u32 a3) {
+u32 script_get_var_value(int a0, char *a1, u32 a2, u32 a3) {
     char cVar1;
     int iVar2;
     u32 uVar3;
@@ -7416,7 +7418,7 @@ u32 game_copy_0fd764(int a0, char *a1, u32 a2, u32 a3) {
         switch (iVar2) {
         default:
             uVar1 = a2;
-            game_state_switch_0fcd2c(a0, a1, a2, a3);
+            script_get_var_value(a0, a1, a2, a3);
             uVar1 = sprintf(a2, a1, uVar1, a3, &g_8c141e10);
             return uVar1;
         case 0x49:
@@ -7432,7 +7434,7 @@ u32 game_copy_0fd764(int a0, char *a1, u32 a2, u32 a3) {
 /*
  * game_uses_set_fields_24_20_0fd8d0  0x8c0fd8d0
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is set_fields_24_20
- * called by: game_state_switch_0fc94c, game_state_switch_0fcd2c, speech_release_pack_entry
+ * called by: script_get_var_value, script_set_var_value, speech_release_pack_entry
  */
 int game_uses_set_fields_24_20_0fd8d0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -7502,7 +7504,7 @@ int game_uses_set_fields_24_20_0fd8d0(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * save_clear_entries_from  0x8c0fda28
  * clears byte +0xc8 of save-record entries a1..15 (0x20 bytes each)
- * called by: game_state_switch_0fc94c, speech_start_chapter
+ * called by: script_set_var_value, speech_start_chapter
  */
 u32 save_clear_entries_from(int a0, int a1) {
     for (; a1 < 0x10; a1 = a1 + 1) {
@@ -7514,7 +7516,7 @@ u32 save_clear_entries_from(int a0, int a1) {
 /*
  * game_calc_0fda5c  0x8c0fda5c
  * area name: game code; nothing names its area yet; behaviour name: integer arithmetic on its arguments
- * called by: game_state_switch_0fc94c, game_uses_set_fields_24_20_0fd8d0, speech_release_0fa9fc, speech_update
+ * called by: game_uses_set_fields_24_20_0fd8d0, script_set_var_value, speech_release_0fa9fc, speech_update
  */
 u32 game_calc_0fda5c(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -7630,7 +7632,7 @@ u32 set_field_68_clamp_0_4_wrap(int a0, int a1) {
 /*
  * set_field_68_clamp_0_4  0x8c0fdd98
  * stores a1 at +0x68, clamped to 0..4
- * called by: game_state_switch_0fc94c, set_field_68_clamp_0_4_wrap
+ * called by: script_set_var_value, set_field_68_clamp_0_4_wrap
  */
 u32 set_field_68_clamp_0_4(int a0, u32 a1) {
     u32 uVar1;
@@ -8505,14 +8507,14 @@ u32 CItemGLoader_calc_0fef8c(u32 a0) {
 }
 
 /*
- * CItemGLoader_state_switch_0fef94  0x8c0fef94
- * name hint from a string it uses: Shell; area name: sits between CItemGLoader functions (same compilation unit);
- * behaviour name: dispatches on a state or mode value (switch) called by: CAnimal_state_switch_0366f0,
- * CFrogManEgg_NewChild, CGame_uses_libgcc_divide_helper_0cc784, CProlog_uses_libgcc_divide_helper_0cd3c8,
- * CSquidLine_load_8, bugbox_3_screen, draw_state_switch_09cbb8, game_state_switch_0884a0 (+8 more) strings: "Shell";
- * "Shell"; "Invalid item no"; "CHeapForItem::NewMemory()" ...
+ * CItemGLoader_create_creature_by_kind  0x8c0fef94
+ * creates the creature object for kind a1 (0..16: Mushroomer egg and line, Squid, Higyo, FrogMan, Moth, ...) and
+ * initialises it with a0 called by: CAnimal_uses_CItemGLoader_create_creature_0366f0, CFrogManEgg_NewChild,
+ * CGame_uses_libgcc_divide_helper_0cc784, CProlog_uses_libgcc_divide_helper_0cd3c8, CSquidLine_load_8, bugbox_3_screen,
+ * draw_uses_CItemGLoader_create_creature_09cbb8, game_uses_CItemGLoader_create_creature_0884a0 (+8 more) strings:
+ * "Shell"; "Shell"; "Invalid item no"; "CHeapForItem::NewMemory()" ...
  */
-int CItemGLoader_state_switch_0fef94(u32 a0, char *a1, u32 a2, u32 a3) {
+int CItemGLoader_create_creature_by_kind(u32 a0, char *a1, u32 a2, u32 a3) {
     char *a5;
     int a4;
     u64 *puVar1;

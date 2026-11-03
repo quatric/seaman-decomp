@@ -4339,8 +4339,8 @@ u32 set_fields_8_4_0(u32 *a0) {
 /*
  * set_fields_50_54_58  0x8c078fb8
  * stores +0x50, +0x54, +0x58
- * called by: game_uses_Vec3_ctor_zero_0ff7d4, game_uses_matrix_push_0cc524, game_uses_set_vec3_field_30_0e057c,
- * game_vec_077a38, static_init_437330
+ * called by: game_uses_CItemGLoader_create_creature_0e057c, game_uses_Vec3_ctor_zero_0ff7d4,
+ * game_uses_matrix_push_0cc524, game_vec_077a38, static_init_437330
  */
 u32 set_fields_50_54_58(int a0) {
     u32 in_fr5;

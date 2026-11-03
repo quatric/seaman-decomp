@@ -3530,7 +3530,7 @@ u32 static_init_vec3s_285180(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CSpiderLine_ctor  0x8c0a4590
  * "SpiderLine": CAnimal_ctor(kind 13), vtable 0x8c12aeec
- * called by: CItemGLoader_state_switch_0fef94
+ * called by: CItemGLoader_create_creature_by_kind
  * strings: "SpiderLine"
  */
 int CSpiderLine_ctor(int a0, u32 a1) {
@@ -3896,7 +3896,7 @@ u32 Spider_asset_table_init(void) {
 /*
  * CSpiderEgg_ctor  0x8c0a4de8
  * "SpiderEgg": CAnimal_ctor(kind 12), vtable 0x8c12ad50
- * called by: CItemGLoader_state_switch_0fef94
+ * called by: CItemGLoader_create_creature_by_kind
  * strings: "SpiderEgg"
  */
 int CSpiderEgg_ctor(int a0, u32 a1) {
@@ -4300,14 +4300,15 @@ u32 child_330_tick_0a5550(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_state_switch_0a5588  0x8c0a5588
- * area name: game code; nothing names its area yet; behaviour name: mostly calls state_switch functions
+ * game_uses_CItemGLoader_create_creature_0a5588  0x8c0a5588
+ * area name: game code; nothing names its area yet; behaviour name: its main named callee is
+ * CItemGLoader_create_creature_by_kind
  */
-u32 game_state_switch_0a5588(int a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 game_uses_CItemGLoader_create_creature_0a5588(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int a6;
     u32 uVar1;
 
-    a6 = CItemGLoader_state_switch_0fef94(a1, 0xd, 0x18, a3);
+    a6 = CItemGLoader_create_creature_by_kind(a1, 0xd, 0x18, a3);
     uVar1 = 0;
     if (a6 != 0) {
         uVar1 = (**(code **)(0x100 + *(int *)(a0 + 8)))(a0, 0, a6, a3);
@@ -10192,7 +10193,7 @@ u32 static_init_vec3s_2858f8(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * CSquid_Init  0x8c0ac6a0
- * called by: CItemGLoader_state_switch_0fef94
+ * called by: CItemGLoader_create_creature_by_kind
  * strings: "SquidLine"; "sumi_blood.pvm"; "GRAPHICS\\SQUIDLINE"; "Failed to load Ink pvm.." ...
  */
 int CSquid_Init(int a0, u32 a1) {
@@ -10476,7 +10477,7 @@ u32 CSquidLine_load_8(int a0, int a1, u32 unused_a2, u32 a3) {
     int iVar2;
 
     for (iVar2 = 0; iVar2 < 8; iVar2 = iVar2 + 1) {
-        uVar1 = CItemGLoader_state_switch_0fef94(0x8c3eb324, 3, 2, a3);
+        uVar1 = CItemGLoader_create_creature_by_kind(0x8c3eb324, 3, 2, a3);
         *(u32 *)(0x928 + a0 + iVar2 * 4) = uVar1;
         uVar1 = (*(code *)(&CItemGLoader_RegistToLoad))(*(u32 *)(0x7d0 + a1), *(u32 *)(0x928 + a0 + iVar2 * 4), 0, a3);
         *(u32 *)(0x948 + a0 + iVar2 * 4) = uVar1;

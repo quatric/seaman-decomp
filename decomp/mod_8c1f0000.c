@@ -11377,7 +11377,7 @@ u32 shinobi_sound_1f814c(u32 a0) {
  * fills a {year, month, day, hour, minute, second, weekday} struct from the real-time clock
  * called by: CProlog_uses_free_sys_0b96e4, flashrom_record_play_time, flashrom_update_game_record_like,
  * flashrom_uses_rtc_get_date_1f71b6, flashrom_uses_rtc_get_date_1f7264, flashrom_uses_rtc_get_date_1f7902,
- * game_state_switch_0fc94c, game_state_switch_0fcd2c (+9 more)
+ * input_uses_set_fields_0_4_c_0bf804, memcard_queue_op0c_with_date (+9 more)
  */
 u32 rtc_get_date(short *a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 *puVar1;
@@ -11428,7 +11428,7 @@ int rtc_set_date(u32 a0, u32 unused_a1, u32 a2) {
 /*
  * rtc_date_compare  0x8c1f823a
  * compares two dates: 1 when a0 is later, -1 when earlier, 0 when equal
- * called by: game_state_switch_0fc94c, game_state_switch_0fcd2c
+ * called by: script_get_var_value, script_set_var_value
  */
 u32 rtc_date_compare(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -11479,7 +11479,7 @@ u32 date_to_rtc_seconds(u16 *a0, int *a1, u32 a2) {
 /*
  * rtc_seconds_to_date  0x8c1f8300
  * converts RTC seconds a0 into the date a1: year, month, day, hour, minute, second and weekday
- * called by: flashrom_game_block_date_byte, game_state_switch_0fcd2c, rtc_get_date
+ * called by: flashrom_game_block_date_byte, rtc_get_date, script_get_var_value
  */
 u32 rtc_seconds_to_date(u32 a0, u16 *a1) {
     u32 uVar1;
@@ -14167,8 +14167,9 @@ u32 noop_1fb43a(void) {
 
 /*
  * malloc_thunk  0x8c1fb4ae
- * called by: CDCGD_new_request_c, CProlog_uses_free_sys_0b96e4, cd_load_open_read, draw_uses_free_sys_258b26,
- * game_init, game_uses_free_sys_01e0a4, game_uses_malloc_thunk_015f18, gdfs_load_file_alloc (+11 more)
+ * called by: CDCGD_new_request_c, CProlog_uses_free_sys_0b96e4, cd_load_open_read, game_init,
+ * game_uses_free_sys_01e0a4, game_uses_malloc_thunk_015f18, gdfs_load_file_alloc, input_uses_file_slot_open_01f608 (+11
+ * more)
  */
 u32 malloc_thunk(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -14234,8 +14235,8 @@ u32 *heap_alloc_first_fit(int a0) {
  * free_sys  0x8c1fb57c
  * frees a block from malloc_sys
  * called by: CDCGD_queue_requests_from_list, CDCGD_queue_unique_request, CDCGD_release_request,
- * CDCGD_uses_ADXF_Close_like_02049c, CProlog_uses_free_sys_0b96e4, draw_uses_free_sys_258b26, free_01e14c,
- * free_ptr_and_clear (+9 more)
+ * CDCGD_uses_ADXF_Close_like_02049c, CProlog_uses_free_sys_0b96e4, free_01e14c, free_ptr_and_clear, game_release_01d7cc
+ * (+9 more)
  */
 u32 free_sys(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
