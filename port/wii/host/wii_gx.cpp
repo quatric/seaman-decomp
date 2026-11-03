@@ -184,7 +184,22 @@ const u8 BLEND_DST[8] = { GX_BL_ZERO, GX_BL_ONE, GX_BL_SRCCLR, GX_BL_INVSRCCLR, 
 /* PVR depth compare is on 1/w (bigger = nearer); GX compares the depth written below (smaller = nearer) */
 const u8 ZCMP[8] = { GX_NEVER, GX_GREATER, GX_EQUAL, GX_GEQUAL, GX_LESS, GX_NEQUAL, GX_LEQUAL, GX_ALWAYS };
 
-struct Poly { unsigned pcw, isp, tsp, tcw; float face[4], foff[4]; };
+struct Poly { unsigned pcw, isp, tsp, tcw, clip; float face[4], foff[4]; };
+
+/* user tile clip: a type 1 parameter sets the rectangle (tiles of 32 pixels, inclusive), polygons whose control word asks for "inside"
+   (bits 17-16 = 2) are scissored to it; "outside" (3) cannot be expressed with a scissor and draws unclipped */
+const unsigned NOCLIP = ~0u;
+unsigned clip_cur;
+void set_clip(unsigned c)
+{
+  if (c == clip_cur) return;
+  clip_cur = c;
+  unsigned x0 = (c & 0xff) * 32, y0 = ((c >> 8) & 0xff) * 32, x1 = (((c >> 16) & 0xff) + 1) * 32, y1 = ((c >> 24) + 1) * 32;
+  if (c == NOCLIP || x1 <= x0 || y1 <= y0) { GX_SetScissor(0, 0, rmode->fbWidth, rmode->efbHeight); return; }
+  if (x1 > 640) x1 = 640;
+  if (y1 > 480) y1 = 480;
+  GX_SetScissor(x0 * rmode->fbWidth / 640, y0 * rmode->efbHeight / 480, (x1 - x0) * rmode->fbWidth / 640, (y1 - y0) * rmode->efbHeight / 480);
+}
 
 /* PVR table fog: index from 1/w * FOG_DENSITY as a pseudo-float (4-bit mantissa, exponent 0..7), each table word holds the fog
    amount at the start (bits 15-8) and end (bits 7-0) of its step */
@@ -213,7 +228,10 @@ void set_state(const Poly &p, int list)
 {
   bool tex = (p.pcw >> 3) & 1;
   unsigned isp = p.isp, tsp = p.tsp;
-  bool zw = !((isp >> 26) & 1);
+  set_clip(p.clip);
+  /* translucent polygons never update depth, pre-sorted or not: the title plate's cover (transparent middle, 1/w 0.0631) is
+     drawn before the clock text behind it (0.0625), which Flycast shows */
+  bool zw = list != 2 && !((isp >> 26) & 1);
   GX_SetZMode(GX_TRUE, ZCMP[(isp >> 29) & 7], zw ? GX_TRUE : GX_FALSE);
   if (list == 0 || list == 4) GX_SetBlendMode(GX_BM_NONE, GX_BL_ONE, GX_BL_ZERO, GX_LO_CLEAR);
   else GX_SetBlendMode(GX_BM_BLEND, BLEND[(tsp >> 29) & 7], BLEND_DST[(tsp >> 26) & 7], GX_LO_CLEAR);
@@ -318,16 +336,19 @@ void draw_list(const unsigned *ta, unsigned n, int want)
 {
   int list = -1;
   Poly p = {};
+  unsigned uclip = NOCLIP;
   bool sprite = false, have = false;
   unsigned base = 0xffffffffu, soff = 0;
   V strip[256]; int ns = 0;
   for (unsigned i = 0; i + 8 <= n; ) {
     unsigned pcw = ta[i], type = pcw >> 29;
     if (type == 0) { list = -1; i += 8; continue; }                 /* end of list */
-    if (type == 1 || type == 2) { i += 8; continue; }               /* user clip, object list set */
+    if (type == 1) { uclip = (ta[i + 4] & 0xff) | (ta[i + 5] & 0xff) << 8 | (ta[i + 6] & 0xff) << 16 | (ta[i + 7] & 0xff) << 24; i += 8; continue; }
+    if (type == 2) { i += 8; continue; }                            /* object list set */
     if (type == 4 || type == 5) {                                   /* polygon / sprite global parameter */
       if (list < 0) list = (pcw >> 24) & 7;
       p.pcw = pcw; p.isp = ta[i + 1]; p.tsp = ta[i + 2]; p.tcw = ta[i + 3];
+      p.clip = ((pcw >> 16) & 3) == 2 ? uclip : NOCLIP;
       sprite = type == 5; ns = 0;
       bool big = ((pcw >> 4) & 3) == 2 && ((pcw >> 2) & 1);          /* intensity with offset colour */
       if (!sprite && ((pcw >> 4) & 3) == 2) { p.face[0] = w2f(ta[i + (big ? 8 : 4)]); p.face[1] = w2f(ta[i + (big ? 9 : 5)]); p.face[2] = w2f(ta[i + (big ? 10 : 6)]); p.face[3] = w2f(ta[i + (big ? 11 : 7)]); }
@@ -442,6 +463,7 @@ extern "C" void gx_frame(const unsigned *ta, unsigned bytes)
   if (!ready) return;
   GX_InvVtxCache();
   fog_load();
+  set_clip(NOCLIP);
   GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
   unsigned n = bytes / 4;
   draw_list(ta, n, 0);                                              /* opaque */
@@ -450,6 +472,7 @@ extern "C" void gx_frame(const unsigned *ta, unsigned bytes)
   draw_list(ta, n, 2);                                              /* translucent */
   if (sorting) flush_sorted();
   sorting = false;
+  set_clip(NOCLIP);
   GX_DrawDone();
   cur_fb ^= 1;
   GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);

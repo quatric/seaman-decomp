@@ -6,7 +6,7 @@ import re, sys, glob, os
 port = sys.argv[1]
 ret = {}
 DEF = re.compile(r'^([A-Za-z_][A-Za-z_0-9 \*<>]*?)\s*([A-Za-z_0-9]+)_def\(', re.M)
-for f in glob.glob(os.path.join(port, 'wii', 'exec', '*.cpp')):
+for f in glob.glob(os.path.join(port, 'wii', 'src', 'mod_8c*.cpp')):
     for m in DEF.finditer(open(f).read()):
         t = re.sub(r'\s+', ' ', m.group(1).strip())
         if t in ('unsigned long long', 'ulonglong', 'undefined8', 'longlong', 'long long'): r = 'unsigned long long'
@@ -30,7 +30,7 @@ open(os.path.join(port, 'wii', 'decls.h'), 'w').write(out)
 ull = sorted(n for n, v in ret.items() if v == 'unsigned long long' and n != 'main')
 host = os.path.join(port, 'wii', 'host')
 open(os.path.join(host, 'xthunks.inc'), 'w').write(''.join('static unsigned xt_%s(unsigned a, unsigned b, unsigned c, unsigned d) { return (unsigned)%s(a, b, c, d); }\n' % (n, n) for n in ull))
-xt = open(os.path.join(host, 'xtab.inc')).read()
+xt = open(os.path.join(host, 'xtab.inc')).read().replace('(void*)xt_', '(void*)')   # a unit whose return type changed loses its thunk
 for n in ull: xt = xt.replace('(void*)%s,' % n, '(void*)xt_%s,' % n)
 open(os.path.join(host, 'xtab.inc'), 'w').write(xt)
 print(len(ret), 'definitions;', sum(1 for v in ret.values() if v != 'unsigned'), 'non-32-bit returns')

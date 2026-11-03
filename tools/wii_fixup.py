@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Iteratively repair units in port/wii/failing.txt: pointer-to-pointer conversions that C accepted but C++ rejects.
+"""Iteratively repair the region files in port/wii/failing.txt: pointer-to-pointer conversions that C accepted but C++ rejects.
 Reads g++ diagnostics, wraps the right-hand side of the offending single-line assignment/initialisation in a cast.
 usage: wii_fixup.py <port/wii dir> [rounds]"""
 import re, subprocess, sys, os
@@ -57,7 +57,7 @@ def patch(lines, ln, cast):
     lines[ln-1] = t[:i+1] + ' (' + cast + ')(' + rhs + ');'
     return True
 def fix(name):
-    path = os.path.join(W, 'exec', name); n = 0
+    path = os.path.join(W, 'src', name); n = 0
     for _ in range(ROUNDS):
         r = subprocess.run(CMD + [path], capture_output=True, text=True)
         if r.returncode == 0: return name, 'ok', n

@@ -43,7 +43,7 @@ extern "C" void host_log(const char *fmt, ...)
 
 #define MAX_FRAMES 60000u
 #ifndef MAX_SECONDS
-#define MAX_SECONDS 100
+#define MAX_SECONDS 200
 #endif
 static unsigned cur_frame;
 static int pad_live;
@@ -84,6 +84,10 @@ static void run(void)
 #endif
       int quit = 0; pad_live = host_pad_frame(w, &quit);
       if (quit) { host_log("exit requested at frame %u\n", n); break; } }
+#ifdef SAVE_WATCH
+    { static unsigned l24 = 7, l28 = 7, lc4 = 7, l11 = 7, l6c = 7; unsigned a = GM(unsigned char, 0x8c436924), b = GM(unsigned char, 0x8c436928), c = GM(unsigned char, 0x8c13bcc4), d = GM(unsigned, 0x8c435c7c + 11 * 0x80), e = GM(unsigned char, 0x8c435c7c + 11 * 0x80 + 0x6c);
+      if (a != l24 || b != l28 || c != lc4 || d != l11 || e != l6c) { host_log("save watch frame %u: 436924=%u 436928=%u 13bcc4=%u rec11 type=%x var=%u\n", n, a, b, c, d, e); l24 = a; l28 = b; lc4 = c; l11 = d; l6c = e; } }
+#endif
     { static int lastw = -1; int w = GM(int, 0x8c4367bc); if (w != lastw) { host_log("warn state %d -> %d at frame %u\n", lastw, w, n); lastw = w; } }
     { static int l44 = -99, nt44; int c = GM(int, 0x8c286ec8 + 0x44); if (c != l44 && nt44 < 60) { host_log("t44 %d -> %d at frame %u (14c=%d) msg: st1054=%d 1014=%d 89134=%d 4362f0=%d 1044=%d 1048=%d\n", l44, c, n, (int)GM(int, 0x8c286ec8 + 0x14c), (int)GM(int, 0x8c35468c + 0x1054), (int)GM(int, 0x8c35468c + 0x1014), (int)GM(int, 0x8c35468c + 0x89134), (int)GM(int, 0x8c4362f0), (int)GM(int, 0x8c35468c + 0x1044), (int)GM(int, 0x8c35468c + 0x1048)); l44 = c; nt44++; } }
     unsigned p0 = rp; if ((int)game_poll_exit(0x8c286ebc, 0, 0, 0) < 0) break;
@@ -165,6 +169,10 @@ static void alarm_cb(syswd_t, void *)
 }
 int main(int argc, char **argv)
 {
+  /* MEM2 layout: the heap may grow from MEM1 into MEM2 only up to 0x91000000; 0x91000000-0x92000000 is the DSI page store
+     (texture memory and registers, wii_dsi.cpp) and 0x92000000-0x93000000 the guest RAM. Without this limit the renderer's
+     texture cache grew into the page store and overwrote the PVR fog registers in the tank */
+  SYS_SetArena2Hi((void *)0x91000000);
   PPCExcptCurPanicFn = exc_cb;
   SYS_CreateAlarm(&alarm_); { struct timespec tp = {2, 0}, ti = {1, 0}; SYS_SetPeriodicAlarm(alarm_, &tp, &ti, alarm_cb, 0); }
   gx_init();

@@ -1,10 +1,14 @@
 import glob,re,collections,sys
-R=sys.argv[1]; ok=0; bad=[]; msgs=collections.Counter(); ex={}
-for f in glob.glob(R+'/port/fn/*.c'):
-    e=open(f+'.err').read()
-    if 'error' not in e: ok+=1
-    else:
-        bad.append(f); m=re.search(r'error: (.*)',e); k=re.sub(r"'[^']*'","'X'",m.group(1))[:80]; msgs[k]+=1; ex.setdefault(k,(f,m.group(1)))
-print('compile OK:',ok,'of',ok+len(bad),'(%.1f%%)'%(100.0*ok/(ok+len(bad))))
-for k,v in msgs.most_common(10): print(v,k,'|',ex[k][1][:90],'|',ex[k][0].split('/')[-1])
-open(R+'/port/failing.txt','w').write('\n'.join(sorted(x.split('/')[-1] for x in bad))+'\n')
+R=sys.argv[1]; sys.path.insert(0, R + '/tools'); import units
+ok=0; bad=set(); msgs=collections.Counter(); ex={}
+for f in units.region_files(R+'/port/fn', 'c'):
+    t=open(f).read(); e=open(f+'.err').read() if glob.glob(f+'.err') else ''
+    seen=set()
+    for m in re.finditer(r'^\S+?:(\d+):\d+: error: (.*)$', e, re.M):
+        u=units.line_unit(t, int(m.group(1)))
+        if u in seen: continue
+        seen.add(u); k=re.sub(r"'[^']*'","'X'",m.group(2))[:80]; msgs[k]+=1; ex.setdefault(k,(u,m.group(2)))
+    n=len(units.split(t)); bad|=seen; ok+=n-len(seen)
+print('compile OK:',ok,'of',ok+len(bad),'(%.1f%%)'%(100.0*ok/max(1,ok+len(bad))))
+for k,v in msgs.most_common(10): print(v,k,'|',ex[k][1][:90],'|',ex[k][0])
+open(R+'/port/failing.txt','w').write(''.join(sorted('%s.c\n' % u for u in bad if u)))

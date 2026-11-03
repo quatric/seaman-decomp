@@ -66,10 +66,12 @@ def decode(entry, limit):
             if is_fpu(w(pc)) and w(pc) not in (0xffff,): fpu = 'scan'; break
     return fpu
 
+sys.path.insert(0, os.path.join(R, 'tools')); import units
+EXEC = units.load(os.path.join(R, 'port/exec'), 'c')
 FLOATY = re.compile(r'\b(?:float|double|(?:in|extraout)_(?:fr|dr|xd)\d+|F32HI|F32LO|CONCAT44D)\b')
 def floaty(a):
-    p = os.path.join(R, 'port/exec/%x.c' % a)
-    return os.path.exists(p) and bool(FLOATY.search(open(p).read()))
+    t = EXEC.get('%x' % a)
+    return t is not None and bool(FLOATY.search(t))
 TAILS = {}
 out = []
 nscan = 0

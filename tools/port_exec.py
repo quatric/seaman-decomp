@@ -1,9 +1,11 @@
 import re, sys, os
 R = sys.argv[1]
+sys.path.insert(0, R + '/tools'); import units
+FN = units.load(R + '/port/fn', 'c'); EXEC = {}
 idx = {}
 rows = []
 for l in open(R + '/src/modules/function_index.tsv').read().splitlines()[1:]:
-    a, sz, n, ci, co = l.split('\t'); idx[n] = a; rows.append((int(a, 16), n)) if os.path.exists(R + '/port/fn/%s.c' % a) else None
+    a, sz, n, ci, co = l.split('\t'); idx[n] = a; rows.append((int(a, 16), n)) if a in FN else None
 REGIN_BY_NAME = {}
 SYM = re.compile(r'\b(_?[A-Za-z][A-Za-z0-9_]*_([0-9a-f]{8}))\b')
 LOCAL = re.compile(r'^(LAB_|switchD|caseD|param_|iVar|uVar|puVar|local_|auStack|uStack|in_|extraout_|pc|pi|pu|ppu|pp)')
@@ -53,8 +55,7 @@ def rewrite_ptr_assign(b, pname, off):
 import glob
 PTR_EV = re.compile(r'(?<![\w)\]])\*\s*_?DAT_([0-9a-f]{8})\b|\b_?DAT_([0-9a-f]{8})\s*(?:==|!=)\s*\((?:\w+ )*\*+\)|\b_?DAT_([0-9a-f]{8}) = &|\(\w[\w ]*\*+\)\s*\*\s*_?DAT_([0-9a-f]{8})\b|\b_?DAT_([0-9a-f]{8})\s*(?:\[|->)|\b_?DAT_([0-9a-f]{8})\s*= \(\w+ \*+\)')
 PTRG = set()
-for _f in glob.glob(R + '/port/fn/*.c'):
-    _t = open(_f).read()
+for _t in FN.values():
     for _m in re.finditer(r'(?<![\w)\]])\*\s*_?DAT_([0-9a-f]{8})\b|\b_?DAT_([0-9a-f]{8})\s*(?:==|!=)\s*\((?:\w+ )*\*+\)|\b_?DAT_([0-9a-f]{8}) = &|\(\w[\w ]*\*+\)\s*\*\s*_DAT_([0-9a-f]{8})\b|\b_DAT_([0-9a-f]{8})\s*(?:\[|->)|\b_DAT_([0-9a-f]{8})\s*= \(\w+ \*+\)', _t):
         PTRG.add(int(next(g for g in _m.groups() if g), 16))
 REGIN = {}
@@ -72,8 +73,8 @@ if os.path.exists(R + '/notes/global_sizes_redo.tsv'):
     for _l in open(R + '/notes/global_sizes_redo.tsv').read().splitlines():
         _p = _l.split('\t')
         if len(_p) >= 3 and _p[1] in ('2', '4', '8') and not (_p[2].endswith('[]') or '[' in _p[2]): TYPES[int(_p[0], 16)] = int(_p[1])
-for _f in glob.glob(R + '/port/fn/*.c'):
-    for _m in re.finditer(r'\bp+uRam(8c[0-9a-f]{6})\b', open(_f).read()): PTRG.add(int(_m.group(1), 16))
+for _t in FN.values():
+    for _m in re.finditer(r'\bp+uRam(8c[0-9a-f]{6})\b', _t): PTRG.add(int(_m.group(1), 16))
 NOPTR = set(open(R + '/notes/noptr.txt').read().split()) if os.path.exists(R + '/notes/noptr.txt') else set()
 CUR_NOPTR = False
 USES_FRAME = False; CUR_K_G = 0; CUR_ANCHOR = None
@@ -194,8 +195,7 @@ for a, fname in rows:
         code = ('#include "../decls.h"\nunsigned long %s(unsigned long, unsigned long, unsigned long, unsigned long);\n'
                 'unsigned long long %s_def(unsigned long ar4, unsigned long ar5, unsigned long ar6, unsigned long ar7)\n{\n  return %s(ar4, ar5, ar6, ar7);\n}\n'
                 '__asm__(".globl _%s\\n.set _%s, _%s_def\\n");\n') % (hf, name, hf, name, name, name)
-        fn = R + '/port/exec/%08x.c' % a
-        if not (os.path.exists(fn) and open(fn).read() == code): open(fn, 'w').write(code)
+        EXEC['%08x' % a] = code
         n += 1
         continue
     if '%08x' % a in NATIVE:
@@ -205,11 +205,10 @@ for a, fname in rows:
         code = ('#include "../decls.h"\nunsigned long long %s_def(unsigned long ar4_, unsigned long ar5_, unsigned long ar6, unsigned long ar7)\n{\n'
                 '  %s ar4 = (%s)ar4_, ar5 = (%s)ar5_;\n  if (ar5 == 0) { *(unsigned *)0x8c2787a8 = 0x44e; return 0; }\n'
                 '  return (unsigned long long)(unsigned)(%s);\n}\n__asm__(".globl _%s\\n.set _%s, _%s_def\\n");\n') % (name, T, T, T, e, name, name, name)
-        fn = R + '/port/exec/%08x.c' % a
-        if not (os.path.exists(fn) and open(fn).read() == code): open(fn, 'w').write(code)
+        EXEC['%08x' % a] = code
         n += 1
         continue
-    src = open(R + '/port/fn/%08x.c' % a).read()
+    src = FN['%08x' % a]
     arrs = set(re.findall(r'\b([A-Za-z_]\w*)\[', src))
     PEV = set()
     for _m in re.finditer(PTR_EV, src): PEV.add(int(next(g for g in _m.groups() if g), 16))
@@ -381,10 +380,10 @@ for a, fname in rows:
     body = body.replace('{', '{' + entry, 1)
     body += tail
     new = '#include "../decls.h"\n#ifndef INFINITY\n#define INFINITY __builtin_inff()\n#endif\n#ifndef NAN\n#define NAN __builtin_nanf("")\n#endif\ntypedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;\nunsigned long xlat(unsigned long);\nextern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;\n' + body
-    fn = R + '/port/exec/%08x.c' % a
     new = re.sub(r'(?<!\*)\(\(\(undefined4 \*\)\(unsigned long\)\*\(unsigned \*\)\(unsigned\)(0x[0-9a-f]+)\)\) = ([^;]+);', r'*(unsigned *)\1 = (unsigned)(unsigned long)(\2);', new)
-    if not (os.path.exists(fn) and open(fn).read() == new): open(fn, 'w').write(new)
+    EXEC['%08x' % a] = new
     n += 1
+units.save(R + '/port/exec', EXEC, 'c')
 rows.sort()
 with open(R + '/port/exec/xlat_tab.c', 'w') as f:
     f.write('#include "../decls.h"\n#include <stdint.h>\n#include <stdio.h>\nextern void abort(void);\nconst char *hostname(void *p);\n')

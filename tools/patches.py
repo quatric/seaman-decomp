@@ -131,10 +131,10 @@ PATCHES = [
 STUBS = {
     # program entry: the host starts the game itself, and the decompile mangles the banner strings
     '8c1ef400': 'crt0 entry',
-    # printf-style debug output: calls vfprintf(1,0,fmt,va_list) where the va_list is the address of the saved argument area, which the decompile turns into a value
-    '8c014334': 'debug printf',
     # ADX error logger: formats through vsprintf with a va_list the decompile cannot supply; only produces text
     '8c25ece6': 'ADX error log',
+    # VMU LCD bitmap (Maple): no LCD here
+    '8c01c8c8': 'VMU LCD write',
     '8c1f9e32': 'cache maintenance (no caches on the host)',
     '8c1f9bde': 'cache maintenance (no caches on the host)',
     '8c1f9980': 'cache maintenance (no caches on the host)',
@@ -155,14 +155,17 @@ NATIVE = {
 
 # guest GD-ROM BIOS wrappers (mov #0,r6; mov func,r7; jmp @vector) -> host functions in port/exec/bios.c taking the guest r4/r5
 HOST = {
-    '8c01b9e4': 'host_vmu_free',
     '8c1f8544': 'host_rtc_read',
-    '8c01b0a8': 'host_ret1', '8c01ae98': 'host_ret1', '8c01b47c': 'host_ret1', '8c01bba0': 'host_vmu_stat', '8c01bc2c': 'host_vmu_stat_vm', '8c01b5f8': 'host_ret1', '8c01b7b0': 'host_ret1',   # VMU file writes report success
-    '8c01a5cc': 'host_ret1', '8c01d0cc': 'host_ret1',
-    '8c01a3b4': 'host_ret1', '8c01cb54': 'host_ret1',
+    # memory card: the game's request queue and wait loops run as written; the card is reported ready in drive A1 and each
+    # queued op is carried out at once on files in sd:/seaman/vmu (host/wii_vmu.cpp). The Shinobi drive-present check answers yes.
+    '8c01a3b4': 'host_vmu_ready', '8c01a760': 'host_memcard_run', '8c1fbfcc': 'host_ret1',
+    '8c1fc258': 'host_vmu_game_name', '8c1fc16a': 'host_vmu_free_blocks', '8c1fc682': 'host_ret0', '8c1fc5c4': 'host_ret0', '8c1fc5de': 'host_ret0',   # make room / busy / drive status: done
+    '8c01d0cc': 'host_ret1', '8c01cb54': 'host_ret1',
     '8c010794': 'host_movstr', '8c0107a0': 'host_movstr',
     '8c013ff8': 'host_memset',
     '8c0109e8': 'host_strcmp',
+    # sprintf(r4 = buffer; format and arguments on the stack): calls the formatter in string mode (1), with the va_list at sp+4
+    '8c014334': 'host_sprintf',
     '8c26a14e': 'mw_debug_printf',
     '8c1f10d8': 'gd_req_cmd', '8c1f10ec': 'gd_check_cmd', '8c1f1100': 'gd_exec_server', '8c1f1114': 'gd_init',
     '8c1f1128': 'gd_drive_status', '8c1f1150': 'gd_dma_req', '8c1f1164': 'gd_dma_check',

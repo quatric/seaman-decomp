@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Wii (big-endian PowerPC) source transform for port/exec/*.c.
+"""Wii (big-endian PowerPC) source transform for the units in port/exec (region files, tools/units.py).
 Guest memory stays little-endian; every pointer to a multi-byte scalar becomes a pointer to the le<T> proxy
 (port/wii/lep.h), so loads/stores byte-swap. Pointer cells (T**) become le<T*>* (guest addresses are 32-bit LE words).
 usage: wii_xform.py <port dir> <out dir> [glob-prefix]"""
@@ -78,12 +78,38 @@ def xform(src):
     if 's_SPEECH_0fae26_def' in src:
         # speech vocabulary load at request start: log the real loader result
         src = re.sub(r'(\(vsp = \(\(unsigned long\)\(fr0_ - 80\)\), FUN_8c02126c\(([^;]*)\)\));', lambda m: '({ extern void host_log(const char*,...); int r_ = (int)(%s); static int n_; if (n_++ < 30) host_log("02126c-b %%s r=%%d\\n", (const char*)(unsigned long)(%s), r_); r_; });' % (m.group(1), m.group(2).split(',')[1]), src)
-    if 'FUN_8c0fb20c_def' in src:
-        # narration step: a record without a target file re-selects itself forever (the voice sample is what would end it); there is no speech audio here, so count it as played and report done (0xe)
+    if 'FUN_8c013bdc_def' in src:
+        # atoi is `mov #10,r6; jmp strtol; mov #0,r5` with the string still in r4; the decompile shifted the arguments and lost it,
+        # so every atoi returned 0 (script variables: the narration's closing `V=14` never reported "done" and INTRO_FIRST replayed)
+        src = src.replace('FUN_8c0143f0(0,10,vr6,vr7)', 'FUN_8c0143f0(ar4,0,10,vr7)', 1)
+    # disc request 8c02126c takes three stack words (first sector, sector count, flag) that every caller pushes and the decompile drops,
+    # so the callee read stale stack: speech_update's section load (SCL sector index/count at +0x7c/+0x80) always got sector 0 of the
+    # SDP, and the INTRO_FIRST jump re-loaded the section it came from forever
+    REQ10 = {'FUN_8c01da90_def': [('0', '0', '0xa')], 's_SPEECH_0faa98_def': [('0', '0', '1'), ('(unsigned)ar4[0x1f]', '(unsigned)ar4[0x20]', '1')],
+             's_SPEECH_0fae26_def': [('0', '0', '1')], 's_SPEECH_0fbf2e_def': [('0', '0', '1')]}
+    for d, sites in REQ10.items():
+        if d not in src:
+            continue
+        parts = re.split(r'(vsp = \(\(unsigned long\)\(fr0_ - \d+\)\)), FUN_8c02126c\(', src)
+        assert len(parts) == 2 * len(sites) + 1, (d, len(parts))
+        out = [parts[0]]
+        for i, w in enumerate(sites):
+            sp = parts[1 + 2 * i][len('vsp = '):]
+            out.append('*(unsigned *)(%s - 12) = %s, *(unsigned *)(%s - 8) = %s, *(unsigned *)(%s - 4) = %s, vsp = %s - 12, FUN_8c02126c(' % (sp, w[0], sp, w[1], sp, w[2], sp))
+            out.append(parts[2 + 2 * i])
+        src = ''.join(out)
+    if 'FUN_8c0fb20c_def' in src and os.environ.get('NARRATION_STANDIN'):
+        # narration step: a record without a target file re-selects itself forever (the voice sample is what would end it); before ADX audio worked it was counted as played (0xe). Opt-in now (NARRATION_STANDIN=1)
         src = src.replace('    iVar2 = ar4[0x22];', '    iVar2 = ar4[0x22];\n    if (*(char *)(unsigned)(iVar2 + 0x48) == 0) { *(int *)(unsigned)(*(int *)(unsigned)(ar4[4] + 0x40) + 0x70) = 0xe; *ar4 = 2; return 2; }', 1)
     if 'FUN_8c02077c_def' in src:
         # every call to the name search 8c02051c pushes this function's first stack argument (r11) as its fifth argument; the decompile drops it
         src = src.replace('vsp = ((unsigned long)(fr0_ - 0)), FUN_8c02051c(', '*(unsigned *)((((unsigned long)(fr0_ - 0)) - 8) + 0) = (unsigned)s0, vsp = (((unsigned long)(fr0_ - 0)) - 8), FUN_8c02051c(')
+    if 'FUN_8c2122ea_def' in src:
+        # user tile clip line: x/y max are the fifth and sixth (stack) arguments, which the decompile never reads, so the clip came out
+        # as (xmin, ymin, 0, 0) and the title plate's "Welcome"/clock slid past the plate unclipped
+        src = src.replace('(*(unsigned *)(fr0_ - 0x2c) = (unsigned)(unsigned long)(ar7));',
+                          '(*(unsigned *)(fr0_ - 0x2c) = (unsigned)(unsigned long)(ar7));\n  (*(unsigned *)(fr0_ - 0x28)) = *(unsigned *)(fr0_ + 0);\n  (*(unsigned *)(fr0_ - 0x24)) = *(unsigned *)(fr0_ + 4);', 1)
+        assert 'fr0_ - 0x24' in src
     if 'FUN_8c0208ec_def' in src:
         # same dropped fifth (stack) argument for the name searches it calls
         for f in ('FUN_8c02051c', 'FUN_8c020600'):
@@ -114,6 +140,7 @@ def xform(src):
 # arguments, results and FPU state across calls. notes/fpu_funcs.txt comes from tools/fpu_funcs.py.
 sys.path.insert(0, _HERE)
 from patches import NATIVE, HOST, STUBS
+import units
 def _fpu_set(port):
     p = os.path.join(port, '..', 'notes', 'fpu_funcs.txt')
     if not os.path.exists(p): return set()
@@ -124,9 +151,16 @@ def _fpu_set(port):
 # which the decompile drops (the list cursor became 0xac000000 and the translucent list was thrown away as an overflow).
 # 8c239212 (texture-set loader) passed a misaligned surface descriptor (0x8c43b7da) to 8c25a838, so the surface it created overwrote
 # the descriptor of the next texture-list entry (the tank's hamon0010r ended up with TCW 0x000c0000)
-INTERP_UNITS = ('8c25754c', '8c239212')
+# sprintf callers: the SH-4 code pushes the format and every variadic word; the decompile keeps only the format, so they run interpreted
+SPRINTF_CALLERS = ('8c0fc94c', '8c0fb494', '8c08bd20', '8c06d618', '8c029400', '8c015250', '8c0fd764', '8c0fcd2c', '8c0fc7c4', '8c0fc4fc', '8c0fa624', '8c0fa5f0',
+                   '8c0fa5bc', '8c0fa204', '8c0f9774', '8c0f4f0c', '8c0f4e34', '8c0d99e8', '8c0bf7d0', '8c0a4590', '8c09d9c0', '8c0851f4', '8c0314fc', '8c015cdc', '8c015310')
+# rtc_seconds_to_date: the decompile loses the divisor of days % 365 and the remainder it reuses (extraout_r2), so the date came out as e.g. Dec 160
+# save layer: save_write_step 8c0b6c3c, save_check_files 8c0b6e6c and memcard_process_save_file_name 8c0b726c pass the VMS descriptions
+# ("Seaman User Data" / "SEAMAN") to the memory-card manager as stack words, which the decompile drops, so the USR header was blank
+SAVE_LAYER = ('8c0b6c3c', '8c0b6e6c', '8c0b726c')
+INTERP_UNITS = ('8c25754c', '8c239212', '8c1f8300') + SPRINTF_CALLERS + SAVE_LAYER
 #   ADX core, ADXF, ADXSTM, ADXT | mwRna | SJ (stream joint)
-INTERP_RANGES = (('8c25eca0', '8c26a246'), ('8c26b1ca', '8c26c000'))   # CRI ADX/SJ/mwRna and the Manatee sd library (its SR-dependent callbacks need the interpreter)
+INTERP_RANGES = (('8c25eca0', '8c26a246'), ('8c26b1ca', '8c26c000'), ('8c01a308', '8c01c9e0'))   # + the game's memory-card manager (its queue and wait loops; host/wii_vmu.cpp does the ops)   # CRI ADX/SJ/mwRna and the Manatee sd library (its SR-dependent callbacks need the interpreter)
 INTERP_EXTRA = ('8c0101bc', '8c010468', '8c01051c', '8c010614', '8c0106dc', '8c010794', '8c0107a0') + INTERP_UNITS
 STUB_DEF = re.compile(r'^([A-Za-z_][A-Za-z_0-9 \*]*?)\s*([A-Za-z_0-9]+)_def\(', re.M)
 def interp_stub(src, addr):
@@ -157,8 +191,9 @@ if __name__ == '__main__':
     # Ghidra's `((undefined1 *)(unsigned)K)[ADDR]` reads one byte where the code loads a word or long at ADDR+K (e.g. the TA list base
     # in 8c23666c, which set QACR to 0 and dropped every vertex line): those units keep their SH-4 code too
     BYTEIDX = re.compile(r'\(\((?:undefined1|char|byte|undefined) \*\)\(unsigned\)(?:0x)?[0-9a-f]+\)\[')
-    for f in glob.glob(os.path.join(port, 'exec', pre + '*.c')):
-        if BYTEIDX.search(open(f).read()): FPU.add(os.path.basename(f)[:-2])
+    EXEC = units.load(os.path.join(port, 'exec'), 'c')
+    for a, t in EXEC.items():
+        if a.startswith(pre) and BYTEIDX.search(t): FPU.add(a)
     FPU.update(INTERP_UNITS)
     # units where g++ proved a null dereference (a register the decompile lost); listed by tools/wii_traps.py after a compile
     tp = os.path.join(port, 'wii', 'trap_units.txt')
@@ -166,27 +201,27 @@ if __name__ == '__main__':
     # CRI audio middleware: its decompile keeps losing registers (stack arguments past the fifth, results kept in r2/r3 across
     # libgcc helpers, function fragments); the whole library runs in the interpreter. The sd library and mwSnd stay native:
     # their AICA command paths are stubbed (patches.STUBS) and the mwSnd port slots are replaced by host/wii_audio.cpp.
-    for f in glob.glob(os.path.join(port, 'exec', '8c*.c')):
-        a = os.path.basename(f)[:-2]
+    for a in EXEC:
         if any(lo <= a < hi for lo, hi in INTERP_RANGES) and a not in NATIVE and a not in HOST and a not in STUBS: FPU.add(a)
     tab = sorted(set(int(a, 16) for a in FPU) | set(int(a, 16) for a in INTERP_EXTRA))
     open(os.path.join(port, 'wii', 'host', 'interp_tab.inc'), 'w').write(''.join('0x%08xu,\n' % a for a in tab))
     nstub = 0
     pre = sys.argv[3] if len(sys.argv) > 3 else '8c'
     os.makedirs(out, exist_ok=True)
-    for f in sorted(glob.glob(os.path.join(port, 'exec', pre + '*.c'))):
-        s = open(f).read()
+    WII = {}
+    for addr in sorted(a for a in EXEC if a.startswith(pre)):
+        s = EXEC[addr]
         s = re.sub(r'__asm__\("\.globl _(\w+)\\n\.set _\1, _(\w+)\\n"\);', r'__asm__(".globl \1\\n.set \1, \2\\n");', s)
         s = re.sub(r'\.globl (%s)\\n\.set \1,' % '|'.join(CLASH), lambda m: '.globl guest_%s\\n.set guest_%s,' % (m.group(1), m.group(1)), s)
         s = s.replace('.globl main\\n.set main,','.globl guest_main\\n.set guest_main,')
         s = re.sub(r'((?:case [^:\n]+|default):)([ \t]*\n[ \t]*\})', r'\1 ;\2', s)
         i = s.index('\n', s.index('#include "../decls.h"')) + 1
         s = re.sub(r'ring\[rp\+\+ & 255\] = ("[^"]*");', r'TRACE_ENTER(\1);', s)
-        addr = os.path.basename(f)[:-2]
         if addr in FPU:
             st = interp_stub(s, addr)
             if st:
-                open(os.path.join(out, addr + '.cpp'), 'w').write(st); nstub += 1; continue
+                WII[addr] = st; nstub += 1; continue
         s = s[:i] + 'extern "C" {\n#include "../trace.h"\n' + s[i:] + '\n}\n'
-        open(os.path.join(out, os.path.basename(f)[:-2] + '.cpp'), 'w').write(xform(s))
+        WII[addr] = xform(s)
+    units.save(out, WII, 'cpp')
     print(nstub, 'units run in the SH-4 interpreter')

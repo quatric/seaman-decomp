@@ -59,7 +59,7 @@ DSI_RESTORE
 /* ---- sparse page store ---- */
 struct Page { unsigned key; unsigned char *mem; };
 static Page tab[8192];
-static unsigned char *pool = (unsigned char *)0x90100000, *poolend = (unsigned char *)0x92000000;
+static unsigned char *pool = (unsigned char *)0x91000000, *poolend = (unsigned char *)0x92000000;   /* above the heap (main caps MEM2 at 0x91000000) */
 static unsigned npages;
 static unsigned char *page(unsigned ea)
 {
@@ -67,7 +67,7 @@ static unsigned char *page(unsigned ea)
   for (;;) {
     if (tab[h].key == key) return tab[h].mem;
     if (!tab[h].key) {
-      if (pool + 4096 > poolend || npages >= 8000) return 0;
+      if (pool + 4096 > poolend || npages >= 4096) return 0;
       tab[h].key = key; tab[h].mem = pool; memset(pool, 0, 4096); pool += 4096; npages++;
       return tab[h].mem;
     }
@@ -203,18 +203,33 @@ static void sq_flush(void)
   }
 }
 extern "C" void sq_end_frame(void) { sq_flush(); }
-/* store-queue writes from the SH-4 interpreter: buffered as on the hardware and sent by pref, never by the fill heuristic above */
+/* store-queue writes from the SH-4 interpreter: buffered as on the hardware and sent by pref. An interpreted function can fill a line
+   for a compiled caller whose pref the decompiler dropped (the 32-byte copy 8c207300 writing Kamui's padding lines), so a line whose
+   32 bytes have all been written is sent at once, and the pref that follows for that same line is then skipped. */
+static unsigned sqd_mask[2], sqd_line[2], sqd_sent[2] = { ~0u, ~0u };
 extern "C" void sq_direct(unsigned ea, unsigned v, int size)
 {
   if (sq_dirty && ((ea ^ sq_line) & 0x20) == 0 && (ea & ~31u) != sq_line) sq_flush();
   for (int i = 0; i < size; i++) sq_put(ea + i, (unsigned char)(v >> (8 * i)));
   sq_stores++;
+  unsigned q = (ea >> 5) & 1, line = ea & ~31u;
+  if (line != sqd_line[q]) { sqd_line[q] = line; sqd_mask[q] = 0; }
+  sqd_mask[q] |= ((1u << size) - 1) << (ea & 31);
+  sqd_sent[q] = ~0u;
+  if (sqd_mask[q] == ~0u) {
+    if (sq_dirty) sq_flush();
+    sq_line = line; sq_dirty = 1; sq_flush();
+    sqd_mask[q] = 0; sqd_sent[q] = line;
+  }
 }
 extern "C" void sq_pref(unsigned ea)
 {
   if ((ea >> 26) != 0x38) return;
+  unsigned q = (ea >> 5) & 1, line = ea & ~31u;
+  if (sqd_sent[q] == line) { sqd_sent[q] = ~0u; return; }
+  sqd_mask[q] = 0; sqd_sent[q] = ~0u;
   if (sq_dirty) sq_flush();
-  sq_line = ea & ~31u; sq_dirty = 1; sq_flush();
+  sq_line = line; sq_dirty = 1; sq_flush();
 }
 static void sq_store(unsigned ea, int size)
 {

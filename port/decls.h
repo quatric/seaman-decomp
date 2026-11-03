@@ -1,3 +1,4 @@
+#pragma once
 #include "prelude.h"
 ulonglong CAnimBody_AdvanceFrame_wrapper();
 ulonglong CAnimBody_AdvanceFrame_wrapper_wrap_026834();

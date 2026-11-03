@@ -1,5 +1,6 @@
 import re, glob, os, sys, collections
 R = sys.argv[1]
+sys.path.insert(0, R + '/tools'); import units
 hdr = re.compile(r'^/\* (\S+) @ ([0-9a-f]{8}) callers=(\d+) callees=(\d+) \*/$', re.M)
 KW = set('if while for switch return sizeof else do case default goto'.split())
 MAC = set('CONCAT44 CONCAT12 CONCAT22 CONCAT13 CONCAT31 CONCAT11 CONCAT14 CONCAT24 CONCAT16 CONCAT17 ABS SUB84 SUB44 SUB41 SUB42 SUB81 SUB82 ZEXT48 ZEXT44 SEXT48 POPCOUNT'.split())
@@ -60,6 +61,7 @@ def fix(b):
     b = re.sub(r'\b_(\w+)\b(?!\()', lambda m: '0' if m.group(1) in FUNC_NAMES else m.group(0), b)
     return b
 sigs = {}; decl_extra = set(); varnames = set(); called = set()
+FN = {}
 for name, (addr, b) in funcs.items():
     b = fix(b); funcs[name] = (addr, b)
     k = b.find('{')
@@ -68,12 +70,14 @@ for name, (addr, b) in funcs.items():
     if mm:
         rt = sig[:mm.start()].strip() or 'int'
         sigs[name] = rt
+FN = {}
 for name, (addr, b) in funcs.items():
     for m in re.finditer(r'\b([A-Za-z_]\w*)\s*\(', b):
         n = m.group(1)
         if n not in KW and n not in MAC and n not in funcs and n not in ('code', 'char', 'int', 'short', 'uint', 'ulonglong', 'undefined4', 'undefined8', 'undefined2', 'undefined1', 'float', 'double', 'longlong', 'bool', 'ushort', 'byte', 'undefined', 'uchar', 'float10'):
             called.add(n)
 ids = set(); arrs = set()
+FN = {}
 for name, (addr, b) in funcs.items():
     ids.update(re.findall(r'\b(_?[A-Za-z][A-Za-z0-9_]*_[0-9a-f]{8})\b', b))
     ids.update(re.findall(r'\b([a-z]Ram[0-9a-f]{8})\b', b))
@@ -94,9 +98,11 @@ for n in sorted(called):
 for n in sorted(ids):
     if n in funcs or n in called or re.match(r'^(uVar|iVar|pcVar|puVar|lVar|dVar|fVar|bVar|cVar|sVar|uStack|auStack|in_|unaff_|extraout_|param_)', n): continue
     decls.append('extern undefined1 %s%s;' % (n, '[]' if n in arrs else ''))
-open(R + '/port/decls.h', 'w').write('\n'.join(decls) + '\n')
+open(R + '/port/decls.h', 'w').write('#pragma once\n' + '\n'.join(decls) + '\n')
+FN = {}
 for name, (addr, b) in funcs.items():
     b2 = re.sub(r'\b' + re.escape(name) + r'(\s*\()', name + r'_def\1', b, count=1)
     alias = '\n__asm__(".globl _%s\\n.set _%s, _%s_def\\n");\n' % (name, name, name)
-    open(R + '/port/fn/%s.c' % addr, 'w').write('#include "../decls.h"\n' + b2 + '\n' + alias)
+    FN[addr] = '#include "../decls.h"\n' + b2 + '\n' + alias
+units.save(R + '/port/fn', FN, 'c')
 print(len(funcs), 'functions;', len(sigs), 'signatures;', len(called), 'external calls;', len(ids), 'idents')
