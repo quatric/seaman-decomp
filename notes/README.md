@@ -638,7 +638,11 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
   RAM (as nullDC4Wii keeps it) was considered and dropped: in the hottest kernel (8c223b34, 6,271 PPC instructions) byte swaps are
   134 instructions and float loads/stores about 190; most of the code is stack spills (587 lwz), the inline store checks and
   address constants. The native code also has about 7,700 raw byte-pointer casts plus strcpy/memset on guest memory that a
-  swizzled layout would all have to change. Register pressure and the store path are the better targets.
+  swizzled layout would all have to change.
+- Tried and reverted: sending the store-queue slow paths (`sq_direct`, `sq_pref`; 108 + 17 call sites in that kernel) through an
+  assembly stub that saves the volatile registers, so the call sites clobber less. Saving r0, r3-r12, f0-f13, CR, CTR and XER
+  made the tank slower (74-81 fps); saving only r0 and r6-r12 gave 79-86 fps, no better than without. Stack accesses in the kernel
+  only fell from 509 to 460: the spills come from keeping up to 48 guest registers in locals, not from the calls.
 - GX lists about 1.1 s (state 0.22, vertices 0.24, sort 0.06; the rest parsing and colour conversion).
 - Late Metal frames that differ from the reference show the End/Continue menu ("Do you wish to end the session?"): the scripted
   pad in wii_main.cpp presses Start every 400 frames until a real controller is used, and builds from earlier the same day open it
