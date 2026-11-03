@@ -16320,7 +16320,7 @@ u32 gfxlib_uses_gfx_lights_reset_defaults_li_247df4(u32 a0, u32 a1, u32 a2, u32 
     u32 uVar1;
 
     uVar1 = a0;
-    gfxlib_calls_fill_loop_23c70c();
+    gfxlib_draw_23c70c();
     gfx_lights_reset_defaults_like();
     gfxlib_uses_memcpy_words_n_2376c4();
     ninja_uses_ta_fifo_254026(a0, a1, a2, a3);

@@ -143,7 +143,7 @@ u32 ta_fifo_1ef558(void) {
         *(u32 *)(*(int *)(iVar2 + *piVar1) + 4) = uVar3;
         *(u32 *)(*(int *)(iVar2 + *piVar1) + 0x18) = 1;
         auStack_10[0] = 1;
-        in_r0 = shinobi_uses_addr_to_physical_1f4cb8(iVar4 * 6, 9, auStack_10, 1, 0, 0);
+        in_r0 = maple_queue_command(iVar4 * 6, 9, auStack_10, 1, 0, 0);
         g_8c470e78 = g_8c470e70;
     }
     return in_r0;
@@ -324,7 +324,7 @@ u32 shinobi_input_1ef7e6(u32 a0, u32 a1, u32 a2, u32 a3) {
     a4 = (&DATA_8c1f5a28);
     *(u32 *)(&DATA_8c1f5a28) = *(u32 *)(&DATA_8c1f5a28) | 0xa0000000;
     shinobi_register_pvr_irqs_entry();
-    uVar1 = shinobi_input_1f3ef4(a0, a1, a2, a3);
+    uVar1 = maple_init_buffers(a0, a1, a2, a3);
     maple_port_info_refresh();
     g_8c470e60 = 1;
     return uVar1;
@@ -557,11 +557,11 @@ int pvr_1efaf4(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * pvr_uses_maple_reset_dma_1efcae  0x8c1efcae
+ * pvr_uses_irq_remove_handler_like_1efcae  0x8c1efcae
  * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is
- * maple_reset_dma called by: device_info_table_reset, device_info_table_reset_alt
+ * irq_remove_handler_like called by: device_info_table_reset, device_info_table_reset_alt
  */
-u32 pvr_uses_maple_reset_dma_1efcae(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 pvr_uses_irq_remove_handler_like_1efcae(u32 a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
     int iVar2;
     u32 ar4_00;
@@ -593,8 +593,8 @@ u32 pvr_uses_maple_reset_dma_1efcae(u32 a0, u32 a1, u32 a2, u32 a3) {
     bVar3 = ((bVar3 | (u8)(((u32)in_MD << 0x1e) >> 0x18)) & 0x40) >> 6;
     *0xa05f6920 = *0xa05f6920 & (int)(int)0xffffcfff;
     iVar2 = 0x8c470910;
-    puVar1 = (&shinobi_draw_1fa54c);
-    shinobi_draw_1fa54c(*(u32 *)(0x8c470910 + 0xc));
+    puVar1 = (&irq_remove_handler_like);
+    irq_remove_handler_like(*(u32 *)(0x8c470910 + 0xc));
     (*(code *)puVar1)(*(u32 *)(iVar2 + 0x10), a1, a2, a3);
     (*(code *)puVar1)(*(u32 *)(iVar2 + 8), a1, a2, a3);
     ar4_00 = *(u32 *)(iVar2 + 4);
@@ -644,7 +644,8 @@ u32 shinobi_calls_calc_1efd34(u32 a0) {
 
 /*
  * thunk_FUN_8c1f461c  0x8c1efd42
- * called by: pvr_1efaf4, shinobi_calls_one_201f8a, shinobi_input_1fd008, vmu_block_read_phases, vmu_block_write_phases
+ * called by: pvr_1efaf4, shinobi_calls_one_201f8a, vmu_block_read_phases, vmu_block_write_phases,
+ * vmu_get_media_info_like
  */
 u32 thunk_FUN_8c1f461c(void) {
     u32 uVar1;
@@ -728,7 +729,7 @@ u32 maple_get_condition_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * maple_get_mem_info_hooked  0x8c1efe3a
  * maple_get_mem_info_locked, then the PVR hook when +0x10e8 is set
- * called by: shinobi_input_1fd008
+ * called by: vmu_get_media_info_like
  */
 u32 maple_get_mem_info_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -860,7 +861,7 @@ u32 shinobi_draw_1effc2(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * thunk_FUN_8c1f4636  0x8c1effee
- * called by: maple_device_ready_idle, shinobi_input_1fd008, vmu_block_read_phases, vmu_block_write_phases
+ * called by: maple_device_ready_idle, vmu_block_read_phases, vmu_block_write_phases, vmu_get_media_info_like
  */
 u32 thunk_FUN_8c1f4636(void) {
     u32 uVar1;
@@ -871,7 +872,7 @@ u32 thunk_FUN_8c1f4636(void) {
 
 /*
  * thunk_FUN_8c1f4646  0x8c1efff4
- * called by: shinobi_input_1fd008
+ * called by: vmu_get_media_info_like
  */
 u32 thunk_FUN_8c1f4646(void) {
     u32 uVar1;

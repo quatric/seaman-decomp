@@ -2361,3 +2361,81 @@
 8c0f72ec	game_any_neighbor_within_range	returns 1 when another of the eight 0x68-byte objects is within 1.5 times its radius of a0
 8c0fc69c	script_cmd_if_compare	evaluates the command's comparisons (==, !=, <, <=, >, >=) and jumps to its then or else label
 8c0fc7c4	script_cmd_set_vars	evaluates each assignment of the command (plain, or divided or modulo) into its variable and jumps on
+8c013060	double_to_decimal_like	splits double a0 into sign a3, exponent a2 and decimal mantissa bytes a1 (zero, infinity and NaN handled)
+8c01fab4	CDCGD_read_file_tick	steps an ADXF file read: header sector, then the rest in one read, closing the file on error or completion
+8c01fd08	CDCGD_queue_requests_from_list	walks the 4-character tag list of file a1 and queues each entry under the type of its tag
+8c023484	Vec3_rotate_euler_deg	rotates vector a0 by the angles (degrees) in a1 and returns the result
+8c023570	Vec3_rotate_euler_deg_b	rotates vector a0 by the angles (degrees) passed in fr4..fr6
+8c023668	Vec3_rotate_euler_deg_c	rotates vector a0 by the angles (degrees) in fr4..fr6 without a temporary
+8c02452c	game_struct_02452c_ctor	constructs the object's member arrays and vectors and clears its fields, setting both scales to 1
+8c02702c	CAnimal_apply_stage_row	looks up the creature's current row in its stage table and applies its model, motion, texture and scale settings
+8c02911c	CAnimal_init_fields_like	clears the creature's model, motion and timer fields and sets its default scales
+8c029510	CAnimal_draw_model_a	pushes a matrix, places the creature's model for its stage row and draws it
+8c0297b8	CAnimal_draw_model_b	like CAnimal_draw_model_a, also setting the texture list and handling the model's flag 0x80
+8c02ae38	CAnimal_scale_toward_stage	eases the creature's scale (+0x5c..+0x64) toward the target at +0x170 for its stage row
+8c02f474	game_find_nearest_object	returns the nearest object of list a1 to a2, starting from the current target (+0x6c)
+8c02f694	game_find_nearest_object_of_kind	returns the nearest object of the given kind in list a1, starting from the current target
+8c02f880	game_find_nearest_ready_object_of_kind	returns the nearest object of the given kind whose +0xb4 virtual reports ready
+8c0310c0	Class_129cbc_init_motion_params	sets the object's position from a1 and its default speed, range and timing parameters
+8c032af8	rand_range_triangular_biased	averages two rand_range(a1, a2) draws and shifts the result by (a3-50)% of the range
+8c033530	se_random_direction_like	builds a random normalised direction from three rand()%100 components and scales it
+8c03c100	Class_12a03c_reset_state	resets the object's timers, counters and default ranges and sets its position from a1
+8c1f12de	gd_check_cmd_status_like	checks GD-ROM command a0 through the BIOS and maps the result to a status, filling the error info a1
+8c1f2e3e	gdfs_dir_records_find_name	walks the ISO 9660 directory or path records from sector a1 for the name s0 (case-insensitive) and returns its extent
+8c1f3d9c	vmu_lcd_pack_bitmap	packs a 48x32 one-byte-per-pixel image a1 into VMU LCD bytes at a0, upright or flipped by mode a2
+8c1f3ef4	maple_init_buffers	aligns the maple send and receive buffers to 32 bytes, sets the per-port receive areas and resets the frame queue
+8c1f4cb8	maple_queue_command	appends a maple frame (header, receive address, command word, a3 data words, byte-swapped by mode) to the send queue
+8c1f5290	maple_port_state_update	updates port a0's connect, disconnect and error state from the status bits a1
+8c1f5f8c	maple_pad_triggers_to_buttons	turns the analogue L and R triggers into digital button bits with on/off thresholds and copies the pad state
+8c1f6b14	flashrom_read_repair_partitions_like	reads flash partitions 4 and 3 block by block, reformats partition 4 when too many blocks differ and writes back changed blocks
+8c1f92c0	g2_bus_copy_strided	waits for the G2 FIFO and copies a3 bytes, words or longs (a2 = 1, 2, 4) with source and destination steps of +1, 0 or -1
+8c1fa54c	irq_remove_handler_like	unlinks the handler for interrupt a0 from the handler table and masks the source when its chain becomes empty
+8c1fae2c	exception_vectors_install	copies the exception, TLB-miss and interrupt handler stubs to VBR and purges the cache lines
+8c1fbe84	maple_poll_port_changes	compares the ready-port mask with the last one and runs the attach handler for newly connected or recovered ports
+8c1fd008	vmu_get_media_info_like	asks the memory card on port a0 for its media info and unpacks the six 16-bit fields into a1
+8c1fd75c	vmu_drives_init_by_type	sets up the drive records of each port in mask a1 for card type a0 (0x0f, 0x21, 0x41 or 0x7a) using buffer a2
+8c1fe646	vmu_file_create_handle	checks that file a1 and no game file exist on drive a0, takes an empty directory entry and allocates a file handle for it
+8c1ff1f8	vmu_dir_file_info_at	finds the next used directory entry of drive a0, copies its name to a1 and unpacks its size and date into a2
+8c200038	vmu_defragment_like	moves used blocks into free blocks from the end of drive a0 until none remain, then flushes the directory and FAT
+8c2015b0	vmu_build_vms_header	checks the VMS description a1 and builds the 0x60-byte file header at a0 (titles, icon count, eyecatch type, CRC)
+8c203de0	vram_get_usage_stats	walks the free and used block lists of both VRAM pools and reports totals and largest blocks
+8c2046d2	vram_alloc_best_fit	takes the first free block of pool a0 large enough for a1 (rounded to 32), splitting it, and links it to owner a2
+8c2048aa	vram_alloc_best_fit_b	variant of vram_alloc_best_fit that also tags the block by pool
+8c2049ec	vram_alloc_best_fit_2k	like vram_alloc_best_fit but places the block on a 2 KB boundary inside a free block when it can
+8c21849c	gfx_vertex_chunks_transform	walks vertex chunks a0 (ending at 0xff) and runs the projection kernel for each chunk type into buffer a1 (16-byte slots)
+8c218c82	gfx_vertex_chunks_process_s32	walks vertex chunks of types 0x29, 0x2a and 0x2c into 32-byte slots of a1, with one kernel set for each lighting mode
+8c21a4f6	gfx_vertex_chunks_process_s64	walks vertex chunks of types 0x29, 0x2a and 0x2c into 64-byte slots of a1, with one kernel set for each lighting mode
+8c21aa1e	gfx_draw_motion_frame_a	like njDrawMotion: sets the per-node position, rotation and scale appliers from motion a1 at frame fr4 and draws the object tree
+8c21ab7a	gfx_draw_motion_link_a	like gfx_draw_motion_frame_a with a second motion a2 blended in, through the hooked tree walker
+8c21adb4	gfx_draw_motion_frame_b	variant of gfx_draw_motion_frame_a with another node callback
+8c21af26	gfx_draw_motion_link_b	variant of gfx_draw_motion_link_a with another node callback
+8c21b170	gfx_draw_motion_frame_c	variant of gfx_draw_motion_frame_a with another node callback
+8c21b2f2	gfx_draw_motion_link_c	variant of gfx_draw_motion_link_a with another node callback
+8c21b52c	gfx_draw_motion_frame_d	variant of gfx_draw_motion_frame_a with another node callback
+8c21b6ae	gfx_draw_motion_link_d	variant of gfx_draw_motion_link_a with another node callback
+8c21bbb0	gfx_draw_motion_link_alt_a	two-motion draw through the alternate hooked tree walker
+8c21bf44	gfx_draw_motion_link_alt_b	variant of gfx_draw_motion_link_alt_a with another node callback
+8c2124d0	nj_file_next_chunk	reads the chunk header at offset *a1 of Ninja file a0, stores its tag (NJIN, NJCM, NJBM, NJTL, NJLI, NJCA, NMDM, ...) in *a2 and advances past it
+8c21092e	kmCreateVertexBuffer_like	records the vertex buffer and its per-list sizes (opaque, modifier, translucent, punch-through) and sets up the list buffers
+8c21496c	gfx_strips_emit_s32_uv_like	emits the index strips a0 over 32-byte projected vertices a1 as TA vertices with scaled UVs
+8c215374	gfx_verts_light_accumulate_like	transforms vertices and adds the contribution of each light enabled in the light mask
+8c21da20	gfx_strip_format_select	selects the strip vertex format and flags for chunk type a0 (0x22..0x2f)
+8c221a8c	gfx_strips_emit_s64_cull	emits the index strips a0 over 64-byte vertices a1, dropping back-facing triangles by the cross product sign
+8c222ab4	gfx_strips_emit_s64_cull_b	second variant of gfx_strips_emit_s64_cull with another vertex layout
+8c2234a4	gfx_strips_emit_s64_cull_c	third variant of gfx_strips_emit_s64_cull with another vertex layout
+8c225918	gfx_strips_emit_s64_cull_d	fourth variant of gfx_strips_emit_s64_cull with another vertex layout
+8c226980	gfx_verts_light_s64_like	transforms vertices into 64-byte slots and accumulates lighting (chunk type 0x29 kernel of gfx_vertex_chunks_process_s64)
+8c227348	gfx_strips_emit_s32_cull_a	emits index strips over 32-byte vertices, dropping back-facing triangles
+8c22770c	gfx_strips_emit_cull_like	emits index strips with a fixed winding sign, dropping back-facing triangles
+8c229a7c	gfx_strips_emit_s32_cull_b	second variant of gfx_strips_emit_s32_cull_a with another vertex layout
+8c23018c	gfx_strips_emit_s32_cull_c	third variant of gfx_strips_emit_s32_cull_a with another vertex layout
+8c232cd0	gfx_project_verts_weighted_b	second weighted-vertex kernel (set, add, or add-and-project by mode a1>>8)
+8c23bfee	gfx_lights_select_handlers	picks the lighting routine for each active light by its type (+0x124)
+8c23c824	gfx_project_verts_sq_normal_offset_b	variant of gfx_project_verts_sq_normal_offset
+8c23cd0c	gfx_project_verts_sq_clipcodes_b	variant of gfx_project_verts_sq_clipcodes with normals offset by a global scale
+8c23ce74	gfx_project_verts_sq_clipcodes_c	variant of gfx_project_verts_sq_clipcodes with normals
+8c23cfd0	gfx_project_verts_sq_clipcodes_d	variant of gfx_project_verts_sq_clipcodes with normalised normals
+8c23d118	gfx_project_verts_sq_clipcodes_e	variant of gfx_project_verts_sq_clipcodes
+8c22b5b0	gfx_strips_emit_s32_cull_d	fourth variant of gfx_strips_emit_s32_cull_a with another vertex layout
+8c22c678	gfx_strips_emit_s32_cull_e	fifth variant of gfx_strips_emit_s32_cull_a with another vertex layout
+8c22d770	gfx_strips_emit_s32_cull_f	sixth variant of gfx_strips_emit_s32_cull_a with another vertex layout

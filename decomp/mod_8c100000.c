@@ -2240,11 +2240,11 @@ u32 startup_init_hardware(u32 a0, u32 a1, u32 a2, u32 a3) {
     uVar3 = a1;
     uVar4 = a2;
     imask_to_sr_bits(0xf);
-    shinobi_uses_intc_reset_and_init_regs_1fa6b8(uVar2, uVar3, uVar4, a3);
+    irq_uses_intc_reset_and_init_regs_1fa6b8(uVar2, uVar3, uVar4, a3);
     sys_heap_init(0x8c4c3ea0, 0xb3b160, uVar4, a3);
     uVar4 = a0;
     pvr_25825a(a0, a1, a2, a3);
-    shinobi_draw_1fa6e2();
+    irq_draw_1fa6e2();
     ar6_00 = 0x8c44d498;
     uVar3 = 0x8c441478;
     uVar2 = 0;
@@ -2296,7 +2296,7 @@ u32 system_init_libs(u32 a0, u32 a1, u32 a2, u32 a3) {
     device_info_table_reset();
     ninja_release_2590bc(a0, a1, a2, a3);
     noop_1fb43a();
-    shinobi_uses_utlb_invalidate_saved_entrie_1fa6f2(a0, a1, a2, a3);
+    irq_uses_utlb_invalidate_saved_entrie_1fa6f2(a0, a1, a2, a3);
     uVar1 = imask_to_sr_bits(0xf);
     return uVar1;
 }
@@ -3182,7 +3182,7 @@ u32 Higyo_choose_status_event(int a0, u32 a1, int *a2, char *a3) {
         case 1:
             uVar3 = 3;
             set_field_38_02f404(a0, 3);
-            iVar2 = Class_129c70_uses_get_field_6c_02f414(a0, uVar3, piVar4, a3);
+            iVar2 = game_uses_get_field_6c_02f414(a0, uVar3, piVar4, a3);
             if (iVar2 == 1) {
                 game_vec_109b98(a0, a1, piVar4);
             } else {
@@ -3201,7 +3201,7 @@ u32 Higyo_choose_status_event(int a0, u32 a1, int *a2, char *a3) {
             }
             break;
         case 4:
-            iVar2 = Class_129c70_uses_get_field_6c_02f414(a0, uVar3, piVar4, a3);
+            iVar2 = game_uses_get_field_6c_02f414(a0, uVar3, piVar4, a3);
             if (iVar2 == 1) {
                 if (*(int *)(a0 + 0x88) == 1) {
                     take_from_field_6c(*(u32 *)(a0 + 0x6c), 1, piVar4, a3);
@@ -3237,7 +3237,7 @@ u32 Higyo_choose_status_event(int a0, u32 a1, int *a2, char *a3) {
             }
             break;
         case 0xc:
-            iVar2 = Class_129c70_uses_get_field_6c_02f414(a0, uVar3, piVar4, a3);
+            iVar2 = game_uses_get_field_6c_02f414(a0, uVar3, piVar4, a3);
             if (iVar2 == 1) {
                 if (*(int *)(a0 + 0x88) == 1) {
                     take_from_field_6c(*(u32 *)(a0 + 0x6c), 1, piVar4, a3);
@@ -3324,7 +3324,7 @@ u32 Higyo_choose_status_event(int a0, u32 a1, int *a2, char *a3) {
             }
             break;
         case 0x1f:
-            iVar2 = Class_129c70_uses_get_field_6c_02f414(a0, uVar3, piVar4, a3);
+            iVar2 = game_uses_get_field_6c_02f414(a0, uVar3, piVar4, a3);
             if (iVar2 == 1) {
                 pcVar6 = "REACTION_INSPIDER";
                 uVar3 = 0;
@@ -3466,7 +3466,7 @@ u8 *Higyo_gratification_events(int a0, int *a1, int *a2, char *a3) {
         puVar2 = (&switchD_8c1063ec::switchdataD_8c1063f4)[iVar1 + -1];
         switch (iVar1) {
         case 4:
-            iVar1 = Class_129c70_uses_get_field_6c_02f414(a0, piVar4, piVar6, a3);
+            iVar1 = game_uses_get_field_6c_02f414(a0, piVar4, piVar6, a3);
             if (iVar1 == 1) {
                 iVar1 = get_field_24_05c284(*(u32 *)(a0 + 0x6c), piVar4);
                 if ((iVar1 == 0xf) && (a3 = (char *)get_field_13c_028d9c(a2[1], piVar4, piVar6), a3 == (char *)0x2)) {
@@ -3517,7 +3517,7 @@ u8 *Higyo_gratification_events(int a0, int *a1, int *a2, char *a3) {
             }
             break;
         case 0xc:
-            iVar1 = Class_129c70_uses_get_field_6c_02f414(a0, piVar4, piVar6, a3);
+            iVar1 = game_uses_get_field_6c_02f414(a0, piVar4, piVar6, a3);
             if (iVar1 == 1) {
                 uVar3 = get_field_6c_02f46c(*(u32 *)(a0 + 0x6c));
                 uVar3 = take_from_field_6c(*(u32 *)(a0 + 0x6c), uVar3, piVar6, a3);
@@ -4655,10 +4655,10 @@ u32 game_uses_Vec3_dtor_1089e4(int a0, u32 a1, u32 *a2, u32 a3) {
             }
             if ((*(int *)(a0 + 0x100) < 1) || (iVar3 = get_field_b0_065c8c(a2[3]), *(int *)(a0 + 0x100) < iVar3)) {
                 a1 = 0;
-                game_update_fields_02af68(*a2, 0);
+                CAnimal_update_fields_02af68(*a2, 0);
             } else {
                 set_field_b0(a2[3], *(u32 *)(a0 + 0x100));
-                game_update_fields_02af68(*a2, 1);
+                CAnimal_update_fields_02af68(*a2, 1);
                 ar6_00 = (u32 *)0x1b;
                 a1 = 0xd;
                 recent5_push_unique(a2[6], 0xd, 0x1b);
@@ -4961,7 +4961,7 @@ int Higyo_react_feed_full(int a0, int *a1, int *a2, char *a3) {
                 a3 = (char *)0xa;
                 ar5_00 = a1;
                 ar6_00 = a2;
-                iVar1 = game_vec_02f880(a0, a1, a2, 10);
+                iVar1 = game_find_nearest_ready_object_of_kind(a0, a1, a2, 10);
                 if (iVar1 == 0)
                     goto LAB_8c1096ec;
             }

@@ -708,16 +708,16 @@ u32 *Class_129cbc_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     Vec3_set_zero((int)a0 + 0x1ec);
     flags6_set_all_wrap((int)a0 + 0x1fc, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x200, a1, a2);
-    Class_129cbc_vec_0310c0(a0, a1, a2, a3);
+    Class_129cbc_init_motion_params(a0, a1, a2, a3);
     return a0;
 }
 
 /*
- * Class_129cbc_vec_0310c0  0x8c0310c0
- * area name: only called from Class_129cbc methods; behaviour name: mostly calls vec functions
+ * Class_129cbc_init_motion_params  0x8c0310c0
+ * sets the object's position from a1 and its default speed, range and timing parameters
  * called by: Class_129cbc_ctor
  */
-u32 Class_129cbc_vec_0310c0(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_129cbc_init_motion_params(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_fr1;
     char cVar1;
 
@@ -979,12 +979,12 @@ u32 Class_129cbc_m1_031598(int a0, int a1, u32 a2, u32 a3) {
 
     *(u8 *)(0x210 + a0) = *(u8 *)(a1 + 0x28);
     vec3_copy_8c02b5fc(auStack_14, a0 + 0x14c, a2);
-    Vec3_vec_023484(a0 + 0x14, auStack_14, a2, a3, auStack_24);
+    Vec3_rotate_euler_deg(a0 + 0x14, auStack_14, a2, a3, auStack_24);
     Vec3_assign(a0 + 0x14, auStack_24, a2, a3);
     Vec3_dtor(auStack_24, 0xffffffff, a2, a3);
     object_dtor_delete(auStack_14, 0xffffffff, a2, a3);
     vec3_copy_8c02b5fc(auStack_30, a0 + 0x14c, a2);
-    Vec3_vec_023484(a0 + 0x80, auStack_30, a2, a3, auStack_40);
+    Vec3_rotate_euler_deg(a0 + 0x80, auStack_30, a2, a3, auStack_40);
     Vec3_assign(a0 + 0x80, auStack_40, a2, a3);
     Vec3_dtor(auStack_40, 0xffffffff, a2, a3);
     uVar1 = 0xffffffff;
@@ -1734,7 +1734,7 @@ u32 game_vec_031eb0(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     object_dtor_delete(auStack_30, 0xffffffff, a2, ar7_00);
     Vec3_set_xyz(auStack_3c, uVar1, a2, ar7_00);
     ar5_00 = auStack_3c;
-    Vec3_vec_023484(a3, ar5_00, a2, ar7_00, auStack_4c);
+    Vec3_rotate_euler_deg(a3, ar5_00, a2, ar7_00, auStack_4c);
     Vec3_vec_02374c(auStack_4c, ar5_00, a2, ar7_00);
     uVar1 = Vec3_length(auStack_5c, ar5_00, a2, ar7_00);
     Vec3_ctor_copy(auStack_24, uVar1, a2, ar7_00);
@@ -2234,7 +2234,7 @@ u32 game_vec_03263c(u32 a0, u32 a1, u32 a2, u32 a3) {
     }
     Vec3_set_xyz(auStack_24, ar5_00, a2, a3);
     ar5_01 = auStack_24;
-    Vec3_vec_023484(a1, ar5_01, a2, a3, auStack_34);
+    Vec3_rotate_euler_deg(a1, ar5_01, a2, a3, auStack_34);
     Vec3_vec_02374c(auStack_34, ar5_01, a2, a3);
     Vec3_scale(afStack_44, &fStack_48, a2, a3, in_stack_00000000);
     Vec3_dtor(afStack_44, 0xffffffff, a2, a3);
@@ -2581,7 +2581,7 @@ u32 point_inside_box_margin(u32 unused_a0, float *a1, float *a2, int *a3) {
 
 /*
  * rand_range  0x8c032a64
- * called by: CMushroomerBody_AwayFrom, Class_12a03c_vec_03c100, Class_12ad14_m3_0a427c, Class_12b2ac_m5_0afddc,
+ * called by: CMushroomerBody_AwayFrom, Class_12a03c_reset_state, Class_12ad14_m3_0a427c, Class_12b2ac_m5_0afddc,
  * Class_12b2ac_vec_0b0784, Vec3_state_switch_03f4a4, alt_entry_046684, creature_action_motion4e_step (+48 more)
  */
 int rand_range(u32 a0, int a1, int a2) {
@@ -2626,11 +2626,11 @@ u32 *rand_float(u32 a0, u32 a1, u32 a2) {
 }
 
 /*
- * game_uses_rand_range_032af8  0x8c032af8
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is rand_range
+ * rand_range_triangular_biased  0x8c032af8
+ * averages two rand_range(a1, a2) draws and shifts the result by (a3-50)% of the range
  * called by: game_vec_0530e0, game_vec_0b1ac0
  */
-int game_uses_rand_range_032af8(u32 a0, int a1, int a2, int a3) {
+int rand_range_triangular_biased(u32 a0, int a1, int a2, int a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -2984,7 +2984,7 @@ u32 draw_vec_032d48(int a0, int a1, int a2, int a3) {
                 auStack_24[0] = (u32)((u64)in_xd0 >> 0x20);
             }
             vec3_copy_8c02b5fc(auStack_84, &fStack_30, ar6_00);
-            Vec3_vec_023484(a0 + 0x14, auStack_84, ar6_00, ar7_00, auStack_94);
+            Vec3_rotate_euler_deg(a0 + 0x14, auStack_84, ar6_00, ar7_00, auStack_94);
             Vec3_assign(a0 + 0x14, auStack_94, ar6_00, ar7_00);
             Vec3_dtor(auStack_94, 0xffffffff, ar6_00, ar7_00);
             object_dtor_delete(auStack_84, 0xffffffff, ar6_00, ar7_00);
@@ -3404,11 +3404,11 @@ u32 se_play_at_object(int a0, u32 a1, u32 a2, int *a3) {
 }
 
 /*
- * se_vec_033530  0x8c033530
- * area name: sits between se functions (same compilation unit); behaviour name: mostly calls vec functions
+ * se_random_direction_like  0x8c033530
+ * builds a random normalised direction from three rand()%100 components and scales it
  * called by: game_vec_07c0b8
  */
-u32 se_vec_033530(int a0, u32 a1, u32 a2, u32 a3) {
+u32 se_random_direction_like(int a0, u32 a1, u32 a2, u32 a3) {
     u64 uVar1;
     double dVar2;
     u32 uVar3;
@@ -7191,7 +7191,7 @@ u32 set_field_4_s16(int a0, u32 a1) {
 /*
  * clear_15_bytes  0x8c036058
  * zeroes the 15 bytes at a0
- * called by: Class_1299f8_uses_clear_15_bytes_0243b0, game_uses_clear_15_bytes_0ba284
+ * called by: game_uses_clear_15_bytes_0243b0, game_uses_clear_15_bytes_0ba284
  */
 int clear_15_bytes(int a0) {
     int iVar1;
@@ -7703,7 +7703,7 @@ int CSquidLine_vec_036adc(int a0, u32 unused_a1, u32 a2, u32 a3) {
         iVar1 = a0 + 0x50;
         vec3_copy_8c02b5fc(auStack_40, iVar1, a2);
         iVar1 = (**(code **)(*(int *)(a0 + 8) + 0x144))(a0, iVar1, a2, a3);
-        Vec3_vec_023484(iVar1 + 0xd8, auStack_40, a2, a3, auStack_50);
+        Vec3_rotate_euler_deg(iVar1 + 0xd8, auStack_40, a2, a3, auStack_50);
         Vec3_add(a0 + 0x30, auStack_50, a2, a3, auStack_60);
         Vec3_ctor_copy(&uStack_18, auStack_60, a2, a3);
         Vec3_dtor(auStack_60, 0xffffffff, a2, a3);
@@ -8137,7 +8137,7 @@ float *game_state_switch_037034(int a0, u32 a1, u32 a2, u32 a3) {
 
     cVar7 = '\0';
     cVar6 = '\0';
-    game_uses_set_fields_14_10_18_on_field_02702c(a0, a1, a2);
+    CAnimal_apply_stage_row(a0, a1, a2);
     uVar2 = talk_uses_table13019c_find_row_02bef8(a0 + 0x174, a1, a2);
     sVar1 = (short)uVar2;
     uVar2 = get_field_0(*(int *)(sVar1 * 0x124 + *(int *)(a0 + 0x328)) + 0x1e8);
@@ -9341,7 +9341,7 @@ u32 static_init_vec3s_27df98(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
         g_8c125d20 = 0xffffffff00800000;
     }
     uVar1 = 0x124;
-    vec_new_array(0x8c27dfd4, game_list_02452c, game_release_03a4ac, 0x124, 5);
+    vec_new_array(0x8c27dfd4, game_struct_02452c_ctor, game_release_03a4ac, 0x124, 5);
     global_list_push(0, destroy_array_8c27dfd4, 0x8c27dfc8, uVar1);
     uVar1 = 0x10;
     vec_new_array(&g_8c27e594, game_uses_set_fields_0_4_8_024824, free_if_nonnull_wrap_03a454, 0x10, 2);
@@ -9534,7 +9534,7 @@ u32 static_init_vec3s_27df98(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     uVar3 = 0x8c27ffa4;
     pcVar2 = Class_129938_dtor;
     global_list_push(uVar1, Class_129938_dtor, 0x8c27ffa4, uVar4);
-    uVar1 = game_list_02452c(0x8c280050, pcVar2);
+    uVar1 = game_struct_02452c_ctor(0x8c280050, pcVar2);
     uVar3 = 0x8c280044;
     pcVar2 = game_release_03a4ac;
     global_list_push(uVar1, game_release_03a4ac, 0x8c280044, uVar4);
@@ -9798,7 +9798,7 @@ u32 *Class_12a03c_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     Vec3_ctor_zero((int)a0 + 0x2d4, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x308, a1, a2);
     Vec3_ctor_zero((int)a0 + 0x34c, a1, a2);
-    Class_12a03c_vec_03c100(a0, a1, a2, a3);
+    Class_12a03c_reset_state(a0, a1, a2, a3);
     return a0;
 }
 
@@ -9836,7 +9836,7 @@ u64 *Class_12a03c_m6_03a65c(int a0, int a1) {
     *(int *)(a0 + 0x128) = a1;
     iVar5 = a1 * 0x18 + 0x8c2803f4;
     copy6_to_fields(a0, iVar5, &g_8c1364e0, ar7_00);
-    Class_12a03c_vec_03c100(a0, iVar5, puVar7, ar7_00);
+    Class_12a03c_reset_state(a0, iVar5, puVar7, ar7_00);
     iVar5 = (int)g_8c280470;
     if (g_8c280470 == '\0') {
         g_8c28046c = 0;
@@ -10374,11 +10374,11 @@ int array_at_field_14(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12a03c_vec_03c100  0x8c03c100
- * area name: only called from Class_12a03c methods; behaviour name: mostly calls vec functions
+ * Class_12a03c_reset_state  0x8c03c100
+ * resets the object's timers, counters and default ranges and sets its position from a1
  * called by: Class_12a03c_ctor, Class_12a03c_m6_03a65c
  */
-u32 Class_12a03c_vec_03c100(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12a03c_reset_state(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 in_fr1;
     char cVar2;
@@ -10450,7 +10450,7 @@ u32 Class_12a03c_vec_03c100(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * timer_start_94  0x8c03c314
  * +0x94 = fr4, +0xa4 = 1
- * called by: Class_12a03c_m1_03c43c, Class_12a03c_vec_03c100, Class_12a25c_reset, Class_12a25c_vec_06f93c,
+ * called by: Class_12a03c_m1_03c43c, Class_12a03c_reset_state, Class_12a25c_reset, Class_12a25c_vec_06f93c,
  * Class_12a76c_reset_state, Class_12ad14_uses_rand_float_0a37c8, Class_12b088_state_switch_0a99c4,
  * Class_12b2ac_uses_timer_stop_94_0b5344 (+34 more)
  */
@@ -11343,7 +11343,7 @@ code *game_vec_03c94c(code *a0, u32 *a1, u32 unused_a2, u32 a3) {
                     pcVar7 = rand_float;
                     rand_float(a0, rand_float, pcVar10);
                     Vec3_set_xyz(auStack_27c, pcVar7, pcVar10, puVar11);
-                    Vec3_vec_023484(auStack_80, auStack_27c, pcVar10, puVar11, auStack_28c);
+                    Vec3_rotate_euler_deg(auStack_80, auStack_27c, pcVar10, puVar11, auStack_28c);
                     ar4_00 = (u64 *)auStack_80;
                     pcVar7 = Vec3_assign;
                     Vec3_assign(ar4_00, auStack_28c, Vec3_assign, ar4_00);
@@ -11385,7 +11385,7 @@ code *game_vec_03c94c(code *a0, u32 *a1, u32 unused_a2, u32 a3) {
                         Vec3_dtor(auStack_2bc, 0xffffffff, pcVar7, ar4_00);
                     }
                     vec3_copy_8c02b5fc(auStack_2c8, *(u32 *)(a1[1] + 4), pcVar7);
-                    Vec3_vec_023484(auStack_90, auStack_2c8, pcVar7, ar4_00, auStack_2d8);
+                    Vec3_rotate_euler_deg(auStack_90, auStack_2c8, pcVar7, ar4_00, auStack_2d8);
                     puVar11 = auStack_2e8;
                     Vec3_add(*(u32 *)a1[1], auStack_2d8, puVar11, ar4_00, puVar11);
                     Vec3_assign(auStack_90, auStack_2e8, puVar11, ar4_00);
@@ -11568,8 +11568,8 @@ code *game_vec_03c94c(code *a0, u32 *a1, u32 unused_a2, u32 a3) {
             if (iVar2 == 0) {
                 Vec3_ctor_xyz(auStack_d0, puVar4, puVar11, ar7_00);
                 vec3_copy_8c02b5fc(auStack_dc, auStack_60, vec3_copy_8c02b5fc);
-                pcVar7 = Vec3_vec_023484;
-                Vec3_vec_023484(auStack_d0, auStack_dc, Vec3_vec_023484, ar7_00, auStack_ec);
+                pcVar7 = Vec3_rotate_euler_deg;
+                Vec3_rotate_euler_deg(auStack_d0, auStack_dc, Vec3_rotate_euler_deg, ar7_00, auStack_ec);
                 Vec3_scale(auStack_ec, auStack_358, pcVar7, ar7_00, auStack_fc);
                 pcVar10 = Vec3_add_assign;
                 Vec3_add_assign(&uStack_2c, auStack_fc);
@@ -11583,7 +11583,7 @@ code *game_vec_03c94c(code *a0, u32 *a1, u32 unused_a2, u32 a3) {
                 Vec3_ctor_xyz(auStack_10c, puVar4, puVar11, ar7_00);
                 pcVar9 = (code *)auStack_118;
                 vec3_copy_8c02b5fc(pcVar9, auStack_60, pcVar9);
-                Vec3_vec_023484(auStack_10c, auStack_118, pcVar9, ar7_00, auStack_128);
+                Vec3_rotate_euler_deg(auStack_10c, auStack_118, pcVar9, ar7_00, auStack_128);
                 Vec3_scale(auStack_128, auStack_358, pcVar9, ar7_00, auStack_138);
                 Vec3_add_assign(&uStack_2c, auStack_138);
                 Vec3_dtor(auStack_138, 0xffffffff, pcVar9, ar7_00);
@@ -11607,7 +11607,7 @@ code *game_vec_03c94c(code *a0, u32 *a1, u32 unused_a2, u32 a3) {
                 puVar11 = auStack_148;
                 Vec3_ctor_xyz(puVar11, Vec3_ctor_xyz, puVar11, ar7_00);
                 vec3_copy_8c02b5fc(auStack_154, auStack_60, puVar11);
-                Vec3_vec_023484(auStack_148, auStack_154, auStack_164, ar7_00, auStack_164);
+                Vec3_rotate_euler_deg(auStack_148, auStack_154, auStack_164, ar7_00, auStack_164);
                 pcVar7 = Vec3_scale;
                 Vec3_scale(auStack_164, auStack_358, Vec3_scale, ar7_00, auStack_174);
                 Vec3_add_assign(&uStack_2c, auStack_174);
@@ -12085,7 +12085,7 @@ code *game_vec_03c94c(code *a0, u32 *a1, u32 unused_a2, u32 a3) {
                         }
                         puVar11 = auStack_330;
                         Vec3_set_xyz(puVar11, iVar2, pcVar9, puVar11);
-                        Vec3_vec_023484(a0 + 0x14, auStack_330, pcVar9, puVar11, auStack_340);
+                        Vec3_rotate_euler_deg(a0 + 0x14, auStack_330, pcVar9, puVar11, auStack_340);
                         Vec3_assign(a0 + 0x14, auStack_340, pcVar9, puVar11);
                         Vec3_dtor(auStack_340, 0xffffffff, Vec3_dtor, puVar11);
                         puVar11 = auStack_330;
@@ -12161,7 +12161,7 @@ code *game_vec_03c94c(code *a0, u32 *a1, u32 unused_a2, u32 a3) {
             }
             uVar12 = 0x2e4;
             Vec3_set_xyz(auStack_304, uVar3, pcVar7, 0x2e4);
-            Vec3_vec_023484(a0 + 0x14, auStack_304, pcVar7, uVar12, auStack_314);
+            Vec3_rotate_euler_deg(a0 + 0x14, auStack_304, pcVar7, uVar12, auStack_314);
             puVar11 = auStack_314;
             Vec3_assign(a0 + 0x14, puVar11, puVar11, uVar12);
             Vec3_dtor(auStack_314, 0xffffffff, puVar11, uVar12);
@@ -12968,8 +12968,8 @@ u32 Vec3_state_switch_03f4a4(int a0, int *a1, u32 a2, u32 a3) {
                         *(u8 **)((int)puVar17 + -0xa74) = (u8 *)((int)puVar17 + -0x2fc);
                         uVar2 = 0x2a8;
                         iVar15 = a0 + 0x2a8;
-                        Vec3_vec_023484(iVar15, (u8 *)((int)puVar17 + -0x2ec), iVar15, 0x2a8,
-                                        *(u32 *)((int)puVar17 + -0xa74));
+                        Vec3_rotate_euler_deg(iVar15, (u8 *)((int)puVar17 + -0x2ec), iVar15, 0x2a8,
+                                              *(u32 *)((int)puVar17 + -0xa74));
                         Vec3_assign(a0 + 0x2a8, (u8 *)((int)puVar17 + -0x2fc), iVar15, uVar2);
                         Vec3_dtor((u8 *)((int)puVar17 + -0x2fc), 0xffffffff, iVar15, uVar2);
                         pcVar4 = (code *)((int)puVar17 + -0x2ec);
@@ -12986,8 +12986,8 @@ u32 Vec3_state_switch_03f4a4(int a0, int *a1, u32 a2, u32 a3) {
                         *(u8 **)((int)puVar17 + -0xa74) = (u8 *)((int)puVar17 + -0x318);
                         uVar2 = 0x2a8;
                         iVar15 = a0 + 0x2a8;
-                        Vec3_vec_023484(iVar15, (u8 *)((int)puVar17 + -0x308), iVar15, 0x2a8,
-                                        *(u32 *)((int)puVar17 + -0xa74));
+                        Vec3_rotate_euler_deg(iVar15, (u8 *)((int)puVar17 + -0x308), iVar15, 0x2a8,
+                                              *(u32 *)((int)puVar17 + -0xa74));
                         Vec3_assign(a0 + 0x2a8, (u8 *)((int)puVar17 + -0x318), iVar15, uVar2);
                         pcVar4 = (code *)((int)puVar17 + -0x318);
                         Vec3_dtor(pcVar4, 0xffffffff, pcVar4, uVar2);

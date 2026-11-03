@@ -2491,7 +2491,7 @@ int ADXF_close_handle_like(int a0, u32 a1, u32 a2, u32 a3, int ain0) {
  * ADXF_Close_like  0x8c262168
  * stops an ADXF handle that is reading and clears it (0x30 bytes)
  * called by: ADXF_AddPartition, ADXF_LoadPartition, ADXF_Open_like, ADXF_close_all, ADXF_uses_cri_api_trace_2620c8,
- * CDCGD_uses_ADXF_Close_like_02049c, CDCGD_uses_ADXF_GetStat_01fab4, cd_load_poll_finish
+ * CDCGD_read_file_tick, CDCGD_uses_ADXF_Close_like_02049c, cd_load_poll_finish
  */
 u32 ADXF_Close_like(int a0) {
     u32 uVar1;
@@ -2641,7 +2641,7 @@ u32 ADXF_uses_irq_disable_nested_2622e4(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ADXF_ReadNw_like  0x8c262312
  * creates a ring buffer on the 32-byte aligned buffer a2 and starts a non-waiting read of a1 sectors of handle a0
- * called by: CDCGD_uses_ADXF_GetStat_01fab4, adxf_read_sync, cd_load_open_read
+ * called by: CDCGD_read_file_tick, adxf_read_sync, cd_load_open_read
  */
 u32 ADXF_ReadNw_like(int *a0, int a1, u32 a2) {
     int *piVar1;
@@ -2994,7 +2994,7 @@ u32 ADXF_GetNumReadSct(int a0, u32 unused_a1, u32 a2) {
 /*
  * ADXF_GetStat  0x8c2626b4
  * named from the library error message it prints (ADXF_GetStat)
- * called by: CDCGD_uses_ADXF_GetStat_01fab4, adxf_read_sync, cd_load_poll_finish
+ * called by: CDCGD_read_file_tick, adxf_read_sync, cd_load_poll_finish
  * strings: "E9040832:'adxf' is NULL.(ADXF_GetStat)\n"
  */
 u32 ADXF_GetStat(int a0, u32 unused_a1, u32 a2) {
@@ -3187,7 +3187,7 @@ u32 cri_lib_finish(int *a0, u32 a1, u32 unused_a2, u32 a3, u32 ain0) {
         irq_disable_nested(a0, a1, unused_a2, a3, in_PR);
         iVar2 = g_8c278470;
         if (g_8c278470 != 0) {
-            shinobi_draw_1fa54c(g_8c278470);
+            irq_remove_handler_like(g_8c278470);
             g_8c278470 = 0;
         }
         irq_restore_nested(iVar2, a1, unused_a2, a3, in_PR);
@@ -6780,7 +6780,7 @@ u32 aica_reg_265278(void) {
     u32 ar5_00;
     int iVar1;
 
-    shinobi_uses_syG2FifoWait_1f92c0(0xa0702c00, 0x8c4ba650, 4, 1, 1, 1);
+    g2_bus_copy_strided(0xa0702c00, 0x8c4ba650, 4, 1, 1, 1);
     ar5_00 = 0xa0702c00;
     ar4_00 = 0x8c4ba650;
     g_8c4ba650 = g_8c4ba650 | 1;
@@ -6801,7 +6801,7 @@ u32 aica_reg_2652f4(void) {
     u32 ar5_00;
     int iVar1;
 
-    shinobi_uses_syG2FifoWait_1f92c0(0xa0702c00, (&DATA_8c2784b0), 4, 1, 1, 1);
+    g2_bus_copy_strided(0xa0702c00, (&DATA_8c2784b0), 4, 1, 1, 1);
     ar5_00 = 0xa0702c00;
     ar4_00 = (&DATA_8c2784b0);
     *(u32 *)(&DATA_8c2784b0) = *(u32 *)(&DATA_8c2784b0) & 0xfffffffe;
@@ -8516,7 +8516,7 @@ int aica_ram_2668fc(int a0, u32 a1, u32 a2, int a3) {
         }
         a3 = iVar1 >> 2;
         ar6_00 = 4;
-        g_8c4bd404 = shinobi_uses_syG2FifoWait_1f92c0(a0 + -0x5f800000, a1, 4, a3, 1, 1);
+        g_8c4bd404 = g2_bus_copy_strided(a0 + -0x5f800000, a1, 4, a3, 1, 1);
     } else {
         ar5_00 = 0x7fffffff;
         ar6_00 = a2;
@@ -10861,7 +10861,7 @@ LAB_8c2685de:
  */
 u32 aica_ram_268618(int a0, u32 a1) {
     if (a0 < 0x200000) {
-        shinobi_uses_syG2FifoWait_1f92c0(a0 + 0xa0800000, a1, 4, 1, 0, 0);
+        g2_bus_copy_strided(a0 + 0xa0800000, a1, 4, 1, 0, 0);
     }
     return 0;
 }
@@ -10904,7 +10904,7 @@ u32 aica_read_u16(u32 a0, u16 *a1) {
  */
 u32 aica_ram_2686d4(int a0, u32 a1) {
     if (a0 < 0x200000) {
-        shinobi_uses_syG2FifoWait_1f92c0(a0 + 0xa0800000, a1, 4, 1, 0, 0);
+        g2_bus_copy_strided(a0 + 0xa0800000, a1, 4, 1, 0, 0);
     }
     return 0;
 }

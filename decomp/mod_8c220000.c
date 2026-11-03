@@ -1383,11 +1383,11 @@ u32 alt_entry_221a0a(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * gfxlib_fill_loop_221a8c  0x8c221a8c
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_strips_emit_s64_cull  0x8c221a8c
+ * emits the index strips a0 over 64-byte vertices a1, dropping back-facing triangles by the cross product sign
  * called by: gfxlib_draw_219ad0
  */
-int gfxlib_fill_loop_221a8c(short *a0, int a1, u32 a2, int a3) {
+int gfx_strips_emit_s64_cull(short *a0, int a1, u32 a2, int a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -3647,10 +3647,10 @@ u32 *vram_fill_loop_22278c(short *a0, int a1, u32 a2, u32 *a3) {
 }
 
 /*
- * vram_fill_loop_222ab4  0x8c222ab4
- * area name: sits between vram functions (same compilation unit); behaviour name: a loop that writes memory
+ * gfx_strips_emit_s64_cull_b  0x8c222ab4
+ * second variant of gfx_strips_emit_s64_cull with another vertex layout
  */
-int vram_fill_loop_222ab4(short *a0, int a1, u32 a2, int a3) {
+int gfx_strips_emit_s64_cull_b(short *a0, int a1, u32 a2, int a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -5176,11 +5176,11 @@ u64 *gfxlib_fill_loop_2230f0(u32 a0, u32 a1, u32 a2, u64 *a3) {
 }
 
 /*
- * gfxlib_fill_loop_2234a4  0x8c2234a4
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_strips_emit_s64_cull_c  0x8c2234a4
+ * third variant of gfx_strips_emit_s64_cull with another vertex layout
  * called by: gfxlib_draw_219ad0
  */
-int gfxlib_fill_loop_2234a4(short *a0, int a1, u32 a2, int a3) {
+int gfx_strips_emit_s64_cull_c(short *a0, int a1, u32 a2, int a3) {
     short sVar1;
     u32 uVar2;
     u32 uVar3;
@@ -10258,10 +10258,10 @@ u32 *gfxlib_fill_loop_2255e8(short *a0, int a1, u32 a2, u32 *a3) {
 }
 
 /*
- * gfxlib_fill_loop_225918  0x8c225918
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_strips_emit_s64_cull_d  0x8c225918
+ * fourth variant of gfx_strips_emit_s64_cull with another vertex layout
  */
-int gfxlib_fill_loop_225918(short *a0, int a1, u32 a2, int a3) {
+int gfx_strips_emit_s64_cull_d(short *a0, int a1, u32 a2, int a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -12477,11 +12477,11 @@ u64 *gfxlib_fill_loop_226474(u32 a0, u32 a1, u32 a2, u64 *a3) {
 }
 
 /*
- * gfxlib_fill_loop_226980  0x8c226980
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21a4f6
+ * gfx_verts_light_s64_like  0x8c226980
+ * transforms vertices into 64-byte slots and accumulates lighting (chunk type 0x29 kernel of
+ * gfx_vertex_chunks_process_s64) called by: gfx_vertex_chunks_process_s64
  */
-int gfxlib_fill_loop_226980(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int gfx_verts_light_s64_like(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -12638,7 +12638,7 @@ int gfxlib_fill_loop_226980(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * gfxlib_fill_loop_226ac0  0x8c226ac0
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21a4f6
+ * called by: gfx_vertex_chunks_process_s64
  */
 int gfxlib_fill_loop_226ac0(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     float fVar1;
@@ -12805,7 +12805,7 @@ int gfxlib_fill_loop_226ac0(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * gfxlib_fill_loop_226c44  0x8c226c44
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21a4f6
+ * called by: gfx_vertex_chunks_process_s64
  */
 int gfxlib_fill_loop_226c44(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     double *pdVar1;
@@ -13230,7 +13230,7 @@ int gfxlib_fill_loop_226c44(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * gfxlib_fill_loop_226dfc  0x8c226dfc
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21a4f6
+ * called by: gfx_vertex_chunks_process_s64
  */
 int gfxlib_fill_loop_226dfc(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     double *pdVar1;
@@ -13610,7 +13610,7 @@ int gfxlib_fill_loop_226dfc(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * gfxlib_fill_loop_226f70  0x8c226f70
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21a4f6
+ * called by: gfx_vertex_chunks_process_s64
  */
 int gfxlib_fill_loop_226f70(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     float *pfVar1;
@@ -13798,7 +13798,7 @@ int gfxlib_fill_loop_226f70(int *a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * gfxlib_fill_loop_227144  0x8c227144
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_21a4f6
+ * called by: gfx_vertex_chunks_process_s64
  */
 int gfxlib_fill_loop_227144(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     double *pdVar1;
@@ -14291,10 +14291,10 @@ int gfxlib_fill_loop_227144(int *a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * gfxlib_fill_loop_227348  0x8c227348
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_strips_emit_s32_cull_a  0x8c227348
+ * emits index strips over 32-byte vertices, dropping back-facing triangles
  */
-int gfxlib_fill_loop_227348(short *a0, int a1, u32 a2, int a3) {
+int gfx_strips_emit_s32_cull_a(short *a0, int a1, u32 a2, int a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -14881,10 +14881,10 @@ double *gfxlib_calls_fill_loop_2274f8(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_fill_loop_22770c  0x8c22770c
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_strips_emit_cull_like  0x8c22770c
+ * emits index strips with a fixed winding sign, dropping back-facing triangles
  */
-u32 *gfxlib_fill_loop_22770c(short *a0, int a1, u32 a2, u32 *a3) {
+u32 *gfx_strips_emit_cull_like(short *a0, int a1, u32 a2, u32 *a3) {
     int iVar1;
     short *psVar2;
     short *psVar3;
@@ -18838,10 +18838,10 @@ u32 *gfxlib_fill_loop_2294a4(double *a0, double *a1, double *a2, u32 *a3) {
 }
 
 /*
- * gfxlib_fill_loop_229a7c  0x8c229a7c
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_strips_emit_s32_cull_b  0x8c229a7c
+ * second variant of gfx_strips_emit_s32_cull_a with another vertex layout
  */
-int gfxlib_fill_loop_229a7c(short *a0, int a1, u32 a2, int a3) {
+int gfx_strips_emit_s32_cull_b(short *a0, int a1, u32 a2, int a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -23976,10 +23976,10 @@ u32 *gfxlib_fill_loop_22b26c(double *a0, double *a1, double *a2, u32 *a3) {
 }
 
 /*
- * gfxlib_fill_loop_22b5b0  0x8c22b5b0
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_strips_emit_s32_cull_d  0x8c22b5b0
+ * fourth variant of gfx_strips_emit_s32_cull_a with another vertex layout
  */
-int gfxlib_fill_loop_22b5b0(short *a0, int a1, u32 a2, int a3) {
+int gfx_strips_emit_s32_cull_d(short *a0, int a1, u32 a2, int a3) {
     short sVar1;
     u32 uVar2;
     u32 uVar3;
@@ -26177,10 +26177,10 @@ double *gfxlib_calls_fill_loop_22c3f4(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_fill_loop_22c678  0x8c22c678
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_strips_emit_s32_cull_e  0x8c22c678
+ * fifth variant of gfx_strips_emit_s32_cull_a with another vertex layout
  */
-int gfxlib_fill_loop_22c678(short *a0, int a1, u32 a2, int a3) {
+int gfx_strips_emit_s32_cull_e(short *a0, int a1, u32 a2, int a3) {
     short sVar1;
     u32 uVar2;
     u32 uVar3;
@@ -27878,10 +27878,10 @@ u64 *gfxlib_fill_loop_22cef0(double *a0, double *a1, double *a2, u64 *a3) {
 }
 
 /*
- * gfxlib_fill_loop_22d770  0x8c22d770
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_strips_emit_s32_cull_f  0x8c22d770
+ * sixth variant of gfx_strips_emit_s32_cull_a with another vertex layout
  */
-int gfxlib_fill_loop_22d770(short *a0, int a1, u32 a2, int a3) {
+int gfx_strips_emit_s32_cull_f(short *a0, int a1, u32 a2, int a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;

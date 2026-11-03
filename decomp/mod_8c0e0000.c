@@ -6670,7 +6670,7 @@ u32 static_init_vec3s_437520(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     uVar3 = 0x8c437b1c;
     pcVar2 = Class_12c3a4_dtor;
     global_list_push(uVar1, Class_12c3a4_dtor, 0x8c437b1c, a3);
-    uVar1 = Class_1299f8_uses_clear_15_bytes_0243b0(0x8c437b48, pcVar2, uVar3);
+    uVar1 = game_uses_clear_15_bytes_0243b0(0x8c437b48, pcVar2, uVar3);
     uVar1 = global_list_push(uVar1, game_release_0ba180, 0x8c437b3c, a3);
     return uVar1;
 }

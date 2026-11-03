@@ -853,7 +853,7 @@ u32 static_init_4374c8(int a0, code *a1, u32 a2, u32 a3) {
                 puVar6 = auStack_20;
                 Vec3_assign(puVar6, 0x8c4374d8, a2, a3);
                 rand();
-                Vec3_vec_023668(auStack_20, uVar2, a2, a3, auStack_30);
+                Vec3_rotate_euler_deg_c(auStack_20, uVar2, a2, a3, auStack_30);
                 uVar2 = 0xffffffff;
                 puVar6 = auStack_30;
                 Vec3_dtor(puVar6, 0xffffffff, a2, a3);
@@ -2774,7 +2774,7 @@ u32 game_vec_0d294c(u8 *a0, u32 a1, u32 a2, u32 a3) {
                         *(u64 *)(a0 + 0x18) = *(u64 *)(a0 + 0x38);
                         in_dr0 = *(double *)(a0 + 0x40);
                     }
-                    Vec3_vec_023570(a0 + 0x18, puVar3, a2, a3, auStack_2c);
+                    Vec3_rotate_euler_deg_b(a0 + 0x18, puVar3, a2, a3, auStack_2c);
                     Vec3_assign(a0 + 0x18, auStack_2c, a2, a3);
                     Vec3_dtor(auStack_2c, 0xffffffff, a2, a3);
                 }
@@ -2787,10 +2787,10 @@ u32 game_vec_0d294c(u8 *a0, u32 a1, u32 a2, u32 a3) {
             pcVar6 = (code *)0x41126666;
         } else {
             fVar4 = 9.15;
-            pcVar6 = Vec3_vec_023570;
+            pcVar6 = Vec3_rotate_euler_deg_b;
         }
         if (cVar9 == '\0' && fVar4 < (float)pcVar6) {
-            Vec3_vec_023570(a0 + 0x18, ar5_00, a2, a3, auStack_3c);
+            Vec3_rotate_euler_deg_b(a0 + 0x18, ar5_00, a2, a3, auStack_3c);
             Vec3_assign(a0 + 0x18, auStack_3c, a2, a3);
             ar5_00 = (u8 *)0xffffffff;
             puVar3 = auStack_3c;

@@ -367,7 +367,7 @@ u32 game_poll_exit(int a0, u32 a1, u32 a2, u32 a3) {
 
     uVar1 = input_poll_device_state(0x8c3dd7dc, a1, a2, a3);
     *(u32 *)(0x2d620 + a0) = uVar1;
-    iVar2 = game_uses_CDCGD_finish_texture_request_01f794(0x8c3eb334, a1, a2, a3);
+    iVar2 = game_uses_CDCGD_read_file_tick_01f794(0x8c3eb334, a1, a2, a3);
     pack_close_and_flush(0x8c2b59d0, a1, a2, a3);
     game_talk_0f816c(0x8c35468c, a1, a2, a3);
     pack_release_entry_384_if_done(0x8c2b5628, a1, a2, a3);

@@ -7891,7 +7891,7 @@ u32 ninja_uses_gfx_lights_reset_defaults_li_253cfc(u32 a0, u32 a1, u32 a2, u32 a
     u32 uVar1;
 
     uVar1 = a0;
-    gfxlib_calls_fill_loop_23c70c();
+    gfxlib_draw_23c70c();
     gfx_lights_reset_defaults_like();
     gfxlib_uses_memcpy_words_n_2376c4();
     ninja_vec_254066(a0, a1, a2, a3);
@@ -8455,7 +8455,7 @@ LAB_8c2543be:
 /*
  * motion_lookup_pos_key  0x8c2545ec
  * binary-searches the current node's position keys for the current frame and calls interpolator a1 into a0
- * called by: game_uses_njGetMatrix_029af0
+ * called by: CAnimal_uses_njGetMatrix_029af0
  */
 u32 motion_lookup_pos_key(u32 a0, int a1) {
     u32 uVar1;
@@ -8502,7 +8502,7 @@ LAB_8c25463a:
 /*
  * motion_lookup_rot_key  0x8c254698
  * binary-searches the current node's rotation keys for the current frame and calls interpolator a1 into a0
- * called by: game_uses_njGetMatrix_029af0
+ * called by: CAnimal_uses_njGetMatrix_029af0
  */
 u32 motion_lookup_rot_key(u32 a0, int a1) {
     u32 uVar1;
@@ -8551,7 +8551,7 @@ LAB_8c2546fa:
 /*
  * motion_lookup_scale_key  0x8c254780
  * binary-searches the current node's scale keys for the current frame and calls interpolator a1 into a0
- * called by: game_uses_njGetMatrix_029af0
+ * called by: CAnimal_uses_njGetMatrix_029af0
  */
 u32 motion_lookup_scale_key(u32 a0, int a1) {
     u32 uVar1;
@@ -8603,7 +8603,7 @@ LAB_8c2547ea:
 /*
  * ninja_calls_update_fields_25484c  0x8c25484c
  * area name: in the ninja library code range; behaviour name: its callees mostly do: update_fields
- * called by: game_uses_njGetMatrix_029af0
+ * called by: CAnimal_uses_njGetMatrix_029af0
  */
 u32 ninja_calls_update_fields_25484c(void) {
     int *piVar1;
@@ -10884,9 +10884,8 @@ u32 nj_palette_file_load(u32 a0, int *a1, u32 a2, u32 a3) {
 /*
  * matrix_pop_n  0x8c256210
  * pops a0 matrices off the matrix stack
- * called by: CAnimal_draw_029510, CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968,
- * CEnv_draw_with_three_parts_swapped, CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec,
- * Class_1298b8_m2_015588, Class_1298b8_m3_0155e8 (+50 more)
+ * called by: CAnimal_draw_029ca8, CAnimal_draw_029dec, CAnimal_draw_088288, CAnimal_draw_model_a, CAnimal_draw_model_b,
+ * CAnimal_uses_njGetMatrix_026968, CEnv_draw_with_three_parts_swapped, CSquidLine_uses_matrix_push_0ad354 (+50 more)
  */
 u32 matrix_pop_n(int a0) {
     if (g_8c4aa5a0 - a0 != 0) {
@@ -11037,9 +11036,8 @@ u32 matrix_apply_point_w1(int a0, double *a1, double *a2) {
 /*
  * matrix_push  0x8c256328
  * pushes the current 4x4 matrix onto the matrix stack
- * called by: CAnimal_draw_029510, CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968,
- * CEnv_draw_with_three_parts_swapped, CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec,
- * Class_1298b8_m2_015588, Class_1298b8_m3_0155e8 (+50 more)
+ * called by: CAnimal_draw_029ca8, CAnimal_draw_029dec, CAnimal_draw_088288, CAnimal_draw_model_a, CAnimal_draw_model_b,
+ * CAnimal_uses_njGetMatrix_026968, CEnv_draw_with_three_parts_swapped, CSquidLine_uses_matrix_push_0ad354 (+50 more)
  */
 u32 matrix_push(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 *puVar1;
@@ -12007,9 +12005,9 @@ u32 njRotateX_like(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 /*
  * njRotateXYZ  0x8c256b0c
  * rotates matrix a0 (NULL: current) by Ninja angles a1, a2, a3
- * called by: CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968, CSquidLine_uses_matrix_push_0ad354,
- * Class_1298b8_m11_0159ec, Class_1298b8_m3_0155e8, Class_1298b8_m5_015720, Class_1298b8_m6_0157f8,
- * Class_1298b8_m7_015890 (+28 more) decompiler: Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256c66
+ * called by: CAnimal_draw_029dec, CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968,
+ * CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec, Class_1298b8_m3_0155e8, Class_1298b8_m5_015720,
+ * Class_1298b8_m6_0157f8 (+28 more) decompiler: Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256c66
  */
 u32 njRotateXYZ(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     float fVar1;
@@ -12295,7 +12293,7 @@ u32 njRotateZ(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 /*
  * ninja_float_calc_256e18  0x8c256e18
  * area name: in the ninja library code range; behaviour name: floating-point arithmetic
- * called by: alt_entry_253d20, game_uses_njGetMatrix_029af0, motion_matrix_apply_rot_other,
+ * called by: CAnimal_uses_njGetMatrix_029af0, alt_entry_253d20, motion_matrix_apply_rot_other,
  * ninja_uses_matrix_push_253d1c decompiler: Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256f72
  */
 u32 ninja_float_calc_256e18(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
@@ -12446,9 +12444,9 @@ u32 ninja_float_calc_256e18(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 /*
  * matrix_scale  0x8c256fec
  * scales the matrix rows by fr4, fr5, fr6
- * called by: CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968, CSquidLine_draw_grow_scaled,
- * CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec, Class_1298b8_m4_0156a0, Class_1298b8_m5_015720,
- * Class_1298b8_m7_015890 (+26 more)
+ * called by: CAnimal_draw_029dec, CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968,
+ * CAnimal_uses_njGetMatrix_029af0, CSquidLine_draw_grow_scaled, CSquidLine_uses_matrix_push_0ad354,
+ * Class_1298b8_m11_0159ec, Class_1298b8_m4_0156a0 (+26 more)
  */
 u32 matrix_scale(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float in_fr5;
@@ -14406,7 +14404,7 @@ u32 ninja_uses_kamui_cfg_texture_memory_25806c(u32 a0, u32 *a1, u32 unused_a2, u
     *a1 = a0;
     *in_r2 = a0;
     kamui_uses_kamui_cfg_texture_memory_211120(0x8c4aacbc, a1, unused_a2, a3);
-    uVar1 = ninja_calls_scan_loop_25b49e(0);
+    uVar1 = ninja_uses_vram_get_usage_stats_25b49e(0);
     g_8c4aa6a8 = uVar1;
     return uVar1;
 }
@@ -14467,12 +14465,12 @@ u32 set_g_8c4aa558(u32 a0) {
 }
 
 /*
- * ninja_draw_2580c6  0x8c2580c6
- * area name: in the ninja library code range; behaviour name: mostly calls draw functions
+ * ninja_uses_irq_remove_handler_like_2580c6  0x8c2580c6
+ * area name: in the ninja library code range; behaviour name: its main named callee is irq_remove_handler_like
  */
-u32 ninja_draw_2580c6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 ninja_uses_irq_remove_handler_like_2580c6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     if (g_8c4aa6dc != 0) {
-        ain0 = shinobi_draw_1fa54c(g_8c4ab334);
+        ain0 = irq_remove_handler_like(g_8c4ab334);
     }
     g_8c277c68 = g_8c277c68 + 1;
     return ain0;
@@ -14607,7 +14605,7 @@ u32 aica_reg_258210(u32 a0) {
     u32 uStack_c;
 
     uStack_c = a0;
-    shinobi_uses_syG2FifoWait_1f92c0(0xa0702c00, &uStack_10, 4, 1, 0, 0);
+    g2_bus_copy_strided(0xa0702c00, &uStack_10, 4, 1, 0, 0);
     uStack_10 = uStack_10 & (int)(int)0xfffffcff | uStack_c;
     uVar1 = syG2CpuCopy(&uStack_10, 0xa0702c00, 4, 1, 0, 0);
     return uVar1;
@@ -15375,7 +15373,7 @@ LAB_8c258cae:
     }
     pvr_2580e4(uVar1, ar5_00, ar6_00, iVar2, (((u32)bVar13 | (u32)in_S << 1 | (u32)in_IMASK << 4) & 0xf0) >> 4);
     kamui_uses_kamui_cfg_texture_memory_211120(&g_8c4aacbc, ar5_00, ar6_00, iVar2);
-    g_8c4aa6a8 = ninja_calls_scan_loop_25b49e(0);
+    g_8c4aa6a8 = ninja_uses_vram_get_usage_stats_25b49e(0);
     return g_8c4aa6a8;
 }
 
@@ -15624,7 +15622,7 @@ int ninja_set_event900_callback(int a0) {
 
     piVar1 = 0x8c4ab330;
     if (g_8c4ab330 != 0) {
-        in_r0 = shinobi_draw_1fa54c(g_8c4ab330);
+        in_r0 = irq_remove_handler_like(g_8c4ab330);
         *piVar1 = 0;
     }
     if (a0 != 0) {
@@ -18612,11 +18610,11 @@ u32 alt_entry_25b440(int a0) {
 }
 
 /*
- * ninja_calls_scan_loop_25b49e  0x8c25b49e
- * area name: in the ninja library code range; behaviour name: its callees mostly do: calls_scan_loop
+ * ninja_uses_vram_get_usage_stats_25b49e  0x8c25b49e
+ * area name: in the ninja library code range; behaviour name: its callees mostly do: uses_vram_get_usage_stats
  * called by: draw_uses_free_sys_258b26, ninja_uses_kamui_cfg_texture_memory_25806c
  */
-u32 ninja_calls_scan_loop_25b49e(int a0) {
+u32 ninja_uses_vram_get_usage_stats_25b49e(int a0) {
     u32 uStack_10;
     u32 uStack_c;
     int iStack_8;
@@ -18625,7 +18623,7 @@ u32 ninja_calls_scan_loop_25b49e(int a0) {
         return g_8c4aa6a8;
     }
     iStack_8 = a0;
-    kamui_calls_scan_loop_20cfe0(&uStack_10, &uStack_c);
+    kamui_uses_vram_get_usage_stats_20cfe0(&uStack_10, &uStack_c);
     if (iStack_8 == 0) {
         return uStack_10;
     }
@@ -18714,9 +18712,9 @@ u32 tex_error_reset(void) {
 /*
  * touch_fields_30_3c  0x8c25b5d0
  * rewrites the four words at +0x30..+0x3c with themselves (no effect)
- * called by: CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968, CSquidLine_uses_matrix_push_0ad354,
- * Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0,
- * Class_1298b8_m5_015720 (+23 more)
+ * called by: CAnimal_draw_088288, CAnimal_uses_njGetMatrix_026968, CAnimal_uses_njGetMatrix_029af0,
+ * CSquidLine_uses_matrix_push_0ad354, Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8,
+ * Class_1298b8_m4_0156a0 (+23 more)
  */
 u32 touch_fields_30_3c(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     if (a0 != 0) {
@@ -23458,8 +23456,9 @@ int ninja_float_calc_25c9d8(u32 *a0, u32 *a1, int a2) {
 /*
  * njGetMatrix  0x8c25cddc
  * copies the current matrix into a0
- * called by: CAnimal_uses_njGetMatrix_026968, Class_129938_m1_0170e0, Class_129938_m2_0171f4, Class_1299f8_m4_019588,
- * Class_129a24_m1_019b68, Vec3_vec_023484, Vec3_vec_023570, Vec3_vec_023668 (+6 more)
+ * called by: CAnimal_uses_njGetMatrix_026968, CAnimal_uses_njGetMatrix_029af0, Class_129938_m1_0170e0,
+ * Class_129938_m2_0171f4, Class_1299f8_m4_019588, Class_129a24_m1_019b68, Vec3_rotate_euler_deg,
+ * Vec3_rotate_euler_deg_b (+6 more)
  */
 u32 njGetMatrix(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
@@ -23856,7 +23855,7 @@ u32 *ninja_draw_25d780(void) {
 /*
  * ninja_draw_25d7c6  0x8c25d7c6
  * area name: in the ninja library code range; behaviour name: mostly calls draw functions
- * called by: kamui_uses_kamui_cfg_texture_memory_211120, kamui_uses_ta_fifo_21092e, shinobi_draw_206162,
+ * called by: kamui_uses_kamui_cfg_texture_memory_211120, kmCreateVertexBuffer_like, shinobi_draw_206162,
  * ta_uses_sh4_dmac_210e40
  */
 u32 ninja_draw_25d7c6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0) {

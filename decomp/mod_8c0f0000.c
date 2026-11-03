@@ -20,7 +20,7 @@ u32 *copy_5_words(u32 *a0, u32 *a1, u32 a2) {
 /*
  * game_vec_0f3e30  0x8c0f3e30
  * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
- * called by: Class_1299f8_uses_clear_15_bytes_0243b0
+ * called by: game_uses_clear_15_bytes_0243b0
  */
 u8 *game_vec_0f3e30(u8 *a0, u32 a1, u32 a2) {
     Vec3_ctor_zero(a0 + 0x1c, a1, a2);
@@ -1500,8 +1500,8 @@ u32 CAnimal_float_calc_0f528c(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a
 
 /*
  * CAnimal_calls_calc_0f52c8  0x8c0f52c8
- * area name: sits between CAnimal functions (same compilation unit); behaviour name: its callees mostly do: calc
- * called by: draw_draw_helper_029dec, game_uses_obj_set_texlist_0297b8
+ * area name: only called from CAnimal methods; behaviour name: its callees mostly do: calc
+ * called by: CAnimal_draw_029dec, CAnimal_draw_model_b
  */
 u32 CAnimal_calls_calc_0f52c8(void) {
     u32 uVar1;
@@ -1511,11 +1511,11 @@ u32 CAnimal_calls_calc_0f52c8(void) {
 }
 
 /*
- * game_calls_calc_0f5308  0x8c0f5308
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: calc
- * called by: draw_draw_helper_029dec, game_uses_obj_set_texlist_0297b8
+ * CAnimal_calls_calc_0f5308  0x8c0f5308
+ * area name: only called from CAnimal methods; behaviour name: its callees mostly do: calc
+ * called by: CAnimal_draw_029dec, CAnimal_draw_model_b
  */
-u32 game_calls_calc_0f5308(void) {
+u32 CAnimal_calls_calc_0f5308(void) {
     u32 uVar1;
 
     uVar1 = gfxlib_calc_219070();

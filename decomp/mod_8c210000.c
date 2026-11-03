@@ -33,11 +33,11 @@ int pvr_uses_sq_copy_words_2103c4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u
 }
 
 /*
- * kamui_uses_ta_fifo_21092e  0x8c21092e
- * area name: in the kamui library code range; behaviour name: its main named callee is ta_fifo_211c98
- * called by: kamui_draw_211f40
+ * kmCreateVertexBuffer_like  0x8c21092e
+ * records the vertex buffer and its per-list sizes (opaque, modifier, translucent, punch-through) and sets up the list
+ * buffers called by: kamui_draw_211f40
  */
-int kamui_uses_ta_fifo_21092e(u32 *a0, int a1, int a2, int a3, int s0) {
+int kmCreateVertexBuffer_like(u32 *a0, int a1, int a2, int a3, int s0) {
     u32 uVar1;
     u32 *puVar2;
     u8 *puVar3;
@@ -106,7 +106,7 @@ int kamui_uses_ta_fifo_21092e(u32 *a0, int a1, int a2, int a3, int s0) {
             if (0x200000U - g_8c4aa200 < g_8c4aa1f8) {
                 g_8c4aa1f8 = 0x200000U - g_8c4aa200;
             }
-            iVar7 = vram_list_203820(g_8c4aa1f8, &g_8c4aa280, &g_8c4aa284);
+            iVar7 = vram_uses_vram_alloc_best_fit_203820(g_8c4aa1f8, &g_8c4aa280, &g_8c4aa284);
             if (iVar7 == 0) {
                 g_8c4aa004 = g_8c4aa1f8;
                 uVar8 = g_8c4a9c24 >> 7;
@@ -280,7 +280,7 @@ int ta_uses_sh4_dmac_210e40(int a0, u32 a1) {
         if (0x200000U - g_8c4aa200 < g_8c4aa1f8) {
             g_8c4aa1f8 = 0x200000U - g_8c4aa200;
         }
-        iVar1 = vram_list_203820(g_8c4aa1f8, &g_8c4aa280, &g_8c4aa284);
+        iVar1 = vram_uses_vram_alloc_best_fit_203820(g_8c4aa1f8, &g_8c4aa280, &g_8c4aa284);
         if (iVar1 == 0) {
             g_8c4aa004 = g_8c4aa1f8;
             ninja_draw_25d7c6(g_8c4a9c18 >> 7, g_8c4a9c1c >> 7, g_8c4a9c20 >> 7, g_8c4a9c24 >> 7, uVar2 & ~g_8c4aa1b8);
@@ -695,7 +695,7 @@ int kamui_uses_kamui_cfg_texture_memory_211120(int a0, u32 unused_a1, u32 unused
     if (g_8c4aa1f8 < g_8c4aa204) {
         iVar4 = 3;
     } else {
-        iVar4 = vram_list_203820(g_8c4aa1f8, auStack_54, auStack_50);
+        iVar4 = vram_uses_vram_alloc_best_fit_203820(g_8c4aa1f8, auStack_54, auStack_50);
         if (iVar4 == 0) {
             g_8c4aa004 = g_8c4aa1f8;
             uVar3 = g_8c4a9c24 >> 7;
@@ -732,7 +732,7 @@ int kamui_uses_kamui_cfg_texture_memory_211120(int a0, u32 unused_a1, u32 unused
 /*
  * kamui_fill_loop_211730  0x8c211730
  * area name: in the kamui library code range; behaviour name: a loop that writes memory
- * called by: kamui_uses_kamui_cfg_texture_memory_211120, kamui_uses_ta_fifo_21092e, ta_uses_sh4_dmac_210e40
+ * called by: kamui_uses_kamui_cfg_texture_memory_211120, kmCreateVertexBuffer_like, ta_uses_sh4_dmac_210e40
  */
 u32 kamui_fill_loop_211730(int a0, int a1, int a2, int a3, int s0) {
     u32 *puVar1;
@@ -790,7 +790,7 @@ u32 kamui_fill_loop_211730(int a0, int a1, int a2, int a3, int s0) {
 /*
  * kamui_calc_211876  0x8c211876
  * area name: in the kamui library code range; behaviour name: integer arithmetic on its arguments
- * called by: kamui_uses_kamui_cfg_texture_memory_211120, kamui_uses_ta_fifo_21092e, ta_uses_sh4_dmac_210e40
+ * called by: kamui_uses_kamui_cfg_texture_memory_211120, kmCreateVertexBuffer_like, ta_uses_sh4_dmac_210e40
  */
 u32 kamui_calc_211876(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
     u32 uVar1;
@@ -865,7 +865,7 @@ u32 kamui_calc_211876(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
 /*
  * kamui_copy_211a20  0x8c211a20
  * area name: in the kamui library code range; behaviour name: mostly calls copy functions
- * called by: kamui_uses_kamui_cfg_texture_memory_211120, kamui_uses_ta_fifo_21092e
+ * called by: kamui_uses_kamui_cfg_texture_memory_211120, kmCreateVertexBuffer_like
  */
 u8 *kamui_copy_211a20(u32 a0) {
     u32 *puVar1;
@@ -946,7 +946,7 @@ u8 *kamui_copy_211a20(u32 a0) {
 /*
  * kamui_update_fields_211ba4  0x8c211ba4
  * area name: in the kamui library code range; behaviour name: conditionally writes members
- * called by: kamui_uses_kamui_cfg_texture_memory_211120, kamui_uses_ta_fifo_21092e, ta_uses_sh4_dmac_210e40
+ * called by: kamui_uses_kamui_cfg_texture_memory_211120, kmCreateVertexBuffer_like, ta_uses_sh4_dmac_210e40
  */
 int kamui_update_fields_211ba4(u32 a0) {
     u32 uVar1;
@@ -976,7 +976,7 @@ int kamui_update_fields_211ba4(u32 a0) {
 
 /*
  * ta_fifo_211c98  0x8c211c98
- * called by: kamui_uses_kamui_cfg_texture_memory_211120, kamui_uses_ta_fifo_21092e
+ * called by: kamui_uses_kamui_cfg_texture_memory_211120, kmCreateVertexBuffer_like
  */
 u32 ta_fifo_211c98(int a0, int a1, int a2, int a3, int s0, u32 s4, u32 s8) {
     int *piVar1;
@@ -1068,7 +1068,7 @@ u32 ta_fifo_211c98(int a0, int a1, int a2, int a3, int s0, u32 s4, u32 s8) {
 /*
  * kamui_draw_211f40  0x8c211f40
  * area name: in the kamui library code range; behaviour name: mostly calls draw functions
- * called by: kamui_uses_kamui_cfg_texture_memory_211120, kamui_uses_ta_fifo_21092e, shinobi_draw_20af76,
+ * called by: kamui_uses_kamui_cfg_texture_memory_211120, kmCreateVertexBuffer_like, shinobi_draw_20af76,
  * ta_uses_sh4_dmac_210e40
  */
 int kamui_draw_211f40(int a0, u32 a1, u32 a2, u32 a3) {
@@ -1081,7 +1081,7 @@ int kamui_draw_211f40(int a0, u32 a1, u32 a2, u32 a3) {
     uVar4 = 2;
     if (((a0 != 1) ||
          (a2 = g_8c4aa1a8, a3 = g_8c4aa1ac,
-          iVar1 = kamui_uses_ta_fifo_21092e(g_8c4aa1a0, g_8c4aa1a4, g_8c4aa1a8, g_8c4aa1ac, g_8c4aa1b0), iVar1 == 0)) &&
+          iVar1 = kmCreateVertexBuffer_like(g_8c4aa1a0, g_8c4aa1a4, g_8c4aa1a8, g_8c4aa1ac, g_8c4aa1b0), iVar1 == 0)) &&
         ((a0 != 2 || (iVar1 = ta_uses_sh4_dmac_210e40(g_8c4aa1a0, g_8c4aa1f8), iVar1 == 0)))) {
         if (g_8c4aa1bc == g_8c4aa1cc) {
             uVar4 = 1;
@@ -1360,18 +1360,18 @@ u32 gdfs_load_file_alloc(u32 a0, u32 unused_a1, int a2, u32 a3) {
 /*
  * bswap32  0x8c2124aa
  * byte-swaps a 32-bit word
- * called by: gdfs_uses_bswap32_2124d0
+ * called by: nj_file_next_chunk
  */
 u32 bswap32(u32 a0) {
     return a0 << 0x18 | (0xff00 & a0) << 8 | (0xff0000 & a0) >> 8 | (0xff000000 & a0) >> 0x18;
 }
 
 /*
- * gdfs_uses_bswap32_2124d0  0x8c2124d0
- * area name: sits between gdfs functions (same compilation unit); behaviour name: its main named callee is bswap32
- * called by: CDCGD_uses_CDCGD_queue_unique_request_01fd08
+ * nj_file_next_chunk  0x8c2124d0
+ * reads the chunk header at offset *a1 of Ninja file a0, stores its tag (NJIN, NJCM, NJBM, NJTL, NJLI, NJCA, NMDM, ...)
+ * in *a2 and advances past it called by: CDCGD_queue_requests_from_list
  */
-u32 gdfs_uses_bswap32_2124d0(int a0, int *a1, int *a2, u32 a3) {
+u32 nj_file_next_chunk(int a0, int *a1, int *a2, u32 a3) {
     u8 *puVar1;
     u32 uVar2;
     int *piVar3;
@@ -1541,7 +1541,8 @@ u32 point_transform_or_copy(int a0, float *a1, float *a2, u32 unused_a3, u32 ain
  * njCalcVector_like  0x8c21279c
  * *a2 = vector a1 rotated by matrix a0 (the current matrix when 0), normalised when 8c4ab148 is set
  * called by: Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12b580_uses_njCalcVector_like_0d8808,
- * Class_12b758_draw_0e4dd0, Vec3_uses_set_vec_0e3f24, Vec3_vec_023484, Vec3_vec_023570, Vec3_vec_023668 (+9 more)
+ * Class_12b758_draw_0e4dd0, Vec3_rotate_euler_deg, Vec3_rotate_euler_deg_b, Vec3_rotate_euler_deg_c,
+ * Vec3_uses_set_vec_0e3f24 (+9 more)
  */
 u32 njCalcVector_like(int a0, float *a1, float *a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -6550,11 +6551,11 @@ u64 *kamui_fill_loop_214554(double *a0, double *a1, double *a2, u64 *a3) {
 }
 
 /*
- * kamui_fill_loop_21496c  0x8c21496c
- * area name: in the kamui library code range; behaviour name: a loop that writes memory
+ * gfx_strips_emit_s32_uv_like  0x8c21496c
+ * emits the index strips a0 over 32-byte projected vertices a1 as TA vertices with scaled UVs
  * called by: vram_draw_218804
  */
-float *kamui_fill_loop_21496c(short *a0, int a1, u32 a2, float *a3) {
+float *gfx_strips_emit_s32_uv_like(short *a0, int a1, u32 a2, float *a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -7915,7 +7916,7 @@ double *kamui_fill_loop_214d6c(double *a0, double *a1, double *a2, double *a3) {
 /*
  * gfxlib_fill_loop_215250  0x8c215250
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_218c82
+ * called by: gfx_vertex_chunks_process_s32
  */
 int gfxlib_fill_loop_215250(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     float fVar1;
@@ -8093,11 +8094,11 @@ int gfxlib_fill_loop_215250(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * gfxlib_fill_loop_215374  0x8c215374
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_218c82
+ * gfx_verts_light_accumulate_like  0x8c215374
+ * transforms vertices and adds the contribution of each light enabled in the light mask
+ * called by: gfx_vertex_chunks_process_s32
  */
-int gfxlib_fill_loop_215374(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int gfx_verts_light_accumulate_like(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     float fVar1;
     int iVar2;
     float *pfVar3;
@@ -8233,7 +8234,7 @@ int gfxlib_fill_loop_215374(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * gfxlib_fill_loop_2154dc  0x8c2154dc
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_218c82
+ * called by: gfx_vertex_chunks_process_s32
  */
 int gfxlib_fill_loop_2154dc(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     double *pdVar1;
@@ -8628,7 +8629,7 @@ int gfxlib_fill_loop_2154dc(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * gfxlib_fill_loop_215674  0x8c215674
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_218c82
+ * called by: gfx_vertex_chunks_process_s32
  * decompiler: Instruction at (ram,0x8c2157a8) overlaps instruction at (ram,0x8c2157a6)
  */
 int gfxlib_fill_loop_215674(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
@@ -8989,7 +8990,7 @@ int gfxlib_fill_loop_215674(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * gfxlib_fill_loop_2157c8  0x8c2157c8
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_218c82
+ * called by: gfx_vertex_chunks_process_s32
  */
 int gfxlib_fill_loop_2157c8(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     float *pfVar1;
@@ -9191,7 +9192,7 @@ int gfxlib_fill_loop_2157c8(int *a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * gfxlib_fill_loop_215988  0x8c215988
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_218c82
+ * called by: gfx_vertex_chunks_process_s32
  */
 int gfxlib_fill_loop_215988(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     double *pdVar1;
@@ -13747,7 +13748,7 @@ u64 *gfxlib_fill_loop_2170f4(double *a0, double *a1, double *a2, u64 *a3) {
 /*
  * gfx_project_points_2d  0x8c217618
  * projects the job's 2D points through the current matrix to screen x, y and 1/z, counting the points with z <= 1
- * called by: gfxlib_draw_21849c
+ * called by: gfx_vertex_chunks_transform
  */
 int gfx_project_points_2d(int a0) {
     float fVar1;
@@ -13830,7 +13831,7 @@ int gfx_project_points_2d(int a0) {
 /*
  * gfx_project_points_2d_minz  0x8c21768c
  * projects the job's points through the current matrix to screen x, y and 1/z, keeping the larger of a running value
- * and the job's +0x10 in w called by: gfxlib_draw_21849c
+ * and the job's +0x10 in w called by: gfx_vertex_chunks_transform
  */
 int gfx_project_points_2d_minz(int a0) {
     float fVar1;
@@ -13927,7 +13928,7 @@ int gfx_project_points_2d_minz(int a0) {
 /*
  * gfx_project_points_3d  0x8c217744
  * projects the job's 3D points through the current matrix to screen x, y and 1/z, counting the points with z <= 1
- * called by: gfxlib_draw_21849c
+ * called by: gfx_vertex_chunks_transform
  */
 int gfx_project_points_3d(int a0) {
     float fVar1;
@@ -14002,7 +14003,7 @@ int gfx_project_points_3d(int a0) {
 /*
  * gfx_project_verts_s16_w1  0x8c2177b8
  * projects a0->count 16-byte vertices to screen x, y, 1/z with w = 1, invalidating the output cache lines; counts near
- * ones called by: gfxlib_draw_21849c
+ * ones called by: gfx_vertex_chunks_transform
  */
 int gfx_project_verts_s16_w1(int a0) {
     float fVar1;
@@ -14077,7 +14078,7 @@ int gfx_project_verts_s16_w1(int a0) {
 /*
  * gfx_project_verts_s16_z  0x8c21782c
  * projects 16-byte vertices to 1/z and screen depth only, into 0x18-byte records
- * called by: gfxlib_draw_21849c
+ * called by: gfx_vertex_chunks_transform
  */
 int gfx_project_verts_s16_z(int a0) {
     float fVar1;
@@ -14144,7 +14145,7 @@ int gfx_project_verts_s16_z(int a0) {
 /*
  * gfx_project_verts_s16_wpacked  0x8c2178a0
  * projects 16-byte vertices to screen x, y, 1/z with w taken from the packed s16 in the fourth word
- * called by: gfxlib_draw_21849c
+ * called by: gfx_vertex_chunks_transform
  */
 int gfx_project_verts_s16_wpacked(int a0) {
     float fVar1;
@@ -14220,7 +14221,7 @@ int gfx_project_verts_s16_wpacked(int a0) {
 /*
  * gfx_project_verts_s24_z  0x8c217924
  * projects 24-byte vertices to 1/z and screen depth only
- * called by: gfxlib_draw_21849c
+ * called by: gfx_vertex_chunks_transform
  */
 int gfx_project_verts_s24_z(int a0) {
     float fVar1;
@@ -14287,7 +14288,7 @@ int gfx_project_verts_s24_z(int a0) {
 /*
  * gfx_project_verts_s28_wmin  0x8c2179e4
  * projects 28-byte vertices to screen x, y, 1/z with w = max(1, a0+0x10)
- * called by: gfxlib_draw_21849c
+ * called by: gfx_vertex_chunks_transform
  */
 int gfx_project_verts_s28_wmin(int a0) {
     float fVar1;
@@ -14368,7 +14369,7 @@ int gfx_project_verts_s28_wmin(int a0) {
 /*
  * gfx_project_verts_s28_z  0x8c217aa4
  * projects 28-byte vertices to 1/z and screen depth only
- * called by: gfxlib_draw_21849c
+ * called by: gfx_vertex_chunks_transform
  */
 int gfx_project_verts_s28_z(int a0) {
     float fVar1;
@@ -14435,7 +14436,7 @@ int gfx_project_verts_s28_z(int a0) {
 /*
  * gfx_project_verts_weighted  0x8c217b18
  * adds weighted transformed vertices into their target slots (set, add, or add-and-project by mode a1>>8)
- * called by: gfxlib_draw_21849c
+ * called by: gfx_vertex_chunks_transform
  */
 int gfx_project_verts_weighted(int a0, u32 a1) {
     float fVar1;
@@ -14523,7 +14524,7 @@ int gfx_project_verts_weighted(int a0, u32 a1) {
 /*
  * gfx_project_verts_s16_wmin  0x8c217c20
  * projects 16-byte vertices to screen x, y, 1/z with w = max(1, a0+0x10)
- * called by: gfxlib_draw_21849c
+ * called by: gfx_vertex_chunks_transform
  */
 int gfx_project_verts_s16_wmin(int a0) {
     float fVar1;
@@ -14605,7 +14606,7 @@ int gfx_project_verts_s16_wmin(int a0) {
 /*
  * gfx_project_verts_s20_wmin  0x8c217d1c
  * projects 20-byte vertices to screen x, y, 1/z with w = max(1, a0+0x10)
- * called by: gfxlib_draw_21849c
+ * called by: gfx_vertex_chunks_transform
  */
 int gfx_project_verts_s20_wmin(int a0) {
     float fVar1;
@@ -15313,11 +15314,11 @@ u8 *gfxlib_draw_217f12(u16 *a0, int a1, int a2, u32 *a3, u8 *ain0) {
 }
 
 /*
- * gfxlib_draw_21849c  0x8c21849c
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: vram64_21869c, vram64_2186a0
+ * gfx_vertex_chunks_transform  0x8c21849c
+ * walks vertex chunks a0 (ending at 0xff) and runs the projection kernel for each chunk type into buffer a1 (16-byte
+ * slots) called by: vram64_21869c, vram64_2186a0
  */
-u32 gfxlib_draw_21849c(short *a0, u32 a1) {
+u32 gfx_vertex_chunks_transform(short *a0, u32 a1) {
     u16 uVar1;
     short sVar2;
     int *piVar3;
@@ -15434,7 +15435,7 @@ u32 vram64_21869c(int *a0, u32 a1) {
         (iVar1 = gfxlib_test_217e18(a0), in_r0 = 0, iVar1 == 0)) {
         uVar2 = g_8c4aa510;
         if (*a0 != 0) {
-            in_r0 = gfxlib_draw_21849c(*a0, g_8c4aa510);
+            in_r0 = gfx_vertex_chunks_transform(*a0, g_8c4aa510);
             a1 = in_r0;
         }
         if (a0[1] != 0) {
@@ -15467,7 +15468,7 @@ u32 vram64_2186a0(int *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 *ain1) {
     }
     ar7_00 = g_8c4aa510;
     if (*a0 != 0) {
-        a1 = gfxlib_draw_21849c(*a0, g_8c4aa510);
+        a1 = gfx_vertex_chunks_transform(*a0, g_8c4aa510);
     }
     if (a0[1] != 0) {
         g_8c4ab1d8 = a1;
@@ -15745,7 +15746,7 @@ u32 vram_draw_218804(u16 *a0, int a1, u8 *a2, u32 unused_a3, u32 ain0) {
                     ar7_00 = (u8 *)(*pcVar7)(uVar6, a5, a6, ar7_00);
                     if (a1 == 0) {
                         a5 = a2;
-                        uVar3 = kamui_fill_loop_21496c(puVar5, a2, a6_00, ar7_00);
+                        uVar3 = gfx_strips_emit_s32_uv_like(puVar5, a2, a6_00, ar7_00);
                         ar4_00 = uVar3;
                         a6 = a6_00;
                     } else {
@@ -15797,11 +15798,11 @@ u32 vram_draw_218804(u16 *a0, int a1, u8 *a2, u32 unused_a3, u32 ain0) {
 }
 
 /*
- * gfxlib_calls_fill_loop_218c82  0x8c218c82
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
+ * gfx_vertex_chunks_process_s32  0x8c218c82
+ * walks vertex chunks of types 0x29, 0x2a and 0x2c into 32-byte slots of a1, with one kernel set for each lighting mode
  * called by: gfx_model_draw_a
  */
-u32 gfxlib_calls_fill_loop_218c82(short *a0, int a1) {
+u32 gfx_vertex_chunks_process_s32(short *a0, int a1) {
     u16 uVar1;
     short sVar2;
     int *piVar3;
@@ -15855,7 +15856,7 @@ u32 gfxlib_calls_fill_loop_218c82(short *a0, int a1) {
                 if (uVar8 != 0x2a) {
                     return 0xffffffff;
                 }
-                iVar6 = gfxlib_fill_loop_215374(0x8c4aa2b0, ar5_00, ar6_00, 0x1c);
+                iVar6 = gfx_verts_light_accumulate_like(0x8c4aa2b0, ar5_00, ar6_00, 0x1c);
             }
         } else if (uVar8 == 0x29) {
             iVar6 = gfxlib_fill_loop_215674(0x8c4aa2b0, ar5_00, ar6_00, 0x1c);
@@ -15919,7 +15920,7 @@ u32 gfx_model_draw_a(int *a0, u32 a1) {
             }
         }
         ar6_00 = g_8c4aa510;
-        if ((*a0 == 0) || (iVar1 = gfxlib_calls_fill_loop_218c82(*a0, g_8c4aa510), iVar1 != -1)) {
+        if ((*a0 == 0) || (iVar1 = gfx_vertex_chunks_process_s32(*a0, g_8c4aa510), iVar1 != -1)) {
             if (a0[1] != 0) {
                 vram_draw_218804(a0[1], g_8c4c0fa0, ar6_00, r7, in_stack_ffffffe8);
             }
@@ -16218,9 +16219,9 @@ u32 gfxlib_float_calc_219038(void) {
 /*
  * gfxlib_calc_219070  0x8c219070
  * area name: in the gfxlib library code range; behaviour name: integer arithmetic on its arguments
- * called by: CAnimal_calls_calc_0f52c8, Class_12b3b8_uses_object_dtor_delete_0e7a78,
+ * called by: CAnimal_calls_calc_0f52c8, CAnimal_calls_calc_0f5308, Class_12b3b8_uses_object_dtor_delete_0e7a78,
  * Class_12b580_uses_njCalcVector_like_0d8808, Class_12b758_draw_0e4dd0, Vec3_uses_set_vec_0e3f24,
- * draw_uses_njCalcVector_like_0d4bdc, game_calls_calc_0f4b44, game_calls_calc_0f5308 (+7 more)
+ * draw_uses_njCalcVector_like_0d4bdc, game_calls_calc_0f4b44 (+7 more)
  */
 u32 gfxlib_calc_219070(void) {
     u64 in_dr4;
@@ -16741,7 +16742,7 @@ u8 *gfx_meshsets_emit(short *a0, u32 a1, u32 a2, u32 a3, u8 *ain0) {
         g_8c4ab1b0 = psVar3;
         _DAT_ff00003c = _DAT_ff000038;
         if (puVar4 == (u8 *)0x2c) {
-            iVar2 = gfxlib_fill_loop_232cd0(&g_8c4ab198, ar5_01);
+            iVar2 = gfx_project_verts_weighted_b(&g_8c4ab198, ar5_01);
         } else {
             iVar2 = (*(code *)(&PTR_FUN_8c2759f0)[(int)(puVar4 + -0x20) * 2])(&g_8c4ab198, ar5_00, a2, a3);
             ar5_01 = ar5_00;
@@ -17074,7 +17075,7 @@ int gfxlib_draw_219ad0(u16 *a0, u16 *a1, u16 *a2, u32 unused_a3, int ain0) {
                         ar7_00 = (u8 *)(*pcVar7)(uVar3, a5, a6, ar7_00);
                         if (a1 == NULL) {
                             a5 = a2;
-                            ain0 = gfxlib_fill_loop_221a8c(puStack_58, a2, puVar6, ar7_00);
+                            ain0 = gfx_strips_emit_s64_cull(puStack_58, a2, puVar6, ar7_00);
                             iVar2 = ain0;
                             a6 = puVar6;
                         } else {
@@ -17210,7 +17211,7 @@ int gfxlib_draw_219ad0(u16 *a0, u16 *a1, u16 *a2, u32 unused_a3, int ain0) {
                     } else if ((uVar5 & 0x40) == 0) {
                         if (a1 == NULL) {
                             a5 = a2;
-                            ain0 = gfxlib_fill_loop_2234a4(puStack_58, a2, puVar6, ar7_00);
+                            ain0 = gfx_strips_emit_s64_cull_c(puStack_58, a2, puVar6, ar7_00);
                             iVar2 = ain0;
                             a6 = puVar6;
                         } else {
@@ -17242,11 +17243,11 @@ int gfxlib_draw_219ad0(u16 *a0, u16 *a1, u16 *a2, u32 unused_a3, int ain0) {
 }
 
 /*
- * gfxlib_calls_fill_loop_21a4f6  0x8c21a4f6
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
+ * gfx_vertex_chunks_process_s64  0x8c21a4f6
+ * walks vertex chunks of types 0x29, 0x2a and 0x2c into 64-byte slots of a1, with one kernel set for each lighting mode
  * called by: gfx_model_draw_c
  */
-u32 gfxlib_calls_fill_loop_21a4f6(short *a0, int a1) {
+u32 gfx_vertex_chunks_process_s64(short *a0, int a1) {
     u16 uVar1;
     short sVar2;
     int *piVar3;
@@ -17293,7 +17294,7 @@ u32 gfxlib_calls_fill_loop_21a4f6(short *a0, int a1) {
         uVar8 = uVar11 & 0xff;
         if (g_8c4aa554 == 0) {
             if (uVar8 == 0x29) {
-                iVar6 = gfxlib_fill_loop_226980(0x8c4aa2f8, ar5_00, ar6_00, 0x1c);
+                iVar6 = gfx_verts_light_s64_like(0x8c4aa2f8, ar5_00, ar6_00, 0x1c);
             } else if (uVar8 == 0x2c) {
                 iVar6 = gfxlib_fill_loop_226f70(0x8c4aa2f8, uVar11, ar6_00, 0x1c);
             } else {
@@ -17364,7 +17365,7 @@ u32 gfx_model_draw_c(int *a0, u32 a1) {
             }
         }
         ar6_00 = g_8c4aa510;
-        if ((*a0 == 0) || (iVar1 = gfxlib_calls_fill_loop_21a4f6(*a0, g_8c4aa510), iVar1 != -1)) {
+        if ((*a0 == 0) || (iVar1 = gfx_vertex_chunks_process_s64(*a0, g_8c4aa510), iVar1 != -1)) {
             if (a0[1] != 0) {
                 gfxlib_draw_219ad0(a0[1], g_8c4c0fa0, ar6_00, r7, in_stack_ffffffe8);
             }
@@ -17628,8 +17629,8 @@ u32 gfxlib_update_fields_21a854(void) {
 /*
  * gfx_object_tree_draw  0x8c21a8b0
  * draws an object tree: for each sibling pushes the matrix, applies its transform, calls the model draw hook, recurses
- * into the child and pops called by: alt_entry_21a8be, gfx_object_tree_draw, gfxlib_draw_21aa1e, gfxlib_draw_21adb4,
- * gfxlib_draw_21b170, gfxlib_draw_21b52c
+ * into the child and pops called by: alt_entry_21a8be, gfx_draw_motion_frame_a, gfx_draw_motion_frame_b,
+ * gfx_draw_motion_frame_c, gfx_draw_motion_frame_d, gfx_object_tree_draw
  */
 u32 gfx_object_tree_draw(u32 *a0) {
     u32 r5;
@@ -17712,8 +17713,8 @@ u32 alt_entry_21a8be(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gfx_object_tree_draw_hooked  0x8c21a942
  * object-tree walk like gfx_object_tree_draw that calls the 0x8c4aa36c hook for nodes without flag 0x80 instead of
- * drawing their model called by: alt_entry_21a952, alt_entry_21af36, gfx_object_tree_draw_hooked, gfxlib_draw_21ab7a,
- * gfxlib_draw_21af26, gfxlib_draw_21b2f2, gfxlib_draw_21b6ae
+ * drawing their model called by: alt_entry_21a952, alt_entry_21af36, gfx_draw_motion_link_a, gfx_draw_motion_link_b,
+ * gfx_draw_motion_link_c, gfx_draw_motion_link_d, gfx_object_tree_draw_hooked
  */
 u32 gfx_object_tree_draw_hooked(u32 *a0) {
     u32 r5;
@@ -17799,10 +17800,11 @@ u32 alt_entry_21a952(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_draw_21aa1e  0x8c21aa1e
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfx_draw_motion_frame_a  0x8c21aa1e
+ * like njDrawMotion: sets the per-node position, rotation and scale appliers from motion a1 at frame fr4 and draws the
+ * object tree
  */
-u32 *gfxlib_draw_21aa1e(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 *ain0, u32 ain1) {
+u32 *gfx_draw_motion_frame_a(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 *ain0, u32 ain1) {
     u32 *in_r2;
     u8 *a4;
     u8 *a5;
@@ -17876,10 +17878,10 @@ u32 *gfxlib_draw_21aa1e(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u3
 }
 
 /*
- * gfxlib_draw_21ab7a  0x8c21ab7a
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfx_draw_motion_link_a  0x8c21ab7a
+ * like gfx_draw_motion_frame_a with a second motion a2 blended in, through the hooked tree walker
  */
-u32 gfxlib_draw_21ab7a(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0, u32 ain1) {
+u32 gfx_draw_motion_link_a(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0, u32 ain1) {
     u32 *in_r2;
     u8 *a4;
     u32 ar5_00;
@@ -17980,10 +17982,10 @@ u32 gfxlib_draw_21ab7a(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0
 }
 
 /*
- * gfxlib_draw_21adb4  0x8c21adb4
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfx_draw_motion_frame_b  0x8c21adb4
+ * variant of gfx_draw_motion_frame_a with another node callback
  */
-u32 *gfxlib_draw_21adb4(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 *ain0, u32 ain1) {
+u32 *gfx_draw_motion_frame_b(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 *ain0, u32 ain1) {
     u32 *in_r2;
     u8 *a4;
     u8 *a5;
@@ -18057,11 +18059,11 @@ u32 *gfxlib_draw_21adb4(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u3
 }
 
 /*
- * gfxlib_draw_21af26  0x8c21af26
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfx_draw_motion_link_b  0x8c21af26
+ * variant of gfx_draw_motion_link_a with another node callback
  * called by: Class_12ab2c_uses_get_field_1c_on_field_b0_09dec8
  */
-u32 gfxlib_draw_21af26(u32 *a0, u32 *a1, u32 *a2) {
+u32 gfx_draw_motion_link_b(u32 *a0, u32 *a1, u32 *a2) {
     u32 ar5_00;
     u32 uVar1;
     u8 *ar7_00;
@@ -18277,10 +18279,10 @@ u32 alt_entry_21af36(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0, 
 }
 
 /*
- * gfxlib_draw_21b170  0x8c21b170
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfx_draw_motion_frame_c  0x8c21b170
+ * variant of gfx_draw_motion_frame_a with another node callback
  */
-u32 *gfxlib_draw_21b170(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 *ain0, u32 ain1) {
+u32 *gfx_draw_motion_frame_c(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 *ain0, u32 ain1) {
     u32 *in_r2;
     u8 *a4;
     u8 *a5;
@@ -18354,10 +18356,10 @@ u32 *gfxlib_draw_21b170(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u3
 }
 
 /*
- * gfxlib_draw_21b2f2  0x8c21b2f2
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfx_draw_motion_link_c  0x8c21b2f2
+ * variant of gfx_draw_motion_link_a with another node callback
  */
-u32 gfxlib_draw_21b2f2(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0, u32 ain1) {
+u32 gfx_draw_motion_link_c(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0, u32 ain1) {
     u32 *in_r2;
     u8 *a4;
     u32 ar5_00;
@@ -18458,10 +18460,10 @@ u32 gfxlib_draw_21b2f2(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0
 }
 
 /*
- * gfxlib_draw_21b52c  0x8c21b52c
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfx_draw_motion_frame_d  0x8c21b52c
+ * variant of gfx_draw_motion_frame_a with another node callback
  */
-u32 *gfxlib_draw_21b52c(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 *ain0, u32 ain1) {
+u32 *gfx_draw_motion_frame_d(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 *ain0, u32 ain1) {
     u32 *in_r2;
     u8 *a4;
     u8 *a5;
@@ -18535,10 +18537,10 @@ u32 *gfxlib_draw_21b52c(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u3
 }
 
 /*
- * gfxlib_draw_21b6ae  0x8c21b6ae
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfx_draw_motion_link_d  0x8c21b6ae
+ * variant of gfx_draw_motion_link_a with another node callback
  */
-u32 gfxlib_draw_21b6ae(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0, u32 ain1) {
+u32 gfx_draw_motion_link_d(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0, u32 ain1) {
     u32 *in_r2;
     u8 *a4;
     u32 ar5_00;
@@ -18724,8 +18726,8 @@ u32 alt_entry_21b916(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gfx_object_tree_draw_hooked_alt  0x8c21b998
  * the hooked object-tree walk, drawing models through gfxlib_calls_test_219954
- * called by: alt_entry_21b9a8, alt_entry_21bbba, gfx_object_tree_draw_hooked_alt, gfxlib_draw_21bbb0,
- * gfxlib_draw_21bf44
+ * called by: alt_entry_21b9a8, alt_entry_21bbba, gfx_draw_motion_link_alt_a, gfx_draw_motion_link_alt_b,
+ * gfx_object_tree_draw_hooked_alt
  */
 u32 gfx_object_tree_draw_hooked_alt(u32 *a0) {
     u32 r5;
@@ -18967,13 +18969,13 @@ u32 alt_entry_21ba6a(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u32 a
 }
 
 /*
- * gfxlib_draw_21bbb0  0x8c21bbb0
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfx_draw_motion_link_alt_a  0x8c21bbb0
+ * two-motion draw through the alternate hooked tree walker
  * called by: CSquidLine_uses_matrix_push_0ad354, Class_12a7f4_draw_09aad0,
  * Class_12ab2c_uses_get_field_1c_on_field_b0_09dec8, Class_12ad50_draw_0a53b0, game_draw_0ad7ec, game_draw_0add00,
  * game_uses_get_field_0_06b460, game_uses_get_field_1c_on_field_b0_08b020 (+4 more)
  */
-u32 gfxlib_draw_21bbb0(u32 *a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0) {
+u32 gfx_draw_motion_link_alt_a(u32 *a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     u32 ar5_00;
     u32 uVar2;
@@ -19259,10 +19261,10 @@ u32 gfx_draw_motion_alt(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a3, u3
 }
 
 /*
- * gfxlib_draw_21bf44  0x8c21bf44
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfx_draw_motion_link_alt_b  0x8c21bf44
+ * variant of gfx_draw_motion_link_alt_a with another node callback
  */
-u32 gfxlib_draw_21bf44(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0) {
+u32 gfx_draw_motion_link_alt_b(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     u32 ar5_00;
     u32 uVar2;
@@ -24231,11 +24233,11 @@ u32 gfx_material_colors_unpack(u32 a0, u32 *a1, float *a2, float *a3, float *s0)
 }
 
 /*
- * gfxlib_state_switch_21da20  0x8c21da20
- * area name: in the gfxlib library code range; behaviour name: dispatches on a state or mode value (switch)
- * called by: gfxlib_state_switch_21f200, gfxlib_vec_21daf2, gfxlib_vec_21e4f8
+ * gfx_strip_format_select  0x8c21da20
+ * selects the strip vertex format and flags for chunk type a0 (0x22..0x2f)
+ * called by: gfxlib_draw_21f200, gfxlib_vec_21daf2, gfxlib_vec_21e4f8
  */
-int gfxlib_state_switch_21da20(int a0, u32 a1, u32 a2, u32 a3) {
+int gfx_strip_format_select(int a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar1;
     u32 *puVar2;
     u16 *puVar3;
@@ -24366,7 +24368,7 @@ u32 gfxlib_vec_21daf2(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
             *(u32 *)(*(int *)(puVar8 + -0x34) + 4) = uVar3;
             uVar3 = uVar3 >> 0x10;
             if (g_8c2759d8 == 0) {
-                gfxlib_state_switch_21da20(**(u32 **)(puVar8 + -0x34) & 0xffff, a1, a2, a3);
+                gfx_strip_format_select(**(u32 **)(puVar8 + -0x34) & 0xffff, a1, a2, a3);
                 g_8c2759d8 = 1;
             }
             *(u32 *)(puVar8 + -0x40) = 0;
@@ -25007,7 +25009,7 @@ u32 gfxlib_vec_21e4f8(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
         puVar1[1] = uVar4;
         uVar4 = uVar4 >> 0x10;
         if (g_8c2759d8 == 0) {
-            gfxlib_state_switch_21da20(*puVar1 & 0xffff, a1, a2, a3);
+            gfx_strip_format_select(*puVar1 & 0xffff, a1, a2, a3);
             g_8c2759d8 = 1;
         }
         iStack_58 = 0;
@@ -25825,11 +25827,11 @@ LAB_8c21f1c8:
 }
 
 /*
- * gfxlib_state_switch_21f200  0x8c21f200
- * area name: in the gfxlib library code range; behaviour name: mostly calls state_switch functions
+ * gfxlib_draw_21f200  0x8c21f200
+ * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
  * called by: CAnimBody_uses_get_field_1c_on_field_b0_026de0, CAnimal_uses_njGetMatrix_026968
  */
-u32 gfxlib_state_switch_21f200(u32 *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 gfxlib_draw_21f200(u32 *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     float fVar2;
     float in_fr4;
@@ -25857,14 +25859,14 @@ u32 gfxlib_state_switch_21f200(u32 *a0, u32 a1, u32 unused_a2, u32 unused_a3, u3
     g_8c4aad7c = 0;
     g_8c4aa36c = (&PTR_LAB_8c2759dc)[g_8c4aad84];
     g_8c4aad70 = in_fr4;
-    uVar1 = gfxlib_state_switch_21da20(a1, 0, &g_8c4aad64, &g_8c4aad84);
+    uVar1 = gfx_strip_format_select(a1, 0, &g_8c4aad64, &g_8c4aad84);
     return uVar1;
 }
 
 /*
  * gfxlib_calc_21f27c  0x8c21f27c
  * area name: in the gfxlib library code range; behaviour name: integer arithmetic on its arguments
- * called by: game_uses_obj_set_texlist_0297b8
+ * called by: CAnimal_draw_model_b
  */
 u32 gfxlib_calc_21f27c(u32 a0, int a1, int a2) {
     int *a7;

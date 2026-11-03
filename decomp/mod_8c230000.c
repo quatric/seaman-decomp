@@ -4,10 +4,10 @@
 #include "globals.h"
 
 /*
- * gfxlib_fill_loop_23018c  0x8c23018c
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_strips_emit_s32_cull_c  0x8c23018c
+ * third variant of gfx_strips_emit_s32_cull_a with another vertex layout
  */
-int gfxlib_fill_loop_23018c(short *a0, int a1, u32 a2, int a3) {
+int gfx_strips_emit_s32_cull_c(short *a0, int a1, u32 a2, int a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -6378,11 +6378,11 @@ int gfx_project_verts_s8_like(int a0) {
 }
 
 /*
- * gfxlib_fill_loop_232cd0  0x8c232cd0
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_project_verts_weighted_b  0x8c232cd0
+ * second weighted-vertex kernel (set, add, or add-and-project by mode a1>>8)
  * called by: gfx_meshsets_emit
  */
-int gfxlib_fill_loop_232cd0(int a0, u32 a1) {
+int gfx_project_verts_weighted_b(int a0, u32 a1) {
     float fVar1;
     u32 uVar2;
     int iVar3;
@@ -8140,9 +8140,9 @@ u32 gfxlib_calc_233da2(u32 a0, u32 a1) {
 /*
  * gfx_set_color4_4aa52c  0x8c233dac
  * copies four words (a colour) to 0x8c4aa52c
- * called by: CAnimal_uses_njGetMatrix_026968, CSquidLine_uses_matrix_push_0ad354,
+ * called by: CAnimal_draw_029dec, CAnimal_uses_njGetMatrix_026968, CSquidLine_uses_matrix_push_0ad354,
  * Class_12ab2c_uses_get_field_1c_on_field_b0_09dec8, Class_12aeec_uses_gfx_set_color4_0a481c, Class_12b580_draw_0f7118,
- * Class_12b930_draw_0d7354, Class_12b930_draw_0d7410, Vec3_draw_0d5d28 (+6 more)
+ * Class_12b930_draw_0d7354, Class_12b930_draw_0d7410 (+6 more)
  */
 u32 gfx_set_color4_4aa52c(u32 *a0) {
     g_8c4aa52c = *a0;
@@ -8165,7 +8165,7 @@ int gfxlib_uses_ta_fifo_233e10(u32 *a0, u32 *a1, u32 a2, u32 a3) {
         if ((*a0 & 0xffff) == 3) {
             iVar1 = vram_small_tex_alloc(a0, a1, a2, a3);
         } else {
-            iVar1 = vram_list_2038c0(a0[5], a0, a2, a3);
+            iVar1 = vram_uses_vram_alloc_best_fit_b_2038c0(a0[5], a0, a2, a3);
             a1 = a0;
         }
         if (iVar1 == 3) {
@@ -11243,7 +11243,7 @@ u32 gfxlib_float_calc_2363e8(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a
  * draw_state_save  0x8c236454
  * saves the TA polygon state (0x8c4aabbc +0x90..) into 0x8c4ab238
  * called by: alt_entry_21af36, alt_entry_21ba6a, alt_entry_21bbba, gfx_draw_motion, gfx_draw_motion_alt,
- * gfx_draw_polygon_flags, gfx_draw_strip_plain, gfx_draw_strip_tex (+27 more)
+ * gfx_draw_motion_frame_a, gfx_draw_motion_frame_b, gfx_draw_motion_frame_c (+27 more)
  */
 int draw_state_save(u32 a0, u32 a1, u32 a2, u32 a3) {
     int *piVar1;
@@ -11283,7 +11283,7 @@ int draw_state_save(u32 a0, u32 a1, u32 a2, u32 a3) {
  * draw_state_restore  0x8c2364b2
  * restores the TA polygon state saved by draw_state_save
  * called by: alt_entry_21af36, alt_entry_21ba6a, alt_entry_21bbba, gfx_draw_motion, gfx_draw_motion_alt,
- * gfx_draw_polygon_flags, gfx_draw_strip_plain, gfx_draw_strip_tex (+27 more)
+ * gfx_draw_motion_frame_a, gfx_draw_motion_frame_b, gfx_draw_motion_frame_c (+27 more)
  */
 int draw_state_restore(u32 a0) {
     int *piVar1;
@@ -17341,11 +17341,11 @@ u32 gfxlib_copy_23be0c(u32 *a0, u32 a1, float *a2, int a3) {
 }
 
 /*
- * gfxlib_fill_loop_23bfee  0x8c23bfee
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_23c70c
+ * gfx_lights_select_handlers  0x8c23bfee
+ * picks the lighting routine for each active light by its type (+0x124)
+ * called by: gfxlib_draw_23c70c
  */
-int gfxlib_fill_loop_23bfee(void) {
+int gfx_lights_select_handlers(void) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -18545,11 +18545,11 @@ int alt_entry_23c4cc(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 }
 
 /*
- * gfxlib_calls_fill_loop_23c70c  0x8c23c70c
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
+ * gfxlib_draw_23c70c  0x8c23c70c
+ * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
  * called by: gfxlib_uses_gfx_lights_reset_defaults_li_247df4, ninja_uses_gfx_lights_reset_defaults_li_253cfc
  */
-u32 gfxlib_calls_fill_loop_23c70c(void) {
+u32 gfxlib_draw_23c70c(void) {
     int ar7_00;
     int ar4_00;
     int iVar1;
@@ -18572,7 +18572,7 @@ u32 gfxlib_calls_fill_loop_23c70c(void) {
                 ar5_00 = ar5_00 + 1;
             } while (ar5_00 < ar6_00);
         }
-        uVar2 = gfxlib_fill_loop_23bfee();
+        uVar2 = gfx_lights_select_handlers();
         return uVar2;
     }
     return (int)0x80;
@@ -18600,8 +18600,8 @@ u32 memcpy_words_n(u32 *a0, u32 *a1, int a2) {
  * memcpy_bytes  0x8c23c814
  * copies a2 bytes (a2 > 0)
  * called by: common_load_eye_scsi, draw_copy_259a70, draw_state_copy_in, draw_state_copy_out,
- * flashrom_uses_flashrom_select_partition_1f7c40, gdfs_uses_bswap32_2124d0, gfx_stream_read,
- * gfx_texlist_entries_from_mem (+8 more)
+ * flashrom_uses_flashrom_select_partition_1f7c40, gfx_stream_read, gfx_texlist_entries_from_mem,
+ * gfx_texlist_entries_from_stream (+8 more)
  */
 int memcpy_bytes(char *a0, char *a1, int a2) {
     char cVar1;
@@ -18617,11 +18617,11 @@ int memcpy_bytes(char *a0, char *a1, int a2) {
 }
 
 /*
- * gfxlib_fill_loop_23c824  0x8c23c824
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_project_verts_sq_normal_offset_b  0x8c23c824
+ * variant of gfx_project_verts_sq_normal_offset
  * called by: gfxlib_draw_23d386
  */
-u32 gfxlib_fill_loop_23c824(int *a0, u32 a1) {
+u32 gfx_project_verts_sq_normal_offset_b(int *a0, u32 a1) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -19072,11 +19072,11 @@ u32 gfx_project_verts_sq(int *a0, u32 a1) {
 }
 
 /*
- * gfxlib_fill_loop_23cd0c  0x8c23cd0c
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_project_verts_sq_clipcodes_b  0x8c23cd0c
+ * variant of gfx_project_verts_sq_clipcodes with normals offset by a global scale
  * called by: gfxlib_draw_23d386
  */
-u32 gfxlib_fill_loop_23cd0c(int *a0, u32 a1) {
+u32 gfx_project_verts_sq_clipcodes_b(int *a0, u32 a1) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -19207,11 +19207,11 @@ u32 gfxlib_fill_loop_23cd0c(int *a0, u32 a1) {
 }
 
 /*
- * gfxlib_fill_loop_23ce74  0x8c23ce74
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_project_verts_sq_clipcodes_c  0x8c23ce74
+ * variant of gfx_project_verts_sq_clipcodes with normals
  * called by: gfxlib_draw_23d386
  */
-u32 gfxlib_fill_loop_23ce74(int *a0, u32 a1, u32 a2) {
+u32 gfx_project_verts_sq_clipcodes_c(int *a0, u32 a1, u32 a2) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -19331,11 +19331,11 @@ u32 gfxlib_fill_loop_23ce74(int *a0, u32 a1, u32 a2) {
 }
 
 /*
- * gfxlib_fill_loop_23cfd0  0x8c23cfd0
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_project_verts_sq_clipcodes_d  0x8c23cfd0
+ * variant of gfx_project_verts_sq_clipcodes with normalised normals
  * called by: gfxlib_draw_23d386
  */
-u32 gfxlib_fill_loop_23cfd0(int *a0, u32 a1) {
+u32 gfx_project_verts_sq_clipcodes_d(int *a0, u32 a1) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -19461,11 +19461,11 @@ u32 gfxlib_fill_loop_23cfd0(int *a0, u32 a1) {
 }
 
 /*
- * gfxlib_fill_loop_23d118  0x8c23d118
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfx_project_verts_sq_clipcodes_e  0x8c23d118
+ * variant of gfx_project_verts_sq_clipcodes
  * called by: gfxlib_draw_23d386
  */
-u32 gfxlib_fill_loop_23d118(int *a0, u32 a1, u32 a2) {
+u32 gfx_project_verts_sq_clipcodes_e(int *a0, u32 a1, u32 a2) {
     float fVar1;
     float fVar2;
     float fVar3;
@@ -19834,14 +19834,14 @@ u32 gfxlib_draw_23d386(u32 *a0) {
                 iVar11 = g_8c4ab148;
                 if ((uVar10 & *puVar6) == 0) {
                     if (iVar11 == 0) {
-                        gfxlib_fill_loop_23d118(puVar12 + -0x34, 0x8c4ab148, 0);
+                        gfx_project_verts_sq_clipcodes_e(puVar12 + -0x34, 0x8c4ab148, 0);
                     } else {
-                        gfxlib_fill_loop_23cfd0(puVar12 + -0x34, 0x8c4ab148);
+                        gfx_project_verts_sq_clipcodes_d(puVar12 + -0x34, 0x8c4ab148);
                     }
                 } else if (iVar11 == 0) {
-                    gfxlib_fill_loop_23ce74(puVar12 + -0x34, 0x8c4ab148, 0);
+                    gfx_project_verts_sq_clipcodes_c(puVar12 + -0x34, 0x8c4ab148, 0);
                 } else {
-                    gfxlib_fill_loop_23cd0c(puVar12 + -0x34, 0x8c4ab148);
+                    gfx_project_verts_sq_clipcodes_b(puVar12 + -0x34, 0x8c4ab148);
                 }
             }
             uVar10 = *(u32 *)(puVar12 + -0x1c);
@@ -19887,7 +19887,7 @@ u32 gfxlib_draw_23d386(u32 *a0) {
             } else if (g_8c4ab148 == 0) {
                 gfx_project_verts_sq_normal_offset(puVar12 + -0x34, 0x8c4ab148);
             } else {
-                gfxlib_fill_loop_23c824(puVar12 + -0x34, 0x8c4ab148);
+                gfx_project_verts_sq_normal_offset_b(puVar12 + -0x34, 0x8c4ab148);
             }
         }
         uVar8 = 0;
