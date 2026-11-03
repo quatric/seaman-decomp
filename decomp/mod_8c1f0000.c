@@ -1958,7 +1958,7 @@ u32 gd_cmd_get_version_like(u32 a0) {
 /*
  * bios_calc_1f151c  0x8c1f151c
  * area name: sits between bios functions (same compilation unit); behaviour name: integer arithmetic on its arguments
- * called by: gdfs_uses_read_u32_le_1f1d8c
+ * called by: gdFsInit_like
  */
 u8 **bios_calc_1f151c(void) {
     return &PTR_FUN_8c26c250;
@@ -2024,7 +2024,7 @@ int bcd_msf_to_frames(char *a0) {
 /*
  * gd_parse_subcode_q  0x8c1f15f4
  * unpacks the Q sub-channel bits of the 100-byte subcode block a0, checks its CRC and stores track, index, times and
- * absolute frame into a1 called by: shinobi_uses_gd_parse_subcode_q_1f1766
+ * absolute frame into a1 called by: gdfs_cmd_complete_handler_like
  */
 u32 gd_parse_subcode_q(char *a0, u32 *a1) {
     u32 uVar1;
@@ -2099,8 +2099,7 @@ u32 gd_parse_subcode_q(char *a0, u32 *a1) {
 /*
  * read_u32_le  0x8c1f1714
  * little-endian 32-bit value at a0 (any alignment)
- * called by: gdfs_dir_records_find_name, gdfs_path_table_find, gdfs_uses_read_u32_le_1f1a7c,
- * gdfs_uses_read_u32_le_1f1d8c, gdfs_uses_read_u32_le_1f1eaa
+ * called by: gdFsInit_like, gdFsReinit_like, gdfs_dir_records_find_name, gdfs_mount_iso9660_like, gdfs_path_table_find
  */
 u32 read_u32_le(u8 *a0) {
     return (u32)a0[1] << 8 | (u32)a0[2] << 0x10 | (u32)a0[3] << 0x18 | (u32)*a0;
@@ -2109,7 +2108,7 @@ u32 read_u32_le(u8 *a0) {
 /*
  * iso9660_is_cd001  0x8c1f173a
  * 1 when the volume descriptor at a0 carries "CD001"
- * called by: gdfs_uses_read_u32_le_1f1a7c, gdfs_uses_read_u32_le_1f1d8c, gdfs_uses_read_u32_le_1f1eaa
+ * called by: gdFsInit_like, gdFsReinit_like, gdfs_mount_iso9660_like
  */
 u32 iso9660_is_cd001(char *a0) {
     char cVar1;
@@ -2141,11 +2140,12 @@ u32 shinobi_update_fields_1f175c(u32 a0, u32 a1) {
 }
 
 /*
- * shinobi_uses_gd_parse_subcode_q_1f1766  0x8c1f1766
- * area name: in the shinobi library code range; behaviour name: its main named callee is gd_parse_subcode_q
- * called by: alt_entry_1f231e, gdfs_uses_gd_parse_subcode_q_1f1a44, gdfs_uses_gd_parse_subcode_q_1f231a
+ * gdfs_cmd_complete_handler_like  0x8c1f1766
+ * polls the running GD-ROM command and, when it ends, updates the handle's position and state and calls its callback
+ * called by: alt_entry_1f231e, gdfs_uses_gdfs_cmd_complete_handler_li_1f1a44,
+ * gdfs_uses_gdfs_cmd_complete_handler_li_1f231a
  */
-int shinobi_uses_gd_parse_subcode_q_1f1766(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
+int gdfs_cmd_complete_handler_like(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3) {
     short sVar1;
     int iVar2;
     int iVar3;
@@ -2295,8 +2295,8 @@ LAB_8c1f19d4:
 /*
  * gdfs_read_sectors_like  0x8c1f19ec
  * reads a1 sectors of file a0 into a2 through a temporary handle; -13 when no handle is free
- * called by: gdfs_dir_records_find_name, gdfs_path_table_find, gdfs_read_dir_sectors, gdfs_uses_read_u32_le_1f1a7c,
- * gdfs_uses_read_u32_le_1f1d8c, gdfs_uses_read_u32_le_1f1eaa
+ * called by: gdFsInit_like, gdFsReinit_like, gdfs_dir_records_find_name, gdfs_mount_iso9660_like, gdfs_path_table_find,
+ * gdfs_read_dir_sectors
  */
 u32 gdfs_read_sectors_like(u32 a0, int a1, u32 a2) {
     int ar4_00;
@@ -2335,11 +2335,11 @@ u32 gdfs_calc_1f1a2a(int a0) {
 }
 
 /*
- * gdfs_uses_gd_parse_subcode_q_1f1a44  0x8c1f1a44
- * area name: sits between gdfs functions (same compilation unit); behaviour name: its callees mostly do:
- * uses_gd_parse_subcode_q
+ * gdfs_uses_gdfs_cmd_complete_handler_li_1f1a44  0x8c1f1a44
+ * area name: sits between gdfs functions (same compilation unit); behaviour name: its main named callee is
+ * gdfs_cmd_complete_handler_like
  */
-u32 gdfs_uses_gd_parse_subcode_q_1f1a44(int a0, u32 a1, u32 a2, u32 a3) {
+u32 gdfs_uses_gdfs_cmd_complete_handler_li_1f1a44(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     if (*(int *)(a0 + 0x20) == 1) {
@@ -2347,7 +2347,7 @@ u32 gdfs_uses_gd_parse_subcode_q_1f1a44(int a0, u32 a1, u32 a2, u32 a3) {
     }
     uVar1 = (**(code **)(*(int *)(g_8c2739e0 + 0xc) + 0x40))();
     if (*(int *)(g_8c2739e0 + 0x1c) != 0) {
-        uVar1 = shinobi_uses_gd_parse_subcode_q_1f1766(a0, a1, a2, a3);
+        uVar1 = gdfs_cmd_complete_handler_like(a0, a1, a2, a3);
         return uVar1;
     }
     return uVar1;
@@ -2356,8 +2356,7 @@ u32 gdfs_uses_gd_parse_subcode_q_1f1a44(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gdfs_update_fields_1f1a52  0x8c1f1a52
  * area name: sits between gdfs functions (same compilation unit); behaviour name: conditionally writes members
- * called by: alt_entry_1f2008, gdfs_load_dir, gdfs_uses_read_u32_le_1f1a7c, gdfs_uses_read_u32_le_1f1d8c,
- * gdfs_uses_read_u32_le_1f1eaa
+ * called by: alt_entry_1f2008, gdFsInit_like, gdFsReinit_like, gdfs_load_dir, gdfs_mount_iso9660_like
  */
 u32 gdfs_update_fields_1f1a52(int *a0) {
     u32 in_r0;
@@ -2369,10 +2368,10 @@ u32 gdfs_update_fields_1f1a52(int *a0) {
 }
 
 /*
- * gdfs_uses_read_u32_le_1f1a7c  0x8c1f1a7c
- * area name: sits between gdfs functions (same compilation unit); behaviour name: its main named callee is read_u32_le
+ * gdfs_mount_iso9660_like  0x8c1f1a7c
+ * installs the GD-ROM interrupt handlers, reads the volume descriptor (CD001) and the root directory
  */
-u32 gdfs_uses_read_u32_le_1f1a7c(void) {
+u32 gdfs_mount_iso9660_like(void) {
     char cVar1;
     int *piVar2;
     int iVar3;
@@ -2532,11 +2531,11 @@ u32 thunk_FUN_8c1f38c0(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gdfs_uses_read_u32_le_1f1d8c  0x8c1f1d8c
- * area name: sits between gdfs functions (same compilation unit); behaviour name: its main named callee is read_u32_le
+ * gdFsInit_like  0x8c1f1d8c
+ * initialises the GD file system in work area a1 for a0 handles (32-byte aligned), sets up handles and mounts the disc
  * called by: gdfs_install_driver
  */
-u32 gdfs_uses_read_u32_le_1f1d8c(int a0, int *a1, u32 a2, u32 a3, int s0) {
+u32 gdFsInit_like(int a0, int *a1, u32 a2, u32 a3, int s0) {
     char cVar1;
     u32 uVar2;
     int *piVar3;
@@ -2726,10 +2725,10 @@ u32 gdfs_uses_read_u32_le_1f1d8c(int a0, int *a1, u32 a2, u32 a3, int s0) {
 }
 
 /*
- * gdfs_uses_read_u32_le_1f1eaa  0x8c1f1eaa
- * area name: sits between gdfs functions (same compilation unit); behaviour name: its main named callee is read_u32_le
+ * gdFsReinit_like  0x8c1f1eaa
+ * closes every open handle, resets the file system state and mounts the disc again
  */
-u32 gdfs_uses_read_u32_le_1f1eaa(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 gdFsReinit_like(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     char cVar1;
     u32 uVar2;
     int *piVar3;
@@ -3140,7 +3139,7 @@ u32 alt_entry_1f210e(int *a0) {
 /*
  * gdfs_lookup_file  0x8c1f2172
  * finds a1's directory entry: FAD (LBA + 150), size and flags
- * called by: gdfs_uses_read_u32_le_1f1a7c, gdfs_uses_read_u32_le_1f1d8c, gdfs_uses_read_u32_le_1f1eaa
+ * called by: gdFsInit_like, gdFsReinit_like, gdfs_mount_iso9660_like
  */
 u32 gdfs_lookup_file(u32 a0, int *a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -3181,8 +3180,8 @@ u32 alt_entry_1f217a(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * gdfs_file_handle_init  0x8c1f21bc
  * fills an unused file handle with the file's position, size and sector count ((size + 2047) / 2048); 0 if it is in use
- * called by: alt_entry_1f2236, alt_entry_1f22b2, gdfs_open_in_dir, gdfs_uses_gdfs_file_handle_init_1f22a8,
- * gdfs_uses_read_u32_le_1f1d8c, gdfs_uses_read_u32_le_1f1eaa
+ * called by: alt_entry_1f2236, alt_entry_1f22b2, gdFsInit_like, gdFsReinit_like, gdfs_open_in_dir,
+ * gdfs_uses_gdfs_file_handle_init_1f22a8
  */
 u32 gdfs_file_handle_init(int a0, u32 a1, u32 a2, int a3) {
     if (*(short *)(a0 + 0x4c) == 0) {
@@ -3352,16 +3351,16 @@ u32 alt_entry_1f22b2(u32 unused_a0, int a1) {
 }
 
 /*
- * gdfs_uses_gd_parse_subcode_q_1f231a  0x8c1f231a
- * area name: sits between gdfs functions (same compilation unit); behaviour name: its callees mostly do:
- * uses_gd_parse_subcode_q
+ * gdfs_uses_gdfs_cmd_complete_handler_li_1f231a  0x8c1f231a
+ * area name: sits between gdfs functions (same compilation unit); behaviour name: its main named callee is
+ * gdfs_cmd_complete_handler_like
  */
-u32 gdfs_uses_gd_parse_subcode_q_1f231a(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 gdfs_uses_gdfs_cmd_complete_handler_li_1f231a(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = (**(code **)(*(int *)(g_8c2739e0 + 0xc) + 0x40))();
     if (*(int *)(g_8c2739e0 + 0x1c) != 0) {
-        uVar1 = shinobi_uses_gd_parse_subcode_q_1f1766(a0, a1, a2, a3);
+        uVar1 = gdfs_cmd_complete_handler_like(a0, a1, a2, a3);
         return uVar1;
     }
     return uVar1;
@@ -3377,7 +3376,7 @@ u32 alt_entry_1f231e(u32 a0, u32 a1, u32 a2, u32 a3, int ain0) {
 
     uVar1 = (**(code **)(ain0 + *(int *)(*in_r2 + 0xc)))(a0, a1, a2, a3);
     if (*(int *)(g_8c2739e0 + 0x1c) != 0) {
-        uVar1 = shinobi_uses_gd_parse_subcode_q_1f1766(a0, a1, a2, a3);
+        uVar1 = gdfs_cmd_complete_handler_like(a0, a1, a2, a3);
         return uVar1;
     }
     return uVar1;
@@ -3415,7 +3414,7 @@ u32 gdfs_uses_gdfs_handle_init_like_1f2356(u32 a0, u32 a1) {
 /*
  * gdfs_calc_1f23e0  0x8c1f23e0
  * area name: sits between gdfs functions (same compilation unit); behaviour name: integer arithmetic on its arguments
- * called by: gdfs_calls_calc_1f2a0a, shinobi_uses_gd_parse_subcode_q_1f1766
+ * called by: gdfs_calls_calc_1f2a0a, gdfs_cmd_complete_handler_like
  */
 u32 gdfs_calc_1f23e0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -4050,8 +4049,8 @@ u32 alt_entry_1f2b70(u32 unused_a0, int a1) {
 /*
  * gdfs_read_dir_sectors  0x8c1f2bfe
  * reads the directory starting at sector a1 one sector at a time and parses its records into a2 (capacity a2[1]); -12
- * when it did not fit called by: alt_entry_1f2008, gdfs_load_dir, gdfs_uses_read_u32_le_1f1a7c,
- * gdfs_uses_read_u32_le_1f1d8c, gdfs_uses_read_u32_le_1f1eaa
+ * when it did not fit called by: alt_entry_1f2008, gdFsInit_like, gdFsReinit_like, gdfs_load_dir,
+ * gdfs_mount_iso9660_like
  */
 u32 gdfs_read_dir_sectors(char *a0, int a1, int *a2, int a3) {
     int iVar1;
@@ -4304,9 +4303,8 @@ u32 gdfs_dir_records_find_name(int a0, int a1, int a2, int a3, char *s0) {
 /*
  * gdfs_wait_handle_done  0x8c1f2f98
  * polls file handle a0 until its transfer finishes, fails or times out (-21)
- * called by: alt_entry_1f31da, alt_entry_1f3682, gdfs_read_blocking, gdfs_stop_read_wait,
- * gdfs_uses_gdfs_handle_init_like_1f2356, gdfs_uses_gdfs_wait_handle_done_1f35ba, gdfs_uses_read_u32_le_1f1a7c,
- * gdfs_uses_read_u32_le_1f1d8c (+1 more)
+ * called by: alt_entry_1f31da, alt_entry_1f3682, gdFsInit_like, gdFsReinit_like, gdfs_mount_iso9660_like,
+ * gdfs_read_blocking, gdfs_stop_read_wait, gdfs_uses_gdfs_handle_init_like_1f2356 (+1 more)
  */
 u32 gdfs_wait_handle_done(int *a0, u32 a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -4395,10 +4393,9 @@ u32 alt_entry_1f2f9c(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * gdfs_handle_init_like  0x8c1f302a
  * sets up a file handle for a2/a3 (size a3, (a3 + 2047) / 2048 sectors); NULL if it is already in use
- * called by: gdfs_cdda_play_sectors_like, gdfs_cdda_play_tracks_like, gdfs_read_sectors_like,
- * gdfs_uses_gdfs_handle_init_like_1f2356, gdfs_uses_gdfs_handle_init_like_1f2418,
- * gdfs_uses_gdfs_handle_init_like_1f26ec, gdfs_uses_gdfs_handle_init_like_1f2796,
- * gdfs_uses_gdfs_handle_init_like_1f2852 (+4 more)
+ * called by: gdFsInit_like, gdFsReinit_like, gdfs_cdda_play_sectors_like, gdfs_cdda_play_tracks_like,
+ * gdfs_mount_iso9660_like, gdfs_read_sectors_like, gdfs_uses_gdfs_handle_init_like_1f2356,
+ * gdfs_uses_gdfs_handle_init_like_1f2418 (+4 more)
  */
 u32 gdfs_handle_init_like(int *a0, int a1, int a2, int a3) {
     int iVar1;
@@ -4428,7 +4425,7 @@ u32 gdfs_handle_init_like(int *a0, int a1, int a2, int a3) {
 /*
  * set_fields_0_4_8_1f3078  0x8c1f3078
  * stores +0x0, +0x4, +0x8
- * called by: file_slot_open, gdfs_uses_read_u32_le_1f1d8c
+ * called by: file_slot_open, gdFsInit_like
  */
 u32 *set_fields_0_4_8_1f3078(u32 *a0, u32 a1) {
     *a0 = 0;
@@ -4440,8 +4437,8 @@ u32 *set_fields_0_4_8_1f3078(u32 *a0, u32 a1) {
 /*
  * gdfs_close_like  0x8c1f309c
  * closes a file handle: aborts a transfer in progress (status 2..4) and clears +0x4c (probably gdFsClose)
- * called by: ADXSTM_Destroy_like, ADXSTM_OpenFname, alt_entry_26344a, gdfs_load_file_alloc, gdfs_shutdown,
- * gdfs_shutdown_alt, gdfs_uses_read_u32_le_1f1eaa
+ * called by: ADXSTM_Destroy_like, ADXSTM_OpenFname, alt_entry_26344a, gdFsReinit_like, gdfs_load_file_alloc,
+ * gdfs_shutdown, gdfs_shutdown_alt
  */
 u32 gdfs_close_like(int a0, u32 a1, u32 a2, u32 a3) {
     short sVar1;
@@ -5002,7 +4999,7 @@ u32 gdfs_install_driver(void) {
     u32 uVar1;
 
     g_8c2739f0 = &g_8c26c4a4;
-    uVar1 = gdfs_uses_read_u32_le_1f1d8c(&g_8c26c4a4);
+    uVar1 = gdFsInit_like(&g_8c26c4a4);
     return uVar1;
 }
 
@@ -8892,7 +8889,7 @@ int maple_update_controllers(u32 unused_a0, u32 *a1) {
 /*
  * shinobi_calc_1f62cc  0x8c1f62cc
  * area name: in the shinobi library code range; behaviour name: integer arithmetic on its arguments
- * called by: flashrom_uses_flashrom_write_block_retry_1f7558, input_device_select_and_reset, input_poll_device_state
+ * called by: flashrom_update_game_record_like, input_device_select_and_reset, input_poll_device_state
  */
 int shinobi_calc_1f62cc(int a0) {
     return a0 * 0x34 + 0x8c4727c4;
@@ -8972,7 +8969,7 @@ u32 shinobi_calc_1f6338(int a0) {
 /*
  * maple_port_status_wrap  0x8c1f6342
  * only calls maple_port_status
- * called by: flashrom_uses_flashrom_write_block_retry_1f7558, mic_set_mode_check_connected
+ * called by: flashrom_update_game_record_like, mic_set_mode_check_connected
  */
 u32 maple_port_status_wrap(void) {
     u32 uVar1;
@@ -9876,8 +9873,8 @@ u32 flashrom_select_partition(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * flashrom_get_block  0x8c1f6e0c
  * reads flash block a0 of the open partition into a1 (0x3c bytes)
- * called by: flashrom_find_game_record, flashrom_read_game_block, flashrom_uses_flashrom_find_game_record_1f74b0,
- * flashrom_uses_flashrom_select_partition_1f7c40, flashrom_uses_flashrom_write_block_retry_1f7558,
+ * called by: flashrom_find_game_record, flashrom_read_game_block, flashrom_update_game_record_like,
+ * flashrom_uses_flashrom_find_game_record_1f74b0, flashrom_uses_flashrom_select_partition_1f7c40,
  * shinobi_uses_flashrom_get_block_1f875c
  */
 u32 flashrom_get_block(u32 a0, int a1, u32 a2, u32 a3) {
@@ -9905,8 +9902,8 @@ u32 flashrom_get_block(u32 a0, int a1, u32 a2, u32 a3) {
 /*
  * flashrom_write_block_retry  0x8c1f6e5e
  * writes 60 bytes from a1 to flash block a0 when they differ; on failure reselects the partition and retries once
- * (error state 8) called by: flashrom_record_play_time, flashrom_uses_flashrom_find_game_record_1f7a50,
- * flashrom_uses_flashrom_write_block_retry_1f7558, flashrom_uses_rtc_get_date_1f71b6, flashrom_uses_rtc_get_date_1f7264
+ * (error state 8) called by: flashrom_record_play_time, flashrom_update_game_record_like,
+ * flashrom_uses_flashrom_find_game_record_1f7a50, flashrom_uses_rtc_get_date_1f71b6, flashrom_uses_rtc_get_date_1f7264
  */
 u32 flashrom_write_block_retry(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 *puVar1;
@@ -9942,7 +9939,7 @@ u32 flashrom_write_block_retry(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * flashrom_calls_calc_1f6f06  0x8c1f6f06
  * area name: sits between flashrom functions (same compilation unit); behaviour name: its callees mostly do: calc
- * called by: flashrom_record_play_time, flashrom_uses_flashrom_write_block_retry_1f7558
+ * called by: flashrom_record_play_time, flashrom_update_game_record_like
  */
 int flashrom_calls_calc_1f6f06(u32 a0, u32 a1) {
     int iVar1;
@@ -9981,7 +9978,7 @@ int flashrom_open_game_partition(u32 a0, u32 a1, u32 a2, u32 a3) {
         g_8c273a10 = '\x01';
         ipbin_get_disc_info_boot(0x8c4749bc, 1, a2, a3);
         g_8c4748bc = 0x8c4749c4;
-        iVar1 = flashrom_uses_flashrom_write_block_retry_1f7558(ar4_00, uVar2, a2, a3);
+        iVar1 = flashrom_update_game_record_like(ar4_00, uVar2, a2, a3);
         if (iVar1 == 0) {
             g_8c273a10 = '\0';
         }
@@ -10017,7 +10014,7 @@ int alt_entry_1f6f2a(u32 a0, u32 a1, u32 a2, u32 a3, u32 *ain0, u32 *ain1) {
         g_8c273a10 = 1;
         ipbin_get_disc_info_boot(0x8c4749bc, 1, a2, a3);
         g_8c4748bc = 0x8c4749c4;
-        iVar1 = flashrom_uses_flashrom_write_block_retry_1f7558(ar4_00, uVar2, a2, a3);
+        iVar1 = flashrom_update_game_record_like(ar4_00, uVar2, a2, a3);
         if (iVar1 == 0) {
             g_8c273a10 = 0;
         }
@@ -10028,8 +10025,8 @@ int alt_entry_1f6f2a(u32 a0, u32 a1, u32 a2, u32 a3, u32 *ain0, u32 *ain1) {
 /*
  * flashrom_find_game_record  0x8c1f6fc8
  * searches the 100 record pairs (blocks 0x18 + 4i) for one whose 10-byte id matches a0 and whose CRC is valid; returns
- * its index or -1 called by: flashrom_read_game_block, flashrom_uses_flashrom_find_game_record_1f74b0,
- * flashrom_uses_flashrom_find_game_record_1f7a50, flashrom_uses_flashrom_write_block_retry_1f7558
+ * its index or -1 called by: flashrom_read_game_block, flashrom_update_game_record_like,
+ * flashrom_uses_flashrom_find_game_record_1f74b0, flashrom_uses_flashrom_find_game_record_1f7a50
  */
 u32 flashrom_find_game_record(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -10375,7 +10372,7 @@ u32 flashrom_uses_flashrom_find_game_record_1f74b0(code *a0, int a1, u32 a2, u32
 /*
  * be_read_n  0x8c1f752a
  * the a1-byte big-endian number at a0
- * called by: flashrom_uses_flashrom_write_block_retry_1f7558
+ * called by: flashrom_update_game_record_like
  */
 u32 be_read_n(u8 *a0, int a1) {
     u8 bVar1;
@@ -10396,7 +10393,7 @@ u32 be_read_n(u8 *a0, int a1) {
 /*
  * be_write_n  0x8c1f7540
  * writes a0 as an a1-byte big-endian number at a2
- * called by: flashrom_uses_flashrom_write_block_retry_1f7558
+ * called by: flashrom_update_game_record_like
  */
 u32 be_write_n(u32 a0, int a1, int a2) {
     u32 in_r0;
@@ -10415,11 +10412,11 @@ u32 be_write_n(u32 a0, int a1, int a2) {
 }
 
 /*
- * flashrom_uses_flashrom_write_block_retry_1f7558  0x8c1f7558
- * area name: sits between flashrom functions (same compilation unit); behaviour name: its main named callee is
- * flashrom_write_block_retry called by: alt_entry_1f6f2a, flashrom_open_game_partition
+ * flashrom_update_game_record_like  0x8c1f7558
+ * reads the game's flash record, stamps it with the current date, fixes unset fields and writes it back
+ * called by: alt_entry_1f6f2a, flashrom_open_game_partition
  */
-u32 flashrom_uses_flashrom_write_block_retry_1f7558(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 flashrom_update_game_record_like(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     bool bVar1;
     int *piVar2;
     int *piVar3;
@@ -10765,8 +10762,7 @@ u32 flashrom_uses_flashrom_find_game_record_1f7b06(u32 unused_a0, u32 unused_a1,
 /*
  * flashrom_read_game_block  0x8c1f7b64
  * finds the game's record in flash ROM partition 3 and copies its four 0x3c-byte blocks (or the cached copy) into a1
- * called by: CProlog_uses_free_sys_0b96e4, flashrom_game_block_date_byte,
- * flashrom_uses_flashrom_write_block_retry_1f7558
+ * called by: CProlog_uses_free_sys_0b96e4, flashrom_game_block_date_byte, flashrom_update_game_record_like
  */
 u32 flashrom_read_game_block(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -11048,7 +11044,7 @@ u32 shinobi_calls_calc_1f7e78(void) {
 /*
  * shinobi_calls_calc_1f7ea8  0x8c1f7ea8
  * area name: in the shinobi library code range; behaviour name: its callees mostly do: calc
- * called by: game_init, ninja_uses_aica_reg_258604, pvr_25825a
+ * called by: game_init, njInitSystem_like, pvr_25825a
  */
 u32 shinobi_calls_calc_1f7ea8(u32 a0) {
     u32 uVar1;
@@ -11379,7 +11375,7 @@ u32 shinobi_sound_1f814c(u32 a0) {
 /*
  * rtc_get_date  0x8c1f8176
  * fills a {year, month, day, hour, minute, second, weekday} struct from the real-time clock
- * called by: CProlog_uses_free_sys_0b96e4, flashrom_record_play_time, flashrom_uses_flashrom_write_block_retry_1f7558,
+ * called by: CProlog_uses_free_sys_0b96e4, flashrom_record_play_time, flashrom_update_game_record_like,
  * flashrom_uses_rtc_get_date_1f71b6, flashrom_uses_rtc_get_date_1f7264, flashrom_uses_rtc_get_date_1f7902,
  * game_state_switch_0fc94c, game_state_switch_0fcd2c (+9 more)
  */
@@ -11457,9 +11453,8 @@ u32 rtc_date_compare(u32 a0, u32 a1, u32 a2) {
  * date_to_rtc_seconds  0x8c1f826c
  * seconds since 1950-01-01 (the Dreamcast RTC epoch) for a {year, month, day, hour, minute, second} struct
  * called by: CGame_uses_libgcc_divide_helper_0cc784, CProlog_uses_free_sys_0b96e4,
- * CProlog_uses_libgcc_divide_helper_0cd3c8, date_compare, flashrom_record_play_time,
- * flashrom_uses_flashrom_write_block_retry_1f7558, flashrom_uses_rtc_get_date_1f71b6, flashrom_uses_rtc_get_date_1f7264
- * (+12 more)
+ * CProlog_uses_libgcc_divide_helper_0cd3c8, date_compare, flashrom_record_play_time, flashrom_update_game_record_like,
+ * flashrom_uses_rtc_get_date_1f71b6, flashrom_uses_rtc_get_date_1f7264 (+12 more)
  */
 u32 date_to_rtc_seconds(u16 *a0, int *a1, u32 a2) {
     u16 uVar1;
@@ -13096,9 +13091,8 @@ u32 ta_fifo_1fa1f4(void) {
 /*
  * irq_add_handler  0x8c1fa244
  * adds callback a1 (with a3, priority a2) to interrupt a0's sorted handler list, installing the vector and enabling the
- * Holly mask bit for the first one called by: adx_lib_init, alt_entry_262814, gdfs_uses_read_u32_le_1f1a7c,
- * gdfs_uses_read_u32_le_1f1d8c, gdfs_uses_read_u32_le_1f1eaa, ninja_set_event900_callback, shinobi_install_event900,
- * syG2_init (+1 more)
+ * Holly mask bit for the first one called by: adx_lib_init, alt_entry_262814, gdFsInit_like, gdFsReinit_like,
+ * gdfs_mount_iso9660_like, ninja_set_event900_callback, shinobi_install_event900, syG2_init (+1 more)
  */
 u32 irq_add_handler(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -14579,7 +14573,7 @@ u32 shinobi_calc_1fba90(u32 a0) {
 /*
  * shinobi_save_1fba98  0x8c1fba98
  * area name: in the shinobi library code range; behaviour name: mostly calls save functions
- * called by: shinobi_save_1fde30, vmu_drive_mount, vmu_drive_mount_cached
+ * called by: vmu_drive_mount, vmu_drive_mount_cached, vmu_format_drive_like
  */
 u32 shinobi_save_1fba98(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -14655,8 +14649,8 @@ u32 vmu_block_read_retry(int a0, u32 a1, u32 a2) {
 /*
  * vmu_block_write_retry  0x8c1fbc44
  * retries vmu_block_write_phases up to the global retry count, counting the retries and reporting them through the slot
- * callback called by: alt_entry_1febe6, shinobi_save_1fde30, shinobi_save_1fecf2, vmu_defragment_like,
- * vmu_file_write_blocks_at, vmu_file_write_next_block, vmu_flush_dir_blocks, vmu_write_blocks_from
+ * callback called by: alt_entry_1febe6, shinobi_save_1fecf2, vmu_defragment_like, vmu_file_write_blocks_at,
+ * vmu_file_write_next_block, vmu_flush_dir_blocks, vmu_format_drive_like, vmu_write_blocks_from
  */
 u32 vmu_block_write_retry(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -16435,7 +16429,7 @@ u32 maple_device_ready(int a0, u32 a1) {
  * maple_device_ready_idle  0x8c1fd550
  * maple_device_ready and the bus is not busy
  * called by: alt_entry_1febe6, bu_get_file_size_now, bu_get_free_blocks_now, bu_get_game_file_name_now,
- * bu_is_exist_file_now, shinobi_input_1fdd44, shinobi_input_1fe8f2, shinobi_save_1fde30 (+26 more)
+ * bu_is_exist_file_now, shinobi_input_1fdd44, shinobi_input_1fe8f2, shinobi_save_1fecf2 (+26 more)
  */
 u32 maple_device_ready_idle(int a0, u32 a1) {
     char *pcVar1;
@@ -17005,10 +16999,10 @@ int shinobi_input_1fdd44(int a0, u32 a1, int *a2, u32 a3) {
 }
 
 /*
- * shinobi_save_1fde30  0x8c1fde30
- * area name: in the shinobi library code range; behaviour name: mostly calls save functions
+ * vmu_format_drive_like  0x8c1fde30
+ * formats the memory card on port a0: clears the blocks and writes a fresh FAT, directory and root block
  */
-u32 shinobi_save_1fde30(int a0, u8 *a1, u32 a2, u32 a3, int s0) {
+u32 vmu_format_drive_like(int a0, u8 *a1, u32 a2, u32 a3, int s0) {
     u8 uVar1;
     int iVar2;
     u32 uVar3;

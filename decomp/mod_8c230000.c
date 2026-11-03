@@ -6643,11 +6643,11 @@ u32 gfx_box_overlap_test_like(int a0, int a1) {
 }
 
 /*
- * gfxlib_uses_noop_fr4_test_2336e8  0x8c2336e8
- * area name: in the gfxlib library code range; behaviour name: its main named callee is noop_fr4_test
- * called by: Class_129938_m4_017428, game_uses_noop_fr4_test_016e98
+ * gfx_box_sphere_overlap_test_like  0x8c2336e8
+ * tests 8-corner box a0 against sphere a1: bounding-box overlap first, then the box faces
+ * called by: Class_129938_m4_017428, game_draw_016e98
  */
-u32 gfxlib_uses_noop_fr4_test_2336e8(double *a0, double *a1) {
+u32 gfx_box_sphere_overlap_test_like(double *a0, double *a1) {
     bool bVar1;
     int iVar2;
     int iVar3;
@@ -8178,7 +8178,7 @@ int gfxlib_uses_ta_fifo_233e10(u32 *a0, u32 *a1, u32 a2, u32 a3) {
 /*
  * gfx_project_verts_color_uv_clip  0x8c233e70
  * projects vertices a1.. with colours and s16 UVs into 24-byte records; returns -1 past the far plane, 1 when any is
- * near called by: gfxlib_draw_234fd0
+ * near called by: gfx_draw_3d_line_segments_like
  */
 u32 gfx_project_verts_color_uv_clip(int *a0, int a1, int a2, u32 *a3) {
     float fVar1;
@@ -8257,7 +8257,7 @@ u32 gfx_project_verts_color_uv_clip(int *a0, int a1, int a2, u32 *a3) {
 /*
  * gfx_project_verts_color_clip  0x8c233f1c
  * projects vertices a1.. with colours into 16-byte records; returns -1 past the far plane, 1 when any is near
- * called by: gfxlib_draw_234fd0
+ * called by: gfx_draw_3d_line_segments_like
  */
 u32 gfx_project_verts_color_clip(int *a0, int a1, int a2, u32 *a3) {
     float fVar1;
@@ -9452,11 +9452,11 @@ u32 gfxlib_draw_234d68(u32 a0, int a1, u8 *a2, u8 *a3) {
 }
 
 /*
- * gfxlib_draw_234fd0  0x8c234fd0
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfx_draw_3d_line_segments_like  0x8c234fd0
+ * projects coloured points and sends them to the TA as line quads with the current draw state
  * called by: game_draw_015054, game_draw_0d2c84, game_draw_point_list, list_draw_node_points, static_init_27def0
  */
-u32 gfxlib_draw_234fd0(u32 a0, int a1, u32 a2, u32 *a3) {
+u32 gfx_draw_3d_line_segments_like(u32 a0, int a1, u32 a2, u32 *a3) {
     u32 uVar1;
     double *pdVar2;
     int iVar3;
@@ -10918,7 +10918,7 @@ u8 *pvr_draw_235f84(double *a0) {
 /*
  * aabb_from_8_points  0x8c2360b0
  * computes min (a1) and max (a2) of the eight points a0
- * called by: gfx_box_overlap_test_like, gfxlib_uses_noop_fr4_test_2336e8
+ * called by: gfx_box_overlap_test_like, gfx_box_sphere_overlap_test_like
  */
 u32 aabb_from_8_points(float *a0, float *a1, float *a2) {
     float *pfVar1;
@@ -11021,7 +11021,7 @@ u32 triangle_normal(float *a0, float *a1, float *a2, float *a3) {
 /*
  * sphere_to_aabb  0x8c23620c
  * a1 = centre - r and a2 = centre + r for the sphere a0 (x, y, z, r)
- * called by: gfxlib_uses_noop_fr4_test_2336e8
+ * called by: gfx_box_sphere_overlap_test_like
  */
 u32 sphere_to_aabb(float *a0, float *a1, float *a2) {
     *a1 = *a0 - a0[3];
@@ -11241,8 +11241,8 @@ u32 gfxlib_float_calc_2363e8(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a
 /*
  * draw_state_save  0x8c236454
  * saves the TA polygon state (0x8c4aabbc +0x90..) into 0x8c4ab238
- * called by: alt_entry_21af36, alt_entry_21ba6a, alt_entry_21bbba, gfx_draw_motion, gfx_draw_motion_alt,
- * gfx_draw_motion_frame_a, gfx_draw_motion_frame_b, gfx_draw_motion_frame_c (+27 more)
+ * called by: alt_entry_21af36, alt_entry_21ba6a, alt_entry_21bbba, gfx_draw_3d_line_segments_like, gfx_draw_motion,
+ * gfx_draw_motion_alt, gfx_draw_motion_frame_a, gfx_draw_motion_frame_b (+27 more)
  */
 int draw_state_save(u32 a0, u32 a1, u32 a2, u32 a3) {
     int *piVar1;
@@ -11281,8 +11281,8 @@ int draw_state_save(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * draw_state_restore  0x8c2364b2
  * restores the TA polygon state saved by draw_state_save
- * called by: alt_entry_21af36, alt_entry_21ba6a, alt_entry_21bbba, gfx_draw_motion, gfx_draw_motion_alt,
- * gfx_draw_motion_frame_a, gfx_draw_motion_frame_b, gfx_draw_motion_frame_c (+27 more)
+ * called by: alt_entry_21af36, alt_entry_21ba6a, alt_entry_21bbba, gfx_draw_3d_line_segments_like, gfx_draw_motion,
+ * gfx_draw_motion_alt, gfx_draw_motion_frame_a, gfx_draw_motion_frame_b (+27 more)
  */
 int draw_state_restore(u32 a0) {
     int *piVar1;
@@ -11316,8 +11316,8 @@ int draw_state_restore(u32 a0) {
 /*
  * ta_sq_write_header4_short  0x8c236510
  * three-word variant of ta_sq_write_header4
- * called by: gfx_2d_begin, gfx_draw_polygon_flags, gfx_draw_strip_plain, gfxlib_draw_234d68, gfxlib_draw_234fd0,
- * ta_fifo_2595aa
+ * called by: gfx_2d_begin, gfx_draw_3d_line_segments_like, gfx_draw_polygon_flags, gfx_draw_strip_plain,
+ * gfxlib_draw_234d68, ta_fifo_2595aa
  */
 u32 *ta_sq_write_header4_short(void) {
     u32 *puVar1;
@@ -11348,8 +11348,8 @@ u32 *ta_sq_write_header4_short(void) {
 /*
  * ta_sq_write_header5_short  0x8c2365e2
  * three-word variant of ta_sq_write_header5
- * called by: gfx_2d_begin, gfx_draw_polygon_flags, gfx_draw_strip_plain, gfxlib_draw_234d68, gfxlib_draw_234fd0,
- * ta_fifo_2595aa
+ * called by: gfx_2d_begin, gfx_draw_3d_line_segments_like, gfx_draw_polygon_flags, gfx_draw_strip_plain,
+ * gfxlib_draw_234d68, ta_fifo_2595aa
  */
 u32 *ta_sq_write_header5_short(void) {
     u32 *puVar1;
@@ -11379,8 +11379,8 @@ u32 *ta_sq_write_header5_short(void) {
 /*
  * ta_sq_write_header4  0x8c23666c
  * writes the saved polygon header (0x8c4ab238) to the TA through store queue 0 (list word 4)
- * called by: gfx_draw_polygon_flags, gfx_draw_strip_tex, gfx_draw_strip_tex_alt, gfxlib_draw_217f12,
- * gfxlib_draw_21908e, gfxlib_draw_219ad0, gfxlib_draw_234d68, gfxlib_draw_234fd0 (+1 more)
+ * called by: gfx_draw_3d_line_segments_like, gfx_draw_polygon_flags, gfx_draw_strip_tex, gfx_draw_strip_tex_alt,
+ * gfx_poly_chunks_draw_a, gfx_poly_chunks_draw_b, gfx_poly_chunks_draw_s64, gfxlib_draw_234d68 (+1 more)
  */
 u32 *ta_sq_write_header4(void) {
     u32 *puVar1;
@@ -11412,8 +11412,8 @@ u32 *ta_sq_write_header4(void) {
 /*
  * ta_sq_write_header5  0x8c236718
  * same as ta_sq_write_header4 for list word 5
- * called by: gfx_draw_polygon_flags, gfx_draw_strip_tex, gfx_draw_strip_tex_alt, gfxlib_draw_217f12,
- * gfxlib_draw_21908e, gfxlib_draw_219ad0, gfxlib_draw_234d68, gfxlib_draw_234fd0 (+1 more)
+ * called by: gfx_draw_3d_line_segments_like, gfx_draw_polygon_flags, gfx_draw_strip_tex, gfx_draw_strip_tex_alt,
+ * gfx_poly_chunks_draw_a, gfx_poly_chunks_draw_b, gfx_poly_chunks_draw_s64, gfxlib_draw_234d68 (+1 more)
  */
 u32 *ta_sq_write_header5(void) {
     u32 *puVar1;
@@ -11510,7 +11510,7 @@ u32 *ta_sq_write_vertex_slot5(u32 *a0) {
 /*
  * ta_init_fields_236b3c  0x8c236b3c
  * area name: sits between ta functions (same compilation unit); behaviour name: writes 7 members
- * called by: gfxlib_draw_21908e
+ * called by: gfx_poly_chunks_draw_b
  */
 u32 *ta_init_fields_236b3c(u32 *a0) {
     u32 *puVar1;
@@ -11545,7 +11545,7 @@ u32 *ta_init_fields_236b3c(u32 *a0) {
 /*
  * ta_init_fields_236c38  0x8c236c38
  * area name: sits between ta functions (same compilation unit); behaviour name: writes 7 members
- * called by: gfxlib_draw_21908e
+ * called by: gfx_poly_chunks_draw_b
  */
 u32 *ta_init_fields_236c38(u32 *a0) {
     u32 *puVar1;
@@ -11580,7 +11580,7 @@ u32 *ta_init_fields_236c38(u32 *a0) {
 /*
  * ta_init_fields_236d20  0x8c236d20
  * area name: sits between ta functions (same compilation unit); behaviour name: writes 11 members
- * called by: gfxlib_draw_21908e
+ * called by: gfx_poly_chunks_draw_b
  */
 u32 *ta_init_fields_236d20(u32 *a0, u32 *a1) {
     u32 *puVar1;
@@ -11620,7 +11620,7 @@ u32 *ta_init_fields_236d20(u32 *a0, u32 *a1) {
 /*
  * ta_init_fields_236dd8  0x8c236dd8
  * area name: sits between ta functions (same compilation unit); behaviour name: writes 11 members
- * called by: gfxlib_draw_21908e
+ * called by: gfx_poly_chunks_draw_b
  */
 u32 *ta_init_fields_236dd8(u32 *a0, u32 *a1) {
     u32 *puVar1;
@@ -11659,8 +11659,8 @@ u32 *ta_init_fields_236dd8(u32 *a0, u32 *a1) {
 /*
  * ta_set_list_addr  0x8c2370dc
  * writes the TA list address a0 (26 bits) with the flags in 0x8c4ab25c
- * called by: gfx_draw_polygon_flags, gfx_draw_strip_plain, gfx_draw_strip_tex, gfx_draw_strip_tex_alt,
- * gfxlib_draw_217f12, gfxlib_draw_21908e, gfxlib_draw_219ad0, gfxlib_draw_234d68 (+7 more)
+ * called by: gfx_draw_3d_line_segments_like, gfx_draw_polygon_flags, gfx_draw_strip_plain, gfx_draw_strip_tex,
+ * gfx_draw_strip_tex_alt, gfx_poly_chunks_draw_a, gfx_poly_chunks_draw_b, gfx_poly_chunks_draw_s32 (+7 more)
  */
 u32 ta_set_list_addr(u32 a0) {
     u32 uVar1;
@@ -11672,8 +11672,8 @@ u32 ta_set_list_addr(u32 a0) {
 
 /*
  * ta_fifo_237124  0x8c237124
- * called by: gfx_2d_begin, gfx_draw_polygon_flags, gfx_draw_strip_plain, gfx_draw_strip_tex, gfx_draw_strip_tex_alt,
- * gfxlib_draw_217f12, gfxlib_draw_21908e, gfxlib_draw_219ad0 (+8 more)
+ * called by: gfx_2d_begin, gfx_draw_3d_line_segments_like, gfx_draw_polygon_flags, gfx_draw_strip_plain,
+ * gfx_draw_strip_tex, gfx_draw_strip_tex_alt, gfx_poly_chunks_draw_a, gfx_poly_chunks_draw_b (+8 more)
  */
 u32 ta_fifo_237124(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar1;
@@ -11818,7 +11818,7 @@ u32 ta_update_fields_237370(u32 a0) {
 /*
  * gfxlib_calc_23752c  0x8c23752c
  * area name: in the gfxlib library code range; behaviour name: integer arithmetic on its arguments
- * called by: gfxlib_draw_217f12, gfxlib_draw_21908e
+ * called by: gfx_poly_chunks_draw_a, gfx_poly_chunks_draw_b
  */
 u32 gfxlib_calc_23752c(u32 a0, u32 a1) {
     int *piVar1;
@@ -11838,7 +11838,7 @@ u32 gfxlib_calc_23752c(u32 a0, u32 a1) {
 /*
  * gfxlib_calc_2375ae  0x8c2375ae
  * area name: in the gfxlib library code range; behaviour name: integer arithmetic on its arguments
- * called by: gfx_material_colors_unpack, gfxlib_draw_217f12, gfxlib_draw_21908e
+ * called by: gfx_material_colors_unpack, gfx_poly_chunks_draw_a, gfx_poly_chunks_draw_b
  */
 u32 *gfxlib_calc_2375ae(int a0, u32 a1) {
     u32 *puVar1;
@@ -12148,11 +12148,11 @@ int alt_entry_2378ba(void) {
 }
 
 /*
- * gfxlib_uses_tex_entry_alloc_23793c  0x8c23793c
- * area name: in the gfxlib library code range; behaviour name: its main named callee is tex_entry_alloc
+ * tex_list_load_entry_from_file  0x8c23793c
+ * loads texture a1 of texture list a0 from its PVR file (or reuses an already loaded one) and builds its control words
  * called by: njLoadTexture
  */
-u32 gfxlib_uses_tex_entry_alloc_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
+u32 tex_list_load_entry_from_file(int *a0, int a1, u32 unused_a2, u32 a3) {
     int *ar5_00;
     int iVar1;
     u32 uVar2;
@@ -12953,10 +12953,10 @@ u32 gfxlib_uses_tex_entry_alloc_23793c(int *a0, int a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * gfxlib_uses_tex_entry_alloc_237964  0x8c237964
- * area name: in the gfxlib library code range; behaviour name: its main named callee is tex_entry_alloc
+ * tex_list_load_entry_from_file_b  0x8c237964
+ * second copy of tex_list_load_entry_from_file
  */
-u32 gfxlib_uses_tex_entry_alloc_237964(int *a0, int a1, u32 unused_a2, u32 a3) {
+u32 tex_list_load_entry_from_file_b(int *a0, int a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     int *ar5_00;
     int *piVar2;
@@ -13432,10 +13432,10 @@ LAB_8c23878e:
 }
 
 /*
- * gfxlib_uses_tex_entry_alloc_2387a0  0x8c2387a0
- * area name: in the gfxlib library code range; behaviour name: its main named callee is tex_entry_alloc
+ * tex_list_load_entry_from_mem  0x8c2387a0
+ * loads texture a1 of texture list a0 from PVR data in memory (or reuses an already loaded one)
  */
-u32 gfxlib_uses_tex_entry_alloc_2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
+u32 tex_list_load_entry_from_mem(int *a0, int a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -13777,7 +13777,7 @@ u32 gfxlib_uses_tex_entry_alloc_2387a0(int *a0, int a1, u32 unused_a2, u32 a3) {
 /*
  * gfxlib_calc_238e8c  0x8c238e8c
  * area name: in the gfxlib library code range; behaviour name: integer arithmetic on its arguments
- * called by: pvr_uses_tex_entry_alloc_23a29c
+ * called by: pvm_load_from_stream_like
  */
 u32 gfxlib_calc_238e8c(u32 a0) {
     u32 *puVar1;
@@ -13792,7 +13792,7 @@ u32 gfxlib_calc_238e8c(u32 a0) {
 /*
  * gfx_stream_read  0x8c238e98
  * copies a1 bytes from the read pointer at 0x8c4ab274 to a0 and advances it
- * called by: gfx_texlist_entries_from_stream, pvr_stream_find_pvrt, pvr_uses_tex_entry_alloc_23a29c,
+ * called by: gfx_texlist_entries_from_stream, pvm_load_from_stream_like, pvr_stream_find_pvrt,
  * pvrt_gfx_stream_is_palettized, ta_fifo_23a078
  */
 u32 gfx_stream_read(u32 a0, int a1) {
@@ -13808,7 +13808,7 @@ u32 gfx_stream_read(u32 a0, int a1) {
 /*
  * gfx_stream_seek  0x8c238eba
  * a1 = 0 sets the read pointer (0x8c4ab274) to base + a0, 1 moves it by a0
- * called by: pvr_stream_find_pvrt, pvr_uses_tex_entry_alloc_23a29c, pvrt_gfx_stream_is_palettized, ta_fifo_23a078
+ * called by: pvm_load_from_stream_like, pvr_stream_find_pvrt, pvrt_gfx_stream_is_palettized, ta_fifo_23a078
  */
 int gfx_stream_seek(int a0, int a1) {
     if (a1 == 1) {
@@ -13850,7 +13850,7 @@ u32 copy_4_bytes(u8 *a0, u8 *a1) {
 /*
  * gfxlib_vertex_size_from_flags  0x8c238f02
  * vertex size from format flag bits (base 2 or 0x1e, +2/+2/+4 for bits 1..3)
- * called by: gfxlib_uses_ninja_close_file_239212, pvr_uses_tex_entry_alloc_23a29c
+ * called by: gfx_model_file_load_like, pvm_load_from_stream_like
  */
 int gfxlib_vertex_size_from_flags(u32 a0) {
     int iVar1;
@@ -13874,7 +13874,7 @@ int gfxlib_vertex_size_from_flags(u32 a0) {
 /*
  * gfx_texlist_entries_from_mem  0x8c238f2a
  * reads a2's texture-list records from memory a1 into the entries at *a0: id, optional name, and the attribute and
- * address words by the header flags called by: gfxlib_uses_ninja_close_file_239212
+ * address words by the header flags called by: gfx_model_file_load_like
  */
 u32 gfx_texlist_entries_from_mem(u32 *a0, u32 a1, int a2, u32 a3) {
     u16 uVar1;
@@ -13929,7 +13929,7 @@ u32 gfx_texlist_entries_from_mem(u32 *a0, u32 a1, int a2, u32 a3) {
 
 /*
  * ta_fifo_239012  0x8c239012
- * called by: gfxlib_uses_ninja_close_file_239212
+ * called by: gfx_model_file_load_like
  */
 u32 ta_fifo_239012(u32 unused_a0, u32 unused_a1, int a2, u32 a3, u32 s0) {
     u8 *puVar1;
@@ -14006,7 +14006,7 @@ u32 ta_fifo_239012(u32 unused_a0, u32 unused_a1, int a2, u32 a3, u32 s0) {
 /*
  * find_entry_by_id  0x8c239150
  * index of the 12-byte entry in *a0 whose low 16 bits at +4 equal a1
- * called by: gfxlib_uses_ninja_close_file_239212, pvr_uses_tex_entry_alloc_23a29c
+ * called by: gfx_model_file_load_like, pvm_load_from_stream_like
  */
 int find_entry_by_id(int *a0, u32 a1) {
     int iVar1;
@@ -14047,7 +14047,7 @@ int *ptr_list_build_1c(int *a0, int *a1, int a2, int a3) {
 /*
  * pvrt_stream_is_palettized  0x8c2391a8
  * reads a PVRT header from the open stream; 1 for palettized pixel formats (types 5..8), 0 otherwise, -4 on a bad
- * header called by: gfxlib_uses_ninja_close_file_239212
+ * header called by: gfx_model_file_load_like
  */
 u32 pvrt_stream_is_palettized(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -14070,10 +14070,10 @@ u32 pvrt_stream_is_palettized(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a
 }
 
 /*
- * gfxlib_uses_ninja_close_file_239212  0x8c239212
- * area name: in the gfxlib library code range; behaviour name: its main named callee is ninja_close_file
+ * gfx_model_file_load_like  0x8c239212
+ * opens a model file, reads its chunks into memory and fixes up the vertex and texture data
  */
-u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) {
+u32 gfx_model_file_load_like(u32 a0, int *a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int *piVar3;
@@ -14604,7 +14604,7 @@ u32 gfxlib_uses_ninja_close_file_239212(u32 a0, int *a1, u32 unused_a2, u32 a3) 
 /*
  * gfx_texlist_entries_from_stream  0x8c239f84
  * reads a2's texture-list records from the stream a1 into the entries at *a0: id, optional name, and the attribute and
- * address words by the header flags called by: pvr_uses_tex_entry_alloc_23a29c
+ * address words by the header flags called by: pvm_load_from_stream_like
  */
 u32 gfx_texlist_entries_from_stream(u32 *a0, u32 a1, int a2) {
     u16 uVar1;
@@ -14659,7 +14659,7 @@ u32 gfx_texlist_entries_from_stream(u32 *a0, u32 a1, int a2) {
 
 /*
  * ta_fifo_23a078  0x8c23a078
- * called by: pvr_uses_tex_entry_alloc_23a29c
+ * called by: pvm_load_from_stream_like
  */
 u32 ta_fifo_23a078(u32 unused_a0, u32 unused_a1, u8 *a2, u32 a3) {
     int iVar1;
@@ -14716,7 +14716,7 @@ u32 ta_fifo_23a078(u32 unused_a0, u32 unused_a1, u8 *a2, u32 a3) {
 /*
  * pvr_stream_find_pvrt  0x8c23a1b0
  * skips chunks in the texture stream until 'PVRT' and reads the size and format
- * called by: pvr_uses_tex_entry_alloc_23a29c
+ * called by: pvm_load_from_stream_like
  */
 u32 pvr_stream_find_pvrt(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -14751,7 +14751,7 @@ u32 pvr_stream_find_pvrt(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * pvrt_gfx_stream_is_palettized  0x8c23a21c
  * reads a PVRT header from the graphics stream; 1 for palettized pixel formats (5..8), -4 on a bad header
- * called by: pvr_uses_tex_entry_alloc_23a29c
+ * called by: pvm_load_from_stream_like
  */
 u32 pvrt_gfx_stream_is_palettized(u32 unused_a0, u32 a1) {
     int iStack_14;
@@ -14773,11 +14773,11 @@ u32 pvrt_gfx_stream_is_palettized(u32 unused_a0, u32 a1) {
 }
 
 /*
- * pvr_uses_tex_entry_alloc_23a29c  0x8c23a29c
- * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is
- * tex_entry_alloc called by: CDCGD_ReadPVMFileReq
+ * pvm_load_from_stream_like  0x8c23a29c
+ * reads a PVM archive ("PVMH") from the stream: its texture list header, then each texture
+ * called by: CDCGD_ReadPVMFileReq
  */
-u32 pvr_uses_tex_entry_alloc_23a29c(u32 a0, int *a1, u32 unused_a2, u32 a3) {
+u32 pvm_load_from_stream_like(u32 a0, int *a1, u32 unused_a2, u32 a3) {
     int iVar1;
     int ain0;
     int iVar2;

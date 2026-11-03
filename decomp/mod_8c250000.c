@@ -7894,17 +7894,17 @@ u32 ninja_uses_gfx_lights_reset_defaults_li_253cfc(u32 a0, u32 a1, u32 a2, u32 a
     gfxlib_draw_23c70c();
     gfx_lights_reset_defaults_like();
     gfxlib_uses_memcpy_words_n_2376c4();
-    ninja_vec_254066(a0, a1, a2, a3);
+    nj_object_tree_transform_draw_like_wrap(a0, a1, a2, a3);
     uVar1 = gfxlib_calc_237760();
     return uVar1;
 }
 
 /*
- * ninja_uses_matrix_push_253d1c  0x8c253d1c
- * area name: in the ninja library code range; behaviour name: its main named callee is matrix_push
- * called by: ninja_vec_254066
+ * nj_object_tree_transform_draw_like  0x8c253d1c
+ * walks object a0: pushes its matrix, applies translation, rotation and scale per its flags, draws it and recurses
+ * called by: nj_object_tree_transform_draw_like_wrap
  */
-u32 ninja_uses_matrix_push_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 nj_object_tree_transform_draw_like(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
 
@@ -7929,7 +7929,7 @@ u32 ninja_uses_matrix_push_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                 ninja_uses_ta_fifo_254026(a0[1], a1, a2, a3);
             }
             if ((*a0 & 0x10) == 0) {
-                ninja_vec_254066(a0[0xb], a1, a2, a3);
+                nj_object_tree_transform_draw_like_wrap(a0[0xb], a1, a2, a3);
             }
         LAB_8c253fa8:
             uVar1 = matrix_pop_n(1);
@@ -7952,7 +7952,7 @@ u32 ninja_uses_matrix_push_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                     ninja_uses_ta_fifo_254026(a0[1], a1, a2, a3);
                 }
                 if ((*a0 & 0x10) == 0) {
-                    ninja_vec_254066(a0[0xb], a1, a2, a3);
+                    nj_object_tree_transform_draw_like_wrap(a0[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -7964,7 +7964,7 @@ u32 ninja_uses_matrix_push_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                     ninja_uses_ta_fifo_254026(a0[1], a1, a2, a3);
                 }
                 if ((*a0 & 0x10) == 0) {
-                    ninja_vec_254066(a0[0xb], a1, a2, a3);
+                    nj_object_tree_transform_draw_like_wrap(a0[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -7975,7 +7975,7 @@ u32 ninja_uses_matrix_push_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                     ninja_uses_ta_fifo_254026(a0[1], a1, a2, a3);
                 }
                 if ((*a0 & 0x10) == 0) {
-                    ninja_vec_254066(a0[0xb], a1, a2, a3);
+                    nj_object_tree_transform_draw_like_wrap(a0[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -7997,7 +7997,7 @@ u32 ninja_uses_matrix_push_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                     ninja_uses_ta_fifo_254026(a0[1], a1, a2, a3);
                 }
                 if ((*a0 & 0x10) == 0) {
-                    ninja_vec_254066(a0[0xb], a1, a2, a3);
+                    nj_object_tree_transform_draw_like_wrap(a0[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -8018,7 +8018,7 @@ u32 ninja_uses_matrix_push_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                     ninja_uses_ta_fifo_254026(a0[1], a1, a2, a3);
                 }
                 if ((*a0 & 0x10) == 0) {
-                    ninja_vec_254066(a0[0xb], a1, a2, a3);
+                    nj_object_tree_transform_draw_like_wrap(a0[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -8029,7 +8029,7 @@ u32 ninja_uses_matrix_push_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                     ninja_uses_ta_fifo_254026(a0[1], a1, a2, a3);
                 }
                 if ((*a0 & 0x10) == 0) {
-                    ninja_vec_254066(a0[0xb], a1, a2, a3);
+                    nj_object_tree_transform_draw_like_wrap(a0[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -8039,7 +8039,7 @@ u32 ninja_uses_matrix_push_253d1c(u32 *a0, u32 a1, u32 a2, u32 a3) {
                     uVar1 = ninja_uses_ta_fifo_254026(a0[1], a1, a2, a3);
                 }
                 if ((*a0 & 0x10) == 0) {
-                    uVar1 = ninja_vec_254066(a0[0xb], a1, a2, a3);
+                    uVar1 = nj_object_tree_transform_draw_like_wrap(a0[0xb], a1, a2, a3);
                 }
             }
         }
@@ -8080,7 +8080,7 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                 ninja_uses_ta_fifo_254026(unaff_r14[1], a1, a2, a3);
             }
             if ((*unaff_r14 & 0x10) == 0) {
-                ninja_vec_254066(unaff_r14[0xb], a1, a2, a3);
+                nj_object_tree_transform_draw_like_wrap(unaff_r14[0xb], a1, a2, a3);
             }
         LAB_8c253fa8:
             uVar1 = matrix_pop_n(1);
@@ -8103,7 +8103,7 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     ninja_uses_ta_fifo_254026(unaff_r14[1], a1, a2, a3);
                 }
                 if ((*unaff_r14 & 0x10) == 0) {
-                    ninja_vec_254066(unaff_r14[0xb], a1, a2, a3);
+                    nj_object_tree_transform_draw_like_wrap(unaff_r14[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -8115,7 +8115,7 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     ninja_uses_ta_fifo_254026(unaff_r14[1], a1, a2, a3);
                 }
                 if ((*unaff_r14 & 0x10) == 0) {
-                    ninja_vec_254066(unaff_r14[0xb], a1, a2, a3);
+                    nj_object_tree_transform_draw_like_wrap(unaff_r14[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -8126,7 +8126,7 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     ninja_uses_ta_fifo_254026(unaff_r14[1], a1, a2, a3);
                 }
                 if ((*unaff_r14 & 0x10) == 0) {
-                    ninja_vec_254066(unaff_r14[0xb], a1, a2, a3);
+                    nj_object_tree_transform_draw_like_wrap(unaff_r14[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -8148,7 +8148,7 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     ninja_uses_ta_fifo_254026(unaff_r14[1], a1, a2, a3);
                 }
                 if ((*unaff_r14 & 0x10) == 0) {
-                    ninja_vec_254066(unaff_r14[0xb], a1, a2, a3);
+                    nj_object_tree_transform_draw_like_wrap(unaff_r14[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -8169,7 +8169,7 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     ninja_uses_ta_fifo_254026(unaff_r14[1], a1, a2, a3);
                 }
                 if ((*unaff_r14 & 0x10) == 0) {
-                    ninja_vec_254066(unaff_r14[0xb], a1, a2, a3);
+                    nj_object_tree_transform_draw_like_wrap(unaff_r14[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -8180,7 +8180,7 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     ninja_uses_ta_fifo_254026(unaff_r14[1], a1, a2, a3);
                 }
                 if ((*unaff_r14 & 0x10) == 0) {
-                    ninja_vec_254066(unaff_r14[0xb], a1, a2, a3);
+                    nj_object_tree_transform_draw_like_wrap(unaff_r14[0xb], a1, a2, a3);
                 }
                 goto LAB_8c253fa8;
             }
@@ -8190,7 +8190,7 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     uVar1 = ninja_uses_ta_fifo_254026(unaff_r14[1], a1, a2, a3);
                 }
                 if ((*unaff_r14 & 0x10) == 0) {
-                    uVar1 = ninja_vec_254066(unaff_r14[0xb], a1, a2, a3);
+                    uVar1 = nj_object_tree_transform_draw_like_wrap(unaff_r14[0xb], a1, a2, a3);
                 }
             }
         }
@@ -8229,7 +8229,7 @@ u32 ninja_draw_254006(u32 a0) {
 /*
  * ninja_uses_ta_fifo_254026  0x8c254026
  * area name: in the ninja library code range; behaviour name: its callees mostly do: uses_ta_fifo
- * called by: alt_entry_253d20, gfxlib_uses_gfx_lights_reset_defaults_li_247df4, ninja_uses_matrix_push_253d1c
+ * called by: alt_entry_253d20, gfxlib_uses_gfx_lights_reset_defaults_li_247df4, nj_object_tree_transform_draw_like
  */
 u32 ninja_uses_ta_fifo_254026(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -8255,14 +8255,14 @@ u32 ninja_draw_254042(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_vec_254066  0x8c254066
- * area name: in the ninja library code range; behaviour name: mostly calls vec functions
- * called by: alt_entry_253d20, ninja_uses_gfx_lights_reset_defaults_li_253cfc, ninja_uses_matrix_push_253d1c
+ * nj_object_tree_transform_draw_like_wrap  0x8c254066
+ * only calls nj_object_tree_transform_draw_like
+ * called by: alt_entry_253d20, ninja_uses_gfx_lights_reset_defaults_li_253cfc, nj_object_tree_transform_draw_like
  */
-u32 ninja_vec_254066(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 nj_object_tree_transform_draw_like_wrap(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = ninja_uses_matrix_push_253d1c(a0, a1, a2, a3);
+    uVar1 = nj_object_tree_transform_draw_like(a0, a1, a2, a3);
     return uVar1;
 }
 
@@ -9692,7 +9692,7 @@ u32 motion_matrix_apply_rot_other(int a0) {
 /*
  * ninja_uses_libgcc_divide_helper_254fbc  0x8c254fbc
  * area name: in the ninja library code range; behaviour name: its main named callee is libgcc_divide_helper_0106dc
- * called by: ninja_vec_255346
+ * called by: nj_shape_interp_spline
  */
 int ninja_uses_libgcc_divide_helper_254fbc(int a0, int a1, int a2, u32 *a3) {
     int iVar1;
@@ -9722,7 +9722,7 @@ int ninja_uses_libgcc_divide_helper_254fbc(int a0, int a1, int a2, u32 *a3) {
 /*
  * keyframe_pair_nj  0x8c255080
  * the Ninja library's copy of keyframe_pair
- * called by: ninja_vec_2556c8
+ * called by: nj_shape_interp_linear
  */
 int keyframe_pair_nj(int a0, int a1, u32 a2, int *a3) {
     int iVar1;
@@ -9745,7 +9745,7 @@ int keyframe_pair_nj(int a0, int a1, u32 a2, int *a3) {
 /*
  * vec3_lerp_normalize  0x8c25513c
  * a2 = normalize(lerp(a0, a1, t)), falling back to (0, 0, 1) for a near-zero result
- * called by: ninja_vec_2556c8
+ * called by: nj_shape_interp_linear
  */
 u32 *vec3_lerp_normalize(float *a0, float *a1, float *a2) {
     float *pfVar1;
@@ -9779,7 +9779,7 @@ u32 *vec3_lerp_normalize(float *a0, float *a1, float *a2) {
 /*
  * Vec3_lerp_nj  0x8c2551aa
  * a2 = lerp(a0, a1, fr4) (the Ninja library's copy)
- * called by: ninja_vec_2556c8
+ * called by: nj_shape_interp_linear
  */
 u32 Vec3_lerp_nj(float *a0, float *a1, float *a2) {
     float fVar1;
@@ -9797,7 +9797,7 @@ u32 Vec3_lerp_nj(float *a0, float *a1, float *a2) {
 /*
  * vec3_catmull_rom_normalized  0x8c2551d4
  * evaluates the Catmull-Rom spline through a0..a3 at t and normalises the result (0, 0, 1 when it is near zero)
- * called by: ninja_vec_255346
+ * called by: nj_shape_interp_spline
  */
 u32 *vec3_catmull_rom_normalized(float *a0, float *a1, float *a2, float *a3) {
     float *pfVar1;
@@ -9840,7 +9840,7 @@ u32 *vec3_catmull_rom_normalized(float *a0, float *a1, float *a2, float *a3) {
 /*
  * catmull_rom_vec3  0x8c2552b0
  * *s0 = point at t (fr5) on the Catmull-Rom spline through a0, a1, a2, a3
- * called by: ninja_vec_255346
+ * called by: nj_shape_interp_spline
  */
 u32 catmull_rom_vec3(float *a0, float *a1, float *a2, float *a3, float *s0) {
     float fVar1;
@@ -9864,10 +9864,10 @@ u32 catmull_rom_vec3(float *a0, float *a1, float *a2, float *a3, float *s0) {
 }
 
 /*
- * ninja_vec_255346  0x8c255346
- * area name: in the ninja library code range; behaviour name: mostly calls vec functions
+ * nj_shape_interp_spline  0x8c255346
+ * Ninja shape motion: Catmull-Rom interpolation of vertex positions and normals between keyframes
  */
-u32 ninja_vec_255346(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 nj_shape_interp_spline(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -10092,10 +10092,10 @@ LAB_8c25569a:
 }
 
 /*
- * ninja_vec_2556c8  0x8c2556c8
- * area name: in the ninja library code range; behaviour name: mostly calls vec functions
+ * nj_shape_interp_linear  0x8c2556c8
+ * Ninja shape motion: linear interpolation of vertex positions and normals between keyframes
  */
-u32 ninja_vec_2556c8(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 nj_shape_interp_linear(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -12294,7 +12294,8 @@ u32 njRotateZ(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
  * ninja_float_calc_256e18  0x8c256e18
  * area name: in the ninja library code range; behaviour name: floating-point arithmetic
  * called by: CAnimal_uses_njGetMatrix_029af0, alt_entry_253d20, motion_matrix_apply_rot_other,
- * ninja_uses_matrix_push_253d1c decompiler: Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256f72
+ * nj_object_tree_transform_draw_like decompiler: Heritage AFTER dead removal. Example location: s0xfffffff0 :
+ * 0x8c256f72
  */
 u32 ninja_float_calc_256e18(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     float fVar1;
@@ -12661,9 +12662,8 @@ int tex_size_to_index(int a0) {
 /*
  * tex_build_control_words  0x8c2571fe
  * builds texture a0's size word (+8) and texture control word (+0xc) from its sizes, flags, pixel format and palette
- * bank called by: alt_entry_237830, alt_entry_25a394, gfxlib_uses_ninja_close_file_239212,
- * gfxlib_uses_tex_entry_alloc_23793c, gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0,
- * pvr_uses_tex_entry_alloc_23a29c, tex_entry_alloc (+2 more)
+ * bank called by: alt_entry_237830, alt_entry_25a394, gfx_model_file_load_like, pvm_load_from_stream_like,
+ * tex_entry_alloc, tex_entry_set_flags, tex_list_build_control_words, tex_list_load_entry_from_file (+2 more)
  */
 u32 tex_build_control_words(int a0) {
     int iVar1;
@@ -14366,7 +14366,7 @@ u32 nj_sprite_uv_flip_like(float *a0, int a1, u32 a2) {
 /*
  * noop_fr4_test  0x8c258030
  * tests fr4 against 0 and returns the same value either way
- * called by: Vec3_length_sq, alt_entry_233d20, alt_entry_23c2a6, gfxlib_uses_noop_fr4_test_2336e8,
+ * called by: Vec3_length_sq, alt_entry_233d20, alt_entry_23c2a6, gfx_box_sphere_overlap_test_like,
  * gfxlib_uses_noop_fr4_test_233d14, gfxlib_uses_noop_fr4_test_23c2a0, kamui_uses_noop_fr4_test_212a30,
  * ninja_uses_noop_fr4_test_212898
  */
@@ -14504,7 +14504,7 @@ u32 g2dma_2580f8(u32 *a0) {
 
 /*
  * aica_reg_258104  0x8c258104
- * called by: ninja_uses_aica_reg_258604, pvr_25825a
+ * called by: njInitSystem_like, pvr_25825a
  */
 u32 aica_reg_258104(u32 a0) {
     u32 uVar1;
@@ -14597,7 +14597,7 @@ u32 aica_reg_258104(u32 a0) {
 
 /*
  * aica_reg_258210  0x8c258210
- * called by: ninja_uses_aica_reg_258604
+ * called by: njInitSystem_like
  */
 u32 aica_reg_258210(u32 a0) {
     u32 uVar1;
@@ -14829,10 +14829,10 @@ u32 pvr_25825a(u32 a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_uses_aica_reg_258604  0x8c258604
- * area name: in the ninja library code range; behaviour name: its main named callee is aica_reg_258104
+ * njInitSystem_like  0x8c258604
+ * initialises the PVR display and Ninja globals for display mode a0 and frame buffer format a1
  */
-u32 ninja_uses_aica_reg_258604(u32 a0, u32 a1, u32 a2) {
+u32 njInitSystem_like(u32 a0, u32 a1, u32 a2) {
     short sVar1;
     int *piVar2;
     int *piVar3;
@@ -15141,7 +15141,7 @@ u32 nj_init_view_defaults_like(void) {
 /*
  * screen_reset_view  0x8c258ac0
  * centres the view on the screen size and sets the clip rectangle to the full screen
- * called by: ninja_uses_aica_reg_258604
+ * called by: njInitSystem_like
  */
 u32 screen_reset_view(void) {
     g_8c4aa518 = 0;
@@ -16614,7 +16614,7 @@ u32 *draw_state_copy_in(u32 a0) {
 
 /*
  * thunk_FUN_8c207f80  0x8c2599ba
- * called by: ninja_uses_aica_reg_258604
+ * called by: njInitSystem_like
  */
 u32 thunk_FUN_8c207f80(void) {
     u32 uVar1;
@@ -16837,8 +16837,8 @@ u32 ninja_angle_sincos(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 
 /*
  * nj_file_open  0x8c259be8
  * opens file a0 for the Ninja loader and records its size and sector count; -2 on failure
- * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
- * gfxlib_uses_tex_entry_alloc_237964, nj_palette_file_load
+ * called by: gfx_model_file_load_like, nj_palette_file_load, tex_list_load_entry_from_file,
+ * tex_list_load_entry_from_file_b
  */
 u32 nj_file_open(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -16860,8 +16860,8 @@ u32 nj_file_open(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * ninja_close_file  0x8c259c40
  * closes Ninja's file handle (0x8c4b3338) through gdfs_close_like
- * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
- * gfxlib_uses_tex_entry_alloc_237964, nj_palette_file_load
+ * called by: gfx_model_file_load_like, nj_palette_file_load, tex_list_load_entry_from_file,
+ * tex_list_load_entry_from_file_b
  */
 u32 ninja_close_file(void) {
     u32 uVar1;
@@ -16873,9 +16873,8 @@ u32 ninja_close_file(void) {
 /*
  * nj_stream_read_buffered  0x8c259c48
  * copies a1 bytes from the GD-ROM stream ring buffer into a0, refilling it with blocking reads as needed
- * called by: gfx_texlist_entries_from_mem, gfxlib_uses_ninja_close_file_239212, nj_palette_file_load,
- * pvr_file_read_dims, pvr_file_read_header, pvr_file_read_to_heap, pvr_file_stream_to_vram, pvrt_stream_is_palettized
- * (+1 more)
+ * called by: gfx_model_file_load_like, gfx_texlist_entries_from_mem, nj_palette_file_load, pvr_file_read_dims,
+ * pvr_file_read_header, pvr_file_read_to_heap, pvr_file_stream_to_vram, pvrt_stream_is_palettized (+1 more)
  */
 u32 nj_stream_read_buffered(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -17081,7 +17080,7 @@ u32 nj_stream_read_buffered_b(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * nj_seek  0x8c25a122
  * moves the position at 0x8c277ca0: a1 = 0 sets it, 1 adds a0, 2 sets it to size - a0
- * called by: gfxlib_uses_ninja_close_file_239212, pvr_file_read_dims, pvr_file_read_header, pvr_file_read_to_heap,
+ * called by: gfx_model_file_load_like, pvr_file_read_dims, pvr_file_read_header, pvr_file_read_to_heap,
  * pvr_file_stream_to_vram, pvrt_stream_is_palettized
  */
 int nj_seek(int a0, int a1) {
@@ -17102,8 +17101,7 @@ int nj_seek(int a0, int a1) {
 /*
  * filename_add_ext_if_missing  0x8c25a174
  * appends name a1 to a0 and then extension a2 unless the name already ends with it (case-insensitive)
- * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
- * gfxlib_uses_tex_entry_alloc_237964
+ * called by: gfx_model_file_load_like, tex_list_load_entry_from_file, tex_list_load_entry_from_file_b
  */
 u32 filename_add_ext_if_missing(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -17139,8 +17137,8 @@ u32 filename_add_ext_if_missing(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * tex_is_palettized  0x8c25a1ee
  * 1 for the palettised texture formats 0x500..0x800 (4- and 8-bit, with and without mipmaps)
- * called by: alt_entry_237830, alt_entry_2565d8, alt_entry_2567fe, gfxlib_uses_tex_entry_alloc_23793c,
- * gfxlib_uses_tex_entry_alloc_2387a0, ninja_uses_tex_entry_free_2565c4, tex_list_release_loaded, tex_release_entry_like
+ * called by: alt_entry_237830, alt_entry_2565d8, alt_entry_2567fe, ninja_uses_tex_entry_free_2565c4,
+ * tex_list_load_entry_from_file, tex_list_load_entry_from_mem, tex_list_release_loaded, tex_release_entry_like
  */
 u32 tex_is_palettized(int a0) {
     if ((((a0 != 0x500) && (a0 != 0x600)) && (a0 != 0x700)) && (a0 != 0x800)) {
@@ -17152,7 +17150,7 @@ u32 tex_is_palettized(int a0) {
 /*
  * pvr_file_read_header  0x8c25a216
  * scans the open texture file for its GBIX and PVRT chunks, picks the global index (or a free one) into *a0 and returns
- * 1 for palettised formats called by: gfxlib_uses_tex_entry_alloc_23793c, gfxlib_uses_tex_entry_alloc_237964
+ * 1 for palettised formats called by: tex_list_load_entry_from_file, tex_list_load_entry_from_file_b
  */
 u32 pvr_file_read_header(int *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -17234,8 +17232,8 @@ u32 tex_table_init(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 /*
  * tex_entry_alloc  0x8c25a380
  * takes a free 0x44-byte entry in the texture table (0x8c277b08) and fills it from a1
- * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
- * gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0, pvr_uses_tex_entry_alloc_23a29c
+ * called by: gfx_model_file_load_like, pvm_load_from_stream_like, tex_list_load_entry_from_file,
+ * tex_list_load_entry_from_file_b, tex_list_load_entry_from_mem
  */
 u32 tex_entry_alloc(int *a0, u32 *a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;
@@ -17413,9 +17411,9 @@ int alt_entry_25a4a6(u32 *a0, u32 a1, u32 a2, int *a3, int ain0) {
 /*
  * tex_entry_find  0x8c25a536
  * index of the texture-table entry (0x44 bytes each, a1 of them at a0) whose id is a2; -1 if none
- * called by: alt_entry_23729c, gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
- * gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0, ninja_draw_into_texture_entry,
- * pvr_file_read_header, pvr_uses_tex_entry_alloc_23a29c (+2 more)
+ * called by: alt_entry_23729c, gfx_model_file_load_like, ninja_draw_into_texture_entry, pvm_load_from_stream_like,
+ * pvr_file_read_header, ta_select_texture_cached, tex_list_load_entry_from_file, tex_list_load_entry_from_file_b (+2
+ * more)
  */
 u32 tex_entry_find(int a0, u32 a1, int a2) {
     u32 uVar1;
@@ -17456,8 +17454,8 @@ u32 array44_index_of(int a0, u32 a1, int a2) {
 /*
  * tex_entry_find_pair  0x8c25a5c0
  * index of the texture-table entry whose first two words are a2, a3; -1 if none
- * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
- * gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0, pvr_uses_tex_entry_alloc_23a29c
+ * called by: gfx_model_file_load_like, pvm_load_from_stream_like, tex_list_load_entry_from_file,
+ * tex_list_load_entry_from_file_b, tex_list_load_entry_from_mem
  */
 u32 tex_entry_find_pair(int a0, u32 a1, int a2, int a3) {
     u32 uVar1;
@@ -17476,9 +17474,9 @@ u32 tex_entry_find_pair(int a0, u32 a1, int a2, int a3) {
 /*
  * tex_entry_set_flags  0x8c25a608
  * ORs a1 into the flags of every texture-table entry whose id is a0
- * called by: alt_entry_237830, gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
- * gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0, gfxlib_uses_tex_entry_set_flags_23782c,
- * pvr_uses_tex_entry_alloc_23a29c
+ * called by: alt_entry_237830, gfx_model_file_load_like, gfxlib_uses_tex_entry_set_flags_23782c,
+ * pvm_load_from_stream_like, tex_list_load_entry_from_file, tex_list_load_entry_from_file_b,
+ * tex_list_load_entry_from_mem
  */
 u32 tex_entry_set_flags(int a0, u32 a1, int a2, u32 unused_a3, u32 ain0) {
     int *a4;
@@ -17540,8 +17538,8 @@ u32 tex_entry_clear_flags_by_id(int a0, u32 a1, u32 a2, u32 unused_a3, u32 ain0)
 /*
  * tex_entry_addref  0x8c25a6ea
  * adds a reference (+0x40) to every texture-table entry whose id is a0
- * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
- * gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0, pvr_uses_tex_entry_alloc_23a29c
+ * called by: gfx_model_file_load_like, pvm_load_from_stream_like, tex_list_load_entry_from_file,
+ * tex_list_load_entry_from_file_b, tex_list_load_entry_from_mem
  */
 u32 tex_entry_addref(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int *piVar1;
@@ -17561,8 +17559,8 @@ u32 tex_entry_addref(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ai
 /*
  * tex_entry_next_free  0x8c25a710
  * +0x14 of the next free texture-table entry
- * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
- * gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0, pvr_uses_tex_entry_alloc_23a29c
+ * called by: gfx_model_file_load_like, pvm_load_from_stream_like, tex_list_load_entry_from_file,
+ * tex_list_load_entry_from_file_b, tex_list_load_entry_from_mem
  */
 int tex_entry_next_free(void) {
     u32 uVar1;
@@ -17578,8 +17576,7 @@ int tex_entry_next_free(void) {
 /*
  * pvr_file_stream_to_vram  0x8c25a770
  * streams texture a1's data from the open file into VRAM in buffer-sized chunks, skipping any trailing bytes
- * called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
- * gfxlib_uses_tex_entry_alloc_237964
+ * called by: gfx_model_file_load_like, tex_list_load_entry_from_file, tex_list_load_entry_from_file_b
  */
 int pvr_file_stream_to_vram(int a0, int a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -17640,8 +17637,7 @@ int pvr_file_stream_to_vram(int a0, int a1, u32 unused_a2, u32 a3) {
 /*
  * pvr_file_read_to_heap  0x8c25a838
  * reads texture a1's data from the open file into a newly allocated graphics heap block stored in *a1 (-7 when out of
- * memory) called by: gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
- * gfxlib_uses_tex_entry_alloc_237964
+ * memory) called by: gfx_model_file_load_like, tex_list_load_entry_from_file, tex_list_load_entry_from_file_b
  */
 int pvr_file_read_to_heap(int a0, int *a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -17687,7 +17683,7 @@ int pvr_file_read_to_heap(int a0, int *a1, u32 unused_a2, u32 a3) {
 /*
  * tex_copy_to_alloc  0x8c25a8c0
  * copies a texture's data into newly allocated texture memory and writes the cache back; -7 when out of memory
- * called by: gfxlib_uses_tex_entry_alloc_23793c, gfxlib_uses_tex_entry_alloc_2387a0, pvr_uses_tex_entry_alloc_23a29c
+ * called by: pvm_load_from_stream_like, tex_list_load_entry_from_file, tex_list_load_entry_from_mem
  */
 int tex_copy_to_alloc(u32 unused_a0, int *a1) {
     int iVar1;
@@ -17712,9 +17708,9 @@ int tex_copy_to_alloc(u32 unused_a0, int *a1) {
 /*
  * tex_calls_test_25a914  0x8c25a914
  * area name: sits between tex functions (same compilation unit); behaviour name: its callees mostly do: test
- * called by: alt_entry_237830, gfxlib_uses_ninja_close_file_239212, gfxlib_uses_tex_entry_alloc_23793c,
- * gfxlib_uses_tex_entry_alloc_237964, gfxlib_uses_tex_entry_alloc_2387a0, gfxlib_uses_tex_entry_set_flags_23782c,
- * pvr_uses_tex_entry_alloc_23a29c
+ * called by: alt_entry_237830, gfx_model_file_load_like, gfxlib_uses_tex_entry_set_flags_23782c,
+ * pvm_load_from_stream_like, tex_list_load_entry_from_file, tex_list_load_entry_from_file_b,
+ * tex_list_load_entry_from_mem
  */
 int tex_calls_test_25a914(u32 a0, u32 *a1, u32 a2, u32 a3) {
     u8 *puVar1;
@@ -17941,7 +17937,7 @@ u32 ninja_uses_tex_size_log2_index_25ab74(u32 *a0, u32 a1) {
 /*
  * pvr_parse_header  0x8c25abf0
  * walks a PVR file's chunks: GBIX sets *a1 to the global index, PVRT copies the 8-byte header to a0
- * called by: gfxlib_uses_tex_entry_alloc_23793c, gfxlib_uses_tex_entry_alloc_2387a0
+ * called by: tex_list_load_entry_from_file, tex_list_load_entry_from_mem
  */
 int *pvr_parse_header(u32 a0, int *a1, int *a2, u32 a3) {
     u8 *puVar1;
@@ -18544,7 +18540,7 @@ u32 njLoadTexture(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         uVar2 = 0xffffffff;
     } else {
         for (ar5_00 = 0; ar5_00 < *(u32 *)(a0 + 4); ar5_00 = ar5_00 + 1) {
-            iVar1 = gfxlib_uses_tex_entry_alloc_23793c(a0, ar5_00, unused_a2, a3);
+            iVar1 = tex_list_load_entry_from_file(a0, ar5_00, unused_a2, a3);
             if (iVar1 < 0)
                 goto LAB_8c25b3d2;
         }
@@ -18692,8 +18688,8 @@ u32 tex_list_build_control_words(u32 *a0, u32 *a1, u32 *a2, u32 a3) {
 /*
  * tex_error_reset  0x8c25b5b4
  * clears the texture loader's error state (0x8c4aa6ac)
- * called by: alt_entry_2378ba, gfxlib_uses_array44_index_of_2378a6, gfxlib_uses_ninja_close_file_239212, njLoadTexture,
- * nj_palette_file_load, pvr_uses_tex_entry_alloc_23a29c
+ * called by: alt_entry_2378ba, gfx_model_file_load_like, gfxlib_uses_array44_index_of_2378a6, njLoadTexture,
+ * nj_palette_file_load, pvm_load_from_stream_like
  */
 u32 tex_error_reset(void) {
     u32 *puVar1;
@@ -23946,7 +23942,7 @@ u32 pvr_soft_reset(void) {
 /*
  * pvr_pack_display_regs  0x8c25dac0
  * packs the display mode parameters from the stack into the shadow values of the PVR display registers
- * called by: pvr_uses_libgcc_divide_helper_25dc60
+ * called by: pvr_set_display_mode_like
  */
 u32 pvr_pack_display_regs(void) {
     u32 *puVar1;
@@ -24007,11 +24003,11 @@ u32 pvr_pack_display_regs(void) {
 }
 
 /*
- * pvr_uses_libgcc_divide_helper_25dc60  0x8c25dc60
- * area name: sits between pvr functions (same compilation unit); behaviour name: its main named callee is
- * libgcc_divide_helper_010468 called by: kamui_set_display_mode_cfg, pvr_display_mode_restart
+ * pvr_set_display_mode_like  0x8c25dc60
+ * builds the display registers for cable type and mode a1/a2 from the timing tables and applies them
+ * called by: kamui_set_display_mode_cfg, pvr_display_mode_restart
  */
-u32 pvr_uses_libgcc_divide_helper_25dc60(int a0, u32 a1, int a2, int a3) {
+u32 pvr_set_display_mode_like(int a0, u32 a1, int a2, int a3) {
     int iVar1;
     int iVar2;
     u32 uVar3;

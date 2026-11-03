@@ -1603,7 +1603,7 @@ u32 njCalcVector_like(int a0, float *a1, float *a2, u32 unused_a3, u32 ain0) {
 /*
  * aabb_overlap_minmax  0x8c212808
  * returns 1 when the boxes [a0, a1] and [a2, a3] overlap on all three axes
- * called by: gfx_box_overlap_test_like, gfxlib_uses_noop_fr4_test_2336e8
+ * called by: gfx_box_overlap_test_like, gfx_box_sphere_overlap_test_like
  */
 u32 aabb_overlap_minmax(float *a0, float *a1, float *a2, float *a3) {
     float fVar1;
@@ -5392,7 +5392,7 @@ u32 alt_entry_2141ba(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * gfx_strips_emit_v32  0x8c21423c
  * writes a1's 0x20-byte vertices (position and scaled UV) as triangle strips from the strip list a0 into the vertex
- * buffer a3, counting the vertices called by: vram_draw_218804
+ * buffer a3, counting the vertices called by: gfx_poly_chunks_draw_s32
  */
 u32 *gfx_strips_emit_v32(short *a0, int a1, u32 a2, u32 *a3) {
     u32 uVar1;
@@ -5471,7 +5471,7 @@ u32 *gfx_strips_emit_v32(short *a0, int a1, u32 a2, u32 *a3) {
 /*
  * kamui_calls_fill_loop_214358  0x8c214358
  * area name: sits between kamui functions (same compilation unit); behaviour name: its callees mostly do: fill_loop
- * called by: vram_draw_218804
+ * called by: gfx_poly_chunks_draw_s32
  */
 double *kamui_calls_fill_loop_214358(short *a0, int a1, u32 a2, double *a3) {
     u32 uVar1;
@@ -6553,7 +6553,7 @@ u64 *kamui_fill_loop_214554(double *a0, double *a1, double *a2, u64 *a3) {
 /*
  * gfx_strips_emit_s32_uv_like  0x8c21496c
  * emits the index strips a0 over 32-byte projected vertices a1 as TA vertices with scaled UVs
- * called by: vram_draw_218804
+ * called by: gfx_poly_chunks_draw_s32
  */
 float *gfx_strips_emit_s32_uv_like(short *a0, int a1, u32 a2, float *a3) {
     u32 uVar1;
@@ -6651,7 +6651,7 @@ float *gfx_strips_emit_s32_uv_like(short *a0, int a1, u32 a2, float *a3) {
 /*
  * kamui_calls_fill_loop_214aec  0x8c214aec
  * area name: in the kamui library code range; behaviour name: its callees mostly do: fill_loop
- * called by: vram_draw_218804
+ * called by: gfx_poly_chunks_draw_s32
  */
 double *kamui_calls_fill_loop_214aec(short *a0, int a1, u32 a2, double *a3) {
     u32 uVar1;
@@ -14913,11 +14913,11 @@ u32 gfx_set_vec_278724(void) {
 }
 
 /*
- * gfxlib_draw_217f12  0x8c217f12
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: gfxlib_draw_217f12, vram64_21869c, vram64_2186a0
+ * gfx_poly_chunks_draw_a  0x8c217f12
+ * walks a Ninja polygon chunk list (ending at 0xff): applies material, texture and flag chunks and emits the strips
+ * called by: gfx_poly_chunks_draw_a, vram64_21869c, vram64_2186a0
  */
-u8 *gfxlib_draw_217f12(u16 *a0, int a1, int a2, u32 *a3, u8 *ain0) {
+u8 *gfx_poly_chunks_draw_a(u16 *a0, int a1, int a2, u32 *a3, u8 *ain0) {
     u16 uVar1;
     u32 uVar2;
     int iVar3;
@@ -15302,7 +15302,7 @@ u8 *gfxlib_draw_217f12(u16 *a0, int a1, int a2, u32 *a3, u8 *ain0) {
             break;
         if (puVar4 == (u8 *)0x5) {
             a7 = a3;
-            ain0 = (u8 *)gfxlib_draw_217f12(*(u32 *)((short)(uVar5 >> 8) * 4 + 0x8c4c0fac), a1, a2, a3, puVar12);
+            ain0 = (u8 *)gfx_poly_chunks_draw_a(*(u32 *)((short)(uVar5 >> 8) * 4 + 0x8c4c0fac), a1, a2, a3, puVar12);
             g_8c4c0fa8 = g_8c4c0fa8 + -1;
             a0 = puVar12;
         }
@@ -15440,7 +15440,7 @@ u32 vram64_21869c(int *a0, u32 a1) {
         }
         if (a0[1] != 0) {
             g_8c4ab1d8 = a1;
-            gfxlib_draw_217f12(a0[1], a1, g_8c4c0fa0, uVar2, in_r0);
+            gfx_poly_chunks_draw_a(a0[1], a1, g_8c4c0fa0, uVar2, in_r0);
         }
         uVar2 = 0;
     } else {
@@ -15472,7 +15472,7 @@ u32 vram64_2186a0(int *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 *ain1) {
     }
     if (a0[1] != 0) {
         g_8c4ab1d8 = a1;
-        gfxlib_draw_217f12(a0[1], a1, g_8c4c0fa0, ar7_00, in_PR);
+        gfx_poly_chunks_draw_a(a0[1], a1, g_8c4c0fa0, ar7_00, in_PR);
     }
     return 0;
 }
@@ -15619,11 +15619,11 @@ u32 vram_draw_2187ce(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * vram_draw_218804  0x8c218804
- * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls draw functions
- * called by: gfx_model_draw_a, vram_draw_218804
+ * gfx_poly_chunks_draw_s32  0x8c218804
+ * walks a polygon chunk list and emits its strips over 32-byte projected vertices
+ * called by: gfx_model_draw_a, gfx_poly_chunks_draw_s32
  */
-u32 vram_draw_218804(u16 *a0, int a1, u8 *a2, u32 unused_a3, u32 ain0) {
+u32 gfx_poly_chunks_draw_s32(u16 *a0, int a1, u8 *a2, u32 unused_a3, u32 ain0) {
     u16 uVar1;
     int iVar2;
     u32 ar4_00;
@@ -15670,7 +15670,8 @@ u32 vram_draw_218804(u16 *a0, int a1, u8 *a2, u32 unused_a3, u32 ain0) {
                         return iVar2;
                     }
                     if (uVar3 == 5) {
-                        ain0 = vram_draw_218804(*(u32 *)((short)(uVar4 >> 8) * 4 + 0x8c4c0fac), a1, a2, ar7_00, ar6_00);
+                        ain0 = gfx_poly_chunks_draw_s32(*(u32 *)((short)(uVar4 >> 8) * 4 + 0x8c4c0fac), a1, a2, ar7_00,
+                                                        ar6_00);
                         g_8c4c0fa8 = g_8c4c0fa8 + -1;
                     }
                 }
@@ -15922,7 +15923,7 @@ u32 gfx_model_draw_a(int *a0, u32 a1) {
         ar6_00 = g_8c4aa510;
         if ((*a0 == 0) || (iVar1 = gfx_vertex_chunks_process_s32(*a0, g_8c4aa510), iVar1 != -1)) {
             if (a0[1] != 0) {
-                vram_draw_218804(a0[1], g_8c4c0fa0, ar6_00, r7, in_stack_ffffffe8);
+                gfx_poly_chunks_draw_s32(a0[1], g_8c4c0fa0, ar6_00, r7, in_stack_ffffffe8);
             }
             return 0;
         }
@@ -16250,11 +16251,11 @@ u32 set_vec3_g_278744(void) {
 }
 
 /*
- * gfxlib_draw_21908e  0x8c21908e
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: alt_entry_219962, gfxlib_draw_21908e, gfxlib_draw_219954
+ * gfx_poly_chunks_draw_b  0x8c21908e
+ * second polygon chunk list walker with its own strip emitters
+ * called by: alt_entry_219962, gfx_poly_chunks_draw_b, gfxlib_draw_219954
  */
-u8 *gfxlib_draw_21908e(u16 *a0, int a1, u32 a2) {
+u8 *gfx_poly_chunks_draw_b(u16 *a0, int a1, u32 a2) {
     u16 uVar1;
     u8 *puVar2;
     u32 uVar3;
@@ -16314,7 +16315,8 @@ u8 *gfxlib_draw_21908e(u16 *a0, int a1, u32 a2) {
                             return (u8 *)iVar4;
                         }
                         if (puVar6 == (u8 *)0x5) {
-                            puVar2 = (u8 *)gfxlib_draw_21908e(*(u32 *)((short)(uVar9 >> 8) * 4 + 0x8c4c0fac), a1, a2);
+                            puVar2 =
+                                (u8 *)gfx_poly_chunks_draw_b(*(u32 *)((short)(uVar9 >> 8) * 4 + 0x8c4c0fac), a1, a2);
                             g_8c4c0fa8 = g_8c4c0fa8 + -1;
                         }
                     }
@@ -16780,7 +16782,7 @@ u32 gfxlib_draw_219954(int *a0, u32 unused_a1, u32 a2, u32 a3) {
             gfx_meshsets_emit(ar4_00, uVar2, a2, a3, ain0);
         }
         if (a0[1] != 0) {
-            gfxlib_draw_21908e(a0[1], g_8c4c0fa0, uVar2);
+            gfx_poly_chunks_draw_b(a0[1], g_8c4c0fa0, uVar2);
         }
         uVar2 = 0;
     } else {
@@ -16817,7 +16819,7 @@ u32 alt_entry_219962(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3, u32 *ain0) {
         gfx_meshsets_emit(ar4_00, ar5_00, a2, a3, in_PR);
     }
     if (unaff_r12[1] != 0) {
-        gfxlib_draw_21908e(unaff_r12[1], g_8c4c0fa0, ar5_00);
+        gfx_poly_chunks_draw_b(unaff_r12[1], g_8c4c0fa0, ar5_00);
     }
     return 0;
 }
@@ -16957,11 +16959,11 @@ u32 gfxlib_draw_219a9a(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_draw_219ad0  0x8c219ad0
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: gfx_model_draw_c, gfxlib_draw_219ad0
+ * gfx_poly_chunks_draw_s64  0x8c219ad0
+ * walks a polygon chunk list and emits its strips over 64-byte projected vertices with back-face culling
+ * called by: gfx_model_draw_c, gfx_poly_chunks_draw_s64
  */
-int gfxlib_draw_219ad0(u16 *a0, u16 *a1, u16 *a2, u32 unused_a3, int ain0) {
+int gfx_poly_chunks_draw_s64(u16 *a0, u16 *a1, u16 *a2, u32 unused_a3, int ain0) {
     u16 uVar1;
     int iVar2;
     u32 uVar3;
@@ -17009,7 +17011,8 @@ int gfxlib_draw_219ad0(u16 *a0, u16 *a1, u16 *a2, u32 unused_a3, int ain0) {
                 if (ain0 == 5) {
                     a5 = a1;
                     a6 = a2;
-                    ain0 = gfxlib_draw_219ad0(*(u32 *)((short)(uVar5 >> 8) * 4 + 0x8c4c0fac), a1, a2, ar7_00, ar6_00);
+                    ain0 = gfx_poly_chunks_draw_s64(*(u32 *)((short)(uVar5 >> 8) * 4 + 0x8c4c0fac), a1, a2, ar7_00,
+                                                    ar6_00);
                     g_8c4c0fa8 = g_8c4c0fa8 + -1;
                 }
             }
@@ -17367,7 +17370,7 @@ u32 gfx_model_draw_c(int *a0, u32 a1) {
         ar6_00 = g_8c4aa510;
         if ((*a0 == 0) || (iVar1 = gfx_vertex_chunks_process_s64(*a0, g_8c4aa510), iVar1 != -1)) {
             if (a0[1] != 0) {
-                gfxlib_draw_219ad0(a0[1], g_8c4c0fa0, ar6_00, r7, in_stack_ffffffe8);
+                gfx_poly_chunks_draw_s64(a0[1], g_8c4c0fa0, ar6_00, r7, in_stack_ffffffe8);
             }
             return 0;
         }
@@ -17940,7 +17943,7 @@ u32 gfx_draw_motion_link_a(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *
     g_8c4aad78 = 0;
     g_8c4aad7c = 0;
     g_8c4aa36c = (&PTR_LAB_8c2759dc)[g_8c4aad84];
-    g_8c4aa370 = gfxlib_vec_21ee94;
+    g_8c4aa370 = gfx_shape_interp_linear_node;
     g_8c4aa340 = (&PTR_LAB_8c2759a0)[g_8c4aad80];
     uVar1 = 0x20;
     if ((g_8c4aad82 & 1) == 0) {
@@ -18118,7 +18121,7 @@ u32 gfx_draw_motion_link_b(u32 *a0, u32 *a1, u32 *a2) {
     g_8c4aad78 = 0;
     g_8c4aad7c = 0;
     g_8c4aa36c = (&PTR_LAB_8c2759dc)[g_8c4aad84];
-    g_8c4aa370 = gfxlib_vec_21ee94;
+    g_8c4aa370 = gfx_shape_interp_linear_node;
     g_8c4aa340 = (&PTR_LAB_8c2759a0)[g_8c4aad80];
     uVar1 = 0x20;
     if ((g_8c4aad82 & 1) == 0) {
@@ -18239,7 +18242,7 @@ u32 alt_entry_21af36(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0, 
     g_8c4aad78 = 0;
     g_8c4aad7c = 0;
     g_8c4aa36c = (&PTR_LAB_8c2759dc)[g_8c4aad84];
-    g_8c4aa370 = gfxlib_vec_21ee94;
+    g_8c4aa370 = gfx_shape_interp_linear_node;
     g_8c4aa340 = (&PTR_LAB_8c2759a0)[g_8c4aad80];
     uVar1 = 0x20;
     if ((g_8c4aad82 & 1) == 0) {
@@ -18418,7 +18421,7 @@ u32 gfx_draw_motion_link_c(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *
     g_8c4aad78 = 0;
     g_8c4aad7c = 0;
     g_8c4aa36c = (&PTR_LAB_8c2759dc)[g_8c4aad84];
-    g_8c4aa370 = gfxlib_vec_21ee94;
+    g_8c4aa370 = gfx_shape_interp_linear_node;
     g_8c4aa340 = (&PTR_LAB_8c2759a0)[g_8c4aad80];
     uVar1 = 0x20;
     if ((g_8c4aad82 & 1) == 0) {
@@ -18599,7 +18602,7 @@ u32 gfx_draw_motion_link_d(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *
     g_8c4aad78 = 0;
     g_8c4aad7c = 0;
     g_8c4aa36c = (&PTR_LAB_8c2759dc)[g_8c4aad84];
-    g_8c4aa370 = gfxlib_vec_21ee94;
+    g_8c4aa370 = gfx_shape_interp_linear_node;
     g_8c4aa340 = (&PTR_LAB_8c2759a0)[g_8c4aad80];
     uVar1 = 0x20;
     if ((g_8c4aad82 & 1) == 0) {
@@ -24168,7 +24171,8 @@ u32 gfxlib_uses_libgcc_divide_helper_21d3e8(int a0, int a1, int a2, int *a3) {
 /*
  * gfx_material_colors_unpack  0x8c21d7d4
  * unpacks the material's diffuse (optionally overridden or offset), ambient and specular ARGB words into float colours
- * a2, a3 and s0 called by: gfxlib_draw_217f12, gfxlib_draw_21908e, gfxlib_draw_219ad0, vram_draw_218804
+ * a2, a3 and s0 called by: gfx_poly_chunks_draw_a, gfx_poly_chunks_draw_b, gfx_poly_chunks_draw_s32,
+ * gfx_poly_chunks_draw_s64
  */
 u32 gfx_material_colors_unpack(u32 a0, u32 *a1, float *a2, float *a3, float *s0) {
     u32 uVar1;
@@ -24235,7 +24239,7 @@ u32 gfx_material_colors_unpack(u32 a0, u32 *a1, float *a2, float *a3, float *s0)
 /*
  * gfx_strip_format_select  0x8c21da20
  * selects the strip vertex format and flags for chunk type a0 (0x22..0x2f)
- * called by: gfxlib_draw_21f200, gfxlib_vec_21daf2, gfxlib_vec_21e4f8
+ * called by: gfx_shape_interp_linear_a, gfx_shape_interp_spline_a, gfxlib_draw_21f200
  */
 int gfx_strip_format_select(int a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar1;
@@ -24314,10 +24318,11 @@ LAB_8c21dad2:
 }
 
 /*
- * gfxlib_vec_21daf2  0x8c21daf2
- * area name: in the gfxlib library code range; behaviour name: mostly calls vec functions
+ * gfx_shape_interp_spline_a  0x8c21daf2
+ * shape motion: interpolates a node's vertex positions (Catmull-Rom), normals and colours between the bracketing
+ * keyframes
  */
-u32 gfxlib_vec_21daf2(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
+u32 gfx_shape_interp_spline_a(int a0, int a1, u64 *a2, u8 *a3, u32 ain0) {
     u32 uVar1;
     int iVar2;
     u32 uVar3;
@@ -24946,10 +24951,10 @@ LAB_8c21e4ba:
 }
 
 /*
- * gfxlib_vec_21e4f8  0x8c21e4f8
- * area name: in the gfxlib library code range; behaviour name: mostly calls vec functions
+ * gfx_shape_interp_linear_a  0x8c21e4f8
+ * shape motion: interpolates a node's vertex positions, normals and colours linearly between keyframes
  */
-u32 gfxlib_vec_21e4f8(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
+u32 gfx_shape_interp_linear_a(u32 *a0, int a1, u32 *a2, int *a3, u32 ain0) {
     u32 *puVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -25535,7 +25540,7 @@ LAB_8c21ee14:
 /*
  * gfxlib_calc_21ee54  0x8c21ee54
  * area name: in the gfxlib library code range; behaviour name: integer arithmetic on its arguments
- * called by: gfxlib_vec_21ee94
+ * called by: gfx_shape_interp_linear_node
  */
 u32 *gfxlib_calc_21ee54(u32 *a0) {
     u32 *puVar1;
@@ -25567,10 +25572,10 @@ u32 *gfxlib_calc_21ee54(u32 *a0) {
 }
 
 /*
- * gfxlib_vec_21ee94  0x8c21ee94
- * area name: in the gfxlib library code range; behaviour name: mostly calls vec functions
+ * gfx_shape_interp_linear_node  0x8c21ee94
+ * shape motion: interpolates the current node's vertices and normals linearly for the second (blended) motion
  */
-u32 gfxlib_vec_21ee94(u32 *a0, u32 *a1, u32 *a2, u32 **a3, u32 ain0) {
+u32 gfx_shape_interp_linear_node(u32 *a0, u32 *a1, u32 *a2, u32 **a3, u32 ain0) {
     u32 *puVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -25880,19 +25885,19 @@ u32 gfxlib_calc_21f27c(u32 a0, int a1, int a2) {
     }
     a5 = 0x8c4aa370;
     if (a2 == 0) {
-        g_8c4aa370 = (&gfxlib_vec_21fca8);
+        g_8c4aa370 = (&gfx_shape_interp_linear_b);
     } else {
-        g_8c4aa370 = (&gfxlib_vec_21f2ae);
+        g_8c4aa370 = (&gfx_shape_interp_spline_b);
     }
     (*(code *)*0x8c4aa36c)(a0, a5, a2, a7);
     return g_8c4aa364;
 }
 
 /*
- * gfxlib_vec_21f2ae  0x8c21f2ae
- * area name: in the gfxlib library code range; behaviour name: mostly calls vec functions
+ * gfx_shape_interp_spline_b  0x8c21f2ae
+ * second shape-motion spline interpolator (positions, normals, colours)
  */
-u32 *gfxlib_vec_21f2ae(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
+u32 *gfx_shape_interp_spline_b(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
     u32 *puVar1;
     u32 uVar2;
     u32 uVar3;
@@ -26446,10 +26451,10 @@ u32 *gfxlib_vec_21f2ae(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0
 }
 
 /*
- * gfxlib_vec_21fca8  0x8c21fca8
- * area name: in the gfxlib library code range; behaviour name: mostly calls vec functions
+ * gfx_shape_interp_linear_b  0x8c21fca8
+ * second shape-motion linear interpolator (positions, normals, colours)
  */
-u32 *gfxlib_vec_21fca8(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
+u32 *gfx_shape_interp_linear_b(u32 *a0, u32 unused_a1, u32 unused_a2, int *a3, u32 *ain0) {
     u32 *puVar1;
     u32 uVar2;
     u32 uVar3;

@@ -6,7 +6,7 @@
 /*
  * gfxlib_calc_2205d8  0x8c2205d8
  * area name: in the gfxlib library code range; behaviour name: integer arithmetic on its arguments
- * called by: gfxlib_vec_220658, gfxlib_vec_220c88
+ * called by: gfx_shape_interp_linear_c, gfx_shape_interp_spline_c
  */
 u32 gfxlib_calc_2205d8(int a0) {
     u32 *puVar1;
@@ -62,10 +62,10 @@ u32 gfxlib_calc_2205d8(int a0) {
 }
 
 /*
- * gfxlib_vec_220658  0x8c220658
- * area name: in the gfxlib library code range; behaviour name: mostly calls vec functions
+ * gfx_shape_interp_spline_c  0x8c220658
+ * shape-motion spline interpolator for positions and normals only
  */
-u32 gfxlib_vec_220658(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
+u32 gfx_shape_interp_spline_c(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
     u32 uVar1;
     int iVar2;
     u32 uVar3;
@@ -460,10 +460,10 @@ LAB_8c220c4e:
 }
 
 /*
- * gfxlib_vec_220c88  0x8c220c88
- * area name: in the gfxlib library code range; behaviour name: mostly calls vec functions
+ * gfx_shape_interp_linear_c  0x8c220c88
+ * shape-motion linear interpolator for positions and normals only
  */
-u32 gfxlib_vec_220c88(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
+u32 gfx_shape_interp_linear_c(u32 *a0, double *a1, double *a2, int *a3, u32 ain0) {
     u32 *puVar1;
     double dVar2;
     u32 uVar3;
@@ -875,7 +875,7 @@ LAB_8c221200:
 /*
  * gfxlib_uses_libgcc_divide_helper_22123c  0x8c22123c
  * area name: in the gfxlib library code range; behaviour name: its main named callee is libgcc_divide_helper_0106dc
- * called by: gfxlib_vec_21daf2, gfxlib_vec_21f2ae, gfxlib_vec_220658
+ * called by: gfx_shape_interp_spline_a, gfx_shape_interp_spline_b, gfx_shape_interp_spline_c
  */
 int gfxlib_uses_libgcc_divide_helper_22123c(int a0, int a1, int a2, u32 *a3) {
     int iVar1;
@@ -905,8 +905,8 @@ int gfxlib_uses_libgcc_divide_helper_22123c(int a0, int a1, int a2, u32 *a3) {
 /*
  * keyframe_pair  0x8c221300
  * the keys a1 and (a1 + 1) mod a2 of an 8-byte key table; 4 when the second is later
- * called by: gfxlib_vec_21daf2, gfxlib_vec_21e4f8, gfxlib_vec_21ee94, gfxlib_vec_21f2ae, gfxlib_vec_21fca8,
- * gfxlib_vec_220658, gfxlib_vec_220c88
+ * called by: gfx_shape_interp_linear_a, gfx_shape_interp_linear_b, gfx_shape_interp_linear_c,
+ * gfx_shape_interp_linear_node, gfx_shape_interp_spline_a, gfx_shape_interp_spline_b, gfx_shape_interp_spline_c
  */
 int keyframe_pair(int a0, int a1, u32 a2, int *a3) {
     int iVar1;
@@ -929,7 +929,7 @@ int keyframe_pair(int a0, int a1, u32 a2, int *a3) {
 /*
  * keyframe_pair_b  0x8c22138a
  * another copy of keyframe_pair
- * called by: gfxlib_vec_21daf2, gfxlib_vec_21e4f8, gfxlib_vec_21f2ae, gfxlib_vec_21fca8
+ * called by: gfx_shape_interp_linear_a, gfx_shape_interp_linear_b, gfx_shape_interp_spline_a, gfx_shape_interp_spline_b
  */
 int keyframe_pair_b(int a0, int a1, u32 a2, int *a3) {
     int iVar1;
@@ -952,7 +952,7 @@ int keyframe_pair_b(int a0, int a1, u32 a2, int *a3) {
 /*
  * argb_lerp  0x8c221414
  * blends two packed ARGB colours by fr4
- * called by: gfxlib_vec_21daf2, gfxlib_vec_21e4f8, gfxlib_vec_21f2ae, gfxlib_vec_21fca8
+ * called by: gfx_shape_interp_linear_a, gfx_shape_interp_linear_b, gfx_shape_interp_spline_a, gfx_shape_interp_spline_b
  */
 u64 *argb_lerp(u32 *a0, u32 *a1, u32 *a2) {
     u64 *puVar1;
@@ -997,7 +997,8 @@ u64 *argb_lerp(u32 *a0, u32 *a1, u32 *a2) {
 /*
  * Vec3_lerp  0x8c22158a
  * a2 = lerp(a0, a1, fr4)
- * called by: gfxlib_vec_21e4f8, gfxlib_vec_21ee94, gfxlib_vec_21fca8, gfxlib_vec_220c88
+ * called by: gfx_shape_interp_linear_a, gfx_shape_interp_linear_b, gfx_shape_interp_linear_c,
+ * gfx_shape_interp_linear_node
  */
 u32 Vec3_lerp(float *a0, float *a1, float *a2) {
     float fVar1;
@@ -1015,8 +1016,8 @@ u32 Vec3_lerp(float *a0, float *a1, float *a2) {
 /*
  * Vec3_lerp_normalize  0x8c2215b4
  * a2 = normalize(lerp(a0, a1, fr4)); (0, 0, 1) when degenerate
- * called by: gfxlib_vec_21daf2, gfxlib_vec_21e4f8, gfxlib_vec_21ee94, gfxlib_vec_21f2ae, gfxlib_vec_21fca8,
- * gfxlib_vec_220658, gfxlib_vec_220c88
+ * called by: gfx_shape_interp_linear_a, gfx_shape_interp_linear_b, gfx_shape_interp_linear_c,
+ * gfx_shape_interp_linear_node, gfx_shape_interp_spline_a, gfx_shape_interp_spline_b, gfx_shape_interp_spline_c
  */
 u32 *Vec3_lerp_normalize(float *a0, float *a1, float *a2) {
     float *pfVar1;
@@ -1050,7 +1051,7 @@ u32 *Vec3_lerp_normalize(float *a0, float *a1, float *a2) {
 /*
  * Vec3_catmull_rom  0x8c221622
  * s0 = Catmull-Rom spline through a0..a3 at t = fr4
- * called by: gfxlib_vec_21daf2, gfxlib_vec_21f2ae, gfxlib_vec_220658
+ * called by: gfx_shape_interp_spline_a, gfx_shape_interp_spline_b, gfx_shape_interp_spline_c
  */
 u32 Vec3_catmull_rom(float *a0, float *a1, float *a2, float *a3, float *s0) {
     float fVar1;
@@ -1385,7 +1386,7 @@ u32 alt_entry_221a0a(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * gfx_strips_emit_s64_cull  0x8c221a8c
  * emits the index strips a0 over 64-byte vertices a1, dropping back-facing triangles by the cross product sign
- * called by: gfxlib_draw_219ad0
+ * called by: gfx_poly_chunks_draw_s64
  */
 int gfx_strips_emit_s64_cull(short *a0, int a1, u32 a2, int a3) {
     u32 uVar1;
@@ -1501,7 +1502,7 @@ int gfx_strips_emit_s64_cull(short *a0, int a1, u32 a2, int a3) {
 /*
  * gfxlib_calls_fill_loop_221c68  0x8c221c68
  * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
- * called by: gfxlib_draw_219ad0
+ * called by: gfx_poly_chunks_draw_s64
  */
 double *gfxlib_calls_fill_loop_221c68(short *a0, int a1, u32 a2, double *a3) {
     bool bVar1;
@@ -2225,7 +2226,7 @@ double *gfxlib_calls_fill_loop_221c68(short *a0, int a1, u32 a2, double *a3) {
 /*
  * gfxlib_fill_loop_221fbc  0x8c221fbc
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_draw_219ad0
+ * called by: gfx_poly_chunks_draw_s64
  */
 u32 *gfxlib_fill_loop_221fbc(short *a0, int a1, u32 a2, u32 *a3) {
     int iVar1;
@@ -2422,7 +2423,7 @@ u32 *gfxlib_fill_loop_221fbc(short *a0, int a1, u32 a2, u32 *a3) {
 
 /*
  * vram64_22233c  0x8c22233c
- * called by: gfxlib_draw_219ad0
+ * called by: gfx_poly_chunks_draw_s64
  */
 double *vram64_22233c(short *a0, int a1, u32 a2, double *a3) {
     bool bVar1;
@@ -3347,7 +3348,7 @@ double *vram64_22233c(short *a0, int a1, u32 a2, double *a3) {
 /*
  * vram_fill_loop_22278c  0x8c22278c
  * area name: sits between vram functions (same compilation unit); behaviour name: a loop that writes memory
- * called by: gfxlib_draw_219ad0
+ * called by: gfx_poly_chunks_draw_s64
  */
 u32 *vram_fill_loop_22278c(short *a0, int a1, u32 a2, u32 *a3) {
     int iVar1;
@@ -3784,7 +3785,7 @@ int gfx_strips_emit_s64_cull_b(short *a0, int a1, u32 a2, int a3) {
 
 /*
  * vram64_222cec  0x8c222cec
- * called by: gfxlib_draw_219ad0
+ * called by: gfx_poly_chunks_draw_s64
  */
 double *vram64_222cec(short *a0, int a1, u32 a2, double *a3) {
     bool bVar1;
@@ -5178,7 +5179,7 @@ u64 *gfxlib_fill_loop_2230f0(u32 a0, u32 a1, u32 a2, u64 *a3) {
 /*
  * gfx_strips_emit_s64_cull_c  0x8c2234a4
  * third variant of gfx_strips_emit_s64_cull with another vertex layout
- * called by: gfxlib_draw_219ad0
+ * called by: gfx_poly_chunks_draw_s64
  */
 int gfx_strips_emit_s64_cull_c(short *a0, int a1, u32 a2, int a3) {
     short sVar1;
@@ -5323,7 +5324,7 @@ int gfx_strips_emit_s64_cull_c(short *a0, int a1, u32 a2, int a3) {
 /*
  * gfxlib_calls_fill_loop_223708  0x8c223708
  * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
- * called by: gfxlib_draw_219ad0
+ * called by: gfx_poly_chunks_draw_s64
  */
 double *gfxlib_calls_fill_loop_223708(u32 a0, u32 a1, u32 a2, double *a3) {
     short sVar1;
@@ -6285,7 +6286,7 @@ double *gfxlib_calls_fill_loop_223708(u32 a0, u32 a1, u32 a2, double *a3) {
 /*
  * gfxlib_fill_loop_223b34  0x8c223b34
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_draw_219ad0
+ * called by: gfx_poly_chunks_draw_s64
  */
 u32 *gfxlib_fill_loop_223b34(short *a0, int a1, u32 a2, u32 *a3) {
     short sVar1;
@@ -6486,7 +6487,7 @@ u32 *gfxlib_fill_loop_223b34(short *a0, int a1, u32 a2, u32 *a3) {
 /*
  * gfxlib_calls_fill_loop_223eb8  0x8c223eb8
  * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
- * called by: gfxlib_draw_219ad0
+ * called by: gfx_poly_chunks_draw_s64
  */
 double *gfxlib_calls_fill_loop_223eb8(u32 a0, u32 a1, u32 a2, double *a3) {
     short sVar1;
@@ -7493,7 +7494,7 @@ double *gfxlib_calls_fill_loop_223eb8(u32 a0, u32 a1, u32 a2, double *a3) {
 /*
  * gfxlib_fill_loop_224330  0x8c224330
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_draw_219ad0
+ * called by: gfx_poly_chunks_draw_s64
  */
 u32 *gfxlib_fill_loop_224330(short *a0, int a1, u32 a2, u32 *a3) {
     int iVar1;
@@ -7691,7 +7692,7 @@ u32 *gfxlib_fill_loop_224330(short *a0, int a1, u32 a2, u32 *a3) {
 
 /*
  * vram64_2246a0  0x8c2246a0
- * called by: gfxlib_draw_219ad0
+ * called by: gfx_poly_chunks_draw_s64
  */
 double *vram64_2246a0(short *a0, int a1, u32 a2, double *a3) {
     bool bVar1;
@@ -9958,7 +9959,7 @@ u64 *gfxlib_fill_loop_225098(u32 a0, u32 a1, u32 a2, u64 *a3) {
 /*
  * gfxlib_fill_loop_2255e8  0x8c2255e8
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_draw_219ad0
+ * called by: gfx_poly_chunks_draw_s64
  */
 u32 *gfxlib_fill_loop_2255e8(short *a0, int a1, u32 a2, u32 *a3) {
     int iVar1;
@@ -10395,7 +10396,7 @@ int gfx_strips_emit_s64_cull_d(short *a0, int a1, u32 a2, int a3) {
 
 /*
  * vram64_225b54  0x8c225b54
- * called by: gfxlib_draw_219ad0
+ * called by: gfx_poly_chunks_draw_s64
  */
 double *vram64_225b54(short *a0, int a1, u32 a2, double *a3) {
     bool bVar1;
@@ -24119,7 +24120,7 @@ int gfx_strips_emit_s32_cull_d(short *a0, int a1, u32 a2, int a3) {
 /*
  * gfxlib_uses_njUnitVector_22b7a8  0x8c22b7a8
  * area name: in the gfxlib library code range; behaviour name: its main named callee is njUnitVector
- * called by: gfxlib_draw_21908e
+ * called by: gfx_poly_chunks_draw_b
  */
 double *gfxlib_uses_njUnitVector_22b7a8(short *a0, int a1, u32 a2, double *a3) {
     double *pdVar1;
@@ -24613,7 +24614,7 @@ double *gfxlib_uses_njUnitVector_22b7a8(short *a0, int a1, u32 a2, double *a3) {
 /*
  * gfxlib_uses_njUnitVector_22bb70  0x8c22bb70
  * area name: in the gfxlib library code range; behaviour name: its main named callee is njUnitVector
- * called by: gfxlib_draw_21908e
+ * called by: gfx_poly_chunks_draw_b
  */
 double *gfxlib_uses_njUnitVector_22bb70(u32 a0, u32 a1, u32 a2, double *a3) {
     short sVar1;

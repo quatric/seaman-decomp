@@ -2464,3 +2464,37 @@
 8c264c92	adxt_stall_watchdog_like	every few frames checks whether playback stopped advancing and flags the handle as stalled after a while
 8c264e84	ADXT_ExecHndl_like	runs the step for the handle's state (decinfo, prepare, play, drain) and then the stall watchdog
 8c2694a4	mwRna_exec_handle_like	updates RNA handle a0: stops it when all channels have drained and keeps its transfer and play position going
+8c0105c4	int_divide_signed_like	signed 32-bit division by r0 using div1 steps; sets errno 0x44e and returns 0 on division by zero
+8c0115c4	printf_format_int	formats integer a0 into a1 for printf conversion a2 (d, i, u, o, x, X) honouring the precision in spec a3
+8c013374	printf_format_float	formats the next double argument for printf (%f, %e, %g) into the output buffer, rounding to the precision
+8c1f1766	gdfs_cmd_complete_handler_like	polls the running GD-ROM command and, when it ends, updates the handle's position and state and calls its callback
+8c1f1a7c	gdfs_mount_iso9660_like	installs the GD-ROM interrupt handlers, reads the volume descriptor (CD001) and the root directory
+8c1f1d8c	gdFsInit_like	initialises the GD file system in work area a1 for a0 handles (32-byte aligned), sets up handles and mounts the disc
+8c1f1eaa	gdFsReinit_like	closes every open handle, resets the file system state and mounts the disc again
+8c1f7558	flashrom_update_game_record_like	reads the game's flash record, stamps it with the current date, fixes unset fields and writes it back
+8c1fde30	vmu_format_drive_like	formats the memory card on port a0: clears the blocks and writes a fresh FAT, directory and root block
+8c2043d4	vram_alloc_at_range	allocates exactly the range a1..a1+a2 (rounded to 32) of pool a0 by splitting the free block that holds it
+8c217f12	gfx_poly_chunks_draw_a	walks a Ninja polygon chunk list (ending at 0xff): applies material, texture and flag chunks and emits the strips
+8c218804	gfx_poly_chunks_draw_s32	walks a polygon chunk list and emits its strips over 32-byte projected vertices
+8c21908e	gfx_poly_chunks_draw_b	second polygon chunk list walker with its own strip emitters
+8c219ad0	gfx_poly_chunks_draw_s64	walks a polygon chunk list and emits its strips over 64-byte projected vertices with back-face culling
+8c21daf2	gfx_shape_interp_spline_a	shape motion: interpolates a node's vertex positions (Catmull-Rom), normals and colours between the bracketing keyframes
+8c21e4f8	gfx_shape_interp_linear_a	shape motion: interpolates a node's vertex positions, normals and colours linearly between keyframes
+8c21ee94	gfx_shape_interp_linear_node	shape motion: interpolates the current node's vertices and normals linearly for the second (blended) motion
+8c21f2ae	gfx_shape_interp_spline_b	second shape-motion spline interpolator (positions, normals, colours)
+8c21fca8	gfx_shape_interp_linear_b	second shape-motion linear interpolator (positions, normals, colours)
+8c220658	gfx_shape_interp_spline_c	shape-motion spline interpolator for positions and normals only
+8c220c88	gfx_shape_interp_linear_c	shape-motion linear interpolator for positions and normals only
+8c255346	nj_shape_interp_spline	Ninja shape motion: Catmull-Rom interpolation of vertex positions and normals between keyframes
+8c2556c8	nj_shape_interp_linear	Ninja shape motion: linear interpolation of vertex positions and normals between keyframes
+8c2336e8	gfx_box_sphere_overlap_test_like	tests 8-corner box a0 against sphere a1: bounding-box overlap first, then the box faces
+8c234fd0	gfx_draw_3d_line_segments_like	projects coloured points and sends them to the TA as line quads with the current draw state
+8c23793c	tex_list_load_entry_from_file	loads texture a1 of texture list a0 from its PVR file (or reuses an already loaded one) and builds its control words
+8c237964	tex_list_load_entry_from_file_b	second copy of tex_list_load_entry_from_file
+8c2387a0	tex_list_load_entry_from_mem	loads texture a1 of texture list a0 from PVR data in memory (or reuses an already loaded one)
+8c239212	gfx_model_file_load_like	opens a model file, reads its chunks into memory and fixes up the vertex and texture data
+8c23a29c	pvm_load_from_stream_like	reads a PVM archive ("PVMH") from the stream: its texture list header, then each texture
+8c253d1c	nj_object_tree_transform_draw_like	walks object a0: pushes its matrix, applies translation, rotation and scale per its flags, draws it and recurses
+8c258604	njInitSystem_like	initialises the PVR display and Ninja globals for display mode a0 and frame buffer format a1
+8c25dc60	pvr_set_display_mode_like	builds the display registers for cable type and mode a1/a2 from the timing tables and applies them
+8c26a246	sd_stream_create_like	creates a sound stream with one or two channels: takes a free slot and allocates its per-channel buffers and handles

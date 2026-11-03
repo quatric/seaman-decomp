@@ -165,7 +165,7 @@ u32 alt_entry_2001d0(int a0) {
 /*
  * vmu_write_block_chain  0x8c200226
  * writes the buffered blocks of the chain that starts at the root-block field +0x14, moving to new blocks on write
- * errors and relinking the chain called by: shinobi_save_1fde30
+ * errors and relinking the chain called by: vmu_format_drive_like
  */
 u32 vmu_write_block_chain(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 a6;
@@ -567,8 +567,8 @@ u32 shinobi_calc_200642(int a0) {
 /*
  * shinobi_calc_20065a  0x8c20065a
  * area name: in the shinobi library code range; behaviour name: integer arithmetic on its arguments
- * called by: alt_entry_20080e, shinobi_save_1fde30, vmu_flush_dir_blocks, vmu_flush_fat_relocate, vmu_set_volume_label,
- * vmu_write_block_chain
+ * called by: alt_entry_20080e, vmu_flush_dir_blocks, vmu_flush_fat_relocate, vmu_format_drive_like,
+ * vmu_set_volume_label, vmu_write_block_chain
  */
 u32 shinobi_calc_20065a(int a0) {
     u32 uVar1;
@@ -789,8 +789,8 @@ int alt_entry_200772(u32 unused_a0, int a1) {
 /*
  * vmu_flush_fat_relocate  0x8c2007f0
  * writes the FAT, moving it to a fresh run of free blocks when its blocks fail, then writes the root block
- * called by: shinobi_save_1fde30, vmu_defragment_like, vmu_file_close, vmu_file_delete_and_flush,
- * vmu_files_delete_and_flush, vmu_flush_dir_blocks, vmu_write_block_chain
+ * called by: vmu_defragment_like, vmu_file_close, vmu_file_delete_and_flush, vmu_files_delete_and_flush,
+ * vmu_flush_dir_blocks, vmu_format_drive_like, vmu_write_block_chain
  */
 int vmu_flush_fat_relocate(int a0, int a1, int a2) {
     bool bVar1;
@@ -1012,8 +1012,8 @@ u32 alt_entry_20094e(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * vmu_drive_write_like  0x8c20099e
  * calls the drive's operation +0x10 for block a1 when it is within the card (probably a block write)
- * called by: alt_entry_1febe6, alt_entry_2006fa, alt_entry_20080e, alt_entry_200900, shinobi_save_1fde30,
- * shinobi_save_1fecf2, shinobi_save_2006dc, vmu_defragment_like (+6 more)
+ * called by: alt_entry_1febe6, alt_entry_2006fa, alt_entry_20080e, alt_entry_200900, shinobi_save_1fecf2,
+ * shinobi_save_2006dc, vmu_defragment_like, vmu_fat_alloc_block (+6 more)
  */
 int vmu_drive_write_like(int a0, int a1, u32 a2) {
     u32 uVar1;
@@ -1047,7 +1047,7 @@ u32 vmu_drive_read_like(int a0, int a1) {
 /*
  * shinobi_save_200a00  0x8c200a00
  * area name: in the shinobi library code range; behaviour name: mostly calls save functions
- * called by: shinobi_save_1fdc80, shinobi_save_1fde30, vmu_drive_mount
+ * called by: shinobi_save_1fdc80, vmu_drive_mount, vmu_format_drive_like
  */
 int shinobi_save_200a00(int a0, u32 a1) {
     int iVar1;
@@ -1214,7 +1214,7 @@ int bcd_to_int(u32 a0) {
 /*
  * date_to_bcd8  0x8c200bfc
  * packs a date (u16 year, month, day, hour, minute, second, weekday) into 8 BCD bytes: century, year, month, day, hour,
- * minute, second, weekday code called by: shinobi_save_1fde30, vmu_file_set_date
+ * minute, second, weekday code called by: vmu_file_set_date, vmu_format_drive_like
  */
 u32 date_to_bcd8(u8 *a0, int a1, u32 a2) {
     u32 uVar1;
@@ -1331,7 +1331,7 @@ int alt_entry_200c8a(void) {
 /*
  * vmu_root_block_validate  0x8c200cf4
  * checks the drive's root block fields for consistency and sets the size class (0..3 for 256..2048 blocks); -1 when
- * invalid called by: shinobi_save_1fde30, vmu_drive_mount, vmu_drive_mount_cached
+ * invalid called by: vmu_drive_mount, vmu_drive_mount_cached, vmu_format_drive_like
  */
 u32 vmu_root_block_validate(int a0) {
     int iVar1;
@@ -5144,10 +5144,11 @@ u32 vram_uses_vram_alloc_best_fit_b_2038c0(u32 a0, u32 a1, u32 unused_a2, u32 a3
 }
 
 /*
- * vram_list_203914  0x8c203914
- * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls list functions
+ * vram_uses_vram_alloc_at_range_203914  0x8c203914
+ * area name: sits between vram functions (same compilation unit); behaviour name: its main named callee is
+ * vram_alloc_at_range
  */
-int vram_list_203914(u32 a0, int a1, u32 a2) {
+int vram_uses_vram_alloc_at_range_203914(u32 a0, int a1, u32 a2) {
     int iVar1;
     int iVar2;
 
@@ -5155,10 +5156,10 @@ int vram_list_203914(u32 a0, int a1, u32 a2) {
     if (iVar1 == -1) {
         iVar2 = 3;
     } else {
-        iVar2 = vram_list_2043d4(0, iVar1, a0, a1);
+        iVar2 = vram_alloc_at_range(0, iVar1, a0, a1);
         if (iVar2 == 0) {
             iVar1 = g_8c2753f4 + iVar1;
-            iVar2 = vram_list_2043d4(1, iVar1, a0, a2);
+            iVar2 = vram_alloc_at_range(1, iVar1, a0, a2);
             if (iVar2 != 0) {
                 vram_release_203bda(*(u32 *)(a1 + 0x1c), iVar1, a0, a2);
             }
@@ -5168,13 +5169,13 @@ int vram_list_203914(u32 a0, int a1, u32 a2) {
 }
 
 /*
- * vram_list_203980  0x8c203980
- * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls list functions
+ * vram_alloc_at_range_wrap  0x8c203980
+ * only calls vram_alloc_at_range
  */
-u32 vram_list_203980(u32 a0, int a1) {
+u32 vram_alloc_at_range_wrap(u32 a0, int a1) {
     u32 uVar1;
 
-    uVar1 = vram_list_2043d4((u32)(g_8c2753f8 <= *(int *)(a1 + 0x1c)), *(int *)(a1 + 0x1c), a0, a1);
+    uVar1 = vram_alloc_at_range((u32)(g_8c2753f8 <= *(int *)(a1 + 0x1c)), *(int *)(a1 + 0x1c), a0, a1);
     return uVar1;
 }
 
@@ -5209,9 +5210,9 @@ int vram_tex_alloc(u32 a0, int a1) {
         if (iVar4 == -1) {
             iVar3 = 3;
         } else {
-            iVar3 = vram_list_2043d4(0, iVar4, a0, a1);
+            iVar3 = vram_alloc_at_range(0, iVar4, a0, a1);
             if (iVar3 == 0) {
-                iVar3 = vram_list_2043d4(1, g_8c2753f4 + iVar4, a0, auStack_3c);
+                iVar3 = vram_alloc_at_range(1, g_8c2753f4 + iVar4, a0, auStack_3c);
             }
         }
     } else {
@@ -5307,8 +5308,8 @@ u32 vram_small_tex_alloc(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * vram_release_203bda  0x8c203bda
  * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls release functions
- * called by: alt_entry_20cf8c, kamui_release_20cf88, tex_alloc_array, tex_alloc_double, vram_list_203914,
- * vram_release_203ca0, vram_small_tex_free
+ * called by: alt_entry_20cf8c, kamui_release_20cf88, tex_alloc_array, tex_alloc_double, vram_release_203ca0,
+ * vram_small_tex_free, vram_uses_vram_alloc_at_range_203914
  */
 u32 vram_release_203bda(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -5688,7 +5689,7 @@ u32 vram_calc_204140(int a0, u32 a1) {
 /*
  * vram_find_fit_offset  0x8c2041e2
  * searches the free list for an offset where a0 bytes fit in both pools (2 KB steps for twiddled mipmaps, 32 bytes
- * otherwise); -1 when none called by: vram_list_203914, vram_tex_alloc
+ * otherwise); -1 when none called by: vram_tex_alloc, vram_uses_vram_alloc_at_range_203914
  */
 int vram_find_fit_offset(u32 a0, int a1) {
     int a4;
@@ -5783,11 +5784,11 @@ u32 vram_scan_loop_20436c(u32 a0, int a1, int a2) {
 }
 
 /*
- * vram_list_2043d4  0x8c2043d4
- * area name: sits between vram functions (same compilation unit); behaviour name: mostly calls list functions
- * called by: vram_list_203914, vram_list_203980, vram_tex_alloc
+ * vram_alloc_at_range  0x8c2043d4
+ * allocates exactly the range a1..a1+a2 (rounded to 32) of pool a0 by splitting the free block that holds it
+ * called by: vram_alloc_at_range_wrap, vram_tex_alloc, vram_uses_vram_alloc_at_range_203914
  */
-u32 vram_list_2043d4(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
+u32 vram_alloc_at_range(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
     u16 *ar6_00;
     u32 uVar1;
     int iVar2;
@@ -6349,7 +6350,7 @@ u32 vram_block_free_merge(u32 a0, u16 *a1, u32 unused_a2, u32 a3) {
  * pool47eba8_alloc  0x8c204e40
  * marks and returns the first free 0x18-byte entry of the pool at 0x8c47eba8; NULL when full
  * called by: kamui_cfg_texture_memory, kamui_cfg_texture_memory_b, ta_fifo_2050cc, ta_fifo_2050de, ta_fifo_2052f2,
- * vram_alloc_best_fit, vram_alloc_best_fit_2k, vram_alloc_best_fit_b (+1 more)
+ * vram_alloc_at_range, vram_alloc_best_fit, vram_alloc_best_fit_2k (+1 more)
  */
 u16 *pool47eba8_alloc(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
     u16 *puVar1;
@@ -6373,8 +6374,8 @@ u16 *pool47eba8_alloc(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * pool47eba8_free  0x8c204e6c
  * frees entry a0 of the pool at 0x8c47eba8 (pairs with pool47eba8_alloc)
- * called by: alt_entry_203406, ta_fifo_2050cc, ta_fifo_2050de, ta_fifo_2052f2, vram_block_free_merge, vram_list_2043d4,
- * vram_reset_all
+ * called by: alt_entry_203406, ta_fifo_2050cc, ta_fifo_2050de, ta_fifo_2052f2, vram_alloc_at_range,
+ * vram_block_free_merge, vram_reset_all
  */
 u32 pool47eba8_free(u16 *a0) {
     u32 uVar1;
@@ -6400,8 +6401,8 @@ u32 pool47eba8_free(u16 *a0) {
 /*
  * dlist_push_front  0x8c204e92
  * links node a2 in front of the list with head *a0 and tail *a1 (prev +4, next +8)
- * called by: ta_fifo_2050cc, ta_fifo_2050de, ta_fifo_2052f2, vram_alloc_best_fit, vram_alloc_best_fit_2k,
- * vram_alloc_best_fit_b, vram_block_free_merge, vram_list_2043d4
+ * called by: ta_fifo_2050cc, ta_fifo_2050de, ta_fifo_2052f2, vram_alloc_at_range, vram_alloc_best_fit,
+ * vram_alloc_best_fit_2k, vram_alloc_best_fit_b, vram_block_free_merge
  */
 u32 dlist_push_front(int *a0, int *a1, int a2) {
     u32 in_r0;
@@ -6425,7 +6426,7 @@ u32 dlist_push_front(int *a0, int *a1, int a2) {
 /*
  * dlist_insert_before  0x8c204eb6
  * links node a1 in front of node a2 (prev +4, next +8), updating the head *a0
- * called by: dlist_sort_desc_c, ta_fifo_2050cc, ta_fifo_2050de, ta_fifo_2052f2, vram_list_2043d4
+ * called by: dlist_sort_desc_c, ta_fifo_2050cc, ta_fifo_2050de, ta_fifo_2052f2, vram_alloc_at_range
  */
 u32 dlist_insert_before(int *a0, int a1, int a2) {
     u32 in_r0;
@@ -6448,8 +6449,8 @@ u32 dlist_insert_before(int *a0, int a1, int a2) {
 /*
  * dlist_unlink  0x8c204ed2
  * unlinks node a2 (prev +4, next +8) from the list with head *a0 and tail *a1
- * called by: dlist_sort_desc_c, ta_fifo_2050cc, ta_fifo_2050de, ta_fifo_2052f2, vram_alloc_best_fit,
- * vram_alloc_best_fit_2k, vram_alloc_best_fit_b, vram_block_free_merge (+1 more)
+ * called by: dlist_sort_desc_c, ta_fifo_2050cc, ta_fifo_2050de, ta_fifo_2052f2, vram_alloc_at_range,
+ * vram_alloc_best_fit, vram_alloc_best_fit_2k, vram_alloc_best_fit_b (+1 more)
  */
 u32 dlist_unlink(u32 *a0, u32 *a1, int a2, u32 a3) {
     u32 in_r0;
@@ -8727,7 +8728,7 @@ u32 pvr_event_handler_set(int a0, u32 a1, int a2, u32 a3) {
 /*
  * pvr_event_handler_set_wrap  0x8c20757e
  * only calls pvr_event_handler_set
- * called by: ninja_uses_aica_reg_258604, pvr_25825a
+ * called by: njInitSystem_like, pvr_25825a
  */
 u32 pvr_event_handler_set_wrap(u32 a0, u32 a1) {
     pvr_event_handler_set(g_8c2756b0, 0, a0, a1);
@@ -8874,7 +8875,7 @@ u32 pvr_event_handler_set_wrap_20784e(u32 a0, u32 a1) {
 /*
  * pvr_event_handler_set_wrap_20786a  0x8c20786a
  * only calls pvr_event_handler_set
- * called by: ninja_uses_aica_reg_258604, pvr_25825a
+ * called by: njInitSystem_like, pvr_25825a
  */
 u32 pvr_event_handler_set_wrap_20786a(u32 a0, u32 a1) {
     pvr_event_handler_set(g_8c2756b0, 5, a0, a1);
@@ -8902,7 +8903,7 @@ u32 pvr_event_handler_set_wrap_2078a2(u32 a0, u32 a1) {
 /*
  * pvr_event_handler_set_wrap_2078be  0x8c2078be
  * only calls pvr_event_handler_set
- * called by: ninja_uses_aica_reg_258604, pvr_25825a
+ * called by: njInitSystem_like, pvr_25825a
  */
 u32 pvr_event_handler_set_wrap_2078be(u32 a0) {
     pvr_event_handler_set(g_8c2756b0, 8, a0, 0);
@@ -8912,7 +8913,7 @@ u32 pvr_event_handler_set_wrap_2078be(u32 a0) {
 /*
  * pvr_event_handler_set_wrap_2078d8  0x8c2078d8
  * only calls pvr_event_handler_set
- * called by: ninja_uses_aica_reg_258604, pvr_25825a
+ * called by: njInitSystem_like, pvr_25825a
  */
 u32 pvr_event_handler_set_wrap_2078d8(u32 a0, u32 a1) {
     pvr_event_handler_set(g_8c2756b0, 9, a0, 0);
@@ -8980,7 +8981,7 @@ u32 kamui_set_video_mode_like(u32 a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * kamui_set_display_mode_cfg  0x8c207a9c
  * reads KAMUI DisplayMode, AntiAlias and Dither and sets the display mode
- * called by: ninja_uses_aica_reg_258604, pvr_25825a
+ * called by: njInitSystem_like, pvr_25825a
  * strings: "KAMUI"; "DisplayMode"; "KAMUI"; "AntiAlias" ...
  */
 int kamui_set_display_mode_cfg(u32 a0, int a1, u32 a2, u32 a3) {
@@ -9070,7 +9071,7 @@ int kamui_set_display_mode_cfg(u32 a0, int a1, u32 a2, u32 a3) {
         } else {
             iVar5 = 1;
         }
-        pvr_uses_libgcc_divide_helper_25dc60(uStack_2c, iVar2, a1, uStack_30);
+        pvr_set_display_mode_like(uStack_2c, iVar2, a1, uStack_30);
         pvr_write_saved_regs(uStack_2c, iVar2, a1, uStack_30);
     }
     return iVar5;
@@ -9136,7 +9137,7 @@ u32 pvr_display_mode_restart(int a0, int a1) {
     do {
     } while (g_8c4a9f1c == g_8c4a9f1c);
     ar6_00 = g_8c4a9bd0;
-    pvr_uses_libgcc_divide_helper_25dc60(ar4_01, ar5_00, ar6_00, ar7_00);
+    pvr_set_display_mode_like(ar4_01, ar5_00, ar6_00, ar7_00);
     pvr_write_saved_regs(ar4_01, ar5_00, ar6_00, ar7_00);
     puVar1 = (&pvr_20a844);
     pvr_20a844(0x44, g_8c4a9e74 & 0xfffffffe);
@@ -11364,7 +11365,7 @@ u32 pvr_draw_20a6f2(void) {
 /*
  * pvr_test_20a786  0x8c20a786
  * area name: sits between pvr functions (same compilation unit); behaviour name: returns the result of a comparison
- * called by: ninja_uses_aica_reg_258604, pvr_25825a
+ * called by: njInitSystem_like, pvr_25825a
  */
 u32 pvr_test_20a786(int a0) {
     g_8c4a9d90 = a0 + -1;
@@ -11726,7 +11727,7 @@ u32 pvr_display_regs_apply(int a0) {
 /*
  * pvr_test_20aed8  0x8c20aed8
  * area name: sits between pvr functions (same compilation unit); behaviour name: returns the result of a comparison
- * called by: ninja_uses_aica_reg_258604
+ * called by: njInitSystem_like
  */
 u32 pvr_test_20aed8(u32 a0) {
     g_8c4aa098 = a0;
@@ -12807,7 +12808,7 @@ int tex_alloc_array(u32 *a0, int a1, u32 a2, u32 a3, u32 s0) {
                 iVar5 = 0;
                 if (0 < a1) {
                     do {
-                        puVar2 = (&vram_list_203980);
+                        puVar2 = (&vram_alloc_at_range_wrap);
                         ar5_00 = a0 + iVar5 * 10;
                         ar5_00[7] = ar4_00;
                         puVar4 = ar5_00;

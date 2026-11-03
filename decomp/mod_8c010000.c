@@ -5491,11 +5491,11 @@ u32 libgcc_divide_helper_01051c(u32 a0, u32 a1) {
 }
 
 /*
- * libc_test_0105c4  0x8c0105c4
- * area name: in the libc library code range; behaviour name: returns the result of a comparison
+ * int_divide_signed_like  0x8c0105c4
+ * signed 32-bit division by r0 using div1 steps; sets errno 0x44e and returns 0 on division by zero
  * called by: libc_uses_softfloat_scale_pow10_010b60
  */
-int libc_test_0105c4(void) {
+int int_divide_signed_like(void) {
     u32 uVar1;
     short in_r0;
     int iVar2;
@@ -7667,7 +7667,7 @@ u32 switch_jump(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * switch_jump_r0  0x8c0107a0
  * compiler switch helper: jumps through the table at 0x8c0107f4 indexed by r0
- * called by: alt_entry_26892c, flags_4c0db0_set, flags_4c0ed0_set, gfxlib_uses_noop_fr4_test_2336e8,
+ * called by: alt_entry_26892c, flags_4c0db0_set, flags_4c0ed0_set, gfx_box_sphere_overlap_test_like,
  * kamui_uses_switch_jump_r0_2140a4, sd_cmd_ring_push, sd_set_cmd_queue_buffer, ta_uses_switch_jump_r0_2218f4
  */
 u32 switch_jump_r0(u32 a0, u32 a1, u32 a2, u32 a3) {
@@ -7693,9 +7693,9 @@ u32 noop(void) {
 /*
  * libgcc_movstr_i4  0x8c010838
  * compiler block-copy helper: copies r0 bytes from r2 to r1 in 32-bit words
- * called by: gfx_box_overlap_test_like, gfxlib_uses_noop_fr4_test_2336e8, ninja_draw_25e884, ninja_draw_25eb60,
- * nj_init_view_defaults_like, nj_set_video_mode_timing_like, pvr_uses_libgcc_divide_helper_25dc60,
- * ta_uses_libgcc_movstr_i4_20df7a decompiler: Exceeded maximum restarts with more pending
+ * called by: gfx_box_overlap_test_like, gfx_box_sphere_overlap_test_like, ninja_draw_25e884, ninja_draw_25eb60,
+ * nj_init_view_defaults_like, nj_set_video_mode_timing_like, pvr_set_display_mode_like, ta_uses_libgcc_movstr_i4_20df7a
+ * decompiler: Exceeded maximum restarts with more pending
  */
 u32 libgcc_movstr_i4(u32 a0, u32 a1, u32 a2, u32 a3) {
     int in_r0;
@@ -8183,7 +8183,7 @@ u32 libc_uses_softfloat_scale_pow10_010b60(u32 a0, u32 a1, int a2, u32 a3) {
         puVar8 = puVar5;
     }
     iVar9 = 0x3f - (short)in_stack_ffffffcc;
-    iVar3 = libc_test_0105c4();
+    iVar3 = int_divide_signed_like();
     bitstring_set_sticky(auStack_20, 9, 0x42 - (short)iVar9);
     iVar7 = (int)(short)iVar3;
     iVar2 = 8;
@@ -8601,14 +8601,14 @@ u32 format_output(int a0, u8 *a1, int *a2, u8 *a3) {
             a2 = (int *)(int)(char)*pbVar9;
             a1 = abStack_dc;
             a7 = abStack_5c;
-            libc_uses_libgcc_divide_helper_0115c4(uVar3, abStack_dc, a2, abStack_5c);
+            printf_format_int(uVar3, abStack_dc, a2, abStack_5c);
             pbStack_e4 = (u8 *)log_message(abStack_dc, a1, a2);
             pbStack_ec = abStack_dc;
         } else if (((bVar1 == 0x66) || (bVar1 == 0x65)) || ((bVar1 == 0x45 || ((bVar1 == 0x67 || (bVar1 == 0x47)))))) {
             a2 = (int *)(int)(char)*pbVar9;
             a1 = abStack_dc;
             a7 = abStack_5c;
-            libc_uses_log_message_013374(&stack0x00000000, abStack_dc, a2, abStack_5c);
+            printf_format_float(&stack0x00000000, abStack_dc, a2, abStack_5c);
             pbStack_e4 = (u8 *)log_message(abStack_dc, a1, a2);
             pbStack_ec = abStack_dc;
         } else if (bVar1 == 99) {
@@ -8664,7 +8664,7 @@ u32 format_output(int a0, u8 *a1, int *a2, u8 *a3) {
             a1 = abStack_dc;
             a7 = abStack_5c;
             in_stack_00000000 = uVar3;
-            libc_uses_libgcc_divide_helper_0115c4(*puVar4, abStack_dc, 0x78, abStack_5c);
+            printf_format_int(*puVar4, abStack_dc, 0x78, abStack_5c);
             pbStack_e4 = (u8 *)log_message(abStack_dc, a1, a2);
             pbStack_ec = abStack_dc;
         } else if (bVar1 == 0x6e) {
@@ -8734,11 +8734,11 @@ u32 format_output(int a0, u8 *a1, int *a2, u8 *a3) {
 }
 
 /*
- * libc_uses_libgcc_divide_helper_0115c4  0x8c0115c4
- * area name: in the libc library code range; behaviour name: its main named callee is libgcc_divide_helper_0106dc
+ * printf_format_int  0x8c0115c4
+ * formats integer a0 into a1 for printf conversion a2 (d, i, u, o, x, X) honouring the precision in spec a3
  * called by: format_output
  */
-int libc_uses_libgcc_divide_helper_0115c4(int a0, char *a1, int a2, u8 *a3) {
+int printf_format_int(int a0, char *a1, int a2, u8 *a3) {
     char cVar1;
     u32 uVar2;
     int iVar3;
@@ -9501,7 +9501,7 @@ u32 libc_uses_delay_loop_6_012328(u32 unused_a0, u32 unused_a1, u32 unused_a2, u
 /*
  * double_to_digits  0x8c01243c
  * writes a2 decimal digits of the 8-byte mantissa a0 into a1 by repeated subtraction of powers of ten from a table
- * called by: libc_uses_log_message_013374
+ * called by: printf_format_float
  */
 int double_to_digits(u32 a0, char *a1, int a2) {
     int iVar1;
@@ -10420,7 +10420,7 @@ u32 double_unpack_mantissa(u8 *a0, u16 *a1, u8 *a2) {
 /*
  * double_to_decimal_like  0x8c013060
  * splits double a0 into sign a3, exponent a2 and decimal mantissa bytes a1 (zero, infinity and NaN handled)
- * called by: libc_uses_log_message_013374
+ * called by: printf_format_float
  */
 u32 double_to_decimal_like(int a0, u8 *a1, int *a2, char *a3) {
     bool bVar1;
@@ -10552,11 +10552,11 @@ u32 double_to_decimal_like(int a0, u8 *a1, int *a2, char *a3) {
 }
 
 /*
- * libc_uses_log_message_013374  0x8c013374
- * area name: in the libc library code range; behaviour name: its main named callee is log_message
+ * printf_format_float  0x8c013374
+ * formats the next double argument for printf (%f, %e, %g) into the output buffer, rounding to the precision
  * called by: format_output
  */
-int libc_uses_log_message_013374(u32 *a0, char *a1, int a2, u8 *a3) {
+int printf_format_float(u32 *a0, char *a1, int a2, u8 *a3) {
     u8 bVar1;
     float fVar2;
     int iVar3;
@@ -11000,7 +11000,7 @@ LAB_8c013572:
 /*
  * decimal_round_digits  0x8c013a72
  * rounds the decimal digit string a0 at digit a1, carrying into the digits before it
- * called by: libc_uses_log_message_013374
+ * called by: printf_format_float
  */
 u32 decimal_round_digits(char *a0, int a1) {
     u32 in_r0;
@@ -11913,8 +11913,7 @@ u32 strcmp_01439c(u32 a0, u32 a1) {
 /*
  * log_message  0x8c0143b0
  * called by: dbg_font_print, dbg_font_print_float, filename_add_ext_if_missing, format_output,
- * gfx_texlist_entries_from_mem, gfx_texlist_entries_from_stream, libc_uses_log_message_013374, msg_substitute_name (+7
- * more)
+ * gfx_texlist_entries_from_mem, gfx_texlist_entries_from_stream, msg_substitute_name, named_list_ctor_0c (+7 more)
  */
 int log_message(char *a0, u32 a1, u32 a2) {
     char cVar1;
@@ -12980,7 +12979,7 @@ u32 game_draw_015054(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     uStack_c = *(u32 *)((&DATA_8c12c52c) + 0xc);
     iStack_18 = a0 + 4;
     iStack_14 = a0 + 0x40;
-    uVar1 = gfxlib_draw_234fd0(&iStack_18, 1, 0x40, a3);
+    uVar1 = gfx_draw_3d_line_segments_like(&iStack_18, 1, 0x40, a3);
     return uVar1;
 }
 
@@ -15214,15 +15213,15 @@ u32 *get_vec4_30(int a0, u32 *a1) {
 }
 
 /*
- * game_uses_noop_fr4_test_016e98  0x8c016e98
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: uses_noop_fr4_test
+ * game_draw_016e98  0x8c016e98
+ * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
  */
-u32 game_uses_noop_fr4_test_016e98(int a0, int *a1, u32 a2, u32 a3) {
+u32 game_draw_016e98(int a0, int *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u8 auStack_64[100];
 
     (**(code **)(*a1 + 0x38))(a1, auStack_64, a2, a3);
-    uVar1 = gfxlib_uses_noop_fr4_test_2336e8(auStack_64, a0 + 0x30);
+    uVar1 = gfx_box_sphere_overlap_test_like(auStack_64, a0 + 0x30);
     return uVar1;
 }
 
@@ -15573,7 +15572,7 @@ u32 Class_129938_m4_017428(int a0, int *a1, u32 a2, u32 a3) {
     u8 auStack_14[20];
 
     (**(code **)(*a1 + 0x34))(a1, auStack_14, a2, a3);
-    uVar1 = gfxlib_uses_noop_fr4_test_2336e8(a0 + 0x30, auStack_14);
+    uVar1 = gfx_box_sphere_overlap_test_like(a0 + 0x30, auStack_14);
     return uVar1;
 }
 
@@ -23323,8 +23322,7 @@ u32 CDCGD_finish_texture_request(int a0, u32 unused_a1, u32 a2, int a3) {
             unaff_r13 = -1;
         }
     } else if (iVar1 == 0xe) {
-        iVar1 = (*(code *)(&gfxlib_uses_ninja_close_file_239212))(*(int *)(a0 + 4) + 0x10,
-                                                                  *(u32 *)(*(int *)(a0 + 4) + 8), a2, a3);
+        iVar1 = (*(code *)(&gfx_model_file_load_like))(*(int *)(a0 + 4) + 0x10, *(u32 *)(*(int *)(a0 + 4) + 8), a2, a3);
         if (iVar1 == 1) {
             unaff_r13 = 1;
         } else {

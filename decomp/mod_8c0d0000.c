@@ -2935,7 +2935,7 @@ u32 game_draw_0d2c84(float *a0, u32 a1, u32 a2, u32 a3) {
     pfStack_8c = &fStack_6c;
     puStack_84 = &uStack_7c;
     if (a0[5] == 0.0) {
-        uVar1 = gfxlib_draw_234fd0(&pfStack_3c, 1, 0, a3);
+        uVar1 = gfx_draw_3d_line_segments_like(&pfStack_3c, 1, 0, a3);
     } else {
         fVar2 = (a0[4] / 12.2) * a0[0x21];
         if (a0[0x1d] == 2.8026e-45) {
@@ -4429,7 +4429,7 @@ int list_draw_node_points(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         }
         ar6_00 = 0x40;
         ar5_00 = 1;
-        gfxlib_draw_234fd0(&puStack_30, 1, 0x40, a3);
+        gfx_draw_3d_line_segments_like(&puStack_30, 1, 0x40, a3);
         ar4_00 = list_node_next(ar4_00);
     }
     return ar4_00;

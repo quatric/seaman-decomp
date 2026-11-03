@@ -882,7 +882,7 @@ int CDCGD_ReadPVMFileReq(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     ar7_00 = a1;
     iVar1 = CDCGD_request(a0, 0x10, ar6_00, a1, a2, auStack_1c, a0 + 8, 0, 0, s0);
     if (iVar1 == 1) {
-        iVar2 = pvr_uses_tex_entry_alloc_23a29c(auStack_1c[0], a3, ar6_00, ar7_00);
+        iVar2 = pvm_load_from_stream_like(auStack_1c[0], a3, ar6_00, ar7_00);
         if (iVar2 == 1) {
             CDCGD_release_request_wrap_021138(a0, a1, a2, s0);
         } else {

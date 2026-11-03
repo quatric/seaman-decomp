@@ -2048,7 +2048,7 @@ int static_init_27def0(int a0, u32 *a1, u32 a2, u32 a3) {
             }
             Vec3_assign(auStack_978 + iVar5 * 0x10, iVar1 * 0x10 + 0x8c27d590, ar6_00, uVar4);
             ar6_00 = NULL;
-            gfxlib_draw_234fd0(&puStack_988, uStack_97c, 0, uVar4);
+            gfx_draw_3d_line_segments_like(&puStack_988, uStack_97c, 0, uVar4);
             iVar2 = iVar2 + 1;
             iVar1 = iVar1 + -1;
         }

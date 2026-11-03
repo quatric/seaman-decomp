@@ -7065,7 +7065,7 @@ int sd_dma_kick(int a0, u32 a1, u32 a2, code *a3) {
  * sd_handle_alloc  0x8c265704
  * takes a free handle of the 0x40, fills it from the template and stores it in *a0 (error when none is free)
  * called by: aica_driver_upload, aica_load_sound_driver, alt_entry_2654fc, alt_entry_266bda, game_sound_022504,
- * sd_load_smlt, sd_sound_266bd4, sd_sound_26a246
+ * sd_load_smlt, sd_sound_266bd4, sd_stream_create_like
  */
 int sd_handle_alloc(u32 *a0) {
     u32 r7;
@@ -9351,7 +9351,7 @@ int sd_slot_open_type3_a(int *a0, u32 unused_a1, int a2, int a3, u32 s0, u32 s4)
 /*
  * sd_slot_open_type3_b  0x8c2675d8
  * same body as sd_slot_open_type3_a (it even reports errors under that function)
- * called by: sd_sound_26a246
+ * called by: sd_stream_create_like
  */
 int sd_slot_open_type3_b(int *a0, u32 unused_a1, int a2, int a3, u32 s0, u32 s4) {
     u32 *puVar1;
@@ -10674,7 +10674,7 @@ int alt_entry_2682be(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * sd_sound_268320  0x8c268320
  * area name: in the sd library code range; behaviour name: mostly calls sound functions
- * called by: sd_load_smlt, sd_sound_26a246
+ * called by: sd_load_smlt, sd_stream_create_like
  */
 u32 sd_sound_268320(int a0, u32 a1, u32 a2, u32 a3) {
     int ar6_00;
@@ -13050,7 +13050,7 @@ u32 sd_copy_26a1a4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * rec8_alloc_4beb48  0x8c26a1ca
  * marks and returns the first free of the two 8-byte records at 8c4beb48; 0 when both are used
- * called by: sd_sound_26a246
+ * called by: sd_stream_create_like
  */
 u32 rec8_alloc_4beb48(void) {
     int *piVar1;
@@ -13084,7 +13084,7 @@ u32 clear_field_0_26a1f2(u32 *a0) {
 
 /*
  * get_field_4_26a1f8  0x8c26a1f8
- * called by: sd_sound_26a246
+ * called by: sd_stream_create_like
  */
 u32 get_field_4_26a1f8(int a0) {
     return *(u32 *)(a0 + 4);
@@ -13105,7 +13105,7 @@ u32 sd_copy_26a204(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * sd_find_free_slot_beb88  0x8c26a220
  * first free 0x54-byte slot of the eight at 8c4beb88, else 0
- * called by: sd_sound_26a246
+ * called by: sd_stream_create_like
  */
 u32 sd_find_free_slot_beb88(void) {
     u32 uVar1;
@@ -13121,11 +13121,10 @@ u32 sd_find_free_slot_beb88(void) {
 }
 
 /*
- * sd_sound_26a246  0x8c26a246
- * name hint from a string it uses: E1221 Illigal parameter NCH ; area name: in the sd library code range; behaviour
- * name: mostly calls sound functions
+ * sd_stream_create_like  0x8c26a246
+ * creates a sound stream with one or two channels: takes a free slot and allocates its per-channel buffers and handles
  */
-u32 sd_sound_26a246(int a0, int a1, int a2, int a3) {
+u32 sd_stream_create_like(int a0, int a1, int a2, int a3) {
     u8 *puVar1;
     u8 *puVar2;
     u8 *puVar3;

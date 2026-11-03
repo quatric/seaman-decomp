@@ -7913,7 +7913,7 @@ u32 game_draw_point_list(int a0) {
         } else {
             puStack_1f5c[1] = *puVar1;
         }
-        gfxlib_draw_234fd0(&puStack_1f5c, uStack_1f50, 0, uVar2);
+        gfx_draw_3d_line_segments_like(&puStack_1f5c, uStack_1f50, 0, uVar2);
     }
     uVar2 = vec_delete_array(auStack_1f4c, Vec3_dtor, 0x10, 500);
     return uVar2;
