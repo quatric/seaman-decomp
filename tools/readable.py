@@ -903,6 +903,10 @@ def main():
     area = sum(1 for _, n, _, _ in index if re.search(r'_sub_[0-9a-f]{6}$', n))
     unnamed = sum(1 for _, n, _, _ in index if n.startswith('FUN_'))
     beh = sum(1 for _, n, _, _ in index if n in behaviour or re.sub(r'_[0-9a-f]{6}$', '', n) in behaviour)
+    if os.environ.get('BEH_OUT'):
+        with open(os.environ['BEH_OUT'], 'w') as fo:
+            for a, n, _, _ in index:
+                if n in behaviour or re.sub(r'_[0-9a-f]{6}$', '', n) in behaviour: fo.write('%08x\t%s\n' % (a, n))
     print('%d functions, %d with trimmed parameters, %d with precise names, %d with behaviour names, %d with area names, '
           '%d unnamed, %d globals' % (len(index), trimmed, len(index) - area - unnamed - beh, beh, area, unnamed, len(globals_used)))
 

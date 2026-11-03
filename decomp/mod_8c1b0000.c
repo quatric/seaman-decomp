@@ -170,11 +170,10 @@ u32 not_code_1b9422(void) {
 }
 
 /*
- * game_uses_not_code_1b9428  0x8c1b9428
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is not_code_1ba396
+ * not_code_caller_1b9428  0x8c1b9428
  * called by: not_code_1b9664
  */
-u32 game_uses_not_code_1b9428(void) {
+u32 not_code_caller_1b9428(void) {
     u32 r4;
     u32 r5;
     u32 r6;
@@ -329,7 +328,7 @@ u32 not_code_1b960a(void) {
  * decompiler: Control flow encountered unimplemented instructions
  */
 u32 not_code_1b9664(void) {
-    game_uses_not_code_1b9428();
+    not_code_caller_1b9428();
     /* WARNING: Unimplemented instruction - Truncating control flow here */
     halt_unimplemented();
 }
@@ -953,7 +952,7 @@ u32 not_code_1b9e00(u32 a0, u32 a1, u32 a2) {
 /*
  * not_code_1ba1a4  0x8c1ba1a4
  * data decoded as code (no valid instruction stream)
- * called by: game_uses_not_code_1b9428
+ * called by: not_code_caller_1b9428
  * decompiler: Control flow encountered bad instruction data
  */
 u32 not_code_1ba1a4(void) {
@@ -964,7 +963,7 @@ u32 not_code_1ba1a4(void) {
 /*
  * not_code_1ba396  0x8c1ba396
  * data decoded as code (no valid instruction stream)
- * called by: game_uses_not_code_1b9428
+ * called by: not_code_caller_1b9428
  * decompiler: Control flow encountered bad instruction data
  */
 u32 not_code_1ba396(void) {

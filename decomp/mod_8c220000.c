@@ -4,11 +4,10 @@
 #include "globals.h"
 
 /*
- * gfxlib_calc_2205d8  0x8c2205d8
- * area name: in the gfxlib library code range; behaviour name: integer arithmetic on its arguments
+ * gfxlib_select_strip_format_b  0x8c2205d8
  * called by: gfx_shape_interp_linear_c, gfx_shape_interp_spline_c
  */
-u32 gfxlib_calc_2205d8(int a0) {
+u32 gfxlib_select_strip_format_b(int a0) {
     u32 *puVar1;
     u32 *puVar2;
     u32 *puVar3;
@@ -113,7 +112,7 @@ u32 gfx_shape_interp_spline_c(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
             *(u32 *)(*(int *)((int)puVar7 + -0x30) + 4) = uVar3;
             uVar3 = uVar3 >> 0x10;
             if (g_8c2759d8 == 0) {
-                gfxlib_calc_2205d8(**(u32 **)((int)puVar7 + -0x30) & 0xffff);
+                gfxlib_select_strip_format_b(**(u32 **)((int)puVar7 + -0x30) & 0xffff);
                 g_8c2759d8 = 1;
             }
             *(u32 *)((int)puVar7 + -0x3c) = 0;
@@ -166,7 +165,7 @@ u32 gfx_shape_interp_spline_c(int a0, u32 a1, u64 *a2, u8 *a3, u32 ain0) {
                         }
                     }
                     a3 = (u8 *)((int)puVar7 + -0x14);
-                    gfxlib_uses_libgcc_divide_helper_22123c(iVar4, a1, a2, a3);
+                    gfxlib_strip_split_by_count(iVar4, a1, a2, a3);
                     in_fr5 = SUB84(dVar10, 0);
 
                     dVar11 = (double)CONCAT44((int)((u64)dVar11 >> 0x20), extraout_fr0);
@@ -521,7 +520,7 @@ u32 gfx_shape_interp_linear_c(u32 *a0, double *a1, double *a2, int *a3, u32 ain0
         puVar1[1] = uVar6;
         uVar6 = uVar6 >> 0x10;
         if (g_8c2759d8 == 0) {
-            gfxlib_calc_2205d8(*puVar1 & 0xffff);
+            gfxlib_select_strip_format_b(*puVar1 & 0xffff);
             g_8c2759d8 = 1;
         }
         iStack_50 = 0;
@@ -873,11 +872,10 @@ LAB_8c221200:
 }
 
 /*
- * gfxlib_uses_libgcc_divide_helper_22123c  0x8c22123c
- * area name: in the gfxlib library code range; behaviour name: its main named callee is libgcc_divide_helper_0106dc
+ * gfxlib_strip_split_by_count  0x8c22123c
  * called by: gfx_shape_interp_spline_a, gfx_shape_interp_spline_b, gfx_shape_interp_spline_c
  */
-int gfxlib_uses_libgcc_divide_helper_22123c(int a0, int a1, int a2, u32 *a3) {
+int gfxlib_strip_split_by_count(int a0, int a1, int a2, u32 *a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -1075,10 +1073,9 @@ u32 Vec3_catmull_rom(float *a0, float *a1, float *a2, float *a3, float *s0) {
 }
 
 /*
- * gfxlib_init_fields_2216e0  0x8c2216e0
- * area name: in the gfxlib library code range; behaviour name: writes 3 members
+ * gfxlib_vertex_step_4  0x8c2216e0
  */
-u32 gfxlib_init_fields_2216e0(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 gfxlib_vertex_step_4(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 *in_r1;
     int in_r3;
@@ -1095,10 +1092,9 @@ u32 gfxlib_init_fields_2216e0(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_init_fields_22170a  0x8c22170a
- * area name: in the gfxlib library code range; behaviour name: writes 3 members
+ * gfxlib_vertex_step_8  0x8c22170a
  */
-u32 gfxlib_init_fields_22170a(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 gfxlib_vertex_step_8(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 *in_r1;
     int in_r3;
@@ -1115,10 +1111,9 @@ u32 gfxlib_init_fields_22170a(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_init_fields_221734  0x8c221734
- * area name: in the gfxlib library code range; behaviour name: writes 3 members
+ * gfxlib_vertex_step_c  0x8c221734
  */
-u32 gfxlib_init_fields_221734(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 gfxlib_vertex_step_c(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 *in_r1;
     int in_r3;
@@ -1136,7 +1131,7 @@ u32 gfxlib_init_fields_221734(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * ta_fifo_221778  0x8c221778
- * called by: gfxlib_uses_njUnitVector_22b7a8, gfxlib_uses_njUnitVector_22bb70
+ * called by: gfxlib_uses_ninja_matrix_copy_22b7a8, gfxlib_uses_ninja_matrix_copy_22bb70
  */
 u32 ta_fifo_221778(float *a0) {
     u32 uVar1;
@@ -1186,11 +1181,10 @@ u32 ta_fifo_221778(float *a0) {
 }
 
 /*
- * ta_uses_switch_jump_r0_2218f4  0x8c2218f4
- * area name: sits between ta functions (same compilation unit); behaviour name: its main named callee is switch_jump_r0
+ * ta_select_table_26d7e8  0x8c2218f4
  * called by: game_init_sound_and_messages
  */
-int ta_uses_switch_jump_r0_2218f4(int a0) {
+int ta_select_table_26d7e8(int a0) {
     u8 *puVar1;
     u8 auStack_20[32];
 
@@ -1203,9 +1197,8 @@ int ta_uses_switch_jump_r0_2218f4(int a0) {
 /*
  * flags_4c0ed0_set  0x8c221916
  * sets or clears (a1) flag a0 of the bit set at 0x8c4c0ed0
- * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_uses_flags_4c0ed0_set_09dde4,
- * Class_12ab2c_uses_flags_4c0ed0_set_09efb4, Class_12ab2c_uses_light_set_vec_09ea78, game_init_sound_and_messages,
- * lights_2_to_4_off
+ * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_light_release, Class_12ab2c_light_setup,
+ * Class_12ab2c_uses_light_set_vec_09ea78, game_init_sound_and_messages, lights_2_to_4_off
  */
 u32 flags_4c0ed0_set(int a0, int a1) {
     u32 auStack_20[8];
@@ -1222,7 +1215,7 @@ u32 flags_4c0ed0_set(int a0, int a1) {
 /*
  * set_vec_4c0ed4  0x8c22194e
  * stores fr4..fr6 at 8c4c0ed4
- * called by: Vec3_uses_set_vec_0e3f24
+ * called by: Vec3_uses_gfxlib_set_vec_0e3f24
  */
 u32 set_vec_4c0ed4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 in_fr5;
@@ -1238,8 +1231,8 @@ u32 set_vec_4c0ed4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u
 /*
  * light_set_vec_4c0ef4  0x8c22195c
  * stores fr4..fr6 in light slot a0 (1-based, 0x20 bytes each at 0x8c4c0ef4)
- * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_uses_light_set_vec_09ea78, Vec3_uses_set_vec_0e3f24,
- * game_uses_light_set_vec_0da88c, game_uses_light_set_vec_0df8d0
+ * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_uses_light_set_vec_09ea78, Vec3_uses_gfxlib_set_vec_0e3f24,
+ * tank_light_and_draw_9d4, tank_light_by_flags
  */
 u32 light_set_vec_4c0ef4(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int iVar1;
@@ -1255,11 +1248,10 @@ u32 light_set_vec_4c0ef4(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u3
 }
 
 /*
- * gfxlib_float_calc_2219a8  0x8c2219a8
- * area name: in the gfxlib library code range; behaviour name: floating-point arithmetic
- * called by: Vec3_uses_set_vec_0e3f24
+ * gfxlib_set_vec_4c0e80  0x8c2219a8
+ * called by: Vec3_uses_gfxlib_set_vec_0e3f24
  */
-u32 gfxlib_float_calc_2219a8(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 gfxlib_set_vec_4c0e80(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 in_fr5;
     u32 in_fr4;
     u32 in_fr6;
@@ -1298,11 +1290,10 @@ u32 light_set_vector(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ai
 }
 
 /*
- * gfxlib_float_calc_2219de  0x8c2219de
- * area name: in the gfxlib library code range; behaviour name: floating-point arithmetic
- * called by: Class_12ab2c_uses_flags_4c0ed0_set_09dde4
+ * gfxlib_set_squared_pair  0x8c2219de
+ * called by: Class_12ab2c_light_setup
  */
-u32 gfxlib_float_calc_2219de(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
+u32 gfxlib_set_squared_pair(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int iVar1;
     u64 in_dr4;
     float fVar2;
@@ -1317,7 +1308,7 @@ u32 gfxlib_float_calc_2219de(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3
 /*
  * gfx_lights_transform_0e80  0x8c2219f6
  * transforms each light of the table at 8c4c0e80 (flags +0x50: 3 bits per light) as a direction or a point into
- * 8c4c0ee0 called by: Vec3_uses_set_vec_0e3f24
+ * 8c4c0ee0 called by: Vec3_uses_gfxlib_set_vec_0e3f24
  */
 u32 gfx_lights_transform_0e80(void) {
     u8 *puVar1;
@@ -24118,11 +24109,11 @@ int gfx_strips_emit_s32_cull_d(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * gfxlib_uses_njUnitVector_22b7a8  0x8c22b7a8
- * area name: in the gfxlib library code range; behaviour name: its main named callee is njUnitVector
+ * gfxlib_uses_ninja_matrix_copy_22b7a8  0x8c22b7a8
+ * area name: in the gfxlib library code range; behaviour name: its main named callee is ninja_matrix_copy
  * called by: gfx_poly_chunks_draw_b
  */
-double *gfxlib_uses_njUnitVector_22b7a8(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_uses_ninja_matrix_copy_22b7a8(short *a0, int a1, u32 a2, double *a3) {
     double *pdVar1;
     double *pdVar2;
     u32 uVar3;
@@ -24332,7 +24323,7 @@ double *gfxlib_uses_njUnitVector_22b7a8(short *a0, int a1, u32 a2, double *a3) {
     *(u32 *)(puVar15 + -0x24) = 0;
     *(u32 *)(puVar15 + -0x20) = 0x3f800000;
 
-    ninja_update_fields_255d6c(puVar15 + -0x5c, ar5_00, &g_8c4ab204, &g_8c4ab208, *(u32 *)(puVar15 + -0xc0));
+    ninja_matrix_copy(puVar15 + -0x5c, ar5_00, &g_8c4ab204, &g_8c4ab208, *(u32 *)(puVar15 + -0xc0));
 
     dVar27 = (double)CONCAT44(g_8c4ab19c, uVar3);
     dVar22 = (double)CONCAT44((int)((u64)dVar22 >> 0x20), *(u32 *)*(double **)(puVar15 + -0xc0));
@@ -24612,11 +24603,11 @@ double *gfxlib_uses_njUnitVector_22b7a8(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_uses_njUnitVector_22bb70  0x8c22bb70
- * area name: in the gfxlib library code range; behaviour name: its main named callee is njUnitVector
+ * gfxlib_uses_ninja_matrix_copy_22bb70  0x8c22bb70
+ * area name: in the gfxlib library code range; behaviour name: its main named callee is ninja_matrix_copy
  * called by: gfx_poly_chunks_draw_b
  */
-double *gfxlib_uses_njUnitVector_22bb70(u32 a0, u32 a1, u32 a2, double *a3) {
+double *gfxlib_uses_ninja_matrix_copy_22bb70(u32 a0, u32 a1, u32 a2, double *a3) {
     short sVar1;
     short sVar2;
     bool bVar3;
@@ -24823,8 +24814,7 @@ double *gfxlib_uses_njUnitVector_22bb70(u32 a0, u32 a1, u32 a2, double *a3) {
     *(u32 *)((int)pdVar15 + -0x24) = 0;
     *(u32 *)((int)pdVar15 + -0x20) = 0x3f800000;
 
-    ninja_update_fields_255d6c((u8 *)((int)pdVar15 + -0x5c), ar5_00, &g_8c4ab208, &g_8c4ab204,
-                               *(u32 *)((int)pdVar15 + -0xdc));
+    ninja_matrix_copy((u8 *)((int)pdVar15 + -0x5c), ar5_00, &g_8c4ab208, &g_8c4ab204, *(u32 *)((int)pdVar15 + -0xdc));
 
     dVar24 = (double)CONCAT44(g_8c4ab19c, uVar19);
     dVar18 = (double)CONCAT44((int)((u64)dVar18 >> 0x20), *(u32 *)*(double **)((int)pdVar15 + -0xbc));
@@ -25197,7 +25187,7 @@ double *gfxlib_uses_njUnitVector_22bb70(u32 a0, u32 a1, u32 a2, double *a3) {
 /*
  * gfxlib_fill_loop_22c058  0x8c22c058
  * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_uses_njUnitVector_22bb70
+ * called by: gfxlib_uses_ninja_matrix_copy_22bb70
  */
 u64 *gfxlib_fill_loop_22c058(double *a0, double *a1, double *a2, u64 *a3) {
     u32 *puVar1;

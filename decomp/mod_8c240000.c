@@ -4,10 +4,10 @@
 #include "globals.h"
 
 /*
- * gfxlib_uses_noop_240222  0x8c240222
- * area name: in the gfxlib library code range; behaviour name: its main named callee is noop_23d694
+ * gfxlib_draw_240222  0x8c240222
+ * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
  */
-int gfxlib_uses_noop_240222(int a0, u32 a1) {
+int gfxlib_draw_240222(int a0, u32 a1) {
     int iVar1;
     int iVar2;
     double *pdVar3;
@@ -91,7 +91,7 @@ int gfxlib_uses_noop_240222(int a0, u32 a1) {
             CacheBlockWriteBack(puVar11);
             if (*(u32 *)((int)puVar11 + 0x3c) != (a1 | uVar7)) {
                 *(u32 *)((int)puVar11 + 0x3c) = a1 | uVar7;
-                iVar2 = gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar11 + 2, puVar11 + 6, uVar7);
+                iVar2 = gfxlib_draw_23bae2(&g_8c4c2620, puVar11 + 2, puVar11 + 6, uVar7);
                 if (cVar24 == '\0') {
                     *(u32 *)(puVar11 + 4) = g_8c4c2620;
                     pdVar4 = (double *)&g_8c4c2638;
@@ -216,7 +216,7 @@ int gfxlib_uses_noop_240222(int a0, u32 a1) {
         CacheBlockWriteBack(puVar12);
         if (*(u32 *)((int)puVar12 + 0x3c) != (a1 | uVar7)) {
             *(u32 *)((int)puVar12 + 0x3c) = a1 | uVar7;
-            iVar2 = gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar12 + 2, puVar12 + 6, uVar7);
+            iVar2 = gfxlib_draw_23bae2(&g_8c4c2620, puVar12 + 2, puVar12 + 6, uVar7);
             if (cVar24 == '\0') {
                 *(u32 *)(puVar12 + 4) = g_8c4c2620;
                 pdVar4 = (double *)&g_8c4c2628;
@@ -307,10 +307,10 @@ int gfxlib_uses_noop_240222(int a0, u32 a1) {
 }
 
 /*
- * gfxlib_uses_noop_240434  0x8c240434
- * area name: in the gfxlib library code range; behaviour name: its main named callee is noop_23d694
+ * gfxlib_draw_240434  0x8c240434
+ * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
  */
-u32 gfxlib_uses_noop_240434(int a0, int a1) {
+u32 gfxlib_draw_240434(int a0, int a1) {
     u16 uVar1;
     int iVar2;
     u32 uVar3;
@@ -455,7 +455,7 @@ u32 gfxlib_uses_noop_240434(int a0, int a1) {
                     CacheBlockWriteBack(pdVar10);
                     if (*(int *)((int)pdVar10 + 0x3c) != a1) {
                         *(int *)((int)pdVar10 + 0x3c) = a1;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, 0);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, 0);
                         if (cVar24 == '\0') {
                             *(u32 *)(pdVar10 + 4) = g_8c4c2620;
                             pdVar9 = (double *)&g_8c4c2638;
@@ -520,7 +520,7 @@ u32 gfxlib_uses_noop_240434(int a0, int a1) {
                 CacheBlockWriteBack(pdVar10);
                 if (*(int *)((int)pdVar10 + 0x3c) != a1) {
                     *(int *)((int)pdVar10 + 0x3c) = a1;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, 0);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, 0);
                     if (cVar24 == '\0') {
                         *(u32 *)(pdVar10 + 4) = g_8c4c2620;
                         pdVar9 = (double *)&g_8c4c2638;
@@ -615,7 +615,7 @@ u32 gfxlib_uses_noop_240434(int a0, int a1) {
                     CacheBlockWriteBack(pdVar9);
                     if (*(int *)((int)pdVar9 + 0x3c) != a1) {
                         *(int *)((int)pdVar9 + 0x3c) = a1;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar9 + 2, pdVar9 + 6, 0);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar9 + 2, pdVar9 + 6, 0);
                         if (cVar24 == '\0') {
                             *(u32 *)(pdVar9 + 4) = g_8c4c2620;
                             pdVar8 = (double *)&g_8c4c2638;
@@ -703,7 +703,7 @@ u32 gfxlib_uses_noop_240434(int a0, int a1) {
                     CacheBlockWriteBack(pdVar10);
                     if (*(int *)((int)pdVar10 + 0x3c) != a1) {
                         *(int *)((int)pdVar10 + 0x3c) = a1;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, 0);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, 0);
                         if (cVar24 == '\0') {
                             *(u32 *)(pdVar10 + 4) = g_8c4c2620;
                             pdVar9 = (double *)&g_8c4c2638;
@@ -817,7 +817,7 @@ u32 gfxlib_uses_noop_240434(int a0, int a1) {
             CacheBlockWriteBack(pdVar12);
             if (*(int *)((int)pdVar12 + 0x3c) != a1) {
                 *(int *)((int)pdVar12 + 0x3c) = a1;
-                uVar3 = gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar12 + 2, pdVar12 + 6, 0);
+                uVar3 = gfxlib_draw_23bae2(&g_8c4c2620, pdVar12 + 2, pdVar12 + 6, 0);
                 if (cVar24 == '\0') {
                     *(u32 *)(pdVar12 + 4) = g_8c4c2620;
                     pdVar9 = (double *)&g_8c4c2638;
@@ -1011,7 +1011,7 @@ u32 *gfxlib_uses_float_to_color_u8_2407e2(int a0, u32 a1) {
                 puVar4 = &g_8c4c2620;
                 puVar5 = puVar12 + 6;
                 puVar13 = puVar12 + 2;
-                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar13, puVar5, uVar6);
+                gfxlib_draw_23bae2(&g_8c4c2620, puVar13, puVar5, uVar6);
                 uVar2 = float_to_color_u8(puVar4, puVar13, puVar5, uVar6);
                 *(u32 *)(puVar12 + 5) = uVar2;
                 if (cVar28 == '\0') {
@@ -1131,7 +1131,7 @@ u32 *gfxlib_uses_float_to_color_u8_2407e2(int a0, u32 a1) {
             puVar4 = &g_8c4c2620;
             ar6_00 = puVar13 + 6;
             puVar5 = puVar13 + 2;
-            gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar5, ar6_00, uVar6);
+            gfxlib_draw_23bae2(&g_8c4c2620, puVar5, ar6_00, uVar6);
             uVar24 = float_to_color_u8(puVar4, puVar5, ar6_00, uVar6);
             *(u32 *)(puVar13 + 5) = uVar24;
             if (cVar28 == '\0') {
@@ -1363,7 +1363,7 @@ u32 gfxlib_uses_float_to_color_u8_240a66(int a0, int a1) {
                         uVar4 = 0;
                         pdVar6 = pdVar8 + 6;
                         pdVar7 = pdVar8 + 2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar6, 0);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar6, 0);
                         uVar22 = float_to_color_u8(puVar5, pdVar7, pdVar6, uVar4);
                         *(u32 *)(pdVar8 + 5) = uVar22;
                         if (cVar27 == '\0') {
@@ -1401,7 +1401,7 @@ u32 gfxlib_uses_float_to_color_u8_240a66(int a0, int a1) {
                     uVar4 = 0;
                     pdVar6 = pdVar8 + 6;
                     pdVar7 = pdVar8 + 2;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar6, 0);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar6, 0);
                     uVar22 = float_to_color_u8(puVar5, pdVar7, pdVar6, uVar4);
                     *(u32 *)(pdVar8 + 5) = uVar22;
                     if (cVar27 == '\0') {
@@ -1484,7 +1484,7 @@ u32 gfxlib_uses_float_to_color_u8_240a66(int a0, int a1) {
                         uVar4 = 0;
                         ar6_00 = pdVar7 + 6;
                         pdVar6 = pdVar7 + 2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar6, ar6_00, 0);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar6, ar6_00, 0);
                         uVar22 = float_to_color_u8(puVar5, pdVar6, ar6_00, uVar4);
                         *(u32 *)(pdVar7 + 5) = uVar22;
                         if (cVar27 == '\0') {
@@ -1557,7 +1557,7 @@ u32 gfxlib_uses_float_to_color_u8_240a66(int a0, int a1) {
                         uVar4 = 0;
                         pdVar6 = pdVar8 + 6;
                         pdVar7 = pdVar8 + 2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar6, 0);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar6, 0);
                         uVar22 = float_to_color_u8(puVar5, pdVar7, pdVar6, uVar4);
                         *(u32 *)(pdVar8 + 5) = uVar22;
                         uVar19 = g_8c4c2630;
@@ -1660,7 +1660,7 @@ u32 gfxlib_uses_float_to_color_u8_240a66(int a0, int a1) {
                 ar7_00 = 0;
                 pdVar8 = pdVar10 + 6;
                 pdVar7 = pdVar10 + 2;
-                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar8, 0);
+                gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar8, 0);
                 uVar4 = float_to_color_u8(puVar5, pdVar7, pdVar8, ar7_00);
                 *(u32 *)(pdVar10 + 5) = uVar4;
                 if (cVar27 == '\0') {
@@ -2501,7 +2501,7 @@ u32 *gfxlib_uses_float_to_color_u8_24149e(int a0, u32 a1) {
                 puVar5 = &g_8c4c2620;
                 puVar7 = puVar13 + 6;
                 puVar6 = puVar13 + 2;
-                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar6, puVar7, uVar9);
+                gfxlib_draw_23bae2(&g_8c4c2620, puVar6, puVar7, uVar9);
                 uVar3 = float_to_color_u8(puVar5, puVar6, puVar7, uVar9);
                 *(u32 *)(puVar13 + 5) = uVar3;
                 if (cVar25 == '\0') {
@@ -2623,7 +2623,7 @@ u32 *gfxlib_uses_float_to_color_u8_24149e(int a0, u32 a1) {
             puVar5 = &g_8c4c2620;
             ar6_00 = puVar6 + 6;
             puVar7 = puVar6 + 2;
-            gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar7, ar6_00, uVar9);
+            gfxlib_draw_23bae2(&g_8c4c2620, puVar7, ar6_00, uVar9);
             uVar21 = float_to_color_u8(puVar5, puVar7, ar6_00, uVar9);
             *(u32 *)(puVar6 + 5) = uVar21;
             if (cVar25 == '\0') {
@@ -2856,7 +2856,7 @@ u32 gfxlib_uses_float_to_color_u8_241722(int a0, int a1) {
                         uVar3 = 0;
                         pdVar6 = pdVar8 + 6;
                         puVar5 = &g_8c4c2620;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar6, 0);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar6, 0);
                         uVar4 = float_to_color_u8(puVar5, pdVar7, pdVar6, uVar3);
                         *(u32 *)(pdVar8 + 5) = uVar4;
                         if (cVar24 == '\0') {
@@ -2917,7 +2917,7 @@ u32 gfxlib_uses_float_to_color_u8_241722(int a0, int a1) {
                     uVar3 = 0;
                     pdVar6 = pdVar8 + 6;
                     puVar5 = &g_8c4c2620;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar6, 0);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar6, 0);
                     uVar4 = float_to_color_u8(puVar5, pdVar7, pdVar6, uVar3);
                     *(u32 *)(pdVar8 + 5) = uVar4;
                     if (cVar24 == '\0') {
@@ -3008,7 +3008,7 @@ u32 gfxlib_uses_float_to_color_u8_241722(int a0, int a1) {
                         uVar3 = 0;
                         ar6_00 = pdVar7 + 6;
                         puVar5 = &g_8c4c2620;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar6, ar6_00, 0);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar6, ar6_00, 0);
                         uVar4 = float_to_color_u8(puVar5, pdVar6, ar6_00, uVar3);
                         *(u32 *)(pdVar7 + 5) = uVar4;
                         if (cVar24 == '\0') {
@@ -3091,7 +3091,7 @@ u32 gfxlib_uses_float_to_color_u8_241722(int a0, int a1) {
                         uVar3 = 0;
                         pdVar6 = pdVar8 + 6;
                         puVar5 = &g_8c4c2620;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar6, 0);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar6, 0);
                         uVar4 = float_to_color_u8(puVar5, pdVar7, pdVar6, uVar3);
                         *(u32 *)(pdVar8 + 5) = uVar4;
                         uVar19 = g_8c4c2630;
@@ -3198,7 +3198,7 @@ u32 gfxlib_uses_float_to_color_u8_241722(int a0, int a1) {
                 uVar3 = 0;
                 pdVar8 = pdVar10 + 6;
                 puVar5 = &g_8c4c2620;
-                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar8, 0);
+                gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar8, 0);
                 uVar4 = float_to_color_u8(puVar5, pdVar7, pdVar8, uVar3);
                 *(u32 *)(pdVar10 + 5) = uVar4;
                 if (cVar24 == '\0') {
@@ -4444,10 +4444,10 @@ u32 gfxlib_uses_noop_242234(u32 a0) {
 }
 
 /*
- * gfxlib_uses_noop_2424f6  0x8c2424f6
- * area name: in the gfxlib library code range; behaviour name: its main named callee is noop_23d694
+ * gfxlib_draw_2424f6  0x8c2424f6
+ * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
  */
-u32 gfxlib_uses_noop_2424f6(int a0, u32 a1) {
+u32 gfxlib_draw_2424f6(int a0, u32 a1) {
     u16 uVar1;
     int iVar2;
     u32 uVar3;
@@ -4761,7 +4761,7 @@ u32 gfxlib_uses_noop_2424f6(int a0, u32 a1) {
                     CacheBlockWriteBack(pdVar10);
                     if (*(u32 *)((int)pdVar10 + 0x3c) != (a1 | ar7_00)) {
                         *(u32 *)((int)pdVar10 + 0x3c) = a1 | ar7_00;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, ar7_00);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, ar7_00);
                         if (cVar29 == '\0') {
                             *(u32 *)(pdVar10 + 4) = g_8c4c2620;
                             pdVar6 = (double *)&g_8c4c2638;
@@ -4826,7 +4826,7 @@ u32 gfxlib_uses_noop_2424f6(int a0, u32 a1) {
                 CacheBlockWriteBack(pdVar10);
                 if (*(u32 *)((int)pdVar10 + 0x3c) != (a1 | ar7_00)) {
                     *(u32 *)((int)pdVar10 + 0x3c) = a1 | ar7_00;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, ar7_00);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, ar7_00);
                     if (cVar29 == '\0') {
                         *(u32 *)(pdVar10 + 4) = g_8c4c2620;
                         pdVar8 = (double *)&g_8c4c2638;
@@ -4923,7 +4923,7 @@ u32 gfxlib_uses_noop_2424f6(int a0, u32 a1) {
                     CacheBlockWriteBack(pdVar9);
                     if (*(u32 *)((int)pdVar9 + 0x3c) != (a1 | ar7_00)) {
                         *(u32 *)((int)pdVar9 + 0x3c) = a1 | ar7_00;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar9 + 2, pdVar9 + 6, ar7_00);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar9 + 2, pdVar9 + 6, ar7_00);
                         if (cVar29 == '\0') {
                             *(u32 *)(pdVar9 + 4) = g_8c4c2620;
                             pdVar6 = (double *)&g_8c4c2638;
@@ -5014,7 +5014,7 @@ u32 gfxlib_uses_noop_2424f6(int a0, u32 a1) {
                     CacheBlockWriteBack(pdVar10);
                     if (*(u32 *)((int)pdVar10 + 0x3c) != (a1 | ar7_00)) {
                         *(u32 *)((int)pdVar10 + 0x3c) = a1 | ar7_00;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, ar7_00);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, ar7_00);
                         if (cVar29 == '\0') {
                             *(u32 *)(pdVar10 + 4) = g_8c4c2620;
                             pdVar6 = (double *)&g_8c4c2638;
@@ -5105,7 +5105,7 @@ u32 gfxlib_uses_noop_2424f6(int a0, u32 a1) {
                 }
             }
             if (uStack_34 != 0) {
-                gfxlib_calls_scan_loop_23e7a8(pdVar9, pdVar10, pdVar11, a1 | ar7_00);
+                gfxlib_draw_23e7a8(pdVar9, pdVar10, pdVar11, a1 | ar7_00);
                 pdVar8 = unaff_r8;
             }
             if (cVar29 == '\0') {
@@ -5134,7 +5134,7 @@ u32 gfxlib_uses_noop_2424f6(int a0, u32 a1) {
             CacheBlockWriteBack(pdVar11);
             if (*(u32 *)((int)pdVar11 + 0x3c) != (a1 | ar7_00)) {
                 *(u32 *)((int)pdVar11 + 0x3c) = a1 | ar7_00;
-                uVar3 = gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar11 + 2, pdVar11 + 6, ar7_00);
+                uVar3 = gfxlib_draw_23bae2(&g_8c4c2620, pdVar11 + 2, pdVar11 + 6, ar7_00);
                 if (cVar29 == '\0') {
                     *(u32 *)(pdVar11 + 4) = g_8c4c2620;
                     pdVar8 = (double *)&g_8c4c2638;
@@ -5228,10 +5228,10 @@ u32 gfxlib_uses_noop_2424f6(int a0, u32 a1) {
 }
 
 /*
- * gfxlib_uses_noop_24296c  0x8c24296c
- * area name: in the gfxlib library code range; behaviour name: its main named callee is noop_23d694
+ * gfxlib_draw_24296c  0x8c24296c
+ * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
  */
-u32 gfxlib_uses_noop_24296c(int a0, u32 a1) {
+u32 gfxlib_draw_24296c(int a0, u32 a1) {
     u16 uVar1;
     int iVar2;
     u32 uVar3;
@@ -5395,7 +5395,7 @@ u32 gfxlib_uses_noop_24296c(int a0, u32 a1) {
                     CacheBlockWriteBack(pdVar10);
                     if (*(u32 *)((int)pdVar10 + 0x3c) != (a1 | uVar26)) {
                         *(u32 *)((int)pdVar10 + 0x3c) = a1 | uVar26;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, uVar26);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, uVar26);
                         if (cVar25 == '\0') {
                             *(u32 *)(pdVar10 + 4) = g_8c4c2620;
                             pdVar9 = (double *)&g_8c4c2638;
@@ -5460,7 +5460,7 @@ u32 gfxlib_uses_noop_24296c(int a0, u32 a1) {
                 CacheBlockWriteBack(pdVar10);
                 if (*(u32 *)((int)pdVar10 + 0x3c) != (a1 | uVar26)) {
                     *(u32 *)((int)pdVar10 + 0x3c) = a1 | uVar26;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, uVar26);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, uVar26);
                     if (cVar25 == '\0') {
                         *(u32 *)(pdVar10 + 4) = g_8c4c2620;
                         pdVar9 = (double *)&g_8c4c2638;
@@ -5558,7 +5558,7 @@ u32 gfxlib_uses_noop_24296c(int a0, u32 a1) {
                     CacheBlockWriteBack(pdVar9);
                     if (*(u32 *)((int)pdVar9 + 0x3c) != (a1 | uVar26)) {
                         *(u32 *)((int)pdVar9 + 0x3c) = a1 | uVar26;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar9 + 2, pdVar9 + 6, uVar26);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar9 + 2, pdVar9 + 6, uVar26);
                         if (cVar25 == '\0') {
                             *(u32 *)(pdVar9 + 4) = g_8c4c2620;
                             pdVar7 = (double *)&g_8c4c2638;
@@ -5648,7 +5648,7 @@ u32 gfxlib_uses_noop_24296c(int a0, u32 a1) {
                     CacheBlockWriteBack(pdVar10);
                     if (*(u32 *)((int)pdVar10 + 0x3c) != (a1 | uVar26)) {
                         *(u32 *)((int)pdVar10 + 0x3c) = a1 | uVar26;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, uVar26);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, uVar26);
                         if (cVar25 == '\0') {
                             *(u32 *)(pdVar10 + 4) = g_8c4c2620;
                             pdVar9 = (double *)&g_8c4c2638;
@@ -5767,7 +5767,7 @@ u32 gfxlib_uses_noop_24296c(int a0, u32 a1) {
             CacheBlockWriteBack(pdVar11);
             if (*(u32 *)((int)pdVar11 + 0x3c) != (a1 | uVar26)) {
                 *(u32 *)((int)pdVar11 + 0x3c) = a1 | uVar26;
-                uVar3 = gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar11 + 2, pdVar11 + 6, uVar26);
+                uVar3 = gfxlib_draw_23bae2(&g_8c4c2620, pdVar11 + 2, pdVar11 + 6, uVar26);
                 if (cVar25 == '\0') {
                     *(u32 *)(pdVar11 + 4) = g_8c4c2620;
                     pdVar9 = (double *)&g_8c4c2638;
@@ -6209,7 +6209,7 @@ u32 gfxlib_uses_float_to_color_u8_242d56(int a0, u32 a1) {
                         puVar10 = &g_8c4c2620;
                         pdVar8 = pdVar15 + 2;
                         uVar6 = uStack_50;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar12, uStack_50);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar12, uStack_50);
                         uVar4 = float_to_color_u8(puVar10, pdVar8, pdVar12, uVar6);
                         *(u32 *)(pdVar15 + 5) = uVar4;
                         if (cVar38 == '\0') {
@@ -6233,7 +6233,7 @@ u32 gfxlib_uses_float_to_color_u8_242d56(int a0, u32 a1) {
                     puVar10 = &g_8c4c2620;
                     pdVar7 = pdVar15 + 2;
                     uVar6 = uStack_50;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar8, uStack_50);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar8, uStack_50);
                     uVar4 = float_to_color_u8(puVar10, pdVar7, pdVar8, uVar6);
                     *(u32 *)(pdVar15 + 5) = uVar4;
                     if (cVar38 == '\0') {
@@ -6292,7 +6292,7 @@ u32 gfxlib_uses_float_to_color_u8_242d56(int a0, u32 a1) {
                         puVar10 = &g_8c4c2620;
                         pdVar8 = pdVar14 + 2;
                         uVar6 = uStack_50;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar12, uStack_50);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar12, uStack_50);
                         uVar4 = float_to_color_u8(puVar10, pdVar8, pdVar12, uVar6);
                         *(u32 *)(pdVar14 + 5) = uVar4;
                         if (cVar38 == '\0') {
@@ -6342,7 +6342,7 @@ u32 gfxlib_uses_float_to_color_u8_242d56(int a0, u32 a1) {
                         puVar10 = &g_8c4c2620;
                         pdVar8 = pdVar15 + 2;
                         uVar6 = uStack_50;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar12, uStack_50);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar12, uStack_50);
                         uVar4 = float_to_color_u8(puVar10, pdVar8, pdVar12, uVar6);
                         *(u32 *)(pdVar15 + 5) = uVar4;
                         if (cVar38 == '\0') {
@@ -6423,7 +6423,7 @@ u32 gfxlib_uses_float_to_color_u8_242d56(int a0, u32 a1) {
                 pdVar15 = pdVar13 + 6;
                 puVar10 = &g_8c4c2620;
                 pdVar14 = pdVar13 + 2;
-                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar14, pdVar15, uStack_50);
+                gfxlib_draw_23bae2(&g_8c4c2620, pdVar14, pdVar15, uStack_50);
                 uVar4 = float_to_color_u8(puVar10, pdVar14, pdVar15, uStack_50);
                 *(u32 *)(pdVar13 + 5) = uVar4;
                 uVar6 = g_8c4c2638;
@@ -6645,7 +6645,7 @@ u32 gfxlib_uses_float_to_color_u8_2432b6(int a0, u32 a1) {
                         pdVar6 = pdVar9 + 6;
                         puVar5 = &g_8c4c2620;
                         pdVar8 = pdVar9 + 2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar6, uVar32);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar6, uVar32);
                         uVar25 = float_to_color_u8(puVar5, pdVar8, pdVar6, uVar32);
                         *(u32 *)(pdVar9 + 5) = uVar25;
                         if (cVar31 == '\0') {
@@ -6698,7 +6698,7 @@ u32 gfxlib_uses_float_to_color_u8_2432b6(int a0, u32 a1) {
                     pdVar7 = pdVar9 + 6;
                     puVar5 = &g_8c4c2620;
                     pdVar8 = pdVar9 + 2;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar7, uVar32);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar7, uVar32);
                     uVar25 = float_to_color_u8(puVar5, pdVar8, pdVar7, uVar32);
                     *(u32 *)(pdVar9 + 5) = uVar25;
                     if (cVar31 == '\0') {
@@ -6785,7 +6785,7 @@ u32 gfxlib_uses_float_to_color_u8_2432b6(int a0, u32 a1) {
                         ar6_00 = pdVar8 + 6;
                         puVar5 = &g_8c4c2620;
                         pdVar6 = pdVar8 + 2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar6, ar6_00, uVar32);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar6, ar6_00, uVar32);
                         uVar25 = float_to_color_u8(puVar5, pdVar6, ar6_00, uVar32);
                         *(u32 *)(pdVar8 + 5) = uVar25;
                         if (cVar31 == '\0') {
@@ -6863,7 +6863,7 @@ u32 gfxlib_uses_float_to_color_u8_2432b6(int a0, u32 a1) {
                         pdVar6 = pdVar9 + 6;
                         puVar5 = &g_8c4c2620;
                         pdVar8 = pdVar9 + 2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar6, ar7_00);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar6, ar7_00);
                         uVar25 = float_to_color_u8(puVar5, pdVar8, pdVar6, ar7_00);
                         *(u32 *)(pdVar9 + 5) = uVar25;
                         uVar32 = g_8c4c2638;
@@ -6971,7 +6971,7 @@ u32 gfxlib_uses_float_to_color_u8_2432b6(int a0, u32 a1) {
                 pdVar7 = pdVar10 + 6;
                 puVar5 = &g_8c4c2620;
                 pdVar8 = pdVar10 + 2;
-                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar7, uVar32);
+                gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar7, uVar32);
                 uVar3 = float_to_color_u8(puVar5, pdVar8, pdVar7, uVar32);
                 *(u32 *)(pdVar10 + 5) = uVar3;
                 if (cVar31 == '\0') {
@@ -7303,7 +7303,7 @@ u32 gfxlib_uses_float_to_color_u8_2437d6(int a0, u32 a1) {
                         pdVar8 = ar5_00 + 6;
                         puVar5 = &g_8c4c2620;
                         uVar9 = uStack_4c;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar6, pdVar8, uStack_4c);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar6, pdVar8, uStack_4c);
                         uVar3 = float_to_color_u8(puVar5, pdVar6, pdVar8, uVar9);
                         *(u32 *)(ar5_00 + 5) = uVar3;
                         if (cVar34 == '\0') {
@@ -7366,7 +7366,7 @@ u32 gfxlib_uses_float_to_color_u8_2437d6(int a0, u32 a1) {
                     pdVar6 = ar5_00 + 6;
                     puVar5 = &g_8c4c2620;
                     uVar9 = uStack_4c;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar6, uStack_4c);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar6, uStack_4c);
                     uVar3 = float_to_color_u8(puVar5, pdVar7, pdVar6, uVar9);
                     *(u32 *)(ar5_00 + 5) = uVar3;
                     if (cVar34 == '\0') {
@@ -7462,7 +7462,7 @@ u32 gfxlib_uses_float_to_color_u8_2437d6(int a0, u32 a1) {
                         pdVar8 = pdVar10 + 6;
                         puVar5 = &g_8c4c2620;
                         uVar9 = uStack_4c;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar6, pdVar8, uStack_4c);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar6, pdVar8, uStack_4c);
                         uVar3 = float_to_color_u8(puVar5, pdVar6, pdVar8, uVar9);
                         *(u32 *)(pdVar10 + 5) = uVar3;
                         if (cVar34 == '\0') {
@@ -7550,7 +7550,7 @@ u32 gfxlib_uses_float_to_color_u8_2437d6(int a0, u32 a1) {
                         pdVar8 = ar5_00 + 6;
                         puVar5 = &g_8c4c2620;
                         ar7_00 = uStack_4c;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar6, pdVar8, uStack_4c);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar6, pdVar8, uStack_4c);
                         uVar3 = float_to_color_u8(puVar5, pdVar6, pdVar8, ar7_00);
                         *(u32 *)(ar5_00 + 5) = uVar3;
                         uVar9 = g_8c4c2630;
@@ -7665,7 +7665,7 @@ u32 gfxlib_uses_float_to_color_u8_2437d6(int a0, u32 a1) {
                 *(u32 *)((int)pdVar11 + 0x3c) = a1 | uStack_4c;
                 pdVar10 = pdVar11 + 6;
                 puVar5 = &g_8c4c2620;
-                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar10, uStack_4c);
+                gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar10, uStack_4c);
                 uVar3 = float_to_color_u8(puVar5, pdVar7, pdVar10, uStack_4c);
                 *(u32 *)(pdVar11 + 5) = uVar3;
                 if (cVar34 == '\0') {
@@ -7924,7 +7924,7 @@ u32 gfxlib_uses_float_to_color_u8_243d60(int a0, u32 a1) {
                         *(u32 *)((int)pdVar9 + 0x3c) = a1 | uVar30;
                         pdVar6 = pdVar9 + 6;
                         puVar5 = &g_8c4c2620;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar6, uVar30);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar6, uVar30);
                         uVar3 = float_to_color_u8(puVar5, pdVar8, pdVar6, uVar30);
                         *(u32 *)(pdVar9 + 5) = uVar3;
                         if (cVar29 == '\0') {
@@ -7988,7 +7988,7 @@ u32 gfxlib_uses_float_to_color_u8_243d60(int a0, u32 a1) {
                     *(u32 *)((int)pdVar9 + 0x3c) = a1 | uVar30;
                     pdVar7 = pdVar9 + 6;
                     puVar5 = &g_8c4c2620;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar7, uVar30);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar7, uVar30);
                     uVar3 = float_to_color_u8(puVar5, pdVar8, pdVar7, uVar30);
                     *(u32 *)(pdVar9 + 5) = uVar3;
                     if (cVar29 == '\0') {
@@ -8084,7 +8084,7 @@ u32 gfxlib_uses_float_to_color_u8_243d60(int a0, u32 a1) {
                         *(u32 *)((int)pdVar8 + 0x3c) = a1 | uVar30;
                         ar6_00 = pdVar8 + 6;
                         puVar5 = &g_8c4c2620;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar6, ar6_00, uVar30);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar6, ar6_00, uVar30);
                         uVar3 = float_to_color_u8(puVar5, pdVar6, ar6_00, uVar30);
                         *(u32 *)(pdVar8 + 5) = uVar3;
                         if (cVar29 == '\0') {
@@ -8172,7 +8172,7 @@ u32 gfxlib_uses_float_to_color_u8_243d60(int a0, u32 a1) {
                         *(u32 *)((int)pdVar9 + 0x3c) = a1 | ar7_00;
                         pdVar6 = pdVar9 + 6;
                         puVar5 = &g_8c4c2620;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar6, ar7_00);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar6, ar7_00);
                         uVar3 = float_to_color_u8(puVar5, pdVar8, pdVar6, ar7_00);
                         *(u32 *)(pdVar9 + 5) = uVar3;
                         uVar30 = g_8c4c2638;
@@ -8287,7 +8287,7 @@ u32 gfxlib_uses_float_to_color_u8_243d60(int a0, u32 a1) {
                 *(u32 *)((int)pdVar10 + 0x3c) = a1 | uVar30;
                 pdVar7 = pdVar10 + 6;
                 puVar5 = &g_8c4c2620;
-                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar7, uVar30);
+                gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar7, uVar30);
                 uVar3 = float_to_color_u8(puVar5, pdVar8, pdVar7, uVar30);
                 *(u32 *)(pdVar10 + 5) = uVar3;
                 if (cVar29 == '\0') {
@@ -8376,10 +8376,10 @@ u32 gfxlib_uses_float_to_color_u8_243d60(int a0, u32 a1) {
 }
 
 /*
- * gfxlib_uses_noop_244262  0x8c244262
- * area name: in the gfxlib library code range; behaviour name: its main named callee is noop_23d694
+ * gfxlib_draw_244262  0x8c244262
+ * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
  */
-u32 gfxlib_uses_noop_244262(int a0, u32 a1) {
+u32 gfxlib_draw_244262(int a0, u32 a1) {
     u16 uVar1;
     int iVar2;
     u32 uVar3;
@@ -8638,7 +8638,7 @@ u32 gfxlib_uses_noop_244262(int a0, u32 a1) {
                     CacheBlockWriteBack(pdVar10);
                     if (*(u32 *)((int)pdVar10 + 0x3c) != (a1 | ar7_00)) {
                         *(u32 *)((int)pdVar10 + 0x3c) = a1 | ar7_00;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, ar7_00);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, ar7_00);
                         if (cVar34 == '\0') {
                             *(u32 *)(pdVar10 + 4) = g_8c4c2620;
                             pdVar6 = (double *)&g_8c4c2638;
@@ -8703,7 +8703,7 @@ u32 gfxlib_uses_noop_244262(int a0, u32 a1) {
                 CacheBlockWriteBack(pdVar10);
                 if (*(u32 *)((int)pdVar10 + 0x3c) != (a1 | ar7_00)) {
                     *(u32 *)((int)pdVar10 + 0x3c) = a1 | ar7_00;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, ar7_00);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, ar7_00);
                     if (cVar34 == '\0') {
                         *(u32 *)(pdVar10 + 4) = g_8c4c2620;
                         pdVar8 = (double *)&g_8c4c2638;
@@ -8800,7 +8800,7 @@ u32 gfxlib_uses_noop_244262(int a0, u32 a1) {
                     CacheBlockWriteBack(pdVar9);
                     if (*(u32 *)((int)pdVar9 + 0x3c) != (a1 | ar7_00)) {
                         *(u32 *)((int)pdVar9 + 0x3c) = a1 | ar7_00;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar9 + 2, pdVar9 + 6, ar7_00);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar9 + 2, pdVar9 + 6, ar7_00);
                         if (cVar34 == '\0') {
                             *(u32 *)(pdVar9 + 4) = g_8c4c2620;
                             pdVar6 = (double *)&g_8c4c2638;
@@ -8891,7 +8891,7 @@ u32 gfxlib_uses_noop_244262(int a0, u32 a1) {
                     CacheBlockWriteBack(pdVar10);
                     if (*(u32 *)((int)pdVar10 + 0x3c) != (a1 | ar7_00)) {
                         *(u32 *)((int)pdVar10 + 0x3c) = a1 | ar7_00;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, ar7_00);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, ar7_00);
                         if (cVar34 == '\0') {
                             *(u32 *)(pdVar10 + 4) = g_8c4c2620;
                             pdVar6 = (double *)&g_8c4c2638;
@@ -8982,7 +8982,7 @@ u32 gfxlib_uses_noop_244262(int a0, u32 a1) {
                 }
             }
             if (uStack_34 != 0) {
-                gfxlib_calls_scan_loop_23e7a8(pdVar9, pdVar10, pdVar11, a1 | ar7_00);
+                gfxlib_draw_23e7a8(pdVar9, pdVar10, pdVar11, a1 | ar7_00);
                 pdVar8 = unaff_r8;
             }
             if (cVar34 == '\0') {
@@ -9010,7 +9010,7 @@ u32 gfxlib_uses_noop_244262(int a0, u32 a1) {
             CacheBlockWriteBack(pdVar11);
             if (*(u32 *)((int)pdVar11 + 0x3c) != (a1 | ar7_00)) {
                 *(u32 *)((int)pdVar11 + 0x3c) = a1 | ar7_00;
-                uVar3 = gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar11 + 2, pdVar11 + 6, ar7_00);
+                uVar3 = gfxlib_draw_23bae2(&g_8c4c2620, pdVar11 + 2, pdVar11 + 6, ar7_00);
                 if (cVar34 == '\0') {
                     *(u32 *)(pdVar11 + 4) = g_8c4c2620;
                     pdVar8 = (double *)&g_8c4c2638;
@@ -9104,10 +9104,10 @@ u32 gfxlib_uses_noop_244262(int a0, u32 a1) {
 }
 
 /*
- * gfxlib_uses_noop_2446d8  0x8c2446d8
- * area name: in the gfxlib library code range; behaviour name: its main named callee is noop_23d694
+ * gfxlib_draw_2446d8  0x8c2446d8
+ * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
  */
-u32 gfxlib_uses_noop_2446d8(int a0, u32 a1) {
+u32 gfxlib_draw_2446d8(int a0, u32 a1) {
     u16 uVar1;
     int iVar2;
     u32 uVar3;
@@ -9273,7 +9273,7 @@ u32 gfxlib_uses_noop_2446d8(int a0, u32 a1) {
                     CacheBlockWriteBack(pdVar10);
                     if (*(u32 *)((int)pdVar10 + 0x3c) != (a1 | uVar27)) {
                         *(u32 *)((int)pdVar10 + 0x3c) = a1 | uVar27;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, uVar27);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, uVar27);
                         if (cVar26 == '\0') {
                             *(u32 *)(pdVar10 + 4) = g_8c4c2620;
                             pdVar9 = (double *)&g_8c4c2638;
@@ -9338,7 +9338,7 @@ u32 gfxlib_uses_noop_2446d8(int a0, u32 a1) {
                 CacheBlockWriteBack(pdVar10);
                 if (*(u32 *)((int)pdVar10 + 0x3c) != (a1 | uVar27)) {
                     *(u32 *)((int)pdVar10 + 0x3c) = a1 | uVar27;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, uVar27);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, uVar27);
                     if (cVar26 == '\0') {
                         *(u32 *)(pdVar10 + 4) = g_8c4c2620;
                         pdVar9 = (double *)&g_8c4c2638;
@@ -9434,7 +9434,7 @@ u32 gfxlib_uses_noop_2446d8(int a0, u32 a1) {
                     CacheBlockWriteBack(pdVar9);
                     if (*(u32 *)((int)pdVar9 + 0x3c) != (a1 | uVar27)) {
                         *(u32 *)((int)pdVar9 + 0x3c) = a1 | uVar27;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar9 + 2, pdVar9 + 6, uVar27);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar9 + 2, pdVar9 + 6, uVar27);
                         if (cVar26 == '\0') {
                             *(u32 *)(pdVar9 + 4) = g_8c4c2620;
                             pdVar7 = (double *)&g_8c4c2638;
@@ -9524,7 +9524,7 @@ u32 gfxlib_uses_noop_2446d8(int a0, u32 a1) {
                     CacheBlockWriteBack(pdVar10);
                     if (*(u32 *)((int)pdVar10 + 0x3c) != (a1 | uVar27)) {
                         *(u32 *)((int)pdVar10 + 0x3c) = a1 | uVar27;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, uVar27);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, uVar27);
                         if (cVar26 == '\0') {
                             *(u32 *)(pdVar10 + 4) = g_8c4c2620;
                             pdVar9 = (double *)&g_8c4c2638;
@@ -9643,7 +9643,7 @@ u32 gfxlib_uses_noop_2446d8(int a0, u32 a1) {
             CacheBlockWriteBack(pdVar11);
             if (*(u32 *)((int)pdVar11 + 0x3c) != (a1 | uVar27)) {
                 *(u32 *)((int)pdVar11 + 0x3c) = a1 | uVar27;
-                uVar3 = gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar11 + 2, pdVar11 + 6, uVar27);
+                uVar3 = gfxlib_draw_23bae2(&g_8c4c2620, pdVar11 + 2, pdVar11 + 6, uVar27);
                 if (cVar26 == '\0') {
                     *(u32 *)(pdVar11 + 4) = g_8c4c2620;
                     pdVar9 = (double *)&g_8c4c2638;
@@ -10085,7 +10085,7 @@ u32 gfxlib_uses_float_to_color_u8_244ac2(int a0, u32 a1) {
                         puVar10 = &g_8c4c2620;
                         pdVar8 = pdVar15 + 2;
                         uVar6 = uStack_50;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar12, uStack_50);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar12, uStack_50);
                         uVar4 = float_to_color_u8(puVar10, pdVar8, pdVar12, uVar6);
                         *(u32 *)(pdVar15 + 5) = uVar4;
                         if (cVar38 == '\0') {
@@ -10109,7 +10109,7 @@ u32 gfxlib_uses_float_to_color_u8_244ac2(int a0, u32 a1) {
                     puVar10 = &g_8c4c2620;
                     pdVar7 = pdVar15 + 2;
                     uVar6 = uStack_50;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar8, uStack_50);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar8, uStack_50);
                     uVar4 = float_to_color_u8(puVar10, pdVar7, pdVar8, uVar6);
                     *(u32 *)(pdVar15 + 5) = uVar4;
                     if (cVar38 == '\0') {
@@ -10168,7 +10168,7 @@ u32 gfxlib_uses_float_to_color_u8_244ac2(int a0, u32 a1) {
                         puVar10 = &g_8c4c2620;
                         pdVar8 = pdVar14 + 2;
                         uVar6 = uStack_50;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar12, uStack_50);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar12, uStack_50);
                         uVar4 = float_to_color_u8(puVar10, pdVar8, pdVar12, uVar6);
                         *(u32 *)(pdVar14 + 5) = uVar4;
                         if (cVar38 == '\0') {
@@ -10218,7 +10218,7 @@ u32 gfxlib_uses_float_to_color_u8_244ac2(int a0, u32 a1) {
                         puVar10 = &g_8c4c2620;
                         pdVar8 = pdVar15 + 2;
                         uVar6 = uStack_50;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar12, uStack_50);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar12, uStack_50);
                         uVar4 = float_to_color_u8(puVar10, pdVar8, pdVar12, uVar6);
                         *(u32 *)(pdVar15 + 5) = uVar4;
                         if (cVar38 == '\0') {
@@ -10299,7 +10299,7 @@ u32 gfxlib_uses_float_to_color_u8_244ac2(int a0, u32 a1) {
                 pdVar15 = pdVar13 + 6;
                 puVar10 = &g_8c4c2620;
                 pdVar14 = pdVar13 + 2;
-                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar14, pdVar15, uStack_50);
+                gfxlib_draw_23bae2(&g_8c4c2620, pdVar14, pdVar15, uStack_50);
                 uVar4 = float_to_color_u8(puVar10, pdVar14, pdVar15, uStack_50);
                 *(u32 *)(pdVar13 + 5) = uVar4;
                 uVar6 = g_8c4c2638;
@@ -10521,7 +10521,7 @@ u32 gfxlib_uses_float_to_color_u8_24501e(int a0, u32 a1) {
                         pdVar6 = pdVar9 + 6;
                         puVar5 = &g_8c4c2620;
                         pdVar8 = pdVar9 + 2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar6, uVar32);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar6, uVar32);
                         uVar25 = float_to_color_u8(puVar5, pdVar8, pdVar6, uVar32);
                         *(u32 *)(pdVar9 + 5) = uVar25;
                         if (cVar31 == '\0') {
@@ -10574,7 +10574,7 @@ u32 gfxlib_uses_float_to_color_u8_24501e(int a0, u32 a1) {
                     pdVar7 = pdVar9 + 6;
                     puVar5 = &g_8c4c2620;
                     pdVar8 = pdVar9 + 2;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar7, uVar32);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar7, uVar32);
                     uVar25 = float_to_color_u8(puVar5, pdVar8, pdVar7, uVar32);
                     *(u32 *)(pdVar9 + 5) = uVar25;
                     if (cVar31 == '\0') {
@@ -10661,7 +10661,7 @@ u32 gfxlib_uses_float_to_color_u8_24501e(int a0, u32 a1) {
                         ar6_00 = pdVar8 + 6;
                         puVar5 = &g_8c4c2620;
                         pdVar6 = pdVar8 + 2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar6, ar6_00, uVar32);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar6, ar6_00, uVar32);
                         uVar25 = float_to_color_u8(puVar5, pdVar6, ar6_00, uVar32);
                         *(u32 *)(pdVar8 + 5) = uVar25;
                         if (cVar31 == '\0') {
@@ -10739,7 +10739,7 @@ u32 gfxlib_uses_float_to_color_u8_24501e(int a0, u32 a1) {
                         pdVar6 = pdVar9 + 6;
                         puVar5 = &g_8c4c2620;
                         pdVar8 = pdVar9 + 2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar6, ar7_00);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar6, ar7_00);
                         uVar25 = float_to_color_u8(puVar5, pdVar8, pdVar6, ar7_00);
                         *(u32 *)(pdVar9 + 5) = uVar25;
                         uVar32 = g_8c4c2638;
@@ -10847,7 +10847,7 @@ u32 gfxlib_uses_float_to_color_u8_24501e(int a0, u32 a1) {
                 pdVar7 = pdVar10 + 6;
                 puVar5 = &g_8c4c2620;
                 pdVar8 = pdVar10 + 2;
-                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar7, uVar32);
+                gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar7, uVar32);
                 uVar3 = float_to_color_u8(puVar5, pdVar8, pdVar7, uVar32);
                 *(u32 *)(pdVar10 + 5) = uVar3;
                 if (cVar31 == '\0') {
@@ -12217,7 +12217,7 @@ u32 gfxlib_uses_float_to_color_u8_245cc8(int a0, u32 a1) {
                         pdVar8 = ar5_00 + 6;
                         puVar5 = &g_8c4c2620;
                         uVar9 = uStack_4c;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar6, pdVar8, uStack_4c);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar6, pdVar8, uStack_4c);
                         uVar3 = float_to_color_u8(puVar5, pdVar6, pdVar8, uVar9);
                         *(u32 *)(ar5_00 + 5) = uVar3;
                         if (cVar34 == '\0') {
@@ -12280,7 +12280,7 @@ u32 gfxlib_uses_float_to_color_u8_245cc8(int a0, u32 a1) {
                     pdVar6 = ar5_00 + 6;
                     puVar5 = &g_8c4c2620;
                     uVar9 = uStack_4c;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar6, uStack_4c);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar6, uStack_4c);
                     uVar3 = float_to_color_u8(puVar5, pdVar7, pdVar6, uVar9);
                     *(u32 *)(ar5_00 + 5) = uVar3;
                     if (cVar34 == '\0') {
@@ -12376,7 +12376,7 @@ u32 gfxlib_uses_float_to_color_u8_245cc8(int a0, u32 a1) {
                         pdVar8 = pdVar10 + 6;
                         puVar5 = &g_8c4c2620;
                         uVar9 = uStack_4c;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar6, pdVar8, uStack_4c);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar6, pdVar8, uStack_4c);
                         uVar3 = float_to_color_u8(puVar5, pdVar6, pdVar8, uVar9);
                         *(u32 *)(pdVar10 + 5) = uVar3;
                         if (cVar34 == '\0') {
@@ -12464,7 +12464,7 @@ u32 gfxlib_uses_float_to_color_u8_245cc8(int a0, u32 a1) {
                         pdVar8 = ar5_00 + 6;
                         puVar5 = &g_8c4c2620;
                         ar7_00 = uStack_4c;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar6, pdVar8, uStack_4c);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar6, pdVar8, uStack_4c);
                         uVar3 = float_to_color_u8(puVar5, pdVar6, pdVar8, ar7_00);
                         *(u32 *)(ar5_00 + 5) = uVar3;
                         uVar9 = g_8c4c2630;
@@ -12579,7 +12579,7 @@ u32 gfxlib_uses_float_to_color_u8_245cc8(int a0, u32 a1) {
                 *(u32 *)((int)pdVar11 + 0x3c) = a1 | uStack_4c;
                 pdVar10 = pdVar11 + 6;
                 puVar5 = &g_8c4c2620;
-                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar10, uStack_4c);
+                gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar10, uStack_4c);
                 uVar3 = float_to_color_u8(puVar5, pdVar7, pdVar10, uStack_4c);
                 *(u32 *)(pdVar11 + 5) = uVar3;
                 if (cVar34 == '\0') {
@@ -12838,7 +12838,7 @@ u32 gfxlib_uses_float_to_color_u8_246254(int a0, u32 a1) {
                         *(u32 *)((int)pdVar9 + 0x3c) = a1 | uVar30;
                         pdVar6 = pdVar9 + 6;
                         puVar5 = &g_8c4c2620;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar6, uVar30);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar6, uVar30);
                         uVar3 = float_to_color_u8(puVar5, pdVar8, pdVar6, uVar30);
                         *(u32 *)(pdVar9 + 5) = uVar3;
                         if (cVar29 == '\0') {
@@ -12902,7 +12902,7 @@ u32 gfxlib_uses_float_to_color_u8_246254(int a0, u32 a1) {
                     *(u32 *)((int)pdVar9 + 0x3c) = a1 | uVar30;
                     pdVar7 = pdVar9 + 6;
                     puVar5 = &g_8c4c2620;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar7, uVar30);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar7, uVar30);
                     uVar3 = float_to_color_u8(puVar5, pdVar8, pdVar7, uVar30);
                     *(u32 *)(pdVar9 + 5) = uVar3;
                     if (cVar29 == '\0') {
@@ -12998,7 +12998,7 @@ u32 gfxlib_uses_float_to_color_u8_246254(int a0, u32 a1) {
                         *(u32 *)((int)pdVar8 + 0x3c) = a1 | uVar30;
                         ar6_00 = pdVar8 + 6;
                         puVar5 = &g_8c4c2620;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar6, ar6_00, uVar30);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar6, ar6_00, uVar30);
                         uVar3 = float_to_color_u8(puVar5, pdVar6, ar6_00, uVar30);
                         *(u32 *)(pdVar8 + 5) = uVar3;
                         if (cVar29 == '\0') {
@@ -13086,7 +13086,7 @@ u32 gfxlib_uses_float_to_color_u8_246254(int a0, u32 a1) {
                         *(u32 *)((int)pdVar9 + 0x3c) = a1 | ar7_00;
                         pdVar6 = pdVar9 + 6;
                         puVar5 = &g_8c4c2620;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar6, ar7_00);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar6, ar7_00);
                         uVar3 = float_to_color_u8(puVar5, pdVar8, pdVar6, ar7_00);
                         *(u32 *)(pdVar9 + 5) = uVar3;
                         uVar30 = g_8c4c2638;
@@ -13201,7 +13201,7 @@ u32 gfxlib_uses_float_to_color_u8_246254(int a0, u32 a1) {
                 *(u32 *)((int)pdVar10 + 0x3c) = a1 | uVar30;
                 pdVar7 = pdVar10 + 6;
                 puVar5 = &g_8c4c2620;
-                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar7, uVar30);
+                gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar7, uVar30);
                 uVar3 = float_to_color_u8(puVar5, pdVar8, pdVar7, uVar30);
                 *(u32 *)(pdVar10 + 5) = uVar3;
                 if (cVar29 == '\0') {
@@ -16312,29 +16312,28 @@ int gfxlib_fill_loop_247b20(int a0, u32 a1, u32 a2, u32 *a3) {
 }
 
 /*
- * gfxlib_uses_gfx_lights_reset_defaults_li_247df4  0x8c247df4
- * area name: in the gfxlib library code range; behaviour name: its main named callee is gfx_lights_reset_defaults_like
+ * gfxlib_reset_lights_and_flush  0x8c247df4
  * called by: ninja_draw_with_saved_state
  */
-u32 gfxlib_uses_gfx_lights_reset_defaults_li_247df4(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 gfxlib_reset_lights_and_flush(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = a0;
-    gfxlib_draw_23c70c();
+    gfxlib_lights_transform_all();
     gfx_lights_reset_defaults_like();
-    gfxlib_uses_memcpy_words_n_2376c4();
-    ninja_uses_ta_fifo_254026(a0, a1, a2, a3);
-    uVar1 = gfxlib_calc_237760();
+    gfxlib_copy_light_tables();
+    ninja_ta_fifo_wrap_2536a8(a0, a1, a2, a3);
+    uVar1 = gfxlib_clear_4c1300();
     return uVar1;
 }
 
 /*
- * gfxlib_calls_scan_loop_247e16  0x8c247e16
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: calls_scan_loop
- * called by: ninja_uses_ta_fifo_2536a8
+ * gfxlib_draw_247e16  0x8c247e16
+ * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * called by: ninja_draw_2536a8
  * decompiler: Heritage AFTER dead removal. Example location: r0x8c4c2624 : 0x8c247f7a
  */
-u32 gfxlib_calls_scan_loop_247e16(u16 *a0) {
+u32 gfxlib_draw_247e16(u16 *a0) {
     u16 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -16474,7 +16473,7 @@ u32 gfxlib_calls_scan_loop_247e16(u16 *a0) {
                 CacheBlockWriteBack(pdVar5);
                 if (*(u32 *)((int)pdVar5 + 0x3c) != (uVar2 | uStack_38)) {
                     *(u32 *)((int)pdVar5 + 0x3c) = uVar2 | uStack_38;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar5 + 2, pdVar5 + 6, uStack_38);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar5 + 2, pdVar5 + 6, uStack_38);
                     if (cVar25 == '\0') {
                         *(u32 *)(pdVar5 + 4) = g_8c4c2620;
                         pdVar12 = (double *)&g_8c4c2628;
@@ -16556,7 +16555,7 @@ u32 gfxlib_calls_scan_loop_247e16(u16 *a0) {
                 CacheBlockWriteBack(pdVar4);
                 if (*(u32 *)((int)pdVar4 + 0x3c) != (uVar2 | uStack_38)) {
                     *(u32 *)((int)pdVar4 + 0x3c) = uVar2 | uStack_38;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar4 + 2, pdVar4 + 6, uStack_38);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar4 + 2, pdVar4 + 6, uStack_38);
                     if (cVar25 == '\0') {
                         *(u32 *)(pdVar4 + 4) = g_8c4c2620;
                         pdVar5 = (double *)&g_8c4c2628;
@@ -16639,7 +16638,7 @@ u32 gfxlib_calls_scan_loop_247e16(u16 *a0) {
                 CacheBlockWriteBack(pdVar6);
                 if (*(u32 *)((int)pdVar6 + 0x3c) != (uVar2 | uStack_38)) {
                     *(u32 *)((int)pdVar6 + 0x3c) = uVar2 | uStack_38;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar6 + 2, pdVar6 + 6, uStack_38);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar6 + 2, pdVar6 + 6, uStack_38);
                     if (cVar25 == '\0') {
                         *(u32 *)(pdVar6 + 4) = g_8c4c2620;
                         puVar10 = (u32 *)&g_8c4c2638;
@@ -16811,7 +16810,7 @@ u32 gfxlib_calls_scan_loop_247e16(u16 *a0) {
                 CacheBlockWriteBack(pdVar6);
                 if (*(u32 *)((int)pdVar6 + 0x3c) != (uVar2 | uStack_38)) {
                     *(u32 *)((int)pdVar6 + 0x3c) = uVar2 | uStack_38;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar6 + 2, pdVar6 + 6, uStack_38);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar6 + 2, pdVar6 + 6, uStack_38);
                     if (cVar25 == '\0') {
                         *(u32 *)(pdVar6 + 4) = g_8c4c2620;
                         pdVar7 = (double *)&g_8c4c2628;
@@ -16893,7 +16892,7 @@ u32 gfxlib_calls_scan_loop_247e16(u16 *a0) {
                 CacheBlockWriteBack(pdVar5);
                 if (*(u32 *)((int)pdVar5 + 0x3c) != (uVar2 | uStack_38)) {
                     *(u32 *)((int)pdVar5 + 0x3c) = uVar2 | uStack_38;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar5 + 2, pdVar5 + 6, uStack_38);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar5 + 2, pdVar5 + 6, uStack_38);
                     if (cVar25 == '\0') {
                         *(u32 *)(pdVar5 + 4) = g_8c4c2620;
                         pdVar6 = (double *)&g_8c4c2628;
@@ -16976,7 +16975,7 @@ u32 gfxlib_calls_scan_loop_247e16(u16 *a0) {
                 CacheBlockWriteBack(pdVar12);
                 if (*(u32 *)((int)pdVar12 + 0x3c) != (uVar2 | uStack_38)) {
                     *(u32 *)((int)pdVar12 + 0x3c) = uVar2 | uStack_38;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar12 + 2, pdVar12 + 6, uStack_38);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar12 + 2, pdVar12 + 6, uStack_38);
                     if (cVar25 == '\0') {
                         *(u32 *)(pdVar12 + 4) = g_8c4c2620;
                         puVar10 = (u32 *)&g_8c4c2638;
@@ -17059,7 +17058,7 @@ u32 gfxlib_calls_scan_loop_247e16(u16 *a0) {
                 CacheBlockWriteBack(pdVar4);
                 if (*(u32 *)((int)pdVar4 + 0x3c) != (uVar2 | uStack_38)) {
                     *(u32 *)((int)pdVar4 + 0x3c) = uVar2 | uStack_38;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar4 + 2, pdVar4 + 6, uStack_38);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar4 + 2, pdVar4 + 6, uStack_38);
                     if (cVar25 == '\0') {
                         *(u32 *)(pdVar4 + 4) = g_8c4c2620;
                         puVar10 = (u32 *)&g_8c4c2638;
@@ -17236,7 +17235,7 @@ u32 gfxlib_calls_scan_loop_247e16(u16 *a0) {
                         CacheBlockWriteBack(pdVar4);
                         if (*(u32 *)((int)pdVar4 + 0x3c) != (uVar2 | uStack_40)) {
                             *(u32 *)((int)pdVar4 + 0x3c) = uVar2 | uStack_40;
-                            gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar4 + 2, pdVar4 + 6, uStack_40);
+                            gfxlib_draw_23bae2(&g_8c4c2620, pdVar4 + 2, pdVar4 + 6, uStack_40);
                             if (cVar25 == '\0') {
                                 *(u32 *)(pdVar4 + 4) = g_8c4c2620;
                                 puVar10 = (u32 *)&g_8c4c2638;
@@ -17328,7 +17327,7 @@ u32 gfxlib_calls_scan_loop_247e16(u16 *a0) {
                 CacheBlockWriteBack(pdVar4);
                 if (*(u32 *)((int)pdVar4 + 0x3c) != (uVar2 | uStack_40)) {
                     *(u32 *)((int)pdVar4 + 0x3c) = uVar2 | uStack_40;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar4 + 2, pdVar4 + 6, uStack_40);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar4 + 2, pdVar4 + 6, uStack_40);
                     if (cVar25 == '\0') {
                         *(u32 *)(pdVar4 + 4) = g_8c4c2620;
                         puVar10 = (u32 *)&g_8c4c2638;
@@ -17410,9 +17409,9 @@ u32 gfxlib_calls_scan_loop_247e16(u16 *a0) {
         }
     } else if (uVar3 == 0xc000) {
         if ((g_8c4ab308 & 0x800000) == 0) {
-            UNRECOVERED_JUMPTABLE = gfxlib_uses_noop_23efac;
+            UNRECOVERED_JUMPTABLE = gfxlib_draw_23efac;
         } else {
-            UNRECOVERED_JUMPTABLE = gfxlib_uses_noop_23eda6;
+            UNRECOVERED_JUMPTABLE = gfxlib_draw_23eda6;
         }
         /* WARNING: Could not recover jumptable at 0x8c248582. Too many branches */
         /* WARNING: Treating indirect jump as call */
@@ -17423,12 +17422,12 @@ u32 gfxlib_calls_scan_loop_247e16(u16 *a0) {
 }
 
 /*
- * gfxlib_calls_scan_loop_2485bc  0x8c2485bc
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: calls_scan_loop
- * called by: ninja_uses_ta_fifo_2536a8
+ * gfxlib_draw_2485bc  0x8c2485bc
+ * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * called by: ninja_draw_2536a8
  * decompiler: Heritage AFTER dead removal. Example location: r0x8c4c2624 : 0x8c24871e
  */
-u32 gfxlib_calls_scan_loop_2485bc(u16 *a0) {
+u32 gfxlib_draw_2485bc(u16 *a0) {
     u16 uVar1;
     u16 uVar2;
     u32 uVar3;
@@ -17589,7 +17588,7 @@ u32 gfxlib_calls_scan_loop_2485bc(u16 *a0) {
                     CacheBlockWriteBack(pdVar4);
                     if (*(u32 *)((int)pdVar4 + 0x3c) != (uStack_40 | uVar2)) {
                         *(u32 *)((int)pdVar4 + 0x3c) = uStack_40 | uVar2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar4 + 2, pdVar4 + 6, uStack_40);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar4 + 2, pdVar4 + 6, uStack_40);
                         if (cVar36 == '\0') {
                             *(u32 *)(pdVar4 + 4) = g_8c4c2620;
                             pdVar17 = (double *)&g_8c4c2628;
@@ -17677,7 +17676,7 @@ u32 gfxlib_calls_scan_loop_2485bc(u16 *a0) {
                     CacheBlockWriteBack(pdVar5);
                     if (*(u32 *)((int)pdVar5 + 0x3c) != (uStack_40 | uVar2)) {
                         *(u32 *)((int)pdVar5 + 0x3c) = uStack_40 | uVar2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar5 + 2, pdVar5 + 6, uStack_40);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar5 + 2, pdVar5 + 6, uStack_40);
                         if (cVar36 == '\0') {
                             *(u32 *)(pdVar5 + 4) = g_8c4c2620;
                             puVar11 = (u32 *)&g_8c4c2638;
@@ -17766,7 +17765,7 @@ u32 gfxlib_calls_scan_loop_2485bc(u16 *a0) {
                     CacheBlockWriteBack(pdVar15);
                     if (*(u32 *)((int)pdVar15 + 0x3c) != (uStack_40 | uVar2)) {
                         *(u32 *)((int)pdVar15 + 0x3c) = uStack_40 | uVar2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar15 + 2, pdVar15 + 6, uStack_40);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar15 + 2, pdVar15 + 6, uStack_40);
                         if (cVar36 == '\0') {
                             *(u32 *)(pdVar15 + 4) = g_8c4c2620;
                             puVar11 = (u32 *)&g_8c4c2638;
@@ -17972,7 +17971,7 @@ u32 gfxlib_calls_scan_loop_2485bc(u16 *a0) {
                             goto LAB_8c2488be;
                         uStack_40 = 0x8000;
                     }
-                    gfxlib_calls_scan_loop_23e7a8(pdVar4, pdVar5, pdVar15, uStack_40 | (int)(short)uVar2);
+                    gfxlib_draw_23e7a8(pdVar4, pdVar5, pdVar15, uStack_40 | (int)(short)uVar2);
                 }
             }
         LAB_8c2488be:
@@ -18074,7 +18073,7 @@ u32 gfxlib_calls_scan_loop_2485bc(u16 *a0) {
                     CacheBlockWriteBack(pdVar5);
                     if (*(u32 *)((int)pdVar5 + 0x3c) != (uStack_3c | uVar2)) {
                         *(u32 *)((int)pdVar5 + 0x3c) = uStack_3c | uVar2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar5 + 2, pdVar5 + 6, uStack_3c);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar5 + 2, pdVar5 + 6, uStack_3c);
                         if (cVar36 == '\0') {
                             *(u32 *)(pdVar5 + 4) = g_8c4c2620;
                             pdVar8 = (double *)&g_8c4c2628;
@@ -18159,7 +18158,7 @@ u32 gfxlib_calls_scan_loop_2485bc(u16 *a0) {
                     CacheBlockWriteBack(pdVar15);
                     if (*(u32 *)((int)pdVar15 + 0x3c) != (uStack_3c | uVar2)) {
                         *(u32 *)((int)pdVar15 + 0x3c) = uStack_3c | uVar2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar15 + 2, pdVar15 + 6, uStack_3c);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar15 + 2, pdVar15 + 6, uStack_3c);
                         if (cVar36 == '\0') {
                             *(u32 *)(pdVar15 + 4) = g_8c4c2620;
                             puVar11 = (u32 *)&g_8c4c2638;
@@ -18245,7 +18244,7 @@ u32 gfxlib_calls_scan_loop_2485bc(u16 *a0) {
                     CacheBlockWriteBack(pdVar17);
                     if (*(u32 *)((int)pdVar17 + 0x3c) != (uStack_3c | uVar2)) {
                         *(u32 *)((int)pdVar17 + 0x3c) = uStack_3c | uVar2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar17 + 2, pdVar17 + 6, uStack_3c);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar17 + 2, pdVar17 + 6, uStack_3c);
                         if (cVar36 == '\0') {
                             *(u32 *)(pdVar17 + 4) = g_8c4c2620;
                             puVar11 = (u32 *)&g_8c4c2638;
@@ -18331,7 +18330,7 @@ u32 gfxlib_calls_scan_loop_2485bc(u16 *a0) {
                     CacheBlockWriteBack(pdVar4);
                     if (*(u32 *)((int)pdVar4 + 0x3c) != (uStack_3c | uVar2)) {
                         *(u32 *)((int)pdVar4 + 0x3c) = uStack_3c | uVar2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar4 + 2, pdVar4 + 6, uStack_3c);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar4 + 2, pdVar4 + 6, uStack_3c);
                         if (cVar36 == '\0') {
                             *(u32 *)(pdVar4 + 4) = g_8c4c2620;
                             puVar11 = (u32 *)&g_8c4c2638;
@@ -18529,10 +18528,10 @@ u32 gfxlib_calls_scan_loop_2485bc(u16 *a0) {
                         uStack_3c = 0x8000;
                     }
                     if ((*(u32 *)pdVar5 & *(u32 *)pdVar15 & *(u32 *)pdVar17 & 1) == 0) {
-                        gfxlib_calls_scan_loop_23e7a8(pdVar5, pdVar15, pdVar17, uStack_3c | (int)(short)uVar2);
+                        gfxlib_draw_23e7a8(pdVar5, pdVar15, pdVar17, uStack_3c | (int)(short)uVar2);
                     }
                     if ((*(u32 *)pdVar15 & *(u32 *)pdVar17 & *(u32 *)pdVar4 & 1) == 0) {
-                        gfxlib_calls_scan_loop_23e7a8(pdVar15, pdVar17, pdVar4, uStack_3c | (int)(short)uVar2);
+                        gfxlib_draw_23e7a8(pdVar15, pdVar17, pdVar4, uStack_3c | (int)(short)uVar2);
                     }
                 }
             }
@@ -18652,7 +18651,7 @@ u32 gfxlib_calls_scan_loop_2485bc(u16 *a0) {
                             CacheBlockWriteBack(pdVar4);
                             if (*(u32 *)((int)pdVar4 + 0x3c) != (uVar2 | uVar13)) {
                                 *(u32 *)((int)pdVar4 + 0x3c) = uVar2 | uVar13;
-                                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar4 + 2, pdVar4 + 6, uVar13);
+                                gfxlib_draw_23bae2(&g_8c4c2620, pdVar4 + 2, pdVar4 + 6, uVar13);
                                 if (cVar36 == '\0') {
                                     *(u32 *)(pdVar4 + 4) = g_8c4c2620;
                                     puVar11 = (u32 *)&g_8c4c2638;
@@ -18747,7 +18746,7 @@ u32 gfxlib_calls_scan_loop_2485bc(u16 *a0) {
                     CacheBlockWriteBack(pdVar4);
                     if (*(u32 *)((int)pdVar4 + 0x3c) != (uVar2 | uVar13)) {
                         *(u32 *)((int)pdVar4 + 0x3c) = uVar2 | uVar13;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar4 + 2, pdVar4 + 6, uVar13);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar4 + 2, pdVar4 + 6, uVar13);
                         if (cVar36 == '\0') {
                             *(u32 *)(pdVar4 + 4) = g_8c4c2620;
                             puVar11 = (u32 *)&g_8c4c2638;
@@ -18958,7 +18957,7 @@ u32 gfxlib_calls_scan_loop_2485bc(u16 *a0) {
                             puVar19 = puVar19 + 1;
                             ar6_00 = (u32 *)((u32)uVar1 * 0x40 + g_8c4aa510);
                             if ((*ar4_00 & *ar5_00 & *ar6_00 & 1) == 0) {
-                                gfxlib_calls_scan_loop_23e7a8(ar4_00, ar5_00, ar6_00, (int)(short)(uVar2 | uVar9));
+                                gfxlib_draw_23e7a8(ar4_00, ar5_00, ar6_00, (int)(short)(uVar2 | uVar9));
                             }
                             iStack_38 = iStack_38 + 1;
                             ar4_00 = ar5_00;
@@ -18975,9 +18974,9 @@ u32 gfxlib_calls_scan_loop_2485bc(u16 *a0) {
         }
     } else if (uVar3 == 0xc000) {
         if ((g_8c4ab318 & 1) == 0) {
-            UNRECOVERED_JUMPTABLE = gfxlib_uses_noop_24296c;
+            UNRECOVERED_JUMPTABLE = gfxlib_draw_24296c;
         } else {
-            UNRECOVERED_JUMPTABLE = gfxlib_uses_noop_2424f6;
+            UNRECOVERED_JUMPTABLE = gfxlib_draw_2424f6;
         }
         /* WARNING: Could not recover jumptable at 0x8c249006. Too many branches */
         /* WARNING: Treating indirect jump as call */
@@ -18990,7 +18989,7 @@ u32 gfxlib_calls_scan_loop_2485bc(u16 *a0) {
 /*
  * gfxlib_uses_float_to_color_u8_24901e  0x8c24901e
  * area name: in the gfxlib library code range; behaviour name: its main named callee is float_to_color_u8
- * called by: ninja_uses_ta_fifo_2536a8
+ * called by: ninja_draw_2536a8
  * decompiler: Heritage AFTER dead removal. Example location: r0x8c4c2630 : 0x8c2491a8
  */
 u32 gfxlib_uses_float_to_color_u8_24901e(u16 *a0) {
@@ -19147,7 +19146,7 @@ u32 gfxlib_uses_float_to_color_u8_24901e(u16 *a0) {
                     pdVar10 = pdVar7 + 2;
                     puVar11 = &g_8c4c2620;
                     uVar3 = uStack_38;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar10, pdVar12, uStack_38);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar10, pdVar12, uStack_38);
                     uVar23 = float_to_color_u8(puVar11, pdVar10, pdVar12, uVar3);
                     *(u32 *)(pdVar7 + 5) = uVar23;
                     uVar23 = g_8c4c2630;
@@ -19217,7 +19216,7 @@ u32 gfxlib_uses_float_to_color_u8_24901e(u16 *a0) {
                     pdVar10 = pdVar8 + 6;
                     puVar11 = &g_8c4c2620;
                     uVar3 = uStack_38;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar10, uStack_38);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar10, uStack_38);
                     uVar23 = float_to_color_u8(puVar11, pdVar7, pdVar10, uVar3);
                     *(u32 *)(pdVar8 + 5) = uVar23;
                     uVar23 = g_8c4c2630;
@@ -19287,7 +19286,7 @@ u32 gfxlib_uses_float_to_color_u8_24901e(u16 *a0) {
                     *(u32 *)((int)pdVar9 + 0x3c) = uVar2 | uStack_38;
                     pdVar10 = pdVar9 + 6;
                     puVar11 = &g_8c4c2620;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar10, uStack_38);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar10, uStack_38);
                     uVar23 = float_to_color_u8(puVar11, pdVar8, pdVar10, uStack_38);
                     *(u32 *)(pdVar9 + 5) = uVar23;
                     uVar23 = g_8c4c2630;
@@ -19456,7 +19455,7 @@ u32 gfxlib_uses_float_to_color_u8_24901e(u16 *a0) {
                     pdVar12 = pdVar9 + 2;
                     puVar11 = &g_8c4c2620;
                     uVar3 = uStack_30;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar12, a6, uStack_30);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar12, a6, uStack_30);
                     uVar23 = float_to_color_u8(puVar11, pdVar12, a6, uVar3);
                     *(u32 *)(pdVar9 + 5) = uVar23;
                     uVar23 = g_8c4c2630;
@@ -19526,7 +19525,7 @@ u32 gfxlib_uses_float_to_color_u8_24901e(u16 *a0) {
                     pdVar9 = pdVar8 + 2;
                     puVar11 = &g_8c4c2620;
                     uVar3 = uStack_30;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar9, pdVar12, uStack_30);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar9, pdVar12, uStack_30);
                     uVar23 = float_to_color_u8(puVar11, pdVar9, pdVar12, uVar3);
                     *(u32 *)(pdVar8 + 5) = uVar23;
                     uVar23 = g_8c4c2630;
@@ -19597,7 +19596,7 @@ u32 gfxlib_uses_float_to_color_u8_24901e(u16 *a0) {
                     pdVar9 = pdVar7 + 2;
                     puVar11 = &g_8c4c2620;
                     uVar3 = uStack_30;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar9, pdVar12, uStack_30);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar9, pdVar12, uStack_30);
                     uVar23 = float_to_color_u8(puVar11, pdVar9, pdVar12, uVar3);
                     *(u32 *)(pdVar7 + 5) = uVar23;
                     uVar23 = g_8c4c2630;
@@ -19667,7 +19666,7 @@ u32 gfxlib_uses_float_to_color_u8_24901e(u16 *a0) {
                     pdVar9 = pdVar10 + 6;
                     pdVar7 = pdVar10 + 2;
                     puVar11 = &g_8c4c2620;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar9, uStack_30);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar9, uStack_30);
                     uVar23 = float_to_color_u8(puVar11, pdVar7, pdVar9, uStack_30);
                     *(u32 *)(pdVar10 + 5) = uVar23;
                     uVar23 = g_8c4c2630;
@@ -19850,7 +19849,7 @@ u32 gfxlib_uses_float_to_color_u8_24901e(u16 *a0) {
                             pdVar9 = pdVar7 + 6;
                             puVar11 = &g_8c4c2620;
                             uVar16 = uStack_40;
-                            gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar9, uStack_40);
+                            gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar9, uStack_40);
                             if (cVar30 != '\0') {
                                 in_xd4 = (double)CONCAT44(g_8c4c2628, g_8c4c2624);
                             }
@@ -19933,7 +19932,7 @@ u32 gfxlib_uses_float_to_color_u8_24901e(u16 *a0) {
                     *(u32 *)((int)pdVar7 + 0x3c) = uVar2 | uStack_40;
                     pdVar9 = pdVar7 + 6;
                     puVar11 = &g_8c4c2620;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar9, uStack_40);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar9, uStack_40);
                     if (cVar30 != '\0') {
                         in_xd4 = (double)CONCAT44(g_8c4c2628, g_8c4c2624);
                     }
@@ -20018,7 +20017,7 @@ u32 gfxlib_uses_float_to_color_u8_24901e(u16 *a0) {
 
 /*
  * vram_2499ec  0x8c2499ec
- * called by: ninja_uses_ta_fifo_2536a8
+ * called by: ninja_draw_2536a8
  * decompiler: Heritage AFTER dead removal. Example location: r0x8c4c262c : 0x8c249b56
  */
 u32 vram_2499ec(u16 *a0) {
@@ -20199,7 +20198,7 @@ u32 vram_2499ec(u16 *a0) {
                         pdVar12 = pdVar7 + 6;
                         pdVar21 = pdVar7 + 2;
                         uVar4 = uStack_3c;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar21, pdVar12, uStack_3c);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar21, pdVar12, uStack_3c);
                         if (cVar39 != '\0') {
                             in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
                             in_xd4 = g_8c4c2624;
@@ -20276,7 +20275,7 @@ u32 vram_2499ec(u16 *a0) {
                         puVar10 = &g_8c4c2620;
                         pdVar7 = pdVar8 + 2;
                         uVar4 = uStack_3c;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar21, uStack_3c);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar21, uStack_3c);
                         if (cVar39 != '\0') {
                             in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
                             in_xd4 = g_8c4c2624;
@@ -20353,7 +20352,7 @@ u32 vram_2499ec(u16 *a0) {
                         pdVar21 = pdVar18 + 6;
                         puVar10 = &g_8c4c2620;
                         pdVar8 = pdVar18 + 2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar21, uStack_3c);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar21, uStack_3c);
                         if (cVar39 != '\0') {
                             in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
                             in_xd4 = g_8c4c2624;
@@ -20735,7 +20734,7 @@ u32 vram_2499ec(u16 *a0) {
                         ar6_01 = pdVar8 + 6;
                         pdVar12 = pdVar8 + 2;
                         uVar4 = uStack_38;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar12, ar6_01, uStack_38);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar12, ar6_01, uStack_38);
                         dVar33 = g_8c4c2624;
                         if (cVar39 == '\0') {
                             dVar33 = in_xd4;
@@ -20817,7 +20816,7 @@ u32 vram_2499ec(u16 *a0) {
                         puVar10 = &g_8c4c2620;
                         pdVar8 = pdVar18 + 2;
                         uVar4 = uStack_38;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar12, uStack_38);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar12, uStack_38);
                         dVar33 = g_8c4c2624;
                         if (cVar39 == '\0') {
                             dVar33 = in_xd4;
@@ -20900,7 +20899,7 @@ u32 vram_2499ec(u16 *a0) {
                         puVar10 = &g_8c4c2620;
                         pdVar18 = pdVar21 + 2;
                         uVar4 = uStack_38;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar18, pdVar12, uStack_38);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar18, pdVar12, uStack_38);
                         dVar33 = g_8c4c2624;
                         if (cVar39 == '\0') {
                             dVar33 = in_xd4;
@@ -20982,7 +20981,7 @@ u32 vram_2499ec(u16 *a0) {
                         puVar10 = &g_8c4c2620;
                         pdVar21 = pdVar7 + 6;
                         pdVar18 = pdVar7 + 2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar18, pdVar21, uStack_38);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar18, pdVar21, uStack_38);
                         dVar33 = g_8c4c2624;
                         if (cVar39 == '\0') {
                             dVar33 = in_xd4;
@@ -21415,7 +21414,7 @@ u32 vram_2499ec(u16 *a0) {
                                 *(u32 *)((int)pdVar7 + 0x3c) = uVar3 | uStack_44;
                                 pdVar8 = pdVar7 + 2;
                                 uVar16 = uStack_44;
-                                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar18, uStack_44);
+                                gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar18, uStack_44);
                                 dVar33 = g_8c4c2624;
                                 if (cVar39 == '\0') {
                                     dVar33 = in_xd4;
@@ -21506,7 +21505,7 @@ u32 vram_2499ec(u16 *a0) {
                         pdVar18 = pdVar7 + 6;
                         puVar10 = &g_8c4c2620;
                         pdVar8 = pdVar7 + 2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar18, uStack_44);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar18, uStack_44);
                         dVar33 = g_8c4c2624;
                         if (cVar39 == '\0') {
                             dVar33 = in_xd4;
@@ -21847,7 +21846,7 @@ u32 vram_2499ec(u16 *a0) {
 /*
  * gfxlib_uses_float_to_color_u8_24a808  0x8c24a808
  * area name: in the gfxlib library code range; behaviour name: its main named callee is float_to_color_u8
- * called by: ninja_uses_ta_fifo_2536a8
+ * called by: ninja_draw_2536a8
  * decompiler: Heritage AFTER dead removal. Example location: r0x8c4c2630 : 0x8c24a97e
  */
 u32 gfxlib_uses_float_to_color_u8_24a808(u16 *a0) {
@@ -22001,7 +22000,7 @@ u32 gfxlib_uses_float_to_color_u8_24a808(u16 *a0) {
                     pdVar10 = pdVar7 + 2;
                     puVar11 = &g_8c4c2620;
                     uVar3 = uStack_34;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar10, pdVar12, uStack_34);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar10, pdVar12, uStack_34);
                     uVar21 = float_to_color_u8(puVar11, pdVar10, pdVar12, uVar3);
                     *(u32 *)(pdVar7 + 5) = uVar21;
                     uVar21 = g_8c4c2630;
@@ -22081,7 +22080,7 @@ u32 gfxlib_uses_float_to_color_u8_24a808(u16 *a0) {
                     pdVar10 = pdVar8 + 6;
                     puVar11 = &g_8c4c2620;
                     uVar3 = uStack_34;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar10, uStack_34);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar10, uStack_34);
                     uVar21 = float_to_color_u8(puVar11, pdVar7, pdVar10, uVar3);
                     *(u32 *)(pdVar8 + 5) = uVar21;
                     uVar21 = g_8c4c2630;
@@ -22161,7 +22160,7 @@ u32 gfxlib_uses_float_to_color_u8_24a808(u16 *a0) {
                     *(u32 *)((int)pdVar9 + 0x3c) = uVar2 | uStack_34;
                     pdVar10 = pdVar9 + 6;
                     puVar11 = &g_8c4c2620;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar10, uStack_34);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar10, uStack_34);
                     uVar21 = float_to_color_u8(puVar11, pdVar8, pdVar10, uStack_34);
                     *(u32 *)(pdVar9 + 5) = uVar21;
                     uVar21 = g_8c4c2630;
@@ -22338,7 +22337,7 @@ u32 gfxlib_uses_float_to_color_u8_24a808(u16 *a0) {
                     pdVar12 = pdVar9 + 2;
                     puVar11 = &g_8c4c2620;
                     uVar3 = uStack_30;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar12, a6, uStack_30);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar12, a6, uStack_30);
                     uVar21 = float_to_color_u8(puVar11, pdVar12, a6, uVar3);
                     *(u32 *)(pdVar9 + 5) = uVar21;
                     uVar21 = g_8c4c2630;
@@ -22418,7 +22417,7 @@ u32 gfxlib_uses_float_to_color_u8_24a808(u16 *a0) {
                     pdVar9 = pdVar8 + 2;
                     puVar11 = &g_8c4c2620;
                     uVar3 = uStack_30;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar9, pdVar12, uStack_30);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar9, pdVar12, uStack_30);
                     uVar21 = float_to_color_u8(puVar11, pdVar9, pdVar12, uVar3);
                     *(u32 *)(pdVar8 + 5) = uVar21;
                     uVar21 = g_8c4c2630;
@@ -22499,7 +22498,7 @@ u32 gfxlib_uses_float_to_color_u8_24a808(u16 *a0) {
                     pdVar9 = pdVar7 + 2;
                     puVar11 = &g_8c4c2620;
                     uVar3 = uStack_30;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar9, pdVar12, uStack_30);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar9, pdVar12, uStack_30);
                     uVar21 = float_to_color_u8(puVar11, pdVar9, pdVar12, uVar3);
                     *(u32 *)(pdVar7 + 5) = uVar21;
                     uVar21 = g_8c4c2630;
@@ -22579,7 +22578,7 @@ u32 gfxlib_uses_float_to_color_u8_24a808(u16 *a0) {
                     pdVar9 = pdVar10 + 6;
                     pdVar7 = pdVar10 + 2;
                     puVar11 = &g_8c4c2620;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar7, pdVar9, uStack_30);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar9, uStack_30);
                     uVar21 = float_to_color_u8(puVar11, pdVar7, pdVar9, uStack_30);
                     *(u32 *)(pdVar10 + 5) = uVar21;
                     uVar21 = g_8c4c2630;
@@ -22762,7 +22761,7 @@ u32 gfxlib_uses_float_to_color_u8_24a808(u16 *a0) {
                             pdVar9 = pdVar7 + 6;
                             puVar11 = &g_8c4c2620;
                             uVar15 = uStack_38;
-                            gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar9, uStack_38);
+                            gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar9, uStack_38);
                             uVar21 = float_to_color_u8(puVar11, pdVar8, pdVar9, uVar15);
                             *(u32 *)(pdVar7 + 5) = uVar21;
                             uVar21 = g_8c4c2630;
@@ -22848,7 +22847,7 @@ u32 gfxlib_uses_float_to_color_u8_24a808(u16 *a0) {
                     *(u32 *)((int)pdVar7 + 0x3c) = uVar2 | uStack_38;
                     pdVar9 = pdVar7 + 6;
                     puVar11 = &g_8c4c2620;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar9, uStack_38);
+                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar9, uStack_38);
                     uVar21 = float_to_color_u8(puVar11, pdVar8, pdVar9, uStack_38);
                     *(u32 *)(pdVar7 + 5) = uVar21;
                     uVar21 = g_8c4c2630;
@@ -22939,7 +22938,7 @@ u32 gfxlib_uses_float_to_color_u8_24a808(u16 *a0) {
 /*
  * gfxlib_uses_float_to_color_u8_24b154  0x8c24b154
  * area name: in the gfxlib library code range; behaviour name: its main named callee is float_to_color_u8
- * called by: ninja_uses_ta_fifo_2536a8
+ * called by: ninja_draw_2536a8
  * decompiler: Heritage AFTER dead removal. Example location: r0x8c4c2624 : 0x8c24b662
  */
 u32 gfxlib_uses_float_to_color_u8_24b154(u16 *a0) {
@@ -23119,7 +23118,7 @@ u32 gfxlib_uses_float_to_color_u8_24b154(u16 *a0) {
                         puVar10 = &g_8c4c2620;
                         pdVar22 = pdVar8 + 2;
                         uVar4 = uStack_3c;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar22, pdVar13, uStack_3c);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar22, pdVar13, uStack_3c);
                         if (cVar37 != '\0') {
                             in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
                         }
@@ -23208,7 +23207,7 @@ u32 gfxlib_uses_float_to_color_u8_24b154(u16 *a0) {
                         puVar10 = &g_8c4c2620;
                         pdVar8 = pdVar18 + 2;
                         uVar4 = uStack_3c;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar8, pdVar22, uStack_3c);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar8, pdVar22, uStack_3c);
                         if (cVar37 != '\0') {
                             in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
                         }
@@ -23297,7 +23296,7 @@ u32 gfxlib_uses_float_to_color_u8_24b154(u16 *a0) {
                         pdVar22 = pdVar19 + 6;
                         puVar10 = &g_8c4c2620;
                         pdVar18 = pdVar19 + 2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar18, pdVar22, uStack_3c);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar18, pdVar22, uStack_3c);
                         if (cVar37 != '\0') {
                             in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
                         }
@@ -23618,7 +23617,7 @@ u32 gfxlib_uses_float_to_color_u8_24b154(u16 *a0) {
                         puVar10 = &g_8c4c2620;
                         pdVar13 = pdVar18 + 2;
                         uVar4 = uStack_38;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar13, ar6_01, uStack_38);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar13, ar6_01, uStack_38);
                         if (cVar37 != '\0') {
                             in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
                             in_xd4 = (double)CONCAT44(g_8c4c2628, g_8c4c2624);
@@ -23704,7 +23703,7 @@ u32 gfxlib_uses_float_to_color_u8_24b154(u16 *a0) {
                         puVar10 = &g_8c4c2620;
                         pdVar18 = pdVar19 + 2;
                         uVar4 = uStack_38;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar18, pdVar13, uStack_38);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar18, pdVar13, uStack_38);
                         if (cVar37 != '\0') {
                             in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
                             in_xd4 = (double)CONCAT44(g_8c4c2628, g_8c4c2624);
@@ -23791,7 +23790,7 @@ u32 gfxlib_uses_float_to_color_u8_24b154(u16 *a0) {
                         puVar10 = &g_8c4c2620;
                         pdVar19 = pdVar22 + 2;
                         uVar4 = uStack_38;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar19, pdVar13, uStack_38);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar19, pdVar13, uStack_38);
                         if (cVar37 != '\0') {
                             in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
                             in_xd4 = (double)CONCAT44(g_8c4c2628, g_8c4c2624);
@@ -23877,7 +23876,7 @@ u32 gfxlib_uses_float_to_color_u8_24b154(u16 *a0) {
                         puVar10 = &g_8c4c2620;
                         pdVar22 = pdVar8 + 6;
                         pdVar19 = pdVar8 + 2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar19, pdVar22, uStack_38);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar19, pdVar22, uStack_38);
                         if (cVar37 != '\0') {
                             in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
                             in_xd4 = (double)CONCAT44(g_8c4c2628, g_8c4c2624);
@@ -24218,7 +24217,7 @@ u32 gfxlib_uses_float_to_color_u8_24b154(u16 *a0) {
                                 *(u32 *)((int)pdVar8 + 0x3c) = uVar3 | uStack_44;
                                 pdVar18 = pdVar8 + 2;
                                 uVar16 = uStack_44;
-                                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar18, pdVar19, uStack_44);
+                                gfxlib_draw_23bae2(&g_8c4c2620, pdVar18, pdVar19, uStack_44);
                                 if (cVar37 != '\0') {
                                     in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
                                     in_xd4 = (double)CONCAT44(g_8c4c2628, g_8c4c2624);
@@ -24317,7 +24316,7 @@ u32 gfxlib_uses_float_to_color_u8_24b154(u16 *a0) {
                         pdVar19 = pdVar8 + 6;
                         puVar10 = &g_8c4c2620;
                         pdVar18 = pdVar8 + 2;
-                        gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, pdVar18, pdVar19, uStack_44);
+                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar18, pdVar19, uStack_44);
                         if (cVar37 != '\0') {
                             in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
                             in_xd4 = (double)CONCAT44(g_8c4c2628, g_8c4c2624);
@@ -24575,7 +24574,7 @@ u32 gfxlib_uses_float_to_color_u8_24b154(u16 *a0) {
 /*
  * gfxlib_uses_float_to_color_u8_24bdc8  0x8c24bdc8
  * area name: in the gfxlib library code range; behaviour name: its main named callee is float_to_color_u8
- * called by: ninja_uses_ta_fifo_2536a8
+ * called by: ninja_draw_2536a8
  * decompiler: Heritage AFTER dead removal. Example location: r0x8c4c2630 : 0x8c24bf7a
  */
 u32 gfxlib_uses_float_to_color_u8_24bdc8(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -24786,7 +24785,7 @@ u32 gfxlib_uses_float_to_color_u8_24bdc8(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
                 puVar8 = &g_8c4c2620;
                 puVar11 = auStack_38;
                 puVar9 = &uStack_2c;
-                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar9, puVar11, iStack_4c);
+                gfxlib_draw_23bae2(&g_8c4c2620, puVar9, puVar11, iStack_4c);
                 float_to_color_u8(puVar8, puVar9, puVar11, iStack_4c);
                 uVar2 = g_8c4c2630;
                 if (cVar29 == '\0') {
@@ -25071,7 +25070,7 @@ u32 gfxlib_uses_float_to_color_u8_24bdc8(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
                     fStack_20 = fVar18;
                 }
                 puVar9 = &uStack_2c;
-                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar9, puVar11, iStack_50);
+                gfxlib_draw_23bae2(&g_8c4c2620, puVar9, puVar11, iStack_50);
                 float_to_color_u8(puVar8, puVar9, puVar11, iStack_50);
                 float_to_color_u8(puVar8, puVar9, puVar11, iStack_50);
                 if (cVar29 == '\0') {
@@ -25456,7 +25455,7 @@ u32 gfxlib_uses_float_to_color_u8_24bdc8(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
                     fStack_20 = (float)((u64)in_xd2 >> 0x20);
                 }
                 puVar9 = &uStack_2c;
-                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar9, puVar11, iStack_4c);
+                gfxlib_draw_23bae2(&g_8c4c2620, puVar9, puVar11, iStack_4c);
                 float_to_color_u8(puVar8, puVar9, puVar11, iStack_4c);
                 uVar21 = g_8c4c2630;
                 if (cVar29 == '\0') {
@@ -25706,9 +25705,9 @@ u32 gfxlib_uses_float_to_color_u8_24bdc8(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
         }
     } else if (uVar2 == 0xc000) {
         if ((g_8c4ab308 & 0x800000) == 0) {
-            pcVar6 = gfxlib_uses_noop_240434;
+            pcVar6 = gfxlib_draw_240434;
         } else {
-            pcVar6 = gfxlib_uses_noop_240222;
+            pcVar6 = gfxlib_draw_240222;
         }
         uVar2 = (*pcVar6)(a0, uVar1 & 0x3fff, a2, a3);
     }
@@ -25718,7 +25717,7 @@ u32 gfxlib_uses_float_to_color_u8_24bdc8(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
 /*
  * gfxlib_uses_float_to_color_u8_24c6f0  0x8c24c6f0
  * area name: in the gfxlib library code range; behaviour name: its main named callee is float_to_color_u8
- * called by: ninja_uses_ta_fifo_2536a8
+ * called by: ninja_draw_2536a8
  */
 u32 gfxlib_uses_float_to_color_u8_24c6f0(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
     u16 uVar1;
@@ -25977,7 +25976,7 @@ u32 gfxlib_uses_float_to_color_u8_24c6f0(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
                         fStack_28 = fVar25;
                     }
                     puVar10 = &uStack_34;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar10, puVar12, uStack_5c);
+                    gfxlib_draw_23bae2(&g_8c4c2620, puVar10, puVar12, uStack_5c);
                     if (cVar40 != '\0') {
                         in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
                         in_xd4 = (double)CONCAT44(g_8c4c2628, g_8c4c2624);
@@ -26338,7 +26337,7 @@ u32 gfxlib_uses_float_to_color_u8_24c6f0(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
                         fStack_28 = fVar25;
                     }
                     puVar10 = &uStack_34;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar10, puVar12, uStack_5c);
+                    gfxlib_draw_23bae2(&g_8c4c2620, puVar10, puVar12, uStack_5c);
                     if (cVar40 != '\0') {
                         in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
                         in_xd4 = (double)CONCAT44(g_8c4c2628, g_8c4c2624);
@@ -26546,7 +26545,7 @@ u32 gfxlib_uses_float_to_color_u8_24c6f0(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
                         fStack_28 = fVar25;
                     }
                     puVar10 = &uStack_34;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar10, puVar12, uStack_54);
+                    gfxlib_draw_23bae2(&g_8c4c2620, puVar10, puVar12, uStack_54);
                     if (cVar40 != '\0') {
                         in_xd4 = (double)CONCAT44(g_8c4c2628, g_8c4c2624);
                     }
@@ -26926,7 +26925,7 @@ u32 gfxlib_uses_float_to_color_u8_24c6f0(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
                         fStack_28 = fVar25;
                     }
                     puVar10 = &uStack_34;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar10, puVar12, uStack_54);
+                    gfxlib_draw_23bae2(&g_8c4c2620, puVar10, puVar12, uStack_54);
                     if (cVar40 != '\0') {
                         in_xd4 = (double)CONCAT44(g_8c4c2628, g_8c4c2624);
                     }
@@ -27209,7 +27208,7 @@ u32 gfxlib_uses_float_to_color_u8_24c6f0(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
                         fStack_28 = (float)((u64)in_xd2 >> 0x20);
                     }
                     puVar10 = &uStack_34;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar10, puVar12, uStack_50);
+                    gfxlib_draw_23bae2(&g_8c4c2620, puVar10, puVar12, uStack_50);
                     float_to_color_u8(puVar8, puVar10, puVar12, uStack_50);
                     uVar2 = g_8c4c2630;
                     if (cVar40 == '\0') {
@@ -27689,7 +27688,7 @@ u32 gfxlib_uses_float_to_color_u8_24c6f0(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
                         fStack_28 = (float)((u64)in_xd2 >> 0x20);
                     }
                     puVar10 = &uStack_34;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar10, puVar12, uStack_50);
+                    gfxlib_draw_23bae2(&g_8c4c2620, puVar10, puVar12, uStack_50);
                     float_to_color_u8(puVar8, puVar10, puVar12, uStack_50);
                     if (cVar40 == '\0') {
                         in_dr4 = (double)(u64)g_8c4c2634;
@@ -27770,9 +27769,9 @@ u32 gfxlib_uses_float_to_color_u8_24c6f0(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
         }
     } else if (uVar2 == 0xc000) {
         if ((g_8c4ab318 & 1) == 0) {
-            pcVar4 = gfxlib_uses_noop_2446d8;
+            pcVar4 = gfxlib_draw_2446d8;
         } else {
-            pcVar4 = gfxlib_uses_noop_244262;
+            pcVar4 = gfxlib_draw_244262;
         }
         uVar2 = (*pcVar4)(a0, uVar1 & 0x3fff, a2, a3);
     }
@@ -27781,7 +27780,7 @@ u32 gfxlib_uses_float_to_color_u8_24c6f0(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
 
 /*
  * vram_24d5a8  0x8c24d5a8
- * called by: ninja_uses_ta_fifo_2536a8
+ * called by: ninja_draw_2536a8
  */
 u32 vram_24d5a8(u16 *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u16 uVar1;
@@ -28038,7 +28037,7 @@ u32 vram_24d5a8(u16 *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
                 }
                 puVar13 = auStack_3c;
                 puVar14 = &uStack_30;
-                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar14, puVar13, iStack_50);
+                gfxlib_draw_23bae2(&g_8c4c2620, puVar14, puVar13, iStack_50);
                 uVar22 = (u32)((u64)dVar31 >> 0x20);
                 uVar3 = float_to_color_u8(puVar12, puVar14, puVar13, iStack_50);
                 uVar28 = g_8c4c2630;
@@ -28346,7 +28345,7 @@ u32 vram_24d5a8(u16 *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
                     uStack_24 = uVar28;
                 }
                 puVar14 = &uStack_30;
-                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar14, puVar13, uStack_48);
+                gfxlib_draw_23bae2(&g_8c4c2620, puVar14, puVar13, uStack_48);
                 uVar22 = (u32)((u64)dVar31 >> 0x20);
                 uVar3 = float_to_color_u8(puVar12, puVar14, puVar13, uStack_48);
                 uVar28 = g_8c4c2630;
@@ -28754,7 +28753,7 @@ u32 vram_24d5a8(u16 *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
                     uStack_24 = (u32)((u64)in_xd2 >> 0x20);
                 }
                 puVar14 = &uStack_30;
-                gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar14, ar6_01, uStack_48);
+                gfxlib_draw_23bae2(&g_8c4c2620, puVar14, ar6_01, uStack_48);
                 uVar22 = (u32)((u64)dVar31 >> 0x20);
                 uVar3 = float_to_color_u8(puVar13, puVar14, ar6_01, uStack_48);
                 uVar28 = g_8c4c2630;
@@ -29001,7 +29000,7 @@ u32 vram_24d5a8(u16 *a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * gfxlib_uses_float_to_color_u8_24df18  0x8c24df18
  * area name: in the gfxlib library code range; behaviour name: its main named callee is float_to_color_u8
- * called by: ninja_uses_ta_fifo_2536a8
+ * called by: ninja_draw_2536a8
  * decompiler: Heritage AFTER dead removal. Example location: r0x8c4c262c : 0x8c24e516
  */
 u32 gfxlib_uses_float_to_color_u8_24df18(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -29286,7 +29285,7 @@ u32 gfxlib_uses_float_to_color_u8_24df18(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
                     puVar10 = &g_8c4c2620;
                     puVar12 = auStack_44;
                     puVar13 = &uStack_38;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar13, puVar12, iStack_64);
+                    gfxlib_draw_23bae2(&g_8c4c2620, puVar13, puVar12, iStack_64);
                     uVar34 = (u32)((u64)dVar42 >> 0x20);
                     dVar42 = g_8c4c2624;
                     if (cVar45 == '\0') {
@@ -29661,7 +29660,7 @@ u32 gfxlib_uses_float_to_color_u8_24df18(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
                     puVar10 = &g_8c4c2620;
                     puVar12 = auStack_44;
                     puVar13 = &uStack_38;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar13, puVar12, iStack_64);
+                    gfxlib_draw_23bae2(&g_8c4c2620, puVar13, puVar12, iStack_64);
                     uVar37 = (u32)((u64)dVar42 >> 0x20);
                     dVar42 = g_8c4c2624;
                     if (cVar45 == '\0') {
@@ -29901,7 +29900,7 @@ u32 gfxlib_uses_float_to_color_u8_24df18(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
                         uStack_2c = uVar34;
                     }
                     puVar13 = &uStack_38;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar13, puVar12, uStack_60);
+                    gfxlib_draw_23bae2(&g_8c4c2620, puVar13, puVar12, uStack_60);
                     uVar34 = (u32)((u64)dVar42 >> 0x20);
                     if (cVar45 != '\0') {
                         in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
@@ -30292,7 +30291,7 @@ u32 gfxlib_uses_float_to_color_u8_24df18(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
                         uStack_2c = uVar37;
                     }
                     puVar13 = &uStack_38;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar13, puVar12, uStack_60);
+                    gfxlib_draw_23bae2(&g_8c4c2620, puVar13, puVar12, uStack_60);
                     uVar37 = (u32)((u64)dVar42 >> 0x20);
                     if (cVar45 != '\0') {
                         in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
@@ -30625,7 +30624,7 @@ u32 gfxlib_uses_float_to_color_u8_24df18(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
                         uStack_2c = (u32)((u64)in_xd2 >> 0x20);
                     }
                     puVar13 = &uStack_38;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar13, puVar17, uStack_54);
+                    gfxlib_draw_23bae2(&g_8c4c2620, puVar13, puVar17, uStack_54);
                     uVar34 = (u32)((u64)dVar42 >> 0x20);
                     if (cVar45 != '\0') {
                         in_xd4 = *(double *)(puVar10 + 4);
@@ -31113,7 +31112,7 @@ u32 gfxlib_uses_float_to_color_u8_24df18(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
                         uStack_2c = (u32)((u64)in_xd2 >> 0x20);
                     }
                     puVar13 = &uStack_38;
-                    gfxlib_calls_scan_loop_23bae2(&g_8c4c2620, puVar13, puVar17, uStack_54);
+                    gfxlib_draw_23bae2(&g_8c4c2620, puVar13, puVar17, uStack_54);
                     uVar37 = (u32)((u64)dVar42 >> 0x20);
                     if (cVar45 != '\0') {
                         in_xd4 = *(double *)(puVar10 + 4);
@@ -31247,7 +31246,7 @@ u32 gfxlib_uses_float_to_color_u8_24df18(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
 
 /*
  * vram_24ef30  0x8c24ef30
- * called by: ninja_uses_ta_fifo_2536a8
+ * called by: ninja_draw_2536a8
  */
 u32 vram_24ef30(double *a0, u32 unused_a1, short *a2, short *a3) {
     u16 uVar1;
@@ -32155,7 +32154,7 @@ u32 vram_24ef30(double *a0, u32 unused_a1, short *a2, short *a3) {
 
 /*
  * vram_24f64c  0x8c24f64c
- * called by: ninja_uses_ta_fifo_2536a8
+ * called by: ninja_draw_2536a8
  */
 u32 vram_24f64c(double *a0, u32 unused_a1, double *a2, u32 a3) {
     u16 uVar1;

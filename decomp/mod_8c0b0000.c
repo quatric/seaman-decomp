@@ -84,7 +84,7 @@ int Class_12b2ac_vec_0b0784(int a0, u32 a1, int *a2, int *a3) {
         case 2:
             *(u32 *)(a0 + 0x214) = 0;
             iVar5 = game_vec_0b5098(a0, in_stack_00000000, a1, piVar4);
-            timer_vec_031c74(a0, aiStack_28, in_stack_00000000, piVar4);
+            timer_motion_update(a0, aiStack_28, in_stack_00000000, piVar4);
             piVar3 = in_stack_00000000;
             break;
         case 3:
@@ -112,7 +112,7 @@ int Class_12b2ac_vec_0b0784(int a0, u32 a1, int *a2, int *a3) {
             }
             break;
         case 4:
-            iVar5 = game_uses_Vec3_dtor_0b4d14(a0, a1, in_stack_00000000, in_stack_00000004);
+            iVar5 = CAnimal_uses_Vec3_dtor_0b4d14(a0, a1, in_stack_00000000, in_stack_00000004);
             if (cVar9 == '\0') {
                 dVar7 = (double)CONCAT44(0x3f7d70a4, *(u32 *)(a0 + 0x28));
             } else {
@@ -135,7 +135,7 @@ int Class_12b2ac_vec_0b0784(int a0, u32 a1, int *a2, int *a3) {
             break;
         case 5:
             *(u32 *)(a0 + 0x214) = 0;
-            iVar5 = game_uses_CAnimBody_PlayToEnd_0b4c7c(a0, uVar2, piVar3, piVar4);
+            iVar5 = CAnimal_play_anim5_to_end(a0, uVar2, piVar3, piVar4);
             if (cVar9 == '\0') {
                 dVar7 = (double)CONCAT44(0x3f7d70a4, *(u32 *)(a0 + 0x28));
             } else {
@@ -473,7 +473,7 @@ u32 game_vec_0b0eec(int a0, float *a1, float *a2, u32 a3) {
             } else {
                 *(u64 *)(a0 + 0x30) = in_xd0;
             }
-            iVar4 = CMushroomerBody_vec_031764(a0, a0 + 0x2e4, a1, uVar9);
+            iVar4 = timer_vec_031764(a0, a0 + 0x2e4, a1, uVar9);
             if (iVar4 == 0) {
                 uVar9 = 300;
                 *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
@@ -556,7 +556,7 @@ u32 game_vec_0b0eec(int a0, float *a1, float *a2, u32 a3) {
             } else {
                 *(u64 *)(a0 + 0x30) = in_xd0;
             }
-            iVar4 = CMushroomerBody_vec_031764(a0, a0 + 0x2e4, a1, uVar9);
+            iVar4 = timer_vec_031764(a0, a0 + 0x2e4, a1, uVar9);
             if (iVar4 == 0) {
                 *(int *)(a0 + 300) = *(int *)(a0 + 300) + 1;
                 *(u32 *)(a0 + 0x40) = 0;
@@ -925,7 +925,7 @@ u32 game_vec_0b1ac0(double *a0, double *a1, code *a2, double *a3) {
             }
             Vec3_scale_assign((code *)((int)a0 + 0x14), &g_8c13babc);
             *(int *)(a0 + 100) = 0;
-            CMushroomerBody_vec_032518(a0, a1, a3, in_stack_00000000);
+            CMushroomerBody_offset_position(a0, a1, a3, in_stack_00000000);
             Vec3_assign((code *)((int)a0 + 0x2e4), auStack_244, a3, in_stack_00000000);
             Vec3_dtor(auStack_244, 0xffffffff, a3, in_stack_00000000);
             if (cVar19 == '\0') {
@@ -1287,7 +1287,7 @@ u32 game_vec_0b1ac0(double *a0, double *a1, code *a2, double *a3) {
             } else {
                 a0[6] = dVar12;
             }
-            CMushroomerBody_vec_031764(a0, adStack_34, a1, pcVar8);
+            timer_vec_031764(a0, adStack_34, a1, pcVar8);
             a2 = (code *)a1;
         }
         goto LAB_8c0b30ba;
@@ -1777,7 +1777,7 @@ u32 game_vec_0b3184(int a0, u64 *a1, u64 *a2, u32 a3) {
                 *(double *)(a0 + 0x30) = dVar9;
             }
             ar6_00 = a1;
-            uVar5 = CMushroomerBody_vec_031764(a0, a2, a1, a3);
+            uVar5 = timer_vec_031764(a0, a2, a1, a3);
             if (*(int *)(a0 + 0x1b8) == 1) {
                 if (cVar12 == '\0') {
                     *(u32 *)(a0 + 0x18c) = *(u32 *)a1;
@@ -1812,7 +1812,7 @@ u32 game_vec_0b3184(int a0, u64 *a1, u64 *a2, u32 a3) {
                     CAnimBody_SetFrame(a0 + 0xb0, uVar1, uVar5, a3);
                 }
             }
-            uVar5 = CMushroomerBody_vec_031764(a0, a2, a1, a3);
+            uVar5 = timer_vec_031764(a0, a2, a1, a3);
             ar6_00 = a1;
         }
     }
@@ -1958,7 +1958,7 @@ u32 game_vec_0b3604(int a0, double *a1, double *a2, int *a3) {
         } else {
             CAnimBody_PlayToEnd(a0 + 0xb0, 0, a2, a3);
         }
-        uVar8 = CMushroomerBody_vec_031764(a0, &uStack_2c, a1, a3);
+        uVar8 = timer_vec_031764(a0, &uStack_2c, a1, a3);
         a2 = a1;
         goto override_jmp_8c0b3676_case_2;
     }
@@ -1988,7 +1988,7 @@ u32 game_vec_0b3604(int a0, double *a1, double *a2, int *a3) {
         uVar8 = 0x80;
         Vec3_make(a0 + 0x80, 0x80, puVar6, a3, puVar6);
         uVar8 = Vec3_length(auStack_58, uVar8, puVar6, a3);
-        game_vec_03263c(a0, uVar8, puVar6, a3);
+        CMushroomerBody_vec_03263c(a0, uVar8, puVar6, a3);
         Vec3_add(auStack_68, a1, puVar6, a3, auStack_78);
         Vec3_assign(a0 + 0x2e4, auStack_78, puVar6, a3);
         Vec3_dtor(auStack_78, 0xffffffff, puVar6, a3);
@@ -2036,7 +2036,7 @@ u32 game_vec_0b3604(int a0, double *a1, double *a2, int *a3) {
         uVar8 = 0x80;
         Vec3_make(a0 + 0x80, 0x80, a2, a3, auStack_88);
         uVar8 = Vec3_length(auStack_88, uVar8, a2, a3);
-        game_vec_03263c(a0, uVar8, a2, a3);
+        CMushroomerBody_vec_03263c(a0, uVar8, a2, a3);
         Vec3_add(auStack_98, a1, a2, a3, auStack_a8);
         Vec3_assign(a0 + 0x2e4, auStack_a8, a2, a3);
         Vec3_dtor(auStack_a8, 0xffffffff, a2, a3);
@@ -2103,7 +2103,7 @@ u32 game_vec_0b3604(int a0, double *a1, double *a2, int *a3) {
         }
         Vec3_scale_assign(a0 + 0x14, &g_8c13bac4);
         *(u32 *)(a0 + 800) = 0;
-        game_vec_03263c(a0, a0 + 0x14, a2, a3);
+        CMushroomerBody_vec_03263c(a0, a0 + 0x14, a2, a3);
         Vec3_add(auStack_b8, a1, a2, a3, auStack_c8);
         Vec3_assign(a0 + 0x2e4, auStack_c8, a2, a3);
         Vec3_dtor(auStack_c8, 0xffffffff, a2, a3);
@@ -2669,7 +2669,7 @@ override_jmp_8c0b3676_case_3:
     } else {
         *(double *)(a0 + 0x30) = in_dr0;
     }
-    uVar8 = CMushroomerBody_vec_031764(a0, &uStack_2c, a1, a3);
+    uVar8 = timer_vec_031764(a0, &uStack_2c, a1, a3);
     a2 = (double *)0x1b8;
     if (*(int *)(a0 + 0x1b8) == 1) {
         if (cVar18 == '\0') {
@@ -2745,11 +2745,10 @@ u32 obj_play_anim_17_then_idle(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_CAnimBody_PlayToEnd_0b4c7c  0x8c0b4c7c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is CAnimBody_PlayToEnd
+ * CAnimal_play_anim5_to_end  0x8c0b4c7c
  * called by: Class_12b2ac_vec_0b0784
  */
-u32 game_uses_CAnimBody_PlayToEnd_0b4c7c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CAnimal_play_anim5_to_end(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar5_00;
     u32 uVar2;
@@ -2774,11 +2773,11 @@ u32 game_uses_CAnimBody_PlayToEnd_0b4c7c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_Vec3_dtor_0b4d14  0x8c0b4d14
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is Vec3_dtor
+ * CAnimal_uses_Vec3_dtor_0b4d14  0x8c0b4d14
+ * area name: sits between CAnimal functions (same compilation unit); behaviour name: its main named callee is Vec3_dtor
  * called by: Class_12b2ac_vec_0b0784
  */
-u32 game_uses_Vec3_dtor_0b4d14(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CAnimal_uses_Vec3_dtor_0b4d14(int a0, u32 a1, u32 a2, u32 a3) {
     double dVar1;
     int iVar2;
     int iVar3;
@@ -3405,7 +3404,7 @@ u32 game_vec_0b54f4(int a0, u32 a1, int a2, u32 a3) {
         Vec3_dtor(auStack_90, 0xffffffff, ar6_00, a3);
         object_dtor_delete(auStack_80, 0xffffffff, ar6_00, a3);
         ar5_00 = auStack_54;
-        Vec3_calc_022d14(a0 + 0x14, ar5_00);
+        ptr_plus_4(a0 + 0x14, ar5_00);
         if (cVar8 == '\0') {
             uVar4 = uVar4 >> 0x20;
         }
@@ -3436,7 +3435,7 @@ u32 game_vec_0b54f4(int a0, u32 a1, int a2, u32 a3) {
 
 /*
  * get_field_314_0b58d0  0x8c0b58d0
- * called by: CSquidLine_uses_rand_0ae84c, game_uses_get_field_314_0ae270
+ * called by: CAnimal_save_clearing_460, CSquidLine_uses_rand_0ae84c
  */
 u32 get_field_314_0b58d0(int a0) {
     return *(u32 *)(0x314 + a0);
@@ -3444,7 +3443,7 @@ u32 get_field_314_0b58d0(int a0) {
 
 /*
  * set_field_314  0x8c0b58dc
- * called by: game_load_0ae2b8
+ * called by: CAnimal_load_setting_314
  */
 int set_field_314(int a0, u32 a1) {
     int iVar1;
@@ -3460,7 +3459,7 @@ int set_field_314(int a0, u32 a1) {
 int Class_12b2ac_m7_0b58e8(int a0) {
     int iVar1;
 
-    game_uses_CAnimBody_SetAnimation_031684(a0);
+    CAnimal_anim_reset_idle(a0);
     iVar1 = 0x348;
     *(u32 *)(0x348 + a0) = 0;
     return iVar1;
@@ -3631,11 +3630,11 @@ u32 Class_12b2e8_m1_0b5ad0(int a0, int *a1, int *a2, u32 a3) {
     uVar4 = CONCAT22(uVar11, (short)uVar1);
     *(u32 *)(a0 + 0xa8) = uVar1 & 0xffff;
     piVar9 = a2;
-    Class_129c70_uses_get_field_4_02f20c(a0, a2, piVar10, a3);
+    Class_129c70_add_need_value(a0, a2, piVar10, a3);
     uVar2 = get_field_4_05eed8(a0);
     piVar9 = a1;
     piVar10 = a2;
-    Class_12b2e8_uses_set_field_38_0b61bc(a0, a1, a2, uVar2);
+    Class_12b2e8_start_state_from_table(a0, a1, a2, uVar2);
     iVar7 = (int)*(char *)(a0 + 0x98);
     if ((iVar7 < 8) && (-1 < iVar7)) {
         switch (iVar7) {
@@ -3728,14 +3727,14 @@ u32 Class_12b2e8_m1_0b5ad0(int a0, int *a1, int *a2, u32 a3) {
             recent5_push_unique(a2[6], 9, 0x1b);
         }
     }
-    Class_12b2e8_uses_get_field_8_0b65b0(a0);
+    Class_12b2e8_state_table_ptr(a0);
     set_field_130(a2[2]);
     iVar7 = get_field_124_027930(a2[2], piVar9, piVar10, uVar2);
     iVar3 = get_field_40_05eea0(a0);
     if (iVar7 != iVar3) {
         uVar4 = get_field_40_05eea0(a0);
         piVar10 = (int *)0x1;
-        timer_uses_reset_fields_2c_6c_031b08(a2[2], uVar4, 1, uVar2);
+        timer_start_if_idle(a2[2], uVar4, 1, uVar2);
     }
     uVar2 = Vec3_dtor(auStack_28, 0xffffffff, piVar10, uVar2);
     return uVar2;
@@ -3774,10 +3773,10 @@ u32 Class_12b2e8_m2_0b6028(int a0, u32 a1, int a2, u32 a3) {
     iVar3 = a2;
     Class_12b2e8_sequence_step(a0, a1, a2, a3);
     iVar7 = a2;
-    Class_129c70_uses_get_field_4_02f20c(a0, a2, iVar3, a3);
+    Class_129c70_add_need_value(a0, a2, iVar3, a3);
     uVar2 = get_field_4_05eed8(a0);
     iVar7 = a2;
-    Class_12b2e8_uses_set_field_38_0b61bc(a0, a1, a2, uVar2);
+    Class_12b2e8_start_state_from_table(a0, a1, a2, uVar2);
     iVar3 = (int)*(char *)(a0 + 0x98);
     if ((iVar3 < 8) && (-1 < iVar3)) {
         switch (iVar3) {
@@ -3799,23 +3798,22 @@ u32 Class_12b2e8_m2_0b6028(int a0, u32 a1, int a2, u32 a3) {
             g_8c13bbe8 = 2;
         }
     }
-    Class_12b2e8_uses_get_field_8_0b65b0(a0);
+    Class_12b2e8_state_table_ptr(a0);
     set_field_130(*(u32 *)(a2 + 8));
     iVar3 = get_field_124_027930(*(u32 *)(a2 + 8), a1, iVar7, uVar2);
     if (*(int *)(a0 + 0x40) != iVar3) {
         iVar7 = 1;
-        timer_uses_reset_fields_2c_6c_031b08(*(u32 *)(a2 + 8), *(u32 *)(a0 + 0x40), 1, uVar2);
+        timer_start_if_idle(*(u32 *)(a2 + 8), *(u32 *)(a0 + 0x40), 1, uVar2);
     }
     uVar2 = Vec3_dtor(auStack_24, 0xffffffff, iVar7, uVar2);
     return uVar2;
 }
 
 /*
- * Class_12b2e8_uses_set_field_38_0b61bc  0x8c0b61bc
- * area name: only called from Class_12b2e8 methods; behaviour name: its main named callee is set_field_38_02f404
+ * Class_12b2e8_start_state_from_table  0x8c0b61bc
  * called by: Class_12b2e8_m1_0b5ad0, Class_12b2e8_m2_0b6028
  */
-u32 Class_12b2e8_uses_set_field_38_0b61bc(int a0, u32 a1, int *a2, int a3) {
+u32 Class_12b2e8_start_state_from_table(int a0, u32 a1, int *a2, int a3) {
     int iVar1;
     int iVar2;
     u32 uVar3;
@@ -3828,7 +3826,7 @@ u32 Class_12b2e8_uses_set_field_38_0b61bc(int a0, u32 a1, int *a2, int a3) {
     if (*(int *)(a0 + 0x38) == 2) {
         *(u32 *)(a0 + 0xc) = 0;
         *(u32 *)(a0 + 0x40) = *(u32 *)(&g_8c13bb4c + *(int *)(a0 + 0xc) * 4 + a3 * 0xc);
-        Class_12b2e8_uses_set_field_38_0b63e0(a0, a1, a2);
+        Class_12b2e8_mode_update(a0, a1, a2);
         uVar3 = 1;
         set_field_38_02f404(a0, 1);
     }
@@ -3843,7 +3841,7 @@ u32 Class_12b2e8_uses_set_field_38_0b61bc(int a0, u32 a1, int *a2, int a3) {
                 mask_74_fffffffe(*a2);
             }
         } else if (iVar1 == 4) {
-            iVar2 = game_uses_get_field_6c_02f414(a0, uVar3, ar6_00, a3);
+            iVar2 = CAnimal_child_6c_ready(a0, uVar3, ar6_00, a3);
             if (iVar2 == 1) {
                 if (*(int *)(a0 + 0x88) == 1) {
                     ar6_01 = 0x1b;
@@ -3888,7 +3886,7 @@ int Class_12b2e8_sequence_step(int a0, u32 a1, u32 a2, u32 a3) {
             a2 = ar6_00;
         } else {
             set_field_38_02f404(a0, 3);
-            Class_12b2e8_uses_set_field_38_0b63e0(a0, a1, a2);
+            Class_12b2e8_mode_update(a0, a1, a2);
         }
     }
     iVar1 = *(int *)(a0 + 0x3c);
@@ -3899,16 +3897,15 @@ int Class_12b2e8_sequence_step(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12b2e8_uses_set_field_38_0b63e0  0x8c0b63e0
- * area name: only called from Class_12b2e8 methods; behaviour name: its main named callee is set_field_38_02f404
- * called by: Class_12b2e8_sequence_step, Class_12b2e8_uses_set_field_38_0b61bc
+ * Class_12b2e8_mode_update  0x8c0b63e0
+ * called by: Class_12b2e8_sequence_step, Class_12b2e8_start_state_from_table
  */
-int Class_12b2e8_uses_set_field_38_0b63e0(int a0, u32 a1, u32 a2) {
+int Class_12b2e8_mode_update(int a0, u32 a1, u32 a2) {
     int iVar1;
 
     iVar1 = *(int *)(a0 + 0x40);
     if (iVar1 == 1) {
-        iVar1 = game_uses_rand_0b6604(a0, a1, a2);
+        iVar1 = Class_12b2e8_uses_rand_0b6604(a0, a1, a2);
     } else if (((iVar1 != 2) && (iVar1 == 4)) && (iVar1 = *(int *)(a0 + 0x6c), iVar1 == 0)) {
         *(int *)(a0 + 0xc) = *(int *)(a0 + 0xc) + -1;
         iVar1 = set_field_38_02f404(a0, 2);
@@ -3940,7 +3937,7 @@ u8 *Class_12b2e8_state_switch_0b6440(int a0, u32 a1, int a2, u32 a3) {
             }
             break;
         case 4:
-            puVar1 = (u8 *)game_uses_get_field_6c_02f414(a0, a1, a2, a3);
+            puVar1 = (u8 *)CAnimal_child_6c_ready(a0, a1, a2, a3);
             if ((puVar1 == (u8 *)0x1) && (puVar1 = *(u8 **)(a0 + 0x88), puVar1 == (u8 *)0x1)) {
                 ar6_00 = 0x1b;
                 uVar3 = 7;
@@ -3968,23 +3965,22 @@ u8 *Class_12b2e8_state_switch_0b6440(int a0, u32 a1, int a2, u32 a3) {
             puVar1 = (u8 *)0x2;
             if ('\x01' < *(char *)(a0 + 0x9d)) {
                 *(u8 *)(a0 + 0x98) = 3;
-                puVar1 = (u8 *)game_calls_test_0c4e2c(a0, a1, a2, a3);
+                puVar1 = (u8 *)set_flags_436924_and_436928(a0, a1, a2, a3);
             }
             break;
         case 7:
             *(u8 *)(a0 + 0x98) = 6;
-            puVar1 = (u8 *)game_calls_test_0c4e2c(a0, a1, a2, a3);
+            puVar1 = (u8 *)set_flags_436924_and_436928(a0, a1, a2, a3);
         }
     }
     return puVar1;
 }
 
 /*
- * Class_12b2e8_uses_get_field_8_0b65b0  0x8c0b65b0
- * area name: only called from Class_12b2e8 methods; behaviour name: its main named callee is get_field_8_066620
+ * Class_12b2e8_state_table_ptr  0x8c0b65b0
  * called by: Class_12b2e8_m1_0b5ad0, Class_12b2e8_m2_0b6028
  */
-u32 *Class_12b2e8_uses_get_field_8_0b65b0(int a0) {
+u32 *Class_12b2e8_state_table_ptr(int a0) {
     u32 *puVar1;
 
     if (*(int *)(a0 + 4) == 2) {
@@ -3998,11 +3994,11 @@ u32 *Class_12b2e8_uses_get_field_8_0b65b0(int a0) {
 }
 
 /*
- * game_uses_rand_0b6604  0x8c0b6604
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is rand
- * called by: Class_12b2e8_uses_set_field_38_0b63e0
+ * Class_12b2e8_uses_rand_0b6604  0x8c0b6604
+ * area name: only called from Class_12b2e8 methods; behaviour name: its main named callee is rand
+ * called by: Class_12b2e8_mode_update
  */
-u32 game_uses_rand_0b6604(int a0, int *a1, u32 a2) {
+u32 Class_12b2e8_uses_rand_0b6604(int a0, int *a1, u32 a2) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -4343,10 +4339,9 @@ u32 Class_12b2e8_vec_0b67cc(int a0, int *a1, u32 *a2, u32 a3) {
 }
 
 /*
- * game_update_fields_0b6af8  0x8c0b6af8
- * area name: game code; nothing names its area yet; behaviour name: conditionally writes members
+ * obj_load_bytes_98_9c  0x8c0b6af8
  */
-int game_update_fields_0b6af8(int a0, u8 *a1) {
+int obj_load_bytes_98_9c(int a0, u8 *a1) {
     int iVar1;
 
     *(u8 *)(0x98 + a0) = *a1;
@@ -4356,10 +4351,9 @@ int game_update_fields_0b6af8(int a0, u8 *a1) {
 }
 
 /*
- * game_update_fields_0b6b10  0x8c0b6b10
- * area name: game code; nothing names its area yet; behaviour name: conditionally writes members
+ * obj_save_bytes_98_9c  0x8c0b6b10
  */
-int game_update_fields_0b6b10(int a0, u8 *a1) {
+int obj_save_bytes_98_9c(int a0, u8 *a1) {
     char cVar1;
 
     *a1 = *(u8 *)(0x98 + a0);
@@ -4421,11 +4415,9 @@ u32 vblank_hook_check_lid(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_memcard_flush_and_close_8c3d_0b6c10  0x8c0b6c10
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is
- * memcard_flush_and_close_8c3dd7dc
+ * memcard_close_and_shutdown  0x8c0b6c10
  */
-u32 game_uses_memcard_flush_and_close_8c3d_0b6c10(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 memcard_close_and_shutdown(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = 0x8c286ebc;
@@ -4492,7 +4484,7 @@ u32 save_write_step(u32 a0, u8 *a1, u8 *a2, u8 *a3) {
             startup_warning_check(&g_8c2b5628, 4, ar6_00, &g_8c13c025);
         }
     }
-    game_draw_0c412c(&g_8c2b5628, 1, ar6_00);
+    draw_menu_items(&g_8c2b5628, 1, ar6_00);
     free_if_nonnull_wrap_0151a0(auStack_30, 0xffffffff, ar6_00, a3);
     return uVar2;
 }
@@ -4555,7 +4547,7 @@ u32 save_check_files(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
                     ar6_00 = auStack_48;
                     iVar1 = memcard_stat_file_wait(uVar2, "SM2000US._VM", ar6_00, ar7_00);
                     if (iVar1 == 1) {
-                        iVar1 = game_release_01b0a8(uVar2, a0, a3, in_stack_00000000);
+                        iVar1 = memcard_save_loaded_file(uVar2, a0, a3, in_stack_00000000);
                         ar6_00 = a3;
                         ar7_00 = in_stack_00000000;
                         if (iVar1 == 1) {
@@ -4567,7 +4559,7 @@ u32 save_check_files(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
                 iVar1 = strcmp_0b6e04(a0, "SM2000US.USR");
                 if ((iVar1 == 0) &&
                     (iVar1 = memcard_check_file_wait(uVar2, "SM2000US.USR", ar6_00, ar7_00), iVar1 == 1)) {
-                    iVar1 = game_uses_memcard_save_start_01ae98(uVar2, a0, a1, a2);
+                    iVar1 = memcard_start_save_and_wait(uVar2, a0, a1, a2);
                     ar6_00 = a1;
                     ar7_00 = a2;
                     if (iVar1 == 1) {
@@ -4602,7 +4594,7 @@ u32 save_check_files(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
             } else {
                 iVar1 = strcmp_0b6e04(a0, "SM2000US._VM");
                 if (iVar1 == 0) {
-                    iVar1 = game_release_01b0a8(uVar2, a0, a3, in_stack_00000000);
+                    iVar1 = memcard_save_loaded_file(uVar2, a0, a3, in_stack_00000000);
                     ar6_00 = a3;
                     ar7_00 = in_stack_00000000;
                     if (iVar1 == 1) {
@@ -4611,7 +4603,7 @@ u32 save_check_files(u8 *a0, u8 *a1, u8 *a2, u8 *a3) {
                 } else {
                     iVar1 = strcmp_0b6e04(a0, "SM2000US.USR");
                     if (iVar1 == 0) {
-                        iVar1 = game_uses_memcard_save_start_01ae98(uVar2, a0, a1, a2);
+                        iVar1 = memcard_start_save_and_wait(uVar2, a0, a1, a2);
                         ar6_00 = a1;
                         ar7_00 = a2;
                         if (iVar1 == 1) {
@@ -4674,7 +4666,7 @@ u32 memcard_process_save_file_name(u32 a0, u32 a1, u8 *a2, u32 a3, u32 s0, int s
             ar6_00 = auStack_34;
             iVar1 = (*(code *)(&memcard_stat_file_wait))(ar4_00, "SM2000US._VM", ar6_00, ar7_00);
             if (iVar1 == 1) {
-                iVar1 = game_release_01b0a8(ar4_00, a0, a3, s0);
+                iVar1 = memcard_save_loaded_file(ar4_00, a0, a3, s0);
                 if (iVar1 != 1) {
                     return 1;
                 }
@@ -4684,7 +4676,7 @@ u32 memcard_process_save_file_name(u32 a0, u32 a1, u8 *a2, u32 a3, u32 s0, int s
         iVar1 = (*(code *)(&strcmp_0b6e04))(a0, "SM2000US.USR", ar6_00, ar7_00);
         if ((iVar1 == 0) &&
             (iVar1 = (*(code *)(&memcard_check_file_wait))(ar4_00, "SM2000US.USR", ar6_00, ar7_00), iVar1 == 1)) {
-            iVar1 = game_uses_memcard_save_start_01ae98(ar4_00, a0, a1, a2);
+            iVar1 = memcard_start_save_and_wait(ar4_00, a0, a1, a2);
             if (iVar1 == 1) {
                 uVar2 = 0;
             }
@@ -4700,14 +4692,14 @@ u32 memcard_process_save_file_name(u32 a0, u32 a1, u8 *a2, u32 a3, u32 s0, int s
     } else {
         iVar1 = (*(code *)(&strcmp_0b6e04))(a0, "SM2000US._VM", ar6_00, ar7_00);
         if (iVar1 == 0) {
-            iVar1 = game_release_01b0a8(ar4_00, a0, a3, s0);
+            iVar1 = memcard_save_loaded_file(ar4_00, a0, a3, s0);
             if (iVar1 == 1) {
                 uVar2 = 0;
             }
         } else {
             iVar1 = (*(code *)(&strcmp_0b6e04))(a0, "SM2000US.USR", ar6_00, ar7_00);
             if (iVar1 == 0) {
-                iVar1 = game_uses_memcard_save_start_01ae98(ar4_00, a0, a1, a2);
+                iVar1 = memcard_start_save_and_wait(ar4_00, a0, a1, a2);
                 if (iVar1 == 1) {
                     uVar2 = 0;
                 }
@@ -4963,11 +4955,10 @@ u32 startup_warning_show_for_state(int a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * game_uses_clear_5_words_0b79f0  0x8c0b79f0
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is clear_5_words
+ * draw_panel_43659c  0x8c0b79f0
  * called by: game_uses_get_field_d0_0c6e74, game_uses_speech_is_playing_0bad68, save_user_file_check
  */
-u32 game_uses_clear_5_words_0b79f0(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 draw_panel_43659c(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     u8 *ar6_00;
     u32 ar7_00;
@@ -4984,11 +4975,10 @@ u32 game_uses_clear_5_words_0b79f0(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3)
 }
 
 /*
- * game_copy_0b7a54  0x8c0b7a54
- * area name: game code; nothing names its area yet; behaviour name: mostly calls copy functions
- * called by: Class_12a7f4_m5_09aa48, Class_12a990_m5_09c738, Class_12ad50_m5_0a5328, game_copy_0ba2cc
+ * record_reset_0b7a54  0x8c0b7a54
+ * called by: Class_12a7f4_m5_09aa48, Class_12a990_m5_09c738, Class_12ad50_m5_0a5328, obj_reset_7cc_7e0
  */
-int game_copy_0b7a54(int a0) {
+int record_reset_0b7a54(int a0) {
     clear_record_10(a0 + 0xac);
     *(u8 *)(0xa0 + a0) = g_8c436548;
     *(u16 *)(0xa2 + a0) = 0;
@@ -4997,7 +4987,7 @@ int game_copy_0b7a54(int a0) {
     *(u16 *)(0xb0 + a0) = 0;
     *(u16 *)(0xb2 + a0) = 0;
     *(u8 *)(0xb4 + a0) = 0;
-    game_init_fields_0b936c(a0);
+    record_reset_0b936c(a0);
     return a0;
 }
 
@@ -5215,7 +5205,7 @@ u32 creature_age_clock_tick(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
     uVar1 = sh4_tmu_1f8b88();
     ar5_00 = 0;
-    uVar2 = shinobi_uses_libgcc_divide_helper_1f8b92(uVar1, 0);
+    uVar2 = shinobi_ticks_from_rate_a(uVar1, 0);
     if (0xf4240 <= uVar2) {
         *(int *)(0xa8 + a0) = *(int *)(0xa8 + a0) + 1;
         *(short *)(0xa4 + a0) = *(short *)(0xa4 + a0) + 1;
@@ -5235,18 +5225,17 @@ u32 creature_age_clock_tick(int a0, u32 unused_a1, u32 a2, u32 a3) {
             *(short *)(0xa2 + a0) = (short)0xfffa;
         }
         *(u16 *)(0xa4 + a0) = 0;
-        game_calls_test_0c4e2c(a0, ar5_00, a2, a3);
+        set_flags_436924_and_436928(a0, ar5_00, a2, a3);
         uVar1 = 1;
     }
     return uVar1;
 }
 
 /*
- * game_init_fields_0b936c  0x8c0b936c
- * area name: game code; nothing names its area yet; behaviour name: writes 6 members
- * called by: Class_12b388_uses_Class_129808_draw_0c5cb4, game_copy_0b7a54
+ * record_reset_0b936c  0x8c0b936c
+ * called by: Class_12b388_draw_and_release_speech, record_reset_0b7a54
  */
-int game_init_fields_0b936c(u32 *a0) {
+int record_reset_0b936c(u32 *a0) {
     int iVar1;
 
     *(u8 *)(0xa1 + (int)a0) = g_8c436548;
@@ -5263,7 +5252,7 @@ int game_init_fields_0b936c(u32 *a0) {
 /*
  * CProlog_classify_day_period  0x8c0b93c0
  * sums eight counters, finds the largest, compares it and the day periods of two stored times with the period at +0xbc
- * and returns a class 0..4 called by: CProlog_Ready, game_uses_CProlog_classify_day_period_0f803c
+ * and returns a class 0..4 called by: CProlog_Ready, speech_set_day_period
  */
 int CProlog_classify_day_period(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -5316,12 +5305,11 @@ int CProlog_classify_day_period(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_flashrom_game_block_date_byt_0b951c  0x8c0b951c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is
- * flashrom_game_block_date_byte called by: game_uses_CProlog_classify_day_period_0f803c strings: "T39403M   "; "T39404M
- * "
+ * flashrom_find_game_block_date  0x8c0b951c
+ * called by: speech_set_day_period
+ * strings: "T39403M   "; "T39404M   "
  */
-u32 game_uses_flashrom_game_block_date_byt_0b951c(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+u32 flashrom_find_game_block_date(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u8 auStack_18[16];
@@ -5347,7 +5335,7 @@ u32 game_uses_flashrom_game_block_date_byt_0b951c(u32 unused_a0, u32 unused_a1, 
 /*
  * flashrom_game_block_date_byte  0x8c0b95a0
  * opens the flash game partition, reads the block with the 10-byte key a1 and returns one byte of its stored date (0
- * when missing) called by: game_uses_flashrom_game_block_date_byt_0b951c
+ * when missing) called by: flashrom_find_game_block_date
  */
 u32 flashrom_game_block_date_byte(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5394,7 +5382,7 @@ u32 flashrom_game_block_date_byte(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                 puVar2 = auStack_1c;
                 iVar4 = memcmp(puVar2, ar5_00, 10);
                 if (iVar4 != 0) {
-                    flashrom_calc_1f710c(puVar2, ar5_00, uVar5, ar7_00, ain0);
+                    flashrom_clear_273a10(puVar2, ar5_00, uVar5, ar7_00, ain0);
                     free_ptr_and_clear(&iStack_11c, ar5_00, uVar5, ar7_00);
                     free_ptr_and_clear(&puStack_120, ar5_00, uVar5, ar7_00);
                     return 0;
@@ -5404,7 +5392,7 @@ u32 flashrom_game_block_date_byte(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                 uVar1 = (u32)bStack_116;
                 iVar4 = iStack_a0;
             }
-            flashrom_calc_1f710c(iVar4, puVar2, uVar5, ar7_00, ain0);
+            flashrom_clear_273a10(iVar4, puVar2, uVar5, ar7_00, ain0);
             free_ptr_and_clear(&iStack_11c, puVar2, uVar5, ar7_00);
             free_ptr_and_clear(&puStack_120, puVar2, uVar5, ar7_00);
         }
@@ -5471,7 +5459,7 @@ int CProlog_uses_free_sys_0b96e4(int a0, u32 a1, u32 a2, u32 a3) {
                         }
                         uVar4 = 0;
                         ar4_01 = ar4_00;
-                        iVar2 = flashrom_uses_flashrom_select_partition_1f7c40(ar4_00, ar5_01, ar6_00, ar7_00);
+                        iVar2 = flashrom_read_partition_3(ar4_00, ar5_01, ar6_00, ar7_00);
                         if (iVar2 != 0) {
                             for (iVar2 = 0; iVar2 < 100; iVar2 = iVar2 + 1) {
                                 if (ar4_00[iVar2 * 0xb] != -1) {
@@ -5566,7 +5554,7 @@ int CProlog_uses_free_sys_0b96e4(int a0, u32 a1, u32 a2, u32 a3) {
                             }
                         }
                     }
-                    flashrom_calc_1f710c(ar4_01, ar5_01, ar6_00, ar7_00, a1);
+                    flashrom_clear_273a10(ar4_01, ar5_01, ar6_00, ar7_00, a1);
                     free_sys(g_8c4365f0, ar5_01, ar6_00, ar7_00);
                     free_sys(g_8c4365f4, ar5_01, ar6_00, ar7_00);
                     free_sys(ar4_00, ar5_01, ar6_00, ar7_00);
@@ -5672,8 +5660,8 @@ u32 CProlog_record_visit_date(int a0, u32 unused_a1, u32 a2, u32 a3) {
  * rtc_get_date_wrap  0x8c0b9d14
  * only calls rtc_get_date
  * called by: CGame_GetUserGameInfo, CGame_uses_libgcc_divide_helper_0cc784, CProlog_record_visit_date,
- * CProlog_uses_libgcc_divide_helper_0cd3c8, ambient_sound_update, game_save_state_init, game_select_intro_or_ending,
- * game_uses_rand_0d8890 (+1 more)
+ * CProlog_uses_libgcc_divide_helper_0cd3c8, Class_12b580_uses_rand_0d8890, ambient_sound_update, game_save_state_init,
+ * game_select_intro_or_ending (+1 more)
  */
 u32 rtc_get_date_wrap(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -5794,7 +5782,7 @@ int date_to_days_since_1950(u32 unused_a0, u16 *a1, u16 *a2) {
  * recent5_push_unique  0x8c0b9ed4
  * pushes a1 onto the five-entry recent list at +0x30 unless it is already there
  * called by: CAnimal_m2_0386d0, CAnimal_m2_088094, Class_12a078_m2_05eee0, Class_12a078_m4_067284,
- * Class_12a7a8_m1_098d14, Class_12a7a8_state_switch_0999ac, Class_12a990_m2_09bc2c, Class_12b2e8_m1_0b5ad0 (+12 more)
+ * Class_12a7a8_m1_098d14, Class_12a7a8_state_dispatch, Class_12a990_m2_09bc2c, Class_12b2e8_m1_0b5ad0 (+12 more)
  */
 u32 recent5_push_unique(int a0, int a1, u32 a2) {
     u32 uVar1;
@@ -5851,23 +5839,23 @@ int SaveData_ctor(int a0, u32 a1, u32 a2) {
     char cVar4;
 
     cVar4 = '\0';
-    game_uses_clear_15_bytes_0243b0(a0 + 0xb0, a1, a2);
+    CAnimal_part_ctor_0243b0(a0 + 0xb0, a1, a2);
     vec_new_array(a0 + 0x1bc, Vec3_ctor_zero, Vec3_dtor, 0x10, 3);
     uVar3 = 0xf0;
-    pcVar2 = game_release_0ba180;
-    pcVar1 = game_uses_clear_15_bytes_0243b0;
-    vec_new_array(a0 + 0x1ec, game_uses_clear_15_bytes_0243b0, game_release_0ba180, 0xf0, 0x14);
+    pcVar2 = obj_scalar_dtor_02441c;
+    pcVar1 = CAnimal_part_ctor_0243b0;
+    vec_new_array(a0 + 0x1ec, CAnimal_part_ctor_0243b0, obj_scalar_dtor_02441c, 0xf0, 0x14);
     clear_5_bytes(a0 + 0x14ac);
     uVar3 = 0xf0;
-    pcVar2 = game_release_0ba180;
-    pcVar1 = game_uses_clear_15_bytes_0243b0;
-    vec_new_array(a0 + 0x14c4, game_uses_clear_15_bytes_0243b0, game_release_0ba180, 0xf0, 0x14);
+    pcVar2 = obj_scalar_dtor_02441c;
+    pcVar1 = CAnimal_part_ctor_0243b0;
+    vec_new_array(a0 + 0x14c4, CAnimal_part_ctor_0243b0, obj_scalar_dtor_02441c, 0xf0, 0x14);
     clear_5_bytes(a0 + 0x2784);
     uVar3 = 0xf0;
-    pcVar2 = game_release_0ba180;
-    pcVar1 = game_uses_clear_15_bytes_0243b0;
-    vec_new_array(a0 + 0x2794, game_uses_clear_15_bytes_0243b0, game_release_0ba180, 0xf0, 10);
-    game_copy_0fdc20(a0 + 0x30f4, pcVar1, pcVar2, uVar3);
+    pcVar2 = obj_scalar_dtor_02441c;
+    pcVar1 = CAnimal_part_ctor_0243b0;
+    vec_new_array(a0 + 0x2794, CAnimal_part_ctor_0243b0, obj_scalar_dtor_02441c, 0xf0, 10);
+    speech_record_init(a0 + 0x30f4, pcVar1, pcVar2, uVar3);
     buf256_clear_b(a0 + 0x4104);
     sprintf(a0, pcVar1, pcVar2, uVar3, "SM2000US.USR");
     *(u16 *)(a0 + 0x28) = 0;
@@ -5898,11 +5886,10 @@ int SaveData_ctor(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * game_release_0ba180  0x8c0ba180
- * area name: game code; nothing names its area yet; behaviour name: mostly calls release functions
- * called by: game_release_0c4968
+ * obj_scalar_dtor_02441c  0x8c0ba180
+ * called by: tank_records_scalar_dtor
  */
-int game_release_0ba180(int a0, u32 a1, u32 a2, u32 a3) {
+int obj_scalar_dtor_02441c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
     u32 in_stack_fffffff4;
     u32 ain0;
@@ -5910,7 +5897,7 @@ int game_release_0ba180(int a0, u32 a1, u32 a2, u32 a3) {
     ain0 = CONCAT22((short)((u32)in_stack_fffffff4 >> 0x10), (u16)a1);
     if (a0 != 0) {
         ar5_00 = 0xffffffff;
-        game_release_02441c(a0, 0xffffffff, a2, a3);
+        CAnimal_part_scalar_dtor(a0, 0xffffffff, a2, a3);
         if (0 < (short)ain0) {
             free_if_nonnull(a0);
         }
@@ -5924,15 +5911,14 @@ int game_release_0ba180(int a0, u32 a1, u32 a2, u32 a3) {
  * called by: static_init_vec3s_286e20
  */
 u32 vec_new_array_wrap(u32 a0) {
-    vec_new_array(a0, (&game_uses_clear_15_bytes_0ba284), (&game_release_0ba1f4), 0x80, 0xc);
+    vec_new_array(a0, (&obj_ctor_with_records_0ba284), (&obj_scalar_dtor_0ba234), 0x80, 0xc);
     return a0;
 }
 
 /*
- * game_release_0ba1f4  0x8c0ba1f4
- * area name: game code; nothing names its area yet; behaviour name: mostly calls release functions
+ * obj_scalar_dtor_0ba234  0x8c0ba1f4
  */
-int game_release_0ba1f4(int a0, u32 a1, u32 a2, u32 a3) {
+int obj_scalar_dtor_0ba234(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
     u32 in_stack_fffffff4;
     u32 ain0;
@@ -5940,7 +5926,7 @@ int game_release_0ba1f4(int a0, u32 a1, u32 a2, u32 a3) {
     ain0 = CONCAT22((short)((u32)in_stack_fffffff4 >> 0x10), (u16)a1);
     if (a0 != 0) {
         ar5_00 = 0xffffffff;
-        game_release_0ba234(a0, 0xffffffff, a2, a3);
+        obj_list_scalar_dtor_0ba234(a0, 0xffffffff, a2, a3);
         if (0 < (short)ain0) {
             free_if_nonnull(a0);
         }
@@ -5949,11 +5935,10 @@ int game_release_0ba1f4(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_release_0ba234  0x8c0ba234
- * area name: game code; nothing names its area yet; behaviour name: mostly calls release functions
- * called by: game_release_0ba1f4
+ * obj_list_scalar_dtor_0ba234  0x8c0ba234
+ * called by: obj_scalar_dtor_0ba234
  */
-int game_release_0ba234(int a0, u32 a1, u32 a2, u32 a3) {
+int obj_list_scalar_dtor_0ba234(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
     u32 in_stack_fffffff4;
     u32 ain0;
@@ -5971,24 +5956,22 @@ int game_release_0ba234(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_clear_15_bytes_0ba284  0x8c0ba284
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is clear_15_bytes
+ * obj_ctor_with_records_0ba284  0x8c0ba284
  */
-int game_uses_clear_15_bytes_0ba284(int a0) {
-    game_vec_0f3e84(a0);
-    game_init_fields_02d5b8(a0 + 0x24);
-    game_uses_set_fields_0_1_4_02ff40(a0 + 0x48);
+int obj_ctor_with_records_0ba284(int a0) {
+    obj_transform_init_scale1(a0);
+    talk_state_init_defaults(a0 + 0x24);
+    talk_record_clear(a0 + 0x48);
     clear_15_bytes(a0 + 0x58);
     return a0;
 }
 
 /*
- * game_copy_0ba2cc  0x8c0ba2cc
- * area name: game code; nothing names its area yet; behaviour name: mostly calls copy functions
+ * obj_reset_7cc_7e0  0x8c0ba2cc
  * called by: game_uses_Class_12b350_ctor_0bff8c
  */
-int game_copy_0ba2cc(int a0) {
-    game_copy_0b7a54(a0);
+int obj_reset_7cc_7e0(int a0) {
+    record_reset_0b7a54(a0);
     *(u32 *)(0x7cc + a0) = 0;
     *(u32 *)(0x7d0 + a0) = 0;
     *(u32 *)(0x7d8 + a0) = 0;
@@ -6001,7 +5984,7 @@ int game_copy_0ba2cc(int a0) {
 /*
  * set_2_words_wrap  0x8c0ba324
  * only calls set_2_words
- * called by: input_uses_set_2_words_wrap_0c1d1c
+ * called by: set_2_words_zero
  */
 u32 set_2_words_wrap(u32 a0, u32 a1, u32 a2) {
     set_2_words(a0, a1, a2);
@@ -6022,25 +6005,23 @@ u32 set_2_words(u32 *a0, u32 a1, u32 a2) {
 }
 
 /*
- * Class_12b350_vec_0ba354  0x8c0ba354
- * area name: only called from Class_12b350 methods; behaviour name: mostly calls vec functions
+ * Class_12b350_ctor_vec  0x8c0ba354
  * called by: Class_12b350_ctor
  */
-u32 Class_12b350_vec_0ba354(u32 a0, u32 a1, u32 a2) {
+u32 Class_12b350_ctor_vec(u32 a0, u32 a1, u32 a2) {
     Vec3_ctor_zero(a0, a1, a2);
-    game_init_fields_0ba5bc(a0);
+    set_cursor_default_160_339(a0);
     return a0;
 }
 
 /*
- * CProlog_calls_init_fields_0ba37c  0x8c0ba37c
- * area name: only called from CProlog methods; behaviour name: its callees mostly do: init_fields
+ * CProlog_reset_and_black_colors  0x8c0ba37c
  * called by: CProlog_Ready
  */
-u32 CProlog_calls_init_fields_0ba37c(u32 a0) {
+u32 CProlog_reset_and_black_colors(u32 a0) {
     u32 uVar1;
 
-    game_init_fields_0ba5bc(a0);
+    set_cursor_default_160_339(a0);
     uVar1 = (*(code *)(&set_4_colors_154))(0x8c2b5628, 0xff000000, 0xff000000, 0xff000000, 0xff000000);
     return uVar1;
 }
@@ -6048,7 +6029,7 @@ u32 CProlog_calls_init_fields_0ba37c(u32 a0) {
 /*
  * set_4_colors_154  0x8c0ba3b8
  * stores colours a1, a2, a3, s0 at +0x154..+0x160
- * called by: game_uses_sprintf_0d1858
+ * called by: Class_12b758_uses_sprintf_0d1858
  */
 int set_4_colors_154(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     int iVar1;
@@ -6062,11 +6043,10 @@ int set_4_colors_154(int a0, u32 a1, u32 a2, u32 a3, u32 s0) {
 }
 
 /*
- * game_uses_libgcc_divide_helper_0ba3e0  0x8c0ba3e0
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is
- * libgcc_divide_helper_0103d0 called by: game_uses_speech_is_playing_0bad68
+ * cursor_blink_step  0x8c0ba3e0
+ * called by: game_uses_speech_is_playing_0bad68
  */
-u32 *game_uses_libgcc_divide_helper_0ba3e0(int a0, u32 *a1) {
+u32 *cursor_blink_step(int a0, u32 *a1) {
     u32 *puVar1;
     u32 ar5_00;
     float fVar2;
@@ -6080,14 +6060,14 @@ u32 *game_uses_libgcc_divide_helper_0ba3e0(int a0, u32 *a1) {
         *(float *)(a0 + 4) = fVar2;
         puVar1 = &g_8c0ba480;
         if (fVar2 < 339.0) {
-            puVar1 = (u32 *)game_update_fields_0ba870(a0);
+            puVar1 = (u32 *)cursor_toggle_mode_14(a0);
         }
     } else {
         ar5_00 = 0x104;
         puVar1 = (u32 *)libgcc_divide_helper_0103d0(*a1, 0x104);
         if ((puVar1 == NULL) && (puVar1 = g_8c4365f8, g_8c4365f8 == (u32 *)0x1)) {
             g_8c4365f8 = NULL;
-            puVar1 = (u32 *)game_update_fields_0ba844(a0);
+            puVar1 = (u32 *)set_field_4_404_clear_10(a0);
         }
     }
     return puVar1;
@@ -6120,14 +6100,14 @@ u32 date_time_message_draw(int a0, u32 a1, u32 a2, u32 a3) {
     ta_fifo_2595aa(2, &uStack_1c, a2, a3);
     if (*(int *)(a0 + 0x10) == 0) {
         if (*(int *)(a0 + 0x14) == 1) {
-            game_uses_clear_5_words_0ba5e0(a0, a1, a2, a3);
+            draw_cursor_sprite(a0, a1, a2, a3);
             show_date_time_message(a0, a1, a2, a3);
         } else {
             show_date_time_message(a0, a1, a2, a3);
-            game_uses_clear_5_words_0ba5e0(a0, a1, a2, a3);
+            draw_cursor_sprite(a0, a1, a2, a3);
         }
     } else if (*(int *)(a0 + 0x14) == 1) {
-        game_uses_clear_5_words_0ba5e0(a0, a1, a2, a3);
+        draw_cursor_sprite(a0, a1, a2, a3);
     } else {
         show_date_time_message(a0, a1, a2, a3);
     }
@@ -6136,11 +6116,10 @@ u32 date_time_message_draw(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_init_fields_0ba5bc  0x8c0ba5bc
- * area name: game code; nothing names its area yet; behaviour name: writes 3 members
- * called by: CProlog_calls_init_fields_0ba37c, Class_12b350_vec_0ba354, game_uses_get_word_8_0bf22c
+ * set_cursor_default_160_339  0x8c0ba5bc
+ * called by: CProlog_reset_and_black_colors, Class_12b350_ctor_vec, scene_children_disable_and_release
  */
-u32 game_init_fields_0ba5bc(u32 *a0) {
+u32 set_cursor_default_160_339(u32 *a0) {
     *a0 = 0x43200000;
     a0[1] = 0x43a98000;
     a0[4] = 1;
@@ -6149,11 +6128,10 @@ u32 game_init_fields_0ba5bc(u32 *a0) {
 }
 
 /*
- * game_uses_clear_5_words_0ba5e0  0x8c0ba5e0
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is clear_5_words
+ * draw_cursor_sprite  0x8c0ba5e0
  * called by: date_time_message_draw
  */
-u32 game_uses_clear_5_words_0ba5e0(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
+u32 draw_cursor_sprite(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 ar6_00;
     u32 ar7_00;
@@ -6219,11 +6197,10 @@ u32 show_date_time_message(u32 unused_a0, u32 a1, u32 unused_a2, u32 a3) {
 }
 
 /*
- * game_update_fields_0ba844  0x8c0ba844
- * area name: game code; nothing names its area yet; behaviour name: conditionally writes members
- * called by: game_uses_libgcc_divide_helper_0ba3e0
+ * set_field_4_404_clear_10  0x8c0ba844
+ * called by: cursor_blink_step
  */
-u32 game_update_fields_0ba844(int a0) {
+u32 set_field_4_404_clear_10(int a0) {
     if (*(int *)(a0 + 0x14) == 0) {
         *(u32 *)(a0 + 4) = 0x43ca0000;
     } else {
@@ -6234,11 +6211,10 @@ u32 game_update_fields_0ba844(int a0) {
 }
 
 /*
- * game_update_fields_0ba870  0x8c0ba870
- * area name: game code; nothing names its area yet; behaviour name: conditionally writes members
- * called by: game_uses_libgcc_divide_helper_0ba3e0
+ * cursor_toggle_mode_14  0x8c0ba870
+ * called by: cursor_blink_step
  */
-u32 game_update_fields_0ba870(int a0) {
+u32 cursor_toggle_mode_14(int a0) {
     if (*(int *)(a0 + 0x14) == 0) {
         *(u32 *)(a0 + 0x14) = 1;
     } else {
@@ -6289,7 +6265,7 @@ u32 *Class_12b350_ctor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     *a0 = &g_8c12b350;
     Class_129920_ctor(a0 + 0x12, a1);
     clear_5_words(a0 + 0x14, a1, a2, a3);
-    Class_12b350_vec_0ba354(a0 + 0x56, a1, a2);
+    Class_12b350_ctor_vec(a0 + 0x56, a1, a2);
     a0[2] = 0;
     a0[0xc] = 2;
     *(u16 *)(a0 + 0xe) = 0xff;
@@ -6343,7 +6319,7 @@ int vec3_member_dtor_0ba9c8(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Class_12b350_dtor  0x8c0baa08
  * restores the Class_12b350 vtable, destroys its members (+0x158, +0x50, +0x48) and the Class_12b36c base, and frees a0
- * when asked called by: game_release_0c0368
+ * when asked called by: menu_scene_scalar_dtor
  */
 u32 *Class_12b350_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
@@ -6392,8 +6368,8 @@ u32 CProlog_Ready(int a0, u32 *a1) {
     *a1 = 0;
     *(u32 *)(a0 + 0x30) = 0;
     uVar2 = 0;
-    ninja_draw_257104(0);
-    pvr_draw_235eb4();
+    pvr_wrap_20a16e_a(0);
+    pvr_set_list_mode_0_a();
     if (cVar6 == '\0') {
         *(u32 *)(a0 + 0x34) = 0x3f800000;
     } else {
@@ -6452,7 +6428,7 @@ u32 CProlog_Ready(int a0, u32 *a1) {
     *(u32 *)(a0 + 0x144) = uVar3;
     uVar3 = pack_acquire_entry_handle(0x8c2b59d0, "AMB_RAIN", uVar4, uVar2);
     *(u32 *)(a0 + 0x148) = uVar3;
-    CProlog_calls_init_fields_0ba37c(a0 + 0x158);
+    CProlog_reset_and_black_colors(a0 + 0x158);
     *(u32 *)(a0 + 8) = 1;
     return 1;
 }
@@ -6555,13 +6531,13 @@ u32 game_uses_speech_is_playing_0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
                 }
                 if ((*(int *)(a0 + 0x14c) == 0) || (*(int *)(a0 + 0x14c) == 1)) {
                     ar5_00 = a1;
-                    game_uses_libgcc_divide_helper_0ba3e0(a0 + 0x158, a1);
+                    cursor_blink_step(a0 + 0x158, a1);
                 }
                 if (((*(int *)(a0 + 0x14c) != 0) &&
                      (iVar2 = input_start_pressed_wrap(*(u32 *)(a1 + 0x7cc)), iVar2 == 1)) &&
                     (*(int *)(a0 + 0x30) == 2)) {
                     ar5_00 = auStack_4c;
-                    game_init_fields_0bb158(a1, ar5_00);
+                    record_pack_bytes_96(a1, ar5_00);
                     iVar2 = save_file_date_matches(auStack_4c, ar5_00, a2, a3);
                     if (iVar2 == 0) {
                         g_8c43660d = '\x01';
@@ -6573,23 +6549,23 @@ u32 game_uses_speech_is_playing_0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
                             strcpy(auStack_2c, &g_8c13c8e2);
                             strcpy(0x8c4362a0, auStack_2c);
                             ar5_00 = a1;
-                            game_fill_loop_0bf1c8(a0, a1);
+                            text_slots_clear_range(a0, a1);
                         }
                     }
                 }
             } else {
                 save_show_file_message(iVar3);
-                game_uses_clear_5_words_0b79f0(iVar3, ar5_00, a2, a3);
+                draw_panel_43659c(iVar3, ar5_00, a2, a3);
             }
         } else {
-            game_uses_clear_5_words_0b79f0(ar4_02, ar5_00, a2, a3);
+            draw_panel_43659c(ar4_02, ar5_00, a2, a3);
             a3 = &g_8c13c025;
             a2 = 0;
             ar5_00 = (u8 *)0x5;
             startup_warning_check(&g_8c2b5628, 5, 0, &g_8c13c025);
         }
     } else {
-        game_uses_clear_5_words_0b79f0(ar4_02, ar5_00, a2, a3);
+        draw_panel_43659c(ar4_02, ar5_00, a2, a3);
         g_8c43660d = '\0';
     }
     if (*(int *)(a0 + 0x30) == 1) {
@@ -6611,11 +6587,10 @@ u32 game_uses_speech_is_playing_0bad68(int a0, u8 *a1, u32 a2, u8 *a3) {
 }
 
 /*
- * game_init_fields_0bb158  0x8c0bb158
- * area name: game code; nothing names its area yet; behaviour name: writes 7 members
+ * record_pack_bytes_96  0x8c0bb158
  * called by: game_uses_speech_is_playing_0bad68
  */
-u32 game_init_fields_0bb158(int a0, u16 *a1) {
+u32 record_pack_bytes_96(int a0, u16 *a1) {
     u8 bVar1;
 
     *a1 = *(u16 *)(0x96 + a0);
@@ -6951,7 +6926,7 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
     if (cVar23 == '\0' && fVar11 < fVar14) {
         puVar10 = (u8 *)0x898;
         ar6_00 = NULL;
-        pack_sound_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x144), 0, 0x898);
+        bgm_set_track_pan_volume(0x8c2b59d0, *(u32 *)(a0 + 0x144), 0, 0x898);
     }
     iVar2 = pack_entry_poll_status_wrap(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_00);
     if (iVar2 == 2) {
@@ -7022,7 +6997,7 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
                 puVar10 = (u8 *)(int)(dVar16 + dVar16);
             }
             ar6_00 = NULL;
-            pack_sound_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x144), 0, puVar10);
+            bgm_set_track_pan_volume(0x8c2b59d0, *(u32 *)(a0 + 0x144), 0, puVar10);
             iVar2 = pack_entry_poll_status_wrap(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_00);
             if (iVar2 == 2) {
                 puVar10 = (u8 *)0x8ea;
@@ -7057,7 +7032,7 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
         if (cVar23 != '\0' || fVar14 <= fVar11) {
             fVar11 = 2.38221e-42;
             iVar2 = 0;
-            pack_sound_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x148), 0, 0x6a4);
+            bgm_set_track_pan_volume(0x8c2b59d0, *(u32 *)(a0 + 0x148), 0, 0x6a4);
         } else {
             if (cVar24 == '\0') {
                 dVar16 = (double)CONCAT44(g_8c4366b8, 0x42960000);
@@ -7101,12 +7076,12 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
                 fVar11 = (float)(int)(dVar16 + dVar16);
             }
             iVar2 = 0;
-            pack_sound_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x148), 0, fVar11);
+            bgm_set_track_pan_volume(0x8c2b59d0, *(u32 *)(a0 + 0x148), 0, fVar11);
         }
     } else {
         fVar11 = 9.80909e-42;
         iVar2 = 0;
-        pack_sound_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x148), 0, 7000);
+        bgm_set_track_pan_volume(0x8c2b59d0, *(u32 *)(a0 + 0x148), 0, 7000);
     }
     g_8c4366c8 = g_8c4366c8 + 1;
     if (2 < g_8c4366c8) {
@@ -7962,7 +7937,7 @@ u32 ambient_sound_update(int a0, int a1, u8 *a2, u8 *a3) {
         if (cVar23 == '\0' && fVar14 < fVar11) {
             pcVar9 = (code *)0x258;
             ar6_01 = g_8c4366e4;
-            pack_sound_021d90(0x8c2b59d0, *(u32 *)(a0 + 0x144), g_8c4366e4, 600);
+            bgm_set_track_pan_volume(0x8c2b59d0, *(u32 *)(a0 + 0x144), g_8c4366e4, 600);
         }
     }
     iVar2 = pack_entry_poll_status_wrap(0x8c2b59d0, *(u32 *)(a0 + 0x144), ar6_01);
@@ -8288,7 +8263,7 @@ u32 game_select_intro_or_ending(int a0, int a1, u32 unused_a2, char *a3) {
         g_8c43676f = '\0';
         g_8c436770 = '\0';
         g_8c436771 = '\0';
-        game_uses_CProlog_classify_day_period_0f803c(0x8c35468c, a1, &g_8c43676c, a3);
+        speech_set_day_period(0x8c35468c, a1, &g_8c43676c, a3);
         for (iVar2 = 0; iVar2 < 8; iVar2 = iVar2 + 1) {
             puVar4 = &g_8c43670c;
             g_8c43670c = (u32) * (u8 *)(a1 + iVar2 + 4) + g_8c43670c;
@@ -8405,8 +8380,7 @@ u32 game_select_intro_or_ending(int a0, int a1, u32 unused_a2, char *a3) {
                                     g_8c436771 = '\x03';
                                 }
                                 pcVar6 = (code *)&g_8c436700;
-                                uVar1 = talk_uses_table13019c_find_row_02bef8(
-                                    g_8c436700, talk_uses_table13019c_find_row_02bef8, &g_8c436700);
+                                uVar1 = talk_find_row_for_stage(g_8c436700, talk_find_row_for_stage, &g_8c436700);
                                 *(short *)(puVar7 + -0x1ca) = (short)uVar1;
                                 if (*(short *)(puVar7 + -0x1ca) == 3) {
                                     g_8c43676d = g_8c43676d + '\x01';
@@ -8434,7 +8408,7 @@ u32 game_select_intro_or_ending(int a0, int a1, u32 unused_a2, char *a3) {
                                 } else {
                                     g_8c436771 = '\x03';
                                 }
-                                uVar1 = talk_uses_get_field_16_s16_02bf8c(g_8c436700, &g_8c436700);
+                                uVar1 = talk_get_s16_field_16_at_a8(g_8c436700, &g_8c436700);
                                 *(short *)(puVar7 + -0x1cc) = (short)uVar1;
                                 if (*(short *)(puVar7 + -0x1cc) == 0) {
                                     *(u8 **)(puVar7 + -0xa4) = &g_8c436738;
@@ -8478,7 +8452,7 @@ u32 game_select_intro_or_ending(int a0, int a1, u32 unused_a2, char *a3) {
                                 } else {
                                     g_8c436771 = '\x03';
                                 }
-                                uVar1 = talk_uses_get_field_16_s16_02bf8c(g_8c436700, iVar2);
+                                uVar1 = talk_get_s16_field_16_at_a8(g_8c436700, iVar2);
                                 *(short *)(puVar7 + -0x1ce) = (short)uVar1;
                                 if (*(short *)(puVar7 + -0x1ce) == 1) {
                                     uVar1 = get_field_18_on_field_a8(g_8c436700);
@@ -9090,10 +9064,9 @@ u32 game_select_intro_or_ending(int a0, int a1, u32 unused_a2, char *a3) {
 }
 
 /*
- * game_uses_ret_const_eb40_0bf064  0x8c0bf064
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is ret_const_eb40
+ * tank_ret_const_eb40_if_226f4  0x8c0bf064
  */
-u64 *game_uses_ret_const_eb40_0bf064(int a0) {
+u64 *tank_ret_const_eb40_if_226f4(int a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -9110,7 +9083,7 @@ u64 *game_uses_ret_const_eb40_0bf064(int a0) {
 
 /*
  * ret_const_eb40  0x8c0bf0ac
- * called by: game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_ret_const_eb40_0bf064
+ * called by: game_uses_matrix_apply_point_w1_wrap_0df250, tank_ret_const_eb40_if_226f4
  */
 u32 ret_const_eb40(void) {
     return 0xeb40;
@@ -9131,8 +9104,8 @@ u32 noop_0bf0bc(int a0) {
 /*
  * noop_0bf0e8  0x8c0bf0e8
  * does nothing
- * called by: game_draw_0e4198, game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0,
- * game_uses_noop_0deb60, game_uses_noop_0def78, noop_0bf0bc
+ * called by: game_draw_0e4198, game_uses_Class_12b930_draw_tinted_b_0def78,
+ * game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60, noop_0bf0bc
  */
 u32 noop_0bf0e8(void) {
     u32 in_r0;
@@ -9155,8 +9128,8 @@ u32 noop_0bf0f0(int a0) {
 /*
  * noop_0bf11c  0x8c0bf11c
  * does nothing
- * called by: game_uses_CWaterTank_CreateStage_0de07c, game_uses_noop_0de6d0, game_uses_noop_0deb60,
- * game_uses_noop_0def78, noop_0bf0f0
+ * called by: CWaterTank_create_stage_and_camera, game_uses_Class_12b930_draw_tinted_b_0def78, game_uses_noop_0de6d0,
+ * game_uses_noop_0deb60, noop_0bf0f0
  */
 u32 noop_0bf11c(void) {
     u32 in_r0;
@@ -9185,9 +9158,8 @@ u32 get_field_300_on_field_a4(int a0) {
 
 /*
  * get_field_300_0bf154  0x8c0bf154
- * called by: CEnv_item_cursor_next, CWaterTank_uses_get_field_300_0e0f48, Class_129974_vec_0db3bc,
- * Class_12b580_uses_get_field_300_0e6718, Class_12b580_uses_list_node_next_wrap_0da754, Class_12b930_m3_0de4b0,
- * Class_12bb08_m1_0da338, Class_12bb08_m2_0da5a8 (+20 more)
+ * called by: CEnv_item_cursor_next, Class_129974_vec_0db3bc, Class_12b580_add_item_unless_15, Class_12b930_m3_0de4b0,
+ * Class_12b930_uses_get_field_300_0e0f48, Class_12bb08_m1_0da338, Class_12bb08_m2_0da5a8, call_all_list_64 (+20 more)
  */
 u32 get_field_300_0bf154(int a0) {
     return *(u32 *)(0x300 + a0);
@@ -9196,7 +9168,7 @@ u32 get_field_300_0bf154(int a0) {
 /*
  * get_word_8  0x8c0bf160
  * word a1 of the array at +8
- * called by: game_select_intro_or_ending, game_uses_get_word_8_0bf22c
+ * called by: game_select_intro_or_ending, scene_children_disable_and_release
  */
 u32 get_word_8(int a0, int a1) {
     return *(u32 *)(a0 + a1 * 4 + 8);
@@ -9217,11 +9189,10 @@ u32 speech_request_pair(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_fill_loop_0bf1c8  0x8c0bf1c8
- * area name: game code; nothing names its area yet; behaviour name: a loop that writes memory
+ * text_slots_clear_range  0x8c0bf1c8
  * called by: game_uses_speech_is_playing_0bad68
  */
-int game_fill_loop_0bf1c8(u32 unused_a0, int a1) {
+int text_slots_clear_range(u32 unused_a0, int a1) {
     int in_r0;
     char *pcVar1;
     int iVar2;
@@ -9240,10 +9211,9 @@ int game_fill_loop_0bf1c8(u32 unused_a0, int a1) {
 }
 
 /*
- * game_uses_get_word_8_0bf22c  0x8c0bf22c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_word_8
+ * scene_children_disable_and_release  0x8c0bf22c
  */
-u32 game_uses_get_word_8_0bf22c(int a0, int a1, u32 a2, u32 a3) {
+u32 scene_children_disable_and_release(int a0, int a1, u32 a2, u32 a3) {
     int *a4;
     u32 uVar1;
     u32 ar6_00;
@@ -9267,7 +9237,7 @@ u32 game_uses_get_word_8_0bf22c(int a0, int a1, u32 a2, u32 a3) {
     CTexture_ReleaseFromVRAM(a0 + 0x48, uVar1, ar6_00, a3);
     *(u32 *)(0x14c + a0) = 4;
     *(u32 *)(a0 + 0x44) = 0x12;
-    game_init_fields_0ba5bc(a0 + 0x158);
+    set_cursor_default_160_339(a0 + 0x158);
     *(u32 *)(a0 + 8) = 0;
     *(u32 *)(0x7dc + a1) = 1;
     return 1;
@@ -9301,7 +9271,7 @@ u32 *Class_12b334_ctor(u32 *a0) {
 /*
  * Class_12b334_dtor  0x8c0bf38c
  * stores the vtable 0x8c12b334
- * called by: game_release_0c0368
+ * called by: menu_scene_scalar_dtor
  */
 u32 *Class_12b334_dtor(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
@@ -9348,13 +9318,12 @@ u32 noop_0bf440(void) {
 }
 
 /*
- * game_copy_0bf478  0x8c0bf478
- * area name: game code; nothing names its area yet; behaviour name: mostly calls copy functions
+ * input_obj_ctor_like  0x8c0bf478
  * called by: game_uses_Class_12b350_ctor_0bff8c
  */
-int game_copy_0bf478(int a0) {
+int input_obj_ctor_like(int a0) {
     clear_2_words(a0 + 0x28);
-    input_init_fields_0bf7a8(a0);
+    input_state_init(a0);
     return a0;
 }
 
@@ -9400,11 +9369,10 @@ u32 clear_field_0_0bf548(u32 *a0) {
 }
 
 /*
- * game_uses_set_fields_0_4_c_0bf550  0x8c0bf550
- * area name: game code; nothing names its area yet; behaviour name: its callees mostly do: uses_set_fields_0_4_c
+ * input_update_if_active  0x8c0bf550
  * called by: static_init_4367d4
  */
-u32 game_uses_set_fields_0_4_c_0bf550(int *a0, u32 a1, u32 unused_a2, u32 a3) {
+u32 input_update_if_active(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = 0;
@@ -9511,7 +9479,7 @@ u32 menu_next_pressed(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * input_start_pressed_wrap_0bf780  0x8c0bf780
  * only calls input_start_pressed
- * called by: game_uses_set_field_0_to_1_0c23fc, save_menu_update, static_init_4367d4
+ * called by: menu_text_entry_start, save_menu_update, static_init_4367d4
  */
 u32 input_start_pressed_wrap_0bf780(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -9521,11 +9489,10 @@ u32 input_start_pressed_wrap_0bf780(int a0, u32 unused_a1, u32 unused_a2, u32 a3
 }
 
 /*
- * input_init_fields_0bf7a8  0x8c0bf7a8
- * area name: sits between input functions (same compilation unit); behaviour name: writes 5 members
- * called by: game_copy_0bf478
+ * input_state_init  0x8c0bf7a8
+ * called by: input_obj_ctor_like
  */
-u32 input_init_fields_0bf7a8(u32 *a0) {
+u32 input_state_init(u32 *a0) {
     *a0 = 0;
     a0[1] = 0;
     a0[2] = 2;
@@ -9537,7 +9504,7 @@ u32 input_init_fields_0bf7a8(u32 *a0) {
 
 /*
  * set_field_0_to_1  0x8c0bf7c8
- * called by: game_uses_set_field_0_to_1_0c23fc, static_init_4367d4
+ * called by: menu_text_entry_start, static_init_4367d4
  */
 u32 set_field_0_to_1(u32 *a0) {
     *a0 = 1;
@@ -9559,7 +9526,7 @@ u32 set_name_10(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * input_uses_set_fields_0_4_c_0bf804  0x8c0bf804
  * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * set_fields_0_4_c called by: game_uses_set_fields_0_4_c_0bf550
+ * set_fields_0_4_c called by: input_update_if_active
  */
 u32 input_uses_set_fields_0_4_c_0bf804(int a0, u32 a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -9585,7 +9552,7 @@ u32 input_uses_set_fields_0_4_c_0bf804(int a0, u32 a1, u32 unused_a2, u32 a3) {
     Class_129808_set_model(auStack_60, &g_8c43655c, uVar3);
     uVar2 = 0x80000060;
     set_field_10(auStack_60, 0x80000060);
-    game_uses_clear_5_words_0c453c(&g_8c2b5628, uVar2, uVar3, uVar4);
+    draw_icon_panel_43654c(&g_8c2b5628, uVar2, uVar3, uVar4);
     obj_set_texlist(a1, uVar2, uVar3);
     uVar2 = *(u32 *)(a0 + 8);
     obj_set_texture_num(a1, uVar2);
@@ -9651,7 +9618,7 @@ u32 input_uses_set_fields_0_4_c_0bf804(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * game_uses_Class_129808_set_model_0bfa78  0x8c0bfa78
  * area name: game code; nothing names its area yet; behaviour name: its main named callee is Class_129808_set_model
- * called by: game_uses_set_fields_0_4_c_0bf550
+ * called by: input_update_if_active
  */
 u32 game_uses_Class_129808_set_model_0bfa78(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -10032,12 +9999,12 @@ int *game_uses_Class_12b350_ctor_0bff8c(int *a0, u32 a1, u32 a2, u32 a3) {
     Class_12b350_ctor(a0 + 3, a1, a2, a3);
     Class_12b388_ctor((int)a0 + 0x17c, a1);
     Class_12b334_ctor((int)a0 + 0x2d578);
-    game_copy_0ba2cc((int)a0 + 0x2d59c);
-    Class_129808_copy_016410((int)a0 + 0x2ddc4);
-    game_vec_0ffb98((int)a0 + 0x2de08, a1, a2, a3);
-    CItemGLoader_list_0fed18((int)a0 + 0x2e3a8, a1, a2);
+    obj_reset_7cc_7e0((int)a0 + 0x2d59c);
+    Class_129808_copy_return_self((int)a0 + 0x2ddc4);
+    cursor_ctor_like((int)a0 + 0x2de08, a1, a2, a3);
+    CItemGLoader_list_ctor((int)a0 + 0x2e3a8, a1, a2);
     Class_129920_ctor((int)a0 + 0x2e64c, a1);
-    game_copy_0bf478((int)a0 + 0x2e710);
+    input_obj_ctor_like((int)a0 + 0x2e710);
     puVar1 = (&DATA_8c13bee8);
     puVar3 = (u32 *)((int)a0 + 0x2dd88);
     uVar2 = *(u32 *)((&DATA_8c13bee8) + 4);
