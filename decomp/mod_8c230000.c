@@ -139,10 +139,9 @@ int gfx_strips_emit_s32_cull_c(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * gfxlib_uses_vram64_230384  0x8c230384
- * area name: in the gfxlib library code range; behaviour name: its main named callee is vram64_231eac
+ * gfxlib_vlist_texture_kernel_g  0x8c230384
  */
-double *gfxlib_uses_vram64_230384(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_vlist_texture_kernel_g(short *a0, int a1, u32 a2, double *a3) {
     u32 uVar1;
     short *psVar2;
     short *psVar3;
@@ -1206,10 +1205,9 @@ double *gfxlib_uses_vram64_230384(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_uses_vram64_2306a0  0x8c2306a0
- * area name: in the gfxlib library code range; behaviour name: its main named callee is vram64_231eac
+ * gfxlib_vlist_texture_kernel_h  0x8c2306a0
  */
-double *gfxlib_uses_vram64_2306a0(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_vlist_texture_kernel_h(short *a0, int a1, u32 a2, double *a3) {
     bool bVar1;
     u32 uVar2;
     int iVar3;
@@ -1776,10 +1774,9 @@ double *gfxlib_uses_vram64_2306a0(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_fill_loop_230ca4  0x8c230ca4
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfxlib_vlist_index_kernel_d  0x8c230ca4
  */
-float *gfxlib_fill_loop_230ca4(short *a0, int a1, u32 a2, float *a3) {
+float *gfxlib_vlist_index_kernel_d(short *a0, int a1, u32 a2, float *a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -1979,10 +1976,9 @@ float *gfxlib_fill_loop_230ca4(short *a0, int a1, u32 a2, float *a3) {
 }
 
 /*
- * gfxlib_uses_vram64_230f70  0x8c230f70
- * area name: in the gfxlib library code range; behaviour name: its main named callee is vram64_2319cc
+ * gfxlib_vlist_texture_kernel_i  0x8c230f70
  */
-double *gfxlib_uses_vram64_230f70(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_vlist_texture_kernel_i(short *a0, int a1, u32 a2, double *a3) {
     u32 uVar1;
     double *pdVar2;
     short *psVar3;
@@ -3764,10 +3760,9 @@ double *gfxlib_uses_vram64_230f70(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_uses_vram64_231624  0x8c231624
- * area name: in the gfxlib library code range; behaviour name: its main named callee is vram64_2319cc
+ * gfxlib_vlist_texture_kernel_j  0x8c231624
  */
-double *gfxlib_uses_vram64_231624(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_vlist_texture_kernel_j(short *a0, int a1, u32 a2, double *a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -4714,7 +4709,8 @@ double *gfxlib_uses_vram64_231624(short *a0, int a1, u32 a2, double *a3) {
 
 /*
  * vram64_2319cc  0x8c2319cc
- * called by: gfxlib_uses_vram64_22a828, gfxlib_uses_vram64_22aec8, gfxlib_uses_vram64_230f70, gfxlib_uses_vram64_231624
+ * called by: gfxlib_vlist_texture_kernel_d, gfxlib_vlist_texture_kernel_e, gfxlib_vlist_texture_kernel_i,
+ * gfxlib_vlist_texture_kernel_j
  */
 u64 *vram64_2319cc(double *a0, double *a1, double *a2, u64 *a3) {
     int iVar1;
@@ -5282,7 +5278,8 @@ u64 *vram64_2319cc(double *a0, double *a1, double *a2, u64 *a3) {
 
 /*
  * vram64_231eac  0x8c231eac
- * called by: gfxlib_uses_vram64_229c68, gfxlib_uses_vram64_229f74, gfxlib_uses_vram64_230384, gfxlib_uses_vram64_2306a0
+ * called by: gfxlib_vlist_texture_kernel_b, gfxlib_vlist_texture_kernel_c, gfxlib_vlist_texture_kernel_g,
+ * gfxlib_vlist_texture_kernel_h
  */
 u64 *vram64_231eac(double *a0, double *a1, double *a2, u64 *a3) {
     int iVar1;
@@ -5813,11 +5810,10 @@ u64 *vram64_231eac(double *a0, double *a1, double *a2, u64 *a3) {
 }
 
 /*
- * gfxlib_fill_loop_23231c  0x8c23231c
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_22c3f4
+ * gfxlib_vlist_transform_k_loop  0x8c23231c
+ * called by: gfxlib_vlist_transform_k_setup
  */
-u64 *gfxlib_fill_loop_23231c(double *a0, double *a1, double *a2, u64 *a3) {
+u64 *gfxlib_vlist_transform_k_loop(double *a0, double *a1, double *a2, u64 *a3) {
     int iVar1;
     int iVar2;
     u64 *puVar3;
@@ -6627,11 +6623,11 @@ u32 gfx_box_overlap_test_like(int a0, int a1) {
                 if (cVar9 != '\0') {
                     uStack_e0 = (u32)((u64) * (u64 *)(*piVar5 * 0xc + a1 + 8) >> 0x20);
                 }
-                iVar1 = kamui_uses_noop_fr4_test_212a30(&uStack_e0, &stack0xfffffef0);
+                iVar1 = kamui_clip_polygon_like(&uStack_e0, &stack0xfffffef0);
                 if (iVar1 != 0) {
                     return 1;
                 }
-                uVar2 = kamui_uses_ninja_double_fr4_test_2136b0(&uStack_e0, &stack0xfffffef0);
+                uVar2 = kamui_copy_and_clip_vertices(&uStack_e0, &stack0xfffffef0);
                 uVar7 = uVar7 | uVar2;
                 if (uVar7 == 7) {
                     return 1;
@@ -8136,7 +8132,7 @@ u32 gfxlib_set_pair_4aa524(u32 a0, u32 a1) {
 /*
  * gfx_set_color4_4aa52c  0x8c233dac
  * copies four words (a colour) to 0x8c4aa52c
- * called by: CAnimal_draw_blended_shape_like, CAnimal_uses_njGetMatrix_026968, CSquidLine_draw_like,
+ * called by: CAnimal_draw_blended_shape_like, CAnimal_draw_body, CSquidLine_draw_like,
  * Class_12ab2c_draw_with_texture_variant, Class_12aeec_draw_like, Class_12b580_draw_at_pose,
  * Class_12b930_draw_tinted_a, Class_12b930_draw_tinted_b (+6 more)
  */
@@ -8969,10 +8965,9 @@ u32 line_closest_point(float *a0, float *a1, float *a2) {
 }
 
 /*
- * gfxlib_uses_ninja_float_sign_noop_234a6a  0x8c234a6a
- * area name: in the gfxlib library code range; behaviour name: its main named callee is ninja_float_sign_noop
+ * gfxlib_float_sign_pair  0x8c234a6a
  */
-u32 gfxlib_uses_ninja_float_sign_noop_234a6a(double *a0, double *a1, double *a2, u32 unused_a3, int ain0) {
+u32 gfxlib_float_sign_pair(double *a0, double *a1, double *a2, u32 unused_a3, int ain0) {
     u32 uVar1;
     u64 *puVar2;
     float fVar3;
@@ -9292,12 +9287,11 @@ u32 gfx_draw_strip_tex_alt(u32 *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * gfxlib_draw_234d68  0x8c234d68
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: draw_line_ray, draw_quad_4_40, ninja_draw_2536a8, static_init_27def0
+ * gfxlib_draw_quad_list  0x8c234d68
+ * called by: draw_line_ray, draw_quad_4_40, ninja_draw_polygon_chunks, static_init_27def0
  * decompiler: Heritage AFTER dead removal. Example location: s0xffffff98 : 0x8c234e76
  */
-u32 gfxlib_draw_234d68(u32 a0, int a1, u8 *a2, u8 *a3) {
+u32 gfxlib_draw_quad_list(u32 a0, int a1, u8 *a2, u8 *a3) {
     u8 *ar4_00;
     int iVar1;
     u8 *a7;
@@ -10575,7 +10569,7 @@ u32 gfx_project_verts_color_clip_b(int *a0, int a1, u32 *a2) {
 /*
  * pvr_fill_fog_table_like  0x8c235e84
  * fills a 128-entry table with fr4 and loads it through pvr_sub_20a1d0
- * called by: game_uses_speech_is_playing_0bad68
+ * called by: game_sound_draw_talk_0bad68
  */
 u32 pvr_fill_fog_table_like(void) {
     u32 uVar1;
@@ -10627,9 +10621,8 @@ u32 alt_entry_235eba(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * pvr_set_list_mode_2  0x8c235ee4
- * called by: CGame_scene_enter_children, Class_12b580_uses_Class_12b580_particle_init_0d84e8, WATER_ELEMENT_release,
- * pvr_draw_235ee4_wrap_0d50a0, pvr_draw_235ee4_wrap_0d8444, scene_child_setup_with_timeout, static_init_437330,
- * tank_draw_water_layers_a (+3 more)
+ * called by: CGame_scene_enter_children, Class_12b580_draw_0d84e8, WATER_ELEMENT_release, pvr_draw_235ee4_wrap_0d50a0,
+ * pvr_draw_235ee4_wrap_0d8444, scene_child_setup_with_timeout, static_init_437330, tank_draw_water_layers_a (+3 more)
  */
 u32 pvr_set_list_mode_2(void) {
     int *piVar1;
@@ -10661,8 +10654,7 @@ u32 alt_entry_235eea(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * pvr_set_list_mode_0_b  0x8c235f14
- * called by: Class_12b580_uses_Class_12b580_particle_init_0d84e8, se_play_bubble_mono, tank_draw_water_layers_a,
- * tank_draw_water_layers_b
+ * called by: Class_12b580_draw_0d84e8, se_play_bubble_mono, tank_draw_water_layers_a, tank_draw_water_layers_b
  */
 u32 pvr_set_list_mode_0_b(void) {
     int *piVar1;
@@ -10710,11 +10702,10 @@ u32 move_pos_along_dir(int a0) {
 }
 
 /*
- * pvr_draw_235f84  0x8c235f84
- * area name: sits between pvr functions (same compilation unit); behaviour name: mostly calls draw functions
- * called by: fade_apply_colour_and_draw, game_draw_0d82f0
+ * pvr_set_fog_density_like  0x8c235f84
+ * called by: Class_12b580_helper_0d82f0, fade_apply_colour_and_draw
  */
-u8 *pvr_draw_235f84(double *a0) {
+u8 *pvr_set_fog_density_like(double *a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -10994,8 +10985,8 @@ u32 fpu_save_fr0_fr15(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 
 /*
  * triangle_normal  0x8c2361a8
  * a3 = (a1 - a0) x (a2 - a0), not normalised
- * called by: gfxlib_uses_float_to_color_u8_24bdc8, gfxlib_uses_float_to_color_u8_24c6f0,
- * gfxlib_uses_float_to_color_u8_24df18, gfxlib_uses_float_to_color_u8_250144, vram_24d5a8, vram_250a54
+ * called by: gfxlib_polygon_chunk_flat_shade_a, gfxlib_polygon_chunk_flat_shade_b, gfxlib_polygon_chunk_flat_shade_c,
+ * gfxlib_polygon_chunk_flat_shade_d, vram_24d5a8, vram_250a54
  */
 u32 triangle_normal(float *a0, float *a1, float *a2, float *a3) {
     *a3 = (a1[1] - a0[1]) * (a2[2] - a0[2]) - (a1[2] - a0[2]) * (a2[1] - a0[1]);
@@ -11300,7 +11291,7 @@ int draw_state_restore(u32 a0) {
  * ta_sq_write_header4_short  0x8c236510
  * three-word variant of ta_sq_write_header4
  * called by: gfx_2d_begin, gfx_draw_3d_line_segments_like, gfx_draw_polygon_flags, gfx_draw_strip_plain,
- * gfxlib_draw_234d68, ta_fifo_2595aa
+ * gfxlib_draw_quad_list, ta_fifo_2595aa
  */
 u32 *ta_sq_write_header4_short(void) {
     u32 *puVar1;
@@ -11332,7 +11323,7 @@ u32 *ta_sq_write_header4_short(void) {
  * ta_sq_write_header5_short  0x8c2365e2
  * three-word variant of ta_sq_write_header5
  * called by: gfx_2d_begin, gfx_draw_3d_line_segments_like, gfx_draw_polygon_flags, gfx_draw_strip_plain,
- * gfxlib_draw_234d68, ta_fifo_2595aa
+ * gfxlib_draw_quad_list, ta_fifo_2595aa
  */
 u32 *ta_sq_write_header5_short(void) {
     u32 *puVar1;
@@ -11363,7 +11354,7 @@ u32 *ta_sq_write_header5_short(void) {
  * ta_sq_write_header4  0x8c23666c
  * writes the saved polygon header (0x8c4ab238) to the TA through store queue 0 (list word 4)
  * called by: gfx_draw_3d_line_segments_like, gfx_draw_polygon_flags, gfx_draw_strip_tex, gfx_draw_strip_tex_alt,
- * gfx_poly_chunks_draw_a, gfx_poly_chunks_draw_b, gfx_poly_chunks_draw_s64, gfxlib_draw_234d68 (+1 more)
+ * gfx_poly_chunks_draw_a, gfx_poly_chunks_draw_b, gfx_poly_chunks_draw_s64, gfxlib_draw_debug_line (+1 more)
  */
 u32 *ta_sq_write_header4(void) {
     u32 *puVar1;
@@ -11396,7 +11387,7 @@ u32 *ta_sq_write_header4(void) {
  * ta_sq_write_header5  0x8c236718
  * same as ta_sq_write_header4 for list word 5
  * called by: gfx_draw_3d_line_segments_like, gfx_draw_polygon_flags, gfx_draw_strip_tex, gfx_draw_strip_tex_alt,
- * gfx_poly_chunks_draw_a, gfx_poly_chunks_draw_b, gfx_poly_chunks_draw_s64, gfxlib_draw_234d68 (+1 more)
+ * gfx_poly_chunks_draw_a, gfx_poly_chunks_draw_b, gfx_poly_chunks_draw_s64, gfxlib_draw_debug_line (+1 more)
  */
 u32 *ta_sq_write_header5(void) {
     u32 *puVar1;
@@ -11684,7 +11675,7 @@ u32 ta_fifo_237124(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * ta_select_texture_entry  0x8c2371be
- * called by: ninja_draw_2536a8, ninja_draw_sprite_entry, ninja_draw_sprite_entry_b
+ * called by: ninja_draw_polygon_chunks, ninja_draw_sprite_entry, ninja_draw_sprite_entry_b
  */
 u32 ta_select_texture_entry(int a0) {
     int *piVar1;
@@ -11783,7 +11774,7 @@ u32 ta_select_texture_slot(int a0) {
 /*
  * ta_set_param_word_mask  0x8c237370
  * merges a0's 0xfc07ff00 bits into the word at 0x8c4ab240
- * called by: ninja_draw_2536a8
+ * called by: ninja_draw_polygon_chunks
  */
 u32 ta_set_param_word_mask(u32 a0) {
     u32 in_r0;
@@ -15089,7 +15080,7 @@ u32 camera_set_direction_to(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 /*
  * gfxlib_light_kind_table  0x8c23a8d8
  * called by: alt_entry_23c4cc, gfx_light_contrib_a, gfx_light_contrib_b, gfx_light_contrib_c, gfx_light_contrib_d,
- * gfx_light_contrib_e, gfxlib_draw_23c4ba
+ * gfx_light_contrib_e, gfxlib_lights_setup_by_kind
  */
 int gfxlib_light_kind_table(u32 a0) {
     int in_r0;
@@ -16547,7 +16538,7 @@ u32 gfxlib_light_eval_l(int a0, float *a1) {
 /*
  * clear_4_words  0x8c23ba30
  * a0[0..3] = 0
- * called by: gfx_lights_apply_color, gfxlib_draw_23bcc8, gfxlib_draw_23be0c
+ * called by: gfx_lights_apply_color, gfxlib_call_hooks_matrix_a, gfxlib_call_hooks_matrix_b
  */
 u32 clear_4_words(u32 *a0) {
     *a0 = 0;
@@ -16559,7 +16550,8 @@ u32 clear_4_words(u32 *a0) {
 
 /*
  * gfxlib_call_registered_hooks  0x8c23ba42
- * called by: gfx_lights_apply_color, gfxlib_draw_23bae2, gfxlib_draw_23bcc8, gfxlib_draw_23be0c
+ * called by: gfx_lights_apply_color, gfxlib_call_hooks_matrix_a, gfxlib_call_hooks_matrix_b,
+ * gfxlib_call_hooks_with_args
  */
 u8 *gfxlib_call_registered_hooks(void) {
     u8 *puVar1;
@@ -16608,7 +16600,7 @@ u32 *alt_entry_23ba48(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3
 
 /*
  * gfxlib_fog_update  0x8c23ba9c
- * called by: gfx_lights_apply_color, gfxlib_draw_23bcc8, gfxlib_draw_23be0c
+ * called by: gfx_lights_apply_color, gfxlib_call_hooks_matrix_a, gfxlib_call_hooks_matrix_b
  */
 u32 gfxlib_fog_update(void) {
     u32 in_r0;
@@ -16673,12 +16665,12 @@ u32 gfxlib_fog_update(void) {
 }
 
 /*
- * gfxlib_draw_23bae2  0x8c23bae2
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: gfxlib_draw_23e7a8, gfxlib_draw_23eda6, gfxlib_draw_23efac, gfxlib_draw_240222, gfxlib_draw_240434,
- * gfxlib_draw_2424f6, gfxlib_draw_24296c, gfxlib_draw_244262 (+31 more)
+ * gfxlib_call_hooks_with_args  0x8c23bae2
+ * called by: gfxlib_light_vertices_a, gfxlib_light_vertices_b, gfxlib_light_vertices_e, gfxlib_polygon_chunk_colour_a,
+ * gfxlib_polygon_chunk_colour_b, gfxlib_polygon_chunk_colour_c, gfxlib_polygon_chunk_flat_shade_a,
+ * gfxlib_polygon_chunk_flat_shade_b (+31 more)
  */
-u32 gfxlib_draw_23bae2(double *a0, int a1, float *a2, int a3) {
+u32 gfxlib_call_hooks_with_args(double *a0, int a1, float *a2, int a3) {
     double *pdVar1;
     u32 uVar2;
     double *ar4_00;
@@ -16910,10 +16902,9 @@ u32 gfx_lights_apply_color(double *a0, u32 a1, float *a2, int a3) {
 }
 
 /*
- * gfxlib_draw_23bcc8  0x8c23bcc8
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfxlib_call_hooks_matrix_a  0x8c23bcc8
  */
-u32 gfxlib_draw_23bcc8(u32 *a0, u32 a1, float *a2, int a3) {
+u32 gfxlib_call_hooks_matrix_a(u32 *a0, u32 a1, float *a2, int a3) {
     double *ar4_00;
     float in_fr3;
     float fVar1;
@@ -17095,10 +17086,9 @@ u32 gfxlib_draw_23bcc8(u32 *a0, u32 a1, float *a2, int a3) {
 }
 
 /*
- * gfxlib_draw_23be0c  0x8c23be0c
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfxlib_call_hooks_matrix_b  0x8c23be0c
  */
-u32 gfxlib_draw_23be0c(u32 *a0, u32 a1, float *a2, int a3) {
+u32 gfxlib_call_hooks_matrix_b(u32 *a0, u32 a1, float *a2, int a3) {
     double *ar4_00;
     u32 uVar1;
     double in_dr0;
@@ -17358,11 +17348,10 @@ int gfx_lights_select_handlers(void) {
 }
 
 /*
- * gfxlib_uses_noop_fr4_test_23c2a0  0x8c23c2a0
- * area name: in the gfxlib library code range; behaviour name: its main named callee is noop_fr4_test
- * called by: ninja_draw_2536a8
+ * gfxlib_lights_update_all  0x8c23c2a0
+ * called by: ninja_draw_polygon_chunks
  */
-int gfxlib_uses_noop_fr4_test_23c2a0(double *a0) {
+int gfxlib_lights_update_all(double *a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -18198,11 +18187,10 @@ code_r0x8c23c2f0:
 }
 
 /*
- * gfxlib_draw_23c4ba  0x8c23c4ba
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: ninja_draw_2536a8
+ * gfxlib_lights_setup_by_kind  0x8c23c4ba
+ * called by: ninja_draw_polygon_chunks
  */
-u32 gfxlib_draw_23c4ba(u32 a0) {
+u32 gfxlib_lights_setup_by_kind(u32 a0) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -18542,8 +18530,8 @@ u32 memcpy_words_n(u32 *a0, u32 *a1, int a2) {
 /*
  * memcpy_bytes  0x8c23c814
  * copies a2 bytes (a2 > 0)
- * called by: common_load_eye_scsi, draw_state_copy_in, draw_state_copy_out, flashrom_read_partition_3, gfx_stream_read,
- * gfx_texlist_entries_from_mem, gfx_texlist_entries_from_stream, nj_file_next_chunk (+8 more)
+ * called by: common_load_eye_scsi, draw_copy_list_sizes, draw_state_copy_in, draw_state_copy_out,
+ * flashrom_read_partition_3, gfx_stream_read, gfx_texlist_entries_from_mem, gfx_texlist_entries_from_stream (+8 more)
  */
 int memcpy_bytes(char *a0, char *a1, int a2) {
     char cVar1;
@@ -18561,7 +18549,7 @@ int memcpy_bytes(char *a0, char *a1, int a2) {
 /*
  * gfx_project_verts_sq_normal_offset_b  0x8c23c824
  * variant of gfx_project_verts_sq_normal_offset
- * called by: gfxlib_draw_23d386
+ * called by: gfxlib_project_vertex_list
  */
 u32 gfx_project_verts_sq_normal_offset_b(int *a0, u32 a1) {
     float fVar1;
@@ -18667,7 +18655,7 @@ u32 gfx_project_verts_sq_normal_offset_b(int *a0, u32 a1) {
 /*
  * gfx_project_verts_sq_normal_offset  0x8c23c940
  * projects a0[0] vertices through the store queue, offsetting each along its normal by a global scale
- * called by: gfxlib_draw_23d386
+ * called by: gfxlib_project_vertex_list
  */
 u32 gfx_project_verts_sq_normal_offset(int *a0, u32 a1) {
     float fVar1;
@@ -18760,7 +18748,7 @@ u32 gfx_project_verts_sq_normal_offset(int *a0, u32 a1) {
 /*
  * gfx_project_verts_sq_normalized  0x8c23ca50
  * projects vertices through the store queue with transformed, normalised normals
- * called by: gfxlib_draw_23d386
+ * called by: gfxlib_project_vertex_list
  */
 u32 gfx_project_verts_sq_normalized(int *a0, u32 a1) {
     float fVar1;
@@ -18861,7 +18849,7 @@ u32 gfx_project_verts_sq_normalized(int *a0, u32 a1) {
 /*
  * gfx_project_verts_sq_normal  0x8c23cb50
  * projects vertices through the store queue with transformed normals
- * called by: gfxlib_draw_23d386
+ * called by: gfxlib_project_vertex_list
  */
 u32 gfx_project_verts_sq_normal(int *a0, u32 a1) {
     float fVar1;
@@ -18949,7 +18937,7 @@ u32 gfx_project_verts_sq_normal(int *a0, u32 a1) {
 /*
  * gfx_project_verts_sq  0x8c23cc40
  * projects a0[0] vertices through the store queue into 64-byte records
- * called by: gfxlib_draw_23d386
+ * called by: gfxlib_project_vertex_list
  */
 u32 gfx_project_verts_sq(int *a0, u32 a1) {
     float fVar1;
@@ -19016,7 +19004,7 @@ u32 gfx_project_verts_sq(int *a0, u32 a1) {
 /*
  * gfx_project_verts_sq_clipcodes_b  0x8c23cd0c
  * variant of gfx_project_verts_sq_clipcodes with normals offset by a global scale
- * called by: gfxlib_draw_23d386
+ * called by: gfxlib_project_vertex_list
  */
 u32 gfx_project_verts_sq_clipcodes_b(int *a0, u32 a1) {
     float fVar1;
@@ -19151,7 +19139,7 @@ u32 gfx_project_verts_sq_clipcodes_b(int *a0, u32 a1) {
 /*
  * gfx_project_verts_sq_clipcodes_c  0x8c23ce74
  * variant of gfx_project_verts_sq_clipcodes with normals
- * called by: gfxlib_draw_23d386
+ * called by: gfxlib_project_vertex_list
  */
 u32 gfx_project_verts_sq_clipcodes_c(int *a0, u32 a1, u32 a2) {
     float fVar1;
@@ -19275,7 +19263,7 @@ u32 gfx_project_verts_sq_clipcodes_c(int *a0, u32 a1, u32 a2) {
 /*
  * gfx_project_verts_sq_clipcodes_d  0x8c23cfd0
  * variant of gfx_project_verts_sq_clipcodes with normalised normals
- * called by: gfxlib_draw_23d386
+ * called by: gfxlib_project_vertex_list
  */
 u32 gfx_project_verts_sq_clipcodes_d(int *a0, u32 a1) {
     float fVar1;
@@ -19405,7 +19393,7 @@ u32 gfx_project_verts_sq_clipcodes_d(int *a0, u32 a1) {
 /*
  * gfx_project_verts_sq_clipcodes_e  0x8c23d118
  * variant of gfx_project_verts_sq_clipcodes
- * called by: gfxlib_draw_23d386
+ * called by: gfxlib_project_vertex_list
  */
 u32 gfx_project_verts_sq_clipcodes_e(int *a0, u32 a1, u32 a2) {
     float fVar1;
@@ -19523,7 +19511,7 @@ u32 gfx_project_verts_sq_clipcodes_e(int *a0, u32 a1, u32 a2) {
 /*
  * gfx_project_verts_sq_clipcodes  0x8c23d254
  * projects vertices through the store queue and computes clip codes, ANDing and ORing them into a0[6], a0[7]
- * called by: gfxlib_draw_23d386
+ * called by: gfxlib_project_vertex_list
  */
 u32 gfx_project_verts_sq_clipcodes(int *a0, u32 a1) {
     float fVar1;
@@ -19616,11 +19604,10 @@ u32 gfx_project_verts_sq_clipcodes(int *a0, u32 a1) {
 }
 
 /*
- * gfxlib_draw_23d386  0x8c23d386
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfxlib_project_vertex_list  0x8c23d386
  * called by: gfxlib_draw_23d386_wrap
  */
-u32 gfxlib_draw_23d386(u32 *a0) {
+u32 gfxlib_project_vertex_list(u32 *a0) {
     double *pdVar1;
     double *pdVar2;
     u64 *puVar3;
@@ -19956,8 +19943,9 @@ u32 gfxlib_draw_23d386(u32 *a0) {
 
 /*
  * noop_23d694  0x8c23d694
- * called by: gfx_strips_reset_vertex_colors_like, gfxlib_draw_23eda6, gfxlib_draw_23efac, gfxlib_draw_240222,
- * gfxlib_draw_240434, gfxlib_draw_2424f6, gfxlib_draw_24296c, gfxlib_draw_244262 (+28 more)
+ * called by: gfx_strips_reset_vertex_colors_like, gfxlib_vertex_colour_kernel_a, gfxlib_vertex_colour_kernel_aa,
+ * gfxlib_vertex_colour_kernel_ab, gfxlib_vertex_colour_kernel_ac, gfxlib_vertex_colour_kernel_ad,
+ * gfxlib_vertex_colour_kernel_ae, gfxlib_vertex_colour_kernel_af (+28 more)
  */
 u32 noop_23d694(void) {
     u32 in_r0;
@@ -19966,11 +19954,10 @@ u32 noop_23d694(void) {
 }
 
 /*
- * gfxlib_uses_float_to_color_u8_23d698  0x8c23d698
- * area name: in the gfxlib library code range; behaviour name: its main named callee is float_to_color_u8
- * called by: gfxlib_uses_float_to_color_u8_242d56, gfxlib_uses_float_to_color_u8_244ac2, vram_2499ec
+ * gfxlib_light_vertices_a  0x8c23d698
+ * called by: gfxlib_vertex_colour_kernel_t, gfxlib_vertex_colour_kernel_z, vram_2499ec
  */
-u32 gfxlib_uses_float_to_color_u8_23d698(int a0, u32 a1, int a2, u32 a3) {
+u32 gfxlib_light_vertices_a(int a0, u32 a1, int a2, u32 a3) {
     u64 uVar1;
     u64 uVar2;
     u32 uVar3;
@@ -20029,7 +20016,7 @@ u32 gfxlib_uses_float_to_color_u8_23d698(int a0, u32 a1, int a2, u32 a3) {
             iVar9 = *piVar12 + 0x10;
             puVar8 = puStack_40;
             piVar10 = (int *)((u16)a3 & 0x8000);
-            gfxlib_draw_23bae2(puStack_40, iVar9, a2, (int *)((u16)a3 & 0x8000));
+            gfxlib_call_hooks_with_args(puStack_40, iVar9, a2, (int *)((u16)a3 & 0x8000));
             iVar6 = *piVar12;
             if (cVar26 != '\0') {
                 in_xd4 = *(double *)(puStack_40 + 4);
@@ -20645,12 +20632,10 @@ u32 gfxlib_uses_float_to_color_u8_23d698(int a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * gfxlib_uses_float_to_color_u8_23dc42  0x8c23dc42
- * area name: in the gfxlib library code range; behaviour name: its main named callee is float_to_color_u8
- * called by: gfxlib_uses_float_to_color_u8_2437d6, gfxlib_uses_float_to_color_u8_245cc8,
- * gfxlib_uses_float_to_color_u8_24b154
+ * gfxlib_light_vertices_b  0x8c23dc42
+ * called by: gfxlib_polygon_chunk_colour_c, gfxlib_vertex_colour_kernel_ad, gfxlib_vertex_colour_kernel_v
  */
-u32 gfxlib_uses_float_to_color_u8_23dc42(int a0, u32 a1, int a2, u32 a3) {
+u32 gfxlib_light_vertices_b(int a0, u32 a1, int a2, u32 a3) {
     u64 uVar1;
     u64 uVar2;
     double dVar3;
@@ -20714,7 +20699,7 @@ u32 gfxlib_uses_float_to_color_u8_23dc42(int a0, u32 a1, int a2, u32 a3) {
             a2 = *piVar8 + 0x30;
             iVar7 = *piVar8 + 0x10;
             uVar18 = a3 & 0x8000;
-            gfxlib_draw_23bae2(puVar13, iVar7, a2, a3 & 0x8000);
+            gfxlib_call_hooks_with_args(puVar13, iVar7, a2, a3 & 0x8000);
             iVar5 = *piVar8;
             if (cVar27 != '\0') {
                 in_xd4 = *(double *)(&g_8c4c2624 + iVar12);
@@ -21382,11 +21367,10 @@ u32 gfxlib_uses_float_to_color_u8_23dc42(int a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * gfxlib_uses_float_to_color_u8_23e228  0x8c23e228
- * area name: in the gfxlib library code range; behaviour name: its main named callee is float_to_color_u8
- * called by: gfxlib_uses_float_to_color_u8_24553e, vram_24f64c
+ * gfxlib_light_vertices_c  0x8c23e228
+ * called by: gfxlib_vertex_colour_kernel_ab, vram_24f64c
  */
-int gfxlib_uses_float_to_color_u8_23e228(int a0, u32 a1, u32 a2, u32 a3) {
+int gfxlib_light_vertices_c(int a0, u32 a1, u32 a2, u32 a3) {
     u64 uVar1;
     u64 uVar2;
     u32 uVar3;
@@ -21807,11 +21791,10 @@ int gfxlib_uses_float_to_color_u8_23e228(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_uses_float_to_color_u8_23e4c8  0x8c23e4c8
- * area name: in the gfxlib library code range; behaviour name: its main named callee is float_to_color_u8
- * called by: gfxlib_uses_float_to_color_u8_246756, gfxlib_uses_float_to_color_u8_251f78
+ * gfxlib_light_vertices_d  0x8c23e4c8
+ * called by: gfxlib_polygon_chunk_colour_d, gfxlib_vertex_colour_kernel_af
  */
-int gfxlib_uses_float_to_color_u8_23e4c8(int a0, u32 a1, u32 a2, u32 a3) {
+int gfxlib_light_vertices_d(int a0, u32 a1, u32 a2, u32 a3) {
     u64 uVar1;
     u64 uVar2;
     u32 uVar3;
@@ -22280,11 +22263,10 @@ int gfxlib_uses_float_to_color_u8_23e4c8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_draw_23e7a8  0x8c23e7a8
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
- * called by: gfxlib_draw_2424f6, gfxlib_draw_244262, gfxlib_draw_2485bc
+ * gfxlib_light_vertices_e  0x8c23e7a8
+ * called by: gfxlib_polygon_chunk_kernel_b, gfxlib_vertex_colour_kernel_r, gfxlib_vertex_colour_kernel_x
  */
-int gfxlib_draw_23e7a8(int a0, u32 a1, u32 a2, u32 a3) {
+int gfxlib_light_vertices_e(int a0, u32 a1, u32 a2, u32 a3) {
     u64 uVar1;
     u64 uVar2;
     int iVar3;
@@ -22365,7 +22347,7 @@ int gfxlib_draw_23e7a8(int a0, u32 a1, u32 a2, u32 a3) {
             }
         } else {
             piVar9 = aiStack_28 + iVar8;
-            gfxlib_draw_23bae2(pdStack_38, *piVar9 + 0x10, *piVar9 + 0x30, (u16)a3 & 0x8000);
+            gfxlib_call_hooks_with_args(pdStack_38, *piVar9 + 0x10, *piVar9 + 0x30, (u16)a3 & 0x8000);
             *(u32 *)(*piVar9 + 0x3c) = (u32)(u16)a3;
             if (cVar23 == '\0') {
                 uVar13 = *(u32 *)pdStack_38;
@@ -22844,11 +22826,10 @@ int gfxlib_draw_23e7a8(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_fill_loop_23eb44  0x8c23eb44
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_252e7c, gfxlib_uses_noop_246f1a
+ * gfxlib_lights_prepare  0x8c23eb44
+ * called by: gfxlib_polygon_chunk_lit, gfxlib_vertex_colour_kernel_ah
  */
-int gfxlib_fill_loop_23eb44(int a0, u32 a1, u32 a2) {
+int gfxlib_lights_prepare(int a0, u32 a1, u32 a2) {
     int iVar1;
     double *pdVar2;
     u64 *puVar3;
@@ -23088,10 +23069,9 @@ int gfxlib_fill_loop_23eb44(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * gfxlib_draw_23eda6  0x8c23eda6
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfxlib_vertex_colour_kernel_a  0x8c23eda6
  */
-int gfxlib_draw_23eda6(int a0, u32 a1) {
+int gfxlib_vertex_colour_kernel_a(int a0, u32 a1) {
     int iVar1;
     int iVar2;
     double *pdVar3;
@@ -23175,7 +23155,7 @@ int gfxlib_draw_23eda6(int a0, u32 a1) {
             CacheBlockWriteBack(puVar10);
             if (*(u32 *)((int)puVar10 + 0x3c) != (uVar6 | a1)) {
                 *(u32 *)((int)puVar10 + 0x3c) = uVar6 | a1;
-                iVar2 = gfxlib_draw_23bae2(&g_8c4c2620, puVar10 + 2, puVar10 + 6, uVar6);
+                iVar2 = gfxlib_call_hooks_with_args(&g_8c4c2620, puVar10 + 2, puVar10 + 6, uVar6);
                 if (cVar23 == '\0') {
                     *(u32 *)(puVar10 + 4) = g_8c4c2620;
                     pdVar4 = (double *)&g_8c4c2638;
@@ -23300,7 +23280,7 @@ int gfxlib_draw_23eda6(int a0, u32 a1) {
         CacheBlockWriteBack(puVar11);
         if (*(u32 *)((int)puVar11 + 0x3c) != (uVar6 | a1)) {
             *(u32 *)((int)puVar11 + 0x3c) = uVar6 | a1;
-            iVar2 = gfxlib_draw_23bae2(&g_8c4c2620, puVar11 + 2, puVar11 + 6, uVar6);
+            iVar2 = gfxlib_call_hooks_with_args(&g_8c4c2620, puVar11 + 2, puVar11 + 6, uVar6);
             if (cVar23 == '\0') {
                 *(u32 *)(puVar11 + 4) = g_8c4c2620;
                 pdVar4 = (double *)&g_8c4c2628;
@@ -23391,10 +23371,9 @@ int gfxlib_draw_23eda6(int a0, u32 a1) {
 }
 
 /*
- * gfxlib_draw_23efac  0x8c23efac
- * area name: in the gfxlib library code range; behaviour name: mostly calls draw functions
+ * gfxlib_vertex_colour_kernel_b  0x8c23efac
  */
-u32 gfxlib_draw_23efac(int a0, int a1) {
+u32 gfxlib_vertex_colour_kernel_b(int a0, int a1) {
     u16 uVar1;
     int iVar2;
     u32 uVar3;
@@ -23542,7 +23521,7 @@ u32 gfxlib_draw_23efac(int a0, int a1) {
                     CacheBlockWriteBack(pdVar10);
                     if (*(int *)((int)pdVar10 + 0x3c) != a1) {
                         *(int *)((int)pdVar10 + 0x3c) = a1;
-                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, 0);
+                        gfxlib_call_hooks_with_args(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, 0);
                         if (cVar24 == '\0') {
                             *(u32 *)(pdVar10 + 4) = g_8c4c2620;
                             pdVar9 = (double *)&g_8c4c2638;
@@ -23607,7 +23586,7 @@ u32 gfxlib_draw_23efac(int a0, int a1) {
                 CacheBlockWriteBack(pdVar10);
                 if (*(int *)((int)pdVar10 + 0x3c) != a1) {
                     *(int *)((int)pdVar10 + 0x3c) = a1;
-                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, 0);
+                    gfxlib_call_hooks_with_args(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, 0);
                     if (cVar24 == '\0') {
                         *(u32 *)(pdVar10 + 4) = g_8c4c2620;
                         pdVar9 = (double *)&g_8c4c2638;
@@ -23702,7 +23681,7 @@ u32 gfxlib_draw_23efac(int a0, int a1) {
                     CacheBlockWriteBack(pdVar9);
                     if (*(int *)((int)pdVar9 + 0x3c) != a1) {
                         *(int *)((int)pdVar9 + 0x3c) = a1;
-                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar9 + 2, pdVar9 + 6, 0);
+                        gfxlib_call_hooks_with_args(&g_8c4c2620, pdVar9 + 2, pdVar9 + 6, 0);
                         if (cVar24 == '\0') {
                             *(u32 *)(pdVar9 + 4) = g_8c4c2620;
                             pdVar8 = (double *)&g_8c4c2638;
@@ -23790,7 +23769,7 @@ u32 gfxlib_draw_23efac(int a0, int a1) {
                     CacheBlockWriteBack(pdVar10);
                     if (*(int *)((int)pdVar10 + 0x3c) != a1) {
                         *(int *)((int)pdVar10 + 0x3c) = a1;
-                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, 0);
+                        gfxlib_call_hooks_with_args(&g_8c4c2620, pdVar10 + 2, pdVar10 + 6, 0);
                         if (cVar24 == '\0') {
                             *(u32 *)(pdVar10 + 4) = g_8c4c2620;
                             pdVar9 = (double *)&g_8c4c2638;
@@ -23903,7 +23882,7 @@ u32 gfxlib_draw_23efac(int a0, int a1) {
             CacheBlockWriteBack(pdVar12);
             if (*(int *)((int)pdVar12 + 0x3c) != a1) {
                 *(int *)((int)pdVar12 + 0x3c) = a1;
-                uVar3 = gfxlib_draw_23bae2(&g_8c4c2620, pdVar12 + 2, pdVar12 + 6, 0);
+                uVar3 = gfxlib_call_hooks_with_args(&g_8c4c2620, pdVar12 + 2, pdVar12 + 6, 0);
                 if (cVar24 == '\0') {
                     *(u32 *)(pdVar12 + 4) = g_8c4c2620;
                     pdVar9 = (double *)&g_8c4c2638;
@@ -23996,10 +23975,9 @@ u32 gfxlib_draw_23efac(int a0, int a1) {
 }
 
 /*
- * gfxlib_uses_float_to_color_u8_23f35a  0x8c23f35a
- * area name: in the gfxlib library code range; behaviour name: its main named callee is float_to_color_u8
+ * gfxlib_vertex_colour_kernel_c  0x8c23f35a
  */
-u32 *gfxlib_uses_float_to_color_u8_23f35a(int a0, u32 a1) {
+u32 *gfxlib_vertex_colour_kernel_c(int a0, u32 a1) {
     int iVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -24097,7 +24075,7 @@ u32 *gfxlib_uses_float_to_color_u8_23f35a(int a0, u32 a1) {
                 puVar4 = &g_8c4c2620;
                 puVar5 = puVar12 + 6;
                 puVar13 = puVar12 + 2;
-                gfxlib_draw_23bae2(&g_8c4c2620, puVar13, puVar5, uVar6);
+                gfxlib_call_hooks_with_args(&g_8c4c2620, puVar13, puVar5, uVar6);
                 uVar2 = float_to_color_u8(puVar4, puVar13, puVar5, uVar6);
                 *(u32 *)(puVar12 + 5) = uVar2;
                 if (cVar28 == '\0') {
@@ -24217,7 +24195,7 @@ u32 *gfxlib_uses_float_to_color_u8_23f35a(int a0, u32 a1) {
             puVar4 = &g_8c4c2620;
             ar6_00 = puVar13 + 6;
             puVar5 = puVar13 + 2;
-            gfxlib_draw_23bae2(&g_8c4c2620, puVar5, ar6_00, uVar6);
+            gfxlib_call_hooks_with_args(&g_8c4c2620, puVar5, ar6_00, uVar6);
             uVar24 = float_to_color_u8(puVar4, puVar5, ar6_00, uVar6);
             *(u32 *)(puVar13 + 5) = uVar24;
             if (cVar28 == '\0') {
@@ -24294,10 +24272,9 @@ u32 *gfxlib_uses_float_to_color_u8_23f35a(int a0, u32 a1) {
 }
 
 /*
- * gfxlib_uses_float_to_color_u8_23f5e2  0x8c23f5e2
- * area name: in the gfxlib library code range; behaviour name: its main named callee is float_to_color_u8
+ * gfxlib_vertex_colour_kernel_d  0x8c23f5e2
  */
-u32 gfxlib_uses_float_to_color_u8_23f5e2(int a0, int a1) {
+u32 gfxlib_vertex_colour_kernel_d(int a0, int a1) {
     short sVar1;
     u16 uVar2;
     int iVar3;
@@ -24449,7 +24426,7 @@ u32 gfxlib_uses_float_to_color_u8_23f5e2(int a0, int a1) {
                         uVar4 = 0;
                         pdVar6 = pdVar8 + 6;
                         pdVar7 = pdVar8 + 2;
-                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar6, 0);
+                        gfxlib_call_hooks_with_args(&g_8c4c2620, pdVar7, pdVar6, 0);
                         uVar22 = float_to_color_u8(puVar5, pdVar7, pdVar6, uVar4);
                         *(u32 *)(pdVar8 + 5) = uVar22;
                         if (cVar27 == '\0') {
@@ -24487,7 +24464,7 @@ u32 gfxlib_uses_float_to_color_u8_23f5e2(int a0, int a1) {
                     uVar4 = 0;
                     pdVar6 = pdVar8 + 6;
                     pdVar7 = pdVar8 + 2;
-                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar6, 0);
+                    gfxlib_call_hooks_with_args(&g_8c4c2620, pdVar7, pdVar6, 0);
                     uVar22 = float_to_color_u8(puVar5, pdVar7, pdVar6, uVar4);
                     *(u32 *)(pdVar8 + 5) = uVar22;
                     if (cVar27 == '\0') {
@@ -24570,7 +24547,7 @@ u32 gfxlib_uses_float_to_color_u8_23f5e2(int a0, int a1) {
                         uVar4 = 0;
                         ar6_00 = pdVar7 + 6;
                         pdVar6 = pdVar7 + 2;
-                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar6, ar6_00, 0);
+                        gfxlib_call_hooks_with_args(&g_8c4c2620, pdVar6, ar6_00, 0);
                         uVar22 = float_to_color_u8(puVar5, pdVar6, ar6_00, uVar4);
                         *(u32 *)(pdVar7 + 5) = uVar22;
                         if (cVar27 == '\0') {
@@ -24643,7 +24620,7 @@ u32 gfxlib_uses_float_to_color_u8_23f5e2(int a0, int a1) {
                         uVar4 = 0;
                         pdVar6 = pdVar8 + 6;
                         pdVar7 = pdVar8 + 2;
-                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar6, 0);
+                        gfxlib_call_hooks_with_args(&g_8c4c2620, pdVar7, pdVar6, 0);
                         uVar22 = float_to_color_u8(puVar5, pdVar7, pdVar6, uVar4);
                         *(u32 *)(pdVar8 + 5) = uVar22;
                         uVar19 = g_8c4c2630;
@@ -24746,7 +24723,7 @@ u32 gfxlib_uses_float_to_color_u8_23f5e2(int a0, int a1) {
                 ar7_00 = 0;
                 pdVar8 = pdVar10 + 6;
                 pdVar7 = pdVar10 + 2;
-                gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar8, 0);
+                gfxlib_call_hooks_with_args(&g_8c4c2620, pdVar7, pdVar8, 0);
                 uVar4 = float_to_color_u8(puVar5, pdVar7, pdVar8, ar7_00);
                 *(u32 *)(pdVar10 + 5) = uVar4;
                 if (cVar27 == '\0') {
@@ -24821,10 +24798,9 @@ u32 gfxlib_uses_float_to_color_u8_23f5e2(int a0, int a1) {
 }
 
 /*
- * gfxlib_uses_float_to_color_u8_23fac8  0x8c23fac8
- * area name: in the gfxlib library code range; behaviour name: its main named callee is float_to_color_u8
+ * gfxlib_vertex_colour_kernel_e  0x8c23fac8
  */
-u32 *gfxlib_uses_float_to_color_u8_23fac8(int a0, u32 a1) {
+u32 *gfxlib_vertex_colour_kernel_e(int a0, u32 a1) {
     double *pdVar1;
     int iVar2;
     u32 uVar3;
@@ -24913,7 +24889,7 @@ u32 *gfxlib_uses_float_to_color_u8_23fac8(int a0, u32 a1) {
                 puVar5 = &g_8c4c2620;
                 puVar7 = puVar12 + 6;
                 puVar6 = puVar12 + 2;
-                gfxlib_draw_23bae2(&g_8c4c2620, puVar6, puVar7, uVar8);
+                gfxlib_call_hooks_with_args(&g_8c4c2620, puVar6, puVar7, uVar8);
                 uVar3 = float_to_color_u8(puVar5, puVar6, puVar7, uVar8);
                 *(u32 *)(puVar12 + 5) = uVar3;
                 if (cVar24 == '\0') {
@@ -25035,7 +25011,7 @@ u32 *gfxlib_uses_float_to_color_u8_23fac8(int a0, u32 a1) {
             puVar5 = &g_8c4c2620;
             ar6_00 = puVar6 + 6;
             puVar7 = puVar6 + 2;
-            gfxlib_draw_23bae2(&g_8c4c2620, puVar7, ar6_00, uVar8);
+            gfxlib_call_hooks_with_args(&g_8c4c2620, puVar7, ar6_00, uVar8);
             uVar20 = float_to_color_u8(puVar5, puVar7, ar6_00, uVar8);
             *(u32 *)(puVar6 + 5) = uVar20;
             if (cVar24 == '\0') {
@@ -25116,10 +25092,9 @@ u32 *gfxlib_uses_float_to_color_u8_23fac8(int a0, u32 a1) {
 }
 
 /*
- * gfxlib_uses_float_to_color_u8_23fd56  0x8c23fd56
- * area name: in the gfxlib library code range; behaviour name: its main named callee is float_to_color_u8
+ * gfxlib_vertex_colour_kernel_f  0x8c23fd56
  */
-u32 gfxlib_uses_float_to_color_u8_23fd56(int a0, int a1) {
+u32 gfxlib_vertex_colour_kernel_f(int a0, int a1) {
     u16 uVar1;
     int iVar2;
     u32 uVar3;
@@ -25270,7 +25245,7 @@ u32 gfxlib_uses_float_to_color_u8_23fd56(int a0, int a1) {
                         uVar6 = 0;
                         pdVar5 = pdVar8 + 6;
                         pdVar7 = pdVar8 + 2;
-                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar5, 0);
+                        gfxlib_call_hooks_with_args(&g_8c4c2620, pdVar7, pdVar5, 0);
                         uVar3 = float_to_color_u8(puVar4, pdVar7, pdVar5, uVar6);
                         *(u32 *)(pdVar8 + 5) = uVar3;
                         if (cVar25 == '\0') {
@@ -25331,7 +25306,7 @@ u32 gfxlib_uses_float_to_color_u8_23fd56(int a0, int a1) {
                     uVar6 = 0;
                     pdVar5 = pdVar8 + 6;
                     pdVar7 = pdVar8 + 2;
-                    gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar5, 0);
+                    gfxlib_call_hooks_with_args(&g_8c4c2620, pdVar7, pdVar5, 0);
                     uVar3 = float_to_color_u8(puVar4, pdVar7, pdVar5, uVar6);
                     *(u32 *)(pdVar8 + 5) = uVar3;
                     if (cVar25 == '\0') {
@@ -25422,7 +25397,7 @@ u32 gfxlib_uses_float_to_color_u8_23fd56(int a0, int a1) {
                         uVar6 = 0;
                         ar6_00 = pdVar7 + 6;
                         pdVar5 = pdVar7 + 2;
-                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar5, ar6_00, 0);
+                        gfxlib_call_hooks_with_args(&g_8c4c2620, pdVar5, ar6_00, 0);
                         uVar3 = float_to_color_u8(puVar4, pdVar5, ar6_00, uVar6);
                         *(u32 *)(pdVar7 + 5) = uVar3;
                         if (cVar25 == '\0') {
@@ -25505,7 +25480,7 @@ u32 gfxlib_uses_float_to_color_u8_23fd56(int a0, int a1) {
                         uVar6 = 0;
                         pdVar5 = pdVar8 + 6;
                         pdVar7 = pdVar8 + 2;
-                        gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar5, 0);
+                        gfxlib_call_hooks_with_args(&g_8c4c2620, pdVar7, pdVar5, 0);
                         uVar3 = float_to_color_u8(puVar4, pdVar7, pdVar5, uVar6);
                         *(u32 *)(pdVar8 + 5) = uVar3;
                         uVar19 = g_8c4c2630;
@@ -25614,7 +25589,7 @@ u32 gfxlib_uses_float_to_color_u8_23fd56(int a0, int a1) {
                 uVar6 = 0;
                 pdVar8 = pdVar10 + 6;
                 pdVar7 = pdVar10 + 2;
-                gfxlib_draw_23bae2(&g_8c4c2620, pdVar7, pdVar8, 0);
+                gfxlib_call_hooks_with_args(&g_8c4c2620, pdVar7, pdVar8, 0);
                 uVar3 = float_to_color_u8(puVar4, pdVar7, pdVar8, uVar6);
                 *(u32 *)(pdVar10 + 5) = uVar3;
                 if (cVar25 == '\0') {

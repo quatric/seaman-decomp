@@ -371,7 +371,7 @@ int pvr_1ef84c(u32 unused_a0, u32 *unused_a1, u32 unused_a2, u32 a3) {
         piVar4 = 0x8c470c18;
         puVar2 = 0xa05f6908;
         if ((*0xa05f6908 & (int)0xf00) == 0) {
-            a7 = shinobi_uses_libgcc_divide_helper_1f4202();
+            a7 = maple_frame_start_or_fatal();
             a4 = 0x8c470e64;
             if (a7 < 0) {
                 pvr_1efaf4(piVar6, unused_a1, ar6_00, a3);
@@ -417,7 +417,7 @@ int pvr_1ef84c(u32 unused_a0, u32 *unused_a1, u32 unused_a2, u32 a3) {
             }
             *puVar2 = (int)0xf00;
             pvr_1efaf4(piVar6, unused_a1, ar6_00, a3);
-            a7 = shinobi_uses_libgcc_divide_helper_1f4202();
+            a7 = maple_frame_start_or_fatal();
             if (a7 < 0) {
                 if (*piVar4 != 0) {
                     (*(code *)*piVar4)(1, 0xfffffffa, piVar5[2], a7);
@@ -653,7 +653,7 @@ u32 thunk_FUN_8c1f461c(void) {
 /*
  * maple_device_request_hooked  0x8c1efd7c
  * maple_device_request_locked, then the PVR hook when +0x10e8 is set
- * called by: alt_entry_202786, shinobi_input_202424, shinobi_input_202782
+ * called by: alt_entry_202786, maple_port_poll_device, maple_port_reset_or_request
  */
 u32 maple_device_request_hooked(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -682,7 +682,7 @@ u32 maple_all_status_request_hooked(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * maple_device_reset_hooked  0x8c1efdc8
  * maple_device_reset_locked, then the PVR hook when +0x10e8 is set
- * called by: alt_entry_202786, shinobi_input_202424, shinobi_input_202782
+ * called by: alt_entry_202786, maple_port_poll_device, maple_port_reset_or_request
  */
 u32 maple_device_reset_hooked(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -799,7 +799,7 @@ u32 maple_cmd16_func20_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * maple_cmd15_func10_hooked  0x8c1eff32
  * maple_cmd15_func10_locked, then the PVR hook when +0x10e8 is set
- * called by: alt_entry_202786, shinobi_input_202342, shinobi_input_202782
+ * called by: alt_entry_202786, maple_port_reset_or_request, maple_port_send_cond_request
  */
 u32 maple_cmd15_func10_hooked(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;

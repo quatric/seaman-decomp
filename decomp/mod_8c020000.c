@@ -960,7 +960,7 @@ u32 CDCGD_release_request_wrap_021234(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * CDCGD_request_type_10  0x8c02126c
  * disc request type 0x10 (handle at +0x34)
- * called by: asr_uses_speech_request_kind3_0fbf28, file_load_into_object_buffer, speech_build_and_match_names,
+ * called by: asr_talk_0fbf28, file_load_into_object_buffer, speech_build_and_match_names,
  * speech_request_dictionary_file, speech_update
  */
 u32 CDCGD_request_type_10(int a0, u32 a1, u32 a2, u32 a3) {
@@ -1004,8 +1004,8 @@ u32 file_load_into_object_buffer(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CDCGD_release_type10  0x8c021338
  * CDCGD_release_request for type 0x10 (list at +0x34)
- * called by: asr_uses_speech_request_kind3_0fbf28, speech_build_and_match_names, speech_build_name_string,
- * speech_release_dictionary_file, speech_request_dictionary_file
+ * called by: asr_talk_0fbf28, speech_build_and_match_names, speech_build_name_string, speech_release_dictionary_file,
+ * speech_request_dictionary_file
  */
 u32 CDCGD_release_type10(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1182,9 +1182,8 @@ u32 pack_close_and_flush(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * sound_slot_play_if_open  0x8c021720
- * called by: Class_12984c_uses_set_field_d0_0c4e58, event1_begin, game_uses_input_track_r_hold_0e1f90,
- * game_uses_sound_slot_play_if_open_0e5238, input_uses_get_field_24_0e25c0, scene_child_setup_with_timeout,
- * tank_handle_item_kind, tank_items_call_with_sound
+ * called by: Class_12984c_sound_0c4e58, event1_begin, game_sound_input_0e5238, game_sound_talk_input_0e1f90,
+ * input_sound_talk_input_0e25c0, scene_child_setup_with_timeout, tank_handle_item_kind, tank_items_call_with_sound
  */
 u32 sound_slot_play_if_open(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -1199,7 +1198,7 @@ u32 sound_slot_play_if_open(int *a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * se_play_3d  0x8c02174c
  * plays a sound effect with volume/pan from a position
- * called by: Class_129974_play_sound_e_or_d, Class_12b580_vec_0f6ac4, se_play_at_object
+ * called by: Class_129974_play_sound_e_or_d, Class_12b580_random_sound_0f6ac4, se_play_at_object
  */
 int se_play_3d(int *a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
@@ -1323,8 +1322,8 @@ int se_play_3d(int *a0, u32 a1, u32 unused_a2, u32 a3) {
  * se_open_bank1  0x8c02190c
  * opens an SE port on bank 1 of a sound manager
  * called by: Class_129974_play_sound_e_or_d, Class_12b930_sound_0d3d6c, chance_play_se_12_start, draw_sound_0d4c74,
- * game_uses_input_track_r_hold_0e1f90, game_uses_sound_slot_play_if_open_0e5238, input_uses_edge_detect_update_0e2a14,
- * input_uses_edge_detect_update_0e3210 (+2 more)
+ * game_sound_input_0e5238, game_sound_talk_input_0e1f90, input_move_sound_input_0e2a14, input_move_sound_input_0e3210
+ * (+2 more)
  */
 u32 se_open_bank1(u32 a0) {
     u32 uVar1;
@@ -1367,8 +1366,8 @@ int se_open(int *a0, u32 a1) {
  * se_play  0x8c021994
  * plays request a2 on port a1 of manager a0
  * called by: Class_129974_play_sound_e_or_d, Class_12b930_sound_0d3d6c, chance_play_se_12_start, draw_sound_0d4c74,
- * game_uses_input_track_r_hold_0e1f90, game_uses_sound_slot_play_if_open_0e5238, input_uses_edge_detect_update_0e2a14,
- * input_uses_edge_detect_update_0e3210 (+5 more)
+ * game_sound_input_0e5238, game_sound_talk_input_0e1f90, input_move_sound_input_0e2a14, input_move_sound_input_0e3210
+ * (+5 more)
  */
 u32 se_play(u32 a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -1447,8 +1446,8 @@ u32 se_status(int *a0, u32 a1, u32 a2, u32 a3) {
  * se_close_port_handle  0x8c021a8c
  * closes the port handle *a1 and sets it to -1
  * called by: Class_129974_play_sound_e_or_d, Class_12b930_sound_0d3d6c, chance_play_se_12_start, draw_sound_0d4c74,
- * game_uses_input_track_r_hold_0e1f90, game_uses_sound_slot_play_if_open_0e5238, input_uses_edge_detect_update_0e2a14,
- * input_uses_edge_detect_update_0e3210 (+6 more)
+ * game_sound_input_0e5238, game_sound_talk_input_0e1f90, input_move_sound_input_0e2a14, input_move_sound_input_0e3210
+ * (+6 more)
  */
 u32 se_close_port_handle(u32 a0, u32 *a1) {
     se_slot_set_and_close(a0, *a1);
@@ -1484,8 +1483,8 @@ u32 se_slot_set_and_close(int *a0, u32 a1) {
 
 /*
  * pack_acquire_entry_handle  0x8c021b10
- * called by: CProlog_Ready, CSeamanDomain_warning_message, Class_12b580_uses_Class_12b580_particle_init_0d84e8,
- * ambient_sound_update, bugbox_3_screen, bugbox_4_screen, confirm_exit_save, event_out_water_cat (+3 more)
+ * called by: CProlog_Ready, CSeamanDomain_warning_message, Class_12b580_draw_0d84e8, ambient_sound_update,
+ * bugbox_3_screen, bugbox_4_screen, confirm_exit_save, event_out_water_cat (+3 more)
  */
 int pack_acquire_entry_handle(int *a0, u32 a1, u32 a2, u32 a3) {
     int ar5_00;
@@ -1556,9 +1555,8 @@ u32 strcmp_021c80(u8 *a0, u8 *a1) {
 
 /*
  * pack_release_entry_handle  0x8c021ce8
- * called by: Class_12b580_uses_Class_12b580_particle_init_0d84e8, ambient_sound_update, bugbox_4_screen,
- * confirm_exit_save, event1_end, event1_release_models, game_uses_speech_is_playing_0bad68, pack_entry_poll_status (+5
- * more)
+ * called by: Class_12b580_draw_0d84e8, ambient_sound_update, bugbox_4_screen, confirm_exit_save, event1_end,
+ * event1_release_models, game_sound_draw_talk_0bad68, pack_entry_poll_status (+5 more)
  */
 int pack_release_entry_handle(int *a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -1592,8 +1590,8 @@ u32 bgm_stop_all_tracks(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * bgm_set_track_pan_volume  0x8c021d90
- * called by: CSeamanDomain_warning_message, Class_12b580_uses_Class_12b580_particle_init_0d84e8, ambient_sound_update,
- * bugbox_3_screen, bugbox_4_screen, confirm_exit_save, script_cmd_load_pack_wait, startup_warning_check (+1 more)
+ * called by: CSeamanDomain_warning_message, Class_12b580_draw_0d84e8, ambient_sound_update, bugbox_3_screen,
+ * bugbox_4_screen, confirm_exit_save, script_cmd_load_pack_wait, startup_warning_check (+1 more)
  */
 int bgm_set_track_pan_volume(int *a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -2424,8 +2422,9 @@ int sound_set_out_vol(u32 unused_a0, int *a1, u32 a2) {
 
 /*
  * Vec3_ctor_zero  0x8c022c4c
- * called by: CAnimal_m7_036d7c, CAnimal_m7_0ade84, CAnimal_m7_0f49b8, CAnimal_part_ctor_vec_02b1dc,
- * CAnimal_pose_vectors_ctor, CAnimal_state_switch_091e60, CAnimal_uses_Vec3_dtor_0b4d14, CAnimal_vec_02a2b8 (+211 more)
+ * called by: CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_04e2d0, CAnimal_anim_turn_move_055c38,
+ * CAnimal_anim_turn_move_093e80, CAnimal_anim_turn_move_097fcc, CAnimal_anim_turn_random_091e60,
+ * CAnimal_compute_part_positions, CAnimal_m7_036d7c (+211 more)
  */
 u32 *Vec3_ctor_zero(u32 *a0, u32 a1, u32 a2) {
     a0[3] = &g_8c129a7c;
@@ -2437,8 +2436,9 @@ u32 *Vec3_ctor_zero(u32 *a0, u32 a1, u32 a2) {
 
 /*
  * Vec3_ctor_copy  0x8c022c88
- * called by: CAnimBody_vec_key_at, CAnimal_pick_random_point, CAnimal_update_world_pose, CAnimal_vec_055c38,
- * CAnimal_vec_0a3dc0, CMushroomerBody_offset_position, CSquidLine_draw_like, CSquidLine_vec_036adc (+130 more)
+ * called by: CAnimBody_vec_key_at, CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_055c38,
+ * CAnimal_anim_turn_move_093e80, CAnimal_pick_random_point, CAnimal_turn_0a3dc0, CAnimal_update_world_pose,
+ * CGame_vec_helper_0ceb04 (+130 more)
  */
 u32 *Vec3_ctor_copy(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     a0[3] = &g_8c129a7c;
@@ -2450,8 +2450,9 @@ u32 *Vec3_ctor_copy(u32 *a0, u32 *a1, u32 a2, u32 a3) {
 
 /*
  * Vec3_dtor  0x8c022cb0
- * called by: CAnimBody_vec_key_at, CAnimal_big_scalar_dtor, CAnimal_body_scalar_dtor, CAnimal_body_vec_add_to_30,
- * CAnimal_m2_02573c, CAnimal_m3_026078, CAnimal_m7_036d7c, CAnimal_m7_0ade84 (+334 more)
+ * called by: CAnimBody_vec_key_at, CAnimal_anim_0a3aac, CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_04e2d0,
+ * CAnimal_anim_turn_move_055c38, CAnimal_anim_turn_move_093e80, CAnimal_anim_turn_move_097fcc,
+ * CAnimal_anim_turn_random_091e60 (+334 more)
  */
 int Vec3_dtor(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -2464,8 +2465,9 @@ int Vec3_dtor(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * Vec3_ctor_xyz  0x8c022ce8
- * called by: CAnimBody_vec_key_at, CAnimal_state_switch_057280, CAnimal_state_switch_091e60, CAnimal_vec_055c38,
- * Class_1299f8_m3_019f00, Class_1299f8_m4_019588, Class_129a24_ctor, Class_12a25c_uses_Vec3_dtor_06f93c (+123 more)
+ * called by: CAnimBody_vec_key_at, CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_055c38,
+ * CAnimal_anim_turn_random_091e60, Class_1299f8_m3_019f00, Class_1299f8_m4_019588, Class_129a24_ctor,
+ * Class_12a25c_anim_move_random_07a68c (+123 more)
  */
 u32 *Vec3_ctor_xyz(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_fr5;
@@ -2482,8 +2484,9 @@ u32 *Vec3_ctor_xyz(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_assign_f  0x8c022d04
  * stores fr4..fr6 as x, y, z
- * called by: CAnimBody_key_init, CAnimal_motion_reset_055b50, CAnimal_vec_097fcc, Class_1299f8_m4_019588,
- * Class_129a24_m2_01a1d8, Class_129cbc_init_motion_params, Class_12a03c_reset_state, Class_12a25c_reset (+33 more)
+ * called by: CAnimBody_key_init, CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_097fcc,
+ * CAnimal_motion_reset_055b50, Class_1299f8_m4_019588, Class_129a24_m2_01a1d8, Class_129cbc_init_motion_params,
+ * Class_12a03c_reset_state (+33 more)
  */
 u32 *Vec3_assign_f(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_fr5;
@@ -2498,7 +2501,7 @@ u32 *Vec3_assign_f(u32 *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * ptr_plus_4  0x8c022d14
- * called by: Vec3_cos_angle, game_vec_05af78, game_vec_0b54f4
+ * called by: Vec3_cos_angle, creature_turn_0b54f4, creature_turn_move_random_05af78
  */
 int ptr_plus_4(u32 unused_a0, int a1) {
     return a1 + 4;
@@ -2519,8 +2522,9 @@ u32 Vec3_ctor_xyz_wrap(u32 a0, u32 a1, u32 a2, u32 a3, u32 s0) {
 /*
  * Vec3_cos_angle  0x8c022dac
  * dot(a0, a1) / (|a0| |a1|)
- * called by: CAnimal_vec_055c38, CAnimal_vec_0a3dc0, Class_12ad14_vec_0a14d8, Class_12b088_vec_0aa70c,
- * Vec3_angle_code_90, Vec3_horizontal_length_like, Vec3_state_switch_03f4a4, Vec3_vec_04e0e0 (+54 more)
+ * called by: CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_04e2d0, CAnimal_anim_turn_move_055c38,
+ * CAnimal_anim_turn_move_093e80, CAnimal_turn_0a3dc0, CSquidLine_turn_0332b4, Class_12a25c_anim_turn_move_0811b4,
+ * Class_12a25c_anim_turn_random_076994 (+54 more)
  */
 u32 Vec3_cos_angle(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -2595,9 +2599,9 @@ u32 ret_const_8c022e74(void) {
 
 /*
  * Vec3_length_sq  0x8c022e78
- * called by: Class_129974_vec_0db3bc, Class_12b088_vec_0aa70c, Class_12b2ac_uses_timer_stop_94_0b5344,
- * Class_12b2e8_vec_0b67cc, Class_12b930_uses_get_field_300_0e0f48, Class_12c394_vec_0d64a0, Vec3_cos_angle,
- * Vec3_distance_sq (+37 more)
+ * called by: CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_093e80, Class_129974_vec_helper_0db3bc,
+ * Class_12a25c_anim_move_random_07a68c, Class_12a25c_anim_sound_07cce0, Class_12a25c_anim_timer_steps_07af10,
+ * Class_12b088_anim_turn_0aa70c, Class_12b2ac_anim_random_timer_0b5344 (+37 more)
  */
 u32 Vec3_length_sq(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -2608,8 +2612,9 @@ u32 Vec3_length_sq(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * Vec3_normalize  0x8c022ec0
- * called by: CAnimal_vec_055c38, CAnimal_vec_097fcc, CMothLine_place_current, Class_12ad14_uses_rand_float_0a37c8,
- * Vec3_normalize_on_field_4, Vec3_state_switch_03f4a4, alt_entry_046684, creature_turn_toward_dir_step (+39 more)
+ * called by: CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_055c38, CAnimal_anim_turn_move_093e80,
+ * CAnimal_anim_turn_move_097fcc, CAnimal_move_05ae54, CMothLine_place_current, Class_12a25c_anim_move_random_07a68c,
+ * Class_12a25c_anim_turn_move_077a38 (+39 more)
  */
 u32 Vec3_normalize(double *a0, u32 a1, u32 a2, u32 a3) {
     u64 in_dr0;
@@ -2686,8 +2691,9 @@ u32 Vec3_normalize(double *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * Vec3_length  0x8c022f54
- * called by: CAnimal_state_step_07f56c, CAnimal_state_switch_091e60, CAnimal_vec_0a3dc0, CMushroomerBody_AwayFrom,
- * CSquidLine_uses_rand_0ae84c, Class_1299f8_m4_019588, Class_12ad14_m1_0a09e8, Class_12ad14_vec_0a14d8 (+59 more)
+ * called by: CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_random_091e60, CAnimal_move_05ae54,
+ * CAnimal_state_step_07f56c, CAnimal_turn_0a3dc0, CMushroomerBody_AwayFrom, CMushroomerBody_move_toward,
+ * CSquidLine_random_0ae84c (+59 more)
  */
 double *Vec3_length(double *a0, u32 a1, u32 a2, u32 a3) {
     float fVar1;
@@ -2754,9 +2760,9 @@ double *Vec3_length(double *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_distance_sq  0x8c022fc0
  * squared distance between two points
- * called by: CAnimal_state_step_07f56c, Class_129938_set_corners, Class_129938_set_corners_strided,
- * Class_12b930_spawn_particles_like, draw_vec_032d48, game_state_switch_049b68, game_state_switch_04b168,
- * game_state_switch_04c314 (+41 more)
+ * called by: CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_04e2d0, CAnimal_anim_turn_move_093e80,
+ * CAnimal_state_step_07f56c, CMushroomerBody_move_toward, CMushroomerBody_random_speed_timer, Class_129938_set_corners,
+ * Class_129938_set_corners_strided (+41 more)
  */
 u32 Vec3_distance_sq(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
@@ -2783,8 +2789,8 @@ u32 Vec3_distance_sq(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_distance_sq_to_xyz  0x8c023040
  * squared distance from a0 to the point (a1, a2, a3)
- * called by: CWaterTank_check_distance_sound, Class_12b930_uses_get_field_300_0e0f48,
- * input_uses_edge_detect_update_0e2a14, input_uses_edge_detect_update_0e3210
+ * called by: CWaterTank_check_distance_sound, Class_12b930_move_sound_0e0f48, input_move_sound_input_0e2a14,
+ * input_move_sound_input_0e3210
  */
 u32 Vec3_distance_sq_to_xyz(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
@@ -2814,8 +2820,9 @@ u32 Vec3_distance_sq_to_xyz(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_make  0x8c0230f0
  * builds a Vec3 from x, y, z into the caller's return slot
- * called by: CAnimal_vec_055c38, CAnimal_vec_0a3dc0, CMothLine_place_current, CMushroomerBody_AwayFrom,
- * Class_12b088_vec_0aa70c, Vec3_angle_code_90, Vec3_horizontal_length_like, Vec3_state_switch_03f4a4 (+71 more)
+ * called by: CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_04e2d0, CAnimal_anim_turn_move_055c38,
+ * CAnimal_anim_turn_move_093e80, CAnimal_move_05ae54, CAnimal_turn_0a3dc0, CMothLine_place_current,
+ * CMushroomerBody_AwayFrom (+71 more)
  */
 u32 Vec3_make(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     u8 auStack_18[20];
@@ -2829,7 +2836,7 @@ u32 Vec3_make(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
 /*
  * Vec3_return_xyz  0x8c023138
  * builds a Vec3 from a1..a3 into the return slot s0
- * called by: game_vec_0a8f94, game_vec_0aa11c, game_vec_0ab0d8
+ * called by: Class_12b088_anim_turn_steps_0aa11c, Class_12b088_turn_steps_0a8f94, creature_anim_turn_move_0ab0d8
  */
 u32 Vec3_return_xyz(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     u8 auStack_18[20];
@@ -2843,7 +2850,7 @@ u32 Vec3_return_xyz(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
 /*
  * Vec3_return_xyz_023180  0x8c023180
  * builds a Vec3 from a1..a3 into the return slot s0
- * called by: game_vec_0a8f94
+ * called by: Class_12b088_turn_steps_0a8f94
  */
 u32 Vec3_return_xyz_023180(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
     u8 auStack_18[20];
@@ -2856,8 +2863,9 @@ u32 Vec3_return_xyz_023180(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
 
 /*
  * Vec3_horizontal_length_like  0x8c0231c8
- * called by: CAnimal_vec_02a2b8, CAnimal_vec_0a3dc0, Vec3_angle_between_like, Vec3_state_switch_03f4a4,
- * Vec3_vec_02374c, Vec3_vec_0238b4, game_state_switch_049b68, game_state_switch_04b168 (+11 more)
+ * called by: CAnimal_anim_turn_move_04e2d0, CAnimal_anim_turn_move_093e80, CAnimal_compute_part_positions,
+ * CAnimal_turn_0a3dc0, CSquidLine_turn_0332b4, Vec3_angle_between_like, Vec3_look_at_rotation_a,
+ * Vec3_look_at_rotation_b (+11 more)
  */
 u32 *Vec3_horizontal_length_like(int a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar1;
@@ -2899,8 +2907,8 @@ u32 *Vec3_horizontal_length_like(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * Vec3_yaw_from_direction  0x8c02327c
- * called by: CAnimal_vec_02a2b8, Vec3_angle_code_90, Vec3_vec_02374c, Vec3_vec_0238b4, game_vec_04dd34,
- * game_vec_075ef4, timer_distance_to_target
+ * called by: CAnimal_compute_part_positions, Class_12a25c_anim_turn_timer_075ef4, Vec3_angle_code_90,
+ * Vec3_look_at_rotation_a, Vec3_look_at_rotation_b, creature_turn_04dd34, timer_distance_to_target
  */
 u32 *Vec3_yaw_from_direction(float *a0, u32 a1, u32 a2, u32 a3) {
     u64 uVar1;
@@ -2934,7 +2942,7 @@ u32 *Vec3_yaw_from_direction(float *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * Vec3_angle_between_like  0x8c0232e8
- * called by: CAnimal_vec_0a3dc0, game_vec_092884
+ * called by: CAnimal_turn_0a3dc0, creature_turn_move_092884
  */
 u32 Vec3_angle_between_like(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -2967,8 +2975,9 @@ u32 Vec3_angle_between_like(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_angle_code_90  0x8c023334
  * normalises the two vectors' flattened forms and returns 4 when the angle between them is under 90 degrees, else 3
- * called by: CAnimal_state_switch_057280, CAnimal_vec_055c38, CAnimal_vec_0a3dc0, Class_12a25c_uses_Vec3_dtor_06f93c,
- * Vec3_state_switch_03f4a4, alt_entry_046684, game_state_switch_049b68, game_state_switch_04b168 (+23 more)
+ * called by: CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_04e2d0, CAnimal_anim_turn_move_055c38,
+ * CAnimal_turn_0a3dc0, CSquidLine_turn_0332b4, Class_12a25c_anim_turn_move_06f93c, Class_12a25c_anim_turn_move_0811b4,
+ * Class_12a25c_anim_turn_random_076994 (+23 more)
  */
 u32 Vec3_angle_code_90(u32 a0, u32 a1, u32 a2, u32 a3) {
     float fVar1;
@@ -3031,9 +3040,9 @@ u32 Vec3_angle_code_90(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_rotate_euler_deg  0x8c023484
  * rotates vector a0 by the angles (degrees) in a1 and returns the result
- * called by: CAnimal_state_switch_057280, CAnimal_state_switch_091e60, CAnimal_uses_Vec3_dtor_0b4d14,
- * CAnimal_vec_055c38, CAnimal_vec_097fcc, CMushroomerBody_vec_03263c, CSquidLine_vec_036adc, CSquidLine_vec_085c3c (+64
- * more)
+ * called by: CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_055c38, CAnimal_anim_turn_move_097fcc,
+ * CAnimal_anim_turn_random_091e60, CMushroomerBody_turn_random_03263c, CSquidLine_turn_036adc, CSquidLine_turn_085c3c,
+ * Class_129cbc_m1_031598 (+64 more)
  */
 u32 Vec3_rotate_euler_deg(u64 *a0, u32 *a1, u32 a2, u32 a3, u32 s0) {
     u32 *ar5_00;
@@ -3138,7 +3147,7 @@ u32 Vec3_rotate_euler_deg(u64 *a0, u32 *a1, u32 a2, u32 a3, u32 s0) {
 /*
  * Vec3_rotate_euler_deg_b  0x8c023570
  * rotates vector a0 by the angles (degrees) passed in fr4..fr6
- * called by: game_vec_0d294c
+ * called by: creature_turn_random_0d294c
  */
 u32 Vec3_rotate_euler_deg_b(u64 *a0, u32 a1, u32 a2, u32 unused_a3, u32 s0) {
     u8 *ar6_00;
@@ -3352,12 +3361,12 @@ u32 Vec3_rotate_euler_deg_c(u64 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3
 }
 
 /*
- * Vec3_vec_02374c  0x8c02374c
- * area name: sits between Vec3 functions (same compilation unit); behaviour name: mostly calls vec functions
- * called by: CMushroomerBody_vec_03263c, game_uses_Vec3_dtor_082c50, game_vec_03c94c, game_vec_0507c0, game_vec_093aec,
- * game_vec_093e80, game_vec_094514, game_vec_095548 (+2 more)
+ * Vec3_look_at_rotation_a  0x8c02374c
+ * called by: CAnimal_anim_turn_move_093e80, CMushroomerBody_turn_random_03263c, creature_anim_turn_move_0507c0,
+ * creature_anim_turn_move_093aec, creature_anim_turn_move_094514, creature_anim_turn_move_095548,
+ * creature_anim_turn_move_0967d8, creature_state_dispatch_03c94c (+2 more)
  */
-u32 Vec3_vec_02374c(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 Vec3_look_at_rotation_a(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar1;
     u32 *puVar2;
     u32 ar7_00;
@@ -3508,11 +3517,10 @@ u32 Vec3_vec_02374c(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Vec3_vec_0238b4  0x8c0238b4
- * area name: sits between Vec3 functions (same compilation unit); behaviour name: mostly calls vec functions
- * called by: CAnimal_vec_097fcc, game_vec_0b3604
+ * Vec3_look_at_rotation_b  0x8c0238b4
+ * called by: CAnimal_anim_turn_move_097fcc, Class_12b2ac_anim_turn_move_0b3604
  */
-u32 Vec3_vec_0238b4(u32 a0, u32 a1, u32 a2, u32 a3) {
+u32 Vec3_look_at_rotation_b(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 *ar5_00;
     u8 *ar6_00;
     float fVar1;
@@ -3660,9 +3668,9 @@ u32 Vec3_vec_0238b4(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * Vec3_assign  0x8c023a14
- * called by: CAnimal_move_to_target, CAnimal_state_step_07f56c, CAnimal_state_step_0a3624, CAnimal_state_switch_057280,
- * CAnimal_state_switch_091e60, CAnimal_uses_CAnimBody_GetCurFrame_0a3aac, CAnimal_uses_Vec3_dtor_0b4d14,
- * CAnimal_vec_02a2b8 (+195 more)
+ * called by: CAnimal_anim_0a3aac, CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_04e2d0,
+ * CAnimal_anim_turn_move_055c38, CAnimal_anim_turn_move_093e80, CAnimal_anim_turn_move_097fcc,
+ * CAnimal_anim_turn_random_091e60, CAnimal_compute_part_positions (+195 more)
  */
 u32 *Vec3_assign(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     *a0 = *a1;
@@ -3673,9 +3681,9 @@ u32 *Vec3_assign(u32 *a0, u32 *a1, u32 a2, u32 a3) {
 
 /*
  * Vec3_add  0x8c023a34
- * called by: CAnimal_state_step_07f56c, CAnimal_state_switch_057280, CAnimal_state_switch_091e60,
- * CAnimal_update_world_pose, CAnimal_uses_Vec3_dtor_0b4d14, CAnimal_vec_097fcc, CMushroomerBody_offset_position,
- * CSquidLine_vec_036adc (+66 more)
+ * called by: CAnimal_anim_turn_move_04e2d0, CAnimal_anim_turn_move_093e80, CAnimal_anim_turn_move_097fcc,
+ * CAnimal_anim_turn_random_091e60, CAnimal_state_step_07f56c, CAnimal_update_world_pose,
+ * CMushroomerBody_offset_position, CSquidLine_turn_036adc (+66 more)
  */
 u32 Vec3_add(u64 *a0, double *a1, u32 a2, u32 a3, u32 s0) {
     double dVar1;
@@ -3737,9 +3745,8 @@ u32 Vec3_add(u64 *a0, double *a1, u32 a2, u32 a3, u32 s0) {
 /*
  * Vec3_add_assign  0x8c023aa0
  * a0 += a1
- * called by: CAnimal_body_vec_add_to_30, CAnimal_m2_02573c, CAnimal_m3_026078, CSquidLine_uses_rand_0ae84c,
- * Class_129808_m1_014894, Class_12a25c_uses_Vec3_dtor_06f93c, Class_12b2ac_m1_0aff3c, Class_12b580_vec_0f6ac4 (+30
- * more)
+ * called by: CAnimal_anim_turn_move_093e80, CAnimal_body_vec_add_to_30, CAnimal_m2_02573c, CAnimal_m3_026078,
+ * CAnimal_move_05ae54, CMushroomerBody_move_toward, CSquidLine_random_0ae84c, Class_129808_m1_014894 (+30 more)
  */
 float *Vec3_add_assign(float *a0, float *a1) {
     *a0 = *a0 + *a1;
@@ -3750,8 +3757,9 @@ float *Vec3_add_assign(float *a0, float *a1) {
 
 /*
  * Vec3_sub  0x8c023ae0
- * called by: CAnimal_state_step_07f56c, CAnimal_vec_055c38, CAnimal_vec_0a3dc0, CMushroomerBody_AwayFrom,
- * Class_1299f8_m3_019f00, Class_12b088_vec_0aa70c, Class_12b2e8_vec_0b67cc, Class_12b580_vec_0f6ac4 (+76 more)
+ * called by: CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_04e2d0, CAnimal_anim_turn_move_055c38,
+ * CAnimal_anim_turn_move_093e80, CAnimal_state_step_07f56c, CAnimal_turn_0a3dc0, CMushroomerBody_AwayFrom,
+ * CMushroomerBody_move_toward (+76 more)
  */
 u32 Vec3_sub(u64 *a0, double *a1, u32 a2, u32 a3, u32 s0) {
     double dVar1;
@@ -3813,8 +3821,8 @@ u32 Vec3_sub(u64 *a0, double *a1, u32 a2, u32 a3, u32 s0) {
 /*
  * Vec3_sub_assign  0x8c023b4c
  * a0 -= a1
- * called by: Class_129974_vec_0db3bc, game_uses_Vec3_dtor_08f354, game_uses_Vec3_dtor_0911f0, game_vec_08eef4,
- * game_vec_08f9e8, game_vec_091570, game_vec_0db5c4
+ * called by: Class_129974_vec_helper_0db3bc, creature_anim_turn_08f9e8, creature_anim_turn_091570,
+ * creature_anim_turn_random_08eef4, creature_turn_0db5c4, game_anim_turn_random_08f354, game_anim_turn_random_0911f0
  */
 float *Vec3_sub_assign(float *a0, float *a1) {
     *a0 = *a0 - *a1;
@@ -3825,9 +3833,9 @@ float *Vec3_sub_assign(float *a0, float *a1) {
 
 /*
  * Vec3_scale  0x8c023b8c
- * called by: CAnimal_state_switch_057280, CAnimal_state_switch_091e60, CAnimal_update_world_pose,
- * CMothLine_place_current, CMushroomerBody_AwayFrom, CMushroomerBody_vec_03263c, CSquidLine_uses_rand_0ae84c,
- * Class_12a03c_m1_03c43c (+69 more)
+ * called by: CAnimal_anim_turn_move_04e2d0, CAnimal_anim_turn_move_093e80, CAnimal_anim_turn_random_091e60,
+ * CAnimal_move_05ae54, CAnimal_update_world_pose, CMothLine_place_current, CMushroomerBody_AwayFrom,
+ * CMushroomerBody_move_toward (+69 more)
  */
 u32 Vec3_scale(u64 *a0, double *a1, u32 a2, u32 a3, u32 s0) {
     double dVar1;
@@ -3889,9 +3897,9 @@ u32 Vec3_scale(u64 *a0, double *a1, u32 a2, u32 a3, u32 s0) {
 /*
  * Vec3_scale_assign  0x8c023bf4
  * a0 *= *a1
- * called by: CAnimal_vec_097fcc, Class_12b2ac_m1_0aff3c, Class_12b930_uses_get_field_300_0e0f48,
- * Class_12bec0_uses_rand_0f5fdc, game_state_switch_0564c4, game_uses_Vec3_dtor_08f354, game_uses_Vec3_dtor_0911f0,
- * game_vec_054f7c (+11 more)
+ * called by: CAnimal_anim_turn_move_097fcc, Class_12b2ac_anim_turn_move_0b1ac0, Class_12b2ac_anim_turn_move_0b3604,
+ * Class_12b2ac_m1_0aff3c, Class_12b930_move_sound_0e0f48, Class_12bec0_random_0f5fdc, creature_anim_0a3f4c,
+ * creature_anim_turn_08f9e8 (+11 more)
  */
 float *Vec3_scale_assign(float *a0, float *a1) {
     *a0 = *a0 * *a1;
@@ -3903,8 +3911,8 @@ float *Vec3_scale_assign(float *a0, float *a1) {
 /*
  * Vec3_div_scalar_out  0x8c023c30
  * divides each component of a0 by *a1 and copy-constructs the result into s0
- * called by: Class_1299f8_m3_019f00, draw_vec_032d48, game_vec_093e80, game_vec_094514, game_vec_095548,
- * game_vec_0967d8
+ * called by: CAnimal_anim_turn_move_093e80, Class_1299f8_m3_019f00, creature_anim_turn_move_094514,
+ * creature_anim_turn_move_095548, creature_anim_turn_move_0967d8, draw_turn_move_timer_032d48
  */
 u32 Vec3_div_scalar_out(u64 *a0, double *a1, u32 a2, u32 a3, u32 s0) {
     double dVar1;
@@ -3966,7 +3974,7 @@ u32 Vec3_div_scalar_out(u64 *a0, double *a1, u32 a2, u32 a3, u32 s0) {
 /*
  * Vec3_div_scalar  0x8c023c98
  * a0 /= *a1, component-wise
- * called by: Class_12bec0_uses_rand_0f5fdc
+ * called by: Class_12bec0_random_0f5fdc
  */
 float *Vec3_div_scalar(float *a0, float *a1) {
     *a0 = *a0 / *a1;
@@ -3978,8 +3986,8 @@ float *Vec3_div_scalar(float *a0, float *a1) {
 /*
  * Vec3_equal  0x8c023cd4
  * 1 when all three components match
- * called by: CAnimal_move_to_target, Class_12b2ac_m1_0aff3c, game_uses_Vec3_assign_07baa0, game_vec_078fd0,
- * game_vec_07bec4, game_vec_0a861c
+ * called by: CAnimal_move_to_target, Class_12a25c_anim_turn_timer_078fd0, Class_12a25c_random_timer_07baa0,
+ * Class_12b088_move_random_steps_0a861c, Class_12b2ac_m1_0aff3c, creature_random_timer_07bec4
  */
 u32 Vec3_equal(float *a0, float *a1) {
     if (((*a0 == *a1) && (a0[1] == a1[1])) && (a0[2] == a1[2])) {
@@ -3991,8 +3999,9 @@ u32 Vec3_equal(float *a0, float *a1) {
 /*
  * Vec3_not_equal  0x8c023d04
  * 1 unless all three components match
- * called by: game_state_switch_071a38, game_vec_05af78, game_vec_05c9fc, game_vec_07b2d4, game_vec_07c5f8,
- * game_vec_08248c, game_vec_0b0ad4, game_vec_0b0eec (+2 more)
+ * called by: Class_12b2ac_anim_random_timer_0b0ad4, Class_12b2ac_anim_turn_move_0b0eec,
+ * Class_12b2ac_anim_turn_move_0b1ac0, creature_anim_turn_move_05c9fc, creature_anim_turn_move_07c5f8,
+ * creature_anim_turn_random_071a38, creature_anim_turn_timer_08248c, creature_turn_move_random_05af78 (+2 more)
  */
 u32 Vec3_not_equal(float *a0, float *a1) {
     if (((*a0 == *a1) && (a0[1] == a1[1])) && (a0[2] == a1[2])) {
@@ -4003,8 +4012,8 @@ u32 Vec3_not_equal(float *a0, float *a1) {
 
 /*
  * Vec3_set_zero  0x8c023d34
- * called by: CAnimal_body_distance_check, CAnimal_ctor, CAnimal_pose_vectors_ctor, CAnimal_rotation_limits_init,
- * CAnimal_uses_Vec3_dtor_0b4d14, CAnimal_vec_02a2b8, CAnimal_vec_0a3dc0, CMothLine_ctor (+60 more)
+ * called by: CAnimal_anim_turn_move_04c314, CAnimal_body_distance_check, CAnimal_compute_part_positions, CAnimal_ctor,
+ * CAnimal_pose_vectors_ctor, CAnimal_rotation_limits_init, CAnimal_turn_0a3dc0, CMothLine_ctor (+60 more)
  */
 u32 *Vec3_set_zero(u32 *a0) {
     a0[2] = 0;
@@ -4015,9 +4024,9 @@ u32 *Vec3_set_zero(u32 *a0) {
 
 /*
  * Vec3_set_xyz  0x8c023d68
- * called by: CAnimal_state_switch_057280, CAnimal_state_switch_091e60, CAnimal_uses_CAnimBody_GetCurFrame_0a3aac,
- * CAnimal_vec_055c38, CAnimal_vec_097fcc, CMushroomerBody_vec_03263c, CSquidLine_vec_036adc, CSquidLine_vec_085c3c (+57
- * more)
+ * called by: CAnimal_anim_0a3aac, CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_04e2d0,
+ * CAnimal_anim_turn_move_055c38, CAnimal_anim_turn_move_097fcc, CAnimal_anim_turn_random_091e60,
+ * CMushroomerBody_turn_random_03263c, CSquidLine_turn_036adc (+57 more)
  */
 u32 *Vec3_set_xyz(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_fr5;
@@ -4033,8 +4042,9 @@ u32 *Vec3_set_xyz(u32 *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * Vec3_assign_f_023d7c  0x8c023d7c
  * stores fr4..fr6 as x, y, z
- * called by: CMothLine_ctor, Class_129a24_m2_01a1d8, Class_12b088_anim_reset, Class_12b088_state_switch_0a99c4,
- * Class_12b088_vec_0aa70c, game_uses_CAnimBody_AdvanceFrame_wrapp_07d904, game_vec_057e58, game_vec_0a77c8 (+3 more)
+ * called by: CMothLine_ctor, Class_129a24_m2_01a1d8, Class_12a25c_anim_turn_timer_07d904, Class_12b088_anim_reset,
+ * Class_12b088_anim_turn_0aa70c, Class_12b088_anim_turn_timer_0a99c4, Class_12b088_move_steps_0a8c0c,
+ * Class_12b088_turn_steps_0a8f94 (+3 more)
  */
 u32 *Vec3_assign_f_023d7c(u32 *a0, u32 a1) {
     u32 in_fr5;
@@ -4049,9 +4059,9 @@ u32 *Vec3_assign_f_023d7c(u32 *a0, u32 a1) {
 
 /*
  * vec3_copy_8c023d8c  0x8c023d8c
- * called by: CSquidLine_vec_036adc, CSquidLine_vec_085c3c, Class_129938_m1_0170e0, Class_129938_m2_0171f4,
- * Class_12a0c4_state_switch_0679cc, Class_12a0c4_state_switch_068e64, Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704
- * (+38 more)
+ * called by: CSquidLine_turn_036adc, CSquidLine_turn_085c3c, Class_129938_m1_0170e0, Class_129938_m2_0171f4,
+ * Class_12a0c4_turn_random_spawn_068e64, Class_12a0c4_turn_random_steps_0679cc, Class_12a25c_anim_turn_move_077a38,
+ * Class_12a25c_anim_turn_move_0811b4 (+38 more)
  */
 u32 *vec3_copy_8c023d8c(u32 *a0, u32 *a1, u32 a2, u32 a3) {
     *a0 = *a1;
@@ -4064,7 +4074,7 @@ u32 *vec3_copy_8c023d8c(u32 *a0, u32 *a1, u32 a2, u32 a3) {
  * Vec3_set_one  0x8c023dac
  * sets x, y, z to 1.0
  * called by: CAnimal_ctor, CEnv_ctor_like, CMothLine_ctor, CMushroomerEgg_reset_scales, Class_1299b0_ctor,
- * Class_12a0c4_ctor, Class_12c1f0_ctor, Class_12c1f0_ctor_kind (+6 more)
+ * Class_12a0c4_ctor, Class_12a25c_anim_turn_move_077a38, Class_12c1f0_ctor (+6 more)
  */
 u32 *Vec3_set_one(u32 *a0) {
     a0[2] = 0x3f800000;
@@ -4076,7 +4086,7 @@ u32 *Vec3_set_one(u32 *a0) {
 /*
  * set_fields_0_4_8  0x8c023de0
  * stores +0x0, +0x4, +0x8
- * called by: CSquidLine_uses_rand_0ae84c, motion_track_sample_angles_like, obj_transform_ctor_0af2b8
+ * called by: CSquidLine_random_0ae84c, motion_track_sample_angles_like, obj_transform_ctor_0af2b8
  */
 u32 *set_fields_0_4_8(u32 *a0, u32 a1) {
     u32 in_fr5;
@@ -4092,7 +4102,7 @@ u32 *set_fields_0_4_8(u32 *a0, u32 a1) {
 /*
  * Vec3_set_fr4_6  0x8c023df4
  * a0 = (fr4, fr5, fr6)
- * called by: game_state_switch_04f034, game_uses_CAnimal_ChangeBodyTexture_02b058
+ * called by: CAnimal_change_body_texture_scaled, creature_anim_turn_move_04f034
  */
 u32 *Vec3_set_fr4_6(u32 *a0) {
     u32 in_fr5;
@@ -4108,8 +4118,9 @@ u32 *Vec3_set_fr4_6(u32 *a0) {
 /*
  * Vec3_assign_copy  0x8c023e04
  * a0 = a1
- * called by: CSquidLine_uses_rand_0ae84c, Class_129938_m2_0171f4, Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704,
- * Vec3_assign_copy_wrap, game_state_switch_04f034, game_uses_Vec3_dtor_077a38, game_vec_09e204 (+8 more)
+ * called by: CSquidLine_random_0ae84c, Class_129938_m2_0171f4, Class_12a25c_anim_turn_move_077a38,
+ * Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704, Vec3_assign_copy_wrap, creature_anim_turn_move_04f034,
+ * creature_draw_09e204 (+8 more)
  */
 u32 *Vec3_assign_copy(u32 *a0, u32 *a1) {
     *a0 = *a1;
@@ -4121,7 +4132,7 @@ u32 *Vec3_assign_copy(u32 *a0, u32 *a1) {
 /*
  * Vec3_assign_copy_023e24  0x8c023e24
  * a0 = a1
- * called by: game_vec_09e204, motion_track_sample_angles_like, obj_call_34_with_unit_scale
+ * called by: creature_draw_09e204, motion_track_sample_angles_like, obj_call_34_with_unit_scale
  */
 u32 *Vec3_assign_copy_023e24(u32 *a0, u32 *a1) {
     *a0 = *a1;
@@ -4290,11 +4301,10 @@ int Class_1299f8_ctor_b(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_1299f8_vec_0240bc  0x8c0240bc
- * area name: only called from Class_1299f8 methods; behaviour name: mostly calls vec functions
+ * Class_1299f8_transform_vectors  0x8c0240bc
  * called by: Class_1299f8_m4_019588
  */
-u32 Class_1299f8_vec_0240bc(double *a0, double *a1, float *a2, u32 a3) {
+u32 Class_1299f8_transform_vectors(double *a0, double *a1, float *a2, u32 a3) {
     float fVar1;
     float fVar2;
     double dVar3;
@@ -4553,7 +4563,7 @@ u32 save_current_matrix_27c1ec(void) {
 
 /*
  * Class_1299f8_ninja_update_into_global_slot  0x8c02430c
- * called by: CAnimal_uses_njGetMatrix_029af0
+ * called by: CAnimal_apply_motion_keys
  */
 u32 Class_1299f8_ninja_update_into_global_slot(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -4577,7 +4587,7 @@ u32 memmove_bytes_wrap(u32 a0) {
 /*
  * memmove_bytes_wrap_024378  0x8c024378
  * only calls memmove_bytes
- * called by: CAnimal_uses_njGetMatrix_026968
+ * called by: CAnimal_draw_body
  */
 u32 memmove_bytes_wrap_024378(u32 a0) {
     u32 uVar1;
@@ -5343,7 +5353,7 @@ u32 CAnimal_m2_02573c(int a0, u32 a1, int ****a2, int ****a3) {
         set_field_14(a0 + 0x26c, uVar5 & 0xffff);
         uVar5 = ar5_00;
         a2 = a3;
-        talk_uses_set_field_a_s8_02c030(a0 + 0x174, ar5_00, a3, ar7_00);
+        talk_state_tick(a0 + 0x174, ar5_00, a3, ar7_00);
     }
     iVar6 = CAnimal_get_s8_at_a8_field_1(a0 + 0x174);
     if (iVar6 == 1) {
@@ -5553,7 +5563,7 @@ u32 Vec3_ctor_copy_wrap(int a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
 
 /*
  * get_field_0_s8  0x8c025f68
- * called by: CAnimal_m2_02573c, CAnimal_m3_026078, CAnimal_uses_get_field_138_0274bc, FrogMan_ending_event,
+ * called by: CAnimal_m2_02573c, CAnimal_m3_026078, CAnimal_talk_group_update, FrogMan_ending_event,
  * FrogMan_jump_events, FrogMan_react_tap, FrogMan_react_touch, FrogMan_update_sleep_light (+10 more)
  */
 int get_field_0_s8(char *a0) {
@@ -5628,7 +5638,7 @@ int get_field_1e_s16(int a0) {
 
 /*
  * CAnimal_get_s8_at_a8_field_1  0x8c025ff4
- * called by: CAnimal_m2_02573c, CAnimal_m3_026078, CAnimal_uses_get_field_138_0274bc
+ * called by: CAnimal_m2_02573c, CAnimal_m3_026078, CAnimal_talk_group_update
  */
 u32 CAnimal_get_s8_at_a8_field_1(int a0) {
     u32 uVar1;
@@ -5650,8 +5660,8 @@ u32 set_field_14(int a0, u32 a1) {
 
 /*
  * get_field_24_026024  0x8c026024
- * called by: CAnimal_m2_02573c, CAnimal_m3_026078, CAnimal_vec_055c38, Class_12a03c_m1_03c43c,
- * Class_12a0c4_state_switch_0679cc, Class_12a0c4_state_switch_068e64, Class_12a0c4_uses_libgcc_divide_helper_068a4c,
+ * called by: CAnimal_anim_turn_move_055c38, CAnimal_m2_02573c, CAnimal_m3_026078, Class_12a03c_m1_03c43c,
+ * Class_12a0c4_random_068a4c, Class_12a0c4_turn_random_spawn_068e64, Class_12a0c4_turn_random_steps_0679cc,
  * Class_12a7a8_m1_098d14 (+16 more)
  */
 u32 get_field_24_026024(int a0, u32 a1, u32 unused_a2, u32 a3) {
@@ -5669,7 +5679,7 @@ int get_field_a4_s16(int a0, u32 a1) {
 
 /*
  * CAnimal_list_scalar_dtor  0x8c026038
- * called by: CAnimal_m2_02573c, CAnimal_m3_026078, Vec3_state_switch_03f4a4, game_vec_03c94c
+ * called by: CAnimal_m2_02573c, CAnimal_m3_026078, creature_state_dispatch_03c94c, creature_state_dispatch_b_03f4a4
  */
 int CAnimal_list_scalar_dtor(int a0, u32 a1, u32 a2, u32 a3) {
     u32 ar5_00;
@@ -5761,7 +5771,7 @@ u32 CAnimal_m3_026078(int a0, u32 a1, int ****a2, int ****a3) {
     if ((iVar4 != 2) && (*(int *)(a0 + 0x48c) == 0)) {
         uVar6 = ar5_00;
         ar6_00 = a3;
-        talk_uses_set_field_a_s8_02c030(a0 + 0x174, ar5_00, a3, ar7_00);
+        talk_state_tick(a0 + 0x174, ar5_00, a3, ar7_00);
     }
     iVar5 = CAnimal_get_s8_at_a8_field_1(a0 + 0x174);
     if (iVar5 == 1) {
@@ -5961,7 +5971,7 @@ u32 CAnimal_m4_0266dc(int a0, u32 unused_a1, u32 a2, u32 a3) {
     uVar1 = a2;
     (**(code **)(**(int **)(0x308 + a0) + 0x14))(*(int **)(0x308 + a0), a2, a2, a3);
     (**(code **)(**(int **)(0x30c + a0) + 0x1c))(*(int **)(0x30c + a0), a2, uVar1, a3);
-    CAnimal_uses_talk_find_row_for_stage_02a788(a0, a2, uVar1, a3);
+    CAnimal_pick_idle_by_stage(a0, a2, uVar1, a3);
     uVar1 = CAnimal_talk_row_field_1e4_to_344(a0, a2, uVar1, a3);
     return uVar1;
 }
@@ -5979,7 +5989,7 @@ u32 CAnimal_m5_026774(int a0, u32 a1, u32 a2, u32 a3) {
     *(u32 *)(a0 + 0x74) = *(u32 *)(a0 + 0x74) | 0x40;
     *(u32 *)(a0 + 0x70) = 0;
     (**(code **)(**(int **)(0x30c + a0) + 0x14))(*(int **)(0x30c + a0), a1, a2, a3);
-    CAnimal_uses_talk_find_row_for_stage_02a788(a0, a1, a2, a3);
+    CAnimal_pick_idle_by_stage(a0, a1, a2, a3);
     uVar1 = CAnimal_talk_row_field_1e4_to_344(a0, a1, a2, a3);
     return uVar1;
 }
@@ -5997,8 +6007,8 @@ u32 CAnimBody_AdvanceFrame_wrapper_wrap_026834(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CAnimBody_AdvanceFrame_wrapper  0x8c026858
  * called by: CAnimBody_AdvanceFrame_wrapper_wrap_026834, CAnimBody_AdvanceFrame_wrapper_wrap_03376c,
- * CAnimBody_AdvanceFrame_wrapper_wrap_033790, CAnimal_play_anim5_to_end, CAnimal_state_step_0a3624,
- * CAnimal_state_switch_091e60, CAnimal_uses_CAnimBody_GetCurFrame_0a3aac, CAnimal_uses_Vec3_dtor_0b4d14 (+83 more)
+ * CAnimBody_AdvanceFrame_wrapper_wrap_033790, CAnimal_anim_0a3aac, CAnimal_anim_turn_random_091e60,
+ * CAnimal_play_anim5_to_end, CAnimal_state_step_0a3624, CMushroomerBody_AwayFrom (+83 more)
  */
 u32 CAnimBody_AdvanceFrame_wrapper(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6033,11 +6043,9 @@ u32 CAnimal_RunIncubator(int a0, u8 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * CAnimal_uses_njGetMatrix_026968  0x8c026968
- * area name: sits between CAnimal functions (same compilation unit); behaviour name: its main named callee is
- * njGetMatrix
+ * CAnimal_draw_body  0x8c026968
  */
-int CAnimal_uses_njGetMatrix_026968(int a0, u32 a1, u32 a2, u32 a3) {
+int CAnimal_draw_body(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     int iVar2;
     u32 *puVar3;
@@ -6253,16 +6261,15 @@ int CAnimal_uses_njGetMatrix_026968(int a0, u32 a1, u32 a2, u32 a3) {
     gfx_set_color4_4aa52c(&g_8c12fd7c);
     iVar7 = *(int *)(a0 + 0x474);
     if (iVar7 == 1) {
-        iVar7 = game_uses_CAnimal_ChangeBodyTexture_02b058(a0, uVar1, uVar6, iVar4);
+        iVar7 = CAnimal_change_body_texture_scaled(a0, uVar1, uVar6, iVar4);
     }
     return iVar7;
 }
 
 /*
  * get_field_0_026d74  0x8c026d74
- * called by: CAnimBody_SetInterpolate, CAnimBody_draw_key_model, CAnimal_draw_key_model_a, CAnimal_draw_key_model_c,
- * CAnimal_draw_key_model_d, CAnimal_uses_njGetMatrix_026968, CSquidLine_draw_like, Class_12a7f4_draw_at_pose_motion (+7
- * more)
+ * called by: CAnimBody_SetInterpolate, CAnimBody_draw_key_model, CAnimal_draw_body, CAnimal_draw_key_model_a,
+ * CAnimal_draw_key_model_c, CAnimal_draw_key_model_d, CSquidLine_draw_like, Class_12a7f4_draw_at_pose_motion (+7 more)
  */
 u32 get_field_0_026d74(u32 *a0) {
     return *a0;
@@ -6271,8 +6278,8 @@ u32 get_field_0_026d74(u32 *a0) {
 /*
  * CAnimBody_GetCurFrame_on_field_b0  0x8c026d7c
  * calls CAnimBody_GetCurFrame on the member at +0xb0
- * called by: CAnimBody_GetCurFrame_on_field_b0_wrap, CAnimBody_draw_key_model, CAnimal_draw_key_model_a,
- * CAnimal_draw_key_model_b, CAnimal_draw_key_model_c, CAnimal_draw_key_model_d, CAnimal_uses_njGetMatrix_026968,
+ * called by: CAnimBody_GetCurFrame_on_field_b0_wrap, CAnimBody_draw_key_model, CAnimal_draw_body,
+ * CAnimal_draw_key_model_a, CAnimal_draw_key_model_b, CAnimal_draw_key_model_c, CAnimal_draw_key_model_d,
  * CSquidLine_draw_like (+7 more)
  */
 u32 CAnimBody_GetCurFrame_on_field_b0(int a0, u32 a1, u32 a2, u32 a3) {
@@ -6282,9 +6289,9 @@ u32 CAnimBody_GetCurFrame_on_field_b0(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * CAnimBody_GetCurFrame  0x8c026da8
- * called by: CAnimBody_GetCurFrame_on_field_b0, CAnimal_uses_CAnimBody_GetCurFrame_0a3aac,
- * CAnimal_uses_Vec3_dtor_0b4d14, CAnimal_uses_get_field_1c_057164, CAnimal_vec_055c38,
- * Class_12a25c_uses_Vec3_dtor_06f93c, Class_12b088_vec_0a6628, Vec3_state_switch_03f4a4 (+56 more)
+ * called by: CAnimBody_GetCurFrame_on_field_b0, CAnimal_anim_057164, CAnimal_anim_0a3aac,
+ * CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_04e2d0, CAnimal_anim_turn_move_055c38,
+ * Class_12a25c_anim_sound_07cce0, Class_12a25c_anim_turn_move_06f93c (+56 more)
  */
 u32 CAnimBody_GetCurFrame(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     u32 in_r0;
@@ -6295,8 +6302,8 @@ u32 CAnimBody_GetCurFrame(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 /*
  * get_field_1c_on_field_b0  0x8c026db0
  * calls get_field_1c_026dd8 on the member at +0xb0
- * called by: CAnimBody_draw_key_model, CAnimal_draw_key_model_a, CAnimal_draw_key_model_b, CAnimal_draw_key_model_c,
- * CAnimal_draw_key_model_d, CAnimal_uses_njGetMatrix_026968, CAnimal_vec_055c38, CSquidLine_draw_like (+23 more)
+ * called by: CAnimBody_draw_key_model, CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_055c38, CAnimal_draw_body,
+ * CAnimal_draw_key_model_a, CAnimal_draw_key_model_b, CAnimal_draw_key_model_c, CAnimal_draw_key_model_d (+23 more)
  */
 u32 get_field_1c_on_field_b0(int a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -6307,9 +6314,9 @@ u32 get_field_1c_on_field_b0(int a0, u32 a1, u32 a2) {
 
 /*
  * get_field_1c_026dd8  0x8c026dd8
- * called by: CAnimal_uses_CAnimBody_GetCurFrame_0a3aac, CAnimal_uses_get_field_1c_057164, Class_129cbc_m5_031440,
- * Class_12ad14_m3_0a427c, Vec3_state_switch_03f4a4, Vec3_uses_get_field_1c_05c28c, alt_entry_046684,
- * creature_action_motion49_step (+31 more)
+ * called by: CAnimal_anim_057164, CAnimal_anim_0a3aac, CAnimal_anim_turn_move_04c314, CAnimal_anim_turn_move_04e2d0,
+ * Class_129cbc_m5_031440, Class_12a25c_anim_turn_move_077a38, Class_12a25c_anim_turn_random_076994,
+ * Class_12ad14_anim_move_steps_0a1828 (+31 more)
  */
 u32 get_field_1c_026dd8(int a0, u32 a1, u32 a2) {
     return *(u32 *)(a0 + 0x1c);
@@ -6391,7 +6398,7 @@ int CAnimal_talk_row_field_1e4_read(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CAnimal_apply_stage_row  0x8c02702c
  * looks up the creature's current row in its stage table and applies its model, motion, texture and scale settings
- * called by: CAnimal_apply_stage_row_cache_nodes, CAnimal_apply_stage_settings, CAnimal_state_switch_037034
+ * called by: CAnimal_apply_stage_row_cache_nodes, CAnimal_apply_stage_settings, CAnimal_talk_steps_037034
  */
 u32 CAnimal_apply_stage_row(int a0, u32 a1, u32 a2) {
     short sVar1;
@@ -6549,7 +6556,7 @@ u32 CAnimal_talk_enter_group(int a0, u32 unused_a1, u32 a2, u32 a3) {
     uVar2 = talk_find_row_for_stage(a0 + 0x174, uVar2, a2);
     ar6_00 = (int)(short)uVar2;
     uVar1 = group_index_to_id(a0, uVar1, ar6_00);
-    uVar1 = CAnimal_talk_0fa388(0x8c35468c, uVar1, ar6_00, a3);
+    uVar1 = CAnimal_talk_steps_0fa388(0x8c35468c, uVar1, ar6_00, a3);
     set_field_44(a0 + 0x21c, uVar1);
     uVar1 = get_field_99_s8(*(u32 *)(0x308 + a0));
     set_field_40_u8(a0 + 0x21c, uVar1);
@@ -6561,7 +6568,7 @@ u32 CAnimal_talk_enter_group(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * set_field_9b_u8_to_1  0x8c027344
- * called by: CAnimal_talk_enter_group, CAnimal_uses_get_field_138_0274bc
+ * called by: CAnimal_talk_enter_group, CAnimal_talk_group_update
  */
 int set_field_9b_u8_to_1(int a0) {
     int iVar1;
@@ -6582,7 +6589,7 @@ u32 set_field_28_u8(int a0, u32 a1) {
 
 /*
  * set_field_40_u8  0x8c02735c
- * called by: CAnimal_talk_enter_group, CAnimal_uses_get_field_138_0274bc
+ * called by: CAnimal_talk_enter_group, CAnimal_talk_group_update
  */
 u32 set_field_40_u8(int a0, u32 a1) {
     *(u8 *)(a0 + 0x40) = (u8)a1;
@@ -6591,7 +6598,7 @@ u32 set_field_40_u8(int a0, u32 a1) {
 
 /*
  * get_field_99_s8  0x8c027364
- * called by: CAnimal_talk_enter_group, CAnimal_uses_get_field_138_0274bc
+ * called by: CAnimal_talk_enter_group, CAnimal_talk_group_update
  */
 int get_field_99_s8(int a0) {
     return (int)*(char *)(0x99 + a0);
@@ -6599,7 +6606,7 @@ int get_field_99_s8(int a0) {
 
 /*
  * set_field_44  0x8c027374
- * called by: CAnimal_talk_enter_group, CAnimal_uses_get_field_138_0274bc
+ * called by: CAnimal_talk_enter_group, CAnimal_talk_group_update
  */
 u32 set_field_44(int a0, u32 a1) {
     *(u32 *)(a0 + 0x44) = a1;
@@ -6608,7 +6615,7 @@ u32 set_field_44(int a0, u32 a1) {
 
 /*
  * get_field_138_02737c  0x8c02737c
- * called by: CAnimal_talk_enter_group, CAnimal_uses_get_field_138_0274bc, talk_state_get_info, talk_state_save_fields
+ * called by: CAnimal_talk_enter_group, CAnimal_talk_group_update, talk_state_get_info, talk_state_save_fields
  */
 u32 get_field_138_02737c(int a0) {
     return *(u32 *)(0x138 + a0);
@@ -6770,11 +6777,9 @@ int set_field_87_u8(int a0, u32 a1) {
 }
 
 /*
- * CAnimal_uses_get_field_138_0274bc  0x8c0274bc
- * area name: sits between CAnimal functions (same compilation unit); behaviour name: its main named callee is
- * get_field_138_02737c
+ * CAnimal_talk_group_update  0x8c0274bc
  */
-u32 CAnimal_uses_get_field_138_0274bc(int a0, u16 *a1, int a2, u32 a3) {
+u32 CAnimal_talk_group_update(int a0, u16 *a1, int a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -6792,7 +6797,7 @@ u32 CAnimal_uses_get_field_138_0274bc(int a0, u16 *a1, int a2, u32 a3) {
     uVar3 = talk_find_row_for_stage(a0 + 0x174, ar5_00, a2);
     a2 = (int)(short)uVar3;
     uVar2 = group_index_to_id(a0, uVar2, a2);
-    uVar2 = CAnimal_talk_0fa388(0x8c35468c, uVar2, a2, a3);
+    uVar2 = CAnimal_talk_steps_0fa388(0x8c35468c, uVar2, a2, a3);
     set_field_44(a0 + 0x21c, uVar2);
     ar5_00 = (u16 *)get_field_99_s8(*(u32 *)(0x308 + a0));
     set_field_40_u8(a0 + 0x21c, ar5_00);
@@ -6863,7 +6868,7 @@ int CAnimal_308_kind_matches_global(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * group_index_to_id  0x8c02775c
  * maps group 1 indexes 0-7 to ids 0-7 and group 2 indexes 0-4 to ids 8-12; anything else gives 12
- * called by: CAnimal_talk_enter_group, CAnimal_uses_get_field_138_0274bc
+ * called by: CAnimal_talk_enter_group, CAnimal_talk_group_update
  */
 u32 group_index_to_id(u32 unused_a0, int a1, u32 a2) {
     int iVar1;
@@ -6989,7 +6994,7 @@ u32 CAnimal_body_get_field_124(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * get_field_124_027930  0x8c027930
- * called by: CAnimal_m7_0ade84, CSquidLine_draw_like, CSquidLine_uses_rand_0ae84c, Class_12a078_m2_05eee0,
+ * called by: CAnimal_m7_0ade84, CSquidLine_draw_like, CSquidLine_random_0ae84c, Class_12a078_m2_05eee0,
  * Class_12a5d0_m2_08a49c, Class_12a5d0_m3_08a704, Class_12a7a8_m1_098d14, Class_12ab2c_m2_09db4c (+17 more)
  */
 u32 get_field_124_027930(int a0, u32 a1, u32 unused_a2, u32 a3) {
@@ -7621,9 +7626,9 @@ u32 CAnimal_308_get_field_6c(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * get_field_6c_028cc4  0x8c028cc4
- * called by: CAnimal_uses_Vec3_dtor_0b4d14, Class_12a25c_uses_Vec3_dtor_06f93c, game_state_switch_04f034,
- * game_state_switch_070d7c, game_state_switch_071a38, game_uses_Vec3_dtor_04ddd4, game_uses_Vec3_dtor_077a38,
- * game_vec_03c94c (+3 more)
+ * called by: Class_12a25c_anim_sound_07cce0, Class_12a25c_anim_turn_move_06f93c, Class_12a25c_anim_turn_move_077a38,
+ * Class_12b088_anim_turn_steps_0aa11c, Class_12b2ac_anim_turn_sound_0b4d14, creature_anim_random_sound_070d7c,
+ * creature_anim_turn_move_04f034, creature_anim_turn_random_071a38 (+3 more)
  */
 u32 get_field_6c_028cc4(int a0, u32 a1) {
     return *(u32 *)(a0 + 0x6c);
@@ -8007,7 +8012,7 @@ u32 CAnimal_set_state_flag_40(int a0) {
 /*
  * CAnimal_draw_model_a  0x8c029510
  * pushes a matrix, places the creature's model for its stage row and draws it
- * called by: CAnimBody_draw_key_model, CAnimal_draw_model_a, CAnimal_uses_njGetMatrix_026968
+ * called by: CAnimBody_draw_key_model, CAnimal_draw_body, CAnimal_draw_model_a
  */
 u32 CAnimal_draw_model_a(int a0, int a1, int a2, int a3) {
     u32 uVar1;
@@ -8037,7 +8042,7 @@ u32 CAnimal_draw_model_a(int a0, int a1, int a2, int a3) {
     matrix_push(0, iVar3, uVar1, a3, ain0);
     iVar3 = a1;
     ar6_00 = a2;
-    CAnimal_uses_njGetMatrix_029af0(a0, a1, a2);
+    CAnimal_apply_motion_keys(a0, a1, a2);
     if (*(int *)(a1 + 4) != 0) {
         pdVar2 = (double *)(*(int *)(a1 + 4) + 0x14);
         if (cVar7 == '\0') {
@@ -8067,7 +8072,7 @@ u32 CAnimal_draw_model_a(int a0, int a1, int a2, int a3) {
             a3 = a0 + 900;
             ar6_00 = a0 + 0x374;
             iVar3 = a0 + 0x364;
-            CAnimal_vec_02a2b8(a0, iVar3, ar6_00, a3);
+            CAnimal_compute_part_positions(a0, iVar3, ar6_00, a3);
             obj_set_texlist(*piVar4 + 0x1f0, iVar3, ar6_00);
             iVar3 = a0 + 900;
             CAnimal_draw_talk_model(a0, iVar3, ar6_00, a3);
@@ -8076,7 +8081,7 @@ u32 CAnimal_draw_model_a(int a0, int a1, int a2, int a3) {
             a3 = a0 + 0x3b0;
             ar6_00 = a0 + 0x3a0;
             iVar3 = a0 + 0x390;
-            CAnimal_vec_02a2b8(a0, iVar3, ar6_00, a3);
+            CAnimal_compute_part_positions(a0, iVar3, ar6_00, a3);
             obj_set_texlist(*piVar4 + 0x1f0, iVar3, ar6_00);
             iVar3 = a0 + 0x3b0;
             CAnimal_draw_talk_model(a0, iVar3, ar6_00, a3);
@@ -8120,7 +8125,7 @@ u32 CAnimal_draw_model_a(int a0, int a1, int a2, int a3) {
 /*
  * CAnimal_draw_model_b  0x8c0297b8
  * like CAnimal_draw_model_a, also setting the texture list and handling the model's flag 0x80
- * called by: CAnimBody_draw_key_model, CAnimal_draw_model_b, CAnimal_uses_njGetMatrix_026968
+ * called by: CAnimBody_draw_key_model, CAnimal_draw_body, CAnimal_draw_model_b
  */
 u32 CAnimal_draw_model_b(int a0, u32 *a1, int a2, int a3) {
     u32 uVar1;
@@ -8151,7 +8156,7 @@ u32 CAnimal_draw_model_b(int a0, u32 *a1, int a2, int a3) {
     matrix_push(0, iVar3, uVar1, a3, ain0);
     ar5_00 = a1;
     iVar3 = a2;
-    CAnimal_uses_njGetMatrix_029af0(a0, a1, a2);
+    CAnimal_apply_motion_keys(a0, a1, a2);
     if (a1[1] != 0) {
         unaff_r10 = *(u32 *)a1[1];
     }
@@ -8191,7 +8196,7 @@ u32 CAnimal_draw_model_b(int a0, u32 *a1, int a2, int a3) {
             a3 = a0 + 900;
             iVar3 = a0 + 0x374;
             iVar2 = a0 + 0x364;
-            CAnimal_vec_02a2b8(a0, iVar2, iVar3, a3);
+            CAnimal_compute_part_positions(a0, iVar2, iVar3, a3);
             obj_set_texlist(*piVar4 + 0x1f0, iVar2, iVar3);
             ar5_00 = (u32 *)(a0 + 900);
             CAnimal_draw_talk_model(a0, ar5_00, iVar3, a3);
@@ -8202,7 +8207,7 @@ u32 CAnimal_draw_model_b(int a0, u32 *a1, int a2, int a3) {
             a3 = a0 + 0x3b0;
             iVar3 = a0 + 0x3a0;
             iVar2 = a0 + 0x390;
-            CAnimal_vec_02a2b8(a0, iVar2, iVar3, a3);
+            CAnimal_compute_part_positions(a0, iVar2, iVar3, a3);
             obj_set_texlist(*piVar4 + 0x1f0, iVar2, iVar3);
             ar5_00 = (u32 *)(a0 + 0x3b0);
             CAnimal_draw_talk_model(a0, ar5_00, iVar3, a3);
@@ -8249,11 +8254,10 @@ u32 CAnimal_draw_model_b(int a0, u32 *a1, int a2, int a3) {
 }
 
 /*
- * CAnimal_uses_njGetMatrix_029af0  0x8c029af0
- * area name: sits between CAnimal functions (same compilation unit); behaviour name: its main named callee is
- * njGetMatrix called by: CAnimal_draw_model_a, CAnimal_draw_model_b, draw_node_chain_scaled
+ * CAnimal_apply_motion_keys  0x8c029af0
+ * called by: CAnimal_draw_model_a, CAnimal_draw_model_b, draw_node_chain_scaled
  */
-u32 CAnimal_uses_njGetMatrix_029af0(int a0, int a1, int a2) {
+u32 CAnimal_apply_motion_keys(int a0, int a1, int a2) {
     u32 r7;
     u32 uVar1;
     u32 ar4_00;
@@ -8312,7 +8316,7 @@ u32 CAnimal_uses_njGetMatrix_029af0(int a0, int a1, int a2) {
     uVar1 = uStack_34;
     uVar3 = uStack_30;
     uVar4 = uStack_2c;
-    ninja_float_calc_256e18(0, uStack_34, uStack_30, uStack_2c, in_stack_ffffff88);
+    ninja_rotation_matrix_from_angles(0, uStack_34, uStack_30, uStack_2c, in_stack_ffffff88);
     ar4_00 = 0;
     matrix_scale(0, uVar1, uVar3, uVar4, in_stack_ffffff88);
     ninja_vertex_buffer_advance();
@@ -8324,7 +8328,7 @@ u32 CAnimal_uses_njGetMatrix_029af0(int a0, int a1, int a2) {
     uVar1 = uStack_34;
     uVar3 = uStack_30;
     uVar4 = uStack_2c;
-    ninja_float_calc_256e18(auStack_74, uStack_34, uStack_30, uStack_2c, a0);
+    ninja_rotation_matrix_from_angles(auStack_74, uStack_34, uStack_30, uStack_2c, a0);
     Class_1299f8_ninja_update_into_global_slot(auStack_74, uVar1, uVar3, uVar4);
     njGetMatrix(auStack_74, uVar1, uVar3, uVar4, a0);
     matrix_scale(auStack_74, uVar1, uVar3, uVar4, a0);
@@ -8377,7 +8381,7 @@ u32 draw_node_chain_scaled(int a0, int a1, u32 a2, u32 a3) {
     uVar4 = *(u32 *)(*(int *)(a1 + 4) + 0x14);
     matrix_push(0, a1, a2, a3, in_PR);
     uVar1 = a2;
-    CAnimal_uses_njGetMatrix_029af0(a0, a1, a2);
+    CAnimal_apply_motion_keys(a0, a1, a2);
     pdVar2 = (double *)(*(int *)(a1 + 4) + 0x14);
     dVar3 = in_xd14;
     if (cVar6 == '\0') {
@@ -8687,9 +8691,9 @@ LAB_8c029f42:
 /*
  * clear_3_words  0x8c02a1fc
  * a0[0..2] = 0
- * called by: CAnimal_copy_key_and_set_frame, CAnimal_draw_blended_shape_like, CAnimal_state_switch_057280,
- * Class_129cbc_m1_031598, Class_12a990_record_init, Class_12b2ac_m1_0aff3c, Class_12b930_reset_slide,
- * game_state_switch_049b68 (+14 more)
+ * called by: CAnimal_anim_turn_move_04c314, CAnimal_copy_key_and_set_frame, CAnimal_draw_blended_shape_like,
+ * Class_129cbc_m1_031598, Class_12a25c_anim_turn_move_0811b4, Class_12a25c_anim_turn_timer_075ef4,
+ * Class_12a990_record_init, Class_12b2ac_m1_0aff3c (+14 more)
  */
 u32 clear_3_words(u32 *a0, u32 a1, u32 unused_a2, u32 a3) {
     a0[2] = 0;
@@ -8735,11 +8739,10 @@ u32 gfxlib_draw_219a86_on_a1(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * CAnimal_vec_02a2b8  0x8c02a2b8
- * area name: only called from CAnimal methods; behaviour name: mostly calls vec functions
+ * CAnimal_compute_part_positions  0x8c02a2b8
  * called by: CAnimal_draw_model_a, CAnimal_draw_model_b
  */
-u32 CAnimal_vec_02a2b8(int a0, u32 a1, u32 a2, double *a3) {
+u32 CAnimal_compute_part_positions(int a0, u32 a1, u32 a2, double *a3) {
     code *pcVar1;
     u32 uVar2;
     u32 ar6_00;
@@ -8999,7 +9002,7 @@ u32 CAnimal_vec_02a2b8(int a0, u32 a1, u32 a2, double *a3) {
 /*
  * Vec3_ctor_copy_wrap_02a544  0x8c02a544
  * only calls Vec3_ctor_copy
- * called by: CAnimal_uses_talk_find_row_for_stage_02a788, CAnimal_vec_02a2b8
+ * called by: CAnimal_compute_part_positions, CAnimal_pick_idle_by_stage
  */
 u32 Vec3_ctor_copy_wrap_02a544(int a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;
@@ -9010,7 +9013,7 @@ u32 Vec3_ctor_copy_wrap_02a544(int a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
 
 /*
  * point_transform_by_matrix  0x8c02a568
- * called by: CAnimal_vec_02a2b8
+ * called by: CAnimal_compute_part_positions
  */
 u32 point_transform_by_matrix(u32 unused_a0, u32 *a1, u64 *a2) {
     u32 r7;
@@ -9046,7 +9049,7 @@ u32 point_transform_by_matrix(u32 unused_a0, u32 *a1, u64 *a2) {
 
 /*
  * point_transform_or_identity  0x8c02a5d4
- * called by: CAnimal_vec_02a2b8
+ * called by: CAnimal_compute_part_positions
  */
 u32 point_transform_or_identity(u32 unused_a0, u32 *a1, u64 *a2) {
     u32 r7;
@@ -9123,7 +9126,7 @@ u32 Vec3_ctor_copy_wrap_02a6d0(int a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
 
 /*
  * CAnimal_talk_restage_clear_bit3  0x8c02a6f8
- * called by: CAnimal_m2_02573c, CAnimal_m3_026078, CAnimal_uses_get_field_138_0274bc
+ * called by: CAnimal_m2_02573c, CAnimal_m3_026078, CAnimal_talk_group_update
  */
 u32 CAnimal_talk_restage_clear_bit3(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 ar5_00;
@@ -9156,13 +9159,12 @@ u32 get_field_30_02a780(int a0) {
 }
 
 /*
- * CAnimal_uses_talk_find_row_for_stage_02a788  0x8c02a788
- * area name: only called from CAnimal methods; behaviour name: its main named callee is talk_find_row_for_stage
+ * CAnimal_pick_idle_by_stage  0x8c02a788
  * called by: CAnimal_apply_stage_row_cache_nodes, CAnimal_m2_03640c, CAnimal_m2_085390, CAnimal_m3_036568,
- * CAnimal_m3_085550, CAnimal_m4_0266dc, CAnimal_m5_026774, CAnimal_state_switch_037034 decompiler: Switch with 1
+ * CAnimal_m3_085550, CAnimal_m4_0266dc, CAnimal_m5_026774, CAnimal_talk_steps_037034 decompiler: Switch with 1
  * destination removed at 0x8c02a8fc
  */
-u32 CAnimal_uses_talk_find_row_for_stage_02a788(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CAnimal_pick_idle_by_stage(int a0, u32 a1, u32 a2, u32 a3) {
     short sVar1;
     u32 uVar2;
     u8 *ar6_00;
@@ -9228,8 +9230,8 @@ u32 CAnimal_uses_talk_find_row_for_stage_02a788(int a0, u32 a1, u32 a2, u32 a3) 
 
 /*
  * get_field_94_02aaa4  0x8c02aaa4
- * called by: CAnimal_uses_talk_find_row_for_stage_02a788, alt_entry_046684, game_uses_Vec3_dtor_0831c8,
- * game_uses_get_field_1c_048868, game_vec_053f24
+ * called by: CAnimal_pick_idle_by_stage, alt_entry_046684, creature_anim_turn_random_053f24,
+ * creature_state_idle_048868, game_anim_turn_random_0831c8
  */
 u32 get_field_94_02aaa4(int a0) {
     return *(u32 *)(0x94 + a0);
@@ -9237,7 +9239,7 @@ u32 get_field_94_02aaa4(int a0) {
 
 /*
  * set_field_94  0x8c02aab0
- * called by: CAnimal_uses_talk_find_row_for_stage_02a788
+ * called by: CAnimal_pick_idle_by_stage
  */
 int set_field_94(int a0, u32 a1) {
     int iVar1;
@@ -9343,8 +9345,8 @@ u32 CAnimal_update_world_pose(int a0) {
 /*
  * Vec3_ctor_copy_wrap_02ace4  0x8c02ace4
  * only calls Vec3_ctor_copy
- * called by: CAnimal_body_vec3_copy_to_s0, CAnimal_update_world_pose, CSquidLine_uses_rand_0ae84c,
- * CSquidLine_vec_036adc, CSquidLine_vec_085c3c
+ * called by: CAnimal_body_vec3_copy_to_s0, CAnimal_update_world_pose, CSquidLine_random_0ae84c, CSquidLine_turn_036adc,
+ * CSquidLine_turn_085c3c
  */
 u32 Vec3_ctor_copy_wrap_02ace4(int a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;
@@ -9517,7 +9519,7 @@ u32 CAnimal_scale_toward_stage(int a0, u32 a1, u32 a2) {
 
 /*
  * CAnimal_set_mode_47c_reset  0x8c02af68
- * called by: FrogMan_ending_event, game_uses_Vec3_dtor_1089e4
+ * called by: FrogMan_ending_event, game_talk_1089e4
  */
 int CAnimal_set_mode_47c_reset(int a0, int a1) {
     int iVar1;
@@ -9534,7 +9536,7 @@ int CAnimal_set_mode_47c_reset(int a0, int a1) {
 
 /*
  * CAnimal_ChangeBodyTexture  0x8c02af90
- * called by: CAnimal_apply_stage_row, game_uses_CAnimal_ChangeBodyTexture_02b058
+ * called by: CAnimal_apply_stage_row, CAnimal_change_body_texture_scaled
  * strings: "Texlist NULL!"; "CAnimal::ChangeBodyTexture()"
  */
 int CAnimal_ChangeBodyTexture(int a0, int a1, u32 a2, u32 a3) {
@@ -9557,7 +9559,7 @@ int CAnimal_ChangeBodyTexture(int a0, int a1, u32 a2, u32 a3) {
 
 /*
  * set_field_478  0x8c02b04c
- * called by: CAnimal_308_kind_matches_global, CAnimal_uses_get_field_138_0274bc
+ * called by: CAnimal_308_kind_matches_global, CAnimal_talk_group_update
  */
 int set_field_478(int a0, u32 a1) {
     int iVar1;
@@ -9568,11 +9570,10 @@ int set_field_478(int a0, u32 a1) {
 }
 
 /*
- * game_uses_CAnimal_ChangeBodyTexture_02b058  0x8c02b058
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is CAnimal_ChangeBodyTexture
- * called by: CAnimal_uses_njGetMatrix_026968
+ * CAnimal_change_body_texture_scaled  0x8c02b058
+ * called by: CAnimal_draw_body
  */
-u32 game_uses_CAnimal_ChangeBodyTexture_02b058(int a0, u32 a1, u32 a2, u32 a3) {
+u32 CAnimal_change_body_texture_scaled(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 ar5_00;
@@ -9643,7 +9644,7 @@ u32 game_uses_CAnimal_ChangeBodyTexture_02b058(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * set_fields_45c_448  0x8c02b190
  * stores +0x45c, +0x448
- * called by: CAnimal_uses_get_field_138_0274bc
+ * called by: CAnimal_talk_group_update
  */
 u32 set_fields_45c_448(int a0) {
     *(u32 *)(a0 + 0x45c) = 0x708;
@@ -9673,7 +9674,7 @@ int CAnimal_part_ctor_vec_02b1dc(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * CAnimBody_pick_idle_variant  0x8c02b208
  * for motions 0, 0x2d and 0x1e switches to a left/right variant (0x48..0x4d by flag bit 1) when the target appears or
- * vanishes or the random delay runs out, then rerolls the delay called by: CAnimal_uses_talk_find_row_for_stage_02a788
+ * vanishes or the random delay runs out, then rerolls the delay called by: CAnimal_pick_idle_by_stage
  */
 int CAnimBody_pick_idle_variant(short *a0, int a1, float *a2) {
     bool bVar1;
@@ -9850,9 +9851,9 @@ u32 vec3_copy_wrap(int a0, u32 unused_a1, u32 a2, u32 unused_a3, u32 s0) {
 
 /*
  * vec3_copy_8c02b5fc  0x8c02b5fc
- * called by: CAnimal_uses_Vec3_dtor_0b4d14, CAnimal_vec_0a3dc0, CSquidLine_vec_036adc, CSquidLine_vec_085c3c,
- * Class_129cbc_m1_031598, Class_12a25c_uses_Vec3_dtor_06f93c, Class_12a7a8_vec_099b0c, Class_12acc8_uses_rand_0a0278
- * (+41 more)
+ * called by: CAnimal_turn_0a3dc0, CSquidLine_turn_0332b4, CSquidLine_turn_036adc, CSquidLine_turn_085c3c,
+ * Class_129cbc_m1_031598, Class_12a25c_anim_turn_move_06f93c, Class_12a25c_anim_turn_move_077a38,
+ * Class_12a25c_anim_turn_move_0811b4 (+41 more)
  */
 u32 *vec3_copy_8c02b5fc(u32 *a0, u32 *a1, u32 a2) {
     *a0 = *a1;
@@ -10359,7 +10360,7 @@ u32 get_field_4_02be9c(int a0) {
 
 /*
  * talk_table_offset_delta  0x8c02bea4
- * called by: talk_pick_due_topic, talk_slots_all_idle, talk_uses_rand_02dfa0
+ * called by: talk_pick_due_topic, talk_slot_randomize_by_mode, talk_slots_all_idle
  */
 int talk_table_offset_delta(int a0) {
     return *(int *)(*(char *)(a0 + 8) * 4 + *(int *)(a0 + 0x10)) - *(int *)(a0 + 4);
@@ -10389,7 +10390,7 @@ u32 talk_find_slot_state2(int a0) {
  * talk_find_row_for_stage  0x8c02bef8
  * called by: CAnimBody_draw_key_model, CAnimal_RunIncubator, CAnimal_apply_stage_row,
  * CAnimal_apply_stage_row_cache_nodes, CAnimal_apply_stage_settings, CAnimal_draw_blended_shape_like,
- * CAnimal_draw_key_model_c, CAnimal_draw_model_a (+45 more)
+ * CAnimal_draw_body, CAnimal_draw_key_model_c (+45 more)
  */
 int talk_find_row_for_stage(int a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -10436,7 +10437,7 @@ int talk_table_1302bc_entry(int a0) {
  * table13019c_find_row  0x8c02bfd8
  * row (0..17) of the 4-column table at 0x8c13019c that holds the value at +0x13c; -1 if none
  * called by: CAnimal_ctor, FrogMan_gratification_events, Higyo_gratification_events, talk_find_row_for_stage,
- * talk_rules_tick, talk_state_init_stage, talk_state_set_stage, talk_uses_set_field_a_s8_02c030
+ * talk_rules_tick, talk_state_init_stage, talk_state_set_stage, talk_state_tick
  */
 u32 table13019c_find_row(int a0) {
     int iVar1;
@@ -10457,11 +10458,10 @@ u32 table13019c_find_row(int a0) {
 }
 
 /*
- * talk_uses_set_field_a_s8_02c030  0x8c02c030
- * area name: sits between talk functions (same compilation unit); behaviour name: its main named callee is
- * set_field_a_s8 called by: CAnimal_m2_02573c, CAnimal_m2_0386d0, CAnimal_m3_026078, Class_12a990_m2_09bc2c
+ * talk_state_tick  0x8c02c030
+ * called by: CAnimal_m2_02573c, CAnimal_m2_0386d0, CAnimal_m3_026078, Class_12a990_m2_09bc2c
  */
-u32 talk_uses_set_field_a_s8_02c030(int a0, int *a1, int *a2, u32 a3) {
+u32 talk_state_tick(int a0, int *a1, int *a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int *ar6_00;
@@ -10506,7 +10506,7 @@ u32 talk_uses_set_field_a_s8_02c030(int a0, int *a1, int *a2, u32 a3) {
         a3 = talk_pick_highest_active(a0, ar5_00, ar6_00);
         ar5_00 = a2;
         ar6_00 = a1;
-        talk_fill_loop_02e4cc(a0 + 0xf8, a2, a1, a3);
+        talk_copy_default_table(a0 + 0xf8, a2, a1, a3);
     }
     iVar1 = get_field_0_02c380(a0 + 0xf8);
     if ((iVar1 == 0) && (a1 != *(int **)(a0 + 0x148))) {
@@ -10550,7 +10550,7 @@ u32 talk_uses_set_field_a_s8_02c030(int a0, int *a1, int *a2, u32 a3) {
 
 /*
  * set_field_3_s8  0x8c02c308
- * called by: talk_uses_set_field_a_s8_02c030
+ * called by: talk_state_tick
  */
 u32 set_field_3_s8(int a0, u32 a1) {
     *(char *)(a0 + 3) = (char)a1;
@@ -10560,7 +10560,7 @@ u32 set_field_3_s8(int a0, u32 a1) {
 /*
  * get_byte_51_2col  0x8c02c310
  * signed byte at a0[0x51 + a1*2 + a2]
- * called by: FrogMan_gratification_events, talk_uses_set_field_a_s8_02c030
+ * called by: FrogMan_gratification_events, talk_state_tick
  */
 int get_byte_51_2col(int a0, u32 a1, u32 a2) {
     return (int)*(char *)(a0 + (short)a1 * 2 + (int)(short)a2 + 0x51);
@@ -10568,7 +10568,7 @@ int get_byte_51_2col(int a0, u32 a1, u32 a2) {
 
 /*
  * set_field_48  0x8c02c328
- * called by: talk_slots_tick, talk_uses_set_field_a_s8_02c030
+ * called by: talk_slots_tick, talk_state_tick
  */
 u32 set_field_48(int a0, u32 a1) {
     *(u32 *)(a0 + 0x48) = a1;
@@ -10578,7 +10578,7 @@ u32 set_field_48(int a0, u32 a1) {
 /*
  * set_field_0_u8  0x8c02c330
  * called by: Class_12a078_m2_05eee0, FrogMan_gratification_events, FrogMan_update_sleep_light,
- * Higyo_gratification_events, talk_slots_tick, talk_state_load_fields, talk_uses_set_field_a_s8_02c030
+ * Higyo_gratification_events, talk_slots_tick, talk_state_load_fields, talk_state_tick
  */
 u32 set_field_0_u8(u8 *a0, u32 a1) {
     u32 in_r0;
@@ -10589,7 +10589,7 @@ u32 set_field_0_u8(u8 *a0, u32 a1) {
 
 /*
  * set_field_8_s8  0x8c02c338
- * called by: talk_state_load_fields, talk_uses_set_field_a_s8_02c030
+ * called by: talk_state_load_fields, talk_state_tick
  */
 u32 set_field_8_s8(int a0, u32 a1) {
     *(char *)(a0 + 8) = (char)a1;
@@ -10611,7 +10611,7 @@ u32 percent_field_4_of_c(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * get_field_0_02c380  0x8c02c380
- * called by: meter_at_f8_remainder_times_scale, meter_at_f8_value_times_scale, talk_uses_set_field_a_s8_02c030
+ * called by: meter_at_f8_remainder_times_scale, meter_at_f8_value_times_scale, talk_state_tick
  */
 u32 get_field_0_02c380(u32 *a0) {
     return *a0;
@@ -10619,7 +10619,7 @@ u32 get_field_0_02c380(u32 *a0) {
 
 /*
  * set_field_a_s8  0x8c02c388
- * called by: talk_uses_set_field_a_s8_02c030
+ * called by: talk_state_tick
  */
 u32 set_field_a_s8(int a0, u32 a1) {
     *(char *)(a0 + 10) = (char)a1;
@@ -10628,7 +10628,7 @@ u32 set_field_a_s8(int a0, u32 a1) {
 
 /*
  * set_field_4c_u8  0x8c02c390
- * called by: talk_uses_set_field_a_s8_02c030
+ * called by: talk_state_tick
  */
 u32 set_field_4c_u8(int a0, u32 a1) {
     *(u8 *)(a0 + 0x4c) = (u8)a1;
@@ -10750,7 +10750,7 @@ int get_field_8_s8(int a0, u32 a1) {
 
 /*
  * talk_slots_expire  0x8c02c5b4
- * called by: talk_uses_set_field_a_s8_02c030
+ * called by: talk_state_tick
  */
 u32 talk_slots_expire(int a0) {
     u32 uVar1;
@@ -10935,8 +10935,8 @@ u32 set_field_0_u8_02cb7c(u8 *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * set_field_18  0x8c02cb84
- * called by: Class_12b2e8_m1_0b5ad0, Class_12b2e8_state_switch_0b6440, Higyo_choose_status_event,
- * Higyo_gratification_events, status_load_record, talk_state_load_fields, talk_state_set_stage
+ * called by: Class_12b2e8_m1_0b5ad0, Class_12b2e8_steps_0b6440, Higyo_choose_status_event, Higyo_gratification_events,
+ * status_load_record, talk_state_load_fields, talk_state_set_stage
  */
 u32 set_field_18(int a0, u32 a1) {
     u32 in_r0;
@@ -11393,7 +11393,7 @@ u32 talk_state_save_fields(int a0, u32 *a1, u32 a2) {
 
 /*
  * talk_slots_tick  0x8c02d2e0
- * called by: CAnimal_uses_get_field_138_0274bc
+ * called by: CAnimal_talk_group_update
  */
 u32 talk_slots_tick(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -11642,7 +11642,7 @@ u32 set_field_14_from_hours(int a0, int a1, u32 a2, u32 a3) {
 
 /*
  * timer_check_interval  0x8c02d854
- * called by: talk_uses_set_field_a_s8_02c030
+ * called by: talk_state_tick
  */
 u32 timer_check_interval(int a0, u32 a1, u32 a2, u32 a3) {
     char cVar1;
@@ -11674,7 +11674,7 @@ u32 timer_check_interval(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * is_field_4_above_half_c  0x8c02d8fc
- * called by: talk_uses_set_field_a_s8_02c030
+ * called by: talk_state_tick
  */
 u32 is_field_4_above_half_c(int a0) {
     int iVar1;
@@ -11831,7 +11831,7 @@ u32 talk_slot_check_finished(int a0) {
 
 /*
  * talk_slot_restart_random  0x8c02db6c
- * called by: talk_uses_set_field_a_s8_02c030
+ * called by: talk_state_tick
  */
 u32 talk_slot_restart_random(int a0, int a1, u32 a2) {
     u32 r7;
@@ -11868,18 +11868,17 @@ u32 talk_slot_restart_random(int a0, int a1, u32 a2) {
         }
         *(u32 *)(a0 + 0xc) = 0;
         *(int *)(a0 + 0x18) = *(int *)(a0 + 0x18) + 1;
-        talk_state_switch_02dc8c(a0);
+        talk_slot_pick_next_mode(a0);
     }
     *(u8 *)(a0 + 0x4c) = 0;
     return 0x4c;
 }
 
 /*
- * talk_state_switch_02dc8c  0x8c02dc8c
- * area name: sits between talk functions (same compilation unit); behaviour name: dispatches on a state or mode value
- * (switch) called by: talk_slot_count_hits, talk_slot_restart_random
+ * talk_slot_pick_next_mode  0x8c02dc8c
+ * called by: talk_slot_count_hits, talk_slot_restart_random
  */
-int talk_state_switch_02dc8c(int a0) {
+int talk_slot_pick_next_mode(int a0) {
     int iVar1;
     char cVar2;
 
@@ -11977,7 +11976,7 @@ u32 talk_slot_count_hits(int a0, int a1, int a2) {
             *(u8 *)(a0 + 0x1c) = 0;
         }
         *(u32 *)(a0 + 0xc) = 0;
-        uVar1 = talk_state_switch_02dc8c(a0);
+        uVar1 = talk_slot_pick_next_mode(a0);
     }
     return uVar1;
 }
@@ -11996,10 +11995,10 @@ u8 *talk_slot_clear(u8 *a0) {
 
 /*
  * talk_slot_tick_random  0x8c02df24
- * called by: talk_uses_set_field_a_s8_02c030
+ * called by: talk_state_tick
  */
 u32 talk_slot_tick_random(char *a0, u32 a1, u32 a2, u32 a3) {
-    talk_uses_rand_02dfa0(a0, a1, a2, a3);
+    talk_slot_randomize_by_mode(a0, a1, a2, a3);
     if (*a0 == '\x01') {
         if (a0[10] == '\x01') {
             if (a0[0xb] == '\x05') {
@@ -12026,11 +12025,10 @@ u32 talk_slot_tick_random(char *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * talk_uses_rand_02dfa0  0x8c02dfa0
- * area name: sits between talk functions (same compilation unit); behaviour name: its main named callee is rand
+ * talk_slot_randomize_by_mode  0x8c02dfa0
  * called by: talk_slot_tick_random
  */
-int talk_uses_rand_02dfa0(char *a0, int *a1, u32 a2, u32 a3) {
+int talk_slot_randomize_by_mode(char *a0, int *a1, u32 a2, u32 a3) {
     u64 uVar1;
     u32 uVar2;
     int iVar3;
@@ -12327,11 +12325,10 @@ u32 *talk_timer_init(u32 *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * talk_fill_loop_02e4cc  0x8c02e4cc
- * area name: sits between talk functions (same compilation unit); behaviour name: a loop that writes memory
- * called by: talk_uses_set_field_a_s8_02c030
+ * talk_copy_default_table  0x8c02e4cc
+ * called by: talk_state_tick
  */
-u32 talk_fill_loop_02e4cc(u32 *a0, int *a1, u32 a2, u32 a3) {
+u32 talk_copy_default_table(u32 *a0, int *a1, u32 a2, u32 a3) {
     u8 *puVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -13088,8 +13085,8 @@ int min_nonzero_entry_14(int a0) {
 /*
  * set_field_38_02f404  0x8c02f404
  * called by: Class_12a078_gratification_tick, Class_12a7a8_sequence_step, Class_12a7a8_start_state_from_table,
- * Class_12a7a8_vec_099b0c, Class_12acc8_sequence_step, Class_12acc8_start_state_from_table,
- * Class_12acc8_uses_rand_0a0278, Class_12b0c4_sequence_step (+8 more)
+ * Class_12a7a8_turn_099b0c, Class_12acc8_sequence_step, Class_12acc8_start_state_from_table,
+ * Class_12acc8_turn_random_0a0278, Class_12b0c4_sequence_step (+8 more)
  */
 u32 set_field_38_02f404(int a0, u32 a1) {
     u32 in_r0;
@@ -13108,7 +13105,7 @@ u32 ret_const_1_02f40c(void) {
 /*
  * CAnimal_child_6c_ready  0x8c02f414
  * called by: Class_12b0c4_child_mode_3, Class_12b0c4_release_child_and_update, Class_12b0c4_start_state_from_table,
- * Class_12b2e8_start_state_from_table, Class_12b2e8_state_switch_0b6440, FrogMan_choose_status_event,
+ * Class_12b2e8_start_state_from_table, Class_12b2e8_steps_0b6440, FrogMan_choose_status_event,
  * FrogMan_gratification_events, Higyo_choose_status_event (+1 more)
  */
 u32 CAnimal_child_6c_ready(int a0, u32 a1, u32 a2, u32 a3) {
@@ -13124,9 +13121,9 @@ u32 CAnimal_child_6c_ready(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * get_field_6c_02f46c  0x8c02f46c
- * called by: CAnimal_child_6c_ready, Class_12a078_m2_05eee0, Class_12acc8_m1_09f470, Class_12b0c4_m1_0ab7f4,
- * Class_12b0c4_m2_0abc38, Class_12b0c4_start_state_from_table, Class_12b2e8_start_state_from_table,
- * Class_12b2e8_state_switch_0b6440 (+12 more)
+ * called by: CAnimal_child_6c_ready, Class_12a078_m2_05eee0, Class_12a25c_anim_turn_move_077a38,
+ * Class_12acc8_m1_09f470, Class_12b0c4_m1_0ab7f4, Class_12b0c4_m2_0abc38, Class_12b0c4_start_state_from_table,
+ * Class_12b2e8_start_state_from_table (+12 more)
  */
 u32 get_field_6c_02f46c(int a0) {
     return *(u32 *)(a0 + 0x6c);
@@ -13234,9 +13231,9 @@ u32 game_find_nearest_object(int a0, int *a1, u32 *a2, u32 a3) {
 /*
  * Vec3_ctor_copy_wrap_02f670  0x8c02f670
  * only calls Vec3_ctor_copy
- * called by: CEnv_vec_0dac50, Class_12a078_vec_066628, Class_12a7a8_vec_099b0c, Class_12acc8_m1_09f470,
- * Class_12acc8_uses_rand_0a0278, Class_12b0c4_vec_0ac1f0, Class_12b2e8_vec_0b67cc, Class_12b580_copy_position (+19
- * more)
+ * called by: CEnv_vec_helper_0dac50, CGame_vec_helper_0ceb04, Class_12a078_steps_066628, Class_12a7a8_turn_099b0c,
+ * Class_12acc8_m1_09f470, Class_12acc8_turn_random_0a0278, Class_12b0c4_turn_random_0ac1f0, Class_12b2e8_turn_0b67cc
+ * (+19 more)
  */
 u32 Vec3_ctor_copy_wrap_02f670(int a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
     u32 uVar1;
@@ -13580,12 +13577,11 @@ u32 game_target_in_view_box(int a0, u32 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_float_calc_02fdd8  0x8c02fdd8
- * area name: game code; nothing names its area yet; behaviour name: floating-point arithmetic
+ * CAnimal_compute_bounds_like  0x8c02fdd8
  * called by: Class_12acc8_start_state_from_table, Class_12b2e8_start_state_from_table, FrogMan_choose_status_event,
  * Higyo_choose_status_event
  */
-double *game_float_calc_02fdd8(int a0, int *a1) {
+double *CAnimal_compute_bounds_like(int a0, int *a1) {
     double *pdVar1;
     u8 *a5;
     float *a6;

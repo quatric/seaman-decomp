@@ -20,7 +20,7 @@ u32 ret_const_0_04667c(void) {
 /*
  * alt_entry_046684  0x8c046684
  * probably an entry 8 bytes into 8c04667c: it reads registers that code sets before it
- * called by: Vec3_state_switch_03f4a4
+ * called by: creature_state_dispatch_b_03f4a4
  */
 u32 alt_entry_046684(int a0, u8 **a1, u32 a2, code *a3) {
     u32 uVar1;
@@ -105,7 +105,7 @@ u32 alt_entry_046684(int a0, u8 **a1, u32 a2, code *a3) {
                     pcVar7 = (code *)0x128;
                     if ((*(int *)(a0 + 0x128) < 3) || (*(int *)((int)puVar14 + 0x38) != 1)) {
                         if (a3 == (code *)0x1) {
-                            uVar1 = CAnimal_uses_get_field_1c_057164(a0, a1, 0x128, pcVar2);
+                            uVar1 = CAnimal_anim_057164(a0, a1, 0x128, pcVar2);
                             *(u32 *)((int)puVar14 + -0x11c) = uVar1;
                             *(u32 *)((int)puVar14 + -0x290) = *(u32 *)((int)puVar14 + -0x11c);
                             if (*(int *)((int)puVar14 + -0x290) == 0) {
@@ -115,7 +115,7 @@ u32 alt_entry_046684(int a0, u8 **a1, u32 a2, code *a3) {
                                 *(int *)(*(int *)((int)puVar14 + -0x298) + 0x134) = *(int *)(pcVar2 + 0x134) + 1;
                             }
                         } else {
-                            uVar1 = Vec3_uses_get_field_1c_05c28c(a0, iVar4, 0x128, pcVar2);
+                            uVar1 = creature_state_tickle_05c28c(a0, iVar4, 0x128, pcVar2);
                             *(u32 *)((int)puVar14 + -0x118) = uVar1;
                             pcVar2 = *(code **)((int)puVar14 + -0x118);
                             if (pcVar2 == NULL) {
@@ -427,7 +427,7 @@ u32 alt_entry_046684(int a0, u8 **a1, u32 a2, code *a3) {
 
                         *(float *)(*(int *)((int)puVar14 + -0x24c) + 0x28) = fVar15;
 
-                        game_vec_05ae54(a0, iVar4, pcVar7, pcVar2);
+                        CAnimal_move_05ae54(a0, iVar4, pcVar7, pcVar2);
                     }
                     if (*(int *)(a0 + 0x128) == 4) {
                         if (*(int *)(a0 + 0x280) < 1) {
@@ -677,7 +677,7 @@ u32 alt_entry_046684(int a0, u8 **a1, u32 a2, code *a3) {
                     CMushroomerBody_offset_position(a0, a1, &g_8c125bf0, pcVar12);
                     Vec3_assign(a0 + 0x54, (u8 *)((int)puVar14 + -0x94), puVar10, pcVar12);
                     Vec3_dtor((u8 *)((int)puVar14 + -0x94), 0xffffffff, puVar10, pcVar12);
-                    timer_uses_rand_float_031bb4(a0, a1, a0 + 0x54, pcVar12);
+                    CMushroomerBody_random_speed_timer(a0, a1, a0 + 0x54, pcVar12);
                     *(int *)((int)puVar14 + -0x274) = a0;
                     *(int *)(*(int *)((int)puVar14 + -0x274) + 0x134) =
                         *(int *)(*(int *)((int)puVar14 + -0x274) + 0x134) + 1;
@@ -731,7 +731,7 @@ u32 alt_entry_046684(int a0, u8 **a1, u32 a2, code *a3) {
 
                     *(u32 *)(a0 + 0x58) = 0x43340000;
 
-                    timer_uses_rand_float_031bb4(a0, a1, a0 + 0x54, pcVar12);
+                    CMushroomerBody_random_speed_timer(a0, a1, a0 + 0x54, pcVar12);
                     *(int *)((int)puVar14 + -0x278) = a0;
                     *(int *)(*(int *)((int)puVar14 + -0x278) + 0x134) =
                         *(int *)(*(int *)((int)puVar14 + -0x278) + 0x134) + 1;
@@ -744,7 +744,7 @@ u32 alt_entry_046684(int a0, u8 **a1, u32 a2, code *a3) {
                 case 8:
                     pcVar2 = (code *)(a0 + 0x48);
                     pcVar7 = (code *)(a0 + 0x54);
-                    uVar1 = game_state_switch_04c314(a0, a1, pcVar7);
+                    uVar1 = CAnimal_anim_turn_move_04c314(a0, a1, pcVar7);
                     *(u32 *)((int)puVar14 + -0x1f0) = uVar1;
                     *(u32 *)((int)puVar14 + -0xf0) = *(u32 *)((int)puVar14 + -0x1f0);
                     if ((*(int *)(a0 + 0x2b8) == 7) && (*(int *)(a0 + 0x318) != 0)) {
@@ -760,7 +760,7 @@ u32 alt_entry_046684(int a0, u8 **a1, u32 a2, code *a3) {
                 case 10:
                     *(u32 *)(a0 + 700) = 1;
                     pcVar7 = (code *)(a0 + 0x34c);
-                    uVar1 = game_state_switch_0564c4(a0, a1, pcVar7, a3);
+                    uVar1 = creature_anim_turn_move_0564c4(a0, a1, pcVar7, a3);
                     *(u32 *)((int)puVar14 + -500) = uVar1;
                     pcVar2 = a3;
                     if (*(int *)((int)puVar14 + -500) == 0) {
@@ -773,7 +773,7 @@ u32 alt_entry_046684(int a0, u8 **a1, u32 a2, code *a3) {
                     goto override_jmp_8c046852_case_6;
                 case 0xb:
                     pcVar7 = (code *)(a0 + 0x34c);
-                    uVar1 = CAnimal_vec_055c38(a0, a1, pcVar7, a3);
+                    uVar1 = CAnimal_anim_turn_move_055c38(a0, a1, pcVar7, a3);
                     *(u32 *)((int)puVar14 + -0x1f8) = uVar1;
                     pcVar2 = a3;
                     if (*(int *)((int)puVar14 + -0x1f8) == 0) {
@@ -788,7 +788,7 @@ u32 alt_entry_046684(int a0, u8 **a1, u32 a2, code *a3) {
                     Vec3_copy_assign((u8 *)((int)puVar14 + -0xe0), ar5_00, (u8 *)((int)puVar14 + -0xe0), pcVar2);
                     *(u32 *)((int)puVar14 + -0x29c) = 0xffffffff;
                     pcVar2 = (code *)((int)puVar14 + -0xe0);
-                    uVar1 = game_vec_059fc4(a0, a1, *(u32 *)((int)puVar14 + -0x28c), pcVar2);
+                    uVar1 = creature_move_random_sound_059fc4(a0, a1, *(u32 *)((int)puVar14 + -0x28c), pcVar2);
                     *(u32 *)((int)puVar14 + -0x1fc) = uVar1;
                     *(u32 *)((int)puVar14 + -0x110) = (u32)(*(int *)((int)puVar14 + -0x1fc) == 0);
                     pcVar7 = (code *)0xffffffff;
@@ -802,7 +802,7 @@ u32 alt_entry_046684(int a0, u8 **a1, u32 a2, code *a3) {
                     Vec3_copy_assign((u8 *)((int)puVar14 + -0xec), ar5_00);
                     *(u32 *)((int)puVar14 + -0x29c) = 0xffffffff;
                     pcVar7 = *(code **)((int)puVar14 + -0x28c);
-                    pcVar2 = (code *)game_vec_059fc4(a0, a1, pcVar7, (u8 *)((int)puVar14 + -0xec));
+                    pcVar2 = (code *)creature_move_random_sound_059fc4(a0, a1, pcVar7, (u8 *)((int)puVar14 + -0xec));
                     *(code **)((int)puVar14 + -0x200) = pcVar2;
                     *(u32 *)((int)puVar14 + -0x114) = (u32)(*(int *)((int)puVar14 + -0x200) == 0);
                     free_if_nonnull_wrap_102790((u8 *)((int)puVar14 + -0xec), 0xffffffff, pcVar7, pcVar2);
@@ -855,7 +855,7 @@ u32 alt_entry_046684(int a0, u8 **a1, u32 a2, code *a3) {
                 case 0x14:
                     *(u32 *)(a0 + 700) = 1;
                     pcVar7 = (code *)(a0 + 0x54);
-                    uVar1 = game_state_switch_04c314(a0, a1, pcVar7);
+                    uVar1 = CAnimal_anim_turn_move_04c314(a0, a1, pcVar7);
                     *(u32 *)((int)puVar14 + -0x210) = uVar1;
                     if (*(int *)((int)puVar14 + -0x210) == 0) {
                         *(u32 *)(a0 + 0x40) = 5;
@@ -882,7 +882,7 @@ u32 alt_entry_046684(int a0, u8 **a1, u32 a2, code *a3) {
                 case 0x15:
                     *(u32 *)(a0 + 700) = 1;
                     pcVar7 = (code *)(a0 + 0x54);
-                    uVar1 = game_state_switch_04c314(a0, a1, pcVar7);
+                    uVar1 = CAnimal_anim_turn_move_04c314(a0, a1, pcVar7);
                     *(u32 *)((int)puVar14 + -0x218) = uVar1;
                     if (*(int *)((int)puVar14 + -0x218) == 0) {
                         *(u32 *)(a0 + 0x40) = 5;
@@ -903,7 +903,7 @@ u32 alt_entry_046684(int a0, u8 **a1, u32 a2, code *a3) {
                     *(u32 *)(a0 + 700) = 1;
                     *(u32 *)(a0 + 800) = 1;
                     pcVar7 = (code *)(a0 + 0x54);
-                    uVar1 = game_state_switch_04c314(a0, a1, pcVar7);
+                    uVar1 = CAnimal_anim_turn_move_04c314(a0, a1, pcVar7);
                     *(u32 *)((int)puVar14 + -0x220) = uVar1;
                     if (*(int *)((int)puVar14 + -0x220) == 0) {
                         *(u32 *)(a0 + 0x40) = 5;
@@ -916,7 +916,7 @@ u32 alt_entry_046684(int a0, u8 **a1, u32 a2, code *a3) {
                     }
                     goto override_jmp_8c046852_case_6;
                 case 0x17:
-                    pcVar2 = (code *)game_uses_rand_float_05c640(a0, a1, a3, pcVar12);
+                    pcVar2 = (code *)game_anim_random_steps_05c640(a0, a1, a3, pcVar12);
                     *(code **)((int)puVar14 + -0x228) = pcVar2;
                     pcVar7 = *(code **)((int)puVar14 + -0x228);
                     if ((u8 **)pcVar7 == NULL) {
@@ -1009,7 +1009,7 @@ u32 alt_entry_046684(int a0, u8 **a1, u32 a2, code *a3) {
                             if (*(int *)(a0 + 0x128) == 3) {
                                 *(u32 *)(a0 + 0x280) = 0;
                             }
-                            game_uses_rand_float_032be0(a0, 0x50, uVar6);
+                            game_random_032be0(a0, 0x50, uVar6);
 
                             *(int *)((int)puVar14 + -0x144) = (int)((u64)dVar16 >> 0x20);
                             uVar17 = CONCAT44(*(u32 *)((int)puVar14 + -0x144), SUB84(dVar16, 0));
@@ -1063,11 +1063,10 @@ LAB_8c046e6c:
 }
 
 /*
- * game_uses_get_field_1c_048868  0x8c048868
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is get_field_1c_026dd8
- * called by: game_vec_03c94c
+ * creature_state_idle_048868  0x8c048868
+ * called by: creature_state_dispatch_03c94c
  */
-u32 game_uses_get_field_1c_048868(int a0, int a1, int a2, u32 a3) {
+u32 creature_state_idle_048868(int a0, int a1, int a2, u32 a3) {
     int iVar1;
     int iVar2;
     u32 uVar3;
@@ -1098,7 +1097,7 @@ LAB_8c0488bc:
     if ((iVar1 < 7) && (-1 < iVar1)) {
         switch (iVar1) {
         case 0:
-            iVar2 = Vec3_uses_get_field_1c_05c28c(a0, iVar2, a2, a3);
+            iVar2 = creature_state_tickle_05c28c(a0, iVar2, a2, a3);
             if (iVar2 == 0) {
                 *(int *)(a0 + 0x134) = *(int *)(a0 + 0x134) + 1;
             }
@@ -1176,7 +1175,7 @@ LAB_8c0488bc:
 
             *(float *)(a0 + 0x28) = fVar6;
 
-            game_vec_05ae54(a0, uVar3, a1, a3);
+            CAnimal_move_05ae54(a0, uVar3, a1, a3);
             if (*(int *)(a0 + 0x280) < 1) {
                 iVar2 = CAnimBody_AdvanceFrame_033b98(a0 + 0xb0, uVar3, a1, a3);
                 a2 = a1;
@@ -1216,7 +1215,7 @@ LAB_8c0488bc:
                 Vec3_assign(a0 + 0x54, auStack_7c, puVar4, in_stack_00000004);
                 Vec3_dtor(auStack_7c, 0xffffffff, puVar4, in_stack_00000004);
             }
-            timer_uses_rand_float_031bb4(a0, a1, a0 + 0x54, in_stack_00000004);
+            CMushroomerBody_random_speed_timer(a0, a1, a0 + 0x54, in_stack_00000004);
             *(int *)(a0 + 0x134) = *(int *)(a0 + 0x134) + 1;
             *(u32 *)(a0 + 0x40) = 0;
             a3 = in_stack_00000004;
@@ -1231,7 +1230,7 @@ LAB_8c0488bc:
             break;
         case 6:
             a2 = in_stack_0000000c[1];
-            iVar2 = game_vec_05c9fc(a0, *in_stack_0000000c, a2, a3);
+            iVar2 = creature_anim_turn_move_05c9fc(a0, *in_stack_0000000c, a2, a3);
             if (iVar2 == 0) {
                 *(u32 *)(a0 + 0x178) = 0;
                 *(u32 *)(a0 + 0x40) = 5;
@@ -1261,10 +1260,9 @@ LAB_8c04899c:
 }
 
 /*
- * game_vec_048f8c  0x8c048f8c
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * creature_type_a_update_048f8c  0x8c048f8c
  */
-u32 game_vec_048f8c(u64 *a0, u32 a1, int a2, u64 *a3) {
+u32 creature_type_a_update_048f8c(u64 *a0, u32 a1, int a2, u64 *a3) {
     int iVar1;
     int iVar2;
     u64 *puVar3;
@@ -1360,7 +1358,7 @@ u32 game_vec_048f8c(u64 *a0, u32 a1, int a2, u64 *a3) {
     if ((iVar1 < 6) && (-1 < iVar1)) {
         switch (iVar1) {
         case 0:
-            iVar1 = Vec3_uses_get_field_1c_05c28c(a0, ar5_00, iVar2, a3);
+            iVar1 = creature_state_tickle_05c28c(a0, ar5_00, iVar2, a3);
             if (iVar1 != 0) {
                 Vec3_dtor(auStack_44, 0xffffffff, iVar2, a3);
                 Vec3_dtor(auStack_34, 0xffffffff, iVar2, a3);
@@ -1374,7 +1372,7 @@ u32 game_vec_048f8c(u64 *a0, u32 a1, int a2, u64 *a3) {
                 a0[0x44] = 0x8c031bb4455ac000;
             }
             iVar1 = a2;
-            timer_uses_rand_float_031bb4(a0, a1, a2, a3);
+            CMushroomerBody_random_speed_timer(a0, a1, a2, a3);
             uVar4 = 0x8c2803f4;
             iVar2 = (int)a0[0x25] * 0x18 + 0x8c2803f4;
             copy6_to_fields(a0, iVar2, iVar1, 0x8c2803f4);
@@ -1895,17 +1893,16 @@ u32 game_vec_048f8c(u64 *a0, u32 a1, int a2, u64 *a3) {
             }
         }
     }
-    game_vec_051a68(a0, a2, a1, a3);
+    creature_move_051a68(a0, a2, a1, a3);
     Vec3_dtor(auStack_44, 0xffffffff, a1, a3);
     Vec3_dtor(auStack_34, 0xffffffff, a1, a3);
     return uVar6;
 }
 
 /*
- * game_state_switch_049b68  0x8c049b68
- * area name: game code; nothing names its area yet; behaviour name: dispatches on a state or mode value (switch)
+ * creature_type_b_update_049b68  0x8c049b68
  */
-u32 game_state_switch_049b68(int a0, u64 *a1, code *a2, code *a3) {
+u32 creature_type_b_update_049b68(int a0, u64 *a1, code *a2, code *a3) {
     u32 uVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -2050,11 +2047,11 @@ u32 game_state_switch_049b68(int a0, u64 *a1, code *a2, code *a3) {
     switch (iVar4) {
     case 0:
         if (*(int *)(a0 + 0x124) == 0x11) {
-            uVar2 = Vec3_uses_get_field_1c_05c28c(a0, pcVar5, pcVar9, a3);
+            uVar2 = creature_state_tickle_05c28c(a0, pcVar5, pcVar9, a3);
             *(u32 *)((int)pdVar11 + -0x164) = uVar2;
             iVar4 = *(int *)((int)pdVar11 + -0x164);
         } else {
-            uVar2 = Vec3_uses_get_field_1c_05c28c(a0, pcVar5, pcVar9, a3);
+            uVar2 = creature_state_tickle_05c28c(a0, pcVar5, pcVar9, a3);
             *(u32 *)((int)pdVar11 + -0x168) = uVar2;
             iVar4 = *(int *)((int)pdVar11 + -0x168);
         }
@@ -2084,7 +2081,7 @@ u32 game_state_switch_049b68(int a0, u64 *a1, code *a2, code *a3) {
         timer_start_94(a0, iVar4, pcVar9);
         puVar8 = (u8 *)((int)pdVar11 + -0x40);
         puVar6 = a1;
-        timer_uses_rand_float_031bb4(a0, a1, puVar8, a3);
+        CMushroomerBody_random_speed_timer(a0, a1, puVar8, a3);
         uVar16 = (u64)uVar12;
 
         *(u32 *)(a0 + 0x2c) = 0;
@@ -2763,7 +2760,7 @@ u32 game_state_switch_049b68(int a0, u64 *a1, code *a2, code *a3) {
     }
 override_jmp_8c049e5a_case_2:
     Vec3_assign(a0 + 0x80, a0 + 0x14, a0 + 0x14, a3);
-    game_vec_051a68(a0, (u8 *)((int)pdVar11 + -0x40), a1, a3);
+    creature_move_051a68(a0, (u8 *)((int)pdVar11 + -0x40), a1, a3);
     *(u32 *)((int)pdVar11 + -0x154) = uVar10;
     Vec3_dtor((u8 *)((int)pdVar11 + -0x60), 0xffffffff, a1, a3);
     Vec3_dtor((u8 *)((int)pdVar11 + -0x50), 0xffffffff, a1, a3);
@@ -2774,11 +2771,10 @@ override_jmp_8c049e5a_case_2:
 }
 
 /*
- * game_state_switch_04b168  0x8c04b168
- * area name: game code; nothing names its area yet; behaviour name: dispatches on a state or mode value (switch)
- * called by: Vec3_state_switch_03f4a4, game_vec_04e2d0
+ * creature_type_c_update_04b168  0x8c04b168
+ * called by: CAnimal_anim_turn_move_04e2d0, creature_state_dispatch_b_03f4a4
  */
-u32 game_state_switch_04b168(int a0, u64 *a1, code *a2, code *a3) {
+u32 creature_type_c_update_04b168(int a0, u64 *a1, code *a2, code *a3) {
     int iVar1;
     u32 *puVar2;
     u8 *ar4_00;
@@ -2885,7 +2881,7 @@ u32 game_state_switch_04b168(int a0, u64 *a1, code *a2, code *a3) {
         goto switchD_8c04b39c_caseD_2;
     switch (iVar1) {
     case 0:
-        uVar5 = Vec3_uses_get_field_1c_05c28c(a0, iVar1 * 4, pcVar7, a3);
+        uVar5 = creature_state_tickle_05c28c(a0, iVar1 * 4, pcVar7, a3);
         *(u32 *)((int)pdVar10 + -0x164) = uVar5;
         if (*(int *)((int)pdVar10 + -0x164) != 0) {
             *(u32 *)((int)pdVar10 + -0x158) = 1;
@@ -2919,7 +2915,7 @@ u32 game_state_switch_04b168(int a0, u64 *a1, code *a2, code *a3) {
         uVar11 = (u32)uVar14;
         puVar6 = (u8 *)((int)pdVar10 + -0x38);
         puVar3 = a1;
-        timer_uses_rand_float_031bb4(a0, a1, puVar6, a3);
+        CMushroomerBody_random_speed_timer(a0, a1, puVar6, a3);
         uVar14 = (u64)uVar11;
 
         *(u32 *)(a0 + 0x2c) = 0;
@@ -3470,7 +3466,7 @@ u32 game_state_switch_04b168(int a0, u64 *a1, code *a2, code *a3) {
     }
 switchD_8c04b39c_caseD_2:
     Vec3_assign(a0 + 0x80, a0 + 0x14, pcVar7, a3);
-    game_vec_051a68(a0, (u8 *)((int)pdVar10 + -0x38), a1, a3);
+    creature_move_051a68(a0, (u8 *)((int)pdVar10 + -0x38), a1, a3);
     *(u32 *)((int)pdVar10 + -0x15c) = uVar9;
     object_dtor_delete((u8 *)((int)pdVar10 + -0x70), 0xffffffff, a1, a3);
     object_dtor_delete((u8 *)((int)pdVar10 + -100), 0xffffffff, a1, a3);
@@ -3482,12 +3478,12 @@ switchD_8c04b39c_caseD_2:
 }
 
 /*
- * game_state_switch_04c314  0x8c04c314
- * area name: game code; nothing names its area yet; behaviour name: dispatches on a state or mode value (switch)
- * called by: CAnimal_uses_get_field_1c_057164, Vec3_state_switch_03f4a4, Vec3_vec_04e0e0, alt_entry_046684,
- * game_state_switch_04f034, game_uses_rand_float_05c640, game_vec_054b74, game_vec_055750
+ * CAnimal_anim_turn_move_04c314  0x8c04c314
+ * called by: CAnimal_anim_057164, Vec3_turn_04e0e0, alt_entry_046684, creature_anim_turn_move_04f034,
+ * creature_anim_turn_move_055750, creature_move_steps_054b74, creature_state_dispatch_b_03f4a4,
+ * game_anim_random_steps_05c640
  */
-u32 game_state_switch_04c314(int a0, code *a1, code *a2) {
+u32 CAnimal_anim_turn_move_04c314(int a0, code *a1, code *a2) {
     double dVar1;
     u32 uVar2;
     int iVar3;
@@ -3747,7 +3743,7 @@ LAB_8c04c728:
                 }
                 if (bVar19) {
                     ar6_00 = (code *)auStack_80;
-                    game_vec_057b6c(a0, a1, ar6_00, pcVar10);
+                    creature_anim_turn_move_057b6c(a0, a1, ar6_00, pcVar10);
                 } else if (*(int *)(a0 + 700) == -1) {
                 LAB_8c04ca6c:
                     uVar2 = SUB84(dVar15, 0);
@@ -3940,7 +3936,7 @@ LAB_8c04c728:
             }
             goto switchD_8c04c74a_caseD_1;
         case 6:
-            iVar6 = game_vec_057e58(a0, pcVar9, ar6_00, pcVar10);
+            iVar6 = creature_anim_turn_057e58(a0, pcVar9, ar6_00, pcVar10);
             if (iVar6 == 0) {
                 *(u32 *)(a0 + 0x330) = 0;
                 *(u32 *)(a0 + 0x2b8) = 0;
@@ -4154,11 +4150,10 @@ switchD_8c04c5a8_caseD_2:
 }
 
 /*
- * game_uses_Vec3_assign_f_04d62c  0x8c04d62c
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is Vec3_assign_f
- * called by: Vec3_state_switch_03f4a4, game_vec_03c94c
+ * creature_state_die_04d62c  0x8c04d62c
+ * called by: creature_state_dispatch_03c94c, creature_state_dispatch_b_03f4a4
  */
-u32 game_uses_Vec3_assign_f_04d62c(int a0, int a1, int *a2, u32 a3) {
+u32 creature_state_die_04d62c(int a0, int a1, int *a2, u32 a3) {
     int iVar1;
     int ar5_00;
     u32 uVar2;
@@ -4278,7 +4273,7 @@ u32 game_uses_Vec3_assign_f_04d62c(int a0, int a1, int *a2, u32 a3) {
             if (cVar13 != '\0') {
                 in_fr5 = 0x42c80000;
             }
-            game_vec_05ae54(a0, ar5_00, ar6_00, a3);
+            CAnimal_move_05ae54(a0, ar5_00, ar6_00, a3);
             if (cVar13 != '\0') {
                 in_fr5 = (u32) * (u64 *)(a0 + 0x278);
             }
@@ -4440,7 +4435,7 @@ u32 game_uses_Vec3_assign_f_04d62c(int a0, int a1, int *a2, u32 a3) {
 /*
  * creature_action_motion49_step  0x8c04db38
  * action step: on entry clears the velocities, sets the heading and starts motion 0x49; then advances it and moves to
- * the next motion when it ends called by: Vec3_state_switch_03f4a4
+ * the next motion when it ends called by: creature_state_dispatch_b_03f4a4
  */
 u32 creature_action_motion49_step(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -4500,11 +4495,10 @@ u32 creature_action_motion49_step(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_04dd34  0x8c04dd34
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
- * called by: game_vec_0507c0
+ * creature_turn_04dd34  0x8c04dd34
+ * called by: creature_anim_turn_move_0507c0
  */
-u32 game_vec_04dd34(int a0, u64 *a1, u32 a2, u32 a3) {
+u32 creature_turn_04dd34(int a0, u64 *a1, u32 a2, u32 a3) {
     u32 uVar1;
     float fVar2;
     u64 in_dr0;
@@ -4570,11 +4564,10 @@ u32 game_vec_04dd34(int a0, u64 *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_Vec3_dtor_04ddd4  0x8c04ddd4
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is Vec3_dtor
- * called by: game_vec_03c94c
+ * game_anim_sound_timer_04ddd4  0x8c04ddd4
+ * called by: creature_state_dispatch_03c94c
  */
-u32 game_uses_Vec3_dtor_04ddd4(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_anim_sound_timer_04ddd4(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -4723,12 +4716,11 @@ u32 Vec3_ctor_xyz_wrap_04e0bc(u32 unused_a0, u32 a1, u32 a2, u32 a3, u32 s0) {
 }
 
 /*
- * Vec3_vec_04e0e0  0x8c04e0e0
- * area name: sits between Vec3 functions (same compilation unit); behaviour name: mostly calls vec functions
- * called by: Vec3_state_switch_03f4a4, game_state_switch_04f034, game_state_switch_0564c4, game_vec_058d60,
- * game_vec_059fc4
+ * Vec3_turn_04e0e0  0x8c04e0e0
+ * called by: creature_anim_turn_move_04f034, creature_anim_turn_move_0564c4, creature_anim_turn_move_058d60,
+ * creature_move_random_sound_059fc4, creature_state_dispatch_b_03f4a4
  */
-u32 Vec3_vec_04e0e0(int a0, u32 a1, u8 *a2, int a3) {
+u32 Vec3_turn_04e0e0(int a0, u32 a1, u8 *a2, int a3) {
     int iVar1;
     u32 uVar2;
     u8 *ar6_00;
@@ -4760,7 +4752,7 @@ u32 Vec3_vec_04e0e0(int a0, u32 a1, u8 *a2, int a3) {
         *(u32 *)(a0 + 0x40) = 5;
         *(int *)(a0 + 0x298) = *(int *)(a0 + 0x298) + 1;
     } else if (iVar1 == 1) {
-        iVar1 = game_state_switch_04c314(a0, a1, a2);
+        iVar1 = CAnimal_anim_turn_move_04c314(a0, a1, a2);
         ar6_00 = a2;
         if (iVar1 == 0) {
             *(u32 *)(a0 + 0x40) = 5;
@@ -4797,7 +4789,7 @@ u32 Vec3_vec_04e0e0(int a0, u32 a1, u8 *a2, int a3) {
             Vec3_scale(a3, &g_8c13658c, ar6_00, ar7_00, auStack_58);
             Vec3_add(a1, auStack_58, ar6_00, ar7_00, auStack_68);
             ar6_00 = auStack_68;
-            game_vec_057b6c(a0, a1, ar6_00, ar7_00);
+            creature_anim_turn_move_057b6c(a0, a1, ar6_00, ar7_00);
             Vec3_dtor(auStack_68, 0xffffffff, ar6_00, ar7_00);
             Vec3_dtor(auStack_58, 0xffffffff, ar6_00, ar7_00);
             *(int *)(a0 + 0x298) = *(int *)(a0 + 0x298) + 1;
@@ -4805,7 +4797,7 @@ u32 Vec3_vec_04e0e0(int a0, u32 a1, u8 *a2, int a3) {
             uVar3 = 0;
             *(u32 *)(a0 + 0x298) = 0;
         }
-    } else if ((iVar1 == 3) && (iVar1 = game_vec_057e58(a0, uVar2, ar6_00, ar7_00), iVar1 == 0)) {
+    } else if ((iVar1 == 3) && (iVar1 = creature_anim_turn_057e58(a0, uVar2, ar6_00, ar7_00), iVar1 == 0)) {
         *(u32 *)(a0 + 0x298) = 2;
     }
     Vec3_dtor(auStack_28, 0xffffffff, ar6_00, ar7_00);
@@ -4813,11 +4805,10 @@ u32 Vec3_vec_04e0e0(int a0, u32 a1, u8 *a2, int a3) {
 }
 
 /*
- * game_vec_04e2d0  0x8c04e2d0
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
- * called by: CAnimal_vec_055c38, game_vec_053730
+ * CAnimal_anim_turn_move_04e2d0  0x8c04e2d0
+ * called by: CAnimal_anim_turn_move_055c38, creature_anim_turn_random_053730
  */
-u32 game_vec_04e2d0(int a0, u32 a1, u8 *a2, int a3) {
+u32 CAnimal_anim_turn_move_04e2d0(int a0, u32 a1, u8 *a2, int a3) {
     int iVar1;
     u32 uVar2;
     u8 *puVar3;
@@ -4852,7 +4843,7 @@ u32 game_vec_04e2d0(int a0, u32 a1, u8 *a2, int a3) {
     if (iVar1 == 0) {
         uVar2 = a1;
         ar6_00 = a2;
-        iVar1 = game_state_switch_04b168(a0, a1, a2, ar7_00);
+        iVar1 = creature_type_c_update_04b168(a0, a1, a2, ar7_00);
         if (iVar1 == 0) {
             *(int *)(a0 + 0x298) = *(int *)(a0 + 0x298) + 1;
             *(u32 *)(a0 + 0x40) = 5;
@@ -4988,11 +4979,10 @@ u32 game_vec_04e2d0(int a0, u32 a1, u8 *a2, int a3) {
 }
 
 /*
- * game_state_switch_04e7e0  0x8c04e7e0
- * area name: game code; nothing names its area yet; behaviour name: dispatches on a state or mode value (switch)
- * called by: Vec3_state_switch_03f4a4, game_vec_03c94c
+ * creature_state_suffer_04e7e0  0x8c04e7e0
+ * called by: creature_state_dispatch_03c94c, creature_state_dispatch_b_03f4a4
  */
-u32 game_state_switch_04e7e0(int a0, int a1, int a2, u32 a3) {
+u32 creature_state_suffer_04e7e0(int a0, int a1, int a2, u32 a3) {
     int iVar1;
     int iVar2;
     u32 uVar3;
@@ -5062,7 +5052,7 @@ u32 game_state_switch_04e7e0(int a0, int a1, int a2, u32 a3) {
             Vec3_dtor(auStack_44, 0xffffffff, a1, a3);
             uVar3 = 0xffffffff;
             Vec3_dtor(auStack_34, 0xffffffff, a1, a3);
-            game_vec_05ae54(a0, uVar3, a1, a3);
+            CAnimal_move_05ae54(a0, uVar3, a1, a3);
             iVar1 = CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, uVar3, a1, a3);
             a2 = a1;
             if (iVar1 == 1) {
@@ -5121,7 +5111,7 @@ u32 game_state_switch_04e7e0(int a0, int a1, int a2, u32 a3) {
             Vec3_dtor(auStack_24, 0xffffffff, a2, a3);
             return uVar4;
         case 0xc:
-            game_vec_05ae54(a0, iVar1, a2, a3);
+            CAnimal_move_05ae54(a0, iVar1, a2, a3);
             iVar1 = CAnimBody_AdvanceFrame_wrapper(a0 + 0xb0, iVar1, a2, a3);
             if (iVar1 == 1) {
                 uVar4 = 0;
@@ -5133,11 +5123,10 @@ u32 game_state_switch_04e7e0(int a0, int a1, int a2, u32 a3) {
 }
 
 /*
- * game_state_switch_04eb14  0x8c04eb14
- * area name: game code; nothing names its area yet; behaviour name: dispatches on a state or mode value (switch)
- * called by: Vec3_state_switch_03f4a4
+ * creature_anim_random_steps_04eb14  0x8c04eb14
+ * called by: creature_state_dispatch_b_03f4a4
  */
-u32 game_state_switch_04eb14(int a0, u32 a1, u32 a2, u8 *a3) {
+u32 creature_anim_random_steps_04eb14(int a0, u32 a1, u32 a2, u8 *a3) {
     int iVar1;
     u32 uVar2;
     u32 ar6_00;
@@ -5167,7 +5156,7 @@ u32 game_state_switch_04eb14(int a0, u32 a1, u32 a2, u8 *a3) {
             goto switchD_8c04eb5c_caseD_4;
         switch (iVar1) {
         case 0:
-            iVar1 = CAnimal_uses_get_field_1c_057164(a0, a1, a2, ar7_01);
+            iVar1 = CAnimal_anim_057164(a0, a1, a2, ar7_01);
             if (iVar1 == 0) {
                 *(int *)(a0 + 0x134) = *(int *)(a0 + 0x134) + 1;
             }
@@ -5275,7 +5264,7 @@ u32 game_state_switch_04eb14(int a0, u32 a1, u32 a2, u8 *a3) {
         case 0xc:
             Vec3_copy_assign(auStack_2c, a3);
             ar7_01 = auStack_2c;
-            iVar1 = game_vec_059fc4(a0, a1, a1, ar7_01);
+            iVar1 = creature_move_random_sound_059fc4(a0, a1, a1, ar7_01);
             free_if_nonnull_wrap_102790(auStack_2c, 0xffffffff, a1, ar7_01);
             a2 = a1;
             if (iVar1 == 0) {
@@ -5296,7 +5285,7 @@ u32 game_state_switch_04eb14(int a0, u32 a1, u32 a2, u8 *a3) {
         case 0xe:
             ar7_01 = (u8 *)0x1c;
             a2 = a1;
-            iVar1 = game_vec_058024(a0, a1, a1, 0x1c);
+            iVar1 = creature_anim_turn_move_058024(a0, a1, a1, 0x1c);
             if (iVar1 == 0) {
                 *(u32 *)(a0 + 300) = 0;
                 vec3_clear(a0 + 0x2d4, a1, a2, ar7_01);
@@ -5314,11 +5303,10 @@ u32 game_state_switch_04eb14(int a0, u32 a1, u32 a2, u8 *a3) {
 }
 
 /*
- * game_state_switch_04f034  0x8c04f034
- * area name: game code; nothing names its area yet; behaviour name: dispatches on a state or mode value (switch)
- * called by: Vec3_state_switch_03f4a4
+ * creature_anim_turn_move_04f034  0x8c04f034
+ * called by: creature_state_dispatch_b_03f4a4
  */
-u32 game_state_switch_04f034(code *a0, u32 a1, code *a2, u32 a3) {
+u32 creature_anim_turn_move_04f034(code *a0, u32 a1, code *a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -5453,7 +5441,7 @@ LAB_8c04f31c:
         case 0:
             *(u32 *)(a0 + 0x178) = 1;
             pcVar9 = a0 + 0x34c;
-            iVar1 = CAnimal_vec_055c38(a0, a2, pcVar9, in_stack_00000004);
+            iVar1 = CAnimal_anim_turn_move_055c38(a0, a2, pcVar9, in_stack_00000004);
             pcVar5 = in_stack_00000004;
             if (iVar1 == 0) {
                 vec3_clear(a0 + 0x2a8, a2, pcVar9, in_stack_00000004);
@@ -5618,7 +5606,7 @@ LAB_8c04f31c:
             fVar11 = SUB84(in_dr0, 0);
             pcVar9 = a0 + 0x248;
             pcVar6 = a2;
-            iVar1 = game_state_switch_04c314(a0, a2, pcVar9);
+            iVar1 = CAnimal_anim_turn_move_04c314(a0, a2, pcVar9);
             if (iVar1 == 0) {
                 iVar1 = get_field_6c_028cc4(a1, pcVar6);
                 iVar1 = (**(code **)(*(int *)(iVar1 + 8) + 0x114))(iVar1, *(int *)(iVar1 + 8), pcVar9, pcVar5);
@@ -5700,7 +5688,7 @@ LAB_8c04f31c:
             Vec3_ctor_copy(auStack_190, a0 + 0x54, pcVar9, pcVar5);
             pcVar5 = (code *)auStack_190;
             pcVar9 = a0 + 0x248;
-            iVar1 = Vec3_vec_04e0e0(a0, a2, pcVar9, pcVar5);
+            iVar1 = Vec3_turn_04e0e0(a0, a2, pcVar9, pcVar5);
             uVar7 = 0xffffffff;
             Vec3_dtor(auStack_190, 0xffffffff, pcVar9, pcVar5);
             if (iVar1 == 0) {

@@ -308,11 +308,10 @@ u32 CAnimal_find_item_in_tank(int a0, int *a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12bb08_vec_0f43bc  0x8c0f43bc
- * area name: only called from Class_12bb08 methods; behaviour name: mostly calls vec functions
+ * Class_12bb08_vec_helper_0f43bc  0x8c0f43bc
  * called by: Class_12bb08_m1_0da338
  */
-u32 Class_12bb08_vec_0f43bc(int a0, int *a1, u32 a2, int a3) {
+u32 Class_12bb08_vec_helper_0f43bc(int a0, int *a1, u32 a2, int a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -956,8 +955,8 @@ u32 CAnimal_m7_0f49b8(int a0, int *a1, u32 a2, u32 a3) {
 
 /*
  * set_dr4_78_and_219070  0x8c0f4b44
- * called by: CAnimal_draw_at_pose_a, Class_12b3b8_uses_object_dtor_delete_0e7a78, game_draw_038b04, game_draw_0cc524,
- * game_draw_0ff928, game_draw_at_pose_object_c, game_uses_list_node_next_wrap_0da754, tank_light_and_draw_9d4 (+1 more)
+ * called by: CAnimal_draw_at_pose_a, Class_12b3b8_turn_draw_0e7a78, Class_12b580_helper_0da754, game_draw_038b04,
+ * game_draw_0cc524, game_draw_0ff928, game_draw_at_pose_object_c, tank_light_and_draw_9d4 (+1 more)
  */
 u32 set_dr4_78_and_219070(int a0) {
     u32 uVar1;
@@ -1132,8 +1131,8 @@ u32 ret_const_0_0f4d7c(void) {
 
 /*
  * mask_74_7fffffff  0x8c0f4d84
- * called by: CAnimal_m2_0386d0, CAnimal_m2_088094, CEnv_drop_finished_item_9d4, Class_12a0c4_state_switch_0679cc,
- * Class_12a0c4_state_switch_068e64, Class_12a0c4_uses_libgcc_divide_helper_068a4c, Class_12a990_m2_09bc2c,
+ * called by: CAnimal_m2_0386d0, CAnimal_m2_088094, CEnv_drop_finished_item_9d4, Class_12a0c4_random_068a4c,
+ * Class_12a0c4_turn_random_spawn_068e64, Class_12a0c4_turn_random_steps_0679cc, Class_12a990_m2_09bc2c,
  * Class_12acc8_m1_09f470 (+4 more)
  */
 u32 mask_74_7fffffff(int a0) {
@@ -1910,12 +1909,11 @@ u32 Class_12bec0_clear_1cc_set_bit0(int a0) {
 }
 
 /*
- * Class_12bec0_uses_Class_129808_set_uv_by_mode_0f5b10  0x8c0f5b10
- * name hint from a string it uses: Failed to load textuer FOOD; area name: only called from Class_12bec0 methods;
- * behaviour name: its main named callee is Class_129808_set_uv_by_mode called by: Class_12bec0_set_params_wrap strings:
- * "@@GRAPHICS\\COMMON"; "Failed to load textuer.. FOOD!"
+ * Class_12bec0_random_0f5b10  0x8c0f5b10
+ * called by: Class_12bec0_set_params_wrap
+ * strings: "@@GRAPHICS\\COMMON"; "Failed to load textuer.. FOOD!"
  */
-int Class_12bec0_uses_Class_129808_set_uv_by_mode_0f5b10(int a0, u32 a1) {
+int Class_12bec0_random_0f5b10(int a0, u32 a1) {
     int iVar1;
     u8 *ar5_00;
     u8 *ar5_01;
@@ -1987,7 +1985,7 @@ int Class_12bec0_uses_Class_129808_set_uv_by_mode_0f5b10(int a0, u32 a1) {
 u32 Class_12bec0_set_params_wrap(u32 a0, u32 a1) {
     u32 uVar1;
 
-    uVar1 = Class_12bec0_uses_Class_129808_set_uv_by_mode_0f5b10(a0, a1);
+    uVar1 = Class_12bec0_random_0f5b10(a0, a1);
     return uVar1;
 }
 
@@ -2000,7 +1998,7 @@ u32 Class_12bec0_m2_0f5ca8(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
     ar7_00 = a3;
     (**(code **)(*(int *)(a0 + 8) + 0x28))(a0, a3, a2, a3);
-    Class_12bec0_uses_rand_0f5fdc(a0, a3, a2, ar7_00);
+    Class_12bec0_random_0f5fdc(a0, a3, a2, ar7_00);
     iVar1 = get_field_6c_02f46c(a0);
     if (iVar1 == 0) {
         iVar1 = get_field_70_05f490(a0);
@@ -2216,11 +2214,10 @@ u32 obj_pose_save_wrap(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12bec0_uses_rand_0f5fdc  0x8c0f5fdc
- * area name: only called from Class_12bec0 methods; behaviour name: its main named callee is rand
+ * Class_12bec0_random_0f5fdc  0x8c0f5fdc
  * called by: Class_12bec0_m2_0f5ca8
  */
-u32 Class_12bec0_uses_rand_0f5fdc(int a0, float *a1, u32 a2, u32 a3) {
+u32 Class_12bec0_random_0f5fdc(int a0, float *a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -3004,8 +3001,7 @@ int obj_transform_set_scale(int a0, u32 a1, u32 a2, u32 a3) {
  * has_field_2c  0x8c0f6ab0
  * 1 when +0x2c is non-zero
  * called by: Class_12b580_draw_with_children, Class_12b580_m1_0e634c, Class_12b580_m2_0e6548, Class_12bb08_m1_0da338,
- * Class_12bb08_m2_0da5a8, game_any_neighbor_within_range, game_uses_Class_12b930_draw_tinted_b_0def78,
- * game_uses_Class_12b930_draw_tinted_b_0df668 (+4 more)
+ * Class_12bb08_m2_0da5a8, game_any_neighbor_within_range, game_turn_draw_0df250, game_turn_draw_0df668 (+4 more)
  */
 u32 has_field_2c(int a0) {
     if (*(int *)(a0 + 0x2c) != 0) {
@@ -3015,11 +3011,10 @@ u32 has_field_2c(int a0) {
 }
 
 /*
- * Class_12b580_vec_0f6ac4  0x8c0f6ac4
- * area name: only called from Class_12b580 methods; behaviour name: mostly calls vec functions
+ * Class_12b580_random_sound_0f6ac4  0x8c0f6ac4
  * called by: Class_12b580_fade_mode_update
  */
-u32 Class_12b580_vec_0f6ac4(u64 *a0, int *a1, u32 a2) {
+u32 Class_12b580_random_sound_0f6ac4(u64 *a0, int *a1, u32 a2) {
     u32 ar4_00;
     int iVar1;
     int *piVar2;
@@ -3616,9 +3611,8 @@ u32 Class_12b580_vec_0f6ac4(u64 *a0, int *a1, u32 a2) {
 /*
  * Class_12b580_draw_at_pose  0x8c0f7118
  * sets the object's colour, pushes a matrix, applies its position, rotation (+0x18, degrees) and scale and draws it
- * called by: Class_12b580_draw_with_children, game_uses_Class_12b930_draw_tinted_b_0def78,
- * game_uses_Class_12b930_draw_tinted_b_0df668, game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0,
- * game_uses_noop_0deb60
+ * called by: Class_12b580_draw_with_children, game_turn_draw_0df250, game_turn_draw_0df668, game_turn_move_draw_0de6d0,
+ * game_turn_move_draw_0deb60, game_turn_move_draw_0def78
  */
 u32 Class_12b580_draw_at_pose(int a0, u32 a1, u32 a2) {
     u32 r7;
@@ -3717,7 +3711,7 @@ int Class_12b580_fade_mode_update(int a0, u32 a1, u32 a2, u32 a3) {
 
     iVar1 = *(int *)(a0 + 0x2c);
     if (iVar1 == 2) {
-        iVar1 = Class_12b580_vec_0f6ac4(a0, a1, a2);
+        iVar1 = Class_12b580_random_sound_0f6ac4(a0, a1, a2);
     } else if (iVar1 == 3) {
         iVar1 = fade_out_90s_step(a0);
     } else if (iVar1 == 4) {
@@ -3760,7 +3754,7 @@ float *fade_out_90s_step(int a0) {
 /*
  * game_any_neighbor_within_range  0x8c0f72ec
  * returns 1 when another of the eight 0x68-byte objects is within 1.5 times its radius of a0
- * called by: Class_12b580_vec_0f6ac4
+ * called by: Class_12b580_random_sound_0f6ac4
  */
 u32 game_any_neighbor_within_range(int a0, int *a1, u32 a2, u32 a3) {
     int iVar1;
@@ -4385,8 +4379,8 @@ int speech_talk_update(int a0, u32 a1, u32 a2, u32 a3) {
  * speech_stop  0x8c0f8214
  * stops the current speech and clears its active flag (+0x89134)
  * called by: Class_12a078_m2_05eee0, Class_12a078_m5_0671f4, Class_12c3c4_m2_104264, Class_12c3c4_m5_10a0dc,
- * FrogMan_update_sleep_light, Higyo_update_sleep_light, game_uses_get_field_d0_0c6e74,
- * game_uses_speech_is_playing_0bad68 (+4 more)
+ * FrogMan_update_sleep_light, Higyo_update_sleep_light, game_draw_talk_input_0c6e74, game_sound_draw_talk_0bad68 (+4
+ * more)
  */
 int speech_stop(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -5166,7 +5160,7 @@ u32 speech_start_chapter(int a0, u32 unused_a1, u32 a2, u32 a3) {
  * speech_is_playing  0x8c0fa2b8
  * the player's active flag (+0x89134) while speech is set up (+0x1014)
  * called by: Class_12a078_m2_05eee0, Class_12c3c4_m2_104264, FrogMan_ending_event, game_select_intro_or_ending,
- * game_uses_Vec3_dtor_1089e4, game_uses_speech_is_playing_0bad68, react_catch_object, react_catch_object_b (+3 more)
+ * game_sound_draw_talk_0bad68, game_talk_1089e4, react_catch_object, react_catch_object_b (+3 more)
  */
 u32 speech_is_playing(int a0, u32 a1) {
     if (*(int *)(0x1014 + a0) == 0) {
@@ -5212,7 +5206,7 @@ u32 memmove_wrap_0fa310(u32 a0, u32 a1) {
 /*
  * speech_state_copy  0x8c0fa334
  * copies the 0x1010-byte speech state from a1 into a0, then clears the ready flag (+0xc) when mode +0x1040 is 1 and the
- * next index is past 1 called by: CGame_uses_libgcc_divide_helper_0cc784, CProlog_uses_libgcc_divide_helper_0cd3c8
+ * next index is past 1 called by: CGame_talk_spawn_0cc784, CProlog_talk_spawn_0cd3c8
  */
 int speech_state_copy(int a0, u32 a1) {
     int iVar1;
@@ -5235,12 +5229,10 @@ int speech_state_copy(int a0, u32 a1) {
 }
 
 /*
- * CAnimal_talk_0fa388  0x8c0fa388
- * area name: only called from CAnimal methods; behaviour name: mostly calls talk functions
- * called by: CAnimal_talk_enter_group, CAnimal_uses_get_field_138_0274bc, child_conditions_met_0355cc,
- * game_uses_Vec3_dtor_1089e4
+ * CAnimal_talk_steps_0fa388  0x8c0fa388
+ * called by: CAnimal_talk_enter_group, CAnimal_talk_group_update, child_conditions_met_0355cc, game_talk_1089e4
  */
-u32 CAnimal_talk_0fa388(u32 a0, int a1, u32 a2, u32 a3) {
+u32 CAnimal_talk_steps_0fa388(u32 a0, int a1, u32 a2, u32 a3) {
     int iVar1;
 
     if ((a1 < 0xd) && (-1 < a1)) {
@@ -5329,7 +5321,7 @@ u32 CAnimal_talk_0fa388(u32 a0, int a1, u32 a2, u32 a3) {
 
 /*
  * speech_parse_number_fields  0x8c0fa538
- * called by: CAnimal_talk_0fa388
+ * called by: CAnimal_talk_steps_0fa388
  */
 int speech_parse_number_fields(int a0, u8 *unused_a1, u32 a2, u32 a3) {
     int iVar1;
@@ -5352,7 +5344,7 @@ int speech_parse_number_fields(int a0, u8 *unused_a1, u32 a2, u32 a3) {
 
 /*
  * get_field_0_0fa5b4  0x8c0fa5b4
- * called by: CAnimal_308_kind_matches_global, CAnimal_uses_get_field_138_0274bc
+ * called by: CAnimal_308_kind_matches_global, CAnimal_talk_group_update
  */
 u32 get_field_0_0fa5b4(u32 *a0) {
     return *a0;
@@ -5398,7 +5390,7 @@ u32 format_int_18(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * speech_get_index_plus1  0x8c0fa658
  * atoi of the player's number string at +0x4ac, plus 1
- * called by: CAnimal_talk_0fa388, speech_start, speech_state_copy, talk_pick_request_keyword
+ * called by: CAnimal_talk_steps_0fa388, speech_start, speech_state_copy, talk_pick_request_keyword
  */
 int speech_get_index_plus1(int a0, u32 a1) {
     int iVar1;
@@ -5424,7 +5416,7 @@ int speech_identity_reset_0(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * speech_identity_set_1  0x8c0fa6c8
- * called by: FrogMan_jump_events, Higyo_update_sleep_light, game_uses_Vec3_dtor_1089e4, speech_restart
+ * called by: FrogMan_jump_events, Higyo_update_sleep_light, game_talk_1089e4, speech_restart
  */
 int speech_identity_set_1(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 ar4_00;
@@ -5456,7 +5448,7 @@ int speech_clear_pending_flag(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * get_field_89130_0fa740  0x8c0fa740
- * called by: FrogMan_ending_event, game_uses_Vec3_dtor_1089e4
+ * called by: FrogMan_ending_event, game_talk_1089e4
  */
 u32 get_field_89130_0fa740(int a0) {
     return *(u32 *)(0x89130 + a0);
@@ -5629,7 +5621,7 @@ u32 speech_release_pack_entry(int *a0, u32 a1, u32 a2, u32 a3) {
             *a0 = 6;
         }
         *(u32 *)(0xc0 + (int)a0) = 0;
-        uVar1 = game_uses_speech_request_kind4_0fd8d0(a0, a1, a2, a3);
+        uVar1 = game_talk_0fd8d0(a0, a1, a2, a3);
     }
     return uVar1;
 }
@@ -5779,7 +5771,7 @@ u8 *speech_update(int *a0, u32 a1, char *a2, int *a3) {
         puVar1 = (u8 *)script_cmd_load_pack_wait(a0, a1, a2, a3);
         break;
     case 8:
-        puVar1 = (u8 *)asr_uses_speech_request_kind3_0fbf28(a0, a1, a2, a3);
+        puVar1 = (u8 *)asr_talk_0fbf28(a0, a1, a2, a3);
     }
     return puVar1;
 }
@@ -5821,7 +5813,7 @@ u32 speech_build_and_match_names(u32 *a0, u32 unused_a1, char *a2, u32 a3) {
 
 /*
  * strcmp_0faf30  0x8c0faf30
- * called by: asr_switch_vocab, asr_uses_speech_request_kind3_0fbf28, save_slot_store_if_changed, script_get_var_value,
+ * called by: asr_switch_vocab, asr_talk_0fbf28, save_slot_store_if_changed, script_get_var_value,
  * speech_build_and_match_names, speech_build_name_string, speech_find_unnamed_entry, speech_match_reply (+1 more)
  */
 u32 strcmp_0faf30(u8 *a0, u8 *a1) {
@@ -5881,9 +5873,8 @@ u32 speech_build_name_string(int a0, char *a1, char *a2, u32 a3) {
 
 /*
  * speech_match_reply  0x8c0fb0d4
- * called by: asr_uses_speech_request_kind3_0fbf28, script_cmd_if_compare, script_cmd_load_pack_wait,
- * script_cmd_set_vars, speech_pick_random_phrase, speech_select_or_match_1a, speech_update, talk_pick_grunt strings:
- * "@ERROR"
+ * called by: asr_talk_0fbf28, script_cmd_if_compare, script_cmd_load_pack_wait, script_cmd_set_vars,
+ * speech_pick_random_phrase, speech_select_or_match_1a, speech_update, talk_pick_grunt strings: "@ERROR"
  */
 u32 speech_match_reply(u32 *a0, char *a1) {
     u32 uVar1;
@@ -6175,8 +6166,8 @@ u8 *script_cmd_load_pack_wait(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
 u32 obj_update_with_current_entry_50(int a0, u32 a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = (*(code *)(&speech_update_fields_0fb83c))(
-        a0, *(u32 *)(*(int *)(0x8c + a0) * 0x24 + *(int *)(0x88 + a0) + 0x50), a1, a3);
+    uVar1 = (*(code *)(&speech_steps_0fb83c))(a0, *(u32 *)(*(int *)(0x8c + a0) * 0x24 + *(int *)(0x88 + a0) + 0x50), a1,
+                                              a3);
     return uVar1;
 }
 
@@ -6206,16 +6197,15 @@ u32 speech_language_code(int a0) {
     switchD_8c0fb7f2_caseD_2:
         uVar2 = 0x4e;
     }
-    uVar2 = speech_update_fields_0fb83c(a0, uVar2, 4);
+    uVar2 = speech_steps_0fb83c(a0, uVar2, 4);
     return uVar2;
 }
 
 /*
- * speech_update_fields_0fb83c  0x8c0fb83c
- * area name: sits between speech functions (same compilation unit); behaviour name: conditionally writes members
+ * speech_steps_0fb83c  0x8c0fb83c
  * called by: speech_language_code
  */
-u32 speech_update_fields_0fb83c(int a0, int a1, int a2) {
+u32 speech_steps_0fb83c(int a0, int a1, int a2) {
     u32 uVar1;
 
     uVar1 = 8;
@@ -6448,12 +6438,11 @@ u32 asr_switch_vocab(u32 *a0, u32 unused_a1, char *a2, u32 a3) {
 }
 
 /*
- * asr_uses_speech_request_kind3_0fbf28  0x8c0fbf28
- * name hint from a string it uses: SPEECH; area name: sits between asr functions (same compilation unit); behaviour
- * name: its main named callee is speech_request_kind3 called by: speech_update strings: "SPEECH"; "SPEECH"; "SPEECH";
- * "SPEECH" ...
+ * asr_talk_0fbf28  0x8c0fbf28
+ * called by: speech_update
+ * strings: "SPEECH"; "SPEECH"; "SPEECH"; "SPEECH" ...
  */
-u32 asr_uses_speech_request_kind3_0fbf28(u32 *a0, u32 unused_a1, char *a2, u8 *a3) {
+u32 asr_talk_0fbf28(u32 *a0, u32 unused_a1, char *a2, u8 *a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -6587,7 +6576,7 @@ u32 asr_uses_speech_request_kind3_0fbf28(u32 *a0, u32 unused_a1, char *a2, u8 *a
 /*
  * save_mark_time  0x8c0fc3e4
  * sets +0x74 of the save record and stores the current RTC time
- * called by: asr_uses_speech_request_kind3_0fbf28
+ * called by: asr_talk_0fbf28
  */
 u32 save_mark_time(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6622,7 +6611,7 @@ u32 get_field_c8_0fc440(int a0) {
 /*
  * history_push_string  0x8c0fc44c
  * shifts the 16 0x20-byte strings at (+0x10)->+0x40 + 200 down and copies a1 into the first
- * called by: asr_uses_speech_request_kind3_0fbf28
+ * called by: asr_talk_0fbf28
  */
 u32 history_push_string(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6655,7 +6644,7 @@ u32 system_mode_not_1_4_5(void) {
 
 /*
  * speech_find_unnamed_entry  0x8c0fc4fc
- * called by: asr_switch_vocab, asr_uses_speech_request_kind3_0fbf28
+ * called by: asr_switch_vocab, asr_talk_0fbf28
  * strings: "---"
  */
 u32 speech_find_unnamed_entry(u32 unused_a0, int a1) {
@@ -6865,7 +6854,7 @@ u32 script_cmd_set_vars(int a0, u32 unused_a1, u8 *a2, u32 a3) {
 /*
  * script_set_var_value  0x8c0fc94c
  * stores string value a2 into the script variable named by the letter at a1, clamping or applying it to game state
- * called by: asr_uses_speech_request_kind3_0fbf28, script_cmd_load_pack_wait, script_cmd_set_vars
+ * called by: asr_talk_0fbf28, script_cmd_load_pack_wait, script_cmd_set_vars
  */
 u32 script_set_var_value(int a0, char *a1, char *a2, u32 a3) {
     int iVar1;
@@ -6934,7 +6923,7 @@ u32 script_set_var_value(int a0, char *a1, char *a2, u32 a3) {
             case 0x55:
                 uVar3 = atoi(a2);
                 *(u32 *)(a0 + 0xc0) = uVar3;
-                uVar3 = game_uses_speech_request_kind4_0fd8d0(a0, a1, a2, a3);
+                uVar3 = game_talk_0fd8d0(a0, a1, a2, a3);
                 return uVar3;
             case 0x56:
                 uVar3 = atoi(a2);
@@ -7159,7 +7148,7 @@ u32 script_get_var_value(int a0, char *a1, u32 a2, u32 a3) {
             }
             break;
         case 0x55:
-            game_uses_speech_request_kind4_0fd8d0(a0, a1, a2, a3);
+            game_talk_0fd8d0(a0, a1, a2, a3);
             uVar7 = *(u32 *)(a0 + 0xc0);
             break;
         case 0x57:
@@ -7371,11 +7360,10 @@ u32 script_format_value(int a0, char *a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_speech_request_kind4_0fd8d0  0x8c0fd8d0
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is speech_request_kind4
+ * game_talk_0fd8d0  0x8c0fd8d0
  * called by: script_get_var_value, script_set_var_value, speech_release_pack_entry
  */
-int game_uses_speech_request_kind4_0fd8d0(int a0, u32 unused_a1, u32 a2, u32 a3) {
+int game_talk_0fd8d0(int a0, u32 unused_a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     int *piVar3;
@@ -7454,7 +7442,7 @@ u32 save_clear_entries_from(int a0, int a1) {
 
 /*
  * set_fields_24_20_from_c4  0x8c0fda5c
- * called by: game_uses_speech_request_kind4_0fd8d0, script_set_var_value, speech_stop_and_release, speech_update
+ * called by: game_talk_0fd8d0, script_set_var_value, speech_stop_and_release, speech_update
  */
 u32 set_fields_24_20_from_c4(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -7478,7 +7466,7 @@ u32 memset_on_field_d0(int a0, u32 a1, u32 unused_a2, u32 a3) {
 /*
  * save_slot_store_if_changed  0x8c0fdaac
  * when the current names (+0x14, +0x5c, a1) differ from the selected 0x880-byte slot's, copies the four names and the
- * 0x800-byte data block into it called by: asr_uses_speech_request_kind3_0fbf28
+ * 0x800-byte data block into it called by: asr_talk_0fbf28
  */
 u32 save_slot_store_if_changed(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -7556,7 +7544,7 @@ u8 *speech_record_clear(u8 *a0) {
 /*
  * set_field_68_clamp_0_4_wrap  0x8c0fdd68
  * only calls set_field_68_clamp_0_4
- * called by: FrogMan_react_touch, Higyo_react_touch, asr_uses_speech_request_kind3_0fbf28
+ * called by: FrogMan_react_touch, Higyo_react_touch, asr_talk_0fbf28
  */
 u32 set_field_68_clamp_0_4_wrap(int a0, int a1) {
     u32 uVar1;
@@ -8282,7 +8270,7 @@ u32 clear_link_14(u32 unused_a0, int *a1) {
 
 /*
  * CItemGLoader_list_ctor  0x8c0fed18
- * called by: game_uses_Class_12b350_ctor_0bff8c
+ * called by: game_turn_input_0bff8c
  */
 int CItemGLoader_list_ctor(int a0, u32 unused_a1, u32 a2) {
     named_list_ctor_14_wrap(a0, unused_a1, a2);
@@ -8323,7 +8311,7 @@ int CItemGLoader_RegistToLoad(int a0, u32 a1, u32 a2) {
 /*
  * CItemGLoader_poll_requests  0x8c0fedf4
  * calls the load method (0xdc) of each item whose request is not done and marks it done (2) when it returns 1
- * called by: game_uses_get_field_d0_0c6e74
+ * called by: game_draw_talk_input_0c6e74
  */
 int CItemGLoader_poll_requests(u32 a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -8429,10 +8417,9 @@ u32 CItemGLoader_identity(u32 a0) {
 /*
  * CItemGLoader_create_creature_by_kind  0x8c0fef94
  * creates the creature object for kind a1 (0..16: Mushroomer egg and line, Squid, Higyo, FrogMan, Moth, ...) and
- * initialises it with a0 called by: CAnimal_spawn_six_helpers, CFrogManEgg_NewChild,
- * CGame_uses_libgcc_divide_helper_0cc784, CProlog_uses_libgcc_divide_helper_0cd3c8, CSquidLine_load_8, bugbox_3_screen,
- * obj_slots_524_spawn_kind1, register_six_item_loads (+8 more) strings: "Shell"; "Shell"; "Invalid item no";
- * "CHeapForItem::NewMemory()" ...
+ * initialises it with a0 called by: CAnimal_spawn_six_helpers, CFrogManEgg_NewChild, CGame_talk_spawn_0cc784,
+ * CProlog_talk_spawn_0cd3c8, CSquidLine_load_8, bugbox_3_screen, obj_slots_524_spawn_kind1, register_six_item_loads (+8
+ * more) strings: "Shell"; "Shell"; "Invalid item no"; "CHeapForItem::NewMemory()" ...
  */
 int CItemGLoader_create_creature_by_kind(u32 a0, char *a1, u32 a2, u32 a3) {
     char *a5;
@@ -8781,11 +8768,10 @@ u32 fullscreen_quad_init(int a0) {
 }
 
 /*
- * game_uses_input_x_or_r_held_like_0ff7d4  0x8c0ff7d4
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is input_x_or_r_held_like
+ * game_input_0ff7d4  0x8c0ff7d4
  * called by: quad_d8_vec_init
  */
-int game_uses_input_x_or_r_held_like_0ff7d4(int *a0, u8 *a1, u32 a2, u32 a3) {
+int game_input_0ff7d4(int *a0, u8 *a1, u32 a2, u32 a3) {
     int iVar1;
     int *piVar2;
     u8 *ar5_00;
@@ -8894,7 +8880,6 @@ int game_uses_input_x_or_r_held_like_0ff7d4(int *a0, u8 *a1, u32 a2, u32 a3) {
 
 /*
  * game_draw_0ff928  0x8c0ff928
- * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
  * called by: quad_d8_touch_fields
  */
 u32 game_draw_0ff928(int a0, u64 *a1, u64 *a2, u32 a3) {
@@ -9016,7 +9001,7 @@ u32 ret_const_1_0ffb90(void) {
 
 /*
  * cursor_ctor_like  0x8c0ffb98
- * called by: game_uses_Class_12b350_ctor_0bff8c
+ * called by: game_turn_input_0bff8c
  */
 int cursor_ctor_like(int a0, u32 a1, u32 a2, u32 a3) {
     obj_clear_5_words_c(a0 + 0xd8, a1, a2, a3);
@@ -9100,7 +9085,6 @@ u32 set_cc_and_fullscreen_quad_init(int a0, u32 a1) {
 
 /*
  * game_input_0ffdb0  0x8c0ffdb0
- * area name: game code; nothing names its area yet; behaviour name: mostly calls input functions
  * called by: static_init_437218, static_init_43724c, static_init_4372a8, static_init_4372f4
  */
 u32 game_input_0ffdb0(int a0) {
@@ -9199,7 +9183,7 @@ u32 game_input_0ffdb0(int a0) {
 u32 quad_d8_vec_init(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    uVar1 = game_uses_input_x_or_r_held_like_0ff7d4(a0 + 0xd8, a0, a2, a3);
+    uVar1 = game_input_0ff7d4(a0 + 0xd8, a0, a2, a3);
     return uVar1;
 }
 
@@ -9243,7 +9227,7 @@ u32 set_field_24_0fffec(int a0, u32 a1) {
 /*
  * input_reset_combo_held  0x8c0ffff4
  * 1 when A, B, X, Y and Start (0x60e) are all held on the controller at +0xcc (the Dreamcast soft-reset combination)
- * called by: Class_12b388_m1_0c5c08, game_uses_speech_is_playing_0bad68, static_init_4367d4
+ * called by: Class_12b388_m1_0c5c08, game_sound_draw_talk_0bad68, static_init_4367d4
  */
 u32 input_reset_combo_held(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;

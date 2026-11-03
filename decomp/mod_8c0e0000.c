@@ -64,7 +64,7 @@ u32 sprinkler_close_sound(int a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * set_field_eb44  0x8c0e015c
- * called by: CWaterTank_check_distance_sound, input_uses_edge_detect_update_0e3210, sprinkler_close_sound,
+ * called by: CWaterTank_check_distance_sound, input_move_sound_input_0e3210, sprinkler_close_sound,
  * tank_stop_sounds_reset
  */
 int set_field_eb44(int a0, u32 a1) {
@@ -482,10 +482,9 @@ u32 get_field_164_on_field_22d48(int a0) {
 }
 
 /*
- * game_vec_0e0988  0x8c0e0988
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * creature_vec_helper_0e0988  0x8c0e0988
  */
-u32 game_vec_0e0988(int a0, u32 *a1, u32 a2, u32 a3) {
+u32 creature_vec_helper_0e0988(int a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 *puVar2;
     u8 *ar6_00;
@@ -670,11 +669,9 @@ u32 Class_12b930_tank_start_maps(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12b930_uses_get_field_300_0e0f48  0x8c0e0f48
- * area name: sits between Class_12b930 functions (same compilation unit); behaviour name: its main named callee is
- * get_field_300_0bf154
+ * Class_12b930_move_sound_0e0f48  0x8c0e0f48
  */
-u32 Class_12b930_uses_get_field_300_0e0f48(int *a0, u32 a1, float *a2, float *a3) {
+u32 Class_12b930_move_sound_0e0f48(int *a0, u32 a1, float *a2, float *a3) {
     int ar4_00;
     int iVar1;
     int iVar2;
@@ -991,7 +988,7 @@ u32 Class_12b930_uses_get_field_300_0e0f48(int *a0, u32 a1, float *a2, float *a3
 /*
  * get_ptr_8c0e1314  0x8c0e130c
  * returns the address 0x8c0e1314
- * called by: Class_12b930_uses_get_field_300_0e0f48
+ * called by: Class_12b930_move_sound_0e0f48
  */
 u32 *get_ptr_8c0e1314(void) {
     return &g_8c0e1314;
@@ -999,7 +996,7 @@ u32 *get_ptr_8c0e1314(void) {
 
 /*
  * get_field_14_0e1318  0x8c0e1318
- * called by: Class_12b930_uses_get_field_300_0e0f48
+ * called by: Class_12b930_move_sound_0e0f48
  */
 u32 get_field_14_0e1318(int a0) {
     return *(u32 *)(a0 + 0x14);
@@ -1008,7 +1005,7 @@ u32 get_field_14_0e1318(int a0) {
 /*
  * set_fields_14_18  0x8c0e1320
  * stores +0x14, +0x18
- * called by: Class_12b930_uses_get_field_300_0e0f48
+ * called by: Class_12b930_move_sound_0e0f48
  */
 u32 set_fields_14_18(int a0) {
     *(u32 *)(a0 + 0x14) = 0;
@@ -1090,7 +1087,7 @@ u32 particle_pool_update_350_on_field_13b8c(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * tank_draw_water_layers_a  0x8c0e14fc
- * called by: game_uses_noop_0de6d0
+ * called by: game_turn_move_draw_0de6d0
  */
 u32 tank_draw_water_layers_a(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1110,7 +1107,7 @@ u32 tank_draw_water_layers_a(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * tank_draw_water_layers_b  0x8c0e157c
- * called by: game_uses_Class_12b930_draw_tinted_b_0def78, game_uses_noop_0deb60
+ * called by: game_turn_move_draw_0deb60, game_turn_move_draw_0def78
  */
 u32 tank_draw_water_layers_b(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1130,7 +1127,7 @@ u32 tank_draw_water_layers_b(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * tank_draw_water_layers_c  0x8c0e15fc
- * called by: game_uses_Class_12b930_draw_tinted_b_0df668, game_uses_matrix_apply_point_w1_wrap_0df250
+ * called by: game_turn_draw_0df250, game_turn_draw_0df668
  */
 u32 tank_draw_water_layers_c(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -1381,10 +1378,9 @@ u32 CWaterTank_CreateStage(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * game_uses_input_track_r_hold_0e1f90  0x8c0e1f90
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is input_track_r_hold
+ * game_sound_talk_input_0e1f90  0x8c0e1f90
  */
-u32 game_uses_input_track_r_hold_0e1f90(int a0, u32 *a1, u8 *a2, u32 a3) {
+u32 game_sound_talk_input_0e1f90(int a0, u32 *a1, u8 *a2, u32 a3) {
     int iVar1;
     u64 *puVar2;
     double *pdVar3;
@@ -1435,12 +1431,12 @@ u32 game_uses_input_track_r_hold_0e1f90(int a0, u32 *a1, u8 *a2, u32 a3) {
         (**(code **)(*(int *)(*(int *)(a0 + 0x9d4) + 8) + 0x88))(*(int *)(a0 + 0x9d4), puVar6, a2, a3);
     }
     puVar6 = &uStack_28;
-    iVar1 = input_input_helper_100e4c(a1, puVar6);
+    iVar1 = input_poll_100e4c(a1, puVar6);
     if ((iVar1 == 1) && (*(int *)(a0 + 0x9d4) != 0)) {
         (**(code **)(*(int *)(*(int *)(a0 + 0x9d4) + 8) + 0x184))(*(int *)(a0 + 0x9d4), puVar6, a2, a3);
     } else {
         puVar6 = &uStack_28;
-        iVar1 = input_input_helper_100e4c(a1, puVar6);
+        iVar1 = input_poll_100e4c(a1, puVar6);
         if ((iVar1 == 2) && (*(int *)(a0 + 0x9d4) != 0)) {
             (**(code **)(*(int *)(*(int *)(a0 + 0x9d4) + 8) + 0x188))(*(int *)(a0 + 0x9d4), puVar6, a2, a3);
         }
@@ -1778,7 +1774,7 @@ u32 game_uses_input_track_r_hold_0e1f90(int a0, u32 *a1, u8 *a2, u32 a3) {
 /*
  * input_a_pressed_wrap  0x8c0e252c
  * only calls input_a_pressed
- * called by: a_button_mic_start_stop_like, game_uses_input_track_r_hold_0e1f90, input_uses_get_field_24_0e25c0
+ * called by: a_button_mic_start_stop_like, game_sound_talk_input_0e1f90, input_sound_talk_input_0e25c0
  */
 u32 input_a_pressed_wrap(int a0) {
     u32 uVar1;
@@ -1790,7 +1786,7 @@ u32 input_a_pressed_wrap(int a0) {
 /*
  * input_l_and_r_held  0x8c0e2554
  * 1 when L and R are both held on the pad at +0xcc (and field 4 of +0xd8 is 0)
- * called by: game_uses_input_track_r_hold_0e1f90, tank_timeout_on_lr_held
+ * called by: game_sound_talk_input_0e1f90, tank_timeout_on_lr_held
  */
 u32 input_l_and_r_held(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -1804,11 +1800,9 @@ u32 input_l_and_r_held(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * input_uses_get_field_24_0e25c0  0x8c0e25c0
- * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * get_field_24_05c284
+ * input_sound_talk_input_0e25c0  0x8c0e25c0
  */
-u32 input_uses_get_field_24_0e25c0(int a0, u32 a1, u32 a2, u32 a3) {
+u32 input_sound_talk_input_0e25c0(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int a4;
     u32 uVar2;
@@ -1836,12 +1830,12 @@ u32 input_uses_get_field_24_0e25c0(int a0, u32 a1, u32 a2, u32 a3) {
             }
         }
         ar5_00 = auStack_20;
-        iVar1 = input_input_helper_100e4c(a1, ar5_00);
+        iVar1 = input_poll_100e4c(a1, ar5_00);
         if ((iVar1 == 1) && (*(int *)(a0 + 0x9d4) != 0)) {
             (**(code **)(*(int *)(*(int *)(a0 + 0x9d4) + 8) + 0x184))(*(int *)(a0 + 0x9d4), ar5_00, a2, a3);
         } else {
             ar5_00 = auStack_20;
-            iVar1 = input_input_helper_100e4c(a1, ar5_00);
+            iVar1 = input_poll_100e4c(a1, ar5_00);
             if ((iVar1 == 2) && (*(int *)(a0 + 0x9d4) != 0)) {
                 (**(code **)(*(int *)(*(int *)(a0 + 0x9d4) + 8) + 0x188))(*(int *)(a0 + 0x9d4), ar5_00, a2, a3);
             }
@@ -1880,7 +1874,7 @@ u32 input_uses_get_field_24_0e25c0(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * set_field_160_0e2838  0x8c0e2838
- * called by: input_uses_get_field_24_0e25c0, tank_clear_three_slots_160
+ * called by: input_sound_talk_input_0e25c0, tank_clear_three_slots_160
  */
 int set_field_160_0e2838(int a0, u32 a1) {
     int iVar1;
@@ -1904,11 +1898,9 @@ u32 tank_clear_three_slots_160(int a0) {
 }
 
 /*
- * input_uses_ret_const_140_0e28a0  0x8c0e28a0
- * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * ret_const_140
+ * input_poll_0e28a0  0x8c0e28a0
  */
-u32 input_uses_ret_const_140_0e28a0(int a0, u32 a1, u32 a2, u32 a3) {
+u32 input_poll_0e28a0(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     float fVar2;
     u64 in_dr0;
@@ -2043,11 +2035,9 @@ u32 tank_timeout_on_lr_held(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * input_uses_edge_detect_update_0e2a14  0x8c0e2a14
- * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * edge_detect_update
+ * input_move_sound_input_0e2a14  0x8c0e2a14
  */
-int input_uses_edge_detect_update_0e2a14(int *a0, u32 a1, u32 a2, u32 a3) {
+int input_move_sound_input_0e2a14(int *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int *piVar2;
     u32 uVar3;
@@ -2277,7 +2267,7 @@ int input_uses_edge_detect_update_0e2a14(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * input_up_held_pad_0e3050  0x8c0e3050
  * input_up_held on the pad at +0xcc
- * called by: input_uses_edge_detect_update_0e2a14, input_uses_edge_detect_update_0e3210
+ * called by: input_move_sound_input_0e2a14, input_move_sound_input_0e3210
  */
 u32 input_up_held_pad_0e3050(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -2289,7 +2279,7 @@ u32 input_up_held_pad_0e3050(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * input_up_held_pad  0x8c0e3078
  * input_up_held on the pad at +0xcc
- * called by: input_uses_edge_detect_update_0e2a14, input_uses_edge_detect_update_0e3210
+ * called by: input_move_sound_input_0e2a14, input_move_sound_input_0e3210
  */
 u32 input_up_held_pad(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -2301,7 +2291,7 @@ u32 input_up_held_pad(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * input_up_pressed_wrap  0x8c0e30a0
  * only calls input_up_pressed
- * called by: input_uses_edge_detect_update_0e2a14, input_uses_edge_detect_update_0e3210
+ * called by: input_move_sound_input_0e2a14, input_move_sound_input_0e3210
  */
 u32 input_up_pressed_wrap(int a0) {
     u32 uVar1;
@@ -2313,8 +2303,7 @@ u32 input_up_pressed_wrap(int a0) {
 /*
  * input_down_pressed_wrap  0x8c0e30c8
  * only calls input_down_pressed
- * called by: game_uses_sound_slot_play_if_open_0e5238, input_uses_edge_detect_update_0e2a14,
- * input_uses_edge_detect_update_0e3210
+ * called by: game_sound_input_0e5238, input_move_sound_input_0e2a14, input_move_sound_input_0e3210
  */
 u32 input_down_pressed_wrap(int a0) {
     u32 uVar1;
@@ -2326,8 +2315,7 @@ u32 input_down_pressed_wrap(int a0) {
 /*
  * input_up_left_right_off  0x8c0e30f0
  * 1 when Up, Right and Left are all up on the controller at +0xcc
- * called by: game_uses_sound_slot_play_if_open_0e5238, input_uses_edge_detect_update_0e2a14,
- * input_uses_edge_detect_update_0e3210
+ * called by: game_sound_input_0e5238, input_move_sound_input_0e2a14, input_move_sound_input_0e3210
  */
 u32 input_up_left_right_off(int a0) {
     int iVar1;
@@ -2342,7 +2330,7 @@ u32 input_up_left_right_off(int a0) {
 
 /*
  * input_up_off_left_pressed  0x8c0e3150
- * called by: input_uses_edge_detect_update_0e2a14, input_uses_edge_detect_update_0e3210
+ * called by: input_move_sound_input_0e2a14, input_move_sound_input_0e3210
  */
 u32 input_up_off_left_pressed(int a0) {
     int iVar1;
@@ -2356,7 +2344,7 @@ u32 input_up_off_left_pressed(int a0) {
 
 /*
  * input_up_off_right_pressed  0x8c0e319c
- * called by: input_uses_edge_detect_update_0e2a14, input_uses_edge_detect_update_0e3210
+ * called by: input_move_sound_input_0e2a14, input_move_sound_input_0e3210
  */
 u32 input_up_off_right_pressed(int a0) {
     int iVar1;
@@ -2371,8 +2359,7 @@ u32 input_up_off_right_pressed(int a0) {
 /*
  * input_up_pressed_wrap_0e31e8  0x8c0e31e8
  * only calls input_up_pressed
- * called by: game_uses_sound_slot_play_if_open_0e5238, input_uses_edge_detect_update_0e2a14,
- * input_uses_edge_detect_update_0e3210
+ * called by: game_sound_input_0e5238, input_move_sound_input_0e2a14, input_move_sound_input_0e3210
  */
 u32 input_up_pressed_wrap_0e31e8(int a0) {
     u32 uVar1;
@@ -2382,11 +2369,9 @@ u32 input_up_pressed_wrap_0e31e8(int a0) {
 }
 
 /*
- * input_uses_edge_detect_update_0e3210  0x8c0e3210
- * area name: sits between input functions (same compilation unit); behaviour name: its main named callee is
- * edge_detect_update
+ * input_move_sound_input_0e3210  0x8c0e3210
  */
-int input_uses_edge_detect_update_0e3210(int a0, u32 a1, u32 a2, u32 a3) {
+int input_move_sound_input_0e3210(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u16 uVar3;
@@ -2887,8 +2872,8 @@ u32 Vec3_ctor_copy_wrap_0e3e98(int a0, u32 unused_a1, u32 a2, u32 a3, u32 s0) {
 
 /*
  * tank_get_light_pair_by_flags  0x8c0e3ebc
- * called by: game_uses_Class_12b930_draw_tinted_b_0def78, game_uses_Class_12b930_draw_tinted_b_0df668,
- * game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60
+ * called by: game_turn_draw_0df250, game_turn_draw_0df668, game_turn_move_draw_0de6d0, game_turn_move_draw_0deb60,
+ * game_turn_move_draw_0def78
  */
 u32 *tank_get_light_pair_by_flags(int a0, u32 *a1, u32 *a2) {
     if ((*(int *)(a0 + 0x22810) == 1) && (*(int *)(a0 + 0x22814) == 1)) {
@@ -2907,13 +2892,11 @@ u32 *tank_get_light_pair_by_flags(int a0, u32 *a1, u32 *a2) {
 }
 
 /*
- * Vec3_uses_gfxlib_set_vec_0e3f24  0x8c0e3f24
- * area name: sits between Vec3 functions (same compilation unit); behaviour name: its main named callee is
- * gfxlib_set_vec_4c0e80 called by: game_uses_Class_12b930_draw_tinted_b_0def78,
- * game_uses_Class_12b930_draw_tinted_b_0df668, game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0,
- * game_uses_noop_0deb60, tank_reset_items_and_view
+ * Vec3_helper_0e3f24  0x8c0e3f24
+ * called by: game_turn_draw_0df250, game_turn_draw_0df668, game_turn_move_draw_0de6d0, game_turn_move_draw_0deb60,
+ * game_turn_move_draw_0def78, tank_reset_items_and_view
  */
-u32 Vec3_uses_gfxlib_set_vec_0e3f24(int a0) {
+u32 Vec3_helper_0e3f24(int a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -2995,9 +2978,8 @@ u32 Vec3_uses_gfxlib_set_vec_0e3f24(int a0) {
 
 /*
  * game_draw_0e4198  0x8c0e4198
- * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
- * called by: game_uses_Class_12b930_draw_tinted_b_0def78, game_uses_Class_12b930_draw_tinted_b_0df668,
- * game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60
+ * called by: game_turn_draw_0df250, game_turn_draw_0df668, game_turn_move_draw_0de6d0, game_turn_move_draw_0deb60,
+ * game_turn_move_draw_0def78
  */
 u32 game_draw_0e4198(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -3073,7 +3055,7 @@ u32 game_draw_0e4198(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * tank_handle_item_kind  0x8c0e4298
- * called by: game_uses_input_track_r_hold_0e1f90, input_uses_get_field_24_0e25c0
+ * called by: game_sound_talk_input_0e1f90, input_sound_talk_input_0e25c0
  */
 u32 tank_handle_item_kind(int *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -3095,7 +3077,7 @@ u32 tank_handle_item_kind(int *a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * set_field_128_0e4330  0x8c0e4330
- * called by: game_slot_grid_cursor_tick, game_uses_sound_slot_play_if_open_0e5238, tank_handle_item_kind
+ * called by: game_slot_grid_cursor_tick, game_sound_input_0e5238, tank_handle_item_kind
  */
 int set_field_128_0e4330(int a0, u32 a1) {
     int iVar1;
@@ -3119,7 +3101,7 @@ int set_field_d4(int a0, u32 a1) {
 
 /*
  * tank_timeout_mode6_and_float_a68  0x8c0e4348
- * called by: game_uses_input_track_r_hold_0e1f90, tank_timeout_on_lr_held
+ * called by: game_sound_talk_input_0e1f90, tank_timeout_on_lr_held
  */
 u32 tank_timeout_mode6_and_float_a68(int a0, u32 a1) {
     u32 uVar1;
@@ -3480,7 +3462,7 @@ u32 Class_12b758_m1_0e4b5c(int a0, u32 *a1, u32 a2, u32 a3) {
         }
     }
     tank_items_assign_all(a0, a1, a2, a3);
-    Class_12c394_vec_0d64a0(a0 + 0xa68, a1, a2, a3);
+    Class_12b930_steps_0d64a0(a0 + 0xa68, a1, a2, a3);
     return 1;
 }
 
@@ -3585,7 +3567,7 @@ u32 Class_12b758_draw_with_light(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
         Class_129808_draw(a0 + 0x1028, ar5_00, ar6_00, a3);
     }
     if (*(int *)(a0 + 0x1024) == 2) {
-        Class_12b758_uses_sprintf_0d1858(&g_8c13f450);
+        Class_12b758_draw_0d1858(&g_8c13f450);
     }
     for (iVar2 = 0; iVar2 < 3; iVar2 = iVar2 + 1) {
         if (*(int *)(iVar2 * 0x24 + a0 + 0x1090) == 1) {
@@ -3605,7 +3587,7 @@ u32 Class_12b758_draw_with_light(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     if (*(int *)(a0 + 0x15c8) == 1) {
         CTexture_set_and_draw(a0 + 0x15bc, ar5_00, ar6_00, a3);
     }
-    game_uses_list_node_next_wrap_0da754(a0);
+    Class_12b580_helper_0da754(a0);
     return 1;
 }
 
@@ -3618,7 +3600,7 @@ u32 tank_rotate_draw_and_list(int a0, u32 a1, u32 a2, u32 a3) {
     rotate_degrees_7c_on_field_9e8(a0);
     obj_set_texlist(a0 + 0x28, a1, a2);
     gfxlib_draw_219a9a_on_handle(a0 + 0x30, a1, a2, a3);
-    uVar1 = game_uses_list_node_next_wrap_0da754(a0);
+    uVar1 = Class_12b580_helper_0da754(a0);
     return uVar1;
 }
 
@@ -3706,10 +3688,9 @@ u32 noop_0e5234(void) {
 }
 
 /*
- * game_uses_sound_slot_play_if_open_0e5238  0x8c0e5238
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is sound_slot_play_if_open
+ * game_sound_input_0e5238  0x8c0e5238
  */
-u32 game_uses_sound_slot_play_if_open_0e5238(int *a0, u32 *a1, u32 a2, u32 a3) {
+u32 game_sound_input_0e5238(int *a0, u32 *a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 ar6_00;
     int iVar2;
@@ -3932,7 +3913,7 @@ u32 game_uses_sound_slot_play_if_open_0e5238(int *a0, u32 *a1, u32 a2, u32 a3) {
 /*
  * input_up_pressed_wrap_0e5998  0x8c0e5998
  * only calls input_up_pressed
- * called by: game_uses_sound_slot_play_if_open_0e5238
+ * called by: game_sound_input_0e5238
  */
 u32 input_up_pressed_wrap_0e5998(int a0) {
     u32 uVar1;
@@ -3944,7 +3925,7 @@ u32 input_up_pressed_wrap_0e5998(int a0) {
 /*
  * set_fields_4_0_on_field_d8  0x8c0e59c0
  * calls set_fields_4_0_0ffb84 on the member at +0xd8
- * called by: game_slot_grid_cursor_tick, game_uses_sound_slot_play_if_open_0e5238
+ * called by: game_slot_grid_cursor_tick, game_sound_input_0e5238
  */
 u32 set_fields_4_0_on_field_d8(int a0, u32 a1) {
     set_fields_4_0_0ffb84(a0 + 0xd8, a1);
@@ -4360,7 +4341,7 @@ u32 Class_12b580_m1_0e634c(int a0, int a1, u32 a2, u32 a3) {
     int iVar5;
 
     iVar4 = a0 + 0xa68;
-    Class_12b580_uses_Class_12b580_particle_init_0d84e8(a0 + 0x10dc, a1, iVar4, a3);
+    Class_12b580_draw_0d84e8(a0 + 0x10dc, a1, iVar4, a3);
     uVar3 = *(u32 *)(0x10dc + a0);
     Class_12b580_time_of_day_update_like(a0, uVar3, iVar4);
     if ((*(int *)(0x10dc + a0) == 0) || (*(int *)(0x10dc + a0) == 0x8ca0)) {
@@ -4399,7 +4380,7 @@ u32 Class_12b580_m1_0e634c(int a0, int a1, u32 a2, u32 a3) {
             Class_12b580_fade_mode_update(a0 + iVar4 * 0x68 + 0xc0c, a0, a2, a3);
         }
     }
-    Class_12c394_vec_0d64a0(a0 + 0xa68, a1, a2, a3);
+    Class_12b930_steps_0d64a0(a0 + 0xa68, a1, a2, a3);
     return 1;
 }
 
@@ -4458,7 +4439,7 @@ u32 Class_12b580_draw_with_children(int a0, int a1, int a2, u32 a3) {
             Class_12b580_draw_at_pose(a0 + iVar2 * 0x68 + 0xc0c, a1, a2);
         }
     }
-    game_uses_list_node_next_wrap_0da754(a0);
+    Class_12b580_helper_0da754(a0);
     return 1;
 }
 
@@ -4925,12 +4906,12 @@ u32 env_handle_input(int a0, u32 a1, u32 a2, u32 a3) {
     input_list_dispatch_buttons(a0, a1, a2, a3);
     tank_handle_circle_gesture(a0, a1, a2, a3);
     puVar2 = auStack_10;
-    iVar1 = input_input_helper_100e4c(a1, puVar2);
+    iVar1 = input_poll_100e4c(a1, puVar2);
     if ((iVar1 == 1) && (*(int *)(a0 + 0x9d4) != 0)) {
         (**(code **)(*(int *)(*(int *)(a0 + 0x9d4) + 8) + 0x184))(*(int *)(a0 + 0x9d4), puVar2, a2, a3);
     } else {
         puVar2 = auStack_10;
-        iVar1 = input_input_helper_100e4c(a1, puVar2);
+        iVar1 = input_poll_100e4c(a1, puVar2);
         if ((iVar1 == 2) && (*(int *)(a0 + 0x9d4) != 0)) {
             (**(code **)(*(int *)(*(int *)(a0 + 0x9d4) + 8) + 0x188))(*(int *)(a0 + 0x9d4), puVar2, a2, a3);
         }
@@ -4969,12 +4950,12 @@ u32 game_items_handle_input(int a0, u32 a1, u32 a2, u32 a3) {
             }
         }
         ar5_00 = auStack_20;
-        iVar1 = input_input_helper_100e4c(a1, ar5_00);
+        iVar1 = input_poll_100e4c(a1, ar5_00);
         if ((iVar1 == 1) && (*(int *)(a0 + 0x9d4) != 0)) {
             (**(code **)(*(int *)(*(int *)(a0 + 0x9d4) + 8) + 0x184))(*(int *)(a0 + 0x9d4), ar5_00, a2, a3);
         } else {
             ar5_00 = auStack_20;
-            iVar1 = input_input_helper_100e4c(a1, ar5_00);
+            iVar1 = input_poll_100e4c(a1, ar5_00);
             if ((iVar1 == 2) && (*(int *)(a0 + 0x9d4) != 0)) {
                 (**(code **)(*(int *)(*(int *)(a0 + 0x9d4) + 8) + 0x188))(*(int *)(a0 + 0x9d4), ar5_00, a2, a3);
             }
@@ -5278,11 +5259,9 @@ u32 ret_const_1_0e7a70(void) {
 }
 
 /*
- * Class_12b3b8_uses_object_dtor_delete_0e7a78  0x8c0e7a78
- * area name: sits between Class_12b3b8 functions (same compilation unit); behaviour name: its main named callee is
- * object_dtor_delete
+ * Class_12b3b8_turn_draw_0e7a78  0x8c0e7a78
  */
-u32 Class_12b3b8_uses_object_dtor_delete_0e7a78(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12b3b8_turn_draw_0e7a78(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int ar4_00;
     u32 uVar2;
@@ -5480,7 +5459,7 @@ u32 grid_put_cell_224(int a0, u32 a1, short *a2, u32 a3) {
     ar6_00 = a2;
     set_field_2c_wrap(a0, a1);
     *(u32 *)(0xa4 + a0 + a2[1] * 0x80 + *a2 * 0x20) = a1;
-    game_uses_rand_0d6fb8(a0 + a2[1] * 0x80 + *a2 * 0x20 + 0xa4, ar5_00, ar6_00, a3);
+    game_random_0d6fb8(a0 + a2[1] * 0x80 + *a2 * 0x20 + 0xa4, ar5_00, ar6_00, a3);
     *(int *)(0x410 + a0) = *(int *)(0x410 + a0) + 1;
     a2[1] = -1;
     *a2 = -1;
@@ -5573,7 +5552,7 @@ u32 game_slot_grid_cursor_tick(int a0, u32 a1, u32 a2, u32 a3) {
         input_x_held_set_timeout(a1);
         ar6_00 = auStack_1c;
         cursor_get_xy(a1, auStack_20, ar6_00);
-        game_uses_copy_2_u16_0e89c4(a0, auStack_20, ar6_00, a3, &uStack_5c);
+        game_helper_0e89c4(a0, auStack_20, ar6_00, a3, &uStack_5c);
         puVar1 = (u16 *)(a0 + 0x224);
         *puVar1 = uStack_5c;
         puVar1[1] = uStack_5a;
@@ -5610,7 +5589,7 @@ u32 game_slot_grid_cursor_tick(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * copy_2_u16  0x8c0e84c8
  * a0[0..1] = a1[0..1] (16-bit)
- * called by: game_slot_grid_cursor_tick, game_uses_copy_2_u16_0e89c4, item_grid_find_free
+ * called by: game_helper_0e89c4, game_slot_grid_cursor_tick, item_grid_find_free
  */
 u16 *copy_2_u16(u16 *a0, u16 *a1) {
     *a0 = *a1;
@@ -5713,7 +5692,7 @@ u32 game_items_create_3x4(int a0, int a1, u32 unused_a2, u32 a3) {
                     (**(code **)(0xe0 + *(int *)(iVar2 + 8)))(iVar2, 0x8c3eb334, iVar3, a3);
                     iVar2 = *(int *)(0xa4 + a0 + iVar6 * 0x80 + iVar7 * 0x20);
                     (**(code **)(*(int *)(iVar2 + 8) + 0x5c))(iVar2, uVar1, iVar3, a3);
-                    (*(code *)(&game_uses_rand_0d6fb8))(a0 + iVar6 * 0x80 + iVar7 * 0x20 + 0xa4, uVar1, iVar3, a3);
+                    (*(code *)(&game_random_0d6fb8))(a0 + iVar6 * 0x80 + iVar7 * 0x20 + 0xa4, uVar1, iVar3, a3);
                 }
                 (*(code *)(&set_field_2c_wrap))(a0, *(u32 *)(0xa4 + a0 + iVar6 * 0x80 + iVar7 * 0x20), iVar3, a3);
                 iVar4 = iVar4 + 1;
@@ -5791,11 +5770,10 @@ u32 obj_vcall_1b0_with_1(int *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_copy_2_u16_0e89c4  0x8c0e89c4
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is copy_2_u16
+ * game_helper_0e89c4  0x8c0e89c4
  * called by: game_slot_grid_cursor_tick
  */
-u32 game_uses_copy_2_u16_0e89c4(u32 unused_a0, double *a1, u32 unused_a2, u32 a3, u32 s0) {
+u32 game_helper_0e89c4(u32 unused_a0, double *a1, u32 unused_a2, u32 a3, u32 s0) {
     u32 ar6_00;
     int iVar1;
     float fVar2;
@@ -6629,11 +6607,10 @@ int free_if_nonnull_wrap_0e91f0(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12bb08_uses_get_field_a4_s16_0e9220  0x8c0e9220
- * area name: only called from Class_12bb08 methods; behaviour name: its main named callee is get_field_a4_s16
+ * Class_12bb08_helper_0e9220  0x8c0e9220
  * called by: Class_12bb08_m1_0da338, Class_12bb08_m2_0da5a8
  */
-int Class_12bb08_uses_get_field_a4_s16_0e9220(int a0, u32 a1, int a2, int *a3) {
+int Class_12bb08_helper_0e9220(int a0, u32 a1, int a2, int *a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -6846,7 +6823,7 @@ u32 game_obj_reset_fields(int a0) {
 
 /*
  * Class_12bb08_load_bytes  0x8c0e983c
- * called by: CGame_uses_libgcc_divide_helper_0cc784, CProlog_uses_libgcc_divide_helper_0cd3c8
+ * called by: CGame_talk_spawn_0cc784, CProlog_talk_spawn_0cd3c8
  */
 u32 Class_12bb08_load_bytes(char *a0, char *a1) {
     set_field_39_u8(a0, (int)*a1);
@@ -6859,7 +6836,7 @@ u32 Class_12bb08_load_bytes(char *a0, char *a1) {
 
 /*
  * set_field_3c_u8  0x8c0e9888
- * called by: Class_12bb08_load_bytes, game_uses_Vec3_dtor_1089e4
+ * called by: Class_12bb08_load_bytes, game_talk_1089e4
  */
 u32 set_field_3c_u8(int a0, u32 a1) {
     *(u8 *)(a0 + 0x3c) = (u8)a1;

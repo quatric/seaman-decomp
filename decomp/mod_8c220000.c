@@ -1131,7 +1131,7 @@ u32 gfxlib_vertex_step_c(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * ta_fifo_221778  0x8c221778
- * called by: gfxlib_uses_ninja_matrix_copy_22b7a8, gfxlib_uses_ninja_matrix_copy_22bb70
+ * called by: gfxlib_draw_normals_c, gfxlib_draw_normals_d
  */
 u32 ta_fifo_221778(float *a0) {
     u32 uVar1;
@@ -1198,7 +1198,7 @@ int ta_select_table_26d7e8(int a0) {
  * flags_4c0ed0_set  0x8c221916
  * sets or clears (a1) flag a0 of the bit set at 0x8c4c0ed0
  * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_light_release, Class_12ab2c_light_setup,
- * Class_12ab2c_uses_light_set_vec_09ea78, game_init_sound_and_messages, lights_2_to_4_off
+ * Class_12ab2c_random_09ea78, game_init_sound_and_messages, lights_2_to_4_off
  */
 u32 flags_4c0ed0_set(int a0, int a1) {
     u32 auStack_20[8];
@@ -1215,7 +1215,7 @@ u32 flags_4c0ed0_set(int a0, int a1) {
 /*
  * set_vec_4c0ed4  0x8c22194e
  * stores fr4..fr6 at 8c4c0ed4
- * called by: Vec3_uses_gfxlib_set_vec_0e3f24
+ * called by: Vec3_helper_0e3f24
  */
 u32 set_vec_4c0ed4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 in_fr5;
@@ -1231,8 +1231,8 @@ u32 set_vec_4c0ed4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u
 /*
  * light_set_vec_4c0ef4  0x8c22195c
  * stores fr4..fr6 in light slot a0 (1-based, 0x20 bytes each at 0x8c4c0ef4)
- * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_uses_light_set_vec_09ea78, Vec3_uses_gfxlib_set_vec_0e3f24,
- * tank_light_and_draw_9d4, tank_light_by_flags
+ * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_random_09ea78, Vec3_helper_0e3f24, tank_light_and_draw_9d4,
+ * tank_light_by_flags
  */
 u32 light_set_vec_4c0ef4(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int iVar1;
@@ -1249,7 +1249,7 @@ u32 light_set_vec_4c0ef4(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u3
 
 /*
  * gfxlib_set_vec_4c0e80  0x8c2219a8
- * called by: Vec3_uses_gfxlib_set_vec_0e3f24
+ * called by: Vec3_helper_0e3f24
  */
 u32 gfxlib_set_vec_4c0e80(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 in_fr5;
@@ -1266,7 +1266,7 @@ u32 gfxlib_set_vec_4c0e80(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unuse
 /*
  * light_set_vector  0x8c2219ac
  * stores fr4..fr6 as the vector of light a0 (1-based) at 0x8c4c0e80 and marks it set
- * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_uses_light_set_vec_09ea78
+ * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_random_09ea78
  */
 u32 light_set_vector(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int iVar1;
@@ -1308,7 +1308,7 @@ u32 gfxlib_set_squared_pair(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 /*
  * gfx_lights_transform_0e80  0x8c2219f6
  * transforms each light of the table at 8c4c0e80 (flags +0x50: 3 bits per light) as a direction or a point into
- * 8c4c0ee0 called by: Vec3_uses_gfxlib_set_vec_0e3f24
+ * 8c4c0ee0 called by: Vec3_helper_0e3f24
  */
 u32 gfx_lights_transform_0e80(void) {
     u8 *puVar1;
@@ -1491,11 +1491,10 @@ int gfx_strips_emit_s64_cull(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * gfxlib_calls_fill_loop_221c68  0x8c221c68
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
+ * gfxlib_vlist_transform_c_setup  0x8c221c68
  * called by: gfx_poly_chunks_draw_s64
  */
-double *gfxlib_calls_fill_loop_221c68(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_vlist_transform_c_setup(short *a0, int a1, u32 a2, double *a3) {
     bool bVar1;
     short *psVar2;
     double *pdVar3;
@@ -2113,7 +2112,7 @@ double *gfxlib_calls_fill_loop_221c68(short *a0, int a1, u32 a2, double *a3) {
                         dVar20 = (double)CONCAT44(fVar18, uVar21);
                         in_dr10 = dVar29;
                     }
-                    a3 = (double *)gfxlib_fill_loop_2230f0(pdVar5, a5, a6, a3);
+                    a3 = (double *)gfxlib_vlist_transform_c_loop(pdVar5, a5, a6, a3);
                 }
             }
         LAB_8c221efe:
@@ -2215,11 +2214,10 @@ double *gfxlib_calls_fill_loop_221c68(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_fill_loop_221fbc  0x8c221fbc
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfxlib_vlist_uv_setup_a  0x8c221fbc
  * called by: gfx_poly_chunks_draw_s64
  */
-u32 *gfxlib_fill_loop_221fbc(short *a0, int a1, u32 a2, u32 *a3) {
+u32 *gfxlib_vlist_uv_setup_a(short *a0, int a1, u32 a2, u32 *a3) {
     int iVar1;
     short *psVar2;
     short *psVar3;
@@ -3177,7 +3175,7 @@ double *vram64_22233c(short *a0, int a1, u32 a2, double *a3) {
                         in_xd4 = (double)CONCAT44(fVar27, fVar17);
                         dVar19 = (double)CONCAT44(fVar17, uVar20);
                     }
-                    a3 = (double *)gfxlib_fill_loop_224b00(pdVar3, pdVar4, a6, a3);
+                    a3 = (double *)gfxlib_vlist_transform_f_loop(pdVar3, pdVar4, a6, a3);
                 }
             }
         LAB_8c22269a:
@@ -3337,11 +3335,10 @@ double *vram64_22233c(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * vram_fill_loop_22278c  0x8c22278c
- * area name: sits between vram functions (same compilation unit); behaviour name: a loop that writes memory
+ * gfxlib_vlist_uv_offset_kernel  0x8c22278c
  * called by: gfx_poly_chunks_draw_s64
  */
-u32 *vram_fill_loop_22278c(short *a0, int a1, u32 a2, u32 *a3) {
+u32 *gfxlib_vlist_uv_offset_kernel(short *a0, int a1, u32 a2, u32 *a3) {
     int iVar1;
     u32 uVar2;
     short *psVar3;
@@ -4663,11 +4660,10 @@ double *vram64_222cec(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_fill_loop_2230f0  0x8c2230f0
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_221c68
+ * gfxlib_vlist_transform_c_loop  0x8c2230f0
+ * called by: gfxlib_vlist_transform_c_setup
  */
-u64 *gfxlib_fill_loop_2230f0(u32 a0, u32 a1, u32 a2, u64 *a3) {
+u64 *gfxlib_vlist_transform_c_loop(u32 a0, u32 a1, u32 a2, u64 *a3) {
     int iVar1;
     double *pdVar2;
     u64 *puVar3;
@@ -5313,11 +5309,10 @@ int gfx_strips_emit_s64_cull_c(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * gfxlib_calls_fill_loop_223708  0x8c223708
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
+ * gfxlib_vlist_transform_d_setup  0x8c223708
  * called by: gfx_poly_chunks_draw_s64
  */
-double *gfxlib_calls_fill_loop_223708(u32 a0, u32 a1, u32 a2, double *a3) {
+double *gfxlib_vlist_transform_d_setup(u32 a0, u32 a1, u32 a2, double *a3) {
     short sVar1;
     short sVar2;
     bool bVar3;
@@ -6117,7 +6112,7 @@ double *gfxlib_calls_fill_loop_223708(u32 a0, u32 a1, u32 a2, double *a3) {
                         in_dr6 = dVar20;
                         in_xd6 = in_dr12;
                     }
-                    a3 = (double *)gfxlib_fill_loop_226474(pdVar5, a5, pdVar13, a3);
+                    a3 = (double *)gfxlib_vlist_transform_d_loop(pdVar5, a5, pdVar13, a3);
                     pdVar14 = (double *)((int)pdVar6 + 8);
                 }
             }
@@ -6275,11 +6270,10 @@ double *gfxlib_calls_fill_loop_223708(u32 a0, u32 a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_fill_loop_223b34  0x8c223b34
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfxlib_vlist_uv_setup_b  0x8c223b34
  * called by: gfx_poly_chunks_draw_s64
  */
-u32 *gfxlib_fill_loop_223b34(short *a0, int a1, u32 a2, u32 *a3) {
+u32 *gfxlib_vlist_uv_setup_b(short *a0, int a1, u32 a2, u32 *a3) {
     short sVar1;
     short sVar2;
     int iVar3;
@@ -6476,11 +6470,10 @@ u32 *gfxlib_fill_loop_223b34(short *a0, int a1, u32 a2, u32 *a3) {
 }
 
 /*
- * gfxlib_calls_fill_loop_223eb8  0x8c223eb8
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
+ * gfxlib_vlist_transform_e_setup  0x8c223eb8
  * called by: gfx_poly_chunks_draw_s64
  */
-double *gfxlib_calls_fill_loop_223eb8(u32 a0, u32 a1, u32 a2, double *a3) {
+double *gfxlib_vlist_transform_e_setup(u32 a0, u32 a1, u32 a2, double *a3) {
     short sVar1;
     short sVar2;
     bool bVar3;
@@ -7315,7 +7308,7 @@ double *gfxlib_calls_fill_loop_223eb8(u32 a0, u32 a1, u32 a2, double *a3) {
                         in_dr6 = dVar22;
                         in_xd6 = in_dr12;
                     }
-                    a3 = (double *)gfxlib_fill_loop_225098(pdVar5, a5, pdVar14, a3);
+                    a3 = (double *)gfxlib_vlist_transform_e_loop(pdVar5, a5, pdVar14, a3);
                     piVar16 = (int *)((int)puVar15 + 0x14);
                 }
             }
@@ -7483,11 +7476,10 @@ double *gfxlib_calls_fill_loop_223eb8(u32 a0, u32 a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_fill_loop_224330  0x8c224330
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfxlib_vlist_uv_setup_c  0x8c224330
  * called by: gfx_poly_chunks_draw_s64
  */
-u32 *gfxlib_fill_loop_224330(short *a0, int a1, u32 a2, u32 *a3) {
+u32 *gfxlib_vlist_uv_setup_c(short *a0, int a1, u32 a2, u32 *a3) {
     int iVar1;
     short *psVar2;
     short *psVar3;
@@ -8445,7 +8437,7 @@ double *vram64_2246a0(short *a0, int a1, u32 a2, double *a3) {
                         in_xd4 = (double)CONCAT44(fVar27, fVar18);
                         dVar19 = (double)CONCAT44(fVar18, uVar20);
                     }
-                    a3 = (double *)gfxlib_fill_loop_224b00(pdVar3, pdVar4, a6, a3);
+                    a3 = (double *)gfxlib_vlist_transform_f_loop(pdVar3, pdVar4, a6, a3);
                 }
             }
         LAB_8c224a0e:
@@ -8605,11 +8597,10 @@ double *vram64_2246a0(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_fill_loop_224b00  0x8c224b00
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfxlib_vlist_transform_f_loop  0x8c224b00
  * called by: vram64_22233c, vram64_2246a0
  */
-u64 *gfxlib_fill_loop_224b00(u32 a0, u32 a1, u32 a2, u64 *a3) {
+u64 *gfxlib_vlist_transform_f_loop(u32 a0, u32 a1, u32 a2, u64 *a3) {
     u32 *puVar1;
     int iVar2;
     int iVar3;
@@ -9314,11 +9305,10 @@ u64 *gfxlib_fill_loop_224b00(u32 a0, u32 a1, u32 a2, u64 *a3) {
 }
 
 /*
- * gfxlib_fill_loop_225098  0x8c225098
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_223eb8
+ * gfxlib_vlist_transform_e_loop  0x8c225098
+ * called by: gfxlib_vlist_transform_e_setup
  */
-u64 *gfxlib_fill_loop_225098(u32 a0, u32 a1, u32 a2, u64 *a3) {
+u64 *gfxlib_vlist_transform_e_loop(u32 a0, u32 a1, u32 a2, u64 *a3) {
     u32 *puVar1;
     int iVar2;
     int iVar3;
@@ -9948,11 +9938,10 @@ u64 *gfxlib_fill_loop_225098(u32 a0, u32 a1, u32 a2, u64 *a3) {
 }
 
 /*
- * gfxlib_fill_loop_2255e8  0x8c2255e8
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfxlib_vlist_uv_offset_kernel_b  0x8c2255e8
  * called by: gfx_poly_chunks_draw_s64
  */
-u32 *gfxlib_fill_loop_2255e8(short *a0, int a1, u32 a2, u32 *a3) {
+u32 *gfxlib_vlist_uv_offset_kernel_b(short *a0, int a1, u32 a2, u32 *a3) {
     int iVar1;
     u32 uVar2;
     short *psVar3;
@@ -11879,11 +11868,10 @@ u64 *vram64_225f68(u32 a0, u32 a1, u32 a2, u64 *a3) {
 }
 
 /*
- * gfxlib_fill_loop_226474  0x8c226474
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_223708
+ * gfxlib_vlist_transform_d_loop  0x8c226474
+ * called by: gfxlib_vlist_transform_d_setup
  */
-u64 *gfxlib_fill_loop_226474(u32 a0, u32 a1, u32 a2, u64 *a3) {
+u64 *gfxlib_vlist_transform_d_loop(u32 a0, u32 a1, u32 a2, u64 *a3) {
     u32 *puVar1;
     int iVar2;
     int iVar3;
@@ -14409,10 +14397,9 @@ int gfx_strips_emit_s32_cull_a(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * gfxlib_calls_fill_loop_2274f8  0x8c2274f8
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
+ * gfxlib_vlist_transform_g_setup  0x8c2274f8
  */
-double *gfxlib_calls_fill_loop_2274f8(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_vlist_transform_g_setup(short *a0, int a1, u32 a2, double *a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -14787,7 +14774,7 @@ double *gfxlib_calls_fill_loop_2274f8(short *a0, int a1, u32 a2, double *a3) {
                     puVar14 = (u64 *)((int)puVar13 + -0x28);
                     *(u64 *)((int)puVar13 + -0x28) = in_xd4;
                 }
-                a3 = (double *)gfxlib_fill_loop_22b26c(ar4_00, pdVar7, pdVar9, a3);
+                a3 = (double *)gfxlib_vlist_transform_g_loop(ar4_00, pdVar7, pdVar9, a3);
                 if (cVar27 == '\0') {
                     piVar15 = (int *)(puVar14 + 1);
                     pdVar8 = (double *)puVar14;
@@ -14984,10 +14971,9 @@ u32 *gfx_strips_emit_cull_like(short *a0, int a1, u32 a2, u32 *a3) {
 }
 
 /*
- * gfxlib_calls_fill_loop_22789c  0x8c22789c
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
+ * gfxlib_vlist_transform_h_setup  0x8c22789c
  */
-u32 *gfxlib_calls_fill_loop_22789c(short *a0, int a1, u32 a2, u32 *a3) {
+u32 *gfxlib_vlist_transform_h_setup(short *a0, int a1, u32 a2, u32 *a3) {
     bool bVar1;
     u64 uVar2;
     short *psVar3;
@@ -15283,7 +15269,7 @@ u32 *gfxlib_calls_fill_loop_22789c(short *a0, int a1, u32 a2, u32 *a3) {
                     dVar21 = (double)CONCAT44(SUB84(dVar20, 0), SUB84(in_dr4, 0));
                 }
                 in_dr4 = dVar21;
-                a3 = (u32 *)gfxlib_fill_loop_228a5c(ar4_00, ar5_00, ar6_00, a3);
+                a3 = (u32 *)gfxlib_vlist_transform_h_loop(ar4_00, ar5_00, ar6_00, a3);
             }
         LAB_8c227a3a:
             psStack_3c = psStack_3c + (a2 >> 0xe & 3) + 1;
@@ -15329,10 +15315,9 @@ u32 *gfxlib_calls_fill_loop_22789c(short *a0, int a1, u32 a2, u32 *a3) {
 }
 
 /*
- * gfxlib_calls_fill_loop_227bc4  0x8c227bc4
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
+ * gfxlib_vlist_transform_i_setup  0x8c227bc4
  */
-float *gfxlib_calls_fill_loop_227bc4(short *a0, int a1, u32 a2, float *a3) {
+float *gfxlib_vlist_transform_i_setup(short *a0, int a1, u32 a2, float *a3) {
     bool bVar1;
     short *psVar2;
     float *pfVar3;
@@ -15523,7 +15508,7 @@ float *gfxlib_calls_fill_loop_227bc4(short *a0, int a1, u32 a2, float *a3) {
                             goto LAB_8c227d10;
                     }
                 }
-                a3 = (float *)gfxlib_fill_loop_227d94(pfVar3, ar5_00, ar6_00, a3);
+                a3 = (float *)gfxlib_vlist_transform_i_loop(pfVar3, ar5_00, ar6_00, a3);
                 in_fr3 = extraout_fr3;
                 in_fr2 = extraout_fr2;
             }
@@ -15567,11 +15552,10 @@ float *gfxlib_calls_fill_loop_227bc4(short *a0, int a1, u32 a2, float *a3) {
 }
 
 /*
- * gfxlib_fill_loop_227d94  0x8c227d94
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_227bc4
+ * gfxlib_vlist_transform_i_loop  0x8c227d94
+ * called by: gfxlib_vlist_transform_i_setup
  */
-u32 *gfxlib_fill_loop_227d94(double *a0, double *a1, double *a2, u32 *a3) {
+u32 *gfxlib_vlist_transform_i_loop(double *a0, double *a1, double *a2, u32 *a3) {
     int iVar1;
     u64 *puVar2;
     double *pdVar3;
@@ -16508,10 +16492,9 @@ int vram64_2283cc(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * gfxlib_uses_vram64_2287f8  0x8c2287f8
- * area name: in the gfxlib library code range; behaviour name: its main named callee is vram64_22dff8
+ * gfxlib_vlist_texture_kernel_a  0x8c2287f8
  */
-int gfxlib_uses_vram64_2287f8(short *a0, int a1, u32 a2, int a3) {
+int gfxlib_vlist_texture_kernel_a(short *a0, int a1, u32 a2, int a3) {
     bool bVar1;
     float fVar2;
     u32 uVar3;
@@ -16887,11 +16870,10 @@ int gfxlib_uses_vram64_2287f8(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * gfxlib_fill_loop_228a5c  0x8c228a5c
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_22789c
+ * gfxlib_vlist_transform_h_loop  0x8c228a5c
+ * called by: gfxlib_vlist_transform_h_setup
  */
-u32 *gfxlib_fill_loop_228a5c(double *a0, double *a1, double *a2, u32 *a3) {
+u32 *gfxlib_vlist_transform_h_loop(double *a0, double *a1, double *a2, u32 *a3) {
     int iVar1;
     u64 *puVar2;
     double *pdVar3;
@@ -17441,10 +17423,9 @@ u32 *gfxlib_fill_loop_228a5c(double *a0, double *a1, double *a2, u32 *a3) {
 }
 
 /*
- * gfxlib_fill_loop_228ec4  0x8c228ec4
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfxlib_vlist_index_kernel_a  0x8c228ec4
  */
-float *gfxlib_fill_loop_228ec4(short *a0, int a1, u32 a2, float *a3) {
+float *gfxlib_vlist_index_kernel_a(short *a0, int a1, u32 a2, float *a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -17622,10 +17603,9 @@ float *gfxlib_fill_loop_228ec4(short *a0, int a1, u32 a2, float *a3) {
 }
 
 /*
- * gfxlib_calls_fill_loop_229150  0x8c229150
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
+ * gfxlib_vlist_transform_j_setup  0x8c229150
  */
-double *gfxlib_calls_fill_loop_229150(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_vlist_transform_j_setup(short *a0, int a1, u32 a2, double *a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -17935,7 +17915,7 @@ double *gfxlib_calls_fill_loop_229150(short *a0, int a1, u32 a2, double *a3) {
                     *(u64 *)((int)puVar16 + -0x28) = in_xd8;
                 }
                 uVar23 = SUB84(in_dr4, 0);
-                a3 = (double *)gfxlib_fill_loop_2294a4(ar4_00, pdVar7, pdVar9, a3);
+                a3 = (double *)gfxlib_vlist_transform_j_loop(ar4_00, pdVar7, pdVar9, a3);
                 if (cVar29 == '\0') {
                     dVar20 = (double)(u64)*puVar14;
                     in_dr4 = (double)CONCAT44(puVar14[1], uVar23);
@@ -18409,11 +18389,10 @@ double *gfxlib_calls_fill_loop_229150(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_fill_loop_2294a4  0x8c2294a4
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_229150
+ * gfxlib_vlist_transform_j_loop  0x8c2294a4
+ * called by: gfxlib_vlist_transform_j_setup
  */
-u32 *gfxlib_fill_loop_2294a4(double *a0, double *a1, double *a2, u32 *a3) {
+u32 *gfxlib_vlist_transform_j_loop(double *a0, double *a1, double *a2, u32 *a3) {
     int iVar1;
     u64 *puVar2;
     int iVar3;
@@ -18967,10 +18946,9 @@ int gfx_strips_emit_s32_cull_b(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * gfxlib_uses_vram64_229c68  0x8c229c68
- * area name: in the gfxlib library code range; behaviour name: its main named callee is vram64_231eac
+ * gfxlib_vlist_texture_kernel_b  0x8c229c68
  */
-double *gfxlib_uses_vram64_229c68(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_vlist_texture_kernel_b(short *a0, int a1, u32 a2, double *a3) {
     u32 uVar1;
     short *psVar2;
     double *pdVar3;
@@ -20036,10 +20014,9 @@ double *gfxlib_uses_vram64_229c68(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_uses_vram64_229f74  0x8c229f74
- * area name: in the gfxlib library code range; behaviour name: its main named callee is vram64_231eac
+ * gfxlib_vlist_texture_kernel_c  0x8c229f74
  */
-double *gfxlib_uses_vram64_229f74(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_vlist_texture_kernel_c(short *a0, int a1, u32 a2, double *a3) {
     bool bVar1;
     u32 uVar2;
     int iVar3;
@@ -20607,10 +20584,9 @@ double *gfxlib_uses_vram64_229f74(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_fill_loop_22a564  0x8c22a564
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfxlib_vlist_index_kernel_b  0x8c22a564
  */
-float *gfxlib_fill_loop_22a564(short *a0, int a1, u32 a2, float *a3) {
+float *gfxlib_vlist_index_kernel_b(short *a0, int a1, u32 a2, float *a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -20812,10 +20788,9 @@ float *gfxlib_fill_loop_22a564(short *a0, int a1, u32 a2, float *a3) {
 }
 
 /*
- * gfxlib_uses_vram64_22a828  0x8c22a828
- * area name: in the gfxlib library code range; behaviour name: its main named callee is vram64_2319cc
+ * gfxlib_vlist_texture_kernel_d  0x8c22a828
  */
-double *gfxlib_uses_vram64_22a828(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_vlist_texture_kernel_d(short *a0, int a1, u32 a2, double *a3) {
     u32 uVar1;
     double *pdVar2;
     short *psVar3;
@@ -22594,10 +22569,9 @@ double *gfxlib_uses_vram64_22a828(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_uses_vram64_22aec8  0x8c22aec8
- * area name: in the gfxlib library code range; behaviour name: its main named callee is vram64_2319cc
+ * gfxlib_vlist_texture_kernel_e  0x8c22aec8
  */
-double *gfxlib_uses_vram64_22aec8(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_vlist_texture_kernel_e(short *a0, int a1, u32 a2, double *a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -23544,11 +23518,10 @@ double *gfxlib_uses_vram64_22aec8(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_fill_loop_22b26c  0x8c22b26c
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_2274f8
+ * gfxlib_vlist_transform_g_loop  0x8c22b26c
+ * called by: gfxlib_vlist_transform_g_setup
  */
-u32 *gfxlib_fill_loop_22b26c(double *a0, double *a1, double *a2, u32 *a3) {
+u32 *gfxlib_vlist_transform_g_loop(double *a0, double *a1, double *a2, u32 *a3) {
     int iVar1;
     double *pdVar2;
     int iVar3;
@@ -24109,11 +24082,10 @@ int gfx_strips_emit_s32_cull_d(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * gfxlib_uses_ninja_matrix_copy_22b7a8  0x8c22b7a8
- * area name: in the gfxlib library code range; behaviour name: its main named callee is ninja_matrix_copy
+ * gfxlib_draw_normals_c  0x8c22b7a8
  * called by: gfx_poly_chunks_draw_b
  */
-double *gfxlib_uses_ninja_matrix_copy_22b7a8(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_draw_normals_c(short *a0, int a1, u32 a2, double *a3) {
     double *pdVar1;
     double *pdVar2;
     u32 uVar3;
@@ -24603,11 +24575,10 @@ double *gfxlib_uses_ninja_matrix_copy_22b7a8(short *a0, int a1, u32 a2, double *
 }
 
 /*
- * gfxlib_uses_ninja_matrix_copy_22bb70  0x8c22bb70
- * area name: in the gfxlib library code range; behaviour name: its main named callee is ninja_matrix_copy
+ * gfxlib_draw_normals_d  0x8c22bb70
  * called by: gfx_poly_chunks_draw_b
  */
-double *gfxlib_uses_ninja_matrix_copy_22bb70(u32 a0, u32 a1, u32 a2, double *a3) {
+double *gfxlib_draw_normals_d(u32 a0, u32 a1, u32 a2, double *a3) {
     short sVar1;
     short sVar2;
     bool bVar3;
@@ -25127,7 +25098,7 @@ double *gfxlib_uses_ninja_matrix_copy_22bb70(u32 a0, u32 a1, u32 a2, double *a3)
                 in_dr8 = (double)((u64)in_dr12 >> 0x20);
                 in_dr6 = (double)CONCAT44(uVar19, uVar21);
 
-                a3 = (double *)gfxlib_fill_loop_22c058(pdVar5, pdVar11, pdVar14, a3);
+                a3 = (double *)gfxlib_send_normal_lines_b(pdVar5, pdVar11, pdVar14, a3);
             }
         LAB_8c22bfa8:
             *(int *)((int)pdVar15 + -0xdc) = *(int *)((int)pdVar15 + -0xdc) + *(int *)((int)pdVar15 + -0xcc);
@@ -25185,11 +25156,10 @@ double *gfxlib_uses_ninja_matrix_copy_22bb70(u32 a0, u32 a1, u32 a2, double *a3)
 }
 
 /*
- * gfxlib_fill_loop_22c058  0x8c22c058
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_uses_ninja_matrix_copy_22bb70
+ * gfxlib_send_normal_lines_b  0x8c22c058
+ * called by: gfxlib_draw_normals_d
  */
-u64 *gfxlib_fill_loop_22c058(double *a0, double *a1, double *a2, u64 *a3) {
+u64 *gfxlib_send_normal_lines_b(double *a0, double *a1, double *a2, u64 *a3) {
     u32 *puVar1;
     u32 *puVar2;
     int iVar3;
@@ -25589,10 +25559,9 @@ u64 *gfxlib_fill_loop_22c058(double *a0, double *a1, double *a2, u64 *a3) {
 }
 
 /*
- * gfxlib_calls_fill_loop_22c3f4  0x8c22c3f4
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
+ * gfxlib_vlist_transform_k_setup  0x8c22c3f4
  */
-double *gfxlib_calls_fill_loop_22c3f4(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_vlist_transform_k_setup(short *a0, int a1, u32 a2, double *a3) {
     bool bVar1;
     u32 uVar2;
     int iVar3;
@@ -26063,7 +26032,7 @@ double *gfxlib_calls_fill_loop_22c3f4(short *a0, int a1, u32 a2, double *a3) {
                 in_dr6 = dVar28;
                 in_dr0 = in_dr4;
             }
-            a3 = (double *)gfxlib_fill_loop_23231c(ar4_00, pdVar9, pdVar11, a3);
+            a3 = (double *)gfxlib_vlist_transform_k_loop(ar4_00, pdVar9, pdVar11, a3);
             if (cVar34 == '\0') {
                 dVar20 = (double)(u64)*puVar16;
                 dVar23 = (double)(u64)puVar16[2];
@@ -26289,10 +26258,9 @@ int gfx_strips_emit_s32_cull_e(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * gfxlib_calls_fill_loop_22c838  0x8c22c838
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
+ * gfxlib_vlist_transform_l_setup  0x8c22c838
  */
-double *gfxlib_calls_fill_loop_22c838(short *a0, float a1, u32 a2, double *a3) {
+double *gfxlib_vlist_transform_l_setup(short *a0, float a1, u32 a2, double *a3) {
     bool bVar1;
     short *psVar2;
     double *pdVar3;
@@ -26681,7 +26649,7 @@ double *gfxlib_calls_fill_loop_22c838(short *a0, float a1, u32 a2, double *a3) {
                     in_dr6 = in_dr14;
                     in_xd6 = dVar13;
                 }
-                a3 = (double *)gfxlib_fill_loop_22ed60(pdVar3, ar5_00, ar6_00, a3);
+                a3 = (double *)gfxlib_vlist_transform_l_loop(pdVar3, ar5_00, ar6_00, a3);
             }
         LAB_8c22ca7a:
             psStack_4c = psStack_4c + (a2 >> 0xe & 3) + 3;
@@ -26758,10 +26726,9 @@ double *gfxlib_calls_fill_loop_22c838(short *a0, float a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_calls_fill_loop_22cc6c  0x8c22cc6c
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
+ * gfxlib_vlist_transform_m_setup  0x8c22cc6c
  */
-double *gfxlib_calls_fill_loop_22cc6c(short *a0, float a1, u32 a2, double *a3) {
+double *gfxlib_vlist_transform_m_setup(short *a0, float a1, u32 a2, double *a3) {
     bool bVar1;
     short *psVar2;
     double *pdVar3;
@@ -27044,7 +27011,7 @@ double *gfxlib_calls_fill_loop_22cc6c(short *a0, float a1, u32 a2, double *a3) {
                 if (cVar22 == '\0') {
                     in_dr6 = (double)(u64)(u32)fVar10;
                 }
-                a3 = (double *)gfxlib_fill_loop_22cef0(pdVar3, ar5_00, ar6_00, a3);
+                a3 = (double *)gfxlib_vlist_transform_m_loop(pdVar3, ar5_00, ar6_00, a3);
             }
         LAB_8c22ce56:
             psStack_44 = psStack_44 + (a2 >> 0xe & 3) + 3;
@@ -27114,11 +27081,10 @@ double *gfxlib_calls_fill_loop_22cc6c(short *a0, float a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_fill_loop_22cef0  0x8c22cef0
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_22cc6c
+ * gfxlib_vlist_transform_m_loop  0x8c22cef0
+ * called by: gfxlib_vlist_transform_m_setup
  */
-u64 *gfxlib_fill_loop_22cef0(double *a0, double *a1, double *a2, u64 *a3) {
+u64 *gfxlib_vlist_transform_m_loop(double *a0, double *a1, double *a2, u64 *a3) {
     int iVar1;
     u64 *puVar2;
     double *pdVar3;
@@ -28427,11 +28393,9 @@ int vram64_22d944(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * vram_uses_vram64_22dd84  0x8c22dd84
- * area name: sits between vram functions (same compilation unit); behaviour name: its main named callee is
- * vram64_22dff8
+ * gfxlib_vlist_texture_kernel_f  0x8c22dd84
  */
-int vram_uses_vram64_22dd84(short *a0, int a1, u32 a2, int a3) {
+int gfxlib_vlist_texture_kernel_f(short *a0, int a1, u32 a2, int a3) {
     bool bVar1;
     float fVar2;
     u32 uVar3;
@@ -28808,7 +28772,7 @@ int vram_uses_vram64_22dd84(short *a0, int a1, u32 a2, int a3) {
 
 /*
  * vram64_22dff8  0x8c22dff8
- * called by: gfxlib_uses_vram64_2287f8, vram_uses_vram64_22dd84
+ * called by: gfxlib_vlist_texture_kernel_a, gfxlib_vlist_texture_kernel_f
  */
 u64 *vram64_22dff8(double *a0, double *a1, double *a2, u64 *a3) {
     u32 uVar1;
@@ -30525,11 +30489,10 @@ u64 *vram64_22e684(double *a0, double *a1, double *a2, u64 *a3) {
 }
 
 /*
- * gfxlib_fill_loop_22ed60  0x8c22ed60
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_22c838
+ * gfxlib_vlist_transform_l_loop  0x8c22ed60
+ * called by: gfxlib_vlist_transform_l_setup
  */
-u64 *gfxlib_fill_loop_22ed60(double *a0, double *a1, double *a2, u64 *a3) {
+u64 *gfxlib_vlist_transform_l_loop(double *a0, double *a1, double *a2, u64 *a3) {
     int iVar1;
     u64 *puVar2;
     double *pdVar3;
@@ -31381,10 +31344,9 @@ u64 *gfxlib_fill_loop_22ed60(double *a0, double *a1, double *a2, u64 *a3) {
 }
 
 /*
- * gfxlib_fill_loop_22f3f0  0x8c22f3f0
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
+ * gfxlib_vlist_index_kernel_c  0x8c22f3f0
  */
-float *gfxlib_fill_loop_22f3f0(short *a0, int a1, u32 a2, float *a3) {
+float *gfxlib_vlist_index_kernel_c(short *a0, int a1, u32 a2, float *a3) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -31590,10 +31552,9 @@ float *gfxlib_fill_loop_22f3f0(short *a0, int a1, u32 a2, float *a3) {
 }
 
 /*
- * gfxlib_calls_fill_loop_22f6c0  0x8c22f6c0
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
+ * gfxlib_vlist_transform_n_setup  0x8c22f6c0
  */
-double *gfxlib_calls_fill_loop_22f6c0(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_vlist_transform_n_setup(short *a0, int a1, u32 a2, double *a3) {
     double *a4;
     u32 uVar1;
     int iVar2;
@@ -31991,7 +31952,7 @@ double *gfxlib_calls_fill_loop_22f6c0(short *a0, int a1, u32 a2, double *a3) {
                     in_dr6 = dVar25;
                     in_dr0 = in_dr4;
                 }
-                a3 = (double *)gfxlib_fill_loop_22fa7c(a4, pdVar8, pdVar10, a3);
+                a3 = (double *)gfxlib_vlist_transform_n_loop(a4, pdVar8, pdVar10, a3);
                 if (cVar37 == '\0') {
                     dVar31 = (double)(u64)*puVar15;
                     pdVar17 = (double *)(puVar15 + 3);
@@ -32551,11 +32512,10 @@ double *gfxlib_calls_fill_loop_22f6c0(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_fill_loop_22fa7c  0x8c22fa7c
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_calls_fill_loop_22f6c0
+ * gfxlib_vlist_transform_n_loop  0x8c22fa7c
+ * called by: gfxlib_vlist_transform_n_setup
  */
-u64 *gfxlib_fill_loop_22fa7c(double *a0, double *a1, double *a2, u64 *a3) {
+u64 *gfxlib_vlist_transform_n_loop(double *a0, double *a1, double *a2, u64 *a3) {
     int iVar1;
     int iVar2;
     u64 *puVar3;

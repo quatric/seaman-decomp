@@ -68,7 +68,7 @@ int kmCreateVertexBuffer_like(u32 *a0, int a1, int a2, int a3, int s0) {
             *puVar2 = 0;
         }
         iVar4 = a2;
-        uVar1 = kamui_calc_211876(a1, a2, a3, s0, 0, 0);
+        uVar1 = kamui_compute_buffer_sizes(a1, a2, a3, s0, 0, 0);
         kamui_set_default_params(uVar1);
         uVar8 = a1 + a2 + a3 + s0;
         aiStack_2c[0] = a2;
@@ -109,7 +109,8 @@ int kmCreateVertexBuffer_like(u32 *a0, int a1, int a2, int a3, int s0) {
             if (iVar7 == 0) {
                 g_8c4aa004 = g_8c4aa1f8;
                 uVar8 = g_8c4a9c24 >> 7;
-                ninja_draw_25d7c6(g_8c4a9c18 >> 7, g_8c4a9c1c >> 7, g_8c4a9c20 >> 7, uVar8, ~g_8c4aa1b8 & uVar1);
+                ninja_init_vertex_formats(g_8c4a9c18 >> 7, g_8c4a9c1c >> 7, g_8c4a9c20 >> 7, uVar8,
+                                          ~g_8c4aa1b8 & uVar1);
                 g_8c4aa254 = g_8c4aa22c;
                 g_8c4aa258 = g_8c4aa230;
                 g_8c4aa25c = g_8c4aa234;
@@ -134,7 +135,7 @@ int kmCreateVertexBuffer_like(u32 *a0, int a1, int a2, int a3, int s0) {
                         puVar2 = puVar2 + 1;
                     } while (uVar1 < uVar9);
                 }
-                kamui_copy_211a20(uVar9);
+                kamui_copy_region_params(uVar9);
                 for (uVar9 = 0; uVar9 < 0x10; uVar9 = uVar9 + 4) {
                     *(int *)(g_8c4aa21c + uVar9) = *(int *)(g_8c4aa21c + uVar9) + *(int *)(&g_8c4aa288 + uVar9) * 4;
                 }
@@ -156,7 +157,8 @@ int kmCreateVertexBuffer_like(u32 *a0, int a1, int a2, int a3, int s0) {
 
 /*
  * kamui_vertex_lists_reset  0x8c210cc0
- * called by: kamui_draw_20bdc0, kamui_draw_20c416, kamui_flip_framebuffer, pvr_start_render, ta_copy_20b7a0
+ * called by: kamui_flip_framebuffer, kamui_render_scene_a, kamui_render_scene_b, pvr_start_render,
+ * ta_flush_lists_and_render
  */
 u32 kamui_vertex_lists_reset(u32 a0) {
     int *piVar1;
@@ -231,7 +233,7 @@ u32 ta_fifo_210d80(int a0) {
 
 /*
  * ta_wait_ready_or_d  0x8c210dfc
- * called by: ta_copy_20b7a0
+ * called by: ta_flush_lists_and_render
  */
 u32 ta_wait_ready_or_d(u32 a0) {
     int iVar1;
@@ -269,7 +271,7 @@ int ta_dma_start_list(int a0, u32 a1) {
         a6 = *(u32 *)(a0 + 0x10) & 4;
         a7 = *(u32 *)(a0 + 0x10) & 8;
         kamui_lists_sizes_init(uVar2, a5, a6, a7);
-        uVar2 = kamui_calc_211876(uVar2, a5, a6, a7);
+        uVar2 = kamui_compute_buffer_sizes(uVar2, a5, a6, a7);
         kamui_set_default_params(uVar2);
         g_8c4aa1f8 = g_8c4aa1f8 >> 1;
         sh4_dmac_202c60(0xff, g_8c4aa1b8, g_8c4aa1c4);
@@ -279,7 +281,8 @@ int ta_dma_start_list(int a0, u32 a1) {
         iVar1 = vram_alloc_aligned_32(g_8c4aa1f8, &g_8c4aa280, &g_8c4aa284);
         if (iVar1 == 0) {
             g_8c4aa004 = g_8c4aa1f8;
-            ninja_draw_25d7c6(g_8c4a9c18 >> 7, g_8c4a9c1c >> 7, g_8c4a9c20 >> 7, g_8c4a9c24 >> 7, uVar2 & ~g_8c4aa1b8);
+            ninja_init_vertex_formats(g_8c4a9c18 >> 7, g_8c4a9c1c >> 7, g_8c4a9c20 >> 7, g_8c4a9c24 >> 7,
+                                      uVar2 & ~g_8c4aa1b8);
             g_8c4a9db8 = 1;
         }
     } else {
@@ -331,7 +334,7 @@ int kamui_release_texture_memory_b(u32 unused_a0, u32 *a1, u32 a2, u32 a3) {
 
 /*
  * kamui_wait_render_done  0x8c211040
- * called by: kamui_uses_kamui_lists_sizes_init_211120
+ * called by: kamui_init_system_like
  */
 u32 kamui_wait_render_done(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar1;
@@ -396,13 +399,12 @@ u32 kamui_list_push_word(int a0, u32 a1, int a2, u32 a3) {
 }
 
 /*
- * kamui_uses_kamui_lists_sizes_init_211120  0x8c211120
- * name hint from a string it uses: HARDWARE; area name: sits between kamui functions (same compilation unit); behaviour
- * name: its main named callee is kamui_lists_sizes_init called by: ninja_set_texture_memory, njInitVertexBuffer_like
+ * kamui_init_system_like  0x8c211120
+ * called by: ninja_set_texture_memory, njInitVertexBuffer_like
  * strings: "HARDWARE"; "EnableTexture16MB"
  * decompiler: Heritage AFTER dead removal. Example location: s0xffffff98 : 0x8c2115d2
  */
-int kamui_uses_kamui_lists_sizes_init_211120(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
+int kamui_init_system_like(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -619,7 +621,7 @@ int kamui_uses_kamui_lists_sizes_init_211120(int a0, u32 unused_a1, u32 unused_a
         uVar1 = auStack_4c[1];
         uVar2 = auStack_4c[2];
         uVar3 = auStack_4c[3];
-        uStack_8c = kamui_calc_211876(auStack_4c[0], auStack_4c[1], auStack_4c[2], auStack_4c[3]);
+        uStack_8c = kamui_compute_buffer_sizes(auStack_4c[0], auStack_4c[1], auStack_4c[2], auStack_4c[3]);
         kamui_set_default_params(uStack_8c);
         if (g_8c4a9ef0 == 1) {
             uStack_88 = 1;
@@ -650,7 +652,7 @@ int kamui_uses_kamui_lists_sizes_init_211120(int a0, u32 unused_a1, u32 unused_a
                 puVar9 = puVar9 + 1;
             } while (uVar1 < uStack_88);
         }
-        kamui_copy_211a20(uStack_88);
+        kamui_copy_region_params(uStack_88);
         for (uVar1 = 0; uVar1 < 0x14; uVar1 = uVar1 + 4) {
             *(int *)(g_8c4aa21c + uVar1) = *(int *)(g_8c4aa21c + uVar1) + *(int *)(&g_8c4aa288 + uVar1) * 4;
         }
@@ -666,7 +668,7 @@ int kamui_uses_kamui_lists_sizes_init_211120(int a0, u32 unused_a1, u32 unused_a
         uVar2 = *(u32 *)(*(int *)(a0 + 0x20) + 0x10) & 4;
         uVar3 = *(u32 *)(*(int *)(a0 + 0x20) + 0x10) & 8;
         kamui_lists_sizes_init(uStack_68, uVar12, uVar2, uStack_5c);
-        uStack_8c = kamui_calc_211876(uVar1 & 1, uVar12, uVar2, uVar3);
+        uStack_8c = kamui_compute_buffer_sizes(uVar1 & 1, uVar12, uVar2, uVar3);
         kamui_set_default_params(uStack_8c);
         auStack_4c[3] = uVar3;
     }
@@ -692,7 +694,7 @@ int kamui_uses_kamui_lists_sizes_init_211120(int a0, u32 unused_a1, u32 unused_a
             uVar3 = g_8c4a9c24 >> 7;
             uVar2 = g_8c4a9c20 >> 7;
             uVar1 = g_8c4a9c1c >> 7;
-            ninja_draw_25d7c6(g_8c4a9c18 >> 7, uVar1, uVar2, uVar3, ~uStack_80 & uStack_8c);
+            ninja_init_vertex_formats(g_8c4a9c18 >> 7, uVar1, uVar2, uVar3, ~uStack_80 & uStack_8c);
             if ((*(u32 *)(a0 + 4) & 0x10000) != 0) {
                 g_8c4a9db8 = 1;
             }
@@ -722,7 +724,7 @@ int kamui_uses_kamui_lists_sizes_init_211120(int a0, u32 unused_a1, u32 unused_a
 
 /*
  * kamui_lists_sizes_init  0x8c211730
- * called by: kamui_uses_kamui_lists_sizes_init_211120, kmCreateVertexBuffer_like, ta_dma_start_list
+ * called by: kamui_init_system_like, kmCreateVertexBuffer_like, ta_dma_start_list
  */
 u32 kamui_lists_sizes_init(int a0, int a1, int a2, int a3, int s0) {
     u32 *puVar1;
@@ -778,11 +780,10 @@ u32 kamui_lists_sizes_init(int a0, int a1, int a2, int a3, int s0) {
 }
 
 /*
- * kamui_calc_211876  0x8c211876
- * area name: sits between kamui functions (same compilation unit); behaviour name: integer arithmetic on its arguments
- * called by: kamui_uses_kamui_lists_sizes_init_211120, kmCreateVertexBuffer_like, ta_dma_start_list
+ * kamui_compute_buffer_sizes  0x8c211876
+ * called by: kamui_init_system_like, kmCreateVertexBuffer_like, ta_dma_start_list
  */
-u32 kamui_calc_211876(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
+u32 kamui_compute_buffer_sizes(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -853,11 +854,10 @@ u32 kamui_calc_211876(u32 a0, int a1, u32 a2, int a3, int s0, int s4) {
 }
 
 /*
- * kamui_copy_211a20  0x8c211a20
- * area name: sits between kamui functions (same compilation unit); behaviour name: mostly calls copy functions
- * called by: kamui_uses_kamui_lists_sizes_init_211120, kmCreateVertexBuffer_like
+ * kamui_copy_region_params  0x8c211a20
+ * called by: kamui_init_system_like, kmCreateVertexBuffer_like
  */
-u8 *kamui_copy_211a20(u32 a0) {
+u8 *kamui_copy_region_params(u32 a0) {
     u32 *puVar1;
     u8 *puVar2;
     u8 *puVar3;
@@ -935,7 +935,7 @@ u8 *kamui_copy_211a20(u32 a0) {
 
 /*
  * kamui_set_default_params  0x8c211ba4
- * called by: kamui_uses_kamui_lists_sizes_init_211120, kmCreateVertexBuffer_like, ta_dma_start_list
+ * called by: kamui_init_system_like, kmCreateVertexBuffer_like, ta_dma_start_list
  */
 int kamui_set_default_params(u32 a0) {
     u32 uVar1;
@@ -965,7 +965,7 @@ int kamui_set_default_params(u32 a0) {
 
 /*
  * ta_fifo_211c98  0x8c211c98
- * called by: kamui_uses_kamui_lists_sizes_init_211120, kmCreateVertexBuffer_like
+ * called by: kamui_init_system_like, kmCreateVertexBuffer_like
  */
 u32 ta_fifo_211c98(int a0, int a1, int a2, int a3, int s0, u32 s4, u32 s8) {
     int *piVar1;
@@ -1056,8 +1056,7 @@ u32 ta_fifo_211c98(int a0, int a1, int a2, int a3, int s0, u32 s4, u32 s8) {
 
 /*
  * kamui_create_buffers_like  0x8c211f40
- * called by: kamui_uses_kamui_lists_sizes_init_211120, kmCreateVertexBuffer_like, shinobi_uses_pvr_20af76,
- * ta_dma_start_list
+ * called by: kamui_init_system_like, kamui_init_vertex_buffers, kmCreateVertexBuffer_like, ta_dma_start_list
  */
 int kamui_create_buffers_like(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -1088,7 +1087,7 @@ int kamui_create_buffers_like(int a0, u32 a1, u32 a2, u32 a3) {
                 iVar1 = iVar1 + 0x10;
             } while (uVar3 < uVar4);
         }
-        iVar1 = shinobi_uses_pvr_20af76(g_8c4aa1dc, g_8c4aa1e0, g_8c4aa1b8, g_8c4aa1e4);
+        iVar1 = kamui_init_vertex_buffers(g_8c4aa1dc, g_8c4aa1e0, g_8c4aa1b8, g_8c4aa1e4);
         if ((iVar1 == 0) && ((g_8c4a9ef0 == 1 || (g_8c2758ec == 1)))) {
             g_8c4a9f10 = g_8c4a9f08;
             *(u32 *)(&g_8c4a9ef8 + g_8c4a9f08 * 4) = 0;
@@ -1115,7 +1114,7 @@ int kamui_create_buffers_like(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * kamui_set_flags_2758e8  0x8c2120c0
  * ORs a0 into the flag word at 8c2758e8
- * called by: shinobi_dmac_transfer_setup, shinobi_uses_pvr_20af76
+ * called by: kamui_init_vertex_buffers, shinobi_dmac_transfer_setup
  */
 u32 kamui_set_flags_2758e8(u32 a0) {
     g_8c2758e8 = g_8c2758e8 | a0;
@@ -1125,7 +1124,7 @@ u32 kamui_set_flags_2758e8(u32 a0) {
 /*
  * set_g_8c2758e8  0x8c212140
  * stores its argument in the global at 0x8c2758e8
- * called by: shinobi_uses_pvr_20af76
+ * called by: kamui_init_vertex_buffers
  */
 u32 set_g_8c2758e8(u32 a0) {
     g_8c2758e8 = a0;
@@ -1143,8 +1142,8 @@ u32 get_g_8c2758e8(void) {
 
 /*
  * kamui_render_state_reset  0x8c21214e
- * called by: alt_entry_207f84, kamui_set_display_mode_cfg, kamui_uses_kamui_lists_sizes_init_211120,
- * pvr_display_mode_restart, pvr_kamui_fill_and_205a40, pvr_reset_video_and_flush
+ * called by: alt_entry_207f84, kamui_init_system_like, kamui_set_display_mode_cfg, pvr_display_mode_restart,
+ * pvr_kamui_fill_and_205a40, pvr_reset_video_and_flush
  */
 int *kamui_render_state_reset(void) {
     u32 *puVar1;
@@ -1523,8 +1522,8 @@ u32 point_transform_or_copy(int a0, float *a1, float *a2, u32 unused_a3, u32 ain
 /*
  * njCalcVector_like  0x8c21279c
  * *a2 = vector a1 rotated by matrix a0 (the current matrix when 0), normalised when 8c4ab148 is set
- * called by: Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12b580_calc_direction, Class_12b580_vec_0d8aa0,
- * Class_12b758_draw_with_light, Vec3_rotate_euler_deg, Vec3_rotate_euler_deg_b, Vec3_rotate_euler_deg_c (+9 more)
+ * called by: Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12b580_calc_direction, Class_12b580_helper_0d8aa0,
+ * Class_12b758_draw_with_light, Vec3_helper_0e3f24, Vec3_look_at_rotation_a, Vec3_look_at_rotation_b (+9 more)
  */
 u32 njCalcVector_like(int a0, float *a1, float *a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -1650,7 +1649,7 @@ u32 aabb_overlap_minmax(float *a0, float *a1, float *a2, float *a3) {
 
 /*
  * ninja_double_fr4_test  0x8c212898
- * called by: ninja_uses_ninja_double_fr4_test_212946
+ * called by: ninja_vec3_triple_test
  */
 u32 *ninja_double_fr4_test(u32 a0, u32 unused_a1, u32 a2) {
     u32 r7;
@@ -1663,11 +1662,10 @@ u32 *ninja_double_fr4_test(u32 a0, u32 unused_a1, u32 a2) {
 }
 
 /*
- * ninja_uses_ninja_double_fr4_test_212946  0x8c212946
- * area name: sits between ninja functions (same compilation unit); behaviour name: its main named callee is
- * ninja_double_fr4_test called by: kamui_uses_ninja_double_fr4_test_2136b0, kamui_uses_noop_fr4_test_212a30
+ * ninja_vec3_triple_test  0x8c212946
+ * called by: kamui_clip_polygon_like, kamui_copy_and_clip_vertices
  */
-u32 ninja_uses_ninja_double_fr4_test_212946(u32 a0, u32 a1) {
+u32 ninja_vec3_triple_test(u32 a0, u32 a1) {
     u32 uVar1;
     u32 a4;
     u32 a5;
@@ -1819,11 +1817,10 @@ u32 ninja_uses_ninja_double_fr4_test_212946(u32 a0, u32 a1) {
 }
 
 /*
- * kamui_uses_noop_fr4_test_212a30  0x8c212a30
- * area name: in the kamui library code range; behaviour name: its main named callee is noop_fr4_test
+ * kamui_clip_polygon_like  0x8c212a30
  * called by: gfx_box_overlap_test_like
  */
-u32 kamui_uses_noop_fr4_test_212a30(double *a0, float *a1) {
+u32 kamui_clip_polygon_like(double *a0, float *a1) {
     u32 uVar1;
     u32 uVar2;
     int iVar3;
@@ -4343,7 +4340,7 @@ u32 kamui_uses_noop_fr4_test_212a30(double *a0, float *a1) {
             *(double *)((int)a0 + 4) = in_xd2;
         }
     }
-    iVar3 = ninja_uses_ninja_double_fr4_test_212946(ppdVar15 + 0x58, ppdVar15 + 0x50);
+    iVar3 = ninja_vec3_triple_test(ppdVar15 + 0x58, ppdVar15 + 0x50);
     ppdVar15[3] = (double *)iVar3;
     uVar2 = 0;
     iVar3 = 0;
@@ -4392,7 +4389,7 @@ u32 kamui_uses_noop_fr4_test_212a30(double *a0, float *a1) {
             *(double *)((int)a0 + 4) = in_xd2;
         }
     }
-    iVar5 = ninja_uses_ninja_double_fr4_test_212946(ppdVar15 + 0x58, ppdVar15 + 0x50);
+    iVar5 = ninja_vec3_triple_test(ppdVar15 + 0x58, ppdVar15 + 0x50);
     iVar3 = 0;
     ppdVar15[2] = (double *)iVar5;
     for (uVar2 = 0; uVar2 < 0x20; uVar2 = uVar2 + 8) {
@@ -4436,7 +4433,7 @@ u32 kamui_uses_noop_fr4_test_212a30(double *a0, float *a1) {
         }
         iVar3 = iVar3 + 0xc;
     }
-    iVar3 = ninja_uses_ninja_double_fr4_test_212946(ppdVar15 + 0x58, ppdVar15 + 0x50);
+    iVar3 = ninja_vec3_triple_test(ppdVar15 + 0x58, ppdVar15 + 0x50);
     if ((((ppdVar15[0x1f] == NULL) && (ppdVar15[3] == NULL)) || ((ppdVar15[0x1d] == NULL && (ppdVar15[2] == NULL)))) ||
         ((ppdVar15[0x1e] == NULL && (iVar3 == 0)))) {
         uVar1 = 0;
@@ -4447,11 +4444,10 @@ u32 kamui_uses_noop_fr4_test_212a30(double *a0, float *a1) {
 }
 
 /*
- * kamui_uses_ninja_double_fr4_test_2136b0  0x8c2136b0
- * area name: in the kamui library code range; behaviour name: its callees mostly do: uses_ninja_double_fr4_test
+ * kamui_copy_and_clip_vertices  0x8c2136b0
  * called by: gfx_box_overlap_test_like
  */
-u32 kamui_uses_ninja_double_fr4_test_2136b0(int a0, int a1) {
+u32 kamui_copy_and_clip_vertices(int a0, int a1) {
     int iVar1;
     int iVar2;
     u32 uVar3;
@@ -4481,7 +4477,7 @@ u32 kamui_uses_ninja_double_fr4_test_2136b0(int a0, int a1) {
         iVar1 = iVar1 + 0xc;
         uVar4 = uVar3;
     } while (uVar3 < 0x20);
-    iVar1 = ninja_uses_ninja_double_fr4_test_212946(auStack_40, auStack_60);
+    iVar1 = ninja_vec3_triple_test(auStack_40, auStack_60);
     iVar2 = 0;
     if (iVar1 != 0) {
         uVar6 = 4;
@@ -4532,7 +4528,7 @@ u32 kamui_uses_ninja_double_fr4_test_2136b0(int a0, int a1) {
         iVar2 = iVar2 + 0xc;
         uVar4 = uVar3;
     } while (uVar3 < 0x20);
-    iVar1 = ninja_uses_ninja_double_fr4_test_212946(auStack_40, auStack_60);
+    iVar1 = ninja_vec3_triple_test(auStack_40, auStack_60);
     iVar2 = 0;
     if (iVar1 != 0) {
         uVar6 = uVar6 | 2;
@@ -4583,7 +4579,7 @@ u32 kamui_uses_ninja_double_fr4_test_2136b0(int a0, int a1) {
         iVar2 = iVar2 + 0xc;
         uVar4 = uVar3;
     } while (uVar3 < 0x20);
-    iVar1 = ninja_uses_ninja_double_fr4_test_212946(auStack_40, auStack_60);
+    iVar1 = ninja_vec3_triple_test(auStack_40, auStack_60);
     if (iVar1 != 0) {
         uVar6 = uVar6 | 1;
     }
@@ -5116,7 +5112,7 @@ u32 ta_clamp_depth_range(void) {
 
 /*
  * ta_fifo_213f28  0x8c213f28
- * called by: gfxlib_uses_ninja_matrix_copy_2163d4, gfxlib_uses_ninja_matrix_copy_2166e8
+ * called by: gfxlib_draw_normals_a, gfxlib_draw_normals_b
  */
 u32 ta_fifo_213f28(float *a0) {
     u32 uVar1;
@@ -5182,7 +5178,7 @@ int kamui_select_table_26d748(int a0) {
 /*
  * flags_4c0db0_set  0x8c2140c6
  * sets or clears (a1) flag a0 of the bit set at 0x8c4c0db0
- * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_light_release, Class_12ab2c_uses_light_set_vec_09ea78,
+ * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_light_release, Class_12ab2c_random_09ea78,
  * game_init_sound_and_messages, lights_2_to_4_off
  */
 u32 flags_4c0db0_set(int a0, int a1) {
@@ -5200,7 +5196,7 @@ u32 flags_4c0db0_set(int a0, int a1) {
 /*
  * set_vec_4c0db4  0x8c2140fe
  * stores fr4..fr6 at 8c4c0db4
- * called by: Vec3_uses_gfxlib_set_vec_0e3f24
+ * called by: Vec3_helper_0e3f24
  */
 u32 set_vec_4c0db4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 in_fr5;
@@ -5216,7 +5212,7 @@ u32 set_vec_4c0db4(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u
 /*
  * light_set_vec_4c0dd4  0x8c21410c
  * stores fr4..fr6 in light slot a0 (1-based, 0x20 bytes each at 0x8c4c0dd4)
- * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_uses_light_set_vec_09ea78, Vec3_uses_gfxlib_set_vec_0e3f24
+ * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_random_09ea78, Vec3_helper_0e3f24
  */
 u32 light_set_vec_4c0dd4(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int iVar1;
@@ -5233,7 +5229,7 @@ u32 light_set_vec_4c0dd4(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u3
 
 /*
  * kamui_set_vec_4c0d60  0x8c214158
- * called by: Vec3_uses_gfxlib_set_vec_0e3f24
+ * called by: Vec3_helper_0e3f24
  */
 u32 kamui_set_vec_4c0d60(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 in_fr5;
@@ -5250,7 +5246,7 @@ u32 kamui_set_vec_4c0d60(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused
 /*
  * light_set_vector_b  0x8c21415c
  * stores fr4..fr6 as the vector of light a0 (1-based) at 0x8c4c0d60 and marks it set in 8c4c0db0
- * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_uses_light_set_vec_09ea78
+ * called by: Class_12ab2c_light_fade_out_step, Class_12ab2c_random_09ea78
  */
 u32 light_set_vector_b(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     int iVar1;
@@ -5292,7 +5288,7 @@ u32 kamui_set_squared_pair(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, 
 /*
  * kamui_lights_transform_0d60  0x8c2141a6
  * transforms each light of the table at 8c4c0d60 (flags +0x50: 3 bits per light) as a direction or a point into
- * 8c4c0dc0 called by: Vec3_uses_gfxlib_set_vec_0e3f24
+ * 8c4c0dc0 called by: Vec3_helper_0e3f24
  */
 u32 kamui_lights_transform_0d60(void) {
     u8 *puVar1;
@@ -5438,11 +5434,10 @@ u32 *gfx_strips_emit_v32(short *a0, int a1, u32 a2, u32 *a3) {
 }
 
 /*
- * kamui_calls_fill_loop_214358  0x8c214358
- * area name: sits between kamui functions (same compilation unit); behaviour name: its callees mostly do: fill_loop
+ * kamui_vlist_transform_a_setup  0x8c214358
  * called by: gfx_poly_chunks_draw_s32
  */
-double *kamui_calls_fill_loop_214358(short *a0, int a1, u32 a2, double *a3) {
+double *kamui_vlist_transform_a_setup(short *a0, int a1, u32 a2, double *a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -5689,7 +5684,7 @@ double *kamui_calls_fill_loop_214358(short *a0, int a1, u32 a2, double *a3) {
                     puVar13 = (u64 *)((int)piVar12 + -0x50);
                     *(double *)((int)piVar12 + -0x50) = dVar27;
                 }
-                a3 = (double *)kamui_fill_loop_214554(pdVar8, pdVar9, pdVar10, a3);
+                a3 = (double *)kamui_vlist_transform_a_loop(pdVar8, pdVar9, pdVar10, a3);
                 if (cVar34 == '\0') {
                     uVar29 = *(u32 *)puVar13;
                     pdVar14 = (double *)((int)puVar13 + 4);
@@ -5965,11 +5960,10 @@ double *kamui_calls_fill_loop_214358(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * kamui_fill_loop_214554  0x8c214554
- * area name: in the kamui library code range; behaviour name: a loop that writes memory
- * called by: kamui_calls_fill_loop_214358
+ * kamui_vlist_transform_a_loop  0x8c214554
+ * called by: kamui_vlist_transform_a_setup
  */
-u64 *kamui_fill_loop_214554(double *a0, double *a1, double *a2, u64 *a3) {
+u64 *kamui_vlist_transform_a_loop(double *a0, double *a1, double *a2, u64 *a3) {
     int iVar1;
     double *pdVar2;
     u64 *puVar3;
@@ -6618,11 +6612,10 @@ float *gfx_strips_emit_s32_uv_like(short *a0, int a1, u32 a2, float *a3) {
 }
 
 /*
- * kamui_calls_fill_loop_214aec  0x8c214aec
- * area name: in the kamui library code range; behaviour name: its callees mostly do: fill_loop
+ * kamui_vlist_transform_b_setup  0x8c214aec
  * called by: gfx_poly_chunks_draw_s32
  */
-double *kamui_calls_fill_loop_214aec(short *a0, int a1, u32 a2, double *a3) {
+double *kamui_vlist_transform_b_setup(short *a0, int a1, u32 a2, double *a3) {
     u32 uVar1;
     int iVar2;
     int iVar3;
@@ -6951,7 +6944,7 @@ double *kamui_calls_fill_loop_214aec(short *a0, int a1, u32 a2, double *a3) {
                     in_xd6 = in_xd12;
                     in_dr2 = in_xd4;
                 }
-                a3 = (double *)kamui_fill_loop_214d6c(pdVar9, pdVar10, pdVar11, a3);
+                a3 = (double *)kamui_vlist_transform_b_loop(pdVar9, pdVar10, pdVar11, a3);
                 if (cVar43 == '\0') {
                     dVar38 = (double)(u64) * (u32 *)(puVar17 + 8);
                     uVar25 = *(u32 *)(puVar17 + 0x10);
@@ -7224,11 +7217,10 @@ double *kamui_calls_fill_loop_214aec(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * kamui_fill_loop_214d6c  0x8c214d6c
- * area name: in the kamui library code range; behaviour name: a loop that writes memory
- * called by: kamui_calls_fill_loop_214aec
+ * kamui_vlist_transform_b_loop  0x8c214d6c
+ * called by: kamui_vlist_transform_b_setup
  */
-double *kamui_fill_loop_214d6c(double *a0, double *a1, double *a2, double *a3) {
+double *kamui_vlist_transform_b_loop(double *a0, double *a1, double *a2, double *a3) {
     u32 *puVar1;
     int iVar2;
     double *pdVar3;
@@ -9698,10 +9690,9 @@ u32 *gfx_strips_emit_v16(short *a0, int a1, u32 a2, u32 *a3) {
 }
 
 /*
- * gfxlib_calls_fill_loop_215c48  0x8c215c48
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
+ * gfxlib_vlist_transform_a_setup  0x8c215c48
  */
-double *gfxlib_calls_fill_loop_215c48(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_vlist_transform_a_setup(short *a0, int a1, u32 a2, double *a3) {
     u32 *puVar1;
     int iVar2;
     int iVar3;
@@ -9945,7 +9936,7 @@ double *gfxlib_calls_fill_loop_215c48(short *a0, int a1, u32 a2, double *a3) {
                         pdVar14 = (double *)((int)piVar13 + -0x38);
                         *(double *)((int)piVar13 + -0x38) = dVar22;
                     }
-                    a3 = (double *)gfxlib_fill_loop_215e10(puVar10, ar5_00, puVar11, a3);
+                    a3 = (double *)gfxlib_vlist_transform_a_loop(puVar10, ar5_00, puVar11, a3);
                     if (cVar26 == '\0') {
                         dVar22 = (double)CONCAT44(*(u32 *)pdVar14, SUB84(dVar22, 0));
                         dVar21 = (double)CONCAT44(*(u32 *)((int)pdVar14 + 4), SUB84(dVar21, 0));
@@ -10264,7 +10255,7 @@ double *alt_entry_215c4a(short *a0, int a1, u32 a2, double *a3) {
                     pdVar16 = (double *)((int)piVar15 + -0x28);
                     *(int *)((int)piVar15 + -0x28) = (int)((u64)dVar24 >> 0x20);
 
-                    a3 = (double *)gfxlib_fill_loop_215e10(puVar11, ar5_00, puVar12, a3);
+                    a3 = (double *)gfxlib_vlist_transform_a_loop(puVar11, ar5_00, puVar12, a3);
 
                     dVar24 = (double)CONCAT44(*(u32 *)pdVar16, SUB84(dVar24, 0));
                     dVar23 = (double)CONCAT44(*(u32 *)((int)pdVar16 + 4), SUB84(dVar23, 0));
@@ -10345,11 +10336,10 @@ double *alt_entry_215c4a(short *a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_fill_loop_215e10  0x8c215e10
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: alt_entry_215c4a, gfxlib_calls_fill_loop_215c48
+ * gfxlib_vlist_transform_a_loop  0x8c215e10
+ * called by: alt_entry_215c4a, gfxlib_vlist_transform_a_setup
  */
-u32 *gfxlib_fill_loop_215e10(double *a0, double *a1, double *a2, u32 *a3) {
+u32 *gfxlib_vlist_transform_a_loop(double *a0, double *a1, double *a2, u32 *a3) {
     u64 *puVar1;
     u32 uVar2;
     u64 *puVar3;
@@ -10995,10 +10985,9 @@ u32 *gfx_strips_emit_v16_u(short *a0, int a1, u32 a2, u32 *a3) {
 }
 
 /*
- * gfxlib_uses_ninja_matrix_copy_2163d4  0x8c2163d4
- * area name: in the gfxlib library code range; behaviour name: its main named callee is ninja_matrix_copy
+ * gfxlib_draw_normals_a  0x8c2163d4
  */
-double *gfxlib_uses_ninja_matrix_copy_2163d4(short *a0, int a1, u32 a2, double *a3) {
+double *gfxlib_draw_normals_a(short *a0, int a1, u32 a2, double *a3) {
     u32 uVar1;
     double *pdVar2;
     u8 *ar5_00;
@@ -11373,10 +11362,9 @@ double *gfxlib_uses_ninja_matrix_copy_2163d4(short *a0, int a1, u32 a2, double *
 }
 
 /*
- * gfxlib_uses_ninja_matrix_copy_2166e8  0x8c2166e8
- * area name: in the gfxlib library code range; behaviour name: its main named callee is ninja_matrix_copy
+ * gfxlib_draw_normals_b  0x8c2166e8
  */
-double *gfxlib_uses_ninja_matrix_copy_2166e8(u32 a0, u32 a1, u32 a2, double *a3) {
+double *gfxlib_draw_normals_b(u32 a0, u32 a1, u32 a2, double *a3) {
     short sVar1;
     short sVar2;
     bool bVar3;
@@ -11862,7 +11850,7 @@ double *gfxlib_uses_ninja_matrix_copy_2166e8(u32 a0, u32 a1, u32 a2, double *a3)
                     in_dr8 = (double)((u64)in_dr12 >> 0x20);
 
                     in_xd6 = dVar24;
-                    a3 = (double *)gfxlib_fill_loop_216b84(pdVar5, pdVar11, pdVar14, a3);
+                    a3 = (double *)gfxlib_send_normal_lines(pdVar5, pdVar11, pdVar14, a3);
                 } else {
                 LAB_8c216aa8:
 
@@ -11943,11 +11931,10 @@ double *gfxlib_uses_ninja_matrix_copy_2166e8(u32 a0, u32 a1, u32 a2, double *a3)
 }
 
 /*
- * gfxlib_fill_loop_216b84  0x8c216b84
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: gfxlib_uses_ninja_matrix_copy_2166e8
+ * gfxlib_send_normal_lines  0x8c216b84
+ * called by: gfxlib_draw_normals_b
  */
-u64 *gfxlib_fill_loop_216b84(double *a0, double *a1, double *a2, u64 *a3) {
+u64 *gfxlib_send_normal_lines(double *a0, double *a1, double *a2, u64 *a3) {
     int iVar1;
     int iVar2;
     u32 *puVar3;
@@ -12275,10 +12262,9 @@ u64 *gfxlib_fill_loop_216b84(double *a0, double *a1, double *a2, u64 *a3) {
 }
 
 /*
- * gfxlib_calls_fill_loop_216ed0  0x8c216ed0
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
+ * gfxlib_vlist_transform_b_setup  0x8c216ed0
  */
-int gfxlib_calls_fill_loop_216ed0(short *a0, int a1, u32 a2, int a3) {
+int gfxlib_vlist_transform_b_setup(short *a0, int a1, u32 a2, int a3) {
     int iVar1;
     int iVar2;
     u32 uVar3;
@@ -12608,7 +12594,7 @@ int gfxlib_calls_fill_loop_216ed0(short *a0, int a1, u32 a2, int a3) {
                         in_xd8 = in_xd14;
                         dVar28 = in_xd12;
                     }
-                    a3 = gfxlib_fill_loop_2170f4(pdVar10, ar5_00, pdVar11, a3);
+                    a3 = gfxlib_vlist_transform_b_loop(pdVar10, ar5_00, pdVar11, a3);
                     if (cVar31 == '\0') {
                         fVar17 = *(float *)(pdVar8 + 1);
                         pdVar14 = (double *)((int)pdVar8 + 0xc);
@@ -12994,7 +12980,7 @@ int alt_entry_216ed2(short *a0, int a1, u32 a2, int a3) {
                     pdVar11 = (double *)((int)piVar17 + -0x24);
                     *(float *)((int)piVar17 + -0x24) = fVar22;
 
-                    a3 = gfxlib_fill_loop_2170f4(pdVar13, ar5_00, pdVar14, a3);
+                    a3 = gfxlib_vlist_transform_b_loop(pdVar13, ar5_00, pdVar14, a3);
 
                     in_fr3 = *(float *)(pdVar11 + 1);
                     pdVar18 = (double *)((int)pdVar11 + 0xc);
@@ -13087,11 +13073,10 @@ int alt_entry_216ed2(short *a0, int a1, u32 a2, int a3) {
 }
 
 /*
- * gfxlib_fill_loop_2170f4  0x8c2170f4
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: alt_entry_216ed2, gfxlib_calls_fill_loop_216ed0
+ * gfxlib_vlist_transform_b_loop  0x8c2170f4
+ * called by: alt_entry_216ed2, gfxlib_vlist_transform_b_setup
  */
-u64 *gfxlib_fill_loop_2170f4(double *a0, double *a1, double *a2, u64 *a3) {
+u64 *gfxlib_vlist_transform_b_loop(double *a0, double *a1, double *a2, u64 *a3) {
     u64 *puVar1;
     u64 *puVar2;
     double *pdVar3;
@@ -14654,12 +14639,11 @@ int gfx_project_verts_s20_wmin(int a0) {
 }
 
 /*
- * gfxlib_test_217e18  0x8c217e18
- * area name: in the gfxlib library code range; behaviour name: returns the result of a comparison
+ * gfxlib_sphere_in_view_test  0x8c217e18
  * called by: alt_entry_219962, gfx_model_draw_a, gfx_model_draw_c, gfxlib_draw_object_culled, vram64_21869c,
  * vram64_2186a0
  */
-u32 gfxlib_test_217e18(int a0) {
+u32 gfxlib_sphere_in_view_test(int a0) {
     double *pdVar1;
     float fVar2;
     double in_dr0;
@@ -14812,7 +14796,7 @@ u32 gfxlib_test_217e18(int a0) {
 
 /*
  * gfxlib_set_view_vector_a  0x8c217ebc
- * called by: Class_12b758_draw_with_light, Vec3_uses_gfxlib_set_vec_0e3f24, gfx_reset_view_vectors
+ * called by: Class_12b758_draw_with_light, Vec3_helper_0e3f24, gfx_reset_view_vectors
  */
 u32 gfxlib_set_view_vector_a(void) {
     u64 *puVar1;
@@ -14853,7 +14837,7 @@ u32 gfxlib_set_view_vector_a(void) {
 
 /*
  * gfxlib_set_pair_4ab164  0x8c217ef4
- * called by: Class_12b758_draw_with_light, Vec3_uses_gfxlib_set_vec_0e3f24, gfx_reset_view_vectors
+ * called by: Class_12b758_draw_with_light, Vec3_helper_0e3f24, gfx_reset_view_vectors
  */
 u32 gfxlib_set_pair_4ab164(void) {
     u64 in_dr4;
@@ -14866,7 +14850,7 @@ u32 gfxlib_set_pair_4ab164(void) {
 /*
  * gfx_set_vec_278724  0x8c217f02
  * stores fr4..fr6 at 8c278724
- * called by: Vec3_uses_gfxlib_set_vec_0e3f24, gfx_reset_view_vectors
+ * called by: Vec3_helper_0e3f24, gfx_reset_view_vectors
  */
 u32 gfx_set_vec_278724(void) {
     u32 in_fr5;
@@ -15121,7 +15105,7 @@ u8 *gfx_poly_chunks_draw_a(u16 *a0, int a1, int a2, u32 *a3, u8 *ain0) {
                                             in_dr4 = -3.0353264721140325e-250;
                                         }
                                     } else {
-                                        pcVar7 = gfxlib_calls_fill_loop_216ed0;
+                                        pcVar7 = gfxlib_vlist_transform_b_setup;
                                         if (puVar4 == (u8 *)0x41) {
                                             if (cVar11 == '\0') {
                                                 in_dr4 = (double)((u64)in_dr4 & 0xffffffff);
@@ -15156,7 +15140,7 @@ u8 *gfx_poly_chunks_draw_a(u16 *a0, int a1, int a2, u32 *a3, u8 *ain0) {
                                         a7 = (u32 *)ta_sq_write_header5();
                                     }
                                     if (a2 == 0) {
-                                        pcVar7 = gfxlib_uses_ninja_matrix_copy_2163d4;
+                                        pcVar7 = gfxlib_draw_normals_a;
                                         if (puVar4 == (u8 *)0x41) {
                                             if (cVar11 == '\0') {
                                                 in_dr4 = (double)((u64)in_dr4 & 0xffffffff);
@@ -15169,7 +15153,7 @@ u8 *gfx_poly_chunks_draw_a(u16 *a0, int a1, int a2, u32 *a3, u8 *ain0) {
                                             in_dr4 = -3.036072391187902e-250;
                                         }
                                     } else {
-                                        pcVar7 = gfxlib_uses_ninja_matrix_copy_2166e8;
+                                        pcVar7 = gfxlib_draw_normals_b;
                                         if (puVar4 == (u8 *)0x41) {
                                             if (cVar11 == '\0') {
                                                 in_dr4 = (double)((u64)in_dr4 & 0xffffffff);
@@ -15242,7 +15226,7 @@ u8 *gfx_poly_chunks_draw_a(u16 *a0, int a1, int a2, u32 *a3, u8 *ain0) {
                                 if (a2 == 0) {
                                     pcVar7 = gfx_strips_emit_v16;
                                 } else {
-                                    pcVar7 = gfxlib_calls_fill_loop_215c48;
+                                    pcVar7 = gfxlib_vlist_transform_a_setup;
                                 }
                                 a5 = a3;
                                 puVar4 = (u8 *)(*pcVar7)(puVar12, a3, uVar2, a7);
@@ -15399,7 +15383,7 @@ u32 vram64_21869c(int *a0, u32 a1) {
     u32 uVar2;
 
     if ((((g_8c4aa4f0 & 0x100) == 0) || (in_r0 = 0x14, (float)a0[5] <= 0.0)) ||
-        (iVar1 = gfxlib_test_217e18(a0), in_r0 = 0, iVar1 == 0)) {
+        (iVar1 = gfxlib_sphere_in_view_test(a0), in_r0 = 0, iVar1 == 0)) {
         uVar2 = g_8c4aa510;
         if (*a0 != 0) {
             in_r0 = gfx_vertex_chunks_transform(*a0, g_8c4aa510);
@@ -15429,7 +15413,7 @@ u32 vram64_2186a0(int *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 *ain1) {
 
         lVar2 = (u64)(u32)a0[5] << 0x20;
 
-        if ((1 && (float)lVar2 < (float)((u64)lVar2 >> 0x20)) && (iVar1 = gfxlib_test_217e18(a0), iVar1 != 0)) {
+        if ((1 && (float)lVar2 < (float)((u64)lVar2 >> 0x20)) && (iVar1 = gfxlib_sphere_in_view_test(a0), iVar1 != 0)) {
             return 0xffffffff;
         }
     }
@@ -15718,7 +15702,7 @@ u32 gfx_poly_chunks_draw_s32(u16 *a0, int a1, u8 *a2, u32 unused_a3, u32 ain0) {
                         a6 = a6_00;
                     } else {
                         a5 = a2;
-                        uVar3 = kamui_calls_fill_loop_214aec(puVar5, a2, a6_00, ar7_00);
+                        uVar3 = kamui_vlist_transform_b_setup(puVar5, a2, a6_00, ar7_00);
                         ar4_00 = uVar3;
                         a6 = a6_00;
                     }
@@ -15748,7 +15732,7 @@ u32 gfx_poly_chunks_draw_s32(u16 *a0, int a1, u8 *a2, u32 unused_a3, u32 ain0) {
                         a6 = a6_00;
                     } else {
                         a5 = a2;
-                        uVar3 = kamui_calls_fill_loop_214358(puVar5, a2, a6_00, ar7_00);
+                        uVar3 = kamui_vlist_transform_a_setup(puVar5, a2, a6_00, ar7_00);
                         ar4_00 = uVar3;
                         a6 = a6_00;
                     }
@@ -15865,7 +15849,8 @@ u32 gfx_model_draw_a(int *a0, u32 a1) {
     cVar5 = '\0';
     cVar4 = '\0';
     puVar2 = &stack0xffffffe8;
-    if ((((g_8c4aa4f0 & 0x100) == 0) || ((float)a0[5] <= 0.0)) || (iVar1 = gfxlib_test_217e18(a0), iVar1 == 0)) {
+    if ((((g_8c4aa4f0 & 0x100) == 0) || ((float)a0[5] <= 0.0)) ||
+        (iVar1 = gfxlib_sphere_in_view_test(a0), iVar1 == 0)) {
         g_8c4aa554 = 0;
         if ((g_8c4aa4f0 & 0x40) != 0) {
             point_transform_or_copy(0, a0 + 2, &stack0xffffffe8, r7, in_stack_ffffffe8);
@@ -16140,9 +16125,9 @@ u32 gfxlib_compute_scaled_pair(void) {
 
 /*
  * gfxlib_set_view_vector_b  0x8c219038
- * called by: Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b580_calc_direction, Class_12b758_draw_with_light,
- * Vec3_uses_gfxlib_set_vec_0e3f24, draw_direction_vector_by_side, game_draw_0cc524, game_draw_0ff928,
- * gfx_reset_vec3_and_219070 (+1 more)
+ * called by: Class_12b3b8_turn_draw_0e7a78, Class_12b580_calc_direction, Class_12b758_draw_with_light,
+ * Vec3_helper_0e3f24, draw_direction_vector_by_side, game_draw_0cc524, game_draw_0ff928, gfx_reset_vec3_and_219070 (+1
+ * more)
  */
 u32 gfxlib_set_view_vector_b(void) {
     u64 *puVar1;
@@ -16183,9 +16168,9 @@ u32 gfxlib_set_view_vector_b(void) {
 
 /*
  * gfxlib_set_pair_4ab1a4  0x8c219070
- * called by: Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b580_calc_direction, Class_12b758_draw_with_light,
- * Vec3_uses_gfxlib_set_vec_0e3f24, draw_direction_vector_by_side, game_draw_0cc524, game_draw_0ff928,
- * gfx_reset_vec3_and_219070 (+7 more)
+ * called by: Class_12b3b8_turn_draw_0e7a78, Class_12b580_calc_direction, Class_12b758_draw_with_light,
+ * Vec3_helper_0e3f24, draw_direction_vector_by_side, game_draw_0cc524, game_draw_0ff928, gfx_reset_vec3_and_219070 (+7
+ * more)
  */
 u32 gfxlib_set_pair_4ab1a4(void) {
     u64 in_dr4;
@@ -16198,8 +16183,8 @@ u32 gfxlib_set_pair_4ab1a4(void) {
 /*
  * set_vec3_g_278744  0x8c21907e
  * stores fr4..fr6 at 0x8c278744
- * called by: Class_12b3b8_uses_object_dtor_delete_0e7a78, Class_12b580_calc_direction, Vec3_uses_gfxlib_set_vec_0e3f24,
- * game_draw_0cc524, game_draw_0ff928, gfx_reset_vec3_and_219070, gfx_reset_view_vectors
+ * called by: Class_12b3b8_turn_draw_0e7a78, Class_12b580_calc_direction, Vec3_helper_0e3f24, game_draw_0cc524,
+ * game_draw_0ff928, gfx_reset_vec3_and_219070, gfx_reset_view_vectors
  */
 u32 set_vec3_g_278744(void) {
     u32 in_fr5;
@@ -16530,7 +16515,7 @@ u8 *gfx_poly_chunks_draw_b(u16 *a0, int a1, u32 a2) {
                                 in_dr4 = (double)((u64)dVar14 & 0xffffffff);
                             }
                             uVar8 = a2;
-                            puVar6 = (u8 *)gfxlib_uses_ninja_matrix_copy_22b7a8(puStack_78, a2, uVar3, ar7_00);
+                            puVar6 = (u8 *)gfxlib_draw_normals_c(puStack_78, a2, uVar3, ar7_00);
                             ar4_00 = puVar6;
                             a6 = uVar3;
                         } else {
@@ -16538,7 +16523,7 @@ u8 *gfx_poly_chunks_draw_b(u16 *a0, int a1, u32 a2) {
                                 in_dr4 = (double)((u64)dVar14 & 0xffffffff);
                             }
                             uVar8 = a2;
-                            puVar6 = (u8 *)gfxlib_uses_ninja_matrix_copy_22bb70(puStack_78, a2, uVar3, ar7_00);
+                            puVar6 = (u8 *)gfxlib_draw_normals_d(puStack_78, a2, uVar3, ar7_00);
                             ar4_00 = puVar6;
                             a6 = uVar3;
                         }
@@ -16738,7 +16723,7 @@ u32 gfxlib_draw_object_culled(int *a0, u32 unused_a1, u32 a2, u32 a3) {
     ain0 = &g_8c4aa4f0;
     ar4_00 = *a0;
     if ((((g_8c4aa4f0 & 0x100) == 0) || (ain0 = (u8 *)0x14, (float)a0[5] <= 0.0)) ||
-        (iVar1 = gfxlib_test_217e18(a0), ain0 = NULL, iVar1 == 0)) {
+        (iVar1 = gfxlib_sphere_in_view_test(a0), ain0 = NULL, iVar1 == 0)) {
         if (ar4_00 != 0) {
             gfx_meshsets_emit(ar4_00, uVar2, a2, a3, ain0);
         }
@@ -16772,7 +16757,8 @@ u32 alt_entry_219962(u32 unused_a0, u32 unused_a1, u32 a2, u32 a3, u32 *ain0) {
 
         lVar2 = (u64)(u32)unaff_r12[5] << 0x20;
 
-        if ((1 && (float)lVar2 < (float)((u64)lVar2 >> 0x20)) && (iVar1 = gfxlib_test_217e18(unaff_r12), iVar1 != 0)) {
+        if ((1 && (float)lVar2 < (float)((u64)lVar2 >> 0x20)) &&
+            (iVar1 = gfxlib_sphere_in_view_test(unaff_r12), iVar1 != 0)) {
             return 0xffffffff;
         }
     }
@@ -17042,7 +17028,7 @@ int gfx_poly_chunks_draw_s64(u16 *a0, u16 *a1, u16 *a2, u32 unused_a3, int ain0)
                             a6 = puVar6;
                         } else {
                             a5 = a2;
-                            ain0 = gfxlib_calls_fill_loop_221c68(puStack_58, a2, puVar6, ar7_00);
+                            ain0 = gfxlib_vlist_transform_c_setup(puStack_58, a2, puVar6, ar7_00);
                             iVar2 = ain0;
                             a6 = puVar6;
                         }
@@ -17087,7 +17073,7 @@ int gfx_poly_chunks_draw_s64(u16 *a0, u16 *a1, u16 *a2, u32 unused_a3, int ain0)
                         if ((g_8c4aa4f0 & 0x200) == 0) {
                             if (a1 == NULL) {
                                 a5 = a2;
-                                ain0 = gfxlib_fill_loop_221fbc(puStack_58, a2, puVar6, ar7_00);
+                                ain0 = gfxlib_vlist_uv_setup_a(puStack_58, a2, puVar6, ar7_00);
                                 iVar2 = ain0;
                                 a6 = puVar6;
                             } else {
@@ -17098,7 +17084,7 @@ int gfx_poly_chunks_draw_s64(u16 *a0, u16 *a1, u16 *a2, u32 unused_a3, int ain0)
                             }
                         } else if (a1 == NULL) {
                             a5 = a2;
-                            ain0 = vram_fill_loop_22278c(puStack_58, a2, puVar6, ar7_00);
+                            ain0 = gfxlib_vlist_uv_offset_kernel(puStack_58, a2, puVar6, ar7_00);
                             iVar2 = ain0;
                             a6 = puVar6;
                         } else {
@@ -17150,18 +17136,18 @@ int gfx_poly_chunks_draw_s64(u16 *a0, u16 *a1, u16 *a2, u32 unused_a3, int ain0)
                         if ((uVar5 & 0x40) == 0) {
                             if (a1 == NULL) {
                                 a5 = a2;
-                                ain0 = gfxlib_fill_loop_223b34(puStack_58, a2, puVar6, ar7_00);
+                                ain0 = gfxlib_vlist_uv_setup_b(puStack_58, a2, puVar6, ar7_00);
                                 iVar2 = ain0;
                                 a6 = puVar6;
                             } else {
                                 a5 = a2;
-                                ain0 = gfxlib_calls_fill_loop_223eb8(puStack_58, a2, puVar6, ar7_00);
+                                ain0 = gfxlib_vlist_transform_e_setup(puStack_58, a2, puVar6, ar7_00);
                                 iVar2 = ain0;
                                 a6 = puVar6;
                             }
                         } else if (a1 == NULL) {
                             a5 = a2;
-                            ain0 = gfxlib_fill_loop_224330(puStack_58, a2, puVar6, ar7_00);
+                            ain0 = gfxlib_vlist_uv_setup_c(puStack_58, a2, puVar6, ar7_00);
                             iVar2 = ain0;
                             a6 = puVar6;
                         } else {
@@ -17178,13 +17164,13 @@ int gfx_poly_chunks_draw_s64(u16 *a0, u16 *a1, u16 *a2, u32 unused_a3, int ain0)
                             a6 = puVar6;
                         } else {
                             a5 = a2;
-                            ain0 = gfxlib_calls_fill_loop_223708(puStack_58, a2, puVar6, ar7_00);
+                            ain0 = gfxlib_vlist_transform_d_setup(puStack_58, a2, puVar6, ar7_00);
                             iVar2 = ain0;
                             a6 = puVar6;
                         }
                     } else if (a1 == NULL) {
                         a5 = a2;
-                        ain0 = gfxlib_fill_loop_2255e8(puStack_58, a2, puVar6, ar7_00);
+                        ain0 = gfxlib_vlist_uv_offset_kernel_b(puStack_58, a2, puVar6, ar7_00);
                         iVar2 = ain0;
                         a6 = puVar6;
                     } else {
@@ -17305,7 +17291,8 @@ u32 gfx_model_draw_c(int *a0, u32 a1) {
     cVar5 = '\0';
     cVar4 = '\0';
     puVar2 = &stack0xffffffe8;
-    if ((((g_8c4aa4f0 & 0x100) == 0) || ((float)a0[5] <= 0.0)) || (iVar1 = gfxlib_test_217e18(a0), iVar1 == 0)) {
+    if ((((g_8c4aa4f0 & 0x100) == 0) || ((float)a0[5] <= 0.0)) ||
+        (iVar1 = gfxlib_sphere_in_view_test(a0), iVar1 == 0)) {
         g_8c4aa554 = 0;
         if ((g_8c4aa4f0 & 0x40) != 0) {
             point_transform_or_copy(0, a0 + 2, &stack0xffffffe8, r7, in_stack_ffffffe8);
@@ -17828,8 +17815,8 @@ u32 *gfx_draw_motion_frame_a(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a
     } else {
         g_8c4aa350 = motion_node_apply_scale;
     }
-    g_8c4ab0b4 = gfxlib_uses_switch_jump_21c2ea;
-    g_8c4ab0b8 = gfxlib_uses_switch_jump_21c398;
+    g_8c4ab0b4 = gfxlib_strip_index_kernel_b;
+    g_8c4ab0b8 = gfxlib_strip_index_kernel_c;
     g_8c4aad54 = in_fr4;
     draw_state_save(&g_8c4aad82, &g_8c4aa350, ar6_00, 0x20);
     (*g_8c4aa338)(a4, a5, ar6_00, uVar1);
@@ -17931,8 +17918,8 @@ u32 gfx_draw_motion_link_a(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *
     } else {
         g_8c4aa350 = motion_node_apply_scale;
     }
-    g_8c4ab0b4 = gfxlib_uses_switch_jump_21c2ea;
-    g_8c4ab0b8 = gfxlib_uses_switch_jump_21c398;
+    g_8c4ab0b4 = gfxlib_strip_index_kernel_b;
+    g_8c4ab0b8 = gfxlib_strip_index_kernel_c;
     g_8c4aad54 = in_fr4;
     g_8c4aad70 = in_fr4;
     draw_state_save(&g_8c4aa350, ar5_00, 0x20, &g_8c4aad82);
@@ -18009,8 +17996,8 @@ u32 *gfx_draw_motion_frame_b(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a
     } else {
         g_8c4aa350 = motion_node_apply_scale;
     }
-    g_8c4ab0b4 = gfxlib_uses_switch_jump_21c2ea;
-    g_8c4ab0b8 = gfxlib_uses_switch_jump_21c398;
+    g_8c4ab0b4 = gfxlib_strip_index_kernel_b;
+    g_8c4ab0b8 = gfxlib_strip_index_kernel_c;
     g_8c4aad54 = in_fr4;
     draw_state_save(&g_8c4aad82, &g_8c4aa350, ar6_00, 0x20);
     (*g_8c4aa338)(a4, a5, ar6_00, uVar1);
@@ -18108,8 +18095,8 @@ u32 gfx_draw_motion_link_b(u32 *a0, u32 *a1, u32 *a2) {
     } else {
         g_8c4aa350 = motion_node_apply_scale;
     }
-    g_8c4ab0b4 = gfxlib_uses_switch_jump_21c2ea;
-    g_8c4ab0b8 = gfxlib_uses_switch_jump_21c398;
+    g_8c4ab0b4 = gfxlib_strip_index_kernel_b;
+    g_8c4ab0b8 = gfxlib_strip_index_kernel_c;
     g_8c4aad54 = in_fr4;
     g_8c4aad70 = in_fr4;
     draw_state_save(&g_8c4aa350, ar5_00, 0x20, &g_8c4aad82);
@@ -18230,8 +18217,8 @@ u32 alt_entry_21af36(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *ain0, 
     } else {
         g_8c4aa350 = motion_node_apply_scale;
     }
-    g_8c4ab0b4 = gfxlib_uses_switch_jump_21c2ea;
-    g_8c4ab0b8 = gfxlib_uses_switch_jump_21c398;
+    g_8c4ab0b4 = gfxlib_strip_index_kernel_b;
+    g_8c4ab0b8 = gfxlib_strip_index_kernel_c;
     draw_state_save(&g_8c4aa350, ar5_00, 0x20, &g_8c4aad82);
     (*g_8c4aa338)(a4, ar5_00, uVar1, a7);
     gfx_object_tree_draw_hooked(unaff_r13);
@@ -18306,8 +18293,8 @@ u32 *gfx_draw_motion_frame_c(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a
     } else {
         g_8c4aa350 = motion_node_apply_scale;
     }
-    g_8c4ab0b4 = gfxlib_uses_switch_jump_21c2ea;
-    g_8c4ab0b8 = gfxlib_uses_switch_jump_21d29c;
+    g_8c4ab0b4 = gfxlib_strip_index_kernel_b;
+    g_8c4ab0b8 = gfxlib_strip_index_kernel_f;
     g_8c4aad54 = in_fr4;
     draw_state_save(&g_8c4aad82, &g_8c4aa350, ar6_00, 0x20);
     (*g_8c4aa338)(a4, a5, ar6_00, uVar1);
@@ -18409,8 +18396,8 @@ u32 gfx_draw_motion_link_c(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *
     } else {
         g_8c4aa350 = motion_node_apply_scale;
     }
-    g_8c4ab0b4 = gfxlib_uses_switch_jump_21c2ea;
-    g_8c4ab0b8 = gfxlib_uses_switch_jump_21d29c;
+    g_8c4ab0b4 = gfxlib_strip_index_kernel_b;
+    g_8c4ab0b8 = gfxlib_strip_index_kernel_f;
     g_8c4aad54 = in_fr4;
     g_8c4aad70 = in_fr4;
     draw_state_save(&g_8c4aa350, ar5_00, 0x20, &g_8c4aad82);
@@ -18487,8 +18474,8 @@ u32 *gfx_draw_motion_frame_d(u32 unused_a0, u32 *a1, u32 unused_a2, u32 unused_a
     } else {
         g_8c4aa350 = motion_node_apply_scale;
     }
-    g_8c4ab0b4 = gfxlib_uses_switch_jump_21c2ea;
-    g_8c4ab0b8 = gfxlib_uses_switch_jump_21d29c;
+    g_8c4ab0b4 = gfxlib_strip_index_kernel_b;
+    g_8c4ab0b8 = gfxlib_strip_index_kernel_f;
     g_8c4aad54 = in_fr4;
     draw_state_save(&g_8c4aad82, &g_8c4aa350, ar6_00, 0x20);
     (*g_8c4aa338)(a4, a5, ar6_00, uVar1);
@@ -18590,8 +18577,8 @@ u32 gfx_draw_motion_link_d(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u32 *
     } else {
         g_8c4aa350 = motion_node_apply_scale;
     }
-    g_8c4ab0b4 = gfxlib_uses_switch_jump_21c2ea;
-    g_8c4ab0b8 = gfxlib_uses_switch_jump_21d29c;
+    g_8c4ab0b4 = gfxlib_strip_index_kernel_b;
+    g_8c4ab0b8 = gfxlib_strip_index_kernel_f;
     g_8c4aad54 = in_fr4;
     g_8c4aad70 = in_fr4;
     draw_state_save(&g_8c4aa350, ar5_00, 0x20, &g_8c4aad82);
@@ -19323,11 +19310,10 @@ u32 gfx_draw_motion_link_alt_b(u32 unused_a0, u32 *a1, u32 *a2, u32 unused_a3, u
 }
 
 /*
- * gfxlib_uses_switch_jump_21c1b0  0x8c21c1b0
- * area name: in the gfxlib library code range; behaviour name: its main named callee is switch_jump
+ * gfxlib_strip_index_kernel_a  0x8c21c1b0
  * called by: motion_node_apply_rot_keys20
  */
-u32 gfxlib_uses_switch_jump_21c1b0(int a0, int a1, u32 a2, double *a3) {
+u32 gfxlib_strip_index_kernel_a(int a0, int a1, u32 a2, double *a3) {
     double *pdVar1;
     double *pdVar2;
     double *pdVar3;
@@ -19669,10 +19655,9 @@ u32 gfxlib_uses_switch_jump_21c1b0(int a0, int a1, u32 a2, double *a3) {
 }
 
 /*
- * gfxlib_uses_switch_jump_21c2ea  0x8c21c2ea
- * area name: in the gfxlib library code range; behaviour name: its main named callee is switch_jump
+ * gfxlib_strip_index_kernel_b  0x8c21c2ea
  */
-u32 gfxlib_uses_switch_jump_21c2ea(int a0, int a1, u32 a2, u64 *a3) {
+u32 gfxlib_strip_index_kernel_b(int a0, int a1, u32 a2, u64 *a3) {
     int iVar1;
     int *piVar2;
     int *piVar3;
@@ -19820,10 +19805,9 @@ u32 gfxlib_uses_switch_jump_21c2ea(int a0, int a1, u32 a2, u64 *a3) {
 }
 
 /*
- * gfxlib_uses_switch_jump_21c398  0x8c21c398
- * area name: in the gfxlib library code range; behaviour name: its main named callee is switch_jump
+ * gfxlib_strip_index_kernel_c  0x8c21c398
  */
-int gfxlib_uses_switch_jump_21c398(int a0, int a1, u32 a2, int *a3) {
+int gfxlib_strip_index_kernel_c(int a0, int a1, u32 a2, int *a3) {
     int iVar1;
     u32 uVar2;
     int *piVar3;
@@ -19948,10 +19932,9 @@ int gfxlib_uses_switch_jump_21c398(int a0, int a1, u32 a2, int *a3) {
 }
 
 /*
- * gfxlib_uses_libgcc_divide_helper_21c47c  0x8c21c47c
- * area name: in the gfxlib library code range; behaviour name: its main named callee is libgcc_divide_helper_0106dc
+ * gfxlib_strip_index_kernel_d  0x8c21c47c
  */
-u32 gfxlib_uses_libgcc_divide_helper_21c47c(int a0, int a1, int a2, double *a3) {
+u32 gfxlib_strip_index_kernel_d(int a0, int a1, int a2, double *a3) {
     double dVar1;
     int iVar2;
     int iVar3;
@@ -20341,10 +20324,9 @@ u32 gfxlib_uses_libgcc_divide_helper_21c47c(int a0, int a1, int a2, double *a3) 
 }
 
 /*
- * gfxlib_uses_libgcc_divide_helper_21c5ca  0x8c21c5ca
- * area name: in the gfxlib library code range; behaviour name: its main named callee is libgcc_divide_helper_0106dc
+ * gfxlib_strip_index_kernel_e  0x8c21c5ca
  */
-u32 *gfxlib_uses_libgcc_divide_helper_21c5ca(int a0, int a1, int a2, int *a3) {
+u32 *gfxlib_strip_index_kernel_e(int a0, int a1, int a2, int *a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -20596,10 +20578,9 @@ u32 *gfxlib_uses_libgcc_divide_helper_21c5ca(int a0, int a1, int a2, int *a3) {
 }
 
 /*
- * gfxlib_uses_libgcc_divide_helper_21c774  0x8c21c774
- * area name: in the gfxlib library code range; behaviour name: its main named callee is libgcc_divide_helper_0106dc
+ * gfxlib_strip_send_kernel_a  0x8c21c774
  */
-u32 gfxlib_uses_libgcc_divide_helper_21c774(int a0, int a1, int a2, int a3) {
+u32 gfxlib_strip_send_kernel_a(int a0, int a1, int a2, int a3) {
     int iVar1;
     u32 uVar2;
     double *pdVar3;
@@ -21555,10 +21536,9 @@ u32 gfxlib_uses_libgcc_divide_helper_21c774(int a0, int a1, int a2, int a3) {
 }
 
 /*
- * gfxlib_uses_libgcc_divide_helper_21caa0  0x8c21caa0
- * area name: in the gfxlib library code range; behaviour name: its main named callee is libgcc_divide_helper_0106dc
+ * gfxlib_strip_send_kernel_b  0x8c21caa0
  */
-u32 gfxlib_uses_libgcc_divide_helper_21caa0(int a0, int a1, int a2, int a3) {
+u32 gfxlib_strip_send_kernel_b(int a0, int a1, int a2, int a3) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -22673,8 +22653,8 @@ u32 motion_node_apply_rot_keys20(u32 *a0) {
             }
         }
         a7 = auStack_20;
-        gfxlib_uses_switch_jump_21c1b0(a4, a5, a6, a7);
-        uVar2 = matrix_uses_switch_jump_2563f8(auStack_20);
+        gfxlib_strip_index_kernel_a(a4, a5, a6, a7);
+        uVar2 = matrix_transform_points_kernel(auStack_20);
     }
     g_8c4aad5c = g_8c4aad5c + 1;
     return uVar2;
@@ -22841,10 +22821,9 @@ u32 gfxlib_vertex_emit_stride_10(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * gfxlib_uses_switch_jump_21d29c  0x8c21d29c
- * area name: in the gfxlib library code range; behaviour name: its main named callee is switch_jump
+ * gfxlib_strip_index_kernel_f  0x8c21d29c
  */
-int gfxlib_uses_switch_jump_21d29c(int a0, int a1, u32 a2, int *a3) {
+int gfxlib_strip_index_kernel_f(int a0, int a1, u32 a2, int *a3) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -22998,10 +22977,9 @@ int gfxlib_uses_switch_jump_21d29c(int a0, int a1, u32 a2, int *a3) {
 }
 
 /*
- * gfxlib_uses_libgcc_divide_helper_21d3e8  0x8c21d3e8
- * area name: in the gfxlib library code range; behaviour name: its main named callee is libgcc_divide_helper_0106dc
+ * gfxlib_strip_send_kernel_c  0x8c21d3e8
  */
-u32 gfxlib_uses_libgcc_divide_helper_21d3e8(int a0, int a1, int a2, int *a3) {
+u32 gfxlib_strip_send_kernel_c(int a0, int a1, int a2, int *a3) {
     float fVar1;
     int iVar2;
     u32 uVar3;
@@ -25784,7 +25762,7 @@ LAB_8c21f1c8:
 
 /*
  * gfxlib_set_strip_params  0x8c21f200
- * called by: CAnimBody_draw_key_model, CAnimal_uses_njGetMatrix_026968
+ * called by: CAnimBody_draw_key_model, CAnimal_draw_body
  */
 u32 gfxlib_set_strip_params(u32 *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;

@@ -60,16 +60,15 @@ u32 tank_device_sound_update(int a0, u32 *a1, u32 a2, u32 a3) {
         se_close_port_handle(0x8c2b59d0, a1);
         *(u32 *)(a0 + 0x28) = 0;
     }
-    uVar2 = Class_12b930_uses_libgcc_divide_helper_0d02c8(a0, a1, a2);
+    uVar2 = Class_12b930_helper_0d02c8(a0, a1, a2);
     return uVar2;
 }
 
 /*
- * Class_12b930_uses_libgcc_divide_helper_0d02c8  0x8c0d02c8
- * area name: only called from Class_12b930 methods; behaviour name: its main named callee is
- * libgcc_divide_helper_01031c called by: Class_12b930_m2_0de3d4, tank_device_sound_update
+ * Class_12b930_helper_0d02c8  0x8c0d02c8
+ * called by: Class_12b930_m2_0de3d4, tank_device_sound_update
  */
-int Class_12b930_uses_libgcc_divide_helper_0d02c8(int a0, u32 unused_a1, u32 a2) {
+int Class_12b930_helper_0d02c8(int a0, u32 unused_a1, u32 a2) {
     int iVar1;
     double *pdVar2;
     float fVar3;
@@ -201,7 +200,7 @@ int Class_12b930_uses_libgcc_divide_helper_0d02c8(int a0, u32 unused_a1, u32 a2)
 /*
  * edge_detect_update  0x8c0d0538
  * stores input a1 at +0x14; +0x48 = 1 on a 0->1 change, 2 on 1->0
- * called by: input_uses_edge_detect_update_0e2a14, input_uses_edge_detect_update_0e3210, tank_exit_close_sounds,
+ * called by: input_move_sound_input_0e2a14, input_move_sound_input_0e3210, tank_exit_close_sounds,
  * tank_load_sprinkler_texture, tank_stop_sounds_reset
  */
 int edge_detect_update(int a0, int a1) {
@@ -223,7 +222,7 @@ int edge_detect_update(int a0, int a1) {
 
 /*
  * draw_texlist_model_a  0x8c0d0564
- * called by: game_uses_noop_0de6d0
+ * called by: game_turn_move_draw_0de6d0
  */
 u32 draw_texlist_model_a(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -240,8 +239,7 @@ u32 draw_texlist_model_a(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * draw_texlist_model_b  0x8c0d05d0
- * called by: game_uses_Class_12b930_draw_tinted_b_0def78, game_uses_Class_12b930_draw_tinted_b_0df668,
- * game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0deb60
+ * called by: game_turn_draw_0df250, game_turn_draw_0df668, game_turn_move_draw_0deb60, game_turn_move_draw_0def78
  */
 u32 draw_texlist_model_b(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -419,7 +417,7 @@ int CO2Supply_LoadTexture(int *a0, u32 a1, u32 a2, u32 a3) {
 /*
  * ramp_float_to_100  0x8c0d08c0
  * raises the float at +0xc by 0.05 (mode +0x14 == 1) or 5e-05 while +0x18 is set, clamped at 100.0
- * called by: Class_12b930_uses_get_field_300_0e0f48, ramp_float_to_100_wrap
+ * called by: Class_12b930_move_sound_0e0f48, ramp_float_to_100_wrap
  */
 u8 *ramp_float_to_100(int a0) {
     u8 *puVar1;
@@ -455,7 +453,7 @@ u32 ramp_float_to_100_wrap(u32 a0) {
 
 /*
  * draw_texlist_vram_model_a  0x8c0d092c
- * called by: game_uses_noop_0de6d0
+ * called by: game_turn_move_draw_0de6d0
  */
 u32 draw_texlist_vram_model_a(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -472,7 +470,7 @@ u32 draw_texlist_vram_model_a(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * draw_texlist_vram_model_b  0x8c0d0990
- * called by: game_uses_Class_12b930_draw_tinted_b_0def78, game_uses_noop_0deb60
+ * called by: game_turn_move_draw_0deb60, game_turn_move_draw_0def78
  */
 u32 draw_texlist_vram_model_b(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -565,7 +563,7 @@ u32 set_field_14_0d0a3c(int a0, u32 a1) {
 /*
  * decay_float_c  0x8c0d0a44
  * subtracts fr5 (at most 1/6000) from the float at +0xc, stopping at 0
- * called by: CWaterTank_ramp_and_decay, Class_12b930_uses_get_field_300_0e0f48
+ * called by: CWaterTank_ramp_and_decay, Class_12b930_move_sound_0e0f48
  */
 int decay_float_c(int a0) {
     u64 in_dr4;
@@ -597,7 +595,7 @@ u32 clear_c_14_set_18(int a0) {
 
 /*
  * set_field_18_to_1  0x8c0d0aac
- * called by: Class_12b930_uses_get_field_300_0e0f48, clear_c_14_set_18
+ * called by: Class_12b930_move_sound_0e0f48, clear_c_14_set_18
  */
 u32 set_field_18_to_1(int a0) {
     *(u32 *)(a0 + 0x18) = 1;
@@ -839,7 +837,7 @@ u32 static_init_4374c8(int a0, code *a1, u32 a2, u32 a3) {
             iVar4 = get_field_100_0d1058(a0 + iVar7 * 0xac + 0xc);
             iVar5 = iVar3;
             if (iVar4 != 1) {
-                game_uses_rand_014be4(a0 + iVar7 * 0xac + 0xc, 0x2f999999, a2);
+                Class_1297f4_randomize_particles(a0 + iVar7 * 0xac + 0xc, 0x2f999999, a2);
                 uVar2 = 0x8c4374d8;
                 puVar6 = auStack_20;
                 Vec3_assign(puVar6, 0x8c4374d8, a2, a3);
@@ -902,7 +900,7 @@ u32 static_init_4374c8(int a0, code *a1, u32 a2, u32 a3) {
 
 /*
  * get_field_100_0d1058  0x8c0d1058
- * called by: game_uses_obj_set_texlist_0d1168, particle_pool_update_350, static_init_4374c8
+ * called by: game_draw_0d1168, particle_pool_update_350, static_init_4374c8
  */
 u32 get_field_100_0d1058(int a0) {
     return *(u32 *)(a0 + 100);
@@ -941,11 +939,10 @@ u32 particle_pool_update_350(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_obj_set_texlist_0d1168  0x8c0d1168
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is obj_set_texlist
- * called by: game_uses_Class_12b930_draw_tinted_b_0df668, game_uses_matrix_apply_point_w1_wrap_0df250
+ * game_draw_0d1168  0x8c0d1168
+ * called by: game_turn_draw_0df250, game_turn_draw_0df668
  */
-u32 game_uses_obj_set_texlist_0d1168(int a0, u32 a1, u32 a2) {
+u32 game_draw_0d1168(int a0, u32 a1, u32 a2) {
     u64 uVar1;
     int iVar2;
     u32 uVar3;
@@ -1179,7 +1176,7 @@ u32 game_uses_obj_set_texlist_0d1168(int a0, u32 a1, u32 a2) {
 
 /*
  * set_field_14_0d1450  0x8c0d1450
- * called by: Class_12bea8_draw_ground_quad, game_uses_obj_set_texlist_0d1168
+ * called by: Class_12bea8_draw_ground_quad, game_draw_0d1168
  */
 u32 set_field_14_0d1450(int a0, u32 a1) {
     u32 in_r0;
@@ -1363,7 +1360,7 @@ u32 draw_rotated_billboard_matrices(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * game_box_screen_bounds_like  0x8c0d1754
  * transforms the eight corners a1 by the current matrix and returns their screen-space bounds
- * called by: CEnv_vec_0dac50
+ * called by: CEnv_vec_helper_0dac50
  */
 u32 game_box_screen_bounds_like(float *a0, int a1) {
     u32 uVar1;
@@ -1486,13 +1483,11 @@ u32 game_box_screen_bounds_like(float *a0, int a1) {
 }
 
 /*
- * Class_12b758_uses_sprintf_0d1858  0x8c0d1858
- * area name: only called from Class_12b758 methods; behaviour name: its main named callee is sprintf
- * called by: Class_12b758_draw_with_light, game_uses_Class_12b930_draw_tinted_b_0def78,
- * game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60 strings:
- * "GRAPHICS\\COMMON"; "%08.4lf"
+ * Class_12b758_draw_0d1858  0x8c0d1858
+ * called by: Class_12b758_draw_with_light, game_turn_draw_0df250, game_turn_move_draw_0de6d0,
+ * game_turn_move_draw_0deb60, game_turn_move_draw_0def78 strings: "GRAPHICS\\COMMON"; "%08.4lf"
  */
-u32 Class_12b758_uses_sprintf_0d1858(double *a0) {
+u32 Class_12b758_draw_0d1858(double *a0) {
     u32 r5;
     u32 r6;
     u32 r7;
@@ -1645,7 +1640,7 @@ LAB_8c0d1936:
 
 /*
  * spawn_creature_with_defaults  0x8c0d19dc
- * called by: Class_12a0c4_state_switch_068e64
+ * called by: Class_12a0c4_turn_random_spawn_068e64
  */
 int spawn_creature_with_defaults(int a0, int a1, u32 unused_a2, u32 a3) {
     int a4;
@@ -1728,7 +1723,7 @@ u32 creature_slot_release_by_mode(int *a0, int a1, int a2, u32 a3) {
 /*
  * set_g_8c437864  0x8c0d1c14
  * stores byte a0 in 8c437864
- * called by: game_uses_get_field_d0_0c6e74, save_check_presence_and_date
+ * called by: game_draw_talk_input_0c6e74, save_check_presence_and_date
  */
 u8 *set_g_8c437864(u32 a0, u32 a1) {
     u8 *puVar1;
@@ -1768,7 +1763,7 @@ u32 fade_draw_if_mode_0_1(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * fade_draw_overlay  0x8c0d1c84
- * called by: game_uses_get_field_d0_0c6e74
+ * called by: game_draw_talk_input_0c6e74
  */
 int fade_draw_overlay(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -1891,9 +1886,8 @@ int CEnv_LoadDevicePanelTexture(u32 a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * CEnv_set_texlist  0x8c0d2028
  * selects the environment texture list (0x8c4377f4) and its first texture
- * called by: Class_12b758_draw_with_light, game_uses_Class_12b930_draw_tinted_b_0def78,
- * game_uses_Class_12b930_draw_tinted_b_0df668, game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0,
- * game_uses_noop_0deb60
+ * called by: Class_12b758_draw_with_light, game_turn_draw_0df250, game_turn_draw_0df668, game_turn_move_draw_0de6d0,
+ * game_turn_move_draw_0deb60, game_turn_move_draw_0def78
  */
 u32 CEnv_set_texlist(u32 unused_a0, u32 a1, u32 a2) {
     u32 uVar1;
@@ -1922,7 +1916,7 @@ int CEnv_ctor_like(int a0, u32 a1, u32 a2) {
 
 /*
  * CEnv_reset_scale  0x8c0d20bc
- * called by: CEnv_ctor_like, Class_12b930_uses_CEnv_reset_scale_0d21a0
+ * called by: CEnv_ctor_like, Class_12b930_helper_0d21a0
  */
 u32 CEnv_reset_scale(int a0) {
     u32 extraout_fr1;
@@ -1965,11 +1959,10 @@ u32 CEnv_set_scale_and_type(int a0, u32 a1, int a2) {
 }
 
 /*
- * Class_12b930_uses_CEnv_reset_scale_0d21a0  0x8c0d21a0
- * area name: only called from Class_12b930 methods; behaviour name: its main named callee is CEnv_reset_scale
+ * Class_12b930_helper_0d21a0  0x8c0d21a0
  * called by: Class_12b930_update_active_slots
  */
-u64 *Class_12b930_uses_CEnv_reset_scale_0d21a0(int a0, u32 a1) {
+u64 *Class_12b930_helper_0d21a0(int a0, u32 a1) {
     u64 *puVar1;
     double *pdVar2;
     float fVar3;
@@ -2212,17 +2205,16 @@ u32 vec_wrap_0d2f14(u32 a0, u32 a1, u32 a2, u32 a3) {
 u32 Class_12b930_randomize_both(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
-    Class_12b930_uses_rand_0d26f0(a0, a1, a2);
-    uVar1 = Class_12b930_uses_rand_0d276c(a0, a1, a2, a3);
+    Class_12b930_random_0d26f0(a0, a1, a2);
+    uVar1 = Class_12b930_random_0d276c(a0, a1, a2, a3);
     return uVar1;
 }
 
 /*
- * Class_12b930_uses_rand_0d26f0  0x8c0d26f0
- * area name: only called from Class_12b930 methods; behaviour name: its main named callee is rand
+ * Class_12b930_random_0d26f0  0x8c0d26f0
  * called by: Class_12b930_randomize_both, Class_12b930_spawn_particles_like
  */
-u8 *Class_12b930_uses_rand_0d26f0(float *a0, u32 a1, u32 a2) {
+u8 *Class_12b930_random_0d26f0(float *a0, u32 a1, u32 a2) {
     int iVar1;
     float fVar2;
     double dVar3;
@@ -2311,11 +2303,10 @@ u8 *Class_12b930_uses_rand_0d26f0(float *a0, u32 a1, u32 a2) {
 }
 
 /*
- * Class_12b930_uses_rand_0d276c  0x8c0d276c
- * area name: only called from Class_12b930 methods; behaviour name: its main named callee is rand
+ * Class_12b930_random_0d276c  0x8c0d276c
  * called by: Class_12b930_randomize_both, Class_12b930_spawn_particles_like
  */
-u32 Class_12b930_uses_rand_0d276c(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12b930_random_0d276c(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     u32 in_fr1;
@@ -2625,11 +2616,10 @@ u32 Class_12b930_uses_rand_0d276c(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_0d294c  0x8c0d294c
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * creature_turn_random_0d294c  0x8c0d294c
  * called by: update_active_entries_62c
  */
-u32 game_vec_0d294c(u8 *a0, u32 a1, u32 a2, u32 a3) {
+u32 creature_turn_random_0d294c(u8 *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u8 *ar5_00;
@@ -2957,7 +2947,7 @@ u32 *set_pair_10_fr4_5(int a0) {
 
 /*
  * obj_motion_reset  0x8c0d2f14
- * called by: Class_12b930_sprite_setup, game_vec_0d294c, obj_with_sprite_ctor_0d25b4, vec_wrap_0d2f14
+ * called by: Class_12b930_sprite_setup, creature_turn_random_0d294c, obj_with_sprite_ctor_0d25b4, vec_wrap_0d2f14
  */
 u32 obj_motion_reset(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_fr1;
@@ -3610,7 +3600,7 @@ u32 Class_12b930_update_active_slots(int a0, u32 a1, u32 unused_a2, u32 a3) {
         iVar1 = get_field_40_0d3d64(iVar3 * 0x44 + a0 + 0x470);
         if (iVar1 != 0) {
             uVar2 = *(u32 *)(a0 + 0x5e8);
-            Class_12b930_uses_CEnv_reset_scale_0d21a0(iVar3 * 0x44 + a0 + 0x470, uVar2);
+            Class_12b930_helper_0d21a0(iVar3 * 0x44 + a0 + 0x470, uVar2);
         }
     }
     if (*(int *)(a0 + 0x30) == 1) {
@@ -3638,8 +3628,7 @@ u32 get_field_40_0d3d64(int a0) {
 
 /*
  * Class_12b930_sound_0d3d6c  0x8c0d3d6c
- * area name: sits between Class_12b930 functions (same compilation unit); behaviour name: mostly calls sound functions
- * called by: CWaterTank_check_distance_sound, Class_12b930_m3_0de4b0, Class_12b930_uses_get_field_300_0e0f48
+ * called by: CWaterTank_check_distance_sound, Class_12b930_m3_0de4b0, Class_12b930_move_sound_0e0f48
  */
 u32 Class_12b930_sound_0d3d6c(u64 *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -3837,7 +3826,7 @@ u32 get_field_d0_0d3f70(int a0) {
 
 /*
  * draw_set_alpha_by_distance  0x8c0d3f7c
- * called by: game_uses_Class_12b930_draw_tinted_b_0def78, game_uses_noop_0de6d0, game_uses_noop_0deb60
+ * called by: game_turn_move_draw_0de6d0, game_turn_move_draw_0deb60, game_turn_move_draw_0def78
  */
 u32 draw_set_alpha_by_distance(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -3860,7 +3849,7 @@ u32 draw_set_alpha_by_distance(int a0, int a1, u32 a2, u32 a3) {
 
 /*
  * draw_with_colour_80ffffff  0x8c0d400c
- * called by: game_uses_Class_12b930_draw_tinted_b_0df668, game_uses_matrix_apply_point_w1_wrap_0df250
+ * called by: game_turn_draw_0df250, game_turn_draw_0df668
  */
 u32 draw_with_colour_80ffffff(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -3900,11 +3889,10 @@ int draw_mesh_with_direction(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * draw_draw_helper_0d4124  0x8c0d4124
- * area name: sits between draw functions (same compilation unit); behaviour name: mostly calls draw functions
- * called by: game_uses_noop_0de6d0
+ * draw_turn_draw_0d4124  0x8c0d4124
+ * called by: game_turn_move_draw_0de6d0
  */
-u32 *draw_draw_helper_0d4124(int a0, int a1, u32 a2, u32 a3) {
+u32 *draw_turn_draw_0d4124(int a0, int a1, u32 a2, u32 a3) {
     u64 uVar1;
     int *piVar2;
     float *pfVar3;
@@ -4070,8 +4058,8 @@ u32 *draw_draw_helper_0d4124(int a0, int a1, u32 a2, u32 a3) {
 /*
  * matrix_apply_point_w1_wrap  0x8c0d43cc
  * only calls matrix_apply_point_w1
- * called by: draw_draw_helper_0d4124, game_draw_with_texture_variant_b, game_uses_matrix_apply_point_w1_wrap_0df250,
- * game_uses_noop_0de6d0, game_uses_noop_0deb60, matrix_uses_vram_draw_2187ce_on_handle_0d4428
+ * called by: draw_turn_draw_0d4124, game_draw_with_texture_variant_b, game_turn_draw_0df250,
+ * game_turn_move_draw_0de6d0, game_turn_move_draw_0deb60, matrix_turn_draw_0d4428
  */
 u32 matrix_apply_point_w1_wrap(u32 a0) {
     u32 uVar1;
@@ -4082,11 +4070,10 @@ u32 matrix_apply_point_w1_wrap(u32 a0) {
 }
 
 /*
- * matrix_uses_vram_draw_2187ce_on_handle_0d4428  0x8c0d4428
- * area name: sits between matrix functions (same compilation unit); behaviour name: its main named callee is
- * vram_draw_2187ce_on_handle called by: game_uses_noop_0deb60
+ * matrix_turn_draw_0d4428  0x8c0d4428
+ * called by: game_turn_move_draw_0deb60
  */
-u32 *matrix_uses_vram_draw_2187ce_on_handle_0d4428(int a0, int a1, u32 a2, u32 a3) {
+u32 *matrix_turn_draw_0d4428(int a0, int a1, u32 a2, u32 a3) {
     u64 uVar1;
     int *piVar2;
     float *pfVar3;
@@ -4252,7 +4239,7 @@ u32 *matrix_uses_vram_draw_2187ce_on_handle_0d4428(int a0, int a1, u32 a2, u32 a
 /*
  * game_draw_with_texture_variant_b  0x8c0d46cc
  * swaps texture variant +4 into the first texture slot, sets the colour and draws the object and its on-screen points
- * called by: game_uses_Class_12b930_draw_tinted_b_0def78
+ * called by: game_turn_move_draw_0def78
  */
 u32 game_draw_with_texture_variant_b(int a0, u32 a1, u32 a2, u32 a3) {
     int *piVar1;
@@ -4333,7 +4320,7 @@ u32 game_draw_with_texture_variant_b(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * mesh_swap_vertex_slot  0x8c0d4900
- * called by: game_uses_Class_12b930_draw_tinted_b_0df668, game_uses_matrix_apply_point_w1_wrap_0df250
+ * called by: game_turn_draw_0df250, game_turn_draw_0df668
  */
 u32 mesh_swap_vertex_slot(int a0, u32 a1, u32 a2, u32 a3) {
     int *piVar1;
@@ -4356,8 +4343,7 @@ u32 mesh_swap_vertex_slot(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * list_draw_node_points  0x8c0d49cc
  * draws a point (draw call 0x40) at the position of every node in the list at a0 + 0x34
- * called by: draw_draw_helper_0d4124, game_draw_with_texture_variant_b, matrix_uses_vram_draw_2187ce_on_handle_0d4428,
- * mesh_swap_vertex_slot
+ * called by: draw_turn_draw_0d4124, game_draw_with_texture_variant_b, matrix_turn_draw_0d4428, mesh_swap_vertex_slot
  */
 int list_draw_node_points(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
     int iVar1;
@@ -4404,8 +4390,8 @@ int list_draw_node_points(int a0, u32 unused_a1, u32 unused_a2, u32 a3) {
 /*
  * draw_part_objects_x5  0x8c0d4a90
  * draws each of the five active records at +0x470 (skipping state-1 ones past 1200), with three or one mesh parts
- * swapped by kind called by: draw_draw_helper_0d4124, game_draw_with_texture_variant_b,
- * matrix_uses_vram_draw_2187ce_on_handle_0d4428, mesh_swap_vertex_slot
+ * swapped by kind called by: draw_turn_draw_0d4124, game_draw_with_texture_variant_b, matrix_turn_draw_0d4428,
+ * mesh_swap_vertex_slot
  */
 u32 draw_part_objects_x5(int a0, int a1, int a2, int a3) {
     int iVar1;
@@ -4494,7 +4480,6 @@ u32 draw_direction_vector_by_side(float *a0, int a1) {
 
 /*
  * draw_sound_0d4c74  0x8c0d4c74
- * area name: sits between draw functions (same compilation unit); behaviour name: mostly calls sound functions
  * called by: static_init_vec3s_438274
  */
 u32 draw_sound_0d4c74(float *a0, u32 *a1, int a2, float a3) {
@@ -4593,12 +4578,11 @@ u32 set_field_40_to_1(int a0) {
 }
 
 /*
- * CWaterTank_uses_Class_12c394_m0_0d4e88  0x8c0d4e88
- * area name: only called from CWaterTank methods; behaviour name: its main named callee is Class_12c394_m0_102b04
- * called by: CWaterTank_create_stage_and_camera, game_uses_Class_12b930_draw_tinted_b_0def78, game_uses_noop_0de6d0,
- * game_uses_noop_0deb60
+ * CWaterTank_helper_0d4e88  0x8c0d4e88
+ * called by: CWaterTank_create_stage_and_camera, game_turn_move_draw_0de6d0, game_turn_move_draw_0deb60,
+ * game_turn_move_draw_0def78
  */
-u8 *CWaterTank_uses_Class_12c394_m0_0d4e88(u32 unused_a0, int a1) {
+u8 *CWaterTank_helper_0d4e88(u32 unused_a0, int a1) {
     float fVar1;
     u64 in_dr0;
     u32 uVar3;
@@ -4719,7 +4703,7 @@ u8 *CWaterTank_uses_Class_12c394_m0_0d4e88(u32 unused_a0, int a1) {
 
 /*
  * fade_set_colour_white_like  0x8c0d4f3c
- * called by: CWaterTank_create_stage_and_camera, input_uses_edge_detect_update_0e2a14
+ * called by: CWaterTank_create_stage_and_camera, input_move_sound_input_0e2a14
  */
 u32 fade_set_colour_white_like(void) {
     u32 uVar1;
@@ -4734,7 +4718,7 @@ u32 fade_set_colour_white_like(void) {
 
 /*
  * fade_set_colour_dark_grey  0x8c0d4f70
- * called by: CWaterTank_create_stage_and_camera, input_uses_edge_detect_update_0e2a14
+ * called by: CWaterTank_create_stage_and_camera, input_move_sound_input_0e2a14
  */
 u32 fade_set_colour_dark_grey(void) {
     u32 uVar1;
@@ -5112,7 +5096,7 @@ u32 se_stop_request_and_two_slots(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * Class_12b580_set_request_wrap  0x8c0d568c
  * only calls Class_12b580_set_request
- * called by: Class_12b930_uses_get_field_300_0e0f48
+ * called by: Class_12b930_move_sound_0e0f48
  */
 u32 Class_12b580_set_request_wrap(int a0) {
     u32 uVar1;
@@ -5123,7 +5107,7 @@ u32 Class_12b580_set_request_wrap(int a0) {
 
 /*
  * se_stop_request_5e4  0x8c0d56b4
- * called by: Class_12b930_uses_get_field_300_0e0f48
+ * called by: Class_12b930_move_sound_0e0f48
  */
 u32 se_stop_request_5e4(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -5296,7 +5280,7 @@ u32 Class_12b930_spawn_particles_like(int a0, int a1, int a2, u32 a3) {
                 }
                 iVar5 = iVar5 + 1;
             } else {
-                Class_12b930_uses_rand_0d26f0(iVar6 * 0x88 + a0 + 0x62c, ar5_00, ar6_00);
+                Class_12b930_random_0d26f0(iVar6 * 0x88 + a0 + 0x62c, ar5_00, ar6_00);
                 Vec3_ctor_copy_wrap_0d5c68(iVar6 * 0x88 + a0 + 0x62c, ar5_00, ar6_00, a3, auStack_54);
                 Vec3_distance_sq(auStack_54, a2 + 4, ar6_00, a3);
                 if (cVar11 == '\0') {
@@ -5310,7 +5294,7 @@ u32 Class_12b930_spawn_particles_like(int a0, int a1, int a2, u32 a3) {
                 ar5_00 = -1;
                 Vec3_dtor(auStack_54, 0xffffffff, ar6_00, a3);
                 if (bVar1 || (float)uVar2 <= fVar7) {
-                    Class_12b930_uses_rand_0d276c(iVar6 * 0x88 + a0 + 0x62c, ar5_00, ar6_00, a3);
+                    Class_12b930_random_0d276c(iVar6 * 0x88 + a0 + 0x62c, ar5_00, ar6_00, a3);
                     set_field_44_to_1(iVar6 * 0x88 + a0 + 0x62c);
                     iVar5 = iVar5 + 1;
                 }
@@ -5389,7 +5373,7 @@ int update_active_entries_62c(int a0, u32 a1, u32 a2, u32 a3) {
     for (iVar3 = 0; iVar3 < 0x226; iVar3 = iVar3 + 1) {
         iVar1 = (*(code *)(&get_field_44_0d5ca0))(iVar3 * 0x88 + a0 + 0x62c, a1, a2, a3);
         if (iVar1 == 1) {
-            game_vec_0d294c(iVar3 * 0x88 + a0 + 0x62c, a1, a2, a3);
+            creature_turn_random_0d294c(iVar3 * 0x88 + a0 + 0x62c, a1, a2, a3);
             iVar2 = iVar2 + 1;
         }
     }
@@ -5398,7 +5382,7 @@ int update_active_entries_62c(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * fade_draw_tiles  0x8c0d5d28
- * called by: draw_draw_helper_0d4124, game_draw_with_texture_variant_b, matrix_uses_vram_draw_2187ce_on_handle_0d4428
+ * called by: draw_turn_draw_0d4124, game_draw_with_texture_variant_b, matrix_turn_draw_0d4428
  */
 u32 fade_draw_tiles(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -5446,7 +5430,7 @@ u32 fade_apply_colour_and_draw(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
             (u32)0x8c437840 [2] << 0x10 | 0xff000000 | (u32)0x8c437840 [1] << 8 | (u32) * 0x8c437840, a1, a2, a3);
         g_8c43783c = 0;
     }
-    uVar1 = pvr_draw_235f84(0x8c43786c);
+    uVar1 = pvr_set_fog_density_like(0x8c43786c);
     return uVar1;
 }
 
@@ -5742,11 +5726,10 @@ u32 Class_12c394_ctor_b_wrap(u32 a0) {
 }
 
 /*
- * Class_12c394_vec_0d64a0  0x8c0d64a0
- * area name: sits between Class_12c394 functions (same compilation unit); behaviour name: mostly calls vec functions
+ * Class_12b930_steps_0d64a0  0x8c0d64a0
  * called by: Class_12b580_m1_0e634c, Class_12b758_m1_0e4b5c, Class_12b930_m1_0de1dc
  */
-u32 Class_12c394_vec_0d64a0(u64 *a0, u32 a1, u64 *a2, u64 *a3) {
+u32 Class_12b930_steps_0d64a0(u64 *a0, u32 a1, u64 *a2, u64 *a3) {
     u32 uVar1;
     int iVar2;
     u64 *a5;
@@ -5875,7 +5858,7 @@ u32 Class_12c394_vec_0d64a0(u64 *a0, u32 a1, u64 *a2, u64 *a3) {
             break;
         case 4:
             a2 = a0 + 6;
-            iVar2 = game_vec_0d6d58(a0, a0, a2, a3);
+            iVar2 = Class_12c394_vec_helper_0d6d58(a0, a0, a2, a3);
             if (iVar2 == 4) {
                 *(u32 *)((int)a0 + 100) = 3;
             }
@@ -5887,14 +5870,14 @@ u32 Class_12c394_vec_0d64a0(u64 *a0, u32 a1, u64 *a2, u64 *a3) {
             break;
         case 5:
             a2 = a0 + 6;
-            iVar2 = game_vec_0d6d58(a0, a0, a2, a3);
+            iVar2 = Class_12c394_vec_helper_0d6d58(a0, a0, a2, a3);
             if (iVar2 == 4) {
                 *(u32 *)((int)a0 + 100) = 0;
             }
             break;
         case 6:
             a2 = a0 + 6;
-            iVar2 = game_vec_0d6d58(a0, a0, a2, a3);
+            iVar2 = Class_12c394_vec_helper_0d6d58(a0, a0, a2, a3);
             if (iVar2 == 4) {
                 *(u32 *)((int)a0 + 100) = 0;
             }
@@ -5911,11 +5894,10 @@ u32 Class_12c394_vec_0d64a0(u64 *a0, u32 a1, u64 *a2, u64 *a3) {
 }
 
 /*
- * game_vec_0d66d8  0x8c0d66d8
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
- * called by: Vec3_vec_0d6aac, tank_reset_view_9e8
+ * creature_vec_helper_0d66d8  0x8c0d66d8
+ * called by: Vec3_helper_0d6aac, tank_reset_view_9e8
  */
-u32 game_vec_0d66d8(double *a0, u32 a1, u32 a2, u32 a3) {
+u32 creature_vec_helper_0d66d8(double *a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     float fVar2;
     float fVar6;
@@ -6172,7 +6154,7 @@ u32 tank_motion_clear_30_64(int a0) {
 
 /*
  * tank_set_target_and_map  0x8c0d69a8
- * called by: game_uses_ret_const_140_0dbf90, input_input_helper_0dc28c
+ * called by: game_input_0dbf90, input_poll_0dc28c
  */
 u32 tank_set_target_and_map(int a0, u32 a1, u32 a2, u32 a3) {
     int a5;
@@ -6218,11 +6200,10 @@ u32 tank_camera_clamp_distance(u32 *a0) {
 }
 
 /*
- * Vec3_vec_0d6aac  0x8c0d6aac
- * area name: sits between Vec3 functions (same compilation unit); behaviour name: mostly calls vec functions
+ * Vec3_helper_0d6aac  0x8c0d6aac
  * called by: tank_camera_update, tank_vec_a68_and_timeout_mode6
  */
-u32 Vec3_vec_0d6aac(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Vec3_helper_0d6aac(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_fr1;
     double dVar1;
     double dVar2;
@@ -6343,7 +6324,7 @@ u32 Vec3_vec_0d6aac(int a0, u32 a1, u32 a2, u32 a3) {
             *(double *)(a0 + 0x24) = dVar1;
         }
     }
-    game_vec_0d66d8(a0, a1, a2, a3);
+    creature_vec_helper_0d66d8(a0, a1, a2, a3);
     if (cVar6 == '\0') {
         *(u32 *)(a0 + 0x24) = *(u32 *)(a0 + 0x34);
     } else {
@@ -6370,7 +6351,7 @@ u32 tank_camera_update(int a0, u32 a1, u32 a2, u32 a3) {
 
     cVar4 = '\0';
     cVar3 = '\0';
-    Vec3_vec_0d6aac(a0, a1, a2, a3);
+    Vec3_helper_0d6aac(a0, a1, a2, a3);
     (**(code **)(*(int *)(a0 + 0xe8) + 8))((int *)(a0 + 0xe8), a1, a2, a3);
     if (cVar4 == '\0') {
         dVar1 = (double)CONCAT44(*(u32 *)(a0 + 0x34), (int)in_dr0);
@@ -6445,11 +6426,10 @@ u32 tank_camera_set(u32 *a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_0d6d58  0x8c0d6d58
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
- * called by: Class_12c394_vec_0d64a0
+ * Class_12c394_vec_helper_0d6d58  0x8c0d6d58
+ * called by: Class_12b930_steps_0d64a0
  */
-u32 game_vec_0d6d58(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12c394_vec_helper_0d6d58(int a0, u32 a1, u32 a2, u32 a3) {
     u64 uVar1;
     u32 uVar2;
     u32 ar6_00;
@@ -6627,11 +6607,10 @@ int obj_vec_pair_scalar_dtor(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_rand_0d6fb8  0x8c0d6fb8
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is rand
+ * game_random_0d6fb8  0x8c0d6fb8
  * called by: grid_put_cell_224
  */
-u32 *game_uses_rand_0d6fb8(int *a0, u32 a1, u32 a2, u32 a3) {
+u32 *game_random_0d6fb8(int *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 *puVar2;
     int ar4_00;
@@ -6823,7 +6802,7 @@ u8 *Class_12b930_slide_tick(int a0) {
 
 /*
  * Class_12b930_slide_countdown  0x8c0d723c
- * called by: game_uses_input_track_r_hold_0e1f90
+ * called by: game_sound_talk_input_0e1f90
  */
 int Class_12b930_slide_countdown(int a0) {
     int iVar1;
@@ -6919,7 +6898,7 @@ u32 Class_12b930_reset_slide(int a0, u32 a1, u32 unused_a2, u32 a3) {
 
 /*
  * Class_12b930_draw_tinted_a  0x8c0d7354
- * called by: game_uses_noop_0de6d0
+ * called by: game_turn_move_draw_0de6d0
  */
 u32 Class_12b930_draw_tinted_a(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6940,8 +6919,7 @@ u32 Class_12b930_draw_tinted_a(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * Class_12b930_draw_tinted_b  0x8c0d7410
- * called by: game_uses_Class_12b930_draw_tinted_b_0def78, game_uses_Class_12b930_draw_tinted_b_0df668,
- * game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0deb60
+ * called by: game_turn_draw_0df250, game_turn_draw_0df668, game_turn_move_draw_0deb60, game_turn_move_draw_0def78
  */
 u32 Class_12b930_draw_tinted_b(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -6962,7 +6940,7 @@ u32 Class_12b930_draw_tinted_b(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * Class_12b930_start_slide_30  0x8c0d74cc
- * called by: game_uses_input_track_r_hold_0e1f90
+ * called by: game_sound_talk_input_0e1f90
  */
 u32 Class_12b930_start_slide_30(int a0) {
     u32 in_fr4;
@@ -6983,7 +6961,7 @@ u32 Class_12b930_start_slide_30(int a0) {
 /*
  * chance_play_se_12_start  0x8c0d7508
  * while idle, with a 10% chance plays sound effect 0x12, switches to state 2 and sets +0x2c to 3.0
- * called by: input_uses_edge_detect_update_0e2a14, input_uses_edge_detect_update_0e3210
+ * called by: input_move_sound_input_0e2a14, input_move_sound_input_0e3210
  */
 u32 *chance_play_se_12_start(int a0, u32 a1, u32 a2) {
     u32 *puVar1;
@@ -7419,11 +7397,10 @@ u32 Class_12bea8_copy_wrap(u32 a0) {
 }
 
 /*
- * Class_12b580_uses_libgcc_divide_helper_0d7b60  0x8c0d7b60
- * area name: only called from Class_12b580 methods; behaviour name: its main named callee is
- * libgcc_divide_helper_0103d0 called by: Class_12b580_particle_init
+ * Class_12b580_helper_0d7b60  0x8c0d7b60
+ * called by: Class_12b580_particle_init
  */
-u32 Class_12b580_uses_libgcc_divide_helper_0d7b60(int *a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12b580_helper_0d7b60(int *a0, u32 a1, u32 a2, u32 a3) {
     float fVar1;
     u32 uVar2;
     u32 uVar3;
@@ -7527,7 +7504,7 @@ u32 Class_12b580_uses_libgcc_divide_helper_0d7b60(int *a0, u32 a1, u32 a2, u32 a
 
 /*
  * set_field_2c_to_1  0x8c0d7ca0
- * called by: Class_12b580_uses_libgcc_divide_helper_0d7b60
+ * called by: Class_12b580_helper_0d7b60
  */
 u32 set_field_2c_to_1(int a0) {
     *(u32 *)(a0 + 0x2c) = 1;
@@ -7536,8 +7513,7 @@ u32 set_field_2c_to_1(int a0) {
 
 /*
  * get_field_2c_0d7ca8  0x8c0d7ca8
- * called by: Class_12b580_count_active_particles, Class_12b580_uses_libgcc_divide_helper_0d7b60,
- * Class_12bea8_update_particles
+ * called by: Class_12b580_count_active_particles, Class_12b580_helper_0d7b60, Class_12bea8_update_particles
  */
 u32 get_field_2c_0d7ca8(int a0) {
     return *(u32 *)(a0 + 0x2c);
@@ -7920,7 +7896,7 @@ u32 WEATHRE_UNIT_CreateGraphics(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar2;
 
     uVar1 = 0;
-    game_draw_0d82f0(a0, 0);
+    Class_12b580_helper_0d82f0(a0, 0);
     thunk_FUN_8c20a1d0(0x8c43786c);
     pvr_wrap_20a16e_b(0xfffafafa);
     for (iVar2 = 0; iVar2 < 1; iVar2 = iVar2 + 1) {
@@ -7949,11 +7925,10 @@ u32 WEATHRE_UNIT_CreateGraphics(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_draw_0d82f0  0x8c0d82f0
- * area name: game code; nothing names its area yet; behaviour name: mostly calls draw functions
- * called by: Class_12b580_uses_Class_12b580_particle_init_0d84e8, WEATHRE_UNIT_CreateGraphics, fade_draw_light_grey
+ * Class_12b580_helper_0d82f0  0x8c0d82f0
+ * called by: Class_12b580_draw_0d84e8, WEATHRE_UNIT_CreateGraphics, fade_draw_light_grey
  */
-u32 game_draw_0d82f0(u32 unused_a0, u32 a1) {
+u32 Class_12b580_helper_0d82f0(u32 unused_a0, u32 a1) {
     u32 uVar1;
     u32 in_fr1;
     u64 uVar2;
@@ -8050,7 +8025,7 @@ u32 game_draw_0d82f0(u32 unused_a0, u32 a1) {
             g_8c437c94 = (float)((u64)in_xd0 >> 0x20);
         }
     }
-    uVar1 = pvr_draw_235f84(0x8c43786c);
+    uVar1 = pvr_set_fog_density_like(0x8c43786c);
     return uVar1;
 }
 
@@ -8063,7 +8038,7 @@ u32 fade_draw_light_grey(void) {
     u32 uVar1;
 
     uVar1 = 0;
-    game_draw_0d82f0(r4, 0);
+    Class_12b580_helper_0d82f0(r4, 0);
     thunk_FUN_8c20a1d0(0x8c43786c);
     uVar1 = pvr_wrap_20a16e_b(0xfffafafa);
     return uVar1;
@@ -8136,11 +8111,10 @@ int pack_acquire_entry_if_set(int a0, u32 unused_a1, u32 a2, u32 a3) {
 }
 
 /*
- * Class_12b580_uses_Class_12b580_particle_init_0d84e8  0x8c0d84e8
- * area name: only called from Class_12b580 methods; behaviour name: its main named callee is Class_12b580_particle_init
+ * Class_12b580_draw_0d84e8  0x8c0d84e8
  * called by: Class_12b580_m1_0e634c
  */
-u32 Class_12b580_uses_Class_12b580_particle_init_0d84e8(u32 *a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12b580_draw_0d84e8(u32 *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u64 *puVar2;
     u32 uVar3;
@@ -8161,7 +8135,7 @@ u32 Class_12b580_uses_Class_12b580_particle_init_0d84e8(u32 *a0, u32 a1, u32 a2,
     fVar4 = 0.0;
     Class_12b580_particle_init(a0, a1, a2, a3);
     if (a0[1] == 0) {
-        iVar1 = Class_12b580_vec_0d8aa0(a0, *a0);
+        iVar1 = Class_12b580_helper_0d8aa0(a0, *a0);
         puVar2 = (u64 *)(iVar1 * 0x14 + 0x8c43957c);
         if (cVar7 == '\0') {
             a0[0xe] = *(u32 *)puVar2;
@@ -8234,7 +8208,7 @@ u32 Class_12b580_uses_Class_12b580_particle_init_0d84e8(u32 *a0, u32 a1, u32 a2,
         }
     }
     uVar3 = *a0;
-    game_draw_0d82f0(a0, uVar3);
+    Class_12b580_helper_0d82f0(a0, uVar3);
     if (cVar7 == '\0') {
         fVar4 = (float)((u64)in_dr0 >> 0x20);
     }
@@ -8253,7 +8227,7 @@ u32 Class_12b580_uses_Class_12b580_particle_init_0d84e8(u32 *a0, u32 a1, u32 a2,
 
 /*
  * Class_12b580_particle_init  0x8c0d8710
- * called by: Class_12b580_m2_0e6548, Class_12b580_uses_Class_12b580_particle_init_0d84e8
+ * called by: Class_12b580_draw_0d84e8, Class_12b580_m2_0e6548
  */
 u32 Class_12b580_particle_init(u32 *a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -8265,7 +8239,7 @@ u32 Class_12b580_particle_init(u32 *a0, u32 a1, u32 a2, u32 a3) {
 
     cVar4 = '\0';
     if (*a0 == 0) {
-        Class_12b580_uses_rand_0d8890(a0, a1, a2, a3);
+        Class_12b580_random_steps_0d8890(a0, a1, a2, a3);
     }
     ar5_00 = *a0;
     iVar1 = static_init_437ca8(a0, ar5_00, a2, a3);
@@ -8276,7 +8250,7 @@ u32 Class_12b580_particle_init(u32 *a0, u32 a1, u32 a2, u32 a3) {
         uStack_24 = *(u64 *)(a0 + 0x1b87);
         puVar3 = &uStack_24;
     }
-    Class_12b580_uses_libgcc_divide_helper_0d7b60(a0 + 0x1e, ar5_00, a2, a3);
+    Class_12b580_helper_0d7b60(a0 + 0x1e, ar5_00, a2, a3);
     Class_12bea8_update_particles(a0 + 0x1e, ar5_00, a2, a3);
     if ((iVar1 == 0) || (iVar1 == 1)) {
         a0[1] = 0;
@@ -8323,11 +8297,10 @@ u32 Class_12b580_calc_direction(int a0) {
 }
 
 /*
- * Class_12b580_uses_rand_0d8890  0x8c0d8890
- * area name: only called from Class_12b580 methods; behaviour name: its main named callee is rand
+ * Class_12b580_random_steps_0d8890  0x8c0d8890
  * called by: Class_12b580_particle_init
  */
-u32 Class_12b580_uses_rand_0d8890(int a0, u32 a1, u32 a2, u32 a3) {
+u32 Class_12b580_random_steps_0d8890(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 uVar3;
@@ -8502,11 +8475,10 @@ u32 get_field_10_0d8a98(int a0) {
 }
 
 /*
- * Class_12b580_vec_0d8aa0  0x8c0d8aa0
- * area name: sits between Class_12b580 functions (same compilation unit); behaviour name: mostly calls vec functions
- * called by: Class_12b580_uses_Class_12b580_particle_init_0d84e8
+ * Class_12b580_helper_0d8aa0  0x8c0d8aa0
+ * called by: Class_12b580_draw_0d84e8
  */
-int Class_12b580_vec_0d8aa0(int a0, int a1) {
+int Class_12b580_helper_0d8aa0(int a0, int a1) {
     u32 r6;
     u32 r7;
     int iVar1;
@@ -9405,11 +9377,10 @@ u32 RING_UNIT_CreateModel(int a0, u32 a1, u32 a2) {
 }
 
 /*
- * Class_12b930_state_switch_0d9600  0x8c0d9600
- * area name: only called from Class_12b930 methods; behaviour name: dispatches on a state or mode value (switch)
+ * Class_12b930_random_steps_0d9600  0x8c0d9600
  * called by: Class_12b930_m1_0de1dc, Class_12b930_m3_0de4b0
  */
-u32 *Class_12b930_state_switch_0d9600(int a0, u32 a1, u32 a2) {
+u32 *Class_12b930_random_steps_0d9600(int a0, u32 a1, u32 a2) {
     u32 *puVar1;
     int iVar2;
     float fVar3;
@@ -9525,8 +9496,8 @@ u32 *Class_12b930_state_switch_0d9600(int a0, u32 a1, u32 a2) {
 
 /*
  * draw_item_model_by_kind  0x8c0d9720
- * called by: game_uses_Class_12b930_draw_tinted_b_0def78, game_uses_Class_12b930_draw_tinted_b_0df668,
- * game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60
+ * called by: game_turn_draw_0df250, game_turn_draw_0df668, game_turn_move_draw_0de6d0, game_turn_move_draw_0deb60,
+ * game_turn_move_draw_0def78
  */
 u32 draw_item_model_by_kind(int a0, int a1, u32 a2, u32 a3) {
     u32 uVar1;
@@ -9573,7 +9544,7 @@ u32 CTexture_ReleaseFromVRAM_on_field_20(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * random_wait_reset_on_period  0x8c0d97ec
  * when the a1 counter is a multiple of +0x1c, picks the mode, a random 1-3 value and a new random period below 500
- * called by: Class_12b930_state_switch_0d9600
+ * called by: Class_12b930_random_steps_0d9600
  */
 int random_wait_reset_on_period(int a0, u32 *a1, u32 a2) {
     int iVar1;
@@ -9612,7 +9583,7 @@ int random_wait_reset_on_period(int a0, u32 *a1, u32 a2) {
 
 /*
  * item_set_mode_by_speed  0x8c0d9898
- * called by: game_uses_copy6_to_fields_080e80
+ * called by: game_anim_random_timer_080e80
  */
 int item_set_mode_by_speed(int a0) {
     int iVar1;
@@ -9634,7 +9605,7 @@ int item_set_mode_by_speed(int a0) {
 /*
  * set_fields_10_14_0d98d4  0x8c0d98d4
  * stores +0x10, +0x14
- * called by: game_vec_0593cc, set_fields_10_14_on_field_22704
+ * called by: creature_anim_turn_random_0593cc, set_fields_10_14_on_field_22704
  */
 u32 set_fields_10_14_0d98d4(int a0) {
     *(u32 *)(a0 + 0x10) = 6;
@@ -9696,8 +9667,8 @@ u32 RING_UNIT_ReleaseModel(u32 a0, u32 a1) {
 /*
  * color_set_white_a0  0x8c0d99b8
  * r, g, b = 1.0 and the fourth word 0
- * called by: game_uses_Class_12b930_draw_tinted_b_0def78, game_uses_Class_12b930_draw_tinted_b_0df668,
- * game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60
+ * called by: game_turn_draw_0df250, game_turn_draw_0df668, game_turn_move_draw_0de6d0, game_turn_move_draw_0deb60,
+ * game_turn_move_draw_0def78
  */
 u32 *color_set_white_a0(u32 *a0) {
     *a0 = 0x3f800000;
@@ -10203,7 +10174,7 @@ u32 Class_12bb08_m1_0da338(int a0, int a1, u32 a2) {
     iVar3 = a1;
     ar6_00 = a2;
     ar7_00 = a0;
-    Class_12bb08_uses_get_field_a4_s16_0e9220(a0 + 0xf4c, a1, a2, a0);
+    Class_12bb08_helper_0e9220(a0 + 0xf4c, a1, a2, a0);
     iVar2 = get_field_300_0bf154(a0 + 0xa4);
     g_8c437550 = iVar2;
     if (iVar2 != 0) {
@@ -10219,7 +10190,7 @@ u32 Class_12bb08_m1_0da338(int a0, int a1, u32 a2) {
         for (iVar4 = 0; iVar4 < iVar2; iVar4 = iVar4 + 1) {
             CAnimal_find_item_in_tank(iVar5, a0, ar6_00, ar7_00);
             iVar3 = a0;
-            Class_12bb08_vec_0f43bc(iVar5, a0, ar6_00, ar7_00);
+            Class_12bb08_vec_helper_0f43bc(iVar5, a0, ar6_00, ar7_00);
             iVar5 = list_node_next(iVar5);
         }
         iVar5 = iVar1;
@@ -10272,9 +10243,8 @@ u32 Class_12bb08_is_moving(int a0) {
 /*
  * list_node_next_wrap_0da588  0x8c0da588
  * only calls list_node_next
- * called by: CEnv_item_cursor_next, Class_129974_vec_0db3bc, Class_12b930_m3_0de4b0,
- * Class_12b930_uses_get_field_300_0e0f48, Class_12bb08_m1_0da338, Class_12bb08_m2_0da5a8, call_all_list_64,
- * call_all_list_a8 (+15 more)
+ * called by: CEnv_item_cursor_next, Class_129974_vec_helper_0db3bc, Class_12b580_helper_0da754, Class_12b930_m3_0de4b0,
+ * Class_12b930_move_sound_0e0f48, Class_12bb08_m1_0da338, Class_12bb08_m2_0da5a8, call_all_list_64 (+15 more)
  */
 u32 list_node_next_wrap_0da588(u32 a0) {
     u32 uVar1;
@@ -10300,7 +10270,7 @@ u32 Class_12bb08_m2_0da5a8(int a0, int a1, u32 a2) {
     iVar3 = a1;
     ar6_00 = a2;
     ar7_00 = a0;
-    Class_12bb08_uses_get_field_a4_s16_0e9220(a0 + 0xf4c, a1, a2, a0);
+    Class_12bb08_helper_0e9220(a0 + 0xf4c, a1, a2, a0);
     iVar2 = get_field_300_0bf154(a0 + 0xa4);
     if (iVar2 != 0) {
         iVar5 = iVar1;
@@ -10345,13 +10315,12 @@ u32 Class_12bb08_m2_0da5a8(int a0, int a1, u32 a2) {
 }
 
 /*
- * game_uses_list_node_next_wrap_0da754  0x8c0da754
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is list_node_next_wrap_0da588
- * called by: Class_12b580_draw_with_children, Class_12b758_draw_with_light,
- * game_uses_Class_12b930_draw_tinted_b_0def78, game_uses_Class_12b930_draw_tinted_b_0df668,
- * game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60, tank_rotate_draw_and_list
+ * Class_12b580_helper_0da754  0x8c0da754
+ * called by: Class_12b580_draw_with_children, Class_12b758_draw_with_light, game_turn_draw_0df250,
+ * game_turn_draw_0df668, game_turn_move_draw_0de6d0, game_turn_move_draw_0deb60, game_turn_move_draw_0def78,
+ * tank_rotate_draw_and_list
  */
-u32 game_uses_list_node_next_wrap_0da754(int a0) {
+u32 Class_12b580_helper_0da754(int a0) {
     int ar4_00;
     int iVar1;
     int iVar2;
@@ -10604,11 +10573,10 @@ u32 get_field_4_0dac48(int a0) {
 }
 
 /*
- * CEnv_vec_0dac50  0x8c0dac50
- * area name: sits between CEnv functions (same compilation unit); behaviour name: mostly calls vec functions
- * called by: game_vec_0dfa84
+ * CEnv_vec_helper_0dac50  0x8c0dac50
+ * called by: creature_move_0dfa84
  */
-int CEnv_vec_0dac50(int a0, float *a1, u32 a2, u32 a3) {
+int CEnv_vec_helper_0dac50(int a0, float *a1, u32 a2, u32 a3) {
     int ar4_00;
     int iVar1;
     u32 uVar2;
@@ -10742,7 +10710,7 @@ int tank_items_call_with_sound(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * pure_virtual_stub_wrap_0daf3c  0x8c0daf3c
  * only calls pure_virtual_stub
- * called by: a_button_mic_start_stop_like, game_uses_sound_slot_play_if_open_0e5238, tank_handle_a_release_stop_speech
+ * called by: a_button_mic_start_stop_like, game_sound_input_0e5238, tank_handle_a_release_stop_speech
  */
 u32 pure_virtual_stub_wrap_0daf3c(void) {
     pure_virtual_stub();
@@ -10864,7 +10832,7 @@ u32 noop_0db184(void) {
  * tank_reset_view_9e8  0x8c0db188
  */
 u32 tank_reset_view_9e8(int a0, u32 a1, u32 a2, u32 a3) {
-    game_vec_0d66d8(a0 + 0xa68, a1, a2, a3);
+    creature_vec_helper_0d66d8(a0 + 0xa68, a1, a2, a3);
     set_vec3_field_44(a0 + 0x9e8);
     set_vec_50_fr4_6(a0 + 0x9e8);
     (**(code **)(*(int *)(a0 + 0x9e8) + 0xc))((int *)(a0 + 0x9e8), a1, a2, a3);
@@ -10938,11 +10906,10 @@ u32 Class_129974_play_sound_e_or_d(u32 unused_a0, u32 unused_a1, u32 unused_a2, 
 }
 
 /*
- * Class_129974_vec_0db3bc  0x8c0db3bc
- * area name: sits between Class_129974 functions (same compilation unit); behaviour name: mostly calls vec functions
+ * Class_129974_vec_helper_0db3bc  0x8c0db3bc
  * called by: tank_item_interaction
  */
-int Class_129974_vec_0db3bc(int a0, u32 a1, u32 a2, u32 a3) {
+int Class_129974_vec_helper_0db3bc(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     int iVar2;
     int ar4_00;
@@ -11027,7 +10994,7 @@ int Class_129974_vec_0db3bc(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * list_node_next_wrap_0db580  0x8c0db580
  * only calls list_node_next
- * called by: CWaterTank_check_distance_sound, Class_129974_vec_0db3bc, Class_12b580_m1_0e634c, game_scene_reset,
+ * called by: CWaterTank_check_distance_sound, Class_129974_vec_helper_0db3bc, Class_12b580_m1_0e634c, game_scene_reset,
  * input_list_dispatch_buttons
  */
 u32 list_node_next_wrap_0db580(u32 a0) {
@@ -11039,7 +11006,7 @@ u32 list_node_next_wrap_0db580(u32 a0) {
 
 /*
  * get_field_38_0db5a0  0x8c0db5a0
- * called by: CWaterTank_check_distance_sound, Class_129974_vec_0db3bc, Class_12b580_m1_0e634c, game_scene_reset,
+ * called by: CWaterTank_check_distance_sound, Class_129974_vec_helper_0db3bc, Class_12b580_m1_0e634c, game_scene_reset,
  * get_field_38_wrap, input_list_dispatch_buttons
  */
 u32 get_field_38_0db5a0(int a0) {
@@ -11049,7 +11016,7 @@ u32 get_field_38_0db5a0(int a0) {
 /*
  * get_vec3_field_50_0db5a8  0x8c0db5a8
  * copies the three words at +0x50 to the pointers in a1..a3
- * called by: Class_129974_vec_0db3bc, Class_12b930_m1_0de1dc, game_vec_0db5c4
+ * called by: Class_129974_vec_helper_0db3bc, Class_12b930_m1_0de1dc, creature_turn_0db5c4
  */
 u32 *get_vec3_field_50_0db5a8(int a0, u32 *a1, u32 *a2, u32 *a3) {
     *a1 = *(u32 *)(a0 + 0x50);
@@ -11059,10 +11026,9 @@ u32 *get_vec3_field_50_0db5a8(int a0, u32 *a1, u32 *a2, u32 *a3) {
 }
 
 /*
- * game_vec_0db5c4  0x8c0db5c4
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * creature_turn_0db5c4  0x8c0db5c4
  */
-u32 game_vec_0db5c4(int a0, double *a1, u32 a2, u32 a3) {
+u32 creature_turn_0db5c4(int a0, double *a1, u32 a2, u32 a3) {
     int iVar1;
     u32 ar4_00;
     double *ar5_00;
@@ -11185,7 +11151,7 @@ u32 obj_item_list_a4_delete(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * obj_node_list_delete_get_8  0x8c0db790
- * called by: game_uses_sound_slot_play_if_open_0e5238
+ * called by: game_sound_input_0e5238
  */
 u32 obj_node_list_delete_get_8(int a0, int a1, u32 a2, u32 a3) {
     int iVar1;
@@ -11197,8 +11163,7 @@ u32 obj_node_list_delete_get_8(int a0, int a1, u32 a2, u32 a3) {
 /*
  * get_field_38_wrap  0x8c0db7d4
  * only calls get_field_38_0db5a0
- * called by: CWaterTank_ramp_and_decay, Class_12b930_uses_get_field_300_0e0f48,
- * game_uses_sound_slot_play_if_open_0e5238
+ * called by: CWaterTank_ramp_and_decay, Class_12b930_move_sound_0e0f48, game_sound_input_0e5238
  */
 u32 get_field_38_wrap(int a0, int a1) {
     u32 uVar1;
@@ -11291,7 +11256,7 @@ u32 game_clear_node_and_item_lists(int a0, u32 *a1, u32 a2, u32 a3) {
 /*
  * start_free_entry_0c0c  0x8c0dba50
  * starts the first free of eight 0x68-byte entries at +0xc0c from points a1 and a2; 0 when all are busy
- * called by: game_uses_Vec3_dtor_082c50, game_vec_03c94c
+ * called by: creature_state_dispatch_03c94c, game_anim_turn_random_082c50
  */
 u32 start_free_entry_0c0c(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -11431,9 +11396,8 @@ u32 tank_items_assign_all(int a0, u32 unused_a1, u32 a2, u32 a3) {
 /*
  * rotate_degrees_7c_on_field_9e8  0x8c0dbdf4
  * calls rotate_degrees_7c on the member at +0x9e8
- * called by: Class_12b580_draw_with_children, Class_12b758_draw_with_light,
- * game_uses_Class_12b930_draw_tinted_b_0def78, game_uses_Class_12b930_draw_tinted_b_0df668,
- * game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60,
+ * called by: Class_12b580_draw_with_children, Class_12b758_draw_with_light, game_turn_draw_0df250,
+ * game_turn_draw_0df668, game_turn_move_draw_0de6d0, game_turn_move_draw_0deb60, game_turn_move_draw_0def78,
  * tank_enter_mode5_reset_view (+3 more)
  */
 u32 rotate_degrees_7c_on_field_9e8(int a0) {
@@ -11445,7 +11409,7 @@ u32 rotate_degrees_7c_on_field_9e8(int a0) {
 
 /*
  * tank_items_average_position  0x8c0dbe24
- * called by: CEnv_vec_0dac50
+ * called by: CEnv_vec_helper_0dac50
  */
 u32 tank_items_average_position(int a0, u32 a1, u64 *a2, int a3) {
     u64 uVar1;
@@ -11521,10 +11485,9 @@ int field_ptr_30(int a0) {
 }
 
 /*
- * game_uses_ret_const_140_0dbf90  0x8c0dbf90
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is ret_const_140
+ * game_input_0dbf90  0x8c0dbf90
  */
-u32 game_uses_ret_const_140_0dbf90(int *a0, int *a1, u32 a2, u32 a3) {
+u32 game_input_0dbf90(int *a0, int *a1, u32 a2, u32 a3) {
     int iVar1;
     int *piVar2;
     float fVar3;
@@ -11751,7 +11714,7 @@ u32 game_uses_ret_const_140_0dbf90(int *a0, int *a1, u32 a2, u32 a3) {
 /*
  * input_y_pressed_wrap  0x8c0dc244
  * only calls input_y_pressed
- * called by: game_uses_ret_const_140_0dbf90
+ * called by: game_input_0dbf90
  */
 u32 input_y_pressed_wrap(int a0) {
     u32 uVar1;
@@ -11762,7 +11725,7 @@ u32 input_y_pressed_wrap(int a0) {
 
 /*
  * ret_const_13c  0x8c0dc26c
- * called by: game_uses_ret_const_140_0dbf90, input_uses_ret_const_140_0e28a0
+ * called by: game_input_0dbf90, input_poll_0e28a0
  */
 u32 ret_const_13c(void) {
     return 0x13c;
@@ -11770,17 +11733,16 @@ u32 ret_const_13c(void) {
 
 /*
  * ret_const_140  0x8c0dc27c
- * called by: game_uses_ret_const_140_0dbf90, input_uses_ret_const_140_0e28a0
+ * called by: game_input_0dbf90, input_poll_0e28a0
  */
 u32 ret_const_140(void) {
     return 0x140;
 }
 
 /*
- * input_input_helper_0dc28c  0x8c0dc28c
- * area name: sits between input functions (same compilation unit); behaviour name: mostly calls input functions
+ * input_poll_0dc28c  0x8c0dc28c
  */
-u32 input_input_helper_0dc28c(int *a0, int *a1, u32 a2, u32 a3) {
+u32 input_poll_0dc28c(int *a0, int *a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int *piVar3;
@@ -11902,7 +11864,7 @@ u32 input_input_helper_0dc28c(int *a0, int *a1, u32 a2, u32 a3) {
 /*
  * input_y_pressed_wrap_0dc520  0x8c0dc520
  * only calls input_y_pressed
- * called by: input_input_helper_0dc28c
+ * called by: input_poll_0dc28c
  */
 u32 input_y_pressed_wrap_0dc520(int a0) {
     u32 uVar1;
@@ -11921,7 +11883,7 @@ u32 ret_const_1_0dc548(void) {
 
 /*
  * tank_view_reset_on_no_lr  0x8c0dc558
- * called by: input_uses_ret_const_140_0e28a0
+ * called by: input_poll_0e28a0
  */
 u32 tank_view_reset_on_no_lr(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -11953,7 +11915,7 @@ u32 input_not_l_and_r(int a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * tank_item_interaction  0x8c0dc61c
- * called by: env_handle_input, game_uses_input_track_r_hold_0e1f90
+ * called by: env_handle_input, game_sound_talk_input_0e1f90
  */
 int tank_item_interaction(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
@@ -11963,7 +11925,7 @@ int tank_item_interaction(int a0, u32 a1, u32 a2, u32 a3) {
 
     uVar3 = a1;
     if (*(int *)(0x9d4 + a0) == 0) {
-        iVar1 = Class_129974_vec_0db3bc(a0, a1, a2, a3);
+        iVar1 = Class_129974_vec_helper_0db3bc(a0, a1, a2, a3);
         if (iVar1 != 0) {
             uVar3 = 0;
             (**(code **)(0x84 + *(int *)(iVar1 + 8)))(iVar1, 0, a2, a3);
@@ -12028,8 +11990,7 @@ u32 input_a_held_wrap(int a0) {
 
 /*
  * tank_handle_circle_gesture  0x8c0dc7e8
- * called by: env_handle_input, game_items_handle_input, game_uses_input_track_r_hold_0e1f90,
- * input_uses_get_field_24_0e25c0
+ * called by: env_handle_input, game_items_handle_input, game_sound_talk_input_0e1f90, input_sound_talk_input_0e25c0
  */
 int tank_handle_circle_gesture(int a0, u32 *a1, u32 *a2, u32 a3) {
     int iVar1;
@@ -12065,8 +12026,7 @@ int tank_handle_circle_gesture(int a0, u32 *a1, u32 *a2, u32 a3) {
 
 /*
  * input_list_dispatch_buttons  0x8c0dc8fc
- * called by: env_handle_input, game_items_handle_input, game_uses_input_track_r_hold_0e1f90,
- * input_uses_get_field_24_0e25c0
+ * called by: env_handle_input, game_items_handle_input, game_sound_talk_input_0e1f90, input_sound_talk_input_0e25c0
  */
 int input_list_dispatch_buttons(int a0, u32 a1, u32 a2, u32 a3) {
     int ar4_00;
@@ -12091,7 +12051,7 @@ int input_list_dispatch_buttons(int a0, u32 a1, u32 a2, u32 a3) {
 /*
  * input_stick_with_x_dispatch  0x8c0dc990
  * runs the up/down and right/left handlers for stick moves made while X is held
- * called by: game_uses_ret_const_140_0dbf90, input_input_helper_0dc28c
+ * called by: game_input_0dbf90, input_poll_0dc28c
  */
 int input_stick_with_x_dispatch(u32 unused_a0, u32 a1) {
     int iVar1;
@@ -12118,13 +12078,13 @@ int input_stick_with_x_dispatch(u32 unused_a0, u32 a1) {
 
 /*
  * tank_vec_a68_and_timeout_mode6  0x8c0dca2c
- * called by: game_uses_sound_slot_play_if_open_0e5238, input_input_helper_0dc28c
+ * called by: game_sound_input_0e5238, input_poll_0dc28c
  */
 u32 tank_vec_a68_and_timeout_mode6(int a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     uVar1 = a1;
-    Vec3_vec_0d6aac(a0 + 0xa68, a1, a2, a3);
+    Vec3_helper_0d6aac(a0 + 0xa68, a1, a2, a3);
     uVar1 = set_timeout_120_mode6(a1);
     return uVar1;
 }
@@ -13039,7 +12999,7 @@ u32 CWaterTank_create_stage_and_camera(int a0, u32 a1, u32 a2, u32 a3) {
     } else {
         uStack_20 = CONCAT44(extraout_fr0, extraout_fr1);
     }
-    CWaterTank_uses_Class_12c394_m0_0d4e88(a0 + 0x10ac, (u8 *)((int)register0x0000003c + -0x1c));
+    CWaterTank_helper_0d4e88(a0 + 0x10ac, (u8 *)((int)register0x0000003c + -0x1c));
     ar5_00 = 0xffffffff;
     Vec3_dtor((u8 *)((int)register0x0000003c + -0x1c), 0xffffffff, ar6_00, a3);
     if ((*(int *)(a0 + 0x22810) == 1) || (*(int *)(a0 + 0x22814) == 1)) {
@@ -13138,13 +13098,13 @@ u32 Class_12b930_m1_0de1dc(int a0, int a1, u8 *a2, u8 *a3) {
     Class_12b930_panel_slide_tick(a0);
     tank_device_sound_update(a0 + 0x13b24, iVar2, ar6_00, a3);
     iVar2 = a1;
-    Class_12b930_state_switch_0d9600(a0 + 0x22704, a1, ar6_00);
+    Class_12b930_random_steps_0d9600(a0 + 0x22704, a1, ar6_00);
     get_field_a0_035724(a1, iVar2);
     pure_virtual_stub();
     Class_12bb08_m1_0da338(a0, a1, a2);
     iVar2 = a0 + 0x10ac;
     static_init_vec3s_438274(a0, iVar2, a2, a3);
-    Class_12c394_vec_0d64a0(a0 + 0xa68, iVar2, a2, a3);
+    Class_12b930_steps_0d64a0(a0 + 0xa68, iVar2, a2, a3);
     tank_items_assign_all(a0, iVar2, a2, a3);
     clear_field_48(a0 + 0x13b24);
     Vec3_dtor(auStack_30, 0xffffffff, a2, a3);
@@ -13165,7 +13125,7 @@ u32 Class_12b930_m2_0de3d4(int a0, u32 a1, u32 a2, u32 a3) {
     for (iVar1 = 0; iVar1 < 3; iVar1 = iVar1 + 1) {
         Class_12b930_slide_tick(a0 + iVar1 * 0x16c + 0x22d48);
     }
-    Class_12b930_uses_libgcc_divide_helper_0d02c8(a0 + 0x13b24, ar5_00, ar6_00);
+    Class_12b930_helper_0d02c8(a0 + 0x13b24, ar5_00, ar6_00);
     iVar1 = a0 + 0x22eb4;
     Class_12b930_update_active_slots(a0 + 0x10ac, iVar1, ar6_00, a3);
     get_field_a0_035724(a1, iVar1);
@@ -13198,7 +13158,7 @@ u32 Class_12b930_m3_0de4b0(int a0, int a1, u32 a2, int a3) {
     tank_device_sound_update(a0 + 0x13b24, iVar4, uVar3, a3);
     static_init_4374c8(a0 + 0x13b8c, iVar4, uVar3, a3);
     iVar4 = a1;
-    Class_12b930_state_switch_0d9600(a0 + 0x22704, a1, uVar3);
+    Class_12b930_random_steps_0d9600(a0 + 0x22704, a1, uVar3);
     set_float_c_nonneg(a0 + 0x13b24, iVar4, uVar3, a3, in_stack_ffffffb8);
     set_field_c_nonneg(a0 + 0x13b70, iVar4, uVar3, a3, in_stack_ffffffb8);
     iVar6 = a4;
@@ -13270,10 +13230,9 @@ u32 set_float_c_nonneg(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 
 }
 
 /*
- * game_uses_noop_0de6d0  0x8c0de6d0
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is noop_0bf11c
+ * game_turn_move_draw_0de6d0  0x8c0de6d0
  */
-u32 game_uses_noop_0de6d0(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_turn_move_draw_0de6d0(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -13320,10 +13279,10 @@ u32 game_uses_noop_0de6d0(int a0, u32 a1, u32 a2, u32 a3) {
                 fVar6 = fStack_38;
             }
             fStack_38 = fVar6;
-            Class_12b758_uses_sprintf_0d1858(&g_8c13f3b0);
+            Class_12b758_draw_0d1858(&g_8c13f3b0);
         } else if (*(int *)(a0 + 0x1020) == 1) {
             noop_0bf11c(a0 + 0x13b70, a1, a2, a3, in_stack_ffffff98);
-            Class_12b758_uses_sprintf_0d1858(&g_8c13f400);
+            Class_12b758_draw_0d1858(&g_8c13f400);
         }
     }
     uVar2 = (u32)in_dr0;
@@ -13331,7 +13290,7 @@ u32 game_uses_noop_0de6d0(int a0, u32 a1, u32 a2, u32 a3) {
     iVar3 = a0 + 0xa68;
     Vec3_ctor_copy(auStack_30, iVar3, a2, a3);
     noop_0bf11c(a0 + 0x13b70, iVar3, a2, a3, in_stack_ffffff98);
-    CWaterTank_uses_Class_12c394_m0_0d4e88(a0 + 0x10ac, auStack_30);
+    CWaterTank_helper_0d4e88(a0 + 0x10ac, auStack_30);
     Vec3_dtor(auStack_30, 0xffffffff, a2, a3);
     iVar4 = a0 + 0x7c;
     iVar3 = a0 + 0x78;
@@ -13357,10 +13316,10 @@ u32 game_uses_noop_0de6d0(int a0, u32 a1, u32 a2, u32 a3) {
     iStack_14 = iVar3;
     puVar5 = &uStack_20;
     draw_set_alpha_by_distance(a0 + 0x10ac, puVar5, iVar4, a3);
-    Vec3_uses_gfxlib_set_vec_0e3f24(a0);
+    Vec3_helper_0e3f24(a0);
     puVar5 = &uStack_20;
     iVar3 = a0 + 0x22d48;
-    draw_draw_helper_0d4124(a0 + 0x10ac, iVar3, puVar5, a3);
+    draw_turn_draw_0d4124(a0 + 0x10ac, iVar3, puVar5, a3);
     if (cVar10 == '\0') {
         g_8c437e10 = CONCAT44(g_8c437e14, (int)((u64)uVar7 >> 0x20));
         uVar7 = g_8c437e10;
@@ -13467,15 +13426,15 @@ u32 game_uses_noop_0de6d0(int a0, u32 a1, u32 a2, u32 a3) {
             Class_12b580_draw_at_pose(a0 + iVar4 * 0x68 + 0xc0c, iVar3, puVar5);
         }
     }
-    game_uses_list_node_next_wrap_0da754(a0);
+    Class_12b580_helper_0da754(a0);
     uVar2 = free_if_nonnull_wrap_0deb30(&uStack_20, 0xffffffff, puVar5, a3);
     return uVar2;
 }
 
 /*
  * free_if_nonnull_wrap_0deb30  0x8c0deb30
- * called by: game_uses_Class_12b930_draw_tinted_b_0def78, game_uses_Class_12b930_draw_tinted_b_0df668,
- * game_uses_matrix_apply_point_w1_wrap_0df250, game_uses_noop_0de6d0, game_uses_noop_0deb60
+ * called by: game_turn_draw_0df250, game_turn_draw_0df668, game_turn_move_draw_0de6d0, game_turn_move_draw_0deb60,
+ * game_turn_move_draw_0def78
  */
 int free_if_nonnull_wrap_0deb30(int a0, u32 a1, u32 a2, u32 a3) {
     u32 in_stack_fffffff4;
@@ -13487,10 +13446,9 @@ int free_if_nonnull_wrap_0deb30(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_uses_noop_0deb60  0x8c0deb60
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is noop_0bf11c
+ * game_turn_move_draw_0deb60  0x8c0deb60
  */
-u32 game_uses_noop_0deb60(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_turn_move_draw_0deb60(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -13527,10 +13485,10 @@ u32 game_uses_noop_0deb60(int a0, u32 a1, u32 a2, u32 a3) {
                 fVar6 = fStack_38;
             }
             fStack_38 = fVar6;
-            Class_12b758_uses_sprintf_0d1858(&g_8c13f3b0);
+            Class_12b758_draw_0d1858(&g_8c13f3b0);
         } else if (*(int *)(a0 + 0x1020) == 1) {
             noop_0bf11c(a0 + 0x13b70, a1, a2, a3, in_stack_ffffff98);
-            Class_12b758_uses_sprintf_0d1858(&g_8c13f400);
+            Class_12b758_draw_0d1858(&g_8c13f400);
         }
     }
     uVar2 = (u32)in_dr0;
@@ -13538,7 +13496,7 @@ u32 game_uses_noop_0deb60(int a0, u32 a1, u32 a2, u32 a3) {
     iVar3 = a0 + 0xa68;
     Vec3_ctor_copy(auStack_30, iVar3, a2, a3);
     noop_0bf11c(a0 + 0x13b70, iVar3, a2, a3, in_stack_ffffff98);
-    CWaterTank_uses_Class_12c394_m0_0d4e88(a0 + 0x10ac, auStack_30);
+    CWaterTank_helper_0d4e88(a0 + 0x10ac, auStack_30);
     Vec3_dtor(auStack_30, 0xffffffff, a2, a3);
     iVar4 = a0 + 0x7c;
     iVar3 = a0 + 0x78;
@@ -13564,10 +13522,10 @@ u32 game_uses_noop_0deb60(int a0, u32 a1, u32 a2, u32 a3) {
     iStack_14 = iVar3;
     puVar5 = &uStack_20;
     draw_set_alpha_by_distance(a0 + 0x10ac, puVar5, iVar4, a3);
-    Vec3_uses_gfxlib_set_vec_0e3f24(a0);
+    Vec3_helper_0e3f24(a0);
     puVar5 = &uStack_20;
     iVar3 = a0 + 0x22d48;
-    matrix_uses_vram_draw_2187ce_on_handle_0d4428(a0 + 0x10ac, iVar3, puVar5, a3);
+    matrix_turn_draw_0d4428(a0 + 0x10ac, iVar3, puVar5, a3);
     if (cVar10 == '\0') {
         g_8c437f34 = CONCAT44(DAT_8c437f34_4, (int)((u64)uVar7 >> 0x20));
         uVar7 = g_8c437f34;
@@ -13674,16 +13632,15 @@ u32 game_uses_noop_0deb60(int a0, u32 a1, u32 a2, u32 a3) {
             Class_12b580_draw_at_pose(a0 + iVar4 * 0x68 + 0xc0c, iVar3, puVar5);
         }
     }
-    game_uses_list_node_next_wrap_0da754(a0);
+    Class_12b580_helper_0da754(a0);
     uVar2 = free_if_nonnull_wrap_0deb30(&uStack_20, 0xffffffff, puVar5, a3);
     return uVar2;
 }
 
 /*
- * game_uses_Class_12b930_draw_tinted_b_0def78  0x8c0def78
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is Class_12b930_draw_tinted_b
+ * game_turn_move_draw_0def78  0x8c0def78
  */
-u32 game_uses_Class_12b930_draw_tinted_b_0def78(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_turn_move_draw_0def78(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -13714,10 +13671,10 @@ u32 game_uses_Class_12b930_draw_tinted_b_0def78(int a0, u32 a1, u32 a2, u32 a3) 
                 uVar2 = auStack_2c[0];
             }
             auStack_2c[0] = uVar2;
-            Class_12b758_uses_sprintf_0d1858(&g_8c13f3b0);
+            Class_12b758_draw_0d1858(&g_8c13f3b0);
         } else if (*(int *)(a0 + 0x1020) == 1) {
             noop_0bf11c(a0 + 0x13b70, a1, a2, a3, in_stack_ffffffb8);
-            Class_12b758_uses_sprintf_0d1858(&g_8c13f400);
+            Class_12b758_draw_0d1858(&g_8c13f400);
         }
     }
     uVar2 = (u32)in_dr0;
@@ -13725,7 +13682,7 @@ u32 game_uses_Class_12b930_draw_tinted_b_0def78(int a0, u32 a1, u32 a2, u32 a3) 
     iVar3 = a0 + 0xa68;
     Vec3_ctor_copy(auStack_2c, iVar3, a2, a3);
     noop_0bf11c(a0 + 0x13b70, iVar3, a2, a3, in_stack_ffffffb8);
-    CWaterTank_uses_Class_12c394_m0_0d4e88(a0 + 0x10ac, auStack_2c);
+    CWaterTank_helper_0d4e88(a0 + 0x10ac, auStack_2c);
     Vec3_dtor(auStack_2c, 0xffffffff, a2, a3);
     iVar3 = a0 + 0x7c;
     tank_get_light_pair_by_flags(a0, a0 + 0x78, iVar3);
@@ -13743,7 +13700,7 @@ u32 game_uses_Class_12b930_draw_tinted_b_0def78(int a0, u32 a1, u32 a2, u32 a3) 
     iStack_10 = a0 + 0xa68;
     puVar4 = &uStack_1c;
     draw_set_alpha_by_distance(a0 + 0x10ac, puVar4, iVar3, a3);
-    Vec3_uses_gfxlib_set_vec_0e3f24(a0);
+    Vec3_helper_0e3f24(a0);
     puVar4 = &uStack_1c;
     iVar3 = a0 + 0x22d48;
     game_draw_with_texture_variant_b(a0 + 0x10ac, iVar3, puVar4, a3);
@@ -13770,16 +13727,15 @@ u32 game_uses_Class_12b930_draw_tinted_b_0def78(int a0, u32 a1, u32 a2, u32 a3) 
             Class_12b580_draw_at_pose(a0 + iVar5 * 0x68 + 0xc0c, iVar3, puVar4);
         }
     }
-    game_uses_list_node_next_wrap_0da754(a0);
+    Class_12b580_helper_0da754(a0);
     uVar2 = free_if_nonnull_wrap_0deb30(&uStack_1c, 0xffffffff, puVar4, a3);
     return uVar2;
 }
 
 /*
- * game_uses_matrix_apply_point_w1_wrap_0df250  0x8c0df250
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is matrix_apply_point_w1_wrap
+ * game_turn_draw_0df250  0x8c0df250
  */
-u32 game_uses_matrix_apply_point_w1_wrap_0df250(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_turn_draw_0df250(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -13834,10 +13790,10 @@ u32 game_uses_matrix_apply_point_w1_wrap_0df250(int a0, u32 a1, u32 a2, u32 a3) 
                 fVar6 = fStack_38;
             }
             fStack_38 = fVar6;
-            Class_12b758_uses_sprintf_0d1858(&g_8c13f3d8);
+            Class_12b758_draw_0d1858(&g_8c13f3d8);
         } else if (*(int *)(a0 + 0x1020) == 4) {
             ret_const_eb40(a0 + 0x13b8c, a1, a2, a3);
-            Class_12b758_uses_sprintf_0d1858(&g_8c13f428);
+            Class_12b758_draw_0d1858(&g_8c13f428);
         }
     }
     uVar2 = (u32)uVar7;
@@ -13857,7 +13813,7 @@ u32 game_uses_matrix_apply_point_w1_wrap_0df250(int a0, u32 a1, u32 a2, u32 a3) 
     iStack_14 = a0 + 0xa68;
     puVar3 = &uStack_20;
     draw_with_colour_80ffffff(a0 + 0x10ac, puVar3, iVar4, a3);
-    Vec3_uses_gfxlib_set_vec_0e3f24(a0);
+    Vec3_helper_0e3f24(a0);
     puVar3 = &uStack_20;
     mesh_swap_vertex_slot(a0 + 0x10ac, puVar3, iVar4, a3);
     if (cVar11 == '\0') {
@@ -13958,7 +13914,7 @@ u32 game_uses_matrix_apply_point_w1_wrap_0df250(int a0, u32 a1, u32 a2, u32 a3) 
         game_draw_0e4198(a0, puVar3, iVar4, a3);
     }
     draw_item_model_by_kind(a0 + 0x22704, puVar3, iVar4, a3);
-    game_uses_obj_set_texlist_0d1168(a0 + 0x13b8c, puVar3, iVar4);
+    game_draw_0d1168(a0 + 0x13b8c, puVar3, iVar4);
     for (iVar5 = 0; iVar5 < 8; iVar5 = iVar5 + 1) {
         iVar1 = has_field_2c(a0 + iVar5 * 0x68 + 0xc0c);
         if (iVar1 == 1) {
@@ -13967,17 +13923,16 @@ u32 game_uses_matrix_apply_point_w1_wrap_0df250(int a0, u32 a1, u32 a2, u32 a3) 
             Class_12b580_draw_at_pose(a0 + iVar5 * 0x68 + 0xc0c, puVar3, iVar4);
         }
     }
-    game_uses_list_node_next_wrap_0da754(a0);
+    Class_12b580_helper_0da754(a0);
     Vec3_dtor(&uStack_30, 0xffffffff, iVar4, a3);
     uVar2 = free_if_nonnull_wrap_0deb30(&uStack_20, 0xffffffff, iVar4, a3);
     return uVar2;
 }
 
 /*
- * game_uses_Class_12b930_draw_tinted_b_0df668  0x8c0df668
- * area name: game code; nothing names its area yet; behaviour name: its main named callee is Class_12b930_draw_tinted_b
+ * game_turn_draw_0df668  0x8c0df668
  */
-u32 game_uses_Class_12b930_draw_tinted_b_0df668(int a0, u32 a1, u32 a2, u32 a3) {
+u32 game_turn_draw_0df668(int a0, u32 a1, u32 a2, u32 a3) {
     int iVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -14035,7 +13990,7 @@ u32 game_uses_Class_12b930_draw_tinted_b_0df668(int a0, u32 a1, u32 a2, u32 a3) 
     iStack_10 = a0 + 0xa68;
     puVar3 = &uStack_1c;
     draw_with_colour_80ffffff(a0 + 0x10ac, puVar3, iVar4, a3);
-    Vec3_uses_gfxlib_set_vec_0e3f24(a0);
+    Vec3_helper_0e3f24(a0);
     puVar3 = &uStack_1c;
     mesh_swap_vertex_slot(a0 + 0x10ac, puVar3, iVar4, a3);
     if (cVar8 == '\0') {
@@ -14049,7 +14004,7 @@ u32 game_uses_Class_12b930_draw_tinted_b_0df668(int a0, u32 a1, u32 a2, u32 a3) 
     Class_12b930_draw_tinted_b(a0 + 0x22d48, puVar3, iVar4, a3);
     Class_12b930_draw_tinted_b(a0 + 0x22eb4, puVar3, iVar4, a3);
     Class_12b930_draw_tinted_b(a0 + 0x23020, puVar3, iVar4, a3);
-    game_uses_obj_set_texlist_0d1168(a0 + 0x13b8c, puVar3, iVar4);
+    game_draw_0d1168(a0 + 0x13b8c, puVar3, iVar4);
     draw_texlist_model_b(a0 + 0x13b24, puVar3, iVar4, a3);
     ar5_00 = a0 + 0x226f8;
     game_draw_0e4198(a0, ar5_00, iVar4, a3);
@@ -14062,7 +14017,7 @@ u32 game_uses_Class_12b930_draw_tinted_b_0df668(int a0, u32 a1, u32 a2, u32 a3) 
             Class_12b580_draw_at_pose(a0 + iVar5 * 0x68 + 0xc0c, ar5_00, iVar4);
         }
     }
-    game_uses_list_node_next_wrap_0da754(a0);
+    Class_12b580_helper_0da754(a0);
     Vec3_dtor(&uStack_2c, 0xffffffff, iVar4, a3);
     uVar2 = free_if_nonnull_wrap_0deb30(&uStack_1c, 0xffffffff, iVar4, a3);
     return uVar2;
@@ -14131,10 +14086,9 @@ u32 tank_copy_position_a(int *a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * game_vec_0dfa84  0x8c0dfa84
- * area name: game code; nothing names its area yet; behaviour name: mostly calls vec functions
+ * creature_move_0dfa84  0x8c0dfa84
  */
-u32 game_vec_0dfa84(int a0, u32 *a1, u8 *a2, u8 *a3) {
+u32 creature_move_0dfa84(int a0, u32 *a1, u8 *a2, u8 *a3) {
     u32 uVar1;
     u32 *ar5_00;
     int iVar2;
@@ -14160,7 +14114,7 @@ u32 game_vec_0dfa84(int a0, u32 *a1, u8 *a2, u8 *a3) {
     iVar3 = 0;
     iVar2 = 0;
     if (*(int *)(a0 + 0x9d8) == 0) {
-        iVar2 = CEnv_vec_0dac50(a0, a1, a2, a3);
+        iVar2 = CEnv_vec_helper_0dac50(a0, a1, a2, a3);
     }
     if (iVar2 == 0) {
         if (cVar8 == '\0') {
@@ -14330,7 +14284,7 @@ u32 tank_handle_a_release_stop_speech(u32 unused_a0, u32 a1) {
 
 /*
  * get_field_cc_0dfee8  0x8c0dfee8
- * called by: a_button_mic_start_stop_like, game_uses_input_track_r_hold_0e1f90, input_uses_get_field_24_0e25c0,
+ * called by: a_button_mic_start_stop_like, game_sound_talk_input_0e1f90, input_sound_talk_input_0e25c0,
  * tank_handle_a_release_stop_speech
  */
 u32 get_field_cc_0dfee8(int a0) {
@@ -14363,7 +14317,7 @@ u32 tank_reset_items_and_view(int *a0, u32 a1, u32 a2, u32 a3) {
     vec3_copy_self_to_30_clear_60((int)a0 + 0xa68, uVar2, a2, a3);
     rotate_degrees_7c_on_field_9e8(a0);
     *(u32 *)(0x1020 + (int)a0) = 0;
-    Vec3_uses_gfxlib_set_vec_0e3f24(a0);
+    Vec3_helper_0e3f24(a0);
     uVar2 = a1;
     se_play_bubble_or_ike((int)a0 + 0x10ac, a1, a2, a3);
     if ((a1 & 0xff) < 2) {

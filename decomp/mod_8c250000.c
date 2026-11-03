@@ -4,12 +4,11 @@
 #include "globals.h"
 
 /*
- * gfxlib_uses_float_to_color_u8_250144  0x8c250144
- * area name: in the gfxlib library code range; behaviour name: its main named callee is float_to_color_u8
- * called by: ninja_draw_2536a8
+ * gfxlib_polygon_chunk_flat_shade_d  0x8c250144
+ * called by: ninja_draw_polygon_chunks
  * decompiler: Heritage AFTER dead removal. Example location: r0x8c4c2630 : 0x8c250546
  */
-u32 gfxlib_uses_float_to_color_u8_250144(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
+u32 gfxlib_polygon_chunk_flat_shade_d(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
     u16 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -258,7 +257,7 @@ u32 gfxlib_uses_float_to_color_u8_250144(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
                     fStack_24 = fVar29;
                 }
                 puVar13 = &uStack_30;
-                gfxlib_draw_23bae2(&g_8c4c2620, puVar13, puVar12, iStack_54);
+                gfxlib_call_hooks_with_args(&g_8c4c2620, puVar13, puVar12, iStack_54);
                 uVar30 = SUB84(dVar23, 0);
                 dVar23 = g_8c4c2624;
                 if (cVar37 == '\0') {
@@ -592,7 +591,7 @@ u32 gfxlib_uses_float_to_color_u8_250144(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
                     fStack_24 = fVar29;
                 }
                 puVar13 = &uStack_30;
-                gfxlib_draw_23bae2(&g_8c4c2620, puVar13, puVar12, uStack_4c);
+                gfxlib_call_hooks_with_args(&g_8c4c2620, puVar13, puVar12, uStack_4c);
                 uVar30 = SUB84(dVar23, 0);
                 uVar3 = float_to_color_u8(puVar11, puVar13, puVar12, uStack_4c);
                 uVar7 = g_8c4c2630;
@@ -1029,7 +1028,7 @@ u32 gfxlib_uses_float_to_color_u8_250144(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
                     fStack_24 = (float)((u64)in_xd2 >> 0x20);
                 }
                 puVar13 = &uStack_30;
-                gfxlib_draw_23bae2(&g_8c4c2620, puVar13, ar6_01, uStack_48);
+                gfxlib_call_hooks_with_args(&g_8c4c2620, puVar13, ar6_01, uStack_48);
                 uVar7 = float_to_color_u8(puVar12, puVar13, ar6_01, uStack_48);
                 uVar30 = g_8c4c2630;
                 if (cVar37 == '\0') {
@@ -1294,9 +1293,9 @@ u32 gfxlib_uses_float_to_color_u8_250144(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
         }
     } else if (uVar2 == 0xc000) {
         if ((g_8c4ab308 & 0x800000) == 0) {
-            pcVar9 = gfxlib_uses_float_to_color_u8_241722;
+            pcVar9 = gfxlib_vertex_colour_kernel_n;
         } else {
-            pcVar9 = gfxlib_uses_float_to_color_u8_24149e;
+            pcVar9 = gfxlib_vertex_colour_kernel_m;
         }
         uVar2 = (*pcVar9)(a0, uVar1 & 0x3fff, a2, a3);
     }
@@ -1305,7 +1304,7 @@ u32 gfxlib_uses_float_to_color_u8_250144(u16 *a0, u32 unused_a1, u32 a2, u32 a3)
 
 /*
  * vram_250a54  0x8c250a54
- * called by: ninja_draw_2536a8
+ * called by: ninja_draw_polygon_chunks
  * decompiler: Heritage AFTER dead removal. Example location: r0x8c4c262c : 0x8c250fb4
  */
 u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
@@ -1579,7 +1578,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                         fStack_28 = fVar34;
                     }
                     puVar13 = &uStack_34;
-                    gfxlib_draw_23bae2(&g_8c4c2620, puVar13, puVar16, iStack_5c);
+                    gfxlib_call_hooks_with_args(&g_8c4c2620, puVar13, puVar16, iStack_5c);
                     uVar37 = SUB84(dVar32, 0);
                     if (cVar43 != '\0') {
                         in_xd6 = *(double *)(puVar11 + 0xc);
@@ -1973,7 +1972,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                         fStack_28 = fVar34;
                     }
                     puVar13 = &uStack_34;
-                    gfxlib_draw_23bae2(&g_8c4c2620, puVar13, puVar16, iStack_5c);
+                    gfxlib_call_hooks_with_args(&g_8c4c2620, puVar13, puVar16, iStack_5c);
                     if (cVar43 != '\0') {
                         in_xd6 = *(double *)(puVar11 + 0xc);
                     }
@@ -1985,7 +1984,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                         in_dr4 = (double)CONCAT44(g_8c4c2634, g_8c4c2630);
                     }
                     uStack_44 = float_to_color_u8(puVar10, puVar13, puVar16, iStack_5c);
-                    gfxlib_fill_loop_247b20(pdVar7, pdVar20, pdVar21, &uStack_48);
+                    gfxlib_lights_prepare_d(pdVar7, pdVar20, pdVar21, &uStack_48);
                 }
             }
         LAB_8c250e3e:
@@ -2144,7 +2143,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                         fStack_28 = fVar34;
                     }
                     puVar13 = &uStack_34;
-                    gfxlib_draw_23bae2(&g_8c4c2620, puVar13, puVar10, uStack_58);
+                    gfxlib_call_hooks_with_args(&g_8c4c2620, puVar13, puVar10, uStack_58);
                     uVar37 = SUB84(dVar32, 0);
                     if (cVar43 != '\0') {
                         in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
@@ -2574,7 +2573,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                         fStack_28 = fVar34;
                     }
                     puVar13 = &uStack_34;
-                    gfxlib_draw_23bae2(&g_8c4c2620, puVar13, puVar10, uStack_58);
+                    gfxlib_call_hooks_with_args(&g_8c4c2620, puVar13, puVar10, uStack_58);
                     if (cVar43 != '\0') {
                         in_xd6 = (double)CONCAT44(g_8c4c2630, g_8c4c262c);
                     }
@@ -2589,10 +2588,10 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                     }
                     uStack_44 = float_to_color_u8(puVar11, puVar13, puVar10, uStack_58);
                     if ((*(u32 *)pdVar20 & *(u32 *)pdVar21 & *(u32 *)pdVar22 & 1) == 0) {
-                        gfxlib_fill_loop_247b20(pdVar20, pdVar21, pdVar22, &uStack_48);
+                        gfxlib_lights_prepare_d(pdVar20, pdVar21, pdVar22, &uStack_48);
                     }
                     if ((*(u32 *)pdVar21 & *(u32 *)pdVar22 & *(u32 *)pdVar7 & 1) == 0) {
-                        gfxlib_fill_loop_247b20(pdVar21, pdVar22, pdVar7, &uStack_48);
+                        gfxlib_lights_prepare_d(pdVar21, pdVar22, pdVar7, &uStack_48);
                     }
                 }
             }
@@ -2820,7 +2819,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                         fStack_28 = (float)((u64)in_xd2 >> 0x20);
                     }
                     puVar15 = &uStack_34;
-                    gfxlib_draw_23bae2(&g_8c4c2620, puVar15, puVar10, uStack_50);
+                    gfxlib_call_hooks_with_args(&g_8c4c2620, puVar15, puVar10, uStack_50);
                     if (cVar43 != '\0') {
                         in_xd4 = (double)CONCAT44(g_8c4c2628, g_8c4c2624);
                     }
@@ -3341,7 +3340,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                         fStack_28 = (float)((u64)in_xd2 >> 0x20);
                     }
                     puVar15 = &uStack_34;
-                    gfxlib_draw_23bae2(&g_8c4c2620, puVar15, puVar10, uStack_50);
+                    gfxlib_call_hooks_with_args(&g_8c4c2620, puVar15, puVar10, uStack_50);
                     if (cVar43 != '\0') {
                         in_xd4 = (double)CONCAT44(g_8c4c2628, g_8c4c2624);
                     }
@@ -3368,7 +3367,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
                             puVar24 = puVar24 + 1;
                             ar6_00 = (u32 *)((u32)uVar1 * 0x40 + g_8c4aa510);
                             if ((*ar4_00 & *puStack_68 & *ar6_00 & 1) == 0) {
-                                gfxlib_fill_loop_247b20(ar4_00, puStack_68, ar6_00, &uStack_48);
+                                gfxlib_lights_prepare_d(ar4_00, puStack_68, ar6_00, &uStack_48);
                             }
                             iStack_64 = iStack_64 + 1;
                             ar4_00 = puStack_68;
@@ -3387,9 +3386,9 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
         }
     } else if (uVar3 == 0xc000) {
         if ((g_8c4ab318 & 1) == 0) {
-            pcVar5 = gfxlib_uses_float_to_color_u8_246254;
+            pcVar5 = gfxlib_vertex_colour_kernel_ae;
         } else {
-            pcVar5 = gfxlib_uses_float_to_color_u8_245cc8;
+            pcVar5 = gfxlib_vertex_colour_kernel_ad;
         }
         uVar3 = (*pcVar5)(a0, uVar1 & 0x3fff, a2, a3);
     }
@@ -3398,7 +3397,7 @@ u32 vram_250a54(u16 *a0, u32 unused_a1, u32 a2, u32 a3) {
 
 /*
  * vram_2518b4  0x8c2518b4
- * called by: ninja_draw_2536a8
+ * called by: ninja_draw_polygon_chunks
  */
 u32 vram_2518b4(u16 *a0, double *a1, int a2, u32 a3) {
     u16 uVar1;
@@ -4423,9 +4422,9 @@ u32 vram_2518b4(u16 *a0, double *a1, int a2, u32 a3) {
         }
     } else if (uVar3 == 0xc000) {
         if ((g_8c4ab308 & 0x800000) == 0) {
-            UNRECOVERED_JUMPTABLE = gfxlib_uses_float_to_color_u8_241d90;
+            UNRECOVERED_JUMPTABLE = gfxlib_vertex_colour_kernel_p;
         } else {
-            UNRECOVERED_JUMPTABLE = gfxlib_uses_float_to_color_u8_241be8;
+            UNRECOVERED_JUMPTABLE = gfxlib_vertex_colour_kernel_o;
         }
         /* WARNING: Could not recover jumptable at 0x8c251f46. Too many branches */
         /* WARNING: Treating indirect jump as call */
@@ -4436,11 +4435,10 @@ u32 vram_2518b4(u16 *a0, double *a1, int a2, u32 a3) {
 }
 
 /*
- * gfxlib_uses_float_to_color_u8_251f78  0x8c251f78
- * area name: in the gfxlib library code range; behaviour name: its main named callee is float_to_color_u8
- * called by: ninja_draw_2536a8
+ * gfxlib_polygon_chunk_colour_d  0x8c251f78
+ * called by: ninja_draw_polygon_chunks
  */
-u32 gfxlib_uses_float_to_color_u8_251f78(u16 *a0, double *a1, double *a2, u32 a3) {
+u32 gfxlib_polygon_chunk_colour_d(u16 *a0, double *a1, double *a2, u32 a3) {
     u16 uVar1;
     double *pdVar2;
     u32 uVar3;
@@ -4967,7 +4965,7 @@ u32 gfxlib_uses_float_to_color_u8_251f78(u16 *a0, double *a1, double *a2, u32 a3
                         if (bVar34)
                             goto LAB_8c25223c;
                     }
-                    gfxlib_uses_float_to_color_u8_23e4c8(pdVar8, pdVar9, pdVar15, a3);
+                    gfxlib_light_vertices_d(pdVar8, pdVar9, pdVar15, a3);
                     a1 = pdVar9;
                     a2 = pdVar15;
                 }
@@ -5510,10 +5508,10 @@ u32 gfxlib_uses_float_to_color_u8_251f78(u16 *a0, double *a1, double *a2, u32 a3
                     if ((*(u32 *)pdVar9 & *(u32 *)pdVar15 & *(u32 *)pdVar17 & 1) == 0) {
                         a1 = pdVar15;
                         a2 = pdVar17;
-                        gfxlib_uses_float_to_color_u8_23e4c8(pdVar9, pdVar15, pdVar17, a3);
+                        gfxlib_light_vertices_d(pdVar9, pdVar15, pdVar17, a3);
                     }
                     if ((*(u32 *)pdVar15 & *(u32 *)pdVar17 & *(u32 *)pdVar8 & 1) == 0) {
-                        gfxlib_uses_float_to_color_u8_23e4c8(pdVar15, pdVar17, pdVar8, a3);
+                        gfxlib_light_vertices_d(pdVar15, pdVar17, pdVar8, a3);
                         a1 = pdVar17;
                         a2 = pdVar8;
                     }
@@ -5951,7 +5949,7 @@ u32 gfxlib_uses_float_to_color_u8_251f78(u16 *a0, double *a1, double *a2, u32 a3
                             puVar19 = puVar19 + 1;
                             ar6_00 = (u32 *)((u32)uVar1 * 0x40 + g_8c4aa510);
                             if ((*ar4_00 & *ar5_00 & *ar6_00 & 1) == 0) {
-                                gfxlib_uses_float_to_color_u8_23e4c8(ar4_00, ar5_00, ar6_00, puVar14);
+                                gfxlib_light_vertices_d(ar4_00, ar5_00, ar6_00, puVar14);
                             }
                             iStack_34 = iStack_34 + 1;
                             ar4_00 = ar5_00;
@@ -5969,9 +5967,9 @@ u32 gfxlib_uses_float_to_color_u8_251f78(u16 *a0, double *a1, double *a2, u32 a3
         }
     } else if (uVar3 == 0xc000) {
         if ((g_8c4ab318 & 1) == 0) {
-            UNRECOVERED_JUMPTABLE = gfxlib_uses_float_to_color_u8_246b7a;
+            UNRECOVERED_JUMPTABLE = gfxlib_vertex_colour_kernel_ag;
         } else {
-            UNRECOVERED_JUMPTABLE = gfxlib_uses_float_to_color_u8_246756;
+            UNRECOVERED_JUMPTABLE = gfxlib_vertex_colour_kernel_af;
         }
         /* WARNING: Could not recover jumptable at 0x8c2528b0. Too many branches */
         /* WARNING: Treating indirect jump as call */
@@ -5982,12 +5980,11 @@ u32 gfxlib_uses_float_to_color_u8_251f78(u16 *a0, double *a1, double *a2, u32 a3
 }
 
 /*
- * gfxlib_fill_loop_2528e8  0x8c2528e8
- * area name: in the gfxlib library code range; behaviour name: a loop that writes memory
- * called by: ninja_draw_2536a8
+ * gfxlib_polygon_chunk_plain  0x8c2528e8
+ * called by: ninja_draw_polygon_chunks
  * decompiler: Heritage AFTER dead removal. Example location: r0x8c4c11b4 : 0x8c252a54
  */
-u32 gfxlib_fill_loop_2528e8(u16 *a0) {
+u32 gfxlib_polygon_chunk_plain(u16 *a0) {
     u16 uVar1;
     u32 uVar2;
     u32 *puVar3;
@@ -6218,11 +6215,10 @@ u32 gfxlib_fill_loop_2528e8(u16 *a0) {
 }
 
 /*
- * gfxlib_calls_fill_loop_252e7c  0x8c252e7c
- * area name: in the gfxlib library code range; behaviour name: its callees mostly do: fill_loop
- * called by: ninja_draw_2536a8
+ * gfxlib_polygon_chunk_lit  0x8c252e7c
+ * called by: ninja_draw_polygon_chunks
  */
-u32 gfxlib_calls_fill_loop_252e7c(u16 *a0) {
+u32 gfxlib_polygon_chunk_lit(u16 *a0) {
     u16 uVar1;
     u32 uVar2;
     code *UNRECOVERED_JUMPTABLE;
@@ -6616,7 +6612,7 @@ u32 gfxlib_calls_fill_loop_252e7c(u16 *a0) {
                         if (bVar30)
                             goto LAB_8c2530dc;
                     }
-                    gfxlib_fill_loop_23eb44(pdVar3, pdVar4, pdVar13);
+                    gfxlib_lights_prepare(pdVar3, pdVar4, pdVar13);
                 }
             }
         LAB_8c2530dc:
@@ -7012,11 +7008,11 @@ u32 gfxlib_calls_fill_loop_252e7c(u16 *a0) {
                     }
                     in_xd0 = dVar26;
                     if ((*(u32 *)pdVar4 & *(u32 *)pdVar13 & *(u32 *)pdVar11 & 1) == 0) {
-                        gfxlib_fill_loop_23eb44(pdVar4, pdVar13, pdVar11);
+                        gfxlib_lights_prepare(pdVar4, pdVar13, pdVar11);
                         in_xd0 = dVar26;
                     }
                     if ((*(u32 *)pdVar13 & *(u32 *)pdVar11 & *(u32 *)pdVar3 & 1) == 0) {
-                        gfxlib_fill_loop_23eb44(pdVar13, pdVar11, pdVar3);
+                        gfxlib_lights_prepare(pdVar13, pdVar11, pdVar3);
                     }
                 }
             }
@@ -7361,7 +7357,7 @@ u32 gfxlib_calls_fill_loop_252e7c(u16 *a0) {
                             puVar15 = puVar15 + 1;
                             ar6_00 = (u32 *)((u32)uVar1 * 0x40 + g_8c4aa510);
                             if ((*ar4_00 & *ar5_00 & *ar6_00 & 1) == 0) {
-                                gfxlib_fill_loop_23eb44(ar4_00, ar5_00, ar6_00);
+                                gfxlib_lights_prepare(ar4_00, ar5_00, ar6_00);
                             }
                             iStack_30 = iStack_30 + 1;
                             ar4_00 = ar5_00;
@@ -7377,9 +7373,9 @@ u32 gfxlib_calls_fill_loop_252e7c(u16 *a0) {
         }
     } else if (uVar2 == 0xc000) {
         if ((g_8c4ab318 & 1) == 0) {
-            UNRECOVERED_JUMPTABLE = gfxlib_uses_noop_247280;
+            UNRECOVERED_JUMPTABLE = gfxlib_vertex_colour_kernel_ai;
         } else {
-            UNRECOVERED_JUMPTABLE = gfxlib_uses_noop_246f1a;
+            UNRECOVERED_JUMPTABLE = gfxlib_vertex_colour_kernel_ah;
         }
         /* WARNING: Could not recover jumptable at 0x8c253690. Too many branches */
         /* WARNING: Treating indirect jump as call */
@@ -7390,11 +7386,10 @@ u32 gfxlib_calls_fill_loop_252e7c(u16 *a0) {
 }
 
 /*
- * ninja_draw_2536a8  0x8c2536a8
- * area name: in the ninja library code range; behaviour name: mostly calls draw functions
+ * ninja_draw_polygon_chunks  0x8c2536a8
  * called by: ninja_ta_fifo_wrap_2536a8
  */
-u32 ninja_draw_2536a8(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
+u32 ninja_draw_polygon_chunks(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
     float fVar1;
     u16 uVar2;
     int iVar3;
@@ -7425,12 +7420,12 @@ u32 ninja_draw_2536a8(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
         if ((g_8c4aa4f0 & 1) != 0) {
             a2 = 1;
             a1 = (u8 *)0x3;
-            gfxlib_draw_234d68(&PTR_DAT_8c277c00, 3, 1, a3);
+            gfxlib_draw_quad_list(&PTR_DAT_8c277c00, 3, 1, a3);
         }
         g_8c4aa554 = 0;
         ain0 = gfxlib_draw_23d386_wrap(a0);
         if (ain0 == 0) {
-            gfxlib_uses_noop_fr4_test_23c2a0(&g_8c4ab30c);
+            gfxlib_lights_update_all(&g_8c4ab30c);
             iVar3 = 0;
             while (true) {
                 fVar10 = g_8c4c11c0;
@@ -7726,7 +7721,7 @@ u32 ninja_draw_2536a8(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
                     g_8c4c11a4 = g_8c4c11b4;
                     g_8c4c11a8 = g_8c4c11b8;
                     g_8c4c11ac = g_8c4c11bc;
-                    gfxlib_draw_23c4ba(&g_8c4aa52c);
+                    gfxlib_lights_setup_by_kind(&g_8c4aa52c);
                     uStack_24 = g_8c4ab308 & 0x3600000;
                     ta_set_param_word_mask(g_8c4ab308);
                     a3 = 0x1000000;
@@ -7819,16 +7814,16 @@ u32 ninja_draw_2536a8(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
                 if (g_8c4ab318 == 0) {
                     if (uStack_24 == 0) {
                         a1 = unaff_r13;
-                        gfxlib_draw_247e16(ar4_00);
+                        gfxlib_polygon_chunk_kernel_a(ar4_00);
                     } else if (uStack_24 == 0x200000) {
                         a1 = unaff_r13;
-                        gfxlib_uses_float_to_color_u8_24901e(ar4_00);
+                        gfxlib_polygon_chunk_colour_a(ar4_00);
                     } else if (uStack_24 == 0x600000) {
                         a1 = unaff_r13;
-                        gfxlib_uses_float_to_color_u8_24a808(ar4_00);
+                        gfxlib_polygon_chunk_colour_b(ar4_00);
                     } else if (uStack_24 == 0x1000000) {
                         a1 = unaff_r13;
-                        gfxlib_uses_float_to_color_u8_24bdc8(ar4_00, unaff_r13, a2, a3);
+                        gfxlib_polygon_chunk_flat_shade_a(ar4_00, unaff_r13, a2, a3);
                     } else if (uStack_24 == 0x1200000) {
                         a1 = unaff_r13;
                         vram_24d5a8(ar4_00, unaff_r13, a2, a3);
@@ -7837,29 +7832,29 @@ u32 ninja_draw_2536a8(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
                         vram_24ef30(ar4_00, unaff_r13, a2, a3);
                     } else if (uStack_24 == 0x1600000) {
                         a1 = unaff_r13;
-                        gfxlib_uses_float_to_color_u8_250144(ar4_00, unaff_r13, a2, a3);
+                        gfxlib_polygon_chunk_flat_shade_d(ar4_00, unaff_r13, a2, a3);
                     } else if ((uStack_24 == 0x2600000) || (uStack_24 == 0x3600000)) {
                         a1 = unaff_r13;
                         vram_2518b4(ar4_00, unaff_r13, a2, a3);
                     } else if ((uStack_24 == 0x2000000) || (uStack_24 == 0x3000000)) {
                         a1 = unaff_r13;
-                        gfxlib_fill_loop_2528e8(ar4_00);
+                        gfxlib_polygon_chunk_plain(ar4_00);
                     }
                 } else if (uStack_24 == 0) {
                     a1 = unaff_r13;
-                    gfxlib_draw_2485bc(ar4_00);
+                    gfxlib_polygon_chunk_kernel_b(ar4_00);
                 } else if (uStack_24 == 0x200000) {
                     a1 = unaff_r13;
                     vram_2499ec(ar4_00);
                 } else if (uStack_24 == 0x600000) {
                     a1 = unaff_r13;
-                    gfxlib_uses_float_to_color_u8_24b154(ar4_00);
+                    gfxlib_polygon_chunk_colour_c(ar4_00);
                 } else if (uStack_24 == 0x1000000) {
                     a1 = unaff_r13;
-                    gfxlib_uses_float_to_color_u8_24c6f0(ar4_00, unaff_r13, a2, a3);
+                    gfxlib_polygon_chunk_flat_shade_b(ar4_00, unaff_r13, a2, a3);
                 } else if (uStack_24 == 0x1200000) {
                     a1 = unaff_r13;
-                    gfxlib_uses_float_to_color_u8_24df18(ar4_00, unaff_r13, a2, a3);
+                    gfxlib_polygon_chunk_flat_shade_c(ar4_00, unaff_r13, a2, a3);
                 } else if ((uStack_24 == 0x2200000) || (uStack_24 == 0x3200000)) {
                     a1 = unaff_r13;
                     vram_24f64c(ar4_00, unaff_r13, a2, a3);
@@ -7868,10 +7863,10 @@ u32 ninja_draw_2536a8(int a0, u8 *a1, u32 a2, u32 a3, u32 ain0) {
                     vram_250a54(ar4_00, unaff_r13, a2, a3);
                 } else if ((uStack_24 == 0x2600000) || (uStack_24 == 0x3600000)) {
                     a1 = unaff_r13;
-                    gfxlib_uses_float_to_color_u8_251f78(ar4_00, unaff_r13, a2, a3);
+                    gfxlib_polygon_chunk_colour_d(ar4_00, unaff_r13, a2, a3);
                 } else if ((uStack_24 == 0x2000000) || (uStack_24 == 0x3000000)) {
                     a1 = unaff_r13;
-                    gfxlib_calls_fill_loop_252e7c(ar4_00);
+                    gfxlib_polygon_chunk_lit(ar4_00);
                 }
                 ta_set_list_addr(unaff_r8);
                 ar4_00 = ar4_00 + 0xc;
@@ -7921,7 +7916,7 @@ u32 nj_object_tree_transform_draw_like(u32 *a0, u32 a1, u32 a2, u32 a3) {
                 a1 = a0[5];
                 a2 = a0[6];
                 a3 = a0[7];
-                ninja_float_calc_256e18(0, a1, a2, a3, uVar2);
+                ninja_rotation_matrix_from_angles(0, a1, a2, a3, uVar2);
             }
             matrix_scale(0, a1, a2, a3, 4);
             if ((*a0 & 8) == 0) {
@@ -7944,7 +7939,7 @@ u32 nj_object_tree_transform_draw_like(u32 *a0, u32 a1, u32 a2, u32 a3) {
                     a1 = a0[5];
                     a2 = a0[6];
                     a3 = a0[7];
-                    ninja_float_calc_256e18(0, a1, a2, a3, uVar2);
+                    ninja_rotation_matrix_from_angles(0, a1, a2, a3, uVar2);
                 }
                 matrix_scale(0, a1, a2, a3, 4);
                 if ((*a0 & 8) == 0) {
@@ -7990,7 +7985,7 @@ u32 nj_object_tree_transform_draw_like(u32 *a0, u32 a1, u32 a2, u32 a3) {
                     a1 = a0[5];
                     a2 = a0[6];
                     a3 = a0[7];
-                    ninja_float_calc_256e18(0, a1, a2, a3, uVar2);
+                    ninja_rotation_matrix_from_angles(0, a1, a2, a3, uVar2);
                 }
                 if ((*a0 & 8) == 0) {
                     ninja_ta_fifo_wrap_2536a8(a0[1], a1, a2, a3);
@@ -8011,7 +8006,7 @@ u32 nj_object_tree_transform_draw_like(u32 *a0, u32 a1, u32 a2, u32 a3) {
                     a1 = a0[5];
                     a2 = a0[6];
                     a3 = a0[7];
-                    ninja_float_calc_256e18(0, a1, a2, a3, uVar2);
+                    ninja_rotation_matrix_from_angles(0, a1, a2, a3, uVar2);
                 }
                 if ((*a0 & 8) == 0) {
                     ninja_ta_fifo_wrap_2536a8(a0[1], a1, a2, a3);
@@ -8072,7 +8067,7 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                 a1 = unaff_r14[5];
                 a2 = unaff_r14[6];
                 a3 = unaff_r14[7];
-                ninja_float_calc_256e18(0, a1, a2, a3);
+                ninja_rotation_matrix_from_angles(0, a1, a2, a3);
             }
             matrix_scale(0, a1, a2, a3);
             if ((*unaff_r14 & 8) == 0) {
@@ -8095,7 +8090,7 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     a1 = unaff_r14[5];
                     a2 = unaff_r14[6];
                     a3 = unaff_r14[7];
-                    ninja_float_calc_256e18(0, a1, a2, a3);
+                    ninja_rotation_matrix_from_angles(0, a1, a2, a3);
                 }
                 matrix_scale(0, a1, a2, a3);
                 if ((*unaff_r14 & 8) == 0) {
@@ -8141,7 +8136,7 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     a1 = unaff_r14[5];
                     a2 = unaff_r14[6];
                     a3 = unaff_r14[7];
-                    ninja_float_calc_256e18(0, a1, a2, a3);
+                    ninja_rotation_matrix_from_angles(0, a1, a2, a3);
                 }
                 if ((*unaff_r14 & 8) == 0) {
                     ninja_ta_fifo_wrap_2536a8(unaff_r14[1], a1, a2, a3);
@@ -8162,7 +8157,7 @@ u32 alt_entry_253d20(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
                     a1 = unaff_r14[5];
                     a2 = unaff_r14[6];
                     a3 = unaff_r14[7];
-                    ninja_float_calc_256e18(0, a1, a2, a3);
+                    ninja_rotation_matrix_from_angles(0, a1, a2, a3);
                 }
                 if ((*unaff_r14 & 8) == 0) {
                     ninja_ta_fifo_wrap_2536a8(unaff_r14[1], a1, a2, a3);
@@ -8215,12 +8210,12 @@ u32 ninja_draw_with_saved_state(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /*
  * gfxlib_draw_23d386_wrap  0x8c254006
- * called by: ninja_draw_2536a8
+ * called by: ninja_draw_polygon_chunks
  */
 u32 gfxlib_draw_23d386_wrap(u32 a0) {
     u32 uVar1;
 
-    uVar1 = gfxlib_draw_23d386(a0);
+    uVar1 = gfxlib_project_vertex_list(a0);
     return uVar1;
 }
 
@@ -8232,7 +8227,7 @@ u32 ninja_ta_fifo_wrap_2536a8(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 uVar1;
     u32 unaff_r8;
 
-    uVar1 = ninja_draw_2536a8(a0, a1, a2, a3, unaff_r8);
+    uVar1 = ninja_draw_polygon_chunks(a0, a1, a2, a3, unaff_r8);
     return uVar1;
 }
 
@@ -8265,7 +8260,7 @@ u32 nj_object_tree_transform_draw_like_wrap(u32 a0, u32 a1, u32 a2, u32 a3) {
 /*
  * motion_matrix_setup  0x8c2540a0
  * sets the current motion a0 (unless frame fr4 is past its end) and picks the matrix position, rotation and scale key
- * appliers from its flags called by: CAnimBody_draw_key_model, CAnimal_uses_njGetMatrix_026968
+ * appliers from its flags called by: CAnimBody_draw_key_model, CAnimal_draw_body
  */
 u32 motion_matrix_setup(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -8451,7 +8446,7 @@ LAB_8c2543be:
 /*
  * motion_lookup_pos_key  0x8c2545ec
  * binary-searches the current node's position keys for the current frame and calls interpolator a1 into a0
- * called by: CAnimal_uses_njGetMatrix_029af0
+ * called by: CAnimal_apply_motion_keys
  */
 u32 motion_lookup_pos_key(u32 a0, int a1) {
     u32 uVar1;
@@ -8498,7 +8493,7 @@ LAB_8c25463a:
 /*
  * motion_lookup_rot_key  0x8c254698
  * binary-searches the current node's rotation keys for the current frame and calls interpolator a1 into a0
- * called by: CAnimal_uses_njGetMatrix_029af0
+ * called by: CAnimal_apply_motion_keys
  */
 u32 motion_lookup_rot_key(u32 a0, int a1) {
     u32 uVar1;
@@ -8547,7 +8542,7 @@ LAB_8c2546fa:
 /*
  * motion_lookup_scale_key  0x8c254780
  * binary-searches the current node's scale keys for the current frame and calls interpolator a1 into a0
- * called by: CAnimal_uses_njGetMatrix_029af0
+ * called by: CAnimal_apply_motion_keys
  */
 u32 motion_lookup_scale_key(u32 a0, int a1) {
     u32 uVar1;
@@ -8598,7 +8593,7 @@ LAB_8c2547ea:
 
 /*
  * ninja_vertex_buffer_advance  0x8c25484c
- * called by: CAnimal_uses_njGetMatrix_029af0
+ * called by: CAnimal_apply_motion_keys
  */
 u32 ninja_vertex_buffer_advance(void) {
     int *piVar1;
@@ -8630,10 +8625,9 @@ LAB_8c25487a:
 }
 
 /*
- * ninja_uses_switch_jump_2548a8  0x8c2548a8
- * area name: in the ninja library code range; behaviour name: its main named callee is switch_jump
+ * ninja_strip_index_kernel_a  0x8c2548a8
  */
-u32 ninja_uses_switch_jump_2548a8(int a0, int a1, u32 a2, u64 *a3) {
+u32 ninja_strip_index_kernel_a(int a0, int a1, u32 a2, u64 *a3) {
     int iVar1;
     int *piVar2;
     int *piVar3;
@@ -8781,10 +8775,9 @@ u32 ninja_uses_switch_jump_2548a8(int a0, int a1, u32 a2, u64 *a3) {
 }
 
 /*
- * ninja_uses_switch_jump_254956  0x8c254956
- * area name: in the ninja library code range; behaviour name: its main named callee is switch_jump
+ * ninja_strip_index_kernel_b  0x8c254956
  */
-int ninja_uses_switch_jump_254956(int a0, int a1, u32 a2, int *a3) {
+int ninja_strip_index_kernel_b(int a0, int a1, u32 a2, int *a3) {
     int iVar1;
     u32 uVar2;
     int *piVar3;
@@ -8909,10 +8902,9 @@ int ninja_uses_switch_jump_254956(int a0, int a1, u32 a2, int *a3) {
 }
 
 /*
- * ninja_uses_libgcc_divide_helper_254a1e  0x8c254a1e
- * area name: in the ninja library code range; behaviour name: its main named callee is libgcc_divide_helper_0106dc
+ * ninja_strip_index_kernel_c  0x8c254a1e
  */
-u32 ninja_uses_libgcc_divide_helper_254a1e(int a0, int a1, int a2, double *a3) {
+u32 ninja_strip_index_kernel_c(int a0, int a1, int a2, double *a3) {
     double dVar1;
     int iVar2;
     int iVar3;
@@ -9168,10 +9160,9 @@ u32 ninja_uses_libgcc_divide_helper_254a1e(int a0, int a1, int a2, double *a3) {
 }
 
 /*
- * ninja_uses_libgcc_divide_helper_254b94  0x8c254b94
- * area name: in the ninja library code range; behaviour name: its main named callee is libgcc_divide_helper_0106dc
+ * ninja_strip_index_kernel_d  0x8c254b94
  */
-u32 *ninja_uses_libgcc_divide_helper_254b94(int a0, int a1, int a2, int *a3) {
+u32 *ninja_strip_index_kernel_d(int a0, int a1, int a2, int *a3) {
     int iVar1;
     int iVar2;
     int iVar3;
@@ -9661,7 +9652,8 @@ u32 motion_matrix_apply_rot_other(int a0) {
 
     a4 = *(int *)(g_8c4aad4c + g_8c4aad5c * 4);
     if (a4 == 0) {
-        uVar1 = ninja_float_calc_256e18(g_8c4aad60, *(u32 *)(a0 + 0x14), *(u32 *)(a0 + 0x18), *(u32 *)(a0 + 0x1c), a0);
+        uVar1 = ninja_rotation_matrix_from_angles(g_8c4aad60, *(u32 *)(a0 + 0x14), *(u32 *)(a0 + 0x18),
+                                                  *(u32 *)(a0 + 0x1c), a0);
     } else {
         a6 = *(u32 *)(g_8c4aad50 + g_8c4aad5c * 4);
         fVar4 = g_8c4aad54;
@@ -9678,7 +9670,7 @@ u32 motion_matrix_apply_rot_other(int a0) {
             }
         }
         (*g_8c4ab0b8)(a4, a5, a6, &uStack_18);
-        uVar1 = ninja_float_calc_256e18(g_8c4aad60, uStack_18, uStack_14, uStack_10, a0);
+        uVar1 = ninja_rotation_matrix_from_angles(g_8c4aad60, uStack_18, uStack_14, uStack_10, a0);
     }
     g_8c4aad5c = g_8c4aad5c + 1;
     return uVar1;
@@ -10458,10 +10450,9 @@ u32 ninja_set_4ab0c4(u32 a0) {
 }
 
 /*
- * ninja_uses_switch_jump_255bf6  0x8c255bf6
- * area name: in the ninja library code range; behaviour name: its main named callee is switch_jump
+ * ninja_strip_index_kernel_e  0x8c255bf6
  */
-int ninja_uses_switch_jump_255bf6(int a0, int a1, u32 a2, int *a3) {
+int ninja_strip_index_kernel_e(int a0, int a1, u32 a2, int *a3) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -10616,10 +10607,9 @@ int ninja_uses_switch_jump_255bf6(int a0, int a1, u32 a2, int *a3) {
 
 /*
  * ninja_matrix_copy  0x8c255d6c
- * called by: CAnimal_uses_njGetMatrix_026968, Class_1299f8_m4_019588, Class_1299f8_ninja_update_into_global_slot,
- * Class_129a24_m1_019b68, alt_entry_2376d8, gfxlib_copy_light_tables, gfxlib_uses_ninja_matrix_copy_2163d4,
- * gfxlib_uses_ninja_matrix_copy_2166e8 (+8 more) decompiler: Heritage AFTER dead removal. Example location: s0xffffffe0
- * : 0x8c255f08
+ * called by: CAnimal_draw_body, Class_1299f8_m4_019588, Class_1299f8_ninja_update_into_global_slot,
+ * Class_129a24_m1_019b68, alt_entry_2376d8, gfxlib_copy_light_tables, gfxlib_draw_normals_a, gfxlib_draw_normals_b (+8
+ * more) decompiler: Heritage AFTER dead removal. Example location: s0xffffffe0 : 0x8c255f08
  */
 u32 ninja_matrix_copy(u32 *a0, int a1, u32 a2, u32 a3, u32 ain0) {
     u32 uVar1;
@@ -10866,9 +10856,8 @@ u32 nj_palette_file_load(u32 a0, int *a1, u32 a2, u32 a3) {
 /*
  * matrix_pop_n  0x8c256210
  * pops a0 matrices off the matrix stack
- * called by: CAnimal_draw_at_pose_a, CAnimal_draw_blended_shape_like, CAnimal_draw_model_a, CAnimal_draw_model_b,
- * CAnimal_draw_talk_model, CAnimal_uses_njGetMatrix_026968, CEnv_draw_with_three_parts_swapped, CSquidLine_draw_like
- * (+50 more)
+ * called by: CAnimal_draw_at_pose_a, CAnimal_draw_blended_shape_like, CAnimal_draw_body, CAnimal_draw_model_a,
+ * CAnimal_draw_model_b, CAnimal_draw_talk_model, CEnv_draw_with_three_parts_swapped, CSquidLine_draw_like (+50 more)
  */
 u32 matrix_pop_n(int a0) {
     if (g_8c4aa5a0 - a0 != 0) {
@@ -10897,9 +10886,9 @@ u32 matrix_pop1(void) {
 /*
  * matrix_apply_point_w1  0x8c256294
  * transforms point a1 (w = 1) by matrix a0 (the current matrix when 0) into a2
- * called by: CSquidLine_vec_036adc, CSquidLine_vec_085c3c, Class_12acc8_m1_09f470, game_box_screen_bounds_like,
- * game_target_in_view_box, game_uses_input_track_r_hold_0e1f90, game_uses_list_node_next_wrap_0da754,
- * matrix_apply_point_w1_wrap (+2 more)
+ * called by: CSquidLine_turn_036adc, CSquidLine_turn_085c3c, Class_12acc8_m1_09f470, Class_12b580_helper_0da754,
+ * game_box_screen_bounds_like, game_sound_talk_input_0e1f90, game_target_in_view_box, matrix_apply_point_w1_wrap (+2
+ * more)
  */
 u32 matrix_apply_point_w1(int a0, double *a1, double *a2) {
     double in_dr0;
@@ -11019,9 +11008,8 @@ u32 matrix_apply_point_w1(int a0, double *a1, double *a2) {
 /*
  * matrix_push  0x8c256328
  * pushes the current 4x4 matrix onto the matrix stack
- * called by: CAnimal_draw_at_pose_a, CAnimal_draw_blended_shape_like, CAnimal_draw_model_a, CAnimal_draw_model_b,
- * CAnimal_draw_talk_model, CAnimal_uses_njGetMatrix_026968, CEnv_draw_with_three_parts_swapped, CSquidLine_draw_like
- * (+50 more)
+ * called by: CAnimal_draw_at_pose_a, CAnimal_draw_blended_shape_like, CAnimal_draw_body, CAnimal_draw_model_a,
+ * CAnimal_draw_model_b, CAnimal_draw_talk_model, CEnv_draw_with_three_parts_swapped, CSquidLine_draw_like (+50 more)
  */
 u32 matrix_push(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 *puVar1;
@@ -11105,11 +11093,10 @@ u32 matrix_push_regs(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3,
 }
 
 /*
- * matrix_uses_switch_jump_2563f8  0x8c2563f8
- * area name: sits between matrix functions (same compilation unit); behaviour name: its main named callee is
- * switch_jump called by: motion_node_apply_rot_keys20
+ * matrix_transform_points_kernel  0x8c2563f8
+ * called by: motion_node_apply_rot_keys20
  */
-u32 matrix_uses_switch_jump_2563f8(double *a0) {
+u32 matrix_transform_points_kernel(double *a0) {
     u32 uVar1;
     double *pdVar2;
     u64 in_dr0;
@@ -11916,7 +11903,7 @@ u32 ninja_matrix_rotate_chain(u32 *a0, int a1, u32 unused_a2, u32 unused_a3, u32
  * njRotateX_like  0x8c256a78
  * rotates matrix a0 about the X axis by Ninja angle a1 (0x10000 = 360 degrees), updating its second and third rows
  * called by: CSquidLine_draw_like, Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12aeec_draw_like,
- * Class_12bec0_draw_saved_fpu, Vec3_vec_02374c, matrix_rotate_deg, matrix_rotate_deg_m
+ * Class_12bec0_draw_saved_fpu, Vec3_look_at_rotation_a, matrix_rotate_deg, matrix_rotate_deg_m
  */
 u32 njRotateX_like(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -11983,9 +11970,9 @@ u32 njRotateX_like(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 /*
  * njRotateXYZ  0x8c256b0c
  * rotates matrix a0 (NULL: current) by Ninja angles a1, a2, a3
- * called by: CAnimal_draw_at_pose_a, CAnimal_draw_blended_shape_like, CAnimal_uses_njGetMatrix_026968,
- * CSquidLine_draw_like, Class_1298b8_m11_0159ec, Class_1298b8_m3_0155e8, Class_1298b8_m5_015720, Class_1298b8_m6_0157f8
- * (+28 more) decompiler: Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256c66
+ * called by: CAnimal_draw_at_pose_a, CAnimal_draw_blended_shape_like, CAnimal_draw_body, CSquidLine_draw_like,
+ * Class_1298b8_m11_0159ec, Class_1298b8_m3_0155e8, Class_1298b8_m5_015720, Class_1298b8_m6_0157f8 (+28 more)
+ * decompiler: Heritage AFTER dead removal. Example location: s0xfffffff0 : 0x8c256c66
  */
 u32 njRotateXYZ(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     float fVar1;
@@ -12135,8 +12122,8 @@ u32 njRotateXYZ(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 /*
  * njRotateY  0x8c256ce0
  * rotates matrix a0 (NULL: current) about Y by Ninja angle a1
- * called by: Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12aeec_draw_like, Vec3_vec_0238b4, njRotateY_wrap,
- * rotate_y_degrees
+ * called by: Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12aeec_draw_like, Vec3_look_at_rotation_b,
+ * njRotateY_wrap, rotate_y_degrees
  */
 u32 njRotateY(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -12269,13 +12256,12 @@ u32 njRotateZ(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
 }
 
 /*
- * ninja_float_calc_256e18  0x8c256e18
- * area name: in the ninja library code range; behaviour name: floating-point arithmetic
- * called by: CAnimal_uses_njGetMatrix_029af0, alt_entry_253d20, motion_matrix_apply_rot_other,
+ * ninja_rotation_matrix_from_angles  0x8c256e18
+ * called by: CAnimal_apply_motion_keys, alt_entry_253d20, motion_matrix_apply_rot_other,
  * nj_object_tree_transform_draw_like decompiler: Heritage AFTER dead removal. Example location: s0xfffffff0 :
  * 0x8c256f72
  */
-u32 ninja_float_calc_256e18(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
+u32 ninja_rotation_matrix_from_angles(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
     float fVar1;
     float fVar2;
     float fVar4;
@@ -12423,9 +12409,8 @@ u32 ninja_float_calc_256e18(float *a0, u32 a1, u32 a2, u32 a3, u32 ain0) {
 /*
  * matrix_scale  0x8c256fec
  * scales the matrix rows by fr4, fr5, fr6
- * called by: CAnimal_draw_at_pose_a, CAnimal_draw_blended_shape_like, CAnimal_draw_scaled_part,
- * CAnimal_uses_njGetMatrix_026968, CAnimal_uses_njGetMatrix_029af0, CSquidLine_draw_grow_scaled, CSquidLine_draw_like,
- * Class_1298b8_m11_0159ec (+26 more)
+ * called by: CAnimal_apply_motion_keys, CAnimal_draw_at_pose_a, CAnimal_draw_blended_shape_like, CAnimal_draw_body,
+ * CAnimal_draw_scaled_part, CSquidLine_draw_grow_scaled, CSquidLine_draw_like, Class_1298b8_m11_0159ec (+26 more)
  */
 u32 matrix_scale(float *a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float in_fr5;
@@ -12594,8 +12579,7 @@ u32 ninja_texinfo_init(u32 *a0, u32 a1, int a2, u32 a3, u32 s0) {
 /*
  * set_fields_0_4_8_257196  0x8c257196
  * stores +0x0, +0x4, +0x8
- * called by: C3DRenderPly_SetMem, game_uses_Class_129920_ctor_0c2490, ninja_obj_init_with_flags_900,
- * obj_sprite_buffer_alloc
+ * called by: C3DRenderPly_SetMem, game_helper_0c2490, ninja_obj_init_with_flags_900, obj_sprite_buffer_alloc
  */
 u32 set_fields_0_4_8_257196(u32 *a0, u32 a1, u32 a2, u32 a3) {
     u32 in_r0;
@@ -12767,8 +12751,8 @@ u32 nj_camera_view_matrix(float *a0) {
 /*
  * njSinCos  0x8c25747c
  * sine and cosine of a Ninja angle (0..65535 = one turn)
- * called by: Class_12a990_m2_09bc2c, Class_12b580_time_of_day_update_like, Class_12b930_sound_0d3d6c,
- * draw_draw_helper_0d4124, game_vec_03207c, matrix_uses_vram_draw_2187ce_on_handle_0d4428
+ * called by: Class_12a25c_helper_03207c, Class_12a990_m2_09bc2c, Class_12b580_time_of_day_update_like,
+ * Class_12b930_sound_0d3d6c, draw_turn_draw_0d4124, matrix_turn_draw_0d4428
  */
 u32 njSinCos(u32 a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -13880,7 +13864,7 @@ u32 nj_draw_sprite_3d_like(double *a0, int a1, u32 a2) {
                 *(float *)((int)puVar11 + -0xa4) = fVar21;
 
                 *(u32 *)(puVar12 + -8) = in_PR;
-                ninja_fill_loop_257be8(bVar7, puVar12 + -4);
+                ninja_project_points_kernel(bVar7, puVar12 + -4);
                 uVar6 = 1;
             }
         } else {
@@ -13902,11 +13886,10 @@ u32 ninja_call_r1_ret1(u32 unused_a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * ninja_fill_loop_257be8  0x8c257be8
- * area name: in the ninja library code range; behaviour name: a loop that writes memory
+ * ninja_project_points_kernel  0x8c257be8
  * called by: nj_draw_sprite_3d_like
  */
-int ninja_fill_loop_257be8(u32 a0, int a1) {
+int ninja_project_points_kernel(u32 a0, int a1) {
     int iVar1;
     double *pdVar2;
     int in_r2;
@@ -14336,7 +14319,7 @@ u32 nj_sprite_uv_flip_like(float *a0, int a1, u32 a2) {
  * noop_fr4_test  0x8c258030
  * tests fr4 against 0 and returns the same value either way
  * called by: Vec3_length_sq, alt_entry_233d20, alt_entry_23c2a6, gfx_box_sphere_overlap_test_like,
- * gfxlib_point_distance_test, gfxlib_uses_noop_fr4_test_23c2a0, kamui_uses_noop_fr4_test_212a30, ninja_double_fr4_test
+ * gfxlib_lights_update_all, gfxlib_point_distance_test, kamui_clip_polygon_like, ninja_double_fr4_test
  */
 u32 noop_fr4_test(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float in_fr4;
@@ -14349,7 +14332,7 @@ u32 noop_fr4_test(u32 a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0)
 
 /*
  * ninja_float_sign_noop  0x8c258048
- * called by: gfxlib_uses_ninja_float_sign_noop_234a6a, line_closest_point
+ * called by: gfxlib_float_sign_pair, line_closest_point
  */
 u32 ninja_float_sign_noop(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float in_fr4;
@@ -14369,7 +14352,7 @@ u32 ninja_set_texture_memory(u32 a0, u32 *a1, u32 unused_a2, u32 a3) {
 
     *a1 = a0;
     *in_r2 = a0;
-    kamui_uses_kamui_lists_sizes_init_211120(0x8c4aacbc, a1, unused_a2, a3);
+    kamui_init_system_like(0x8c4aacbc, a1, unused_a2, a3);
     uVar1 = ninja_vram_usage(0);
     g_8c4aa6a8 = uVar1;
     return uVar1;
@@ -15334,7 +15317,7 @@ LAB_8c258cae:
         uRam8c4aacfc = uVar9;
     }
     pvr_2580e4(uVar1, ar5_00, ar6_00, iVar2, (((u32)bVar13 | (u32)in_S << 1 | (u32)in_IMASK << 4) & 0xf0) >> 4);
-    kamui_uses_kamui_lists_sizes_init_211120(&g_8c4aacbc, ar5_00, ar6_00, iVar2);
+    kamui_init_system_like(&g_8c4aacbc, ar5_00, ar6_00, iVar2);
     g_8c4aa6a8 = ninja_vram_usage(0);
     return g_8c4aa6a8;
 }
@@ -15463,13 +15446,13 @@ u8 *game_frame(u32 a0, u32 a1, u32 a2, u32 a3) {
         }
     }
     g_8c4aa6d4 = 1;
-    ta_copy_20b7a0(a0, a1, a2, a3);
+    ta_flush_lists_and_render(a0, a1, a2, a3);
     ar4_00 = &g_8c4aa540;
     g_8c4aa518 = 0;
     g_8c4aa51c = 0;
     g_8c4aa520 = 0;
     g_8c4aa540 = g_8c4aa540 + 1;
-    ain0_00 = ta_draw_20b260(&g_8c4aa540, a1, a2, a3);
+    ain0_00 = ta_render_kick_like(&g_8c4aa540, a1, a2, a3);
     maple_update_all_ports(ar4_00, a1, a2, a3, ain0_00);
     g_8c4aad28 = sh4_tmu_1f88e6(ar4_00);
     g_8c4aa4f4 = *g_8c4aabdc;
@@ -15503,13 +15486,13 @@ u8 *alt_entry_258e70(u32 a0, u32 a1, u32 a2, u32 a3) {
         }
     }
     g_8c4aa6d4 = 1;
-    ta_copy_20b7a0(a0, a1, a2, a3);
+    ta_flush_lists_and_render(a0, a1, a2, a3);
     ar4_00 = &g_8c4aa540;
     g_8c4aa540 = g_8c4aa540 + 1;
     g_8c4aa518 = unaff_r11;
     g_8c4aa51c = unaff_r11;
     g_8c4aa520 = unaff_r11;
-    ta_draw_20b260(&g_8c4aa540, a1, a2, a3);
+    ta_render_kick_like(&g_8c4aa540, a1, a2, a3);
     maple_update_all_ports(ar4_00, a1, a2, a3, in_PR);
     g_8c4aad28 = sh4_tmu_1f88e6(ar4_00);
     g_8c4aa4f4 = *g_8c4aabdc;
@@ -15529,7 +15512,7 @@ u32 ninja_begin_scene_like(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar3;
     u32 uVar4;
 
-    puVar1 = (&ta_copy_20b7a0);
+    puVar1 = (&ta_flush_lists_and_render);
     g_8c4aa6d4 = 1;
     uVar4 = (*(code *)puVar1)(a0, a1, a2, a3);
     puVar3 = 0x8c4aa520;
@@ -15551,7 +15534,7 @@ u32 *ninja_frame_begin_timing(u32 a0, u32 a1, u32 a2, u32 a3) {
     u32 *puVar4;
 
     uVar2 = sh4_tmu_1f88e6(a0);
-    puVar1 = (&ta_draw_20b260);
+    puVar1 = (&ta_render_kick_like);
     g_8c4aad24 = uVar2;
     (*(code *)puVar1)(a0, a1, a2, a3);
     ar4_00 = 0x8c4aa540;
@@ -16154,7 +16137,7 @@ LAB_8c259594:
 
 /*
  * ta_fifo_2595aa  0x8c2595aa
- * called by: date_time_message_draw, game_draw_0ff928, game_uses_input_x_or_r_held_like_0ff7d4
+ * called by: date_time_message_draw, game_draw_0ff928, game_input_0ff7d4
  */
 u32 ta_fifo_2595aa(int a0, u64 *a1, int a2, int a3) {
     u32 uVar1;
@@ -16619,10 +16602,9 @@ u32 pvr_wrap_20a356_draw(u32 a0) {
 }
 
 /*
- * pvr_copy_259a70  0x8c259a70
- * area name: sits between pvr functions (same compilation unit); behaviour name: mostly calls copy functions
+ * draw_copy_list_sizes  0x8c259a70
  */
-int pvr_copy_259a70(u32 *a0) {
+int draw_copy_list_sizes(u32 *a0) {
     float fVar1;
     u64 in_dr2;
     u32 uVar3;
@@ -16651,7 +16633,7 @@ int pvr_copy_259a70(u32 *a0) {
     uVar3 = (u32)((u64)in_dr2 >> 0x20);
     cVar11 = '\0';
     cVar10 = '\0';
-    ta_fill_loop_20aacc(auStack_d0);
+    ta_compute_list_sizes(auStack_d0);
     *a0 = uStack_c4;
     a0[1] = uStack_bc;
     if ((u32)a0[2] < uStack_bc) {
@@ -17957,7 +17939,7 @@ u32 vram64_25ad0a(int a0, u32 a1, int a2, u32 a3) {
     if (a0 == 0) {
         return 0xffffffff;
     }
-    ninja_fill_loop_25ad98(a1, (*(u32 *)(a0 + 0x34) | 0xa4000000) + a2, a3);
+    ninja_copy_aligned_32(a1, (*(u32 *)(a0 + 0x34) | 0xa4000000) + a2, a3);
     return 1;
 }
 
@@ -17975,11 +17957,10 @@ u32 ninja_wait_ready(void) {
 }
 
 /*
- * ninja_fill_loop_25ad98  0x8c25ad98
- * area name: in the ninja library code range; behaviour name: a loop that writes memory
+ * ninja_copy_aligned_32  0x8c25ad98
  * called by: vram64_25ad0a
  */
-u32 ninja_fill_loop_25ad98(u32 *a0, u32 *a1, u32 a2) {
+u32 ninja_copy_aligned_32(u32 *a0, u32 *a1, u32 a2) {
     u32 uVar1;
     u32 *puVar2;
     u32 uVar3;
@@ -18198,7 +18179,7 @@ u32 ninja_draw_texture_fullscreen(int a0) {
     ar6_00 = *(int *)(iVar2 + 0x24) + -1;
     ar7_00 = *(int *)(iVar2 + 0x28) + -1;
     pvr_set_clip_rect(0, 0, ar6_00, ar7_00);
-    kamui_draw_20bdc0(iVar2 + 0x18, uVar1, ar6_00, ar7_00);
+    kamui_render_scene_a(iVar2 + 0x18, uVar1, ar6_00, ar7_00);
     uVar1 = pvr_set_clip_rect(0, 0, g_8c4aa508 + -1, g_8c4aa50c + -1);
     return uVar1;
 }
@@ -18220,7 +18201,7 @@ u32 alt_entry_25b052(int a0) {
     ar6_00 = *(int *)(iVar2 + 0x24) + -1;
     ar7_00 = *(int *)(iVar2 + 0x28) + -1;
     (*in_r2)(0, 0, ar6_00, ar7_00);
-    kamui_draw_20bdc0(iVar2 + 0x18, uVar1, ar6_00, ar7_00);
+    kamui_render_scene_a(iVar2 + 0x18, uVar1, ar6_00, ar7_00);
     uVar1 = pvr_set_clip_rect(0, g_8c4aa508 + -1, g_8c4aa50c + -1);
     return uVar1;
 }
@@ -18242,7 +18223,7 @@ u32 ninja_draw_into_texture_entry(u32 a0) {
         ar7_00 = *(int *)(iVar3 + 0x28) + -1;
         iVar3 = *(int *)(iVar3 + 0x24) + -1;
         pvr_set_clip_rect(0, 0, iVar3, ar7_00);
-        kamui_draw_20bdc0(iVar1 * 0x44 + g_8c277b08 + 0x18, uVar2, iVar3, ar7_00);
+        kamui_render_scene_a(iVar1 * 0x44 + g_8c277b08 + 0x18, uVar2, iVar3, ar7_00);
         uVar2 = pvr_set_clip_rect(0, 0, g_8c4aa508 + -1, g_8c4aa50c + -1);
         return uVar2;
     }
@@ -18303,7 +18284,7 @@ u32 nj_screenshot_to_bmp(int a0, u32 a1, u32 unused_a2, u32 unused_a3, u32 s0, u
 
     iVar1 = (int)(int)0xffffff24;
     *(u32 *)((int)aiStack_24 + iVar1 + 4) = a1;
-    ta_fill_loop_20aacc(&stack0xffffffe4 + iVar1);
+    ta_compute_list_sizes(&stack0xffffffe4 + iVar1);
     iVar3 = 0x8c4aa70c;
     if (g_8c4aa6f8 == *(int *)((int)&s20 + iVar1)) {
         iVar3 = 0x8c4aa6e4;
@@ -18629,9 +18610,8 @@ u32 tex_error_reset(void) {
 /*
  * touch_fields_30_3c  0x8c25b5d0
  * rewrites the four words at +0x30..+0x3c with themselves (no effect)
- * called by: CAnimal_draw_at_pose_a, CAnimal_uses_njGetMatrix_026968, CAnimal_uses_njGetMatrix_029af0,
- * CSquidLine_draw_like, Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0
- * (+23 more)
+ * called by: CAnimal_apply_motion_keys, CAnimal_draw_at_pose_a, CAnimal_draw_body, CSquidLine_draw_like,
+ * Class_1298b8_m11_0159ec, Class_1298b8_m2_015588, Class_1298b8_m3_0155e8, Class_1298b8_m4_0156a0 (+23 more)
  */
 u32 touch_fields_30_3c(int a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     if (a0 != 0) {
@@ -18832,7 +18812,7 @@ u64 *nj_draw_poly3d_like(u32 *a0, int a1, u64 *a2, int a3) {
                 if (!bVar14)
                     goto LAB_8c25b7c2;
             LAB_8c25b7de:
-                a2 = (u64 *)ninja_fill_loop_25b858(puVar4, ar5_00, ar6_00, a2);
+                a2 = (u64 *)ninja_twiddle_kernel_a(puVar4, ar5_00, ar6_00, a2);
             } else {
             LAB_8c25b7c2:
                 if (cVar16 == '\0') {
@@ -18944,10 +18924,9 @@ u64 *nj_draw_poly3d_like(u32 *a0, int a1, u64 *a2, int a3) {
 }
 
 /*
- * tex_calls_fill_loop_25b6c6  0x8c25b6c6
- * area name: sits between tex functions (same compilation unit); behaviour name: its callees mostly do: fill_loop
+ * tex_twiddle_upload_a  0x8c25b6c6
  */
-u64 *tex_calls_fill_loop_25b6c6(u32 a0, u32 a1, u64 *a2) {
+u64 *tex_twiddle_upload_a(u32 a0, u32 a1, u64 *a2) {
     bool bVar1;
     bool bVar2;
     u32 uVar3;
@@ -19073,7 +19052,7 @@ u64 *tex_calls_fill_loop_25b6c6(u32 a0, u32 a1, u64 *a2) {
                 if (!bVar14)
                     goto LAB_8c25b7c2;
             LAB_8c25b7de:
-                a2 = (u64 *)ninja_fill_loop_25b858(a4, puVar8, a6, a2);
+                a2 = (u64 *)ninja_twiddle_kernel_a(a4, puVar8, a6, a2);
             } else {
             LAB_8c25b7c2:
 
@@ -19159,11 +19138,10 @@ u64 *tex_calls_fill_loop_25b6c6(u32 a0, u32 a1, u64 *a2) {
 }
 
 /*
- * ninja_fill_loop_25b858  0x8c25b858
- * area name: in the ninja library code range; behaviour name: a loop that writes memory
- * called by: nj_draw_poly3d_like, tex_calls_fill_loop_25b6c6
+ * ninja_twiddle_kernel_a  0x8c25b858
+ * called by: nj_draw_poly3d_like, tex_twiddle_upload_a
  */
-u32 *ninja_fill_loop_25b858(u32 *a0, u32 *a1, u32 *a2, u64 *a3) {
+u32 *ninja_twiddle_kernel_a(u32 *a0, u32 *a1, u32 *a2, u64 *a3) {
     u32 *puVar1;
     int iVar2;
     u32 uVar3;
@@ -19910,7 +19888,7 @@ u64 *nj_draw_tex_poly3d_like(u32 *a0, int a1, u64 *a2, int a3) {
                 if (!bVar14)
                     goto LAB_8c25be34;
             LAB_8c25be50:
-                a2 = (u64 *)ninja_fill_loop_25bed8(puVar3, ar5_00, ar6_00, a2);
+                a2 = (u64 *)ninja_twiddle_kernel_b(puVar3, ar5_00, ar6_00, a2);
             } else {
             LAB_8c25be34:
                 if (cVar16 == '\0') {
@@ -20034,10 +20012,9 @@ u64 *nj_draw_tex_poly3d_like(u32 *a0, int a1, u64 *a2, int a3) {
 }
 
 /*
- * ninja_calls_fill_loop_25bd0a  0x8c25bd0a
- * area name: in the ninja library code range; behaviour name: its callees mostly do: fill_loop
+ * ninja_twiddle_upload_b  0x8c25bd0a
  */
-u64 *ninja_calls_fill_loop_25bd0a(u32 a0, u32 a1, u64 *a2) {
+u64 *ninja_twiddle_upload_b(u32 a0, u32 a1, u64 *a2) {
     bool bVar1;
     u32 uVar2;
     u32 uVar3;
@@ -20165,7 +20142,7 @@ u64 *ninja_calls_fill_loop_25bd0a(u32 a0, u32 a1, u64 *a2) {
                 if (!bVar14)
                     goto LAB_8c25be34;
             LAB_8c25be50:
-                a2 = (u64 *)ninja_fill_loop_25bed8(a4, puVar7, a6, a2);
+                a2 = (u64 *)ninja_twiddle_kernel_b(a4, puVar7, a6, a2);
             } else {
             LAB_8c25be34:
 
@@ -20257,11 +20234,10 @@ u64 *ninja_calls_fill_loop_25bd0a(u32 a0, u32 a1, u64 *a2) {
 }
 
 /*
- * ninja_fill_loop_25bed8  0x8c25bed8
- * area name: in the ninja library code range; behaviour name: a loop that writes memory
- * called by: ninja_calls_fill_loop_25bd0a, nj_draw_tex_poly3d_like
+ * ninja_twiddle_kernel_b  0x8c25bed8
+ * called by: ninja_twiddle_upload_b, nj_draw_tex_poly3d_like
  */
-u32 *ninja_fill_loop_25bed8(u32 *a0, u32 *a1, u32 *a2, u64 *a3) {
+u32 *ninja_twiddle_kernel_b(u32 *a0, u32 *a1, u32 *a2, u64 *a3) {
     int iVar1;
     u32 uVar2;
     int iVar3;
@@ -21200,7 +21176,7 @@ int nj_draw_polygon_clip_like(double *a0, int a1, int a2) {
                     goto LAB_8c25c406;
             LAB_8c25c410:
                 dVar14 = (double)(uVar1 << 0x20);
-                a2 = ninja_float_calc_25c4d2(pdVar5, a0, a2);
+                a2 = ninja_sprite_quad_kernel_a(pdVar5, a0, a2);
                 dVar23 = in_xd4;
             } else {
             LAB_8c25c406:
@@ -21245,10 +21221,9 @@ int nj_draw_polygon_clip_like(double *a0, int a1, int a2) {
 }
 
 /*
- * ninja_calls_float_calc_25c3d0  0x8c25c3d0
- * area name: in the ninja library code range; behaviour name: its callees mostly do: float_calc
+ * ninja_sprite_quad_setup  0x8c25c3d0
  */
-int ninja_calls_float_calc_25c3d0(u32 unused_a0, u32 unused_a1, u32 *a2) {
+int ninja_sprite_quad_setup(u32 unused_a0, u32 unused_a1, u32 *a2) {
     u64 uVar1;
     u32 uVar2;
     double *in_r3;
@@ -21486,7 +21461,7 @@ int ninja_calls_float_calc_25c3d0(u32 unused_a0, u32 unused_a1, u32 *a2) {
                     goto LAB_8c25c406;
             LAB_8c25c410:
                 in_dr2 = (double)(uVar1 << 0x20);
-                unaff_r14 = ninja_float_calc_25c4d2(unaff_r9, unaff_r12, unaff_r14);
+                unaff_r14 = ninja_sprite_quad_kernel_a(unaff_r9, unaff_r12, unaff_r14);
                 dVar24 = in_xd4;
             } else {
             LAB_8c25c406:
@@ -21527,11 +21502,10 @@ int ninja_calls_float_calc_25c3d0(u32 unused_a0, u32 unused_a1, u32 *a2) {
 }
 
 /*
- * ninja_float_calc_25c4d2  0x8c25c4d2
- * area name: in the ninja library code range; behaviour name: floating-point arithmetic
- * called by: ninja_calls_float_calc_25c3d0, nj_draw_polygon_clip_like
+ * ninja_sprite_quad_kernel_a  0x8c25c4d2
+ * called by: ninja_sprite_quad_setup, nj_draw_polygon_clip_like
  */
-int ninja_float_calc_25c4d2(u32 *a0, u32 *a1, int a2) {
+int ninja_sprite_quad_kernel_a(u32 *a0, u32 *a1, int a2) {
     u64 *puVar1;
     double *pdVar2;
     u32 unaff_r12;
@@ -22606,7 +22580,7 @@ double *nj_draw_polygon_clip_uv_like(double *a0, int a1, double *a2) {
                     goto LAB_8c25c8e0;
             LAB_8c25c8ea:
                 dVar9 = (double)(uVar1 << 0x20);
-                a2 = (double *)ninja_float_calc_25c9d8(pdVar5, a0, a2);
+                a2 = (double *)ninja_sprite_quad_kernel_b(pdVar5, a0, a2);
                 dVar26 = in_xd6;
             } else {
             LAB_8c25c8e0:
@@ -22655,11 +22629,10 @@ double *nj_draw_polygon_clip_uv_like(double *a0, int a1, double *a2) {
 }
 
 /*
- * ninja_float_calc_25c9d8  0x8c25c9d8
- * area name: in the ninja library code range; behaviour name: floating-point arithmetic
+ * ninja_sprite_quad_kernel_b  0x8c25c9d8
  * called by: nj_draw_polygon_clip_uv_like
  */
-int ninja_float_calc_25c9d8(u32 *a0, u32 *a1, int a2) {
+int ninja_sprite_quad_kernel_b(u32 *a0, u32 *a1, int a2) {
     double *pdVar1;
     u64 *puVar2;
     double *pdVar3;
@@ -23373,9 +23346,8 @@ int ninja_float_calc_25c9d8(u32 *a0, u32 *a1, int a2) {
 /*
  * njGetMatrix  0x8c25cddc
  * copies the current matrix into a0
- * called by: CAnimal_uses_njGetMatrix_026968, CAnimal_uses_njGetMatrix_029af0, Class_129938_m1_0170e0,
- * Class_129938_m2_0171f4, Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12b580_vec_0d8aa0,
- * Vec3_rotate_euler_deg (+6 more)
+ * called by: CAnimal_apply_motion_keys, CAnimal_draw_body, Class_129938_m1_0170e0, Class_129938_m2_0171f4,
+ * Class_1299f8_m4_019588, Class_129a24_m1_019b68, Class_12b580_helper_0d8aa0, Vec3_look_at_rotation_a (+6 more)
  */
 u32 njGetMatrix(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     u32 uVar1;
@@ -23425,9 +23397,9 @@ u32 njGetMatrix(u32 *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) 
 /*
  * njUnitVector  0x8c25ce48
  * normalises the Vec3 at a0 in place
- * called by: Class_1299f8_m3_019f00, gfxlib_uses_float_to_color_u8_24bdc8, gfxlib_uses_float_to_color_u8_24c6f0,
- * gfxlib_uses_float_to_color_u8_24df18, gfxlib_uses_float_to_color_u8_250144, gfxlib_uses_ninja_matrix_copy_2163d4,
- * gfxlib_uses_ninja_matrix_copy_2166e8, gfxlib_uses_ninja_matrix_copy_22b7a8 (+3 more)
+ * called by: Class_1299f8_m3_019f00, gfxlib_draw_normals_a, gfxlib_draw_normals_b, gfxlib_draw_normals_c,
+ * gfxlib_draw_normals_d, gfxlib_polygon_chunk_flat_shade_a, gfxlib_polygon_chunk_flat_shade_b,
+ * gfxlib_polygon_chunk_flat_shade_c (+3 more)
  */
 u32 njUnitVector(float *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain0) {
     float fVar1;
@@ -23450,7 +23422,7 @@ u32 njUnitVector(float *a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 ain
 /*
  * ninja_vertex_stride_sum  0x8c25ce80
  * sum of five table 0x8c277d80 sizes selected by 0x8c4aa05c..6c, times a0*4
- * called by: ninja_draw_25d7c6
+ * called by: ninja_init_vertex_formats
  */
 int ninja_vertex_stride_sum(int a0, u32 a1) {
     return (*(int *)(&g_8c277d80 + g_8c4aa05c * 4) + *(int *)(&g_8c277d80 + g_8c4aa060 * 4) +
@@ -23544,7 +23516,7 @@ u32 ta_fifo_25d028(u32 a0) {
 
 /*
  * ta_fifo_25d0a0  0x8c25d0a0
- * called by: ninja_draw_25d7c6, pvr_20672a, pvr_2069a0
+ * called by: ninja_init_vertex_formats, pvr_20672a, pvr_2069a0
  */
 int ta_fifo_25d0a0(int a0, int a1, u32 a2, u32 a3) {
     bool bVar1;
@@ -23769,12 +23741,10 @@ u32 *ninja_pvr_memory_init(void) {
 }
 
 /*
- * ninja_draw_25d7c6  0x8c25d7c6
- * area name: in the ninja library code range; behaviour name: mostly calls draw functions
- * called by: kamui_uses_kamui_lists_sizes_init_211120, kmCreateVertexBuffer_like, shinobi_graphics_init_like,
- * ta_dma_start_list
+ * ninja_init_vertex_formats  0x8c25d7c6
+ * called by: kamui_init_system_like, kmCreateVertexBuffer_like, shinobi_graphics_init_like, ta_dma_start_list
  */
-u32 ninja_draw_25d7c6(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0) {
+u32 ninja_init_vertex_formats(u32 unused_a0, u32 unused_a1, u32 unused_a2, u32 unused_a3, u32 s0) {
     u32 *puVar1;
     u32 *puVar2;
     int iVar3;

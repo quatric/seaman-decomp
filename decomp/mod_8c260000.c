@@ -548,12 +548,11 @@ u32 is_spsd_header(u32 a0, u32 a1) {
 }
 
 /*
- * cri_uses_memcmp_260658  0x8c260658
- * area name: in the cri library code range; behaviour name: its main named callee is memcmp
+ * cri_find_chunk_tag  0x8c260658
  * called by: wav_handle_parse_header
  */
-u32 cri_uses_memcmp_260658(int a0, u32 a1, short *a2, u8 *a3, char *s0, char *s4, char *s8, u32 *s12, u32 s16, u32 *s20,
-                           u16 *s24) {
+u32 cri_find_chunk_tag(int a0, u32 a1, short *a2, u8 *a3, char *s0, char *s4, char *s8, u32 *s12, u32 s16, u32 *s20,
+                       u16 *s24) {
     u8 bVar1;
     u8 bVar2;
     u8 bVar3;
@@ -642,7 +641,7 @@ int wav_handle_parse_header(int a0, u32 a1, u32 a2) {
 
     a7 = a0 + 0xc;
     *(u16 *)(a0 + 2) = 1;
-    iVar1 = cri_uses_memcmp_260658(a1, a2, asStack_18, a7);
+    iVar1 = cri_find_chunk_tag(a1, a2, asStack_18, a7);
     if (iVar1 < 0) {
         iVar1 = 0;
     } else {
@@ -1643,11 +1642,10 @@ u32 cri_clear_30_masked(int a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) 
 }
 
 /*
- * cri_uses_libgcc_divide_helper_2614d6  0x8c2614d6
- * area name: in the cri library code range; behaviour name: its main named callee is libgcc_divide_helper_010468
+ * cri_compute_sample_blocks  0x8c2614d6
  * called by: cri_divide_if_state_2
  */
-u32 cri_uses_libgcc_divide_helper_2614d6(int a0, u32 unused_a1, int **a2, int **a3) {
+u32 cri_compute_sample_blocks(int a0, u32 unused_a1, int **a2, int **a3) {
     u32 uVar1;
     u32 uVar2;
     u32 uVar3;
@@ -1740,7 +1738,7 @@ u32 cri_divide_if_state_2(int a0, u32 unused_a1, u32 a2, u32 a3) {
     u32 uVar1;
 
     if (*(char *)(a0 + 1) == 2) {
-        uVar1 = cri_uses_libgcc_divide_helper_2614d6(a0, unused_a1, a2, a3);
+        uVar1 = cri_compute_sample_blocks(a0, unused_a1, a2, a3);
         return uVar1;
     }
     return (int)*(char *)(a0 + 1);
@@ -3074,7 +3072,7 @@ u32 lib_error_printf_wrap(u32 a0, u32 a1, u32 a2) {
 /*
  * adx_lib_init  0x8c262810
  * on the first call clears the ADX library's tables, initialises its servers and installs adx_server on interrupt
- * 0x900; counts the calls called by: game_uses_file_slot_open_01f608
+ * 0x900; counts the calls called by: file_system_init_root_speech_graphics
  */
 u32 adx_lib_init(u32 a0, u32 unused_a1, u32 unused_a2, u32 a3, u32 ain0) {
     u32 uVar1;
@@ -6771,7 +6769,7 @@ int aica_load_and_start(u32 a0, u32 a1, u32 a2) {
     ar7_00 = &iStack_18;
     uStack_14 = a0;
     cStack_c = (char)a2;
-    ar5_00 = aica_calc_2684f0(a1, (int)(char)a2, &stack0xffffffe4, ar7_00);
+    ar5_00 = aica_find_free_region(a1, (int)(char)a2, &stack0xffffffe4, ar7_00);
     if (ar5_00 == 0) {
         if ((in_stack_ffffffe4 == 0) || (iStack_18 < 1)) {
             ar5_00 = 0x7fffffff;
@@ -8532,7 +8530,7 @@ int sd_load_smlt(int a0, int a1, int a2, int a3) {
                         a1 = piVar4[1];
                         a3 = piVar4[3];
                         a2 = piVar4[2];
-                        ar5_00 = sd_sound_268320(*piVar4, a1, a2, a3);
+                        ar5_00 = sd_aica_ram_load(*piVar4, a1, a2, a3);
                         if (ar5_00 != 0)
                             break;
                     }
@@ -8837,7 +8835,7 @@ int sd_slot_ch_get_rate_like(int a0, u32 a1, int *a2, u8 *a3) {
                         &stack0xffffffd8);
         a3 = auStack_18;
         piVar2 = &iStack_1c;
-        aica_calc_2684f0(0x52535053, (int)*(char *)((int)piVar3 + (char)a1 + 7), piVar2, a3);
+        aica_find_free_region(0x52535053, (int)*(char *)((int)piVar3 + (char)a1 + 7), piVar2, a3);
         iVar1 = *piVar3;
         if (iVar1 == 1) {
             in_stack_ffffffd8 = in_stack_ffffffd8 * 2;
@@ -10596,11 +10594,10 @@ int alt_entry_2682be(int a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /*
- * sd_sound_268320  0x8c268320
- * area name: in the sd library code range; behaviour name: mostly calls sound functions
+ * sd_aica_ram_load  0x8c268320
  * called by: sd_load_smlt, sd_stream_create_like
  */
-u32 sd_sound_268320(int a0, u32 a1, u32 a2, u32 a3) {
+u32 sd_aica_ram_load(int a0, u32 a1, u32 a2, u32 a3) {
     int ar6_00;
     int ar7_00;
     int iVar1;
@@ -10689,11 +10686,10 @@ u32 aica_ram_2684b8(void) {
 }
 
 /*
- * aica_calc_2684f0  0x8c2684f0
- * area name: sits between aica functions (same compilation unit); behaviour name: integer arithmetic on its arguments
+ * aica_find_free_region  0x8c2684f0
  * called by: aica_load_and_start, sd_slot_ch_get_rate_like
  */
-u32 aica_calc_2684f0(int a0, u32 a1, u32 *a2, u32 *a3) {
+u32 aica_find_free_region(int a0, u32 a1, u32 *a2, u32 *a3) {
     int iVar1;
     u32 *puVar2;
     u32 uVar3;
@@ -10847,7 +10843,7 @@ u32 aica_ram_read_byte(u32 a0, u8 *a1) {
 
 /*
  * aica_ram_268748  0x8c268748
- * called by: sd_sound_268320
+ * called by: sd_aica_ram_load
  */
 u32 aica_ram_268748(int a0, u32 a1) {
     u32 auStack_8[2];
@@ -11481,7 +11477,7 @@ u32 mwRna_set_flag_6(int a0) {
 
 /*
  * mwRna_call_4c_if_positive  0x8c268ddc
- * called by: mwRna_fill_transfer_like, mwRna_uses_libgcc_divide_helper_269244
+ * called by: mwRna_fill_transfer_like, mwRna_set_rate_and_timer
  */
 u32 mwRna_call_4c_if_positive(int a0, u32 a1, u32 a2, u32 a3, int s0) {
     if (s0 < 1) {
@@ -11760,12 +11756,10 @@ u32 mwRna_set_play_sw(int a0, int a1, u32 a2, u32 a3) {
 }
 
 /*
- * mwRna_uses_libgcc_divide_helper_269244  0x8c269244
- * name hint from a string it uses: E1212 mwlRnaStartTrans rna s; area name: sits between mwRna functions (same
- * compilation unit); behaviour name: its main named callee is libgcc_divide_helper_010468 called by:
- * mwRna_exec_handle_like
+ * mwRna_set_rate_and_timer  0x8c269244
+ * called by: mwRna_exec_handle_like
  */
-int *mwRna_uses_libgcc_divide_helper_269244(u8 *a0, u32 unused_a1, u8 *a2, u8 *a3) {
+int *mwRna_set_rate_and_timer(u8 *a0, u32 unused_a1, u8 *a2, u8 *a3) {
     int iVar1;
     int iVar2;
     u8 *a7;
@@ -11931,7 +11925,7 @@ u32 mwRna_exec_handle_like(int a0, u32 unused_a1, u32 a2, u32 a3) {
     if (iVar2 == 1) {
         if (*(char *)(a0 + 5) != '\0')
             goto LAB_8c26958c;
-        iVar2 = mwRna_uses_libgcc_divide_helper_269244(a0, unused_a1, a2, a3);
+        iVar2 = mwRna_set_rate_and_timer(a0, unused_a1, a2, a3);
     } else {
         iVar2 = mwRna_is_output_on(a0);
         if ((iVar2 != 1) || (*(int *)(a0 + 0x28) <= *(int *)(a0 + 0x54)))
@@ -13095,7 +13089,7 @@ u32 sd_stream_create_like(int a0, int a1, int a2, int a3) {
                 a1 = *piStack_3c;
                 iVar10 = (0x10 - a1) * -0x4040 + 0x200000;
                 a2 = iVar10;
-                iVar6 = sd_sound_268320(0x52535053, a1, iVar10, a3);
+                iVar6 = sd_aica_ram_load(0x52535053, a1, iVar10, a3);
                 if (iVar6 != 0) {
                     (*(code *)puVar1)(iVar6, a1, a2, a3);
                 }
