@@ -444,6 +444,12 @@ void exec_(Cpu &C, unsigned pc, unsigned stop)
     }
 #endif
     step(C, pc, op, next);
+#ifdef SH4_JTRACE
+    /* debug builds: the last control transfers in the interpreter, dumped when pc leaves guest RAM */
+    { static unsigned jf[64], jt[64], jr[64], jn; if (next != pc + 2) { jf[jn & 63] = pc; jt[jn & 63] = next; jr[jn & 63] = C.r[15]; jn++; }
+      if ((next >> 24) != 0x8c && next != stop) { host_log("sh4: pc left RAM: %08x -> %08x pr=%08x r0..r7 %08x %08x %08x %08x %08x %08x %08x %08x r14 %08x r15 %08x\n", pc, next, C.pr, C.r[0], C.r[1], C.r[2], C.r[3], C.r[4], C.r[5], C.r[6], C.r[7], C.r[14], C.r[15]);
+        for (unsigned i = jn > 64 ? jn - 64 : 0; i < jn; i++) host_log("  jt %08x -> %08x sp %08x\n", jf[i & 63], jt[i & 63], jr[i & 63]); bad("pc left RAM", pc, op); } }
+#endif
     pc = next;
   }
 }

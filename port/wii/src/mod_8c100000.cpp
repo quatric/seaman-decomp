@@ -5031,228 +5031,79 @@ __asm__(".globl Class_12c3c4_m8_109fc0\n.set Class_12c3c4_m8_109fc0, Class_12c3c
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-int Class_12c3c4_m9_10a00c_def(int ar4,undefined1 *ar5,int ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned Class_12c3c4_m9_10a00c_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("Class_12c3c4_m9_10a00c");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  int iVar1;
-  
-  if (ar6 == 2) {
-    *(char *)(unsigned)(0x865 + ar4) = (char)*(le<undefined4>* )(unsigned)(ar5 + 4);
-  }
-  else {
-    *(char *)(unsigned)(0x854 + ar4) = (char)*(le<undefined4>* )(unsigned)(ar5 + 4);
-  }
-  *(undefined1 *)(unsigned)(0x98 + ar4) = *ar5;
-  (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c030d10(ar4 + 0x9c,ar5 + 8,ar6,ar7));
-  iVar1 = 0x99;
-  *(undefined1 *)(unsigned)(0x99 + ar4) = ar5[1];
-  return iVar1;
+  return (unsigned)sh4_interp(0x8c10a00c, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl Class_12c3c4_m9_10a00c\n.set Class_12c3c4_m9_10a00c, Class_12c3c4_m9_10a00c_def\n");
-
 }
 //@unit 8c10a074
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-undefined4 Class_12c3c4_m10_10a074_def(int ar4,undefined1 *ar5,int ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned Class_12c3c4_m10_10a074_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("Class_12c3c4_m10_10a074");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  undefined4 uVar1;
-  
-  if (ar6 == 2) {
-    *(le<int>* )(unsigned)(ar5 + 4) = (int)*(char *)(unsigned)(0x865 + ar4);
-  }
-  else {
-    *(le<int>* )(unsigned)(ar5 + 4) = (int)*(char *)(unsigned)(0x854 + ar4);
-  }
-  *ar5 = *(undefined1 *)(unsigned)(0x98 + ar4);
-  ar5[1] = *(undefined1 *)(unsigned)(0x99 + ar4);
-  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c030d2c(ar4 + 0x9c,ar5 + 8,ar6,ar7));
-  return uVar1;
+  return (unsigned)sh4_interp(0x8c10a074, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl Class_12c3c4_m10_10a074\n.set Class_12c3c4_m10_10a074, Class_12c3c4_m10_10a074_def\n");
-
 }
 //@unit 8c10a0dc
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-int Class_12c3c4_m5_10a0dc_def(int ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned Class_12c3c4_m5_10a0dc_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("Class_12c3c4_m5_10a0dc");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 4; for (int i_ = 0; i_ < 4; i_++) z_[i_] = 0; }
-  int iVar1;
-  undefined4 ar5_00;
-  
-  iVar1 = *(le<int>* )(unsigned)(0x384 + ar4);
-  if (iVar1 != -1) {
-    (vsp = ((unsigned long)(fr0_ - 4)), FUN_8c0f8214(0x8c35468c,ar5,ar6,ar7));
-    ar5_00 = 3;
-    (vsp = ((unsigned long)(fr0_ - 4)), FUN_8c030870(ar4 + 0x9c,3,ar6,ar7));
-    *(undefined1 *)(unsigned)(0x80 + ar4) = 1;
-    *(le<undefined4>* )(unsigned)(0x384 + ar4) = 0xffffffff;
-    *(le<undefined4>* )(unsigned)(0xfc + ar4) = 0;
-    (vsp = ((unsigned long)(fr0_ - 4)), s_STATUS_FORMAT_030306(ar4 + 0x9c,ar5_00,ar6,ar7));
-    if ((*(le<int>* )(unsigned)(ar4 + 0x40) == 0xb) || (iVar1 = *(le<int>* )(unsigned)(ar4 + 0x40), iVar1 == 10)) {
-      *(le<undefined4>* )(unsigned)(ar4 + 4) = 0;
-      *(le<undefined4>* )(unsigned)(ar4 + 8) = 0x14;
-      *(le<undefined4>* )(unsigned)(ar4 + 0xc) = 0;
-      iVar1 = 0x40;
-      *(le<undefined4>* )(unsigned)(ar4 + 0x40) = 0;
-    }
-  }
-  return iVar1;
+  return (unsigned)sh4_interp(0x8c10a0dc, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl Class_12c3c4_m5_10a0dc\n.set Class_12c3c4_m5_10a0dc, Class_12c3c4_m5_10a0dc_def\n");
-
 }
 //@unit 8c10a16c
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-undefined * Class_12c3c4_m4_10a16c_def(undefined4 ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned Class_12c3c4_m4_10a16c_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("Class_12c3c4_m4_10a16c");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  undefined *puVar1;
-  int iVar2;
-  
-  iVar2 = (int)(char)ar6;
-  puVar1 = (undefined *)(unsigned)0x7;
-  if ((iVar2 < 8) && (-1 < iVar2)) {
-    puVar1 = (&(*(undefined1 *)(unsigned)0x8c10a190))[iVar2];
-                    
-    switch(iVar2) {
-    case 0:
-      puVar1 = (undefined *)(unsigned)(vsp = ((unsigned long)(fr0_ - 0)), FUN_8c0b9ed4(ar5,10,0x1b,ar7));
-      break;
-    case 3:
-      puVar1 = (undefined *)(unsigned)(vsp = ((unsigned long)(fr0_ - 0)), FUN_8c0b9ed4(ar5,0x10,0x1b,ar7));
-      break;
-    case 6:
-      puVar1 = (undefined *)(unsigned)(vsp = ((unsigned long)(fr0_ - 0)), FUN_8c0b9ed4(ar5,0x12,0x1b,ar7));
-      break;
-    case 7:
-      puVar1 = (undefined *)(unsigned)(vsp = ((unsigned long)(fr0_ - 0)), FUN_8c0b9ed4(ar5,0x13,0x1b,ar7));
-    }
-  }
-  return puVar1;
+  return (unsigned)sh4_interp(0x8c10a16c, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl Class_12c3c4_m4_10a16c\n.set Class_12c3c4_m4_10a16c, Class_12c3c4_m4_10a16c_def\n");
-
 }
 //@unit 8c10a1fc
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-undefined4 get_field_100_10a1fc_def(int ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned get_field_100_10a1fc_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("get_field_100_10a1fc");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  return *(le<undefined4>* )(unsigned)(0x100 + ar4);
+  return (unsigned)sh4_interp(0x8c10a1fc, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl get_field_100_10a1fc\n.set get_field_100_10a1fc, get_field_100_10a1fc_def\n");
-
 }
 //@unit 8c10a208
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-undefined4 get_field_870_10a208_def(int ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned get_field_870_10a208_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("get_field_870_10a208");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  return *(le<undefined4>* )(unsigned)(0x870 + ar4);
+  return (unsigned)sh4_interp(0x8c10a208, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl get_field_870_10a208\n.set get_field_870_10a208, get_field_870_10a208_def\n");
-
 }
 //@unit 8c10a214
 #include "../decls.h"
@@ -5414,97 +5265,40 @@ __asm__(".globl FUN_8c10ad00\n.set FUN_8c10ad00, FUN_8c10ad00_def\n");
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-undefined4 FUN_8c10af3c_def(undefined4 ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10af3c_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10af3c");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  undefined4 uVar1;
-  
-  uVar1 = ({ unsigned long t0_ = (unsigned long)(((void *)(unsigned)0x8c10a80c)); unsigned long t1_ = (unsigned long)(((void *)(unsigned)0x8c10ad00)); unsigned long t2_ = (unsigned long)((&(*(undefined1 *)(unsigned)0x8c10ac30))); unsigned long t3_ = (unsigned long)(
-                     (int)0xb4); *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 0) = (unsigned)t0_; *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 4) = (unsigned)t1_; *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 8) = (unsigned)t2_; *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 12) = (unsigned)t3_; vsp = (((unsigned long)(fr0_ - 0)) - 16); (*(code *)xlat((unsigned long)(((void *)(unsigned)0x8c120580))))
-                    (ar4,ar5,5,1); });
-  return uVar1;
+  return (unsigned)sh4_interp(0x8c10af3c, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10af3c\n.set FUN_8c10af3c, FUN_8c10af3c_def\n");
-
 }
 //@unit 8c10af94
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-int FUN_8c10af94_def(int ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10af94_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10af94");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 4; for (int i_ = 0; i_ < 4; i_++) z_[i_] = 0; }
-  int iVar1;
-  
-  iVar1 = (int)0xa4;
-  return (*(le<int>* )(unsigned)(iVar1 + ar4) * 2 + ar4 + (int)0xb4 + 3U & 0xfffffffc) +
-         (*(le<int>* )(unsigned)(iVar1 + -0x1c + ar4) + 1) * 4 + (*(le<int>* )(unsigned)(iVar1 + -0x14 + ar4) + 1) * 4;
+  return (unsigned)sh4_interp(0x8c10af94, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10af94\n.set FUN_8c10af94, FUN_8c10af94_def\n");
-
 }
 //@unit 8c10afbe
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-int FUN_8c10afbe_def(int ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10afbe_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10afbe");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 4; for (int i_ = 0; i_ < 4; i_++) z_[i_] = 0; }
-  int iVar1;
-  int iVar2;
-  
-  iVar1 = (vsp = ((unsigned long)(fr0_ - 4)), FUN_8c10af94(ar4,ar5,ar6,ar7));
-  iVar2 = (int)0xa8;
-  return (iVar1 + *(le<int>* )(unsigned)(iVar2 + ar4) * 2 + 3U & 0xfffffffc) +
-         (*(le<int>* )(unsigned)(iVar2 + -0x1c + ar4) + 1) * 4 + (*(le<int>* )(unsigned)(iVar2 + -0x14 + ar4) + 1) * 4;
+  return (unsigned)sh4_interp(0x8c10afbe, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10afbe\n.set FUN_8c10afbe, FUN_8c10afbe_def\n");
-
 }
 //@unit 8c10aff4
 #include "../decls.h"
@@ -5965,32 +5759,14 @@ __asm__(".globl FUN_8c10be22\n.set FUN_8c10be22, FUN_8c10be22_def\n");
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-undefined4 FUN_8c10be4e_def(undefined4 ar4,le<undefined4>* ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10be4e_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10be4e");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  undefined4 uVar1;
-  
-  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c11ce88(ar4,ar5,ar6,ar7));
-  *ar5 = uVar1;
-  return 0;
+  return (unsigned)sh4_interp(0x8c10be4e, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10be4e\n.set FUN_8c10be4e, FUN_8c10be4e_def\n");
-
 }
 //@unit 8c10be70
 #include "../decls.h"
@@ -6217,259 +5993,105 @@ __asm__(".globl FUN_8c10c838\n.set FUN_8c10c838, FUN_8c10c838_def\n");
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-undefined4 FUN_8c10c8e2_def(undefined4 ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10c8e2_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10c8e2");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  undefined4 uVar1;
-  
-  uVar1 = ({ unsigned long t0_ = (unsigned long)(((void *)(unsigned)0x8c10c530)); unsigned long t1_ = (unsigned long)((&(*(undefined1 *)(unsigned)0x8c10c484))); unsigned long t2_ = (unsigned long)(((void *)(unsigned)0x8c10c838)); unsigned long t3_ = (unsigned long)(0x5c); *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 0) = (unsigned)t0_; *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 4) = (unsigned)t1_; *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 8) = (unsigned)t2_; *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 12) = (unsigned)t3_; vsp = (((unsigned long)(fr0_ - 0)) - 16); (*(code *)xlat((unsigned long)(((void *)(unsigned)0x8c120580))))
-                    (ar4,ar5,1,1); });
-  return uVar1;
+  return (unsigned)sh4_interp(0x8c10c8e2, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10c8e2\n.set FUN_8c10c8e2, FUN_8c10c8e2_def\n");
-
 }
 //@unit 8c10c986
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-int FUN_8c10c986_def(le<int>* ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10c986_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10c986");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  uint uVar1;
-  
-  uVar1 = *(le<uint>* )(unsigned)((int)0xa4 + *ar4);
-  return 0xa4 + 0x10 + *ar4 + (uVar1 + (uVar1 & 1)) * 2;
+  return (unsigned)sh4_interp(0x8c10c986, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10c986\n.set FUN_8c10c986, FUN_8c10c986_def\n");
-
 }
 //@unit 8c10c99c
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-int FUN_8c10c99c_def(le<int>* ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10c99c_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10c99c");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  int iVar1;
-  int iVar2;
-  
-  iVar2 = *ar4;
-  iVar1 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c10c986(ar4,ar5,ar6,ar7));
-  return iVar1 + (*(le<int>* )(unsigned)(0x88 + iVar2) + 1) * 4 + (*(le<int>* )(unsigned)(0x90 + iVar2) + 1) * 4
-  ;
+  return (unsigned)sh4_interp(0x8c10c99c, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10c99c\n.set FUN_8c10c99c, FUN_8c10c99c_def\n");
-
 }
 //@unit 8c10c9c8
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-int FUN_8c10c9c8_def(le<int>* ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10c9c8_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10c9c8");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  int iVar1;
-  uint uVar2;
-  
-  uVar2 = *(le<uint>* )(unsigned)((int)0xa8 + *ar4);
-  iVar1 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c10c99c(ar4,*ar4,ar6,ar7));
-  return iVar1 + (uVar2 + (uVar2 & 1)) * 2;
+  return (unsigned)sh4_interp(0x8c10c9c8, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10c9c8\n.set FUN_8c10c9c8, FUN_8c10c9c8_def\n");
-
 }
 //@unit 8c10c9cc
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-int FUN_8c10c9cc_def(le<int>* ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10c9cc_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10c9cc");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  int in_r0 = (int)(unsigned long)vin0;
-  int iVar1;
-  uint in_r3 = 0;
-  uint uVar2;
-  
-  uVar2 = *(le<uint>* )(unsigned)(in_r0 + *ar4);
-  iVar1 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c10c99c(ar4,*ar4,ar6,ar7));
-  return iVar1 + (uVar2 + (in_r3 & uVar2)) * 2;
+  return (unsigned)sh4_interp(0x8c10c9cc, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10c9cc\n.set FUN_8c10c9cc, FUN_8c10c9cc_def\n");
-
 }
 //@unit 8c10c9e4
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-int FUN_8c10c9e4_def(le<int>* ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10c9e4_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10c9e4");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  int iVar1;
-  int iVar2;
-  
-  iVar2 = *ar4;
-  iVar1 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c10c9c8(ar4,ar5,ar6,ar7));
-  return iVar1 + (*(le<int>* )(unsigned)(0x8c + iVar2) + 1) * 4 +
-                 (*(le<int>* )(unsigned)(0x8c + 8 + iVar2) + 1) * 4;
+  return (unsigned)sh4_interp(0x8c10c9e4, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10c9e4\n.set FUN_8c10c9e4, FUN_8c10c9e4_def\n");
-
 }
 //@unit 8c10ca10
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-int FUN_8c10ca10_def(le<int>* ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10ca10_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10ca10");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  int in_r0 = (int)(unsigned long)vin0;
-  uint in_r2 = 0;
-  int iVar1;
-  uint uVar2;
-  
-  iVar1 = *ar4;
-  uVar2 = *(le<int>* )(unsigned)(in_r0 + -4 + iVar1) + *(le<int>* )(unsigned)(in_r0 + iVar1);
-  iVar1 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c10c9e4(ar4,iVar1,ar6,ar7));
-  return iVar1 + (uVar2 + (in_r2 & uVar2)) * 2;
+  return (unsigned)sh4_interp(0x8c10ca10, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10ca10\n.set FUN_8c10ca10, FUN_8c10ca10_def\n");
-
 }
 //@unit 8c10ca2e
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-undefined4 FUN_8c10ca2e_def(undefined4 ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10ca2e_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10ca2e");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  undefined4 uVar1;
-  
-  uVar1 = (vsp = ((unsigned long)(fr0_ - 0)), memmove((&(*(undefined1 *)(unsigned)0x8c1274a8)),0x4c,vr6,vr7));
-  return uVar1;
+  return (unsigned)sh4_interp(0x8c10ca2e, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10ca2e\n.set FUN_8c10ca2e, FUN_8c10ca2e_def\n");
-
 }
 //@unit 8c10ca58
 #include "../decls.h"
@@ -6488,40 +6110,14 @@ __asm__(".globl FUN_8c10ca58\n.set FUN_8c10ca58, FUN_8c10ca58_def\n");
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-undefined4 FUN_8c10cb4c_def(le<int>* ar4,uint ar5,int ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10cb4c_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10cb4c");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  uint uVar1;
-  
-  uVar1 = 0;
-  if (ar5 != 0) {
-    do {
-      if (*ar4 == ar6) {
-        return 1;
-      }
-      uVar1 = uVar1 + 1;
-      ar4 = ar4 + 1;
-    } while (uVar1 < ar5);
-  }
-  return 0;
+  return (unsigned)sh4_interp(0x8c10cb4c, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10cb4c\n.set FUN_8c10cb4c, FUN_8c10cb4c_def\n");
-
 }
 //@unit 8c10cb90
 #include "../decls.h"
@@ -6566,32 +6162,14 @@ __asm__(".globl FUN_8c10cccc\n.set FUN_8c10cccc, FUN_8c10cccc_def\n");
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-undefined4 FUN_8c10cefa_def(undefined4 ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10cefa_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10cefa");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  undefined4 uVar1;
-  
-  uVar1 = ({ unsigned long t0_ = (unsigned long)(((void *)(unsigned)0x8c10cb90)); unsigned long t1_ = (unsigned long)(((void *)(unsigned)0x8c10cccc)); unsigned long t2_ = (unsigned long)(((void *)(unsigned)0x8c10cc6e)); unsigned long t3_ = (unsigned long)(0x3c); *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 0) = (unsigned)t0_; *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 4) = (unsigned)t1_; *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 8) = (unsigned)t2_; *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 12) = (unsigned)t3_; vsp = (((unsigned long)(fr0_ - 0)) - 16); (*(code *)xlat((unsigned long)(((void *)(unsigned)0x8c120580))))
-                    (ar4,ar5,1,1); });
-  return uVar1;
+  return (unsigned)sh4_interp(0x8c10cefa, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10cefa\n.set FUN_8c10cefa, FUN_8c10cefa_def\n");
-
 }
 //@unit 8c10cf6c
 #include "../decls.h"
@@ -6649,335 +6227,79 @@ __asm__(".globl FUN_8c10d0da\n.set FUN_8c10d0da, FUN_8c10d0da_def\n");
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-undefined4 FUN_8c10d196_def(le<undefined4>* ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10d196_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10d196");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  *(le<undefined2>* )(unsigned)(ar4 + 1) = (undefined2)ar5;
-  *(le<undefined2>* )(unsigned)((int)ar4 + 6) = (undefined2)ar6;
-  *ar4 = ar7;
-  return 0;
+  return (unsigned)sh4_interp(0x8c10d196, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10d196\n.set FUN_8c10d196, FUN_8c10d196_def\n");
-
 }
 //@unit 8c10d1bc
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-undefined4 FUN_8c10d1bc_def(int ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10d1bc_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10d1bc");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  ushort uVar1;
-  uint uVar2;
-  char cVar3;
-  int iVar4;
-  uint uVar5;
-  char *pcVar6;
-  uint uVar7;
-  uint uVar8;
-  int iVar9;
-  char cVar10;
-  int iVar11;
-  uint uVar12;
-  uint uVar13;
-  uint uVar14;
-  
-  uVar8 = 0;
-  if (*(le<short>* )(unsigned)(ar4 + 0x30) != 0) {
-    do {
-      iVar11 = 0;
-      uVar12 = (uint)0xff;
-      uVar1 = *(le<ushort>* )(unsigned)
-               ((uint)*(le<ushort>* )(unsigned)(0xe8 + ar4) * (uint)*(le<ushort>* )(unsigned)(ar4 + 0x30) * 2 +
-                *(le<int>* )(unsigned)(ar4 + 0x7c) + uVar8 * 2);
-      uVar14 = (uint)(short)uVar1;
-      iVar9 = *(le<int>* )(unsigned)(uVar8 * 0xc + *(le<int>* )(unsigned)(ar4 + 0x70));
-      cVar10 = '\x01';
-      if (((undefined *)(unsigned long)*(le<unsigned>* )(unsigned)(ar4 + 0x68)) == ((void *)(unsigned)0x8c10da96)) {
-        cVar10 = '\x11';
-        if ((uVar1 & 1) == 0) {
-          iVar11 = 4;
-        }
-        else {
-          uVar12 = 0xf;
-        }
-        uVar14 = (uint)(uVar1 >> 1);
-      }
-      uVar7 = 0;
-      uVar13 = (uint)*(le<ushort>* )(unsigned)(uVar8 * 0xc + *(le<int>* )(unsigned)(ar4 + 0x70) + 4);
-      if (uVar13 != 0) {
-        do {
-          iVar4 = uVar7 * 4;
-          pcVar6 = (char *)(unsigned)(*(le<int>* )(unsigned)(0xc0 + ar4 + uVar8 * 4) + uVar7);
-          uVar7 = uVar7 + 1;
-          uVar5 = (uint)*(byte *)(unsigned)(*(le<int>* )(unsigned)(iVar4 + iVar9) + (uVar14 & 0xffff)) & uVar12 & 0xff;
-          uVar2 = -iVar11;
-          if ((int)uVar2 < 0) {
-            cVar3 = (char)((int)uVar5 >> (~uVar2 & 0x1f) + 1);
-          }
-          else {
-            cVar3 = (char)(uVar5 << (uVar2 & 0x1f));
-          }
-          *pcVar6 = cVar3 * cVar10;
-        } while (uVar7 < uVar13);
-      }
-      uVar8 = uVar8 + 1;
-    } while (uVar8 < *(le<ushort>* )(unsigned)(ar4 + 0x30));
-  }
-  return 0x30;
+  return (unsigned)sh4_interp(0x8c10d1bc, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10d1bc\n.set FUN_8c10d1bc, FUN_8c10d1bc_def\n");
-
 }
 //@unit 8c10d29c
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-int FUN_8c10d29c_def(int ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10d29c_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10d29c");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  int iVar1;
-  int iVar2;
-  int iVar3;
-  
-  iVar1 = (int)0x114;
-  *(le<undefined4>* )(unsigned)(iVar1 + ar4) = 0;
-  *(le<undefined4>* )(unsigned)(iVar1 + 4 + ar4) = 0;
-  iVar3 = *(le<int>* )(unsigned)(0x84 + ar4);
-  iVar1 = 0x84 + 0xc;
-  iVar2 = 0;
-  if (*(le<short>* )(unsigned)(iVar1 + ar4) != 0) {
-    do {
-      iVar1 = 0;
-      if (*(le<short>* )(unsigned)(iVar3 + 4) != 0) {
-        do {
-          *(undefined1 *)(unsigned)(*(le<int>* )(unsigned)(iVar3 + 8) + iVar1) = 0;
-          iVar1 = iVar1 + 1;
-        } while (iVar1 < (int)(uint)*(le<ushort>* )(unsigned)(iVar3 + 4));
-      }
-      iVar1 = (int)0x90;
-      iVar2 = iVar2 + 1;
-      iVar3 = iVar3 + 0xc;
-    } while (iVar2 < (int)(uint)*(le<ushort>* )(unsigned)(iVar1 + ar4));
-  }
-  return iVar1;
+  return (unsigned)sh4_interp(0x8c10d29c, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10d29c\n.set FUN_8c10d29c, FUN_8c10d29c_def\n");
-
 }
 //@unit 8c10d2f0
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-int FUN_8c10d2f0_def(int ar4,le<undefined4>* ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10d2f0_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10d2f0");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  int iVar1;
-  undefined1 *puVar2;
-  le<undefined4>* puVar3;
-  int iVar4;
-  int iVar5;
-  
-  iVar1 = (int)0x114;
-  *(le<undefined4>* )(unsigned)(iVar1 + ar4) = *ar5;
-  puVar3 = ar5 + 2;
-  *(le<undefined4>* )(unsigned)(iVar1 + 4 + ar4) = ar5[1];
-  iVar1 = (int)0x90;
-  iVar4 = 0;
-  if (*(le<short>* )(unsigned)(iVar1 + ar4) != 0) {
-    do {
-      iVar5 = iVar4 * 0xc;
-      iVar1 = 0;
-      if (*(le<short>* )(unsigned)(*(le<int>* )(unsigned)(0x84 + ar4) + iVar5 + 4) != 0) {
-        do {
-          puVar2 = (undefined1 *)(unsigned)((int)puVar3 + 1);
-          *(undefined1 *)(unsigned)(*(le<int>* )(unsigned)(0xc0 + ar4 + iVar4 * 4) + iVar1) = *(undefined1 *)(unsigned)puVar3;
-          puVar3 = (le<undefined4>* )(unsigned)((int)puVar3 + 2);
-          *(undefined1 *)(unsigned)(*(le<int>* )(unsigned)(*(le<int>* )(unsigned)(0x84 + ar4) + iVar5 + 8) + iVar1) = *puVar2;
-          iVar1 = iVar1 + 1;
-        } while (iVar1 < (int)(uint)*(le<ushort>* )(unsigned)(*(le<int>* )(unsigned)(0x84 + ar4) + iVar5 + 4));
-      }
-      iVar1 = (int)0x90;
-      iVar4 = iVar4 + 1;
-    } while (iVar4 < (int)(uint)*(le<ushort>* )(unsigned)(iVar1 + ar4));
-  }
-  return iVar1;
+  return (unsigned)sh4_interp(0x8c10d2f0, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10d2f0\n.set FUN_8c10d2f0, FUN_8c10d2f0_def\n");
-
 }
 //@unit 8c10d366
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-int FUN_8c10d366_def(int ar4,le<undefined4>* ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10d366_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10d366");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  undefined1 *puVar1;
-  int iVar2;
-  int iVar3;
-  int iVar4;
-  le<undefined4>* puVar5;
-  int iVar6;
-  
-  iVar2 = (int)0x114;
-  *ar5 = *(le<undefined4>* )(unsigned)(iVar2 + ar4);
-  iVar3 = (int)0x90;
-  ar5[1] = *(le<undefined4>* )(unsigned)(iVar2 + 4 + ar4);
-  puVar5 = ar5 + 2;
-  iVar2 = 0;
-  if (*(le<short>* )(unsigned)(iVar3 + ar4) != 0) {
-    do {
-      iVar6 = iVar2 * 0xc;
-      iVar3 = 0;
-      if (*(le<short>* )(unsigned)(*(le<int>* )(unsigned)(0x84 + ar4) + iVar6 + 4) != 0) {
-        do {
-          iVar4 = (int)0x84;
-          *(undefined1 *)(unsigned)puVar5 = *(undefined1 *)(unsigned)(*(le<int>* )(unsigned)(0xc0 + ar4 + iVar2 * 4) + iVar3);
-          puVar1 = (undefined1 *)(unsigned)(*(le<int>* )(unsigned)(*(le<int>* )(unsigned)(iVar4 + ar4) + iVar6 + 8) + iVar3);
-          iVar3 = iVar3 + 1;
-          iVar4 = (int)0x84;
-          *(undefined1 *)(unsigned)((int)puVar5 + 1) = *puVar1;
-          puVar5 = (le<undefined4>* )(unsigned)((int)puVar5 + 2);
-        } while (iVar3 < (int)(uint)*(le<ushort>* )(unsigned)(*(le<int>* )(unsigned)(iVar4 + ar4) + iVar6 + 4));
-      }
-      iVar3 = (int)0x90;
-      iVar2 = iVar2 + 1;
-    } while (iVar2 < (int)(uint)*(le<ushort>* )(unsigned)(iVar3 + ar4));
-  }
-  return iVar3;
+  return (unsigned)sh4_interp(0x8c10d366, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10d366\n.set FUN_8c10d366, FUN_8c10d366_def\n");
-
 }
 //@unit 8c10d3ec
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-uint FUN_8c10d3ec_def(int ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10d3ec_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10d3ec");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  int iVar1;
-  uint uVar2;
-  le<ushort>* puVar3;
-  short sVar4;
-  le<ushort>* puVar5;
-  le<short>* psVar6;
-  
-  iVar1 = (int)0xb4;
-  puVar3 = ((le<ushort>* )(unsigned long)*(le<unsigned>* )(unsigned)(iVar1 + ar4));
-  puVar5 = ((le<ushort>* )(unsigned long)*(le<unsigned>* )(unsigned)(iVar1 + -0xc + ar4));
-  uVar2 = (uint)0xb0;
-  psVar6 = ((le<short>* )(unsigned long)*(le<unsigned>* )(unsigned)(uVar2 + ar4));
-  puVar5 = puVar3 + ((uint)puVar5[*(le<ushort>* )(unsigned)(iVar1 + -0x18 + ar4)] - (uint)*puVar5);
-  for (; puVar3 < puVar5; puVar3 = puVar3 + 1) {
-    uVar2 = (uint)(short)*puVar3;
-    sVar4 = (short)((int)uVar2 >> 2);
-    if ((uVar2 & 1) != 0) {
-      uVar2 = (uint)0x96;
-      sVar4 = sVar4 + *(le<short>* )(unsigned)(uVar2 + ar4);
-    }
-    if ((*puVar3 & 2) != 0) {
-      uVar2 = (uint)0x94;
-      sVar4 = sVar4 + *(le<short>* )(unsigned)(uVar2 + ar4);
-    }
-    *psVar6 = sVar4;
-    psVar6 = psVar6 + 1;
-  }
-  return uVar2;
+  return (unsigned)sh4_interp(0x8c10d3ec, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10d3ec\n.set FUN_8c10d3ec, FUN_8c10d3ec_def\n");
-
 }
 //@unit 8c10d458
 #include "../decls.h"
@@ -7087,43 +6409,14 @@ __asm__(".globl FUN_8c10e6d0\n.set FUN_8c10e6d0, FUN_8c10e6d0_def\n");
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-uint FUN_8c10e7de_def(int ar4,int ar5,int ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10e7de_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10e7de");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  uint uVar1;
-  int iVar2;
-  
-  iVar2 = 0;
-  uVar1 = 0;
-  if (*(le<short>* )(unsigned)(ar4 + 4) != 0) {
-    do {
-      *(byte *)(unsigned)(iVar2 + ar5) =
-           *(byte *)(unsigned)(*(le<int>* )(unsigned)((uint)*(byte *)(unsigned)(*(le<int>* )(unsigned)(ar4 + 8) + iVar2) * 4 + ar6) +
-                    (uint)*(byte *)(unsigned)(iVar2 + ar5));
-      *(undefined1 *)(unsigned)(*(le<int>* )(unsigned)(ar4 + 8) + iVar2) = 0;
-      iVar2 = iVar2 + 1;
-      uVar1 = (uint)*(le<ushort>* )(unsigned)(ar4 + 4);
-    } while (iVar2 < (int)uVar1);
-  }
-  return uVar1;
+  return (unsigned)sh4_interp(0x8c10e7de, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10e7de\n.set FUN_8c10e7de, FUN_8c10e7de_def\n");
-
 }
 //@unit 8c10e818
 #include "../decls.h"
@@ -7142,44 +6435,14 @@ __asm__(".globl FUN_8c10e818\n.set FUN_8c10e818, FUN_8c10e818_def\n");
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-uint FUN_8c10ea24_def(int ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10ea24_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10ea24");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 12; for (int i_ = 0; i_ < 12; i_++) z_[i_] = 0; }
-  uint uVar1;
-  undefined4 ar5_00;
-  undefined4 ar6_00;
-  
-  *(char *)(unsigned)(0x11d + ar4) = (char)ar5;
-  if ((char)ar5 == '\0') {
-    (*(le<unsigned>* )(fr0_ - 0xc) = (unsigned)(unsigned long)(((le<undefined4>* )(unsigned long)*(le<unsigned>* )(unsigned)(ar4 + 0xc))));
-    ar5_00 = 6;
-    ar6_00 = ((le<undefined4>* )(unsigned long)*(le<unsigned>* )(fr0_ - 0xc))[1];
-  }
-  else {
-    (*(le<unsigned>* )(fr0_ - 0xc) = (unsigned)(unsigned long)(((le<undefined4>* )(unsigned long)*(le<unsigned>* )(unsigned)(ar4 + 0xc))));
-    ar6_00 = ((le<undefined4>* )(unsigned long)*(le<unsigned>* )(fr0_ - 0xc))[1];
-    ar5_00 = 5;
-  }
-  uVar1 = (vsp = ((unsigned long)(fr0_ - 12)), FUN_8c1113d0(*((le<undefined4>* )(unsigned long)*(le<unsigned>* )(fr0_ - 0xc)),ar5_00,ar6_00,0));
-  return (uint)((uVar1 & 0xff) == 0);
+  return (unsigned)sh4_interp(0x8c10ea24, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10ea24\n.set FUN_8c10ea24, FUN_8c10ea24_def\n");
-
 }
 //@unit 8c10ea62
 #include "../decls.h"
@@ -7198,39 +6461,14 @@ __asm__(".globl FUN_8c10ea62\n.set FUN_8c10ea62, FUN_8c10ea62_def\n");
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-int FUN_8c10ec78_def(undefined4 ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10ec78_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10ec78");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  int iVar1;
-  
-  iVar1 = ({ unsigned long t0_ = (unsigned long)((&(*(undefined1 *)(unsigned)0x8c10dda0))); unsigned long t1_ = (unsigned long)(((void *)(unsigned)0x8c10df48)); unsigned long t2_ = (unsigned long)(((void *)(unsigned)0x8c10ea62)); unsigned long t3_ = (unsigned long)(
-                     (int)0x138); *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 0) = (unsigned)t0_; *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 4) = (unsigned)t1_; *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 8) = (unsigned)t2_; *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 12) = (unsigned)t3_; vsp = (((unsigned long)(fr0_ - 0)) - 16); (*(code *)xlat((unsigned long)(((void *)(unsigned)0x8c120580))))
-                    (ar4,ar5,3,ar7); });
-  if (iVar1 != 0) {
-    *(le<undefined4>* )(unsigned)(iVar1 + 0x70) = 0;
-    *(le<undefined4>* )(unsigned)(iVar1 + 0x6c) = 0;
-    *(le<undefined4>* )(unsigned)(iVar1 + 0x84) = 0;
-    *(le<undefined4>* )(unsigned)(iVar1 + 0x88) = 0;
-  }
-  return iVar1;
+  return (unsigned)sh4_interp(0x8c10ec78, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10ec78\n.set FUN_8c10ec78, FUN_8c10ec78_def\n");
-
 }
 //@unit 8c10ecd8
 #include "../decls.h"
@@ -7327,32 +6565,14 @@ __asm__(".globl FUN_8c10f41e\n.set FUN_8c10f41e, FUN_8c10f41e_def\n");
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-undefined4 FUN_8c10f632_def(undefined4 ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c10f632_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c10f632");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  undefined4 uVar1;
-  
-  uVar1 = ({ unsigned long t0_ = (unsigned long)(((void *)(unsigned)0x8c10f22a)); unsigned long t1_ = (unsigned long)(((void *)(unsigned)0x8c10f41e)); unsigned long t2_ = (unsigned long)((&(*(undefined1 *)(unsigned)0x8c10f392))); unsigned long t3_ = (unsigned long)(0x4c); *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 0) = (unsigned)t0_; *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 4) = (unsigned)t1_; *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 8) = (unsigned)t2_; *(le<unsigned>* )((((unsigned long)(fr0_ - 0)) - 16) + 12) = (unsigned)t3_; vsp = (((unsigned long)(fr0_ - 0)) - 16); (*(code *)xlat((unsigned long)(((void *)(unsigned)0x8c120580))))
-                    (ar4,ar5,1,2); });
-  return uVar1;
+  return (unsigned)sh4_interp(0x8c10f632, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c10f632\n.set FUN_8c10f632, FUN_8c10f632_def\n");
-
 }
 //@unit 8c10f69c
 #include "../decls.h"

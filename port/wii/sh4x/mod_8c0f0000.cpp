@@ -34,6 +34,7 @@ void sh4x_8c019560(Cpu &);
 void sh4x_8c019574(Cpu &);
 void sh4x_8c01a5cc(Cpu &);
 void sh4x_8c01a630(Cpu &);
+void sh4x_8c01ad88(Cpu &);
 void sh4x_8c022c20(Cpu &);
 void sh4x_8c022c4c(Cpu &);
 void sh4x_8c022c88(Cpu &);
@@ -60,16 +61,26 @@ void sh4x_8c023b8c(Cpu &);
 void sh4x_8c023d34(Cpu &);
 void sh4x_8c023d7c(Cpu &);
 void sh4x_8c023d8c(Cpu &);
+void sh4x_8c023df4(Cpu &);
 void sh4x_8c023f70(Cpu &);
 void sh4x_8c023fdc(Cpu &);
 void sh4x_8c024010(Cpu &);
 void sh4x_8c02573c(Cpu &);
+void sh4x_8c025f7c(Cpu &);
 void sh4x_8c02aba0(Cpu &);
+void sh4x_8c02b5fc(Cpu &);
+void sh4x_8c02b6d0(Cpu &);
 void sh4x_8c02dfa0(Cpu &);
+void sh4x_8c030e10(Cpu &);
+void sh4x_8c030e34(Cpu &);
+void sh4x_8c030e5c(Cpu &);
+void sh4x_8c031700(Cpu &);
 void sh4x_8c031ab4(Cpu &);
 void sh4x_8c03207c(Cpu &);
+void sh4x_8c0339b0(Cpu &);
 void sh4x_8c033e68(Cpu &);
 void sh4x_8c036f0c(Cpu &);
+void sh4x_8c03f3f8(Cpu &);
 void sh4x_8c0507a4(Cpu &);
 void sh4x_8c0ad354(Cpu &);
 void sh4x_8c0ade84(Cpu &);
@@ -77,6 +88,7 @@ void sh4x_8c0aff3c(Cpu &);
 void sh4x_8c0b0784(Cpu &);
 void sh4x_8c0b54f4(Cpu &);
 void sh4x_8c0b5ad0(Cpu &);
+void sh4x_8c0b65b0(Cpu &);
 void sh4x_8c0b67cc(Cpu &);
 void sh4x_8c0bf0bc(Cpu &);
 void sh4x_8c0bf0e8(Cpu &);
@@ -89,6 +101,7 @@ void sh4x_8c0c76d0(Cpu &);
 void sh4x_8c0c8134(Cpu &);
 void sh4x_8c0d02c8(Cpu &);
 void sh4x_8c0d0564(Cpu &);
+void sh4x_8c0d08c0(Cpu &);
 void sh4x_8c0d092c(Cpu &);
 void sh4x_8c0d1c84(Cpu &);
 void sh4x_8c0d26f0(Cpu &);
@@ -111,6 +124,8 @@ void sh4x_8c0d59a4(Cpu &);
 void sh4x_8c0d5ca8(Cpu &);
 void sh4x_8c0d64a0(Cpu &);
 void sh4x_8c0d66d8(Cpu &);
+void sh4x_8c0d7154(Cpu &);
+void sh4x_8c0d723c(Cpu &);
 void sh4x_8c0d7314(Cpu &);
 void sh4x_8c0d7354(Cpu &);
 void sh4x_8c0d9600(Cpu &);
@@ -118,6 +133,7 @@ void sh4x_8c0d9720(Cpu &);
 void sh4x_8c0d99b8(Cpu &);
 void sh4x_8c0da4f8(Cpu &);
 void sh4x_8c0da754(Cpu &);
+void sh4x_8c0dac50(Cpu &);
 void sh4x_8c0db188(Cpu &);
 void sh4x_8c0db3bc(Cpu &);
 void sh4x_8c0db5a8(Cpu &);
@@ -126,6 +142,7 @@ void sh4x_8c0dbf90(Cpu &);
 void sh4x_8c0dc7e8(Cpu &);
 void sh4x_8c0de1dc(Cpu &);
 void sh4x_8c0de6d0(Cpu &);
+void sh4x_8c0df8d0(Cpu &);
 void sh4x_8c0dfa84(Cpu &);
 void sh4x_8c0e0988(Cpu &);
 void sh4x_8c0e0f48(Cpu &);
@@ -140,12 +157,36 @@ void sh4x_8c0f43bc(Cpu &);
 void sh4x_8c0f4b44(Cpu &);
 void sh4x_8c0f511c(Cpu &);
 void sh4x_8c0ffdb0(Cpu &);
+void sh4x_8c0fff84(Cpu &);
+void sh4x_8c1006d8(Cpu &);
+void sh4x_8c100724(Cpu &);
+void sh4x_8c100770(Cpu &);
+void sh4x_8c1007bc(Cpu &);
+void sh4x_8c100a34(Cpu &);
+void sh4x_8c100abc(Cpu &);
 void sh4x_8c100b84(Cpu &);
+void sh4x_8c100be8(Cpu &);
+void sh4x_8c100c34(Cpu &);
 void sh4x_8c100e4c(Cpu &);
+void sh4x_8c1026ec(Cpu &);
 void sh4x_8c102974(Cpu &);
 void sh4x_8c1029d0(Cpu &);
 void sh4x_8c102b04(Cpu &);
 void sh4x_8c102b58(Cpu &);
+void sh4x_8c201b10(Cpu &);
+void sh4x_8c201bae(Cpu &);
+void sh4x_8c201c3e(Cpu &);
+void sh4x_8c201c92(Cpu &);
+void sh4x_8c201cf6(Cpu &);
+void sh4x_8c201d84(Cpu &);
+void sh4x_8c201da0(Cpu &);
+void sh4x_8c201fb8(Cpu &);
+void sh4x_8c20202e(Cpu &);
+void sh4x_8c2027c0(Cpu &);
+void sh4x_8c20280c(Cpu &);
+void sh4x_8c20284e(Cpu &);
+void sh4x_8c202976(Cpu &);
+void sh4x_8c2029b4(Cpu &);
 void sh4x_8c20fe00(Cpu &);
 void sh4x_8c212740(Cpu &);
 void sh4x_8c21279c(Cpu &);
@@ -182,6 +223,7 @@ void sh4x_8c219ad0(Cpu &);
 void sh4x_8c21a678(Cpu &);
 void sh4x_8c21a7ce(Cpu &);
 void sh4x_8c21a80e(Cpu &);
+void sh4x_8c21ba62(Cpu &);
 void sh4x_8c21ba6a(Cpu &);
 void sh4x_8c21bbb0(Cpu &);
 void sh4x_8c21c398(Cpu &);
@@ -238,6 +280,7 @@ void sh4x_8c235bfc(Cpu &);
 void sh4x_8c235d8c(Cpu &);
 void sh4x_8c2360b0(Cpu &);
 void sh4x_8c2361a8(Cpu &);
+void sh4x_8c23620c(Cpu &);
 void sh4x_8c2364b2(Cpu &);
 void sh4x_8c236510(Cpu &);
 void sh4x_8c2365e2(Cpu &);
@@ -271,6 +314,7 @@ void sh4x_8c25b5d0(Cpu &);
 void sh4x_8c25b638(Cpu &);
 void sh4x_8c25bc88(Cpu &);
 void sh4x_8c25cddc(Cpu &);
+void sh4x_8c25fbbe(Cpu &);
 void sh4x_8c25fec0(Cpu &);
 void sh4x_8c25feca(Cpu &);
 void sh4x_8c25fed2(Cpu &);
@@ -309,6 +353,8 @@ void sh4x_8c2635a4(Cpu &);
 void sh4x_8c263702(Cpu &);
 void sh4x_8c26371e(Cpu &);
 void sh4x_8c263726(Cpu &);
+void sh4x_8c263e50(Cpu &);
+void sh4x_8c263e5c(Cpu &);
 void sh4x_8c263ffa(Cpu &);
 void sh4x_8c264010(Cpu &);
 void sh4x_8c264a42(Cpu &);
@@ -325,6 +371,7 @@ void sh4x_8c264ffc(Cpu &);
 void sh4x_8c26501c(Cpu &);
 void sh4x_8c265e08(Cpu &);
 void sh4x_8c2688b4(Cpu &);
+void sh4x_8c2688e2(Cpu &);
 void sh4x_8c268ddc(Cpu &);
 void sh4x_8c268e1a(Cpu &);
 void sh4x_8c268ea8(Cpu &);
@@ -337,6 +384,7 @@ void sh4x_8c2699d0(Cpu &);
 void sh4x_8c269a30(Cpu &);
 void sh4x_8c269a56(Cpu &);
 void sh4x_8c269c3e(Cpu &);
+void sh4x_8c269c88(Cpu &);
 void sh4x_8c26a100(Cpu &);
 void sh4x_8c26a118(Cpu &);
 void sh4x_8c26b4f4(Cpu &);
@@ -1600,6 +1648,80 @@ L_8c0ffed4:
   {  SPILL_ if (C.pr == ret0) return; exec(C, C.pr, ret0); return; }
   
   { SPILL_ exec(C, 0x8c0ffee4u, ret0); return; }
+}
+#undef FILL_
+#undef SPILL_
+#undef SETFPSCR_
+}
+//@unit 8c0fff84
+namespace sh4 {
+#define FILL_ rr0 = C.r[0]; rr1 = C.r[1]; rr4 = C.r[4]; rr5 = C.r[5]; rr14 = C.r[14]; rr15 = C.r[15]; T_ = C.t; PR_ = C.pr; FPSCR_ = F.fpscr; ff4 = F.fr[4]; ff5 = F.fr[5]; ff6 = F.fr[6];
+#define SPILL_ C.r[0] = rr0; C.r[1] = rr1; C.r[4] = rr4; C.r[5] = rr5; C.r[14] = rr14; C.r[15] = rr15; C.t = T_; C.pr = PR_; F.fpscr = FPSCR_; F.fr[4] = ff4; F.fr[5] = ff5; F.fr[6] = ff6;
+#define SETFPSCR_(v) { unsigned v_ = (v); if ((v_ ^ FPSCR_) & FRB) { { float s_ = ff0; ff0 = xx0; xx0 = s_; } { float s_ = ff1; ff1 = xx1; xx1 = s_; } { float s_ = ff2; ff2 = xx2; xx2 = s_; } { float s_ = ff3; ff3 = xx3; xx3 = s_; } { float s_ = ff4; ff4 = xx4; xx4 = s_; } { float s_ = ff5; ff5 = xx5; xx5 = s_; } { float s_ = ff6; ff6 = xx6; xx6 = s_; } { float s_ = ff7; ff7 = xx7; xx7 = s_; } { float s_ = ff8; ff8 = xx8; xx8 = s_; } { float s_ = ff9; ff9 = xx9; xx9 = s_; } { float s_ = ff10; ff10 = xx10; xx10 = s_; } { float s_ = ff11; ff11 = xx11; xx11 = s_; } { float s_ = ff12; ff12 = xx12; xx12 = s_; } { float s_ = ff13; ff13 = xx13; xx13 = s_; } { float s_ = ff14; ff14 = xx14; xx14 = s_; } { float s_ = ff15; ff15 = xx15; xx15 = s_; } } FPSCR_ = v_; }
+void sh4x_8c0fff84(Cpu &C)
+{
+  const unsigned ret0 = C.pr;
+  XPROF(0x8c0fff84u);
+  unsigned rr0;
+  unsigned rr1;
+  unsigned rr4;
+  unsigned rr5;
+  unsigned rr14;
+  unsigned rr15;
+  int T_;
+  unsigned PR_;
+  unsigned FPSCR_;
+  float ff4;
+  float ff5;
+  float ff6;
+  FILL_
+  if (FPSCR_ & (SZ | PRB)) { XGUARD(0x8c0fff84u); exec(C, 0x8c0fff84u, ret0); return; }
+L_8c0fff84:
+  rr15 -= 4; wrs32(rr15, rr14);
+  rr15 -= 4; wrs32(rr15, PR_);
+  rr14 = rr4;
+  rr0 = 0x188u;
+  rr0 = rd32(rr0 + rr14);
+  T_ = rr0 == 0x6u;
+  if (!T_) goto L_8c0fff98;
+  rr0 = 0x1u;
+  {  goto L_8c0fffcc; }
+  
+L_8c0fff98:
+  rr0 = 0x188u;
+  rr5 = rd32(rr0 + rr14);
+  rr0 = 0x15cu;
+  rr4 = rr14;
+  rr4 += rr0;
+  rr0 = 0x8c0fffecu;
+  {  SPILL_ static hfn h_; if (!h_) { unsigned long x_ = xlat_exact(0x8c0fffecu); h_ = x_ ? (hfn)x_ : (hfn)1; } if (h_ != (hfn)1) call_ptr(C, h_); else { C.pr = 0x8c0fffa8u; exec(C, 0x8c0fffecu, 0x8c0fffa8u); } FILL_ if ((FPSCR_ & (SZ | PRB)) != 0u) { XGUARD(0x8c0fffa8u); exec(C, 0x8c0fffa8u, ret0); return; } goto L_8c0fffa8; }
+  
+L_8c0fffa8:
+  rr0 = 0x8c0fffe0u;
+  ff6 = u2f(rd32(rr0));
+  rr1 = 0x130u;
+  rr0 = rr14;
+  rr0 += rr1;
+  ff5 = u2f(rd32(rr0));
+  rr1 = 0x12cu;
+  rr0 = rr14;
+  rr0 += rr1;
+  ff4 = u2f(rd32(rr0));
+  rr0 = 0x15cu;
+  rr14 += rr0;
+  rr4 = rr14;
+  rr0 = rd32(rr4);
+  rr0 = rd32(rr0 + 20);
+  { unsigned t_ = rr0;  SPILL_ if (!native_call(C, t_)) { C.pr = 0x8c0fffcau; if (xfn f_ = xfind(t_)) f_(C); else exec(C, t_, 0x8c0fffcau); } FILL_ if ((FPSCR_ & (SZ | PRB)) != 0u) { XGUARD(0x8c0fffcau); exec(C, 0x8c0fffcau, ret0); return; } goto L_8c0fffca; }
+  
+L_8c0fffca:
+  rr0 = 0x1u;
+L_8c0fffcc:
+  PR_ = rd32(rr15); rr15 += 4;
+  rr14 = rd32(rr15); rr15 += 4;
+  {  SPILL_ if (C.pr == ret0) return; exec(C, C.pr, ret0); return; }
+  
+  { SPILL_ exec(C, 0x8c0fffd4u, ret0); return; }
 }
 #undef FILL_
 #undef SPILL_

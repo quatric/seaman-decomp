@@ -498,10 +498,77 @@ extern "C" void gx_init(void)
 }
 
 /* draw one frame's TA stream and show it */
+/* the frame before is drawn while the game runs the next one (as nullDC4Wii does): gx_frame queues its display copy with a draw-done
+   token and returns; the next gx_frame waits for that token, and only then shows the buffer and touches the texture cache (draw_list
+   re-decodes and frees textures, which the GPU may still be reading until then). One frame more of latency, no CPU wait in between */
+static bool gx_pending; static int gx_pending_fb;
+static void gx_sync(void)
+{
+  if (!gx_pending) return;
+  GX_WaitDrawDone();
+  VIDEO_SetNextFramebuffer(xfb[gx_pending_fb]);
+  VIDEO_Flush();
+  gx_pending = false;
+}
+
+/* a box of text over the frame (the update notice): lines of up to 76 characters in libogc's 8x16 console font, white on a dark
+   translucent box, drawn at the end of the frame. The texture is rebuilt only when the text changes */
+extern "C" unsigned char console_font_8x16[];
+enum { OV_W = 608, OV_LINES = 5, OV_H = OV_LINES * 16 + 16 };
+static unsigned char *ov_tex; static char ov_text[OV_LINES][80]; static Tex ov_t;
+extern "C" void gx_overlay(const char *const *lines, int n)
+{
+  if (n > OV_LINES) n = OV_LINES;
+  bool same = ov_tex != 0;
+  for (int i = 0; i < OV_LINES; i++) { const char *l = i < n && lines[i] ? lines[i] : ""; if (strncmp(ov_text[i], l, 79)) same = false; }
+  if (!same) {
+    static unsigned argb[OV_W * OV_H];
+    for (int i = 0; i < OV_W * OV_H; i++) argb[i] = 0xd0101828u;                       /* the box */
+    for (int i = 0; i < OV_LINES; i++) {
+      const char *l = i < n && lines[i] ? lines[i] : ""; strncpy(ov_text[i], l, 79); ov_text[i][79] = 0;
+      for (int c = 0; ov_text[i][c] && (c + 2) * 8 <= OV_W; c++) {
+        const unsigned char *g = console_font_8x16 + 16 * (unsigned char)ov_text[i][c];
+        for (int y = 0; y < 16; y++) for (int x = 0; x < 8; x++)
+          if (g[y] & (0x80 >> x)) argb[(8 + i * 16 + y) * OV_W + 8 + c * 8 + x] = i == 0 ? 0xffffe060u : 0xffffffffu;   /* title in yellow */
+      }
+    }
+    if (!ov_tex) ov_tex = (unsigned char *)memalign(32, OV_W * OV_H * 4);
+    if (!ov_tex) return;
+    to_gx(argb, OV_W, OV_H, ov_tex);
+    DCFlushRange(ov_tex, OV_W * OV_H * 4);
+    GX_InvalidateTexAll();
+  }
+  GX_InitTexObj(&ov_t.obj, ov_tex, OV_W, OV_H, GX_TF_RGBA8, GX_CLAMP, GX_CLAMP, GX_FALSE);
+  GX_InitTexObjLOD(&ov_t.obj, GX_NEAR, GX_NEAR, 0, 0, 0, GX_FALSE, GX_FALSE, GX_ANISO_1);
+  GX_LoadTexObj(&ov_t.obj, GX_TEXMAP0);
+  set_clip(NOCLIP);
+  GX_SetZMode(GX_FALSE, GX_ALWAYS, GX_FALSE);
+  GX_SetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
+  GX_SetAlphaCompare(GX_ALWAYS, 0, GX_AOP_AND, GX_ALWAYS, 0);
+  GX_SetNumTexGens(1);
+  GX_SetNumTevStages(1);
+  GX_SetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+  GX_SetTevOp(GX_TEVSTAGE0, GX_REPLACE);
+  float x0 = (640 - OV_W) / 2, y0 = 480 - OV_H - 24, x1 = x0 + OV_W, y1 = y0 + OV_H;
+  GX_Begin(GX_QUADS, GX_VTXFMT0, 4);
+  GX_Position3f32(x0, y0, -0.5f); GX_Color1u32(~0u); GX_Color1u32(0); GX_TexCoord2f32(0, 0);
+  GX_Position3f32(x1, y0, -0.5f); GX_Color1u32(~0u); GX_Color1u32(0); GX_TexCoord2f32(1, 0);
+  GX_Position3f32(x1, y1, -0.5f); GX_Color1u32(~0u); GX_Color1u32(0); GX_TexCoord2f32(1, 1);
+  GX_Position3f32(x0, y1, -0.5f); GX_Color1u32(~0u); GX_Color1u32(0); GX_TexCoord2f32(0, 1);
+  GX_End();
+  state_last.valid = false;
+}
+extern "C" void host_update_draw(void);
+
 extern "C" void gx_frame(const unsigned *ta, unsigned bytes)
 {
   if (!ready) return;
 #ifdef SH4_PROF
+  u64 tw = gettime();
+#endif
+  gx_sync();
+#ifdef SH4_PROF
+  gx_t[2] += gettime() - tw;
   u64 t0 = gettime();
 #endif
   GX_InvVtxCache();
@@ -517,21 +584,14 @@ extern "C" void gx_frame(const unsigned *ta, unsigned bytes)
   if (sorting) flush_sorted();
   sorting = false;
   set_clip(NOCLIP);
+  host_update_draw();                                               /* the update notice, when one is open */
 #ifdef SH4_PROF
-  u64 t1 = gettime();
+  gx_t[0] += gettime() - t0;
 #endif
-  GX_DrawDone();
-#ifdef SH4_PROF
-  u64 t2 = gettime(); gx_t[0] += t1 - t0; (void)t2;
-#endif
-  cur_fb ^= 1;
+  cur_fb ^= 1;                                                      /* the buffer not on screen */
   GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
   GX_SetColorUpdate(GX_TRUE);
   GX_CopyDisp(xfb[cur_fb], GX_TRUE);
-  GX_Flush();
-  VIDEO_SetNextFramebuffer(xfb[cur_fb]);
-  VIDEO_Flush();
-#ifdef SH4_PROF
-  gx_t[2] += gettime() - t2;
-#endif
+  GX_SetDrawDone();                                                 /* flushes; gx_sync waits for it next frame */
+  gx_pending = true; gx_pending_fb = cur_fb;
 }

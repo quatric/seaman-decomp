@@ -160,7 +160,7 @@ HOST = {
     # queued op is carried out at once on files in sd:/seaman/vmu (host/wii_vmu.cpp). The Shinobi drive-present check answers yes.
     '8c01a3b4': 'host_vmu_ready', '8c01a760': 'host_memcard_run', '8c1fbfcc': 'host_ret1',
     '8c1fc258': 'host_vmu_game_name', '8c1fc16a': 'host_vmu_free_blocks', '8c1fc682': 'host_ret0', '8c1fc5c4': 'host_ret0', '8c1fc5de': 'host_ret0',   # make room / busy / drive status: done
-    '8c01d0cc': 'host_ret1', '8c01cb54': 'host_ret1',
+    # the microphone and recogniser (8c01cb54 open, 8c01d0cc per frame) run as written: host/wii_mic.cpp stands in for the Maple mic
     '8c010794': 'host_movstr', '8c0107a0': 'host_movstr',
     '8c013ff8': 'host_memset',
     '8c0109e8': 'host_strcmp',

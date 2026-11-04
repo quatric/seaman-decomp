@@ -648,3 +648,39 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
   pad in wii_main.cpp presses Start every 400 frames until a real controller is used, and builds from earlier the same day open it
   too (scene 18, field 14c = 4). When the test cap stops the
   run, returning from main with the sound and watch threads alive ends in an exception in libogc's thread code (test builds only).
+
+### Controllers, microphone, update check; GPU overlap (Wii, 2026-11-03/04)
+- Input goes through libwiiinput (`port/wii/libwiiinput`, a submodule, built by `tools/wii_link.sh` with `WITH_MIC=1
+  WITH_GCADAPTER=1 WITH_HIDPADS=1`): GameCube pads (console ports, Wii U adapter, USB pads with Nintendont layouts), Wii Remote 1
+  with Nunchuk or Classic Controller, and a USB keyboard all fill Maple port A's PDS_PERIPHERAL record (`host/wii_pad.cpp`).
+- Microphone (`host/wii_mic.cpp`): the game's speech code (8c01cb54 open, 8c01d0cc per frame) now runs as written. Before, both
+  were `host_ret1` stubs. A Wii Speak or a USB Audio Class mic stands in for the Dreamcast mic in socket 2 of port A.
+  - The Maple mic library's device records (four of 0x4c bytes at 0x8c47e6f0) get their commands answered once a frame, and
+    11,025 Hz samples are written into the ring the game's readers take them from.
+  - The Maple function bit 0x10 is set for unit 2 in the Shinobi peripheral table.
+  - Interpreted, because their decompiles are wrong: the L&H ASR1600 recogniser (8c10a000-8c126000: a heap object's callback
+    at +0x3c is left null) and the mic library (8c201804-8c202a84: 64-bit sample positions passed on the stack). Its hot
+    routines are statically translated (see below).
+  - From RecordMii: the boot reloads a USB-capable IOS if `/dev/usb/oh0` is missing. The Wii Speak firmware
+    (`pmic_firm.bin`, Nintendo's, never in the repository) is read from `sd:/seaman/`, `sd:/wiispeak/` or
+    `sd:/apps/wiispeakrec/`, or built in when `port/wii/data/pmic_firm.bin` exists (ignored by git). The mic is stopped and
+    closed before exiting.
+  - Test builds with `-DMIC_TEST=<s>` play `sd:/seaman/mictest.raw` (11,025 Hz, 16-bit) as the mic input. Headless runs show the
+    recogniser in state 2 and its reader following the write position frame by frame. Whether it recognises words has not been
+    checked: no context that listens comes up in the scripted runs.
+- Update check (`host/wii_update.cpp`, libwiiupdate in `port/wii/libwiiupdate`, a submodule): at boot a background thread asks
+  the GitHub releases of quatric/seaman-decomp for a tag newer than `port/wii/VERSION` (0.1.0).
+  - Failures are silent.
+  - When a newer release is out, a box drawn with GX (libogc's 8x16 console font, `gx_overlay` in wii_gx.cpp) offers it. While
+    it is open, the game gets no input. A updates (only boot.dol, meta.xml and icon.png are replaced from the release's HBC zip),
+    B closes it.
+  - Checked in Dolphin with a test build pointed at RecordMii's releases (`-DUPDATE_REPO='"RecordMii"'`): "Version v0.2.0 is
+    available (you have v0.1.0)" over the title screen.
+  - Releases need a version tag and an HBC zip asset.
+- GPU overlap (from nullDC4Wii's async render): `gx_frame` no longer blocks in `GX_DrawDone`. It queues the display copy with
+  `GX_SetDrawDone` and returns; the next `gx_frame` waits for the token (`gx_sync`), then shows that buffer and only then touches
+  the texture cache. The cost is one frame more latency; on a Wii the game's SH-4 work for the next frame now runs while the GPU
+  draws. Headless Dolphin (Null video) cannot show the gain. A Metal run still matches the reference tank frame at 53.9 dB.
+- 396 translated functions (was 348): the newly interpreted mic-library routines plus the next hot ones. Interpreted instructions
+  in the tank fell from about 1.3-1.6M to 0.8-1.0M per 500 frames; the tank stays at 81-89 fps headless. `tools/sh4x_test.py`:
+  0 mismatches on 15,375 opcode forms.

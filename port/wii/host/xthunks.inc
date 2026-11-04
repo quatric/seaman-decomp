@@ -4,8 +4,6 @@ static unsigned xt_FUN_8c0109e8(unsigned a, unsigned b, unsigned c, unsigned d) 
 static unsigned xt_FUN_8c014334(unsigned a, unsigned b, unsigned c, unsigned d) { return (unsigned)FUN_8c014334(a, b, c, d); }
 static unsigned xt_FUN_8c01a3b4(unsigned a, unsigned b, unsigned c, unsigned d) { return (unsigned)FUN_8c01a3b4(a, b, c, d); }
 static unsigned xt_FUN_8c01a760(unsigned a, unsigned b, unsigned c, unsigned d) { return (unsigned)FUN_8c01a760(a, b, c, d); }
-static unsigned xt_FUN_8c01cb54(unsigned a, unsigned b, unsigned c, unsigned d) { return (unsigned)FUN_8c01cb54(a, b, c, d); }
-static unsigned xt_FUN_8c01d0cc(unsigned a, unsigned b, unsigned c, unsigned d) { return (unsigned)FUN_8c01d0cc(a, b, c, d); }
 static unsigned xt_FUN_8c1fc16a(unsigned a, unsigned b, unsigned c, unsigned d) { return (unsigned)FUN_8c1fc16a(a, b, c, d); }
 static unsigned xt_FUN_8c1fc258(unsigned a, unsigned b, unsigned c, unsigned d) { return (unsigned)FUN_8c1fc258(a, b, c, d); }
 static unsigned xt_FUN_8c1fc5c4(unsigned a, unsigned b, unsigned c, unsigned d) { return (unsigned)FUN_8c1fc5c4(a, b, c, d); }

@@ -34,6 +34,7 @@ void sh4x_8c019560(Cpu &);
 void sh4x_8c019574(Cpu &);
 void sh4x_8c01a5cc(Cpu &);
 void sh4x_8c01a630(Cpu &);
+void sh4x_8c01ad88(Cpu &);
 void sh4x_8c022c20(Cpu &);
 void sh4x_8c022c4c(Cpu &);
 void sh4x_8c022c88(Cpu &);
@@ -60,16 +61,26 @@ void sh4x_8c023b8c(Cpu &);
 void sh4x_8c023d34(Cpu &);
 void sh4x_8c023d7c(Cpu &);
 void sh4x_8c023d8c(Cpu &);
+void sh4x_8c023df4(Cpu &);
 void sh4x_8c023f70(Cpu &);
 void sh4x_8c023fdc(Cpu &);
 void sh4x_8c024010(Cpu &);
 void sh4x_8c02573c(Cpu &);
+void sh4x_8c025f7c(Cpu &);
 void sh4x_8c02aba0(Cpu &);
+void sh4x_8c02b5fc(Cpu &);
+void sh4x_8c02b6d0(Cpu &);
 void sh4x_8c02dfa0(Cpu &);
+void sh4x_8c030e10(Cpu &);
+void sh4x_8c030e34(Cpu &);
+void sh4x_8c030e5c(Cpu &);
+void sh4x_8c031700(Cpu &);
 void sh4x_8c031ab4(Cpu &);
 void sh4x_8c03207c(Cpu &);
+void sh4x_8c0339b0(Cpu &);
 void sh4x_8c033e68(Cpu &);
 void sh4x_8c036f0c(Cpu &);
+void sh4x_8c03f3f8(Cpu &);
 void sh4x_8c0507a4(Cpu &);
 void sh4x_8c0ad354(Cpu &);
 void sh4x_8c0ade84(Cpu &);
@@ -77,6 +88,7 @@ void sh4x_8c0aff3c(Cpu &);
 void sh4x_8c0b0784(Cpu &);
 void sh4x_8c0b54f4(Cpu &);
 void sh4x_8c0b5ad0(Cpu &);
+void sh4x_8c0b65b0(Cpu &);
 void sh4x_8c0b67cc(Cpu &);
 void sh4x_8c0bf0bc(Cpu &);
 void sh4x_8c0bf0e8(Cpu &);
@@ -89,6 +101,7 @@ void sh4x_8c0c76d0(Cpu &);
 void sh4x_8c0c8134(Cpu &);
 void sh4x_8c0d02c8(Cpu &);
 void sh4x_8c0d0564(Cpu &);
+void sh4x_8c0d08c0(Cpu &);
 void sh4x_8c0d092c(Cpu &);
 void sh4x_8c0d1c84(Cpu &);
 void sh4x_8c0d26f0(Cpu &);
@@ -111,6 +124,8 @@ void sh4x_8c0d59a4(Cpu &);
 void sh4x_8c0d5ca8(Cpu &);
 void sh4x_8c0d64a0(Cpu &);
 void sh4x_8c0d66d8(Cpu &);
+void sh4x_8c0d7154(Cpu &);
+void sh4x_8c0d723c(Cpu &);
 void sh4x_8c0d7314(Cpu &);
 void sh4x_8c0d7354(Cpu &);
 void sh4x_8c0d9600(Cpu &);
@@ -118,6 +133,7 @@ void sh4x_8c0d9720(Cpu &);
 void sh4x_8c0d99b8(Cpu &);
 void sh4x_8c0da4f8(Cpu &);
 void sh4x_8c0da754(Cpu &);
+void sh4x_8c0dac50(Cpu &);
 void sh4x_8c0db188(Cpu &);
 void sh4x_8c0db3bc(Cpu &);
 void sh4x_8c0db5a8(Cpu &);
@@ -126,6 +142,7 @@ void sh4x_8c0dbf90(Cpu &);
 void sh4x_8c0dc7e8(Cpu &);
 void sh4x_8c0de1dc(Cpu &);
 void sh4x_8c0de6d0(Cpu &);
+void sh4x_8c0df8d0(Cpu &);
 void sh4x_8c0dfa84(Cpu &);
 void sh4x_8c0e0988(Cpu &);
 void sh4x_8c0e0f48(Cpu &);
@@ -140,12 +157,36 @@ void sh4x_8c0f43bc(Cpu &);
 void sh4x_8c0f4b44(Cpu &);
 void sh4x_8c0f511c(Cpu &);
 void sh4x_8c0ffdb0(Cpu &);
+void sh4x_8c0fff84(Cpu &);
+void sh4x_8c1006d8(Cpu &);
+void sh4x_8c100724(Cpu &);
+void sh4x_8c100770(Cpu &);
+void sh4x_8c1007bc(Cpu &);
+void sh4x_8c100a34(Cpu &);
+void sh4x_8c100abc(Cpu &);
 void sh4x_8c100b84(Cpu &);
+void sh4x_8c100be8(Cpu &);
+void sh4x_8c100c34(Cpu &);
 void sh4x_8c100e4c(Cpu &);
+void sh4x_8c1026ec(Cpu &);
 void sh4x_8c102974(Cpu &);
 void sh4x_8c1029d0(Cpu &);
 void sh4x_8c102b04(Cpu &);
 void sh4x_8c102b58(Cpu &);
+void sh4x_8c201b10(Cpu &);
+void sh4x_8c201bae(Cpu &);
+void sh4x_8c201c3e(Cpu &);
+void sh4x_8c201c92(Cpu &);
+void sh4x_8c201cf6(Cpu &);
+void sh4x_8c201d84(Cpu &);
+void sh4x_8c201da0(Cpu &);
+void sh4x_8c201fb8(Cpu &);
+void sh4x_8c20202e(Cpu &);
+void sh4x_8c2027c0(Cpu &);
+void sh4x_8c20280c(Cpu &);
+void sh4x_8c20284e(Cpu &);
+void sh4x_8c202976(Cpu &);
+void sh4x_8c2029b4(Cpu &);
 void sh4x_8c20fe00(Cpu &);
 void sh4x_8c212740(Cpu &);
 void sh4x_8c21279c(Cpu &);
@@ -182,6 +223,7 @@ void sh4x_8c219ad0(Cpu &);
 void sh4x_8c21a678(Cpu &);
 void sh4x_8c21a7ce(Cpu &);
 void sh4x_8c21a80e(Cpu &);
+void sh4x_8c21ba62(Cpu &);
 void sh4x_8c21ba6a(Cpu &);
 void sh4x_8c21bbb0(Cpu &);
 void sh4x_8c21c398(Cpu &);
@@ -238,6 +280,7 @@ void sh4x_8c235bfc(Cpu &);
 void sh4x_8c235d8c(Cpu &);
 void sh4x_8c2360b0(Cpu &);
 void sh4x_8c2361a8(Cpu &);
+void sh4x_8c23620c(Cpu &);
 void sh4x_8c2364b2(Cpu &);
 void sh4x_8c236510(Cpu &);
 void sh4x_8c2365e2(Cpu &);
@@ -271,6 +314,7 @@ void sh4x_8c25b5d0(Cpu &);
 void sh4x_8c25b638(Cpu &);
 void sh4x_8c25bc88(Cpu &);
 void sh4x_8c25cddc(Cpu &);
+void sh4x_8c25fbbe(Cpu &);
 void sh4x_8c25fec0(Cpu &);
 void sh4x_8c25feca(Cpu &);
 void sh4x_8c25fed2(Cpu &);
@@ -309,6 +353,8 @@ void sh4x_8c2635a4(Cpu &);
 void sh4x_8c263702(Cpu &);
 void sh4x_8c26371e(Cpu &);
 void sh4x_8c263726(Cpu &);
+void sh4x_8c263e50(Cpu &);
+void sh4x_8c263e5c(Cpu &);
 void sh4x_8c263ffa(Cpu &);
 void sh4x_8c264010(Cpu &);
 void sh4x_8c264a42(Cpu &);
@@ -325,6 +371,7 @@ void sh4x_8c264ffc(Cpu &);
 void sh4x_8c26501c(Cpu &);
 void sh4x_8c265e08(Cpu &);
 void sh4x_8c2688b4(Cpu &);
+void sh4x_8c2688e2(Cpu &);
 void sh4x_8c268ddc(Cpu &);
 void sh4x_8c268e1a(Cpu &);
 void sh4x_8c268ea8(Cpu &);
@@ -337,6 +384,7 @@ void sh4x_8c2699d0(Cpu &);
 void sh4x_8c269a30(Cpu &);
 void sh4x_8c269a56(Cpu &);
 void sh4x_8c269c3e(Cpu &);
+void sh4x_8c269c88(Cpu &);
 void sh4x_8c26a100(Cpu &);
 void sh4x_8c26a118(Cpu &);
 void sh4x_8c26b4f4(Cpu &);
@@ -348,6 +396,206 @@ void sh4x_8c26b720(Cpu &);
 void sh4x_8c26b7f4(Cpu &);
 void sh4x_8c26b94e(Cpu &);
 void sh4x_8c26be30(Cpu &);
+}
+//@unit 8c030e10
+namespace sh4 {
+#define FILL_ rr0 = C.r[0]; rr4 = C.r[4]; rr14 = C.r[14]; rr15 = C.r[15]; PR_ = C.pr; FPSCR_ = F.fpscr; ff0 = F.fr[0];
+#define SPILL_ C.r[0] = rr0; C.r[4] = rr4; C.r[14] = rr14; C.r[15] = rr15; C.pr = PR_; F.fpscr = FPSCR_; F.fr[0] = ff0;
+#define SETFPSCR_(v) { unsigned v_ = (v); if ((v_ ^ FPSCR_) & FRB) { { float s_ = ff0; ff0 = xx0; xx0 = s_; } { float s_ = ff1; ff1 = xx1; xx1 = s_; } { float s_ = ff2; ff2 = xx2; xx2 = s_; } { float s_ = ff3; ff3 = xx3; xx3 = s_; } { float s_ = ff4; ff4 = xx4; xx4 = s_; } { float s_ = ff5; ff5 = xx5; xx5 = s_; } { float s_ = ff6; ff6 = xx6; xx6 = s_; } { float s_ = ff7; ff7 = xx7; xx7 = s_; } { float s_ = ff8; ff8 = xx8; xx8 = s_; } { float s_ = ff9; ff9 = xx9; xx9 = s_; } { float s_ = ff10; ff10 = xx10; xx10 = s_; } { float s_ = ff11; ff11 = xx11; xx11 = s_; } { float s_ = ff12; ff12 = xx12; xx12 = s_; } { float s_ = ff13; ff13 = xx13; xx13 = s_; } { float s_ = ff14; ff14 = xx14; xx14 = s_; } { float s_ = ff15; ff15 = xx15; xx15 = s_; } } FPSCR_ = v_; }
+void sh4x_8c030e10(Cpu &C)
+{
+  const unsigned ret0 = C.pr;
+  XPROF(0x8c030e10u);
+  unsigned rr0;
+  unsigned rr4;
+  unsigned rr14;
+  unsigned rr15;
+  unsigned PR_;
+  unsigned FPSCR_;
+  float ff0;
+  FILL_
+  if (FPSCR_ & (SZ | PRB)) { XGUARD(0x8c030e10u); exec(C, 0x8c030e10u, ret0); return; }
+L_8c030e10:
+  rr15 -= 4; wrs32(rr15, rr14);
+  rr15 -= 4; wrs32(rr15, PR_);
+  rr14 = rr4;
+  rr4 = rr14;
+  rr0 = 0x8c102748u;
+  {  SPILL_ C.pr = 0x8c030e1eu; exec(C, 0x8c102748u, 0x8c030e1eu); FILL_ if ((FPSCR_ & (SZ | PRB)) != 0u) { XGUARD(0x8c030e1eu); exec(C, 0x8c030e1eu, ret0); return; } goto L_8c030e1e; }
+  
+L_8c030e1e:
+  rr0 = rr14;
+  rr0 += 0xcu;
+  ff0 = 0.0f;
+  wr32(rr0, f2u(ff0));
+  rr0 = rr14;
+  PR_ = rd32(rr15); rr15 += 4;
+  rr14 = rd32(rr15); rr15 += 4;
+  {  SPILL_ if (C.pr == ret0) return; exec(C, C.pr, ret0); return; }
+  
+  { SPILL_ exec(C, 0x8c030e30u, ret0); return; }
+}
+#undef FILL_
+#undef SPILL_
+#undef SETFPSCR_
+}
+//@unit 8c030e34
+namespace sh4 {
+#define FILL_ rr0 = C.r[0]; rr4 = C.r[4]; FPSCR_ = F.fpscr; ff4 = F.fr[4]; ff5 = F.fr[5]; ff6 = F.fr[6]; ff7 = F.fr[7]; ff8 = F.fr[8]; ff9 = F.fr[9];
+#define SPILL_ C.r[0] = rr0; C.r[4] = rr4; F.fpscr = FPSCR_; F.fr[4] = ff4; F.fr[5] = ff5; F.fr[6] = ff6; F.fr[7] = ff7; F.fr[8] = ff8; F.fr[9] = ff9;
+#define SETFPSCR_(v) { unsigned v_ = (v); if ((v_ ^ FPSCR_) & FRB) { { float s_ = ff0; ff0 = xx0; xx0 = s_; } { float s_ = ff1; ff1 = xx1; xx1 = s_; } { float s_ = ff2; ff2 = xx2; xx2 = s_; } { float s_ = ff3; ff3 = xx3; xx3 = s_; } { float s_ = ff4; ff4 = xx4; xx4 = s_; } { float s_ = ff5; ff5 = xx5; xx5 = s_; } { float s_ = ff6; ff6 = xx6; xx6 = s_; } { float s_ = ff7; ff7 = xx7; xx7 = s_; } { float s_ = ff8; ff8 = xx8; xx8 = s_; } { float s_ = ff9; ff9 = xx9; xx9 = s_; } { float s_ = ff10; ff10 = xx10; xx10 = s_; } { float s_ = ff11; ff11 = xx11; xx11 = s_; } { float s_ = ff12; ff12 = xx12; xx12 = s_; } { float s_ = ff13; ff13 = xx13; xx13 = s_; } { float s_ = ff14; ff14 = xx14; xx14 = s_; } { float s_ = ff15; ff15 = xx15; xx15 = s_; } } FPSCR_ = v_; }
+void sh4x_8c030e34(Cpu &C)
+{
+  const unsigned ret0 = C.pr;
+  XPROF(0x8c030e34u);
+  unsigned rr0;
+  unsigned rr4;
+  unsigned FPSCR_;
+  float ff4;
+  float ff5;
+  float ff6;
+  float ff7;
+  float ff8;
+  float ff9;
+  FILL_
+  if (FPSCR_ & (SZ | PRB)) { XGUARD(0x8c030e34u); exec(C, 0x8c030e34u, ret0); return; }
+L_8c030e34:
+  wr32(rr4, f2u(ff4));
+  rr0 = rr4;
+  rr0 += 0x4u;
+  wr32(rr0, f2u(ff5));
+  rr0 = rr4;
+  rr0 += 0x8u;
+  wr32(rr0, f2u(ff6));
+  rr0 = rr4;
+  rr0 += 0xcu;
+  wr32(rr0, f2u(ff7));
+  rr0 = rr4;
+  rr0 += 0x10u;
+  wr32(rr0, f2u(ff8));
+  rr0 = rr4;
+  rr0 += 0x14u;
+  wr32(rr0, f2u(ff9));
+  rr0 = rr4;
+  {  SPILL_ if (C.pr == ret0) return; exec(C, C.pr, ret0); return; }
+  
+  { SPILL_ exec(C, 0x8c030e5au, ret0); return; }
+}
+#undef FILL_
+#undef SPILL_
+#undef SETFPSCR_
+}
+//@unit 8c030e5c
+namespace sh4 {
+#define FILL_ rr0 = C.r[0]; rr1 = C.r[1]; rr4 = C.r[4]; FPSCR_ = F.fpscr; ff0 = F.fr[0];
+#define SPILL_ C.r[0] = rr0; C.r[1] = rr1; C.r[4] = rr4; F.fpscr = FPSCR_; F.fr[0] = ff0;
+#define SETFPSCR_(v) { unsigned v_ = (v); if ((v_ ^ FPSCR_) & FRB) { { float s_ = ff0; ff0 = xx0; xx0 = s_; } { float s_ = ff1; ff1 = xx1; xx1 = s_; } { float s_ = ff2; ff2 = xx2; xx2 = s_; } { float s_ = ff3; ff3 = xx3; xx3 = s_; } { float s_ = ff4; ff4 = xx4; xx4 = s_; } { float s_ = ff5; ff5 = xx5; xx5 = s_; } { float s_ = ff6; ff6 = xx6; xx6 = s_; } { float s_ = ff7; ff7 = xx7; xx7 = s_; } { float s_ = ff8; ff8 = xx8; xx8 = s_; } { float s_ = ff9; ff9 = xx9; xx9 = s_; } { float s_ = ff10; ff10 = xx10; xx10 = s_; } { float s_ = ff11; ff11 = xx11; xx11 = s_; } { float s_ = ff12; ff12 = xx12; xx12 = s_; } { float s_ = ff13; ff13 = xx13; xx13 = s_; } { float s_ = ff14; ff14 = xx14; xx14 = s_; } { float s_ = ff15; ff15 = xx15; xx15 = s_; } } FPSCR_ = v_; }
+void sh4x_8c030e5c(Cpu &C)
+{
+  const unsigned ret0 = C.pr;
+  XPROF(0x8c030e5cu);
+  unsigned rr0;
+  unsigned rr1;
+  unsigned rr4;
+  unsigned FPSCR_;
+  float ff0;
+  FILL_
+  if (FPSCR_ & (SZ | PRB)) { XGUARD(0x8c030e5cu); exec(C, 0x8c030e5cu, ret0); return; }
+L_8c030e5c:
+  rr0 = 0x0u;
+  wr32(rr4, rr0);
+  rr0 = 0x0u;
+  wr32(rr4 + 4, rr0);
+  rr0 = 0x0u;
+  wr32(rr4 + 8, rr0);
+  rr0 = 0x0u;
+  wr32(rr4 + 24, rr0);
+  rr0 = 0x0u;
+  wr32(rr4 + 12, rr0);
+  rr0 = 0x3u;
+  wr32(rr4 + 16, rr0);
+  rr0 = rr4;
+  rr0 += 0x14u;
+  ff0 = 0.0f;
+  wr32(rr0, f2u(ff0));
+  rr0 = 0x0u;
+  wr32(rr4 + 28, rr0);
+  rr0 = rr4;
+  rr0 += 0x20u;
+  ff0 = 0.0f;
+  wr32(rr0, f2u(ff0));
+  rr0 = rr4;
+  rr0 += 0x24u;
+  ff0 = 1.0f;
+  wr32(rr0, f2u(ff0));
+  rr0 = 0x28u;
+  rr1 = 0x1u;
+  wr8(rr0 + rr4, rr1);
+  rr0 = rr4;
+  {  SPILL_ if (C.pr == ret0) return; exec(C, C.pr, ret0); return; }
+  
+  { SPILL_ exec(C, 0x8c030e9cu, ret0); return; }
+}
+#undef FILL_
+#undef SPILL_
+#undef SETFPSCR_
+}
+//@unit 8c031700
+namespace sh4 {
+#define FILL_ rr0 = C.r[0]; rr1 = C.r[1]; rr2 = C.r[2]; rr4 = C.r[4]; rr14 = C.r[14]; rr15 = C.r[15]; PR_ = C.pr; FPSCR_ = F.fpscr; ff0 = F.fr[0];
+#define SPILL_ C.r[0] = rr0; C.r[1] = rr1; C.r[2] = rr2; C.r[4] = rr4; C.r[14] = rr14; C.r[15] = rr15; C.pr = PR_; F.fpscr = FPSCR_; F.fr[0] = ff0;
+#define SETFPSCR_(v) { unsigned v_ = (v); if ((v_ ^ FPSCR_) & FRB) { { float s_ = ff0; ff0 = xx0; xx0 = s_; } { float s_ = ff1; ff1 = xx1; xx1 = s_; } { float s_ = ff2; ff2 = xx2; xx2 = s_; } { float s_ = ff3; ff3 = xx3; xx3 = s_; } { float s_ = ff4; ff4 = xx4; xx4 = s_; } { float s_ = ff5; ff5 = xx5; xx5 = s_; } { float s_ = ff6; ff6 = xx6; xx6 = s_; } { float s_ = ff7; ff7 = xx7; xx7 = s_; } { float s_ = ff8; ff8 = xx8; xx8 = s_; } { float s_ = ff9; ff9 = xx9; xx9 = s_; } { float s_ = ff10; ff10 = xx10; xx10 = s_; } { float s_ = ff11; ff11 = xx11; xx11 = s_; } { float s_ = ff12; ff12 = xx12; xx12 = s_; } { float s_ = ff13; ff13 = xx13; xx13 = s_; } { float s_ = ff14; ff14 = xx14; xx14 = s_; } { float s_ = ff15; ff15 = xx15; xx15 = s_; } } FPSCR_ = v_; }
+void sh4x_8c031700(Cpu &C)
+{
+  const unsigned ret0 = C.pr;
+  XPROF(0x8c031700u);
+  unsigned rr0;
+  unsigned rr1;
+  unsigned rr2;
+  unsigned rr4;
+  unsigned rr14;
+  unsigned rr15;
+  unsigned PR_;
+  unsigned FPSCR_;
+  float ff0;
+  FILL_
+  if (FPSCR_ & (SZ | PRB)) { XGUARD(0x8c031700u); exec(C, 0x8c031700u, ret0); return; }
+L_8c031700:
+  rr15 -= 4; wrs32(rr15, rr14);
+  rr15 -= 4; wrs32(rr15, PR_);
+  rr15 += 0xfffffffcu;
+  rr14 = rr4;
+  rr4 = rr14;
+  rr4 += 0x6cu;
+  rr0 = 0x8c014e20u;
+  {  SPILL_ C.pr = 0x8c031712u; sh4x_8c014e20(C); FILL_ if ((FPSCR_ & (SZ | PRB)) != 0u) { XGUARD(0x8c031712u); exec(C, 0x8c031712u, ret0); return; } goto L_8c031712; }
+  
+L_8c031712:
+  ff0 = 0.0f;
+  rr0 = 0x0u;
+  wr32(rr0 + rr15, f2u(ff0));
+  rr1 = 0xacu;
+  rr0 = rr14;
+  rr0 += rr1;
+  rr2 = 0x0u;
+  rr2 += rr15;
+  ff0 = u2f(rd32(rr2));
+  wr32(rr0, f2u(ff0));
+  rr0 = 0xa8u;
+  rr14 += rr0;
+  rr0 = 0x0u;
+  ff0 = u2f(rd32(rr0 + rr15));
+  wr32(rr14, f2u(ff0));
+  rr15 += 0x4u;
+  PR_ = rd32(rr15); rr15 += 4;
+  rr14 = rd32(rr15); rr15 += 4;
+  {  SPILL_ if (C.pr == ret0) return; exec(C, C.pr, ret0); return; }
+  
+  { SPILL_ exec(C, 0x8c03173au, ret0); return; }
+}
+#undef FILL_
+#undef SPILL_
+#undef SETFPSCR_
 }
 //@unit 8c031ab4
 namespace sh4 {
@@ -539,6 +787,138 @@ L_8c032120:
   {  SPILL_ if (C.pr == ret0) return; exec(C, C.pr, ret0); return; }
   
   { SPILL_ exec(C, 0x8c03213cu, ret0); return; }
+}
+#undef FILL_
+#undef SPILL_
+#undef SETFPSCR_
+}
+//@unit 8c0339b0
+namespace sh4 {
+#define FILL_ rr0 = C.r[0]; rr1 = C.r[1]; rr2 = C.r[2]; rr4 = C.r[4]; rr15 = C.r[15]; FPSCR_ = F.fpscr; ff0 = F.fr[0];
+#define SPILL_ C.r[0] = rr0; C.r[1] = rr1; C.r[2] = rr2; C.r[4] = rr4; C.r[15] = rr15; F.fpscr = FPSCR_; F.fr[0] = ff0;
+#define SETFPSCR_(v) { unsigned v_ = (v); if ((v_ ^ FPSCR_) & FRB) { { float s_ = ff0; ff0 = xx0; xx0 = s_; } { float s_ = ff1; ff1 = xx1; xx1 = s_; } { float s_ = ff2; ff2 = xx2; xx2 = s_; } { float s_ = ff3; ff3 = xx3; xx3 = s_; } { float s_ = ff4; ff4 = xx4; xx4 = s_; } { float s_ = ff5; ff5 = xx5; xx5 = s_; } { float s_ = ff6; ff6 = xx6; xx6 = s_; } { float s_ = ff7; ff7 = xx7; xx7 = s_; } { float s_ = ff8; ff8 = xx8; xx8 = s_; } { float s_ = ff9; ff9 = xx9; xx9 = s_; } { float s_ = ff10; ff10 = xx10; xx10 = s_; } { float s_ = ff11; ff11 = xx11; xx11 = s_; } { float s_ = ff12; ff12 = xx12; xx12 = s_; } { float s_ = ff13; ff13 = xx13; xx13 = s_; } { float s_ = ff14; ff14 = xx14; xx14 = s_; } { float s_ = ff15; ff15 = xx15; xx15 = s_; } } FPSCR_ = v_; }
+void sh4x_8c0339b0(Cpu &C)
+{
+  const unsigned ret0 = C.pr;
+  XPROF(0x8c0339b0u);
+  unsigned rr0;
+  unsigned rr1;
+  unsigned rr2;
+  unsigned rr4;
+  unsigned rr15;
+  unsigned FPSCR_;
+  float ff0;
+  FILL_
+  if (FPSCR_ & (SZ | PRB)) { XGUARD(0x8c0339b0u); exec(C, 0x8c0339b0u, ret0); return; }
+L_8c0339b0:
+  rr15 += 0xffffffecu;
+  rr0 = 0x0u;
+  wr32(rr4 + 20, rr0);
+  rr0 = 0x0u;
+  wr32(rr4 + 16, rr0);
+  rr0 = 0x0u;
+  wr32(rr4 + 24, rr0);
+  rr0 = rr4;
+  rr0 += 0x20u;
+  ff0 = 0.0f;
+  wr32(rr0, f2u(ff0));
+  rr0 = 0x0u;
+  wr32(rr4 + 28, rr0);
+  rr0 = 0xffffffffu;
+  wr32(rr4 + 44, rr0);
+  rr0 = 0x0u;
+  wrs32(rr15 + 16, rr0);
+  rr0 = rd32(rr15 + 16);
+  wr32(rr4 + 48, rr0);
+  rr0 = rd32(rr15 + 16);
+  wr32(rr4 + 40, rr0);
+  rr0 = 0x1u;
+  wr32(rr4 + 36, rr0);
+  rr0 = 0x54u;
+  rr1 = 0x0u;
+  wr8(rr0 + rr4, rr1);
+  rr0 = rr4;
+  rr0 += 0x58u;
+  ff0 = 0.0f;
+  wr32(rr0, f2u(ff0));
+  rr1 = rr4;
+  rr1 += 0x64u;
+  rr0 = 0x8c033a88u;
+  ff0 = u2f(rd32(rr0));
+  wr32(rr1, f2u(ff0));
+  rr0 = rr4;
+  rr0 += 0x60u;
+  ff0 = 0.0f;
+  wr32(rr0, f2u(ff0));
+  rr0 = rr4;
+  rr0 += 0x5cu;
+  ff0 = 0.0f;
+  wr32(rr0, f2u(ff0));
+  rr0 = 0x0u;
+  wrs32(rr15 + 12, rr0);
+  rr0 = rd32(rr15 + 12);
+  wr32(rr4 + 56, rr0);
+  rr0 = rd32(rr15 + 12);
+  wr32(rr4 + 52, rr0);
+  ff0 = 0.0f;
+  rr0 = 0x8u;
+  wr32(rr0 + rr15, f2u(ff0));
+  rr0 = rr4;
+  rr0 += 0x40u;
+  rr2 = 0x8u;
+  rr2 += rr15;
+  ff0 = u2f(rd32(rr2));
+  wr32(rr0, f2u(ff0));
+  rr0 = rr4;
+  rr0 += 0x3cu;
+  rr2 = 0x8u;
+  rr2 += rr15;
+  ff0 = u2f(rd32(rr2));
+  wr32(rr0, f2u(ff0));
+  rr0 = 0x0u;
+  wrs32(rr15 + 4, rr0);
+  rr0 = 0x48u;
+  rr1 = rd32(rr15 + 4);
+  wr32(rr0 + rr4, rr1);
+  rr0 = 0x44u;
+  rr1 = rd32(rr15 + 4);
+  wr32(rr0 + rr4, rr1);
+  ff0 = 0.0f;
+  rr0 = 0x0u;
+  wr32(rr0 + rr15, f2u(ff0));
+  rr0 = rr4;
+  rr0 += 0x50u;
+  rr2 = 0x0u;
+  rr2 += rr15;
+  ff0 = u2f(rd32(rr2));
+  wr32(rr0, f2u(ff0));
+  rr0 = rr4;
+  rr0 += 0x4cu;
+  rr2 = 0x0u;
+  rr2 += rr15;
+  ff0 = u2f(rd32(rr2));
+  wr32(rr0, f2u(ff0));
+  rr0 = rr4;
+  rr0 += 0x68u;
+  ff0 = 1.0f;
+  wr32(rr0, f2u(ff0));
+  rr0 = 0x6cu;
+  rr1 = 0xffffffffu;
+  wr32(rr0 + rr4, rr1);
+  rr0 = 0x70u;
+  rr1 = 0x0u;
+  wr32(rr0 + rr4, rr1);
+  rr0 = 0x0u;
+  wr32(rr4 + 4, rr0);
+  rr0 = 0x0u;
+  wr32(rr4 + 8, rr0);
+  rr0 = 0x0u;
+  wr16(rr4 + 12, rr0);
+  rr0 = 0x0u;
+  wr16(rr4 + 14, rr0);
+  { rr15 += 0x14u; SPILL_ if (C.pr == ret0) return; exec(C, C.pr, ret0); return; }
+  rr15 += 0x14u;
+  { SPILL_ exec(C, 0x8c033a86u, ret0); return; }
 }
 #undef FILL_
 #undef SPILL_
@@ -762,6 +1142,44 @@ L_8c036f0c:
   {  SPILL_ if (C.pr == ret0) return; exec(C, C.pr, ret0); return; }
   
   { SPILL_ exec(C, 0x8c036f44u, ret0); return; }
+}
+#undef FILL_
+#undef SPILL_
+#undef SETFPSCR_
+}
+//@unit 8c03f3f8
+namespace sh4 {
+#define FILL_ rr0 = C.r[0]; rr4 = C.r[4]; rr5 = C.r[5]; rr6 = C.r[6]; rr7 = C.r[7]; FPSCR_ = F.fpscr; ff0 = F.fr[0];
+#define SPILL_ C.r[0] = rr0; C.r[4] = rr4; C.r[5] = rr5; C.r[6] = rr6; C.r[7] = rr7; F.fpscr = FPSCR_; F.fr[0] = ff0;
+#define SETFPSCR_(v) { unsigned v_ = (v); if ((v_ ^ FPSCR_) & FRB) { { float s_ = ff0; ff0 = xx0; xx0 = s_; } { float s_ = ff1; ff1 = xx1; xx1 = s_; } { float s_ = ff2; ff2 = xx2; xx2 = s_; } { float s_ = ff3; ff3 = xx3; xx3 = s_; } { float s_ = ff4; ff4 = xx4; xx4 = s_; } { float s_ = ff5; ff5 = xx5; xx5 = s_; } { float s_ = ff6; ff6 = xx6; xx6 = s_; } { float s_ = ff7; ff7 = xx7; xx7 = s_; } { float s_ = ff8; ff8 = xx8; xx8 = s_; } { float s_ = ff9; ff9 = xx9; xx9 = s_; } { float s_ = ff10; ff10 = xx10; xx10 = s_; } { float s_ = ff11; ff11 = xx11; xx11 = s_; } { float s_ = ff12; ff12 = xx12; xx12 = s_; } { float s_ = ff13; ff13 = xx13; xx13 = s_; } { float s_ = ff14; ff14 = xx14; xx14 = s_; } { float s_ = ff15; ff15 = xx15; xx15 = s_; } } FPSCR_ = v_; }
+void sh4x_8c03f3f8(Cpu &C)
+{
+  const unsigned ret0 = C.pr;
+  XPROF(0x8c03f3f8u);
+  unsigned rr0;
+  unsigned rr4;
+  unsigned rr5;
+  unsigned rr6;
+  unsigned rr7;
+  unsigned FPSCR_;
+  float ff0;
+  FILL_
+  if (FPSCR_ & (SZ | PRB)) { XGUARD(0x8c03f3f8u); exec(C, 0x8c03f3f8u, ret0); return; }
+L_8c03f3f8:
+  rr0 = rr4;
+  rr0 += 0x5cu;
+  ff0 = u2f(rd32(rr0));
+  wr32(rr5, f2u(ff0));
+  rr0 = rr4;
+  rr0 += 0x60u;
+  ff0 = u2f(rd32(rr0));
+  wr32(rr6, f2u(ff0));
+  rr4 += 0x64u;
+  ff0 = u2f(rd32(rr4));
+  wr32(rr7, f2u(ff0));
+  {  SPILL_ if (C.pr == ret0) return; exec(C, C.pr, ret0); return; }
+  
+  { SPILL_ exec(C, 0x8c03f412u, ret0); return; }
 }
 #undef FILL_
 #undef SPILL_

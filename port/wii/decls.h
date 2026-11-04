@@ -507,13 +507,13 @@ unsigned FUN_8c01c978(unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,uns
 unsigned FUN_8c01c984(unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0);
 unsigned FUN_8c01c998(unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0);
 unsigned FUN_8c01ca24(unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0);
-unsigned long long FUN_8c01cb54(unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0);
+unsigned FUN_8c01cb54(unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0);
 unsigned FUN_8c01cbc8(unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0);
 unsigned FUN_8c01cc74(unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0);
 unsigned FUN_8c01cee0(unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0);
 unsigned FUN_8c01cfc8(unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0);
 unsigned FUN_8c01d008(unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0);
-unsigned long long FUN_8c01d0cc(unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0);
+unsigned FUN_8c01d0cc(unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0);
 unsigned FUN_8c01d15c(unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0);
 unsigned FUN_8c01d338(unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0);
 unsigned FUN_8c01d3f4(unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0,unsigned=0);

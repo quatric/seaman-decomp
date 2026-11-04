@@ -19,3 +19,4 @@ port/obj/
 port/wii/obj/
 *.img
 port/wii/sh4x/test/
+port/wii/data/pmic_firm.bin

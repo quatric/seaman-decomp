@@ -160,7 +160,7 @@ SPRINTF_CALLERS = ('8c0fc94c', '8c0fb494', '8c08bd20', '8c06d618', '8c029400', '
 SAVE_LAYER = ('8c0b6c3c', '8c0b6e6c', '8c0b726c')
 INTERP_UNITS = ('8c25754c', '8c239212', '8c1f8300') + SPRINTF_CALLERS + SAVE_LAYER
 #   ADX core, ADXF, ADXSTM, ADXT | mwRna | SJ (stream joint)
-INTERP_RANGES = (('8c25eca0', '8c26a246'), ('8c26b1ca', '8c26c000'), ('8c01a308', '8c01c9e0'))   # + the game's memory-card manager (its queue and wait loops; host/wii_vmu.cpp does the ops)   # CRI ADX/SJ/mwRna and the Manatee sd library (its SR-dependent callbacks need the interpreter)
+INTERP_RANGES = (('8c25eca0', '8c26a246'), ('8c26b1ca', '8c26c000'), ('8c01a308', '8c01c9e0'), ('8c10a000', '8c126000'), ('8c201804', '8c202a84'))   # + the game's memory-card manager (its queue and wait loops; host/wii_vmu.cpp does the ops) + the L&H ASR1600 speech recogniser (its decompile left an object's callback unset) + Sega's Maple microphone library (64-bit sample positions passed on the stack, which the decompile drops)   # CRI ADX/SJ/mwRna and the Manatee sd library (its SR-dependent callbacks need the interpreter)
 INTERP_EXTRA = ('8c0101bc', '8c010468', '8c01051c', '8c010614', '8c0106dc', '8c010794', '8c0107a0') + INTERP_UNITS
 STUB_DEF = re.compile(r'^([A-Za-z_][A-Za-z_0-9 \*]*?)\s*([A-Za-z_0-9]+)_def\(', re.M)
 def interp_stub(src, addr):

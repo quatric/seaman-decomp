@@ -15,6 +15,12 @@ extern "C" unsigned long game_init(unsigned, unsigned, unsigned, unsigned);
 extern "C" {
 void gx_init(void);
 void host_pad_init(void);
+void host_mic_init(void);
+void host_mic_frame(void);
+void host_mic_shutdown(void);
+void host_usb_ios(void);
+void host_update_start(const char *argv0);
+void INPUT_Shutdown(void);
 void host_audio_init(void);
 int host_pad_frame(unsigned scripted, int *quit);
 unsigned long game_poll_exit(unsigned, unsigned, unsigned, unsigned);
@@ -82,6 +88,7 @@ static void run(void)
          off; +0x14 is its on flag, set by the tank controls) on for 600 frames, so the game's own state machine drives Manatee */
       if (n == PAD_SE_SCRIPT + 200 || n == PAD_SE_SCRIPT + 800) { GM(unsigned, 0x8c29ab74 + 0x14) = n == PAD_SE_SCRIPT + 200; host_log("se script: tank device %s at frame %u\n", n == PAD_SE_SCRIPT + 200 ? "on" : "off", n); }
 #endif
+      host_mic_frame();
       int quit = 0; pad_live = host_pad_frame(w, &quit);
       if (quit) { host_log("exit requested at frame %u\n", n); break; } }
 #ifdef SAVE_WATCH
@@ -205,6 +212,7 @@ int main(int argc, char **argv)
      (texture memory and registers, wii_dsi.cpp) and 0x92000000-0x93000000 the guest RAM. Without this limit the renderer's
      texture cache grew into the page store and overwrote the PVR fog registers in the tank */
   SYS_SetArena2Hi((void *)0x91000000);
+  host_usb_ios();                                                  /* before anything an IOS reload would tear down */
   PPCExcptCurPanicFn = exc_cb;
   SYS_CreateAlarm(&alarm_); { struct timespec tp = {2, 0}, ti = {1, 0}; SYS_SetPeriodicAlarm(alarm_, &tp, &ti, alarm_cb, 0); }
   gx_init();
@@ -213,6 +221,8 @@ int main(int argc, char **argv)
   fatInitDefault();
   logf = fopen("sd:/seaman/log.txt", "w");
   host_log("seaman wii host: image %u bytes\n", (unsigned)(g_image_end - g_image));
+  host_mic_init();                                                /* after the card and the log: it reads the Wii Speak firmware */
+  host_update_start(argc > 0 ? argv[0] : 0);                      /* background check for a newer release (wii_update.cpp) */
   wii_setup_memory();
   host_log("memory mapped\n");
   { /* hardware-window self test: the DSI emulation must behave like plain little-endian memory */
@@ -235,6 +245,8 @@ int main(int argc, char **argv)
   lwp_t pth; static char pstk[8192] __attribute__((aligned(32))); LWP_CreateThread(&pth, prof_thread, 0, pstk, sizeof pstk, 110);
 #endif
   void *ret; LWP_JoinThread(th, &ret);
+  host_mic_shutdown();
+  INPUT_Shutdown();
   host_log("done\n");
   if (logf) fclose(logf);
   return 0;

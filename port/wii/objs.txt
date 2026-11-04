@@ -51,8 +51,10 @@ obj/wii_gx.o
 obj/wii_hostlib.o
 obj/wii_intrinsics.o
 obj/wii_main.o
+obj/wii_mic.o
 obj/wii_pad.o
 obj/wii_pvr.o
 obj/wii_sh4.o
+obj/wii_update.o
 obj/wii_vmu.o
 obj/wii_xlat.o

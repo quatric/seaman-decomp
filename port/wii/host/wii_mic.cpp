@@ -1,0 +1,220 @@
+/* Microphone: a Wii Speak or a USB Audio Class microphone (libwiiinput) stands in for the Dreamcast microphone in socket 2 of
+   controller port A.
+   The game's speech code (8c01cb54, 8c01d0cc) talks to Sega's Maple microphone library at 8c201994-8c202a80. Its device records
+   (four of 0x4c bytes at 0x8c47e6f0) hold a state byte (+0: 0 none, 1 ready, 2 sampling, 3 error), the requested command (+0x28:
+   1 start, 2 stop, 4 set gain), the Maple unit (+0x24), the sample format (+8: 0 = 16-bit), the ring buffer (+0x48, +0x14 samples)
+   and the number of samples written so far as a 64-bit count (high word +0x3c, low word +0x40). The library's own server
+   (8c201b10) runs from the Maple DMA-end interrupt, which the port never raises; host_mic_frame does its work once a frame
+   instead: it answers commands at once and writes the host microphone's samples into the ring. The game's readers (8c201e14)
+   take them from there as on the Dreamcast, at 11,025 Hz, and pass them to the recogniser.
+   The Wii Speak needs Nintendo's PMIC firmware (97,480 bytes), which is not included: put it at sd:/seaman/pmic_firm.bin (or where
+   RecordMii looks for it), or build it in by placing it at port/wii/data/pmic_firm.bin (ignored by git; tools/wii_link.sh then
+   embeds it, as RecordMii's `make firmware` does). Without a host microphone the game still sees one, which never hears anything.
+   As in RecordMii, the boot first makes sure the running IOS offers /dev/usb/oh0 (the Wii Speak's USB interface), reloading a
+   USB-capable IOS if it does not, and the microphone is stopped and closed before the port exits to the loader. */
+#include "host.h"
+#include <gccore.h>
+#include <unistd.h>
+extern "C" {                                             /* C headers without their own guards */
+#include <input_wiispeak.h>
+#include <input_usbmic.h>
+}
+
+#define MIC_RATE 11025
+#define MIC_DEV 0x8c47e6f0u                              /* the library's device records */
+#define MIC_NDEV 4
+#define PERIPH_TAB 0x8c4727b4u                           /* Shinobi peripheral info: *tab + 0x44c + unit * 0x78, function bits at +0 */
+#define MIC_UNIT 2                                       /* port A, expansion socket 2 */
+
+enum { SRC_NONE, SRC_WIISPEAK, SRC_USB };
+static volatile int src;
+static um_info um;
+
+static const char *const FIRM[] = { "sd:/seaman/pmic_firm.bin", "sd:/wiispeak/pmic_firm.bin", "sd:/apps/wiispeakrec/pmic_firm.bin" };
+static void *firm; static u32 firm_size;
+
+#ifdef PMIC_FIRM
+asm(".section .rodata\n.balign 32\n.globl pmic_firm\npmic_firm:\n.incbin \"" PMIC_FIRM "\"\n.globl pmic_firm_end\npmic_firm_end:\n.text\n");
+extern "C" const unsigned char pmic_firm[], pmic_firm_end[];
+#endif
+static void load_firmware(void)
+{
+#ifdef PMIC_FIRM
+  firm = (void *)pmic_firm; firm_size = (u32)(pmic_firm_end - pmic_firm);
+  host_log("mic: Wii Speak firmware built in (%u bytes)\n", (unsigned)firm_size);
+  return;
+#endif
+  for (unsigned i = 0; i < sizeof FIRM / sizeof FIRM[0] && !firm; i++) {
+    FILE *f = fopen(FIRM[i], "rb");
+    if (!f) continue;
+    fseek(f, 0, SEEK_END); long n = ftell(f); fseek(f, 0, SEEK_SET);
+    void *p = n > 0 ? malloc(n) : 0;
+    if (p && fread(p, 1, n, f) == (size_t)n) { firm = p; firm_size = (u32)n; host_log("mic: Wii Speak firmware %s (%ld bytes)\n", FIRM[i], n); }
+    else free(p);
+    fclose(f);
+  }
+  if (!firm) host_log("mic: no pmic_firm.bin, Wii Speak not used\n");
+}
+
+/* opening a microphone can take seconds (the Wii Speak boots its DSP), so it runs here; it looks again every two seconds until
+   one is found, so a microphone can be plugged in while the game runs */
+static int mic_log(const char *fmt, ...)               /* the libraries' boot steps, into the port's log; quiet after a while */
+{
+  static int n; if (n++ >= 60) return 0;
+  char b[256]; va_list ap; va_start(ap, fmt); int r = vsnprintf(b, sizeof b, fmt, ap); va_end(ap);
+  host_log("mic: %s%s", b, r > 0 && b[r < (int)sizeof b ? r - 1 : sizeof b - 2] == '\n' ? "" : "\n");
+  return r;
+}
+
+static void *mic_thread(void *)
+{
+  load_firmware();
+  WS_SetLog(mic_log); UM_SetLog(mic_log);
+  for (;;) {
+    if (src == SRC_NONE) {
+      if (firm && WS_Open(firm, firm_size) == WS_OK) {
+        WS_SetFreq(WS_FREQ_11KHZ);                       /* the Dreamcast microphone's own rate */
+        WS_SetSignalProcessing(true);                    /* echo canceller + AGC: levels suited to speech */
+        if (WS_Start() == WS_OK) { host_log("mic: Wii Speak at %u Hz\n", (unsigned)WS_FreqToHz(WS_FREQ_11KHZ)); src = SRC_WIISPEAK; }
+        else WS_Close();
+      } else if (UM_Open(&um) == UM_OK) {
+        if (um.has_volume) UM_SetVolume(80);
+        if (UM_Start() == UM_OK) { host_log("mic: USB microphone '%s' at %u Hz, %u channel(s), %u bits\n", um.name, (unsigned)um.rate, um.channels, um.bits); src = SRC_USB; }
+        else UM_Close();
+      }
+    }
+    if (src != SRC_NONE) return 0;
+    usleep(2000000);
+  }
+}
+
+/* RecordMii's ensure_usb_ios: the Wii Speak is reached through /dev/usb/oh0, which only some IOS versions offer (the Homebrew
+   Channel normally starts apps on IOS58, which does). Called first in main, before WPAD and the SD card, which an IOS reload would
+   tear down */
+extern "C" void host_usb_ios(void)
+{
+  static const int candidates[] = { 58, 56, 55, 53, 38, 37, 36 };
+  s32 fd = IOS_Open("/dev/usb/oh0", 0);
+  if (fd >= 0) { IOS_Close(fd); return; }
+  int was = IOS_GetVersion();
+  for (unsigned i = 0; i < sizeof candidates / sizeof candidates[0]; i++) {
+    if (candidates[i] == was || IOS_ReloadIOS(candidates[i]) < 0) continue;
+    fd = IOS_Open("/dev/usb/oh0", 0);
+    if (fd >= 0) { IOS_Close(fd); return; }
+  }
+}
+
+/* before the port exits: a microphone left streaming can hang the loader */
+extern "C" void host_mic_shutdown(void)
+{
+  if (src == SRC_WIISPEAK) { WS_Stop(); WS_Close(); }
+  else if (src == SRC_USB) { UM_Stop(); UM_Close(); }
+  src = SRC_NONE;
+}
+
+extern "C" void host_mic_init(void)
+{
+  static lwp_t th; static char stk[32768] __attribute__((aligned(32)));
+  LWP_CreateThread(&th, mic_thread, 0, stk, sizeof stk, 40);
+}
+
+/* USB microphones deliver 44.1 or 48 kHz: average the input samples that fall into each 1/11025 s (a box filter, enough for
+   speech) */
+static s16 uin[4096]; static unsigned nin, frac;         /* frac: position inside uin in 1/65536 sample */
+static unsigned usb_read(s16 *dst, unsigned max)
+{
+  nin += UM_Read(uin + nin, sizeof uin / sizeof uin[0] - nin);
+  if (!um.rate) return 0;
+  unsigned step = (unsigned)(((unsigned long long)um.rate << 16) / MIC_RATE), out = 0;
+  while (out < max) {
+    unsigned a = frac >> 16, b = (frac + step) >> 16;
+    if (b > nin || b == a) break;
+    int s = 0; for (unsigned i = a; i < b; i++) s += uin[i];
+    dst[out++] = (s16)(s / (int)(b - a));
+    frac += step;
+  }
+  unsigned used = frac >> 16;
+  memmove(uin, uin + used, (nin - used) * sizeof uin[0]); nin -= used; frac &= 0xffff;
+  return out;
+}
+
+#ifdef MIC_TEST
+/* test builds (no microphone in headless Dolphin): sd:/seaman/mictest.raw (11,025 Hz, 16-bit big-endian mono) is heard at the
+   real rate from the start, then silence, again every MIC_TEST seconds */
+#include <ogc/lwp_watchdog.h>
+extern "C" unsigned long FUN_8c01d4c4(unsigned long, unsigned long, unsigned long, unsigned long);   /* queue a speech job */
+static s16 *tst; static unsigned tst_n; static unsigned long long tst_done; static u64 tst_t0;
+static unsigned test_read(s16 *dst, unsigned max)
+{
+  if (!tst_t0) {
+    tst_t0 = gettime();
+    FILE *f = fopen("sd:/seaman/mictest.raw", "rb");
+    if (f) { fseek(f, 0, SEEK_END); long n = ftell(f); fseek(f, 0, SEEK_SET); tst = (s16 *)malloc(n); tst_n = fread(tst, 2, n / 2, f); fclose(f); }
+    host_log("mic: test sound, %u samples\n", tst_n);
+  }
+  unsigned long long due = ticks_to_millisecs(gettime() - tst_t0) * MIC_RATE / 1000;
+  unsigned n = 0, period = MIC_TEST * MIC_RATE;
+  for (; n < max && tst_done < due; n++, tst_done++) { unsigned i = (unsigned)(tst_done % period); dst[n] = i < tst_n ? tst[i] : 0; }
+  return n;
+}
+#endif
+static unsigned mic_read(s16 *dst, unsigned max)
+{
+#ifdef MIC_TEST
+  return test_read(dst, max);
+#endif
+  if (src == SRC_WIISPEAK) return WS_Read(dst, max);
+  if (src == SRC_USB) return usb_read(dst, max);
+  return 0;
+}
+
+extern "C" void host_mic_frame(void)
+{
+  unsigned tab = GM(unsigned, PERIPH_TAB);
+  if (tab >= 0x8c000000u && tab < 0x8d000000u) GM(unsigned, tab + 0x44c + MIC_UNIT * 0x78) = GM(unsigned, tab + 0x44c + MIC_UNIT * 0x78) | 0x10;   /* Maple function: microphone */
+  static s16 buf[1024];
+  bool sampled = false;
+  for (unsigned d = MIC_DEV; d < MIC_DEV + MIC_NDEV * 0x4c; d += 0x4c) {
+    if (GM(unsigned char, d + 2) != 1) continue;         /* record not in use */
+    unsigned st = GM(unsigned char, d), cmd = GM(unsigned, d + 0x28);
+    if (st == 0) st = 1;                                 /* the device-info exchange: done at once */
+    if (cmd == 1) st = 2; else if (cmd == 2) st = 1;
+    if (cmd) { static int nl; if (nl++ < 40) host_log("mic: command %u, state %u\n", cmd, st); }
+    GM(unsigned, d + 0x2c) = cmd; GM(unsigned, d + 0x28) = 0;
+    GM(unsigned, d + 0x20) = 0;                          /* no Maple transfer outstanding */
+    GM(unsigned char, d) = (unsigned char)st;
+    unsigned size = GM(unsigned, d + 0x14), ring = GM(unsigned, d + 0x48);
+    if (st != 2 || GM(unsigned, d + 8) != 0 || !size || ring < 0x8c000000u || ring >= 0x8d000000u) continue;
+    unsigned long long pos = (unsigned long long)GM(unsigned, d + 0x3c) << 32 | GM(unsigned, d + 0x40);
+    for (;;) {
+      unsigned n = mic_read(buf, size < 1024 ? size : 1024);
+      if (!n) break;
+      for (unsigned i = 0; i < n; i++) GM(short, ring + 2 * (unsigned)((pos + i) % size)) = buf[i];
+      pos += n;
+    }
+    GM(unsigned, d + 0x3c) = (unsigned)(pos >> 32); GM(unsigned, d + 0x40) = (unsigned)pos;
+    sampled = true;
+  }
+  if (!sampled) while (mic_read(buf, 1024)) { }          /* not listening: drop what the microphone heard meanwhile */
+#ifdef MIC_TEST
+  { /* test builds: the recogniser's state (0x8c279248), its mode words, the library's write position and its first reader's */
+    static unsigned last = ~0u, nf, last284 = ~0u; unsigned rs = GM(unsigned, 0x8c279248);
+    /* once the recogniser is up, queue two speech jobs as the game's scripts do (FUN_8c01d4c4 on the speech object 0x8c3e1028):
+       load the context SPEECH/0303A_DATE_CTX.cwp (yes / of course / ...), then listen */
+    static char ctx[] = "0303A_DATE_CTX", dir[] = "SPEECH", none[] = "";
+    if (nf == 3000 && GM(unsigned, 0x8c2791b8) == 4) {
+      unsigned long a = FUN_8c01d4c4(0x8c3e1028, 0, (unsigned long)ctx, (unsigned long)dir), b = FUN_8c01d4c4(0x8c3e1028, 4, (unsigned long)none, (unsigned long)none);
+      host_log("mic: test jobs queued (%lu, %lu)\n", a, b);
+    }
+    if (GM(unsigned, 0x8c279284) != last284) { last284 = GM(unsigned, 0x8c279284); host_log("mic: 284 -> %u (298=%u) at call %u\n", last284, (unsigned)GM(unsigned, 0x8c279298), nf); }
+    if (rs != last || ++nf % 600 == 0) {
+      host_log("mic: asr state %u (was %d) 284=%u 2791b8=%u dev %u pos %u reader pos %u\n", rs, (int)last, (unsigned)GM(unsigned, 0x8c279284), (unsigned)GM(unsigned, 0x8c2791b8),
+               (unsigned)GM(unsigned char, MIC_DEV), (unsigned)GM(unsigned, MIC_DEV + 0x40), (unsigned)GM(unsigned, 0x8c47e820 + 0xc));
+      unsigned rd = GM(unsigned, 0x8c279270), dv = GM(unsigned, 0x8c27926c);
+      if (rd >= 0x8c000000u && rd < 0x8d000000u) host_log("mic: reader %x: %02x %02x dev %x pos %x:%x; device %x (MIC_DEV %x)\n", rd, (unsigned)GM(unsigned char, rd), (unsigned)GM(unsigned char, rd + 1),
+               (unsigned)GM(unsigned, rd + 4), (unsigned)GM(unsigned, rd + 8), (unsigned)GM(unsigned, rd + 12), dv, MIC_DEV);
+      last = rs;
+    }
+  }
+#endif
+}
