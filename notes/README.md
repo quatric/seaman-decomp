@@ -684,3 +684,30 @@ Run it: `cd port && arch -x86_64 ./game_x86 ../disc/1ST_READ.BIN 8` (second arg 
 - 396 translated functions (was 348): the newly interpreted mic-library routines plus the next hot ones. Interpreted instructions
   in the tank fell from about 1.3-1.6M to 0.8-1.0M per 500 frames; the tank stays at 81-89 fps headless. `tools/sh4x_test.py`:
   0 mismatches on 15,375 opcode forms.
+
+### Creatures in the tank: two decompile bugs, and loading saves at each stage (Wii, 2026-11-04)
+Before this, the port had never had a creature in the tank: every run started from a new habitat with only the Nautilus. Test
+saves for each stage were made in a test build (`-DRECORD_DUMP`) that had the game create each creature and write its own save
+record, and `tools/stage_save.py` put the records into a blank habitat file (`tools/vms.py` fixes the VMS CRC): young Gillman (HigyoLine code 2), Podfish (HigyoLine code 4), Tadman (FrogManLine code 6) and Frogman on land
+(FrogManLine code 7, habitat 3).
+- Tadman/Gillman hang on the first tank frame: Ghidra did not rebuild a switch in `8c060044` (FrogMan line) and `8c105094`
+  (Higyo line), so the decompiled C jumped into data. Both run in the SH-4 interpreter (`JUMPTABLE_UNITS` in `wii_xform.py`).
+- Gillman/Podfish crash: the Higyo line's per-stage setup `8c06e69c` copies its state handler's pointer-to-member records from
+  0x8c137900.., but Ghidra typed the index words (0xffffffff, "not virtual") as bytes. The record got index 0xff, and the call
+  through `8c0101bc` took it as a vtable offset. It runs in the interpreter too (`PMF_BYTE_UNITS`). It is the only unit that
+  reads those globals as bytes.
+- With both fixes, all four saves load and run for 10,000+ frames headless with no exceptions, hangs or unmapped jumps.
+- Creatures that then die are following the game's rules, not a port bug:
+  - Dolphin gives the game the host clock, so a save from the night before counts as about 14 hours away. With the RTC set a
+    minute after the save (Dolphin `EnableCustomRTC`/`CustomRTCValue`), the Tadman lives the whole run, where before it died
+    about 100 s in.
+  - The young Gillman still dies about 100 s in. A test log in `speech_start` (`8c0f8368`) shows `BIO_0` playing
+    `REQUEST_OXYGEN` 21 times, then `REACTION_DEAD_COLD`. Nobody in the scripted run turns up the heater or the air in the
+    blank habitat. Not compared against Flycast.
+  - The game's own saves are right: a living Tadman is written to the tank list (count +0x1b4, records from +0x1ec) and the
+    Frogman to the land list (count +0x2790, records from +0x2794). A creature that has died is simply left out.
+- Test-only hooks in `host/wii_main.cpp`: `-DITEM_LOG=<frame>` logs every creature object (found in guest RAM by its line
+  vtable) with stage, code and alive check every 250 frames; `-DRECORD_DUMP` dumps the save records.
+- Each run spends about 3 minutes on the title first, because the "welcome back" narration plays before an existing habitat
+  loads.
+- Not checked yet: whether the creature listens to speech at each stage.

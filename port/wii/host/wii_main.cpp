@@ -131,6 +131,47 @@ static void run(void)
         vsp = sp0; unsigned long r = ((fn)xlat(0x8c021994))(mgr, port, req, 0);
         host_log("se test: mgr %x port %d request %u -> %lu at frame %u\n", mgr, (int)port, req, r, n); req++; } }
 #endif
+#ifdef ITEM_LOG
+    /* test builds: from frame ITEM_LOG on, every 250 frames find the creature objects in guest RAM by their vtables at +8
+       (HigyoLine 0x8c12a434, FrogManLine 0x8c129ea0, MushroomerLine 0x8c12acc8 is the state class, so the line vtables only) and log
+       each one's name, growth stage (vtable +0x148) and alive check (vtable +0xb4; 0 = gone, CGame_state_is_finished_like) */
+    if (n >= ITEM_LOG && n % 250 == 0) {
+      typedef unsigned long (*fn)(unsigned, unsigned, unsigned, unsigned);
+      char l[480]; int k = snprintf(l, sizeof l, "creatures frame %u:", n);
+      for (unsigned a = 0x8c300000; a < 0x8d000000 && k < 400; a += 4) {
+        unsigned v = GM(unsigned, a);
+        if (v != 0x8c12a434u && v != 0x8c129ea0u) continue;
+        unsigned o = a - 8; if (GM(int, o + 0x24) != 3 && GM(int, o + 0x24) != 5) continue;
+        vsp = sp0; int st = (int)(short)((fn)xlat(GM(unsigned, v + 0x148)))(o, 0, 0, 0);
+        vsp = sp0; int al = (int)((fn)xlat(GM(unsigned, v + 0xb4)))(o, 0, 0, 0);
+        k += snprintf(l + k, sizeof l - k, " [%x %.12s k%d code%d s%d alive%d]", o, (const char *)(unsigned long)(o + 0xc), (int)GM(int, o + 0x24), (int)GM(int, o + 0x174 + 0x13c), st, al);
+      }
+      host_log("%s\n", l);
+    }
+#endif
+#ifdef RECORD_DUMP
+    /* test builds: at frame RECORD_DUMP, create creatures of several kinds and growth-stage codes with the game's own item loader
+       (CItemGLoader_create_creature_by_kind 8c0fef94) and log the 0xf0-byte save record each one writes (vtable +0x158), the
+       record CGame_GetUserGameInfo puts in SM2000US.USR; tools/stage_save.py builds later-stage saves from them */
+    if (n == RECORD_DUMP) {
+      typedef unsigned long (*fn)(unsigned, unsigned, unsigned, unsigned);
+      static const unsigned ks[][2] = { {1, 1}, {3, 2}, {3, 3}, {3, 4}, {5, 6}, {5, 7} };
+      vsp = sp0; unsigned buf = (unsigned)((fn)xlat(0x8c014028))(0x100, 0, 0, 0);   /* operator_new */
+      host_log("record dump: buffer %x\n", buf);
+      for (unsigned i = 0; buf && i < sizeof ks / sizeof ks[0]; i++) {
+        vsp = sp0; unsigned o = (unsigned)((fn)xlat(0x8c0fef94))(0x8c3eb324, ks[i][0], ks[i][1], 0);
+        if (o < 0x8c000000 || o >= 0x8d000000) { host_log("record kind %u code %u: no object (%x)\n", ks[i][0], ks[i][1], o); continue; }
+        for (unsigned q = 0; q < 0x100; q += 4) GM(unsigned, buf + q) = 0;
+        vsp = sp0; ((fn)xlat(GM(unsigned, GM(unsigned, o + 8) + 0x158)))(o, buf, 0, 0);
+        vsp = sp0; int st = (int)(short)((fn)xlat(GM(unsigned, GM(unsigned, o + 8) + 0x148)))(o, 0, 0, 0);
+        host_log("record kind %u code %u obj %x stage %d\n", ks[i][0], ks[i][1], o, st);
+        for (unsigned q = 0; q < 0xf0; q += 0x30) {
+          char l[400]; int m = snprintf(l, sizeof l, "rec %u %u +%02x", ks[i][0], ks[i][1], q);
+          for (unsigned w = q; w < q + 0x30 && w < 0xf0; w += 4) m += snprintf(l + m, sizeof l - m, " %08x", (unsigned)GM(unsigned, buf + w));
+          host_log("%s\n", l); }
+      }
+    }
+#endif
     ring[rp++ & 255] = "host: pvr_end_frame";
     pvr_end_frame(n);
     ring[rp++ & 255] = "host: frame loop";

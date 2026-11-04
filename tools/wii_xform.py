@@ -158,7 +158,15 @@ SPRINTF_CALLERS = ('8c0fc94c', '8c0fb494', '8c08bd20', '8c06d618', '8c029400', '
 # save layer: save_write_step 8c0b6c3c, save_check_files 8c0b6e6c and memcard_process_save_file_name 8c0b726c pass the VMS descriptions
 # ("Seaman User Data" / "SEAMAN") to the memory-card manager as stack words, which the decompile drops, so the USR header was blank
 SAVE_LAYER = ('8c0b6c3c', '8c0b6e6c', '8c0b726c')
-INTERP_UNITS = ('8c25754c', '8c239212', '8c1f8300') + SPRINTF_CALLERS + SAVE_LAYER
+# creature code whose switch Ghidra could not recover ("Could not recover jumptable"): the decompile calls the jump table as a function
+# table (from the wrong base, 0x40 bytes past the real one) and drops every case body. CAnimal_release_child_and_update 8c060044
+# (FrogMan line) and its Higyo-line counterpart 8c105094 hung the port on the first frame a Tadman or Gillman was in the tank
+JUMPTABLE_UNITS = ('8c060044', '8c105094')
+# Class_12a25c_m6_06e69c (the Higyo line's motion object: per-stage setup) copies its state handler's pointer-to-member records from
+# 0x8c137900.. but Ghidra typed the index words (0xffffffff = not virtual) as bytes, so the record got index 0xff and the call
+# through 8c0101bc took it as a vtable offset and crashed on the first frame a Gillman or Podfish was in the tank
+PMF_BYTE_UNITS = ('8c06e69c',)
+INTERP_UNITS = ('8c25754c', '8c239212', '8c1f8300') + SPRINTF_CALLERS + SAVE_LAYER + JUMPTABLE_UNITS + PMF_BYTE_UNITS
 #   ADX core, ADXF, ADXSTM, ADXT | mwRna | SJ (stream joint)
 INTERP_RANGES = (('8c25eca0', '8c26a246'), ('8c26b1ca', '8c26c000'), ('8c01a308', '8c01c9e0'), ('8c10a000', '8c126000'), ('8c201804', '8c202a84'))   # + the game's memory-card manager (its queue and wait loops; host/wii_vmu.cpp does the ops) + the L&H ASR1600 speech recogniser (its decompile left an object's callback unset) + Sega's Maple microphone library (64-bit sample positions passed on the stack, which the decompile drops)   # CRI ADX/SJ/mwRna and the Manatee sd library (its SR-dependent callbacks need the interpreter)
 INTERP_EXTRA = ('8c0101bc', '8c010468', '8c01051c', '8c010614', '8c0106dc', '8c010794', '8c0107a0') + INTERP_UNITS
