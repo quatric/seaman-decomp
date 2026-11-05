@@ -21,6 +21,8 @@ void sh4x_8c013c88(Cpu &);
 void sh4x_8c013cd8(Cpu &);
 void sh4x_8c013d78(Cpu &);
 void sh4x_8c013dfc(Cpu &);
+void sh4x_8c0140b4(Cpu &);
+void sh4x_8c0140cc(Cpu &);
 void sh4x_8c014d90(Cpu &);
 void sh4x_8c014e20(Cpu &);
 void sh4x_8c015b54(Cpu &);
@@ -44,6 +46,7 @@ void sh4x_8c019574(Cpu &);
 void sh4x_8c01a5cc(Cpu &);
 void sh4x_8c01a630(Cpu &);
 void sh4x_8c01ad88(Cpu &);
+void sh4x_8c01d15c(Cpu &);
 void sh4x_8c022c20(Cpu &);
 void sh4x_8c022c4c(Cpu &);
 void sh4x_8c022c88(Cpu &);
@@ -2722,6 +2725,248 @@ L_8c013e2c:
 #undef SPILL_
 #undef SETFPSCR_
 }
+//@unit 8c0140b4
+namespace sh4 {
+#define FILL_ rr4 = C.r[4]; rr6 = C.r[6]; rr7 = C.r[7]; rr15 = C.r[15]; PR_ = C.pr;
+#define SPILL_ C.r[4] = rr4; C.r[6] = rr6; C.r[15] = rr15; C.pr = PR_;
+#define SETFPSCR_(v) { unsigned v_ = (v); if ((v_ ^ FPSCR_) & FRB) { { float s_ = ff0; ff0 = xx0; xx0 = s_; } { float s_ = ff1; ff1 = xx1; xx1 = s_; } { float s_ = ff2; ff2 = xx2; xx2 = s_; } { float s_ = ff3; ff3 = xx3; xx3 = s_; } { float s_ = ff4; ff4 = xx4; xx4 = s_; } { float s_ = ff5; ff5 = xx5; xx5 = s_; } { float s_ = ff6; ff6 = xx6; xx6 = s_; } { float s_ = ff7; ff7 = xx7; xx7 = s_; } { float s_ = ff8; ff8 = xx8; xx8 = s_; } { float s_ = ff9; ff9 = xx9; xx9 = s_; } { float s_ = ff10; ff10 = xx10; xx10 = s_; } { float s_ = ff11; ff11 = xx11; xx11 = s_; } { float s_ = ff12; ff12 = xx12; xx12 = s_; } { float s_ = ff13; ff13 = xx13; xx13 = s_; } { float s_ = ff14; ff14 = xx14; xx14 = s_; } { float s_ = ff15; ff15 = xx15; xx15 = s_; } } FPSCR_ = v_; }
+void sh4x_8c0140b4(Cpu &C)
+{
+  const unsigned ret0 = C.pr;
+  XPROF(0x8c0140b4u);
+  unsigned rr4;
+  unsigned rr6;
+  unsigned rr7;
+  unsigned rr15;
+  unsigned PR_;
+  FILL_
+L_8c0140b4:
+  rr15 -= 4; wrs32(rr15, PR_);
+  rr15 += 0xfffffff4u;
+  wrs32(rr15, rr4);
+  wrs32(rr15 + 4, rr6);
+  rr6 = rr15;
+  wrs32(rr15 + 8, rr7);
+  { rr4 = 0x1u; SPILL_ static hfn h_; if (!h_) { unsigned long x_ = xlat_exact(0x8c0140ccu); h_ = x_ ? (hfn)x_ : (hfn)1; } if (h_ != (hfn)1) call_ptr(C, h_); else { C.pr = 0x8c0140c4u; exec(C, 0x8c0140ccu, 0x8c0140c4u); } FILL_ goto L_8c0140c4; }
+  rr4 = 0x1u;
+L_8c0140c4:
+  rr15 += 0xcu;
+  PR_ = rd32(rr15); rr15 += 4;
+  {  SPILL_ if (C.pr == ret0) return; exec(C, C.pr, ret0); return; }
+  
+  { SPILL_ unsigned r_ = C.pr; sh4x_8c0140cc(C); if (r_ == ret0) return; exec(C, r_, ret0); return; }
+}
+#undef FILL_
+#undef SPILL_
+#undef SETFPSCR_
+}
+//@unit 8c0140cc
+namespace sh4 {
+#define FILL_ rr0 = C.r[0]; rr1 = C.r[1]; rr2 = C.r[2]; rr3 = C.r[3]; rr4 = C.r[4]; rr5 = C.r[5]; rr6 = C.r[6]; rr7 = C.r[7]; rr8 = C.r[8]; rr9 = C.r[9]; rr10 = C.r[10]; rr11 = C.r[11]; rr12 = C.r[12]; rr13 = C.r[13]; rr14 = C.r[14]; rr15 = C.r[15]; T_ = C.t; MACL_ = C.macl; PR_ = C.pr;
+#define SPILL_ C.r[0] = rr0; C.r[1] = rr1; C.r[2] = rr2; C.r[3] = rr3; C.r[4] = rr4; C.r[5] = rr5; C.r[6] = rr6; C.r[7] = rr7; C.r[8] = rr8; C.r[9] = rr9; C.r[10] = rr10; C.r[11] = rr11; C.r[12] = rr12; C.r[13] = rr13; C.r[14] = rr14; C.r[15] = rr15; C.t = T_; C.macl = MACL_; C.pr = PR_;
+#define SETFPSCR_(v) { unsigned v_ = (v); if ((v_ ^ FPSCR_) & FRB) { { float s_ = ff0; ff0 = xx0; xx0 = s_; } { float s_ = ff1; ff1 = xx1; xx1 = s_; } { float s_ = ff2; ff2 = xx2; xx2 = s_; } { float s_ = ff3; ff3 = xx3; xx3 = s_; } { float s_ = ff4; ff4 = xx4; xx4 = s_; } { float s_ = ff5; ff5 = xx5; xx5 = s_; } { float s_ = ff6; ff6 = xx6; xx6 = s_; } { float s_ = ff7; ff7 = xx7; xx7 = s_; } { float s_ = ff8; ff8 = xx8; xx8 = s_; } { float s_ = ff9; ff9 = xx9; xx9 = s_; } { float s_ = ff10; ff10 = xx10; xx10 = s_; } { float s_ = ff11; ff11 = xx11; xx11 = s_; } { float s_ = ff12; ff12 = xx12; xx12 = s_; } { float s_ = ff13; ff13 = xx13; xx13 = s_; } { float s_ = ff14; ff14 = xx14; xx14 = s_; } { float s_ = ff15; ff15 = xx15; xx15 = s_; } } FPSCR_ = v_; }
+void sh4x_8c0140cc(Cpu &C)
+{
+  const unsigned ret0 = C.pr;
+  XPROF(0x8c0140ccu);
+  unsigned rr0;
+  unsigned rr1;
+  unsigned rr2;
+  unsigned rr3;
+  unsigned rr4;
+  unsigned rr5;
+  unsigned rr6;
+  unsigned rr7;
+  unsigned rr8;
+  unsigned rr9;
+  unsigned rr10;
+  unsigned rr11;
+  unsigned rr12;
+  unsigned rr13;
+  unsigned rr14;
+  unsigned rr15;
+  int T_;
+  unsigned MACL_;
+  unsigned PR_;
+  FILL_
+L_8c0140cc:
+  rr15 -= 4; wrs32(rr15, rr14);
+  rr15 -= 4; wrs32(rr15, rr13);
+  rr15 -= 4; wrs32(rr15, rr12);
+  rr15 -= 4; wrs32(rr15, rr11);
+  rr15 -= 4; wrs32(rr15, rr10);
+  rr15 -= 4; wrs32(rr15, rr9);
+  rr15 -= 4; wrs32(rr15, rr8);
+  rr15 -= 4; wrs32(rr15, PR_);
+  rr15 -= 4; wrs32(rr15, MACL_);
+  rr15 += 0xfffffff4u;
+  rr14 = rr6;
+  rr8 = rr5;
+  rr9 = rr4;
+L_8c0140e6:
+  rr10 = rr8;
+  rr10 -= rr9;
+  T_ = rr10 & 1; rr10 >>= 1;
+  rr12 = rr8;
+  rr10 += rr9;
+  rr13 = rr9;
+  wrs32(rr15, rr10);
+  rr10 += 0xffffffffu;
+  rr3 = rd32(rr14 + 4);
+  rr2 = rd32(rr14);
+  MACL_ = rr10 * rr3;
+  rr10 = MACL_;
+  { rr10 += rr2; goto L_8c0141ac; }
+  rr10 += rr2;
+L_8c014102:
+  rr13 += 0x1u;
+L_8c014104:
+  rr4 = rr13;
+  rr2 = rd32(rr14 + 4);
+  rr4 += 0xffffffffu;
+  rr1 = rd32(rr14);
+  MACL_ = rr4 * rr2;
+  rr3 = rd32(rr14 + 8);
+  rr5 = rr10;
+  rr4 = MACL_;
+  { unsigned t_ = rr3; rr4 += rr1; SPILL_ if (!native_call(C, t_)) { C.pr = 0x8c014118u; if (xfn f_ = xfind(t_)) f_(C); else exec(C, t_, 0x8c014118u); } FILL_ goto L_8c014118; }
+  rr4 += rr1;
+L_8c014118:
+  T_ = (int)rr0 >= 0;
+  if (!T_) goto L_8c014102;
+  {  goto L_8c014122; }
+  
+L_8c014120:
+  rr12 += 0xffffffffu;
+L_8c014122:
+  rr2 = rd32(rr14 + 4);
+  rr5 = rr12;
+  rr5 += 0xffffffffu;
+  rr1 = rd32(rr14);
+  MACL_ = rr5 * rr2;
+  rr3 = rd32(rr14 + 8);
+  rr5 = MACL_;
+  rr5 += rr1;
+  { unsigned t_ = rr3; rr4 = rr10; SPILL_ if (!native_call(C, t_)) { C.pr = 0x8c014136u; if (xfn f_ = xfind(t_)) f_(C); else exec(C, t_, 0x8c014136u); } FILL_ goto L_8c014136; }
+  rr4 = rr10;
+L_8c014136:
+  T_ = (int)rr0 >= 0;
+  if (!T_) goto L_8c014120;
+  T_ = rr13 > rr12;
+  if (T_) goto L_8c0141ac;
+  rr3 = rr13;
+  rr3 += 0xffffffffu;
+  rr11 = rr12;
+  wrs32(rr15 + 4, rr3);
+  rr4 = 0x0u;
+  { rr11 += 0xffffffffu; goto L_8c01417e; }
+  rr11 += 0xffffffffu;
+L_8c01414c:
+  rr0 = rd32(rr15 + 4);
+  rr6 = rd32(rr14 + 4);
+  rr5 = rd32(rr14);
+  MACL_ = rr0 * rr6;
+  rr0 = MACL_;
+  MACL_ = rr11 * rr6;
+  wrs32(rr15 + 8, rr0);
+  rr0 += rr5;
+  rr3 = rd32(rr15 + 8);
+  rr6 = MACL_;
+  rr3 += rr5;
+  rr7 = sx8(rd8(rr0 + rr4));
+  rr3 += rr4;
+  rr6 += rr5;
+  rr6 += rr4;
+  rr2 = sx8(rd8(rr6));
+  wr8(rr3, rr2);
+  rr3 = rd32(rr14 + 4);
+  rr2 = rd32(rr14);
+  MACL_ = rr11 * rr3;
+  rr3 = MACL_;
+  rr3 += rr2;
+  rr3 += rr4;
+  rr4 += 0x1u;
+  wr8(rr3, rr7);
+L_8c01417e:
+  rr3 = rd32(rr14 + 4);
+  T_ = rr4 >= rr3;
+  if (!T_) goto L_8c01414c;
+  rr1 = rd32(rr15);
+  T_ = rr13 == rr1;
+  if (!T_) goto L_8c014196;
+  rr10 = rd32(rr14 + 4);
+  rr3 = rd32(rr14);
+  MACL_ = rr11 * rr10;
+  rr10 = MACL_;
+  { rr10 += rr3; goto L_8c0141a8; }
+  rr10 += rr3;
+L_8c014196:
+  rr1 = rd32(rr15);
+  T_ = rr12 == rr1;
+  if (!T_) goto L_8c0141a8;
+  rr2 = rd32(rr15 + 4);
+  rr3 = rd32(rr14 + 4);
+  rr1 = rd32(rr14);
+  MACL_ = rr2 * rr3;
+  rr10 = MACL_;
+  rr10 += rr1;
+L_8c0141a8:
+  rr12 = rr11;
+  rr13 += 0x1u;
+L_8c0141ac:
+  rr3 = 0x1u;
+  T_ = rr13 >= rr3;
+  if (!T_) goto L_8c0141b6;
+  T_ = rr13 > rr12;
+  if (!T_) goto L_8c014104;
+L_8c0141b6:
+  rr2 = rr8;
+  rr3 = rr12;
+  rr2 -= rr13;
+  rr3 -= rr9;
+  T_ = rr3 >= rr2;
+  if (T_) goto L_8c0141d6;
+  T_ = rr9 >= rr12;
+  if (T_) goto L_8c0141ce;
+  rr5 = rr12;
+  rr6 = rr14;
+  { rr4 = rr9; SPILL_ static hfn h_; if (!h_) { unsigned long x_ = xlat_exact(0x8c0140ccu); h_ = x_ ? (hfn)x_ : (hfn)1; } if (h_ != (hfn)1) call_ptr(C, h_); else { C.pr = 0x8c0141ceu; exec(C, 0x8c0140ccu, 0x8c0141ceu); } FILL_ goto L_8c0141ce; }
+  rr4 = rr9;
+L_8c0141ce:
+  T_ = rr13 >= rr8;
+  if (T_) goto L_8c0141ea;
+  { rr9 = rr13; goto L_8c0140e6; }
+  rr9 = rr13;
+L_8c0141d6:
+  T_ = rr13 >= rr8;
+  if (T_) goto L_8c0141e2;
+  rr5 = rr8;
+  rr6 = rr14;
+  { rr4 = rr13; SPILL_ static hfn h_; if (!h_) { unsigned long x_ = xlat_exact(0x8c0140ccu); h_ = x_ ? (hfn)x_ : (hfn)1; } if (h_ != (hfn)1) call_ptr(C, h_); else { C.pr = 0x8c0141e2u; exec(C, 0x8c0140ccu, 0x8c0141e2u); } FILL_ goto L_8c0141e2; }
+  rr4 = rr13;
+L_8c0141e2:
+  T_ = rr9 >= rr12;
+  if (T_) goto L_8c0141ea;
+  { rr8 = rr12; goto L_8c0140e6; }
+  rr8 = rr12;
+L_8c0141ea:
+  rr15 += 0xcu;
+  MACL_ = rd32(rr15); rr15 += 4;
+  PR_ = rd32(rr15); rr15 += 4;
+  rr8 = rd32(rr15); rr15 += 4;
+  rr9 = rd32(rr15); rr15 += 4;
+  rr10 = rd32(rr15); rr15 += 4;
+  rr11 = rd32(rr15); rr15 += 4;
+  rr12 = rd32(rr15); rr15 += 4;
+  rr13 = rd32(rr15); rr15 += 4;
+  { rr14 = rd32(rr15); rr15 += 4; SPILL_ if (C.pr == ret0) return; exec(C, C.pr, ret0); return; }
+  rr14 = rd32(rr15); rr15 += 4;
+  { SPILL_ exec(C, 0x8c014200u, ret0); return; }
+}
+#undef FILL_
+#undef SPILL_
+#undef SETFPSCR_
+}
 //@unit 8c014d90
 namespace sh4 {
 #define FILL_ rr0 = C.r[0]; rr1 = C.r[1]; rr4 = C.r[4]; rr13 = C.r[13]; rr14 = C.r[14]; rr15 = C.r[15]; T_ = C.t; PR_ = C.pr; FPSCR_ = F.fpscr; ff0 = F.fr[0];
@@ -4568,6 +4813,436 @@ L_8c01ad94:
   {  SPILL_ if (C.pr == ret0) return; exec(C, C.pr, ret0); return; }
   
   { SPILL_ exec(C, 0x8c01ad9au, ret0); return; }
+}
+#undef FILL_
+#undef SPILL_
+#undef SETFPSCR_
+}
+//@unit 8c01d15c
+namespace sh4 {
+#define FILL_ rr0 = C.r[0]; rr1 = C.r[1]; rr2 = C.r[2]; rr4 = C.r[4]; rr5 = C.r[5]; rr6 = C.r[6]; rr7 = C.r[7]; rr12 = C.r[12]; rr13 = C.r[13]; rr14 = C.r[14]; rr15 = C.r[15]; T_ = C.t; PR_ = C.pr;
+#define SPILL_ C.r[0] = rr0; C.r[1] = rr1; C.r[2] = rr2; C.r[4] = rr4; C.r[5] = rr5; C.r[6] = rr6; C.r[7] = rr7; C.r[12] = rr12; C.r[13] = rr13; C.r[14] = rr14; C.r[15] = rr15; C.t = T_; C.pr = PR_;
+#define SETFPSCR_(v) { unsigned v_ = (v); if ((v_ ^ FPSCR_) & FRB) { { float s_ = ff0; ff0 = xx0; xx0 = s_; } { float s_ = ff1; ff1 = xx1; xx1 = s_; } { float s_ = ff2; ff2 = xx2; xx2 = s_; } { float s_ = ff3; ff3 = xx3; xx3 = s_; } { float s_ = ff4; ff4 = xx4; xx4 = s_; } { float s_ = ff5; ff5 = xx5; xx5 = s_; } { float s_ = ff6; ff6 = xx6; xx6 = s_; } { float s_ = ff7; ff7 = xx7; xx7 = s_; } { float s_ = ff8; ff8 = xx8; xx8 = s_; } { float s_ = ff9; ff9 = xx9; xx9 = s_; } { float s_ = ff10; ff10 = xx10; xx10 = s_; } { float s_ = ff11; ff11 = xx11; xx11 = s_; } { float s_ = ff12; ff12 = xx12; xx12 = s_; } { float s_ = ff13; ff13 = xx13; xx13 = s_; } { float s_ = ff14; ff14 = xx14; xx14 = s_; } { float s_ = ff15; ff15 = xx15; xx15 = s_; } } FPSCR_ = v_; }
+void sh4x_8c01d15c(Cpu &C)
+{
+  const unsigned ret0 = C.pr;
+  XPROF(0x8c01d15cu);
+  unsigned rr0;
+  unsigned rr1;
+  unsigned rr2;
+  unsigned rr4;
+  unsigned rr5;
+  unsigned rr6;
+  unsigned rr7;
+  unsigned rr12;
+  unsigned rr13;
+  unsigned rr14;
+  unsigned rr15;
+  int T_;
+  unsigned PR_;
+  FILL_
+  static const unsigned la_[] = { 0x8c01d15cu, 0x8c01d15eu, 0x8c01d160u, 0x8c01d162u, 0x8c01d164u, 0x8c01d166u, 0x8c01d168u, 0x8c01d16au, 0x8c01d16cu, 0x8c01d16eu, 0x8c01d170u, 0x8c01d172u, 0x8c01d174u, 0x8c01d176u, 0x8c01d178u, 0x8c01d17au, 0x8c01d17cu, 0x8c01d17eu, 0x8c01d180u, 0x8c01d182u, 0x8c01d184u, 0x8c01d186u, 0x8c01d188u, 0x8c01d18au, 0x8c01d18cu, 0x8c01d18eu, 0x8c01d190u, 0x8c01d192u, 0x8c01d194u, 0x8c01d196u, 0x8c01d198u, 0x8c01d19au, 0x8c01d19cu, 0x8c01d19eu, 0x8c01d1a0u, 0x8c01d1a2u, 0x8c01d1a4u, 0x8c01d1a6u, 0x8c01d1a8u, 0x8c01d1aau, 0x8c01d1acu, 0x8c01d1aeu, 0x8c01d1b0u, 0x8c01d1b2u, 0x8c01d1b4u, 0x8c01d1b6u, 0x8c01d1b8u, 0x8c01d1bau, 0x8c01d1bcu, 0x8c01d1beu, 0x8c01d1c0u, 0x8c01d1c2u, 0x8c01d1c4u, 0x8c01d1c6u, 0x8c01d1c8u, 0x8c01d1cau, 0x8c01d1ccu, 0x8c01d1ceu, 0x8c01d1d0u, 0x8c01d1d2u, 0x8c01d1d4u, 0x8c01d1d6u, 0x8c01d1d8u, 0x8c01d1dau, 0x8c01d1dcu, 0x8c01d1deu, 0x8c01d1e0u, 0x8c01d1e2u, 0x8c01d1e4u, 0x8c01d1e6u, 0x8c01d1e8u, 0x8c01d1eau, 0x8c01d1ecu, 0x8c01d1eeu, 0x8c01d1f0u, 0x8c01d1f2u, 0x8c01d1f4u, 0x8c01d1f6u, 0x8c01d1f8u, 0x8c01d1fau, 0x8c01d1fcu, 0x8c01d1feu, 0x8c01d200u, 0x8c01d202u, 0x8c01d204u, 0x8c01d206u, 0x8c01d208u, 0x8c01d20au, 0x8c01d20cu, 0x8c01d20eu, 0x8c01d210u, 0x8c01d212u, 0x8c01d214u, 0x8c01d216u, 0x8c01d218u, 0x8c01d21au, 0x8c01d21cu, 0x8c01d21eu, 0x8c01d220u, 0x8c01d222u, 0x8c01d224u, 0x8c01d226u, 0x8c01d228u, 0x8c01d22au, 0x8c01d22cu, 0x8c01d22eu, 0x8c01d230u, 0x8c01d232u, 0x8c01d234u, 0x8c01d236u, 0x8c01d238u, 0x8c01d23au, 0x8c01d23cu, 0x8c01d23eu, 0x8c01d240u, 0x8c01d242u, 0x8c01d244u, 0x8c01d246u, 0x8c01d248u, 0x8c01d24au, 0x8c01d24cu, 0x8c01d24eu, 0x8c01d250u, 0x8c01d252u, 0x8c01d254u, 0x8c01d256u, 0x8c01d258u, 0x8c01d25au, 0x8c01d25cu, 0x8c01d25eu, 0x8c01d260u, 0x8c01d262u, 0x8c01d264u, 0x8c01d266u, 0x8c01d268u, 0x8c01d26au, 0x8c01d26cu, 0x8c01d26eu, 0x8c01d270u, 0x8c01d272u, 0x8c01d274u, 0x8c01d276u, 0x8c01d278u, 0x8c01d27au, 0x8c01d27cu, 0x8c01d27eu, 0x8c01d280u, 0x8c01d282u, 0x8c01d284u, 0x8c01d286u, 0x8c01d288u, 0x8c01d28au, 0x8c01d28cu, 0x8c01d28eu, 0x8c01d290u, 0x8c01d292u, 0x8c01d294u, 0x8c01d296u, 0x8c01d298u, 0x8c01d29au, 0x8c01d29cu, 0x8c01d29eu, 0x8c01d2a0u, 0x8c01d2a2u, 0x8c01d2a4u, 0x8c01d2a6u, 0x8c01d2a8u, 0x8c01d2aau, 0x8c01d2acu, 0x8c01d2aeu, 0x8c01d2b0u, 0x8c01d2b2u, 0x8c01d2b4u, 0x8c01d2b6u, 0x8c01d2b8u, 0x8c01d2bau, 0x8c01d2bcu, 0x8c01d2beu, 0x8c01d2c0u, 0x8c01d2c2u, 0x8c01d2c4u, 0x8c01d2c6u, 0x8c01d2c8u, 0x8c01d2cau, 0x8c01d2ccu, 0x8c01d2ceu, 0x8c01d2d0u, 0x8c01d2d2u, 0x8c01d2d4u, 0x8c01d2d6u, 0x8c01d2d8u, 0x8c01d2dau, 0x8c01d2eau, 0x8c01d2ecu, 0x8c01d2eeu, 0x8c01d2f0u, 0x8c01d2f2u, 0x8c01d2f4u, 0x8c01d2f6u };
+  static void *const lp_[] = { &&L_8c01d15c, &&L_8c01d15e, &&L_8c01d160, &&L_8c01d162, &&L_8c01d164, &&L_8c01d166, &&L_8c01d168, &&L_8c01d16a, &&L_8c01d16c, &&L_8c01d16e, &&L_8c01d170, &&L_8c01d172, &&L_8c01d174, &&L_8c01d176, &&L_8c01d178, &&L_8c01d17a, &&L_8c01d17c, &&L_8c01d17e, &&L_8c01d180, &&L_8c01d182, &&L_8c01d184, &&L_8c01d186, &&L_8c01d188, &&L_8c01d18a, &&L_8c01d18c, &&L_8c01d18e, &&L_8c01d190, &&L_8c01d192, &&L_8c01d194, &&L_8c01d196, &&L_8c01d198, &&L_8c01d19a, &&L_8c01d19c, &&L_8c01d19e, &&L_8c01d1a0, &&L_8c01d1a2, &&L_8c01d1a4, &&L_8c01d1a6, &&L_8c01d1a8, &&L_8c01d1aa, &&L_8c01d1ac, &&L_8c01d1ae, &&L_8c01d1b0, &&L_8c01d1b2, &&L_8c01d1b4, &&L_8c01d1b6, &&L_8c01d1b8, &&L_8c01d1ba, &&L_8c01d1bc, &&L_8c01d1be, &&L_8c01d1c0, &&L_8c01d1c2, &&L_8c01d1c4, &&L_8c01d1c6, &&L_8c01d1c8, &&L_8c01d1ca, &&L_8c01d1cc, &&L_8c01d1ce, &&L_8c01d1d0, &&L_8c01d1d2, &&L_8c01d1d4, &&L_8c01d1d6, &&L_8c01d1d8, &&L_8c01d1da, &&L_8c01d1dc, &&L_8c01d1de, &&L_8c01d1e0, &&L_8c01d1e2, &&L_8c01d1e4, &&L_8c01d1e6, &&L_8c01d1e8, &&L_8c01d1ea, &&L_8c01d1ec, &&L_8c01d1ee, &&L_8c01d1f0, &&L_8c01d1f2, &&L_8c01d1f4, &&L_8c01d1f6, &&L_8c01d1f8, &&L_8c01d1fa, &&L_8c01d1fc, &&L_8c01d1fe, &&L_8c01d200, &&L_8c01d202, &&L_8c01d204, &&L_8c01d206, &&L_8c01d208, &&L_8c01d20a, &&L_8c01d20c, &&L_8c01d20e, &&L_8c01d210, &&L_8c01d212, &&L_8c01d214, &&L_8c01d216, &&L_8c01d218, &&L_8c01d21a, &&L_8c01d21c, &&L_8c01d21e, &&L_8c01d220, &&L_8c01d222, &&L_8c01d224, &&L_8c01d226, &&L_8c01d228, &&L_8c01d22a, &&L_8c01d22c, &&L_8c01d22e, &&L_8c01d230, &&L_8c01d232, &&L_8c01d234, &&L_8c01d236, &&L_8c01d238, &&L_8c01d23a, &&L_8c01d23c, &&L_8c01d23e, &&L_8c01d240, &&L_8c01d242, &&L_8c01d244, &&L_8c01d246, &&L_8c01d248, &&L_8c01d24a, &&L_8c01d24c, &&L_8c01d24e, &&L_8c01d250, &&L_8c01d252, &&L_8c01d254, &&L_8c01d256, &&L_8c01d258, &&L_8c01d25a, &&L_8c01d25c, &&L_8c01d25e, &&L_8c01d260, &&L_8c01d262, &&L_8c01d264, &&L_8c01d266, &&L_8c01d268, &&L_8c01d26a, &&L_8c01d26c, &&L_8c01d26e, &&L_8c01d270, &&L_8c01d272, &&L_8c01d274, &&L_8c01d276, &&L_8c01d278, &&L_8c01d27a, &&L_8c01d27c, &&L_8c01d27e, &&L_8c01d280, &&L_8c01d282, &&L_8c01d284, &&L_8c01d286, &&L_8c01d288, &&L_8c01d28a, &&L_8c01d28c, &&L_8c01d28e, &&L_8c01d290, &&L_8c01d292, &&L_8c01d294, &&L_8c01d296, &&L_8c01d298, &&L_8c01d29a, &&L_8c01d29c, &&L_8c01d29e, &&L_8c01d2a0, &&L_8c01d2a2, &&L_8c01d2a4, &&L_8c01d2a6, &&L_8c01d2a8, &&L_8c01d2aa, &&L_8c01d2ac, &&L_8c01d2ae, &&L_8c01d2b0, &&L_8c01d2b2, &&L_8c01d2b4, &&L_8c01d2b6, &&L_8c01d2b8, &&L_8c01d2ba, &&L_8c01d2bc, &&L_8c01d2be, &&L_8c01d2c0, &&L_8c01d2c2, &&L_8c01d2c4, &&L_8c01d2c6, &&L_8c01d2c8, &&L_8c01d2ca, &&L_8c01d2cc, &&L_8c01d2ce, &&L_8c01d2d0, &&L_8c01d2d2, &&L_8c01d2d4, &&L_8c01d2d6, &&L_8c01d2d8, &&L_8c01d2da, &&L_8c01d2ea, &&L_8c01d2ec, &&L_8c01d2ee, &&L_8c01d2f0, &&L_8c01d2f2, &&L_8c01d2f4, &&L_8c01d2f6 };
+L_8c01d15c:
+  rr15 -= 4; wrs32(rr15, rr14);
+L_8c01d15e:
+  rr15 -= 4; wrs32(rr15, rr13);
+L_8c01d160:
+  rr15 -= 4; wrs32(rr15, rr12);
+L_8c01d162:
+  rr15 -= 4; wrs32(rr15, PR_);
+L_8c01d164:
+  rr15 += 0xffffffe0u;
+L_8c01d166:
+  rr12 = rr4;
+L_8c01d168:
+  rr0 = 0x8c2791b8u;
+L_8c01d16a:
+  rr1 = rd32(rr0);
+L_8c01d16c:
+  rr0 = 0x3u;
+L_8c01d16e:
+  T_ = (int)rr0 > (int)rr1;
+L_8c01d170:
+  if (!T_) goto L_8c01d176;
+L_8c01d172:
+  {  goto L_8c01d2ea; }
+L_8c01d174:
+  
+L_8c01d176:
+  rr0 = 0x8c27926cu;
+L_8c01d178:
+  rr4 = rd32(rr0);
+L_8c01d17a:
+  rr0 = 0x8c201ba2u;
+L_8c01d17c:
+  { unsigned t_ = rr0;  SPILL_ if (!native_call(C, t_)) { C.pr = 0x8c01d180u; if (xfn f_ = xfind(t_)) f_(C); else exec(C, t_, 0x8c01d180u); } FILL_ goto L_8c01d180; }
+L_8c01d17e:
+  
+L_8c01d180:
+  wrs32(rr15 + 12, rr0);
+L_8c01d182:
+  rr13 = rd32(rr15 + 12);
+L_8c01d184:
+  T_ = (rr13 & rr13) == 0;
+L_8c01d186:
+  if (!T_) goto L_8c01d18c;
+L_8c01d188:
+  {  goto L_8c01d2ea; }
+L_8c01d18a:
+  
+L_8c01d18c:
+  rr0 = rr13;
+L_8c01d18e:
+  T_ = rr0 == 0x1u;
+L_8c01d190:
+  if (T_) goto L_8c01d1a0;
+L_8c01d192:
+  rr0 = rr13;
+L_8c01d194:
+  T_ = rr0 == 0x3u;
+L_8c01d196:
+  if (!T_) goto L_8c01d19c;
+L_8c01d198:
+  {  goto L_8c01d2ea; }
+L_8c01d19a:
+  
+L_8c01d19c:
+  {  goto L_8c01d1b6; }
+L_8c01d19e:
+  
+L_8c01d1a0:
+  rr0 = 0x8c27926cu;
+L_8c01d1a2:
+  rr4 = rd32(rr0);
+L_8c01d1a4:
+  rr0 = 0x8c201b92u;
+L_8c01d1a6:
+  { unsigned t_ = rr0;  SPILL_ if (!native_call(C, t_)) { C.pr = 0x8c01d1aau; if (xfn f_ = xfind(t_)) f_(C); else exec(C, t_, 0x8c01d1aau); } FILL_ goto L_8c01d1aa; }
+L_8c01d1a8:
+  
+L_8c01d1aa:
+  wrs32(rr15 + 8, rr0);
+L_8c01d1ac:
+  rr13 = rd32(rr15 + 8);
+L_8c01d1ae:
+  {  goto L_8c01d1b6; }
+L_8c01d1b0:
+  
+L_8c01d1b2:
+  {  goto L_8c01d2ea; }
+L_8c01d1b4:
+  
+L_8c01d1b6:
+  rr0 = 0x8c279248u;
+L_8c01d1b8:
+  rr1 = rd32(rr0);
+L_8c01d1ba:
+  rr0 = 0x9u;
+L_8c01d1bc:
+  T_ = (int)rr1 > (int)rr0;
+L_8c01d1be:
+  if (!T_) goto L_8c01d1c4;
+L_8c01d1c0:
+  {  goto L_8c01d2ea; }
+L_8c01d1c2:
+  
+L_8c01d1c4:
+  rr0 = 0x1u;
+L_8c01d1c6:
+  T_ = (int)rr1 >= (int)rr0;
+L_8c01d1c8:
+  if (T_) goto L_8c01d1ce;
+L_8c01d1ca:
+  {  goto L_8c01d2ea; }
+L_8c01d1cc:
+  
+L_8c01d1ce:
+  rr1 -= rr0;
+L_8c01d1d0:
+  rr1 <<= 2;
+L_8c01d1d2:
+  rr0 = 0x8c01d1dcu;
+L_8c01d1d4:
+  rr0 = rd32(rr0 + rr1);
+L_8c01d1d6:
+  { unsigned t_ = rr0;  SPILL_ if (native_call(C, t_)) { if (C.pr == ret0) return; exec(C, C.pr, ret0); return; } { unsigned lo_ = 0, hi_ = 199; while (lo_ < hi_) { unsigned md_ = (lo_ + hi_) / 2; if (la_[md_] < t_) lo_ = md_ + 1; else hi_ = md_; } if (lo_ < 199 && la_[lo_] == t_) { FILL_ goto *lp_[lo_]; } } if (xfn f_ = xfind(t_)) { unsigned r_ = C.pr; f_(C); if (r_ == ret0) return; exec(C, r_, ret0); return; } exec(C, t_, ret0); return; }
+L_8c01d1d8:
+  
+L_8c01d1da:
+  
+L_8c01d1dc:
+  rr2 = 0x50f94108u;
+L_8c01d1de:
+  bad("unknown op", 0x8c01d1deu, 0x8c01);
+L_8c01d1e0:
+  rr2 = 0x701860f3u;
+L_8c01d1e2:
+  bad("unknown op", 0x8c01d1e2u, 0x8c01);
+L_8c01d1e4:
+  rr2 = 0x6ef66df6u;
+L_8c01d1e6:
+  bad("unknown op", 0x8c01d1e6u, 0x8c01);
+L_8c01d1e8:
+  rr2 = 0x9000bu;
+L_8c01d1ea:
+  bad("unknown op", 0x8c01d1eau, 0x8c01);
+L_8c01d1ec:
+  rr2 = 0x9400bu;
+L_8c01d1ee:
+  bad("unknown op", 0x8c01d1eeu, 0x8c01);
+L_8c01d1f0:
+  rr2 = 0x8c01d234u;
+L_8c01d1f2:
+  bad("unknown op", 0x8c01d1f2u, 0x8c01);
+L_8c01d1f4:
+  rr2 = 0x2102e003u;
+L_8c01d1f6:
+  bad("unknown op", 0x8c01d1f6u, 0x8c01);
+L_8c01d1f8:
+  rr2 = 0x63f22f02u;
+L_8c01d1fa:
+  bad("unknown op", 0x8c01d1fau, 0x8c01);
+L_8c01d1fc:
+  rr2 = 0x89ef30e6u;
+L_8c01d1fe:
+  bad("unknown op", 0x8c01d1feu, 0x8c01);
+L_8c01d200:
+  rr0 = 0x8c279284u;
+L_8c01d202:
+  rr0 = rd32(rr0);
+L_8c01d204:
+  T_ = (rr0 & rr0) == 0;
+L_8c01d206:
+  if (T_) goto L_8c01d2ea;
+L_8c01d208:
+  rr1 = 0x8c279284u;
+L_8c01d20a:
+  rr0 = 0x1u;
+L_8c01d20c:
+  wr32(rr1, rr0);
+L_8c01d20e:
+  rr0 = 0x8c279270u;
+L_8c01d210:
+  rr4 = rd32(rr0);
+L_8c01d212:
+  rr0 = 0x8c201c92u;
+L_8c01d214:
+  { unsigned t_ = rr0;  SPILL_ if (!native_call(C, t_)) { C.pr = 0x8c01d218u; if (xfn f_ = xfind(t_)) f_(C); else exec(C, t_, 0x8c01d218u); } FILL_ goto L_8c01d218; }
+L_8c01d216:
+  
+L_8c01d218:
+  wrs32(rr15 + 4, rr0);
+L_8c01d21a:
+  rr14 = rd32(rr15 + 4);
+L_8c01d21c:
+  rr0 = rr15;
+L_8c01d21e:
+  rr0 += 0x18u;
+L_8c01d220:
+  rr15 -= 4; wrs32(rr15, rr0);
+L_8c01d222:
+  rr5 = rr14;
+L_8c01d224:
+  rr0 = 0x8c279270u;
+L_8c01d226:
+  rr4 = rd32(rr0);
+L_8c01d228:
+  rr0 = 0x8c201da0u;
+L_8c01d22a:
+  { unsigned t_ = rr0;  SPILL_ if (!native_call(C, t_)) { C.pr = 0x8c01d22eu; if (xfn f_ = xfind(t_)) f_(C); else exec(C, t_, 0x8c01d22eu); } FILL_ goto L_8c01d22e; }
+L_8c01d22c:
+  
+L_8c01d22e:
+  rr15 += 0x4u;
+L_8c01d230:
+  {  goto L_8c01d2ea; }
+L_8c01d232:
+  
+L_8c01d234:
+  rr0 = 0x8c279284u;
+L_8c01d236:
+  rr0 = rd32(rr0);
+L_8c01d238:
+  T_ = (rr0 & rr0) == 0;
+L_8c01d23a:
+  if (T_) goto L_8c01d2ea;
+L_8c01d23c:
+  rr1 = 0x8c279284u;
+L_8c01d23e:
+  rr0 = 0x1u;
+L_8c01d240:
+  wr32(rr1, rr0);
+L_8c01d242:
+  rr6 = 0x113au;
+L_8c01d244:
+  rr0 = 0x5b86u;
+L_8c01d246:
+  rr5 = rr12;
+L_8c01d248:
+  rr5 += rr0;
+L_8c01d24a:
+  rr0 = 0x8c279270u;
+L_8c01d24c:
+  rr4 = rd32(rr0);
+L_8c01d24e:
+  rr0 = 0x8c201e14u;
+L_8c01d250:
+  { unsigned t_ = rr0;  SPILL_ if (!native_call(C, t_)) { C.pr = 0x8c01d254u; if (xfn f_ = xfind(t_)) f_(C); else exec(C, t_, 0x8c01d254u); } FILL_ goto L_8c01d254; }
+L_8c01d252:
+  
+L_8c01d254:
+  wrs32(rr15, rr0);
+L_8c01d256:
+  rr14 = rd32(rr15);
+L_8c01d258:
+  rr0 = rr15;
+L_8c01d25a:
+  rr0 += 0x10u;
+L_8c01d25c:
+  rr15 -= 4; wrs32(rr15, rr0);
+L_8c01d25e:
+  rr5 = rr14;
+L_8c01d260:
+  rr0 = 0x8c279270u;
+L_8c01d262:
+  rr4 = rd32(rr0);
+L_8c01d264:
+  rr0 = 0x8c201da0u;
+L_8c01d266:
+  { unsigned t_ = rr0;  SPILL_ if (!native_call(C, t_)) { C.pr = 0x8c01d26au; if (xfn f_ = xfind(t_)) f_(C); else exec(C, t_, 0x8c01d26au); } FILL_ goto L_8c01d26a; }
+L_8c01d268:
+  
+L_8c01d26a:
+  rr15 += 0x4u;
+L_8c01d26c:
+  T_ = rr14 >> 31; rr14 <<= 1;
+L_8c01d26e:
+  rr7 = rr14;
+L_8c01d270:
+  rr0 = 0x5b86u;
+L_8c01d272:
+  rr12 += rr0;
+L_8c01d274:
+  rr6 = rr12;
+L_8c01d276:
+  rr5 = 0x0u;
+L_8c01d278:
+  rr0 = 0x8c27925cu;
+L_8c01d27a:
+  rr4 = rd32(rr0);
+L_8c01d27c:
+  rr0 = 0x8c10b698u;
+L_8c01d27e:
+  { unsigned t_ = rr0;  SPILL_ if (!native_call(C, t_)) { C.pr = 0x8c01d282u; if (xfn f_ = xfind(t_)) f_(C); else exec(C, t_, 0x8c01d282u); } FILL_ goto L_8c01d282; }
+L_8c01d280:
+  
+L_8c01d282:
+  {  goto L_8c01d2ea; }
+L_8c01d284:
+  
+L_8c01d286:
+  rr0 = 0x8c279284u;
+L_8c01d288:
+  rr0 = rd32(rr0);
+L_8c01d28a:
+  T_ = (rr0 & rr0) == 0;
+L_8c01d28c:
+  if (T_) goto L_8c01d2ea;
+L_8c01d28e:
+  rr1 = 0x8c279298u;
+L_8c01d290:
+  rr0 = 0x8c279298u;
+L_8c01d292:
+  rr0 = rd32(rr0);
+L_8c01d294:
+  rr0 += 0x1u;
+L_8c01d296:
+  wr32(rr1, rr0);
+L_8c01d298:
+  rr1 = 0x8c279284u;
+L_8c01d29a:
+  rr0 = 0x2u;
+L_8c01d29c:
+  wr32(rr1, rr0);
+L_8c01d29e:
+  rr0 = 0x8c279298u;
+L_8c01d2a0:
+  rr1 = rd32(rr0);
+L_8c01d2a2:
+  rr0 = 0x3u;
+L_8c01d2a4:
+  T_ = (int)rr1 >= (int)rr0;
+L_8c01d2a6:
+  if (!T_) goto L_8c01d2ae;
+L_8c01d2a8:
+  rr1 = 0x8c279284u;
+L_8c01d2aa:
+  rr0 = 0x1u;
+L_8c01d2ac:
+  wr32(rr1, rr0);
+L_8c01d2ae:
+  rr5 = 0x1u;
+L_8c01d2b0:
+  rr0 = 0x8c27925cu;
+L_8c01d2b2:
+  rr4 = rd32(rr0);
+L_8c01d2b4:
+  rr0 = 0x8c1225fcu;
+L_8c01d2b6:
+  { unsigned t_ = rr0;  SPILL_ if (!native_call(C, t_)) { C.pr = 0x8c01d2bau; if (xfn f_ = xfind(t_)) f_(C); else exec(C, t_, 0x8c01d2bau); } FILL_ goto L_8c01d2ba; }
+L_8c01d2b8:
+  
+L_8c01d2ba:
+  {  goto L_8c01d2ea; }
+L_8c01d2bc:
+  
+L_8c01d2be:
+  rr0 = 0x8c279284u;
+L_8c01d2c0:
+  rr0 = rd32(rr0);
+L_8c01d2c2:
+  T_ = (rr0 & rr0) == 0;
+L_8c01d2c4:
+  if (T_) goto L_8c01d2ea;
+L_8c01d2c6:
+  rr1 = 0x8c279284u;
+L_8c01d2c8:
+  rr0 = 0x3u;
+L_8c01d2ca:
+  wr32(rr1, rr0);
+L_8c01d2cc:
+  rr5 = 0x1u;
+L_8c01d2ce:
+  rr0 = 0x8c27925cu;
+L_8c01d2d0:
+  rr4 = rd32(rr0);
+L_8c01d2d2:
+  rr0 = 0x8c1225fcu;
+L_8c01d2d4:
+  { unsigned t_ = rr0;  SPILL_ if (!native_call(C, t_)) { C.pr = 0x8c01d2d8u; if (xfn f_ = xfind(t_)) f_(C); else exec(C, t_, 0x8c01d2d8u); } FILL_ goto L_8c01d2d8; }
+L_8c01d2d6:
+  
+L_8c01d2d8:
+  {  goto L_8c01d2ea; }
+L_8c01d2da:
+  
+  { SPILL_ exec(C, 0x8c01d2dcu, ret0); return; }
+L_8c01d2ea:
+  rr15 += 0x20u;
+L_8c01d2ec:
+  PR_ = rd32(rr15); rr15 += 4;
+L_8c01d2ee:
+  rr12 = rd32(rr15); rr15 += 4;
+L_8c01d2f0:
+  rr13 = rd32(rr15); rr15 += 4;
+L_8c01d2f2:
+  rr14 = rd32(rr15); rr15 += 4;
+L_8c01d2f4:
+  {  SPILL_ if (C.pr == ret0) return; exec(C, C.pr, ret0); return; }
+L_8c01d2f6:
+  
+  { SPILL_ exec(C, 0x8c01d2f8u, ret0); return; }
 }
 #undef FILL_
 #undef SPILL_

@@ -166,7 +166,16 @@ JUMPTABLE_UNITS = ('8c060044', '8c105094')
 # 0x8c137900.. but Ghidra typed the index words (0xffffffff = not virtual) as bytes, so the record got index 0xff and the call
 # through 8c0101bc took it as a vtable offset and crashed on the first frame a Gillman or Podfish was in the tank
 PMF_BYTE_UNITS = ('8c06e69c',)
-INTERP_UNITS = ('8c25754c', '8c239212', '8c1f8300') + SPRINTF_CALLERS + SAVE_LAYER + JUMPTABLE_UNITS + PMF_BYTE_UNITS
+# the recogniser's per-frame sample feed (FUN_8c01d15c) pushes a pointer for the 64-bit read position as a stack word before both of its
+# calls to the Maple mic library's 8c201da0, which copies 8 bytes through it; the decompile drops the push, so once a microphone
+# delivered samples every frame wrote 8 bytes to whatever address that stack slot held, and the tank crashed a few hundred frames later
+# (garbage vertex indices in gfx_box_overlap_test_like 8c23340c). Statically translated too (port/wii/sh4x/sh4x_list.txt)
+MIC_STACK_UNITS = ('8c01d15c',)
+# libc qsort (8c0140b4, only called by the recogniser's search, 8c11a83e) builds {base, size, compare} in its own stack frame and
+# passes the worker (8c0140cc) a pointer to it; the decompile drops those stores, so the worker sorted with a garbage compare
+# function and never returned (the game hung on the first spoken word). Statically translated too
+QSORT_UNITS = ('8c0140b4', '8c0140cc')
+INTERP_UNITS = ('8c25754c', '8c239212', '8c1f8300') + SPRINTF_CALLERS + SAVE_LAYER + JUMPTABLE_UNITS + PMF_BYTE_UNITS + MIC_STACK_UNITS + QSORT_UNITS
 #   ADX core, ADXF, ADXSTM, ADXT | mwRna | SJ (stream joint)
 INTERP_RANGES = (('8c25eca0', '8c26a246'), ('8c26b1ca', '8c26c000'), ('8c01a308', '8c01c9e0'), ('8c10a000', '8c126000'), ('8c201804', '8c202a84'))   # + the game's memory-card manager (its queue and wait loops; host/wii_vmu.cpp does the ops) + the L&H ASR1600 speech recogniser (its decompile left an object's callback unset) + Sega's Maple microphone library (64-bit sample positions passed on the stack, which the decompile drops)   # CRI ADX/SJ/mwRna and the Manatee sd library (its SR-dependent callbacks need the interpreter)
 INTERP_EXTRA = ('8c0101bc', '8c010468', '8c01051c', '8c010614', '8c0106dc', '8c010794', '8c0107a0') + INTERP_UNITS

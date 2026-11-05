@@ -26,6 +26,9 @@ int host_pad_frame(unsigned scripted, int *quit);
 unsigned long game_poll_exit(unsigned, unsigned, unsigned, unsigned);
 unsigned long game_frame(unsigned, unsigned, unsigned, unsigned);
 extern "C" void pvr_end_frame(unsigned);
+#ifdef TALK_TEST
+extern "C" { extern volatile int mic_test_go; void mic_test_jobs(void); void mic_test_vocab(void); }
+#endif
 unsigned long FUN_8c1f5c9e(unsigned, unsigned, unsigned, unsigned);
 unsigned long FUN_8c264010(unsigned, unsigned, unsigned, unsigned);
 unsigned long FUN_8c1f231a(unsigned, unsigned, unsigned, unsigned);
@@ -87,6 +90,20 @@ static void run(void)
       /* and switch the tank device at 0x8c29ab74 (its update, 8c0d0178, plays start sound 9, then loop 10, and stops it when switched
          off; +0x14 is its on flag, set by the tank controls) on for 600 frames, so the game's own state machine drives Manatee */
       if (n == PAD_SE_SCRIPT + 200 || n == PAD_SE_SCRIPT + 800) { GM(unsigned, 0x8c29ab74 + 0x14) = n == PAD_SE_SCRIPT + 200; host_log("se script: tank device %s at frame %u\n", n == PAD_SE_SCRIPT + 200 ? "on" : "off", n); }
+#endif
+#ifdef TALK_TEST
+      /* test runs: TALK_TEST frames after the tank scene starts (title state 0x8c286f0c = 18), queue the speech jobs of a
+         conversation (wii_mic.cpp), then hold A (talk: 8c01d9e0 when pressed, 8c01da60 when released) for 50 frames every 300, about as long as saying one word
+         (a longer hold is cut off by the idle script, which re-arms push-to-talk with idle_ctx every ~155 frames);
+         a MIC_TEST build plays its clip from 2 frames into each hold */
+      { static unsigned tank = ~0u;
+        if (tank == ~0u && GM(int, 0x8c286ec8 + 0x44) == 18) { tank = n; host_log("talk test: tank at frame %u\n", n); }
+#ifdef TALK_JOBS
+        if (tank != ~0u && n == tank + TALK_TEST - 200) mic_test_jobs();   /* not needed in the tank: the game's scripts turn push-to-talk on */
+#endif
+        if (tank != ~0u && n >= tank + TALK_TEST && !no) { unsigned t = (n - tank - TALK_TEST) % 300; w = t < 50 ? 4 : 0; if (t == 2) mic_test_go = 1;
+          if (t == 0) mic_test_vocab();
+          if (t == 0 || t == 50) host_log("talk test: A %s at frame %u, asr state %u 24c=%u 284=%u\n", t ? "up" : "down", n, (unsigned)GM(unsigned, 0x8c279248), (unsigned)GM(unsigned, 0x8c27924c), (unsigned)GM(unsigned, 0x8c279284)); } }
 #endif
       host_mic_frame();
       int quit = 0; pad_live = host_pad_frame(w, &quit);

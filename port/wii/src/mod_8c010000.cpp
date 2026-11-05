@@ -3770,123 +3770,27 @@ __asm__(".globl FUN_8c014064\n.set FUN_8c014064, FUN_8c014064_def\n");
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-undefined4 FUN_8c0140b4_def(undefined4 ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c0140b4_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c0140b4");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 32; for (int i_ = 0; i_ < 32; i_++) z_[i_] = 0; }
-  undefined4 uVar1;
-  
-  uVar1 = ({ unsigned long ri0_ = (unsigned long)(ar4); vin0 = (unsigned)ri0_; vsp = ((unsigned long)(fr0_ - 32)); FUN_8c0140cc(1,ar5,(fr0_ + (int)0xfffffff0),ar7); });
-  return uVar1;
+  return (unsigned)sh4_interp(0x8c0140b4, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c0140b4\n.set FUN_8c0140b4, FUN_8c0140b4_def\n");
-
 }
 //@unit 8c0140cc
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-int FUN_8c0140cc_def(uint ar4,uint ar5,le<int>* ar6,int ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c0140cc_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c0140cc");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-  int ain0 = (int)(unsigned long)vin0;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  char cVar1;
-  int iVar2;
-  uint uVar3;
-  le<int>* a6;
-  uint ain0_00;
-  int a5;
-  uint ar5_00;
-  uint uVar4;
-  uint ar4_00;
-  int iVar5;
-  
-  a6 = ar6;
-  do {
-    while( true ) {
-      ain0_00 = (ar5 - ar4 >> 1) + ar4;
-      a5 = (ain0_00 - 1) * ar6[1] + *ar6;
-      ar5_00 = ar5;
-      ar4_00 = ar4;
-      while ((ar4_00 != 0 && (ar4_00 <= ar5_00))) {
-        while (iVar2 = (vsp = ((unsigned long)(fr0_ - 0)), (*(code *)xlat((unsigned long)((uint)ar6[2])))((ar4_00 - 1) * ar6[1] + *ar6,a5,a6,ar7)), uVar4 = ar5_00,
-              iVar2 < 0) {
-          ar4_00 = ar4_00 + 1;
-        }
-        while (ain0 = (vsp = ((unsigned long)(fr0_ - 0)), (*(code *)xlat((unsigned long)((uint)ar6[2])))(a5,(uVar4 - 1) * ar6[1] + *ar6,a6,ar7)), ain0 < 0) {
-          uVar4 = uVar4 - 1;
-        }
-        ar5_00 = uVar4;
-        if (ar4_00 <= uVar4) {
-          ar5_00 = uVar4 - 1;
-          for (uVar3 = 0; uVar3 < (uint)ar6[1]; uVar3 = uVar3 + 1) {
-            iVar2 = *ar6;
-            iVar5 = (ar4_00 - 1) * ar6[1];
-            ain0 = iVar5 + iVar2;
-            cVar1 = *(char *)(unsigned)(ain0 + uVar3);
-            ar7 = (int)cVar1;
-            a6 = (le<int>* )(unsigned)(ar5_00 * ar6[1] + iVar2 + uVar3);
-            *(char *)(unsigned)(iVar5 + iVar2 + uVar3) = (char)*a6;
-            *(char *)(unsigned)(ar5_00 * ar6[1] + *ar6 + uVar3) = cVar1;
-          }
-          if (ar4_00 == ain0_00) {
-            a5 = ar5_00 * ar6[1] + *ar6;
-          }
-          else if (uVar4 == ain0_00) {
-            a5 = (ar4_00 - 1) * ar6[1] + *ar6;
-          }
-          ar4_00 = ar4_00 + 1;
-        }
-      }
-      if (ar5 - ar4_00 <= ar5_00 - ar4) break;
-      if (ar4 < ar5_00) {
-        a6 = ar6;
-        ain0 = ({ unsigned long ri0_ = (unsigned long)(ain0_00); vin0 = (unsigned)ri0_; vsp = ((unsigned long)(fr0_ - 0)); FUN_8c0140cc(ar4,ar5_00,ar6,ar7); });
-      }
-      ar4 = ar4_00;
-      if (ar5 <= ar4_00) {
-        return ain0;
-      }
-    }
-    if (ar4_00 < ar5) {
-      a6 = ar6;
-      ain0 = ({ unsigned long ri0_ = (unsigned long)(ain0_00); vin0 = (unsigned)ri0_; vsp = ((unsigned long)(fr0_ - 0)); FUN_8c0140cc(ar4_00,ar5,ar6,ar7); });
-    }
-    ar5 = ar5_00;
-  } while (ar4 < ar5_00);
-  return ain0;
+  return (unsigned)sh4_interp(0x8c0140cc, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c0140cc\n.set FUN_8c0140cc, FUN_8c0140cc_def\n");
-
 }
 //@unit 8c014200
 #include "../decls.h"
@@ -11469,95 +11373,14 @@ __asm__(".globl FUN_8c01d0cc\n.set FUN_8c01d0cc, FUN_8c01d0cc_def\n");
 #include "../decls.h"
 extern "C" {
 #include "../trace.h"
-#ifndef INFINITY
-#define INFINITY __builtin_inff()
-#endif
-#ifndef NAN
-#define NAN __builtin_nanf("")
-#endif
-typedef int int3; typedef unsigned undefined3; typedef unsigned short wchar16; typedef unsigned uint3;
-unsigned long xlat(unsigned long);
-extern const char *ring[256]; extern unsigned rp, vr4, vr5, vr6, vr7, vin0, vin1; extern unsigned long vsp;
-undefined * FUN_8c01d15c_def(int ar4,undefined4 ar5,undefined4 ar6,undefined4 ar7)
-
+unsigned long sh4_interp(unsigned, unsigned long, unsigned long, unsigned long, unsigned long);
+extern unsigned vin1; float sh4_fpu_fr0(void);
+unsigned FUN_8c01d15c_def(unsigned ar4, unsigned ar5, unsigned ar6, unsigned ar7)
 {
   TRACE_ENTER("FUN_8c01d15c");
-  vr4 = (unsigned)(long long)ar4; vr5 = (unsigned)(long long)ar5; vr6 = (unsigned)(long long)ar6; vr7 = (unsigned)(long long)ar7;
-
-  unsigned char *fr0_ = (unsigned char *)(unsigned long)vsp;
-  { unsigned char *z_ = fr0_ - 0; for (int i_ = 0; i_ < 0; i_++) z_[i_] = 0; }
-  undefined *puVar1;
-  int iVar2;
-  undefined4 uVar3;
-  
-  puVar1 = (undefined *)(unsigned)0x3;
-  if ((2 < (*(le<undefined4>* )(unsigned)(unsigned)0x8c2791b8)) &&
-     (iVar2 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c201ba2((*(le<undefined4>* )(unsigned)(unsigned)0x8c27926c),ar5,ar6,ar7)), puVar1 = (undefined *)(unsigned)0x0, iVar2 != 0)) {
-    if (iVar2 == 1) {
-      (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c201b92((*(le<undefined4>* )(unsigned)(unsigned)0x8c27926c),ar5,ar6,ar7));
-    }
-    else if (iVar2 == 3) {
-      return (undefined *)(unsigned)3;
-    }
-    puVar1 = (undefined *)(unsigned)0x9;
-    if (((*(le<undefined4>* )(unsigned)(unsigned)0x8c279248) < 10) && (puVar1 = (undefined *)(unsigned)0x1, 0 < (*(le<undefined4>* )(unsigned)(unsigned)0x8c279248))) {
-      puVar1 = (&(*(undefined1 *)(unsigned)0x8c01d1dc))[(*(le<undefined4>* )(unsigned)(unsigned)0x8c279248) + -1];
-                    
-      switch((*(le<undefined4>* )(unsigned)(unsigned)0x8c279248)) {
-      case 1:
-        puVar1 = (undefined*)(((le<undefined4>* )(unsigned long)*(le<unsigned>* )0x8c279284));
-        if (((le<undefined4>* )(unsigned long)*(le<unsigned>* )0x8c279284) != (undefined *)(unsigned)0x0) {
-          puVar1 = (undefined *)(unsigned)0x0;
-          *(le<unsigned>* )0x8c279284 = (unsigned)(unsigned long)((undefined *)(unsigned)0x0);
-        }
-        break;
-      case 5:
-        break;
-      case 6:
-        if (((le<undefined4>* )(unsigned long)*(le<unsigned>* )0x8c279284) == (undefined *)(unsigned)0x0) {
-          return (undefined *)(unsigned)0;
-        }
-        *(le<unsigned>* )0x8c279284 = (unsigned)(unsigned long)((undefined *)(unsigned)0x1);
-      case 2:
-        uVar3 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c201c92((*(le<undefined4>* )(unsigned)(unsigned)0x8c279270),ar5,ar6,ar7));
-        puVar1 = (undefined *)(unsigned)(vsp = ((unsigned long)(fr0_ - 0)), FUN_8c201da0((*(le<undefined4>* )(unsigned)(unsigned)0x8c279270),uVar3,ar6,ar7));
-        break;
-      case 7:
-        if (((le<undefined4>* )(unsigned long)*(le<unsigned>* )0x8c279284) == (undefined *)(unsigned)0x0) {
-          return (undefined *)(unsigned)0;
-        }
-        *(le<unsigned>* )0x8c279284 = (unsigned)(unsigned long)((undefined *)(unsigned)0x1);
-      default:
-        uVar3 = 0x113a;
-        iVar2 = (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c201e14((*(le<undefined4>* )(unsigned)(unsigned)0x8c279270),ar4 + 0x5b86,0x113a,ar7));
-        (vsp = ((unsigned long)(fr0_ - 0)), FUN_8c201da0((*(le<undefined4>* )(unsigned)(unsigned)0x8c279270),iVar2,uVar3,ar7));
-        puVar1 = (undefined *)(unsigned)(vsp = ((unsigned long)(fr0_ - 0)), FUN_8c10b698((*(le<undefined4>* )(unsigned)(unsigned)0x8c27925c),0,ar4 + 0x5b86,iVar2 << 1));
-        break;
-      case 8:
-        puVar1 = (undefined*)(((le<undefined4>* )(unsigned long)*(le<unsigned>* )0x8c279284));
-        if (((le<undefined4>* )(unsigned long)*(le<unsigned>* )0x8c279284) != (undefined *)(unsigned)0x0) {
-          (*(le<undefined4>* )(unsigned)(unsigned)0x8c279298) = (*(le<undefined4>* )(unsigned)(unsigned)0x8c279298) + 1;
-          *(le<unsigned>* )0x8c279284 = (unsigned)(unsigned long)((undefined *)(unsigned)0x2);
-          if (2 < (*(le<undefined4>* )(unsigned)(unsigned)0x8c279298)) {
-            *(le<unsigned>* )0x8c279284 = (unsigned)(unsigned long)((undefined *)(unsigned)0x1);
-          }
-          puVar1 = (undefined *)(unsigned)(vsp = ((unsigned long)(fr0_ - 0)), FUN_8c1225fc((*(le<undefined4>* )(unsigned)(unsigned)0x8c27925c),1,ar6,ar7));
-        }
-        break;
-      case 9:
-        puVar1 = (undefined*)(((le<undefined4>* )(unsigned long)*(le<unsigned>* )0x8c279284));
-        if (((le<undefined4>* )(unsigned long)*(le<unsigned>* )0x8c279284) != (undefined *)(unsigned)0x0) {
-          *(le<unsigned>* )0x8c279284 = (unsigned)(unsigned long)((undefined *)(unsigned)0x3);
-          puVar1 = (undefined *)(unsigned)(vsp = ((unsigned long)(fr0_ - 0)), FUN_8c1225fc((*(le<undefined4>* )(unsigned)(unsigned)0x8c27925c),1,ar6,ar7));
-        }
-      }
-    }
-  }
-  return puVar1;
+  return (unsigned)sh4_interp(0x8c01d15c, ar4, ar5, ar6, ar7);
 }
-
 __asm__(".globl FUN_8c01d15c\n.set FUN_8c01d15c, FUN_8c01d15c_def\n");
-
 }
 //@unit 8c01d338
 #include "../decls.h"

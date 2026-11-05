@@ -144,6 +144,31 @@ static unsigned usb_read(s16 *dst, unsigned max)
 #include <ogc/lwp_watchdog.h>
 extern "C" unsigned long FUN_8c01d4c4(unsigned long, unsigned long, unsigned long, unsigned long);   /* queue a speech job */
 static s16 *tst; static unsigned tst_n; static unsigned long long tst_done; static u64 tst_t0;
+#ifdef TALK_TEST
+extern "C" { volatile int mic_test_go; }                /* set by the TALK_TEST pad script: play the clip now */
+/* queue the speech jobs a conversation script would (FUN_8c01d4c4 on the speech object 0x8c3e1028): load the context
+   SPEECH/0303A_DATE_CTX.cwp (yes / of course / never / ...), then job 2, which turns on push-to-talk (8c01d78c sets 0x8c27924c, so
+   an A press in the tank starts listening through 8c01d9e0 and its release stops it through 8c01da60) */
+/* the words the recogniser can answer with now: the table (0x8c279250, count 0x8c279254) the result handler looks words up in */
+extern "C" void mic_test_vocab(void)
+{
+  unsigned t = GM(unsigned, 0x8c279250), n = GM(unsigned, 0x8c279254); char line[400]; unsigned k = 0;
+  line[0] = 0;
+  for (unsigned i = 0; i < n && i < 400 && t >= 0x8c000000u && t < 0x8d000000u && k < sizeof line - 40; i++) {
+    unsigned p = GM(unsigned, t + 4 * i); if (p < 0x8c000000u || p >= 0x8d000000u) continue;
+    line[k++] = '|'; for (unsigned j = 0; j < 30 && GM(char, p + j) && k < sizeof line - 2; j++) line[k++] = GM(char, p + j);
+    line[k] = 0;
+  }
+  host_log("mic: vocabulary %u words: %s\n", n, line);
+}
+extern "C" void mic_test_jobs(void)
+{
+  static char ctx[] = "0303A_DATE_CTX", dir[] = "SPEECH", none[] = "";
+  if (GM(unsigned, 0x8c2791b8) != 4) { host_log("mic: recogniser not ready, no test jobs\n"); return; }
+  unsigned long a = FUN_8c01d4c4(0x8c3e1028, 0, (unsigned long)ctx, (unsigned long)dir), b = FUN_8c01d4c4(0x8c3e1028, 2, (unsigned long)none, (unsigned long)none);
+  host_log("mic: test jobs queued (%lu, %lu)\n", a, b);
+}
+#endif
 static unsigned test_read(s16 *dst, unsigned max)
 {
   if (!tst_t0) {
@@ -154,7 +179,14 @@ static unsigned test_read(s16 *dst, unsigned max)
   }
   unsigned long long due = ticks_to_millisecs(gettime() - tst_t0) * MIC_RATE / 1000;
   unsigned n = 0, period = MIC_TEST * MIC_RATE;
+#ifdef TALK_TEST
+  /* once each time the pad script asks, silence otherwise */
+  static unsigned long long go_at = ~0ull; (void)period;
+  if (mic_test_go) { mic_test_go = 0; go_at = due; host_log("mic: test clip starts (asr state %u)\n", (unsigned)GM(unsigned, 0x8c279248)); }
+  for (; n < max && tst_done < due; n++, tst_done++) dst[n] = tst_done >= go_at && tst_done - go_at < tst_n ? tst[tst_done - go_at] : 0;
+#else
   for (; n < max && tst_done < due; n++, tst_done++) { unsigned i = (unsigned)(tst_done % period); dst[n] = i < tst_n ? tst[i] : 0; }
+#endif
   return n;
 }
 #endif
@@ -179,7 +211,7 @@ extern "C" void host_mic_frame(void)
     unsigned st = GM(unsigned char, d), cmd = GM(unsigned, d + 0x28);
     if (st == 0) st = 1;                                 /* the device-info exchange: done at once */
     if (cmd == 1) st = 2; else if (cmd == 2) st = 1;
-    if (cmd) { static int nl; if (nl++ < 40) host_log("mic: command %u, state %u\n", cmd, st); }
+    if (cmd) { static int nl; if (nl++ < 40) host_log("mic: command %u, state %u, ring %x, %u samples\n", cmd, st, (unsigned)GM(unsigned, d + 0x48), (unsigned)GM(unsigned, d + 0x14)); }
     GM(unsigned, d + 0x2c) = cmd; GM(unsigned, d + 0x28) = 0;
     GM(unsigned, d + 0x20) = 0;                          /* no Maple transfer outstanding */
     GM(unsigned char, d) = (unsigned char)st;
@@ -202,13 +234,35 @@ extern "C" void host_mic_frame(void)
     /* once the recogniser is up, queue two speech jobs as the game's scripts do (FUN_8c01d4c4 on the speech object 0x8c3e1028):
        load the context SPEECH/0303A_DATE_CTX.cwp (yes / of course / ...), then listen */
     static char ctx[] = "0303A_DATE_CTX", dir[] = "SPEECH", none[] = "";
+#ifndef TALK_TEST
     if (nf == 3000 && GM(unsigned, 0x8c2791b8) == 4) {
       unsigned long a = FUN_8c01d4c4(0x8c3e1028, 0, (unsigned long)ctx, (unsigned long)dir), b = FUN_8c01d4c4(0x8c3e1028, 4, (unsigned long)none, (unsigned long)none);
       host_log("mic: test jobs queued (%lu, %lu)\n", a, b);
     }
+#else
+    (void)ctx; (void)dir; (void)none;
+#endif
+    { /* the speech job queue of the speech object 0x8c3e1028 (FUN_8c01d4c4 adds, FUN_8c01d338 runs): log each job as it starts */
+      static int lj = -2, ln; int j = GM(int, 0x8c3e1028 + 0x5630);
+      if (j != lj && ln < 400) { ln++; lj = j;
+        if (j >= 0 && j < 16) { unsigned e = 0x8c3e1028 + j * 0x50;
+          char nm[33], dr[33]; for (int i = 0; i < 32; i++) { nm[i] = GM(char, e + 0x5644 + i); dr[i] = GM(char, e + 0x5664 + i); } nm[32] = dr[32] = 0;
+          host_log("mic: job %d type %d status %d '%s' '%s' at call %u\n", j, (int)GM(int, e + 0x563c), (int)GM(int, e + 0x5638), nm, dr, nf); }
+        else host_log("mic: job queue empty at call %u\n", nf); }
+    }
+    { /* the recogniser's answer, as speech_get_result (8c01d684) reads it: a flag (0x8c27924c), a code (0x8c2791bc) and the
+         words heard (0x8c2791c8) */
+      static unsigned lf = ~0u, lc = ~0u, lg = ~0u, l0 = ~0u; static char lw[32];
+      unsigned f = GM(unsigned, 0x8c27924c), c = GM(unsigned, 0x8c2791bc); char w[32];
+      unsigned g = GM(unsigned, 0x8c279274), r0 = GM(unsigned, 0x8c2791c0);    /* the result handler's gain and its status word */
+      if (g != lg || r0 != l0) { host_log("mic: gain %u status %u at call %u\n", g, r0, nf); lg = g; l0 = r0; }
+      for (unsigned i = 0; i < sizeof w; i++) w[i] = (char)GM(unsigned char, 0x8c2791c8 + i);
+      w[sizeof w - 1] = 0;
+      if (f != lf || c != lc || strcmp(w, lw)) { host_log("mic: result flag %u code %u words '%s' at call %u\n", f, c, w, nf); lf = f; lc = c; strcpy(lw, w); }
+    }
     if (GM(unsigned, 0x8c279284) != last284) { last284 = GM(unsigned, 0x8c279284); host_log("mic: 284 -> %u (298=%u) at call %u\n", last284, (unsigned)GM(unsigned, 0x8c279298), nf); }
     if (rs != last || ++nf % 600 == 0) {
-      host_log("mic: asr state %u (was %d) 284=%u 2791b8=%u dev %u pos %u reader pos %u\n", rs, (int)last, (unsigned)GM(unsigned, 0x8c279284), (unsigned)GM(unsigned, 0x8c2791b8),
+      host_log("mic: asr state %u (was %d) at call %u 284=%u 2791b8=%u dev %u pos %u reader pos %u\n", rs, (int)last, nf, (unsigned)GM(unsigned, 0x8c279284), (unsigned)GM(unsigned, 0x8c2791b8),
                (unsigned)GM(unsigned char, MIC_DEV), (unsigned)GM(unsigned, MIC_DEV + 0x40), (unsigned)GM(unsigned, 0x8c47e820 + 0xc));
       unsigned rd = GM(unsigned, 0x8c279270), dv = GM(unsigned, 0x8c27926c);
       if (rd >= 0x8c000000u && rd < 0x8d000000u) host_log("mic: reader %x: %02x %02x dev %x pos %x:%x; device %x (MIC_DEV %x)\n", rd, (unsigned)GM(unsigned char, rd), (unsigned)GM(unsigned char, rd + 1),

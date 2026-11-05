@@ -730,3 +730,34 @@ record, and `tools/stage_save.py` put the records into a blank habitat file (`to
 - The length of the "welcome back" narration depends on the host clock: the same build gave ~2,500 or ~20,000 title frames at
   different times of day (the narration's ADX stream at sector 0x70c8e stops early or keeps going). Pin the RTC when comparing
   builds on a save.
+
+### Speech recognition works; two decompile bugs on the microphone path (Wii, 2026-11-05)
+- How the game listens, from the code:
+  - Push-to-talk is A. In the tank, with a creature present, pressing A calls 8c01d9e0 and releasing it calls 8c01da60.
+    8c01d9e0 starts capture only when the recogniser is idle (0x8c279248 = 2) and push-to-talk is on (0x8c27924c = 1).
+  - The speech jobs that the scripts queue on the speech object 0x8c3e1028 (FUN_8c01d4c4; run by 8c01d338): 0 loads a
+    `SPEECH/<name>.cwp` context, 2 turns push-to-talk on (sets 0x8c27924c), 3 turns it off, 4 starts an open listen (state 6),
+    5 registers `idle_ctx`.
+  - In the tank, the idle script repeats: off, `idle_ctx`, on, then a 150-frame listening window (speech script state 8).
+    `idle_ctx` is the "call his name" vocabulary ("seaman"). The window closing ends a capture in progress, so a hold must fit
+    inside one window, as a spoken word does.
+  - Recogniser states (0x8c279248, set by the engine's callback 8c01e464): 2 idle, 4 capturing (the per-frame feed passes samples
+    to the recogniser), 6 open listen (samples dropped), 8/9 done/failed. The answer comes back through 8c01e1e8: code 0x8c2791bc
+    (1 = words), the words at 0x8c2791c8, read by 8c01d684.
+- Bug 1, memory corruption whenever a microphone delivers samples: the per-frame feed 8c01d15c pushes a pointer for the 64-bit
+  read position as a stack word before both of its calls to the mic library's 8c201da0, which copies 8 bytes through it. The
+  decompile drops the push, so every frame wrote 8 bytes to whatever address that stack slot held. With the test clip, the
+  Tadman save crashed 4 times in 5 runs a few hundred frames into the tank, on garbage vertex indices in
+  gfx_box_overlap_test_like (8c23340c). Runs without mic input were clean (3 of 3). A Wii Speak or USB mic would hit it too.
+  8c01d15c now runs from its SH-4 code (`MIC_STACK_UNITS` in wii_xform.py, statically translated).
+- Bug 2, hang on the first word: the recogniser's search sorts with libc qsort (8c0140b4, called only from 8c11a83e). qsort
+  stores {base, size, compare} in its own frame and passes the worker (8c0140cc) a pointer to it. The decompile drops those
+  stores, so the worker ran with a garbage compare function and never returned. Both run from their SH-4 code (`QSORT_UNITS`).
+- Result (headless Dolphin, Tadman save, clock pinned): a synthetic "Seaman" (macOS `say`, 11,025 Hz, `sd:/seaman/mictest.raw`)
+  played into a 50-frame A hold is recognised: code 1, words "seaman", 4 out of 4 holds that fell inside a listening window.
+  The game reads the answer. No spoken reply was seen in the log; the pinned time is at night, so the Tadman may be asleep.
+  Not checked: a reply or reaction, other vocabularies, a real microphone.
+- Test hooks: `-DMIC_TEST=<s> -DTALK_TEST=<frames after the tank starts>` holds A for 50 frames every 300 and plays the clip from
+  2 frames into each hold. They log the recogniser state, the answer, the gain/status words, every speech job and the active
+  vocabulary (0x8c279250, count 0x8c279254). `-DTALK_JOBS` also queues a DATE context and push-to-talk itself.
+- 460 translated functions. `tools/sh4x_test.py`: 0 mismatches on 15,410 opcode forms.
