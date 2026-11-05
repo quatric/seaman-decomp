@@ -761,3 +761,15 @@ record, and `tools/stage_save.py` put the records into a blank habitat file (`to
   2 frames into each hold. They log the recogniser state, the answer, the gain/status words, every speech job and the active
   vocabulary (0x8c279250, count 0x8c279254). `-DTALK_JOBS` also queues a DATE context and push-to-talk itself.
 - 460 translated functions. `tools/sh4x_test.py`: 0 mismatches on 15,410 opcode forms.
+
+- Follow-up with a daytime clock (CustomRTCValue 0x6aeb01f4, 10:00 the morning after the save; the save's own time is 22:59): the
+  Tadman lives through the run, and "seaman" is recognised 5 of 5 times. No line is spoken in reply, and that is what the
+  game's script says to do:
+  - The tank's idle listen record (type 4) has four answers, each word / alternative / command / jump label:
+    `???/1/6/`, `!!!/2/6/`, `---///` (timeout) and `seaman///`.
+  - s_SPEECH_0fbf2e (8c0fbf28) looks the recognised words up in that table. "seaman" has no command and no jump, so it is pushed
+    onto the 16-entry heard-word history (history_push_string 8c0fc44c; (+0x10)->+0x40 + 200) and the idle listen restarts.
+  - Logged in the test: the history reads `---|seaman|---|seaman` after two recognitions. What reads the history (the
+    creature's later conversations?) has not been traced.
+- More test-build logging under TALK_TEST: the speech player's set-up/playing flags, the script state log raised to 3000 lines,
+  the current script record's answer table and the heard-word history at each A press.

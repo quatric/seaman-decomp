@@ -160,6 +160,27 @@ extern "C" void mic_test_vocab(void)
     line[k] = 0;
   }
   host_log("mic: vocabulary %u words: %s\n", n, line);
+  /* the speech script's current record (speech object 0x8c35468c + 0x1054, +0x88): its answer table, which s_SPEECH_0fbf2e
+     (8c0fbf28) searches for the recognised words: count at +0x6c, entries of 0x68 bytes from +0x70 (the words first) */
+  unsigned rec = GM(unsigned, 0x8c35468c + 0x1054 + 0x88);
+  if (rec >= 0x8c000000u && rec < 0x8d000000u) {
+    unsigned cnt = GM(unsigned, rec + 0x6c); k = 0; line[0] = 0;
+    for (unsigned i = 0; i < cnt && i < 24 && k < sizeof line - 80; i++) {
+      /* word +0, alternative +0x20, command +0x40, jump label +0x44 */
+      unsigned e = rec + 0x70 + i * 0x68; static const unsigned char fo[4] = { 0, 0x20, 0x40, 0x44 }, fl[4] = { 0x20, 0x20, 4, 0x20 };
+      line[k++] = '|';
+      for (int f = 0; f < 4; f++) { if (f) line[k++] = '/'; for (unsigned j = 0; j < fl[f] && GM(char, e + fo[f] + j) && k < sizeof line - 4; j++) line[k++] = GM(char, e + fo[f] + j); }
+      line[k] = 0;
+    }
+    host_log("mic: script record %x type %d, %u answers: %s\n", rec, (int)GM(int, rec + 0x20), cnt, line);
+  }
+  /* the history of heard words that history_push_string (8c0fc44c) keeps: 16 strings of 0x20 bytes at (+0x10)->+0x40 + 200 */
+  unsigned o = GM(unsigned, 0x8c35468c + 0x1054 + 0x10), h = o >= 0x8c000000u && o < 0x8d000000u ? GM(unsigned, o + 0x40) : 0;
+  if (h >= 0x8c000000u && h < 0x8d000000u) {
+    k = 0; line[0] = 0;
+    for (unsigned i = 0; i < 4; i++) { line[k++] = '|'; for (unsigned j = 0; j < 0x20 && GM(char, h + 200 + i * 0x20 + j); j++) line[k++] = GM(char, h + 200 + i * 0x20 + j); line[k] = 0; }
+    host_log("mic: heard-word history: %s\n", line);
+  }
 }
 extern "C" void mic_test_jobs(void)
 {

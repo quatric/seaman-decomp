@@ -115,7 +115,15 @@ static void run(void)
     { static int lastw = -1; int w = GM(int, 0x8c4367bc); if (w != lastw) { host_log("warn state %d -> %d at frame %u\n", lastw, w, n); lastw = w; } }
     { static int l44 = -99, nt44; int c = GM(int, 0x8c286ec8 + 0x44); if (c != l44 && nt44 < 60) { host_log("t44 %d -> %d at frame %u (14c=%d) msg: st1054=%d 1014=%d 89134=%d 4362f0=%d 1044=%d 1048=%d\n", l44, c, n, (int)GM(int, 0x8c286ec8 + 0x14c), (int)GM(int, 0x8c35468c + 0x1054), (int)GM(int, 0x8c35468c + 0x1014), (int)GM(int, 0x8c35468c + 0x89134), (int)GM(int, 0x8c4362f0), (int)GM(int, 0x8c35468c + 0x1044), (int)GM(int, 0x8c35468c + 0x1048)); l44 = c; nt44++; } }
     unsigned p0 = rp; if ((int)game_poll_exit(0x8c286ebc, 0, 0, 0) < 0) break;
-    { static int ls = -1, nl; int st = GM(int, 0x8c35468c + 0x1054); unsigned c = GM(unsigned, 0x8c35468c + 0x1054 + 0x88); if (st != ls && nl < 80) { nl++; host_log("speech state %d -> %d at frame %u type=%d cmd='%s' 4362f0=%d\n", ls, st, n, (c > 0x8c000000 && c < 0x8d000000) ? (int)GM(int, c + 0x20) : -1, (char *)(unsigned long)0x8c4362a0, (int)GM(int, 0x8c4362f0)); ls = st; } }
+#ifdef TALK_TEST
+    { /* the speech player (0x8c35468c): set up (+0x1014) and playing (+0x89134), i.e. a line being spoken */
+      static int l1 = -1, l2 = -1; int a1 = GM(int, 0x8c35468c + 0x1014), a2 = GM(int, 0x8c35468c + 0x89134);
+      if (a1 != l1 || a2 != l2) { host_log("talk test: player setup %d playing %d at frame %u\n", a1, a2, n); l1 = a1; l2 = a2; } }
+    enum { SPEECH_LOG = 3000 };
+#else
+    enum { SPEECH_LOG = 80 };
+#endif
+    { static int ls = -1, nl; int st = GM(int, 0x8c35468c + 0x1054); unsigned c = GM(unsigned, 0x8c35468c + 0x1054 + 0x88);     if (st != ls && nl < SPEECH_LOG) { nl++; host_log("speech state %d -> %d at frame %u type=%d cmd='%s' 4362f0=%d\n", ls, st, n, (c > 0x8c000000 && c < 0x8d000000) ? (int)GM(int, c + 0x20) : -1, (char *)(unsigned long)0x8c4362a0, (int)GM(int, 0x8c4362f0)); ls = st; } }
     if (n == 301) { unsigned b = 0x8c35468c + 0x1054; unsigned c = GM(unsigned, b + 0x88), t = GM(unsigned, b + 0x38); host_log("speech ar4[0x22]=%x ar4[0xe]=%x ar4[0x21]=%x ar4[0xd]=%d 0xf=%x\n", c, t, (unsigned)GM(unsigned, b + 0x84), (int)GM(int, b + 0x34), (unsigned)GM(unsigned, b + 0x3c));
       for (int q = 0; q < 2; q++) { unsigned a = q ? t : c; if (a < 0x8c000000 || a > 0x8d000000) continue; for (int r = 0; r < 0xa0; r += 16) host_log("  [%x+%02x] %08x %08x %08x %08x\n", a, r, (unsigned)GM(unsigned, a + r), (unsigned)GM(unsigned, a + r + 4), (unsigned)GM(unsigned, a + r + 8), (unsigned)GM(unsigned, a + r + 12)); } }
     if (n == 2 || n == 220) { unsigned f = GM(unsigned, 0x8c475f04), p = f; host_log("heap f=%x:", f); for (int q = 0; q < 12 && p >= 0x8c000000 && p < 0x8d000000; q++) { host_log(" [%x +%x next %x]", p, (unsigned)GM(unsigned, p + 4) * 32, (unsigned)GM(unsigned, p)); p = GM(unsigned, p); if (p == f) break; } host_log("\n"); }
