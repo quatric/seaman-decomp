@@ -793,3 +793,6 @@ record, and `tools/stage_save.py` put the records into a blank habitat file (`to
   firmware from `WS_BuiltinFirmware`, else from the SD card. The `.dol` grows by 97,664 bytes with it. Checked in headless
   Dolphin with no firmware on the SD card: "mic: Wii Speak firmware built in (97480 bytes)". The firmware stays out of git, and
   a `.dol` built with it must not be published (release builds from CI have none).
+- The firmware now has one home: libwiiinput's own `data/pmic_firm.bin` (3b9c78d adds `make firmware SDK=<pmic.a>` there,
+  with RecordMii's extractor). `tools/wii_link.sh` no longer passes a path; `port/wii/data/pmic_firm.bin` is no longer used.
+  RecordMii takes it from the same place in its libwiiinput submodule.

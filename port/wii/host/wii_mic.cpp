@@ -8,8 +8,8 @@
    instead: it answers commands at once and writes the host microphone's samples into the ring. The game's readers (8c201e14)
    take them from there as on the Dreamcast, at 11,025 Hz, and pass them to the recogniser.
    The Wii Speak needs Nintendo's PMIC firmware (97,480 bytes), which is not included: put it at sd:/seaman/pmic_firm.bin (or where
-   RecordMii looks for it), or build it in by placing it at port/wii/data/pmic_firm.bin (ignored by git; tools/wii_link.sh then
-   builds it into libwiiinput, whose WS_BuiltinFirmware returns it). Without a host microphone the game still sees one, which never hears anything.
+   RecordMii looks for it), or build it in: `make -C port/wii/libwiiinput firmware SDK=<RVL SDK pmic.a>` puts it in the library's
+   data/pmic_firm.bin (ignored by git), and the library built by tools/wii_link.sh returns it from WS_BuiltinFirmware. Without a host microphone the game still sees one, which never hears anything.
    As in RecordMii, the boot first makes sure the running IOS offers /dev/usb/oh0 (the Wii Speak's USB interface), reloading a
    USB-capable IOS if it does not, and the microphone is stopped and closed before the port exits to the loader. */
 #include "host.h"
@@ -35,7 +35,7 @@ static void *firm; static u32 firm_size;
 
 static void load_firmware(void)
 {
-  if (const u8 *b = WS_BuiltinFirmware(&firm_size)) {    /* built into libwiiinput (tools/wii_link.sh) */
+  if (const u8 *b = WS_BuiltinFirmware(&firm_size)) {    /* libwiiinput/data/pmic_firm.bin, built in */
     firm = (void *)b;
     host_log("mic: Wii Speak firmware built in (%u bytes)\n", (unsigned)firm_size);
     return;

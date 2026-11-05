@@ -3,11 +3,11 @@
 R="$1"; W="$R/port/wii"; export DEVKITPRO=/opt/devkitpro DEVKITPPC=/opt/devkitpro/devkitPPC
 F="-std=gnu++17 -fpermissive -w -fno-exceptions -fno-rtti -fno-strict-aliasing -fsigned-char -Os -mcpu=750 -meabi -mhard-float -DGEKKO -mrvl -I$DEVKITPRO/libogc/include -ffunction-sections ${TRACE_BLOCK:+-DTRACE_BLOCK=$TRACE_BLOCK} ${HOST_DEFS}"
 # libwiiinput (port/wii/libwiiinput, a submodule): every controller, the USB keyboard, the Wii Speak and USB microphones
-# The Wii Speak's boot firmware (Nintendo's, not in the repository) is built into the library when port/wii/data/pmic_firm.bin
-# is there (host/wii_mic.cpp takes it from WS_BuiltinFirmware), else read from the SD card. make runs every time: the library
-# keeps one object folder per set of options and rebuilds only what changed, the firmware included.
-[ -s "$W/data/pmic_firm.bin" ] && FW="$W/data/pmic_firm.bin" || FW=none
-L="$W/libwiiinput"; LOPT="WITH_MIC=1 WITH_GCADAPTER=1 WITH_HIDPADS=1 PMIC_FIRM=$FW"
+# The Wii Speak's boot firmware (Nintendo's, not in either repository) is built into the library when
+# port/wii/libwiiinput/data/pmic_firm.bin is there (`make -C port/wii/libwiiinput firmware SDK=<pmic.a>` extracts it);
+# host/wii_mic.cpp takes it from WS_BuiltinFirmware, else reads it from the SD card. make runs every time: the library keeps one
+# object folder per set of options and rebuilds only what changed, the firmware included.
+L="$W/libwiiinput"; LOPT="WITH_MIC=1 WITH_GCADAPTER=1 WITH_HIDPADS=1"
 make -C "$L" $LOPT > "$W/libwiiinput.log" 2>&1 || echo "FAIL libwiiinput"
 # libwiiupdate (port/wii/libwiiupdate, a submodule): the update check against the GitHub releases (host/wii_update.cpp)
 U="$W/libwiiupdate"
