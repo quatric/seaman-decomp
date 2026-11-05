@@ -761,7 +761,6 @@ record, and `tools/stage_save.py` put the records into a blank habitat file (`to
   2 frames into each hold. They log the recogniser state, the answer, the gain/status words, every speech job and the active
   vocabulary (0x8c279250, count 0x8c279254). `-DTALK_JOBS` also queues a DATE context and push-to-talk itself.
 - 460 translated functions. `tools/sh4x_test.py`: 0 mismatches on 15,410 opcode forms.
-
 - Follow-up with a daytime clock (CustomRTCValue 0x6aeb01f4, 10:00 the morning after the save; the save's own time is 22:59): the
   Tadman lives through the run, and "seaman" is recognised 5 of 5 times. No line is spoken in reply, and that is what the
   game's script says to do:
@@ -773,3 +772,19 @@ record, and `tools/stage_save.py` put the records into a blank habitat file (`to
     creature's later conversations?) has not been traced.
 - More test-build logging under TALK_TEST: the speech player's set-up/playing flags, the script state log raised to 3000 lines,
   the current script record's answer table and the heard-word history at each A press.
+
+### Wii Speak fix from RecordMii (Wii, 2026-11-05)
+- libwiiinput moved to 0394f1c ("Fix the Wii Speak stream freezing on real hardware"), the fix RecordMii found on a real Wii Speak:
+  - `WS_SetGain` now sends the SDK's `0x0300 | gain`. A gain written without the mask locks the mic's sampler, and the
+    isochronous stream repeats one 8 ms block for good while every command still answers.
+  - All DMA buffers come from a MEM2 IPC heap, as the SDK's do. In MEM1, one-byte control reads never arrived, so the firmware
+    status could not be read.
+- `host/wii_mic.cpp` now opens the Wii Speak with the settings RecordMii records with on hardware, in its order: gain 30 dB
+  (through the fixed `WS_SetGain`), 11,025 Hz, echo canceller off, mute off, then start. Before, the port set no gain and turned the
+  echo canceller on; RecordMii leaves it off, and there is no far-end audio for it to remove.
+- `tools/wii_link.sh` only rebuilds the library when its options change: after moving the submodule, run `make clean` in
+  `port/wii/libwiiinput` (or delete `port/wii/obj/libwiiinput.options`).
+- Checked in headless Dolphin: the build boots and runs (frame 2,259 at 50 s, no exceptions), and the mic thread finds the firmware
+  on the SD card. Dolphin's emulated Wii Speak cannot be reached: under Dolphin's IOS 58 the port sees no `/dev/usb/oh0`, so it
+  keeps scanning. This was already so before the change. The speech test with `MIC_TEST` doesn't use the library, so it was not
+  re-run. Not checked: recognition through a real Wii Speak on a Wii.

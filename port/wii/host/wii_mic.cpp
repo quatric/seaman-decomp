@@ -73,8 +73,13 @@ static void *mic_thread(void *)
   for (;;) {
     if (src == SRC_NONE) {
       if (firm && WS_Open(firm, firm_size) == WS_OK) {
+        /* the settings RecordMii records with on a real Wii Speak, in its order. WS_SetGain sends the SDK's 0x0300 mask (libwiiinput
+           0394f1c); a gain written without it locks the mic's sampler, which then repeats one 8 ms block. The echo canceller stays
+           off: there is no far-end audio for it to remove, and it is the untested path on hardware */
+        WS_SetGain(WS_GAIN_30dB);
         WS_SetFreq(WS_FREQ_11KHZ);                       /* the Dreamcast microphone's own rate */
-        WS_SetSignalProcessing(true);                    /* echo canceller + AGC: levels suited to speech */
+        WS_SetSignalProcessing(false);
+        WS_SetMute(false);
         if (WS_Start() == WS_OK) { host_log("mic: Wii Speak at %u Hz\n", (unsigned)WS_FreqToHz(WS_FREQ_11KHZ)); src = SRC_WIISPEAK; }
         else WS_Close();
       } else if (UM_Open(&um) == UM_OK) {
