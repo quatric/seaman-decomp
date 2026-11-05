@@ -788,3 +788,8 @@ record, and `tools/stage_save.py` put the records into a blank habitat file (`to
   on the SD card. Dolphin's emulated Wii Speak cannot be reached: under Dolphin's IOS 58 the port sees no `/dev/usb/oh0`, so it
   keeps scanning. This was already so before the change. The speech test with `MIC_TEST` doesn't use the library, so it was not
   re-run. Not checked: recognition through a real Wii Speak on a Wii.
+- Built-in firmware moved into libwiiinput (095be34): `tools/wii_link.sh` passes `PMIC_FIRM=port/wii/data/pmic_firm.bin` (or
+  `none`) to the library's make, which runs every time now (it rebuilds only what changed), and `host/wii_mic.cpp` takes the
+  firmware from `WS_BuiltinFirmware`, else from the SD card. The `.dol` grows by 97,664 bytes with it. Checked in headless
+  Dolphin with no firmware on the SD card: "mic: Wii Speak firmware built in (97480 bytes)". The firmware stays out of git, and
+  a `.dol` built with it must not be published (release builds from CI have none).
