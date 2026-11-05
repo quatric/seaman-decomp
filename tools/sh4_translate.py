@@ -268,6 +268,9 @@ LOC = [(re.compile(r'C\.r\[(\d+)\]'), r'rr\1'), (re.compile(r'C\.mach\b'), 'MACH
        (re.compile(r'setd\(F\.fr, (\d+), '), lambda m: 'setd2(ff%d, ff%d, ' % (int(m.group(1)), int(m.group(1)) + 1)),
        (re.compile(r'set_fpscr\('), 'SETFPSCR_('), (re.compile(r'F\.fr\[(\d+)\]'), r'ff\1'), (re.compile(r'F\.xf\[(\d+)\]'), r'xx\1')]
 STACK_ST = re.compile(r'\bwr(8|16|32)\(rr15\b')               # stores through the stack pointer cannot reach the store queues
+LOCNAME = r'(rr\d+|ff\d+|xx\d+|[A-Z]+_)'
+ASSIGN = re.compile(r'\b%s\s*(?:[-+*/%%&|^]|<<|>>)?=(?!=)|(?:\+\+|--)\s*%s\b|\b%s\s*(?:\+\+|--)' % (LOCNAME, LOCNAME, LOCNAME))
+SETD2 = re.compile(r'setd2\((ff\d+), (ff\d+),')
 def loc(s):
     for rx, to in LOC: s = rx.sub(to, s)
     return STACK_ST.sub(r'wrs\1(rr15', s)
@@ -401,7 +404,11 @@ def translate(entry, TRANS):
     if M: used.add('FPSCR_')
     if 'SETFPSCR_' in used: used |= set(n for n, _, _ in FPU_LOC) | {'FPSCR_'}
     vs = [v for v in CPU_LOC + FPU_LOC if v[0] in used]
-    head = ''.join('#define %s %s\n' % (m, ' '.join(('%s = %s;' % (n, f)) if m == 'FILL_' else ('%s = %s;' % (f, n)) for n, _, f in vs))
+    # a local the function never assigns always equals its C/F copy (FILL_ reloads it after every call), so SPILL_ leaves it out
+    written = set(x for t in ASSIGN.findall(body) for x in t if x) | set(x for t in SETD2.findall(body) for x in t)
+    if 'SETFPSCR_' in used: written |= set(n for n, _, _ in FPU_LOC) | {'FPSCR_'}
+    head = ''.join('#define %s %s\n' % (m, ' '.join(('%s = %s;' % (n, f)) if m == 'FILL_' else ('%s = %s;' % (f, n))
+                                                    for n, _, f in vs if m == 'FILL_' or n in written))
                    for m in ('FILL_', 'SPILL_'))
     head += '#define SETFPSCR_(v) { unsigned v_ = (v); if ((v_ ^ FPSCR_) & FRB) { %s } FPSCR_ = v_; }\n' % SWAP
     decl = ''.join('  %s %s;\n' % (ty, n) for n, ty, _ in vs)

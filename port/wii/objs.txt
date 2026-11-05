@@ -29,7 +29,9 @@ obj/mod_8c260000.o
 obj/sh4x_mod_8c010000.o
 obj/sh4x_mod_8c020000.o
 obj/sh4x_mod_8c030000.o
+obj/sh4x_mod_8c040000.o
 obj/sh4x_mod_8c050000.o
+obj/sh4x_mod_8c060000.o
 obj/sh4x_mod_8c0a0000.o
 obj/sh4x_mod_8c0b0000.o
 obj/sh4x_mod_8c0c0000.o
@@ -37,6 +39,8 @@ obj/sh4x_mod_8c0d0000.o
 obj/sh4x_mod_8c0e0000.o
 obj/sh4x_mod_8c0f0000.o
 obj/sh4x_mod_8c100000.o
+obj/sh4x_mod_8c110000.o
+obj/sh4x_mod_8c120000.o
 obj/sh4x_mod_8c200000.o
 obj/sh4x_mod_8c210000.o
 obj/sh4x_mod_8c220000.o

@@ -711,3 +711,22 @@ record, and `tools/stage_save.py` put the records into a blank habitat file (`to
 - Each run spends about 3 minutes on the title first, because the "welcome back" narration plays before an existing habitat
   loads.
 - Not checked yet: whether the creature listens to speech at each stage.
+
+### Speed with a creature in the tank (Wii, 2026-11-04)
+- Until the creature fixes, every measured run had an empty tank, so none of the creature code had been picked for translation. With
+  the Tadman save the tank ran at 35-45 fps headless (Null video), with 40-130M interpreted SH-4 instructions per 500 frames.
+  - The hot interpreted routines were the creature's animation and drawing: gfx_shape_interp_linear_b, lerp_float_arrays,
+    Vec3_lerp, CAnimal_apply_motion_keys, CAnimal_draw_model_b, the ninja strip and motion-key lookups. Also libm exp and the
+    double classifiers it calls, and parts of the ASR recogniser.
+- 457 translated functions (was 396): the 61 hot interpreted ones from a `prof block` run of the Tadman save. Interpreted
+  instructions in the creature tank fell to about 1-2M per 500 frames, and the tank now runs at 59-64 fps. The empty tank is
+  unchanged at 80-90 fps. `tools/sh4x_test.py`: 0 mismatches on 15,401 opcode forms.
+- `tools/sh4_translate.py`: SPILL_ (locals back to the Cpu/Sh4Fpu structs before calls and returns) now leaves out the guest
+  registers a function never assigns, since those always equal their struct copy. Spill stores across all translated functions
+  fell from 6,072 to 4,970; on its own this made no measurable difference to the empty tank.
+- Checked with Dolphin's clock pinned (`EnableCustomRTC`/`CustomRTCValue` = 0x6aea6744 in the profile's Dolphin.ini): the old
+  and new builds reach the tank at the same frame (19,601 and 19,619), the Tadman is alive in both every 1,000 frames to the end,
+  and dumped frames that show the same screen match exactly.
+- The length of the "welcome back" narration depends on the host clock: the same build gave ~2,500 or ~20,000 title frames at
+  different times of day (the narration's ADX stream at sector 0x70c8e stops early or keeps going). Pin the RTC when comparing
+  builds on a save.
