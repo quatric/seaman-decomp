@@ -175,7 +175,12 @@ MIC_STACK_UNITS = ('8c01d15c',)
 # passes the worker (8c0140cc) a pointer to it; the decompile drops those stores, so the worker sorted with a garbage compare
 # function and never returned (the game hung on the first spoken word). Statically translated too
 QSORT_UNITS = ('8c0140b4', '8c0140cc')
-INTERP_UNITS = ('8c25754c', '8c239212', '8c1f8300') + SPRINTF_CALLERS + SAVE_LAYER + JUMPTABLE_UNITS + PMF_BYTE_UNITS + MIC_STACK_UNITS + QSORT_UNITS
+# tank environment step Class_12b930_m3 (8c0de4b0) sets the heater (23.0) and the O2 supply (90.0) with set_float_c_nonneg (8c0de6c0) and
+# set_field_c_nonneg (8c0de6b0), passing the value in FR4 (loaded from a constant pool right before each call). The decompile drops the
+# FPU argument (in_fr4 is never set), so all three run from their SH-4 code. (This was not why the heater and air stayed at 0 in play:
+# the port never set the Dreamcast's digital L/R trigger bits, so L could not switch the tank's control mode; see host/wii_pad.cpp)
+TANK_ENV_UNITS = ('8c0de4b0', '8c0de6b0', '8c0de6c0')
+INTERP_UNITS = ('8c25754c', '8c239212', '8c1f8300') + TANK_ENV_UNITS + SPRINTF_CALLERS + SAVE_LAYER + JUMPTABLE_UNITS + PMF_BYTE_UNITS + MIC_STACK_UNITS + QSORT_UNITS
 #   ADX core, ADXF, ADXSTM, ADXT | mwRna | SJ (stream joint)
 INTERP_RANGES = (('8c25eca0', '8c26a246'), ('8c26b1ca', '8c26c000'), ('8c01a308', '8c01c9e0'), ('8c10a000', '8c126000'), ('8c201804', '8c202a84'))   # + the game's memory-card manager (its queue and wait loops; host/wii_vmu.cpp does the ops) + the L&H ASR1600 speech recogniser (its decompile left an object's callback unset) + Sega's Maple microphone library (64-bit sample positions passed on the stack, which the decompile drops)   # CRI ADX/SJ/mwRna and the Manatee sd library (its SR-dependent callbacks need the interpreter)
 INTERP_EXTRA = ('8c0101bc', '8c010468', '8c01051c', '8c010614', '8c0106dc', '8c010794', '8c0107a0') + INTERP_UNITS

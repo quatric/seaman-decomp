@@ -51,6 +51,10 @@ bool interp_here(unsigned a)
   return lo < sizeof interp_tab / sizeof interp_tab[0] && interp_tab[lo] == a;
 }
 
+#ifdef DEV_PROBE
+extern "C" void host_log(const char *, ...);
+unsigned probe_pc[16];
+#endif
 struct Island { unsigned pc; };
 Island islands[48];
 int nisl;
@@ -409,6 +413,10 @@ void exec_(Cpu &C, unsigned pc, unsigned stop)
   for (; pc != stop; guard++) {
     if (guard - guard_base > 400000000UL) { host_log("sh4: runs away: entry=%08x pc=%08x r0..r7=%08x %08x %08x %08x %08x %08x %08x %08x\n", sz_cur_entry, pc, C.r[0], C.r[1], C.r[2], C.r[3], C.r[4], C.r[5], C.r[6], C.r[7]); bad("runs away", pc, rd16(pc)); }
     sh4_pc = pc;
+#ifdef DEV_PROBE
+    { static const unsigned e[10] = { 0x8c0de1dc, 0x8c0de3d4, 0x8c0de4b0, 0x8c0de6b0, 0x8c0de6c0, 0x8c0d0178, 0x8c0e132c, 0x8c0e1398, 0x8c0d0a44, 0x8c0e0f48 };
+      if ((pc >= 0x8c0d0178 && pc <= 0x8c0e1398) && (pc >> 1 & 1) == 0) for (int i = 0; i < 10; i++) if (pc == e[i]) { unsigned n = probe_pc[i]++; if (n < 2 || n % 3000 == 0) host_log("probe: interp pc %08x #%u r4=%08x pr=%08x fr4=%g entry=%08x\n", pc, n + 1, C.r[4], C.pr, (double)F.fr[4], sz_cur_entry); } }
+#endif
 #ifdef SH4_PROF
     { unsigned b = (pc - 0x8c010000u) >> 6; if (b < 0x9800) sh4_prof[b]++; }
 #endif
@@ -416,6 +424,9 @@ void exec_(Cpu &C, unsigned pc, unsigned stop)
     unsigned hi = op >> 12;
     if ((op & 0xf0ff) == 0x400b) {                                       /* jsr @Rn */
       unsigned t = C.r[(op >> 8) & 15];
+#ifdef DEV_PROBE
+      if (t == 0x8c0de1dc || t == 0x8c0de3d4 || t == 0x8c0de4b0) { static unsigned nj[3]; int k = t == 0x8c0de1dc ? 0 : t == 0x8c0de3d4 ? 1 : 2; if (nj[k]++ < 2 || nj[k] % 3000 == 0) host_log("probe: jsr at %08x to %08x #%u r4=%08x entry=%08x\n", pc, t, nj[k], C.r[4], sz_cur_entry); }
+#endif
       if (!interp_here(t) && xlat_exact(t)) { slot(C, pc + 2); host_call(C, t); pc += 4; continue; }
       if (xfn f = xfind_(t)) { slot(C, pc + 2); C.pr = pc + 4; f(C); pc += 4; continue; }
     } else if ((op & 0xf0ff) == 0x402b) {                                /* jmp @Rn: a tail call when it lands on a function start */
@@ -454,8 +465,15 @@ void exec_(Cpu &C, unsigned pc, unsigned stop)
   }
 }
 
+#ifdef DEV_PROBE
+unsigned probe_run[5];
+#endif
 unsigned long run(unsigned entry, unsigned long a, unsigned long b, unsigned long c, unsigned long d)
 {
+#ifdef DEV_PROBE
+  { static const unsigned e[5] = { 0x8c0de1dc, 0x8c0de3d4, 0x8c0de4b0, 0x8c0de6b0, 0x8c0de6c0 };
+    for (int i = 0; i < 5; i++) if (entry == e[i]) { unsigned n = probe_run[i]++; if (n < 3 || n % 2000 == 0) host_log("probe: run entry %08x #%u a=%08x fr4=%g\n", entry, n + 1, (unsigned)a, (double)F.fr[4]); } }
+#endif
   Cpu C; memset(&C, 0, sizeof C);
   C.r[0] = vin0; C.r[1] = vin1;
   C.r[4] = (unsigned)a; C.r[5] = (unsigned)b; C.r[6] = (unsigned)c; C.r[7] = (unsigned)d; C.r[15] = (unsigned)vsp;
@@ -502,7 +520,18 @@ void call_ptr(Cpu &C, hfn h) { host_call_h(C, h); }
 }
 
 /* entry from the generated units: a function of notes/fpu_funcs.txt */
-extern "C" unsigned long sh4_interp(unsigned entry, unsigned long a, unsigned long b, unsigned long c, unsigned long d) { return run(entry, a, b, c, d); }
+#ifdef DEV_PROBE
+extern "C" void host_log(const char *, ...);
+unsigned probe_entry[5];   /* test only: m1 de1dc, m2 de3d4, m3 de4b0, set_field de6b0, set_float de6c0 */
+#endif
+extern "C" unsigned long sh4_interp(unsigned entry, unsigned long a, unsigned long b, unsigned long c, unsigned long d)
+{
+#ifdef DEV_PROBE
+  { static const unsigned e[5] = { 0x8c0de1dc, 0x8c0de3d4, 0x8c0de4b0, 0x8c0de6b0, 0x8c0de6c0 };
+    for (int i = 0; i < 5; i++) if (entry == e[i]) { if (!probe_entry[i]++ || probe_entry[i] % 5000 == 0) host_log("probe: sh4_interp entry %08x call #%u\n", entry, probe_entry[i]); } }
+#endif
+  return run(entry, a, b, c, d);
+}
 
 extern "C" unsigned long sh4_island_for(unsigned pc)
 {

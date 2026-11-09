@@ -796,3 +796,43 @@ record, and `tools/stage_save.py` put the records into a blank habitat file (`to
 - The firmware now has one home: libwiiinput's own `data/pmic_firm.bin` (3b9c78d adds `make firmware SDK=<pmic.a>` there,
   with RecordMii's extractor). `tools/wii_link.sh` no longer passes a path; `port/wii/data/pmic_firm.bin` is no longer used.
   RecordMii takes it from the same place in its libwiiinput submodule.
+
+### Heater and air stay at 0: what the trace shows (Wii, 2026-11-08, resumed session)
+- The earlier conclusion "none of the tank step functions (m1, m2, m3) is entered" was a measurement gap, not a finding. Calls made from
+  SH-4-interpreted or statically translated code reach m1/m2/m3 through `xfind_` and never pass `sh4_interp()`, `run()` or a TRACE_ENTER
+  stub. A watch on the wrong name (`FUN_8c0de3d4` for the m2 method) also gave a false zero: ring names are `Class_12b930_m2_0de3d4`
+  where the decompile named the function, `FUN_8c...` otherwise.
+- What does run in the Gillman save's tank phase: `tank_device_sound_update` (8c0d0178, 541 ring hits in 150 s) with the ring
+  `Class_129938_m1_0170e0, FUN_8c0d7154 (slide_tick), object_dtor_delete`, i.e. the m1 body (translated, `sh4x_8c0de1dc`).
+  `move_sound` (8c0e0f48, translated) calls `decay_float_c` (8c0d0a44, interpreted). `CWaterTank_ramp_and_decay` (8c0e132c) and
+  `CWaterTank_check_distance_sound` (8c0e1398) are never entered.
+- m3 (the only function that sets the heater to 23.0 and the air to 90.0) is never reached by any path the probes can see
+  (`DEV_PROBE` pc hook in `exec_`, jsr hook, entry counter in `run()`), so m3 is probably a different scene mode's step, not the tank
+  mode in the save. The only writers of the two gauge words seen at run time are the set/clear helpers from `CProlog_Ready`
+  (8c0baab8): 8c0de6c0 and 8c0de6b0 called twice, with fr4 = 0 and then -32 / -160 (clamped to 0). Nothing ramps them afterwards.
+- The gauges are separate objects at tank+0x13b24 (heater) and +0x13b70 (air): a float at +0xc (value), a float at +0x10 and flags at
+  +0x14/+0x18; their per-state handlers are the pointer-to-member tables 0x8c13f680..0x8c13f6bc (ramp_and_decay, move_sound, check_distance).
+  The state machine never leaves the move_sound state: the raise path (ramp_float_to_100 via ramp_and_decay) is the lead.
+- Test hooks (`-DDEV_PROBE`, compiled out otherwise) in `host/wii_sh4.cpp`: pc counters in the interpreter loop for the tank
+  functions, a jsr probe for m1/m2/m3, an entry counter in `run()`. Next step: find what writes the state index of the 0x8c13f680 table
+  record in the tank object (a0[0x8c83..]) and what the player does to request it (pressing the heater/air control in the tank UI).
+
+### Heater and air fixed: the L/R trigger bits (Wii, 2026-11-08, later session)
+- Cause: Shinobi reports the analogue triggers as digital buttons too (PDS on/off/press/release bits 0x10000 = R, 0x20000 = L), and the
+  game reads only those bits for L/R (`input_l_pressed` 8c01ec20, `input_r_held` 8c01ec68, ...). `host_pad_frame` wrote the analogue
+  values (+0x18/+0x1a) but never the bits, so no controller could ever press L or R as far as the game was concerned.
+- Why that blocks the heater and air: the tank's input goes through vtable slot +0x6c (8c0dfe2c), which calls the pointer-to-member input
+  handler picked by the current control mode (tank +0x231e0 + 12 * mode; modes 0/1 -> `input_move_sound_input_0e2a14`, 2 -> 0e3210).
+  The mode is switched by `menu_pick_option_0..3` on a short L press (`input_l_pressed_short` 8c100154: L pressed while R reads < 0x1e).
+  In the 0e2a14 mode, D-pad Up opens the device panel (tank +0x1024: 0 closed, 1 sliding in to x = 395, 2 open), Left/Right picks the
+  device (+0x1020: 0 heater, 1 air, 3 light), and holding Up raises it: heater via `edge_detect_update` on +0x13b24 (on flag +0x14),
+  air via vtable +0x158 (`tank_enable_13b70_and_10dc`: air +0x14 = 1 so `ramp_float_to_100` adds 0.05 per frame, and the bubbler on).
+- Fix (`host/wii_pad.cpp`): set 0x20000 / 0x10000 when the final L / R value is >= 0x80, after the scripted/notice handling, so the
+  press/release words follow. The Wii Remote had no L at all: its - button is now L (Nunchuk Z stays R).
+- Checked in headless Dolphin (Gillman save, clock pinned to 0x6aeb01f4, `HOST_DEFS="-DGAUGE_TEST=300 -DMAX_SECONDS=430"`): before the
+  fix, Up never opened the panel (+0x1024 stayed 0). After it, the second L tap reached the panel mode; holding Up raised the heater
+  0 -> 10.1 over two 600-frame holds and Right + Up raised the air 0 -> 59.7, both decaying slowly afterwards. Not checked on a real Wii.
+- Player controls in the tank (as on the Dreamcast): L (Wii Remote -) cycles the control mode until D-pad Up slides the panel in;
+  Left/Right picks heater / air / light; hold Up to raise; Down closes the panel.
+- The earlier `TANK_ENV_UNITS` (m3 and its FR4 setters in the interpreter) stay: correct, but not the cause. `-DGAUGE_TEST=<frames after
+  the tank starts>` scripts the L taps and panel presses and logs both gauges every 50 frames.

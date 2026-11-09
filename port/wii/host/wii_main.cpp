@@ -50,7 +50,9 @@ extern "C" void host_log(const char *fmt, ...)
   LWP_MutexUnlock(logmtx);
 }
 
+#ifndef MAX_FRAMES
 #define MAX_FRAMES 60000u
+#endif
 #ifndef MAX_SECONDS
 #define MAX_SECONDS 200
 #endif
@@ -91,6 +93,25 @@ static void run(void)
          off; +0x14 is its on flag, set by the tank controls) on for 600 frames, so the game's own state machine drives Manatee */
       if (n == PAD_SE_SCRIPT + 200 || n == PAD_SE_SCRIPT + 800) { GM(unsigned, 0x8c29ab74 + 0x14) = n == PAD_SE_SCRIPT + 200; host_log("se script: tank device %s at frame %u\n", n == PAD_SE_SCRIPT + 200 ? "on" : "off", n); }
 #endif
+#ifdef DEV_PROBE
+      /* test only: once the tank scene runs (title state 0x8c286f0c = 18), press one control at a time (A, B, X, Y, D-pad, C, Z, L, R,
+         stick+A) for 30 frames every 80, and log every change in the tank-device words around 0x8c29ab74 (heater at +0, O2 supply at +0x4c,
+         sprinkler at +0x68 as the game's own CWaterTank offsets 0x13b24/0x13b70/0x13b8c give), to find what switches them */
+      { extern int pad_script_x, pad_script_y, pad_script_l, pad_script_r; static unsigned t0 = ~0u, prev[0x60]; static int nlog, init;
+        pad_script_x = pad_script_y = pad_script_l = pad_script_r = 0;
+        static unsigned base;
+        if (t0 == ~0u && GM(int, 0x8c286ec8 + 0x44) == 18) { t0 = n + 300; host_log("probe: tank at frame %u\n", n);
+          for (unsigned a = 0x8c000000; a < 0x8d000000; a += 4) { unsigned v = GM(unsigned, a); if (v == 0x8c12b930 || v == 0x8c12b938) host_log("probe: vtable word %08x at %08x\n", v, a); } }
+        if (t0 != ~0u && n >= t0) { unsigned k = (n - t0) / 80, t = (n - t0) % 80; int ph = k % 14; w = 0;
+          if (t >= 10 && t < 40) switch (ph) { case 0: w = 4; break; case 1: w = 2; break; case 2: w = 0x400; break; case 3: w = 0x200; break; case 4: w = 0x10; break;
+            case 5: w = 0x20; break; case 6: w = 0x40; break; case 7: w = 0x80; break; case 8: w = 1; break; case 9: w = 0x100; break; case 10: pad_script_l = 255; break;
+            case 11: pad_script_r = 255; break; case 12: pad_script_x = 100; w = 4; break; case 13: pad_script_y = -100; w = 4; break; }
+          if (t == 10) host_log("probe: press phase %d at frame %u\n", ph, n); }
+        if (t0 != ~0u && n % 200 == 0) { unsigned hb = 0x8c287050 + 0x13b24, ob = 0x8c287050 + 0x13b70; host_log("probe: n=%u heater c=%g f10=%u f14=%u f18=%08x  o2 c=%g f10=%u f14=%u f18=%u  vt=%08x\n", n, (double)GM(float, hb + 0xc), (unsigned)GM(unsigned, hb + 0x10), (unsigned)GM(unsigned, hb + 0x14), (unsigned)GM(unsigned, hb + 0x18), (double)GM(float, ob + 0xc), (unsigned)GM(unsigned, ob + 0x10), (unsigned)GM(unsigned, ob + 0x14), (unsigned)GM(unsigned, ob + 0x18), (unsigned)GM(unsigned, 0x8c287050)); }
+        if (t0 != ~0u) for (int i = 0; i < 0x60; i++) { unsigned v = GM(unsigned, 0x8c29ab74 - 0x40 + i * 4);
+          if (init && v != prev[i] && nlog < 800) { nlog++; host_log("probe: f%u %08x: %08x -> %08x\n", n, 0x8c29ab74 - 0x40 + i * 4, prev[i], v); } prev[i] = v; }
+        init = t0 != ~0u; } 
+#endif
 #ifdef TALK_TEST
       /* test runs: TALK_TEST frames after the tank scene starts (title state 0x8c286f0c = 18), queue the speech jobs of a
          conversation (wii_mic.cpp), then hold A (talk: 8c01d9e0 when pressed, 8c01da60 when released) for 50 frames every 300, about as long as saying one word
@@ -104,6 +125,21 @@ static void run(void)
         if (tank != ~0u && n >= tank + TALK_TEST && !no) { unsigned t = (n - tank - TALK_TEST) % 300; w = t < 50 ? 4 : 0; if (t == 2) mic_test_go = 1;
           if (t == 0) mic_test_vocab();
           if (t == 0 || t == 50) host_log("talk test: A %s at frame %u, asr state %u 24c=%u 284=%u\n", t ? "up" : "down", n, (unsigned)GM(unsigned, 0x8c279248), (unsigned)GM(unsigned, 0x8c27924c), (unsigned)GM(unsigned, 0x8c279284)); } }
+#endif
+#ifdef GAUGE_TEST
+      /* test only: GAUGE_TEST frames after the tank starts, use the tank controls as a player does (input_move_sound_input_0e2a14):
+         D-pad Up opens the panel (tank +0x1024: 0 closed, 1 sliding in, 2 open), Left/Right picks the device (+0x1020: 0 heater,
+         1 air, 3 light), holding Up raises the picked one. Hold Up 600 frames, Right, hold Up 600 frames; log both gauges every 50 */
+      { static unsigned tank = ~0u; const unsigned T = 0x8c287050, hb = T + 0x13b24, ob = T + 0x13b70;
+        if (tank == ~0u && GM(int, 0x8c286ec8 + 0x44) == 18) { tank = n; host_log("gauge test: tank at frame %u\n", n); }
+        if (tank != ~0u && n >= tank + GAUGE_TEST) { unsigned t0 = n - tank - GAUGE_TEST, t = t0 % 1700; w = 0;
+          /* each 1700-frame round first taps L (the game's mode switch, input_l_pressed_short), as the mode picks the tank's input handler */
+          { extern int pad_script_l; pad_script_l = (t >= 0 && t < 4 && t0 < 1700 * 4) ? 255 : 0; }
+          if (t >= 100 && t < 105) w = 0x10; else if (t >= 300 && t < 800) w = 0x10; else if (t >= 800 && t < 805) w = 0x80; else if (t >= 900 && t < 1500) w = 0x10;
+          if (t % 50 == 0 && t0 <= 1700 * 4) host_log("gauge test: t=%u btn=%x mode=%d panel=%d dev=%d pos=%g heater c=%g f14=%u f18=%u f28=%u f48=%u  air c=%g f14=%u f18=%u vt=%08x\n",
+            t0, w, (int)GM(int, 0x8c286ec8 + 0xd0), (int)GM(int, T + 0x1024), (int)GM(int, T + 0x1020), (double)GM(float, T + 0x1048), (double)GM(float, hb + 0xc), (unsigned)GM(unsigned, hb + 0x14),
+            (unsigned)GM(unsigned, hb + 0x18), (unsigned)GM(unsigned, hb + 0x28), (unsigned)GM(unsigned, hb + 0x48), (double)GM(float, ob + 0xc),
+            (unsigned)GM(unsigned, ob + 0x14), (unsigned)GM(unsigned, ob + 0x18), (unsigned)GM(unsigned, T)); } }
 #endif
       host_mic_frame();
       int quit = 0; pad_live = host_pad_frame(w, &quit);
@@ -299,6 +335,15 @@ int main(int argc, char **argv)
     host_log("selftest w=%08x (11223344) h=%04x (beef) b=%04x (a55a) f=%g (1.5) d=%g (-2.25) peek=%08x\n", w0, h0, bb, f0, d0, hw_peek32(0xa05f9000));
     w[1] = w[0] + 1; host_log("selftest rmw %08x (11223345)\n", (unsigned)w[1]);
   }
+  /* The Dreamcast's RAM starts zeroed and the game's BSS/static-init flags rely on it. Wii RAM keeps what the previous launch left,
+     so on every boot after the first the game saw its old state (warn state 27, init guards already set) and quit. */
+#ifdef DIRTY_RAM   /* test only: fill with junk first, as a previous run would */
+  memset((void *)0x8c000000, 0xa5, 0x01000000);
+#endif
+#ifndef NO_RAM_CLEAR
+  memset((void *)0x8c000000, 0, 0x01000000);
+  host_log("guest RAM cleared\n");
+#endif
   memcpy((void *)0x8c010000, g_image, g_image_end - g_image);   /* little-endian bytes, as on the disc */
   { static const unsigned v[] = { 0x8c0000b0, 0x8c0000b4, 0x8c0000b8, 0x8c0000bc, 0x8c0000e0 }; for (int i = 0; i < 5; i++) GM(unsigned, v[i]) = 0x8c0000f0; }
   for (int p = 0; p < 24; p++) GM(unsigned, 0x8c4727c4 + p * 0x34 + 0x30) = 0x8cfa0000;
